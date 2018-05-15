@@ -1,14 +1,17 @@
 import typing
 from abjad.tools.datastructuretools.OrderedDict import OrderedDict
 from abjad.tools.indicatortools.BendAfter import BendAfter
+from abjad.tools.lilypondnametools.LilyPondGrobOverride import \
+    LilyPondGrobOverride
 from abjad.tools.scoretools.Chord import Chord
 from abjad.tools.scoretools.Note import Note
+from abjad.tools.schemetools.SchemeSymbol import SchemeSymbol
 from abjad.tools.topleveltools.inspect import inspect
 from .Spanner import Spanner
 
 
 class Glissando(Spanner):
-    r'''
+    r"""
     Glissando.
 
     ..  container:: example
@@ -57,7 +60,7 @@ class Glissando(Spanner):
                 f'8
             }
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -134,11 +137,6 @@ class Glissando(Spanner):
             if self._next_leaf_changes_current_pitch(leaf):
                 if self._is_last_in_tie_chain(leaf):
                     should_attach_glissando = True
-        if should_attach_glissando:
-            strings = [r'\glissando']
-            if tag:
-                strings = self._tag_show(strings)
-            bundle.right.spanner_starts.extend(strings)
         if self.stems:
             if leaf is self[1]:
                 strings = [
@@ -164,11 +162,18 @@ class Glissando(Spanner):
                     bundle.grob_reverts.extend(strings)
         if self.style:
             if leaf is self[0]:
-                string = rf"\override Glissando.style = #'{self.style}"
-                bundle.grob_overrides.append(string)
-            if leaf is self[-1]:
-                string = rf"\revert Glissando.style"
-                bundle.grob_reverts.append(string)
+                override = LilyPondGrobOverride(
+                    grob_name='Glissando',
+                    property_path='style',
+                    value=SchemeSymbol(self.style),
+                    )
+                string = override.tweak_string()
+                bundle.right.spanner_starts.append(string)
+        if should_attach_glissando:
+            strings = [self.start_command()]
+            if tag:
+                strings = self._tag_show(strings)
+            bundle.right.spanner_starts.extend(strings)
         return bundle
 
     @staticmethod
@@ -214,7 +219,7 @@ class Glissando(Spanner):
 
     @property
     def allow_repeats(self) -> typing.Optional[bool]:
-        r'''
+        r"""
         Is true when glissando should allow repeated pitches.
 
         ..  container:: example
@@ -321,12 +326,12 @@ class Glissando(Spanner):
 
         Ties are excluded when repeated pitches are not allowed because all
         ties comprise repeated pitches.
-        '''
+        """
         return self._allow_repeats
 
     @property
     def allow_ties(self) -> typing.Optional[bool]:
-        r'''
+        r"""
         Is true when glissando should allow ties.
 
         ..  container:: example
@@ -433,12 +438,12 @@ class Glissando(Spanner):
 
         Ties are excluded when repeated pitches are not allowed because all
         ties comprise repeated pitches.
-        '''
+        """
         return self._allow_ties
 
     @property
     def cross_segment_examples(self):
-        r'''
+        r"""
         Cross-segment examples.
 
         ..  container:: example
@@ -719,24 +724,24 @@ class Glissando(Spanner):
                     }
                 }
 
-        '''
+        """
         pass
 
     @property
     def leak(self) -> None:
-        '''
+        """
         Glissando does not implement ``leak``.
         
         The LilyPond ``\glissando`` command is unary instead of matchfix.
 
         This means that there is no ``\stopGlissando`` command to leak to the
         right.
-        '''
+        """
         pass
 
     @property
     def parenthesize_repeats(self) -> typing.Optional[bool]:
-        r'''
+        r"""
         Is true when glissando should parenthesize repeated pitches.
 
         ..  container:: example
@@ -843,12 +848,12 @@ class Glissando(Spanner):
                     d'8
                 }
 
-        '''
+        """
         return self._parenthesize_repeats
 
     @property
     def stems(self) -> typing.Optional[bool]:
-        r'''
+        r"""
         Is true when glissando formats stems-only timing marks non nonedge
         leaves.
 
@@ -881,12 +886,12 @@ class Glissando(Spanner):
                     f'8
                 }
 
-        '''
+        """
         return self._stems
 
     @property
     def style(self) -> typing.Optional[str]:
-        r'''
+        r"""
         Gets style.
 
         ..  container:: example
@@ -901,24 +906,23 @@ class Glissando(Spanner):
                 >>> abjad.f(staff)
                 \new Staff
                 {
-                    \override Glissando.style = #'trill
                     c'8
+                    - \tweak style #'trill
                     \glissando
                     d'8
                     \glissando
                     e'8
                     \glissando
-                    \revert Glissando.style
                     f'8
                 }
 
-        '''
+        """
         return self._style
 
     ## PUBLIC METHODS ###
 
     def start_command(self) -> typing.Optional[str]:
-        r'''
+        r"""
         Gets start command.
 
         ..  container:: example
@@ -926,11 +930,11 @@ class Glissando(Spanner):
             >>> abjad.Glissando().start_command()
             '\\glissando'
 
-        '''
+        """
         return super(Glissando, self).start_command()
 
     def stop_command(self) -> typing.Optional[str]:
-        '''
+        """
         Gets stop command.
 
         ..  container:: example
@@ -938,5 +942,5 @@ class Glissando(Spanner):
             >>> abjad.Glissando().stop_command() is None
             True
 
-        '''
+        """
         return super(Glissando, self).stop_command()

@@ -424,32 +424,10 @@ class Wrapper(AbjadValueObject):
                     \override TextSpanner.staff-padding = #3
                 }
                 {
-                %@% \once \override TextSpanner.bound-details.left.text = \markup {     %! METRONOME_MARK_WITH_COLOR:M2
-                %@%     \with-color                                                     %! METRONOME_MARK_WITH_COLOR:M2
-                %@%         #(x11-color 'DarkRed)                                       %! METRONOME_MARK_WITH_COLOR:M2
-                %@%         {                                                           %! METRONOME_MARK_WITH_COLOR:M2
-                %@%             \fontsize                                               %! METRONOME_MARK_WITH_COLOR:M2
-                %@%                 #-6                                                 %! METRONOME_MARK_WITH_COLOR:M2
-                %@%                 \general-align                                      %! METRONOME_MARK_WITH_COLOR:M2
-                %@%                     #Y                                              %! METRONOME_MARK_WITH_COLOR:M2
-                %@%                     #DOWN                                           %! METRONOME_MARK_WITH_COLOR:M2
-                %@%                     \note-by-number                                 %! METRONOME_MARK_WITH_COLOR:M2
-                %@%                         #2                                          %! METRONOME_MARK_WITH_COLOR:M2
-                %@%                         #0                                          %! METRONOME_MARK_WITH_COLOR:M2
-                %@%                         #1                                          %! METRONOME_MARK_WITH_COLOR:M2
-                %@%             \upright                                                %! METRONOME_MARK_WITH_COLOR:M2
-                %@%                 {                                                   %! METRONOME_MARK_WITH_COLOR:M2
-                %@%                     =                                               %! METRONOME_MARK_WITH_COLOR:M2
-                %@%                     60                                              %! METRONOME_MARK_WITH_COLOR:M2
-                %@%                 }                                                   %! METRONOME_MARK_WITH_COLOR:M2
-                %@%             \hspace                                                 %! METRONOME_MARK_WITH_COLOR:M2
-                %@%                 #1                                                  %! METRONOME_MARK_WITH_COLOR:M2
-                %@%         }                                                           %! METRONOME_MARK_WITH_COLOR:M2
-                %@%     }                                                               %! METRONOME_MARK_WITH_COLOR:M2
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text = \markup {
+                    \time 3/8
+                    c'8.
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -467,13 +445,35 @@ class Wrapper(AbjadValueObject):
                         \hspace
                             #1
                         }
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.dash-period = 0
-                    \time 3/8
-                    c'8.
+                %@% - \tweak bound-details.left.text \markup {     %! METRONOME_MARK_WITH_COLOR:M2
+                %@%     \with-color                                %! METRONOME_MARK_WITH_COLOR:M2
+                %@%         #(x11-color 'DarkRed)                  %! METRONOME_MARK_WITH_COLOR:M2
+                %@%         {                                      %! METRONOME_MARK_WITH_COLOR:M2
+                %@%             \fontsize                          %! METRONOME_MARK_WITH_COLOR:M2
+                %@%                 #-6                            %! METRONOME_MARK_WITH_COLOR:M2
+                %@%                 \general-align                 %! METRONOME_MARK_WITH_COLOR:M2
+                %@%                     #Y                         %! METRONOME_MARK_WITH_COLOR:M2
+                %@%                     #DOWN                      %! METRONOME_MARK_WITH_COLOR:M2
+                %@%                     \note-by-number            %! METRONOME_MARK_WITH_COLOR:M2
+                %@%                         #2                     %! METRONOME_MARK_WITH_COLOR:M2
+                %@%                         #0                     %! METRONOME_MARK_WITH_COLOR:M2
+                %@%                         #1                     %! METRONOME_MARK_WITH_COLOR:M2
+                %@%             \upright                           %! METRONOME_MARK_WITH_COLOR:M2
+                %@%                 {                              %! METRONOME_MARK_WITH_COLOR:M2
+                %@%                     =                          %! METRONOME_MARK_WITH_COLOR:M2
+                %@%                     60                         %! METRONOME_MARK_WITH_COLOR:M2
+                %@%                 }                              %! METRONOME_MARK_WITH_COLOR:M2
+                %@%             \hspace                            %! METRONOME_MARK_WITH_COLOR:M2
+                %@%                 #1                             %! METRONOME_MARK_WITH_COLOR:M2
+                %@%         }                                      %! METRONOME_MARK_WITH_COLOR:M2
+                %@%     }                                          %! METRONOME_MARK_WITH_COLOR:M2
+                    - \tweak dash-period 0
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
                     d'8.
                     e'4.
@@ -515,32 +515,10 @@ class Wrapper(AbjadValueObject):
                     \override TextSpanner.staff-padding = #3
                 }
                 {
-                %@% \once \override TextSpanner.bound-details.left.text = \markup {     %! METRONOME_MARK_WITH_COLOR:M2
-                %@%     \with-color                                                     %! METRONOME_MARK_WITH_COLOR:M2
-                %@%         #(x11-color 'DarkRed)                                       %! METRONOME_MARK_WITH_COLOR:M2
-                %@%         {                                                           %! METRONOME_MARK_WITH_COLOR:M2
-                %@%             \fontsize                                               %! METRONOME_MARK_WITH_COLOR:M2
-                %@%                 #-6                                                 %! METRONOME_MARK_WITH_COLOR:M2
-                %@%                 \general-align                                      %! METRONOME_MARK_WITH_COLOR:M2
-                %@%                     #Y                                              %! METRONOME_MARK_WITH_COLOR:M2
-                %@%                     #DOWN                                           %! METRONOME_MARK_WITH_COLOR:M2
-                %@%                     \note-by-number                                 %! METRONOME_MARK_WITH_COLOR:M2
-                %@%                         #2                                          %! METRONOME_MARK_WITH_COLOR:M2
-                %@%                         #0                                          %! METRONOME_MARK_WITH_COLOR:M2
-                %@%                         #1                                          %! METRONOME_MARK_WITH_COLOR:M2
-                %@%             \upright                                                %! METRONOME_MARK_WITH_COLOR:M2
-                %@%                 {                                                   %! METRONOME_MARK_WITH_COLOR:M2
-                %@%                     =                                               %! METRONOME_MARK_WITH_COLOR:M2
-                %@%                     60                                              %! METRONOME_MARK_WITH_COLOR:M2
-                %@%                 }                                                   %! METRONOME_MARK_WITH_COLOR:M2
-                %@%             \hspace                                                 %! METRONOME_MARK_WITH_COLOR:M2
-                %@%                 #1                                                  %! METRONOME_MARK_WITH_COLOR:M2
-                %@%         }                                                           %! METRONOME_MARK_WITH_COLOR:M2
-                %@%     }                                                               %! METRONOME_MARK_WITH_COLOR:M2
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text = \markup {
+                    \time 3/8
+                    c'8.
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -558,13 +536,35 @@ class Wrapper(AbjadValueObject):
                         \hspace
                             #1
                         }
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.dash-period = 0
-                    \time 3/8
-                    c'8.
+                %@% - \tweak bound-details.left.text \markup {     %! METRONOME_MARK_WITH_COLOR:M2
+                %@%     \with-color                                %! METRONOME_MARK_WITH_COLOR:M2
+                %@%         #(x11-color 'DarkRed)                  %! METRONOME_MARK_WITH_COLOR:M2
+                %@%         {                                      %! METRONOME_MARK_WITH_COLOR:M2
+                %@%             \fontsize                          %! METRONOME_MARK_WITH_COLOR:M2
+                %@%                 #-6                            %! METRONOME_MARK_WITH_COLOR:M2
+                %@%                 \general-align                 %! METRONOME_MARK_WITH_COLOR:M2
+                %@%                     #Y                         %! METRONOME_MARK_WITH_COLOR:M2
+                %@%                     #DOWN                      %! METRONOME_MARK_WITH_COLOR:M2
+                %@%                     \note-by-number            %! METRONOME_MARK_WITH_COLOR:M2
+                %@%                         #2                     %! METRONOME_MARK_WITH_COLOR:M2
+                %@%                         #0                     %! METRONOME_MARK_WITH_COLOR:M2
+                %@%                         #1                     %! METRONOME_MARK_WITH_COLOR:M2
+                %@%             \upright                           %! METRONOME_MARK_WITH_COLOR:M2
+                %@%                 {                              %! METRONOME_MARK_WITH_COLOR:M2
+                %@%                     =                          %! METRONOME_MARK_WITH_COLOR:M2
+                %@%                     60                         %! METRONOME_MARK_WITH_COLOR:M2
+                %@%                 }                              %! METRONOME_MARK_WITH_COLOR:M2
+                %@%             \hspace                            %! METRONOME_MARK_WITH_COLOR:M2
+                %@%                 #1                             %! METRONOME_MARK_WITH_COLOR:M2
+                %@%         }                                      %! METRONOME_MARK_WITH_COLOR:M2
+                %@%     }                                          %! METRONOME_MARK_WITH_COLOR:M2
+                    - \tweak dash-period 0
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
                     d'8.
                     e'4.

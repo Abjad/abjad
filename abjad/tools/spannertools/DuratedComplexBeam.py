@@ -11,7 +11,7 @@ Number = typing.Union[int, float]
 
 
 class DuratedComplexBeam(ComplexBeam):
-    r'''
+    r"""
     Durated complex beam.
 
     ..  container:: example
@@ -101,7 +101,7 @@ class DuratedComplexBeam(ComplexBeam):
     Groups leaves in spanner according to `durations`.
 
     Spans leaves between groups according to `span_beam_count`.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -261,7 +261,7 @@ class DuratedComplexBeam(ComplexBeam):
 
     @property
     def beam_rests(self) -> typing.Optional[bool]:
-        r'''
+        r"""
         Is true when beam should include rests and skips.
 
         ..  container:: example
@@ -403,12 +403,12 @@ class DuratedComplexBeam(ComplexBeam):
                     ]
                 }
 
-        '''
+        """
         return super(DuratedComplexBeam, self).beam_rests
 
     @property
     def durations(self) -> typing.Tuple[Duration, ...]:
-        r'''
+        r"""
         Gets durations.
 
         ..  container:: example
@@ -490,12 +490,12 @@ class DuratedComplexBeam(ComplexBeam):
             Test ensures that leaf groups format correctly when they contain
             only one leaf.
 
-        '''
+        """
         return self._durations
 
     @property
     def nibs_towards_nonbeamable_components(self) -> typing.Optional[bool]:
-        r'''
+        r"""
         Is true when when spanner should render nibs pointing towards
         nonbeamable components included in spanner.
 
@@ -573,12 +573,12 @@ class DuratedComplexBeam(ComplexBeam):
                     ]
                 }
 
-        '''
+        """
         return self._nibs_towards_nonbeamable_components
 
     @property
     def span_beam_count(self) -> int:
-        r'''
+        r"""
         Gets span beam count.
 
         ..  container:: example
@@ -692,12 +692,12 @@ class DuratedComplexBeam(ComplexBeam):
             >>> beam.span_beam_count
             0
 
-        '''
+        """
         return self._span_beam_count
 
     @property
     def stemlet_length(self) -> typing.Optional[Number]:
-        r'''
+        r"""
         Gets stemlet length.
 
         ..  container:: example
@@ -745,13 +745,13 @@ class DuratedComplexBeam(ComplexBeam):
                     ]
                 }
 
-        '''
+        """
         return self._stemlet_length
 
     ### PUBLIC METHODS ###
 
     def start_command(self) -> typing.Optional[str]:
-        '''
+        """
         Gets start command.
 
         ..  container:: example
@@ -759,11 +759,11 @@ class DuratedComplexBeam(ComplexBeam):
             >>> abjad.DuratedComplexBeam().start_command()
             '['
 
-        '''
+        """
         return super(DuratedComplexBeam, self).start_command()
 
     def stop_command(self) -> typing.Optional[str]:
-        '''
+        """
         Gets stop command.
 
         ..  container:: example
@@ -771,5 +771,5 @@ class DuratedComplexBeam(ComplexBeam):
             >>> abjad.DuratedComplexBeam().stop_command()
             ']'
 
-        '''
+        """
         return super(DuratedComplexBeam, self).stop_command()

@@ -36,10 +36,10 @@ class LilyPondGrobOverride(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_lilypond_type',
         '_grob_name',
-        '_once',
         '_is_revert',
+        '_lilypond_type',
+        '_once',
         '_property_path',
         '_value',
         )
@@ -382,7 +382,7 @@ class LilyPondGrobOverride(AbjadValueObject):
 
     ### PUBLIC METHODS ###
 
-    def tweak_string(self, hyphen=True) -> str:
+    def tweak_string(self, hyphen=True, grob=False) -> str:
         r'''
         Gets LilyPond grob override \tweak string.
 
@@ -411,7 +411,11 @@ class LilyPondGrobOverride(AbjadValueObject):
             result = [r'- \tweak']
         else:
             result = [r'\tweak']
-        string = '.'.join(self.property_path)
+        if grob:
+            property_path = (self.grob_name,) + self.property_path
+        else:
+            property_path = self.property_path
+        string = '.'.join(property_path)
         result.append(string)
         string = Scheme.format_embedded_scheme_value(self.value)
         result.append(string)

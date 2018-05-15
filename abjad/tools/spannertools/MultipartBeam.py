@@ -5,7 +5,7 @@ Number = typing.Union[int, float]
 
 
 class MultipartBeam(Beam):
-    r'''
+    r"""
     Multipart beam.
 
     Beams together everything that can be beamed and ignores everything else.
@@ -70,7 +70,7 @@ class MultipartBeam(Beam):
     Avoids rests.
 
     Avoids large-duration notes.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -102,9 +102,6 @@ class MultipartBeam(Beam):
         bundle = self._get_basic_lilypond_format_bundle(leaf)
         if not self._is_beamable(leaf, beam_rests=self.beam_rests):
             return bundle
-        direction_string = ''
-        if self.direction is not None:
-            direction_string = f'{self.direction} '
         beamable_leaf_count = 0
         for leaf_ in self.leaves:
             if self._is_beamable(leaf_, beam_rests=self.beam_rests):
@@ -124,7 +121,7 @@ class MultipartBeam(Beam):
                         next_leaf,
                         beam_rests=self.beam_rests,
                         ):
-                        start_piece = f'{direction_string}['
+                        start_piece = self.start_command()
             else:
                 if previous_leaf is not None:
                     if not self._is_beamable(
@@ -135,14 +132,14 @@ class MultipartBeam(Beam):
                             next_leaf,
                             beam_rests=self.beam_rests,
                             ):
-                            start_piece = f'{direction_string}['
+                            start_piece = self.start_command()
             if leaf is self[-1]:
                 if previous_leaf is not None:
                     if self._is_beamable(
                         previous_leaf,
                         beam_rests=self.beam_rests,
                         ):
-                        stop_piece = ']'
+                        stop_piece = self.stop_command()
             else:
                 if self._is_beamable(
                     previous_leaf,
@@ -154,7 +151,7 @@ class MultipartBeam(Beam):
                             next_leaf,
                             beam_rests=self.beam_rests,
                             ):
-                            stop_piece = ']'
+                            stop_piece = self.stop_command()
             if start_piece and stop_piece:
                 bundle.right.spanner_starts.extend([
                     start_piece, stop_piece])
@@ -169,7 +166,7 @@ class MultipartBeam(Beam):
 
     @property
     def beam_rests(self) -> typing.Optional[bool]:
-        r'''
+        r"""
         Is true when beam should include rests. Otherwise false.
 
         ..  container:: example
@@ -298,12 +295,12 @@ class MultipartBeam(Beam):
 
             LilyPond beams all (internal) skips.
 
-        '''
+        """
         return self._beam_rests
 
     @property
     def stemlet_length(self) -> typing.Optional[Number]:
-        r'''
+        r"""
         Gets stemlet length.
 
         ..  container:: example
@@ -342,13 +339,13 @@ class MultipartBeam(Beam):
                     ]
                 }
 
-        '''
+        """
         return self._stemlet_length
 
     ### PUBLIC METHODS ###
 
     def start_command(self) -> typing.Optional[str]:
-        '''
+        """
         Gets start command.
 
         ..  container:: example
@@ -356,11 +353,11 @@ class MultipartBeam(Beam):
             >>> abjad.MultipartBeam().start_command()
             '['
 
-        '''
+        """
         return super(MultipartBeam, self).start_command()
 
     def stop_command(self) -> typing.Optional[str]:
-        '''
+        """
         Gets stop command.
 
         ..  container:: example
@@ -368,5 +365,5 @@ class MultipartBeam(Beam):
             >>> abjad.MultipartBeam().stop_command()
             ']'
 
-        '''
+        """
         return super(MultipartBeam, self).stop_command()

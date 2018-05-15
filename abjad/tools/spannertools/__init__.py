@@ -4,7 +4,6 @@ from .BowContactSpanner import BowContactSpanner
 from .ComplexBeam import ComplexBeam
 from .ComplexTrillSpanner import ComplexTrillSpanner
 from .DuratedComplexBeam import DuratedComplexBeam
-from .GeneralizedBeam import GeneralizedBeam
 from .Glissando import Glissando
 from .Hairpin import Hairpin
 from .HorizontalBracketSpanner import HorizontalBracketSpanner

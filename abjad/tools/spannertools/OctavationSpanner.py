@@ -4,7 +4,7 @@ from .Spanner import Spanner
 
 
 class OctavationSpanner(Spanner):
-    r'''
+    r"""
     Octavation spanner.
 
     ..  container:: example
@@ -53,7 +53,7 @@ class OctavationSpanner(Spanner):
 
         One-note octavation changes are allowed.
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -95,7 +95,7 @@ class OctavationSpanner(Spanner):
 
     @property
     def leak(self) -> None:
-        r'''
+        r"""
         Octavation spanner does not implement ``leak``.
 
         Most LilyPond spanners are controlled by a pair of matching start- and
@@ -108,12 +108,12 @@ class OctavationSpanner(Spanner):
         LilyPond demans appear before a note, rest or chord) rather than a
         LilyPond postevent (that LilyPond demands appear after a note, rest or
         chord).
-        '''
+        """
         pass
 
     @property
     def start(self) -> typing.Optional[int]:
-        '''
+        """
         Gets octavation start.
 
         ..  container:: example
@@ -126,12 +126,12 @@ class OctavationSpanner(Spanner):
             >>> spanner.start
             1
 
-        '''
+        """
         return self._start
 
     @property
     def stop(self) -> typing.Optional[int]:
-        '''
+        """
         Gets octavation stop.
 
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
@@ -142,7 +142,7 @@ class OctavationSpanner(Spanner):
         >>> spanner.stop
         1
 
-        '''
+        """
         return self._stop
 
     ### PUBLIC METHODS ###
@@ -198,7 +198,7 @@ class OctavationSpanner(Spanner):
     ### PUBLIC METHODS ###
 
     def start_command(self) -> typing.Optional[str]:
-        r'''
+        r"""
         Gets start command.
 
         ..  container:: example
@@ -206,11 +206,11 @@ class OctavationSpanner(Spanner):
             >>> abjad.OctavationSpanner(start=1).start_command()
             '\\ottava #1'
 
-        '''
+        """
         return rf'\ottava #{self.start}'
 
     def stop_command(self) -> typing.Optional[str]:
-        r'''
+        r"""
         Gets stop command.
 
         ..  container:: example
@@ -218,5 +218,5 @@ class OctavationSpanner(Spanner):
             >>> abjad.OctavationSpanner(start=1).stop_command()
             '\\ottava #0'
 
-        '''
+        """
         return rf'\ottava #{self.stop}'

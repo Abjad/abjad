@@ -13,7 +13,7 @@ from .Spanner import Spanner
 
 
 class ComplexTrillSpanner(Spanner):
-    r'''
+    r"""
     Complex trill spanner.
 
     ..  container:: example
@@ -50,19 +50,20 @@ class ComplexTrillSpanner(Spanner):
             {
                 \pitchedTrill
                 c'4
-                ~ \startTrillSpan f'
+                ~
+                \startTrillSpan f'
                 c'8
                 <> \stopTrillSpan
-                \once \override TrillSpanner.bound-details.left.text = \markup {
-                    \null
-                    }
                 \pitchedTrill
-                d'8 \startTrillSpan g'
+                d'8
+                - \tweak bound-details.left.text ##f
+                \startTrillSpan g'
                 <> \stopTrillSpan
                 r8
                 \pitchedTrill
                 e'8
-                ~ \startTrillSpan a'
+                ~
+                \startTrillSpan a'
                 e'8
                 <> \stopTrillSpan
                 r8
@@ -73,7 +74,7 @@ class ComplexTrillSpanner(Spanner):
     Avoids silences.
 
     Restarts the trill on every new pitched logical tie.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -117,18 +118,17 @@ class ComplexTrillSpanner(Spanner):
             if (previous_leaf is not None and
                 not isinstance(previous_leaf, prototype) and
                 inspect(previous_leaf).get_spanners(type(self))):
-                grob_override = LilyPondGrobOverride(
+                override = LilyPondGrobOverride(
                     grob_name='TrillSpanner',
-                    once=True,
                     property_path=(
                         'bound-details',
                         'left',
                         'text',
                         ),
-                    value=Markup(r'\null'),
+                    value=False,
                     )
-                string = grob_override.override_string
-                bundle.grob_overrides.append(string)
+                string = override.tweak_string()
+                bundle.right.trill_pitches.append(string)
             if self.interval is not None:
                 string = r'\pitchedTrill'
                 bundle.opening.spanners.append(string)
@@ -140,17 +140,17 @@ class ComplexTrillSpanner(Spanner):
                     elif self.interval.semitones < 0:
                         written_pitch = min(leaf.written_pitches)
                 trill_pitch = written_pitch.transpose(self.interval)
-                string = rf'\startTrillSpan {trill_pitch!s}'
+                string = rf'{self.start_command()} {trill_pitch!s}'
             else:
-                string = r'\startTrillSpan'
+                string = self.start_command()
             bundle.right.trill_pitches.append(string)
         if leaf is logical_tie.tail:
             next_leaf = leaf._get_leaf(1)
             if next_leaf is not None:
-                string = r'<> \stopTrillSpan'
+                string = rf'<> {self.stop_command()}'
                 bundle.after.commands.append(string)
             else:
-                string = r'\stopTrillSpan'
+                string = self.stop_command()
                 bundle.right.spanner_stops.append(string)
         return bundle
 
@@ -158,7 +158,7 @@ class ComplexTrillSpanner(Spanner):
 
     @property
     def interval(self) -> typing.Optional[NamedInterval]:
-        r'''
+        r"""
         Gets optional interval of trill spanner.
 
         ..  container:: example
@@ -176,13 +176,13 @@ class ComplexTrillSpanner(Spanner):
                 {
                     c'4
                     \pitchedTrill
-                    d'4 \startTrillSpan f'
+                    d'4
+                    \startTrillSpan f'
                     <> \stopTrillSpan
-                    \once \override TrillSpanner.bound-details.left.text = \markup {
-                        \null
-                        }
                     \pitchedTrill
-                    e'4 \startTrillSpan g'
+                    e'4
+                    - \tweak bound-details.left.text ##f
+                    \startTrillSpan g'
                     <> \stopTrillSpan
                     f'4
                 }
@@ -190,13 +190,13 @@ class ComplexTrillSpanner(Spanner):
             >>> complex_trill.interval
             NamedInterval('+m3')
 
-        '''
+        """
         return self._interval
 
     ### PUBLIC METHODS ###
 
     def start_command(self) -> typing.Optional[str]:
-        r'''
+        r"""
         Gets start command.
 
         ..  container:: example
@@ -204,11 +204,11 @@ class ComplexTrillSpanner(Spanner):
             >>> abjad.ComplexTrillSpanner().start_command()
             '\\startTrillSpan'
 
-        '''
+        """
         return super(ComplexTrillSpanner, self).start_command()
 
     def stop_command(self) -> typing.Optional[str]:
-        r'''
+        r"""
         Gets stop command.
 
         ..  container:: example
@@ -216,5 +216,5 @@ class ComplexTrillSpanner(Spanner):
             >>> abjad.ComplexTrillSpanner().stop_command()
             '\\stopTrillSpan'
 
-        '''
+        """
         return super(ComplexTrillSpanner, self).stop_command()

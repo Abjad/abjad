@@ -6,7 +6,7 @@ from .ComplexBeam import ComplexBeam
 
 
 class MeasuredComplexBeam(ComplexBeam):
-    r'''
+    r"""
     Measured complex beam.
 
     ..  container:: example
@@ -58,7 +58,7 @@ class MeasuredComplexBeam(ComplexBeam):
     Groups leaves by measures.
 
     Formats top-level `span_beam_count` beam between measures.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -122,7 +122,7 @@ class MeasuredComplexBeam(ComplexBeam):
 
     @property
     def span_beam_count(self) -> int:
-        r'''
+        r"""
         Gets number of span beams between adjacent measures.
 
         ..  container:: example
@@ -157,13 +157,13 @@ class MeasuredComplexBeam(ComplexBeam):
             >>> beam.span_beam_count
             2
 
-        '''
+        """
         return self._span_beam_count
 
     ### PUBLIC METHODS ###
 
     def start_command(self) -> typing.Optional[str]:
-        '''
+        """
         Gets start command.
 
         ..  container:: example
@@ -171,11 +171,11 @@ class MeasuredComplexBeam(ComplexBeam):
             >>> abjad.MeasuredComplexBeam().start_command()
             '['
 
-        '''
+        """
         return super(MeasuredComplexBeam, self).start_command()
 
     def stop_command(self) -> typing.Optional[str]:
-        '''
+        """
         Gets stop command.
 
         ..  container:: example
@@ -183,5 +183,5 @@ class MeasuredComplexBeam(ComplexBeam):
             >>> abjad.MeasuredComplexBeam().stop_command()
             ']'
 
-        '''
+        """
         return super(MeasuredComplexBeam, self).stop_command()

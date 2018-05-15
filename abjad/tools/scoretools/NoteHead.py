@@ -4,13 +4,15 @@ import typing
 from abjad.tools import systemtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.pitchtools.NamedPitch import NamedPitch
-from abjad.tools.lilypondnametools.LilyPondNameManager import \
-    LilyPondNameManager
+from abjad.tools.lilypondnametools.LilyPondTweakManager import \
+    LilyPondTweakManager
+from abjad.tools.systemtools.StorageFormatManager import StorageFormatManager
 
 
 @functools.total_ordering
 class NoteHead(AbjadObject):
-    r'''Note-head.
+    """
+    Note-head.
 
     ..  container:: example
 
@@ -20,7 +22,7 @@ class NoteHead(AbjadObject):
         >>> note.note_head
         NoteHead("cs''")
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -32,7 +34,7 @@ class NoteHead(AbjadObject):
         '_is_cautionary',
         '_is_forced',
         '_is_parenthesized',
-        '_tweak',
+        '_lilypond_tweak_manager',
         '_written_pitch',
         )
 
@@ -45,34 +47,37 @@ class NoteHead(AbjadObject):
         is_cautionary=None,
         is_forced=None,
         is_parenthesized=None,
-        tweak_pairs=(),
+        tweaks=(),
         ):
         import abjad
         self._alternative = None
         if client is not None:
             assert isinstance(client, abjad.Leaf)
         self._client = client
-        self._tweak = None
+        self._lilypond_tweak_manager = None
         if isinstance(written_pitch, type(self)):
             note_head = written_pitch
             written_pitch = note_head.written_pitch
             is_cautionary = note_head.is_cautionary
             is_forced = note_head.is_forced
-            tweak_pairs = note_head.tweak._get_attribute_pairs()
+            tweaks = note_head.tweaks._get_attribute_pairs()
         elif written_pitch is None:
             written_pitch = 0
         self.written_pitch = written_pitch
         self.is_cautionary = is_cautionary
         self.is_forced = is_forced
         self.is_parenthesized = is_parenthesized
-        for tweak_pair in tweak_pairs or []:
-            key, value = tweak_pair
-            setattr(self.tweak, key, copy.copy(value))
+        if not isinstance(tweaks, (list, tuple)):
+            tweaks = tweaks._get_attribute_pairs()
+        for tweak in tweaks or []:
+            key, value = tweak
+            setattr(self.tweaks, key, copy.copy(value))
 
     ### SPECIAL METHODS ###
 
     def __copy__(self, *arguments) -> 'NoteHead':
-        r'''Copies note-head.
+        """
+        Copies note-head.
 
         ..  container:: example
 
@@ -89,44 +94,49 @@ class NoteHead(AbjadObject):
             >>> abjad.new(note.note_head)
             NoteHead("cs''")
 
-        '''
+        """
         arguments = (
             self.written_pitch,
             None,
             self.is_cautionary,
             self.is_forced,
             self.is_parenthesized,
-            self.tweak._get_attribute_pairs(),
+            self.tweaks._get_attribute_pairs(),
             )
         return type(self)(*arguments)
 
     def __eq__(self, argument) -> bool:
-        r'''Is true when `argument` is a note-head with written pitch equal to
+        """
+        Is true when `argument` is a note-head with written pitch equal to
         that of this note-head. Otherwise false.
-        '''
+        """
         if isinstance(argument, type(self)):
             return self.written_pitch == argument.written_pitch
         return self.written_pitch == argument
 
     def __format__(self, format_specification='') -> str:
-        r'''Formats note-head.
-        '''
-        from abjad.tools import systemtools
+        """
+        Formats note-head.
+        """
         if format_specification in ('', 'lilypond'):
             return self._get_lilypond_format()
         elif format_specification == 'storage':
-            return systemtools.StorageFormatManager(self).get_storage_format()
+            return StorageFormatManager(self).get_storage_format()
         return str(self)
 
     def __hash__(self) -> int:
-        r'''Hashes note-head.
-        '''
+        """
+        Hashes note-head.
+
+        Redefined in tandem with __eq__.
+        """
         return super(NoteHead, self).__hash__()
 
     def __lt__(self, argument) -> bool:
-        r'''Is true when `argument` is a note-head with written pitch greater
+        """
+        Is true when `argument` is a note-head with written pitch greater
         than that of this note-head. Otherwise false.
-        '''
+        """
         if isinstance(argument, type(self)):
             return self.written_pitch < argument.written_pitch
         try:
@@ -136,7 +146,8 @@ class NoteHead(AbjadObject):
         return self.written_pitch < argument.written_pitch
 
     def __repr__(self) -> str:
-        r'''Gets interpreter representation of note-head.
+        """
+        Gets interpreter representation of note-head.
 
         ..  container:: example
 
@@ -144,11 +155,12 @@ class NoteHead(AbjadObject):
             >>> note_head
             NoteHead("cs''")
 
-        '''
+        """
         return super(NoteHead, self).__repr__()
 
     def __str__(self) -> str:
-        r'''String representation of note-head.
+        """
+        Gets string representation of note-head.
 
         ..  container:: example
 
@@ -156,7 +168,7 @@ class NoteHead(AbjadObject):
             >>> str(note_head)
             "cs''"
 
-        '''
+        """
         result = ''
         if self.written_pitch:
             result = str(self.written_pitch)
@@ -170,13 +182,12 @@ class NoteHead(AbjadObject):
 
     @property
     def _keyword_argument_names(self):
-        from abjad.tools import systemtools
-        agent = systemtools.StorageFormatManager(self)
+        agent = StorageFormatManager(self)
         keyword_argument_names = list(agent.signature_keyword_names)
         if 'client' in keyword_argument_names:
             keyword_argument_names.remove('client')
-        if 'tweak_pairs' in keyword_argument_names:
-            keyword_argument_names.remove('tweak_pairs')
+        if 'tweaks' in keyword_argument_names:
+            keyword_argument_names.remove('tweaks')
         keyword_argument_names = tuple(keyword_argument_names)
         return keyword_argument_names
 
@@ -184,37 +195,28 @@ class NoteHead(AbjadObject):
 
     def _get_format_specification(self):
         arguments = [repr(str(self))]
-        arguments.extend(self.tweak._get_attribute_pairs())
+        arguments.extend(self.tweaks._get_attribute_pairs())
         arguments = ', '.join([str(x) for x in arguments])
-        repr_text = '{}({})'.format(type(self).__name__, arguments)
-        agent = systemtools.StorageFormatManager(self)
+        repr_text = f'{type(self).__name__}({arguments})'
+        agent = StorageFormatManager(self)
         names = list(agent.signature_keyword_names)
         if 'client' in names:
             names.remove('client')
-        if 'tweak_pairs' in names:
-            names.remove('tweak_pairs')
+        if 'tweaks' in names:
+            names.remove('tweaks')
         return systemtools.FormatSpecification(
             self,
             repr_text=repr_text,
             storage_format_kwargs_names=names,
             )
 
-    def _get_format_pieces_zoo(self):
-        import abjad
+    def _get_format_pieces(self):
         assert self.written_pitch
         result = []
         if self.is_parenthesized:
             result.append(r'\parenthesize')
-        manager = abjad.LilyPondFormatManager
-        if isinstance(self._client, abjad.Chord):
-            for key, value in vars(self.tweak).items():
-                if not key.startswith('_'):
-                    string = r'\tweak {} {}'
-                    string = string.format(
-                        manager.format_lilypond_attribute(key),
-                        manager.format_lilypond_value(value),
-                        )
-                    result.append(string)
+        strings = self.tweaks._list_format_contributions(hyphen=False)
+        result.extend(strings)
         kernel = format(self.written_pitch)
         if self.is_forced:
             kernel += '!'
@@ -225,7 +227,7 @@ class NoteHead(AbjadObject):
 
     def _get_lilypond_format(self, formatted_duration=None):
         import abjad
-        pieces = self._get_format_pieces_zoo()
+        pieces = self._get_format_pieces()
         if formatted_duration is not None:
             pieces[-1] = pieces[-1] + formatted_duration
         if self.alternative:
@@ -233,7 +235,7 @@ class NoteHead(AbjadObject):
                 pieces,
                 tag=self.alternative[2],
                 )
-            pieces_ = self.alternative[0]._get_format_pieces_zoo()
+            pieces_ = self.alternative[0]._get_format_pieces()
             if formatted_duration is not None:
                 pieces_[-1] = pieces_[-1] + formatted_duration
             pieces_ = abjad.LilyPondFormatManager.tag(
@@ -249,7 +251,8 @@ class NoteHead(AbjadObject):
 
     @property
     def alternative(self) -> typing.Tuple['NoteHead', str, str]:
-        r'''Gets and sets note-head alternative.
+        """
+        Gets and sets note-head alternative.
 
         ..  container:: example
 
@@ -315,7 +318,7 @@ class NoteHead(AbjadObject):
             >>> abjad.f(chord, strict=50)
             <b d' bf''>4
 
-        '''
+        """
         return self._alternative
 
     @alternative.setter
@@ -331,7 +334,8 @@ class NoteHead(AbjadObject):
 
     @property
     def client(self):
-        r'''Client of note-head.
+        """
+        Gets client of note-head.
 
         ..  container:: example
 
@@ -340,12 +344,13 @@ class NoteHead(AbjadObject):
             True
 
         Returns note, chord or none.
-        '''
+        """
         return self._client
 
     @property
     def is_cautionary(self) -> bool:
-        r'''Gets and sets cautionary accidental flag.
+        """
+        Gets and sets cautionary accidental flag.
 
         ..  container:: example
 
@@ -367,7 +372,7 @@ class NoteHead(AbjadObject):
                 >>> abjad.f(note)
                 cs''?4
 
-        '''
+        """
         return self._is_cautionary
 
     @is_cautionary.setter
@@ -378,7 +383,8 @@ class NoteHead(AbjadObject):
 
     @property
     def is_forced(self) -> bool:
-        r'''Gets and sets forced accidental flag.
+        """
+        Gets and sets forced accidental flag.
 
         ..  container:: example
 
@@ -400,7 +406,7 @@ class NoteHead(AbjadObject):
                 >>> abjad.f(note)
                 cs''!4
 
-        '''
+        """
         return self._is_forced
 
     @is_forced.setter
@@ -411,7 +417,8 @@ class NoteHead(AbjadObject):
 
     @property
     def is_parenthesized(self) -> bool:
-        r'''Gets and sets forced accidental flag.
+        r"""
+        Gets and sets forced accidental flag.
 
         ..  container:: example
 
@@ -435,7 +442,7 @@ class NoteHead(AbjadObject):
                 \parenthesize
                 cs''4
 
-        '''
+        """
         return self._is_parenthesized
 
     @is_parenthesized.setter
@@ -446,7 +453,8 @@ class NoteHead(AbjadObject):
 
     @property
     def named_pitch(self) -> NamedPitch:
-        r'''Gets named pitch.
+        """
+        Gets named pitch.
 
         ..  container:: example
 
@@ -454,27 +462,34 @@ class NoteHead(AbjadObject):
             >>> note_head.named_pitch
             NamedPitch("cs''")
 
-        '''
+        """
         return self.written_pitch
 
     @property
-    def tweak(self) -> LilyPondNameManager:
-        r'''Gets tweak LilyPond name manager.
+    def tweaks(self) -> LilyPondTweakManager:
+        r"""
+        Gets LilyPond tweak manager.
 
         ..  container:: example
 
             >>> note_head = abjad.NoteHead("cs''")
-            >>> note_head.tweak
-            LilyPondNameManager()
+            >>> note_head.tweaks
+            LilyPondTweakManager()
 
-        '''
-        if self._tweak is None:
-            self._tweak = LilyPondNameManager()
-        return self._tweak
+            >>> abjad.tweak(note_head).color = 'red'
+            >>> abjad.f(note_head)
+            \tweak color #red
+            cs''
+
+        """
+        if self._lilypond_tweak_manager is None:
+            self._lilypond_tweak_manager = LilyPondTweakManager()
+        return self._lilypond_tweak_manager
 
     @property
     def written_pitch(self) -> NamedPitch:
-        r'''Gets and sets written pitch of note-head.
+        """
+        Gets and sets written pitch of note-head.
 
         ..  container:: example
 
@@ -487,7 +502,7 @@ class NoteHead(AbjadObject):
             >>> note_head.written_pitch
             NamedPitch("d''")
 
-        '''
+        """
         return self._written_pitch
 
     @written_pitch.setter

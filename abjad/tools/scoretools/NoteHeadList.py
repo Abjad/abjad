@@ -109,10 +109,10 @@ class NoteHeadList(TypedList):
 
             >>> note_heads = []
             >>> note_head = abjad.NoteHead("cs''")
-            >>> note_head.tweak.color = 'blue'
+            >>> note_head.tweaks.color = 'blue'
             >>> note_heads.append(note_head)
             >>> note_head = abjad.NoteHead("f''")
-            >>> note_head.tweak.color = 'green'
+            >>> note_head.tweaks.color = 'green'
             >>> note_heads.append(note_head)
             >>> chord.note_heads.extend(note_heads)
             >>> abjad.show(chord) # doctest: +SKIP
@@ -144,7 +144,7 @@ class NoteHeadList(TypedList):
             >>> abjad.show(chord) # doctest: +SKIP
 
             >>> note_head = chord.note_heads.get("e'")
-            >>> note_head.tweak.color = 'red'
+            >>> note_head.tweaks.color = 'red'
             >>> abjad.show(chord) # doctest: +SKIP
 
             ..  docs::
@@ -165,7 +165,7 @@ class NoteHeadList(TypedList):
             >>> abjad.show(chord) # doctest: +SKIP
 
             >>> note_head = chord.note_heads.get(4)
-            >>> note_head.tweak.color = 'red'
+            >>> note_head.tweaks.color = 'red'
             >>> abjad.show(chord) # doctest: +SKIP
 
             ..  docs::

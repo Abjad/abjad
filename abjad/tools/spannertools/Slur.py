@@ -5,7 +5,7 @@ from .Spanner import Spanner
 
 
 class Slur(Spanner):
-    r'''
+    r"""
     Slur.
 
     ..  container:: example
@@ -65,7 +65,7 @@ class Slur(Spanner):
           Requires at least two leaves.
           Not just Note("c'4").
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -100,13 +100,11 @@ class Slur(Spanner):
         if self._is_my_only(leaf):
             pass
         elif leaf is self[0]:
-            if self.direction is not None:
-                string = f'{self.direction} ('
-            else:
-                string = '('
+            string = self.start_command()
+            string = self._add_direction(string)
             bundle.right.spanner_starts.append(string)
         elif leaf is self[-1]:
-            string = ')'
+            string = self.stop_command()
             bundle.right.spanner_stops.append(string)
         return bundle
 
@@ -114,7 +112,7 @@ class Slur(Spanner):
 
     @property
     def direction(self) -> typing.Optional[String]:
-        r'''
+        r"""
         Gets direction.
 
         ..  container:: example
@@ -183,13 +181,13 @@ class Slur(Spanner):
                     )
                 }
 
-        '''
+        """
         return self._direction
 
     ### PUBLIC METHODS ###
 
     def start_command(self) -> typing.Optional[str]:
-        '''
+        """
         Gets start command.
 
         ..  container:: example
@@ -197,11 +195,11 @@ class Slur(Spanner):
             >>> abjad.Slur().start_command()
             '('
 
-        '''
+        """
         return super(Slur, self).start_command()
 
     def stop_command(self) -> typing.Optional[str]:
-        '''
+        """
         Gets stop command.
 
         ..  container:: example
@@ -209,5 +207,5 @@ class Slur(Spanner):
             >>> abjad.Slur().stop_command()
             ')'
 
-        '''
+        """
         return super(Slur, self).stop_command()

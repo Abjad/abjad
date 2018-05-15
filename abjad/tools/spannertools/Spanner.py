@@ -22,7 +22,7 @@ abjad_tags = Tags()
 
 
 class Spanner(AbjadObject):
-    '''
+    """
     Spanner.
 
     Any object that stretches horizontally and encompasses leaves.
@@ -30,7 +30,7 @@ class Spanner(AbjadObject):
     Usually at the context of the voice (not staff or higher).
 
     Examples include beams, slurs, hairpins and trills.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -42,7 +42,6 @@ class Spanner(AbjadObject):
         '_leak',
         '_leaves',
         '_left_broken',
-        '_lilypond_grob_name_manager',
         '_lilypond_setting_name_manager',
         '_lilypond_tweak_manager',
         '_right_broken',
@@ -71,7 +70,6 @@ class Spanner(AbjadObject):
         self._leak = leak
         self._leaves: typing.List[Leaf] = []
         self._left_broken = None
-        self._lilypond_grob_name_manager = None
         self._lilypond_setting_name_manager = None
         self._lilypond_tweak_manager = None
         self._right_broken = None
@@ -81,9 +79,9 @@ class Spanner(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __contains__(self, argument) -> bool:
-        '''
+        """
         Is true when spanner contains ``argument``.
-        '''
+        """
         for leaf in self.leaves:
             if leaf is argument:
                 return True
@@ -92,14 +90,12 @@ class Spanner(AbjadObject):
 
     #def __copy__(self, *arguments) -> 'Spanner':
     def __copy__(self, *arguments):
-        '''
+        """
         Copies spanner.
 
         Does not copy spanner leaves.
-        '''
+        """
         new = type(self)(*self.__getnewargs__())
-        if getattr(self, '_lilypond_grob_name_manager', None) is not None:
-            new._lilypond_grob_name_manager = copy.copy(override(self))
         if getattr(self, '_lilypond_setting_name_manager', None) is not None:
             new._lilypond_setting_name_manager = copy.copy(setting(self))
         if getattr(self, '_lilypond_tweak_manager', None) is not None:
@@ -108,26 +104,26 @@ class Spanner(AbjadObject):
         return new
 
     def __getitem__(self, argument) -> typing.Union[Leaf, Selection]:
-        '''
+        """
         Gets leaf or selection identified by ``argument``.
-        '''
+        """
         if isinstance(argument, slice):
             leaves = self.leaves.__getitem__(argument)
             return select(leaves)
         return self.leaves.__getitem__(argument)
 
     def __getnewargs__(self) -> typing.Tuple:
-        '''
+        """
         Gets new arguments.
 
         Returns empty tuple.
-        '''
+        """
         return (self.leak,)
 
     def __getstate__(self) -> dict:
-        '''
+        """
         Gets state of spanner.
-        '''
+        """
         state = {}
         for class_ in type(self).__mro__:
             for slot in getattr(class_, '__slots__', ()):
@@ -135,23 +131,23 @@ class Spanner(AbjadObject):
         return state
 
     def __iter__(self) -> typing.Iterator:
-        '''
+        """
         Iterates leaves in spanner.
-        '''
+        """
         return iter(self.leaves)
 
     def __len__(self) -> int:
-        '''
+        """
         Gets number of leaves in spanner.
-        '''
+        """
         return len(self.leaves)
 
     def __lt__(self, argument) -> bool:
-        '''
+        """
         Is true when spanner is less than ``argument``.
 
         Trivial comparison to allow doctests to work.
-        '''
+        """
         assert isinstance(argument, Spanner), repr(argument)
         return repr(self) < repr(argument)
 
@@ -264,30 +260,30 @@ class Spanner(AbjadObject):
         pass
 
     def _block_all_leaves(self):
-        '''
+        """
         Not composer-safe.
-        '''
+        """
         for leaf in self:
             self._block_leaf(leaf)
 
     def _block_leaf(self, leaf):
-        '''
+        """
         Not composer-safe.
-        '''
+        """
         leaf._remove_spanner(self)
 
     def _constrain_contiguity(self):
-        '''
+        """
         Not composer-safe.
-        '''
+        """
         self._contiguity_constraint = 'logical_voice'
 
     def _copy(self, leaves):
-        '''
+        """
         Returns copy of spanner with ``leaves``.
 
         ``leaves`` must already be contained in spanner.
-        '''
+        """
         my_leaf = self._leaves[:]
         self._leaves = []
         result = copy.copy(self)
@@ -334,7 +330,7 @@ class Spanner(AbjadObject):
         return []
 
     def _fracture(self, i, direction=None):
-        '''
+        """
         Fractures spanner at ``direction`` of leaf at index ``i``.
 
         Valid values for ``direction`` are ``Left``, ``Right`` and ``None``.
@@ -342,7 +338,7 @@ class Spanner(AbjadObject):
         Set ``direction=None`` to fracture on both left and right sides.
 
         Returns tuple of original, left and right spanners.
-        '''
+        """
         if i < 0:
             i = len(self) + i
         if direction is Left:
@@ -380,17 +376,17 @@ class Spanner(AbjadObject):
 
     def _get_basic_lilypond_format_bundle(self, leaf):
         bundle = LilyPondFormatBundle()
-        if leaf is self[-1]:
-            contributions = override(self)._list_format_contributions(
-                'revert',
-                )
-            bundle.grob_reverts.extend(contributions)
+#        if leaf is self[-1]:
+#            contributions = override(self)._list_format_contributions(
+#                'revert',
+#                )
+#            bundle.grob_reverts.extend(contributions)
         if leaf is self[0]:
-            contributions = override(self)._list_format_contributions(
-                'override',
-                once=False,
-                )
-            bundle.grob_overrides.extend(contributions)
+#            contributions = override(self)._list_format_contributions(
+#                'override',
+#                once=False,
+#                )
+#            bundle.grob_overrides.extend(contributions)
             contributions = tweak(self)._list_format_contributions()
             bundle.right.spanner_starts.extend(contributions)
         return bundle
@@ -522,19 +518,19 @@ class Spanner(AbjadObject):
         return self._leaves.index(leaf)
 
     def _insert(self, i, leaf):
-        '''
+        """
         Not composer-safe.
-        '''
+        """
         if not isinstance(leaf, Leaf):
             raise Exception(f'spanners attach only to leaves: {leaf!s}.')
         leaf._append_spanner(self)
         self._leaves.insert(i, leaf)
 
     def _is_exterior_leaf(self, leaf):
-        '''
+        """
         Is true if leaf is first or last in spanner.
         Is true if next leaf or previous leaf is none.
-        '''
+        """
         if leaf is self[0]:
             return True
         elif leaf is self[-1]:
@@ -564,15 +560,15 @@ class Spanner(AbjadObject):
         return False
 
     def _remove(self, leaf):
-        '''
+        """
         Not composer-safe.
-        '''
+        """
         self._sever_leaf(leaf)
 
     def _remove_leaf(self, leaf):
-        '''
+        """
         Not composer-safe.
-        '''
+        """
         for i, leaf_ in enumerate(self.leaves):
             if leaf_ is leaf:
                 self._leaves.pop(i)
@@ -581,17 +577,17 @@ class Spanner(AbjadObject):
             raise ValueError(f'{leaf!r} not in spanner.')
 
     def _sever_all_leaves(self):
-        '''
+        """
         Not composer-safe.
-        '''
+        """
         for i in reversed(range(len(self))):
             leaf = self[i]
             self._sever_leaf(leaf)
 
     def _sever_leaf(self, leaf):
-        '''
+        """
         Not composer-safe.
-        '''
+        """
         self._block_leaf(leaf)
         self._remove_leaf(leaf)
 
@@ -622,39 +618,39 @@ class Spanner(AbjadObject):
             )
 
     def _unblock_all_leaves(self):
-        '''
+        """
         Not composer-safe.
-        '''
+        """
         for leaf in self:
             self._unblock_leaf(leaf)
 
     def _unblock_leaf(self, leaf):
-        '''
+        """
         Not composer-safe.
-        '''
+        """
         leaf._append_spanner(self)
 
     def _unconstrain_contiguity(self):
-        '''
+        """
         Not composer-safe.
-        '''
+        """
         self._contiguity_constraint = None
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def leak(self) -> typing.Optional[bool]:
-        '''
+        """
         Is true when spanner stop command leaks one leaf to the right with
         LilyPond empty chord ``<>`` construct.
-        '''
+        """
         return self._leak
 
     @property
     def leaves(self) -> Selection:
-        '''
+        """
         Gets leaves in spanner.
-        '''
+        """
         for leaf in self._leaves:
             if not isinstance(leaf, Leaf):
                 message = f'spanners attach only to leaves (not {leaf!s}).'
@@ -664,13 +660,13 @@ class Spanner(AbjadObject):
     ### PUBLC METHODS ###
 
     def index(self, leaf: Leaf) -> int:
-        '''
+        """
         Gets index of ``leaf`` in spanner.
-        '''
+        """
         return self.leaves.index(leaf)
         
     def start_command(self) -> typing.Optional[str]:
-        '''
+        """
         Gets start command.
 
         ..  container:: example
@@ -678,11 +674,11 @@ class Spanner(AbjadObject):
             >>> abjad.Spanner().start_command() is None
             True
 
-        '''
+        """
         return self._start_command
 
     def stop_command(self) -> typing.Optional[str]:
-        '''
+        """
         Gets stop command.
 
         ..  container:: example
@@ -690,5 +686,5 @@ class Spanner(AbjadObject):
             >>> abjad.Spanner().stop_command() is None
             True
 
-        '''
+        """
         return self._stop_command

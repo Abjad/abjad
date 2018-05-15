@@ -20,10 +20,11 @@ from .Component import Component
 
 
 class Leaf(Component):
-    r'''Leaf baseclass.
+    """
+    Leaf baseclass.
 
     Leaves include notes, rests, chords and skips.
-    '''
+    """
 
     ### CLASS VARIABLES ##
 
@@ -49,10 +50,11 @@ class Leaf(Component):
     ### SPECIAL METHODS ###
 
     def __copy__(self, *arguments):
-        r'''Shallow copies leaf.
+        """
+        Shallow copies leaf.
 
         Returns new leaf.
-        '''
+        """
         new = Component.__copy__(self, *arguments)
         grace_container = self._grace_container
         if grace_container is not None:
@@ -66,17 +68,19 @@ class Leaf(Component):
         return new
 
     def __getnewargs__(self):
-        '''Gets new arguments.
+        """
+        Gets new arguments.
 
         Returns tuple.
-        '''
+        """
         return (self.written_duration,)
 
     def __str__(self):
-        '''Gets string representation of leaf.
+        """
+        Gets string representation of leaf.
 
         Returns string.
-        '''
+        """
         return self._get_compact_representation()
 
     ### PRIVATE METHODS ###
@@ -219,11 +223,11 @@ class Leaf(Component):
         result.extend(bundle.right.comments)
         markup = bundle.right.markup
         if markup:
-            result.extend('{}'.format(_) for _ in markup)
+            result.extend(f'{_}' for _ in markup)
         trill_pitches = bundle.right.trill_pitches
         if trill_pitches:
-            assert len(trill_pitches) == 1, repr(trill_pitches)
-            result[-1] += ' {}'.format(trill_pitches[0])
+            assert all(isinstance(_, str) for _ in trill_pitches)
+            result.extend(trill_pitches)
         return ['self body', result]
 
     def _format_leaf_nucleus(self):
@@ -242,7 +246,7 @@ class Leaf(Component):
         return result
 
     def _get_compact_representation(self):
-        return '({})'.format(self._get_formatted_duration())
+        return f'({self._get_formatted_duration()})'
 
     def _get_format_pieces(self):
         return self._get_lilypond_format().split('\n')
@@ -687,12 +691,13 @@ class Leaf(Component):
 
     @property
     def written_duration(self):
-        '''Written duration of leaf.
+        """
+        Written duration of leaf.
 
         Set to duration.
 
         Returns duration.
-        '''
+        """
         return self._written_duration
 
     @written_duration.setter

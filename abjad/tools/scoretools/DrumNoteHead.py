@@ -27,7 +27,7 @@ class DrumNoteHead(NoteHead):
         is_cautionary=None,
         is_forced=None,
         is_parenthesized=None,
-        tweak_pairs=(),
+        tweaks=(),
         ):
         from abjad.ly import drums
         NoteHead.__init__(
@@ -37,7 +37,7 @@ class DrumNoteHead(NoteHead):
             is_cautionary=is_cautionary,
             is_forced=is_forced,
             is_parenthesized=is_parenthesized,
-            tweak_pairs=tweak_pairs,
+            tweaks=tweaks,
             )
         assert str(written_pitch) in drums
         drum_pitch = drums[str(written_pitch)]

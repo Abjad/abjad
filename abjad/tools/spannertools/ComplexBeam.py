@@ -7,7 +7,7 @@ Number = typing.Union[int, float]
 
 
 class ComplexBeam(Beam):
-    r'''
+    r"""
     Complex beam.
 
     ..  container:: example
@@ -62,7 +62,7 @@ class ComplexBeam(Beam):
                 g'2
             }
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -158,8 +158,9 @@ class ComplexBeam(Beam):
         new._isolated_nib_direction = self.isolated_nib_direction
 
     def _get_left_right_for_exterior_leaf(self, leaf):
-        r'''Gets left and right flag counts for exterior leaf in spanner.
-        '''
+        """
+        Gets left and right flag counts for exterior leaf in spanner.
+        """
         # isolated_nib_direction
         if self._is_my_only(leaf):
             left, right = self._get_left_right_for_lone_leaf(leaf)
@@ -177,11 +178,12 @@ class ComplexBeam(Beam):
         return left, right
 
     def _get_left_right_for_interior_leaf(self, leaf):
-        r'''Interior leaves are neither first nor last in spanner.
+        """
+        Interior leaves are neither first nor last in spanner.
         Interior leaves may be surrounded by beamable leaves.
         Interior leaves may be surrounded by unbeamable leaves.
         Four cases total for beamability of surrounding leaves.
-        '''
+        """
         import abjad
         previous_leaf = leaf._get_leaf(-1)
         previous_written = previous_leaf.written_duration
@@ -249,8 +251,9 @@ class ComplexBeam(Beam):
         return left, right
 
     def _get_left_right_for_lone_leaf(self, leaf):
-        r'''Gets left and right flag counts for only leaf in spanner.
-        '''
+        """
+        Gets left and right flag counts for only leaf in spanner.
+        """
         current_flag_count = leaf.written_duration.flag_count
         left, right = None, None
         if self.isolated_nib_direction is Left:
@@ -282,7 +285,7 @@ class ComplexBeam(Beam):
 
     @property
     def beam_rests(self) -> typing.Optional[bool]:
-        r'''
+        r"""
         Is true when beam should include rests and skips.
 
         ..  container:: example
@@ -410,13 +413,13 @@ class ComplexBeam(Beam):
         Set to true, false or none.
 
         Returns true, false or none.
-        '''
+        """
         return self._beam_rests
 
     @property
     def isolated_nib_direction(self) -> typing.Union[
         bool, HorizontalAlignment, None]:
-        r'''
+        r"""
         Gets directed treatment to apply to lone nibs.
 
         ..  container:: example
@@ -502,12 +505,12 @@ class ComplexBeam(Beam):
         Set to left, right, true or false.
 
         Ignores this setting when spanner contains more than one leaf.
-        '''
+        """
         return self._isolated_nib_direction
 
     @property
     def leak(self):
-        r'''
+        r"""
         Is true when beam leaks one leaf to the right with LilyPond empty chord
         ``<>`` construct.
 
@@ -577,12 +580,12 @@ class ComplexBeam(Beam):
                     g'2
                 }
 
-        '''
+        """
         return super(ComplexBeam, self).leak
 
     @property
     def stemlet_length(self) -> typing.Optional[Number]:
-        r'''
+        r"""
         Gets stemlet length.
 
         ..  container:: example
@@ -624,13 +627,13 @@ class ComplexBeam(Beam):
                     g'2
                 }
 
-        '''
+        """
         return self._stemlet_length
 
     ### PUBLIC METHODS ###
 
     def start_command(self) -> typing.Optional[str]:
-        '''
+        """
         Gets start command.
 
         ..  container:: example
@@ -643,11 +646,11 @@ class ComplexBeam(Beam):
             >>> abjad.ComplexBeam(direction=abjad.Up).start_command()
             '^ ['
 
-        '''
+        """
         return super(ComplexBeam, self).start_command()
 
     def stop_command(self) -> typing.Optional[str]:
-        '''
+        """
         Gets stop command.
 
         ..  container:: example
@@ -660,5 +663,5 @@ class ComplexBeam(Beam):
             >>> abjad.ComplexBeam(leak=True).stop_command()
             '<> ]'
 
-        '''
+        """
         return super(ComplexBeam, self).stop_command()

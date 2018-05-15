@@ -4,7 +4,7 @@ from .Spanner import Spanner
 
 
 class HorizontalBracketSpanner(Spanner):
-    r'''
+    r"""
     Horizontal bracket spanner.
 
     ..  container:: example
@@ -57,7 +57,7 @@ class HorizontalBracketSpanner(Spanner):
                 \stopGroup
             }
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -97,7 +97,7 @@ class HorizontalBracketSpanner(Spanner):
 
     @property
     def leak(self):
-        r'''
+        r"""
         Is true when spanner leaks one leaf to the right.
 
         ..  container:: example
@@ -156,12 +156,12 @@ class HorizontalBracketSpanner(Spanner):
                     f'4
                 }
 
-        '''
+        """
         return super(HorizontalBracketSpanner, self).leak
 
     @property
     def markup(self) -> typing.Optional[Markup]:
-        '''
+        """
         Gets horizonal bracket spanner markup.
 
         ..  container:: example
@@ -182,13 +182,13 @@ class HorizontalBracketSpanner(Spanner):
             >>> spanner.markup is None
             True
 
-        '''
+        """
         return self._markup
 
     ### PUBLIC METHODS ###
 
     def start_command(self) -> typing.Optional[str]:
-        r'''
+        r"""
         Gets start command.
 
         ..  container:: example
@@ -196,11 +196,11 @@ class HorizontalBracketSpanner(Spanner):
             >>> abjad.HorizontalBracketSpanner().start_command()
             '\\startGroup'
 
-        '''
+        """
         return super(HorizontalBracketSpanner, self).start_command()
 
     def stop_command(self) -> typing.Optional[str]:
-        r'''
+        r"""
         Gets stop command.
 
         ..  container:: example
@@ -213,7 +213,7 @@ class HorizontalBracketSpanner(Spanner):
             >>> abjad.HorizontalBracketSpanner(leak=True).stop_command()
             '<> \\stopGroup'
 
-        '''
+        """
         string = super(HorizontalBracketSpanner, self).stop_command()
         if self.leak:
             string = f'{self._empty_chord} {string}'
