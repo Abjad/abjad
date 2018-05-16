@@ -31,7 +31,7 @@ def make_bartok_score():
     command = abjad.LilyPondLiteral(r'\voiceOne')
     abjad.attach(command, upper_voice)
     lower_voice = abjad.Voice("b4 a4", name='lower voice')
-    command = abjad.LilyPondLitera(r'\voiceTwo')
+    command = abjad.LilyPondLiteral(r'\voiceTwo')
     abjad.attach(command, lower_voice)
     lower_measures[3].extend([upper_voice, lower_voice])
     lower_measures[3].is_simultaneous = True
