@@ -3,7 +3,8 @@ def timespan_2_overlaps_all_of_timespan_1(
     timespan_2=None,
     hold=False,
     ):
-    r'''Makes time relation indicating that `timespan_2` overlaps all of
+    """
+    Makes time relation indicating that `timespan_2` overlaps all of
     `timespan_1`.
 
     ..  container:: example
@@ -21,7 +22,7 @@ def timespan_2_overlaps_all_of_timespan_1(
             )
 
     Returns time relation or boolean.
-    '''
+    """
     from abjad.tools import timespantools
 
     inequality = timespantools.CompoundInequality([

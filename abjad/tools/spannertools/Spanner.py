@@ -100,7 +100,7 @@ class Spanner(AbjadObject):
             new._lilypond_setting_name_manager = copy.copy(setting(self))
         if getattr(self, '_lilypond_tweak_manager', None) is not None:
             new._lilypond_tweak_manager = copy.copy(tweak(self))
-        self._copy_keyword_args(new)
+        self._copy_keywords(new)
         return new
 
     def __getitem__(self, argument) -> typing.Union[Leaf, Selection]:
@@ -154,7 +154,7 @@ class Spanner(AbjadObject):
     ### PRIVATE METHODS ###
 
     def _add_direction(self, string):
-        if self.direction:
+        if getattr(self, 'direction', False):
             string = f'{self.direction} {string}'
         return string
 
@@ -295,7 +295,7 @@ class Spanner(AbjadObject):
         result._unblock_all_leaves()
         return result
 
-    def _copy_keyword_args(self, new):
+    def _copy_keywords(self, new):
         pass
 
     def _detach(self):
@@ -376,19 +376,6 @@ class Spanner(AbjadObject):
 
     def _get_basic_lilypond_format_bundle(self, leaf):
         bundle = LilyPondFormatBundle()
-#        if leaf is self[-1]:
-#            contributions = override(self)._list_format_contributions(
-#                'revert',
-#                )
-#            bundle.grob_reverts.extend(contributions)
-        if leaf is self[0]:
-#            contributions = override(self)._list_format_contributions(
-#                'override',
-#                once=False,
-#                )
-#            bundle.grob_overrides.extend(contributions)
-            contributions = tweak(self)._list_format_contributions()
-            bundle.right.spanner_starts.extend(contributions)
         return bundle
 
     def _get_compact_summary(self):
@@ -665,17 +652,26 @@ class Spanner(AbjadObject):
         """
         return self.leaves.index(leaf)
         
-    def start_command(self) -> typing.Optional[str]:
+    def start_command(self) -> typing.List[str]:
         """
         Gets start command.
 
         ..  container:: example
 
-            >>> abjad.Spanner().start_command() is None
-            True
+            >>> abjad.Spanner().start_command()
+            []
 
         """
-        return self._start_command
+        strings: typing.List[str] = []
+        contributions = tweak(self)._list_format_contributions()
+        strings.extend(contributions)
+        string = self._start_command
+        if string:
+            assert isinstance(string, str), repr(string)
+            string = self._add_direction(string)
+            assert isinstance(string, str), repr(string)
+            strings.append(string)
+        return strings
 
     def stop_command(self) -> typing.Optional[str]:
         """

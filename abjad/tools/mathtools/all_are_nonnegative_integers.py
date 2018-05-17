@@ -1,6 +1,7 @@
 def all_are_nonnegative_integers(argument):
-    '''Is true when `argument` is an iterable collection of nonnegative
-    integers. Otherwise false.
+    """
+    Is true when `argument` is an iterable collection of nonnegative
+    integers.
 
     ..  container:: example
 
@@ -11,7 +12,7 @@ def all_are_nonnegative_integers(argument):
         False
 
     Returns true or false.
-    '''
+    """
     from abjad.tools import mathtools
     try:
         return all(mathtools.is_nonnegative_integer(_) for _ in argument)

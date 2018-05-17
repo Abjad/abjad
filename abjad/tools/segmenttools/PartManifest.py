@@ -6,7 +6,8 @@ from .Section import Section
 
 
 class PartManifest(AbjadObject):
-    r'''Part manifest.
+    """
+    Part manifest.
 
     ..  container:: example
 
@@ -56,7 +57,7 @@ class PartManifest(AbjadObject):
         >>> len(part_manifest)
         44
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -86,7 +87,8 @@ class PartManifest(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __iter__(self) -> typing.Iterator:
-        r'''Iterates parts in manifest.
+        """
+        Iterates parts in manifest.
 
         ..  container:: example
 
@@ -167,11 +169,12 @@ class PartManifest(AbjadObject):
             Part(instrument='Violin', member=17, number=43, section='SecondViolin', section_abbreviation='VN-2', zfill=2)
             Part(instrument='Violin', member=18, number=44, section='SecondViolin', section_abbreviation='VN-2', zfill=2)
 
-        '''
+        """
         return iter(self.parts)
 
     def __len__(self) -> int:
-        r'''Gets number of parts in manifest.
+        """
+        Gets number of parts in manifest.
 
         ..  container:: example
 
@@ -218,14 +221,15 @@ class PartManifest(AbjadObject):
             >>> len(part_manifest)
             44
 
-        '''
+        """
         return len(self.parts)
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def parts(self) -> typing.List[Part]:
-        r'''Gets parts in manifest.
+        """
+        Gets parts in manifest.
 
         ..  container:: example
 
@@ -330,12 +334,13 @@ class PartManifest(AbjadObject):
             >>> abjad.Part(section='FirstViolin', member=19) in part_manifest.parts
             False
 
-        '''
+        """
         return list(self._parts)
 
     @property
     def sections(self) -> typing.List[Section]:
-        r'''Gets sections in manifest.
+        """
+        Gets sections in manifest.
 
         ..  container:: example
 
@@ -407,13 +412,14 @@ class PartManifest(AbjadObject):
             >>> section in part_manifest.sections
             False
 
-        '''
+        """
         return list(self._sections)
 
     ### PUBLIC METHODS ###
 
     def expand(self, part_assignment):
-        r'''Expands ``part_assignment``.
+        """
+        Expands ``part_assignment``.
 
         ..  container:: example
 
@@ -454,7 +460,7 @@ class PartManifest(AbjadObject):
             Part(instrument='Oboe', member=2, number=6, section='Oboe', section_abbreviation='OB')
             Part(instrument='Oboe', member=3, number=7, section='Oboe', section_abbreviation='OB')
 
-        '''
+        """
         assert isinstance(part_assignment, PartAssignment)
         parts = []
         for part in self.parts:

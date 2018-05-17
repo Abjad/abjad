@@ -4,8 +4,9 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class ImportManager(AbjadObject):
-    r'''Imports structured packages.
-    '''
+    """
+    Imports structured packages.
+    """
 
     ### CLASS VARIABLES ###
 
@@ -17,9 +18,9 @@ class ImportManager(AbjadObject):
 
     @staticmethod
     def _get_public_function_names_in_module(module_file):
-        r'''Collects and returns all public functions defined in
-        module_file.
-        '''
+        """
+        Collects and returns all public functions defined in module_file.
+        """
         result = []
         module_file = module_file.replace(os.sep, '.')
         mod = __import__(module_file, fromlist=['*'])
@@ -48,13 +49,14 @@ class ImportManager(AbjadObject):
         path,
         namespace,
         ):
-        r'''Inspects the top level of path.
+        """
+        Inspects the top level of path.
 
         Finds public class packages and imports class package
         contents into namespace.
 
         Does not inspect lower levels of path.
-        '''
+        """
         package_path = ImportManager._split_package_path(path)
         for name in os.listdir(path):
             fullname = os.path.join(path, name)
@@ -86,11 +88,12 @@ class ImportManager(AbjadObject):
         path,
         namespace,
         ):
-        r'''Imports public materials from `path` into `namespace`.
+        """
+        Imports public materials from `path` into `namespace`.
 
         This is the custom function that all AbjadIDE-managed scores may use to
         import public materials on startup.
-        '''
+        """
         prefix = 'definition'
         package_path = ImportManager._split_package_path(path)
         for name in os.listdir(path):
@@ -130,8 +133,9 @@ class ImportManager(AbjadObject):
         path,
         namespace,
         ):
-        r'''Imports nominative modules from `path` into `namespace`.
-        '''
+        """
+        Imports nominative modules from `path` into `namespace`.
+        """
         package_path = ImportManager._split_package_path(path)
         for name in os.listdir(path):
             module_path = os.path.join(path, name)
@@ -161,7 +165,8 @@ class ImportManager(AbjadObject):
         delete_systemtools=True,
         ignored_names=None,
         ):
-        r'''Inspects the top level of `path`;
+        """
+        Inspects the top level of `path`;
         does not inspect lower levels of path.
 
         Finds .py modules in path;
@@ -171,7 +176,7 @@ class ImportManager(AbjadObject):
         Find packages in path;
         imports package names into namespace;
         does not import package content into namespace.
-        '''
+        """
         if isinstance(namespace, types.ModuleType):
             namespace = namespace.__dict__
         package_path = ImportManager._split_package_path(path)
@@ -231,13 +236,14 @@ class ImportManager(AbjadObject):
         delete_systemtools=True,
         ignored_names=None,
         ):
-        r'''Imports public names from `path` into `namespace`.
+        """
+        Imports public names from `path` into `namespace`.
 
         This is the custom function that all Abjad packages use to import
         public classes and functions on startup.
 
         The function will work for any package laid out like Abjad packages.
-        '''
+        """
         ImportManager.import_public_names_from_path_into_namespace(
             path,
             namespace,

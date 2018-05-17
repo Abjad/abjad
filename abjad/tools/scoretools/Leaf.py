@@ -3,7 +3,9 @@ import copy
 import uqbar.graphs
 from abjad.enumerations import Left, Right
 from abjad.exceptions import (
-    AssignabilityError, MissingMetronomeMarkError, MissingSpannerError,
+    AssignabilityError,
+    MissingMetronomeMarkError,
+    MissingSpannerError,
 )
 from abjad.tools.datastructuretools.Duration import Duration
 from abjad.tools.datastructuretools.Multiplier import Multiplier

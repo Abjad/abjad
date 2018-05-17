@@ -15,7 +15,7 @@ def test_scoretools_Inspection_get_vertical_moment_at_01():
     score.append(staff_group)
 
     assert format(score) == abjad.String.normalize(
-        r'''
+        r"""
         \new Score
         <<
             \new Staff
@@ -44,7 +44,7 @@ def test_scoretools_Inspection_get_vertical_moment_at_01():
                 }
             >>
         >>
-        '''
+        """
         )
 
     moment = abjad.inspect(staff_group).get_vertical_moment_at((0, 8))
@@ -77,7 +77,7 @@ def test_scoretools_Inspection_get_vertical_moment_at_02():
     score.append(staff_group)
 
     assert format(score) == abjad.String.normalize(
-        r'''
+        r"""
         \new Score
         <<
             \new Staff
@@ -106,7 +106,7 @@ def test_scoretools_Inspection_get_vertical_moment_at_02():
                 }
             >>
         >>
-        '''
+        """
         )
 
     def scorewide_vertical_moment(offset):

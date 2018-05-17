@@ -4,10 +4,11 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class MeterFittingSession(AbjadValueObject):
-    r'''Meter-fitting session.
+    """
+    Meter-fitting session.
 
     Used internally by Meter.fit_meters().
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -67,10 +68,11 @@ class MeterFittingSession(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __call__(self):
-        r'''Fits meters.
+        """
+        Fits meters.
 
         Returns meter list.
-        '''
+        """
         import abjad
         selected_kernels = []
         current_offset = abjad.Offset(0)
@@ -152,64 +154,72 @@ class MeterFittingSession(AbjadValueObject):
 
     @property
     def cached_offset_counters(self):
-        r'''Gets cached offset counters
+        """
+        Gets cached offset counters
 
         Returns dictionary.
-        '''
+        """
         return self._cached_offset_counters
 
     @property
     def kernel_denominator(self):
-        r'''Gets kernel denominator.
+        """
+        Gets kernel denominator.
 
         Returns duration.
-        '''
+        """
         return self._kernel_denominator
 
     @property
     def kernels(self):
-        r'''Gets kernels-to-meter dictionary.
+        """
+        Gets kernels-to-meter dictionary.
 
         Returns dictionary.
-        '''
+        """
         return self._kernels
 
     @property
     def longest_kernel(self):
-        r'''Gets longest kernel.
+        """
+        Gets longest kernel.
 
         Returns kernel.
-        '''
+        """
         return self._longest_kernel
 
     @property
     def maximum_run_length(self):
-        r'''Gets maximum meter repetitions.
+        """
+        Gets maximum meter repetitions.
 
         Returns integer or none.
-        '''
+        """
         return self._maximum_run_length
 
     @property
     def meters(self):
-        r'''Gets meters.
+        """
+        Gets meters.
 
         Returns meters.
-        '''
+        """
         return self._meters
 
     @property
     def offset_counter(self):
-        r'''Gets offset counter.
+        """
+        Gets offset counter.
 
         Returns offset counter.
-        '''
+        """
         return self._offset_counter
 
     @property
     def ordered_offsets(self):
-        r'''Gets ordered offsets.
+        """
+        Gets ordered offsets.
 
         Returns offsets.
-        '''
+        """
         return self._ordered_offsets

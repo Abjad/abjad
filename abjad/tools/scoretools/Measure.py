@@ -5,7 +5,8 @@ from .Container import Container
 
 
 class Measure(Container):
-    r'''Measure.
+    r"""
+    Measure.
 
     ..  container:: example
 
@@ -23,7 +24,7 @@ class Measure(Container):
             f'8
         }   % measure
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -58,7 +59,8 @@ class Measure(Container):
     ### SPECIAL METHODS ###
 
     def __copy__(self, *arguments):
-        r'''Shallow copies measure.
+        """
+        Copies measure.
 
         Copies indicators.
 
@@ -67,7 +69,7 @@ class Measure(Container):
         Does not copy children.
 
         Returns new component.
-        '''
+        """
         import abjad
         time_signature = self.time_signature
         if time_signature is not None:
@@ -80,7 +82,8 @@ class Measure(Container):
         return new_measure
 
     def __delitem__(self, i):
-        r'''Deletes measure item `i`.
+        r"""
+        Deletes measure item ``i``.
 
         ..  container:: example
 
@@ -101,17 +104,18 @@ class Measure(Container):
                 }
 
         Returns none.
-        '''
+        """
         old_time_signature = self.time_signature
         old_denominator = getattr(old_time_signature, 'denominator', None)
         Container.__delitem__(self, i)
         self._conditionally_adjust_time_signature(old_denominator)
 
     def __getnewargs__(self):
-        r'''Gets arguments for shallow copy.
+        """
+        Gets arguments for shallow copy.
 
         Returns tuple.
-        '''
+        """
         return (
             self.time_signature,
             [],
@@ -120,7 +124,8 @@ class Measure(Container):
             )
 
     def __repr__(self):
-        r'''Gets interpreter representation of measure.
+        """
+        Gets interpreter representation of measure.
 
         ..  container:: example
 
@@ -131,44 +136,39 @@ class Measure(Container):
             Measure((3, 8), "c'8 d'8 e'8")
 
         Returns string.
-        '''
+        """
         import abjad
         class_name = type(self).__name__
         indicator = self._get_indicator(abjad.TimeSignature)
-        forced_time_signature = indicator
-        forced_time_signature = forced_time_signature.pair
+        forced = indicator
+        forced = forced.pair
         summary = self._get_contents_summary()
-        if forced_time_signature and len(self):
+        if forced and len(self):
             if self.implicit_scaling:
                 result = '{}({!s}, {!r}, implicit_scaling=True)'
                 result = result.format(
                     class_name,
-                    forced_time_signature,
+                    forced,
                     summary,
                     )
             else:
-                result = '{}({!s}, {!r})'
-                result = result.format(
-                    class_name,
-                    forced_time_signature,
-                    summary,
-                    )
+                result = f'{class_name}({forced!s}, {summary!r})'
             return result
-        elif forced_time_signature:
+        elif forced:
             if self.implicit_scaling:
-                string = '{}({!s}, implicit_scaling=True)'
+                string = f'{class_name}({forced!s}, implicit_scaling=True)'
             else:
-                string = '{}({!s})'
-            string = string.format(class_name, forced_time_signature)
+                string = f'{class_name}({forced!s})'
             return string
         else:
             if self.implicit_scaling:
-                return '{}(implicit_scaling=True)'.format(class_name)
+                return f'{class_name}(implicit_scaling=True)'
             else:
-                return '{}()'.format(class_name)
+                return f'{class_name}()'
 
     def __setitem__(self, i, argument):
-        r'''Sets measure item `i` to `argument`.
+        r"""
+        Sets measure item ``i`` to ``argument``.
 
         ..  container:: example
 
@@ -190,7 +190,7 @@ class Measure(Container):
                 }
 
         Returns none.
-        '''
+        """
         old_time_signature = self.time_signature
         old_denominator = getattr(old_time_signature, 'denominator', None)
         Container.__setitem__(self, i, argument)
@@ -333,11 +333,9 @@ class Measure(Container):
 
     def _get_compact_representation(self):
         if not self:
-            return '| {!s} |'.format(self.time_signature)
-        return '| {!s} {} |'.format(
-            self.time_signature,
-            self._get_contents_summary(),
-            )
+            return f'| {self.time_signature!s} |'
+        summary = self._get_contents_summary()
+        return f'| {self.time_signature!s} {summary} |'
 
     def _get_format_specification(self):
         import abjad
@@ -422,7 +420,8 @@ class Measure(Container):
 
     @property
     def always_format_time_signature(self):
-        '''Gets and sets flag to indicate whether time signature
+        """
+        Gets and sets flag to indicate whether time signature
         should appear in LilyPond format even when not expected.
 
         ..  container:: example
@@ -436,7 +435,7 @@ class Measure(Container):
         Defaults to false.
 
         Returns true or false.
-        '''
+        """
         return self._always_format_time_signature
 
     @always_format_time_signature.setter
@@ -446,7 +445,8 @@ class Measure(Container):
 
     @property
     def automatically_adjust_time_signature(self):
-        '''Gets and sets flag to indicate whether time signature
+        """
+        Gets and sets flag to indicate whether time signature
         should update automatically following mutation.
 
         ..  container:: example
@@ -461,7 +461,7 @@ class Measure(Container):
         Defaults to false.
 
         Returns true or false.
-        '''
+        """
         return self._automatically_adjust_time_signature
 
     @automatically_adjust_time_signature.setter
@@ -471,7 +471,8 @@ class Measure(Container):
 
     @property
     def has_non_power_of_two_denominator(self):
-        r'''Is true when measure time signature denominator
+        """
+        Is true when measure time signature denominator
         is not an integer power of 2.
 
         ..  container:: example
@@ -494,13 +495,14 @@ class Measure(Container):
             False
 
         Returns true or false.
-        '''
+        """
         time_signature = self.time_signature
         return time_signature.has_non_power_of_two_denominator
 
     @property
     def has_power_of_two_denominator(self):
-        r'''Is true when measure time signature denominator
+        """
+        Is true when measure time signature denominator
         is an integer power of 2.
 
         ..  container:: example
@@ -523,15 +525,16 @@ class Measure(Container):
             False
 
         Returns true or false.
-        '''
+        """
         return not self.has_non_power_of_two_denominator
 
     @property
     def implicit_scaling(self):
-        r'''Is true when measure should scale contents. Otherwise false.
+        """
+        Is true when measure should scale contents.
 
         Returns true or false.
-        '''
+        """
         return self._implicit_scaling
 
     @implicit_scaling.setter
@@ -541,7 +544,8 @@ class Measure(Container):
 
     @property
     def implied_prolation(self):
-        r'''Implied prolation of measure.
+        """
+        Implied prolation of measure.
 
         ..  container:: example
 
@@ -575,7 +579,7 @@ class Measure(Container):
             Multiplier(1, 1)
 
         Returns positive multiplier.
-        '''
+        """
         import abjad
         if self.implicit_scaling:
             time_signature = self.time_signature
@@ -584,7 +588,8 @@ class Measure(Container):
 
     @property
     def is_full(self):
-        r'''Is true when measure duration equals time signature duration.
+        """
+        Is true when measure duration equals time signature duration.
 
         ..  container:: example
 
@@ -594,15 +599,14 @@ class Measure(Container):
             >>> measure.is_full
             True
 
-        Otherwise false.
-
         Returns true or false.
-        '''
+        """
         return self._get_preprolated_duration() == self.target_duration
 
     @property
     def is_misfilled(self):
-        '''Is true when measure is either underfull or overfull.
+        """
+        Is true when measure is either underfull or overfull.
 
         ..  container:: example
 
@@ -621,13 +625,13 @@ class Measure(Container):
             False
 
         Returns true or false.
-        '''
+        """
         return not self.is_full
 
     @property
     def is_overfull(self):
-        '''Is true when measure duration is greater than time signature
-        duration.
+        """I
+        s true when measure duration is greater than time signature duration.
 
         ..  container:: example
 
@@ -636,15 +640,14 @@ class Measure(Container):
             >>> measure.is_overfull
             True
 
-        Otherwise false.
-
         Returns true or false.
-        '''
+        """
         return self.target_duration < self._get_preprolated_duration()
 
     @property
     def is_underfull(self):
-        '''Is true when measure duration is less than time signature duration.
+        """
+        Is true when measure duration is less than time signature duration.
 
         ..  container:: example
 
@@ -653,15 +656,14 @@ class Measure(Container):
             >>> measure.is_underfull
             True
 
-        Otherwise false.
-
         Returns true or false.
-        '''
+        """
         return self._get_preprolated_duration() < self.target_duration
 
     @property
     def measure_number(self):
-        r'''Gets 1-indexed measure number.
+        r"""
+        Gets 1-indexed measure number.
 
         ..  container:: example
 
@@ -695,13 +697,14 @@ class Measure(Container):
             2
 
         Returns positive integer.
-        '''
+        """
         self._update_now(offsets=True)
         return self._measure_number
 
     @property
     def target_duration(self):
-        r'''Gets target duration of measure.
+        """
+        Gets target duration of measure.
 
         Target duration of measure is always equal to duration
         of effective time signature.
@@ -713,12 +716,13 @@ class Measure(Container):
             Duration(3, 4)
 
         Returns duration.
-        '''
+        """
         return self.time_signature.duration
 
     @property
     def time_signature(self):
-        r'''Gets effective time signature of measure.
+        """
+        Gets effective time signature of measure.
 
         ..  container:: example
 
@@ -727,7 +731,7 @@ class Measure(Container):
             TimeSignature((3, 4))
 
         Returns time signature or none.
-        '''
+        """
         import abjad
         return self._get_effective(abjad.TimeSignature)
 
@@ -735,10 +739,11 @@ class Measure(Container):
 
     @classmethod
     def from_selections(class_, selections, time_signatures=None):
-        r'''Makes a selection of measures from `selections`.
+        """
+        Makes a selection of measures from ``selections``.
 
         Returns selections.
-        '''
+        """
         import abjad
         assert len(selections)
         if not time_signatures:
@@ -756,7 +761,8 @@ class Measure(Container):
     # TODO: see if self._scale can be combined with
     #       with self.scale_and_adjust_time_signature()
     def scale_and_adjust_time_signature(self, multiplier=None):
-        r'''Scales `measure` by `multiplier` and adjusts time signature.
+        r"""
+        Scales ``measure`` by ``multiplier`` and adjusts time signature.
 
         ..  container:: example
 
@@ -792,7 +798,7 @@ class Measure(Container):
                 }   % measure
 
         Returns none.
-        '''
+        """
         import abjad
         if multiplier == 0:
             raise ZeroDivisionError

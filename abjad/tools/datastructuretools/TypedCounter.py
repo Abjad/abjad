@@ -3,7 +3,8 @@ from .TypedCollection import TypedCollection
 
 
 class TypedCounter(TypedCollection, collections.MutableMapping):
-    r'''Typed counter.
+    """
+    Typed counter.
 
     ..  container:: example
 
@@ -21,7 +22,7 @@ class TypedCounter(TypedCollection, collections.MutableMapping):
             item_class=abjad.NumberedPitch,
             )
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -48,10 +49,11 @@ class TypedCounter(TypedCollection, collections.MutableMapping):
     ### SPECIAL METHODS ###
 
     def __add__(self, argument):
-        r'''Adds typed counter to `argument`.
+        """
+        Adds typed counter to ``argument``.
 
         Returns new typed counter.
-        '''
+        """
         if (not isinstance(argument, type(self)) or
             not self.item_class == argument.item_class):
             return NotImplemented
@@ -60,10 +62,11 @@ class TypedCounter(TypedCollection, collections.MutableMapping):
         return result
 
     def __and__(self, argument):
-        r'''Logical AND of typed counter and `argument`.
+        """
+        Logical AND of typed counter and ``argument``.
 
         Returns new typed counter.
-        '''
+        """
         if (not isinstance(argument, type(self)) or
             not self.item_class == argument.item_class):
             return NotImplemented
@@ -72,27 +75,30 @@ class TypedCounter(TypedCollection, collections.MutableMapping):
         return result
 
     def __delitem__(self, item):
-        r'''Deletes `item` from typed counter.
+        """
+        Deletes ``item`` from typed counter.
 
         Returns none.
-        '''
+        """
         item = self._item_coercer(item)
         if item in self._collection:
             dict.__delitem__(self._collection, item)
 
     def __getitem__(self, argument):
-        r'''Gets item or slice identified by `argument`.
+        """
+        Gets item or slice identified by ``argument``.
 
         Returns item or slice.
-        '''
+        """
         argument = self._item_coercer(argument)
         return self._collection.__getitem__(argument)
 
     def __or__(self, argument):
-        r'''Logical OR of typed counter and `argument`.
+        """
+        Logical OR of typed counter and ``argument``.
 
         Returns new typed counter.
-        '''
+        """
         if (not isinstance(argument, type(self)) or
             not self.item_class == argument.item_class):
             return NotImplemented
@@ -101,10 +107,11 @@ class TypedCounter(TypedCollection, collections.MutableMapping):
         return result
 
     def __radd__(self, argument):
-        r'''Adds `argument` to typed counter.
+        """
+        Adds ``argument`` to typed counter.
 
         Returns new typed counter.
-        '''
+        """
         if (not isinstance(argument, type(self)) or
             not self.item_class == argument.item_class):
             return NotImplemented
@@ -113,25 +120,28 @@ class TypedCounter(TypedCollection, collections.MutableMapping):
         return result
 
     def __reduce__(self):
-        r'''Reduces typed counter.
+        """
+        Reduces typed counter.
 
         Returns new typed counter.
-        '''
+        """
         return type(self), (dict(self._collection),)
 
     def __setitem__(self, item, value):
-        r'''Sets typed counter `item` to `value`.
+        """
+        Sets typed counter ``item`` to ``value``.
 
         Returns none.
-        '''
+        """
         item = self._item_coercer(item)
         self._collection.__setitem__(item, value)
 
     def __sub__(self, argument):
-        r'''Subtracts `argument` from typed counter.
+        """
+        Subtracts ``argument`` from typed counter.
 
         Returns new typed counter.
-        '''
+        """
         if (not isinstance(argument, type(self)) or
             not self.item_class == argument.item_class):
             return NotImplemented
@@ -178,81 +188,94 @@ class TypedCounter(TypedCollection, collections.MutableMapping):
     ### PUBLIC METHODS ###
 
     def clear(self):
-        r'''Clears typed counter.
+        """
+        Clears typed counter.
 
         Returns none.
-        '''
+        """
         self._collection.clear()
 
     def copy(self):
-        r'''Copies typed counter.
+        """
+        Copies typed counter.
 
         Returns new typed counter.
-        '''
+        """
         return type(self)(self)
 
     def elements(self):
-        r'''Elements in typed counter.
-        '''
+        """
+        Elements in typed counter.
+        """
         return self._collection.elements()
 
     @classmethod
     def fromkeys(class_, iterable, v=None):
-        r'''Makes new typed counter from `iterable`.
+        """
+        Makes new typed counter from ``iterable``.
 
         Not yet impelemented.
 
         Will return new typed counter.
-        '''
+        """
         message = '{}.fromkeys() is undefined. Use {}(iterable) instead.'
         message = message.format(class_.__name__, class_.__name__)
         raise NotImplementedError(message)
 
     def items(self):
-        r'''Items in typed counter.
+        """
+        Items in typed counter.
 
         Returns tuple.
-        '''
+        """
         return list(self._collection.items())
 
     def keys(self):
-        r'''Iterates keys in typed counter.
-        '''
+        """
+        Iterates keys in typed counter.
+        """
         return iter(self._collection.keys())
 
     def most_common(self, n=None):
-        r'''Please document.
-        '''
+        """
+        Please document.
+        """
         return self._collection(n=n)
 
     def subtract(self, iterable=None, **keywords):
-        r'''Stracts `iterable` from typed counter.
-        '''
+        """
+        Subtracts ``iterable`` from typed counter.
+        """
         items, itemdict = self._coerce_arguments(iterable, **keywords)
         self._collection.subtract(items, **itemdict)
 
     def update(self, iterable=None, **keywords):
-        r'''Updates typed counter with `iterable`.
-        '''
+        """
+        Updates typed counter with ``iterable``.
+        """
         items, itemdict = self._coerce_arguments(iterable, **keywords)
         self._collection.update(items, **itemdict)
 
     def values(self):
-        r'''Iterates values in typed counter.
-        '''
+        """
+        Iterates values in typed counter.
+        """
         return iter(self._collection.values())
 
     def viewitems(self):
-        r'''Please document.
-        '''
+        """
+        Please document.
+        """
         return self._collection.items()
 
     def viewkeys(self):
-        r'''Please document.
-        '''
+        """
+        Please document.
+        """
         return self._collection.keys()
 
     def viewvalues(self):
-        r'''Please document.
-        '''
+        """
+        Please document.
+        """
         return self._collection.values()

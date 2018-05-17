@@ -2,7 +2,8 @@ import numbers
 
 
 def is_positive_integer(argument):
-    '''Is true when `argument` equals a positive integer. Otherwise false.
+    """
+    Is true when `argument` equals a positive integer.
 
     ..  container:: example
 
@@ -16,7 +17,7 @@ def is_positive_integer(argument):
         False
 
     Returns true or false.
-    '''
+    """
     if isinstance(argument, numbers.Number):
         if argument == int(argument):
             if 0 < argument:

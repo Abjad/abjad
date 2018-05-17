@@ -3,9 +3,9 @@ import pytest
 
 
 def test_scoretools_Parentage_logical_voice_01():
-    r'''An anonymous staff and its contained unvoiced leaves share
-    the same signature.
-    '''
+    """
+    An anonymous staff and its contained unvoiced leaves share the same signature.
+    """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
 
@@ -15,9 +15,9 @@ def test_scoretools_Parentage_logical_voice_01():
 
 
 def test_scoretools_Parentage_logical_voice_02():
-    r'''A named staff and its contained unvoiced leaves share
-    the same signature.
-    '''
+    """
+    A named staff and its contained unvoiced leaves share the same signature.
+    """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     staff.name = 'foo'
@@ -27,9 +27,10 @@ def test_scoretools_Parentage_logical_voice_02():
         assert abjad.inspect(component).get_parentage().logical_voice == containment
 
 def test_scoretools_Parentage_logical_voice_03():
-    r'''Leaves inside equally named sequential voices inside a staff
-    share the same signature.
-    '''
+    """
+    Leaves inside equally named sequential voices inside a staff share the
+    same signature.
+    """
 
     staff = abjad.Staff(abjad.Voice("c'8 d'8 e'8 f'8") * 2)
     staff[0].name = 'foo'
@@ -41,12 +42,13 @@ def test_scoretools_Parentage_logical_voice_03():
 
 
 def test_scoretools_Parentage_logical_voice_04():
-    r'''Returns logical voice giving the root and
-    first voice, staff and score in the parentage of component.
-    '''
+    """
+    Returns logical voice giving the root and first voice, staff and score in
+    the parentage of component.
+    """
 
     voice = abjad.Voice(
-        r'''
+        r"""
         c'8
         d'8
         <<
@@ -61,13 +63,13 @@ def test_scoretools_Parentage_logical_voice_04():
         >>
         b'8
         c''8
-        '''
+        """
         )
 
     abjad.override(voice).note_head.color = 'red'
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         \with
         {
@@ -91,7 +93,7 @@ def test_scoretools_Parentage_logical_voice_04():
             b'8
             c''8
         }
-        '''
+        """
         )
 
     signatures = [abjad.inspect(leaf).get_parentage().logical_voice
@@ -107,12 +109,13 @@ def test_scoretools_Parentage_logical_voice_04():
 
 
 def test_scoretools_Parentage_logical_voice_05():
-    r'''Returns logical voice giving the root and
-    first voice, staff and score in parentage of component.
-    '''
+    """
+    Returns logical voice giving the root and first voice, staff and score in
+    parentage of component.
+    """
 
     voice = abjad.Voice(
-        r'''
+        r"""
         c'8
         d'8
         <<
@@ -127,14 +130,14 @@ def test_scoretools_Parentage_logical_voice_05():
         >>
         b'8
         c''8
-        '''
+        """
         )
 
     abjad.override(voice).note_head.color = 'red'
     voice.name = 'foo'
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \context Voice = "foo"
         \with
         {
@@ -158,7 +161,7 @@ def test_scoretools_Parentage_logical_voice_05():
             b'8
             c''8
         }
-        '''
+        """
         )
 
     signatures = [
@@ -183,9 +186,10 @@ def test_scoretools_Parentage_logical_voice_05():
 
 
 def test_scoretools_Parentage_logical_voice_06():
-    r'''Returns logical voice giving the root and
-    first voice, staff and score in parentage of component.
-    '''
+    """
+    Returns logical voice giving the root and first voice, staff and score in
+    parentage of component.
+    """
 
     container = abjad.Container([
         abjad.Staff([abjad.Voice("c'8 d'8")]),
@@ -205,7 +209,7 @@ def test_scoretools_Parentage_logical_voice_06():
     abjad.attach(beam, leaves[2:])
 
     assert format(container) == abjad.String.normalize(
-        r'''
+        r"""
         {
             \context Staff = "staff1"
             {
@@ -228,7 +232,7 @@ def test_scoretools_Parentage_logical_voice_06():
                 }
             }
         }
-        '''
+        """
         )
 
     signatures = [abjad.inspect(leaf).get_parentage().logical_voice
@@ -242,12 +246,13 @@ def test_scoretools_Parentage_logical_voice_06():
 
 
 def test_scoretools_Parentage_logical_voice_07():
-    r'''Returns logical voice giving the root and
-    first voice, staff and score in parentage of component.
-    '''
+    """
+    Returns logical voice giving the root and first voice, staff and score in
+    parentage of component.
+    """
 
     container = abjad.Container(
-        r'''
+        r"""
         c'8
         <<
             \context Voice = "alto" {
@@ -266,14 +271,14 @@ def test_scoretools_Parentage_logical_voice_07():
             }
         }
         a'8
-        '''
+        """
         )
 
     abjad.override(container[1][1]).note_head.color = 'red'
     abjad.override(container[2][1]).note_head.color = 'red'
 
     assert format(container) == abjad.String.normalize(
-        r'''
+        r"""
         {
             c'8
             <<
@@ -306,7 +311,7 @@ def test_scoretools_Parentage_logical_voice_07():
             }
             a'8
         }
-        '''
+        """
         )
 
     signatures = [
@@ -334,8 +339,9 @@ def test_scoretools_Parentage_logical_voice_07():
 
 
 def test_scoretools_Parentage_logical_voice_08():
-    r'''Unicorporated leaves carry equivalent containment signatures.
-    '''
+    """
+    Unicorporated leaves carry equivalent containment signatures.
+    """
 
     note_1 = abjad.Note(0, (1, 8))
     note_2 = abjad.Note(0, (1, 8))
@@ -346,8 +352,9 @@ def test_scoretools_Parentage_logical_voice_08():
 
 
 def test_scoretools_Parentage_logical_voice_09():
-    r'''Notes appear in the same logical voice.
-    '''
+    """
+    Notes appear in the same logical voice.
+    """
 
     staff_1 = abjad.Staff([abjad.Voice([abjad.Note(0, (1, 8))])])
     staff_1.name = 'staff'
@@ -365,10 +372,12 @@ def test_scoretools_Parentage_logical_voice_09():
 
 
 def test_scoretools_Parentage_logical_voice_10():
-    r'''Measure and leaves must carry same logical voice signature.
-    '''
+    """
+    Measure and leaves must carry same logical voice signature.
+    """
 
-    staff = abjad.Staff(r'''
+    staff = abjad.Staff(
+        r"""
         {
             \time 2/8
             c'8
@@ -376,10 +385,11 @@ def test_scoretools_Parentage_logical_voice_10():
         }
         e'8
         f'8
-        ''')
+        """
+        )
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {
@@ -390,7 +400,7 @@ def test_scoretools_Parentage_logical_voice_10():
             e'8
             f'8
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff[0]).get_parentage().logical_voice == \
@@ -402,15 +412,16 @@ def test_scoretools_Parentage_logical_voice_10():
 
 
 def test_scoretools_Parentage_logical_voice_11():
-    r'''Leaves inside different staves have different logical voice
-    signatures, even when the staves have the same name.
-    '''
+    """
+    Leaves inside different staves have different logical voice signatures,
+    even when the staves have the same name.
+    """
 
     container = abjad.Container(2 * abjad.Staff("c'8 c'8"))
     container[0].name = container[1].name = 'staff'
 
     assert format(container) == abjad.String.normalize(
-        r'''
+        r"""
         {
             \context Staff = "staff"
             {
@@ -423,7 +434,7 @@ def test_scoretools_Parentage_logical_voice_11():
                 c'8
             }
         }
-        '''
+        """
         )
 
     leaves = abjad.select(container).leaves()

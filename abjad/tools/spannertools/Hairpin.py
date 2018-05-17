@@ -12,6 +12,7 @@ from abjad.tools.systemtools.Tag import Tag
 from abjad.tools.systemtools.Wrapper import Wrapper
 from abjad.tools.topleveltools.inspect import inspect
 from abjad.tools.topleveltools.select import select
+from abjad.tools.topleveltools.tweak import tweak
 
 
 class Hairpin(Spanner):
@@ -506,8 +507,8 @@ class Hairpin(Spanner):
             value=True,
             )
 
-    def _copy_keyword_args(self, new):
-        Spanner._copy_keyword_args(self, new)
+    def _copy_keywords(self, new):
+        Spanner._copy_keywords(self, new)
         new._descriptor = self.descriptor
         new._direction = self.direction
         new._shape_string = self.shape_string
@@ -537,8 +538,8 @@ class Hairpin(Spanner):
             string = override.tweak_string()
             bundle.right.spanner_starts.append(string)
         if leaf is self[0]:
-            string = self.start_command()
-            bundle.right.spanner_starts.append(string)
+            strings = self.start_command()
+            bundle.right.spanner_starts.extend(strings)
             if self._has_sounding_start_dynamic():
                 string = self._get_directed_start_dynamic()
                 bundle.right.spanner_starts.append(string)
@@ -2545,7 +2546,7 @@ class Hairpin(Spanner):
             wrapper=wrapper,
             )
 
-    def start_command(self) -> typing.Optional[str]:
+    def start_command(self) -> typing.List[str]:
         r"""
         Gets start command.
 
@@ -2570,7 +2571,7 @@ class Hairpin(Spanner):
                 }
 
             >>> hairpin.start_command()
-            '\\<'
+            ['\\<']
 
         ..  container:: example
 
@@ -2595,12 +2596,16 @@ class Hairpin(Spanner):
                 }
 
             >>> hairpin.start_command()
-            '^ \\<'
+            ['^ \\<']
 
         """
+        strings: typing.List[str] = []
+        contributions = tweak(self)._list_format_contributions()
+        strings.extend(contributions)
         string = rf'\{self.shape_string}'
         string = self._add_direction(string)
-        return string
+        strings.append(string)
+        return strings
 
     def stop_command(self) -> typing.Optional[str]:
         r"""

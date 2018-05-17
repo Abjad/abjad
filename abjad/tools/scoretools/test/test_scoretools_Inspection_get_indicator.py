@@ -82,7 +82,7 @@ def test_scoretools_Inspection_get_indicator_08():
     abjad.attach(command_2, staff[0])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             \slurDotted
@@ -94,7 +94,7 @@ def test_scoretools_Inspection_get_indicator_08():
             f'8
             )
         }
-        '''
+        """
         )
 
     indicators = abjad.inspect(staff[0]).get_indicators(abjad.LilyPondLiteral)

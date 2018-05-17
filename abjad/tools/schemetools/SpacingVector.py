@@ -1,8 +1,10 @@
-from abjad.tools.schemetools.SchemeVector import SchemeVector
+from .SchemeVector import SchemeVector
+from .SchemePair import SchemePair
 
 
 class SpacingVector(SchemeVector):
-    r'''Abjad model of Scheme spacing vector.
+    r"""
+    Abjad model of Scheme spacing vector.
 
     ..  container:: example
 
@@ -30,7 +32,7 @@ class SpacingVector(SchemeVector):
                 system-system-spacing = #'((basic-distance . 0) (minimum-distance . 0) (padding . 12) (stretchability . 0))
             }
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -45,11 +47,10 @@ class SpacingVector(SchemeVector):
         padding=12,
         stretchability=0,
         ):
-        from abjad.tools import schemetools
         pairs = [
-            schemetools.SchemePair(('basic-distance', basic_distance)),
-            schemetools.SchemePair(('minimum-distance', minimum_distance)),
-            schemetools.SchemePair(('padding', padding)),
-            schemetools.SchemePair(('stretchability', stretchability)),
+            SchemePair(('basic-distance', basic_distance)),
+            SchemePair(('minimum-distance', minimum_distance)),
+            SchemePair(('padding', padding)),
+            SchemePair(('stretchability', stretchability)),
             ]
         return SchemeVector.__init__(self, pairs)

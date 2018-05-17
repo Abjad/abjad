@@ -1,8 +1,9 @@
-from abjad.tools.schemetools.Scheme import Scheme
+from .Scheme import Scheme
 
 
 class SchemeAssociativeList(Scheme):
-    '''Abjad model of Scheme associative list.
+    """
+    Abjad model of Scheme associative list.
 
     ..  container:: example
 
@@ -22,7 +23,7 @@ class SchemeAssociativeList(Scheme):
         #'((space . 2) (padding . 0.5))
 
     Scheme associative lists are immutable.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 

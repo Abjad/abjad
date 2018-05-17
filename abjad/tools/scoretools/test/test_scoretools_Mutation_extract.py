@@ -2,8 +2,9 @@ import abjad
 
 
 def test_scoretools_Mutation_extract_01():
-    r'''Extracts note.
-    '''
+    """
+    Extracts note.
+    """
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
     beam = abjad.Beam()
@@ -12,7 +13,7 @@ def test_scoretools_Mutation_extract_01():
     abjad.attach(glissando, voice[:])
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'8
@@ -25,14 +26,14 @@ def test_scoretools_Mutation_extract_01():
             f'8
             ]
         }
-        '''
+        """
         )
 
     note = voice[1]
     abjad.mutate(note).extract()
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'8
@@ -43,7 +44,7 @@ def test_scoretools_Mutation_extract_01():
             f'8
             ]
         }
-        '''
+        """
         )
 
     assert abjad.inspect(note).is_well_formed()
@@ -51,8 +52,9 @@ def test_scoretools_Mutation_extract_01():
 
 
 def test_scoretools_Mutation_extract_02():
-    r'''Extracts multiple notes.
-    '''
+    """
+    Extracts multiple notes.
+    """
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
     beam = abjad.Beam()
@@ -61,7 +63,7 @@ def test_scoretools_Mutation_extract_02():
     abjad.attach(glissando, voice[:])
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'8
@@ -74,7 +76,7 @@ def test_scoretools_Mutation_extract_02():
             f'8
             ]
         }
-        '''
+        """
         )
 
     notes = voice[:2]
@@ -82,7 +84,7 @@ def test_scoretools_Mutation_extract_02():
         abjad.mutate(note).extract()
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             e'8
@@ -91,7 +93,7 @@ def test_scoretools_Mutation_extract_02():
             f'8
             ]
         }
-        '''
+        """
         )
 
     for note in notes:
@@ -101,8 +103,9 @@ def test_scoretools_Mutation_extract_02():
 
 
 def test_scoretools_Mutation_extract_03():
-    r'''Extracts container.
-    '''
+    """
+    Extracts container.
+    """
 
     staff = abjad.Staff()
     staff.append(abjad.Container("c'8 d'8"))
@@ -112,7 +115,7 @@ def test_scoretools_Mutation_extract_03():
     abjad.attach(beam, leaves)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {
@@ -126,14 +129,14 @@ def test_scoretools_Mutation_extract_03():
                 ]
             }
         }
-        '''
+        """
         )
 
     container = staff[0]
     abjad.mutate(container).extract()
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -145,7 +148,7 @@ def test_scoretools_Mutation_extract_03():
                 ]
             }
         }
-        '''
+        """
         )
 
     assert not container
@@ -153,8 +156,9 @@ def test_scoretools_Mutation_extract_03():
 
 
 def test_scoretools_Mutation_extract_04():
-    r'''Extracts multiple containers.
-    '''
+    """
+    Extracts multiple containers.
+    """
 
     voice = abjad.Voice()
     voice.append(abjad.Container("c'8 d'8"))
@@ -167,7 +171,7 @@ def test_scoretools_Mutation_extract_04():
     abjad.attach(glissando, leaves)
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -190,7 +194,7 @@ def test_scoretools_Mutation_extract_04():
                 ]
             }
         }
-        '''
+        """
         )
 
     containers = voice[:2]
@@ -198,7 +202,7 @@ def test_scoretools_Mutation_extract_04():
         abjad.mutate(container).extract()
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'8
@@ -217,7 +221,7 @@ def test_scoretools_Mutation_extract_04():
                 ]
             }
         }
-        '''
+        """
         )
 
     for container in containers:

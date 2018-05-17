@@ -1,5 +1,6 @@
 def greatest_common_divisor(*integers):
-    '''Calculates greatest common divisor of `integers`.
+    """
+    Calculates greatest common divisor of `integers`.
 
     ..  container:: example
 
@@ -11,7 +12,7 @@ def greatest_common_divisor(*integers):
     Raises not implemented error when zero is included in input.
 
     Returns positive integer.
-    '''
+    """
     from abjad.tools import mathtools
     common_divisors = None
     for positive_integer in integers:

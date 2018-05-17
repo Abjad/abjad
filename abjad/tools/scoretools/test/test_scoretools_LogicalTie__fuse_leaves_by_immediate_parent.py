@@ -2,8 +2,9 @@ import abjad
 
 
 def test_scoretools_LogicalTie__fuse_leaves_by_immediate_parent_01():
-    r'''Fuse leaves in logical tie with same immediate parent.
-    '''
+    """
+    Fuse leaves in logical tie with same immediate parent.
+    """
 
     staff = abjad.Staff(2 * abjad.Measure((2, 8), "c'8 c'8"))
     leaves = abjad.select(staff).leaves()
@@ -14,7 +15,7 @@ def test_scoretools_LogicalTie__fuse_leaves_by_immediate_parent_01():
     result = logical_tie._fuse_leaves_by_immediate_parent()
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -26,7 +27,7 @@ def test_scoretools_LogicalTie__fuse_leaves_by_immediate_parent_01():
                 c'4
             }   % measure
         }
-        '''
+        """
         )
 
     assert len(result) == 2
@@ -34,15 +35,16 @@ def test_scoretools_LogicalTie__fuse_leaves_by_immediate_parent_01():
 
 
 def test_scoretools_LogicalTie__fuse_leaves_by_immediate_parent_02():
-    r'''Fuse leaves in logical tie with same immediate parent.
-    '''
+    """
+    Fuse leaves in logical tie with same immediate parent.
+    """
 
     staff = abjad.Staff("c'8 c'8 c'8 c'8")
     tie = abjad.Tie()
     abjad.attach(tie, staff[:])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -53,19 +55,19 @@ def test_scoretools_LogicalTie__fuse_leaves_by_immediate_parent_02():
             ~
             c'8
         }
-        '''
+        """
         )
 
     logical_tie = abjad.inspect(staff[1]).get_logical_tie()
     result = logical_tie._fuse_leaves_by_immediate_parent()
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'2
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).is_well_formed()
@@ -73,8 +75,9 @@ def test_scoretools_LogicalTie__fuse_leaves_by_immediate_parent_02():
 
 
 def test_scoretools_LogicalTie__fuse_leaves_by_immediate_parent_03():
-    r'''Fuse leaves in logical tie with same immediate parent.
-    '''
+    """
+    Fuse leaves in logical tie with same immediate parent.
+    """
 
     note = abjad.Note("c'4")
     logical_tie = abjad.inspect(note).get_logical_tie()

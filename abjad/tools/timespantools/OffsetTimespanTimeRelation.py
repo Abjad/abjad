@@ -2,7 +2,8 @@ from abjad.tools.timespantools.TimeRelation import TimeRelation
 
 
 class OffsetTimespanTimeRelation(TimeRelation):
-    r'''Offfset vs. timespan time relation.
+    """
+    Offfset vs. timespan time relation.
 
     ..  container:: example
 
@@ -33,7 +34,7 @@ class OffsetTimespanTimeRelation(TimeRelation):
                 )
 
     Offset / timespan time relations are immutable.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -57,7 +58,8 @@ class OffsetTimespanTimeRelation(TimeRelation):
 
     # TODO: hoist to TimeRelation
     def __call__(self, timespan=None, offset=None):
-        r'''Evaluates time relation:
+        """
+        Evaluates time relation:
 
             >>> offset = abjad.Offset(5)
             >>> timespan = abjad.Timespan(0, 10)
@@ -72,7 +74,7 @@ class OffsetTimespanTimeRelation(TimeRelation):
         Raises value error is either `offset` or `timespan` is none.
 
         Otherwise returns boolean.
-        '''
+        """
         import abjad
         timespan = timespan or self.timespan
         offset = offset or self.offset
@@ -87,9 +89,10 @@ class OffsetTimespanTimeRelation(TimeRelation):
         return truth_value
 
     def __eq__(self, argument):
-        r'''Is true when `argument` equals time relation. Otherwise false:
+        """
+        Is true when `argument` equals time relation.
 
-        ::
+        ..  container:: example
 
             >>> offset = abjad.Offset(5)
             >>> time_relation_1 = \
@@ -99,8 +102,6 @@ class OffsetTimespanTimeRelation(TimeRelation):
             ...     offset=offset,
             ...     )
 
-        ::
-
             >>> time_relation_1 == time_relation_1
             True
             >>> time_relation_1 == time_relation_2
@@ -109,11 +110,12 @@ class OffsetTimespanTimeRelation(TimeRelation):
             True
 
         Returns true or false.
-        '''
+        """
         return super(OffsetTimespanTimeRelation, self).__eq__(argument)
 
     def __format__(self, format_specification=''):
-        r'''Formats time relation.
+        """
+        Formats time relation.
 
         Set `format_specification` to `''` or `'storage'`.
         Interprets `''` equal to `'storage'`.
@@ -144,27 +146,28 @@ class OffsetTimespanTimeRelation(TimeRelation):
                 )
 
         Returns string.
-        '''
+        """
         superclass = super(OffsetTimespanTimeRelation, self)
         return superclass.__format__(format_specification=format_specification)
 
     def __hash__(self):
-        r'''Hashes time relation.
+        """
+        Hashes time relation.
 
         Required to be explicitly redefined on Python 3 if __eq__ changes.
 
         Returns integer.
-        '''
+        """
         return super(OffsetTimespanTimeRelation, self).__hash__()
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def is_fully_loaded(self):
-        r'''Is true when `timespan` and `offset` are both not none.
-        Otherwise false:
+        """
+        Is true when `timespan` and `offset` are both not none.
 
-        ::
+        ..  container:: example
 
             >>> offset = abjad.Offset(5)
             >>> timespan = abjad.Timespan(0, 10)
@@ -177,15 +180,15 @@ class OffsetTimespanTimeRelation(TimeRelation):
             True
 
         Returns true or false.
-        '''
+        """
         return self.timespan is not None and self.offset is not None
 
     @property
     def is_fully_unloaded(self):
-        r'''Is true when `timespan` and `offset` are both none.
-        Otherwise false:
+        """
+        Is true when `timespan` and `offset` are both none.
 
-        ::
+        ..  container:: example
 
             >>> offset = abjad.Offset(5)
             >>> timespan = abjad.Timespan(0, 10)
@@ -198,12 +201,13 @@ class OffsetTimespanTimeRelation(TimeRelation):
             False
 
         Returns true or false.
-        '''
+        """
         return self.timespan is None and self.offset is None
 
     @property
     def offset(self):
-        r'''Time relation offset:
+        """
+        Time relation offset:
 
         ::
 
@@ -218,12 +222,13 @@ class OffsetTimespanTimeRelation(TimeRelation):
             Offset(5, 1)
 
         Returns offset or none.
-        '''
+        """
         return self._offset
 
     @property
     def timespan(self):
-        r'''Time relation timepsan:
+        """
+        Time relation timepsan:
 
         ::
 
@@ -238,5 +243,5 @@ class OffsetTimespanTimeRelation(TimeRelation):
             Timespan(start_offset=Offset(0, 1), stop_offset=Offset(10, 1))
 
         Returns timespan or none.
-        '''
+        """
         return self._timespan

@@ -7,7 +7,8 @@ from abjad.tools.systemtools.Configuration import Configuration
 
 
 class AbjadConfiguration(Configuration):
-    r'''Abjad configuration.
+    """
+    Abjad configuration.
 
     ..  container:: example
 
@@ -37,7 +38,7 @@ class AbjadConfiguration(Configuration):
         * Creates Abjad output directory if directory does not exist.
 
     Supports mutable mapping dictionary interface.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -174,19 +175,21 @@ class AbjadConfiguration(Configuration):
 
     @property
     def abjad_directory(self):
-        r'''Gets Abjad directory.
+        """
+        Gets Abjad directory.
 
         Returns string.
-        '''
+        """
         import abjad
         return abjad.__path__[0]
 
     @property
     def abjad_output_directory(self):
-        r'''Gets Abjad output directory.
+        """
+        Gets Abjad output directory.
 
         Returns string.
-        '''
+        """
         if 'abjad_output_directory' in self._settings:
             return self._settings['abjad_output_directory']
         return os.path.join(
@@ -196,10 +199,11 @@ class AbjadConfiguration(Configuration):
 
     @property
     def abjad_root_directory(self):
-        r'''Gets Abjad root directory.
+        """
+        Gets Abjad root directory.
 
         Returns string.
-        '''
+        """
         relative_path = os.path.join(
             self.abjad_directory,
             '..',
@@ -208,10 +212,11 @@ class AbjadConfiguration(Configuration):
 
     @property
     def boilerplate_directory(self):
-        r'''Gets Abjad boilerplate directory.
+        """
+        Gets Abjad boilerplate directory.
 
         Return string.
-        '''
+        """
         relative_path = os.path.join(
             self.abjad_directory,
             'boilerplate',
@@ -220,50 +225,56 @@ class AbjadConfiguration(Configuration):
 
     @property
     def composer_email(self):
-        r'''Gets composer email.
+        """
+        Gets composer email.
 
         Returns string.
-        '''
+        """
         return self._settings['composer_email']
 
     @property
     def composer_full_name(self):
-        r'''Gets composer full name.
+        """
+        Gets composer full name.
 
         Returns string.
-        '''
+        """
         return self._settings['composer_full_name']
 
     @property
     def composer_github_username(self):
-        r'''Gets GitHub username.
+        """
+        Gets GitHub username.
 
         Returns string.
-        '''
+        """
         return self._settings['composer_github_username']
 
     @property
     def composer_last_name(self):
-        r'''Gets composer last name.
+        """
+        Gets composer last name.
 
         Returns string.
-        '''
+        """
         return self._settings['composer_last_name']
 
     @property
     def composer_library(self):
-        r'''Gets composer library package name.
+        """
+        Gets composer library package name.
 
         Returns string.
-        '''
+        """
         return self._settings['composer_library']
 
     @property
     def composer_library_tools(self):
-        r'''Gets composer library tools directory.
+        """
+        Gets composer library tools directory.
 
         Returns string.
-        '''
+        """
         if self._composer_library_tools is None:
             name = self.composer_library
             if not name:
@@ -281,17 +292,19 @@ class AbjadConfiguration(Configuration):
 
     @property
     def composer_scores_directory(self):
-        r'''Gets composer scores directory.
+        """
+        Gets composer scores directory.
 
         Returns string.
-        '''
+        """
         if 'composer_scores_directory' in self._settings:
             return self._settings['composer_scores_directory']
         return os.path.join(self.home_directory, 'scores')
 
     @property
     def composer_uppercase_name(self):
-        r'''Gets composer uppercase name.
+        """
+        Gets composer uppercase name.
 
         ..  container:: example
 
@@ -299,12 +312,13 @@ class AbjadConfiguration(Configuration):
             'TREVOR BAČA'
 
         Returns string.
-        '''
+        """
         return self._settings['composer_uppercase_name']
 
     @property
     def composer_website(self):
-        r'''Gets composer website.
+        """
+        Gets composer website.
 
         ..  container:: example
 
@@ -312,22 +326,24 @@ class AbjadConfiguration(Configuration):
             'www.trevobaca.com'
 
         Returns string.
-        '''
+        """
         return self._settings['composer_website']
 
     @property
     def lilypond_log_file_path(self):
-        r'''Gets LilyPond log file path.
+        """
+        Gets LilyPond log file path.
 
         Returns string.
-        '''
+        """
         return os.path.join(self.abjad_output_directory, 'lily.log')
 
     ### PUBLIC METHODS ###
 
     @classmethod
     def get_abjad_startup_string(class_):
-        r'''Gets Abjad startup string.
+        """
+        Gets Abjad startup string.
 
         ..  container:: example
 
@@ -336,7 +352,7 @@ class AbjadConfiguration(Configuration):
             'Abjad 3.0 (development)'
 
         Returns string.
-        '''
+        """
         result = 'Abjad {} ({})'
         result = result.format(
             class_.get_abjad_version_string(),
@@ -346,7 +362,8 @@ class AbjadConfiguration(Configuration):
 
     @staticmethod
     def get_abjad_version_string():
-        '''Gets Abjad version string.
+        """
+        Gets Abjad version string.
 
         ..  container:: example
 
@@ -355,13 +372,14 @@ class AbjadConfiguration(Configuration):
             '3.0'
 
         Returns string.
-        '''
+        """
         import abjad
         return abjad.__version__
 
     @classmethod
     def get_lilypond_minimum_version_string(class_):
-        r'''Gets LilyPond minimum version string.
+        """
+        Gets LilyPond minimum version string.
 
         ..  container:: example
 
@@ -370,7 +388,7 @@ class AbjadConfiguration(Configuration):
             '2.17.0'
 
         Returns string.
-        '''
+        """
         version = class_.get_lilypond_version_string()
         parts = version.split('.')[0:2]
         parts.append('0')
@@ -378,7 +396,8 @@ class AbjadConfiguration(Configuration):
 
     @staticmethod
     def get_lilypond_version_string():
-        '''Gets LilyPond version string.
+        """
+        Gets LilyPond version string.
 
         ..  container:: example
 
@@ -387,7 +406,7 @@ class AbjadConfiguration(Configuration):
             '2.19.1'
 
         Returns string.
-        '''
+        """
         from abjad import abjad_configuration
         from abjad.tools import systemtools
         if AbjadConfiguration._lilypond_version_string is not None:
@@ -409,7 +428,8 @@ class AbjadConfiguration(Configuration):
 
     @staticmethod
     def get_python_version_string():
-        '''Gets Python version string.
+        """
+        Gets Python version string.
 
         ..  container:: example
 
@@ -418,12 +438,13 @@ class AbjadConfiguration(Configuration):
             '2.7.5'
 
         Returns string.
-        '''
+        """
         return '.'.join(str(_) for _ in sys.version_info[:3])
 
     @staticmethod
     def get_tab_width():
-        r'''Gets tab width.
+        """
+        Gets tab width.
 
         ..  container:: example
 
@@ -434,12 +455,13 @@ class AbjadConfiguration(Configuration):
         Used by code generation functions.
 
         Returns nonnegative integer.
-        '''
+        """
         return 4
 
     @staticmethod
     def get_text_editor():
-        r'''Gets text editor.
+        """
+        Gets text editor.
 
         ..  container:: example
 
@@ -448,7 +470,7 @@ class AbjadConfiguration(Configuration):
             'vi'
 
         Returns string.
-        '''
+        """
         from abjad import abjad_configuration
         text_editor = abjad_configuration['text_editor']
         if text_editor is not None:
@@ -460,7 +482,8 @@ class AbjadConfiguration(Configuration):
 
     @staticmethod
     def list_package_dependency_versions():
-        r'''Lists package dependency versions.
+        """
+        Lists package dependency versions.
 
         ..  container:: example
 
@@ -469,7 +492,7 @@ class AbjadConfiguration(Configuration):
             {'sphinx': '1.1.2', 'pytest': '2.1.2'}
 
         Returns dictionary.
-        '''
+        """
         dependencies = {}
         dependencies['configobj'] = None
         try:
@@ -499,7 +522,8 @@ class AbjadConfiguration(Configuration):
 
     @staticmethod
     def set_default_accidental_spelling(spelling='mixed'):
-        '''Sets default accidental spelling.
+        """
+        Sets default accidental spelling.
 
         ..  container:: example
 
@@ -536,7 +560,7 @@ class AbjadConfiguration(Configuration):
         Mixed test case must appear last here for doc tests to check correctly.
 
         Returns none.
-        '''
+        """
         from abjad import abjad_configuration
         assert spelling in ('mixed', 'sharps', 'flats'), repr(spelling)
         abjad_configuration['accidental_spelling'] = spelling

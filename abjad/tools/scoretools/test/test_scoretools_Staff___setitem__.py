@@ -62,8 +62,9 @@ def test_scoretools_Staff___setitem___01():
 
 
 def test_scoretools_Staff___setitem___02():
-    r'''Reassign the entire contents of staff.
-    '''
+    """
+    Reassign the entire contents of staff.
+    """
 
     staff = abjad.Staff(4 * abjad.Note("c'4"))
     assert staff._get_contents_duration() == abjad.Duration(4, 4)
@@ -72,24 +73,27 @@ def test_scoretools_Staff___setitem___02():
 
 
 def test_scoretools_Staff___setitem___03():
-    r'''Item-assign an empty container to staff.
-    '''
+    """
+    Item-assign an empty container to staff.
+    """
 
     staff = abjad.Staff(4 * abjad.Note("c'4"))
     staff[0] = abjad.Voice([])
 
 
 def test_scoretools_Staff___setitem___04():
-    r'''Slice-assign empty containers to staff.
-    '''
+    """
+    Slice-assign empty containers to staff.
+    """
 
     staff = abjad.Staff(4 * abjad.Note("c'4"))
     staff[0:2] = [abjad.Voice([]), abjad.Voice([])]
 
 
 def test_scoretools_Staff___setitem___05():
-    r'''Bark when user assigns a slice to an item.
-    '''
+    """
+    Bark when user assigns a slice to an item.
+    """
 
     staff = abjad.Staff(4 * abjad.Note("c'4"))
 
@@ -98,8 +102,9 @@ def test_scoretools_Staff___setitem___05():
 
 
 def test_scoretools_Staff___setitem___06():
-    r'''Bark when user assigns an item to a slice.
-    '''
+    """
+    Bark when user assigns an item to a slice.
+    """
 
     staff = abjad.Staff(4 * abjad.Note("c'4"))
 
@@ -107,8 +112,9 @@ def test_scoretools_Staff___setitem___06():
 
 
 def test_scoretools_Staff___setitem___07():
-    r'''Slice-assign notes.
-    '''
+    """
+    Slice-assign notes.
+    """
 
     staff = abjad.Staff(abjad.Note(0, (1, 8)) * 8)
     staff[0:4] = abjad.Note(2, (1, 8)) * 4
@@ -121,8 +127,9 @@ def test_scoretools_Staff___setitem___07():
 
 
 def test_scoretools_Staff___setitem___08():
-    r'''Slice-assign chords.
-    '''
+    """
+    Slice-assign chords.
+    """
 
     staff = abjad.Staff(abjad.Note(0, (1, 8)) * 8)
     staff[0:4] = abjad.Chord([2, 3, 4], (1, 4)) * 4
@@ -135,8 +142,9 @@ def test_scoretools_Staff___setitem___08():
 
 
 def test_scoretools_Staff___setitem___09():
-    r'''Slice-assign tuplets.
-    '''
+    """
+    Slice-assign tuplets.
+    """
 
     staff = abjad.Staff(abjad.Note(0, (1, 8)) * 8)
     staff[0:4] = 2 * abjad.Tuplet((2, 3), 3 * abjad.Note(0, (1, 8)))
@@ -150,8 +158,9 @@ def test_scoretools_Staff___setitem___09():
 
 
 def test_scoretools_Staff___setitem___10():
-    r'''Slice-assign measures.
-    '''
+    """
+    Slice-assign measures.
+    """
 
     staff = abjad.Staff(abjad.Note(0, (1, 8)) * 8)
     staff[0:4] = abjad.Measure((2, 8), abjad.Note(0, (1, 8)) * 2) * 2

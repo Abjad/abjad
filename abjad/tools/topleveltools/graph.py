@@ -13,7 +13,8 @@ def graph(
     edge_attributes=None,
     **keywords
     ) -> None:
-    r'''Graphs `argument`.
+    r"""
+    Graphs `argument`.
 
     ..  container:: example
 
@@ -127,7 +128,7 @@ def graph(
             }
 
     Opens image in default image viewer.
-    '''
+    """
     from abjad import abjad_configuration
     from abjad.tools import systemtools
 

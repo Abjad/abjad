@@ -3,8 +3,9 @@ from .TypedCollection import TypedCollection
 
 
 class TypedFrozenset(TypedCollection, collections.Set):
-    r'''Typed fozen set.
-    '''
+    """
+    Typed fozen set.
+    """
 
     ### CLASS VARIABLES ###
 
@@ -25,37 +26,40 @@ class TypedFrozenset(TypedCollection, collections.Set):
     ### SPECIAL METHODS ###
 
     def __and__(self, argument):
-        r'''Logical AND of typed frozen set and `argument`.
+        """
+        Logical AND of typed frozen set and ``argument``.
 
         Returns new typed frozen set.
-        '''
+        """
         argument = type(self)(argument)
         result = self._collection.__and__(argument._collection)
         result = type(self)(result)
         return result
 
     def __ge__(self, argument):
-        r'''Is true when typed frozen set is greater than or equal to `argument`.
-        Otherwise false.
+        """
+        Is true when typed frozen set is greater than or equal to ``argument``.
 
         Returns true or false.
-        '''
+        """
         argument = type(self)(argument)
         return self._collection.__ge__(argument._collection)
 
     def __gt__(self, argument):
-        r'''Is true when typed frozen set is greater than `argument`. Otherwise false.
+        """
+        Is true when typed frozen set is greater than ``argument``.
 
         Returns true or false.
-        '''
+        """
         argument = type(self)(argument)
         return self._collection.__gt__(argument._collection)
 
     def __hash__(self):
-        r'''Hashes typed frozen set.
+        """
+        Hashes typed frozen set.
 
         Returns integer.
-        '''
+        """
         from abjad.tools import systemtools
         hash_values = systemtools.StorageFormatManager(self).get_hash_values()
         try:
@@ -66,47 +70,51 @@ class TypedFrozenset(TypedCollection, collections.Set):
         return result
 
     def __le__(self, argument):
-        r'''Is true when typed frozen set is less than or equal to `argument`.
-        Otherwise false.
+        """
+        Is true when typed frozen set is less than or equal to ``argument``.
 
         Returns true or false.
-        '''
+        """
         argument = type(self)(argument)
         return self._collection.__le__(argument._collection)
 
     def __lt__(self, argument):
-        r'''Is true when typed frozen set is less than `argument`. Otherwise false.
+        """
+        Is true when typed frozen set is less than ``argument``.
 
         Returns true or false.
-        '''
+        """
         argument = type(self)(argument)
         return self._collection.__lt__(argument._collection)
 
     def __or__(self, argument):
-        r'''Logical OR of typed frozen set and `argument`.
+        """
+        Logical OR of typed frozen set and ``argument``.
 
         Returns new typed frozen set.
-        '''
+        """
         argument = type(self)(argument)
         result = self._collection.__or__(argument._collection)
         result = type(self)(result)
         return result
 
     def __sub__(self, argument):
-        r'''Subtracts `argument` from typed frozen set.
+        """
+        Subtracts ``argument`` from typed frozen set.
 
         Returns new typed frozen set.
-        '''
+        """
         argument = type(self)(argument)
         result = self._collection.__sub__(argument._collection)
         result = type(self)(result)
         return result
 
     def __xor__(self, argument):
-        r'''Logical XOR of typed frozen set and `argument`.
+        """
+        Logical XOR of typed frozen set and ``argument``.
 
         Returns new typed frozen set.
-        '''
+        """
         argument = type(self)(argument)
         result = self._collection.__xor__(argument._collection)
         result = type(self)(result)
@@ -115,74 +123,79 @@ class TypedFrozenset(TypedCollection, collections.Set):
     ### PUBLIC METHODS ###
 
     def copy(self):
-        r'''Copies typed frozen set.
+        """
+        Copies typed frozen set.
 
         Returns new typed frozen set.
-        '''
+        """
         return type(self)(self._collection.copy())
 
     def difference(self, argument):
-        r'''Typed frozen set set-minus `argument`.
+        """
+        Typed frozen set set-minus ``argument``.
 
         Returns new typed frozen set.
-        '''
+        """
         argument = type(self)(argument)
         result = self._collection.difference(argument._collection)
         result = type(self)(result)
         return result
 
     def intersection(self, argument):
-        r'''Set-theoretic intersection of typed frozen set and `argument`.
+        """
+        Set-theoretic intersection of typed frozen set and ``argument``.
 
         Returns new typed frozen set.
-        '''
+        """
         argument = type(self)(argument)
         result = self._collection.intersection(argument._collection)
         result = type(self)(result)
         return result
 
     def isdisjoint(self, argument):
-        r'''Is true when typed frozen set shares no elements with `argument`.
-        Otherwise false.
+        """
+        Is true when typed frozen set shares no elements with ``argument``.
 
         Returns true or false.
-        '''
+        """
         argument = type(self)(argument)
         return self._collection.isdisjoint(argument._collection)
 
     def issubset(self, argument):
-        r'''Is true when typed frozen set is a subset of `argument`. Otherwise
-        false.
+        """
+        Is true when typed frozen set is a subset of ``argument``.
 
         Returns true or false.
-        '''
+        """
         argument = type(self)(argument)
         return self._collection.issubset(argument._collection)
 
     def issuperset(self, argument):
-        r'''Is true when typed frozen set is a superset of `argument`. Otherwise
-        false.
+        """
+        Is true when typed frozen set is a superset of ``argument``.
 
         Returns true or false.
-        '''
+        """
         argument = type(self)(argument)
         return self._collection.issuperset(argument._collection)
 
     def symmetric_difference(self, argument):
-        r'''Symmetric difference of typed frozen set and `argument`.
+        """
+        Symmetric difference of typed frozen set and ``argument``.
 
         Returns new typed frozen set.
-        '''
+        """
         argument = type(self)(argument)
         result = self._collection.symmetric_difference(argument._collection)
         result = type(self)(result)
         return result
 
     def union(self, argument):
-        r'''Union of typed frozen set and `argument`.
+        """
+        Union of typed frozen set and ``argument``.
 
         Returns new typed frozen set.
-        '''
+        """
         argument = type(self)(argument)
         result = self._collection.union(argument._collection)
         result = type(self)(result)

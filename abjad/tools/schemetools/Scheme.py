@@ -3,7 +3,8 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class Scheme(AbjadValueObject):
-    r'''Abjad model of Scheme code.
+    r"""
+    Abjad model of Scheme code.
 
     ..  container:: example
 
@@ -176,7 +177,7 @@ class Scheme(AbjadValueObject):
         ...     ))
         "#'((padding . 1) (attach-dir . -1))"
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -220,7 +221,8 @@ class Scheme(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __format__(self, format_specification=''):
-        r'''Formats scheme.
+        """
+        Formats scheme.
 
         Set `format_specification` to `''`', `'lilypond'` or ``'storage'``.
         Interprets `''` equal to `'lilypond'`.
@@ -243,7 +245,7 @@ class Scheme(AbjadValueObject):
                 )
 
         Returns string.
-        '''
+        """
         from abjad.tools import systemtools
         if format_specification in ('', 'lilypond'):
             return self._get_lilypond_format()
@@ -252,10 +254,11 @@ class Scheme(AbjadValueObject):
         return str(self)
 
     def __str__(self):
-        r'''String representation of scheme object.
+        """
+        String representation of scheme object.
 
         Returns string.
-        '''
+        """
         if self._quoting is not None:
             return self._quoting + self._formatted_value
         return self._formatted_value
@@ -288,29 +291,33 @@ class Scheme(AbjadValueObject):
 
     @property
     def force_quotes(self):
-        r'''Is true when quotes should be forced in output. Otherwise false.
+        """
+        Is true when quotes should be forced in output.
 
         Returns true or false.
-        '''
+        """
         return self._force_quotes
 
     @property
     def quoting(self):
-        r'''Gets Scheme quoting string.
+        """
+        Gets Scheme quoting string.
 
         Returns string.
-        '''
+        """
         return self._quoting
 
     @property
     def value(self):
-        r'''Gets value.
-        '''
+        """
+        Gets value.
+        """
         return self._value
 
     @property
     def verbatim(self):
-        r'''Is true when formatting should format value absolutely verbatim.
+        """
+        Is true when formatting should format value absolutely verbatim.
         Whitespace, quotes, and all other parts of value are left intact.
 
         Defaults to false.
@@ -318,15 +325,16 @@ class Scheme(AbjadValueObject):
         Set to true or false.
 
         Returns true or false.
-        '''
+        """
         return self._verbatim
 
     ### PUBLIC METHODS ###
 
     @staticmethod
     def format_embedded_scheme_value(value, force_quotes=False):
-        r'''Formats `value` as an embedded Scheme value.
-        '''
+        """
+        Formats `value` as an embedded Scheme value.
+        """
         import abjad
         if isinstance(value, (
             abjad.HorizontalAlignment,
@@ -346,7 +354,8 @@ class Scheme(AbjadValueObject):
 
     @staticmethod
     def format_scheme_value(value, force_quotes=False, verbatim=False):
-        r'''Formats `value` as Scheme would.
+        """
+        Formats `value` as Scheme would.
 
         ..  container:: example
 
@@ -398,7 +407,7 @@ class Scheme(AbjadValueObject):
             '#1-finger'
 
         Returns string.
-        '''
+        """
         if isinstance(value, str):
             if not verbatim:
                 value = value.replace('"', r'\"')

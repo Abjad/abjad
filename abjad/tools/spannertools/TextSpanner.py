@@ -532,11 +532,15 @@ class TextSpanner(Spanner):
             return True
         return self._at_least_two_leaves(argument)
 
+    def _copy_keywords(self, new):
+        Spanner._copy_keywords(self, new)
+        new._lilypond_id = self.lilypond_id
+
     def _get_lilypond_format_bundle(self, component=None):
         bundle = self._get_basic_lilypond_format_bundle(component)
         markup = inspect(component).get_piecewise(self, Markup, None)
-        line_segment = inspect(
-            component).get_piecewise(self,
+        line_segment = inspect(component).get_piecewise(
+            self,
             LineSegment,
             None,
             )
@@ -556,7 +560,7 @@ class TextSpanner(Spanner):
                     tweaks = line_segment._get_lilypond_grob_overrides(
                         tweaks=True)
                     bundle.right.spanner_starts.extend(tweaks)
-                bundle.right.spanner_starts.append(self._start_command())
+                bundle.right.spanner_starts.extend(self.start_command())
             if component is self[-1]:
                 bundle.right.spanner_stops.append(self.stop_command())
             return bundle
@@ -609,7 +613,7 @@ class TextSpanner(Spanner):
             bundle.right.spanner_starts.append(string)
         # start- and stop-commands added after tweaks
         if not component is self[-1]:
-            bundle.right.spanner_starts.append(self._start_command())
+            bundle.right.spanner_starts.extend(self.start_command())
         return bundle
 
     @staticmethod
@@ -638,6 +642,7 @@ class TextSpanner(Spanner):
                 break
         return component is leaf
 
+    @property
     def _start_command(self):
         if self.lilypond_id is None:
             return r'\startTextSpan'
@@ -826,7 +831,6 @@ class TextSpanner(Spanner):
                 \new Staff
                 {
                     c'4
-                    - \tweak staff-padding #2.5
                     - \tweak Y-extent ##f
                     - \tweak bound-details.left.text \markup {
                         \concat
@@ -854,8 +858,8 @@ class TextSpanner(Spanner):
                                     pont.
                             }
                         }
+                    - \tweak staff-padding #2.5
                     \startTextSpanOne
-                    - \tweak staff-padding #5
                     - \tweak Y-extent ##f
                     - \tweak bound-details.left.text \markup {
                         \concat
@@ -883,6 +887,7 @@ class TextSpanner(Spanner):
                                     B
                             }
                         }
+                    - \tweak staff-padding #5
                     \startTextSpan
                     d'4
                     e'4
@@ -906,7 +911,6 @@ class TextSpanner(Spanner):
                 \new Staff
                 {
                     c'4
-                    - \tweak staff-padding #5
                     - \tweak Y-extent ##f
                     - \tweak bound-details.left.text \markup {
                         \concat
@@ -934,8 +938,8 @@ class TextSpanner(Spanner):
                                     pont.
                             }
                         }
+                    - \tweak staff-padding #5
                     \startTextSpanOne
-                    - \tweak staff-padding #2.5
                     - \tweak Y-extent ##f
                     - \tweak bound-details.left.text \markup {
                         \concat
@@ -963,6 +967,7 @@ class TextSpanner(Spanner):
                                     B
                             }
                         }
+                    - \tweak staff-padding #2.5
                     \startTextSpan
                     d'4
                     e'4
@@ -970,6 +975,36 @@ class TextSpanner(Spanner):
                     \stopTextSpanOne
                     \stopTextSpan
                 }
+
+        ..  container:: example
+
+            LilyPond ID survives copy:
+
+            >>> import copy
+
+            >>> spanner_1 = abjad.TextSpanner(lilypond_id=1)
+            >>> spanner_1
+            TextSpanner(lilypond_id=1)
+
+            >>> spanner_2 = copy.copy(spanner_1)
+            >>> spanner_2
+            TextSpanner(lilypond_id=1)
+
+            >>> spanner_1.lilypond_id == spanner_2.lilypond_id
+            True
+
+            And new:
+
+            >>> spanner_1 = abjad.TextSpanner(lilypond_id=1)
+            >>> spanner_1
+            TextSpanner(lilypond_id=1)
+
+            >>> spanner_2 = abjad.new(spanner_1)
+            >>> spanner_2
+            TextSpanner(lilypond_id=1)
+
+            >>> spanner_1.lilypond_id == spanner_2.lilypond_id
+            True
 
         """
         return self._lilypond_id
@@ -1000,17 +1035,17 @@ class TextSpanner(Spanner):
             wrapper=wrapper,
             )
 
-    def start_command(self) -> typing.Optional[str]:
+    def start_command(self) -> typing.List[str]:
         r"""
         Gets start command.
 
         ..  container:: example
 
             >>> abjad.TextSpanner().start_command()
-            '\\startTextSpan'
+            ['\\startTextSpan']
 
         """
-        return self._start_command()
+        return super(TextSpanner, self).start_command()
 
     def stop_command(self) -> typing.Optional[str]:
         r"""

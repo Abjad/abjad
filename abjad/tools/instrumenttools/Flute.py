@@ -2,7 +2,8 @@ from .Instrument import Instrument
 
 
 class Flute(Instrument):
-    r'''Flute.
+    r"""
+    Flute.
 
     ..  container:: example
 
@@ -79,7 +80,7 @@ class Flute(Instrument):
         (Note("e'4"), Flute(hide=True))
         (Note("fs'4"), Flute(hide=True))
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -118,7 +119,8 @@ class Flute(Instrument):
 
     @property
     def allowable_clefs(self):
-        r'''Gets flute's allowable clefs.
+        """
+        Gets flute's allowable clefs.
 
         ..  container:: example
 
@@ -127,12 +129,13 @@ class Flute(Instrument):
             ('treble',)
 
         Returns clef list.
-        '''
+        """
         return Instrument.allowable_clefs.fget(self)
 
     @property
     def markup(self):
-        r'''Gets flute's instrument name markup.
+        """
+        Gets flute's instrument name markup.
 
         ..  container:: example
 
@@ -143,12 +146,13 @@ class Flute(Instrument):
             >>> abjad.show(flute.markup) # doctest: +SKIP
 
         Returns markup.
-        '''
+        """
         return Instrument.markup.fget(self)
 
     @property
     def middle_c_sounding_pitch(self):
-        r'''Gets sounding pitch of flute's written middle C.
+        """
+        Gets sounding pitch of flute's written middle C.
 
         ..  container:: example
 
@@ -159,12 +163,13 @@ class Flute(Instrument):
             >>> abjad.show(flute.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
-        '''
+        """
         return Instrument.middle_c_sounding_pitch.fget(self)
 
     @property
     def name(self):
-        r'''Gets flute's name.
+        """
+        Gets flute's name.
 
         ..  container:: example
 
@@ -173,12 +178,13 @@ class Flute(Instrument):
             'flute'
 
         Returns string.
-        '''
+        """
         return Instrument.name.fget(self)
 
     @property
     def pitch_range(self):
-        r'''Gets flute's range.
+        """
+        Gets flute's range.
 
         ..  container:: example
 
@@ -189,12 +195,13 @@ class Flute(Instrument):
             >>> abjad.show(flute.pitch_range) # doctest: +SKIP
 
         Returns pitch range.
-        '''
+        """
         return Instrument.pitch_range.fget(self)
 
     @property
     def short_markup(self):
-        r'''Gets flute's short instrument name markup.
+        """
+        Gets flute's short instrument name markup.
 
         ..  container:: example
 
@@ -205,12 +212,13 @@ class Flute(Instrument):
             >>> abjad.show(flute.short_markup) # doctest: +SKIP
 
         Returns markup.
-        '''
+        """
         return Instrument.short_markup.fget(self)
 
     @property
     def short_name(self):
-        r'''Gets flute's short instrument name.
+        """
+        Gets flute's short instrument name.
 
         ..  container:: example
 
@@ -219,5 +227,5 @@ class Flute(Instrument):
             'fl.'
 
         Returns string.
-        '''
+        """
         return Instrument.short_name.fget(self)

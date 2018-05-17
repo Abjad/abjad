@@ -2,7 +2,8 @@ from abjad.tools.datastructuretools.TypedTuple import TypedTuple
 
 
 class PatternTuple(TypedTuple):
-    r'''Pattern list.
+    """
+    Pattern tuple.
 
     ..  container:: example
 
@@ -66,7 +67,7 @@ class PatternTuple(TypedTuple):
                 )
             )
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -76,7 +77,8 @@ class PatternTuple(TypedTuple):
     ### PUBLIC METHODS ###
 
     def get_matching_pattern(self, index, total_length, rotation=None):
-        r'''Gets pattern matching `index`.
+        """
+        Gets pattern matching ``index``.
 
         ..  container:: example
 
@@ -199,7 +201,7 @@ class PatternTuple(TypedTuple):
             9 Pattern(indices=[-3], inverted=True)
 
         Returns pattern or none.
-        '''
+        """
         for pattern in reversed(self):
             if hasattr(pattern, 'pattern'):
                 if pattern.pattern.matches_index(
@@ -209,7 +211,8 @@ class PatternTuple(TypedTuple):
                 return pattern
 
     def get_matching_payload(self, index, total_length, rotation=None):
-        r'''Gets payload attached to pattern matching `index`.
+        """
+        Gets payload attached to pattern matching ``index``.
 
         ..  container:: example
 
@@ -267,7 +270,7 @@ class PatternTuple(TypedTuple):
             13 tenuto
             14 tenuto
 
-        '''
+        """
         pattern = self.get_matching_pattern(index, total_length, rotation=rotation)
         payload = None
         if pattern:

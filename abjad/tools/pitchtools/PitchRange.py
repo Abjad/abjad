@@ -87,7 +87,7 @@ class PitchRange(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __contains__(self, argument):
-        r'''Is true when pitch range contains `argument`. Otherwise false.
+        r'''Is true when pitch range contains `argument`.
 
         ..  container:: example
 
@@ -293,7 +293,7 @@ class PitchRange(AbjadValueObject):
 
     def __eq__(self, argument):
         r'''Is true when `argument` is a pitch range with start and stop equal
-        to those of this pitch range. Otherwise false.
+        to those of this pitch range.
 
         ..  container:: example
 
@@ -432,7 +432,7 @@ class PitchRange(AbjadValueObject):
 
     def __lt__(self, argument):
         r'''Is true when start pitch of this pitch-range is less than start
-        pitch of `argument` pitch range. Otherwise false.
+        pitch of `argument` pitch range.
 
         ..  container:: example
 
@@ -645,7 +645,6 @@ class PitchRange(AbjadValueObject):
     @property
     def start_pitch_is_included_in_range(self):
         r'''Is true when start pitch is included in range.
-        Otherwise false:
 
         >>> pitch_range = abjad.PitchRange('[C3, C7]')
         >>> pitch_range.start_pitch_is_included_in_range
@@ -674,7 +673,6 @@ class PitchRange(AbjadValueObject):
     @property
     def stop_pitch_is_included_in_range(self):
         r'''Is true when stop pitch is included in range.
-        Otherwise false:
 
         >>> pitch_range = abjad.PitchRange('[C3, C7]')
         >>> pitch_range.stop_pitch_is_included_in_range
@@ -732,7 +730,6 @@ class PitchRange(AbjadValueObject):
     @classmethod
     def is_range_string(class_, argument):
         '''Is true when `argument` is a pitch range string.
-        Otherwise false:
 
         ..  container:: example
 

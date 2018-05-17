@@ -2,8 +2,9 @@ import abjad
 
 
 def test_scoretools_Leaf__multiplied_duration_01():
-    r'''Mulplied duration == written * multiplier.
-    '''
+    """
+    Mulplied duration == written * multiplier.
+    """
 
     note = abjad.Note("c'4")
     abjad.attach(abjad.Multiplier(1, 2), note)
@@ -11,16 +12,18 @@ def test_scoretools_Leaf__multiplied_duration_01():
 
 
 def test_scoretools_Leaf__multiplied_duration_02():
-    r'''Mulplied duration equals duration when multiplier is none.
-    '''
+    """
+    Mulplied duration equals duration when multiplier is none.
+    """
 
     note = abjad.Note("c'4")
     assert note._get_multiplied_duration() == abjad.Duration(1, 4)
 
 
 def test_scoretools_Leaf__multiplied_duration_03():
-    r'''Attach multiplier and then abjad.detach multiplier.
-    '''
+    """
+    Attach multiplier and then abjad.detach multiplier.
+    """
 
     note = abjad.Note("c'4")
     note.written_duration = abjad.Duration(3, 8)

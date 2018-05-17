@@ -2,8 +2,9 @@ import abjad
 
 
 def test_scoretools_Container__get_spanners_that_dominate_component_pair_01():
-    '''Get spanners in proper parentage.
-    '''
+    """
+    Get spanners in proper parentage.
+    """
 
     container = abjad.Container("c'8 d'8 e'8 f'8")
     beam = abjad.Beam()
@@ -14,7 +15,7 @@ def test_scoretools_Container__get_spanners_that_dominate_component_pair_01():
     abjad.attach(trill, container[:])
 
     assert format(container) == abjad.String.normalize(
-        r'''
+        r"""
         {
             c'8
             [
@@ -27,7 +28,7 @@ def test_scoretools_Container__get_spanners_that_dominate_component_pair_01():
             )
             \stopTrillSpan
         }
-        '''
+        """
         )
 
     parentage = abjad.inspect(container[0]).get_parentage()
@@ -40,8 +41,9 @@ def test_scoretools_Container__get_spanners_that_dominate_component_pair_01():
 
 
 def test_scoretools_Container__get_spanners_that_dominate_component_pair_02():
-    '''Get spanners in improper parentage.
-    '''
+    """
+    Get spanners in improper parentage.
+    """
 
     container = abjad.Container("c'8 d'8 e'8 f'8")
     beam = abjad.Beam()
@@ -52,7 +54,7 @@ def test_scoretools_Container__get_spanners_that_dominate_component_pair_02():
     abjad.attach(trill, container[:])
 
     assert format(container) == abjad.String.normalize(
-        r'''
+        r"""
         {
             c'8
             [
@@ -65,7 +67,7 @@ def test_scoretools_Container__get_spanners_that_dominate_component_pair_02():
             )
             \stopTrillSpan
         }
-        '''
+        """
         )
 
     parentage = abjad.inspect(container).get_parentage(include_self=False)

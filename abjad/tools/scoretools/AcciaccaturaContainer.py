@@ -2,7 +2,8 @@ from .GraceContainer import GraceContainer
 
 
 class AcciaccaturaContainer(GraceContainer):
-    r'''Acciaccatura container.
+    r"""
+    Acciaccatura container.
 
     Acciaccaturas are played before the beat.
 
@@ -42,7 +43,7 @@ class AcciaccaturaContainer(GraceContainer):
     Fill acciaccatura containers with notes, rests or chords.
 
     Attach acciaccatura containers to notes, rests or chords.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 

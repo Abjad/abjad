@@ -49,8 +49,6 @@ class PitchSet(Set):
 
     def __eq__(self, argument):
         r'''Is true when pitch set equals `argument`.
-        Otherwise false.
-
 
         ..  container:: example
 
@@ -224,7 +222,6 @@ class PitchSet(Set):
 
     def _is_equivalent_under_transposition(self, argument):
         r'''True if pitch set is equivalent to `argument` under transposition.
-        Otherwise false.
 
         Returns true or false.
         '''
@@ -298,7 +295,7 @@ class PitchSet(Set):
 
     @property
     def is_pitch_class_unique(self):
-        r'''Is true when pitch set is pitch-class-unique. Otherwise false.
+        r'''Is true when pitch set is pitch-class-unique.
 
         ..  container:: example
 

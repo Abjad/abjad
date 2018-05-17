@@ -2,8 +2,9 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class FormatSpecification(AbjadValueObject):
-    r'''Format specification.
-    '''
+    """
+    Format specification.
+    """
 
     ### CLASS VARIABLES ###
 

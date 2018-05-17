@@ -7,9 +7,9 @@ from abjad.tools import mathtools
 
 
 class RhythmTreeMixin(abctools.AbjadObject):
-    '''
+    """
     Abstract rhythm-tree node.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -29,8 +29,9 @@ class RhythmTreeMixin(abctools.AbjadObject):
 
     @abc.abstractmethod
     def __call__(self, pulse_duration):
-        r'''Calls rhythm tree node on `pulse_duration`.
-        '''
+        """
+        Calls rhythm tree node on `pulse_duration`.
+        """
         raise NotImplementedError
 
     ### PRIVATE METHODS ###
@@ -85,7 +86,8 @@ class RhythmTreeMixin(abctools.AbjadObject):
 
     @property
     def duration(self):
-        r'''The preprolated_duration of the node:
+        """
+        The preprolated_duration of the node:
 
         >>> rtm = '(1 ((1 (1 1)) (1 (1 1))))'
         >>> tree = abjad.rhythmtreetools.RhythmTreeParser()(rtm)[0]
@@ -100,12 +102,13 @@ class RhythmTreeMixin(abctools.AbjadObject):
         Duration(1, 4)
 
         Return `Duration` instance.
-        '''
+        """
         return self.prolation * self.preprolated_duration
 
     @property
     def parentage_ratios(self):
-        r'''A sequence describing the relative durations of the nodes in a
+        """
+        A sequence describing the relative durations of the nodes in a
         node's improper parentage.
 
         The first item in the sequence is the preprolated_duration of
@@ -139,7 +142,7 @@ class RhythmTreeMixin(abctools.AbjadObject):
         (Duration(1, 1), (Duration(2, 1), Duration(5, 1)), (Duration(5, 1), Duration(9, 1)))
 
         Returns tuple.
-        '''
+        """
         result = []
         node = self
         while node.parent is not None:
@@ -153,7 +156,8 @@ class RhythmTreeMixin(abctools.AbjadObject):
 
     @property
     def preprolated_duration(self):
-        r'''The node's preprolated_duration in pulses:
+        """
+        The node's preprolated_duration in pulses:
 
         >>> node = abjad.rhythmtreetools.RhythmTreeLeaf(
         ...     preprolated_duration=1)
@@ -165,7 +169,7 @@ class RhythmTreeMixin(abctools.AbjadObject):
         Duration(2, 1)
 
         Returns int.
-        '''
+        """
         return self._duration
 
     @preprolated_duration.setter
@@ -179,7 +183,8 @@ class RhythmTreeMixin(abctools.AbjadObject):
 
     @property
     def pretty_rtm_format(self):
-        r'''The node's pretty-printed RTM format:
+        """
+        The node's pretty-printed RTM format:
 
         >>> rtm = '(1 ((1 (1 1)) (1 (1 1))))'
         >>> tree = abjad.rhythmtreetools.RhythmTreeParser()(rtm)[0]
@@ -193,23 +198,25 @@ class RhythmTreeMixin(abctools.AbjadObject):
                 1))))
 
         Returns string.
-        '''
+        """
         return '\n'.join(self._pretty_rtm_format_pieces)
 
     @property
     def prolation(self):
-        r'''Prolation of rhythm tree node.
+        """
+        Prolation of rhythm tree node.
 
         Returns multiplier.
-        '''
+        """
         return mathtools.cumulative_products(self.prolations)[-1]
 
     @property
     def prolations(self):
-        r'''Prolations of rhythm tree node.
+        """
+        Prolations of rhythm tree node.
 
         Returns tuple.
-        '''
+        """
         import abjad
         prolations = [abjad.Multiplier(1)]
         pairs = abjad.sequence(self.parentage).nwise()
@@ -220,7 +227,8 @@ class RhythmTreeMixin(abctools.AbjadObject):
 
     @abc.abstractproperty
     def rtm_format(self):
-        r'''The node's RTM format:
+        """
+        The node's RTM format:
 
         >>> rtm = '(1 ((1 (1 1)) (1 (1 1))))'
         >>> tree = abjad.rhythmtreetools.RhythmTreeParser()(rtm)[0]
@@ -228,12 +236,13 @@ class RhythmTreeMixin(abctools.AbjadObject):
         '(1 ((1 (1 1)) (1 (1 1))))'
 
         Returns string.
-        '''
+        """
         raise NotImplementedError
 
     @property
     def start_offset(self):
-        r'''The starting offset of a node in a rhythm-tree relative the root.
+        """
+        The starting offset of a node in a rhythm-tree relative the root.
 
         >>> rtm = '(1 ((1 (1 1)) (1 (1 1))))'
         >>> tree = abjad.rhythmtreetools.RhythmTreeParser()(rtm)[0]
@@ -248,12 +257,13 @@ class RhythmTreeMixin(abctools.AbjadObject):
         Offset(1, 4)
 
         Returns Offset instance.
-        '''
+        """
         self._update_offsets_of_entire_tree_if_necessary()
         return self._offset
 
     @property
     def stop_offset(self):
-        r'''The stopping offset of a node in a rhythm-tree relative the root.
-        '''
+        """
+        The stopping offset of a node in a rhythm-tree relative the root.
+        """
         return self.start_offset + self.duration

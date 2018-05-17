@@ -2,7 +2,8 @@ from abjad.tools.pitchtools.PitchClassSet import PitchClassSet
 
 
 class RootedChordClass(PitchClassSet):
-    '''Rooted chord class.
+    """
+    Rooted chord class.
 
     ..  container:: example
 
@@ -20,7 +21,7 @@ class RootedChordClass(PitchClassSet):
 
     G dominant seventh represents a class of chords because there are many
     different spacings of a G dominant seventh.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -90,26 +91,28 @@ class RootedChordClass(PitchClassSet):
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is a rooted chord-class with root, chord
+        """
+        Is true when `argument` is a rooted chord-class with root, chord
         quality and inversion equal to those of this rooted chord-class.
-        Otherwise false.
 
         Returns true or false.
-        '''
+        """
         return super(RootedChordClass, self).__eq__(argument)
 
     def __hash__(self):
-        r'''Hashes rooted chord-class.
+        """
+        Hashes rooted chord-class.
 
         Returns integer.
-        '''
+        """
         return super(RootedChordClass, self).__hash__()
 
     def __repr__(self):
-        r'''Gets interpreter representation of rooted chord-class.
+        """
+        Gets interpreter representation of rooted chord-class.
 
         Returns string.
-        '''
+        """
         root = str(self.root).title()
         quality = self.chord_quality._title_case_name
         return root + quality
@@ -160,7 +163,8 @@ class RootedChordClass(PitchClassSet):
 
     @property
     def bass(self):
-        r'''Gets bass.
+        """
+        Gets bass.
 
         ..  container:: example
 
@@ -168,12 +172,13 @@ class RootedChordClass(PitchClassSet):
             NamedPitchClass('g')
 
         Returns named pitch-class.
-        '''
+        """
         return self._bass
 
     @property
     def cardinality(self):
-        r'''Gets cardinality.
+        """
+        Gets cardinality.
 
         ..  container:: example
 
@@ -181,12 +186,13 @@ class RootedChordClass(PitchClassSet):
             4
 
         Returns nonnegative integer.
-        '''
+        """
         return len(self)
 
     @property
     def chord_quality(self):
-        r'''Gets chord quality.
+        """
+        Gets chord quality.
 
         ..  container:: example
 
@@ -194,12 +200,13 @@ class RootedChordClass(PitchClassSet):
             DominantSeventhInRootPosition('P1', '+M3', '+P5', '+m7')
 
         Returns chord quality.
-        '''
+        """
         return self._chord_quality
 
     @property
     def extent(self):
-        r'''Gets extent.
+        """
+        Gets extent.
 
         ..  container:: example
 
@@ -207,14 +214,15 @@ class RootedChordClass(PitchClassSet):
             ChordExtent(7)
 
         Returns chord extent.
-        '''
+        """
         from abjad.tools import tonalanalysistools
         extent = self.cardinality_to_extent(self.cardinality)
         return tonalanalysistools.ChordExtent(extent)
 
     @property
     def figured_bass(self):
-        r'''Gets figured bass.
+        """
+        Gets figured bass.
 
         ..  container:: example
 
@@ -222,7 +230,7 @@ class RootedChordClass(PitchClassSet):
             ChordExtent(7)
 
         Returns string.
-        '''
+        """
         extent, inversion = self.extent, self.inversion
         if extent.number == 5:
             if inversion == 0:
@@ -254,7 +262,8 @@ class RootedChordClass(PitchClassSet):
 
     @property
     def inversion(self):
-        r'''Gets inversion.
+        """
+        Gets inversion.
 
         ..  container:: example
 
@@ -262,12 +271,13 @@ class RootedChordClass(PitchClassSet):
             0
 
         Returns nonnegative integer.
-        '''
+        """
         return self._chord_quality.inversion
 
     @property
     def markup(self):
-        r'''Markup of rooted chord-class.
+        r"""
+        Markup of rooted chord-class.
 
         ..  container:: example
 
@@ -296,7 +306,7 @@ class RootedChordClass(PitchClassSet):
                     }
 
         Returns markup.
-        '''
+        """
         import abjad
         markup = [self._markup_root, self._markup_symbol, self.figured_bass]
         markup = ''.join(markup)
@@ -319,7 +329,8 @@ class RootedChordClass(PitchClassSet):
 
     @property
     def quality_pair(self):
-        r'''Gets quality pair.
+        """
+        Gets quality pair.
 
         ..  container:: example
 
@@ -342,13 +353,14 @@ class RootedChordClass(PitchClassSet):
             ('dominant', 'seventh')
 
         Returns pair.
-        '''
+        """
         chord_quality = self.chord_quality
         return chord_quality.quality_string, chord_quality.extent_name
 
     @property
     def root(self):
-        r'''Gets root.
+        """
+        Gets root.
 
         ..  container:: example
 
@@ -371,12 +383,13 @@ class RootedChordClass(PitchClassSet):
             NamedPitchClass('g')
 
         Returns named pitch-class.
-        '''
+        """
         return self._root
 
     @property
     def root_string(self):
-        r'''Gets root string.
+        """
+        Gets root string.
 
         ..  container:: example
 
@@ -399,7 +412,7 @@ class RootedChordClass(PitchClassSet):
             'G'
 
         Returns string.
-        '''
+        """
         capitalized_qualities = ('major', 'dominant', 'augmented')
         name = self.root.pitch_class_label
         letter, accidental = name[0], name[1:]
@@ -413,7 +426,8 @@ class RootedChordClass(PitchClassSet):
 
     @staticmethod
     def cardinality_to_extent(cardinality):
-        r'''Change `cardinality` to extent.
+        """
+        Change `cardinality` to extent.
 
         ..  container:: example
 
@@ -429,12 +443,13 @@ class RootedChordClass(PitchClassSet):
             13
 
         Returns integer.
-        '''
+        """
         return RootedChordClass._cardinality_to_extent[cardinality]
 
     @staticmethod
     def extent_to_cardinality(extent):
-        r'''Changes `extent` to cardinality.
+        """
+        Changes `extent` to cardinality.
 
         ..  container:: example
 
@@ -450,12 +465,13 @@ class RootedChordClass(PitchClassSet):
             7
 
         Returns integer.
-        '''
+        """
         return RootedChordClass._extent_to_cardinality[extent]
 
     @staticmethod
     def extent_to_extent_name(extent):
-        r'''Changes `extent` to extent name.
+        """
+        Changes `extent` to extent name.
 
         ..  container:: example
 
@@ -471,14 +487,15 @@ class RootedChordClass(PitchClassSet):
             'thirteenth'
 
         Returns string.
-        '''
+        """
         return RootedChordClass._extent_to_extent_name[extent]
 
     def transpose(self):
-        r'''Transposes rooted chord-class.
+        """
+        Transposes rooted chord-class.
 
         Not yet implemented.
 
         Will return new rooted chord-class.
-        '''
+        """
         raise NotImplementedError

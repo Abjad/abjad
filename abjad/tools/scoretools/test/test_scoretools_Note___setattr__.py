@@ -3,8 +3,9 @@ import pytest
 
 
 def test_scoretools_Note___setattr___01():
-    r'''Slots constrain note attributes.
-    '''
+    """
+    Slots constrain note attributes.
+    """
 
     note = abjad.Note("c'4")
 

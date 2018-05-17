@@ -9,7 +9,8 @@ def attach(
     tag=None,
     wrapper=None,
     ):
-    r'''Attaches `attachable` to `target`.
+    r"""
+    Attaches `attachable` to `target`.
     
     First form attaches indicator `attachable` to single leaf `target`.
     
@@ -210,7 +211,7 @@ def attach(
             )
 
     Otherwise returns none.
-    '''
+    """
     import abjad
 
     assert attachable is not None, repr(attachable)

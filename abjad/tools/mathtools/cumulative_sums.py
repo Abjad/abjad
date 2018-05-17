@@ -1,5 +1,6 @@
 def cumulative_sums(argument, start=0):
-    r'''Gets cumulative sums of `argument`.
+    """
+    Gets cumulative sums of `argument`.
 
     ..  container:: example
 
@@ -12,7 +13,7 @@ def cumulative_sums(argument, start=0):
     Raises exception when `argument` is not iterable.
 
     Returns new object of `argument` type.
-    '''
+    """
     if start is None:
         result = []
     else:

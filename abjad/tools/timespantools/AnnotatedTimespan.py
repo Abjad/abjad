@@ -3,7 +3,8 @@ from abjad.tools.datastructuretools import Infinity, NegativeInfinity
 
 
 class AnnotatedTimespan(Timespan):
-    r'''Annotated timespan.
+    """
+    Annotated timespan.
 
     ..  container:: example
 
@@ -32,7 +33,7 @@ class AnnotatedTimespan(Timespan):
             annotation=['a', 'b', 'c', 'foo'],
             )
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -61,7 +62,8 @@ class AnnotatedTimespan(Timespan):
 
     @property
     def annotation(self):
-        r'''Gets and sets annotated timespan annotation.
+        """
+        Gets and sets annotated timespan annotation.
 
         ..  container:: example
 
@@ -82,7 +84,7 @@ class AnnotatedTimespan(Timespan):
             >>> annotated_timespan.annotation = 'baz'
 
         Returns arbitrary object.
-        '''
+        """
         return self._annotation
 
     @annotation.setter

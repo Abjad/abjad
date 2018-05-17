@@ -3,7 +3,8 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class Infinity(AbjadValueObject):
-    r'''Infinity.
+    """
+    Infinity.
 
     ..  container:: example
 
@@ -32,7 +33,7 @@ class Infinity(AbjadValueObject):
     Initializes as a system singleton at start-up.
 
     Available as a built-in after Abjad starts.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -48,61 +49,69 @@ class Infinity(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is also infinity. Otherwise false.
+        """
+        Is true when ``argument`` is also infinity.
 
         Returns true or false.
-        '''
+        """
         return super(Infinity, self).__eq__(argument)
 
     def __float__(self):
-        r'''Convert infinity to float.
+        """
+        Convert infinity to float.
 
         Returns float.
-        '''
+        """
         return self._value
 
     def __ge__(self, argument):
-        r'''Is true for all values of `argument`.
+        """
+        Is true for all values of ``argument``.
 
         Returns true.
-        '''
+        """
         return self._value >= argument
 
     def __gt__(self, argument):
-        r'''Is true for all noninfinite values of `argument`. Otherwise false.
+        """
+        Is true for all noninfinite values of ``argument``.
 
         Returns true or false.
-        '''
+        """
         return self._value > argument
 
     def __hash__(self):
-        r'''Hashes infinity.
+        """
+        Hashes infinity.
 
         Required to be explicitly redefined on Python 3 if __eq__ changes.
 
         Returns integer.
-        '''
+        """
         return super(Infinity, self).__hash__()
 
     def __le__(self, argument):
-        r'''Is true when `argument` is infinite. Otherwise false.
+        """
+        Is true when ``argument`` is infinite.
 
         Returns true or false.
-        '''
+        """
         return self._value <= argument
 
     def __lt__(self, argument):
-        r'''Is true for no values of `argument`.
+        """
+        Is true for no values of ``argument``.
 
         Returns true or false.
-        '''
+        """
         return self._value < argument
 
     def __sub__(self, argument):
-        r'''Subtracts `argument` from infinity.
+        """
+        Subtracts ``argument`` from infinity.
 
-        Returns infinity or 0 if `argument` is also infinity.
-        '''
+        Returns infinity or 0 if ``argument`` is also infinity.
+        """
         if argument is self:
             return 0
         return self

@@ -5,7 +5,8 @@ from abjad.tools.systemtools.StorageFormatManager import StorageFormatManager
 
 
 class Block(AbjadObject):
-    '''A LilyPond file block.
+    """
+    A LilyPond file block.
 
     ..  container:: example
 
@@ -41,7 +42,7 @@ class Block(AbjadObject):
             }
         }
 
-    '''
+    """
 
     ### INITIALIZER ###
 
@@ -56,7 +57,8 @@ class Block(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __delattr__(self, name) -> None:
-        r'''Deletes block attribute with ``name``.
+        """
+        Deletes block attribute with ``name``.
 
         ..  container:: example
 
@@ -69,15 +71,16 @@ class Block(AbjadObject):
             >>> hasattr(header_block, 'tagline')
             False
 
-        '''
+        """
         self._public_attribute_names.remove(name)
         object.__delattr__(self, name)
 
     def __format__(self, format_specification=''):
-        r'''Formats block.
+        """
+        Formats block.
 
         Returns string.
-        '''
+        """
         if format_specification in ('', 'lilypond'):
             return self._get_lilypond_format()
         else:
@@ -85,7 +88,8 @@ class Block(AbjadObject):
             return StorageFormatManager(self).get_storage_format()
 
     def __getitem__(self, name):
-        r'''Gets item with `name`.
+        """
+        Gets item with `name`.
 
         ..  container:: example
 
@@ -101,17 +105,18 @@ class Block(AbjadObject):
         Returns item.
 
         Raises key error when no item with `name` is found.
-        '''
+        """
         for item in self.items:
             if getattr(item, 'name', None) == name:
                 return item
         raise KeyError
 
     def __setattr__(self, name, value):
-        r'''Sets block `name` to `value`.
+        """
+        Sets block `name` to `value`.
 
         Returns none.
-        '''
+        """
         if (
             not name.startswith('_') and
             name not in self._public_attribute_names
@@ -120,10 +125,11 @@ class Block(AbjadObject):
         object.__setattr__(self, name, value)
 
     def __setstate__(self, state):
-        r'''Sets state of block.
+        """
+        Sets state of block.
 
         Returns none.
-        '''
+        """
         if not hasattr(self, '_public_attribute_names'):
             self._public_attribute_names = []
         for key, value in state.items():
@@ -256,7 +262,8 @@ class Block(AbjadObject):
 
     @property
     def items(self):
-        r'''Gets items in block.
+        r"""
+        Gets items in block.
 
         ..  container:: example
 
@@ -298,12 +305,13 @@ class Block(AbjadObject):
             }
 
         Returns list.
-        '''
+        """
         return self._items
 
     @property
     def name(self):
-        r'''Gets name of block.
+        """
+        Gets name of block.
 
         ..  container:: example
 
@@ -315,16 +323,17 @@ class Block(AbjadObject):
             'score'
 
         Returns string.
-        '''
+        """
         return self._name
 
     ### PUBLIC METHODS ###
 
     def empty(self):
-        r'''Is true when block contains no items and has no user attributes.
+        """
+        Is true when block contains no items and has no user attributes.
 
         Returns true or false.
-        '''
+        """
         if not self.items and not self._get_formatted_user_attributes():
             return True
         return False

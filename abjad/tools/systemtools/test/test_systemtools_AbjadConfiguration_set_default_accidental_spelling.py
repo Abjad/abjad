@@ -7,7 +7,7 @@ def test_systemtools_AbjadConfiguration_set_default_accidental_spelling_01():
     staff = abjad.Staff([abjad.Note(n, (1, 8)) for n in range(12)])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -23,7 +23,7 @@ def test_systemtools_AbjadConfiguration_set_default_accidental_spelling_01():
             bf'8
             b'8
         }
-        '''
+        """
         )
 
 
@@ -33,7 +33,7 @@ def test_systemtools_AbjadConfiguration_set_default_accidental_spelling_02():
     staff = abjad.Staff([abjad.Note(n, (1, 8)) for n in range(12)])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -49,7 +49,7 @@ def test_systemtools_AbjadConfiguration_set_default_accidental_spelling_02():
             as'8
             b'8
         }
-        '''
+        """
         )
 
     abjad.abjad_configuration.set_default_accidental_spelling('mixed')
@@ -61,7 +61,7 @@ def test_systemtools_AbjadConfiguration_set_default_accidental_spelling_03():
     staff = abjad.Staff([abjad.Note(n, (1, 8)) for n in range(12)])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -77,21 +77,21 @@ def test_systemtools_AbjadConfiguration_set_default_accidental_spelling_03():
             bf'8
             b'8
         }
-        '''
+        """
         )
 
     abjad.abjad_configuration.set_default_accidental_spelling('mixed')
 
 
 def test_systemtools_AbjadConfiguration_set_default_accidental_spelling_04():
-    r'''Revert back to default mixed spelling.
-    '''
+    r"""Revert back to default mixed spelling.
+    """
 
     abjad.abjad_configuration.set_default_accidental_spelling('mixed')
     staff = abjad.Staff([abjad.Note(n, (1, 8)) for n in range(12)])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -107,5 +107,5 @@ def test_systemtools_AbjadConfiguration_set_default_accidental_spelling_04():
             bf'8
             b'8
         }
-        '''
+        """
         )

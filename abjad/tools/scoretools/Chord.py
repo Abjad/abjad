@@ -4,7 +4,8 @@ from .Leaf import Leaf
 
 
 class Chord(Leaf):
-    r'''Chord.
+    """
+    Chord.
 
     ..  container:: example
 
@@ -16,7 +17,7 @@ class Chord(Leaf):
             >>> abjad.f(chord)
             <e' cs'' f''>4
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -109,10 +110,11 @@ class Chord(Leaf):
     ### SPECIAL METHODS ###
 
     def __copy__(self, *arguments):
-        r'''Shallow copies chord.
+        """
+        Shallow copies chord.
 
         Returns new chord.
-        '''
+        """
         new_chord = Leaf.__copy__(self, *arguments)
         new_chord.note_heads[:] = []
         for note_head in self.note_heads:
@@ -121,10 +123,11 @@ class Chord(Leaf):
         return new_chord
 
     def __getnewargs__(self):
-        r'''Gets new chord arguments.
+        """
+        Gets new chord arguments.
 
         Returns pair.
-        '''
+        """
         return self.written_pitches, self.written_duration
 
     ### PRIVATE METHODS ###
@@ -262,7 +265,8 @@ class Chord(Leaf):
 
     @property
     def note_heads(self):
-        r'''Gets note-heads in chord.
+        r"""
+        Gets note-heads in chord.
 
         ..  container:: example
 
@@ -319,7 +323,7 @@ class Chord(Leaf):
         Set note-heads with any iterable.
 
         Returns note-head list.
-        '''
+        """
         return self._note_heads
 
     @note_heads.setter
@@ -331,7 +335,8 @@ class Chord(Leaf):
 
     @property
     def written_duration(self):
-        r'''Gets written duration of chord.
+        """
+        Gets written duration of chord.
 
         ..  container:: example
 
@@ -356,7 +361,7 @@ class Chord(Leaf):
         Set duration.
 
         Returns duration.
-        '''
+        """
         return Leaf.written_duration.fget(self)
 
     @written_duration.setter
@@ -365,7 +370,8 @@ class Chord(Leaf):
 
     @property
     def written_pitches(self):
-        r'''Written pitches in chord.
+        """
+        Written pitches in chord.
 
         ..  container:: example
 
@@ -398,7 +404,7 @@ class Chord(Leaf):
         Set written pitches with any iterable.
 
         Returns tuple.
-        '''
+        """
         import abjad
         return abjad.PitchSegment(
             items=(note_head.written_pitch for note_head in self.note_heads),

@@ -1,5 +1,6 @@
 def weight(argument):
-    r'''Gets weight of `argument`.
+    """
+    Gets weight of `argument`.
 
     ..  container:: example
 
@@ -14,5 +15,5 @@ def weight(argument):
     Defined equal to sum of the absolute value of items in `argument`.
 
     Returns nonnegative integer.
-    '''
+    """
     return sum([abs(_) for _ in argument])

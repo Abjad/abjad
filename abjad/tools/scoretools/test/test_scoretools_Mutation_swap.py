@@ -3,9 +3,10 @@ import pytest
 
 
 def test_scoretools_Mutation_swap_01():
-    r'''Moves parentage, children and spanners from multiple containers
-    to empty tuplet.
-    '''
+    """
+    Moves parentage, children and spanners from multiple containers to empty
+    tuplet.
+    """
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     leaves = abjad.select(voice).leaves()
@@ -13,7 +14,7 @@ def test_scoretools_Mutation_swap_01():
     abjad.attach(beam, leaves)
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -31,14 +32,14 @@ def test_scoretools_Mutation_swap_01():
                 ]
             }
         }
-        '''
+        """
         )
 
     tuplet = abjad.Tuplet((3, 4), [])
     abjad.mutate(voice[:2]).swap(tuplet)
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             \tweak text #tuplet-number::calc-fraction-text
@@ -55,15 +56,16 @@ def test_scoretools_Mutation_swap_01():
                 ]
             }
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice).is_well_formed()
 
 
 def test_scoretools_Mutation_swap_02():
-    r'''Moves parentage, children and spanners from container to empty voice.
-    '''
+    """
+    Moves parentage, children and spanners from container to empty voice.
+    """
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     leaves = abjad.select(voice).leaves()
@@ -74,7 +76,7 @@ def test_scoretools_Mutation_swap_02():
     abjad.attach(beam, leaves)
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \context Voice = "foo"
         {
             {
@@ -97,7 +99,7 @@ def test_scoretools_Mutation_swap_02():
                 ]
             }
         }
-        '''
+        """
         )
 
     new_voice = abjad.Voice()
@@ -105,7 +107,7 @@ def test_scoretools_Mutation_swap_02():
     abjad.mutate(voice[1:2]).swap(new_voice)
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \context Voice = "foo"
         {
             {
@@ -129,15 +131,16 @@ def test_scoretools_Mutation_swap_02():
                 ]
             }
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice).is_well_formed()
 
 
 def test_scoretools_Mutation_swap_03():
-    r'''Moves parentage, children and spanners from container to empty tuplet.
-    '''
+    """
+    Moves parentage, children and spanners from container to empty tuplet.
+    """
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     leaves = abjad.select(voice).leaves()
@@ -147,7 +150,7 @@ def test_scoretools_Mutation_swap_03():
     abjad.attach(beam, leaves)
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -170,7 +173,7 @@ def test_scoretools_Mutation_swap_03():
                 ]
             }
         }
-        '''
+        """
         )
 
     tuplet = abjad.Tuplet((3, 4), [])
@@ -178,7 +181,7 @@ def test_scoretools_Mutation_swap_03():
 
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -202,16 +205,17 @@ def test_scoretools_Mutation_swap_03():
                 ]
             }
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice).is_well_formed()
 
 
 def test_scoretools_Mutation_swap_04():
-    r'''Trying to move parentage, children and spanners to noncontainer
-    raises exception.
-    '''
+    """
+    Trying to move parentage, children and spanners to noncontainer raises
+    exception.
+    """
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 }")
     leaves = abjad.select(voice).leaves()
@@ -223,9 +227,10 @@ def test_scoretools_Mutation_swap_04():
 
 
 def test_scoretools_Mutation_swap_05():
-    r'''Trying to move parentage, children and spanners from
-    nonempty container to nonempty container raises exception.
-    '''
+    """
+    Trying to move parentage, children and spanners from nonempty container to
+    nonempty container raises exception.
+    """
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 }")
     leaves = abjad.select(voice).leaves()
@@ -237,9 +242,10 @@ def test_scoretools_Mutation_swap_05():
 
 
 def test_scoretools_Mutation_swap_06():
-    r'''Trying to move parentage, children and spanners from components
-    that are not parent-contiguous raises exception.
-    '''
+    """
+    Trying to move parentage, children and spanners from components that are
+    not parent-contiguous raises exception.
+    """
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     leaves = abjad.select(voice).leaves()
@@ -247,7 +253,7 @@ def test_scoretools_Mutation_swap_06():
     abjad.attach(beam, leaves)
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -265,7 +271,7 @@ def test_scoretools_Mutation_swap_06():
                 ]
             }
         }
-        '''
+        """
         )
 
     tuplet = abjad.Tuplet((2, 3), [])
@@ -274,13 +280,14 @@ def test_scoretools_Mutation_swap_06():
 
 
 def test_scoretools_Mutation_swap_07():
-    r'''Moves parentage, children and spanners from one measure to another.
-    '''
+    """
+    Moves parentage, children and spanners from one measure to another.
+    """
 
     measure = abjad.Measure((4, 8), "c'8 d'8 e'8 f'8")
 
     assert format(measure) == abjad.String.normalize(
-        r'''
+        r"""
         {   % measure
             \time 4/8
             c'8
@@ -288,14 +295,14 @@ def test_scoretools_Mutation_swap_07():
             e'8
             f'8
         }   % measure
-        '''
+        """
         )
 
     new_measure = abjad.Measure((4, 8), [])
     abjad.mutate(measure).swap(new_measure)
 
     assert format(new_measure) == abjad.String.normalize(
-        r'''
+        r"""
         {   % measure
             \time 4/8
             c'8
@@ -303,7 +310,7 @@ def test_scoretools_Mutation_swap_07():
             e'8
             f'8
         }   % measure
-        '''
+        """
         )
 
     assert abjad.inspect(new_measure).is_well_formed()

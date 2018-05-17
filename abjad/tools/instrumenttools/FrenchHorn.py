@@ -2,7 +2,8 @@ from .Instrument import Instrument
 
 
 class FrenchHorn(Instrument):
-    r'''French horn.
+    r"""
+    French horn.
 
     ..  container:: example
 
@@ -24,7 +25,7 @@ class FrenchHorn(Instrument):
                 fs'4
             }
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -63,7 +64,8 @@ class FrenchHorn(Instrument):
 
     @property
     def allowable_clefs(self):
-        r'''Gets French horn's allowable clefs.
+        """
+        Gets French horn's allowable clefs.
 
         ..  container:: example
 
@@ -72,12 +74,13 @@ class FrenchHorn(Instrument):
             ('bass', 'treble')
 
         Returns clef list.
-        '''
+        """
         return Instrument.allowable_clefs.fget(self)
 
     @property
     def markup(self):
-        r'''Gets French horn's instrument name markup.
+        """
+        Gets French horn's instrument name markup.
 
         ..  container:: example
 
@@ -88,12 +91,13 @@ class FrenchHorn(Instrument):
             >>> abjad.show(french_horn.markup) # doctest: +SKIP
 
         Returns markup.
-        '''
+        """
         return Instrument.markup.fget(self)
 
     @property
     def middle_c_sounding_pitch(self):
-        r'''Gets sounding pitch of French horn's written middle C.
+        """
+        Gets sounding pitch of French horn's written middle C.
 
         ..  container:: example
 
@@ -104,12 +108,13 @@ class FrenchHorn(Instrument):
             >>> abjad.show(french_horn.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
-        '''
+        """
         return Instrument.middle_c_sounding_pitch.fget(self)
 
     @property
     def name(self):
-        r'''Gets French horn's name.
+        """
+        Gets French horn's name.
 
         ..  container:: example
 
@@ -118,12 +123,13 @@ class FrenchHorn(Instrument):
             'horn'
 
         Returns string.
-        '''
+        """
         return Instrument.name.fget(self)
 
     @property
     def pitch_range(self):
-        r'''Gets French horn's range.
+        """
+        Gets French horn's range.
 
         ..  container:: example
 
@@ -134,12 +140,13 @@ class FrenchHorn(Instrument):
             >>> abjad.show(french_horn.pitch_range) # doctest: +SKIP
 
         Returns pitch range.
-        '''
+        """
         return Instrument.pitch_range.fget(self)
 
     @property
     def short_markup(self):
-        r'''Gets French horn's short instrument name markup.
+        """
+        Gets French horn's short instrument name markup.
 
         ..  container:: example
 
@@ -150,12 +157,13 @@ class FrenchHorn(Instrument):
             >>> abjad.show(french_horn.short_markup) # doctest: +SKIP
 
         Returns markup.
-        '''
+        """
         return Instrument.short_markup.fget(self)
 
     @property
     def short_name(self):
-        r'''Gets French horn's short instrument name.
+        """
+        Gets French horn's short instrument name.
 
         ..  container:: example
 
@@ -164,5 +172,5 @@ class FrenchHorn(Instrument):
             'hn.'
 
         Returns string.
-        '''
+        """
         return Instrument.short_name.fget(self)

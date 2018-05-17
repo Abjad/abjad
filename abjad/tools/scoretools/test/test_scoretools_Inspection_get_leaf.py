@@ -6,7 +6,7 @@ def test_scoretools_Inspection_get_leaf_01():
     staff = abjad.Staff([abjad.Voice("c'8 d'8 e'8 f'8"), abjad.Voice("g'8 a'8 b'8 c''8")])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             \new Voice
@@ -24,7 +24,7 @@ def test_scoretools_Inspection_get_leaf_01():
                 c''8
             }
         }
-        '''
+        """
         )
 
     leaves = abjad.select(staff).leaves()
@@ -41,8 +41,9 @@ def test_scoretools_Inspection_get_leaf_01():
 
 
 def test_scoretools_Inspection_get_leaf_02():
-    r'''Voice.
-    '''
+    """
+    Voice.
+    """
 
     voice = abjad.Voice([abjad.Note(i, (1, 8)) for i in range(4)])
 
@@ -57,7 +58,7 @@ def test_scoretools_Inspection_get_leaf_02():
     assert abjad.inspect(voice[3]).get_leaf(-1) is voice[2]
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'8
@@ -65,13 +66,14 @@ def test_scoretools_Inspection_get_leaf_02():
             d'8
             ef'8
         }
-        '''
+        """
         )
 
 
 def test_scoretools_Inspection_get_leaf_03():
-    r'''Staff.
-    '''
+    """
+    Staff.
+    """
 
     staff = abjad.Staff([abjad.Note(i, (1, 8)) for i in range(4)])
 
@@ -86,7 +88,7 @@ def test_scoretools_Inspection_get_leaf_03():
     assert abjad.inspect(staff[3]).get_leaf(-1) is staff[2]
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -94,25 +96,26 @@ def test_scoretools_Inspection_get_leaf_03():
             d'8
             ef'8
         }
-        '''
+        """
         )
 
 
 def test_scoretools_Inspection_get_leaf_04():
-    r'''Container.
-    '''
+    """
+    Container.
+    """
 
     container = abjad.Container([abjad.Note(i, (1, 8)) for i in range(4)])
 
     assert format(container) == abjad.String.normalize(
-        r'''
+        r"""
         {
             c'8
             cs'8
             d'8
             ef'8
         }
-        '''
+        """
         )
 
     assert abjad.inspect(container[0]).get_leaf(1) is container[1]
@@ -127,19 +130,20 @@ def test_scoretools_Inspection_get_leaf_04():
 
 
 def test_scoretools_Inspection_get_leaf_05():
-    r'''Tuplet.
-    '''
+    """
+    Tuplet.
+    """
 
     tuplet = abjad.Tuplet((2, 3), "c'8 cs'8 d'8")
 
     assert format(tuplet) == abjad.String.normalize(
-        r'''
+        r"""
         \times 2/3 {
             c'8
             cs'8
             d'8
         }
-        '''
+        """
         )
 
     assert abjad.inspect(tuplet[0]).get_leaf(1) is tuplet[1]
@@ -152,15 +156,16 @@ def test_scoretools_Inspection_get_leaf_05():
 
 
 def test_scoretools_Inspection_get_leaf_06():
-    r'''Contiguous containers inside a voice.
-    '''
+    """
+    Contiguous containers inside a voice.
+    """
 
     container_1 = abjad.Container([abjad.Note(i, (1, 8)) for i in range(4)])
     container_2 = abjad.Container([abjad.Note(i, (1, 8)) for i in range(4, 8)])
     voice = abjad.Voice([container_1, container_2])
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -176,7 +181,7 @@ def test_scoretools_Inspection_get_leaf_06():
                 g'8
             }
         }
-        '''
+        """
         )
 
     assert abjad.inspect(container_1[0]).get_leaf(1) is container_1[1]
@@ -191,15 +196,16 @@ def test_scoretools_Inspection_get_leaf_06():
 
 
 def test_scoretools_Inspection_get_leaf_07():
-    r'''Tuplets inside a voice.
-    '''
+    """
+    Tuplets inside a voice.
+    """
 
     tuplet_1 = abjad.Tuplet((2, 3), "c'8 cs'8 d'8")
     tuplet_2 = abjad.Tuplet((2, 3), "ef'8 e'8 f'8")
     voice = abjad.Voice([tuplet_1, tuplet_2])
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             \times 2/3 {
@@ -213,7 +219,7 @@ def test_scoretools_Inspection_get_leaf_07():
                 f'8
             }
         }
-        '''
+        """
         )
 
     assert abjad.inspect(tuplet_1[0]).get_leaf(1) is tuplet_1[1]
@@ -226,15 +232,16 @@ def test_scoretools_Inspection_get_leaf_07():
 
 
 def test_scoretools_Inspection_get_leaf_08():
-    r'''Does not continue across contiguous anonymous voices inside a staff.
-    '''
+    """
+    Does not continue across contiguous anonymous voices inside a staff.
+    """
 
     voice_1 = abjad.Voice([abjad.Note(i, (1, 8)) for i in range(4)])
     voice_2 = abjad.Voice([abjad.Note(i, (1, 8)) for i in range(4, 8)])
     staff = abjad.Staff([voice_1, voice_2])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             \new Voice
@@ -252,7 +259,7 @@ def test_scoretools_Inspection_get_leaf_08():
                 g'8
             }
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice_1[3]).get_leaf(1) is None
@@ -260,8 +267,9 @@ def test_scoretools_Inspection_get_leaf_08():
 
 
 def test_scoretools_Inspection_get_leaf_09():
-    r'''Does cross contiguous equally named voices inside a staff.
-    '''
+    """
+    Does cross contiguous equally named voices inside a staff.
+    """
 
     voice_1 = abjad.Voice([abjad.Note(i, (1, 8)) for i in range(4)])
     voice_1.name = 'My Voice'
@@ -270,7 +278,7 @@ def test_scoretools_Inspection_get_leaf_09():
     staff = abjad.Staff([voice_1, voice_2])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             \context Voice = "My Voice"
@@ -288,7 +296,7 @@ def test_scoretools_Inspection_get_leaf_09():
                 g'8
             }
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice_1[0]).get_leaf(1) is voice_1[1]
@@ -303,8 +311,9 @@ def test_scoretools_Inspection_get_leaf_09():
 
 
 def test_scoretools_Inspection_get_leaf_10():
-    r'''Does not connect through contiguous unequally named voices.
-    '''
+    """
+    Does not connect through contiguous unequally named voices.
+    """
 
     voice_1 = abjad.Voice([abjad.Note(i, (1, 8)) for i in range(4)])
     voice_1.name = 'Your Voice'
@@ -313,7 +322,7 @@ def test_scoretools_Inspection_get_leaf_10():
     staff = abjad.Staff([voice_1, voice_2])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             \context Voice = "Your Voice"
@@ -331,7 +340,7 @@ def test_scoretools_Inspection_get_leaf_10():
                 g'8
             }
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice_1[0]).get_leaf(1) is voice_1[1]
@@ -349,9 +358,9 @@ def test_scoretools_Inspection_get_leaf_10():
 
 
 def test_scoretools_Inspection_get_leaf_11():
-    r'''Does connect through like-named staves
-    containing like-named voices.
-    '''
+    """
+    Does connect through like-named staves containing like-named voices.
+    """
 
     voice_1 = abjad.Voice([abjad.Note(i, (1, 8)) for i in range(4)])
     voice_1.name = 'low'
@@ -366,7 +375,7 @@ def test_scoretools_Inspection_get_leaf_11():
     container = abjad.Container([staff_1, staff_2])
 
     assert format(container) == abjad.String.normalize(
-        r'''
+        r"""
         {
             \context Staff = "mystaff"
             {
@@ -389,7 +398,7 @@ def test_scoretools_Inspection_get_leaf_11():
                 }
             }
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice_1[3]).get_leaf(1) is voice_2[0]
@@ -397,9 +406,9 @@ def test_scoretools_Inspection_get_leaf_11():
 
 
 def test_scoretools_Inspection_get_leaf_12():
-    r'''Does connect through like-named staves containing
-    like-named voices.
-    '''
+    """
+    Does connect through like-named staves containing like-named voices.
+    """
 
     lower_voice_1 = abjad.Voice([abjad.Note(i, (1, 8)) for i in range(4)])
     lower_voice_1.name = 'low'
@@ -420,7 +429,7 @@ def test_scoretools_Inspection_get_leaf_12():
     container = abjad.Container([staff_1, staff_2])
 
     assert format(container) == abjad.String.normalize(
-        r'''
+        r"""
         {
             \context Staff = "mystaff"
             <<
@@ -457,7 +466,7 @@ def test_scoretools_Inspection_get_leaf_12():
                 }
             >>
         }
-        '''
+        """
         )
 
     assert abjad.inspect(lower_voice_1[3]).get_leaf(1) is lower_voice_2[0]
@@ -468,8 +477,9 @@ def test_scoretools_Inspection_get_leaf_12():
 
 
 def test_scoretools_Inspection_get_leaf_13():
-    r'''Does connect through symmetrical nested containers in a voice.
-    '''
+    """
+    Does connect through symmetrical nested containers in a voice.
+    """
 
     container_1 = abjad.Container([abjad.Note(i, (1 ,8)) for i in range(4)])
     container_1 = abjad.Container([container_1])
@@ -478,7 +488,7 @@ def test_scoretools_Inspection_get_leaf_13():
     voice = abjad.Voice([container_1, container_2])
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -498,7 +508,7 @@ def test_scoretools_Inspection_get_leaf_13():
                 }
             }
         }
-        '''
+        """
         )
 
     assert abjad.inspect(container_1[0][0]).get_leaf(1) is container_1[0][1]
@@ -513,9 +523,10 @@ def test_scoretools_Inspection_get_leaf_13():
 
 
 def test_scoretools_Inspection_get_leaf_14():
-    r'''Tautological parentage asymmetries result in symmetric (balanced)
-    logical voice parentage.
-    '''
+    """
+    Tautological parentage asymmetries result in symmetric (balanced) logical
+    voice parentage.
+    """
 
     container_1 = abjad.Container([abjad.Note(i, (1 ,8)) for i in range(4)])
     container_2 = abjad.Container([abjad.Note(i, (1 ,8)) for i in range(4 ,8)])
@@ -524,7 +535,7 @@ def test_scoretools_Inspection_get_leaf_14():
     voice = abjad.Voice([container_1, container_2])
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -544,7 +555,7 @@ def test_scoretools_Inspection_get_leaf_14():
                 }
             }
         }
-        '''
+        """
         )
 
     assert abjad.inspect(container_1[0]).get_leaf(1) is container_1[1]
@@ -559,9 +570,10 @@ def test_scoretools_Inspection_get_leaf_14():
 
 
 def test_scoretools_Inspection_get_leaf_15():
-    r'''Tautological parentage asymmetries result in symmetric (balanced)
-    lgoical voice parentage.
-    '''
+    """
+    Tautological parentage asymmetries result in symmetric (balanced) lgoical
+    voice parentage.
+    """
 
     container_1 = abjad.Container([abjad.Note(i, (1 ,8)) for i in range(4)])
     container_1 = abjad.Container([container_1])
@@ -570,7 +582,7 @@ def test_scoretools_Inspection_get_leaf_15():
     voice = abjad.Voice([container_1, container_2])
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -590,7 +602,7 @@ def test_scoretools_Inspection_get_leaf_15():
                 g'8
             }
         }
-        '''
+        """
         )
 
     assert abjad.inspect(container_1[0][0][0]).get_leaf(1) is container_1[0][0][1]
@@ -605,15 +617,16 @@ def test_scoretools_Inspection_get_leaf_15():
 
 
 def test_scoretools_Inspection_get_leaf_16():
-    r'''Does connect in sequence of alternating containers and notes.
-    '''
+    """
+    Does connect in sequence of alternating containers and notes.
+    """
 
     container_1 = abjad.Container([abjad.Note(i, (1, 8)) for i in range(2)])
     container_2 = abjad.Container([abjad.Note(i, (1, 8)) for i in range(3, 5)])
     voice = abjad.Voice([container_1, abjad.Note(2, (1, 8)), container_2])
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -626,7 +639,7 @@ def test_scoretools_Inspection_get_leaf_16():
                 e'8
             }
         }
-        '''
+        """
         )
 
     assert abjad.inspect(container_1[1]).get_leaf(1) is voice[1]
@@ -637,8 +650,9 @@ def test_scoretools_Inspection_get_leaf_16():
 
 
 def test_scoretools_Inspection_get_leaf_17():
-    r'''Does connect in sequence of alternating tuplets and notes.
-    '''
+    """
+    Does connect in sequence of alternating tuplets and notes.
+    """
 
     notes = [abjad.Note(i, abjad.Duration(1, 8)) for i in range(3)]
     tuplet_1 = abjad.Tuplet((2, 3), notes)
@@ -647,7 +661,7 @@ def test_scoretools_Inspection_get_leaf_17():
     voice = abjad.Voice([tuplet_1, abjad.Note(3, (1, 8)), tuplet_2])
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             \times 2/3 {
@@ -662,7 +676,7 @@ def test_scoretools_Inspection_get_leaf_17():
                 fs'8
             }
         }
-        '''
+        """
         )
 
     assert abjad.inspect(tuplet_1[-1]).get_leaf(1) is voice[1]
@@ -673,15 +687,16 @@ def test_scoretools_Inspection_get_leaf_17():
 
 
 def test_scoretools_Inspection_get_leaf_18():
-    r'''Does connect through asymmetrically nested tuplets.
-    '''
+    """
+    Does connect through asymmetrically nested tuplets.
+    """
 
     inner_tuplet = abjad.Tuplet((2, 3), "c'8 c'8 c'8")
     contents = [abjad.Note("c'4"), inner_tuplet, abjad.Note("c'4")]
     tuplet = abjad.Tuplet((2, 3), contents)
 
     assert format(tuplet) == abjad.String.normalize(
-        r'''
+        r"""
         \times 2/3 {
             c'4
             \times 2/3 {
@@ -691,7 +706,7 @@ def test_scoretools_Inspection_get_leaf_18():
             }
             c'4
         }
-        '''
+        """
         )
 
     assert abjad.inspect(tuplet[0]).get_leaf(1) is inner_tuplet[0]
@@ -701,8 +716,9 @@ def test_scoretools_Inspection_get_leaf_18():
 
 
 def test_scoretools_Inspection_get_leaf_19():
-    r'''Returns none in asymmetric logical voice parentage structures.
-    '''
+    """
+    Returns none in asymmetric logical voice parentage structures.
+    """
 
     voice_1 = abjad.Voice([abjad.Note(i, (1, 8)) for i in range(3)])
     note = abjad.Note(3, (1, 8))
@@ -710,7 +726,7 @@ def test_scoretools_Inspection_get_leaf_19():
     staff = abjad.Staff([voice_1, note, voice_2])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             \new Voice
@@ -728,7 +744,7 @@ def test_scoretools_Inspection_get_leaf_19():
                 g'8
             }
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice_1[-1]).get_leaf(1) is None
@@ -739,8 +755,9 @@ def test_scoretools_Inspection_get_leaf_19():
 
 
 def test_scoretools_Inspection_get_leaf_20():
-    r'''Noncontiguous or broken logical voices do not connect.
-    '''
+    """
+    Noncontiguous or broken logical voices do not connect.
+    """
 
     voice_1 = abjad.Voice([abjad.Note(i, (1, 8)) for i in range(3)])
     voice_1.name = 'My Voice'
@@ -751,7 +768,7 @@ def test_scoretools_Inspection_get_leaf_20():
     staff = abjad.Staff([voice_1, voice_2, voice_3])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             \context Voice = "My Voice"
@@ -775,7 +792,7 @@ def test_scoretools_Inspection_get_leaf_20():
                 g'8
             }
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice_1[-1]).get_leaf(1) is None
@@ -791,14 +808,15 @@ def test_scoretools_Inspection_get_leaf_20():
 
 
 def test_scoretools_Inspection_get_leaf_21():
-    r'''Does not connect through nested anonymous voices.
-    '''
+    """
+    Does not connect through nested anonymous voices.
+    """
 
     inner_voice = abjad.Voice([abjad.Note(i, (1, 8)) for i in range(3)])
     outer_voice = abjad.Voice([inner_voice, abjad.Note(3, (1, 8))])
 
     assert format(outer_voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             \new Voice
@@ -809,7 +827,7 @@ def test_scoretools_Inspection_get_leaf_21():
             }
             ef'8
         }
-        '''
+        """
         )
 
     assert abjad.inspect(inner_voice[0]).get_leaf(1) is inner_voice[1]
@@ -822,14 +840,15 @@ def test_scoretools_Inspection_get_leaf_21():
 
 
 def test_scoretools_Inspection_get_leaf_22():
-    r'''Does not connect through nested anonymous voices.
-    '''
+    """
+    Does not connect through nested anonymous voices.
+    """
 
     inner_voice = abjad.Voice([abjad.Note(i, (1, 8)) for i in range(1, 4)])
     outer_voice = abjad.Voice([abjad.Note(0, (1, 8)), inner_voice])
 
     assert format(outer_voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'8
@@ -840,7 +859,7 @@ def test_scoretools_Inspection_get_leaf_22():
                 ef'8
             }
         }
-        '''
+        """
         )
 
     assert abjad.inspect(inner_voice[0]).get_leaf(1) is inner_voice[1]
@@ -854,8 +873,9 @@ def test_scoretools_Inspection_get_leaf_22():
 
 
 def test_scoretools_Inspection_get_leaf_23():
-    r'''Does connect through nested equally named voices.
-    '''
+    """
+    Does connect through nested equally named voices.
+    """
 
     inner_voice = abjad.Voice([abjad.Note(i, (1, 8)) for i in range(3)])
     inner_voice.name = 'My Voice'
@@ -863,7 +883,7 @@ def test_scoretools_Inspection_get_leaf_23():
     outer_voice.name = 'My Voice'
 
     assert format(outer_voice) == abjad.String.normalize(
-        r'''
+        r"""
         \context Voice = "My Voice"
         {
             \context Voice = "My Voice"
@@ -874,7 +894,7 @@ def test_scoretools_Inspection_get_leaf_23():
             }
             ef'8
         }
-        '''
+        """
         )
 
     assert abjad.inspect(inner_voice[0]).get_leaf(1) is inner_voice[1]
@@ -887,8 +907,9 @@ def test_scoretools_Inspection_get_leaf_23():
 
 
 def test_scoretools_Inspection_get_leaf_24():
-    r'''Does connect through nested equally named voices.
-    '''
+    """
+    Does connect through nested equally named voices.
+    """
 
     inner_voice = abjad.Voice([abjad.Note(i, (1, 8)) for i in range(1, 4)])
     inner_voice.name = 'My Voice'
@@ -896,7 +917,7 @@ def test_scoretools_Inspection_get_leaf_24():
     outer_voice.name = 'My Voice'
 
     assert format(outer_voice) == abjad.String.normalize(
-        r'''
+        r"""
         \context Voice = "My Voice"
         {
             c'8
@@ -907,7 +928,7 @@ def test_scoretools_Inspection_get_leaf_24():
                 ef'8
             }
         }
-        '''
+        """
         )
 
     assert abjad.inspect(inner_voice[0]).get_leaf(1) is inner_voice[1]
@@ -920,8 +941,9 @@ def test_scoretools_Inspection_get_leaf_24():
 
 
 def test_scoretools_Inspection_get_leaf_25():
-    r'''Returns none on nested differently named voices.
-    '''
+    """
+    Returns none on nested differently named voices.
+    """
 
     inner_voice = abjad.Voice([abjad.Note(i, (1, 8)) for i in range(3)])
     inner_voice.name = 'Your Voice'
@@ -929,7 +951,7 @@ def test_scoretools_Inspection_get_leaf_25():
     outer_voice.name = 'My Voice'
 
     assert format(outer_voice) == abjad.String.normalize(
-        r'''
+        r"""
         \context Voice = "My Voice"
         {
             \context Voice = "Your Voice"
@@ -940,7 +962,7 @@ def test_scoretools_Inspection_get_leaf_25():
             }
             ef'8
         }
-        '''
+        """
         )
 
     assert abjad.inspect(inner_voice[0]).get_leaf(1) is inner_voice[1]
@@ -953,8 +975,9 @@ def test_scoretools_Inspection_get_leaf_25():
 
 
 def test_scoretools_Inspection_get_leaf_26():
-    r'''Returns none on nested differently named voices.
-    '''
+    """
+    Returns none on nested differently named voices.
+    """
 
     voice_2 = abjad.Voice([abjad.Note(i, (1, 8)) for i in range(1, 4)])
     voice_2.name = 'Voice 2'
@@ -962,7 +985,7 @@ def test_scoretools_Inspection_get_leaf_26():
     voice_1.name = 'Voice 1'
 
     assert format(voice_1) == abjad.String.normalize(
-        r'''
+        r"""
         \context Voice = "Voice 1"
         {
             c'8
@@ -973,7 +996,7 @@ def test_scoretools_Inspection_get_leaf_26():
                 ef'8
             }
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice_2[0]).get_leaf(1) is voice_2[1]

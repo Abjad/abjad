@@ -2,7 +2,8 @@ import collections
 
 
 def cumulative_products(argument):
-    r'''Gets cumulative products of `argument`.
+    """
+    Gets cumulative products of `argument`.
 
     ..  container:: example
 
@@ -15,7 +16,7 @@ def cumulative_products(argument):
     Raises exception when `argument` is not iterable.
 
     Returns new object of `argument` type.
-    '''
+    """
     if not isinstance(argument, collections.Iterable):
         raise TypeError(argument)
     if len(argument) == 0:

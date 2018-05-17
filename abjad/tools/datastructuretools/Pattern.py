@@ -5,7 +5,8 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class Pattern(AbjadValueObject):
-    r'''Pattern.
+    """
+    Pattern.
 
     ..  container:: example
 
@@ -127,7 +128,7 @@ class Pattern(AbjadValueObject):
         [1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1,
         1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0]
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -185,7 +186,8 @@ class Pattern(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __and__(self, pattern):
-        r'''Logical AND of two patterns.
+        """
+        Logical AND of two patterns.
 
         ..  container:: example
 
@@ -270,7 +272,7 @@ class Pattern(AbjadValueObject):
                 )
 
         Returns new pattern.
-        '''
+        """
         if self._can_append_to_self(pattern, 'and'):
             if self.patterns is None:
                 self_patterns = [self]
@@ -283,7 +285,8 @@ class Pattern(AbjadValueObject):
         return result
 
     def __invert__(self):
-        r'''Inverts pattern.
+        """
+        Inverts pattern.
 
         ..  container:: example
 
@@ -348,13 +351,14 @@ class Pattern(AbjadValueObject):
             [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0]
 
         Returns new pattern.
-        '''
+        """
         import abjad
         inverted = not self.inverted
         return abjad.new(self, inverted=inverted, template=None)
 
     def __len__(self):
-        r'''Gets length of pattern.
+        """
+        Gets length of pattern.
 
         ..  container:: example
 
@@ -399,7 +403,7 @@ class Pattern(AbjadValueObject):
             value of least index.
 
         Returns nonnegative integer.
-        '''
+        """
         if self.period is not None:
             return self.period
         if self.indices:
@@ -415,7 +419,8 @@ class Pattern(AbjadValueObject):
         return 0
 
     def __or__(self, pattern):
-        r'''Logical OR of two patterns.
+        """
+        Logical OR of two patterns.
 
         ..  container:: example
 
@@ -500,7 +505,7 @@ class Pattern(AbjadValueObject):
                 )
 
         Returns new pattern.
-        '''
+        """
         if self._can_append_to_self(pattern, 'or'):
             if self.patterns is None:
                 self_patterns = [self]
@@ -513,7 +518,8 @@ class Pattern(AbjadValueObject):
         return result
 
     def __xor__(self, pattern):
-        r'''Logical XOR of two patterns.
+        """
+        Logical XOR of two patterns.
 
         ..  container:: example
 
@@ -596,7 +602,7 @@ class Pattern(AbjadValueObject):
                 )
 
         Returns new pattern.
-        '''
+        """
         if self._can_append_to_self(pattern, 'xor'):
             if self.patterns is None:
                 self_patterns = [self]
@@ -653,7 +659,8 @@ class Pattern(AbjadValueObject):
 
     @property
     def indices(self):
-        r'''Gets indices of pattern.
+        """
+        Gets indices of pattern.
 
         ..  container:: example
 
@@ -684,13 +691,14 @@ class Pattern(AbjadValueObject):
         Set to integers or none.
 
         Returns integers or none.
-        '''
+        """
         if self._indices:
             return list(self._indices)
 
     @property
     def inverted(self):
-        r'''Is true when pattern is inverted. Otherwise false.
+        """
+        Is true when pattern is inverted.
 
         ..  container:: example
 
@@ -794,32 +802,35 @@ class Pattern(AbjadValueObject):
         Set to true, false or none.
 
         Returns true, false or none.
-        '''
+        """
         return self._inverted
 
     @property
     def operator(self):
-        r'''Gets operator of pattern.
+        """
+        Gets operator of pattern.
 
         Set to string.
 
         Returns string.
-        '''
+        """
         return self._operator
 
     @property
     def patterns(self):
-        r'''Gets paterns of pattern.
+        """
+        Gets paterns of pattern.
 
         Set to patterns or none.
 
         Returns tuple of patterns or none.
-        '''
+        """
         return self._patterns
 
     @property
     def payload(self):
-        r'''Gets payload of pattern.
+        """
+        Gets payload of pattern.
 
         ..  container:: example
 
@@ -857,12 +868,13 @@ class Pattern(AbjadValueObject):
         Set to any object.
 
         Returns arbitrary object.
-        '''
+        """
         return self._payload
 
     @property
     def period(self):
-        r'''Gets period of pattern.
+        """
+        Gets period of pattern.
 
         ..  container:: example
 
@@ -989,7 +1001,7 @@ class Pattern(AbjadValueObject):
         Set to positive integer or none.
 
         Returns positive integer or none.
-        '''
+        """
         import abjad
         if self._period is not None:
             return self._period
@@ -1000,17 +1012,19 @@ class Pattern(AbjadValueObject):
 
     @property
     def template(self):
-        r'''Get pattern template.
+        """
+        Get pattern template.
 
         Set to string or none.
 
         Returns string or none.
-        '''
+        """
         return self._template
 
     @property
     def weight(self):
-        r'''Gets weight of pattern.
+        """
+        Gets weight of pattern.
 
         ..  container:: example
 
@@ -1038,14 +1052,15 @@ class Pattern(AbjadValueObject):
         Weight defined equal to number of indices in pattern.
 
         Returns nonnegative integer.
-        '''
+        """
         return len(self.indices)
 
     ### PUBLIC METHODS ###
 
     @classmethod
     def from_vector(class_, vector):
-        r'''Makes pattern from boolean `vector`.
+        """
+        Makes pattern from boolean ``vector``.
 
         ..  container:: example
 
@@ -1106,7 +1121,7 @@ class Pattern(AbjadValueObject):
             11
 
         Returns pattern.
-        '''
+        """
         vector = [bool(_) for _ in vector]
         period = len(vector)
         indices = [i for i, x in enumerate(vector) if x]
@@ -1116,8 +1131,9 @@ class Pattern(AbjadValueObject):
             )
 
     def get_boolean_vector(self, total_length=None):
-        r'''Gets boolean vector of pattern applied to input sequence with
-        `total_length`.
+        """
+        Gets boolean vector of pattern applied to input sequence with
+        ``total_length``.
 
         ..  container:: example
 
@@ -1137,7 +1153,8 @@ class Pattern(AbjadValueObject):
             >>> pattern.get_boolean_vector(16)
             [0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0]
 
-            Sets total length to length of pattern when `total_length` is none:
+            Sets total length to length of pattern when ``total_length`` is
+            none:
 
             >>> pattern.get_boolean_vector()
             [0, 0, 0, 0, 1, 1, 1, 1]
@@ -1160,7 +1177,8 @@ class Pattern(AbjadValueObject):
             >>> pattern.get_boolean_vector(16)
             [0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0]
 
-            Sets total length to length of pattern when `total_length` is none:
+            Sets total length to length of pattern when ``total_length`` is
+            none:
 
             >>> pattern.get_boolean_vector()
             [0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -1183,7 +1201,8 @@ class Pattern(AbjadValueObject):
             >>> pattern.get_boolean_vector(16)
             [0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0]
 
-            Sets total length to length of pattern when `total_length` is none:
+            Sets total length to length of pattern when ``total_length`` is
+            none:
 
             >>> pattern.get_boolean_vector()
             [0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -1279,7 +1298,8 @@ class Pattern(AbjadValueObject):
             >>> pattern.get_boolean_vector(16)
             [1, 0, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1]
 
-            Sets total length to period of pattern when `total_length` is none:
+            Sets total length to period of pattern when ``total_length`` is
+            none:
 
             >>> pattern.period
             20
@@ -1291,7 +1311,7 @@ class Pattern(AbjadValueObject):
             True
 
         Returns list of ones and zeroes.
-        '''
+        """
         total_length = total_length or len(self)
         boolean_vector = []
         for index in range(total_length):
@@ -1300,7 +1320,8 @@ class Pattern(AbjadValueObject):
         return boolean_vector
 
     def get_matching_items(self, sequence):
-        r'''Gets maching items from sequence.
+        """
+        Gets maching items from sequence.
 
         ..  container:: example
 
@@ -1329,7 +1350,7 @@ class Pattern(AbjadValueObject):
             Sequence(['a', 'y', 'z'])
 
         Returns new sequence.
-        '''
+        """
         import abjad
         assert isinstance(sequence, collections.Iterable), repr(sequence)
         length = len(sequence)
@@ -1342,7 +1363,8 @@ class Pattern(AbjadValueObject):
 
     @staticmethod
     def index(indices, period=None, inverted=None):
-        r'''Makes pattern that matches `indices`.
+        """
+        Makes pattern that matches ``indices``.
 
         ..  container:: example
 
@@ -1363,7 +1385,7 @@ class Pattern(AbjadValueObject):
             abjad.index([2, 3, 5])
 
         Returns pattern.
-        '''
+        """
         assert all(isinstance(_, int) for _ in indices), repr(indices)
         indices = indices or []
         template = Pattern._get_template(inspect.currentframe())
@@ -1376,7 +1398,8 @@ class Pattern(AbjadValueObject):
 
     @staticmethod
     def index_all(inverted=None):
-        r'''Makes pattern that matches all indices.
+        """
+        Makes pattern that matches all indices.
 
         ..  container:: example
 
@@ -1388,7 +1411,7 @@ class Pattern(AbjadValueObject):
             abjad.index_all()
 
         Returns pattern.
-        '''
+        """
         template = Pattern._get_template(inspect.currentframe())
         return Pattern(
             indices=[0],
@@ -1399,7 +1422,8 @@ class Pattern(AbjadValueObject):
 
     @staticmethod
     def index_first(n, inverted=None):
-        r'''Makes pattern that matches the first `n` indices.
+        """
+        Makes pattern that matches the first ``n`` indices.
 
         ..  container:: example
 
@@ -1429,7 +1453,7 @@ class Pattern(AbjadValueObject):
             abjad.index_first(0)
 
         Returns pattern.
-        '''
+        """
         assert isinstance(n, int), repr(n)
         if 0 < n:
             indices = list(range(n))
@@ -1444,7 +1468,8 @@ class Pattern(AbjadValueObject):
 
     @staticmethod
     def index_last(n, inverted=None):
-        r'''Makes pattern that matches the last `n` indices.
+        """
+        Makes pattern that matches the last ``n`` indices.
 
         ..  container:: example
 
@@ -1465,7 +1490,7 @@ class Pattern(AbjadValueObject):
             abjad.index_last(0)
 
         Returns pattern.
-        '''
+        """
         assert isinstance(n, int), repr(n)
         if 0 < n:
             start = -1
@@ -1482,8 +1507,8 @@ class Pattern(AbjadValueObject):
             )
 
     def matches_index(self, index, total_length, rotation=None):
-        r'''Is true when pattern matches `index` taken under `total_length`.
-        Otherwise false.
+        """
+        Is true when pattern matches ``index`` taken under ``total_length``.
 
         ..  container:: example
 
@@ -1844,7 +1869,7 @@ class Pattern(AbjadValueObject):
 
             Matches every index that is (one of the first three indices).
 
-            Ignores `operator`.
+            Ignores ``operator``.
 
         ..  container:: example
 
@@ -2238,7 +2263,7 @@ class Pattern(AbjadValueObject):
             last three indices)) OR is (one of the first three indices).
 
         Returns true or false.
-        '''
+        """
         if not self.patterns:
             assert 0 <= total_length
             if 0 <= index:
@@ -2295,7 +2320,8 @@ class Pattern(AbjadValueObject):
         return result
 
     def reverse(self):
-        r'''Reverses pattern.
+        """
+        Reverses pattern.
 
         ..  container:: example
 
@@ -2422,7 +2448,7 @@ class Pattern(AbjadValueObject):
             (not one of the first three indices).
 
         Returns new pattern.
-        '''
+        """
         import abjad
         if not self.patterns:
             indices = [-index - 1 for index in self.indices]
@@ -2431,7 +2457,8 @@ class Pattern(AbjadValueObject):
         return abjad.new(self, patterns=patterns)
 
     def rotate(self, n=0):
-        r'''Rotates pattern by index `n`.
+        """
+        Rotates pattern by index ``n``.
 
         ..  container:: example
 
@@ -2623,7 +2650,7 @@ class Pattern(AbjadValueObject):
             the first, second or last index in the pattern).
 
         Returns new pattern.
-        '''
+        """
         import abjad
         if not self.patterns:
             indices = [index + n for index in self.indices]

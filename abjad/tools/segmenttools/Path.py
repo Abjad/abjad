@@ -28,7 +28,8 @@ from abjad.tools.topleveltools.iterate import iterate
 
 
 class Path(pathlib.PosixPath):
-    r'''Path in an Abjad score package.
+    """
+    Path in an Abjad score package.
 
     ..  container:: example
 
@@ -46,7 +47,7 @@ class Path(pathlib.PosixPath):
         >>> path.materials('instruments').is_material()
         True
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -107,35 +108,39 @@ class Path(pathlib.PosixPath):
     ### SPECIAL METHODS ###
 
     def __call__(self, *names) -> 'Path':
-        r'''Calls path on `names`.
-        '''
+        """
+        Calls path on `names`.
+        """
         path = self
         for name in names:
             path /= name
         return path
 
     def __repr__(self) -> str:
-        r'''Gets interpreter representation of path.
-        '''
+        """
+        Gets interpreter representation of path.
+        """
         if bool(getattr(self, '_scores', None)):
             return "Path*('{}')".format(self)
         else:
             return "Path('{}')".format(self)
 
     def __rtruediv__(self, argument):
-        r'''Joins path to `argument`.
+        """
+        Joins path to `argument`.
 
         Returns new path.
-        '''
+        """
         result = super(Path, self).__rtruediv__(argument)
         result._scores = getattr(self, '_scores', None)
         return result
 
     def __truediv__(self, argument):
-        r'''Joins `argument` to path.
+        """
+        Joins `argument` to path.
 
         Returns new path.
-        '''
+        """
         result = super(Path, self).__truediv__(argument)
         result._scores = getattr(self, '_scores', None)
         return result
@@ -144,8 +149,9 @@ class Path(pathlib.PosixPath):
 
     @property
     def _assets(self) -> typing.Optional['Path']:
-        '''Gets _assets directory.
-        '''
+        """
+        Gets _assets directory.
+        """
         if self.is_builds():
             return self / '_assets'
         if self.is_score_build():
@@ -158,7 +164,8 @@ class Path(pathlib.PosixPath):
 
     @property
     def _segments(self) -> typing.Optional['Path']:
-        '''Gets _segments directory.
+        """
+        Gets _segments directory.
 
         Directory must be build directory, _segments direcotry or part
         directory.
@@ -205,7 +212,7 @@ class Path(pathlib.PosixPath):
             >>> (parts / 'bass-clarinet-part' / 'layout.ly')._segments
             Path('/path/to/scores/my_score/my_score/builds/letter-parts/_segments')
 
-        '''
+        """
         if self.is__assets():
             return self.parent / '_segments'
         if self.is__segments():
@@ -460,7 +467,8 @@ class Path(pathlib.PosixPath):
 
     @property
     def build(self) -> typing.Optional['Path']:
-        r'''Gets build directory.
+        """
+        Gets build directory.
         
         Directory must be build directory, _segments direcotry or part
         directory.
@@ -507,7 +515,7 @@ class Path(pathlib.PosixPath):
             >>> (parts / 'bass-clarinet-part' / 'layout.ly').build
             Path('/path/to/scores/my_score/my_score/builds/letter-parts/bass-clarinet-part')
 
-        '''
+        """
         if self.is_build():
             return self
         elif self.parent.is_build():
@@ -517,7 +525,8 @@ class Path(pathlib.PosixPath):
 
     @property
     def builds(self) -> typing.Optional['Path']:
-        r'''Gets builds directory.
+        """
+        Gets builds directory.
 
         ..  container:: example
 
@@ -530,7 +539,7 @@ class Path(pathlib.PosixPath):
             >>> path.builds('letter')
             Path*('/path/to/scores/my_score/my_score/builds/letter')
 
-        '''
+        """
         if self.contents:
             return self.contents('builds')
         else:
@@ -538,7 +547,8 @@ class Path(pathlib.PosixPath):
 
     @property
     def contents(self):
-        r'''Gets contents directory.
+        """
+        Gets contents directory.
 
         ..  container:: example
 
@@ -551,7 +561,7 @@ class Path(pathlib.PosixPath):
             >>> path.contents('etc', 'notes.txt')
             Path*('/path/to/scores/my_score/my_score/etc/notes.txt')
 
-        '''
+        """
         scores = self.scores
         if not scores:
             return None
@@ -564,7 +574,8 @@ class Path(pathlib.PosixPath):
 
     @property
     def distribution(self) -> typing.Optional['Path']:
-        r'''Gets distribution directory.
+        """
+        Gets distribution directory.
 
         ..  container:: example
 
@@ -577,7 +588,7 @@ class Path(pathlib.PosixPath):
             >>> path.distribution('score.pdf')
             Path*('/path/to/scores/my_score/my_score/distribution/score.pdf')
 
-        '''
+        """
         if self.contents:
             return self.contents('distribution')
         else:
@@ -585,7 +596,8 @@ class Path(pathlib.PosixPath):
 
     @property
     def etc(self) -> typing.Optional['Path']:
-        r'''Gets etc directory.
+        """
+        Gets etc directory.
 
         ..  container:: example
 
@@ -598,7 +610,7 @@ class Path(pathlib.PosixPath):
             >>> path.etc('notes.txt')
             Path*('/path/to/scores/my_score/my_score/etc/notes.txt')
 
-        '''
+        """
         if self.contents:
             return self.contents('etc')
         else:
@@ -606,7 +618,8 @@ class Path(pathlib.PosixPath):
 
     @property
     def materials(self) -> typing.Optional['Path']:
-        r'''Gets materials directory.
+        """
+        Gets materials directory.
 
         ..  container:: example
 
@@ -619,7 +632,7 @@ class Path(pathlib.PosixPath):
             >>> path.materials('instruments')
             Path*('/path/to/scores/my_score/my_score/materials/instruments')
 
-        '''
+        """
         if self.contents:
             return self.contents('materials')
         else:
@@ -627,7 +640,8 @@ class Path(pathlib.PosixPath):
 
     @property
     def scores(self) -> typing.Optional['Path']:
-        r'''Gets scores directory.
+        """
+        Gets scores directory.
 
         ..  container:: example
 
@@ -640,7 +654,7 @@ class Path(pathlib.PosixPath):
             >>> path.scores('red_score', 'red_score')
             Path*('/path/to/scores/red_score/red_score')
 
-        '''
+        """
         import abjad
         configuration = abjad.abjad_configuration
         if getattr(self, '_scores', None) is not None:
@@ -655,7 +669,8 @@ class Path(pathlib.PosixPath):
 
     @property
     def segments(self) -> typing.Optional['Path']:
-        r'''Gets segments directory.
+        """
+        Gets segments directory.
 
         ..  container:: example
 
@@ -668,7 +683,7 @@ class Path(pathlib.PosixPath):
             >>> path.segments('segment_01')
             Path*('/path/to/scores/my_score/my_score/segments/segment_01')
 
-        '''
+        """
         if self.contents:
             return self.contents('segments')
         else:
@@ -676,7 +691,8 @@ class Path(pathlib.PosixPath):
 
     @property
     def stylesheets(self) -> typing.Optional['Path']:
-        r'''Gets stylesheets directory.
+        """
+        Gets stylesheets directory.
 
         ..  container:: example
 
@@ -689,7 +705,7 @@ class Path(pathlib.PosixPath):
             >>> path.stylesheets('stylesheet.ily')
             Path*('/path/to/scores/my_score/my_score/stylesheets/stylesheet.ily')
 
-        '''
+        """
         if self.contents:
             return self.contents('stylesheets')
         else:
@@ -697,7 +713,8 @@ class Path(pathlib.PosixPath):
 
     @property
     def test(self) -> typing.Optional['Path']:
-        r'''Gets test directory.
+        """
+        Gets test directory.
 
         ..  container:: example
 
@@ -710,7 +727,7 @@ class Path(pathlib.PosixPath):
             >>> path.test('test_materials.py')
             Path*('/path/to/scores/my_score/my_score/test/test_materials.py')
 
-        '''
+        """
         if self.contents:
             return self.contents('test')
         else:
@@ -718,7 +735,8 @@ class Path(pathlib.PosixPath):
 
     @property
     def tools(self) -> typing.Optional['Path']:
-        r'''Gets tools directory.
+        """
+        Gets tools directory.
 
         ..  container:: example
 
@@ -731,7 +749,7 @@ class Path(pathlib.PosixPath):
             >>> path.tools('SegmentMaker.py')
             Path*('/path/to/scores/my_score/my_score/tools/SegmentMaker.py')
 
-        '''
+        """
         if self.contents:
             return self.contents('tools')
         else:
@@ -739,7 +757,8 @@ class Path(pathlib.PosixPath):
 
     @property
     def wrapper(self) -> typing.Optional['Path']:
-        r'''Gets wrapper directory.
+        """
+        Gets wrapper directory.
 
         ..  container:: example
 
@@ -752,7 +771,7 @@ class Path(pathlib.PosixPath):
             >>> path.wrapper('my_score', 'etc')
             Path*('/path/to/scores/my_score/my_score/etc')
 
-        '''
+        """
         if self.contents:
             result = type(self)(self.contents()).parent
             _scores = getattr(self, '_scores', None)
@@ -771,7 +790,8 @@ class Path(pathlib.PosixPath):
         name: str = None,
         undo: bool = False,
         ) -> typing.Tuple[int, int, typing.List[String]]:
-        r'''Activates ``tag`` in path.
+        """
+        Activates ``tag`` in path.
 
         Case 0: path is a non-LilyPond file. Method does nothing.
 
@@ -790,7 +810,7 @@ class Path(pathlib.PosixPath):
 
         Third item in pair is list of canonical string messages that explain
         what happened.
-        '''
+        """
         assert isinstance(indent, int), repr(indent)
         if self.is_file():
             if self.suffix not in ('.ily', '.ly'):
@@ -856,9 +876,10 @@ class Path(pathlib.PosixPath):
         value,
         document_name: str = None,
         ) -> None:
-        r'''Adds metadatum with `name` and `value` into buildspace metadata
+        """
+        Adds metadatum with `name` and `value` into buildspace metadata
         with optional `document_name`.
-        '''
+        """
         assert self.is_buildspace(), repr(self)
         if self.is_parts():
             if document_name is not None:
@@ -875,15 +896,17 @@ class Path(pathlib.PosixPath):
             self.add_metadatum(name, value)
 
     def add_metadatum(self, name, value) -> None:
-        r'''Adds metadatum.
-        '''
+        """
+        Adds metadatum.
+        """
         assert ' ' not in name, repr(name)
         metadata = self.get_metadata()
         metadata[name] = value
         self.write_metadata_py(metadata)
 
     def coerce(self, name, suffix=None):
-        r'''Coerces asset `name`.
+        """
+        Coerces asset `name`.
 
         ..  container:: example
 
@@ -998,7 +1021,7 @@ class Path(pathlib.PosixPath):
             'segment-stylesheet.ily'
 
         Returns string.
-        '''
+        """
         name = String(name).strip_diacritics()
         assert os.path.sep not in name, repr(name)
         suffix = suffix or type(self)(name).suffix
@@ -1052,14 +1075,15 @@ class Path(pathlib.PosixPath):
         self,
         tag: typing.Union[str, typing.Callable],
         ) -> typing.Tuple[typing.Tuple[int, int], typing.Tuple[int, int]]:
-        r'''Counts `tag` in path.
+        """
+        Counts `tag` in path.
 
         Returns two pairs.
 
         Pair 1 gives (active tags, activate lines).
 
         Pair 2 gives (deactivated tags, deactivated lines).
-        '''
+        """
         assert isinstance(tag, str) or callable(tag), repr(tag)
         assert self.is_file(), repr(self)
         active_tags, active_lines = 0, 0
@@ -1091,8 +1115,9 @@ class Path(pathlib.PosixPath):
         message_zero: bool = False,
         name: str = None,
         ) -> typing.Tuple[int, int, typing.List[String]]:
-        r'''Deactivates `tag` in path.
-        '''
+        """
+        Deactivates `tag` in path.
+        """
         return self.activate(
             tag,
             name=name,
@@ -1106,7 +1131,8 @@ class Path(pathlib.PosixPath):
         include_path: 'Path' = None,
         score_path: 'Path' = None,
         ) -> None:
-        r'''Externalizes LilyPond file parsable chunks.
+        """
+        Externalizes LilyPond file parsable chunks.
 
         Produces skeleton score file and include file.
 
@@ -1114,7 +1140,7 @@ class Path(pathlib.PosixPath):
 
         Writes include file to path with ``.ily`` suffix when ``include_path``
         is none.
-        '''
+        """
         if not self.suffix == '.ly':
             raise Exception(f'must be lilypond file: {self}.')
         if include_path is None:
@@ -1203,7 +1229,8 @@ class Path(pathlib.PosixPath):
         include_path.write_text(text)
 
     def get_asset_type(self) -> str:
-        r'''Gets asset identifier.
+        """
+        Gets asset identifier.
 
         ..  container:: example
 
@@ -1252,7 +1279,7 @@ class Path(pathlib.PosixPath):
             >>> abjad.Path('/path/to/external').get_asset_type()
             'asset'
 
-        '''
+        """
         if self.is_scores():
             return 'package'
         elif self.is_wrapper():
@@ -1280,8 +1307,9 @@ class Path(pathlib.PosixPath):
             return 'asset'
 
     def get_files_ending_with(self, name) -> typing.List['Path']:
-        r'''Gets files in path ending with `name`.
-        '''
+        """
+        Gets files in path ending with `name`.
+        """
         paths = []
         for path in self.list_paths():
             if path.name.endswith(name):
@@ -1289,7 +1317,8 @@ class Path(pathlib.PosixPath):
         return paths
 
     def get_identifier(self) -> str:
-        r'''Gets identifier.
+        """
+        Gets identifier.
 
         ..  container:: example
 
@@ -1321,7 +1350,7 @@ class Path(pathlib.PosixPath):
         Returns name metadatum when name metadatum exists.
 
         Returns path name otherwise.
-        '''
+        """
         if self.is_wrapper():
             result = self.contents().get_title()
         elif self.is_contents():
@@ -1333,7 +1362,8 @@ class Path(pathlib.PosixPath):
         return String(result)
 
     def get_measure_profile_metadata(self) -> typing.Tuple[int, int, list]:
-        r'''Gets measure profile metadata.
+        """
+        Gets measure profile metadata.
 
         Reads segment metadata when path is segment.
 
@@ -1341,7 +1371,7 @@ class Path(pathlib.PosixPath):
 
         Returns triple of three metadata: first measure number; measure count;
         list of fermata measure numbers.
-        '''
+        """
         if self.parent.is_segment():
             string = 'first_measure_number'
             first_measure_number = self.parent.get_metadatum(string)
@@ -1368,8 +1398,9 @@ class Path(pathlib.PosixPath):
         return first_measure_number, measure_count, fermata_measure_numbers
 
     def get_metadata(self) -> OrderedDict:
-        r'''Gets __metadata__.py file in path.
-        '''
+        """
+        Gets __metadata__.py file in path.
+        """
         metadata_py_path = self('__metadata__.py')
         metadata = None
         if metadata_py_path.is_file():
@@ -1392,7 +1423,8 @@ class Path(pathlib.PosixPath):
         metadatum_name: str,
         default: typing.Any = None,
         ) -> typing.Any:
-        r'''Gets metadatum.
+        """
+        Gets metadatum.
 
         ..  container:: example
 
@@ -1404,7 +1436,7 @@ class Path(pathlib.PosixPath):
             >>> path.contents.get_metadatum('foo') is None
             True
 
-        '''
+        """
         metadata = self.get_metadata()
         metadatum = metadata.get(metadatum_name)
         if not metadatum:
@@ -1412,7 +1444,8 @@ class Path(pathlib.PosixPath):
         return metadatum
 
     def get_name_predicate(self) -> typing.Optional[typing.Callable]:
-        r'''Gets name predicate.
+        """
+        Gets name predicate.
 
         ..  container:: example
 
@@ -1445,7 +1478,7 @@ class Path(pathlib.PosixPath):
             >>> path.wrapper.get_name_predicate() is None
             True
 
-        '''
+        """
         if self.is_scores():
             return String.is_package_name
         elif self.is_external():
@@ -1487,7 +1520,8 @@ class Path(pathlib.PosixPath):
         self,
         cyclic: bool = False,
         ) -> typing.Optional['Path']:
-        r'''Gets next package.
+        """
+        Gets next package.
 
         ..  container:: example
 
@@ -1499,7 +1533,7 @@ class Path(pathlib.PosixPath):
             >>> path.get_next_package() is None
             True
 
-        '''
+        """
         if not self.is_dir():
             return None
         path: typing.Optional[Path] = None
@@ -1539,7 +1573,8 @@ class Path(pathlib.PosixPath):
         self,
         cyclic: bool = False,
         ) -> typing.Optional['Path']:
-        r'''Gets next score.
+        """
+        Gets next score.
 
         ..  container:: example
 
@@ -1551,7 +1586,7 @@ class Path(pathlib.PosixPath):
             >>> path.get_next_score() is None
             True
 
-        '''
+        """
         if not self.is_dir():
             return None
         if not (self.is_score_package_path() or self.is_scores()):
@@ -1574,8 +1609,9 @@ class Path(pathlib.PosixPath):
         return wrappers[index + 1]
 
     def get_part_identifier(self) -> typing.Optional[str]:
-        r'''Gets part identifier in layout.py only.
-        '''
+        """
+        Gets part identifier in layout.py only.
+        """
         if not self.name.endswith('layout.py'):
             return None
         for line in self.read_text().split('\n'):
@@ -1589,8 +1625,9 @@ class Path(pathlib.PosixPath):
     def get_preamble_time_signatures(
         self,
         ) -> typing.Optional[typing.List[str]]:
-        r'''Gets preamble time signatures.
-        '''
+        """
+        Gets preamble time signatures.
+        """
         assert self.is_file(), repr(self)
         prefix = '% time_signatures ='
         with open(self) as pointer:
@@ -1605,7 +1642,8 @@ class Path(pathlib.PosixPath):
         self,
         cyclic: bool = False,
         ) -> typing.Optional['Path']:
-        r'''Gets previous package.
+        """
+        Gets previous package.
 
         ..  container:: example
 
@@ -1617,7 +1655,7 @@ class Path(pathlib.PosixPath):
             >>> path.get_previous_package() is None
             True
 
-        '''
+        """
         if not self.is_dir():
             return None
         if self.is_material():
@@ -1656,7 +1694,8 @@ class Path(pathlib.PosixPath):
         self,
         cyclic: bool = False,
         ) -> typing.Optional['Path']:
-        r'''Gets previous score.
+        """
+        Gets previous score.
 
         ..  container:: example
 
@@ -1668,7 +1707,7 @@ class Path(pathlib.PosixPath):
             >>> path.get_previous_score() is None
             True
 
-        '''
+        """
         if not self.is_dir():
             return None
         if not (self.is_score_package_path() or self.is_scores()):
@@ -1691,8 +1730,9 @@ class Path(pathlib.PosixPath):
         return wrappers[index - 1]
 
     def get_time_signature_metadata(self) -> typing.List[TimeSignature]:
-        r'''Gets time signature metadata for buildspace directory.
-        '''
+        """
+        Gets time signature metadata for buildspace directory.
+        """
         if self.is_segment():
             time_signatures = self.get_metadatum('time_signatures', [])
             time_signatures = [
@@ -1711,7 +1751,8 @@ class Path(pathlib.PosixPath):
         return time_signatures_
 
     def get_title(self, year=True):
-        r'''Gets score title.
+        """
+        Gets score title.
 
         ..  container:: example
 
@@ -1724,7 +1765,7 @@ class Path(pathlib.PosixPath):
             '(untitled score)'
         
         Returns string.
-        '''
+        """
         if year and self.get_metadatum('year'):
             title = self.get_title(year=False)
             year = self.get_metadatum('year')
@@ -1737,7 +1778,8 @@ class Path(pathlib.PosixPath):
 
     @staticmethod
     def global_rest_identifier(segment_name: str) -> String:
-        r'''Gets global rest identifier.
+        """
+        Gets global rest identifier.
 
         ..  container:: example
 
@@ -1759,14 +1801,15 @@ class Path(pathlib.PosixPath):
             >>> abjad.Path.global_rest_identifier('A2')
             'A_b_GlobalRests'
 
-        '''
+        """
         identifier = String(segment_name).to_segment_lilypond_identifier()
         identifier = String(f'{identifier}_GlobalRests')
         return identifier
 
     def global_rest_identifiers(self) -> typing.List[String]:
-        r'''Gets global rest identifiers.
-        '''
+        """
+        Gets global rest identifiers.
+        """
         assert not self.is_external(), repr(self);
         identifiers = []
         if self.segments is not None:
@@ -1780,8 +1823,9 @@ class Path(pathlib.PosixPath):
         return identifiers
 
     def global_skip_identifiers(self) -> typing.List[String]:
-        r'''Gets global skip identifiers.
-        '''
+        """
+        Gets global skip identifiers.
+        """
         assert not self.is_external(), repr(self);
         identifiers = []
         if self.segments is not None:
@@ -1795,8 +1839,9 @@ class Path(pathlib.PosixPath):
         return identifiers
 
     def instrument_to_staff_identifiers(self, instrument: str) -> OrderedDict: 
-        r'''Changes ``instrument`` to staff identifiers dictionary.
-        '''
+        """
+        Changes ``instrument`` to staff identifiers dictionary.
+        """
         assert not self.is_external(), repr(self)
         alive_during_segment = OrderedDict()
         if self.segments is not None:
@@ -1830,7 +1875,8 @@ class Path(pathlib.PosixPath):
         return dictionary
 
     def is__assets(self) -> bool:
-        r'''Is true when path is _assets directory.
+        """
+        Is true when path is _assets directory.
 
         ..  container:: example
 
@@ -1842,11 +1888,12 @@ class Path(pathlib.PosixPath):
             >>> path.is__assets()
             True
 
-        '''
+        """
         return self.name == '_assets'
 
     def is__segments(self) -> bool:
-        r'''Is true when path is _segments directory.
+        """
+        Is true when path is _segments directory.
 
         ..  container:: example
 
@@ -1857,22 +1904,23 @@ class Path(pathlib.PosixPath):
             >>> path.is__segments()
             True
 
-        '''
+        """
         return self.name == '_segments'
 
     def is_build(self) -> bool:
-        '''Is true when path is build directory.
+        """
+        Is true when path is build directory.
 
         ..  container:: example
 
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score',
-            ...     scores='/path/to/scores',
-            ...     )
-            >>> path.builds('letter').is_build()
-            True
+                >>> path = abjad.Path(
+                ...     '/path/to/scores/my_score/my_score',
+                ...     scores='/path/to/scores',
+                ...     )
+                >>> path.builds('letter').is_build()
+                True
 
-        '''
+        """
         if self.name in ('_assets', '_segments'):
             return False
         if self.parent.name == 'builds':
@@ -1882,7 +1930,8 @@ class Path(pathlib.PosixPath):
         return False
 
     def is_builds(self) -> bool:
-        r'''Is true when path is builds directory.
+        """
+        Is true when path is builds directory.
 
         ..  container:: example
 
@@ -1893,11 +1942,12 @@ class Path(pathlib.PosixPath):
             >>> path.builds.is_builds()
             True
 
-        '''
+        """
         return self.name == 'builds'
 
     def is_buildspace(self) -> bool:
-        r'''Is true when path is buildspace.
+        """
+        Is true when path is buildspace.
 
             * build
             * builds
@@ -1905,7 +1955,7 @@ class Path(pathlib.PosixPath):
             * segments
             * _segments
 
-        '''
+        """
         if self.is_build() or self.is_builds():
             return True
         if self.is__segments() or self.is_segment() or self.is_segments():
@@ -1913,7 +1963,8 @@ class Path(pathlib.PosixPath):
         return False
 
     def is_contents(self) -> bool:
-        r'''Is true when path is contents directory.
+        """
+        Is true when path is contents directory.
 
         ..  container:: example
 
@@ -1924,14 +1975,15 @@ class Path(pathlib.PosixPath):
             >>> path.contents.is_contents()
             True
 
-        '''
+        """
         if self.scores is not None:
             return self.scores / self.name / self.name == self
         else:
             return False
 
     def is_distribution(self) -> bool:
-        r'''Is true when path is distribution directory.
+        """
+        Is true when path is distribution directory.
 
         ..  container:: example
 
@@ -1942,11 +1994,12 @@ class Path(pathlib.PosixPath):
             >>> path.distribution.is_distribution()
             True
 
-        '''
+        """
         return self.name == 'distribution'
 
     def is_etc(self) -> bool:
-        r'''Is true when path is etc directory.
+        """
+        Is true when path is etc directory.
 
         ..  container:: example
 
@@ -1957,11 +2010,12 @@ class Path(pathlib.PosixPath):
             >>> path.etc.is_etc()
             True
 
-        '''
+        """
         return self.name == 'etc'
 
     def is_external(self) -> bool:
-        r'''Is true when path is not a score package path.
+        """
+        Is true when path is not a score package path.
 
         ..  container:: example
 
@@ -1985,7 +2039,7 @@ class Path(pathlib.PosixPath):
             >>> abjad.Path('/path/to/location').is_external()
             True
 
-        '''
+        """
         import abjad
         configuration = abjad.abjad_configuration
         directory = configuration.composer_scores_directory
@@ -2006,11 +2060,12 @@ class Path(pathlib.PosixPath):
         return True
 
     def is_illustrationspace(self) -> bool:
-        r'''Is true when path is any of material, materials, segment or
+        """
+        Is true when path is any of material, materials, segment or
         segments directories.
 
         Returns true or false.
-        '''
+        """
         if self.is_material():
             return True
         if self.is_materials():
@@ -2022,7 +2077,8 @@ class Path(pathlib.PosixPath):
         return False
 
     def is_introduction_segment(self) -> bool:
-        r'''Is true when path is segment with name like _, _1, _2, ....
+        """
+        Is true when path is segment with name like _, _1, _2, ....
 
         ..  container:: example
 
@@ -2049,7 +2105,7 @@ class Path(pathlib.PosixPath):
             >>> path.segments('A').is_introduction_segment()
             False
 
-        '''
+        """
         if not self.is_segment():
             return False
         if String(self.name).is_introduction_segment_name():
@@ -2057,8 +2113,9 @@ class Path(pathlib.PosixPath):
         return False
 
     def is_library(self) -> bool:
-        r'''Is true when path is composer library tools directory.
-        '''
+        """
+        Is true when path is composer library tools directory.
+        """
         import abjad
         configuration = abjad.abjad_configuration
         if configuration.composer_library_tools:
@@ -2066,7 +2123,8 @@ class Path(pathlib.PosixPath):
         return False
 
     def is_material(self) -> bool:
-        r'''Is true when path is material directory.
+        """
+        Is true when path is material directory.
 
         ..  container:: example
 
@@ -2077,11 +2135,12 @@ class Path(pathlib.PosixPath):
             >>> path.materials('tempi').is_material()
             True
 
-        '''
+        """
         return self.parent.name == 'materials'
 
     def is_material_or_segment(self) -> bool:
-        r'''Is true when path is material directory or segment directory.
+        """
+        Is true when path is material directory or segment directory.
 
         ..  container:: example
 
@@ -2102,11 +2161,12 @@ class Path(pathlib.PosixPath):
             >>> path.segments('A').is_material_or_segment()
             True
 
-        '''
+        """
         return self.parent.name in ('materials', 'segments')
 
     def is_materials(self) -> bool:
-        r'''Is true when path is materials directory.
+        """
+        Is true when path is materials directory.
 
         ..  container:: example
 
@@ -2117,11 +2177,12 @@ class Path(pathlib.PosixPath):
             >>> path.materials.is_materials()
             True
 
-        '''
+        """
         return self.name == 'materials'
 
     def is_materials_or_segments(self) -> bool:
-        r'''Is true when path is materials directory or segments directory.
+        """
+        Is true when path is materials directory or segments directory.
 
         ..  container:: example
 
@@ -2142,11 +2203,12 @@ class Path(pathlib.PosixPath):
             >>> path.segments('A').is_materials_or_segments()
             False
 
-        '''
+        """
         return self.name in ('materials', 'segments')
 
     def is_part(self) -> bool:
-        r'''Is true when directory is part directory.
+        """
+        Is true when directory is part directory.
 
         ..  container:: example
 
@@ -2161,11 +2223,12 @@ class Path(pathlib.PosixPath):
             >>> path.builds('arch-a-parts').is_part()
             False
 
-        '''
+        """
         return self.parent.is_parts()
 
     def is_parts(self) -> bool:
-        r'''Is true when directory is parts directory.
+        """
+        Is true when directory is parts directory.
 
         ..  container:: example
 
@@ -2180,7 +2243,7 @@ class Path(pathlib.PosixPath):
             >>> path.builds('arch-a-score').is_parts()
             False
 
-        '''
+        """
         if self.is_build():
             if self.name.endswith('-parts'):
                 return True
@@ -2190,7 +2253,8 @@ class Path(pathlib.PosixPath):
             return False
 
     def is_score_build(self) -> bool:
-        r'''Is true when directory is score build directory.
+        """
+        Is true when directory is score build directory.
 
         ..  container:: example
 
@@ -2205,7 +2269,7 @@ class Path(pathlib.PosixPath):
             >>> path.builds('arch-a-score').is_score_build()
             True
 
-        '''
+        """
         if self.is_build():
             if self.name.endswith('-parts'):
                 return False
@@ -2220,7 +2284,8 @@ class Path(pathlib.PosixPath):
             return False
 
     def is_score_package_path(self, prototype=()) -> bool:
-        r'''Is true when path is package path.
+        """
+        Is true when path is package path.
 
         ..  container:: example
 
@@ -2262,7 +2327,7 @@ class Path(pathlib.PosixPath):
             >>> path('build', '_assets').is_score_package_path()
             True
 
-        '''
+        """
         if self.is_external():
             return False
         if self.is_scores():
@@ -2307,7 +2372,8 @@ class Path(pathlib.PosixPath):
         return False
 
     def is_scores(self) -> bool:
-        r'''Is true when path is scores directory.
+        """
+        Is true when path is scores directory.
 
         ..  container:: example
 
@@ -2318,11 +2384,12 @@ class Path(pathlib.PosixPath):
             >>> path.scores.is_scores()
             True
 
-        '''
+        """
         return self == self.scores
 
     def is_segment(self) -> bool:
-        r'''Is true when path is segment directory.
+        """
+        Is true when path is segment directory.
 
         ..  container:: example
 
@@ -2333,14 +2400,15 @@ class Path(pathlib.PosixPath):
             >>> path.segments('segment_01').is_segment()
             True
 
-        '''
+        """
         if self.name[0] == '.':
             return False
         return self.parent.name == 'segments'
 
     @staticmethod
     def is_segment_name(string) -> bool:
-        r'''Is true when `string` is canonical segment name.
+        """
+        Is true when `string` is canonical segment name.
 
         ..  container:: example
 
@@ -2425,7 +2493,7 @@ class Path(pathlib.PosixPath):
             >>> abjad.Path.is_segment_name('AAA')
             False
 
-        '''
+        """
         if not isinstance(string, str):
             return False
         if not bool(string):
@@ -2441,7 +2509,8 @@ class Path(pathlib.PosixPath):
         return string[2:].isnumeric()
 
     def is_segments(self) -> bool:
-        r'''Is true when path is segments directory.
+        """
+        Is true when path is segments directory.
 
         ..  container:: example
 
@@ -2452,11 +2521,12 @@ class Path(pathlib.PosixPath):
             >>> path.segments.is_segments()
             True
 
-        '''
+        """
         return self.name == 'segments'
 
     def is_stylesheets(self) -> bool:
-        r'''Is true when path is stylesheets directory.
+        """
+        Is true when path is stylesheets directory.
 
         ..  container:: example
 
@@ -2467,11 +2537,12 @@ class Path(pathlib.PosixPath):
             >>> path.stylesheets.is_stylesheets()
             True
 
-        '''
+        """
         return self.name == 'stylesheets'
 
     def is_test(self) -> bool:
-        r'''Is true when path is test directory.
+        """
+        Is true when path is test directory.
 
         ..  container:: example
 
@@ -2482,11 +2553,12 @@ class Path(pathlib.PosixPath):
             >>> path.test.is_test()
             True
 
-        '''
+        """
         return self.name == 'test'
 
     def is_tools(self) -> bool:
-        r'''Is true when path is tools directory.
+        """
+        Is true when path is tools directory.
 
         ..  container:: example
 
@@ -2497,11 +2569,12 @@ class Path(pathlib.PosixPath):
             >>> path.tools.is_tools()
             True
 
-        '''
+        """
         return self.name == 'tools'
 
     def is_wrapper(self) -> bool:
-        r'''Is true when path is wrapper directory
+        """
+        Is true when path is wrapper directory
 
         ..  container:: example
 
@@ -2512,14 +2585,15 @@ class Path(pathlib.PosixPath):
             >>> path.wrapper.is_wrapper()
             True
 
-        '''
+        """
         if self.scores is not None:
             return self.scores / self.name == self
         else:
             return False
 
     def list_paths(self):
-        r'''Lists paths ordered by view (if any).
+        """
+        Lists paths ordered by view (if any).
 
         ..  container:: example
 
@@ -2532,7 +2606,7 @@ class Path(pathlib.PosixPath):
             []
 
         Returns list.
-        '''
+        """
         paths = self._list_paths()
         paths = self._filter_by_view(paths)
         if self.is_scores() and self.get_metadatum('view') is None:
@@ -2540,7 +2614,8 @@ class Path(pathlib.PosixPath):
         return paths
 
     def list_secondary_paths(self):
-        r'''Lists secondary paths.
+        """
+        Lists secondary paths.
 
         ..  container:: example
 
@@ -2553,7 +2628,7 @@ class Path(pathlib.PosixPath):
             []
 
         Returns list.
-        '''
+        """
         paths = []
         for path in sorted(self.glob('*')):
             if path.name in sorted(self._secondary_names):
@@ -2567,9 +2642,10 @@ class Path(pathlib.PosixPath):
         part: Part,
         container_to_part_assignment: OrderedDict,
         ) -> typing.Union[str, typing.List[str]]:
-        r'''Changes ``part`` to (part container) identifiers (using
+        """
+        Changes ``part`` to (part container) identifiers (using
         ``container_to_part_assignment`` dictionary).
-        '''
+        """
         assert not self.is_external(), repr(self)
         if not isinstance(part, Part):
             raise TypeError(f'must be part (not {part!r}).')
@@ -2602,20 +2678,22 @@ class Path(pathlib.PosixPath):
         return identifiers
 
     def remove(self):
-        r'''Removes path if it exists.
+        """
+        Removes path if it exists.
 
         Returns none.
-        '''
+        """
         if self.is_file():
             self.unlink()
         elif self.is_dir():
             shutil.rmtree(str(self))
 
     def remove_metadatum(self, name):
-        r'''Removes metadatum.
+        """
+        Removes metadatum.
 
         Returns none.
-        '''
+        """
         assert ' ' not in name, repr(name)
         metadata = self.get_metadata()
         try:
@@ -2625,10 +2703,11 @@ class Path(pathlib.PosixPath):
         self.write_metadata_py(metadata)
 
     def score_skeleton(self) -> typing.Optional[Score]:
-        r'''Makes score skeleton.
+        """
+        Makes score skeleton.
 
         Only works when score template defines ``skeleton()`` method.
-        '''
+        """
         assert not self.is_external(), repr(self)
         score_template = self._import_score_template()
         if not hasattr(score_template, 'skeleton'):
@@ -2692,7 +2771,8 @@ class Path(pathlib.PosixPath):
         return skeleton
 
     def segment_number_to_path(self, number):
-        r'''Changes segment number to path.
+        """
+        Changes segment number to path.
 
         ..  container:: example
 
@@ -2704,7 +2784,7 @@ class Path(pathlib.PosixPath):
             >>> path.segment_number_to_path(1)
 
         Returns path.
-        '''
+        """
         for path in sorted(self.segments().glob('*')):
             if not path.is_dir():
                 continue
@@ -2719,8 +2799,9 @@ class Path(pathlib.PosixPath):
                 return path
 
     def to_part(self) -> Part:
-        r'''Changes path to part.
-        '''
+        """
+        Changes path to part.
+        """
         assert self.parent.is_part(), repr(self)
         words = self.parent.name.split('-')
         part_manifest = self._get_part_manifest()
@@ -2735,7 +2816,8 @@ class Path(pathlib.PosixPath):
         raise Exception(f'can not find {part_name!r} in part manifest.')
 
     def trim(self) -> str:
-        r'''Trims path.
+        """
+        Trims path.
 
         ..  container:: example
 
@@ -2759,7 +2841,7 @@ class Path(pathlib.PosixPath):
             >>> path.materials('tempi').trim()
             'my_score/materials/tempi'
 
-        '''
+        """
         import abjad
         configuration = abjad.abjad_configuration
         if self.scores is None or self.is_wrapper() or self.is_contents():
@@ -2776,10 +2858,11 @@ class Path(pathlib.PosixPath):
         return str(path)
 
     def update_order_dependent_segment_metadata(self):
-        r'''Updates order-dependent segment metadata.
+        """
+        Updates order-dependent segment metadata.
 
         Returns none.
-        '''
+        """
         paths = self.segments().list_paths()
         if not paths:
             return
@@ -2804,24 +2887,27 @@ class Path(pathlib.PosixPath):
             next_bar_number = first_bar_number + measure_count
 
     def with_name(self, name):
-        '''Gets path with `name`.
+        """
+        Gets path with `name`.
 
         Returns path.
-        '''
+        """
         return self.parent / name
 
     def with_parent(self, name):
-        '''Gets path with parent `name`.
+        """
+        Gets path with parent `name`.
 
         Returns path.
-        '''
+        """
         return self.parent.parent / name / self.name
 
     def with_score(self, name):
-        '''Gets path with score `name`.
+        """
+        Gets path with score `name`.
 
         Returns path.
-        '''
+        """
         if not self.is_score_package_path():
             return
         if self.is_wrapper():
@@ -2834,10 +2920,11 @@ class Path(pathlib.PosixPath):
         return path
 
     def write_metadata_py(self, metadata):
-        r'''Writes `metadata` to `__metadata__.py` in current directory.
+        """
+        Writes `metadata` to `__metadata__.py` in current directory.
 
         Returns none.
-        '''
+        """
         import abjad
         metadata_py_path = self('__metadata__.py')
         lines = []

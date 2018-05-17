@@ -3,10 +3,11 @@ import pytest
 
 
 def test_scoretools_Mutation_split_01():
-    r'''Cyclically splits note in score.
+    """
+    Cyclically splits note in score.
     
     Doesn't fracture spanners.
-    '''
+    """
 
     staff = abjad.Staff()
     staff.append(abjad.Measure((2, 8), "c'8 d'8"))
@@ -20,7 +21,7 @@ def test_scoretools_Mutation_split_01():
     abjad.attach(slur, leaves)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -39,7 +40,7 @@ def test_scoretools_Mutation_split_01():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     notes = staff[0][1:2]
@@ -50,7 +51,7 @@ def test_scoretools_Mutation_split_01():
         )
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -73,7 +74,7 @@ def test_scoretools_Mutation_split_01():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     assert abjad.inspect(staff).is_well_formed()
@@ -81,10 +82,11 @@ def test_scoretools_Mutation_split_01():
 
 
 def test_scoretools_Mutation_split_02():
-    r'''Cyclically splits consecutive notes in score.
+    """
+    Cyclically splits consecutive notes in score.
 
     Doesn't fracture spanners.
-    '''
+    """
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     leaves = abjad.select(staff).leaves()
@@ -96,7 +98,7 @@ def test_scoretools_Mutation_split_02():
     abjad.attach(slur, leaves)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -115,7 +117,7 @@ def test_scoretools_Mutation_split_02():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     result = abjad.mutate(leaves).split(
@@ -125,7 +127,7 @@ def test_scoretools_Mutation_split_02():
         )
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -152,7 +154,7 @@ def test_scoretools_Mutation_split_02():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     assert abjad.inspect(staff).is_well_formed()
@@ -160,10 +162,11 @@ def test_scoretools_Mutation_split_02():
 
 
 def test_scoretools_Mutation_split_03():
-    r'''Cyclically splits measure in score.
+    """
+    Cyclically splits measure in score.
     
     Doesn't fracture spanners.
-    '''
+    """
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     leaves = abjad.select(staff).leaves()
@@ -175,7 +178,7 @@ def test_scoretools_Mutation_split_03():
     abjad.attach(slur, leaves)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -194,7 +197,7 @@ def test_scoretools_Mutation_split_03():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     measures = staff[:1]
@@ -206,7 +209,7 @@ def test_scoretools_Mutation_split_03():
         )
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -233,7 +236,7 @@ def test_scoretools_Mutation_split_03():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     assert abjad.inspect(staff).is_well_formed()
@@ -241,10 +244,11 @@ def test_scoretools_Mutation_split_03():
 
 
 def test_scoretools_Mutation_split_04():
-    r'''Cyclically splits consecutive measures in score.
+    """
+    Cyclically splits consecutive measures in score.
 
     Doesn't fracture spanners.
-    '''
+    """
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     leaves = abjad.select(staff).leaves()
@@ -256,7 +260,7 @@ def test_scoretools_Mutation_split_04():
     abjad.attach(slur, leaves)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -275,7 +279,7 @@ def test_scoretools_Mutation_split_04():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     measures = staff[:]
@@ -287,7 +291,7 @@ def test_scoretools_Mutation_split_04():
         )
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -324,7 +328,7 @@ def test_scoretools_Mutation_split_04():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     assert abjad.inspect(staff).is_well_formed()
@@ -332,10 +336,11 @@ def test_scoretools_Mutation_split_04():
 
 
 def test_scoretools_Mutation_split_05():
-    r'''Cyclically splits orphan measures.
+    """
+    Cyclically splits orphan measures.
 
     Doesn't fracture spanners.
-    '''
+    """
 
     measures = [
         abjad.Measure((2, 8), "c'8 d'8"),
@@ -358,7 +363,7 @@ def test_scoretools_Mutation_split_05():
     staff = abjad.Staff(components)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -393,7 +398,7 @@ def test_scoretools_Mutation_split_05():
                 ]
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     assert abjad.inspect(staff).is_well_formed()
@@ -401,10 +406,11 @@ def test_scoretools_Mutation_split_05():
 
 
 def test_scoretools_Mutation_split_06():
-    r'''Cyclically splits note in score.
+    """
+    Cyclically splits note in score.
 
     Doesn't fracture spanners.
-    '''
+    """
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     leaves = abjad.select(staff).leaves()
@@ -416,7 +422,7 @@ def test_scoretools_Mutation_split_06():
     abjad.attach(slur, leaves)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -435,7 +441,7 @@ def test_scoretools_Mutation_split_06():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     notes = staff[0][1:]
@@ -447,7 +453,7 @@ def test_scoretools_Mutation_split_06():
         )
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -472,7 +478,7 @@ def test_scoretools_Mutation_split_06():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     assert abjad.inspect(staff).is_well_formed()
@@ -480,10 +486,11 @@ def test_scoretools_Mutation_split_06():
 
 
 def test_scoretools_Mutation_split_07():
-    r'''Cyclically splits consecutive notes in score.
+    """
+    Cyclically splits consecutive notes in score.
 
     Doesn't fracture spanners.
-    '''
+    """
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     leaves = abjad.select(staff).leaves()
@@ -495,7 +502,7 @@ def test_scoretools_Mutation_split_07():
     abjad.attach(slur, leaves)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -514,7 +521,7 @@ def test_scoretools_Mutation_split_07():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     result = abjad.mutate(leaves).split(
@@ -525,7 +532,7 @@ def test_scoretools_Mutation_split_07():
         )
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -552,7 +559,7 @@ def test_scoretools_Mutation_split_07():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     assert abjad.inspect(staff).is_well_formed()
@@ -560,10 +567,11 @@ def test_scoretools_Mutation_split_07():
 
 
 def test_scoretools_Mutation_split_08():
-    r'''Cyclically splits measure in score.
+    """
+    Cyclically splits measure in score.
 
     Doesn't fracture spanners.
-    '''
+    """
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     leaves = abjad.select(staff).leaves()
@@ -575,7 +583,7 @@ def test_scoretools_Mutation_split_08():
     abjad.attach(slur, leaves)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -594,7 +602,7 @@ def test_scoretools_Mutation_split_08():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     measures = staff[:1]
@@ -606,7 +614,7 @@ def test_scoretools_Mutation_split_08():
         )
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff 
         {
             {   % measure
@@ -636,7 +644,7 @@ def test_scoretools_Mutation_split_08():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     assert abjad.inspect(staff).is_well_formed()
@@ -644,10 +652,11 @@ def test_scoretools_Mutation_split_08():
 
 
 def test_scoretools_Mutation_split_09():
-    r'''Cyclically splits consecutive measures in score.
+    """
+    Cyclically splits consecutive measures in score.
 
     Doesn't fracture spanners.
-    '''
+    """
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     leaves = abjad.select(staff).leaves()
@@ -659,7 +668,7 @@ def test_scoretools_Mutation_split_09():
     abjad.attach(slur, leaves)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -678,7 +687,7 @@ def test_scoretools_Mutation_split_09():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     measures = staff[:]
@@ -690,7 +699,7 @@ def test_scoretools_Mutation_split_09():
         )
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -731,7 +740,7 @@ def test_scoretools_Mutation_split_09():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     assert abjad.inspect(staff).is_well_formed()
@@ -739,10 +748,11 @@ def test_scoretools_Mutation_split_09():
 
 
 def test_scoretools_Mutation_split_10():
-    r'''Cyclically splits note in score.
+    """
+    Cyclically splits note in score.
 
     Fractures spanners.
-    '''
+    """
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     leaves = abjad.select(staff).leaves()
@@ -754,7 +764,7 @@ def test_scoretools_Mutation_split_10():
     abjad.attach(slur, leaves)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -773,7 +783,7 @@ def test_scoretools_Mutation_split_10():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     notes = staff[0][1:2]
@@ -784,7 +794,7 @@ def test_scoretools_Mutation_split_10():
         )
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -813,7 +823,7 @@ def test_scoretools_Mutation_split_10():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     assert abjad.inspect(staff).is_well_formed()
@@ -821,10 +831,11 @@ def test_scoretools_Mutation_split_10():
 
 
 def test_scoretools_Mutation_split_11():
-    r'''Cyclically splits consecutive notes in score.
+    """
+    Cyclically splits consecutive notes in score.
 
     Fractures spanners.
-    '''
+    """
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     leaves = abjad.select(staff).leaves()
@@ -836,7 +847,7 @@ def test_scoretools_Mutation_split_11():
     abjad.attach(slur, leaves)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -855,7 +866,7 @@ def test_scoretools_Mutation_split_11():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     result = abjad.mutate(leaves).split(
@@ -865,7 +876,7 @@ def test_scoretools_Mutation_split_11():
         )
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -904,7 +915,7 @@ def test_scoretools_Mutation_split_11():
                 ]
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     assert abjad.inspect(staff).is_well_formed()
@@ -912,10 +923,11 @@ def test_scoretools_Mutation_split_11():
 
 
 def test_scoretools_Mutation_split_12():
-    r'''Cyclically splits measure in score.
+    """
+    Cyclically splits measure in score.
     
     Fractures spanners.
-    '''
+    """
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     leaves = abjad.select(staff).leaves()
@@ -927,7 +939,7 @@ def test_scoretools_Mutation_split_12():
     abjad.attach(slur, leaves)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -946,7 +958,7 @@ def test_scoretools_Mutation_split_12():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     measures = staff[:1]
@@ -958,7 +970,7 @@ def test_scoretools_Mutation_split_12():
         )
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -991,7 +1003,7 @@ def test_scoretools_Mutation_split_12():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     assert abjad.inspect(staff).is_well_formed()
@@ -999,10 +1011,11 @@ def test_scoretools_Mutation_split_12():
 
 
 def test_scoretools_Mutation_split_13():
-    r'''Cyclically splits consecutive measures in score.
+    """
+    Cyclically splits consecutive measures in score.
 
     Fractures spanners.
-    '''
+    """
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     leaves = abjad.select(staff).leaves()
@@ -1014,7 +1027,7 @@ def test_scoretools_Mutation_split_13():
     abjad.attach(slur, leaves)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -1033,7 +1046,7 @@ def test_scoretools_Mutation_split_13():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     measures = staff[:]
@@ -1045,7 +1058,7 @@ def test_scoretools_Mutation_split_13():
         )
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -1094,7 +1107,7 @@ def test_scoretools_Mutation_split_13():
                 ]
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     assert abjad.inspect(staff).is_well_formed()
@@ -1102,8 +1115,9 @@ def test_scoretools_Mutation_split_13():
 
 
 def test_scoretools_Mutation_split_14():
-    r'''Cyclically splits orphan notes.
-    '''
+    """
+    Cyclically splits orphan notes.
+    """
 
     notes = [
         abjad.Note("c'8"),
@@ -1122,7 +1136,7 @@ def test_scoretools_Mutation_split_14():
     staff = abjad.Staff(components)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'16.
@@ -1138,7 +1152,7 @@ def test_scoretools_Mutation_split_14():
             ~
             f'32
         }
-        '''
+        """
         ), format(staff)
 
     assert abjad.inspect(staff).is_well_formed()
@@ -1146,10 +1160,11 @@ def test_scoretools_Mutation_split_14():
 
 
 def test_scoretools_Mutation_split_15():
-    r'''Cyclically splits orphan measures.
+    """
+    Cyclically splits orphan measures.
 
     Fractures spanners.
-    '''
+    """
 
     measures = [
         abjad.Measure((2, 8), "c'8 d'8"),
@@ -1171,7 +1186,7 @@ def test_scoretools_Mutation_split_15():
     staff = abjad.Staff(components)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -1216,7 +1231,7 @@ def test_scoretools_Mutation_split_15():
                 ]
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     assert abjad.inspect(staff).is_well_formed()
@@ -1224,10 +1239,11 @@ def test_scoretools_Mutation_split_15():
 
 
 def test_scoretools_Mutation_split_16():
-    r'''Cyclically splits note in score.
+    """
+    Cyclically splits note in score.
 
     Fractures spanners.
-    '''
+    """
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     leaves = abjad.select(staff).leaves()
@@ -1239,7 +1255,7 @@ def test_scoretools_Mutation_split_16():
     abjad.attach(slur, leaves)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -1258,7 +1274,7 @@ def test_scoretools_Mutation_split_16():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     notes = staff[0][1:]
@@ -1270,7 +1286,7 @@ def test_scoretools_Mutation_split_16():
         )
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -1303,7 +1319,7 @@ def test_scoretools_Mutation_split_16():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     assert abjad.inspect(staff).is_well_formed()
@@ -1311,10 +1327,11 @@ def test_scoretools_Mutation_split_16():
 
 
 def test_scoretools_Mutation_split_17():
-    r'''Cyclically splits consecutive notes in score.
+    """
+    Cyclically splits consecutive notes in score.
 
     Fractures spanners.
-    '''
+    """
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     leaves = abjad.select(staff).leaves()
@@ -1326,7 +1343,7 @@ def test_scoretools_Mutation_split_17():
     abjad.attach(slur, leaves)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -1345,7 +1362,7 @@ def test_scoretools_Mutation_split_17():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     result = abjad.mutate(leaves).split(
@@ -1356,7 +1373,7 @@ def test_scoretools_Mutation_split_17():
         )
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -1395,7 +1412,7 @@ def test_scoretools_Mutation_split_17():
                 ]
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     assert abjad.inspect(staff).is_well_formed()
@@ -1403,10 +1420,11 @@ def test_scoretools_Mutation_split_17():
 
 
 def test_scoretools_Mutation_split_18():
-    r'''Cyclically splits measure in score.
+    """
+    Cyclically splits measure in score.
 
     Fractures spanners.
-    '''
+    """
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     leaves = abjad.select(staff).leaves()
@@ -1418,7 +1436,7 @@ def test_scoretools_Mutation_split_18():
     abjad.attach(slur, leaves)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -1437,7 +1455,7 @@ def test_scoretools_Mutation_split_18():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     measures = staff[:1]
@@ -1449,7 +1467,7 @@ def test_scoretools_Mutation_split_18():
         )
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -1485,7 +1503,7 @@ def test_scoretools_Mutation_split_18():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     assert abjad.inspect(staff).is_well_formed()
@@ -1493,10 +1511,11 @@ def test_scoretools_Mutation_split_18():
 
 
 def test_scoretools_Mutation_split_19():
-    r'''Cyclically splits consecutive measures in score.
+    """
+    Cyclically splits consecutive measures in score.
     
     Fractures spanners.
-    '''
+    """
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     leaves = abjad.select(staff).leaves()
@@ -1508,7 +1527,7 @@ def test_scoretools_Mutation_split_19():
     abjad.attach(slur, leaves)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -1527,7 +1546,7 @@ def test_scoretools_Mutation_split_19():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     measures = staff[:]
@@ -1539,7 +1558,7 @@ def test_scoretools_Mutation_split_19():
         )
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -1592,7 +1611,7 @@ def test_scoretools_Mutation_split_19():
                 ]
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     assert abjad.inspect(staff).is_well_formed()
@@ -1600,10 +1619,11 @@ def test_scoretools_Mutation_split_19():
 
 
 def test_scoretools_Mutation_split_20():
-    r'''Force-splits measure in score.
+    """
+    Force-splits measure in score.
 
     Does not fracture spanners.
-    '''
+    """
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     leaves = abjad.select(staff).leaves()
@@ -1615,7 +1635,7 @@ def test_scoretools_Mutation_split_20():
     abjad.attach(slur, leaves)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -1634,7 +1654,7 @@ def test_scoretools_Mutation_split_20():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     measures = staff[:1]
@@ -1646,7 +1666,7 @@ def test_scoretools_Mutation_split_20():
         )
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -1673,7 +1693,7 @@ def test_scoretools_Mutation_split_20():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     assert abjad.inspect(staff).is_well_formed()
@@ -1681,10 +1701,11 @@ def test_scoretools_Mutation_split_20():
 
 
 def test_scoretools_Mutation_split_21():
-    r'''Force-splits consecutive measures in score.
+    """
+    Force-splits consecutive measures in score.
 
     Does not fracture spanners.
-    '''
+    """
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     leaves = abjad.select(staff).leaves()
@@ -1696,7 +1717,7 @@ def test_scoretools_Mutation_split_21():
     abjad.attach(slur, leaves)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -1715,7 +1736,7 @@ def test_scoretools_Mutation_split_21():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     measures = staff[:]
@@ -1727,7 +1748,7 @@ def test_scoretools_Mutation_split_21():
         )
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -1758,7 +1779,7 @@ def test_scoretools_Mutation_split_21():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     assert abjad.inspect(staff).is_well_formed()
@@ -1766,10 +1787,11 @@ def test_scoretools_Mutation_split_21():
 
 
 def test_scoretools_Mutation_split_22():
-    r'''Force-splits measure in score.
+    """
+    Force-splits measure in score.
     
     Fractures spanners.
-    '''
+    """
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     leaves = abjad.select(staff).leaves()
@@ -1781,7 +1803,7 @@ def test_scoretools_Mutation_split_22():
     abjad.attach(slur, leaves)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -1800,7 +1822,7 @@ def test_scoretools_Mutation_split_22():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     measures = staff[:1]
@@ -1812,7 +1834,7 @@ def test_scoretools_Mutation_split_22():
         )
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -1843,7 +1865,7 @@ def test_scoretools_Mutation_split_22():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     assert abjad.inspect(staff).is_well_formed()
@@ -1851,10 +1873,11 @@ def test_scoretools_Mutation_split_22():
 
 
 def test_scoretools_Mutation_split_23():
-    r'''Force-splits consecutive measures in score.
+    """
+    Force-splits consecutive measures in score.
     
     Fractures spanners.
-    '''
+    """
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     leaves = abjad.select(staff).leaves()
@@ -1866,7 +1889,7 @@ def test_scoretools_Mutation_split_23():
     abjad.attach(slur, leaves)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -1885,7 +1908,7 @@ def test_scoretools_Mutation_split_23():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     measures = staff[:]
@@ -1898,7 +1921,7 @@ def test_scoretools_Mutation_split_23():
     assert abjad.inspect(staff).is_well_formed()
     assert len(result) == 4
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -1937,15 +1960,16 @@ def test_scoretools_Mutation_split_23():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
 
 def test_scoretools_Mutation_split_24():
-    r'''Force-splits orphan note.
+    """
+    Force-splits orphan note.
     
     Offsets sum to less than note duration.
-    '''
+    """
 
     note = abjad.Note("c'4")
     note = abjad.select(note)
@@ -1961,7 +1985,7 @@ def test_scoretools_Mutation_split_24():
     staff = abjad.Staff(notes)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'32
@@ -1970,7 +1994,7 @@ def test_scoretools_Mutation_split_24():
             c'32
             c'16
         }
-        '''
+        """
         ), format(staff)
 
     assert abjad.inspect(staff).is_well_formed()
@@ -1978,22 +2002,23 @@ def test_scoretools_Mutation_split_24():
 
 
 def test_scoretools_Mutation_split_25():
-    r'''Force-splits note in score.
+    """
+    Force-splits note in score.
     
     Fractures spanners.
-    '''
+    """
 
     staff = abjad.Staff("c'8 [ ]")
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
             [
             ]
         }
-        '''
+        """
         ), format(staff)
 
     notes = staff[:]
@@ -2005,7 +2030,7 @@ def test_scoretools_Mutation_split_25():
         )
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff 
         {
             c'64
@@ -2020,17 +2045,18 @@ def test_scoretools_Mutation_split_25():
             [
             ]
         }
-        '''
+        """
         ), format(staff)
 
     assert abjad.inspect(staff).is_well_formed()
 
 
 def test_scoretools_Mutation_split_26():
-    r'''Splits tuplet in score
+    """
+    Splits tuplet in score
     
     Does not fracture spanners.
-    '''
+    """
 
     voice = abjad.Voice()
     voice.append(abjad.Tuplet((2, 3), "c'8 d'8 e'8"))
@@ -2046,7 +2072,7 @@ def test_scoretools_Mutation_split_26():
         )
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             \times 2/3 {
@@ -2066,17 +2092,18 @@ def test_scoretools_Mutation_split_26():
                 ]
             }
         }
-        '''
+        """
         ), format(voice)
 
     assert abjad.inspect(voice).is_well_formed()
 
 
 def test_scoretools_Mutation_split_27():
-    r'''Splits in-score measure with power-of-two denominator.
+    """
+    Splits in-score measure with power-of-two denominator.
 
     Does not fracture spanners.
-    '''
+    """
 
     voice = abjad.Voice()
     voice.append(abjad.Measure((3, 8), "c'8 d'8 e'8"))
@@ -2092,7 +2119,7 @@ def test_scoretools_Mutation_split_27():
         )
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {   % measure
@@ -2113,17 +2140,18 @@ def test_scoretools_Mutation_split_27():
                 ]
             }   % measure
         }
-        '''
+        """
         ), format(voice)
 
     assert abjad.inspect(voice).is_well_formed()
 
 
 def test_scoretools_Mutation_split_28():
-    r'''Splits in-score measure without power-of-two denominator.
+    """
+    Splits in-score measure without power-of-two denominator.
 
     Does not frature spanners.
-    '''
+    """
 
     voice = abjad.Voice()
     voice.append(abjad.Measure((3, 9), "c'8 d'8 e'8", implicit_scaling=True))
@@ -2139,7 +2167,7 @@ def test_scoretools_Mutation_split_28():
         )
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {   % measure
@@ -2166,15 +2194,16 @@ def test_scoretools_Mutation_split_28():
                 }
             }   % measure
         }
-        '''
+        """
         ), format(voice)
 
     assert abjad.inspect(voice).is_well_formed()
 
 
 def test_scoretools_Mutation_split_29():
-    r'''Splits container in middle.
-    '''
+    """
+    Splits container in middle.
+    """
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
 
@@ -2189,33 +2218,34 @@ def test_scoretools_Mutation_split_29():
     voice_2 = result[1][0]
 
     assert format(voice_1) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'8
             d'8
         }
-        '''
+        """
         ), format(voice_1)
 
     assert abjad.inspect(voice_1).is_well_formed()
 
     assert format(voice_2) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             e'8
             f'8
         }
-        '''
+        """
         ), format(voice_2)
 
     assert abjad.inspect(voice_2).is_well_formed()
 
 
 def test_scoretools_Mutation_split_30():
-    r'''Splits voice at negative index.
-    '''
+    """
+    Splits voice at negative index.
+    """
 
     staff = abjad.Staff([abjad.Voice("c'8 d'8 e'8 f'8")])
     voice = staff[0]
@@ -2229,35 +2259,35 @@ def test_scoretools_Mutation_split_30():
     right = result[1][0]
 
     assert format(left) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'8
             d'8
         }
-        '''
+        """
         ), format(left)
 
     assert format(right) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             e'8
             f'8
         }
-        '''
+        """
         ), format(right)
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
         }
-        '''
+        """
         ), format(voice)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             \new Voice
@@ -2271,17 +2301,18 @@ def test_scoretools_Mutation_split_30():
                 f'8
             }
         }
-        '''
+        """
         ), format(staff)
 
     assert abjad.inspect(staff).is_well_formed()
 
 
 def test_scoretools_Mutation_split_31():
-    r'''Slpits container in score.
+    """
+    Splits container in score.
     
     Does not fracture spanners.
-    '''
+    """
 
     staff = abjad.Staff([abjad.Container("c'8 d'8 e'8 f'8")])
     voice = staff[0]
@@ -2298,7 +2329,7 @@ def test_scoretools_Mutation_split_31():
     right = result[1][0]
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {
@@ -2312,38 +2343,38 @@ def test_scoretools_Mutation_split_31():
                 ]
             }
         }
-        '''
+        """
         ), format(staff)
 
     assert format(left) == abjad.String.normalize(
-        r'''
+        r"""
         {
             c'8
             [
             d'8
         }
-        '''
+        """
         ), format(left)
 
     assert format(right) == abjad.String.normalize(
-        r'''
+        r"""
         {
             e'8
             f'8
             ]
         }
-        '''
+        """
         ), format(right)
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         {
         }
-        '''
+        """
         ), format(voice)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {
@@ -2357,17 +2388,18 @@ def test_scoretools_Mutation_split_31():
                 ]
             }
         }
-        '''
+        """
         ), format(staff)
 
     assert abjad.inspect(staff).is_well_formed()
 
 
 def test_scoretools_Mutation_split_32():
-    r'''Splits tuplet in score.
+    """
+    Splits tuplet in score.
     
     Does not fracture spanners.
-    '''
+    """
 
     tuplet = abjad.Tuplet((4, 5), "c'8 c'8 c'8 c'8 c'8")
     voice = abjad.Voice([tuplet])
@@ -2384,18 +2416,18 @@ def test_scoretools_Mutation_split_32():
     right = result[1][0]
 
     assert format(left) == abjad.String.normalize(
-        r'''
+        r"""
         \tweak edge-height #'(0.7 . 0)
         \times 4/5 {
             c'8
             [
             c'8
         }
-        '''
+        """
         ), format(left)
 
     assert format(right) == abjad.String.normalize(
-        r'''
+        r"""
         \tweak edge-height #'(0.7 . 0)
         \times 4/5 {
             c'8
@@ -2403,18 +2435,18 @@ def test_scoretools_Mutation_split_32():
             c'8
             ]
         }
-        '''
+        """
         ), format(right)
 
     assert format(tuplet) == abjad.String.normalize(
-        r'''
+        r"""
         \times 4/5 {
         }
-        '''
+        """
         ), format(tuplet)
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             \tweak edge-height #'(0.7 . 0)
@@ -2431,11 +2463,11 @@ def test_scoretools_Mutation_split_32():
                 ]
             }
         }
-        '''
+        """
         ), format(voice)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             \new Voice
@@ -2455,17 +2487,18 @@ def test_scoretools_Mutation_split_32():
                 }
             }
         }
-        '''
+        """
         ), format(staff)
 
     assert abjad.inspect(staff).is_well_formed()
 
 
 def test_scoretools_Mutation_split_33():
-    r'''Splits tuplet in score
+    """
+    Splits tuplet in score
     
     Fractures spanners.
-    '''
+    """
 
     voice = abjad.Voice()
     voice.append(abjad.Tuplet((2, 3), "c'8 d'8 e'8"))
@@ -2476,7 +2509,7 @@ def test_scoretools_Mutation_split_33():
     tuplet = voice[1]
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             \times 2/3 {
@@ -2492,7 +2525,7 @@ def test_scoretools_Mutation_split_33():
                 ]
             }
         }
-        '''
+        """
         ), format(voice)
 
     result = abjad.mutate([tuplet]).split(
@@ -2504,17 +2537,17 @@ def test_scoretools_Mutation_split_33():
     right = result[1][0]
 
     assert format(left) == abjad.String.normalize(
-        r'''
+        r"""
         \tweak edge-height #'(0.7 . 0)
         \times 2/3 {
             f'8
             ]
         }
-        '''
+        """
         ), format(left)
 
     assert format(right) == abjad.String.normalize(
-        r'''
+        r"""
         \tweak edge-height #'(0.7 . 0)
         \times 2/3 {
             g'8
@@ -2522,13 +2555,13 @@ def test_scoretools_Mutation_split_33():
             a'8
             ]
         }
-        '''
+        """
         ), format(right)
 
     assert format(tuplet) == '\\times 2/3 {\n}'
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             \times 2/3 {
@@ -2550,17 +2583,18 @@ def test_scoretools_Mutation_split_33():
                 ]
             }
         }
-        '''
+        """
         ), format(voice)
 
     assert abjad.inspect(voice).is_well_formed()
 
 
 def test_scoretools_Mutation_split_34():
-    r'''Splits measure with power-of-two time signature denominator.
+    """
+    Splits measure with power-of-two time signature denominator.
 
     Fractures spanners.
-    '''
+    """
 
     voice = abjad.Voice()
     voice.append(abjad.Measure((3, 8), "c'8 d'8 e'8"))
@@ -2571,7 +2605,7 @@ def test_scoretools_Mutation_split_34():
     measure = voice[1]
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {   % measure
@@ -2588,7 +2622,7 @@ def test_scoretools_Mutation_split_34():
                 ]
             }   % measure
         }
-        '''
+        """
         ), format(voice)
 
     result = abjad.mutate([measure]).split(
@@ -2600,17 +2634,17 @@ def test_scoretools_Mutation_split_34():
     right = result[1][0]
 
     assert format(left) == abjad.String.normalize(
-        r'''
+        r"""
         {   % measure
             \time 1/8
             f'8
             ]
         }   % measure
-        '''
+        """
         ), format(left)
 
     assert format(right) == abjad.String.normalize(
-        r'''
+        r"""
         {   % measure
             \time 2/8
             g'8
@@ -2618,13 +2652,13 @@ def test_scoretools_Mutation_split_34():
             a'8
             ]
         }   % measure
-        '''
+        """
         ), format(right)
 
     assert pytest.raises(abjad.UnderfullContainerError, 'format(measure)')
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {   % measure
@@ -2647,17 +2681,18 @@ def test_scoretools_Mutation_split_34():
                 ]
             }   % measure
         }
-        '''
+        """
         ), format(voice)
 
     assert abjad.inspect(voice).is_well_formed()
 
 
 def test_scoretools_Mutation_split_35():
-    r'''Splits measure without power-of-two denominator.
+    """
+    Splits measure without power-of-two denominator.
 
     Fractures spanners.
-    '''
+    """
 
     voice = abjad.Voice()
     measure = abjad.Measure((3, 9), "c'8 d'8 e'8", implicit_scaling=True)
@@ -2670,7 +2705,7 @@ def test_scoretools_Mutation_split_35():
     measure = voice[1]
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {   % measure
@@ -2691,7 +2726,7 @@ def test_scoretools_Mutation_split_35():
                 }
             }   % measure
         }
-        '''
+        """
         ), format(voice)
 
     result = abjad.mutate([measure]).split(
@@ -2703,7 +2738,7 @@ def test_scoretools_Mutation_split_35():
     right = result[1][0]
 
     assert format(left) == abjad.String.normalize(
-        r'''
+        r"""
         {   % measure
             \time 1/9
             \scaleDurations #'(8 . 9) {
@@ -2711,11 +2746,11 @@ def test_scoretools_Mutation_split_35():
                 ]
             }
         }   % measure
-        '''
+        """
         ), format(left)
 
     assert format(right) == abjad.String.normalize(
-        r'''
+        r"""
         {   % measure
             \time 2/9
             \scaleDurations #'(8 . 9) {
@@ -2725,13 +2760,13 @@ def test_scoretools_Mutation_split_35():
                 ]
             }
         }   % measure
-        '''
+        """
         ), format(right)
 
     assert pytest.raises(abjad.UnderfullContainerError, 'format(measure)')
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {   % measure
@@ -2760,24 +2795,25 @@ def test_scoretools_Mutation_split_35():
                 }
             }   % measure
         }
-        '''
+        """
         ), format(voice)
 
     assert abjad.inspect(voice).is_well_formed()
 
 
 def test_scoretools_Mutation_split_36():
-    r'''Splits voice outside of score.
+    """
+    Splits voice outside of score.
 
     Fractures spanners.
-    '''
+    """
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
     beam = abjad.Beam()
     abjad.attach(beam, voice[:])
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'8
@@ -2787,7 +2823,7 @@ def test_scoretools_Mutation_split_36():
             f'8
             ]
         }
-        '''
+        """
         ), format(voice)
 
     result = abjad.mutate([voice]).split(
@@ -2799,7 +2835,7 @@ def test_scoretools_Mutation_split_36():
     right = result[1][0]
 
     assert format(left) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'8
@@ -2807,11 +2843,11 @@ def test_scoretools_Mutation_split_36():
             d'8
             ]
         }
-        '''
+        """
         ), format(left)
 
     assert format(right) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             e'8
@@ -2819,23 +2855,24 @@ def test_scoretools_Mutation_split_36():
             f'8
             ]
         }
-        '''
+        """
         ), format(right)
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
         }
-        '''
+        """
         ), format(voice)
 
 
 def test_scoretools_Mutation_split_37():
-    r'''Splits measure in score.
+    """
+    Splits measure in score.
     
     Fractures spanners.
-    '''
+    """
 
     staff = abjad.Staff()
     staff.append(abjad.Measure((2, 8), "c'8 d'8"))
@@ -2849,7 +2886,7 @@ def test_scoretools_Mutation_split_37():
     abjad.attach(slur, leaves)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -2868,7 +2905,7 @@ def test_scoretools_Mutation_split_37():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     measures = staff[:1]
@@ -2881,7 +2918,7 @@ def test_scoretools_Mutation_split_37():
     right = result[1][0]
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -2905,19 +2942,20 @@ def test_scoretools_Mutation_split_37():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     assert abjad.inspect(staff).is_well_formed()
 
 
 def test_scoretools_Mutation_split_38():
-    r'''Splits in-score measure with power-of-two denominator.
+    """
+    Splits in-score measure with power-of-two denominator.
 
     Fractures spanners but does not tie over split.
 
     Changes measure denominator.
-    '''
+    """
 
     staff = abjad.Staff([abjad.Measure((3, 8), "c'8. d'8.")])
     leaves = abjad.select(staff).leaves()
@@ -2927,7 +2965,7 @@ def test_scoretools_Mutation_split_38():
     abjad.attach(slur, leaves)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -2940,7 +2978,7 @@ def test_scoretools_Mutation_split_38():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     measures = staff[:1]
@@ -2950,7 +2988,7 @@ def test_scoretools_Mutation_split_38():
         )
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -2965,7 +3003,7 @@ def test_scoretools_Mutation_split_38():
                 ]
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     assert abjad.inspect(staff).is_well_formed()
@@ -2973,10 +3011,11 @@ def test_scoretools_Mutation_split_38():
 
 
 def test_scoretools_Mutation_split_39():
-    r'''Splits cyclically.
+    """
+    Splits cyclically.
 
     Leave spanner untouched.
-    '''
+    """
 
     voice = abjad.Voice([abjad.Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")])
     leaves = abjad.select(voice).leaves()
@@ -2986,7 +3025,7 @@ def test_scoretools_Mutation_split_39():
     abjad.attach(slur, leaves)
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -3004,7 +3043,7 @@ def test_scoretools_Mutation_split_39():
                 )
             }
         }
-        '''
+        """
         ), format(voice)
 
     note = voice[0]
@@ -3015,7 +3054,7 @@ def test_scoretools_Mutation_split_39():
         )
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -3039,15 +3078,16 @@ def test_scoretools_Mutation_split_39():
                 )
             }
         }
-        '''
+        """
         ), format(voice)
 
     assert abjad.inspect(voice).is_well_formed()
 
 
 def test_scoretools_Mutation_split_40():
-    r'''Cyclically splits all components in container.
-    '''
+    """
+    Cyclically splits all components in container.
+    """
 
     voice = abjad.Voice([abjad.Container("c'8 d'8 e'8 f'8")])
     leaves = abjad.select(voice).leaves()
@@ -3057,7 +3097,7 @@ def test_scoretools_Mutation_split_40():
     abjad.attach(slur, leaves)
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -3071,7 +3111,7 @@ def test_scoretools_Mutation_split_40():
                 )
             }
         }
-        '''
+        """
         ), format(voice)
 
     container = voice[0]
@@ -3082,7 +3122,7 @@ def test_scoretools_Mutation_split_40():
         )
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -3102,15 +3142,16 @@ def test_scoretools_Mutation_split_40():
                 )
             }
         }
-        '''
+        """
         ), format(voice)
 
     assert abjad.inspect(voice).is_well_formed()
 
 
 def test_scoretools_Mutation_split_41():
-    r'''Cyclically splits all components in container.
-    '''
+    """
+    Cyclically splits all components in container.
+    """
 
     voice = abjad.Voice([abjad.Container("c'8 d'8 e'8 f'8")])
     leaves = abjad.select(voice).leaves()
@@ -3120,7 +3161,7 @@ def test_scoretools_Mutation_split_41():
     abjad.attach(slur, leaves)
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -3134,7 +3175,7 @@ def test_scoretools_Mutation_split_41():
                 )
             }
         }
-        '''
+        """
         ), format(voice)
 
     container = voice[0]
@@ -3145,7 +3186,7 @@ def test_scoretools_Mutation_split_41():
         )
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -3169,7 +3210,7 @@ def test_scoretools_Mutation_split_41():
                 ]
             }
         }
-        '''
+        """
         ), format(voice)
 
     assert abjad.inspect(voice).is_well_formed()
@@ -3177,10 +3218,11 @@ def test_scoretools_Mutation_split_41():
 
 
 def test_scoretools_Mutation_split_42():
-    r'''Ignores extra durations.
+    """
+    Ignores extra durations.
 
     Result contains no empty shards.
-    '''
+    """
 
     voice = abjad.Voice([abjad.Container("c'8 d'8 e'8 f'8")])
     leaves = abjad.select(voice).leaves()
@@ -3190,7 +3232,7 @@ def test_scoretools_Mutation_split_42():
     abjad.attach(slur, leaves)
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -3204,7 +3246,7 @@ def test_scoretools_Mutation_split_42():
                 )
             }
         }
-        '''
+        """
         ), format(voice)
 
     container = voice[0]
@@ -3215,7 +3257,7 @@ def test_scoretools_Mutation_split_42():
         )
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -3235,7 +3277,7 @@ def test_scoretools_Mutation_split_42():
                 )
             }
         }
-        '''
+        """
         ), format(voice)
 
     assert abjad.inspect(voice).is_well_formed()
@@ -3243,8 +3285,9 @@ def test_scoretools_Mutation_split_42():
 
 
 def test_scoretools_Mutation_split_43():
-    r'''Leaves container unchanged because of empty duration list.
-    '''
+    """
+    Leaves container unchanged because of empty duration list.
+    """
 
     voice = abjad.Voice([abjad.Container("c'8 d'8 e'8 f'8")])
     leaves = abjad.select(voice).leaves()
@@ -3254,7 +3297,7 @@ def test_scoretools_Mutation_split_43():
     abjad.attach(slur, leaves)
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -3268,7 +3311,7 @@ def test_scoretools_Mutation_split_43():
                 )
             }
         }
-        '''
+        """
         ), format(voice)
 
     container = voice[0]
@@ -3279,7 +3322,7 @@ def test_scoretools_Mutation_split_43():
         )
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -3293,7 +3336,7 @@ def test_scoretools_Mutation_split_43():
                 )
             }
         }
-        '''
+        """
         ), format(voice)
 
     assert abjad.inspect(voice).is_well_formed()
@@ -3301,10 +3344,11 @@ def test_scoretools_Mutation_split_43():
 
 
 def test_scoretools_Mutation_split_44():
-    r'''Ignores extra durations.
+    """
+    Ignores extra durations.
 
     Result contains no empty shards.
-    '''
+    """
 
     voice = abjad.Voice([abjad.Container("c'8 d'8 e'8 f'8")])
     leaves = abjad.select(voice).leaves()
@@ -3314,7 +3358,7 @@ def test_scoretools_Mutation_split_44():
     abjad.attach(slur, leaves)
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -3328,7 +3372,7 @@ def test_scoretools_Mutation_split_44():
                 )
             }
         }
-        '''
+        """
         ), format(voice)
 
     container = voice[0]
@@ -3339,7 +3383,7 @@ def test_scoretools_Mutation_split_44():
         )
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -3359,7 +3403,7 @@ def test_scoretools_Mutation_split_44():
                 )
             }
         }
-        '''
+        """
         ), format(voice)
 
     assert abjad.inspect(voice).is_well_formed()
@@ -3367,8 +3411,9 @@ def test_scoretools_Mutation_split_44():
 
 
 def test_scoretools_Mutation_split_45():
-    r'''Splits leaf at non-assignable, non-power-of-two offset.
-    '''
+    """
+    Splits leaf at non-assignable, non-power-of-two offset.
+    """
 
     staff = abjad.Staff("c'4")
 
@@ -3378,7 +3423,7 @@ def test_scoretools_Mutation_split_45():
         )
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             \times 2/3 {
@@ -3389,19 +3434,20 @@ def test_scoretools_Mutation_split_45():
                 c'16
             }
         }
-        '''
+        """
         ), format(staff)
 
     assert abjad.inspect(staff).is_well_formed()
 
 
 def test_scoretools_Mutation_split_46():
-    r'''Splits in-score measure without power-of-two denominator.
+    """
+    Splits in-score measure without power-of-two denominator.
 
     Fractures spanners but does not tie over split.
     
     Changes measure denominator.
-    '''
+    """
 
     measure = abjad.Measure((3, 12), "c'8. d'8.", implicit_scaling=True)
     staff = abjad.Staff([measure])
@@ -3410,7 +3456,7 @@ def test_scoretools_Mutation_split_46():
     abjad.attach(beam, leaves)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -3423,7 +3469,7 @@ def test_scoretools_Mutation_split_46():
                 }
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     measures = staff[:1]
@@ -3433,7 +3479,7 @@ def test_scoretools_Mutation_split_46():
         )
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -3452,7 +3498,7 @@ def test_scoretools_Mutation_split_46():
                 }
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     assert abjad.inspect(staff).is_well_formed()

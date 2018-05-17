@@ -4,7 +4,8 @@ from abjad.tools import pitchtools
 
 
 class TonalAnalysis(abctools.AbjadObject):
-    r'''Tonal analysis agent.
+    r"""
+    Tonal analysis agent.
 
     ..  container:: example
 
@@ -46,7 +47,7 @@ class TonalAnalysis(abctools.AbjadObject):
 
         >>> agent_2 = abjad.analyze(staff[:1] + staff[-1:])
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -261,7 +262,8 @@ class TonalAnalysis(abctools.AbjadObject):
     ### PUBLIC METHODS ###
 
     def analyze_chords(self):
-        r"""Analyzes chords in selection.
+        r"""
+        Analyzes chords in selection.
 
         ..  container:: example
 
@@ -397,7 +399,8 @@ class TonalAnalysis(abctools.AbjadObject):
         return result
 
     def analyze_incomplete_chords(self):
-        r'''Analyzes incomplete chords.
+        """
+        Analyzes incomplete chords.
 
         ..  container:: example
 
@@ -420,7 +423,7 @@ class TonalAnalysis(abctools.AbjadObject):
         Raises tonal harmony error when chord in client can not analyze.
 
         Returns list with elements each equal to chord class or none.
-        '''
+        """
         result = []
         for component in self._client:
             chord_class = self._analyze_incomplete_chord(component)
@@ -428,7 +431,8 @@ class TonalAnalysis(abctools.AbjadObject):
         return result
 
     def analyze_incomplete_tonal_functions(self, key_signature):
-        r'''Analyzes incomplete tonal functions of chords in client
+        """
+        Analyzes incomplete tonal functions of chords in client
         according to `key_signature`.
 
         ..  container:: example
@@ -464,7 +468,7 @@ class TonalAnalysis(abctools.AbjadObject):
         Raises tonal harmony error when chord in client can not analyze.
 
         Returns list with elements each equal to tonal function or none.
-        '''
+        """
         result = []
         for component in self._client:
             tonal_function = self._analyze_incomplete_tonal_function(
@@ -475,9 +479,10 @@ class TonalAnalysis(abctools.AbjadObject):
         return result
 
     def analyze_neighbor_notes(self):
-        r'''Is true when `note` in client is preceeded by a stepwise interval
+        r"""
+        Is true when `note` in client is preceeded by a stepwise interval
         in one direction and followed by a stepwise interval in the other
-        direction. Otherwise false.
+        direction.
 
         ..  container:: example
 
@@ -500,7 +505,7 @@ class TonalAnalysis(abctools.AbjadObject):
             [False, False, False, False]
 
         Returns list of boolean values.
-        '''
+        """
         result = []
         for component in self._client:
             tonal_function = self._is_neighbor_note(component)
@@ -508,8 +513,9 @@ class TonalAnalysis(abctools.AbjadObject):
         return result
 
     def analyze_passing_tones(self):
-        r'''Is true when note in client is both preceeded and followed by
-        scalewise notes. Otherwise false.
+        r"""
+        Is true when note in client is both preceeded and followed by
+        scalewise notes.
 
         ..  container:: example
 
@@ -532,7 +538,7 @@ class TonalAnalysis(abctools.AbjadObject):
             [False, True, True, False]
 
         Returns list of boolean values.
-        '''
+        """
         result = []
         for component in self._client:
             tonal_function = self._is_passing_tone(component)
@@ -540,7 +546,8 @@ class TonalAnalysis(abctools.AbjadObject):
         return result
 
     def analyze_tonal_functions(self, key_signature):
-        r'''Analyzes tonal function of chords in client according to
+        """
+        Analyzes tonal function of chords in client according to
         `key_signature`.
 
         ..  container:: example
@@ -619,7 +626,7 @@ class TonalAnalysis(abctools.AbjadObject):
         Returns none when no tonal function is understood.
 
         Returns list with elements each equal to tonal function or none.
-        '''
+        """
         result = []
         for component in self._client:
             tonal_function = self._analyze_tonal_function(
@@ -628,7 +635,8 @@ class TonalAnalysis(abctools.AbjadObject):
         return result
 
     def are_scalar_notes(self):
-        r'''Is true when notes in client are scalar. Otherwise false
+        """
+        Is true when notes in client are scalar.
 
         ..  container:: example
 
@@ -659,7 +667,7 @@ class TonalAnalysis(abctools.AbjadObject):
             False
 
         Returns true or false.
-        '''
+        """
         import abjad
         direction_string = None
         notes = abjad.iterate(self._client).components(abjad.Note)
@@ -677,8 +685,8 @@ class TonalAnalysis(abctools.AbjadObject):
         return True
 
     def are_stepwise_ascending_notes(self):
-        r'''Is true when notes in client are stepwise ascending. Otherwise
-        false.
+        """
+        Is true when notes in client are stepwise ascending.
 
         ..  container:: example
 
@@ -709,7 +717,7 @@ class TonalAnalysis(abctools.AbjadObject):
             False
 
         Returns true or false.
-        '''
+        """
         import abjad
         notes = abjad.iterate(self._client).components(abjad.Note)
         for left, right in abjad.sequence(notes).nwise():
@@ -723,8 +731,8 @@ class TonalAnalysis(abctools.AbjadObject):
         return True
 
     def are_stepwise_descending_notes(self):
-        r'''Is true when notes in client are stepwise descending. Otherwise
-        false.
+        """
+        Is true when notes in client are stepwise descending.
 
         ..  container:: example
 
@@ -755,7 +763,7 @@ class TonalAnalysis(abctools.AbjadObject):
             False
 
         Returns true or false.
-        '''
+        """
         import abjad
         notes = abjad.iterate(self._client).components(abjad.Note)
         for left, right in abjad.sequence(notes).nwise():
@@ -769,7 +777,8 @@ class TonalAnalysis(abctools.AbjadObject):
         return True
 
     def are_stepwise_notes(self):
-        r'''Is true when notes in client are stepwise. Otherwise false.
+        """
+        Is true when notes in client are stepwise.
 
         ..  container:: example
 
@@ -800,7 +809,7 @@ class TonalAnalysis(abctools.AbjadObject):
             False
 
         Returns true or false.
-        '''
+        """
         import abjad
         notes = abjad.iterate(
             self._client).components(abjad.Note)
@@ -818,8 +827,9 @@ class TonalAnalysis(abctools.AbjadObject):
 
     @property
     def client(self):
-        r'''Gets client.
+        """
+        Gets client.
 
         Returns selection or component.
-        '''
+        """
         return self._client

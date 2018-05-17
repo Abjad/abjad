@@ -2,7 +2,8 @@ from .Instrument import Instrument
 
 
 class AltoTrombone(Instrument):
-    r'''Alto trombone.
+    r"""
+    Alto trombone.
 
     ..  container:: example
 
@@ -27,7 +28,7 @@ class AltoTrombone(Instrument):
                 fs4
             }
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -64,7 +65,8 @@ class AltoTrombone(Instrument):
     ### SPECIAL METHODS ###
 
     def __format__(self, format_specification=''):
-        r'''Formats alto trombone.
+        """
+        Formats alto trombone.
 
         Set `format_specification` to `''` or `'storage'`.
         Interprets `''` equal to `'storage'`.
@@ -89,7 +91,7 @@ class AltoTrombone(Instrument):
                 )
 
         Returns string.
-        '''
+        """
         superclass = super(AltoTrombone, self)
         return superclass.__format__(format_specification=format_specification)
 
@@ -97,7 +99,8 @@ class AltoTrombone(Instrument):
 
     @property
     def allowable_clefs(self):
-        r'''Gets alto trombone's allowable clefs.
+        """
+        Gets alto trombone's allowable clefs.
 
         ..  container:: example
 
@@ -106,12 +109,13 @@ class AltoTrombone(Instrument):
             ('bass', 'tenor')
 
         Returns clef list.
-        '''
+        """
         return Instrument.allowable_clefs.fget(self)
 
     @property
     def markup(self):
-        r'''Gets alto trombone's instrument name markup.
+        """
+        Gets alto trombone's instrument name markup.
 
         ..  container:: example
 
@@ -122,12 +126,13 @@ class AltoTrombone(Instrument):
             >>> abjad.show(alto_trombone.markup) # doctest: +SKIP
 
         Returns markup.
-        '''
+        """
         return Instrument.markup.fget(self)
 
     @property
     def middle_c_sounding_pitch(self):
-        r'''Gets sounding pitch of alto trombone's written middle C.
+        """
+        Gets sounding pitch of alto trombone's written middle C.
 
         ..  container:: example
 
@@ -138,12 +143,13 @@ class AltoTrombone(Instrument):
             >>> abjad.show(alto_trombone.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
-        '''
+        """
         return Instrument.middle_c_sounding_pitch.fget(self)
 
     @property
     def name(self):
-        r'''Gets alto trombone's name.
+        """
+        Gets alto trombone's name.
 
         ..  container:: example
 
@@ -152,12 +158,13 @@ class AltoTrombone(Instrument):
             'alto trombone'
 
         Returns string.
-        '''
+        """
         return Instrument.name.fget(self)
 
     @property
     def pitch_range(self):
-        r'''Gets alto trombone's range.
+        """
+        Gets alto trombone's range.
 
         ..  container:: example
 
@@ -168,12 +175,13 @@ class AltoTrombone(Instrument):
             >>> abjad.show(alto_trombone.pitch_range) # doctest: +SKIP
 
         Returns pitch range.
-        '''
+        """
         return Instrument.pitch_range.fget(self)
 
     @property
     def short_markup(self):
-        r'''Gets alto trombone's short instrument name markup.
+        """
+        Gets alto trombone's short instrument name markup.
 
         ..  container:: example
 
@@ -184,12 +192,13 @@ class AltoTrombone(Instrument):
             >>> abjad.show(alto_trombone.short_markup) # doctest: +SKIP
 
         Returns markup.
-        '''
+        """
         return Instrument.short_markup.fget(self)
 
     @property
     def short_name(self):
-        r'''Gets alto trombone's short instrument name.
+        """
+        Gets alto trombone's short instrument name.
 
         ..  container:: example
 
@@ -198,5 +207,5 @@ class AltoTrombone(Instrument):
             'alt. trb.'
 
         Returns string.
-        '''
+        """
         return Instrument.short_name.fget(self)

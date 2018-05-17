@@ -2,8 +2,9 @@ import abjad
 
 
 def test_scoretools_Staff_append_01():
-    r'''Append one note.
-    '''
+    """
+    Append one note.
+    """
 
     staff = abjad.Staff(abjad.Note("c'4") * 4)
     staff.append(abjad.Note("c'4"))
@@ -13,8 +14,9 @@ def test_scoretools_Staff_append_01():
 
 
 def test_scoretools_Staff_append_02():
-    r'''Append one chord.
-    '''
+    """
+    Append one chord.
+    """
 
     staff = abjad.Staff(abjad.Note("c'4") * 4)
     staff.append(abjad.Chord([2, 3, 4], (1, 4)))
@@ -24,8 +26,9 @@ def test_scoretools_Staff_append_02():
 
 
 def test_scoretools_Staff_append_03():
-    r'''Append one tuplet.
-    '''
+    """
+    Append one tuplet.
+    """
 
     staff = abjad.Staff(abjad.Note("c'4") * 4)
     staff.append(abjad.Tuplet((2, 3), 3 * abjad.Note(0, (1, 8))))

@@ -2,9 +2,10 @@ import abjad
 
 
 def test_scoretools_Selection_are_contiguous_same_parent_01():
-    r'''Is true for strictly contiguous leaves in voice.
+    """
+    Is true for strictly contiguous leaves in voice.
     Is false for other time orderings of leaves in voice.
-    '''
+    """
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
 
@@ -27,11 +28,13 @@ def test_scoretools_Selection_are_contiguous_same_parent_01():
 
 
 def test_scoretools_Selection_are_contiguous_same_parent_02():
-    r'''Is true for unincorporated components when orphans allowed.
+    """
+    Is true for unincorporated components when orphans allowed.
     Is false for unincorporated components when orphans not allowed.
-    '''
+    """
 
-    voice = abjad.Voice(r'''
+    voice = abjad.Voice(
+        r"""
         {
             c'8
             d'8
@@ -40,10 +43,11 @@ def test_scoretools_Selection_are_contiguous_same_parent_02():
             e'8
             f'8
         }
-        ''')
+        """
+        )
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -55,7 +59,7 @@ def test_scoretools_Selection_are_contiguous_same_parent_02():
                 f'8
             }
         }
-        '''
+        """
         )
 
     assert abjad.select(voice).are_contiguous_same_parent()
@@ -71,9 +75,10 @@ def test_scoretools_Selection_are_contiguous_same_parent_02():
 
 
 def test_scoretools_Selection_are_contiguous_same_parent_03():
-    r'''Is true for orphan leaves when allow_orphans is true.
+    """
+    Is true for orphan leaves when allow_orphans is true.
     Is false for orphan leaves when allow_orphans is false.
-    '''
+    """
 
     notes = [
         abjad.Note("c'8"),
@@ -84,7 +89,8 @@ def test_scoretools_Selection_are_contiguous_same_parent_03():
 
 
 def test_scoretools_Selection_are_contiguous_same_parent_04():
-    r'''Empty selection returns true.
-    '''
+    """
+    Empty selection returns true.
+    """
 
     assert abjad.Selection().are_contiguous_same_parent()

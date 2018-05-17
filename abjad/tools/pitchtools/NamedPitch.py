@@ -290,7 +290,6 @@ class NamedPitch(Pitch):
 
     def __eq__(self, argument):
         r'''Is true when `argument` is a named pitch equal to this named pitch.
-        Otherwise false.
 
         ..  container:: example
 
@@ -331,7 +330,7 @@ class NamedPitch(Pitch):
         return super(NamedPitch, self).__hash__()
 
     def __lt__(self, argument):
-        r'''Is true when named pitch is less than `argument`. Otherwise false.
+        r'''Is true when named pitch is less than `argument`.
 
         ..  container:: example
 

@@ -6,7 +6,8 @@ def f(
     argument: typing.Any,
     strict: int = None,
     ) -> None:
-    r'''Formats ``argument`` and prints result.
+    r"""
+    Formats ``argument`` and prints result.
     
     ..  container:: example
 
@@ -37,7 +38,7 @@ def f(
 
         >>> abjad.show(staff) # doctest: +SKIP
 
-    '''
+    """
     if strict is not None:
         assert isinstance(strict, int), repr(strict)
     if hasattr(argument, '_publish_storage_format'):

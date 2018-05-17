@@ -9,7 +9,7 @@ def test_scoretools_Inspection_get_sounding_pitches_01():
     abjad.Instrument.transpose_from_sounding_pitch(staff)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             \set Staff.instrumentName = \markup { Glockenspiel }
@@ -17,7 +17,7 @@ def test_scoretools_Inspection_get_sounding_pitches_01():
             <c' e'>4
             <d' fs'>4
         }
-        '''
+        """
         )
 
     sounding_pitches = abjad.inspect(staff[0]).get_sounding_pitches()

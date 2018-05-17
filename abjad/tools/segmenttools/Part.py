@@ -5,7 +5,8 @@ from abjad.tools.systemtools.FormatSpecification import FormatSpecification
 
 
 class Part(AbjadObject):
-    r'''Part.
+    """
+    Part.
 
     ..  container:: example
 
@@ -23,7 +24,7 @@ class Part(AbjadObject):
             section_abbreviation='VN-1',
             )
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -93,7 +94,8 @@ class Part(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument) -> bool:
-        r'''Is true when ``argument`` is a part with the same section and
+        """
+        Is true when ``argument`` is a part with the same section and
         member as this part.
 
         ..  container:: example
@@ -135,22 +137,24 @@ class Part(AbjadObject):
             >>> part_3 == part_3
             True
 
-        '''
+        """
         if isinstance(argument, type(self)):
             if argument.section == self.section:
                 return argument.member == self.member
         return False
 
     def __hash__(self):
-        r'''Hashes part.
-        '''
+        """
+        Hashes part.
+        """
         return super(Part, self).__hash__()
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def identifier(self) -> str:
-        r'''Gets identifier.
+        """
+        Gets identifier.
 
         ..  container:: example
 
@@ -164,7 +168,7 @@ class Part(AbjadObject):
             >>> part.identifier
             'VN-1-18'
 
-        '''
+        """
         assert isinstance(self.section_abbreviation, str)
         if self.member is None:
             return self.section_abbreviation
@@ -174,7 +178,8 @@ class Part(AbjadObject):
 
     @property
     def instrument(self) -> typing.Optional[str]:
-        r'''Gets instrument.
+        """
+        Gets instrument.
 
         ..  container:: example
 
@@ -188,12 +193,13 @@ class Part(AbjadObject):
             >>> part.instrument
             'Violin'
 
-        '''
+        """
         return self._instrument
 
     @property
     def member(self) -> typing.Optional[int]:
-        r'''Gets member.
+        """
+        Gets member.
 
         ..  container:: example
 
@@ -207,12 +213,13 @@ class Part(AbjadObject):
             >>> part.member
             18
 
-        '''
+        """
         return self._member
 
     @property
     def name(self) -> typing.Optional[str]:
-        r'''Gets name.
+        """
+        Gets name.
 
         ..  container:: example
 
@@ -237,12 +244,13 @@ class Part(AbjadObject):
             >>> part.name
             'FirstViolin01'
 
-        '''
+        """
         return self._name
 
     @property
     def number(self) -> typing.Optional[int]:
-        r'''Gets number.
+        """
+        Gets number.
 
         ..  container:: example
 
@@ -257,12 +265,13 @@ class Part(AbjadObject):
             >>> part.number
             107
 
-        '''
+        """
         return self._number
 
     @property
     def section(self) -> typing.Optional[str]:
-        r'''Gets section.
+        """
+        Gets section.
 
         ..  container:: example
 
@@ -276,12 +285,13 @@ class Part(AbjadObject):
             >>> part.section
             'FirstViolin'
 
-        '''
+        """
         return self._section
 
     @property
     def section_abbreviation(self) -> typing.Optional[str]:
-        r'''Gets section_abbreviation.
+        """
+        Gets section_abbreviation.
 
         ..  container:: example
 
@@ -295,12 +305,13 @@ class Part(AbjadObject):
             >>> part.section_abbreviation
             'VN-1'
 
-        '''
+        """
         return self._section_abbreviation
 
     @property
     def zfill(self) -> typing.Optional[int]:
-        r'''Gets zfill.
+        """
+        Gets zfill.
 
         ..  container:: example
 
@@ -319,5 +330,5 @@ class Part(AbjadObject):
             >>> str(part.member).zfill(part.zfill)
             '09'
 
-        '''
+        """
         return self._zfill

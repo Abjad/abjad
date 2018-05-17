@@ -3,8 +3,9 @@ import pytest
 
 
 def test_scoretools_NoteHead_written_pitch_01():
-    r'''Set abjad.Note head pitch with integer.
-    '''
+    """
+    Set note-head head pitch with integer.
+    """
 
     note = abjad.Note(13, (1, 4))
     note.note_head.written_pitch = 14
@@ -16,8 +17,9 @@ def test_scoretools_NoteHead_written_pitch_01():
 
 
 def test_scoretools_NoteHead_written_pitch_02():
-    r'''Set abjad.Note head pitch with pitch.
-    '''
+    """
+    Set note-head pitch with pitch.
+    """
 
     note = abjad.Note(13, (1, 4))
     note.note_head.written_pitch = abjad.NamedPitch(14)
@@ -29,8 +31,9 @@ def test_scoretools_NoteHead_written_pitch_02():
 
 
 def test_scoretools_NoteHead_written_pitch_03():
-    r'''Can not set note-head pitch to none.
-    '''
+    """
+    Can not set note-head pitch to none.
+    """
 
     note = abjad.Note(13, (1, 4))
 
@@ -38,9 +41,10 @@ def test_scoretools_NoteHead_written_pitch_03():
 
 
 def test_scoretools_NoteHead_written_pitch_04():
-    r'''Set note-head pitch from another note or note-head.
+    """
+    Set note-head pitch from another note or note-head.
     Make sure this does not cause reference problems.
-    '''
+    """
 
     n1 = abjad.Note(12, (1, 4))
     n2 = abjad.Note(14, (1, 4))

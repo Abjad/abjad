@@ -1,10 +1,11 @@
 import abc
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from .AbjadObject import AbjadObject
 
 
 class ContextManager(AbjadObject):
-    r'''An abstract context manager class.
-    '''
+    """
+    An abstract context manager class.
+    """
 
     ### CLASS VARIABLES ###
 
@@ -20,12 +21,14 @@ class ContextManager(AbjadObject):
 
     @abc.abstractmethod
     def __enter__(self):
-        r'''Enters context manager.
-        '''
+        """
+        Enters context manager.
+        """
         raise NotImplementedError
 
     @abc.abstractmethod
     def __exit__(self, exc_type, exc_value, traceback):
-        r'''Exits context manager.
-        '''
+        """
+        Exits context manager.
+        """
         raise NotImplementedError

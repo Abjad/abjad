@@ -2,7 +2,8 @@ from .Inequality import Inequality
 
 
 class DurationInequality(Inequality):
-    r'''Duration inequality.
+    """
+    Duration inequality.
 
     ..  container:: example
 
@@ -22,7 +23,7 @@ class DurationInequality(Inequality):
         >>> inequality(abjad.Container("c'1 d'1"))
         False
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -60,10 +61,11 @@ class DurationInequality(Inequality):
     ### SPECIAL METHODS ###
 
     def __call__(self, argument):
-        r'''Calls inequality on `argument`.
+        """
+        Calls inequality on ``argument``.
 
         Returns true or false.
-        '''
+        """
         import abjad
         if isinstance(argument, abjad.Component):
             if self.preprolated:
@@ -83,16 +85,18 @@ class DurationInequality(Inequality):
 
     @property
     def duration(self):
-        r'''Gets duration.
+        """
+        Gets duration.
 
         Returns duration.
-        '''
+        """
         return self._duration
 
     @property
     def preprolated(self):
-        r'''Is true when inequality evaluates preprolated duration.
+        """
+        Is true when inequality evaluates preprolated duration.
 
         Returns true, false or none.
-        '''
+        """
         return self._preprolated

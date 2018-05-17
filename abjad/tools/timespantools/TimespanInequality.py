@@ -4,7 +4,8 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class TimespanInequality(AbjadObject):
-    '''Timespan inequality.
+    """
+    Timespan inequality.
 
     ..  container:: example
 
@@ -14,7 +15,7 @@ class TimespanInequality(AbjadObject):
         >>> inequality
         TimespanInequality('timespan_2.start_offset < timespan_1.start_offset')
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -76,7 +77,8 @@ class TimespanInequality(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __format__(self, format_specification=''):
-        r'''Formats inequality.
+        """
+        Formats inequality.
 
             >>> template = 'timespan_2.start_offset < timespan_1.start_offset'
             >>> inequality = abjad.TimespanInequality(template)
@@ -84,7 +86,7 @@ class TimespanInequality(AbjadObject):
             abjad.TimespanInequality('timespan_2.start_offset < timespan_1.start_offset')
 
         Returns string.
-        '''
+        """
         from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
             return systemtools.StorageFormatManager(self).get_storage_format()
@@ -93,32 +95,36 @@ class TimespanInequality(AbjadObject):
     ### PRIVATE METHODS ###
 
     def _find_index_ge(self, a, x):
-        r'''Finds index of leftmost item greater than or equal to x.
-        '''
+        """
+        Finds index of leftmost item greater than or equal to x.
+        """
         i = bisect.bisect_left(a, x)
         if i != len(a):
             return i
         raise ValueError
 
     def _find_index_gt(self, a, x):
-        r'''Finds index of leftmost value greater than x.
-        '''
+        """
+        Finds index of leftmost value greater than x.
+        """
         i = bisect.bisect_right(a, x)
         if i != len(a):
             return i
         raise ValueError
 
     def _find_index_le(self, a, x):
-        r'''Finds index of rightmost value less than or equal to x.
-        '''
+        """
+        Finds index of rightmost value less than or equal to x.
+        """
         i = bisect.bisect_right(a, x)
         if i:
             return i - 1
         raise ValueError
 
     def _find_index_lt(self, a, x):
-        r'''Finds index of rightmost value less than x.
-        '''
+        """
+        Finds index of rightmost value less than x.
+        """
         i = bisect.bisect_left(a, x)
         if i:
             return i - 1
@@ -133,8 +139,9 @@ class TimespanInequality(AbjadObject):
             )
 
     def _index(self, a, x):
-        r'''Finds index of leftmost value exactly equal to x.
-        '''
+        """
+        Finds index of leftmost value exactly equal to x.
+        """
         i = bisect.bisect_left(a, x)
         if i != len(a) and a[i] == x:
             return i
@@ -153,10 +160,11 @@ class TimespanInequality(AbjadObject):
         timespan_2_start_offset,
         timespan_2_stop_offset,
         ):
-        r'''Evalutes inequality.
+        """
+        Evalutes inequality.
 
         Returns true or false.
-        '''
+        """
         import abjad
         make_repr = self._make_repr
         template = self.template
@@ -177,10 +185,11 @@ class TimespanInequality(AbjadObject):
         timespan_stop,
         offset,
         ):
-        r'''Evalutes offset inequality.
+        """
+        Evalutes offset inequality.
 
         Returns true or false.
-        '''
+        """
         import abjad
         make_repr = self._make_repr
         template = self.template
@@ -200,12 +209,13 @@ class TimespanInequality(AbjadObject):
         timespan_2_start_offsets,
         timespan_2_stop_offsets,
         ):
-        r'''Gets offset indices of inequality.
+        """
+        Gets offset indices of inequality.
 
         .. todo:: add example.
 
         Returns nonnegative integer pair.
-        '''
+        """
         inequality = self.template
         assert isinstance(inequality, str), repr(inequality)
         leftmost_index, rightmost_index = None, None
@@ -438,7 +448,8 @@ class TimespanInequality(AbjadObject):
 
     @property
     def template(self):
-        r'''Gets template of inequality.
+        """
+        Gets template of inequality.
 
             >>> template = 'timespan_2.start_offset < timespan_1.start_offset'
             >>> inequality = abjad.TimespanInequality(template)
@@ -446,5 +457,5 @@ class TimespanInequality(AbjadObject):
             'timespan_2.start_offset < timespan_1.start_offset'
 
         Returns string.
-        '''
+        """
         return self._template

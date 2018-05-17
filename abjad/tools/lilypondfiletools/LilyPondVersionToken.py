@@ -2,14 +2,15 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class LilyPondVersionToken(AbjadObject):
-    r'''A LilyPond file ``\version`` token.
+    r"""
+    A LilyPond file ``\version`` token.
 
     ..  container:: example
 
         >>> abjad.LilyPondVersionToken() # doctest: +SKIP
         LilyPondVersionToken('2.19.0')
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -29,7 +30,8 @@ class LilyPondVersionToken(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __format__(self, format_specification=''):
-        r'''Formats LilyPond version token.
+        r"""
+        Formats LilyPond version token.
 
         ..  container:: example
 
@@ -38,7 +40,7 @@ class LilyPondVersionToken(AbjadObject):
             \version "2.19.0"
 
         Return string.
-        '''
+        """
         from abjad.tools import systemtools
         if format_specification in ('', 'lilypond'):
             return self._get_lilypond_format()
@@ -47,7 +49,8 @@ class LilyPondVersionToken(AbjadObject):
         return str(self)
 
     def __repr__(self):
-        r'''Gets interpreter representation of LilyPond version_string token.
+        """
+        Gets interpreter representation of LilyPond version_string token.
 
         ..  container:: example
 
@@ -56,7 +59,7 @@ class LilyPondVersionToken(AbjadObject):
             LilyPondVersionToken('2.19.0')
 
         Returns string.
-        '''
+        """
         return '{}({!r})'.format(type(self).__name__, self.version_string)
 
     ### PRIVATE METHODS ###
@@ -68,7 +71,8 @@ class LilyPondVersionToken(AbjadObject):
 
     @property
     def version_string(self):
-        r'''Gets version string of LilyPond version token.
+        """
+        Gets version string of LilyPond version token.
 
         ..  container:: example
 
@@ -91,5 +95,5 @@ class LilyPondVersionToken(AbjadObject):
             '2.19.0'
 
         Returns string.
-        '''
+        """
         return self._version_string

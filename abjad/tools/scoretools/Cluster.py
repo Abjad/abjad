@@ -2,7 +2,8 @@ from .Container import Container
 
 
 class Cluster(Container):
-    '''Cluster.
+    """
+    Cluster.
 
     ..  container:: example
 
@@ -21,7 +22,7 @@ class Cluster(Container):
         >>> cluster
         Cluster("c'8 <d' g'>8 b'8")
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 

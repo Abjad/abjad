@@ -2,16 +2,17 @@ import abjad
 
 
 def test_scoretools_Cluster___init___01():
-    r'''Cluster can be empty.
-    '''
+    """
+    Cluster can be empty.
+    """
     cluster = abjad.Cluster([])
     assert not cluster.is_simultaneous
     assert len(cluster) == 0
     assert format(cluster) == abjad.String.normalize(
-        r'''
+        r"""
         \makeClusters {
         }
-        '''
+        """
         )
 
 
@@ -21,12 +22,12 @@ def test_scoretools_Cluster___init___02():
     assert not cluster.is_simultaneous
     assert len(cluster) == 4
     assert format(cluster) == abjad.String.normalize(
-        r'''
+        r"""
         \makeClusters {
             cs'4
             cs'4
             cs'4
             cs'4
         }
-        '''
+        """
         )

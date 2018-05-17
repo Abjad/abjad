@@ -104,7 +104,7 @@ class NumberedInterval(Interval):
 
     def __eq__(self, argument):
         r'''Is true when `argument` is a numbered interval with number equal to that of
-        this numbered interval. Otherwise false.
+        this numbered interval.
 
         ..  container:: example
 
@@ -154,7 +154,7 @@ class NumberedInterval(Interval):
     def __lt__(self, argument):
         r'''Is true when `argument` is a numbered interval with same direction
         number as this numbered interval and with number greater than that of
-        this numbered interval. Otherwise false.
+        this numbered interval.
 
         ..  container:: example
 

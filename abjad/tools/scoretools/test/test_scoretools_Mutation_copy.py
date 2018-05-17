@@ -2,11 +2,12 @@ import abjad
 
 
 def test_scoretools_Mutation_copy_01():
-    r'''Deep copies components.
+    """
+    Deep copies components.
     Deep copies spanners that abjad.attach to client.
     Fractures spanners that abjad.attach to components not in client.
     Returns Python list of copied components.
-    '''
+    """
 
     voice = abjad.Voice("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
     leaves = abjad.select(voice).leaves()
@@ -18,7 +19,7 @@ def test_scoretools_Mutation_copy_01():
     abjad.attach(beam, leaves)
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {   % measure
@@ -41,14 +42,14 @@ def test_scoretools_Mutation_copy_01():
                 \stopTrillSpan
             }   % measure
         }
-        '''
+        """
         )
 
     result = abjad.mutate(leaves[2:4]).copy()
     new = abjad.Voice(result)
 
     assert format(new) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             e'8
@@ -60,15 +61,16 @@ def test_scoretools_Mutation_copy_01():
             )
             \stopTrillSpan
         }
-        '''
+        """
         )
     assert abjad.inspect(voice).is_well_formed()
     assert abjad.inspect(new).is_well_formed()
 
 
 def test_scoretools_Mutation_copy_02():
-    r'''Copy one measure and fracture spanners.
-    '''
+    """
+    Copy one measure and fracture spanners.
+    """
 
     voice = abjad.Voice("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
     leaves = abjad.select(voice).leaves()
@@ -80,7 +82,7 @@ def test_scoretools_Mutation_copy_02():
     abjad.attach(beam, leaves)
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {   % measure
@@ -103,14 +105,14 @@ def test_scoretools_Mutation_copy_02():
                 \stopTrillSpan
             }   % measure
         }
-        '''
+        """
         )
 
     result = abjad.mutate(voice[1:2]).copy()
     new = abjad.Voice(result)
 
     assert format(new) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {   % measure
@@ -125,15 +127,16 @@ def test_scoretools_Mutation_copy_02():
                 \stopTrillSpan
             }   % measure
         }
-        '''
+        """
         )
     assert abjad.inspect(voice).is_well_formed()
     assert abjad.inspect(new).is_well_formed()
 
 
 def test_scoretools_Mutation_copy_03():
-    r'''Three notes crossing measure boundaries.
-    '''
+    """
+    Three notes crossing measure boundaries.
+    """
 
     voice = abjad.Voice("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
     leaves = abjad.select(voice).leaves()
@@ -145,7 +148,7 @@ def test_scoretools_Mutation_copy_03():
     abjad.attach(beam, leaves)
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {   % measure
@@ -168,14 +171,14 @@ def test_scoretools_Mutation_copy_03():
                 \stopTrillSpan
             }   % measure
         }
-        '''
+        """
         )
 
     result = abjad.mutate(leaves[-3:]).copy()
     new = abjad.Voice(result)
 
     assert format(new) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             f'8
@@ -188,7 +191,7 @@ def test_scoretools_Mutation_copy_03():
             )
             \stopTrillSpan
         }
-        '''
+        """
         )
     assert abjad.inspect(voice).is_well_formed()
     assert abjad.inspect(new).is_well_formed()
@@ -205,7 +208,7 @@ def test_scoretools_Mutation_copy_04():
     abjad.attach(slur, leaves)
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {   % measure
@@ -230,7 +233,7 @@ def test_scoretools_Mutation_copy_04():
                 )
             }   % measure
         }
-        '''
+        """
         )
 
     selection = abjad.select(voice)
@@ -240,7 +243,7 @@ def test_scoretools_Mutation_copy_04():
         abjad.detach(abjad.Spanner, component)
 
     assert format(new_voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {   % measure
@@ -261,7 +264,7 @@ def test_scoretools_Mutation_copy_04():
                 c''8
             }   % measure
         }
-        '''
+        """
         )
     assert abjad.inspect(new_voice).is_well_formed()
 
@@ -277,7 +280,7 @@ def test_scoretools_Mutation_copy_05():
     abjad.attach(slur, leaves)
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {   % measure
@@ -302,7 +305,7 @@ def test_scoretools_Mutation_copy_05():
                 )
             }   % measure
         }
-        '''
+        """
         )
 
     result = abjad.mutate(voice[1:]).copy()
@@ -311,7 +314,7 @@ def test_scoretools_Mutation_copy_05():
         abjad.detach(abjad.Spanner, component)
 
     assert format(new_voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {   % measure
@@ -328,7 +331,7 @@ def test_scoretools_Mutation_copy_05():
                 c''8
             }   % measure
         }
-        '''
+        """
         )
     assert abjad.inspect(voice).is_well_formed()
     assert abjad.inspect(new_voice).is_well_formed()
@@ -345,7 +348,7 @@ def test_scoretools_Mutation_copy_06():
     abjad.attach(slur, leaves)
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {   % measure
@@ -370,7 +373,7 @@ def test_scoretools_Mutation_copy_06():
                 )
             }   % measure
         }
-        '''
+        """
         )
 
     result = abjad.mutate(leaves[:6]).copy()
@@ -379,7 +382,7 @@ def test_scoretools_Mutation_copy_06():
         abjad.detach(abjad.Spanner, component)
 
     assert format(new_voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'8
@@ -389,7 +392,7 @@ def test_scoretools_Mutation_copy_06():
             g'8
             a'8
         }
-        '''
+        """
         )
     assert abjad.inspect(voice).is_well_formed()
     assert abjad.inspect(new_voice).is_well_formed()
@@ -406,7 +409,7 @@ def test_scoretools_Mutation_copy_07():
     abjad.attach(slur, leaves)
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {   % measure
@@ -431,7 +434,7 @@ def test_scoretools_Mutation_copy_07():
                 )
             }   % measure
         }
-        '''
+        """
         )
 
     result = abjad.mutate(voice[-2:]).copy()
@@ -440,7 +443,7 @@ def test_scoretools_Mutation_copy_07():
         abjad.detach(abjad.Spanner, component)
 
     assert format(new_voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {   % measure
@@ -453,7 +456,7 @@ def test_scoretools_Mutation_copy_07():
                 c''8
             }   % measure
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice).is_well_formed()
@@ -461,15 +464,16 @@ def test_scoretools_Mutation_copy_07():
 
 
 def test_scoretools_Mutation_copy_08():
-    r'''Copies hairpin.
-    '''
+    """
+    Copies hairpin.
+    """
 
     staff = abjad.Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
     crescendo = abjad.Hairpin('<')
     abjad.attach(crescendo, staff[:4])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -483,14 +487,14 @@ def test_scoretools_Mutation_copy_08():
             fs'8
             g'8
         }
-        '''
+        """
         )
 
     new_notes = abjad.mutate(staff[:4]).copy()
     staff.extend(new_notes)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -510,6 +514,6 @@ def test_scoretools_Mutation_copy_08():
             ef'8
             \!
         }
-        '''
+        """
         )
     assert abjad.inspect(staff).is_well_formed()

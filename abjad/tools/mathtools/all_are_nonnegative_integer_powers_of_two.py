@@ -1,6 +1,7 @@
 def all_are_nonnegative_integer_powers_of_two(argument):
-    '''Is true when `argument` is an iterable collection of nonnegative
-    integer powers of two. Otherwise false.
+    """
+    Is true when `argument` is an iterable collection of nonnegative
+    integer powers of two.
 
     ..  container:: example
 
@@ -19,7 +20,7 @@ def all_are_nonnegative_integer_powers_of_two(argument):
         True
 
     Returns true or false.
-    '''
+    """
     from abjad.tools import mathtools
     try:
         return all(

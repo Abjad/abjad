@@ -1,5 +1,6 @@
 def show(argument, return_timing=False, **keywords):
-    r'''Shows `argument`.
+    r"""
+    Shows `argument`.
 
     ..  container:: example
 
@@ -41,7 +42,7 @@ def show(argument, return_timing=False, **keywords):
 
     Returns pair of `abjad_formatting_time` and `lilypond_rendering_time`
     when `return_timing` is true.
-    '''
+    """
     import abjad
     if not hasattr(argument, '__illustrate__'):
         message = 'must have __illustrate__ method: {!r}.'

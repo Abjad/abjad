@@ -3,8 +3,9 @@ import pytest
 
 
 def test_scoretools_Leaf_written_duration_01():
-    r'''Leaf durations can go up to 'maxima...': duration < (16, 1).
-    '''
+    """
+    Leaf durations can go up to 'maxima...': duration < (16, 1).
+    """
 
     note = abjad.Note(1, 2)
 

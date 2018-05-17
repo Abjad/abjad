@@ -24,8 +24,9 @@ lines = [
 
 
 def test_systemtools_TestManager_compare_files_01():
-    r'''Is true when lines are exactly the same.
-    '''
+    """
+    Is true when lines are exactly the same.
+    """
 
     with systemtools.FilesystemState(remove=[path_1, path_2]):
         first_lines = [r'\version "2.19.7"'] + lines
@@ -38,8 +39,9 @@ def test_systemtools_TestManager_compare_files_01():
 
 
 def test_systemtools_TestManager_compare_files_02():
-    r'''Is true when version strings differ.
-    '''
+    """
+    Is true when version strings differ.
+    """
 
     with systemtools.FilesystemState(remove=[path_1, path_2]):
         first_lines = [r'\version "2.19.7"'] + lines
@@ -52,8 +54,9 @@ def test_systemtools_TestManager_compare_files_02():
 
 
 def test_systemtools_TestManager_compare_files_03():
-    r'''Is true when comments differ.
-    '''
+    """
+    Is true when comments differ.
+    """
 
     with systemtools.FilesystemState(remove=[path_1, path_2]):
         first_lines = [r'\version "2.19.7"'] + lines
@@ -66,8 +69,9 @@ def test_systemtools_TestManager_compare_files_03():
 
 
 def test_systemtools_TestManager_compare_files_04():
-    r'''False when any other lines differ.
-    '''
+    """
+    False when any other lines differ.
+    """
 
     with systemtools.FilesystemState(remove=[path_1, path_2]):
         first_lines = [r'\version "2.19.7"'] + lines
@@ -91,8 +95,9 @@ path_2 = os.path.join(
     )
 
 def test_systemtools_TestManager_compare_files_05():
-    r'''Is true when lines are exactly the same.
-    '''
+    """
+    Is true when lines are exactly the same.
+    """
 
     with systemtools.FilesystemState(remove=[path_1, path_2]):
         first_lines = ["print 'hello'"]
@@ -105,8 +110,9 @@ def test_systemtools_TestManager_compare_files_05():
 
 
 def test_systemtools_TestManager_compare_files_06():
-    r'''Is true when white space differs.
-    '''
+    """
+    Is true when white space differs.
+    """
 
     with systemtools.FilesystemState(remove=[path_1, path_2]):
         first_lines = ["print 'hello'", '', '', "print 'goodbye'", '']
@@ -119,8 +125,9 @@ def test_systemtools_TestManager_compare_files_06():
 
 
 def test_systemtools_TestManager_compare_files_07():
-    r'''False when any other lines differ.
-    '''
+    """
+    False when any other lines differ.
+    """
 
     with systemtools.FilesystemState(remove=[path_1, path_2]):
         first_lines = ["print 'hello'"]

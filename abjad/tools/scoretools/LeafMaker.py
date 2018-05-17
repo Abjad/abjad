@@ -4,11 +4,12 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class LeafMaker(AbjadValueObject):
-    r'''Leaf-maker.
+    r"""
+    Leaf-maker.
 
     ..  container:: example
 
-        Integer and string elements in `pitches` result in notes:
+        Integer and string elements in ``pitches`` result in notes:
 
         >>> maker = abjad.LeafMaker()
         >>> pitches = [2, 4, 'F#5', 'G#5']
@@ -30,7 +31,7 @@ class LeafMaker(AbjadValueObject):
 
     ..  container:: example
 
-        Tuple elements in `pitches` result in chords:
+        Tuple elements in ``pitches`` result in chords:
 
         >>> maker = abjad.LeafMaker()
         >>> pitches = [(0, 2, 4), ('F#5', 'G#5', 'A#5')]
@@ -50,7 +51,7 @@ class LeafMaker(AbjadValueObject):
 
     ..  container:: example
 
-        None-valued elements in `pitches` result in rests:
+        None-valued elements in ``pitches`` result in rests:
 
         >>> maker = abjad.LeafMaker()
         >>> pitches = 4 * [None]
@@ -73,7 +74,7 @@ class LeafMaker(AbjadValueObject):
 
     ..  container:: example
 
-        You can mix and match values passed to `pitches`:
+        You can mix and match values passed to ``pitches``:
 
         >>> maker = abjad.LeafMaker()
         >>> pitches = [(0, 2, 4), None, 'C#5', 'D#5']
@@ -118,8 +119,8 @@ class LeafMaker(AbjadValueObject):
 
     ..  container:: example
 
-        Reads `pitches` cyclically when the length of `pitches` is less than
-        the length of `durations`:
+        Reads ``pitches`` cyclically when the length of ``pitches`` is less
+        than the length of ``durations``:
 
         >>> maker = abjad.LeafMaker()
         >>> pitches = ['C5']
@@ -141,8 +142,8 @@ class LeafMaker(AbjadValueObject):
 
     ..  container:: example
 
-        Reads `durations` cyclically when the length of `durations` is less
-        than the length of `pitches`:
+        Reads ``durations`` cyclically when the length of ``durations`` is less
+        than the length of ``pitches``:
 
         >>> maker = abjad.LeafMaker()
         >>> pitches = "c'' d'' e'' f''"
@@ -164,7 +165,7 @@ class LeafMaker(AbjadValueObject):
 
     ..  container:: example
 
-        Elements in `durations` with non-power-of-two denominators result in
+        Elements in ``durations`` with non-power-of-two denominators result in
         tuplet-nested leaves:
 
         >>> maker = abjad.LeafMaker()
@@ -188,7 +189,7 @@ class LeafMaker(AbjadValueObject):
 
     ..  container:: example
 
-        Set `decrease_monotonic` to true to return nonassignable
+        Set ``decrease_monotonic`` to true to return nonassignable
         durations tied from greatest to least:
 
         >>> maker = abjad.LeafMaker()
@@ -213,7 +214,7 @@ class LeafMaker(AbjadValueObject):
 
     ..  container:: example
 
-        Set `decrease_monotonic` to false to return nonassignable
+        Set ``decrease_monotonic`` to false to return nonassignable
         durations tied from least to greatest:
 
         >>> maker = abjad.LeafMaker(decrease_monotonic=False)
@@ -238,7 +239,7 @@ class LeafMaker(AbjadValueObject):
 
     ..  container:: example
 
-        Set `forbidden_duration` to avoid notes greater than or equal
+        Set ``forbidden_duration`` to avoid notes greater than or equal
         to a certain written duration:
 
         >>> maker = abjad.LeafMaker(
@@ -272,7 +273,7 @@ class LeafMaker(AbjadValueObject):
 
     ..  container:: example
 
-        You may set `forbidden_duration` and `decrease_monotonic` together:
+        You may set ``forbidden_duration`` and ``decrease_monotonic`` together:
 
         >>> maker = abjad.LeafMaker(
         ...     forbidden_duration=abjad.Duration(1, 2),
@@ -306,7 +307,7 @@ class LeafMaker(AbjadValueObject):
 
     ..  container:: example
 
-        Set `diminution` to true to produce diminished tuplets:
+        Set ``diminution`` to true to produce diminished tuplets:
 
         >>> maker = abjad.LeafMaker(diminution=True)
         >>> pitches = "f'"
@@ -336,7 +337,7 @@ class LeafMaker(AbjadValueObject):
 
     ..  container:: example
 
-        Set `diminution` to false to produce agumented tuplets:
+        Set ``diminution`` to false to produce agumented tuplets:
 
         >>> maker = abjad.LeafMaker(diminution=False)
         >>> pitches = "f'"
@@ -365,8 +366,8 @@ class LeafMaker(AbjadValueObject):
 
     ..  container:: example
 
-        None-valued elements in `pitches` result in multimeasure rests when the
-        multimeasure rest keyword is set:
+        None-valued elements in ``pitches`` result in multimeasure rests when
+        the multimeasure rest keyword is set:
 
         >>> maker = abjad.LeafMaker(use_multimeasure_rests=True)
         >>> pitches = [None]
@@ -450,7 +451,7 @@ class LeafMaker(AbjadValueObject):
         Selection([Skip('s2.'), Skip('s16')])
 
     Returns selection of leaves.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -491,10 +492,11 @@ class LeafMaker(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, pitches, durations):
-        r'''Calls leaf-maker on `pitches` and `durations`.
+        """
+        Calls leaf-maker on ``pitches`` and ``durations``.
 
         Returns selection.
-        '''
+        """
         import abjad
         if isinstance(pitches, str):
             pitches = pitches.split()
@@ -727,54 +729,61 @@ class LeafMaker(AbjadValueObject):
 
     @property
     def decrease_monotonic(self):
-        r'''Is true when durations decrease monotonically. Otherwise false.
+        """
+        Is true when durations decrease monotonically.
 
         Returns true, false or none.
-        '''
+        """
         return self._decrease_monotonic
 
     @property
     def forbidden_duration(self):
-        r'''Gets forbidden written duration.
+        """
+        Gets forbidden written duration.
 
         Returns duration or none.
-        '''
+        """
         return self._forbidden_duration
 
     @property
     def diminution(self):
-        r'''Is true when tuplets notate diminutions. Otherwise false.
+        """
+        Is true when tuplets notate diminutions.
 
         Returns true, false or none.
-        '''
+        """
         return self._diminution
 
     @property
     def metrical_hierarchy(self):
-        r'''Gets metrical hierarchy.
+        """
+        Gets metrical hierarchy.
 
         Returns metrical hierarchy or none.
-        '''
+        """
         return self._metrical_hierarchy
 
     @property
     def skips_instead_of_rests(self):
-        r'''Is true when skips appear in place of rests. Otherwise false.
+        """
+        Is true when skips appear in place of rests.
 
         Returns true, false or none.
-        '''
+        """
         return self._skips_instead_of_rests
 
     @property
     def repeat_ties(self) -> bool:
-        r'''Is true when ties are repeat ties.
-        '''
+        """
+        Is true when ties are repeat ties.
+        """
         return self._repeat_ties
 
     @property
     def use_multimeasure_rests(self):
-        r'''Is true when rests are multimeasure. Otherwise false.
+        """
+        Is true when rests are multimeasure.
 
         Returns true, false or none.
-        '''
+        """
         return self._use_multimeasure_rests

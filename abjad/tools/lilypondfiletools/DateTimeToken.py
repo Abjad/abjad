@@ -3,14 +3,15 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class DateTimeToken(AbjadObject):
-    '''A LilyPond file date / time token.
+    """
+    A LilyPond file date / time token.
 
     ..  container:: example
 
         >>> abjad.DateTimeToken()
         DateTimeToken()
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -27,18 +28,17 @@ class DateTimeToken(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __format__(self, format_specification=''):
-        r'''Formats date / time token.
+        """
+        Formats date / time token.
 
         ..  container:: example
 
-            ::
-
-                >>> token = abjad.DateTimeToken()
-                >>> print(format(token)) # doctest: +SKIP
-                2014-01-04 14:42
+            >>> token = abjad.DateTimeToken()
+            >>> print(format(token)) # doctest: +SKIP
+            2014-01-04 14:42
 
         Returns string.
-        '''
+        """
         from abjad.tools import systemtools
         if format_specification in ('', 'lilypond'):
             return self._get_lilypond_format()
@@ -47,17 +47,16 @@ class DateTimeToken(AbjadObject):
         return str(self)
 
     def __repr__(self):
-        r'''Gets interpreter representation of date / time token.
+        """
+        Gets interpreter representation of date / time token.
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.DateTimeToken()
-                DateTimeToken()
+            >>> abjad.DateTimeToken()
+            DateTimeToken()
 
         Returns string.
-        '''
+        """
         date_string = self._date_string or ''
         return '{}({})'.format(type(self).__name__, date_string)
 
@@ -70,17 +69,16 @@ class DateTimeToken(AbjadObject):
 
     @property
     def date_string(self):
-        r'''Gets date string of date / time token.
+        """
+        Gets date string of date / time token.
 
         ..  container:: example
 
-            ::
-
-                >>> token = abjad.DateTimeToken()
-                >>> token.date_string # doctest: +SKIP
-                '2014-01-23 12:21'
+            >>> token = abjad.DateTimeToken()
+            >>> token.date_string # doctest: +SKIP
+            '2014-01-23 12:21'
 
         Returns string.
-        '''
+        """
         date_string = self._date_string or time.strftime('%Y-%m-%d %H:%M')
         return date_string

@@ -2,7 +2,8 @@ from .Instrument import Instrument
 
 
 class ClarinetInA(Instrument):
-    r'''Clarinet in A.
+    r"""
+    Clarinet in A.
 
     ..  container:: example
 
@@ -28,7 +29,7 @@ class ClarinetInA(Instrument):
                 fs'4
             }
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -66,7 +67,8 @@ class ClarinetInA(Instrument):
 
     @property
     def allowable_clefs(self):
-        r'''Gets clarinet in A's allowable clefs.
+        """
+        Gets clarinet in A's allowable clefs.
 
         ..  container:: example
 
@@ -75,12 +77,13 @@ class ClarinetInA(Instrument):
             ('treble',)
 
         Returns clef list.
-        '''
+        """
         return Instrument.allowable_clefs.fget(self)
 
     @property
     def markup(self):
-        r'''Gets clarinet in A's instrument name markup.
+        """
+        Gets clarinet in A's instrument name markup.
 
         ..  container:: example
 
@@ -91,12 +94,13 @@ class ClarinetInA(Instrument):
             >>> abjad.show(clarinet.markup) # doctest: +SKIP
 
         Returns markup.
-        '''
+        """
         return Instrument.markup.fget(self)
 
     @property
     def middle_c_sounding_pitch(self):
-        r'''Gets sounding pitch of clarinet in A's written middle C.
+        """
+        Gets sounding pitch of clarinet in A's written middle C.
 
         ..  container:: example
 
@@ -107,12 +111,13 @@ class ClarinetInA(Instrument):
             >>> abjad.show(clarinet.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
-        '''
+        """
         return Instrument.middle_c_sounding_pitch.fget(self)
 
     @property
     def name(self):
-        r'''Gets clarinet in A's name.
+        """
+        Gets clarinet in A's name.
 
         ..  container:: example
 
@@ -121,12 +126,13 @@ class ClarinetInA(Instrument):
             'clarinet in A'
 
         Returns string.
-        '''
+        """
         return Instrument.name.fget(self)
 
     @property
     def pitch_range(self):
-        r'''Gets clarinet in A's range.
+        """
+        Gets clarinet in A's range.
 
         ..  container:: example
 
@@ -137,12 +143,13 @@ class ClarinetInA(Instrument):
             >>> abjad.show(clarinet.pitch_range) # doctest: +SKIP
 
         Returns pitch range.
-        '''
+        """
         return Instrument.pitch_range.fget(self)
 
     @property
     def short_markup(self):
-        r'''Gets clarinet in A's short instrument name markup.
+        """
+        Gets clarinet in A's short instrument name markup.
 
         ..  container:: example
 
@@ -153,12 +160,13 @@ class ClarinetInA(Instrument):
             >>> abjad.show(clarinet.short_markup) # doctest: +SKIP
 
         Returns markup.
-        '''
+        """
         return Instrument.short_markup.fget(self)
 
     @property
     def short_name(self):
-        r'''Gets clarinet in A's short instrument name.
+        """
+        Gets clarinet in A's short instrument name.
 
         ..  container:: example
 
@@ -167,5 +175,5 @@ class ClarinetInA(Instrument):
             'cl. A \\natural'
 
         Returns string.
-        '''
+        """
         return Instrument.short_name.fget(self)

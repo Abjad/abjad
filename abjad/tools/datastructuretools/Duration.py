@@ -13,7 +13,8 @@ except ImportError:
 
 
 class Duration(AbjadObject, Fraction):
-    r'''Duration.
+    """
+    Duration.
 
     ..  container:: example
 
@@ -101,7 +102,7 @@ class Duration(AbjadObject, Fraction):
         >>> isinstance(abjad.Duration(3, 16), numbers.Number)
         True
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -163,18 +164,20 @@ class Duration(AbjadObject, Fraction):
     ### SPECIAL METHODS ###
 
     def __abs__(self, *arguments):
-        r'''Gets absolute value of duration.
+        """
+        Gets absolute value of duration.
 
         Returns nonnegative duration.
-        '''
+        """
         return type(self)(Fraction.__abs__(self, *arguments))
 
     def __add__(self, *arguments):
-        r'''Adds duration to `arguments`.
+        """
+        Adds duration to ``arguments``.
 
         ..  container:: example
 
-            Returns duration when `arguments` is a duration:
+            Returns duration when ``arguments`` is a duration:
 
             >>> duration_1 = abjad.Duration(1, 2)
             >>> duration_2 = abjad.Duration(3, 2)
@@ -183,7 +186,7 @@ class Duration(AbjadObject, Fraction):
 
         ..  container:: example
 
-            Returns nonreduced fraction when `arguments` is a nonreduced
+            Returns nonreduced fraction when ``arguments`` is a nonreduced
             fraction:
 
             >>> duration = abjad.Duration(1, 2)
@@ -192,7 +195,7 @@ class Duration(AbjadObject, Fraction):
             NonreducedFraction(6, 6)
 
         Returns duration.
-        '''
+        """
         if (
             len(arguments) == 1 and
             isinstance(arguments[0], mathtools.NonreducedFraction)
@@ -203,7 +206,8 @@ class Duration(AbjadObject, Fraction):
         return result
 
     def __div__(self, *arguments):
-        r'''Divides duration by `arguments`.
+        """
+        Divides duration by ``arguments``.
 
         ..  container:: example
 
@@ -215,7 +219,7 @@ class Duration(AbjadObject, Fraction):
         NonreducedFraction(3, 3)
 
         Returns multiplier.
-        '''
+        """
         import abjad
         if len(arguments) == 1 and isinstance(arguments[0], type(self)):
             fraction = Fraction.__truediv__(self, *arguments)
@@ -228,90 +232,95 @@ class Duration(AbjadObject, Fraction):
         return result
 
     def __divmod__(self, *arguments):
-        r'''Equals the pair (duration // `arguments`, duration % `arguments`).
+        """
+        Equals the pair (duration // ``arguments``, duration % ``arguments``).
 
         Returns pair.
-        '''
+        """
         truncated, residue = Fraction.__divmod__(self, *arguments)
         truncated = type(self)(truncated)
         residue = type(self)(residue)
         return truncated, residue
 
     def __eq__(self, argument):
-        r'''Is true when duration equals `argument`.
-        Otherwise false.
+        """
+        Is true when duration equals ``argument``.
 
         Returns true or false.
-        '''
+        """
         return Fraction.__eq__(self, argument)
 
     def __format__(self, format_specification=''):
-        r'''Formats duration.
+        """
+        Formats duration.
 
-        Set `format_specification` to `''` or `'storage'`.
-        Interprets `''` equal to `'storage'`.
+        Set ``format_specification`` to ``''`` or ``'storage'``.
+        Interprets ``''`` equal to ``'storage'``.
 
         Returns string.
-        '''
+        """
         import abjad
         if format_specification in ('', 'storage'):
             return abjad.StorageFormatManager(self).get_storage_format()
         return str(self)
 
     def __ge__(self, argument):
-        r'''Is true when duration is greater than or equal to `argument`.
-        Otherwise false.
+        """
+        Is true when duration is greater than or equal to ``argument``.
 
         Returns true or false.
-        '''
+        """
         return Fraction.__ge__(self, argument)
 
     def __gt__(self, argument):
-        r'''Is true when duration is greater than `argument`.
-        Otherwise false.
+        """
+        Is true when duration is greater than ``argument``.
 
         Returns true or false.
-        '''
+        """
         return Fraction.__gt__(self, argument)
 
     def __hash__(self):
-        r'''Hashes duration.
+        """
+        Hashes duration.
 
         Required to be explicitly redefined on Python 3 if __eq__ changes.
 
         Returns integer.
-        '''
+        """
         return super(Duration, self).__hash__()
 
     def __le__(self, argument):
-        r'''Is true when duration is less than or equal to `argument`.
-        Otherwise false.
+        """
+        Is true when duration is less than or equal to ``argument``.
 
         Returns true or false.
-        '''
+        """
         return Fraction.__le__(self, argument)
 
     def __lt__(self, argument):
-        r'''Is true when duration is less than `argument`.
-        Otherwise false.
+        """
+        Is true when duration is less than ``argument``.
 
         Returns true or false.
-        '''
+        """
         return Fraction.__lt__(self, argument)
 
     def __mod__(self, *arguments):
-        r'''Modulus operator applied to duration.
+        """
+        Modulus operator applied to duration.
 
         Returns duration.
-        '''
+        """
         return type(self)(Fraction.__mod__(self, *arguments))
 
     def __mul__(self, *arguments):
-        r'''Duration multiplied by `arguments`.
+        """
+        Duration multiplied by ``arguments``.
 
         ..  container:: example
 
-            Returns a new duration when `arguments` is a duration:
+            Returns a new duration when ``arguments`` is a duration:
 
             >>> duration_1 = abjad.Duration(1, 2)
             >>> duration_2 = abjad.Duration(3, 2)
@@ -320,7 +329,7 @@ class Duration(AbjadObject, Fraction):
 
         ..  container:: example
 
-            Returns nonreduced fraction when `arguments` is a nonreduced
+            Returns nonreduced fraction when ``arguments`` is a nonreduced
             fraction:
 
             >>> duration = abjad.Duration(1, 2)
@@ -329,7 +338,7 @@ class Duration(AbjadObject, Fraction):
             NonreducedFraction(3, 12)
 
         Returns duration or nonreduced fraction.
-        '''
+        """
         if (
             len(arguments) == 1 and
             isinstance(arguments[0], mathtools.NonreducedFraction)
@@ -340,90 +349,104 @@ class Duration(AbjadObject, Fraction):
         return result
 
     def __neg__(self, *arguments):
-        r'''Negates duration.
+        """
+        Negates duration.
 
         Returns new duration.
-        '''
+        """
         return type(self)(Fraction.__neg__(self, *arguments))
 
     def __pos__(self, *arguments):
-        r'''Get positive duration.
+        """
+        Get positive duration.
 
         Returns new duration.
-        '''
+        """
         return type(self)(Fraction.__pos__(self, *arguments))
 
     def __pow__(self, *arguments):
-        r'''Raises duration to `arguments` power.
+        """
+        Raises duration to ``arguments`` power.
 
         Returns new duration.
-        '''
+        """
         return type(self)(Fraction.__pow__(self, *arguments))
 
     def __radd__(self, *arguments):
-        r'''Adds `arguments` to duration.
+        """
+        Adds ``arguments`` to duration.
 
         Returns new duration.
-        '''
+        """
         return type(self)(Fraction.__radd__(self, *arguments))
 
     def __rdiv__(self, *arguments):
-        r'''Divides `arguments` by duration.
+        """
+        Divides ``arguments`` by duration.
 
         Returns new duration.
-        '''
+        """
         return type(self)(Fraction.__rdiv__(self, *arguments))
 
     def __rdivmod__(self, *arguments):
-        r'''Documentation required.
-        '''
+        """
+        Documentation required.
+        """
         return type(self)(Fraction.__rdivmod__(self, *arguments))
 
     def __reduce__(self):
-        r'''Documentation required.
-        '''
+        """
+        Documentation required.
+        """
         return type(self), (self.numerator, self.denominator)
 
     def __reduce_ex__(self, protocol):
-        r'''Documentation required.
-        '''
+        """
+        Documentation required.
+        """
         return type(self), (self.numerator, self.denominator)
 
     def __rmod__(self, *arguments):
-        r'''Documentation required.
-        '''
+        """
+        Documentation required.
+        """
         return type(self)(Fraction.__rmod__(self, *arguments))
 
     def __rmul__(self, *arguments):
-        r'''Multiplies `arguments` by duration.
+        """
+        Multiplies ``arguments`` by duration.
 
         Returns new duration.
-        '''
+        """
         return type(self)(Fraction.__rmul__(self, *arguments))
 
     def __rpow__(self, *arguments):
-        r'''Raises `arguments` to the power of duration.
+        """
+        Raises ``arguments`` to the power of duration.
 
         Returns new duration.
-        '''
+        """
         return type(self)(Fraction.__rpow__(self, *arguments))
 
     def __rsub__(self, *arguments):
-        r'''Subtracts duration from `arguments`.
+        """
+        Subtracts duration from ``arguments``.
 
         Returns new duration.
-        '''
+        """
         return type(self)(Fraction.__rsub__(self, *arguments))
 
     def __rtruediv__(self, *arguments):
-        r'''Documentation required.
+        """
+        Documentation required.
 
         Returns new duration.
-        '''
+        """
         return type(self)(Fraction.__rtruediv__(self, *arguments))
 
     def __sub__(self, *arguments):
-        r'''Subtracts `arguments` from duration.
+        """
+        Subtracts ``arguments`` from duration.
 
         ..  container:: example
 
@@ -434,7 +457,7 @@ class Duration(AbjadObject, Fraction):
             NonreducedFraction(2, 8)
 
         Returns new duration.
-        '''
+        """
         if (
             len(arguments) == 1 and
             isinstance(arguments[0], mathtools.NonreducedFraction)
@@ -444,8 +467,9 @@ class Duration(AbjadObject, Fraction):
             return type(self)(Fraction.__sub__(self, *arguments))
 
     def __truediv__(self, *arguments):
-        r'''Documentation required.
-        '''
+        """
+        Documentation required.
+        """
         return self.__div__(*arguments)
 
     ### PRIVATE METHODS ###
@@ -521,13 +545,14 @@ class Duration(AbjadObject, Fraction):
 
     @staticmethod
     def _least_power_of_two_greater_equal(n, i=0):
-        r'''When ``i = 2``, returns the second integer power of 2 greater than
-        the least integer power of 2 greater than or equal to `n`, and, in
+        """
+        When ``i = 2``, returns the second integer power of 2 greater than
+        the least integer power of 2 greater than or equal to ``n``, and, in
         general, return the ``i`` th integer power of 2 greater than the least
-        integer power of 2 greater than or equal to `n`.
+        integer power of 2 greater than or equal to ``n``.
 
         Returns integer.
-        '''
+        """
         assert isinstance(n, (int, float, Fraction)), repr(n)
         assert 0 <= n, repr(n)
         result = 2 ** (int(math.ceil(math.log(n, 2))) + i)
@@ -570,7 +595,8 @@ class Duration(AbjadObject, Fraction):
 
     @property
     def dot_count(self):
-        r'''Gets dot count.
+        r"""
+        Gets dot count.
 
         ..  container:: example
 
@@ -581,14 +607,11 @@ class Duration(AbjadObject, Fraction):
             ...         duration = abjad.Duration(n, 16)
             ...         sixteenths = duration.with_denominator(16)
             ...         dot_count = duration.dot_count
-            ...         string = '{!s}\t{}'
-            ...         string = string.format(sixteenths, dot_count)
+            ...         string = f'{sixteenths!s}\t{dot_count}'
             ...         print(string)
             ...     except abjad.AssignabilityError:
             ...         sixteenths = duration.with_denominator(16)
-            ...         string = '{!s}\t{}'
-            ...         string = string.format(sixteenths, '--')
-            ...         print(string)
+            ...         print(f'{sixteenths!s}\t--')
             ...
             1/16    0
             2/16    0
@@ -612,7 +635,7 @@ class Duration(AbjadObject, Fraction):
         Raises assignability error when duration is not assignable.
 
         Returns positive integer.
-        '''
+        """
         if not self.is_assignable:
             raise AssignabilityError
         binary_string = mathtools.integer_to_binary_string(self.numerator)
@@ -622,7 +645,8 @@ class Duration(AbjadObject, Fraction):
 
     @property
     def equal_or_greater_assignable(self):
-        r'''Gets assignable duration equal to or just greater than this
+        r"""
+        Gets assignable duration equal to or just greater than this
         duration.
 
         ..  container:: example
@@ -633,7 +657,7 @@ class Duration(AbjadObject, Fraction):
             ...     duration = abjad.Duration(numerator, 16)
             ...     result = duration.equal_or_greater_assignable
             ...     sixteenths = duration.with_denominator(16)
-            ...     print('{!s}\t{!s}'.format(sixteenths, result))
+            ...     print(f'{sixteenths!s}\t{result!s}')
             ...
             1/16    1/16
             2/16    1/8
@@ -653,7 +677,7 @@ class Duration(AbjadObject, Fraction):
             16/16   1
 
         Returns new duration.
-        '''
+        """
         good_denominator = mathtools.greatest_power_of_two_less_equal(
             self.denominator)
         current_numerator = self.numerator
@@ -665,7 +689,8 @@ class Duration(AbjadObject, Fraction):
 
     @property
     def equal_or_greater_power_of_two(self):
-        r'''Gets duration equal or just greater power of two.
+        r"""
+        Gets duration equal or just greater power of two.
 
         ..  container:: example
 
@@ -675,7 +700,7 @@ class Duration(AbjadObject, Fraction):
             ...     duration = abjad.Duration(numerator, 16)
             ...     result = duration.equal_or_greater_power_of_two
             ...     sixteenths = duration.with_denominator(16)
-            ...     print('{!s}\t{!s}'.format(sixteenths, result))
+            ...     print(f'{sixteenths!s}\t{result!s}')
             ...
             1/16    1/16
             2/16    1/8
@@ -695,13 +720,14 @@ class Duration(AbjadObject, Fraction):
             16/16   1
 
         Returns new duration.
-        '''
+        """
         denominator_exponent = -int(math.ceil(math.log(self, 2)))
         return type(self)(1, 2) ** denominator_exponent
 
     @property
     def equal_or_lesser_assignable(self):
-        r'''Gets assignable duration equal or just less than this duration.
+        r"""
+        Gets assignable duration equal or just less than this duration.
 
         ..  container:: example
 
@@ -711,7 +737,7 @@ class Duration(AbjadObject, Fraction):
             ...     duration = abjad.Duration(numerator, 16)
             ...     result = duration.equal_or_lesser_assignable
             ...     sixteenths = duration.with_denominator(16)
-            ...     print('{!s}\t{!s}'.format(sixteenths, result))
+            ...     print(f'{sixteenths!s}\t{result!s}')
             ...
             1/16    1/16
             2/16    1/8
@@ -731,7 +757,7 @@ class Duration(AbjadObject, Fraction):
             16/16   1
 
         Returns new duration.
-        '''
+        """
         good_denominator = self._least_power_of_two_greater_equal(
             self.denominator)
         current_numerator = self.numerator
@@ -743,7 +769,8 @@ class Duration(AbjadObject, Fraction):
 
     @property
     def equal_or_lesser_power_of_two(self):
-        r'''Gets duration of the form ``d**2`` equal to or just less than this
+        r"""
+        Gets duration of the form ``d**2`` equal to or just less than this
         duration.
 
         ..  container:: example
@@ -754,7 +781,7 @@ class Duration(AbjadObject, Fraction):
             ...     duration = abjad.Duration(numerator, 16)
             ...     result = duration.equal_or_lesser_power_of_two
             ...     sixteenths = duration.with_denominator(16)
-            ...     print('{!s}\t{!s}'.format(sixteenths, result))
+            ...     print(f'{sixteenths!s}\t{result!s}')
             ...
             1/16    1/16
             2/16    1/8
@@ -774,13 +801,14 @@ class Duration(AbjadObject, Fraction):
             16/16   1
 
         Returns new duration.
-        '''
+        """
         denominator_exponent = -int(math.floor(math.log(self, 2)))
         return type(self)(1, 2) ** denominator_exponent
 
     @property
     def flag_count(self):
-        r'''Gets flag count.
+        r"""
+        Gets flag count.
 
         ..  container:: example
 
@@ -789,7 +817,7 @@ class Duration(AbjadObject, Fraction):
             >>> for n in range(1, 16 + 1):
             ...     duration = abjad.Duration(n, 64)
             ...     sixty_fourths = duration.with_denominator(64)
-            ...     print('{!s}\t{}'.format(sixty_fourths, duration.flag_count))
+            ...     print(f'{sixty_fourths!s}\t{duration.flag_count}')
             ...
             1/64    4
             2/64    3
@@ -812,16 +840,15 @@ class Duration(AbjadObject, Fraction):
         duration.
 
         Returns nonnegative integer.
-        '''
-        # TODO: rewrite with only one operation per line
-        flag_count = max(-int(math.floor(math.log(float(self.numerator) /
-            self.denominator, 2))) - 2, 0)
-        return flag_count
+        """
+        log = math.log(float(self.numerator) / self.denominator, 2)
+        count = -int(math.floor(log)) - 2
+        return max(count, 0)
 
     @property
     def has_power_of_two_denominator(self):
-        r'''Is true when duration is an integer power of two.
-        Otherwise false.
+        r"""
+        Is true when duration is an integer power of two.
 
         ..  container:: example
 
@@ -850,13 +877,14 @@ class Duration(AbjadObject, Fraction):
             1/16    True
 
         Returns true or false.
-        '''
+        """
         exponent = math.log(self.denominator, 2)
         return int(exponent) == exponent
 
     @property
     def implied_prolation(self):
-        r'''Gets implied prolation.
+        r"""
+        Gets implied prolation.
 
         ..  container:: example
 
@@ -885,7 +913,7 @@ class Duration(AbjadObject, Fraction):
             1/16    1
 
         Returns multipler.
-        '''
+        """
         import abjad
         numerator = \
             mathtools.greatest_power_of_two_less_equal(self.denominator)
@@ -893,7 +921,8 @@ class Duration(AbjadObject, Fraction):
 
     @property
     def is_assignable(self):
-        r'''Is true when duration is assignable. Otherwise false.
+        r"""
+        Is true when duration is assignable.
 
         ..  container:: example
 
@@ -923,7 +952,7 @@ class Duration(AbjadObject, Fraction):
             16/16   True
 
         Returns true or false.
-        '''
+        """
         if 0 < self < 16:
             if mathtools.is_nonnegative_integer_power_of_two(
                 self.denominator):
@@ -933,7 +962,8 @@ class Duration(AbjadObject, Fraction):
 
     @property
     def lilypond_duration_string(self):
-        r'''Gets LilyPond duration string.
+        """
+        Gets LilyPond duration string.
 
         ..  container:: example
 
@@ -945,7 +975,7 @@ class Duration(AbjadObject, Fraction):
         Raises assignability error when duration is not assignable.
 
         Returns string.
-        '''
+        """
         if not self.is_assignable:
             raise AssignabilityError(self)
         undotted_rational = self.equal_or_lesser_power_of_two
@@ -968,7 +998,8 @@ class Duration(AbjadObject, Fraction):
 
     @property
     def pair(self):
-        '''Gets numerator and denominator.
+        """
+        Gets numerator and denominator.
 
         ..  container:: example
 
@@ -978,12 +1009,13 @@ class Duration(AbjadObject, Fraction):
             (3, 16)
 
         Returns integer pair.
-        '''
+        """
         return self.numerator, self.denominator
 
     @property
     def prolation_string(self):
-        r'''Gets prolation string.
+        """
+        Gets prolation string.
 
         ..  container:: example
 
@@ -993,12 +1025,13 @@ class Duration(AbjadObject, Fraction):
             '16:3'
 
         Returns string.
-        '''
-        return '{}:{}'.format(self.denominator, self.numerator)
+        """
+        return f'{self.denominator}:{self.numerator}'
 
     @property
     def reciprocal(self):
-        '''Gets reciprocal.
+        """
+        Gets reciprocal.
 
         ..  container:: example
 
@@ -1008,15 +1041,16 @@ class Duration(AbjadObject, Fraction):
             Duration(7, 3)
 
         Returns new duration.
-        '''
+        """
         return type(self)(self.denominator, self.numerator)
 
     ### PUBLIC FUNCTIONS ###
 
     @staticmethod
     def durations_to_nonreduced_fractions(durations):
-        r'''Changes `durations` to nonreduced fractions sharing
-        least common denominator.
+        """
+        Changes ``durations`` to nonreduced fractions sharing least common
+        denominator.
 
         ..  container:: example
 
@@ -1031,8 +1065,8 @@ class Duration(AbjadObject, Fraction):
             NonreducedFraction(48, 16)
             NonreducedFraction(5, 16)
 
-        Returns new object of `durations` type.
-        '''
+        Returns new object of ``durations`` type.
+        """
         durations = [Duration(x) for x in durations]
         denominators = [duration.denominator for duration in durations]
         lcd = mathtools.least_common_multiple(*denominators)
@@ -1045,7 +1079,8 @@ class Duration(AbjadObject, Fraction):
 
     @staticmethod
     def from_lilypond_duration_string(lilypond_duration_string):
-        r'''Initializes duration from LilyPond duration string.
+        r"""
+        Initializes duration from LilyPond duration string.
 
         ..  container:: example
 
@@ -1055,15 +1090,15 @@ class Duration(AbjadObject, Fraction):
             Duration(3, 16)
 
         Returns duration.
-        '''
+        """
         fraction = Duration._initialize_from_lilypond_duration_string(
             lilypond_duration_string)
         return Duration(fraction)
 
     @staticmethod
     def is_token(argument):
-        '''Is true when `argument` correctly initializes a duration.
-        Otherwise false.
+        """
+        Is true when ``argument`` correctly initializes a duration.
 
         ..  container:: example
 
@@ -1073,7 +1108,7 @@ class Duration(AbjadObject, Fraction):
             True
 
         Returns true or false.
-        '''
+        """
         try:
             Duration.__new__(Duration, argument)
             return True
@@ -1081,7 +1116,8 @@ class Duration(AbjadObject, Fraction):
             return False
 
     def to_clock_string(self):
-        r'''Changes duration to clock string.
+        r"""
+        Changes duration to clock string.
 
         ..  container:: example
 
@@ -1107,14 +1143,15 @@ class Duration(AbjadObject, Fraction):
         Rounds down to nearest second.
 
         Returns string.
-        '''
+        """
         minutes = int(self / 60)
         seconds = str(int(self - minutes * 60)).zfill(2)
-        clock_string = "{}'{}''".format(minutes, seconds)
+        clock_string = f"{minutes}'{seconds}''"
         return clock_string
 
     def to_score_markup(self):
-        r'''Changes duration to score markup.
+        r"""
+        Changes duration to score markup.
 
         ..  container:: example
 
@@ -1277,7 +1314,7 @@ class Duration(AbjadObject, Fraction):
                 }
 
         Returns markup.
-        '''
+        """
         import abjad
         maker = abjad.LeafMaker()
         notes = maker([0], [self])
@@ -1285,7 +1322,8 @@ class Duration(AbjadObject, Fraction):
         return markup
 
     def with_denominator(self, denominator):
-        r'''Changes duration to nonreduced fraction with `denominator`.
+        """
+        Changes duration to nonreduced fraction with ``denominator``.
 
         ..  container:: example
 
@@ -1301,6 +1339,6 @@ class Duration(AbjadObject, Fraction):
             8/32
 
         Returns new duration.
-        '''
+        """
         nonreduced_fraction = mathtools.NonreducedFraction(self)
         return nonreduced_fraction.with_denominator(denominator)

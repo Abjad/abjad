@@ -2135,7 +2135,7 @@ class MetronomeMarkSpanner(Spanner):
                 )
             strings_ = line_segment._get_lilypond_grob_overrides(tweaks=True)
             strings.extend(strings_)
-            strings.append(self.start_command())
+            strings.extend(self.start_command())
             if self._left_broken:
                 strings = self._tag_hide(strings)
             bundle.right.spanner_starts.extend(strings)
@@ -2265,8 +2265,8 @@ class MetronomeMarkSpanner(Spanner):
                 strings = self._tag_show([string])
                 bundle.right.spanner_stops.extend(strings)
                 bundle.right.spanner_stops.extend(tweaks)
-                string = self.start_command()
-                strings = self._tag_show([string])
+                strings = self.start_command()
+                strings = self._tag_show(strings)
                 bundle.right.spanner_stops.extend(strings)
             strings = [self.stop_command()]
             bundle.right.spanner_stops.extend(strings)
@@ -2275,7 +2275,7 @@ class MetronomeMarkSpanner(Spanner):
                 pass
             else:
                 bundle.right.spanner_starts.extend(tweaks)
-                strings = [self.start_command()]
+                strings = self.start_command()
                 bundle.right.spanner_starts.extend(strings)
             if self._left_broken and leaf is self[0]:
                 strings = [self.stop_command()]
@@ -6272,14 +6272,14 @@ class MetronomeMarkSpanner(Spanner):
             wrapper=wrapper,
             )
 
-    def start_command(self) -> typing.Optional[str]:
+    def start_command(self) -> typing.List[str]:
         r"""
         Gets start command.
 
         ..  container:: example
 
             >>> abjad.MetronomeMarkSpanner().start_command()
-            '\\startTextSpan'
+            ['\\startTextSpan']
 
         """
         return super(MetronomeMarkSpanner, self).start_command()

@@ -124,7 +124,7 @@ class NumberedPitch(Pitch):
 
     def __lt__(self, argument):
         r'''Is true when `argument` can be coerced to a numbered pitch and when this
-        numbered pitch is less than `argument`. Otherwise false.
+        numbered pitch is less than `argument`.
 
         ..  container:: example
 

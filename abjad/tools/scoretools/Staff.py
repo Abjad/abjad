@@ -2,7 +2,8 @@ from .Context import Context
 
 
 class Staff(Context):
-    r'''Staff.
+    r"""
+    Staff.
 
     ..  container:: example
 
@@ -69,7 +70,7 @@ class Staff(Context):
                 }
             }
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 

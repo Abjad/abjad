@@ -2,7 +2,8 @@ from .Instrument import Instrument
 
 
 class MezzoSopranoVoice(Instrument):
-    r'''Mezzo-soprano voice.
+    r"""
+    Mezzo-soprano voice.
 
     ..  container:: example
 
@@ -25,7 +26,7 @@ class MezzoSopranoVoice(Instrument):
                 fs''4
             }
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -65,7 +66,8 @@ class MezzoSopranoVoice(Instrument):
 
     @property
     def allowable_clefs(self):
-        r'''Gets mezzo-soprano's allowable clefs.
+        """
+        Gets mezzo-soprano's allowable clefs.
 
         ..  container:: example
 
@@ -74,12 +76,13 @@ class MezzoSopranoVoice(Instrument):
             ('treble',)
 
         Returns clef list.
-        '''
+        """
         return Instrument.allowable_clefs.fget(self)
 
     @property
     def markup(self):
-        r'''Gets mezzo-soprano's instrument name markup.
+        """
+        Gets mezzo-soprano's instrument name markup.
 
         ..  container:: example
 
@@ -90,12 +93,13 @@ class MezzoSopranoVoice(Instrument):
             >>> abjad.show(mezzo_soprano.markup) # doctest: +SKIP
 
         Returns markup.
-        '''
+        """
         return Instrument.markup.fget(self)
 
     @property
     def middle_c_sounding_pitch(self):
-        r'''Gets sounding pitch of mezzo-soprano's written middle C.
+        """
+        Gets sounding pitch of mezzo-soprano's written middle C.
 
         ..  container:: example
 
@@ -106,12 +110,13 @@ class MezzoSopranoVoice(Instrument):
             >>> abjad.show(mezzo_soprano.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
-        '''
+        """
         return Instrument.middle_c_sounding_pitch.fget(self)
 
     @property
     def name(self):
-        r'''Gets mezzo-soprano's name.
+        """
+        Gets mezzo-soprano's name.
 
         ..  container:: example
 
@@ -120,12 +125,13 @@ class MezzoSopranoVoice(Instrument):
             'mezzo-soprano'
 
         Returns string.
-        '''
+        """
         return Instrument.name.fget(self)
 
     @property
     def pitch_range(self):
-        r'''Gets mezzo-soprano's range.
+        """
+        Gets mezzo-soprano's range.
 
         ..  container:: example
 
@@ -136,12 +142,13 @@ class MezzoSopranoVoice(Instrument):
             >>> abjad.show(mezzo_soprano.pitch_range) # doctest: +SKIP
 
         Returns pitch range.
-        '''
+        """
         return Instrument.pitch_range.fget(self)
 
     @property
     def short_markup(self):
-        r'''Gets mezzo-soprano's short instrument name markup.
+        """
+        Gets mezzo-soprano's short instrument name markup.
 
         ..  container:: example
 
@@ -152,12 +159,13 @@ class MezzoSopranoVoice(Instrument):
             >>> abjad.show(mezzo_soprano.short_markup) # doctest: +SKIP
 
         Returns markup.
-        '''
+        """
         return Instrument.short_markup.fget(self)
 
     @property
     def short_name(self):
-        r'''Gets mezzo-soprano's short instrument name.
+        """
+        Gets mezzo-soprano's short instrument name.
 
         ..  container:: example
 
@@ -166,5 +174,5 @@ class MezzoSopranoVoice(Instrument):
             'mezz.'
 
         Returns string.
-        '''
+        """
         return Instrument.short_name.fget(self)

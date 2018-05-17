@@ -100,7 +100,7 @@ class ComplexTrillSpanner(Spanner):
 
     ### PRIVATE METHODS ###
 
-    def _copy_keyword_args(self, new):
+    def _copy_keywords(self, new):
         new._interval = self.interval
 
     def _get_lilypond_format_bundle(self, leaf):
@@ -140,10 +140,11 @@ class ComplexTrillSpanner(Spanner):
                     elif self.interval.semitones < 0:
                         written_pitch = min(leaf.written_pitches)
                 trill_pitch = written_pitch.transpose(self.interval)
-                string = rf'{self.start_command()} {trill_pitch!s}'
+                strings = self.start_command()
+                strings[-1] = rf'{strings[-1]} {trill_pitch!s}'
             else:
-                string = self.start_command()
-            bundle.right.trill_pitches.append(string)
+                strings = self.start_command()
+            bundle.right.trill_pitches.extend(strings)
         if leaf is logical_tie.tail:
             next_leaf = leaf._get_leaf(1)
             if next_leaf is not None:
@@ -195,14 +196,14 @@ class ComplexTrillSpanner(Spanner):
 
     ### PUBLIC METHODS ###
 
-    def start_command(self) -> typing.Optional[str]:
+    def start_command(self) -> typing.List[str]:
         r"""
         Gets start command.
 
         ..  container:: example
 
             >>> abjad.ComplexTrillSpanner().start_command()
-            '\\startTrillSpan'
+            ['\\startTrillSpan']
 
         """
         return super(ComplexTrillSpanner, self).start_command()

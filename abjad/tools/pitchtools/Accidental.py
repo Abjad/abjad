@@ -321,7 +321,7 @@ class Accidental(AbjadValueObject):
 
     def __lt__(self, argument):
         r'''Is true when `argument` is an accidental with semitones greater
-        than those of this accidental. Otherwise false.
+        than those of this accidental.
 
         ..  container:: example
 

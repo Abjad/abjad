@@ -3,7 +3,8 @@ def timespan_2_contains_timespan_1_improperly(
     timespan_2=None,
     hold=False,
     ):
-    r'''Makes time relation indicating that `timespan_2` contains
+    r"""
+    Makes time relation indicating that `timespan_2` contains
     `timespan_1` improperly.
 
     ..  container:: example
@@ -39,7 +40,7 @@ def timespan_2_contains_timespan_1_improperly(
         >>> abjad.show(staff) # doctest: +SKIP
 
     Returns time relation or boolean.
-    '''
+    """
     from abjad.tools import timespantools
 
     inequality = timespantools.CompoundInequality([

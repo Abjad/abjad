@@ -1,5 +1,6 @@
 def play(argument):
-    r'''Plays `argument`.
+    r"""
+    Plays `argument`.
 
     ..  container:: example
 
@@ -15,7 +16,7 @@ def play(argument):
     Opens MIDI file.
 
     Returns none.
-    '''
+    """
     from abjad import abjad_configuration
     from abjad.tools import systemtools
     from abjad.tools import topleveltools

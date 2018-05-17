@@ -2,7 +2,8 @@ import bisect
 
 
 class SortedCollection(object):
-    r'''Sorted collection.
+    """
+    Sorted collection.
 
     Sequence sorted by a key function.
 
@@ -71,7 +72,7 @@ class SortedCollection(object):
      ('david', 'thomas', 32),
      ('roger', 'young', 30)]
 
-    '''
+    """
 
     ### INITIALIZER ###
 
@@ -86,48 +87,54 @@ class SortedCollection(object):
     ### SPECIAL METHODS ###
 
     def __contains__(self, item):
-        r'''Is true when sorted collection contains `item`. Otherwise false.
+        """
+        Is true when sorted collection contains ``item``.
 
         Returns true or false.
-        '''
+        """
         k = self._key(item)
         i = bisect.bisect_left(self._keys, k)
         j = bisect.bisect_right(self._keys, k)
         return item in self._items[i:j]
 
     def __getitem__(self, argument):
-        r'''Gets item or slice identifier by `argument`.
+        """
+        Gets item or slice identifier by ``argument``.
 
         Returns item.
-        '''
+        """
         return self._items.__getitem__(argument)
 
     def __iter__(self):
-        r'''Iterates sorted collection.
+        """
+        Iterates sorted collection.
 
         Yields items.
-        '''
+        """
         return iter(self._items)
 
     def __len__(self):
-        r'''Length of sorted collection.
+        """
+        Length of sorted collection.
 
         Defined equal to number of items in collection.
 
         Returns nonnegatie integer.
-        '''
+        """
         return len(self._items)
 
     def __reduce__(self):
-        r'''Reduces sorted collection.
-        '''
+        """
+        Reduces sorted collection.
+        """
         return type(self), (self._items, self._given_key)
 
     def __repr__(self):
-        r'''Interpreter reprsentation of sorted collection.
+        """
+        Interpreter reprsentation of sorted collection.
 
         Returns string.
-        '''
+        """
         return '%s(%r, key=%s)' % (
             type(self).__name__,
             self._items,
@@ -135,10 +142,11 @@ class SortedCollection(object):
         )
 
     def __reversed__(self):
-        r'''Reverses sorted collection.
+        """
+        Reverses sorted collection.
 
         Yields items.
-        '''
+        """
         return reversed(self._items)
 
     ### PRIVATE METHODS ###
@@ -156,34 +164,38 @@ class SortedCollection(object):
     key = property(_getkey, _setkey, _delkey, 'key function')
 
     def clear(self):
-        r'''Clears sorted collection.
+        """
+        Clears sorted collection.
 
         Returns none.
-        '''
+        """
         self.__init__([], self._key)
 
     def copy(self):
-        r'''Copies sorted collection.
+        """
+        Copies sorted collection.
 
         Returns new sorted collection.
-        '''
+        """
         return type(self)(self, self._key)
 
     ### PUBLIC METHODS ###
 
     def count(self, item):
-        r''''Returns number of occurrences of `item`.
-        '''
+        """
+        Returns number of occurrences of ``item``.
+        """
         k = self._key(item)
         i = bisect.bisect_left(self._keys, k)
         j = bisect.bisect_right(self._keys, k)
         return self._items[i:j].count(item)
 
     def find(self, k):
-        r'''Returns first item with a key == k.
+        """
+        Returns first item with a key == k.
 
         Raises ValueError if not found.
-        '''
+        """
         i = bisect.bisect_left(self._keys, k)
         if i != len(self) and self._keys[i] == k:
             return self._items[i]
@@ -191,10 +203,11 @@ class SortedCollection(object):
         raise ValueError(message)
 
     def find_ge(self, k):
-        r'''Returns first item with a key >= equal to k.
+        """
+        Returns first item with a key >= equal to k.
 
         Raises ValueError if not found.
-        '''
+        """
         i = bisect.bisect_left(self._keys, k)
         if i != len(self):
             return self._items[i]
@@ -202,10 +215,11 @@ class SortedCollection(object):
         raise ValueError(message)
 
     def find_gt(self, k):
-        r'''Returns first item with a key > k.
+        """
+        Returns first item with a key > k.
 
         Raises ValueError if not found.
-        '''
+        """
         i = bisect.bisect_right(self._keys, k)
         if i != len(self):
             return self._items[i]
@@ -213,10 +227,11 @@ class SortedCollection(object):
         raise ValueError(message)
 
     def find_le(self, k):
-        r'''Returns last item with a key <= k.
+        """
+        Returns last item with a key <= k.
 
         Raises ValueError if not found.
-        '''
+        """
         i = bisect.bisect_right(self._keys, k)
         if i:
             index = i - 1
@@ -225,10 +240,11 @@ class SortedCollection(object):
         raise ValueError(message)
 
     def find_lt(self, k):
-        r'''Returns last item with a key < k.
+        """
+        Returns last item with a key < k.
 
         Raises ValueError if not found.
-        '''
+        """
         i = bisect.bisect_left(self._keys, k)
         if i:
             index = i - 1
@@ -237,40 +253,44 @@ class SortedCollection(object):
         raise ValueError(message)
 
     def index(self, item):
-        r'''Find the position of an item.
+        """
+        Find the position of an item.
 
         Raises ValueError if not found.
-        '''
+        """
         k = self._key(item)
         i = bisect.bisect_left(self._keys, k)
         j = bisect.bisect_right(self._keys, k)
         return self._items[i:j].index(item) + i
 
     def insert(self, item):
-        r'''Inserts a new item.
+        """
+        Inserts a new item.
 
         If equal keys are found, adds to the left.
-        '''
+        """
         k = self._key(item)
         i = bisect.bisect_left(self._keys, k)
         self._keys.insert(i, k)
         self._items.insert(i, item)
 
     def insert_right(self, item):
-        r'''Insert a new item.
+        """
+        Insert a new item.
 
         If equal keys are found, add to the right.
-        '''
+        """
         k = self._key(item)
         i = bisect.bisect_right(self._keys, k)
         self._keys.insert(i, k)
         self._items.insert(i, item)
 
     def remove(self, item):
-        r'''Remove first occurence of item.
+        """
+        Remove first occurence of item.
 
         Raises ValueError if not found.
-        '''
+        """
         i = self.index(item)
         del self._keys[i]
         del self._items[i]

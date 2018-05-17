@@ -3,8 +3,9 @@ import copy
 
 
 def test_scoretools_Note___copy___01():
-    r'''Copy note.
-    '''
+    """
+    Copy note.
+    """
 
     note_1 = abjad.Note(12, (1, 4))
     note_2 = copy.copy(note_1)
@@ -16,8 +17,9 @@ def test_scoretools_Note___copy___01():
 
 
 def test_scoretools_Note___copy___02():
-    r'''Copy note with LilyPond multiplier.
-    '''
+    """
+    Copy note with LilyPond multiplier.
+    """
 
     note_1 = abjad.Note("c''4")
     abjad.attach(abjad.Multiplier(1, 2), note_1)
@@ -30,8 +32,9 @@ def test_scoretools_Note___copy___02():
 
 
 def test_scoretools_Note___copy___03():
-    r'''Copy note with LilyPond grob abjad.overrides and LilyPond context abjad.settings.
-    '''
+    """
+    Copy note with LilyPond grob abjad.overrides and LilyPond context settings.
+    """
 
     note_1 = abjad.Note(12, (1, 4))
     abjad.override(note_1).staff.note_head.color = 'red'
@@ -46,34 +49,35 @@ def test_scoretools_Note___copy___03():
 
 
 def test_scoretools_Note___copy___04():
-    r'''Copy note with grace container.
-    '''
+    """
+    Copy note with grace container.
+    """
 
     note_1 = abjad.Note("c'4")
     grace_container_1 = abjad.AfterGraceContainer([abjad.Note("d'32")])
     abjad.attach(grace_container_1, note_1)
 
     assert format(note_1) == abjad.String.normalize(
-        r'''
+        r"""
         \afterGrace
         c'4
         {
             d'32
         }
-        '''
+        """
         )
 
     note_2 = copy.copy(note_1)
     grace_container_2 = abjad.inspect(note_2).get_after_grace_container()
 
     assert format(note_2) == abjad.String.normalize(
-        r'''
+        r"""
         \afterGrace
         c'4
         {
             d'32
         }
-        '''
+        """
         )
 
     assert note_1 is not note_2
@@ -83,8 +87,9 @@ def test_scoretools_Note___copy___04():
 
 
 def test_scoretools_Note___copy___05():
-    r'''Deepcopy orphan note.
-    '''
+    """
+    Deepcopy orphan note.
+    """
 
     note = abjad.Note("c'4")
     articulation = abjad.Articulation('staccato')
@@ -94,14 +99,14 @@ def test_scoretools_Note___copy___05():
     abjad.override(note).note_head.color = 'red'
 
     assert format(note) == abjad.String.normalize(
-        r'''
+        r"""
         \grace {
             d'16
         }
         \once \override NoteHead.color = #red
         c'4
         -\staccato
-        '''
+        """
         )
 
     new_note = copy.deepcopy(note)
@@ -111,8 +116,9 @@ def test_scoretools_Note___copy___05():
 
 
 def test_scoretools_Note___copy___06():
-    r'''Deepcopy note in score.
-    '''
+    """
+    Deepcopy note in score.
+    """
 
     staff = abjad.Staff("c'8 [ c'8 e'8 f'8 ]")
     note = staff[0]
@@ -123,7 +129,7 @@ def test_scoretools_Note___copy___06():
     abjad.override(note).note_head.color = 'red'
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             \grace {
@@ -138,7 +144,7 @@ def test_scoretools_Note___copy___06():
             f'8
             ]
         }
-        '''
+        """
         )
 
     new_note = copy.deepcopy(note)
@@ -153,15 +159,16 @@ def test_scoretools_Note___copy___06():
 
 
 def test_scoretools_Note___copy___07():
-    r'''Copying note does note copy hairpin.
-    '''
+    """
+    Copying note does note copy hairpin.
+    """
 
     staff = abjad.Staff([abjad.Note(n, (1, 8)) for n in range(8)])
     crescendo = abjad.Hairpin('<')
     abjad.attach(crescendo, staff[:4])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -175,14 +182,14 @@ def test_scoretools_Note___copy___07():
             fs'8
             g'8
         }
-        '''
+        """
         )
 
     new_note = copy.copy(staff[0])
     staff.append(new_note)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -197,6 +204,6 @@ def test_scoretools_Note___copy___07():
             g'8
             c'8
         }
-        '''
+        """
         )
     assert abjad.inspect(staff).is_well_formed()

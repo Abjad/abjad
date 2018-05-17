@@ -7,7 +7,8 @@ from .NoteHead import NoteHead
 
 
 class Note(Leaf):
-    r'''Note.
+    """
+    Note.
 
     ..  container:: example
 
@@ -19,7 +20,7 @@ class Note(Leaf):
             >>> abjad.f(note)
             cs''8.
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -91,10 +92,11 @@ class Note(Leaf):
     ### SPECIAL METHODS ###
 
     def __getnewargs__(self):
-        r'''Gets new arguments.
+        """
+        Gets new arguments.
 
         Returns tuple.
-        '''
+        """
         return (self.written_pitch, self.written_duration)
 
     ### PRIVATE METHODS ###
@@ -137,7 +139,8 @@ class Note(Leaf):
 
     @property
     def note_head(self) -> NoteHead:
-        r'''Gets and sets note-head.
+        """
+        Gets and sets note-head.
 
         .. container:: example
 
@@ -163,7 +166,7 @@ class Note(Leaf):
                 >>> abjad.f(note)
                 d''8.
 
-        '''
+        """
         return self._note_head
 
     @note_head.setter
@@ -178,7 +181,8 @@ class Note(Leaf):
 
     @property
     def written_duration(self) -> Duration:
-        r'''Gets and sets written duration.
+        """
+        Gets and sets written duration.
 
         ..  container:: example
 
@@ -205,7 +209,7 @@ class Note(Leaf):
                 cs''16
 
         Returns duration
-        '''
+        """
         return Leaf.written_duration.fget(self)
 
     @written_duration.setter
@@ -214,7 +218,8 @@ class Note(Leaf):
 
     @property
     def written_pitch(self) -> NamedPitch:
-        r'''Gets and sets written pitch.
+        """
+        Gets and sets written pitch.
 
         ..  container:: example
 
@@ -241,7 +246,7 @@ class Note(Leaf):
                 d''8.
 
         Returns named pitch.
-        '''
+        """
         if self.note_head is not None:
             return self.note_head.written_pitch
         else:
@@ -263,7 +268,8 @@ class Note(Leaf):
 
     @staticmethod
     def from_pitch_and_duration(pitch, duration):
-        r'''Makes note from ``pitch`` and ``duration``.
+        """
+        Makes note from ``pitch`` and ``duration``.
 
         ..  container:: example
 
@@ -275,6 +281,6 @@ class Note(Leaf):
                 >>> abjad.f(note)
                 cs''8.
 
-        '''
+        """
         note = Note(pitch, duration)
         return note

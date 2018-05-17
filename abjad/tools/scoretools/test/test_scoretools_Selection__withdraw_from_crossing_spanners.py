@@ -3,11 +3,13 @@ import pytest
 
 
 def test_scoretools_Selection__withdraw_from_crossing_spanners_01():
-    r'''Withdraw components from crossing spanners.
+    """
+    Withdraw components from crossing spanners.
     No spanners cross voice.
-    '''
+    """
 
-    voice = abjad.Voice(r'''
+    voice = abjad.Voice(
+        r"""
         {
             c'8
             [
@@ -22,10 +24,11 @@ def test_scoretools_Selection__withdraw_from_crossing_spanners_01():
             )
             \stopTrillSpan
         }
-        ''')
+        """
+        )
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -43,14 +46,14 @@ def test_scoretools_Selection__withdraw_from_crossing_spanners_01():
                 \stopTrillSpan
             }
         }
-        '''
+        """
         )
 
     voice_selection = abjad.select([voice])
     voice_selection._withdraw_from_crossing_spanners()
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -68,17 +71,19 @@ def test_scoretools_Selection__withdraw_from_crossing_spanners_01():
                 \stopTrillSpan
             }
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice).is_well_formed()
 
 
 def test_scoretools_Selection__withdraw_from_crossing_spanners_02():
-    r'''Withdraw logical-voice-contiguous components from crossing spanners.
-    '''
+    """
+    Withdraw logical-voice-contiguous components from crossing spanners.
+    """
 
-    voice = abjad.Voice(r'''
+    voice = abjad.Voice(
+        r"""
         {
             c'8
             [
@@ -93,10 +98,11 @@ def test_scoretools_Selection__withdraw_from_crossing_spanners_02():
             )
             \stopTrillSpan
         }
-        ''')
+        """
+        )
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -114,13 +120,13 @@ def test_scoretools_Selection__withdraw_from_crossing_spanners_02():
                 \stopTrillSpan
             }
         }
-        '''
+        """
         )
 
     voice[:1]._withdraw_from_crossing_spanners()
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -138,19 +144,21 @@ def test_scoretools_Selection__withdraw_from_crossing_spanners_02():
                 \stopTrillSpan
             }
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice).is_well_formed()
 
 
 def test_scoretools_Selection__withdraw_from_crossing_spanners_03():
-    r'''Withdraw logical-voice-contiguous components from crossing spanners.
+    """
+    Withdraw logical-voice-contiguous components from crossing spanners.
     Operation leaves score tree in weird state.
     Both slur and trill become discontiguous.
-    '''
+    """
 
-    voice = abjad.Voice(r'''
+    voice = abjad.Voice(
+        r"""
         {
             c'8
             [
@@ -165,10 +173,11 @@ def test_scoretools_Selection__withdraw_from_crossing_spanners_03():
             )
             \stopTrillSpan
         }
-        ''')
+        """
+        )
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -186,7 +195,7 @@ def test_scoretools_Selection__withdraw_from_crossing_spanners_03():
                 \stopTrillSpan
             }
         }
-        '''
+        """
         )
 
     selector = abjad.select().leaves()

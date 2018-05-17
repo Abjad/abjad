@@ -3,7 +3,8 @@ def timespan_2_starts_during_timespan_1(
     timespan_2=None,
     hold=False,
     ):
-    r'''Makes time relation indicating that `timespan_2` starts
+    """
+    Makes time relation indicating that `timespan_2` starts
     during `timespan_1`.
 
     ..  container:: example
@@ -52,7 +53,7 @@ def timespan_2_starts_during_timespan_1(
         >>> abjad.show(score) # doctest: +SKIP
 
     Returns time relation or boolean.
-    '''
+    """
     from abjad.tools import timespantools
 
     inequality = timespantools.CompoundInequality([

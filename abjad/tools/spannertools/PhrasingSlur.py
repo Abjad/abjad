@@ -73,22 +73,22 @@ class PhrasingSlur(Spanner):
             return True
         return self._at_least_two_leaves(argument)
 
-    def _copy_keyword_args(self, new):
+    def _copy_keywords(self, new):
         new._direction = self.direction
 
     def _get_lilypond_format_bundle(self, leaf):
         bundle = self._get_basic_lilypond_format_bundle(leaf)
         if self._is_my_only(leaf):
             if self.leak:
-                string = self.start_command()
-                bundle.right.spanner_starts.append(string)
+                strings = self.start_command()
+                bundle.right.spanner_starts.extend(strings)
                 string = self.stop_command()
                 bundle.right.spanner_starts.append(string)
             return bundle
         assert 1 < len(self)
         if leaf is self[0]:
-            string = self.start_command()
-            bundle.right.spanner_starts.append(string)
+            strings = self.start_command()
+            bundle.right.spanner_starts.extend(strings)
         elif leaf is self[-1]:
             string = self.stop_command()
             bundle.right.spanner_stops.append(string)
@@ -244,25 +244,22 @@ class PhrasingSlur(Spanner):
 
     ### PUBLIC METHODS ###
 
-    def start_command(self) -> typing.Optional[str]:
+    def start_command(self) -> typing.List[str]:
         r"""
         Gets start command.
 
         ..  container:: example
 
             >>> abjad.PhrasingSlur().start_command()
-            '\\('
+            ['\\(']
 
             With direction:
 
             >>> abjad.PhrasingSlur(direction=abjad.Up).start_command()
-            '^ \\('
+            ['^ \\(']
 
         """
-        string = super(PhrasingSlur, self).start_command()
-        if self.direction:
-            string = f'{self.direction} {string}'
-        return string
+        return super(PhrasingSlur, self).start_command()
 
     def stop_command(self) -> typing.Optional[str]:
         r"""

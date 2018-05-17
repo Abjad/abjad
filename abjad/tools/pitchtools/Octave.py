@@ -89,7 +89,6 @@ class Octave(AbjadValueObject):
 
     def __eq__(self, argument):
         r'''Is true when `argument` is octave with same octave number.
-        Otherwise False.
 
         ..  container:: example
 

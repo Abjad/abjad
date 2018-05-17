@@ -2,11 +2,12 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class LilyPondFormatBundle(AbjadObject):
-    r'''LilyPond format bundle.
+    """
+    LilyPond format bundle.
 
     Transient class created to hold the collection of all
     format contributions generated on behalf of a single component.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -70,33 +71,29 @@ class LilyPondFormatBundle(AbjadObject):
     ### PUBLIC METHODS ###
 
     def get(self, identifier):
-        r'''Gets `identifier`.
+        """
+        Gets `identifier`.
 
         Returns format contributions object or list.
-        '''
+        """
         return getattr(self, identifier)
 
-    def make_immutable(self):
-        r'''Makes each slot immutable.
+    def sort_overrides(self):
+        """
+        Makes each slot immutable.
 
         Returns none.
-        '''
-        self.absolute_after.make_immutable()
-        self.absolute_before.make_immutable()
-        self.before.make_immutable()
-        self.after.make_immutable()
-        self.opening.make_immutable()
-        self.closing.make_immutable()
-        self.right.make_immutable()
+        """
         self._context_settings = tuple(sorted(set(self.context_settings)))
         self._grob_overrides = tuple(sorted(set(self.grob_overrides)))
         self._grob_reverts = tuple(sorted(set(self.grob_reverts)))
 
     def tag_format_contributions(self, tag, deactivate=None):
-        r'''Tags format contributions with string `tag`.
+        """
+        Tags format contributions with string `tag`.
 
         Returns none.
-        '''
+        """
         import abjad
         self.absolute_before.tag(tag, deactivate)
         self.absolute_after.tag(tag, deactivate)
@@ -122,11 +119,12 @@ class LilyPondFormatBundle(AbjadObject):
             )
 
     def update(self, format_bundle):
-        r'''Updates format bundle with all format contributions in
+        """
+        Updates format bundle with all format contributions in
         `format_bundle`.
 
         Returns none.
-        '''
+        """
         if hasattr(format_bundle, '_get_lilypond_format_bundle'):
             format_bundle = format_bundle._get_lilypond_format_bundle()
         assert isinstance(format_bundle, type(self))
@@ -145,80 +143,90 @@ class LilyPondFormatBundle(AbjadObject):
 
     @property
     def absolute_after(self):
-        r'''Aboslute after slot contributions.
+        """
+        Aboslute after slot contributions.
 
         Returns slot contributions object.
-        '''
+        """
         return self._absolute_after
 
     @property
     def absolute_before(self):
-        r'''Absolute before slot contributions.
+        """
+        Absolute before slot contributions.
 
         Returns slot contributions object.
-        '''
+        """
         return self._absolute_before
 
     @property
     def after(self):
-        r'''After slot contributions.
+        """
+        After slot contributions.
 
         Returns slot contributions object.
-        '''
+        """
         return self._after
 
     @property
     def before(self):
-        r'''Before slot contributions.
+        """
+        Before slot contributions.
 
         Returns slot contributions object.
-        '''
+        """
         return self._before
 
     @property
     def closing(self):
-        r'''Closing slot contributions.
+        """
+        Closing slot contributions.
 
         Returns slot contributions object.
-        '''
+        """
         return self._closing
 
     @property
     def context_settings(self):
-        r'''Context setting format contributions.
+        """
+        Context setting format contributions.
 
         Returns list.
-        '''
+        """
         return self._context_settings
 
     @property
     def grob_overrides(self):
-        r'''Grob override format contributions.
+        """
+        Grob override format contributions.
 
         Returns list.
-        '''
+        """
         return self._grob_overrides
 
     @property
     def grob_reverts(self):
-        r'''Grob revert format contributions.
+        """
+        Grob revert format contributions.
 
         Returns list.
-        '''
+        """
         return self._grob_reverts
 
     @property
     def opening(self):
-        r'''Opening slot contributions.
+        """
+        Opening slot contributions.
 
         Returns slot contributions object.
-        '''
+        """
         return self._opening
 
     @property
     def right(self):
-        r'''Right slot contributions.
+        """
+        Right slot contributions.
 
         Returns slot contributions object.
-        '''
+        """
         return self._right

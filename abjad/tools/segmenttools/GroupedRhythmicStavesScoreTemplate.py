@@ -4,7 +4,8 @@ from .ScoreTemplate import ScoreTemplate
 
 
 class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
-    r'''Grouped rhythmic staves score template.
+    r"""
+    Grouped rhythmic staves score template.
 
     ..  container:: example
 
@@ -172,7 +173,7 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
             >>
         >>
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -192,10 +193,11 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
     ### SPECIAL METHODS ###
 
     def __call__(self):
-        r'''Calls score template.
+        """
+        Calls score template.
 
         Returns score.
-        '''
+        """
         import abjad
         staves = []
         if isinstance(self.staff_count, int):
@@ -245,7 +247,8 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
 
     @property
     def voice_abbreviations(self):
-        r'''Gets context name abbreviations.
+        """
+        Gets context name abbreviations.
 
         ..  container:: example
 
@@ -254,7 +257,7 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
             >>> template.voice_abbreviations
             OrderedDict([])
 
-        '''
+        """
         return super(
             GroupedRhythmicStavesScoreTemplate,
             self,
@@ -262,7 +265,8 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
 
     @property
     def staff_count(self):
-        r'''Gets score template staff count.
+        """
+        Gets score template staff count.
 
         ..  container:: example
 
@@ -272,5 +276,5 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
             4
 
         Returns nonnegative integer.
-        '''
+        """
         return self._staff_count

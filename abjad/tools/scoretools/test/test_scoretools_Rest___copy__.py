@@ -3,8 +3,9 @@ import copy
 
 
 def test_scoretools_Rest___copy___01():
-    r'''Copy rest.
-    '''
+    """
+    Copy rest.
+    """
 
     rest_1 = abjad.Rest((1, 4))
     rest_2 = copy.copy(rest_1)
@@ -16,8 +17,9 @@ def test_scoretools_Rest___copy___01():
 
 
 def test_scoretools_Rest___copy___02():
-    r'''Copy rest with LilyPond multiplier.
-    '''
+    """
+    Copy rest with LilyPond multiplier.
+    """
 
     rest_1 = abjad.Rest('r4')
     abjad.attach(abjad.Multiplier(1, 2), rest_1)
@@ -30,8 +32,9 @@ def test_scoretools_Rest___copy___02():
 
 
 def test_scoretools_Rest___copy___03():
-    r'''Copy rest with LilyPond grob abjad.overrides and LilyPond context abjad.settings.
-    '''
+    """
+    Copy rest with LilyPond grob overrides and LilyPond context settings.
+    """
 
     rest_1 = abjad.Rest((1, 4))
     abjad.override(rest_1).staff.note_head.color = 'red'

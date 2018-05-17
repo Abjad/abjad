@@ -1,5 +1,6 @@
 def detach(argument, target=None, by_id=False):
-    r'''Detaches indicators-equal-to-``argument`` from ``target``.
+    r"""
+    Detaches indicators-equal-to-``argument`` from ``target``.
         
     When ``target`` is none ``argument`` must be a spanner; spanner will then
     detach from all leaves to which spanner attaches.
@@ -252,7 +253,7 @@ def detach(argument, target=None, by_id=False):
             }
 
     Returns tuple of zero or more detached items.
-    '''
+    """
     import abjad
     if isinstance(argument, abjad.Spanner):
         if by_id is True:

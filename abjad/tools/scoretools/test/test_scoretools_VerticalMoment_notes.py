@@ -4,7 +4,7 @@ import abjad
 def test_scoretools_VerticalMoment_notes_01():
 
     score = abjad.Score(
-        r'''
+        r"""
         \new Staff {
             \times 4/3 {
                 d''8
@@ -25,7 +25,7 @@ def test_scoretools_VerticalMoment_notes_01():
                 c'8
             }
         >>
-        '''
+        """
         )
 
     staff_group = score[1]

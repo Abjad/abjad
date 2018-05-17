@@ -3,7 +3,8 @@ from .TypedCollection import TypedCollection
 
 
 class TypedList(TypedCollection, collections.MutableSequence):
-    r'''Typed list.
+    """
+    Typed list.
 
     ..  container:: example
 
@@ -53,7 +54,7 @@ class TypedList(TypedCollection, collections.MutableSequence):
     Ordered collection with optional item coercion.
 
     Implements the list interface.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -87,22 +88,25 @@ class TypedList(TypedCollection, collections.MutableSequence):
     ### SPECIAL METHODS ###
 
     def __delitem__(self, i):
-        r'''Aliases list.__delitem__().
+        """
+        Aliases list.__delitem__().
 
         Returns none.
-        '''
+        """
         self._on_removal(self._collection[i])
         del(self._collection[i])
 
     def __getitem__(self, argument):
-        r'''Gets item or slice identified  by `argument`.
+        """
+        Gets item or slice identified  by ``argument``.
 
         Returns item or slice.
-        '''
+        """
         return self._collection.__getitem__(argument)
 
     def __iadd__(self, argument):
-        r'''Adds `argument` in place to typed list.
+        """
+        Adds ``argument`` in place to typed list.
 
         ..  container:: example
 
@@ -123,19 +127,21 @@ class TypedList(TypedCollection, collections.MutableSequence):
                 )
 
         Returns typed list.
-        '''
+        """
         self.extend(argument)
         return self
 
     def __reversed__(self):
-        r'''Aliases list.__reversed__().
+        """
+        Aliases list.__reversed__().
 
         Returns generator.
-        '''
+        """
         return self._collection.__reversed__()
 
     def __setitem__(self, i, argument):
-        r'''Sets item `i` equal to `argument`.
+        """
+        Sets item ``i`` equal to ``argument``.
 
         ..  container:: example
 
@@ -182,7 +188,7 @@ class TypedList(TypedCollection, collections.MutableSequence):
                 )
 
         Returns none.
-        '''
+        """
         if isinstance(i, int):
             new_item = self._item_coercer(argument)
             old_item = self._collection[i]
@@ -220,7 +226,8 @@ class TypedList(TypedCollection, collections.MutableSequence):
     ### PUBLIC METHODS ###
 
     def append(self, item):
-        r'''Appends `item` to typed list.
+        """
+        Appends ``item`` to typed list.
 
         ..  container:: example
 
@@ -232,7 +239,7 @@ class TypedList(TypedCollection, collections.MutableSequence):
             [1, 2, 3]
 
         Returns none.
-        '''
+        """
         item = self._item_coercer(item)
         self._on_insertion(item)
         self._collection.append(item)
@@ -240,7 +247,8 @@ class TypedList(TypedCollection, collections.MutableSequence):
             self.sort()
 
     def count(self, item):
-        r'''Gets count of `item` in typed list.
+        """
+        Gets count of ``item`` in typed list.
 
         ..  container:: example
 
@@ -255,12 +263,13 @@ class TypedList(TypedCollection, collections.MutableSequence):
             1
 
         Returns nonnegative integer.
-        '''
+        """
         item = self._item_coercer(item)
         return self._collection.count(item)
 
     def extend(self, items):
-        r'''Extends typed list with `items`.
+        """
+        Extends typed list with ``items``.
 
         ..  container:: example
 
@@ -270,14 +279,15 @@ class TypedList(TypedCollection, collections.MutableSequence):
             TypedList([0, 1, 2, 3], item_class=int)
 
         Returns none.
-        '''
+        """
         for item in items:
             self.append(item)
         if self.keep_sorted:
             self.sort()
 
     def index(self, item):
-        r'''Gets index of `item` in typed list.
+        """
+        Gets index of ``item`` in typed list.
 
         ..  container:: example
 
@@ -296,12 +306,13 @@ class TypedList(TypedCollection, collections.MutableSequence):
             3
 
         Returns nonnegative integer.
-        '''
+        """
         item = self._item_coercer(item)
         return self._collection.index(item)
 
     def insert(self, i, item):
-        r'''Insert `item` into typed list.
+        """
+        Insert ``item`` into typed list.
 
         ..  container:: example
 
@@ -321,7 +332,7 @@ class TypedList(TypedCollection, collections.MutableSequence):
             TypedList([0, 9, 1, 2, 4], item_class=int)
 
         Returns none.
-        '''
+        """
         item = self._item_coercer(item)
         self._on_insertion(item)
         result = self._collection.insert(i, item)
@@ -330,10 +341,11 @@ class TypedList(TypedCollection, collections.MutableSequence):
         return result
 
     def pop(self, i=-1):
-        r'''Pops item `i` from typed list.
+        """
+        Pops item ``i`` from typed list.
 
         Returns item.
-        '''
+        """
         result = self._collection.pop(i)
         self._on_removal(result)
         if self.keep_sorted:
@@ -341,7 +353,8 @@ class TypedList(TypedCollection, collections.MutableSequence):
         return result
 
     def remove(self, item):
-        r'''Removes `item` from typed list.
+        """
+        Removes ``item`` from typed list.
 
         ..  container:: example
 
@@ -355,7 +368,7 @@ class TypedList(TypedCollection, collections.MutableSequence):
             [0, 2, 3]
 
         Returns none.
-        '''
+        """
         item = self._item_coercer(item)
         index = self._collection.index(item)
         item = self._collection[index]
@@ -365,18 +378,21 @@ class TypedList(TypedCollection, collections.MutableSequence):
             self.sort()
 
     def reverse(self):
-        r'''Reverses items in typed list.
-        '''
+        """
+        Reverses items in typed list.
+        """
         self._collection.reverse()
 
     def sort(self, cmp=None, key=None, reverse=False):
-        r'''Sorts items in typed list.
-        '''
+        """
+        Sorts items in typed list.
+        """
         if cmp is not None:
             def cmp_to_key(comparator):
-                r'''Convert a `cmp` function into a `key` function for use
-                with `sort()`.
-                '''
+                """
+                Convert a ``cmp`` function into a ``key`` function for use
+                with ``sort()``.
+                """
                 class CmpToKey(object):
 
                     def __init__(self, argument):
@@ -408,14 +424,15 @@ class TypedList(TypedCollection, collections.MutableSequence):
 
     @property
     def keep_sorted(self):
-        r'''Is true when typed list keeps items sorted. Otherwise false.
+        """
+        Is true when typed list keeps items sorted.
 
         Defaults to none.
 
         Set to true, false or none.
 
         Returns true, false or none.
-        '''
+        """
         return self._keep_sorted
 
     @keep_sorted.setter

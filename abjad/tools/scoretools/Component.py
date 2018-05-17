@@ -9,8 +9,9 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class Component(AbjadObject):
-    r'''Component baseclass.
-    '''
+    """
+    Component baseclass.
+    """
 
     ### CLASS VARIABLES ###
 
@@ -54,7 +55,8 @@ class Component(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __copy__(self, *arguments):
-        r'''Shallow copies component.
+        """
+        Shallow copies component.
 
         Copies indicators.
 
@@ -63,7 +65,7 @@ class Component(AbjadObject):
         Does not copy children.
 
         Returns new component.
-        '''
+        """
         import abjad
         new_component = type(self)(*self.__getnewargs__())
         if getattr(self, '_lilypond_grob_name_manager', None) is not None:
@@ -82,12 +84,13 @@ class Component(AbjadObject):
         return new_component
 
     def __format__(self, format_specification=''):
-        r'''Formats component.
+        """
+        Formats component.
 
         Set `format_specification` to `''`, `'lilypond'` or `'storage'`.
 
         Returns string.
-        '''
+        """
         import abjad
         if format_specification in ('', 'lilypond'):
             return self._get_lilypond_format()
@@ -97,26 +100,29 @@ class Component(AbjadObject):
         #return str(self)
 
     def __getnewargs__(self):
-        r'''Gets new arguments.
+        """
+        Gets new arguments.
 
         Returns tuple.
-        '''
+        """
         return ()
 
     def __illustrate__(self):
-        r'''Illustrates component.
+        """
+        Illustrates component.
 
         Returns LilyPond file.
-        '''
+        """
         import abjad
         lilypond_file = abjad.LilyPondFile.new(self)
         return lilypond_file
 
     def __mul__(self, n):
-        r'''Copies component `n` times and detaches spanners.
+        """
+        Copies component `n` times and detaches spanners.
 
         Returns list of new components.
-        '''
+        """
         import abjad
         components = []
         for i in range(n):
@@ -128,18 +134,20 @@ class Component(AbjadObject):
         return result
 
     def __repr__(self):
-        '''Gets interpreter representation of leaf.
+        """
+        Gets interpreter representation of leaf.
 
         Returns string.
-        '''
+        """
         import abjad
         return abjad.StorageFormatManager(self).get_repr_format()
 
     def __rmul__(self, n):
-        r'''Copies component `n` times and detach spanners.
+        """
+        Copies component `n` times and detach spanners.
 
         Returns list of new components.
-        '''
+        """
         return self * n
 
     ### PRIVATE METHODS ###
@@ -728,8 +736,9 @@ class Component(AbjadObject):
                         named_children[name] = copy.copy(name_dictionary[name])
 
     def _set_parent(self, new_parent):
-        r'''Not composer-safe.
-        '''
+        """
+        Not composer-safe.
+        """
         named_children = self._cache_named_children()
         self._remove_named_children_from_parentage(named_children)
         self._remove_from_parent()

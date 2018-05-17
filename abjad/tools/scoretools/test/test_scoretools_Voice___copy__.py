@@ -3,10 +3,10 @@ import copy
 
 
 def test_scoretools_Voice___copy___01():
-    r'''Voices copy name, engraver removals, engraver consists,
-    grob abjad.overrides and context abjad.settings. Voices do not copy
-    components.
-    '''
+    """
+    Voices copy name, engraver removals, engraver consists, grob overrides and
+    context settings. Voices do not copy components.
+    """
 
     voice_1 = abjad.Voice("c'8 d'8 e'8 f'8")
     voice_1.name = 'SopranoVoice'
@@ -17,7 +17,7 @@ def test_scoretools_Voice___copy___01():
     voice_2 = copy.copy(voice_1)
 
     assert format(voice_2) == abjad.String.normalize(
-        r'''
+        r"""
         \context Voice = "SopranoVoice"
         \with
         {
@@ -28,5 +28,5 @@ def test_scoretools_Voice___copy___01():
         }
         {
         }
-        '''
+        """
         )

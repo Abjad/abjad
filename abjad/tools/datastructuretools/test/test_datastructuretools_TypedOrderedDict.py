@@ -2,8 +2,9 @@ import abjad
 
 
 def test_datastructuretools_OrderedDict_01():
-    r'''Implements __contains__().
-    '''
+    """
+    Implements __contains__().
+    """
 
     dictionary = abjad.OrderedDict(item_class=abjad.Clef)
     dictionary['soprano'] = 'treble'
@@ -17,8 +18,9 @@ def test_datastructuretools_OrderedDict_01():
 
 
 def test_datastructuretools_OrderedDict_02():
-    r'''Implements __delitem__().
-    '''
+    """
+    Implements __delitem__().
+    """
 
     dictionary_1 = abjad.OrderedDict(item_class=abjad.Clef)
     dictionary_1['soprano'] = 'treble'
@@ -29,8 +31,9 @@ def test_datastructuretools_OrderedDict_02():
 
 
 def test_datastructuretools_OrderedDict_03():
-    r'''Implements __eq__().
-    '''
+    """
+    Implements __eq__().
+    """
 
     dictionary_1 = abjad.OrderedDict(item_class=abjad.Clef)
     dictionary_1['soprano'] = 'treble'
@@ -53,8 +56,9 @@ def test_datastructuretools_OrderedDict_03():
 
 
 def test_datastructuretools_OrderedDict_04():
-    r'''Implements __format__().
-    '''
+    """
+    Implements __format__().
+    """
 
     dictionary_1 = abjad.OrderedDict(item_class=abjad.Clef)
     dictionary_1['soprano'] = 'treble'
@@ -63,7 +67,7 @@ def test_datastructuretools_OrderedDict_04():
     dictionary_1['bass'] = 'bass'
 
     assert format(dictionary_1) == abjad.String.normalize(
-        r'''
+        """
         abjad.OrderedDict(
             [
                 (
@@ -85,7 +89,7 @@ def test_datastructuretools_OrderedDict_04():
                 ],
             item_class=abjad.Clef,
             )
-        '''
+        """
         )
 
     globs = abjad.__dict__.copy()
@@ -95,8 +99,9 @@ def test_datastructuretools_OrderedDict_04():
 
 
 def test_datastructuretools_OrderedDict_05():
-    r'''Initializes from dictionary items.
-    '''
+    """
+    Initializes from dictionary items.
+    """
 
     items = [
         ('soprano', abjad.Clef('treble')),
@@ -119,8 +124,9 @@ def test_datastructuretools_OrderedDict_05():
 
 
 def test_datastructuretools_OrderedDict_06():
-    r'''Implements __len__().
-    '''
+    """
+    Implements __len__().
+    """
 
     dictionary = abjad.OrderedDict(item_class=abjad.Clef)
     assert len(dictionary) == 0
@@ -153,8 +159,9 @@ def test_datastructuretools_OrderedDict_07():
 
 
 def test_datastructuretools_OrderedDict_08():
-    r'''Implements __reversed__().
-    '''
+    """
+    Implements __reversed__().
+    """
 
     dictionary = abjad.OrderedDict(item_class=abjad.Clef)
     dictionary['soprano'] = 'treble'
@@ -167,8 +174,9 @@ def test_datastructuretools_OrderedDict_08():
 
 
 def test_datastructuretools_OrderedDict_09():
-    r'''Implements clear().
-    '''
+    """
+    Implements clear().
+    """
 
     dictionary_1 = abjad.OrderedDict(item_class=abjad.Clef)
     dictionary_1['soprano'] = 'treble'
@@ -182,8 +190,9 @@ def test_datastructuretools_OrderedDict_09():
 
 
 def test_datastructuretools_OrderedDict_10():
-    r'''Implements copy().
-    '''
+    """
+    Implements copy().
+    """
 
     dictionary_1 = abjad.OrderedDict(item_class=abjad.Clef)
     dictionary_1['soprano'] = 'treble'
@@ -196,8 +205,9 @@ def test_datastructuretools_OrderedDict_10():
 
 
 def test_datastructuretools_OrderedDict_11():
-    r'''Implements get().
-    '''
+    """
+    Implements get().
+    """
 
     dictionary = abjad.OrderedDict(item_class=abjad.Clef)
     dictionary['soprano'] = 'treble'
@@ -211,8 +221,9 @@ def test_datastructuretools_OrderedDict_11():
 
 
 def test_datastructuretools_OrderedDict_12():
-    r'''Implements has_key().
-    '''
+    """
+    Implements has_key().
+    """
 
     dictionary = abjad.OrderedDict(item_class=abjad.Clef)
     dictionary['soprano'] = 'treble'
@@ -226,8 +237,9 @@ def test_datastructuretools_OrderedDict_12():
 
 
 def test_datastructuretools_OrderedDict_13():
-    r'''Implements items().
-    '''
+    """
+    Implements items().
+    """
 
     dictionary = abjad.OrderedDict(item_class=abjad.Clef)
     dictionary['soprano'] = 'treble'
@@ -244,8 +256,9 @@ def test_datastructuretools_OrderedDict_13():
 
 
 def test_datastructuretools_OrderedDict_14():
-    r'''Implements keys().
-    '''
+    """
+    Implements keys().
+    """
 
     dictionary = abjad.OrderedDict(item_class=abjad.Clef)
     dictionary['soprano'] = 'treble'
@@ -257,8 +270,9 @@ def test_datastructuretools_OrderedDict_14():
 
 
 def test_datastructuretools_OrderedDict_15():
-    r'''Implements pop().
-    '''
+    """
+    Implements pop().
+    """
 
     dictionary_1 = abjad.OrderedDict(item_class=abjad.Clef)
     dictionary_1['soprano'] = 'treble'
@@ -276,8 +290,9 @@ def test_datastructuretools_OrderedDict_15():
 
 
 #def test_datastructuretools_OrderedDict_16():
-#    r'''Implements popitem().
-#    '''
+#    """
+#    Implements popitem().
+#    """
 #
 #    dictionary_1 = abjad.OrderedDict(item_class=Clef)
 #    dictionary_1['soprano'] = 'treble'
@@ -296,8 +311,9 @@ def test_datastructuretools_OrderedDict_15():
 
 
 def test_datastructuretools_OrderedDict_17():
-    r'''Implements update().
-    '''
+    """
+    Implements update().
+    """
 
     dictionary_1 = abjad.OrderedDict(item_class=abjad.Clef)
     dictionary_1['soprano'] = 'treble'

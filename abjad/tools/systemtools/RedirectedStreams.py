@@ -3,7 +3,8 @@ from abjad.tools.abctools.ContextManager import ContextManager
 
 
 class RedirectedStreams(ContextManager):
-    r'''A context manager for capturing stdout and stderr output.
+    """
+    A context manager for capturing stdout and stderr output.
 
     ..  container:: example
 
@@ -18,7 +19,7 @@ class RedirectedStreams(ContextManager):
         hello, world!
 
     Redirected streams context manager is immutable.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -40,10 +41,11 @@ class RedirectedStreams(ContextManager):
     ### SPECIAL METHODS ###
 
     def __enter__(self):
-        r'''Enters redirected streams context manager.
+        """
+        Enters redirected streams context manager.
 
         Returns none.
-        '''
+        """
         self._old_stdout, self._old_stderr = sys.stdout, sys.stderr
         self._old_stdout.flush()
         self._old_stderr.flush()
@@ -51,10 +53,11 @@ class RedirectedStreams(ContextManager):
         return self
 
     def __exit__(self, exc_type, exc_value, traceback):
-        r'''Exits redirected streams context manager.
+        """
+        Exits redirected streams context manager.
 
         Returns none.
-        '''
+        """
         try:
             self._stdout.flush()
             self._stderr.flush()
@@ -64,7 +67,8 @@ class RedirectedStreams(ContextManager):
         sys.stderr = self._old_stderr
 
     def __repr__(self):
-        r'''Gets interpreter representation of context manager.
+        """
+        Gets interpreter representation of context manager.
 
         ..  container:: example
 
@@ -73,7 +77,7 @@ class RedirectedStreams(ContextManager):
             <RedirectedStreams()>
 
         Returns string.
-        '''
+        """
         return super(RedirectedStreams, self).__repr__()
 
     ### PRIVATE METHODS ###
@@ -94,12 +98,14 @@ class RedirectedStreams(ContextManager):
 
     @property
     def stderr(self):
-        r'''Gets stderr of context manager.
-        '''
+        """
+        Gets stderr of context manager.
+        """
         return self._stderr
 
     @property
     def stdout(self):
-        r'''Gets stdout of context manager.
-        '''
+        """
+        Gets stdout of context manager.
+        """
         return self._stdout

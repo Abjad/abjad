@@ -2,8 +2,9 @@ import abc
 
 
 class AbjadObject(object, metaclass=abc.ABCMeta):
-    '''Abstract base class from which many custom classes inherit.
-    '''
+    """
+    Abstract base class from which many custom classes inherit.
+    """
 
     ### CLASS VARIABLES ###
 
@@ -12,23 +13,25 @@ class AbjadObject(object, metaclass=abc.ABCMeta):
     ### SPECIAL METHODS ###
 
     def __format__(self, format_specification=''):
-        r'''Formats Abjad object.
+        """
+        Formats Abjad object.
 
         Set `format_specification` to `''` or `'storage'`.
         Interprets `''` equal to `'storage'`.
 
         Returns string.
-        '''
+        """
         import abjad
         if format_specification in ('', 'storage'):
             return abjad.StorageFormatManager(self).get_storage_format()
         return str(self)
 
     def __getstate__(self):
-        r'''Gets state of Abjad object.
+        """
+        Gets state of Abjad object.
 
         Returns dictionary.
-        '''
+        """
         if hasattr(self, '__dict__') and hasattr(vars(self), 'copy'):
             state = vars(self).copy()
         else:
@@ -42,18 +45,20 @@ class AbjadObject(object, metaclass=abc.ABCMeta):
         return state
 
     def __repr__(self):
-        r'''Gets interpreter representation of Abjad object.
+        """
+        Gets interpreter representation of Abjad object.
 
         Returns string.
-        '''
+        """
         import abjad
         return abjad.StorageFormatManager(self).get_repr_format()
 
     def __setstate__(self, state):
-        r'''Sets state of Abjad object.
+        """
+        Sets state of Abjad object.
 
         Returns none.
-        '''
+        """
         for key, value in state.items():
             setattr(self, key, value)
 

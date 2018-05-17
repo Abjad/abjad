@@ -2,7 +2,8 @@ from abjad.tools import scoretools
 
 
 def parse_rtm_syntax(rtm):
-    r'''Parses RTM syntax.
+    r"""
+    Parses RTM syntax.
 
     ..  container:: example
 
@@ -46,7 +47,7 @@ def parse_rtm_syntax(rtm):
             }
 
     Returns tuplet or container.
-    '''
+    """
     from abjad.tools import rhythmtreetools
 
     result = rhythmtreetools.RhythmTreeParser()(rtm)

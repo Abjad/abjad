@@ -3,7 +3,8 @@ from abjad.tools.datastructuretools.TypedList import TypedList
 
 
 class NoteHeadList(TypedList):
-    r'''Note-head list.
+    r"""
+    Note-head list.
 
     ..  container:: example
 
@@ -28,7 +29,7 @@ class NoteHeadList(TypedList):
                 ]
             )
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -95,7 +96,8 @@ class NoteHeadList(TypedList):
     ### PUBLIC METHODS ###
 
     def extend(self, items):
-        r'''Extends note-heads.
+        r"""
+        Extends note-heads.
 
         ..  container:: example
 
@@ -129,12 +131,13 @@ class NoteHeadList(TypedList):
                 >4
 
         Returns note-head.
-        '''
+        """
         superclass = super(NoteHeadList, self)
         return superclass.extend(items)
 
     def get(self, pitch):
-        r'''Gets note-head by `pitch`.
+        r"""
+        Gets note-head by ``pitch``.
 
         ..  container:: example
 
@@ -179,13 +182,13 @@ class NoteHeadList(TypedList):
                 >4
 
         Raises missing note-head error when chord contains no
-        note-head with `pitch`.
+        note-head with ``pitch``.
 
         Raises extra note-head error when chord contains more than
-        one note-head with `pitch`.
+        one note-head with ``pitch``.
 
         Returns note-head.
-        '''
+        """
         from abjad.tools import pitchtools
         result = []
         pitch = pitchtools.NamedPitch(pitch)
@@ -204,7 +207,8 @@ class NoteHeadList(TypedList):
             raise ValueError(message)
 
     def pop(self, i=-1):
-        r'''Pops note-head `i`.
+        r"""
+        Pops note-head ``i``.
 
         ..  container:: example
 
@@ -227,12 +231,13 @@ class NoteHeadList(TypedList):
                 <ef' f''>4
 
         Returns note-head.
-        '''
+        """
         superclass = super(NoteHeadList, self)
         return superclass.pop(i=i)
 
     def remove(self, item):
-        r'''Removes `item`.
+        r"""
+        Removes ``item``.
 
         ..  container:: example
 
@@ -253,7 +258,7 @@ class NoteHeadList(TypedList):
                 >>> abjad.f(chord)
                 <ef' f''>4
 
-        '''
+        """
         superclass = super(NoteHeadList, self)
         return superclass.remove(item)
 
@@ -261,6 +266,7 @@ class NoteHeadList(TypedList):
 
     @property
     def client(self):
-        r'''Gets client.
-        '''
+        """
+        Gets client.
+        """
         return self._client

@@ -3,8 +3,9 @@ import copy
 
 
 def test_scoretools_Skip___copy___01():
-    r'''Copy skip.
-    '''
+    """
+    Copy skip.
+    """
 
     skip_1 = abjad.Skip((1, 4))
     skip_2 = copy.copy(skip_1)
@@ -16,8 +17,9 @@ def test_scoretools_Skip___copy___01():
 
 
 def test_scoretools_Skip___copy___02():
-    r'''Copy skip with LilyPond multiplier.
-    '''
+    """
+    Copy skip with LilyPond multiplier.
+    """
 
     skip_1 = abjad.Skip('s4')
     abjad.attach(abjad.Multiplier(1, 2), skip_1)
@@ -30,8 +32,9 @@ def test_scoretools_Skip___copy___02():
 
 
 def test_scoretools_Skip___copy___03():
-    r'''Copy skip with LilyPond grob abjad.overrides and LilyPond context abjad.settings.
-    '''
+    """
+    Copy skip with LilyPond grob overrides and LilyPond context settings.
+    """
 
     skip_1 = abjad.Skip((1, 4))
     abjad.override(skip_1).staff.note_head.color = 'red'

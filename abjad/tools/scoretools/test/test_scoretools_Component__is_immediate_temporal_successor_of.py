@@ -41,7 +41,7 @@ def test_scoretools_Component__is_immediate_temporal_successor_of_05():
     voice = abjad.Voice("{ c'8 d'8 e'8 f'8 } { g'8 a'8 b'8 c''8 }")
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -57,7 +57,7 @@ def test_scoretools_Component__is_immediate_temporal_successor_of_05():
                 c''8
             }
         }
-        '''
+        """
         )
 
     assert voice[0]._is_immediate_temporal_successor_of(voice[1])
@@ -71,7 +71,7 @@ def test_scoretools_Component__is_immediate_temporal_successor_of_06():
     voice = abjad.Voice(r"\times 2/3 { c'8 d'8 e'8 } \times 2/3 { f'8 e'8 d'8 }")
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             \times 2/3 {
@@ -85,7 +85,7 @@ def test_scoretools_Component__is_immediate_temporal_successor_of_06():
                 d'8
             }
         }
-        '''
+        """
         )
 
     assert voice[0]._is_immediate_temporal_successor_of(voice[1])
@@ -100,7 +100,7 @@ def test_scoretools_Component__is_immediate_temporal_successor_of_07():
     staff = abjad.Staff([abjad.Voice("c'8 d'8 e'8 f'8"), abjad.Voice("g'8 a'8 b'8 c''8")])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             \new Voice
@@ -118,7 +118,7 @@ def test_scoretools_Component__is_immediate_temporal_successor_of_07():
                 c''8
             }
         }
-        '''
+        """
         )
 
     assert staff[0]._is_immediate_temporal_successor_of(staff[1])
@@ -134,7 +134,7 @@ def test_scoretools_Component__is_immediate_temporal_successor_of_08():
     staff[1].name = 'foo'
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             \context Voice = "foo"
@@ -152,7 +152,7 @@ def test_scoretools_Component__is_immediate_temporal_successor_of_08():
                 c''8
             }
         }
-        '''
+        """
         )
 
     assert staff[0]._is_immediate_temporal_successor_of(staff[1])
@@ -168,7 +168,7 @@ def test_scoretools_Component__is_immediate_temporal_successor_of_09():
     staff[1].name = 'bar'
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             \context Voice = "foo"
@@ -186,7 +186,7 @@ def test_scoretools_Component__is_immediate_temporal_successor_of_09():
                 c''8
             }
         }
-        '''
+        """
         )
 
     assert staff[0]._is_immediate_temporal_successor_of(staff[1])
@@ -201,7 +201,7 @@ def test_scoretools_Component__is_immediate_temporal_successor_of_10():
     container = abjad.Container([staff_1, staff_2])
 
     assert format(container) == abjad.String.normalize(
-        r'''
+        r"""
         {
             \new Staff
             {
@@ -224,7 +224,7 @@ def test_scoretools_Component__is_immediate_temporal_successor_of_10():
                 }
             }
         }
-        '''
+        """
         )
 
     assert staff_1._is_immediate_temporal_successor_of(staff_2)
@@ -253,7 +253,7 @@ def test_scoretools_Component__is_immediate_temporal_successor_of_11():
     container = abjad.Container([staff_1, staff_2])
 
     assert format(container) == abjad.String.normalize(
-        r'''
+        r"""
         {
             \new Staff
             <<
@@ -290,7 +290,7 @@ def test_scoretools_Component__is_immediate_temporal_successor_of_11():
                 }
             >>
         }
-        '''
+        """
         )
 
     assert staff_1._is_immediate_temporal_successor_of(staff_2)
@@ -329,7 +329,7 @@ def test_scoretools_Component__is_immediate_temporal_successor_of_12():
     voice = abjad.Voice("{ { c'8 d'8 e'8 f'8 } } { { g'8 a'8 b'8 c''8 } }")
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -349,7 +349,7 @@ def test_scoretools_Component__is_immediate_temporal_successor_of_12():
                 }
             }
         }
-        '''
+        """
         )
 
     assert voice[0]._is_immediate_temporal_successor_of(voice[1])

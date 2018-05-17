@@ -15,7 +15,8 @@ from .Leaf import Leaf
 
 
 class Selection(AbjadValueObject, collections.Sequence):
-    r'''Selection of items (components / or other selections).
+    r"""
+    Selection of items (components / or other selections).
 
     ..  container:: example
 
@@ -101,7 +102,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                 a'4
             }
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -127,28 +128,30 @@ class Selection(AbjadValueObject, collections.Sequence):
     ### SPECIAL METHODS ###
 
     def __add__(self, argument):
-        r'''Cocatenates `argument` to selection.
+        """
+        Cocatenates ``argument`` to selection.
 
         Returns new selection.
-        '''
+        """
         assert isinstance(argument, collections.Iterable)
         items = self.items + tuple(argument)
         return type(self)(items=items)
 
     def __contains__(self, argument):
-        r'''Is true when `argument` is in selection. Otherwise false.
+        """
+        Is true when ``argument`` is in selection.
 
         Returns true or false.
-        '''
+        """
         return argument in self.items
 
     def __eq__(self, argument):
-        r'''Is true when selection and `argument` are of the same type
-        and when items in selection equal item in `argument`.
-        Otherwise false.
+        """
+        Is true when selection and ``argument`` are of the same type
+        and when items in selection equal item in ``argument``.
 
         Returns true or false.
-        '''
+        """
         if isinstance(argument, type(self)):
             return self.items == argument.items
         elif isinstance(argument, collections.Sequence):
@@ -156,20 +159,21 @@ class Selection(AbjadValueObject, collections.Sequence):
         return False
 
     def __format__(self, format_specification=''):
-        r'''Formats duration.
+        """
+        Formats duration.
 
         Set `format_specification` to `''` or `'storage'`.
         Interprets `''` equal to `'storage'`.
 
         Returns string.
-        '''
+        """
         if format_specification in ('', 'storage'):
             return StorageFormatManager(self).get_storage_format()
         raise ValueError(repr(format_specification))
-        #return str(self)
 
     def __getitem__(self, argument):
-        r'''Gets item, slice or pattern `argument` in selection.
+        r"""
+        Gets item, slice or pattern ``argument`` in selection.
 
         ..  container:: example
 
@@ -392,12 +396,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             >>> abjad.select().leaves()[:2]
             abjad.select().leaves()[:2]
 
-        Returns a single item (or expression) when `argument` is an integer.
+        Returns a single item (or expression) when ``argument`` is an integer.
 
-        Returns new selection (or expression) when `argument` is a slice.
+        Returns new selection (or expression) when ``argument`` is a slice.
 
-        Returns new selection (or expression) when `argument` is a pattern.
-        '''
+        Returns new selection (or expression) when ``argument`` is a pattern.
+        """
         import abjad
         if self._expression:
             method = abjad.Expression._make___getitem___string_template
@@ -417,10 +421,11 @@ class Selection(AbjadValueObject, collections.Sequence):
         return result
 
     def __getstate__(self):
-        r'''Gets state of selection.
+        """
+        Gets state of selection.
 
         Returns dictionary.
-        '''
+        """
         if hasattr(self, '__dict__'):
             state = vars(self).copy()
         else:
@@ -433,16 +438,17 @@ class Selection(AbjadValueObject, collections.Sequence):
                     pass
         return state
 
-    # redefined because of custom __eq__()
     def __hash__(self):
-        r'''Hashes selection.
+        """
+        Hashes selection.
 
-        Returns integer.
-        '''
+        Redefined in tandem with __eq__.
+        """
         return super(Selection, self).__hash__()
 
     def __illustrate__(self):
-        r'''Attempts to illustrate selection.
+        """
+        Attempts to illustrate selection.
 
         Evaluates the storage format of the selection (to sever any references
         to the source score from which the selection was taken). Then tries to
@@ -456,7 +462,7 @@ class Selection(AbjadValueObject, collections.Sequence):
         music.
 
         Returns LilyPond file.
-        '''
+        """
         import abjad
         components = abjad.mutate(self).copy()
         staff = abjad.Staff(components)
@@ -472,33 +478,37 @@ class Selection(AbjadValueObject, collections.Sequence):
         return lilypond_file
 
     def __len__(self):
-        r'''Gets number of items in selection.
+        """
+        Gets number of items in selection.
 
         Returns nonnegative integer.
-        '''
+        """
         return len(self.items)
 
     def __radd__(self, argument):
-        r'''Concatenates selection to `argument`.
+        """
+        Concatenates selection to ``argument``.
 
         Returns newly created selection.
-        '''
+        """
         assert isinstance(argument, collections.Iterable)
         items = tuple(argument) + self.items
         return type(self)(items=items)
 
     def __repr__(self):
-        r'''Gets interpreter representation of selection.
+        """
+        Gets interpreter representation of selection.
 
         Returns string.
-        '''
+        """
         return super(Selection, self).__repr__()
 
     def __setstate__(self, state):
-        r'''Sets state of selection.
+        """
+        Sets state of selection.
 
         Returns none.
-        '''
+        """
         for key, value in state.items():
             setattr(self, key, value)
 
@@ -746,7 +756,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                     return x
 
     def _get_crossing_spanners(self):
-        r'''Assert logical-voice-contiguous components.
+        """
+        Assert logical-voice-contiguous components.
         Collect spanners that attach to any component in selection.
         Returns unordered set of crossing spanners.
         A spanner P crosses a list of logical-voice-contiguous components C
@@ -754,7 +765,7 @@ class Selection(AbjadValueObject, collections.Sequence):
         case that NOT ALL of the components in P are also in C.
         In other words, there is some intersection -- but not total
         intersection -- between the components of P and C.
-        '''
+        """
         assert self.are_contiguous_logical_voice()
         all_components = set(iterate(self).components())
         contained_spanners = []
@@ -776,7 +787,8 @@ class Selection(AbjadValueObject, collections.Sequence):
         return crossing_spanners
 
     def _get_dominant_spanners(self):
-        r'''Returns spanners that dominate components in selection.
+        """
+        Returns spanners that dominate components in selection.
         Returns set of (spanner, index) pairs.
         Each (spanner, index) pair gives a spanner which dominates
         all components in selection together with the start index
@@ -785,7 +797,7 @@ class Selection(AbjadValueObject, collections.Sequence):
         in selection and perform some action to the underlying
         score tree before reattaching spanners.
         score components.
-        '''
+        """
         assert self.are_contiguous_logical_voice()
         receipt = []
         if len(self) == 0:
@@ -867,12 +879,13 @@ class Selection(AbjadValueObject, collections.Sequence):
             arguments = abjad.Expression._wrap_arguments(frame)
         finally:
             del frame
-        template = '.{}({})'.format(function_name, arguments)
+        template = f'.{function_name}({arguments})'
         return selector.template + template
 
     def _give_components_to_empty_container(self, container):
-        r'''Not composer-safe.
-        '''
+        """
+        Not composer-safe.
+        """
         import abjad
         assert self.are_contiguous_same_parent()
         assert isinstance(container, abjad.Container)
@@ -884,12 +897,13 @@ class Selection(AbjadValueObject, collections.Sequence):
         container[:]._set_parents(container)
 
     def _give_dominant_spanners(self, recipients):
-        r'''Find all spanners dominating components.
+        """
+        Find all spanners dominating components.
         Insert each component in recipients into each dominant spanner.
         Remove components from each dominating spanner.
         Returns none.
         Not composer-safe.
-        '''
+        """
         import abjad
         assert self.are_contiguous_logical_voice()
         assert abjad.select(recipients).are_contiguous_logical_voice()
@@ -901,8 +915,9 @@ class Selection(AbjadValueObject, collections.Sequence):
                 spanner._remove(component)
 
     def _give_position_in_parent_to_container(self, container):
-        r'''Not composer-safe.
-        '''
+        """
+        Not composer-safe.
+        """
         import abjad
         assert self.are_contiguous_same_parent()
         assert isinstance(container, abjad.Container)
@@ -956,8 +971,9 @@ class Selection(AbjadValueObject, collections.Sequence):
                 yield component
 
     def _set_parents(self, new_parent):
-        r'''Not composer-safe.
-        '''
+        """
+        Not composer-safe.
+        """
         for component in self.items:
             component._set_parent(new_parent)
 
@@ -1059,8 +1075,9 @@ class Selection(AbjadValueObject, collections.Sequence):
         return abjad.new(expression, template=template)
 
     def _withdraw_from_crossing_spanners(self):
-        r'''Not composer-safe.
-        '''
+        """
+        Not composer-safe.
+        """
         import abjad
         assert self.are_contiguous_logical_voice()
         crossing_spanners = self._get_crossing_spanners()
@@ -1076,7 +1093,8 @@ class Selection(AbjadValueObject, collections.Sequence):
 
     @property
     def items(self):
-        r'''Gets items.
+        """
+        Gets items.
 
         ..  container:: example
 
@@ -1084,13 +1102,14 @@ class Selection(AbjadValueObject, collections.Sequence):
             (Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4"))
 
         Returns tuple.
-        '''
+        """
         return self._items
 
     ### PUBLIC METHODS ###
 
     def are_contiguous_logical_voice(self, prototype=None, allow_orphans=True):
-        r'''Is true when items in selection are contiguous components in the
+        """
+        Is true when items in selection are contiguous components in the
         same logical voice.
 
         ..  container:: example
@@ -1104,7 +1123,7 @@ class Selection(AbjadValueObject, collections.Sequence):
             False
 
         Returns true or false.
-        '''
+        """
         import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -1154,7 +1173,8 @@ class Selection(AbjadValueObject, collections.Sequence):
         return True
 
     def are_leaves(self):
-        r'''Is true when items in selection are all leaves.
+        """
+        Is true when items in selection are all leaves.
 
         ..  container:: example
 
@@ -1162,14 +1182,15 @@ class Selection(AbjadValueObject, collections.Sequence):
             True
 
         Returns true or false.
-        '''
+        """
         import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
         return all(isinstance(_, Leaf) for _ in self)
 
     def are_logical_voice(self, prototype=None, allow_orphans=True):
-        r'''Is true when items in selection are all components in the same
+        """
+        Is true when items in selection are all components in the same
         logical voice.
 
         ..  container:: example
@@ -1183,7 +1204,7 @@ class Selection(AbjadValueObject, collections.Sequence):
             True
 
         Returns true or false.
-        '''
+        """
         import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -1230,7 +1251,8 @@ class Selection(AbjadValueObject, collections.Sequence):
         return True
 
     def are_contiguous_same_parent(self, prototype=None, allow_orphans=True):
-        r'''Is true when items in selection are all contiguous components in
+        """
+        Is true when items in selection are all contiguous components in
         the same parent.
 
         ..  container:: example
@@ -1244,7 +1266,7 @@ class Selection(AbjadValueObject, collections.Sequence):
             False
 
         Returns true or false.
-        '''
+        """
         import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -1294,7 +1316,8 @@ class Selection(AbjadValueObject, collections.Sequence):
         return True
 
     def chord(self, n):
-        r'''Selects chord `n`.
+        r"""
+        Selects chord ``n``.
 
         ..  container:: example
 
@@ -1383,13 +1406,14 @@ class Selection(AbjadValueObject, collections.Sequence):
                     }   % measure
                 }
 
-        '''
+        """
         if self._expression:
             return self._update_expression(inspect.currentframe(), lone=True)
         return self.chords()[n]
 
     def chords(self):
-        r'''Selects chords.
+        r"""
+        Selects chords.
 
         ..  container:: example
 
@@ -1536,14 +1560,15 @@ class Selection(AbjadValueObject, collections.Sequence):
                     }   % measure
                 }
 
-        '''
+        """
         import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
         return self.components(abjad.Chord)
 
     def components(self, prototype=None, grace_notes=None, reverse=False):
-        r'''Selects components.
+        r"""
+        Selects components.
 
         ..  container:: example
 
@@ -1634,7 +1659,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                 }
 
         Returns new selection (or expression).
-        '''
+        """
         import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -1646,7 +1671,8 @@ class Selection(AbjadValueObject, collections.Sequence):
         return type(self)(generator)
 
     def filter(self, predicate=None):
-        r'''Filters selection by `predicate`.
+        r"""
+        Filters selection by ``predicate``.
 
         ..  container:: example
 
@@ -1707,7 +1733,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                 }
 
         Returns new selection (or expression).
-        '''
+        """
         if self._expression:
             return self._update_expression(inspect.currentframe())
         if predicate is None:
@@ -1715,7 +1741,8 @@ class Selection(AbjadValueObject, collections.Sequence):
         return type(self)([_ for _ in self if predicate(_)])
 
     def filter_duration(self, operator, duration):
-        r'''Filters selection by `operator` and `duration`.
+        r"""
+        Filters selection by ``operator`` and ``duration``.
 
         ..  container:: example
 
@@ -1843,14 +1870,15 @@ class Selection(AbjadValueObject, collections.Sequence):
                 }
 
         Returns new selection (or expression).
-        '''
+        """
         import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
         return self.filter(abjad.DurationInequality(operator, duration))
 
     def filter_length(self, operator, length):
-        r'''Filters selection by `operator` and `length`.
+        r"""
+        Filters selection by ``operator`` and ``length``.
 
         ..  container:: example
 
@@ -1990,14 +2018,15 @@ class Selection(AbjadValueObject, collections.Sequence):
                     a'8
                 }
 
-        '''
+        """
         import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
         return self.filter(abjad.LengthInequality(operator, length))
 
     def filter_pitches(self, operator, pitches):
-        r'''Filters selection by `operator` and `pitches`.
+        r"""
+        Filters selection by ``operator`` and ``pitches``.
 
         ..  container:: example
 
@@ -2215,14 +2244,15 @@ class Selection(AbjadValueObject, collections.Sequence):
                 }
 
         Returns new selection (or expression).
-        '''
+        """
         import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
         return self.filter(abjad.PitchInequality(operator, pitches))
 
     def filter_preprolated(self, operator, duration):
-        r'''Filters selection by `operator` and preprolated `duration`.
+        r"""
+        Filters selection by ``operator`` and preprolated ``duration``.
 
         ..  container:: example
 
@@ -2350,7 +2380,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                 }
 
         Returns new selection (or expression).
-        '''
+        """
         import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -2362,7 +2392,8 @@ class Selection(AbjadValueObject, collections.Sequence):
         return self.filter(inequality)
 
     def flatten(self, depth=1):
-        r'''Flattens selection to `depth`.
+        r"""
+        Flattens selection to ``depth``.
 
         ..  container:: example
 
@@ -2590,18 +2621,19 @@ class Selection(AbjadValueObject, collections.Sequence):
                 }
 
         Returns new selection (or expression).
-        '''
+        """
         import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
         return type(self)(abjad.sequence(self).flatten(depth=depth))
 
     def group_by(self, predicate=None):
-        r'''Groups items in selection by `predicate`.
+        r'''
+        Groups items in selection by ``predicate``.
 
         ..  container:: example
 
-            Wraps selection in selection when `predicate` is none:
+            Wraps selection in selection when ``predicate`` is none:
 
             ..  container:: example
 
@@ -2725,7 +2757,8 @@ class Selection(AbjadValueObject, collections.Sequence):
         return type(self)(items)
 
     def group_by_contiguity(self):
-        r'''Groups items in selection by contiguity.
+        r'''
+        Groups items in selection by contiguity.
 
         ..  container:: example
 
@@ -3251,7 +3284,8 @@ class Selection(AbjadValueObject, collections.Sequence):
         return type(self)(result)
 
     def group_by_duration(self):
-        r'''Groups items in selection by duration.
+        r"""
+        Groups items in selection by duration.
 
         ..  container:: example
 
@@ -3369,7 +3403,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                 }
 
         Returns nested selection (or expression).
-        '''
+        """
         import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -3378,7 +3412,8 @@ class Selection(AbjadValueObject, collections.Sequence):
         return self.group_by(predicate)
 
     def group_by_length(self):
-        r'''Groups items in selection by length.
+        r"""
+        Groups items in selection by length.
 
         ..  container:: example
 
@@ -3491,7 +3526,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                 }
 
         Returns nested selection (or expression).
-        '''
+        """
         import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -3502,7 +3537,8 @@ class Selection(AbjadValueObject, collections.Sequence):
         return self.group_by(predicate)
 
     def group_by_measure(self):
-        r'''Groups items in selection by measure.
+        r"""
+        Groups items in selection by measure.
 
         ..  container:: example
 
@@ -3967,7 +4003,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                 }
 
         Returns new selection (or expression).
-        '''
+        """
         import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -3992,7 +4028,8 @@ class Selection(AbjadValueObject, collections.Sequence):
         return type(self)(selections)
 
     def group_by_pitch(self):
-        r'''Groups items in selection by pitches.
+        r"""
+        Groups items in selection by pitches.
 
         ..  container:: example
 
@@ -4105,7 +4142,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                 }
 
         Returns nested selection (or expression).
-        '''
+        """
         import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -4114,7 +4151,8 @@ class Selection(AbjadValueObject, collections.Sequence):
         return self.group_by(predicate)
 
     def leaf(self, n):
-        r'''Selects leaf `n`.
+        r"""
+        Selects leaf ``n``.
 
         ..  container:: example
 
@@ -4203,7 +4241,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                     }   % measure
                 }
 
-        '''
+        """
         if self._expression:
             return self._update_expression(inspect.currentframe(), lone=True)
         return self.leaves()[n]
@@ -4218,7 +4256,8 @@ class Selection(AbjadValueObject, collections.Sequence):
         tail=None,
         trim=None,
         ):
-        r'''Selects leaves (without grace notes).
+        r'''
+        Selects leaves (without grace notes).
 
         ..  container:: example
 
@@ -5109,7 +5148,8 @@ class Selection(AbjadValueObject, collections.Sequence):
         pitched=None,
         reverse=False,
         ):
-        r'''Selects logical ties (without grace notes).
+        r'''
+        Selects logical ties (without grace notes).
 
         ..  container:: example
 
@@ -5600,7 +5640,8 @@ class Selection(AbjadValueObject, collections.Sequence):
         return type(self)(generator)
 
     def map(self, expression=None):
-        r'''Maps `expression` to items in selection.
+        r'''
+        Maps ``expression`` to items in selection.
 
         ..  container:: example
 
@@ -5874,7 +5915,8 @@ class Selection(AbjadValueObject, collections.Sequence):
         return type(self)([expression(_) for _ in self])
 
     def note(self, n):
-        r'''Selects note `n`.
+        r"""
+        Selects note ``n``.
 
         ..  container:: example
 
@@ -5963,13 +6005,14 @@ class Selection(AbjadValueObject, collections.Sequence):
                     }   % measure
                 }
 
-        '''
+        """
         if self._expression:
             return self._update_expression(inspect.currentframe(), lone=True)
         return self.notes()[n]
 
     def notes(self):
-        r'''Selects notes.
+        r"""
+        Selects notes.
 
         ..  container:: example
 
@@ -6095,14 +6138,15 @@ class Selection(AbjadValueObject, collections.Sequence):
                     }   % measure
                 }
 
-        '''
+        """
         import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
         return self.components(abjad.Note)
 
     def nontrivial(self):
-        r'''Filters selection by length greater than 1.
+        r"""
+        Filters selection by length greater than 1.
 
         ..  container:: example
 
@@ -6178,7 +6222,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                     a'8
                 }
 
-        '''
+        """
         import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -6193,7 +6237,8 @@ class Selection(AbjadValueObject, collections.Sequence):
         nonempty=False,
         overhang=False,
         ):
-        r'''Partitions selection by `counts`.
+        r"""
+        Partitions selection by ``counts``.
 
         ..  container:: example
 
@@ -6656,7 +6701,7 @@ class Selection(AbjadValueObject, collections.Sequence):
             >>> type(result).__name__
             'Selection'
 
-        '''
+        """
         import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -6699,7 +6744,8 @@ class Selection(AbjadValueObject, collections.Sequence):
         in_seconds=False,
         overhang=False,
         ):
-        r'''Partitions selection by `durations`.
+        r"""
+        Partitions selection by ``durations``.
 
         ..  container:: example
 
@@ -7760,19 +7806,21 @@ class Selection(AbjadValueObject, collections.Sequence):
                     }   % measure
                 }
 
-        Interprets `fill` as `Exact` when `fill` is none.
+        Interprets ``fill`` as ``Exact`` when ``fill`` is none.
 
-        Parts must equal `durations` exactly when `fill` is `Exact`.
+        Parts must equal ``durations`` exactly when ``fill`` is ``Exact``.
 
-        Parts must be less than or equal to `durations` when `fill` is `Less`.
+        Parts must be less than or equal to ``durations`` when ``fill`` is
+        ``Less``.
 
-        Parts must be greater or equal to `durations` when `fill` is `More`.
+        Parts must be greater or equal to ``durations`` when ``fill`` is
+        ``More``.
 
-        Reads `durations` cyclically when `cyclic` is true.
+        Reads ``durations`` cyclically when ``cyclic`` is true.
 
-        Reads component durations in seconds when `in_seconds` is true.
+        Reads component durations in seconds when ``in_seconds`` is true.
 
-        Returns remaining components at end in final part when `overhang`
+        Returns remaining components at end in final part when ``overhang``
         is true.
 
         Returns nested selection (or expression):
@@ -7780,7 +7828,7 @@ class Selection(AbjadValueObject, collections.Sequence):
             >>> type(result).__name__
             'Selection'
 
-        '''
+        """
         import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -7866,7 +7914,8 @@ class Selection(AbjadValueObject, collections.Sequence):
         return type(self)(result)
 
     def partition_by_ratio(self, ratio):
-        r'''Partitions selection by `ratio`.
+        r"""
+        Partitions selection by ``ratio``.
 
         ..  container:: example
 
@@ -8057,7 +8106,7 @@ class Selection(AbjadValueObject, collections.Sequence):
             >>> type(result).__name__
             'Selection'
 
-        '''
+        """
         import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -8071,7 +8120,8 @@ class Selection(AbjadValueObject, collections.Sequence):
         return type(self)(selections)
 
     def rest(self, n):
-        r'''Selects rest `n`.
+        r"""
+        Selects rest ``n``.
 
         ..  container:: example
 
@@ -8157,13 +8207,14 @@ class Selection(AbjadValueObject, collections.Sequence):
                     }   % measure
                 }
 
-        '''
+        """
         if self._expression:
             return self._update_expression(inspect.currentframe(), lone=True)
         return  self.rests()[n]
 
     def rests(self):
-        r'''Selects rests.
+        r"""
+        Selects rests.
 
         ..  container:: example
 
@@ -8259,14 +8310,15 @@ class Selection(AbjadValueObject, collections.Sequence):
                     }   % measure
                 }
 
-        '''
+        """
         import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
         return self.components((abjad.MultimeasureRest, abjad.Rest))
 
     def run(self, n):
-        r'''Selects run `n`.
+        r"""
+        Selects run ``n``.
 
         ..  container:: example
 
@@ -8375,13 +8427,14 @@ class Selection(AbjadValueObject, collections.Sequence):
                     }   % measure
                 }
 
-        '''
+        """
         if self._expression:
             return self._update_expression(inspect.currentframe(), lone=True)
         return self.runs()[n]
 
     def runs(self):
-        r'''Selects runs.
+        r"""
+        Selects runs.
 
         ..  container:: example
 
@@ -8546,7 +8599,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                     }   % measure
                 }
 
-        '''
+        """
         import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -8555,7 +8608,8 @@ class Selection(AbjadValueObject, collections.Sequence):
         return result
 
     def top(self):
-        r'''Selects top components.
+        r"""
+        Selects top components.
 
         ..  container:: example
 
@@ -8656,7 +8710,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                     r8
                 }
 
-        '''
+        """
         import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -8674,7 +8728,8 @@ class Selection(AbjadValueObject, collections.Sequence):
         return type(self)(result)
 
     def tuplet(self, n):
-        r'''Selects tuplet `n`.
+        r"""
+        Selects tuplet ``n``.
 
         ..  container:: example
 
@@ -8785,13 +8840,14 @@ class Selection(AbjadValueObject, collections.Sequence):
                     }   % measure
                 }
 
-        '''
+        """
         if self._expression:
             return self._update_expression(inspect.currentframe(), lone=True)
         return self.tuplets()[n]
 
     def tuplets(self):
-        r'''Selects tuplets.
+        r"""
+        Selects tuplets.
 
         ..  container:: example
 
@@ -8962,14 +9018,15 @@ class Selection(AbjadValueObject, collections.Sequence):
                     }   % measure
                 }
 
-        '''
+        """
         import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
         return self.components(abjad.Tuplet)
 
     def with_next_leaf(self):
-        r'''Extends selection with next leaf.
+        r"""
+        Extends selection with next leaf.
 
         ..  container:: example
 
@@ -9259,7 +9316,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                 }
 
         Returns new selection (or expression).
-        '''
+        """
         import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -9270,7 +9327,8 @@ class Selection(AbjadValueObject, collections.Sequence):
         return type(self)(leaves)
 
     def with_previous_leaf(self):
-        r'''Extends selection with previous leaf.
+        r"""
+        Extends selection with previous leaf.
 
         ..  container:: example
 
@@ -9446,7 +9504,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                 }
 
         Returns new selection (or expression).
-        '''
+        """
         if self._expression:
             return self._update_expression(inspect.currentframe())
         leaves = list(self.leaves())

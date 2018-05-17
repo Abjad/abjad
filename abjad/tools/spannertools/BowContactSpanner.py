@@ -258,7 +258,7 @@ class BowContactSpanner(Spanner):
                 bow_motion_technique=bow_motion_technique,
                 )
             bundle.right.spanner_starts.extend(tweaks)
-            bundle.right.spanner_starts.append(self.start_command())
+            bundle.right.spanner_starts.extend(self.start_command())
         return bundle
 
     def _get_piecewise(self, leaf):
@@ -418,14 +418,14 @@ class BowContactSpanner(Spanner):
             wrapper=wrapper,
             )
 
-    def start_command(self) -> typing.Optional[str]:
+    def start_command(self) -> typing.List[str]:
         r"""
         Gets start command.
 
         ..  container:: example
 
             >>> abjad.BowContactSpanner().start_command()
-            '\\glissando'
+            ['\\glissando']
 
         """
         return super(BowContactSpanner, self).start_command()

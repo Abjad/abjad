@@ -1,5 +1,6 @@
 def sequence(items=None, **keywords):
-    r'''Makes sequence or sequence expression.
+    r"""
+    Makes sequence or sequence expression.
 
     ..  container:: example
 
@@ -52,7 +53,7 @@ def sequence(items=None, **keywords):
     Returns sequence when `items` is not none.
 
     Returns sequence expression when `items` is none.
-    '''
+    """
     import abjad
     if items is not None:
         return abjad.Sequence(items=items, **keywords)

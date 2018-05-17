@@ -1,5 +1,6 @@
 def partition_integer_by_ratio(n, ratio):
-    r'''Partitions positive integer-equivalent `n` by `ratio`.
+    """
+    Partitions positive integer-equivalent `n` by `ratio`.
 
     ..  container:: example
 
@@ -51,7 +52,7 @@ def partition_integer_by_ratio(n, ratio):
     Returns result with weight equal to absolute value of `n`.
 
     Returns list of integers.
-    '''
+    """
     from abjad.tools import mathtools
     if not mathtools.is_integer_equivalent_number(n):
         message = 'is not integer-equivalent number: {!r}.'

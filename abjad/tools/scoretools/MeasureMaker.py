@@ -2,7 +2,8 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class MeasureMaker(AbjadValueObject):
-    r'''Measure-maker.
+    r"""
+    Measure-maker.
 
     ..  container:: example
 
@@ -29,7 +30,7 @@ class MeasureMaker(AbjadValueObject):
                 }   % measure
             }
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -49,10 +50,11 @@ class MeasureMaker(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, time_signatures):
-        r'''Calls measure-maker on `time_signatures`.
+        """
+        Calls measure-maker on ``time_signatures``.
 
         Returns measures.
-        '''
+        """
         import abjad
         measures = []
         for time_signature in time_signatures:
@@ -83,9 +85,9 @@ class MeasureMaker(AbjadValueObject):
 
     @property
     def implicit_scaling(self):
-        r'''Is true when measure scale implicitly without top-level tuplet.
-        Otherwise false.
+        """
+        Is true when measure scale implicitly without top-level tuplet.
 
         Returns true, false or none.
-        '''
+        """
         return self._implicit_scaling

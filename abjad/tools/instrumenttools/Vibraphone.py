@@ -2,7 +2,8 @@ from .Instrument import Instrument
 
 
 class Vibraphone(Instrument):
-    r'''Vibraphone.
+    r"""
+    Vibraphone.
 
     ..  container:: example
 
@@ -24,7 +25,7 @@ class Vibraphone(Instrument):
                 fs'4
             }
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -62,7 +63,8 @@ class Vibraphone(Instrument):
 
     @property
     def allowable_clefs(self):
-        r'''Gets vibraphone's allowable clefs.
+        """
+        Gets vibraphone's allowable clefs.
 
         ..  container:: example
 
@@ -71,12 +73,13 @@ class Vibraphone(Instrument):
             ('treble',)
 
         Returns clef list.
-        '''
+        """
         return Instrument.allowable_clefs.fget(self)
 
     @property
     def markup(self):
-        r'''Gets vibraphone's instrument name markup.
+        """
+        Gets vibraphone's instrument name markup.
 
         ..  container:: example
 
@@ -87,12 +90,13 @@ class Vibraphone(Instrument):
             >>> abjad.show(vibraphone.markup) # doctest: +SKIP
 
         Returns markup.
-        '''
+        """
         return Instrument.markup.fget(self)
 
     @property
     def middle_c_sounding_pitch(self):
-        r'''Gets sounding pitch of vibraphone's written middle C.
+        """
+        Gets sounding pitch of vibraphone's written middle C.
 
         ..  container:: example
 
@@ -103,12 +107,13 @@ class Vibraphone(Instrument):
             >>> abjad.show(vibraphone.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
-        '''
+        """
         return Instrument.middle_c_sounding_pitch.fget(self)
 
     @property
     def name(self):
-        r'''Gets vibraphone's name.
+        """
+        Gets vibraphone's name.
 
         ..  container:: example
 
@@ -117,12 +122,13 @@ class Vibraphone(Instrument):
             'vibraphone'
 
         Returns string.
-        '''
+        """
         return Instrument.name.fget(self)
 
     @property
     def pitch_range(self):
-        r'''Gets vibraphone's range.
+        """
+        Gets vibraphone's range.
 
         ..  container:: example
 
@@ -133,12 +139,13 @@ class Vibraphone(Instrument):
             >>> abjad.show(vibraphone.pitch_range) # doctest: +SKIP
 
         Returns pitch range.
-        '''
+        """
         return Instrument.pitch_range.fget(self)
 
     @property
     def short_markup(self):
-        r'''Gets vibraphone's short instrument name markup.
+        """
+        Gets vibraphone's short instrument name markup.
 
         ..  container:: example
 
@@ -149,12 +156,13 @@ class Vibraphone(Instrument):
             >>> abjad.show(vibraphone.short_markup) # doctest: +SKIP
 
         Returns markup.
-        '''
+        """
         return Instrument.short_markup.fget(self)
 
     @property
     def short_name(self):
-        r'''Gets vibraphone's short instrument name.
+        """
+        Gets vibraphone's short instrument name.
 
         ..  container:: example
 
@@ -163,5 +171,5 @@ class Vibraphone(Instrument):
             'vibr.'
 
         Returns string.
-        '''
+        """
         return Instrument.short_name.fget(self)

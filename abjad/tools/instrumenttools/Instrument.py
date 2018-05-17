@@ -3,7 +3,8 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class Instrument(AbjadValueObject):
-    r'''Instrument.
+    r"""
+    Instrument.
 
     ..  container:: example
 
@@ -59,7 +60,7 @@ class Instrument(AbjadValueObject):
         ...
         (Note("c'2"), Viola(hide=True))
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -230,29 +231,32 @@ class Instrument(AbjadValueObject):
 
     @property
     def allowable_clefs(self):
-        r'''Gets allowable clefs.
+        """
+        Gets allowable clefs.
 
         Returns clef list.
-        '''
+        """
         if self._allowable_clefs is None:
             self._allowable_clefs = ('treble',)
         return self._allowable_clefs
 
     @property
     def context(self):
-        r'''Gets (historically conventional) context of instrument.
+        """
+        Gets (historically conventional) context of instrument.
 
         Defaults to ``'Staff'``.
 
         Returns lilypond type of context.
 
         Override with ``abjad.attach(..., context='...')``.
-        '''
+        """
         return self._context
 
     @property
     def hide(self):
-        r'''Is true when instrument should not appear in output (but should
+        """
+        Is true when instrument should not appear in output (but should
         still determine effective instrument).
 
         Use when instrument stays constant while margin markup changes.
@@ -260,25 +264,27 @@ class Instrument(AbjadValueObject):
         Defaults to none.
 
         Returns true, false or none.
-        '''
+        """
         return self._hide
 
     @property
     def latent(self):
-        r'''Is true for all instruments.
+        """
+        Is true for all instruments.
 
         Class constant.
 
         Returns true.
-        '''
+        """
         return self._latent
 
     @property
     def markup(self):
-        r'''Gets instrument name markup.
+        """
+        Gets instrument name markup.
 
         Returns markup.
-        '''
+        """
         import abjad
         if self._name_markup is None:
             self._initialize_default_name_markups()
@@ -290,54 +296,60 @@ class Instrument(AbjadValueObject):
 
     @property
     def middle_c_sounding_pitch(self):
-        r'''Gets sounding pitch of written middle C.
+        """
+        Gets sounding pitch of written middle C.
 
         Returns named pitch.
-        '''
+        """
         return self._middle_c_sounding_pitch
 
     @property
     def name(self):
-        r'''Gets instrument name.
+        """
+        Gets instrument name.
 
         Returns string.
-        '''
+        """
         return self._name
 
     @property
     def persistent(self):
-        r'''Is set to ``'abjad.Instrument'`` for all instruments.
+        """
+        Is set to ``'abjad.Instrument'`` for all instruments.
 
         Class constant.
 
         Returns true.
-        '''
+        """
         return self._persistent
 
     @property
     def pitch_range(self):
-        r'''Gets pitch range.
+        """
+        Gets pitch range.
 
         Returns pitch range.
-        '''
+        """
         return self._pitch_range
 
     @property
     def redraw(self):
-        r'''Is true for all instruments.
+        """
+        Is true for all instruments.
 
         Class constant.
 
         Returns true.
-        '''
+        """
         return self._redraw
 
     @property
     def short_markup(self):
-        r'''Gets short instrument name markup.
+        """
+        Gets short instrument name markup.
 
         Returns markup.
-        '''
+        """
         import abjad
         if self._short_name_markup is None:
             self._initialize_default_name_markups()
@@ -350,17 +362,19 @@ class Instrument(AbjadValueObject):
 
     @property
     def short_name(self):
-        r'''Gets short instrument name.
+        """
+        Gets short instrument name.
 
         Returns string.
-        '''
+        """
         return self._short_name
 
     ### PUBLIC METHODS ###
 
     @staticmethod
     def transpose_from_sounding_pitch(argument):
-        r'''Transpose notes and chords in `argument` from sounding pitch
+        r"""
+        Transpose notes and chords in `argument` from sounding pitch
         to written pitch:
 
         ..  container:: example
@@ -400,7 +414,7 @@ class Instrument(AbjadValueObject):
                 }
 
         Returns none.
-        '''
+        """
         import abjad
         for leaf in abjad.iterate(argument).leaves(pitched=True):
             instrument = abjad.inspect(leaf).get_effective(abjad.Instrument)
@@ -422,7 +436,8 @@ class Instrument(AbjadValueObject):
 
     @staticmethod
     def transpose_from_written_pitch(argument):
-        r'''Transposes notes and chords in `argument` from sounding pitch
+        r"""
+        Transposes notes and chords in `argument` from sounding pitch
         to written pitch.
 
         ..  container:: example
@@ -462,7 +477,7 @@ class Instrument(AbjadValueObject):
                 }
 
         Returns none.
-        '''
+        """
         import abjad
         for leaf in abjad.iterate(argument).leaves(pitched=True):
             instrument = abjad.inspect(leaf).get_effective(abjad.Instrument)

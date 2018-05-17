@@ -2,7 +2,8 @@ from .Instrument import Instrument
 
 
 class BaritoneVoice(Instrument):
-    r'''Baritone voice.
+    r"""
+    Baritone voice.
 
     ..  container:: example
 
@@ -27,7 +28,7 @@ class BaritoneVoice(Instrument):
                 fs4
             }
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -67,7 +68,8 @@ class BaritoneVoice(Instrument):
 
     @property
     def allowable_clefs(self):
-        r'''Gets baritone's allowable clefs.
+        """
+        Gets baritone's allowable clefs.
 
         ..  container:: example
 
@@ -76,12 +78,13 @@ class BaritoneVoice(Instrument):
             ('bass',)
 
         Returns clef list.
-        '''
+        """
         return Instrument.allowable_clefs.fget(self)
 
     @property
     def markup(self):
-        r'''Gets baritone's instrument name markup.
+        """
+        Gets baritone's instrument name markup.
 
         ..  container:: example
 
@@ -92,12 +95,13 @@ class BaritoneVoice(Instrument):
             >>> abjad.show(baritone.markup) # doctest: +SKIP
 
         Returns markup.
-        '''
+        """
         return Instrument.markup.fget(self)
 
     @property
     def middle_c_sounding_pitch(self):
-        r'''Gets sounding pitch of baritone's written middle C.
+        """
+        Gets sounding pitch of baritone's written middle C.
 
         ..  container:: example
 
@@ -108,12 +112,13 @@ class BaritoneVoice(Instrument):
             >>> abjad.show(baritone.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
-        '''
+        """
         return Instrument.middle_c_sounding_pitch.fget(self)
 
     @property
     def name(self):
-        r'''Gets baritone's name.
+        """
+        Gets baritone's name.
 
         ..  container:: example
 
@@ -122,12 +127,13 @@ class BaritoneVoice(Instrument):
             'baritone'
 
         Returns string.
-        '''
+        """
         return Instrument.name.fget(self)
 
     @property
     def pitch_range(self):
-        r'''Gets baritone's range.
+        """
+        Gets baritone's range.
 
         ..  container:: example
 
@@ -138,12 +144,13 @@ class BaritoneVoice(Instrument):
             >>> abjad.show(baritone.pitch_range) # doctest: +SKIP
 
         Returns pitch range.
-        '''
+        """
         return Instrument.pitch_range.fget(self)
 
     @property
     def short_markup(self):
-        r'''Gets baritone's short instrument name markup.
+        """
+        Gets baritone's short instrument name markup.
 
         ..  container:: example
 
@@ -154,12 +161,13 @@ class BaritoneVoice(Instrument):
             >>> abjad.show(baritone.short_markup) # doctest: +SKIP
 
         Returns markup.
-        '''
+        """
         return Instrument.short_markup.fget(self)
 
     @property
     def short_name(self):
-        r'''Gets baritone's short instrument name.
+        """
+        Gets baritone's short instrument name.
 
         ..  container:: example
 
@@ -168,5 +176,5 @@ class BaritoneVoice(Instrument):
             'bar.'
 
         Returns string.
-        '''
+        """
         return Instrument.short_name.fget(self)

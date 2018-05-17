@@ -1,9 +1,10 @@
 from abjad.tools import systemtools
-from abjad.tools.schemetools.Scheme import Scheme
+from .Scheme import Scheme
 
 
 class SchemeSymbol(Scheme):
-    r'''Abjad model of Scheme symbol.
+    """
+    Abjad model of Scheme symbol.
 
     ..  container:: example
 
@@ -14,7 +15,7 @@ class SchemeSymbol(Scheme):
         >>> print(format(scheme))
         #'cross
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -40,8 +41,9 @@ class SchemeSymbol(Scheme):
 
     @property
     def symbol(self):
-        r'''Gets symbol string.
+        """
+        Gets symbol string.
 
         Returns string.
-        '''
+        """
         return self._value

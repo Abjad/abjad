@@ -82,11 +82,12 @@ class VerticalMoment(abctools.AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is a vertical moment with the same
-        components as this vertical moment. Otherwise false.
+        """
+        Is true when ``argument`` is a vertical moment with the same
+        components as this vertical moment.
 
         Returns true or false.
-        '''
+        """
         if isinstance(argument, VerticalMoment):
             if len(self) == len(argument):
                 for c, d in zip(self.components, argument.components):
@@ -96,32 +97,34 @@ class VerticalMoment(abctools.AbjadObject):
                     return True
         return False
 
-    # redefined because of custom __eq__()
     def __hash__(self):
-        r'''Hases vertical moment.
+        """
+        Hases vertical moment.
 
-        Returns integer.
-        '''
+        Redefined in tandem with __eq__.
+        """
         if self.components:
             return hash(tuple([id(_) for _ in self.components]))
         return 0
 
     def __len__(self):
-        r'''Length of vertical moment.
+        """
+        Length of vertical moment.
 
         Defined equal to the number of components in vertical moment.
 
         Returns nonnegative integer.
-        '''
+        """
         return len(self.components)
 
     def __repr__(self):
-        r'''Gets interpreter representation of vertical moment.
+        """
+        Gets interpreter representation of vertical moment.
 
         Returns string.
-        '''
+        """
         if not self.components:
-            return '{}()'.format(type(self).__name__)
+            return f'{type(self).__name__}()'
         result = '{}({}, <<{}>>)'
         result = result.format(
             type(self).__name__,
@@ -134,8 +137,9 @@ class VerticalMoment(abctools.AbjadObject):
 
     @staticmethod
     def _find_index(container, offset):
-        r'''Based off of Python's bisect.bisect() function.
-        '''
+        """
+        Based off of Python's bisect.bisect() function.
+        """
         import abjad
         lo = 0
         hi = len(container)
@@ -159,8 +163,7 @@ class VerticalMoment(abctools.AbjadObject):
         offset = abjad.Offset(offset)
         governors = []
         prototype = (list, tuple, abjad.Selection)
-        message = 'must be component or of Abjad components: {!r}.'
-        message = message.format(argument)
+        message = f'must be component or of Abjad components: {argument!r}.'
         if isinstance(argument, abjad.Component):
             governors.append(argument)
         elif isinstance(argument, prototype):
@@ -207,9 +210,10 @@ class VerticalMoment(abctools.AbjadObject):
 
     @property
     def attack_count(self):
-        r'''Positive integer number of pitch carriers starting at vertical
+        """
+        Positive integer number of pitch carriers starting at vertical
         moment.
-        '''
+        """
         import abjad
         attack_carriers = []
         for leaf in self.start_leaves:
@@ -219,24 +223,26 @@ class VerticalMoment(abctools.AbjadObject):
 
     @property
     def components(self):
-        r'''Tuple of zero or more components happening at vertical moment.
+        """
+        Tuple of zero or more components happening at vertical moment.
 
         It is always the case that ``self.components =
         self.overlap_components + self.start_components``.
-        '''
+        """
         return self._components
 
     @property
     def governors(self):
-        r'''Tuple of one or more containers in which vertical moment is
-        evaluated.
-        '''
+        """
+        Tuple of one or more containers in which vertical moment is evaluated.
+        """
         return self._governors
 
     @property
     def leaves(self):
-        r'''Tuple of zero or more leaves at vertical moment.
-        '''
+        """
+        Tuple of zero or more leaves at vertical moment.
+        """
         import abjad
         result = []
         for component in self.components:
@@ -247,8 +253,9 @@ class VerticalMoment(abctools.AbjadObject):
 
     @property
     def measures(self):
-        r'''Tuplet of zero or more measures at vertical moment.
-        '''
+        """
+        Tuple of zero or more measures at vertical moment.
+        """
         import abjad
         result = []
         for component in self.components:
@@ -259,8 +266,9 @@ class VerticalMoment(abctools.AbjadObject):
 
     @property
     def next_vertical_moment(self):
-        r'''Reference to next vertical moment forward in time.
-        '''
+        """
+        Reference to next vertical moment forward in time.
+        """
         import abjad
         candidate_shortest_leaf = self.leaves[0]
         for leaf in self.leaves[1:]:
@@ -274,8 +282,9 @@ class VerticalMoment(abctools.AbjadObject):
 
     @property
     def notes(self):
-        r'''Tuple of zero or more notes at vertical moment.
-        '''
+        """
+        Tuple of zero or more notes at vertical moment.
+        """
         import abjad
         result = []
         prototype = (abjad.Note,)
@@ -287,8 +296,9 @@ class VerticalMoment(abctools.AbjadObject):
 
     @property
     def notes_and_chords(self):
-        r'''Tuple of zero or more notes and chords at vertical moment.
-        '''
+        """
+        Tuple of zero or more notes and chords at vertical moment.
+        """
         import abjad
         result = []
         prototype = (abjad.Chord, abjad.Note)
@@ -300,15 +310,17 @@ class VerticalMoment(abctools.AbjadObject):
 
     @property
     def offset(self):
-        r'''Rational-valued score offset at which vertical moment is evaluated.
-        '''
+        """
+        Rational-valued score offset at which vertical moment is evaluated.
+        """
         return self._offset
 
     @property
     def overlap_components(self):
-        r'''Tuple of components in vertical moment starting before vertical
+        """
+        Tuple of components in vertical moment starting before vertical
         moment, ordered by score index.
-        '''
+        """
         result = []
         for component in self.components:
             if component.start < self.offset:
@@ -318,9 +330,10 @@ class VerticalMoment(abctools.AbjadObject):
 
     @property
     def overlap_leaves(self):
-        r'''Tuple of leaves in vertical moment starting before vertical moment,
+        """
+        Tuple of leaves in vertical moment starting before vertical moment,
         ordered by score index.
-        '''
+        """
         import abjad
         result = [x for x in self.overlap_components
             if isinstance(x, abjad.Leaf)]
@@ -329,9 +342,10 @@ class VerticalMoment(abctools.AbjadObject):
 
     @property
     def overlap_measures(self):
-        r'''Tuple of measures in vertical moment starting before vertical
+        """
+        Tuple of measures in vertical moment starting before vertical
         moment, ordered by score index.
-        '''
+        """
         import abjad
         result = self.overlap_components
         result = [_ for _ in result if isinstance(_, abjad.Measure)]
@@ -340,9 +354,10 @@ class VerticalMoment(abctools.AbjadObject):
 
     @property
     def overlap_notes(self):
-        r'''Tuple of notes in vertical moment starting before vertical moment,
+        """
+        Tuple of notes in vertical moment starting before vertical moment,
         ordered by score index.
-        '''
+        """
         import abjad
         result = self.overlap_components
         result = [_ for _ in result if isinstance(_, abjad.Note)]
@@ -351,8 +366,9 @@ class VerticalMoment(abctools.AbjadObject):
 
     @property
     def previous_vertical_moment(self):
-        r'''Reference to previous vertical moment backward in time.
-        '''
+        """
+        Reference to previous vertical moment backward in time.
+        """
         import abjad
         if self.offset == 0:
             raise IndexError
@@ -388,9 +404,10 @@ class VerticalMoment(abctools.AbjadObject):
 
     @property
     def start_components(self):
-        r'''Tuple of components in vertical moment starting with at vertical
+        """
+        Tuple of components in vertical moment starting with at vertical
         moment, ordered by score index.
-        '''
+        """
         import abjad
         result = []
         for component in self.components:
@@ -402,9 +419,10 @@ class VerticalMoment(abctools.AbjadObject):
 
     @property
     def start_leaves(self):
-        r'''Tuple of leaves in vertical moment starting with vertical moment,
+        """
+        Tuple of leaves in vertical moment starting with vertical moment,
         ordered by score index.
-        '''
+        """
         import abjad
         result = [x for x in self.start_components
             if isinstance(x, abjad.Leaf)]
@@ -413,9 +431,10 @@ class VerticalMoment(abctools.AbjadObject):
 
     @property
     def start_notes(self):
-        r'''Tuple of notes in vertical moment starting with vertical moment,
+        """
+        Tuple of notes in vertical moment starting with vertical moment,
         ordered by score index.
-        '''
+        """
         import abjad
         result = [x for x in self.start_components
             if isinstance(x, abjad.Note)]

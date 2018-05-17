@@ -8,7 +8,8 @@ from abjad.tools.topleveltools.new import new
 
 
 class TimespanList(TypedList):
-    r'''Timespan list.
+    """
+    Timespan list.
 
     ..  container:: example
 
@@ -114,7 +115,7 @@ class TimespanList(TypedList):
             )
 
     Operations on timespan currently work in place.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -125,7 +126,8 @@ class TimespanList(TypedList):
     ### SPECIAL METHODS ###
 
     def __and__(self, timespan):
-        r'''Keeps material that intersects `timespan`.
+        """
+        Keeps material that intersects `timespan`.
 
         ..  container:: example
 
@@ -161,7 +163,7 @@ class TimespanList(TypedList):
                 )
 
         Operates in place and returns timespan list.
-        '''
+        """
         new_timespans = []
         for current_timespan in self[:]:
             result = current_timespan & timespan
@@ -170,7 +172,8 @@ class TimespanList(TypedList):
         return self
 
     def __illustrate__(self, key=None, range_=None, sortkey=None, scale=None):
-        r'''Illustrates timespans.
+        """
+        Illustrates timespans.
 
         ..  container:: example
 
@@ -192,7 +195,7 @@ class TimespanList(TypedList):
                 >>> illustration = timespans.__illustrate__()
 
         Returns LilyPond file.
-        '''
+        """
         import abjad
         if not self:
             return abjad.Markup.null().__illustrate__()
@@ -248,7 +251,8 @@ class TimespanList(TypedList):
         return markup.__illustrate__()
 
     def __invert__(self):
-        r'''Inverts timespans.
+        """
+        Inverts timespans.
 
         ..  container:: example
 
@@ -292,7 +296,7 @@ class TimespanList(TypedList):
             TimespanList([])
 
         Returns new timespan list.
-        '''
+        """
         result = type(self)()
         result.append(self.timespan)
         for timespan in self:
@@ -300,7 +304,8 @@ class TimespanList(TypedList):
         return result
 
     def __sub__(self, timespan):
-        r'''Deletes material that intersects `timespan`.
+        """
+        Deletes material that intersects `timespan`.
 
         ..  container:: example
 
@@ -340,7 +345,7 @@ class TimespanList(TypedList):
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
         Operates in place and returns timespan list.
-        '''
+        """
         new_timespans = []
         for current_timespan in self[:]:
             result = current_timespan - timespan
@@ -459,7 +464,8 @@ class TimespanList(TypedList):
 
     @property
     def all_are_contiguous(self):
-        r'''Is true when all timespans are contiguous.
+        """
+        Is true when all timespans are contiguous.
 
         ..  container:: example
 
@@ -499,7 +505,7 @@ class TimespanList(TypedList):
             True
 
         Returns true or false.
-        '''
+        """
         if len(self) <= 1:
             return True
         timespans = sorted(self[:])
@@ -512,7 +518,8 @@ class TimespanList(TypedList):
 
     @property
     def all_are_nonoverlapping(self):
-        r'''Is true when all timespans are nonoverlapping.
+        """
+        Is true when all timespans are nonoverlapping.
 
         ..  container:: example
 
@@ -552,7 +559,7 @@ class TimespanList(TypedList):
             True
 
         Returns true or false.
-        '''
+        """
         if len(self) <= 1:
             return True
         timespans = sorted(self[:])
@@ -566,7 +573,8 @@ class TimespanList(TypedList):
 
     @property
     def all_are_well_formed(self):
-        r'''Is true when all timespans are well-formed.
+        """
+        Is true when all timespans are well-formed.
 
         ..  container:: example
 
@@ -608,13 +616,13 @@ class TimespanList(TypedList):
         Is false when timespans are not all well-formed.
 
         Returns true or false.
-        '''
+        """
         return all(self._get_timespan(argument).is_well_formed for argument in self)
 
     @property
     def axis(self):
-        r'''Gets axis defined equal to arithmetic mean of start- and
-        stop-offsets.
+        """
+        Gets axis defined equal to arithmetic mean of start- and stop-offsets.
 
         ..  container:: example
 
@@ -654,13 +662,14 @@ class TimespanList(TypedList):
             True
 
         Returns offset or none.
-        '''
+        """
         if self:
             return (self.start_offset + self.stop_offset) / 2
 
     @property
     def duration(self):
-        r'''Gets duration of timespan list.
+        """
+        Gets duration of timespan list.
 
         ..  container:: example
 
@@ -700,7 +709,7 @@ class TimespanList(TypedList):
             Duration(0, 1)
 
         Returns duration.
-        '''
+        """
         import abjad
         if (self.stop_offset is not Infinity and
             self.start_offset is not NegativeInfinity):
@@ -710,7 +719,8 @@ class TimespanList(TypedList):
 
     @property
     def is_sorted(self):
-        r'''Is true when timespans are in time order.
+        """
+        Is true when timespans are in time order.
 
         ..  container:: example
 
@@ -741,7 +751,7 @@ class TimespanList(TypedList):
             False
 
         Returns true or false.
-        '''
+        """
         import abjad
         if len(self) < 2:
             return True
@@ -756,7 +766,8 @@ class TimespanList(TypedList):
 
     @property
     def start_offset(self):
-        r'''Gets start offset.
+        """
+        Gets start offset.
 
         Defined equal to earliest start offset of any timespan in list.
 
@@ -798,7 +809,7 @@ class TimespanList(TypedList):
             NegativeInfinity
 
         Returns offset or none.
-        '''
+        """
         if self:
             return min([self._get_timespan(argument).start_offset
                 for argument in self])
@@ -807,7 +818,8 @@ class TimespanList(TypedList):
 
     @property
     def stop_offset(self):
-        r'''Gets stop offset.
+        """
+        Gets stop offset.
 
         Defined equal to latest stop offset of any timespan.
 
@@ -850,7 +862,7 @@ class TimespanList(TypedList):
             Infinity
 
         Returns offset or none.
-        '''
+        """
         if self:
             return max([self._get_timespan(argument).stop_offset for argument in self])
         else:
@@ -858,7 +870,8 @@ class TimespanList(TypedList):
 
     @property
     def timespan(self):
-        r'''Gets timespan of timespan list.
+        """
+        Gets timespan of timespan list.
 
         ..  container:: example
 
@@ -902,14 +915,15 @@ class TimespanList(TypedList):
             Timespan(start_offset=NegativeInfinity, stop_offset=Infinity)
 
         Returns timespan.
-        '''
+        """
         from abjad.tools import timespantools
         return timespantools.Timespan(self.start_offset, self.stop_offset)
 
     ### PUBLIC METHODS ###
 
     def clip_timespan_durations(self, minimum=None, maximum=None, anchor=Left):
-        r'''Clips timespan durations.
+        """
+        Clips timespan durations.
 
         ..  container:: example
 
@@ -1031,7 +1045,7 @@ class TimespanList(TypedList):
                 )
 
         Returns new timespan list.
-        '''
+        """
         import abjad
         assert anchor in (Left, Right)
         if minimum is not None:
@@ -1068,7 +1082,8 @@ class TimespanList(TypedList):
         return timespans
 
     def compute_logical_and(self):
-        r'''Computes logical AND of timespans.
+        """
+        Computes logical AND of timespans.
 
         ..  container:: example
 
@@ -1142,7 +1157,7 @@ class TimespanList(TypedList):
         Same as setwise intersection.
 
         Operates in place and returns timespan list.
-        '''
+        """
         if 1 < len(self):
             result = self[0]
             for timespan in self:
@@ -1156,7 +1171,8 @@ class TimespanList(TypedList):
         return self
 
     def compute_logical_or(self):
-        r'''Computes logical OR of timespans.
+        """
+        Computes logical OR of timespans.
 
         ..  container:: example
 
@@ -1265,7 +1281,7 @@ class TimespanList(TypedList):
                 )
 
         Operates in place and returns timespan list.
-        '''
+        """
         timespans = []
         if self:
             timespans = [self[0]]
@@ -1279,7 +1295,8 @@ class TimespanList(TypedList):
         return self
 
     def compute_logical_xor(self):
-        r'''Computes logical XOR of timespans.
+        """
+        Computes logical XOR of timespans.
 
         ..  container:: example
 
@@ -1449,7 +1466,7 @@ class TimespanList(TypedList):
             TimespanList([])
 
         Operates in place and returns timespan list.
-        '''
+        """
         all_fragments = []
         for i, timespan_1 in enumerate(self):
             timespan_1_fragments = [timespan_1]
@@ -1471,7 +1488,8 @@ class TimespanList(TypedList):
         return self
 
     def compute_overlap_factor(self, timespan=None):
-        r'''Computes overlap factor of timespans.
+        """
+        Computes overlap factor of timespans.
 
         ..  container:: example
 
@@ -1550,7 +1568,7 @@ class TimespanList(TypedList):
             Multiplier(1, 1)
 
         Returns multiplier.
-        '''
+        """
         import abjad
         if timespan is None:
             timespan = self.timespan
@@ -1564,8 +1582,8 @@ class TimespanList(TypedList):
         return overlap_factor
 
     def compute_overlap_factor_mapping(self):
-        r'''Computes overlap factor for each consecutive offset pair in
-        timespans.
+        """
+        Computes overlap factor for each consecutive offset pair in timespans.
 
         ..  container:: example
 
@@ -1591,7 +1609,7 @@ class TimespanList(TypedList):
             (Offset(25, 1), Offset(30, 1), Multiplier(1, 1))
 
         Returns mapping.
-        '''
+        """
         import abjad
         mapping = collections.OrderedDict()
         offsets = abjad.sequence(sorted(self.count_offsets()))
@@ -1602,7 +1620,8 @@ class TimespanList(TypedList):
         return mapping
 
     def count_offsets(self):
-        r'''Counts offsets.
+        """
+        Counts offsets.
 
         ..  container:: example
 
@@ -1726,12 +1745,13 @@ class TimespanList(TypedList):
             (Offset(9, 1), 1)
 
         Returns counter.
-        '''
+        """
         from abjad.tools import metertools
         return metertools.OffsetCounter(self)
 
     def explode(self, inventory_count=None):
-        r'''Explodes timespans into timespan lists, avoiding overlap, and
+        """
+        Explodes timespans into timespan lists, avoiding overlap, and
         distributing density as evenly as possible.
 
         ..  container:: example
@@ -1972,7 +1992,7 @@ class TimespanList(TypedList):
                 )
 
         Returns timespan lists.
-        '''
+        """
         assert isinstance(inventory_count, (type(None), int))
         if isinstance(inventory_count, int):
             assert 0 < inventory_count
@@ -2023,7 +2043,8 @@ class TimespanList(TypedList):
         return tuple(result_timespan_lists)
 
     def get_timespan_that_satisfies_time_relation(self, time_relation):
-        r'''Gets timespan that satisifies `time_relation`.
+        """
+        Gets timespan that satisifies `time_relation`.
 
         ..  container:: example
 
@@ -2056,7 +2077,7 @@ class TimespanList(TypedList):
 
         Raises exception when timespan list contains more than one
         timespan that satisfies `time_relation`.
-        '''
+        """
         timespans = self.get_timespans_that_satisfy_time_relation(
             time_relation)
         if len(timespans) == 1:
@@ -2069,7 +2090,8 @@ class TimespanList(TypedList):
             raise Exception(message)
 
     def get_timespans_that_satisfy_time_relation(self, time_relation):
-        r'''Gets timespans that satisfy `time_relation`.
+        """
+        Gets timespans that satisfy `time_relation`.
 
         ..  container:: example
 
@@ -2104,7 +2126,7 @@ class TimespanList(TypedList):
                 )
 
         Returns new timespan list.
-        '''
+        """
         from abjad.tools import timespantools
         result = []
         for timespan in self:
@@ -2125,8 +2147,8 @@ class TimespanList(TypedList):
         return type(self)(result)
 
     def has_timespan_that_satisfies_time_relation(self, time_relation):
-        r'''Is true when timespan list has timespan that satisfies
-        `time_relation`.
+        """
+        Is true when timespan list has timespan that satisfies `time_relation`.
 
         ..  container:: example
 
@@ -2161,12 +2183,13 @@ class TimespanList(TypedList):
             False
 
         Returns true or false.
-        '''
+        """
         return bool(
             self.get_timespans_that_satisfy_time_relation(time_relation))
 
     def partition(self, include_tangent_timespans=False):
-        r'''Partitions timespans into timespan_lists.
+        """
+        Partitions timespans into timespan_lists.
 
         ..  container:: example
 
@@ -2331,7 +2354,7 @@ class TimespanList(TypedList):
                 )
 
         Returns zero or more timespan_lists.
-        '''
+        """
         if not self:
             return []
         timespan_lists = []
@@ -2354,7 +2377,8 @@ class TimespanList(TypedList):
         return tuple(timespan_lists)
 
     def reflect(self, axis=None):
-        r'''Reflects timespans.
+        """
+        Reflects timespans.
 
         ..  container:: example
 
@@ -2421,7 +2445,7 @@ class TimespanList(TypedList):
                 )
 
         Operates in place and returns timespan list.
-        '''
+        """
         if axis is None:
             axis = self.axis
         timespans = []
@@ -2433,7 +2457,8 @@ class TimespanList(TypedList):
         return self
 
     def remove_degenerate_timespans(self):
-        r'''Removes degenerate timespans.
+        """
+        Removes degenerate timespans.
 
         ..  container:: example
 
@@ -2464,13 +2489,14 @@ class TimespanList(TypedList):
                 )
 
         Operates in place and returns timespan list.
-        '''
+        """
         timespans = [x for x in self if x.is_well_formed]
         self[:] = timespans
         return self
 
     def repeat_to_stop_offset(self, stop_offset):
-        r'''Repeats timespans to `stop_offset`.
+        """
+        Repeats timespans to `stop_offset`.
 
         ..  container:: example
 
@@ -2513,7 +2539,7 @@ class TimespanList(TypedList):
                 )
 
         Operates in place and returns timespan list.
-        '''
+        """
         import abjad
         assert self.is_sorted
         stop_offset = abjad.Offset(stop_offset)
@@ -2531,7 +2557,8 @@ class TimespanList(TypedList):
         return self
 
     def rotate(self, count):
-        r'''Rotates by `count` contiguous timespans.
+        """
+        Rotates by `count` contiguous timespans.
 
         ..  container:: example
 
@@ -2598,7 +2625,7 @@ class TimespanList(TypedList):
                 )
 
         Operates in place and returns timespan list.
-        '''
+        """
         assert isinstance(count, int)
         assert self.all_are_contiguous
         elements_to_move = count % len(self)
@@ -2625,7 +2652,8 @@ class TimespanList(TypedList):
         return self
 
     def round_offsets(self, multiplier, anchor=Left, must_be_well_formed=True):
-        '''Rounds offsets of timespans in list to multiples of `multiplier`.
+        """
+        Rounds offsets of timespans in list to multiples of `multiplier`.
 
         ..  container:: example
 
@@ -2762,7 +2790,7 @@ class TimespanList(TypedList):
                 )
 
         Operates in place and returns timespan list.
-        '''
+        """
         timespans = []
         for timespan in self:
             timespan = timespan.round_offsets(
@@ -2775,7 +2803,8 @@ class TimespanList(TypedList):
         return self
 
     def scale(self, multiplier, anchor=Left):
-        r'''Scales timespan by `multiplier` relative to `anchor`.
+        """
+        Scales timespan by `multiplier` relative to `anchor`.
 
         ..  container:: example
 
@@ -2842,7 +2871,7 @@ class TimespanList(TypedList):
                 )
 
         Operates in place and returns timespan list.
-        '''
+        """
         timespans = []
         for timespan in self:
             timespan = timespan.scale(multiplier, anchor=anchor)
@@ -2851,7 +2880,8 @@ class TimespanList(TypedList):
         return self
 
     def split_at_offset(self, offset):
-        '''Splits timespans at `offset`.
+        """
+        Splits timespans at `offset`.
 
         ..  container:: example
 
@@ -2971,7 +3001,7 @@ class TimespanList(TypedList):
                 )
 
         Returns timespan_lists.
-        '''
+        """
         import abjad
         offset = abjad.Offset(offset)
         before_list = type(self)()
@@ -2993,7 +3023,8 @@ class TimespanList(TypedList):
         return before_list, after_list
 
     def split_at_offsets(self, offsets):
-        '''Splits timespans at `offsets`.
+        """
+        Splits timespans at `offsets`.
 
         ..  container:: example
 
@@ -3023,7 +3054,7 @@ class TimespanList(TypedList):
             [TimespanList([])]
 
         Returns one or more timespan_lists.
-        '''
+        """
         import abjad
         timespan_lists = [self]
         if not self:
@@ -3039,7 +3070,8 @@ class TimespanList(TypedList):
         return timespan_lists
 
     def stretch(self, multiplier, anchor=None):
-        r'''Stretches timespans by `multiplier` relative to `anchor`.
+        """
+        Stretches timespans by `multiplier` relative to `anchor`.
 
         ..  container:: example
 
@@ -3106,7 +3138,7 @@ class TimespanList(TypedList):
                 )
 
         Operates in place and returns timespan list.
-        '''
+        """
         timespans = []
         if anchor is None:
             anchor = self.start_offset
@@ -3117,7 +3149,8 @@ class TimespanList(TypedList):
         return self
 
     def translate(self, translation=None):
-        r'''Translates timespans by `translation`.
+        """
+        Translates timespans by `translation`.
 
         ..  container:: example
 
@@ -3152,7 +3185,7 @@ class TimespanList(TypedList):
                 )
 
         Operates in place and returns timespan list.
-        '''
+        """
         return self.translate_offsets(translation, translation)
 
     def translate_offsets(
@@ -3160,8 +3193,9 @@ class TimespanList(TypedList):
         start_offset_translation=None,
         stop_offset_translation=None,
         ):
-        r'''Translates timespans by `start_offset_translation`
-        and `stop_offset_translation`.
+        """
+        Translates timespans by `start_offset_translation` and
+        `stop_offset_translation`.
 
         ..  container:: example
 
@@ -3229,7 +3263,7 @@ class TimespanList(TypedList):
                 )
 
         Operates in place and returns timespan list.
-        '''
+        """
         timespans = []
         for timespan in self:
             timespan = timespan.translate_offsets(

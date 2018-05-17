@@ -31,7 +31,8 @@ from .LilyPondVersionToken import LilyPondVersionToken
 
 
 class LilyPondFile(AbjadObject):
-    r'''A LilyPond file.
+    r"""
+    A LilyPond file.
 
     ..  container:: example
 
@@ -95,7 +96,7 @@ class LilyPondFile(AbjadObject):
                 f'8
             }
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -150,7 +151,8 @@ class LilyPondFile(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __contains__(self, argument) -> bool:
-        r'''Is true when LilyPond file contains ``argument``.
+        """
+        Is true when LilyPond file contains ``argument``.
 
         ..  container:: example
 
@@ -169,7 +171,7 @@ class LilyPondFile(AbjadObject):
             >>> 0 in lilypond_file
             False
 
-        '''
+        """
         try:
             item = self[argument]
             return True
@@ -177,7 +179,8 @@ class LilyPondFile(AbjadObject):
             return False
         
     def __format__(self, format_specification=''):
-        r'''Formats LilyPond file.
+        r"""
+        Formats LilyPond file.
 
         ..  container:: example
 
@@ -263,7 +266,7 @@ class LilyPondFile(AbjadObject):
             }
 
         Returns string.
-        '''
+        """
         if format_specification in ('', 'lilypond'):
             return self._get_lilypond_format()
         else:
@@ -271,7 +274,8 @@ class LilyPondFile(AbjadObject):
             return StorageFormatManager(self).get_storage_format()
 
     def __getitem__(self, name):
-        r'''Gets item with `name`.
+        r"""
+        Gets item with `name`.
 
         ..  container:: example
 
@@ -394,7 +398,7 @@ class LilyPondFile(AbjadObject):
         Returns item.
 
         Raises key error when no item with `name` is found.
-        '''
+        """
         if not isinstance(name, str):
             if inspect.isclass(name):
                 assert issubclass(name, Component), repr(name)
@@ -445,14 +449,16 @@ class LilyPondFile(AbjadObject):
             raise TypeError(name)
 
     def __illustrate__(self):
-        r'''Illustrates LilyPond file.
+        """
+        Illustrates LilyPond file.
 
         Returns LilyPond file unchanged.
-        '''
+        """
         return self
 
     def __repr__(self):
-        r'''Gets interpreter representation of LilyPond file.
+        """
+        Gets interpreter representation of LilyPond file.
 
         ..  container:: example
 
@@ -469,7 +475,7 @@ class LilyPondFile(AbjadObject):
             lilypond_version_token=LilyPondVersionToken(version_string='...'))
 
         Returns string.
-        '''
+        """
         superclass = super(LilyPondFile, self)
         return superclass.__repr__()
 
@@ -605,7 +611,8 @@ class LilyPondFile(AbjadObject):
 
     @property
     def comments(self):
-        r'''Gets comments of Lilypond file.
+        """
+        Gets comments of Lilypond file.
 
         ..  container:: example
 
@@ -617,12 +624,13 @@ class LilyPondFile(AbjadObject):
             []
 
         Returns list.
-        '''
+        """
         return list(self._comments)
 
     @property
     def date_time_token(self):
-        r'''Gets date-time token.
+        """
+        Gets date-time token.
 
         ..  container:: example
 
@@ -634,12 +642,13 @@ class LilyPondFile(AbjadObject):
             DateTimeToken()
 
         Returns date-time token or none.
-        '''
+        """
         return self._date_time_token
 
     @property
     def default_paper_size(self):
-        r'''Gets default paper size of LilyPond file.
+        """
+        Gets default paper size of LilyPond file.
 
         ..  container:: example
 
@@ -655,12 +664,13 @@ class LilyPondFile(AbjadObject):
         Defaults to none.
 
         Returns pair or none.
-        '''
+        """
         return self._default_paper_size
 
     @property
     def global_staff_size(self):
-        r'''Gets global staff size of LilyPond file.
+        """
+        Gets global staff size of LilyPond file.
 
         ..  container:: example
 
@@ -676,12 +686,13 @@ class LilyPondFile(AbjadObject):
         Defaults to none.
 
         Returns number or none.
-        '''
+        """
         return self._global_staff_size
 
     @property
     def header_block(self):
-        r'''Gets header block.
+        """
+        Gets header block.
 
         ..  container:: example
 
@@ -693,7 +704,7 @@ class LilyPondFile(AbjadObject):
             <Block(name='header')>
 
         Returns block or none.
-        '''
+        """
         for item in self.items:
             if isinstance(item, Block):
                 if item.name == 'header':
@@ -701,7 +712,8 @@ class LilyPondFile(AbjadObject):
 
     @property
     def includes(self):
-        r'''Gets includes of LilyPond file.
+        """
+        Gets includes of LilyPond file.
 
         ..  container:: example
 
@@ -713,12 +725,13 @@ class LilyPondFile(AbjadObject):
             []
 
         Return list
-        '''
+        """
         return self._includes
 
     @property
     def items(self):
-        r'''Gets items in LilyPond file.
+        r"""
+        Gets items in LilyPond file.
 
         ..  container:: example
 
@@ -770,12 +783,13 @@ class LilyPondFile(AbjadObject):
             True
 
         Returns list.
-        '''
+        """
         return self._items
 
     @property
     def layout_block(self):
-        r'''Gets layout block.
+        """
+        Gets layout block.
 
         ..  container:: example
 
@@ -787,7 +801,7 @@ class LilyPondFile(AbjadObject):
             <Block(name='layout')>
 
         Returns block or none.
-        '''
+        """
         for item in self.items:
             if isinstance(item, Block):
                 if item.name == 'layout':
@@ -795,7 +809,8 @@ class LilyPondFile(AbjadObject):
 
     @property
     def lilypond_language_token(self):
-        r'''Gets LilyPond language token.
+        """
+        Gets LilyPond language token.
 
         ..  container:: example
 
@@ -807,12 +822,13 @@ class LilyPondFile(AbjadObject):
             LilyPondLanguageToken()
 
         Returns LilyPond language token or none.
-        '''
+        """
         return self._lilypond_language_token
 
     @property
     def lilypond_version_token(self):
-        r'''Gets LilyPond version token.
+        """
+        Gets LilyPond version token.
 
         ..  container:: example
 
@@ -824,12 +840,13 @@ class LilyPondFile(AbjadObject):
             LilyPondVersionToken('2.19.35')
 
         Returns LilyPond version token or none.
-        '''
+        """
         return self._lilypond_version_token
 
     @property
     def paper_block(self):
-        r'''Gets paper block.
+        """
+        Gets paper block.
 
         ..  container:: example
 
@@ -841,7 +858,7 @@ class LilyPondFile(AbjadObject):
             <Block(name='paper')>
 
         Returns block or none.
-        '''
+        """
         for item in self.items:
             if isinstance(item, Block):
                 if item.name == 'paper':
@@ -849,7 +866,8 @@ class LilyPondFile(AbjadObject):
 
     @property
     def score_block(self):
-        r'''Gets score block.
+        """
+        Gets score block.
 
         ..  container:: example
 
@@ -861,7 +879,7 @@ class LilyPondFile(AbjadObject):
             <Block(name='score')>
 
         Returns block or none.
-        '''
+        """
         for item in self.items:
             if isinstance(item, Block):
                 if item.name == 'score':
@@ -869,7 +887,8 @@ class LilyPondFile(AbjadObject):
 
     @property
     def use_relative_includes(self):
-        r'''Is true when LilyPond file should use relative includes.
+        """
+        Is true when LilyPond file should use relative includes.
 
         ..  container:: example
 
@@ -883,7 +902,7 @@ class LilyPondFile(AbjadObject):
         Set to true, false or none.
 
         Returns true, false or none.
-        '''
+        """
         return self._use_relative_includes
 
     ### PUBLIC METHODS ###
@@ -901,7 +920,8 @@ class LilyPondFile(AbjadObject):
         lilypond_version_token=None,
         use_relative_includes=None,
         ):
-        r'''Makes basic LilyPond file.
+        r"""
+        Makes basic LilyPond file.
 
         ..  container:: example
 
@@ -951,7 +971,7 @@ class LilyPondFile(AbjadObject):
         blocks to LilyPond file.
 
         Returns LilyPond file.
-        '''
+        """
         if isinstance(music, LilyPondFile):
             return music
         lilypond_file = class_(
@@ -986,7 +1006,8 @@ class LilyPondFile(AbjadObject):
         simultaneous_selections=None,
         time_signatures=None,
         ):
-        r'''Makes rhythm-styled LilyPond file.
+        r"""
+        Makes rhythm-styled LilyPond file.
 
         ..  container:: example
 
@@ -1354,7 +1375,7 @@ class LilyPondFile(AbjadObject):
                 >>
 
         Returns LilyPond file.
-        '''
+        """
         if isinstance(selections, list):
             for selection in selections:
                 if not isinstance(selection, Selection):

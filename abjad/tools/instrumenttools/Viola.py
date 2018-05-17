@@ -2,7 +2,8 @@ from .Instrument import Instrument
 
 
 class Viola(Instrument):
-    r'''Viola.
+    r"""
+    Viola.
 
     ..  container:: example
 
@@ -27,7 +28,7 @@ class Viola(Instrument):
                 fs'4
             }
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -71,7 +72,8 @@ class Viola(Instrument):
 
     @property
     def allowable_clefs(self):
-        r'''Gets viola's allowable clefs.
+        """
+        Gets viola's allowable clefs.
 
         ..  container:: example
 
@@ -80,12 +82,13 @@ class Viola(Instrument):
             ('alto', 'treble')
 
         Returns clef list.
-        '''
+        """
         return Instrument.allowable_clefs.fget(self)
 
     @property
     def default_tuning(self):
-        r'''Gets viola's default tuning.
+        """
+        Gets viola's default tuning.
 
         ..  container:: example
 
@@ -94,12 +97,13 @@ class Viola(Instrument):
             Tuning(pitches=PitchSegment(['c', 'g', "d'", "a'"]))
 
         Returns tuning.
-        '''
+        """
         return self._default_tuning
 
     @property
     def markup(self):
-        r'''Gets viola's instrument name markup.
+        """
+        Gets viola's instrument name markup.
 
         ..  container:: example
 
@@ -110,12 +114,13 @@ class Viola(Instrument):
             >>> abjad.show(viola.markup) # doctest: +SKIP
 
         Returns markup.
-        '''
+        """
         return Instrument.markup.fget(self)
 
     @property
     def middle_c_sounding_pitch(self):
-        r'''Gets sounding pitch of viola's written middle C.
+        """
+        Gets sounding pitch of viola's written middle C.
 
         ..  container:: example
 
@@ -126,12 +131,13 @@ class Viola(Instrument):
             >>> abjad.show(viola.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
-        '''
+        """
         return Instrument.middle_c_sounding_pitch.fget(self)
 
     @property
     def name(self):
-        r'''Gets viola's name.
+        """
+        Gets viola's name.
 
         ..  container:: example
 
@@ -140,12 +146,13 @@ class Viola(Instrument):
             'viola'
 
         Returns string.
-        '''
+        """
         return Instrument.name.fget(self)
 
     @property
     def pitch_range(self):
-        r'''Gets viola's range.
+        """
+        Gets viola's range.
 
         ..  container:: example
 
@@ -156,12 +163,13 @@ class Viola(Instrument):
             >>> abjad.show(viola.pitch_range) # doctest: +SKIP
 
         Returns pitch range.
-        '''
+        """
         return Instrument.pitch_range.fget(self)
 
     @property
     def short_markup(self):
-        r'''Gets viola's short instrument name markup.
+        """
+        Gets viola's short instrument name markup.
 
         ..  container:: example
 
@@ -172,12 +180,13 @@ class Viola(Instrument):
             >>> abjad.show(viola.short_markup) # doctest: +SKIP
 
         Returns markup.
-        '''
+        """
         return Instrument.short_markup.fget(self)
 
     @property
     def short_name(self):
-        r'''Gets viola's short instrument name.
+        """
+        Gets viola's short instrument name.
 
         ..  container:: example
 
@@ -186,5 +195,5 @@ class Viola(Instrument):
             'va.'
 
         Returns string.
-        '''
+        """
         return Instrument.short_name.fget(self)

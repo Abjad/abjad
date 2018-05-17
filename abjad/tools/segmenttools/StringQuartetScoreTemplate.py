@@ -5,7 +5,8 @@ from .ScoreTemplate import ScoreTemplate
 
 
 class StringQuartetScoreTemplate(ScoreTemplate):
-    r'''String quartet score template.
+    r"""
+    String quartet score template.
 
     ..  container:: example
 
@@ -65,7 +66,7 @@ class StringQuartetScoreTemplate(ScoreTemplate):
         >>
 
     Returns score template.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -93,10 +94,11 @@ class StringQuartetScoreTemplate(ScoreTemplate):
     ### SPECIAL METHODS ###
 
     def __call__(self):
-        r'''Calls string quartet score template.
+        """
+        Calls string quartet score template.
 
         Returns score.
-        '''
+        """
         import abjad
 
         # make first violin voice and staff

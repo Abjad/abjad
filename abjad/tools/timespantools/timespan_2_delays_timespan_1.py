@@ -1,5 +1,6 @@
 def timespan_2_delays_timespan_1(timespan_1=None, timespan_2=None, hold=False):
-    r'''Makes time relation indicating that `timespan_2` delays `timespan_1`.
+    """
+    Makes time relation indicating that `timespan_2` delays `timespan_1`.
 
     ..  container:: example
 
@@ -16,7 +17,7 @@ def timespan_2_delays_timespan_1(timespan_1=None, timespan_2=None, hold=False):
             )
 
     Returns time relation or boolean.
-    '''
+    """
     from abjad.tools import timespantools
 
     inequality = timespantools.CompoundInequality([

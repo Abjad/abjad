@@ -2,8 +2,9 @@ import abjad
 
 
 def test_scoretools_Chord___format___01():
-    r'''Format chord with one note-head.
-    '''
+    """
+    Format chord with one note-head.
+    """
 
     chord = abjad.Chord("<cqs'>4")
 
@@ -14,8 +15,9 @@ def test_scoretools_Chord___format___01():
 
 
 def test_scoretools_Chord___format___02():
-    r'''Format chord with LilyPond command.
-    '''
+    """
+    Format chord with LilyPond command.
+    """
 
     chord = abjad.Chord("<d' ef' e'>4")
     command = abjad.LilyPondLiteral(r'\glissando', 'right')
@@ -25,9 +27,9 @@ def test_scoretools_Chord___format___02():
 
 
 def test_scoretools_Chord___format___03():
-    '''
+    """
     Formats tweaked chord with LilyPond command.
-    '''
+    """
 
     chord = abjad.Chord("<d' ef' e'>4")
     chord.note_heads[0].tweaks.color = 'red'
@@ -35,7 +37,7 @@ def test_scoretools_Chord___format___03():
     abjad.attach(command, chord)
 
     assert format(chord) == abjad.String.normalize(
-        r'''
+        r"""
         <
             \tweak color #red
             d'
@@ -43,45 +45,47 @@ def test_scoretools_Chord___format___03():
             e'
         >4
         \glissando
-        '''
+        """
         )
 
     assert abjad.inspect(chord).is_well_formed()
 
 
 def test_scoretools_Chord___format___04():
-    '''Format tweaked chord.
-    '''
+    """
+    Format tweaked chord.
+    """
 
     chord = abjad.Chord("<d' ef' e'>4")
     chord.note_heads[0].tweaks.transparent = True
 
     assert format(chord) == abjad.String.normalize(
-        r'''
+        r"""
         <
             \tweak transparent ##t
             d'
             ef'
             e'
         >4
-        '''
+        """
         )
 
 
 def test_scoretools_Chord___format___05():
-    r'''Formats tweaked chord.
-    '''
+    """
+    Formats tweaked chord.
+    """
 
     chord = abjad.Chord("<d' ef' e'>4")
     chord.note_heads[0].tweaks.style = 'harmonic'
 
     assert format(chord) == abjad.String.normalize(
-        r'''
+        r"""
         <
             \tweak style #'harmonic
             d'
             ef'
             e'
         >4
-        '''
+        """
         )

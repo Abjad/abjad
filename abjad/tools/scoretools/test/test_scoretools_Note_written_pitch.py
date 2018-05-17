@@ -10,7 +10,7 @@ def test_scoretools_Note_written_pitch_01():
     abjad.Instrument.transpose_from_sounding_pitch(staff)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             \set Staff.instrumentName = \markup { Piccolo }
@@ -20,7 +20,7 @@ def test_scoretools_Note_written_pitch_01():
             f'8
             g'8
         }
-        '''
+        """
         )
 
     assert staff[0].written_pitch == "d'"

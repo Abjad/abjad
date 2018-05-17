@@ -2,8 +2,9 @@ import abjad
 
 
 def test_scoretools_Container_index_01():
-    r'''Elements that compare equal return different indices in container.
-    '''
+    """
+    Elements that compare equal return different indices in container.
+    """
 
     container = abjad.Container(4 * abjad.Note("c'4"))
 

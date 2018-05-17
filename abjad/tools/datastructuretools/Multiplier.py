@@ -2,7 +2,8 @@ from .Duration import Duration
 
 
 class Multiplier(Duration):
-    '''Multiplier.
+    """
+    Multiplier.
 
     ..  container:: example
 
@@ -104,7 +105,7 @@ class Multiplier(Duration):
         >>> abjad.f(note)
         c'1 * 3/8
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -113,10 +114,11 @@ class Multiplier(Duration):
     ### SPECIAL METHODS ###
 
     def __mul__(self, *arguments):
-        r'''Multiplier times duration gives duration.
+        """
+        Multiplier times duration gives duration.
 
         Returns duration.
-        '''
+        """
         if len(arguments) == 1 and type(arguments[0]) is Duration:
             return Duration(Duration.__mul__(self, *arguments))
         else:
@@ -125,8 +127,8 @@ class Multiplier(Duration):
     ### PUBLIC PROPERTIES ###
 
     def normalized(self):
-        '''Is true when mutliplier is greater than ``1/2`` and less than ``2``.
-        Otherwise false:
+        """
+        Is true when mutliplier is greater than ``1/2`` and less than ``2``.
 
         ..  container:: example
 
@@ -134,5 +136,5 @@ class Multiplier(Duration):
             True
 
         Returns true or false.
-        '''
+        """
         return type(self)(1, 2) < self < type(self)(2)

@@ -3,8 +3,8 @@ import numbers
 
 
 def are_relatively_prime(argument):
-    '''Is true when `argument` is an iterable collection of relative primes.
-    Otherwise false.
+    """
+    Is true when `argument` is an iterable collection of relative primes.
 
     ..  container:: example
 
@@ -25,7 +25,7 @@ def are_relatively_prime(argument):
         True
 
     Returns true or false.
-    '''
+    """
     from abjad.tools import mathtools
     if not isinstance(argument, collections.Iterable):
         return False

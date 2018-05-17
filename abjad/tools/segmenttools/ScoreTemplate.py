@@ -28,8 +28,9 @@ from .Tags import Tags
 
 
 class ScoreTemplate(abctools.AbjadValueObject):
-    r'''Abstract score template.
-    '''
+    """
+    Abstract score template.
+    """
 
     ### CLASS VARIABLES ###
 
@@ -54,8 +55,9 @@ class ScoreTemplate(abctools.AbjadValueObject):
 
     @abc.abstractmethod
     def __call__(self) -> Score:
-        r'''Calls score template.
-        '''
+        """
+        Calls score template.
+        """
         pass
 
     def __illustrate__(
@@ -64,8 +66,9 @@ class ScoreTemplate(abctools.AbjadValueObject):
         global_staff_size=None,
         includes=None,
         ):
-        r'''Illustrates score template.
-        '''
+        """
+        Illustrates score template.
+        """
         score: Score = self()
         for voice in iterate(score).components(Voice):
             voice.append(Skip(1))
@@ -102,22 +105,25 @@ class ScoreTemplate(abctools.AbjadValueObject):
 
     @property
     def always_make_global_rests(self) -> bool:
-        r'''Is true when score template always makes global rests.
-        '''
+        """
+        Is true when score template always makes global rests.
+        """
         return self._always_make_global_rests
 
     @property
     def do_not_require_margin_markup(self) -> bool:
-        r'''Is true when score template does not require margin markup.
+        """
+        Is true when score template does not require margin markup.
 
         Conventionally, solos do not require margin markup.
-        '''
+        """
         return self._do_not_require_margin_markup
 
     @property
     def part_manifest(self) -> typing.Optional[PartManifest]:
-        r'''Gets part manifest.
-        '''
+        """
+        Gets part manifest.
+        """
         if self._part_manifest is not None:
             assert isinstance(self._part_manifest, PartManifest)
         return self._part_manifest
@@ -129,10 +135,11 @@ class ScoreTemplate(abctools.AbjadValueObject):
         staff_name: str,
         instrument: Instrument,
         ) -> bool:
-        r'''Is true when ``staff_name`` allows ``instrument``.
+        """
+        Is true when ``staff_name`` allows ``instrument``.
 
         To be implemented by concrete score template classes.
-        '''
+        """
         return True
 
     def allows_part_assignment(
@@ -140,22 +147,24 @@ class ScoreTemplate(abctools.AbjadValueObject):
         voice_name: str,
         part_assignment: PartAssignment,
         ) -> bool:
-        r'''Is true when ``voice_name`` allows ``part_assignment``.
-        '''
+        """
+        Is true when ``voice_name`` allows ``part_assignment``.
+        """
         section = part_assignment.section or 'ZZZ'
         if voice_name.startswith(section):
             return True
         return False
 
     def attach_defaults(self, argument) -> typing.List:
-        r'''Attaches defaults to all staff and staff group contexts in
+        """
+        Attaches defaults to all staff and staff group contexts in
         ``argument`` when ``argument`` is a score.
 
         Attaches defaults to ``argument`` (without iterating ``argument``) when
         ``argument`` is a staff or staff group.
 
         Returns list of one wrapper for every indicator attached.
-        '''
+        """
         assert isinstance(argument, (Score, Staff, StaffGroup)), repr(argument)
         wrappers: typing.List[Wrapper] = []
         tag = Tags().REMOVE_ALL_EMPTY_STAVES
@@ -229,6 +238,7 @@ class ScoreTemplate(abctools.AbjadValueObject):
 
     @property
     def voice_abbreviations(self) -> OrderedDict:
-        r'''Gets voice abbreviations.
-        '''
+        """
+        Gets voice abbreviations.
+        """
         return self._voice_abbreviations

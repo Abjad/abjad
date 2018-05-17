@@ -4,7 +4,7 @@ import abjad
 def test_scoretools_VerticalMoment___eq___01():
 
     score = abjad.Score(
-        r'''
+        r"""
         \new Staff {
             \times 4/3 {
                 d''8
@@ -25,7 +25,7 @@ def test_scoretools_VerticalMoment___eq___01():
                 c'8
             }
         >>
-        '''
+        """
         )
 
     staff_group = score[1]
@@ -44,7 +44,7 @@ def test_scoretools_VerticalMoment___eq___02():
 
     score = abjad.Score([])
     score.append(abjad.Staff([abjad.Tuplet((4, 3), "d''8 c''8 b'8")]))
-    staff_group = abjad.StaffGroup(r'''
+    staff_group = abjad.StaffGroup(r"""
         \new Staff {
             a'4
             g'4
@@ -56,13 +56,13 @@ def test_scoretools_VerticalMoment___eq___02():
             d'8
             c'8
         }
-        '''
+        """
         )
     staff_group.lilypond_type = 'PianoStaff'
     score.append(staff_group)
 
     assert format(score) == abjad.String.normalize(
-        r'''
+        r"""
         \new Score
         <<
             \new Staff
@@ -91,7 +91,7 @@ def test_scoretools_VerticalMoment___eq___02():
                 }
             >>
         >>
-        '''
+        """
         )
 
     vertical_moment_1 = abjad.inspect(

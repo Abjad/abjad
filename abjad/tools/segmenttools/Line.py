@@ -2,7 +2,8 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class Line(AbjadObject):
-    r'''Line in a LilyPond file.
+    r"""
+    Line in a LilyPond file.
 
     ..  container:: example
 
@@ -10,7 +11,7 @@ class Line(AbjadObject):
         >>> abjad.Line(string)
         Line(string='    %@%  \\with-color %! MEASURE_NUMBER_MARKUP:SM31')
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -29,7 +30,8 @@ class Line(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __str__(self):
-        r'''Gets string representation of line.
+        r"""
+        Gets string representation of line.
 
         ..  container:: example
 
@@ -38,14 +40,15 @@ class Line(AbjadObject):
             '    %@%  \\with-color %! MEASURE_NUMBER_MARKUP:SM31'
 
         Returns string.
-        '''
+        """
         return self.string
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def string(self):
-        r'''Gets string.
+        r"""
+        Gets string.
 
         ..  container:: example
 
@@ -54,13 +57,14 @@ class Line(AbjadObject):
             '    %@%  \\with-color %! MEASURE_NUMBER_MARKUP:SM31'
 
         Returns string.
-        '''
+        """
         return self._string
 
     ### PUBLIC METHODS ###
 
     def get_tags(self):
-        r'''Gets tags.
+        """
+        Gets tags.
 
         ..  container:: example
 
@@ -69,7 +73,7 @@ class Line(AbjadObject):
             ['MEASURE_NUMBER_MARKUP', 'SM31']
 
         Returns list of zero or more strings.
-        '''
+        """
         tags = []
         if ' %! ' in self.string:
             index = self.string.find('%! ')
@@ -79,7 +83,8 @@ class Line(AbjadObject):
         return tags
 
     def is_active(self):
-        r'''Is true when line is active.
+        r"""
+        Is true when line is active.
 
         ..  container:: example
 
@@ -96,11 +101,12 @@ class Line(AbjadObject):
             False
 
         Returns true or false.
-        '''
+        """
         return not self.is_deactivated()
 
     def is_deactivated(self):
-        r'''Is true when line is deactivated.
+        r"""
+        Is true when line is deactivated.
 
         ..  container:: example
 
@@ -117,7 +123,7 @@ class Line(AbjadObject):
             True
 
         Returns true or false.
-        '''
+        """
         string = self.string.strip()
         if string.startswith('%@%'):
             return True
@@ -126,7 +132,8 @@ class Line(AbjadObject):
         return False
 
     def match(self, predicate):
-        r'''Is true when `predicate` matches tags.
+        r"""
+        Is true when `predicate` matches tags.
 
         ..  container:: example
 
@@ -191,7 +198,7 @@ class Line(AbjadObject):
             False
 
         Returns true or false.
-        '''
+        """
         tags = self.get_tags()
         if not tags:
             return False

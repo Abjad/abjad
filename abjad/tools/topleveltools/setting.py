@@ -1,5 +1,6 @@
 def setting(argument):
-    r'''Makes LilyPond setting name manager.
+    r"""
+    Makes LilyPond setting name manager.
 
     ..  container:: example
 
@@ -32,7 +33,7 @@ def setting(argument):
         >>> abjad.setting(staff)
         LilyPondSettingNameManager(('instrument_name', Markup(contents=['Vn. I'])))
 
-    '''
+    """
     from abjad.tools import lilypondnametools
     if getattr(argument, '_lilypond_setting_name_manager', None) is None:
         manager = lilypondnametools.LilyPondSettingNameManager()

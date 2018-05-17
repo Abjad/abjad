@@ -3,7 +3,8 @@ def timespan_2_happens_during_timespan_1(
     timespan_2=None,
     hold=False,
     ):
-    r'''Makes time relation indicating that `timespan_2` happens during
+    """
+    Makes time relation indicating that `timespan_2` happens during
     `timespan_1`.
 
     ..  container:: example
@@ -34,7 +35,7 @@ def timespan_2_happens_during_timespan_1(
         True
 
     Returns time relation or boolean.
-    '''
+    """
     from abjad.tools import timespantools
 
     inequality = timespantools.CompoundInequality([

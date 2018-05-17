@@ -3,8 +3,9 @@ from abjad.tools import datastructuretools
 
 
 class MeterManager(abctools.AbjadObject):
-    r'''Meter manager.
-    '''
+    """
+    Meter manager.
+    """
 
     ### CLASS VARIABLES ###
 
@@ -14,8 +15,9 @@ class MeterManager(abctools.AbjadObject):
 
     @staticmethod
     def get_offsets_at_depth(depth, offset_inventory):
-        r'''Gets offsets at `depth` in `offset_inventory`.
-        '''
+        """
+        Gets offsets at `depth` in `offset_inventory`.
+        """
         import abjad
         if depth < len(offset_inventory):
             return offset_inventory[depth]
@@ -45,8 +47,9 @@ class MeterManager(abctools.AbjadObject):
         logical_tie_stops_in_offsets=None,
         maximum_dot_count=None,
         ):
-        r'''Is true if logical tie is acceptable.
-        '''
+        """
+        Is true if logical tie is acceptable.
+        """
         #print '\tTESTING ACCEPTABILITY'
         if not logical_tie_duration.is_assignable:
             return False
@@ -65,8 +68,9 @@ class MeterManager(abctools.AbjadObject):
         logical_tie_start_offset=None,
         logical_tie_stop_offset=None,
         ):
-        r'''Is true if logical tie crosses meter boundaries.
-        '''
+        """
+        Is true if logical tie crosses meter boundaries.
+        """
         #print '\tTESTING BOUNDARY CROSSINGS'
         if boundary_depth is None:
             return False
@@ -80,7 +84,8 @@ class MeterManager(abctools.AbjadObject):
 
     @staticmethod
     def iterate_rewrite_inputs(argument):
-        r'''Iterates topmost masked logical ties, rest groups and containers
+        r"""
+        Iterates topmost masked logical ties, rest groups and containers
         in `argument`, masked by `argument`.
 
         >>> string = "abj: ! 2/4 c'4 d'4 ~ !"
@@ -167,7 +172,7 @@ class MeterManager(abctools.AbjadObject):
         LogicalTie([Note("c''4")])
 
         Returns generator.
-        '''
+        """
         import abjad
         last_tie_spanner = None
         current_leaf_group = None

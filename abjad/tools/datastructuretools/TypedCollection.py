@@ -3,8 +3,9 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class TypedCollection(AbjadObject):
-    r'''Abstract typed collection.
-    '''
+    """
+    Abstract typed collection.
+    """
 
     ### CLASS VARIABLES ###
 
@@ -29,11 +30,11 @@ class TypedCollection(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __contains__(self, item):
-        r'''Is true when typed collection contains `item`.
-        Otherwise false.
+        """
+        Is true when typed collection contains ``item``.
 
         Returns true or false.
-        '''
+        """
         try:
             item = self._item_coercer(item)
         except ValueError:
@@ -41,11 +42,12 @@ class TypedCollection(AbjadObject):
         return self._collection.__contains__(item)
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is a typed collection with items that
-        compare equal to those of this typed collection. Otherwise false.
+        """
+        Is true when ``argument`` is a typed collection with items that
+        compare equal to those of this typed collection.
 
         Returns true or false.
-        '''
+        """
         if issubclass(type(argument), type(self)):
             return self._collection == argument._collection
         elif isinstance(argument, type(self._collection)):
@@ -53,26 +55,27 @@ class TypedCollection(AbjadObject):
         return False
 
     def __hash__(self):
-        r'''Hashes typed collection.
+        """
+        Hashes typed collection.
 
-        Required to be explicitly redefined on Python 3 if __eq__ changes.
-
-        Returns integer.
-        '''
+        Redefined in tandem with __eq__.
+        """
         return object.__hash__(self)
 
     def __iter__(self):
-        r'''Iterates typed collection.
+        """
+        Iterates typed collection.
 
         Returns generator.
-        '''
+        """
         return self._collection.__iter__()
 
     def __len__(self):
-        r'''Gets length of typed collection.
+        """
+        Gets length of typed collection.
 
         Returns nonnegative integer.
-        '''
+        """
         return len(self._collection)
 
     ### PRIVATE PROPERTIES ###
@@ -103,31 +106,35 @@ class TypedCollection(AbjadObject):
             )
 
     def _on_insertion(self, item):
-        r'''Override to operate on item after insertion into collection.
-        '''
+        """
+        Override to operate on item after insertion into collection.
+        """
         pass
 
     def _on_removal(self, item):
-        r'''Override to operate on item after removal from collection.
-        '''
+        """
+        Override to operate on item after removal from collection.
+        """
         pass
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def item_class(self):
-        r'''Gets item class of collection.
+        """
+        Gets item class of collection.
 
-        Collection coerces items according to `item_class`.
+        Collection coerces items according to ``item_class``.
 
         Returns class.
-        '''
+        """
         return self._item_class
 
     @property
     def items(self):
-        r'''Gets items in collection.
+        """
+        Gets items in collection.
 
         Returns list.
-        '''
+        """
         return [_ for _ in self]

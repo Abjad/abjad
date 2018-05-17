@@ -12,7 +12,8 @@ from .Selection import Selection
 
 
 class Container(Component):
-    r'''Container.
+    r"""
+    Container.
 
     ..  container:: example
 
@@ -148,7 +149,7 @@ class Container(Component):
             f'4
         }
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -186,8 +187,9 @@ class Container(Component):
     ### SPECIAL METHODS ###
 
     def __contains__(self, argument) -> bool:
-        r'''Is true when `argument` appears in container.
-        '''
+        """
+        Is true when `argument` appears in container.
+        """
         if isinstance(argument, str):
             return argument in self._named_children
         else:
@@ -198,7 +200,8 @@ class Container(Component):
                 return False
 
     def __delitem__(self, i):
-        r'''Deletes components(s) at index `i` in container.
+        r"""
+        Deletes components(s) at index `i` in container.
 
         ..  container:: example
 
@@ -275,7 +278,7 @@ class Container(Component):
         Preserves spanners that component(s) cover(s).
 
         Returns none.
-        '''
+        """
         components = self[i]
         if not isinstance(components, Selection):
             components = select([components])
@@ -284,10 +287,11 @@ class Container(Component):
         components._set_parents(None)
 
     def __getitem__(self, argument) -> typing.Union[Component, Selection]:
-        r'''Gets item or slice identified by `argument`.
+        """
+        Gets item or slice identified by `argument`.
 
         Traverses top-level items only.
-        '''
+        """
         if isinstance(argument, int):
             return self.components.__getitem__(argument)
         elif isinstance(argument, slice) and not self.is_simultaneous:
@@ -309,15 +313,17 @@ class Container(Component):
         raise ValueError(message)
 
     def __getnewargs__(self) -> tuple:
-        r'''Gets new container arguments.
-        '''
+        """
+        Gets new container arguments.
+        """
         return [], self.identifier, self.is_simultaneous, self.name
 
     def __graph__(self, spanner=None, **keywords):
-        r'''Graphviz graph representation of container.
+        """
+        Graphviz graph representation of container.
 
         Returns Graphviz graph.
-        '''
+        """
         def recurse(component, leaf_cluster):
             component_node = component._as_graphviz_node()
             node_mapping[component] = component_node
@@ -401,7 +407,8 @@ class Container(Component):
         return graph
 
     def __iter__(self):
-        r'''Iterates container.
+        """
+        Iterates container.
 
         ..  container:: example
 
@@ -424,21 +431,23 @@ class Container(Component):
         Yields container elements.
 
         Returns generator.
-        '''
+        """
         return iter(self.components)
 
     def __len__(self) -> int:
-        r'''Gets number of components in container.
-        '''
+        """
+        Gets number of components in container.
+        """
         return len(self.components)
 
     def __setitem__(self, i, argument) -> None:
-        r'''Sets container `i` equal to `argument`.
+        """
+        Sets container `i` equal to `argument`.
         Finds spanners that dominate self[i] and children of self[i].
         Replaces contents at self[i] with 'argument'.
         Reattaches spanners to new contents.
         Always leaves score tree in tact.
-        '''
+        """
         if isinstance(argument, str):
             argument = self._parse_string(argument)
             if isinstance(i, int):
@@ -458,8 +467,9 @@ class Container(Component):
         return True
 
     def _append_without_withdrawing_from_crossing_spanners(self, component):
-        '''Not composer-safe.
-        '''
+        """
+        Not composer-safe.
+        """
         self._set_item(
             slice(len(self), len(self)),
             [component],
@@ -694,7 +704,8 @@ class Container(Component):
         return ['is_simultaneous', 'name']
 
     def _get_spanners_that_dominate_component_pair(self, left, right):
-        r'''Returns spanners that dominant component pair.
+        """
+        Returns spanners that dominant component pair.
         Returns set (spanner, index) pairs.
         `left` must be an Abjad component or None.
         `right` must be an Abjad component or None.
@@ -705,7 +716,7 @@ class Container(Component):
         This is a version of Selection._get_dominant_spanners().
         This version is useful for finding spanners that dominant
         a zero-length slice between components, as in staff[2:2].
-        '''
+        """
         if left is None or right is None:
             return []
         left_descendants = inspect(left).get_descendants()
@@ -880,14 +891,15 @@ class Container(Component):
         argument,
         withdraw_components_from_crossing_spanners=True,
         ):
-        r'''This method exists because __setitem__ can not accept keywords.
+        """
+        This method exists because __setitem__ can not accept keywords.
 
         Note that setting
         withdraw_components_from_crossing_spanners=False constitutes a
         composer-unsafe use of this method.
 
         Only private methods should set this keyword.
-        '''
+        """
         import abjad
         argument_indicators = []
         for component in abjad.iterate(argument).components():
@@ -948,7 +960,8 @@ class Container(Component):
                 indicator._update_effective_context()
 
     def _split_at_index(self, i, fracture_spanners=False):
-        r'''Splits container to the left of index `i`.
+        """
+        Splits container to the left of index `i`.
 
         Preserves tuplet multiplier when container is a tuplet.
 
@@ -957,7 +970,7 @@ class Container(Component):
         Resizes resizable containers.
 
         Returns split parts.
-        '''
+        """
         import abjad
         # partition my components
         left_components = self[:i]
@@ -1225,13 +1238,15 @@ class Container(Component):
 
     @property
     def components(self) -> tuple:
-        r'''Gets components in container.
-        '''
+        """
+        Gets components in container.
+        """
         return self._components
 
     @property
     def identifier(self)  -> typing.Optional[str]:
-        r'''Gets and sets bracket comment.
+        r"""
+        Gets and sets bracket comment.
 
         ..  container:: example
 
@@ -1249,7 +1264,7 @@ class Container(Component):
                 f'4
             }   %*% AB
 
-        '''
+        """
         return self._identifier
 
     @identifier.setter
@@ -1259,7 +1274,8 @@ class Container(Component):
 
     @property
     def is_simultaneous(self) -> typing.Optional[bool]:
-        r'''Is true when container is simultaneous. Otherwise false.
+        r"""
+        Is true when container is simultaneous.
 
         ..  container:: example
 
@@ -1333,7 +1349,7 @@ class Container(Component):
                     }
                 >>
 
-        '''
+        """
         return self._is_simultaneous
 
     @is_simultaneous.setter
@@ -1350,7 +1366,8 @@ class Container(Component):
 
     @property
     def name(self) -> typing.Optional[str]:
-        r'''Gets and sets name of container.
+        r"""
+        Gets and sets name of container.
 
         ..  container:: example
 
@@ -1395,7 +1412,7 @@ class Container(Component):
                 f'4
             }
 
-        '''
+        """
         return self._name
 
     @name.setter
@@ -1418,7 +1435,8 @@ class Container(Component):
     ### PUBLIC METHODS ###
 
     def append(self, component) -> None:
-        r'''Appends `component` to container.
+        r"""
+        Appends `component` to container.
 
         ..  container:: example
 
@@ -1453,7 +1471,7 @@ class Container(Component):
                     e'4
                 }
 
-        '''
+        """
         if isinstance(component, str):
             selection = self._parse_string(component)
             assert len(selection) == 1
@@ -1461,7 +1479,8 @@ class Container(Component):
         self.__setitem__(slice(len(self), len(self)), [component])
 
     def extend(self, argument) -> None:
-        r'''Extends container with `argument`.
+        r"""
+        Extends container with `argument`.
 
         ..  container:: example
 
@@ -1499,7 +1518,7 @@ class Container(Component):
                     e'16
                 }
 
-        '''
+        """
         if isinstance(argument, str):
             argument = self._parse_string(argument)
         elif isinstance(argument, collections.Iterable):
@@ -1515,7 +1534,8 @@ class Container(Component):
             )
 
     def index(self, component) -> int:
-        r'''Returns index of `component` in container.
+        r"""
+        Returns index of `component` in container.
 
         ..  container:: example
 
@@ -1541,7 +1561,7 @@ class Container(Component):
             >>> container.index(note)
             3
 
-        '''
+        """
         for i, element in enumerate(self.components):
             if element is component:
                 return i
@@ -1551,7 +1571,8 @@ class Container(Component):
             raise ValueError(message)
 
     def insert(self, i, component, fracture_spanners=False) -> None:
-        r'''Inserts `component` at index `i` in container.
+        r"""
+        Inserts `component` at index `i` in container.
 
         ..  container:: example
 
@@ -1667,7 +1688,7 @@ class Container(Component):
                     )
                 }
 
-        '''
+        """
         assert isinstance(i, int)
         if isinstance(component, str):
             selection = self._parse_string(component)
@@ -1691,7 +1712,8 @@ class Container(Component):
                 spanner._fracture(index, direction=Left)
 
     def pop(self, i=-1):
-        r'''Pops component from container at index `i`.
+        r"""
+        Pops component from container at index `i`.
 
         ..  container:: example
 
@@ -1728,13 +1750,14 @@ class Container(Component):
                 }
 
         Returns component.
-        '''
+        """
         component = self[i]
         del(self[i])
         return component
 
     def remove(self, component) -> None:
-        r'''Removes `component` from container.
+        r"""
+        Removes `component` from container.
 
         ..  container:: example
 
@@ -1773,6 +1796,6 @@ class Container(Component):
                     e'4
                 }
 
-        '''
+        """
         i = self.index(component)
         del(self[i])

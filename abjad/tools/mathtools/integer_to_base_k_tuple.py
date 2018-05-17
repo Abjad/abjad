@@ -2,7 +2,8 @@ import math
 
 
 def integer_to_base_k_tuple(n, k):
-    '''Changes nonnegative integer `n` to base-`k` tuple.
+    """
+    Changes nonnegative integer `n` to base-`k` tuple.
 
     ..  container:: example
 
@@ -26,7 +27,7 @@ def integer_to_base_k_tuple(n, k):
         (1, 15, 0)
 
     Returns tuple of positive integers.
-    '''
+    """
     assert isinstance(n, int), repr(n)
     assert 0 <= n, repr(n)
     if n == 0:

@@ -3,7 +3,8 @@ from abjad import Fraction
 
 
 def arithmetic_mean(argument):
-    '''Gets arithmetic mean of `argument`.
+    """
+    Gets arithmetic mean of `argument`.
 
     ..  container:: example
 
@@ -19,7 +20,7 @@ def arithmetic_mean(argument):
     Raises exception when `argument` is not iterable.
 
     Returns number.
-    '''
+    """
     if not isinstance(argument, collections.Iterable):
         raise TypeError(argument)
     total = sum(argument)

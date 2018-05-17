@@ -3,8 +3,9 @@ import pytest
 
 
 def test_scoretools_Chord_written_pitches_01():
-    r'''Returns immutable tuple of pitches in chord.
-    '''
+    """
+    Returns immutable tuple of pitches in chord.
+    """
 
     chord = abjad.Chord("<d' e' f'>4")
     pitches = chord.written_pitches
@@ -16,8 +17,9 @@ def test_scoretools_Chord_written_pitches_01():
 
 
 def test_scoretools_Chord_written_pitches_02():
-    r'''Equivalent written pitches compare equal.
-    '''
+    """
+    Equivalent written pitches compare equal.
+    """
 
     chord_1 = abjad.Chord("<d' e' f'>4")
     chord_2 = abjad.Chord("<d' e' f'>4")
@@ -26,8 +28,9 @@ def test_scoretools_Chord_written_pitches_02():
 
 
 def test_scoretools_Chord_written_pitches_03():
-    '''Transpose sounding pitches to written pitches.
-    '''
+    """
+    Transpose sounding pitches to written pitches.
+    """
 
     staff = abjad.Staff("<c''' e'''>4 <d''' fs'''>4")
     glockenspiel = abjad.Glockenspiel()
@@ -35,7 +38,7 @@ def test_scoretools_Chord_written_pitches_03():
     abjad.Instrument.transpose_from_sounding_pitch(staff)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             \set Staff.instrumentName = \markup { Glockenspiel }
@@ -43,7 +46,8 @@ def test_scoretools_Chord_written_pitches_03():
             <c' e'>4
             <d' fs'>4
         }
-        ''')
+        """
+        )
 
     assert staff[0].written_pitches == (
         abjad.NamedPitch("c'"),
@@ -52,8 +56,9 @@ def test_scoretools_Chord_written_pitches_03():
 
 
 def test_scoretools_Chord_written_pitches_04():
-    r'''Set written pitches with pitch numbers.
-    '''
+    """
+    Set written pitches with pitch numbers.
+    """
 
     chord = abjad.Chord([], (1, 4))
     chord.written_pitches = [4, 3, 2]
@@ -64,8 +69,9 @@ def test_scoretools_Chord_written_pitches_04():
 
 
 def test_scoretools_Chord_written_pitches_05():
-    r'''Set written pitches with pitches.
-    '''
+    """
+    Set written pitches with pitches.
+    """
 
     chord = abjad.Chord([], (1, 4))
     chord.written_pitches = [
@@ -78,8 +84,9 @@ def test_scoretools_Chord_written_pitches_05():
 
 
 def test_scoretools_Chord_written_pitches_06():
-    r'''Set written pitches with both pitches and pitch numbers.
-    '''
+    """
+    Set written pitches with both pitches and pitch numbers.
+    """
 
     chord = abjad.Chord([], (1, 4))
     chord.written_pitches = [

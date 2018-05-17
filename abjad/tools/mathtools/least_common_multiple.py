@@ -1,5 +1,6 @@
 def least_common_multiple(*integers):
-    r'''Gets least common multiple of positive `integers`.
+    """
+    Gets least common multiple of positive `integers`.
 
     ..  container:: example
 
@@ -31,7 +32,7 @@ def least_common_multiple(*integers):
         44
 
     Returns positive integer.
-    '''
+    """
     if len(integers) == 1:
         if not isinstance(integers[0], int):
             message = 'must be integer: {!r}.'

@@ -2,8 +2,9 @@ from abjad.tools.abctools.ContextManager import ContextManager
 
 
 class NullContextManager(ContextManager):
-    r'''A context manager that does nothing.
-    '''
+    """
+    A context manager that does nothing.
+    """
 
     ### CLASS VARIABLES ###
 
@@ -19,11 +20,13 @@ class NullContextManager(ContextManager):
     ### SPECIAL METHODS ###
 
     def __enter__(self):
-        r'''Enters context manager and does nothing.
-        '''
+        """
+        Enters context manager and does nothing.
+        """
         pass
 
     def __exit__(self, exc_type, exc_value, traceback):
-        r'''Exits context manager and does nothing.
-        '''
+        """
+        Exits context manager and does nothing.
+        """
         pass

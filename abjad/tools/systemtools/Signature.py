@@ -2,10 +2,11 @@ from abjad.tools import abctools
 
 
 class Signature(abctools.AbjadValueObject):
-    r'''Signature.
+    """
+    Signature.
 
     Decorates expression-enabled methods.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -45,10 +46,11 @@ class Signature(abctools.AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, method):
-        r'''Calls signature decorator on `method`.
+        """
+        Calls signature decorator on `method`.
 
         Returns `method` with metadata attached.
-        '''
+        """
         method.argument_list_callback = self.argument_list_callback
         method.is_operator = self.is_operator
         method.markup_maker_callback = self.markup_maker_callback
@@ -64,64 +66,72 @@ class Signature(abctools.AbjadValueObject):
 
     @property
     def argument_list_callback(self):
-        r'''Gets argument list callback.
+        """
+        Gets argument list callback.
 
         Returns string or none.
-        '''
+        """
         return self._argument_list_callback
 
     @property
     def is_operator(self):
-        r'''Is true when method typesets like operator. Otherwise false.
+        """
+        Is true when method typesets like operator.
 
         Returns true, false or none.
-        '''
+        """
         return self._is_operator
 
     @property
     def markup_maker_callback(self):
-        r'''Gets markup maker callback.
+        """
+        Gets markup maker callback.
 
         Returns string or none.
-        '''
+        """
         return self._markup_maker_callback
 
     @property
     def method_name(self):
-        r'''Gets method name.
+        """
+        Gets method name.
 
         Returns string or none.
-        '''
+        """
         return self._method_name
 
     @property
     def method_name_callback(self):
-        r'''Gets method name callback.
+        """
+        Gets method name callback.
 
         Returns string or none.
-        '''
+        """
         return self._method_name_callback
 
     @property
     def string_template_callback(self):
-        r'''Gets string template callback.
+        """
+        Gets string template callback.
 
         Returns string or none.
-        '''
+        """
         return self._string_template_callback
 
     @property
     def subscript(self):
-        r'''Gets subscript.
+        """
+        Gets subscript.
 
         Returns string or none.
-        '''
+        """
         return self._subscript
 
     @property
     def superscript(self):
-        r'''Gets superscript.
+        """
+        Gets superscript.
 
         Returns string or none.
-        '''
+        """
         return self._superscript

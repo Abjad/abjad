@@ -4,7 +4,8 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class Mode(AbjadValueObject):
-    '''Mode.
+    """
+    Mode.
 
     ..  container:: example
 
@@ -21,7 +22,7 @@ class Mode(AbjadValueObject):
         >>> abjad.tonalanalysistools.Mode(mode)
         Mode('dorian')
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -48,8 +49,9 @@ class Mode(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is a mode with mode name equal to that of
-        this mode. Otherwise false.
+        """
+        Is true when `argument` is a mode with mode name equal to that of
+        this mode.
 
         ..  container:: example
 
@@ -79,20 +81,22 @@ class Mode(AbjadValueObject):
             True
 
         Returns true or false.
-        '''
+        """
         return super(Mode, self).__eq__(argument)
 
     def __hash__(self):
-        r'''Hashes mode.
+        """
+        Hashes mode.
 
         Required to be explicitly redefined on Python 3 if __eq__ changes.
 
         Returns integer.
-        '''
+        """
         return super(Mode, self).__hash__()
 
     def __len__(self):
-        r'''Length of mode.
+        """
+        Length of mode.
 
         ..  container:: example
 
@@ -100,11 +104,12 @@ class Mode(AbjadValueObject):
             7
 
         Returns nonnegative integer.
-        '''
+        """
         return len(self.named_interval_segment)
 
     def __str__(self):
-        r'''String representation of mode.
+        """
+        String representation of mode.
 
         ..  container:: example
 
@@ -112,7 +117,7 @@ class Mode(AbjadValueObject):
             'dorian'
 
         Returns string.
-        '''
+        """
         return self.mode_name
 
     ### PRIVATE METHODS ###
@@ -165,7 +170,8 @@ class Mode(AbjadValueObject):
 
     @property
     def mode_name(self):
-        r'''Gets name.
+        """
+        Gets name.
 
         ..  container:: example
 
@@ -176,12 +182,13 @@ class Mode(AbjadValueObject):
             'dorian'
 
         Returns string.
-        '''
+        """
         return self._mode_name
 
     @property
     def named_interval_segment(self):
-        r'''Gets named interval segmen
+        """
+        Gets named interval segmen
 
         ..  container:: example
 
@@ -194,5 +201,5 @@ class Mode(AbjadValueObject):
             '<+M2, +m2, +M2, +M2, +M2, +m2, +M2>'
 
         Returns named interval segment.
-        '''
+        """
         return self._named_interval_segment

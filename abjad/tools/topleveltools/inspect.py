@@ -1,5 +1,6 @@
 def inspect(client):
-    r'''Makes inspection agent.
+    r"""
+    Makes inspection agent.
 
     ..  container:: example
 
@@ -33,6 +34,6 @@ def inspect(client):
         >>> abjad.inspect(staff)
         Inspection(client=Staff("c'4 e'4 d'4 f'4"))
 
-    '''
+    """
     import abjad
     return abjad.Inspection(client=client)

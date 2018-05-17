@@ -7,7 +7,8 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class Expression(AbjadValueObject):
-    r'''Expression.
+    """
+    Expression.
 
     ..  container:: example expression
 
@@ -66,7 +67,7 @@ class Expression(AbjadValueObject):
         >>> expression(1, 2, 3)
         6
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -205,7 +206,8 @@ class Expression(AbjadValueObject):
         markup_maker_callback='_make_expression_add_markup',
         )
     def __add__(self, i):
-        r'''Gets proxy method or adds expressions.
+        """
+        Gets proxy method or adds expressions.
 
         ..  container:: example expression
 
@@ -243,7 +245,7 @@ class Expression(AbjadValueObject):
             >>> expression(1, 2, 3, 4, 5)
             15
 
-        '''
+        """
         if not isinstance(i, Expression):
             proxy_method = self.__getattr__('__add__')
             return proxy_method(i)
@@ -268,7 +270,8 @@ class Expression(AbjadValueObject):
             )
 
     def __call__(self, *arguments, **keywords):
-        r'''Calls expression on `arguments` with `keywords`.
+        """
+        Calls expression on `arguments` with `keywords`.
 
         ..  container:: example expression
 
@@ -280,7 +283,7 @@ class Expression(AbjadValueObject):
             True
 
         Returns ouput of last callback.
-        '''
+        """
         arguments = list(arguments)
         results = []
         for subexpression in self.subexpressions or []:
@@ -329,15 +332,17 @@ class Expression(AbjadValueObject):
         return result
 
     def __dict__(self):
-        r'''Gets attributes.
+        """
+        Gets attributes.
 
         Returns list or strings.
-        '''
+        """
         return dir(self)
 
     def __eq__(self, argument):
-        r'''Is true when expression storage format equals `argument` storage
-        format. Otherwise false.
+        """
+        Is true when expression storage format equals ``argument`` storage
+        format.
 
         ..  container:: example
 
@@ -363,11 +368,12 @@ class Expression(AbjadValueObject):
             False
 
         Returns true or false.
-        '''
+        """
         return super(Expression, self).__eq__(argument)
 
     def __format__(self, format_specification=''):
-        r'''Formats expression.
+        """
+        Formats expression.
 
         ..  container:: example expression
 
@@ -379,18 +385,19 @@ class Expression(AbjadValueObject):
             abjad.Expression()
 
         Returns string.
-        '''
+        """
         return super(Expression, self).__format__(
             format_specification=format_specification,
             )
 
     def __getattr__(self, name):
-        r'''Gets attribute `name`.
+        """
+        Gets attribute `name`.
 
         Returns proxy method when proxy class is set.
 
         Returns normally when proxy class is not set.
-        '''
+        """
         if self.__getattribute__('_proxy_class') is not None:
             if hasattr(self._proxy_class, name):
                 proxy_object = self._proxy_class()
@@ -414,32 +421,37 @@ class Expression(AbjadValueObject):
         raise AttributeError(message)
 
     def __getitem__(self, argument):
-        r'''Gets proxy method.
-        '''
+        """
+        Gets proxy method.
+        """
         proxy_method = self.__getattr__('__getitem__')
         return proxy_method(argument)
 
     def __hash__(self):
-        r'''Hashes expression.
+        """
+        Hashes expression.
 
         Returns integer.
-        '''
+        """
         return super(Expression, self).__hash__()
 
     def __iadd__(self, i):  # type: ignore
-        r'''Gets proxy method.
-        '''
+        """
+        Gets proxy method.
+        """
         proxy_method = self.__getattr__('__iadd__')
         return proxy_method(i)
 
     def __radd__(self, i):
-        r'''Gets proxy method.
-        '''
+        """
+        Gets proxy method.
+        """
         proxy_method = self.__getattr__('__radd__')
         return proxy_method(i)
 
     def __repr__(self):
-        r'''Gets interpreter representation.
+        """
+        Gets interpreter representation.
 
         ..  container:: example expression
 
@@ -451,17 +463,19 @@ class Expression(AbjadValueObject):
             Expression()
 
         Returns string.
-        '''
+        """
         return super(Expression, self).__repr__()
 
     def __setitem__(self, i, argument):
-        r'''Gets proxy method.
-        '''
+        """
+        Gets proxy method.
+        """
         proxy_method = self.__getattr__('__setitem__')
         return proxy_method(i, argument)
 
     def __str__(self):
-        r'''Gets string representation of expression.
+        """
+        Gets string representation of expression.
 
         ..  container:: example expression
 
@@ -473,7 +487,7 @@ class Expression(AbjadValueObject):
             'Expression()'
 
         Returns string.
-        '''
+        """
         return super(Expression, self).__str__()
 
     ### PRIVATE METHODS ###
@@ -1292,31 +1306,34 @@ class Expression(AbjadValueObject):
 
     @property
     def argument_count(self):
-        r'''Gets argument count.
+        """
+        Gets argument count.
 
         Defaults to none.
 
         Set to nonnegative integer or none.
 
         Returns nonnegative integer or none.
-        '''
+        """
         return self._argument_count
 
     @property
     def argument_values(self):
-        r'''Gets argument values.
+        """
+        Gets argument values.
 
         Defaults to none.
 
         Set to dictionary or none.
 
         Returns dictionary or none.
-        '''
+        """
         return self._argument_values
 
     @property
     def callbacks(self):
-        r'''Gets callbacks.
+        """
+        Gets callbacks.
 
         ..  container:: example expression
 
@@ -1327,146 +1344,157 @@ class Expression(AbjadValueObject):
             True
 
         Set to callbacks or none.
-        '''
+        """
         if self._callbacks:
             return list(self._callbacks)
 
     @property
     def evaluation_template(self):
-        r'''Gets evaluation template.
+        """
+        Gets evaluation template.
 
         Defaults to none.
 
         Set to string.
 
         Returns string.
-        '''
+        """
         return self._evaluation_template
 
     @property
     def force_return(self):
-        r'''Is true when expression should return primary input argument.
-        Otherwise false.
+        """
+        Is true when expression should return primary input argument.
 
         Defaults to none.
 
         Set to true, false or none.
 
         Returns true, false or none.
-        '''
+        """
         return self._force_return
 
     @property
     def has_parentheses(self):
-        r'''Is true when expression has parentheses. Otherwise false.
+        """
+        Is true when expression has parentheses.
 
         Defaults to none.
 
         Set to true, false or none.
 
         Returns true, false or none.
-        '''
+        """
         return self._has_parentheses
 
     @property
     def is_composite(self):
-        r'''Is true when expression is composite. Otherwise false.
+        """
+        Is true when expression is composite.
 
         Defaults to none.
 
         Set to true, false or none.
 
         Returns true, false or none.
-        '''
+        """
         return self._is_composite
 
     @property
     def is_initializer(self):
-        r'''Is true when expression is initializer. Otherwise false.
+        """
+        Is true when expression is initializer.
 
         Defaults to none.
 
         Set to true, false or none.
 
         Returns true, false or none.
-        '''
+        """
         return self._is_initializer
 
     @property
     def is_postfix(self):
-        r'''Is true when expression is postfix. Otherwise false.
+        """
+        Is true when expression is postfix.
 
         Defaults to none.
 
         Set to true, false or none.
 
         Returns true, false or none.
-        '''
+        """
         return self._is_postfix
 
     @property
     def keywords(self):
-        r'''Gets keywords.
+        """
+        Gets keywords.
 
         Defaults to none.
 
         Set to dictionary or none.
 
         Returns dictionary or none.
-        '''
+        """
         return self._keywords
 
     @property
     def lone(self):
-        r'''Is true when expression return a singular get-item.
+        """
+        Is true when expression return a singular get-item.
 
         Defaults to none.
 
         Set to true, false or none.
 
         Returns true, false or none.
-        '''
+        """
         return self._lone
 
     @property
     def map_operand(self):
-        r'''Gets expression to map.
+        """
+        Gets expression to map.
 
         Defaults to none.
 
         Set to expression or none.
 
         Returns expression or none.
-        '''
+        """
         return self._map_operand
 
     @property
     def markup_maker_callback(self):
-        r'''Gets markup-maker callback.
+        """
+        Gets markup-maker callback.
 
         Defaults to none.
 
         Set to string or none.
 
         Returns string or none.
-        '''
+        """
         return self._markup_maker_callback
 
     @property
     def module_names(self):
-        r'''Gets module names.
+        """
+        Gets module names.
 
         Defaults to none.
 
         Set to strings or none.
 
         Returns strings or none.
-        '''
+        """
         return self._module_names
 
     @property
     def name(self):
-        r'''Gets name.
+        """
+        Gets name.
 
         ..  container:: example expression
 
@@ -1485,68 +1513,74 @@ class Expression(AbjadValueObject):
         Set to string or none.
 
         Returns string or none.
-        '''
+        """
         return self._name
 
     @property
     def next_name(self):
-        r'''Gets next name.
+        """
+        Gets next name.
 
         Defaults to none.
 
         Set to string or none.
 
         Returns string or none.
-        '''
+        """
         return self._next_name
 
     @property
     def precedence(self):
-        r'''Gets precedence.
+        """
+        Gets precedence.
 
         Defaults to none.
 
         Set to integer or none.
 
         Returns integer or none.
-        '''
+        """
         return self._precedence
 
     @property
     def proxy_class(self):
-        r'''Gets proxy class.
+        """
+        Gets proxy class.
 
         Defaults to none.
 
         Set to class or none.
 
         Returns class or none.
-        '''
+        """
         return self._proxy_class
 
     @property
     def qualified_method_name(self):
-        r'''Gets qualified method name of expression.
+        """
+        Gets qualified method name of expression.
 
         Returns string or none.
-        '''
+        """
         return self._qualified_method_name
 
     @property
     def string_template(self):
-        r'''Gets string template.
+        """
+        Gets string template.
 
         Defaults to none.
 
         Set to string or none.
 
         Returns string or none.
-        '''
+        """
         return self._string_template
 
     @property
     def subclass_hook(self):
-        r'''Gets subclass hook.
+        """
+        Gets subclass hook.
 
         Only to be set by expression subclasses.
 
@@ -1557,33 +1591,36 @@ class Expression(AbjadValueObject):
         Set to string or none.
 
         Returns string or none.
-        '''
+        """
         return self._subclass_hook
 
     @property
     def subexpressions(self):
-        r'''Gets subexpressions.
+        """
+        Gets subexpressions.
 
         Defaults to none.
 
         Set to expressions or none.
 
         Returns list of expressions or none.
-        '''
+        """
         return self._subexpressions
 
     @property
     def template(self):
-        r'''Gets template.
+        """
+        Gets template.
 
         Returns string or none.
-        '''
+        """
         return self._template
 
     ### PUBLIC METHODS ###
 
     def append_callback(self, callback):
-        r'''Appends callback to expression.
+        """
+        Appends callback to expression.
 
         ..  container:: example expression
 
@@ -1605,17 +1642,17 @@ class Expression(AbjadValueObject):
             Expression(evaluation_template='{}**2')
 
         Returns new expression.
-        '''
+        """
         import abjad
         callbacks = self.callbacks or []
         callbacks = callbacks + [callback]
         return abjad.new(self, callbacks=callbacks)
 
     def color(self, argument, colors=None):
-        r'''Colors `argument`.
+        """Colors ``argument``.
 
         Returns none.
-        '''
+        """
         import abjad
         if self._is_singular_get_item():
             colors = colors or ['green']
@@ -1629,7 +1666,8 @@ class Expression(AbjadValueObject):
                 abjad.label(item).color_leaves(color=color)
 
     def establish_equivalence(self, name):
-        r'''Makes new expression with `name`.
+        r"""
+        Makes new expression with `name`.
 
         ..  container:: example expression
 
@@ -1675,7 +1713,7 @@ class Expression(AbjadValueObject):
                     }
 
         Returns new expression.
-        '''
+        """
         template = '{name} = {{}}'
         template = template.format(name=name)
         callback = self.make_callback(
@@ -1688,12 +1726,13 @@ class Expression(AbjadValueObject):
         return self.append_callback(callback)
 
     def get_markup(self, direction=None, name=None):
-        r'''Gets markup directly.
+        """
+        Gets markup directly.
 
         Avoids markup expressions.
 
         Returns markup or none.
-        '''
+        """
         import abjad
         argument_count = self.argument_count or 1
         markup = None
@@ -1732,7 +1771,8 @@ class Expression(AbjadValueObject):
         return markup
 
     def get_string(self, name=None):
-        r'''Gets string.
+        """
+        Gets string.
 
         ..  container:: example
 
@@ -1812,7 +1852,7 @@ class Expression(AbjadValueObject):
                 'r2(I(K))'
 
         Returns string or none.
-        '''
+        """
         argument_count = self.argument_count or 1
         if argument_count <= 1:
             if name is None:
@@ -1850,7 +1890,8 @@ class Expression(AbjadValueObject):
             return self._compile_callback_strings(string)
 
     def label(self, **keywords):
-        r'''Makes label expression.
+        r"""
+        Makes label expression.
 
         ..  container:: example
 
@@ -1901,7 +1942,7 @@ class Expression(AbjadValueObject):
                     }
 
         Returns expression.
-        '''
+        """
         import abjad
         class_ = abjad.Label
         callback = self._make_initializer_callback(class_, **keywords)
@@ -1925,10 +1966,11 @@ class Expression(AbjadValueObject):
         qualified_method_name=None,
         string_template=None,
         ):
-        r'''Makes callback.
+        """
+        Makes callback.
 
         Returns expression.
-        '''
+        """
         return Expression(
             argument_count=argument_count,
             evaluation_template=evaluation_template,
@@ -1947,7 +1989,8 @@ class Expression(AbjadValueObject):
             )
 
     def pitch_class_segment(self, **keywords):
-        r'''Makes pitch-class segment expression.
+        r"""
+        Makes pitch-class segment expression.
 
         ..  container:: example
 
@@ -2002,7 +2045,7 @@ class Expression(AbjadValueObject):
                     }
 
         Returns expression.
-        '''
+        """
         import abjad
         class_ = abjad.PitchClassSegment
         callback = self._make_initializer_callback(
@@ -2015,10 +2058,11 @@ class Expression(AbjadValueObject):
 
     # TODO: add examples
     def pitch_set(self, **keywords):
-        r'''Makes pitch set expression.
+        """
+        Makes pitch set expression.
 
         Returns expression.
-        '''
+        """
         import abjad
         class_ = abjad.PitchSet
         callback = self._make_initializer_callback(
@@ -2030,10 +2074,11 @@ class Expression(AbjadValueObject):
         return abjad.new(expression, proxy_class=class_)
 
     def print(self, argument):
-        r'''Prints `argument`.
+        """
+        Prints ``argument``.
 
         Returns none.
-        '''
+        """
         if self._is_singular_get_item():
             print(repr(argument))
         else:
@@ -2041,7 +2086,8 @@ class Expression(AbjadValueObject):
                 print(repr(item))
 
     def select(self, **keywords):
-        r'''Makes select expression.
+        r"""
+        Makes select expression.
 
         ..  container:: example
 
@@ -2092,7 +2138,7 @@ class Expression(AbjadValueObject):
                 Note("gf'8")
 
         Returns expression.
-        '''
+        """
         import abjad
         class_ = abjad.Selection
         callback = self._make_initializer_callback(class_, **keywords)
@@ -2104,7 +2150,8 @@ class Expression(AbjadValueObject):
             )
 
     def sequence(self, **keywords):
-        r'''Makes sequence expression.
+        """
+        Makes sequence expression.
 
         ..  container:: example expression
 
@@ -2118,7 +2165,7 @@ class Expression(AbjadValueObject):
             Sequence([4, 5, 6, 3, 2, 1])
 
         Returns expression.
-        '''
+        """
         import abjad
         class_ = abjad.Sequence
         callback = self._make_initializer_callback(
@@ -2130,7 +2177,8 @@ class Expression(AbjadValueObject):
         return abjad.new(expression, proxy_class=class_)
 
     def wrap_in_list(self):
-        r'''Makes expression to wrap argument in list.
+        """
+        Makes expression to wrap argument in list.
 
         ..  container:: example expression
 
@@ -2150,6 +2198,6 @@ class Expression(AbjadValueObject):
                 )
 
         Returns expression.
-        '''
+        """
         callback = self.make_callback(evaluation_template='[{}]')
         return self.append_callback(callback)

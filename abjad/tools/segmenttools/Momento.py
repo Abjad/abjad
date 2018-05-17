@@ -4,8 +4,9 @@ from abjad.tools.systemtools.Tag import Tag
 
 
 class Momento(AbjadObject):
-    r'''Momento.
-    '''
+    """
+    Momento.
+    """
 
     ### CLASS VARIABLES ###
 
@@ -49,30 +50,35 @@ class Momento(AbjadObject):
 
     @property
     def absent(self) -> typing.Optional[bool]:
-        r'''Is true when context is absent in this segment.
-        '''
+        """
+        Is true when context is absent in this segment.
+        """
         return self._absent
 
     @property
     def context(self) -> typing.Optional[str]:
-        r'''Gets (name of local) context.
-        '''
+        """
+        Gets (name of local) context.
+        """
         return self._context
 
     @property
     def edition(self) -> typing.Optional[Tag]:
-        r'''Gets edition.
-        '''
+        """
+        Gets edition.
+        """
         return self._edition
 
     @property
     def prototype(self) -> typing.Optional[str]:
-        r'''Gets prototype.
-        '''
+        """
+        Gets prototype.
+        """
         return self._prototype
 
     @property
     def value(self) -> typing.Union[int, str]:
-        r'''Gets value.
-        '''
+        """
+        Gets value.
+        """
         return self._value

@@ -36,7 +36,7 @@ class PitchClassSet(Set):
     ### SPECIAL METHODS ###
 
     def __contains__(self, argument):
-        r'''Is true when pitch-class set contains `argument`. Otherwise false.
+        r'''Is true when pitch-class set contains `argument`.
 
         ..  container:: example
 
@@ -468,7 +468,6 @@ class PitchClassSet(Set):
 
     def is_transposed_subset(self, pcset):
         r'''Is true when pitch-class set is transposed subset of `pcset`.
-        Otherwise false.
 
         ..  container:: example
 
@@ -491,7 +490,6 @@ class PitchClassSet(Set):
 
     def is_transposed_superset(self, pcset):
         r'''Is true when pitch-class set is transposed superset of `pcset`.
-        Otherwise false.
 
         ..  container:: example
 

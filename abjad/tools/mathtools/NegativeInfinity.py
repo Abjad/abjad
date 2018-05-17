@@ -2,7 +2,8 @@ from abjad.tools.mathtools.Infinity import Infinity
 
 
 class NegativeInfinity(Infinity):
-    r'''Negative infinity.
+    """
+    Negative infinity.
 
     ..  container:: example
 
@@ -28,7 +29,7 @@ class NegativeInfinity(Infinity):
     Initializes as a system singleton at start-up.
 
     Available as a built-in after Abjad start.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 

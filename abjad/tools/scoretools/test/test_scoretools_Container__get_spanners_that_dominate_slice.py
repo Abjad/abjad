@@ -2,8 +2,9 @@ import abjad
 
 
 def test_scoretools_Container__get_spanners_that_dominate_slice_01():
-    r'''Get dominant spanners over zero-length slice.
-    '''
+    """
+    Get dominant spanners over zero-length slice.
+    """
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
     beam = abjad.Beam()
@@ -12,7 +13,7 @@ def test_scoretools_Container__get_spanners_that_dominate_slice_01():
     abjad.attach(glissando, voice[:])
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'8
@@ -25,7 +26,7 @@ def test_scoretools_Container__get_spanners_that_dominate_slice_01():
             \glissando
             f'8
         }
-        '''
+        """
         )
 
     receipt = voice._get_spanners_that_dominate_slice(2, 2)
@@ -35,8 +36,9 @@ def test_scoretools_Container__get_spanners_that_dominate_slice_01():
 
 
 def test_scoretools_Container__get_spanners_that_dominate_slice_02():
-    r'''Get dominant spanners over one-component slice.
-    '''
+    """
+    Get dominant spanners over one-component slice.
+    """
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
     beam = abjad.Beam()
@@ -45,7 +47,7 @@ def test_scoretools_Container__get_spanners_that_dominate_slice_02():
     abjad.attach(glissando, voice[:])
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'8
@@ -58,7 +60,7 @@ def test_scoretools_Container__get_spanners_that_dominate_slice_02():
             \glissando
             f'8
         }
-        '''
+        """
         )
 
     receipt = voice._get_spanners_that_dominate_slice(1, 2)
@@ -69,8 +71,9 @@ def test_scoretools_Container__get_spanners_that_dominate_slice_02():
 
 
 def test_scoretools_Container__get_spanners_that_dominate_slice_03():
-    r'''Get dominant spanners over four-component slice.
-    '''
+    """
+    Get dominant spanners over four-component slice.
+    """
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
     beam = abjad.Beam()
@@ -79,7 +82,7 @@ def test_scoretools_Container__get_spanners_that_dominate_slice_03():
     abjad.attach(glissando, voice[:])
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'8
@@ -92,7 +95,7 @@ def test_scoretools_Container__get_spanners_that_dominate_slice_03():
             \glissando
             f'8
         }
-        '''
+        """
         )
 
     receipt = voice._get_spanners_that_dominate_slice(0, 4)

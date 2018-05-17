@@ -1,5 +1,6 @@
 def iterate(client=None):
-    r'''Makes iteration agent.
+    r"""
+    Makes iteration agent.
 
     ..  container:: example
 
@@ -27,7 +28,7 @@ def iterate(client=None):
         Note("d'4")
         Note("f'4")
 
-    '''
+    """
     import abjad
     if client is not None:
         return abjad.Iteration(client=client)

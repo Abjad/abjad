@@ -6,7 +6,7 @@ def test_scoretools_Component__move_indicators_01():
     staff = abjad.Staff(r'\clef "bass" c \staccato d e f')
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             \clef "bass"
@@ -16,7 +16,7 @@ def test_scoretools_Component__move_indicators_01():
             e4
             f4
         }
-        '''
+        """
         )
 
     assert len(abjad.inspect(staff[0]).get_indicators()) == 2
@@ -27,7 +27,7 @@ def test_scoretools_Component__move_indicators_01():
     staff[0]._move_indicators(staff[2])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c4
@@ -37,7 +37,7 @@ def test_scoretools_Component__move_indicators_01():
             -\staccato
             f4
         }
-        '''
+        """
         )
 
     assert len(abjad.inspect(staff[0]).get_indicators()) == 0

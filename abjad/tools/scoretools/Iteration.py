@@ -4,7 +4,8 @@ from abjad.tools import abctools
 
 
 class Iteration(abctools.AbjadObject):
-    r'''Iteration.
+    r"""
+    Iteration.
 
     ..  container:: example
 
@@ -35,7 +36,7 @@ class Iteration(abctools.AbjadObject):
             Note("d'4")
             Note("f'4")
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -60,7 +61,8 @@ class Iteration(abctools.AbjadObject):
         forbid=None,
         unique=True,
         ):
-        r'''Iterates depth first.
+        r"""
+        Iterates depth first.
 
         ..  container:: example
 
@@ -232,16 +234,17 @@ class Iteration(abctools.AbjadObject):
                 Note("f'8")
 
         Returns generator.
-        '''
+        """
         import abjad
         if direction is None:
             direction = Left
         def _next_node_depth_first(component, total):
-            r'''If client has unvisited components, return next unvisited
+            """
+            If client has unvisited components, return next unvisited
             component in client.
 
             If client has no univisited components, return client's parent.
-            '''
+            """
             # if component is a container with not-yet-returned children
             if (isinstance(component, abjad.Container) and
                 0 < len(component) and total < len(component)):
@@ -275,11 +278,12 @@ class Iteration(abctools.AbjadObject):
                     return None, None
                 return parent, parent.index(component) + 1
         def _previous_node_depth_first(component, total=0):
-            r'''If client has unvisited components, return previous unvisited
+            """
+            If client has unvisited components, return previous unvisited
             component in client.
 
             If client has no univisited components, return client's parent.
-            '''
+            """
             if (isinstance(component, abjad.Container) and
                 0 < len(component) and total < len(component)):
                 return component[len(component) - 1 - total], 0
@@ -341,7 +345,8 @@ class Iteration(abctools.AbjadObject):
         queue.clear()
 
     def _logical_voice(self, prototype=None, reverse=False):
-        r'''Iterates logical voice.
+        r"""
+        Iterates logical voice.
 
         ..  container:: example
 
@@ -666,7 +671,7 @@ class Iteration(abctools.AbjadObject):
                 Note("e'8")
 
         Returns generator.
-        '''
+        """
         import abjad
         prototype = prototype or abjad.Component
         parentage = abjad.inspect(self.client).get_parentage()
@@ -689,7 +694,8 @@ class Iteration(abctools.AbjadObject):
 
     @property
     def client(self):
-        r'''Gets client.
+        """
+        Gets client.
 
         ..  container:: example
 
@@ -698,13 +704,14 @@ class Iteration(abctools.AbjadObject):
             Selection([Note("c'4"), Note("d'4")])
 
         Returns component or selection.
-        '''
+        """
         return self._client
 
     ### PUBLIC METHODS ###
 
     def components(self, prototype=None, grace_notes=None, reverse=False):
-        r'''Iterates components.
+        r"""
+        Iterates components.
 
         ..  container:: example
 
@@ -854,7 +861,7 @@ class Iteration(abctools.AbjadObject):
                 Note("c'8")
 
         Returns generator.
-        '''
+        """
         import abjad
         argument = self.client
         prototype = prototype or abjad.Component
@@ -929,7 +936,8 @@ class Iteration(abctools.AbjadObject):
                         yield component
 
     def leaf_pairs(self):
-        r'''Iterates leaf pairs.
+        r"""
+        Iterates leaf pairs.
 
         ..  container:: example
 
@@ -989,7 +997,7 @@ class Iteration(abctools.AbjadObject):
         Iterates leaf pairs left-to-right and top-to-bottom.
 
         Returns generator.
-        '''
+        """
         import abjad
         vertical_moments = self.vertical_moments()
         for moment_1, moment_2 in abjad.sequence(vertical_moments).nwise():
@@ -1012,7 +1020,8 @@ class Iteration(abctools.AbjadObject):
         pitched=None,
         reverse=False,
         ):
-        r'''Iterates leaves.
+        r"""
+        Iterates leaves.
 
         ..  container:: example
 
@@ -1324,7 +1333,7 @@ class Iteration(abctools.AbjadObject):
                 Chord("<c' bf'>8")
 
         Returns generator.
-        '''
+        """
         import abjad
         prototype = prototype or abjad.Leaf
         if pitched is True:
@@ -1344,7 +1353,8 @@ class Iteration(abctools.AbjadObject):
         pitched=None,
         reverse=False,
         ):
-        r'''Iterates logical ties.
+        r"""
+        Iterates logical ties.
 
         ..  container:: example
 
@@ -1619,7 +1629,7 @@ class Iteration(abctools.AbjadObject):
                 LogicalTie([Note("c'8"), Note("c'8"), Note("c'8")])
 
         Returns generator.
-        '''
+        """
         import abjad
         yielded_logical_ties = set()
         for leaf in self.leaves(
@@ -1638,7 +1648,8 @@ class Iteration(abctools.AbjadObject):
                     yield logical_tie
 
     def out_of_range(self):
-        r'''Iterates out-of-range notes and chords.
+        r"""
+        Iterates out-of-range notes and chords.
 
         ..  container:: example
 
@@ -1666,7 +1677,7 @@ class Iteration(abctools.AbjadObject):
             Chord('<d fs>8')
 
         Returns generator.
-        '''
+        """
         import abjad
         for leaf in abjad.iterate(self.client).leaves(pitched=True):
             instrument = abjad.inspect(leaf).get_effective(abjad.Instrument)
@@ -1677,7 +1688,8 @@ class Iteration(abctools.AbjadObject):
                 yield leaf
 
     def pitch_pairs(self):
-        r'''Iterates pitch pairs.
+        r"""
+        Iterates pitch pairs.
 
         ..  container:: example
 
@@ -1768,7 +1780,7 @@ class Iteration(abctools.AbjadObject):
                 PitchSegment("f'' g''")
 
         Returns generator.
-        '''
+        """
         import abjad
         for leaf_pair in self.leaf_pairs():
             pitches = sorted(abjad.iterate(leaf_pair[0]).pitches())
@@ -1793,7 +1805,8 @@ class Iteration(abctools.AbjadObject):
                 yield abjad.PitchSegment(pair)
 
     def pitches(self):
-        r'''Iterates pitches.
+        r"""
+        Iterates pitches.
 
         ..  container:: example
 
@@ -1905,7 +1918,7 @@ class Iteration(abctools.AbjadObject):
                 NamedPitch("fs'")
 
         Returns generator.
-        '''
+        """
         import abjad
         if isinstance(self.client, abjad.Pitch):
             pitch = abjad.NamedPitch.from_pitch_carrier(self.client)
@@ -1947,7 +1960,8 @@ class Iteration(abctools.AbjadObject):
             yield pitch
 
     def spanners(self, prototype=None, reverse=False):
-        r'''Iterates spanners.
+        r"""
+        Iterates spanners.
 
         ..  container:: example
 
@@ -2036,7 +2050,7 @@ class Iteration(abctools.AbjadObject):
                 Slur("c'8, d'8, e'8, f'8")
 
         Returns generator.
-        '''
+        """
         import abjad
         visited_spanners = set()
         for component in self.components(reverse=reverse):
@@ -2056,7 +2070,8 @@ class Iteration(abctools.AbjadObject):
                 yield spanner
 
     def timeline(self, prototype=None, reverse=False):
-        r'''Iterates timeline.
+        r"""
+        Iterates timeline.
 
         ..  container:: example
 
@@ -2191,7 +2206,7 @@ class Iteration(abctools.AbjadObject):
                 ..  todo:: Incorrect because grace notes are not included.
 
         Iterates leaves when `prototype` is none.
-        '''
+        """
         import abjad
         prototype = prototype or abjad.Leaf
         if isinstance(self.client, abjad.Component):

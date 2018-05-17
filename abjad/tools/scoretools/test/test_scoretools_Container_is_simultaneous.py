@@ -3,9 +3,10 @@ import pytest
 
 
 def test_scoretools_Container_is_simultaneous_01():
-    r'''Is true when container encloses contents in LilyPond << >> brackets,
+    """
+    Is true when container encloses contents in LilyPond << >> brackets,
     otherwise False.
-    '''
+    """
 
     assert not abjad.Container().is_simultaneous
     assert not abjad.Tuplet().is_simultaneous
@@ -18,9 +19,10 @@ def test_scoretools_Container_is_simultaneous_01():
 
 
 def test_scoretools_Container_is_simultaneous_02():
-    r'''Is true when container encloses contents in LilyPond << >> brackets,
+    """
+    Is true when container encloses contents in LilyPond << >> brackets,
     otherwise False.
-    '''
+    """
 
     container = abjad.Container([])
     container.is_simultaneous = True
@@ -28,8 +30,9 @@ def test_scoretools_Container_is_simultaneous_02():
 
 
 def test_scoretools_Container_is_simultaneous_03():
-    r'''Container 'simultaneous' is settable.
-    '''
+    """
+    Container 'simultaneous' is settable.
+    """
 
     container = abjad.Container([])
     assert not container.is_simultaneous
@@ -39,14 +42,15 @@ def test_scoretools_Container_is_simultaneous_03():
 
 
 def test_scoretools_Container_is_simultaneous_04():
-    r'''A simultaneous container can hold Contexts.
-    '''
+    """
+    A simultaneous container can hold Contexts.
+    """
 
     container = abjad.Container([abjad.Voice("c'8 cs'8"), abjad.Voice("d'8 ef'8")])
     container.is_simultaneous = True
 
     assert format(container) == abjad.String.normalize(
-        r'''
+        r"""
         <<
             \new Voice
             {
@@ -59,13 +63,14 @@ def test_scoretools_Container_is_simultaneous_04():
                 ef'8
             }
         >>
-        '''
+        """
         )
 
 
 def test_scoretools_Container_is_simultaneous_05():
-    r'''Simultaneous containers must contain only other containers.
-    '''
+    """
+    Simultaneous containers must contain only other containers.
+    """
 
     # allowed
     container = abjad.Container(2 * abjad.Container("c'8 c'8 c'8 c'8"))

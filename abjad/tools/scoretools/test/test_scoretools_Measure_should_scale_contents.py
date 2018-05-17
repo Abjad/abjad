@@ -7,7 +7,7 @@ def test_scoretools_Measure_should_scale_contents_01():
     measure = abjad.Measure((5, 12), [tuplet], implicit_scaling=False)
 
     assert format(measure) == abjad.String.normalize(
-        r'''
+        r"""
         {   % measure
             \time 5/12
             \tweak edge-height #'(0.7 . 0)
@@ -19,5 +19,5 @@ def test_scoretools_Measure_should_scale_contents_01():
                 g'8
             }
         }   % measure
-        '''
+        """
         )

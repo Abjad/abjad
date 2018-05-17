@@ -4,7 +4,8 @@ from abjad.tools.pitchtools.IntervalSegment import IntervalSegment
 
 
 class RootlessChordClass(IntervalSegment):
-    r'''Rootless chord class.
+    """
+    Rootless chord class.
 
     ..  container:: example
 
@@ -27,7 +28,7 @@ class RootlessChordClass(IntervalSegment):
         >>> abjad.tonalanalysistools.RootlessChordClass('German', 'augmented sixth')
         GermanAugmentedSixthInRootPosition('P1', '+M3', '+m3', '+aug2')
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -85,10 +86,11 @@ class RootlessChordClass(IntervalSegment):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        r'''Gets interpreter representation of rootless chord-class.
+        """
+        Gets interpreter representation of rootless chord-class.
 
         Returns string.
-        '''
+        """
         parts = []
         if self.item_class.__name__.startswith('Named'):
             parts = [repr(str(x)) for x in self]
@@ -244,7 +246,8 @@ class RootlessChordClass(IntervalSegment):
 
     @staticmethod
     def from_interval_class_segment(segment):
-        r'''Makes new rootless chord-class from `segment`.
+        """
+        Makes new rootless chord-class from `segment`.
 
         ..  container:: example
 
@@ -258,26 +261,26 @@ class RootlessChordClass(IntervalSegment):
 
         ..  container:: example
 
-                >>> segment = abjad.IntervalClassSegment([
-                ...     abjad.NamedInversionEquivalentIntervalClass('m3'),
-                ...     abjad.NamedInversionEquivalentIntervalClass('M3'),
-                ...     ])
-                >>> class_ = abjad.tonalanalysistools.RootlessChordClass
-                >>> class_.from_interval_class_segment(segment)
-                MinorTriadInRootPosition('P1', '+m3', '+P5')
+            >>> segment = abjad.IntervalClassSegment([
+            ...     abjad.NamedInversionEquivalentIntervalClass('m3'),
+            ...     abjad.NamedInversionEquivalentIntervalClass('M3'),
+            ...     ])
+            >>> class_ = abjad.tonalanalysistools.RootlessChordClass
+            >>> class_.from_interval_class_segment(segment)
+            MinorTriadInRootPosition('P1', '+m3', '+P5')
 
         ..  container:: example
 
-                >>> segment = abjad.IntervalClassSegment([
-                ...     abjad.NamedInversionEquivalentIntervalClass('M3'),
-                ...     abjad.NamedInversionEquivalentIntervalClass('m3'),
-                ...     ])
-                >>> class_ = abjad.tonalanalysistools.RootlessChordClass
-                >>> class_.from_interval_class_segment(segment)
-                MajorTriadInRootPosition('P1', '+M3', '+P5')
+            >>> segment = abjad.IntervalClassSegment([
+            ...     abjad.NamedInversionEquivalentIntervalClass('M3'),
+            ...     abjad.NamedInversionEquivalentIntervalClass('m3'),
+            ...     ])
+            >>> class_ = abjad.tonalanalysistools.RootlessChordClass
+            >>> class_.from_interval_class_segment(segment)
+            MajorTriadInRootPosition('P1', '+M3', '+P5')
 
         Returns new rootless chord-class.
-        '''
+        """
         quality, extent = RootlessChordClass._segment_to_quality_and_extent[
             str(segment)
             ]
@@ -331,7 +334,8 @@ class RootlessChordClass(IntervalSegment):
 
     @property
     def cardinality(self):
-        r'''Gets cardinality.
+        """
+        Gets cardinality.
 
         ..  container:: example
 
@@ -339,12 +343,13 @@ class RootlessChordClass(IntervalSegment):
             4
 
         Returns nonnegative integer.
-        '''
+        """
         return len(self)
 
     @property
     def extent(self):
-        r'''Gets extent.
+        """
+        Gets extent.
 
         ..  container:: example
 
@@ -352,20 +357,21 @@ class RootlessChordClass(IntervalSegment):
             7
 
         Returns nonnegative integer.
-        '''
+        """
         from abjad.tools import tonalanalysistools
         return tonalanalysistools.RootedChordClass.cardinality_to_extent(self.cardinality)
 
     @property
     def extent_name(self):
-        r'''Gets extent name.
+        """
+        Gets extent name.
 
         ..  container:: example
 
             >>> abjad.tonalanalysistools.RootlessChordClass('dominant', 7).extent_name
             'seventh'
 
-        '''
+        """
         from abjad.tools import tonalanalysistools
         if self._quality_string.lower() in \
             self._acceptable_augmented_sixth_qualities:
@@ -374,7 +380,8 @@ class RootlessChordClass(IntervalSegment):
 
     @property
     def inversion(self):
-        r'''Gets inversion.
+        """
+        Gets inversion.
 
         ..  container:: example
 
@@ -382,12 +389,13 @@ class RootlessChordClass(IntervalSegment):
             0
 
         Returns nonnegative integer.
-        '''
+        """
         return abs(self.rotation)
 
     @property
     def position(self):
-        r'''Gets position.
+        """
+        Gets position.
 
         ..  container:: example
 
@@ -395,7 +403,7 @@ class RootlessChordClass(IntervalSegment):
             'root position'
 
         Returns string.
-        '''
+        """
         if self.rotation == 0:
             return 'root position'
         elif self.rotation == -1:
@@ -413,7 +421,8 @@ class RootlessChordClass(IntervalSegment):
 
     @property
     def quality_string(self):
-        r'''Gets quality string.
+        """
+        Gets quality string.
 
         ..  container:: example
 
@@ -421,12 +430,13 @@ class RootlessChordClass(IntervalSegment):
             'dominant'
 
         Returns string.
-        '''
+        """
         return self._quality_string
 
     @property
     def rotation(self):
-        r'''Gets rotation.
+        """
+        Gets rotation.
 
         ..  container:: example
 
@@ -434,5 +444,5 @@ class RootlessChordClass(IntervalSegment):
             0
 
         Returns nonnegative integer.
-        '''
+        """
         return self._rotation

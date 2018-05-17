@@ -11,8 +11,9 @@ activation_type = typing.Tuple[callable_type, str]
 
 
 class Job(AbjadObject):
-    r'''Job.
-    '''
+    """
+    Job.
+    """
 
     ### CLASS VARIABLES ###
 
@@ -46,8 +47,9 @@ class Job(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self) -> typing.List[String]:
-        r'''Calls job on job ``path``.
-        '''
+        """
+        Calls job on job ``path``.
+        """
         messages = []
         if self.title is not None:
             messages.append(String(self.title).capitalize_start())
@@ -128,46 +130,53 @@ class Job(AbjadObject):
 
     @property
     def activate(self) -> typing.Optional[activation_type]:
-        r'''Gets activate match / message pair.
-        '''
+        """
+        Gets activate match / message pair.
+        """
         return self._activate
 
     @property
     def deactivate(self) -> typing.Optional[activation_type]:
-        r'''Gets deactivate match / message pair.
-        '''
+        """
+        Gets deactivate match / message pair.
+        """
         return self._deactivate
 
     @property
     def deactivate_first(self) -> typing.Optional[bool]:
-        r'''Is true when deactivate runs first.
-        '''
+        """
+        Is true when deactivate runs first.
+        """
         return self._deactivate_first
 
     @property
     def message_zero(self) -> typing.Optional[bool]:
-        r'''Is true when job returns messages even when no matches are found.
-        '''
+        """
+        Is true when job returns messages even when no matches are found.
+        """
         return self._message_zero
 
     @property
     def path(self) -> typing.Optional[Path]:
-        r'''Gets path.
-        '''
+        """
+        Gets path.
+        """
         return self._path
 
     @property
     def title(self) -> typing.Optional[str]:
-        r'''Gets title.
-        '''
+        """
+        Gets title.
+        """
         return self._title
 
     ### PUBLIC METHODS ###
 
     @staticmethod
     def color_clefs(path, undo=False) -> 'Job':
-        r'''Colors clefs.
-        '''
+        """
+        Colors clefs.
+        """
         name = 'clef color'
         def match(tags):
             tags_ = abjad_tags.clef_color_tags(path)
@@ -187,8 +196,9 @@ class Job(AbjadObject):
 
     @staticmethod
     def color_dynamics(path, undo=False) -> 'Job':
-        r'''Colors dynamics.
-        '''
+        """
+        Colors dynamics.
+        """
         name = 'dynamic color'
         def match(tags):
             tags_ = abjad_tags.dynamic_color_tags(path)
@@ -208,8 +218,9 @@ class Job(AbjadObject):
 
     @staticmethod
     def color_instruments(path, undo=False) -> 'Job':
-        r'''Colors instruments.
-        '''
+        """
+        Colors instruments.
+        """
         name = 'instrument color'
         def match(tags):
             tags_ = abjad_tags.instrument_color_tags(path)
@@ -229,8 +240,9 @@ class Job(AbjadObject):
 
     @staticmethod
     def color_margin_markup(path, undo=False) -> 'Job':
-        r'''Colors margin markup.
-        '''
+        """
+        Colors margin markup.
+        """
         name = 'margin markup color'
         def match(tags):
             tags_ = abjad_tags.margin_markup_color_tags(path)
@@ -250,8 +262,9 @@ class Job(AbjadObject):
 
     @staticmethod
     def color_metronome_marks(path, undo=False) -> 'Job':
-        r'''Colors metronome marks.
-        '''
+        """
+        Colors metronome marks.
+        """
         def activate(tags):
             tags_ = abjad_tags.metronome_mark_color_expression_tags(path)
             return bool(set(tags) & set(tags_))
@@ -275,8 +288,9 @@ class Job(AbjadObject):
 
     @staticmethod
     def color_persistent_indicators(path, undo=False) -> 'Job':
-        r'''Color persistent indicators.
-        '''
+        """
+        Color persistent indicators.
+        """
         name = 'persistent indicator'
         activate_name = 'persistent indicator color expression'
         def activate(tags):
@@ -304,8 +318,9 @@ class Job(AbjadObject):
 
     @staticmethod
     def color_staff_lines(path, undo=False) -> 'Job':
-        r'''Colors staff lines.
-        '''
+        """
+        Colors staff lines.
+        """
         name = 'staff lines color'
         def match(tags):
             tags_ = abjad_tags.staff_lines_color_tags(path)
@@ -325,8 +340,9 @@ class Job(AbjadObject):
 
     @staticmethod
     def color_stage_number_markup(path, undo=False) -> 'Job':
-        r'''Colors stage number markup.
-        '''
+        """
+        Colors stage number markup.
+        """
         name = 'stage number markup'
         def match(tags) -> bool:
             tags_ = [abjad_tags.STAGE_NUMBER_MARKUP]
@@ -346,8 +362,9 @@ class Job(AbjadObject):
 
     @staticmethod
     def color_time_signatures(path, undo=False) -> 'Job':
-        r'''Colors time signatures.
-        '''
+        """
+        Colors time signatures.
+        """
         name = 'time signature color'
         def match(tags):
             tags_ = abjad_tags.time_signature_color_tags(path)
@@ -367,7 +384,8 @@ class Job(AbjadObject):
 
     @staticmethod
     def handle_edition_tags(path) -> 'Job':
-        r'''Handles edition tags.
+        """
+        Handles edition tags.
 
         The logic here is important:
 
@@ -393,7 +411,7 @@ class Job(AbjadObject):
 
         ..  todo: Tests.
 
-        '''
+        """
         if path.parent.is_segment():
             my_name = 'SEGMENT'
         elif path.is_score_build() or path.parent.is_score_build():
@@ -437,8 +455,9 @@ class Job(AbjadObject):
 
     @staticmethod
     def handle_fermata_bar_lines(path) -> 'Job':
-        r'''Handles EOL fermata bar lines.
-        '''
+        """
+        Handles EOL fermata bar lines.
+        """
         def activate(tags):
             return bool(set(tags) & set([abjad_tags.EOL_FERMATA]))
         deactivate: typing.Optional[callable_type]
@@ -468,8 +487,9 @@ class Job(AbjadObject):
 
     @staticmethod
     def handle_shifted_clefs(path) -> 'Job':
-        r'''Handles shifted clefs.
-        '''
+        """
+        Handles shifted clefs.
+        """
         def activate(tags):
             return abjad_tags.SHIFTED_CLEF in tags
         deactivate: typing.Optional[typing.Callable]
@@ -494,8 +514,9 @@ class Job(AbjadObject):
 
     @staticmethod
     def hide_default_clefs(path, undo=False) -> 'Job':
-        r'''Hides default clefs.
-        '''
+        """
+        Hides default clefs.
+        """
         name = 'default clef'
         def match(tags):
             tags_ = [abjad_tags.DEFAULT_CLEF]
@@ -515,8 +536,9 @@ class Job(AbjadObject):
 
     @staticmethod
     def join_broken_spanners(path) -> 'Job':
-        r'''Joins broken spanners.
-        '''
+        """
+        Joins broken spanners.
+        """
         def activate(tags):
             tags_ = [
                 abjad_tags.SHOW_TO_JOIN_BROKEN_SPANNERS,
@@ -536,8 +558,9 @@ class Job(AbjadObject):
 
     @staticmethod
     def show_clock_time_markup(path, undo=False) -> 'Job':
-        r'''Makes clock time markup job.
-        '''
+        """
+        Makes clock time markup job.
+        """
         name = 'clock time markup'
         def match(tags) -> bool:
             tags_ = [abjad_tags.CLOCK_TIME_MARKUP]
@@ -557,8 +580,9 @@ class Job(AbjadObject):
 
     @staticmethod
     def show_figure_name_markup(path, undo=False) -> 'Job':
-        r'''Shows figure name markup.
-        '''
+        """
+        Shows figure name markup.
+        """
         name = 'figure name markup'
         def match(tags) -> bool:
             tags_ = [abjad_tags.FIGURE_NAME_MARKUP]
@@ -578,8 +602,9 @@ class Job(AbjadObject):
 
     @staticmethod
     def show_local_measure_number_markup(path, undo=False) -> 'Job':
-        r'''Shows local measure number markup.
-        '''
+        """
+        Shows local measure number markup.
+        """
         name = 'local measure number markup'
         def match(tags) -> bool:
             tags_ = [abjad_tags.LOCAL_MEASURE_NUMBER_MARKUP]
@@ -599,8 +624,9 @@ class Job(AbjadObject):
 
     @staticmethod
     def show_measure_index_markup(path, undo=False) -> 'Job':
-        r'''Shows measure index markup.
-        '''
+        """
+        Shows measure index markup.
+        """
         name = 'measure index markup'
         def match(tags) -> bool:
             tags_ = [abjad_tags.MEASURE_INDEX_MARKUP]
@@ -620,8 +646,9 @@ class Job(AbjadObject):
 
     @staticmethod
     def show_measure_number_markup(path, undo=False) -> 'Job':
-        r'''Shows measure number markup.
-        '''
+        """
+        Shows measure number markup.
+        """
         name = 'measure number markup'
         def match(tags) -> bool:
             tags_ = [abjad_tags.MEASURE_NUMBER_MARKUP]
@@ -641,8 +668,9 @@ class Job(AbjadObject):
 
     @staticmethod
     def show_music_annotations(path, undo=False) -> 'Job':
-        r'''Shows music annotations.
-        '''
+        """
+        Shows music annotations.
+        """
         name = 'music annotation'
         def match(tags) -> bool:
             tags_ = abjad_tags.music_annotation_tags()
@@ -662,8 +690,9 @@ class Job(AbjadObject):
 
     @staticmethod
     def show_spacing_markup(path, undo=False) -> 'Job':
-        r'''Shows spacing markup.
-        '''
+        """
+        Shows spacing markup.
+        """
         name = 'spacing markup'
         def match(tags) -> bool:
             tags_ = abjad_tags.spacing_markup_tags()

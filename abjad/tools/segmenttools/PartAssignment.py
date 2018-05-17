@@ -6,7 +6,8 @@ from .Part import Part
 
 
 class PartAssignment(AbjadValueObject):
-    r'''Part assignment.
+    """
+    Part assignment.
 
     ..  container:: example
 
@@ -35,7 +36,7 @@ class PartAssignment(AbjadValueObject):
         >>> print(format(part_assignment))
         abjad.PartAssignment('Horn', [1, 3])
         
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -73,7 +74,8 @@ class PartAssignment(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __contains__(self, part: Part) -> bool:
-        r'''Is true when part assignment contains ``part``.
+        """
+        Is true when part assignment contains ``part``.
 
         ..  container:: example
 
@@ -139,7 +141,7 @@ class PartAssignment(AbjadValueObject):
                 ...
             TypeError: must be part (not 'Horn').
 
-        '''
+        """
         if not isinstance(part, Part):
             raise TypeError(f'must be part (not {part!r}).')
         if part.section == self.section:
@@ -151,7 +153,8 @@ class PartAssignment(AbjadValueObject):
         return False
 
     def __eq__(self, argument) -> bool:
-        r'''Is true when ``argument`` is a part assignment with section and
+        """
+        Is true when ``argument`` is a part assignment with section and
         members equal to this part assignment.
 
         ..  container:: example
@@ -181,19 +184,21 @@ class PartAssignment(AbjadValueObject):
             >>> part_assignment_3 == part_assignment_3
             True
 
-        '''
+        """
         if isinstance(argument, type(self)):
             if argument.section == self.section:
                 return argument.members == self.members
         return False
 
     def __hash__(self) -> int:
-        r'''Hashes part assignment.
-        '''
+        """
+        Hashes part assignment.
+        """
         return super(PartAssignment, self).__hash__()
 
     def __iter__(self):
-        r'''Iterates parts in assignment.
+        """
+        Iterates parts in assignment.
         
         ..  container:: example
 
@@ -204,7 +209,7 @@ class PartAssignment(AbjadValueObject):
             Part(instrument='Horn', member=1, section='Horn')
             Part(instrument='Horn', member=3, section='Horn')
 
-        '''
+        """
         return iter(self.parts)
 
     ### PRIVATE METHODS ###
@@ -273,7 +278,8 @@ class PartAssignment(AbjadValueObject):
 
     @property
     def members(self) -> typing.Optional[typing.List[int]]:
-        r'''Gets members.
+        """
+        Gets members.
 
         ..  container:: example
 
@@ -292,12 +298,13 @@ class PartAssignment(AbjadValueObject):
             >>> abjad.PartAssignment('Horn', [1, 3]).members
             [1, 3]
 
-        '''
+        """
         return self._members
 
     @property
     def parts(self) -> typing.List[Part]:
-        r'''Gets parts.
+        """
+        Gets parts.
 
         ..  container:: example
 
@@ -316,12 +323,13 @@ class PartAssignment(AbjadValueObject):
             >>> abjad.PartAssignment('Horn', [1, 3]).parts
             [Part(instrument='Horn', member=1, section='Horn'), Part(instrument='Horn', member=3, section='Horn')]
 
-        '''
+        """
         return self._parts
 
     @property
     def section(self) -> typing.Optional[str]:
-        r'''Gets section.
+        """
+        Gets section.
 
         ..  container:: example
 
@@ -340,12 +348,13 @@ class PartAssignment(AbjadValueObject):
             >>> abjad.PartAssignment('Horn', [1, 3]).section
             'Horn'
 
-        '''
+        """
         return self._section
 
     @property
     def token(self) -> token_type:
-        r'''Gets token.
+        """
+        Gets token.
 
         ..  container:: example
 
@@ -364,5 +373,5 @@ class PartAssignment(AbjadValueObject):
             >>> abjad.PartAssignment('Horn', [1, 3]).token
             [1, 3]
 
-        '''
+        """
         return self._token

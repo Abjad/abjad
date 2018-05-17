@@ -8,7 +8,7 @@ def test_scoretools_Staff_engraver_removals_01():
     staff.remove_commands.append('Bar_number_engraver')
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         \with
         {
@@ -21,7 +21,7 @@ def test_scoretools_Staff_engraver_removals_01():
             e'8
             f'8
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).is_well_formed()

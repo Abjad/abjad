@@ -190,16 +190,16 @@ class Beam(Spanner):
             string = string.format(lilypond_type, self.stemlet_length)
             bundle.before.commands.append(string)
 
-    def _copy_keyword_args(self, new):
-        Spanner._copy_keyword_args(self, new)
+    def _copy_keywords(self, new):
+        Spanner._copy_keywords(self, new)
         new._direction = self.direction
         new._stemlet_length = self.stemlet_length
 
     def _get_lilypond_format_bundle(self, leaf):
         bundle = self._get_basic_lilypond_format_bundle(leaf)
         if leaf is self[0]:
-            string = self.start_command()
-            bundle.right.spanner_starts.append(string)
+            strings = self.start_command()
+            bundle.right.spanner_starts.extend(strings)
         if leaf is self[-1]:
             string = self.stop_command()
             if leaf is self[0]:
@@ -414,24 +414,22 @@ class Beam(Spanner):
 
     ### PUBLIC METHODS ###
 
-    def start_command(self) -> typing.Optional[str]:
+    def start_command(self) -> typing.List[str]:
         """
         Gets start command.
 
         ..  container:: example
 
             >>> abjad.Beam().start_command()
-            '['
+            ['[']
 
             With direction:
 
             >>> abjad.Beam(direction=abjad.Up).start_command()
-            '^ ['
+            ['^ [']
 
         """
-        string = super(Beam, self).start_command()
-        string = self._add_direction(string)
-        return string
+        return super(Beam, self).start_command()
 
     def stop_command(self) -> typing.Optional[str]:
         """
