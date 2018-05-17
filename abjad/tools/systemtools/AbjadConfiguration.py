@@ -274,7 +274,8 @@ class AbjadConfiguration(Configuration):
                 path = None
             if not path:
                 return
-            path = os.path.join(path.__path__[0], 'tools')
+            #path = os.path.join(path.__path__[0], 'tools')
+            path = path.__path__[0]
             self._composer_library_tools = path
         return self._composer_library_tools
 
