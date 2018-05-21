@@ -6,8 +6,9 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class StorageFormatManager(AbjadValueObject):
-    r'''Manages Abjad object storage formats.
-    '''
+    """
+    Manages Abjad object storage formats.
+    """
 
     ### CLASS VARIABLES ###
 
@@ -346,7 +347,8 @@ class StorageFormatManager(AbjadValueObject):
 
     @staticmethod
     def _get_types(subject, result=None):
-        r'''Gets all non-builtin types referenced in storage format.
+        """
+        Gets all non-builtin types referenced in storage format.
 
         ..  container:: example
 
@@ -375,7 +377,7 @@ class StorageFormatManager(AbjadValueObject):
             <class 'abjad.tools.pitchtools.NamedPitch.NamedPitch'>
 
         Returns tuple of types.
-        '''
+        """
         from abjad.tools import abctools
         type_type = type
         if result is None:
@@ -529,7 +531,8 @@ class StorageFormatManager(AbjadValueObject):
         return tuple(values)
 
     def get_import_statements(self):
-        r'''Gets import statements.
+        """
+        Gets import statements.
 
         ..  container:: example
 
@@ -559,7 +562,7 @@ class StorageFormatManager(AbjadValueObject):
             'from abjad.tools import pitchtools'
 
         Returns tuple of strings.
-        '''
+        """
         import_statements = set()
         classes = self._get_types(self.client)
         for class_ in classes:

@@ -86,8 +86,8 @@ class HorizontalBracketSpanner(Spanner):
     def _get_lilypond_format_bundle(self, leaf):
         bundle = self._get_basic_lilypond_format_bundle(leaf)
         if leaf is self[0]:
-            string = self.start_command()
-            bundle.right.spanner_starts.append(string)
+            strings = self.start_command()
+            bundle.right.spanner_starts.extend(strings)
         if leaf is self[-1]:
             string = self.stop_command()
             bundle.right.spanner_stops.append(string)
@@ -187,14 +187,14 @@ class HorizontalBracketSpanner(Spanner):
 
     ### PUBLIC METHODS ###
 
-    def start_command(self) -> typing.Optional[str]:
+    def start_command(self) -> typing.List[str]:
         r"""
         Gets start command.
 
         ..  container:: example
 
             >>> abjad.HorizontalBracketSpanner().start_command()
-            '\\startGroup'
+            ['\\startGroup']
 
         """
         return super(HorizontalBracketSpanner, self).start_command()

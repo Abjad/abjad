@@ -3,7 +3,8 @@ from .ScoreTemplate import ScoreTemplate
 
 
 class TwoStaffPianoScoreTemplate(ScoreTemplate):
-    '''Two-staff piano score template.
+    """
+    Two-staff piano score template.
 
     ..  container:: example
 
@@ -45,7 +46,7 @@ class TwoStaffPianoScoreTemplate(ScoreTemplate):
         >>
 
     Returns score template.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -64,10 +65,11 @@ class TwoStaffPianoScoreTemplate(ScoreTemplate):
     ### SPECIAL METHODS ###
 
     def __call__(self):
-        r'''Calls two-staff piano score template.
+        """
+        Calls two-staff piano score template.
 
         Returns score.
-        '''
+        """
         import abjad
         # GLOBAL CONTEXT
         global_context = self._make_global_context()

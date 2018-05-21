@@ -4,9 +4,10 @@ import abjad
 # TODO: rename to abjad.Measure_implicit_scaling or move there if already exists
 
 def test_scoretools_Measure_implicit_scaling_01():
-    r'''Measures with power-of-two time signature denominator
+    """
+    Measures with power-of-two time signature denominator
     contribute trivially to contents prolation.
-    '''
+    """
 
     measure = abjad.Measure((4, 4), abjad.Note("c'4") * 4)
 
@@ -15,9 +16,10 @@ def test_scoretools_Measure_implicit_scaling_01():
 
 
 def test_scoretools_Measure_implicit_scaling_02():
-    r'''Measures with power-of-two time signature denominator
+    """
+    Measures with power-of-two time signature denominator
     contribute trivially to contents prolation.
-    '''
+    """
 
     components = [
         abjad.Note("c'4"),
@@ -34,9 +36,10 @@ def test_scoretools_Measure_implicit_scaling_02():
 
 
 def test_scoretools_Measure_implicit_scaling_03():
-    r'''Measures with power-of-two time signature denominator
+    """
+    Measures with power-of-two time signature denominator
     contribute trivially to contents prolation.
-    '''
+    """
 
     components = [
         abjad.Note("c'4"),
@@ -53,9 +56,10 @@ def test_scoretools_Measure_implicit_scaling_03():
 
 
 def test_scoretools_Measure_implicit_scaling_04():
-    r'''Measures with power-of-two time signature denominators
+    """
+    Measures with power-of-two time signature denominators
     and implicit scaling scale the duration of their contents.
-    '''
+    """
 
     measure = abjad.Measure((4, 5), "c'4 d'4 e'4 f'4")
     measure.implicit_scaling = True
@@ -65,9 +69,10 @@ def test_scoretools_Measure_implicit_scaling_04():
 
 
 def test_scoretools_Measure_implicit_scaling_05():
-    r'''Measures with power-of-two time signature denominators
+    """
+    Measures with power-of-two time signature denominators
     contribute nontrivially to prolation.
-    '''
+    """
 
     components = [
         abjad.Note("c'4"),
@@ -85,9 +90,10 @@ def test_scoretools_Measure_implicit_scaling_05():
 
 
 def test_scoretools_Measure_implicit_scaling_06():
-    r'''Measures with power-of-two time signature denominators
+    """
+    Measures with power-of-two time signature denominators
     contribute nontrivially to prolation.
-    '''
+    """
 
     components = [
         abjad.Note("c'4"),

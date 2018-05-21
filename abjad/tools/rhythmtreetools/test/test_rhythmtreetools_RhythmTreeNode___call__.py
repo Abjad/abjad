@@ -23,7 +23,7 @@ def test_rhythmtreetools_RhythmTreeNode___call___02():
     assert isinstance(result, list)
     assert len(result) == 1
     assert format(result[0]) == abjad.String.normalize(
-        r'''
+        r"""
         \times 4/5 {
             c'16
             \times 2/3 {
@@ -33,7 +33,7 @@ def test_rhythmtreetools_RhythmTreeNode___call___02():
             }
             c'8
         }
-        '''
+        """
         )
 
 
@@ -44,7 +44,7 @@ def test_rhythmtreetools_RhythmTreeNode___call___03():
     result = tree((1, 4))
 
     assert format(result[0]) == abjad.String.normalize(
-        r'''
+        r"""
         \times 4/5 {
             c'16
             c'32
@@ -53,5 +53,5 @@ def test_rhythmtreetools_RhythmTreeNode___call___03():
             c'32
             c'8
         }
-        '''
+        """
         )

@@ -1,10 +1,11 @@
 from abjad.tools import datastructuretools
 from abjad.tools import systemtools
-from abjad.tools.schemetools.Scheme import Scheme
+from .Scheme import Scheme
 
 
 class SchemeVectorConstant(Scheme):
-    '''Abjad model of Scheme vector constant.
+    """
+    Abjad model of Scheme vector constant.
 
     ..  container:: example
 
@@ -18,7 +19,7 @@ class SchemeVectorConstant(Scheme):
 
     Scheme vectors and Scheme vector constants differ in only their LilyPond
     input format.
-    '''
+    """
 
     ### CLASS VARIABLES ##
 

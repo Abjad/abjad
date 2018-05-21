@@ -3,13 +3,14 @@ import pytest
 
 
 def test_scoretools_Selection__get_dominant_spanners_01():
-    r'''Returns Python list of (spanner, index) pairs.
+    """
+    Returns Python list of (spanner, index) pairs.
     Each (spanner, index) pair gives a spanner which dominates
     all components in list, together with the start-index
     at which spanner abjad.attaches to subelement of first
     component in list.
     Beam and trill dominate first container.
-    '''
+    """
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     leaves = abjad.select(voice).leaves()
@@ -21,7 +22,7 @@ def test_scoretools_Selection__get_dominant_spanners_01():
     abjad.attach(trill, leaves)
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -44,7 +45,7 @@ def test_scoretools_Selection__get_dominant_spanners_01():
                 \stopTrillSpan
             }
         }
-        '''
+        """
         )
 
     receipt = voice[:1]._get_dominant_spanners()
@@ -55,8 +56,9 @@ def test_scoretools_Selection__get_dominant_spanners_01():
 
 
 def test_scoretools_Selection__get_dominant_spanners_02():
-    r'''Beam, glissando and trill all dominate second container.
-    '''
+    """
+    Beam, glissando and trill all dominate second container.
+    """
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     leaves = abjad.select(voice).leaves()
@@ -76,8 +78,9 @@ def test_scoretools_Selection__get_dominant_spanners_02():
 
 
 def test_scoretools_Selection__get_dominant_spanners_03():
-    r'''Glissando and trill dominate last container.
-    '''
+    """
+    Glissando and trill dominate last container.
+    """
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     leaves = abjad.select(voice).leaves()
@@ -96,8 +99,9 @@ def test_scoretools_Selection__get_dominant_spanners_03():
 
 
 def test_scoretools_Selection__get_dominant_spanners_04():
-    r'''Beam and trill dominate first two containers.
-    '''
+    """
+    Beam and trill dominate first two containers.
+    """
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     leaves = abjad.select(voice).leaves()
@@ -116,8 +120,9 @@ def test_scoretools_Selection__get_dominant_spanners_04():
 
 
 def test_scoretools_Selection__get_dominant_spanners_05():
-    r'''Glissando and trill dominate last two containers.
-    '''
+    """
+    Glissando and trill dominate last two containers.
+    """
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     leaves = abjad.select(voice).leaves()
@@ -136,8 +141,9 @@ def test_scoretools_Selection__get_dominant_spanners_05():
 
 
 def test_scoretools_Selection__get_dominant_spanners_06():
-    r'''Only trill dominates all three containers.
-    '''
+    """
+    Only trill dominates all three containers.
+    """
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     leaves = abjad.select(voice).leaves()
@@ -155,8 +161,9 @@ def test_scoretools_Selection__get_dominant_spanners_06():
 
 
 def test_scoretools_Selection__get_dominant_spanners_07():
-    r'''Only trill dominates voice.
-    '''
+    """
+    Only trill dominates voice.
+    """
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     leaves = abjad.select(voice).leaves()
@@ -174,10 +181,11 @@ def test_scoretools_Selection__get_dominant_spanners_07():
 
 
 def test_scoretools_Selection__get_dominant_spanners_08():
-    r'''Only trill dominates first two notes.
-    abjad.Note that trill abjad.attaches to notes.
-    abjad.Note that beam and glissando abjad.attach to containers.
-    '''
+    """
+    Only trill dominates first two notes.
+    Note that trill attaches to notes.
+    Note that beam and glissando attach to containers.
+    """
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     leaves = abjad.select(voice).leaves()

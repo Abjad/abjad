@@ -112,7 +112,6 @@ class Interval(AbjadValueObject):
     @staticmethod
     def is_named_interval_abbreviation(argument):
         '''Is true when `argument` is a named interval abbreviation.
-        Otherwise false.
 
         ..  container:: example
 
@@ -130,7 +129,6 @@ class Interval(AbjadValueObject):
     @staticmethod
     def is_named_interval_quality_abbreviation(argument):
         '''Is true when `argument` is a named-interval quality abbreviation.
-        Otherwise false.
 
         ..  container:: example
 

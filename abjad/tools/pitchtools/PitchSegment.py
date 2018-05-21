@@ -117,7 +117,6 @@ class PitchSegment(Segment):
 
     def __contains__(self, argument):
         r'''Is true when pitch segment contains `argument`.
-        Otherwise false.
 
         ..  container:: example
 
@@ -502,7 +501,7 @@ class PitchSegment(Segment):
             )
 
     def has_duplicates(self):
-        r'''Is true when segment has duplicates. Otherwise false.
+        r'''Is true when segment has duplicates.
 
         ..  container:: example
 

@@ -3,7 +3,8 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class CyclicTuple(collections.Sequence, AbjadObject):
-    '''Cylic tuple.
+    """
+    Cylic tuple.
 
     ..  container:: example
 
@@ -31,7 +32,7 @@ class CyclicTuple(collections.Sequence, AbjadObject):
     Cyclic tuples return a value for any integer index.
 
     Cyclic tuples otherwise behave exactly like built-in tuples.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -49,18 +50,20 @@ class CyclicTuple(collections.Sequence, AbjadObject):
     ### SPECIAL METHODS ###
 
     def __contains__(self, item):
-        r'''Is true when cyclic tuple contains `item`.
+        """
+        Is true when cyclic tuple contains ``item``.
 
         Returns true or false.
-        '''
+        """
         return self._items.__contains__(item)
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is a tuple with items equal to those of this
-        cyclic tuple. Otherwise false.
+        """
+        Is true when ``argument`` is a tuple with items equal to those of this
+        cyclic tuple.
 
         Returns true or false.
-        '''
+        """
         if isinstance(argument, tuple):
             return self._items == argument
         elif isinstance(argument, type(self)):
@@ -68,7 +71,8 @@ class CyclicTuple(collections.Sequence, AbjadObject):
         return False
 
     def __getitem__(self, argument):
-        r'''Gets item or slice identified by `argument`.
+        """
+        Gets item or slice identified by ``argument``.
 
         ..  container:: example
 
@@ -88,10 +92,10 @@ class CyclicTuple(collections.Sequence, AbjadObject):
             >>> tuple_[:15]
             (0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2)
 
-        Raises index error when `argument` can not be found in cyclic tuple.
+        Raises index error when ``argument`` can not be found in cyclic tuple.
 
         Returns item.
-        '''
+        """
         if isinstance(argument, slice):
             if ((argument.stop is not None and argument.stop < 0) or
                 (argument.start is not None and argument.start < 0)):
@@ -99,40 +103,40 @@ class CyclicTuple(collections.Sequence, AbjadObject):
             else:
                 return self._get_slice(argument.start, argument.stop)
         if not self:
-            message = 'cyclic tuple is empty: {!r}.'
-            message = message.format(self)
-            raise IndexError(message)
+            raise IndexError(f'cyclic tuple is empty: {self!r}.')
         argument = argument % len(self)
         return self._items.__getitem__(argument)
 
     def __hash__(self):
-        r'''Hashes cyclic tuple.
+        """
+        Hashes cyclic tuple.
 
-        Required to be explicitly redefined on Python 3 if __eq__ changes.
-
-        Returns integer.
-        '''
+        Redefined in tandem with __eq__.
+        """
         return super(CyclicTuple, self).__hash__()
 
     def __iter__(self):
-        r'''Iterates cyclic tuple.
+        """
+        Iterates cyclic tuple.
 
         Iterates items only once.
 
         Does not iterate infinitely.
-        '''
+        """
         return self._items.__iter__()
 
     def __len__(self):
-        r'''Gets length of cyclic tuple.
+        """
+        Gets length of cyclic tuple.
 
         Returns nonnegative integer.
-        '''
+        """
         assert isinstance(self._items, tuple)
         return self._items.__len__()
 
     def __str__(self):
-        r'''Gets string representation of cyclic tuple.
+        """
+        Gets string representation of cyclic tuple.
 
         ..  container:: example
 
@@ -149,11 +153,11 @@ class CyclicTuple(collections.Sequence, AbjadObject):
             '(1, 2, 3, 4)'
 
         Returns string.
-        '''
+        """
         if self:
             contents = [str(item) for item in self._items]
             contents = ', '.join(contents)
-            string = '({!s})'.format(contents)
+            string = f'({contents!s})'
             return string
         return '()'
 
@@ -184,7 +188,8 @@ class CyclicTuple(collections.Sequence, AbjadObject):
 
     @property
     def items(self):
-        r'''Gets items in cyclic tuple.
+        """
+        Gets items in cyclic tuple.
 
         ..  container:: example
 
@@ -203,5 +208,5 @@ class CyclicTuple(collections.Sequence, AbjadObject):
             (1, 2, 3, 4)
 
         Returns tuple.
-        '''
+        """
         return self._items

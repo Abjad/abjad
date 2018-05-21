@@ -8,8 +8,9 @@ ly_path = os.path.join(
 
 
 def test_systemtools_PersistenceManager_as_ly_01():
-    r'''Agent abjad.persists LilyPond file when no LilyPond file exists.
-    '''
+    """
+    Agent abjad.persists LilyPond file when no LilyPond file exists.
+    """
 
     note = abjad.Note("c'4")
     with abjad.FilesystemState(remove=[ly_path]):
@@ -19,8 +20,9 @@ def test_systemtools_PersistenceManager_as_ly_01():
 
         
 def test_systemtools_PersistenceManager_as_ly_02():
-    r'''Agent abjad.persists LilyPond file when LilyPond file already exists.
-    '''
+    """
+    Agent abjad.persists LilyPond file when LilyPond file already exists.
+    """
 
     note = abjad.Note("c'4")
     with abjad.FilesystemState(remove=[ly_path]):

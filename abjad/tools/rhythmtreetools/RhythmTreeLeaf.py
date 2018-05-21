@@ -5,7 +5,8 @@ from abjad.tools.rhythmtreetools.RhythmTreeMixin import RhythmTreeMixin
 
 
 class RhythmTreeLeaf(RhythmTreeMixin, uqbar.containers.UniqueTreeNode):
-    r'''Rhythm-tree leaf.
+    """
+    Rhythm-tree leaf.
 
     ..  container:: example
 
@@ -30,7 +31,7 @@ class RhythmTreeLeaf(RhythmTreeMixin, uqbar.containers.UniqueTreeNode):
         ...     preprolated_duration=7, is_pitched=False)((1, 16))
         Selection([Rest('r4..')])
 
-    '''
+    """
 
     ### INITIALIZER ###
 
@@ -47,14 +48,15 @@ class RhythmTreeLeaf(RhythmTreeMixin, uqbar.containers.UniqueTreeNode):
     ### SPECIAL METHODS ###
 
     def __call__(self, pulse_duration):
-        r'''Generate Abjad score components:
+        """
+        Generate Abjad score components:
 
         >>> leaf = abjad.rhythmtreetools.RhythmTreeLeaf(5)
         >>> leaf((1, 4))
         Selection([Note("c'1"), Note("c'4")])
 
         Returns sequence of components.
-        '''
+        """
         import abjad
         pulse_duration = abjad.Duration(pulse_duration)
         total_duration = pulse_duration * self.preprolated_duration
@@ -64,8 +66,9 @@ class RhythmTreeLeaf(RhythmTreeMixin, uqbar.containers.UniqueTreeNode):
         return maker([None], total_duration)
 
     def __graph__(self, **keywords):
-        r'''Graphviz graph of rhythm tree leaf.
-        '''
+        """
+        Graphviz graph of rhythm tree leaf.
+        """
         graph = uqbar.graphs.Graph(name='G')
         node = uqbar.graphs.Node(
             attributes={
@@ -86,7 +89,8 @@ class RhythmTreeLeaf(RhythmTreeMixin, uqbar.containers.UniqueTreeNode):
 
     @property
     def rtm_format(self):
-        r'''RTM format of rhythm tree leaf.
+        """
+        RTM format of rhythm tree leaf.
 
         >>> abjad.rhythmtreetools.RhythmTreeLeaf(1, is_pitched=True).rtm_format
         '1'
@@ -94,7 +98,7 @@ class RhythmTreeLeaf(RhythmTreeMixin, uqbar.containers.UniqueTreeNode):
         '-5'
 
         Returns string.
-        '''
+        """
         if self.is_pitched:
             return '{!s}'.format(self.preprolated_duration)
         return '-{!s}'.format(self.preprolated_duration)
@@ -103,8 +107,8 @@ class RhythmTreeLeaf(RhythmTreeMixin, uqbar.containers.UniqueTreeNode):
 
     @property
     def is_pitched(self):
-        r'''Gets and sets boolean equal to  true if leaf is pitched.
-        Otherwise false.
+        """
+        Gets and sets boolean equal to  true if leaf is pitched.
 
         >>> leaf = abjad.rhythmtreetools.RhythmTreeLeaf()
         >>> leaf.is_pitched
@@ -115,7 +119,7 @@ class RhythmTreeLeaf(RhythmTreeMixin, uqbar.containers.UniqueTreeNode):
         False
 
         Returns true or false.
-        '''
+        """
         return self._is_pitched
 
     @is_pitched.setter

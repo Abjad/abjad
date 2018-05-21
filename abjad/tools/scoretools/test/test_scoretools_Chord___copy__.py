@@ -14,8 +14,9 @@ def test_scoretools_Chord___copy___01():
 
 
 def test_scoretools_Chord___copy___02():
-    r'''Chord copies LilyPond duration multiplier.
-    '''
+    """
+    Chord copies LilyPond duration multiplier.
+    """
 
     chord_1 = abjad.Chord("<ef' cs'' f''>4 * 1/2")
     chord_2 = copy.copy(chord_1)
@@ -27,8 +28,9 @@ def test_scoretools_Chord___copy___02():
 
 
 def test_scoretools_Chord___copy___03():
-    r'''Chord copies LilyPond grob abjad.overrides and LilyPond context abjad.settings.
-    '''
+    """
+    Chord copies LilyPond grob overrides and LilyPond context settings.
+    """
 
     chord_1 = abjad.Chord("<ef' cs'' f''>4")
     abjad.override(chord_1).staff.note_head.color = 'red'
@@ -43,34 +45,34 @@ def test_scoretools_Chord___copy___03():
 
 
 def test_scoretools_Chord___copy___04():
-    '''
+    """
     Chord copies tweaked note-heads.
-    '''
+    """
 
     chord_1 = abjad.Chord("<c' e' g'>4")
     chord_1.note_heads[0].tweaks.color = 'red'
     chord_2 = copy.copy(chord_1)
 
     assert format(chord_1) == abjad.String.normalize(
-        r'''
+        r"""
         <
             \tweak color #red
             c'
             e'
             g'
         >4
-        '''
+        """
         )
 
     assert format(chord_2) == abjad.String.normalize(
-        r'''
+        r"""
         <
             \tweak color #red
             c'
             e'
             g'
         >4
-        '''
+        """
         )
 
     assert chord_2.note_heads[0]._client is chord_2
@@ -90,8 +92,9 @@ def test_scoretools_Chord___copy___04():
 
 
 def test_scoretools_Chord___copy___05():
-    r'''Chord coipes articulations and markup.
-    '''
+    """
+    Chord coipes articulations and markup.
+    """
 
     chord_1 = abjad.Chord("<ef' cs'' f''>4")
     articulation_1 = abjad.Articulation('staccato')

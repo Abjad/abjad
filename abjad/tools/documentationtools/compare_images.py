@@ -7,7 +7,7 @@ def compare_images(image_one, image_two):
     r'''Compare `image_one` against `image_two` using ImageMagick's `compare`
     commandline tool.
 
-    Returns true if images are the same. Otherwise false.
+    Returns true if images are the same.
 
     Returns false if `compare` is not available.
     '''

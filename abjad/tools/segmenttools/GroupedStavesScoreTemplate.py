@@ -3,7 +3,8 @@ from .ScoreTemplate import ScoreTemplate
 
 
 class GroupedStavesScoreTemplate(ScoreTemplate):
-    r'''Grouped staves score template.
+    r"""
+    Grouped staves score template.
 
     ..  container:: example
 
@@ -82,7 +83,7 @@ class GroupedStavesScoreTemplate(ScoreTemplate):
             >>
         >>
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -99,10 +100,11 @@ class GroupedStavesScoreTemplate(ScoreTemplate):
     ### SPECIAL METHODS ###
 
     def __call__(self):
-        r'''Calls score template.
+        """
+        Calls score template.
 
         Returns score.
-        '''
+        """
         import abjad
         staves = []
         for index in range(self.staff_count):
@@ -131,7 +133,8 @@ class GroupedStavesScoreTemplate(ScoreTemplate):
 
     @property
     def voice_abbreviations(self):
-        r'''Gets context name abbreviations.
+        """
+        Gets context name abbreviations.
 
         ..  container::
 
@@ -140,12 +143,13 @@ class GroupedStavesScoreTemplate(ScoreTemplate):
             >>> template.voice_abbreviations
             OrderedDict([])
 
-        '''
+        """
         return super(GroupedStavesScoreTemplate, self).voice_abbreviations
 
     @property
     def staff_count(self):
-        r'''Gets staff count.
+        """
+        Gets staff count.
 
         ..  container::
 
@@ -154,5 +158,5 @@ class GroupedStavesScoreTemplate(ScoreTemplate):
             >>> template.staff_count
             4
 
-        '''
+        """
         return self._staff_count

@@ -3,15 +3,16 @@ import pytest
 
 
 def test_scoretools_Leaf__split_by_durations_01():
-    r'''Splits note into assignable notes.
+    """
+    Splits note into assignable notes.
 
     Does not fracture spanners. Does not tie split notes.
-    '''
+    """
 
     staff = abjad.Staff("c'8 [ d'8 e'8 ]")
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -20,7 +21,7 @@ def test_scoretools_Leaf__split_by_durations_01():
             e'8
             ]
         }
-        '''
+        """
         )
 
     halves = staff[1]._split_by_durations(
@@ -30,7 +31,7 @@ def test_scoretools_Leaf__split_by_durations_01():
         )
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -40,22 +41,23 @@ def test_scoretools_Leaf__split_by_durations_01():
             e'8
             ]
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).is_well_formed()
 
 
 def test_scoretools_Leaf__split_by_durations_02():
-    r'''Splits note into assignable notes.
+    """
+    Splits note into assignable notes.
 
     Fractures spanners. Does not tie split notes.
-    '''
+    """
 
     staff = abjad.Staff("c'8 [ d'8 e'8 ]")
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -64,7 +66,7 @@ def test_scoretools_Leaf__split_by_durations_02():
             e'8
             ]
         }
-        '''
+        """
         )
 
     halves = staff[1]._split_by_durations(
@@ -74,7 +76,7 @@ def test_scoretools_Leaf__split_by_durations_02():
         )
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -86,22 +88,23 @@ def test_scoretools_Leaf__split_by_durations_02():
             e'8
             ]
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).is_well_formed()
 
 
 def test_scoretools_Leaf__split_by_durations_03():
-    r'''Splits note into assignable notes.
+    """
+    Splits note into assignable notes.
 
     Does not fracture spanners. Does tie split notes.
-    '''
+    """
 
     staff = abjad.Staff("c'8 [ d'8 e'8 ]")
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -110,7 +113,7 @@ def test_scoretools_Leaf__split_by_durations_03():
             e'8
             ]
         }
-        '''
+        """
         )
 
     halves = staff[1]._split_by_durations(
@@ -120,7 +123,7 @@ def test_scoretools_Leaf__split_by_durations_03():
         )
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -131,17 +134,18 @@ def test_scoretools_Leaf__split_by_durations_03():
             e'8
             ]
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).is_well_formed()
 
 
 def test_scoretools_Leaf__split_by_durations_04():
-    r'''Splits note into assignable notes.
+    """
+    Splits note into assignable notes.
 
     Fractures spanners. Ties split notes.
-    '''
+    """
 
     staff = abjad.Staff("c'8 [ d'8 e'8 ]")
 
@@ -152,7 +156,7 @@ def test_scoretools_Leaf__split_by_durations_04():
         )
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -165,17 +169,18 @@ def test_scoretools_Leaf__split_by_durations_04():
             e'8
             ]
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).is_well_formed()
 
 
 def test_scoretools_Leaf__split_by_durations_05():
-    r'''Adds tuplet.
+    """
+    Adds tuplet.
 
     Does not fracture spanners. Does not tie split notes.
-    '''
+    """
 
     staff = abjad.Staff("c'8 [ d'8 e'8 ]")
 
@@ -185,7 +190,7 @@ def test_scoretools_Leaf__split_by_durations_05():
         )
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -197,28 +202,29 @@ def test_scoretools_Leaf__split_by_durations_05():
             e'8
             ]
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).is_well_formed()
 
 
 def test_scoretools_Leaf__split_by_durations_06():
-    r'''REGRESSION.
+    """
+    REGRESSION.
     
     Splits note into tuplet monads and then fuses monads.
 
     Does not fracture spanners. Ties split notes.
 
     This test comes from #272 in GitHub.
-    '''
+    """
 
     staff = abjad.Staff(r"\times 2/3 { c'8 [ d'8 e'8 ] }")
     leaf = abjad.inspect(staff).get_leaf(0)
     halves = leaf._split_by_durations([abjad.Duration(1, 20)])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             \times 2/3 {
@@ -233,17 +239,18 @@ def test_scoretools_Leaf__split_by_durations_06():
                 ]
             }
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).is_well_formed()
 
 
 def test_scoretools_Leaf__split_by_durations_07():
-    r'''Aassignable duration produces two notes.
+    """
+    Assignable duration produces two notes.
 
     This test comes from a container-crossing spanner bug.
-    '''
+    """
 
     voice = abjad.Voice(r"c'8 \times 2/3 { d'8 e'8 f'8 }")
     leaves = abjad.select(voice).leaves()
@@ -251,7 +258,7 @@ def test_scoretools_Leaf__split_by_durations_07():
     abjad.attach(beam, leaves)
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'8
@@ -263,7 +270,7 @@ def test_scoretools_Leaf__split_by_durations_07():
                 ]
             }
         }
-        '''
+        """
         )
 
     halves = leaves[1]._split_by_durations(
@@ -272,7 +279,7 @@ def test_scoretools_Leaf__split_by_durations_07():
         )
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'8
@@ -285,15 +292,16 @@ def test_scoretools_Leaf__split_by_durations_07():
                 ]
             }
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice).is_well_formed()
 
 
 def test_scoretools_Leaf__split_by_durations_08():
-    r'''Leaf duration less than split duration produces no change.
-    '''
+    """
+    Leaf duration less than split duration produces no change.
+    """
 
     staff = abjad.Staff("c'4")
     staff[0]._split_by_durations([abjad.Duration(3, 4)])
@@ -304,8 +312,9 @@ def test_scoretools_Leaf__split_by_durations_08():
 
 
 def test_scoretools_Leaf__split_by_durations_09():
-    r'''Returns two lists of zero or more leaves.
-    '''
+    """
+    Returns two lists of zero or more leaves.
+    """
 
     note = abjad.Note("c'4")
 
@@ -327,8 +336,9 @@ def test_scoretools_Leaf__split_by_durations_09():
 
 
 def test_scoretools_Leaf__split_by_durations_10():
-    r'''Returns two lists of zero or more leaves.
-    '''
+    """
+    Returns two lists of zero or more leaves.
+    """
 
     note = abjad.Note("c'4")
     halves = note._split_by_durations([abjad.Duration(1, 16)])
@@ -344,12 +354,13 @@ def test_scoretools_Leaf__split_by_durations_10():
 
 
 def test_scoretools_Leaf__split_by_durations_11():
-    r'''Nonassignable power-of-two duration produces two lists.
+    """
+    Nonassignable power-of-two duration produces two lists.
 
     Left list contains two notes tied together.
 
     Right list contains only one note.
-    '''
+    """
 
     note = abjad.Note("c'4")
 
@@ -374,8 +385,9 @@ def test_scoretools_Leaf__split_by_durations_11():
 
 
 def test_scoretools_Leaf__split_by_durations_12():
-    r'''Lone spanned leaf results in two spanned leaves.
-    '''
+    """
+    Lone spanned leaf results in two spanned leaves.
+    """
 
     staff = abjad.Staff([abjad.Note("c'4")])
     tie = abjad.Tie()
@@ -392,8 +404,9 @@ def test_scoretools_Leaf__split_by_durations_12():
 
 
 def test_scoretools_Leaf__split_by_durations_13():
-    r'''Leaves spanners unchanged.
-    '''
+    """
+    Leaves spanners unchanged.
+    """
 
     staff = abjad.Staff("c'8 c'8 c'8 c'8")
     beam = abjad.Beam()
@@ -413,10 +426,11 @@ def test_scoretools_Leaf__split_by_durations_13():
 
 
 def test_scoretools_Leaf__split_by_durations_14():
-    r'''Returns three leaves with two tied.
+    """
+    Returns three leaves with two tied.
 
     Spanner is shared by all 3 leaves.
-    '''
+    """
 
     staff = abjad.Staff([abjad.Note("c'4")])
     tie = abjad.Tie()
@@ -434,8 +448,9 @@ def test_scoretools_Leaf__split_by_durations_14():
 
 
 def test_scoretools_Leaf__split_by_durations_15():
-    r'''After grace notes are removed from first split leaf.
-    '''
+    """
+    After grace notes are removed from first split leaf.
+    """
 
     note = abjad.Note("c'4")
     after_grace = abjad.AfterGraceContainer([abjad.Note(0, (1, 32))])
@@ -447,8 +462,9 @@ def test_scoretools_Leaf__split_by_durations_15():
 
 
 def test_scoretools_Leaf__split_by_durations_16():
-    r'''After grace notes are removed from first split leaf.
-    '''
+    """
+    After grace notes are removed from first split leaf.
+    """
 
     note = abjad.Note("c'4")
     grace = abjad.AfterGraceContainer([abjad.Note(0, (1, 32))])
@@ -464,8 +480,9 @@ def test_scoretools_Leaf__split_by_durations_16():
 
 
 def test_scoretools_Leaf__split_by_durations_17():
-    r'''Grace notes are removed from second split leaf.
-    '''
+    """
+    Grace notes are removed from second split leaf.
+    """
 
     note = abjad.Note("c'4")
     grace = abjad.GraceContainer([abjad.Note(0, (1, 32))])
@@ -493,7 +510,7 @@ def test_scoretools_Leaf__split_by_durations_18():
     abjad.attach(slur, leaves)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -512,7 +529,7 @@ def test_scoretools_Leaf__split_by_durations_18():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     halves = leaves[0]._split_by_durations(
@@ -522,7 +539,7 @@ def test_scoretools_Leaf__split_by_durations_18():
         )
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -542,16 +559,17 @@ def test_scoretools_Leaf__split_by_durations_18():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     assert abjad.inspect(staff).is_well_formed()
 
 
 def test_scoretools_Leaf__split_by_durations_19():
-    r'''Split one leaf in score.
+    """
+    Split one leaf in score.
     Do not fracture spanners. But do tie after split.
-    '''
+    """
 
     staff = abjad.Staff()
     staff.append(abjad.Measure((2, 8), "c'8 d'8"))
@@ -565,7 +583,7 @@ def test_scoretools_Leaf__split_by_durations_19():
     abjad.attach(slur, leaves)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -584,7 +602,7 @@ def test_scoretools_Leaf__split_by_durations_19():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     halves = leaves[0]._split_by_durations(
@@ -594,7 +612,7 @@ def test_scoretools_Leaf__split_by_durations_19():
         )
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -615,15 +633,16 @@ def test_scoretools_Leaf__split_by_durations_19():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     assert abjad.inspect(staff).is_well_formed()
 
 
 def test_scoretools_Leaf__split_by_durations_20():
-    r'''Split leaf in score and fracture spanners.
-    '''
+    """
+    Split leaf in score and fracture spanners.
+    """
 
     staff = abjad.Staff()
     staff.append(abjad.Measure((2, 8), "c'8 d'8"))
@@ -637,7 +656,7 @@ def test_scoretools_Leaf__split_by_durations_20():
     abjad.attach(slur, leaves)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -656,7 +675,7 @@ def test_scoretools_Leaf__split_by_durations_20():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     halves = leaves[0]._split_by_durations(
@@ -666,7 +685,7 @@ def test_scoretools_Leaf__split_by_durations_20():
         )
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -688,17 +707,18 @@ def test_scoretools_Leaf__split_by_durations_20():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     assert abjad.inspect(staff).is_well_formed()
 
 
 def test_scoretools_Leaf__split_by_durations_21():
-    r'''Split leaf in score at nonzero index.
+    """
+    Split leaf in score at nonzero index.
     Fracture spanners.
     Test comes from a bug fix.
-    '''
+    """
 
     staff = abjad.Staff()
     staff.append(abjad.Measure((2, 8), "c'8 d'8"))
@@ -712,7 +732,7 @@ def test_scoretools_Leaf__split_by_durations_21():
     abjad.attach(slur, leaves)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -731,7 +751,7 @@ def test_scoretools_Leaf__split_by_durations_21():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     halves = leaves[1]._split_by_durations(
@@ -741,7 +761,7 @@ def test_scoretools_Leaf__split_by_durations_21():
         )
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -765,15 +785,16 @@ def test_scoretools_Leaf__split_by_durations_21():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     assert abjad.inspect(staff).is_well_formed()
 
 
 def test_scoretools_Leaf__split_by_durations_22():
-    r'''Split leaf outside of score and fracture spanners.
-    '''
+    """
+    Split leaf outside of score and fracture spanners.
+    """
 
     note = abjad.Note("c'8")
     beam = abjad.Beam()
@@ -794,9 +815,10 @@ def test_scoretools_Leaf__split_by_durations_22():
 
 
 def test_scoretools_Leaf__split_by_durations_23():
-    r'''Split leaf in score and fracture spanners.
+    """
+    Split leaf in score and fracture spanners.
     Tie leaves after split.
-    '''
+    """
 
     staff = abjad.Staff()
     staff.append(abjad.Measure((2, 8), "c'8 d'8"))
@@ -810,7 +832,7 @@ def test_scoretools_Leaf__split_by_durations_23():
     abjad.attach(slur, leaves)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -829,7 +851,7 @@ def test_scoretools_Leaf__split_by_durations_23():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     halves = leaves[0]._split_by_durations(
@@ -839,7 +861,7 @@ def test_scoretools_Leaf__split_by_durations_23():
         )
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -862,18 +884,19 @@ def test_scoretools_Leaf__split_by_durations_23():
                 )
             }   % measure
         }
-        '''
+        """
         ), format(staff)
 
     assert abjad.inspect(staff).is_well_formed()
 
 
 def test_scoretools_Leaf__split_by_durations_24():
-    r'''Split leaf with LilyPond multiplier.
+    """
+    Split leaf with LilyPond multiplier.
     Split at split offset with power-of-two denominator.
     Halves carry original written duration.
     Halves carry adjusted LilyPond multipliers.
-    '''
+    """
 
     note = abjad.Note(0, (1, 8))
     abjad.attach(abjad.Multiplier(1, 2), note)
@@ -894,11 +917,12 @@ def test_scoretools_Leaf__split_by_durations_24():
 
 
 def test_scoretools_Leaf__split_by_durations_25():
-    r'''Split leaf with LilyPond multiplier.
+    """
+    Split leaf with LilyPond multiplier.
     Split at offset without power-of-two denominator.
     Halves carry original written duration.
     Halves carry adjusted LilyPond multipliers.
-    '''
+    """
 
     note = abjad.Note(0, (1, 8))
     abjad.attach(abjad.Multiplier(1, 2), note)

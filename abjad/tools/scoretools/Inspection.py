@@ -8,7 +8,8 @@ from .Container import Container
 
 
 class Inspection(abctools.AbjadObject):
-    r'''Inspection.
+    """
+    Inspection.
 
     ..  container:: example
 
@@ -18,7 +19,7 @@ class Inspection(abctools.AbjadObject):
         >>> abjad.inspect(staff)
         Inspection(client=Staff("c'4 e'4 d'4 f'4"))
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -44,7 +45,8 @@ class Inspection(abctools.AbjadObject):
 
     @property
     def client(self):
-        r'''Gets client of inspection.
+        r"""
+        Gets client of inspection.
 
         ..  container:: example
 
@@ -78,13 +80,14 @@ class Inspection(abctools.AbjadObject):
             <Staff{2}>
 
         Returns component.
-        '''
+        """
         return self._client
 
     ### PUBLIC METHODS ###
 
     def annotations(self):
-        r'''Gets annotation wrappers.
+        r"""
+        Gets annotation wrappers.
 
         ..  container:: example
 
@@ -143,7 +146,7 @@ class Inspection(abctools.AbjadObject):
                 )
 
         Returns list of annotations or list of wrappers.
-        '''
+        """
         result = []
         for wrapper in getattr(self.client, '_wrappers', []):
             if wrapper.annotation:
@@ -151,7 +154,8 @@ class Inspection(abctools.AbjadObject):
         return result
 
     def effective_wrapper(self, prototype=None, n=0):
-        r'''Gets effective wrapper.
+        r"""
+        Gets effective wrapper.
 
         ..  container:: example
 
@@ -190,11 +194,12 @@ class Inspection(abctools.AbjadObject):
             f'4 Wrapper(context='Staff', indicator=Clef('alto'), tag=Tag())
 
         Returns wrapper or none.
-        '''
+        """
         return self.get_effective(prototype=prototype, n=n, unwrap=False)
 
     def get_after_grace_container(self):
-        r'''Gets after grace containers attached to leaf.
+        r"""
+        Gets after grace containers attached to leaf.
 
         ..  container:: example
 
@@ -225,11 +230,12 @@ class Inspection(abctools.AbjadObject):
             AfterGraceContainer("ds'16")
 
         Returns after grace container or none.
-        '''
+        """
         return getattr(self.client, '_after_grace_container', None)
 
     def get_annotation(self, annotation, default=None, unwrap=True):
-        r'''Gets annotation.
+        r"""
+        Gets annotation.
 
         ..  container:: example
 
@@ -284,7 +290,7 @@ class Inspection(abctools.AbjadObject):
             True
 
         Returns annotation (or default).
-        '''
+        """
         assert isinstance(annotation, str), repr(annotation)
         for wrapper in self.annotations():
             if wrapper.annotation == annotation:
@@ -295,7 +301,8 @@ class Inspection(abctools.AbjadObject):
         return default
 
     def get_badly_formed_components(self):
-        r'''Gets badly formed components.
+        r"""
+        Gets badly formed components.
 
         ..  container:: example
 
@@ -323,7 +330,7 @@ class Inspection(abctools.AbjadObject):
             Beamed long notes are not well-formed.
 
         Returns list.
-        '''
+        """
         import abjad
         manager, violators = abjad.WellformednessManager(), []
         for violators_, total, check_name in manager(self.client):
@@ -331,7 +338,8 @@ class Inspection(abctools.AbjadObject):
         return violators
 
     def get_contents(self, include_self=True):
-        r'''Gets contents.
+        r"""
+        Gets contents.
 
         ..  container:: example
 
@@ -367,12 +375,13 @@ class Inspection(abctools.AbjadObject):
             Note("f'4")
 
         Returns selection.
-        '''
+        """
         if hasattr(self.client, '_get_contents'):
             return self.client._get_contents(include_self=include_self)
 
     def get_descendants(self, include_self=True):
-        r'''Gets descendants.
+        r"""
+        Gets descendants.
 
         ..  container:: example
 
@@ -424,7 +433,7 @@ class Inspection(abctools.AbjadObject):
             Note("e'8")
 
         Returns selection.
-        '''
+        """
         import abjad
         if hasattr(self.client, '_get_descendants'):
             descendants = self.client._get_descendants(
@@ -441,7 +450,8 @@ class Inspection(abctools.AbjadObject):
         return descendants
 
     def get_duration(self, in_seconds=False):
-        r'''Gets duration.
+        r"""
+        Gets duration.
 
         ..  container:: example
 
@@ -464,7 +474,7 @@ class Inspection(abctools.AbjadObject):
             Duration(3, 4)
 
         Returns duration.
-        '''
+        """
         import abjad
         if hasattr(self.client, 'get_duration'):
             return self.client.get_duration(in_seconds=in_seconds)
@@ -477,7 +487,8 @@ class Inspection(abctools.AbjadObject):
             ])
 
     def get_effective(self, prototype=None, unwrap=True, n=0, default=None):
-        r'''Gets effective indicator.
+        r"""
+        Gets effective indicator.
 
         ..  container:: example
 
@@ -674,7 +685,7 @@ class Inspection(abctools.AbjadObject):
             f'4 3/8
 
         Returns indicator or none.
-        '''
+        """
         if hasattr(self.client, '_get_effective'):
             result = self.client._get_effective(
                 prototype=prototype,
@@ -686,15 +697,17 @@ class Inspection(abctools.AbjadObject):
             return result
 
     def get_effective_staff(self):
-        r'''Gets effective staff.
+        """
+        Gets effective staff.
 
         Returns staff or none.
-        '''
+        """
         if hasattr(self.client, '_get_effective_staff'):
             return self.client._get_effective_staff()
 
     def get_grace_container(self):
-        r'''Gets grace container attached to leaf.
+        r"""
+        Gets grace container attached to leaf.
 
         ..  container:: example
 
@@ -725,7 +738,7 @@ class Inspection(abctools.AbjadObject):
 
         Returns grace container, acciaccatura container, appoggiatura container
         or none.
-        '''
+        """
         if hasattr(self.client, '_grace_container'):
             return self.client._grace_container
 
@@ -735,7 +748,8 @@ class Inspection(abctools.AbjadObject):
         default=None,
         unwrap=True,
         ):
-        r'''Gets indicator.
+        """
+        Gets indicator.
 
         Raises exception when more than one indicator of `prototype` attach to
         client.
@@ -743,7 +757,7 @@ class Inspection(abctools.AbjadObject):
         Returns default when no indicator of `prototype` attaches to client.
 
         Returns indicator or default.
-        '''
+        """
         indicators = self.client._get_indicators(
             prototype=prototype,
             unwrap=unwrap,
@@ -757,7 +771,8 @@ class Inspection(abctools.AbjadObject):
             raise Exception(message)
 
     def get_indicators(self, prototype=None, unwrap=True):
-        r'''Get indicators.
+        r"""
+        Get indicators.
 
         ..  container:: example
 
@@ -790,7 +805,7 @@ class Inspection(abctools.AbjadObject):
             (Articulation('^'),)
 
         Returns tuple.
-        '''
+        """
         if hasattr(self.client, '_get_indicators'):
             return self.client._get_indicators(
                 prototype=prototype,
@@ -798,7 +813,8 @@ class Inspection(abctools.AbjadObject):
                 )
 
     def get_leaf(self, n=0):
-        r'''Gets leaf `n`.
+        r"""
+        Gets leaf `n`.
 
         ..  container:: example
 
@@ -913,7 +929,7 @@ class Inspection(abctools.AbjadObject):
             -8 None
 
         Returns leaf or none.
-        '''
+        """
         import abjad
         if isinstance(self.client, abjad.Leaf):
             return self.client._get_leaf(n)
@@ -928,33 +944,37 @@ class Inspection(abctools.AbjadObject):
                 return leaf
 
     def get_lineage(self):
-        r'''Gets lineage.
+        """
+        Gets lineage.
 
         Returns lineage.
-        '''
+        """
         if hasattr(self.client, '_get_lineage'):
             return self.client._get_lineage()
 
     def get_logical_tie(self):
-        r'''Gets logical tie.
+        """
+        Gets logical tie.
 
         Returns logical tie.
-        '''
+        """
         if hasattr(self.client, '_get_logical_tie'):
             return self.client._get_logical_tie()
 
     def get_markup(self, direction=None):
-        r'''Gets markup.
+        """
+        Gets markup.
 
         Returns tuple.
-        '''
+        """
         if hasattr(self.client, '_get_markup'):
             return self.client._get_markup(
                 direction=direction,
                 )
 
     def get_parentage(self, include_self=True, grace_notes=False):
-        r'''Gets parentage.
+        r"""
+        Gets parentage.
 
         .. container:: example
 
@@ -1018,7 +1038,7 @@ class Inspection(abctools.AbjadObject):
             Voice("c'4 d'4 e'4 f'4")
 
         Returns parentage.
-        '''
+        """
         return self.client._get_parentage(
             include_self=include_self,
             grace_notes=grace_notes,
@@ -1031,7 +1051,8 @@ class Inspection(abctools.AbjadObject):
         default=None,
         unwrap=True,
         ):
-        r'''Gets piecewise indicators for ``spanner``.
+        r"""
+        Gets piecewise indicators for ``spanner``.
 
         ..  container:: example
 
@@ -1097,7 +1118,7 @@ class Inspection(abctools.AbjadObject):
             (Note("f'4"), Markup(contents=['ord.']))
 
         Returns indicator or default.
-        '''
+        """
         import abjad
         assert isinstance(spanner, abjad.Spanner)
         wrappers = self.wrappers(prototype=prototype)
@@ -1116,17 +1137,19 @@ class Inspection(abctools.AbjadObject):
             raise Exception(f'multiple {name} attached to {client}.')
 
     def get_pitches(self):
-        r'''Gets pitches.
+        """
+        Gets pitches.
 
         Returns pitch set.
-        '''
+        """
         import abjad
         if not self.client:
             return
         return abjad.PitchSet.from_selection(abjad.select(self.client))
 
     def get_sounding_pitch(self):
-        r'''Gets sounding pitch.
+        r"""
+        Gets sounding pitch.
 
         ..  container:: example
 
@@ -1150,11 +1173,12 @@ class Inspection(abctools.AbjadObject):
                 }
 
         Returns named pitch.
-        '''
+        """
         return self.client._get_sounding_pitch()
 
     def get_sounding_pitches(self):
-        r"""Gets sounding pitches.
+        r"""
+        Gets sounding pitches.
 
         ..  container:: example
 
@@ -1183,7 +1207,8 @@ class Inspection(abctools.AbjadObject):
         return self.client._get_sounding_pitches()
 
     def get_spanner(self, prototype=None, default=None):
-        r'''Gets spanner.
+        """
+        Gets spanner.
 
         Raises exception when more than one spanner of `prototype` attaches to
         client.
@@ -1191,7 +1216,7 @@ class Inspection(abctools.AbjadObject):
         Returns `default` when no spanner of `prototype` attaches to client.
 
         Returns spanner or default.
-        '''
+        """
         spanners = self.client._get_spanners(prototype=prototype)
         assert isinstance(spanners, list), repr(spanners)
         if not spanners:
@@ -1202,7 +1227,8 @@ class Inspection(abctools.AbjadObject):
             raise ExtraSpannerError
 
     def get_spanners(self, prototype=None) -> typing.List[Spanner]:
-        r'''Gets spanners.
+        r"""
+        Gets spanners.
 
         ..  container:: example
 
@@ -1238,7 +1264,7 @@ class Inspection(abctools.AbjadObject):
             >>> beams
             [Beam("c'8, d'8"), Beam("e'8, f'8")]
 
-        '''
+        """
         if isinstance(self.client, Container):
             return []
         if hasattr(self.client, 'get_spanners'):
@@ -1257,7 +1283,8 @@ class Inspection(abctools.AbjadObject):
         return result
 
     def get_timespan(self, in_seconds=False):
-        r'''Gets timespan.
+        r"""
+        Gets timespan.
 
         ..  container:: example
 
@@ -1389,7 +1416,7 @@ class Inspection(abctools.AbjadObject):
             Timespan(start_offset=Offset(0, 1), stop_offset=Offset(3, 8))
 
         Returns timespan.
-        '''
+        """
         import abjad
         if hasattr(self.client, 'get_timespan'):
             return self.client.get_timespan(in_seconds=in_seconds)
@@ -1410,7 +1437,8 @@ class Inspection(abctools.AbjadObject):
         return abjad.Timespan(start_offset, stop_offset)
 
     def get_tuplet(self, n=0):
-        r'''Gets tuplet `n`.
+        r"""
+        Gets tuplet `n`.
 
         ..  container:: example
 
@@ -1469,7 +1497,7 @@ class Inspection(abctools.AbjadObject):
             -4 Tuplet(Multiplier(2, 3), "c'8 d'8 e'8")
 
         Returns tuplet or none.
-        '''
+        """
         import abjad
         if 0 <= n:
             reverse = False
@@ -1485,7 +1513,8 @@ class Inspection(abctools.AbjadObject):
                 return tuplet
 
     def get_vertical_moment(self, governor=None):
-        r'''Gets vertical moment.
+        r"""
+        Gets vertical moment.
 
         ..  container:: example
 
@@ -1553,39 +1582,44 @@ class Inspection(abctools.AbjadObject):
             Selection([Note("g'4"), Note("c'8")])
 
         Returns vertical moment.
-        '''
+        """
         return self.client._get_vertical_moment(governor=governor)
 
     def get_vertical_moment_at(self, offset):
-        r'''Gets vertical moment at `offset`.
+        """
+        Gets vertical moment at `offset`.
 
         Returns vertical moment.
-        '''
+        """
         return self.client._get_vertical_moment_at(offset)
 
     def has_effective_indicator(self, prototype=None):
-        r'''Is true when client has effective indicator. Otherwise false.
+        """
+        Is true when client has effective indicator.
 
         Returns true or false.
-        '''
+        """
         return self.client._has_effective_indicator(prototype=prototype)
 
     def has_indicator(self, prototype=None):
-        r'''Is true when client has one or more indicators. Otherwise false.
+        """
+        Is true when client has one or more indicators.
 
         Returns true or false.
-        '''
+        """
         return self.client._has_indicator(prototype=prototype)
 
     def has_spanner(self, prototype=None):
-        r'''Is true when client has one or more spanners. Otherwise false.
+        """
+        Is true when client has one or more spanners.
 
         Returns true or false.
-        '''
+        """
         return self.client._has_spanner(prototype=prototype)
 
     def is_bar_line_crossing(self):
-        r'''Is true when client crosses bar line. Otherwise false.
+        r"""
+        Is true when client crosses bar line.
 
         ..  container:: example
 
@@ -1614,7 +1648,7 @@ class Inspection(abctools.AbjadObject):
             e'4 False
 
         Returns true or false.
-        '''
+        """
         import abjad
         time_signature = self.client._get_effective(abjad.TimeSignature)
         if time_signature is None:
@@ -1632,10 +1666,11 @@ class Inspection(abctools.AbjadObject):
         return False
 
     def is_grace_note(self):
-        r'''Is true when client is grace note.
+        """
+        Is true when client is grace note.
 
         Returns true or false.
-        '''
+        """
         import abjad
         if not isinstance(self.client, abjad.Leaf):
             return False
@@ -1668,7 +1703,8 @@ class Inspection(abctools.AbjadObject):
         check_overlapping_trill_spanners=True,
         check_tied_rests=True,
         ):
-        r'''Is true when client is well-formed. Otherwise false.
+        """
+        Is true when client is well-formed.
 
         ..  container:: example
 
@@ -1705,7 +1741,7 @@ class Inspection(abctools.AbjadObject):
             True
 
         Returns false.
-        '''
+        """
         import abjad
         manager = abjad.WellformednessManager()
         for violators, total, check_name in manager(self.client):
@@ -1716,7 +1752,8 @@ class Inspection(abctools.AbjadObject):
         return True
 
     def report_modifications(self):
-        r'''Reports modifications.
+        r"""
+        Reports modifications.
 
         ..  container:: example
 
@@ -1792,7 +1829,7 @@ class Inspection(abctools.AbjadObject):
             slot absolute after:
 
         Returns string.
-        '''
+        """
         import abjad
         if isinstance(self.client, abjad.Container):
             bundle = abjad.LilyPondFormatManager.bundle_format_contributions(
@@ -1847,7 +1884,8 @@ class Inspection(abctools.AbjadObject):
         check_overlapping_trill_spanners=True,
         check_tied_rests=True,
         ):
-        r'''Tabulates well-formedness.
+        r"""
+        Tabulates well-formedness.
 
         ..  container:: example
 
@@ -1927,7 +1965,7 @@ class Inspection(abctools.AbjadObject):
             0 /	0 tied rests
 
         Returns string.
-        '''
+        """
         import abjad
         manager = abjad.WellformednessManager(
             allow_percussion_clef=allow_percussion_clef,
@@ -1946,7 +1984,8 @@ class Inspection(abctools.AbjadObject):
         return '\n'.join(strings)
 
     def wrapper(self, prototype=None):
-        r'''Gets wrapper.
+        r"""
+        Gets wrapper.
 
         ..  container:: example
 
@@ -1982,11 +2021,12 @@ class Inspection(abctools.AbjadObject):
         client.
 
         Returns wrapper or none.
-        '''
+        """
         return self.get_indicator(prototype=prototype, unwrap=False)
 
     def wrappers(self, prototype=None):
-        r'''Gets wrappers.
+        r"""
+        Gets wrappers.
 
         ..  container:: example
 
@@ -2019,5 +2059,5 @@ class Inspection(abctools.AbjadObject):
             (Wrapper(indicator=Articulation('^'), tag=Tag()),)
 
         Returns tuple of wrappers or none.
-        '''
+        """
         return self.get_indicators(prototype=prototype, unwrap=False)

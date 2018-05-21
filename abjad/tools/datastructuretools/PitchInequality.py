@@ -3,7 +3,8 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class PitchInequality(AbjadValueObject):
-    r'''Pitch inequality.
+    """
+    Pitch inequality.
 
     ..  container:: example
 
@@ -27,7 +28,7 @@ class PitchInequality(AbjadValueObject):
 
     .. note:: only intersection currently implemented.
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -68,10 +69,11 @@ class PitchInequality(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, argument):
-        r'''Calls inequality on `argument`.
+        """
+        Calls inequality on ``argument``.
 
         Returns true or false.
-        '''
+        """
         import abjad
         if not self.pitches:
             return False
@@ -90,16 +92,18 @@ class PitchInequality(AbjadValueObject):
 
     @property
     def operator_string(self):
-        r'''Gets operator string.
+        """
+        Gets operator string.
 
         Returns string.
-        '''
+        """
         return self._operator_string
 
     @property
     def pitches(self):
-        r'''Gets pitches.
+        """
+        Gets pitches.
 
         Returns numbered pitch set.
-        '''
+        """
         return self._pitches

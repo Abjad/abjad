@@ -1,8 +1,9 @@
-from abjad.tools.schemetools.Scheme import Scheme
+from .Scheme import Scheme
 
 
 class SchemePair(Scheme):
-    r'''Abjad model of Scheme pair.
+    r"""
+    Abjad model of Scheme pair.
 
     ..  container:: example
 
@@ -27,7 +28,7 @@ class SchemePair(Scheme):
         >>> format(scheme_pair)
         "#'(spacing . 4)"
 
-    '''
+    """
 
     ### CLASS VARIABLES ##
 
@@ -43,7 +44,8 @@ class SchemePair(Scheme):
     ### SPECIAL METHODS ###
 
     def __format__(self, format_specification=''):
-        r'''Formats Scheme pair.
+        """
+        Formats Scheme pair.
 
         ..  container:: example
 
@@ -59,7 +61,7 @@ class SchemePair(Scheme):
         Interprets `''` equal to `'lilypond'`.
 
         Returns string.
-        '''
+        """
         return super(SchemePair, self).__format__(
             format_specification=format_specification,
             )
@@ -96,12 +98,14 @@ class SchemePair(Scheme):
 
     @property
     def left(self):
-        r'''Gets left value.
-        '''
+        """
+        Gets left value.
+        """
         return self._value[0]
 
     @property
     def right(self):
-        r'''Gets right value.
-        '''
+        """
+        Gets right value.
+        """
         return self._value[-1]

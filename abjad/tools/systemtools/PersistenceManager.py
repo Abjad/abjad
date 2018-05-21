@@ -6,7 +6,8 @@ from abjad.tools import abctools
 
 
 class PersistenceManager(abctools.AbjadObject):
-    r'''Persistence manager.
+    """
+    Persistence manager.
 
     ..  container:: example
 
@@ -16,7 +17,7 @@ class PersistenceManager(abctools.AbjadObject):
         >>> abjad.persist(staff)
         PersistenceManager(client=Staff("c'4 e'4 d'4 f'4"))
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -40,7 +41,8 @@ class PersistenceManager(abctools.AbjadObject):
         strict=None,
         **keywords
         ):
-        r'''Persists client as LilyPond file.
+        """
+        Persists client as LilyPond file.
 
         Autogenerates file path when `ly_file_path` is none.
 
@@ -55,7 +57,7 @@ class PersistenceManager(abctools.AbjadObject):
 
         Returns output path and elapsed formatting time when LilyPond output is
         written.
-        '''
+        """
         import abjad
         if strict is not None:
             assert isinstance(strict, int), repr(strict)
@@ -88,7 +90,8 @@ class PersistenceManager(abctools.AbjadObject):
         return ly_file_path, abjad_formatting_time
 
     def as_midi(self, midi_file_path=None, remove_ly=False, **keywords):
-        r'''Persists client as MIDI file.
+        """
+        Persists client as MIDI file.
 
         Autogenerates file path when `midi_file_path` is none.
 
@@ -104,7 +107,7 @@ class PersistenceManager(abctools.AbjadObject):
 
         Returns output path, elapsed formatting time and elapsed rendering
         time.
-        '''
+        """
         from abjad.tools import lilypondfiletools
         from abjad.tools import systemtools
         assert hasattr(self._client, '__illustrate__')
@@ -137,7 +140,8 @@ class PersistenceManager(abctools.AbjadObject):
         return midi_file_path, abjad_formatting_time, lilypond_rendering_time
 
     def as_module(self, module_file_path, object_name):
-        r'''Persists client as Python module.
+        """
+        Persists client as Python module.
 
         ..  container:: example
 
@@ -152,7 +156,7 @@ class PersistenceManager(abctools.AbjadObject):
             ...     )
 
         Returns none.
-        '''
+        """
         from abjad.tools import systemtools
         agent = systemtools.StorageFormatManager(self._client)
         result = []
@@ -189,7 +193,8 @@ class PersistenceManager(abctools.AbjadObject):
         strict=None,
         **keywords
         ):
-        r'''Persists client as PDF.
+        """
+        Persists client as PDF.
 
         Autogenerates file path when `pdf_file_path` is none.
 
@@ -205,7 +210,7 @@ class PersistenceManager(abctools.AbjadObject):
 
         Returns output path, elapsed formatting time and elapsed rendering
         time when PDF output is written.
-        '''
+        """
         from abjad.tools import systemtools
         if strict is not None:
             assert isinstance(strict, int), repr(strict)
@@ -247,7 +252,8 @@ class PersistenceManager(abctools.AbjadObject):
         illustrate_function=None,
         **keywords
         ):
-        r'''Persists client as PNG.
+        """
+        Persists client as PNG.
 
         ..  container:: example
 
@@ -281,7 +287,7 @@ class PersistenceManager(abctools.AbjadObject):
 
         Returns output path(s), elapsed formatting time and elapsed rendering
         time.
-        '''
+        """
         from abjad.tools import systemtools
         if illustrate_function is None:
             assert hasattr(self._client, '__illustrate__')
@@ -351,8 +357,9 @@ class PersistenceManager(abctools.AbjadObject):
 
     @property
     def client(self):
-        r'''Client of persistence manager.
+        """
+        Client of persistence manager.
 
         Returns component or selection.
-        '''
+        """
         return self._client

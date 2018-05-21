@@ -261,7 +261,7 @@ class CompoundOperator(AbjadValueObject):
     @property
     def show_identity_operators(self):
         r'''Is true when string representation of operator should show identity
-        operators. Otherwise false.
+        operators.
 
         ..  container:: example
 

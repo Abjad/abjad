@@ -1,8 +1,9 @@
-from abjad.tools.schemetools.Scheme import Scheme
+from .Scheme import Scheme
 
 
 class SchemeColor(Scheme):
-    r'''Abjad model of Scheme color.
+    r"""
+    Abjad model of Scheme color.
 
     ..  container:: example
 
@@ -23,7 +24,7 @@ class SchemeColor(Scheme):
             \once \override NoteHead.color = #(x11-color 'ForestGreen)
             c'4
 
-    '''
+    """
 
     ### CLASS VARIABLES ##
 

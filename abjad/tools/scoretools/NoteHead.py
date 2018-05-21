@@ -104,8 +104,8 @@ class NoteHead(AbjadObject):
 
     def __eq__(self, argument) -> bool:
         """
-        Is true when `argument` is a note-head with written pitch equal to
-        that of this note-head. Otherwise false.
+        Is true when ```argument`` is a note-head with written pitch equal to
+        that of this note-head.
         """
         if isinstance(argument, type(self)):
             return self.written_pitch == argument.written_pitch
@@ -131,8 +131,8 @@ class NoteHead(AbjadObject):
 
     def __lt__(self, argument) -> bool:
         """
-        Is true when `argument` is a note-head with written pitch greater
-        than that of this note-head. Otherwise false.
+        Is true when ``argument`` is a note-head with written pitch greater
+        than that of this note-head.
         """
         if isinstance(argument, type(self)):
             return self.written_pitch < argument.written_pitch

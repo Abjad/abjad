@@ -25,8 +25,9 @@ def test_scoretools_Component__get_in_my_logical_voice_02():
 
 
 def test_scoretools_Component__get_in_my_logical_voice_03():
-    r'''Different anonymous contexts create different logical voices.
-    '''
+    """
+    Different anonymous contexts create different logical voices.
+    """
 
     container = abjad.Container([abjad.Voice("c'8 d'8"), abjad.Voice("e'8 f'8")])
     leaves = abjad.select(container).leaves()
@@ -38,8 +39,9 @@ def test_scoretools_Component__get_in_my_logical_voice_03():
 
 
 def test_scoretools_Component__get_in_my_logical_voice_04():
-    r'''Differently named contexts create different logical voices.
-    '''
+    """
+    Differently named contexts create different logical voices.
+    """
 
     container = abjad.Container([abjad.Voice("c'8 d'8"), abjad.Voice("e'8 f'8")])
     container[0].name = 'voice'
@@ -52,8 +54,9 @@ def test_scoretools_Component__get_in_my_logical_voice_04():
 
 
 def test_scoretools_Component__get_in_my_logical_voice_05():
-    r'''Like-named contexts create the same logical voice.
-    '''
+    """
+    Like-named contexts create the same logical voice.
+    """
 
     container = abjad.Container([abjad.Voice("c'8 d'8"), abjad.Voice("e'8 f'8")])
     container[0].name = 'voice'
@@ -66,9 +69,10 @@ def test_scoretools_Component__get_in_my_logical_voice_05():
 
 
 def test_scoretools_Component__get_in_my_logical_voice_06():
-    r'''Like-named contexts create the same logical voice.
+    """
+    Like-named contexts create the same logical voice.
     The intervening rest exists in a different logical voice.
-    '''
+    """
 
     container = abjad.Container([abjad.Voice("c'8 d'8"), abjad.Rest('r2'), abjad.Voice("e'8 f'8")])
     container[0].name = 'voice'
@@ -80,8 +84,9 @@ def test_scoretools_Component__get_in_my_logical_voice_06():
 
 
 def test_scoretools_Component__get_in_my_logical_voice_07():
-    r'''Get component in same logical voice across simultaneous containers.
-    '''
+    """
+    Get component in same logical voice across simultaneous containers.
+    """
 
     container_1 = abjad.Container([abjad.Voice("c''8 d''8"), abjad.Voice("c'8 d'8")])
     container_1[0].name = 'voiceOne'
@@ -94,7 +99,7 @@ def test_scoretools_Component__get_in_my_logical_voice_07():
     staff = abjad.Staff([container_1, container_2])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             <<
@@ -122,7 +127,7 @@ def test_scoretools_Component__get_in_my_logical_voice_07():
                 }
             >>
         }
-        '''
+        """
         )
 
     assert container_1[0]._get_in_my_logical_voice(1, abjad.Voice) is container_2[0]

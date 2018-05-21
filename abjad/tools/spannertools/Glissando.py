@@ -103,8 +103,8 @@ class Glissando(Spanner):
 
     ### PRIVATE METHODS ###
 
-    def _copy_keyword_args(self, new):
-        Spanner._copy_keyword_args(self, new)
+    def _copy_keywords(self, new):
+        Spanner._copy_keywords(self, new)
         new._allow_repeats = self.allow_repeats
         new._allow_ties = self.allow_ties
         new._parenthesize_repeats = self.parenthesize_repeats
@@ -170,7 +170,7 @@ class Glissando(Spanner):
                 string = override.tweak_string()
                 bundle.right.spanner_starts.append(string)
         if should_attach_glissando:
-            strings = [self.start_command()]
+            strings = self.start_command()
             if tag:
                 strings = self._tag_show(strings)
             bundle.right.spanner_starts.extend(strings)
@@ -921,14 +921,14 @@ class Glissando(Spanner):
 
     ## PUBLIC METHODS ###
 
-    def start_command(self) -> typing.Optional[str]:
+    def start_command(self) -> typing.List[str]:
         r"""
         Gets start command.
 
         ..  container:: example
 
             >>> abjad.Glissando().start_command()
-            '\\glissando'
+            ['\\glissando']
 
         """
         return super(Glissando, self).start_command()

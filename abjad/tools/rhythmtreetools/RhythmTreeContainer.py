@@ -6,7 +6,8 @@ from abjad.tools.rhythmtreetools.RhythmTreeMixin import RhythmTreeMixin
 
 
 class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeContainer):
-    r'''Rhythm-tree container.
+    r"""
+    Rhythm-tree container.
 
     ..  container:: example
 
@@ -98,7 +99,7 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeContainer)
             }
 
     Returns `RhythmTreeContainer` instance.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -118,7 +119,8 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeContainer)
     ### SPECIAL METHODS ###
 
     def __add__(self, argument):
-        r'''Concatenate containers self and argument. The operation c = a + b
+        r"""
+        Concatenate containers self and argument. The operation c = a + b
         returns a new RhythmTreeContainer c with the content of both a and b,
         and a preprolated_duration equal to the sum of the durations
         of a and b. The operation is non-commutative: the content of the
@@ -160,7 +162,7 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeContainer)
             )
 
         Returns new RhythmTreeContainer.
-        '''
+        """
         from abjad.tools.rhythmtreetools.RhythmTreeParser \
             import RhythmTreeParser
         if isinstance(argument, str):
@@ -175,7 +177,8 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeContainer)
         return container
 
     def __call__(self, pulse_duration):
-        r'''Generates Abjad score components.
+        r"""
+        Generates Abjad score components.
 
         ..  container:: example
 
@@ -205,7 +208,7 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeContainer)
                 }
 
         Returns list of components.
-        '''
+        """
         import abjad
         def recurse(node, tuplet_duration):
             basic_prolated_duration = \
@@ -245,7 +248,8 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeContainer)
         return result
 
     def __graph__(self, **keywords):
-        r'''The Graph representation of the RhythmTreeContainer:
+        r"""
+        The Graph representation of the RhythmTreeContainer:
 
         >>> rtm = '(1 (1 (2 (1 1 1)) 2))'
         >>> tree = abjad.rhythmtreetools.RhythmTreeParser()(rtm)[0]
@@ -279,7 +283,7 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeContainer)
         >>> topleveltools.graph(graph) # doctest: +SKIP
 
         Return `Graph` instance.
-        '''
+        """
         graph = uqbar.graphs.Graph(
             name='G',
             attributes={
@@ -307,18 +311,20 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeContainer)
         return graph
 
     def __radd__(self, argument):
-        r'''Concatenates containers argument and self.
+        """
+        Concatenates containers argument and self.
 
         Returns new RhythmTreeContainer.
-        '''
+        """
         assert isinstance(argument, type(self))
         return argument.__add__(self)
 
     def __repr__(self):
-        r'''Gets interpreter representation of rhythm tree container.
+        """
+        Gets interpreter representation of rhythm tree container.
 
         Returns string.
-        '''
+        """
         return '{}(({}, {}))'.format(
             type(self).__name__,
             self.duration.numerator,
@@ -352,7 +358,8 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeContainer)
     ### PRIVATE PROPERTIES ###
 
     def _get_contents_duration(self):
-        r'''The total preprolated_duration of the children
+        """
+        The total preprolated_duration of the children
         of a `RhythmTreeContainer` instance:
 
         >>> rtm = '(1 (1 (2 (1 1 1)) 2))'
@@ -365,7 +372,7 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeContainer)
         Duration(3, 1)
 
         Returns int.
-        '''
+        """
         return sum([x.preprolated_duration for x in self])
 
     @property
@@ -390,7 +397,8 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeContainer)
 
     @property
     def rtm_format(self):
-        r'''The node's RTM format:
+        """
+        The node's RTM format:
 
         >>> rtm = '(1 ((1 (1 1)) (1 (1 1))))'
         >>> tree = abjad.rhythmtreetools.RhythmTreeParser()(rtm)[0]
@@ -398,7 +406,7 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeContainer)
         '(1 ((1 (1 1)) (1 (1 1))))'
 
         Returns string.
-        '''
+        """
         return '({!s} ({}))'.format(
             self.preprolated_duration,
             ' '.join([x.rtm_format for x in self]))

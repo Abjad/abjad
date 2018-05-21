@@ -2,7 +2,8 @@ from .Instrument import Instrument
 
 
 class Guitar(Instrument):
-    r'''Guitar.
+    r"""
+    Guitar.
 
     ..  container:: example
 
@@ -24,7 +25,7 @@ class Guitar(Instrument):
                 fs'4
             }
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -68,7 +69,8 @@ class Guitar(Instrument):
 
     @property
     def allowable_clefs(self):
-        r'''Gets guitar's allowable clefs.
+        """
+        Gets guitar's allowable clefs.
 
         ..  container:: example
 
@@ -77,12 +79,13 @@ class Guitar(Instrument):
             ('treble',)
 
         Returns clef list.
-        '''
+        """
         return Instrument.allowable_clefs.fget(self)
 
     @property
     def default_tuning(self):
-        r'''Gets guitar's default tuning.
+        """
+        Gets guitar's default tuning.
 
         ..  container:: example
 
@@ -91,12 +94,13 @@ class Guitar(Instrument):
             Tuning(pitches=PitchSegment(['e,', 'a,', 'd', 'g', 'b', "e'"]))
 
         Returns tuning.
-        '''
+        """
         return self._default_tuning
 
     @property
     def markup(self):
-        r'''Gets guitar's instrument name markup.
+        """
+        Gets guitar's instrument name markup.
 
         ..  container:: example
 
@@ -107,12 +111,13 @@ class Guitar(Instrument):
             >>> abjad.show(guitar.markup) # doctest: +SKIP
 
         Returns markup.
-        '''
+        """
         return Instrument.markup.fget(self)
 
     @property
     def middle_c_sounding_pitch(self):
-        r'''Gets sounding pitch of guitar's written middle C.
+        """
+        Gets sounding pitch of guitar's written middle C.
 
         ..  container:: example
 
@@ -123,12 +128,13 @@ class Guitar(Instrument):
             >>> abjad.show(guitar.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
-        '''
+        """
         return Instrument.middle_c_sounding_pitch.fget(self)
 
     @property
     def name(self):
-        r'''Gets guitar's name.
+        """
+        Gets guitar's name.
 
         ..  container:: example
 
@@ -137,12 +143,13 @@ class Guitar(Instrument):
             'guitar'
 
         Returns string.
-        '''
+        """
         return Instrument.name.fget(self)
 
     @property
     def pitch_range(self):
-        r'''Gets guitar's range.
+        """
+        Gets guitar's range.
 
         ..  container:: example
 
@@ -153,12 +160,13 @@ class Guitar(Instrument):
             >>> abjad.show(guitar.pitch_range) # doctest: +SKIP
 
         Returns pitch range.
-        '''
+        """
         return Instrument.pitch_range.fget(self)
 
     @property
     def short_markup(self):
-        r'''Gets guitar's short instrument name markup.
+        """
+        Gets guitar's short instrument name markup.
 
         ..  container:: example
 
@@ -169,12 +177,13 @@ class Guitar(Instrument):
             >>> abjad.show(guitar.short_markup) # doctest: +SKIP
 
         Returns markup.
-        '''
+        """
         return Instrument.short_markup.fget(self)
 
     @property
     def short_name(self):
-        r'''Gets guitar's short instrument name.
+        """
+        Gets guitar's short instrument name.
 
         ..  container:: example
 
@@ -183,5 +192,5 @@ class Guitar(Instrument):
             'gt.'
 
         Returns string.
-        '''
+        """
         return Instrument.short_name.fget(self)

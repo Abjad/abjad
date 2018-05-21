@@ -1,5 +1,6 @@
 def integer_to_binary_string(n):
-    r'''Changes positive integer `n` to binary string.
+    r"""
+    Changes positive integer `n` to binary string.
 
     ..  container:: example
 
@@ -24,7 +25,7 @@ def integer_to_binary_string(n):
         16 10000
 
     Returns string.
-    '''
+    """
     if n == 0:
         return '0'
     result = bin(abs(n)).lstrip('-0b')

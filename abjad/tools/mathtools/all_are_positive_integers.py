@@ -1,6 +1,6 @@
 def all_are_positive_integers(argument):
-    '''Is true when `argument` is an iterable collection of positive integers.
-    Otherwise false.
+    """
+    Is true when `argument` is an iterable collection of positive integers.
 
     ..  container:: example
 
@@ -11,7 +11,7 @@ def all_are_positive_integers(argument):
         False
 
     Returns true or false.
-    '''
+    """
     from abjad.tools import mathtools
     try:
         return all(mathtools.is_positive_integer(_) for _ in argument)

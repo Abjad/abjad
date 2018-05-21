@@ -3,7 +3,8 @@ from .ScoreTemplate import ScoreTemplate
 
 
 class StringOrchestraScoreTemplate(ScoreTemplate):
-    r'''String orchestra score template.
+    r"""
+    String orchestra score template.
 
     ..  container:: example
 
@@ -474,7 +475,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
             >>
         >>
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -513,10 +514,11 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
     ### SPECIAL METHODS ###
 
     def __call__(self):
-        r'''Calls string orchestra template.
+        """
+        Calls string orchestra template.
 
         Returns score.
-        '''
+        """
         import abjad
 
         ### TAGS ###
@@ -731,45 +733,51 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
 
     @property
     def cello_count(self):
-        r'''Number of cellos in string orchestra.
+        """
+        Number of cellos in string orchestra.
 
         Returns nonnegative integer.
-        '''
+        """
         return self._cello_count
 
     @property
     def contrabass_count(self):
-        r'''Number of contrabasses in string orchestra.
+        """
+        Number of contrabasses in string orchestra.
 
         Returns nonnegative integer.
-        '''
+        """
         return self._contrabass_count
 
     @property
     def split_hands(self):
-        r'''Is true if each performer's hand receives a separate staff.
-        '''
+        """
+        Is true if each performer's hand receives a separate staff.
+        """
         return self._split_hands
 
     @property
     def use_percussion_clefs(self):
-        r'''Is true if each staff should use a percussion clef rather than the
+        """
+        Is true if each staff should use a percussion clef rather than the
         normal clef for that instrument.
-        '''
+        """
         return self._use_percussion_clefs
 
     @property
     def viola_count(self):
-        r'''Number of violas in string orcestra.
+        """
+        Number of violas in string orcestra.
 
         Returns nonnegative integer.
-        '''
+        """
         return self._viola_count
 
     @property
     def violin_count(self):
-        r'''Number of violins in string orchestra.
+        """
+        Number of violins in string orchestra.
 
         Returns nonnegative integer.
-        '''
+        """
         return self._violin_count

@@ -2,7 +2,8 @@ from .Container import Container
 
 
 class AfterGraceContainer(Container):
-    r'''After grace container.
+    r"""
+    After grace container.
 
     ..  container:: example
 
@@ -51,7 +52,7 @@ class AfterGraceContainer(Container):
     Fill grace containers with notes, rests or chords.
 
     Attach after grace containers to notes, rests or chords.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -70,10 +71,11 @@ class AfterGraceContainer(Container):
     ### SPECIAL METHODS ###
 
     def __getnewargs__(self):
-        r'''Gets new after grace container arguments.
+        """
+        Gets new after grace container arguments.
 
         Returns tuple of single empty list.
-        '''
+        """
         return ([],)
 
     ### PRIVATE METHODS ###

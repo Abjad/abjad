@@ -2,7 +2,8 @@ from abjad.tools.abctools.ContextManager import ContextManager
 
 
 class ForbidUpdate(ContextManager):
-    r'''A context manager for forbidding score updates.
+    r"""
+    A context manager for forbidding score updates.
 
     ..  container:: example
 
@@ -31,7 +32,7 @@ class ForbidUpdate(ContextManager):
                 <e' gs'>4
             }
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -65,20 +66,22 @@ class ForbidUpdate(ContextManager):
     ### SPECIAL METHODS ###
 
     def __enter__(self):
-        r'''Enters context manager.
+        """
+        Enters context manager.
 
         Returns context manager.
-        '''
+        """
         if self.component is not None:
             self.component._update_now(offsets=True)
             self.component._is_forbidden_to_update = True
         return self
 
     def __exit__(self, exc_type, exc_value, traceback):
-        r'''Exits context manager.
+        """
+        Exits context manager.
 
         Returns none.
-        '''
+        """
         if self.component is not None:
             self.component._is_forbidden_to_update = False
             if self.update_on_exit:
@@ -88,30 +91,33 @@ class ForbidUpdate(ContextManager):
 
     @property
     def component(self):
-        r'''Gets component.
+        """
+        Gets component.
 
         Set to component or none.
 
         Returns component or none.
-        '''
+        """
         return self._component
 
     @property
     def update_on_enter(self):
-        r'''Is true when context manager should update offsets on enter.
+        """
+        Is true when context manager should update offsets on enter.
 
         Set to true, false or none.
 
         Returns true, false or none.
-        '''
+        """
         return self._update_on_enter
 
     @property
     def update_on_exit(self):
-        r'''Is true when context manager should update offsets on exit.
+        """
+        Is true when context manager should update offsets on exit.
 
         Set to true, false or none.
 
         Returns true, false or none.
-        '''
+        """
         return self._update_on_exit

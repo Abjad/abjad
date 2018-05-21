@@ -4,7 +4,8 @@ from abjad.tools.datastructuretools.String import String
 
 
 class Tags(AbjadValueObject):
-    r'''Tags.
+    """
+    Tags.
 
     ..  container:: example
 
@@ -25,7 +26,7 @@ class Tags(AbjadValueObject):
         >>> abjad.tags.SHOW_TO_JOIN_BROKEN_SPANNERS
         'SHOW_TO_JOIN_BROKEN_SPANNERS'
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -248,10 +249,11 @@ class Tags(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __getattr__(self, tag: str) -> str:
-        r'''Gets `tag`.
+        """
+        Gets `tag`.
 
         Raises attribute error when `tag` is unknown.
-        '''
+        """
         if tag not in self._known_tags:
             raise AttributeError('unknown tag: {!r}.'.format(tag))
         return tag
@@ -259,7 +261,8 @@ class Tags(AbjadValueObject):
     ### PUBLIC METHODS ###
 
     def clef_color_tags(self, path=None) -> typing.List[str]:
-        r'''Gets clef color tags.
+        """
+        Gets clef color tags.
 
         ..  container:: example
 
@@ -310,7 +313,7 @@ class Tags(AbjadValueObject):
             'REDUNDANT_CLEF_REDRAW_COLOR'
             'REAPPLIED_CLEF'
 
-        '''
+        """
         tags = [
             self.DEFAULT_CLEF_COLOR,
             self.DEFAULT_CLEF_REDRAW_COLOR,
@@ -326,7 +329,8 @@ class Tags(AbjadValueObject):
         return tags
 
     def documentation_removal_tags(self):
-        r'''Gets documentation removal tags.
+        """
+        Gets documentation removal tags.
 
         ..  container:: example
 
@@ -341,7 +345,7 @@ class Tags(AbjadValueObject):
             'SPACING_MARKUP'
             'STAGE_NUMBER_MARKUP'
 
-        '''
+        """
         return [
             self.CLOCK_TIME_MARKUP,
             self.FIGURE_NAME_MARKUP,
@@ -353,7 +357,8 @@ class Tags(AbjadValueObject):
             ]
 
     def dynamic_color_tags(self, path=None) -> typing.List[str]:
-        r'''Gets dynamic color tags.
+        """
+        Gets dynamic color tags.
 
         ..  container:: example
 
@@ -369,7 +374,7 @@ class Tags(AbjadValueObject):
             'REDUNDANT_DYNAMIC_REDRAW_COLOR'
 
         Ignores ``path``.
-        '''
+        """
         return [
             self.EXPLICIT_DYNAMIC_COLOR,
             self.EXPLICIT_DYNAMIC_REDRAW_COLOR,
@@ -381,7 +386,8 @@ class Tags(AbjadValueObject):
             ]
 
     def instrument_color_tags(self, path=None) -> typing.List[str]:
-        r'''Gets instrument color tags.
+        """
+        Gets instrument color tags.
 
         ..  container:: example
 
@@ -402,7 +408,7 @@ class Tags(AbjadValueObject):
             'REDRAWN_REDUNDANT_INSTRUMENT_COLOR'
 
         Ignores ``path``.
-        '''
+        """
         return [
             self.DEFAULT_INSTRUMENT_ALERT,
             self.DEFAULT_INSTRUMENT_COLOR,
@@ -419,7 +425,8 @@ class Tags(AbjadValueObject):
             ]
 
     def layout_removal_tags(self):
-        r'''Gets layout removal tags.
+        """
+        Gets layout removal tags.
 
         ..  container:: example
 
@@ -435,7 +442,7 @@ class Tags(AbjadValueObject):
             'REDUNDANT_TIME_SIGNATURE_COLOR'
             'STAGE_NUMBER_MARKUP'
 
-        '''
+        """
         return [
             self.EMPTY_START_BAR,
             self.EXPLICIT_TIME_SIGNATURE_COLOR,
@@ -448,7 +455,8 @@ class Tags(AbjadValueObject):
             ]
 
     def margin_markup_color_tags(self, path=None) -> typing.List[str]:
-        r'''Gets margin markup color tags.
+        """
+        Gets margin markup color tags.
 
         ..  container:: example
 
@@ -469,7 +477,7 @@ class Tags(AbjadValueObject):
             'REDRAWN_REDUNDANT_MARGIN_MARKUP_COLOR'
 
         Ignores ``path``.
-        '''
+        """
         return [
             self.DEFAULT_MARGIN_MARKUP_ALERT,
             self.DEFAULT_MARGIN_MARKUP_COLOR,
@@ -486,7 +494,8 @@ class Tags(AbjadValueObject):
             ]
 
     def metronome_mark_color_expression_tags(self, path=None) -> typing.List[str]:
-        r'''Gets metronome mark color expression tags.
+        """
+        Gets metronome mark color expression tags.
 
         ..  container:: example
 
@@ -497,7 +506,7 @@ class Tags(AbjadValueObject):
             'REAPPLIED_METRONOME_MARK_WITH_COLOR'
             'REDUNDANT_METRONOME_MARK_WITH_COLOR'
 
-        '''
+        """
         return [
             self.EXPLICIT_METRONOME_MARK_WITH_COLOR,
             self.REAPPLIED_METRONOME_MARK_WITH_COLOR,
@@ -505,7 +514,8 @@ class Tags(AbjadValueObject):
             ]
 
     def metronome_mark_color_suppression_tags(self, path=None) -> typing.List[str]:
-        r'''Gets metronome mark color suppression tags.
+        """
+        Gets metronome mark color suppression tags.
 
         ..  container:: example
 
@@ -516,14 +526,15 @@ class Tags(AbjadValueObject):
             'REDUNDANT_METRONOME_MARK'
 
         Ignores ``path``.
-        '''
+        """
         return [
             self.EXPLICIT_METRONOME_MARK,
             self.REDUNDANT_METRONOME_MARK,
             ]
 
     def music_annotation_tags(self) -> typing.List[str]:
-        r'''Gets music annotation tags.
+        """
+        Gets music annotation tags.
 
         ..  container:: example
 
@@ -537,7 +548,7 @@ class Tags(AbjadValueObject):
             'SPACING_OVERRIDE_MARKUP'
             'STAGE_NUMBER_MARKUP'
 
-        '''
+        """
         return [
             self.CLOCK_TIME_MARKUP,
             self.FIGURE_NAME_MARKUP,
@@ -551,7 +562,8 @@ class Tags(AbjadValueObject):
         self,
         path=None,
         ) -> typing.List[str]:
-        r'''Gets persistent indicator color expression tags.
+        """
+        Gets persistent indicator color expression tags.
 
         ..  container:: example
 
@@ -727,7 +739,7 @@ class Tags(AbjadValueObject):
             'REDUNDANT_TIME_SIGNATURE_COLOR'
             'REAPPLIED_TIME_SIGNATURE'
 
-        '''
+        """
         tags: typing.List[str] = []
         tags.extend(self.clef_color_tags(path))
         tags.extend(self.dynamic_color_tags(path))
@@ -742,7 +754,8 @@ class Tags(AbjadValueObject):
         self,
         path=None,
         ) -> typing.List[str]:
-        r'''Gets persistent indicator color suppression tags.
+        """
+        Gets persistent indicator color suppression tags.
 
         ..  container:: example
 
@@ -777,13 +790,14 @@ class Tags(AbjadValueObject):
             'EXPLICIT_METRONOME_MARK'
             'REDUNDANT_METRONOME_MARK'
 
-        '''
+        """
         tags: typing.List[str] = []
         tags.extend(self.metronome_mark_color_suppression_tags())
         return tags
 
     def persistent_indicator_tags(self) -> typing.List[str]:
-        r'''Gets persistence tags.
+        """
+        Gets persistence tags.
 
         ..  container:: example
 
@@ -818,7 +832,7 @@ class Tags(AbjadValueObject):
             'REAPPLIED_TIME_SIGNATURE'
             'REDUNDANT_TIME_SIGNATURE'
 
-        '''
+        """
         return [
             self.DEFAULT_CLEF,
             self.EXPLICIT_CLEF,
@@ -858,7 +872,8 @@ class Tags(AbjadValueObject):
             ]
 
     def spacing_markup_tags(self) -> typing.List[str]:
-        r'''Gets markup spacing tags.
+        """
+        Gets markup spacing tags.
 
         ..  container:: example
 
@@ -868,14 +883,15 @@ class Tags(AbjadValueObject):
             'SPACING_MARKUP'
             'SPACING_OVERRIDE_MARKUP'
 
-        '''
+        """
         return [
             self.SPACING_MARKUP,
             self.SPACING_OVERRIDE_MARKUP,
             ]
 
     def spacing_tags(self) -> typing.List[str]:
-        r'''Gets spacing tags.
+        """
+        Gets spacing tags.
 
         ..  container:: example
 
@@ -887,7 +903,7 @@ class Tags(AbjadValueObject):
             'SPACING_OVERRIDE'
             'SPACING_OVERRIDE_MARKUP'
 
-        '''
+        """
         return [
             self.SPACING,
             self.SPACING_MARKUP,
@@ -896,7 +912,8 @@ class Tags(AbjadValueObject):
             ]
 
     def staff_lines_color_tags(self, path=None) -> typing.List[str]:
-        r'''Gets staff lines color tags.
+        """
+        Gets staff lines color tags.
 
         ..  container:: example
 
@@ -932,7 +949,7 @@ class Tags(AbjadValueObject):
             'REDUNDANT_STAFF_LINES_COLOR'
             'REAPPLIED_STAFF_LINES'
 
-        '''
+        """
         tags = [
             self.EXPLICIT_STAFF_LINES_COLOR,
             self.REAPPLIED_STAFF_LINES_COLOR,
@@ -943,7 +960,8 @@ class Tags(AbjadValueObject):
         return tags
 
     def time_signature_color_tags(self, path=None) -> typing.List[str]:
-        r'''Gets time signature color tags.
+        """
+        Gets time signature color tags.
 
         ..  container:: example
 
@@ -978,7 +996,7 @@ class Tags(AbjadValueObject):
             'REAPPLIED_TIME_SIGNATURE_COLOR'
             'REDUNDANT_TIME_SIGNATURE_COLOR'
 
-        '''
+        """
         tags = [
             self.EXPLICIT_TIME_SIGNATURE_COLOR,
             self.REAPPLIED_TIME_SIGNATURE_COLOR,

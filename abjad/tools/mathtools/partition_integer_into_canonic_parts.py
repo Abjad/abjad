@@ -1,5 +1,6 @@
 def partition_integer_into_canonic_parts(n, decrease_parts_monotonically=True):
-    r'''Partitions integer `n` into canonic parts.
+    """
+    Partitions integer `n` into canonic parts.
 
     ..  container:: example
 
@@ -59,7 +60,7 @@ def partition_integer_into_canonic_parts(n, decrease_parts_monotonically=True):
     Returns tuple with parts that decrease monotonically.
 
     Returns tuple of integers.
-    '''
+    """
     from abjad.tools import mathtools
     assert isinstance(n, int), repr(n)
     assert isinstance(decrease_parts_monotonically, bool)

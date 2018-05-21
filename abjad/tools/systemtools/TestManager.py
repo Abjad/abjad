@@ -5,8 +5,9 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class TestManager(AbjadObject):
-    r'''Manages test logic.
-    '''
+    """
+    Manages test logic.
+    """
 
     ### CLASS VARIABLES ###
 
@@ -35,7 +36,8 @@ class TestManager(AbjadObject):
 
     @staticmethod
     def _compare_lys(path_1, path_2):
-        r'''Compares LilyPond file `path_1` to LilyPond file `path_2`.
+        """
+        Compares LilyPond file `path_1` to LilyPond file `path_2`.
 
         Performs line-by-line comparison.
 
@@ -46,14 +48,15 @@ class TestManager(AbjadObject):
         Discards any lines beginning with ``%``.
 
         Returns true or false.
-        '''
+        """
         file_1_lines = TestManager._normalize_ly(path_1)
         file_2_lines = TestManager._normalize_ly(path_2)
         return file_1_lines == file_2_lines
 
     @staticmethod
     def _compare_text_files(path_1, path_2):
-        r'''Compares text file `path_1` to text file `path_2`.
+        """
+        Compares text file `path_1` to text file `path_2`.
 
         Performs line-by-line comparison.
 
@@ -62,7 +65,7 @@ class TestManager(AbjadObject):
         Trims whitespace from the end of each line.
 
         Returns true or false.
-        '''
+        """
         file_1_lines, file_2_lines = [], []
         with open(path_1, 'r') as file_pointer:
             for line in file_pointer.readlines():
@@ -97,12 +100,13 @@ class TestManager(AbjadObject):
 
     @staticmethod
     def compare(string_1, string_2):
-        r'''Compares `string_1` to `string_2`.
+        """
+        Compares `string_1` to `string_2`.
 
         Massage newlines.
 
         Returns true or false.
-        '''
+        """
         if not isinstance(string_1, str):
             string_1 = format(string_1)
         split_lines = string_2.split('\n')
@@ -124,7 +128,8 @@ class TestManager(AbjadObject):
 
     @staticmethod
     def compare_files(path_1, path_2):
-        r'''Compares file `path_1` to file `path_2`.
+        """
+        Compares file `path_1` to file `path_2`.
 
         For all file types::
 
@@ -138,7 +143,7 @@ class TestManager(AbjadObject):
 
         Returns true when files compare the same and false when files compare
         differently.
-        '''
+        """
         path_1 = str(path_1)
         path_2 = str(path_2)
         if os.path.exists(path_1) and not os.path.exists(path_2):
@@ -161,10 +166,11 @@ class TestManager(AbjadObject):
 
     @staticmethod
     def compare_objects(object_one, object_two):
-        r'''Compares `object_one` to `object_two`.
+        """
+        Compares `object_one` to `object_two`.
 
         Returns true or false.
-        '''
+        """
         import abjad
         agent_one = abjad.StorageFormatManager(object_one)
         if agent_one.format_specification.coerce_for_equality:
@@ -184,7 +190,8 @@ class TestManager(AbjadObject):
 
     @staticmethod
     def diff(object_a, object_b, title=None):
-        r'''Gets diff of `object_a` and `object_b` formats.
+        """
+        Gets diff of `object_a` and `object_b` formats.
 
         >>> one = abjad.Flute()
 
@@ -227,7 +234,7 @@ class TestManager(AbjadObject):
             )
 
         Returns string.
-        '''
+        """
         try:
             a_format = format(object_a, 'storage')
         except ValueError:

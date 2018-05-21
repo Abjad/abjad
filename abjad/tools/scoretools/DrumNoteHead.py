@@ -2,7 +2,8 @@ from .NoteHead import NoteHead
 
 
 class DrumNoteHead(NoteHead):
-    r'''Drum note-head.
+    """
+    Drum note-head.
 
     ..  container:: example
 
@@ -10,7 +11,7 @@ class DrumNoteHead(NoteHead):
         >>> note_head
         DrumNoteHead('snare')
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 

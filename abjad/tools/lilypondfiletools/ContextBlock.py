@@ -2,7 +2,8 @@ from .Block import Block
 
 
 class ContextBlock(Block):
-    r'''A LilyPond file ``\context`` block.
+    r"""
+    A LilyPond file ``\context`` block.
 
     ..  container:: example
 
@@ -41,7 +42,7 @@ class ContextBlock(Block):
             \accidentalStyle dodecaphonic
         }
 
-    '''
+    """
 
     ### INITIALIZER ###
 
@@ -124,7 +125,8 @@ class ContextBlock(Block):
 
     @property
     def accepts_commands(self):
-        r'''Gets arguments of LilyPond ``\accepts`` commands.
+        r"""
+        Gets arguments of LilyPond ``\accepts`` commands.
 
         ..  container:: example
 
@@ -148,12 +150,13 @@ class ContextBlock(Block):
             ['FluteUpperVoice', 'FluteLowerVoice']
 
         Returns list.
-        '''
+        """
         return self._accepts_commands
 
     @property
     def alias(self):
-        r'''Gets and sets argument of LilyPond ``\alias`` command.
+        r"""
+        Gets and sets argument of LilyPond ``\alias`` command.
 
         ..  container:: example
 
@@ -177,12 +180,13 @@ class ContextBlock(Block):
             'Staff'
 
         Returns string or none.
-        '''
+        """
         return self._alias
 
     @property
     def consists_commands(self):
-        r'''Gets arguments of LilyPond ``\consists`` commands.
+        r"""
+        Gets arguments of LilyPond ``\consists`` commands.
 
         ..  container:: example
 
@@ -206,12 +210,13 @@ class ContextBlock(Block):
             ['Horizontal_bracket_engraver']
 
         Returns list.
-        '''
+        """
         return self._consists_commands
 
     @property
     def items(self):
-        r'''Gets items in context block.
+        r"""
+        Gets items in context block.
 
         ..  container:: example
 
@@ -235,12 +240,13 @@ class ContextBlock(Block):
             ['\\accidentalStyle dodecaphonic']
 
         Returns list.
-        '''
+        """
         return self._items
 
     @property
     def name(self):
-        r'''Gets and sets argument of LilyPond ``\name`` command.
+        r"""
+        Gets and sets argument of LilyPond ``\name`` command.
 
         ..  container:: example
 
@@ -264,12 +270,13 @@ class ContextBlock(Block):
             'FluteStaff'
 
         Returns string or none.
-        '''
+        """
         return self._name
 
     @property
     def remove_commands(self):
-        r'''Gets arguments of LilyPond ``\remove`` commands.
+        r"""
+        Gets arguments of LilyPond ``\remove`` commands.
 
         ..  container:: example
 
@@ -293,12 +300,13 @@ class ContextBlock(Block):
             ['Forbid_line_break_engraver']
 
         Returns list.
-        '''
+        """
         return self._remove_commands
 
     @property
     def source_lilypond_type(self):
-        r'''Gets and sets source context name.
+        r"""
+        Gets and sets source context name.
 
         ..  container:: example
 
@@ -322,12 +330,13 @@ class ContextBlock(Block):
             'Staff'
 
         Returns string or none.
-        '''
+        """
         return self._source_lilypond_type
 
     @property
     def type_(self):
-        r'''Gets and sets argument of LilyPond ``\type`` command.
+        r"""
+        Gets and sets argument of LilyPond ``\type`` command.
 
         ..  container:: example
 
@@ -351,5 +360,5 @@ class ContextBlock(Block):
             'Engraver_group'
 
         Returns string or none.
-        '''
+        """
         return self._type_

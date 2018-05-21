@@ -4,7 +4,7 @@ import pytest
 
 # NOTE: all tests operate on the following expression
 staff = abjad.Staff(
-    r'''
+    r"""
     c'8
     cs'8
     <<
@@ -19,17 +19,17 @@ staff = abjad.Staff(
     >>
     fs'8
     g'8
-    '''
+    """
     )
 
 
 def test_scoretools_Iteration__depth_first_01():
-    '''
+    """
     Default depth-first search:
         * capped iteration returns no elements above self._client
         * unique returns each node at most once
         * no classes forbidden means all containers entered
-    '''
+    """
 
     # LEFT-TO-RIGHT #
 
@@ -44,7 +44,7 @@ def test_scoretools_Iteration__depth_first_01():
     assert next(iterator) is staff[2][1][1]
     assert pytest.raises(StopIteration, 'next(iterator)')
 
-    r'''
+    """
     abjad.Container(abjad.Voice(d'8, ef'8), abjad.Voice(e'8, f'8))
     Voice(d'8, ef'8)
     d'8
@@ -52,7 +52,7 @@ def test_scoretools_Iteration__depth_first_01():
     Voice(e'8, f'8)
     e'8
     f'8
-    '''
+    """
 
     # RIGHT-TO-LEFT #
 
@@ -69,7 +69,7 @@ def test_scoretools_Iteration__depth_first_01():
     assert next(iterator) is staff[2][0][0]
     assert pytest.raises(StopIteration, 'next(iterator)')
 
-    r'''
+    """
     abjad.Container(abjad.Voice(d'8, ef'8), abjad.Voice(e'8, f'8))
     Voice(e'8, f'8)
     f'8
@@ -77,13 +77,14 @@ def test_scoretools_Iteration__depth_first_01():
     Voice(d'8, ef'8)
     ef'8
     d'8
-    '''
+    """
 
 
 def test_scoretools_Iteration__depth_first_02():
-    r'''Uncapped depth-first search: uncapped iteration returns
-    all elements above self._client
-    '''
+    """
+    Uncapped depth-first search: uncapped iteration returns all elements above
+    self.client
+    """
 
     # LEFT-TO-RIGHT #
 
@@ -103,7 +104,7 @@ def test_scoretools_Iteration__depth_first_02():
     assert next(iterator) is staff[4]
     assert pytest.raises(StopIteration, 'next(iterator)')
 
-    r'''
+    """
     abjad.Container(abjad.Voice(d'8, ef'8), abjad.Voice(e'8, f'8))
     Voice(d'8, ef'8)
     d'8
@@ -114,7 +115,7 @@ def test_scoretools_Iteration__depth_first_02():
     Staff{5}
     fs'8
     iterator'8
-    '''
+    """
 
     # RIGHT-TO-LEFT #
 
@@ -135,7 +136,7 @@ def test_scoretools_Iteration__depth_first_02():
     assert next(iterator) is staff[0]
     assert pytest.raises(StopIteration, 'next(iterator)')
 
-    r'''
+    """
     abjad.Container(abjad.Voice(d'8, ef'8), abjad.Voice(e'8, f'8))
     Voice(e'8, f'8)
     f'8
@@ -146,12 +147,14 @@ def test_scoretools_Iteration__depth_first_02():
     Staff{5}
     cs'8
     c'8
-    '''
+    """
 
 
 def test_scoretools_Iteration__depth_first_03():
-    r'''Duplicates-allowed depth-first search: nodes yield every time they are
-    traversed.  '''
+    """
+    Duplicates-allowed depth-first search: nodes yield every time they are
+    traversed.
+    """
 
     # LEFT-TO-RIGHT #
 
@@ -174,7 +177,7 @@ def test_scoretools_Iteration__depth_first_03():
     assert next(iterator) is staff[2]
     assert pytest.raises(StopIteration, 'next(iterator)')
 
-    r'''
+    """
     abjad.Container(abjad.Voice(d'8, ef'8), abjad.Voice(e'8, f'8))
     Voice(d'8, ef'8)
     d'8
@@ -188,7 +191,7 @@ def test_scoretools_Iteration__depth_first_03():
     f'8
     Voice(e'8, f'8)
     abjad.Container(abjad.Voice(d'8, ef'8), abjad.Voice(e'8, f'8))
-    '''
+    """
 
     # RIGHT-TO-LEFT #
 
@@ -212,7 +215,7 @@ def test_scoretools_Iteration__depth_first_03():
     assert next(iterator) is staff[2]
     assert pytest.raises(StopIteration, 'next(iterator)')
 
-    r'''
+    """
     abjad.Container(abjad.Voice(d'8, ef'8), abjad.Voice(e'8, f'8))
     Voice(e'8, f'8)
     f'8
@@ -226,13 +229,14 @@ def test_scoretools_Iteration__depth_first_03():
     d'8
     Voice(d'8, ef'8)
     abjad.Container(abjad.Voice(d'8, ef'8), abjad.Voice(e'8, f'8))
-    '''
+    """
 
 
 def test_scoretools_Iteration__depth_first_04():
-    r'''Restricted depth-first search: iteration will yield -- but will not
-    enter -- forbidden classes.
-    '''
+    """
+    Restricted depth-first search: iteration will yield -- but will not enter
+    -- forbidden classes.
+    """
 
     # LEFT-TO-RIGHT #
 
@@ -248,14 +252,14 @@ def test_scoretools_Iteration__depth_first_04():
     assert next(iterator) is staff[4]
     assert pytest.raises(StopIteration, 'next(iterator)')
 
-    r'''
+    """
     Staff{5}
     c'8
     cs'8
     abjad.Container(abjad.Voice(d'8, ef'8), abjad.Voice(e'8, f'8))
     fs'8
     iterator'8
-    '''
+    """
 
     # RIGHT-TO-LEFT #
 
@@ -272,19 +276,20 @@ def test_scoretools_Iteration__depth_first_04():
     assert next(iterator) is staff[0]
     assert pytest.raises(StopIteration, 'next(iterator)')
 
-    r'''
+    """
     Staff{5}
     iterator'8
     fs'8
     abjad.Container(abjad.Voice(d'8, ef'8), abjad.Voice(e'8, f'8))
     cs'8
     c'8
-    '''
+    """
 
 
 def test_scoretools_Iteration__depth_first_05():
-    r'''Uncapped depth-first search with duplicates allowed.
-    '''
+    """
+    Uncapped depth-first search with duplicates allowed.
+    """
 
     # LEFT-TO-RIGHT #
 
@@ -313,7 +318,7 @@ def test_scoretools_Iteration__depth_first_05():
     assert next(iterator) is staff
     assert pytest.raises(StopIteration, 'next(iterator)')
 
-    r'''
+    """
     abjad.Container(abjad.Voice(d'8, ef'8), abjad.Voice(e'8, f'8))
     Voice(d'8, ef'8)
     d'8
@@ -332,7 +337,7 @@ def test_scoretools_Iteration__depth_first_05():
     Staff{5}
     iterator'8
     Staff{5}
-    '''
+    """
 
     # RIGHT-TO-LEFT #
 
@@ -362,7 +367,7 @@ def test_scoretools_Iteration__depth_first_05():
     assert next(iterator) is staff
     assert pytest.raises(StopIteration, 'next(iterator)')
 
-    r'''
+    """
     abjad.Container(abjad.Voice(d'8, ef'8), abjad.Voice(e'8, f'8))
     Voice(e'8, f'8)
     f'8
@@ -381,12 +386,13 @@ def test_scoretools_Iteration__depth_first_05():
     Staff{5}
     c'8
     Staff{5}
-    '''
+    """
 
 
 def test_scoretools_Iteration__depth_first_06():
-    r'''Uncapped and restricted depth-first search.
-    '''
+    """
+    Uncapped and restricted depth-first search.
+    """
 
     # LEFT-TO-RIGHT #
 
@@ -400,12 +406,12 @@ def test_scoretools_Iteration__depth_first_06():
     assert next(iterator) is staff[3]
     assert next(iterator) is staff[4]
 
-    r'''
+    """
     abjad.Container(abjad.Voice(d'8, ef'8), abjad.Voice(e'8, f'8))
     Staff{5}
     fs'8
     iterator'8
-    '''
+    """
 
     # RIGHT-TO-LEFT #
 
@@ -420,17 +426,18 @@ def test_scoretools_Iteration__depth_first_06():
     assert next(iterator) is staff[1]
     assert next(iterator) is staff[0]
 
-    r'''
+    """
     abjad.Container(abjad.Voice(d'8, ef'8), abjad.Voice(e'8, f'8))
     Staff{5}
     cs'8
     c'8
-    '''
+    """
 
 
 def test_scoretools_Iteration__depth_first_07():
-    r'''Restricted depth-first search with duplicates allowed.
-    '''
+    """
+    Restricted depth-first search with duplicates allowed.
+    """
 
     # LEFT-TO-RIGHT
 
@@ -452,7 +459,7 @@ def test_scoretools_Iteration__depth_first_07():
     assert next(iterator) is staff
     assert pytest.raises(StopIteration, 'next(iterator)')
 
-    r'''
+    """
     Staff{5}
     c'8
     Staff{5}
@@ -464,7 +471,7 @@ def test_scoretools_Iteration__depth_first_07():
     Staff{5}
     iterator'8
     Staff{5}
-    '''
+    """
 
     # RIGHT-TO-LEFT #
 
@@ -487,7 +494,7 @@ def test_scoretools_Iteration__depth_first_07():
     assert next(iterator) is staff
     assert pytest.raises(StopIteration, 'next(iterator)')
 
-    r'''
+    """
     Staff{5}
     iterator'8
     Staff{5}
@@ -499,12 +506,13 @@ def test_scoretools_Iteration__depth_first_07():
     Staff{5}
     c'8
     Staff{5}
-    '''
+    """
 
 
 def test_scoretools_Iteration__depth_first_08():
-    r'''Uncapped but restricted depth-first serach with duplicates allowed.
-    '''
+    """
+    Uncapped but restricted depth-first serach with duplicates allowed.
+    """
 
     # LEFT-TO-RIGHT #
 
@@ -522,14 +530,14 @@ def test_scoretools_Iteration__depth_first_08():
     assert next(iterator) is staff
     assert pytest.raises(StopIteration, 'next(iterator)')
 
-    r'''
+    """
     abjad.Container(abjad.Voice(d'8, ef'8), abjad.Voice(e'8, f'8))
     Staff{5}
     fs'8
     Staff{5}
     iterator'8
     Staff{5}
-    '''
+    """
 
     # RIGHT-TO-LEFT #
 
@@ -548,11 +556,11 @@ def test_scoretools_Iteration__depth_first_08():
     assert next(iterator) is staff
     assert pytest.raises(StopIteration, 'next(iterator)')
 
-    r'''
+    """
     abjad.Container(abjad.Voice(d'8, ef'8), abjad.Voice(e'8, f'8))
     Staff{5}
     cs'8
     Staff{5}
     c'8
     Staff{5}
-    '''
+    """

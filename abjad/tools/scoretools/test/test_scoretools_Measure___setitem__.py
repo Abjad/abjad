@@ -19,11 +19,11 @@ def test_scoretools_Measure___setitem___02():
 
     assert not measure.is_underfull
     assert format(measure) == abjad.String.normalize(
-        r'''
+        r"""
         {   % measure
             \time 3/8
             r8
             e'4
         }   % measure
-        '''
+        """
         )

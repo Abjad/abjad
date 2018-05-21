@@ -3,8 +3,9 @@ import pytest
 
 
 def test_scoretools_Mutation_fuse_01():
-    r'''Works with list of leaves.
-    '''
+    """
+    Works with list of leaves.
+    """
 
     notes = 8 * abjad.Note("c'4")
     fused = abjad.mutate(notes).fuse()
@@ -14,8 +15,9 @@ def test_scoretools_Mutation_fuse_01():
 
 
 def test_scoretools_Mutation_fuse_02():
-    r'''Works with Leaf component.
-    '''
+    """
+    Works with Leaf component.
+    """
 
     fused = abjad.mutate(abjad.Note("c'4")).fuse()
     assert len(fused) == 1
@@ -23,8 +25,9 @@ def test_scoretools_Mutation_fuse_02():
 
 
 def test_scoretools_Mutation_fuse_03():
-    r'''Works with containers.
-    '''
+    """
+    Works with containers.
+    """
 
     voice = abjad.Voice(8 * abjad.Note("c'4"))
     fused = abjad.mutate(voice[:]).fuse()
@@ -34,8 +37,9 @@ def test_scoretools_Mutation_fuse_03():
 
 
 def test_scoretools_Mutation_fuse_04():
-    r'''Fusion results in tied notes.
-    '''
+    """
+    Fusion results in tied notes.
+    """
 
     voice = abjad.Voice([abjad.Note(0, (2, 16)), abjad.Note(9, (3, 16))])
     fused = abjad.mutate(voice[:]).fuse()
@@ -54,21 +58,22 @@ def test_scoretools_Mutation_fuse_04():
 
 
 def test_scoretools_Mutation_fuse_05():
-    r'''Fuses leaves with differing LilyPond multipliers.
-    '''
+    """
+    Fuses leaves with differing LilyPond multipliers.
+    """
 
     staff = abjad.Staff([abjad.Skip((1, 1)), abjad.Skip((1, 1))])
     abjad.attach(abjad.Multiplier(1, 16), staff[0])
     abjad.attach(abjad.Multiplier(5, 16), staff[1])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             s1 * 1/16
             s1 * 5/16
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).get_duration() == abjad.Duration(3, 8)
@@ -76,12 +81,12 @@ def test_scoretools_Mutation_fuse_05():
     abjad.mutate(staff[:]).fuse()
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             s1 * 3/8
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).get_duration() == abjad.Duration(3, 8)
@@ -89,8 +94,9 @@ def test_scoretools_Mutation_fuse_05():
 
 
 def test_scoretools_Mutation_fuse_06():
-    r'''Fuses two unincorporated tuplets with same multiplier.
-    '''
+    """
+    Fuses two unincorporated tuplets with same multiplier.
+    """
 
     tuplet_1 = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
     beam = abjad.Beam()
@@ -100,7 +106,7 @@ def test_scoretools_Mutation_fuse_06():
     abjad.attach(slur, tuplet_2[:])
 
     assert format(tuplet_1) == abjad.String.normalize(
-        r'''
+        r"""
         \times 2/3 {
             c'8
             [
@@ -108,11 +114,11 @@ def test_scoretools_Mutation_fuse_06():
             e'8
             ]
         }
-        '''
+        """
         )
 
     assert format(tuplet_2) == abjad.String.normalize(
-        r'''
+        r"""
         \times 2/3 {
             c'16
             (
@@ -120,14 +126,14 @@ def test_scoretools_Mutation_fuse_06():
             e'16
             )
         }
-        '''
+        """
         )
 
     tuplets = abjad.select([tuplet_1, tuplet_2])
     new = abjad.mutate(tuplets).fuse()
 
     assert format(new) == abjad.String.normalize(
-        r'''
+        r"""
         \times 2/3 {
             c'8
             [
@@ -140,7 +146,7 @@ def test_scoretools_Mutation_fuse_06():
             e'16
             )
         }
-        '''
+        """
         )
 
     assert len(tuplet_1) == 0
@@ -150,8 +156,9 @@ def test_scoretools_Mutation_fuse_06():
 
 
 def test_scoretools_Mutation_fuse_07():
-    r'''Fuses tuplets with same multiplier in score.
-    '''
+    """
+    Fuses tuplets with same multiplier in score.
+    """
 
     tuplet_1 = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
     beam = abjad.Beam()
@@ -162,7 +169,7 @@ def test_scoretools_Mutation_fuse_07():
     voice = abjad.Voice([tuplet_1, tuplet_2])
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             \times 2/3 {
@@ -180,14 +187,14 @@ def test_scoretools_Mutation_fuse_07():
                 )
             }
         }
-        '''
+        """
         )
 
     tuplets = voice[:]
     abjad.mutate(tuplets).fuse()
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             \times 2/3 {
@@ -203,15 +210,16 @@ def test_scoretools_Mutation_fuse_07():
                 )
             }
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice).is_well_formed()
 
 
 def test_scoretools_Mutation_fuse_08():
-    r'''Fuses fixed-multiplier tuplets with same multiplier in score.
-    '''
+    """
+    Fuses fixed-multiplier tuplets with same multiplier in score.
+    """
 
     tuplet_1 = abjad.Tuplet(abjad.Multiplier(2, 3), "c'8 d'8 e'8")
     beam = abjad.Beam()
@@ -222,7 +230,7 @@ def test_scoretools_Mutation_fuse_08():
     voice = abjad.Voice([tuplet_1, tuplet_2])
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             \times 2/3 {
@@ -243,14 +251,14 @@ def test_scoretools_Mutation_fuse_08():
                 )
             }
         }
-        '''
+        """
         )
 
     tuplets = voice[:]
     abjad.mutate(tuplets).fuse()
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             \tweak edge-height #'(0.7 . 0)
@@ -269,15 +277,16 @@ def test_scoretools_Mutation_fuse_08():
                 )
             }
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice).is_well_formed()
 
 
 def test_scoretools_Mutation_fuse_09():
-    r'''Tuplets must carry same multiplier.
-    '''
+    """
+    Tuplets must carry same multiplier.
+    """
 
     tuplet_1 = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
     tuplet_2 = abjad.Tuplet ((4, 5), "c'8 d'8 e'8 f'8 g'8")
@@ -287,8 +296,9 @@ def test_scoretools_Mutation_fuse_09():
 
 
 def test_scoretools_Mutation_fuse_10():
-    r'''Dominant spanners on contents are preserved.
-    '''
+    """
+    Dominant spanners on contents are preserved.
+    """
 
     tuplet_1 = abjad.Tuplet((2, 3), "c'8")
     tuplet_2 = abjad.Tuplet((2, 3), "c'4")
@@ -298,7 +308,7 @@ def test_scoretools_Mutation_fuse_10():
     abjad.attach(slur, leaves)
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             \tweak edge-height #'(0.7 . 0)
@@ -313,14 +323,14 @@ def test_scoretools_Mutation_fuse_10():
             c'4
             )
         }
-        '''
+        """
         )
 
     tuplets = voice[:2]
     abjad.mutate(tuplets).fuse()
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             \times 2/3 {
@@ -331,16 +341,17 @@ def test_scoretools_Mutation_fuse_10():
             c'4
             )
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice).is_well_formed()
 
 
 def test_scoretools_Mutation_fuse_11():
-    r'''Fuses unicorporated measures carrying
+    """
+    Fuses unicorporated measures carrying
     time signatures with power-of-two denominators.
-    '''
+    """
 
     measure_1 = abjad.Measure((1, 8), "c'16 d'16")
     beam = abjad.Beam()
@@ -351,7 +362,7 @@ def test_scoretools_Mutation_fuse_11():
     staff = abjad.Staff([measure_1, measure_2])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -369,7 +380,7 @@ def test_scoretools_Mutation_fuse_11():
                 )
             }   % measure
         }
-        '''
+        """
         )
 
     new = abjad.mutate(staff[:]).fuse()
@@ -379,7 +390,7 @@ def test_scoretools_Mutation_fuse_11():
     assert len(measure_2) == 0
 
     assert format(new) == abjad.String.normalize(
-        r'''
+        r"""
         {   % measure
             \time 2/8
             c'16
@@ -391,17 +402,19 @@ def test_scoretools_Mutation_fuse_11():
             d'16
             )
         }   % measure
-        '''
+        """
         )
 
     assert abjad.inspect(new).is_well_formed()
 
 
 def test_scoretools_Mutation_fuse_12():
-    r'''Fuses measures carrying time signatures with differing
-    power-of-two denominators. Helpers abjad.selects minimum of two denominators.
-    Beams are OK because they abjad.attach to leaves rather than containers.
-    '''
+    """
+    Fuses measures carrying time signatures with differing
+    power-of-two denominators. Helpers abjad.selects minimum of two
+    denominators. Beams are OK because they abjad.attach to leaves rather than
+    containers.
+    """
 
     voice = abjad.Voice("abj: | 1/8 c'16 d'16 || 2/16 e'16 f'16 |")
     leaves = abjad.select(voice).leaves()
@@ -409,7 +422,7 @@ def test_scoretools_Mutation_fuse_12():
     abjad.attach(beam, leaves)
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {   % measure
@@ -425,13 +438,13 @@ def test_scoretools_Mutation_fuse_12():
                 ]
             }   % measure
         }
-        '''
+        """
         )
 
     abjad.mutate(voice[:]).fuse()
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {   % measure
@@ -444,17 +457,18 @@ def test_scoretools_Mutation_fuse_12():
                 ]
             }   % measure
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice).is_well_formed()
 
 
 def test_scoretools_Mutation_fuse_13():
-    r'''Fuses measures with differing power-of-two denominators.
+    """
+    Fuses measures with differing power-of-two denominators.
     Helpers abjad.selects minimum of two denominators.
     Beam abjad.attaches to container rather than leaves.
-    '''
+    """
 
     voice = abjad.Voice("abj: | 1/8 c'16 d'16 || 2/16 e'16 f'16 |")
     leaves = abjad.select(voice).leaves()
@@ -462,7 +476,7 @@ def test_scoretools_Mutation_fuse_13():
     abjad.attach(beam, leaves[:2])
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {   % measure
@@ -478,13 +492,13 @@ def test_scoretools_Mutation_fuse_13():
                 f'16
             }   % measure
         }
-        '''
+        """
         )
 
     abjad.mutate(voice[:]).fuse()
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {   % measure
@@ -497,18 +511,19 @@ def test_scoretools_Mutation_fuse_13():
                 f'16
             }   % measure
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice).is_well_formed()
 
 
 def test_scoretools_Mutation_fuse_14():
-    r'''Fuses measures with power-of-two-denominators together with measures
+    """
+    Fuses measures with power-of-two-denominators together with measures
     without power-of-two denominators.
     Helpers abjad.selects least common multiple of denominators.
     Beams are OK because they abjad.attach to leaves rather than containers.
-    '''
+    """
 
     measure_1 = abjad.Measure((1, 8), "c'8")
     measure_1.implicit_scaling = True
@@ -520,7 +535,7 @@ def test_scoretools_Mutation_fuse_14():
     abjad.attach(beam, leaves)
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {   % measure
@@ -536,13 +551,13 @@ def test_scoretools_Mutation_fuse_14():
                 }
             }   % measure
         }
-        '''
+        """
         )
 
     abjad.mutate(voice[:]).fuse()
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {   % measure
@@ -555,15 +570,16 @@ def test_scoretools_Mutation_fuse_14():
                 }
             }   % measure
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice).is_well_formed()
 
 
 def test_scoretools_Mutation_fuse_15():
-    r'''Fusing empty selection returns none.
-    '''
+    """
+    Fusing empty selection returns none.
+    """
 
     staff = abjad.Staff()
     result = abjad.mutate(staff[:]).fuse()
@@ -571,8 +587,9 @@ def test_scoretools_Mutation_fuse_15():
 
 
 def test_scoretools_Mutation_fuse_16():
-    r'''Fusing selection of only one measure returns measure unaltered.
-    '''
+    """
+    Fusing selection of only one measure returns measure unaltered.
+    """
 
     measure = abjad.Measure((3, 8), "c'8 d'8 e'8")
     staff = abjad.Staff([measure])
@@ -582,8 +599,9 @@ def test_scoretools_Mutation_fuse_16():
 
 
 def test_scoretools_Mutation_fuse_17():
-    r'''Fuses three measures.
-    '''
+    """
+    Fuses three measures.
+    """
 
     voice = abjad.Voice("abj: | 1/8 c'16 d'16 || 1/8 e'16 f'16 || 1/8 g'16 a'16 |")
     leaves = abjad.select(voice).leaves()
@@ -591,7 +609,7 @@ def test_scoretools_Mutation_fuse_17():
     abjad.attach(beam, leaves)
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {   % measure
@@ -610,13 +628,13 @@ def test_scoretools_Mutation_fuse_17():
                 ]
             }   % measure
         }
-        '''
+        """
         )
 
     abjad.mutate(voice[:]).fuse()
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {   % measure
@@ -631,17 +649,18 @@ def test_scoretools_Mutation_fuse_17():
                 ]
             }   % measure
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice).is_well_formed()
 
 
 def test_scoretools_Mutation_fuse_18():
-    r'''Fusing measures with power-of-two denominators
+    """
+    Fusing measures with power-of-two denominators
     to measures without power-of-two denominators.
     With change in number of note-heads because of non-power-of-two multiplier.
-    '''
+    """
 
     measure_1 = abjad.Measure((9, 80), [])
     measure_1.implicit_scaling = True
@@ -652,7 +671,7 @@ def test_scoretools_Mutation_fuse_18():
     staff = abjad.Staff([measure_1, measure_2])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -675,13 +694,13 @@ def test_scoretools_Mutation_fuse_18():
                 c'16
             }   % measure
         }
-        '''
+        """
         )
 
     new = abjad.mutate(staff[:]).fuse()
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -705,7 +724,7 @@ def test_scoretools_Mutation_fuse_18():
                 }
             }   % measure
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).is_well_formed()

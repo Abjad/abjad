@@ -6,7 +6,7 @@ def test_scoretools_Component__get_nth_component_in_time_order_from_01():
     staff = abjad.Staff(r"c'4 \times 2/3 { d'8 e'8 f'8 } g'2")
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'4
@@ -17,7 +17,7 @@ def test_scoretools_Component__get_nth_component_in_time_order_from_01():
             }
             g'2
         }
-        '''
+        """
         )
 
     leaves = abjad.select(staff).leaves()

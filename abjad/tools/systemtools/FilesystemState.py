@@ -6,8 +6,9 @@ from abjad.tools.abctools.ContextManager import ContextManager
 
 
 class FilesystemState(ContextManager):
-    r'''Filesystem state context manager.
-    '''
+    """
+    Filesystem state context manager.
+    """
 
     ### CLASS VARIABLES ###
 
@@ -33,10 +34,11 @@ class FilesystemState(ContextManager):
     ### SPECIAL METHODS ###
 
     def __enter__(self):
-        r'''Backs up filesystem assets.
+        """
+        Backs up filesystem assets.
 
         Returns none.
-        '''
+        """
         for path in self.remove:
             assert not os.path.exists(path), repr(path)
         for path in self.keep:
@@ -55,11 +57,12 @@ class FilesystemState(ContextManager):
                 raise TypeError(message)
 
     def __exit__(self, exg_type, exc_value, trackeback):
-        r'''Restores filesytem assets and removes backups;
+        """
+        Restores filesytem assets and removes backups;
         also removes paths in remove list.
 
         Returns none.
-        '''
+        """
         backup_paths = (_ + '.backup' for _ in self.keep)
         for path in backup_paths:
             assert os.path.exists(path), repr(path)
@@ -98,16 +101,18 @@ class FilesystemState(ContextManager):
 
     @property
     def keep(self):
-        r'''Gets asset paths to restore on exit.
+        """
+        Gets asset paths to restore on exit.
 
         Returns tuple.
-        '''
+        """
         return self._keep
 
     @property
     def remove(self):
-        r'''Gets paths to remove on exit.
+        """
+        Gets paths to remove on exit.
 
         Returns tuple.
-        '''
+        """
         return self._remove

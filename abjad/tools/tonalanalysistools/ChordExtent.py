@@ -2,7 +2,8 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class ChordExtent(AbjadValueObject):
-    '''Chord extent.
+    """
+    Chord extent.
 
     ..  container:: example
 
@@ -20,7 +21,7 @@ class ChordExtent(AbjadValueObject):
         ChordExtent(7)
 
     Defined equal to outer interval of any root-position chord.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -55,8 +56,9 @@ class ChordExtent(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is a chord extent with number equal to that of
-        this chord extent. Otherwise false.
+        """
+        Is true when `argument` is a chord extent with number equal to that of
+        this chord extent.
 
         ..  container:: example
 
@@ -86,14 +88,15 @@ class ChordExtent(AbjadValueObject):
             True
 
         Returns true or false.
-        '''
+        """
         return super(ChordExtent, self).__eq__(argument)
 
     def __hash__(self):
-        r'''Hashes chord extent.
+        """
+        Hashes chord extent.
 
         Returns integer.
-        '''
+        """
         return super(ChordExtent, self).__hash__()
 
     ### PRIVATE METHODS ###
@@ -112,7 +115,8 @@ class ChordExtent(AbjadValueObject):
 
     @property
     def name(self):
-        r'''Gets name.
+        """
+        Gets name.
 
         ..  container:: example
 
@@ -123,12 +127,13 @@ class ChordExtent(AbjadValueObject):
             'seventh'
 
         Returns string.
-        '''
+        """
         return self._extent_number_to_extent_name[self.number]
 
     @property
     def number(self):
-        r'''Gets number.
+        """
+        Gets number.
 
         ..  container:: example
 
@@ -136,5 +141,5 @@ class ChordExtent(AbjadValueObject):
             7
 
         Returns nonnegative integer.
-        '''
+        """
         return self._number

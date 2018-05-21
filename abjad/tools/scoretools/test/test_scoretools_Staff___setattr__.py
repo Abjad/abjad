@@ -3,8 +3,9 @@ import pytest
 
 
 def test_scoretools_Staff___setattr___01():
-    r'''Slots constrain staff attributes.
-    '''
+    """
+    Slots constrain staff attributes.
+    """
 
     staff = abjad.Staff([])
 

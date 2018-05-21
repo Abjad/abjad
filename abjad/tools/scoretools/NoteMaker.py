@@ -5,14 +5,15 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class NoteMaker(AbjadValueObject):
-    r'''Note-maker.
+    r"""
+    Note-maker.
 
-    Makes notes according to `pitches` and `durations`.
+    Makes notes according to ``pitches`` and ``durations``.
 
     ..  container:: example
 
-        Cycles through `pitches` when the length of `pitches` is less than the
-        length of `durations`:
+        Cycles through ``pitches`` when the length of `pitches` is less than
+        the length of ``durations``:
 
         >>> maker = abjad.NoteMaker()
         >>> notes = maker([0], [(1, 16), (1, 8), (1, 8)])
@@ -31,8 +32,8 @@ class NoteMaker(AbjadValueObject):
 
     ..  container:: example
 
-        Cycles through `durations` when the length of `durations` is less than
-        the length of `pitches`:
+        Cycles through ``durations`` when the length of ``durations`` is less
+        than the length of ``pitches``:
 
         >>> maker = abjad.NoteMaker()
         >>> notes = maker(
@@ -158,12 +159,12 @@ class NoteMaker(AbjadValueObject):
                 g'8
             }
 
-    Set `pitches` to a single pitch or a sequence of pitches.
+    Set ``pitches`` to a single pitch or a sequence of pitches.
 
-    Set `durations` to a single duration or a list of durations.
+    Set ``durations`` to a single duration or a list of durations.
 
     Returns selection.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -189,10 +190,11 @@ class NoteMaker(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, pitches, durations):
-        r'''Calls note-maker on `pitches` and `durations`.
+        """
+        Calls note-maker on ``pitches`` and ``durations``.
 
         Returns selection.
-        '''
+        """
         import abjad
         if isinstance(pitches, str):
             pitches = pitches.split()
@@ -272,14 +274,16 @@ class NoteMaker(AbjadValueObject):
 
     @property
     def decrease_monotonic(self):
-        r'''Is true when durations decrease monotonically. Otherwise false.
+        """
+        Is true when durations decrease monotonically.
 
         Returns true, false or none.
-        '''
+        """
         return self._decrease_monotonic
 
     @property
     def repeat_ties(self) -> typing.Optional[bool]:
-        r'''Is true when ties are repeat ties.
-        '''
+        """
+        Is true when ties are repeat ties.
+        """
         return self._repeat_ties

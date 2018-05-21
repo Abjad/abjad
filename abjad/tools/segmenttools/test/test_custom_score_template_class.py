@@ -3,8 +3,9 @@ import abjad
 
 # TODO: Move to doctests
 def test_custom_score_template_class_01():
-    r'''Score template with named contexts.
-    '''
+    """
+    Score template with named contexts.
+    """
 
     class NamedContextScoreTemplate(abjad.abctools.AbjadObject):
 
@@ -27,7 +28,7 @@ def test_custom_score_template_class_01():
     score = named_context_score_template()
 
     assert format(score) == abjad.String.normalize(
-        r'''
+        r"""
         \context Score = "Green Score"
         <<
             \context Staff = "Red Staff"
@@ -37,15 +38,16 @@ def test_custom_score_template_class_01():
                 }
             }
         >>
-        '''
+        """
         )
 
 
 def test_custom_score_template_class_02():
-    r'''Score template with custom (voice and staff) contexts.
+    """
+    Score template with custom (voice and staff) contexts.
 
     CAUTION: always use built-in LilyPond score context; do not rename.
-    '''
+    """
 
     class CustomContextScoreTemplate(abjad.abctools.AbjadObject):
 
@@ -68,7 +70,7 @@ def test_custom_score_template_class_02():
     score = custom_context_score_template()
 
     assert format(score) == abjad.String.normalize(
-        r'''
+        r"""
         \new Score
         <<
             \new CustomStaff
@@ -78,7 +80,7 @@ def test_custom_score_template_class_02():
                 }
             }
         >>
-        '''
+        """
         )
 
     # here's how to properly override with externalized layout
@@ -114,7 +116,7 @@ def test_custom_score_template_class_02():
     context_block.accepts_commands.append('CustomStaff')
 
     assert format(lilypond_file.layout_block) == abjad.String.normalize(
-        r'''
+        r"""
         \layout {
             \context {
                 \Voice
@@ -137,11 +139,11 @@ def test_custom_score_template_class_02():
                 \accepts CustomStaff
             }
         }
-        '''
+        """
         )
 
     assert format(lilypond_file.score_block) == abjad.String.normalize(
-        r'''
+        r"""
         \score {
             \new Score
             <<
@@ -159,5 +161,5 @@ def test_custom_score_template_class_02():
                 }
             >>
         }
-        '''
+        """
         )

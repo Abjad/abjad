@@ -2,8 +2,9 @@ import abjad
 
 
 def test_scoretools_Measure_simultaneous_01():
-    r'''Measures may be hold simultaneous contents.
-    '''
+    """
+    Measures may be hold simultaneous contents.
+    """
 
     measure = abjad.Measure((2, 8), [])
     measure.append(abjad.Voice("c'8 d'8"))
@@ -16,7 +17,7 @@ def test_scoretools_Measure_simultaneous_01():
     staff = abjad.Staff([measure])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             <<  % measure
@@ -35,7 +36,7 @@ def test_scoretools_Measure_simultaneous_01():
                 }
             >>  % measure
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).is_well_formed()

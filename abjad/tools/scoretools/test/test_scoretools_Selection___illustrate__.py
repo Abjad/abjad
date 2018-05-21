@@ -9,7 +9,7 @@ def test_scoretools_Selection___illustrate___01():
     score = lilypond_file[abjad.Score]
 
     assert format(score) == abjad.String.normalize(
-        r'''
+        r"""
         \new Score
         <<
             \new Staff
@@ -20,7 +20,7 @@ def test_scoretools_Selection___illustrate___01():
                 a'4
             }
         >>
-        '''
+        """
         )
 
 
@@ -33,7 +33,7 @@ def test_scoretools_Selection___illustrate___02():
     score = lilypond_file[abjad.Score]
 
     assert format(score) == abjad.String.normalize(
-        r'''
+        r"""
         \new Score
         <<
             \new Staff
@@ -46,5 +46,5 @@ def test_scoretools_Selection___illustrate___02():
                 )
             }
         >>
-        '''
+        """
         )

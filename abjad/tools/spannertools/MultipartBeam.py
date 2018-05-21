@@ -95,7 +95,7 @@ class MultipartBeam(Beam):
 
     ### PRIVATE METHODS ###
 
-    def _copy_keyword_args(self, new):
+    def _copy_keywords(self, new):
         self._beam_rests = self.beam_rests
 
     def _get_lilypond_format_bundle(self, leaf):
@@ -113,7 +113,7 @@ class MultipartBeam(Beam):
             next_leaf = leaf._get_leaf(1)
             if next_leaf not in self.leaves:
                 next_leaf = None
-            start_piece = None
+            start_pieces = []
             stop_piece = None
             if leaf is self[0]:
                 if next_leaf is not None:
@@ -121,7 +121,7 @@ class MultipartBeam(Beam):
                         next_leaf,
                         beam_rests=self.beam_rests,
                         ):
-                        start_piece = self.start_command()
+                        start_pieces = self.start_command()
             else:
                 if previous_leaf is not None:
                     if not self._is_beamable(
@@ -132,7 +132,7 @@ class MultipartBeam(Beam):
                             next_leaf,
                             beam_rests=self.beam_rests,
                             ):
-                            start_piece = self.start_command()
+                            start_pieces = self.start_command()
             if leaf is self[-1]:
                 if previous_leaf is not None:
                     if self._is_beamable(
@@ -152,11 +152,11 @@ class MultipartBeam(Beam):
                             beam_rests=self.beam_rests,
                             ):
                             stop_piece = self.stop_command()
-            if start_piece and stop_piece:
-                bundle.right.spanner_starts.extend([
-                    start_piece, stop_piece])
-            elif start_piece:
-                bundle.right.spanner_starts.append(start_piece)
+            if start_pieces and stop_piece:
+                bundle.right.spanner_starts.extend(start_pieces)
+                bundle.right.spanner_starts.append(stop_piece)
+            elif start_pieces:
+                bundle.right.spanner_starts.extend(start_pieces)
             elif stop_piece:
                 bundle.right.spanner_stops.append(stop_piece)
         self._add_stemlet_length(leaf, bundle)
@@ -167,7 +167,7 @@ class MultipartBeam(Beam):
     @property
     def beam_rests(self) -> typing.Optional[bool]:
         r"""
-        Is true when beam should include rests. Otherwise false.
+        Is true when beam should include rests.
 
         ..  container:: example
 
@@ -344,14 +344,14 @@ class MultipartBeam(Beam):
 
     ### PUBLIC METHODS ###
 
-    def start_command(self) -> typing.Optional[str]:
+    def start_command(self) -> typing.List[str]:
         """
         Gets start command.
 
         ..  container:: example
 
             >>> abjad.MultipartBeam().start_command()
-            '['
+            ['[']
 
         """
         return super(MultipartBeam, self).start_command()

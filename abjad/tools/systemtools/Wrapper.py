@@ -5,7 +5,7 @@ from .Tag import Tag
 
 
 class Wrapper(AbjadValueObject):
-    r'''
+    r"""
     Wrapper.
 
     ..  container:: example
@@ -96,7 +96,7 @@ class Wrapper(AbjadValueObject):
             ... is already attached to Note("c'4") in VoiceII.
         <BLANKLINE>
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -183,7 +183,7 @@ class Wrapper(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __copy__(self, *arguments) -> 'Wrapper':
-        r'''
+        r"""
         Copies indicator wrapper.
 
         ..  container:: example
@@ -600,7 +600,7 @@ class Wrapper(AbjadValueObject):
         Copy operations must supply component and spanner after wrapper copy.
 
         Returns new indicator wrapper.
-        '''
+        """
         new = type(self)(
             alternate=self.alternate,
             annotation=self.annotation,
@@ -815,19 +815,19 @@ class Wrapper(AbjadValueObject):
 
     @property
     def alternate(self) -> typing.Optional[typing.Tuple[str, str]]:
-        '''
+        """
         Gets alternate tagging information.
 
         Set only by ``MetronomeMarkSpanner.attach(..., alternate=None)``
         keyword.
 
         Returns (color, tag) pair, or none.
-        '''
+        """
         return self._alternate
 
     @property
     def annotation(self) -> typing.Optional[str]:
-        '''
+        """
         Gets indicator wrapper annotation.
 
         ..  container:: example
@@ -847,16 +847,16 @@ class Wrapper(AbjadValueObject):
             >>> abjad.inspect(note).get_annotation('foo')
             Articulation('accent', Up)
 
-        '''
+        """
         return self._annotation
 
     @property
     def component(self):
-        '''
+        """
         Gets start component of indicator wrapper.
 
         Returns component.
-        '''
+        """
         from abjad.tools.spannertools.Spanner import Spanner
         if isinstance(self._component, Spanner):
             if self._component:
@@ -867,16 +867,16 @@ class Wrapper(AbjadValueObject):
 
     @property
     def context(self) -> typing.Optional[str]:
-        '''
+        """
         Gets context of indicator wrapper.
-        '''
+        """
         return self._context
 
     @property
     def deactivate(self) -> typing.Optional[bool]:
-        '''
+        """
         Is true when wrapper deactivates tag.
-        '''
+        """
         assert self._deactivate in (True, False, None)
         return self._deactivate
 
@@ -887,44 +887,44 @@ class Wrapper(AbjadValueObject):
 
     @property
     def indicator(self) -> typing.Any:
-        '''
+        """
         Gets indicator of indicator wrapper.
-        '''
+        """
         return self._indicator
 
     @property
     def left_broken(self) -> typing.Optional[bool]:
-        '''
+        """
         Is true when spanner is left-open.
-        '''
+        """
         return self._left_broken
 
     @property
     def right_broken(self) -> typing.Optional[bool]:
-        '''
+        """
         Is true when spanner is right-open.
-        '''
+        """
         return self._right_broken
 
     @property
     def spanner(self):
-        '''
+        """
         Gets wrapper spanner.
 
         Returns spanner or none.
-        '''
+        """
         return self._spanner
 
     @property
     def start_offset(self):
-        '''
+        """
         Gets start offset of indicator wrapper.
 
         This is either the wrapper's synthetic offset or the start offset of
         the wrapper's component.
 
         Returns offset.
-        '''
+        """
         from abjad.tools.topleveltools.inspect import inspect
         if self._synthetic_offset is not None:
             return self._synthetic_offset
@@ -932,18 +932,18 @@ class Wrapper(AbjadValueObject):
 
     @property
     def synthetic_offset(self):
-        '''
+        """
         Gets synthetic offset of indicator wrapper.
 
         Returns offset or none.
-        '''
+        """
         return self._synthetic_offset
 
     @property
     def tag(self) -> Tag:
-        '''
+        """
         Gets and sets tag.
-        '''
+        """
         assert isinstance(self._tag, Tag), repr(self._tag)
         return self._tag
 

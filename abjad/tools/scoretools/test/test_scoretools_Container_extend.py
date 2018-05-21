@@ -3,8 +3,9 @@ import pytest
 
 
 def test_scoretools_Container_extend_01():
-    r'''Extend container with list of leaves.
-    '''
+    """
+    Extend container with list of leaves.
+    """
 
     voice = abjad.Voice("c'8 d'8")
     beam = abjad.Beam()
@@ -12,7 +13,7 @@ def test_scoretools_Container_extend_01():
     voice.extend([abjad.Note("c'8"), abjad.Note("d'8")])
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'8
@@ -22,15 +23,16 @@ def test_scoretools_Container_extend_01():
             c'8
             d'8
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice).is_well_formed()
 
 
 def test_scoretools_Container_extend_02():
-    r'''Extend container with contents of other container.
-    '''
+    """
+    Extend container with contents of other container.
+    """
 
     voice_1 = abjad.Voice("c'8 d'8")
     beam = abjad.Beam()
@@ -42,7 +44,7 @@ def test_scoretools_Container_extend_02():
     voice_1.extend(voice_2)
 
     assert format(voice_1) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'8
@@ -54,15 +56,16 @@ def test_scoretools_Container_extend_02():
             f'8
             ]
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice_1).is_well_formed()
 
 
 def test_scoretools_Container_extend_03():
-    r'''Extending container with empty list leaves container unchanged.
-    '''
+    """
+    Extending container with empty list leaves container unchanged.
+    """
 
     voice = abjad.Voice("c'8 d'8")
     beam = abjad.Beam()
@@ -70,7 +73,7 @@ def test_scoretools_Container_extend_03():
     voice.extend([])
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'8
@@ -78,16 +81,17 @@ def test_scoretools_Container_extend_03():
             d'8
             ]
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice).is_well_formed()
 
 
 def test_scoretools_Container_extend_04():
-    r'''Extending one container with empty second container leaves both
+    """
+    Extending one container with empty second container leaves both
     containers unchanged.
-    '''
+    """
 
     voice = abjad.Voice("c'8 d'8")
     beam = abjad.Beam()
@@ -95,7 +99,7 @@ def test_scoretools_Container_extend_04():
     voice.extend(abjad.Voice([]))
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'8
@@ -103,15 +107,16 @@ def test_scoretools_Container_extend_04():
             d'8
             ]
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice).is_well_formed()
 
 
 def test_scoretools_Container_extend_05():
-    r'''Trying to extend container with noncomponent raises TypeError.
-    '''
+    """
+    Trying to extend container with noncomponent raises TypeError.
+    """
 
     voice = abjad.Voice("c'8 d'8")
     beam = abjad.Beam()
@@ -122,8 +127,9 @@ def test_scoretools_Container_extend_05():
 
 
 def test_scoretools_Container_extend_06():
-    r'''Trying to extend container with noncontainer raises exception.
-    '''
+    """
+    Trying to extend container with noncontainer raises exception.
+    """
 
     voice = abjad.Voice("c'8 d'8")
     beam = abjad.Beam()
@@ -137,8 +143,9 @@ def test_scoretools_Container_extend_06():
 
 
 def test_scoretools_Container_extend_07():
-    r'''Extend container with partial and spanned contents of other container.
-    '''
+    """
+    Extend container with partial and spanned contents of other container.
+    """
 
     voice_1 = abjad.Voice("c'8 d'8")
     beam = abjad.Beam()
@@ -151,7 +158,7 @@ def test_scoretools_Container_extend_07():
     voice_1.extend(voice_2[-2:])
 
     assert format(voice_1) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'8
@@ -161,13 +168,13 @@ def test_scoretools_Container_extend_07():
             e'8
             f'8
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice_1).is_well_formed()
 
     assert format(voice_2) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'8
@@ -175,16 +182,17 @@ def test_scoretools_Container_extend_07():
             d'8
             ]
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice_2).is_well_formed()
 
 
 def test_scoretools_Container_extend_08():
-    r'''Extend container with partial and spanned contents of other container.
+    """
+    Extend container with partial and spanned contents of other container.
     Covered span comes with components from donor container.
-    '''
+    """
 
     voice_1 = abjad.Voice("c'8 d'8")
     beam = abjad.Beam()
@@ -197,7 +205,7 @@ def test_scoretools_Container_extend_08():
     abjad.attach(slur, voice_2[-2:])
 
     assert format(voice_2) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'8
@@ -209,13 +217,13 @@ def test_scoretools_Container_extend_08():
             ]
             )
         }
-        '''
+        """
         )
 
     voice_1.extend(voice_2[-2:])
 
     assert format(voice_1) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'8
@@ -227,13 +235,13 @@ def test_scoretools_Container_extend_08():
             f'8
             )
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice_1).is_well_formed()
 
     assert format(voice_2) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'8
@@ -241,21 +249,22 @@ def test_scoretools_Container_extend_08():
             d'8
             ]
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice_2).is_well_formed()
 
 
 def test_scoretools_Container_extend_09():
-    r'''Extend container with LilyPond input string.
-    '''
+    """
+    Extend container with LilyPond input string.
+    """
 
     container = abjad.Container([])
     container.extend("c'4 ( d'4 e'4 f'4 )")
 
     assert format(container) == abjad.String.normalize(
-        r'''
+        r"""
         {
             c'4
             (
@@ -264,15 +273,16 @@ def test_scoretools_Container_extend_09():
             f'4
             )
         }
-        '''
+        """
         )
 
     assert abjad.inspect(container).is_well_formed()
 
 
 def test_scoretools_Container_extend_10():
-    r'''Selections are stripped out.
-    '''
+    """
+    Selections are stripped out.
+    """
 
     maker = abjad.NoteMaker()
     selection_1 = maker([0, 2], [abjad.Duration(1, 4)])
@@ -284,7 +294,7 @@ def test_scoretools_Container_extend_10():
     container.extend(selections)
 
     assert format(container) == abjad.String.normalize(
-        r'''
+        r"""
         {
             c'4
             d'4
@@ -295,7 +305,7 @@ def test_scoretools_Container_extend_10():
             b'4
             c''4
         }
-        '''
+        """
         )
 
     assert abjad.inspect(container).is_well_formed()

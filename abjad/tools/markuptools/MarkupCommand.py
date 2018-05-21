@@ -162,7 +162,7 @@ class MarkupCommand(AbjadValueObject):
     def __eq__(self, argument):
         """
         Is true when ``argument`` is a markup command with name and
-        arguments equal to those of this markup command. Otherwise false.
+        arguments equal to those of this markup command.
 
         ..  container:: example
 
@@ -437,7 +437,6 @@ class MarkupCommand(AbjadValueObject):
     def force_quotes(self):
         r"""
         Is true when markup command should force quotes around arguments.
-        Otherwise false.
 
         ..  container:: example
 

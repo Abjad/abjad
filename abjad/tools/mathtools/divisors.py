@@ -2,7 +2,8 @@ import math
 
 
 def divisors(n):
-    r'''Gets positive divisors of `n` in increasing order.
+    """
+    Gets positive divisors of `n` in increasing order.
 
     ..  container:: example
 
@@ -33,7 +34,7 @@ def divisors(n):
     Raises not implemented error on ``0``.
 
     Returns list of positive integers.
-    '''
+    """
     if not isinstance(n, int):
         message = 'must be integer: {!r}.'
         message = message.format(n)

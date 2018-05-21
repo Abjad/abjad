@@ -3,7 +3,8 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class MetricAccentKernel(AbjadValueObject):
-    r'''Metric accent kernel.
+    """
+    Metric accent kernel.
 
     ..  container:: example
 
@@ -32,7 +33,7 @@ class MetricAccentKernel(AbjadValueObject):
         >>> kernel(offsets)
         Multiplier(1, 2)
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -57,7 +58,8 @@ class MetricAccentKernel(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, argument):
-        r'''Calls metrical accent kernal on `argument`.
+        """
+        Calls metrical accent kernal on `argument`.
 
         >>> upper_staff = abjad.Staff("c'8 d'4. e'8 f'4.")
         >>> lower_staff = abjad.Staff(r'\clef bass c4 b,4 a,2')
@@ -68,7 +70,7 @@ class MetricAccentKernel(AbjadValueObject):
         Multiplier(10, 33)
 
         Returns float.
-        '''
+        """
         import abjad
         offset_count = self.count_offsets(argument)
         response = abjad.Multiplier(0, 1)
@@ -80,20 +82,22 @@ class MetricAccentKernel(AbjadValueObject):
         return response
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is a metrical accent kernal with a kernal
-        equal to that of this metrical accent kernel. Otherwise false.
+        """
+        Is true when `argument` is a metrical accent kernal with a kernal
+        equal to that of this metrical accent kernel.
 
         Returns true or false.
-        '''
+        """
         return super(MetricAccentKernel, self).__eq__(argument)
 
     def __hash__(self):
-        r'''Hashes metric accent kernel.
+        """
+        Hashes metric accent kernel.
 
         Required to be explicitly redefined on Python 3 if __eq__ changes.
 
         Returns integer.
-        '''
+        """
         return super(MetricAccentKernel, self).__hash__()
 
     ### PRIVATE METHODS ###
@@ -110,7 +114,8 @@ class MetricAccentKernel(AbjadValueObject):
 
     @staticmethod
     def count_offsets(argument):
-        r'''Count offsets in `argument`.
+        r"""
+        Count offsets in `argument`.
 
         ..  container:: example
 
@@ -171,16 +176,17 @@ class MetricAccentKernel(AbjadValueObject):
             (Offset(20, 1), 1)
 
         Returns counter.
-        '''
+        """
         from abjad.tools import metertools
         return metertools.OffsetCounter(argument)
 
     @staticmethod
     def from_meter(meter, denominator=32, normalize=True):
-        r'''Create a metric accent kernel from `meter`.
+        """
+        Create a metric accent kernel from `meter`.
 
         Returns new metric accent kernel.
-        '''
+        """
         from abjad.tools import metertools
         if not isinstance(meter, metertools.Meter):
             meter = metertools.Meter(meter)
@@ -193,15 +199,17 @@ class MetricAccentKernel(AbjadValueObject):
 
     @property
     def duration(self):
-        r'''Gets duration.
-        '''
+        """
+        Gets duration.
+        """
         import abjad
         return abjad.Duration(self._offsets[-1])
 
     @property
     def kernel(self):
-        r'''The kernel datastructure.
+        """
+        The kernel datastructure.
 
         Returns dict.
-        '''
+        """
         return self._kernel.copy()

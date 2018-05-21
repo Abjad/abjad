@@ -167,7 +167,6 @@ class NamedInterval(Interval):
 
     def __eq__(self, argument):
         r'''Is true when named interval equal `argument`.
-        Otherwise false.
 
         ..  container:: example
 

@@ -50,8 +50,9 @@ def test_scoretools_Component__measure_number_02():
 
 
 def test_scoretools_Component__measure_number_03():
-    r'''Works with implicit time signatures.
-    '''
+    """
+    Works with implicit time signatures.
+    """
 
     staff = abjad.Staff("c'4 d' e' f' g' a' b' c''")
     staff._update_measure_numbers()
@@ -68,8 +69,9 @@ def test_scoretools_Component__measure_number_03():
 
 
 def test_scoretools_Component__measure_number_04():
-    r'''Works with a mix of implicit and explicit time signatures.
-    '''
+    """
+    Works with a mix of implicit and explicit time signatures.
+    """
 
     staff = abjad.Staff("c'4 d' e' f' g' a' b' c''")
     abjad.attach(abjad.TimeSignature((2, 4)), staff[4])

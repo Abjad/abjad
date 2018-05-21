@@ -4,8 +4,9 @@ from .TypedCollection import TypedCollection
 
 
 class TypedTuple(TypedCollection, collections.Sequence):
-    r'''Typed tuple.
-    '''
+    """
+    Typed tuple.
+    """
 
     ### CLASS VARIABLES ###
 
@@ -30,10 +31,11 @@ class TypedTuple(TypedCollection, collections.Sequence):
     ### SPECIAL METHODS ###
 
     def __add__(self, argument):
-        r'''Adds typed tuple to `argument`.
+        """
+        Adds typed tuple to ``argument``.
 
         Returns new typed tuple.
-        '''
+        """
         if isinstance(argument, type(self)):
             items = argument._collection
             return new(self, items=self._collection[:] + items)
@@ -43,12 +45,13 @@ class TypedTuple(TypedCollection, collections.Sequence):
         raise NotImplementedError
 
     def __contains__(self, item):
-        r'''Is true if typed tuple contains `item`.
+        """
+        Is true if typed tuple contains ``item``.
 
-        Coerces `item`.
+        Coerces ``item``.
 
         Returns none.
-        '''
+        """
         try:
             item = self._item_coercer(item)
         except ValueError:
@@ -56,10 +59,11 @@ class TypedTuple(TypedCollection, collections.Sequence):
         return self._collection.__contains__(item)
 
     def __getitem__(self, argument):
-        '''Gets item or slice identified by `argument`.
+        """
+        Gets item or slice identified by ``argument``.
 
         Returns item or new typed tuple.
-        '''
+        """
         item = self._collection.__getitem__(argument)
         try:
             return type(self)(item)
@@ -67,10 +71,11 @@ class TypedTuple(TypedCollection, collections.Sequence):
             return item
 
     def __hash__(self):
-        r'''Hashes typed tuple.
+        """
+        Hashes typed tuple.
 
         Returns integer.
-        '''
+        """
         from abjad.tools import systemtools
         hash_values = systemtools.StorageFormatManager(self).get_hash_values()
         try:
@@ -81,35 +86,39 @@ class TypedTuple(TypedCollection, collections.Sequence):
         return result
 
     def __mul__(self, argument):
-        r'''Multiplies typed tuple by `argument`.
+        """
+        Multiplies typed tuple by ``argument``.
 
         Returns new typed tuple.
-        '''
+        """
         items = self._collection * argument
         return new(self, items=items)
 
     def __radd__(self, argument):
-        r'''Right-adds `argument` to typed tuple.
-        '''
+        """
+        Right-adds ``argument`` to typed tuple.
+        """
         items = argument + self._collection
         return new(self, items=items)
 
     def __rmul__(self, argument):
-        r'''Multiplies `argument` by typed tuple.
+        """
+        Multiplies ``argument`` by typed tuple.
 
         Returns new typed tuple.
-        '''
+        """
         return self.__mul__(argument)
 
     ### PUBLIC METHODS ###
 
     def count(self, item):
-        r'''Counts `item` in collection.
+        """
+        Counts ``item`` in collection.
 
-        Coerces `item`.
+        Coerces ``item``.
 
         Returns nonnegative integer.
-        '''
+        """
         try:
             item = self._item_coercer(item)
         except TypeError:
@@ -117,11 +126,12 @@ class TypedTuple(TypedCollection, collections.Sequence):
         return self._collection.count(item)
 
     def index(self, item):
-        r'''Gets index of `item` in collection.
+        """
+        Gets index of ``item`` in collection.
 
-        Coerces `item`.
+        Coerces ``item``.
 
         Returns nonnegative integer.
-        '''
+        """
         item = self._item_coercer(item)
         return self._collection.index(item)

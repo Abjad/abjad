@@ -91,7 +91,7 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
     def __eq__(self, argument):
         r'''Is true when `argument` is a named inversion-equivalent
         interval-class with name equal to that of this named
-        inversion-equivalent interval-class. Otherwise false.
+        inversion-equivalent interval-class.
 
         ..  container:: example
 

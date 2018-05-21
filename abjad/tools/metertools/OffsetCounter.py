@@ -3,7 +3,8 @@ from abjad.tools.datastructuretools.TypedCounter import TypedCounter
 
 
 class OffsetCounter(TypedCounter):
-    r'''Offset counter.
+    """
+    Offset counter.
 
     ..  container:: example
 
@@ -31,7 +32,7 @@ class OffsetCounter(TypedCounter):
 
         >>> abjad.show(offset_counter, scale=0.5) # doctest: +SKIP
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -58,7 +59,8 @@ class OffsetCounter(TypedCounter):
     ### SPECIAL METHODS ###
 
     def __illustrate__(self, range_=None, scale=None):
-        r'''Illustrates offset counter.
+        r"""
+        Illustrates offset counter.
 
         ..  container:: example
 
@@ -73,7 +75,7 @@ class OffsetCounter(TypedCounter):
             >>> abjad.show(offset_counter, scale=0.5) # doctest: +SKIP
 
         Returns LilyPond file.
-        '''
+        """
         import abjad
         if not self:
             return markuptools.Markup.null().__illustrate__()

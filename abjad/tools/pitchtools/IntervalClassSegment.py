@@ -51,7 +51,6 @@ class IntervalClassSegment(Segment):
     @property
     def is_tertian(self):
         r'''Is true when all named interval-classes in segment are tertian.
-        Otherwise false.
 
         ..  container:: example
 
@@ -100,7 +99,7 @@ class IntervalClassSegment(Segment):
             )
 
     def has_duplicates(self):
-        r'''Is true when segment contains duplicates. Otherwise false.
+        r'''Is true when segment contains duplicates.
 
         ..  container:: example
 

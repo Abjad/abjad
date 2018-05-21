@@ -4,10 +4,11 @@ from abjad.tools import abctools
 
 
 class Enumerator(abctools.AbjadValueObject):
-    r'''Enumerator.
+    """
+    Enumerator.
 
     Collects combinatorial enumerator methods.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -27,7 +28,8 @@ class Enumerator(abctools.AbjadValueObject):
 
     @staticmethod
     def _is_restricted_growth_function(sequence):
-        '''Is true when `sequence` is a restricted growth function.
+        """
+        Is true when ``sequence`` is a restricted growth function.
 
         ..  container:: example
 
@@ -60,7 +62,7 @@ class Enumerator(abctools.AbjadValueObject):
         ``1 <= i <= len(l)``.
 
         Returns true or false.
-        '''
+        """
         try:
             for i, n in enumerate(sequence):
                 if i == 0:
@@ -75,7 +77,8 @@ class Enumerator(abctools.AbjadValueObject):
 
     @staticmethod
     def _partition_by_rgf(sequence, rgf):
-        '''Partitions `sequence` by restricted growth function `rgf`.
+        """
+        Partitions ``sequence`` by restricted growth function ``rgf``.
 
         >>> sequence = abjad.sequence(range(10))
         >>> rgf = [1, 1, 2, 2, 1, 2, 3, 3, 2, 4]
@@ -84,7 +87,7 @@ class Enumerator(abctools.AbjadValueObject):
         Sequence([Sequence([0, 1, 4]), Sequence([2, 3, 5, 8]), Sequence([6, 7]), Sequence([9])])
 
         Returns list of lists.
-        '''
+        """
         import abjad
         rgf = abjad.sequence(items=rgf)
         if not Enumerator._is_restricted_growth_function(rgf):
@@ -107,7 +110,8 @@ class Enumerator(abctools.AbjadValueObject):
 
     @staticmethod
     def _yield_restricted_growth_functions(length):
-        '''Yields restricted growth functions of `length`.
+        """
+        Yields restricted growth functions of ``length``.
 
         ..  container:: example
 
@@ -134,7 +138,7 @@ class Enumerator(abctools.AbjadValueObject):
         Returns restricted growth functions in lex order.
 
         Returns generator of tuples.
-        '''
+        """
         import abjad
         assert abjad.mathtools.is_positive_integer(length), repr(length)
         last_rgf = list(range(1, length + 1))
@@ -155,20 +159,22 @@ class Enumerator(abctools.AbjadValueObject):
 
     @property
     def sequence(self):
-        r'''Gets sequence of enumerator.
+        """
+        Gets sequence of enumerator.
 
         Defaults to none.
 
         Set to sequence or none.
 
         Returns sequence or none.
-        '''
+        """
         return self._sequence
 
     ### PUBLIC METHODS ###
 
     def yield_combinations(self, minimum_length=None, maximum_length=None):
-        '''Yields combinations of sequence items.
+        """
+        Yields combinations of sequence items.
 
         ..  container:: example
 
@@ -264,7 +270,7 @@ class Enumerator(abctools.AbjadValueObject):
         Yields combinations in binary string order.
 
         Returns sequence generator.
-        '''
+        """
         import abjad
         length = len(self.sequence)
         for i in range(2**length):
@@ -288,7 +294,8 @@ class Enumerator(abctools.AbjadValueObject):
                     yield abjad.sequence(items=sublist)
 
     def yield_outer_product(self):
-        '''Yields outer product of sequences in sequence.
+        """
+        Yields outer product of sequences in sequence.
 
         ..  container:: example
 
@@ -351,7 +358,7 @@ class Enumerator(abctools.AbjadValueObject):
             Sequence([3, 5, 8])
 
         Returns sequence generator.
-        '''
+        """
         def _helper(sequence_1, sequence_2):
             result = []
             for item_1 in sequence_1:
@@ -366,7 +373,8 @@ class Enumerator(abctools.AbjadValueObject):
             yield abjad.sequence(items=element)
 
     def yield_pairs(self):
-        r'''Yields pairs sequence items.
+        """
+        Yields pairs sequence items.
 
         ..  container:: example
 
@@ -414,7 +422,7 @@ class Enumerator(abctools.AbjadValueObject):
             ...
 
         Returns generator of length-2 sequences.
-        '''
+        """
         import abjad
         for i, item in enumerate(self.sequence):
             start = i + 1
@@ -423,7 +431,8 @@ class Enumerator(abctools.AbjadValueObject):
                 yield abjad.sequence(items=pair)
 
     def yield_partitions(self):
-        '''Yields partitions of sequence.
+        """
+        Yields partitions of sequence.
 
         ..  container:: example
 
@@ -452,7 +461,7 @@ class Enumerator(abctools.AbjadValueObject):
             Sequence([Sequence([0]), Sequence([1]), Sequence([2]), Sequence([3])])
 
         Returns generator of nested sequences.
-        '''
+        """
         import abjad
         length = len(self.sequence) - 1
         for i in range(2**length):
@@ -471,7 +480,8 @@ class Enumerator(abctools.AbjadValueObject):
             yield partition
 
     def yield_permutations(self):
-        '''Yields permutations of sequence.
+        """
+        Yields permutations of sequence.
 
         ..  container:: example
 
@@ -487,7 +497,7 @@ class Enumerator(abctools.AbjadValueObject):
             Sequence([3, 2, 1])
 
         Returns sequence generator.
-        '''
+        """
         import abjad
         length = len(self.sequence)
         for permutation in itertools.permutations(tuple(range(length))):
@@ -495,7 +505,8 @@ class Enumerator(abctools.AbjadValueObject):
             yield self.sequence.permute(permutation)
 
     def yield_set_partitions(self):
-        '''Yields set partitions of sequence.
+        """
+        Yields set partitions of sequence.
 
         ..  container:: example
 
@@ -522,14 +533,15 @@ class Enumerator(abctools.AbjadValueObject):
         Returns set partitions in order of restricted growth function.
 
         Returns generator of list of lists.
-        '''
+        """
         length = len(self.sequence)
         for rgf in Enumerator._yield_restricted_growth_functions(length):
             partition = Enumerator._partition_by_rgf(self.sequence, rgf)
             yield partition
 
     def yield_subsequences(self, minimum_length=0, maximum_length=None):
-        '''Yields subsequences of `sequence`.
+        """
+        Yields subsequences of ``sequence``.
 
         ..  container:: example
 
@@ -596,7 +608,7 @@ class Enumerator(abctools.AbjadValueObject):
             Sequence([2, 3, 4])
 
         Returns sequence generator.
-        '''
+        """
         length = len(self.sequence)
         if maximum_length is None:
             maximum_length = length

@@ -3,7 +3,8 @@ import pytest
 
 
 def test_scoretools_Voice_lilypond_voice_resolution_01():
-    r'''Anonymous voice with a sequence of leaves,
+    """
+    Anonymous voice with a sequence of leaves,
     in the middle of which there is a simultaneous,
     which in turn contains two anonymous voices.
     How does LilyPond resolve voices?
@@ -12,7 +13,7 @@ def test_scoretools_Voice_lilypond_voice_resolution_01():
     LilyPond colors the inner four notes black.
     LilyPond issues clashing note column warnings for the inner notes.
     How should Abjad resolve voices?
-    '''
+    """
 
     voice = abjad.Voice("c'8 d'8 b'8 c''8")
     voice.insert(2, abjad.Container([abjad.Voice("e'8 f'8"), abjad.Voice("g'8 a'8")]))
@@ -20,7 +21,7 @@ def test_scoretools_Voice_lilypond_voice_resolution_01():
     abjad.override(voice).note_head.color = 'red'
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         \with
         {
@@ -44,17 +45,18 @@ def test_scoretools_Voice_lilypond_voice_resolution_01():
             b'8
             c''8
         }
-        '''
+        """
         )
 
 
 
 def test_scoretools_Voice_lilypond_voice_resolution_02():
-    r'''Named voice with  with a sequence of leaves,
+    """
+    Named voice with  with a sequence of leaves,
     in the middle of which there is a simultaneous,
     which in turn contains one like-named and one differently named voice.
     How does LilyPond resolve voices?
-    '''
+    """
 
     voice = abjad.Voice("c'8 d'8 b'8 c''8")
     voice.name = 'foo'
@@ -64,7 +66,7 @@ def test_scoretools_Voice_lilypond_voice_resolution_02():
     abjad.override(voice).note_head.color = 'red'
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \context Voice = "foo"
         \with
         {
@@ -88,22 +90,23 @@ def test_scoretools_Voice_lilypond_voice_resolution_02():
             b'8
             c''8
         }
-        ''',
+        """,
         )
 
-    r'''
+    """
     LilyPond colors six notes red and two notes black.
     LilyPond identifies two voices.
-    '''
+    """
 
 
 def test_scoretools_Voice_lilypond_voice_resolution_03():
-    r'''Two like-named voices in two differently named staves.
+    """
+    Two like-named voices in two differently named staves.
     LilyPond gives unterminated beam warnings.
     LilyPond gives grob direction programming errors.
     We conclude that LilyPond identifies two separate voices.
     Good example for Abjad voice resolution.
-    '''
+    """
 
     container = abjad.Container()
     container.append(abjad.Staff([abjad.Voice("c'8 d'8")]))
@@ -119,15 +122,16 @@ def test_scoretools_Voice_lilypond_voice_resolution_03():
 
 
 def test_scoretools_Voice_lilypond_voice_resolution_04():
-    r'''Container containing a run of leaves.
+    """
+    Container containing a run of leaves.
     Two like-structured simultaneouss in the middle of the run.
     LilyPond handles this example perfectly.
     LilyPond colors the four note_heads of the soprano voice red.
     LilyPond colors all other note_heads black.
-    '''
+    """
 
     container = abjad.Container(
-        r'''
+        r"""
         c'8
         <<
             \context Voice = "alto" {
@@ -150,14 +154,14 @@ def test_scoretools_Voice_lilypond_voice_resolution_04():
             }
         >>
         e''8
-        '''
+        """
         )
 
     abjad.override(container[1][1]).note_head.color = 'red'
     abjad.override(container[2][1]).note_head.color = 'red'
 
     assert format(container) == abjad.String.normalize(
-        r'''
+        r"""
         {
             c'8
             <<
@@ -194,5 +198,5 @@ def test_scoretools_Voice_lilypond_voice_resolution_04():
             >>
             e''8
         }
-        ''',
+        """,
         )

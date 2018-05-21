@@ -4,8 +4,9 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class Inequality(AbjadValueObject):
-    '''Inequality.
-    '''
+    """
+    Inequality.
+    """
 
     ### CLASS VARIABLES ###
 
@@ -46,18 +47,20 @@ class Inequality(AbjadValueObject):
 
     @abc.abstractmethod
     def __call__(self, argument):
-        r'''Calls inequality on `argument`.
+        """
+        Calls inequality on ``argument``.
 
         Returns true or false.
-        '''
+        """
         raise NotImplementedError
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def operator_string(self):
-        r'''Gets operator string.
+        """
+        Gets operator string.
 
         Returns string.
-        '''
+        """
         return self._operator_string

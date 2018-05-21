@@ -2,10 +2,11 @@ import abjad
 
 
 def test_scoretools_Selection_are_logical_voice_01():
-    r'''Unincorporated leaves do not share a logical voice.
+    """
+    Unincorporated leaves do not share a logical voice.
     Unicorporated leaves do not share a root component.
     False if not allow orphans; True if allow orphans.
-    '''
+    """
 
     notes = [
         abjad.Note("c'8"),
@@ -15,81 +16,87 @@ def test_scoretools_Selection_are_logical_voice_01():
 
 
 def test_scoretools_Selection_are_logical_voice_02():
-    r'''Container and leaves all logical voice.
-    '''
+    """
+    Container and leaves all logical voice.
+    """
 
     container = abjad.Container("c'8 d'8 e'8 f'8")
 
-    r'''
+    r"""
     {
         c'8
         d'8
         e'8
         f'8
     }
-    '''
+    """
 
     assert abjad.select(container).components().are_logical_voice()
 
 
 def test_scoretools_Selection_are_logical_voice_03():
-    r'''Tuplet and leaves all logical voice.
-    '''
+    """
+    Tuplet and leaves all logical voice.
+    """
 
     tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
 
-    r'''
+    r"""
     \times 2/3 {
         c'8
         d'8
         e'8
     }
-    '''
+    """
 
     assert abjad.select(tuplet).components().are_logical_voice()
 
 
 def test_scoretools_Selection_are_logical_voice_04():
-    r'''Voice and leaves all appear in same logical voice.
-    '''
+    """
+    Voice and leaves all appear in same logical voice.
+    """
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
 
-    r'''
+    r"""
     \new Voice {
         c'8
         d'8
         e'8
         f'8
     }
-    '''
+    """
 
     assert abjad.select(voice).components().are_logical_voice()
 
 
 def test_scoretools_Selection_are_logical_voice_05():
-    r'''Anonymous staff and leaves all appear in same logical voice.
-    '''
+    """
+    Anonymous staff and leaves all appear in same logical voice.
+    """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
 
-    r'''
+    r"""
     \new Staff {
         c'8
         d'8
         e'8
         f'8
     }
-    '''
+    """
 
     assert abjad.select(staff).components().are_logical_voice()
 
 
 def test_scoretools_Selection_are_logical_voice_06():
-    r'''Voice, sequential and leaves all appear in same logical voice.
-    '''
+    """
+    Voice, sequential and leaves all appear in same logical voice.
+    """
 
-    voice = abjad.Voice(r'''
+    voice = abjad.Voice(
+        r"""
         {
             c'8
             d'8
@@ -102,10 +109,11 @@ def test_scoretools_Selection_are_logical_voice_06():
             b'8
             c''8
         }
-        ''')
+        """
+        )
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -121,17 +129,19 @@ def test_scoretools_Selection_are_logical_voice_06():
                 c''8
             }
         }
-        '''
+        """
         )
 
     assert abjad.select(voice).components().are_logical_voice()
 
 
 def test_scoretools_Selection_are_logical_voice_07():
-    r'''Anonymous voice, tuplets and leaves all appear in same logical voice.
-    '''
+    """
+    Anonymous voice, tuplets and leaves all appear in same logical voice.
+    """
 
-    voice = abjad.Voice(r'''
+    voice = abjad.Voice(
+        r"""
         \times 2/3 {
             c'8
             d'8
@@ -142,10 +152,11 @@ def test_scoretools_Selection_are_logical_voice_07():
             g'8
             a'8
         }
-        ''')
+        """
+        )
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             \times 2/3 {
@@ -159,17 +170,19 @@ def test_scoretools_Selection_are_logical_voice_07():
                 a'8
             }
         }
-        '''
+        """
         )
 
     assert abjad.select(voice).components().are_logical_voice()
 
 
 def test_scoretools_Selection_are_logical_voice_08():
-    r'''Logical voice does not extend across anonymous voices.
-    '''
+    """
+    Logical voice does not extend across anonymous voices.
+    """
 
-    staff = abjad.Staff(r'''
+    staff = abjad.Staff(
+        r"""
         \new Voice {
             c'8
             d'8
@@ -182,10 +195,11 @@ def test_scoretools_Selection_are_logical_voice_08():
             b'8
             c''8
         }
-        ''')
+        """
+        )
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             \new Voice
@@ -203,7 +217,7 @@ def test_scoretools_Selection_are_logical_voice_08():
                 c''8
             }
         }
-        '''
+        """
         )
 
     leaves = abjad.select(staff).leaves()
@@ -214,10 +228,12 @@ def test_scoretools_Selection_are_logical_voice_08():
 
 
 def test_scoretools_Selection_are_logical_voice_09():
-    r'''Logical voice encompasses across like-named voices.
-    '''
+    """
+    Logical voice encompasses across like-named voices.
+    """
 
-    staff = abjad.Staff(r'''
+    staff = abjad.Staff(
+        r"""
         \context Voice = "foo" {
             c'8
             d'8
@@ -230,10 +246,11 @@ def test_scoretools_Selection_are_logical_voice_09():
             b'8
             c''8
         }
-        ''')
+        """
+        )
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             \context Voice = "foo"
@@ -251,7 +268,7 @@ def test_scoretools_Selection_are_logical_voice_09():
                 c''8
             }
         }
-        '''
+        """
         )
 
     leaves = abjad.select(staff).leaves()
@@ -259,10 +276,12 @@ def test_scoretools_Selection_are_logical_voice_09():
 
 
 def test_scoretools_Selection_are_logical_voice_10():
-    r'''Logical voice does not extend across differently named voices.
-    '''
+    """
+    Logical voice does not extend across differently named voices.
+    """
 
-    staff = abjad.Staff(r'''
+    staff = abjad.Staff(
+        r"""
         \context Voice = "foo" {
             c'8
             d'8
@@ -271,10 +290,11 @@ def test_scoretools_Selection_are_logical_voice_10():
             e'8
             f'8
         }
-        ''')
+        """
+        )
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             \context Voice = "foo"
@@ -288,7 +308,7 @@ def test_scoretools_Selection_are_logical_voice_10():
                 f'8
             }
         }
-        '''
+        """
         )
 
     leaves = abjad.select(staff).leaves()
@@ -296,11 +316,13 @@ def test_scoretools_Selection_are_logical_voice_10():
 
 
 def test_scoretools_Selection_are_logical_voice_11():
-    r'''Logical voice does not across anonymous voices.
+    """
+    Logical voice does not across anonymous voices.
     Logical voice does not extend across anonymous staves.
-    '''
+    """
 
-    container = abjad.Container(r'''
+    container = abjad.Container(
+        r"""
         \new Staff {
             \new Voice {
                 c'8
@@ -313,10 +335,11 @@ def test_scoretools_Selection_are_logical_voice_11():
                 f'8
             }
         }
-        ''')
+        """
+        )
 
     assert format(container) == abjad.String.normalize(
-        r'''
+        r"""
         {
             \new Staff
             {
@@ -335,7 +358,7 @@ def test_scoretools_Selection_are_logical_voice_11():
                 }
             }
         }
-        '''
+        """
         )
 
     leaves = abjad.select(container).leaves()
@@ -343,11 +366,13 @@ def test_scoretools_Selection_are_logical_voice_11():
 
 
 def test_scoretools_Selection_are_logical_voice_12():
-    r'''Logical voice does not extend across anonymous voices.
+    """
+    Logical voice does not extend across anonymous voices.
     Logical voice does not extend across anonymous staves.
-    '''
+    """
 
-    container = abjad.Container(r'''
+    container = abjad.Container(
+        r"""
         \new Staff <<
             \new Voice {
                 c'8
@@ -368,10 +393,11 @@ def test_scoretools_Selection_are_logical_voice_12():
                 c''8
             }
         >>
-        ''')
+        """
+        )
 
     assert format(container) == abjad.String.normalize(
-        r'''
+        r"""
         {
             \new Staff
             <<
@@ -400,7 +426,7 @@ def test_scoretools_Selection_are_logical_voice_12():
                 }
             >>
         }
-        '''
+        """
         )
 
     leaves = abjad.select(container).leaves()
@@ -408,11 +434,12 @@ def test_scoretools_Selection_are_logical_voice_12():
 
 
 def test_scoretools_Selection_are_logical_voice_13():
-    r'''Anonymous voice, sequentials and leaves all appear in same
-    logical voice.
-    '''
+    """
+    Anonymous voice, sequentials and leaves all appear in same logical voice.
+    """
 
-    voice = abjad.Voice(r'''
+    voice = abjad.Voice(
+        r"""
         {
             c'8
             d'8
@@ -421,10 +448,11 @@ def test_scoretools_Selection_are_logical_voice_13():
             e'8
             f'8
         }
-        ''')
+        """
+        )
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -436,7 +464,7 @@ def test_scoretools_Selection_are_logical_voice_13():
                 f'8
             }
         }
-        '''
+        """
         )
 
     leaves = abjad.select(voice).leaves()
@@ -444,11 +472,13 @@ def test_scoretools_Selection_are_logical_voice_13():
 
 
 def test_scoretools_Selection_are_logical_voice_14():
-    r'''Logical voice can extend across like-named staves.
+    """
+    Logical voice can extend across like-named staves.
     Logical voice can not extend across differently named implicit voices.
-    '''
+    """
 
-    container = abjad.Container(r'''
+    container = abjad.Container(
+        r"""
         \context Staff = "foo" {
             c'8
             cs'8
@@ -461,10 +491,11 @@ def test_scoretools_Selection_are_logical_voice_14():
             fs'8
             g'8
         }
-        ''')
+        """
+        )
 
     assert format(container) == abjad.String.normalize(
-        r'''
+        r"""
         {
             \context Staff = "foo"
             {
@@ -481,7 +512,7 @@ def test_scoretools_Selection_are_logical_voice_14():
                 g'8
             }
         }
-        '''
+        """
         )
 
     leaves = abjad.select(container).leaves()
@@ -490,10 +521,12 @@ def test_scoretools_Selection_are_logical_voice_14():
 
 
 def test_scoretools_Selection_are_logical_voice_15():
-    r'''Logical voice can not extend across differently named implicit voices.
-    '''
+    """
+    Logical voice can not extend across differently named implicit voices.
+    """
 
-    container = abjad.Container(r'''
+    container = abjad.Container(
+        r"""
         {
             c'8
             d'8
@@ -506,10 +539,11 @@ def test_scoretools_Selection_are_logical_voice_15():
             b'8
             c''8
         }
-        ''')
+        """
+        )
 
     assert format(container) == abjad.String.normalize(
-        r'''
+        r"""
         {
             {
                 c'8
@@ -525,7 +559,7 @@ def test_scoretools_Selection_are_logical_voice_15():
                 c''8
             }
         }
-        '''
+        """
         )
 
     leaves = abjad.select(container).leaves()
@@ -535,10 +569,12 @@ def test_scoretools_Selection_are_logical_voice_15():
 
 
 def test_scoretools_Selection_are_logical_voice_16():
-    r'''Logical voice can not extend across differently named implicit voices.
-    '''
+    """
+    Logical voice can not extend across differently named implicit voices.
+    """
 
-    container = abjad.Container(r'''
+    container = abjad.Container(
+        r"""
         \new Voice {
             c'8
             d'8
@@ -551,10 +587,11 @@ def test_scoretools_Selection_are_logical_voice_16():
             b'8
             c''8
         }
-        ''')
+        """
+        )
 
     assert format(container) == abjad.String.normalize(
-        r'''
+        r"""
         {
             \new Voice
             {
@@ -570,7 +607,7 @@ def test_scoretools_Selection_are_logical_voice_16():
                 c''8
             }
         }
-        '''
+        """
         )
 
     leaves = abjad.select(container).leaves()
@@ -580,10 +617,12 @@ def test_scoretools_Selection_are_logical_voice_16():
 
 
 def test_scoretools_Selection_are_logical_voice_17():
-    r'''Logical voice can not extend across differently named implicit voices.
-    '''
+    """
+    Logical voice can not extend across differently named implicit voices.
+    """
 
-    container = abjad.Container(r'''
+    container = abjad.Container(
+        r"""
         {
             c'8
             d'8
@@ -596,24 +635,8 @@ def test_scoretools_Selection_are_logical_voice_17():
             b'8
             c''8
         }
-        ''')
-
-    r'''
-    {
-        {
-            c'8
-            d'8
-            e'8
-            f'8
-        }
-        \context Voice = "foo" {
-            g'8
-            a'8
-            b'8
-            c''8
-        }
-    }
-    '''
+        """
+        )
 
     leaves = abjad.select(container).leaves()
     assert leaves[:4].are_logical_voice()
@@ -622,10 +645,12 @@ def test_scoretools_Selection_are_logical_voice_17():
 
 
 def test_scoretools_Selection_are_logical_voice_18():
-    r'''Logical voice can not extend acrossdifferently named implicit voices.
-    '''
+    """
+    Logical voice can not extend acrossdifferently named implicit voices.
+    """
 
-    container = abjad.Container(r'''
+    container = abjad.Container(
+        r"""
         \context Voice = "foo" {
             c'8
             d'8
@@ -638,10 +663,11 @@ def test_scoretools_Selection_are_logical_voice_18():
             b'8
             c''8
         }
-        ''')
+        """
+        )
 
     assert format(container) == abjad.String.normalize(
-        r'''
+        r"""
         {
             \context Voice = "foo"
             {
@@ -657,7 +683,7 @@ def test_scoretools_Selection_are_logical_voice_18():
                 c''8
             }
         }
-        '''
+        """
         )
 
     leaves = abjad.select(container).leaves()
@@ -667,10 +693,12 @@ def test_scoretools_Selection_are_logical_voice_18():
 
 
 def test_scoretools_Selection_are_logical_voice_19():
-    r'''Logical voice can not extend across differently named implicit voices.
-    '''
+    """
+    Logical voice can not extend across differently named implicit voices.
+    """
 
-    container = abjad.Container(r'''
+    container = abjad.Container(
+        r"""
         {
             c'8
             d'8
@@ -683,10 +711,11 @@ def test_scoretools_Selection_are_logical_voice_19():
             b'8
             c''8
         }
-        ''')
+        """
+        )
 
     assert format(container) == abjad.String.normalize(
-        r'''
+        r"""
         {
             {
                 c'8
@@ -702,7 +731,7 @@ def test_scoretools_Selection_are_logical_voice_19():
                 c''8
             }
         }
-        '''
+        """
         )
 
     leaves = abjad.select(container).leaves()
@@ -712,10 +741,12 @@ def test_scoretools_Selection_are_logical_voice_19():
 
 
 def test_scoretools_Selection_are_logical_voice_20():
-    r'''Logical voice can not extend across differently named implicit voices.
-    '''
+    """
+    Logical voice can not extend across differently named implicit voices.
+    """
 
-    container = abjad.Container(r'''
+    container = abjad.Container(
+        r"""
         \new Staff {
             c'8
             cs'8
@@ -728,10 +759,11 @@ def test_scoretools_Selection_are_logical_voice_20():
             fs'8
             g'8
         }
-        ''')
+        """
+        )
 
     assert format(container) == abjad.String.normalize(
-        r'''
+        r"""
         {
             \new Staff
             {
@@ -747,7 +779,7 @@ def test_scoretools_Selection_are_logical_voice_20():
                 g'8
             }
         }
-        '''
+        """
         )
 
     leaves = abjad.select(container).leaves()
@@ -757,10 +789,12 @@ def test_scoretools_Selection_are_logical_voice_20():
 
 
 def test_scoretools_Selection_are_logical_voice_21():
-    r'''Logical voice can not extend across differently named implicit voices.
-    '''
+    """
+    Logical voice can not extend across differently named implicit voices.
+    """
 
-    container = abjad.Container(r'''
+    container = abjad.Container(
+        r"""
         c'8
         cs'8
         d'8
@@ -771,10 +805,11 @@ def test_scoretools_Selection_are_logical_voice_21():
             fs'8
             g'8
         }
-        ''')
+        """
+        )
 
     assert format(container) == abjad.String.normalize(
-        r'''
+        r"""
         {
             c'8
             cs'8
@@ -788,7 +823,7 @@ def test_scoretools_Selection_are_logical_voice_21():
                 g'8
             }
         }
-        '''
+        """
         )
 
     leaves = abjad.select(container).leaves()
@@ -798,10 +833,12 @@ def test_scoretools_Selection_are_logical_voice_21():
 
 
 def test_scoretools_Selection_are_logical_voice_22():
-    r'''Logical voice can not extend across differently named implicit voices.
-    '''
+    """
+    Logical voice can not extend across differently named implicit voices.
+    """
 
-    container = abjad.Container(r'''
+    container = abjad.Container(
+        r"""
         \new Voice {
             c'8
             cs'8
@@ -812,10 +849,11 @@ def test_scoretools_Selection_are_logical_voice_22():
         f'8
         fs'8
         g'8
-        ''')
+        """
+        )
 
     assert format(container) == abjad.String.normalize(
-        r'''
+        r"""
         {
             \new Voice
             {
@@ -829,7 +867,7 @@ def test_scoretools_Selection_are_logical_voice_22():
             fs'8
             g'8
         }
-        '''
+        """
         )
 
     leaves = abjad.select(container).leaves()
@@ -839,10 +877,12 @@ def test_scoretools_Selection_are_logical_voice_22():
 
 
 def test_scoretools_Selection_are_logical_voice_23():
-    r'''Logical voice can not extend across differently named implicit voices.
-    '''
+    """
+    Logical voice can not extend across differently named implicit voices.
+    """
 
-    container = abjad.Container(r'''
+    container = abjad.Container(
+        r"""
         c'8
         cs'8
         d'8
@@ -853,10 +893,11 @@ def test_scoretools_Selection_are_logical_voice_23():
             fs'8
             g'8
         }
-        ''')
+        """
+        )
 
     assert format(container) == abjad.String.normalize(
-        r'''
+        r"""
         {
             c'8
             cs'8
@@ -870,7 +911,7 @@ def test_scoretools_Selection_are_logical_voice_23():
                 g'8
             }
         }
-        '''
+        """
         )
 
     leaves = abjad.select(container).leaves()
@@ -880,13 +921,15 @@ def test_scoretools_Selection_are_logical_voice_23():
 
 
 def test_scoretools_Selection_are_logical_voice_24():
-    r'''Logical voice can not extend across differently named implicit voices.
+    """
+    Logical voice can not extend across differently named implicit voices.
     NOTE: THIS IS THE LILYPOND LACUNA.
     LilyPond *does* extend logical voice in this case.
     Abjad does not.
-    '''
+    """
 
-    container = abjad.Container(r'''
+    container = abjad.Container(
+        r"""
         \context Voice = "foo" {
             c'8
             cs'8
@@ -897,10 +940,11 @@ def test_scoretools_Selection_are_logical_voice_24():
         f'8
         fs'8
         g'8
-        ''')
+        """
+        )
 
     assert format(container) == abjad.String.normalize(
-        r'''
+        r"""
         {
             \context Voice = "foo"
             {
@@ -914,7 +958,7 @@ def test_scoretools_Selection_are_logical_voice_24():
             fs'8
             g'8
         }
-        '''
+        """
         )
 
     leaves = abjad.select(container).leaves()
@@ -924,10 +968,12 @@ def test_scoretools_Selection_are_logical_voice_24():
 
 
 def test_scoretools_Selection_are_logical_voice_25():
-    r'''Logical voice can not extend across differently named implicit voices.
-    '''
+    """
+    Logical voice can not extend across differently named implicit voices.
+    """
 
-    container = abjad.Container(r'''
+    container = abjad.Container(
+        r"""
         c'8
         cs'8
         d'8
@@ -938,10 +984,11 @@ def test_scoretools_Selection_are_logical_voice_25():
             fs'8
             g'8
         }
-        ''')
+        """
+        )
 
     assert format(container) == abjad.String.normalize(
-        r'''
+        r"""
         {
             c'8
             cs'8
@@ -955,7 +1002,7 @@ def test_scoretools_Selection_are_logical_voice_25():
                 g'8
             }
         }
-        '''
+        """
         )
 
     leaves = abjad.select(container).leaves()
@@ -965,10 +1012,12 @@ def test_scoretools_Selection_are_logical_voice_25():
 
 
 def test_scoretools_Selection_are_logical_voice_26():
-    r'''Logical voice can not extend across differently named implicit voices.
-    '''
+    """
+    Logical voice can not extend across differently named implicit voices.
+    """
 
-    container = abjad.Container(r'''
+    container = abjad.Container(
+        r"""
         \new Staff {
             c'8
             d'8
@@ -979,10 +1028,11 @@ def test_scoretools_Selection_are_logical_voice_26():
         a'8
         b'8
         c''8
-        ''')
+        """
+        )
 
     assert format(container) == abjad.String.normalize(
-        r'''
+        r"""
         {
             \new Staff
             {
@@ -996,7 +1046,7 @@ def test_scoretools_Selection_are_logical_voice_26():
             b'8
             c''8
         }
-        '''
+        """
         )
 
     leaves = abjad.select(container).leaves()
@@ -1006,8 +1056,9 @@ def test_scoretools_Selection_are_logical_voice_26():
 
 
 def test_scoretools_Selection_are_logical_voice_27():
-    r'''Logical voice can not extend across differently named implicit voices.
-    '''
+    """
+    Logical voice can not extend across differently named implicit voices.
+    """
 
     voice = abjad.Voice([abjad.Note(n, (1, 8)) for n in range(4)])
     container = abjad.Container([voice])
@@ -1015,7 +1066,7 @@ def test_scoretools_Selection_are_logical_voice_27():
     container = abjad.Container([container] + notes)
 
     assert format(container) == abjad.String.normalize(
-        r'''
+        r"""
         {
             {
                 \new Voice
@@ -1031,7 +1082,7 @@ def test_scoretools_Selection_are_logical_voice_27():
             fs'8
             g'8
         }
-        '''
+        """
         )
 
     leaves = abjad.select(container).leaves()
@@ -1041,8 +1092,9 @@ def test_scoretools_Selection_are_logical_voice_27():
 
 
 def test_scoretools_Selection_are_logical_voice_28():
-    r'''Logical voice can not extend across differently named implicit voices.
-    '''
+    """
+    Logical voice can not extend across differently named implicit voices.
+    """
 
     voice = abjad.Voice([abjad.Note(n, (1, 8)) for n in range(4)])
     voice.name = 'foo'
@@ -1050,7 +1102,7 @@ def test_scoretools_Selection_are_logical_voice_28():
     notes = [abjad.Note(n, (1, 8)) for n in range(4, 8)]
     container = abjad.Container([container] + notes)
 
-    r'''
+    r"""
     {
         {
             \context Voice = "foo" {
@@ -1065,7 +1117,7 @@ def test_scoretools_Selection_are_logical_voice_28():
         fs'8
         g'8
     }
-    '''
+    """
 
     leaves = abjad.select(container).leaves()
     assert leaves[:4].are_logical_voice()
@@ -1074,8 +1126,9 @@ def test_scoretools_Selection_are_logical_voice_28():
 
 
 def test_scoretools_Selection_are_logical_voice_29():
-    r'''Logical voice can not extend across differently named implicit voices.
-    '''
+    """
+    Logical voice can not extend across differently named implicit voices.
+    """
 
     voice_1 = abjad.Voice([abjad.Note(n, (1, 8)) for n in range(4)])
     voice_1.name = 'foo'
@@ -1085,7 +1138,7 @@ def test_scoretools_Selection_are_logical_voice_29():
     container = abjad.Container([voice_2] + notes)
 
     assert format(container) == abjad.String.normalize(
-        r'''
+        r"""
         {
             \context Voice = "bar"
             {
@@ -1102,7 +1155,7 @@ def test_scoretools_Selection_are_logical_voice_29():
             fs'8
             g'8
         }
-        '''
+        """
         )
 
     leaves = abjad.select(container).leaves()
@@ -1112,8 +1165,9 @@ def test_scoretools_Selection_are_logical_voice_29():
 
 
 def test_scoretools_Selection_are_logical_voice_30():
-    r'''Logical voice can not extend across differently named implicit voices.
-    '''
+    """
+    Logical voice can not extend across differently named implicit voices.
+    """
 
     voice_1 = abjad.Voice([abjad.Note(n, (1, 8)) for n in range(4)])
     voice_2 = abjad.Voice([voice_1])
@@ -1121,7 +1175,7 @@ def test_scoretools_Selection_are_logical_voice_30():
     container = abjad.Container([voice_2] + notes)
 
     assert format(container) == abjad.String.normalize(
-        r'''
+        r"""
         {
             \new Voice
             {
@@ -1138,7 +1192,7 @@ def test_scoretools_Selection_are_logical_voice_30():
             fs'8
             g'8
         }
-        '''
+        """
         )
 
     leaves = abjad.select(container).leaves()
@@ -1148,8 +1202,9 @@ def test_scoretools_Selection_are_logical_voice_30():
 
 
 def test_scoretools_Selection_are_logical_voice_31():
-    r'''Logical voice can not extend across differently named implicit voices.
-    '''
+    """
+    Logical voice can not extend across differently named implicit voices.
+    """
 
     notes = [abjad.Note(n, (1, 8)) for n in range(4)]
     voice_1 = abjad.Voice(abjad.Note(12, (1, 8)) * 4)
@@ -1159,7 +1214,7 @@ def test_scoretools_Selection_are_logical_voice_31():
     container = abjad.Container(notes + [container])
 
     assert format(container) == abjad.String.normalize(
-        r'''
+        r"""
         {
             c'8
             cs'8
@@ -1182,7 +1237,7 @@ def test_scoretools_Selection_are_logical_voice_31():
                 }
             >>
         }
-        '''
+        """
         )
 
     leaves = abjad.select(container).leaves()
@@ -1191,10 +1246,12 @@ def test_scoretools_Selection_are_logical_voice_31():
 
 
 def test_scoretools_Selection_are_logical_voice_32():
-    r'''Logical voice can not extend across differently named implicit voices.
-    '''
+    """
+    Logical voice can not extend across differently named implicit voices.
+    """
 
-    container = abjad.Container(r'''
+    container = abjad.Container(
+        r"""
         <<
             \new Voice {
                 c'8
@@ -1213,10 +1270,11 @@ def test_scoretools_Selection_are_logical_voice_32():
         a'8
         bf'8
         b'8
-        ''')
+        """
+        )
 
     assert format(container) == abjad.String.normalize(
-        r'''
+        r"""
         {
             <<
                 \new Voice
@@ -1239,7 +1297,7 @@ def test_scoretools_Selection_are_logical_voice_32():
             bf'8
             b'8
         }
-        '''
+        """
         )
 
     leaves = abjad.select(container).leaves()
@@ -1248,11 +1306,13 @@ def test_scoretools_Selection_are_logical_voice_32():
 
 
 def test_scoretools_Selection_are_logical_voice_33():
-    r'''Logical voice does extend across gaps.
+    """
+    Logical voice does extend across gaps.
     Logical voice can not extend across differently named voices.
-    '''
+    """
 
-    container = abjad.Container(r'''
+    container = abjad.Container(
+        r"""
         c'8
         cs'8
         \new Voice {
@@ -1269,14 +1329,15 @@ def test_scoretools_Selection_are_logical_voice_33():
         }
         bf'8
         b'8
-        ''')
+        """
+        )
 
     outer = (0, 1, 10, 11)
     middle = (2, 3, 8, 9)
     inner = (4, 5, 6, 7)
 
     assert format(container) == abjad.String.normalize(
-        r'''
+        r"""
         {
             c'8
             cs'8
@@ -1297,7 +1358,7 @@ def test_scoretools_Selection_are_logical_voice_33():
             bf'8
             b'8
         }
-        '''
+        """
         )
 
     leaves = abjad.select(container).leaves()
@@ -1308,11 +1369,13 @@ def test_scoretools_Selection_are_logical_voice_33():
 
 
 def test_scoretools_Selection_are_logical_voice_34():
-    r'''Logical voice does extend across gaps.
+    """
+    Logical voice does extend across gaps.
     Logical voice can not extend across differently named implicit voices.
-    '''
+    """
 
-    staff = abjad.Staff(r'''
+    staff = abjad.Staff(
+        r"""
         c'8
         cs'8
         \new Staff {
@@ -1329,14 +1392,15 @@ def test_scoretools_Selection_are_logical_voice_34():
         }
         bf'8
         b'8
-        ''')
+        """
+        )
 
     outer = (0, 1, 10, 11)
     middle = (2, 3, 8, 9)
     inner = (4, 5, 6, 7)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -1358,7 +1422,7 @@ def test_scoretools_Selection_are_logical_voice_34():
             bf'8
             b'8
         }
-        '''
+        """
         )
 
     leaves = abjad.select(staff).leaves()
@@ -1369,10 +1433,12 @@ def test_scoretools_Selection_are_logical_voice_34():
 
 
 def test_scoretools_Selection_are_logical_voice_35():
-    r'''Containers and leaves all appear in same logical voice.
-    '''
+    """
+    Containers and leaves all appear in same logical voice.
+    """
 
-    container = abjad.Container(r'''
+    container = abjad.Container(
+        r"""
         c'8
         cs'8
         {
@@ -1389,10 +1455,11 @@ def test_scoretools_Selection_are_logical_voice_35():
         }
         bf'8
         b'8
-        ''')
+        """
+        )
 
     assert format(container) == abjad.String.normalize(
-        r'''
+        r"""
         {
             c'8
             cs'8
@@ -1411,17 +1478,19 @@ def test_scoretools_Selection_are_logical_voice_35():
             bf'8
             b'8
         }
-        '''
+        """
         )
 
     assert abjad.select(container).components().are_logical_voice()
 
 
 def test_scoretools_Selection_are_logical_voice_36():
-    r'''Logical voice can not extend across differently named voices.
-    '''
+    """
+    Logical voice can not extend across differently named voices.
+    """
 
-    container = abjad.Container(r'''
+    container = abjad.Container(
+        r"""
         c'8
         cs'8
         {
@@ -1436,10 +1505,11 @@ def test_scoretools_Selection_are_logical_voice_36():
         }
         fs'8
         g'8
-        ''')
+        """
+        )
 
     assert format(container) == abjad.String.normalize(
-        r'''
+        r"""
         {
             c'8
             cs'8
@@ -1457,7 +1527,7 @@ def test_scoretools_Selection_are_logical_voice_36():
             fs'8
             g'8
         }
-        '''
+        """
         )
 
     outer = (0, 1, 6, 7)
@@ -1470,10 +1540,12 @@ def test_scoretools_Selection_are_logical_voice_36():
 
 
 def test_scoretools_Selection_are_logical_voice_37():
-    r'''Logical voice does not extend over differently named voices.
-    '''
+    """
+    Logical voice does not extend over differently named voices.
+    """
 
-    container = abjad.Container(r'''
+    container = abjad.Container(
+        r"""
         {
             {
                 \context Voice = "foo" {
@@ -1488,10 +1560,11 @@ def test_scoretools_Selection_are_logical_voice_37():
         f'8
         fs'8
         g'8
-        ''')
+        """
+        )
 
     assert format(container) == abjad.String.normalize(
-        r'''
+        r"""
         {
             {
                 {
@@ -1509,7 +1582,7 @@ def test_scoretools_Selection_are_logical_voice_37():
             fs'8
             g'8
         }
-        '''
+        """
         )
 
     leaves = abjad.select(container).leaves()
@@ -1519,11 +1592,12 @@ def test_scoretools_Selection_are_logical_voice_37():
 
 
 def test_scoretools_Selection_are_logical_voice_38():
-    r'''Can not nest across differently named implicit voices.
-    '''
+    """
+    Can not nest across differently named implicit voices.
+    """
 
     container = abjad.Voice(
-        r'''
+        r"""
         {
             {
                 {
@@ -1540,10 +1614,11 @@ def test_scoretools_Selection_are_logical_voice_38():
                 }
             }
         }
-        ''')
+        """
+        )
 
     assert format(container) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -1564,7 +1639,7 @@ def test_scoretools_Selection_are_logical_voice_38():
                 }
             }
         }
-        '''
+        """
         )
 
     outer = (0, 1, 6, 7)
@@ -1577,10 +1652,12 @@ def test_scoretools_Selection_are_logical_voice_38():
 
 
 def test_scoretools_Selection_are_logical_voice_39():
-    r'''Logical voice can not extend across differently named voices.
-    '''
+    """
+    Logical voice can not extend across differently named voices.
+    """
 
-    voice = abjad.Voice(r'''
+    voice = abjad.Voice(
+        r"""
         c'8
         cs'8
         {
@@ -1603,11 +1680,13 @@ def test_scoretools_Selection_are_logical_voice_39():
         }
         d''8
         ef''8
-        ''')
+        """
+        )
+
     voice.name = 'foo'
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \context Voice = "foo"
         {
             c'8
@@ -1634,7 +1713,7 @@ def test_scoretools_Selection_are_logical_voice_39():
             d''8
             ef''8
         }
-        '''
+        """
         )
 
     outer = (0, 1, 2, 3, 4, 5, 10, 11, 12, 13, 14, 15)
@@ -1647,10 +1726,12 @@ def test_scoretools_Selection_are_logical_voice_39():
 
 
 def test_scoretools_Selection_are_logical_voice_40():
-    r'''Logical voice can not extend across differently named anonymous voices.
-    '''
+    """
+    Logical voice can not extend across differently named anonymous voices.
+    """
 
-    container = abjad.Container(r'''
+    container = abjad.Container(
+        r"""
         \new Voice {
             c'8
             cs'8
@@ -1667,10 +1748,11 @@ def test_scoretools_Selection_are_logical_voice_40():
         a'8
         bf'8
         b'8
-        ''')
+        """
+        )
 
     assert format(container) == abjad.String.normalize(
-        r'''
+        r"""
         {
             \new Voice
             {
@@ -1691,7 +1773,7 @@ def test_scoretools_Selection_are_logical_voice_40():
             bf'8
             b'8
         }
-        '''
+        """
         )
 
     leaves = abjad.select(container).leaves()
@@ -1704,10 +1786,12 @@ def test_scoretools_Selection_are_logical_voice_40():
 
 
 def test_scoretools_Selection_are_logical_voice_41():
-    r'''Logical voice can not extend across differently named anonymous voices.
-    '''
+    """
+    Logical voice can not extend across differently named anonymous voices.
+    """
 
-    container = abjad.Container(r'''
+    container = abjad.Container(
+        r"""
         c'8
         cs'8
         <<
@@ -1726,10 +1810,11 @@ def test_scoretools_Selection_are_logical_voice_41():
         >>
         bf'8
         b'8
-        ''')
+        """
+        )
 
     assert format(container) == abjad.String.normalize(
-        r'''
+        r"""
         {
             c'8
             cs'8
@@ -1752,7 +1837,7 @@ def test_scoretools_Selection_are_logical_voice_41():
             bf'8
             b'8
         }
-        '''
+        """
         )
 
     outer = (0, 1, 10, 11)

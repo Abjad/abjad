@@ -2,8 +2,9 @@ import abjad
 
 
 def test_scoretools_Component__get_sibling_01():
-    '''Returns component when index is in range.
-    '''
+    """
+    Returns component when index is in range.
+    """
 
     staff = abjad.Staff("c' d' e' f'")
     assert staff[1]._get_sibling(2) is staff[3]
@@ -13,16 +14,18 @@ def test_scoretools_Component__get_sibling_01():
 
 
 def test_scoretools_Component__get_sibling_02():
-    r'''Returns none when index is out of range.
-    '''
+    """
+    Returns none when index is out of range.
+    """
 
     staff = abjad.Staff("c' d' e' f'")
     assert staff[1]._get_sibling(99) is None
 
 
 def test_scoretools_Component__get_sibling_03():
-    r'''Returns none when component has no parent.
-    '''
+    """
+    Returns none when component has no parent.
+    """
 
     staff = abjad.Staff("c' d' e' f'")
     assert staff._get_sibling(1) is None

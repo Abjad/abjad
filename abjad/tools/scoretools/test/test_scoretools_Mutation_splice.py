@@ -15,7 +15,7 @@ def test_scoretools_Mutation_splice_01():
     assert abjad.inspect(voice).is_well_formed()
     assert result == voice[-4:]
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'8
@@ -27,13 +27,14 @@ def test_scoretools_Mutation_splice_01():
             e'8
             ]
         }
-        '''
+        """
         )
 
 
 def test_scoretools_Mutation_splice_02():
-    r'''Splices leaf after interior leaf.
-    '''
+    """
+    Splices leaf after interior leaf.
+    """
 
     voice = abjad.Voice("c'8 d'8 e'8")
     beam = abjad.Beam()
@@ -44,7 +45,7 @@ def test_scoretools_Mutation_splice_02():
         )
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'8
@@ -54,7 +55,7 @@ def test_scoretools_Mutation_splice_02():
             e'8
             ]
         }
-        '''
+        """
         )
 
     assert result == voice[1:3]
@@ -62,8 +63,9 @@ def test_scoretools_Mutation_splice_02():
 
 
 def test_scoretools_Mutation_splice_03():
-    r'''Splices tuplet after tuplet.
-    '''
+    """
+    Splices tuplet after tuplet.
+    """
 
     tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
     voice = abjad.Voice([tuplet])
@@ -76,7 +78,7 @@ def test_scoretools_Mutation_splice_03():
         )
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             \times 2/3 {
@@ -92,7 +94,7 @@ def test_scoretools_Mutation_splice_03():
                 ]
             }
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice).is_well_formed()
@@ -100,8 +102,9 @@ def test_scoretools_Mutation_splice_03():
 
 
 def test_scoretools_Mutation_splice_04():
-    r'''Splices after container with underspanners.
-    '''
+    """
+    Splices after container with underspanners.
+    """
 
     voice = abjad.Voice(abjad.Container("c'8 c'8") * 2)
     leaves = abjad.select(voice).leaves()
@@ -113,7 +116,7 @@ def test_scoretools_Mutation_splice_04():
         )
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -128,7 +131,7 @@ def test_scoretools_Mutation_splice_04():
                 ]
             }
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice).is_well_formed()
@@ -136,8 +139,9 @@ def test_scoretools_Mutation_splice_04():
 
 
 def test_scoretools_Mutation_splice_05():
-    r'''Extends leaves rightwards after leaf.
-    '''
+    """
+    Extends leaves rightwards after leaf.
+    """
 
     voice = abjad.Voice("c'8 d'8 e'8")
     beam = abjad.Beam()
@@ -149,7 +153,7 @@ def test_scoretools_Mutation_splice_05():
         )
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'8
@@ -161,7 +165,7 @@ def test_scoretools_Mutation_splice_05():
             d'8
             e'8
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice).is_well_formed()
@@ -169,8 +173,9 @@ def test_scoretools_Mutation_splice_05():
 
 
 def test_scoretools_Mutation_splice_06():
-    r'''Extends leaf rightwards after interior leaf.
-    '''
+    """
+    Extends leaf rightwards after interior leaf.
+    """
 
     voice = abjad.Voice("c'8 d'8 e'8")
     beam = abjad.Beam()
@@ -182,7 +187,7 @@ def test_scoretools_Mutation_splice_06():
         )
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'8
@@ -192,7 +197,7 @@ def test_scoretools_Mutation_splice_06():
             e'8
             ]
         }
-        '''
+        """
         )
 
     assert result == voice[1:3]
@@ -200,8 +205,9 @@ def test_scoretools_Mutation_splice_06():
 
 
 def test_scoretools_Mutation_splice_07():
-    r'''Splices leaves left of leaf.
-    '''
+    """
+    Splices leaves left of leaf.
+    """
 
     voice = abjad.Voice("c'8 d'8 e'8")
     beam = abjad.Beam()
@@ -214,7 +220,7 @@ def test_scoretools_Mutation_splice_07():
         )
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'16
@@ -226,7 +232,7 @@ def test_scoretools_Mutation_splice_07():
             e'8
             ]
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice).is_well_formed()
@@ -234,8 +240,9 @@ def test_scoretools_Mutation_splice_07():
 
 
 def test_scoretools_Mutation_splice_08():
-    r'''Splices leaf left of interior leaf.
-    '''
+    """
+    Splices leaf left of interior leaf.
+    """
 
     voice = abjad.Voice("c'8 d'8 e'8")
     beam = abjad.Beam()
@@ -247,7 +254,7 @@ def test_scoretools_Mutation_splice_08():
         )
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'8
@@ -257,7 +264,7 @@ def test_scoretools_Mutation_splice_08():
             e'8
             ]
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice).is_well_formed()
@@ -265,8 +272,9 @@ def test_scoretools_Mutation_splice_08():
 
 
 def test_scoretools_Mutation_splice_09():
-    r'''Splices tuplet left of tuplet.
-    '''
+    """
+    Splices tuplet left of tuplet.
+    """
 
     tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
     voice = abjad.Voice([tuplet])
@@ -280,7 +288,7 @@ def test_scoretools_Mutation_splice_09():
         )
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             \times 2/3 {
@@ -296,7 +304,7 @@ def test_scoretools_Mutation_splice_09():
                 ]
             }
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice).is_well_formed()
@@ -304,8 +312,9 @@ def test_scoretools_Mutation_splice_09():
 
 
 def test_scoretools_Mutation_splice_10():
-    r'''Splices left of container with underspanners.
-    '''
+    """
+    Splices left of container with underspanners.
+    """
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 }")
     leaves = abjad.select(voice).leaves()
@@ -318,7 +327,7 @@ def test_scoretools_Mutation_splice_10():
         )
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -333,7 +342,7 @@ def test_scoretools_Mutation_splice_10():
                 ]
             }
         }
-        '''
+        """
         )
 
     assert result == voice[1:]
@@ -341,8 +350,9 @@ def test_scoretools_Mutation_splice_10():
 
 
 def test_scoretools_Mutation_splice_11():
-    r'''Extends leaves leftwards of leaf. Do not extend edge spanners.
-    '''
+    """
+    Extends leaves leftwards of leaf. Do not extend edge spanners.
+    """
 
     voice = abjad.Voice("c'8 d'8 e'8")
     beam = abjad.Beam()
@@ -355,7 +365,7 @@ def test_scoretools_Mutation_splice_11():
         )
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'16
@@ -367,7 +377,7 @@ def test_scoretools_Mutation_splice_11():
             e'8
             ]
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice).is_well_formed()
@@ -375,8 +385,9 @@ def test_scoretools_Mutation_splice_11():
 
 
 def test_scoretools_Mutation_splice_12():
-    r'''Extends leaf leftwards of interior leaf. Does extend interior spanners.
-    '''
+    """
+    Extends leaf leftwards of interior leaf. Does extend interior spanners.
+    """
 
     voice = abjad.Voice("c'8 d'8 e'8")
     beam = abjad.Beam()
@@ -388,7 +399,7 @@ def test_scoretools_Mutation_splice_12():
         )
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'8
@@ -398,7 +409,7 @@ def test_scoretools_Mutation_splice_12():
             e'8
             ]
         }
-        '''
+        """
         )
 
     assert result == voice[1:3]

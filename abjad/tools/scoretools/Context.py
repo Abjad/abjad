@@ -3,7 +3,8 @@ from .Container import Container
 
 
 class Context(Container):
-    '''LilyPond context.
+    """
+    LilyPond context.
 
     ..  container:: example
 
@@ -22,7 +23,7 @@ class Context(Container):
             {
             }
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -83,7 +84,8 @@ class Context(Container):
     ### SPECIAL METHODS ###
 
     def __copy__(self, *arguments):
-        r'''Shallow copies context.
+        """
+        Shallow copies context.
 
         Copies indicators.
 
@@ -92,7 +94,7 @@ class Context(Container):
         Does not copy children.
 
         Returns new component.
-        '''
+        """
         import abjad
         new_context = Container.__copy__(self)
         new_context._consists_commands = copy.copy(self.consists_commands)
@@ -100,14 +102,16 @@ class Context(Container):
         return new_context
 
     def __getnewargs__(self):
-        r'''Gets new container arguments.
+        """
+        Gets new container arguments.
 
         Returns tuple.
-        '''
+        """
         return [], self.lilypond_type, self.is_simultaneous, self.name
 
     def __repr__(self):
-        r'''Gets interpreter representation of context.
+        """
+        Gets interpreter representation of context.
 
         >>> context = abjad.Context(
         ...     name='MeterVoice',
@@ -117,7 +121,7 @@ class Context(Container):
         "Context(lilypond_type='GlobalContext', name='MeterVoice')"
 
         Returns string.
-        '''
+        """
         if self[:].are_leaves():
             return Container.__repr__(self)
         return self._get_abbreviated_string_format()
@@ -252,7 +256,8 @@ class Context(Container):
 
     @property
     def consists_commands(self):
-        r'''Unordered set of LilyPond engravers to include
+        r"""
+        Unordered set of LilyPond engravers to include
         in context definition.
 
         Manage with add, update, other standard set commands:
@@ -268,12 +273,13 @@ class Context(Container):
         {
         }
 
-        '''
+        """
         return self._consists_commands
 
     @property
     def lilypond_type(self):
-        r'''Gets lilypond type.
+        """
+        Gets lilypond type.
 
         ..  container:: example
 
@@ -287,7 +293,7 @@ class Context(Container):
         Gets and sets lilypond type of context.
 
         Returns string.
-        '''
+        """
         return self._lilypond_type
 
     @lilypond_type.setter
@@ -300,10 +306,11 @@ class Context(Container):
 
     @property
     def lilypond_context(self):
-        r'''Gets `LilyPondContext` associated with context.
+        """
+        Gets `LilyPondContext` associated with context.
 
         Returns LilyPond context instance.
-        '''
+        """
         import abjad
         try:
             lilypond_context = abjad.LilyPondContext(name=self.lilypond_type)
@@ -315,7 +322,8 @@ class Context(Container):
 
     @property
     def remove_commands(self):
-        r'''Unordered set of LilyPond engravers to remove from context.
+        r"""
+        Unordered set of LilyPond engravers to remove from context.
 
         Manage with add, update, other standard set commands:
 
@@ -330,5 +338,5 @@ class Context(Container):
         {
         }
 
-        '''
+        """
         return self._remove_commands

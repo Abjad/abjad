@@ -2,7 +2,8 @@ from .Instrument import Instrument
 
 
 class Piano(Instrument):
-    r'''Piano.
+    r"""
+    Piano.
 
     ..  container:: example
 
@@ -37,7 +38,7 @@ class Piano(Instrument):
             >>
 
     The piano targets piano staff context by default.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -76,7 +77,8 @@ class Piano(Instrument):
 
     @property
     def allowable_clefs(self):
-        r'''Gets piano's allowable clefs.
+        """
+        Gets piano's allowable clefs.
 
         ..  container:: example
 
@@ -85,12 +87,13 @@ class Piano(Instrument):
             ('treble', 'bass')
 
         Returns clef list.
-        '''
+        """
         return Instrument.allowable_clefs.fget(self)
 
     @property
     def context(self):
-        r'''Gets (historically conventional) context.
+        """
+        Gets (historically conventional) context.
 
         ..  container:: example
 
@@ -100,12 +103,13 @@ class Piano(Instrument):
         Returns ``'StaffGroup'``.
 
         Override with ``abjad.attach(..., context='...')``.
-        '''
+        """
         return self._context
 
     @property
     def markup(self):
-        r'''Gets piano's instrument name markup.
+        """
+        Gets piano's instrument name markup.
 
         ..  container:: example
 
@@ -116,12 +120,13 @@ class Piano(Instrument):
             >>> abjad.show(piano.markup) # doctest: +SKIP
 
         Returns markup.
-        '''
+        """
         return Instrument.markup.fget(self)
 
     @property
     def middle_c_sounding_pitch(self):
-        r'''Gets sounding pitch of piano's written middle C.
+        """
+        Gets sounding pitch of piano's written middle C.
 
         ..  container:: example
 
@@ -132,12 +137,13 @@ class Piano(Instrument):
             >>> abjad.show(piano.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
-        '''
+        """
         return Instrument.middle_c_sounding_pitch.fget(self)
 
     @property
     def name(self):
-        r'''Gets piano's name.
+        """
+        Gets piano's name.
 
         ..  container:: example
 
@@ -146,12 +152,13 @@ class Piano(Instrument):
             'piano'
 
         Returns string.
-        '''
+        """
         return Instrument.name.fget(self)
 
     @property
     def pitch_range(self):
-        r'''Gets piano's range.
+        """
+        Gets piano's range.
 
         ..  container:: example
 
@@ -162,12 +169,13 @@ class Piano(Instrument):
             >>> abjad.show(piano.pitch_range) # doctest: +SKIP
 
         Returns pitch range.
-        '''
+        """
         return Instrument.pitch_range.fget(self)
 
     @property
     def short_markup(self):
-        r'''Gets piano's short instrument name markup.
+        """
+        Gets piano's short instrument name markup.
 
         ..  container:: example
 
@@ -178,12 +186,13 @@ class Piano(Instrument):
             >>> abjad.show(piano.short_markup) # doctest: +SKIP
 
         Returns markup.
-        '''
+        """
         return Instrument.short_markup.fget(self)
 
     @property
     def short_name(self):
-        r'''Gets piano's short instrument name.
+        """
+        Gets piano's short instrument name.
 
         ..  container:: example
 
@@ -192,5 +201,5 @@ class Piano(Instrument):
             'pf.'
 
         Returns string.
-        '''
+        """
         return Instrument.short_name.fget(self)

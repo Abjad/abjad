@@ -3,9 +3,10 @@ import pytest
 
 
 def test_scoretools_Mutation_replace_measure_contents_01():
-    r'''Contents duration less than sum of duration of measures.
-    abjad.Note spacer skip at end of second measure.
-    '''
+    """
+    Contents duration less than sum of duration of measures.
+    Note spacer skip at end of second measure.
+    """
 
     maker = abjad.MeasureMaker()
     measures = maker([(1, 8), (3, 16)])
@@ -14,7 +15,7 @@ def test_scoretools_Mutation_replace_measure_contents_01():
     abjad.mutate(staff).replace_measure_contents(notes)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -29,16 +30,17 @@ def test_scoretools_Mutation_replace_measure_contents_01():
                 s1 * 1/16
             }   % measure
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).is_well_formed()
 
 
 def test_scoretools_Mutation_replace_measure_contents_02():
-    r'''Some contents too big for some measures.
+    """
+    Some contents too big for some measures.
     Small measures skipped.
-    '''
+    """
 
     time_signatures = [(1, 16), (3, 16), (1, 16), (3, 16)]
     maker = abjad.MeasureMaker()
@@ -48,7 +50,7 @@ def test_scoretools_Mutation_replace_measure_contents_02():
     abjad.mutate(staff).replace_measure_contents(notes)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -70,16 +72,16 @@ def test_scoretools_Mutation_replace_measure_contents_02():
                 s1 * 1/16
             }   % measure
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).is_well_formed()
 
 
 def test_scoretools_Mutation_replace_measure_contents_03():
-    r'''Raise MissingMeasureError when input expression
-    contains no measures.
-    '''
+    """
+    Raise MissingMeasureError when input expression contains no measures.
+    """
 
     note = abjad.Note("c'4")
     notes = [abjad.Note("c'8"), abjad.Note("d'8")]
@@ -89,8 +91,9 @@ def test_scoretools_Mutation_replace_measure_contents_03():
 
 
 def test_scoretools_Mutation_replace_measure_contents_04():
-    r'''Raise StopIteration when not enough measures.
-    '''
+    """
+    Raise StopIteration when not enough measures.
+    """
 
     maker = abjad.MeasureMaker()
     measures = maker([(1, 8), (1, 8)])
@@ -103,8 +106,9 @@ def test_scoretools_Mutation_replace_measure_contents_04():
 
 
 def test_scoretools_Mutation_replace_measure_contents_05():
-    r'''Populate measures even when not enough total measures.
-    '''
+    """
+    Populate measures even when not enough total measures.
+    """
 
     maker = abjad.MeasureMaker()
     measures = maker([(1, 8), (1, 8)])
@@ -118,7 +122,7 @@ def test_scoretools_Mutation_replace_measure_contents_05():
         pass
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -131,15 +135,16 @@ def test_scoretools_Mutation_replace_measure_contents_05():
                 f'16
             }   % measure
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).is_well_formed()
 
 
 def test_scoretools_Mutation_replace_measure_contents_06():
-    r'''Preserves ties.
-    '''
+    """
+    Preserves ties.
+    """
 
     maker = abjad.NoteMaker()
     durations = [(5, 16), (3, 16)]
@@ -152,7 +157,7 @@ def test_scoretools_Mutation_replace_measure_contents_06():
     measures = abjad.mutate(staff).replace_measure_contents(leaves)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -166,7 +171,7 @@ def test_scoretools_Mutation_replace_measure_contents_06():
                 c'8.
             }   % measure
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).is_well_formed()

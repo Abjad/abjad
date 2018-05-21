@@ -3,15 +3,16 @@ import pytest
 
 
 def test_scoretools_Container___setitem___01():
-    r'''Replaces in-score leaf with out-of-score leaf.
-    '''
+    """
+    Replaces in-score leaf with out-of-score leaf.
+    """
 
     voice = abjad.Voice("c'8 [ d'8 ] e'8 f'8")
     leaves = abjad.select(voice).leaves()
     abjad.attach(abjad.Glissando(), leaves)
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'8
@@ -24,13 +25,13 @@ def test_scoretools_Container___setitem___01():
             \glissando
             f'8
         }
-        '''
+        """
         )
 
     voice[1] = abjad.Note("c''8")
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'8
@@ -43,15 +44,16 @@ def test_scoretools_Container___setitem___01():
             \glissando
             f'8
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice).is_well_formed()
 
 
 def test_scoretools_Container___setitem___02():
-    r'''Replaces in-score leaf with out-of-score container.
-    '''
+    """
+    Replaces in-score leaf with out-of-score container.
+    """
 
     voice = abjad.Voice("c'8 [ d'8 ] e'8 f'8")
     leaves = abjad.select(voice).leaves()
@@ -59,7 +61,7 @@ def test_scoretools_Container___setitem___02():
     abjad.attach(glissando, leaves)
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'8
@@ -72,13 +74,13 @@ def test_scoretools_Container___setitem___02():
             \glissando
             f'8
         }
-        '''
+        """
         )
 
     voice[1] = abjad.Container("c'16 c'16 c'16")
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'8
@@ -97,22 +99,23 @@ def test_scoretools_Container___setitem___02():
             \glissando
             f'8
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice).is_well_formed()
 
 
 def test_scoretools_Container___setitem___03():
-    r'''Replaces in-score container with out-of-score leaf.
-    '''
+    """
+    Replaces in-score container with out-of-score leaf.
+    """
 
     voice = abjad.Voice("{ c'8 [ d'8 } { e'8 f'8 ] }")
     leaves = abjad.select(voice).leaves()
     abjad.attach(abjad.Glissando(), leaves)
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -129,13 +132,13 @@ def test_scoretools_Container___setitem___03():
                 ]
             }
         }
-        '''
+        """
         )
 
     voice[1] = abjad.Note("c''8")
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -148,15 +151,16 @@ def test_scoretools_Container___setitem___03():
             c''8
             ]
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice).is_well_formed()
 
 
 def test_scoretools_Container___setitem___04():
-    r'''Replaces in-score container with out-of-score tuplet.
-    '''
+    """
+    Replaces in-score container with out-of-score tuplet.
+    """
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 }")
     leaves = abjad.select(voice).leaves()
@@ -164,7 +168,7 @@ def test_scoretools_Container___setitem___04():
     abjad.attach(abjad.Glissando(), leaves)
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -181,13 +185,13 @@ def test_scoretools_Container___setitem___04():
                 ]
             }
         }
-        '''
+        """
         )
 
     voice[1] = abjad.Tuplet(abjad.Multiplier(2, 3), "c'8 d'8 e'8")
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -206,22 +210,23 @@ def test_scoretools_Container___setitem___04():
                 ]
             }
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice).is_well_formed()
 
 
 def test_scoretools_Container___setitem___05():
-    r'''Replaces in-score container with out-of-score leaf.
-    '''
+    """
+    Replaces in-score container with out-of-score leaf.
+    """
 
     voice = abjad.Voice("{ c'8 [ d'8 } { e'8 f'8 ] }")
     leaves = abjad.select(voice).leaves()
     abjad.attach(abjad.Glissando(), leaves)
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -238,13 +243,13 @@ def test_scoretools_Container___setitem___05():
                 ]
             }
         }
-        '''
+        """
         )
 
     voice[1] = abjad.Note("c''8")
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -257,15 +262,16 @@ def test_scoretools_Container___setitem___05():
             c''8
             ]
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice).is_well_formed()
 
 
 def test_scoretools_Container___setitem___06():
-    r'''Replaces in-score container with out-of-score leaf.
-    '''
+    """
+    Replaces in-score container with out-of-score leaf.
+    """
 
     voice = abjad.Voice(2 * abjad.Container("c'8 c'8 c'8 c'8"))
     voice = abjad.Voice("{ c'8 d'8 e'8 f'8 } { g'8 a'8 b'8 c''8 }")
@@ -273,7 +279,7 @@ def test_scoretools_Container___setitem___06():
     abjad.attach(abjad.Beam(), leaves[0:6])
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -291,13 +297,13 @@ def test_scoretools_Container___setitem___06():
                 c''8
             }
         }
-        '''
+        """
         )
 
     voice[1] = abjad.Rest('r2')
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -310,15 +316,16 @@ def test_scoretools_Container___setitem___06():
             }
             r2
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice).is_well_formed()
 
 
 def test_scoretools_Container___setitem___07():
-    r'''Replaces note in one score with note from another score.
-    '''
+    """
+    Replaces note in one score with note from another score.
+    """
 
     notes = [
         abjad.Note("c'8"), abjad.Note("d'8"), abjad.Note("e'8"), 
@@ -329,7 +336,7 @@ def test_scoretools_Container___setitem___07():
     abjad.attach(abjad.Beam(), voice_1[:])
 
     assert format(voice_1) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'8
@@ -338,14 +345,14 @@ def test_scoretools_Container___setitem___07():
             e'8
             ]
         }
-        '''
+        """
         )
 
     voice_2 = abjad.Voice(notes[3:])
     abjad.attach(abjad.Beam(), voice_2[:])
 
     assert format(voice_2) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             f'8
@@ -354,13 +361,13 @@ def test_scoretools_Container___setitem___07():
             a'8
             ]
         }
-        '''
+        """
         )
 
     voice_1[1] = voice_2[1]
 
     assert format(voice_1) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'8
@@ -369,13 +376,13 @@ def test_scoretools_Container___setitem___07():
             e'8
             ]
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice_1).is_well_formed()
 
     assert format(voice_2) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             f'8
@@ -383,15 +390,15 @@ def test_scoretools_Container___setitem___07():
             a'8
             ]
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice_2).is_well_formed()
 
 
 def test_scoretools_Container___setitem___08():
-    r'''Replaces note in one score with container from another score.
-    '''
+    r"""Replaces note in one score with container from another score.
+    """
 
     notes = [
         abjad.Note("c'8"), abjad.Note("d'8"), abjad.Note("e'8"),
@@ -401,7 +408,7 @@ def test_scoretools_Container___setitem___08():
     abjad.attach(abjad.Beam(), voice_1[:])
 
     assert format(voice_1) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'8
@@ -410,7 +417,7 @@ def test_scoretools_Container___setitem___08():
             e'8
             ]
         }
-        '''
+        """
         )
 
     voice_2 = abjad.Voice(notes[3:])
@@ -421,7 +428,7 @@ def test_scoretools_Container___setitem___08():
     abjad.attach(abjad.Slur(), leaves)
 
     assert format(voice_2) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             f'8
@@ -436,13 +443,13 @@ def test_scoretools_Container___setitem___08():
             }
             b'8
         }
-        '''
+        """
         )
 
     voice_1[1] = voice_2[1]
 
     assert format(voice_1) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'8
@@ -456,34 +463,34 @@ def test_scoretools_Container___setitem___08():
             e'8
             ]
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice_1).is_well_formed()
 
     assert format(voice_2) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             f'8
             \glissando
             b'8
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice_2).is_well_formed()
 
 
 def test_scoretools_Container___setitem___09():
-    r'''Sets leaf between unspanned components.
-    '''
+    r"""Sets leaf between unspanned components.
+    """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     staff[2:2] = [abjad.Note("g'8")]
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -492,15 +499,15 @@ def test_scoretools_Container___setitem___09():
             e'8
             f'8
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).is_well_formed()
 
 
 def test_scoretools_Container___setitem___10():
-    r'''Sets leaf between spanned compoennts.
-    '''
+    r"""Sets leaf between spanned compoennts.
+    """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     beam = abjad.Beam()
@@ -509,7 +516,7 @@ def test_scoretools_Container___setitem___10():
     staff[2:2] = [note]
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -520,15 +527,15 @@ def test_scoretools_Container___setitem___10():
             f'8
             ]
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).is_well_formed()
 
 
 def test_scoretools_Container___setitem___11():
-    r'''Sets multiple leaves between spanned components.
-    '''
+    r"""Sets multiple leaves between spanned components.
+    """
 
     notes = [
         abjad.Note("c'8"), abjad.Note("d'8"), abjad.Note("e'8"),
@@ -544,7 +551,7 @@ def test_scoretools_Container___setitem___11():
     abjad.attach(beam, staff[:])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -554,13 +561,13 @@ def test_scoretools_Container___setitem___11():
             a'8
             ]
         }
-        '''
+        """
         )
 
     staff[2:2] = middle
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -572,15 +579,15 @@ def test_scoretools_Container___setitem___11():
             a'8
             ]
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).is_well_formed()
 
 
 def test_scoretools_Container___setitem___12():
-    r'''Replaces multiple spanned leaves with with single leaf.
-    '''
+    r"""Replaces multiple spanned leaves with with single leaf.
+    """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     beam = abjad.Beam()
@@ -589,7 +596,7 @@ def test_scoretools_Container___setitem___12():
     staff[1:3] = [note]
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -598,15 +605,15 @@ def test_scoretools_Container___setitem___12():
             f'8
             ]
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).is_well_formed()
 
 
 def test_scoretools_Container___setitem___13():
-    r'''Replaces three spanned leaves with three different leaves.
-    '''
+    r"""Replaces three spanned leaves with three different leaves.
+    """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     beam = abjad.Beam()
@@ -615,7 +622,7 @@ def test_scoretools_Container___setitem___13():
     staff[1:3] = notes
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -626,20 +633,20 @@ def test_scoretools_Container___setitem___13():
             f'8
             ]
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).is_well_formed()
 
 
 def test_scoretools_Container___setitem___14():
-    r'''Replaces in-score container with contents of container.
-    '''
+    r"""Replaces in-score container with contents of container.
+    """
 
     staff = abjad.Staff("{ c'8 [ d'8 } { e'8 f'8 ] }")
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {
@@ -653,14 +660,14 @@ def test_scoretools_Container___setitem___14():
                 ]
             }
         }
-        '''
+        """
         )
 
     container = staff[0]
     staff[0:1] = container[:]
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -672,7 +679,7 @@ def test_scoretools_Container___setitem___14():
                 ]
             }
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).is_well_formed()
@@ -680,14 +687,14 @@ def test_scoretools_Container___setitem___14():
 
 
 def test_scoretools_Container___setitem___15():
-    r'''Sets first slice of staff equal to first element of first container in
+    r"""Sets first slice of staff equal to first element of first container in
     staff.
-    '''
+    """
 
     staff = abjad.Staff("{ c'8 [ d'8 } { e'8 f'8 ] }")
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {
@@ -701,13 +708,13 @@ def test_scoretools_Container___setitem___15():
                 ]
             }
         }
-        '''
+        """
         )
 
     staff[0:0] = staff[0][:1]
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -721,25 +728,25 @@ def test_scoretools_Container___setitem___15():
                 ]
             }
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).is_well_formed()
 
 
 def test_scoretools_Container___setitem___16():
-    r'''Sets first slice of staff equal to contents of first container in
+    r"""Sets first slice of staff equal to contents of first container in
     staff.
 
     Empties first container in staff.
 
     Leaves empty container in staff.
-    '''
+    """
 
     staff = abjad.Staff("{ c'8 [ d'8 } { e'8 f'8 ] }")
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {
@@ -753,13 +760,13 @@ def test_scoretools_Container___setitem___16():
                 ]
             }
         }
-        '''
+        """
         )
 
     staff[0:0] = staff[0][:]
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -773,22 +780,22 @@ def test_scoretools_Container___setitem___16():
                 ]
             }
         }
-        '''
+        """
         )
 
 
 def test_scoretools_Container___setitem___17():
-    r'''Set first slice of staff equal to contents of first container in staff;
+    r"""Set first slice of staff equal to contents of first container in staff;
     empties first container in staff.
 
     Sets contents of empty first container in staff equal to first component in
     second container in staff.
-    '''
+    """
 
     staff = abjad.Staff("{ c'8 [ d'8 } { e'8 f'8 ] }")
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {
@@ -802,7 +809,7 @@ def test_scoretools_Container___setitem___17():
                 ]
             }
         }
-        '''
+        """
         )
 
     container = staff[0]
@@ -810,7 +817,7 @@ def test_scoretools_Container___setitem___17():
     container[0:0] = staff[-1][:1]
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -824,21 +831,21 @@ def test_scoretools_Container___setitem___17():
                 ]
             }
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).is_well_formed()
 
 
 def test_scoretools_Container___setitem___18():
-    r'''Extremely small coequal indices indicate first slice in staff.
-    '''
+    r"""Extremely small coequal indices indicate first slice in staff.
+    """
 
     voice = abjad.Voice("c'8 [ d'8 e'8 f'8 ]")
     voice[-1000:-1000] = [abjad.Rest('r8')]
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             r8
@@ -849,11 +856,11 @@ def test_scoretools_Container___setitem___18():
             f'8
             ]
         }
-        '''
+        """
         )
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             r8
@@ -864,21 +871,21 @@ def test_scoretools_Container___setitem___18():
             f'8
             ]
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice).is_well_formed()
 
 
 def test_scoretools_Container___setitem___19():
-    r'''Extremely large coequal indices indicate last slice in staff.
-    '''
+    r"""Extremely large coequal indices indicate last slice in staff.
+    """
 
     voice = abjad.Voice("c'8 [ d'8 e'8 f'8 ]")
     voice[1000:1000] = [abjad.Rest('r8')]
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'8
@@ -889,21 +896,21 @@ def test_scoretools_Container___setitem___19():
             ]
             r8
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice).is_well_formed()
 
 
 def test_scoretools_Container___setitem___20():
-    r'''You can use setitem to empty the contents of a container.
+    r"""You can use setitem to empty the contents of a container.
     When you do this, emptied components withdraw
     from absolutely all spanners.
 
     On the other hand, if you want to empty a container and
     allow the emptied components to remain embedded within spanners,
     use del(container) instead.
-    '''
+    """
 
     staff = abjad.Staff("c'8 d'8 [ e'8 ] f'8")
     inner_container = abjad.Container()
@@ -912,7 +919,7 @@ def test_scoretools_Container___setitem___20():
     abjad.mutate(inner_container).wrap(outer_container)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -926,7 +933,7 @@ def test_scoretools_Container___setitem___20():
             }
             f'8
         }
-        '''
+        """
         )
 
     # sets contents of outer container to nothing
@@ -934,7 +941,7 @@ def test_scoretools_Container___setitem___20():
 
     # outer container is empty and remains in score
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -942,17 +949,17 @@ def test_scoretools_Container___setitem___20():
             }
             f'8
         }
-        '''
+        """
         )
 
     # inner container leaves are no longer spanned
     assert format(inner_container) == abjad.String.normalize(
-        r'''
+        r"""
         {
             d'8
             e'8
         }
-        '''
+        """
         )
 
     # ALTERNATIVE: use del(container)
@@ -963,7 +970,7 @@ def test_scoretools_Container___setitem___20():
     abjad.mutate(inner_container).wrap(outer_container)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -977,7 +984,7 @@ def test_scoretools_Container___setitem___20():
             }
             f'8
         }
-        '''
+        """
         )
 
     # deletes outer container
@@ -985,7 +992,7 @@ def test_scoretools_Container___setitem___20():
 
     # outer container is empty and remains in score (as before)
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -993,25 +1000,25 @@ def test_scoretools_Container___setitem___20():
             }
             f'8
         }
-        '''
+        """
         )
 
     # inner container leaves are still spanned
     assert format(inner_container) == abjad.String.normalize(
-        r'''
+        r"""
         {
             d'8
             [
             e'8
             ]
         }
-        '''
+        """
         )
 
 
 def test_scoretools_Container___setitem___21():
-    r'''Extends beam as leaves append and insert into staff.
-    '''
+    r"""Extends beam as leaves append and insert into staff.
+    """
 
     staff = abjad.Staff("c'8 [ { d'8 e'8 } f'8 ]")
     beam = abjad.inspect(staff[0]).get_spanner(abjad.Beam)
@@ -1036,7 +1043,7 @@ def test_scoretools_Container___setitem___21():
     assert beam.leaves == leaves
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -1052,5 +1059,5 @@ def test_scoretools_Container___setitem___21():
             f'8
             ]
         }
-        ''',
+        """,
         )

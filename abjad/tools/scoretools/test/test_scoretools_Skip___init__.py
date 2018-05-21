@@ -2,16 +2,18 @@ import abjad
 
 
 def test_scoretools_Skip___init___01():
-    r'''Initialize skip from LilyPond input string.
-    '''
+    """
+    Initialize skip from LilyPond input string.
+    """
 
     skip = abjad.Skip('s8.')
     assert isinstance(skip, abjad.Skip)
 
 
 def test_scoretools_Skip___init___02():
-    r'''Initialize skip from containerize note.
-    '''
+    """
+    Initialize skip from containerize note.
+    """
 
     chord = abjad.Chord([2, 3, 4], (1, 4))
     duration = chord.written_duration
@@ -25,8 +27,9 @@ def test_scoretools_Skip___init___02():
 
 
 def test_scoretools_Skip___init___03():
-    r'''Initialize skip from tupletized note.
-    '''
+    """
+    Initialize skip from tupletized note.
+    """
 
     tuplet = abjad.Tuplet((2, 3), 3 * abjad.Chord([2, 3, 4], (1, 4)))
     duration = tuplet[0].written_duration
@@ -39,8 +42,9 @@ def test_scoretools_Skip___init___03():
 
 
 def test_scoretools_Skip___init___04():
-    r'''Initialize skip from beamed chord.
-    '''
+    """
+    Initialize skip from beamed chord.
+    """
 
     staff = abjad.Staff(abjad.Chord([2, 3, 4], (1, 4)) * 3)
     beam = abjad.Beam()
@@ -78,8 +82,9 @@ def test_scoretools_Skip___init___06():
 
 
 def test_scoretools_Skip___init___07():
-    r'''Initialize skip from beamed note.
-    '''
+    """
+    Initialize skip from beamed note.
+    """
 
     staff = abjad.Staff(abjad.Note(0, (1, 8)) * 3)
     beam = abjad.Beam()
@@ -91,8 +96,9 @@ def test_scoretools_Skip___init___07():
 
 
 def test_scoretools_Skip___init___08():
-    r'''Initialize skip from unincorporaed rest.
-    '''
+    """
+    Initialize skip from unincorporaed rest.
+    """
 
     rest = abjad.Rest((1, 8))
     duration = rest.written_duration
@@ -106,8 +112,9 @@ def test_scoretools_Skip___init___08():
 
 
 def test_scoretools_Skip___init___09():
-    r'''Initialize skip from tupletized rest.
-    '''
+    """
+    Initialize skip from tupletized rest.
+    """
 
     tuplet = abjad.Tuplet((2, 3), 3 * abjad.Rest((1, 8)))
     duration = tuplet[0].written_duration
@@ -120,8 +127,9 @@ def test_scoretools_Skip___init___09():
 
 
 def test_scoretools_Skip___init___10():
-    r'''Initialize skip from spanned rest.
-    '''
+    """
+    Initialize skip from spanned rest.
+    """
 
     staff = abjad.Staff([abjad.Note(0, (1, 8)), abjad.Rest((1, 8)), abjad.Note(0, (1, 8))])
     beam = abjad.Beam()

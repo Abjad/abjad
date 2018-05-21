@@ -8,7 +8,8 @@ import uqbar.graphs
 
 
 class Meter(AbjadValueObject):
-    '''Meter.
+    """
+    Meter.
 
     Meter models a common practice understanding of beats and other levels of
     rhythmic organization structured as a tree. Meter structure corresponds to
@@ -232,7 +233,7 @@ class Meter(AbjadValueObject):
     and ``3`` summing to that prime. Summands are arranged from greatest
     to least by default. This means that ``5`` becomes ``3+2`` and ``7``
     becomes ``3+2+2`` in the examples above.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -390,15 +391,17 @@ class Meter(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is a meter with an rtm format equal to that of
-        this meter. Otherwise false.
+        """
+        Is true when `argument` is a meter with an rtm format equal to that of
+        this meter.
 
         Returns true or false.
-        '''
+        """
         return super(Meter, self).__eq__(argument)
 
     def __format__(self, format_specification=''):
-        r'''Formats meter.
+        """
+        Formats meter.
 
         ..  container:: example
 
@@ -414,14 +417,15 @@ class Meter(AbjadValueObject):
         Interprets `''` equal to `'storage'`.
 
         Returns string.
-        '''
+        """
         from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
             return systemtools.StorageFormatManager(self).get_storage_format()
         return str(self)
 
     def __graph__(self, **keywords):
-        r'''Gets Graphviz format of meter.
+        """
+        Gets Graphviz format of meter.
 
         ..  container:: example
 
@@ -546,7 +550,7 @@ class Meter(AbjadValueObject):
                 }
 
         Returns Graphviz graph.
-        '''
+        """
         def make_offset_node(
             offset,
             leaf_one=None,
@@ -646,14 +650,16 @@ class Meter(AbjadValueObject):
         return graph
 
     def __hash__(self):
-        r'''Hashes meter.
+        """
+        Hashes meter.
 
         Returns integer.
-        '''
+        """
         return super(Meter, self).__hash__()
 
     def __iter__(self):
-        r'''Iterates meter.
+        """
+        Iterates meter.
 
         ..  container:: example
 
@@ -674,7 +680,7 @@ class Meter(AbjadValueObject):
                 (NonreducedFraction(0, 4), NonreducedFraction(5, 4))
 
         Yields pairs.
-        '''
+        """
         def recurse(node):
             result = []
             for child in node:
@@ -693,7 +699,8 @@ class Meter(AbjadValueObject):
             yield start_offset, stop_offset
 
     def __str__(self):
-        r'''Gets string representation of meter.
+        """
+        Gets string representation of meter.
 
         ..  container:: example
 
@@ -712,7 +719,7 @@ class Meter(AbjadValueObject):
             8/8
 
         Returns string.
-        '''
+        """
         return '{}/{}'.format(self.numerator, self.denominator)
 
     ### PRIVATE METHODS ###
@@ -727,7 +734,8 @@ class Meter(AbjadValueObject):
 
     @staticmethod
     def _make_gridded_test_rhythm(grid_length, rhythm_number, denominator=16):
-        r'''Make test rhythm number `rhythm_number` that fits `grid_length`.
+        """
+        Make test rhythm number `rhythm_number` that fits `grid_length`.
 
         Returns selection of one or more possibly tied notes.
 
@@ -778,7 +786,7 @@ class Meter(AbjadValueObject):
             15	Measure((5, 4), "c'4 c'1")
 
         Use for testing meter establishment.
-        '''
+        """
         import abjad
         # check input
         assert abjad.mathtools.is_positive_integer(grid_length)
@@ -998,7 +1006,8 @@ class Meter(AbjadValueObject):
         maximum_run_length=None,
         starting_offset=None,
         ):
-        r'''Finds the best-matching sequence of meters for the offsets
+        """
+        Finds the best-matching sequence of meters for the offsets
         contained in `argument`.
 
         ..  container:: example
@@ -1041,7 +1050,7 @@ class Meter(AbjadValueObject):
         Coerces Meters from `meters` via `MeterList`.
 
         Returns list.
-        '''
+        """
         import abjad
         session = abjad.metertools.MeterFittingSession(
             kernel_denominator=denominator,
@@ -1057,7 +1066,8 @@ class Meter(AbjadValueObject):
         denominator,
         normalize=True,
         ):
-        r'''Generates a dictionary of all offsets in a meter up
+        r"""
+        Generates a dictionary of all offsets in a meter up
         to `denominator`.
 
         Keys are the offsets and the values are the normalized weights of
@@ -1084,7 +1094,7 @@ class Meter(AbjadValueObject):
         responds to a given meter.
 
         Returns dictionary.
-        '''
+        """
         import abjad
         assert mathtools.is_positive_integer_power_of_two(
             denominator // self.denominator)
@@ -1117,8 +1127,9 @@ class Meter(AbjadValueObject):
 
     @property
     def decrease_monotonic(self):
-        r'''Is true when meter divides large primes into collections of ``2``
-        and ``3`` that decrease monotonically. Otherwise false.
+        """
+        Is true when meter divides large primes into collections of ``2``
+        and ``3`` that decrease monotonically.
 
         ..  container:: example
 
@@ -1174,12 +1185,13 @@ class Meter(AbjadValueObject):
                     1/4))))
 
         Returns true or false.
-        '''
+        """
         return self._decrease_monotonic
 
     @property
     def denominator(self):
-        r'''Gets denominator of meter.
+        """
+        Gets denominator of meter.
 
         ..  container:: example
 
@@ -1188,12 +1200,13 @@ class Meter(AbjadValueObject):
             4
 
         Returns positive integer.
-        '''
+        """
         return self._denominator
 
     @property
     def depthwise_offset_inventory(self):
-        r'''Gets depthwise offset inventory of meter.
+        """
+        Gets depthwise offset inventory of meter.
 
         ..  container:: example
 
@@ -1206,7 +1219,7 @@ class Meter(AbjadValueObject):
             2 (Offset(0, 1), Offset(1, 4), Offset(1, 2), Offset(3, 4), Offset(1, 1), Offset(5, 4), Offset(3, 2), Offset(7, 4))
 
         Returns dictionary.
-        '''
+        """
         import abjad
         inventory = []
         all_offsets = set()
@@ -1219,7 +1232,8 @@ class Meter(AbjadValueObject):
 
     @property
     def duration(self):
-        r'''Gets duration of meter.
+        """
+        Gets duration of meter.
 
         ..  container:: example
 
@@ -1228,13 +1242,14 @@ class Meter(AbjadValueObject):
             Duration(7, 4)
 
         Returns duration.
-        '''
+        """
         import abjad
         return abjad.Duration(self.numerator, self.denominator)
 
     @property
     def implied_time_signature(self):
-        r'''Gets implied time signature of meter.
+        """
+        Gets implied time signature of meter.
 
         ..  container:: example
 
@@ -1242,13 +1257,14 @@ class Meter(AbjadValueObject):
             TimeSignature((4, 4))
 
         Returns time signature.
-        '''
+        """
         return indicatortools.TimeSignature(
             self.root_node.preprolated_duration)
 
     @property
     def is_compound(self):
-        r'''Is true when meter is compound. Otherwise false.
+        """
+        Is true when meter is compound.
 
         ..  container:: example
 
@@ -1298,7 +1314,7 @@ class Meter(AbjadValueObject):
         divisible by ``3`` (but not equal to ``3``).
 
         Returns true or false.
-        '''
+        """
         if 3 in mathtools.divisors(self.numerator):
             if not self.numerator == 3:
                 return True
@@ -1306,7 +1322,8 @@ class Meter(AbjadValueObject):
 
     @property
     def is_simple(self):
-        r'''Is true when meter is simple. Otherwise false.
+        """
+        Is true when meter is simple.
 
         ..  container:: example
 
@@ -1358,12 +1375,13 @@ class Meter(AbjadValueObject):
         Meters with numerator equal to ``3`` are also defined as simple.
 
         Returns true or false.
-        '''
+        """
         return not self.is_compound
 
     @property
     def numerator(self):
-        r'''Gets numerator of meter.
+        """
+        Gets numerator of meter.
 
         ..  container:: example
 
@@ -1372,12 +1390,13 @@ class Meter(AbjadValueObject):
             7
 
         Returns positive integer.
-        '''
+        """
         return self._numerator
 
     @property
     def pair(self):
-        r'''Gets pair of numerator and denominator of meter.
+        """
+        Gets pair of numerator and denominator of meter.
 
         ..  container:: example
 
@@ -1386,12 +1405,13 @@ class Meter(AbjadValueObject):
             (6, 4)
 
         Returns pair.
-        '''
+        """
         return (self.numerator, self.denominator)
 
     @property
     def preferred_boundary_depth(self):
-        r'''Gets preferred boundary depth of meter.
+        """
+        Gets preferred boundary depth of meter.
 
         ..  container:: example
 
@@ -1418,12 +1438,13 @@ class Meter(AbjadValueObject):
         Set to integer or none.
 
         Returns integer or none.
-        '''
+        """
         return self._preferred_boundary_depth
 
     @property
     def pretty_rtm_format(self):
-        r'''Gets pretty RTM format of meter.
+        """
+        Gets pretty RTM format of meter.
 
         ..  container:: example
 
@@ -1442,12 +1463,13 @@ class Meter(AbjadValueObject):
                     1/4))))
 
         Returns string.
-        '''
+        """
         return self.root_node.pretty_rtm_format
 
     @property
     def root_node(self):
-        r'''Gets root node of meter.
+        """
+        Gets root node of meter.
 
         ..  container:: example
 
@@ -1503,12 +1525,13 @@ class Meter(AbjadValueObject):
                 )
 
         Returns rhythm tree node.
-        '''
+        """
         return self._root_node
 
     @property
     def rtm_format(self):
-        r'''Gets RTM format of meter.
+        """
+        Gets RTM format of meter.
 
         ..  container:: example
 
@@ -1517,5 +1540,5 @@ class Meter(AbjadValueObject):
             '(7/4 ((3/4 (1/4 1/4 1/4)) (2/4 (1/4 1/4)) (2/4 (1/4 1/4))))'
 
         Returns string.
-        '''
+        """
         return self._root_node.rtm_format

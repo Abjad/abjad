@@ -19,8 +19,9 @@ from .Path import Path
 
 
 class SegmentMaker(AbjadObject):
-    r'''Segment-maker.
-    '''
+    """
+    Segment-maker.
+    """
 
     ### CLASS VARIABLES ###
 
@@ -50,19 +51,22 @@ class SegmentMaker(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        r'''Is true if `expr` is a segment-maker with equivalent properties.
-        '''
+        """
+        Is true if `expr` is a segment-maker with equivalent properties.
+        """
         return TestManager.compare_objects(self, expr)
 
     def __hash__(self):
-        r'''Hashes segment-maker.
-        '''
+        """
+        Hashes segment-maker.
+        """
         hash_values = StorageFormatManager(self).get_hash_values()
         return hash(hash_values)
 
     def __illustrate__(self, **keywords) -> LilyPondFile:
-        r'''Illustrates segment-maker.
-        '''
+        """
+        Illustrates segment-maker.
+        """
         lilypond_file = self.run(**keywords)
         return lilypond_file
 
@@ -173,32 +177,37 @@ class SegmentMaker(AbjadObject):
 
     @property
     def environment(self) -> typing.Optional[str]:
-        r'''Gets environment.
-        '''
+        """
+        Gets environment.
+        """
         return self._environment
 
     @property
     def metadata(self) -> typing.Optional[OrderedDict]:
-        r'''Gets segment metadata after run.
-        '''
+        """
+        Gets segment metadata after run.
+        """
         return self._metadata
 
     @property
     def score(self) -> typing.Optional[Score]:
-        r'''Gets score.
-        '''
+        """
+        Gets score.
+        """
         return self._score
 
     @property
     def segment_directory(self) -> typing.Optional[Path]:
-        r'''Gets segment directory.
-        '''
+        """
+        Gets segment directory.
+        """
         return self._segment_directory
 
     @property
     def segment_name(self) -> typing.Optional[str]:
-        r'''Gets segment name.
-        '''
+        """
+        Gets segment name.
+        """
         if self.segment_directory is not None:
             return self.segment_directory.name
         return None
@@ -215,8 +224,9 @@ class SegmentMaker(AbjadObject):
         remove: typing.List[str] = None,
         segment_directory: Path = None,
         ) -> LilyPondFile:
-        r'''Runs segment-maker.
-        '''
+        """
+        Runs segment-maker.
+        """
         self._metadata = OrderedDict(metadata)
         self._previous_metadata = OrderedDict(previous_metadata)
         lilypond_file = self._make_lilypond_file(midi=midi)

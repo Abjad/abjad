@@ -2,7 +2,8 @@ from .Leaf import Leaf
 
 
 class Rest(Leaf):
-    r'''Rest.
+    r"""
+    Rest.
 
     ..  container:: example
 
@@ -18,7 +19,7 @@ class Rest(Leaf):
                 r8.
             }   % measure
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -32,7 +33,7 @@ class Rest(Leaf):
         import abjad
         original_input = written_duration
         if isinstance(written_duration, str):
-            string = '{{ {} }}'.format(written_duration)
+            string = f'{{ {written_duration} }}'
             parsed = abjad.parse(string)
             assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
             written_duration = parsed[0]
@@ -52,4 +53,4 @@ class Rest(Leaf):
         return [self._get_compact_representation()]
 
     def _get_compact_representation(self):
-        return 'r{}'.format(self._get_formatted_duration())
+        return f'r{self._get_formatted_duration()}'

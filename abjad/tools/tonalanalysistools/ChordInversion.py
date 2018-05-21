@@ -2,14 +2,15 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class ChordInversion(AbjadValueObject):
-    '''Chord inversion.
+    """
+    Chord inversion.
 
     ..  container:: example
 
         >>> abjad.tonalanalysistools.ChordInversion(1)
         ChordInversion(1)
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -63,8 +64,9 @@ class ChordInversion(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is a chord inversion with number equal to
-        that of this chord inversion. Otherwise false.
+        """
+        Is true when `argument` is a chord inversion with number equal to
+        that of this chord inversion.
 
         ..  container:: example
 
@@ -94,16 +96,17 @@ class ChordInversion(AbjadValueObject):
             True
 
         Returns true or false.
-        '''
+        """
         return super(ChordInversion, self).__eq__(argument)
 
     def __hash__(self):
-        r'''Hashes chord inversion.
+        """
+        Hashes chord inversion.
 
         Required to be explicitly redefined on Python 3 if __eq__ changes.
 
         Returns integer.
-        '''
+        """
         return super(ChordInversion, self).__hash__()
 
     ### PRIVATE METHODS ###
@@ -121,7 +124,8 @@ class ChordInversion(AbjadValueObject):
     ### PUBLIC METHODS ###
 
     def extent_to_figured_bass_string(self, extent):
-        r'''Changes `extent` to figured bass string.
+        """
+        Changes `extent` to figured bass string.
 
         ..  container:: example
 
@@ -148,7 +152,7 @@ class ChordInversion(AbjadValueObject):
             '4/2'
 
         Returns string.
-        '''
+        """
         if extent == 5:
             return self._triadic_inversion_to_figured_bass_string[self.number]
         elif extent == 7:
@@ -161,7 +165,8 @@ class ChordInversion(AbjadValueObject):
 
     @property
     def name(self):
-        r'''Gets name.
+        """
+        Gets name.
 
         ..  container:: example
 
@@ -175,12 +180,13 @@ class ChordInversion(AbjadValueObject):
             'second'
 
         Returns string.
-        '''
+        """
         return self._inversion_number_to_inversion_name[self.number]
 
     @property
     def number(self):
-        r'''Number of chord inversion.
+        """
+        Number of chord inversion.
 
         ..  container:: example
 
@@ -194,12 +200,13 @@ class ChordInversion(AbjadValueObject):
             2
 
         Returns nonnegative integer.
-        '''
+        """
         return self._number
 
     @property
     def title(self):
-        r'''Title of chord inversion.
+        """
+        Title of chord inversion.
 
         ..  container:: example
 
@@ -213,7 +220,7 @@ class ChordInversion(AbjadValueObject):
             'SecondInversion'
 
         Returns string.
-        '''
+        """
         name = self._inversion_number_to_inversion_name[self.number]
         if name == 'root position':
             return 'RootPosition'

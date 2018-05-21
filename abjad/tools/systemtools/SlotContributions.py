@@ -1,3 +1,4 @@
+import typing
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
@@ -23,17 +24,17 @@ class SlotContributions(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self):
-        self._articulations = []
-        self._commands = []
-        self._comments = []
-        self._indicators = []
-        self._markup = []
-        self._spanners = []
-        self._spanner_starts = []
-        self._spanner_stops = []
-        self._stem_tremolos = []
-        self._trill_pitches = []
+    def __init__(self) -> None:
+        self._articulations: typing.List[str] = []
+        self._commands: typing.List[str] = []
+        self._comments: typing.List[str] = []
+        self._indicators: typing.List[str] = []
+        self._markup: typing.List[str] = []
+        self._spanners: typing.List[str] = []
+        self._spanner_starts: typing.List[str] = []
+        self._spanner_stops: typing.List[str] = []
+        self._stem_tremolos: typing.List[str] = []
+        self._trill_pitches: typing.List[str] = []
 
     ### PRIVATE METHODS ###
 
@@ -60,28 +61,28 @@ class SlotContributions(AbjadObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def articulations(self):
+    def articulations(self) -> typing.List[str]:
         """
         Gets articulations.
         """
         return self._articulations
 
     @property
-    def commands(self):
+    def commands(self) -> typing.List[str]:
         """
         Gets commands.
         """
         return self._commands
 
     @property
-    def comments(self):
+    def comments(self) -> typing.List[str]:
         """
         Gets comments.
         """
         return self._comments
 
     @property
-    def has_contributions(self):
+    def has_contributions(self) -> bool:
         """
         Is true when has contributions.
         """
@@ -101,49 +102,49 @@ class SlotContributions(AbjadObject):
             for contribution_category in contribution_categories)
 
     @property
-    def indicators(self):
+    def indicators(self) -> typing.List[str]:
         """
         Gets indicators.
         """
         return self._indicators
 
     @property
-    def markup(self):
+    def markup(self) -> typing.List[str]:
         """
         Gets markup.
         """
         return self._markup
 
     @property
-    def spanner_starts(self):
+    def spanner_starts(self) -> typing.List[str]:
         """
         Gets spanner starts.
         """
         return self._spanner_starts
 
     @property
-    def spanner_stops(self):
+    def spanner_stops(self) -> typing.List[str]:
         """
         Gets spanner stops.
         """
         return self._spanner_stops
 
     @property
-    def spanners(self):
+    def spanners(self) -> typing.List[str]:
         """
         Gets spanners.
         """
         return self._spanners
 
     @property
-    def stem_tremolos(self):
+    def stem_tremolos(self) -> typing.List[str]:
         """
         Gets stem tremolos.
         """
         return self._stem_tremolos
 
     @property
-    def trill_pitches(self):
+    def trill_pitches(self) -> typing.List[str]:
         """
         Gets trill pitches.
         """
@@ -156,22 +157,6 @@ class SlotContributions(AbjadObject):
         Gets ``identifier``.
         """
         return getattr(self, identifier)
-
-    def make_immutable(self):
-        """
-        Makes contributions immutable.
-        """
-        # sorting separates tweaks from articulations
-        self._articulations = tuple(self.articulations)
-        self._commands = tuple(self.commands)
-        self._comments = tuple(self.comments)
-        self._indicators = tuple(self.indicators)
-        self._markup = tuple(self.markup)
-        self._spanners = tuple(self.spanners)
-        self._spanner_starts = tuple(self.spanner_starts)
-        self._spanner_stops = tuple(self.spanner_stops)
-        self._stem_tremolos = tuple(self.stem_tremolos)
-        self._trill_pitches = tuple(self.trill_pitches)
 
     def tag(self, tag, deactivate=None):
         """
@@ -208,8 +193,13 @@ class SlotContributions(AbjadObject):
             tag,
             deactivate,
             )
+        strings = []
+        # make sure each line of multiline markup is tagged
+        for string in self.spanner_starts:
+            strings.extend(string.split('\n'))
         self._spanner_starts = abjad.LilyPondFormatManager.tag(
-            self.spanner_starts,
+            #self.spanner_starts,
+            strings,
             tag,
             deactivate,
             )

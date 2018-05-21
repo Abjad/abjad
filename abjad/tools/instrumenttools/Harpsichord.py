@@ -2,7 +2,8 @@ from .Instrument import Instrument
 
 
 class Harpsichord(Instrument):
-    r'''Harpsichord.
+    r"""
+    Harpsichord.
 
     ..  container:: example
 
@@ -40,7 +41,7 @@ class Harpsichord(Instrument):
             >>
 
     The harpsichord targets piano staff context by default.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -79,7 +80,8 @@ class Harpsichord(Instrument):
 
     @property
     def allowable_clefs(self):
-        r'''Gets harpsichord's allowable clefs.
+        """
+        Gets harpsichord's allowable clefs.
 
         ..  container:: example
 
@@ -88,12 +90,13 @@ class Harpsichord(Instrument):
             ('treble', 'bass')
 
         Returns clef list.
-        '''
+        """
         return Instrument.allowable_clefs.fget(self)
 
     @property
     def context(self):
-        r'''Gets (historically conventional) context.
+        """
+        Gets (historically conventional) context.
 
         ..  container:: example
 
@@ -103,12 +106,13 @@ class Harpsichord(Instrument):
         Returns ``'StaffGroup'``.
 
         Override with ``abjad.attach(..., context='...')``.
-        '''
+        """
         return self._context
 
     @property
     def markup(self):
-        r'''Gets harpsichord's instrument name markup.
+        """
+        Gets harpsichord's instrument name markup.
 
         ..  container:: example
 
@@ -119,12 +123,13 @@ class Harpsichord(Instrument):
             >>> abjad.show(harpsichord.markup) # doctest: +SKIP
 
         Returns markup.
-        '''
+        """
         return Instrument.markup.fget(self)
 
     @property
     def middle_c_sounding_pitch(self):
-        r'''Gets sounding pitch of harpsichord's written middle C.
+        """
+        Gets sounding pitch of harpsichord's written middle C.
 
         ..  container:: example
 
@@ -135,12 +140,13 @@ class Harpsichord(Instrument):
             >>> abjad.show(harpsichord.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
-        '''
+        """
         return Instrument.middle_c_sounding_pitch.fget(self)
 
     @property
     def name(self):
-        r'''Gets harpsichord's name.
+        """
+        Gets harpsichord's name.
 
         ..  container:: example
 
@@ -149,12 +155,13 @@ class Harpsichord(Instrument):
             'harpsichord'
 
         Returns string.
-        '''
+        """
         return Instrument.name.fget(self)
 
     @property
     def pitch_range(self):
-        r'''Gets harpsichord's range.
+        """
+        Gets harpsichord's range.
 
         ..  container:: example
 
@@ -165,12 +172,13 @@ class Harpsichord(Instrument):
             >>> abjad.show(harpsichord.pitch_range) # doctest: +SKIP
 
         Returns pitch range.
-        '''
+        """
         return Instrument.pitch_range.fget(self)
 
     @property
     def short_markup(self):
-        r'''Gets harpsichord's short instrument name markup.
+        """
+        Gets harpsichord's short instrument name markup.
 
         ..  container:: example
 
@@ -181,12 +189,13 @@ class Harpsichord(Instrument):
             >>> abjad.show(harpsichord.short_markup) # doctest: +SKIP
 
         Returns markup.
-        '''
+        """
         return Instrument.short_markup.fget(self)
 
     @property
     def short_name(self):
-        r'''Gets harpsichord's short instrument name.
+        """
+        Gets harpsichord's short instrument name.
 
         ..  container:: example
 
@@ -195,5 +204,5 @@ class Harpsichord(Instrument):
             'hpschd.'
 
         Returns string.
-        '''
+        """
         return Instrument.short_name.fget(self)

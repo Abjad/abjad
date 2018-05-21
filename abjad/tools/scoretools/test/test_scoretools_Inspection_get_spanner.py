@@ -11,7 +11,7 @@ def test_scoretools_Inspection_get_spanner_01():
     abjad.attach(slur, container[:-1])
 
     assert format(container) == abjad.String.normalize(
-        r'''
+        r"""
         {
             c'8
             [
@@ -22,7 +22,7 @@ def test_scoretools_Inspection_get_spanner_01():
             )
             f'8
         }
-        '''
+        """
         )
 
     string = 'inspect(container[0]).get_spanner()'

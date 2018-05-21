@@ -125,7 +125,7 @@ class NamedIntervalClass(IntervalClass):
     def __eq__(self, argument):
         r'''Is true when `argument` is a named interval-class with direction
         number, quality string and number equal to those of this named
-        interval-class. Otherwise false.
+        interval-class.
 
         ..  container:: example
 

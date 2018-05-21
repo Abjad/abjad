@@ -2,15 +2,16 @@ import abjad
 
 
 def test_scoretools_Selection__attach_tie_spanner_to_leaf_pair_01():
-    r'''Span left leaf with spanner and right leaf without spanner.
-    '''
+    """
+    Span left leaf with spanner and right leaf without spanner.
+    """
 
     voice = abjad.Voice("c'8 c'8 c'8 c'8")
     tie = abjad.Tie()
     abjad.attach(tie, voice[:2])
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'8
@@ -19,7 +20,7 @@ def test_scoretools_Selection__attach_tie_spanner_to_leaf_pair_01():
             c'8
             c'8
         }
-        '''
+        """
         )
 
     selector = abjad.select().leaves()
@@ -27,7 +28,7 @@ def test_scoretools_Selection__attach_tie_spanner_to_leaf_pair_01():
     leaves[1:3]._attach_tie_spanner_to_leaf_pair()
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'8
@@ -37,15 +38,16 @@ def test_scoretools_Selection__attach_tie_spanner_to_leaf_pair_01():
             c'8
             c'8
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice).is_well_formed()
 
 
 def test_scoretools_Selection__attach_tie_spanner_to_leaf_pair_02():
-    r'''Span left leaf with spanner and right leaf with spanner.
-    '''
+    """
+    Span left leaf with spanner and right leaf with spanner.
+    """
 
     voice = abjad.Voice("c'8 c'8 c'8 c'8")
     tie = abjad.Tie()
@@ -54,7 +56,7 @@ def test_scoretools_Selection__attach_tie_spanner_to_leaf_pair_02():
     abjad.attach(tie, voice[2:])
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'8
@@ -64,7 +66,7 @@ def test_scoretools_Selection__attach_tie_spanner_to_leaf_pair_02():
             ~
             c'8
         }
-        '''
+        """
         )
 
     selector = abjad.select().leaves()
@@ -72,7 +74,7 @@ def test_scoretools_Selection__attach_tie_spanner_to_leaf_pair_02():
     leaves[1:3]._attach_tie_spanner_to_leaf_pair()
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'8
@@ -83,15 +85,16 @@ def test_scoretools_Selection__attach_tie_spanner_to_leaf_pair_02():
             ~
             c'8
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice).is_well_formed()
 
 
 def test_scoretools_Selection__attach_tie_spanner_to_leaf_pair_03():
-    r'''Span left leaves with no spanner.
-    '''
+    """
+    Span left leaves with no spanner.
+    """
 
     voice = abjad.Voice("c'8 c'8 c'8 c'8")
     selector = abjad.select().leaves()
@@ -99,7 +102,7 @@ def test_scoretools_Selection__attach_tie_spanner_to_leaf_pair_03():
     leaves[1:3]._attach_tie_spanner_to_leaf_pair()
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'8
@@ -108,7 +111,7 @@ def test_scoretools_Selection__attach_tie_spanner_to_leaf_pair_03():
             c'8
             c'8
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice).is_well_formed()

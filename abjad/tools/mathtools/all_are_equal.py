@@ -1,6 +1,6 @@
 def all_are_equal(argument):
-    '''Is true when `argument` is an iterable collection of equal items.
-    Otherwise false.
+    """
+    Is true when `argument` is an iterable collection of equal items.
 
     ..  container:: example
 
@@ -18,7 +18,7 @@ def all_are_equal(argument):
         True
 
     Returns true or false.
-    '''
+    """
     try:
         first_element = None
         for element in argument:

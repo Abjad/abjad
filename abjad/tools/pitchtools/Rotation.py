@@ -306,7 +306,7 @@ class Rotation(AbjadValueObject):
     @property
     def stravinsky(self):
         r'''Is true when rotation uses Stravinsky-style back-transposition to
-        zero. Otherwise false.
+        zero.
 
         ..  container:: example
 

@@ -2,7 +2,8 @@ import types
 
 
 def new(argument, **keywords):
-    r'''Makes new `argument` with optional `keywords`.
+    r"""
+    Makes new `argument` with optional `keywords`.
 
     ..  container:: example
 
@@ -49,7 +50,7 @@ def new(argument, **keywords):
             }
 
     Returns new object with type equal to that of `argument`.
-    '''
+    """
     import abjad
     if argument is None:
         return argument

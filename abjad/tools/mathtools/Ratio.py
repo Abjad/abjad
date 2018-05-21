@@ -1,8 +1,9 @@
-from abjad.tools.mathtools.NonreducedRatio import NonreducedRatio
+from .NonreducedRatio import NonreducedRatio
 
 
 class Ratio(NonreducedRatio):
-    '''Ratio.
+    """
+    Ratio.
 
     ..  container:: example
 
@@ -18,7 +19,7 @@ class Ratio(NonreducedRatio):
         >>> abjad.Ratio((2, 4, 2))
         Ratio((1, 2, 1))
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -38,7 +39,8 @@ class Ratio(NonreducedRatio):
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument):
-        r'''Is true when `argument` equals ratio.
+        """
+        Is true when `argument` equals ratio.
 
         ..  container:: example
 
@@ -73,11 +75,12 @@ class Ratio(NonreducedRatio):
             >>> ratio_3 == ratio_3
             True
 
-        '''
+        """
         return super(Ratio, self).__eq__(argument)
 
     def __getitem__(self, argument):
-        r'''Gets item or slice identified by `argument`.
+        """
+        Gets item or slice identified by `argument`.
 
         ..  container:: example
 
@@ -86,22 +89,24 @@ class Ratio(NonreducedRatio):
             2
 
         Returns integer or tuple.
-        '''
+        """
         if isinstance(argument, slice):
             return tuple(self._numbers.__getitem__(argument))
         return self._numbers.__getitem__(argument)
 
     def __hash__(self):
-        r'''Hashes ratio.
+        """
+        Hashes ratio.
 
         Required to be explicitly redefined on Python 3 if __eq__ changes.
 
         Returns integer.
-        '''
+        """
         return super(Ratio, self).__hash__()
 
     def __len__(self):
-        r'''Gets length of ratio.
+        """
+        Gets length of ratio.
 
         ..  container:: example
 
@@ -110,11 +115,12 @@ class Ratio(NonreducedRatio):
             3
 
         Returns integer.
-        '''
+        """
         return len(self._numbers)
 
     def __str__(self):
-        r'''Gets string representation of ratio.
+        """
+        Gets string representation of ratio.
 
         ..  container:: example
 
@@ -131,7 +137,7 @@ class Ratio(NonreducedRatio):
             '1:2:1'
 
         Returns string.
-        '''
+        """
         numbers = (str(x) for x in self.numbers)
         return ':'.join(numbers)
 
@@ -139,7 +145,8 @@ class Ratio(NonreducedRatio):
 
     @property
     def multipliers(self):
-        r'''Gets multipliers of ratio.
+        """
+        Gets multipliers of ratio.
 
         ..  container:: example
 
@@ -158,7 +165,7 @@ class Ratio(NonreducedRatio):
             (Multiplier(1, 4), Multiplier(1, 2), Multiplier(1, 4))
 
         Returns tuple of multipliers.
-        '''
+        """
         import abjad
         weight = sum(self.numbers)
         multipliers = [
@@ -170,7 +177,8 @@ class Ratio(NonreducedRatio):
 
     @property
     def numbers(self):
-        r'''Gets numbers of ratio.
+        """
+        Gets numbers of ratio.
 
         ..  container:: example
 
@@ -191,12 +199,13 @@ class Ratio(NonreducedRatio):
         Set to tuple of two or more numbers.
 
         Returns tuple of two or more numbers.
-        '''
+        """
         return self._numbers
 
     @property
     def reciprocal(self):
-        r'''Gets reciprocal.
+        """
+        Gets reciprocal.
 
         ..  container:: example
 
@@ -209,6 +218,6 @@ class Ratio(NonreducedRatio):
             Ratio((7, 2, 3))
 
         Returns new ratio.
-        '''
+        """
         numbers = list(reversed(self.numbers))
         return type(self)(numbers)

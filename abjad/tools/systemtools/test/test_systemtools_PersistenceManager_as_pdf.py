@@ -13,8 +13,9 @@ paths = [ly_path, pdf_path]
 
 
 def test_systemtools_PersistenceManager_as_pdf_01():
-    r'''Agent abjad.persists PDF file when no PDF file exists.
-    '''
+    """
+    Agent abjad.persists PDF file when no PDF file exists.
+    """
 
     note = abjad.Note("c'4")
     with abjad.FilesystemState(remove=paths):
@@ -24,8 +25,9 @@ def test_systemtools_PersistenceManager_as_pdf_01():
 
 
 def test_systemtools_PersistenceManager_as_pdf_02():
-    r'''Agent abjad.persists PDF file when equivalent PDF file already exists.
-    '''
+    """
+    Agent abjad.persists PDF file when equivalent PDF file already exists.
+    """
 
     note = abjad.Note("c'4")
     with abjad.FilesystemState(remove=paths):

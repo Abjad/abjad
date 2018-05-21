@@ -12,7 +12,7 @@ def test_scoretools_Inspection_get_indicators_01():
     abjad.attach(command_2, staff[0])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             \slurDotted
@@ -24,7 +24,7 @@ def test_scoretools_Inspection_get_indicators_01():
             f'8
             )
         }
-        '''
+        """
         ), format(staff)
 
     indicators = abjad.inspect(staff[0]).get_indicators(abjad.LilyPondLiteral)
@@ -44,7 +44,7 @@ def test_scoretools_Inspection_get_indicators_02():
     abjad.attach(command, staff[0])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             % beginning of note content
@@ -56,7 +56,7 @@ def test_scoretools_Inspection_get_indicators_02():
             f'8
             )
         }
-        '''
+        """
         ), format(staff)
 
     items = abjad.inspect(staff[0]).get_indicators()
@@ -74,7 +74,7 @@ def test_scoretools_Inspection_get_indicators_03():
     abjad.attach(dynamic, staff[0])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             \clef "treble"
@@ -84,7 +84,7 @@ def test_scoretools_Inspection_get_indicators_03():
             e'8
             f'8
         }
-        '''
+        """
         ), format(staff)
 
     indicators = abjad.inspect(staff[0]).get_indicators()
@@ -100,7 +100,7 @@ def test_scoretools_Inspection_get_indicators_04():
     abjad.attach(comment_2, staff[0])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             % comment 1
@@ -110,7 +110,7 @@ def test_scoretools_Inspection_get_indicators_04():
             e'8
             f'8
         }
-        '''
+        """
         ), format(staff)
 
     indicators = abjad.inspect(staff[0]).get_indicators(abjad.LilyPondComment)

@@ -1,5 +1,6 @@
 def deactivate(text, tag, skipped=False):
-    r'''Deactivates `tag` in `text`.
+    r"""
+    Deactivates `tag` in `text`.
 
     ..  container:: example
 
@@ -96,7 +97,7 @@ def deactivate(text, tag, skipped=False):
     Returns text, count pair.
 
     Count gives number of deactivated tags.
-    '''
+    """
     import abjad
     assert isinstance(tag, str) or callable(tag), repr(tag)
     lines, count, skipped_count = [], 0, 0

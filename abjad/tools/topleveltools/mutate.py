@@ -1,5 +1,6 @@
 def mutate(client):
-    r'''Makes mutation agent.
+    r"""
+    Makes mutation agent.
 
     ..  container:: example
 
@@ -40,6 +41,6 @@ def mutate(client):
         >>> abjad.mutate(staff[-2:])
         Mutation(client=Selection([Note("d'4."), Note("f'4.")]))
 
-    '''
+    """
     import abjad
     return abjad.Mutation(client=client)

@@ -4,7 +4,8 @@ from .FormatSpecification import FormatSpecification
 
 
 class Tag(AbjadObject):
-    r'''Tag.
+    """
+    Tag.
 
     ..  container:: example
 
@@ -46,7 +47,7 @@ class Tag(AbjadObject):
         <BLANKLINE>
         ['+SEGMENT'] / ['-PARTS']
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -94,7 +95,8 @@ class Tag(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __bool__(self):
-        r'''Is true when tag has words.
+        """
+        Is true when tag has words.
 
         ..  container:: example
 
@@ -104,11 +106,12 @@ class Tag(AbjadObject):
             >>> bool(abjad.Tag('+PARTS'))
             True
 
-        '''
+        """
         return bool(str(self))
 
     def __contains__(self, argument) -> bool:
-        r'''Is true when ``argument`` is word in tag.
+        """
+        Is true when ``argument`` is word in tag.
 
         ..  container:: example
 
@@ -124,11 +127,12 @@ class Tag(AbjadObject):
             >>> abjad.tags.DEFAULT_CLEF in tag
             True
 
-        '''
+        """
         return argument in self.words
 
     def __eq__(self, argument):
-        r'''Is true when ``argument`` is tag with same string representation.
+        """
+        Is true when ``argument`` is tag with same string representation.
 
         ..  container:: example
 
@@ -157,18 +161,20 @@ class Tag(AbjadObject):
             >>> tag_3 == tag_3
             True
 
-        '''
+        """
         if isinstance(argument, Tag):
             return str(self) == str(argument)
         return False
 
     def __hash__(self):
-        r'''Hashes tag.
-        '''
+        """
+        Hashes tag.
+        """
         return super(Tag, self).__hash__()
 
     def __iter__(self):
-        r'''Iterates words in tag.
+        """
+        Iterates words in tag.
 
         ..  container:: example
 
@@ -180,11 +186,12 @@ class Tag(AbjadObject):
             '-SCORE'
             'DEFAULT_CLEF'
 
-        '''
+        """
         return iter(self.words)
 
     def __str__(self):
-        r'''Changes tag to string.
+        """
+        Changes tag to string.
 
         ..  container:: example
 
@@ -194,7 +201,7 @@ class Tag(AbjadObject):
             >>> str(abjad.Tag('-PARTS:-SCORE:DEFAULT_CLEF'))
             '-PARTS:-SCORE:DEFAULT_CLEF'
 
-        '''
+        """
         return self.string or ''
 
     ### PRIVATE METHODS ###
@@ -214,7 +221,8 @@ class Tag(AbjadObject):
 
     @property
     def string(self) -> typing.Optional[str]:
-        r'''Gets string.
+        """
+        Gets string.
 
         ..  container:: example
 
@@ -224,32 +232,34 @@ class Tag(AbjadObject):
             >>> abjad.Tag('-PARTS:DEFAULT_CLEF').string
             '-PARTS:DEFAULT_CLEF'
 
-        '''
+        """
         return self._string
 
     @property
     def words(self) -> typing.List[str]:
-        r'''Gets words.
+        """
+        Gets words.
 
         ..  container:: example
 
             >>> abjad.Tag('-PARTS:DEFAULT_CLEF').words
             ['-PARTS', 'DEFAULT_CLEF']
 
-        '''
+        """
         return list(self._words)
 
     ### PUBLIC METHODS ###
 
     def append(self, word: str) -> 'Tag':
-        r'''Appends ``word`` to tag.
+        """
+        Appends ``word`` to tag.
         
         ..  container:: example
 
             >>> abjad.Tag('-PARTS').append(abjad.tags.DEFAULT_CLEF)
             Tag('-PARTS:DEFAULT_CLEF')
 
-        '''
+        """
         if not bool(word):
             return Tag(self)
         if isinstance(word, Tag):
@@ -261,7 +271,8 @@ class Tag(AbjadObject):
         return Tag.from_words(words_)
 
     def editions(self) -> typing.List['Tag']:
-        r'''Gets edition tags in tag.
+        """
+        Gets edition tags in tag.
 
         ..  container:: example
 
@@ -283,7 +294,7 @@ class Tag(AbjadObject):
             >>> abjad.Tag('-SEGMENT:-PARTS').editions()
             [Tag('-SEGMENT'), Tag('-PARTS')]
 
-        '''
+        """
         result = []
         for word in self:
             if word.startswith('+') or word.startswith('-'):
@@ -291,7 +302,8 @@ class Tag(AbjadObject):
         return result
 
     def extend(self, words: typing.List[str]) -> 'Tag':
-        r'''Extends tag with ``words``.
+        """
+        Extends tag with ``words``.
 
         ..  container:: example
 
@@ -299,7 +311,7 @@ class Tag(AbjadObject):
             >>> tag.extend(['-SCORE', abjad.tags.DEFAULT_CLEF])
             Tag('-PARTS:-SCORE:DEFAULT_CLEF')
 
-        '''
+        """
         assert isinstance(words, list), repr(words)
         tag = self
         for word in words:
@@ -308,8 +320,9 @@ class Tag(AbjadObject):
 
     @staticmethod
     def from_words(words: typing.List[str]) -> 'Tag':
-        r'''Makes tag from ``words``.
-        '''
+        """
+        Makes tag from ``words``.
+        """
         assert isinstance(words, list), repr(words)
         words_ = []
         for word in words:
@@ -321,7 +334,8 @@ class Tag(AbjadObject):
         return Tag(string)
 
     def has_persistence_tag(self) -> bool:
-        r'''Is true when tag has persistence tag.
+        """
+        Is true when tag has persistence tag.
 
         ..  container:: example
 
@@ -334,7 +348,7 @@ class Tag(AbjadObject):
             >>> abjad.Tag('DEFAULT_CLEF').has_persistence_tag()
             True
 
-        '''
+        """
         from abjad.tools.segmenttools.Tags import Tags
         tags = Tags().persistent_indicator_tags()
         for word in self:
@@ -343,7 +357,8 @@ class Tag(AbjadObject):
         return False
 
     def invert_edition_tags(self) -> 'Tag':
-        r'''Inverts edition tags in tag.
+        """
+        Inverts edition tags in tag.
 
         ..  container:: example
 
@@ -356,7 +371,7 @@ class Tag(AbjadObject):
             >>> abjad.Tag('FOO:+PARTS').invert_edition_tags()
             Tag('FOO:-PARTS')
 
-        '''
+        """
         words = []
         for word in self.words:
             if word.startswith('+'):
@@ -370,7 +385,8 @@ class Tag(AbjadObject):
         return tag
 
     def not_editions(self) -> typing.List['Tag']:
-        r'''Gets not-edition tags in tag.
+        """
+        Gets not-edition tags in tag.
 
         ..  container:: example
 
@@ -386,7 +402,7 @@ class Tag(AbjadObject):
             >>> abjad.Tag('-SEGMENT:-PARTS').not_editions()
             [Tag('-SEGMENT'), Tag('-PARTS')]
 
-        '''
+        """
         result = []
         for word in self:
             if word.startswith('-'):
@@ -394,7 +410,8 @@ class Tag(AbjadObject):
         return result
 
     def only_edition(self) -> typing.Optional['Tag']:
-        r'''Gets only-edition tag in tag.
+        """
+        Gets only-edition tag in tag.
 
         ..  container:: example
 
@@ -407,7 +424,7 @@ class Tag(AbjadObject):
             >>> abjad.Tag('+SEGMENT:FOO').only_edition()
             Tag('+SEGMENT')
 
-        '''
+        """
         for word in self:
             if word.startswith('+'):
                 return Tag(word)
@@ -415,14 +432,15 @@ class Tag(AbjadObject):
             return None
 
     def prepend(self, word: str) -> 'Tag':
-        r'''Prepends ``word`` to tag.
+        """
+        Prepends ``word`` to tag.
         
         ..  container:: example
 
             >>> abjad.Tag('-PARTS').prepend(abjad.tags.DEFAULT_CLEF)
             Tag('DEFAULT_CLEF:-PARTS')
 
-        '''
+        """
         if not bool(word):
             return Tag(self)
         if isinstance(word, Tag):

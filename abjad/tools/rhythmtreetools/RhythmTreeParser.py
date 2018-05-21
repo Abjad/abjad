@@ -3,7 +3,8 @@ from abjad.tools.abctools import Parser
 
 
 class RhythmTreeParser(Parser):
-    r'''Rhythm-tree parser.
+    r"""
+    Rhythm-tree parser.
 
     ..  container:: example
 
@@ -88,7 +89,7 @@ class RhythmTreeParser(Parser):
                 }
             }
 
-    '''
+    """
 
     ### PUBLIC PROPERTIES ###
 
@@ -145,8 +146,9 @@ class RhythmTreeParser(Parser):
     ### YACC METHODS ###
 
     def p_container__LPAREN__DURATION__node_list_closed__RPAREN(self, p):
-        r'''container : LPAREN DURATION node_list_closed RPAREN
-        '''
+        """
+        container : LPAREN DURATION node_list_closed RPAREN
+        """
         from abjad.tools import rhythmtreetools
         p[0] = rhythmtreetools.RhythmTreeContainer(
             children=p[3],
@@ -160,8 +162,9 @@ class RhythmTreeParser(Parser):
             print("Syntax error at EOF")
 
     def p_leaf__INTEGER(self, p):
-        r'''leaf : DURATION
-        '''
+        """
+        leaf : DURATION
+        """
         from abjad.tools import rhythmtreetools
         p[0] = rhythmtreetools.RhythmTreeLeaf(
             preprolated_duration=abs(p[1]),
@@ -169,41 +172,49 @@ class RhythmTreeParser(Parser):
             )
 
     def p_node__container(self, p):
-        r'''node : container
-        '''
+        """
+        node : container
+        """
         p[0] = p[1]
 
     def p_node__leaf(self, p):
-        r'''node : leaf
-        '''
+        """
+        node : leaf
+        """
         p[0] = p[1]
 
     def p_node_list__node_list__node_list_item(self, p):
-        r'''node_list : node_list node_list_item
-        '''
+        """
+        node_list : node_list node_list_item
+        """
         p[0] = p[1] + [p[2]]
 
     def p_node_list__node_list_item(self, p):
-        r'''node_list : node_list_item
-        '''
+        """
+        node_list : node_list_item
+        """
         p[0] = [p[1]]
 
     def p_node_list_closed__LPAREN__node_list__RPAREN(self, p):
-        r'''node_list_closed : LPAREN node_list RPAREN
-        '''
+        """
+        node_list_closed : LPAREN node_list RPAREN
+        """
         p[0] = p[2]
 
     def p_node_list_item__node(self, p):
-        r'''node_list_item : node
-        '''
+        """
+        node_list_item : node
+        """
         p[0] = p[1]
 
     def p_toplevel__EMPTY(self, p):
-        r'''toplevel :
-        '''
+        """
+        toplevel :
+        """
         p[0] = []
 
     def p_toplevel__toplevel__node(self, p):
-        r'''toplevel : toplevel node
-        '''
+        """
+        toplevel : toplevel node
+        """
         p[0] = p[1] + [p[2]]

@@ -16,8 +16,9 @@ def test_abctools_AbjadObject___repr___01():
 
 
 def test_abctools_AbjadObject___repr___02():
-    r'''Repr suppresses class methods to avoid recursive repr.
-    '''
+    """
+    Repr suppresses class methods to avoid recursive repr.
+    """
 
     class Foo(abjad.abctools.AbjadObject):
         def __init__(self, x, y, helper=None):

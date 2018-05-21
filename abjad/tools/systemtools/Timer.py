@@ -5,7 +5,8 @@ from abjad.tools.abctools.ContextManager import ContextManager
 
 
 class Timer(ContextManager):
-    r'''A timing context manager.
+    """
+    A timing context manager.
 
     ..  container:: example
 
@@ -33,7 +34,7 @@ class Timer(ContextManager):
 
     Timers can be reused between `with` blocks. They will reset their clock on
     entering any `with` block.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -76,10 +77,11 @@ class Timer(ContextManager):
     ### SPECIAL METHODS ###
 
     def __enter__(self):
-        r'''Enters context manager.
+        """
+        Enters context manager.
 
         Returns context manager.
-        '''
+        """
         if self.enter_message and self.verbose:
             print(self.enter_message)
         self._stop_time = None
@@ -97,10 +99,11 @@ class Timer(ContextManager):
         return self
 
     def __exit__(self, exc_type, exc_value, traceback):
-        r'''Exist context manager.
+        """
+        Exist context manager.
 
         Returns none.
-        '''
+        """
         self._stop_time = time.time()
         if self._process is not None:
             self._process.kill()
@@ -111,10 +114,11 @@ class Timer(ContextManager):
 
     @property
     def elapsed_time(self):
-        r'''Elapsed time.
+        """
+        Elapsed time.
 
         Return float or none.
-        '''
+        """
         if self.start_time is not None:
             if self.stop_time is not None:
                 return self.stop_time - self.start_time
@@ -123,52 +127,58 @@ class Timer(ContextManager):
 
     @property
     def enter_message(self):
-        r'''Timer enter message.
+        """
+        Timer enter message.
 
         Returns string.
-        '''
+        """
         return self._enter_message
 
     @property
     def exit_message(self):
-        r'''Timer exit message.
+        """
+        Timer exit message.
 
         Returns string.
-        '''
+        """
         return self._exit_message
 
     @property
     def print_continuously_from_background(self):
-        r'''Is true when timer should print continuously from background.
+        """
+        Is true when timer should print continuously from background.
 
         Returns true or false.
-        '''
+        """
         return self._print_continuously_from_background
 
     @property
     def start_time(self):
-        r'''Start time of timer.
+        """
+        Start time of timer.
 
         Returns time.
-        '''
+        """
         return self._start_time
 
     @property
     def stop_time(self):
-        r'''Stop time of timer.
+        """
+        Stop time of timer.
 
         Returns time.
-        '''
+        """
         return self._stop_time
 
     @property
     def total_time_message(self):
-        r'''Gets total time message.
+        """
+        Gets total time message.
 
         Truncated to the nearest second.
 
         Returns string.
-        '''
+        """
         import abjad
         identifier = abjad.String('second').pluralize(int(self.elapsed_time))
         message = 'total time {} {} ...'
@@ -177,8 +187,9 @@ class Timer(ContextManager):
 
     @property
     def verbose(self):
-        r'''Is true if timer should print messages. Otherwise false.
+        """
+        Is true if timer should print messages.
 
         Returns true or false.
-        '''
+        """
         return self._verbose

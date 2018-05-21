@@ -41,8 +41,9 @@ def test_scoretools_Inspection_get_timespan_05():
 
 
 def test_scoretools_Inspection_get_timespan_06():
-    r'''Offset works with voices.
-    '''
+    """
+    Offset works with voices.
+    """
 
     voice_1 = abjad.Voice("c'8 d'8 e'8 f'8")
     voice_2 = abjad.Voice("c'8 d'8 e'8 f'8")
@@ -73,8 +74,9 @@ def test_scoretools_Inspection_get_timespan_08():
 
 
 def test_scoretools_Inspection_get_timespan_09():
-    r'''Offset works on nested tuplets.
-    '''
+    """
+    Offset works on nested tuplets.
+    """
 
     tuplet_1 = abjad.Tuplet((2, 3), "c'8 c'8 c'8")
     tuplet = abjad.Tuplet((2, 3), [abjad.Note("c'4"), tuplet_1, abjad.Note("c'4")])
@@ -87,8 +89,9 @@ def test_scoretools_Inspection_get_timespan_09():
 
 
 def test_scoretools_Inspection_get_timespan_10():
-    r'''Offset works with simultaneous structures.
-    '''
+    """
+    Offset works with simultaneous structures.
+    """
 
     voice_1 = abjad.Voice("c'8 d'8 e'8 f'8")
     voice_2 = abjad.Voice("c'8 d'8 e'8 f'8")
@@ -103,8 +106,9 @@ def test_scoretools_Inspection_get_timespan_10():
 
 
 def test_scoretools_Inspection_get_timespan_11():
-    r'''Offset on leaves works in nested contexts.
-    '''
+    """
+    Offset on leaves works in nested contexts.
+    """
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
     staff = abjad.Staff([abjad.Note(0, (1, 8)), voice, abjad.Note(0, (1, 8))])
@@ -119,8 +123,9 @@ def test_scoretools_Inspection_get_timespan_11():
 
 
 def test_scoretools_Inspection_get_timespan_12():
-    r'''Offset on leaves works in sequential contexts.
-    '''
+    """
+    Offset on leaves works in sequential contexts.
+    """
 
     voice_1 = abjad.Voice("c'8 d'8 e'8 f'8")
     voice_2 = abjad.Voice("c'8 d'8 e'8 f'8")
@@ -134,8 +139,9 @@ def test_scoretools_Inspection_get_timespan_12():
 
 
 def test_scoretools_Inspection_get_timespan_13():
-    r'''Offset on leaves works in nested simultaneous contexts.
-    '''
+    """
+    Offset on leaves works in nested simultaneous contexts.
+    """
 
     voice_1 = abjad.Voice("c'8 d'8 e'8 f'8")
     voice_2 = abjad.Voice("c'8 d'8 e'8 f'8")
@@ -150,8 +156,9 @@ def test_scoretools_Inspection_get_timespan_13():
 
 
 def test_scoretools_Inspection_get_timespan_14():
-    r'''Offset on leaves works in nested simultaneous and sequential contexts.
-    '''
+    """
+    Offset on leaves works in nested simultaneous and sequential contexts.
+    """
 
     voice_1 = abjad.Voice("c'8 d'8 e'8 f'8")
     voice_2 = abjad.Voice("c'8 d'8 e'8 f'8")
@@ -164,8 +171,9 @@ def test_scoretools_Inspection_get_timespan_14():
 
 
 def test_scoretools_Inspection_get_timespan_15():
-    r'''Offset on leaves works in nested simultaneous and sequential contexts.
-    '''
+    """
+    Offset on leaves works in nested simultaneous and sequential contexts.
+    """
 
     voice_1 = abjad.Voice("c'8 d'8 e'8 f'8")
     voice_2 = abjad.Voice("c'8 d'8 e'8 f'8")
@@ -181,8 +189,9 @@ def test_scoretools_Inspection_get_timespan_15():
 
 
 def test_scoretools_Inspection_get_timespan_16():
-    r'''Offsets works on sequential voices.
-    '''
+    """
+    Offsets works on sequential voices.
+    """
 
     staff = abjad.Staff([abjad.Voice("c'8 d'8 e'8 f'8"), abjad.Voice("c'8 d'8 e'8 f'8")])
     staff[0].name = staff[1].name = 'voice'
@@ -192,8 +201,9 @@ def test_scoretools_Inspection_get_timespan_16():
 
 
 def test_scoretools_Inspection_get_timespan_17():
-    r'''Prolated offset does NOT go across sequential staves.
-    '''
+    """
+    Prolated offset does NOT go across sequential staves.
+    """
 
     container = abjad.Container([abjad.Staff("c'8 d'8 e'8 f'8"), abjad.Staff("c'8 d'8 e'8 f'8")])
     container[0].name = container[1].name = 'staff'
@@ -204,8 +214,9 @@ def test_scoretools_Inspection_get_timespan_17():
 
 
 def test_scoretools_Inspection_get_timespan_18():
-    r'''Offsets works with nested voices.
-    '''
+    """
+    Offsets works with nested voices.
+    """
 
     staff = abjad.Staff([abjad.Voice("c'8 d'8 e'8 f'8"), abjad.Voice("c'8 d'8 e'8 f'8")])
     for i, voice in enumerate(staff):
@@ -214,8 +225,9 @@ def test_scoretools_Inspection_get_timespan_18():
 
 
 def test_scoretools_Inspection_get_timespan_19():
-    r'''Offsets works on sequential tuplets.
-    '''
+    """
+    Offsets works on sequential tuplets.
+    """
 
     voice = abjad.Voice(3 * abjad.Tuplet(abjad.Multiplier(2, 3), "c'8 d'8 e'8"))
     assert abjad.inspect(voice[0]).get_timespan().start_offset == 0 * abjad.Offset(1, 4)
@@ -224,8 +236,9 @@ def test_scoretools_Inspection_get_timespan_19():
 
 
 def test_scoretools_Inspection_get_timespan_20():
-    r'''Offsets work on tuplets between notes.
-    '''
+    """
+    Offsets work on tuplets between notes.
+    """
 
     tuplet_1 = abjad.Tuplet((2, 3), "c'8 c'8 c'8")
     voice = abjad.Voice([abjad.Note(0, (1, 8)), tuplet_1, abjad.Note(0, (1, 8))])
@@ -235,8 +248,9 @@ def test_scoretools_Inspection_get_timespan_20():
 
 
 def test_scoretools_Inspection_get_timespan_21():
-    r'''Offsets work on nested tuplets.
-    '''
+    """
+    Offsets work on nested tuplets.
+    """
 
     tuplet_1 = abjad.Tuplet((1, 2), "c'8 d'8 e'8 f'8")
     contents = [abjad.Note("c'4"), tuplet_1, abjad.Note("c'4")]
@@ -247,8 +261,9 @@ def test_scoretools_Inspection_get_timespan_21():
 
 
 def test_scoretools_Inspection_get_timespan_22():
-    r'''Offsets work on nested contexts.
-    '''
+    """
+    Offsets work on nested contexts.
+    """
 
     inner_voice = abjad.Voice("c'8 d'8 e'8 f'8")
     outer_voice = abjad.Voice([abjad.Note(0, (1, 8)), inner_voice])
@@ -259,8 +274,9 @@ def test_scoretools_Inspection_get_timespan_22():
 
 
 def test_scoretools_Inspection_get_timespan_23():
-    r'''Offsets work on nested simultaneous contexts.
-    '''
+    """
+    Offsets work on nested simultaneous contexts.
+    """
 
     voice_1 = abjad.Voice("c'8 d'8 e'8 f'8")
     voice_2 = abjad.Voice("c'8 d'8 e'8 f'8")
@@ -271,8 +287,9 @@ def test_scoretools_Inspection_get_timespan_23():
 
 
 def test_scoretools_Inspection_get_timespan_24():
-    r'''Offsets works in nested simultaneous and sequential contexts.
-    '''
+    """
+    Offsets works in nested simultaneous and sequential contexts.
+    """
 
     voice_1 = abjad.Voice("c'8 d'8 e'8 f'8")
     voice_2 = abjad.Voice("c'8 d'8 e'8 f'8")
@@ -289,8 +306,9 @@ def test_scoretools_Inspection_get_timespan_24():
 
 
 def test_scoretools_Inspection_get_timespan_25():
-    r'''Offset seconds can not calculate without excplit metronome mark.
-    '''
+    """
+    Offset seconds can not calculate without excplit metronome mark.
+    """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
 
@@ -299,15 +317,16 @@ def test_scoretools_Inspection_get_timespan_25():
 
 
 def test_scoretools_Inspection_get_timespan_26():
-    r'''Offset seconds work with explicit metronome mark.
-    '''
+    """
+    Offset seconds work with explicit metronome mark.
+    """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     mark = abjad.MetronomeMark(abjad.Duration(1, 8), 48)
     abjad.attach(mark, staff[0], context='Staff')
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             \tempo 8=48
@@ -316,7 +335,7 @@ def test_scoretools_Inspection_get_timespan_26():
             e'8
             f'8
         }
-        '''
+        """
         )
 
     start_offset = abjad.inspect(staff[0]).get_timespan(in_seconds=True).start_offset

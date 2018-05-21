@@ -3,7 +3,8 @@ from abjad.tools import abctools
 
 
 class Descendants(abctools.AbjadObject, collections.Sequence):
-    r'''Descendants of a component.
+    r'''
+    Descendants of a component.
 
     ..  container:: example
 
@@ -99,31 +100,35 @@ class Descendants(abctools.AbjadObject, collections.Sequence):
     ### SPECIAL METHODS ###
 
     def __getitem__(self, argument):
-        r'''Gets `argument`.
+        """
+        Gets `argument`.
 
         Returns component or tuple of components.
-        '''
+        """
         return self.components.__getitem__(argument)
 
     def __len__(self):
-        r'''Gets length of descendants.
+        """
+        Gets length of descendants.
 
         Returns int.
-        '''
+        """
         return len(self._components)
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def component(self):
-        r'''The component from which descendants were derived.
-        '''
+        """
+        The component from which descendants were derived.
+        """
         return self._component
 
     @property
     def components(self):
-        r'''Gets components.
+        """
+        Gets components.
 
         Returns tuple.
-        '''
+        """
         return self._components

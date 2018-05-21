@@ -4,9 +4,10 @@ import pytest
 
 @pytest.mark.skip()
 def test_scoretools_fuse_measures_01():
-    r'''Fuse unicorporated measures carrying
+    """
+    Fuse unicorporated measures carrying
     time signatures with power-of-two denominators.
-    '''
+    """
 
     measure_1 = abjad.Measure((1, 8), "c'16 d'16")
     beam = abjad.Beam()
@@ -17,7 +18,7 @@ def test_scoretools_fuse_measures_01():
     staff = abjad.Staff([measure_1, measure_2])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {
@@ -31,13 +32,13 @@ def test_scoretools_fuse_measures_01():
                 d'16 )
             }
         }
-        '''
+        """
         )
 
     new = abjad.fuse_measures(staff[:])
 
     assert format(new) == abjad.String.normalize(
-        r'''
+        r"""
         {
             \time 2/8
             c'16 [
@@ -45,7 +46,7 @@ def test_scoretools_fuse_measures_01():
             c'16 (
             d'16 )
         }
-        '''
+        """
         )
 
     assert new is not measure_1 and new is not measure_2
@@ -56,10 +57,11 @@ def test_scoretools_fuse_measures_01():
 
 @pytest.mark.skip()
 def test_scoretools_fuse_measures_02():
-    r'''Fuse measures carrying time signatures with differing
+    """
+    Fuse measures carrying time signatures with differing
     power-of-two denominators. Helpers selects minimum of two denominators.
     Beams are OK because they abjad.attach to leaves rather than containers.
-    '''
+    """
 
     voice = abjad.Voice("abj: | 1/8 c'16 d'16 || 2/16 e'16 f'16 |")
     leaves = abjad.select(voice).leaves()
@@ -67,7 +69,7 @@ def test_scoretools_fuse_measures_02():
     abjad.attach(beam, leaves)
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -81,13 +83,13 @@ def test_scoretools_fuse_measures_02():
                 f'16 ]
             }
         }
-        '''
+        """
         )
 
     abjad.fuse_measures(voice[:])
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -98,7 +100,7 @@ def test_scoretools_fuse_measures_02():
                 f'16 ]
             }
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice).is_well_formed()
@@ -106,17 +108,18 @@ def test_scoretools_fuse_measures_02():
 
 @pytest.mark.skip()
 def test_scoretools_fuse_measures_03():
-    r'''Fuse measures with differing power-of-two denominators.
+    """
+    Fuse measures with differing power-of-two denominators.
     Helpers selects minimum of two denominators.
     Beam abjad.attaches to container rather than leaves.
-    '''
+    """
 
     voice = abjad.Voice("abj: | 1/8 c'16 d'16 || 2/16 e'16 f'16 |")
     beam = abjad.Beam()
     abjad.attach(beam, voice[0])
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -130,13 +133,13 @@ def test_scoretools_fuse_measures_03():
                 f'16
             }
         }
-        '''
+        """
         )
 
     abjad.fuse_measures(voice[:])
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -147,7 +150,7 @@ def test_scoretools_fuse_measures_03():
                 f'16
             }
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice).is_well_formed()
@@ -155,11 +158,12 @@ def test_scoretools_fuse_measures_03():
 
 @pytest.mark.skip()
 def test_scoretools_fuse_measures_04():
-    r'''Fuse measures with power-of-two-denominators together with measures
+    """
+    Fuse measures with power-of-two-denominators together with measures
     without power-of-two denominators.
     Helpers selects least common multiple of denominators.
     Beams are OK because they abjad.attach to leaves rather than containers.
-    '''
+    """
 
     measure_1 = abjad.Measure((1, 8), "c'8")
     measure_2 = abjad.Measure((1, 12), "d'8")
@@ -169,7 +173,7 @@ def test_scoretools_fuse_measures_04():
     abjad.attach(beam, leaves)
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -183,13 +187,13 @@ def test_scoretools_fuse_measures_04():
                 }
             }
         }
-        '''
+        """
         )
 
     abjad.fuse_measures(voice[:])
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -200,7 +204,7 @@ def test_scoretools_fuse_measures_04():
                 }
             }
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice).is_well_formed()
@@ -208,8 +212,9 @@ def test_scoretools_fuse_measures_04():
 
 @pytest.mark.skip()
 def test_scoretools_fuse_measures_05():
-    r'''Fusing empty selection returns none.
-    '''
+    """
+    Fusing empty selection returns none.
+    """
 
     staff = abjad.Staff()
     result = abjad.fuse_measures(staff[:])
@@ -218,8 +223,9 @@ def test_scoretools_fuse_measures_05():
 
 @pytest.mark.skip()
 def test_scoretools_fuse_measures_06():
-    r'''Fusing selection of only one measure returns measure unaltered.
-    '''
+    """
+    Fusing selection of only one measure returns measure unaltered.
+    """
 
     measure = abjad.Measure((3, 8), "c'8 d'8 e'8")
     staff = abjad.Staff([measure])
@@ -230,8 +236,9 @@ def test_scoretools_fuse_measures_06():
 
 @pytest.mark.skip()
 def test_scoretools_fuse_measures_07():
-    r'''Fuse three measures.
-    '''
+    """
+    Fuse three measures.
+    """
 
     voice = abjad.Voice("abj: | 1/8 c'16 d'16 || 1/8 e'16 f'16 || 1/8 g'16 a'16 |")
     leaves = abjad.select(voice).leaves()
@@ -239,7 +246,7 @@ def test_scoretools_fuse_measures_07():
     abjad.attach(beam, leaves)
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -256,13 +263,13 @@ def test_scoretools_fuse_measures_07():
                 a'16 ]
             }
         }
-        '''
+        """
         )
 
     abjad.fuse_measures(voice[:])
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -275,7 +282,7 @@ def test_scoretools_fuse_measures_07():
                 a'16 ]
             }
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice).is_well_formed()
@@ -283,15 +290,16 @@ def test_scoretools_fuse_measures_07():
 
 @pytest.mark.skip()
 def test_scoretools_fuse_measures_08():
-    r'''Measure fusion across intervening container boundaries is undefined.
-    '''
+    """
+    Measure fusion across intervening container boundaries is undefined.
+    """
 
     container_1 = abjad.Container("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     container_2 = abjad.Container("abj: | 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
     voice = abjad.Voice([container_1, container_2])
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -319,7 +327,7 @@ def test_scoretools_fuse_measures_08():
                 }
             }
         }
-        '''
+        """
         )
 
     assert pytest.raises(
@@ -330,17 +338,18 @@ def test_scoretools_fuse_measures_08():
 
 @pytest.mark.skip()
 def test_scoretools_fuse_measures_09():
-    r'''Fusing measures with power-of-two denominators
+    """
+    Fusing measures with power-of-two denominators
     to measures without power-of-two denominators.
     With change in number of note-heads because of non-power-of-two multiplier.
-    '''
+    """
 
     staff = abjad.Staff()
     staff.append(abjad.Measure((9, 80), "c'64 c' c' c' c' c' c' c' c'"))
     staff.append(abjad.Measure((2, 16), "c'16 c'"))
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {
@@ -363,13 +372,13 @@ def test_scoretools_fuse_measures_09():
                 c'16
             }
         }
-        '''
+        """
         )
 
     new = abjad.fuse_measures(staff[:])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {
@@ -391,7 +400,7 @@ def test_scoretools_fuse_measures_09():
                 }
             }
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).is_well_formed()

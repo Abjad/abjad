@@ -3,7 +3,8 @@ from .Context import Context
 
 
 class Score(Context):
-    r'''Score.
+    r"""
+    Score.
 
     ..  container:: example
 
@@ -33,7 +34,7 @@ class Score(Context):
                 }
             >>
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -67,7 +68,8 @@ class Score(Context):
         abbreviation='|.',
         to_each_voice=False,
         ):
-        r'''Add final bar line to end of score.
+        r"""
+        Add final bar line to end of score.
 
 
             >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
@@ -107,10 +109,10 @@ class Score(Context):
                 }
             >>
 
-        Set `to_each_voice` to true to make part extraction easier.
+        Set ``to_each_voice`` to true to make part extraction easier.
 
         Returns bar line.
-        '''
+        """
         import abjad
         bar_line = abjad.BarLine(abbreviation)
         if not to_each_voice:
@@ -123,7 +125,8 @@ class Score(Context):
         return bar_line
 
     def add_final_markup(self, markup, extra_offset=None):
-        r'''Adds `markup` to end of score.
+        r"""
+        Adds ``markup`` to end of score.
 
         ..  container:: example
 
@@ -212,7 +215,7 @@ class Score(Context):
                 >>
 
         Returns none.
-        '''
+        """
         import abjad
         selection = abjad.select(self)
         last_leaf = selection._get_component(abjad.Leaf, -1)
@@ -228,7 +231,8 @@ class Score(Context):
 
     @staticmethod
     def make_piano_score(leaves=None, lowest_treble_pitch='B3', sketch=False):
-        r"""Makes piano score from `leaves`.
+        r"""
+        Makes piano score from ``leaves``.
 
         ..  container:: example
 

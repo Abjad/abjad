@@ -3,8 +3,9 @@ from abjad.tools.abctools.ContextManager import ContextManager
 
 
 class ProgressIndicator(ContextManager):
-    r'''A context manager for printing progress indications.
-    '''
+    """
+    A context manager for printing progress indications.
+    """
 
     ### CLASS VARIABLES ###
 
@@ -39,19 +40,22 @@ class ProgressIndicator(ContextManager):
     ### SPECIAL METHODS ###
 
     def __enter__(self):
-        r'''Enters progress indicator.
-        '''
+        """
+        Enters progress indicator.
+        """
         self._print()
         return self
 
     def __exit__(self, exc_type, exc_value, traceback):
-        r'''Exits progress indicator.
-        '''
+        """
+        Exits progress indicator.
+        """
         if self.verbose:
             print()
 
     def __repr__(self):
-        r'''Gets interpreter representation of context manager.
+        """
+        Gets interpreter representation of context manager.
 
         ..  container:: example
 
@@ -60,7 +64,7 @@ class ProgressIndicator(ContextManager):
             <ProgressIndicator()>
 
         Returns string.
-        '''
+        """
         return '<{}()>'.format(type(self).__name__)
 
     ### PRIVATE METHODS ###
@@ -87,10 +91,11 @@ class ProgressIndicator(ContextManager):
     ### PUBLIC METHODS ###
 
     def advance(self):
-        r'''Advances the progress indicator's progress count.  Overwrites
+        """
+        Advances the progress indicator's progress count.  Overwrites
         the current terminal line with the progress indicators message and new
         count.
-        '''
+        """
         self._progress += 1
         if self.verbose:
             sys.stdout.flush()
@@ -101,41 +106,46 @@ class ProgressIndicator(ContextManager):
 
     @property
     def is_warning(self):
-        r'''Is true if progress indicator prints in red when its progress goes
-        above zero. Otherwise false.
+        """
+        Is true if progress indicator prints in red when its progress goes
+        above zero.
 
         Returns true or false.
-        '''
+        """
         return self._is_warning
 
     @property
     def message(self):
-        r'''Gets message of progress indicator.
+        """
+        Gets message of progress indicator.
 
         Returns string.
-        '''
+        """
         return self._message
 
     @property
     def progress(self):
-        r'''Gets progress.
+        """
+        Gets progress.
 
         Returns integer.
-        '''
+        """
         return self._progress
 
     @property
     def total(self):
-        r'''Gets total count.
+        """
+        Gets total count.
 
         Returns integer or none.
-        '''
+        """
         return self._total
 
     @property
     def verbose(self):
-        r'''Is true if progress indicator prints status. Otherwise false.
+        """
+        Is true if progress indicator prints status.
 
         Returns true or false.
-        '''
+        """
         return self._verbose

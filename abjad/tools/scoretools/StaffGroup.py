@@ -2,7 +2,8 @@ from .Context import Context
 
 
 class StaffGroup(Context):
-    r'''Staff group.
+    r"""
+    Staff group.
 
     ..  container:: example
 
@@ -32,7 +33,7 @@ class StaffGroup(Context):
                 }
             >>
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 

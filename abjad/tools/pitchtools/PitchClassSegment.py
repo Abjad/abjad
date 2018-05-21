@@ -1593,7 +1593,7 @@ class PitchClassSegment(Segment):
             )
 
     def has_duplicates(self):
-        r'''Is true when segment contains duplicate items. Otherwise false.
+        r'''Is true when segment contains duplicate items.
 
         ..  container:: example
 

@@ -1,5 +1,6 @@
 def factors(n):
-    r'''Gets prime factors less than or equal to `n` .
+    """
+    Gets prime factors less than or equal to `n` .
 
     ..  container:: example
 
@@ -25,7 +26,7 @@ def factors(n):
     Returns factors in increasing order.
 
     Returns list of positive integers.
-    '''
+    """
     from abjad.tools import mathtools
     if not mathtools.is_positive_integer(n):
         message = 'must be positive integer: {!r}.'

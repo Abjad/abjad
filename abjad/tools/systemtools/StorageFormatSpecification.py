@@ -2,8 +2,9 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class StorageFormatSpecification(AbjadObject):
-    r'''Storage format specification.
-    '''
+    """
+    Storage format specification.
+    """
 
     ### CLASS VARIABLES ###
 
@@ -59,65 +60,72 @@ class StorageFormatSpecification(AbjadObject):
 
     @property
     def include_abjad_namespace(self):
-        r'''Is true when storage specification includes Abjad namespace.
+        """
+        Is true when storage specification includes Abjad namespace.
 
         Returns true or false.
-        '''
+        """
         return self._include_abjad_namespace
 
     @property
     def instance(self):
-        r'''Gets instance of storage specification.
+        """
+        Gets instance of storage specification.
 
         Returns string.
-        '''
+        """
         return self._instance
 
     @property
     def is_bracketed(self):
-        r'''Is true when storage specification is bracketed.
-        Otherwise false.
+        """
+        Is true when storage specification is bracketed.
 
         Returns true or false.
-        '''
+        """
         return self._is_bracketed
 
     @property
     def is_indented(self):
-        r'''Is true when storage format is indented. Otherwise false.
+        """
+        Is true when storage format is indented.
 
         Returns true or false.
-        '''
+        """
         return self._is_indented
 
     @property
     def keyword_argument_names(self):
-        r'''Gets keyword argument names of storage format.
+        """
+        Gets keyword argument names of storage format.
 
         Returns tuple.
-        '''
+        """
         return self._keyword_argument_names
 
     @property
     def positional_argument_values(self):
-        r'''Gets positional argument values.
+        """
+        Gets positional argument values.
 
         Returns tuple.
-        '''
+        """
         return self._positional_argument_values
 
     @property
     def repr_text(self):
-        r'''Gets interpreter representation of storage specification.
+        """
+        Gets interpreter representation of storage specification.
 
         Returns string.
-        '''
+        """
         return self._repr_text
 
     @property
     def storage_format_text(self):
-        r'''Gets storage format text.
+        """
+        Gets storage format text.
 
         Returns tuple.
-        '''
+        """
         return self._storage_format_text

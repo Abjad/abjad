@@ -3,9 +3,10 @@ import pytest
 
 
 def test_scoretools_Inspection_get_duration_01():
-    r'''Spanner duration in seconds equals sum of duration
-    of all leaves in spanner, in seconds.
-    '''
+    """
+    Spanner duration in seconds equals sum of duration of all leaves in
+    spanner, in seconds.
+    """
 
     voice = abjad.Voice([
         abjad.Measure((2, 12), "c'8 d'8", implicit_scaling=True),
@@ -22,7 +23,7 @@ def test_scoretools_Inspection_get_duration_01():
     abjad.attach(diminuendo, voice[1][:])
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {   % measure
@@ -45,7 +46,7 @@ def test_scoretools_Inspection_get_duration_01():
                 \!
             }   % measure
         }
-        '''
+        """
         )
 
     assert abjad.inspect(beam).get_duration(in_seconds=True) == abjad.Duration(100, 21)
@@ -69,7 +70,7 @@ def test_scoretools_Inspection_get_duration_02():
     abjad.attach(diminuendo, voice[1][:])
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {   % measure
@@ -91,7 +92,7 @@ def test_scoretools_Inspection_get_duration_02():
                 \!
             }   % measure
         }
-        '''
+        """
         )
 
     assert abjad.inspect(beam).get_duration() == abjad.Duration(5, 12)
@@ -100,9 +101,9 @@ def test_scoretools_Inspection_get_duration_02():
 
 
 def test_scoretools_Inspection_get_duration_03():
-    r'''Container duration in seconds equals
-    sum of leaf durations in seconds.
-    '''
+    """
+    Container duration in seconds equals sum of leaf durations in seconds.
+    """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     mark = abjad.MetronomeMark(abjad.Duration(1, 4), 38)
@@ -112,7 +113,7 @@ def test_scoretools_Inspection_get_duration_03():
     score = abjad.Score([staff])
 
     assert format(score) == abjad.String.normalize(
-        r'''
+        r"""
         \new Score
         <<
             \new Staff
@@ -125,16 +126,16 @@ def test_scoretools_Inspection_get_duration_03():
                 f'8
             }
         >>
-        '''
+        """
         )
 
     assert abjad.inspect(score).get_duration(in_seconds=True) == abjad.Duration(400, 133)
 
 
 def test_scoretools_Inspection_get_duration_04():
-    r'''Container can not calculate duration in seconds
-    without metronome mark.
-    '''
+    """
+    Container can not calculate duration in seconds without metronome mark.
+    """
 
     container = abjad.Container("c'8 d'8 e'8 f'8")
     statement = 'inspect(container).get_duration(in_seconds=True)'
@@ -142,8 +143,9 @@ def test_scoretools_Inspection_get_duration_04():
 
 
 def test_scoretools_Inspection_get_duration_05():
-    r'''Clock duration equals duration divide by effective tempo.
-    '''
+    """
+    Clock duration equals duration divide by effective tempo.
+    """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     mark = abjad.MetronomeMark(abjad.Duration(1, 4), 38)
@@ -153,7 +155,7 @@ def test_scoretools_Inspection_get_duration_05():
     abjad.Score([staff])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             \tempo 4=38
@@ -163,7 +165,7 @@ def test_scoretools_Inspection_get_duration_05():
             e'8
             f'8
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff[0]).get_duration(in_seconds=True) == abjad.Duration(15, 19)
@@ -173,8 +175,9 @@ def test_scoretools_Inspection_get_duration_05():
 
 
 def test_scoretools_Inspection_get_duration_06():
-    r'''Clock duration can not calculate without metronome mark.
-    '''
+    """
+    Clock duration can not calculate without metronome mark.
+    """
 
     note = abjad.Note("c'4")
     statement = 'inspect(note).get_duration(in_seconds=True)'

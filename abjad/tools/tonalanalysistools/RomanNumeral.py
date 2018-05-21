@@ -5,7 +5,8 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class RomanNumeral(AbjadValueObject):
-    '''Roman numeral.
+    """
+    Roman numeral.
 
     ..  container:: example
 
@@ -20,7 +21,7 @@ class RomanNumeral(AbjadValueObject):
 
         >>> roman_numeral = abjad.tonalanalysistools.RomanNumeral('bII')
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -92,9 +93,10 @@ class RomanNumeral(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is a Roman numeral with scale degree,
+        """
+        Is true when `argument` is a Roman numeral with scale degree,
         quality, extent, inversion and suspension equal to those of this Roman
-        numeral. Otherwise false.
+        numeral.
 
         ..  container:: example
 
@@ -125,14 +127,15 @@ class RomanNumeral(AbjadValueObject):
             True
 
         Returns true or false.
-        '''
+        """
         return super(RomanNumeral, self).__eq__(argument)
 
     def __hash__(self):
-        r'''Hashes Roman numeral.
+        """
+        Hashes Roman numeral.
 
         Returns integer.
-        '''
+        """
         return super(RomanNumeral, self).__hash__()
 
     ### PRIVATE METHODS ###
@@ -232,7 +235,8 @@ class RomanNumeral(AbjadValueObject):
 
     @property
     def bass_scale_degree(self):
-        r'''Gets bass scale degree.
+        """
+        Gets bass scale degree.
 
         ..  container:: example
 
@@ -243,7 +247,7 @@ class RomanNumeral(AbjadValueObject):
             ScaleDegree('5')
 
         Returns scale degree.
-        '''
+        """
         from abjad.tools import tonalanalysistools
         root_scale_degree = self.root_scale_degree.number
         bass_scale_degree = root_scale_degree - 1
@@ -255,7 +259,8 @@ class RomanNumeral(AbjadValueObject):
 
     @property
     def extent(self):
-        r'''Gets extent.
+        """
+        Gets extent.
 
         ..  container:: example
 
@@ -263,12 +268,13 @@ class RomanNumeral(AbjadValueObject):
             ChordExtent(5)
 
         Returns extent.
-        '''
+        """
         return self._extent
 
     @property
     def figured_bass_string(self):
-        r'''Gets figured bass string.
+        """
+        Gets figured bass string.
 
         ..  container:: example
 
@@ -276,7 +282,7 @@ class RomanNumeral(AbjadValueObject):
             '6/5'
 
         Returns string.
-        '''
+        """
         digits = self._get_figured_bass_digits()
         if self.suspension is None:
             return '/'.join([str(_) for _ in digits])
@@ -294,7 +300,8 @@ class RomanNumeral(AbjadValueObject):
 
     @property
     def inversion(self):
-        r'''Gets inversion.
+        """
+        Gets inversion.
 
         ..  container:: example
 
@@ -302,12 +309,13 @@ class RomanNumeral(AbjadValueObject):
             ChordInversion(0)
 
         Returns nonnegative integer.
-        '''
+        """
         return self._inversion
 
     @property
     def markup(self):
-        r'''Gets markup.
+        """
+        Gets markup.
 
         ..  container:: example
 
@@ -320,7 +328,7 @@ class RomanNumeral(AbjadValueObject):
                 _ \markup { bII }
 
         Returns markup.
-        '''
+        """
         import abjad
         symbol = self.symbol
         symbol = symbol.replace('#', r'\sharp ')
@@ -328,7 +336,8 @@ class RomanNumeral(AbjadValueObject):
 
     @property
     def quality(self):
-        r'''Gets quality.
+        """
+        Gets quality.
 
         ..  container:: example
 
@@ -336,12 +345,13 @@ class RomanNumeral(AbjadValueObject):
             ChordQuality('major')
 
         Returns chord quality.
-        '''
+        """
         return self._quality
 
     @property
     def root_scale_degree(self):
-        r'''Gets root scale degree.
+        """
+        Gets root scale degree.
 
         ..  container:: example
 
@@ -352,12 +362,13 @@ class RomanNumeral(AbjadValueObject):
             ScaleDegree('b2')
 
         Returns scale degree.
-        '''
+        """
         return self._root_scale_degree
 
     @property
     def suspension(self):
-        r'''Gets suspension.
+        """
+        Gets suspension.
 
         ..  container:: example
 
@@ -368,12 +379,13 @@ class RomanNumeral(AbjadValueObject):
             True
 
         Returns suspension.
-        '''
+        """
         return self._suspension
 
     @property
     def symbol(self):
-        r'''Gets symbolc of Roman numeral.
+        """
+        Gets symbolc of Roman numeral.
 
         ..  container:: example
 
@@ -384,7 +396,7 @@ class RomanNumeral(AbjadValueObject):
             'V7'
 
         Returns string.
-        '''
+        """
         result = ''
         result += self.root_scale_degree.accidental.symbol
         result += self._get_roman_numeral_string()
@@ -401,11 +413,12 @@ class RomanNumeral(AbjadValueObject):
         extent,
         inversion,
         ):
-        r'''Makes Roman numeral from `scale_degree`, `quality`, `extent` and
+        """
+        Makes Roman numeral from `scale_degree`, `quality`, `extent` and
         `inversion`.
 
         Returns new Roman numeral.
-        '''
+        """
         from abjad.tools import tonalanalysistools
         scale_degree = tonalanalysistools.ScaleDegree(scale_degree)
         quality = tonalanalysistools.ChordQuality(quality)

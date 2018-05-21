@@ -2,8 +2,8 @@ import numbers
 
 
 def is_integer_equivalent(argument):
-    '''Is true when `argument` is an integer-equivalent number. Otherwise
-    false.
+    """
+    Is true when `argument` is an integer-equivalent number.
 
     ..  container:: example
 
@@ -17,7 +17,7 @@ def is_integer_equivalent(argument):
         False
 
     Returns true or false.
-    '''
+    """
     from abjad.tools import mathtools
     if isinstance(argument, numbers.Number):
         return mathtools.is_integer_equivalent_number(argument)

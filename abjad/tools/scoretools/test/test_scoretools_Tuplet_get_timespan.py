@@ -10,7 +10,7 @@ def test_scoretools_Tuplet_get_timespan_01():
     abjad.attach(mark, leaves[0])
 
     assert format(score) == abjad.String.normalize(
-        r'''
+        r"""
         \new Score
         <<
             \new Staff
@@ -25,7 +25,7 @@ def test_scoretools_Tuplet_get_timespan_01():
                 }
             }
         >>
-        '''
+        """
         )
 
     assert abjad.inspect(staff).get_timespan(in_seconds=True) == \

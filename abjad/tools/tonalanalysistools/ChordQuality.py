@@ -2,7 +2,8 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class ChordQuality(AbjadValueObject):
-    '''Chord quality.
+    """
+    Chord quality.
 
     ..  container:: example
 
@@ -19,7 +20,7 @@ class ChordQuality(AbjadValueObject):
         >>> abjad.tonalanalysistools.ChordQuality(quality)
         ChordQuality('major')
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -55,8 +56,9 @@ class ChordQuality(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is a chord quality with quality string
-        equal to that of this chord quality. Otherwise false.
+        """
+        Is true when `argument` is a chord quality with quality string
+        equal to that of this chord quality.
 
         ..  container:: example
 
@@ -86,20 +88,22 @@ class ChordQuality(AbjadValueObject):
             True
 
         Returns true or false.
-        '''
+        """
         return super(ChordQuality, self).__eq__(argument)
 
     def __hash__(self):
-        r'''Hashes chord quality.
+        """
+        Hashes chord quality.
 
         Required to be explicitly redefined on Python 3 if __eq__ changes.
 
         Returns integer.
-        '''
+        """
         return super(ChordQuality, self).__hash__()
 
     def __str__(self):
-        r'''Gets string representation of chord quality.
+        """
+        Gets string representation of chord quality.
 
         ..  container:: example
 
@@ -108,7 +112,7 @@ class ChordQuality(AbjadValueObject):
             'major'
 
         Returns string.
-        '''
+        """
         return self.quality_string
 
     ### PRIVATE METHODS ###
@@ -127,7 +131,8 @@ class ChordQuality(AbjadValueObject):
 
     @property
     def is_uppercase(self):
-        r'''Is true when chord quality is uppercase. Otherwise false.
+        """
+        Is true when chord quality is uppercase.
 
         ..  container:: example
 
@@ -138,12 +143,13 @@ class ChordQuality(AbjadValueObject):
             False
 
         Returns true or false.
-        '''
+        """
         return self.quality_string in self._uppercase_quality_strings
 
     @property
     def quality_string(self):
-        r'''Gets quality string.
+        """
+        Gets quality string.
 
         ..  container:: example
 
@@ -154,5 +160,5 @@ class ChordQuality(AbjadValueObject):
             'minor'
 
         Returns string.
-        '''
+        """
         return self._quality_string

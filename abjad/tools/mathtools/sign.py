@@ -1,5 +1,6 @@
 def sign(n):
-    r'''Gets sign of `n`.
+    """
+    Gets sign of `n`.
 
     ..  container:: example
 
@@ -19,5 +20,5 @@ def sign(n):
         1
 
     Returns -1, 0 or 1.
-    '''
+    """
     return (0 < n) - (n < 0)

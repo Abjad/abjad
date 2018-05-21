@@ -4,7 +4,8 @@ from .Scheme import Scheme
 
 @functools.total_ordering
 class SchemeMoment(Scheme):
-    r'''Abjad model of Scheme moment.
+    """
+    Abjad model of Scheme moment.
 
     ..  container:: example
 
@@ -14,7 +15,7 @@ class SchemeMoment(Scheme):
         SchemeMoment((2, 68))
 
     Scheme moments are immutable.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -31,7 +32,8 @@ class SchemeMoment(Scheme):
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is a scheme moment with the same value as
+        """
+        Is true when `argument` is a scheme moment with the same value as
         that of this scheme moment.
 
         ..  container:: example
@@ -41,24 +43,26 @@ class SchemeMoment(Scheme):
 
         ..  container:: example
 
-            Otherwise false.
+            Otherwise false:
 
-                >>> abjad.SchemeMoment((2, 54)) == abjad.SchemeMoment((2, 68))
-                False
+            >>> abjad.SchemeMoment((2, 54)) == abjad.SchemeMoment((2, 68))
+            False
 
         Returns true or false.
-        '''
+        """
         return super(SchemeMoment, self).__eq__(argument)
 
     def __hash__(self):
-        r'''Hashes scheme moment.
+        """
+        Hashes scheme moment.
 
         Returns integer.
-        '''
+        """
         return super(SchemeMoment, self).__hash__()
 
     def __lt__(self, argument):
-        r'''Is true when `argument` is a scheme moment with value greater than
+        """
+        Is true when `argument` is a scheme moment with value greater than
         that of this scheme moment.
 
         ..  container:: example
@@ -74,7 +78,7 @@ class SchemeMoment(Scheme):
             False
 
         Returns true or false.
-        '''
+        """
         if isinstance(argument, type(self)):
             if self.duration < argument.duration:
                 return True
@@ -104,7 +108,8 @@ class SchemeMoment(Scheme):
 
     @property
     def duration(self):
-        r'''Gets duration of Scheme moment.
+        """
+        Gets duration of Scheme moment.
 
         ..  container:: example
 
@@ -112,6 +117,6 @@ class SchemeMoment(Scheme):
             NonreducedFraction(2, 68)
 
         Returns nonreduced fraction.
-        '''
+        """
         import abjad
         return abjad.NonreducedFraction(self.value)

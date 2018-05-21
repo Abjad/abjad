@@ -2,8 +2,9 @@ import abjad
 
 
 def test_scoretools_Tuplet___init___01():
-    r'''Initializes tuplet from empty input.
-    '''
+    """
+    Initializes tuplet from empty input.
+    """
 
     tuplet = abjad.Tuplet()
 

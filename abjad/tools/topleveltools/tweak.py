@@ -201,7 +201,6 @@ def tweak(argument) -> LilyPondTweakManager:
             \new Staff
             {
                 c'4
-                - \tweak staff-padding #2.5
                 - \tweak Y-extent ##f
                 - \tweak bound-details.left.text \markup {
                     \concat
@@ -228,6 +227,7 @@ def tweak(argument) -> LilyPondTweakManager:
                                 tasto
                         }
                     }
+                - \tweak staff-padding #2.5
                 \startTextSpan
                 d'4
                 e'4

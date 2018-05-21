@@ -1,8 +1,9 @@
 def all_are_pairs_of_types(argument, first_type, second_type):
-    r'''Is true when `argument` is an iterable collection whose members are all
+    """
+    Is true when `argument` is an iterable collection whose members are all
     of length 2, and where the first member of each pair is an instance of
     `first_type` and where the second member of each pair is an instance of
-    `second_type`. Otherwise false.
+    `second_type`.
 
     ..  container:: example
 
@@ -21,7 +22,7 @@ def all_are_pairs_of_types(argument, first_type, second_type):
         True
 
     Returns true or false.
-    '''
+    """
     try:
         return all(
             (len(_) == 2 and

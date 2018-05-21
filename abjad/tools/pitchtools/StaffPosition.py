@@ -56,7 +56,7 @@ class StaffPosition(AbjadValueObject):
 
     def __eq__(self, argument):
         r'''Is true when `argument` is a staff position with the same number as
-        this staff position. Otherwise false.
+        this staff position.
 
         ..  container:: example
 

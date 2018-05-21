@@ -9,24 +9,24 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_01():
     tuplet = abjad.Tuplet.from_leaf_and_ratio(note, [1], diminution=False)
 
     assert format(tuplet) == abjad.String.normalize(
-        r'''
+        r"""
         \tweak text #tuplet-number::calc-fraction-text
         \times 1/1 {
             c'8.
         }
-        '''
+        """
         )
 
     tuplet = abjad.Tuplet.from_leaf_and_ratio(note, [1, 2], diminution=False)
 
     assert format(tuplet) == abjad.String.normalize(
-        r'''
+        r"""
         \tweak text #tuplet-number::calc-fraction-text
         \times 1/1 {
             c'16
             c'8
         }
-        '''
+        """
         )
 
     tuplet = abjad.Tuplet.from_leaf_and_ratio(
@@ -36,7 +36,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_01():
         )
 
     assert format(tuplet) == abjad.String.normalize(
-        r'''
+        r"""
         \tweak text #tuplet-number::calc-fraction-text
         \times 3/2 {
             c'64
@@ -44,7 +44,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_01():
             c'32
             c'32.
         }
-        '''
+        """
         )
 
     tuplet = abjad.Tuplet.from_leaf_and_ratio(
@@ -54,7 +54,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_01():
         )
 
     assert format(tuplet) == abjad.String.normalize(
-        r'''
+        r"""
         \tweak text #tuplet-number::calc-fraction-text
         \times 12/11 {
             c'64
@@ -63,7 +63,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_01():
             c'32.
             c'32.
         }
-        '''
+        """
         )
 
     tuplet = abjad.Tuplet.from_leaf_and_ratio(
@@ -73,7 +73,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_01():
         )
 
     assert format(tuplet) == abjad.String.normalize(
-        r'''
+        r"""
         \tweak text #tuplet-number::calc-fraction-text
         \times 8/5 {
             c'128
@@ -83,7 +83,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_01():
             c'64.
             c'32
         }
-        '''
+        """
         )
 
 
@@ -94,30 +94,30 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_02():
     tuplet = abjad.Tuplet.from_leaf_and_ratio(note, [1], diminution=True)
 
     assert format(tuplet) == abjad.String.normalize(
-        r'''
+        r"""
         \tweak text #tuplet-number::calc-fraction-text
         \times 1/1 {
             c'8.
         }
-        '''
+        """
         )
 
     tuplet = abjad.Tuplet.from_leaf_and_ratio(note, [1, 2], diminution=True)
 
     assert format(tuplet) == abjad.String.normalize(
-        r'''
+        r"""
         \tweak text #tuplet-number::calc-fraction-text
         \times 1/1 {
             c'16
             c'8
         }
-        '''
+        """
         )
 
     tuplet = abjad.Tuplet.from_leaf_and_ratio(note, [1, 2, 2, 3], diminution=True)
 
     assert format(tuplet) == abjad.String.normalize(
-        r'''
+        r"""
         \tweak text #tuplet-number::calc-fraction-text
         \times 3/4 {
             c'32
@@ -125,7 +125,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_02():
             c'16
             c'16.
         }
-        '''
+        """
         )
 
     tuplet = abjad.Tuplet.from_leaf_and_ratio(
@@ -135,7 +135,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_02():
         )
 
     assert format(tuplet) == abjad.String.normalize(
-        r'''
+        r"""
         \tweak text #tuplet-number::calc-fraction-text
         \times 6/11 {
             c'32
@@ -144,7 +144,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_02():
             c'16.
             c'16.
         }
-        '''
+        """
         )
 
     tuplet = abjad.Tuplet.from_leaf_and_ratio(
@@ -154,7 +154,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_02():
         )
 
     assert format(tuplet) == abjad.String.normalize(
-        r'''
+        r"""
         \times 4/5 {
             c'64
             c'32
@@ -163,13 +163,14 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_02():
             c'32.
             c'16
         }
-        '''
+        """
         )
 
 
 def test_scoretools_Tuplet_from_leaf_and_ratio_03():
-    r'''Divide note into 1, ..., 5 parts.
-    '''
+    """
+    Divide note into 1, ..., 5 parts.
+    """
 
     note = abjad.Note("c'8.")
 
@@ -180,12 +181,12 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_03():
         )
 
     assert format(tuplet) == abjad.String.normalize(
-        r'''
+        r"""
         \tweak text #tuplet-number::calc-fraction-text
         \times 1/1 {
             c'8.
         }
-        '''
+        """
         )
 
     tuplet = abjad.Tuplet.from_leaf_and_ratio(
@@ -195,13 +196,13 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_03():
         )
 
     assert format(tuplet) == abjad.String.normalize(
-        r'''
+        r"""
         \tweak text #tuplet-number::calc-fraction-text
         \times 1/1 {
             c'16.
             c'16.
         }
-        '''
+        """
         )
 
     tuplet = abjad.Tuplet.from_leaf_and_ratio(
@@ -211,14 +212,14 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_03():
         )
 
     assert format(tuplet) == abjad.String.normalize(
-        r'''
+        r"""
         \tweak text #tuplet-number::calc-fraction-text
         \times 1/1 {
             c'16
             c'16
             c'16
         }
-        '''
+        """
         )
 
     tuplet = abjad.Tuplet.from_leaf_and_ratio(
@@ -228,7 +229,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_03():
         )
 
     assert format(tuplet) == abjad.String.normalize(
-        r'''
+        r"""
         \tweak text #tuplet-number::calc-fraction-text
         \times 1/1 {
             c'32.
@@ -236,7 +237,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_03():
             c'32.
             c'32.
         }
-        '''
+        """
         )
 
     tuplet = abjad.Tuplet.from_leaf_and_ratio(
@@ -246,7 +247,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_03():
         )
 
     assert format(tuplet) == abjad.String.normalize(
-        r'''
+        r"""
         \tweak text #tuplet-number::calc-fraction-text
         \times 8/5 {
             c'64.
@@ -255,13 +256,14 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_03():
             c'64.
             c'64.
         }
-        '''
+        """
         )
 
 
 def test_scoretools_Tuplet_from_leaf_and_ratio_04():
-    r'''Divide note into 1, ..., 5 parts.
-    '''
+    """
+    Divide note into 1, ..., 5 parts.
+    """
 
     note = abjad.Note("c'8.")
 
@@ -272,12 +274,12 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_04():
         )
 
     assert format(tuplet) == abjad.String.normalize(
-        r'''
+        r"""
         \tweak text #tuplet-number::calc-fraction-text
         \times 1/1 {
             c'8.
         }
-        '''
+        """
         )
 
     tuplet = abjad.Tuplet.from_leaf_and_ratio(
@@ -287,13 +289,13 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_04():
         )
 
     assert format(tuplet) == abjad.String.normalize(
-        r'''
+        r"""
         \tweak text #tuplet-number::calc-fraction-text
         \times 1/1 {
             c'16.
             c'16.
         }
-        '''
+        """
         )
 
     tuplet = abjad.Tuplet.from_leaf_and_ratio(
@@ -303,14 +305,14 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_04():
         )
 
     assert format(tuplet) == abjad.String.normalize(
-        r'''
+        r"""
         \tweak text #tuplet-number::calc-fraction-text
         \times 1/1 {
             c'16
             c'16
             c'16
         }
-        '''
+        """
         )
 
     tuplet = abjad.Tuplet.from_leaf_and_ratio(
@@ -320,7 +322,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_04():
         )
 
     assert format(tuplet) == abjad.String.normalize(
-        r'''
+        r"""
         \tweak text #tuplet-number::calc-fraction-text
         \times 1/1 {
             c'32.
@@ -328,5 +330,5 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_04():
             c'32.
             c'32.
         }
-        '''
+        """
         )

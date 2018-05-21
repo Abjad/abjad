@@ -2,7 +2,8 @@ from abjad.tools.datastructuretools.TypedList import TypedList
 
 
 class CompoundInequality(TypedList):
-    '''Compound time-relation inequality.
+    """
+    Compound time-relation inequality.
 
     ..  container:: example
 
@@ -39,7 +40,7 @@ class CompoundInequality(TypedList):
             logical_operator='or',
             )
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -71,10 +72,11 @@ class CompoundInequality(TypedList):
         timespan_2_start_offset,
         timespan_2_stop_offset,
         ):
-        r'''Evalutes compound inequality.
+        """
+        Evalutes compound inequality.
 
         Returns true or false.
-        '''
+        """
         from abjad.tools import timespantools
         truth_values = []
         for inequality in self:
@@ -107,10 +109,11 @@ class CompoundInequality(TypedList):
         timespan_stop,
         offset,
         ):
-        r'''Evalutes offset inequality.
+        """
+        Evalutes offset inequality.
 
         Returns true or false.
-        '''
+        """
         from abjad.tools import timespantools
         truth_values = []
         for inequality in self:
@@ -145,8 +148,9 @@ class CompoundInequality(TypedList):
         timespan_2_start_offsets,
         timespan_2_stop_offsets,
         ):
-        r'''Gets offset indices of compound inequality.
-        '''
+        """
+        Gets offset indices of compound inequality.
+        """
         from abjad.tools import timespantools
         timespans = timespantools.TimespanList()
         for element in self:
@@ -201,6 +205,7 @@ class CompoundInequality(TypedList):
 
     @property
     def logical_operator(self):
-        r'''Compound inequality logical operator.
-        '''
+        """
+        Compound inequality logical operator.
+        """
         return self._logical_operator

@@ -2,7 +2,8 @@ from abjad.tools.timespantools.TimeRelation import TimeRelation
 
 
 class TimespanTimespanTimeRelation(TimeRelation):
-    r'''Timespan vs. timespan time relation.
+    r"""
+    Timespan vs. timespan time relation.
 
     Score for examples:
 
@@ -108,7 +109,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
         False
 
     Timespan / timespan time relations are immutable.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -132,7 +133,8 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
     # TODO: hoist to TimeRelation
     def __call__(self, timespan_1=None, timespan_2=None):
-        r'''Evaluate time relation.
+        """
+        Evaluate time relation.
 
         ..  container:: example
 
@@ -206,7 +208,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
         Raise value error if either `timespan_1` or `timespan_2` is none.
 
         Otherwise return boolean.
-        '''
+        """
         import abjad
         timespan_1 = timespan_1 or self.timespan_1
         timespan_2 = timespan_2 or self.timespan_2
@@ -223,7 +225,8 @@ class TimespanTimespanTimeRelation(TimeRelation):
         return truth_value
 
     def __eq__(self, argument):
-        r'''Is true when `argument` equals time relation. Otherwise false:
+        """
+        Is true when `argument` equals time relation.
 
         ..  container:: example
 
@@ -242,22 +245,24 @@ class TimespanTimespanTimeRelation(TimeRelation):
             True
 
         Returns true or false.
-        '''
+        """
         return super(TimespanTimespanTimeRelation, self).__eq__(argument)
 
     def __hash__(self):
-        r'''Hashes time relation.
+        """
+        Hashes time relation.
 
         Required to be explicitly redefined on Python 3 if __eq__ changes.
 
         Returns integer.
-        '''
+        """
         return super(TimespanTimespanTimeRelation, self).__hash__()
 
     ### PUBLIC METHODS ###
 
     def get_counttime_components(self, counttime_components):
-        r'''Get `counttime_components` that satisfy `time_relation`:
+        """
+        Get `counttime_components` that satisfy `time_relation`:
 
         ..  container:: example
 
@@ -291,7 +296,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
         The call shown here takes 78355 function calls under r9686.
 
         Returns selection.
-        '''
+        """
         import abjad
         # check input
         assert isinstance(counttime_components, (
@@ -310,7 +315,8 @@ class TimespanTimespanTimeRelation(TimeRelation):
         timespan_2_start_offsets,
         timespan_2_stop_offsets,
         ):
-        r'''Get offset indices that satisfy time relation:
+        """
+        Get offset indices that satisfy time relation:
 
         ..  container:: example
 
@@ -348,7 +354,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
             (2, 8)
 
         Returns nonnegative integer pair.
-        '''
+        """
         result = self.inequality.get_offset_indices(
             self.timespan_1,
             timespan_2_start_offsets,
@@ -370,8 +376,8 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
     @property
     def is_fully_loaded(self):
-        r'''Is true when `timespan_1` and `timespan_2` are both not none.
-        Otherwise false.
+        """
+        Is true when `timespan_1` and `timespan_2` are both not none.
 
         ..  container:: example
 
@@ -387,13 +393,13 @@ class TimespanTimespanTimeRelation(TimeRelation):
             True
 
         Returns true or false.
-        '''
+        """
         return self.timespan_1 is not None and self.timespan_2 is not None
 
     @property
     def is_fully_unloaded(self):
-        r'''Is true when `timespan_1` and `timespan_2` are both none.
-        Otherwise false.
+        """
+        Is true when `timespan_1` and `timespan_2` are both none.
 
         ..  container:: example
 
@@ -409,12 +415,13 @@ class TimespanTimespanTimeRelation(TimeRelation):
             False
 
         Returns true or false.
-        '''
+        """
         return self.timespan_1 is None and self.timespan_2 is None
 
     @property
     def timespan_1(self):
-        r'''Time relation timespan ``1``:
+        """
+        Time relation timespan ``1``:
 
         ..  container:: example
 
@@ -430,12 +437,13 @@ class TimespanTimespanTimeRelation(TimeRelation):
             Timespan(start_offset=Offset(0, 1), stop_offset=Offset(10, 1))
 
         Returns timespan.
-        '''
+        """
         return self._timespan_1
 
     @property
     def timespan_2(self):
-        r'''Time relation timespan ``2``:
+        """
+        Time relation timespan ``2``:
 
         ..  container:: example
 
@@ -451,5 +459,5 @@ class TimespanTimespanTimeRelation(TimeRelation):
             Timespan(start_offset=Offset(5, 1), stop_offset=Offset(15, 1))
 
         Returns timespan.
-        '''
+        """
         return self._timespan_2

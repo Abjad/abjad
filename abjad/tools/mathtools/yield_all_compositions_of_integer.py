@@ -2,7 +2,8 @@ import itertools
 
 
 def yield_all_compositions_of_integer(n):
-    r'''Yields all compositions of positive integer `n`.
+    """
+    Yields all compositions of positive integer `n`.
 
     ..  container:: example
 
@@ -35,7 +36,7 @@ def yield_all_compositions_of_integer(n):
     Takes around 4 seconds for `n` equal to 17.
 
     Returns integer tuple generator.
-    '''
+    """
     from abjad.tools import mathtools
     compositions = []
     integer = 0

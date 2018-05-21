@@ -3,8 +3,9 @@ from .SegmentMaker import SegmentMaker
 
 
 class PianoStaffSegmentMaker(SegmentMaker):
-    r'''Piano staff segment-maker.
-    '''
+    """
+    Piano staff segment-maker.
+    """
 
     ### CLASS VARIABLES ###
 
@@ -149,56 +150,63 @@ class PianoStaffSegmentMaker(SegmentMaker):
 
     @property
     def divisions(self):
-        r'''Gets divisions of segment-maker.
+        """
+        Gets divisions of segment-maker.
 
         Returns list.
-        '''
+        """
         return self._divisions
 
     @property
     def include_layout_ly(self):
-        r'''Is true when segment-maker includes layout.ly.
+        """
+        Is true when segment-maker includes layout.ly.
 
         Returns true, false or none.
-        '''
+        """
         return self._include_layout_ly
 
     @property
     def lh_pitch_range(self):
-        r'''Gets LH pitch range.
+        """
+        Gets LH pitch range.
 
         Defaults to ``[C2, C4)``.
-        '''
+        """
         return self._lh_pitch_range
 
     @property
     def lh_rhythm_maker(self):
-        r'''Gets LH rhythm-maker.
+        """
+        Gets LH rhythm-maker.
 
         Defaults to note rhythm-maker.
-        '''
+        """
         return self._lh_rhythm_maker
 
     @property
     def rh_pitch_range(self):
-        r'''Gets RH pitch range.
+        """
+        Gets RH pitch range.
 
         Defaults to ``[C4, C6]``.
-        '''
+        """
         return self._rh_pitch_range
 
     @property
     def rh_rhythm_maker(self):
-        r'''Gets RH rhythm-maker.
+        """
+        Gets RH rhythm-maker.
 
         Defaults to note rhythm-maker.
-        '''
+        """
         return self._rh_rhythm_maker
 
     @property
     def time_signatures(self):
-        r'''Gets time signatures of segment-maker.
+        """
+        Gets time signatures of segment-maker.
 
         Returns list or none.
-        '''
+        """
         return self._time_signatures

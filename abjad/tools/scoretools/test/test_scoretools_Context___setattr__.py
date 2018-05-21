@@ -3,8 +3,9 @@ import pytest
 
 
 def test_scoretools_Context___setattr___01():
-    r'''Slots constrain context attributes.
-    '''
+    """
+    Slots constrain context attributes.
+    """
 
     context = abjad.Context([])
 

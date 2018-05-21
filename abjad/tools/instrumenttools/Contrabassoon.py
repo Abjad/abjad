@@ -2,7 +2,8 @@ from .Instrument import Instrument
 
 
 class Contrabassoon(Instrument):
-    r'''Contrabassoon.
+    r"""
+    Contrabassoon.
 
     ..  container:: example
 
@@ -27,7 +28,7 @@ class Contrabassoon(Instrument):
                 fs'4
             }
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -65,7 +66,8 @@ class Contrabassoon(Instrument):
 
     @property
     def allowable_clefs(self):
-        r'''Gets contrabassoon's allowable clefs.
+        """
+        Gets contrabassoon's allowable clefs.
 
         ..  container:: example
 
@@ -74,12 +76,13 @@ class Contrabassoon(Instrument):
             ('bass',)
 
         Returns clef list.
-        '''
+        """
         return Instrument.allowable_clefs.fget(self)
 
     @property
     def markup(self):
-        r'''Gets contrabassoon's instrument name markup.
+        """
+        Gets contrabassoon's instrument name markup.
 
         ..  container:: example
 
@@ -90,12 +93,13 @@ class Contrabassoon(Instrument):
             >>> abjad.show(contrabassoon.markup) # doctest: +SKIP
 
         Returns markup.
-        '''
+        """
         return Instrument.markup.fget(self)
 
     @property
     def middle_c_sounding_pitch(self):
-        r'''Gets sounding pitch of contrabassoon's written middle C.
+        """
+        Gets sounding pitch of contrabassoon's written middle C.
 
         ..  container:: example
 
@@ -106,12 +110,13 @@ class Contrabassoon(Instrument):
             >>> abjad.show(contrabassoon.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
-        '''
+        """
         return Instrument.middle_c_sounding_pitch.fget(self)
 
     @property
     def name(self):
-        r'''Gets contrabassoon's name.
+        """
+        Gets contrabassoon's name.
 
         ..  container:: example
 
@@ -120,12 +125,13 @@ class Contrabassoon(Instrument):
             'contrabassoon'
 
         Returns string.
-        '''
+        """
         return Instrument.name.fget(self)
 
     @property
     def pitch_range(self):
-        r'''Gets contrabassoon's range.
+        """
+        Gets contrabassoon's range.
 
         ..  container:: example
 
@@ -136,12 +142,13 @@ class Contrabassoon(Instrument):
             >>> abjad.show(contrabassoon.pitch_range) # doctest: +SKIP
 
         Returns pitch range.
-        '''
+        """
         return Instrument.pitch_range.fget(self)
 
     @property
     def short_markup(self):
-        r'''Gets contrabassoon's short instrument name markup.
+        """
+        Gets contrabassoon's short instrument name markup.
 
         ..  container:: example
 
@@ -152,12 +159,13 @@ class Contrabassoon(Instrument):
             >>> abjad.show(contrabassoon.short_markup) # doctest: +SKIP
 
         Returns markup.
-        '''
+        """
         return Instrument.short_markup.fget(self)
 
     @property
     def short_name(self):
-        r'''Gets contrabassoon's short instrument name.
+        """
+        Gets contrabassoon's short instrument name.
 
         ..  container:: example
 
@@ -166,5 +174,5 @@ class Contrabassoon(Instrument):
             'contrabsn.'
 
         Returns string.
-        '''
+        """
         return Instrument.short_name.fget(self)

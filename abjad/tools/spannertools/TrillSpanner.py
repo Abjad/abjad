@@ -133,7 +133,7 @@ class TrillSpanner(Spanner):
 
     ### PRIVATE METHODS ###
 
-    def _copy_keyword_args(self, new):
+    def _copy_keywords(self, new):
         self._is_harmonic = self.is_harmonic
         new._pitch = self.pitch
 
@@ -152,10 +152,9 @@ class TrillSpanner(Spanner):
                 pitch_string = str(pitch)
             else:
                 pitch_string = None
-            string = self.start_command()
+            strings = self.start_command()
             if pitch_string:
-                string += ' ' + pitch_string
-            strings = [string]
+                strings[-1] += ' ' + pitch_string
             if self._left_broken:
                 strings = self._tag_hide(strings)
             # important: pitch trill must start AFTER markup
@@ -750,14 +749,14 @@ class TrillSpanner(Spanner):
 
     ### PUBLIC METHODS ###
 
-    def start_command(self) -> typing.Optional[str]:
+    def start_command(self) -> typing.List[str]:
         r"""
         Gets start command.
 
         ..  container:: example
 
             >>> abjad.TrillSpanner().start_command()
-            '\\startTrillSpan'
+            ['\\startTrillSpan']
 
         """
         return super(TrillSpanner, self).start_command()

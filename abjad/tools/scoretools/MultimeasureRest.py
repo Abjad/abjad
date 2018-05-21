@@ -2,14 +2,15 @@ from .Leaf import Leaf
 
 
 class MultimeasureRest(Leaf):
-    '''Multimeasure rest.
+    """
+    Multimeasure rest.
 
     ..  container:: example
 
         >>> rest = abjad.MultimeasureRest((1, 4))
         >>> abjad.show(rest) # doctest: +SKIP
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -29,11 +30,12 @@ class MultimeasureRest(Leaf):
     ### PRIVATE METHODS ###
 
     def _get_body(self):
-        r'''Gets list of string representation of body of rest.
+        """
+        Gets list of string representation of body of rest.
         Picked up as format contribution at format-time.
-        '''
+        """
         result = 'R' + str(self._get_formatted_duration())
         return [result]
 
     def _get_compact_representation(self):
-        return 'R{}'.format(self._get_formatted_duration())
+        return f'R{self._get_formatted_duration()}'

@@ -3,7 +3,8 @@ import numbers
 
 
 def greatest_power_of_two_less_equal(n, i=0):
-    r'''Gets greatest integer power of two less than or equal to positive `n`.
+    r"""
+    Gets greatest integer power of two less than or equal to positive `n`.
 
     ..  container:: example
 
@@ -39,7 +40,7 @@ def greatest_power_of_two_less_equal(n, i=0):
         19 8
 
     Returns positive integer.
-    '''
+    """
     if not isinstance(n, numbers.Number):
         message = 'must be number: {!r}.'
         message = message.format(n)

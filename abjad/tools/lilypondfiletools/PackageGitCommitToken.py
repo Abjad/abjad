@@ -6,7 +6,8 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class PackageGitCommitToken(AbjadValueObject):
-    r'''A Python package git commit token.
+    """
+    A Python package git commit token.
 
     ..  container:: example
 
@@ -17,7 +18,7 @@ class PackageGitCommitToken(AbjadValueObject):
         >>> print(format(token))  # doctest: +SKIP
         package "abjad" @ b6a48a7 [implement-lpf-git-token] (2016-02-02 13:36:25)
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -33,7 +34,8 @@ class PackageGitCommitToken(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __format__(self, format_specification=''):
-        r'''Formats package git commit token.
+        """
+        Formats package git commit token.
 
         ..  container:: example
 
@@ -42,7 +44,7 @@ class PackageGitCommitToken(AbjadValueObject):
             package "abjad" @ b6a48a7 [implement-lpf-git-token] (2016-02-02 13:36:25)
 
         Return string.
-        '''
+        """
         from abjad.tools import systemtools
         if not self.package_name:
             return ''
@@ -108,7 +110,8 @@ class PackageGitCommitToken(AbjadValueObject):
 
     @property
     def package_name(self):
-        r'''Gets package name of package git commit token.
+        """
+        Gets package name of package git commit token.
 
         ..  container:: example
 
@@ -117,5 +120,5 @@ class PackageGitCommitToken(AbjadValueObject):
             'abjad'
 
         Returns string.
-        '''
+        """
         return self._package_name

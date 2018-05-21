@@ -4,9 +4,10 @@ from abjad.tools.abctools.ContextManager import ContextManager
 
 
 class TemporaryDirectoryChange(ContextManager):
-    r'''A context manager for temporarily changing the current working
+    """
+    A context manager for temporarily changing the current working
     directory.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -38,8 +39,9 @@ class TemporaryDirectoryChange(ContextManager):
     ### SPECIAL METHODS ###
 
     def __enter__(self):
-        r'''Enters context manager and changes to `directory`.
-        '''
+        """
+        Enters context manager and changes to `directory`.
+        """
         self._original_directory = os.getcwd()
         if self._directory is not None:
             os.chdir(self.directory)
@@ -50,8 +52,9 @@ class TemporaryDirectoryChange(ContextManager):
         return self
 
     def __exit__(self, exc_type, exc_value, traceback):
-        r'''Exits context manager and returns to original working directory.
-        '''
+        """
+        Exits context manager and returns to original working directory.
+        """
         if self._directory is not None:
             os.chdir(self._original_directory)
             if self.verbose:
@@ -61,35 +64,39 @@ class TemporaryDirectoryChange(ContextManager):
         self._original_directory = None
 
     def __repr__(self):
-        r'''Gets interpreter representation of context manager.
+        """
+        Gets interpreter representation of context manager.
 
         Returns string.
-        '''
+        """
         return '<{}()>'.format(type(self).__name__)
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def directory(self):
-        r'''Gets temporary directory of context manager.
+        """
+        Gets temporary directory of context manager.
 
         Returns string.
-        '''
+        """
         return self._directory
 
     @property
     def original_directory(self):
-        r'''Gets original directory of context manager.
+        """
+        Gets original directory of context manager.
 
         Returns string.
-        '''
+        """
         return self._original_directory
 
     @property
     def verbose(self):
-        r'''Is true if context manager prints verbose messages on entrance and
-        exit. Otherwise false.
+        """
+        Is true if context manager prints verbose messages on entrance and
+        exit.
 
         Returns true or false.
-        '''
+        """
         return self._verbose

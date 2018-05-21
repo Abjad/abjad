@@ -114,8 +114,8 @@ class MeasuredComplexBeam(ComplexBeam):
                 string = rf'\set stemRightBeamCount = {right}'
                 bundle.before.commands.append(string)
 
-    def _copy_keyword_args(self, new):
-        ComplexBeam._copy_keyword_args(self, new)
+    def _copy_keywords(self, new):
+        ComplexBeam._copy_keywords(self, new)
         new._span_beam_count = self.span_beam_count
 
     ### PUBLIC PROPERTIES ###
@@ -162,14 +162,14 @@ class MeasuredComplexBeam(ComplexBeam):
 
     ### PUBLIC METHODS ###
 
-    def start_command(self) -> typing.Optional[str]:
+    def start_command(self) -> typing.List[str]:
         """
         Gets start command.
 
         ..  container:: example
 
             >>> abjad.MeasuredComplexBeam().start_command()
-            '['
+            ['[']
 
         """
         return super(MeasuredComplexBeam, self).start_command()

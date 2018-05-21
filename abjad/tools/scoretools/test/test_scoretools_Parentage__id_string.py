@@ -2,8 +2,9 @@ import abjad
 
 
 def test_scoretools_Parentage__id_string_01():
-    r'''Returns component name if it exists. Otherwise Python ID.
-    '''
+    """
+    Returns component name if it exists. Otherwise Python ID.
+    """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     parentage = abjad.inspect(staff).get_parentage()
@@ -11,8 +12,9 @@ def test_scoretools_Parentage__id_string_01():
 
 
 def test_scoretools_Parentage__id_string_02():
-    r'''Returns component name if it exists. Otherwise Python ID.
-    '''
+    """
+    Returns component name if it exists. Otherwise Python ID.
+    """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     parentage = abjad.inspect(staff).get_parentage()

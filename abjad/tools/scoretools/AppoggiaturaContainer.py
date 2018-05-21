@@ -2,7 +2,8 @@ from .GraceContainer import GraceContainer
 
 
 class AppoggiaturaContainer(GraceContainer):
-    r'''Appoggiatura container.
+    r"""
+    Appoggiatura container.
 
     Appoggiaturas are played on the beat.
 
@@ -39,7 +40,7 @@ class AppoggiaturaContainer(GraceContainer):
     Fill appoggiatura containers with notes, rests or chords.
 
     Attach appoggiatura containers to notes, rests or chords.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 

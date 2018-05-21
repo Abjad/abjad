@@ -2,7 +2,8 @@ import math
 
 
 def binomial_coefficient(n, k):
-    r'''Gets binomial coefficient of `n` choose `k`.
+    """
+    Gets binomial coefficient of `n` choose `k`.
 
     ..  container:: example
 
@@ -19,5 +20,5 @@ def binomial_coefficient(n, k):
         7  8
 
     Returns positive integer.
-    '''
+    """
     return math.factorial(n) // (math.factorial(n - k) * math.factorial(k))

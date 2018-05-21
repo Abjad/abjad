@@ -6,7 +6,8 @@ import typing
 
 
 class PersistentOverride(AbjadObject):
-    r'''Persistent override.
+    """
+    Persistent override.
 
     ..  container:: example
 
@@ -25,7 +26,7 @@ class PersistentOverride(AbjadObject):
             value=(-2, 0),
             )
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -73,7 +74,8 @@ class PersistentOverride(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument) -> bool:
-        r'''Is true when ``argument`` is persistent override with attribute,
+        """
+        Is true when ``argument`` is persistent override with attribute,
         context, grob, value equal to those of this persistent override.
 
         ..  container:: example
@@ -118,7 +120,7 @@ class PersistentOverride(AbjadObject):
             >>> override_3 == override_3
             True
 
-        '''
+        """
         if not isinstance(argument, type(self)):
             return False
         if (self.attribute == argument.attribute and
@@ -129,8 +131,9 @@ class PersistentOverride(AbjadObject):
         return False
 
     def __hash__(self) -> int:
-        r'''Hashes persistent override.
-        '''
+        """
+        Hashes persistent override.
+        """
         return super(PersistentOverride, self).__hash__()
 
     ### PRIVATE METHODS ###
@@ -166,7 +169,8 @@ class PersistentOverride(AbjadObject):
 
     @property
     def after(self) -> typing.Optional[bool]:
-        r'''Ist true when override formats after leaf.
+        """
+        Is true when override formats after leaf.
 
         ..  container:: example
 
@@ -180,12 +184,13 @@ class PersistentOverride(AbjadObject):
             >>> override.after is None
             True
 
-        '''
+        """
         return self._after
 
     @property
     def attribute(self) -> typing.Optional[str]:
-        r'''Gets attribute.
+        """
+        Gets attribute.
 
         ..  container:: example
 
@@ -199,12 +204,13 @@ class PersistentOverride(AbjadObject):
             >>> override.attribute
             'bar_extent'
 
-        '''
+        """
         return self._attribute
 
     @property
     def context(self) -> typing.Optional[str]:
-        r'''Gets context.
+        """
+        Gets context.
 
         ..  container:: example
 
@@ -218,12 +224,13 @@ class PersistentOverride(AbjadObject):
             >>> override.context
             'Staff'
 
-        '''
+        """
         return self._context
 
     @property
     def grob(self) -> typing.Optional[str]:
-        r'''Gets grob.
+        """
+        Gets grob.
 
         ..  container:: example
 
@@ -237,12 +244,13 @@ class PersistentOverride(AbjadObject):
             >>> override.grob
             'bar_line'
 
-        '''
+        """
         return self._grob
 
     @property
     def hide(self) -> typing.Optional[bool]:
-        r'''Is true when staff lines should not appear in output.
+        """
+        Is true when staff lines should not appear in output.
 
         ..  container:: example
 
@@ -256,12 +264,13 @@ class PersistentOverride(AbjadObject):
             >>> override.hide is None
             True
 
-        '''
+        """
         return self._hide
 
     @property
     def persistent(self) -> bool:
-        r'''Is class constant true.
+        """
+        Is class constant true.
 
         ..  container:: example
 
@@ -275,12 +284,13 @@ class PersistentOverride(AbjadObject):
             >>> override.persistent
             True
 
-        '''
+        """
         return self._persistent
 
     @property
     def value(self) -> typing.Optional[str]:
-        r'''Gets value.
+        """
+        Gets value.
 
         ..  container:: example
 
@@ -294,5 +304,5 @@ class PersistentOverride(AbjadObject):
             >>> override.value
             (-2, 0)
 
-        '''
+        """
         return self._value

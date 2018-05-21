@@ -3,10 +3,11 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class TimeRelation(AbjadValueObject):
-    r'''Time relation.
+    """
+    Time relation.
 
     Time relations are immutable.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -32,55 +33,59 @@ class TimeRelation(AbjadValueObject):
 
     @abc.abstractmethod
     def __call__(self):
-        r'''Evaluates time relation.
+        """
+        Evaluates time relation.
 
         Returns true or false.
-        '''
+        """
         pass
 
     def __format__(self, format_specification=''):
-        r'''Formats time relation.
+        """
+        Formats time relation.
 
         Returns string.
-        '''
+        """
         from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
             return systemtools.StorageFormatManager(self).get_storage_format()
         return str(self)
 
     def __hash__(self):
-        r'''Hashes time relation.
+        """
+        Hashes time relation.
 
         Required to be explicitly redefined on Python 3 if __eq__ changes.
 
         Returns integer.
-        '''
+        """
         return super(TimeRelation, self).__hash__()
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def inequality(self):
-        r'''Time relation inequality.
+        """
+        Time relation inequality.
 
         Return ineqality.
-        '''
+        """
         return self._inequality
 
     @abc.abstractproperty
     def is_fully_loaded(self):
-        r'''Is true when both time relation terms are not none.
-        Otherwise false:
+        """
+        Is true when both time relation terms are not none.
 
         Returns true or false.
-        '''
+        """
         pass
 
     @abc.abstractproperty
     def is_fully_unloaded(self):
-        r'''Is true when both time relation terms are none.
-        Otherwise false:
+        """
+        Is true when both time relation terms are none.
 
         Returns true or false.
-        '''
+        """
         pass

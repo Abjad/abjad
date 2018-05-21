@@ -2,32 +2,36 @@ import abjad
 
 
 def test_scoretools_Chord___init___01():
-    r'''Initialize empty chord.
-    '''
+    """
+    Initialize empty chord.
+    """
 
     chord = abjad.Chord([], (1, 4))
     assert format(chord) == "<>4"
 
 
 def test_scoretools_Chord___init___02():
-    r'''Initialize chord with pitch numbers.
-    '''
+    """
+    Initialize chord with pitch numbers.
+    """
 
     chord = abjad.Chord([2, 4, 5], (1, 4))
     assert format(chord) == "<d' e' f'>4"
 
 
 def test_scoretools_Chord___init___03():
-    r'''Initialize chord with pitch tokens.
-    '''
+    """
+    Initialize chord with pitch tokens.
+    """
 
     chord = abjad.Chord([('ds', 4), ('ef', 4)], (1, 4))
     assert format(chord) == "<ds' ef'>4"
 
 
 def test_scoretools_Chord___init___04():
-    r'''Initialize chord with pitches.
-    '''
+    """
+    Initialize chord with pitches.
+    """
 
     pitches = []
     pitches.append(abjad.NamedPitch('D#4'))
@@ -37,8 +41,9 @@ def test_scoretools_Chord___init___04():
 
 
 def test_scoretools_Chord___init___05():
-    r'''Initialize chord with pitches and pitch numbers together.
-    '''
+    """
+    Initialize chord with pitches and pitch numbers together.
+    """
 
     pitches = [2, ('ef', 4), abjad.NamedPitch(4)]
     chord = abjad.Chord(pitches, (1, 4))
@@ -46,8 +51,9 @@ def test_scoretools_Chord___init___05():
 
 
 def test_scoretools_Chord___init___06():
-    r'''Initialize chord with list of pitch names.
-    '''
+    """
+    Initialize chord with list of pitch names.
+    """
 
     pitches = ["d'", "ef'", "e'"]
     chord = abjad.Chord(pitches, (1, 4))
@@ -55,16 +61,18 @@ def test_scoretools_Chord___init___06():
 
 
 def test_scoretools_Chord___init___07():
-    r'''Initialize chord with LilyPond input string.
-    '''
+    """
+    Initialize chord with LilyPond input string.
+    """
 
     chord = abjad.Chord("<d' ef' e'>4")
     assert format(chord) == "<d' ef' e'>4"
 
 
 def test_scoretools_Chord___init___08():
-    r'''Initialize chord from skip.
-    '''
+    """
+    Initialize chord from skip.
+    """
 
     skip = abjad.Skip('s8')
     chord = abjad.Chord(skip)
@@ -77,8 +85,9 @@ def test_scoretools_Chord___init___08():
 
 
 def test_scoretools_Chord___init___09():
-    r'''Initialize chord from tupletized skip.
-    '''
+    """
+    Initialize chord from tupletized skip.
+    """
 
     tuplet = abjad.Tuplet((2, 3), 's8 s8 s8')
     chord = abjad.Chord(tuplet[0])
@@ -89,8 +98,9 @@ def test_scoretools_Chord___init___09():
 
 
 def test_scoretools_Chord___init___10():
-    r'''Initialize chord from containerized skip.
-    '''
+    """
+    Initialize chord from containerized skip.
+    """
 
     tuplet = abjad.Voice('s8 s8 s8')
     chord = abjad.Chord(tuplet[0])
@@ -102,8 +112,9 @@ def test_scoretools_Chord___init___10():
 
 
 def test_scoretools_Chord___init___11():
-    r'''Initialize chord from beamed skip.
-    '''
+    """
+    Initialize chord from beamed skip.
+    """
 
     staff = abjad.Staff("c'8 [ s8 c'8 ]")
     chord = abjad.Chord(staff[1])
@@ -114,8 +125,9 @@ def test_scoretools_Chord___init___11():
 
 
 def test_scoretools_Chord___init___12():
-    r'''Initialize chord from rest.
-    '''
+    """
+    Initialize chord from rest.
+    """
 
     rest = abjad.Rest('r8')
     chord = abjad.Chord(rest)
@@ -127,8 +139,9 @@ def test_scoretools_Chord___init___12():
 
 
 def test_scoretools_Chord___init___13():
-    r'''Initialize chord from tupletized rest.
-    '''
+    """
+    Initialize chord from tupletized rest.
+    """
 
     tuplet = abjad.Tuplet((2, 3), 'r8 r8 r8')
     chord = abjad.Chord(tuplet[1])
@@ -139,8 +152,9 @@ def test_scoretools_Chord___init___13():
 
 
 def test_scoretools_Chord___init___14():
-    r'''Initialize chord from note.
-    '''
+    """
+    Initialize chord from note.
+    """
 
     note = abjad.Note("d'8")
     chord = abjad.Chord(note)
@@ -152,8 +166,9 @@ def test_scoretools_Chord___init___14():
 
 
 def test_scoretools_Chord___init___15():
-    r'''Initialize chord from tupletized note.
-    '''
+    """
+    Initialize chord from tupletized note.
+    """
 
     tuplet = abjad.Tuplet((2, 3), "c'8 c'8 c'8")
     chord = abjad.Chord(tuplet[1])
@@ -164,8 +179,9 @@ def test_scoretools_Chord___init___15():
 
 
 def test_scoretools_Chord___init___16():
-    r'''Initialize chord from spanned note.
-    '''
+    """
+    Initialize chord from spanned note.
+    """
 
     staff = abjad.Staff("c'8 ( d'8 e'8 f'8 )")
     chord = abjad.Chord(staff[1])
@@ -176,8 +192,9 @@ def test_scoretools_Chord___init___16():
 
 
 def test_scoretools_Chord___init___17():
-    r'''Initialize empty chord from LilyPond input string.
-    '''
+    """
+    Initialize empty chord from LilyPond input string.
+    """
 
     chord = abjad.Chord('<>8.')
 
@@ -186,9 +203,10 @@ def test_scoretools_Chord___init___17():
 
 
 def test_scoretools_Chord___init___18():
-    r'''Initialize chord from LilyPond input string with forced and
-    cautionary accidentals.
-    '''
+    """
+    Initialize chord from LilyPond input string with forced and cautionary
+    accidentals.
+    """
 
     chord = abjad.Chord('<c!? e? g! b>4')
 
@@ -196,8 +214,9 @@ def test_scoretools_Chord___init___18():
 
 
 def test_scoretools_Chord___init___19():
-    r'''Initialize chord from note with forced and cautionary accidentals.
-    '''
+    """
+    Initialize chord from note with forced and cautionary accidentals.
+    """
 
     note = abjad.Note("c'!?4")
     chord = abjad.Chord(note)
@@ -206,8 +225,9 @@ def test_scoretools_Chord___init___19():
 
 
 def test_scoretools_Chord___init___20():
-    r'''Initialize chord from other chord.
-    '''
+    """
+    Initialize chord from other chord.
+    """
 
     chord_1 = abjad.Chord("<c' e' g' bf'>4")
     chord_2 = abjad.Chord(chord_1, abjad.Duration(1, 8))
@@ -216,8 +236,9 @@ def test_scoretools_Chord___init___20():
 
 
 def test_scoretools_Chord___init___21():
-    r'''Initialize chord with drum pitches.
-    '''
+    """
+    Initialize chord with drum pitches.
+    """
 
     chord = abjad.Chord("<sn? bd! tamb>4")
 

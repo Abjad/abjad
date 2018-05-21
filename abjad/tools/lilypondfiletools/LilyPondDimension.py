@@ -3,7 +3,8 @@ from abjad.tools import abctools
 
 
 class LilyPondDimension(abctools.AbjadObject):
-    r'''A LilyPond file ``\paper`` block dimension.
+    r"""
+    A LilyPond file ``\paper`` block dimension.
 
     ..  container:: example
 
@@ -11,7 +12,7 @@ class LilyPondDimension(abctools.AbjadObject):
         LilyPondDimension(value=2, unit='in')
 
     Use for LilyPond file ``\paper`` block attributes.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -31,7 +32,8 @@ class LilyPondDimension(abctools.AbjadObject):
     ### SPECIAL METHODS ###
 
     def __format__(self, format_specification=''):
-        r'''Formats LilyPond dimension.
+        r"""
+        Formats LilyPond dimension.
 
         ..  container:: example
 
@@ -40,7 +42,7 @@ class LilyPondDimension(abctools.AbjadObject):
             2\in
 
         Returns string.
-        '''
+        """
         import abjad
         if format_specification in ('', 'lilypond'):
             return self._get_lilypond_format()
@@ -60,7 +62,8 @@ class LilyPondDimension(abctools.AbjadObject):
 
     @property
     def unit(self):
-        r'''Gets unit of LilyPond dimension.
+        """
+        Gets unit of LilyPond dimension.
 
         ..  container:: example
 
@@ -69,12 +72,13 @@ class LilyPondDimension(abctools.AbjadObject):
             'in'
 
         Returns ``'cm'``, ``'in'``, ``'mm'`` or ``'pt'``.
-        '''
+        """
         return self._unit
 
     @property
     def value(self):
-        r'''Gets value of LilyPond dimension.
+        """
+        Gets value of LilyPond dimension.
 
         ..  container:: example
 
@@ -83,5 +87,5 @@ class LilyPondDimension(abctools.AbjadObject):
             2
 
         Returns number.
-        '''
+        """
         return self._value

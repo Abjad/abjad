@@ -2,8 +2,9 @@ import abjad
 
 
 def test_scoretools_Measure__duration_to_time_signature_01():
-    r'''Find only feasible denominator in denominators list.
-    '''
+    """
+    Find only feasible denominator in denominators list.
+    """
 
     time_signature = abjad.Measure._duration_to_time_signature(
         abjad.Duration(3, 2),
@@ -14,8 +15,9 @@ def test_scoretools_Measure__duration_to_time_signature_01():
 
 
 def test_scoretools_Measure__duration_to_time_signature_02():
-    r'''Use least feasible denominator in denominators list.
-    '''
+    """
+    Use least feasible denominator in denominators list.
+    """
 
     time_signature = abjad.Measure._duration_to_time_signature(
         abjad.Duration(3, 2),
@@ -26,8 +28,9 @@ def test_scoretools_Measure__duration_to_time_signature_02():
 
 
 def test_scoretools_Measure__duration_to_time_signature_03():
-    r'''Make time signature literally from time_signature.
-    '''
+    """
+    Make time signature literally from time_signature.
+    """
 
     time_signature = abjad.Measure._duration_to_time_signature(
         abjad.Duration(3, 2),
@@ -37,9 +40,10 @@ def test_scoretools_Measure__duration_to_time_signature_03():
 
 
 def test_scoretools_Measure__duration_to_time_signature_04():
-    r'''Make time signature literally from time_signature
+    """
+    Make time signature literally from time_signature
     because no feasible denomiantors in denominators list.
-    '''
+    """
 
     time_signature = abjad.Measure._duration_to_time_signature(
         abjad.Duration(3, 2),

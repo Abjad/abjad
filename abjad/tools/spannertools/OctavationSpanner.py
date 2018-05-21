@@ -75,17 +75,23 @@ class OctavationSpanner(Spanner):
         assert isinstance(stop, int)
         self._stop = stop
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _start_command(self):
+        return rf'\ottava #{self.start}'
+
     ### PRIVATE METHODS ###
 
-    def _copy_keyword_args(self, new):
+    def _copy_keywords(self, new):
         new._start = self.start
         new._stop = self.stop
 
     def _get_lilypond_format_bundle(self, leaf):
         bundle = self._get_basic_lilypond_format_bundle(leaf)
         if leaf is self[0]:
-            string = self.start_command()
-            bundle.before.commands.append(string)
+            strings = self.start_command()
+            bundle.before.commands.extend(strings)
         if leaf is self[-1]:
             string = self.stop_command()
             bundle.after.commands.append(string)
@@ -197,17 +203,17 @@ class OctavationSpanner(Spanner):
                         
     ### PUBLIC METHODS ###
 
-    def start_command(self) -> typing.Optional[str]:
+    def start_command(self) -> typing.List[str]:
         r"""
         Gets start command.
 
         ..  container:: example
 
             >>> abjad.OctavationSpanner(start=1).start_command()
-            '\\ottava #1'
+            ['\\ottava #1']
 
         """
-        return rf'\ottava #{self.start}'
+        return super(OctavationSpanner, self).start_command()
 
     def stop_command(self) -> typing.Optional[str]:
         r"""

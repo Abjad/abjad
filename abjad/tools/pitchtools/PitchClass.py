@@ -229,7 +229,6 @@ class PitchClass(AbjadValueObject):
     @staticmethod
     def is_diatonic_pitch_class_name(argument):
         '''Is true when `argument` is a diatonic pitch-class name.
-        Otherwise false.
 
         ..  container:: example
 
@@ -254,7 +253,6 @@ class PitchClass(AbjadValueObject):
     @staticmethod
     def is_diatonic_pitch_class_number(argument):
         '''Is true when `argument` is a diatonic pitch-class number.
-        Otherwise false.
 
         ..  container:: example
 
@@ -276,7 +274,7 @@ class PitchClass(AbjadValueObject):
     # TODO: make private
     @staticmethod
     def is_pitch_class_name(argument):
-        '''Is true when `argument` is a pitch-class name. Otherwise false.
+        '''Is true when `argument` is a pitch-class name.
 
         ..  container:: example
 
@@ -301,7 +299,7 @@ class PitchClass(AbjadValueObject):
     # TODO: make private
     @staticmethod
     def is_pitch_class_number(argument):
-        '''Is true when `argument` is a pitch-class number. Otherwise false.
+        '''Is true when `argument` is a pitch-class number.
 
         ..  container:: example
 

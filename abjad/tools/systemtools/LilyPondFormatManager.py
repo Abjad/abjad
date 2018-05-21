@@ -1,5 +1,7 @@
+import typing
 from abjad.enumerations import Up, Down, Left, Right, Center
 from abjad.tools.abctools.AbjadObject import AbjadObject
+from .LilyPondFormatBundle import LilyPondFormatBundle
 
 
 class LilyPondFormatManager(AbjadObject):
@@ -286,11 +288,9 @@ class LilyPondFormatManager(AbjadObject):
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def align_tags(string, n):
+    def align_tags(string, n) -> str:
         """
         Line-breaks ``string`` and aligns tags starting a column ``n``.
-
-        Returns new string.
         """
         assert isinstance(n, int), repr(n)
         lines = []
@@ -310,30 +310,25 @@ class LilyPondFormatManager(AbjadObject):
         return string
 
     @staticmethod
-    def bundle_format_contributions(component):
+    def bundle_format_contributions(component) -> LilyPondFormatBundle:
         """
         Gets all format contributions for ``component``.
-
-        Returns LilyPond format bundle.
         """
-        import abjad
         manager = LilyPondFormatManager
-        bundle = abjad.LilyPondFormatBundle()
+        bundle = LilyPondFormatBundle()
         manager._populate_indicator_format_contributions(component, bundle)
         manager._populate_spanner_format_contributions(component, bundle)
         manager._populate_context_setting_format_contributions(
             component, bundle)
         manager._populate_grob_override_format_contributions(component, bundle)
         manager._populate_grob_revert_format_contributions(component, bundle)
-        bundle.make_immutable()
+        bundle.sort_overrides()
         return bundle
 
     @staticmethod
-    def format_lilypond_attribute(attribute):
+    def format_lilypond_attribute(attribute) -> str:
         """
         Formats LilyPond attribute according to Scheme formatting conventions.
-
-        Returns string.
         """
         assert isinstance(attribute, str), repr(attribute)
         attribute = attribute.replace('__', ".")
@@ -341,12 +336,10 @@ class LilyPondFormatManager(AbjadObject):
         return result
 
     @staticmethod
-    def format_lilypond_context_setting_in_with_block(name, value):
+    def format_lilypond_context_setting_in_with_block(name, value) -> str:
         """
         Formats LilyPond context setting ``name`` with ``value`` in LilyPond
         with-block.
-
-        Returns string.
         """
         assert isinstance(name, str), repr(name)
         name = name.split('_')
@@ -357,19 +350,21 @@ class LilyPondFormatManager(AbjadObject):
         name = ''.join(name)
         value = LilyPondFormatManager.format_lilypond_value(value)
         value_parts = value.split('\n')
-        result = r'{!s} = {!s}'.format(name, value_parts[0])
-        result = [result]
+        result = rf'{name!s} = {value_parts[0]!s}'
+        pieces = [result]
         for part in value_parts[1:]:
-            result.append(LilyPondFormatManager.indent + part)
-        return '\n'.join(result)
+            pieces.append(LilyPondFormatManager.indent + part)
+        return '\n'.join(pieces)
 
     @staticmethod
-    def format_lilypond_context_setting_inline(name, value, context=None):
+    def format_lilypond_context_setting_inline(
+        name,
+        value,
+        context=None,
+        ) -> str:
         """
         Formats LilyPond context setting ``name`` with ``value`` in
         ``context``.
-
-        Returns string.
         """
         name = name.split('_')
         first = name[0:1]
@@ -386,49 +381,44 @@ class LilyPondFormatManager(AbjadObject):
             context_string += '.'
         else:
             context_string = ''
-        result = r'\set {}{} = {}'
-        result = result.format(context_string, name, value)
+        result = rf'\set {context_string}{name} = {value}'
         return result
 
     @staticmethod
-    def format_lilypond_value(argument):
+    def format_lilypond_value(argument) -> str:
         """
         Formats LilyPond ``argument`` according to Scheme formatting
         conventions.
-
-        Returns string.
         """
-        import abjad
+        from abjad.tools.schemetools.Scheme import Scheme
+        from abjad.tools.schemetools.SchemePair import SchemePair
         if '_get_lilypond_format' in dir(argument) and not isinstance(argument, str):
             pass
         elif argument in (True, False):
-            argument = abjad.Scheme(argument)
+            argument = Scheme(argument)
         elif argument in (Up, Down, Left, Right, Center):
-            argument = abjad.Scheme(repr(argument).lower())
+            argument = Scheme(repr(argument).lower())
         elif isinstance(argument, int) or isinstance(argument, float):
-            argument = abjad.Scheme(argument)
+            argument = Scheme(argument)
         elif argument in LilyPondFormatManager.lilypond_color_constants:
-            argument = abjad.Scheme(argument)
+            argument = Scheme(argument)
         elif isinstance(argument, str) and '::' in argument:
-            argument = abjad.Scheme(argument)
+            argument = Scheme(argument)
         elif isinstance(argument, tuple) and len(argument) == 2:
-            argument = abjad.SchemePair(argument)
+            argument = SchemePair(argument)
         elif isinstance(argument, str) and ' ' not in argument:
-            argument = abjad.Scheme(argument, quoting="'")
+            argument = Scheme(argument, quoting="'")
         elif isinstance(argument, str) and ' ' in argument:
-            argument = abjad.Scheme(argument)
+            argument = Scheme(argument)
         else:
-            argument = abjad.Scheme(argument, quoting="'")
+            argument = Scheme(argument, quoting="'")
         return format(argument, 'lilypond')
 
     @staticmethod
-    def left_shift_tags(text, realign=None):
+    def left_shift_tags(text, realign=None) -> str:
         """
         Left shifts tags in ``strings`` and realigns to column ``realign``.
-
-        Returns new text.
         """
-        import abjad
         strings = text.split('\n')
         strings_ = [] 
         for string in strings:
@@ -456,11 +446,9 @@ class LilyPondFormatManager(AbjadObject):
         value,
         context=None,
         once=False,
-        ):
+        ) -> str:
         """
         Makes Lilypond override string.
-
-        Returns string.
         """
         from abjad.tools.datastructuretools.String import String
         grob = String(grob).to_upper_camel_case()
@@ -474,8 +462,7 @@ class LilyPondFormatManager(AbjadObject):
             once = r'\once '
         else:
             once = ''
-        result = r'{}\override {}{}.{} = {}'
-        result = result.format(once, context, grob, attribute, value)
+        result = rf'{once}\override {context}{grob}.{attribute} = {value}'
         return result
 
     @staticmethod
@@ -500,8 +487,7 @@ class LilyPondFormatManager(AbjadObject):
             context += '.'
         else:
             context = ''
-        result = r'\revert {}{}.{}'
-        result = result.format(context, grob, dotted)
+        result = rf'\revert {context}{grob}.{dotted}'
         return result
 
     @staticmethod
@@ -510,7 +496,7 @@ class LilyPondFormatManager(AbjadObject):
         value,
         directed=True,
         grob=None,
-        ):
+        ) -> str:
         r"""
         Makes Lilypond \tweak string.
 
@@ -530,7 +516,7 @@ class LilyPondFormatManager(AbjadObject):
         return string
 
     @staticmethod
-    def report_spanner_format_contributions(spanner):
+    def report_spanner_format_contributions(spanner) -> str:
         """
         Reports spanner format contributions for every leaf in ``spanner``.
 
@@ -557,22 +543,20 @@ class LilyPondFormatManager(AbjadObject):
 
         Returns string or none.
         """
-        result = []
+        strings = []
         for leaf in spanner.leaves:
             bundle = spanner._get_lilypond_format_bundle(leaf)
             bundle_pieces = format(bundle).split('\n')
-            result.append('{!s}\t{}'.format(leaf, bundle_pieces[0]))
+            strings.append(f'{leaf!s}\t{bundle_pieces[0]}')
             for piece in bundle_pieces[1:]:
-                result.append('\t{}'.format(piece))
-        result = '\n'.join(result)
-        return result
+                strings.append(f'\t{piece}')
+        string = '\n'.join(strings)
+        return string
 
     @staticmethod
-    def tag(strings, tag, deactivate=None):
+    def tag(strings, tag, deactivate=None) -> typing.List[str]:
         """
         Tags ``strings`` with ``tag``.
-
-        Returns list of tagged strings.
         """
         if not tag:
             return strings

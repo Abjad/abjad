@@ -4,7 +4,8 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class ChordSuspension(AbjadValueObject):
-    '''Chord suspension.
+    """
+    Chord suspension.
 
     ..  container:: example
 
@@ -23,7 +24,7 @@ class ChordSuspension(AbjadValueObject):
 
     9-8, 7-6, 4-3, 2-1 and other types of suspension typical of, for example,
     the Bach chorales.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -46,8 +47,9 @@ class ChordSuspension(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is a chord suspension when start and stop
-        equal to those of this chord suspension. Otherwise false.
+        """
+        Is true when `argument` is a chord suspension when start and stop
+        equal to those of this chord suspension.
 
         ..  container:: example
 
@@ -79,23 +81,25 @@ class ChordSuspension(AbjadValueObject):
             True
 
         Returns true or false.
-        '''
+        """
         return super(ChordSuspension, self).__eq__(argument)
 
     def __hash__(self):
-        r'''Hashes chord suspension.
+        """
+        Hashes chord suspension.
 
         Required to be explicitly redefined on Python 3 if __eq__ changes.
 
         Returns integer.
-        '''
+        """
         return super(ChordSuspension, self).__hash__()
 
     def __str__(self):
-        r'''Gets string representation of chord suspension.
+        """
+        Gets string representation of chord suspension.
 
         Returns string.
-        '''
+        """
         if self.start is not None and self.stop is not None:
             return '{!s}-{!s}'.format(self.start, self.stop)
         else:
@@ -141,7 +145,8 @@ class ChordSuspension(AbjadValueObject):
 
     @property
     def chord_name(self):
-        r'''Gets chord name.
+        """
+        Gets chord name.
 
         ..  container:: example
 
@@ -152,12 +157,13 @@ class ChordSuspension(AbjadValueObject):
             'susb2'
 
         Returns string.
-        '''
+        """
         return 'sus{!s}'.format(self.start)
 
     @property
     def figured_bass_pair(self):
-        r'''Gets figured bass pair.
+        """
+        Gets figured bass pair.
 
         ..  container:: example
 
@@ -168,12 +174,13 @@ class ChordSuspension(AbjadValueObject):
             ('b2', '1')
 
         Returns integer pair.
-        '''
+        """
         return str(self.start), str(self.stop)
 
     @property
     def figured_bass_string(self):
-        r'''Gets figured bass string.
+        """
+        Gets figured bass string.
 
         ..  container:: example
 
@@ -184,12 +191,13 @@ class ChordSuspension(AbjadValueObject):
             'b2-1'
 
         Returns string.
-        '''
+        """
         return '{!s}-{!s}'.format(self.start, self.stop)
 
     @property
     def start(self):
-        r'''Gets start.
+        """
+        Gets start.
 
 
             >>> abjad.tonalanalysistools.ChordSuspension('4-b3').start
@@ -199,12 +207,13 @@ class ChordSuspension(AbjadValueObject):
             ScaleDegree('b2')
 
         Returns scale degree.
-        '''
+        """
         return self._start
 
     @property
     def stop(self):
-        r'''Gets stop.
+        """
+        Gets stop.
 
         ..  container:: example
 
@@ -215,12 +224,13 @@ class ChordSuspension(AbjadValueObject):
             ScaleDegree('1')
 
         Returns scale degree.
-        '''
+        """
         return self._stop
 
     @property
     def title_string(self):
-        r'''Gets title string.
+        """
+        Gets title string.
 
         ..  container:: example
 
@@ -231,7 +241,7 @@ class ChordSuspension(AbjadValueObject):
             'FlatTwoOneSuspension'
 
         Returns string.
-        '''
+        """
         start = self.start.title_string
         stop = self.stop.title_string
         return '{!s}{!s}Suspension'.format(start, stop)

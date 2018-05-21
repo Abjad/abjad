@@ -4,7 +4,8 @@ from .Selection import Selection
 
 
 class LogicalTie(Selection):
-    r'''Logical tie of a component.
+    """
+    Logical tie of a component.
 
     ..  container:: example
 
@@ -14,7 +15,7 @@ class LogicalTie(Selection):
         >>> abjad.inspect(staff[2]).get_logical_tie()
         LogicalTie([Note("e'4"), Note("e'4")])
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -23,10 +24,11 @@ class LogicalTie(Selection):
     ### SPECIAL METHODS ###
 
     def __getitem__(self, argument):
-        r'''Gets `argument`.
+        """
+        Gets `argument`.
 
         Returns component or vanilla selection (not logical tie).
-        '''
+        """
         result = self.items.__getitem__(argument)
         if isinstance(result, tuple):
             result = Selection(result)
@@ -117,36 +119,40 @@ class LogicalTie(Selection):
 
     @property
     def head(self):
-        r'''Reference to element ``0`` in logical tie.
+        """
+        Reference to element ``0`` in logical tie.
 
         Returns component.
-        '''
+        """
         if self.items:
             return self.items[0]
 
     @property
     def is_pitched(self):
-        r'''Is true when logical tie head is a note or chord.
+        """
+        Is true when logical tie head is a note or chord.
 
         Returns true or false.
-        '''
+        """
         import abjad
         return isinstance(self.head, (abjad.Note, abjad.Chord))
 
     @property
     def is_trivial(self):
-        r'''Is true when length of logical tie is less than or equal to ``1``.
+        """
+        Is true when length of logical tie is less than or equal to ``1``.
 
         Returns true or false.
-        '''
+        """
         return len(self) <= 1
 
     @property
     def leaves(self):
-        r'''Gets leaves in logical tie.
+        """
+        Gets leaves in logical tie.
 
         Returns selection.
-        '''
+        """
         import abjad
         try:
             tie = self[0]._get_spanner(prototype=abjad.Tie)
@@ -159,28 +165,31 @@ class LogicalTie(Selection):
 
     @property
     def tail(self):
-        r'''Gets last leaf in logical tie.
+        """
+        Gets last leaf in logical tie.
 
         Returns leaf.
-        '''
+        """
         if self.items:
             return self.items[-1]
 
     @property
     def tie_spanner(self):
-        r'''Gets tie spanner governing logical tie.
+        """
+        Gets tie spanner governing logical tie.
 
         Returns tie spanner.
-        '''
+        """
         import abjad
         return abjad.inspect(self[0]).get_spanner(abjad.Tie)
 
     @property
     def written_duration(self):
-        r'''Sum of written duration of all components in logical tie.
+        """
+        Sum of written duration of all components in logical tie.
 
         Returns duration.
-        '''
+        """
         return sum([_.written_duration for _ in self])
 
     ### PUBLIC METHODS ###
@@ -191,7 +200,8 @@ class LogicalTie(Selection):
         dotted=False,
         diminution=True,
         ):
-        r'''Changes logical tie to tuplet.
+        r"""
+        Changes logical tie to tuplet.
 
         ..  container:: example
 
@@ -322,7 +332,7 @@ class LogicalTie(Selection):
                 }
 
         Returns tuplet.
-        '''
+        """
         import abjad
         # coerce input
         proportions = abjad.Ratio(proportions)

@@ -5,7 +5,8 @@ from abjad.tools.datastructuretools import Infinity, NegativeInfinity
 
 
 class Timespan(AbjadValueObject):
-    r'''Timespan.
+    """
+    Timespan.
 
     ..  container:: example
 
@@ -17,7 +18,7 @@ class Timespan(AbjadValueObject):
     Timespans are closed-open intervals.
 
     Timespans are immutable.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -46,7 +47,8 @@ class Timespan(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __and__(self, argument):
-        r'''Logical AND of two timespans.
+        """
+        Logical AND of two timespans.
 
         ..  container:: example
 
@@ -74,7 +76,7 @@ class Timespan(AbjadValueObject):
             TimespanList([])
 
         Returns timespan list.
-        '''
+        """
         import abjad
         argument = self._get_timespan(argument)
         if not self.intersects_timespan(argument):
@@ -89,24 +91,24 @@ class Timespan(AbjadValueObject):
         return abjad.TimespanList([timespan])
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is a timespan with equal offsets.
+        """
+        Is true when `argument` is a timespan with equal offsets.
 
         ..  container:: example
 
             >>> abjad.Timespan(1, 3) == abjad.Timespan(1, 3)
             True
 
-            Otherwise false:
-
             >>> abjad.Timespan(1, 3) == abjad.Timespan(2, 3)
             False
 
         Returns true or false.
-        '''
+        """
         return super(Timespan, self).__eq__(argument)
 
     def __format__(self, format_specification=''):
-        r'''Formats timespan.
+        """
+        Formats timespan.
 
         Set `format_specification` to `''` or `'storage'`.
 
@@ -120,14 +122,15 @@ class Timespan(AbjadValueObject):
                 )
 
         Returns string.
-        '''
+        """
         import abjad
         if format_specification in ('', 'storage'):
             return abjad.StorageFormatManager(self).get_storage_format()
         return str(self)
 
     def __ge__(self, argument):
-        r'''Is true when `argument` start offset is greater or equal
+        """
+        Is true when `argument` start offset is greater or equal
         to timespan start offset.
 
         ..  container:: example
@@ -139,13 +142,11 @@ class Timespan(AbjadValueObject):
             >>> timespan_2 >= timespan_3
             True
 
-            Otherwise false:
-
             >>> timespan_1 >= timespan_2
             False
 
         Returns true or false.
-        '''
+        """
         expr_start_offset, expr_stop_offset = \
             self._get_start_offset_and_maybe_stop_offset(argument)
         if expr_stop_offset is not None:
@@ -158,7 +159,8 @@ class Timespan(AbjadValueObject):
         return self._start_offset >= expr_start_offset
 
     def __gt__(self, argument):
-        r'''Is true when `argument` start offset is greater than
+        """
+        Is true when `argument` start offset is greater than
         timespan start offset.
 
         ..  container:: example
@@ -170,13 +172,11 @@ class Timespan(AbjadValueObject):
             >>> timespan_2 > timespan_3
             True
 
-            Otherwise false:
-
             >>> timespan_1 > timespan_2
             False
 
         Returns true or false.
-        '''
+        """
         expr_start_offset, expr_stop_offset = \
             self._get_start_offset_and_maybe_stop_offset(argument)
         if expr_stop_offset is not None:
@@ -189,19 +189,21 @@ class Timespan(AbjadValueObject):
         return self._start_offset > expr_start_offset
 
     def __hash__(self):
-        r'''Hashes timespan.
+        """
+        Hashes timespan.
 
         Required to be explicitly redefined on Python 3 if __eq__ changes.
 
         Returns integer.
-        '''
+        """
         return super(Timespan, self).__hash__()
 
     def __illustrate__(self, range_=None, scale=None):
-        r'''Illustrates timespan.
+        """
+        Illustrates timespan.
 
         Returns LilyPond file.
-        '''
+        """
         import abjad
         timespans = abjad.TimespanList([self])
         return timespans.__illustrate__(
@@ -210,7 +212,8 @@ class Timespan(AbjadValueObject):
             )
 
     def __le__(self, argument):
-        r'''Is true when `argument` start offset is less than or equal to
+        """
+        Is true when `argument` start offset is less than or equal to
         timespan start offset.
 
         ..  container:: example
@@ -222,13 +225,11 @@ class Timespan(AbjadValueObject):
             >>> timespan_2 <= timespan_3
             False
 
-            Otherwise false:
-
             >>> timespan_1 <= timespan_2
             True
 
         Returns true or false.
-        '''
+        """
         expr_start_offset, expr_stop_offset = \
             self._get_start_offset_and_maybe_stop_offset(argument)
         if expr_stop_offset is not None:
@@ -241,7 +242,8 @@ class Timespan(AbjadValueObject):
         return self._start_offset <= expr_start_offset
 
     def __len__(self):
-        r'''Defined equal to ``1`` for all timespans.
+        """
+        Defined equal to ``1`` for all timespans.
 
         ..  container:: example
 
@@ -251,11 +253,12 @@ class Timespan(AbjadValueObject):
             1
 
         Returns positive integer.
-        '''
+        """
         return 1
 
     def __lt__(self, argument):
-        r'''Is true when `argument` start offset is less than timespan start
+        """
+        Is true when `argument` start offset is less than timespan start
         offset.
 
         ..  container::: example
@@ -267,13 +270,11 @@ class Timespan(AbjadValueObject):
             >>> timespan_1 < timespan_2
             True
 
-            Otherwise false:
-
             >>> timespan_2 < timespan_3
             False
 
         Returns true or false.
-        '''
+        """
         expr_start_offset, expr_stop_offset = \
             self._get_start_offset_and_maybe_stop_offset(argument)
         if expr_stop_offset is not None:
@@ -286,7 +287,8 @@ class Timespan(AbjadValueObject):
         return self._start_offset < expr_start_offset
 
     def __or__(self, argument):
-        r'''Logical OR of two timespans.
+        """
+        Logical OR of two timespans.
 
         ..  container:: example
 
@@ -370,7 +372,7 @@ class Timespan(AbjadValueObject):
                 )
 
         Returns timespan list.
-        '''
+        """
         import abjad
         argument = self._get_timespan(argument)
         if (not self.intersects_timespan(argument) and
@@ -388,7 +390,8 @@ class Timespan(AbjadValueObject):
         return abjad.TimespanList([timespan])
 
     def __sub__(self, argument):
-        r'''Subtract `argument` from timespan.
+        """
+        Subtract `argument` from timespan.
 
         ..  container:: example
 
@@ -446,7 +449,7 @@ class Timespan(AbjadValueObject):
             TimespanList([Timespan(start_offset=Offset(10, 1), stop_offset=Offset(20, 1))])
 
         Returns timespan list.
-        '''
+        """
         import abjad
         argument = self._get_timespan(argument)
         timespans = abjad.TimespanList()
@@ -514,7 +517,8 @@ class Timespan(AbjadValueObject):
         return timespans
 
     def __xor__(self, argument):
-        r'''Logical XOR of two timespans.
+        """
+        Logical XOR of two timespans.
 
         ..  container:: example
 
@@ -614,7 +618,7 @@ class Timespan(AbjadValueObject):
                 )
 
         Returns timespan list.
-        '''
+        """
         import abjad
         argument = self._get_timespan(argument)
         if (not self.intersects_timespan(argument) or
@@ -747,8 +751,8 @@ class Timespan(AbjadValueObject):
     ### PUBLIC METHODS ###
 
     def contains_timespan_improperly(self, timespan):
-        r'''Is true when timespan contains `timespan` improperly.
-        Otherwise false.
+        """
+        Is true when timespan contains `timespan` improperly.
 
         ..  container:: example
 
@@ -765,7 +769,7 @@ class Timespan(AbjadValueObject):
             True
 
         Returns true or false.
-        '''
+        """
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return (
@@ -774,7 +778,8 @@ class Timespan(AbjadValueObject):
             )
 
     def curtails_timespan(self, timespan):
-        r'''Is true when timespan curtails `timespan`. Otherwise false.
+        """
+        Is true when timespan curtails `timespan`.
 
         ..  container:: example
 
@@ -791,7 +796,7 @@ class Timespan(AbjadValueObject):
             False
 
         Returns true or false.
-        '''
+        """
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return (
@@ -801,7 +806,8 @@ class Timespan(AbjadValueObject):
             )
 
     def delays_timespan(self, timespan):
-        r'''Is true when timespan delays `timespan`. Otherwise false.
+        """
+        Is true when timespan delays `timespan`.
 
         ..  container:: example
 
@@ -815,7 +821,7 @@ class Timespan(AbjadValueObject):
             True
 
         Returns true or false.
-        '''
+        """
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return (
@@ -824,7 +830,8 @@ class Timespan(AbjadValueObject):
             )
 
     def divide_by_ratio(self, ratio):
-        r'''Divides timespan by `ratio`.
+        """
+        Divides timespan by `ratio`.
 
         ..  container:: example
 
@@ -837,7 +844,7 @@ class Timespan(AbjadValueObject):
             Timespan(start_offset=Offset(5, 4), stop_offset=Offset(3, 2))
 
         Returns tuple of newly constructed timespans.
-        '''
+        """
         import abjad
         if isinstance(ratio, int):
             ratio = ratio * (1, )
@@ -855,7 +862,8 @@ class Timespan(AbjadValueObject):
         return tuple(result)
 
     def get_overlap_with_timespan(self, timespan):
-        '''Gets duration of overlap with `timespan`.
+        """
+        Gets duration of overlap with `timespan`.
 
         ..  container:: example
 
@@ -895,7 +903,7 @@ class Timespan(AbjadValueObject):
             Duration(10, 1)
 
         Returns duration.
-        '''
+        """
         import abjad
         if self._implements_timespan_interface(timespan):
             result = abjad.Duration(
@@ -904,7 +912,8 @@ class Timespan(AbjadValueObject):
             return result
 
     def happens_during_timespan(self, timespan):
-        r'''Is true when timespan happens during `timespan`. Otherwise false.
+        """
+        Is true when timespan happens during `timespan`.
 
         ..  container:: example
 
@@ -921,7 +930,7 @@ class Timespan(AbjadValueObject):
             True
 
         Returns true or false.
-        '''
+        """
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return (
@@ -930,7 +939,8 @@ class Timespan(AbjadValueObject):
             )
 
     def intersects_timespan(self, timespan):
-        r'''Is true when timespan intersects `timespan`. Otherwise false.
+        """
+        Is true when timespan intersects `timespan`.
 
         ..  container:: example
 
@@ -946,7 +956,7 @@ class Timespan(AbjadValueObject):
             False
 
         Returns true or false.
-        '''
+        """
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return (
@@ -960,7 +970,8 @@ class Timespan(AbjadValueObject):
             )
 
     def is_congruent_to_timespan(self, timespan):
-        r'''Is true when timespan is congruent to `timespan`. Otherwise false.
+        """
+        Is true when timespan is congruent to `timespan`.
 
         ..  container:: example
 
@@ -977,7 +988,7 @@ class Timespan(AbjadValueObject):
             True
 
         Returns true or false.
-        '''
+        """
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return (
@@ -986,7 +997,8 @@ class Timespan(AbjadValueObject):
             )
 
     def is_tangent_to_timespan(self, timespan):
-        r'''Is true when timespan is tangent to `timespan`. Otherwise false.
+        """
+        Is true when timespan is tangent to `timespan`.
 
         ..  container:: example
 
@@ -1003,7 +1015,7 @@ class Timespan(AbjadValueObject):
             False
 
         Returns true or false.
-        '''
+        """
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return (
@@ -1012,7 +1024,8 @@ class Timespan(AbjadValueObject):
             )
 
     def overlaps_all_of_timespan(self, timespan):
-        r'''Is true when timespan overlaps all of `timespan`. Otherwise false.
+        """
+        Is true when timespan overlaps all of `timespan`.
 
         ..  container:: example
 
@@ -1028,7 +1041,7 @@ class Timespan(AbjadValueObject):
             False
 
         Returns true or false.
-        '''
+        """
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return (
@@ -1037,8 +1050,8 @@ class Timespan(AbjadValueObject):
             )
 
     def overlaps_only_start_of_timespan(self, timespan):
-        r'''Is true when timespan overlaps only start of `timespan`.
-        Otherwise false.
+        """
+        Is true when timespan overlaps only start of `timespan`.
 
         ..  container:: example
 
@@ -1057,7 +1070,7 @@ class Timespan(AbjadValueObject):
             True
 
         Returns true or false.
-        '''
+        """
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return (
@@ -1067,8 +1080,8 @@ class Timespan(AbjadValueObject):
             )
 
     def overlaps_only_stop_of_timespan(self, timespan):
-        r'''Is true when timespan overlaps only stop of `timespan`.
-        Otherwise false.
+        """
+        Is true when timespan overlaps only stop of `timespan`.
 
         ..  container:: example
 
@@ -1087,7 +1100,7 @@ class Timespan(AbjadValueObject):
             False
 
         Returns true or false.
-        '''
+        """
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return (
@@ -1097,8 +1110,8 @@ class Timespan(AbjadValueObject):
             )
 
     def overlaps_start_of_timespan(self, timespan):
-        r'''Is true when timespan overlaps start of `timespan`.
-        Otherwise false.
+        """
+        Is true when timespan overlaps start of `timespan`.
 
         ..  container:: example
 
@@ -1117,7 +1130,7 @@ class Timespan(AbjadValueObject):
             True
 
         Returns true or false.
-        '''
+        """
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return (
@@ -1126,8 +1139,8 @@ class Timespan(AbjadValueObject):
             )
 
     def overlaps_stop_of_timespan(self, timespan):
-        r'''Is true when timespan overlaps start of `timespan`.
-        Otherwise false.
+        """
+        Is true when timespan overlaps start of `timespan`.
 
         ..  container:: example
 
@@ -1146,7 +1159,7 @@ class Timespan(AbjadValueObject):
             False
 
         Returns true or false.
-        '''
+        """
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return (
@@ -1155,7 +1168,8 @@ class Timespan(AbjadValueObject):
             )
 
     def reflect(self, axis=None):
-        r'''Reflects timespan about `axis`.
+        """
+        Reflects timespan about `axis`.
 
         ..  container:: example
 
@@ -1172,7 +1186,7 @@ class Timespan(AbjadValueObject):
             Timespan(start_offset=Offset(14, 1), stop_offset=Offset(17, 1))
 
         Returns new timespan.
-        '''
+        """
         if axis is None:
             axis = self.axis
         start_distance = self._start_offset - axis
@@ -1182,7 +1196,8 @@ class Timespan(AbjadValueObject):
         return self.set_offsets(new_start_offset, new_stop_offset)
 
     def round_offsets(self, multiplier, anchor=Left, must_be_well_formed=True):
-        '''Rounds timespan offsets to multiple of `multiplier`.
+        """
+        Rounds timespan offsets to multiple of `multiplier`.
 
         ..  container:: example
 
@@ -1208,7 +1223,7 @@ class Timespan(AbjadValueObject):
             Timespan(start_offset=Offset(0, 1), stop_offset=Offset(0, 1))
 
         Returns new timespan.
-        '''
+        """
         import abjad
         multiplier = abs(abjad.Multiplier(multiplier))
         assert 0 < multiplier
@@ -1229,7 +1244,8 @@ class Timespan(AbjadValueObject):
         return result
 
     def scale(self, multiplier, anchor=Left):
-        r'''Scales timespan by `multiplier`.
+        """
+        Scales timespan by `multiplier`.
 
             >>> timespan = abjad.Timespan(3, 6)
 
@@ -1248,7 +1264,7 @@ class Timespan(AbjadValueObject):
             Timespan(start_offset=Offset(0, 1), stop_offset=Offset(6, 1))
 
         Returns new timespan.
-        '''
+        """
         import abjad
         multiplier = abjad.Multiplier(multiplier)
         assert 0 < multiplier
@@ -1271,7 +1287,8 @@ class Timespan(AbjadValueObject):
         return result
 
     def set_duration(self, duration):
-        r'''Sets timespan duration to `duration`.
+        """
+        Sets timespan duration to `duration`.
 
         ..  container:: example
 
@@ -1281,7 +1298,7 @@ class Timespan(AbjadValueObject):
             Timespan(start_offset=Offset(1, 2), stop_offset=Offset(11, 10))
 
         Returns new timespan.
-        '''
+        """
         import abjad
         duration = abjad.Duration(duration)
         new_stop_offset = self._start_offset + duration
@@ -1291,7 +1308,8 @@ class Timespan(AbjadValueObject):
             )
 
     def set_offsets(self, start_offset=None, stop_offset=None):
-        r'''Sets timespan start offset to `start_offset` and
+        """
+        Sets timespan start offset to `start_offset` and
         stop offset to `stop_offset`.
 
         ..  container:: example
@@ -1312,7 +1330,7 @@ class Timespan(AbjadValueObject):
         Timespan(start_offset=Offset(1, 2), stop_offset=Offset(1, 1))
 
         Returns new timespan.
-        '''
+        """
         import abjad
         if start_offset is not None:
             start_offset = abjad.Offset(start_offset)
@@ -1342,7 +1360,8 @@ class Timespan(AbjadValueObject):
 
     # TODO: extend to self.split_at_offsets()
     def split_at_offset(self, offset):
-        r'''Split into two parts when `offset` happens during timespan:
+        """
+        Split into two parts when `offset` happens during timespan:
 
         ..  container:: example
 
@@ -1362,7 +1381,7 @@ class Timespan(AbjadValueObject):
             Timespan(start_offset=Offset(0, 1), stop_offset=Offset(5, 1))
 
         Returns one or two newly constructed timespans.
-        '''
+        """
         import abjad
         offset = abjad.Offset(offset)
         result = abjad.TimespanList()
@@ -1384,7 +1403,8 @@ class Timespan(AbjadValueObject):
         return result
 
     def split_at_offsets(self, offsets):
-        r'''Split into one or more parts when `offsets` happens during
+        """
+        Split into one or more parts when `offsets` happens during
         timespan:
 
         ..  container:: example
@@ -1428,7 +1448,7 @@ class Timespan(AbjadValueObject):
                 )
 
         Returns one or more newly constructed timespans.
-        '''
+        """
         import abjad
         offsets = [abjad.Offset(offset) for offset in offsets]
         offsets = [offset for offset in offsets
@@ -1443,8 +1463,8 @@ class Timespan(AbjadValueObject):
         return result
 
     def starts_after_offset(self, offset):
-        r'''Is true when timespan overlaps start of `timespan`.
-        Otherwise false.
+        """
+        Is true when timespan overlaps start of `timespan`.
 
         ..  container:: example
 
@@ -1458,14 +1478,14 @@ class Timespan(AbjadValueObject):
             False
 
         Returns true or false.
-        '''
+        """
         import abjad
         offset = abjad.Offset(offset)
         return offset < self._start_offset
 
     def starts_after_timespan_starts(self, timespan):
-        r'''Is true when timespan starts after `timespan` starts. Otherwise
-        false.
+        """
+        Is true when timespan starts after `timespan` starts.
 
         ..  container:: example
 
@@ -1482,14 +1502,14 @@ class Timespan(AbjadValueObject):
             False
 
         Returns true or false.
-        '''
+        """
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return expr_start_offset < self_start_offset
 
     def starts_after_timespan_stops(self, timespan):
-        r'''Is true when timespan starts after `timespan` stops. Otherwise
-        false.
+        """
+        Is true when timespan starts after `timespan` stops.
 
         ..  container:: example
 
@@ -1508,13 +1528,14 @@ class Timespan(AbjadValueObject):
             True
 
         Returns true or false.
-        '''
+        """
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return expr_stop_offset <= self_start_offset
 
     def starts_at_offset(self, offset):
-        r'''Is true when timespan starts at `offset`. Otherwise false.
+        """
+        Is true when timespan starts at `offset`.
 
         ..  container:: example
 
@@ -1528,13 +1549,14 @@ class Timespan(AbjadValueObject):
             False
 
         Returns true or false.
-        '''
+        """
         import abjad
         offset = abjad.Offset(offset)
         return self._start_offset == offset
 
     def starts_at_or_after_offset(self, offset):
-        r'''Is true when timespan starts at or after `offset`. Otherwise false.
+        """
+        Is true when timespan starts at or after `offset`.
 
         ..  container:: example
 
@@ -1548,13 +1570,14 @@ class Timespan(AbjadValueObject):
             False
 
         Returns true or false.
-        '''
+        """
         import abjad
         offset = abjad.Offset(offset)
         return offset <= self._start_offset
 
     def starts_before_offset(self, offset):
-        r'''Is true when timespan starts before `offset`. Otherwise false.
+        """
+        Is true when timespan starts before `offset`.
 
         ..  container:: example
 
@@ -1568,14 +1591,14 @@ class Timespan(AbjadValueObject):
             True
 
         Returns true or false.
-        '''
+        """
         import abjad
         offset = abjad.Offset(offset)
         return self._start_offset < offset
 
     def starts_before_or_at_offset(self, offset):
-        r'''Is true when timespan starts before or at `offset`.
-        Otherwise false.
+        """
+        Is true when timespan starts before or at `offset`.
 
         ..  container:: example
 
@@ -1589,14 +1612,14 @@ class Timespan(AbjadValueObject):
             True
 
         Returns true or false.
-        '''
+        """
         import abjad
         offset = abjad.Offset(offset)
         return self._start_offset <= offset
 
     def starts_before_timespan_starts(self, timespan):
-        r'''Is true when timespan starts before `timespan` starts.
-        Otherwise false.
+        """
+        Is true when timespan starts before `timespan` starts.
 
         ..  container:: example
 
@@ -1613,14 +1636,14 @@ class Timespan(AbjadValueObject):
             False
 
         Returns true or false.
-        '''
+        """
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return self_start_offset < expr_start_offset
 
     def starts_before_timespan_stops(self, timespan):
-        r'''Is true when timespan starts before `timespan` stops.
-        Otherwise false.
+        """
+        Is true when timespan starts before `timespan` stops.
 
         ..  container:: example
 
@@ -1637,13 +1660,14 @@ class Timespan(AbjadValueObject):
             True
 
         Returns true or false.
-        '''
+        """
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return self_start_offset < expr_stop_offset
 
     def starts_during_timespan(self, timespan):
-        r'''Is true when timespan starts during `timespan`. Otherwise false.
+        """
+        Is true when timespan starts during `timespan`.
 
         ..  container:: example
 
@@ -1660,7 +1684,7 @@ class Timespan(AbjadValueObject):
             True
 
         Returns true or false.
-        '''
+        """
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return (
@@ -1669,8 +1693,8 @@ class Timespan(AbjadValueObject):
             )
 
     def starts_when_timespan_starts(self, timespan):
-        r'''Is true when timespan starts when `timespan` starts. Otherwise
-        false.
+        """
+        Is true when timespan starts when `timespan` starts.
 
         ..  container:: example
 
@@ -1687,14 +1711,14 @@ class Timespan(AbjadValueObject):
             True
 
         Returns true or false.
-        '''
+        """
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return expr_start_offset == self_start_offset
 
     def starts_when_timespan_stops(self, timespan):
-        r'''Is true when timespan starts when `timespan` stops. Otherwise
-        false.
+        """
+        Is true when timespan starts when `timespan` stops.
 
         ..  container:: example
 
@@ -1711,13 +1735,14 @@ class Timespan(AbjadValueObject):
             False
 
         Returns true or false.
-        '''
+        """
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return self_start_offset == expr_stop_offset
 
     def stops_after_offset(self, offset):
-        r'''Is true when timespan stops after `offset`. Otherwise false.
+        """
+        Is true when timespan stops after `offset`.
 
         ..  container:: example
 
@@ -1731,14 +1756,14 @@ class Timespan(AbjadValueObject):
             False
 
         Returns true or false.
-        '''
+        """
         import abjad
         offset = abjad.Offset(offset)
         return offset < self._stop_offset
 
     def stops_after_timespan_starts(self, timespan):
-        r'''Is true when timespan stops when `timespan` starts. Otherwise
-        false.
+        """
+        Is true when timespan stops when `timespan` starts.
 
         ..  container:: example
 
@@ -1755,13 +1780,14 @@ class Timespan(AbjadValueObject):
             True
 
         Returns true or false.
-        '''
+        """
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return expr_start_offset < self_stop_offset
 
     def stops_after_timespan_stops(self, timespan):
-        r'''Is true when timespan stops when `timespan` stops. Otherwise false.
+        """
+        Is true when timespan stops when `timespan` stops.
 
         ..  container:: example
 
@@ -1778,13 +1804,14 @@ class Timespan(AbjadValueObject):
             False
 
         Returns true or false.
-        '''
+        """
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return expr_stop_offset < self_stop_offset
 
     def stops_at_offset(self, offset):
-        r'''Is true when timespan stops at `offset`. Otherwise false.
+        """
+        Is true when timespan stops at `offset`.
 
         ..  container:: example
 
@@ -1798,13 +1825,14 @@ class Timespan(AbjadValueObject):
             False
 
         Returns true or false.
-        '''
+        """
         import abjad
         offset = abjad.Offset(offset)
         return self._stop_offset == offset
 
     def stops_at_or_after_offset(self, offset):
-        r'''Is true when timespan stops at or after `offset`. Otherwise false.
+        """
+        Is true when timespan stops at or after `offset`.
 
         ..  container:: example
 
@@ -1818,13 +1846,14 @@ class Timespan(AbjadValueObject):
             True
 
         Returns true or false.
-        '''
+        """
         import abjad
         offset = abjad.Offset(offset)
         return offset <= self._stop_offset
 
     def stops_before_offset(self, offset):
-        r'''Is true when timespan stops before `offset`. Otherwise false.
+        """
+        Is true when timespan stops before `offset`.
 
         ..  container:: example
 
@@ -1838,13 +1867,14 @@ class Timespan(AbjadValueObject):
             False
 
         Returns true or false.
-        '''
+        """
         import abjad
         offset = abjad.Offset(offset)
         return self._stop_offset < offset
 
     def stops_before_or_at_offset(self, offset):
-        r'''Is true when timespan stops before or at `offset`. Otherwise false.
+        """
+        Is true when timespan stops before or at `offset`.
 
         ..  container:: example
 
@@ -1858,14 +1888,14 @@ class Timespan(AbjadValueObject):
             False
 
         Returns true or false.
-        '''
+        """
         import abjad
         offset = abjad.Offset(offset)
         return self._stop_offset <= offset
 
     def stops_before_timespan_starts(self, timespan):
-        r'''Is true when timespan stops before `timespan` starts.
-        Otherwise false.
+        """
+        Is true when timespan stops before `timespan` starts.
 
         ..  container:: example
 
@@ -1882,14 +1912,14 @@ class Timespan(AbjadValueObject):
             False
 
         Returns true or false.
-        '''
+        """
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return self_stop_offset < expr_start_offset
 
     def stops_before_timespan_stops(self, timespan):
-        r'''Is true when timespan stops before `timespan` stops. Otherwise
-        false.
+        """
+        Is true when timespan stops before `timespan` stops.
 
         ..  container:: example
 
@@ -1906,13 +1936,14 @@ class Timespan(AbjadValueObject):
             False
 
         Returns true or false.
-        '''
+        """
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return self_stop_offset < expr_stop_offset
 
     def stops_during_timespan(self, timespan):
-        r'''Is true when timespan stops during `timespan`. Otherwise false.
+        """
+        Is true when timespan stops during `timespan`.
 
         ..  container:: example
 
@@ -1929,7 +1960,7 @@ class Timespan(AbjadValueObject):
             True
 
         Returns true or false.
-        '''
+        """
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return (
@@ -1938,8 +1969,8 @@ class Timespan(AbjadValueObject):
             )
 
     def stops_when_timespan_starts(self, timespan):
-        r'''Is true when timespan stops when `timespan` starts. Otherwise
-        false.
+        """
+        Is true when timespan stops when `timespan` starts.
 
         ..  container:: example
 
@@ -1956,13 +1987,14 @@ class Timespan(AbjadValueObject):
             False
 
         Returns true or false.
-        '''
+        """
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return self_stop_offset == expr_start_offset
 
     def stops_when_timespan_stops(self, timespan):
-        r'''Is true when timespan stops when `timespan` stops. Otherwise false.
+        """
+        Is true when timespan stops when `timespan` stops.
 
         ..  container:: example
 
@@ -1979,13 +2011,14 @@ class Timespan(AbjadValueObject):
             True
 
         Returns true or false.
-        '''
+        """
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return self_stop_offset == expr_stop_offset
 
     def stretch(self, multiplier, anchor=None):
-        r'''Stretches timespan by `multiplier` relative to `anchor`.
+        """
+        Stretches timespan by `multiplier` relative to `anchor`.
 
         .. container:: example
 
@@ -2035,7 +2068,7 @@ class Timespan(AbjadValueObject):
             Timespan(start_offset=Offset(2, 1), stop_offset=Offset(16, 1))
 
         Returns newly emitted timespan.
-        '''
+        """
         import abjad
         multiplier = abjad.Multiplier(multiplier)
         assert 0 < multiplier
@@ -2051,7 +2084,8 @@ class Timespan(AbjadValueObject):
         return result
 
     def translate(self, translation=None):
-        r'''Translates timespan by `translation`.
+        """
+        Translates timespan by `translation`.
 
         ..  container:: example
 
@@ -2061,7 +2095,7 @@ class Timespan(AbjadValueObject):
             Timespan(start_offset=Offset(7, 1), stop_offset=Offset(12, 1))
 
         Returns new timespan.
-        '''
+        """
         return self.translate_offsets(translation, translation)
 
     def translate_offsets(
@@ -2069,7 +2103,8 @@ class Timespan(AbjadValueObject):
         start_offset_translation=None,
         stop_offset_translation=None,
         ):
-        r'''Translates timespan start offset by `start_offset_translation` and
+        """
+        Translates timespan start offset by `start_offset_translation` and
         stop offset by `stop_offset_translation`.
 
         ..  container:: example
@@ -2080,7 +2115,7 @@ class Timespan(AbjadValueObject):
             Timespan(start_offset=Offset(3, 8), stop_offset=Offset(3, 2))
 
         Returns new timespan.
-        '''
+        """
         import abjad
         start_offset_translation = start_offset_translation or 0
         stop_offset_translation = stop_offset_translation or 0
@@ -2095,7 +2130,8 @@ class Timespan(AbjadValueObject):
             )
 
     def trisects_timespan(self, timespan):
-        r'''Is true when timespan trisects `timespan`. Otherwise false.
+        """
+        Is true when timespan trisects `timespan`.
 
         ..  container:: example
 
@@ -2112,7 +2148,7 @@ class Timespan(AbjadValueObject):
             False
 
         Returns true or false.
-        '''
+        """
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return (
@@ -2124,7 +2160,8 @@ class Timespan(AbjadValueObject):
 
     @property
     def axis(self):
-        r'''Arithmetic mean of timespan start- and stop-offsets.
+        """
+        Arithmetic mean of timespan start- and stop-offsets.
 
         ..  container:: example
 
@@ -2132,12 +2169,13 @@ class Timespan(AbjadValueObject):
             Offset(5, 1)
 
         Returns offset.
-        '''
+        """
         return (self._start_offset + self._stop_offset) / 2
 
     @property
     def duration(self):
-        r'''Duration of timespan.
+        """
+        Duration of timespan.
 
         ..  container:: example
 
@@ -2145,13 +2183,13 @@ class Timespan(AbjadValueObject):
             Duration(10, 1)
 
         Returns duration.
-        '''
+        """
         return self._stop_offset - self._start_offset
 
     @property
     def is_well_formed(self):
-        r'''Is true when timespan start offset preceeds timespan stop offset.
-        Otherwise false.
+        """
+        Is true when timespan start offset preceeds timespan stop offset.
 
         ..  container:: example
 
@@ -2159,12 +2197,13 @@ class Timespan(AbjadValueObject):
             True
 
         Returns true or false.
-        '''
+        """
         return self._start_offset < self._stop_offset
 
     @property
     def offsets(self):
-        r'''Timespan offsets.
+        """
+        Timespan offsets.
 
         ..  container:: example
 
@@ -2172,12 +2211,13 @@ class Timespan(AbjadValueObject):
             (Offset(0, 1), Offset(10, 1))
 
         Returns offset pair.
-        '''
+        """
         return self._start_offset, self._stop_offset
 
     @property
     def start_offset(self):
-        r'''Timespan start offset.
+        """
+        Timespan start offset.
 
         ..  container:: example
 
@@ -2185,12 +2225,13 @@ class Timespan(AbjadValueObject):
             Offset(0, 1)
 
         Returns offset.
-        '''
+        """
         return self._start_offset
 
     @property
     def stop_offset(self):
-        r'''Timespan stop offset.
+        """
+        Timespan stop offset.
 
         ..  container:: example
 
@@ -2198,5 +2239,5 @@ class Timespan(AbjadValueObject):
             Offset(10, 1)
 
         Returns offset.
-        '''
+        """
         return self._stop_offset

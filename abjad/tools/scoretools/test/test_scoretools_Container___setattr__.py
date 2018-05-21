@@ -3,8 +3,9 @@ import pytest
 
 
 def test_scoretools_Container___setattr___01():
-    r'''Slots constrain container attributes.
-    '''
+    """
+    Slots constrain container attributes.
+    """
 
     container = abjad.Container([])
 

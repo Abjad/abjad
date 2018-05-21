@@ -2,7 +2,8 @@ from .Inequality import Inequality
 
 
 class LengthInequality(Inequality):
-    r'''Length inequality.
+    """
+    Length inequality.
 
     ..  container:: example
 
@@ -22,7 +23,7 @@ class LengthInequality(Inequality):
         >>> inequality([1, 2, 3, 4, 5])
         False
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -57,18 +58,20 @@ class LengthInequality(Inequality):
     ### SPECIAL METHODS ###
 
     def __call__(self, argument):
-        r'''Calls inequality on `argument`.
+        """
+        Calls inequality on ``argument``.
 
         Returns true or false.
-        '''
+        """
         return self._operator_function(len(argument), self.length)
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def length(self):
-        r'''Gets length.
+        """
+        Gets length.
 
         Returns integer.
-        '''
+        """
         return self._length

@@ -1,5 +1,6 @@
 def select(items=None):
-    r'''Selects `items` or makes select expression.
+    r"""
+    Selects `items` or makes select expression.
 
     ..  container:: example
 
@@ -35,7 +36,7 @@ def select(items=None):
         >>> abjad.select()
         abjad.select()
 
-    '''
+    """
     import abjad
     if items is None:
         return abjad.Expression().select()

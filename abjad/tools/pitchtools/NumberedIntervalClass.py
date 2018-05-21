@@ -93,7 +93,7 @@ class NumberedIntervalClass(IntervalClass):
 
     def __eq__(self, argument):
         r'''Is true when `argument` is a numbered interval-class with number
-        equal to that of this numbered interval-class. Otherwise false.
+        equal to that of this numbered interval-class.
 
         ..  container:: example
 

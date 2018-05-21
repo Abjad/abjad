@@ -2,7 +2,8 @@ from abjad.tools.datastructuretools.TypedList import TypedList
 
 
 class MeterList(TypedList):
-    r'''Meter list.
+    """
+    Meter list.
 
     ..  container:: example
 
@@ -27,7 +28,7 @@ class MeterList(TypedList):
 
         >>> abjad.show(meters, scale=0.5) # doctest: +SKIP
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -36,7 +37,8 @@ class MeterList(TypedList):
     ### SPECIAL METHODS ###
 
     def __illustrate__(self, denominator=16, range_=None, scale=None):
-        r'''Illustrates meters.
+        r"""
+        Illustrates meters.
 
         ..  container:: example
 
@@ -233,7 +235,7 @@ class MeterList(TypedList):
                     }
 
         Returns LilyPond file.
-        '''
+        """
         import abjad
         durations = [_.duration for _ in self]
         total_duration = sum(durations)

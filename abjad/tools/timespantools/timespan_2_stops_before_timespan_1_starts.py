@@ -3,7 +3,8 @@ def timespan_2_stops_before_timespan_1_starts(
     timespan_2=None,
     hold=False,
     ):
-    r'''Makes time relation indicating that `timespan_2` happens
+    """
+    Makes time relation indicating that `timespan_2` happens
     during `timespan_1`.
 
     ..  container:: example
@@ -20,7 +21,7 @@ def timespan_2_stops_before_timespan_1_starts(
             )
 
     Returns time relation or boolean.
-    '''
+    """
     from abjad.tools import timespantools
 
     inequality = timespantools.CompoundInequality([

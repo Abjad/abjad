@@ -3,8 +3,9 @@ import pytest
 
 
 def test_scoretools_Measure_extend_01():
-    r'''Do not adjust time signature automatically.
-    '''
+    """
+    Do not adjust time signature automatically.
+    """
 
     measure = abjad.Measure((3, 4), "c' d' e'")
     measure.extend("f' g'")
@@ -14,8 +15,9 @@ def test_scoretools_Measure_extend_01():
 
 
 def test_scoretools_Measure_extend_02():
-    r'''Adjust time signature automatically.
-    '''
+    """
+    Adjust time signature automatically.
+    """
 
     measure = abjad.Measure((3, 4), "c' d' e'")
     measure.automatically_adjust_time_signature = True
@@ -23,7 +25,7 @@ def test_scoretools_Measure_extend_02():
 
     assert not measure.is_misfilled
     assert format(measure) == abjad.String.normalize(
-        r'''
+        r"""
         {   % measure
             \time 5/4
             c'4
@@ -32,5 +34,5 @@ def test_scoretools_Measure_extend_02():
             f'4
             g'4
         }   % measure
-        '''
+        """
         )

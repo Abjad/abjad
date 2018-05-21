@@ -2,8 +2,9 @@ import abjad
 
 
 def test_scoretools_Inspection_get_effective_staff_01():
-    r'''Staff changes work on the first note of a staff.
-    '''
+    """
+    Staff changes work on the first note of a staff.
+    """
 
     staves = 2 * abjad.Staff("c'8 d'8 e'8 f'8")
     staff_group = abjad.StaffGroup(staves)
@@ -15,7 +16,7 @@ def test_scoretools_Inspection_get_effective_staff_01():
     abjad.attach(staff_change, staff_group[0][0])
 
     assert format(staff_group) == abjad.String.normalize(
-        r'''
+        r"""
         \new PianoStaff
         <<
             \context Staff = "RH"
@@ -34,7 +35,7 @@ def test_scoretools_Inspection_get_effective_staff_01():
                 f'8
             }
         >>
-        '''
+        """
         )
 
     assert abjad.inspect(staff_group).is_well_formed()
@@ -49,8 +50,9 @@ def test_scoretools_Inspection_get_effective_staff_01():
 
 
 def test_scoretools_Inspection_get_effective_staff_02():
-    r'''Staff changes work on middle notes of a staff.
-    '''
+    """
+    Staff changes work on middle notes of a staff.
+    """
 
     staves = 2 * abjad.Staff("c'8 d'8 e'8 f'8")
     staff_group = abjad.StaffGroup(staves)
@@ -64,7 +66,7 @@ def test_scoretools_Inspection_get_effective_staff_02():
     abjad.attach(staff_change, staff_group[0][2])
 
     assert format(staff_group) == abjad.String.normalize(
-        r'''
+        r"""
         \new PianoStaff
         <<
             \context Staff = "RH"
@@ -84,7 +86,7 @@ def test_scoretools_Inspection_get_effective_staff_02():
                 f'8
             }
         >>
-        '''
+        """
         )
 
     assert abjad.inspect(staff_group).is_well_formed()
@@ -99,8 +101,9 @@ def test_scoretools_Inspection_get_effective_staff_02():
 
 
 def test_scoretools_Inspection_get_effective_staff_03():
-    r'''Staff changes work on the last note of a staff.
-    '''
+    """
+    Staff changes work on the last note of a staff.
+    """
 
     staves = 2 * abjad.Staff("c'8 d'8 e'8 f'8")
     staff_group = abjad.StaffGroup(staves)
@@ -112,7 +115,7 @@ def test_scoretools_Inspection_get_effective_staff_03():
     abjad.attach(staff_change, staff_group[0][-1])
 
     assert format(staff_group) == abjad.String.normalize(
-        r'''
+        r"""
         \new PianoStaff
         <<
             \context Staff = "RH"
@@ -131,15 +134,16 @@ def test_scoretools_Inspection_get_effective_staff_03():
                 f'8
             }
         >>
-        '''
+        """
         )
 
     assert abjad.inspect(staff_group).is_well_formed()
 
 
 def test_scoretools_Inspection_get_effective_staff_04():
-    r'''Redudant staff changes are allowed.
-    '''
+    """
+    Redudant staff changes are allowed.
+    """
 
     staves = 2 * abjad.Staff("c'8 d'8 e'8 f'8")
     staff_group = abjad.StaffGroup(staves)
@@ -153,7 +157,7 @@ def test_scoretools_Inspection_get_effective_staff_04():
     abjad.attach(staff_change, staff_group[0][1])
 
     assert format(staff_group) == abjad.String.normalize(
-        r'''
+        r"""
         \new PianoStaff
         <<
             \context Staff = "RH"
@@ -173,7 +177,7 @@ def test_scoretools_Inspection_get_effective_staff_04():
                 f'8
             }
         >>
-        '''
+        """
         )
 
     assert abjad.inspect(staff_group).is_well_formed()

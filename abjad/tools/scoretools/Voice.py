@@ -2,7 +2,8 @@ from .Context import Context
 
 
 class Voice(Context):
-    r'''Voice.
+    r"""
+    Voice.
 
     ..  container:: example
 
@@ -20,7 +21,7 @@ class Voice(Context):
                 f'8
             }
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 

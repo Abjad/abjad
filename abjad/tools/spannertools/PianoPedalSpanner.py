@@ -71,9 +71,15 @@ class PianoPedalSpanner(Spanner):
             raise ValueError(f'style must be in {self._styles!r}.')
         self._style = style
 
+    ### PRIVATE PROPERTIES ##
+
+    @property
+    def _start_command(self):
+        return self._kinds[self.kind][0]
+
     ### PRIVATE METHODS ###
 
-    def _copy_keyword_args(self, new):
+    def _copy_keywords(self, new):
         new._kind = self.kind
         new._style = self.style
 
@@ -87,8 +93,8 @@ class PianoPedalSpanner(Spanner):
                 value=style,
                 )
             bundle.update(context_setting)
-            string = self.start_command()
-            bundle.right.spanner_starts.append(string)
+            strings = self.start_command()
+            bundle.right.spanner_starts.extend(strings)
             string = self.stop_command()
             bundle.right.spanner_starts.append(string)
         elif leaf is self[0]:
@@ -99,8 +105,8 @@ class PianoPedalSpanner(Spanner):
                 value=style,
                 )
             bundle.update(context_setting)
-            string = self.start_command()
-            bundle.right.spanner_starts.append(string)
+            strings = self.start_command()
+            bundle.right.spanner_starts.extend(strings)
         elif leaf is self[-1]:
             string = self.stop_command()
             bundle.right.spanner_stops.append(string)
@@ -358,23 +364,23 @@ class PianoPedalSpanner(Spanner):
 
     ### PUBLIC METHODS ###
 
-    def start_command(self) -> typing.Optional[str]:
+    def start_command(self) -> typing.List[str]:
         r"""
         Gets start command.
 
         ..  container:: example
 
             >>> abjad.PianoPedalSpanner(kind='sustain').start_command()
-            '\\sustainOn'
+            ['\\sustainOn']
 
             >>> abjad.PianoPedalSpanner(kind='sostenuto').start_command()
-            '\\sostenutoOn'
+            ['\\sostenutoOn']
 
             >>> abjad.PianoPedalSpanner(kind='corda').start_command()
-            '\\unaCorda'
+            ['\\unaCorda']
 
         """
-        return self._kinds[self.kind][0]
+        return super(PianoPedalSpanner, self).start_command()
 
     def stop_command(self) -> typing.Optional[str]:
         r"""

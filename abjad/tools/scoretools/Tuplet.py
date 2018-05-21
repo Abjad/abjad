@@ -153,7 +153,7 @@ class Tuplet(Container):
             uqbar.graphs.HRule(),
             uqbar.graphs.TableRow([
                 uqbar.graphs.TableCell(
-                    label='* {!s}'.format(self.multiplier),
+                    label=f'* {self.multiplier!s}',
                     attributes={'border': 0},
                     ),
                 ]),
@@ -296,15 +296,16 @@ class Tuplet(Container):
         if multiplier is not None:
             numerator = multiplier.numerator
             denominator = multiplier.denominator
-            ratio_string = '{}:{}'.format(denominator, numerator)
+            ratio_string = f'{denominator}:{numerator}'
             return ratio_string
         else:
             return None
 
     def _get_scale_durations_command_string(self):
         multiplier = self.multiplier
-        string = r"\scaleDurations #'({} . {}) {{"
-        string = string.format(multiplier.numerator, multiplier.denominator)
+        numerator = multiplier.numerator
+        denominator = multiplier.denominator
+        string = rf"\scaleDurations #'({numerator} . {denominator}) {{"
         return string
 
     def _get_summary(self):
@@ -314,9 +315,7 @@ class Tuplet(Container):
             return ''
 
     def _get_times_command_string(self):
-        string = r'\times {} {{'.format(
-            self._get_multiplier_fraction_string()
-            )
+        string = rf'\times {self._get_multiplier_fraction_string()} {{'
         return string
 
     def _rest_filled(self):
@@ -733,14 +732,12 @@ class Tuplet(Container):
         elif isinstance(argument, tuple):
             rational = Multiplier(argument)
         else:
-            message = 'can not set tuplet multiplier: {!r}.'
-            message = message.format(argument)
+            message = f'can not set tuplet multiplier: {argument!r}.'
             raise ValueError(message)
         if 0 < rational:
             self._multiplier = rational
         else:
-            message = 'tuplet multiplier must be positive: {!r}.'
-            message = message.format(argument)
+            message = f'tuplet multiplier must be positive: {argument!r}.'
             raise ValueError(message)
 
     @property
@@ -1084,8 +1081,7 @@ class Tuplet(Container):
         """
         import abjad
         if not len(components):
-            message = 'components must be nonempty: {!r}.'
-            message = message.format(components)
+            message = f'components must be nonempty: {components!r}.'
             raise Exception(message)
         target_duration = Duration(duration)
         tuplet = Tuplet(1, components)

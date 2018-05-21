@@ -133,7 +133,7 @@ class IntervalSegment(Segment):
             )
 
     def has_duplicates(self):
-        r'''True if segment has duplicate items. Otherwise false.
+        r'''True if segment has duplicate items.
 
         >>> intervals = 'm2 M3 -aug4 m2 P5'
         >>> segment = abjad.IntervalSegment(intervals)

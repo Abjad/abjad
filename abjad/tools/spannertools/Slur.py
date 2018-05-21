@@ -92,7 +92,7 @@ class Slur(Spanner):
     def _attachment_test_all(self, component_expression):
         return self._at_least_two_leaves(component_expression)
 
-    def _copy_keyword_args(self, new):
+    def _copy_keywords(self, new):
         new._direction = self.direction
 
     def _get_lilypond_format_bundle(self, leaf):
@@ -100,9 +100,8 @@ class Slur(Spanner):
         if self._is_my_only(leaf):
             pass
         elif leaf is self[0]:
-            string = self.start_command()
-            string = self._add_direction(string)
-            bundle.right.spanner_starts.append(string)
+            strings = self.start_command()
+            bundle.right.spanner_starts.extend(strings)
         elif leaf is self[-1]:
             string = self.stop_command()
             bundle.right.spanner_stops.append(string)
@@ -186,14 +185,14 @@ class Slur(Spanner):
 
     ### PUBLIC METHODS ###
 
-    def start_command(self) -> typing.Optional[str]:
+    def start_command(self) -> typing.List[str]:
         """
         Gets start command.
 
         ..  container:: example
 
             >>> abjad.Slur().start_command()
-            '('
+            ['(']
 
         """
         return super(Slur, self).start_command()

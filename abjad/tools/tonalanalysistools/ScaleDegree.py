@@ -3,14 +3,15 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class ScaleDegree(AbjadValueObject):
-    '''Scale degree.
+    """
+    Scale degree.
 
     ..  container:: example
 
         >>> abjad.tonalanalysistools.ScaleDegree('#4')
         ScaleDegree('#4')
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -97,7 +98,8 @@ class ScaleDegree(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is a scale degree with number and
+        """
+        Is true when `argument` is a scale degree with number and
         accidental equal to those of this scale degree.
 
         ..  container:: example
@@ -128,18 +130,20 @@ class ScaleDegree(AbjadValueObject):
             True
 
         Returns true or false.
-        '''
+        """
         return super(ScaleDegree, self).__eq__(argument)
 
     def __hash__(self):
-        r'''Hashes scale degree.
+        """
+        Hashes scale degree.
 
         Returns integer.
-        '''
+        """
         return super(ScaleDegree, self).__hash__()
 
     def __str__(self):
-        r'''Gets string representation of scale degree.
+        """
+        Gets string representation of scale degree.
 
         ..  container:: example
 
@@ -147,7 +151,7 @@ class ScaleDegree(AbjadValueObject):
             '#4'
 
         Returns string.
-        '''
+        """
         return '{}{}'.format(self.accidental.symbol, self.number)
 
     ### PRIVATE METHODS ###
@@ -166,7 +170,8 @@ class ScaleDegree(AbjadValueObject):
 
     @staticmethod
     def from_accidental_and_number(accidental, number):
-        r'''Makes scale degree from `accidental` and `number`.
+        """
+        Makes scale degree from `accidental` and `number`.
 
         ..  container:: example
 
@@ -175,7 +180,7 @@ class ScaleDegree(AbjadValueObject):
             ScaleDegree('#4')
 
         Returns new scale degree.
-        '''
+        """
         import abjad
         accidental = abjad.Accidental(accidental)
         string = '{}{}'.format(accidental.symbol, number)
@@ -185,7 +190,8 @@ class ScaleDegree(AbjadValueObject):
 
     @property
     def accidental(self):
-        r'''Gets accidental.
+        """
+        Gets accidental.
 
         ..  container:: example
 
@@ -193,12 +199,13 @@ class ScaleDegree(AbjadValueObject):
             Accidental('sharp')
 
         Returns accidental.
-        '''
+        """
         return self._accidental
 
     @property
     def name(self):
-        r'''Gets name.
+        """
+        Gets name.
 
         ..  container:: example
 
@@ -218,7 +225,7 @@ class ScaleDegree(AbjadValueObject):
             'leading tone'
 
         Returns string.
-        '''
+        """
         if self.accidental.semitones == 0:
             return self._scale_degree_number_to_scale_degree_name[self.number]
         else:
@@ -226,7 +233,8 @@ class ScaleDegree(AbjadValueObject):
 
     @property
     def number(self):
-        r'''Gets number.
+        """
+        Gets number.
 
         ..  container:: example
 
@@ -234,12 +242,13 @@ class ScaleDegree(AbjadValueObject):
             4
 
         Returns integer from 1 to 7, inclusive.
-        '''
+        """
         return self._number
 
     @property
     def roman_numeral_string(self):
-        r'''Gets Roman numeral string.
+        """
+        Gets Roman numeral string.
 
         ..  container:: example
 
@@ -248,13 +257,14 @@ class ScaleDegree(AbjadValueObject):
             'IV'
 
         Returns string.
-        '''
+        """
         string = self._scale_degree_number_to_roman_numeral_string[self.number]
         return string
 
     @property
     def string(self):
-        r'''Gets string.
+        """
+        Gets string.
 
         ..  container:: example
 
@@ -268,7 +278,7 @@ class ScaleDegree(AbjadValueObject):
             '#4'
 
         Returns string.
-        '''
+        """
         return '{}{}'.format(
             self.accidental.symbol,
             self.number,
@@ -276,7 +286,8 @@ class ScaleDegree(AbjadValueObject):
 
     @property
     def title_string(self):
-        r'''Gets title string.
+        """
+        Gets title string.
 
         ..  container:: example
 
@@ -290,7 +301,7 @@ class ScaleDegree(AbjadValueObject):
             'SharpFour'
 
         Returns string.
-        '''
+        """
         if not self.accidental.name == 'natural':
             accidental = self.accidental.name
         else:

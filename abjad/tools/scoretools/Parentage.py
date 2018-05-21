@@ -4,7 +4,8 @@ from abjad.tools import mathtools
 
 
 class Parentage(abctools.AbjadObject, collections.Sequence):
-    r'''Parentage of a component.
+    r'''
+    Parentage of a component.
 
     ..  container:: example
 
@@ -95,17 +96,19 @@ class Parentage(abctools.AbjadObject, collections.Sequence):
     ### SPECIAL METHODS ###
 
     def __getitem__(self, argument):
-        r'''Gets `argument`.
+        """
+        Gets ``argument``.
 
         Returns component or tuple of components.
-        '''
+        """
         return self.components.__getitem__(argument)
 
     def __len__(self):
-        r'''Gets number of components in parentage.
+        """
+        Gets number of components in parentage.
 
         Returns nonnegative integer.
-        '''
+        """
         return len(self.components)
 
     ### PRIVATE PROPERTIES ###
@@ -137,38 +140,41 @@ class Parentage(abctools.AbjadObject, collections.Sequence):
     def _id_string(component):
         lhs = component.__class__.__name__
         rhs = getattr(component, 'name', None) or id(component)
-        return '{}-{!r}'.format(lhs, rhs)
+        return f'{lhs}-{rhs!r}'
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def component(self):
-        r'''The component from which the selection was derived.
+        """
+        The component from which the selection was derived.
 
         Returns component.
-        '''
+        """
         return self._component
 
     @property
     def components(self):
-        r'''Gets components.
+        """
+        Gets components.
 
         Returns tuple.
-        '''
+        """
         return self._components
 
     @property
     def depth(self):
-        r'''Length of proper parentage of component.
+        """
+        Length of proper parentage of component.
 
         Returns nonnegative integer.
-        '''
+        """
         return len(self[1:])
 
     @property
     def is_grace_note(self):
-        r'''Is true when parentage contains a grace container.
-        Otherwise false.
+        r"""
+        Is true when parentage contains a grace container.
 
         .. container:: example
 
@@ -206,7 +212,7 @@ class Parentage(abctools.AbjadObject, collections.Sequence):
             f'4 False
 
         Returns true or false.
-        '''
+        """
         from abjad.tools import scoretools
         grace_container = self.get_first(prototype=scoretools.GraceContainer)
         if grace_container is not None:
@@ -215,16 +221,17 @@ class Parentage(abctools.AbjadObject, collections.Sequence):
 
     @property
     def is_orphan(self):
-        r'''Is true when component has no parent.
-        Otherwise false.
+        """
+        Is true when component has no parent.
 
         Returns true or false.
-        '''
+        """
         return self.parent is None
 
     @property
     def logical_voice(self):
-        r'''Gets logical voice.
+        r"""
+        Gets logical voice.
 
         ..  container:: example
 
@@ -265,7 +272,7 @@ class Parentage(abctools.AbjadObject, collections.Sequence):
             voice: Voice-'CustomVoice'
 
         Returns ordered dictionary.
-        '''
+        """
         from abjad.tools import scoretools
         keys = ('score', 'staff group', 'staff', 'voice')
         logical_voice = collections.OrderedDict.fromkeys(keys, '')
@@ -291,21 +298,23 @@ class Parentage(abctools.AbjadObject, collections.Sequence):
 
     @property
     def parent(self):
-        r'''Gets parent.
+        """
+        Gets parent.
 
         Returns none when component has no parent.
 
         Returns component or none.
-        '''
+        """
         if 1 < len(self):
             return self[1]
 
     @property
     def prolation(self):
-        r'''Gets prolation.
+        """
+        Gets prolation.
 
         Returns multiplier.
-        '''
+        """
         import abjad
         prolations = [abjad.Multiplier(1)] + self._prolations
         products = mathtools.cumulative_products(prolations)
@@ -313,17 +322,19 @@ class Parentage(abctools.AbjadObject, collections.Sequence):
 
     @property
     def root(self):
-        r'''Gets root.
+        """
+        Gets root.
 
         Root defined equal to last component in parentage.
 
         Returns component.
-        '''
+        """
         return self[-1]
 
     @property
     def score_index(self):
-        r'''Gets score index.
+        r"""
+        Gets score index.
 
         ..  todo:: Define score index for grace notes.
 
@@ -408,7 +419,7 @@ class Parentage(abctools.AbjadObject, collections.Sequence):
             ..  todo:: Incorrect values returned for grace notes.
 
         Returns tuple of zero or more nonnegative integers.
-        '''
+        """
         result = []
         current = self[0]
         for parent in self[1:]:
@@ -420,7 +431,8 @@ class Parentage(abctools.AbjadObject, collections.Sequence):
 
     @property
     def tuplet_depth(self):
-        r'''Gets tuplet depth.
+        r"""
+        Gets tuplet depth.
 
         ..  container:: example
 
@@ -453,7 +465,7 @@ class Parentage(abctools.AbjadObject, collections.Sequence):
             0
 
         Returns nonnegative integer.
-        '''
+        """
         from abjad.tools import scoretools
         result = 0
         # should probably interate up to only first simultaneous container
@@ -468,10 +480,11 @@ class Parentage(abctools.AbjadObject, collections.Sequence):
     ### PUBLIC METHODS ###
 
     def get_first(self, prototype=None):
-        r'''Gets first instance of `prototype` in parentage.
+        """
+        Gets first instance of ``prototype`` in parentage.
 
         Returns component or none.
-        '''
+        """
         import abjad
         if prototype is None:
             prototype = (abjad.Component,)

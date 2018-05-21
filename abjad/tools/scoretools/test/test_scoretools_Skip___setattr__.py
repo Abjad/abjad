@@ -3,8 +3,9 @@ import pytest
 
 
 def test_scoretools_Skip___setattr___01():
-    r'''Slots constrain skip attributes.
-    '''
+    """
+    Slots constrain skip attributes.
+    """
 
     skip = abjad.Skip((1, 4))
 

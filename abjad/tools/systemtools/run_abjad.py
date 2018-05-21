@@ -2,10 +2,11 @@ import sys
 
 
 def run_abjad():
-    r'''Runs Abjad.
+    """
+    Runs Abjad.
 
     Returns none.
-    '''
+    """
     from abjad.tools import systemtools
 
     try:

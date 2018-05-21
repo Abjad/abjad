@@ -2,8 +2,9 @@ import abjad
 
 
 def test_scoretools_NoteHeadList___getitem___01():
-    '''Gets note-head from chord.
-    '''
+    """
+    Gets note-head from chord.
+    """
 
     chord = abjad.Chord("<ef' cs'' f''>4")
 

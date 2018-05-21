@@ -3,8 +3,9 @@ import pytest
 
 
 def test_scoretools_Leaf_duration_assign_01():
-    r'''Written duration can be assigned a duration.
-    '''
+    """
+    Written duration can be assigned a duration.
+    """
 
     note = abjad.Note(1, (1, 4))
     note.written_duration = abjad.Duration(1, 8)
@@ -12,8 +13,9 @@ def test_scoretools_Leaf_duration_assign_01():
 
 
 def test_scoretools_Leaf_duration_assign_02():
-    r'''Written duration can be assigned an integer.
-    '''
+    """
+    Written duration can be assigned an integer.
+    """
 
     note = abjad.Note(1, (1, 4))
     note.written_duration = 2
@@ -21,8 +23,9 @@ def test_scoretools_Leaf_duration_assign_02():
 
 
 def test_scoretools_Leaf_duration_assign_03():
-    r'''Written duration can be assigned an tuple.
-    '''
+    """
+    Written duration can be assigned an tuple.
+    """
 
     note = abjad.Note(1, (1, 4))
     note.written_duration = (1, 2)

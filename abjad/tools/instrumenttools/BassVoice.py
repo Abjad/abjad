@@ -2,7 +2,8 @@ from .Instrument import Instrument
 
 
 class BassVoice(Instrument):
-    r'''Bass voice.
+    r"""
+    Bass voice.
 
     ..  container:: example
 
@@ -27,7 +28,7 @@ class BassVoice(Instrument):
                 fs4
             }
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -66,7 +67,8 @@ class BassVoice(Instrument):
 
     @property
     def allowable_clefs(self):
-        r'''Gets bass's allowable clefs.
+        """
+        Gets bass's allowable clefs.
 
         ..  container:: example
 
@@ -75,12 +77,13 @@ class BassVoice(Instrument):
             ('bass',)
 
         Returns clef list.
-        '''
+        """
         return Instrument.allowable_clefs.fget(self)
 
     @property
     def markup(self):
-        r'''Gets bass's instrument name markup.
+        """
+        Gets bass's instrument name markup.
 
         ..  container:: example
 
@@ -91,12 +94,13 @@ class BassVoice(Instrument):
             >>> abjad.show(bass.markup) # doctest: +SKIP
 
         Returns markup.
-        '''
+        """
         return Instrument.markup.fget(self)
 
     @property
     def middle_c_sounding_pitch(self):
-        r'''Gets sounding pitch of bass's written middle C.
+        """
+        Gets sounding pitch of bass's written middle C.
 
         ..  container:: example
 
@@ -107,12 +111,13 @@ class BassVoice(Instrument):
             >>> abjad.show(bass.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
-        '''
+        """
         return Instrument.middle_c_sounding_pitch.fget(self)
 
     @property
     def name(self):
-        r'''Gets bass's name.
+        """
+        Gets bass's name.
 
         ..  container:: example
 
@@ -121,12 +126,13 @@ class BassVoice(Instrument):
             'bass'
 
         Returns string.
-        '''
+        """
         return Instrument.name.fget(self)
 
     @property
     def pitch_range(self):
-        r'''Gets bass's range.
+        """
+        Gets bass's range.
 
         ..  container:: example
 
@@ -137,12 +143,13 @@ class BassVoice(Instrument):
             >>> abjad.show(bass.pitch_range) # doctest: +SKIP
 
         Returns pitch range.
-        '''
+        """
         return Instrument.pitch_range.fget(self)
 
     @property
     def short_markup(self):
-        r'''Gets bass's short instrument name markup.
+        """
+        Gets bass's short instrument name markup.
 
         ..  container:: example
 
@@ -153,12 +160,13 @@ class BassVoice(Instrument):
             >>> abjad.show(bass.short_markup) # doctest: +SKIP
 
         Returns markup.
-        '''
+        """
         return Instrument.short_markup.fget(self)
 
     @property
     def short_name(self):
-        r'''Gets bass's short instrument name.
+        """
+        Gets bass's short instrument name.
 
         ..  container:: example
 
@@ -167,5 +175,5 @@ class BassVoice(Instrument):
             'bass'
 
         Returns string.
-        '''
+        """
         return Instrument.short_name.fget(self)

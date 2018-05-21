@@ -6,7 +6,8 @@ from .Part import Part
 
 
 class Section(AbjadObject):
-    r'''Section.
+    """
+    Section.
 
     ..  container:: example
 
@@ -47,7 +48,7 @@ class Section(AbjadObject):
         ...     )
         Section(abbreviation='CB', count=6, instrument='Contrabass', name='Contrabass')
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -107,7 +108,8 @@ class Section(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument) -> bool:
-        r'''Is true when ``argument`` is a section with the same name,
+        """
+        Is true when ``argument`` is a section with the same name,
         abbreviation and count as this section.
 
         ..  container:: example
@@ -152,7 +154,7 @@ class Section(AbjadObject):
             >>> section_3 == section_3
             True
 
-        '''
+        """
         if (isinstance(argument, type(self)) and
             argument.name == self.name and
             argument.abbreviation == self.abbreviation and
@@ -161,15 +163,17 @@ class Section(AbjadObject):
         return False
 
     def __hash__(self):
-        r'''Hashes section.
-        '''
+        """
+        Hashes section.
+        """
         return super(Section, self).__hash__()
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def abbreviation(self) -> typing.Optional[str]:
-        r'''Gets abbreviation.
+        """
+        Gets abbreviation.
 
         ..  container:: example
 
@@ -183,12 +187,13 @@ class Section(AbjadObject):
             >>> section.abbreviation
             'VN-1'
 
-        '''
+        """
         return self._abbreviation
 
     @property
     def count(self) -> typing.Optional[int]:
-        r'''Gets section count.
+        """
+        Gets section count.
 
         ..  container:: example
 
@@ -202,12 +207,13 @@ class Section(AbjadObject):
             >>> section.count
             18
 
-        '''
+        """
         return self._count
 
     @property
     def instrument(self) -> typing.Optional[str]:
-        r'''Gets section instrument.
+        """
+        Gets section instrument.
 
         ..  container:: example
 
@@ -221,12 +227,13 @@ class Section(AbjadObject):
             >>> section.instrument
             'Violin'
 
-        '''
+        """
         return self._instrument
 
     @property
     def name(self) -> typing.Optional[str]:
-        r'''Gets section name.
+        """
+        Gets section name.
 
         ..  container:: example
 
@@ -240,12 +247,13 @@ class Section(AbjadObject):
             >>> section.name
             'FirstViolin'
 
-        '''
+        """
         return self._name
 
     @property
     def parts(self) -> typing.List[Part]:
-        r'''Gets parts.
+        """
+        Gets parts.
 
         ..  container:: example
 
@@ -278,5 +286,5 @@ class Section(AbjadObject):
             Part(instrument='Violin', member=17, section='FirstViolin', section_abbreviation='VN-1', zfill=2)
             Part(instrument='Violin', member=18, section='FirstViolin', section_abbreviation='VN-1', zfill=2)
 
-        '''
+        """
         return list(self._parts)

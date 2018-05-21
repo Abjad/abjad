@@ -2,7 +2,8 @@ from .Instrument import Instrument
 
 
 class Glockenspiel(Instrument):
-    r'''Glockenspiel.
+    r"""
+    Glockenspiel.
 
     ..  container:: example
 
@@ -24,7 +25,7 @@ class Glockenspiel(Instrument):
                 fs'4
             }
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -62,7 +63,8 @@ class Glockenspiel(Instrument):
 
     @property
     def allowable_clefs(self):
-        r'''Gets glockenspiel's allowable clefs.
+        """
+        Gets glockenspiel's allowable clefs.
 
         ..  container:: example
 
@@ -71,12 +73,13 @@ class Glockenspiel(Instrument):
             ('treble',)
 
         Returns clef list.
-        '''
+        """
         return Instrument.allowable_clefs.fget(self)
 
     @property
     def markup(self):
-        r'''Gets glockenspiel's instrument name markup.
+        """
+        Gets glockenspiel's instrument name markup.
 
         ..  container:: example
 
@@ -87,12 +90,13 @@ class Glockenspiel(Instrument):
             >>> abjad.show(glockenspiel.markup) # doctest: +SKIP
 
         Returns markup.
-        '''
+        """
         return Instrument.markup.fget(self)
 
     @property
     def middle_c_sounding_pitch(self):
-        r"""Gets sounding pitch of glockenspiel's written middle C.
+        """
+        Gets sounding pitch of glockenspiel's written middle C.
 
         ..  container:: example
 
@@ -108,7 +112,8 @@ class Glockenspiel(Instrument):
 
     @property
     def name(self):
-        r'''Gets glockenspiel's name.
+        """
+        Gets glockenspiel's name.
 
         ..  container:: example
 
@@ -117,12 +122,13 @@ class Glockenspiel(Instrument):
             'glockenspiel'
 
         Returns string.
-        '''
+        """
         return Instrument.name.fget(self)
 
     @property
     def pitch_range(self):
-        r'''Gets glockenspiel's range.
+        """
+        Gets glockenspiel's range.
 
         ..  container:: example
 
@@ -133,12 +139,13 @@ class Glockenspiel(Instrument):
             >>> abjad.show(glockenspiel.pitch_range) # doctest: +SKIP
 
         Returns pitch range.
-        '''
+        """
         return Instrument.pitch_range.fget(self)
 
     @property
     def short_markup(self):
-        r'''Gets glockenspiel's short instrument name markup.
+        """
+        Gets glockenspiel's short instrument name markup.
 
         ..  container:: example
 
@@ -149,12 +156,13 @@ class Glockenspiel(Instrument):
             >>> abjad.show(glockenspiel.short_markup) # doctest: +SKIP
 
         Returns markup.
-        '''
+        """
         return Instrument.short_markup.fget(self)
 
     @property
     def short_name(self):
-        r'''Gets glockenspiel's short instrument name.
+        """
+        Gets glockenspiel's short instrument name.
 
         ..  container:: example
 
@@ -163,5 +171,5 @@ class Glockenspiel(Instrument):
             'gkspl.'
 
         Returns string.
-        '''
+        """
         return Instrument.short_name.fget(self)

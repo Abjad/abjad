@@ -3,7 +3,8 @@ import abjad
 
 def test_scoretools_VerticalMoment_previous_vertical_moment_01():
 
-    score = abjad.Score(r'''
+    score = abjad.Score(
+        r"""
         \new Staff {
             \times 4/3 {
                 d''8
@@ -24,7 +25,8 @@ def test_scoretools_VerticalMoment_previous_vertical_moment_01():
             c'8
         }
         >>
-        ''')
+        """
+        )
 
     selector = abjad.select().leaves()
     leaves = selector(score)

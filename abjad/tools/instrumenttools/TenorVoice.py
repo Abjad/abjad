@@ -2,7 +2,8 @@ from .Instrument import Instrument
 
 
 class TenorVoice(Instrument):
-    r'''Tenor voice.
+    r"""
+    Tenor voice.
 
     ..  container:: example
 
@@ -24,7 +25,7 @@ class TenorVoice(Instrument):
                 fs'4
             }
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -65,7 +66,8 @@ class TenorVoice(Instrument):
 
     @property
     def allowable_clefs(self):
-        r'''Gets tenor's allowable clefs.
+        """
+        Gets tenor's allowable clefs.
 
         ..  container:: example
 
@@ -74,12 +76,13 @@ class TenorVoice(Instrument):
             ('treble',)
 
         Returns clef list.
-        '''
+        """
         return Instrument.allowable_clefs.fget(self)
 
     @property
     def markup(self):
-        r'''Gets tenor's instrument name markup.
+        """
+        Gets tenor's instrument name markup.
 
         ..  container:: example
 
@@ -90,12 +93,13 @@ class TenorVoice(Instrument):
             >>> abjad.show(tenor.markup) # doctest: +SKIP
 
         Returns markup.
-        '''
+        """
         return Instrument.markup.fget(self)
 
     @property
     def middle_c_sounding_pitch(self):
-        r'''Gets sounding pitch of tenor's written middle C.
+        """
+        Gets sounding pitch of tenor's written middle C.
 
         ..  container:: example
 
@@ -106,12 +110,13 @@ class TenorVoice(Instrument):
             >>> abjad.show(tenor.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
-        '''
+        """
         return Instrument.middle_c_sounding_pitch.fget(self)
 
     @property
     def name(self):
-        r'''Gets tenor's name.
+        """
+        Gets tenor's name.
 
         ..  container:: example
 
@@ -120,12 +125,13 @@ class TenorVoice(Instrument):
             'tenor'
 
         Returns string.
-        '''
+        """
         return Instrument.name.fget(self)
 
     @property
     def pitch_range(self):
-        r'''Gets tenor's range.
+        """
+        Gets tenor's range.
 
         ..  container:: example
 
@@ -136,12 +142,13 @@ class TenorVoice(Instrument):
             >>> abjad.show(tenor.pitch_range) # doctest: +SKIP
 
         Returns pitch range.
-        '''
+        """
         return Instrument.pitch_range.fget(self)
 
     @property
     def short_markup(self):
-        r'''Gets tenor's short instrument name markup.
+        """
+        Gets tenor's short instrument name markup.
 
         ..  container:: example
 
@@ -152,12 +159,13 @@ class TenorVoice(Instrument):
             >>> abjad.show(tenor.short_markup) # doctest: +SKIP
 
         Returns markup.
-        '''
+        """
         return Instrument.short_markup.fget(self)
 
     @property
     def short_name(self):
-        r'''Gets tenor's short instrument name.
+        """
+        Gets tenor's short instrument name.
 
         ..  container:: example
 
@@ -166,5 +174,5 @@ class TenorVoice(Instrument):
             'ten.'
 
         Returns string.
-        '''
+        """
         return Instrument.short_name.fget(self)

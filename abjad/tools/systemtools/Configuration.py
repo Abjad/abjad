@@ -11,8 +11,9 @@ from six.moves import configparser
 
 
 class Configuration(AbjadObject):
-    r'''Configuration.
-    '''
+    """
+    Configuration.
+    """
 
     ### CLASS VARIABLES ###
 
@@ -54,39 +55,44 @@ class Configuration(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __delitem__(self, i):
-        r'''Deletes item `i` from configuration.
+        """
+        Deletes item `i` from configuration.
 
         Returns none.
-        '''
+        """
         del(self._settings[i])
 
     def __getitem__(self, argument):
-        r'''Gets item or slice identified by `argument`.
+        """
+        Gets item or slice identified by `argument`.
 
         Returns item or slice.
-        '''
+        """
         return self._settings.__getitem__(argument)
 
     def __iter__(self):
-        r'''Iterates configuration settings.
+        """
+        Iterates configuration settings.
 
         Returns generator.
-        '''
+        """
         for key in self._settings:
             yield key
 
     def __len__(self):
-        r'''Gets the number of settings in configuration.
+        """
+        Gets the number of settings in configuration.
 
         Returns nonnegative integer.
-        '''
+        """
         return len(self._settings)
 
     def __setitem__(self, i, argument):
-        r'''Sets configuration item `i` to `argument`.
+        """
+        Sets configuration item `i` to `argument`.
 
         Returns none.
-        '''
+        """
         self._settings[i] = argument
 
     ### PRIVATE METHODS ###
@@ -197,7 +203,8 @@ class Configuration(AbjadObject):
 
     @property
     def configuration_directory(self):
-        r'''Gets configuration directory.
+        """
+        Gets configuration directory.
 
         ..  container:: example
 
@@ -213,7 +220,7 @@ class Configuration(AbjadObject):
         Also caches the initial result to reduce filesystem interaction.
 
         Returns path object.
-        '''
+        """
         if self._cached_configuration_directory is None:
             directory_name = self._configuration_directory_name
             home_directory = str(self.home_directory)
@@ -231,7 +238,8 @@ class Configuration(AbjadObject):
 
     @property
     def configuration_file_path(self):
-        r'''Gets configuration file path.
+        """
+        Gets configuration file path.
 
         ..  container:: example
 
@@ -240,7 +248,7 @@ class Configuration(AbjadObject):
             PosixPath('...')
 
         Returns path object.
-        '''
+        """
         return pathlib.Path(
             self.configuration_directory,
             self._configuration_file_name,
@@ -248,7 +256,8 @@ class Configuration(AbjadObject):
 
     @property
     def home_directory(self):
-        r'''Gets home directory.
+        """
+        Gets home directory.
 
         ..  container:: example
 
@@ -257,7 +266,7 @@ class Configuration(AbjadObject):
             PosixPath('...')
 
         Returns path object.
-        '''
+        """
         path = (
             os.environ.get('HOME') or
             os.environ.get('HOMEPATH') or
@@ -268,7 +277,8 @@ class Configuration(AbjadObject):
 
     @property
     def temp_directory(self):
-        r'''Gets temp directory.
+        """
+        Gets temp directory.
 
         ..  container:: example
 
@@ -277,12 +287,13 @@ class Configuration(AbjadObject):
             PosixPath('...')
 
         Returns path object.
-        '''
+        """
         return pathlib.Path(tempfile.gettempdir())
 
     ### PUBLIC METHODS ###
 
     def get(self, *arguments, **keywords):
-        r'''Gets a key.
-        '''
+        """
+        Gets a key.
+        """
         return self._settings.get(*arguments, **keywords)

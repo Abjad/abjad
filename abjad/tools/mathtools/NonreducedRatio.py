@@ -4,7 +4,8 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class NonreducedRatio(AbjadValueObject, collections.Sequence):
-    '''Nonreduced ratio.
+    """
+    Nonreduced ratio.
 
     ..  container:: example
 
@@ -20,7 +21,7 @@ class NonreducedRatio(AbjadValueObject, collections.Sequence):
             >>> abjad.NonreducedRatio((2, 4, 2))
             NonreducedRatio((2, 4, 2))
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -39,22 +40,25 @@ class NonreducedRatio(AbjadValueObject, collections.Sequence):
     ### SPECIAL METHODS ###
 
     def __contains__(self, argument):
-        r'''Is true when ratio contains `argument`. Otherwise false.
+        """
+        Is true when ratio contains ``argument``.
 
         Returns true or false.
-        '''
+        """
         return argument in self._numbers
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is a nonreduced ratio with numerator and
-        denominator equal to those of this nonreduced ratio. Otherwise false.
+        """
+        Is true when ``argument`` is a nonreduced ratio with numerator and
+        denominator equal to those of this nonreduced ratio.
 
         Returns true or false.
-        '''
+        """
         return super(NonreducedRatio, self).__eq__(argument)
 
     def __format__(self, format_specification=''):
-        r'''Formats duration.
+        """
+        Formats duration.
 
         Set `format_specification` to `''` or `'storage'`.
         Interprets `''` equal to `'storage'`.
@@ -66,14 +70,15 @@ class NonreducedRatio(AbjadValueObject, collections.Sequence):
             abjad.NonreducedRatio((2, 4, 2))
 
         Returns string.
-        '''
+        """
         import abjad
         if format_specification in ('', 'storage'):
             return abjad.StorageFormatManager(self).get_storage_format()
         return str(self)
 
     def __getitem__(self, argument):
-        r'''Gets item or slice identified by `argument`.
+        """
+        Gets item or slice identified by ``argument``.
 
         ..  container:: example
 
@@ -82,29 +87,32 @@ class NonreducedRatio(AbjadValueObject, collections.Sequence):
             4
 
         Returns integer or tuple.
-        '''
+        """
         if isinstance(argument, slice):
             return tuple(self._numbers.__getitem__(argument))
         return self._numbers.__getitem__(argument)
 
     def __hash__(self):
-        r'''Hashes non-reduced ratio.
+        """
+        Hashes non-reduced ratio.
 
         Required to be explicitly redefined on Python 3 if __eq__ changes.
 
         Returns integer.
-        '''
+        """
         return super(NonreducedRatio, self).__hash__()
 
     def __iter__(self):
-        r'''Iterates ratio.
+        """
+        Iterates ratio.
 
         Returns generator.
-        '''
+        """
         return iter(self._numbers)
 
     def __len__(self):
-        r'''Gets length of ratio.
+        """
+        Gets length of ratio.
 
         ..  container:: example
 
@@ -113,18 +121,20 @@ class NonreducedRatio(AbjadValueObject, collections.Sequence):
             3
 
         Returns integer.
-        '''
+        """
         return len(self._numbers)
 
     def __reversed__(self):
-        r'''Iterates ratio in reverse.
+        """
+        Iterates ratio in reverse.
 
         Returns generator.
-        '''
+        """
         return reversed(self._numbers)
 
     def __rtruediv__(self, number):
-        r'''Divides `number` by ratio.
+        """
+        Divides ``number`` by ratio.
 
         ..  container:: example
 
@@ -142,7 +152,7 @@ class NonreducedRatio(AbjadValueObject, collections.Sequence):
             [0.2, 0.2, 0.6]
 
         Returns list of fractions or list of floats.
-        '''
+        """
         denominator = sum(self.numbers)
         factors = [fractions.Fraction(_, denominator) for _ in self.numbers]
         result = [_ * number for _ in factors]
@@ -161,22 +171,6 @@ class NonreducedRatio(AbjadValueObject, collections.Sequence):
             storage_format_kwargs_names=[],
             )
 
-    ### PUBLIC METHODS ###
-
-    def count(self, argument):
-        r'''Gets count of `argument` in ratio.
-
-        Returns integer.
-        '''
-        return self._numbers.count(argument)
-
-    def index(self, argument):
-        r'''Gets index of `argument` in ratio.
-
-        Returns integer.
-        '''
-        return self._numbers.index(argument)
-
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -187,7 +181,8 @@ class NonreducedRatio(AbjadValueObject, collections.Sequence):
 
     @property
     def multipliers(self):
-        r'''Gets multipliers of nonreduced ratio.
+        """
+        Gets multipliers of nonreduced ratio.
 
         ..  container:: example
 
@@ -206,7 +201,7 @@ class NonreducedRatio(AbjadValueObject, collections.Sequence):
             (Multiplier(1, 4), Multiplier(1, 2), Multiplier(1, 4))
 
         Returns tuple of multipliers.
-        '''
+        """
         import abjad
         weight = sum(self.numbers)
         multipliers = [
@@ -218,7 +213,8 @@ class NonreducedRatio(AbjadValueObject, collections.Sequence):
 
     @property
     def numbers(self):
-        r'''Gets numbers of nonreduced ratio.
+        """
+        Gets numbers of nonreduced ratio.
 
         ..  container:: example
 
@@ -239,5 +235,23 @@ class NonreducedRatio(AbjadValueObject, collections.Sequence):
         Set to tuple of two or more numbers.
 
         Returns tuple of two or more numbers.
-        '''
+        """
         return self._numbers
+
+    ### PUBLIC METHODS ###
+
+    def count(self, argument):
+        """
+        Gets count of ``argument`` in ratio.
+
+        Returns integer.
+        """
+        return self._numbers.count(argument)
+
+    def index(self, argument):
+        """
+        Gets index of ``argument`` in ratio.
+
+        Returns integer.
+        """
+        return self._numbers.index(argument)

@@ -1,5 +1,6 @@
 def offset_happens_when_timespan_stops(timespan=None, offset=None, hold=False):
-    r'''Makes time relation indicating that `offset` happens
+    """
+    Makes time relation indicating that `offset` happens
     when `timespan` stops.
 
     ..  container:: example
@@ -16,7 +17,7 @@ def offset_happens_when_timespan_stops(timespan=None, offset=None, hold=False):
             )
 
     Returns time relation or boolean.
-    '''
+    """
     from abjad.tools import timespantools
 
     inequality = timespantools.CompoundInequality([

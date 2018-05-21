@@ -1,6 +1,7 @@
 def all_are_integer_equivalent_numbers(argument):
-    '''Is true when `argument` is an iterable collection with
-    integer-equivalent items. Otherwise false.
+    """
+    Is true when `argument` is an iterable collection with
+    integer-equivalent items.
 
     ..  container:: example
 
@@ -12,7 +13,7 @@ def all_are_integer_equivalent_numbers(argument):
         False
 
     Returns true or false.
-    '''
+    """
     from abjad.tools import mathtools
     try:
         return all(mathtools.is_integer_equivalent_number(_) for _ in argument)

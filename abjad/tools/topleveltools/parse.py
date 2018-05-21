@@ -6,7 +6,8 @@ _lilypond_parsers_by_language = {}  # type: Dict[str, LilyPondParser]
 
 
 def parse(string, language='english'):
-    r'''Parses LilyPond `string`.
+    r"""
+    Parses LilyPond `string`.
 
     ..  container:: example
 
@@ -26,7 +27,7 @@ def parse(string, language='english'):
         >>> abjad.show(container) # doctest: +SKIP
 
     Returns Abjad component.
-    '''
+    """
     from abjad.tools import rhythmtreetools
     from abjad.tools import lilypondparsertools
     if string.startswith('abj:'):

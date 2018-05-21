@@ -118,8 +118,8 @@ class ComplexBeam(Beam):
             # isolated_nib_direction
             if self._is_my_only(leaf):
                 if self.isolated_nib_direction:
-                    string = self.start_command()
-                    bundle.right.spanner_starts.append(string)
+                    strings = self.start_command()
+                    bundle.right.spanner_starts.extend(strings)
             # otherwise
             elif (leaf is self[0] or
                 not previous_leaf or
@@ -128,8 +128,8 @@ class ComplexBeam(Beam):
                     beam_rests=self.beam_rests,
                     )
                 ):
-                string = self.start_command()
-                bundle.right.spanner_starts.append(string)
+                strings = self.start_command()
+                bundle.right.spanner_starts.extend(strings)
             # isolated_nib_direction
             if self._is_my_only(leaf):
                 if self.isolated_nib_direction:
@@ -152,8 +152,8 @@ class ComplexBeam(Beam):
                 else:
                     bundle.right.spanner_stops.append(string)
 
-    def _copy_keyword_args(self, new):
-        Beam._copy_keyword_args(self, new)
+    def _copy_keywords(self, new):
+        Beam._copy_keywords(self, new)
         self._beam_rests = self.beam_rests
         new._isolated_nib_direction = self.isolated_nib_direction
 
@@ -632,19 +632,19 @@ class ComplexBeam(Beam):
 
     ### PUBLIC METHODS ###
 
-    def start_command(self) -> typing.Optional[str]:
+    def start_command(self) -> typing.List[str]:
         """
         Gets start command.
 
         ..  container:: example
 
             >>> abjad.ComplexBeam().start_command()
-            '['
+            ['[']
 
             With direction:
 
             >>> abjad.ComplexBeam(direction=abjad.Up).start_command()
-            '^ ['
+            ['^ [']
 
         """
         return super(ComplexBeam, self).start_command()

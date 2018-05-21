@@ -6,7 +6,8 @@ from abjad.tools import schemetools
 
 
 class Label(abctools.AbjadObject):
-    r'''Label.
+    r"""
+    Label.
 
     ..  container:: example
 
@@ -188,7 +189,7 @@ class Label(abctools.AbjadObject):
                         }
                 }
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -271,36 +272,40 @@ class Label(abctools.AbjadObject):
 
     @property
     def client(self):
-        r'''Gets client of label.
+        """
+        Gets client of label.
 
         Returns component, selection, spanner or none.
-        '''
+        """
         return self._client
 
     @property
     def deactivate(self):
-        r'''Is true when deactivated label attaches to leaf.
+        """
+        Is true when deactivated label attaches to leaf.
 
         Defaults to none.
 
         Set to true, false or none.
 
         Returns true, false or none.
-        '''
+        """
         return self._deactivate
 
     @property
     def tag(self):
-        r'''Gets tag.
+        """
+        Gets tag.
 
         Returns string or none.
-        '''
+        """
         return self._tag
 
     ### PUBLIC METHODS ###
 
     def color_container(self, color='red'):
-        r'''Colors contents of `container`.
+        r"""
+        Colors contents of ``container``.
 
         ..  container:: example
 
@@ -370,7 +375,7 @@ class Label(abctools.AbjadObject):
                     }   % measure
 
         Returns none.
-        '''
+        """
         import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -384,7 +389,8 @@ class Label(abctools.AbjadObject):
         abjad.override(self.client).tuplet_number.color = color
 
     def color_leaves(self, color='red'):
-        r"""Colors leaves.
+        r"""
+        Colors leaves.
 
         ..  container:: example
 
@@ -464,7 +470,8 @@ class Label(abctools.AbjadObject):
             self._color_leaf(leaf, color)
 
     def color_note_heads(self, color_map=None):
-        r'''Colors note note-heads.
+        r"""
+        Colors note note-heads.
 
         ..  container:: example
 
@@ -649,7 +656,7 @@ class Label(abctools.AbjadObject):
                     }
 
         Returns none.
-        '''
+        """
         import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -671,7 +678,8 @@ class Label(abctools.AbjadObject):
                     abjad.override(leaf).note_head.color = color
 
     def remove_markup(self):
-        r'''Removes markup from leaves.
+        r"""
+        Removes markup from leaves.
 
         ..  container:: example
 
@@ -774,7 +782,7 @@ class Label(abctools.AbjadObject):
                     }
 
         Returns none.
-        '''
+        """
         import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -782,7 +790,8 @@ class Label(abctools.AbjadObject):
             abjad.detach(abjad.Markup, leaf)
 
     def vertical_moments(self, direction=Up, prototype=None):
-        r'''Labels vertical moments.
+        r'''
+        Labels vertical moments.
 
         ..  container:: example
 
@@ -1846,7 +1855,7 @@ class Label(abctools.AbjadObject):
                         }
                     >>
 
-        Set `prototype` to one of the classes shown above.
+        Set ``prototype`` to one of the classes shown above.
 
         Returns none.
         '''
@@ -1959,7 +1968,7 @@ class Label(abctools.AbjadObject):
                 self._attach(label, leaf)
 
     def with_durations(self, direction=Up, denominator=None):
-        r'''Labels logical ties with durations.
+        r"""Labels logical ties with durations.
 
         ..  container:: example
 
@@ -2120,7 +2129,7 @@ class Label(abctools.AbjadObject):
                     }
 
         Returns none.
-        '''
+        """
         import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -2134,7 +2143,7 @@ class Label(abctools.AbjadObject):
             self._attach(label, logical_tie.head)
 
     def with_indices(self, direction=Up, prototype=None):
-        r'''Labels logical ties with indices.
+        r"""Labels logical ties with indices.
 
         ..  container:: example
 
@@ -2616,7 +2625,7 @@ class Label(abctools.AbjadObject):
                     }
 
         Returns none.
-        '''
+        """
         import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -2634,7 +2643,8 @@ class Label(abctools.AbjadObject):
             self._attach(label, first_leaf)
 
     def with_intervals(self, direction=Up, prototype=None):
-        r"""Labels consecutive notes with intervals.
+        r"""
+        Labels consecutive notes with intervals.
 
         ..  container:: example
 
@@ -3064,7 +3074,8 @@ class Label(abctools.AbjadObject):
                     self._attach(label, note)
 
     def with_pitches(self, direction=Up, locale=None, prototype=None):
-        r'''Labels logical ties with pitches.
+        r"""
+        Labels logical ties with pitches.
 
         ..  container:: example
 
@@ -3758,7 +3769,7 @@ class Label(abctools.AbjadObject):
                     }
 
         Returns none.
-        '''
+        """
         import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -3815,7 +3826,8 @@ class Label(abctools.AbjadObject):
                 self._attach(label, leaf)
 
     def with_set_classes(self, direction=Up, prototype=None):
-        r'''Labels items in client with set-classes.
+        r"""
+        Labels items in client with set-classes.
 
         ..  container:: example
 
@@ -4169,7 +4181,7 @@ class Label(abctools.AbjadObject):
                     }
 
         Returns none.
-        '''
+        """
         import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -4202,7 +4214,8 @@ class Label(abctools.AbjadObject):
         global_offset=None,
         markup_command=None,
         ):
-        r'''Labels logical ties with start offsets.
+        r"""
+        Labels logical ties with start offsets.
 
         ..  container:: example
 
@@ -4465,7 +4478,7 @@ class Label(abctools.AbjadObject):
                 >>
 
         Returns total duration.
-        '''
+        """
         import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())

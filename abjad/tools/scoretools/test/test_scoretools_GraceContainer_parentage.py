@@ -2,16 +2,18 @@ import abjad
 
 
 def test_scoretools_GraceContainer_parentage_01():
-    r'''Lone grace container carrier is none.
-    '''
+    """
+    Lone grace container carrier is none.
+    """
 
     gracecontainer = abjad.GraceContainer("c'4 d'4 e'4 f'4")
     assert gracecontainer._carrier is None
 
 
 def test_scoretools_GraceContainer_parentage_02():
-    r'''Grace containers bound to leaf do have parent.
-    '''
+    """
+    Grace containers bound to leaf do have parent.
+    """
 
     note = abjad.Note(1, (1, 4))
     grace_container = abjad.GraceContainer()
@@ -23,9 +25,9 @@ def test_scoretools_GraceContainer_parentage_02():
 
 
 def test_scoretools_GraceContainer_parentage_03():
-    r'''Grace containers bound to leaf have their correct carrier
-    after assignment.
-    '''
+    """
+    Grace containers bound to leaf have their correct carrier after assignment.
+    """
 
     note = abjad.Note(1, (1, 4))
     after_grace = abjad.AfterGraceContainer([abjad.Note("e'16")])

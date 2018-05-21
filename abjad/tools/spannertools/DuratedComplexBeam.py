@@ -190,8 +190,8 @@ class DuratedComplexBeam(ComplexBeam):
         durations = [Duration(_) for _ in durations]
         return tuple(durations)
 
-    def _copy_keyword_args(self, new):
-        ComplexBeam._copy_keyword_args(self, new)
+    def _copy_keywords(self, new):
+        ComplexBeam._copy_keywords(self, new)
         if self.durations is not None:
             new._durations = self.durations[:]
         new._span_beam_count = self.span_beam_count
@@ -750,14 +750,14 @@ class DuratedComplexBeam(ComplexBeam):
 
     ### PUBLIC METHODS ###
 
-    def start_command(self) -> typing.Optional[str]:
+    def start_command(self) -> typing.List[str]:
         """
         Gets start command.
 
         ..  container:: example
 
             >>> abjad.DuratedComplexBeam().start_command()
-            '['
+            ['[']
 
         """
         return super(DuratedComplexBeam, self).start_command()

@@ -12,7 +12,7 @@ def test_rhythmtreetools_RhythmTreeContainer___call___01():
     assert len(result) == 1
 
     assert format(result[0]) == abjad.String.normalize(
-        r'''
+        r"""
         \times 4/5 {
             c'16
             \times 2/3 {
@@ -22,7 +22,7 @@ def test_rhythmtreetools_RhythmTreeContainer___call___01():
             }
             c'8
         }
-        '''
+        """
         )
 
 

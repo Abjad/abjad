@@ -2,7 +2,8 @@ from .Container import Container
 
 
 class GraceContainer(Container):
-    r'''Grace container.
+    r"""
+    Grace container.
 
     LilyPond positions grace notes immediately before main notes.
 
@@ -135,7 +136,7 @@ class GraceContainer(Container):
                 d'4
             }
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -154,10 +155,11 @@ class GraceContainer(Container):
     ### SPECIAL METHODS ###
 
     def __getnewargs__(self):
-        r'''Gets new grace container arguments.
+        """
+        Gets new grace container arguments.
 
         Returns tuple of single empty list.
-        '''
+        """
         return ([],)
 
     ### PRIVATE METHODS ###

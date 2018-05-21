@@ -12,7 +12,7 @@ def test_scoretools_Inspection_get_markup_01():
     abjad.attach(markup_2, staff[0])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -35,7 +35,7 @@ def test_scoretools_Inspection_get_markup_01():
             f'8
             )
         }
-        '''
+        """
         )
 
     markup = abjad.inspect(staff[0]).get_markup()

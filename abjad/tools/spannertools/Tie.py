@@ -11,6 +11,7 @@ from abjad.tools.topleveltools.detach import detach
 from abjad.tools.topleveltools.inspect import inspect
 from abjad.tools.topleveltools.iterate import iterate
 from abjad.tools.topleveltools.sequence import sequence
+from abjad.tools.topleveltools.tweak import tweak
 from .Spanner import Spanner
 
 
@@ -205,7 +206,7 @@ class Tie(Spanner):
         for leaf in iterate(argument).leaves():
             detach(Tie, leaf)
 
-    def _copy_keyword_args(self, new):
+    def _copy_keywords(self, new):
         new._direction = self.direction
         new._repeat = self.repeat
 
@@ -222,13 +223,13 @@ class Tie(Spanner):
             if leaf is self[-1]:
                 if not self._right_broken:
                     return bundle
-                strings = [self.start_command()]
+                strings = self.start_command()
                 strings = self._tag_show(strings)
                 bundle.right.spanners.extend(strings)
             elif isinstance(leaf._get_leaf(1), silent):
                 return bundle
             else:
-                strings = [self.start_command()]
+                strings = self.start_command()
                 bundle.right.spanners.extend(strings)
         else:
             if leaf is self[0]:
@@ -904,27 +905,32 @@ class Tie(Spanner):
 
     ### PUBLIC METHODS ###
 
-    def start_command(self) -> typing.Optional[str]:
+    def start_command(self) -> typing.List[str]:
         """
         Gets start command.
 
         ..  container:: example
 
             >>> abjad.Tie().start_command()
-            '~'
+            ['~']
 
         ..  container:: example
 
             >>> abjad.Tie(repeat=True).start_command()
-            ''
+            []
 
         """
+        strings: typing.List[str] = []
         if self.repeat:
-            return ''
+            return strings
+        contributions = tweak(self)._list_format_contributions()
+        strings.extend(contributions)
         string = '~'
         string = self._add_direction(string)
-        return string
+        strings.append(string)
+        return strings
 
+    # TODO: teach stop_command to return list including tweaks
     def stop_command(self) -> typing.Optional[str]:
         r"""
         Gets stop command.

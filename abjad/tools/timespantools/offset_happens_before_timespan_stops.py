@@ -3,7 +3,8 @@ def offset_happens_before_timespan_stops(
     offset=None,
     hold=False,
     ):
-    r'''Makes time relation indicating that `offset` happens before `timespan`
+    """
+    Makes time relation indicating that `offset` happens before `timespan`
     stops.
 
     ..  container:: example
@@ -20,7 +21,7 @@ def offset_happens_before_timespan_stops(
             )
 
     Returns time relation or boolean.
-    '''
+    """
     from abjad.tools import timespantools
 
     inequality = timespantools.CompoundInequality([

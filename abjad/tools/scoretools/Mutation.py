@@ -3,7 +3,8 @@ from abjad.tools import abctools
 
 
 class Mutation(abctools.AbjadObject):
-    r'''Mutation.
+    """
+    Mutation.
 
     ..  container:: example
 
@@ -15,7 +16,7 @@ class Mutation(abctools.AbjadObject):
         >>> abjad.mutate(staff[2:])
         Mutation(client=Selection([Note("d'4"), Note("f'4")]))
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -34,16 +35,18 @@ class Mutation(abctools.AbjadObject):
 
     @property
     def client(self):
-        r'''Returns client.
+        """
+        Gets client.
 
         Returns selection or component.
-        '''
+        """
         return self._client
 
     ### PUBLIC METHODS ###
 
     def copy(self):
-        r'''Copies client.
+        r"""
+        Copies client.
 
         ..  container:: example
 
@@ -157,7 +160,7 @@ class Mutation(abctools.AbjadObject):
             False
 
         Returns selection of new components.
-        '''
+        """
         import abjad
         if isinstance(self.client, abjad.Component):
             selection = abjad.select(self.client)
@@ -170,7 +173,8 @@ class Mutation(abctools.AbjadObject):
         return result
 
     def eject_contents(self):
-        r'''Ejects contents from outside-of-score container.
+        r"""
+        Ejects contents from outside-of-score container.
 
         ..  container:: example
 
@@ -226,11 +230,12 @@ class Mutation(abctools.AbjadObject):
             Container()
 
         Returns container contents as selection.
-        '''
+        """
         return self.client._eject_contents()
 
     def extract(self, scale_contents=False):
-        r'''Extracts mutation client from score.
+        r"""
+        Extracts mutation client from score.
 
         Leaves children of mutation client in score.
 
@@ -345,11 +350,12 @@ class Mutation(abctools.AbjadObject):
                 }
 
         Returns mutation client.
-        '''
+        """
         return self.client._extract(scale_contents=scale_contents)
 
     def fuse(self):
-        r'''Fuses mutation client.
+        r"""
+        Fuses mutation client.
 
         ..  container:: example
 
@@ -431,15 +437,15 @@ class Mutation(abctools.AbjadObject):
 
             Returns new tuplet in selection.
 
-            Fuses zero or more parent-contiguous `tuplets`.
+            Fuses zero or more parent-contiguous ``tuplets``.
 
-            Allows in-score `tuplets`.
+            Allows in-score ``tuplets``.
 
-            Allows outside-of-score `tuplets`.
+            Allows outside-of-score ``tuplets``.
 
-            All `tuplets` must carry the same multiplier.
+            All ``tuplets`` must carry the same multiplier.
 
-            All `tuplets` must be of the same type.
+            All ``tuplets`` must be of the same type.
 
         ..  container:: example
 
@@ -494,7 +500,7 @@ class Mutation(abctools.AbjadObject):
                 }
 
         Returns selection.
-        '''
+        """
         import abjad
         if isinstance(self.client, abjad.Component):
             selection = abjad.select(self.client)
@@ -507,8 +513,9 @@ class Mutation(abctools.AbjadObject):
             return selection._fuse()
 
     def replace(self, recipients, wrappers=False):
-        r'''Replaces mutation client (and contents of mutation client)
-        with `recipients`.
+        r"""
+        Replaces mutation client (and contents of mutation client)
+        with ``recipients``.
 
         ..  container:: example
 
@@ -581,7 +588,7 @@ class Mutation(abctools.AbjadObject):
 
         ..  container:: example
 
-            Copies no wrappers when `wrappers` is false:
+            Copies no wrappers when ``wrappers`` is false:
 
             >>> staff = abjad.Staff("c'2 f'4 g'")
             >>> abjad.attach(abjad.Clef('alto'), staff[0])
@@ -631,7 +638,7 @@ class Mutation(abctools.AbjadObject):
 
         ..  container:: example
 
-            Set `wrappers` to true to copy all wrappers from one leaf to
+            Set ``wrappers`` to true to copy all wrappers from one leaf to
             another leaf (and avoid full-score update). Only works from one
             leaf to another leaf:
         
@@ -683,7 +690,7 @@ class Mutation(abctools.AbjadObject):
             True
 
         Returns none.
-        '''
+        """
         import abjad
         if isinstance(self.client, abjad.Selection):
             donors = self.client
@@ -697,13 +704,11 @@ class Mutation(abctools.AbjadObject):
             return
         if wrappers is True:
             if 1 < len(donors) or not isinstance(donors[0], abjad.Leaf):
-                message = 'set wrappers only with single leaf: {!r}.'
-                message = message.format(donors)
+                message = f'set wrappers only with single leaf: {donors!r}.'
                 raise Exception(message)
             if (1 < len(recipients) or
                 not isinstance(recipients[0], abjad.Leaf)):
-                message = 'set wrappers only with single leaf: {!r}.'
-                message = message.format(recipients)
+                message = f'set wrappers only with single leaf: {recipients!r}.'
                 raise Exception(message)
             donor = donors[0]
             wrappers = abjad.inspect(donor).wrappers()
@@ -728,7 +733,8 @@ class Mutation(abctools.AbjadObject):
 
     # TODO: fix bug in function that causes tied notes to become untied
     def replace_measure_contents(self, new_contents):
-        r'''Replaces contents of measures in client with `new_contents`.
+        r"""
+        Replaces contents of measures in client with ``new_contents``.
 
         ..  container:: example
 
@@ -791,7 +797,7 @@ class Mutation(abctools.AbjadObject):
         Raises stop iteration if not enough measures.
 
         Returns measures iterated.
-        '''
+        """
         import abjad
         # init return list
         result = []
@@ -851,8 +857,9 @@ class Mutation(abctools.AbjadObject):
         rewrite_tuplets=True,
         repeat_ties=False,
         ):
-        r'''Rewrites the contents of logical ties in an expression to match
-        `meter`.
+        r"""
+        Rewrites the contents of logical ties in an expression to match
+        ``meter``.
 
         ..  container:: example
 
@@ -1002,7 +1009,7 @@ class Mutation(abctools.AbjadObject):
         ..  container:: example
 
             Limit the maximum number of dots per leaf using
-            `maximum_dot_count`:
+            ``maximum_dot_count``:
 
             >>> string = "abj: | 3/4 c'32 d'8 e'8 fs'4... |"
             >>> measure = abjad.parse(string)
@@ -1019,7 +1026,7 @@ class Mutation(abctools.AbjadObject):
                     fs'4...
                 }   % measure
 
-            Without constraining the `maximum_dot_count`:
+            Without constraining the ``maximum_dot_count``:
 
             >>> abjad.mutate(measure[:]).rewrite_meter(measure)
             >>> abjad.show(measure) # doctest: +SKIP
@@ -1039,7 +1046,7 @@ class Mutation(abctools.AbjadObject):
                     fs'4...
                 }   % measure
 
-            Constraining the `maximum_dot_count` to `2`:
+            Constraining the ``maximum_dot_count`` to ``2``:
 
             >>> measure = abjad.parse(string)
             >>> abjad.mutate(measure[:]).rewrite_meter(
@@ -1065,7 +1072,7 @@ class Mutation(abctools.AbjadObject):
                     fs'4
                 }   % measure
 
-            Constraining the `maximum_dot_count` to `1`:
+            Constraining the ``maximum_dot_count`` to ``1``:
 
             >>> measure = abjad.parse(string)
             >>> abjad.mutate(measure[:]).rewrite_meter(
@@ -1093,7 +1100,7 @@ class Mutation(abctools.AbjadObject):
                     fs'4
                 }   % measure
 
-            Constraining the `maximum_dot_count` to `0`:
+            Constraining the ``maximum_dot_count`` to ``0``:
 
             >>> measure = abjad.parse(string)
             >>> abjad.mutate(measure[:]).rewrite_meter(
@@ -1129,11 +1136,11 @@ class Mutation(abctools.AbjadObject):
 
         ..  container:: example
 
-            Split logical ties at different depths of the `Meter`, if those
+            Split logical ties at different depths of the ``Meter``, if those
             logical ties cross any offsets at that depth, but do not also both
             begin and end at any of those offsets.
 
-            Consider the default meter for `9/8`:
+            Consider the default meter for ``9/8``:
 
             >>> meter = abjad.Meter((9, 8))
             >>> print(meter.pretty_rtm_format)
@@ -1152,7 +1159,7 @@ class Mutation(abctools.AbjadObject):
                     1/8))))
 
             We can establish that meter without specifying
-            a `boundary_depth`:
+            a ``boundary_depth``:
 
             >>> string = "abj: | 9/8 c'2 d'2 e'8 |"
             >>> measure = abjad.parse(string)
@@ -1183,8 +1190,8 @@ class Mutation(abctools.AbjadObject):
                     e'8
                 }   % measure
 
-            With a `boundary_depth` of `1`, logical ties which cross any offsets
-            created by nodes with a depth of `1` in this Meter's rhythm
+            With a ``boundary_depth`` of `1`, logical ties which cross any
+            offsets created by nodes with a depth of `1` in this Meter's rhythm
             tree - i.e.  `0/8`, `3/8`, `6/8` and `9/8` - which do not also
             begin and end at any of those offsets, will be split:
 
@@ -1209,7 +1216,7 @@ class Mutation(abctools.AbjadObject):
                     e'8
                 }   % measure
 
-            For this `9/8` meter, and this input notation, A `boundary_depth`
+            For this `9/8` meter, and this input notation, A ``boundary_depth``
             of `2` causes no change, as all logical ties already align to
             multiples of `1/8`:
 
@@ -1234,7 +1241,7 @@ class Mutation(abctools.AbjadObject):
 
         ..  container:: example
 
-            Comparison of `3/4` and `6/8`, at `boundary_depths` of 0 and 1:
+            Comparison of `3/4` and `6/8`, at ``boundary_depths`` of 0 and 1:
 
             >>> triple = "abj: | 3/4 2 4 || 3/4 4 2 || 3/4 4. 4. |"
             >>> triple += "| 3/4 2 ~ 8 8 || 3/4 8 8 ~ 2 |"
@@ -1564,11 +1571,10 @@ class Mutation(abctools.AbjadObject):
                     f'4
                 }   % measure
 
-            When establishing a meter on a selection of components
-            which contain containers, like `Tuplets` or `Containers`,
-            `metertools.rewrite_meter()` will recurse into
-            those containers, treating them as measures whose time
-            signature is derived from the preprolated preprolated_duration
+            When establishing a meter on a selection of components which
+            contain containers, like tuplets or containers, ``rewrite_meter()``
+            will recurse into those containers, treating them as measures whose
+            time signature is derived from the preprolated preprolated_duration
             of the container's contents:
 
             >>> abjad.mutate(measure[:]).rewrite_meter(
@@ -1859,7 +1865,7 @@ class Mutation(abctools.AbjadObject):
                 }   % measure
 
         Operates in place and returns none.
-        '''
+        """
         import abjad
         selection = self.client
         if isinstance(selection, abjad.Container):
@@ -1877,7 +1883,8 @@ class Mutation(abctools.AbjadObject):
         return result
 
     def scale(self, multiplier):
-        r'''Scales mutation client by `multiplier`.
+        r"""
+        Scales mutation client by ``multiplier``.
 
         ..  container:: example
 
@@ -1904,7 +1911,7 @@ class Mutation(abctools.AbjadObject):
 
         ..  container:: example
 
-            Scales nontrivial logical tie by dot-generating `multiplier`:
+            Scales nontrivial logical tie by dot-generating ``multiplier``:
 
             >>> staff = abjad.Staff(r"c'8 \accent ~ c'8 d'8")
             >>> time_signature = abjad.TimeSignature((3, 8))
@@ -2001,7 +2008,7 @@ class Mutation(abctools.AbjadObject):
 
         ..  container:: example
 
-            Scales nontrivial logical tie by tie-generating `multiplier`:
+            Scales nontrivial logical tie by tie-generating ``multiplier``:
 
             >>> staff = abjad.Staff(r"c'8 \accent ~ c'8 d'16")
             >>> time_signature = abjad.TimeSignature((5, 16))
@@ -2327,7 +2334,7 @@ class Mutation(abctools.AbjadObject):
                 }
 
         Returns none.
-        '''
+        """
         import abjad
         if hasattr(self.client, '_scale'):
             self.client._scale(multiplier)
@@ -2342,12 +2349,13 @@ class Mutation(abctools.AbjadObject):
         direction=Right,
         grow_spanners=True,
         ):
-        r'''Splices `components` to the right or left of selection.
+        """
+        Splices ``components`` to the right or left of selection.
 
         ..  todo:: Add examples.
 
         Returns list of components.
-        '''
+        """
         return self.client._splice(
             components,
             direction=direction,
@@ -2366,7 +2374,8 @@ class Mutation(abctools.AbjadObject):
         tie_split_notes=True,
         repeat_ties=False,
         ):
-        r'''Splits mutation client by `durations`.
+        r"""
+        Splits mutation client by ``durations``.
 
         ..  container:: example
 
@@ -3093,7 +3102,7 @@ class Mutation(abctools.AbjadObject):
                 }
 
         Returns list of selections.
-        '''
+        """
         import abjad
         # check input
         components = self.client
@@ -3234,7 +3243,8 @@ class Mutation(abctools.AbjadObject):
         return result
 
     def swap(self, container):
-        r'''Swaps mutation client for empty `container`.
+        r"""
+        Swaps mutation client for empty ``container``.
 
         ..  container:: example
 
@@ -3301,7 +3311,7 @@ class Mutation(abctools.AbjadObject):
                 }
 
         Returns none.
-        '''
+        """
         import abjad
         if isinstance(self.client, abjad.Selection):
             donors = self.client
@@ -3315,7 +3325,8 @@ class Mutation(abctools.AbjadObject):
         donors._give_position_in_parent_to_container(container)
 
     def transpose(self, argument):
-        r'''Transposes notes and chords in mutation client by `argument`.
+        r"""
+        Transposes notes and chords in mutation client by ``argument``.
 
         ..  todo:: Move to pitchtools package.
 
@@ -3372,7 +3383,7 @@ class Mutation(abctools.AbjadObject):
                 }
 
         Returns none.
-        '''
+        """
         import abjad
         named_interval = abjad.NamedInterval(argument)
         for x in abjad.iterate(self.client).components(
@@ -3389,7 +3400,8 @@ class Mutation(abctools.AbjadObject):
                     note_head.written_pitch = new_written_pitch
 
     def wrap(self, container):
-        r'''Wraps mutation client in empty `container`.
+        r"""
+        Wraps mutation client in empty ``container``.
 
         ..  container:: example
 
@@ -3528,7 +3540,7 @@ class Mutation(abctools.AbjadObject):
 
         ..  container:: example
 
-            Raises exception on nonempty `container`:
+            Raises exception on nonempty ``container``:
 
             >>> import pytest
             >>> staff = abjad.Staff("c'8 [ ( d' e' ] ) c' [ ( d' e' ] )")
@@ -3577,13 +3589,12 @@ class Mutation(abctools.AbjadObject):
             f'4 3/8
 
         Returns none.
-        '''
+        """
         import abjad
         if (
             not isinstance(container, abjad.Container) or
             0 < len(container)):
-            message = 'must be empty container: {!r}.'
-            message = message.format(container)
+            message = f'must be empty container: {container!r}.'
             raise Exception(message)
         if isinstance(self.client, abjad.Component):
             selection = abjad.select(self.client)
@@ -3593,8 +3604,7 @@ class Mutation(abctools.AbjadObject):
         parent, start, stop = selection._get_parent_and_start_stop_indices()
         if not selection.are_contiguous_logical_voice():
             message = 'must be contiguous components in same logical voice:'
-            message += ' {!r}.'
-            message = message.format(selection)
+            message += f' {selection!r}.'
             raise Exception(message)
         container._components = list(selection)
         container[:]._set_parents(container)
