@@ -251,7 +251,7 @@ class Fermata(AbjadValueObject):
 
         ..  container:: example
 
-            >>> note = Note("c'4")
+            >>> note = abjad.Note("c'4")
             >>> fermata = abjad.Fermata()
             >>> abjad.tweak(fermata).color = 'blue'
             >>> abjad.attach(fermata, note)
@@ -266,7 +266,7 @@ class Fermata(AbjadValueObject):
 
         ..  container:: example
 
-            >>> note = Note("c'4")
+            >>> note = abjad.Note("c'4")
             >>> fermata = abjad.Fermata(tweaks=[('color', 'blue')])
             >>> abjad.attach(fermata, note)
             >>> abjad.show(note) # doctest: +SKIP

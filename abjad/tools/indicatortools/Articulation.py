@@ -304,7 +304,7 @@ class Articulation(AbjadValueObject):
 
         ..  container:: example
 
-            >>> note = Note("c'4")
+            >>> note = abjad.Note("c'4")
             >>> articulation = abjad.Articulation('marcato')
             >>> abjad.tweak(articulation).color = 'blue'
             >>> abjad.attach(articulation, note)
@@ -319,7 +319,7 @@ class Articulation(AbjadValueObject):
 
         ..  container:: example
 
-            >>> note = Note("c'4")
+            >>> note = abjad.Note("c'4")
             >>> articulation = abjad.Articulation(
             ...     'marcato',
             ...     tweaks=[('color', 'blue')],

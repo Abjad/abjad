@@ -152,7 +152,7 @@ class Staccato(AbjadValueObject):
 
         ..  container:: example
 
-            >>> note = Note("c'4")
+            >>> note = abjad.Note("c'4")
             >>> staccato = abjad.Staccato()
             >>> abjad.tweak(staccato).color = 'blue'
             >>> abjad.attach(staccato, note)
@@ -167,7 +167,7 @@ class Staccato(AbjadValueObject):
 
         ..  container:: example
 
-            >>> note = Note("c'4")
+            >>> note = abjad.Note("c'4")
             >>> staccato = abjad.Staccato(tweaks=[('color', 'blue')])
             >>> abjad.attach(staccato, note)
             >>> abjad.show(note) # doctest: +SKIP

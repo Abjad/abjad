@@ -2058,8 +2058,7 @@ class TimespanList(TypedList):
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> timespan = abjad.Timespan(2, 5)
-            >>> time_relation = \
-            ...     abjad.timespantools.timespan_2_starts_during_timespan_1(
+            >>> time_relation = abjad.timespantools.timespan_2_starts_during_timespan_1(
             ...     timespan_1=timespan)
 
             >>> timespan = timespans.get_timespan_that_satisfies_time_relation(
@@ -2162,8 +2161,7 @@ class TimespanList(TypedList):
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> timespan = abjad.Timespan(2, 8)
-            >>> time_relation = \
-            ...     abjad.timespantools.timespan_2_starts_during_timespan_1(
+            >>> time_relation = abjad.timespantools.timespan_2_starts_during_timespan_1(
             ...     timespan_1=timespan)
             >>> timespans.has_timespan_that_satisfies_time_relation(
             ...     time_relation)
@@ -2174,8 +2172,7 @@ class TimespanList(TypedList):
             Is false when list does not have matching timespan:
 
             >>> timespan = abjad.Timespan(10, 20)
-            >>> time_relation = \
-            ...     abjad.timespantools.timespan_2_starts_during_timespan_1(
+            >>> time_relation = abjad.timespantools.timespan_2_starts_during_timespan_1(
             ...     timespan_1=timespan)
 
             >>> timespans.has_timespan_that_satisfies_time_relation(

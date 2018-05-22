@@ -248,7 +248,7 @@ class RehearsalMark(AbjadValueObject):
 
         ..  container:: example
 
-            >>> note = Note("c'4")
+            >>> note = abjad.Note("c'4")
             >>> mark = abjad.RehearsalMark(markup='A')
             >>> abjad.tweak(mark).color = 'blue'
             >>> abjad.attach(mark, note)
@@ -263,7 +263,7 @@ class RehearsalMark(AbjadValueObject):
 
         ..  container:: example
 
-            >>> note = Note("c'4")
+            >>> note = abjad.Note("c'4")
             >>> mark = abjad.RehearsalMark(
             ...     markup='A',
             ...     tweaks=[('color', 'blue')],

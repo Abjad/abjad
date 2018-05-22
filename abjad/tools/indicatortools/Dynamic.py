@@ -1057,7 +1057,7 @@ class Dynamic(AbjadValueObject):
 
         ..  container:: example
 
-            >>> note = Note("c'4")
+            >>> note = abjad.Note("c'4")
             >>> dynamic = abjad.Dynamic('f')
             >>> abjad.tweak(dynamic).color = 'blue'
             >>> abjad.attach(dynamic, note)
@@ -1072,7 +1072,7 @@ class Dynamic(AbjadValueObject):
 
         ..  container:: example
 
-            >>> note = Note("c'4")
+            >>> note = abjad.Note("c'4")
             >>> dynamic = abjad.Dynamic(
             ...     'f',
             ...     tweaks=[('color', 'blue')],

@@ -95,10 +95,8 @@ class OffsetTimespanTimeRelation(TimeRelation):
         ..  container:: example
 
             >>> offset = abjad.Offset(5)
-            >>> time_relation_1 = \
-            ...     abjad.timespantools.offset_happens_during_timespan()
-            >>> time_relation_2 = \
-            ...     abjad.timespantools.offset_happens_during_timespan(
+            >>> time_relation_1 = abjad.timespantools.offset_happens_during_timespan()
+            >>> time_relation_2 = abjad.timespantools.offset_happens_during_timespan(
             ...     offset=offset,
             ...     )
 

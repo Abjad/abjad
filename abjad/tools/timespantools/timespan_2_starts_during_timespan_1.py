@@ -38,8 +38,7 @@ def timespan_2_starts_during_timespan_1(
         ...     ]
 
         >>> timespan_1 = abjad.Timespan((1, 4), (5, 4))
-        >>> time_relation = \
-        ...     abjad.timespantools.timespan_2_starts_during_timespan_1(
+        >>> time_relation = abjad.timespantools.timespan_2_starts_during_timespan_1(
         ...     timespan_1=timespan_1)
         >>> start_index, stop_index = time_relation.get_offset_indices(
         ...     start_offsets, stop_offsets)
