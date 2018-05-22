@@ -30,8 +30,7 @@ def offset_happens_before_timespan_starts(
 
         >>> offset = abjad.Offset(1, 2)
 
-        >>> relation = \
-        ...     abjad.timespantools.offset_happens_before_timespan_starts(
+        >>> relation = abjad.timespantools.offset_happens_before_timespan_starts(
         ...     offset=offset)
 
         >>> abjad.f(relation)
@@ -52,8 +51,7 @@ def offset_happens_before_timespan_starts(
 
         >>> timespan = abjad.Timespan(2, 8)
 
-        >>> relation = \
-        ...     abjad.timespantools.offset_happens_before_timespan_starts(
+        >>> relation = abjad.timespantools.offset_happens_before_timespan_starts(
         ...     timespan=timespan)
 
         >>> abjad.f(relation)

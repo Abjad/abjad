@@ -93,7 +93,7 @@ class Sequence(abctools.AbjadValueObject, collections.Sequence):
         string_template_callback='_make___add___string_template',
         )
     def __add__(self, argument):
-        """
+        r"""
         Adds ``argument`` to sequence.
 
         ..  container:: example
@@ -338,7 +338,7 @@ class Sequence(abctools.AbjadValueObject, collections.Sequence):
         string_template_callback='_make___getitem___string_template',
         )
     def __getitem__(self, argument):
-        """
+        r"""
         Gets item or slice identified by ``argument``.
 
         ..  container:: example
@@ -593,7 +593,7 @@ class Sequence(abctools.AbjadValueObject, collections.Sequence):
         string_template_callback='_make___radd___string_template',
         )
     def __radd__(self, argument):
-        """
+        r"""
         Adds sequence to ``argument``.
 
         ..  container:: example
@@ -1145,7 +1145,7 @@ class Sequence(abctools.AbjadValueObject, collections.Sequence):
     # TODO: remove indices=None parameter
     @Signature()
     def flatten(self, classes=None, depth=1, indices=None):
-        """
+        r"""
         Flattens sequence.
 
         ..  container:: example
@@ -4813,7 +4813,7 @@ class Sequence(abctools.AbjadValueObject, collections.Sequence):
         argument_list_callback='_make_split_indicator',
         )
     def split(self, weights, cyclic=False, overhang=False):
-        """
+        r"""
         Splits sequence by ``weights``.
 
         ..  container:: example

@@ -354,7 +354,7 @@ class Scheme(AbjadValueObject):
 
     @staticmethod
     def format_scheme_value(value, force_quotes=False, verbatim=False):
-        """
+        r"""
         Formats `value` as Scheme would.
 
         ..  container:: example

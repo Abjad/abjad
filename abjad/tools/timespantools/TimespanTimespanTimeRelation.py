@@ -1,4 +1,4 @@
-from abjad.tools.timespantools.TimeRelation import TimeRelation
+from .TimeRelation import TimeRelation
 
 
 class TimespanTimespanTimeRelation(TimeRelation):
@@ -231,10 +231,8 @@ class TimespanTimespanTimeRelation(TimeRelation):
         ..  container:: example
 
             >>> timespan = abjad.Timespan(0, 10)
-            >>> time_relation_1 = \
-            ...     abjad.timespantools.timespan_2_starts_during_timespan_1()
-            >>> time_relation_2 = \
-            ...     abjad.timespantools.timespan_2_starts_during_timespan_1(
+            >>> time_relation_1 = abjad.timespantools.timespan_2_starts_during_timespan_1()
+            >>> time_relation_2 = abjad.timespantools.timespan_2_starts_during_timespan_1(
             ...     timespan_1=timespan)
 
             >>> time_relation_1 == time_relation_1
@@ -269,8 +267,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
             >>> notes = [abjad.Note(_ % 36, (1, 4)) for _ in range(200)]
             >>> voice = abjad.Voice(notes)
             >>> timespan_1 = abjad.Timespan(20, 22)
-            >>> time_relation = \
-            ...     abjad.timespantools.timespan_2_starts_during_timespan_1(
+            >>> time_relation = abjad.timespantools.timespan_2_starts_during_timespan_1(
             ...     timespan_1=timespan_1)
 
             >>> result = time_relation.get_counttime_components(voice[:])

@@ -165,7 +165,7 @@ class ClarinetInA(Instrument):
 
     @property
     def short_name(self):
-        """
+        r"""
         Gets clarinet in A's short instrument name.
 
         ..  container:: example
