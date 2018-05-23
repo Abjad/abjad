@@ -50,19 +50,19 @@ class PianoStaffSegmentMaker(SegmentMaker):
         include_layout_ly=None,
         ):
         import abjad
-        from abjad import rhythmos
+        from abjad import rmakers
         SegmentMaker.__init__(self)
         time_signatures = time_signatures or []
         time_signatures = [abjad.TimeSignature(_) for _ in time_signatures]
         self._time_signatures = time_signatures
         self._divisions = divisions
         if rh_rhythm_maker is None:
-            rh_rhythm_maker = rhythmos.NoteRhythmMaker()
-        assert isinstance(rh_rhythm_maker, rhythmos.RhythmMaker)
+            rh_rhythm_maker = rmakers.NoteRhythmMaker()
+        assert isinstance(rh_rhythm_maker, rmakers.RhythmMaker)
         self._rh_rhythm_maker = rh_rhythm_maker
         if lh_rhythm_maker is None:
-            lh_rhythm_maker = rhythmos.NoteRhythmMaker()
-        assert isinstance(lh_rhythm_maker, rhythmos.RhythmMaker)
+            lh_rhythm_maker = rmakers.NoteRhythmMaker()
+        assert isinstance(lh_rhythm_maker, rmakers.RhythmMaker)
         self._lh_rhythm_maker = lh_rhythm_maker
         rh_pitch_range = rh_pitch_range or '[C4, C6]'
         rh_pitch_range = abjad.PitchRange(rh_pitch_range)

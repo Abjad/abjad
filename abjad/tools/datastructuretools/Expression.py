@@ -1917,27 +1917,31 @@ class Expression(AbjadValueObject):
                     {
                         c'4.
                         ^ \markup {
-                            \small
-                                3/8
+                            \fraction
+                                3
+                                8
                             }
                         d'8
                         ~
                         ^ \markup {
-                            \small
-                                1/2
+                            \fraction
+                                1
+                                2
                             }
                         d'4.
                         e'16
                         [
                         ^ \markup {
-                            \small
-                                1/16
+                            \fraction
+                                1
+                                16
                             }
                         ef'16
                         ]
                         ^ \markup {
-                            \small
-                                1/16
+                            \fraction
+                                1
+                                16
                             }
                     }
 
