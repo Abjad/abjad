@@ -1,6 +1,6 @@
 def all_are_nonnegative_integer_equivalent_numbers(argument):
     """
-    Is true when `argument` is an iterable collection of nonnegative
+    Is true when ``argument`` is an iterable collection of nonnegative
     integer-equivalent numbers.
 
     ..  container:: example

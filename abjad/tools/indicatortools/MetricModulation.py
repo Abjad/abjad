@@ -629,7 +629,7 @@ class MetricModulation(AbjadValueObject):
 
     def __eq__(self, argument) -> bool:
         """
-        Is true when `argument` is another metric modulation with the same
+        Is true when ``argument`` is another metric modulation with the same
         ratio as this metric modulation.
 
         ..  container:: example
@@ -709,8 +709,6 @@ class MetricModulation(AbjadValueObject):
                     ),
                 )
 
-        Set `format_specification` to `''`, `'lilypond'` or `'storage'`.
-        Interprets `''` equal to `'storage'`.
         """
         return super(MetricModulation, self).__format__(
             format_specification=format_specification

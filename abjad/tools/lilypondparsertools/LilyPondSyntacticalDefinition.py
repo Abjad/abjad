@@ -14,14 +14,15 @@ from abjad.tools.topleveltools import attach
 
 # TODO: should not inherit from AbjadObject because no slots
 class LilyPondSyntacticalDefinition(AbjadObject):
-    r'''The syntactical definition of LilyPond's syntax.
+    """
+    The syntactical definition of LilyPond's syntax.
 
     Effectively equivalent to LilyPond's ``parser.yy`` file.
 
     Not composer-safe.
 
     Used internally by ``LilyPondParser``.
-    '''
+    """
 
     start = 'start_symbol'
 

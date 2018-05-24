@@ -50,7 +50,7 @@ class Mode(AbjadValueObject):
 
     def __eq__(self, argument):
         """
-        Is true when `argument` is a mode with mode name equal to that of
+        Is true when ``argument`` is a mode with mode name equal to that of
         this mode.
 
         ..  container:: example

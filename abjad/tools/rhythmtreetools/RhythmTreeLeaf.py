@@ -25,7 +25,7 @@ class RhythmTreeLeaf(RhythmTreeMixin, uqbar.containers.UniqueTreeNode):
 
     ..  container:: example
 
-        Generates rests when called if `is_pitched` is false:
+        Generates rests when called if ``is_pitched`` is false:
 
         >>> abjad.rhythmtreetools.RhythmTreeLeaf(
         ...     preprolated_duration=7, is_pitched=False)((1, 16))

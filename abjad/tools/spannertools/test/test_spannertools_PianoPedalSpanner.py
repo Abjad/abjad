@@ -9,7 +9,7 @@ def test_spannertools_PianoPedalSpanner_01():
     abjad.attach(piano_pedal_spanner, staff[:])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             \set Staff.pedalSustainStyle = #'mixed
@@ -20,7 +20,7 @@ def test_spannertools_PianoPedalSpanner_01():
             c'8
             \sustainOff
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).is_well_formed()
@@ -29,15 +29,16 @@ def test_spannertools_PianoPedalSpanner_01():
 
 
 def test_spannertools_PianoPedalSpanner_02():
-    r'''Piano pedal spanner supports sostenuto pedal.
-    '''
+    """
+    Piano pedal spanner supports sostenuto pedal.
+    """
 
     staff = abjad.Staff("c'8 c'8 c'8 c'8")
     piano_pedal_spanner = abjad.PianoPedalSpanner(kind='sostenuto')
     abjad.attach(piano_pedal_spanner, staff[:])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             \set Staff.pedalSustainStyle = #'mixed
@@ -48,22 +49,23 @@ def test_spannertools_PianoPedalSpanner_02():
             c'8
             \sostenutoOff
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).is_well_formed()
 
 
 def test_spannertools_PianoPedalSpanner_03():
-    r'''Piano pedal spanner supports una corda pedal.
-    '''
+    """
+    Piano pedal spanner supports una corda pedal.
+    """
 
     staff = abjad.Staff("c'8 c'8 c'8 c'8")
     piano_pedal_spanner = abjad.PianoPedalSpanner(kind='corda')
     abjad.attach(piano_pedal_spanner, staff[:])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             \set Staff.pedalSustainStyle = #'mixed
@@ -74,15 +76,16 @@ def test_spannertools_PianoPedalSpanner_03():
             c'8
             \treCorde
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).is_well_formed()
 
 
 def test_spannertools_PianoPedalSpanner_04():
-    r'''PianoPedal spanner supports text style.
-    '''
+    """
+    PianoPedal spanner supports text style.
+    """
 
     staff = abjad.Staff("c'8 c'8 c'8 c'8")
     piano_pedal_spanner = abjad.PianoPedalSpanner(
@@ -92,7 +95,7 @@ def test_spannertools_PianoPedalSpanner_04():
     abjad.attach(piano_pedal_spanner, staff[:])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             \set Staff.pedalSustainStyle = #'text
@@ -103,15 +106,16 @@ def test_spannertools_PianoPedalSpanner_04():
             c'8
             \sustainOff
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).is_well_formed()
 
 
 def test_spannertools_PianoPedalSpanner_05():
-    r'''PianoPedal spanner supports bracket style.
-    '''
+    """
+    PianoPedal spanner supports bracket style.
+    """
 
     staff = abjad.Staff("c'8 c'8 c'8 c'8")
     piano_pedal_spanner = abjad.PianoPedalSpanner(
@@ -121,7 +125,7 @@ def test_spannertools_PianoPedalSpanner_05():
     abjad.attach(piano_pedal_spanner, staff[:])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             \set Staff.pedalSustainStyle = #'bracket
@@ -132,15 +136,16 @@ def test_spannertools_PianoPedalSpanner_05():
             c'8
             \sustainOff
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).is_well_formed()
 
 
 def test_spannertools_PianoPedalSpanner_06():
-    r'''Consecutive dovetailing PianoPedal spanners format correctly.
-    '''
+    """
+    Consecutive dovetailing PianoPedal spanners format correctly.
+    """
 
     staff = abjad.Staff("c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8")
     piano_pedal_spanner = abjad.PianoPedalSpanner()
@@ -149,7 +154,7 @@ def test_spannertools_PianoPedalSpanner_06():
     abjad.attach(piano_pedal_spanner, staff[3:])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             \set Staff.pedalSustainStyle = #'mixed
@@ -167,7 +172,7 @@ def test_spannertools_PianoPedalSpanner_06():
             c'8
             \sustainOff
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).is_well_formed()

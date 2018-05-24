@@ -8,7 +8,7 @@ def test_spannertools_ComplexBeam_direction_01():
     abjad.attach(beam, staff[:4])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             \set stemLeftBeamCount = 0
@@ -27,7 +27,7 @@ def test_spannertools_ComplexBeam_direction_01():
             ]
             g'2
         }
-        '''
+        """
         )
 
 
@@ -38,7 +38,7 @@ def test_spannertools_ComplexBeam_direction_02():
     abjad.attach(beam, staff[:4])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             \set stemLeftBeamCount = 0
@@ -57,5 +57,5 @@ def test_spannertools_ComplexBeam_direction_02():
             ]
             g'2
         }
-        '''
+        """
         )

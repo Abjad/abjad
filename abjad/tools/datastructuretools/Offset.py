@@ -580,7 +580,7 @@ class Offset(Duration):
         >>> abjad.Offset(2) - abjad.Duration(1, 2)
         Offset(3, 2)
 
-        Coerce ``argument`` to offset when `argument` is neither offset nor
+        Coerce ``argument`` to offset when ``argument`` is neither offset nor
         duration:
 
         >>> abjad.Offset(2) - abjad.Fraction(1, 2)

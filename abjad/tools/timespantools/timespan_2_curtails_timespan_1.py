@@ -4,7 +4,7 @@ def timespan_2_curtails_timespan_1(
     hold=False,
     ):
     """
-    Makes time relation indicating that `timespan_2` curtails `timespan_1`.
+    Makes time relation indicating that ``timespan_2`` curtails ``timespan_1``.
 
     ..  container:: example
 

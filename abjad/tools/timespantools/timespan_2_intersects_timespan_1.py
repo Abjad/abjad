@@ -4,8 +4,8 @@ def timespan_2_intersects_timespan_1(
     hold=False,
     ):
     """
-    Makes time relation indicating that `timespan_2` intersects
-    `timespan_1`.
+    Makes time relation indicating that ``timespan_2`` intersects
+    ``timespan_1``.
 
     ..  container:: example
 

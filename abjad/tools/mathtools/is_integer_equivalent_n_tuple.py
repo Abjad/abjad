@@ -1,6 +1,6 @@
 def is_integer_equivalent_n_tuple(argument, n):
     """
-    Is true when `argument` is a tuple of `n` integer-equivalent items.
+    Is true when ``argument`` is a tuple of ``n`` integer-equivalent items.
 
     ..  container:: example
 

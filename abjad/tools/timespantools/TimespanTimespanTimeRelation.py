@@ -173,7 +173,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         ..  container:: example
 
-            Substitute `timespan_1` during evaluation:
+            Substitute ``timespan_1`` during evaluation:
 
             >>> new_timespan_1 = abjad.Timespan(0, 10)
 
@@ -185,7 +185,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         ..  container:: example
 
-            Substitute `timespan_2` during evaluation:
+            Substitute ``timespan_2`` during evaluation:
 
             >>> new_timespan_2 = abjad.Timespan(2, 12)
 
@@ -197,7 +197,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         ..  container:: example
 
-            Substitute both `timespan_1` and `timespan_2` during evaluation:
+            Substitute both ``timespan_1`` and ``timespan_2`` during evaluation:
 
             >>> time_relation(
             ...     timespan_1=new_timespan_1,
@@ -205,7 +205,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
             ...     )
             True
 
-        Raise value error if either `timespan_1` or `timespan_2` is none.
+        Raise value error if either ``timespan_1`` or ``timespan_2`` is none.
 
         Otherwise return boolean.
         """
@@ -226,7 +226,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
     def __eq__(self, argument):
         """
-        Is true when `argument` equals time relation.
+        Is true when ``argument`` equals time relation.
 
         ..  container:: example
 
@@ -260,7 +260,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
     def get_counttime_components(self, counttime_components):
         """
-        Get `counttime_components` that satisfy `time_relation`:
+        Get ``counttime_components`` that satisfy ``time_relation``:
 
         ..  container:: example
 
@@ -286,9 +286,9 @@ class TimespanTimespanTimeRelation(TimeRelation):
             >>> abjad.inspect(result).get_timespan()
             Timespan(start_offset=Offset(20, 1), stop_offset=Offset(22, 1))
 
-        `counttime_components` must belong to a single voice.
+        ``counttime_components`` must belong to a single voice.
 
-        `counttime_components` must be time-contiguous.
+        ``counttime_components`` must be time-contiguous.
 
         The call shown here takes 78355 function calls under r9686.
 
@@ -374,7 +374,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
     @property
     def is_fully_loaded(self):
         """
-        Is true when `timespan_1` and `timespan_2` are both not none.
+        Is true when ``timespan_1`` and ``timespan_2`` are both not none.
 
         ..  container:: example
 
@@ -396,7 +396,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
     @property
     def is_fully_unloaded(self):
         """
-        Is true when `timespan_1` and `timespan_2` are both none.
+        Is true when ``timespan_1`` and ``timespan_2`` are both none.
 
         ..  container:: example
 

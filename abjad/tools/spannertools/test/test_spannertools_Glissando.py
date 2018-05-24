@@ -8,7 +8,7 @@ def test_spannertools_Glissando_01():
     abjad.attach(glissando, staff[:4])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -23,5 +23,5 @@ def test_spannertools_Glissando_01():
             fs'8
             g'8
         }
-        '''
+        """
         )

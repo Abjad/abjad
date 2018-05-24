@@ -1,6 +1,6 @@
 def all_are_equal(argument):
     """
-    Is true when `argument` is an iterable collection of equal items.
+    Is true when ``argument`` is an iterable collection of equal items.
 
     ..  container:: example
 
@@ -12,7 +12,7 @@ def all_are_equal(argument):
 
     ..  container:: example
 
-        Is true when `argument` is empty:
+        Is true when ``argument`` is empty:
 
         >>> abjad.mathtools.all_are_equal([])
         True

@@ -1,6 +1,6 @@
 def cumulative_sums(argument, start=0):
     """
-    Gets cumulative sums of `argument`.
+    Gets cumulative sums of ``argument``.
 
     ..  container:: example
 
@@ -10,9 +10,9 @@ def cumulative_sums(argument, start=0):
         >>> abjad.mathtools.cumulative_sums([1, 2, 3, 4, 5, 6, 7, 8], start=None)
         [1, 3, 6, 10, 15, 21, 28, 36]
 
-    Raises exception when `argument` is not iterable.
+    Raises exception when ``argument`` is not iterable.
 
-    Returns new object of `argument` type.
+    Returns new object of ``argument`` type.
     """
     if start is None:
         result = []

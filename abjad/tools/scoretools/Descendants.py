@@ -101,7 +101,7 @@ class Descendants(abctools.AbjadObject, collections.Sequence):
 
     def __getitem__(self, argument):
         """
-        Gets `argument`.
+        Gets ``argument``.
 
         Returns component or tuple of components.
         """

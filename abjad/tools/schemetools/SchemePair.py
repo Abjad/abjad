@@ -57,9 +57,6 @@ class SchemePair(Scheme):
             >>> abjad.f(scheme_pair)
             abjad.SchemePair((-1, 1))
 
-        Set `format_specification` to `''`, `'lilypond'` or `'storage'`.
-        Interprets `''` equal to `'lilypond'`.
-
         Returns string.
         """
         return super(SchemePair, self).__format__(

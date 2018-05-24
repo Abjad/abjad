@@ -48,7 +48,7 @@ class ChordSuspension(AbjadValueObject):
 
     def __eq__(self, argument):
         """
-        Is true when `argument` is a chord suspension when start and stop
+        Is true when ``argument`` is a chord suspension when start and stop
         equal to those of this chord suspension.
 
         ..  container:: example

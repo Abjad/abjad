@@ -1,6 +1,6 @@
 def difference_series(argument):
     """
-    Gets difference series of `argument`.
+    Gets difference series of ``argument``.
 
     ..  container:: example
 
@@ -10,7 +10,7 @@ def difference_series(argument):
         >>> abjad.mathtools.difference_series([9, 6, 8, 5, 7, 4, 6])
         [-3, 2, -3, 2, -3, 2]
 
-    Returns new object of `argument` type.
+    Returns new object of ``argument`` type.
     """
     result = []
     for i, n in enumerate(argument[1:]):

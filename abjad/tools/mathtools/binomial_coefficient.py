@@ -3,7 +3,7 @@ import math
 
 def binomial_coefficient(n, k):
     """
-    Gets binomial coefficient of `n` choose `k`.
+    Gets binomial coefficient of ``n`` choose ``k``.
 
     ..  container:: example
 

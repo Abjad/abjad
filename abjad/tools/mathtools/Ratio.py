@@ -40,7 +40,7 @@ class Ratio(NonreducedRatio):
 
     def __eq__(self, argument):
         """
-        Is true when `argument` equals ratio.
+        Is true when ``argument`` equals ratio.
 
         ..  container:: example
 
@@ -80,7 +80,7 @@ class Ratio(NonreducedRatio):
 
     def __getitem__(self, argument):
         """
-        Gets item or slice identified by `argument`.
+        Gets item or slice identified by ``argument``.
 
         ..  container:: example
 

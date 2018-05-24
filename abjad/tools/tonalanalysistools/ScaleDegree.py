@@ -99,7 +99,7 @@ class ScaleDegree(AbjadValueObject):
 
     def __eq__(self, argument):
         """
-        Is true when `argument` is a scale degree with number and
+        Is true when ``argument`` is a scale degree with number and
         accidental equal to those of this scale degree.
 
         ..  container:: example
@@ -171,7 +171,7 @@ class ScaleDegree(AbjadValueObject):
     @staticmethod
     def from_accidental_and_number(accidental, number):
         """
-        Makes scale degree from `accidental` and `number`.
+        Makes scale degree from ``accidental`` and ``number``.
 
         ..  container:: example
 

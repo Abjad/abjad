@@ -4,7 +4,7 @@ def offset_happens_before_timespan_stops(
     hold=False,
     ):
     """
-    Makes time relation indicating that `offset` happens before `timespan`
+    Makes time relation indicating that ``offset`` happens before ``timespan``
     stops.
 
     ..  container:: example

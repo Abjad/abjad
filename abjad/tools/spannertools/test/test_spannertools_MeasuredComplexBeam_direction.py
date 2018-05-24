@@ -9,7 +9,7 @@ def test_spannertools_MeasuredComplexBeam_direction_01():
         )
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -26,7 +26,7 @@ def test_spannertools_MeasuredComplexBeam_direction_01():
                 a'16
             }   % measure
         }
-        '''
+        """
         )
 
     leaves = abjad.select(staff).leaves()
@@ -34,7 +34,7 @@ def test_spannertools_MeasuredComplexBeam_direction_01():
     abjad.attach(beam, leaves)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {   % measure
@@ -65,7 +65,7 @@ def test_spannertools_MeasuredComplexBeam_direction_01():
                 ]
             }   % measure
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).is_well_formed()

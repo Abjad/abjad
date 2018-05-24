@@ -3,7 +3,7 @@ import numbers
 
 def is_positive_integer(argument):
     """
-    Is true when `argument` equals a positive integer.
+    Is true when ``argument`` equals a positive integer.
 
     ..  container:: example
 

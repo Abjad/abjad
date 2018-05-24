@@ -68,8 +68,8 @@ class MarginMarkup(AbjadValueObject):
 
     def __eq__(self, argument) -> bool:
         """
-        Is true when `argument` is margin markup with context and markup equal
-        to those of this margin markup.
+        Is true when ``argument`` is margin markup with context and markup
+        equal to those of this margin markup.
 
         ..  container:: example
 

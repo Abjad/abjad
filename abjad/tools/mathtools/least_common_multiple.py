@@ -1,6 +1,6 @@
 def least_common_multiple(*integers):
     """
-    Gets least common multiple of positive `integers`.
+    Gets least common multiple of positive ``integers``.
 
     ..  container:: example
 

@@ -1,6 +1,6 @@
 def integer_to_binary_string(n):
     r"""
-    Changes positive integer `n` to binary string.
+    Changes positive integer ``n`` to binary string.
 
     ..  container:: example
 

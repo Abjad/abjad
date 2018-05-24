@@ -2205,7 +2205,7 @@ class Iteration(abctools.AbjadObject):
 
                 ..  todo:: Incorrect because grace notes are not included.
 
-        Iterates leaves when `prototype` is none.
+        Iterates leaves when ``prototype`` is none.
         """
         import abjad
         prototype = prototype or abjad.Leaf

@@ -12,7 +12,7 @@ class NoteMaker(AbjadValueObject):
 
     ..  container:: example
 
-        Cycles through ``pitches`` when the length of `pitches` is less than
+        Cycles through ``pitches`` when the length of ``pitches`` is less than
         the length of ``durations``:
 
         >>> maker = abjad.NoteMaker()

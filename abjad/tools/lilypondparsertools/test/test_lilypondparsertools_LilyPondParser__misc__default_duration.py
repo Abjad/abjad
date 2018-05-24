@@ -13,7 +13,7 @@ def test_lilypondparsertools_LilyPondParser__misc__default_duration_01():
     abjad.attach(abjad.Multiplier(5, 17), target[-1])
 
     assert format(target) == abjad.String.normalize(
-        r'''
+        r"""
         {
             c'4
             c'2
@@ -23,10 +23,10 @@ def test_lilypondparsertools_LilyPondParser__misc__default_duration_01():
             c'8. * 5/17
             c'8. * 5/17
         }
-        '''
+        """
         )
 
-    string = r'''{ c' c'2 c' c'8 c' c'8. * 5/17 c' }'''
+    string = r"""{ c' c'2 c' c'8 c' c'8. * 5/17 c' }"""
 
     parser = abjad.lilypondparsertools.LilyPondParser()
     result = parser(string)

@@ -6,11 +6,11 @@ def test_lilypondparsertools_LilyPondParser__contexts__Staff_01():
     target = abjad.Staff([])
 
     assert format(target) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
         }
-        '''
+        """
         )
 
     parser = abjad.lilypondparsertools.LilyPondParser()
@@ -27,7 +27,7 @@ def test_lilypondparsertools_LilyPondParser__contexts__Staff_02():
     target.append(abjad.Voice(maker([0, 2, 4, 5, 7, 9, 11, 12], (1, 8))))
 
     assert format(target) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         <<
             \new Voice
@@ -53,7 +53,7 @@ def test_lilypondparsertools_LilyPondParser__contexts__Staff_02():
                 c''8
             }
         >>
-        '''
+        """
         )
 
     parser = abjad.lilypondparsertools.LilyPondParser()

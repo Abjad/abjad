@@ -7,14 +7,15 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 # TODO: should not inherit from AbjadObject because no slots
 class LilyPondLexicalDefinition(AbjadObject):
-    r'''The lexical definition of LilyPond's syntax.
+    """
+    The lexical definition of LilyPond's syntax.
 
     Effectively equivalent to LilyPond's ``lexer.ll`` file.
 
     Not composer-safe.
 
     Used internally by ``LilyPondParser``.
-    '''
+    """
 
     ### INITIALIZER ###
 

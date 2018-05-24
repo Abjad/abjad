@@ -3,7 +3,7 @@ import collections
 
 def cumulative_products(argument):
     """
-    Gets cumulative products of `argument`.
+    Gets cumulative products of ``argument``.
 
     ..  container:: example
 
@@ -13,9 +13,9 @@ def cumulative_products(argument):
         >>> abjad.mathtools.cumulative_products([1, -2, 3, -4, 5, -6, 7, -8])
         [1, -2, -6, 24, 120, -720, -5040, 40320]
 
-    Raises exception when `argument` is not iterable.
+    Raises exception when ``argument`` is not iterable.
 
-    Returns new object of `argument` type.
+    Returns new object of ``argument`` type.
     """
     if not isinstance(argument, collections.Iterable):
         raise TypeError(argument)

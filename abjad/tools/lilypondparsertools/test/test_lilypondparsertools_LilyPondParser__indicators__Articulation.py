@@ -22,7 +22,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__Articulation_01():
     abjad.attach(articulation, target[6])
 
     assert format(target) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c''4
@@ -40,10 +40,10 @@ def test_lilypondparsertools_LilyPondParser__indicators__Articulation_01():
             c''2
             -\portato
         }
-        '''
+        """
         )
 
-    string = r'''\new Staff { c''4^^ c''_+ c''-- c''-| c''4-> c''-. c''2-_ }'''
+    string = r"""\new Staff { c''4^^ c''_+ c''-- c''-| c''4-> c''-. c''2-_ }"""
 
     parser = abjad.lilypondparsertools.LilyPondParser()
     result = parser(string)
@@ -71,13 +71,13 @@ def test_lilypondparsertools_LilyPondParser__indicators__Articulation_02():
     articulation = abjad.Articulation('portato')
     abjad.attach(articulation, target[0])
 
-    r'''
+    r"""
     \new Staff {
         c'4 ^\marcato _\stopped -\tenuto -\staccatissimo -\accent -\staccato -\portato
     }
-    '''
+    """
 
-    string = r'''\new Staff { c'4 ^^ _+ -- -| -> -. -_ }'''
+    string = r"""\new Staff { c'4 ^^ _+ -- -| -> -. -_ }"""
 
 
     parser = abjad.lilypondparsertools.LilyPondParser()
@@ -105,7 +105,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__Articulation_03():
     abjad.attach(articulation, target[3])
 
     assert format(target) == abjad.String.normalize(
-        r'''
+        r"""
         {
             c''4
             -\staccato
@@ -116,10 +116,10 @@ def test_lilypondparsertools_LilyPondParser__indicators__Articulation_03():
             c''1
             -\fermata
         }
-        '''
+        """
         )
 
-    string = r'''{ c''4\staccato c''\mordent b'2\turn c''1\fermata }'''
+    string = r"""{ c''4\staccato c''\mordent b'2\turn c''1\fermata }"""
 
     parser = abjad.lilypondparsertools.LilyPondParser()
     result = parser(string)

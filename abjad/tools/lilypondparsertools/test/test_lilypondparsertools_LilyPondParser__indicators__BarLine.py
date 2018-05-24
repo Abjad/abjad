@@ -10,7 +10,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__BarLine_01():
     abjad.attach(bar_line, target[-1])
 
     assert format(target) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             e'4
@@ -18,7 +18,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__BarLine_01():
             c'2
             \bar "|."
         }
-        '''
+        """
         )
 
     parser = abjad.lilypondparsertools.LilyPondParser()

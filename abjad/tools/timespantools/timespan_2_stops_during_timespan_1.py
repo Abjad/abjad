@@ -4,8 +4,8 @@ def timespan_2_stops_during_timespan_1(
     hold=False,
     ):
     """
-    Makes time relation indicating that `timespan_2` stops
-    during `timespan_1`.
+    Makes time relation indicating that ``timespan_2`` stops
+    during ``timespan_1``.
 
     ..  container:: example
 

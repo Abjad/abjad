@@ -94,7 +94,7 @@ class RomanNumeral(AbjadValueObject):
 
     def __eq__(self, argument):
         """
-        Is true when `argument` is a Roman numeral with scale degree,
+        Is true when ``argument`` is a Roman numeral with scale degree,
         quality, extent, inversion and suspension equal to those of this Roman
         numeral.
 
@@ -414,8 +414,8 @@ class RomanNumeral(AbjadValueObject):
         inversion,
         ):
         """
-        Makes Roman numeral from `scale_degree`, `quality`, `extent` and
-        `inversion`.
+        Makes Roman numeral from ``scale_degree``, ``quality``, ``extent`` and
+        ``inversion``.
 
         Returns new Roman numeral.
         """

@@ -6,11 +6,11 @@ def test_lilypondparsertools_LilyPondParser__contexts__Score_01():
     target = abjad.Score()
 
     assert format(target) == abjad.String.normalize(
-        r'''
+        r"""
         \new Score
         <<
         >>
-        '''
+        """
         )
 
     parser = abjad.lilypondparsertools.LilyPondParser()

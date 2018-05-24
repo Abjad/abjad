@@ -21,7 +21,7 @@ def test_lilypondparsertools_LilyPondParser__misc__variables_01():
     ])
 
     assert format(target) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {
@@ -41,16 +41,16 @@ def test_lilypondparsertools_LilyPondParser__misc__variables_01():
             }
             c''1
         }
-        '''
+        """
         )
 
-    string = r'''
+    string = r"""
         foo = { c'8 }
         foo = { \foo d' e'4 }
         foo = { \foo f' g'2 }
         foo = { \foo a' b'1 }
         \new Staff { \foo c'' }
-    '''
+    """
 
     parser = abjad.lilypondparsertools.LilyPondParser()
     result = parser(string)

@@ -71,7 +71,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
     def __call__(self, divisions, previous_state=None):
         r"""
-        Calls even division rhythm-maker on `divisions`.
+        Calls even division rhythm-maker on ``divisions``.
 
         ..  container:: example
 
@@ -1659,28 +1659,28 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         Gets extra counts per division.
 
         Treats overly large and overly small values of
-        `extra_counts_per_division` modularly. Denote by
-        `unprolated_note_count` the number of unprolated notes included in any
-        division (as though `extra_counts_per_division` were set to zero). Then
-        the actual number of extra counts included per division is given by two
-        formulas:
+        ``extra_counts_per_division`` modularly. Denote by
+        ``unprolated_note_count`` the number of unprolated notes included in
+        any division (as though ``extra_counts_per_division`` were set to
+        zero). Then the actual number of extra counts included per division is
+        given by two formulas:
 
         * The actual number of extra counts included per division is given by
           ``extra_counts_per_division % unprolated_note_count`` when
-          `extra_counts_per_division` is positive.
+          ``extra_counts_per_division`` is positive.
 
         * The actual number of extra counts included per division is given by
           the formula
           ``extra_counts_per_division % ceiling(unprolated_note_count / 2)``
-          when `extra_counts_per_division` is negative.
+          when ``extra_counts_per_division`` is negative.
 
         These formulas ensure that:
 
         * even very large and very small values of
-          `extra_counts_per_division` produce valid output, and that
+          ``extra_counts_per_division`` produce valid output, and that
 
-        * the values given as the rhythm-maker's `denominators` are always
-          respected. A very large value of `extra_counts_per_division`, for
+        * the values given as the rhythm-maker's ``denominators`` are always
+          respected. A very large value of ``extra_counts_per_division``, for
           example, never causes a `16`-denominated division to result 32nd or
           64th note rhythms; `16`-denominated divisions always produce 16th
           note rhythms.

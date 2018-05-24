@@ -4,8 +4,8 @@ def timespan_2_contains_timespan_1_improperly(
     hold=False,
     ):
     r"""
-    Makes time relation indicating that `timespan_2` contains
-    `timespan_1` improperly.
+    Makes time relation indicating that ``timespan_2`` contains
+    ``timespan_1`` improperly.
 
     ..  container:: example
 

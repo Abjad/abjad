@@ -92,7 +92,7 @@ class RootedChordClass(PitchClassSet):
 
     def __eq__(self, argument):
         """
-        Is true when `argument` is a rooted chord-class with root, chord
+        Is true when ``argument`` is a rooted chord-class with root, chord
         quality and inversion equal to those of this rooted chord-class.
 
         Returns true or false.
@@ -427,7 +427,7 @@ class RootedChordClass(PitchClassSet):
     @staticmethod
     def cardinality_to_extent(cardinality):
         """
-        Change `cardinality` to extent.
+        Change ``cardinality`` to extent.
 
         ..  container:: example
 
@@ -449,7 +449,7 @@ class RootedChordClass(PitchClassSet):
     @staticmethod
     def extent_to_cardinality(extent):
         """
-        Changes `extent` to cardinality.
+        Changes ``extent`` to cardinality.
 
         ..  container:: example
 
@@ -471,7 +471,7 @@ class RootedChordClass(PitchClassSet):
     @staticmethod
     def extent_to_extent_name(extent):
         """
-        Changes `extent` to extent name.
+        Changes ``extent`` to extent name.
 
         ..  container:: example
 

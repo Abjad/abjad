@@ -273,7 +273,7 @@ class SilenceMask(AbjadValueObject):
         use_multimeasure_rests=None,
         ):
         r"""
-        Makes silence mask that matches `indices`.
+        Makes silence mask that matches ``indices``.
 
         ..  container:: example
 

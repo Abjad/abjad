@@ -3,7 +3,7 @@ import numbers
 
 def is_nonnegative_integer(argument):
     """
-    Is true when `argument` equals a nonnegative integer.
+    Is true when ``argument`` equals a nonnegative integer.
 
     ..  container:: example
 

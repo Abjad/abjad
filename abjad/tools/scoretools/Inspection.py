@@ -556,7 +556,7 @@ class Inspection(abctools.AbjadObject):
 
         ..  container:: example
 
-            Scans forwards or backwards when `n` is set: 
+            Scans forwards or backwards when ``n`` is set: 
 
             >>> staff = abjad.Staff("c'8 d'8 e'8 f'8 g'8")
             >>> abjad.attach('red', staff[0], context='Staff')
@@ -751,10 +751,10 @@ class Inspection(abctools.AbjadObject):
         """
         Gets indicator.
 
-        Raises exception when more than one indicator of `prototype` attach to
-        client.
+        Raises exception when more than one indicator of ``prototype`` attach
+        to client.
 
-        Returns default when no indicator of `prototype` attaches to client.
+        Returns default when no indicator of ``prototype`` attaches to client.
 
         Returns indicator or default.
         """
@@ -814,7 +814,7 @@ class Inspection(abctools.AbjadObject):
 
     def get_leaf(self, n=0):
         r"""
-        Gets leaf `n`.
+        Gets leaf ``n``.
 
         ..  container:: example
 
@@ -846,7 +846,7 @@ class Inspection(abctools.AbjadObject):
 
         ..  container:: example
 
-            Gets leaf `n` **from** client when client is a leaf.
+            Gets leaf ``n`` **from** client when client is a leaf.
 
             With positive indices:
 
@@ -888,7 +888,7 @@ class Inspection(abctools.AbjadObject):
 
         ..  container:: example
 
-            Gets leaf `n` **in** client when client is a container.
+            Gets leaf ``n`` **in** client when client is a container.
 
             With positive indices:
 
@@ -1210,10 +1210,11 @@ class Inspection(abctools.AbjadObject):
         """
         Gets spanner.
 
-        Raises exception when more than one spanner of `prototype` attaches to
-        client.
+        Raises exception when more than one spanner of ``prototype`` attaches
+        to client.
 
-        Returns `default` when no spanner of `prototype` attaches to client.
+        Returns ``default`` when no spanner of ``prototype`` attaches to
+        client.
 
         Returns spanner or default.
         """
@@ -1438,7 +1439,7 @@ class Inspection(abctools.AbjadObject):
 
     def get_tuplet(self, n=0):
         r"""
-        Gets tuplet `n`.
+        Gets tuplet ``n``.
 
         ..  container:: example
 
@@ -1587,7 +1588,7 @@ class Inspection(abctools.AbjadObject):
 
     def get_vertical_moment_at(self, offset):
         """
-        Gets vertical moment at `offset`.
+        Gets vertical moment at ``offset``.
 
         Returns vertical moment.
         """
@@ -2017,8 +2018,8 @@ class Inspection(abctools.AbjadObject):
             >>> abjad.inspect(staff[0]).wrapper(abjad.Articulation)
             Wrapper(indicator=Articulation('^'), tag=Tag())
 
-        Raises exception when more than one indicator of `prototype` attach to
-        client.
+        Raises exception when more than one indicator of ``prototype`` attach
+        to client.
 
         Returns wrapper or none.
         """

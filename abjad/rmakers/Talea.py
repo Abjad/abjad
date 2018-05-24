@@ -127,7 +127,7 @@ class Talea(AbjadValueObject):
         NonreducedFraction, typing.List[NonreducedFraction]
         ]:
         """
-        Gets item or slice identified by `argument`.
+        Gets item or slice identified by ``argument``.
 
         ..  container:: example
 

@@ -9,7 +9,7 @@ def test_lilypondparsertools_LilyPondParser__contexts__context_ids_01():
     target.name = 'foo'
 
     assert format(target) == abjad.String.normalize(
-        r'''
+        r"""
         \context Staff = "foo"
         {
             c'8
@@ -18,7 +18,7 @@ def test_lilypondparsertools_LilyPondParser__contexts__context_ids_01():
             f'8
             g'8
         }
-        '''
+        """
         )
 
     parser = abjad.lilypondparsertools.LilyPondParser()

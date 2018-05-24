@@ -188,7 +188,7 @@ class Container(Component):
 
     def __contains__(self, argument) -> bool:
         """
-        Is true when `argument` appears in container.
+        Is true when ``argument`` appears in container.
         """
         if isinstance(argument, str):
             return argument in self._named_children
@@ -201,7 +201,7 @@ class Container(Component):
 
     def __delitem__(self, i):
         r"""
-        Deletes components(s) at index `i` in container.
+        Deletes components(s) at index ``i`` in container.
 
         ..  container:: example
 
@@ -288,7 +288,7 @@ class Container(Component):
 
     def __getitem__(self, argument) -> typing.Union[Component, Selection]:
         """
-        Gets item or slice identified by `argument`.
+        Gets item or slice identified by ``argument``.
 
         Traverses top-level items only.
         """
@@ -442,7 +442,7 @@ class Container(Component):
 
     def __setitem__(self, i, argument) -> None:
         """
-        Sets container `i` equal to `argument`.
+        Sets container ``i`` equal to ``argument``.
         Finds spanners that dominate self[i] and children of self[i].
         Replaces contents at self[i] with 'argument'.
         Reattaches spanners to new contents.
@@ -707,11 +707,11 @@ class Container(Component):
         """
         Returns spanners that dominant component pair.
         Returns set (spanner, index) pairs.
-        `left` must be an Abjad component or None.
-        `right` must be an Abjad component or None.
+        ``left`` must be an Abjad component or None.
+        ``right`` must be an Abjad component or None.
 
-        If both `left` and `right` are components,
-        then `left` and `right` must be logical-voice-contiguous.
+        If both ``left`` and ``right`` are components,
+        then ``left`` and ``right`` must be logical-voice-contiguous.
 
         This is a version of Selection._get_dominant_spanners().
         This version is useful for finding spanners that dominant
@@ -961,7 +961,7 @@ class Container(Component):
 
     def _split_at_index(self, i, fracture_spanners=False):
         """
-        Splits container to the left of index `i`.
+        Splits container to the left of index ``i``.
 
         Preserves tuplet multiplier when container is a tuplet.
 
@@ -1436,7 +1436,7 @@ class Container(Component):
 
     def append(self, component) -> None:
         r"""
-        Appends `component` to container.
+        Appends ``component`` to container.
 
         ..  container:: example
 
@@ -1480,7 +1480,7 @@ class Container(Component):
 
     def extend(self, argument) -> None:
         r"""
-        Extends container with `argument`.
+        Extends container with ``argument``.
 
         ..  container:: example
 
@@ -1535,7 +1535,7 @@ class Container(Component):
 
     def index(self, component) -> int:
         r"""
-        Returns index of `component` in container.
+        Returns index of ``component`` in container.
 
         ..  container:: example
 
@@ -1572,7 +1572,7 @@ class Container(Component):
 
     def insert(self, i, component, fracture_spanners=False) -> None:
         r"""
-        Inserts `component` at index `i` in container.
+        Inserts ``component`` at index ``i`` in container.
 
         ..  container:: example
 
@@ -1713,7 +1713,7 @@ class Container(Component):
 
     def pop(self, i=-1):
         r"""
-        Pops component from container at index `i`.
+        Pops component from container at index ``i``.
 
         ..  container:: example
 
@@ -1757,7 +1757,7 @@ class Container(Component):
 
     def remove(self, component) -> None:
         r"""
-        Removes `component` from container.
+        Removes ``component`` from container.
 
         ..  container:: example
 

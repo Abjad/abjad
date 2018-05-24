@@ -2,8 +2,9 @@ import abjad
 
 
 def test_spannertools_OctavationSpanner___eq___01():
-    r'''Spanner is strict comparator.
-    '''
+    """
+    Spanner is strict comparator.
+    """
 
     spanner_1 = abjad.OctavationSpanner()
     spanner_2 = abjad.OctavationSpanner()

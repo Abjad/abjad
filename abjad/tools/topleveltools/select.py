@@ -1,6 +1,6 @@
 def select(items=None):
     r"""
-    Selects `items` or makes select expression.
+    Selects ``items`` or makes select expression.
 
     ..  container:: example
 

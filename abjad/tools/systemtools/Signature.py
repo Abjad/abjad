@@ -47,9 +47,9 @@ class Signature(abctools.AbjadValueObject):
 
     def __call__(self, method):
         """
-        Calls signature decorator on `method`.
+        Calls signature decorator on ``method``.
 
-        Returns `method` with metadata attached.
+        Returns ``method`` with metadata attached.
         """
         method.argument_list_callback = self.argument_list_callback
         method.is_operator = self.is_operator

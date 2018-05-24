@@ -3,8 +3,9 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class Music(AbjadObject):
-    r'''Abjad model of the LilyPond AST music node.
-    '''
+    """
+    Abjad model of the LilyPond AST music node.
+    """
 
     ### CLASS VARIABLES ###
 
@@ -21,6 +22,7 @@ class Music(AbjadObject):
 
     @abc.abstractmethod
     def construct(self):
-        r'''Please document.
-        '''
+        """
+        Please document.
+        """
         raise NotImplementedError

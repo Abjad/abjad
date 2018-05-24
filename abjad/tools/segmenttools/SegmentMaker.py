@@ -52,7 +52,7 @@ class SegmentMaker(AbjadObject):
 
     def __eq__(self, expr):
         """
-        Is true if `expr` is a segment-maker with equivalent properties.
+        Is true if ``expr`` is a segment-maker with equivalent properties.
         """
         return TestManager.compare_objects(self, expr)
 

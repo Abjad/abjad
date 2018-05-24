@@ -4,7 +4,7 @@ import numbers
 
 def are_relatively_prime(argument):
     """
-    Is true when `argument` is an iterable collection of relative primes.
+    Is true when ``argument`` is an iterable collection of relative primes.
 
     ..  container:: example
 
@@ -19,7 +19,7 @@ def are_relatively_prime(argument):
 
     ..  container:: example
 
-        Returns true when `argument` is empty:
+        Returns true when ``argument`` is empty:
 
         >>> abjad.mathtools.are_relatively_prime([])
         True

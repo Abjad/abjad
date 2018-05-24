@@ -18,7 +18,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__Dynamic_01():
     dynamic = abjad.Dynamic('ff')
     abjad.attach(dynamic, target[5])
 
-    string = r'''\new Staff { c2\ppp c\mp c2\rfz c\mf c2\spp c\ff }'''
+    string = r"""\new Staff { c2\ppp c\mp c2\rfz c\mf c2\spp c\ff }"""
 
     parser = abjad.lilypondparsertools.LilyPondParser()
     result = parser(string)

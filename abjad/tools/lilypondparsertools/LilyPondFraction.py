@@ -2,12 +2,13 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class LilyPondFraction(AbjadObject):
-    r'''Model of a fraction in LilyPond.
+    """
+    Model of a fraction in LilyPond.
 
     Not composer-safe.
 
     Used internally by LilyPondParser.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 

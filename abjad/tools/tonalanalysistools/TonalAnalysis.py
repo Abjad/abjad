@@ -433,7 +433,7 @@ class TonalAnalysis(abctools.AbjadObject):
     def analyze_incomplete_tonal_functions(self, key_signature):
         """
         Analyzes incomplete tonal functions of chords in client
-        according to `key_signature`.
+        according to ``key_signature``.
 
         ..  container:: example
 
@@ -480,7 +480,7 @@ class TonalAnalysis(abctools.AbjadObject):
 
     def analyze_neighbor_notes(self):
         r"""
-        Is true when `note` in client is preceeded by a stepwise interval
+        Is true when ``note`` in client is preceeded by a stepwise interval
         in one direction and followed by a stepwise interval in the other
         direction.
 
@@ -548,7 +548,7 @@ class TonalAnalysis(abctools.AbjadObject):
     def analyze_tonal_functions(self, key_signature):
         """
         Analyzes tonal function of chords in client according to
-        `key_signature`.
+        ``key_signature``.
 
         ..  container:: example
 

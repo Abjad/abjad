@@ -11,7 +11,7 @@ def test_lilypondparsertools_LilyPondParser__containers__nesting_01():
     ])
 
     assert format(target) == abjad.String.normalize(
-        r'''
+        r"""
         {
             {
             }
@@ -20,7 +20,7 @@ def test_lilypondparsertools_LilyPondParser__containers__nesting_01():
                 }
             }
         }
-        '''
+        """
         )
 
     parser = abjad.lilypondparsertools.LilyPondParser()

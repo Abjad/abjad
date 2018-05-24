@@ -14,7 +14,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__HorizontalBracket_01():
     abjad.attach(bracket, target[2:])
 
     assert format(target) == abjad.String.normalize(
-        r'''
+        r"""
         {
             c'4
             \startGroup
@@ -27,7 +27,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__HorizontalBracket_01():
             \stopGroup
             \stopGroup
         }
-        '''
+        """
         )
 
     parser = abjad.lilypondparsertools.LilyPondParser()
@@ -36,32 +36,36 @@ def test_lilypondparsertools_LilyPondParser__spanners__HorizontalBracket_01():
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__HorizontalBracket_02():
-    r'''Starting and stopping on the same leaf.
-    '''
+    """
+    Starting and stopping on the same leaf.
+    """
 
-    string = r'''{ c \startGroup \stopGroup c c c }'''
+    string = r"""{ c \startGroup \stopGroup c c c }"""
     assert pytest.raises(Exception, 'LilyPondParser()(string)')
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__HorizontalBracket_03():
-    r'''One group stopping on a leaf, while another begins on the same leaf.
-    '''
+    """
+    One group stopping on a leaf, while another begins on the same leaf.
+    """
 
-    string = r'''{ c \startGroup c \stopGroup \startGroup c c \stopGroup }'''
+    string = r"""{ c \startGroup c \stopGroup \startGroup c c \stopGroup }"""
     assert pytest.raises(Exception, 'LilyPondParser()(string)')
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__HorizontalBracket_04():
-    r'''Unterminated.
-    '''
+    """
+    Unterminated.
+    """
 
-    string = r'''{ c \startGroup c c c }'''
+    string = r"""{ c \startGroup c c c }"""
     assert pytest.raises(Exception, 'LilyPondParser()(string)')
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__HorizontalBracket_05():
-    r'''Unstarted.
-    '''
+    """
+    Unstarted.
+    """
 
-    string = r'''{ c c c c \stopGroup }'''
+    string = r"""{ c c c c \stopGroup }"""
     assert pytest.raises(Exception, 'LilyPondParser()(string)')

@@ -271,7 +271,7 @@ class Expression(AbjadValueObject):
 
     def __call__(self, *arguments, **keywords):
         """
-        Calls expression on `arguments` with `keywords`.
+        Calls expression on ``arguments`` with ``keywords``.
 
         ..  container:: example expression
 
@@ -392,7 +392,7 @@ class Expression(AbjadValueObject):
 
     def __getattr__(self, name):
         """
-        Gets attribute `name`.
+        Gets attribute ``name``.
 
         Returns proxy method when proxy class is set.
 
@@ -1667,7 +1667,7 @@ class Expression(AbjadValueObject):
 
     def establish_equivalence(self, name):
         r"""
-        Makes new expression with `name`.
+        Makes new expression with ``name``.
 
         ..  container:: example expression
 

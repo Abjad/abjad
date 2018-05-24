@@ -3,7 +3,7 @@ import itertools
 
 def yield_all_compositions_of_integer(n):
     """
-    Yields all compositions of positive integer `n`.
+    Yields all compositions of positive integer ``n``.
 
     ..  container:: example
 
@@ -29,11 +29,11 @@ def yield_all_compositions_of_integer(n):
 
     Lists parts in descending lex order.
 
-    Parts sum to `n`.
+    Parts sum to ``n``.
 
-    Finds small values of `n` easily.
+    Finds small values of ``n`` easily.
 
-    Takes around 4 seconds for `n` equal to 17.
+    Takes around 4 seconds for ``n`` equal to 17.
 
     Returns integer tuple generator.
     """

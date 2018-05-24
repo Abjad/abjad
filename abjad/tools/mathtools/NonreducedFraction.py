@@ -205,9 +205,6 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
         """
         Formats nonreduced fraction.
 
-        Set `format_specification` to `''` or `'storage'`.
-        Interprets `''` equal to `'storage'`.
-
         ..  container:: example
 
             >>> fraction = abjad.NonreducedFraction(-6, 3)

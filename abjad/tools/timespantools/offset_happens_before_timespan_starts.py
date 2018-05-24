@@ -4,12 +4,12 @@ def offset_happens_before_timespan_starts(
     hold=False,
     ):
     """
-    Makes time relation indicating that `offset` happens before `timespan`
+    Makes time relation indicating that ``offset`` happens before ``timespan``
     starts.
 
     ..  container:: example
 
-        Makes time relation indicating that `offset` happens before `timespan`
+        Makes time relation indicating that ``offset`` happens before ``timespan``
         starts:
 
         >>> relation = abjad.timespantools.offset_happens_before_timespan_starts()
@@ -26,7 +26,7 @@ def offset_happens_before_timespan_starts(
     ..  container:: example
 
         Makes time relation indicating that offset ``1/2`` happens before
-        `timespan` starts:
+        ``timespan`` starts:
 
         >>> offset = abjad.Offset(1, 2)
 
@@ -46,7 +46,7 @@ def offset_happens_before_timespan_starts(
 
     ..  container:: example
 
-        Makes time relation indicating that `offset` happens before timespan
+        Makes time relation indicating that ``offset`` happens before timespan
         ``[2, 8)`` starts:
 
         >>> timespan = abjad.Timespan(2, 8)

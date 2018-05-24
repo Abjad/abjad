@@ -3,8 +3,9 @@ from abjad.tools.lilypondparsertools.Music import Music
 
 
 class SequentialMusic(Music):
-    r'''Abjad model of the LilyPond AST sequential music node.
-    '''
+    """
+    Abjad model of the LilyPond AST sequential music node.
+    """
 
     ### CLASS VARIABLES ###
 
@@ -13,10 +14,11 @@ class SequentialMusic(Music):
     ### PUBLIC METHODS ###
 
     def construct(self):
-        r'''Constructs sequential music.
+        """
+        Constructs sequential music.
 
         Returns Abjad container.
-        '''
+        """
         from abjad.tools import lilypondparsertools
         container = scoretools.Container([])
         for x in self.music:

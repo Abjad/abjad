@@ -4,7 +4,7 @@ from abjad import Fraction
 
 def arithmetic_mean(argument):
     """
-    Gets arithmetic mean of `argument`.
+    Gets arithmetic mean of ``argument``.
 
     ..  container:: example
 
@@ -17,7 +17,7 @@ def arithmetic_mean(argument):
         >>> abjad.mathtools.arithmetic_mean([2, 2, 20.0])
         8.0
 
-    Raises exception when `argument` is not iterable.
+    Raises exception when ``argument`` is not iterable.
 
     Returns number.
     """

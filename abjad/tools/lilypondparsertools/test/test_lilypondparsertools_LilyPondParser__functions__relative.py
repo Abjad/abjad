@@ -8,7 +8,7 @@ def test_lilypondparsertools_LilyPondParser__functions__relative_01():
     target = abjad.Container(maker(pitches, (1, 4)))
 
     assert format(target) == abjad.String.normalize(
-        r'''
+        r"""
         {
             d'4
             f'4
@@ -19,7 +19,7 @@ def test_lilypondparsertools_LilyPondParser__functions__relative_01():
             f'4
             d'4
         }
-        '''
+        """
         )
 
     string = r"\relative c' { d f a g c b f d }"
@@ -35,7 +35,7 @@ def test_lilypondparsertools_LilyPondParser__functions__relative_02():
     target = abjad.Container(maker(pitches, (1, 4)))
 
     assert format(target) == abjad.String.normalize(
-        r'''
+        r"""
         {
             b'4
             c''4
@@ -50,7 +50,7 @@ def test_lilypondparsertools_LilyPondParser__functions__relative_02():
             b'4
             f'4
         }
-        '''
+        """
         )
 
     string = r"\relative c'' { b c b d b e b a b g b f }"

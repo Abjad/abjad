@@ -3,7 +3,7 @@ import numbers
 
 def integer_equivalent_number_to_integer(number):
     """
-    Changes integer-equivalent `number` to integer.
+    Changes integer-equivalent ``number`` to integer.
 
     ..  container:: example
 

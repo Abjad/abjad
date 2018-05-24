@@ -10,7 +10,7 @@ def test_spannertools_TextSpanner_position_01():
     abjad.attach(command, text_spanner[0])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             \textSpannerNeutral
@@ -21,7 +21,7 @@ def test_spannertools_TextSpanner_position_01():
             c'8
             \stopTextSpan
         }
-        '''
+        """
         )
 
 
@@ -34,7 +34,7 @@ def test_spannertools_TextSpanner_position_02():
     abjad.attach(command, text_spanner[0])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             \textSpannerUp
@@ -45,7 +45,7 @@ def test_spannertools_TextSpanner_position_02():
             c'8
             \stopTextSpan
         }
-        '''
+        """
         )
 
 
@@ -58,7 +58,7 @@ def test_spannertools_TextSpanner_position_03():
     abjad.attach(command, text_spanner[0])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             \textSpannerDown
@@ -69,5 +69,5 @@ def test_spannertools_TextSpanner_position_03():
             c'8
             \stopTextSpan
         }
-        '''
+        """
         )

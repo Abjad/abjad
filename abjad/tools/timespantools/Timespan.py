@@ -92,7 +92,7 @@ class Timespan(AbjadValueObject):
 
     def __eq__(self, argument):
         """
-        Is true when `argument` is a timespan with equal offsets.
+        Is true when ``argument`` is a timespan with equal offsets.
 
         ..  container:: example
 
@@ -109,8 +109,6 @@ class Timespan(AbjadValueObject):
     def __format__(self, format_specification=''):
         """
         Formats timespan.
-
-        Set `format_specification` to `''` or `'storage'`.
 
         ..  container:: example
 
@@ -130,7 +128,7 @@ class Timespan(AbjadValueObject):
 
     def __ge__(self, argument):
         """
-        Is true when `argument` start offset is greater or equal
+        Is true when ``argument`` start offset is greater or equal
         to timespan start offset.
 
         ..  container:: example
@@ -160,7 +158,7 @@ class Timespan(AbjadValueObject):
 
     def __gt__(self, argument):
         """
-        Is true when `argument` start offset is greater than
+        Is true when ``argument`` start offset is greater than
         timespan start offset.
 
         ..  container:: example
@@ -213,7 +211,7 @@ class Timespan(AbjadValueObject):
 
     def __le__(self, argument):
         """
-        Is true when `argument` start offset is less than or equal to
+        Is true when ``argument`` start offset is less than or equal to
         timespan start offset.
 
         ..  container:: example
@@ -258,7 +256,7 @@ class Timespan(AbjadValueObject):
 
     def __lt__(self, argument):
         """
-        Is true when `argument` start offset is less than timespan start
+        Is true when ``argument`` start offset is less than timespan start
         offset.
 
         ..  container::: example
@@ -391,7 +389,7 @@ class Timespan(AbjadValueObject):
 
     def __sub__(self, argument):
         """
-        Subtract `argument` from timespan.
+        Subtract ``argument`` from timespan.
 
         ..  container:: example
 
@@ -752,7 +750,7 @@ class Timespan(AbjadValueObject):
 
     def contains_timespan_improperly(self, timespan):
         """
-        Is true when timespan contains `timespan` improperly.
+        Is true when timespan contains ``timespan`` improperly.
 
         ..  container:: example
 
@@ -779,7 +777,7 @@ class Timespan(AbjadValueObject):
 
     def curtails_timespan(self, timespan):
         """
-        Is true when timespan curtails `timespan`.
+        Is true when timespan curtails ``timespan``.
 
         ..  container:: example
 
@@ -807,7 +805,7 @@ class Timespan(AbjadValueObject):
 
     def delays_timespan(self, timespan):
         """
-        Is true when timespan delays `timespan`.
+        Is true when timespan delays ``timespan``.
 
         ..  container:: example
 
@@ -831,7 +829,7 @@ class Timespan(AbjadValueObject):
 
     def divide_by_ratio(self, ratio):
         """
-        Divides timespan by `ratio`.
+        Divides timespan by ``ratio``.
 
         ..  container:: example
 
@@ -863,7 +861,7 @@ class Timespan(AbjadValueObject):
 
     def get_overlap_with_timespan(self, timespan):
         """
-        Gets duration of overlap with `timespan`.
+        Gets duration of overlap with ``timespan``.
 
         ..  container:: example
 
@@ -913,7 +911,7 @@ class Timespan(AbjadValueObject):
 
     def happens_during_timespan(self, timespan):
         """
-        Is true when timespan happens during `timespan`.
+        Is true when timespan happens during ``timespan``.
 
         ..  container:: example
 
@@ -940,7 +938,7 @@ class Timespan(AbjadValueObject):
 
     def intersects_timespan(self, timespan):
         """
-        Is true when timespan intersects `timespan`.
+        Is true when timespan intersects ``timespan``.
 
         ..  container:: example
 
@@ -971,7 +969,7 @@ class Timespan(AbjadValueObject):
 
     def is_congruent_to_timespan(self, timespan):
         """
-        Is true when timespan is congruent to `timespan`.
+        Is true when timespan is congruent to ``timespan``.
 
         ..  container:: example
 
@@ -998,7 +996,7 @@ class Timespan(AbjadValueObject):
 
     def is_tangent_to_timespan(self, timespan):
         """
-        Is true when timespan is tangent to `timespan`.
+        Is true when timespan is tangent to ``timespan``.
 
         ..  container:: example
 
@@ -1025,7 +1023,7 @@ class Timespan(AbjadValueObject):
 
     def overlaps_all_of_timespan(self, timespan):
         """
-        Is true when timespan overlaps all of `timespan`.
+        Is true when timespan overlaps all of ``timespan``.
 
         ..  container:: example
 
@@ -1051,7 +1049,7 @@ class Timespan(AbjadValueObject):
 
     def overlaps_only_start_of_timespan(self, timespan):
         """
-        Is true when timespan overlaps only start of `timespan`.
+        Is true when timespan overlaps only start of ``timespan``.
 
         ..  container:: example
 
@@ -1081,7 +1079,7 @@ class Timespan(AbjadValueObject):
 
     def overlaps_only_stop_of_timespan(self, timespan):
         """
-        Is true when timespan overlaps only stop of `timespan`.
+        Is true when timespan overlaps only stop of ``timespan``.
 
         ..  container:: example
 
@@ -1111,7 +1109,7 @@ class Timespan(AbjadValueObject):
 
     def overlaps_start_of_timespan(self, timespan):
         """
-        Is true when timespan overlaps start of `timespan`.
+        Is true when timespan overlaps start of ``timespan``.
 
         ..  container:: example
 
@@ -1140,7 +1138,7 @@ class Timespan(AbjadValueObject):
 
     def overlaps_stop_of_timespan(self, timespan):
         """
-        Is true when timespan overlaps start of `timespan`.
+        Is true when timespan overlaps start of ``timespan``.
 
         ..  container:: example
 
@@ -1169,7 +1167,7 @@ class Timespan(AbjadValueObject):
 
     def reflect(self, axis=None):
         """
-        Reflects timespan about `axis`.
+        Reflects timespan about ``axis``.
 
         ..  container:: example
 
@@ -1197,7 +1195,7 @@ class Timespan(AbjadValueObject):
 
     def round_offsets(self, multiplier, anchor=Left, must_be_well_formed=True):
         """
-        Rounds timespan offsets to multiple of `multiplier`.
+        Rounds timespan offsets to multiple of ``multiplier``.
 
         ..  container:: example
 
@@ -1245,7 +1243,7 @@ class Timespan(AbjadValueObject):
 
     def scale(self, multiplier, anchor=Left):
         """
-        Scales timespan by `multiplier`.
+        Scales timespan by ``multiplier``.
 
             >>> timespan = abjad.Timespan(3, 6)
 
@@ -1288,7 +1286,7 @@ class Timespan(AbjadValueObject):
 
     def set_duration(self, duration):
         """
-        Sets timespan duration to `duration`.
+        Sets timespan duration to ``duration``.
 
         ..  container:: example
 
@@ -1309,8 +1307,8 @@ class Timespan(AbjadValueObject):
 
     def set_offsets(self, start_offset=None, stop_offset=None):
         """
-        Sets timespan start offset to `start_offset` and
-        stop offset to `stop_offset`.
+        Sets timespan start offset to ``start_offset`` and
+        stop offset to ``stop_offset``.
 
         ..  container:: example
 
@@ -1319,12 +1317,12 @@ class Timespan(AbjadValueObject):
             >>> timespan.set_offsets(stop_offset=(7, 8))
             Timespan(start_offset=Offset(1, 2), stop_offset=Offset(7, 8))
 
-        Subtracts negative `start_offset` from existing stop offset:
+        Subtracts negative ``start_offset`` from existing stop offset:
 
         >>> timespan.set_offsets(start_offset=(-1, 2))
         Timespan(start_offset=Offset(1, 1), stop_offset=Offset(3, 2))
 
-        Subtracts negative `stop_offset` from existing stop offset:
+        Subtracts negative ``stop_offset`` from existing stop offset:
 
         >>> timespan.set_offsets(stop_offset=(-1, 2))
         Timespan(start_offset=Offset(1, 2), stop_offset=Offset(1, 1))
@@ -1361,7 +1359,7 @@ class Timespan(AbjadValueObject):
     # TODO: extend to self.split_at_offsets()
     def split_at_offset(self, offset):
         """
-        Split into two parts when `offset` happens during timespan:
+        Split into two parts when ``offset`` happens during timespan:
 
         ..  container:: example
 
@@ -1404,7 +1402,7 @@ class Timespan(AbjadValueObject):
 
     def split_at_offsets(self, offsets):
         """
-        Split into one or more parts when `offsets` happens during
+        Split into one or more parts when ``offsets`` happens during
         timespan:
 
         ..  container:: example
@@ -1464,7 +1462,7 @@ class Timespan(AbjadValueObject):
 
     def starts_after_offset(self, offset):
         """
-        Is true when timespan overlaps start of `timespan`.
+        Is true when timespan overlaps start of ``timespan``.
 
         ..  container:: example
 
@@ -1485,7 +1483,7 @@ class Timespan(AbjadValueObject):
 
     def starts_after_timespan_starts(self, timespan):
         """
-        Is true when timespan starts after `timespan` starts.
+        Is true when timespan starts after ``timespan`` starts.
 
         ..  container:: example
 
@@ -1509,7 +1507,7 @@ class Timespan(AbjadValueObject):
 
     def starts_after_timespan_stops(self, timespan):
         """
-        Is true when timespan starts after `timespan` stops.
+        Is true when timespan starts after ``timespan`` stops.
 
         ..  container:: example
 
@@ -1535,7 +1533,7 @@ class Timespan(AbjadValueObject):
 
     def starts_at_offset(self, offset):
         """
-        Is true when timespan starts at `offset`.
+        Is true when timespan starts at ``offset``.
 
         ..  container:: example
 
@@ -1556,7 +1554,7 @@ class Timespan(AbjadValueObject):
 
     def starts_at_or_after_offset(self, offset):
         """
-        Is true when timespan starts at or after `offset`.
+        Is true when timespan starts at or after ``offset``.
 
         ..  container:: example
 
@@ -1577,7 +1575,7 @@ class Timespan(AbjadValueObject):
 
     def starts_before_offset(self, offset):
         """
-        Is true when timespan starts before `offset`.
+        Is true when timespan starts before ``offset``.
 
         ..  container:: example
 
@@ -1598,7 +1596,7 @@ class Timespan(AbjadValueObject):
 
     def starts_before_or_at_offset(self, offset):
         """
-        Is true when timespan starts before or at `offset`.
+        Is true when timespan starts before or at ``offset``.
 
         ..  container:: example
 
@@ -1619,7 +1617,7 @@ class Timespan(AbjadValueObject):
 
     def starts_before_timespan_starts(self, timespan):
         """
-        Is true when timespan starts before `timespan` starts.
+        Is true when timespan starts before ``timespan`` starts.
 
         ..  container:: example
 
@@ -1643,7 +1641,7 @@ class Timespan(AbjadValueObject):
 
     def starts_before_timespan_stops(self, timespan):
         """
-        Is true when timespan starts before `timespan` stops.
+        Is true when timespan starts before ``timespan`` stops.
 
         ..  container:: example
 
@@ -1667,7 +1665,7 @@ class Timespan(AbjadValueObject):
 
     def starts_during_timespan(self, timespan):
         """
-        Is true when timespan starts during `timespan`.
+        Is true when timespan starts during ``timespan``.
 
         ..  container:: example
 
@@ -1694,7 +1692,7 @@ class Timespan(AbjadValueObject):
 
     def starts_when_timespan_starts(self, timespan):
         """
-        Is true when timespan starts when `timespan` starts.
+        Is true when timespan starts when ``timespan`` starts.
 
         ..  container:: example
 
@@ -1718,7 +1716,7 @@ class Timespan(AbjadValueObject):
 
     def starts_when_timespan_stops(self, timespan):
         """
-        Is true when timespan starts when `timespan` stops.
+        Is true when timespan starts when ``timespan`` stops.
 
         ..  container:: example
 
@@ -1742,7 +1740,7 @@ class Timespan(AbjadValueObject):
 
     def stops_after_offset(self, offset):
         """
-        Is true when timespan stops after `offset`.
+        Is true when timespan stops after ``offset``.
 
         ..  container:: example
 
@@ -1763,7 +1761,7 @@ class Timespan(AbjadValueObject):
 
     def stops_after_timespan_starts(self, timespan):
         """
-        Is true when timespan stops when `timespan` starts.
+        Is true when timespan stops when ``timespan`` starts.
 
         ..  container:: example
 
@@ -1787,7 +1785,7 @@ class Timespan(AbjadValueObject):
 
     def stops_after_timespan_stops(self, timespan):
         """
-        Is true when timespan stops when `timespan` stops.
+        Is true when timespan stops when ``timespan`` stops.
 
         ..  container:: example
 
@@ -1811,7 +1809,7 @@ class Timespan(AbjadValueObject):
 
     def stops_at_offset(self, offset):
         """
-        Is true when timespan stops at `offset`.
+        Is true when timespan stops at ``offset``.
 
         ..  container:: example
 
@@ -1832,7 +1830,7 @@ class Timespan(AbjadValueObject):
 
     def stops_at_or_after_offset(self, offset):
         """
-        Is true when timespan stops at or after `offset`.
+        Is true when timespan stops at or after ``offset``.
 
         ..  container:: example
 
@@ -1853,7 +1851,7 @@ class Timespan(AbjadValueObject):
 
     def stops_before_offset(self, offset):
         """
-        Is true when timespan stops before `offset`.
+        Is true when timespan stops before ``offset``.
 
         ..  container:: example
 
@@ -1874,7 +1872,7 @@ class Timespan(AbjadValueObject):
 
     def stops_before_or_at_offset(self, offset):
         """
-        Is true when timespan stops before or at `offset`.
+        Is true when timespan stops before or at ``offset``.
 
         ..  container:: example
 
@@ -1895,7 +1893,7 @@ class Timespan(AbjadValueObject):
 
     def stops_before_timespan_starts(self, timespan):
         """
-        Is true when timespan stops before `timespan` starts.
+        Is true when timespan stops before ``timespan`` starts.
 
         ..  container:: example
 
@@ -1919,7 +1917,7 @@ class Timespan(AbjadValueObject):
 
     def stops_before_timespan_stops(self, timespan):
         """
-        Is true when timespan stops before `timespan` stops.
+        Is true when timespan stops before ``timespan`` stops.
 
         ..  container:: example
 
@@ -1943,7 +1941,7 @@ class Timespan(AbjadValueObject):
 
     def stops_during_timespan(self, timespan):
         """
-        Is true when timespan stops during `timespan`.
+        Is true when timespan stops during ``timespan``.
 
         ..  container:: example
 
@@ -1970,7 +1968,7 @@ class Timespan(AbjadValueObject):
 
     def stops_when_timespan_starts(self, timespan):
         """
-        Is true when timespan stops when `timespan` starts.
+        Is true when timespan stops when ``timespan`` starts.
 
         ..  container:: example
 
@@ -1994,7 +1992,7 @@ class Timespan(AbjadValueObject):
 
     def stops_when_timespan_stops(self, timespan):
         """
-        Is true when timespan stops when `timespan` stops.
+        Is true when timespan stops when ``timespan`` stops.
 
         ..  container:: example
 
@@ -2018,7 +2016,7 @@ class Timespan(AbjadValueObject):
 
     def stretch(self, multiplier, anchor=None):
         """
-        Stretches timespan by `multiplier` relative to `anchor`.
+        Stretches timespan by ``multiplier`` relative to ``anchor``.
 
         .. container:: example
 
@@ -2085,7 +2083,7 @@ class Timespan(AbjadValueObject):
 
     def translate(self, translation=None):
         """
-        Translates timespan by `translation`.
+        Translates timespan by ``translation``.
 
         ..  container:: example
 
@@ -2104,8 +2102,8 @@ class Timespan(AbjadValueObject):
         stop_offset_translation=None,
         ):
         """
-        Translates timespan start offset by `start_offset_translation` and
-        stop offset by `stop_offset_translation`.
+        Translates timespan start offset by ``start_offset_translation`` and
+        stop offset by ``stop_offset_translation``.
 
         ..  container:: example
 
@@ -2131,7 +2129,7 @@ class Timespan(AbjadValueObject):
 
     def trisects_timespan(self, timespan):
         """
-        Is true when timespan trisects `timespan`.
+        Is true when timespan trisects ``timespan``.
 
         ..  container:: example
 

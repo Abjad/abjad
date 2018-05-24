@@ -71,7 +71,7 @@ class OffsetTimespanTimeRelation(TimeRelation):
             >>> time_relation()
             True
 
-        Raises value error is either `offset` or `timespan` is none.
+        Raises value error is either ``offset`` or ``timespan`` is none.
 
         Otherwise returns boolean.
         """
@@ -90,7 +90,7 @@ class OffsetTimespanTimeRelation(TimeRelation):
 
     def __eq__(self, argument):
         """
-        Is true when `argument` equals time relation.
+        Is true when ``argument`` equals time relation.
 
         ..  container:: example
 
@@ -114,9 +114,6 @@ class OffsetTimespanTimeRelation(TimeRelation):
     def __format__(self, format_specification=''):
         """
         Formats time relation.
-
-        Set `format_specification` to `''` or `'storage'`.
-        Interprets `''` equal to `'storage'`.
 
         ::
 
@@ -163,7 +160,7 @@ class OffsetTimespanTimeRelation(TimeRelation):
     @property
     def is_fully_loaded(self):
         """
-        Is true when `timespan` and `offset` are both not none.
+        Is true when ``timespan`` and ``offset`` are both not none.
 
         ..  container:: example
 
@@ -184,7 +181,7 @@ class OffsetTimespanTimeRelation(TimeRelation):
     @property
     def is_fully_unloaded(self):
         """
-        Is true when `timespan` and `offset` are both none.
+        Is true when ``timespan`` and ``offset`` are both none.
 
         ..  container:: example
 

@@ -8,16 +8,16 @@ def test_lilypondparsertools_LilyPondParser__indicators__Markup_01():
     abjad.attach(markup, target[0])
 
     assert format(target) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'1
             ^ \markup { hello! }
         }
-        '''
+        """
         )
 
-    string = r'''\new Staff { c'1 ^ "hello!" }'''
+    string = r"""\new Staff { c'1 ^ "hello!" }"""
 
     parser = abjad.lilypondparsertools.LilyPondParser()
     result = parser(string)
@@ -33,7 +33,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__Markup_02():
     abjad.attach(markup, target[0])
 
     assert format(target) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'4
@@ -44,10 +44,10 @@ def test_lilypondparsertools_LilyPondParser__indicators__Markup_02():
                 "a b c"
                 }
         }
-        '''
+        """
         )
 
-    string = r'''\new Staff { c' _ \markup { X Y Z "a b c" } }'''
+    string = r"""\new Staff { c' _ \markup { X Y Z "a b c" } }"""
 
     parser = abjad.lilypondparsertools.LilyPondParser()
     result = parser(string)
@@ -57,9 +57,10 @@ def test_lilypondparsertools_LilyPondParser__indicators__Markup_02():
 
 
 def test_lilypondparsertools_LilyPondParser__indicators__Markup_03():
-    r'''Articulations following markup block are (re)lexed correctly after
+    """
+    Articulations following markup block are (re)lexed correctly after
     returning to the "notes" lexical state after popping the "markup lexical state.
-    '''
+    """
 
     target = abjad.Staff([abjad.Note(0, (1, 4)), abjad.Note(2, (1, 4))])
     markup = abjad.Markup('hello', direction=abjad.Up)
@@ -68,7 +69,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__Markup_03():
     abjad.attach(articulation, target[0])
 
     assert format(target) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'4
@@ -76,10 +77,10 @@ def test_lilypondparsertools_LilyPondParser__indicators__Markup_03():
             ^ \markup { hello }
             d'4
         }
-        '''
+        """
         )
 
-    string = r'''\new Staff { c' ^ \markup { hello } -. d' }'''
+    string = r"""\new Staff { c' ^ \markup { hello } -. d' }"""
 
     parser = abjad.lilypondparsertools.LilyPondParser()
     result = parser(string)
@@ -107,10 +108,10 @@ def test_lilypondparsertools_LilyPondParser__indicators__Markup_05():
     parser = abjad.lilypondparsertools.LilyPondParser()
     result = parser(command)
     assert format(result, 'lilypond') == abjad.String.normalize(
-        r'''
+        r"""
         \markup {
             \char
                 #1006
             }
-        ''',
+        """,
         )

@@ -8,7 +8,7 @@ def test_spannertools_MultipartBeam_direction_01():
     abjad.attach(beam, container[:])
 
     assert format(container) == abjad.String.normalize(
-        r'''
+        r"""
         {
             c'8
             ^ [
@@ -21,7 +21,7 @@ def test_spannertools_MultipartBeam_direction_01():
             ]
             g'4
         }
-        '''
+        """
         )
 
     abjad.detach(beam, container[:])
@@ -29,7 +29,7 @@ def test_spannertools_MultipartBeam_direction_01():
     abjad.attach(beam, container[:])
 
     assert format(container) == abjad.String.normalize(
-        r'''
+        r"""
         {
             c'8
             _ [
@@ -42,5 +42,5 @@ def test_spannertools_MultipartBeam_direction_01():
             ]
             g'4
         }
-        '''
+        """
         )

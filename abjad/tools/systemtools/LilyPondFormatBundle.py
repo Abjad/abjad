@@ -72,7 +72,7 @@ class LilyPondFormatBundle(AbjadObject):
 
     def get(self, identifier):
         """
-        Gets `identifier`.
+        Gets ``identifier``.
 
         Returns format contributions object or list.
         """
@@ -90,7 +90,7 @@ class LilyPondFormatBundle(AbjadObject):
 
     def tag_format_contributions(self, tag, deactivate=None):
         """
-        Tags format contributions with string `tag`.
+        Tags format contributions with string ``tag``.
 
         Returns none.
         """
@@ -121,7 +121,7 @@ class LilyPondFormatBundle(AbjadObject):
     def update(self, format_bundle):
         """
         Updates format bundle with all format contributions in
-        `format_bundle`.
+        ``format_bundle``.
 
         Returns none.
         """

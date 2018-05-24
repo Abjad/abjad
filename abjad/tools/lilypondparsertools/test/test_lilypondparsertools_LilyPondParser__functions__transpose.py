@@ -10,7 +10,7 @@ def test_lilypondparsertools_LilyPondParser__functions__transpose_01():
     abjad.attach(key_signature, target[0])
 
     assert format(target) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             \key e \major
@@ -19,7 +19,7 @@ def test_lilypondparsertools_LilyPondParser__functions__transpose_01():
             b'4
             e''4
         }
-        '''
+        """
         )
 
     string = r"\transpose d e \relative c' \new Staff { \key d \major d4 fs a d }"
@@ -37,7 +37,7 @@ def test_lilypondparsertools_LilyPondParser__functions__transpose_02():
     abjad.attach(key_signature, target[0])
 
     assert format(target) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             \key ef \major
@@ -46,7 +46,7 @@ def test_lilypondparsertools_LilyPondParser__functions__transpose_02():
             g'4
             bf'4
         }
-        '''
+        """
         )
 
     string = r"\transpose a c' \relative c' \new Staff { \key c \major c4 d e g }"
@@ -64,7 +64,7 @@ def test_lilypondparsertools_LilyPondParser__functions__transpose_03():
     ])
 
     assert format(target) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {
@@ -80,15 +80,15 @@ def test_lilypondparsertools_LilyPondParser__functions__transpose_03():
                 gf'4
             }
         }
-        '''
+        """
         )
 
-    string = r'''music = \relative c' { c d e f }
+    string = r"""music = \relative c' { c d e f }
     \new Staff {
         \transpose c cs \music
         \transpose c df \music
     }
-    '''
+    """
 
     parser = abjad.lilypondparsertools.LilyPondParser()
     result = parser(string)

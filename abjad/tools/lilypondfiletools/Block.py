@@ -89,7 +89,7 @@ class Block(AbjadObject):
 
     def __getitem__(self, name):
         """
-        Gets item with `name`.
+        Gets item with ``name``.
 
         ..  container:: example
 
@@ -104,7 +104,7 @@ class Block(AbjadObject):
 
         Returns item.
 
-        Raises key error when no item with `name` is found.
+        Raises key error when no item with ``name`` is found.
         """
         for item in self.items:
             if getattr(item, 'name', None) == name:
@@ -113,7 +113,7 @@ class Block(AbjadObject):
 
     def __setattr__(self, name, value):
         """
-        Sets block `name` to `value`.
+        Sets block ``name`` to ``value``.
 
         Returns none.
         """

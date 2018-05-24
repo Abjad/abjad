@@ -44,7 +44,7 @@ class PersistenceManager(abctools.AbjadObject):
         """
         Persists client as LilyPond file.
 
-        Autogenerates file path when `ly_file_path` is none.
+        Autogenerates file path when ``ly_file_path`` is none.
 
         ..  container:: example
 
@@ -93,7 +93,7 @@ class PersistenceManager(abctools.AbjadObject):
         """
         Persists client as MIDI file.
 
-        Autogenerates file path when `midi_file_path` is none.
+        Autogenerates file path when ``midi_file_path`` is none.
 
         ..  container:: example
 
@@ -196,7 +196,7 @@ class PersistenceManager(abctools.AbjadObject):
         """
         Persists client as PDF.
 
-        Autogenerates file path when `pdf_file_path` is none.
+        Autogenerates file path when ``pdf_file_path`` is none.
 
         ..  container:: example
 
@@ -283,7 +283,7 @@ class PersistenceManager(abctools.AbjadObject):
             '/Users/josiah/Desktop/test-page14.png'
             '/Users/josiah/Desktop/test-page15.png'
 
-        Autogenerates file path when `png_file_path` is none.
+        Autogenerates file path when ``png_file_path`` is none.
 
         Returns output path(s), elapsed formatting time and elapsed rendering
         time.

@@ -250,9 +250,9 @@ class Tags(AbjadValueObject):
 
     def __getattr__(self, tag: str) -> str:
         """
-        Gets `tag`.
+        Gets ``tag``.
 
-        Raises attribute error when `tag` is unknown.
+        Raises attribute error when ``tag`` is unknown.
         """
         if tag not in self._known_tags:
             raise AttributeError('unknown tag: {!r}.'.format(tag))

@@ -2,12 +2,13 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class SyntaxNode(AbjadObject):
-    r'''A node in an abstract syntax tree (AST).
+    """
+    A node in an abstract syntax tree (AST).
 
     Not composer-safe.
 
     Used internally by LilyPondParser.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -25,10 +26,11 @@ class SyntaxNode(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __getitem__(self, argument):
-        r'''Gets item or slice identified by `argument`.
+        """
+        Gets item or slice identified by ``argument``.
 
         Returns item or slice.
-        '''
+        """
         if isinstance(self.value, (list, tuple)):
             return self.value.__getitem__(argument)
         message = 'can not get: {!r}.'
@@ -36,20 +38,22 @@ class SyntaxNode(AbjadObject):
         raise Exception(message)
 
     def __len__(self):
-        r'''Length of syntax node.
+        """
+        Length of syntax node.
 
         Returns nonnegative integer.
-        '''
+        """
         if isinstance(self.value, (list, tuple)):
             return len(self.value)
         message = 'value must be list or tuple.'
         raise Exception(message)
 
     def __repr__(self):
-        r'''Gets interpreter representation of syntax node.
+        """
+        Gets interpreter representation of syntax node.
 
         Returns string.
-        '''
+        """
         return '{}({}, {})'.format(
             type(self).__name__,
             self.type,
@@ -57,10 +61,11 @@ class SyntaxNode(AbjadObject):
             )
 
     def __str__(self):
-        r'''String representation of syntax node.
+        """
+        String representation of syntax node.
 
         Returns string.
-        '''
+        """
         return '\n'.join(self._format(self))
 
     ### PRIVATE METHODS ###

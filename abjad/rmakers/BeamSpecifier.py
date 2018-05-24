@@ -94,7 +94,7 @@ class BeamSpecifier(AbjadValueObject):
 
     def __call__(self, selections):
         """
-        Calls beam specifier on `selections`.
+        Calls beam specifier on ``selections``.
 
         Returns none.
         """
@@ -816,7 +816,7 @@ class BeamSpecifier(AbjadValueObject):
                     ]
                 }
 
-        Stemlets appear only when `beam_rests` is set to true.
+        Stemlets appear only when ``beam_rests`` is set to true.
 
         ..  container:: example
 

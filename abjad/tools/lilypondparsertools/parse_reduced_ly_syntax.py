@@ -2,7 +2,8 @@ from abjad.tools.lilypondparsertools.ReducedLyParser import ReducedLyParser
 
 
 def parse_reduced_ly_syntax(string):
-    r'''Parse the reduced LilyPond rhythmic syntax:
+    """
+    Parse the reduced LilyPond rhythmic syntax:
 
     >>> from abjad.tools import lilypondparsertools
 
@@ -21,5 +22,5 @@ def parse_reduced_ly_syntax(string):
         Note("c'4")
 
     Returns list.
-    '''
+    """
     return ReducedLyParser()(string)

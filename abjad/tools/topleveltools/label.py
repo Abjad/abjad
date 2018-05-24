@@ -93,9 +93,9 @@ def label(client=None, deactivate=None, tag=None):
 
         See the ``Label`` API entry for many more examples.
 
-    Returns label agent when `client` is not none.
+    Returns label agent when ``client`` is not none.
 
-    Returns label expression when `client` is none.
+    Returns label expression when ``client`` is none.
     """
     import abjad
     if client is not None:

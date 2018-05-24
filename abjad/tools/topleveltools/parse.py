@@ -7,7 +7,7 @@ _lilypond_parsers_by_language = {}  # type: Dict[str, LilyPondParser]
 
 def parse(string, language='english'):
     r"""
-    Parses LilyPond `string`.
+    Parses LilyPond ``string``.
 
     ..  container:: example
 

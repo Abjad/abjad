@@ -89,7 +89,7 @@ class ImportManager(AbjadObject):
         namespace,
         ):
         """
-        Imports public materials from `path` into `namespace`.
+        Imports public materials from ``path`` into ``namespace``.
 
         This is the custom function that all AbjadIDE-managed scores may use to
         import public materials on startup.
@@ -134,7 +134,7 @@ class ImportManager(AbjadObject):
         namespace,
         ):
         """
-        Imports nominative modules from `path` into `namespace`.
+        Imports nominative modules from ``path`` into ``namespace``.
         """
         package_path = ImportManager._split_package_path(path)
         for name in os.listdir(path):
@@ -166,7 +166,7 @@ class ImportManager(AbjadObject):
         ignored_names=None,
         ):
         """
-        Inspects the top level of `path`;
+        Inspects the top level of ``path``;
         does not inspect lower levels of path.
 
         Finds .py modules in path;
@@ -237,7 +237,7 @@ class ImportManager(AbjadObject):
         ignored_names=None,
         ):
         """
-        Imports public names from `path` into `namespace`.
+        Imports public names from ``path`` into ``namespace``.
 
         This is the custom function that all Abjad packages use to import
         public classes and functions on startup.

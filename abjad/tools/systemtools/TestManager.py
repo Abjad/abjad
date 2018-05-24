@@ -37,7 +37,7 @@ class TestManager(AbjadObject):
     @staticmethod
     def _compare_lys(path_1, path_2):
         """
-        Compares LilyPond file `path_1` to LilyPond file `path_2`.
+        Compares LilyPond file ``path_1`` to LilyPond file ``path_2``.
 
         Performs line-by-line comparison.
 
@@ -56,7 +56,7 @@ class TestManager(AbjadObject):
     @staticmethod
     def _compare_text_files(path_1, path_2):
         """
-        Compares text file `path_1` to text file `path_2`.
+        Compares text file ``path_1`` to text file ``path_2``.
 
         Performs line-by-line comparison.
 
@@ -101,7 +101,7 @@ class TestManager(AbjadObject):
     @staticmethod
     def compare(string_1, string_2):
         """
-        Compares `string_1` to `string_2`.
+        Compares ``string_1`` to ``string_2``.
 
         Massage newlines.
 
@@ -129,7 +129,7 @@ class TestManager(AbjadObject):
     @staticmethod
     def compare_files(path_1, path_2):
         """
-        Compares file `path_1` to file `path_2`.
+        Compares file ``path_1`` to file ``path_2``.
 
         For all file types::
 
@@ -167,7 +167,7 @@ class TestManager(AbjadObject):
     @staticmethod
     def compare_objects(object_one, object_two):
         """
-        Compares `object_one` to `object_two`.
+        Compares ``object_one`` to ``object_two``.
 
         Returns true or false.
         """
@@ -191,7 +191,7 @@ class TestManager(AbjadObject):
     @staticmethod
     def diff(object_a, object_b, title=None):
         """
-        Gets diff of `object_a` and `object_b` formats.
+        Gets diff of ``object_a`` and ``object_b`` formats.
 
         >>> one = abjad.Flute()
 

@@ -392,8 +392,8 @@ class Meter(AbjadValueObject):
 
     def __eq__(self, argument):
         """
-        Is true when `argument` is a meter with an rtm format equal to that of
-        this meter.
+        Is true when ``argument`` is a meter with an rtm format equal to that
+        of this meter.
 
         Returns true or false.
         """
@@ -412,9 +412,6 @@ class Meter(AbjadValueObject):
             abjad.Meter(
                 '(7/4 ((3/4 (1/4 1/4 1/4)) (2/4 (1/4 1/4)) (2/4 (1/4 1/4))))'
                 )
-
-        Set `format_specification` to `''` or `'storage'`.
-        Interprets `''` equal to `'storage'`.
 
         Returns string.
         """
@@ -735,7 +732,7 @@ class Meter(AbjadValueObject):
     @staticmethod
     def _make_gridded_test_rhythm(grid_length, rhythm_number, denominator=16):
         """
-        Make test rhythm number `rhythm_number` that fits `grid_length`.
+        Make test rhythm number ``rhythm_number`` that fits ``grid_length``.
 
         Returns selection of one or more possibly tied notes.
 
@@ -1008,7 +1005,7 @@ class Meter(AbjadValueObject):
         ):
         """
         Finds the best-matching sequence of meters for the offsets
-        contained in `argument`.
+        contained in ``argument``.
 
         ..  container:: example
 
@@ -1044,10 +1041,10 @@ class Meter(AbjadValueObject):
             5/4
             5/4
 
-        Coerces offsets from `argument` via
-        `MetricAccentKernel.count_offsets()`.
+        Coerces offsets from ``argument`` via
+        ``MetricAccentKernel.count_offsets()``.
 
-        Coerces Meters from `meters` via `MeterList`.
+        Coerces Meters from ``meters`` via ``MeterList``.
 
         Returns list.
         """
@@ -1068,7 +1065,7 @@ class Meter(AbjadValueObject):
         ):
         r"""
         Generates a dictionary of all offsets in a meter up
-        to `denominator`.
+        to ``denominator``.
 
         Keys are the offsets and the values are the normalized weights of
         those offsets.

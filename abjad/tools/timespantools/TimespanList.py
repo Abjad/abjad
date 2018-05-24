@@ -127,7 +127,7 @@ class TimespanList(TypedList):
 
     def __and__(self, timespan):
         """
-        Keeps material that intersects `timespan`.
+        Keeps material that intersects ``timespan``.
 
         ..  container:: example
 
@@ -305,7 +305,7 @@ class TimespanList(TypedList):
 
     def __sub__(self, timespan):
         """
-        Deletes material that intersects `timespan`.
+        Deletes material that intersects ``timespan``.
 
         ..  container:: example
 
@@ -2044,7 +2044,7 @@ class TimespanList(TypedList):
 
     def get_timespan_that_satisfies_time_relation(self, time_relation):
         """
-        Gets timespan that satisifies `time_relation`.
+        Gets timespan that satisifies ``time_relation``.
 
         ..  container:: example
 
@@ -2069,13 +2069,13 @@ class TimespanList(TypedList):
             Timespan(start_offset=Offset(3, 1), stop_offset=Offset(6, 1))
 
         Returns timespan when timespan list contains exactly one
-        timespan that satisfies `time_relation`.
+        timespan that satisfies ``time_relation``.
 
         Raises exception when timespan list contains no timespan
-        that satisfies `time_relation`.
+        that satisfies ``time_relation``.
 
         Raises exception when timespan list contains more than one
-        timespan that satisfies `time_relation`.
+        timespan that satisfies ``time_relation``.
         """
         timespans = self.get_timespans_that_satisfy_time_relation(
             time_relation)
@@ -2090,7 +2090,7 @@ class TimespanList(TypedList):
 
     def get_timespans_that_satisfy_time_relation(self, time_relation):
         """
-        Gets timespans that satisfy `time_relation`.
+        Gets timespans that satisfy ``time_relation``.
 
         ..  container:: example
 
@@ -2147,7 +2147,7 @@ class TimespanList(TypedList):
 
     def has_timespan_that_satisfies_time_relation(self, time_relation):
         """
-        Is true when timespan list has timespan that satisfies `time_relation`.
+        Is true when timespan list has timespan that satisfies ``time_relation``.
 
         ..  container:: example
 
@@ -2319,7 +2319,7 @@ class TimespanList(TypedList):
         ..  container:: example
 
             Treats tangent timespans as part of the same group when
-            `include_tangent_timespans` is true:
+            ``include_tangent_timespans`` is true:
 
             >>> timespans = abjad.TimespanList([
             ...     abjad.Timespan(0, 3),
@@ -2493,7 +2493,7 @@ class TimespanList(TypedList):
 
     def repeat_to_stop_offset(self, stop_offset):
         """
-        Repeats timespans to `stop_offset`.
+        Repeats timespans to ``stop_offset``.
 
         ..  container:: example
 
@@ -2555,7 +2555,7 @@ class TimespanList(TypedList):
 
     def rotate(self, count):
         """
-        Rotates by `count` contiguous timespans.
+        Rotates by ``count`` contiguous timespans.
 
         ..  container:: example
 
@@ -2650,7 +2650,7 @@ class TimespanList(TypedList):
 
     def round_offsets(self, multiplier, anchor=Left, must_be_well_formed=True):
         """
-        Rounds offsets of timespans in list to multiples of `multiplier`.
+        Rounds offsets of timespans in list to multiples of ``multiplier``.
 
         ..  container:: example
 
@@ -2801,7 +2801,7 @@ class TimespanList(TypedList):
 
     def scale(self, multiplier, anchor=Left):
         """
-        Scales timespan by `multiplier` relative to `anchor`.
+        Scales timespan by ``multiplier`` relative to ``anchor``.
 
         ..  container:: example
 
@@ -2878,7 +2878,7 @@ class TimespanList(TypedList):
 
     def split_at_offset(self, offset):
         """
-        Splits timespans at `offset`.
+        Splits timespans at ``offset``.
 
         ..  container:: example
 
@@ -3021,7 +3021,7 @@ class TimespanList(TypedList):
 
     def split_at_offsets(self, offsets):
         """
-        Splits timespans at `offsets`.
+        Splits timespans at ``offsets``.
 
         ..  container:: example
 
@@ -3068,7 +3068,7 @@ class TimespanList(TypedList):
 
     def stretch(self, multiplier, anchor=None):
         """
-        Stretches timespans by `multiplier` relative to `anchor`.
+        Stretches timespans by ``multiplier`` relative to ``anchor``.
 
         ..  container:: example
 
@@ -3147,7 +3147,7 @@ class TimespanList(TypedList):
 
     def translate(self, translation=None):
         """
-        Translates timespans by `translation`.
+        Translates timespans by ``translation``.
 
         ..  container:: example
 
@@ -3191,8 +3191,8 @@ class TimespanList(TypedList):
         stop_offset_translation=None,
         ):
         """
-        Translates timespans by `start_offset_translation` and
-        `stop_offset_translation`.
+        Translates timespans by ``start_offset_translation`` and
+        ``stop_offset_translation``.
 
         ..  container:: example
 

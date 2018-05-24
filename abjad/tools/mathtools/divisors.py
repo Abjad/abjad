@@ -3,7 +3,7 @@ import math
 
 def divisors(n):
     """
-    Gets positive divisors of `n` in increasing order.
+    Gets positive divisors of ``n`` in increasing order.
 
     ..  container:: example
 
@@ -26,7 +26,7 @@ def divisors(n):
 
     ..  container:: example
 
-        Allows nonpositive `n`:
+        Allows nonpositive ``n``:
 
         >>> abjad.mathtools.divisors(-27)
         [1, 3, 9, 27]

@@ -54,7 +54,7 @@ class LilyPondContextSetting(AbjadValueObject):
 
     def __eq__(self, argument) -> bool:
         """
-        Is true when `argument` is a LilyPond context setting with
+        Is true when ``argument`` is a LilyPond context setting with
         equivalent keyword values.
         """
         return super(LilyPondContextSetting, self).__eq__(argument)

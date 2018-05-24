@@ -2,10 +2,11 @@ import abjad
 
 
 def test_spannertools_Beam__fracture_01():
-    r'''This test shows that fracturing beyond the first leaf
+    """
+    This test shows that fracturing beyond the first leaf
     effectively does nothing except to replace an existing
     spanner with an identical new spanner.
-    '''
+    """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
     beam = abjad.Beam()
@@ -13,7 +14,7 @@ def test_spannertools_Beam__fracture_01():
     beam._fracture(0, direction=abjad.Left)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -27,7 +28,7 @@ def test_spannertools_Beam__fracture_01():
             b'8
             c''8
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).is_well_formed()
@@ -41,7 +42,7 @@ def test_spannertools_Beam__fracture_02():
     beam._fracture(1, direction=abjad.Left)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -57,17 +58,18 @@ def test_spannertools_Beam__fracture_02():
             b'8
             c''8
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).is_well_formed()
 
 
 def test_spannertools_Beam__fracture_03():
-    r'''This test shows that fracurting beyond the last leaf
+    """
+    This test shows that fracurting beyond the last leaf
     effectively does nothing except to replace an existing
     spanner with an identical new spanner.
-    '''
+    """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
     beam = abjad.Beam()
@@ -75,7 +77,7 @@ def test_spannertools_Beam__fracture_03():
     beam._fracture(-1, direction=abjad.Right)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -89,7 +91,7 @@ def test_spannertools_Beam__fracture_03():
             b'8
             c''8
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).is_well_formed()
@@ -103,7 +105,7 @@ def test_spannertools_Beam__fracture_04():
     beam._fracture(1, direction=abjad.Right)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -119,15 +121,16 @@ def test_spannertools_Beam__fracture_04():
             b'8
             c''8
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).is_well_formed()
 
 
 def test_spannertools_Beam__fracture_05():
-    r'''Fracture both sides of leaf.
-    '''
+    """
+    Fracture both sides of leaf.
+    """
 
     staff = abjad.Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
     beam = abjad.Beam()
@@ -135,7 +138,7 @@ def test_spannertools_Beam__fracture_05():
     beam._fracture(2, direction=None)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -153,15 +156,16 @@ def test_spannertools_Beam__fracture_05():
             fs'8
             g'8
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).is_well_formed()
 
 
 def test_spannertools_Beam__fracture_06():
-    r'''Fracture both sides of first leaf in spanner.
-    '''
+    """
+    Fracture both sides of first leaf in spanner.
+    """
 
     staff = abjad.Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
     beam = abjad.Beam()
@@ -169,7 +173,7 @@ def test_spannertools_Beam__fracture_06():
     beam._fracture(0, direction=None)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -185,15 +189,16 @@ def test_spannertools_Beam__fracture_06():
             fs'8
             g'8
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).is_well_formed()
 
 
 def test_spannertools_Beam__fracture_07():
-    r'''Fracture both sides of last leaf in spanner.
-    '''
+    """
+    Fracture both sides of last leaf in spanner.
+    """
 
     staff = abjad.Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
     beam = abjad.Beam()
@@ -201,7 +206,7 @@ def test_spannertools_Beam__fracture_07():
     beam._fracture(4, direction=None)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -217,15 +222,16 @@ def test_spannertools_Beam__fracture_07():
             fs'8
             g'8
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).is_well_formed()
 
 
 def test_spannertools_Beam__fracture_08():
-    r'''Fracture both sides of leaf with negative index.
-    '''
+    """
+    Fracture both sides of leaf with negative index.
+    """
 
     staff = abjad.Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
     beam = abjad.Beam()
@@ -233,7 +239,7 @@ def test_spannertools_Beam__fracture_08():
     beam._fracture(-1, direction=None)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -249,18 +255,19 @@ def test_spannertools_Beam__fracture_08():
             fs'8
             g'8
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).is_well_formed()
 
 
 def test_spannertools_Beam__fracture_09():
-    r'''Fracture container spanner to the right of index 1.
-    '''
+    """
+    Fracture container spanner to the right of index 1.
+    """
 
     staff = abjad.Staff(
-        r'''
+        r"""
         {
             c'8
             cs'8
@@ -279,7 +286,7 @@ def test_spannertools_Beam__fracture_09():
             bf'8
             b'8
         }
-        '''
+        """
         )
 
     leaves = abjad.select(staff).leaves()
@@ -292,7 +299,7 @@ def test_spannertools_Beam__fracture_09():
     assert len(right) == 4
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             {
@@ -318,5 +325,5 @@ def test_spannertools_Beam__fracture_09():
                 ]
             }
         }
-        '''
+        """
         )

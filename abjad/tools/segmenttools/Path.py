@@ -109,7 +109,7 @@ class Path(pathlib.PosixPath):
 
     def __call__(self, *names) -> 'Path':
         """
-        Calls path on `names`.
+        Calls path on ``names``.
         """
         path = self
         for name in names:
@@ -127,7 +127,7 @@ class Path(pathlib.PosixPath):
 
     def __rtruediv__(self, argument):
         """
-        Joins path to `argument`.
+        Joins path to ``argument``.
 
         Returns new path.
         """
@@ -137,7 +137,7 @@ class Path(pathlib.PosixPath):
 
     def __truediv__(self, argument):
         """
-        Joins `argument` to path.
+        Joins ``argument`` to path.
 
         Returns new path.
         """
@@ -877,8 +877,8 @@ class Path(pathlib.PosixPath):
         document_name: str = None,
         ) -> None:
         """
-        Adds metadatum with `name` and `value` into buildspace metadata
-        with optional `document_name`.
+        Adds metadatum with ``name`` and ``value`` into buildspace metadata
+        with optional ``document_name``.
         """
         assert self.is_buildspace(), repr(self)
         if self.is_parts():
@@ -906,7 +906,7 @@ class Path(pathlib.PosixPath):
 
     def coerce(self, name, suffix=None):
         """
-        Coerces asset `name`.
+        Coerces asset ``name``.
 
         ..  container:: example
 
@@ -1076,7 +1076,7 @@ class Path(pathlib.PosixPath):
         tag: typing.Union[str, typing.Callable],
         ) -> typing.Tuple[typing.Tuple[int, int], typing.Tuple[int, int]]:
         """
-        Counts `tag` in path.
+        Counts ``tag`` in path.
 
         Returns two pairs.
 
@@ -1116,7 +1116,7 @@ class Path(pathlib.PosixPath):
         name: str = None,
         ) -> typing.Tuple[int, int, typing.List[String]]:
         """
-        Deactivates `tag` in path.
+        Deactivates ``tag`` in path.
         """
         return self.activate(
             tag,
@@ -1308,7 +1308,7 @@ class Path(pathlib.PosixPath):
 
     def get_files_ending_with(self, name) -> typing.List['Path']:
         """
-        Gets files in path ending with `name`.
+        Gets files in path ending with ``name``.
         """
         paths = []
         for path in self.list_paths():
@@ -2408,7 +2408,7 @@ class Path(pathlib.PosixPath):
     @staticmethod
     def is_segment_name(string) -> bool:
         """
-        Is true when `string` is canonical segment name.
+        Is true when ``string`` is canonical segment name.
 
         ..  container:: example
 
@@ -2888,7 +2888,7 @@ class Path(pathlib.PosixPath):
 
     def with_name(self, name):
         """
-        Gets path with `name`.
+        Gets path with ``name``.
 
         Returns path.
         """
@@ -2896,7 +2896,7 @@ class Path(pathlib.PosixPath):
 
     def with_parent(self, name):
         """
-        Gets path with parent `name`.
+        Gets path with parent ``name``.
 
         Returns path.
         """
@@ -2904,7 +2904,7 @@ class Path(pathlib.PosixPath):
 
     def with_score(self, name):
         """
-        Gets path with score `name`.
+        Gets path with score ``name``.
 
         Returns path.
         """
@@ -2921,7 +2921,7 @@ class Path(pathlib.PosixPath):
 
     def write_metadata_py(self, metadata):
         """
-        Writes `metadata` to `__metadata__.py` in current directory.
+        Writes ``metadata`` to ``__metadata__.py`` in current directory.
 
         Returns none.
         """

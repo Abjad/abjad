@@ -8,13 +8,13 @@ def test_lilypondparsertools_LilyPondParser__indicators__KeySignature_01():
     abjad.attach(key_signature, target[0])
 
     assert format(target) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             \key g \major
             fs'1
         }
-        '''
+        """
         )
 
     parser = abjad.lilypondparsertools.LilyPondParser()

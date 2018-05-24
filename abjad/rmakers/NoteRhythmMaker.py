@@ -88,7 +88,7 @@ class NoteRhythmMaker(RhythmMaker):
 
     def __call__(self, divisions, previous_state=None):
         """
-        Calls note rhythm-maker on `divisions`.
+        Calls note rhythm-maker on ``divisions``.
 
         ..  container:: example
 
@@ -113,8 +113,6 @@ class NoteRhythmMaker(RhythmMaker):
     def __format__(self, format_specification=''):
         """
         Formats note rhythm-maker.
-
-        Set `format_specification` to `''` or `'storage'`.
 
         ..  container:: example
 
@@ -569,7 +567,7 @@ class NoteRhythmMaker(RhythmMaker):
                     }   % measure
                 }
 
-        ..  note:: Currently only works when `outer_divisions_only` is true.
+        ..  note:: Currently only works when ``outer_divisions_only`` is true.
 
         """
         return self._burnish_specifier
@@ -869,7 +867,7 @@ class NoteRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            Spells all divisions metrically when `spell_metrically` is true:
+            Spells all divisions metrically when ``spell_metrically`` is true:
 
             >>> rhythm_maker = abjad.rmakers.NoteRhythmMaker(
             ...     duration_specifier=abjad.rmakers.DurationSpecifier(
@@ -921,7 +919,7 @@ class NoteRhythmMaker(RhythmMaker):
         ..  container:: example
 
             Spells only unassignable durations metrically when
-            `spell_metrically` is ``'unassignable'``:
+            ``spell_metrically`` is ``'unassignable'``:
 
             >>> rhythm_maker = abjad.rmakers.NoteRhythmMaker(
             ...     duration_specifier=abjad.rmakers.DurationSpecifier(

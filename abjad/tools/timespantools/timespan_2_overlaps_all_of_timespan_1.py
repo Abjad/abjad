@@ -4,8 +4,8 @@ def timespan_2_overlaps_all_of_timespan_1(
     hold=False,
     ):
     """
-    Makes time relation indicating that `timespan_2` overlaps all of
-    `timespan_1`.
+    Makes time relation indicating that ``timespan_2`` overlaps all of
+    ``timespan_1``.
 
     ..  container:: example
 

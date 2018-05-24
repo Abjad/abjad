@@ -4,7 +4,7 @@ import pytest
 
 @pytest.mark.skip('Pending 2.19.24 update.')
 def test_lilypondparsertools_LilyPondParser__lilypondfile__HeaderBlock_01():
-    string = r'''
+    string = r"""
     globalvariable = "This is a global variable."
     \header {
         globalvariable = "This abjad.overrides the global variable"
@@ -15,12 +15,12 @@ def test_lilypondparsertools_LilyPondParser__lilypondfile__HeaderBlock_01():
     \score {
         \new Staff { c'4 ^ \markup { \globalvariable } }
     }
-    '''
+    """
     result = parse(string)
     assert isinstance(result, abjad.LilyPondFile)
     assert len(result.items) == 2
     assert format(result.items[0]) == abjad.String.normalize(
-        r'''
+        r"""
         \header {
             globalvariable = #"This abjad.overrides the global variable"
             localvariable = #"and this is a local variable."
@@ -30,22 +30,22 @@ def test_lilypondparsertools_LilyPondParser__lilypondfile__HeaderBlock_01():
                 "and this is a local variable."
                 }
         }
-        '''
+        """
         )
     assert format(result.items[1]) == abjad.String.normalize(
-        r'''
+        r"""
         \score {
             \new Staff {
                 c'4 ^ \markup { This is a global variable. }
             }
         }
-        '''
+        """
         )
 
 
 @pytest.mark.skip('Pending 2.19.24 update.')
 def test_lilypondparsertools_LilyPondParser__lilypondfile__HeaderBlock_02():
-    string = r'''
+    string = r"""
     \header {
         composername = "Foo von Bar"
         composer = \markup { by \bold \composername }
@@ -55,12 +55,12 @@ def test_lilypondparsertools_LilyPondParser__lilypondfile__HeaderBlock_02():
     {
         c'1
     }
-    '''
+    """
     result = parse(string)
     assert isinstance(result, abjad.LilyPondFile)
     assert len(result.items) == 2
     assert format(result.items[0]) == abjad.String.normalize(
-        r'''
+        r"""
         \header {
             composer = \markup {
                 by
@@ -76,10 +76,10 @@ def test_lilypondparsertools_LilyPondParser__lilypondfile__HeaderBlock_02():
                 "Foo von Bar"
                 }
         }
-        ''')
+        """)
     assert format(result.items[1]) == abjad.String.normalize(
-        r'''
+        r"""
         {
             c'1
         }
-        ''')
+        """)

@@ -14,7 +14,7 @@ def graph(
     **keywords
     ) -> None:
     r"""
-    Graphs `argument`.
+    Graphs ``argument``.
 
     ..  container:: example
 

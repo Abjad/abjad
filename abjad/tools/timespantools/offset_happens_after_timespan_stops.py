@@ -4,8 +4,8 @@ def offset_happens_after_timespan_stops(
     hold=False,
     ):
     """
-    Makes time relation indicating that `offset` happens
-    after `timespan` stops.
+    Makes time relation indicating that ``offset`` happens after ``timespan``
+    stops.
 
     ..  container:: example
 

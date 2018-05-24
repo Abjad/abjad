@@ -25,7 +25,7 @@ class LogicalTie(Selection):
 
     def __getitem__(self, argument):
         """
-        Gets `argument`.
+        Gets ``argument``.
 
         Returns component or vanilla selection (not logical tie).
         """
