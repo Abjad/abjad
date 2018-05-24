@@ -148,7 +148,6 @@ class ReplaceScript(CLI):
             with open(path, 'r') as f:
                 lines = f.read().split('\n')
         except UnicodeDecodeError:
-            print('FAILED READING: {}'.format(path))
             return changed_lines, changed_items
         results = []
         for i, line in enumerate(lines):

@@ -26,25 +26,13 @@ class Label(abctools.AbjadObject):
                 \new Staff
                 {
                     c'4
-                    ^ \markup {
-                        \small
-                            C4
-                        }
+                    ^ \markup { C4 }
                     e'4
-                    ^ \markup {
-                        \small
-                            E4
-                        }
+                    ^ \markup { E4 }
                     d'4
-                    ^ \markup {
-                        \small
-                            D4
-                        }
+                    ^ \markup { D4 }
                     f'4
-                    ^ \markup {
-                        \small
-                            F4
-                        }
+                    ^ \markup { F4 }
                 }
 
         ..  container:: example expression
@@ -78,25 +66,13 @@ class Label(abctools.AbjadObject):
                 \new Staff
                 {
                     c'4
-                    ^ \markup {
-                        \small
-                            C4
-                        }
+                    ^ \markup { C4 }
                     e'4
-                    ^ \markup {
-                        \small
-                            E4
-                        }
+                    ^ \markup { E4 }
                     d'4
-                    ^ \markup {
-                        \small
-                            D4
-                        }
+                    ^ \markup { D4 }
                     f'4
-                    ^ \markup {
-                        \small
-                            F4
-                        }
+                    ^ \markup { F4 }
                 }
 
     ..  container:: example
@@ -117,23 +93,27 @@ class Label(abctools.AbjadObject):
                 {
                     c'4
                     ^ \markup {
-                        \small
-                            1/4
+                        \fraction
+                            1
+                            4
                         }
                     e'4
                     ^ \markup {
-                        \small
-                            1/4
+                        \fraction
+                            1
+                            4
                         }
                     d'4
                     ^ \markup {
-                        \small
-                            1/4
+                        \fraction
+                            1
+                            4
                         }
                     f'4
                     ^ \markup {
-                        \small
-                            1/4
+                        \fraction
+                            1
+                            4
                         }
                 }
 
@@ -169,23 +149,27 @@ class Label(abctools.AbjadObject):
                 {
                     c'4
                     ^ \markup {
-                        \small
-                            1/4
+                        \fraction
+                            1
+                            4
                         }
                     e'4
                     ^ \markup {
-                        \small
-                            1/4
+                        \fraction
+                            1
+                            4
                         }
                     d'4
                     ^ \markup {
-                        \small
-                            1/4
+                        \fraction
+                            1
+                            4
                         }
                     f'4
                     ^ \markup {
-                        \small
-                            1/4
+                        \fraction
+                            1
+                            4
                         }
                 }
 
@@ -697,25 +681,13 @@ class Label(abctools.AbjadObject):
                     \new Staff
                     {
                         c'8
-                        ^ \markup {
-                            \small
-                                c'
-                            }
+                        ^ \markup { c' }
                         d'8
-                        ^ \markup {
-                            \small
-                                d'
-                            }
+                        ^ \markup { d' }
                         e'8
-                        ^ \markup {
-                            \small
-                                e'
-                            }
+                        ^ \markup { e' }
                         f'8
-                        ^ \markup {
-                            \small
-                                f'
-                            }
+                        ^ \markup { f' }
                     }
 
                 >>> abjad.label(staff).remove_markup()
@@ -745,25 +717,13 @@ class Label(abctools.AbjadObject):
                     \new Staff
                     {
                         c'8
-                        ^ \markup {
-                            \small
-                                c'
-                            }
+                        ^ \markup { c' }
                         d'8
-                        ^ \markup {
-                            \small
-                                d'
-                            }
+                        ^ \markup { d' }
                         e'8
-                        ^ \markup {
-                            \small
-                                e'
-                            }
+                        ^ \markup { e' }
                         f'8
-                        ^ \markup {
-                            \small
-                                f'
-                            }
+                        ^ \markup { f' }
                     }
 
                 >>> expression = abjad.label().remove_markup()
@@ -1987,27 +1947,31 @@ class Label(abctools.AbjadObject):
                     {
                         c'4.
                         ^ \markup {
-                            \small
-                                3/8
+                            \fraction
+                                3
+                                8
                             }
                         d'8
                         ~
                         ^ \markup {
-                            \small
-                                1/2
+                            \fraction
+                                1
+                                2
                             }
                         d'4.
                         e'16
                         [
                         ^ \markup {
-                            \small
-                                1/16
+                            \fraction
+                                1
+                                16
                             }
                         ef'16
                         ]
                         ^ \markup {
-                            \small
-                                1/16
+                            \fraction
+                                1
+                                16
                             }
                     }
 
@@ -2025,27 +1989,31 @@ class Label(abctools.AbjadObject):
                     {
                         c'4.
                         ^ \markup {
-                            \small
-                                3/8
+                            \fraction
+                                3
+                                8
                             }
                         d'8
                         ~
                         ^ \markup {
-                            \small
-                                1/2
+                            \fraction
+                                1
+                                2
                             }
                         d'4.
                         e'16
                         [
                         ^ \markup {
-                            \small
-                                1/16
+                            \fraction
+                                1
+                                16
                             }
                         ef'16
                         ]
                         ^ \markup {
-                            \small
-                                1/16
+                            \fraction
+                                1
+                                16
                             }
                     }
 
@@ -2066,27 +2034,31 @@ class Label(abctools.AbjadObject):
                     {
                         c'4.
                         ^ \markup {
-                            \small
-                                6/16
+                            \fraction
+                                6
+                                16
                             }
                         d'8
                         ~
                         ^ \markup {
-                            \small
-                                8/16
+                            \fraction
+                                8
+                                16
                             }
                         d'4.
                         e'16
                         [
                         ^ \markup {
-                            \small
-                                1/16
+                            \fraction
+                                1
+                                16
                             }
                         ef'16
                         ]
                         ^ \markup {
-                            \small
-                                1/16
+                            \fraction
+                                1
+                                16
                             }
                     }
 
@@ -2104,27 +2076,31 @@ class Label(abctools.AbjadObject):
                     {
                         c'4.
                         ^ \markup {
-                            \small
-                                6/16
+                            \fraction
+                                6
+                                16
                             }
                         d'8
                         ~
                         ^ \markup {
-                            \small
-                                8/16
+                            \fraction
+                                8
+                                16
                             }
                         d'4.
                         e'16
                         [
                         ^ \markup {
-                            \small
-                                1/16
+                            \fraction
+                                1
+                                16
                             }
                         ef'16
                         ]
                         ^ \markup {
-                            \small
-                                1/16
+                            \fraction
+                                1
+                                16
                             }
                     }
 
@@ -2138,8 +2114,8 @@ class Label(abctools.AbjadObject):
             if denominator is not None:
                 duration = abjad.NonreducedFraction(duration)
                 duration = duration.with_denominator(denominator)
-            label = abjad.Markup(str(duration), direction=direction)
-            label = label.small()
+            pair = duration.pair
+            label = abjad.Markup.fraction(*pair, direction=direction)
             self._attach(label, logical_tie.head)
 
     def with_indices(self, direction=Up, prototype=None):
@@ -2166,28 +2142,16 @@ class Label(abctools.AbjadObject):
                     }
                     {
                         <c' bf'>8
-                        ^ \markup {
-                            \small
-                                0
-                            }
+                        ^ \markup { 0 }
                         <g' a'>4
-                        ^ \markup {
-                            \small
-                                1
-                            }
+                        ^ \markup { 1 }
                         af'8
                         ~
-                        ^ \markup {
-                            \small
-                                2
-                            }
+                        ^ \markup { 2 }
                         af'8
                         gf'8
                         ~
-                        ^ \markup {
-                            \small
-                                3
-                            }
+                        ^ \markup { 3 }
                         gf'4
                     }
 
@@ -2209,28 +2173,16 @@ class Label(abctools.AbjadObject):
                     }
                     {
                         <c' bf'>8
-                        ^ \markup {
-                            \small
-                                0
-                            }
+                        ^ \markup { 0 }
                         <g' a'>4
-                        ^ \markup {
-                            \small
-                                1
-                            }
+                        ^ \markup { 1 }
                         af'8
                         ~
-                        ^ \markup {
-                            \small
-                                2
-                            }
+                        ^ \markup { 2 }
                         af'8
                         gf'8
                         ~
-                        ^ \markup {
-                            \small
-                                3
-                            }
+                        ^ \markup { 3 }
                         gf'4
                     }
 
@@ -2258,26 +2210,14 @@ class Label(abctools.AbjadObject):
                         <g' a'>4
                         af'8
                         ~
-                        ^ \markup {
-                            \small
-                                0
-                            }
+                        ^ \markup { 0 }
                         af'8
-                        ^ \markup {
-                            \small
-                                1
-                            }
+                        ^ \markup { 1 }
                         gf'8
                         ~
-                        ^ \markup {
-                            \small
-                                2
-                            }
+                        ^ \markup { 2 }
                         gf'4
-                        ^ \markup {
-                            \small
-                                3
-                            }
+                        ^ \markup { 3 }
                     }
 
             ..  container:: example expression
@@ -2303,26 +2243,14 @@ class Label(abctools.AbjadObject):
                         <g' a'>4
                         af'8
                         ~
-                        ^ \markup {
-                            \small
-                                0
-                            }
+                        ^ \markup { 0 }
                         af'8
-                        ^ \markup {
-                            \small
-                                1
-                            }
+                        ^ \markup { 1 }
                         gf'8
                         ~
-                        ^ \markup {
-                            \small
-                                2
-                            }
+                        ^ \markup { 2 }
                         gf'4
-                        ^ \markup {
-                            \small
-                                3
-                            }
+                        ^ \markup { 3 }
                     }
 
         ..  container:: example
@@ -2346,15 +2274,9 @@ class Label(abctools.AbjadObject):
                     }
                     {
                         <c' bf'>8
-                        ^ \markup {
-                            \small
-                                0
-                            }
+                        ^ \markup { 0 }
                         <g' a'>4
-                        ^ \markup {
-                            \small
-                                1
-                            }
+                        ^ \markup { 1 }
                         af'8
                         ~
                         af'8
@@ -2383,15 +2305,9 @@ class Label(abctools.AbjadObject):
                     }
                     {
                         <c' bf'>8
-                        ^ \markup {
-                            \small
-                                0
-                            }
+                        ^ \markup { 0 }
                         <g' a'>4
-                        ^ \markup {
-                            \small
-                                1
-                            }
+                        ^ \markup { 1 }
                         af'8
                         ~
                         af'8
@@ -2421,37 +2337,19 @@ class Label(abctools.AbjadObject):
                     }
                     {
                         <c' bf'>8
-                        ^ \markup {
-                            \small
-                                0
-                            }
+                        ^ \markup { 0 }
                         <g' a'>4
-                        ^ \markup {
-                            \small
-                                1
-                            }
+                        ^ \markup { 1 }
                         af'8
                         ~
-                        ^ \markup {
-                            \small
-                                2
-                            }
+                        ^ \markup { 2 }
                         af'8
-                        ^ \markup {
-                            \small
-                                3
-                            }
+                        ^ \markup { 3 }
                         gf'8
                         ~
-                        ^ \markup {
-                            \small
-                                4
-                            }
+                        ^ \markup { 4 }
                         gf'4
-                        ^ \markup {
-                            \small
-                                5
-                            }
+                        ^ \markup { 5 }
                     }
 
             ..  container:: example expression
@@ -2474,37 +2372,19 @@ class Label(abctools.AbjadObject):
                     }
                     {
                         <c' bf'>8
-                        ^ \markup {
-                            \small
-                                0
-                            }
+                        ^ \markup { 0 }
                         <g' a'>4
-                        ^ \markup {
-                            \small
-                                1
-                            }
+                        ^ \markup { 1 }
                         af'8
                         ~
-                        ^ \markup {
-                            \small
-                                2
-                            }
+                        ^ \markup { 2 }
                         af'8
-                        ^ \markup {
-                            \small
-                                3
-                            }
+                        ^ \markup { 3 }
                         gf'8
                         ~
-                        ^ \markup {
-                            \small
-                                4
-                            }
+                        ^ \markup { 4 }
                         gf'4
-                        ^ \markup {
-                            \small
-                                5
-                            }
+                        ^ \markup { 5 }
                     }
 
         ..  container:: example
@@ -2530,37 +2410,25 @@ class Label(abctools.AbjadObject):
                     {
                         \times 2/3 {
                             c'8
-                            ^ \markup {
-                                \small
-                                    0
-                                }
+                            ^ \markup { 0 }
                             d'8
                             e'8
                         }
                         \times 2/3 {
                             c'8
-                            ^ \markup {
-                                \small
-                                    1
-                                }
+                            ^ \markup { 1 }
                             d'8
                             e'8
                         }
                         \times 2/3 {
                             c'8
-                            ^ \markup {
-                                \small
-                                    2
-                                }
+                            ^ \markup { 2 }
                             d'8
                             e'8
                         }
                         \times 2/3 {
                             c'8
-                            ^ \markup {
-                                \small
-                                    3
-                                }
+                            ^ \markup { 3 }
                             d'8
                             e'8
                         }
@@ -2588,37 +2456,25 @@ class Label(abctools.AbjadObject):
                     {
                         \times 2/3 {
                             c'8
-                            ^ \markup {
-                                \small
-                                    0
-                                }
+                            ^ \markup { 0 }
                             d'8
                             e'8
                         }
                         \times 2/3 {
                             c'8
-                            ^ \markup {
-                                \small
-                                    1
-                                }
+                            ^ \markup { 1 }
                             d'8
                             e'8
                         }
                         \times 2/3 {
                             c'8
-                            ^ \markup {
-                                \small
-                                    2
-                                }
+                            ^ \markup { 2 }
                             d'8
                             e'8
                         }
                         \times 2/3 {
                             c'8
-                            ^ \markup {
-                                \small
-                                    3
-                                }
+                            ^ \markup { 3 }
                             d'8
                             e'8
                         }
@@ -2637,7 +2493,6 @@ class Label(abctools.AbjadObject):
         for index, item in enumerate(items):
             string = str(index)
             label = abjad.Markup(string, direction=direction)
-            label = label.small()
             leaves = abjad.select(item).leaves()
             first_leaf = leaves[0]
             self._attach(label, first_leaf)
@@ -3099,27 +2954,20 @@ class Label(abctools.AbjadObject):
                     {
                         <a d' fs'>4
                         ^ \markup {
-                            \small
-                                \column
-                                    {
-                                        fs'
-                                        d'
-                                        a
-                                    }
+                            \column
+                                {
+                                    fs'
+                                    d'
+                                    a
+                                }
                             }
                         g'4
                         ~
-                        ^ \markup {
-                            \small
-                                g'
-                            }
+                        ^ \markup { g' }
                         g'8
                         r8
                         fs''4
-                        ^ \markup {
-                            \small
-                                fs''
-                            }
+                        ^ \markup { fs'' }
                     }
 
             ..  container:: example expression
@@ -3141,27 +2989,20 @@ class Label(abctools.AbjadObject):
                     {
                         <a d' fs'>4
                         ^ \markup {
-                            \small
-                                \column
-                                    {
-                                        fs'
-                                        d'
-                                        a
-                                    }
+                            \column
+                                {
+                                    fs'
+                                    d'
+                                    a
+                                }
                             }
                         g'4
                         ~
-                        ^ \markup {
-                            \small
-                                g'
-                            }
+                        ^ \markup { g' }
                         g'8
                         r8
                         fs''4
-                        ^ \markup {
-                            \small
-                                fs''
-                            }
+                        ^ \markup { fs'' }
                     }
 
         ..  container:: example
@@ -3186,27 +3027,20 @@ class Label(abctools.AbjadObject):
                     {
                         <a d' fs'>4
                         ^ \markup {
-                            \small
-                                \column
-                                    {
-                                        "F#4"
-                                        D4
-                                        A3
-                                    }
+                            \column
+                                {
+                                    "F#4"
+                                    D4
+                                    A3
+                                }
                             }
                         g'4
                         ~
-                        ^ \markup {
-                            \small
-                                G4
-                            }
+                        ^ \markup { G4 }
                         g'8
                         r8
                         fs''4
-                        ^ \markup {
-                            \small
-                                "F#5"
-                            }
+                        ^ \markup { "F#5" }
                     }
 
             ..  container:: example expression
@@ -3228,27 +3062,20 @@ class Label(abctools.AbjadObject):
                     {
                         <a d' fs'>4
                         ^ \markup {
-                            \small
-                                \column
-                                    {
-                                        "F#4"
-                                        D4
-                                        A3
-                                    }
+                            \column
+                                {
+                                    "F#4"
+                                    D4
+                                    A3
+                                }
                             }
                         g'4
                         ~
-                        ^ \markup {
-                            \small
-                                G4
-                            }
+                        ^ \markup { G4 }
                         g'8
                         r8
                         fs''4
-                        ^ \markup {
-                            \small
-                                "F#5"
-                            }
+                        ^ \markup { "F#5" }
                     }
 
         ..  container:: example
@@ -3274,27 +3101,20 @@ class Label(abctools.AbjadObject):
                     {
                         <a d' fs'>4
                         ^ \markup {
-                            \small
-                                \column
-                                    {
-                                        6
-                                        2
-                                        -3
-                                    }
+                            \column
+                                {
+                                    6
+                                    2
+                                    -3
+                                }
                             }
                         g'4
                         ~
-                        ^ \markup {
-                            \small
-                                7
-                            }
+                        ^ \markup { 7 }
                         g'8
                         r8
                         fs''4
-                        ^ \markup {
-                            \small
-                                18
-                            }
+                        ^ \markup { 18 }
                     }
 
             ..  container:: example expression
@@ -3317,27 +3137,20 @@ class Label(abctools.AbjadObject):
                     {
                         <a d' fs'>4
                         ^ \markup {
-                            \small
-                                \column
-                                    {
-                                        6
-                                        2
-                                        -3
-                                    }
+                            \column
+                                {
+                                    6
+                                    2
+                                    -3
+                                }
                             }
                         g'4
                         ~
-                        ^ \markup {
-                            \small
-                                7
-                            }
+                        ^ \markup { 7 }
                         g'8
                         r8
                         fs''4
-                        ^ \markup {
-                            \small
-                                18
-                            }
+                        ^ \markup { 18 }
                     }
 
         ..  container:: example
@@ -3363,27 +3176,20 @@ class Label(abctools.AbjadObject):
                     {
                         <a d' fs'>4
                         ^ \markup {
-                            \small
-                                \column
-                                    {
-                                        6
-                                        2
-                                        9
-                                    }
+                            \column
+                                {
+                                    6
+                                    2
+                                    9
+                                }
                             }
                         g'4
                         ~
-                        ^ \markup {
-                            \small
-                                7
-                            }
+                        ^ \markup { 7 }
                         g'8
                         r8
                         fs''4
-                        ^ \markup {
-                            \small
-                                6
-                            }
+                        ^ \markup { 6 }
                     }
 
             ..  container:: example expression
@@ -3406,27 +3212,20 @@ class Label(abctools.AbjadObject):
                     {
                         <a d' fs'>4
                         ^ \markup {
-                            \small
-                                \column
-                                    {
-                                        6
-                                        2
-                                        9
-                                    }
+                            \column
+                                {
+                                    6
+                                    2
+                                    9
+                                }
                             }
                         g'4
                         ~
-                        ^ \markup {
-                            \small
-                                7
-                            }
+                        ^ \markup { 7 }
                         g'8
                         r8
                         fs''4
-                        ^ \markup {
-                            \small
-                                6
-                            }
+                        ^ \markup { 6 }
                     }
 
         ..  container:: example
@@ -3461,30 +3260,18 @@ class Label(abctools.AbjadObject):
                     {
                         df''4
                         \startGroup
-                        ^ \markup {
-                            \small
-                                df''
-                            }
+                        ^ \markup { df'' }
                         c''4
                         \stopGroup
-                        ^ \markup {
-                            \small
-                                c''
-                            }
+                        ^ \markup { c'' }
                         f'4
                         fs'4
                         d''4
                         \startGroup
-                        ^ \markup {
-                            \small
-                                d''
-                            }
+                        ^ \markup { d'' }
                         ds''4
                         \stopGroup
-                        ^ \markup {
-                            \small
-                                ds''
-                            }
+                        ^ \markup { ds'' }
                     }
 
             ..  container:: example expression
@@ -3515,30 +3302,18 @@ class Label(abctools.AbjadObject):
                     {
                         df''4
                         \startGroup
-                        ^ \markup {
-                            \small
-                                df''
-                            }
+                        ^ \markup { df'' }
                         c''4
                         \stopGroup
-                        ^ \markup {
-                            \small
-                                c''
-                            }
+                        ^ \markup { c'' }
                         f'4
                         fs'4
                         d''4
                         \startGroup
-                        ^ \markup {
-                            \small
-                                d''
-                            }
+                        ^ \markup { d'' }
                         ds''4
                         \stopGroup
-                        ^ \markup {
-                            \small
-                                ds''
-                            }
+                        ^ \markup { ds'' }
                     }
 
         ..  container:: example
@@ -3573,30 +3348,18 @@ class Label(abctools.AbjadObject):
                     {
                         df''4
                         \startGroup
-                        ^ \markup {
-                            \small
-                                13
-                            }
+                        ^ \markup { 13 }
                         c''4
                         \stopGroup
-                        ^ \markup {
-                            \small
-                                12
-                            }
+                        ^ \markup { 12 }
                         f'4
                         fs'4
                         d''4
                         \startGroup
-                        ^ \markup {
-                            \small
-                                14
-                            }
+                        ^ \markup { 14 }
                         ds''4
                         \stopGroup
-                        ^ \markup {
-                            \small
-                                15
-                            }
+                        ^ \markup { 15 }
                     }
 
             ..  container:: example expression
@@ -3628,30 +3391,18 @@ class Label(abctools.AbjadObject):
                     {
                         df''4
                         \startGroup
-                        ^ \markup {
-                            \small
-                                13
-                            }
+                        ^ \markup { 13 }
                         c''4
                         \stopGroup
-                        ^ \markup {
-                            \small
-                                12
-                            }
+                        ^ \markup { 12 }
                         f'4
                         fs'4
                         d''4
                         \startGroup
-                        ^ \markup {
-                            \small
-                                14
-                            }
+                        ^ \markup { 14 }
                         ds''4
                         \stopGroup
-                        ^ \markup {
-                            \small
-                                15
-                            }
+                        ^ \markup { 15 }
                     }
 
         ..  container:: example
@@ -3687,30 +3438,18 @@ class Label(abctools.AbjadObject):
                     {
                         df''4
                         \startGroup
-                        ^ \markup {
-                            \small
-                                1
-                            }
+                        ^ \markup { 1 }
                         c''4
                         \stopGroup
-                        ^ \markup {
-                            \small
-                                0
-                            }
+                        ^ \markup { 0 }
                         f'4
                         fs'4
                         d''4
                         \startGroup
-                        ^ \markup {
-                            \small
-                                2
-                            }
+                        ^ \markup { 2 }
                         ds''4
                         \stopGroup
-                        ^ \markup {
-                            \small
-                                3
-                            }
+                        ^ \markup { 3 }
                     }
 
             ..  container:: example expression
@@ -3742,30 +3481,18 @@ class Label(abctools.AbjadObject):
                     {
                         df''4
                         \startGroup
-                        ^ \markup {
-                            \small
-                                1
-                            }
+                        ^ \markup { 1 }
                         c''4
                         \stopGroup
-                        ^ \markup {
-                            \small
-                                0
-                            }
+                        ^ \markup { 0 }
                         f'4
                         fs'4
                         d''4
                         \startGroup
-                        ^ \markup {
-                            \small
-                                2
-                            }
+                        ^ \markup { 2 }
                         ds''4
                         \stopGroup
-                        ^ \markup {
-                            \small
-                                3
-                            }
+                        ^ \markup { 3 }
                     }
 
         Returns none.
@@ -3785,7 +3512,6 @@ class Label(abctools.AbjadObject):
                         label,
                         direction=direction,
                         )
-                    label = label.small()
                 elif isinstance(leaf, abjad.Chord):
                     pitches = leaf.written_pitches
                     pitches = reversed(pitches)
@@ -3794,33 +3520,28 @@ class Label(abctools.AbjadObject):
                         for _ in pitches
                         ]
                     label = abjad.Markup.column(pitches, direction=direction)
-                    label = label.small()
             elif prototype is abjad.NumberedPitch:
                 if isinstance(leaf, abjad.Note):
                     pitch = leaf.written_pitch.number
                     label = str(pitch)
                     label = abjad.Markup(label, direction=direction)
-                    label = label.small()
                 elif isinstance(leaf, abjad.Chord):
                     pitches = leaf.written_pitches
                     pitches = reversed(pitches)
                     pitches = [_.number for _ in pitches]
                     pitches = [abjad.Markup(_) for _ in pitches]
                     label = abjad.Markup.column(pitches)
-                    label = label.small()
             elif prototype is abjad.NumberedPitchClass:
                 if isinstance(leaf, abjad.Note):
                     pitch = leaf.written_pitch.pitch_class.number
                     label = str(pitch)
                     label = abjad.Markup(label, direction=direction)
-                    label = label.small()
                 elif isinstance(leaf, abjad.Chord):
                     pitches = leaf.written_pitches
                     pitches = reversed(pitches)
                     pitches = [_.pitch_class.number for _ in pitches]
                     pitches = [abjad.Markup(_) for _ in pitches]
                     label = abjad.Markup.column(pitches)
-                    label = label.small()
             if label is not None:
                 label = abjad.new(label, direction=direction)
                 self._attach(label, leaf)
