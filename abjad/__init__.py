@@ -55,12 +55,6 @@ from abjad.tools.timespantools.Timespan import Timespan
 from abjad.tools.timespantools.TimespanInequality import TimespanInequality
 from abjad.tools.timespantools.TimespanList import TimespanList
 
-# rhythm-maker static methods
-from abjad.rmakers.SilenceMask import SilenceMask
-from abjad.rmakers.SustainMask import SustainMask
-silence = SilenceMask.silence
-sustain = SustainMask.sustain
-
 # import version information
 from ._version import __version_info__, __version__
 try:
