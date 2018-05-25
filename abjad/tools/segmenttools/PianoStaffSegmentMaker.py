@@ -50,7 +50,7 @@ class PianoStaffSegmentMaker(SegmentMaker):
         include_layout_ly=None,
         ):
         import abjad
-        from abjad import rmakers
+        from abjadext import rmakers
         SegmentMaker.__init__(self)
         time_signatures = time_signatures or []
         time_signatures = [abjad.TimeSignature(_) for _ in time_signatures]
