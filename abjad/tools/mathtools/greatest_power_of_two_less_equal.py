@@ -4,7 +4,7 @@ import numbers
 
 def greatest_power_of_two_less_equal(n, i=0):
     r"""
-    Gets greatest integer power of two less than or equal to positive `n`.
+    Gets greatest integer power of two less than or equal to positive ``n``.
 
     ..  container:: example
 
@@ -23,7 +23,7 @@ def greatest_power_of_two_less_equal(n, i=0):
         19 16
 
         Greatest-but-``i`` integer power of ``2`` less than or equal to
-        positive `n`:
+        positive ``n``:
 
         >>> for n in range(10, 20):
         ...     print('\t%s\t%s' % (n, abjad.mathtools.greatest_power_of_two_less_equal(n, i=1)))

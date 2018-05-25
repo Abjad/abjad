@@ -261,7 +261,7 @@ class Beam(Spanner):
 
         ..  container:: example
 
-            Is true for skips of any duration when `beam_rests` is true:
+            Is true for skips of any duration when ``beam_rests`` is true:
 
             >>> skip = abjad.Skip((1, 32))
             >>> abjad.Beam._is_beamable(skip, beam_rests=True)
@@ -273,7 +273,7 @@ class Beam(Spanner):
 
         ..  container:: example
 
-            Is true for rests of any duration when `beam_rests` is true:
+            Is true for rests of any duration when ``beam_rests`` is true:
 
             >>> rest = abjad.Rest((1, 32))
             >>> abjad.Beam._is_beamable(rest, beam_rests=True)

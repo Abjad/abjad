@@ -1103,10 +1103,11 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            Makes augmented tuplet from `duration` and `ratio` and avoid dots.
+            Makes augmented tuplet from ``duration`` and ``ratio`` and avoid
+            dots.
 
             Makes tupletted leaves strictly without dots when all
-            `ratio` equal ``1``:
+            ``ratio`` equal ``1``:
 
             >>> tuplet = abjad.Tuplet.from_duration_and_ratio(
             ...     abjad.Duration(3, 16),
@@ -1135,7 +1136,7 @@ class Tuplet(Container):
                     }
                 }   % measure
 
-            Allows tupletted leaves to return with dots when some `ratio`
+            Allows tupletted leaves to return with dots when some ``ratio``
             do not equal ``1``:
 
             >>> tuplet = abjad.Tuplet.from_duration_and_ratio(
@@ -1165,7 +1166,8 @@ class Tuplet(Container):
                     }
                 }   % measure
 
-            Interprets nonassignable `ratio` according to `decrease_monotonic`:
+            Interprets nonassignable ``ratio`` according to
+            ``decrease_monotonic``:
 
             >>> tuplet = abjad.Tuplet.from_duration_and_ratio(
             ...     abjad.Duration(3, 16),
@@ -1199,7 +1201,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            Makes augmented tuplet from `duration` and `ratio` and encourages
+            Makes augmented tuplet from ``duration`` and ``ratio`` and encourages
             dots:
 
             >>> tuplet = abjad.Tuplet.from_duration_and_ratio(
@@ -1229,7 +1231,8 @@ class Tuplet(Container):
                     }
                 }   % measure
 
-            Interprets nonassignable `ratio` according to `decrease_monotonic`:
+            Interprets nonassignable ``ratio`` according to
+            ``decrease_monotonic``:
 
             >>> tuplet = abjad.Tuplet.from_duration_and_ratio(
             ...     abjad.Duration(3, 16),
@@ -1259,11 +1262,11 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            Makes diminished tuplet from `duration` and nonzero integer
-            `ratio`.
+            Makes diminished tuplet from ``duration`` and nonzero integer
+            ``ratio``.
 
             Makes tupletted leaves strictly without dots when all
-            `ratio` equal ``1``:
+            ``ratio`` equal ``1``:
 
             >>> tuplet = abjad.Tuplet.from_duration_and_ratio(
             ...     abjad.Duration(3, 16),
@@ -1292,7 +1295,7 @@ class Tuplet(Container):
                     }
                 }   % measure
 
-            Allows tupletted leaves to return with dots when some `ratio`
+            Allows tupletted leaves to return with dots when some ``ratio``
             do not equal ``1``:
 
             >>> tuplet = abjad.Tuplet.from_duration_and_ratio(
@@ -1322,7 +1325,8 @@ class Tuplet(Container):
                     }
                 }   % measure
 
-            Interprets nonassignable `ratio` according to `decrease_monotonic`:
+            Interprets nonassignable ``ratio`` according to
+            ``decrease_monotonic``:
 
             >>> tuplet = abjad.Tuplet.from_duration_and_ratio(
             ...     abjad.Duration(3, 16),
@@ -1356,8 +1360,8 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            Makes diminished tuplet from `duration` and `ratio` and encourages
-            dots:
+            Makes diminished tuplet from ``duration`` and ``ratio`` and
+            encourages dots:
 
             >>> tuplet = abjad.Tuplet.from_duration_and_ratio(
             ...     abjad.Duration(3, 16),
@@ -1385,7 +1389,7 @@ class Tuplet(Container):
                     }
                 }   % measure
 
-            Interprets nonassignable `ratio` according to `direction`:
+            Interprets nonassignable ``ratio`` according to ``direction``:
 
             >>> tuplet = abjad.Tuplet.from_duration_and_ratio(
             ...     abjad.Duration(3, 16),
@@ -1412,9 +1416,9 @@ class Tuplet(Container):
                     }
                 }   % measure
 
-        Reduces `ratio` relative to each other.
+        Reduces ``ratio`` relative to each other.
 
-        Interprets negative `ratio` as rests.
+        Interprets negative ``ratio`` as rests.
 
         Returns tuplet.
         """
@@ -1471,7 +1475,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            Changes leaf to augmented tuplets with `ratio`:
+            Changes leaf to augmented tuplets with ``ratio``:
 
             >>> tuplet = abjad.Tuplet.from_leaf_and_ratio(
             ...     note,
@@ -1494,7 +1498,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            Changes leaf to augmented tuplets with `ratio`:
+            Changes leaf to augmented tuplets with ``ratio``:
 
             >>> tuplet = abjad.Tuplet.from_leaf_and_ratio(
             ...     note,
@@ -1518,7 +1522,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            Changes leaf to augmented tuplets with `ratio`:
+            Changes leaf to augmented tuplets with ``ratio``:
 
             >>> tuplet = abjad.Tuplet.from_leaf_and_ratio(
             ...     note,
@@ -1543,7 +1547,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            Changes leaf to augmented tuplets with `ratio`:
+            Changes leaf to augmented tuplets with ``ratio``:
 
             >>> tuplet = abjad.Tuplet.from_leaf_and_ratio(
             ...     note,
@@ -1569,7 +1573,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            Changes leaf to augmented tuplets with `ratio`:
+            Changes leaf to augmented tuplets with ``ratio``:
 
             >>> tuplet = abjad.Tuplet.from_leaf_and_ratio(
             ...     note,
@@ -1596,7 +1600,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            Changes leaf to augmented tuplets with `ratio`:
+            Changes leaf to augmented tuplets with ``ratio``:
 
             >>> tuplet = abjad.Tuplet.from_leaf_and_ratio(
             ...     note,
@@ -1624,7 +1628,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            Changes leaf to diminished tuplets with `ratio`:
+            Changes leaf to diminished tuplets with ``ratio``:
 
             >>> tuplet = abjad.Tuplet.from_leaf_and_ratio(
             ...     note,
@@ -1647,7 +1651,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            Changes leaf to diminished tuplets with `ratio`:
+            Changes leaf to diminished tuplets with ``ratio``:
 
             >>> tuplet = abjad.Tuplet.from_leaf_and_ratio(
             ...     note,
@@ -1671,7 +1675,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            Changes leaf to diminished tuplets with `ratio`:
+            Changes leaf to diminished tuplets with ``ratio``:
 
             >>> tuplet = abjad.Tuplet.from_leaf_and_ratio(
             ...     note,
@@ -1695,7 +1699,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            Changes leaf to diminished tuplets with `ratio`:
+            Changes leaf to diminished tuplets with ``ratio``:
 
             >>> tuplet = abjad.Tuplet.from_leaf_and_ratio(
             ...     note,
@@ -1721,7 +1725,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            Changes leaf to diminished tuplets with `ratio`:
+            Changes leaf to diminished tuplets with ``ratio``:
 
             >>> tuplet = abjad.Tuplet.from_leaf_and_ratio(
             ...     note,
@@ -1748,7 +1752,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            Changes leaf to diminished tuplets with `ratio`:
+            Changes leaf to diminished tuplets with ``ratio``:
 
             >>> tuplet = abjad.Tuplet.from_leaf_and_ratio(
             ...     note,
@@ -1814,7 +1818,7 @@ class Tuplet(Container):
         ..  container:: example
 
             Makes trivial tuplet when no prolation is necessary and
-            `allow_trivial` is true:
+            ``allow_trivial`` is true:
 
             >>> tuplet = abjad.Tuplet.from_ratio_and_pair(
             ...     abjad.NonreducedRatio((1,)),
@@ -1961,7 +1965,7 @@ class Tuplet(Container):
                     }
                 }   % measure
 
-        Interprets `d` as tuplet denominator.
+        Interprets ``d`` as tuplet denominator.
 
         Returns tuplet or container.
         """

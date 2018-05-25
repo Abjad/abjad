@@ -57,7 +57,7 @@ class MeasuredComplexBeam(ComplexBeam):
 
     Groups leaves by measures.
 
-    Formats top-level `span_beam_count` beam between measures.
+    Formats top-level ``span_beam_count`` beam between measures.
     """
 
     ### CLASS VARIABLES ###

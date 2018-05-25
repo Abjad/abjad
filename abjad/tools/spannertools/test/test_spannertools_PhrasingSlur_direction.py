@@ -8,7 +8,7 @@ def test_spannertools_PhrasingSlur_direction_01():
     abjad.attach(slur, staff[:])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -18,7 +18,7 @@ def test_spannertools_PhrasingSlur_direction_01():
             f'8
             \)
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).is_well_formed()
@@ -31,7 +31,7 @@ def test_spannertools_PhrasingSlur_direction_02():
     abjad.attach(slur, staff[:])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -41,7 +41,7 @@ def test_spannertools_PhrasingSlur_direction_02():
             f'8
             \)
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).is_well_formed()

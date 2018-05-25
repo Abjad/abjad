@@ -42,7 +42,7 @@ class Accelerando(AbjadValueObject):
     Accelerandi are not followed by any type of dashed line or other spanner.
 
     Use accelerandi with a metronome mark spanner to generate dashed lines and
-    other spanners. See `abjad.MetronomeMarkMarkSpanner` for examples.
+    other spanners. See ``abjad.MetronomeMarkMarkSpanner`` for examples.
     """
 
     ### CLASS VARIABLES ###

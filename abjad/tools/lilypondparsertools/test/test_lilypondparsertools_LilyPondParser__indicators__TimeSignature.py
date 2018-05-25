@@ -8,7 +8,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__TimeSignature_01():
     abjad.attach(time_signature, target[0][0])
 
     assert format(target) == abjad.String.normalize(
-        r'''
+        r"""
         \new Score
         <<
             \new Staff
@@ -17,7 +17,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__TimeSignature_01():
                 c'1
             }
         >>
-        '''
+        """
         )
 
     parser = abjad.lilypondparsertools.LilyPondParser()

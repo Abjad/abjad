@@ -1,9 +1,9 @@
 def all_are_pairs_of_types(argument, first_type, second_type):
     """
-    Is true when `argument` is an iterable collection whose members are all
+    Is true when ``argument`` is an iterable collection whose members are all
     of length 2, and where the first member of each pair is an instance of
-    `first_type` and where the second member of each pair is an instance of
-    `second_type`.
+    ``first_type`` and where the second member of each pair is an instance of
+    ``second_type``.
 
     ..  container:: example
 
@@ -16,7 +16,7 @@ def all_are_pairs_of_types(argument, first_type, second_type):
 
     ..  container:: example
 
-        Is true when `argument` is empty:
+        Is true when ``argument`` is empty:
 
         >>> abjad.mathtools.all_are_pairs_of_types([], float, str)
         True

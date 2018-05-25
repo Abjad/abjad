@@ -98,9 +98,9 @@ class DuratedComplexBeam(ComplexBeam):
                 ]
             }
 
-    Groups leaves in spanner according to `durations`.
+    Groups leaves in spanner according to ``durations``.
 
-    Spans leaves between groups according to `span_beam_count`.
+    Spans leaves between groups according to ``span_beam_count``.
     """
 
     ### CLASS VARIABLES ###

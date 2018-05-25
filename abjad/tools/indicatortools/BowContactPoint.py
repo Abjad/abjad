@@ -58,8 +58,8 @@ class BowContactPoint(AbjadValueObject):
 
     def __lt__(self, argument) -> bool:
         """
-        Is true if `argument` is a bow contact point and this bow contact
-        point is less than `argument`.
+        Is true if ``argument`` is a bow contact point and this bow contact
+        point is less than ``argument``.
 
         ..  container:: example
 

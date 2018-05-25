@@ -247,7 +247,7 @@ class RootlessChordClass(IntervalSegment):
     @staticmethod
     def from_interval_class_segment(segment):
         """
-        Makes new rootless chord-class from `segment`.
+        Makes new rootless chord-class from ``segment``.
 
         ..  container:: example
 

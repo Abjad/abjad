@@ -8,13 +8,13 @@ def test_lilypondparsertools_LilyPondParser__indicators__Clef_01():
     abjad.attach(clef, target[0])
 
     assert format(target) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             \clef "bass"
             c'1
         }
-        '''
+        """
         )
 
     parser = abjad.lilypondparsertools.LilyPondParser()

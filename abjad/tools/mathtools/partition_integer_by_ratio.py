@@ -1,6 +1,6 @@
 def partition_integer_by_ratio(n, ratio):
     """
-    Partitions positive integer-equivalent `n` by `ratio`.
+    Partitions positive integer-equivalent ``n`` by ``ratio``.
 
     ..  container:: example
 
@@ -9,7 +9,7 @@ def partition_integer_by_ratio(n, ratio):
 
     ..  container:: example
 
-        Partitions positive integer-equivalent `n` by `ratio` with negative
+        Partitions positive integer-equivalent ``n`` by ``ratio`` with negative
         parts:
 
         >>> abjad.mathtools.partition_integer_by_ratio(10, [1, -2])
@@ -17,14 +17,14 @@ def partition_integer_by_ratio(n, ratio):
 
     ..  container:: example
 
-        Partitions negative integer-equivalent `n` by `ratio`:
+        Partitions negative integer-equivalent ``n`` by ``ratio``:
 
         >>> abjad.mathtools.partition_integer_by_ratio(-10, [1, 2])
         [-3, -7]
 
     ..  container:: example
 
-        Partitions negative integer-equivalent `n` by `ratio` with negative
+        Partitions negative integer-equivalent ``n`` by ``ratio`` with negative
         parts:
 
         >>> abjad.mathtools.partition_integer_by_ratio(-10, [1, -2])
@@ -49,7 +49,7 @@ def partition_integer_by_ratio(n, ratio):
         >>> abjad.mathtools.partition_integer_by_ratio(-10, [1, 1, 1, 1, 1])
         [-2, -2, -2, -2, -2]
 
-    Returns result with weight equal to absolute value of `n`.
+    Returns result with weight equal to absolute value of ``n``.
 
     Returns list of integers.
     """

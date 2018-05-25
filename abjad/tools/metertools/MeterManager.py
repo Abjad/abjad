@@ -16,7 +16,7 @@ class MeterManager(abctools.AbjadObject):
     @staticmethod
     def get_offsets_at_depth(depth, offset_inventory):
         """
-        Gets offsets at `depth` in `offset_inventory`.
+        Gets offsets at ``depth`` in ``offset_inventory``.
         """
         import abjad
         if depth < len(offset_inventory):
@@ -86,7 +86,7 @@ class MeterManager(abctools.AbjadObject):
     def iterate_rewrite_inputs(argument):
         r"""
         Iterates topmost masked logical ties, rest groups and containers
-        in `argument`, masked by `argument`.
+        in ``argument``, masked by ``argument``.
 
         >>> string = "abj: ! 2/4 c'4 d'4 ~ !"
         >>> string += "! 4/4 d'8. r16 r8. e'16 ~ "

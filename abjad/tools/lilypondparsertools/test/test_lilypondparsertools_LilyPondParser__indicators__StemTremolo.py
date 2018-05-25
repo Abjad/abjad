@@ -8,13 +8,13 @@ def test_lilypondparsertools_LilyPondParser__indicators__StemTremolo_01():
     abjad.attach(stem_tremolo, target[0])
 
     assert format(target) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'1
             :4
         }
-        '''
+        """
         )
 
     parser = abjad.lilypondparsertools.LilyPondParser()

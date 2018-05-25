@@ -11,7 +11,7 @@ def test_lilypondparsertools_LilyPondParser__contexts__PianoStaff_01():
     target.lilypond_type = 'PianoStaff'
 
     assert format(target) == abjad.String.normalize(
-        r'''
+        r"""
         \new PianoStaff
         <<
             \new Staff
@@ -31,7 +31,7 @@ def test_lilypondparsertools_LilyPondParser__contexts__PianoStaff_01():
                 g'8
             }
         >>
-        '''
+        """
         )
 
     parser = abjad.lilypondparsertools.LilyPondParser()

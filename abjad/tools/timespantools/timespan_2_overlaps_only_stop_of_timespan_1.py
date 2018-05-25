@@ -4,8 +4,8 @@ def timespan_2_overlaps_only_stop_of_timespan_1(
     hold=False,
     ):
     """
-    Makes time relation indicating that `timespan_2` overlaps
-    only stop of  `timespan_1`.
+    Makes time relation indicating that ``timespan_2`` overlaps
+    only stop of  ``timespan_1``.
 
     ..  container:: example
 

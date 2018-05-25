@@ -133,7 +133,7 @@ class Line(AbjadObject):
 
     def match(self, predicate):
         r"""
-        Is true when `predicate` matches tags.
+        Is true when ``predicate`` matches tags.
 
         ..  container:: example
 

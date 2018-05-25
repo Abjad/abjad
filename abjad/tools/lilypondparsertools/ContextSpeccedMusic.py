@@ -3,8 +3,9 @@ from abjad.tools.lilypondparsertools.Music import Music
 
 
 class ContextSpeccedMusic(Music):
-    r'''Abjad model of the LilyPond AST context-specced music node.
-    '''
+    """
+    Abjad model of the LilyPond AST context-specced music node.
+    """
 
     ### CLASS VARIABLES ###
 
@@ -38,10 +39,11 @@ class ContextSpeccedMusic(Music):
     ### PUBLIC METHODS ###
 
     def construct(self):
-        r'''Constructs context.
+        """
+        Constructs context.
 
         Returns context.
-        '''
+        """
         if self.lilypond_type in self.known_contexts:
             context = known_contexts[self.lilypond_type]([])
         else:
@@ -68,10 +70,11 @@ class ContextSpeccedMusic(Music):
 
     @property
     def known_contexts(self):
-        r'''Known contexts.
+        """
+        Known contexts.
 
         Returns dictionary.
-        '''
+        """
         return {
             'ChoirStaff': scoretools.StaffGroup,
             'GrandStaff': scoretools.StaffGroup,

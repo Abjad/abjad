@@ -367,10 +367,11 @@ class LilyPondParser(abctools.Parser):
     ### SPECIAL METHODS ###
 
     def __call__(self, input_string):
-        r'''Calls LilyPond parser on `input_string`.
+        """
+        Calls LilyPond parser on `input_string`.
 
         Returns Abjad components.
-        '''
+        """
         self._reset_parser_variables()
         if self._debug:
             result = self._parser._lilypond_patch_parse_debug(

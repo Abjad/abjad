@@ -172,7 +172,7 @@ class IOManager(AbjadObject):
         fixed_point=True,
         ):
         """
-        Counts function calls required to execute `argument`.
+        Counts function calls required to execute ``argument``.
 
         Wraps ``IOManager.profile(argument)``.
 
@@ -207,9 +207,9 @@ class IOManager(AbjadObject):
     @staticmethod
     def execute_file(path=None, attribute_names=None):
         """
-        Executes file `path`.
+        Executes file ``path``.
 
-        Returns `attribute_names` from file.
+        Returns ``attribute_names`` from file.
         """
         assert path is not None
         assert isinstance(attribute_names, tuple)
@@ -238,7 +238,7 @@ class IOManager(AbjadObject):
         local_namespace=None,
         ):
         """
-        Executes `string`.
+        Executes ``string``.
 
         ..  container:: example
 
@@ -247,7 +247,7 @@ class IOManager(AbjadObject):
             >>> abjad.IOManager.execute_string(string, attribute_names)
             (23, None)
 
-        Returns `attribute_names` from executed string.
+        Returns ``attribute_names`` from executed string.
         """
         assert isinstance(string, str)
         assert isinstance(attribute_names, tuple)
@@ -271,7 +271,7 @@ class IOManager(AbjadObject):
     @staticmethod
     def find_executable(name, flags=os.X_OK):
         """
-        Finds executable `name`.
+        Finds executable ``name``.
 
         Similar to Unix ``which`` command.
 
@@ -280,7 +280,7 @@ class IOManager(AbjadObject):
             >>> abjad.IOManager.find_executable('python2.7') # doctest: +SKIP
             ['/usr/bin/python2.7']
 
-        Returns list of zero or more full paths to `name`.
+        Returns list of zero or more full paths to ``name``.
         """
         result = []
         extensions = [
@@ -307,7 +307,7 @@ class IOManager(AbjadObject):
         output_directory=None,
         ):
         """
-        Gets last output file name in `output_directory`.
+        Gets last output file name in ``output_directory``.
 
         ..  container:: example
 
@@ -315,7 +315,7 @@ class IOManager(AbjadObject):
             '6222.ly'
 
         Gets last output file name in Abjad output directory when
-        `output_directory` is none.
+        ``output_directory`` is none.
 
         Returns none when output directory contains no output files.
 
@@ -347,16 +347,16 @@ class IOManager(AbjadObject):
         output_directory=None,
         ):
         """
-        Gets next output file name with `file_extension` in
-        `output_directory`.
+        Gets next output file name with ``file_extension`` in
+        ``output_directory``.
 
         ..  container:: example
 
             >>> abjad.IOManager.get_next_output_file_name() # doctest: +SKIP
             '6223.ly'
 
-        Gets next output file name with `file_extension` in Abjad output
-        directory when `output_directory` is none.
+        Gets next output file name with ``file_extension`` in Abjad output
+        directory when ``output_directory`` is none.
 
         Returns string.
         """
@@ -412,17 +412,18 @@ class IOManager(AbjadObject):
     @staticmethod
     def open_file(file_path, application=None, line_number=None):
         """
-        Opens `file_path`.
+        Opens ``file_path``.
 
-        Uses `application` when `application` is not none.
+        Uses ``application`` when ``application`` is not none.
 
-        Uses Abjad configuration file `text_editor` when
-        `application` is none.
+        Uses Abjad configuration file ``text_editor`` when
+        ``application`` is none.
 
         Takes best guess at operating system-specific file opener when both
-        `application` and Abjad configuration file `text_editor` are none.
+        ``application`` and Abjad configuration file ``text_editor`` are none.
 
-        Respects `line_number` when `file_path` can be opened with text editor.
+        Respects ``line_number`` when ``file_path`` can be opened with text
+        editor.
 
         Returns none.
         """
@@ -584,7 +585,7 @@ class IOManager(AbjadObject):
         print_to_terminal=True,
         ):
         """
-        Profiles `argument`.
+        Profiles ``argument``.
 
         ..  container:: example
 
@@ -617,20 +618,20 @@ class IOManager(AbjadObject):
 
         Wraps the built-in Python ``cProfile`` module.
 
-        Set `argument` to any string of Abjad input.
+        Set ``argument`` to any string of Abjad input.
 
-        Set `sort_by` to `'cumulative'`, `'time'` or `'calls'`.
+        Set ``sort_by`` to ``'cumulative'``, ``'time'`` or ``'calls'``.
 
-        Set `line_count` to any nonnegative integer.
+        Set ``line_count`` to any nonnegative integer.
 
-        Set `strip_dirs` to true to strip directory names from output lines.
+        Set ``strip_dirs`` to true to strip directory names from output lines.
 
         See the `Python docs <http://docs.python.org/library/profile.html>`_
         for more information on the Python profilers.
 
-        Returns none when `print_to_terminal` is false.
+        Returns none when ``print_to_terminal`` is false.
 
-        Returns string when `print_to_terminal` is true.
+        Returns string when ``print_to_terminal`` is true.
         """
         import cProfile
         import pstats
@@ -669,7 +670,7 @@ class IOManager(AbjadObject):
     @staticmethod
     def run_command(command):
         """
-        Makes subprocess with `command`.
+        Makes subprocess with ``command``.
 
         Runs command.
 
@@ -685,7 +686,7 @@ class IOManager(AbjadObject):
     @staticmethod
     def run_lilypond(ly_path, flags=None, lilypond_path=None):
         """
-        Runs LilyPond on `ly_path`.
+        Runs LilyPond on ``ly_path``.
 
         Writes redirected output of Unix ``date`` to top line of LilyPond log
         file.
@@ -739,7 +740,7 @@ class IOManager(AbjadObject):
     @staticmethod
     def save_last_ly_as(file_path):
         """
-        Saves last LilyPond file created by Abjad as `file_path`.
+        Saves last LilyPond file created by Abjad as ``file_path``.
 
         Returns none.
         """
@@ -762,7 +763,7 @@ class IOManager(AbjadObject):
     @staticmethod
     def save_last_pdf_as(file_path):
         """
-        Saves last PDF created by Abjad as `file_path`.
+        Saves last PDF created by Abjad as ``file_path``.
 
         Returns none.
         """
@@ -783,7 +784,7 @@ class IOManager(AbjadObject):
     @staticmethod
     def spawn_subprocess(command):
         """
-        Spawns subprocess and runs `command`.
+        Spawns subprocess and runs ``command``.
 
         The function is basically a reimplementation of the
         deprecated ``os.system()`` using Python's ``subprocess`` module.

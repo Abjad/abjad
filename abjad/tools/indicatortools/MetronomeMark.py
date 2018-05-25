@@ -443,9 +443,6 @@ class MetronomeMark(AbjadValueObject):
         r"""
         Formats metronome mark.
 
-        Set `format_specification` to `''`', `'lilypond'` or `'storage'`.
-        Interprets `''` equal to `'storage'`.
-
         ..  container:: example
 
             Without custom markup:
@@ -1081,7 +1078,7 @@ class MetronomeMark(AbjadValueObject):
             >>> mark.quarters_per_minute
             Fraction(140, 1)
 
-        Returns tuple when metronome mark `units_per_minute` is a range.
+        Returns tuple when metronome mark ``units_per_minute`` is a range.
 
         Returns none when metronome mark is imprecise.
 
@@ -1689,7 +1686,7 @@ class MetronomeMark(AbjadValueObject):
 
     def rewrite_duration(self, duration, metronome_mark):
         r"""
-        Rewrites `duration` under `metronome_mark`.
+        Rewrites ``duration`` under ``metronome_mark``.
 
         ..  container:: example
 
@@ -1698,31 +1695,31 @@ class MetronomeMark(AbjadValueObject):
             >>> tempo = abjad.MetronomeMark((1, 4), 60)
             >>> metronome_mark = abjad.MetronomeMark((1, 4), 90)
 
-            `tempo` specifies quarter equal to ``60``.
+            ``tempo`` specifies quarter equal to ``60``.
 
-            `metronome_mark` indication specifies quarter equal to ``90``.
+            ``metronome_mark`` indication specifies quarter equal to ``90``.
 
-            `metronome_mark` is ``3/2`` times as fast as `tempo`:
+            ``metronome_mark`` is ``3/2`` times as fast as ``tempo``:
 
             >>> metronome_mark / tempo
             Multiplier(3, 2)
 
-            Note that a triplet eighth note under `tempo` equals a regular
-            eighth note under `metronome_mark`:
+            Note that a triplet eighth note under ``tempo`` equals a regular
+            eighth note under ``metronome_mark``:
 
             >>> tempo.rewrite_duration((1, 12), metronome_mark)
             Duration(1, 8)
 
-            And note that a regular eighth note under `tempo` equals a dotted
-            sixteenth under `metronome_mark`:
+            And note that a regular eighth note under ``tempo`` equals a dotted
+            sixteenth under ``metronome_mark``:
 
             >>> tempo.rewrite_duration((1, 8), metronome_mark)
             Duration(3, 16)
 
-        Given `duration` governed by this tempo returns new duration governed
-        by `metronome_mark`.
+        Given ``duration`` governed by this tempo returns new duration governed
+        by ``metronome_mark``.
 
-        Ensures that `duration` and new duration consume the same amount of
+        Ensures that ``duration`` and new duration consume the same amount of
         time in seconds.
 
         Returns duration.

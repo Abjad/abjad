@@ -3,8 +3,9 @@ import pytest
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__PhrasingSlur_01():
-    r'''Successful slurs, showing single leaf overlap.
-    '''
+    """
+    Successful slurs, showing single leaf overlap.
+    """
 
     maker = abjad.NoteMaker()
     target = abjad.Container(maker([0] * 4, [(1, 4)]))
@@ -14,7 +15,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__PhrasingSlur_01():
     abjad.attach(slur, target[:3])
 
     assert format(target) == abjad.String.normalize(
-        r'''
+        r"""
         {
             c'4
             \(
@@ -25,7 +26,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__PhrasingSlur_01():
             c'4
             \)
         }
-        '''
+        """
         )
 
     parser = abjad.lilypondparsertools.LilyPondParser()
@@ -34,8 +35,9 @@ def test_lilypondparsertools_LilyPondParser__spanners__PhrasingSlur_01():
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__PhrasingSlur_02():
-    r'''Swapped start and stop.
-    '''
+    """
+    Swapped start and stop.
+    """
 
     maker = abjad.NoteMaker()
     target = abjad.Container(maker([0] * 4, [(1, 4)]))
@@ -45,7 +47,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__PhrasingSlur_02():
     abjad.attach(slur, target[:3])
 
     assert format(target) == abjad.String.normalize(
-        r'''
+        r"""
         {
             c'4
             \(
@@ -56,7 +58,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__PhrasingSlur_02():
             c'4
             \)
         }
-        '''
+        """
         )
 
     string = r"\relative c' { c \( c c \( \) c \) }"
@@ -67,32 +69,36 @@ def test_lilypondparsertools_LilyPondParser__spanners__PhrasingSlur_02():
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__PhrasingSlur_03():
-    r'''Single leaf.
-    '''
+    """
+    Single leaf.
+    """
 
     string = '{ c \( \) c c c }'
     assert pytest.raises(Exception, 'LilyPondParser()(string)')
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__PhrasingSlur_04():
-    r'''Unterminated.
-    '''
+    """
+    Unterminated.
+    """
 
     string = '{ c \( c c c }'
     assert pytest.raises(Exception, 'LilyPondParser()(string)')
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__PhrasingSlur_05():
-    r'''Unstarted.
-    '''
+    """
+    Unstarted.
+    """
 
     string = '{ c c c c \) }'
     assert pytest.raises(Exception, 'LilyPondParser()(string)')
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__PhrasingSlur_06():
-    r'''Nested.
-    '''
+    """
+    Nested.
+    """
 
     string = '{ c \( c \( c \) c \) }'
     assert pytest.raises(Exception, 'LilyPondParser()(string)')

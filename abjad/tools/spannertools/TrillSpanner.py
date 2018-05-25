@@ -737,7 +737,7 @@ class TrillSpanner(Spanner):
             >>> trill.written_pitch is None
             True
 
-        Alias defined equal to `pitch` of trill spanner.
+        Alias defined equal to ``pitch`` of trill spanner.
 
         Defaults to none.
 

@@ -203,7 +203,7 @@ class TupletSpecifier(AbjadValueObject):
         ..  container:: example
 
             Tuplet numerators and denominators are reduced to numbers that are
-            relatively prime when `denominator` is set to none. This
+            relatively prime when ``denominator`` is set to none. This
             means that ratios like ``6:4`` and ``10:8`` do not arise:
 
             >>> rhythm_maker = abjad.rmakers.TupletRhythmMaker(
@@ -263,7 +263,7 @@ class TupletSpecifier(AbjadValueObject):
         ..  container:: example
 
             The preferred denominator of each tuplet is set to the numerator of
-            the division that generates the tuplet when `denominator`
+            the division that generates the tuplet when ``denominator``
             is set to the string ``'divisions'``. This means that the tuplet
             numerator and denominator are not necessarily relatively prime.
             This also means that ratios like ``6:4`` and ``10:8`` may arise:
@@ -325,7 +325,7 @@ class TupletSpecifier(AbjadValueObject):
         ..  container:: example
 
             The preferred denominator of each tuplet is set in terms of a unit
-            duration when `denominator` is set to a duration. The
+            duration when ``denominator`` is set to a duration. The
             setting does not affect the first tuplet:
 
             >>> rhythm_maker = abjad.rmakers.TupletRhythmMaker(
@@ -503,7 +503,7 @@ class TupletSpecifier(AbjadValueObject):
         ..  container:: example
 
             The preferred denominator of each tuplet is set directly when
-            `denominator` is set to a positive integer. This example
+            ``denominator`` is set to a positive integer. This example
             sets the preferred denominator of each tuplet to ``8``. Setting
             does not affect the third tuplet:
 

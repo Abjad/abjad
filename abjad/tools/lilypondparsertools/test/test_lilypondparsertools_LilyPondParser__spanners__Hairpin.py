@@ -14,7 +14,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__Hairpin_01():
     abjad.attach(dynamic, target[-1])
 
     assert format(target) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'4
@@ -27,7 +27,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__Hairpin_01():
             c'4
             \ppp
         }
-        '''
+        """
         )
 
     parser = abjad.lilypondparsertools.LilyPondParser()
@@ -47,7 +47,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__Hairpin_02():
     abjad.attach(hairpin, target[2:])
 
     assert format(target) == abjad.String.normalize(
-        r'''
+        r"""
         {
             c'4
             \<
@@ -60,18 +60,19 @@ def test_lilypondparsertools_LilyPondParser__spanners__Hairpin_02():
             c'4
             \!
         }
-        '''
+        """
         )
 
-    string = r'''\relative c' { c \< c \< c \< c \! }'''
+    string = r"""\relative c' { c \< c \< c \< c \! }"""
     parser = abjad.lilypondparsertools.LilyPondParser()
     result = parser(string)
     assert format(target) == format(result) and target is not result
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__Hairpin_03():
-    r'''Dynamics can terminate hairpins.
-    '''
+    """
+    Dynamics can terminate hairpins.
+    """
 
     maker = abjad.NoteMaker()
     target = abjad.Staff(maker([0] * 3, [(1, 4)]))
@@ -85,7 +86,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__Hairpin_03():
     abjad.attach(dynamic, target[-1])
 
     assert format(target) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'4
@@ -96,7 +97,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__Hairpin_03():
             c'4
             \f
         }
-        '''
+        """
         )
 
     string = r"\new Staff \relative c' { c \< c \p \> c \f }"
@@ -106,32 +107,36 @@ def test_lilypondparsertools_LilyPondParser__spanners__Hairpin_03():
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__Hairpin_04():
-    r'''Unterminated.
-    '''
+    """
+    Unterminated.
+    """
 
     string = r'{ c \< c c c }'
     assert pytest.raises(Exception, 'LilyPondParser()(string)')
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__Hairpin_05():
-    r'''Unbegun is okay.
-    '''
+    """
+    Unbegun is okay.
+    """
 
     string = r'{ c c c c \! }'
     result = abjad.lilypondparsertools.LilyPondParser()(string)
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__Hairpin_06():
-    r'''No double dynamic spans permitted.
-    '''
+    """
+    No double dynamic spans permitted.
+    """
 
     string = r'{ c \< \> c c c \! }'
     assert pytest.raises(Exception, 'LilyPondParser()(string)')
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__Hairpin_07():
-    r'''With direction.
-    '''
+    """
+    With direction.
+    """
 
     maker = abjad.NoteMaker()
     target = abjad.Staff(maker([0] * 5, [(1, 4)]))
@@ -143,7 +148,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__Hairpin_07():
     abjad.attach(dynamic, target[-1])
 
     assert format(target) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'4
@@ -156,7 +161,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__Hairpin_07():
             c'4
             \ppp
         }
-        '''
+        """
         )
 
     parser = abjad.lilypondparsertools.LilyPondParser()
@@ -170,7 +175,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__Hairpin_08():
     parser = abjad.lilypondparsertools.LilyPondParser()
     result = parser(string)
     assert format(result) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'4
@@ -183,5 +188,5 @@ def test_lilypondparsertools_LilyPondParser__spanners__Hairpin_08():
             \!
             )
         }
-        '''
+        """
         )

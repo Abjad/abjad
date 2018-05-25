@@ -6,11 +6,11 @@ def test_lilypondparsertools_LilyPondParser__contexts__Voice_01():
     target = abjad.Voice([])
 
     assert format(target) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
         }
-        '''
+        """
         )
 
     parser = abjad.lilypondparsertools.LilyPondParser()

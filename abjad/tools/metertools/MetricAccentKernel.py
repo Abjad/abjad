@@ -59,7 +59,7 @@ class MetricAccentKernel(AbjadValueObject):
 
     def __call__(self, argument):
         """
-        Calls metrical accent kernal on `argument`.
+        Calls metrical accent kernal on ``argument``.
 
         >>> upper_staff = abjad.Staff("c'8 d'4. e'8 f'4.")
         >>> lower_staff = abjad.Staff(r'\clef bass c4 b,4 a,2')
@@ -83,7 +83,7 @@ class MetricAccentKernel(AbjadValueObject):
 
     def __eq__(self, argument):
         """
-        Is true when `argument` is a metrical accent kernal with a kernal
+        Is true when ``argument`` is a metrical accent kernal with a kernal
         equal to that of this metrical accent kernel.
 
         Returns true or false.
@@ -115,7 +115,7 @@ class MetricAccentKernel(AbjadValueObject):
     @staticmethod
     def count_offsets(argument):
         r"""
-        Count offsets in `argument`.
+        Count offsets in ``argument``.
 
         ..  container:: example
 
@@ -183,7 +183,7 @@ class MetricAccentKernel(AbjadValueObject):
     @staticmethod
     def from_meter(meter, denominator=32, normalize=True):
         """
-        Create a metric accent kernel from `meter`.
+        Create a metric accent kernel from ``meter``.
 
         Returns new metric accent kernel.
         """

@@ -246,7 +246,7 @@ class Scale(PitchClassSegment):
 
     def create_named_pitch_set_in_pitch_range(self, pitch_range):
         """
-        Creates named pitch-set in `pitch_range`.
+        Creates named pitch-set in ``pitch_range``.
 
         Returns pitch-set.
         """
@@ -274,7 +274,7 @@ class Scale(PitchClassSegment):
     @classmethod
     def from_selection(class_, selection, item_class=None, name=None):
         """
-        Makes scale from `selection`.
+        Makes scale from ``selection``.
 
         Returns new scale.
         """
@@ -282,7 +282,7 @@ class Scale(PitchClassSegment):
 
     def make_notes(self, n, written_duration=(1, 8)):
         r"""
-        Makes first `n` notes in ascending scale.
+        Makes first ``n`` notes in ascending scale.
 
         ..  container:: example
 
@@ -373,7 +373,7 @@ class Scale(PitchClassSegment):
 
     def named_pitch_class_to_scale_degree(self, pitch_class):
         """
-        Changes named `pitch_class` to scale degree.
+        Changes named ``pitch_class`` to scale degree.
 
         ..  container:: example
 
@@ -450,7 +450,7 @@ class Scale(PitchClassSegment):
 
     def voice_scale_degrees_in_open_position(self, scale_degrees):
         r"""
-        Voices `scale_degrees` in open position.
+        Voices ``scale_degrees`` in open position.
 
         ..  container:: example
 

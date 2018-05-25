@@ -220,9 +220,6 @@ class Clef(AbjadValueObject):
         r"""
         Formats clef.
 
-        Set `format_specification` to `''`, `'lilypond'` or `'storage'`.
-        Interprets `''` equal to `'storage'`.
-
         ..  container:: example
 
             >>> clef = abjad.Clef('treble')
@@ -318,7 +315,7 @@ class Clef(AbjadValueObject):
     @staticmethod
     def from_selection(selection) -> 'Clef':
         """
-        Makes clef from `selection`.
+        Makes clef from ``selection``.
 
         ..  container:: example
 

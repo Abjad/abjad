@@ -3,7 +3,7 @@ import numbers
 
 def is_integer_equivalent_number(argument):
     """
-    Is true when `argument` is a number and `argument` is equivalent to an
+    Is true when ``argument`` is a number and ``argument`` is equivalent to an
     integer.
 
     ..  container:: example

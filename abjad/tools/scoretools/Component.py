@@ -87,8 +87,6 @@ class Component(AbjadObject):
         """
         Formats component.
 
-        Set `format_specification` to `''`, `'lilypond'` or `'storage'`.
-
         Returns string.
         """
         import abjad
@@ -97,7 +95,6 @@ class Component(AbjadObject):
         elif format_specification == 'storage':
             return abjad.StorageFormatManager(self).get_storage_format()
         raise ValueError(repr(format_specification))
-        #return str(self)
 
     def __getnewargs__(self):
         """

@@ -275,7 +275,7 @@ class LilyPondFile(AbjadObject):
 
     def __getitem__(self, name):
         r"""
-        Gets item with `name`.
+        Gets item with ``name``.
 
         ..  container:: example
 
@@ -397,7 +397,7 @@ class LilyPondFile(AbjadObject):
 
         Returns item.
 
-        Raises key error when no item with `name` is found.
+        Raises key error when no item with ``name`` is found.
         """
         if not isinstance(name, str):
             if inspect.isclass(name):
@@ -965,7 +965,7 @@ class LilyPondFile(AbjadObject):
 
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
-        Wraps `music` in LilyPond ``\score`` block.
+        Wraps ``music`` in LilyPond ``\score`` block.
 
         Adds LilyPond ``\header``, ``\layout``, ``\paper`` and ``\score``
         blocks to LilyPond file.

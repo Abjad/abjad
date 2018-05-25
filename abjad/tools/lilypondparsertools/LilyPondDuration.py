@@ -2,12 +2,13 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class LilyPondDuration(AbjadObject):
-    r'''Model of a duration in LilyPond.
+    """
+    Model of a duration in LilyPond.
 
     Not composer-safe.
 
     Used internally by LilyPondParser.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 

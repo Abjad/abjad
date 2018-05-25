@@ -8,12 +8,13 @@ from abjad.tools.topleveltools import attach
 
 # TODO: should not inherit from AbjadObject because no slots
 class GuileProxy(AbjadObject):
-    r'''Emulates LilyPond music functions.
+    """
+    Emulates LilyPond music functions.
 
     Used internally by LilyPondParser.
 
     Not composer-safe.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -27,10 +28,11 @@ class GuileProxy(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, function_name, arguments):
-        r'''Calls Guile proxy on `function_name` with `arguments`.
+        """
+        Calls Guile proxy on ``function_name`` with ``arguments``.
 
         Returns function output.
-        '''
+        """
         if hasattr(self, function_name[1:]):
             result = getattr(self, function_name[1:])(*arguments)
             return result
@@ -45,52 +47,60 @@ class GuileProxy(AbjadObject):
     ### FUNCTION EMULATORS ###
 
     def acciaccatura(self, music):
-        r'''Handles LilyPond ``\acciaccatura`` command.
-        '''
+        r"""
+        Handles LilyPond ``\acciaccatura`` command.
+        """
         grace = scoretools.AcciaccaturaContainer(music[:])
         return grace
 
     # afterGrace?
 
     def appoggiatura(self, music):
-        r'''Handles LilyPond ``\appoggiatura`` command.
-        '''
+        r"""
+        Handles LilyPond ``\appoggiatura`` command.
+        """
         grace = scoretools.AppoggiaturaContainer(music[:])
         return grace
 
     def bar(self, string):
-        r'''Handles LilyPond ``\bar`` command.
-        '''
+        r"""
+        Handles LilyPond ``\bar`` command.
+        """
         return indicatortools.BarLine(string)
 
     def breathe(self):
-        r'''Handles LilyPond ``\breathe`` command.
-        '''
+        r"""
+        Handles LilyPond ``\breathe`` command.
+        """
         return indicatortools.LilyPondLiteral(r'\breathe', 'after')
 
     def clef(self, string):
-        r'''Handles LilyPond ``\clef`` command.
-        '''
+        r"""
+        Handles LilyPond ``\clef`` command.
+        """
         return indicatortools.Clef(string)
 
     def grace(self, music):
-        r'''Handles LilyPond ``\grace`` command.
-        '''
+        r"""
+        Handles LilyPond ``\grace`` command.
+        """
         assert isinstance(music, scoretools.Container)
         leaves = music[:]
         music[:] = []
         return scoretools.GraceContainer(leaves)
 
     def key(self, notename_pitch, number_list):
-        r'''Handles LilyPond ``\key`` command.
-        '''
+        r"""
+        Handles LilyPond ``\key`` command.
+        """
         if number_list is None:
             number_list = 'major'
         return indicatortools.KeySignature(notename_pitch, number_list)
 
     def language(self, string):
-        r'''Handles LilyPond ``\language`` command.
-        '''
+        r"""
+        Handles LilyPond ``\language`` command.
+        """
         if string in self.client._language_pitch_names:
             self.client._pitch_names = \
                 self.client._language_pitch_names[string]
@@ -102,27 +112,31 @@ class GuileProxy(AbjadObject):
                 lookahead.value = self.client._pitch_names[lookahead.value]
 
     def makeClusters(self, music):
-        r'''Handles LilyPond ``\makeClusters`` command.
-        '''
+        r"""
+        Handles LilyPond ``\makeClusters`` command.
+        """
         return scoretools.Cluster(music[:])
 
     def mark(self, label):
-        r'''Handles LilyPond ``\mark`` command.
-        '''
+        r"""
+        Handles LilyPond ``\mark`` command.
+        """
         if label is None:
             label = '\default'
         return indicatortools.LilyPondLiteral(r'\mark %s' % label)
 
     def oneVoice(self):
-        r'''Handles LilyPond ``\oneVoice`` command.
-        '''
+        r"""
+        Handles LilyPond ``\oneVoice`` command.
+        """
         return indicatortools.LilyPondLiteral(r'\oneVoice')
 
     # pitchedTrill
 
     def relative(self, pitch, music):
-        r'''Handles LilyPond ``\relative`` command.
-        '''
+        r"""
+        Handles LilyPond ``\relative`` command.
+        """
         # We should always keep track of the last chord entered.
         # When there are repeated chords (via q),
         # we add the last chord as a key in a _repeated_chords dictionary.
@@ -164,28 +178,32 @@ class GuileProxy(AbjadObject):
         return music
 
     def skip(self, duration):
-        r'''Handles LilyPond ``\skip`` command.
-        '''
+        r"""
+        Handles LilyPond ``\skip`` command.
+        """
         leaf = scoretools.Skip(duration.duration)
         if duration.multiplier is not None:
             attach(duration.multiplier, leaf)
         return leaf
 
     def slashed_grace_container(self, music):
-        r'''Handles LilyPond ``\slahsedGrace`` command.
-        '''
+        r"""
+        Handles LilyPond ``\slahsedGrace`` command.
+        """
         grace = scoretools.GraceContainer(music[:])
         return grace
 
     def time(self, number_list, fraction):
-        r'''Handles LilyPond ``\time`` command.
-        '''
+        r"""
+        Handles LilyPond ``\time`` command.
+        """
         n, d = fraction.numerator, fraction.denominator
         return indicatortools.TimeSignature((n, d))
 
     def times(self, fraction, music):
-        r'''Handles LilyPond ``\times`` command.
-        '''
+        r"""
+        Handles LilyPond ``\times`` command.
+        """
         n, d = fraction.numerator, fraction.denominator
         if (not isinstance(music, scoretools.Context) and
             not isinstance(music, scoretools.Leaf)
@@ -197,8 +215,9 @@ class GuileProxy(AbjadObject):
         return scoretools.Tuplet((n, d), [music])
 
     def transpose(self, from_pitch, to_pitch, music):
-        r'''Handles LilyPond ``\transpose`` command.
-        '''
+        r"""
+        Handles LilyPond ``\transpose`` command.
+        """
         def recurse(music):
             key_signatures = music._get_indicators(indicatortools.KeySignature)
             if key_signatures:
@@ -229,23 +248,27 @@ class GuileProxy(AbjadObject):
     # tweak
 
     def voiceFour(self):
-        r'''Handles LilyPond ``\voiceFour`` command.
-        '''
+        r"""
+        Handles LilyPond ``\voiceFour`` command.
+        """
         return indicatortools.LilyPondLiteral(r'\voiceFour')
 
     def voiceOne(self):
-        r'''Handles LilyPond ``\voiceOnce`` command.
-        '''
+        r"""
+        Handles LilyPond ``\voiceOnce`` command.
+        """
         return indicatortools.LilyPondLiteral(r'\voiceOne')
 
     def voiceThree(self):
-        r'''Handles LilyPond ``\voiceThree`` command.
-        '''
+        r"""
+        Handles LilyPond ``\voiceThree`` command.
+        """
         return indicatortools.LilyPondLiteral(r'\voiceThree')
 
     def voiceTwo(self):
-        r'''Handles LilyPond ``\voiceTwo`` command.
-        '''
+        r"""
+        Handles LilyPond ``\voiceTwo`` command.
+        """
         return indicatortools.LilyPondLiteral(r'\voiceTwo')
 
     ### HELPER FUNCTIONS ###

@@ -95,7 +95,7 @@ class PartitionTable(OrderedDict):
 
     def respell_division(self, division):
         """
-        Respells `division` according to partition table.
+        Respells ``division`` according to partition table.
 
         ..  container:: example
 

@@ -11,7 +11,7 @@ def test_spannertools_Beam__fuse_by_reference_01():
     left_beam._fuse_by_reference(right_beam)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -25,7 +25,7 @@ def test_spannertools_Beam__fuse_by_reference_01():
             b'8
             c''8
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).is_well_formed()

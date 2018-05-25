@@ -60,9 +60,6 @@ class NonreducedRatio(AbjadValueObject, collections.Sequence):
         """
         Formats duration.
 
-        Set `format_specification` to `''` or `'storage'`.
-        Interprets `''` equal to `'storage'`.
-
         ..  container:: example
 
             >>> ratio = abjad.NonreducedRatio((2, 4, 2))

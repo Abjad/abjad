@@ -1,6 +1,6 @@
 def play(argument):
     r"""
-    Plays `argument`.
+    Plays ``argument``.
 
     ..  container:: example
 

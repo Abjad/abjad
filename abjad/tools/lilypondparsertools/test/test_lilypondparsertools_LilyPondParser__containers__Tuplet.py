@@ -8,13 +8,13 @@ def test_lilypondparsertools_LilyPondParser__containers__Tuplet_01():
     target = abjad.Tuplet(abjad.Multiplier(2, 3), notes)
 
     assert format(target) == abjad.String.normalize(
-        r'''
+        r"""
         \times 2/3 {
             c'8
             d'8
             e'8
         }
-        '''
+        """
         )
 
     parser = abjad.lilypondparsertools.LilyPondParser()

@@ -1,6 +1,6 @@
 def factors(n):
     """
-    Gets prime factors less than or equal to `n` .
+    Gets prime factors less than or equal to ``n`` .
 
     ..  container:: example
 
@@ -21,7 +21,7 @@ def factors(n):
         18 [2, 3, 3]
         19 [19]
 
-    `n` must be a positive integer.
+    ``n`` must be a positive integer.
 
     Returns factors in increasing order.
 

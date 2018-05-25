@@ -54,7 +54,7 @@ class RotationCounter(TypedCounter):
 
     def __getitem__(self, argument):
         """
-        Gets item or slice identified by `argument`.
+        Gets item or slice identified by ``argument``.
 
         Returns item or slice.
         """

@@ -57,7 +57,7 @@ class TieSpecifier(AbjadValueObject):
 
     def __call__(self, divisions):
         """
-        Calls tie specifier on `divisions`.
+        Calls tie specifier on ``divisions``.
 
         Returns none.
         """

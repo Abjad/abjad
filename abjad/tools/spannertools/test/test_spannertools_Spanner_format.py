@@ -2,16 +2,17 @@ import abjad
 
 
 def test_spannertools_Spanner_format_01():
-    r'''Base Spanner class makes no format-time contributions.
+    """
+    Base Spanner class makes no format-time contributions.
     However, base spanner causes no explosions at format-time, either.
-    '''
+    """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     spanner = abjad.Spanner()
     abjad.attach(spanner, staff[:])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -19,7 +20,7 @@ def test_spannertools_Spanner_format_01():
             e'8
             f'8
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).is_well_formed()

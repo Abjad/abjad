@@ -1,6 +1,6 @@
 def deactivate(text, tag, skipped=False):
     r"""
-    Deactivates `tag` in `text`.
+    Deactivates ``tag`` in ``text``.
 
     ..  container:: example
 

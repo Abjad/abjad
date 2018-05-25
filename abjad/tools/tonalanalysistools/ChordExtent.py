@@ -57,8 +57,8 @@ class ChordExtent(AbjadValueObject):
 
     def __eq__(self, argument):
         """
-        Is true when `argument` is a chord extent with number equal to that of
-        this chord extent.
+        Is true when ``argument`` is a chord extent with number equal to that
+        of this chord extent.
 
         ..  container:: example
 

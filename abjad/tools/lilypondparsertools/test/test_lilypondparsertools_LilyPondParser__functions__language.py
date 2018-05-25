@@ -10,13 +10,13 @@ def test_lilypondparsertools_LilyPondParser__functions__language_01():
     ])
 
     assert format(target) == abjad.String.normalize(
-        r'''
+        r"""
         {
             cs'8
             ds'8
             ff'8
         }
-        '''
+        """
         )
 
     string = r"\language nederlands { cis'8 dis'8 fes'8 }"

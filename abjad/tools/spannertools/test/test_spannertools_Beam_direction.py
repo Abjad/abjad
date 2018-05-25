@@ -8,7 +8,7 @@ def test_spannertools_Beam_direction_01():
     abjad.attach(beam, staff[:4])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -19,7 +19,7 @@ def test_spannertools_Beam_direction_01():
             ]
             g'2
         }
-        '''
+        """
         )
 
 
@@ -30,7 +30,7 @@ def test_spannertools_Beam_direction_02():
     abjad.attach(beam, staff[:4])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -41,7 +41,7 @@ def test_spannertools_Beam_direction_02():
             ]
             g'2
         }
-        '''
+        """
         )
 
 
@@ -52,7 +52,7 @@ def test_spannertools_Beam_direction_03():
     abjad.attach(beam, staff[:4])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -63,5 +63,5 @@ def test_spannertools_Beam_direction_03():
             ]
             g'2
         }
-        '''
+        """
         )

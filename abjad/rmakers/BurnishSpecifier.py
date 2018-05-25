@@ -140,7 +140,7 @@ class BurnishSpecifier(AbjadValueObject):
 
     def __call__(self, divisions):
         """
-        Calls burnish specifier on `divisions`.
+        Calls burnish specifier on ``divisions``.
 
         Returns list of burnished divisions.
         """

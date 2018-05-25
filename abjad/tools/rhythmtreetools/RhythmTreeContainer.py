@@ -26,9 +26,9 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeContainer)
 
     ..  container:: example
 
-        Similar to Abjad containers, `RhythmTreeContainer` supports a list
+        Similar to Abjad containers, ``RhythmTreeContainer`` supports a list
         interface, and can be appended, extended, indexed and so forth by other
-        `RhythmTreeMixin` subclasses:
+        ``RhythmTreeMixin`` subclasses:
 
         >>> leaf_a = abjad.rhythmtreetools.RhythmTreeLeaf(preprolated_duration=1)
         >>> leaf_b = abjad.rhythmtreetools.RhythmTreeLeaf(preprolated_duration=2)
@@ -80,7 +80,7 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeContainer)
 
     ..  container:: example
 
-        Call `RhythmTreeContainer` with a preprolated_duration to generate a
+        Call ``RhythmTreeContainer`` with a preprolated_duration to generate a
         tuplet structure:
 
         >>> components = container((1, 4))
@@ -98,7 +98,7 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeContainer)
                 }
             }
 
-    Returns `RhythmTreeContainer` instance.
+    Returns ``RhythmTreeContainer`` instance.
     """
 
     ### CLASS VARIABLES ###
@@ -282,7 +282,7 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeContainer)
 
         >>> topleveltools.graph(graph) # doctest: +SKIP
 
-        Return `Graph` instance.
+        Return ``Graph`` instance.
         """
         graph = uqbar.graphs.Graph(
             name='G',
@@ -360,7 +360,7 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeContainer)
     def _get_contents_duration(self):
         """
         The total preprolated_duration of the children
-        of a `RhythmTreeContainer` instance:
+        of a ``RhythmTreeContainer`` instance:
 
         >>> rtm = '(1 (1 (2 (1 1 1)) 2))'
         >>> tree = abjad.rhythmtreetools.RhythmTreeParser()(rtm)[0]

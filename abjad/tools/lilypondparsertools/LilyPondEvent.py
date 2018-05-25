@@ -3,12 +3,13 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 # TODO: should not inherit from AbjadObject because no slots
 class LilyPondEvent(AbjadObject):
-    r'''Model of an arbitrary event in LilyPond.
+    """
+    Model of an arbitrary event in LilyPond.
 
     Not composer-safe.
 
     Used internally by LilyPondParser.
-    '''
+    """
 
     ### INITIALIZER ###
 
@@ -21,10 +22,11 @@ class LilyPondEvent(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __str__(self):
-        r'''Gets string representation of LilyPond event.
+        """
+        Gets string representation of LilyPond event.
 
         Returns string.
-        '''
+        """
         result = repr(self.name)
         for key in self.__dict__:
             if key == 'name':
@@ -33,8 +35,9 @@ class LilyPondEvent(AbjadObject):
         return result
 
     def __repr__(self):
-        r'''Gets interpreter representation of LilyPond event.
+        """
+        Gets interpreter representation of LilyPond event.
 
         Returns string.
-        '''
+        """
         return '{}({})'.format(type(self).__name__, str(self))

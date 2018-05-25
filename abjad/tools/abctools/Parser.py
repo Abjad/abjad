@@ -14,9 +14,9 @@ class Parser(AbjadObject):
     Abstract base class for Abjad parsers.
 
     Rules objects for lexing and parsing must be defined by overriding the
-    abstract properties `lexer_rules_object` and `parser_rules_object`.
+    abstract properties ``lexer_rules_object`` and ``parser_rules_object``.
 
-    For most parsers these properties should simply return `self`.
+    For most parsers these properties should simply return ``self``.
     """
 
     ### CLASS VARIABLES ###

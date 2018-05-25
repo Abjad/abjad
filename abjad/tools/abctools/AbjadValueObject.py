@@ -25,7 +25,7 @@ class AbjadValueObject(AbjadObject):
     def __eq__(self, argument):
         """
         Is true when all initialization values of Abjad value object equal
-        the initialization values of `argument`.
+        the initialization values of ``argument``.
 
         Returns true or false.
         """

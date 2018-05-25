@@ -40,7 +40,7 @@ class TemporaryDirectoryChange(ContextManager):
 
     def __enter__(self):
         """
-        Enters context manager and changes to `directory`.
+        Enters context manager and changes to ``directory``.
         """
         self._original_directory = os.getcwd()
         if self._directory is not None:

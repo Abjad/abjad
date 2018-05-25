@@ -307,7 +307,7 @@ class Context(Container):
     @property
     def lilypond_context(self):
         """
-        Gets `LilyPondContext` associated with context.
+        Gets ``LilyPondContext`` associated with context.
 
         Returns LilyPond context instance.
         """

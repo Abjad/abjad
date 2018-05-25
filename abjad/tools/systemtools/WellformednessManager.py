@@ -31,7 +31,7 @@ class WellformednessManager(AbjadObject):
 
     def __call__(self, argument=None):
         """
-        Calls all wellformedness checks on `argument`.
+        Calls all wellformedness checks on ``argument``.
 
         Returns triples.
         """
@@ -99,7 +99,7 @@ class WellformednessManager(AbjadObject):
 
         First item in pair is list of beamed long notes.
 
-        Second item in pair is count of all long notes in `argument`.
+        Second item in pair is count of all long notes in ``argument``.
         """
         import abjad
         violators, total = [], set()
@@ -128,7 +128,7 @@ class WellformednessManager(AbjadObject):
         consults the experimental `_contiguity_constraint`.
 
         Returns list of discontiguous spanners and nonnegative integer count of
-        all spanners in `argument`.
+        all spanners in ``argument``.
         """
         import abjad
         violators = []
@@ -184,7 +184,7 @@ class WellformednessManager(AbjadObject):
             [Container()]
 
         Returns list of empty containers and count of all containers in
-        `argument`.
+        ``argument``.
         """
         import abjad
         violators, containers = [], set()

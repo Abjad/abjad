@@ -152,7 +152,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
     def __call__(self, divisions, previous_state=None):
         """
-        Calls talea rhythm-maker on `divisions`.
+        Calls talea rhythm-maker on ``divisions``.
 
         ..  container:: example
 
@@ -184,8 +184,6 @@ class TaleaRhythmMaker(RhythmMaker):
     def __format__(self, format_specification=''):
         """
         Formats talea rhythm-maker.
-
-        Set `format_specification` to `''` or `'storage'`.
 
         ..  container:: example
 
@@ -285,7 +283,7 @@ class TaleaRhythmMaker(RhythmMaker):
                     }   % measure
                 }
 
-        Defaults `divisions` to ``3/8``, ``4/8``, ``3/16``, ``4/16``.
+        Defaults ``divisions`` to ``3/8``, ``4/8``, ``3/16``, ``4/16``.
 
         Returns LilyPond file.
         """
@@ -3410,9 +3408,9 @@ class TaleaRhythmMaker(RhythmMaker):
                     }   % measure
                 }
 
-            Additional divisions created when using `split_divisions_by_counts`
-            are subject to `extra_counts_per_division` just like other
-            divisions.
+            Additional divisions created when using
+            ``split_divisions_by_counts`` are subject to
+            ``extra_counts_per_division`` just like other divisions.
 
         ..  container:: example
 

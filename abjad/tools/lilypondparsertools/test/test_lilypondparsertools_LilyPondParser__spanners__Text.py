@@ -3,8 +3,9 @@ import pytest
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__Text_01():
-    r'''Successful text spanners, showing single leaf overlap.
-    '''
+    """
+    Successful text spanners, showing single leaf overlap.
+    """
 
     maker = abjad.NoteMaker()
     target = abjad.Container(maker([0] * 4, [(1, 4)]))
@@ -14,7 +15,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__Text_01():
     abjad.attach(text_spanner, target[:3])
 
     assert format(target) == abjad.String.normalize(
-        r'''
+        r"""
         {
             c'4
             \startTextSpan
@@ -25,7 +26,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__Text_01():
             c'4
             \stopTextSpan
         }
-        '''
+        """
         )
 
     parser = abjad.lilypondparsertools.LilyPondParser()
@@ -34,8 +35,9 @@ def test_lilypondparsertools_LilyPondParser__spanners__Text_01():
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__Text_02():
-    r'''Swapped start and stop.
-    '''
+    """
+    Swapped start and stop.
+    """
 
     maker = abjad.NoteMaker()
     target = abjad.Container(maker([0] * 4, [(1, 4)]))
@@ -45,7 +47,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__Text_02():
     abjad.attach(text_spanner, target[:3])
 
     assert format(target) == abjad.String.normalize(
-        r'''
+        r"""
         {
             c'4
             \startTextSpan
@@ -56,7 +58,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__Text_02():
             c'4
             \stopTextSpan
         }
-        '''
+        """
         )
 
     string = r"\relative c' { c \startTextSpan c c \startTextSpan \stopTextSpan c \stopTextSpan }"
@@ -67,32 +69,36 @@ def test_lilypondparsertools_LilyPondParser__spanners__Text_02():
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__Text_03():
-    r'''Single leaf.
-    '''
+    """
+    Single leaf.
+    """
 
     string = r'{ c \startTextSpan \stopTextSpan c c c }'
     assert pytest.raises(Exception, 'LilyPondParser()(string)')
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__Text_04():
-    r'''Unterminated.
-    '''
+    """
+    Unterminated.
+    """
 
     string = r'{ c \startTextSpan c c c }'
     assert pytest.raises(Exception, 'LilyPondParser()(string)')
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__Text_05():
-    r'''Unstarted.
-    '''
+    """
+    Unstarted.
+    """
 
     string = r'{ c c c c \stopTextSpan }'
     assert pytest.raises(Exception, 'LilyPondParser()(string)')
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__Text_06():
-    r'''Nested.
-    '''
+    """
+    Nested.
+    """
 
     string = r'{ c \startTextSpan c \startTextSpan c \stopTextSpan c \stopTextSpan }'
     assert pytest.raises(Exception, 'LilyPondParser()(string)')

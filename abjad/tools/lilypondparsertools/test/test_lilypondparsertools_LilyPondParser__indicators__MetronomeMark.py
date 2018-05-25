@@ -9,7 +9,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__MetronomeMark_01():
     abjad.attach(mark, target[0][0], context='Staff')
 
     assert format(target) == abjad.String.normalize(
-        r'''
+        r"""
         \new Score
         <<
             \new Staff
@@ -18,7 +18,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__MetronomeMark_01():
                 c'1
             }
         >>
-        '''
+        """
         )
 
     parser = abjad.lilypondparsertools.LilyPondParser()
@@ -38,7 +38,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__MetronomeMark_02():
     abjad.attach(mark, leaves[0], context='Staff')
 
     assert format(target) == abjad.String.normalize(
-        r'''
+        r"""
         \new Score
         <<
             \new Staff
@@ -47,7 +47,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__MetronomeMark_02():
                 c'1
             }
         >>
-        '''
+        """
         )
 
     parser = abjad.lilypondparsertools.LilyPondParser()
@@ -67,7 +67,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__MetronomeMark_03():
     abjad.attach(mark, leaves[0], context='Staff')
 
     assert format(target) == abjad.String.normalize(
-        r'''
+        r"""
         \new Score
         <<
             \new Staff
@@ -76,7 +76,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__MetronomeMark_03():
                 c'1
             }
         >>
-        '''
+        """
         )
 
     parser = abjad.lilypondparsertools.LilyPondParser()
@@ -100,7 +100,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__MetronomeMark_04():
     abjad.attach(mark, leaves[0], context='Staff')
 
     assert format(target) == abjad.String.normalize(
-        r'''
+        r"""
         \new Score
         <<
             \new Staff
@@ -109,7 +109,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__MetronomeMark_04():
                 c'1
             }
         >>
-        '''
+        """
         )
 
     parser = abjad.lilypondparsertools.LilyPondParser()
@@ -133,7 +133,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__MetronomeMark_05():
     abjad.attach(mark, leaves[0], context='Staff')
 
     assert format(target) == abjad.String.normalize(
-        r'''
+        r"""
         \new Score
         <<
             \new Staff
@@ -142,7 +142,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__MetronomeMark_05():
                 c'1
             }
         >>
-        '''
+        """
         )
 
     parser = abjad.lilypondparsertools.LilyPondParser()

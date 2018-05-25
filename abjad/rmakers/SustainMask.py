@@ -233,7 +233,7 @@ class SustainMask(AbjadValueObject):
     @staticmethod
     def sustain(indices, period=None, inverted=None):
         r"""
-        Makes sustain mask that matches `indices`.
+        Makes sustain mask that matches ``indices``.
 
         ..  container:: example
 

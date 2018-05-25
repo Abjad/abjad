@@ -1,6 +1,6 @@
 def annotate(component, annotation, indicator):
     r"""
-    Annotates `component` with `indicator`.
+    Annotates ``component`` with ``indicator``.
 
     ..  container:: example
 

@@ -1,10 +1,10 @@
 def partition_integer_into_canonic_parts(n, decrease_parts_monotonically=True):
     """
-    Partitions integer `n` into canonic parts.
+    Partitions integer ``n`` into canonic parts.
 
     ..  container:: example
 
-        Returns all parts positive on positive `n`:
+        Returns all parts positive on positive ``n``:
 
         >>> for n in range(1, 11):
         ...     print(n, abjad.mathtools.partition_integer_into_canonic_parts(n))
@@ -22,7 +22,7 @@ def partition_integer_into_canonic_parts(n, decrease_parts_monotonically=True):
 
     ..  container:: example
 
-        Returns all parts negative on negative `n`:
+        Returns all parts negative on negative ``n``:
 
         >>> for n in reversed(range(-20, -10)):
         ...     print(n, abjad.mathtools.partition_integer_into_canonic_parts(n))

@@ -10,17 +10,17 @@ def attach(
     wrapper=None,
     ):
     r"""
-    Attaches `attachable` to `target`.
+    Attaches ``attachable`` to ``target``.
     
-    First form attaches indicator `attachable` to single leaf `target`.
+    First form attaches indicator ``attachable`` to single leaf ``target``.
     
-    Second form attaches spanner `attachable` to leaf selection `target`.
+    Second form attaches spanner ``attachable`` to leaf selection ``target``.
 
-    Third for attaches grace container `attachable` to leaf `target`.
+    Third for attaches grace container ``attachable`` to leaf ``target``.
 
-    Fourth form attaches time signature `attachable` to measure `target`.
+    Fourth form attaches time signature ``attachable`` to measure ``target``.
 
-    Fifth form attaches wrapper `attachable` to unknown (?) `target`.
+    Fifth form attaches wrapper ``attachable`` to unknown (?) ``target``.
 
     ..  container:: example
 
@@ -94,7 +94,7 @@ def attach(
         (Note("e'4"), Clef('alto'))
         (Note("f'4"), Clef('alto'))
 
-        Derives context from default `attachable` context when `context` is
+        Derives context from default ``attachable`` context when ``context`` is
         none.
 
     ..  container:: example
@@ -189,7 +189,7 @@ def attach(
 
     ..  container:: example
 
-        Tag must exist when `deactivate` is true:
+        Tag must exist when ``deactivate`` is true:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> abjad.attach(abjad.Clef('alto'), staff[0], deactivate=True)

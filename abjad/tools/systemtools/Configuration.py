@@ -56,7 +56,7 @@ class Configuration(AbjadObject):
 
     def __delitem__(self, i):
         """
-        Deletes item `i` from configuration.
+        Deletes item ``i`` from configuration.
 
         Returns none.
         """
@@ -64,7 +64,7 @@ class Configuration(AbjadObject):
 
     def __getitem__(self, argument):
         """
-        Gets item or slice identified by `argument`.
+        Gets item or slice identified by ``argument``.
 
         Returns item or slice.
         """
@@ -89,7 +89,7 @@ class Configuration(AbjadObject):
 
     def __setitem__(self, i, argument):
         """
-        Sets configuration item `i` to `argument`.
+        Sets configuration item ``i`` to ``argument``.
 
         Returns none.
         """

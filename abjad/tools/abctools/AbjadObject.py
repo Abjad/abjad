@@ -16,8 +16,8 @@ class AbjadObject(object, metaclass=abc.ABCMeta):
         """
         Formats Abjad object.
 
-        Set `format_specification` to `''` or `'storage'`.
-        Interprets `''` equal to `'storage'`.
+        Set ``format_specification`` to ``''`` or ``'storage'``.
+        Interprets ``''`` equal to ``'storage'``.
 
         Returns string.
         """

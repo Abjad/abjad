@@ -57,7 +57,7 @@ class ChordQuality(AbjadValueObject):
 
     def __eq__(self, argument):
         """
-        Is true when `argument` is a chord quality with quality string
+        Is true when ``argument`` is a chord quality with quality string
         equal to that of this chord quality.
 
         ..  container:: example

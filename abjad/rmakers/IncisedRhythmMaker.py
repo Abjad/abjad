@@ -112,7 +112,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
     def __call__(self, divisions, previous_state=None):
         """
-        Calls incised rhythm-maker on `divisions`.
+        Calls incised rhythm-maker on ``divisions``.
 
         Returns list of selections.
         """
@@ -664,7 +664,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            Spells all divisions metrically when `spell_metrically` is true:
+            Spells all divisions metrically when ``spell_metrically`` is true:
 
             >>> rhythm_maker = abjad.rmakers.IncisedRhythmMaker(
             ...     incise_specifier=abjad.rmakers.InciseSpecifier(
@@ -718,7 +718,7 @@ class IncisedRhythmMaker(RhythmMaker):
         ..  container:: example
 
             Spells only unassignable durations metrically when
-            `spell_metrically` is ``'unassignable'``:
+            ``spell_metrically`` is ``'unassignable'``:
 
             >>> rhythm_maker = abjad.rmakers.IncisedRhythmMaker(
             ...     incise_specifier=abjad.rmakers.InciseSpecifier(

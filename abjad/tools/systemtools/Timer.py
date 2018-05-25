@@ -18,7 +18,7 @@ class Timer(ContextManager):
         >>> timer.elapsed_time # doctest: +SKIP
         0.092742919921875
 
-        The timer can also be accessed from within the `with` block:
+        The timer can also be accessed from within the ``with`` block:
 
         >>> with abjad.Timer() as timer: # doctest: +SKIP
         ...     for _ in range(5):
@@ -32,8 +32,8 @@ class Timer(ContextManager):
         0.4057970047
         0.50649189949
 
-    Timers can be reused between `with` blocks. They will reset their clock on
-    entering any `with` block.
+    Timers can be reused between ``with`` blocks. They will reset their clock
+    on entering any ``with`` block.
     """
 
     ### CLASS VARIABLES ###

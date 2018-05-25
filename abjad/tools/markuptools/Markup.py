@@ -1431,7 +1431,7 @@ class Markup(AbjadValueObject):
     @staticmethod
     def from_literal(string, direction=None, stack_priority=0):
         r"""
-        Makes markup from literal `string` and bypasses parser.
+        Makes markup from literal ``string`` and bypasses parser.
 
         ..  container:: example
 

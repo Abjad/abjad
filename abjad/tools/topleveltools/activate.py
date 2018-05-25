@@ -1,6 +1,6 @@
 def activate(text, tag, skipped=False):
     r"""
-    Activates `tag` in `text`.
+    Activates ``tag`` in ``text``.
 
     ..  container:: example
 

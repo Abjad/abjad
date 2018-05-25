@@ -33,7 +33,7 @@ class SchemeMoment(Scheme):
 
     def __eq__(self, argument):
         """
-        Is true when `argument` is a scheme moment with the same value as
+        Is true when ``argument`` is a scheme moment with the same value as
         that of this scheme moment.
 
         ..  container:: example
@@ -62,7 +62,7 @@ class SchemeMoment(Scheme):
 
     def __lt__(self, argument):
         """
-        Is true when `argument` is a scheme moment with value greater than
+        Is true when ``argument`` is a scheme moment with value greater than
         that of this scheme moment.
 
         ..  container:: example

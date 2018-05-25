@@ -65,7 +65,7 @@ class ChordInversion(AbjadValueObject):
 
     def __eq__(self, argument):
         """
-        Is true when `argument` is a chord inversion with number equal to
+        Is true when ``argument`` is a chord inversion with number equal to
         that of this chord inversion.
 
         ..  container:: example

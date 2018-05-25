@@ -2,8 +2,9 @@ import abjad
 
 
 def test_spannertools_OctavationSpanner_01():
-    r'''Octavation has default start set to 1 and stop set to 0.
-    '''
+    """
+    Octavation has default start set to 1 and stop set to 0.
+    """
 
     staff = abjad.Staff("c'8 c' c' c'")
     spanner = abjad.OctavationSpanner()
@@ -13,7 +14,7 @@ def test_spannertools_OctavationSpanner_01():
     assert spanner.stop == 0
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             \ottava #1
@@ -23,7 +24,7 @@ def test_spannertools_OctavationSpanner_01():
             c'8
             \ottava #0
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).is_well_formed()
@@ -36,7 +37,7 @@ def test_spannertools_OctavationSpanner_02():
     abjad.attach(spanner, staff[:4])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             \ottava #1
@@ -50,7 +51,7 @@ def test_spannertools_OctavationSpanner_02():
             fs'8
             g'8
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).is_well_formed()
@@ -63,7 +64,7 @@ def test_spannertools_OctavationSpanner_03():
     abjad.attach(spanner, staff[:4])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             \ottava #1
@@ -77,17 +78,18 @@ def test_spannertools_OctavationSpanner_03():
             fs'8
             g'8
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).is_well_formed()
 
 
 def test_spannertools_OctavationSpanner_04():
-    r'''Adjacent one-note octavation changes are allowed;
+    """
+    Adjacent one-note octavation changes are allowed;
     TODO: check for back-to-back set-octavation at format-
     time and compress to a single set-octavation.
-    '''
+    """
 
     staff = abjad.Staff([abjad.Note(n, (1, 8)) for n in range(8)])
     spanner = abjad.OctavationSpanner(start=1)
@@ -96,7 +98,7 @@ def test_spannertools_OctavationSpanner_04():
     abjad.attach(spanner, staff[1:2])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             \ottava #1
@@ -112,15 +114,16 @@ def test_spannertools_OctavationSpanner_04():
             fs'8
             g'8
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).is_well_formed()
 
 
 def test_spannertools_OctavationSpanner_05():
-    r'''Overlapping octavation spanners are allowed but not well-formed.
-    '''
+    """
+    Overlapping octavation spanners are allowed but not well-formed.
+    """
 
     staff = abjad.Staff([abjad.Note(n, (1, 8)) for n in range(8)])
     spanner = abjad.OctavationSpanner(start=1)
@@ -129,7 +132,7 @@ def test_spannertools_OctavationSpanner_05():
     abjad.attach(spanner, staff[2:6])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             \ottava #1
@@ -145,7 +148,7 @@ def test_spannertools_OctavationSpanner_05():
             fs'8
             g'8
         }
-        '''
+        """
         )
 
     assert not abjad.inspect(staff).is_well_formed()

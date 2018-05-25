@@ -1,6 +1,6 @@
 def weight(argument):
     """
-    Gets weight of `argument`.
+    Gets weight of ``argument``.
 
     ..  container:: example
 
@@ -12,7 +12,7 @@ def weight(argument):
         >>> abjad.mathtools.weight([])
         0
 
-    Defined equal to sum of the absolute value of items in `argument`.
+    Defined equal to sum of the absolute value of items in ``argument``.
 
     Returns nonnegative integer.
     """

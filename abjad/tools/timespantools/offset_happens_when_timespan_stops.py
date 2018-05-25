@@ -1,7 +1,7 @@
 def offset_happens_when_timespan_stops(timespan=None, offset=None, hold=False):
     """
-    Makes time relation indicating that `offset` happens
-    when `timespan` stops.
+    Makes time relation indicating that ``offset`` happens
+    when ``timespan`` stops.
 
     ..  container:: example
 

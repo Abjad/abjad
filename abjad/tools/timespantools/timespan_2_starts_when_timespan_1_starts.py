@@ -4,8 +4,8 @@ def timespan_2_starts_when_timespan_1_starts(
     hold=False,
     ):
     """
-    Makes time relation indicating that `timespan_2` starts
-    when `timespan_1` starts.
+    Makes time relation indicating that ``timespan_2`` starts
+    when ``timespan_1`` starts.
 
     ..  container:: example
 

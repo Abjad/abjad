@@ -1,6 +1,6 @@
 def greatest_common_divisor(*integers):
     """
-    Calculates greatest common divisor of `integers`.
+    Calculates greatest common divisor of ``integers``.
 
     ..  container:: example
 

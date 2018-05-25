@@ -14,7 +14,7 @@ def test_spannertools_DuratedComplexBeam_direction_01():
     abjad.attach(beam, container[:])
 
     assert format(container) == abjad.String.normalize(
-        r'''
+        r"""
         {
             \set stemLeftBeamCount = 0
             \set stemRightBeamCount = 2
@@ -31,7 +31,7 @@ def test_spannertools_DuratedComplexBeam_direction_01():
             f'16
             ]
         }
-        '''
+        """
         )
 
     assert abjad.inspect(container).is_well_formed()

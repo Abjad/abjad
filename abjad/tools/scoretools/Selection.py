@@ -162,9 +162,6 @@ class Selection(AbjadValueObject, collections.Sequence):
         """
         Formats duration.
 
-        Set `format_specification` to `''` or `'storage'`.
-        Interprets `''` equal to `'storage'`.
-
         Returns string.
         """
         if format_specification in ('', 'storage'):

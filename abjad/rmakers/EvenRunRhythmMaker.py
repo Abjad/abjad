@@ -91,7 +91,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
     def __call__(self, divisions, previous_state=None):
         """
-        Calls even-run rhythm-maker on `divisions`.
+        Calls even-run rhythm-maker on ``divisions``.
 
         ..  container:: example
 
@@ -119,8 +119,6 @@ class EvenRunRhythmMaker(RhythmMaker):
             >>> rhythm_maker = abjad.rmakers.EvenRunRhythmMaker()
             >>> abjad.f(rhythm_maker)
             abjad.rmakers.EvenRunRhythmMaker()
-
-        Set `format_specification` to `''` or `'storage'`.
 
         Returns string.
         """

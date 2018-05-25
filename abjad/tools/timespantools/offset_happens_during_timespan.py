@@ -1,6 +1,6 @@
 def offset_happens_during_timespan(timespan=None, offset=None, hold=False):
     """
-    Makes time relation indicating that `offset` happens during `timespan`.
+    Makes time relation indicating that ``offset`` happens during ``timespan``.
 
     ..  container:: example
 

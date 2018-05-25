@@ -44,7 +44,7 @@ class Scheme(AbjadValueObject):
         >>> print(format(scheme))
         #'#(1 2 3)
 
-        Use the `quoting` keyword to prepend Scheme's various quote, unquote,
+        Use the ``quoting`` keyword to prepend Scheme's various quote, unquote,
         unquote-splicing characters to formatted output.
 
     ..  container:: example
@@ -131,7 +131,7 @@ class Scheme(AbjadValueObject):
 
     ..  container:: example
 
-        Scheme takes an optional `quoting` keyword, for prepending
+        Scheme takes an optional ``quoting`` keyword, for prepending
         quote/unquote ticks:
 
         >>> str(abjad.Scheme(['fus', 'ro', 'dah'], quoting = "',"))
@@ -223,9 +223,6 @@ class Scheme(AbjadValueObject):
     def __format__(self, format_specification=''):
         """
         Formats scheme.
-
-        Set `format_specification` to `''`', `'lilypond'` or ``'storage'``.
-        Interprets `''` equal to `'lilypond'`.
 
         ..  container:: example
 
@@ -333,7 +330,7 @@ class Scheme(AbjadValueObject):
     @staticmethod
     def format_embedded_scheme_value(value, force_quotes=False):
         """
-        Formats `value` as an embedded Scheme value.
+        Formats ``value`` as an embedded Scheme value.
         """
         import abjad
         if isinstance(value, (
@@ -355,7 +352,7 @@ class Scheme(AbjadValueObject):
     @staticmethod
     def format_scheme_value(value, force_quotes=False, verbatim=False):
         r"""
-        Formats `value` as Scheme would.
+        Formats ``value`` as Scheme would.
 
         ..  container:: example
 
@@ -376,7 +373,7 @@ class Scheme(AbjadValueObject):
         ..  container:: example
 
             Strings without whitespace can be forcibly quoted via the
-            `force_quotes` keyword:
+            ``force_quotes`` keyword:
 
             >>> abjad.Scheme.format_scheme_value(
             ...     'foo',
@@ -397,7 +394,7 @@ class Scheme(AbjadValueObject):
         ..  container:: example
 
             Hash symbols in strings will result in quoted output unless
-            `verbatim` is True, in order to prevent LilyPond parsing errors:
+            ``verbatim`` is True, in order to prevent LilyPond parsing errors:
 
             >>> string = '#1-finger'
             >>> abjad.Scheme.format_scheme_value(string)

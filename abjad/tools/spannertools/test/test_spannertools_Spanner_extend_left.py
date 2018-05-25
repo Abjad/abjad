@@ -2,8 +2,9 @@ import abjad
 
 
 def test_spannertools_Spanner_extend_left_01():
-    r'''Extend spanner to the left.
-    '''
+    """
+    Extend spanner to the left.
+    """
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     leaves = abjad.select(voice).leaves()
@@ -12,7 +13,7 @@ def test_spannertools_Spanner_extend_left_01():
     beam._extend_left(leaves[:2])
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             {
@@ -30,7 +31,7 @@ def test_spannertools_Spanner_extend_left_01():
                 a'8
             }
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice).is_well_formed()

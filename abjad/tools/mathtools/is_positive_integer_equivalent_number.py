@@ -1,6 +1,6 @@
 def is_positive_integer_equivalent_number(argument):
     """
-    Is true when `argument` is a positive integer-equivalent number.
+    Is true when ``argument`` is a positive integer-equivalent number.
 
     ..  container:: example
 

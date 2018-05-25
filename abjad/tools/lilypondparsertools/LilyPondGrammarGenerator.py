@@ -2,8 +2,9 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class LilyPondGrammarGenerator(AbjadObject):
-    r'''Generates a syntax skeleton from LilyPond grammar files.
-    '''
+    """
+    Generates a syntax skeleton from LilyPond grammar files.
+    """
 
     ### CLASS VARIABLES ###
 
@@ -17,8 +18,9 @@ class LilyPondGrammarGenerator(AbjadObject):
         parser_output_path,
         parser_tab_hh_path,
         ):
-        r'''Calls LilyPond grammar generator.
-        '''
+        """
+        Calls LilyPond grammar generator.
+        """
         self._write_parser_syntax_skeleton(
             self,
             skeleton_path,

@@ -3,7 +3,7 @@ from abjad import Fraction
 
 def is_nonnegative_integer_power_of_two(argument) -> bool:
     """
-    Is true when `argument` is a nonnegative integer power of 2.
+    Is true when ``argument`` is a nonnegative integer power of 2.
 
     ..  container:: example
 

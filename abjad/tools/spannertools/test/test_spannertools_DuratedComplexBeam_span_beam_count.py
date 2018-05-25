@@ -2,8 +2,9 @@ import abjad
 
 
 def test_spannertools_DuratedComplexBeam_span_beam_count_01():
-    r'''1-beam span between adjacent groups of 1/16th notes.
-    '''
+    """
+    1-beam span between adjacent groups of 1/16th notes.
+    """
 
     container = abjad.Container("c'16 d'16 e'16 f'16")
     beam = abjad.DuratedComplexBeam(
@@ -13,7 +14,7 @@ def test_spannertools_DuratedComplexBeam_span_beam_count_01():
     abjad.attach(beam, container[:])
 
     assert format(container) == abjad.String.normalize(
-        r'''
+        r"""
         {
             \set stemLeftBeamCount = 0
             \set stemRightBeamCount = 2
@@ -30,15 +31,16 @@ def test_spannertools_DuratedComplexBeam_span_beam_count_01():
             f'16
             ]
         }
-        '''
+        """
         )
 
     assert abjad.inspect(container).is_well_formed()
 
 
 def test_spannertools_DuratedComplexBeam_span_beam_count_02():
-    r'''2-beam span between adjacent groups of 1/16th notes.
-    '''
+    """
+    2-beam span between adjacent groups of 1/16th notes.
+    """
 
     container = abjad.Container("c'16 d'16 e'16 f'16")
     beam = abjad.DuratedComplexBeam(
@@ -48,7 +50,7 @@ def test_spannertools_DuratedComplexBeam_span_beam_count_02():
     abjad.attach(beam, container[:])
 
     assert format(container) == abjad.String.normalize(
-        r'''
+        r"""
         {
             \set stemLeftBeamCount = 0
             \set stemRightBeamCount = 2
@@ -65,7 +67,7 @@ def test_spannertools_DuratedComplexBeam_span_beam_count_02():
             f'16
             ]
         }
-        '''
+        """
         )
 
     assert abjad.inspect(container).is_well_formed()

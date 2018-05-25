@@ -30,7 +30,7 @@ class RhythmTreeMixin(abctools.AbjadObject):
     @abc.abstractmethod
     def __call__(self, pulse_duration):
         """
-        Calls rhythm tree node on `pulse_duration`.
+        Calls rhythm tree node on ``pulse_duration``.
         """
         raise NotImplementedError
 
@@ -101,7 +101,7 @@ class RhythmTreeMixin(abctools.AbjadObject):
         >>> tree[1][1].duration
         Duration(1, 4)
 
-        Return `Duration` instance.
+        Return ``Duration`` instance.
         """
         return self.prolation * self.preprolated_duration
 

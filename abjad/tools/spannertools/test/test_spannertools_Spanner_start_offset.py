@@ -2,8 +2,9 @@ import abjad
 
 
 def test_spannertools_Spanner_start_offset_01():
-    r'''Returns start time of spanner in score.
-    '''
+    """
+    Returns start time of spanner in score.
+    """
 
     container = abjad.Container("c'8 d'8 e'8 f'8")
     beam = abjad.Beam()
@@ -12,7 +13,7 @@ def test_spannertools_Spanner_start_offset_01():
     abjad.attach(glissando, container[:])
 
     assert format(container) == abjad.String.normalize(
-        r'''
+        r"""
         {
             c'8
             \glissando
@@ -24,7 +25,7 @@ def test_spannertools_Spanner_start_offset_01():
             \glissando
             f'8
         }
-        '''
+        """
         )
 
     assert abjad.inspect(beam).get_timespan().start_offset == abjad.Duration(1, 8)
