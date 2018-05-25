@@ -7,9 +7,9 @@ from abjad.exceptions import (
     MissingMetronomeMarkError,
     MissingSpannerError,
 )
+from abjad.indicators.MetronomeMark import MetronomeMark
 from abjad.tools.datastructuretools.Duration import Duration
 from abjad.tools.datastructuretools.Multiplier import Multiplier
-from abjad.tools.indicatortools.MetronomeMark import MetronomeMark
 from abjad.tools.mathtools.NonreducedFraction import NonreducedFraction
 from abjad.tools.mathtools.Ratio import Ratio
 from abjad.tools.systemtools.LilyPondFormatManager import LilyPondFormatManager

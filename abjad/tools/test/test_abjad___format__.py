@@ -7,7 +7,7 @@ from abjad.tools import lilypondparsertools
 from abjad.tools import metertools
 from abjad.tools import segmenttools
 from abjad.tools import systemtools
-from abjad.tools import tonalanalysistools
+from abjad import tonalanalysis
 
 
 ignored_classes = (
@@ -40,7 +40,7 @@ def test_abjad___format___01(class_):
 ignored_classes = (
     segmenttools.Path,
     metertools.Meter,
-    tonalanalysistools.RootedChordClass,
+    tonalanalysis.RootedChordClass,
     systemtools.StorageFormatManager,
     systemtools.FormatSpecification,
     )

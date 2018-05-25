@@ -25,14 +25,14 @@ class StorageFormatManager(AbjadValueObject):
 
     _exclude_tools_package = (
         'datastructuretools',
-        'indicatortools',
+        'indicators',
         'markuptools',
         'mathtools',
         'metertools',
         'pitchtools',
         'schemetools',
         'scoretools',
-        'timespantools',
+        'timespans',
         )
 
     _unindented_whitespace = '', '', ', '
@@ -358,7 +358,7 @@ class StorageFormatManager(AbjadValueObject):
             >>> for type_ in types:
             ...     type_
             ...
-            <class 'abjad.tools.instrumenttools.Flute.Flute'>
+            <class 'abjad.instruments.Flute.Flute'>
             <class 'abjad.tools.markuptools.Markup.Markup'>
             <class 'abjad.tools.pitchtools.NamedPitch.NamedPitch'>
             <class 'abjad.tools.pitchtools.PitchRange.PitchRange'>
@@ -557,7 +557,7 @@ class StorageFormatManager(AbjadValueObject):
             >>> for line in agent.get_import_statements():
             ...     line
             ...
-            'from abjad.tools import instrumenttools'
+            'from abjad.tools import instruments'
             'from abjad.tools import markuptools'
             'from abjad.tools import pitchtools'
 

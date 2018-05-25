@@ -2,8 +2,8 @@ import abjad
 
 
 class {class_name}(abjad.AbjadObject):
-    r'''
-    '''
+    """
+    """
 
     ### CLASS VARIABLES ###
 

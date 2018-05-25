@@ -7,13 +7,13 @@ from .Line import Line
 from .Part import Part
 from .PartManifest import PartManifest
 from .Tags import Tags
+from abjad.indicators.Clef import Clef
+from abjad.indicators.LilyPondLiteral import LilyPondLiteral
+from abjad.indicators.MarginMarkup import MarginMarkup
+from abjad.indicators.TimeSignature import TimeSignature
 from abjad.tools.datastructuretools.CyclicTuple import CyclicTuple
 from abjad.tools.datastructuretools.OrderedDict import OrderedDict
 from abjad.tools.datastructuretools.String import String
-from abjad.tools.indicatortools.Clef import Clef
-from abjad.tools.indicatortools.LilyPondLiteral import LilyPondLiteral
-from abjad.tools.indicatortools.MarginMarkup import MarginMarkup
-from abjad.tools.indicatortools.TimeSignature import TimeSignature
 from abjad.tools.scoretools.MultimeasureRest import MultimeasureRest
 from abjad.tools.scoretools.Container import Container
 from abjad.tools.scoretools.Score import Score
@@ -1621,6 +1621,22 @@ class Path(pathlib.PosixPath):
                 part_identifier = globals_['part_identifier']
                 return part_identifier
         return None
+
+    def get_preamble_partial_score(
+        self,
+        ) -> bool:
+        """
+        Gets preamble time signatures.
+        """
+        assert self.is_file(), repr(self)
+        prefix = '% partial_score ='
+        with open(self) as pointer:
+            for line in pointer.readlines():
+                if line.startswith(prefix):
+                    line = line[len(prefix):]
+                    partial_score = eval(line)
+                    return partial_score
+        return False
 
     def get_preamble_time_signatures(
         self,

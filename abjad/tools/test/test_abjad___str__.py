@@ -2,7 +2,7 @@ import abjad
 import inspect
 import pytest
 from abjad.tools import documentationtools
-from abjad.tools import tonalanalysistools
+from abjad import tonalanalysis
 
 
 _allowed_to_be_empty_string = (
@@ -14,7 +14,7 @@ _allowed_to_be_empty_string = (
     abjad.SchemeColor,
     abjad.String,
     abjad.Tag,
-    tonalanalysistools.ChordSuspension,
+    tonalanalysis.ChordSuspension,
     )
 
 ignored_classes = (

@@ -1038,7 +1038,7 @@ class Sequence(abctools.AbjadValueObject, collections.Sequence):
 
                 Initializes items from keyword:
 
-                >>> abjad.sequence(items=[1, 2, 3, 4, 5, 6]).items
+                >>> abjad.sequence([1, 2, 3, 4, 5, 6]).items
                 (1, 2, 3, 4, 5, 6)
 
             ..  container:: example expression
@@ -1052,7 +1052,7 @@ class Sequence(abctools.AbjadValueObject, collections.Sequence):
                 Initializes items from keyword:
 
                 >>> expression = abjad.sequence()
-                >>> expression(items=[1, 2, 3, 4, 5, 6]).items
+                >>> expression([1, 2, 3, 4, 5, 6]).items
                 (1, 2, 3, 4, 5, 6)
 
         Returns tuple.
@@ -1075,7 +1075,7 @@ class Sequence(abctools.AbjadValueObject, collections.Sequence):
                 With lambda:
 
                 >>> items = [[1], [2, 3, [4]], [5], [6, 7, [8]]]
-                >>> sequence = abjad.sequence(items=items)
+                >>> sequence = abjad.sequence(items)
 
                 >>> sequence.filter(lambda _: len(_) == 1)
                 Sequence([[1], [5]])
@@ -1085,7 +1085,7 @@ class Sequence(abctools.AbjadValueObject, collections.Sequence):
                 With inequality:
 
                 >>> items = [[1], [2, 3, [4]], [5], [6, 7, [8]]]
-                >>> sequence = abjad.sequence(items=items)
+                >>> sequence = abjad.sequence(items)
 
                 >>> sequence.filter(abjad.LengthInequality('==', 1))
                 Sequence([[1], [5]])
@@ -1155,7 +1155,7 @@ class Sequence(abctools.AbjadValueObject, collections.Sequence):
             ..  container:: example
 
                 >>> items = [1, [2, 3, [4]], 5, [6, 7, [8]]]
-                >>> sequence = abjad.sequence(items=items)
+                >>> sequence = abjad.sequence(items)
 
                 >>> sequence.flatten()
                 Sequence([1, 2, 3, [4], 5, 6, 7, [8]])
@@ -1356,7 +1356,7 @@ class Sequence(abctools.AbjadValueObject, collections.Sequence):
             ..  container:: example
 
                 >>> items = ['ab', 'cd', ('ef', 'gh'), ('ij', 'kl')]
-                >>> sequence = abjad.sequence(items=items)
+                >>> sequence = abjad.sequence(items)
 
                 >>> sequence.flatten(classes=(tuple,))
                 Sequence(['ab', 'cd', 'ef', 'gh', 'ij', 'kl'])
@@ -1658,7 +1658,7 @@ class Sequence(abctools.AbjadValueObject, collections.Sequence):
         ..  container:: example
 
             >>> items = [(1, 2, 3), (), (4, 5), (), (6,)]
-            >>> sequence = abjad.sequence(items=items)
+            >>> sequence = abjad.sequence(items)
             >>> sequence
             Sequence([(1, 2, 3), (), (4, 5), (), (6,)])
 

@@ -3,12 +3,12 @@ import itertools
 import ply  # type: ignore
 from abjad.tools import abctools
 from abjad.tools import datastructuretools
-from abjad.tools import indicatortools
+from abjad import indicators as abjad_indicators
 from abjad.tools import lilypondfiletools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
 from abjad.tools import scoretools
-from abjad.tools import spannertools
+from abjad import spanners as abjad_spanners
 from abjad.tools.lilypondparsertools._parse import _parse
 from abjad.tools.lilypondparsertools._parse_debug import _parse_debug
 from abjad.tools.topleveltools.attach import attach
@@ -461,11 +461,11 @@ class LilyPondParser(abctools.Parser):
                     raise Exception(message)
 
             # check for dynamics and terminate any hairpin
-            dynamics = leaf._get_indicators(indicatortools.Dynamic)
-            if dynamics and spannertools.Hairpin in all_spanners and \
-                all_spanners[spannertools.Hairpin]:
-                all_spanners[spannertools.Hairpin][0]._append(leaf)
-                all_spanners[spannertools.Hairpin].pop()
+            dynamics = leaf._get_indicators(abjad_indicators.Dynamic)
+            if dynamics and abjad_spanners.Hairpin in all_spanners and \
+                all_spanners[abjad_spanners.Hairpin]:
+                all_spanners[abjad_spanners.Hairpin][0]._append(leaf)
+                all_spanners[abjad_spanners.Hairpin].pop()
 
             # loop through directed events, handling each as necessary
             for spanner_class, events in directed_events.items():
@@ -477,7 +477,7 @@ class LilyPondParser(abctools.Parser):
                     else:
                         stopping_events.append(x)
 
-                if spanner_class is spannertools.Beam:
+                if spanner_class is abjad_spanners.Beam:
                     # A beam may begin and end on the same leaf
                     # but only one beam spanner may cover any given leaf,
                     # and starting events are processed before ending ones
@@ -495,7 +495,7 @@ class LilyPondParser(abctools.Parser):
                             all_spanners[spanner_class][0]._append(leaf)
                             all_spanners[spanner_class].pop()
 
-                elif spanner_class is spannertools.Hairpin:
+                elif spanner_class is abjad_spanners.Hairpin:
                     # Dynamic events can be ended many times,
                     # but only one may start on a given leaf,
                     # and the event must start and end on separate leaves.
@@ -527,10 +527,10 @@ class LilyPondParser(abctools.Parser):
                         raise Exception(message)
 
                 elif spanner_class in [
-                    spannertools.Slur,
-                    spannertools.PhrasingSlur,
-                    spannertools.TextSpanner,
-                    spannertools.TrillSpanner,
+                    abjad_spanners.Slur,
+                    abjad_spanners.PhrasingSlur,
+                    abjad_spanners.TextSpanner,
+                    abjad_spanners.TrillSpanner,
                     ]:
                     # these engravers process stop events before start events,
                     # they must contain more than one leaf, however,
@@ -557,7 +557,7 @@ class LilyPondParser(abctools.Parser):
                             message = message.format(spanner_class.__name__)
                             raise Exception(message)
 
-                elif spanner_class is spannertools.HorizontalBracketSpanner:
+                elif spanner_class is abjad_spanners.HorizontalBracketSpanner:
                     # Brackets can nest, meaning
                     # multiple brackets can begin or end on a leaf
                     # but can not both begin and end on the same leaf
@@ -685,11 +685,11 @@ class LilyPondParser(abctools.Parser):
                 container.append(x)
             else:
                 if isinstance(x, (
-                    indicatortools.BarLine,
+                    abjad_indicators.BarLine,
                     )):
                     apply_backward.append(x)
                 elif (
-                    isinstance(x, indicatortools.LilyPondLiteral) and
+                    isinstance(x, abjad_indicators.LilyPondLiteral) and
                     x.name in (r'\break', r'\breathe', r'\pageBreak')
                     ):
                     apply_backward.append(x)
@@ -794,11 +794,11 @@ class LilyPondParser(abctools.Parser):
             #       Is there a way to identify spanner LilyPondEvents?
             #       Then we can just (blindly) attach all other post events.
             nonspanner_post_event_types = (
-                indicatortools.Articulation,
-                indicatortools.BarLine,
-                indicatortools.Dynamic,
-                indicatortools.LilyPondLiteral,
-                indicatortools.StemTremolo,
+                abjad_indicators.Articulation,
+                abjad_indicators.BarLine,
+                abjad_indicators.Dynamic,
+                abjad_indicators.LilyPondLiteral,
+                abjad_indicators.StemTremolo,
                 markuptools.Markup,
                 )
             if hasattr(post_event, '_attach'):
@@ -869,13 +869,13 @@ class LilyPondParser(abctools.Parser):
         lookup = self._current_module[identifier]
         name = lookup['name']
         if name == 'ArticulationEvent':
-            return indicatortools.Articulation(lookup['articulation-type'])
+            return abjad_indicators.Articulation(lookup['articulation-type'])
         elif name == 'AbsoluteDynamicEvent':
-            return indicatortools.Dynamic(lookup['text'])
+            return abjad_indicators.Dynamic(lookup['text'])
         elif name == 'LaissezVibrerEvent':
-            return indicatortools.LilyPondLiteral(r'\laissezVibrer', 'after')
+            return abjad_indicators.LilyPondLiteral(r'\laissezVibrer', 'after')
         elif name == 'LineBreakEvent':
-            return indicatortools.LilyPondLiteral(r'\break')
+            return abjad_indicators.LilyPondLiteral(r'\break')
         event = lilypondparsertools.LilyPondEvent(name)
         if 'span-direction' in lookup:
             if lookup['span-direction'] == -1:
@@ -892,16 +892,16 @@ class LilyPondParser(abctools.Parser):
 
     def _span_event_name_to_spanner_class(self, name):
         spanners = {
-            'BeamEvent': spannertools.Beam,
-            'CrescendoEvent': spannertools.Hairpin,
-            'DecrescendoEvent': spannertools.Hairpin,
-            'GlissandoEvent': spannertools.Glissando,
-            'NoteGroupingEvent': spannertools.HorizontalBracketSpanner,
-            'PhrasingSlurEvent': spannertools.PhrasingSlur,
-            'SlurEvent': spannertools.Slur,
-            'TextSpanEvent': spannertools.TextSpanner,
-            'TieEvent': spannertools.Tie,
-            'TrillSpanEvent': spannertools.TrillSpanner,
+            'BeamEvent': abjad_spanners.Beam,
+            'CrescendoEvent': abjad_spanners.Hairpin,
+            'DecrescendoEvent': abjad_spanners.Hairpin,
+            'GlissandoEvent': abjad_spanners.Glissando,
+            'NoteGroupingEvent': abjad_spanners.HorizontalBracketSpanner,
+            'PhrasingSlurEvent': abjad_spanners.PhrasingSlur,
+            'SlurEvent': abjad_spanners.Slur,
+            'TextSpanEvent': abjad_spanners.TextSpanner,
+            'TieEvent': abjad_spanners.Tie,
+            'TrillSpanEvent': abjad_spanners.TrillSpanner,
             }
         if name in spanners:
             return spanners[name]

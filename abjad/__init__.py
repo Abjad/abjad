@@ -29,8 +29,8 @@ index_all = Pattern.index_all
 index_first = Pattern.index_first
 index_last = Pattern.index_last
 
-from abjad.tools.indicatortools import *
-from abjad.tools.instrumenttools import *
+from abjad.indicators import *
+from abjad.instruments import *
 from abjad.tools.lilypondfiletools import *
 from abjad.tools.lilypondnametools import *
 from abjad.tools.markuptools import *
@@ -39,7 +39,7 @@ from abjad.tools.pitchtools import *
 from abjad.tools.schemetools import *
 from abjad.tools.scoretools import *
 from abjad.tools.segmenttools import *
-from abjad.tools.spannertools import *
+from abjad.spanners import *
 from abjad.tools.systemtools import *
 from abjad.tools.topleveltools import *
 
@@ -49,11 +49,13 @@ from abjad.tools.mathtools.NonreducedFraction import NonreducedFraction
 from abjad.tools.mathtools.NonreducedRatio import NonreducedRatio
 from abjad.tools.mathtools.Ratio import Ratio
 
-# timespantools classes (but not functions)
-from abjad.tools.timespantools.AnnotatedTimespan import AnnotatedTimespan
-from abjad.tools.timespantools.Timespan import Timespan
-from abjad.tools.timespantools.TimespanInequality import TimespanInequality
-from abjad.tools.timespantools.TimespanList import TimespanList
+# timespan classes (but not functions):
+from abjad.timespans.AnnotatedTimespan import AnnotatedTimespan
+from abjad.timespans.Timespan import Timespan
+from abjad.timespans.TimespanInequality import TimespanInequality
+from abjad.timespans.TimespanList import TimespanList
+
+import tonalanalysis
 
 # import version information
 from ._version import __version_info__, __version__

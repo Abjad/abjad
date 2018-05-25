@@ -1,11 +1,11 @@
 import abc
 import typing
+from abjad.indicators.Clef import Clef
+from abjad.indicators.MarginMarkup import MarginMarkup
+from abjad.instruments.Instrument import Instrument
 from abjad.tools import abctools
 from abjad.tools.datastructuretools.OrderedDict import OrderedDict
 from abjad.tools.datastructuretools.String import String
-from abjad.tools.indicatortools.Clef import Clef
-from abjad.tools.indicatortools.MarginMarkup import MarginMarkup
-from abjad.tools.instrumenttools.Instrument import Instrument
 from abjad.tools.lilypondfiletools.LilyPondFile import LilyPondFile
 from abjad.tools.scoretools.Context import Context
 from abjad.tools.scoretools.MultimeasureRest import MultimeasureRest

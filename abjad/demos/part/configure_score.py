@@ -11,7 +11,7 @@ def configure_score(score):
     leaf = abjad.inspect(bell_staff).get_leaf(0)
     clef = abjad.Clef('treble')
     abjad.attach(clef, leaf)
-    bells = abjad.instrumenttools.Instrument(
+    bells = abjad.Instrument(
         name='Campana in La',
         short_name='Camp.',
         pitch_range='[C4, C6]',
@@ -27,7 +27,7 @@ def configure_score(score):
     leaf = abjad.inspect(first_violin_staff).get_leaf(0)
     clef = abjad.Clef('treble')
     abjad.attach(clef, leaf)
-    violin = abjad.instrumenttools.Violin(
+    violin = abjad.Violin(
         markup=abjad.Markup('Violin I'),
         short_markup=abjad.Markup('Vl. I'),
         )
@@ -38,7 +38,7 @@ def configure_score(score):
     leaf = abjad.inspect(second_violin_staff).get_leaf(0)
     clef = abjad.Clef('treble')
     abjad.attach(clef, leaf)
-    violin = abjad.instrumenttools.Violin(
+    violin = abjad.Violin(
         markup=abjad.Markup('Violin II'),
         short_markup=abjad.Markup('Vl. II'),
         )
@@ -48,21 +48,21 @@ def configure_score(score):
     leaf = abjad.inspect(score['Viola Staff']).get_leaf(0)
     clef = abjad.Clef('alto')
     abjad.attach(clef, leaf)
-    viola = abjad.instrumenttools.Viola()
+    viola = abjad.Viola()
     abjad.attach(viola, leaf)
 
     # configure cello staff
     leaf = abjad.inspect(score['Cello Staff']).get_leaf(0)
     clef = abjad.Clef('bass')
     abjad.attach(clef, leaf)
-    cello = abjad.instrumenttools.Cello()
+    cello = abjad.Cello()
     abjad.attach(cello, leaf)
 
     # configure bass staff
     leaf = abjad.inspect(score['Bass Staff']).get_leaf(0)
     clef = abjad.Clef('bass')
     abjad.attach(clef, leaf)
-    contrabass = abjad.instrumenttools.Contrabass(
+    contrabass = abjad.Contrabass(
         short_markup=abjad.Markup('Cb.'),
         )
     abjad.attach(contrabass, leaf)

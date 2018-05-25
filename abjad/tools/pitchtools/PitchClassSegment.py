@@ -3468,7 +3468,7 @@ class PitchClassSegment(Segment):
             Voices vertically:
 
             >>> scale_degree_numbers = [1, 3, 5, 7, 9, 11, 13]
-            >>> scale = abjad.tonalanalysistools.Scale(('c', 'minor'))
+            >>> scale = abjad.tonalanalysis.Scale(('c', 'minor'))
             >>> segment = abjad.PitchClassSegment((
             ...     scale.scale_degree_to_named_pitch_class(x)
             ...     for x in scale_degree_numbers))

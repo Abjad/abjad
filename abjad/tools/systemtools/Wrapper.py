@@ -138,7 +138,7 @@ class Wrapper(AbjadValueObject):
         from abjad.tools.datastructuretools.Offset import Offset
         from abjad.tools.scoretools.Component import Component
         from abjad.tools.scoretools.Context import Context
-        from abjad.tools.spannertools.Spanner import Spanner
+        from abjad.spanners.Spanner import Spanner
         assert not isinstance(indicator, type(self)), repr(indicator)
         if alternate is not None:
             assert isinstance(alternate, tuple) and len(alternate) == 2
@@ -857,7 +857,7 @@ class Wrapper(AbjadValueObject):
 
         Returns component.
         """
-        from abjad.tools.spannertools.Spanner import Spanner
+        from abjad.spanners.Spanner import Spanner
         if isinstance(self._component, Spanner):
             if self._component:
                 return self._component[0]

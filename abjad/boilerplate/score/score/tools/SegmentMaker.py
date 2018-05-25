@@ -3,8 +3,9 @@ import {score_package_name}
 
 
 class SegmentMaker(abjad.AbjadObject):
-    r'''Segment-maker.
-    '''
+    """
+    Segment-maker.
+    """
 
     ### INITIALIZER ###
 
@@ -19,10 +20,11 @@ class SegmentMaker(abjad.AbjadObject):
         midi=None,
         previous_metadata=None,
         ):
-        r'''Runs segment-maker.
+        """
+        Runs segment-maker.
 
         Returns LilyPond file.
-        '''
+        """
         self.metadata = metadata
         self.midi = midi
         self.previous_metadata = previous_metadata
