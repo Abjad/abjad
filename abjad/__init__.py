@@ -55,8 +55,6 @@ from abjad.timespans.Timespan import Timespan
 from abjad.timespans.TimespanInequality import TimespanInequality
 from abjad.timespans.TimespanList import TimespanList
 
-import tonalanalysis
-
 # import version information
 from ._version import __version_info__, __version__
 try:
@@ -67,6 +65,7 @@ except NameError:
 from abjad import cli
 from abjad import demos
 from abjad import ly
+from abjad import tonalanalysis
 
 # HOUSECLEANING HELPER: uncomment below and run tests;
 #                       checks for hasattr() calls against properties:
