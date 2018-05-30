@@ -1,4 +1,4 @@
-from abjad.tools.pitchtools.NamedPitchClass import NamedPitchClass
+from abjad.pitch.NamedPitchClass import NamedPitchClass
 
 
 lilypond_version = "2.19.24"

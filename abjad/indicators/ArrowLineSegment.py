@@ -1,6 +1,6 @@
 import typing
 from abjad.enumerations import Center, VerticalAlignment
-from abjad.tools.markuptools.Markup import Markup
+from abjad.markup.Markup import Markup
 from .LineSegment import LineSegment
 Number = typing.Union[int, float]
 

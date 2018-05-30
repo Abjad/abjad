@@ -1,4 +1,4 @@
-from abjad.tools.datastructuretools.TypedList import TypedList
+from abjad.utilities.TypedList import TypedList
 
 
 class CompoundInequality(TypedList):

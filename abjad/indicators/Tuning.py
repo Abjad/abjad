@@ -1,10 +1,10 @@
 import typing
-from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
-from abjad.tools.mathtools.Enumerator import Enumerator
-from abjad.tools.pitchtools.NamedPitch import NamedPitch
-from abjad.tools.pitchtools.NamedPitchClass import NamedPitchClass
-from abjad.tools.pitchtools.PitchRange import PitchRange
-from abjad.tools.pitchtools.PitchSegment import PitchSegment
+from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.mathtools.Enumerator import Enumerator
+from abjad.pitch.NamedPitch import NamedPitch
+from abjad.pitch.NamedPitchClass import NamedPitchClass
+from abjad.pitch.PitchRange import PitchRange
+from abjad.pitch.PitchSegment import PitchSegment
 from .StringNumber import StringNumber
 
 

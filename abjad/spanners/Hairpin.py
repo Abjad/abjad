@@ -2,17 +2,17 @@ import typing
 from .Spanner import Spanner
 from abjad.enumerations import VerticalAlignment
 from abjad.indicators.Dynamic import Dynamic
-from abjad.tools.datastructuretools.String import String
-from abjad.tools.lilypondnametools.LilyPondGrobOverride import \
+from abjad.utilities.String import String
+from abjad.lilypondnames.LilyPondGrobOverride import \
     LilyPondGrobOverride
-from abjad.tools.scoretools.Chord import Chord
-from abjad.tools.scoretools.Leaf import Leaf
-from abjad.tools.scoretools.Note import Note
-from abjad.tools.systemtools.Tag import Tag
-from abjad.tools.systemtools.Wrapper import Wrapper
-from abjad.tools.topleveltools.inspect import inspect
-from abjad.tools.topleveltools.select import select
-from abjad.tools.topleveltools.tweak import tweak
+from abjad.core.Chord import Chord
+from abjad.core.Leaf import Leaf
+from abjad.core.Note import Note
+from abjad.system.Tag import Tag
+from abjad.system.Wrapper import Wrapper
+from abjad.top.inspect import inspect
+from abjad.top.select import select
+from abjad.top.tweak import tweak
 
 
 class Hairpin(Spanner):

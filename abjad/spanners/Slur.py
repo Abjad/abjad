@@ -1,6 +1,6 @@
 import typing
 from abjad.enumerations import VerticalAlignment
-from abjad.tools.datastructuretools.String import String
+from abjad.utilities.String import String
 from .Spanner import Spanner
 
 

@@ -1,8 +1,8 @@
 import typing
 from abjad.enumerations import VerticalAlignment
-from abjad.tools.datastructuretools.String import String
-from abjad.tools.topleveltools.inspect import inspect
-from abjad.tools.topleveltools.new import new
+from abjad.utilities.String import String
+from abjad.top.inspect import inspect
+from abjad.top.new import new
 from .Spanner import Spanner
 Number = typing.Union[int, float]
 
@@ -172,7 +172,7 @@ class Beam(Spanner):
     ### PRIVATE METHODS ###
 
     def _add_stemlet_length(self, leaf, bundle):
-        from abjad.tools.scoretools.Staff import Staff
+        from abjad.core.Staff import Staff
         if self.stemlet_length is None:
             return
         if leaf is self[0]:
@@ -284,11 +284,11 @@ class Beam(Spanner):
             True
 
         """
-        from abjad.tools.scoretools.Chord import Chord
-        from abjad.tools.scoretools.MultimeasureRest import MultimeasureRest
-        from abjad.tools.scoretools.Note import Note
-        from abjad.tools.scoretools.Rest import Rest
-        from abjad.tools.scoretools.Skip import Skip
+        from abjad.core.Chord import Chord
+        from abjad.core.MultimeasureRest import MultimeasureRest
+        from abjad.core.Note import Note
+        from abjad.core.Rest import Rest
+        from abjad.core.Skip import Skip
         if isinstance(argument, (Chord, Note)):
             if 0 < argument.written_duration.flag_count:
                 return True

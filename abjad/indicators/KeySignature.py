@@ -1,10 +1,10 @@
 import typing
-from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
-from abjad.tools.lilypondnametools.LilyPondTweakManager import \
+from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.lilypondnames.LilyPondTweakManager import \
     LilyPondTweakManager
-from abjad.tools.pitchtools.NamedPitchClass import NamedPitchClass
-from abjad.tools.systemtools.FormatSpecification import FormatSpecification
-from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
+from abjad.pitch.NamedPitchClass import NamedPitchClass
+from abjad.system.FormatSpecification import FormatSpecification
+from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 
 
 class KeySignature(AbjadValueObject):

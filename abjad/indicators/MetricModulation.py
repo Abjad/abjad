@@ -1,14 +1,14 @@
 import collections
 import typing
 from abjad.enumerations import Up
-from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
-from abjad.tools.datastructuretools.Duration import Duration
-from abjad.tools.markuptools.Markup import Markup
-from abjad.tools.mathtools.Ratio import Ratio
-from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
-from abjad.tools.topleveltools.inspect import inspect
-from abjad.tools.topleveltools.new import new
-from abjad.tools.topleveltools.select import select
+from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.utilities.Duration import Duration
+from abjad.markup.Markup import Markup
+from abjad.mathtools.Ratio import Ratio
+from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
+from abjad.top.inspect import inspect
+from abjad.top.new import new
+from abjad.top.select import select
 
 
 class MetricModulation(AbjadValueObject):
@@ -610,7 +610,7 @@ class MetricModulation(AbjadValueObject):
         left_markup: Markup = None,
         right_markup: Markup = None,
         ) -> None:
-        from abjad.tools.scoretools.Note import Note
+        from abjad.core.Note import Note
         left_rhythm = left_rhythm or Note('c4')
         right_rhythm = right_rhythm or Note('c4')
         left_rhythm = self._initialize_rhythm(left_rhythm)

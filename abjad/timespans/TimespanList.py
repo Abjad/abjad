@@ -1,10 +1,9 @@
 import collections
 from abjad.enumerations import Left, Right
-from abjad.tools import markuptools
-from abjad.tools.datastructuretools.TypedList import TypedList
-from abjad.tools.datastructuretools import Infinity
-from abjad.tools.datastructuretools import NegativeInfinity
-from abjad.tools.topleveltools.new import new
+from abjad.utilities.TypedList import TypedList
+from abjad.utilities import Infinity
+from abjad.utilities import NegativeInfinity
+from abjad.top.new import new
 
 
 class TimespanList(TypedList):
@@ -238,7 +237,7 @@ class TimespanList(TypedList):
                 value_markup = abjad.Markup.line([value_markup])
                 value_markup = value_markup.sans().fontsize(-1)
                 markups.append(value_markup)
-                vspace_markup = markuptools.Markup.vspace(0.5)
+                vspace_markup = abjad.Markup.vspace(0.5)
                 markups.append(vspace_markup)
                 timespan_markup = self._make_timespan_list_markup(
                     timespans,
@@ -1746,8 +1745,8 @@ class TimespanList(TypedList):
 
         Returns counter.
         """
-        from abjad.tools import metertools
-        return metertools.OffsetCounter(self)
+        from abjad import meter
+        return meter.OffsetCounter(self)
 
     def explode(self, inventory_count=None):
         """

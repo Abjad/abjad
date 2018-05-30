@@ -1,6 +1,6 @@
 import bisect
-from abjad.tools import systemtools
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad import system
+from abjad.abctools.AbjadObject import AbjadObject
 
 
 class TimespanInequality(AbjadObject):
@@ -87,9 +87,8 @@ class TimespanInequality(AbjadObject):
 
         Returns string.
         """
-        from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatManager(self).get_storage_format()
+            return system.StorageFormatManager(self).get_storage_format()
         return str(self)
 
     ### PRIVATE METHODS ###
@@ -131,7 +130,7 @@ class TimespanInequality(AbjadObject):
         raise ValueError
 
     def _get_format_specification(self):
-        return systemtools.FormatSpecification(
+        return system.FormatSpecification(
             client=self,
             storage_format_args_values=[self.template],
             storage_format_is_indented=False,

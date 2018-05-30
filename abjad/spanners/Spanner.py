@@ -2,22 +2,22 @@ import copy
 import typing
 from abjad.enumerations import Left, Right
 from abjad.timespans import Timespan
-from abjad.tools.abctools.AbjadObject import AbjadObject
-from abjad.tools.datastructuretools.Duration import Duration
-from abjad.tools.scoretools.Leaf import Leaf
-from abjad.tools.scoretools.Selection import Selection
-from abjad.tools.systemtools.LilyPondFormatManager import LilyPondFormatManager
-from abjad.tools.systemtools.Wrapper import Wrapper
-from abjad.tools.segmenttools.Tags import Tags
-from abjad.tools.systemtools.FormatSpecification import FormatSpecification
-from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
-from abjad.tools.systemtools.StorageFormatManager import StorageFormatManager
-from abjad.tools.systemtools.Tag import Tag
-from abjad.tools.topleveltools.inspect import inspect
-from abjad.tools.topleveltools.override import override
-from abjad.tools.topleveltools.select import select
-from abjad.tools.topleveltools.setting import setting
-from abjad.tools.topleveltools.tweak import tweak
+from abjad.abctools.AbjadObject import AbjadObject
+from abjad.utilities.Duration import Duration
+from abjad.core.Leaf import Leaf
+from abjad.core.Selection import Selection
+from abjad.system.LilyPondFormatManager import LilyPondFormatManager
+from abjad.system.Wrapper import Wrapper
+from abjad.segments.Tags import Tags
+from abjad.system.FormatSpecification import FormatSpecification
+from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
+from abjad.system.StorageFormatManager import StorageFormatManager
+from abjad.system.Tag import Tag
+from abjad.top.inspect import inspect
+from abjad.top.override import override
+from abjad.top.select import select
+from abjad.top.setting import setting
+from abjad.top.tweak import tweak
 abjad_tags = Tags()
 
 

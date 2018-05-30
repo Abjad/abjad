@@ -1,6 +1,6 @@
 import os
-if 'topleveltools' in os.path.abspath('.'):
-    message = 'do not start Abjad from topleveltools directory (inspect.py).'
+if 'top' in os.path.abspath('.'):
+    message = 'do not start Abjad from top/ directory (because of inspect.py).'
     raise Exception(message)
 del os
 
@@ -15,14 +15,16 @@ from abjad.exceptions import *
 
 # ensure that the ~/.abjad directory and friends are setup
 # and instantiate Abjad's configuration singleton
-from abjad.tools.systemtools.AbjadConfiguration import AbjadConfiguration
+from abjad.system.AbjadConfiguration import AbjadConfiguration
 abjad_configuration = AbjadConfiguration()
 del AbjadConfiguration
 
+# import parser
+from abjad import parser
+
 # import all tools packages
-from abjad.tools import *
-from abjad.tools.abctools import *
-from abjad.tools.datastructuretools import *
+from abjad.abctools import *
+from abjad.utilities import *
 
 index = Pattern.index
 index_all = Pattern.index_all
@@ -31,23 +33,23 @@ index_last = Pattern.index_last
 
 from abjad.indicators import *
 from abjad.instruments import *
-from abjad.tools.lilypondfiletools import *
-from abjad.tools.lilypondnametools import *
-from abjad.tools.markuptools import *
-from abjad.tools.metertools import *
-from abjad.tools.pitchtools import *
-from abjad.tools.schemetools import *
-from abjad.tools.scoretools import *
-from abjad.tools.segmenttools import *
+from abjad.lilypondfile import *
+from abjad.lilypondnames import *
+from abjad.markup import *
+from abjad.meter import *
+from abjad.pitch import *
+from abjad.scheme import *
+from abjad.core import *
+from abjad.segments import *
 from abjad.spanners import *
-from abjad.tools.systemtools import *
-from abjad.tools.topleveltools import *
+from abjad.system import *
+from abjad.top import *
 
 # import all the way down to module to satisfy mypy:
-from abjad.tools.mathtools.Enumerator import Enumerator
-from abjad.tools.mathtools.NonreducedFraction import NonreducedFraction
-from abjad.tools.mathtools.NonreducedRatio import NonreducedRatio
-from abjad.tools.mathtools.Ratio import Ratio
+from abjad.mathtools.Enumerator import Enumerator
+from abjad.mathtools.NonreducedFraction import NonreducedFraction
+from abjad.mathtools.NonreducedRatio import NonreducedRatio
+from abjad.mathtools.Ratio import Ratio
 
 # timespan classes (but not functions):
 from abjad.timespans.AnnotatedTimespan import AnnotatedTimespan
@@ -65,7 +67,11 @@ except NameError:
 from abjad import cli
 from abjad import demos
 from abjad import ly
+from abjad import documentationtools
 from abjad import tonalanalysis
+
+# singletons
+tags = segments.Tags()
 
 # HOUSECLEANING HELPER: uncomment below and run tests;
 #                       checks for hasattr() calls against properties:

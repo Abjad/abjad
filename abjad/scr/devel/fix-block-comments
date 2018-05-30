@@ -1,7 +1,7 @@
 #! /usr/bin/env python
+import abjad
 import os
 import re
-from abjad.tools import systemtools
 
 
 def fix_test_case_block_comments():
@@ -65,6 +65,6 @@ def fix_test_case_block_comments():
 
 
 if __name__ == '__main__':
-    systemtools.IOManager.clear_terminal()
+    abjad.IOManager.clear_terminal()
     fix_test_case_block_comments()
     print

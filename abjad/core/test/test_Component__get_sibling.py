@@ -1,0 +1,31 @@
+import abjad
+
+
+def test_Component__get_sibling_01():
+    """
+    Returns component when index is in range.
+    """
+
+    staff = abjad.Staff("c' d' e' f'")
+    assert staff[1]._get_sibling(2) is staff[3]
+    assert staff[1]._get_sibling(1) is staff[2]
+    assert staff[1]._get_sibling(0) is staff[1]
+    assert staff[1]._get_sibling(-1) is staff[0]
+
+
+def test_Component__get_sibling_02():
+    """
+    Returns none when index is out of range.
+    """
+
+    staff = abjad.Staff("c' d' e' f'")
+    assert staff[1]._get_sibling(99) is None
+
+
+def test_Component__get_sibling_03():
+    """
+    Returns none when component has no parent.
+    """
+
+    staff = abjad.Staff("c' d' e' f'")
+    assert staff._get_sibling(1) is None

@@ -1,8 +1,8 @@
 import typing
-from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
-from abjad.tools.markuptools.Markup import Markup
-from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
-from abjad.tools.topleveltools.new import new
+from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.markup.Markup import Markup
+from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
+from abjad.top.new import new
 
 
 class StartMarkup(AbjadValueObject):

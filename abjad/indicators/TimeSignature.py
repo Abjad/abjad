@@ -1,12 +1,12 @@
 import collections
 import typing
-from abjad.tools import mathtools
-from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
-from abjad.tools.datastructuretools.Duration import Duration
-from abjad.tools.datastructuretools.Multiplier import Multiplier
-from abjad.tools.mathtools.NonreducedFraction import NonreducedFraction
-from abjad.tools.systemtools.FormatSpecification import FormatSpecification
-from abjad.tools.systemtools.StorageFormatManager import StorageFormatManager
+from abjad import mathtools
+from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.utilities.Duration import Duration
+from abjad.utilities.Multiplier import Multiplier
+from abjad.mathtools.NonreducedFraction import NonreducedFraction
+from abjad.system.FormatSpecification import FormatSpecification
+from abjad.system.StorageFormatManager import StorageFormatManager
 
 
 class TimeSignature(AbjadValueObject):

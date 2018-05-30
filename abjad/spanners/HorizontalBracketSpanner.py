@@ -1,5 +1,5 @@
 import typing
-from abjad.tools.markuptools.Markup import Markup
+from abjad.markup.Markup import Markup
 from .Spanner import Spanner
 
 

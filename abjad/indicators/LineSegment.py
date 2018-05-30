@@ -1,12 +1,12 @@
 import typing
 from abjad.enumerations import Center, VerticalAlignment
-from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
-from abjad.tools.lilypondnametools.LilyPondGrobOverride import (
+from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.lilypondnames.LilyPondGrobOverride import (
     LilyPondGrobOverride,
 )
-from abjad.tools.markuptools.Markup import Markup
-from abjad.tools.schemetools.Scheme import Scheme
-from abjad.tools.systemtools.LilyPondFormatManager import LilyPondFormatManager
+from abjad.markup.Markup import Markup
+from abjad.scheme.Scheme import Scheme
+from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 Number = typing.Union[int, float]
 
 

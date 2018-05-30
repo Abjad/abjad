@@ -1,14 +1,11 @@
 #! /usr/bin/env python
+import abjad
 import inspect
 import os
-from abjad.tools import documentationtools
-from abjad.tools import lilypondfiletools
-from abjad.tools import systemtools
-from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 ignored_classes = (
-    lilypondfiletools.Block,
+    abjad.Block,
     )
 
 def shorten_class_name(abjad_class):
@@ -18,11 +15,11 @@ def shorten_class_name(abjad_class):
 
 def find_inconsistencies():
     tools_path = os.path.abspath('.')
-    abjad_classes = documentationtools.yield_all_classes(tools_path)
+    abjad_classes = abjad.documentationtools.yield_all_classes(tools_path)
     abjad_classes = sorted(abjad_classes, key=lambda x: x.__module__)
-    graph = InheritanceGraph(
+    graph = abjad.InheritanceGraph(
         addresses=abjad_classes,
-        root_addresses=[AbjadObject],
+        root_addresses=[abjad.AbjadObject],
         )
     bad_arcs = []
     children_without_own_slots_def = []
@@ -77,6 +74,6 @@ def find_inconsistencies():
 
 
 if __name__ == '__main__':
-    systemtools.IOManager.clear_terminal()
+    abjad.IOManager.clear_terminal()
     graph = find_inconsistencies()
     print()

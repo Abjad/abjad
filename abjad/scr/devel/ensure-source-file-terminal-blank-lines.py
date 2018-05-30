@@ -1,6 +1,6 @@
 #! /usr/bin/env python
+import abjad
 import os
-from abjad.tools import systemtools
 
 
 def iterate():
@@ -31,7 +31,7 @@ def ensure_source_file_terminal_blank_lines():
 
 
 if __name__ == '__main__':
-    systemtools.IOManager.clear_terminal()
+    abjad.IOManager.clear_terminal()
     print('Ensuring source file-terminal blank lines ...')
     print()
     ensure_source_file_terminal_blank_lines()

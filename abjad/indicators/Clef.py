@@ -1,10 +1,10 @@
 import typing
-from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
-from abjad.tools.pitchtools.NamedPitch import NamedPitch
-from abjad.tools.pitchtools.StaffPosition import StaffPosition
-from abjad.tools.systemtools.FormatSpecification import FormatSpecification
-from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
-from abjad.tools.topleveltools.iterate import iterate
+from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.pitch.NamedPitch import NamedPitch
+from abjad.pitch.StaffPosition import StaffPosition
+from abjad.system.FormatSpecification import FormatSpecification
+from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
+from abjad.top.iterate import iterate
 
 
 class Clef(AbjadValueObject):

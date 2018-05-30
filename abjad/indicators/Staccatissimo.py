@@ -2,12 +2,12 @@ import typing
 from abjad.enumerations import (
     Center, Down, Right, Up, HorizontalAlignment, VerticalAlignment,
 )
-from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
-from abjad.tools.datastructuretools.String import String
-from abjad.tools.lilypondnametools.LilyPondTweakManager import (
+from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.utilities.String import String
+from abjad.lilypondnames.LilyPondTweakManager import (
     LilyPondTweakManager,
     )
-from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
+from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 
 
 class Staccatissimo(AbjadValueObject):

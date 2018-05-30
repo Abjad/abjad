@@ -1,5 +1,5 @@
-from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
-from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
+from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 
 
 class Repeat(AbjadValueObject):

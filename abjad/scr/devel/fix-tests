@@ -1,6 +1,6 @@
 #! /usr/bin/env python
+import abjad
 import os
-from abjad.tools import systemtools
 
 
 def fix_test_case_names():
@@ -153,7 +153,7 @@ def process_test_module_number_fixes(test_module, directory):
 
 
 if __name__ == '__main__':
-    systemtools.IOManager.clear_terminal()
+    abjad.IOManager.clear_terminal()
     fix_test_case_names()
     print()
     fix_test_case_numbers()

@@ -1,7 +1,7 @@
 import inspect
 import os
 import types
-from abjad.tools import datastructuretools
+from abjad import utilities
 from uqbar.cli import CLI
 
 
@@ -35,7 +35,8 @@ class StatsScript(CLI):
         return results
 
     def _print_results(self, counts):
-        template = datastructuretools.String.normalize('''
+        template = utilities.String.normalize(
+        '''
         Source lines: {source_lines}
         Public classes: {public_classes}
             Unique public methods: {unique_public_methods}
@@ -45,7 +46,8 @@ class StatsScript(CLI):
         Public functions: {public_functions}
         Private classes: {private_classes}
         Private functions: {private_functions}
-        ''')
+        '''
+        )
         result = template.format(
             source_lines=counts['source_lines'],
             public_classes=counts['public_classes'],
@@ -60,7 +62,7 @@ class StatsScript(CLI):
         print(result)
 
     def _process_args(self, arguments):
-        from abjad.tools import documentationtools
+        from abjad import documentationtools
         path = arguments.path
         if not os.path.isdir(path):
             path = os.path.dirname(path)

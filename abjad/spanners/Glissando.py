@@ -1,12 +1,12 @@
 import typing
 from abjad.indicators.BendAfter import BendAfter
-from abjad.tools.datastructuretools.OrderedDict import OrderedDict
-from abjad.tools.lilypondnametools.LilyPondGrobOverride import \
+from abjad.utilities.OrderedDict import OrderedDict
+from abjad.lilypondnames.LilyPondGrobOverride import \
     LilyPondGrobOverride
-from abjad.tools.scoretools.Chord import Chord
-from abjad.tools.scoretools.Note import Note
-from abjad.tools.schemetools.SchemeSymbol import SchemeSymbol
-from abjad.tools.topleveltools.inspect import inspect
+from abjad.core.Chord import Chord
+from abjad.core.Note import Note
+from abjad.scheme.SchemeSymbol import SchemeSymbol
+from abjad.top.inspect import inspect
 from .Spanner import Spanner
 
 

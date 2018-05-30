@@ -1,11 +1,11 @@
 import collections
 import typing
 from abjad.enumerations import HorizontalAlignment, VerticalAlignment
-from abjad.tools.datastructuretools.Duration import Duration
-from abjad.tools.datastructuretools.Offset import Offset
-from abjad.tools.scoretools.Leaf import Leaf
-from abjad.tools.topleveltools.inspect import inspect
-from abjad.tools.topleveltools.sequence import sequence
+from abjad.utilities.Duration import Duration
+from abjad.utilities.Offset import Offset
+from abjad.core.Leaf import Leaf
+from abjad.top.inspect import inspect
+from abjad.top.sequence import sequence
 from .ComplexBeam import ComplexBeam
 Number = typing.Union[int, float]
 

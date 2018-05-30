@@ -5,7 +5,7 @@ import os
 
 directory_name_blacklist = (
     'docs',
-    'lilypondparsertools',
+    'parser',
     )
 
 file_name_blacklist = (

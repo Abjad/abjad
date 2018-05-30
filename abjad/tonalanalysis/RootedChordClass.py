@@ -1,4 +1,4 @@
-from abjad.tools.pitchtools.PitchClassSet import PitchClassSet
+from abjad.pitch.PitchClassSet import PitchClassSet
 
 
 class RootedChordClass(PitchClassSet):

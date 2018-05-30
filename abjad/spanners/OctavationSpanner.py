@@ -1,5 +1,5 @@
 import typing
-from abjad.tools.pitchtools.PitchSegment import PitchSegment
+from abjad.pitch.PitchSegment import PitchSegment
 from .Spanner import Spanner
 
 

@@ -6,15 +6,15 @@ from abjad.indicators.LineSegment import LineSegment
 from abjad.indicators.MetricModulation import MetricModulation
 from abjad.indicators.MetronomeMark import MetronomeMark
 from abjad.indicators.Ritardando import Ritardando
-from abjad.tools.lilypondnametools.LilyPondGrobOverride import \
+from abjad.lilypondnames.LilyPondGrobOverride import \
     LilyPondGrobOverride
-from abjad.tools.markuptools.Markup import Markup
-from abjad.tools.schemetools.SchemeColor import SchemeColor
-from abjad.tools.segmenttools.Tags import Tags
-from abjad.tools.systemtools.LilyPondFormatManager import LilyPondFormatManager
-from abjad.tools.systemtools.Wrapper import Wrapper
-from abjad.tools.topleveltools.inspect import inspect
-from abjad.tools.topleveltools.new import new
+from abjad.markup.Markup import Markup
+from abjad.scheme.SchemeColor import SchemeColor
+from abjad.segments.Tags import Tags
+from abjad.system.LilyPondFormatManager import LilyPondFormatManager
+from abjad.system.Wrapper import Wrapper
+from abjad.top.inspect import inspect
+from abjad.top.new import new
 from .Spanner import Spanner
 Number = typing.Union[int, float]
 abjad_tags = Tags()

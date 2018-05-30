@@ -1,7 +1,7 @@
 #! /usr/bin/env python
+import abjad
 import os
 import re
-from abjad.tools import systemtools
 
 
 directory_name_blacklist = (
@@ -76,5 +76,5 @@ def has_multiple_public_function_definitions(path, file_name):
 
 
 if __name__ == '__main__':
-    systemtools.IOManager.clear_terminal()
+    abjad.IOManager.clear_terminal()
     find_multifunction_modules()
