@@ -1,11 +1,10 @@
 from abjad import Left, Right
 from abjad.tools import abctools
 from abjad.tools import datastructuretools
-from abjad.tools import indicatortools
 from abjad.tools import mathtools
 from abjad.tools import pitchtools
 from abjad.tools import scoretools
-from abjad.tools import spannertools
+from abjad import spanners
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
 
@@ -641,7 +640,7 @@ class ReducedLyParser(abctools.Parser):
                             spanner_references[current_class]._append(leaf)
                             spanner_references[current_class] = None
 
-                elif current_class is spannertools.Slur:
+                elif current_class is spanners.Slur:
                     # Slurs process stop events before start events,
                     # they must contain more than one leaf,
                     # but they can stop on a leaf and start on the same leaf.

@@ -1,4 +1,4 @@
-from abjad.tools import indicatortools
+from abjad import indicators as abjad_indicators
 from abjad.tools import mathtools
 from abjad.tools import rhythmtreetools
 from abjad.tools import scoretools
@@ -353,7 +353,7 @@ class Meter(AbjadValueObject):
             if isinstance(argument, tuple):
                 fraction = mathtools.NonreducedFraction(argument)
             elif isinstance(argument, scoretools.Measure):
-                prototype = indicatortools.TimeSignature
+                prototype = abjad_indicators.TimeSignature
                 time_signature = argument._get_effective(prototype)
                 fraction = mathtools.NonreducedFraction(
                     time_signature.numerator,
@@ -1255,8 +1255,9 @@ class Meter(AbjadValueObject):
 
         Returns time signature.
         """
-        return indicatortools.TimeSignature(
-            self.root_node.preprolated_duration)
+        return abjad_indicators.TimeSignature(
+            self.root_node.preprolated_duration
+            )
 
     @property
     def is_compound(self):

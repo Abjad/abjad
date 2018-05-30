@@ -1,0 +1,12 @@
+import abjad
+
+
+def test_DuratedComplexBeam___eq___01():
+    """
+    Spanner is strict comparator.
+    """
+
+    spanner_1 = abjad.DuratedComplexBeam()
+    spanner_2 = abjad.DuratedComplexBeam()
+
+    assert not spanner_1 == spanner_2

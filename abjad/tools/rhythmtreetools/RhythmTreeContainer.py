@@ -1,7 +1,6 @@
 import uqbar.containers
 import uqbar.graphs
 from abjad.tools import scoretools
-from abjad.tools import spannertools
 from abjad.tools.rhythmtreetools.RhythmTreeMixin import RhythmTreeMixin
 
 

@@ -1,6 +1,6 @@
 from typing import Callable, Dict  # noqa
 from abjad.tools import scoretools
-from abjad.tools import indicatortools
+from abjad import indicators as abjad_indicators
 from abjad.tools import pitchtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.topleveltools import attach
@@ -66,19 +66,19 @@ class GuileProxy(AbjadObject):
         r"""
         Handles LilyPond ``\bar`` command.
         """
-        return indicatortools.BarLine(string)
+        return abjad_indicators.BarLine(string)
 
     def breathe(self):
         r"""
         Handles LilyPond ``\breathe`` command.
         """
-        return indicatortools.LilyPondLiteral(r'\breathe', 'after')
+        return abjad_indicators.LilyPondLiteral(r'\breathe', 'after')
 
     def clef(self, string):
         r"""
         Handles LilyPond ``\clef`` command.
         """
-        return indicatortools.Clef(string)
+        return abjad_indicators.Clef(string)
 
     def grace(self, music):
         r"""
@@ -95,7 +95,7 @@ class GuileProxy(AbjadObject):
         """
         if number_list is None:
             number_list = 'major'
-        return indicatortools.KeySignature(notename_pitch, number_list)
+        return abjad_indicators.KeySignature(notename_pitch, number_list)
 
     def language(self, string):
         r"""
@@ -123,13 +123,13 @@ class GuileProxy(AbjadObject):
         """
         if label is None:
             label = '\default'
-        return indicatortools.LilyPondLiteral(r'\mark %s' % label)
+        return abjad_indicators.LilyPondLiteral(r'\mark %s' % label)
 
     def oneVoice(self):
         r"""
         Handles LilyPond ``\oneVoice`` command.
         """
-        return indicatortools.LilyPondLiteral(r'\oneVoice')
+        return abjad_indicators.LilyPondLiteral(r'\oneVoice')
 
     # pitchedTrill
 
@@ -198,7 +198,7 @@ class GuileProxy(AbjadObject):
         Handles LilyPond ``\time`` command.
         """
         n, d = fraction.numerator, fraction.denominator
-        return indicatortools.TimeSignature((n, d))
+        return abjad_indicators.TimeSignature((n, d))
 
     def times(self, fraction, music):
         r"""
@@ -219,7 +219,7 @@ class GuileProxy(AbjadObject):
         Handles LilyPond ``\transpose`` command.
         """
         def recurse(music):
-            key_signatures = music._get_indicators(indicatortools.KeySignature)
+            key_signatures = music._get_indicators(abjad_indicators.KeySignature)
             if key_signatures:
                 for x in key_signatures:
                     tonic = pitchtools.NamedPitch((x.tonic.name, 4))
@@ -251,25 +251,25 @@ class GuileProxy(AbjadObject):
         r"""
         Handles LilyPond ``\voiceFour`` command.
         """
-        return indicatortools.LilyPondLiteral(r'\voiceFour')
+        return abjad_indicators.LilyPondLiteral(r'\voiceFour')
 
     def voiceOne(self):
         r"""
         Handles LilyPond ``\voiceOnce`` command.
         """
-        return indicatortools.LilyPondLiteral(r'\voiceOne')
+        return abjad_indicators.LilyPondLiteral(r'\voiceOne')
 
     def voiceThree(self):
         r"""
         Handles LilyPond ``\voiceThree`` command.
         """
-        return indicatortools.LilyPondLiteral(r'\voiceThree')
+        return abjad_indicators.LilyPondLiteral(r'\voiceThree')
 
     def voiceTwo(self):
         r"""
         Handles LilyPond ``\voiceTwo`` command.
         """
-        return indicatortools.LilyPondLiteral(r'\voiceTwo')
+        return abjad_indicators.LilyPondLiteral(r'\voiceTwo')
 
     ### HELPER FUNCTIONS ###
 

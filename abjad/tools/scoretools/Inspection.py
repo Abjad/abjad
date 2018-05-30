@@ -2,7 +2,7 @@ import collections
 import typing
 from abjad.tools import abctools
 from abjad.exceptions import ExtraSpannerError
-from abjad.tools.spannertools.Spanner import Spanner
+from abjad.spanners.Spanner import Spanner
 from abjad.tools.topleveltools.inspect import inspect
 from .Container import Container
 

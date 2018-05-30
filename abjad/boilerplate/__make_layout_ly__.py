@@ -67,6 +67,8 @@ if __name__ == '__main__':
         string = 'first_measure_number'
         first_measure_number = buildspace_directory.get_metadatum(string, 1)
         time_signatures = buildspace_directory.get_time_signature_metadata()
+        if breaks.partial_score is not None:
+            time_signatures = time_signatures[:breaks.partial_score]
     except:
         traceback.print_exc()
         sys.exit(1)
@@ -85,7 +87,6 @@ if __name__ == '__main__':
             )
         lilypond_file = maker.run(remove=abjad.tags.layout_removal_tags())
         context = lilypond_file['GlobalSkips']
-        measure_count = len(context)
         skips = baca.select(context).skips()
         for skip in skips:
             abjad.detach(abjad.TimeSignature, skip)
@@ -104,7 +105,11 @@ if __name__ == '__main__':
         line_1 = f'% time_signatures = {{time_signatures}}\n'
         measure_count = len(time_signatures)
         line_2 = f'% measure_count = {{measure_count}}\n'
-        text = line_1 + line_2 + '\n\n' + text
+        if breaks.partial_score is not None:
+            line_3 = f'% partial_score = True'
+            text = line_1 + line_2 + line_3 + '\n\n' + text
+        else:
+            text = line_1 + line_2 + '\n\n' + text
         layout_ly = layout_module_name.replace('_', '-') + '.ly'
         layout_ly = buildspace_directory(layout_ly)
         layout_ly.write_text(text)

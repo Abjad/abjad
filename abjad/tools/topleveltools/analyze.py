@@ -9,4 +9,4 @@ def analyze(argument):
     """
     import abjad
     leaves = abjad.select(argument).leaves()
-    return abjad.tonalanalysistools.TonalAnalysis(leaves)
+    return abjad.tonalanalysis.TonalAnalysis(leaves)

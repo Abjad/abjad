@@ -24,5 +24,5 @@ def test_systemtools_StorageFormatAgent_get_import_statements_03():
         ]
     agent = abjad.StorageFormatManager(subject)
     assert agent.get_import_statements() == (
-        'from abjad.tools import indicatortools',
+        'from abjad.tools import indicators',
         )

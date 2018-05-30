@@ -2,8 +2,8 @@ import collections
 import copy
 import inspect
 import pathlib
+from abjad.indicators.LilyPondLiteral import LilyPondLiteral
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from abjad.tools.indicatortools.LilyPondLiteral import LilyPondLiteral
 from abjad.tools.pitchtools.NamedPitch import NamedPitch
 from abjad.tools.scoretools.Component import Component
 from abjad.tools.scoretools.Container import Container

@@ -1,4 +1,5 @@
 import typing
+from abjad.timespans import TimespanList
 from abjad.tools import mathtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.datastructuretools.OrderedDict import OrderedDict
@@ -11,7 +12,6 @@ from abjad.tools.scoretools.Staff import Staff
 from abjad.tools.scoretools.Voice import Voice
 from abjad.tools.systemtools.StorageFormatManager import StorageFormatManager
 from abjad.tools.systemtools.TestManager import TestManager
-from abjad.tools.timespantools.TimespanList import TimespanList
 from abjad.tools.topleveltools.inspect import inspect
 from abjad.tools.topleveltools.iterate import iterate
 from .PartAssignment import PartAssignment

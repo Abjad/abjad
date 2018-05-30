@@ -79,7 +79,7 @@ def make_mozart_score():
 
     # remove the default piano instrument and add a custom one:
     abjad.detach(abjad.Instrument, score['PianoStaff'])
-    klavier = abjad.instrumenttools.Piano(
+    klavier = abjad.Piano(
         name='Katzenklavier',
         short_name='kk.',
         )

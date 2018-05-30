@@ -54,10 +54,9 @@ class UpdateManager(AbjadObject):
         from abjad.tools.datastructuretools.Multiplier import Multiplier
         from abjad.tools.datastructuretools.Offset import Offset
         from abjad.tools.datastructuretools.Sequence import Sequence
-        from abjad.tools.indicatortools.MetronomeMark import MetronomeMark
-        from abjad.tools.timespantools.AnnotatedTimespan import \
-            AnnotatedTimespan
-        from abjad.tools.timespantools.TimespanList import TimespanList
+        from abjad.indicators.MetronomeMark import MetronomeMark
+        from abjad.timespans.AnnotatedTimespan import AnnotatedTimespan
+        from abjad.timespans.TimespanList import TimespanList
         pairs = []
         all_stop_offsets = set()
         for component in self._iterate_entire_score(score_root):

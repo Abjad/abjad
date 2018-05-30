@@ -6,7 +6,7 @@ from abjad.tools import lilypondparsertools
 from abjad.tools import rhythmtreetools
 from abjad.tools import scoretools
 from abjad.tools import systemtools
-from abjad.tools import tonalanalysistools
+from abjad import tonalanalysis
 
 
 ignored_classes = (
@@ -17,7 +17,7 @@ ignored_classes = (
     systemtools.RedirectedStreams,
     systemtools.StorageFormatManager,
     systemtools.FormatSpecification,
-    tonalanalysistools.RootedChordClass
+    tonalanalysis.RootedChordClass
     )
 
 classes = documentationtools.list_all_abjad_classes(
