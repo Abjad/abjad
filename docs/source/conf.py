@@ -122,6 +122,12 @@ texinfo_documents = [
 
 ### EXTENSIONS ###
 
+try:
+    import abjadext  # noqa
+    abjadbook_console_module_names = ('abjadext',)
+except ImportError:
+    abjadbook_console_module_names = ()
+
 abjadbook_ignored_documents = ()
 autodoc_member_order = 'groupwise'
 graphviz_dot_args = ['-s32']
