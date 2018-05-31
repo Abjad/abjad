@@ -307,9 +307,9 @@ class LeafMaker(AbjadValueObject):
 
     ..  container:: example
 
-        Set ``diminution`` to true to produce diminished tuplets:
+        Produces diminished tuplets:
 
-        >>> maker = abjad.LeafMaker(diminution=True)
+        >>> maker = abjad.LeafMaker()
         >>> pitches = "f'"
         >>> durations = [abjad.Duration(5, 14)]
         >>> leaves = maker(pitches, durations)
@@ -334,35 +334,6 @@ class LeafMaker(AbjadValueObject):
             }
 
         This is default behavior.
-
-    ..  container:: example
-
-        Set ``diminution`` to false to produce agumented tuplets:
-
-        >>> maker = abjad.LeafMaker(diminution=False)
-        >>> pitches = "f'"
-        >>> durations = [abjad.Duration(5, 14)]
-        >>> leaves = maker(pitches, durations)
-        >>> staff = abjad.Staff(leaves)
-        >>> time_signature = abjad.TimeSignature((5, 14))
-        >>> leaf = abjad.inspect(staff).get_leaf(0)
-        >>> abjad.attach(time_signature, leaf)
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> abjad.f(staff)
-            \new Staff
-            {
-                \tweak text #tuplet-number::calc-fraction-text
-                \tweak edge-height #'(0.7 . 0)
-                \times 8/7 {
-                    \time 5/14
-                    f'4
-                    ~
-                    f'16
-                }
-            }
 
     ..  container:: example
 
@@ -460,7 +431,6 @@ class LeafMaker(AbjadValueObject):
     __slots__ = (
         '_decrease_monotonic',
         '_forbidden_duration',
-        '_diminution',
         '_metrical_hierarchy',
         '_skips_instead_of_rests',
         '_repeat_ties',
@@ -475,7 +445,6 @@ class LeafMaker(AbjadValueObject):
         self,
         decrease_monotonic=True,
         forbidden_duration=None,
-        diminution=True,
         metrical_hierarchy=None,
         skips_instead_of_rests=False,
         repeat_ties=False,
@@ -483,7 +452,6 @@ class LeafMaker(AbjadValueObject):
         ):
         self._decrease_monotonic = decrease_monotonic
         self._forbidden_duration = forbidden_duration
-        self._diminution = diminution
         self._metrical_hierarchy = metrical_hierarchy
         self._skips_instead_of_rests = skips_instead_of_rests
         self._repeat_ties = repeat_ties
@@ -558,10 +526,6 @@ class LeafMaker(AbjadValueObject):
                         )
                     tuplet_leaves.extend(leaves)
                 tuplet = abjad.Tuplet(multiplier, tuplet_leaves)
-                if self.diminution and not tuplet.diminution():
-                    tuplet.toggle_prolation()
-                elif not self.diminution and tuplet.diminution():
-                    tuplet.toggle_prolation()
                 result.append(tuplet)
         return abjad.select(result)
 
@@ -744,15 +708,6 @@ class LeafMaker(AbjadValueObject):
         Returns duration or none.
         """
         return self._forbidden_duration
-
-    @property
-    def diminution(self):
-        """
-        Is true when tuplets notate diminutions.
-
-        Returns true, false or none.
-        """
-        return self._diminution
 
     @property
     def metrical_hierarchy(self):

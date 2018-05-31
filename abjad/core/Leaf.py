@@ -594,49 +594,6 @@ class Leaf(Component):
         assert all(isinstance(_, abjad.Selection) for _ in result_selections)
         return result_selections
 
-    def _to_tuplet_with_ratio(self, proportions, diminution=True):
-        import abjad
-        # check input
-        proportions = Ratio(proportions)
-        # find target duration of tuplet
-        target_duration = self.written_duration
-        # find basic duration of note in tuplet
-        basic_prolated_duration = target_duration / sum(proportions.numbers)
-        # find basic written duration of note in tuplet
-        basic_written_duration = \
-            basic_prolated_duration.equal_or_greater_assignable
-        # find written duration of each note in tuplet
-        written_durations = [
-            _ * basic_written_duration for _ in proportions.numbers
-            ]
-        # make tuplet notes
-        maker = abjad.NoteMaker()
-        try:
-            notes = [abjad.Note(0, x) for x in written_durations]
-        except AssignabilityError:
-            denominator = target_duration.denominator
-            note_durations = [
-                Duration(_, denominator)
-                for _ in proportions.numbers
-                ]
-            notes = maker(0, note_durations)
-        # make tuplet
-        contents_duration = abjad.inspect(notes).get_duration()
-        multiplier = target_duration / contents_duration
-        tuplet = abjad.Tuplet(multiplier, notes)
-        # normalize tuplet multiplier if necessary
-        tuplet.normalize_multiplier()
-        # change prolation if necessary
-        if not tuplet.multiplier == 1:
-            if diminution:
-                if not tuplet.diminution():
-                    tuplet.toggle_prolation()
-            else:
-                if tuplet.diminution():
-                    tuplet.toggle_prolation()
-        # return tuplet
-        return tuplet
-
     ### PRIVATE PROPERTIES ###
 
     def _get_duration_in_seconds(self):

@@ -126,6 +126,35 @@ class Multiplier(Duration):
 
     ### PUBLIC PROPERTIES ###
 
+    @staticmethod
+    def from_dot_count(dot_count: int) -> 'Multiplier':
+        """
+        Makes multiplier from ``dot_count``.
+
+        ..  container:: example
+
+            >>> abjad.Multiplier.from_dot_count(0)
+            Multiplier(1, 1)
+
+            >>> abjad.Multiplier.from_dot_count(1)
+            Multiplier(3, 2)
+
+            >>> abjad.Multiplier.from_dot_count(2)
+            Multiplier(7, 4)
+
+            >>> abjad.Multiplier.from_dot_count(3)
+            Multiplier(15, 8)
+
+            >>> abjad.Multiplier.from_dot_count(4)
+            Multiplier(31, 16)
+
+        """
+        assert isinstance(dot_count, int), repr(dot_count)
+        assert 0 <= dot_count, repr(dot_count)
+        denominator = 2 ** dot_count
+        numerator = 2 ** (dot_count + 1) - 1
+        return Multiplier(numerator, denominator)
+
     def normalized(self):
         """
         Is true when mutliplier is greater than ``1/2`` and less than ``2``.

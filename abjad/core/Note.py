@@ -20,6 +20,7 @@ class Note(Leaf):
             >>> abjad.f(note)
             cs''8.
 
+
     """
 
     ### CLASS VARIABLES ###
