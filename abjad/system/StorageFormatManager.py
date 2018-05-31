@@ -71,8 +71,10 @@ class StorageFormatManager(AbjadValueObject):
                 as_storage_format=as_storage_format,
                 )
             return list(pieces)
-        elif (not as_storage_format and
-            hasattr(self._client, '_get_format_specification')):
+        elif (
+            not as_storage_format and
+            hasattr(self._client, '_get_format_specification')
+            ):
             pieces = self._format_specced_object(
                 as_storage_format=as_storage_format,
                 )
@@ -276,7 +278,7 @@ class StorageFormatManager(AbjadValueObject):
             if hasattr(self._client, '_get_storage_format_specification'):
                 spec = self._client._get_storage_format_specification()
             if spec:
-                #print('STORAGE', type(self._client), getattr(self._client, 'name', None))
+                # print('STORAGE', type(self._client), getattr(self._client, 'name', None))
                 via = '_get_storage_format_specification()'
                 args_values = spec.positional_argument_values
                 is_bracketed = False
@@ -466,8 +468,10 @@ class StorageFormatManager(AbjadValueObject):
     def format_specification(self):
         from abjad import system
         if self._format_specification is None:
-            if (not isinstance(self._client, type) and
-                hasattr(self._client, '_get_format_specification')):
+            if (
+                not isinstance(self._client, type) and
+                hasattr(self._client, '_get_format_specification')
+                ):
                 self._format_specification = \
                     self._client._get_format_specification()
             else:
@@ -698,8 +702,10 @@ class StorageFormatManager(AbjadValueObject):
                 else:
                     keyword_names.append(name)
             # Python 3 allow keyword only parameters:
-            elif (hasattr(inspect, '_KEYWORD_ONLY') and
-                parameter.kind == inspect._KEYWORD_ONLY):
+            elif (
+                hasattr(inspect, '_KEYWORD_ONLY') and
+                parameter.kind == inspect._KEYWORD_ONLY
+                ):
                 keyword_names.append(name)
             elif parameter.kind == inspect._VAR_POSITIONAL:
                 accepts_args = True

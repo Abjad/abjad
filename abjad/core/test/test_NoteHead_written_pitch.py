@@ -1,5 +1,4 @@
 import abjad
-import pytest
 
 
 def test_NoteHead_written_pitch_01():
