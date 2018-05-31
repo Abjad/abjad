@@ -1,10 +1,4 @@
-import typing
-
-
-def f(
-    argument: typing.Any,
-    strict: int = None,
-    ) -> None:
+def f(argument, strict=None):
     r"""
     Formats ``argument`` and prints result.
     

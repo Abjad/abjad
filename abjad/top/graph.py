@@ -129,7 +129,7 @@ def graph(
 
     Opens image in default image viewer.
     """
-    import abjad
+    from abjad import system
     from abjad import abjad_configuration
 
     if isinstance(argument, str):
@@ -164,13 +164,13 @@ def graph(
     message = 'cannot find `{}` command-line tool.'
     message = message.format(layout)
     message += ' Please download Graphviz from graphviz.org.'
-    assert abjad.IOManager.find_executable(layout), message
+    assert system.IOManager.find_executable(layout), message
 
     ABJADOUTPUT = abjad_configuration['abjad_output_directory']
-    abjad.IOManager._ensure_directory_existence(ABJADOUTPUT)
+    system.IOManager._ensure_directory_existence(ABJADOUTPUT)
     dot_path = os.path.join(
         ABJADOUTPUT,
-        abjad.IOManager.get_next_output_file_name(file_extension='dot'),
+        system.IOManager.get_next_output_file_name(file_extension='dot'),
         )
     img_path = os.path.join(ABJADOUTPUT, dot_path.replace('dot', 'pdf'))
 
@@ -183,4 +183,4 @@ def graph(
 
     pdf_viewer = abjad_configuration['pdf_viewer']
     ABJADOUTPUT = abjad_configuration['abjad_output_directory']
-    abjad.IOManager.open_file(img_path, pdf_viewer)
+    system.IOManager.open_file(img_path, pdf_viewer)

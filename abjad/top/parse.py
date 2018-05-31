@@ -1,7 +1,6 @@
 import typing
 
-
-_lilypond_parsers_by_language = {}  # type: typing.Dict[str, LilyPondParser]
+_lilypond_parsers_by_language: typing.Dict = {}
 
 
 def parse(string, language='english'):
