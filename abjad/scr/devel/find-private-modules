@@ -1,7 +1,6 @@
 #! /usr/bin/env python
 import abjad
 import os
-from abjad.tools import systemtools
 
 
 def list_private_modules():
@@ -30,5 +29,5 @@ def list_private_modules():
 
 
 if __name__ == '__main__':
-    systemtools.IOManager.clear_terminal()
+    abjad.IOManager.clear_terminal()
     list_private_modules()

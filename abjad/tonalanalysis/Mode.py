@@ -1,6 +1,4 @@
-from abjad.tools import datastructuretools
-from abjad.tools import pitchtools
-from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
+from abjad.abctools.AbjadValueObject import AbjadValueObject
 
 
 class Mode(AbjadValueObject):
@@ -135,9 +133,9 @@ class Mode(AbjadValueObject):
     def _initialize_with_mode_name(self, mode_name):
         import abjad
         mdi_segment = []
-        m2 = pitchtools.NamedInterval('m2')
-        M2 = pitchtools.NamedInterval('M2')
-        A2 = pitchtools.NamedInterval('aug2')
+        m2 = abjad.pitch.NamedInterval('m2')
+        M2 = abjad.pitch.NamedInterval('M2')
+        A2 = abjad.pitch.NamedInterval('aug2')
         dorian = [M2, m2, M2, M2, M2, m2, M2]
         if mode_name == 'dorian':
             mdi_segment.extend(abjad.sequence(dorian).rotate(n=0))
@@ -161,9 +159,9 @@ class Mode(AbjadValueObject):
             message = 'unknown mode name: {!r}.'
             message = message.format(mode_name)
             raise ValueError(message)
-        return pitchtools.IntervalSegment(
+        return abjad.pitch.IntervalSegment(
             items=mdi_segment,
-            item_class=pitchtools.NamedInterval,
+            item_class=abjad.pitch.NamedInterval,
             )
 
     ### PUBLIC PROPERTIES ###

@@ -48,7 +48,7 @@
 %%% MAIN %%%
 
 #(begin
-  (display "from abjad.tools.pitchtools import NamedPitchClass\n\n\n")
+  (display "from abjad.pitch import NamedPitchClass\n\n\n")
   (display (format "lilypond_version = \"~A\"\n\n" (lilypond-version)))
   (display "language_pitch_names = {")
   (map handle-language language-pitch-names)

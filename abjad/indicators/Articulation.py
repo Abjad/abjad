@@ -4,15 +4,15 @@ from abjad.enumerations import Center
 from abjad.enumerations import Down
 from abjad.enumerations import Up
 from abjad.enumerations import VerticalAlignment
-from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
-from abjad.tools.datastructuretools.String import String
-from abjad.tools.lilypondnametools.LilyPondTweakManager import (
+from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.utilities.String import String
+from abjad.lilypondnames.LilyPondTweakManager import (
     LilyPondTweakManager,
     )
-from abjad.tools.systemtools.FormatSpecification import FormatSpecification
-from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
-from abjad.tools.systemtools.StorageFormatManager import StorageFormatManager
-from abjad.tools.topleveltools.attach import attach
+from abjad.system.FormatSpecification import FormatSpecification
+from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
+from abjad.system.StorageFormatManager import StorageFormatManager
+from abjad.top.attach import attach
 
 
 class Articulation(AbjadValueObject):

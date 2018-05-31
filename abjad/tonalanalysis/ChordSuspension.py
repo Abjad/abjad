@@ -1,6 +1,6 @@
 import re
-from abjad.tools import systemtools
-from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
+from abjad import system
+from abjad.abctools.AbjadValueObject import AbjadValueObject
 
 
 class ChordSuspension(AbjadValueObject):
@@ -109,7 +109,7 @@ class ChordSuspension(AbjadValueObject):
 
     def _get_format_specification(self):
         values = [self.figured_bass_string]
-        return systemtools.FormatSpecification(
+        return system.FormatSpecification(
             client=self,
             repr_is_indented=False,
             storage_format_is_indented=False,

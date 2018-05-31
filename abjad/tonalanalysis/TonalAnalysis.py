@@ -1,6 +1,6 @@
-from abjad.tools import abctools
-from abjad.tools import mathtools
-from abjad.tools import pitchtools
+from abjad import abctools
+from abjad import mathtools
+from abjad import pitch as abjad_pitch
 
 
 class TonalAnalysis(abctools.AbjadObject):
@@ -68,10 +68,10 @@ class TonalAnalysis(abctools.AbjadObject):
     @staticmethod
     def _analyze_chord(argument):
         from abjad import tonalanalysis
-        pitches = pitchtools.PitchSegment.from_selection(argument)
-        npcset = pitchtools.PitchClassSet(
+        pitches = abjad_pitch.PitchSegment.from_selection(argument)
+        npcset = abjad_pitch.PitchClassSet(
             pitches,
-            item_class=pitchtools.NamedPitchClass,
+            item_class=abjad_pitch.NamedPitchClass,
             )
         ordered_npcs = []
         letters = ('c', 'e', 'g', 'b', 'd', 'f', 'a')
@@ -79,13 +79,13 @@ class TonalAnalysis(abctools.AbjadObject):
             for npc in npcset:
                 if npc._get_diatonic_pitch_class_name() == letter:
                     ordered_npcs.append(npc)
-        ordered_npcs = pitchtools.PitchClassSegment(
-            ordered_npcs, item_class=pitchtools.NamedPitchClass)
+        ordered_npcs = abjad_pitch.PitchClassSegment(
+            ordered_npcs, item_class=abjad_pitch.NamedPitchClass)
         for x in range(len(ordered_npcs)):
             ordered_npcs = ordered_npcs.rotate(1)
-            segment = pitchtools.IntervalClassSegment(
+            segment = abjad_pitch.IntervalClassSegment(
                 items=mathtools.difference_series(list(ordered_npcs)),
-                item_class=pitchtools.NamedInversionEquivalentIntervalClass,
+                item_class=abjad_pitch.NamedInversionEquivalentIntervalClass,
                 )
             if segment.is_tertian:
                 break
@@ -106,12 +106,12 @@ class TonalAnalysis(abctools.AbjadObject):
     @staticmethod
     def _analyze_incomplete_chord(argument):
         from abjad import tonalanalysis
-        pitches = pitchtools.PitchSegment.from_selection(argument)
-        npcset = pitchtools.PitchClassSet(
-            pitches, item_class=pitchtools.NamedPitchClass)
-        dicv = pitchtools.IntervalClassVector(
+        pitches = abjad_pitch.PitchSegment.from_selection(argument)
+        npcset = abjad_pitch.PitchClassSet(
+            pitches, item_class=abjad_pitch.NamedPitchClass)
+        dicv = abjad_pitch.IntervalClassVector(
             items=npcset,
-            item_class=pitchtools.NamedInversionEquivalentIntervalClass,
+            item_class=abjad_pitch.NamedInversionEquivalentIntervalClass,
             )
         # TODO: eliminate code duplication #
         if dicv == TonalAnalysis._make_dicv('c', 'ef'):
@@ -138,9 +138,9 @@ class TonalAnalysis(abctools.AbjadObject):
         bass = min(pitches).pitch_class
         try:
             npcseg = npcset.order_by(
-                pitchtools.PitchClassSegment(
+                abjad_pitch.PitchClassSegment(
                     model_npcs,
-                    item_class=pitchtools.NamedPitchClass,
+                    item_class=abjad_pitch.NamedPitchClass,
                     ))
         except ValueError:
             message = 'can not identify incomplete tertian chord.'
@@ -253,10 +253,10 @@ class TonalAnalysis(abctools.AbjadObject):
 
     @staticmethod
     def _make_dicv(*named_pitch_classes):
-        pitch_set = pitchtools.PitchSet(named_pitch_classes)
-        return pitchtools.IntervalClassVector(
+        pitch_set = abjad_pitch.PitchSet(named_pitch_classes)
+        return abjad_pitch.IntervalClassVector(
             items=pitch_set,
-            item_class=pitchtools.NamedInversionEquivalentIntervalClass,
+            item_class=abjad_pitch.NamedInversionEquivalentIntervalClass,
             )
 
     ### PUBLIC METHODS ###
@@ -674,7 +674,7 @@ class TonalAnalysis(abctools.AbjadObject):
         for left, right in abjad.sequence(notes).nwise():
             try:
                 assert not (left.written_pitch == right.written_pitch)
-                mdi = pitchtools.NamedInterval.from_pitch_carriers(
+                mdi = abjad_pitch.NamedInterval.from_pitch_carriers(
                     left, right)
                 assert mdi.number <= 2
                 if direction_string is None:
@@ -723,7 +723,7 @@ class TonalAnalysis(abctools.AbjadObject):
         for left, right in abjad.sequence(notes).nwise():
             try:
                 assert not (left.written_pitch == right.written_pitch)
-                mdi = pitchtools.NamedInterval.from_pitch_carriers(
+                mdi = abjad_pitch.NamedInterval.from_pitch_carriers(
                     left, right)
                 assert mdi.number == 2
             except AssertionError:
@@ -769,7 +769,7 @@ class TonalAnalysis(abctools.AbjadObject):
         for left, right in abjad.sequence(notes).nwise():
             try:
                 assert not (left.written_pitch == right.written_pitch)
-                mdi = pitchtools.NamedInterval.from_pitch_carriers(
+                mdi = abjad_pitch.NamedInterval.from_pitch_carriers(
                     left, right)
                 assert mdi.number == -2
             except AssertionError:
@@ -816,7 +816,7 @@ class TonalAnalysis(abctools.AbjadObject):
         for left, right in abjad.sequence(notes).nwise():
             try:
                 assert not (left.written_pitch == right.written_pitch)
-                hdi = pitchtools.NamedInterval.from_pitch_carriers(
+                hdi = abjad_pitch.NamedInterval.from_pitch_carriers(
                     left, right)
                 assert hdi.number <= 2
             except AssertionError:

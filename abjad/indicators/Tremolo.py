@@ -1,6 +1,6 @@
 import typing
-from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
-from abjad.tools.systemtools.StorageFormatManager import StorageFormatManager
+from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.system.StorageFormatManager import StorageFormatManager
 
 
 class Tremolo(AbjadValueObject):

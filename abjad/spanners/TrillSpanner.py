@@ -1,11 +1,11 @@
 import typing
-from abjad.tools.lilypondnametools.LilyPondGrobOverride import \
+from abjad.lilypondnames.LilyPondGrobOverride import \
     LilyPondGrobOverride
-from abjad.tools.pitchtools.NamedInterval import NamedInterval
-from abjad.tools.pitchtools.NamedPitch import NamedPitch
-from abjad.tools.schemetools.Scheme import Scheme
-from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
-from abjad.tools.topleveltools.override import override
+from abjad.pitch.NamedInterval import NamedInterval
+from abjad.pitch.NamedPitch import NamedPitch
+from abjad.scheme.Scheme import Scheme
+from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
+from abjad.top.override import override
 from .Spanner import Spanner
 
 

@@ -129,7 +129,7 @@ command-line by running the following command:
     dot - graphviz version 2.38.0 (20140413.2041)
 
 All of the graph images in Abjad's API documentation were created via
-`graphviz`_. See :py:func:`~abjad.tools.topleveltools.graph` for more
+`graphviz`_. See :py:func:`~abjad.top.graph` for more
 details.
 
 Development installation

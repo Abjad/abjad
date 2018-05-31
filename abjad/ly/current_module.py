@@ -1,5 +1,5 @@
-from abjad.tools.datastructuretools.Duration import Duration
-from abjad.tools.lilypondparsertools.LilyPondDuration import LilyPondDuration
+from abjad.utilities.Duration import Duration
+from abjad.parser.LilyPondDuration import LilyPondDuration
 
 
 lilypond_version = "2.17.9"

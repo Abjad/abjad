@@ -4,9 +4,9 @@ from abjad.enumerations import (
     Up,
     VerticalAlignment,
     )
-from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
-from abjad.tools.markuptools.Markup import Markup
-from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
+from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.markup.Markup import Markup
+from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 
 
 class KeyCluster(AbjadValueObject):

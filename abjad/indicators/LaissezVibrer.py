@@ -1,10 +1,10 @@
 import typing
 from abjad.enumerations import HorizontalAlignment, Right
-from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
-from abjad.tools.lilypondnametools.LilyPondTweakManager import (
+from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.lilypondnames.LilyPondTweakManager import (
     LilyPondTweakManager,
     )
-from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
+from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 
 
 class LaissezVibrer(AbjadValueObject):

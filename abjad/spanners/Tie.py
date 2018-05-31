@@ -1,17 +1,17 @@
 import typing
 from abjad.enumerations import VerticalAlignment
-from abjad.tools.datastructuretools.String import String
-from abjad.tools.scoretools.Chord import Chord
-from abjad.tools.scoretools.Component import Component
-from abjad.tools.scoretools.MultimeasureRest import MultimeasureRest
-from abjad.tools.scoretools.Note import Note
-from abjad.tools.scoretools.Rest import Rest
-from abjad.tools.scoretools.Skip import Skip
-from abjad.tools.topleveltools.detach import detach
-from abjad.tools.topleveltools.inspect import inspect
-from abjad.tools.topleveltools.iterate import iterate
-from abjad.tools.topleveltools.sequence import sequence
-from abjad.tools.topleveltools.tweak import tweak
+from abjad.utilities.String import String
+from abjad.core.Chord import Chord
+from abjad.core.Component import Component
+from abjad.core.MultimeasureRest import MultimeasureRest
+from abjad.core.Note import Note
+from abjad.core.Rest import Rest
+from abjad.core.Skip import Skip
+from abjad.top.detach import detach
+from abjad.top.inspect import inspect
+from abjad.top.iterate import iterate
+from abjad.top.sequence import sequence
+from abjad.top.tweak import tweak
 from .Spanner import Spanner
 
 

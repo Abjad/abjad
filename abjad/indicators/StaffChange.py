@@ -1,7 +1,7 @@
 from abjad.enumerations import HorizontalAlignment, Right
-from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
-from abjad.tools.schemetools.Scheme import Scheme
-from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
+from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.scheme.Scheme import Scheme
+from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 
 
 class StaffChange(AbjadValueObject):
@@ -59,7 +59,7 @@ class StaffChange(AbjadValueObject):
     ### INITIALIZER ###
 
     def __init__(self, staff=None):
-        from abjad.tools.scoretools.Staff import Staff
+        from abjad.core.Staff import Staff
         if staff is not None:
             if not isinstance(staff, Staff):
                 raise TypeError(f'must be staff: {staff!r}.')

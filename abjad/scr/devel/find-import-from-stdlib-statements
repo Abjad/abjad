@@ -1,6 +1,6 @@
 #! /usr/bin/env python
+import abjad
 import os
-from abjad.tools import systemtools
 
 
 def find_local_import_statements():
@@ -46,5 +46,5 @@ def find_local_import_statements_in_file(full_file_name):
 
 
 if __name__ == '__main__':
-    systemtools.IOManager.clear_terminal()
+    abjad.IOManager.clear_terminal()
     find_local_import_statements()

@@ -1,5 +1,5 @@
 import typing
-from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
+from abjad.abctools.AbjadValueObject import AbjadValueObject
 
 
 class BowPressure(AbjadValueObject):

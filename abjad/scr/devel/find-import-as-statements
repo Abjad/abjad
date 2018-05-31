@@ -1,6 +1,6 @@
 #! /usr/bin/env python
+import abjad
 import os
-from abjad.tools import systemtools
 
 
 def find_import_as_statements():
@@ -37,7 +37,7 @@ def find_import_as_statements():
 
 
 if __name__ == '__main__':
-    systemtools.IOManager.clear_terminal()
+    abjad.IOManager.clear_terminal()
     print('Finding import-as statements ...')
     print()
     find_import_as_statements()

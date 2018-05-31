@@ -1,6 +1,6 @@
 #! /usr/bin/env python
+import abjad
 import os
-from abjad.tools import systemtools
 
 
 def find_all_duplicate_module_names():
@@ -54,5 +54,5 @@ def find_all_duplicate_module_names():
 
 
 if __name__ == '__main__':
-    systemtools.IOManager.clear_terminal()
+    abjad.IOManager.clear_terminal()
     find_all_duplicate_module_names()

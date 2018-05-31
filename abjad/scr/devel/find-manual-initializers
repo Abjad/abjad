@@ -1,6 +1,6 @@
 #! /usr/bin/env python
+import abjad
 import os
-from abjad.tools import systemtools
 
 
 def find_initializers():
@@ -43,7 +43,7 @@ def find_initializers():
 
 
 if __name__ == '__main__':
-    systemtools.IOManager.clear_terminal()
+    abjad.IOManager.clear_terminal()
     print('Finding initializers ...')
     print()
     find_initializers()

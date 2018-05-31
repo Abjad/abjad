@@ -5,11 +5,11 @@ from abjad.enumerations import (
     Up,
     VerticalAlignment,
     )
-from abjad.tools.lilypondnametools.LilyPondTweakManager import (
+from abjad.lilypondnames.LilyPondTweakManager import (
     LilyPondTweakManager,
     )
-from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
-from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
+from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 
 
 class Arpeggio(AbjadValueObject):

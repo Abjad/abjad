@@ -764,7 +764,7 @@ class FerneyhoughDemo(object):
             column_count,
             )
         self.configure_score(score)
-        lilypond_file = abjad.lilypondfiletools.LilyPondFile.new(score)
+        lilypond_file = abjad.LilyPondFile.new(score)
         self.configure_lilypond_file(lilypond_file)
         return lilypond_file
 

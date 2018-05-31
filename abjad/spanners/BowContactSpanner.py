@@ -4,18 +4,18 @@ from abjad.enumerations import Up
 from abjad.indicators.Articulation import Articulation
 from abjad.indicators.BowContactPoint import BowContactPoint
 from abjad.indicators.BowMotionTechnique import BowMotionTechnique
-from abjad.tools.lilypondnametools.LilyPondGrobOverride import (
+from abjad.lilypondnames.LilyPondGrobOverride import (
     LilyPondGrobOverride,
 )
-from abjad.tools.schemetools.Scheme import Scheme
-from abjad.tools.schemetools.SchemeSymbol import SchemeSymbol
-from abjad.tools.scoretools.Leaf import Leaf
-from abjad.tools.scoretools.MultimeasureRest import MultimeasureRest
-from abjad.tools.scoretools.Rest import Rest
-from abjad.tools.scoretools.Skip import Skip
-from abjad.tools.systemtools.Tag import Tag
-from abjad.tools.systemtools.Wrapper import Wrapper
-from abjad.tools.topleveltools.inspect import inspect
+from abjad.scheme.Scheme import Scheme
+from abjad.scheme.SchemeSymbol import SchemeSymbol
+from abjad.core.Leaf import Leaf
+from abjad.core.MultimeasureRest import MultimeasureRest
+from abjad.core.Rest import Rest
+from abjad.core.Skip import Skip
+from abjad.system.Tag import Tag
+from abjad.system.Wrapper import Wrapper
+from abjad.top.inspect import inspect
 from .Spanner import Spanner
 
 

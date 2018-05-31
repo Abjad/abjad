@@ -1,5 +1,5 @@
 import copy
-from abjad.tools.pitchtools.PitchClassSegment import PitchClassSegment
+from abjad.pitch.PitchClassSegment import PitchClassSegment
 
 
 class Scale(PitchClassSegment):

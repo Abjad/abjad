@@ -1,5 +1,5 @@
-from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
-from abjad.tools.markuptools.Markup import Markup
+from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.markup.Markup import Markup
 
 
 class StringContactPoint(AbjadValueObject):

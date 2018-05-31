@@ -1,7 +1,7 @@
 #! /usr/bin/env python
+import abjad
 import os
 import re
-from abjad.tools import systemtools
 
 
 def find_lower_camel_case_modules():
@@ -24,7 +24,7 @@ def find_lower_camel_case_modules():
 
 
 if __name__ == '__main__':
-    systemtools.IOManager.clear_terminal()
+    abjad.IOManager.clear_terminal()
     print('Finding lower camel case modules ...')
     print()
     find_lower_camel_case_modules()

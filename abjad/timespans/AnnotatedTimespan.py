@@ -1,4 +1,4 @@
-from abjad.tools.datastructuretools import Infinity, NegativeInfinity
+from abjad.utilities import Infinity, NegativeInfinity
 from .Timespan import Timespan
 
 

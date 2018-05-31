@@ -9,19 +9,19 @@ import math
 import typing
 from abjad.enumerations import Down
 from abjad.exceptions import ImpreciseMetronomeMarkError
-from abjad.tools import mathtools
-from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
-from abjad.tools.datastructuretools.Duration import Duration
-from abjad.tools.datastructuretools.Multiplier import Multiplier
-from abjad.tools.markuptools.Markup import Markup
-from abjad.tools.mathtools.Enumerator import Enumerator
-from abjad.tools.mathtools.NonreducedFraction import NonreducedFraction
-from abjad.tools.mathtools.Ratio import Ratio
-from abjad.tools.schemetools.Scheme import Scheme
-from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
-from abjad.tools.systemtools.StorageFormatManager import StorageFormatManager
-from abjad.tools.topleveltools.new import new
-from abjad.tools.topleveltools.sequence import sequence
+from abjad import mathtools
+from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.utilities.Duration import Duration
+from abjad.utilities.Multiplier import Multiplier
+from abjad.markup.Markup import Markup
+from abjad.mathtools.Enumerator import Enumerator
+from abjad.mathtools.NonreducedFraction import NonreducedFraction
+from abjad.mathtools.Ratio import Ratio
+from abjad.scheme.Scheme import Scheme
+from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
+from abjad.system.StorageFormatManager import StorageFormatManager
+from abjad.top.new import new
+from abjad.top.sequence import sequence
 Number = typing.Union[int, float]
 
 

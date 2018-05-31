@@ -1,15 +1,15 @@
 import typing
 from abjad.enumerations import Down, Up, VerticalAlignment
-from abjad.tools import mathtools
-from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
-from abjad.tools.datastructuretools.String import String
-from abjad.tools.lilypondnametools.LilyPondTweakManager import (
+from abjad import mathtools
+from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.utilities.String import String
+from abjad.lilypondnames.LilyPondTweakManager import (
     LilyPondTweakManager,
     )
-from abjad.tools.mathtools.Infinity import Infinity
-from abjad.tools.mathtools.NegativeInfinity import NegativeInfinity
-from abjad.tools.systemtools.FormatSpecification import FormatSpecification
-from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
+from abjad.mathtools.Infinity import Infinity
+from abjad.mathtools.NegativeInfinity import NegativeInfinity
+from abjad.system.FormatSpecification import FormatSpecification
+from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 
 
 class Dynamic(AbjadValueObject):

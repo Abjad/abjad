@@ -1,14 +1,14 @@
 import typing
-from abjad.tools.markuptools.Markup import Markup
-from abjad.tools.lilypondnametools.LilyPondGrobOverride import \
+from abjad.markup.Markup import Markup
+from abjad.lilypondnames.LilyPondGrobOverride import \
     LilyPondGrobOverride
-from abjad.tools.pitchtools.NamedInterval import NamedInterval
-from abjad.tools.scoretools.MultimeasureRest import MultimeasureRest
-from abjad.tools.scoretools.Chord import Chord
-from abjad.tools.scoretools.Note import Note
-from abjad.tools.scoretools.Rest import Rest
-from abjad.tools.scoretools.Skip import Skip
-from abjad.tools.topleveltools.inspect import inspect
+from abjad.pitch.NamedInterval import NamedInterval
+from abjad.core.MultimeasureRest import MultimeasureRest
+from abjad.core.Chord import Chord
+from abjad.core.Note import Note
+from abjad.core.Rest import Rest
+from abjad.core.Skip import Skip
+from abjad.top.inspect import inspect
 from .Spanner import Spanner
 
 
