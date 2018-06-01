@@ -1,5 +1,5 @@
 import os
-if 'top' in os.path.abspath('.'):
+if os.path.abspath('.')[-3:] == 'top':
     message = 'do not start Abjad from top/ directory (because of inspect.py).'
     raise Exception(message)
 del os

@@ -1,5 +1,8 @@
 import itertools
-from abjad.exceptions import MissingSpannerError, AssignabilityError
+from abjad.exceptions import AssignabilityError
+from abjad.exceptions import MissingSpannerError
+from abjad.mathtools.Ratio import Ratio
+from abjad.utilities.Duration import Duration
 from .Selection import Selection
 
 
@@ -39,7 +42,7 @@ class LogicalTie(Selection):
     def _add_or_remove_notes_to_achieve_written_duration(
         self, new_written_duration):
         import abjad
-        new_written_duration = abjad.Duration(new_written_duration)
+        new_written_duration = Duration(new_written_duration)
         maker = abjad.NoteMaker()
         if new_written_duration.is_assignable:
             self[0].written_duration = new_written_duration
@@ -194,18 +197,11 @@ class LogicalTie(Selection):
 
     ### PUBLIC METHODS ###
 
-    def to_tuplet(
-        self,
-        proportions,
-        dotted=False,
-        diminution=True,
-        ):
+    def to_tuplet(self, proportions):
         r"""
         Changes logical tie to tuplet.
 
         ..  container:: example
-
-            Changes logical tie to diminished tuplet:
 
             >>> staff = abjad.Staff(r"c'8 ~ c'16 cqs''4")
             >>> crescendo = abjad.Hairpin('p < f')
@@ -235,7 +231,7 @@ class LogicalTie(Selection):
                 }
 
             >>> logical_tie = abjad.inspect(staff[0]).get_logical_tie()
-            >>> logical_tie.to_tuplet([2, 1, 1, 1], diminution=True)
+            >>> logical_tie.to_tuplet([2, 1, 1, 1])
             Tuplet(Multiplier(3, 5), "c'8 c'16 c'16 c'16")
 
             >>> time_signature = abjad.TimeSignature((7, 16))
@@ -269,8 +265,6 @@ class LogicalTie(Selection):
 
         ..  container:: example
 
-            Changes logical tie to augmented tuplet:
-
             >>> staff = abjad.Staff(r"c'8 ~ c'16 cqs''4")
             >>> crescendo = abjad.Hairpin(descriptor='p < f')
             >>> abjad.attach(crescendo, staff[:])
@@ -298,84 +292,30 @@ class LogicalTie(Selection):
                     \f
                 }
 
-            >>> logical_tie = abjad.inspect(staff[0]).get_logical_tie()
-            >>> tuplet = logical_tie.to_tuplet(
-            ...     [2, 1, 1, 1],
-            ...     diminution=False,
-            ...     )
-            >>> time_signature = abjad.TimeSignature((7, 16))
-            >>> leaf = abjad.inspect(staff).get_leaf(0)
-            >>> abjad.attach(time_signature, leaf)
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                \with
-                {
-                    \override DynamicLineSpanner.staff-padding = #3
-                }
-                {
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 6/5 {
-                        \time 7/16
-                        c'16
-                        \<
-                        \p
-                        c'32
-                        c'32
-                        c'32
-                    }
-                    cqs''4
-                    \f
-                }
-
         Returns tuplet.
         """
         import abjad
-        # coerce input
-        proportions = abjad.Ratio(proportions)
-        # find target duration of tuplet
+        proportions = Ratio(proportions)
         target_duration = self._get_preprolated_duration()
-        # find duration of each note in tuplet
         prolated_duration = target_duration / sum(proportions.numbers)
-        # find written duration of each note in tuplet
-        if diminution:
-            if dotted:
-                basic_written_duration = \
-                    prolated_duration.equal_or_greater_assignable
-            else:
-                basic_written_duration = \
-                    prolated_duration.equal_or_greater_power_of_two
-        else:
-            if dotted:
-                basic_written_duration = \
-                    prolated_duration.equal_or_lesser_assignable
-            else:
-                basic_written_duration = \
-                    prolated_duration.equal_or_lesser_power_of_two
-        # find written duration of each note in tuplet
+        basic_written_duration = \
+            prolated_duration.equal_or_greater_power_of_two
         written_durations = [
             _ * basic_written_duration for _ in proportions.numbers
             ]
-        # make tuplet notes
         maker = abjad.NoteMaker()
         try:
             notes = [abjad.Note(0, _) for _ in written_durations]
         except AssignabilityError:
             denominator = target_duration._denominator
             note_durations = [
-                abjad.Duration(_, denominator)
+                Duration(_, denominator)
                 for _ in proportions.numbers
                 ]
             notes = maker(0, note_durations)
-        # make tuplet
         tuplet = abjad.Tuplet.from_duration(target_duration, notes)
-        # remove tie spanner from leaves
         for leaf in self:
             for spanner in leaf._get_spanners(abjad.Tie):
                 spanner._sever_all_leaves()
-        # replace leaves with tuplet
         abjad.mutate(self).replace(tuplet)
         return tuplet

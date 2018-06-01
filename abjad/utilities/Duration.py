@@ -1,9 +1,10 @@
 import copy
 import math
 import re
-from abjad.exceptions import AssignabilityError
+import typing
 from abjad import mathtools
 from abjad.abctools.AbjadObject import AbjadObject
+from abjad.exceptions import AssignabilityError
 try:
     from quicktions import Fraction  # type: ignore
 except ImportError:
@@ -1045,7 +1046,9 @@ class Duration(AbjadObject, Fraction):
     ### PUBLIC FUNCTIONS ###
 
     @staticmethod
-    def durations_to_nonreduced_fractions(durations):
+    def durations_to_nonreduced_fractions(
+        durations: typing.List,
+        ) -> typing.List[mathtools.NonreducedFraction]:
         """
         Changes ``durations`` to nonreduced fractions sharing least common
         denominator.
@@ -1063,17 +1066,15 @@ class Duration(AbjadObject, Fraction):
             NonreducedFraction(48, 16)
             NonreducedFraction(5, 16)
 
-        Returns new object of ``durations`` type.
         """
-        durations = [Duration(x) for x in durations]
-        denominators = [duration.denominator for duration in durations]
+        durations_ = [Duration(_) for _ in durations]
+        denominators = [_.denominator for _ in durations_]
         lcd = mathtools.least_common_multiple(*denominators)
         nonreduced_fractions = [
-            mathtools.NonreducedFraction(x).with_denominator(lcd)
-            for x in durations
+            mathtools.NonreducedFraction(_).with_denominator(lcd)
+            for _ in durations_
             ]
-        result = type(durations)(nonreduced_fractions)
-        return result
+        return nonreduced_fractions
 
     @staticmethod
     def from_lilypond_duration_string(lilypond_duration_string):

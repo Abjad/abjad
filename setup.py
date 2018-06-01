@@ -27,19 +27,11 @@ author = [
 author = ', '.join(author)
 
 author_email = [
-    'trevorbaca@gmail.com',
+    'trevor.baca@gmail.com',
     'josiah.oberholtzer@gmail.com',
     'contact@victoradan.net',
     ]
 author_email = ', '.join(author_email)
-
-keywords = [
-    'music composition',
-    'music notation',
-    'formalized score control',
-    'lilypond',
-    ]
-keywords = ', '.join(keywords)
 
 classifiers = [
     'Development Status :: 5 - Production/Stable',
@@ -49,11 +41,12 @@ classifiers = [
     'Topic :: Artistic Software',
     ]
 
-install_requires = [
-    'ply',
-    'roman',
-    'uqbar>=0.2.13',
-    ]
+entry_points = {
+    'console_scripts': [
+        'abjad = abjad.tools.systemtools.run_abjad:run_abjad',
+        'ajv = abjad.cli.run_ajv:run_ajv',
+        ]
+    }
 
 extras_require = {
     'accelerated': ['quicktions>=1.3'],
@@ -65,12 +58,19 @@ extras_require = {
     'test': ['mypy', 'pytest>=3.5.0'],
     }
 
-entry_points = {
-    'console_scripts': [
-        'abjad = abjad.tools.systemtools.run_abjad:run_abjad',
-        'ajv = abjad.cli.run_ajv:run_ajv',
-        ]
-    }
+keywords = [
+    'music composition',
+    'music notation',
+    'formalized score control',
+    'lilypond',
+    ]
+keywords = ', '.join(keywords)
+
+install_requires = [
+    'ply',
+    'roman',
+    'uqbar>=0.2.13',
+    ]
 
 if __name__ == '__main__':
     setuptools.setup(
