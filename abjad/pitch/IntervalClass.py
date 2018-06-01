@@ -24,7 +24,7 @@ class IntervalClass(AbjadValueObject):
             match = constants._interval_name_abbreviation_regex.match(argument)
             if match is None:
                 message = 'can not initialize {} from {!r}.'
-                message = message.format(type(self).__init__, argument)
+                message = message.format(type(self).__name__, argument)
                 raise ValueError(message)
             group_dict = match.groupdict()
             direction = group_dict['direction']

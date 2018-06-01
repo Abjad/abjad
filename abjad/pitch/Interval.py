@@ -26,7 +26,7 @@ class Interval(AbjadValueObject):
             match = constants._interval_name_abbreviation_regex.match(argument)
             if match is None:
                 message = 'can not initialize {} from {!r}.'
-                message = message.format(type(self).__init__, argument)
+                message = message.format(type(self).__name__, argument)
                 raise ValueError(message)
             group_dict = match.groupdict()
             direction = group_dict['direction']
@@ -35,13 +35,27 @@ class Interval(AbjadValueObject):
             else:
                 direction = 1
             quality = group_dict['quality']
-            number = int(group_dict['number'])
-            self._from_direction_quality_and_diatonic_number(direction, quality, number)
+            if quality == 'aug':
+                quality = 'A'
+            elif quality == 'dim':
+                quality = 'd'
+            diatonic_number = int(group_dict['number'])
+            self._validate_quality_and_diatonic_number(quality, diatonic_number)
+            self._from_direction_quality_and_diatonic_number(
+                direction,
+                quality,
+                diatonic_number,
+                )
         elif isinstance(argument, tuple) and len(argument) == 2:
             quality, number = argument
             direction = mathtools.sign(number)
-            number = abs(number)
-            self._from_direction_quality_and_diatonic_number(direction, quality, number)
+            diatonic_number = abs(number)
+            self._validate_quality_and_diatonic_number(quality, diatonic_number)
+            self._from_direction_quality_and_diatonic_number(
+                direction,
+                quality,
+                diatonic_number,
+                )
         elif isinstance(argument, numbers.Number):
             self._from_number(argument)
         elif isinstance(argument, (abjad.Interval, abjad.IntervalClass)):
@@ -153,6 +167,17 @@ class Interval(AbjadValueObject):
         elif mod == 0.5:
             div += 0.5
         return mathtools.integer_equivalent_number_to_integer(div)
+
+    @classmethod
+    def _validate_quality_and_diatonic_number(cls, quality, diatonic_number):
+        diatonic_pc_number = diatonic_number
+        while diatonic_pc_number > 7:
+            diatonic_pc_number -= 7
+        if constants._diatonic_number_and_quality_to_semitones.get(
+            diatonic_pc_number, {}).get(quality[0]) is None:
+            message = 'can not initialize {} from {!r} and {!r}.'
+            message = message.format(cls.__name__, quality, diatonic_number)
+            raise ValueError(message)
 
     ### PUBLIC PROPERTIES ###
 

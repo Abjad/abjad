@@ -35,6 +35,16 @@ values.extend([
     ('m7', 10),
     ('M7', 11),
     ('A7', 12),
+    (('M', 1), ValueError),
+    (('M', 4), ValueError),
+    (('M', 5), ValueError),
+    (('P', 2), ValueError),
+    (('P', 3), ValueError),
+    (('P', 6), ValueError),
+    (('P', 7), ValueError),
+    (('m', 1), ValueError),
+    (('m', 4), ValueError),
+    (('m', 5), ValueError),
     ])
 
 
