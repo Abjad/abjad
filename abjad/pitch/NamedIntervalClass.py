@@ -86,7 +86,12 @@ class NamedIntervalClass(IntervalClass):
 
         Returns float.
         '''
-        return float(self.number)
+        return float(self._named_to_numbered(
+            self.direction_number,
+            constants._quality_string_to_quality_abbreviation[
+                self._quality_string],
+            abs(self._number),
+            ))
 
     def __hash__(self):
         r'''Hashes named interval-class.
@@ -214,60 +219,15 @@ class NamedIntervalClass(IntervalClass):
 
         Returns -1, 0 or 1.
         '''
+        if self.number == 1:
+            if self.quality_string == 'perfect':
+                return 0
+            elif self.quality_string == 'diminished':
+                return -1
+            return 1
         if self.number < 1:
             return -1
-        elif self.number == 1:
-            return 0
-        else:
-            return 1
-
-    @property
-    def direction_string(self):
-        r'''Gets direction string of named interval-class.
-
-        ..  container:: example
-
-            >>> abjad.NamedIntervalClass('P1').direction_string is None
-            True
-
-            >>> abjad.NamedIntervalClass('+M2').direction_string
-            'ascending'
-
-            >>> abjad.NamedIntervalClass('-M2').direction_string
-            'descending'
-
-        Returns string.
-        '''
-        if self.direction_number == -1:
-            return 'descending'
-        elif self.direction_number == 0:
-            return None
-        elif self.direction_number == 1:
-            return 'ascending'
-
-    @property
-    def direction_symbol(self):
-        r'''Gets direction symbol of named interval-class.
-
-        ..  container:: example
-
-            >>> abjad.NamedIntervalClass('P1').direction_symbol
-            ''
-
-            >>> abjad.NamedIntervalClass('+M2').direction_symbol
-            '+'
-
-            >>> abjad.NamedIntervalClass('-M2').direction_symbol
-            '-'
-
-        Returns string.
-        '''
-        if self.number < 1:
-            return '-'
-        elif self.number == 1:
-            return ''
-        else:
-            return '+'
+        return 1
 
     @property
     def name(self):
@@ -281,7 +241,8 @@ class NamedIntervalClass(IntervalClass):
         Returns string.
         '''
         return '{}{}{}'.format(
-            self.direction_symbol,
+            constants._direction_number_to_direction_symbol[
+                self.direction_number],
             self._quality_abbreviation,
             abs(self.number),
             )

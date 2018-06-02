@@ -233,7 +233,7 @@ _pitch_class_number_to_pitch_class_name_with_sharps = {
 }
 
 _diatonic_number_and_quality_to_semitones = {
-    1: {'d': -1, 'P': 0, 'A': 1},
+    1: {'d': 1, 'P': 0, 'A': 1},
     2: {'d': 0, 'm': 1, 'M': 2, 'A': 3},
     3: {'d': 2, 'm': 3, 'M': 4, 'A': 5},
     4: {'d': 4, 'P': 5, 'A': 6},

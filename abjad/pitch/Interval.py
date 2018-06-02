@@ -47,11 +47,7 @@ class Interval(AbjadValueObject):
             quality = self._validate_quality_and_diatonic_number(
                 quality, diatonic_number,
             )
-            self._from_named_parts(
-                direction,
-                quality,
-                diatonic_number,
-                )
+            self._from_named_parts(direction, quality, diatonic_number)
         elif isinstance(argument, tuple) and len(argument) == 2:
             quality, number = argument
             direction = mathtools.sign(number)
@@ -59,11 +55,7 @@ class Interval(AbjadValueObject):
             quality = self._validate_quality_and_diatonic_number(
                 quality, diatonic_number,
             )
-            self._from_named_parts(
-                direction,
-                quality,
-                diatonic_number,
-                )
+            self._from_named_parts(direction, quality, diatonic_number)
         elif isinstance(argument, numbers.Number):
             self._from_number(argument)
         elif isinstance(argument, (abjad.Interval, abjad.IntervalClass)):

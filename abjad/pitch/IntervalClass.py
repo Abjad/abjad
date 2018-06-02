@@ -41,37 +41,19 @@ class IntervalClass(AbjadValueObject):
             else:
                 direction = 1
             quality = group_dict['quality']
-            if quality == 'aug':
-                quality = 'A'
-            elif quality == 'dim':
-                quality = 'd'
             diatonic_number = int(group_dict['number'])
-            self._validate_quality_and_diatonic_number(
-                quality,
-                diatonic_number,
+            quality = self._validate_quality_and_diatonic_number(
+                quality, diatonic_number,
                 )
-            self._from_named_parts(
-                direction,
-                quality,
-                diatonic_number,
-                )
+            self._from_named_parts(direction, quality, diatonic_number)
         elif isinstance(argument, tuple) and len(argument) == 2:
             quality, number = argument
             direction = mathtools.sign(number)
             diatonic_number = abs(number)
-            if quality == 'major':
-                quality = 'M'
-            elif quality == 'minor':
-                quality = 'm'
-            self._validate_quality_and_diatonic_number(
-                quality,
-                diatonic_number,
+            quality = self._validate_quality_and_diatonic_number(
+                quality, diatonic_number,
                 )
-            self._from_named_parts(
-                direction,
-                quality,
-                diatonic_number,
-                )
+            self._from_named_parts(direction, quality, diatonic_number)
         elif isinstance(argument, numbers.Number):
             self._from_number(argument)
         elif isinstance(argument, (abjad.Interval, abjad.IntervalClass)):
@@ -134,6 +116,7 @@ class IntervalClass(AbjadValueObject):
     @classmethod
     def _named_to_numbered(cls, direction, quality, diatonic_number):
         octave_number = 0
+        diatonic_number = abs(diatonic_number)
         diatonic_pc_number = diatonic_number
         while diatonic_pc_number >= 8:
             diatonic_pc_number -= 7
@@ -174,14 +157,23 @@ class IntervalClass(AbjadValueObject):
 
     @classmethod
     def _validate_quality_and_diatonic_number(cls, quality, diatonic_number):
+        if quality in constants._quality_string_to_quality_abbreviation:
+            quality = constants._quality_string_to_quality_abbreviation[quality]
+        if quality == 'aug':
+            quality = 'A'
+        if quality == 'dim':
+            quality = 'd'
+        octaves = 0
         diatonic_pc_number = diatonic_number
         while diatonic_pc_number > 7:
             diatonic_pc_number -= 7
+            octaves += 1
         if constants._diatonic_number_and_quality_to_semitones.get(
             diatonic_pc_number, {}).get(quality[0]) is None:
             message = 'can not initialize {} from {!r} and {!r}.'
             message = message.format(cls.__name__, quality, diatonic_number)
             raise ValueError(message)
+        return quality
 
     ### PUBLIC PROPERTIES ###
 

@@ -393,8 +393,7 @@ class NamedInterval(Interval):
         '''
         if self.quality_string == 'perfect' and abs(self.number) == 1:
             return 0
-        else:
-            return mathtools.sign(self.number)
+        return mathtools.sign(self.number)
 
     @property
     def interval_class(self):

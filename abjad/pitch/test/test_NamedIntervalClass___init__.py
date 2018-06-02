@@ -1,4 +1,5 @@
 import pytest
+from abjad import mathtools
 from abjad.pitch import (
     NamedInterval,
     NamedIntervalClass,
@@ -8,7 +9,10 @@ from abjad.pitch import (
 
 
 values = []
-values.extend((x, x) for x in range(-48, 49))
+values.extend(
+    (x, ((abs(x) % 12) or 12) * mathtools.sign(x))
+    for x in range(-48, 49)
+)
 values.extend([
     ('A1', 1),
     ('A2', 3),
@@ -51,7 +55,7 @@ values.extend([
 
 @pytest.mark.parametrize('input_, semitones', values)
 def test_01(input_, semitones):
-    class_ = NumberedInterval
+    class_ = NamedIntervalClass
     if (
         isinstance(semitones, type) and
         issubclass(semitones, Exception)

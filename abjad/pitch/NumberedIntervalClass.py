@@ -206,17 +206,6 @@ class NumberedIntervalClass(IntervalClass):
         else:
             return 1
 
-    @property
-    def direction_symbol(self):
-        r'''Gets direction symbol of numbered interval-class.
-
-        Returns string.
-        '''
-        if self.number < 1:
-            return '-'
-        else:
-            return '+'
-
     ### PUBLIC METHODS ###
 
     @classmethod
