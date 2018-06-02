@@ -59,6 +59,10 @@ class IntervalClass(AbjadValueObject):
             quality, number = argument
             direction = mathtools.sign(number)
             diatonic_number = abs(number)
+            if quality == 'major':
+                quality = 'M'
+            elif quality == 'minor':
+                quality = 'm'
             self._validate_quality_and_diatonic_number(
                 quality,
                 diatonic_number,
