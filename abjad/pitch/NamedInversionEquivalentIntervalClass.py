@@ -200,22 +200,3 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
             )
         string = str(named_interval)
         return class_(string)
-
-    @classmethod
-    def from_quality_and_number(class_, quality, number):
-        r'''Makes named inversion-equivalent interval-class from `quality`
-        string and `number`.
-
-        ..  container:: example
-
-            >>> class_ = abjad.NamedInversionEquivalentIntervalClass
-            >>> class_.from_quality_and_number('perfect', 1)
-            NamedInversionEquivalentIntervalClass('P1')
-
-        Returns new named inversion-equivalent interval-class.
-        '''
-        quality, number = class_._process_quality_and_number(quality, number)
-        interval_class = NamedInversionEquivalentIntervalClass()
-        interval_class._quality_string = quality
-        interval_class._number = number
-        return interval_class
