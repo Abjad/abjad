@@ -50,7 +50,7 @@ class IntervalClass(AbjadValueObject):
                 quality,
                 diatonic_number,
                 )
-            self._from_direction_quality_and_diatonic_number(
+            self._from_named_parts(
                 direction,
                 quality,
                 diatonic_number,
@@ -67,7 +67,7 @@ class IntervalClass(AbjadValueObject):
                 quality,
                 diatonic_number,
                 )
-            self._from_direction_quality_and_diatonic_number(
+            self._from_named_parts(
                 direction,
                 quality,
                 diatonic_number,
@@ -115,7 +115,7 @@ class IntervalClass(AbjadValueObject):
     ### PRIVATE METHODS ###
 
 #    #@abc.abstractmethod
-#    def _from_direction_quality_and_diatonic_number(
+#    def _from_named_parts(
 #        self,
 #        direction,
 #        quality,

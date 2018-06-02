@@ -304,12 +304,7 @@ class NamedInterval(Interval):
 
     ### PRIVATE PROPERTIES ###
 
-    def _from_direction_quality_and_diatonic_number(
-        self,
-        direction,
-        quality,
-        diatonic_number,
-        ):
+    def _from_named_parts(self, direction, quality, diatonic_number):
         import abjad
         self._quality_string = constants._quality_abbreviation_to_quality_string[quality]
         self._number = direction * diatonic_number
@@ -323,7 +318,7 @@ class NamedInterval(Interval):
 
     def _from_number(self, argument):
         direction, quality, diatonic_number = self._numbered_to_named(argument)
-        self._from_direction_quality_and_diatonic_number(
+        self._from_named_parts(
             direction, quality, diatonic_number)
 
     def _from_interval_or_interval_class(self, argument):
@@ -333,7 +328,7 @@ class NamedInterval(Interval):
             direction = mathtools.sign(argument.number)
         except AttributeError:
             direction, quality, diatonic_number = self._numbered_to_named(argument)
-        self._from_direction_quality_and_diatonic_number(
+        self._from_named_parts(
             direction, quality, diatonic_number)
 
     @property
@@ -450,8 +445,10 @@ class NamedInterval(Interval):
 
         Returns string.
         '''
+        direction_symbol = constants._direction_number_to_direction_symbol[
+            self.direction_number]
         return '{}{}{}'.format(
-            self._get_direction_symbol(),
+            direction_symbol,
             self._quality_abbreviation,
             abs(self.number),
             )

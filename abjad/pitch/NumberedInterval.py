@@ -2,6 +2,7 @@ import copy
 import numbers
 from abjad import mathtools
 from abjad.pitch.Interval import Interval
+from . import constants
 
 
 class NumberedInterval(Interval):
@@ -232,7 +233,9 @@ class NumberedInterval(Interval):
 
         Returns string.
         '''
-        return '{}{}'.format(self._get_direction_symbol(), abs(self.number))
+        direction_symbol = constants._direction_number_to_direction_symbol[
+            mathtools.sign(self.number)]
+        return '{}{}'.format(direction_symbol, abs(self.number))
 
     def __sub__(self, argument):
         r'''Subtracts `argument` from numbered interval.
@@ -248,12 +251,7 @@ class NumberedInterval(Interval):
 
     ### PRIVATE METHODS ###
 
-    def _from_direction_quality_and_diatonic_number(
-        self,
-        direction,
-        quality,
-        diatonic_number,
-        ):
+    def _from_named_parts(self, direction, quality, diatonic_number):
         self._number = self._named_to_numbered(
             direction,
             quality,

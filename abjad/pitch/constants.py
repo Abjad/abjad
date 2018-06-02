@@ -2,6 +2,12 @@ import re
 
 ### MAPPINGS ###
 
+_direction_number_to_direction_symbol = {
+    0: '',
+    1: '+',
+    -1: '-',
+}
+
 _accidental_abbreviation_to_name = {
     'ss': 'double sharp',
     'tqs': 'three-quarters sharp',

@@ -47,7 +47,7 @@ class Interval(AbjadValueObject):
             quality = self._validate_quality_and_diatonic_number(
                 quality, diatonic_number,
             )
-            self._from_direction_quality_and_diatonic_number(
+            self._from_named_parts(
                 direction,
                 quality,
                 diatonic_number,
@@ -59,7 +59,7 @@ class Interval(AbjadValueObject):
             quality = self._validate_quality_and_diatonic_number(
                 quality, diatonic_number,
             )
-            self._from_direction_quality_and_diatonic_number(
+            self._from_named_parts(
                 direction,
                 quality,
                 diatonic_number,
@@ -75,12 +75,13 @@ class Interval(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
+    @abc.abstractmethod
     def __abs__(self):
         r'''Gets absolute value of interval.
 
         Returns new interval.
         '''
-        return type(self)(abs(self.number))
+        raise NotImplementedError
 
     def __float__(self):
         r'''Coerce to semitones as float.
@@ -97,12 +98,13 @@ class Interval(AbjadValueObject):
         '''
         raise NotImplementedError
 
+    @abc.abstractmethod
     def __neg__(self):
         r'''Negates interval.
 
         Returns interval.
         '''
-        pass
+        raise NotImplementedError
 
     def __str__(self):
         r'''Gets string representation of interval.
@@ -114,12 +116,7 @@ class Interval(AbjadValueObject):
     ### PRIVATE METHODS ###
 
     @abc.abstractmethod
-    def _from_direction_quality_and_diatonic_number(
-        self,
-        direction,
-        quality,
-        diatonic_number,
-        ):
+    def _from_named_parts(self, direction, quality, diatonic_number):
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -129,18 +126,6 @@ class Interval(AbjadValueObject):
     @abc.abstractmethod
     def _from_interval_or_interval_class(self, argument):
         raise NotImplementedError
-
-    def _get_direction_symbol(self):
-        if self.direction_number == -1:
-            return '-'
-        elif self.direction_number == 0:
-            return ''
-        elif self.direction_number == 1:
-            return '+'
-        else:
-            message = 'invalid direction number: {!r}.'
-            message = message.format(self.direction_number)
-            raise ValueError(message)
 
     @classmethod
     def _named_to_numbered(cls, direction, quality, diatonic_number):
@@ -238,15 +223,6 @@ class Interval(AbjadValueObject):
         '''
         raise NotImplementedError
 
-#    @abc.abstractproperty
-#    def name(self):
-#        '''
-#        Gets name of interval.
-#
-#        Returns string.
-#        '''
-#        raise NotImplementedError
-
     @abc.abstractproperty
     def number(self):
         '''
@@ -264,15 +240,6 @@ class Interval(AbjadValueObject):
         '''
         return self.semitones // 12
 
-#    @abc.abstractproperty
-#    def quality_string(self):
-#        '''
-#        Gets quality name of interval.
-#
-#        Returns string.
-#        '''
-#        raise NotImplementedError
-
     @abc.abstractproperty
     def semitones(self):
         '''
@@ -281,15 +248,6 @@ class Interval(AbjadValueObject):
         Returns integer or float.
         '''
         raise NotImplementedError
-
-#    @abc.abstractproperty
-#    def staff_spaces(self):
-#        '''
-#        Gets staff spaces of interval.
-#
-#        Returns integer.
-#        '''
-#        raise NotImplementedError
 
     ### PUBLIC METHODS ###
 

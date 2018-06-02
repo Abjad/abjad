@@ -163,12 +163,7 @@ class NumberedIntervalClass(IntervalClass):
 
     ### PRIVATE METHODS ###
 
-    def _from_direction_quality_and_diatonic_number(
-        self,
-        direction,
-        quality,
-        diatonic_number,
-        ):
+    def _from_named_parts(self, direction, quality, diatonic_number):
         self._number = self._named_to_numbered(
             direction,
             quality,

@@ -153,12 +153,7 @@ class NamedIntervalClass(IntervalClass):
 
     ### PRIVATE PROPERTIES ###
 
-    def _from_direction_quality_and_diatonic_number(
-        self,
-        direction,
-        quality,
-        diatonic_number,
-        ):
+    def _from_named_parts(self, direction, quality, diatonic_number):
         self._quality_string = constants._quality_abbreviation_to_quality_string[quality]
         diatonic_pc_number = diatonic_number
         while diatonic_pc_number > 7:
@@ -169,7 +164,7 @@ class NamedIntervalClass(IntervalClass):
 
     def _from_number(self, argument):
         direction, quality, diatonic_number = self._numbered_to_named(argument)
-        self._from_direction_quality_and_diatonic_number(
+        self._from_named_parts(
             direction, quality, diatonic_number)
 
     def _from_interval_or_interval_class(self, argument):
@@ -179,7 +174,7 @@ class NamedIntervalClass(IntervalClass):
             direction = mathtools.sign(argument.number)
         except AttributeError:
             direction, quality, diatonic_number = self._numbered_to_named(argument)
-        self._from_direction_quality_and_diatonic_number(
+        self._from_named_parts(
             direction, quality, diatonic_number)
 
     @property
