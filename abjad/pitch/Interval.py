@@ -206,15 +206,6 @@ class Interval(AbjadValueObject):
         raise NotImplementedError
 
     @abc.abstractproperty
-    def direction_string(self):
-        '''
-        Gets direction string of interval.
-
-        Returns string.
-        '''
-        raise NotImplementedError
-
-    @abc.abstractproperty
     def interval_class(self):
         '''
         Gets interval-class of interval.

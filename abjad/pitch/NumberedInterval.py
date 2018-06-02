@@ -286,27 +286,15 @@ class NumberedInterval(Interval):
             >>> abjad.NumberedInterval(-14).direction_number
             -1
 
+            >>> abjad.NumberedInterval(0).direction_number
+            0
+
+            >>> abjad.NumberedInterval(6).direction_number
+            1
+
         Returns integer.
         '''
         return mathtools.sign(self.number)
-
-    @property
-    def direction_string(self):
-        r'''Gets direction string of numbered interval.
-
-        ..  container:: example
-
-            >>> abjad.NumberedInterval(-14).direction_string
-            'descending'
-
-        Returns ``'ascending'``, ``'descending'`` or none.
-        '''
-        if self.direction_number == -1:
-            return 'descending'
-        elif self.direction_number == 0:
-            return None
-        elif self.direction_number == 1:
-            return 'ascending'
 
     @property
     def interval_class(self):

@@ -377,40 +377,24 @@ class NamedInterval(Interval):
             >>> abjad.NamedInterval('+M9').direction_number
             1
 
+            >>> abjad.NamedInterval('+dim2').direction_number
+            1
+
+            >>> abjad.NamedInterval('+A1').direction_number
+            1
+
+            >>> abjad.NamedInterval('P1').direction_number
+            0
+
+            >>> abjad.NamedInterval('-m3').direction_number
+            -1
+
         Returns ``-1``, ``0`` or ``1``.
         '''
         if self.quality_string == 'perfect' and abs(self.number) == 1:
             return 0
         else:
             return mathtools.sign(self.number)
-
-    @property
-    def direction_string(self):
-        r'''Gets direction string of named interval.
-
-        ..  container:: example
-
-            >>> abjad.NamedInterval('+M9').direction_string
-            'ascending'
-
-        ..  container:: example
-
-            >>> abjad.NamedInterval('-M9').direction_string
-            'descending'
-
-        ..  container:: example
-
-            >>> abjad.NamedInterval('P1').direction_string is None
-            True
-
-        Returns ``'ascending'``, ``'descending'`` or none.
-        '''
-        if self.direction_number == -1:
-            return 'descending'
-        elif self.direction_number == 0:
-            return None
-        elif self.direction_number == 1:
-            return 'ascending'
 
     @property
     def interval_class(self):
@@ -571,11 +555,11 @@ class NamedInterval(Interval):
 
         Returns nonnegative integer.
         '''
-        if self.direction_string == 'descending':
+        if self.direction_number == -1:
             return self.number + 1
-        elif self.direction_string is None:
+        elif not self.direction_number:
             return 0
-        elif self.direction_string == 'ascending':
+        elif self.direction_number == 1:
             return self.number - 1
 
     ### PUBLIC METHODS ###
