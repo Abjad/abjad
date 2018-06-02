@@ -65,7 +65,7 @@ class IntervalSet(Set):
             ...
             NamedInterval('-M6')
             NamedInterval('-P5')
-            NamedInterval('-aug4')
+            NamedInterval('-A4')
             NamedInterval('-M3')
             NamedInterval('-m3')
             NamedInterval('-M2')
@@ -78,7 +78,7 @@ class IntervalSet(Set):
             NamedInterval('+M7')
             NamedInterval('+P8')
             NamedInterval('+M9')
-            NamedInterval('+aug11')
+            NamedInterval('+A11')
             NamedInterval('+M13')
 
         Returns interval set.

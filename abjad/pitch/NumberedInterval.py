@@ -396,12 +396,12 @@ class NumberedInterval(Interval):
             NamedInterval('P1')
 
             >>> abjad.NumberedInterval(0).to_named_interval(2)
-            NamedInterval('+dim2')
+            NamedInterval('+d2')
 
         ..  container:: example
 
             >>> abjad.NumberedInterval(1).to_named_interval(1)
-            NamedInterval('+aug1')
+            NamedInterval('+A1')
 
             >>> abjad.NumberedInterval(1).to_named_interval(2)
             NamedInterval('+m2')
@@ -409,7 +409,7 @@ class NumberedInterval(Interval):
         ..  container:: example
 
             >>> abjad.NumberedInterval(-1).to_named_interval(1)
-            NamedInterval('-aug1')
+            NamedInterval('-A1')
 
             >>> abjad.NumberedInterval(-1).to_named_interval(2)
             NamedInterval('-m2')

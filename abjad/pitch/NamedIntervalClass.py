@@ -219,15 +219,9 @@ class NamedIntervalClass(IntervalClass):
 
         Returns -1, 0 or 1.
         '''
-        if self.number == 1:
-            if self.quality_string == 'perfect':
-                return 0
-            elif self.quality_string == 'diminished':
-                return -1
-            return 1
-        if self.number < 1:
-            return -1
-        return 1
+        if self.quality_string == 'perfect' and abs(self.number) == 1:
+            return 0
+        return mathtools.sign(self.number)
 
     @property
     def name(self):

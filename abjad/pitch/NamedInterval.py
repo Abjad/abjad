@@ -200,7 +200,7 @@ class NamedInterval(Interval):
         ..  container:: example
 
             >>> 3 * abjad.NamedInterval('+M9')
-            NamedInterval('+aug25')
+            NamedInterval('+A25')
 
         Returns new named interval.
         '''
@@ -262,7 +262,7 @@ class NamedInterval(Interval):
         ..  container:: example
 
             >>> abjad.NamedInterval('+M9') * 3
-            NamedInterval('+aug25')
+            NamedInterval('+A25')
 
         Returns new named interval.
         '''
@@ -333,10 +333,10 @@ class NamedInterval(Interval):
 
     @property
     def _quality_abbreviation(self):
-        constants._quality_string_to_quality_abbreviation = {
+        _quality_string_to_quality_abbreviation = {
             'major': 'M', 'minor': 'm', 'perfect': 'P',
-            'augmented': 'aug', 'diminished': 'dim'}
-        return constants._quality_string_to_quality_abbreviation[self.quality_string]
+            'augmented': 'A', 'diminished': 'd'}
+        return _quality_string_to_quality_abbreviation[self.quality_string]
 
     ### PRIVATE METHODS ###
 
@@ -464,7 +464,7 @@ class NamedInterval(Interval):
             >>> abjad.NamedInterval('+P8').quality_string
             'perfect'
 
-            >>> abjad.NamedInterval('+aug4').quality_string
+            >>> abjad.NamedInterval('+A4').quality_string
             'augmented'
 
         Returns string.
@@ -494,42 +494,13 @@ class NamedInterval(Interval):
 
         Returns number.
         '''
-        import abjad
-        result = 0
-        interval_class_number_to_semitones = {
-            1: 0,
-            2: 1,
-            3: 3,
-            4: 5,
-            5: 7,
-            6: 8,
-            7: 10,
-            8: 0,
-            }
-        perfect_interval_classes = (
-            1,
-            4,
-            5,
-            8,
-            )
-        interval_class_number = abs(
-            abjad.NamedIntervalClass(self).number)
-        result += interval_class_number_to_semitones[interval_class_number]
-        result += (abs(self.number) - 1) // 7 * 12
-        quality_string_to_semitones = {
-            'perfect': 0,
-            'major': 1,
-            'minor': 0,
-            'augmented': 1,
-            'diminished': -1,
-            }
-        result += quality_string_to_semitones[self.quality_string]
-        if interval_class_number not in perfect_interval_classes and \
-            self.quality_string == "augmented":
-            result += 1
-        if self.number < 0:
-            result *= -1
-        return result
+        direction = self.direction_number
+        quality = self.quality_string
+        diatonic_number = abs(self._number)
+        quality = self._validate_quality_and_diatonic_number(
+            quality, diatonic_number,
+        )
+        return self._named_to_numbered(direction, quality, diatonic_number)
 
     @property
     def staff_spaces(self):

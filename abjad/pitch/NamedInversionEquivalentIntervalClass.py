@@ -24,16 +24,16 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
         NamedInversionEquivalentIntervalClass('P1')
 
         >>> abjad.NamedInversionEquivalentIntervalClass(('augmented', 4))
-        NamedInversionEquivalentIntervalClass('+aug4')
+        NamedInversionEquivalentIntervalClass('+A4')
 
         >>> abjad.NamedInversionEquivalentIntervalClass(('augmented', -4))
-        NamedInversionEquivalentIntervalClass('+aug4')
+        NamedInversionEquivalentIntervalClass('+A4')
 
         >>> abjad.NamedInversionEquivalentIntervalClass(('augmented', 11))
-        NamedInversionEquivalentIntervalClass('+aug4')
+        NamedInversionEquivalentIntervalClass('+A4')
 
         >>> abjad.NamedInversionEquivalentIntervalClass(('augmented', -11))
-        NamedInversionEquivalentIntervalClass('+aug4')
+        NamedInversionEquivalentIntervalClass('+A4')
 
     ..  container:: example
 

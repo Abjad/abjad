@@ -278,13 +278,13 @@ class NamedPitchClass(PitchClass):
         ..  container:: example
 
             >>> abjad.NamedPitchClass('cs') - abjad.NamedPitchClass('g')
-            NamedInversionEquivalentIntervalClass('+aug4')
+            NamedInversionEquivalentIntervalClass('+A4')
 
             >>> abjad.NamedPitchClass('c') - abjad.NamedPitchClass('cf')
-            NamedInversionEquivalentIntervalClass('aug1')
+            NamedInversionEquivalentIntervalClass('+A1')
 
             >>> abjad.NamedPitchClass('cf') - abjad.NamedPitchClass('c')
-            NamedInversionEquivalentIntervalClass('aug1')
+            NamedInversionEquivalentIntervalClass('+A1')
 
         Returns named inversion-equivalent interval-class.
         '''
