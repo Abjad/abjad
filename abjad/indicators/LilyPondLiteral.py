@@ -1,7 +1,6 @@
 import typing
 from abjad.abctools.AbjadValueObject import AbjadValueObject
-from abjad.lilypondnames.LilyPondTweakManager import \
-    LilyPondTweakManager
+from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.system.StorageFormatManager import StorageFormatManager

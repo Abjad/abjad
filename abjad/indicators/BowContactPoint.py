@@ -1,8 +1,8 @@
 import functools
 import typing
 from abjad.abctools.AbjadValueObject import AbjadValueObject
-from abjad.utilities.Multiplier import Multiplier
 from abjad.markup.Markup import Markup
+from abjad.utilities.Multiplier import Multiplier
 
 
 @functools.total_ordering

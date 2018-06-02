@@ -7,24 +7,24 @@ from .Line import Line
 from .Part import Part
 from .PartManifest import PartManifest
 from .Tags import Tags
-from abjad.indicators.Clef import Clef
-from abjad.indicators.LilyPondLiteral import LilyPondLiteral
-from abjad.indicators.MarginMarkup import MarginMarkup
-from abjad.indicators.TimeSignature import TimeSignature
-from abjad.utilities.CyclicTuple import CyclicTuple
-from abjad.utilities.OrderedDict import OrderedDict
-from abjad.utilities.String import String
 from abjad.core.MultimeasureRest import MultimeasureRest
 from abjad.core.Container import Container
 from abjad.core.Score import Score
 from abjad.core.Staff import Staff
 from abjad.core.StaffGroup import StaffGroup
+from abjad.indicators.Clef import Clef
+from abjad.indicators.LilyPondLiteral import LilyPondLiteral
+from abjad.indicators.MarginMarkup import MarginMarkup
+from abjad.indicators.TimeSignature import TimeSignature
 from abjad.system.IOManager import IOManager
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.top.activate import activate
 from abjad.top.attach import attach
 from abjad.top.deactivate import deactivate
 from abjad.top.iterate import iterate
+from abjad.utilities.CyclicTuple import CyclicTuple
+from abjad.utilities.OrderedDict import OrderedDict
+from abjad.utilities.String import String
 
 
 class Path(pathlib.PosixPath):
@@ -1020,6 +1020,21 @@ class Path(pathlib.PosixPath):
             >>> path.stylesheets.coerce('SEGMENT_STYLESHEET')
             'segment-stylesheet.ily'
 
+        ..  container:: example
+
+            Does not coerce in unknown directory:
+
+            >>> path = abjad.Path(
+            ...     '/unknown/path',
+            ...     )
+
+            >>> path.coerce('custom-script')
+            'custom-script'
+            >>> path.coerce('custom_script')
+            'custom_script'
+            >>> path.coerce('CUSTOM_SCRIPT')
+            'CUSTOM_SCRIPT'
+
         Returns string.
         """
         name = String(name).strip_diacritics()
@@ -1067,8 +1082,6 @@ class Path(pathlib.PosixPath):
             pass
         elif self.is_external():
             pass
-        else:
-            raise ValueError(self)
         return name
 
     def count(
@@ -2416,10 +2429,22 @@ class Path(pathlib.PosixPath):
             >>> path.segments('segment_01').is_segment()
             True
 
+        ..  container:: example
+
+            REGRESSION. Abjad segments directory is excluded:
+
+            >>> path = abjad.Path(
+            ...     '/path/to/abjad/abjad/segments',
+            ...     )
+            >>> path /= 'segment_01'
+            >>> path.is_segment()
+            False
+
         """
         if self.name[0] == '.':
             return False
-        return self.parent.name == 'segments'
+        return (self.parent.name == 'segments' and
+            self.parent.parent.name != 'abjad')
 
     @staticmethod
     def is_segment_name(string) -> bool:
@@ -2537,8 +2562,16 @@ class Path(pathlib.PosixPath):
             >>> path.segments.is_segments()
             True
 
+            Excludes Abjad segments directory:
+
+            >>> path = abjad.Path(
+            ...     '/path/to/abjad/abjad/segments',
+            ...     )
+            >>> path.is_segments()
+            False
+
         """
-        return self.name == 'segments'
+        return self.name == 'segments' and self.parent.name != 'abjad'
 
     def is_stylesheets(self) -> bool:
         """

@@ -1,6 +1,6 @@
-from abjad.enumerations import Left
 from abjad.abctools.AbjadObject import AbjadObject
 from abjad.exceptions import MissingMetronomeMarkError
+from abjad.enumerations import Left
 
 
 class UpdateManager(AbjadObject):

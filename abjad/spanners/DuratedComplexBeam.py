@@ -116,6 +116,7 @@ class DuratedComplexBeam(ComplexBeam):
 
     def __init__(
         self,
+        *,
         beam_rests: bool = None,
         direction: typing.Union[str, VerticalAlignment] = None,
         durations: typing.Iterable[Duration] = None,

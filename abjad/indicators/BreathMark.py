@@ -1,9 +1,8 @@
 import typing
-from abjad.enumerations import HorizontalAlignment, Right
-from abjad.lilypondnames.LilyPondTweakManager import (
-    LilyPondTweakManager,
-    )
 from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.enumerations import HorizontalAlignment
+from abjad.enumerations import Right
+from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 
 

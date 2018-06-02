@@ -1,4 +1,6 @@
+import typing
 from .Scheme import Scheme
+from .SchemePair import SchemePair
 
 
 class SchemeAssociativeList(Scheme):
@@ -31,18 +33,19 @@ class SchemeAssociativeList(Scheme):
 
     ### INITIALIZER ###
 
-    def __init__(self, value=None):
-        import abjad
+    def __init__(
+        self,
+        value: typing.List = None,
+        ) -> None:
         value = value or []
         pairs = []
         for item in value:
             if isinstance(item, tuple):
-                pair = abjad.SchemePair(item)
-            elif isinstance(item, abjad.SchemePair):
+                pair = SchemePair(item)
+            elif isinstance(item, SchemePair):
                 pair = item
             else:
-                message = 'must be Python pair or Scheme pair: {!r}.'
-                message = message.format(item)
+                message = f'must be Python pair or Scheme pair: {item!r}.'
                 raise TypeError(message)
             pairs.append(pair)
         Scheme.__init__(self, value=pairs, quoting="'")

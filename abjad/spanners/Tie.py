@@ -159,6 +159,7 @@ class Tie(Spanner):
 
     def __init__(
         self,
+        *,
         direction: typing.Union[str, VerticalAlignment] = None,
         repeat: bool = None,
         ) -> None:

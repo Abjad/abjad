@@ -7,12 +7,10 @@ except ImportError:
 import functools
 import math
 import typing
-from abjad.enumerations import Down
-from abjad.exceptions import ImpreciseMetronomeMarkError
 from abjad import mathtools
 from abjad.abctools.AbjadValueObject import AbjadValueObject
-from abjad.utilities.Duration import Duration
-from abjad.utilities.Multiplier import Multiplier
+from abjad.enumerations import Down
+from abjad.exceptions import ImpreciseMetronomeMarkError
 from abjad.markup.Markup import Markup
 from abjad.mathtools.Enumerator import Enumerator
 from abjad.mathtools.NonreducedFraction import NonreducedFraction
@@ -22,7 +20,9 @@ from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.top.new import new
 from abjad.top.sequence import sequence
-Number = typing.Union[int, float]
+from abjad.typings import Number
+from abjad.utilities.Duration import Duration
+from abjad.utilities.Multiplier import Multiplier
 
 
 @functools.total_ordering

@@ -59,6 +59,7 @@ class PhrasingSlur(Spanner):
 
     def __init__(
         self,
+        *,
         direction: typing.Union[str, VerticalAlignment] = None,
         leak: bool = None,
         ) -> None:

@@ -66,6 +66,7 @@ class OctavationSpanner(Spanner):
 
     def __init__(
         self,
+        *,
         start: int = 1,
         stop: int = 0,
         ) -> None:

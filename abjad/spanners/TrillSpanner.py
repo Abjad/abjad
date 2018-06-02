@@ -111,6 +111,7 @@ class TrillSpanner(Spanner):
 
     def __init__(
         self,
+        *,
         interval: typing.Union[str, NamedInterval] = None,
         is_harmonic: bool = None,
         leak: bool = None,

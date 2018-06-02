@@ -1,3 +1,5 @@
+import typing
+from abjad.system.FormatSpecification import FormatSpecification
 from .Scheme import Scheme
 
 
@@ -32,18 +34,23 @@ class SchemePair(Scheme):
 
     ### CLASS VARIABLES ##
 
-    __slots__ = ()
+    __slots__ = (
+        '_value',
+        )
 
     ### INITIALIZER ##
 
-    def __init__(self, value=(None, None)):
+    def __init__(
+        self,
+        value = (None, None),
+        ) -> None:
         assert isinstance(value, tuple), repr(value)
         assert len(value) == 2, repr(value)
         Scheme.__init__(self, value=value)
 
     ### SPECIAL METHODS ###
 
-    def __format__(self, format_specification=''):
+    def __format__(self, format_specification='') -> str:
         """
         Formats Scheme pair.
 
@@ -57,54 +64,53 @@ class SchemePair(Scheme):
             >>> abjad.f(scheme_pair)
             abjad.SchemePair((-1, 1))
 
-        Returns string.
         """
         return super(SchemePair, self).__format__(
             format_specification=format_specification,
             )
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _formatted_value(self):
-        import abjad
-        assert len(self._value) == 2
-        lhs = abjad.Scheme.format_scheme_value(self._value[0])
-        # need to force quotes around pairs like
-        # \override #'(font-name . "Times")
-        rhs = abjad.Scheme.format_scheme_value(
-            self._value[-1],
-            force_quotes=True,
-            )
-        return '({} . {})'.format(lhs, rhs)
-
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        import abjad
         values = [self.value]
-        return abjad.FormatSpecification(
+        return FormatSpecification(
             client=self,
             repr_is_indented=False,
             storage_format_is_indented=False,
             storage_format_args_values=values,
             )
 
+    def _get_formatted_value(self):
+        assert len(self._value) == 2
+        lhs = Scheme.format_scheme_value(self._value[0])
+        # need to force quotes around pairs like
+        # \override #'(font-name . "Times")
+        rhs = Scheme.format_scheme_value(
+            self._value[-1],
+            force_quotes=True,
+            )
+        return f'({lhs} . {rhs})'
+
     def _get_lilypond_format(self):
-        return "#'%s" % self._formatted_value
+        string = self._get_formatted_value()
+        return f"#'{string}"
 
     ### PUBLIC PROPERTIES ###
 
     @property
-    def left(self):
+    def left(self) -> typing.Any:
         """
         Gets left value.
         """
-        return self._value[0]
+        pair = self.value
+        assert isinstance(pair, tuple)
+        return pair[0]
 
     @property
-    def right(self):
+    def right(self) -> typing.Any:
         """
         Gets right value.
         """
-        return self._value[-1]
+        pair = self.value
+        assert isinstance(pair, tuple)
+        return pair[-1]

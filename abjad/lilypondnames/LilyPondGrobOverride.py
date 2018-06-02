@@ -271,8 +271,8 @@ class LilyPondGrobOverride(AbjadValueObject):
         result.append(r'\override')
         result.append(self._override_property_path_string())
         result.append('=')
-        value_pieces = Scheme.format_embedded_scheme_value(self.value)
-        value_pieces = value_pieces.split('\n')
+        string = Scheme.format_embedded_scheme_value(self.value)
+        value_pieces = string.split('\n')
         result.append(value_pieces[0])
         result[:] = [' '.join(result)]
         result.extend(value_pieces[1:])

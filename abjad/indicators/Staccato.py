@@ -1,13 +1,16 @@
 import typing
-from abjad.enumerations import (
-    Center, Down, Right, Up, HorizontalAlignment, VerticalAlignment,
-)
 from abjad.abctools.AbjadValueObject import AbjadValueObject
-from abjad.utilities.String import String
-from abjad.lilypondnames.LilyPondTweakManager import (
-    LilyPondTweakManager,
+from abjad.enumerations import (
+    Center,
+    Down,
+    HorizontalAlignment,
+    Right,
+    Up,
+    VerticalAlignment,
     )
+from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
+from abjad.utilities.String import String
 
 
 class Staccato(AbjadValueObject):

@@ -70,6 +70,7 @@ class MeasuredComplexBeam(ComplexBeam):
 
     def __init__(
         self,
+        *,
         direction: VerticalAlignment = None,
         isolated_nib_direction: typing.Union[bool, HorizontalAlignment] = False,
         span_beam_count: int = 1,

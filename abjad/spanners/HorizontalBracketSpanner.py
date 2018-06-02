@@ -73,6 +73,7 @@ class HorizontalBracketSpanner(Spanner):
 
     def __init__(
         self,
+        *,
         leak: bool = None,
         markup: Markup = None,
         ) -> None:

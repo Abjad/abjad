@@ -1,4 +1,4 @@
-from abjad import system
+from abjad.system.FormatSpecification import FormatSpecification
 from .Scheme import Scheme
 
 
@@ -23,7 +23,10 @@ class SchemeSymbol(Scheme):
 
     ### INITIALIZER ###
 
-    def __init__(self, symbol='cross'):
+    def __init__(
+        self,
+        symbol: str = 'cross',
+        ) -> None:
         symbol = str(symbol)
         Scheme.__init__(self, value=symbol, quoting="'")
 
@@ -31,7 +34,7 @@ class SchemeSymbol(Scheme):
 
     def _get_format_specification(self):
         values = [self.symbol]
-        return system.FormatSpecification(
+        return FormatSpecification(
             client=self,
             storage_format_args_values=values,
             storage_format_kwargs_names=[],
@@ -40,10 +43,9 @@ class SchemeSymbol(Scheme):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def symbol(self):
+    def symbol(self) -> str:
         """
         Gets symbol string.
-
-        Returns string.
         """
-        return self._value
+        assert isinstance(self.value, str)
+        return self.value

@@ -2,20 +2,18 @@ import collections
 import numbers
 import typing
 from abjad import Fraction
+from abjad import mathtools
+from abjad import scheme as abjad_scheme
+from abjad.abctools.AbjadValueObject import AbjadValueObject
 from abjad.enumerations import Center
 from abjad.enumerations import Down
 from abjad.enumerations import Up
 from abjad.enumerations import VerticalAlignment
-from abjad import mathtools
-from abjad import scheme as abjad_scheme
-from abjad.abctools.AbjadValueObject import AbjadValueObject
-from abjad.utilities.String import String
-from abjad.lilypondnames.LilyPondTweakManager import (
-    LilyPondTweakManager,
-    )
+from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.markup.MarkupCommand import MarkupCommand
 from abjad.markup.Postscript import Postscript
 from abjad.scheme.Scheme import Scheme
+from abjad.utilities.String import String
 from abjad.top import new
 
 
@@ -1058,8 +1056,8 @@ class Markup(AbjadValueObject):
         command = MarkupCommand('center-align', contents)
         return new(self, contents=command)
 
-    @staticmethod
-    def center_column(markup_list, direction=None):
+    @classmethod
+    def center_column(class_, markup_list, direction=None):
         r"""
         LilyPond ``\center-column`` markup command.
 
@@ -1103,7 +1101,7 @@ class Markup(AbjadValueObject):
         for markup in markup_list:
             contents.append(Markup._parse_markup_command_argument(markup))
         command = MarkupCommand('center-column', contents)
-        return Markup(contents=command, direction=direction)
+        return class_(contents=command, direction=direction)
 
     def circle(self):
         r"""
@@ -1132,8 +1130,8 @@ class Markup(AbjadValueObject):
         command = MarkupCommand('circle', contents)
         return new(self, contents=command)
 
-    @staticmethod
-    def column(markup_list, direction=None):
+    @classmethod
+    def column(class_, markup_list, direction=None):
         r"""
         LilyPond ``\column`` markup command.
 
@@ -1159,10 +1157,10 @@ class Markup(AbjadValueObject):
         for markup in markup_list:
             contents.extend(markup.contents)
         command = MarkupCommand('column', contents)
-        return Markup(contents=command, direction=direction)
+        return class_(contents=command, direction=direction)
 
-    @staticmethod
-    def combine(markup_list, direction=None):
+    @classmethod
+    def combine(class_, markup_list, direction=None):
         r"""
         LilyPond ``\combine`` markup command.
 
@@ -1189,13 +1187,13 @@ class Markup(AbjadValueObject):
             message = message.format(markup_list)
             raise Exception(message)
         markup_1, markup_2 = markup_list
-        contents_1 = Markup._parse_markup_command_argument(markup_1)
-        contents_2 = Markup._parse_markup_command_argument(markup_2)
+        contents_1 = class_._parse_markup_command_argument(markup_1)
+        contents_2 = class_._parse_markup_command_argument(markup_2)
         command = MarkupCommand('combine', contents_1, contents_2)
-        return Markup(contents=command, direction=direction)
+        return class_(contents=command, direction=direction)
 
-    @staticmethod
-    def concat(markup_list, direction=None):
+    @classmethod
+    def concat(class_, markup_list, direction=None):
         r"""
         LilyPond ``\concat`` markup command.
 
@@ -1228,10 +1226,10 @@ class Markup(AbjadValueObject):
             contents = Markup._parse_markup_command_argument(markup)
             result.append(contents)
         command = MarkupCommand('concat', result)
-        return Markup(contents=command, direction=direction)
+        return class_(contents=command, direction=direction)
 
-    @staticmethod
-    def draw_circle(radius, thickness, direction=None, filled=False):
+    @classmethod
+    def draw_circle(class_, radius, thickness, direction=None, filled=False):
         r"""
         LilyPond ``\draw-circle`` markup command.
 
@@ -1251,10 +1249,10 @@ class Markup(AbjadValueObject):
         Returns new markup
         """
         command = MarkupCommand('draw-circle', radius, thickness, filled)
-        return Markup(contents=command, direction=direction)
+        return class_(contents=command, direction=direction)
 
-    @staticmethod
-    def draw_line(x, y, direction=None):
+    @classmethod
+    def draw_line(class_, x, y, direction=None):
         r"""
         LilyPond ``\draw-line`` markup command.
 
@@ -1273,7 +1271,7 @@ class Markup(AbjadValueObject):
         """
         pair = abjad_scheme.SchemePair((x, y))
         command = MarkupCommand('draw-line', pair)
-        return Markup(contents=command, direction=direction)
+        return class_(contents=command, direction=direction)
 
     def dynamic(self):
         r"""
@@ -1297,8 +1295,8 @@ class Markup(AbjadValueObject):
         command = MarkupCommand('dynamic', contents)
         return new(self, contents=command)
 
-    @staticmethod
-    def filled_box(x_extent, y_extent, blot=0, direction=None):
+    @classmethod
+    def filled_box(class_, x_extent, y_extent, blot=0, direction=None):
         r"""
         LilyPond ``filled-box`` markup command.
 
@@ -1321,7 +1319,7 @@ class Markup(AbjadValueObject):
         y_extent = abjad_scheme.SchemePair(y_extent)
         blot = float(blot)
         command = MarkupCommand('filled-box', x_extent, y_extent, blot)
-        return Markup(command, direction=direction)
+        return class_(command, direction=direction)
 
     def finger(self):
         r"""
@@ -1345,8 +1343,8 @@ class Markup(AbjadValueObject):
         command = MarkupCommand('finger', contents)
         return new(self, contents=command)
 
-    @staticmethod
-    def flat(direction=None):
+    @classmethod
+    def flat(class_, direction=None):
         r"""
         LilyPond ``\flat`` markup command.
 
@@ -1363,7 +1361,7 @@ class Markup(AbjadValueObject):
         Returns new markup.
         """
         command = MarkupCommand('flat')
-        return Markup(contents=command, direction=direction)
+        return class_(contents=command, direction=direction)
 
     def fontsize(self, fontsize):
         r"""
@@ -1390,8 +1388,8 @@ class Markup(AbjadValueObject):
         command = MarkupCommand('fontsize', fontsize, contents)
         return new(self, contents=command)
 
-    @staticmethod
-    def fraction(numerator, denominator, direction=None):
+    @classmethod
+    def fraction(class_, numerator, denominator, direction=None):
         r"""
         LilyPond ``\fraction`` markup command.
 
@@ -1426,10 +1424,10 @@ class Markup(AbjadValueObject):
         Returns new markup
         """
         command = MarkupCommand('fraction', str(numerator), str(denominator))
-        return Markup(contents=command, direction=direction)
+        return class_(contents=command, direction=direction)
 
-    @staticmethod
-    def from_literal(string, direction=None, stack_priority=0):
+    @classmethod
+    def from_literal(class_, string, direction=None, stack_priority=0):
         r"""
         Makes markup from literal ``string`` and bypasses parser.
 
@@ -1443,7 +1441,7 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         """
-        markup = Markup(
+        markup = class_(
             contents='',
             direction=direction,
             stack_priority=stack_priority,
@@ -1554,8 +1552,8 @@ class Markup(AbjadValueObject):
         command = MarkupCommand('hcenter-in', length, contents)
         return new(self, contents=command)
 
-    @staticmethod
-    def hspace(amount, direction=None):
+    @classmethod
+    def hspace(class_, amount, direction=None):
         r"""
         LilyPond ``\hspace`` markup command.
 
@@ -1573,7 +1571,7 @@ class Markup(AbjadValueObject):
         Returns new markup.
         """
         command = MarkupCommand('hspace', amount)
-        return Markup(contents=command, direction=direction)
+        return class_(contents=command, direction=direction)
 
     def huge(self):
         r"""
@@ -1641,8 +1639,8 @@ class Markup(AbjadValueObject):
         command = MarkupCommand('larger', contents)
         return new(self, contents=command)
 
-    @staticmethod
-    def left_column(markup_list, direction=None):
+    @classmethod
+    def left_column(class_, markup_list, direction=None):
         r"""
         LilyPond ``\left-column`` markup command.
 
@@ -1668,10 +1666,11 @@ class Markup(AbjadValueObject):
         for markup in markup_list:
             contents.append(Markup._parse_markup_command_argument(markup))
         command = MarkupCommand('left-column', contents)
-        return Markup(contents=command, direction=direction)
+        return class_(contents=command, direction=direction)
 
-    @staticmethod
+    @classmethod
     def line(
+        class_,
         markup_list,
         direction=None,
         deactivate=None,
@@ -1705,10 +1704,10 @@ class Markup(AbjadValueObject):
         command = MarkupCommand('line', contents)
         command.deactivate = deactivate
         command.tag = tag
-        return Markup(contents=command, direction=direction)
+        return class_(contents=command, direction=direction)
 
-    @staticmethod
-    def make_improper_fraction_markup(rational, direction=None):
+    @classmethod
+    def make_improper_fraction_markup(class_, rational, direction=None):
         r"""
         Makes improper fraction markup.
 
@@ -1762,8 +1761,8 @@ class Markup(AbjadValueObject):
         markup = integer_markup + fraction_markup
         return markup
 
-    @staticmethod
-    def musicglyph(glyph_name=None, direction=None):
+    @classmethod
+    def musicglyph(class_, glyph_name=None, direction=None):
         r"""
         LilyPond ``\musicglyph`` markup command.
 
@@ -1789,10 +1788,10 @@ class Markup(AbjadValueObject):
         assert glyph_name in music_glyphs, message
         glyph_scheme = abjad_scheme.Scheme(glyph_name, force_quotes=True)
         command = MarkupCommand('musicglyph', glyph_scheme)
-        return Markup(contents=command, direction=direction)
+        return class_(contents=command, direction=direction)
 
-    @staticmethod
-    def natural(direction=None):
+    @classmethod
+    def natural(class_, direction=None):
         r"""
         LilyPond ``\natural`` markup command.
 
@@ -1809,7 +1808,7 @@ class Markup(AbjadValueObject):
         Returns new markup.
         """
         command = MarkupCommand('natural')
-        return Markup(contents=command, direction=direction)
+        return class_(contents=command, direction=direction)
 
     def normal_text(self):
         r"""
@@ -1836,8 +1835,8 @@ class Markup(AbjadValueObject):
             )
         return new(self, contents=command)
 
-    @staticmethod
-    def note_by_number(log, dot_count, stem_direction, direction=None):
+    @classmethod
+    def note_by_number(class_, log, dot_count, stem_direction, direction=None):
         r"""
         LilyPond ``\note-by-number`` markup command.
 
@@ -1862,10 +1861,10 @@ class Markup(AbjadValueObject):
             dot_count,
             stem_direction,
             )
-        return Markup(contents=command, direction=direction)
+        return class_(contents=command, direction=direction)
 
-    @staticmethod
-    def null(direction=None):
+    @classmethod
+    def null(class_, direction=None):
         r"""
         LilyPond ``\null`` markup command.
 
@@ -1882,10 +1881,10 @@ class Markup(AbjadValueObject):
         Returns new markup.
         """
         command = MarkupCommand('null')
-        return Markup(contents=command, direction=direction)
+        return class_(contents=command, direction=direction)
 
-    @staticmethod
-    def overlay(markup_list, direction=None):
+    @classmethod
+    def overlay(class_, markup_list, direction=None):
         r"""
         LilyPond ``\overlay`` markup command.
 
@@ -1911,7 +1910,7 @@ class Markup(AbjadValueObject):
         for markup in markup_list:
             contents.append(Markup._parse_markup_command_argument(markup))
         command = MarkupCommand('overlay', contents)
-        return Markup(contents=command, direction=direction)
+        return class_(contents=command, direction=direction)
 
     def override(self, pair):
         r"""
@@ -2148,8 +2147,8 @@ class Markup(AbjadValueObject):
         command = MarkupCommand('parenthesize', contents)
         return new(self, contents=command)
 
-    @staticmethod
-    def postscript(postscript, direction=None):
+    @classmethod
+    def postscript(class_, postscript, direction=None):
         r"""
         LilyPond ``\postscript`` markup command.
 
@@ -2182,7 +2181,7 @@ class Markup(AbjadValueObject):
             postscript = str(postscript)
         assert isinstance(postscript, str)
         command = MarkupCommand('postscript', postscript)
-        return Markup(contents=command, direction=direction)
+        return class_(contents=command, direction=direction)
 
     def raise_(self, amount):
         r"""
@@ -2207,8 +2206,8 @@ class Markup(AbjadValueObject):
         command = MarkupCommand('raise', amount, contents)
         return new(self, contents=command)
 
-    @staticmethod
-    def right_column(markup_list, direction=None):
+    @classmethod
+    def right_column(class_, markup_list, direction=None):
         r"""
         LilyPond ``\right-column`` markup command.
 
@@ -2237,7 +2236,7 @@ class Markup(AbjadValueObject):
         for markup in markup_list:
             contents.append(Markup._parse_markup_command_argument(markup))
         command = MarkupCommand('right-column', contents)
-        return Markup(contents=command, direction=direction)
+        return class_(contents=command, direction=direction)
 
     def rotate(self, angle):
         r"""
@@ -2308,8 +2307,8 @@ class Markup(AbjadValueObject):
         command = MarkupCommand('scale', factor_pair, contents)
         return new(self, contents=command)
 
-    @staticmethod
-    def sharp(direction=None):
+    @classmethod
+    def sharp(class_, direction=None):
         r"""
         LilyPond ``\sharp`` markup command.
 
@@ -2326,7 +2325,7 @@ class Markup(AbjadValueObject):
         Returns new markup.
         """
         command = MarkupCommand('sharp')
-        return Markup(contents=command, direction=direction)
+        return class_(contents=command, direction=direction)
 
     def small(self):
         r"""
@@ -2477,8 +2476,8 @@ class Markup(AbjadValueObject):
         command = MarkupCommand('translate', offset_pair, contents)
         return new(self, contents=command)
 
-    @staticmethod
-    def triangle(direction=None, is_filled=True):
+    @classmethod
+    def triangle(class_, direction=None, is_filled=True):
         r"""
         LilyPond ``\triangle`` markup command.
 
@@ -2496,7 +2495,7 @@ class Markup(AbjadValueObject):
         Returns new markup
         """
         command = MarkupCommand('triangle', bool(is_filled))
-        return Markup(contents=command, direction=direction)
+        return class_(contents=command, direction=direction)
 
     def upright(self):
         r"""
@@ -2542,8 +2541,8 @@ class Markup(AbjadValueObject):
         command = MarkupCommand('vcenter', contents)
         return new(self, contents=command)
 
-    @staticmethod
-    def vspace(amount, direction=None):
+    @classmethod
+    def vspace(class_, amount, direction=None):
         r"""
         LilyPond ``\vspace`` markup command.
 
@@ -2561,7 +2560,7 @@ class Markup(AbjadValueObject):
         Returns new markup.
         """
         command = MarkupCommand('vspace', amount)
-        return Markup(contents=command, direction=direction)
+        return class_(contents=command, direction=direction)
 
     def whiteout(self):
         r"""

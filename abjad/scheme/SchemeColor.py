@@ -30,10 +30,9 @@ class SchemeColor(Scheme):
 
     __slots__ = ()
 
-    ### PRIVATE PROPERTIES ###
+    ### PRIVATE METHODS ###
 
-    @property
-    def _formatted_value(self):
+    def _get_formatted_value(self):
         string = "(x11-color '{})"
         string = string.format(self._value)
         return string

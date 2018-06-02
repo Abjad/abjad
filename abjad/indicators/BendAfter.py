@@ -1,10 +1,10 @@
 import typing
-from abjad.enumerations import Right, HorizontalAlignment
-from abjad.lilypondnames.LilyPondTweakManager import \
-    LilyPondTweakManager
 from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.enumerations import HorizontalAlignment
+from abjad.enumerations import Right
+from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
-Number = typing.Union[int, float]
+from abjad.typings import Number
 
 
 class BendAfter(AbjadValueObject):

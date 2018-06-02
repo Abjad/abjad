@@ -90,6 +90,7 @@ class ComplexTrillSpanner(Spanner):
 
     def __init__(
         self,
+        *,
         interval: str = None,
         ) -> None:
         Spanner.__init__(self)

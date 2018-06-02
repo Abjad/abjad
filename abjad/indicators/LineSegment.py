@@ -1,13 +1,12 @@
 import typing
-from abjad.enumerations import Center, VerticalAlignment
+from abjad.enumerations import Center
+from abjad.enumerations import VerticalAlignment
 from abjad.abctools.AbjadValueObject import AbjadValueObject
-from abjad.lilypondnames.LilyPondGrobOverride import (
-    LilyPondGrobOverride,
-)
+from abjad.lilypondnames.LilyPondGrobOverride import LilyPondGrobOverride
 from abjad.markup.Markup import Markup
 from abjad.scheme.Scheme import Scheme
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
-Number = typing.Union[int, float]
+from abjad.typings import Number
 
 
 class LineSegment(AbjadValueObject):

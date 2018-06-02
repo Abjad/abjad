@@ -1,8 +1,9 @@
 import typing
-from abjad.enumerations import Center, VerticalAlignment
+from abjad.enumerations import Center
+from abjad.enumerations import VerticalAlignment
 from abjad.markup.Markup import Markup
+from abjad.typings import Number
 from .LineSegment import LineSegment
-Number = typing.Union[int, float]
 
 
 class ArrowLineSegment(LineSegment):

@@ -1,18 +1,16 @@
 import copy
 import typing
+from abjad.abctools.AbjadValueObject import AbjadValueObject
 from abjad.enumerations import Center
 from abjad.enumerations import Down
 from abjad.enumerations import Up
 from abjad.enumerations import VerticalAlignment
-from abjad.abctools.AbjadValueObject import AbjadValueObject
-from abjad.utilities.String import String
-from abjad.lilypondnames.LilyPondTweakManager import (
-    LilyPondTweakManager,
-    )
+from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.top.attach import attach
+from abjad.utilities.String import String
 
 
 class Articulation(AbjadValueObject):

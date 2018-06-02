@@ -1,6 +1,7 @@
 import typing
 from abjad.abctools.AbjadValueObject import AbjadValueObject
 from abjad.scheme.Scheme import Scheme
+from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 
 
 class LilyPondContextSetting(AbjadValueObject):
@@ -23,8 +24,8 @@ class LilyPondContextSetting(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_lilypond_type',
         '_context_property',
+        '_lilypond_type',
         '_is_unset',
         '_value',
         )
@@ -70,8 +71,7 @@ class LilyPondContextSetting(AbjadValueObject):
     ### PRIVATE METHODS ###
 
     def _get_lilypond_format_bundle(self, component=None):
-        import abjad
-        bundle = abjad.LilyPondFormatBundle()
+        bundle = LilyPondFormatBundle()
         string = '\n'.join(self.format_pieces)
         bundle.context_settings.append(string)
         return bundle
@@ -95,7 +95,7 @@ class LilyPondContextSetting(AbjadValueObject):
     @property
     def format_pieces(self) -> typing.Tuple[str, ...]:
         r"""
-        Gets LilyPond context setting \set or \unset format pieces.
+        Gets LilyPond context setting ``\set`` or ``\unset`` format pieces.
         """
         result = []
         if not self.is_unset:
@@ -108,8 +108,8 @@ class LilyPondContextSetting(AbjadValueObject):
         else:
             result.append(self.context_property)
         result.append('=')
-        value_pieces = Scheme.format_embedded_scheme_value(self.value)
-        value_pieces = value_pieces.split('\n')
+        string = Scheme.format_embedded_scheme_value(self.value)
+        value_pieces = string.split('\n')
         result.append(value_pieces[0])
         result[:] = [' '.join(result)]
         result.extend(value_pieces[1:])

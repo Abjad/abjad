@@ -1,23 +1,25 @@
 import copy
 import typing
-from abjad.enumerations import Left, Right
-from abjad.timespans import Timespan
 from abjad.abctools.AbjadObject import AbjadObject
-from abjad.utilities.Duration import Duration
 from abjad.core.Leaf import Leaf
 from abjad.core.Selection import Selection
-from abjad.system.LilyPondFormatManager import LilyPondFormatManager
-from abjad.system.Wrapper import Wrapper
+from abjad.enumerations import Left
+from abjad.enumerations import Right
 from abjad.segments.Tags import Tags
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
+from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.StorageFormatManager import StorageFormatManager
+from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.system.Tag import Tag
+from abjad.system.Wrapper import Wrapper
+from abjad.timespans import Timespan
 from abjad.top.inspect import inspect
 from abjad.top.override import override
 from abjad.top.select import select
 from abjad.top.setting import setting
 from abjad.top.tweak import tweak
+from abjad.utilities.Duration import Duration
 abjad_tags = Tags()
 
 
@@ -59,6 +61,7 @@ class Spanner(AbjadObject):
 
     def __init__(
         self,
+        *,
         leak: bool = None,
         ) -> None:
         self._contiguity_constraint = 'logical voice'
@@ -115,10 +118,8 @@ class Spanner(AbjadObject):
     def __getnewargs__(self) -> typing.Tuple:
         """
         Gets new arguments.
-
-        Returns empty tuple.
         """
-        return (self.leak,)
+        return ()
 
     def __getstate__(self) -> dict:
         """
@@ -643,6 +644,13 @@ class Spanner(AbjadObject):
                 message = f'spanners attach only to leaves (not {leaf!s}).'
                 raise Exception(message)
         return select(self._leaves)
+
+    @property
+    def tweaks(self) -> typing.Optional[LilyPondTweakManager]:
+        """
+        Gets tweaks.
+        """
+        return self._lilypond_tweak_manager
 
     ### PUBLC METHODS ###
 

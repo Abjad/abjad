@@ -1,6 +1,13 @@
 import typing
-from abjad.enumerations import Up, Down, Left, Right, Center
 from abjad.abctools.AbjadObject import AbjadObject
+from abjad.enumerations import Center
+from abjad.enumerations import Down
+from abjad.enumerations import Left
+from abjad.enumerations import Right
+from abjad.enumerations import Up
+from abjad.scheme.Scheme import Scheme
+from abjad.scheme.SchemePair import SchemePair
+from abjad.utilities.String import String
 from .LilyPondFormatBundle import LilyPondFormatBundle
 
 
@@ -14,29 +21,6 @@ class LilyPondFormatManager(AbjadObject):
     __documentation_section__ = 'LilyPond formatting'
 
     __slots__ = ()
-
-    lilypond_color_constants = (
-        'black',
-        'blue',
-        'center',
-        'cyan',
-        'darkblue',
-        'darkcyan',
-        'darkgreen',
-        'darkmagenta',
-        'darkred',
-        'darkyellow',
-        'down',
-        'green',
-        'grey',
-        'left',
-        'magenta',
-        'red',
-        'right',
-        'up',
-        'white',
-        'yellow',
-        )
 
     indent = 4 * ' '
 
@@ -390,9 +374,8 @@ class LilyPondFormatManager(AbjadObject):
         Formats LilyPond ``argument`` according to Scheme formatting
         conventions.
         """
-        from abjad.scheme.Scheme import Scheme
-        from abjad.scheme.SchemePair import SchemePair
-        if '_get_lilypond_format' in dir(argument) and not isinstance(argument, str):
+        if ('_get_lilypond_format' in dir(argument) and 
+            not isinstance(argument, str)):
             pass
         elif argument in (True, False):
             argument = Scheme(argument)
@@ -400,7 +383,9 @@ class LilyPondFormatManager(AbjadObject):
             argument = Scheme(repr(argument).lower())
         elif isinstance(argument, int) or isinstance(argument, float):
             argument = Scheme(argument)
-        elif argument in LilyPondFormatManager.lilypond_color_constants:
+        elif argument in Scheme.lilypond_color_constants:
+            argument = Scheme(argument)
+        elif isinstance(argument, str) and argument.startswith('#'):
             argument = Scheme(argument)
         elif isinstance(argument, str) and '::' in argument:
             argument = Scheme(argument)
@@ -450,7 +435,6 @@ class LilyPondFormatManager(AbjadObject):
         """
         Makes Lilypond override string.
         """
-        from abjad.utilities.String import String
         grob = String(grob).to_upper_camel_case()
         attribute = LilyPondFormatManager.format_lilypond_attribute(attribute)
         value = LilyPondFormatManager.format_lilypond_value(value)
@@ -479,7 +463,6 @@ class LilyPondFormatManager(AbjadObject):
             '\\revert Glissando.bound-details.right.arrow'
 
         """
-        from abjad.utilities.String import String
         grob = String(grob).to_upper_camel_case()
         dotted = LilyPondFormatManager.format_lilypond_attribute(attribute)
         if context is not None:
@@ -502,7 +485,6 @@ class LilyPondFormatManager(AbjadObject):
 
         Returns string.
         """
-        from abjad.utilities.String import String
         if grob is not None:
             grob = String(grob).to_upper_camel_case()
             grob += '.'
