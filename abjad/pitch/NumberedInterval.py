@@ -406,9 +406,6 @@ class NumberedInterval(Interval):
 
         ..  container:: example
 
-            >>> abjad.NumberedInterval(0).to_named_interval(0)
-            NamedInterval('aug0')
-
             >>> abjad.NumberedInterval(0).to_named_interval(1)
             NamedInterval('P1')
 
@@ -453,10 +450,10 @@ class NumberedInterval(Interval):
             if quality_string is None:
                 # TODO: handle double-augmented named intervals
                 return abjad.NamedInterval(self.number)
-            named_interval = abjad.NamedInterval.from_quality_and_number(
+            named_interval = abjad.NamedInterval((
                 quality_string,
                 staff_positions,
-                )
+                ))
             return named_interval
         named_interval_class_number = staff_positions % 7
         numbered_interval_class_number = abs(self.number) % 12
@@ -542,10 +539,10 @@ class NumberedInterval(Interval):
             #       Don't remove it - fix whatever's allowing quality string to
             #       remain unset.
             return abjad.NamedInterval(self.number)
-        named_interval = abjad.NamedInterval.from_quality_and_number(
+        named_interval = abjad.NamedInterval((
             quality_string,
             staff_positions,
-            )
+            ))
         return named_interval
 
     def transpose(self, pitch_carrier):
@@ -563,7 +560,6 @@ class NumberedInterval(Interval):
 
         Returns newly constructed object of `pitch_carrier` type.
         '''
-        import abjad
         import abjad
         if isinstance(pitch_carrier, abjad.Pitch):
             number = pitch_carrier.number + self.semitones

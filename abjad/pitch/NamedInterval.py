@@ -1,5 +1,4 @@
 import copy
-import numbers
 from abjad import mathtools
 from abjad.pitch.Interval import Interval
 from . import constants
@@ -74,10 +73,10 @@ class NamedInterval(Interval):
 
         Returns named interval.
         '''
-        return type(self).from_quality_and_number(
+        return type(self)((
             self.quality_string,
             abs(self.number),
-            )
+            ))
 
     def __add__(self, argument):
         r'''Adds `argument` to named interval.
@@ -110,10 +109,10 @@ class NamedInterval(Interval):
 
         Returns new named interval.
         '''
-        return type(self).from_quality_and_number(
+        return type(self)((
             self.quality_string,
             self.number,
-            )
+            ))
 
     def __eq__(self, argument):
         r'''Is true when named interval equal `argument`.
@@ -236,10 +235,10 @@ class NamedInterval(Interval):
 
         Returns new named interval.
         '''
-        return type(self).from_quality_and_number(
+        return type(self)((
             self.quality_string,
             -self.number,
-            )
+            ))
 
     def __radd__(self, argument):
         r'''Adds named interval to `argument`.
@@ -626,27 +625,6 @@ class NamedInterval(Interval):
         else:
             named_interval = absolute_named_interval
         return class_(named_interval)
-
-    @classmethod
-    def from_quality_and_number(class_, quality, number):
-        r'''Makes named interval from `quality` and `number`.
-
-        ..  container:: example
-
-            >>> abjad.NamedInterval.from_quality_and_number(
-            ...     'major',
-            ...     -3,
-            ...     )
-            NamedInterval('-M3')
-
-        Returns newly constructed named interval.
-        '''
-        assert isinstance(quality, str), repr(quality)
-        assert isinstance(number, numbers.Number), repr(number)
-        interval = class_()
-        interval._quality_string = quality
-        interval._number = number
-        return interval
 
     def transpose(self, pitch_carrier):
         r'''Transposes `pitch_carrier` by named interval.
