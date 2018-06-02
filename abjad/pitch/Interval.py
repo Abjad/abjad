@@ -25,6 +25,14 @@ class Interval(AbjadValueObject):
         if isinstance(argument, str):
             match = constants._interval_name_abbreviation_regex.match(argument)
             if match is None:
+                try:
+                    argument = float(argument)
+                    self._from_number(argument)
+                    return
+                except ValueError:
+                    message = 'can not initialize {} from {!r}.'
+                    message = message.format(type(self).__name__, argument)
+                    raise ValueError(message)
                 message = 'can not initialize {} from {!r}.'
                 message = message.format(type(self).__name__, argument)
                 raise ValueError(message)
@@ -60,6 +68,10 @@ class Interval(AbjadValueObject):
             self._from_number(argument)
         elif isinstance(argument, (abjad.Interval, abjad.IntervalClass)):
             self._from_interval_or_interval_class(argument)
+        else:
+            message = 'can not initialize {} from {!r}.'
+            message = message.format(type(self).__name__, argument)
+            raise ValueError(message)
 
     ### SPECIAL METHODS ###
 

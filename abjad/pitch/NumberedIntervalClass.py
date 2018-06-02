@@ -1,4 +1,3 @@
-import numbers
 from abjad import mathtools
 from abjad.pitch.IntervalClass import IntervalClass
 
@@ -27,6 +26,12 @@ class NumberedIntervalClass(IntervalClass):
         >>> abjad.NumberedIntervalClass('-14.5')
         NumberedIntervalClass(-2.5)
 
+        >>> abjad.NumberedIntervalClass('P8')
+        NumberedIntervalClass(12)
+
+        >>> abjad.NumberedIntervalClass('-P8')
+        NumberedIntervalClass(-12)
+
     '''
 
     ### CLASS VARIABLES ###
@@ -38,49 +43,7 @@ class NumberedIntervalClass(IntervalClass):
     ### INITIALIZER ###
 
     def __init__(self, number=0):
-        import abjad
-        if isinstance(number, numbers.Number):
-            sign = mathtools.sign(number)
-            abs_token = abs(number)
-            if abs_token % 12 == 0 and 12 <= abs_token:
-                number = 12
-            else:
-                number = abs_token % 12
-            number *= sign
-        elif isinstance(number, abjad.Interval):
-            number = number.semitones
-            sign = mathtools.sign(number)
-            abs_number = abs(number)
-            if abs_number % 12 == 0 and 12 <= abs_number:
-                number = 12
-            else:
-                number = abs_number % 12
-            number *= sign
-        elif isinstance(number, abjad.IntervalClass):
-            number = number.number
-            sign = mathtools.sign(number)
-            abs_number = abs(number)
-            if abs_number % 12 == 0 and 12 <= abs_number:
-                number = 12
-            else:
-                number = abs_number % 12
-            number *= sign
-        elif isinstance(number, str):
-            number = float(number)
-            if mathtools.is_integer_equivalent(number):
-                number = int(number)
-            sign = mathtools.sign(number)
-            abs_token = abs(number)
-            if abs_token % 12 == 0 and 12 <= abs_token:
-                number = 12
-            else:
-                number = abs_token % 12
-            number *= sign
-        else:
-            message = 'can not initialize {} from {!r}.'
-            message = message.format(type(self).__name__, number)
-            raise ValueError(message)
-        self._number = number
+        super().__init__(number or 0)
 
     ### SPECIAL METHODS ###
 
@@ -126,6 +89,13 @@ class NumberedIntervalClass(IntervalClass):
         '''
         return super(NumberedIntervalClass, self).__eq__(argument)
 
+    def __float__(self):
+        r'''Coerce to semitones as float.
+
+        Returns float.
+        '''
+        return float(self._number)
+
     def __hash__(self):
         r'''Hashes numbered interval-class.
 
@@ -167,7 +137,7 @@ class NumberedIntervalClass(IntervalClass):
         '''
         try:
             argument = type(self)(argument)
-        except:
+        except Exception:
             return False
         return self.number < argument.number
 
@@ -192,6 +162,29 @@ class NumberedIntervalClass(IntervalClass):
         return string
 
     ### PRIVATE METHODS ###
+
+    def _from_direction_quality_and_diatonic_number(
+        self,
+        direction,
+        quality,
+        diatonic_number,
+        ):
+        self._number = self._named_to_numbered(
+            direction,
+            quality,
+            diatonic_number,
+            )
+
+    def _from_number(self, argument):
+        direction = mathtools.sign(argument)
+        number = self._to_nearest_quarter_tone(abs(argument))
+        pc_number = number % 12
+        if pc_number == 0 and number:
+            pc_number = 12
+        self._number = pc_number * direction
+
+    def _from_interval_or_interval_class(self, argument):
+        self._from_number(float(argument))
 
     def _get_format_specification(self):
         import abjad
@@ -228,19 +221,6 @@ class NumberedIntervalClass(IntervalClass):
             return '-'
         else:
             return '+'
-
-    @property
-    def direction_word(self):
-        r'''Gets direction word of numbered interval-class.
-
-        Returns string.
-        '''
-        if self.number < 1:
-            return 'descending'
-        elif self.number == 1:
-            return ''
-        else:
-            return 'ascending'
 
     ### PUBLIC METHODS ###
 
@@ -280,6 +260,12 @@ class NumberedIntervalClass(IntervalClass):
             ...     abjad.NamedPitch(12),
             ...     )
             NumberedIntervalClass(0)
+
+            >>> abjad.NumberedIntervalClass.from_pitch_carriers(
+            ...     abjad.NamedPitch(24),
+            ...     abjad.NamedPitch(0),
+            ...     )
+            NumberedIntervalClass(-12)
 
             >>> abjad.NumberedIntervalClass.from_pitch_carriers(
             ...     abjad.NamedPitch(12),
