@@ -51,40 +51,17 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
 
     __slots__ = (
         '_number',
-        '_quality_string',
+        '_quality',
         )
 
     ### INITIALIZER ###
 
     def __init__(self, name='P1'):
-        if isinstance(name, str):
-            match = constants._interval_name_abbreviation_regex.match(name)
-            if match is None:
-                message = 'can not intialize {} from {!r}.'
-                message = message.format(type(self).__name__, name)
-                raise Exception(message)
-            group_dict = match.groupdict()
-            quality_abbreviation = group_dict['quality']
-            number_string = group_dict['number']
-            quality_string = constants._quality_abbreviation_to_quality_string[
-                quality_abbreviation]
-            number = int(number_string)
-        elif isinstance(name, tuple) and len(name) == 2:
-            quality_string, number = name
-        else:
-            try:
-                quality_string = name.quality_string
-                number = name.number
-            except AttributeError:
-                message = 'can not initialize {} from {!r}.'
-                message = message.format(type(self).__name__, name)
-                raise Exception(message)
-        quality_string, number = self._process_quality_and_number(
-            quality_string,
-            number,
+        super().__init__(name or 'P1')
+        self._quality, self._number = self._process_quality_and_number(
+            self._quality,
+            self._number,
             )
-        self._quality_string = quality_string
-        self._number = number
 
     ### SPECIAL METHODS ###
 
@@ -137,15 +114,13 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
     ### PRIVATE METHODS ###
 
     @classmethod
-    def _invert_quality_string(class_, quality_string):
-        inversions = {
-            'major': 'minor',
-            'minor': 'major',
-            'perfect': 'perfect',
-            'augmented': 'diminished',
-            'diminished': 'augmented',
-            }
-        return inversions[quality_string]
+    def _invert_quality_string(class_, quality):
+        inversions = {'M': 'm', 'm': 'M', 'P': 'P'}
+        if quality in inversions:
+            return inversions[quality]
+        if quality[0] == 'A':
+            return 'd' * len(quality)
+        return 'A' * len(quality)
 
     @classmethod
     def _is_representative_number(class_, argument):

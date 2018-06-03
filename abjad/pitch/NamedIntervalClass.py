@@ -20,7 +20,7 @@ class NamedIntervalClass(IntervalClass):
 
     __slots__ = (
         '_number',
-        '_quality_string',
+        '_quality',
         )
 
     ### INITIALIZER ###
@@ -41,7 +41,7 @@ class NamedIntervalClass(IntervalClass):
         Returns new named interval-class.
         '''
         return type(self)((
-            self.quality_string,
+            self.quality,
             abs(self.number),
             ))
 
@@ -88,8 +88,7 @@ class NamedIntervalClass(IntervalClass):
         '''
         return float(self._named_to_numbered(
             self.direction_number,
-            constants._quality_string_to_quality_abbreviation[
-                self._quality_string],
+            self._quality,
             abs(self._number),
             ))
 
@@ -159,7 +158,7 @@ class NamedIntervalClass(IntervalClass):
     ### PRIVATE PROPERTIES ###
 
     def _from_named_parts(self, direction, quality, diatonic_number):
-        self._quality_string = constants._quality_abbreviation_to_quality_string[quality]
+        self._quality = quality
         diatonic_pc_number = diatonic_number
         while diatonic_pc_number > 7:
             diatonic_pc_number -= 7
@@ -169,23 +168,16 @@ class NamedIntervalClass(IntervalClass):
 
     def _from_number(self, argument):
         direction, quality, diatonic_number = self._numbered_to_named(argument)
-        self._from_named_parts(
-            direction, quality, diatonic_number)
+        self._from_named_parts(direction, quality, diatonic_number)
 
     def _from_interval_or_interval_class(self, argument):
         try:
-            quality = constants._quality_string_to_quality_abbreviation[argument.quality_string]
+            quality = argument.quality
             diatonic_number = abs(argument.number)
             direction = mathtools.sign(argument.number)
         except AttributeError:
             direction, quality, diatonic_number = self._numbered_to_named(argument)
-        self._from_named_parts(
-            direction, quality, diatonic_number)
-
-    @property
-    def _quality_abbreviation(self):
-        return constants._quality_string_to_quality_abbreviation[
-            self._quality_string]
+        self._from_named_parts(direction, quality, diatonic_number)
 
     ### PRIVATE METHODS ###
 
@@ -219,7 +211,7 @@ class NamedIntervalClass(IntervalClass):
 
         Returns -1, 0 or 1.
         '''
-        if self.quality_string == 'perfect' and abs(self.number) == 1:
+        if self.quality == 'P' and abs(self.number) == 1:
             return 0
         return mathtools.sign(self.number)
 
@@ -237,28 +229,17 @@ class NamedIntervalClass(IntervalClass):
         return '{}{}{}'.format(
             constants._direction_number_to_direction_symbol[
                 self.direction_number],
-            self._quality_abbreviation,
+            self._quality,
             abs(self.number),
             )
 
     @property
-    def quality_string(self):
-        r'''Gets quality string of named interval-class.
-
-        ..  container:: example
-
-            >>> abjad.NamedIntervalClass('P1').quality_string
-            'perfect'
-
-            >>> abjad.NamedIntervalClass('+M2').quality_string
-            'major'
-
-            >>> abjad.NamedIntervalClass('-M2').quality_string
-            'major'
+    def quality(self):
+        r'''Gets quality of named interval-class.
 
         Returns string.
         '''
-        return self._quality_string
+        return self._quality
 
     ### PUBLIC METHODS ###
 

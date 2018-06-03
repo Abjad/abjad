@@ -296,7 +296,7 @@ class NamedPitchClass(PitchClass):
         pitch_1 = abjad.NamedPitch((self.name, 4))
         pitch_2 = abjad.NamedPitch((argument.name, 4))
         mdi = abjad.NamedInterval.from_pitch_carriers(pitch_1, pitch_2)
-        pair = (mdi.quality_string, mdi.number)
+        pair = (mdi.quality, mdi.number)
         dic = abjad.NamedInversionEquivalentIntervalClass(pair)
         return dic
 

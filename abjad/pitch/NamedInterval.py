@@ -69,7 +69,7 @@ class NamedInterval(Interval):
         Returns named interval.
         '''
         return type(self)((
-            self.quality_string,
+            self.quality,
             abs(self.number),
             ))
 
@@ -105,7 +105,7 @@ class NamedInterval(Interval):
         Returns new named interval.
         '''
         return type(self)((
-            self.quality_string,
+            self.quality,
             self.number,
             ))
 
@@ -231,7 +231,7 @@ class NamedInterval(Interval):
         Returns new named interval.
         '''
         return type(self)((
-            self.quality_string,
+            self.quality,
             -self.number,
             ))
 
@@ -301,7 +301,6 @@ class NamedInterval(Interval):
 
     def _from_named_parts(self, direction, quality, diatonic_number):
         import abjad
-        quality = constants._quality_abbreviation_to_quality_string[quality]
         octaves = 0
         diatonic_pc_number = abs(diatonic_number)
         while diatonic_pc_number > 8:
@@ -317,20 +316,13 @@ class NamedInterval(Interval):
 
     def _from_interval_or_interval_class(self, argument):
         try:
-            quality = constants._quality_string_to_quality_abbreviation[argument.quality_string]
+            quality = argument.quality
             diatonic_number = abs(argument.number)
             direction = mathtools.sign(argument.number)
         except AttributeError:
             direction, quality, diatonic_number = self._numbered_to_named(argument)
         self._from_named_parts(
             direction, quality, diatonic_number)
-
-    @property
-    def _quality_abbreviation(self):
-        _quality_string_to_quality_abbreviation = {
-            'major': 'M', 'minor': 'm', 'perfect': 'P',
-            'augmented': 'A', 'diminished': 'd'}
-        return _quality_string_to_quality_abbreviation[self.quality_string]
 
     ### PRIVATE METHODS ###
 
@@ -385,7 +377,7 @@ class NamedInterval(Interval):
 
         Returns ``-1``, ``0`` or ``1``.
         '''
-        if self.quality_string == 'perfect' and abs(self.number) == 1:
+        if self.quality == 'P' and abs(self.number) == 1:
             return 0
         return mathtools.sign(self.number)
 
@@ -426,7 +418,7 @@ class NamedInterval(Interval):
             self.direction_number]
         return '{}{}{}'.format(
             direction_symbol,
-            self._interval_class._quality_abbreviation,
+            self._interval_class.quality,
             abs(self.number),
             )
 
@@ -455,26 +447,12 @@ class NamedInterval(Interval):
         return self._octaves
 
     @property
-    def quality_string(self):
-        r'''Gets quality string of named interval.
-
-        ..  container:: example
-
-            >>> abjad.NamedInterval('+M9').quality_string
-            'major'
-
-            >>> abjad.NamedInterval('+m9').quality_string
-            'minor'
-
-            >>> abjad.NamedInterval('+P8').quality_string
-            'perfect'
-
-            >>> abjad.NamedInterval('+A4').quality_string
-            'augmented'
+    def quality(self):
+        r'''Gets quality of named interval.
 
         Returns string.
         '''
-        return self._interval_class._quality_string
+        return self._interval_class.quality
 
     @property
     def semitones(self):
@@ -500,10 +478,9 @@ class NamedInterval(Interval):
         Returns number.
         '''
         direction = self.direction_number
-        quality = self.quality_string
         diatonic_number = abs(self._interval_class._number)
         quality = self._validate_quality_and_diatonic_number(
-            quality, diatonic_number,
+            self.quality, diatonic_number,
         )
         diatonic_number += 7 * self._octaves
         return self._named_to_numbered(direction, quality, diatonic_number)
