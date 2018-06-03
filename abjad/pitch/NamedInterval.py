@@ -530,13 +530,11 @@ class NamedInterval(Interval):
             ...     )
             NamedInterval('+M9')
 
-            ..  todo:: Improve this behavior.
-
-                >>> abjad.NamedInterval.from_pitch_carriers(
-                ...     abjad.NamedPitch("cs'"),
-                ...     abjad.NamedPitch("cf'"),
-                ...     )
-                NamedInterval('-M2')
+            >>> abjad.NamedInterval.from_pitch_carriers(
+            ...     abjad.NamedPitch("css'"),
+            ...     abjad.NamedPitch("cff'"),
+            ...     )
+            NamedInterval('-AAAA1')
 
         Returns named interval.
         '''
@@ -545,20 +543,32 @@ class NamedInterval(Interval):
         pitch_2 = abjad.NamedPitch(pitch_carrier_2)
         degree_1 = pitch_1._get_diatonic_pitch_number()
         degree_2 = pitch_2._get_diatonic_pitch_number()
-        named_interval_number = abs(degree_1 - degree_2) + 1
-        number = abs(
-            abjad.NumberedPitch(pitch_1).number -
-            abjad.NumberedPitch(pitch_2).number
+        named_i_number = abs(degree_1 - degree_2) + 1
+        numbered_i_number = abs(
+            float(abjad.NumberedPitch(pitch_1)) -
+            float(abjad.NumberedPitch(pitch_2))
             )
-        numbered_interval = abjad.NumberedInterval(number)
-        absolute_named_interval = numbered_interval.to_named_interval(
-            named_interval_number
-            )
+        named_ic_number = named_i_number
+        while named_ic_number > 8:
+            named_ic_number -= 7
+        numbered_ic_number = (numbered_i_number % 12)
+        mapping = {
+            value: key
+            for key, value in
+            constants._diatonic_number_and_quality_to_semitones[
+                named_ic_number].items()
+            }
+        if numbered_ic_number in mapping:
+            quality = mapping[numbered_ic_number]
+        elif numbered_ic_number > max(mapping.keys()):
+            quality = 'A' * int(numbered_ic_number - max(mapping.keys()) + 1)
+        elif numbered_ic_number < min(mapping.keys()):
+            quality = 'd' * int(min(mapping.keys()) - numbered_ic_number + 1)
+        direction = 1
         if pitch_2 < pitch_1:
-            named_interval = -absolute_named_interval
-        else:
-            named_interval = absolute_named_interval
-        return class_(named_interval)
+            direction = -1
+        # print('XXX', named_i_number, numbered_i_number, named_ic_number, numbered_ic_number, direction, quality)
+        return class_((quality, named_i_number * direction))
 
     def transpose(self, pitch_carrier):
         r'''Transposes `pitch_carrier` by named interval.

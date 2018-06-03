@@ -240,7 +240,7 @@ _diatonic_number_and_quality_to_semitones = {
     5: {'d': 6, 'P': 7, 'A': 8},
     6: {'d': 7, 'm': 8, 'M': 9, 'A': 10},
     7: {'d': 9, 'm': 10, 'M': 11, 'A': 12},
-    8: {'P': 12},
+    8: {'d': 11, 'P': 12, 'A': 13},
 }
 
 _semitones_to_quality_and_diatonic_number = {
