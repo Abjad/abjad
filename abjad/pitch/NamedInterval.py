@@ -46,12 +46,7 @@ class NamedInterval(Interval):
 
     ### CLASS VARIABLES ##
 
-    __slots__ = (
-        '_number',
-        '_quality_string',
-        '_octaves',
-        '_interval_class',
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 
@@ -306,20 +301,19 @@ class NamedInterval(Interval):
 
     def _from_named_parts(self, direction, quality, diatonic_number):
         import abjad
-        self._quality_string = constants._quality_abbreviation_to_quality_string[quality]
-        self._number = direction * diatonic_number
-        octaves, diatonic_pc_number = divmod(self._number, 8)
+        quality = constants._quality_abbreviation_to_quality_string[quality]
+        octaves = 0
+        diatonic_pc_number = abs(diatonic_number)
+        while diatonic_pc_number > 8:
+            octaves += 1
+            diatonic_pc_number -= 7
         self._octaves = octaves
-        self._interval_class = abjad.NamedIntervalClass('{}{}{}'.format(
-            '-' if self._number < 0 else '',
-            constants._quality_string_to_quality_abbreviation[self._quality_string],
-            abs(self._number),
-            ))
+        self._interval_class = abjad.NamedIntervalClass(
+            (quality, direction * diatonic_pc_number))
 
     def _from_number(self, argument):
         direction, quality, diatonic_number = self._numbered_to_named(argument)
-        self._from_named_parts(
-            direction, quality, diatonic_number)
+        self._from_named_parts(direction, quality, diatonic_number)
 
     def _from_interval_or_interval_class(self, argument):
         try:
@@ -432,7 +426,7 @@ class NamedInterval(Interval):
             self.direction_number]
         return '{}{}{}'.format(
             direction_symbol,
-            self._quality_abbreviation,
+            self._interval_class._quality_abbreviation,
             abs(self.number),
             )
 
@@ -447,7 +441,18 @@ class NamedInterval(Interval):
 
         Returns nonnegative number.
         '''
-        return self._number
+        number = self._interval_class._number
+        direction = mathtools.sign(number)
+        number = abs(number) + (7 * self.octaves)
+        return number * direction
+
+    @property
+    def octaves(self):
+        r'''Gets octaves of interval.
+
+        Returns nonnegative number.
+        '''
+        return self._octaves
 
     @property
     def quality_string(self):
@@ -469,7 +474,7 @@ class NamedInterval(Interval):
 
         Returns string.
         '''
-        return self._quality_string
+        return self._interval_class._quality_string
 
     @property
     def semitones(self):
@@ -496,10 +501,11 @@ class NamedInterval(Interval):
         '''
         direction = self.direction_number
         quality = self.quality_string
-        diatonic_number = abs(self._number)
+        diatonic_number = abs(self._interval_class._number)
         quality = self._validate_quality_and_diatonic_number(
             quality, diatonic_number,
         )
+        diatonic_number += 7 * self._octaves
         return self._named_to_numbered(direction, quality, diatonic_number)
 
     @property

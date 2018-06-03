@@ -40,9 +40,7 @@ class NumberedInterval(Interval):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_number',
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 
@@ -323,6 +321,14 @@ class NumberedInterval(Interval):
         Returns number.
         '''
         return self._number
+
+    @property
+    def octaves(self):
+        r'''Gets octaves of interval.
+
+        Returns nonnegative number.
+        '''
+        return abs(self.number) // 12
 
     @property
     def semitones(self):

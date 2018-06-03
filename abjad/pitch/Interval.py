@@ -15,6 +15,9 @@ class Interval(AbjadValueObject):
 
     __slots__ = (
         '_direction',
+        '_interval_class',
+        '_number',
+        '_octaves',
         )
 
     ### INITIALIZER ###
@@ -215,13 +218,13 @@ class Interval(AbjadValueObject):
         '''
         raise NotImplementedError
 
-    @property
+    @abc.abstractproperty
     def octaves(self):
-        r'''Gets octaves interval.
+        r'''Gets octaves of interval.
 
         Returns nonnegative number.
         '''
-        return self.semitones // 12
+        raise NotImplementedError
 
     @abc.abstractproperty
     def semitones(self):
