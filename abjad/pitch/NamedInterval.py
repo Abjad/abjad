@@ -551,7 +551,9 @@ class NamedInterval(Interval):
         named_ic_number = named_i_number
         while named_ic_number > 8:
             named_ic_number -= 7
-        numbered_ic_number = (numbered_i_number % 12)
+        numbered_ic_number = numbered_i_number
+        while numbered_ic_number > 12:
+            numbered_ic_number -= 12
         mapping = {
             value: key
             for key, value in
