@@ -14,9 +14,7 @@ class Interval(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_direction',
         '_interval_class',
-        '_number',
         '_octaves',
         )
 

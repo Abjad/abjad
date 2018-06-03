@@ -59,7 +59,7 @@ class NumberedInterval(Interval):
 
         Returns new numbered interval.
         '''
-        return type(self)(abs(self._number))
+        return type(self)(abs(self.number))
 
     def __add__(self, argument):
         r'''Adds `argument` to numbered interval.
@@ -135,7 +135,7 @@ class NumberedInterval(Interval):
 
         Returns float.
         '''
-        return float(self._number)
+        return float(self.number)
 
     def __hash__(self):
         r'''Hashes numbered interval.
@@ -203,7 +203,7 @@ class NumberedInterval(Interval):
 
         Returns new numbered interval.
         '''
-        return type(self)(-self._number)
+        return type(self)(-self.number)
 
     def __radd__(self, argument):
         r'''Adds numbered interval to `argument`.
@@ -250,17 +250,27 @@ class NumberedInterval(Interval):
     ### PRIVATE METHODS ###
 
     def _from_named_parts(self, direction, quality, diatonic_number):
-        self._number = self._named_to_numbered(
+        self._from_number(self._named_to_numbered(
             direction,
             quality,
             diatonic_number,
-            )
+            ))
 
     def _from_number(self, argument):
-        self._number = self._to_nearest_quarter_tone(argument)
+        import abjad
+        number = self._to_nearest_quarter_tone(argument)
+        direction = mathtools.sign(number)
+        octaves = 0
+        pc_number = abs(number)
+        while pc_number > 12:
+            pc_number -= 12
+            octaves += 1
+        self._octaves = octaves
+        self._interval_class = abjad.NumberedIntervalClass(
+            pc_number * direction)
 
     def _from_interval_or_interval_class(self, argument):
-        self._number = self._to_nearest_quarter_tone(float(argument))
+        self._from_number(float(argument))
 
     def _get_format_specification(self):
         import abjad
@@ -300,8 +310,7 @@ class NumberedInterval(Interval):
 
         Returns numbered interval-class.
         '''
-        import abjad
-        return abjad.NumberedIntervalClass(self)
+        return self._interval_class
 
     @property
     def number(self):
@@ -320,7 +329,10 @@ class NumberedInterval(Interval):
 
         Returns number.
         '''
-        return self._number
+        number = self._interval_class._number
+        direction = mathtools.sign(number)
+        number = abs(number) + (12 * self.octaves)
+        return number * direction
 
     @property
     def octaves(self):
@@ -328,7 +340,7 @@ class NumberedInterval(Interval):
 
         Returns nonnegative number.
         '''
-        return abs(self.number) // 12
+        return self._octaves
 
     @property
     def semitones(self):
