@@ -123,7 +123,7 @@ class Interval(AbjadValueObject):
     @classmethod
     def _named_to_numbered(cls, direction, quality, diatonic_number):
         octave_number = 0
-        diatonic_pc_number = diatonic_number
+        diatonic_pc_number = abs(diatonic_number)
         while diatonic_pc_number >= 8:
             diatonic_pc_number -= 7
             octave_number += 1
@@ -135,7 +135,10 @@ class Interval(AbjadValueObject):
             semitones -= (len(quality) - 1)
         elif base_quality == 'A':
             semitones += (len(quality) - 1)
-        semitones += (octave_number * 12)
+        if abs(diatonic_number) == 1:
+            semitones = abs(semitones)
+        else:
+            semitones += octave_number * 12
         semitones *= direction
         return mathtools.integer_equivalent_number_to_integer(semitones)
 
