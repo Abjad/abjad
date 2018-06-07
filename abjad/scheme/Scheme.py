@@ -296,7 +296,8 @@ class Scheme(AbjadValueObject):
         string = self._get_formatted_value()
         if self.quoting is not None:
             string = self.quoting + string
-        string = '#' + string
+        if string in ('#t', '#f') or not string.startswith('#'):
+            string = '#' + string
         return string
 
     ### PUBLIC PROPERTIES ###
@@ -401,34 +402,32 @@ class Scheme(AbjadValueObject):
 
         ..  container:: example
 
-            Hash symbols in strings will result in quoted output unless
-            ``verbatim`` is True, in order to prevent LilyPond parsing errors:
+            Hash symbol at the beginning of a string does not result in quoted
+            output:
 
             >>> string = '#1-finger'
             >>> abjad.Scheme.format_scheme_value(string)
-            '"#1-finger"'
-
-            >>> abjad.Scheme.format_scheme_value(string, verbatim=True)
             '#1-finger'
 
         """
-        if isinstance(value, str):
-            if not verbatim:
-                value = value.replace('"', r'\"')
-                if force_quotes or ' ' in value or '#' in value:
-                    return f'"{value}"'
-                return value
-            else:
-                return value
-        elif isinstance(value, bool):
-            if value:
-                return '#t'
+        if isinstance(value, str) and verbatim:
+            return value
+        elif isinstance(value, str) and not verbatim:
+            value = value.replace('"', r'\"')
+            if value.startswith('#'):
+                pass
+            elif force_quotes or ' ' in value or '#' in value:
+                return f'"{value}"'
+            return value
+        elif value is True:
+            return '#t'
+        elif value is False:
             return '#f'
         elif isinstance(value, (list, tuple)):
-            string = ' '.join(Scheme.format_scheme_value(x) for x in value)
+            string = ' '.join(Scheme.format_scheme_value(_) for _ in value)
             return f'({string})'
         elif isinstance(value, Scheme):
             return str(value)
-        elif isinstance(value, type(None)):
+        elif value is None:
             return '#f'
         return str(value)
