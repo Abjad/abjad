@@ -1,9 +1,8 @@
 import typing
-from abjad.lilypondnames.LilyPondGrobOverride import \
-    LilyPondGrobOverride
+from abjad.lilypondnames.LilyPondGrobOverride import LilyPondGrobOverride
 from abjad.pitch.NamedInterval import NamedInterval
 from abjad.pitch.NamedPitch import NamedPitch
-from abjad.scheme.Scheme import Scheme
+from abjad.scheme import Scheme
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.top.override import override
 from .Spanner import Spanner

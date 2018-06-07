@@ -21,6 +21,7 @@ from .LilyPondLiteral import LilyPondLiteral
 from .MarginMarkup import MarginMarkup
 from .MetricModulation import MetricModulation
 from .MetronomeMark import MetronomeMark
+from .Mode import Mode
 from .RehearsalMark import RehearsalMark
 from .Repeat import Repeat
 from .Ritardando import Ritardando

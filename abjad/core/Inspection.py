@@ -1,13 +1,13 @@
 import collections
 import typing
-from abjad import abctools
+from abjad.abctools.AbjadObject import AbjadObject
 from abjad.exceptions import ExtraSpannerError
 from abjad.spanners.Spanner import Spanner
 from abjad.top.inspect import inspect
 from .Container import Container
 
 
-class Inspection(abctools.AbjadObject):
+class Inspection(AbjadObject):
     """
     Inspection.
 

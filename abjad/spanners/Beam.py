@@ -1,10 +1,10 @@
 import typing
 from abjad.enumerations import VerticalAlignment
-from abjad.utilities.String import String
 from abjad.top.inspect import inspect
 from abjad.top.new import new
+from abjad.typings import Number
+from abjad.utilities.String import String
 from .Spanner import Spanner
-Number = typing.Union[int, float]
 
 
 class Beam(Spanner):

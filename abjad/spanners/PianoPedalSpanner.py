@@ -1,8 +1,7 @@
 import typing
+from abjad.lilypondnames.LilyPondContextSetting import LilyPondContextSetting
+from abjad.scheme import SchemeSymbol
 from .Spanner import Spanner
-from abjad.lilypondnames.LilyPondContextSetting import \
-    LilyPondContextSetting
-from abjad.scheme.SchemeSymbol import SchemeSymbol
 
 
 class PianoPedalSpanner(Spanner):

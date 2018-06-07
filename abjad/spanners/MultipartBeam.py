@@ -1,7 +1,7 @@
 import typing
 from abjad.enumerations import VerticalAlignment
+from abjad.typings import Number
 from .Beam import Beam
-Number = typing.Union[int, float]
 
 
 class MultipartBeam(Beam):

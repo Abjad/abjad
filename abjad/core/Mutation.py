@@ -1,8 +1,25 @@
+from abjad.abctools.AbjadObject import AbjadObject
+from abjad.enumerations import Exact
 from abjad.enumerations import Right
-from abjad import abctools
+from abjad.indicators.TimeSignature import TimeSignature
+from abjad.meter.Meter import Meter
+from abjad.pitch.NamedInterval import NamedInterval
+from abjad.top.attach import attach
+from abjad.top.detach import detach
+from abjad.top.inspect import inspect
+from abjad.top.iterate import iterate
+from abjad.top.select import select
+from abjad.top.sequence import sequence
+from abjad.utilities.Duration import Duration
+from .Chord import Chord
+from .Component import Component
+from .Container import Container
+from .Leaf import Leaf
+from .Note import Note
+from .Selection import Selection
 
 
-class Mutation(abctools.AbjadObject):
+class Mutation(AbjadObject):
     """
     Mutation.
 
@@ -161,13 +178,12 @@ class Mutation(abctools.AbjadObject):
 
         Returns selection of new components.
         """
-        import abjad
-        if isinstance(self.client, abjad.Component):
-            selection = abjad.select(self.client)
+        if isinstance(self.client, Component):
+            selection = select(self.client)
         else:
             selection = self.client
         result = selection._copy()
-        if isinstance(self.client, abjad.Component):
+        if isinstance(self.client, Component):
             if len(result) == 1:
                 result = result[0]
         return result
@@ -501,36 +517,35 @@ class Mutation(abctools.AbjadObject):
 
         Returns selection.
         """
-        import abjad
-        if isinstance(self.client, abjad.Component):
-            selection = abjad.select(self.client)
+        if isinstance(self.client, Component):
+            selection = select(self.client)
             return selection._fuse()
         elif (
-            isinstance(self.client, abjad.Selection) and
+            isinstance(self.client, Selection) and
             self.client.are_contiguous_logical_voice()
             ):
-            selection = abjad.select(self.client)
+            selection = select(self.client)
             return selection._fuse()
 
     def replace(self, recipients, wrappers=False):
         r"""
-        Replaces mutation client (and contents of mutation client)
-        with ``recipients``.
+        Replaces mutation client (and contents of mutation client) with
+        ``recipients``.
 
         ..  container:: example
 
             Replaces in-score tuplet (and children of tuplet) with notes.
             Functions exactly the same as container setitem:
 
-                >>> tuplet_1 = abjad.Tuplet((2, 3), "c'4 d'4 e'4")
-                >>> tuplet_2 = abjad.Tuplet((2, 3), "d'4 e'4 f'4")
-                >>> staff = abjad.Staff([tuplet_1, tuplet_2])
-                >>> hairpin = abjad.Hairpin('p < f')
-                >>> leaves = abjad.select(staff).leaves()
-                >>> abjad.attach(hairpin, leaves)
-                >>> slur = abjad.Slur()
-                >>> abjad.attach(slur, leaves)
-                >>> abjad.show(staff) # doctest: +SKIP
+            >>> tuplet_1 = abjad.Tuplet((2, 3), "c'4 d'4 e'4")
+            >>> tuplet_2 = abjad.Tuplet((2, 3), "d'4 e'4 f'4")
+            >>> staff = abjad.Staff([tuplet_1, tuplet_2])
+            >>> hairpin = abjad.Hairpin('p < f')
+            >>> leaves = abjad.select(staff).leaves()
+            >>> abjad.attach(hairpin, leaves)
+            >>> slur = abjad.Slur()
+            >>> abjad.attach(slur, leaves)
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
@@ -689,29 +704,50 @@ class Mutation(abctools.AbjadObject):
             >>> abjad.inspect(staff).is_well_formed()
             True
 
+        ..  container:: example
+
+            ..  todo:: Fix.
+
+            Introduces duplicate ties:
+
+            >>> staff = abjad.Staff("c'2 ~ c'2")
+            >>> maker = abjad.NoteMaker()
+            >>> tied_notes = maker(0, abjad.Duration(5, 8))
+            >>> abjad.mutate(staff[:1]).replace(tied_notes)
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                c'2
+                ~
+                ~
+                c'8
+                ~
+                c'2
+            }
+
         Returns none.
         """
-        import abjad
-        if isinstance(self.client, abjad.Selection):
+        if isinstance(self.client, Selection):
             donors = self.client
         else:
-            donors = abjad.select(self.client)
+            donors = select(self.client)
         assert donors.are_contiguous_same_parent()
-        if not isinstance(recipients, abjad.Selection):
-            recipients = abjad.select(recipients)
+        if not isinstance(recipients, Selection):
+            recipients = select(recipients)
         assert recipients.are_contiguous_same_parent()
         if not donors:
             return
         if wrappers is True:
-            if 1 < len(donors) or not isinstance(donors[0], abjad.Leaf):
+            if 1 < len(donors) or not isinstance(donors[0], Leaf):
                 message = f'set wrappers only with single leaf: {donors!r}.'
                 raise Exception(message)
             if (1 < len(recipients) or
-                not isinstance(recipients[0], abjad.Leaf)):
+                not isinstance(recipients[0], Leaf)):
                 message = f'set wrappers only with single leaf: {recipients!r}.'
                 raise Exception(message)
             donor = donors[0]
-            wrappers = abjad.inspect(donor).wrappers()
+            wrappers = inspect(donor).wrappers()
             recipient = recipients[0]
         parent, start, stop = donors._get_parent_and_start_stop_indices()
         assert parent is not None, repr(donors)
@@ -798,7 +834,6 @@ class Mutation(abctools.AbjadObject):
 
         Returns measures iterated.
         """
-        import abjad
         # init return list
         result = []
         # get first measure and first time signature
@@ -824,11 +859,9 @@ class Mutation(abctools.AbjadObject):
                     current_element)
             # otherwise restore current measure and advance to next measure
             else:
-                current_time_signature = abjad.TimeSignature(
-                    current_time_signature
-                    )
-                abjad.detach(abjad.TimeSignature, current_measure)
-                abjad.attach(current_time_signature, current_measure)
+                current_time_signature = TimeSignature(current_time_signature)
+                detach(TimeSignature, current_measure)
+                attach(current_time_signature, current_measure)
                 current_measure._append_spacer_skip()
                 current_measure = current_measure._get_next_measure()
                 if current_measure is None:
@@ -839,11 +872,9 @@ class Mutation(abctools.AbjadObject):
                 #del(current_measure[:])
                 current_measure.__delitem__(slice(0, len(current_measure)))
         # restore last iterated measure
-        current_time_signature = abjad.TimeSignature(
-            current_time_signature
-            )
-        abjad.detach(abjad.TimeSignature, current_measure)
-        abjad.attach(current_time_signature, current_measure)
+        current_time_signature = TimeSignature(current_time_signature)
+        detach(TimeSignature, current_measure)
+        attach(current_time_signature, current_measure)
         current_measure._append_spacer_skip()
         # return iterated measures
         return result
@@ -1866,12 +1897,11 @@ class Mutation(abctools.AbjadObject):
 
         Operates in place and returns none.
         """
-        import abjad
         selection = self.client
-        if isinstance(selection, abjad.Container):
+        if isinstance(selection, Container):
             selection = selection[:]
-        assert isinstance(selection, abjad.Selection)
-        result = abjad.Meter._rewrite_meter(
+        assert isinstance(selection, Selection)
+        result = Meter._rewrite_meter(
             selection,
             meter,
             boundary_depth=boundary_depth,
@@ -2335,11 +2365,10 @@ class Mutation(abctools.AbjadObject):
 
         Returns none.
         """
-        import abjad
         if hasattr(self.client, '_scale'):
             self.client._scale(multiplier)
         else:
-            assert isinstance(self.client, abjad.Selection)
+            assert isinstance(self.client, Selection)
             for component in self.client:
                 component._scale(multiplier)
 
@@ -3103,17 +3132,16 @@ class Mutation(abctools.AbjadObject):
 
         Returns list of selections.
         """
-        import abjad
         # check input
         components = self.client
         single_component_input = False
-        if isinstance(components, abjad.Component):
+        if isinstance(components, Component):
             single_component_input = True
-            components = abjad.select(components)
-        assert all(isinstance(_, abjad.Component) for _ in components)
-        if not isinstance(components, abjad.Selection):
-            components = abjad.select(components)
-        durations = [abjad.Duration(_) for _ in durations]
+            components = select(components)
+        assert all(isinstance(_, Component) for _ in components)
+        if not isinstance(components, Selection):
+            components = select(components)
+        durations = [Duration(_) for _ in durations]
         # return if no split to be done
         if not durations:
             if single_component_input:
@@ -3121,11 +3149,11 @@ class Mutation(abctools.AbjadObject):
             else:
                 return [], components
         # calculate total component duration
-        total_component_duration = abjad.inspect(components).get_duration()
+        total_component_duration = inspect(components).get_duration()
         total_split_duration = sum(durations)
         # calculate durations
         if cyclic:
-            durations = abjad.sequence(durations)
+            durations = sequence(durations)
             durations = durations.repeat_to_weight(total_component_duration)
             durations = list(durations)
         elif total_split_duration < total_component_duration:
@@ -3133,7 +3161,7 @@ class Mutation(abctools.AbjadObject):
             durations.append(final_offset)
         elif total_component_duration < total_split_duration:
             weight = total_component_duration
-            durations = abjad.sequence(durations).truncate(weight=weight)
+            durations = sequence(durations).truncate(weight=weight)
             durations = list(durations)
         # keep copy of durations to partition result components
         durations_copy = durations[:]
@@ -3143,7 +3171,7 @@ class Mutation(abctools.AbjadObject):
         # initialize loop variables
         result, shard = [], []
         offset_index = 0
-        current_shard_duration = abjad.Duration(0)
+        current_shard_duration = Duration(0)
         remaining_components = list(components[:])
         advance_to_next_offset = True
         # build shards:
@@ -3162,26 +3190,26 @@ class Mutation(abctools.AbjadObject):
             else:
                 break
             # find where current component endpoint will position us
-            duration_ = abjad.inspect(current_component).get_duration()
+            duration_ = inspect(current_component).get_duration()
             candidate_shard_duration = current_shard_duration + duration_
             # if current component would fill current shard exactly
             if candidate_shard_duration == next_split_point:
                 shard.append(current_component)
                 result.append(shard)
                 shard = []
-                current_shard_duration = abjad.Duration(0)
+                current_shard_duration = Duration(0)
                 offset_index += 1
             # if current component would exceed current shard
             elif next_split_point < candidate_shard_duration:
                 local_split_duration = next_split_point
                 local_split_duration -= current_shard_duration
-                if isinstance(current_component, abjad.Leaf):
+                if isinstance(current_component, Leaf):
                     leaf_split_durations = [local_split_duration]
-                    duration_ = abjad.inspect(current_component).get_duration()
+                    duration_ = inspect(current_component).get_duration()
                     current_duration = duration_
                     additional_required_duration = current_duration
                     additional_required_duration -= local_split_duration
-                    split_durations = abjad.sequence(durations)
+                    split_durations = sequence(durations)
                     split_durations = split_durations.split(
                         [additional_required_duration],
                         cyclic=False,
@@ -3202,7 +3230,7 @@ class Mutation(abctools.AbjadObject):
                     result.append(shard)
                     offset_index += len(additional_durations)
                 else:
-                    assert isinstance(current_component, abjad.Container)
+                    assert isinstance(current_component, Container)
                     pair = current_component._split_by_duration(
                         local_split_duration,
                         fracture_spanners=fracture_spanners,
@@ -3215,11 +3243,11 @@ class Mutation(abctools.AbjadObject):
                     remaining_components.__setitem__(slice(0, 0), right_list)
                 shard = []
                 offset_index += 1
-                current_shard_duration = abjad.Duration(0)
+                current_shard_duration = Duration(0)
             # if current component would not fill current shard
             elif candidate_shard_duration < next_split_point:
                 shard.append(current_component)
-                duration_ = abjad.inspect(current_component).get_duration()
+                duration_ = inspect(current_component).get_duration()
                 current_shard_duration += duration_
                 advance_to_next_offset = False
             else:
@@ -3233,13 +3261,13 @@ class Mutation(abctools.AbjadObject):
         if len(remaining_components):
             result.append(remaining_components)
         # partition split components according to input durations
-        result = abjad.sequence(result).flatten(depth=-1)
-        result = abjad.select(result).partition_by_durations(
+        result = sequence(result).flatten(depth=-1)
+        result = select(result).partition_by_durations(
             durations_copy,
-            fill=abjad.Exact,
+            fill=Exact,
             )
         # return list of shards
-        assert all(isinstance(_, abjad.Selection) for _ in result)
+        assert all(isinstance(_, Selection) for _ in result)
         return result
 
     def swap(self, container):
@@ -3250,16 +3278,16 @@ class Mutation(abctools.AbjadObject):
 
             Swaps measures for tuplet:
 
-                >>> staff = abjad.Staff()
-                >>> staff.append(abjad.Measure((3, 4), "c'4 d'4 e'4"))
-                >>> staff.append(abjad.Measure((3, 4), "d'4 e'4 f'4"))
-                >>> leaves = abjad.select(staff).leaves()
-                >>> hairpin = abjad.Hairpin('p < f')
-                >>> abjad.attach(hairpin, leaves)
-                >>> measures = staff[:]
-                >>> slur = abjad.Slur()
-                >>> abjad.attach(slur, leaves)
-                >>> abjad.show(staff) # doctest: +SKIP
+            >>> staff = abjad.Staff()
+            >>> staff.append(abjad.Measure((3, 4), "c'4 d'4 e'4"))
+            >>> staff.append(abjad.Measure((3, 4), "d'4 e'4 f'4"))
+            >>> leaves = abjad.select(staff).leaves()
+            >>> hairpin = abjad.Hairpin('p < f')
+            >>> abjad.attach(hairpin, leaves)
+            >>> measures = staff[:]
+            >>> slur = abjad.Slur()
+            >>> abjad.attach(slur, leaves)
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
@@ -3312,13 +3340,12 @@ class Mutation(abctools.AbjadObject):
 
         Returns none.
         """
-        import abjad
-        if isinstance(self.client, abjad.Selection):
+        if isinstance(self.client, Selection):
             donors = self.client
         else:
-            donors = abjad.select(self.client)
+            donors = select(self.client)
         assert donors.are_contiguous_same_parent()
-        assert isinstance(container, abjad.Container)
+        assert isinstance(container, Container)
         assert not container, repr(container)
         donors._give_components_to_empty_container(container)
         donors._give_dominant_spanners([container])
@@ -3384,11 +3411,9 @@ class Mutation(abctools.AbjadObject):
 
         Returns none.
         """
-        import abjad
-        named_interval = abjad.NamedInterval(argument)
-        for x in abjad.iterate(self.client).components(
-            (abjad.Note, abjad.Chord)):
-            if isinstance(x, abjad.Note):
+        named_interval = NamedInterval(argument)
+        for x in iterate(self.client).components((Note, Chord)):
+            if isinstance(x, Note):
                 old_written_pitch = x.note_head.written_pitch
                 new_written_pitch = old_written_pitch.transpose(named_interval)
                 x.note_head.written_pitch = new_written_pitch
@@ -3590,17 +3615,16 @@ class Mutation(abctools.AbjadObject):
 
         Returns none.
         """
-        import abjad
         if (
-            not isinstance(container, abjad.Container) or
+            not isinstance(container, Container) or
             0 < len(container)):
             message = f'must be empty container: {container!r}.'
             raise Exception(message)
-        if isinstance(self.client, abjad.Component):
-            selection = abjad.select(self.client)
+        if isinstance(self.client, Component):
+            selection = select(self.client)
         else:
             selection = self.client
-        assert isinstance(selection, abjad.Selection), repr(selection)
+        assert isinstance(selection, Selection), repr(selection)
         parent, start, stop = selection._get_parent_and_start_stop_indices()
         if not selection.are_contiguous_logical_voice():
             message = 'must be contiguous components in same logical voice:'

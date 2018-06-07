@@ -1,10 +1,10 @@
 import copy
 import functools
 import typing
-from abjad import system
 from abjad.abctools.AbjadObject import AbjadObject
-from abjad.pitch.NamedPitch import NamedPitch
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
+from abjad.pitch.NamedPitch import NamedPitch
+from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.top.tweak import tweak
 
@@ -200,7 +200,7 @@ class NoteHead(AbjadObject):
             names.remove('client')
         if 'tweaks' in names:
             names.remove('tweaks')
-        return system.FormatSpecification(
+        return FormatSpecification(
             self,
             repr_text=repr_text,
             storage_format_kwargs_names=names,

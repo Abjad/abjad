@@ -1,6 +1,6 @@
 import copy
-from abjad.utilities.Duration import Duration
 from abjad.pitch.NamedPitch import NamedPitch
+from abjad.utilities.Duration import Duration
 from .DrumNoteHead import DrumNoteHead
 from .Leaf import Leaf
 from .NoteHead import NoteHead

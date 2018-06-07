@@ -1,10 +1,10 @@
 import typing
+from abjad.abctools.AbjadValueObject import AbjadValueObject
 from abjad.enumerations import Center
 from abjad.enumerations import VerticalAlignment
-from abjad.abctools.AbjadValueObject import AbjadValueObject
 from abjad.lilypondnames.LilyPondGrobOverride import LilyPondGrobOverride
-from abjad.markup.Markup import Markup
-from abjad.scheme.Scheme import Scheme
+from abjad.markups import Markup
+from abjad.scheme import Scheme
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.typings import Number
 
@@ -436,3 +436,24 @@ class LineSegment(AbjadValueObject):
         Are not implemented on line segment.
         """
         pass
+
+    ### PUBLIC METHODS ###
+
+    @staticmethod
+    def make_dashed_hook():
+        """
+        Makes dashed hook.
+        """
+        return LineSegment(
+            dash_fraction=0.25,
+            dash_period=1.5,
+            left_broken_text=False,
+            left_hspace=0.5,
+            left_stencil_align_direction_y=0,
+            right_broken_arrow=False,
+            right_broken_padding=0,
+            right_broken_text=False,
+            # right padding to avoid last leaf in spanner
+            right_padding=1.25,
+            right_text=Markup.draw_line(0, -1),
+            )

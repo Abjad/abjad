@@ -1,18 +1,16 @@
 import typing
+from abjad.core.Leaf import Leaf
+from abjad.core.MultimeasureRest import MultimeasureRest
+from abjad.core.Rest import Rest
+from abjad.core.Skip import Skip
 from abjad.enumerations import Down
 from abjad.enumerations import Up
 from abjad.indicators.Articulation import Articulation
 from abjad.indicators.BowContactPoint import BowContactPoint
 from abjad.indicators.BowMotionTechnique import BowMotionTechnique
-from abjad.lilypondnames.LilyPondGrobOverride import (
-    LilyPondGrobOverride,
-)
-from abjad.scheme.Scheme import Scheme
-from abjad.scheme.SchemeSymbol import SchemeSymbol
-from abjad.core.Leaf import Leaf
-from abjad.core.MultimeasureRest import MultimeasureRest
-from abjad.core.Rest import Rest
-from abjad.core.Skip import Skip
+from abjad.lilypondnames.LilyPondGrobOverride import LilyPondGrobOverride
+from abjad.scheme import Scheme
+from abjad.scheme import SchemeSymbol
 from abjad.system.Tag import Tag
 from abjad.system.Wrapper import Wrapper
 from abjad.top.inspect import inspect

@@ -1,9 +1,10 @@
 import collections
-from abjad import abctools
+from abjad.abctools.AbjadObject import AbjadObject
 
 
-class VerticalMoment(abctools.AbjadObject):
-    r'''Vertical moment.
+class VerticalMoment(AbjadObject):
+    r'''
+    Vertical moment.
 
     ..  container:: example
 

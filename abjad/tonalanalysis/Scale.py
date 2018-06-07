@@ -1,4 +1,7 @@
 import copy
+from abjad.indicators.KeySignature import KeySignature
+from abjad.indicators.Mode import Mode
+from abjad.pitch.NamedPitchClass import NamedPitchClass
 from abjad.pitch.PitchClassSegment import PitchClassSegment
 
 
@@ -24,14 +27,13 @@ class Scale(PitchClassSegment):
     ### INITIALIZER ###
 
     def __init__(self, key_signature=None):
-        import abjad
         if key_signature is None:
-            key_signature = abjad.KeySignature('c', 'major')
+            key_signature = KeySignature('c', 'major')
         elif isinstance(key_signature, tuple):
-            key_signature = abjad.KeySignature(*key_signature)
+            key_signature = KeySignature(*key_signature)
         elif isinstance(key_signature, type(self)):
             key_signature = key_signature.key_signature
-        if not isinstance(key_signature, abjad.KeySignature):
+        if not isinstance(key_signature, KeySignature):
             raise Exception(key_signature)
         npcs = [key_signature.tonic]
         for mdi in key_signature.mode.named_interval_segment[:-1]:
@@ -40,7 +42,7 @@ class Scale(PitchClassSegment):
         PitchClassSegment.__init__(
             self,
             items=npcs,
-            item_class=abjad.NamedPitchClass,
+            item_class=NamedPitchClass,
             )
         self._key_signature = key_signature
 

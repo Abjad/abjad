@@ -1,9 +1,10 @@
 import collections
-from abjad.enumerations import Left, Right
-from abjad import abctools
+from abjad.abctools.AbjadObject import AbjadObject
+from abjad.enumerations import Left
+from abjad.enumerations import Right
 
 
-class Iteration(abctools.AbjadObject):
+class Iteration(AbjadObject):
     r"""
     Iteration.
 

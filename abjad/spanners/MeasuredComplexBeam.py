@@ -1,6 +1,6 @@
 import typing
-from abjad.enumerations import HorizontalAlignment, VerticalAlignment
 from abjad.core.Measure import Measure
+from abjad.enumerations import HorizontalAlignment, VerticalAlignment
 from abjad.top.inspect import inspect
 from .ComplexBeam import ComplexBeam
 

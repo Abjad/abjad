@@ -143,9 +143,8 @@ def tweak(argument):
                 f'4
             }
 
-        ..  todo:: Refactor courtesty autocolumn to enclose markup object in
-            each ``\line`` (rather than raw string). This will allow tweaks
-            to be preserved on each piece of markup in courtesy autocolumn.
+        ..  todo:: Remove courtesty autocolumn. This will make tweaks
+            work on every markup.
 
     ..  container:: example
 

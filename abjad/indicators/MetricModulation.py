@@ -2,7 +2,7 @@ import collections
 import typing
 from abjad.abctools.AbjadValueObject import AbjadValueObject
 from abjad.enumerations import Up
-from abjad.markup.Markup import Markup
+from abjad.markups import Markup
 from abjad.mathtools.Ratio import Ratio
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.top.inspect import inspect

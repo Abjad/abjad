@@ -1,8 +1,8 @@
 import collections
-from abjad import abctools
+from abjad.abctools.AbjadObject import AbjadObject
 
 
-class Descendants(abctools.AbjadObject, collections.Sequence):
+class Descendants(AbjadObject, collections.Sequence):
     r'''
     Descendants of a component.
 

@@ -1,23 +1,25 @@
 import abc
 import copy
 import uqbar.graphs
-from abjad.enumerations import Left, Right
-from abjad.exceptions import (
-    AssignabilityError,
-    MissingMetronomeMarkError,
-    MissingSpannerError,
-)
+from abjad.enumerations import Left
+from abjad.enumerations import Right
+from abjad.exceptions import AssignabilityError
+from abjad.exceptions import MissingMetronomeMarkError
+from abjad.exceptions import MissingSpannerError
 from abjad.indicators.MetronomeMark import MetronomeMark
-from abjad.utilities.Duration import Duration
-from abjad.utilities.Multiplier import Multiplier
 from abjad.mathtools.NonreducedFraction import NonreducedFraction
 from abjad.mathtools.Ratio import Ratio
+from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.top.attach import attach
 from abjad.top.detach import detach
+from abjad.top.inspect import inspect
 from abjad.top.override import override
 from abjad.top.select import select
+from abjad.top.sequence import sequence
 from abjad.top.setting import setting
+from abjad.utilities.Duration import Duration
+from abjad.utilities.Multiplier import Multiplier
 from .Component import Component
 
 
@@ -254,9 +256,8 @@ class Leaf(Component):
         return self._get_lilypond_format().split('\n')
 
     def _get_format_specification(self):
-        import abjad
         summary = self._get_compact_representation()
-        return abjad.FormatSpecification(
+        return FormatSpecification(
             client=self,
             repr_is_indented=False,
             repr_args_values=[summary],
@@ -266,7 +267,6 @@ class Leaf(Component):
             )
 
     def _get_leaf(self, n):
-        import abjad
 
         def next(component):
             new_component = component._get_nth_component_in_time_order_from(1)
@@ -287,7 +287,7 @@ class Leaf(Component):
                 return
             candidates = new_component._get_descendants_stopping_with()
             candidates = [
-                x for x in candidates if isinstance(x, abjad.Leaf)
+                x for x in candidates if isinstance(x, Leaf)
                 ]
             for candidate in candidates:
                 selection = select([component, candidate])
@@ -311,14 +311,13 @@ class Leaf(Component):
     def _get_logical_tie(self):
         import abjad
         for component in [self]:
-            tie_spanners = abjad.inspect(component).get_spanners(abjad.Tie)
-            if len(tie_spanners) == 1:
-                tie_spanner = tie_spanners.pop()
-                return abjad.LogicalTie(items=tie_spanner.leaves)
-            elif 1 < len(tie_spanners):
-                message = 'parentage of {!r} contains {} tie spanners.'
-                message = message.format(self, len(tie_spanners))
-                raise Exception(message)
+            ties = inspect(component).get_spanners(abjad.Tie)
+            if len(ties) == 1:
+                tie = ties.pop()
+                return abjad.LogicalTie(items=tie.leaves)
+            elif 1 < len(ties):
+                message = f'parentage of {self!r} contains {len(ties)} ties.'
+                raise Exception(ties)
         else:
             return abjad.LogicalTie(items=self)
 
@@ -450,15 +449,14 @@ class Leaf(Component):
             repeat_ties=repeat_ties,
             )
         components = maker(0, new_duration)
-        if isinstance(components[0], abjad.Leaf):
+        if isinstance(components[0], Leaf):
             tied_leaf_count = len(components) - 1
             tied_leaves = tied_leaf_count * self
             all_leaves = [self] + tied_leaves
             for leaf, component in zip(all_leaves, components):
                 leaf.written_duration = component.written_duration
             self._splice(tied_leaves, grow_spanners=True)
-            parentage = abjad.inspect(self).get_parentage()
-            if not abjad.inspect(parentage).get_spanners(abjad.Tie):
+            if not inspect(self).has_spanner(abjad.Tie):
                 tie = abjad.Tie()
                 if tie._attachment_test(self):
                     tie = abjad.Tie(repeat=repeat_ties)
@@ -474,7 +472,7 @@ class Leaf(Component):
             for leaf, component in zip(all_leaves, components):
                 leaf.written_duration = component.written_duration
             self._splice(tied_leaves, grow_spanners=True)
-            if not self._get_spanners(abjad.Tie):
+            if not inspect(self).has_spanner(abjad.Tie):
                 tie = abjad.Tie()
                 if tie._attachment_test(self):
                     tie = abjad.Tie(repeat=repeat_ties)
@@ -494,21 +492,21 @@ class Leaf(Component):
         ):
         import abjad
         durations = [Duration(_) for _ in durations]
-        durations = abjad.sequence(durations)
-        leaf_duration = abjad.inspect(self).get_duration()
+        durations = sequence(durations)
+        leaf_duration = inspect(self).get_duration()
         if cyclic:
             durations = durations.repeat_to_weight(leaf_duration)
         if sum(durations) < leaf_duration:
             last_duration = leaf_duration - sum(durations)
             durations = list(durations)
             durations.append(last_duration)
-            durations = abjad.sequence(durations)
+            durations = sequence(durations)
         durations = durations.truncate(weight=leaf_duration)
         result_selections = []
         # detach grace containers
         grace_container = self._detach_grace_container()
         after_grace_container = self._detach_after_grace_container()
-        leaf_prolation = abjad.inspect(self).get_parentage().prolation
+        leaf_prolation = inspect(self).get_parentage().prolation
         for duration in durations:
             new_leaf = copy.copy(self)
             preprolated_duration = duration / leaf_prolation
@@ -517,18 +515,18 @@ class Leaf(Component):
                 repeat_ties=repeat_ties,
                 )
             result_selections.append(selection)
-        result_components = abjad.sequence(result_selections).flatten(depth=-1)
+        result_components = sequence(result_selections).flatten(depth=-1)
         result_components = select(result_components)
         result_leaves = select(result_components).leaves()
         assert all(isinstance(_, abjad.Selection) for _ in result_selections)
         assert all(isinstance(_, Component) for _ in result_components)
         assert result_leaves.are_leaves()
-        if abjad.inspect(self).has_spanner(abjad.Tie):
+        if inspect(self).has_spanner(abjad.Tie):
             for leaf in result_leaves:
                 detach(abjad.Tie, leaf)
         # strip result leaves of indicators (other than multipliers)
         for leaf in result_leaves:
-            multiplier = abjad.inspect(leaf).get_indicator(Multiplier)
+            multiplier = inspect(leaf).get_indicator(Multiplier)
             detach(object, leaf)
             if multiplier is not None:
                 attach(multiplier, leaf)
@@ -543,26 +541,26 @@ class Leaf(Component):
         # fracture spanners
         if fracture_spanners:
             first_selection = result_selections[0]
-            for spanner in abjad.inspect(first_selection[-1]).get_spanners():
+            for spanner in inspect(first_selection[-1]).get_spanners():
                 index = spanner._index(first_selection[-1])
                 spanner._fracture(index, direction=Right)
             last_selection = result_selections[-1]
-            for spanner in abjad.inspect(last_selection[0]).get_spanners():
+            for spanner in inspect(last_selection[0]).get_spanners():
                 index = spanner._index(last_selection[0])
                 spanner._fracture(index, direction=Left)
             for middle_selection in result_selections[1:-1]:
-                spanners = abjad.inspect(middle_selection[0]).get_spanners()
+                spanners = inspect(middle_selection[0]).get_spanners()
                 for spanner in spanners:
                     index = spanner._index(middle_selection[0])
                     spanner._fracture(index, direction=Left)
-                spanners = abjad.inspect(middle_selection[-1]).get_spanners()
+                spanners = inspect(middle_selection[-1]).get_spanners()
                 for spanner in spanners:
                     index = spanner._index(middle_selection[-1])
                     spanner._fracture(index, direction=Right)
         # move indicators
         first_result_leaf = result_leaves[0]
         last_result_leaf = result_leaves[-1]
-        for indicator in abjad.inspect(self).get_indicators():
+        for indicator in inspect(self).get_indicators():
             if isinstance(indicator, Multiplier):
                 continue
             detach(indicator, self)
@@ -587,7 +585,7 @@ class Leaf(Component):
             abjad.mutate(result_components).fuse()
         # tie split notes
         if isinstance(self, (abjad.Note, abjad.Chord)) and tie_split_notes:
-            result_leaves._attach_tie_spanner_to_leaves(
+            result_leaves._attach_tie_to_leaves(
                 repeat_ties=repeat_ties,
                 )
         assert isinstance(result_selections, list), repr(result_selections)

@@ -5,8 +5,8 @@ from abjad.enumerations import Down
 from abjad.enumerations import Left
 from abjad.enumerations import Right
 from abjad.enumerations import Up
-from abjad.scheme.Scheme import Scheme
-from abjad.scheme.SchemePair import SchemePair
+from abjad.scheme import Scheme
+from abjad.scheme import SchemePair
 from abjad.utilities.String import String
 from .LilyPondFormatBundle import LilyPondFormatBundle
 
