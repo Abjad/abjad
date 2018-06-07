@@ -1,4 +1,7 @@
 import functools
+import typing
+from abjad.mathtools.NonreducedFraction import NonreducedFraction
+from abjad.system.FormatSpecification import FormatSpecification
 from .Scheme import Scheme
 
 
@@ -23,15 +26,16 @@ class SchemeMoment(Scheme):
 
     ### INITIALIZER ###
 
-    def __init__(self, duration=(0, 1)):
-        import abjad
-        duration = abjad.NonreducedFraction(duration)
-        pair = duration.pair
+    def __init__(
+        self,
+        duration: typing.Union[typing.Tuple[int, int]] = (0, 1),
+        ) -> None:
+        pair = NonreducedFraction(duration).pair
         Scheme.__init__(self, pair)
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, argument):
+    def __eq__(self, argument) -> bool:
         """
         Is true when ``argument`` is a scheme moment with the same value as
         that of this scheme moment.
@@ -48,19 +52,18 @@ class SchemeMoment(Scheme):
             >>> abjad.SchemeMoment((2, 54)) == abjad.SchemeMoment((2, 68))
             False
 
-        Returns true or false.
         """
         return super(SchemeMoment, self).__eq__(argument)
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         """
         Hashes scheme moment.
 
-        Returns integer.
+        Redefined in tandem with ``__eq__``.
         """
         return super(SchemeMoment, self).__hash__()
 
-    def __lt__(self, argument):
+    def __lt__(self, argument) -> bool:
         """
         Is true when ``argument`` is a scheme moment with value greater than
         that of this scheme moment.
@@ -77,37 +80,31 @@ class SchemeMoment(Scheme):
             >>> abjad.SchemeMoment((1, 68)) < abjad.SchemeMoment((1, 78))
             False
 
-        Returns true or false.
         """
         if isinstance(argument, type(self)):
             if self.duration < argument.duration:
                 return True
         return False
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _formatted_value(self):
-        pair = self.duration.pair
-        string = '(ly:make-moment {} {})'
-        string = string.format(*pair)
-        return string
-
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        import abjad
         values = [self.value]
-        return abjad.FormatSpecification(
+        return FormatSpecification(
             client=self,
             storage_format_args_values=values,
             storage_format_kwargs_names=[],
             )
 
+    def _get_formatted_value(self):
+        pair = self.duration.pair
+        string = f'(ly:make-moment {pair[0]} {pair[1]})'
+        return string
+
     ### PUBLIC PROPERTIES ###
 
     @property
-    def duration(self):
+    def duration(self) -> NonreducedFraction:
         """
         Gets duration of Scheme moment.
 
@@ -116,7 +113,5 @@ class SchemeMoment(Scheme):
             >>> abjad.SchemeMoment((2, 68)).duration
             NonreducedFraction(2, 68)
 
-        Returns nonreduced fraction.
         """
-        import abjad
-        return abjad.NonreducedFraction(self.value)
+        return NonreducedFraction(self.value)

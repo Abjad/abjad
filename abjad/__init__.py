@@ -12,6 +12,7 @@ except ImportError:
 
 from abjad.enumerations import *
 from abjad.exceptions import *
+from abjad.typings import *
 
 # ensure that the ~/.abjad directory and friends are setup
 # and instantiate Abjad's configuration singleton

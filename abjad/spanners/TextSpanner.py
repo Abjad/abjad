@@ -1,17 +1,16 @@
 import typing
+from .Spanner import Spanner
+from abjad.core.Leaf import Leaf
 from abjad.enumerations import Center
 from abjad.indicators.LineSegment import LineSegment
-from abjad.utilities.OrderedDict import OrderedDict
-from abjad.lilypondnames.LilyPondGrobOverride import (
-    LilyPondGrobOverride,
-)
+from abjad.lilypondnames.LilyPondGrobOverride import LilyPondGrobOverride
 from abjad.markup.Markup import Markup
-from abjad.core.Leaf import Leaf
 from abjad.system.Tag import Tag
 from abjad.system.Wrapper import Wrapper
 from abjad.top.inspect import inspect
 from abjad.top.new import new
-from .Spanner import Spanner
+from abjad.top.select import select
+from abjad.utilities.OrderedDict import OrderedDict
 
 
 class TextSpanner(Spanner):
@@ -506,6 +505,7 @@ class TextSpanner(Spanner):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_commands',
         '_lilypond_id',
         '_skip_attachment_test_all',
         )
@@ -516,10 +516,16 @@ class TextSpanner(Spanner):
 
     def __init__(
         self,
+        *,
+        commands: typing.Tuple[str, str] = None,
         leak: bool = None,
         lilypond_id: int = None,
         ) -> None:
         Spanner.__init__(self, leak=leak)
+        if commands is not None:
+            assert isinstance(commands, tuple), repr(commands)
+            assert all(isinstance(_, str) for _ in commands), repr(commands)
+        self._commands = commands
         if lilypond_id is not None:
             assert lilypond_id in self._lilypond_ids, repr(lilypond_id)
         self._lilypond_id = lilypond_id
@@ -530,7 +536,23 @@ class TextSpanner(Spanner):
     def _attachment_test_all(self, argument):
         if self._skip_attachment_test_all:
             return True
-        return self._at_least_two_leaves(argument)
+        result = self._at_least_two_leaves(argument)
+        if result is not True:
+            return result
+        leaves = select(argument).leaves()
+        existing_spanners = inspect(leaves).get_spanners(
+            prototype=TextSpanner,
+            )
+        for spanner in existing_spanners:
+            if (spanner.lilypond_id == self.lilypond_id and
+                spanner.commands == self.commands):
+                if leaves[0] is spanner[-1] or leaves[-1] is spanner[0]:
+                    continue
+                message = 'Overlapping text spanners'
+                message += f' with LilyPond ID {self.lilypond_id}'
+                message += f' and commands {self.commands}.'
+                return [message]
+        return True
 
     def _copy_keywords(self, new):
         Spanner._copy_keywords(self, new)
@@ -644,6 +666,9 @@ class TextSpanner(Spanner):
 
     @property
     def _start_command(self):
+        if self.commands is not None:
+            start_command, stop_command = self.commands
+            return start_command
         if self.lilypond_id is None:
             return r'\startTextSpan'
         elif self.lilypond_id == 1:
@@ -656,6 +681,9 @@ class TextSpanner(Spanner):
             raise ValueError(self.lilypond_id)
 
     def _stop_command(self):
+        if self.commands is not None:
+            start_command, stop_command = self.commands
+            return stop_command
         if self.lilypond_id is None:
             return r'\stopTextSpan'
         elif self.lilypond_id == 1:
@@ -679,6 +707,41 @@ class TextSpanner(Spanner):
             )
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def commands(self) -> typing.Optional[typing.Tuple[str, str]]:
+        r"""
+        Gets custom start- and stop-commands.
+
+        ..  container:: example
+
+            >>> start_command = r'\startParameterXYZTextSpan'
+            >>> stop_command = r'\stopParameterXYZTextSpan'
+            >>> spanner = abjad.TextSpanner(
+            ...     commands=(start_command, stop_command),
+            ...     )
+            >>> spanner.commands
+            ('\\startParameterXYZTextSpan', '\\stopParameterXYZTextSpan')
+
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> abjad.attach(spanner, staff[:])
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                c'4
+                \startParameterXYZTextSpan
+                d'4
+                e'4
+                f'4
+                \stopParameterXYZTextSpan
+            }
+
+            Only LilyPond output is shown here because notational output would
+            require the definition of ``\startParameterXYZTextSpan`` and
+            ``\stopParameterXYZTextSpan`` beforehand.
+
+        """
+        return self._commands
 
     @property
     def leak(self) -> typing.Optional[bool]:
@@ -1005,6 +1068,21 @@ class TextSpanner(Spanner):
 
             >>> spanner_1.lilypond_id == spanner_2.lilypond_id
             True
+
+        ..  container:: example
+
+            Raises exception when attempting to attach text spanners with
+            duplicate LilyPond ID / command profile:
+
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> spanner = abjad.TextSpanner(lilypond_id=1)
+            >>> spanner_1 = abjad.TextSpanner(lilypond_id=1)
+            >>> abjad.attach(spanner, staff[:])
+            >>> abjad.attach(spanner_1, staff[:])
+            Traceback (most recent call last):
+                ...
+            Exception: TextSpanner(lilypond_id=1)._attachment_test_all():
+              Overlapping text spanners with LilyPond ID 1 and commands None.
 
         """
         return self._lilypond_id

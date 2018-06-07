@@ -81,6 +81,7 @@ class Slur(Spanner):
 
     def __init__(
         self,
+        *,
         direction: typing.Union[str, VerticalAlignment] = None,
         ) -> None:
         Spanner.__init__(self)

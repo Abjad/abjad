@@ -75,6 +75,7 @@ class ComplexBeam(Beam):
 
     def __init__(
         self,
+        *,
         beam_rests: bool = None,
         direction: typing.Union[str, VerticalAlignment] = None,
         isolated_nib_direction: typing.Union[bool, HorizontalAlignment] = None,

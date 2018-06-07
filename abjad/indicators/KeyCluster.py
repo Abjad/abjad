@@ -1,10 +1,10 @@
+from abjad.abctools.AbjadValueObject import AbjadValueObject
 from abjad.enumerations import (
     Center,
     Down,
     Up,
     VerticalAlignment,
     )
-from abjad.abctools.AbjadValueObject import AbjadValueObject
 from abjad.markup.Markup import Markup
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 

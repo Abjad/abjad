@@ -1,6 +1,6 @@
 import typing
-from abjad.utilities.String import String
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
+from abjad.utilities.String import String
 from .LilyPondNameManager import LilyPondNameManager
 
 

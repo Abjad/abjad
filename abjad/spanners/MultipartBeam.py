@@ -82,7 +82,8 @@ class MultipartBeam(Beam):
 
     def __init__(
         self,
-        beam_rests: bool = False,
+        *,
+        beam_rests: bool = None,
         direction: VerticalAlignment = None,
         stemlet_length: Number = None,
         ) -> None:
@@ -91,7 +92,9 @@ class MultipartBeam(Beam):
             direction=direction,
             stemlet_length=stemlet_length,
             )
-        self._beam_rests = bool(beam_rests)
+        if beam_rests is not None:
+            beam_rests = bool(beam_rests)
+        self._beam_rests = beam_rests
 
     ### PRIVATE METHODS ###
 

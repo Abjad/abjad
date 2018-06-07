@@ -1,3 +1,9 @@
+from abjad.enumerations import Down
+from abjad.enumerations import Left
+from abjad.enumerations import Right
+from abjad.enumerations import Up
+
+
 def tweak(argument):
     r"""
     Makes LilyPond tweak manager.
@@ -238,8 +244,27 @@ def tweak(argument):
         >>> abjad.tweak(markup_1)
         LilyPondTweakManager(('color', 'red'))
 
+    ..  container:: example
+
+        Tweak expressions work like this:
+
+        >>> abjad.tweak('red').color
+        LilyPondTweakManager(('color', 'red'))
+
+        >>> abjad.tweak(6).Y_offset
+        LilyPondTweakManager(('Y_offset', 6))
+
+        >>> abjad.tweak(False).bound_details__left_broken__text
+        LilyPondTweakManager(('bound_details__left_broken__text', False))
+
     """
     import abjad
+    constants = (Down, Left, Right, Up)
+    prototype = (bool, int, float, str, tuple, abjad.Scheme)
+    if argument in constants or isinstance(argument, prototype):
+        manager = abjad.LilyPondTweakManager()
+        manager._pending_value = argument
+        return manager
     if not hasattr(argument, '_lilypond_tweak_manager'):
         name = type(argument).__name__
         raise NotImplementedError(f'{name} does not allow tweaks (yet).')

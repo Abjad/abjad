@@ -1427,6 +1427,28 @@ class Expression(AbjadValueObject):
         return self._is_postfix
 
     @property
+    def is_selector(self):
+        """
+        Is true when expression is selector.
+
+        ..  container:: example
+
+            >>> expression = abjad.select().leaf(0)
+            >>> expression.is_selector
+            True
+
+            >>> expression = abjad.sequence().rotate(n=-1)
+            >>> expression.is_selector
+            False
+
+        """
+        if self.callbacks:
+            first_callback = self.callbacks[0]
+            if '.Selection' in first_callback.evaluation_template:
+                return True
+        return False
+
+    @property
     def keywords(self):
         """
         Gets keywords.

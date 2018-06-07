@@ -1,14 +1,12 @@
 import typing
+from abjad.abctools.AbjadValueObject import AbjadValueObject
 from abjad.enumerations import (
     Center,
     Down,
     Up,
     VerticalAlignment,
     )
-from abjad.lilypondnames.LilyPondTweakManager import (
-    LilyPondTweakManager,
-    )
-from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 
 

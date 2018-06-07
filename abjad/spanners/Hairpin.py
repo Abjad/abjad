@@ -1,18 +1,18 @@
 import typing
 from .Spanner import Spanner
-from abjad.enumerations import VerticalAlignment
-from abjad.indicators.Dynamic import Dynamic
-from abjad.utilities.String import String
-from abjad.lilypondnames.LilyPondGrobOverride import \
-    LilyPondGrobOverride
 from abjad.core.Chord import Chord
 from abjad.core.Leaf import Leaf
 from abjad.core.Note import Note
+from abjad.enumerations import VerticalAlignment
+from abjad.indicators.Dynamic import Dynamic
+from abjad.lilypondnames.LilyPondGrobOverride import LilyPondGrobOverride
+from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.system.Tag import Tag
 from abjad.system.Wrapper import Wrapper
 from abjad.top.inspect import inspect
 from abjad.top.select import select
 from abjad.top.tweak import tweak
+from abjad.utilities.String import String
 
 
 class Hairpin(Spanner):
@@ -303,6 +303,7 @@ class Hairpin(Spanner):
     def __init__(
         self,
         descriptor: str = None,
+        *,
         context: str = None,
         direction: VerticalAlignment = None,
         leak: bool = None,
@@ -419,7 +420,7 @@ class Hairpin(Spanner):
             return [string]
         return []
 
-    def _add_dynamic(self, leaf, bundle):
+    def _add_piecewise_dynamic(self, leaf, bundle):
         dynamic = self._get_piecewise_dynamic(leaf)
         if dynamic is None:
             return
@@ -440,7 +441,7 @@ class Hairpin(Spanner):
         else:
             bundle.right.spanner_stops.append(string)
 
-    def _add_hairpin_start(self, leaf, bundle, tweaks):
+    def _add_piecewise_hairpin_start(self, leaf, bundle, tweaks):
         if (leaf is self[0] and
             self._left_broken is not None and
             1 < len(self)):
@@ -463,7 +464,6 @@ class Hairpin(Spanner):
                     string = self._add_direction(string)
                     strings = tweaks + [string]
                     if leaf is self[-1]:
-                        #string = self._tag_show([string])[0]
                         strings = self._tag_show(strings)
                 else:
                     return
@@ -477,10 +477,9 @@ class Hairpin(Spanner):
                 string = r'\>'
                 string = self._add_direction(string)
                 strings = tweaks + [string]
-        #bundle.right.spanner_starts.append(string)
         bundle.right.spanner_starts.extend(strings)
 
-    def _add_right_broken_hairpin_stop(self, leaf, bundle):
+    def _add_piecewise_right_broken_hairpin_stop(self, leaf, bundle):
         if self._right_broken is None:
             return
         if leaf is not self[-1]:
@@ -563,9 +562,11 @@ class Hairpin(Spanner):
     def _get_piecewise_lilypond_format_bundle(self, leaf):
         bundle = self._get_basic_lilypond_format_bundle(leaf)
         tweaks = self._make_circled_tip_tweaks(leaf)
-        self._add_hairpin_start(leaf, bundle, tweaks)
-        self._add_dynamic(leaf, bundle)
-        self._add_right_broken_hairpin_stop(leaf, bundle)
+        tweaks_ = tweak(self)._list_format_contributions()
+        tweaks.extend(tweaks_)
+        self._add_piecewise_hairpin_start(leaf, bundle, tweaks)
+        self._add_piecewise_dynamic(leaf, bundle)
+        self._add_piecewise_right_broken_hairpin_stop(leaf, bundle)
         if self._is_my_only(leaf):
             bundle.right.spanner_starts.extend(bundle.right.spanner_stops)
             bundle.right.spanner_stops[:] = []
@@ -2305,6 +2306,41 @@ class Hairpin(Spanner):
 
         """
         return self._stop_dynamic_is_textual
+
+    @property
+    def tweaks(self) -> typing.Optional[LilyPondTweakManager]:
+        r"""
+        Gets tweaks.
+
+        ..  container:: example
+
+            Tweaks work with piecewise hairpins:
+
+            >>> hairpin = abjad.Hairpin()
+            >>> abjad.tweak(hairpin).color = 'blue'
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> abjad.attach(hairpin, staff[:])
+            >>> hairpin.attach(abjad.Dynamic('p'), hairpin[0])
+            >>> hairpin.attach(abjad.Dynamic('f'), hairpin[-1])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    c'4
+                    - \tweak color #blue
+                    \<
+                    \p
+                    d'4
+                    e'4
+                    f'4
+                    \f
+                }
+
+        """
+        return super(Hairpin, self).tweaks
 
     ### PUBLIC METHODS ###
 

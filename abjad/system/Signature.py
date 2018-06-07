@@ -1,7 +1,7 @@
-from abjad import abctools
+from abjad.abctools.AbjadValueObject import AbjadValueObject
 
 
-class Signature(abctools.AbjadValueObject):
+class Signature(AbjadValueObject):
     """
     Signature.
 

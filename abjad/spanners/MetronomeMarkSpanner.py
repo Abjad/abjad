@@ -1970,6 +1970,7 @@ class MetronomeMarkSpanner(Spanner):
 
     def __init__(
         self,
+        *,
         left_broken_padding: Number = None,
         left_broken_text: typing.Union[bool, Markup] = False,
         left_hspace: Number = 1,

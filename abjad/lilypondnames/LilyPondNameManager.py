@@ -12,7 +12,7 @@ class LilyPondNameManager(object):
 
     def __eq__(self, argument) -> bool:
         """
-        Is true when `argument` is a LilyPond name manager with attribute
+        Is true when ``argument`` is a LilyPond name manager with attribute
         pairs equal to those of this LilyPond name manager.
         """
         if isinstance(argument, type(self)):
@@ -42,7 +42,7 @@ class LilyPondNameManager(object):
         body_string = ''
         pairs = self._get_attribute_pairs()
         pairs = [str(_) for _ in pairs]
-        body_string = ''.join(pairs)
+        body_string = ', '.join(pairs)
         return f'{type(self).__name__}({body_string})'
 
     def __setstate__(self, state) -> None:

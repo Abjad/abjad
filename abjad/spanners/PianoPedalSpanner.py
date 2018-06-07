@@ -59,6 +59,7 @@ class PianoPedalSpanner(Spanner):
 
     def __init__(
         self,
+        *,
         kind: str = 'sustain',
         leak: bool = None,
         style: str = 'mixed',

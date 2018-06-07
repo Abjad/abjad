@@ -1,7 +1,7 @@
 import copy
 import typing
-from abjad.utilities.String import String
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
+from abjad.utilities.String import String
 from .LilyPondNameManager import LilyPondNameManager
 
 
@@ -37,7 +37,7 @@ class LilyPondTweakManager(LilyPondNameManager):
         >>> abjad.tweak(beam).foo
         Traceback (most recent call last):
             ...
-        AttributeError: 'LilyPondTweakManager' object has no attribute: 'foo'.
+        AttributeError: LilyPondTweakManager object has no attribute 'foo'.
         
     """
 
@@ -98,16 +98,34 @@ class LilyPondTweakManager(LilyPondNameManager):
                     \f
                 }
 
+        ..  container:: example
+
+            Tweak expressions work like this:
+
+            >>> abjad.tweak('red').color
+            LilyPondTweakManager(('color', 'red'))
+
+            >>> abjad.tweak(6).Y_offset
+            LilyPondTweakManager(('Y_offset', 6))
+
+            >>> abjad.tweak(False).bound_details__left_broken__text
+            LilyPondTweakManager(('bound_details__left_broken__text', False))
+
         """
         from abjad.ly import contexts
         from abjad.ly import grob_interfaces
+        if '_pending_value' in vars(self):
+            _pending_value = self._pending_value
+            self.__setattr__(name, _pending_value)
+            delattr(self, '_pending_value')
+            return self
         camel_name = String(name).to_upper_camel_case()
         if name.startswith('_'):
             try:
                 return vars(self)[name]
             except KeyError:
                 type_name = type(self).__name__
-                message = '{type_name!r} object has no attribute: {name!r}.'
+                message = f'{type_name} object has no attribute {name!r}.'
                 raise AttributeError(message)
         elif camel_name in grob_interfaces:
             try:
@@ -120,7 +138,7 @@ class LilyPondTweakManager(LilyPondNameManager):
                 return vars(self)[name]
             except KeyError:
                 type_name = type(self).__name__
-                message = f'{type_name!r} object has no attribute: {name!r}.'
+                message = f'{type_name} object has no attribute {name!r}.'
                 raise AttributeError(message)
 
     ### PRIVATE METHODS ###

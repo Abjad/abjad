@@ -1,5 +1,9 @@
-from abjad import system
+import typing
 from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.enumerations import HorizontalAlignment
+from abjad.enumerations import VerticalAlignment
+from abjad.system.FormatSpecification import FormatSpecification
+from abjad.system.StorageFormatManager import StorageFormatManager
 
 
 class Scheme(AbjadValueObject):
@@ -190,37 +194,53 @@ class Scheme(AbjadValueObject):
 
     _publish_storage_format = True
 
+    lilypond_color_constants = (
+        'black',
+        'blue',
+        'center',
+        'cyan',
+        'darkblue',
+        'darkcyan',
+        'darkgreen',
+        'darkmagenta',
+        'darkred',
+        'darkyellow',
+        'down',
+        'green',
+        'grey',
+        'left',
+        'magenta',
+        'red',
+        'right',
+        'up',
+        'white',
+        'yellow',
+        )
+
     ### INITIALIZER ###
 
     def __init__(
         self,
-        value=None,
-        force_quotes=None,
-        quoting=None,
-        verbatim=None,
-        ):
-        if quoting is not None:
-            if (not isinstance(quoting, str) or
-                not all(character in r"',@`#" for character in quoting)):
-                message = r"quoting must be ' or , or @ or ` or #: {!r}."
-                message = message.format(quoting)
-                raise ValueError(message)
-        if not isinstance(force_quotes, (bool, type(None))):
-            message = 'force quotes must be true, false or none: {!r}.'
-            message = message.format(force_quotes)
-            raise TypeError(force_quotes)
-        if not isinstance(verbatim, (bool, type(None))):
-            message = 'force quotes must be true, false or none: {!r}.'
-            message = message.format(verbatim)
-            raise TypeError(verbatim)
+        value: typing.Any = None,
+        force_quotes: bool = None,
+        quoting: str = None,
+        verbatim: bool = None,
+        ) -> None:
         self._value = value
-        self._quoting = quoting
+        if force_quotes is not None:
+            force_quotes = bool(force_quotes)
         self._force_quotes = force_quotes
+        if quoting is not None and not set(r"',@`#").issuperset(set(quoting)):
+            message = rf"quoting must be ' or , or @ or ` or #: {quoting!r}."
+            raise ValueError(message)
+        self._quoting = quoting
+        if verbatim is not None:
+            verbatim = bool(verbatim)
         self._verbatim = verbatim
 
     ### SPECIAL METHODS ###
 
-    def __format__(self, format_specification=''):
+    def __format__(self, format_specification='') -> str:
         """
         Formats scheme.
 
@@ -241,115 +261,104 @@ class Scheme(AbjadValueObject):
                 'foo'
                 )
 
-        Returns string.
         """
         if format_specification in ('', 'lilypond'):
             return self._get_lilypond_format()
-        elif format_specification == 'storage':
-            return system.StorageFormatManager(self).get_storage_format()
-        return str(self)
+        assert format_specification == 'storage'
+        return StorageFormatManager(self).get_storage_format()
 
-    def __str__(self):
+    def __str__(self) -> str:
         """
-        String representation of scheme object.
-
-        Returns string.
+        Gets string representation of Scheme object.
         """
-        if self._quoting is not None:
-            return self._quoting + self._formatted_value
-        return self._formatted_value
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _formatted_value(self):
-        return Scheme.format_scheme_value(
-            self._value,
-            force_quotes=self.force_quotes,
-            verbatim=self.verbatim,
-            )
+        string = self._get_formatted_value()
+        if self.quoting is not None:
+            string = self.quoting + string
+        return string
 
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
         values = [self.value]
-        return system.FormatSpecification(
+        return FormatSpecification(
             client=self,
             storage_format_args_values=values,
             )
 
+    def _get_formatted_value(self):
+        return Scheme.format_scheme_value(
+            self.value,
+            force_quotes=self.force_quotes,
+            verbatim=self.verbatim,
+            )
+
     def _get_lilypond_format(self):
-        if self._quoting is not None:
-            return '#' + self._quoting + self._formatted_value
-        return '#' + self._formatted_value
+        string = self._get_formatted_value()
+        if self.quoting is not None:
+            string = self.quoting + string
+        string = '#' + string
+        return string
 
     ### PUBLIC PROPERTIES ###
 
     @property
-    def force_quotes(self):
+    def force_quotes(self) -> typing.Optional[bool]:
         """
         Is true when quotes should be forced in output.
-
-        Returns true or false.
         """
         return self._force_quotes
 
     @property
-    def quoting(self):
+    def quoting(self) -> typing.Optional[str]:
         """
         Gets Scheme quoting string.
-
-        Returns string.
         """
         return self._quoting
 
     @property
-    def value(self):
+    def value(self) -> typing.Any:
         """
         Gets value.
         """
         return self._value
 
     @property
-    def verbatim(self):
+    def verbatim(self) -> typing.Optional[bool]:
         """
         Is true when formatting should format value absolutely verbatim.
         Whitespace, quotes, and all other parts of value are left intact.
-
-        Defaults to false.
-
-        Set to true or false.
-
-        Returns true or false.
         """
         return self._verbatim
 
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def format_embedded_scheme_value(value, force_quotes=False):
+    def format_embedded_scheme_value(
+        value: typing.Any,
+        force_quotes: bool = False,
+        ) -> str:
         """
-        Formats ``value`` as an embedded Scheme value.
+        Formats embedded Scheme ``value``.
         """
-        import abjad
-        if isinstance(value, (
-            abjad.HorizontalAlignment,
-            abjad.VerticalAlignment,
-            )):
-            result = '#' + repr(value).lower()
-        else:
-            result = Scheme.format_scheme_value(
-                value, force_quotes=force_quotes)
-            if (
-                (isinstance(value, bool)) or
-                (isinstance(value, str) and not force_quotes) or
-                (isinstance(value, Scheme))
-                ):
-                result = '#' + result
+        if isinstance(value, (HorizontalAlignment, VerticalAlignment)):
+            return '#' + repr(value).lower()
+        result = Scheme.format_scheme_value(value, force_quotes=force_quotes)
+        if isinstance(value, bool):
+            result = '#' + result
+        elif isinstance(value, str) and value.startswith('#'):
+            pass
+        elif isinstance(value, str) and not force_quotes:
+            result = '#' + result
+        elif isinstance(value, Scheme):
+            result = '#' + result
         return result
 
     @staticmethod
-    def format_scheme_value(value, force_quotes=False, verbatim=False):
+    def format_scheme_value(
+        value: typing.Any,
+        force_quotes: bool = False,
+        verbatim: bool = False,
+        ) -> str:
         r"""
         Formats ``value`` as Scheme would.
 
@@ -402,13 +411,12 @@ class Scheme(AbjadValueObject):
             >>> abjad.Scheme.format_scheme_value(string, verbatim=True)
             '#1-finger'
 
-        Returns string.
         """
         if isinstance(value, str):
             if not verbatim:
                 value = value.replace('"', r'\"')
                 if force_quotes or ' ' in value or '#' in value:
-                    return '"{}"'.format(value)
+                    return f'"{value}"'
                 return value
             else:
                 return value
@@ -417,9 +425,8 @@ class Scheme(AbjadValueObject):
                 return '#t'
             return '#f'
         elif isinstance(value, (list, tuple)):
-            return '({})'.format(
-                ' '.join(Scheme.format_scheme_value(x)
-                    for x in value))
+            string = ' '.join(Scheme.format_scheme_value(x) for x in value)
+            return f'({string})'
         elif isinstance(value, Scheme):
             return str(value)
         elif isinstance(value, type(None)):

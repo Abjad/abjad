@@ -1,4 +1,6 @@
 import copy
+from abjad.lilypondnames.LilyPondContext import LilyPondContext
+from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from .Container import Container
 
 
@@ -95,7 +97,6 @@ class Context(Container):
 
         Returns new component.
         """
-        import abjad
         new_context = Container.__copy__(self)
         new_context._consists_commands = copy.copy(self.consists_commands)
         new_context._remove_commands = copy.copy(self.remove_commands)
@@ -138,22 +139,19 @@ class Context(Container):
     def _format_consists_commands(self):
         result = []
         for engraver in self.consists_commands:
-            string = r'\consists {}'.format(engraver)
+            string = rf'\consists {engraver}'
             result.append(string)
         return result
 
     def _format_invocation(self):
         if self.name is not None:
-            string = r'\context {} = "{}"'
-            string = string.format(self.lilypond_type, self.name)
+            string = rf'\context {self.lilypond_type} = "{self.name}"'
         else:
-            string = r'\new {}'
-            string = string.format(self.lilypond_type)
+            string = rf'\new {self.lilypond_type}'
         return string
 
     def _format_open_brackets_slot(context, bundle):
-        import abjad
-        indent = abjad.LilyPondFormatManager.indent
+        indent = LilyPondFormatManager.indent
         result = []
         if context.is_simultaneous:
             if context.identifier:
@@ -228,7 +226,6 @@ class Context(Container):
         return self._format_component()
 
     def _get_persistent_wrappers(self):
-        import abjad
         self._update_now(indicators=True)
         wrappers = {}
         for wrapper in self._dependent_wrappers:
@@ -311,11 +308,10 @@ class Context(Container):
 
         Returns LilyPond context instance.
         """
-        import abjad
         try:
-            lilypond_context = abjad.LilyPondContext(name=self.lilypond_type)
+            lilypond_context = LilyPondContext(name=self.lilypond_type)
         except AssertionError:
-            lilypond_context = abjad.LilyPondContext(
+            lilypond_context = LilyPondContext(
                 name=self._default_lilypond_type,
                 )
         return lilypond_context

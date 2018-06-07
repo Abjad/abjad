@@ -1,3 +1,4 @@
+from abjad.typings import Number
 from .SchemeVector import SchemeVector
 from .SchemePair import SchemePair
 
@@ -42,11 +43,11 @@ class SpacingVector(SchemeVector):
 
     def __init__(
         self,
-        basic_distance=0,
-        minimum_distance=0,
-        padding=12,
-        stretchability=0,
-        ):
+        basic_distance: Number = 0,
+        minimum_distance: Number = 0,
+        padding: Number = 12,
+        stretchability: Number = 0,
+        ) -> None:
         pairs = [
             SchemePair(('basic-distance', basic_distance)),
             SchemePair(('minimum-distance', minimum_distance)),

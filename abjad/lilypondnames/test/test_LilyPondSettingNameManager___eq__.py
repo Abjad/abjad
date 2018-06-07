@@ -1,5 +1,5 @@
-import copy
 import abjad
+import copy
 
 
 def test_LilyPondSettingNameManager___eq___01():

@@ -1,13 +1,15 @@
+import cProfile
 import datetime
+import io
 import os
 import pathlib
 import platform
+import pstats
 import re
 import shutil
 import subprocess
 import sys
 from abjad.abctools.AbjadObject import AbjadObject
-from io import StringIO
 
 
 class IOManager(AbjadObject):
@@ -633,8 +635,6 @@ class IOManager(AbjadObject):
 
         Returns string when ``print_to_terminal`` is true.
         """
-        import cProfile
-        import pstats
         now_string = datetime.datetime.today().strftime('%a %b %d %H:%M:%S %Y')
         profile = cProfile.Profile()
         if global_context is None:
@@ -647,7 +647,7 @@ class IOManager(AbjadObject):
                 global_context,
                 local_context,
                 )
-        stats_stream = StringIO()
+        stats_stream = io.StringIO()
         stats = pstats.Stats(profile, stream=stats_stream)
         if sort_by == 'cum':
             if platform.python_version() == '2.7.5':  # why so specific?

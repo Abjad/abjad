@@ -2,10 +2,10 @@ import os
 import re
 import shutil
 import tempfile
-from abjad import abctools
+from abjad.abctools.AbjadObject import AbjadObject
 
 
-class PersistenceManager(abctools.AbjadObject):
+class PersistenceManager(AbjadObject):
     """
     Persistence manager.
 

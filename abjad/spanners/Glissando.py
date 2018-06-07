@@ -78,6 +78,7 @@ class Glissando(Spanner):
 
     def __init__(
         self,
+        *,
         allow_repeats: bool = None,
         allow_ties: bool = None,
         parenthesize_repeats: bool = None,

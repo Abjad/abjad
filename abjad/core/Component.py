@@ -2,10 +2,20 @@ import abc
 import bisect
 import copy
 import uqbar.graphs
-from abjad.enumerations import Down, Right, Up
+from abjad import mathtools
+from abjad.abctools.AbjadObject import AbjadObject
+from abjad.enumerations import Down
+from abjad.enumerations import Right
+from abjad.enumerations import Up
 from abjad.exceptions import MissingMetronomeMarkError
 from abjad.exceptions import MissingMeasureError
-from abjad.abctools.AbjadObject import AbjadObject
+from abjad.system.FormatSpecification import FormatSpecification
+from abjad.system.LilyPondFormatManager import LilyPondFormatManager
+from abjad.system.StorageFormatManager import StorageFormatManager
+from abjad.system.UpdateManager import UpdateManager
+from abjad.system.Wrapper import Wrapper
+from abjad.timespans.Timespan import Timespan
+from abjad.utilities.Duration import Duration
 
 
 class Component(AbjadObject):
@@ -36,7 +46,6 @@ class Component(AbjadObject):
 
     @abc.abstractmethod
     def __init__(self, name=None):
-        import abjad
         self._indicators_are_current = False
         self._is_forbidden_to_update = False
         self._measure_number = None
@@ -49,7 +58,7 @@ class Component(AbjadObject):
         self._start_offset_in_seconds = None
         self._stop_offset = None
         self._stop_offset_in_seconds = None
-        self._timespan = abjad.Timespan()
+        self._timespan = Timespan()
         self._wrappers = []
 
     ### SPECIAL METHODS ###
@@ -89,11 +98,10 @@ class Component(AbjadObject):
 
         Returns string.
         """
-        import abjad
         if format_specification in ('', 'lilypond'):
             return self._get_lilypond_format()
         elif format_specification == 'storage':
-            return abjad.StorageFormatManager(self).get_storage_format()
+            return StorageFormatManager(self).get_storage_format()
         raise ValueError(repr(format_specification))
 
     def __getnewargs__(self):
@@ -136,8 +144,7 @@ class Component(AbjadObject):
 
         Returns string.
         """
-        import abjad
-        return abjad.StorageFormatManager(self).get_repr_format()
+        return StorageFormatManager(self).get_repr_format()
 
     def __rmul__(self, n):
         """
@@ -223,9 +230,8 @@ class Component(AbjadObject):
         pass
 
     def _format_component(self, pieces=False):
-        import abjad
         result = []
-        bundle = abjad.LilyPondFormatManager.bundle_format_contributions(self)
+        bundle = LilyPondFormatManager.bundle_format_contributions(self)
         result.extend(self._format_absolute_before_slot(bundle))
         result.extend(self._format_before_slot(bundle))
         result.extend(self._format_open_brackets_slot(bundle))
@@ -365,10 +371,9 @@ class Component(AbjadObject):
         return effective_staff
 
     def _get_format_contributions_for_slot(self, slot_identifier, bundle=None):
-        import abjad
         result = []
         if bundle is None:
-            manager = abjad.LilyPondFormatManager
+            manager = LilyPondFormatManager
             bundle = manager.bundle_format_contributions(self)
         slot_names = (
             'before',
@@ -396,12 +401,11 @@ class Component(AbjadObject):
         return self._format_component(pieces=True)
 
     def _get_format_specification(self):
-        import abjad
         values = []
         summary = self._get_contents_summary()
         if summary:
             values.append(summary)
-        return abjad.FormatSpecification(
+        return FormatSpecification(
             client=self,
             repr_args_values=values,
             storage_format_kwargs_names=[]
@@ -440,7 +444,6 @@ class Component(AbjadObject):
         return indicators[0]
 
     def _get_indicators(self, prototype=None, unwrap=True):
-        import abjad
         prototype = prototype or (object,)
         if not isinstance(prototype, tuple):
             prototype = (prototype,)
@@ -460,7 +463,7 @@ class Component(AbjadObject):
                 result.append(wrapper)
             elif any(wrapper == _ for _ in prototype_objects):
                 result.append(wrapper)
-            elif isinstance(wrapper, abjad.Wrapper):
+            elif isinstance(wrapper, Wrapper):
                 if isinstance(wrapper.indicator, prototype_classes):
                     result.append(wrapper)
                 elif any(wrapper.indicator == _ for _ in prototype_objects):
@@ -516,7 +519,7 @@ class Component(AbjadObject):
 
     def _get_nth_component_in_time_order_from(self, n):
         import abjad
-        assert abjad.mathtools.is_integer_equivalent(n)
+        assert mathtools.is_integer_equivalent(n)
         def next(component):
             if component is not None:
                 for parent in abjad.inspect(component).get_parentage(
@@ -600,7 +603,7 @@ class Component(AbjadObject):
             self._update_now(offsets_in_seconds=True)
             if self._start_offset_in_seconds is None:
                 raise MissingMetronomeMarkError
-            return abjad.Timespan(
+            return Timespan(
                 start_offset=self._start_offset_in_seconds,
                 stop_offset=self._stop_offset_in_seconds,
                 )
@@ -652,7 +655,7 @@ class Component(AbjadObject):
         prolated_leaf_duration = self._get_duration()
         parentage = abjad.inspect(self).get_parentage(include_self=False)
         prolations = parentage._prolations
-        current_prolation, i = abjad.Duration(1), 0
+        current_prolation, i = Duration(1), 0
         parent = self._parent
         while parent is not None and not parent.is_simultaneous:
             current_prolation *= prolations[i]
@@ -750,9 +753,9 @@ class Component(AbjadObject):
         grow_spanners=True,
         ):
         import abjad
-        assert all(isinstance(x, abjad.Component) for x in components)
+        assert all(isinstance(x, Component) for x in components)
         selection = abjad.select(self)
-        if direction is abjad.Right:
+        if direction is Right:
             if grow_spanners:
                 insert_offset = abjad.inspect(self).get_timespan().stop_offset
                 receipt = selection._get_dominant_spanners()
@@ -825,8 +828,7 @@ class Component(AbjadObject):
                 component._offsets_in_seconds_are_current = False
 
     def _update_measure_numbers(self):
-        import abjad
-        update_manager = abjad.UpdateManager()
+        update_manager = UpdateManager()
         update_manager._update_measure_numbers(self)
 
     def _update_now(
@@ -835,8 +837,7 @@ class Component(AbjadObject):
         offsets_in_seconds=False,
         indicators=False,
         ):
-        import abjad
-        update_manager = abjad.UpdateManager()
+        update_manager = UpdateManager()
         return update_manager._update_now(
             self,
             offsets=offsets,

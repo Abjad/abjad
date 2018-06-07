@@ -1,9 +1,7 @@
 import copy
 import typing
 from abjad.abctools.AbjadValueObject import AbjadValueObject
-from abjad.lilypondnames.LilyPondTweakManager import (
-    LilyPondTweakManager,
-    )
+from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.markup.Markup import Markup
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.top.new import new
