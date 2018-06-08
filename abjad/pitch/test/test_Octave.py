@@ -76,6 +76,6 @@ def test(input_, expected_number):
     ):
         with pytest.raises(expected_number):
             Octave(input_)
-    else:
-        octave = Octave(input_)
-        assert octave.number == expected_number
+        return
+    octave = Octave(input_)
+    assert octave.number == expected_number

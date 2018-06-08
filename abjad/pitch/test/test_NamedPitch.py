@@ -48,6 +48,6 @@ def test_01(input_, expected_semitones):
     ):
         with pytest.raises(expected_semitones):
             NamedPitch(input_)
-    else:
-        instance = NamedPitch(input_)
-        assert float(instance) == expected_semitones
+        return
+    instance = NamedPitch(input_)
+    assert float(instance) == expected_semitones
