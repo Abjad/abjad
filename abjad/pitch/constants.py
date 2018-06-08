@@ -430,8 +430,8 @@ _interval_name_abbreviation_regex_body = '''
         dim|               # dimished
         d+                 # (possibly) multi-diminished
     )
-    (?P<number>\d+)        # followed by one or more digits
     (?P<quartertone>[+~]?) # followed by an optional quartertone inflection
+    (?P<number>\d+)        # followed by one or more digits
     '''
 
 ### REGEX PATTERNS ###
