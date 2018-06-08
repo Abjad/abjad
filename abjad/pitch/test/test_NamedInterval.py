@@ -9,7 +9,57 @@ from abjad.pitch import (
 
 values = []
 
-values.extend((x, x, None) for x in range(-48, 49))
+values.extend([
+    (-24, -24, '-P15'),
+    (-23, -23, '-M14'),
+    (-22, -22, '-m14'),
+    (-21, -21, '-M13'),
+    (-20, -20, '-m13'),
+    (-19, -19, '-P12'),
+    (-18, -18, '-d12'),
+    (-17, -17, '-P11'),
+    (-16, -16, '-M10'),
+    (-15, -15, '-m10'),
+    (-14, -14, '-M9'),
+    (-13, -13, '-m9'),
+    (-12, -12, '-P8'),
+    (-11, -11, '-M7'),
+    (-10, -10, '-m7'),
+    (-9, -9, '-M6'),
+    (-8, -8, '-m6'),
+    (-7, -7, '-P5'),
+    (-6, -6, '-d5'),
+    (-5, -5, '-P4'),
+    (-4, -4, '-M3'),
+    (-3, -3, '-m3'),
+    (-2, -2, '-M2'),
+    (-1, -1, '-m2'),
+    (0, 0, 'P1'),
+    (1, 1, '+m2'),
+    (2, 2, '+M2'),
+    (3, 3, '+m3'),
+    (4, 4, '+M3'),
+    (5, 5, '+P4'),
+    (6, 6, '+d5'),
+    (7, 7, '+P5'),
+    (8, 8, '+m6'),
+    (9, 9, '+M6'),
+    (10, 10, '+m7'),
+    (11, 11, '+M7'),
+    (12, 12, '+P8'),
+    (13, 13, '+m9'),
+    (14, 14, '+M9'),
+    (15, 15, '+m10'),
+    (16, 16, '+M10'),
+    (17, 17, '+P11'),
+    (18, 18, '+d12'),
+    (19, 19, '+P12'),
+    (20, 20, '+m13'),
+    (21, 21, '+M13'),
+    (22, 22, '+m14'),
+    (23, 23, '+M14'),
+    (24, 24, '+P15'),
+    ])
 
 values.extend([
     ('-A1', -1, '-A1'),
@@ -251,8 +301,11 @@ def test_01(input_, semitones, name):
     ):
         with pytest.raises(semitones):
             class_(input_)
-    else:
-        instance = class_(input_)
-        assert float(instance) == semitones
-        if name is not None:
-            assert instance.name == name
+        return
+    instance = class_(input_)
+    assert float(instance) == semitones
+    assert instance.name == name
+    NamedInterval(instance)
+    NumberedInterval(instance)
+    NamedIntervalClass(instance)
+    NumberedIntervalClass(instance)
