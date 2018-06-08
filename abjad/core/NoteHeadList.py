@@ -1,4 +1,5 @@
-from abjad import system
+from abjad.system.FormatSpecification import FormatSpecification
+from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.utilities.TypedList import TypedList
 
 
@@ -58,7 +59,7 @@ class NoteHeadList(TypedList):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        agent = system.StorageFormatManager(self)
+        agent = StorageFormatManager(self)
         names = list(agent.signature_keyword_names)
         if 'client' in names:
             names.remove('client')
@@ -66,7 +67,7 @@ class NoteHeadList(TypedList):
             names.remove('items')
         if 'keep_sorted' in names:
             names.remove('keep_sorted')
-        return system.FormatSpecification(
+        return FormatSpecification(
             self,
             repr_is_indented=False,
             storage_format_args_values=[self._collection],

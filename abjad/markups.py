@@ -3,17 +3,19 @@ import numbers
 import typing
 from abjad import Fraction
 from abjad import mathtools
-from abjad import scheme as abjad_scheme
 from abjad.abctools.AbjadValueObject import AbjadValueObject
 from abjad.enumerations import Center
 from abjad.enumerations import Down
 from abjad.enumerations import Up
 from abjad.enumerations import VerticalAlignment
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
-from abjad.markup.MarkupCommand import MarkupCommand
-from abjad.markup.Postscript import Postscript
-from abjad.scheme.Scheme import Scheme
+from abjad.scheme import Scheme
+from abjad.scheme import SchemeColor
+from abjad.scheme import SchemePair
+from abjad.system.FormatSpecification import FormatSpecification
+from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.utilities.String import String
+from abjad.utilities.TypedList import TypedList
 from abjad.top import new
 
 
@@ -273,7 +275,7 @@ class Markup(AbjadValueObject):
             typing.List[typing.Tuple], LilyPondTweakManager] = None,
         ) -> None:
         from abjad.top.parse import parse
-        from abjad.markup.MarkupCommand import MarkupCommand
+        from abjad.markups import MarkupCommand
         self._annotation = None
         new_contents: typing.Tuple[typing.Union[str, MarkupCommand], ...]
         if contents is None:
@@ -391,8 +393,7 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         """
-        import abjad
-        return abjad.new(self)
+        return new(self)
 
     def __eq__(self, argument):
         """
@@ -466,11 +467,10 @@ class Markup(AbjadValueObject):
 
         Returns string.
         """
-        import abjad
         if format_specification in ('', 'lilypond'):
             return self._get_lilypond_format()
         elif format_specification == 'storage':
-            return abjad.StorageFormatManager(self).get_storage_format()
+            return StorageFormatManager(self).get_storage_format()
         return str(self)
 
     def __hash__(self):
@@ -705,11 +705,10 @@ class Markup(AbjadValueObject):
         return tweaks + pieces
 
     def _get_format_specification(self):
-        import abjad
-        agent = abjad.StorageFormatManager(self)
+        agent = StorageFormatManager(self)
         names = list(agent.signature_keyword_names)
         names.remove('stack_priority')
-        return abjad.FormatSpecification(
+        return FormatSpecification(
             client=self,
             repr_is_indented=False,
             storage_format_kwargs_names=names,
@@ -736,7 +735,7 @@ class Markup(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def contents(self) -> typing.List[typing.Union[str, MarkupCommand]]:
+    def contents(self) -> typing.List[typing.Union[str, 'MarkupCommand']]:
         r"""
         Gets contents of markup.
 
@@ -1269,7 +1268,7 @@ class Markup(AbjadValueObject):
 
         Returns new markup
         """
-        pair = abjad_scheme.SchemePair((x, y))
+        pair = SchemePair((x, y))
         command = MarkupCommand('draw-line', pair)
         return class_(contents=command, direction=direction)
 
@@ -1315,8 +1314,8 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         """
-        x_extent = abjad_scheme.SchemePair(x_extent)
-        y_extent = abjad_scheme.SchemePair(y_extent)
+        x_extent = SchemePair(x_extent)
+        y_extent = SchemePair(y_extent)
         blot = float(blot)
         command = MarkupCommand('filled-box', x_extent, y_extent, blot)
         return class_(command, direction=direction)
@@ -1490,7 +1489,7 @@ class Markup(AbjadValueObject):
         import abjad
         contents = self._parse_markup_command_argument(self)
         axis = Scheme(axis)
-        # TODO: make abjad_scheme.Scheme(Up) work
+        # TODO: make Scheme(Up) work
         if direction is Up:
             direction = Scheme('UP')
         elif direction is Down:
@@ -1786,7 +1785,7 @@ class Markup(AbjadValueObject):
         glyph_name = glyph_name or 'accidentals.sharp'
         message = 'not a valid LilyPond glyph name.'
         assert glyph_name in music_glyphs, message
-        glyph_scheme = abjad_scheme.Scheme(glyph_name, force_quotes=True)
+        glyph_scheme = Scheme(glyph_name, force_quotes=True)
         command = MarkupCommand('musicglyph', glyph_scheme)
         return class_(contents=command, direction=direction)
 
@@ -1934,7 +1933,7 @@ class Markup(AbjadValueObject):
         Returns new markup.
         """
         contents = self._parse_markup_command_argument(self)
-        pair = abjad_scheme.SchemePair(pair)
+        pair = SchemePair(pair)
         command = MarkupCommand('override', pair, contents)
         return new(self, contents=command)
 
@@ -2120,8 +2119,8 @@ class Markup(AbjadValueObject):
         Returns new markup.
         """
         contents = self._parse_markup_command_argument(self)
-        x_extent = abjad_scheme.SchemePair(x_extent)
-        y_extent = abjad_scheme.SchemePair(y_extent)
+        x_extent = SchemePair(x_extent)
+        y_extent = SchemePair(y_extent)
         command = MarkupCommand('pad-to-box', x_extent, y_extent, contents)
         return new(self, contents=command)
 
@@ -2303,7 +2302,7 @@ class Markup(AbjadValueObject):
         Returns new markup.
         """
         contents = self._parse_markup_command_argument(self)
-        factor_pair = abjad_scheme.SchemePair(factor_pair)
+        factor_pair = SchemePair(factor_pair)
         command = MarkupCommand('scale', factor_pair, contents)
         return new(self, contents=command)
 
@@ -2472,7 +2471,7 @@ class Markup(AbjadValueObject):
         Returns new markup.
         """
         contents = self._parse_markup_command_argument(self)
-        offset_pair = abjad_scheme.SchemePair(offset_pair)
+        offset_pair = SchemePair(offset_pair)
         command = MarkupCommand('translate', offset_pair, contents)
         return new(self, contents=command)
 
@@ -2620,8 +2619,8 @@ class Markup(AbjadValueObject):
         """
         contents = self._parse_markup_command_argument(self)
         if isinstance(color, str):
-            color = abjad_scheme.Scheme(color)
-        elif isinstance(color, abjad_scheme.SchemeColor):
+            color = Scheme(color)
+        elif isinstance(color, SchemeColor):
             pass
         else:
             raise TypeError(color)
@@ -2812,8 +2811,8 @@ class Markup(AbjadValueObject):
         Returns new markup.
         """
         contents = self._parse_markup_command_argument(self)
-        x_extent = abjad_scheme.SchemePair(x_extent)
-        y_extent = abjad_scheme.SchemePair(y_extent)
+        x_extent = SchemePair(x_extent)
+        y_extent = SchemePair(y_extent)
         command = MarkupCommand(
             'with-dimensions',
             x_extent,
@@ -2899,3 +2898,2580 @@ class Markup(AbjadValueObject):
             contents,
             )
         return new(self, contents=command)
+
+
+class MarkupCommand(AbjadValueObject):
+    r"""
+    LilyPond markup command.
+
+    ..  container:: example
+
+        Initializes a complex LilyPond markup command:
+
+        >>> circle = abjad.MarkupCommand('draw-circle', 2.5, 0.1, False)
+        >>> square = abjad.MarkupCommand('rounded-box', 'hello?')
+        >>> line = abjad.MarkupCommand('line', [square, 'wow!'])
+        >>> rotate = abjad.MarkupCommand('rotate', 60, line)
+        >>> combine = abjad.MarkupCommand('combine', rotate, circle)
+
+        >>> print(format(combine, 'lilypond'))
+        \combine
+            \rotate
+                #60
+                \line
+                    {
+                        \rounded-box
+                            hello?
+                        wow!
+                    }
+            \draw-circle
+                #2.5
+                #0.1
+                ##f
+
+        >>> note = abjad.Note("c'4")
+        >>> markup = abjad.Markup(combine)
+        >>> abjad.attach(markup, note)
+        >>> abjad.show(note) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(note)
+            c'4
+            - \markup {
+                \combine
+                    \rotate
+                        #60
+                        \line
+                            {
+                                \rounded-box
+                                    hello?
+                                wow!
+                            }
+                    \draw-circle
+                        #2.5
+                        #0.1
+                        ##f
+                }
+
+    ..  container:: example
+
+        Works with the LilyPond ``\score`` markup command:
+
+        >>> small_staff = abjad.Staff("fs'16 gs'16 as'16 b'16")
+        >>> small_staff.remove_commands.append('Clef_engraver')
+        >>> small_staff.remove_commands.append('Time_signature_engraver')
+        >>> abjad.setting(small_staff).font_size = -3
+        >>> layout_block = abjad.Block(name='layout')
+        >>> layout_block.indent = 0
+        >>> layout_block.ragged_right = True
+        >>> command = abjad.MarkupCommand(
+        ...     'score',
+        ...     [small_staff, layout_block],
+        ...     )
+
+        >>> abjad.f(command)
+        \score
+            {
+                \new Staff
+                \with
+                {
+                    \remove Clef_engraver
+                    \remove Time_signature_engraver
+                    fontSize = #-3
+                }
+                {
+                    fs'16
+                    gs'16
+                    as'16
+                    b'16
+                }
+                \layout {
+                    indent = #0
+                    ragged-right = ##t
+                }
+            }
+
+        >>> markup = abjad.Markup(contents=command, direction=abjad.Up)
+        >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+        >>> abjad.attach(markup, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                c'4
+                ^ \markup {
+                    \score
+                        {
+                            \new Staff
+                            \with
+                            {
+                                \remove Clef_engraver
+                                \remove Time_signature_engraver
+                                fontSize = #-3
+                            }
+                            {
+                                fs'16
+                                gs'16
+                                as'16
+                                b'16
+                            }
+                            \layout {
+                                indent = #0
+                                ragged-right = ##t
+                            }
+                        }
+                    }
+                d'4
+                e'4
+                f'4
+            }
+
+    """
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_arguments',
+        '_deactivate',
+        '_force_quotes',
+        '_name',
+        '_tag',
+        )
+
+    ### INITIALIZER ###
+
+    def __init__(self, name=None, *arguments):
+        if name is None:
+            # TODO: Generalize these arbitrary default arguments away.
+            name = 'draw-circle'
+            assert len(arguments) == 0
+        self._arguments = tuple(arguments)
+        self._deactivate = None
+        self._force_quotes = False
+        assert isinstance(name, str) and len(name) and name.find(' ') == -1
+        self._name = name
+        self._tag = None
+
+    ### SPECIAL METHODS ###
+
+    def __eq__(self, argument):
+        """
+        Is true when ``argument`` is a markup command with name and
+        arguments equal to those of this markup command.
+
+        ..  container:: example
+
+            >>> command_1 = abjad.MarkupCommand('bold', 'foo')
+            >>> command_2 = abjad.MarkupCommand('bold', 'foo')
+            >>> command_3 = abjad.MarkupCommand('bold', 'bar')
+
+            >>> command_1 == command_1
+            True
+            >>> command_1 == command_2
+            True
+            >>> command_1 == command_3
+            False
+            >>> command_2 == command_1
+            True
+            >>> command_2 == command_2
+            True
+            >>> command_2 == command_3
+            False
+            >>> command_3 == command_1
+            False
+            >>> command_3 == command_2
+            False
+            >>> command_3 == command_3
+            True
+
+        Returns true or false.
+        """
+        # defined explicitly because of initializer *arguments
+        if isinstance(argument, type(self)):
+            if self.name == argument.name:
+                if self.arguments == argument.arguments:
+                    return True
+        return False
+
+    def __format__(self, format_specification=''):
+        r"""
+        Formats markup command.
+
+        ..  container:: example
+
+            Prints storage format:
+
+            >>> circle = abjad.MarkupCommand('draw-circle', 2.5, 0.1, False)
+            >>> square = abjad.MarkupCommand('rounded-box', 'hello?')
+            >>> line = abjad.MarkupCommand('line', [square, 'wow!'])
+            >>> rotate = abjad.MarkupCommand('rotate', 60, line)
+            >>> combine = abjad.MarkupCommand('combine', rotate, circle)
+
+            >>> print(format(combine, 'storage'))
+            abjad.MarkupCommand(
+                'combine',
+                abjad.MarkupCommand(
+                    'rotate',
+                    60,
+                    abjad.MarkupCommand(
+                        'line',
+                        [
+                            abjad.MarkupCommand(
+                                'rounded-box',
+                                'hello?'
+                                ),
+                            'wow!',
+                            ]
+                        )
+                    ),
+                abjad.MarkupCommand(
+                    'draw-circle',
+                    2.5,
+                    0.1,
+                    False
+                    )
+                )
+
+        ..  container:: example
+
+            Prints LilyPond format:
+
+            >>> circle = abjad.MarkupCommand('draw-circle', 2.5, 0.1, False)
+            >>> square = abjad.MarkupCommand('rounded-box', 'hello?')
+            >>> line = abjad.MarkupCommand('line', [square, 'wow!'])
+            >>> rotate = abjad.MarkupCommand('rotate', 60, line)
+            >>> combine = abjad.MarkupCommand('combine', rotate, circle)
+
+            >>> print(format(combine, 'lilypond'))
+            \combine
+                \rotate
+                    #60
+                    \line
+                        {
+                            \rounded-box
+                                hello?
+                            wow!
+                        }
+                \draw-circle
+                    #2.5
+                    #0.1
+                    ##f
+
+        Set ``format_specification`` to ``''``, ``'lilypond'`` or
+        ``'storage'``. Interprets ``''`` equal to ``'storage'``.
+
+        Returns string.
+        """
+        if format_specification in ('', 'storage'):
+            return StorageFormatManager(self).get_storage_format()
+        elif format_specification == 'lilypond':
+            return self._get_lilypond_format()
+        return str(self)
+
+    def __hash__(self):
+        """
+        Hashes markup command.
+
+        Redefined in tandem with __eq__.
+        """
+        return super(MarkupCommand, self).__hash__()
+
+    def __repr__(self):
+        r"""
+        Gets markup command interpreter representation.
+
+        ..  container:: example
+
+            Interpreter representation is evaluable.
+
+            >>> command = abjad.MarkupCommand('hspace', 0)
+            >>> command
+            abjad.MarkupCommand(
+                'hspace',
+                0
+                )
+
+            >>> eval(repr(command))
+            abjad.MarkupCommand(
+                'hspace',
+                0
+                )
+
+        Returns string.
+        """
+        superclass = super(MarkupCommand, self)
+        return superclass.__format__()
+
+    def __str__(self):
+        r"""
+        Gets string representation of markup command.
+
+        ..  container:: example
+
+            >>> circle = abjad.MarkupCommand('draw-circle', 2.5, 0.1, False)
+            >>> square = abjad.MarkupCommand('rounded-box', 'hello?')
+            >>> line = abjad.MarkupCommand('line', [square, 'wow!'])
+            >>> rotate = abjad.MarkupCommand('rotate', 60, line)
+            >>> combine = abjad.MarkupCommand('combine', rotate, circle)
+
+            >>> print(str(combine))
+            \combine
+                \rotate
+                    #60
+                    \line
+                        {
+                            \rounded-box
+                                hello?
+                            wow!
+                        }
+                \draw-circle
+                    #2.5
+                    #0.1
+                    ##f
+
+        Returns string.
+        """
+        return self._get_lilypond_format()
+
+    ### PRIVATE METHODS ###
+
+    def _escape_string(self, string):
+        if -1 == string.find(' '):
+            return string
+        string = repr(string)
+        if string.startswith("'") and string.endswith("'"):
+            string = string.replace('"', '\"')
+            string = '"' + string[1:]
+            string = string[:-1] + '"'
+        return string
+
+    def _get_format_pieces(self):
+        import abjad
+        def recurse(iterable):
+            result = []
+            for item in iterable:
+                if isinstance(item, (list, tuple)):
+                    result.append('{')
+                    result.extend(recurse(item))
+                    result.append('}')
+                elif isinstance(item, abjad.Scheme):
+                    result.append(format(item))
+                elif hasattr(item, '_get_format_pieces'):
+                    result.extend(item._get_format_pieces())
+                elif isinstance(item, str) and '\n' in item:
+                    result.append('#"')
+                    result.extend(item.splitlines())
+                    result.append('"')
+                else:
+                    formatted = abjad.Scheme.format_scheme_value(
+                        item,
+                        force_quotes=self.force_quotes,
+                        )
+                    if isinstance(item, str):
+                        result.append(formatted)
+                    else:
+                        result.append('#{}'.format(formatted))
+            return ['{}{}'.format(indent, item) for item in result]
+        indent = abjad.LilyPondFormatManager.indent
+        parts = [r'\{}'.format(self.name)]
+        parts.extend(recurse(self.arguments))
+        parts = abjad.LilyPondFormatManager.tag(
+            parts,
+            self.tag,
+            deactivate=self.deactivate,
+            )
+        return parts
+
+    def _get_format_specification(self):
+        return FormatSpecification(
+            client=self,
+            repr_is_indented=False,
+            storage_format_args_values=(self.name,) + self.arguments,
+            storage_format_kwargs_names=[],
+            )
+
+    def _get_lilypond_format(self):
+        return '\n'.join(self._get_format_pieces())
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def arguments(self):
+        """
+        Gets markup command arguments.
+
+        ..  container:: example
+
+            >>> arguments = ('draw-circle', 1, 0.1, False)
+            >>> command = abjad.MarkupCommand(*arguments)
+            >>> command.arguments
+            (1, 0.1, False)
+
+        Returns tuple.
+        """
+        return self._arguments
+
+    @property
+    def deactivate(self):
+        """
+        Is true when markup command deactivates tag.
+
+        Returns true, false or none.
+        """
+        return self._deactivate
+
+    @deactivate.setter
+    def deactivate(self, argument):
+        if argument is not None:
+            argument = bool(argument)
+        self._deactivate = argument
+
+    @property
+    def force_quotes(self):
+        r"""
+        Is true when markup command should force quotes around arguments.
+
+        ..  container:: example
+
+            Here's a markup command formatted in the usual way without forced
+            quotes:
+
+            >>> lines = ['foo', 'bar blah', 'baz']
+            >>> command = abjad.MarkupCommand('column', lines)
+            >>> markup = abjad.Markup(command)
+
+            >>> abjad.f(markup)
+            \markup {
+                \column
+                    {
+                        foo
+                        "bar blah"
+                        baz
+                    }
+                }
+
+            The markup command forces quotes around only the spaced string
+            ``'bar blah'``.
+
+        ..  container:: example
+
+            Here's the same markup command with forced quotes:
+
+                >>> lines = ['foo', 'bar blah', 'baz']
+                >>> command = abjad.MarkupCommand('column', lines)
+                >>> command.force_quotes = True
+                >>> markup = abjad.Markup(command)
+
+            >>> abjad.f(markup)
+            \markup {
+                \column
+                    {
+                        "foo"
+                        "bar blah"
+                        "baz"
+                    }
+                }
+
+            The markup command forces quotes around all strings.
+
+        The rendered result of forced and unforced quotes is the same.
+
+        Defaults to false.
+
+        Returns true or false.
+        """
+        return self._force_quotes
+
+    @force_quotes.setter
+    def force_quotes(self, argument):
+        assert isinstance(argument, bool), repr(argument)
+        self._force_quotes = argument
+
+    @property
+    def name(self):
+        """
+        Gets markup command name.
+
+        ..  container:: example
+
+            >>> arguments = ('draw-circle', 1, 0.1, False)
+            >>> command = abjad.MarkupCommand(*arguments)
+            >>> command.name
+            'draw-circle'
+
+        Returns string.
+        """
+        return self._name
+
+    @property
+    def tag(self):
+        """
+        Gets tag.
+        """
+        return self._tag
+
+    @tag.setter
+    def tag(self, argument):
+        import abjad
+        if argument is not None:
+            tag = abjad.Tag(argument)
+        else:
+            tag = None
+        self._tag = tag
+
+    ### PUBLIC METHODS ###
+
+    @staticmethod
+    def combine_markup_commands(*commands):
+        r"""
+        Combines markup command and / or strings.
+
+        LilyPond's '\combine' markup command can only take two arguments, so in
+        order to combine more than two stencils, a cascade of '\combine'
+        commands must be employed.  ``combine_markup_commands`` simplifies this
+        process.
+
+        ..  container:: example
+
+            >>> markup_a = abjad.MarkupCommand(
+            ...     'draw-circle',
+            ...     4,
+            ...     0.4,
+            ...     False,
+            ...     )
+            >>> markup_b = abjad.MarkupCommand(
+            ...     'filled-box',
+            ...     abjad.SchemePair((-4, 4)),
+            ...     abjad.SchemePair((-0.5, 0.5)),
+            ...     1,
+            ...     )
+            >>> markup_c = "some text"
+
+            >>> markup = abjad.MarkupCommand.combine_markup_commands(
+            ...     markup_a,
+            ...     markup_b,
+            ...     markup_c,
+            ...     )
+            >>> result = format(markup, 'lilypond')
+
+            >>> print(result)
+            \combine \combine \draw-circle #4 #0.4 ##f
+                \filled-box #'(-4 . 4) #'(-0.5 . 0.5) #1 "some text"
+
+        Returns a markup command instance, or a string if that was the only
+        argument.
+        """
+        assert len(commands)
+        assert all(
+            isinstance(command, (MarkupCommand, str))
+            for command in commands
+            )
+        if 1 == len(commands):
+            return commands[0]
+        combined = MarkupCommand('combine', commands[0], commands[1])
+        for command in commands[2:]:
+            combined = MarkupCommand('combine', combined, command)
+        return combined
+
+
+class MarkupList(TypedList):
+    """
+    Markup list.
+
+    ..  container:: example
+
+        Initializes from strings:
+
+        ..  container:: example
+
+            >>> markups = ['Allegro', 'assai']
+            >>> markup_list = abjad.MarkupList(markups)
+            >>> abjad.f(markup_list)
+            abjad.MarkupList(
+                items=[
+                    abjad.Markup(
+                        contents=['Allegro'],
+                        ),
+                    abjad.Markup(
+                        contents=['assai'],
+                        ),
+                    ],
+                )
+
+            >>> abjad.show(markup_list) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(markup_list.__illustrate__().items[-1])
+                \markup {
+                    \column
+                        {
+                            Allegro
+                            assai
+                        }
+                    }
+
+    """
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_expression',
+        )
+
+    ### INITIALIZER ###
+
+    def __init__(
+        self,
+        items=None,
+        item_class=None,
+        keep_sorted=None,
+        ):
+        self._expression = None
+        item_class = item_class or Markup
+        TypedList.__init__(
+            self,
+            item_class=item_class,
+            items=items,
+            keep_sorted=keep_sorted,
+            )
+
+    ### SPECIAL METHODS ###
+
+    def __contains__(self, item):
+        """
+        Is true when markup markup list contains ``item``.
+
+        ..  container:: example
+
+            ..  container:: example
+
+                >>> markups = ['Allegro', 'assai']
+                >>> markup_list = abjad.MarkupList(markups)
+
+                >>> 'assai' in markup_list
+                True
+
+        Returns true or false.
+        """
+        superclass = super(MarkupList, self)
+        return superclass.__contains__(item)
+
+    def __format__(self, format_specification=''):
+        """
+        Formats markup list.
+
+        ..  container:: example
+
+            ..  container:: example
+
+                Formats markup list:
+
+
+                    >>> markups = ['Allegro', 'assai']
+                    >>> markup_list = abjad.MarkupList(markups)
+                    >>> abjad.f(markup_list)
+                    abjad.MarkupList(
+                        items=[
+                            abjad.Markup(
+                                contents=['Allegro'],
+                                ),
+                            abjad.Markup(
+                                contents=['assai'],
+                                ),
+                            ],
+                        )
+
+        Returns string.
+        """
+        superclass = super(MarkupList, self)
+        return superclass.__format__(format_specification=format_specification)
+
+    def __iadd__(self, argument):
+        r"""
+        Changes items in ``argument`` to items and extends markup list.
+
+        ..  container:: example
+
+            ..  container:: example
+
+                >>> markup_list = abjad.MarkupList()
+                >>> markup_list.extend(['Allegro', 'assai'])
+                >>> markup_list += ['ma', 'non', 'troppo']
+                >>> abjad.f(markup_list)
+                abjad.MarkupList(
+                    items=[
+                        abjad.Markup(
+                            contents=['Allegro'],
+                            ),
+                        abjad.Markup(
+                            contents=['assai'],
+                            ),
+                        abjad.Markup(
+                            contents=['ma'],
+                            ),
+                        abjad.Markup(
+                            contents=['non'],
+                            ),
+                        abjad.Markup(
+                            contents=['troppo'],
+                            ),
+                        ],
+                    )
+
+                >>> abjad.show(markup_list) # doctest: +SKIP
+
+                ..  docs::
+
+                    >>> abjad.f(markup_list.__illustrate__().items[-1])
+                    \markup {
+                        \column
+                            {
+                                Allegro
+                                assai
+                                ma
+                                non
+                                troppo
+                            }
+                        }
+
+        Returns none.
+        """
+        superclass = super(MarkupList, self)
+        return superclass.__iadd__(argument)
+
+    def __illustrate__(self):
+        r"""
+        Illustrates markup markup list.
+
+        ..  container:: example
+
+            ..  container:: example
+
+                >>> markups = ['Allegro', 'assai']
+                >>> markup_list = abjad.MarkupList(markups)
+                >>> abjad.f(markup_list)
+                abjad.MarkupList(
+                    items=[
+                        abjad.Markup(
+                            contents=['Allegro'],
+                            ),
+                        abjad.Markup(
+                            contents=['assai'],
+                            ),
+                        ],
+                    )
+
+                >>> abjad.show(markup_list) # doctest: +SKIP
+
+                ..  docs::
+
+                    >>> abjad.f(markup_list.__illustrate__().items[-1])
+                    \markup {
+                        \column
+                            {
+                                Allegro
+                                assai
+                            }
+                        }
+
+        Returns LilyPond file.
+        """
+        import abjad
+        lilypond_file = abjad.LilyPondFile.new()
+        for name in ('layout', 'paper', 'score'):
+            block = lilypond_file[name]
+            lilypond_file.items.remove(block)
+        markup = Markup.column(list(self))
+        lilypond_file.items.append(markup)
+        return lilypond_file
+
+    def __setitem__(self, i, argument):
+        r"""
+        Sets item ``i`` equal to ``argument``.
+
+        ..  container:: example
+
+            ..  container:: example
+
+                >>> markup_list = abjad.MarkupList()
+                >>> markup_list.extend(['Allegro', 'assai'])
+                >>> markup_list[-1] = 'non troppo'
+                >>> abjad.f(markup_list)
+                abjad.MarkupList(
+                    items=[
+                        abjad.Markup(
+                            contents=['Allegro'],
+                            ),
+                        abjad.Markup(
+                            contents=['non troppo'],
+                            ),
+                        ],
+                    )
+
+                >>> abjad.show(markup_list) # doctest: +SKIP
+
+                ..  docs::
+
+                    >>> abjad.f(markup_list.__illustrate__().items[-1])
+                    \markup {
+                        \column
+                            {
+                                Allegro
+                                "non troppo"
+                            }
+                        }
+
+        Returns none.
+        """
+        superclass = super(MarkupList, self)
+        return superclass.__setitem__(i, argument)
+
+    ### PRIVATE METHODS ###
+
+    def _get_format_specification(self):
+        agent = StorageFormatManager(self)
+        names = list(agent.signature_keyword_names)
+        if self.item_class is Markup:
+            names.remove('item_class')
+        return FormatSpecification(
+            client=self,
+            storage_format_kwargs_names=names,
+            )
+
+    def _update_expression(self, frame, force_return=None):
+        import abjad
+        callback = abjad.Expression._frame_to_callback(
+            frame,
+            force_return=force_return,
+            )
+        return self._expression.append_callback(callback)
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def item_class(self):
+        """
+        Gets markup list item class.
+
+        ..  container:: example
+
+            >>> abjad.MarkupList().item_class
+            <class 'abjad.markups.Markup'>
+
+        Returns markup class.
+        """
+        return super(MarkupList, self).item_class
+
+    @property
+    def items(self):
+        """
+        Gets markup list items.
+
+        ..  container:: example
+
+            ..  container:: example
+
+                Initializes items positionally:
+
+                >>> items = ['Allegro', 'assai']
+                >>> markup_list = abjad.MarkupList(items)
+                >>> for item in markup_list.items:
+                ...     item
+                ...
+                Markup(contents=['Allegro'])
+                Markup(contents=['assai'])
+
+                Initializes items from keyword:
+
+                >>> items = ['Allegro', 'assai']
+                >>> markup_list = abjad.MarkupList(items=items)
+                >>> for item in markup_list.items:
+                ...     item
+                ...
+                Markup(contents=['Allegro'])
+                Markup(contents=['assai'])
+
+        Returns tuple.
+        """
+        superclass = super(MarkupList, self)
+        return superclass.items
+
+    @property
+    def keep_sorted(self):
+        r"""
+        Is true when markup list keeps markups sorted.
+
+        ..  container:: example
+
+            Keeps markup sorted:
+
+            >>> markups = ['Allegro', 'assai']
+            >>> markup_list = abjad.MarkupList(keep_sorted=True)
+            >>> markup_list.append('assai')
+            >>> markup_list.append('Allegro')
+            >>> abjad.show(markup_list) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(markup_list.__illustrate__().items[-1])
+                \markup {
+                    \column
+                        {
+                            Allegro
+                            assai
+                        }
+                    }
+
+        ..  container:: example
+
+            Does not keep markup sorted:
+
+            >>> markups = ['Allegro', 'assai']
+            >>> markup_list = abjad.MarkupList()
+            >>> markup_list.append('assai')
+            >>> markup_list.append('Allegro')
+            >>> abjad.show(markup_list) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(markup_list.__illustrate__().items[-1])
+                \markup {
+                    \column
+                        {
+                            assai
+                            Allegro
+                        }
+                    }
+
+        Defaults to none.
+
+        Set to true, false or none.
+
+        Returns true, false or none.
+        """
+        superclass = super(MarkupList, self)
+        return superclass.keep_sorted
+
+    @keep_sorted.setter
+    def keep_sorted(self, keep_sorted):
+        self._keep_sorted = bool(keep_sorted)
+
+    ### PUBLIC METHODS ###
+
+    def append(self, item):
+        """
+        Appends ``item`` to markup list.
+
+        ..  container:: example
+
+            ..  container:: example
+
+                >>> markup_list = abjad.MarkupList(['Allegro'])
+                >>> markup_list.append('assai')
+                >>> abjad.f(markup_list)
+                abjad.MarkupList(
+                    items=[
+                        abjad.Markup(
+                            contents=['Allegro'],
+                            ),
+                        abjad.Markup(
+                            contents=['assai'],
+                            ),
+                        ],
+                    )
+
+                >>> abjad.show(markup_list) # doctest: +SKIP
+
+        Returns none.
+        """
+        superclass = super(MarkupList, self)
+        superclass.append(item)
+
+    def center_column(self, direction=None):
+        r"""
+        LilyPond ``\center-column`` markup command.
+
+        ..  container:: example
+
+            ..  container:: example
+
+                >>> city = abjad.Markup('Los Angeles')
+                >>> date = abjad.Markup('May - August 2014')
+                >>> markups = [city, date]
+                >>> markup_list = abjad.MarkupList(markups)
+                >>> markup = markup_list.center_column(direction=abjad.Up)
+                >>> abjad.f(markup)
+                ^ \markup {
+                    \center-column
+                        {
+                            "Los Angeles"
+                            "May - August 2014"
+                        }
+                    }
+
+                >>> abjad.show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        """
+        contents = []
+        for markup in self:
+            string = Markup._parse_markup_command_argument(markup)
+            contents.append(string)
+        command = MarkupCommand('center-column', contents)
+        return Markup(contents=command, direction=direction)
+
+    def column(self, direction=None):
+        r"""
+        LilyPond ``\column`` markup command.
+
+        ..  container:: example
+
+            ..  container:: example
+
+                >>> city = abjad.Markup('Los Angeles')
+                >>> date = abjad.Markup('May - August 2014')
+                >>> markup_list = abjad.MarkupList([city, date])
+                >>> markup = markup_list.column()
+                >>> abjad.f(markup)
+                \markup {
+                    \column
+                        {
+                            "Los Angeles"
+                            "May - August 2014"
+                        }
+                    }
+
+                >>> abjad.show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        """
+        contents = []
+        for markup in self:
+            contents.extend(markup.contents)
+        command = MarkupCommand('column', contents)
+        return Markup(contents=command, direction=direction)
+
+    def combine(self, direction=None):
+        r"""
+        LilyPond ``\combine`` markup command.
+
+        ..  container:: example
+
+            ..  container:: example
+
+                >>> markup_one = abjad.Markup('Allegro assai')
+                >>> markup_two = abjad.Markup.draw_line(13, 0)
+                >>> markup_list = [markup_one, markup_two]
+                >>> markup_list = abjad.MarkupList(markup_list)
+                >>> markup = markup_list.combine(direction=abjad.Up)
+                >>> abjad.f(markup)
+                ^ \markup {
+                    \combine
+                        "Allegro assai"
+                        \draw-line
+                            #'(13 . 0)
+                    }
+
+                >>> abjad.show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        """
+        if not len(self) == 2:
+            message = 'markup list must be length 2: {!r}.'
+            message = message.format(self)
+            raise Exception(message)
+        markup_1, markup_2 = self.items
+        contents_1 = Markup._parse_markup_command_argument(markup_1)
+        contents_2 = Markup._parse_markup_command_argument(markup_2)
+        command = MarkupCommand('combine', contents_1, contents_2)
+        return Markup(contents=command, direction=direction)
+
+    def concat(self, direction=None):
+        r"""
+        LilyPond ``\concat`` markup command.
+
+        ..  container:: example
+
+            ..  container:: example
+
+                >>> downbow = abjad.Markup.musicglyph('scripts.downbow')
+                >>> hspace = abjad.Markup.hspace(1)
+                >>> upbow = abjad.Markup.musicglyph('scripts.upbow')
+                >>> markups = [downbow, hspace, upbow]
+                >>> markup_list = abjad.MarkupList(markups)
+                >>> markup = markup_list.concat(direction=abjad.Up)
+                >>> abjad.f(markup)
+                ^ \markup {
+                    \concat
+                        {
+                            \musicglyph
+                                #"scripts.downbow"
+                            \hspace
+                                #1
+                            \musicglyph
+                                #"scripts.upbow"
+                        }
+                    }
+
+                >>> abjad.show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        """
+        result = []
+        for markup in self:
+            contents = Markup._parse_markup_command_argument(markup)
+            result.append(contents)
+        command = MarkupCommand('concat', result)
+        return Markup(contents=command, direction=direction)
+
+    def count(self, item):
+        """
+        Counts ``item`` in markup list.
+
+        ..  container:: example
+
+            >>> markup_list = abjad.MarkupList()
+            >>> markup_list.extend(['Allegro', 'assai'])
+
+            >>> abjad.show(markup_list) # doctest: +SKIP
+
+            >>> markup_list.count('Allegro')
+            1
+            >>> markup_list.count('assai')
+            1
+            >>> markup_list.count('ma non troppo')
+            0
+
+        Returns none.
+        """
+        superclass = super(MarkupList, self)
+        return superclass.count(item)
+
+    def extend(self, items):
+        r"""
+        Extends markup list with ``items``.
+
+        ..  container:: example
+
+            ..  container:: example
+
+                >>> markup_list = abjad.MarkupList()
+                >>> markup_list.extend(['Allegro', 'assai'])
+                >>> abjad.f(markup_list)
+                abjad.MarkupList(
+                    items=[
+                        abjad.Markup(
+                            contents=['Allegro'],
+                            ),
+                        abjad.Markup(
+                            contents=['assai'],
+                            ),
+                        ],
+                    )
+
+                >>> abjad.show(markup_list) # doctest: +SKIP
+
+                ..  docs::
+
+                    >>> abjad.f(markup_list.__illustrate__().items[-1])
+                    \markup {
+                        \column
+                            {
+                                Allegro
+                                assai
+                            }
+                        }
+
+        Returns none.
+        """
+        superclass = super(MarkupList, self)
+        superclass.extend(items)
+
+    def index(self, item):
+        r"""
+        Gets index of ``item`` in markup list.
+
+        ..  container:: example
+
+            >>> markup_list = abjad.MarkupList()
+            >>> markup_list.extend(['Allegro', 'assai'])
+            >>> abjad.f(markup_list)
+            abjad.MarkupList(
+                items=[
+                    abjad.Markup(
+                        contents=['Allegro'],
+                        ),
+                    abjad.Markup(
+                        contents=['assai'],
+                        ),
+                    ],
+                )
+
+            >>> abjad.show(markup_list) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(markup_list.__illustrate__().items[-1])
+                \markup {
+                    \column
+                        {
+                            Allegro
+                            assai
+                        }
+                    }
+
+            >>> markup_list.index('Allegro')
+            0
+            >>> markup_list.index('assai')
+            1
+
+        Returns none.
+        """
+        superclass = super(MarkupList, self)
+        return superclass.index(item)
+
+    def insert(self, i, item):
+        """
+        Inserts ``item`` in markup markup list.
+
+        ..  container:: example
+
+            ..  container:: example
+
+                >>> markup_list = abjad.MarkupList(['assai'])
+                >>> markup_list.insert(0, 'Allegro')
+                >>> abjad.f(markup_list)
+                abjad.MarkupList(
+                    items=[
+                        abjad.Markup(
+                            contents=['Allegro'],
+                            ),
+                        abjad.Markup(
+                            contents=['assai'],
+                            ),
+                        ],
+                    )
+
+                >>> abjad.show(markup_list) # doctest: +SKIP
+
+        Returns markup class.
+        """
+        superclass = super(MarkupList, self)
+        superclass.insert(i, item)
+
+    def left_column(self, direction=None):
+        r"""
+        LilyPond ``\left-column`` markup command.
+
+        ..  container:: example
+
+            ..  container:: example
+
+                >>> city = abjad.Markup('Los Angeles')
+                >>> date = abjad.Markup('May - August 2014')
+                >>> markup_list = abjad.MarkupList([city, date])
+                >>> markup = markup_list.left_column()
+                >>> abjad.f(markup)
+                \markup {
+                    \left-column
+                        {
+                            "Los Angeles"
+                            "May - August 2014"
+                        }
+                    }
+
+                >>> abjad.show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        """
+        contents = []
+        for markup in self:
+            contents.append(Markup._parse_markup_command_argument(markup))
+        command = MarkupCommand('left-column', contents)
+        return Markup(contents=command, direction=direction)
+
+    def line(self, direction=None):
+        r"""
+        LilyPond ``\line`` markup command.
+
+        ..  container:: example
+
+            ..  container:: example
+
+                >>> markups = ['Allegro', 'assai']
+                >>> markup_list = abjad.MarkupList(markups)
+                >>> markup = markup_list.line()
+                >>> abjad.f(markup)
+                \markup {
+                    \line
+                        {
+                            Allegro
+                            assai
+                        }
+                    }
+
+
+                >>> abjad.show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        """
+        contents = []
+        for markup in self:
+            contents.extend(markup.contents)
+        command = MarkupCommand('line', contents)
+        return Markup(contents=command, direction=direction)
+
+    def overlay(self, direction=None):
+        r"""
+        LilyPond ``\overlay`` markup command.
+
+        ..  container:: example
+
+            ..  container:: example
+
+                >>> city = abjad.Markup('Los Angeles')
+                >>> date = abjad.Markup('May - August 2014')
+                >>> markup_list = abjad.MarkupList([city, date])
+                >>> markup = markup_list.overlay(direction=abjad.Up)
+                >>> abjad.f(markup)
+                ^ \markup {
+                    \overlay
+                        {
+                            "Los Angeles"
+                            "May - August 2014"
+                        }
+                    }
+
+                >>> abjad.show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        """
+        contents = []
+        for markup in self:
+            contents.append(Markup._parse_markup_command_argument(markup))
+        command = MarkupCommand('overlay', contents)
+        return Markup(contents=command, direction=direction)
+
+    def pop(self, i=-1):
+        r"""
+        Pops item ``i`` from markup list.
+
+        ..  container:: example
+
+            ..  container:: example
+
+                >>> markup_list = abjad.MarkupList()
+                >>> markup_list.extend(['Allegro', 'assai'])
+                >>> markup_list.pop()
+                Markup(contents=['assai'])
+
+                >>> abjad.f(markup_list)
+                abjad.MarkupList(
+                    items=[
+                        abjad.Markup(
+                            contents=['Allegro'],
+                            ),
+                        ],
+                    )
+
+                >>> abjad.show(markup_list) # doctest: +SKIP
+
+        Returns none.
+        """
+        superclass = super(MarkupList, self)
+        return superclass.pop(i=i)
+
+    def remove(self, item):
+        r"""
+        Removes ``item`` from markup list.
+
+        ..  container:: example
+
+            ..  container:: example
+
+                >>> markup_list = abjad.MarkupList()
+                >>> markup_list.extend(['Allegro', 'assai'])
+                >>> markup_list.remove('assai')
+                >>> abjad.f(markup_list)
+                abjad.MarkupList(
+                    items=[
+                        abjad.Markup(
+                            contents=['Allegro'],
+                            ),
+                        ],
+                    )
+
+                >>> abjad.show(markup_list) # doctest: +SKIP
+
+                ..  docs::
+
+                    >>> abjad.f(markup_list.__illustrate__().items[-1])
+                    \markup {
+                        \column
+                            {
+                                Allegro
+                            }
+                        }
+
+        Returns none.
+        """
+        superclass = super(MarkupList, self)
+        superclass.remove(item)
+
+    def right_column(self, direction=None):
+        r"""
+        LilyPond ``\right-column`` markup command.
+
+        ..  container:: example
+
+            ..  container:: example
+
+                >>> city = abjad.Markup('Los Angeles')
+                >>> date = abjad.Markup('May - August 2014')
+                >>> markup_list = abjad.MarkupList([city, date])
+                >>> markup = markup_list.right_column()
+                >>> abjad.f(markup)
+                \markup {
+                    \right-column
+                        {
+                            "Los Angeles"
+                            "May - August 2014"
+                        }
+                    }
+
+                >>> abjad.show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        """
+        contents = []
+        for markup in self:
+            contents.append(Markup._parse_markup_command_argument(markup))
+        command = MarkupCommand('right-column', contents)
+        return Markup(contents=command, direction=direction)
+
+
+class Postscript(AbjadValueObject):
+    r"""
+    Postscript session.
+
+    ..  note::
+
+        The markup resulting from the ``\postscript`` markup command is both
+        0-height and 0-width. Make sure to wrap the ``\postscript`` command
+        with a ``\pad-to-box`` or ``\with-dimensions`` markup command to give
+        it explicit height and width. Likewise, use only positive coordinates
+        in your postscript markup if at all possible. When specifying explicit
+        extents with ``\pad-to-box`` or ``\with-dimensions``, negative extents
+        will *not* be interpreted by LilyPond as resulting in positive height
+        or width, and may have unexpected behavior.
+
+    ..  note::
+
+        LilyPond will fail to render if *any* of the font commands are used. To
+        create text, use ``.show('text')`` preceded by ``.scale()`` or
+        ``.rotate()`` to provide the appropriate transformation.
+        ``.charpath()`` is also useable. However, ``.findfont()``,
+        ``.scalefont()``, ``.setfont()`` will cause LilyPond to error.
+
+    ..  container:: example
+
+        >>> postscript = abjad.Postscript()
+        >>> postscript = postscript.moveto(1, 1)
+        >>> postscript = postscript.setlinewidth(2.5)
+        >>> postscript = postscript.setdash((2, 1))
+        >>> postscript = postscript.lineto(3, -4)
+        >>> postscript = postscript.stroke()
+        >>> print(format(postscript))
+        abjad.Postscript(
+            operators=(
+                abjad.PostscriptOperator('moveto', 1.0, 1.0),
+                abjad.PostscriptOperator('setlinewidth', 2.5),
+                abjad.PostscriptOperator('setdash', (2.0, 1.0), 0.0),
+                abjad.PostscriptOperator('lineto', 3.0, -4.0),
+                abjad.PostscriptOperator('stroke'),
+                ),
+            )
+
+        >>> print(str(postscript))
+        1 1 moveto
+        2.5 setlinewidth
+        [ 2 1 ] 0 setdash
+        3 -4 lineto
+        stroke
+
+        >>> postscript = abjad.Postscript()
+        >>> postscript = postscript.newpath()
+        >>> postscript = postscript.moveto(0, 0)
+        >>> postscript = postscript.rlineto(0, -10)
+        >>> postscript = postscript.rlineto(10, 0)
+        >>> postscript = postscript.rlineto(0, 10)
+        >>> postscript = postscript.rlineto(-10, 0)
+        >>> postscript = postscript.closepath()
+        >>> postscript = postscript.gsave()
+        >>> postscript = postscript.setrgbcolor(0.5, 1, 0.5)
+        >>> postscript = postscript.fill()
+        >>> postscript = postscript.grestore()
+        >>> postscript = postscript.setrgbcolor(1, 0, 0)
+        >>> postscript = postscript.setlinewidth(1)
+        >>> postscript = postscript.stroke()
+        >>> abjad.show(postscript) # doctest: +SKIP
+
+    """
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_operators',
+        )
+
+    ### INITIALIZER ###
+
+    def __init__(self, operators=None):
+        prototype = PostscriptOperator
+        if operators is not None:
+            assert all(isinstance(_, prototype) for _ in operators)
+            operators = tuple(operators)
+        self._operators = operators
+
+    ### SPECIAL METHODS ###
+
+    def __add__(self, argument):
+        """
+        Adds postscript to ``argument``.
+
+        Returns new postscript.
+        """
+        assert isinstance(argument, type(self))
+        self_operators = self.operators or ()
+        argument_operators = argument.operators or ()
+        operators = self_operators + argument_operators
+        operators = operators or None
+        return type(self)(operators)
+
+    def __illustrate__(self):
+        """
+        Illustrates Postscript.
+
+        Returns LilyPond file.
+        """
+        markup = Markup.postscript(self)
+        return markup.__illustrate__()
+
+    def __radd__(self, argument):
+        """
+        Adds ``argument`` to postscript.
+
+        Returns new postscript.
+        """
+        assert isinstance(argument, type(self))
+        self_operators = self.operators or ()
+        argument_operators = argument.operators or ()
+        operators = argument_operators + self_operators
+        operators = operators or None
+        return type(self)(operators)
+
+    def __str__(self):
+        """
+        Gets string representation of Postscript.
+
+        Return string.
+        """
+        if not self.operators:
+            return ''
+        return '\n'.join(str(_) for _ in self.operators)
+
+    ### PRIVATE METHODS ###
+
+    @staticmethod
+    def _format_argument(argument):
+        if isinstance(argument, str):
+            if argument.startswith('/'):
+                return argument
+            return '({})'.format(argument)
+        elif isinstance(argument, collections.Sequence):
+            if not argument:
+                return '[ ]'
+            contents = ' '.join(
+                Postscript._format_argument(_) for _ in argument
+                )
+            return '[ {} ]'.format(contents)
+        elif isinstance(argument, bool):
+            return str(argument).lower()
+        elif isinstance(argument, (int, float)):
+            argument = mathtools.integer_equivalent_number_to_integer(argument)
+            return str(argument)
+        return str(argument)
+
+    def _with_operator(self, operator):
+        operators = self.operators or ()
+        operators = operators + (operator,)
+        return type(self)(operators)
+
+    ### PUBLIC METHODS ###
+
+    def as_markup(self):
+        r"""
+        Converts postscript to markup.
+
+        ..  container:: example
+
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.newpath()
+            >>> postscript = postscript.moveto(100, 200)
+            >>> postscript = postscript.lineto(200, 250)
+            >>> postscript = postscript.lineto(100, 300)
+            >>> postscript = postscript.closepath()
+            >>> postscript = postscript.gsave()
+            >>> postscript = postscript.setgray(0.5)
+            >>> postscript = postscript.fill()
+            >>> postscript = postscript.grestore()
+            >>> postscript = postscript.setlinewidth(4)
+            >>> postscript = postscript.setgray(0.75)
+            >>> postscript = postscript.stroke()
+
+            >>> markup = postscript.as_markup()
+            >>> print(format(markup))
+            \markup {
+                \postscript
+                    #"
+                    newpath
+                    100 200 moveto
+                    200 250 lineto
+                    100 300 lineto
+                    closepath
+                    gsave
+                    0.5 setgray
+                    fill
+                    grestore
+                    4 setlinewidth
+                    0.75 setgray
+                    stroke
+                    "
+                }
+
+        Returns new markup.
+        """
+        return Markup.postscript(self)
+
+    def charpath(self, text, modify_font=True):
+        """
+        Postscript ``charpath`` operator.
+
+        ..  container:: example
+
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.findfont('Times Roman')
+            >>> postscript = postscript.scalefont(32)
+            >>> postscript = postscript.setfont()
+            >>> postscript = postscript.translate(100, 200)
+            >>> postscript = postscript.rotate(45)
+            >>> postscript = postscript.scale(2, 1)
+            >>> postscript = postscript.newpath()
+            >>> postscript = postscript.moveto(0, 0)
+            >>> postscript = postscript.charpath('This is text.', True)
+            >>> postscript = postscript.setlinewidth(0.5)
+            >>> postscript = postscript.setgray(0.25)
+            >>> postscript = postscript.stroke()
+            >>> print(str(postscript))
+            /Times-Roman findfont
+            32 scalefont
+            setfont
+            100 200 translate
+            45 rotate
+            2 1 scale
+            newpath
+            0 0 moveto
+            (This is text.) true charpath
+            0.5 setlinewidth
+            0.25 setgray
+            stroke
+
+        Returns new Postscript.
+        """
+        text = str(text)
+        modify_font = bool(modify_font)
+        operator = PostscriptOperator(
+            'charpath',
+            text,
+            modify_font,
+            )
+        return self._with_operator(operator)
+
+    def closepath(self):
+        """
+        Postscript ``closepath`` operator.
+
+        ..  container:: example
+
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.newpath()
+            >>> postscript = postscript.moveto(100, 200)
+            >>> postscript = postscript.lineto(200, 250)
+            >>> postscript = postscript.lineto(100, 300)
+            >>> postscript = postscript.closepath()
+            >>> postscript = postscript.gsave()
+            >>> postscript = postscript.setgray(0.5)
+            >>> postscript = postscript.fill()
+            >>> postscript = postscript.grestore()
+            >>> postscript = postscript.setlinewidth(4)
+            >>> postscript = postscript.setgray(0.75)
+            >>> postscript = postscript.stroke()
+            >>> print(str(postscript))
+            newpath
+            100 200 moveto
+            200 250 lineto
+            100 300 lineto
+            closepath
+            gsave
+            0.5 setgray
+            fill
+            grestore
+            4 setlinewidth
+            0.75 setgray
+            stroke
+
+        Returns new Postscript.
+        """
+        operator = PostscriptOperator('closepath')
+        return self._with_operator(operator)
+
+    def curveto(self, x1, y1, x2, y2, x3, y3):
+        """
+        Postscript ``curveto`` operator.
+
+        ..  container:: example
+
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.curveto(0, 1, 1.5, 2, 3, 6)
+            >>> print(str(postscript))
+            0 1 1.5 2 3 6 curveto
+
+        Returns new Postscript.
+        """
+        x1 = float(x1)
+        x2 = float(x2)
+        x3 = float(x3)
+        y1 = float(y1)
+        y2 = float(y2)
+        y3 = float(y3)
+        operator = PostscriptOperator(
+            'curveto',
+            x1, y1,
+            x2, y2,
+            x3, y3,
+            )
+        return self._with_operator(operator)
+
+    def fill(self):
+        """
+        Postscript ``fill`` operator.
+
+        ..  container:: example
+
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.newpath()
+            >>> postscript = postscript.moveto(100, 200)
+            >>> postscript = postscript.lineto(200, 250)
+            >>> postscript = postscript.lineto(100, 300)
+            >>> postscript = postscript.closepath()
+            >>> postscript = postscript.gsave()
+            >>> postscript = postscript.setgray(0.5)
+            >>> postscript = postscript.fill()
+            >>> postscript = postscript.grestore()
+            >>> postscript = postscript.setlinewidth(4)
+            >>> postscript = postscript.setgray(0.75)
+            >>> postscript = postscript.stroke()
+            >>> print(str(postscript))
+            newpath
+            100 200 moveto
+            200 250 lineto
+            100 300 lineto
+            closepath
+            gsave
+            0.5 setgray
+            fill
+            grestore
+            4 setlinewidth
+            0.75 setgray
+            stroke
+
+        Returns new Postscript.
+        """
+        operator = PostscriptOperator('fill')
+        return self._with_operator(operator)
+
+    def findfont(self, font_name):
+        """
+        Postscript ``findfont`` operator.
+
+        ..  container:: example
+
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.findfont('Times Roman')
+            >>> postscript = postscript.scalefont(12)
+            >>> postscript = postscript.setfont()
+            >>> postscript = postscript.newpath()
+            >>> postscript = postscript.moveto(100, 200)
+            >>> postscript = postscript.show('This is text.')
+            >>> print(str(postscript))
+            /Times-Roman findfont
+            12 scalefont
+            setfont
+            newpath
+            100 200 moveto
+            (This is text.) show
+
+        Returns new Postscript.
+        """
+        font_name = str(font_name)
+        font_name = font_name.replace(' ', '-')
+        font_name = '/{}'.format(font_name)
+        operator = PostscriptOperator('findfont', font_name)
+        return self._with_operator(operator)
+
+    def grestore(self):
+        """
+        Postscript ``grestore`` operator.
+
+        ..  container:: example
+
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.newpath()
+            >>> postscript = postscript.moveto(100, 200)
+            >>> postscript = postscript.lineto(200, 250)
+            >>> postscript = postscript.lineto(100, 300)
+            >>> postscript = postscript.closepath()
+            >>> postscript = postscript.gsave()
+            >>> postscript = postscript.setgray(0.5)
+            >>> postscript = postscript.fill()
+            >>> postscript = postscript.grestore()
+            >>> postscript = postscript.setlinewidth(4)
+            >>> postscript = postscript.setgray(0.75)
+            >>> postscript = postscript.stroke()
+            >>> print(str(postscript))
+            newpath
+            100 200 moveto
+            200 250 lineto
+            100 300 lineto
+            closepath
+            gsave
+            0.5 setgray
+            fill
+            grestore
+            4 setlinewidth
+            0.75 setgray
+            stroke
+
+        Returns new Postscript.
+        """
+        operator = PostscriptOperator('grestore')
+        return self._with_operator(operator)
+
+    def gsave(self):
+        """
+        Postscript ``gsave`` operator.
+
+        ..  container:: example
+
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.newpath()
+            >>> postscript = postscript.moveto(100, 200)
+            >>> postscript = postscript.lineto(200, 250)
+            >>> postscript = postscript.lineto(100, 300)
+            >>> postscript = postscript.closepath()
+            >>> postscript = postscript.gsave()
+            >>> postscript = postscript.setgray(0.5)
+            >>> postscript = postscript.fill()
+            >>> postscript = postscript.grestore()
+            >>> postscript = postscript.setlinewidth(4)
+            >>> postscript = postscript.setgray(0.75)
+            >>> postscript = postscript.stroke()
+            >>> print(str(postscript))
+            newpath
+            100 200 moveto
+            200 250 lineto
+            100 300 lineto
+            closepath
+            gsave
+            0.5 setgray
+            fill
+            grestore
+            4 setlinewidth
+            0.75 setgray
+            stroke
+
+        Returns new Postscript.
+        """
+        operator = PostscriptOperator('gsave')
+        return self._with_operator(operator)
+
+    def lineto(self, x, y):
+        """
+        Postscript ``lineto`` operator.
+
+        ..  container:: example
+
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.moveto(1, 1)
+            >>> postscript = postscript.lineto(3, -4)
+            >>> postscript = postscript.stroke()
+            >>> print(str(postscript))
+            1 1 moveto
+            3 -4 lineto
+            stroke
+
+        Returns new Postscript.
+        """
+        x = float(x)
+        y = float(y)
+        operator = PostscriptOperator('lineto', x, y)
+        return self._with_operator(operator)
+
+    def moveto(self, x, y):
+        """
+        Postscript ``moveto`` operator.
+
+        ..  container:: example
+
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.moveto(1, 1)
+            >>> postscript = postscript.lineto(3, -4)
+            >>> postscript = postscript.stroke()
+            >>> print(format(postscript))
+            abjad.Postscript(
+                operators=(
+                    abjad.PostscriptOperator('moveto', 1.0, 1.0),
+                    abjad.PostscriptOperator('lineto', 3.0, -4.0),
+                    abjad.PostscriptOperator('stroke'),
+                    ),
+                )
+
+            >>> print(str(postscript))
+            1 1 moveto
+            3 -4 lineto
+            stroke
+
+        Returns new Postscript.
+        """
+        x = float(x)
+        y = float(y)
+        operator = PostscriptOperator('moveto', x, y)
+        return self._with_operator(operator)
+
+    def newpath(self):
+        """
+        Postscript ``newpath`` operator.
+
+        ..  container:: example
+
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.newpath()
+            >>> postscript = postscript.moveto(100, 200)
+            >>> postscript = postscript.lineto(200, 250)
+            >>> postscript = postscript.lineto(100, 300)
+            >>> postscript = postscript.closepath()
+            >>> postscript = postscript.gsave()
+            >>> postscript = postscript.setgray(0.5)
+            >>> postscript = postscript.fill()
+            >>> postscript = postscript.grestore()
+            >>> postscript = postscript.setlinewidth(4)
+            >>> postscript = postscript.setgray(0.75)
+            >>> postscript = postscript.stroke()
+            >>> print(str(postscript))
+            newpath
+            100 200 moveto
+            200 250 lineto
+            100 300 lineto
+            closepath
+            gsave
+            0.5 setgray
+            fill
+            grestore
+            4 setlinewidth
+            0.75 setgray
+            stroke
+
+        Returns new Postscript.
+        """
+        operator = PostscriptOperator('newpath')
+        return self._with_operator(operator)
+
+    def rcurveto(self, dx1, dy1, dx2, dy2, dx3, dy3):
+        """
+        Postscript ``rcurveto`` operator.
+
+        ..  container:: edxample
+
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.rcurveto(0, 1, 1.5, 2, 3, 6)
+            >>> print(str(postscript))
+            0 1 1.5 2 3 6 rcurveto
+
+        Returns new Postscript.
+        """
+        dx1 = float(dx1)
+        dx2 = float(dx2)
+        dx3 = float(dx3)
+        dy1 = float(dy1)
+        dy2 = float(dy2)
+        dy3 = float(dy3)
+        operator = PostscriptOperator(
+            'rcurveto',
+            dx1, dy1,
+            dx2, dy2,
+            dx3, dy3,
+            )
+        return self._with_operator(operator)
+
+    def rlineto(self, dx, dy):
+        """
+        Postscript ``rlineto`` operator.
+
+        ..  container:: example
+
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.rmoveto(1, 1)
+            >>> postscript = postscript.rlineto(3, -4)
+            >>> postscript = postscript.stroke()
+            >>> print(format(postscript))
+            abjad.Postscript(
+                operators=(
+                    abjad.PostscriptOperator('rmoveto', 1.0, 1.0),
+                    abjad.PostscriptOperator('rlineto', 3.0, -4.0),
+                    abjad.PostscriptOperator('stroke'),
+                    ),
+                )
+
+            >>> print(str(postscript))
+            1 1 rmoveto
+            3 -4 rlineto
+            stroke
+
+        Returns new Postscript.
+        """
+        dx = float(dx)
+        dy = float(dy)
+        operator = PostscriptOperator('rlineto', dx, dy)
+        return self._with_operator(operator)
+
+    def rmoveto(self, dx, dy):
+        """
+        Postscript ``rmoveto`` operator.
+
+        ..  container:: example
+
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.rmoveto(1, 1)
+            >>> postscript = postscript.rlineto(3, -4)
+            >>> postscript = postscript.stroke()
+            >>> print(format(postscript))
+            abjad.Postscript(
+                operators=(
+                    abjad.PostscriptOperator('rmoveto', 1.0, 1.0),
+                    abjad.PostscriptOperator('rlineto', 3.0, -4.0),
+                    abjad.PostscriptOperator('stroke'),
+                    ),
+                )
+
+            >>> print(str(postscript))
+            1 1 rmoveto
+            3 -4 rlineto
+            stroke
+
+        Returns new Postscript.
+        """
+        dx = float(dx)
+        dy = float(dy)
+        operator = PostscriptOperator('rmoveto', dx, dy)
+        return self._with_operator(operator)
+
+    def rotate(self, degrees):
+        """
+        Postscript ``restore`` operator.
+
+        ..  container:: example
+
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.findfont('Times Roman')
+            >>> postscript = postscript.scalefont(32)
+            >>> postscript = postscript.setfont()
+            >>> postscript = postscript.translate(100, 200)
+            >>> postscript = postscript.rotate(45)
+            >>> postscript = postscript.scale(2, 1)
+            >>> postscript = postscript.newpath()
+            >>> postscript = postscript.moveto(0, 0)
+            >>> postscript = postscript.charpath('This is text.', True)
+            >>> postscript = postscript.setlinewidth(0.5)
+            >>> postscript = postscript.setgray(0.25)
+            >>> postscript = postscript.stroke()
+            >>> print(str(postscript))
+            /Times-Roman findfont
+            32 scalefont
+            setfont
+            100 200 translate
+            45 rotate
+            2 1 scale
+            newpath
+            0 0 moveto
+            (This is text.) true charpath
+            0.5 setlinewidth
+            0.25 setgray
+            stroke
+
+        Returns new Postscript.
+        """
+        degrees = float(degrees)
+        operator = PostscriptOperator('rotate', degrees)
+        return self._with_operator(operator)
+
+    def scale(self, dx, dy):
+        """
+        Postscript ``scale`` operator.
+
+        ..  container:: example
+
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.findfont('Times Roman')
+            >>> postscript = postscript.scalefont(32)
+            >>> postscript = postscript.setfont()
+            >>> postscript = postscript.translate(100, 200)
+            >>> postscript = postscript.rotate(45)
+            >>> postscript = postscript.scale(2, 1)
+            >>> postscript = postscript.newpath()
+            >>> postscript = postscript.moveto(0, 0)
+            >>> postscript = postscript.charpath('This is text.', True)
+            >>> postscript = postscript.setlinewidth(0.5)
+            >>> postscript = postscript.setgray(0.25)
+            >>> postscript = postscript.stroke()
+            >>> print(str(postscript))
+            /Times-Roman findfont
+            32 scalefont
+            setfont
+            100 200 translate
+            45 rotate
+            2 1 scale
+            newpath
+            0 0 moveto
+            (This is text.) true charpath
+            0.5 setlinewidth
+            0.25 setgray
+            stroke
+
+        Returns new Postscript.
+        """
+        dx = float(dx)
+        dy = float(dy)
+        operator = PostscriptOperator('scale', dx, dy)
+        return self._with_operator(operator)
+
+    def scalefont(self, font_size):
+        """
+        Postscript ``scalefont`` operator.
+
+        ..  container:: example
+
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.findfont('Times Roman')
+            >>> postscript = postscript.scalefont(12)
+            >>> postscript = postscript.setfont()
+            >>> postscript = postscript.newpath()
+            >>> postscript = postscript.moveto(100, 200)
+            >>> postscript = postscript.show('This is text.')
+            >>> print(str(postscript))
+            /Times-Roman findfont
+            12 scalefont
+            setfont
+            newpath
+            100 200 moveto
+            (This is text.) show
+
+        Returns new Postscript.
+        """
+        font_size = float(font_size)
+        operator = PostscriptOperator('scalefont', font_size)
+        return self._with_operator(operator)
+
+    def setdash(self, array=None, offset=0):
+        """
+        Postscript ``setdash`` operator.
+
+        ..  container:: example
+
+            >>> postscript = abjad.Postscript().setdash([2, 1], 3)
+            >>> print(format(postscript))
+            abjad.Postscript(
+                operators=(
+                    abjad.PostscriptOperator('setdash', (2.0, 1.0), 3.0),
+                    ),
+                )
+
+            >>> print(str(postscript))
+            [ 2 1 ] 3 setdash
+
+        ..  container:: example
+
+            >>> postscript = abjad.Postscript().setdash()
+            >>> print(format(postscript))
+            abjad.Postscript(
+                operators=(
+                    abjad.PostscriptOperator('setdash', (), 0.0),
+                    ),
+                )
+
+            >>> print(str(postscript))
+            [ ] 0 setdash
+
+        Returns new Postscript.
+        """
+        if array is None:
+            array = ()
+        else:
+            array = tuple(float(_) for _ in array)
+        offset = float(offset)
+        operator = PostscriptOperator('setdash', array, offset)
+        return self._with_operator(operator)
+
+    def setfont(self):
+        """
+        Postscript ``setfont`` operator.
+
+        ..  container:: example
+
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.findfont('Times Roman')
+            >>> postscript = postscript.scalefont(12)
+            >>> postscript = postscript.setfont()
+            >>> postscript = postscript.newpath()
+            >>> postscript = postscript.moveto(100, 200)
+            >>> postscript = postscript.show('This is text.')
+            >>> print(str(postscript))
+            /Times-Roman findfont
+            12 scalefont
+            setfont
+            newpath
+            100 200 moveto
+            (This is text.) show
+
+        Returns new Postscript.
+        """
+        operator = PostscriptOperator('setfont')
+        return self._with_operator(operator)
+
+    def setgray(self, gray_value):
+        """
+        Postscript ``setgray`` operator.
+
+        ..  container:: example
+
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.newpath()
+            >>> postscript = postscript.moveto(100, 200)
+            >>> postscript = postscript.lineto(200, 250)
+            >>> postscript = postscript.lineto(100, 300)
+            >>> postscript = postscript.closepath()
+            >>> postscript = postscript.gsave()
+            >>> postscript = postscript.setgray(0.5)
+            >>> postscript = postscript.fill()
+            >>> postscript = postscript.grestore()
+            >>> postscript = postscript.setlinewidth(4)
+            >>> postscript = postscript.setgray(0.75)
+            >>> postscript = postscript.stroke()
+            >>> print(str(postscript))
+            newpath
+            100 200 moveto
+            200 250 lineto
+            100 300 lineto
+            closepath
+            gsave
+            0.5 setgray
+            fill
+            grestore
+            4 setlinewidth
+            0.75 setgray
+            stroke
+
+        Returns new Postscript.
+        """
+        gray_value = float(gray_value)
+        assert 0 <= gray_value <= 1
+        operator = PostscriptOperator('setgray', gray_value)
+        return self._with_operator(operator)
+
+    def setlinewidth(self, width):
+        """
+        Postscript ``setlinewidth`` operator.
+
+        ..  container:: example
+
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.moveto(1, 1)
+            >>> postscript = postscript.setlinewidth(2.5)
+            >>> postscript = postscript.lineto(3, -4)
+            >>> postscript = postscript.stroke()
+            >>> print(format(postscript))
+            abjad.Postscript(
+                operators=(
+                    abjad.PostscriptOperator('moveto', 1.0, 1.0),
+                    abjad.PostscriptOperator('setlinewidth', 2.5),
+                    abjad.PostscriptOperator('lineto', 3.0, -4.0),
+                    abjad.PostscriptOperator('stroke'),
+                    ),
+                )
+
+            >>> print(str(postscript))
+            1 1 moveto
+            2.5 setlinewidth
+            3 -4 lineto
+            stroke
+
+        Returns new Postscript.
+        """
+        width = float(width)
+        operator = PostscriptOperator('setlinewidth', width)
+        return self._with_operator(operator)
+
+    def setrgbcolor(self, red, green, blue):
+        """
+        Postscript ``setrgb`` operator.
+
+        ..  container:: example
+
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.newpath()
+            >>> postscript = postscript.moveto(100, 100)
+            >>> postscript = postscript.rlineto(0, 100)
+            >>> postscript = postscript.rlineto(100, 0)
+            >>> postscript = postscript.rlineto(0, -100)
+            >>> postscript = postscript.rlineto(-100, 0)
+            >>> postscript = postscript.closepath()
+            >>> postscript = postscript.gsave()
+            >>> postscript = postscript.setrgbcolor(0.5, 1, 0.5)
+            >>> postscript = postscript.fill()
+            >>> postscript = postscript.grestore()
+            >>> postscript = postscript.setrgbcolor(1, 0, 0)
+            >>> postscript = postscript.setlinewidth(4)
+            >>> postscript = postscript.stroke()
+
+            >>> print(str(postscript))
+            newpath
+            100 100 moveto
+            0 100 rlineto
+            100 0 rlineto
+            0 -100 rlineto
+            -100 0 rlineto
+            closepath
+            gsave
+            0.5 1 0.5 setrgbcolor
+            fill
+            grestore
+            1 0 0 setrgbcolor
+            4 setlinewidth
+            stroke
+
+        Returns new Postscript.
+        """
+        red = float(red)
+        green = float(green)
+        blue = float(blue)
+        assert 0 <= red <= 1
+        assert 0 <= green <= 1
+        assert 0 <= blue <= 1
+        operator = PostscriptOperator(
+            'setrgbcolor',
+            red,
+            green,
+            blue,
+            )
+        return self._with_operator(operator)
+
+    def show(self, text):
+        """
+        Postscript ``show`` operator.
+
+        ..  container:: example
+
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.findfont('Times Roman')
+            >>> postscript = postscript.scalefont(12)
+            >>> postscript = postscript.setfont()
+            >>> postscript = postscript.newpath()
+            >>> postscript = postscript.moveto(100, 200)
+            >>> postscript = postscript.show('This is text.')
+            >>> print(str(postscript))
+            /Times-Roman findfont
+            12 scalefont
+            setfont
+            newpath
+            100 200 moveto
+            (This is text.) show
+
+        Returns new Postscript.
+        """
+        text = str(text)
+        operator = PostscriptOperator('show', text)
+        return self._with_operator(operator)
+
+    def stroke(self):
+        """
+        Postscript ``stroke`` operator.
+
+        ..  container:: example
+
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.lineto(3, -4)
+            >>> postscript = postscript.stroke()
+            >>> print(format(postscript))
+            abjad.Postscript(
+                operators=(
+                    abjad.PostscriptOperator('lineto', 3.0, -4.0),
+                    abjad.PostscriptOperator('stroke'),
+                    ),
+                )
+
+            >>> print(str(postscript))
+            3 -4 lineto
+            stroke
+
+        Returns new Postscript.
+        """
+        operator = PostscriptOperator('stroke')
+        return self._with_operator(operator)
+
+    def translate(self, dx, dy):
+        """
+        Postscript ``translate`` operator.
+
+        ..  container:: example
+
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.findfont('Times Roman')
+            >>> postscript = postscript.scalefont(32)
+            >>> postscript = postscript.setfont()
+            >>> postscript = postscript.translate(100, 200)
+            >>> postscript = postscript.rotate(45)
+            >>> postscript = postscript.scale(2, 1)
+            >>> postscript = postscript.newpath()
+            >>> postscript = postscript.moveto(0, 0)
+            >>> postscript = postscript.charpath('This is text.', True)
+            >>> postscript = postscript.setlinewidth(0.5)
+            >>> postscript = postscript.setgray(0.25)
+            >>> postscript = postscript.stroke()
+            >>> print(str(postscript))
+            /Times-Roman findfont
+            32 scalefont
+            setfont
+            100 200 translate
+            45 rotate
+            2 1 scale
+            newpath
+            0 0 moveto
+            (This is text.) true charpath
+            0.5 setlinewidth
+            0.25 setgray
+            stroke
+
+        Returns new Postscript.
+        """
+        dx = float(dx)
+        dy = float(dy)
+        operator = PostscriptOperator('translate', dx, dy)
+        return self._with_operator(operator)
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def operators(self):
+        """
+        Gets Postscript operators.
+
+        Returns tuple or none.
+        """
+        return self._operators
+
+
+class PostscriptOperator(AbjadValueObject):
+    """
+    Postscript operator.
+
+    ..  container:: example
+
+        >>> operator = abjad.PostscriptOperator('rmoveto', 1, 1.5)
+        >>> print(format(operator))
+        abjad.PostscriptOperator('rmoveto', 1, 1.5)
+
+    """
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_name',
+        '_arguments',
+        )
+
+    ### INITIALIZER ###
+
+    def __init__(self, name='stroke', *arguments):
+        name = str(name)
+        self._name = name
+        if arguments:
+            self._arguments = tuple(arguments)
+        else:
+            self._arguments = None
+
+    ### SPECIAL METHODS ###
+
+    def __str__(self):
+        """
+        Gets string representation of Postscript operator.
+
+        ..  container:: example
+
+            >>> operator = abjad.PostscriptOperator('rmoveto', 1, 1.5)
+            >>> str(operator)
+            '1 1.5 rmoveto'
+
+        Returns string.
+        """
+        parts = []
+        if self.arguments:
+            for argument in self.arguments:
+                parts.append(Postscript._format_argument(argument))
+        parts.append(self.name)
+        string = ' '.join(parts)
+        return string
+
+    ### PRIVATE METHODS ###
+
+    def _get_format_specification(self):
+        values = [self.name] + list(self.arguments or ())
+        return FormatSpecification(
+            client=self,
+            storage_format_args_values=values,
+            storage_format_is_indented=False,
+            storage_format_kwargs_names=[],
+            )
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def arguments(self):
+        """
+        Gets Postscript operator arguments.
+
+        Returns tuple or none.
+        """
+        return self._arguments
+
+    @property
+    def name(self):
+        """
+        Gets Postscript operator name.
+
+        Returns string.
+        """
+        return self._name

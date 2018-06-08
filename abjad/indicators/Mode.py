@@ -1,4 +1,8 @@
 from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.pitch.IntervalSegment import IntervalSegment
+from abjad.pitch.NamedInterval import NamedInterval
+from abjad.system.FormatSpecification import FormatSpecification
+from abjad.top.sequence import sequence
 
 
 class Mode(AbjadValueObject):
@@ -9,15 +13,15 @@ class Mode(AbjadValueObject):
 
         Initializes from string:
 
-        >>> abjad.tonalanalysis.Mode('major')
+        >>> abjad.Mode('major')
         Mode('major')
 
     ..  container:: example
 
         Initializes from other mode:
 
-        >>> mode = abjad.tonalanalysis.Mode('dorian')
-        >>> abjad.tonalanalysis.Mode(mode)
+        >>> mode = abjad.Mode('dorian')
+        >>> abjad.Mode(mode)
         Mode('dorian')
 
     """
@@ -53,9 +57,9 @@ class Mode(AbjadValueObject):
 
         ..  container:: example
 
-            >>> mode_1 = abjad.tonalanalysis.Mode('major')
-            >>> mode_2 = abjad.tonalanalysis.Mode('major')
-            >>> mode_3 = abjad.tonalanalysis.Mode('dorian')
+            >>> mode_1 = abjad.Mode('major')
+            >>> mode_2 = abjad.Mode('major')
+            >>> mode_3 = abjad.Mode('dorian')
 
             >>> mode_1 == mode_1
             True
@@ -98,7 +102,7 @@ class Mode(AbjadValueObject):
 
         ..  container:: example
 
-            >>> len(abjad.tonalanalysis.Mode('dorian'))
+            >>> len(abjad.Mode('dorian'))
             7
 
         Returns nonnegative integer.
@@ -111,7 +115,7 @@ class Mode(AbjadValueObject):
 
         ..  container:: example
 
-            >>> str(abjad.tonalanalysis.Mode('dorian'))
+            >>> str(abjad.Mode('dorian'))
             'dorian'
 
         Returns string.
@@ -121,9 +125,8 @@ class Mode(AbjadValueObject):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        import abjad
         values = [self.mode_name]
-        return abjad.FormatSpecification(
+        return FormatSpecification(
             client=self,
             repr_is_indented=False,
             storage_format_is_indented=False,
@@ -131,26 +134,25 @@ class Mode(AbjadValueObject):
             )
 
     def _initialize_with_mode_name(self, mode_name):
-        import abjad
         mdi_segment = []
-        m2 = abjad.pitch.NamedInterval('m2')
-        M2 = abjad.pitch.NamedInterval('M2')
-        A2 = abjad.pitch.NamedInterval('aug2')
+        m2 = NamedInterval('m2')
+        M2 = NamedInterval('M2')
+        A2 = NamedInterval('aug2')
         dorian = [M2, m2, M2, M2, M2, m2, M2]
         if mode_name == 'dorian':
-            mdi_segment.extend(abjad.sequence(dorian).rotate(n=0))
+            mdi_segment.extend(sequence(dorian).rotate(n=0))
         elif mode_name == 'phrygian':
-            mdi_segment.extend(abjad.sequence(dorian).rotate(n=-1))
+            mdi_segment.extend(sequence(dorian).rotate(n=-1))
         elif mode_name == 'lydian':
-            mdi_segment.extend(abjad.sequence(dorian).rotate(n=-2))
+            mdi_segment.extend(sequence(dorian).rotate(n=-2))
         elif mode_name == 'mixolydian':
-            mdi_segment.extend(abjad.sequence(dorian).rotate(n=-3))
+            mdi_segment.extend(sequence(dorian).rotate(n=-3))
         elif mode_name in ('aeolian', 'minor', 'natural minor'):
-            mdi_segment.extend(abjad.sequence(dorian).rotate(n=-4))
+            mdi_segment.extend(sequence(dorian).rotate(n=-4))
         elif mode_name == 'locrian':
-            mdi_segment.extend(abjad.sequence(dorian).rotate(n=-5))
+            mdi_segment.extend(sequence(dorian).rotate(n=-5))
         elif mode_name in ('ionian', 'major'):
-            mdi_segment.extend(abjad.sequence(dorian).rotate(n=-6))
+            mdi_segment.extend(sequence(dorian).rotate(n=-6))
         elif mode_name == 'melodic minor':
             mdi_segment.extend([M2, m2, M2, M2, M2, M2, m2])
         elif mode_name == 'harmonic minor':
@@ -159,9 +161,9 @@ class Mode(AbjadValueObject):
             message = 'unknown mode name: {!r}.'
             message = message.format(mode_name)
             raise ValueError(message)
-        return abjad.pitch.IntervalSegment(
+        return IntervalSegment(
             items=mdi_segment,
-            item_class=abjad.pitch.NamedInterval,
+            item_class=NamedInterval,
             )
 
     ### PUBLIC PROPERTIES ###
@@ -169,14 +171,14 @@ class Mode(AbjadValueObject):
     @property
     def mode_name(self):
         """
-        Gets name.
+        Gets mode name.
 
         ..  container:: example
 
-            >>> abjad.tonalanalysis.Mode('major').mode_name
+            >>> abjad.Mode('major').mode_name
             'major'
 
-            >>> abjad.tonalanalysis.Mode('dorian').mode_name
+            >>> abjad.Mode('dorian').mode_name
             'dorian'
 
         Returns string.
@@ -186,15 +188,15 @@ class Mode(AbjadValueObject):
     @property
     def named_interval_segment(self):
         """
-        Gets named interval segmen
+        Gets named interval segment.
 
         ..  container:: example
 
-            >>> mode = abjad.tonalanalysis.Mode('major')
+            >>> mode = abjad.Mode('major')
             >>> str(mode.named_interval_segment)
             '<+M2, +M2, +m2, +M2, +M2, +M2, +m2>'
 
-            >>> mode = abjad.tonalanalysis.Mode('dorian')
+            >>> mode = abjad.Mode('dorian')
             >>> str(mode.named_interval_segment)
             '<+M2, +m2, +M2, +M2, +M2, +m2, +M2>'
 

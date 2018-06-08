@@ -14,8 +14,8 @@ from abjad.core.Score import Score
 from abjad.core.Selection import Selection
 from abjad.core.Staff import Staff
 from abjad.core.Voice import Voice
-from abjad.scheme.Scheme import Scheme
-from abjad.scheme.SpacingVector import SpacingVector
+from abjad.scheme import Scheme
+from abjad.scheme import SpacingVector
 from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.top.attach import attach
 from abjad.top.inspect import inspect as abjad_inspect

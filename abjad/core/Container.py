@@ -1,12 +1,13 @@
 import collections
 import typing
 import uqbar.graphs
-from abjad.enumerations import Left, Right
+from abjad.enumerations import Left
+from abjad.enumerations import Right
 from abjad.exceptions import ParentageError
-from abjad.utilities.Duration import Duration
 from abjad.top.inspect import inspect
 from abjad.top.iterate import iterate
 from abjad.top.select import select
+from abjad.utilities.Duration import Duration
 from .Component import Component
 from .Selection import Selection
 
@@ -1196,7 +1197,7 @@ class Container(Component):
                         leaf_right_of_split,
                         )
                     selection = select(leaves_around_split)
-                    selection._attach_tie_spanner_to_leaf_pair(
+                    selection._attach_tie_to_leaf_pair(
                         repeat_ties=repeat_ties,
                         )
         # return list-wrapped halves of container

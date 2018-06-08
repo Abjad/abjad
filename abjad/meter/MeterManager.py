@@ -173,22 +173,22 @@ class MeterManager(abctools.AbjadObject):
         Returns generator.
         """
         import abjad
-        last_tie_spanner = None
+        last_tie = None
         current_leaf_group = None
         current_leaf_group_is_silent = False
         for x in argument:
             if isinstance(x, (abjad.Note, abjad.Chord)):
-                this_tie_spanner = x._get_spanners(abjad.Tie) or None
+                this_tie = x._get_spanners(abjad.Tie) or None
                 if current_leaf_group is None:
                     current_leaf_group = []
                 elif (current_leaf_group_is_silent or
-                    this_tie_spanner is None or
-                    last_tie_spanner != this_tie_spanner):
+                    this_tie is None or
+                    last_tie != this_tie):
                     yield abjad.LogicalTie(current_leaf_group)
                     current_leaf_group = []
                 current_leaf_group_is_silent = False
                 current_leaf_group.append(x)
-                last_tie_spanner = this_tie_spanner
+                last_tie = this_tie
             elif isinstance(x, (abjad.Rest, abjad.Skip)):
                 if current_leaf_group is None:
                     current_leaf_group = []
@@ -197,12 +197,12 @@ class MeterManager(abctools.AbjadObject):
                     current_leaf_group = []
                 current_leaf_group_is_silent = True
                 current_leaf_group.append(x)
-                last_tie_spanner = None
+                last_tie = None
             elif isinstance(x, abjad.Container):
                 if current_leaf_group is not None:
                     yield abjad.LogicalTie(current_leaf_group)
                     current_leaf_group = None
-                    last_tie_spanner = None
+                    last_tie = None
                 yield x
 
             else:

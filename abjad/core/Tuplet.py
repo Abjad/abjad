@@ -321,9 +321,6 @@ class Tuplet(Container):
         string = rf'\times {self._get_multiplier_fraction_string()} {{'
         return string
 
-    def _rest_filled(self):
-        return all(isinstance(_, Rest) for _ in self)
-
     def _scale(self, multiplier):
         multiplier = Multiplier(multiplier)
         for component in self[:]:

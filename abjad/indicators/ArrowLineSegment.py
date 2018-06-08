@@ -1,7 +1,7 @@
 import typing
 from abjad.enumerations import Center
 from abjad.enumerations import VerticalAlignment
-from abjad.markup.Markup import Markup
+from abjad.markups import Markup
 from abjad.typings import Number
 from .LineSegment import LineSegment
 

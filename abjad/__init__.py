@@ -36,7 +36,7 @@ from abjad.indicators import *
 from abjad.instruments import *
 from abjad.lilypondfile import *
 from abjad.lilypondnames import *
-from abjad.markup import *
+from abjad.markups import *
 from abjad.meter import *
 from abjad.pitch import *
 from abjad.scheme import *

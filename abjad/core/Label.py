@@ -1,11 +1,11 @@
 import collections
 import inspect
+from abjad.abctools.AbjadObject import AbjadObject
 from abjad.enumerations import Up
-from abjad import abctools
-from abjad import scheme as abjad_scheme
+from abjad.scheme import SchemeColor
 
 
-class Label(abctools.AbjadObject):
+class Label(AbjadObject):
     r"""
     Label.
 
@@ -187,19 +187,19 @@ class Label(abctools.AbjadObject):
         )
 
     _pc_number_to_color = {
-        0: abjad_scheme.SchemeColor('red'),
-        1: abjad_scheme.SchemeColor('MediumBlue'),
-        2: abjad_scheme.SchemeColor('orange'),
-        3: abjad_scheme.SchemeColor('LightSlateBlue'),
-        4: abjad_scheme.SchemeColor('ForestGreen'),
-        5: abjad_scheme.SchemeColor('MediumOrchid'),
-        6: abjad_scheme.SchemeColor('firebrick'),
-        7: abjad_scheme.SchemeColor('DeepPink'),
-        8: abjad_scheme.SchemeColor('DarkOrange'),
-        9: abjad_scheme.SchemeColor('IndianRed'),
-        10: abjad_scheme.SchemeColor('CadetBlue'),
-        11: abjad_scheme.SchemeColor('SeaGreen'),
-        12: abjad_scheme.SchemeColor('LimeGreen'),
+        0: SchemeColor('red'),
+        1: SchemeColor('MediumBlue'),
+        2: SchemeColor('orange'),
+        3: SchemeColor('LightSlateBlue'),
+        4: SchemeColor('ForestGreen'),
+        5: SchemeColor('MediumOrchid'),
+        6: SchemeColor('firebrick'),
+        7: SchemeColor('DeepPink'),
+        8: SchemeColor('DarkOrange'),
+        9: SchemeColor('IndianRed'),
+        10: SchemeColor('CadetBlue'),
+        11: SchemeColor('SeaGreen'),
+        12: SchemeColor('LimeGreen'),
         }
 
     ### INITIALIZER ###

@@ -1,7 +1,7 @@
 from abjad.enumerations import HorizontalAlignment
 from abjad.enumerations import Right
 from abjad.abctools.AbjadValueObject import AbjadValueObject
-from abjad.scheme.Scheme import Scheme
+from abjad.scheme import Scheme
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 
 

@@ -2,10 +2,12 @@ import collections
 import copy
 import inspect
 import itertools
-from abjad.enumerations import Exact, Less, More
+from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.enumerations import Exact
+from abjad.enumerations import Less
+from abjad.enumerations import More
 from abjad.exceptions import ExtraSpannerError
 from abjad.exceptions import MissingSpannerError
-from abjad.abctools.AbjadValueObject import AbjadValueObject
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.top.inspect import inspect as abjad_inspect
@@ -511,7 +513,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
     ### PRIVATE METHODS ###
 
-    def _attach_tie_spanner_to_leaf_pair(self, repeat_ties=False):
+    def _attach_tie_to_leaf_pair(self, repeat_ties=False):
         import abjad
         assert len(self) == 2
         left_leaf, right_leaf = self
@@ -522,30 +524,30 @@ class Selection(AbjadValueObject, collections.Sequence):
         if left_logical_tie == right_logical_tie:
             return
         try:
-            left_tie_spanner = left_leaf._get_spanner(abjad.Tie)
+            left_tie = left_leaf._get_spanner(abjad.Tie)
         except MissingSpannerError:
-            left_tie_spanner = None
+            left_tie = None
         try:
-            right_tie_spanner = right_leaf._get_spanner(abjad.Tie)
+            right_tie = right_leaf._get_spanner(abjad.Tie)
         except MissingSpannerError:
-            right_tie_spanner = None
-        if left_tie_spanner is not None and right_tie_spanner is not None:
-            left_tie_spanner._fuse_by_reference(right_tie_spanner)
-        elif left_tie_spanner is not None and right_tie_spanner is None:
-            left_tie_spanner._append(right_leaf)
-        elif left_tie_spanner is None and right_tie_spanner is not None:
-            right_tie_spanner._append_left(left_leaf)
-        elif left_tie_spanner is None and right_tie_spanner is None:
+            right_tie = None
+        if left_tie is not None and right_tie is not None:
+            left_tie._fuse_by_reference(right_tie)
+        elif left_tie is not None and right_tie is None:
+            left_tie._append(right_leaf)
+        elif left_tie is None and right_tie is not None:
+            right_tie._append_left(left_leaf)
+        elif left_tie is None and right_tie is None:
             tie = abjad.Tie(repeat=repeat_ties)
             leaves = abjad.select([left_leaf, right_leaf])
             abjad.attach(tie, leaves)
 
-    def _attach_tie_spanner_to_leaves(self, repeat_ties=False):
+    def _attach_tie_to_leaves(self, repeat_ties=False):
         import abjad
         pairs = abjad.sequence(self).nwise()
         for leaf_pair in pairs:
             selection = abjad.select(leaf_pair)
-            selection._attach_tie_spanner_to_leaf_pair(
+            selection._attach_tie_to_leaf_pair(
                 repeat_ties=repeat_ties,
                 )
 

@@ -4,7 +4,7 @@ from abjad import Fraction
 from abjad import utilities
 from abjad import indicators as abjad_indicators
 from abjad import lilypondfile as abjad_lilypondfile
-from abjad import markup as abjad_markup
+from abjad import markups as abjad_markups
 from abjad import core
 from abjad import pitch as abjad_pitch
 from abjad import scheme as abjad_scheme
@@ -1237,7 +1237,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     def p_full_markup__MARKUP__markup_top(self, p):
         'full_markup : MARKUP markup_top'
-        p[0] = abjad_markup.Markup(p[2])
+        p[0] = abjad_markups.Markup(p[2])
         self.client._lexer.pop_state()
         self.client._relex_lookahead()
 
@@ -1723,7 +1723,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     def p_gen_text_def__simple_string(self, p):
         'gen_text_def : simple_string'
-        p[0] = abjad_markup.Markup(p[1])
+        p[0] = abjad_markups.Markup(p[1])
 
 
     ### grouped_music_list ###
@@ -1952,7 +1952,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
             command = item[0][1:]
             arguments = item[1:]
             arguments.append(markup)
-            markup = abjad_markup.MarkupCommand(command, *arguments)
+            markup = abjad_markups.MarkupCommand(command, *arguments)
         p[0] = markup
 
 
@@ -2010,7 +2010,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     def p_markup_command_list__MARKUP_LIST_FUNCTION__markup_command_list_arguments(self, p):
         'markup_command_list : MARKUP_LIST_FUNCTION markup_command_list_arguments'
-        p[0] = abjad_markup.MarkupCommand(p[1][1:], *p[2])
+        p[0] = abjad_markups.MarkupCommand(p[1][1:], *p[2])
 
 
     ### markup_command_list_arguments ###
@@ -2036,7 +2036,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
             command = item[0][1:]
             arguments = item[1:]
             arguments.append(markup)
-            markup = abjad_markup.MarkupCommand(command, *arguments)
+            markup = abjad_markups.MarkupCommand(command, *arguments)
         p[0] = markup
 
 
@@ -2122,7 +2122,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
             command = item[0][1:]
             arguments = item[1:]
             arguments.append(markup)
-            markup = abjad_markup.MarkupCommand(command, *arguments)
+            markup = abjad_markups.MarkupCommand(command, *arguments)
         p[0] = markup
 
 
@@ -3017,7 +3017,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         'simple_markup : MARKUP_FUNCTION markup_command_basic_arguments'
         command = p[1][1:]
         arguments = p[2]
-        p[0] = abjad_markup.MarkupCommand(command, *arguments)
+        p[0] = abjad_markups.MarkupCommand(command, *arguments)
 
     def p_simple_markup__MARKUP_IDENTIFIER(self, p):
         'simple_markup : MARKUP_IDENTIFIER'

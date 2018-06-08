@@ -1,13 +1,12 @@
 import typing
-from abjad.markup.Markup import Markup
-from abjad.lilypondnames.LilyPondGrobOverride import \
-    LilyPondGrobOverride
-from abjad.pitch.NamedInterval import NamedInterval
 from abjad.core.MultimeasureRest import MultimeasureRest
 from abjad.core.Chord import Chord
 from abjad.core.Note import Note
 from abjad.core.Rest import Rest
 from abjad.core.Skip import Skip
+from abjad.lilypondnames.LilyPondGrobOverride import LilyPondGrobOverride
+from abjad.markups import Markup
+from abjad.pitch.NamedInterval import NamedInterval
 from abjad.top.inspect import inspect
 from .Spanner import Spanner
 

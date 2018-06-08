@@ -11,11 +11,11 @@ from abjad import mathtools
 from abjad.abctools.AbjadValueObject import AbjadValueObject
 from abjad.enumerations import Down
 from abjad.exceptions import ImpreciseMetronomeMarkError
-from abjad.markup.Markup import Markup
+from abjad.markups import Markup
 from abjad.mathtools.Enumerator import Enumerator
 from abjad.mathtools.NonreducedFraction import NonreducedFraction
 from abjad.mathtools.Ratio import Ratio
-from abjad.scheme.Scheme import Scheme
+from abjad.scheme import Scheme
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.top.new import new

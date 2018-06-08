@@ -54,7 +54,6 @@ class LogicalTie(Selection):
             first = self[0]
             for spanner in first._get_spanners(abjad.Tie):
                 spanner._sever_all_leaves()
-            #detach(abjad.Tie, first)
         elif new_written_duration.has_power_of_two_denominator:
             durations = maker(0, [new_written_duration])
             for leaf, token in zip(self, durations):
@@ -70,7 +69,6 @@ class LogicalTie(Selection):
             elif len(self) < len(durations):
                 for spanner in self[0]._get_spanners(abjad.Tie):
                     spanner._sever_all_leaves()
-                #detach(abjad.Tie, self[0])
                 difference = len(durations) - len(self)
                 extra_leaves = self[0] * difference
                 for extra_leaf in extra_leaves:
@@ -177,7 +175,7 @@ class LogicalTie(Selection):
             return self.items[-1]
 
     @property
-    def tie_spanner(self):
+    def tie(self):
         """
         Gets tie spanner governing logical tie.
 

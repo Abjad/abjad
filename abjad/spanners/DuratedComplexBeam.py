@@ -1,13 +1,13 @@
 import collections
 import typing
-from abjad.enumerations import HorizontalAlignment, VerticalAlignment
-from abjad.utilities.Duration import Duration
-from abjad.utilities.Offset import Offset
 from abjad.core.Leaf import Leaf
+from abjad.enumerations import HorizontalAlignment, VerticalAlignment
 from abjad.top.inspect import inspect
 from abjad.top.sequence import sequence
+from abjad.typings import Number
+from abjad.utilities.Duration import Duration
+from abjad.utilities.Offset import Offset
 from .ComplexBeam import ComplexBeam
-Number = typing.Union[int, float]
 
 
 class DuratedComplexBeam(ComplexBeam):

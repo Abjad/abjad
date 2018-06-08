@@ -5,7 +5,7 @@ from abjad.enumerations import (
     Up,
     VerticalAlignment,
     )
-from abjad.markup.Markup import Markup
+from abjad.markups import Markup
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 
 

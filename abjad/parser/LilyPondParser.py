@@ -4,7 +4,7 @@ import ply  # type: ignore
 from abjad import abctools
 from abjad import indicators as abjad_indicators
 from abjad import lilypondfile as abjad_lilypondfile
-from abjad import markup as abjad_markup
+from abjad import markups as abjad_markups
 from abjad import pitch as abjad_pitch
 from abjad import core
 from abjad import spanners as abjad_spanners
@@ -740,7 +740,7 @@ class LilyPondParser(abctools.Parser):
             'boolean?': lambda x: isinstance(x, bool),
             'cheap-list?': lambda x: isinstance(x, (list, tuple)),
             'cheap-markup?': lambda x: isinstance(x,
-                abjad_markup.MarkupCommand),
+                abjad_markups.MarkupCommand),
             'fraction?': lambda x: isinstance(x, abjad_parser.LilyPondFraction),
             'integer?': lambda x: isinstance(x, int),
             'list?': lambda x: isinstance(x, (list, tuple)),
@@ -748,7 +748,7 @@ class LilyPondParser(abctools.Parser):
                 abjad_parser.LilyPondDuration),
             'ly:music?': lambda x: isinstance(x, core.Component),
             'ly:pitch?': lambda x: isinstance(x, abjad_pitch.NamedPitch),
-            'markup?': lambda x: isinstance(x, abjad_markup.MarkupCommand),
+            'markup?': lambda x: isinstance(x, abjad_markups.MarkupCommand),
             'number-list?': lambda x: isinstance(x, (list, tuple)) and
                 all(isinstance(y, (int, float)) for y in x),
             'number?': lambda x: isinstance(x, (int, float)),
@@ -796,7 +796,7 @@ class LilyPondParser(abctools.Parser):
                 abjad_indicators.Dynamic,
                 abjad_indicators.LilyPondLiteral,
                 abjad_indicators.StemTremolo,
-                abjad_markup.Markup,
+                abjad_markups.Markup,
                 )
             if hasattr(post_event, '_attach'):
                 attach(post_event, leaf)

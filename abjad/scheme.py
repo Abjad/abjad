@@ -1,9 +1,15 @@
+import functools
 import typing
+from abjad.typings import Number
 from abjad.abctools.AbjadValueObject import AbjadValueObject
 from abjad.enumerations import HorizontalAlignment
 from abjad.enumerations import VerticalAlignment
+from abjad.mathtools.NonreducedFraction import NonreducedFraction
+from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.StorageFormatManager import StorageFormatManager
+from abjad.utilities.String import String
+
 
 
 class Scheme(AbjadValueObject):
@@ -431,3 +437,512 @@ class Scheme(AbjadValueObject):
         elif value is None:
             return '#f'
         return str(value)
+
+
+class SchemeAssociativeList(Scheme):
+    """
+    Abjad model of Scheme associative list.
+
+    ..  container:: example
+
+        >>> scheme_alist = abjad.SchemeAssociativeList([
+        ...     ('space', 2),
+        ...     ('padding', 0.5),
+        ...     ])
+        >>> abjad.f(scheme_alist)
+        abjad.SchemeAssociativeList(
+            [
+                abjad.SchemePair(('space', 2)),
+                abjad.SchemePair(('padding', 0.5)),
+                ]
+            )
+
+        >>> print(format(scheme_alist))
+        #'((space . 2) (padding . 0.5))
+
+    Scheme associative lists are immutable.
+    """
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = ()
+
+    ### INITIALIZER ###
+
+    def __init__(
+        self,
+        value: typing.List = None,
+        ) -> None:
+        value = value or []
+        pairs = []
+        for item in value:
+            if isinstance(item, tuple):
+                pair = SchemePair(item)
+            elif isinstance(item, SchemePair):
+                pair = item
+            else:
+                message = f'must be Python pair or Scheme pair: {item!r}.'
+                raise TypeError(message)
+            pairs.append(pair)
+        Scheme.__init__(self, value=pairs, quoting="'")
+
+
+class SchemeColor(Scheme):
+    r"""
+    Abjad model of Scheme color.
+
+    ..  container:: example
+
+        >>> abjad.SchemeColor('ForestGreen')
+        SchemeColor('ForestGreen')
+
+
+    ..  container:: example
+
+        >>> note = abjad.Note("c'4")
+        >>> scheme_color = abjad.SchemeColor('ForestGreen')
+        >>> abjad.override(note).note_head.color = scheme_color
+        >>> abjad.show(note) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(note)
+            \once \override NoteHead.color = #(x11-color 'ForestGreen)
+            c'4
+
+    """
+
+    ### CLASS VARIABLES ##
+
+    __slots__ = ()
+
+    ### PRIVATE METHODS ###
+
+    def _get_formatted_value(self):
+        string = "(x11-color '{})"
+        string = string.format(self._value)
+        return string
+
+
+@functools.total_ordering
+class SchemeMoment(Scheme):
+    """
+    Abjad model of Scheme moment.
+
+    ..  container:: example
+
+        Initializes with two integers:
+
+        >>> abjad.SchemeMoment((2, 68))
+        SchemeMoment((2, 68))
+
+    Scheme moments are immutable.
+    """
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = ()
+
+    ### INITIALIZER ###
+
+    def __init__(
+        self,
+        duration: typing.Union[typing.Tuple[int, int]] = (0, 1),
+        ) -> None:
+        pair = NonreducedFraction(duration).pair
+        Scheme.__init__(self, pair)
+
+    ### SPECIAL METHODS ###
+
+    def __eq__(self, argument) -> bool:
+        """
+        Is true when ``argument`` is a scheme moment with the same value as
+        that of this scheme moment.
+
+        ..  container:: example
+
+            >>> abjad.SchemeMoment((2, 68)) == abjad.SchemeMoment((2, 68))
+            True
+
+        ..  container:: example
+
+            Otherwise false:
+
+            >>> abjad.SchemeMoment((2, 54)) == abjad.SchemeMoment((2, 68))
+            False
+
+        """
+        return super(SchemeMoment, self).__eq__(argument)
+
+    def __hash__(self) -> int:
+        """
+        Hashes scheme moment.
+
+        Redefined in tandem with ``__eq__``.
+        """
+        return super(SchemeMoment, self).__hash__()
+
+    def __lt__(self, argument) -> bool:
+        """
+        Is true when ``argument`` is a scheme moment with value greater than
+        that of this scheme moment.
+
+        ..  container:: example
+
+            >>> abjad.SchemeMoment((1, 68)) < abjad.SchemeMoment((1, 32))
+            True
+
+        ..  container:: example
+
+            Otherwise false:
+
+            >>> abjad.SchemeMoment((1, 68)) < abjad.SchemeMoment((1, 78))
+            False
+
+        """
+        if isinstance(argument, type(self)):
+            if self.duration < argument.duration:
+                return True
+        return False
+
+    ### PRIVATE METHODS ###
+
+    def _get_format_specification(self):
+        values = [self.value]
+        return FormatSpecification(
+            client=self,
+            storage_format_args_values=values,
+            storage_format_kwargs_names=[],
+            )
+
+    def _get_formatted_value(self):
+        pair = self.duration.pair
+        string = f'(ly:make-moment {pair[0]} {pair[1]})'
+        return string
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def duration(self) -> NonreducedFraction:
+        """
+        Gets duration of Scheme moment.
+
+        ..  container:: example
+
+            >>> abjad.SchemeMoment((2, 68)).duration
+            NonreducedFraction(2, 68)
+
+        """
+        return NonreducedFraction(self.value)
+
+
+class SchemePair(Scheme):
+    r"""
+    Abjad model of Scheme pair.
+
+    ..  container:: example
+
+        Initializes from two values:
+
+        >>> abjad.SchemePair(('spacing', 4))
+        SchemePair(('spacing', 4))
+
+    ..  container:: example
+
+        Regression tests:
+
+        Right-hand side string forces quotes:
+
+        >>> scheme_pair = abjad.SchemePair(('font-name', 'Times'))
+        >>> format(scheme_pair)
+        '#\'(font-name . "Times")'
+
+        Right-hand side nonstring does not force quotes:
+
+        >>> scheme_pair = abjad.SchemePair(('spacing', 4))
+        >>> format(scheme_pair)
+        "#'(spacing . 4)"
+
+    """
+
+    ### CLASS VARIABLES ##
+
+    __slots__ = (
+        '_value',
+        )
+
+    ### INITIALIZER ##
+
+    def __init__(
+        self,
+        value = (None, None),
+        ) -> None:
+        assert isinstance(value, tuple), repr(value)
+        assert len(value) == 2, repr(value)
+        Scheme.__init__(self, value=value)
+
+    ### SPECIAL METHODS ###
+
+    def __format__(self, format_specification='') -> str:
+        """
+        Formats Scheme pair.
+
+        ..  container:: example
+
+            >>> scheme_pair = abjad.SchemePair((-1, 1))
+
+            >>> format(scheme_pair)
+            "#'(-1 . 1)"
+
+            >>> abjad.f(scheme_pair)
+            abjad.SchemePair((-1, 1))
+
+        """
+        return super(SchemePair, self).__format__(
+            format_specification=format_specification,
+            )
+
+    ### PRIVATE METHODS ###
+
+    def _get_format_specification(self):
+        values = [self.value]
+        return FormatSpecification(
+            client=self,
+            repr_is_indented=False,
+            storage_format_is_indented=False,
+            storage_format_args_values=values,
+            )
+
+    def _get_formatted_value(self):
+        assert len(self._value) == 2
+        lhs = Scheme.format_scheme_value(self._value[0])
+        # need to force quotes around pairs like
+        # \override #'(font-name . "Times")
+        rhs = Scheme.format_scheme_value(
+            self._value[-1],
+            force_quotes=True,
+            )
+        return f'({lhs} . {rhs})'
+
+    def _get_lilypond_format(self):
+        string = self._get_formatted_value()
+        return f"#'{string}"
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def left(self) -> typing.Any:
+        """
+        Gets left value.
+        """
+        pair = self.value
+        assert isinstance(pair, tuple)
+        return pair[0]
+
+    @property
+    def right(self) -> typing.Any:
+        """
+        Gets right value.
+        """
+        pair = self.value
+        assert isinstance(pair, tuple)
+        return pair[-1]
+
+
+class SchemeSymbol(Scheme):
+    """
+    Abjad model of Scheme symbol.
+
+    ..  container:: example
+
+        >>> scheme = abjad.SchemeSymbol('cross')
+        >>> scheme
+        SchemeSymbol('cross')
+
+        >>> print(format(scheme))
+        #'cross
+
+    """
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = ()
+
+    ### INITIALIZER ###
+
+    def __init__(
+        self,
+        symbol: str = 'cross',
+        ) -> None:
+        symbol = str(symbol)
+        Scheme.__init__(self, value=symbol, quoting="'")
+
+    ### PRIVATE METHODS ###
+
+    def _get_format_specification(self):
+        values = [self.symbol]
+        return FormatSpecification(
+            client=self,
+            storage_format_args_values=values,
+            storage_format_kwargs_names=[],
+            )
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def symbol(self) -> str:
+        """
+        Gets symbol string.
+        """
+        assert isinstance(self.value, str)
+        return self.value
+
+
+class SchemeVector(Scheme):
+    """
+    Abjad model of Scheme vector.
+
+    ..  container:: example
+
+        Scheme vector of boolean values:
+
+        >>> scheme = abjad.SchemeVector([True, True, False])
+        >>> scheme
+        SchemeVector(True, True, False)
+        >>> print(format(scheme))
+        #'(#t #t #f)
+
+    ..  container:: example
+
+        Scheme vector of symbols:
+
+        >>> scheme = abjad.SchemeVector(['foo', 'bar', 'blah'])
+        >>> scheme
+        SchemeVector('foo', 'bar', 'blah')
+        >>> print(format(scheme))
+        #'(foo bar blah)
+
+    Scheme vectors and Scheme vector constants differ in only their LilyPond
+    input format.
+    """
+
+    ### CLASS VARIABLES ##
+
+    __slots__ = ()
+
+    ### INITIALIZER ###
+
+    def __init__(
+        self,
+        value: typing.List = [],
+        ) -> None:
+        Scheme.__init__(self, value, quoting="'")
+
+    ### PRIVATE METHODS ###
+
+    def _get_format_specification(self):
+        values = self._value
+        if String.is_string(self._value):
+            values = [self._value]
+        return FormatSpecification(
+            client=self,
+            storage_format_args_values=values,
+            storage_format_kwargs_names=[],
+            )
+
+
+class SchemeVectorConstant(Scheme):
+    """
+    Abjad model of Scheme vector constant.
+
+    ..  container:: example
+
+        Scheme vector constant of boolean values:
+
+        >>> scheme = abjad.SchemeVectorConstant([True, True, False])
+        >>> scheme
+        SchemeVectorConstant(True, True, False)
+        >>> print(format(scheme))
+        #'#(#t #t #f)
+
+    Scheme vectors and Scheme vector constants differ in only their LilyPond
+    input format.
+    """
+
+    ### CLASS VARIABLES ##
+
+    __slots__ = ()
+
+    ### INITIALIZER ###
+
+    def __init__(
+        self,
+        value: typing.List = [],
+        ) -> None:
+        Scheme.__init__(self, value, quoting="'#")
+
+    ### PRIVATE METHODS ###
+
+    def _get_format_specification(self):
+        values = self._value
+        if String.is_string(self._value):
+            values = [self._value]
+        return FormatSpecification(
+            client=self,
+            storage_format_args_values=values,
+            storage_format_kwargs_names=[],
+            )
+
+
+class SpacingVector(SchemeVector):
+    r"""
+    Abjad model of Scheme spacing vector.
+
+    ..  container:: example
+
+        >>> vector = abjad.SpacingVector(0, 0, 12, 0)
+
+        >>> abjad.f(vector)
+        abjad.SpacingVector(
+            abjad.SchemePair(('basic-distance', 0)),
+            abjad.SchemePair(('minimum-distance', 0)),
+            abjad.SchemePair(('padding', 12)),
+            abjad.SchemePair(('stretchability', 0))
+            )
+
+        Use to set paper block spacing attributes:
+
+        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+        >>> lilypond_file = abjad.LilyPondFile.new(staff)
+        >>> vector = abjad.SpacingVector(0, 0, 12, 0)
+        >>> lilypond_file.paper_block.system_system_spacing = vector
+
+        ..  docs::
+
+            >>> abjad.f(lilypond_file.paper_block)
+            \paper {
+                system-system-spacing = #'((basic-distance . 0) (minimum-distance . 0) (padding . 12) (stretchability . 0))
+            }
+
+    """
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = ()
+
+    ### INITIALIZER ###
+
+    def __init__(
+        self,
+        basic_distance: Number = 0,
+        minimum_distance: Number = 0,
+        padding: Number = 12,
+        stretchability: Number = 0,
+        ) -> None:
+        pairs = [
+            SchemePair(('basic-distance', basic_distance)),
+            SchemePair(('minimum-distance', minimum_distance)),
+            SchemePair(('padding', padding)),
+            SchemePair(('stretchability', stretchability)),
+            ]
+        return SchemeVector.__init__(self, pairs)

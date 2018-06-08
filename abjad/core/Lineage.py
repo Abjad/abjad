@@ -1,8 +1,8 @@
 import collections
-from abjad import abctools
+from abjad.abctools.AbjadObject import AbjadObject
 
 
-class Lineage(abctools.AbjadObject, collections.Sequence):
+class Lineage(AbjadObject, collections.Sequence):
     r'''
     Lineage of a component.
 

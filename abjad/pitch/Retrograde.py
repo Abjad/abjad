@@ -196,8 +196,8 @@ class Retrograde(AbjadValueObject):
     ### PRIVATE METHODS ###
 
     def _get_markup(self, direction=None):
-        from abjad import markup
-        return markup.Markup('R', direction=direction)
+        from abjad import markups
+        return markups.Markup('R', direction=direction)
 
     def _is_identity_operator(self):
         return False

@@ -1,9 +1,9 @@
 import collections
 from abjad import mathtools
-from abjad import abctools
+from abjad.abctools.AbjadObject import AbjadObject
 
 
-class Parentage(abctools.AbjadObject, collections.Sequence):
+class Parentage(AbjadObject, collections.Sequence):
     r'''
     Parentage of a component.
 

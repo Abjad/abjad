@@ -1,7 +1,7 @@
 import functools
 import typing
 from abjad.abctools.AbjadValueObject import AbjadValueObject
-from abjad.markup.Markup import Markup
+from abjad.markups import Markup
 from abjad.utilities.Multiplier import Multiplier
 
 

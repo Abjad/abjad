@@ -1,7 +1,7 @@
 import abjad
 
 
-def test_Selection__attach_tie_spanner_to_leaf_pair_01():
+def test_Selection__attach_tie_to_leaf_pair_01():
     """
     Span left leaf with spanner and right leaf without spanner.
     """
@@ -25,7 +25,7 @@ def test_Selection__attach_tie_spanner_to_leaf_pair_01():
 
     selector = abjad.select().leaves()
     leaves = selector(voice)
-    leaves[1:3]._attach_tie_spanner_to_leaf_pair()
+    leaves[1:3]._attach_tie_to_leaf_pair()
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -44,7 +44,7 @@ def test_Selection__attach_tie_spanner_to_leaf_pair_01():
     assert abjad.inspect(voice).is_well_formed()
 
 
-def test_Selection__attach_tie_spanner_to_leaf_pair_02():
+def test_Selection__attach_tie_to_leaf_pair_02():
     """
     Span left leaf with spanner and right leaf with spanner.
     """
@@ -71,7 +71,7 @@ def test_Selection__attach_tie_spanner_to_leaf_pair_02():
 
     selector = abjad.select().leaves()
     leaves = selector(voice)
-    leaves[1:3]._attach_tie_spanner_to_leaf_pair()
+    leaves[1:3]._attach_tie_to_leaf_pair()
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -91,7 +91,7 @@ def test_Selection__attach_tie_spanner_to_leaf_pair_02():
     assert abjad.inspect(voice).is_well_formed()
 
 
-def test_Selection__attach_tie_spanner_to_leaf_pair_03():
+def test_Selection__attach_tie_to_leaf_pair_03():
     """
     Span left leaves with no spanner.
     """
@@ -99,7 +99,7 @@ def test_Selection__attach_tie_spanner_to_leaf_pair_03():
     voice = abjad.Voice("c'8 c'8 c'8 c'8")
     selector = abjad.select().leaves()
     leaves = selector(voice)
-    leaves[1:3]._attach_tie_spanner_to_leaf_pair()
+    leaves[1:3]._attach_tie_to_leaf_pair()
 
     assert format(voice) == abjad.String.normalize(
         r"""

@@ -359,7 +359,7 @@ class StorageFormatManager(AbjadValueObject):
             ...     type_
             ...
             <class 'abjad.instruments.Flute.Flute'>
-            <class 'abjad.markup.Markup.Markup'>
+            <class 'abjad.markups.Markup'>
             <class 'abjad.pitch.NamedPitch.NamedPitch'>
             <class 'abjad.pitch.PitchRange.PitchRange'>
 
@@ -558,7 +558,7 @@ class StorageFormatManager(AbjadValueObject):
             ...     line
             ...
             'from abjad.tools import instruments'
-            'from abjad.tools import markup'
+            'from abjad.tools import markups'
             'from abjad.tools import pitch'
 
         Returns tuple of strings.

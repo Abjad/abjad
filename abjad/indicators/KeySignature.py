@@ -4,6 +4,7 @@ from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.pitch.NamedPitchClass import NamedPitchClass
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
+from .Mode import Mode
 
 
 class KeySignature(AbjadValueObject):
@@ -76,7 +77,6 @@ class KeySignature(AbjadValueObject):
         tweaks: typing.Union[
             typing.List[typing.Tuple], LilyPondTweakManager] = None,
         ) -> None:
-        from abjad.tonalanalysis.Mode import Mode
         self._tonic = NamedPitchClass(tonic)
         self._mode = Mode(mode)
         self._lilypond_tweak_manager = None

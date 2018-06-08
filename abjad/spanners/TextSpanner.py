@@ -4,7 +4,7 @@ from abjad.core.Leaf import Leaf
 from abjad.enumerations import Center
 from abjad.indicators.LineSegment import LineSegment
 from abjad.lilypondnames.LilyPondGrobOverride import LilyPondGrobOverride
-from abjad.markup.Markup import Markup
+from abjad.markups import Markup
 from abjad.system.Tag import Tag
 from abjad.system.Wrapper import Wrapper
 from abjad.top.inspect import inspect
@@ -536,9 +536,10 @@ class TextSpanner(Spanner):
     def _attachment_test_all(self, argument):
         if self._skip_attachment_test_all:
             return True
-        result = self._at_least_two_leaves(argument)
-        if result is not True:
-            return result
+        if not self.leak:
+            result = self._at_least_two_leaves(argument)
+            if result is not True:
+                return result
         leaves = select(argument).leaves()
         existing_spanners = inspect(leaves).get_spanners(
             prototype=TextSpanner,
@@ -584,11 +585,28 @@ class TextSpanner(Spanner):
                     bundle.right.spanner_starts.extend(tweaks)
                 bundle.right.spanner_starts.extend(self.start_command())
             if component is self[-1]:
-                bundle.right.spanner_stops.append(self.stop_command())
+                stop_command = self.stop_command()
+                if self.leak:
+                    # leaked stop command must appear *after* start command;
+                    # so stop command appears here in spanner *starts*:
+                    bundle.right.spanner_starts.append(self.stop_command())
+                else:
+                    bundle.right.spanner_stops.append(self.stop_command())
             return bundle
-        if has_indicators and not component is self[0]:
-            bundle.right.spanner_stops.append(self.stop_command())
-        if not component is self[-1]:
+
+#        if has_indicators and (
+#            (not component is self[0]) or
+#            (component is self[0] and self.leak)
+#            ):
+#            stop_command = self.stop_command()
+#            if self.leak:
+#                # leaked stop command must appear *after* start command;
+#                # so stop command appears here in spanner *starts*:
+#                bundle.right.spanner_starts.append(stop_command)
+#            else:
+#                bundle.right.spanner_stops.append(stop_command)
+
+        if (not component is self[-1]) or (len(self) == 1 and self.leak):
             if self._wrappers:
                 override = self._y_extent_false()
                 string = override.tweak_string()
@@ -634,8 +652,20 @@ class TextSpanner(Spanner):
             string = override.tweak_string()
             bundle.right.spanner_starts.append(string)
         # start- and stop-commands added after tweaks
-        if not component is self[-1]:
+        if ((not component is self[-1]) or (len(self) == 1 and self.leak)):
             bundle.right.spanner_starts.extend(self.start_command())
+
+        if (has_indicators and 
+            (not component is self[0]) or (len(self) == 1 and self.leak)
+            ):
+            stop_command = self.stop_command()
+            if self.leak:
+                # leaked stop command must appear *after* start command;
+                # so stop command appears here in spanner *starts*:
+                bundle.right.spanner_starts.append(stop_command)
+            else:
+                bundle.right.spanner_stops.append(stop_command)
+
         return bundle
 
     @staticmethod
@@ -857,6 +887,87 @@ class TextSpanner(Spanner):
                     d'4
                     e'4
                     <> \stopTextSpan
+                    r4
+                }
+
+        ..  container:: example
+
+            REGRESSION. Leaked text spanners with no indicators may attach to a
+            single leaf:
+
+            >>> staff = abjad.Staff("c'4 d'4 e'4 r4")
+            >>> spanner = abjad.TextSpanner(leak=True)
+            >>> abjad.attach(spanner, staff[:1])
+            >>> abjad.override(staff).text_spanner.staff_padding = 2.5
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                \with
+                {
+                    \override TextSpanner.staff-padding = #2.5
+                }
+                {
+                    c'4
+                    \startTextSpan
+                    <> \stopTextSpan
+                    d'4
+                    e'4
+                    r4
+                }
+
+        ..  container:: example
+
+            REGRESSION. Leaked text spanners with a start indicator may attach
+            to a single leaf:
+
+            >>> staff = abjad.Staff("c'4 d'4 e'4 r4")
+            >>> spanner = abjad.TextSpanner(leak=True)
+            >>> abjad.attach(spanner, staff[:1])
+            >>> spanner.attach(abjad.Markup('pont.').upright(), spanner[0])
+            >>> dashed_hook = abjad.LineSegment.make_dashed_hook()
+            >>> spanner.attach(dashed_hook, spanner[0])
+            >>> abjad.override(staff).text_spanner.staff_padding = 2.5
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                \with
+                {
+                    \override TextSpanner.staff-padding = #2.5
+                }
+                {
+                    c'4
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
+                        \concat
+                            {
+                                \upright
+                                    pont.
+                                \hspace
+                                    #0.5
+                            }
+                        }
+                    - \tweak dash-fraction 0.25
+                    - \tweak dash-period 1.5
+                    - \tweak bound-details.left-broken.text ##f
+                    - \tweak bound-details.left.stencil-align-dir-y 0
+                    - \tweak bound-details.right-broken.arrow ##f
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1.25
+                    - \tweak bound-details.right.text \markup {
+                        \draw-line
+                            #'(0 . -1)
+                        }
+                    \startTextSpan
+                    <> \stopTextSpan
+                    d'4
+                    e'4
                     r4
                 }
 
