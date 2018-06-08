@@ -1506,34 +1506,35 @@ values = [
     ('bs', 'ds', ''),
     ('bs', 'ef', ''),
     ('bs', 'eqf', ''),
-    ('bs', 'e', ''),
+    ('bs', 'e', '-A5'),
     ('bs', 'eqs', ''),
-    ('bs', 'es', ''),
-    ('bs', 'ff', ''),
+    ('bs', 'es', '-P5'),
+    ('bs', 'ff', '-AA4'),
     ('bs', 'fqf', ''),
-    ('bs', 'f', ''),
+    ('bs', 'f', '-AA4'),
     ('bs', 'fqs', ''),
-    ('bs', 'fs', ''),
-    ('bs', 'gf', ''),
+    ('bs', 'fs', '-A4'),
+    ('bs', 'gf', '-A3'),
     ('bs', 'gqf', ''),
-    ('bs', 'g', ''),
+    ('bs', 'g', '-M3'),
     ('bs', 'gqs', ''),
     ('bs', 'gs', ''),
-    ('bs', 'af', ''),
+    ('bs', 'af', '-AA2'),
     ('bs', 'aqf', ''),
-    ('bs', 'a', ''),
+    ('bs', 'a', '-A2'),
     ('bs', 'aqs', ''),
-    ('bs', 'as', ''),
-    ('bs', 'bf', ''),
+    ('bs', 'as', '-M2'),
+    ('bs', 'bf', '-AA1'),
     ('bs', 'bqf', ''),
-    ('bs', 'b', ''),
+    ('bs', 'b', '-A1'),
     ('bs', 'bqs', ''),
     ('bs', 'bs', 'P1'),
     ]
 
 
-@pytest.mark.skip
 @pytest.mark.parametrize('pitch_a, pitch_b, name', values)
 def test_from_pitch_carriers(pitch_a, pitch_b, name):
+    if 'q' in pitch_a or 'q' in pitch_b:
+        pytest.skip()
     interval = NamedInterval.from_pitch_carriers(pitch_a, pitch_b)
     assert str(interval) == name
