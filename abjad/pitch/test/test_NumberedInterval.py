@@ -243,7 +243,7 @@ values.extend([
 
 
 @pytest.mark.parametrize('input_, semitones', values)
-def test_01(input_, semitones):
+def test_init(input_, semitones):
     class_ = NumberedInterval
     if (
         isinstance(semitones, type) and

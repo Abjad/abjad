@@ -75,7 +75,7 @@ values = [
 
 
 @pytest.mark.parametrize('input_, semitones, string', values)
-def test(input_, semitones, string):
+def test_init(input_, semitones, string):
     if (
         isinstance(semitones, type) and
         issubclass(semitones, Exception)

@@ -69,7 +69,7 @@ values = [
 
 
 @pytest.mark.parametrize('input_, expected_number', values)
-def test(input_, expected_number):
+def test_init(input_, expected_number):
     if (
         isinstance(expected_number, type) and
         issubclass(expected_number, Exception)

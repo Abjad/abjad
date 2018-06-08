@@ -41,7 +41,7 @@ values.extend([
 
 
 @pytest.mark.parametrize('input_, expected_semitones', values)
-def test_01(input_, expected_semitones):
+def test_init(input_, expected_semitones):
     if (
         isinstance(expected_semitones, type) and
         issubclass(expected_semitones, Exception)
