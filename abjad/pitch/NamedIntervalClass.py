@@ -164,6 +164,8 @@ class NamedIntervalClass(IntervalClass):
             diatonic_pc_number -= 7
         if diatonic_pc_number == 1 and diatonic_number >= 8:
             diatonic_pc_number = 8
+        if quality == 'P' and diatonic_pc_number == 1:
+            direction = 1
         self._number = direction * diatonic_pc_number
 
     def _from_number(self, argument):
