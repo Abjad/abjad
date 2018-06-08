@@ -130,7 +130,8 @@ class Interval(AbjadValueObject):
         base_quality = quality
         if len(quality) > 1:
             base_quality = quality[0]
-        semitones = constants._diatonic_number_and_quality_to_semitones[diatonic_pc_number][base_quality]
+        semitones = constants._diatonic_number_and_quality_to_semitones[
+            diatonic_pc_number][base_quality]
         if base_quality == 'd':
             semitones -= (len(quality) - 1)
         elif base_quality == 'A':
