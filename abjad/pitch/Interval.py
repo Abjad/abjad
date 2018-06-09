@@ -48,6 +48,8 @@ class Interval(AbjadValueObject):
             quality = self._validate_quality_and_diatonic_number(
                 quality, diatonic_number,
             )
+            quartertone = group_dict['quartertone']
+            quality += quartertone
             self._from_named_parts(direction, quality, diatonic_number)
         elif isinstance(argument, tuple) and len(argument) == 2:
             quality, number = argument
@@ -127,15 +129,27 @@ class Interval(AbjadValueObject):
         while diatonic_pc_number >= 8:
             diatonic_pc_number -= 7
             octave_number += 1
+
+        quartertone = ''
+        if quality.endswith(('+', '~')):
+            quality, quartertone = quality[:-1], quality[-1]
+
         base_quality = quality
         if len(quality) > 1:
             base_quality = quality[0]
+
         semitones = constants._diatonic_number_and_quality_to_semitones[
             diatonic_pc_number][base_quality]
         if base_quality == 'd':
             semitones -= (len(quality) - 1)
         elif base_quality == 'A':
             semitones += (len(quality) - 1)
+
+        if quartertone == '+':
+            semitones += 0.5
+        elif quartertone == '~':
+            semitones -= 0.5
+
         if abs(diatonic_number) == 1:
             semitones = abs(semitones)
         else:
@@ -148,8 +162,14 @@ class Interval(AbjadValueObject):
         number = cls._to_nearest_quarter_tone(float(number))
         direction = mathtools.sign(number)
         octaves, semitones = divmod(abs(number), 12)
+        quartertone = ''
+        if semitones % 1:
+            semitones -= 0.5
+            quartertone = '+'
         quality, diatonic_number = constants._semitones_to_quality_and_diatonic_number[semitones]
+        quality += quartertone
         diatonic_number += octaves * 7
+        diatonic_number = cls._to_nearest_quarter_tone(diatonic_number)
         return direction, quality, diatonic_number
 
     @staticmethod
