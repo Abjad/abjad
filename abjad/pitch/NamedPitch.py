@@ -849,11 +849,8 @@ class NamedPitch(Pitch):
             diatonic_pc_number]
         accidental = abjad.Accidental(alteration)
         octave = abjad.Octave(octave)
-        return type(self)('{}{!s}{!s}'.format(
-            diatonic_pc_name,
-            accidental,
-            octave,
-            ))
+        pitch_name = '{}{!s}{!s}'.format(diatonic_pc_name, accidental, octave)
+        return type(self)(pitch_name, arrow=self.arrow)
 
     # TODO: duplicate on NumberedPitch
     def to_staff_position(self, clef=None):
