@@ -1,5 +1,6 @@
 import numbers
 from abjad.pitch.NamedIntervalClass import NamedIntervalClass
+from . import constants
 
 
 class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
@@ -23,16 +24,16 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
         NamedInversionEquivalentIntervalClass('P1')
 
         >>> abjad.NamedInversionEquivalentIntervalClass(('augmented', 4))
-        NamedInversionEquivalentIntervalClass('+aug4')
+        NamedInversionEquivalentIntervalClass('+A4')
 
         >>> abjad.NamedInversionEquivalentIntervalClass(('augmented', -4))
-        NamedInversionEquivalentIntervalClass('+aug4')
+        NamedInversionEquivalentIntervalClass('+A4')
 
         >>> abjad.NamedInversionEquivalentIntervalClass(('augmented', 11))
-        NamedInversionEquivalentIntervalClass('+aug4')
+        NamedInversionEquivalentIntervalClass('+A4')
 
         >>> abjad.NamedInversionEquivalentIntervalClass(('augmented', -11))
-        NamedInversionEquivalentIntervalClass('+aug4')
+        NamedInversionEquivalentIntervalClass('+A4')
 
     ..  container:: example
 
@@ -50,41 +51,17 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
 
     __slots__ = (
         '_number',
-        '_quality_string',
+        '_quality',
         )
 
     ### INITIALIZER ###
 
     def __init__(self, name='P1'):
-        import abjad
-        class_ = abjad.Interval
-        if isinstance(name, str):
-            match = class_._interval_name_abbreviation_regex.match(name)
-            if match is None:
-                message = 'can not intialize {} from {!r}.'
-                message = message.format(type(self).__name__, name)
-                raise Exception(message)
-            result = match.groups()
-            direction_string, quality_abbreviation, number_string = result
-            quality_string = self._quality_abbreviation_to_quality_string[
-                quality_abbreviation]
-            number = int(number_string)
-        elif isinstance(name, tuple) and len(name) == 2:
-            quality_string, number = name
-        else:
-            try:
-                quality_string = name.quality_string
-                number = name.number
-            except AttributeError:
-                message = 'can not initialize {} from {!r}.'
-                message = message.format(type(self).__name__, name)
-                raise Exception(message)
-        quality_string, number = self._process_quality_and_number(
-            quality_string,
-            number,
+        super().__init__(name or 'P1')
+        self._quality, self._number = self._process_quality_and_number(
+            self._quality,
+            self._number,
             )
-        self._quality_string = quality_string
-        self._number = number
 
     ### SPECIAL METHODS ###
 
@@ -137,15 +114,13 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
     ### PRIVATE METHODS ###
 
     @classmethod
-    def _invert_quality_string(class_, quality_string):
-        inversions = {
-            'major': 'minor',
-            'minor': 'major',
-            'perfect': 'perfect',
-            'augmented': 'diminished',
-            'diminished': 'augmented',
-            }
-        return inversions[quality_string]
+    def _invert_quality_string(class_, quality):
+        inversions = {'M': 'm', 'm': 'M', 'P': 'P'}
+        if quality in inversions:
+            return inversions[quality]
+        if quality[0] == 'A':
+            return 'd' * len(quality)
+        return 'A' * len(quality)
 
     @classmethod
     def _is_representative_number(class_, argument):
@@ -200,22 +175,3 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
             )
         string = str(named_interval)
         return class_(string)
-
-    @classmethod
-    def from_quality_and_number(class_, quality, number):
-        r'''Makes named inversion-equivalent interval-class from `quality`
-        string and `number`.
-
-        ..  container:: example
-
-            >>> class_ = abjad.NamedInversionEquivalentIntervalClass
-            >>> class_.from_quality_and_number('perfect', 1)
-            NamedInversionEquivalentIntervalClass('P1')
-
-        Returns new named inversion-equivalent interval-class.
-        '''
-        quality, number = class_._process_quality_and_number(quality, number)
-        interval_class = NamedInversionEquivalentIntervalClass()
-        interval_class._quality_string = quality
-        interval_class._number = number
-        return interval_class

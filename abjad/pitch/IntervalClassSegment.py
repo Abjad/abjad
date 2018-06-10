@@ -12,7 +12,7 @@ class IntervalClassSegment(Segment):
 
         >>> intervals = 'm2 M10 -aug4 P5'
         >>> abjad.IntervalClassSegment(intervals)
-        IntervalClassSegment(['+m2', '+M3', '-aug4', '+P5'])
+        IntervalClassSegment(['+m2', '+M3', '-A4', '+P5'])
 
     ..  container:: example
 

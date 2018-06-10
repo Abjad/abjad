@@ -1,7 +1,9 @@
 import abc
 import functools
-import re
+import numbers
+from abjad import mathtools
 from abjad.abctools.AbjadValueObject import AbjadValueObject
+from . import constants
 
 
 @functools.total_ordering
@@ -11,55 +13,77 @@ class Interval(AbjadValueObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
-
-    _named_interval_quality_abbreviation_regex_body = '''
-        (M|         # major
-        m|          # minor
-        P|          # perfect
-        aug|        # augmented
-        dim)        # dimished
-        '''
-
-    _named_interval_quality_abbreviation_regex = re.compile(
-        '^{}$'.format(_named_interval_quality_abbreviation_regex_body),
-        re.VERBOSE,
-        )
-
-    _interval_name_abbreviation_regex_body = '''
-        ([+,-]?)    # one plus, one minus, or neither
-        {}          # exactly one quality abbreviation
-        (\d+)       # followed by one or more digits
-        '''.format(
-        _named_interval_quality_abbreviation_regex_body,
-        )
-
-    _interval_name_abbreviation_regex = re.compile(
-        '^{}$'.format(_interval_name_abbreviation_regex_body),
-        re.VERBOSE,
+    __slots__ = (
+        '_interval_class',
+        '_octaves',
         )
 
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self):
-        pass
+    def __init__(self, argument):
+        import abjad
+        if isinstance(argument, str):
+            match = constants._interval_name_abbreviation_regex.match(argument)
+            if match is None:
+                try:
+                    argument = float(argument)
+                    self._from_number(argument)
+                    return
+                except ValueError:
+                    message = 'can not initialize {} from {!r}.'
+                    message = message.format(type(self).__name__, argument)
+                    raise ValueError(message)
+                message = 'can not initialize {} from {!r}.'
+                message = message.format(type(self).__name__, argument)
+                raise ValueError(message)
+            group_dict = match.groupdict()
+            direction = group_dict['direction']
+            if direction == '-':
+                direction = -1
+            else:
+                direction = 1
+            quality = group_dict['quality']
+            diatonic_number = int(group_dict['number'])
+            quality = self._validate_quality_and_diatonic_number(
+                quality, diatonic_number,
+            )
+            quartertone = group_dict['quartertone']
+            quality += quartertone
+            self._from_named_parts(direction, quality, diatonic_number)
+        elif isinstance(argument, tuple) and len(argument) == 2:
+            quality, number = argument
+            direction = mathtools.sign(number)
+            diatonic_number = abs(number)
+            quality = self._validate_quality_and_diatonic_number(
+                quality, diatonic_number,
+            )
+            self._from_named_parts(direction, quality, diatonic_number)
+        elif isinstance(argument, numbers.Number):
+            self._from_number(argument)
+        elif isinstance(argument, (abjad.Interval, abjad.IntervalClass)):
+            self._from_interval_or_interval_class(argument)
+        else:
+            message = 'can not initialize {} from {!r}.'
+            message = message.format(type(self).__name__, argument)
+            raise ValueError(message)
 
     ### SPECIAL METHODS ###
 
+    @abc.abstractmethod
     def __abs__(self):
         r'''Gets absolute value of interval.
 
         Returns new interval.
         '''
-        return type(self)(abs(self.number))
+        raise NotImplementedError
 
     def __float__(self):
-        r'''Coerce to float.
+        r'''Coerce to semitones as float.
 
         Returns float.
         '''
-        return float(self.number)
+        raise NotImplementedError
 
     @abc.abstractmethod
     def __lt__(self, argument):
@@ -69,12 +93,13 @@ class Interval(AbjadValueObject):
         '''
         raise NotImplementedError
 
+    @abc.abstractmethod
     def __neg__(self):
         r'''Negates interval.
 
         Returns interval.
         '''
-        pass
+        raise NotImplementedError
 
     def __str__(self):
         r'''Gets string representation of interval.
@@ -85,64 +110,154 @@ class Interval(AbjadValueObject):
 
     ### PRIVATE METHODS ###
 
-    def _get_direction_symbol(self):
-        if self.direction_number == -1:
-            return '-'
-        elif self.direction_number == 0:
-            return ''
-        elif self.direction_number == 1:
-            return '+'
+    @abc.abstractmethod
+    def _from_named_parts(self, direction, quality, diatonic_number):
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def _from_number(self, argument):
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def _from_interval_or_interval_class(self, argument):
+        raise NotImplementedError
+
+    @classmethod
+    def _named_to_numbered(cls, direction, quality, diatonic_number):
+        octave_number = 0
+        diatonic_pc_number = abs(diatonic_number)
+        while diatonic_pc_number >= 8:
+            diatonic_pc_number -= 7
+            octave_number += 1
+
+        quartertone = ''
+        if quality.endswith(('+', '~')):
+            quality, quartertone = quality[:-1], quality[-1]
+
+        base_quality = quality
+        if len(quality) > 1:
+            base_quality = quality[0]
+
+        semitones = constants._diatonic_number_and_quality_to_semitones[
+            diatonic_pc_number][base_quality]
+        if base_quality == 'd':
+            semitones -= (len(quality) - 1)
+        elif base_quality == 'A':
+            semitones += (len(quality) - 1)
+
+        if quartertone == '+':
+            semitones += 0.5
+        elif quartertone == '~':
+            semitones -= 0.5
+
+        if abs(diatonic_number) == 1:
+            semitones = abs(semitones)
         else:
-            message = 'invalid direction number: {!r}.'
-            message = message.format(self.direction_number)
+            semitones += octave_number * 12
+        semitones *= direction
+        return mathtools.integer_equivalent_number_to_integer(semitones)
+
+    @classmethod
+    def _numbered_to_named(cls, number):
+        number = cls._to_nearest_quarter_tone(float(number))
+        direction = mathtools.sign(number)
+        octaves, semitones = divmod(abs(number), 12)
+        quartertone = ''
+        if semitones % 1:
+            semitones -= 0.5
+            quartertone = '+'
+        quality, diatonic_number = constants._semitones_to_quality_and_diatonic_number[semitones]
+        quality += quartertone
+        diatonic_number += octaves * 7
+        diatonic_number = cls._to_nearest_quarter_tone(diatonic_number)
+        return direction, quality, diatonic_number
+
+    @staticmethod
+    def _to_nearest_quarter_tone(number):
+        number = round(float(number) * 4) / 4
+        div, mod = divmod(number, 1)
+        if mod == 0.75:
+            div += 1
+        elif mod == 0.5:
+            div += 0.5
+        return mathtools.integer_equivalent_number_to_integer(div)
+
+    @classmethod
+    def _validate_quality_and_diatonic_number(cls, quality, diatonic_number):
+        if quality in constants._quality_string_to_quality_abbreviation:
+            quality = constants._quality_string_to_quality_abbreviation[quality]
+        if quality == 'aug':
+            quality = 'A'
+        if quality == 'dim':
+            quality = 'd'
+        octaves = 0
+        diatonic_pc_number = diatonic_number
+        while diatonic_pc_number > 7:
+            diatonic_pc_number -= 7
+            octaves += 1
+        if constants._diatonic_number_and_quality_to_semitones.get(
+            diatonic_pc_number, {}).get(quality[0]) is None:
+            message = 'can not initialize {} from {!r} and {!r}.'
+            message = message.format(cls.__name__, quality, diatonic_number)
             raise ValueError(message)
+        return quality
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def cents(self):
-        r'''Gets cents of interval.
+        '''
+        Gets cents of interval.
 
         Returns nonnegative number.
         '''
         return 100 * self.semitones
 
+    @abc.abstractproperty
+    def direction_number(self):
+        '''
+        Gets direction number of interval
+
+        Returns integer.
+        '''
+        raise NotImplementedError
+
+    @abc.abstractproperty
+    def interval_class(self):
+        '''
+        Gets interval-class of interval.
+
+        Returns interval-class.
+        '''
+        raise NotImplementedError
+
+    @abc.abstractproperty
+    def number(self):
+        '''
+        Gets number of interval.
+
+        Returns integer.
+        '''
+        raise NotImplementedError
+
+    @abc.abstractproperty
+    def octaves(self):
+        r'''Gets octaves of interval.
+
+        Returns nonnegative number.
+        '''
+        raise NotImplementedError
+
+    @abc.abstractproperty
+    def semitones(self):
+        '''
+        Gets semitones of interval.
+
+        Returns integer or float.
+        '''
+        raise NotImplementedError
+
     ### PUBLIC METHODS ###
-
-    @staticmethod
-    def is_named_interval_abbreviation(argument):
-        '''Is true when `argument` is a named interval abbreviation.
-
-        ..  container:: example
-
-            >>> abjad.Interval.is_named_interval_abbreviation('+M9')
-            True
-
-        The regex ``^([+,-]?)(M|m|P|aug|dim)(\d+)$`` underlies this predicate.
-
-        Returns true or false.
-        '''
-        if not isinstance(argument, str):
-            return False
-        return bool(Interval._interval_name_abbreviation_regex.match(argument))
-
-    @staticmethod
-    def is_named_interval_quality_abbreviation(argument):
-        '''Is true when `argument` is a named-interval quality abbreviation.
-
-        ..  container:: example
-
-            >>> abjad.Interval.is_named_interval_quality_abbreviation('aug')
-            True
-
-        The regex ``^M|m|P|aug|dim$`` underlies this predicate.
-
-        Returns true or false.
-        '''
-        if not isinstance(argument, str):
-            return False
-        return bool(Interval._named_interval_quality_abbreviation_regex.match(
-            argument))
 
     @abc.abstractmethod
     def transpose(self, pitch_carrier):

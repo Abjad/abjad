@@ -1,6 +1,6 @@
-import numbers
 from abjad import mathtools
 from abjad.pitch.Pitch import Pitch
+from . import constants
 
 
 class NumberedPitch(Pitch):
@@ -76,32 +76,8 @@ class NumberedPitch(Pitch):
 
     ### INITIALIZER ###
 
-    def __init__(self, number=0, *, arrow=None):
-        import abjad
-        try:
-            number = number.number
-        except AttributeError:
-            pass
-        if abjad.Pitch._is_pitch_number(number):
-            number = number
-        elif (isinstance(number, tuple) and
-            len(number) == 2 and
-            not isinstance(number[0], str)):
-            pitch_class, octave = number
-            pitch_class = getattr(pitch_class, 'number', pitch_class)
-            assert isinstance(pitch_class, numbers.Number), repr(number)
-            number = pitch_class + 12 * (octave - 4)
-        else:
-            if number is None:
-                number = 0
-            number = abjad.NamedPitch(number).number
-        number = abjad.mathtools.integer_equivalent_number_to_integer(number)
-        self._number = number
-        if arrow not in (abjad.Up, abjad.Down, None):
-            message = 'arrow must be up, down or none: {!r}.'
-            message = message.format(arrow)
-            raise TypeError(message)
-        self._arrow = arrow
+    def __init__(self, number=0, *, arrow=None, octave=None):
+        super().__init__(number or 0, arrow=arrow, octave=octave)
 
     ### SPECIAL METHODS ###
 
@@ -233,29 +209,42 @@ class NumberedPitch(Pitch):
         semitones = self.number + accidental.semitones
         return type(self)(semitones)
 
-    @staticmethod
-    def _from_pitch_class_octave(pitch_class, octave):
+    def _from_dpc_number_alteration_and_octave(self, dpc_number, alteration, octave):
         import abjad
-        pitch_class = abjad.NumberedPitchClass(pitch_class)
-        octave = abjad.Octave(octave)
-        number = 12 * (octave.number - 4) + pitch_class.number
-        return NumberedPitch(number)
+        pc_number = constants._diatonic_pc_number_to_pitch_class_number[dpc_number]
+        pc_number += alteration
+        pc_number += (octave - 4) * 12
+        self._number = mathtools.integer_equivalent_number_to_integer(pc_number)
+        octave_number, pc_number = divmod(self._number, 12)
+        self._pitch_class = abjad.NumberedPitchClass(pc_number)
+        self._octave = abjad.Octave(octave_number + 4)
 
-    def _get_diatonic_pitch_class_name(self):
-        return self.pitch_class._get_diatonic_pitch_class_name()
+    def _from_number(self, number):
+        import abjad
+        self._number = self._to_nearest_quarter_tone(number)
+        octave_number, pc_number = divmod(self._number, 12)
+        self._octave = abjad.Octave(octave_number + 4)
+        self._pitch_class = abjad.NumberedPitchClass(pc_number)
 
-    def _get_diatonic_pitch_class_number(self):
-        return self.numbered_pitch_class._get_diatonic_pitch_class_number()
-
-    def _get_diatonic_pitch_name(self):
-        return '{}{}'.format(
-            self._get_diatonic_pitch_class_name(),
-            self.octave.ticks,
+    def _from_pitch_or_pitch_class(self, pitch_or_pitch_class):
+        import abjad
+        self._number = self._to_nearest_quarter_tone(float(pitch_or_pitch_class))
+        octave_number, pc_number = divmod(self._number, 12)
+        self._octave = abjad.Octave(octave_number + 4)
+        self._pitch_class = abjad.NumberedPitchClass(
+            pc_number,
+            arrow=pitch_or_pitch_class.arrow,
             )
+
+    def _get_diatonic_pc_name(self):
+        return self.pitch_class._get_diatonic_pc_name()
+
+    def _get_diatonic_pc_number(self):
+        return self.numbered_pitch_class._get_diatonic_pc_number()
 
     def _get_diatonic_pitch_number(self):
         result = 7 * (self.octave.number - 4)
-        result += self._get_diatonic_pitch_class_number()
+        result += self._get_diatonic_pc_number()
         return result
 
     def _get_format_specification(self):
@@ -285,8 +274,7 @@ class NumberedPitch(Pitch):
 
         Returns accidental.
         '''
-        import abjad
-        return abjad.NamedPitch(self.number).accidental
+        return self.pitch_class.accidental
 
     @property
     def arrow(self):
@@ -315,7 +303,7 @@ class NumberedPitch(Pitch):
 
         Returns up, down or none.
         '''
-        return self._arrow
+        return self._pitch_class.arrow
 
     @property
     def hertz(self):
@@ -363,7 +351,11 @@ class NumberedPitch(Pitch):
 
         Returns number.
         '''
-        return self._number
+        pc_number = float(self.pitch_class)
+        octave_base_pitch = (self.octave.number - 4) * 12
+        return mathtools.integer_equivalent_number_to_integer(
+            pc_number + octave_base_pitch
+            )
 
     @property
     def octave(self):
@@ -376,9 +368,7 @@ class NumberedPitch(Pitch):
 
         Returns octave.
         '''
-        import abjad
-        number = self._number // 12 + 4
-        return abjad.Octave(number=number)
+        return self._octave
 
     @property
     def pitch_class(self):
@@ -391,8 +381,7 @@ class NumberedPitch(Pitch):
 
         Returns numbered pitch-class.
         '''
-        import abjad
-        return abjad.NumberedPitchClass(self)
+        return self._pitch_class
 
     ### PUBLIC METHODS ###
 
@@ -415,65 +404,6 @@ class NumberedPitch(Pitch):
         Returns newly constructed numbered pitch.
         '''
         return super(NumberedPitch, class_).from_hertz(hertz)
-
-    @classmethod
-    def from_pitch_carrier(class_, pitch_carrier):
-        r'''Makes numbered pitch from `pitch_carrier`.
-
-        ..  container:: example
-
-            Makes numbered pitch from named pitch:
-
-            >>> pitch = abjad.NamedPitch(('df', 5))
-            >>> abjad.NumberedPitch.from_pitch_carrier(pitch)
-            NumberedPitch(13)
-
-        ..  container:: example
-
-            Makes numbered pitch from note:
-
-            >>> note = abjad.Note("df''4")
-            >>> abjad.NumberedPitch.from_pitch_carrier(note)
-            NumberedPitch(13)
-
-        ..  container:: example
-
-            Makes numbered pitch from note-head:
-
-            >>> note = abjad.Note("df''4")
-            >>> abjad.NumberedPitch.from_pitch_carrier(note.note_head)
-            NumberedPitch(13)
-
-        ..  container:: example
-
-            Makes numbered pitch from chord:
-
-            >>> chord = abjad.Chord("<df''>4")
-            >>> abjad.NumberedPitch.from_pitch_carrier(chord)
-            NumberedPitch(13)
-
-        ..  container:: example
-
-            Makes numbered pitch from integer:
-
-            >>> abjad.NumberedPitch.from_pitch_carrier(13)
-            NumberedPitch(13)
-
-        ..  container:: example
-
-            Makes numbered pitch from numbered pitch-class:
-
-            >>> pitch_class = abjad.NumberedPitchClass(13)
-            >>> abjad.NumberedPitch.from_pitch_carrier(pitch_class)
-            NumberedPitch(1)
-
-        Raises value error when `pitch_carrier` carries no pitch.
-
-        Raises value error when `pitch_carrier` carries more than one pitch.
-
-        Returns new numbered pitch.
-        '''
-        return super(NumberedPitch, class_).from_pitch_carrier(pitch_carrier)
 
     def get_name(self, locale=None):
         r'''Gets name of numbered pitch name according to `locale`.

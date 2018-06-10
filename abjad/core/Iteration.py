@@ -1922,7 +1922,7 @@ class Iteration(AbjadObject):
         """
         import abjad
         if isinstance(self.client, abjad.Pitch):
-            pitch = abjad.NamedPitch.from_pitch_carrier(self.client)
+            pitch = abjad.NamedPitch(self.client)
             yield pitch
         result = []
         try:

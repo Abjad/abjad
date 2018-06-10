@@ -88,7 +88,7 @@ class IntervalClassSet(Set):
             ...
             NamedIntervalClass('-M6')
             NamedIntervalClass('-P5')
-            NamedIntervalClass('-aug4')
+            NamedIntervalClass('-A4')
             NamedIntervalClass('-M3')
             NamedIntervalClass('-m3')
             NamedIntervalClass('-M2')
@@ -97,7 +97,7 @@ class IntervalClassSet(Set):
             NamedIntervalClass('+m3')
             NamedIntervalClass('+M3')
             NamedIntervalClass('+P4')
-            NamedIntervalClass('+aug4')
+            NamedIntervalClass('+A4')
             NamedIntervalClass('+P5')
             NamedIntervalClass('+M6')
             NamedIntervalClass('+m7')

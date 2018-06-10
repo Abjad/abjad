@@ -2,9 +2,8 @@ import collections
 import copy
 import functools
 import numbers
-import re
+from . import constants
 from abjad.abctools.AbjadValueObject import AbjadValueObject
-from abjad.pitch.Pitch import Pitch
 
 
 @functools.total_ordering
@@ -37,43 +36,6 @@ class PitchRange(AbjadValueObject):
         )
 
     _publish_storage_format = True
-
-    _range_string_regex_body = '''
-        (?P<open_bracket>
-            [\[(]       # open bracket or open parenthesis
-        )
-        (?P<start_pitch>
-            {}|{}|-?\d+ # start pitch
-        )
-        ,               # comma
-        [ ]*            # any amount of whitespace
-        (?P<stop_pitch>
-            {}|{}|-?\d+ # stop pitch
-        )
-        (?P<close_bracket>
-            [\])]       # close bracket or close parenthesis
-        )
-        '''.format(
-        Pitch._pitch_class_octave_number_regex_body.replace('<', '<start_'),
-        Pitch._pitch_name_regex_body.replace('<', '<start_'),
-        Pitch._pitch_class_octave_number_regex_body.replace('<', '<stop_'),
-        Pitch._pitch_name_regex_body.replace('<', '<stop_'),
-        )
-
-    _range_string_regex = re.compile(
-        '^{}$'.format(_range_string_regex_body),
-        re.VERBOSE,
-        )
-
-    _start_punctuation_to_inclusivity_string = {
-        '[': 'inclusive',
-        '(': 'exclusive',
-        }
-
-    _stop_punctuation_to_inclusivity_string = {
-        ']': 'inclusive',
-        ')': 'exclusive',
-        }
 
     ### INITIALIZER ###
 
@@ -580,7 +542,7 @@ class PitchRange(AbjadValueObject):
         assert isinstance(range_string, str), repr(range_string)
         range_string = range_string.replace('-inf', '-1000')
         range_string = range_string.replace('+inf', '1000')
-        match = self._range_string_regex.match(range_string)
+        match = constants._range_string_regex.match(range_string)
         if match is None:
             message = 'can not instantiate pitch range: {!r}'
             message = message.format(range_string)
@@ -591,9 +553,9 @@ class PitchRange(AbjadValueObject):
         stop_pitch_string = group_dict['stop_pitch']
         stop_punctuation = group_dict['close_bracket']
         start_inclusivity_string = \
-            self._start_punctuation_to_inclusivity_string[start_punctuation]
+            constants._start_punctuation_to_inclusivity_string[start_punctuation]
         stop_inclusivity_string = \
-            self._stop_punctuation_to_inclusivity_string[stop_punctuation]
+            constants._stop_punctuation_to_inclusivity_string[stop_punctuation]
         if start_pitch_string == '-1000':
             start_pitch = None
         else:
@@ -758,7 +720,7 @@ class PitchRange(AbjadValueObject):
         '''
         if not isinstance(argument, str):
             return False
-        return bool(class_._range_string_regex.match(argument))
+        return bool(constants._range_string_regex.match(argument))
 
     def list_octave_transpositions(self, pitch_carrier):
         r"""Lists octave transpositions of `pitch_carrier` in pitch range.
@@ -781,7 +743,6 @@ class PitchRange(AbjadValueObject):
 
         Returns a list of `pitch_carrier` objects.
         """
-        import abjad
         import abjad
         if isinstance(pitch_carrier, collections.Iterable):
             if all(isinstance(x, (int, float)) for x in pitch_carrier):

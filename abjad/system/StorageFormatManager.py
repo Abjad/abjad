@@ -71,8 +71,10 @@ class StorageFormatManager(AbjadValueObject):
                 as_storage_format=as_storage_format,
                 )
             return list(pieces)
-        elif (not as_storage_format and
-            hasattr(self._client, '_get_format_specification')):
+        elif (
+            not as_storage_format and
+            hasattr(self._client, '_get_format_specification')
+            ):
             pieces = self._format_specced_object(
                 as_storage_format=as_storage_format,
                 )
@@ -276,7 +278,7 @@ class StorageFormatManager(AbjadValueObject):
             if hasattr(self._client, '_get_storage_format_specification'):
                 spec = self._client._get_storage_format_specification()
             if spec:
-                #print('STORAGE', type(self._client), getattr(self._client, 'name', None))
+                # print('STORAGE', type(self._client), getattr(self._client, 'name', None))
                 via = '_get_storage_format_specification()'
                 args_values = spec.positional_argument_values
                 is_bracketed = False
@@ -361,6 +363,7 @@ class StorageFormatManager(AbjadValueObject):
             <class 'abjad.instruments.Flute.Flute'>
             <class 'abjad.markups.Markup'>
             <class 'abjad.pitch.NamedPitch.NamedPitch'>
+            <class 'abjad.pitch.Octave.Octave'>
             <class 'abjad.pitch.PitchRange.PitchRange'>
 
         ..  container:: example
@@ -465,8 +468,10 @@ class StorageFormatManager(AbjadValueObject):
     def format_specification(self):
         from abjad import system
         if self._format_specification is None:
-            if (not isinstance(self._client, type) and
-                hasattr(self._client, '_get_format_specification')):
+            if (
+                not isinstance(self._client, type) and
+                hasattr(self._client, '_get_format_specification')
+                ):
                 self._format_specification = \
                     self._client._get_format_specification()
             else:
@@ -557,9 +562,9 @@ class StorageFormatManager(AbjadValueObject):
             >>> for line in agent.get_import_statements():
             ...     line
             ...
-            'from abjad.tools import instruments'
-            'from abjad.tools import markups'
-            'from abjad.tools import pitch'
+            'from abjad import instruments'
+            'from abjad import markups'
+            'from abjad import pitch'
 
         Returns tuple of strings.
         """
@@ -572,7 +577,7 @@ class StorageFormatManager(AbjadValueObject):
                 continue
             elif root_package_name == 'abjad':
                 tools_package_name = agent.get_tools_package_name()
-                import_statement = 'from abjad.tools import {}'.format(
+                import_statement = 'from abjad import {}'.format(
                     tools_package_name)
             else:
                 import_statement = 'import {}'.format(root_package_name)
@@ -697,8 +702,10 @@ class StorageFormatManager(AbjadValueObject):
                 else:
                     keyword_names.append(name)
             # Python 3 allow keyword only parameters:
-            elif (hasattr(inspect, '_KEYWORD_ONLY') and
-                parameter.kind == inspect._KEYWORD_ONLY):
+            elif (
+                hasattr(inspect, '_KEYWORD_ONLY') and
+                parameter.kind == inspect._KEYWORD_ONLY
+                ):
                 keyword_names.append(name)
             elif parameter.kind == inspect._VAR_POSITIONAL:
                 accepts_args = True

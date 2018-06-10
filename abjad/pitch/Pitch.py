@@ -2,11 +2,9 @@ import abc
 import functools
 import math
 import numbers
-import re
+from abjad import mathtools
 from abjad.abctools.AbjadValueObject import AbjadValueObject
-from abjad.pitch.Accidental import Accidental
-from abjad.pitch.Octave import Octave
-from abjad.pitch.PitchClass import PitchClass
+from . import constants
 
 
 @functools.total_ordering
@@ -17,62 +15,57 @@ class Pitch(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_arrow',
-        )
-
-    _diatonic_pitch_name_regex_body = '''
-        {}  # exactly one diatonic pitch-class name
-        {}  # followed by exactly one octave tick string
-        '''.format(
-        PitchClass._diatonic_pitch_class_name_regex_body,
-        Octave._octave_tick_regex_body,
-        )
-
-    _diatonic_pitch_name_regex = re.compile(
-        '^{}$'.format(_diatonic_pitch_name_regex_body),
-        re.VERBOSE,
-        )
-
-    _pitch_class_octave_number_regex_body = '''
-        (
-        (?P<diatonic_pitch_class_name>
-            [A-G]   # exactly one diatonic pitch-class name
-        )
-        {}          # plus an optional accidental symbol
-        (?P<octave_number>
-            [-]?    # plus an optional negative sign
-            [0-9]*  # plus zero or more digits
-        )
-        )
-        '''.format(
-        Accidental._comprehensive_regex_body,
-        )
-
-    _pitch_class_octave_number_regex = re.compile(
-        '^{}$'.format(_pitch_class_octave_number_regex_body),
-        re.VERBOSE,
-        )
-
-    _pitch_name_regex_body = '''
-        {}  # exactly one diatonic pitch-class name
-        {}  # followed by exactly one alphabetic accidental name
-        {}  # followed by exactly one octave tick string
-        '''.format(
-        PitchClass._diatonic_pitch_class_name_regex_body,
-        Accidental._alphabetic_accidental_regex_body,
-        Octave._octave_tick_regex_body,
-        )
-
-    _pitch_name_regex = re.compile(
-        '^{}$'.format(_pitch_name_regex_body),
-        re.VERBOSE,
+        '_pitch_class',
+        '_octave',
         )
 
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self):
-        pass
+    def __init__(self, argument, arrow=None, octave=None):
+        import abjad
+        if isinstance(argument, str):
+            match = constants._comprehensive_pitch_name_regex.match(argument)
+            if not match:
+                match = constants._comprehensive_pitch_class_name_regex.match(argument)
+            if not match:
+                message = 'can not instantiate {} from {!r}.'
+                message = message.format(type(self).__name__, argument)
+                raise ValueError(message)
+            group_dict = match.groupdict()
+            _dpc_name = group_dict['diatonic_pc_name'].lower()
+            _dpc_number = constants._diatonic_pc_name_to_diatonic_pc_number[_dpc_name]
+            _alteration = abjad.Accidental(group_dict['comprehensive_accidental']).semitones
+            _octave = abjad.Octave(group_dict.get('comprehensive_octave', '')).number
+            self._from_dpc_number_alteration_and_octave(_dpc_number, _alteration, _octave)
+        elif isinstance(argument, numbers.Number):
+            self._from_number(argument)
+        elif isinstance(argument, (abjad.Pitch, abjad.PitchClass)):
+            self._from_pitch_or_pitch_class(argument)
+        elif isinstance(argument, tuple) and len(argument) == 2:
+            _pitch_class = abjad.NamedPitchClass(argument[0])
+            _octave = abjad.Octave(argument[1])
+            self._from_dpc_number_alteration_and_octave(
+                _pitch_class._get_diatonic_pc_number(),
+                _pitch_class._get_alteration(),
+                _octave.number,
+            )
+        elif hasattr(argument, 'written_pitch'):
+            self._from_pitch_or_pitch_class(argument.written_pitch)
+        elif isinstance(argument, abjad.Chord) and len(argument.note_heads):
+            self._from_pitch_or_pitch_class(argument.note_heads[0])
+        else:
+            message = 'can not instantiate {} from {!r}.'
+            message = message.format(type(self).__name__, argument)
+            raise ValueError(message)
+        if arrow is not None:
+            self._pitch_class = type(self._pitch_class)(
+                self._pitch_class,
+                arrow=arrow,
+                )
+        if octave is not None:
+            octave = abjad.Octave(octave)
+            self._octave = octave
 
     ### SPECIAL METHODS ###
 
@@ -129,6 +122,26 @@ class Pitch(AbjadValueObject):
         raise NotImplementedError
 
     @staticmethod
+    def _to_nearest_octave(pitch_number, pitch_class_number):
+        target_pc = pitch_number % 12
+        down = (target_pc - pitch_class_number) % 12
+        up = (pitch_class_number - target_pc) % 12
+        if up < down:
+            return pitch_number + up
+        else:
+            return pitch_number - down
+
+    @staticmethod
+    def _to_nearest_quarter_tone(number):
+        number = round(float(number) * 4) / 4
+        div, mod = divmod(number, 1)
+        if mod == 0.75:
+            div += 1
+        elif mod == 0.5:
+            div += 0.5
+        return mathtools.integer_equivalent_number_to_integer(div)
+
+    @staticmethod
     def _to_pitch_class_item_class(item_class):
         import abjad
         item_class = item_class or abjad.NumberedPitch
@@ -153,47 +166,6 @@ class Pitch(AbjadValueObject):
             return abjad.NumberedPitch
         else:
             raise TypeError(item_class)
-
-    ### PRIVATE METHODS ###
-
-    @staticmethod
-    def _is_diatonic_pitch_name(argument):
-        if not isinstance(argument, str):
-            return False
-        return bool(Pitch._diatonic_pitch_name_regex.match(argument))
-
-    @staticmethod
-    def _is_diatonic_pitch_number(argument):
-        return isinstance(argument, int)
-
-    @staticmethod
-    def _is_pitch_carrier(argument):
-        import abjad
-        prototype = (
-            abjad.Chord,
-            abjad.NamedPitch,
-            abjad.Note,
-            abjad.NoteHead,
-            )
-        return isinstance(argument, prototype)
-
-    @staticmethod
-    def _is_pitch_class_octave_number_string(argument):
-        if not isinstance(argument, str):
-            return False
-        return bool(Pitch._pitch_class_octave_number_regex.match(argument))
-
-    @staticmethod
-    def _is_pitch_name(argument):
-        if not isinstance(argument, str):
-            return False
-        return bool(Pitch._pitch_name_regex.match(argument))
-
-    @staticmethod
-    def _is_pitch_number(argument):
-        if isinstance(argument, (int, float)):
-            return argument % 0.5 == 0
-        return False
 
     ### PUBLIC PROPERTIES ###
 
@@ -253,61 +225,9 @@ class Pitch(AbjadValueObject):
 
         Returns new pitch.
         '''
-        hertz = float(hertz)
-        midi = 9. + (12. * math.log(hertz / 440., 2))
+        midi = 9. + (12. * math.log(float(hertz) / 440., 2))
         pitch = class_(midi)
         return pitch
-
-    @classmethod
-    @abc.abstractmethod
-    def from_pitch_carrier(class_, pitch_carrier):
-        r'''Makes new pitch from `pitch_carrier`.
-
-        Returns new pitch.
-        '''
-        import abjad
-        if isinstance(pitch_carrier, abjad.NamedPitch):
-            return class_(pitch_carrier)
-        elif isinstance(pitch_carrier, abjad.NumberedPitch):
-            return class_(pitch_carrier)
-        elif isinstance(pitch_carrier, numbers.Number):
-            return class_(pitch_carrier)
-        elif isinstance(pitch_carrier, abjad.Note):
-            pitch = pitch_carrier.written_pitch
-            if pitch is not None:
-                return class_.from_pitch_carrier(pitch)
-            else:
-                message = 'no pitch found on {!r}.'
-                message = message.format(pitch_carrier)
-                raise ValueError(message)
-        elif isinstance(pitch_carrier, abjad.NoteHead):
-            pitch = pitch_carrier.written_pitch
-            if pitch is not None:
-                return class_.from_pitch_carrier(pitch)
-            else:
-                message = 'no pitch found on {!r}.'
-                message = message.format(pitch_carrier)
-                raise ValueError(message)
-        elif isinstance(pitch_carrier, abjad.Chord):
-            pitches = pitch_carrier.written_pitches
-            if len(pitches) == 0:
-                message = 'no pitch found on {!r}.'
-                message = message.format(pitch_carrier)
-                raise ValueError(message)
-            elif len(pitches) == 1:
-                return class_.from_pitch_carrier(pitches[0])
-            else:
-                message = 'multiple pitches found on {!r}.'
-                message = message.format(pitch_carrier)
-                raise ValueError(message)
-        elif isinstance(pitch_carrier, abjad.NumberedPitchClass):
-            named_pitch = class_((pitch_carrier.name, 4))
-            return named_pitch
-        else:
-            message = 'pitch carrier {!r} must be'
-            message += ' pitch, note, note-head or chord.'
-            message = message.format(pitch_carrier)
-            raise TypeError(message)
 
     @abc.abstractmethod
     def get_name(self, locale=None):

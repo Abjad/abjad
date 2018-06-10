@@ -2,6 +2,7 @@ import copy
 import numbers
 from abjad import mathtools
 from abjad.pitch.Interval import Interval
+from . import constants
 
 
 class NumberedInterval(Interval):
@@ -28,31 +29,23 @@ class NumberedInterval(Interval):
         >>> abjad.NumberedInterval(abjad.NamedInterval('-P4'))
         NumberedInterval(-5)
 
+    ..  container:: example
+
+        Initializes from interval string:
+
+        >>> abjad.NumberedInterval('-P4')
+        NumberedInterval(-5)
+
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_number',
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 
     def __init__(self, number=0):
-        import abjad
-        if isinstance(number, (int, float)):
-            pass
-        elif isinstance(number, abjad.Interval):
-            number = number.semitones
-        elif isinstance(number, abjad.IntervalClass):
-            interval_class = abjad.NumberedIntervalClass(number)
-            number = interval_class.number
-        else:
-            message = 'can not initialize {} from {!r}.'
-            message = message.format(type(self).__name__, number)
-            raise TypeError(message)
-        number = mathtools.integer_equivalent_number_to_integer(number)
-        self._number = number
+        super().__init__(number or 0)
 
     ### SPECIAL METHODS ###
 
@@ -66,7 +59,7 @@ class NumberedInterval(Interval):
 
         Returns new numbered interval.
         '''
-        return type(self)(abs(self._number))
+        return type(self)(abs(self.number))
 
     def __add__(self, argument):
         r'''Adds `argument` to numbered interval.
@@ -142,7 +135,7 @@ class NumberedInterval(Interval):
 
         Returns float.
         '''
-        return float(self._number)
+        return float(self.number)
 
     def __hash__(self):
         r'''Hashes numbered interval.
@@ -210,7 +203,7 @@ class NumberedInterval(Interval):
 
         Returns new numbered interval.
         '''
-        return type(self)(-self._number)
+        return type(self)(-self.number)
 
     def __radd__(self, argument):
         r'''Adds numbered interval to `argument`.
@@ -238,7 +231,9 @@ class NumberedInterval(Interval):
 
         Returns string.
         '''
-        return '{}{}'.format(self._get_direction_symbol(), abs(self.number))
+        direction_symbol = constants._direction_number_to_direction_symbol[
+            mathtools.sign(self.number)]
+        return '{}{}'.format(direction_symbol, abs(self.number))
 
     def __sub__(self, argument):
         r'''Subtracts `argument` from numbered interval.
@@ -253,6 +248,29 @@ class NumberedInterval(Interval):
         raise TypeError(message)
 
     ### PRIVATE METHODS ###
+
+    def _from_named_parts(self, direction, quality, diatonic_number):
+        self._from_number(self._named_to_numbered(
+            direction,
+            quality,
+            diatonic_number,
+            ))
+
+    def _from_number(self, argument):
+        import abjad
+        number = self._to_nearest_quarter_tone(argument)
+        direction = mathtools.sign(number)
+        octaves = 0
+        pc_number = abs(number)
+        while pc_number > 12:
+            pc_number -= 12
+            octaves += 1
+        self._octaves = octaves
+        self._interval_class = abjad.NumberedIntervalClass(
+            pc_number * direction)
+
+    def _from_interval_or_interval_class(self, argument):
+        self._from_number(float(argument))
 
     def _get_format_specification(self):
         import abjad
@@ -276,27 +294,23 @@ class NumberedInterval(Interval):
             >>> abjad.NumberedInterval(-14).direction_number
             -1
 
+            >>> abjad.NumberedInterval(0).direction_number
+            0
+
+            >>> abjad.NumberedInterval(6).direction_number
+            1
+
         Returns integer.
         '''
         return mathtools.sign(self.number)
 
     @property
-    def direction_string(self):
-        r'''Gets direction string of numbered interval.
+    def interval_class(self):
+        r'''Gets interval class of numbered interval.
 
-        ..  container:: example
-
-            >>> abjad.NumberedInterval(-14).direction_string
-            'descending'
-
-        Returns ``'ascending'``, ``'descending'`` or none.
+        Returns numbered interval-class.
         '''
-        if self.direction_number == -1:
-            return 'descending'
-        elif self.direction_number == 0:
-            return None
-        elif self.direction_number == 1:
-            return 'ascending'
+        return self._interval_class
 
     @property
     def number(self):
@@ -315,7 +329,18 @@ class NumberedInterval(Interval):
 
         Returns number.
         '''
-        return self._number
+        number = self._interval_class._number
+        direction = mathtools.sign(number)
+        number = abs(number) + (12 * self.octaves)
+        return number * direction
+
+    @property
+    def octaves(self):
+        r'''Gets octaves of interval.
+
+        Returns nonnegative number.
+        '''
+        return self._octaves
 
     @property
     def semitones(self):
@@ -371,161 +396,13 @@ class NumberedInterval(Interval):
 
         Returns numbered interval.
         '''
-        import abjad
-        pitch_1 = abjad.NamedPitch.from_pitch_carrier(pitch_carrier_1)
-        pitch_2 = abjad.NamedPitch.from_pitch_carrier(pitch_carrier_2)
-        number = abjad.NumberedPitch(pitch_2).number - \
-            abjad.NumberedPitch(pitch_1).number
+        import abjad.pitch
+        pitch_1 = abjad.pitch.NamedPitch(pitch_carrier_1)
+        pitch_2 = abjad.pitch.NamedPitch(pitch_carrier_2)
+        number = abjad.pitch.NumberedPitch(pitch_2).number - \
+            abjad.pitch.NumberedPitch(pitch_1).number
         number = mathtools.integer_equivalent_number_to_integer(number)
         return class_(number)
-
-    def to_named_interval(self, staff_positions):
-        r'''Changes numbered interval to named interval that encompasses
-        `staff_positions`.
-
-        ..  container:: example
-
-            >>> abjad.NumberedInterval(0).to_named_interval(0)
-            NamedInterval('aug0')
-
-            >>> abjad.NumberedInterval(0).to_named_interval(1)
-            NamedInterval('P1')
-
-            >>> abjad.NumberedInterval(0).to_named_interval(2)
-            NamedInterval('+dim2')
-
-        ..  container:: example
-
-            >>> abjad.NumberedInterval(1).to_named_interval(1)
-            NamedInterval('+aug1')
-
-            >>> abjad.NumberedInterval(1).to_named_interval(2)
-            NamedInterval('+m2')
-
-        ..  container:: example
-
-            >>> abjad.NumberedInterval(-1).to_named_interval(1)
-            NamedInterval('-aug1')
-
-            >>> abjad.NumberedInterval(-1).to_named_interval(2)
-            NamedInterval('-m2')
-
-        ..  container:: example
-
-            >>> abjad.NumberedInterval(2).to_named_interval(2)
-            NamedInterval('+M2')
-
-        Returns named interval.
-        '''
-        import abjad
-        direction_number = mathtools.sign(self.number)
-        quality_string = None
-        if staff_positions == 1:
-            if self.number % 12 == 11:
-                quality_string = 'augmented'
-            elif self.number % 12 == 0:
-                quality_string = 'perfect'
-            elif self.number % 12 == 1:
-                quality_string = 'augmented'
-            if not direction_number == 0:
-                staff_positions *= direction_number
-            if quality_string is None:
-                # TODO: handle double-augmented named intervals
-                return abjad.NamedInterval(self.number)
-            named_interval = abjad.NamedInterval.from_quality_and_number(
-                quality_string,
-                staff_positions,
-                )
-            return named_interval
-        named_interval_class_number = staff_positions % 7
-        numbered_interval_class_number = abs(self.number) % 12
-        if named_interval_class_number == 0:
-            if numbered_interval_class_number == 9:
-                quality_string = 'diminished'
-            elif numbered_interval_class_number == 10:
-                quality_string = 'minor'
-            elif numbered_interval_class_number == 11:
-                quality_string = 'major'
-            elif numbered_interval_class_number == 0:
-                quality_string = 'augmented'
-        elif named_interval_class_number == 1:
-            if numbered_interval_class_number == 11:
-                quality_string = 'diminished'
-            elif numbered_interval_class_number == 0:
-                quality_string = 'perfect'
-            elif numbered_interval_class_number == 1:
-                quality_string = 'augmented'
-        elif named_interval_class_number == 2:
-            if numbered_interval_class_number == 0:
-                quality_string = 'diminished'
-            elif numbered_interval_class_number == 1:
-                quality_string = 'minor'
-            elif numbered_interval_class_number == 2:
-                quality_string = 'major'
-            elif numbered_interval_class_number == 3:
-                quality_string = 'augmented'
-        elif named_interval_class_number == 3:
-            if numbered_interval_class_number == 2:
-                quality_string = 'diminished'
-            elif numbered_interval_class_number == 3:
-                quality_string = 'minor'
-            elif numbered_interval_class_number == 4:
-                quality_string = 'major'
-            elif numbered_interval_class_number == 5:
-                quality_string = 'augmented'
-        elif named_interval_class_number == 4:
-            if numbered_interval_class_number == 4:
-                quality_string = 'diminished'
-            elif numbered_interval_class_number == 5:
-                quality_string = 'perfect'
-            elif numbered_interval_class_number == 6:
-                quality_string = 'augmented'
-        elif named_interval_class_number == 5:
-            if numbered_interval_class_number == 6:
-                quality_string = 'diminished'
-            elif numbered_interval_class_number == 7:
-                quality_string = 'perfect'
-            elif numbered_interval_class_number == 8:
-                quality_string = 'augmented'
-        elif named_interval_class_number == 6:
-            if numbered_interval_class_number == 7:
-                quality_string = 'diminished'
-            elif numbered_interval_class_number == 8:
-                quality_string = 'minor'
-            elif numbered_interval_class_number == 9:
-                quality_string = 'major'
-            elif numbered_interval_class_number == 10:
-                quality_string = 'augmented'
-        elif named_interval_class_number == 7:
-            if numbered_interval_class_number == 9:
-                quality_string = 'diminished'
-            elif numbered_interval_class_number == 10:
-                quality_string = 'minor'
-            elif numbered_interval_class_number == 11:
-                quality_string = 'major'
-            elif numbered_interval_class_number == 0:
-                quality_string = 'augmented'
-        elif named_interval_class_number == 8:
-            if numbered_interval_class_number == 11:
-                quality_string = 'diminished'
-            elif numbered_interval_class_number == 0:
-                quality_string = 'perfect'
-            elif numbered_interval_class_number == 1:
-                quality_string = 'augmented'
-        if not direction_number == 0:
-            staff_positions *= direction_number
-        if quality_string is None:
-            # TODO: It is possible to for quality string to *never* get set to
-            #       anything, generally during inversion with double-sharps or
-            #       double-flats. This suite provides a sane result.
-            #       Don't remove it - fix whatever's allowing quality string to
-            #       remain unset.
-            return abjad.NamedInterval(self.number)
-        named_interval = abjad.NamedInterval.from_quality_and_number(
-            quality_string,
-            staff_positions,
-            )
-        return named_interval
 
     def transpose(self, pitch_carrier):
         r'''Transposes `pitch_carrier`.
@@ -542,7 +419,6 @@ class NumberedInterval(Interval):
 
         Returns newly constructed object of `pitch_carrier` type.
         '''
-        import abjad
         import abjad
         if isinstance(pitch_carrier, abjad.Pitch):
             number = pitch_carrier.number + self.semitones

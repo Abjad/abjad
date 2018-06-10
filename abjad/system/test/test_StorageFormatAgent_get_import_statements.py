@@ -5,7 +5,7 @@ def test_StorageFormatAgent_get_import_statements_01():
     subject = abjad.NamedPitch()
     agent = abjad.StorageFormatManager(subject)
     assert agent.get_import_statements() == (
-        'from abjad.tools import pitch',
+        'from abjad import pitch',
         )
 
 
@@ -13,7 +13,7 @@ def test_StorageFormatAgent_get_import_statements_02():
     subject = abjad.Selection()
     agent = abjad.StorageFormatManager(subject)
     assert agent.get_import_statements() == (
-        'from abjad.tools import core',
+        'from abjad import core',
         )
 
 
@@ -24,5 +24,5 @@ def test_StorageFormatAgent_get_import_statements_03():
         ]
     agent = abjad.StorageFormatManager(subject)
     assert agent.get_import_statements() == (
-        'from abjad.tools import indicators',
+        'from abjad import indicators',
         )

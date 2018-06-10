@@ -182,6 +182,7 @@ class Tuning(AbjadValueObject):
             >>> for voicing in voicings:
             ...     voicing
             ...
+            (NamedPitch('a'), None, None, None)
             (None, None, None, NamedPitch("a''"))
             (None, None, None, NamedPitch("a'''"))
             (None, None, NamedPitch("a'"), None)
@@ -189,7 +190,6 @@ class Tuning(AbjadValueObject):
             (None, None, NamedPitch("a'''"), None)
             (None, NamedPitch("a'"), None, None)
             (None, NamedPitch("a''"), None, None)
-            (NamedPitch('a'), None, None, None)
             (NamedPitch("a'"), None, None, None)
 
             >>> voicings = tuning.voice_pitch_classes(
@@ -199,6 +199,12 @@ class Tuning(AbjadValueObject):
             >>> for voicing in voicings:
             ...     voicing
             ...
+            (NamedPitch('a'), None, None, NamedPitch("d'''"))
+            (NamedPitch('a'), None, None, NamedPitch("d''''"))
+            (NamedPitch('a'), None, NamedPitch("d''"), None)
+            (NamedPitch('a'), None, NamedPitch("d'''"), None)
+            (NamedPitch('a'), NamedPitch("d''"), None, None)
+            (NamedPitch('a'), NamedPitch("d'''"), None, None)
             (None, None, NamedPitch("d''"), NamedPitch("a''"))
             (None, None, NamedPitch("d''"), NamedPitch("a'''"))
             (None, None, NamedPitch("a''"), NamedPitch("d'''"))
@@ -223,12 +229,6 @@ class Tuning(AbjadValueObject):
             (None, NamedPitch("d'''"), None, NamedPitch("a'''"))
             (None, NamedPitch("d'''"), NamedPitch("a''"), None)
             (None, NamedPitch("d'''"), NamedPitch("a'''"), None)
-            (NamedPitch('a'), None, None, NamedPitch("d'''"))
-            (NamedPitch('a'), None, None, NamedPitch("d''''"))
-            (NamedPitch('a'), None, NamedPitch("d''"), None)
-            (NamedPitch('a'), None, NamedPitch("d'''"), None)
-            (NamedPitch('a'), NamedPitch("d''"), None, None)
-            (NamedPitch('a'), NamedPitch("d'''"), None, None)
             (NamedPitch("d'"), None, None, NamedPitch("a''"))
             (NamedPitch("d'"), None, None, NamedPitch("a'''"))
             (NamedPitch("d'"), None, NamedPitch("a''"), None)

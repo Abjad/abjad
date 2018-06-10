@@ -1,6 +1,7 @@
 import math
-import numbers
+from abjad import mathtools
 from abjad.pitch.Pitch import Pitch
+from . import constants
 
 
 class NamedPitch(Pitch):
@@ -192,51 +193,12 @@ class NamedPitch(Pitch):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_name',
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 
-    def __init__(self, name="c'", *, arrow=None):
-        import abjad
-        if self._is_pitch_name(name):
-            pass
-        elif self._is_pitch_class_octave_number_string(name):
-            name = self._american_name_to_lilypond_name(name)
-        elif isinstance(name, type(self)):
-            arrow = name.arrow
-            name = name.name
-        elif isinstance(name, abjad.NamedPitchClass):
-            name = name.name + "'"
-        elif isinstance(name, tuple) and len(name) == 2:
-            pitch_class, octave = name
-            pitch_class = abjad.NamedPitchClass(pitch_class)
-            octave = abjad.Octave(octave)
-            name = str(pitch_class) + str(abjad.Octave(octave))
-        elif isinstance(name, numbers.Number) or hasattr(name, 'number'):
-            number = getattr(name, 'number', name)
-            named_pitch_class = abjad.NamedPitchClass(number)
-            octave = number // 12 + 4
-            if named_pitch_class == 'c':
-                rounded = 12 * (octave - 4) + named_pitch_class.number
-                if 0.5 <= abs(number - rounded):
-                    octave += 1
-            name = named_pitch_class.name + abjad.Octave(octave).ticks
-        elif isinstance(name, abjad.Note):
-            name = name.written_pitch.name
-        else:
-            message = 'can not initialize {} from {!r}.'
-            message = message.format(type(self).__name__, name)
-            raise ValueError(message)
-        assert self._is_pitch_name(name)
-        self._name = name
-        if arrow not in (abjad.Up, abjad.Down, None):
-            message = 'arrow must be up, down or none: {!r}.'
-            message = message.format(arrow)
-            raise TypeError(message)
-        if not hasattr(self, '_arrow'):
-            self._arrow = arrow
+    def __init__(self, name="c'", *, arrow=None, octave=None):
+        super().__init__(name or "c'", arrow=arrow, octave=octave)
 
     ### SPECIAL METHODS ###
 
@@ -426,45 +388,66 @@ class NamedPitch(Pitch):
 
     ### PRIVATE METHODS ###
 
-    @staticmethod
-    def _american_name_to_lilypond_name(name):
-        import abjad
-        match = NamedPitch._pitch_class_octave_number_regex.match(name)
-        group_dict = match.groupdict()
-        name = abjad.NamedPitchClass(name).name
-        name += abjad.Octave(int(group_dict['octave_number'])).ticks
-        return name
-
     def _apply_accidental(self, accidental):
         import abjad
-        name = self._get_diatonic_pitch_class_name()
+        name = self._get_diatonic_pc_name()
         name += str(self.accidental + abjad.Accidental(accidental))
         name += self.octave.ticks
         return type(self)(name)
 
+    def _from_dpc_number_alteration_and_octave(self, dpc_number, alteration, octave):
+        import abjad
+        dpc_name = constants._diatonic_pc_number_to_diatonic_pc_name[dpc_number]
+        accidental = abjad.Accidental(alteration)
+        octave = abjad.Octave(octave)
+        self._octave = octave
+        self._pitch_class = abjad.NamedPitchClass(dpc_name + str(accidental))
+
+    def _from_number(self, number):
+        import abjad
+        number = self._to_nearest_quarter_tone(number)
+        div, mod = divmod(number, 12)
+        pitch_class = abjad.NumberedPitchClass(mod)
+        self._from_dpc_number_alteration_and_octave(
+            dpc_number=pitch_class._get_diatonic_pc_number(),
+            alteration=pitch_class._get_alteration(),
+            octave=div + 4,
+            )
+
+    def _from_pitch_or_pitch_class(self, pitch_or_pitch_class):
+        import abjad
+        name = format(pitch_or_pitch_class, 'lilypond')
+        if not isinstance(pitch_or_pitch_class, Pitch):
+            name += "'"
+        if isinstance(pitch_or_pitch_class, Pitch):
+            self._pitch_class = abjad.NamedPitchClass(
+                pitch_or_pitch_class.pitch_class,
+                )
+            self._octave = pitch_or_pitch_class.octave
+        else:
+            self._pitch_class = abjad.NamedPitchClass(
+                pitch_or_pitch_class,
+                )
+            self._octave = abjad.Octave()
+
     def _get_alteration(self):
         return self.accidental.semitones
 
-    def _get_diatonic_pitch_class_name(self):
-        return self._parse_name()[0]
+    def _get_diatonic_pc_name(self):
+        return constants._diatonic_pc_number_to_diatonic_pc_name[
+            self.pitch_class._diatonic_pc_number]
 
-    def _get_diatonic_pitch_class_number(self):
-        import abjad
-        diatonic_pitch_class_name = self._get_diatonic_pitch_class_name()
-        class_ = abjad.PitchClass
-        diatonic_pitch_class_number = (
-            class_._diatonic_pitch_class_name_to_diatonic_pitch_class_number[
-                diatonic_pitch_class_name]
+    def _get_diatonic_pc_number(self):
+        diatonic_pc_name = self._get_diatonic_pc_name()
+        diatonic_pc_number = (
+            constants._diatonic_pc_name_to_diatonic_pc_number[
+                diatonic_pc_name]
             )
-        return diatonic_pitch_class_number
-
-    def _get_diatonic_pitch_name(self):
-        diatonic_pitch_class_name, accidental, ticks = self._parse_name()
-        return diatonic_pitch_class_name + ticks
+        return diatonic_pc_number
 
     def _get_diatonic_pitch_number(self):
         diatonic_pitch_number = 7 * (self.octave.number - 4)
-        diatonic_pitch_number += self._get_diatonic_pitch_class_number()
+        diatonic_pitch_number += self._get_diatonic_pc_number()
         return diatonic_pitch_number
 
     def _get_format_specification(self):
@@ -481,10 +464,6 @@ class NamedPitch(Pitch):
     def _get_lilypond_format(self):
         return str(self)
 
-    def _get_pitch_class_name(self):
-        parts = self._parse_name()
-        return parts[0] + parts[1]
-
     def _list_format_contributions(self):
         contributions = []
         if self.arrow is None:
@@ -499,46 +478,19 @@ class NamedPitch(Pitch):
         contributions.append(string)
         return contributions
 
-    def _parse_name(self):
-        match = self._pitch_name_regex.match(self.name)
-        if match is None:
-            raise Exception(repr(self.name))
-        groups = match.groups()
-        assert len(groups) == 5, repr(groups)
-        diatonic_pitch_class_name = groups[0]
-        accidental_abbreviation = groups[1]
-        groups[2] is None
-        groups[3] is None
-        ticks = groups[4]
-        return diatonic_pitch_class_name, accidental_abbreviation, ticks
-
     def _respell_with_flats(self):
-        import abjad
-        class_ = abjad.PitchClass
-        name = class_._pitch_class_number_to_pitch_class_name_with_flats[
+        name = constants._pitch_class_number_to_pitch_class_name_with_flats[
             self.pitch_class.number
             ]
         pitch = type(self)((name, self.octave.number))
         return pitch
 
     def _respell_with_sharps(self):
-        import abjad
-        class_ = abjad.PitchClass
-        name = class_._pitch_class_number_to_pitch_class_name_with_sharps[
+        name = constants._pitch_class_number_to_pitch_class_name_with_sharps[
             self.pitch_class.number
             ]
         pitch = type(self)((name, self.octave.number))
         return pitch
-
-    @staticmethod
-    def _to_nearest_octave(pitch_number, pitch_class_number):
-        target_pc = pitch_number % 12
-        down = (target_pc - pitch_class_number) % 12
-        up = (pitch_class_number - target_pc) % 12
-        if up < down:
-            return pitch_number + up
-        else:
-            return pitch_number - down
 
     ### PUBLIC PROPERTIES ###
 
@@ -559,8 +511,7 @@ class NamedPitch(Pitch):
 
         Returns accidental.
         '''
-        import abjad
-        return abjad.Accidental(self._parse_name()[1])
+        return self.pitch_class.accidental
 
     @property
     def arrow(self):
@@ -586,7 +537,7 @@ class NamedPitch(Pitch):
 
         Returns up, down or none.
         '''
-        return self._arrow
+        return self._pitch_class.arrow
 
     @property
     def hertz(self):
@@ -624,7 +575,10 @@ class NamedPitch(Pitch):
 
         Returns string.
         '''
-        return self._name
+        return '{!s}{!s}'.format(
+            self.pitch_class,
+            self.octave,
+            )
 
     @property
     def number(self):
@@ -641,16 +595,18 @@ class NamedPitch(Pitch):
             >>> abjad.NamedPitch("df''").number
             13
 
+            >>> abjad.NamedPitch("cf'").number
+            -1
+
         Returns number.
         '''
-        import abjad
-        number = 12 * (self.octave.number - 4)
-        class_ = abjad.PitchClass
-        number += class_._diatonic_pitch_class_name_to_pitch_class_number[
-            self._get_diatonic_pitch_class_name()
-            ]
-        number += self._get_alteration()
-        return number
+        diatonic_pc_number = self.pitch_class._get_diatonic_pc_number()
+        pc_number = constants._diatonic_pc_number_to_pitch_class_number[diatonic_pc_number]
+        alteration = self.pitch_class._get_alteration()
+        octave_base_pitch = (self.octave.number - 4) * 12
+        return mathtools.integer_equivalent_number_to_integer(
+            pc_number + alteration + octave_base_pitch
+            )
 
     @property
     def octave(self):
@@ -669,8 +625,7 @@ class NamedPitch(Pitch):
 
         Returns octave.
         '''
-        import abjad
-        return abjad.Octave(self._parse_name()[2])
+        return self._octave
 
     @property
     def pitch_class(self):
@@ -689,8 +644,7 @@ class NamedPitch(Pitch):
 
         Returns named pitch-class.
         '''
-        import abjad
-        return abjad.NamedPitchClass(self._get_pitch_class_name())
+        return self._pitch_class
 
     ### PUBLIC METHODS ###
 
@@ -715,69 +669,10 @@ class NamedPitch(Pitch):
         return super(NamedPitch, class_).from_hertz(hertz)
 
     @classmethod
-    def from_pitch_carrier(class_, pitch_carrier):
-        r'''Makes named pitch from `pitch_carrier`.
-
-        ..  container:: example
-
-            Makes named pitch from named pitch:
-
-            >>> pitch = abjad.NamedPitch(('df', 5))
-            >>> abjad.NamedPitch.from_pitch_carrier(pitch)
-            NamedPitch("df''")
-
-        ..  container:: example
-
-            Makes named pitch from note:
-
-            >>> note = abjad.Note("df''4")
-            >>> abjad.NamedPitch.from_pitch_carrier(note)
-            NamedPitch("df''")
-
-        ..  container:: example
-
-            Makes named pitch from note-head:
-
-            >>> note = abjad.Note("df''4")
-            >>> abjad.NamedPitch.from_pitch_carrier(note.note_head)
-            NamedPitch("df''")
-
-        ..  container:: example
-
-            Makes named pitch from chord:
-
-            >>> chord = abjad.Chord("<df''>4")
-            >>> abjad.NamedPitch.from_pitch_carrier(chord)
-            NamedPitch("df''")
-
-        ..  container:: example
-
-            Makes named pitch from integer:
-
-            >>> abjad.NamedPitch.from_pitch_carrier(13)
-            NamedPitch("cs''")
-
-        ..  container:: example
-
-            Makes named pitch from numbered pitch-class:
-
-            >>> pitch_class = abjad.NumberedPitchClass(7)
-            >>> abjad.NamedPitch.from_pitch_carrier(pitch_class)
-            NamedPitch("g'")
-
-        Raises value error when `pitch_carrier` carries no pitch.
-
-        Raises value error when `pitch_carrier` carries more than one pitch.
-
-        Returns new named pitch.
-        '''
-        return super(NamedPitch, class_).from_pitch_carrier(pitch_carrier)
-
-    @classmethod
     def from_pitch_number(
         class_,
         pitch_number,
-        diatonic_pitch_class_name,
+        diatonic_pc_name,
         ):
         r'''Makes named pitch from `pitch_number`.
 
@@ -811,15 +706,15 @@ class NamedPitch(Pitch):
         Returns new named pitch.
         '''
         import abjad
-        pc = abjad.PitchClass._diatonic_pitch_class_name_to_pitch_class_number[
-            diatonic_pitch_class_name
+        pc = constants._diatonic_pc_name_to_pitch_class_number[
+            diatonic_pc_name
             ]
         nearest_neighbor = class_._to_nearest_octave(pitch_number, pc)
         semitones = pitch_number - nearest_neighbor
         accidental = abjad.Accidental(semitones)
         octave = int(math.floor((pitch_number - semitones) / 12)) + 4
         octave = abjad.Octave(octave)
-        name = diatonic_pitch_class_name + str(accidental) + octave.ticks
+        name = diatonic_pc_name + str(accidental) + octave.ticks
         return class_(name)
 
     def get_name(self, locale=None):
@@ -841,7 +736,7 @@ class NamedPitch(Pitch):
             return self.name
         elif locale == 'us':
             return '{}{}{}'.format(
-                self._get_diatonic_pitch_class_name().upper(),
+                self._get_diatonic_pc_name().upper(),
                 self.accidental.symbol,
                 self.octave.number,
                 )
@@ -1186,16 +1081,14 @@ class NamedPitch(Pitch):
 
         Returns new named pitch.
         '''
-        import abjad
         pitch_number = self.number + interval
-        diatonic_pitch_class_number = self._get_diatonic_pitch_class_number()
-        diatonic_pitch_class_number += staff_positions
-        diatonic_pitch_class_number %= 7
-        class_ = abjad.PitchClass
+        diatonic_pc_number = self._get_diatonic_pc_number()
+        diatonic_pc_number += staff_positions
+        diatonic_pc_number %= 7
         dictionary = \
-            class_._diatonic_pitch_class_number_to_diatonic_pitch_class_name
-        diatonic_pitch_class_name = dictionary[diatonic_pitch_class_number]
+            constants._diatonic_pc_number_to_diatonic_pc_name
+        diatonic_pc_name = dictionary[diatonic_pc_number]
         return type(self).from_pitch_number(
             pitch_number,
-            diatonic_pitch_class_name,
+            diatonic_pc_name,
             )

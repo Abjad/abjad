@@ -1,5 +1,6 @@
 from abjad import mathtools
 from abjad.pitch.IntervalClass import IntervalClass
+from . import constants
 
 
 class NamedIntervalClass(IntervalClass):
@@ -19,91 +20,13 @@ class NamedIntervalClass(IntervalClass):
 
     __slots__ = (
         '_number',
-        '_quality_string',
+        '_quality',
         )
-
-    _acceptable_quality_strings = (
-        'perfect',
-        'major',
-        'minor',
-        'diminished',
-        'augmented',
-        )
-
-    _interval_number_to_interval_string = {
-        1: 'unison',
-        2: 'second',
-        3: 'third',
-        4: 'fourth',
-        5: 'fifth',
-        6: 'sixth',
-        7: 'seventh',
-        8: 'octave',
-        }
-
-    _quality_abbreviation_to_quality_string = {
-        'M': 'major',
-        'm': 'minor',
-        'P': 'perfect',
-        'aug': 'augmented',
-        'dim': 'diminished',
-        }
-
-    _quality_string_to_quality_abbreviation = {
-        'major': 'M',
-        'minor': 'm',
-        'perfect': 'P',
-        'augmented': 'aug',
-        'diminished': 'dim',
-        }
 
     ### INITIALIZER ###
 
     def __init__(self, name='P1'):
-        import abjad
-        named_prototype = (abjad.NamedInterval, type(self))
-        if isinstance(name, str):
-            class_ = abjad.Interval
-            match = class_._interval_name_abbreviation_regex.match(name)
-            if match is None:
-                message = 'can not initialize {} from {!r}.'
-                message = message.format(type(self).__name__, name)
-                raise ValueError(message)
-            result = match.groups()
-            direction_string, quality_abbreviation, number_string = result
-            class_ = type(self)
-            quality_string = class_._quality_abbreviation_to_quality_string[
-                quality_abbreviation
-                ]
-            number = int(direction_string + number_string)
-        elif isinstance(name, named_prototype):
-            quality_string = name._quality_string
-            number = name.number
-        elif isinstance(name, tuple) and len(name) == 2:
-            quality_string, number = name
-        else:
-            message = 'can not initialize {} from {!r}.'
-            message = message.format(type(self).__name__, name)
-            raise TypeError(message)
-        if quality_string not in type(self)._acceptable_quality_strings:
-            raise Exception(repr(quality_string))
-        assert isinstance(number, int), repr(number)
-        if number == 0:
-            message = 'must be nonzero: {!r}.'
-            message = message.format(number)
-            raise ValueError(number)
-        sign = mathtools.sign(number)
-        abs_number = abs(number)
-        if abs_number % 7 == 1 and 8 <= abs_number:
-            number = 8
-        else:
-            number = abs_number % 7
-            if number == 0:
-                number = 7
-        if not number == 1:
-            number *= sign
-        self._number = number
-        self._quality_string = quality_string
+        super().__init__(name or 'P1')
 
     ### SPECIAL METHODS ###
 
@@ -117,10 +40,10 @@ class NamedIntervalClass(IntervalClass):
 
         Returns new named interval-class.
         '''
-        return type(self).from_quality_and_number(
-            self.quality_string,
+        return type(self)((
+            self.quality,
             abs(self.number),
-            )
+            ))
 
     def __eq__(self, argument):
         r'''Is true when `argument` is a named interval-class with direction
@@ -163,7 +86,11 @@ class NamedIntervalClass(IntervalClass):
 
         Returns float.
         '''
-        return float(self.number)
+        return float(self._named_to_numbered(
+            self.direction_number,
+            self._quality,
+            abs(self._number),
+            ))
 
     def __hash__(self):
         r'''Hashes named interval-class.
@@ -208,7 +135,7 @@ class NamedIntervalClass(IntervalClass):
         import abjad
         try:
             argument = type(self)(argument)
-        except:
+        except Exception:
             return False
         if self.number == argument.number:
             self_semitones = abjad.NamedInterval(self).semitones
@@ -230,22 +157,29 @@ class NamedIntervalClass(IntervalClass):
 
     ### PRIVATE PROPERTIES ###
 
-    @property
-    def _full_name(self):
-        strings = []
-        if self.direction_string:
-            strings.append(self.direction_string)
-        strings.extend([self._quality_string, self._interval_string])
-        return ' '.join(strings)
+    def _from_named_parts(self, direction, quality, diatonic_number):
+        self._quality = quality
+        diatonic_pc_number = diatonic_number
+        while diatonic_pc_number > 7:
+            diatonic_pc_number -= 7
+        if diatonic_pc_number == 1 and diatonic_number >= 8:
+            diatonic_pc_number = 8
+        if quality == 'P' and diatonic_pc_number == 1:
+            direction = 1
+        self._number = direction * diatonic_pc_number
 
-    @property
-    def _interval_string(self):
-        return self._interval_number_to_interval_string[abs(self.number)]
+    def _from_number(self, argument):
+        direction, quality, diatonic_number = self._numbered_to_named(argument)
+        self._from_named_parts(direction, quality, diatonic_number)
 
-    @property
-    def _quality_abbreviation(self):
-        return self._quality_string_to_quality_abbreviation[
-            self._quality_string]
+    def _from_interval_or_interval_class(self, argument):
+        try:
+            quality = argument.quality
+            diatonic_number = abs(argument.number)
+            direction = mathtools.sign(argument.number)
+        except AttributeError:
+            direction, quality, diatonic_number = self._numbered_to_named(argument)
+        self._from_named_parts(direction, quality, diatonic_number)
 
     ### PRIVATE METHODS ###
 
@@ -279,60 +213,9 @@ class NamedIntervalClass(IntervalClass):
 
         Returns -1, 0 or 1.
         '''
-        if self.number < 1:
-            return -1
-        elif self.number == 1:
+        if self.quality == 'P' and abs(self.number) == 1:
             return 0
-        else:
-            return 1
-
-    @property
-    def direction_string(self):
-        r'''Gets direction string of named interval-class.
-
-        ..  container:: example
-
-            >>> abjad.NamedIntervalClass('P1').direction_string is None
-            True
-
-            >>> abjad.NamedIntervalClass('+M2').direction_string
-            'ascending'
-
-            >>> abjad.NamedIntervalClass('-M2').direction_string
-            'descending'
-
-        Returns string.
-        '''
-        if self.direction_number == -1:
-            return 'descending'
-        elif self.direction_number == 0:
-            return None
-        elif self.direction_number == 1:
-            return 'ascending'
-
-    @property
-    def direction_symbol(self):
-        r'''Gets direction symbol of named interval-class.
-
-        ..  container:: example
-
-            >>> abjad.NamedIntervalClass('P1').direction_symbol
-            ''
-
-            >>> abjad.NamedIntervalClass('+M2').direction_symbol
-            '+'
-
-            >>> abjad.NamedIntervalClass('-M2').direction_symbol
-            '-'
-
-        Returns string.
-        '''
-        if self.number < 1:
-            return '-'
-        elif self.number == 1:
-            return ''
-        else:
-            return '+'
+        return mathtools.sign(self.number)
 
     @property
     def name(self):
@@ -346,29 +229,19 @@ class NamedIntervalClass(IntervalClass):
         Returns string.
         '''
         return '{}{}{}'.format(
-            self.direction_symbol,
-            self._quality_abbreviation,
+            constants._direction_number_to_direction_symbol[
+                self.direction_number],
+            self._quality,
             abs(self.number),
             )
 
     @property
-    def quality_string(self):
-        r'''Gets quality string of named interval-class.
-
-        ..  container:: example
-
-            >>> abjad.NamedIntervalClass('P1').quality_string
-            'perfect'
-
-            >>> abjad.NamedIntervalClass('+M2').quality_string
-            'major'
-
-            >>> abjad.NamedIntervalClass('-M2').quality_string
-            'major'
+    def quality(self):
+        r'''Gets quality of named interval-class.
 
         Returns string.
         '''
-        return self._quality_string
+        return self._quality
 
     ### PUBLIC METHODS ###
 
@@ -425,62 +298,3 @@ class NamedIntervalClass(IntervalClass):
             pitch_carrier_2,
             )
         return class_(named_interval)
-
-    @classmethod
-    def from_quality_and_number(class_, quality, number):
-        r'''Makes named interval-class from `quality` string and number.
-
-        ..  container:: example
-
-            >>> abjad.NamedIntervalClass.from_quality_and_number(
-            ...     'major',
-            ...     -9,
-            ...     )
-            NamedIntervalClass('-M2')
-
-        Returns newly constructed named interval-class.
-        '''
-        name = NamedIntervalClass.quality_and_number_to_name(quality, number)
-        interval_class = class_(name)
-        return interval_class
-
-    @staticmethod
-    def quality_and_number_to_name(quality, number):
-        r'''Changes `quality` and `number` to name.
-
-        ..  container:: example
-
-            >>> class_ = abjad.NamedIntervalClass
-            >>> class_.quality_and_number_to_name('minor', 2)
-            '+m2'
-            >>> class_.quality_and_number_to_name('major', 2)
-            '+M2'
-            >>> class_.quality_and_number_to_name('minor', 3)
-            '+m3'
-            >>> class_.quality_and_number_to_name('major', 3)
-            '+M3'
-
-        Returns string.
-        '''
-        class_ = NamedIntervalClass
-        abbreviation = class_._quality_string_to_quality_abbreviation[
-            quality]
-        if number == 1:
-            direction = ''
-        elif mathtools.sign(number) == 1:
-            direction = '+'
-        else:
-            direction = '-'
-        sign = mathtools.sign(number)
-        abs_number = abs(number)
-        if abs_number % 7 == 1 and 8 <= abs_number:
-            number = 8
-        else:
-            number = abs_number % 7
-            if number == 0:
-                number = 7
-        if not number == 1:
-            number *= sign
-        number = abs(number)
-        string = '{}{}{}'.format(direction, abbreviation, number)
-        return string

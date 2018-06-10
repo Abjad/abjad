@@ -2525,15 +2525,15 @@ class Label(AbjadObject):
                     }
                     {
                         c'4
-                        ^ \markup { +aug15 }
+                        ^ \markup { +A15 }
                         cs'''4
                         ^ \markup { -M9 }
                         b'4
-                        ^ \markup { -aug9 }
+                        ^ \markup { -A9 }
                         af4
                         ^ \markup { -m7 }
                         bf,4
-                        ^ \markup { +aug1 }
+                        ^ \markup { +A1 }
                         b,4
                         ^ \markup { +m14 }
                         a'4
@@ -2562,15 +2562,15 @@ class Label(AbjadObject):
                     }
                     {
                         c'4
-                        ^ \markup { +aug15 }
+                        ^ \markup { +A15 }
                         cs'''4
                         ^ \markup { -M9 }
                         b'4
-                        ^ \markup { -aug9 }
+                        ^ \markup { -A9 }
                         af4
                         ^ \markup { -m7 }
                         bf,4
-                        ^ \markup { +aug1 }
+                        ^ \markup { +A1 }
                         b,4
                         ^ \markup { +m14 }
                         a'4
@@ -2603,15 +2603,15 @@ class Label(AbjadObject):
                     }
                     {
                         c'4
-                        ^ \markup { +aug8 }
+                        ^ \markup { +A8 }
                         cs'''4
                         ^ \markup { -M2 }
                         b'4
-                        ^ \markup { -aug2 }
+                        ^ \markup { -A2 }
                         af4
                         ^ \markup { -m7 }
                         bf,4
-                        ^ \markup { aug1 }
+                        ^ \markup { +A1 }
                         b,4
                         ^ \markup { +m7 }
                         a'4
@@ -2641,15 +2641,15 @@ class Label(AbjadObject):
                     }
                     {
                         c'4
-                        ^ \markup { +aug8 }
+                        ^ \markup { +A8 }
                         cs'''4
                         ^ \markup { -M2 }
                         b'4
-                        ^ \markup { -aug2 }
+                        ^ \markup { -A2 }
                         af4
                         ^ \markup { -m7 }
                         bf,4
-                        ^ \markup { aug1 }
+                        ^ \markup { +A1 }
                         b,4
                         ^ \markup { +m7 }
                         a'4
