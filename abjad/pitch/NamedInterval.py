@@ -519,7 +519,8 @@ class NamedInterval(Interval):
 
     @classmethod
     def from_pitch_carriers(class_, pitch_carrier_1, pitch_carrier_2):
-        '''Makes named interval calculated from `pitch_carrier_1` to
+        """
+        Makes named interval calculated from `pitch_carrier_1` to
         `pitch_carrier_2`.
 
         ..  container:: example
@@ -536,8 +537,11 @@ class NamedInterval(Interval):
             ...     )
             NamedInterval('-AAAA1')
 
+            >>> abjad.NamedInterval.from_pitch_carriers("c'", "cs'''")
+            NamedInterval('+A15')
+
         Returns named interval.
-        '''
+        """
         import abjad
         pitch_1 = abjad.NamedPitch(pitch_carrier_1)
         pitch_2 = abjad.NamedPitch(pitch_carrier_2)
@@ -549,10 +553,9 @@ class NamedInterval(Interval):
             float(abjad.NumberedPitch(pitch_2))
             )
         named_ic_number = named_i_number
-        while named_ic_number > 8:
-            named_ic_number -= 7
         numbered_ic_number = numbered_i_number
-        while numbered_ic_number > 12:
+        while named_ic_number > 8 and numbered_ic_number > 12:
+            named_ic_number -= 7
             numbered_ic_number -= 12
         mapping = {
             value: key
@@ -569,7 +572,6 @@ class NamedInterval(Interval):
         direction = 1
         if pitch_2 < pitch_1:
             direction = -1
-        # print('XXX', named_i_number, numbered_i_number, named_ic_number, numbered_ic_number, direction, quality)
         return class_((quality, named_i_number * direction))
 
     def transpose(self, pitch_carrier):
