@@ -26,7 +26,7 @@ class RootlessChordClass(IntervalSegment):
         German augmented sixth in root position:
 
         >>> abjad.tonalanalysis.RootlessChordClass('German', 'augmented sixth')
-        GermanAugmentedSixthInRootPosition('P1', '+M3', '+m3', '+aug2')
+        GermanAugmentedSixthInRootPosition('P1', '+M3', '+m3', '+A2')
 
     """
 
@@ -257,7 +257,7 @@ class RootlessChordClass(IntervalSegment):
             ...     ])
             >>> class_ = abjad.tonalanalysis.RootlessChordClass
             >>> class_.from_interval_class_segment(segment)
-            DiminishedTriadInRootPosition('P1', '+m3', '+dim5')
+            DiminishedTriadInRootPosition('P1', '+m3', '+d5')
 
         ..  container:: example
 

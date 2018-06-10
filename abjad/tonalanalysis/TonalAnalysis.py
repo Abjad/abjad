@@ -669,7 +669,7 @@ class TonalAnalysis(abctools.AbjadObject):
         Returns true or false.
         """
         import abjad
-        direction_string = None
+        direction_number = None
         notes = abjad.iterate(self._client).components(abjad.Note)
         for left, right in abjad.sequence(notes).nwise():
             try:
@@ -677,9 +677,9 @@ class TonalAnalysis(abctools.AbjadObject):
                 mdi = abjad_pitch.NamedInterval.from_pitch_carriers(
                     left, right)
                 assert mdi.number <= 2
-                if direction_string is None:
-                    direction_string = mdi.direction_string
-                assert direction_string == mdi.direction_string
+                if direction_number is None:
+                    direction_number = mdi.direction_number
+                assert direction_number == mdi.direction_number
             except AssertionError:
                 return False
         return True

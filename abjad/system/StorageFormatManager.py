@@ -563,7 +563,7 @@ class StorageFormatManager(AbjadValueObject):
             ...     line
             ...
             'from abjad import instruments'
-            'from abjad import markup'
+            'from abjad import markups'
             'from abjad import pitch'
 
         Returns tuple of strings.

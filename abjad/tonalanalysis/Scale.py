@@ -96,10 +96,10 @@ class Scale(PitchClassSegment):
             else:
                 pass
             dic = dicg[i % length]
-            ascending_mdi = abjad.NamedInterval.from_quality_and_number(
-                dic.quality_string,
+            ascending_mdi = abjad.NamedInterval((
+                dic.quality,
                 dic.number,
-                )
+                ))
             pitch += ascending_mdi
 
     ### PUBLIC PROPERTIES ###
