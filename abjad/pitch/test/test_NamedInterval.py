@@ -1,9 +1,11 @@
 import pytest
+from abjad import mathtools
 from abjad.pitch import (
     NamedInterval,
     NamedIntervalClass,
     NumberedInterval,
     NumberedIntervalClass,
+    constants,
 )
 
 
@@ -301,6 +303,28 @@ def test_init(input_, semitones, name):
     NumberedInterval(instance)
     NamedIntervalClass(instance)
     NumberedIntervalClass(instance)
+    if isinstance(input_, str):
+        group_dict = constants._interval_name_abbreviation_regex.match(
+            input_).groupdict()
+        inflected_up = class_('{}{}{}{}'.format(
+            group_dict['direction'] or '',
+            group_dict['quality'],
+            '+',
+            group_dict['number'],
+            ))
+        inflected_down = class_('{}{}{}{}'.format(
+            group_dict['direction'] or '',
+            group_dict['quality'],
+            '~',
+            group_dict['number'],
+            ))
+        if (
+            (mathtools.sign(float(instance)) == instance.direction_number) and
+            abs(instance.number) != 1
+        ):
+            direction = mathtools.sign(float(instance))
+            assert float(inflected_up) == (abs(float(instance)) + 0.5) * direction
+            assert float(inflected_down) == (abs(float(instance)) - 0.5) * direction
 
 
 values = [
