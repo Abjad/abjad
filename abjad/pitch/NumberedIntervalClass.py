@@ -54,6 +54,13 @@ class NumberedIntervalClass(IntervalClass):
         '''
         return type(self)(abs(self.number))
 
+    def __add__(self, argument):
+        r'''Adds `argument` to numbered interval-class.
+
+        Returns new numbered interval-class.
+        '''
+        return type(self)(float(self) + float(type(self)(argument)))
+
     def __eq__(self, argument):
         r'''Is true when `argument` is a numbered interval-class with number
         equal to that of this numbered interval-class.
@@ -160,6 +167,13 @@ class NumberedIntervalClass(IntervalClass):
         if 0 < self.number:
             string = '+' + string
         return string
+
+    def __sub__(self, argument):
+        r'''Subtracts `argument` from numbered interval-class.
+
+        Returns new numbered interval-class.
+        '''
+        return type(self)(float(self) - float(type(self)(argument)))
 
     ### PRIVATE METHODS ###
 

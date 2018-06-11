@@ -1,4 +1,5 @@
 import abc
+import copy
 import functools
 import numbers
 from abjad import mathtools
@@ -74,6 +75,14 @@ class IntervalClass(AbjadValueObject):
         '''
         return type(self)(abs(self._number))
 
+    @abc.abstractmethod
+    def __add__(self, argument):
+        r'''Adds `argument` to interval-class.
+
+        Returns new interval-class.
+        '''
+        raise NotImplementedError
+
     def __float__(self):
         r'''Coerce to semitones as float.
 
@@ -95,6 +104,14 @@ class IntervalClass(AbjadValueObject):
         Returns string.
         '''
         return str(self.number)
+
+    @abc.abstractmethod
+    def __sub__(self, argument):
+        r'''Subtracts `argument` from interval-class.
+
+        Returns new interval-class.
+        '''
+        raise NotImplementedError
 
     ### PRIVATE METHODS ###
 
@@ -207,3 +224,27 @@ class IntervalClass(AbjadValueObject):
         Returns number.
         '''
         return self._number
+
+    ### PUBLIC METHODS ###
+
+    def transpose(self, pitch_carrier):
+        r'''Transposes `pitch_carrier` by interval-class.
+
+        Returns new pitch carrier.
+        '''
+        import abjad
+        if isinstance(pitch_carrier, (abjad.Pitch, abjad.PitchClass)):
+            return pitch_carrier.transpose(self)
+        elif isinstance(pitch_carrier, abjad.Note):
+            new_note = copy.copy(pitch_carrier)
+            new_pitch = pitch_carrier.written_pitch.transpose(self)
+            new_note.written_pitch = new_pitch
+            return new_note
+        elif isinstance(pitch_carrier, abjad.Chord):
+            new_chord = copy.copy(pitch_carrier)
+            pairs = zip(new_chord.note_heads, pitch_carrier.note_heads)
+            for new_nh, old_nh in pairs:
+                new_pitch = old_nh.written_pitch.transpose(self)
+                new_nh.written_pitch = new_pitch
+            return new_chord
+        return pitch_carrier

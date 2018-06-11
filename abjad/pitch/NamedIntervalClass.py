@@ -45,6 +45,21 @@ class NamedIntervalClass(IntervalClass):
             abs(self.number),
             ))
 
+    def __add__(self, argument):
+        r'''Adds `argument` to named interval-class.
+
+        Returns new named interval-class.
+        '''
+        import abjad
+        argument = type(self)(argument)
+        dummy_pitch = abjad.NamedPitch(0)
+        new_pitch = dummy_pitch + self + argument
+        interval = abjad.NamedInterval.from_pitch_carriers(
+            dummy_pitch,
+            new_pitch,
+            )
+        return type(self)(interval)
+
     def __eq__(self, argument):
         r'''Is true when `argument` is a named interval-class with direction
         number, quality string and number equal to those of this named
@@ -154,6 +169,14 @@ class NamedIntervalClass(IntervalClass):
         Returns string.
         '''
         return self.name
+
+    def __sub__(self, argument):
+        r'''Subtracts `argument` from named interval-class.
+
+        Returns new named interval-class.
+        '''
+        import abjad
+        return type(self)(abjad.NamedInterval(self) - argument)
 
     ### PRIVATE PROPERTIES ###
 
