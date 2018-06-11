@@ -207,13 +207,17 @@ class NoteHead(AbjadObject):
             )
 
     def _get_format_pieces(self):
+        import abjad
         assert self.written_pitch
         result = []
         if self.is_parenthesized:
             result.append(r'\parenthesize')
         strings = self.tweaks._list_format_contributions(directed=False)
         result.extend(strings)
-        kernel = format(self.written_pitch)
+        written_pitch = self.written_pitch
+        if isinstance(written_pitch, abjad.NamedPitch):
+            written_pitch = written_pitch.simplify()
+        kernel = format(written_pitch)
         if self.is_forced:
             kernel += '!'
         if self.is_cautionary:

@@ -802,6 +802,56 @@ class NamedPitch(Pitch):
         '''
         return super(NamedPitch, self).multiply(n=n)
 
+    def simplify(self):
+        """
+        Reduce alteration to between -2 and 2 while maintaining identical pitch
+        number.
+
+            >>> abjad.NamedPitch("cssqs'").simplify()
+            NamedPitch("dqs'")
+
+            >>> abjad.NamedPitch("cfffqf'").simplify()
+            NamedPitch('aqf')
+
+            >>> float(abjad.NamedPitch("cfffqf'").simplify()) == float(NamedPitch('aqf'))
+            True
+
+        ..  note:: LilyPond by default only supports accidentals from
+                   double-flat to double-sharp.
+
+        Returns named pitch.
+        """
+        import abjad
+        alteration = self._get_alteration()
+        if abs(alteration) <= 2:
+            return self
+        diatonic_pc_number = self._get_diatonic_pc_number()
+        octave = int(self.octave)
+        while alteration > 2:
+            step_size = 2
+            if diatonic_pc_number == 2:  # e to f
+                step_size = 1
+            elif diatonic_pc_number == 6:  # b to c
+                step_size = 1
+                octave += 1
+            diatonic_pc_number = (diatonic_pc_number + 1) % 7
+            alteration -= step_size
+        while alteration < -2:
+            step_size = 2
+            if diatonic_pc_number == 3:  # f to e
+                step_size = 1
+            elif diatonic_pc_number == 0:  # c to b
+                step_size = 1
+                octave -= 1
+            diatonic_pc_number = (diatonic_pc_number - 1) % 7
+            alteration += step_size
+        diatonic_pc_name = constants._diatonic_pc_number_to_diatonic_pc_name[
+            diatonic_pc_number]
+        accidental = abjad.Accidental(alteration)
+        octave = abjad.Octave(octave)
+        pitch_name = '{}{!s}{!s}'.format(diatonic_pc_name, accidental, octave)
+        return type(self)(pitch_name, arrow=self.arrow)
+
     # TODO: duplicate on NumberedPitch
     def to_staff_position(self, clef=None):
         r'''Changes named pitch to staff position.

@@ -540,6 +540,9 @@ class NamedInterval(Interval):
             >>> abjad.NamedInterval.from_pitch_carriers("c'", "cs'''")
             NamedInterval('+A15')
 
+            >>> abjad.NamedInterval.from_pitch_carriers('c', 'cqs')
+            NamedInterval('+P+1')
+
         Returns named interval.
         """
         import abjad
@@ -557,18 +560,26 @@ class NamedInterval(Interval):
         while named_ic_number > 8 and numbered_ic_number > 12:
             named_ic_number -= 7
             numbered_ic_number -= 12
+        quartertone = ''
+        if numbered_ic_number % 1:
+            quartertone = '+'
+            numbered_ic_number -= 0.5
         mapping = {
             value: key
             for key, value in
             constants._diatonic_number_and_quality_to_semitones[
                 named_ic_number].items()
             }
-        if numbered_ic_number in mapping:
-            quality = mapping[numbered_ic_number]
-        elif numbered_ic_number > max(mapping.keys()):
-            quality = 'A' * int(numbered_ic_number - max(mapping.keys()) + 1)
-        elif numbered_ic_number < min(mapping.keys()):
-            quality = 'd' * int(min(mapping.keys()) - numbered_ic_number + 1)
+        quality = ''
+        while numbered_ic_number > max(mapping):
+            numbered_ic_number -= 1
+            quality += 'A'
+        while numbered_ic_number < min(mapping):
+            numbered_ic_number += 1
+            quality += 'd'
+        quality += mapping[numbered_ic_number]
+        quality += quartertone
+
         direction = 1
         if pitch_2 < pitch_1:
             direction = -1
