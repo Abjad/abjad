@@ -1,4 +1,3 @@
-import copy
 from abjad import mathtools
 from abjad.pitch.Interval import Interval
 from . import constants
@@ -307,8 +306,12 @@ class NamedInterval(Interval):
             octaves += 1
             diatonic_pc_number -= 7
         self._octaves = octaves
-        self._interval_class = abjad.NamedIntervalClass(
-            (quality, direction * diatonic_pc_number))
+        if direction:
+            diatonic_pc_number *= direction
+        self._interval_class = abjad.NamedIntervalClass((
+            quality,
+            diatonic_pc_number,
+            ))
 
     def _from_number(self, argument):
         direction, quality, diatonic_number = self._numbered_to_named(argument)
@@ -321,8 +324,7 @@ class NamedInterval(Interval):
             direction = mathtools.sign(argument.number)
         except AttributeError:
             direction, quality, diatonic_number = self._numbered_to_named(argument)
-        self._from_named_parts(
-            direction, quality, diatonic_number)
+        self._from_named_parts(direction, quality, diatonic_number)
 
     ### PRIVATE METHODS ###
 
@@ -336,21 +338,6 @@ class NamedInterval(Interval):
             storage_format_is_indented=False,
             storage_format_args_values=values,
             )
-
-    def _transpose_pitch(self, pitch):
-        import abjad
-        pitch_number = pitch.number + self.semitones
-        diatonic_pc_number = pitch._get_diatonic_pc_number()
-        diatonic_pc_number += self.staff_spaces
-        diatonic_pc_number %= 7
-        diatonic_pc_name = \
-            constants._diatonic_pc_number_to_diatonic_pc_name[
-                diatonic_pc_number]
-        named_pitch = abjad.NamedPitch.from_pitch_number(
-            pitch_number,
-            diatonic_pc_name,
-            )
-        return type(pitch)(named_pitch)
 
     ### PUBLIC PROPERTIES ###
 
@@ -600,20 +587,4 @@ class NamedInterval(Interval):
 
         Returns new (copied) object of `pitch_carrier` type.
         '''
-        import abjad
-        if isinstance(pitch_carrier, abjad.Pitch):
-            return self._transpose_pitch(pitch_carrier)
-        elif isinstance(pitch_carrier, abjad.Note):
-            new_note = copy.copy(pitch_carrier)
-            new_pitch = self._transpose_pitch(pitch_carrier.written_pitch)
-            new_note.written_pitch = new_pitch
-            return new_note
-        elif isinstance(pitch_carrier, abjad.Chord):
-            new_chord = copy.copy(pitch_carrier)
-            pairs = zip(new_chord.note_heads, pitch_carrier.note_heads)
-            for new_nh, old_nh in pairs:
-                new_pitch = self._transpose_pitch(old_nh.written_pitch)
-                new_nh.written_pitch = new_pitch
-            return new_chord
-        else:
-            return pitch_carrier
+        return super().transpose(pitch_carrier)

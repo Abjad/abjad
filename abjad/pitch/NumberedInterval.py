@@ -1,5 +1,3 @@
-import copy
-import numbers
 from abjad import mathtools
 from abjad.pitch.Interval import Interval
 from . import constants
@@ -415,35 +413,8 @@ class NumberedInterval(Interval):
 
             >>> interval = abjad.NumberedInterval(1)
             >>> interval.transpose(chord)
-            Chord("<cs' f' af'>4")
+            Chord("<df' f' af'>4")
 
         Returns newly constructed object of `pitch_carrier` type.
         '''
-        import abjad
-        if isinstance(pitch_carrier, abjad.Pitch):
-            number = pitch_carrier.number + self.semitones
-            return type(pitch_carrier)(number)
-        elif isinstance(pitch_carrier, numbers.Number):
-            pitch_carrier = abjad.NumberedPitch(pitch_carrier)
-            result = self.transpose(pitch_carrier)
-            return result.number
-        elif isinstance(pitch_carrier, abjad.Note):
-            new_note = copy.copy(pitch_carrier)
-            number = abjad.NumberedPitch(pitch_carrier.written_pitch)
-            number = number.number
-            number += self.number
-            new_pitch = abjad.NamedPitch(number)
-            new_note.written_pitch = new_pitch
-            return new_note
-        elif isinstance(pitch_carrier, abjad.Chord):
-            new_chord = copy.copy(pitch_carrier)
-            pairs = zip(new_chord.note_heads, pitch_carrier.note_heads)
-            for new_nh, old_nh in pairs:
-                number = \
-                    abjad.NumberedPitch(old_nh.written_pitch).number
-                number += self.number
-                new_pitch = abjad.NamedPitch(number)
-                new_nh.written_pitch = new_pitch
-            return new_chord
-        else:
-            return pitch_carrier
+        return super().transpose(pitch_carrier)

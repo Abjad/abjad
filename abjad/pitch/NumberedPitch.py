@@ -95,7 +95,7 @@ class NumberedPitch(Pitch):
         Returns new numbered pitch.
         '''
         argument = type(self)(argument)
-        semitones = self.number + argument.number
+        semitones = float(self) + float(argument)
         return type(self)(semitones)
 
     def __lt__(self, argument):
@@ -542,4 +542,4 @@ class NumberedPitch(Pitch):
         '''
         import abjad
         interval = abjad.NumberedInterval(n)
-        return interval.transpose(self)
+        return type(self)(float(self) + float(interval))

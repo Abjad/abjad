@@ -668,55 +668,6 @@ class NamedPitch(Pitch):
         '''
         return super(NamedPitch, class_).from_hertz(hertz)
 
-    @classmethod
-    def from_pitch_number(
-        class_,
-        pitch_number,
-        diatonic_pc_name,
-        ):
-        r'''Makes named pitch from `pitch_number`.
-
-        ..  container:: example
-
-            >>> abjad.NamedPitch.from_pitch_number(12, 'b')
-            NamedPitch("bs'")
-            >>> abjad.NamedPitch.from_pitch_number(12, 'c')
-            NamedPitch("c''")
-            >>> abjad.NamedPitch.from_pitch_number(12, 'd')
-            NamedPitch("dff''")
-
-        ..  container:: example
-
-            >>> abjad.NamedPitch.from_pitch_number(13, 'b')
-            NamedPitch("bss'")
-            >>> abjad.NamedPitch.from_pitch_number(13, 'c')
-            NamedPitch("cs''")
-            >>> abjad.NamedPitch.from_pitch_number(13, 'd')
-            NamedPitch("df''")
-
-        ..  container:: example
-
-            >>> abjad.NamedPitch.from_pitch_number(14, 'c')
-            NamedPitch("css''")
-            >>> abjad.NamedPitch.from_pitch_number(14, 'd')
-            NamedPitch("d''")
-            >>> abjad.NamedPitch.from_pitch_number(14, 'e')
-            NamedPitch("eff''")
-
-        Returns new named pitch.
-        '''
-        import abjad
-        pc = constants._diatonic_pc_name_to_pitch_class_number[
-            diatonic_pc_name
-            ]
-        nearest_neighbor = class_._to_nearest_octave(pitch_number, pc)
-        semitones = pitch_number - nearest_neighbor
-        accidental = abjad.Accidental(semitones)
-        octave = int(math.floor((pitch_number - semitones) / 12)) + 4
-        octave = abjad.Octave(octave)
-        name = diatonic_pc_name + str(accidental) + octave.ticks
-        return class_(name)
-
     def get_name(self, locale=None):
         r'''Gets name of named pitch according to `locale`.
 
@@ -1055,7 +1006,6 @@ class NamedPitch(Pitch):
         staff_position = abjad.StaffPosition(staff_position_number)
         return staff_position
 
-    # TODO: combine with transpose_staff_position()
     def transpose(self, n=0):
         r'''Transposes named pitch by index `n`.
 
@@ -1077,68 +1027,20 @@ class NamedPitch(Pitch):
         '''
         import abjad
         interval = abjad.NamedInterval(n)
-        return interval.transpose(self)
-
-    # TODO: combine with transpose()
-    def transpose_staff_position(self, staff_positions, interval):
-        '''Transposes named pitch by `staff_positions` and `interval`.
-
-        ..  container:: example
-
-            Transposes middle C but leaves at same staff position:
-
-            >>> pitch = abjad.NamedPitch(0)
-
-            >>> pitch.transpose_staff_position(0, -2)
-            NamedPitch("cff'")
-            >>> pitch.transpose_staff_position(0, -1.5)
-            NamedPitch("ctqf'")
-            >>> pitch.transpose_staff_position(0, -1)
-            NamedPitch("cf'")
-            >>> pitch.transpose_staff_position(0, -0.5)
-            NamedPitch("cqf'")
-            >>> pitch.transpose_staff_position(0, 0)
-            NamedPitch("c'")
-            >>> pitch.transpose_staff_position(0, 0.5)
-            NamedPitch("cqs'")
-            >>> pitch.transpose_staff_position(0, 1)
-            NamedPitch("cs'")
-            >>> pitch.transpose_staff_position(0, 1.5)
-            NamedPitch("ctqs'")
-
-        ..  container:: example
-
-            Transposes middle C and then respells up 1 staff position:
-
-            >>> pitch.transpose_staff_position(1, 0)
-            NamedPitch("dff'")
-            >>> pitch.transpose_staff_position(1, 0.5)
-            NamedPitch("dtqf'")
-            >>> pitch.transpose_staff_position(1, 1)
-            NamedPitch("df'")
-            >>> pitch.transpose_staff_position(1, 1.5)
-            NamedPitch("dqf'")
-            >>> pitch.transpose_staff_position(1, 2)
-            NamedPitch("d'")
-            >>> pitch.transpose_staff_position(1, 2.5)
-            NamedPitch("dqs'")
-            >>> pitch.transpose_staff_position(1, 3)
-            NamedPitch("ds'")
-            >>> pitch.transpose_staff_position(1, 3.5)
-            NamedPitch("dtqs'")
-            >>> pitch.transpose_staff_position(1, 4)
-            NamedPitch("dss'")
-
-        Returns new named pitch.
-        '''
-        pitch_number = self.number + interval
+        pitch_number = self.number + interval.semitones
         diatonic_pc_number = self._get_diatonic_pc_number()
-        diatonic_pc_number += staff_positions
+        diatonic_pc_number += interval.staff_spaces
         diatonic_pc_number %= 7
-        dictionary = \
-            constants._diatonic_pc_number_to_diatonic_pc_name
-        diatonic_pc_name = dictionary[diatonic_pc_number]
-        return type(self).from_pitch_number(
-            pitch_number,
-            diatonic_pc_name,
-            )
+        diatonic_pc_name = \
+            constants._diatonic_pc_number_to_diatonic_pc_name[
+                diatonic_pc_number]
+        pc = constants._diatonic_pc_name_to_pitch_class_number[
+            diatonic_pc_name
+            ]
+        nearest_neighbor = self._to_nearest_octave(pitch_number, pc)
+        semitones = pitch_number - nearest_neighbor
+        accidental = abjad.Accidental(semitones)
+        octave = int(math.floor((pitch_number - semitones) / 12)) + 4
+        octave = abjad.Octave(octave)
+        name = diatonic_pc_name + str(accidental) + octave.ticks
+        return type(self)(name)
