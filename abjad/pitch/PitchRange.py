@@ -759,7 +759,7 @@ class PitchRange(AbjadValueObject):
             candidate = interval.transpose(pitch_carrier_copy)
             if candidate in self:
                 result.append(candidate)
-                interval -= abjad.NumberedInterval(12)
+                interval -= 12
             else:
                 break
         result.reverse()

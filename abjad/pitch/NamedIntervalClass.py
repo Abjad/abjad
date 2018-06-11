@@ -182,14 +182,14 @@ class NamedIntervalClass(IntervalClass):
 
     def _from_named_parts(self, direction, quality, diatonic_number):
         self._quality = quality
-        diatonic_pc_number = diatonic_number
+        diatonic_pc_number = abs(diatonic_number)
         while diatonic_pc_number > 7:
             diatonic_pc_number -= 7
-        if diatonic_pc_number == 1 and diatonic_number >= 8:
+        if quality == 'P' and diatonic_pc_number == 1 and diatonic_number >= 8:
             diatonic_pc_number = 8
-        if quality == 'P' and diatonic_pc_number == 1:
-            direction = 1
-        self._number = direction * diatonic_pc_number
+        if not (diatonic_number == 1 and quality == 'P'):
+            diatonic_pc_number *= direction
+        self._number = diatonic_pc_number
 
     def _from_number(self, argument):
         direction, quality, diatonic_number = self._numbered_to_named(argument)

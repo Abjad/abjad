@@ -83,10 +83,7 @@ class NamedInterval(Interval):
         Returns new named interval.
         '''
         import abjad
-        if not isinstance(argument, type(self)):
-            message = 'must be named interval: {!r}.'
-            message = message.format(argument)
-            raise TypeError(message)
+        argument = type(self)(argument)
         dummy_pitch = abjad.NamedPitch(0)
         new_pitch = dummy_pitch + self + argument
         return NamedInterval.from_pitch_carriers(dummy_pitch, new_pitch)
@@ -302,9 +299,12 @@ class NamedInterval(Interval):
         import abjad
         octaves = 0
         diatonic_pc_number = abs(diatonic_number)
-        while diatonic_pc_number > 8:
+        while diatonic_pc_number > 7:
             octaves += 1
             diatonic_pc_number -= 7
+        if diatonic_pc_number == 1 and quality == 'P' and diatonic_number >= 8:
+            octaves -= 1
+            diatonic_pc_number = 8
         self._octaves = octaves
         if direction:
             diatonic_pc_number *= direction
@@ -566,7 +566,6 @@ class NamedInterval(Interval):
             quality += 'd'
         quality += mapping[numbered_ic_number]
         quality += quartertone
-
         direction = 1
         if pitch_2 < pitch_1:
             direction = -1
