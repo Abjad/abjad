@@ -1,5 +1,6 @@
 from abjad import mathtools
 from abjad.pitch.Set import Set
+from abjad.utilities.Enumerator import Enumerator
 
 
 class IntervalSet(Set):
@@ -22,7 +23,7 @@ class IntervalSet(Set):
             )
         if isinstance(items, prototype):
             items = list(items)
-            enumerator = mathtools.Enumerator(items)
+            enumerator = Enumerator(items)
             pairs = enumerator.yield_pairs()
             items = [second - first for first, second in pairs]
         Set.__init__(
@@ -85,7 +86,7 @@ class IntervalSet(Set):
         '''
         import abjad
         pitch_segment = abjad.PitchSegment.from_selection(selection)
-        enumerator = mathtools.Enumerator(pitch_segment)
+        enumerator = Enumerator(pitch_segment)
         pairs = enumerator.yield_pairs()
         intervals = [second - first for first, second in pairs]
         return class_(

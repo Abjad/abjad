@@ -1,13 +1,11 @@
 import functools
 import typing
-from abjad.typings import Number
+from abjad import enumerations
+from abjad import typings
 from abjad.system.AbjadValueObject import AbjadValueObject
-from abjad.enumerations import HorizontalAlignment
-from abjad.enumerations import VerticalAlignment
-from abjad.mathtools.NonreducedFraction import NonreducedFraction
-from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.StorageFormatManager import StorageFormatManager
+from abjad.utilities.NonreducedFraction import NonreducedFraction
 from abjad.utilities.String import String
 
 
@@ -347,7 +345,11 @@ class Scheme(AbjadValueObject):
         """
         Formats embedded Scheme ``value``.
         """
-        if isinstance(value, (HorizontalAlignment, VerticalAlignment)):
+        alignments = (
+            enumerations.HorizontalAlignment,
+            enumerations.VerticalAlignment,
+            )
+        if isinstance(value, alignments):
             return '#' + repr(value).lower()
         result = Scheme.format_scheme_value(value, force_quotes=force_quotes)
         if isinstance(value, bool):
@@ -934,10 +936,10 @@ class SpacingVector(SchemeVector):
 
     def __init__(
         self,
-        basic_distance: Number = 0,
-        minimum_distance: Number = 0,
-        padding: Number = 12,
-        stretchability: Number = 0,
+        basic_distance: typings.Number = 0,
+        minimum_distance: typings.Number = 0,
+        padding: typings.Number = 12,
+        stretchability: typings.Number = 0,
         ) -> None:
         pairs = [
             SchemePair(('basic-distance', basic_distance)),

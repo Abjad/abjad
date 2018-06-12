@@ -7,8 +7,6 @@ from abjad.exceptions import AssignabilityError
 from abjad.exceptions import MissingMetronomeMarkError
 from abjad.exceptions import MissingSpannerError
 from abjad.indicators.MetronomeMark import MetronomeMark
-from abjad.mathtools.NonreducedFraction import NonreducedFraction
-from abjad.mathtools.Ratio import Ratio
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.top.attach import attach
@@ -20,6 +18,8 @@ from abjad.top.sequence import sequence
 from abjad.top.setting import setting
 from abjad.utilities.Duration import Duration
 from abjad.utilities.Multiplier import Multiplier
+from abjad.utilities.NonreducedFraction import NonreducedFraction
+from abjad.utilities.Ratio import Ratio
 from .Component import Component
 
 

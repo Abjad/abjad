@@ -162,7 +162,7 @@ class NamedIntervalClass(IntervalClass):
         return self.number < argument.number
 
     def __radd__(self, argument):
-        r'''Adds interval-class to `argument.
+        r'''Adds interval-class to ``argument``.
 
         Returns new named interval-class.
         '''
