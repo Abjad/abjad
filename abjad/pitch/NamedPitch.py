@@ -197,8 +197,20 @@ class NamedPitch(Pitch):
 
     ### INITIALIZER ###
 
-    def __init__(self, name="c'", *, arrow=None, octave=None):
-        super().__init__(name or "c'", arrow=arrow, octave=octave)
+    def __init__(
+        self,
+        name="c'",
+        *,
+        accidental=None,
+        arrow=None,
+        octave=None,
+    ):
+        super().__init__(
+            name or "c'",
+            accidental=accidental,
+            arrow=arrow,
+            octave=octave,
+            )
 
     ### SPECIAL METHODS ###
 
@@ -395,7 +407,7 @@ class NamedPitch(Pitch):
         name += self.octave.ticks
         return type(self)(name)
 
-    def _from_dpc_number_alteration_and_octave(self, dpc_number, alteration, octave):
+    def _from_named_parts(self, dpc_number, alteration, octave):
         import abjad
         dpc_name = constants._diatonic_pc_number_to_diatonic_pc_name[dpc_number]
         accidental = abjad.Accidental(alteration)
@@ -408,7 +420,7 @@ class NamedPitch(Pitch):
         number = self._to_nearest_quarter_tone(number)
         div, mod = divmod(number, 12)
         pitch_class = abjad.NumberedPitchClass(mod)
-        self._from_dpc_number_alteration_and_octave(
+        self._from_named_parts(
             dpc_number=pitch_class._get_diatonic_pc_number(),
             alteration=pitch_class._get_alteration(),
             octave=div + 4,

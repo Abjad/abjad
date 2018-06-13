@@ -362,6 +362,7 @@ class StorageFormatManager(AbjadValueObject):
             ...
             <class 'abjad.instruments.Flute.Flute'>
             <class 'abjad.markups.Markup'>
+            <class 'abjad.pitch.Accidental.Accidental'>
             <class 'abjad.pitch.NamedPitch.NamedPitch'>
             <class 'abjad.pitch.Octave.Octave'>
             <class 'abjad.pitch.PitchRange.PitchRange'>

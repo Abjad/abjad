@@ -22,7 +22,7 @@ class Pitch(AbjadValueObject):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, argument, arrow=None, octave=None):
+    def __init__(self, argument, accidental=None, arrow=None, octave=None):
         import abjad
         if isinstance(argument, str):
             match = constants._comprehensive_pitch_name_regex.match(argument)
@@ -37,7 +37,7 @@ class Pitch(AbjadValueObject):
             _dpc_number = constants._diatonic_pc_name_to_diatonic_pc_number[_dpc_name]
             _alteration = abjad.Accidental(group_dict['comprehensive_accidental']).semitones
             _octave = abjad.Octave(group_dict.get('comprehensive_octave', '')).number
-            self._from_dpc_number_alteration_and_octave(_dpc_number, _alteration, _octave)
+            self._from_named_parts(_dpc_number, _alteration, _octave)
         elif isinstance(argument, numbers.Number):
             self._from_number(argument)
         elif isinstance(argument, (abjad.Pitch, abjad.PitchClass)):
@@ -45,7 +45,7 @@ class Pitch(AbjadValueObject):
         elif isinstance(argument, tuple) and len(argument) == 2:
             _pitch_class = abjad.NamedPitchClass(argument[0])
             _octave = abjad.Octave(argument[1])
-            self._from_dpc_number_alteration_and_octave(
+            self._from_named_parts(
                 _pitch_class._get_diatonic_pc_number(),
                 _pitch_class._get_alteration(),
                 _octave.number,
@@ -58,6 +58,12 @@ class Pitch(AbjadValueObject):
             message = 'can not instantiate {} from {!r}.'
             message = message.format(type(self).__name__, argument)
             raise ValueError(message)
+        if accidental is not None:
+            accidental = abjad.Accidental(accidental)
+            self._pitch_class = type(self._pitch_class)(
+                self._pitch_class,
+                accidental=accidental,
+                )
         if arrow is not None:
             self._pitch_class = type(self._pitch_class)(
                 self._pitch_class,

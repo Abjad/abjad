@@ -530,45 +530,66 @@ class NamedInterval(Interval):
             >>> abjad.NamedInterval.from_pitch_carriers('c', 'cqs')
             NamedInterval('+P+1')
 
+            >>> abjad.NamedInterval.from_pitch_carriers("cf'", 'bs')
+            NamedInterval('-dd2')
+
         Returns named interval.
         """
         import abjad
+
         pitch_1 = abjad.NamedPitch(pitch_carrier_1)
         pitch_2 = abjad.NamedPitch(pitch_carrier_2)
         degree_1 = pitch_1._get_diatonic_pitch_number()
         degree_2 = pitch_2._get_diatonic_pitch_number()
+        named_sign = mathtools.sign(degree_1 - degree_2)
         named_i_number = abs(degree_1 - degree_2) + 1
+        numbered_sign = mathtools.sign(
+            float(abjad.NumberedPitch(pitch_1)) -
+            float(abjad.NumberedPitch(pitch_2))
+            )
         numbered_i_number = abs(
             float(abjad.NumberedPitch(pitch_1)) -
             float(abjad.NumberedPitch(pitch_2))
             )
         named_ic_number = named_i_number
         numbered_ic_number = numbered_i_number
+
         while named_ic_number > 8 and numbered_ic_number > 12:
             named_ic_number -= 7
             numbered_ic_number -= 12
+
         quartertone = ''
         if numbered_ic_number % 1:
             quartertone = '+'
             numbered_ic_number -= 0.5
+
         mapping = {
             value: key
             for key, value in
             constants._diatonic_number_and_quality_to_semitones[
                 named_ic_number].items()
             }
+
+        # Multiply-diminished intervals can have opposite signs
+        if named_sign and (named_sign == -numbered_sign):
+            numbered_ic_number *= -1
+
         quality = ''
+
         while numbered_ic_number > max(mapping):
             numbered_ic_number -= 1
             quality += 'A'
+
         while numbered_ic_number < min(mapping):
             numbered_ic_number += 1
             quality += 'd'
+
         quality += mapping[numbered_ic_number]
         quality += quartertone
         direction = 1
         if pitch_2 < pitch_1:
             direction = -1
+
         return class_((quality, named_i_number * direction))
 
     def transpose(self, pitch_carrier):

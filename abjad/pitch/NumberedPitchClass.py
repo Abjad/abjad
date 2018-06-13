@@ -294,7 +294,7 @@ class NumberedPitchClass(PitchClass):
         semitones = self.number + accidental.semitones
         return type(self)(semitones)
 
-    def _from_dpc_number_and_alteration(self, dpc_number, alteration):
+    def _from_named_parts(self, dpc_number, alteration):
         number = constants._diatonic_pc_number_to_pitch_class_number[dpc_number]
         number += alteration
         self._from_number(number)

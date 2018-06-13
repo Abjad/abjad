@@ -32,7 +32,7 @@ class PitchClass(AbjadValueObject):
             dpc_name = group_dict['diatonic_pc_name'].lower()
             dpc_number = constants._diatonic_pc_name_to_diatonic_pc_number[dpc_name]
             alteration = abjad.Accidental(group_dict['comprehensive_accidental']).semitones
-            self._from_dpc_number_and_alteration(dpc_number, alteration)
+            self._from_named_parts(dpc_number, alteration)
         elif isinstance(argument, numbers.Number):
             self._from_number(argument)
         elif isinstance(argument, (abjad.Pitch, abjad.PitchClass)):
@@ -79,7 +79,7 @@ class PitchClass(AbjadValueObject):
     ### PRIVATE METHODS ###
 
     @abc.abstractmethod
-    def _from_dpc_number_and_alteration(self, dpc_number, alteration):
+    def _from_named_parts(self, dpc_number, alteration):
         raise NotImplementedError
 
     @abc.abstractmethod
