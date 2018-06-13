@@ -1,6 +1,5 @@
 import numbers
 from abjad.pitch.NamedIntervalClass import NamedIntervalClass
-from . import constants
 
 
 class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
@@ -49,10 +48,7 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_number',
-        '_quality',
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 

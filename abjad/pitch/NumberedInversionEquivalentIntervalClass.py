@@ -1,5 +1,3 @@
-import numbers
-from abjad import mathtools
 from abjad.pitch.NumberedIntervalClass import NumberedIntervalClass
 
 
@@ -34,34 +32,15 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_number',
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 
-    # TODO: clean up
     def __init__(self, number=0):
-        if isinstance(number, type(self)):
-            number = number.number
-        elif isinstance(number, numbers.Number):
-            if not 0 <= number <= 6:
-                message = 'must be between 0 and 6, inclusive.'
-                raise ValueError(message)
-        elif getattr(number, 'semitones', None) is not None:
-            number = number.semitones
-            number %= 12
-            if 6 < number:
-                number = 12 - number
-        elif isinstance(number, str):
-            number = float(number)
-            if mathtools.is_integer_equivalent(number):
-                number = int(number)
-        else:
-            message = 'can not initialize {}: {!r}.'
-            message = message.format(type(self).__name__, number)
-            raise TypeError(message)
-        self._number = number
+        super().__init__(number or 0)
+        self._number %= 12
+        if 6 < self._number:
+            self._number = 12 - self._number
 
     ### SPECIAL METHODS ###
 
