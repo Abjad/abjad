@@ -72,12 +72,11 @@ class NumberedInterval(Interval):
 
         Returns new numbered interval.
         '''
-        if isinstance(argument, type(self)):
-            number = self.number + argument.number
-            return type(self)(number)
-        message = 'must be {}: {!r}.'
-        message = message.format(type(self), argument)
-        raise TypeError(message)
+        try:
+            argument = type(self)(argument)
+        except Exception:
+            return NotImplemented
+        return type(self)(float(self) + float(argument))
 
     def __copy__(self):
         r'''Copies numbered interval.
@@ -218,11 +217,11 @@ class NumberedInterval(Interval):
 
         Returns new numbered interval.
         '''
-        if not isinstance(argument, type(self)):
-            message = '{!r} must be {}.'
-            message = message.format(argument, type(self))
-            raise TypeError(message)
-        return argument.__add__(self)
+        try:
+            argument = type(self)(argument)
+        except Exception:
+            return NotImplemented
+        return type(self)(float(self) + float(argument))
 
     def __str__(self):
         r'''String representation of numbered interval.
@@ -238,12 +237,11 @@ class NumberedInterval(Interval):
 
         Returns new numbered interval.
         '''
-        if isinstance(argument, type(self)):
-            number = self.number - argument.number
-            return type(self)(number)
-        message = 'must be {}: {!r}.'
-        message = message.format(type(self), argument)
-        raise TypeError(message)
+        try:
+            argument = type(self)(argument)
+        except Exception:
+            return NotImplemented
+        return type(self)(float(self) - float(argument))
 
     ### PRIVATE METHODS ###
 

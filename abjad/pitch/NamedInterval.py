@@ -83,7 +83,10 @@ class NamedInterval(Interval):
         Returns new named interval.
         '''
         import abjad
-        argument = type(self)(argument)
+        try:
+            argument = type(self)(argument)
+        except Exception:
+            return NotImplemented
         dummy_pitch = abjad.NamedPitch(0)
         new_pitch = dummy_pitch + self + argument
         return NamedInterval.from_pitch_carriers(dummy_pitch, new_pitch)
@@ -241,10 +244,10 @@ class NamedInterval(Interval):
 
         Returns new named interval.
         '''
-        if not isinstance(argument, type(self)):
-            message = 'must be named interval: {!r}.'
-            message = message.format(argument)
-            raise TypeError(message)
+        try:
+            argument = type(self)(argument)
+        except Exception:
+            return NotImplemented
         return argument.__add__(self)
 
     def __rmul__(self, argument):
@@ -285,10 +288,10 @@ class NamedInterval(Interval):
         Returns new named interval.
         '''
         import abjad
-        if not isinstance(argument, type(self)):
-            message = 'must be named interval: {!r}.'
-            message = message.format(argument)
-            raise TypeError(message)
+        try:
+            argument = type(self)(argument)
+        except Exception:
+            return NotImplemented
         dummy_pitch = abjad.NamedPitch(0)
         new_pitch = dummy_pitch + self - argument
         return NamedInterval.from_pitch_carriers(dummy_pitch, new_pitch)

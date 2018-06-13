@@ -51,7 +51,10 @@ class NamedIntervalClass(IntervalClass):
         Returns new named interval-class.
         '''
         import abjad
-        argument = type(self)(argument)
+        try:
+            argument = type(self)(argument)
+        except Exception:
+            return NotImplemented
         dummy_pitch = abjad.NamedPitch(0)
         new_pitch = dummy_pitch + self + argument
         interval = abjad.NamedInterval.from_pitch_carriers(
@@ -158,6 +161,17 @@ class NamedIntervalClass(IntervalClass):
             return self_semitones < argument_semitones
         return self.number < argument.number
 
+    def __radd__(self, argument):
+        r'''Adds interval-class to `argument.
+
+        Returns new named interval-class.
+        '''
+        try:
+            argument = type(self)(argument)
+        except Exception:
+            return NotImplemented
+        return argument.__add__(self)
+
     def __str__(self):
         r'''Gets string representation of named interval-class.
 
@@ -176,7 +190,17 @@ class NamedIntervalClass(IntervalClass):
         Returns new named interval-class.
         '''
         import abjad
-        return type(self)(abjad.NamedInterval(self) - argument)
+        try:
+            argument = type(self)(argument)
+        except Exception:
+            return NotImplemented
+        dummy_pitch = abjad.NamedPitch(0)
+        new_pitch = dummy_pitch + self - argument
+        interval = abjad.NamedInterval.from_pitch_carriers(
+            dummy_pitch,
+            new_pitch,
+            )
+        return type(self)(interval)
 
     ### PRIVATE PROPERTIES ###
 

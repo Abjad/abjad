@@ -59,7 +59,22 @@ class NumberedIntervalClass(IntervalClass):
 
         Returns new numbered interval-class.
         '''
-        return type(self)(float(self) + float(type(self)(argument)))
+        try:
+            argument = type(self)(argument)
+        except Exception:
+            return NotImplemented
+        return type(self)(float(self) + float(argument))
+
+    def __radd__(self, argument):
+        r'''Adds `argument` to numbered interval-class.
+
+        Returns new numbered interval-class.
+        '''
+        try:
+            argument = type(self)(argument)
+        except Exception:
+            return NotImplemented
+        return type(self)(float(self) + float(argument))
 
     def __eq__(self, argument):
         r'''Is true when `argument` is a numbered interval-class with number
@@ -173,7 +188,11 @@ class NumberedIntervalClass(IntervalClass):
 
         Returns new numbered interval-class.
         '''
-        return type(self)(float(self) - float(type(self)(argument)))
+        try:
+            argument = type(self)(argument)
+        except Exception:
+            return NotImplemented
+        return type(self)(float(self) - float(argument))
 
     ### PRIVATE METHODS ###
 
