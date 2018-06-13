@@ -76,8 +76,17 @@ class NumberedPitch(Pitch):
 
     ### INITIALIZER ###
 
-    def __init__(self, number=0, *, arrow=None, octave=None):
-        super().__init__(number or 0, arrow=arrow, octave=octave)
+    def __init__(
+        self,
+        number=0, *,
+        arrow=None,
+        octave=None,
+    ):
+        super().__init__(
+            number or 0,
+            arrow=arrow,
+            octave=octave,
+            )
 
     ### SPECIAL METHODS ###
 
@@ -95,7 +104,7 @@ class NumberedPitch(Pitch):
         Returns new numbered pitch.
         '''
         argument = type(self)(argument)
-        semitones = self.number + argument.number
+        semitones = float(self) + float(argument)
         return type(self)(semitones)
 
     def __lt__(self, argument):
@@ -209,7 +218,7 @@ class NumberedPitch(Pitch):
         semitones = self.number + accidental.semitones
         return type(self)(semitones)
 
-    def _from_dpc_number_alteration_and_octave(self, dpc_number, alteration, octave):
+    def _from_named_parts(self, dpc_number, alteration, octave):
         import abjad
         pc_number = constants._diatonic_pc_number_to_pitch_class_number[dpc_number]
         pc_number += alteration
@@ -542,4 +551,4 @@ class NumberedPitch(Pitch):
         '''
         import abjad
         interval = abjad.NumberedInterval(n)
-        return interval.transpose(self)
+        return type(self)(float(self) + float(interval))

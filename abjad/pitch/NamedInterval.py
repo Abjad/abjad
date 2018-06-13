@@ -1,4 +1,3 @@
-import copy
 from abjad import mathtools
 from abjad.pitch.Interval import Interval
 from . import constants
@@ -84,10 +83,10 @@ class NamedInterval(Interval):
         Returns new named interval.
         '''
         import abjad
-        if not isinstance(argument, type(self)):
-            message = 'must be named interval: {!r}.'
-            message = message.format(argument)
-            raise TypeError(message)
+        try:
+            argument = type(self)(argument)
+        except Exception:
+            return NotImplemented
         dummy_pitch = abjad.NamedPitch(0)
         new_pitch = dummy_pitch + self + argument
         return NamedInterval.from_pitch_carriers(dummy_pitch, new_pitch)
@@ -245,10 +244,10 @@ class NamedInterval(Interval):
 
         Returns new named interval.
         '''
-        if not isinstance(argument, type(self)):
-            message = 'must be named interval: {!r}.'
-            message = message.format(argument)
-            raise TypeError(message)
+        try:
+            argument = type(self)(argument)
+        except Exception:
+            return NotImplemented
         return argument.__add__(self)
 
     def __rmul__(self, argument):
@@ -289,10 +288,10 @@ class NamedInterval(Interval):
         Returns new named interval.
         '''
         import abjad
-        if not isinstance(argument, type(self)):
-            message = 'must be named interval: {!r}.'
-            message = message.format(argument)
-            raise TypeError(message)
+        try:
+            argument = type(self)(argument)
+        except Exception:
+            return NotImplemented
         dummy_pitch = abjad.NamedPitch(0)
         new_pitch = dummy_pitch + self - argument
         return NamedInterval.from_pitch_carriers(dummy_pitch, new_pitch)
@@ -303,12 +302,19 @@ class NamedInterval(Interval):
         import abjad
         octaves = 0
         diatonic_pc_number = abs(diatonic_number)
-        while diatonic_pc_number > 8:
+        while diatonic_pc_number > 7:
             octaves += 1
             diatonic_pc_number -= 7
+        if diatonic_pc_number == 1 and quality == 'P' and diatonic_number >= 8:
+            octaves -= 1
+            diatonic_pc_number = 8
         self._octaves = octaves
-        self._interval_class = abjad.NamedIntervalClass(
-            (quality, direction * diatonic_pc_number))
+        if direction:
+            diatonic_pc_number *= direction
+        self._interval_class = abjad.NamedIntervalClass((
+            quality,
+            diatonic_pc_number,
+            ))
 
     def _from_number(self, argument):
         direction, quality, diatonic_number = self._numbered_to_named(argument)
@@ -321,8 +327,7 @@ class NamedInterval(Interval):
             direction = mathtools.sign(argument.number)
         except AttributeError:
             direction, quality, diatonic_number = self._numbered_to_named(argument)
-        self._from_named_parts(
-            direction, quality, diatonic_number)
+        self._from_named_parts(direction, quality, diatonic_number)
 
     ### PRIVATE METHODS ###
 
@@ -336,21 +341,6 @@ class NamedInterval(Interval):
             storage_format_is_indented=False,
             storage_format_args_values=values,
             )
-
-    def _transpose_pitch(self, pitch):
-        import abjad
-        pitch_number = pitch.number + self.semitones
-        diatonic_pc_number = pitch._get_diatonic_pc_number()
-        diatonic_pc_number += self.staff_spaces
-        diatonic_pc_number %= 7
-        diatonic_pc_name = \
-            constants._diatonic_pc_number_to_diatonic_pc_name[
-                diatonic_pc_number]
-        named_pitch = abjad.NamedPitch.from_pitch_number(
-            pitch_number,
-            diatonic_pc_name,
-            )
-        return type(pitch)(named_pitch)
 
     ### PUBLIC PROPERTIES ###
 
@@ -543,46 +533,66 @@ class NamedInterval(Interval):
             >>> abjad.NamedInterval.from_pitch_carriers('c', 'cqs')
             NamedInterval('+P+1')
 
+            >>> abjad.NamedInterval.from_pitch_carriers("cf'", 'bs')
+            NamedInterval('-dd2')
+
         Returns named interval.
         """
         import abjad
+
         pitch_1 = abjad.NamedPitch(pitch_carrier_1)
         pitch_2 = abjad.NamedPitch(pitch_carrier_2)
         degree_1 = pitch_1._get_diatonic_pitch_number()
         degree_2 = pitch_2._get_diatonic_pitch_number()
+        named_sign = mathtools.sign(degree_1 - degree_2)
         named_i_number = abs(degree_1 - degree_2) + 1
+        numbered_sign = mathtools.sign(
+            float(abjad.NumberedPitch(pitch_1)) -
+            float(abjad.NumberedPitch(pitch_2))
+            )
         numbered_i_number = abs(
             float(abjad.NumberedPitch(pitch_1)) -
             float(abjad.NumberedPitch(pitch_2))
             )
         named_ic_number = named_i_number
         numbered_ic_number = numbered_i_number
+
         while named_ic_number > 8 and numbered_ic_number > 12:
             named_ic_number -= 7
             numbered_ic_number -= 12
+
         quartertone = ''
         if numbered_ic_number % 1:
             quartertone = '+'
             numbered_ic_number -= 0.5
+
         mapping = {
             value: key
             for key, value in
             constants._diatonic_number_and_quality_to_semitones[
                 named_ic_number].items()
             }
+
+        # Multiply-diminished intervals can have opposite signs
+        if named_sign and (named_sign == -numbered_sign):
+            numbered_ic_number *= -1
+
         quality = ''
+
         while numbered_ic_number > max(mapping):
             numbered_ic_number -= 1
             quality += 'A'
+
         while numbered_ic_number < min(mapping):
             numbered_ic_number += 1
             quality += 'd'
+
         quality += mapping[numbered_ic_number]
         quality += quartertone
-
         direction = 1
         if pitch_2 < pitch_1:
             direction = -1
+
         return class_((quality, named_i_number * direction))
 
     def transpose(self, pitch_carrier):
@@ -600,20 +610,4 @@ class NamedInterval(Interval):
 
         Returns new (copied) object of `pitch_carrier` type.
         '''
-        import abjad
-        if isinstance(pitch_carrier, abjad.Pitch):
-            return self._transpose_pitch(pitch_carrier)
-        elif isinstance(pitch_carrier, abjad.Note):
-            new_note = copy.copy(pitch_carrier)
-            new_pitch = self._transpose_pitch(pitch_carrier.written_pitch)
-            new_note.written_pitch = new_pitch
-            return new_note
-        elif isinstance(pitch_carrier, abjad.Chord):
-            new_chord = copy.copy(pitch_carrier)
-            pairs = zip(new_chord.note_heads, pitch_carrier.note_heads)
-            for new_nh, old_nh in pairs:
-                new_pitch = self._transpose_pitch(old_nh.written_pitch)
-                new_nh.written_pitch = new_pitch
-            return new_chord
-        else:
-            return pitch_carrier
+        return super().transpose(pitch_carrier)

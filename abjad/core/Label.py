@@ -2603,7 +2603,7 @@ class Label(AbjadObject):
                     }
                     {
                         c'4
-                        ^ \markup { +A8 }
+                        ^ \markup { +A1 }
                         cs'''4
                         ^ \markup { -M2 }
                         b'4
@@ -2641,7 +2641,7 @@ class Label(AbjadObject):
                     }
                     {
                         c'4
-                        ^ \markup { +A8 }
+                        ^ \markup { +A1 }
                         cs'''4
                         ^ \markup { -M2 }
                         b'4

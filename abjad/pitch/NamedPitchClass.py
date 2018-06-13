@@ -119,8 +119,16 @@ class NamedPitchClass(PitchClass):
 
     ### INITIALIZER ###
 
-    def __init__(self, name='c', *, arrow=None):
+    def __init__(
+        self,
+        name='c',
+        *,
+        accidental=None,
+        arrow=None,
+    ):
         super().__init__(name or 'c')
+        if accidental is not None:
+            self._accidental = type(self._accidental)(accidental)
         if arrow is not None:
             self._accidental = type(self._accidental)(
                 self._accidental,
@@ -309,7 +317,7 @@ class NamedPitchClass(PitchClass):
         new_name = self._get_diatonic_pc_name() + str(new_accidental)
         return type(self)(new_name)
 
-    def _from_dpc_number_and_alteration(self, dpc_number, alteration):
+    def _from_named_parts(self, dpc_number, alteration):
         import abjad
         self._diatonic_pc_number = dpc_number
         self._accidental = abjad.Accidental(alteration)

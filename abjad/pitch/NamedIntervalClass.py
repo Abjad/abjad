@@ -45,6 +45,24 @@ class NamedIntervalClass(IntervalClass):
             abs(self.number),
             ))
 
+    def __add__(self, argument):
+        r'''Adds `argument` to named interval-class.
+
+        Returns new named interval-class.
+        '''
+        import abjad
+        try:
+            argument = type(self)(argument)
+        except Exception:
+            return NotImplemented
+        dummy_pitch = abjad.NamedPitch(0)
+        new_pitch = dummy_pitch + self + argument
+        interval = abjad.NamedInterval.from_pitch_carriers(
+            dummy_pitch,
+            new_pitch,
+            )
+        return type(self)(interval)
+
     def __eq__(self, argument):
         r'''Is true when `argument` is a named interval-class with direction
         number, quality string and number equal to those of this named
@@ -143,6 +161,17 @@ class NamedIntervalClass(IntervalClass):
             return self_semitones < argument_semitones
         return self.number < argument.number
 
+    def __radd__(self, argument):
+        r'''Adds interval-class to `argument.
+
+        Returns new named interval-class.
+        '''
+        try:
+            argument = type(self)(argument)
+        except Exception:
+            return NotImplemented
+        return argument.__add__(self)
+
     def __str__(self):
         r'''Gets string representation of named interval-class.
 
@@ -155,6 +184,24 @@ class NamedIntervalClass(IntervalClass):
         '''
         return self.name
 
+    def __sub__(self, argument):
+        r'''Subtracts `argument` from named interval-class.
+
+        Returns new named interval-class.
+        '''
+        import abjad
+        try:
+            argument = type(self)(argument)
+        except Exception:
+            return NotImplemented
+        dummy_pitch = abjad.NamedPitch(0)
+        new_pitch = dummy_pitch + self - argument
+        interval = abjad.NamedInterval.from_pitch_carriers(
+            dummy_pitch,
+            new_pitch,
+            )
+        return type(self)(interval)
+
     ### PRIVATE PROPERTIES ###
 
     def _from_named_parts(self, direction, quality, diatonic_number):
@@ -163,10 +210,13 @@ class NamedIntervalClass(IntervalClass):
         while diatonic_pc_number > 7:
             diatonic_pc_number -= 7
         if diatonic_pc_number == 1 and diatonic_number >= 8:
-            diatonic_pc_number = 8
-        if quality == 'P' and diatonic_pc_number == 1:
-            direction = 1
-        self._number = direction * diatonic_pc_number
+            if quality == 'P':
+                diatonic_pc_number = 8
+            elif quality.startswith('d') or quality == 'P~':
+                direction *= -1
+        if not (diatonic_number == 1 and quality == 'P'):
+            diatonic_pc_number *= direction
+        self._number = diatonic_pc_number
 
     def _from_number(self, argument):
         direction, quality, diatonic_number = self._numbered_to_named(argument)
