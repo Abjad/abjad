@@ -33,7 +33,7 @@ install:
 - python -c "import abjad; print(abjad.abjad_configuration.configuration_file_path)"
 # remove the read-only .abjad folder, prime the parser
 - rm -Rif ~/.abjad
-- abjad/scr/devel/prime-parser-tables
+- scr/devel/prime-parser-tables
 # then install development and ipython dependencies.
 - pip install -e .[test]
 # install accelerated dependencies if requested
