@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 
-from abjad import *
+import abjad
 
 """
 If no pickled parser tables have been created, e.g. because Abjad has just
@@ -13,18 +13,18 @@ This script simply finds each Parser subclass in Abjad and instantiates it,
 thereby causing PLY to create and persist the appropriate parser tables.
 """
 
-class_ = parser.LilyPondParser
+class_ = abjad.parser.LilyPondParser
 print('Priming {} parser tables.'.format(class_.__name__))
 class_()
 
-class_ = parser.SchemeParser
+class_ = abjad.parser.SchemeParser
 print('Priming {} parser tables.'.format(class_.__name__))
 class_()
 
-class_ = rhythmtree.RhythmTreeParser
+class_ = abjad.rhythmtrees.RhythmTreeParser
 print('Priming {} parser tables.'.format(class_.__name__))
 class_()
 
-class_ = parser.ReducedLyParser
+class_ = abjad.parser.ReducedLyParser
 print('Priming {} parser tables.'.format(class_.__name__))
 class_()
