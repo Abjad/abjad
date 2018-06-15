@@ -8,7 +8,7 @@ import functools
 import math
 import typing
 from abjad import mathtools
-from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.enumerations import Down
 from abjad.exceptions import ImpreciseMetronomeMarkError
 from abjad.markups import Markup

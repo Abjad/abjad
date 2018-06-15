@@ -1,7 +1,7 @@
 import collections
 import typing
 from abjad import mathtools
-from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.mathtools.NonreducedFraction import NonreducedFraction
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.StorageFormatManager import StorageFormatManager

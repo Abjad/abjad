@@ -1,7 +1,7 @@
 import typing
 from abjad.timespans import TimespanList
 from abjad import mathtools
-from abjad.abctools.AbjadObject import AbjadObject
+from abjad.system.AbjadObject import AbjadObject
 from abjad.utilities.OrderedDict import OrderedDict
 from abjad.utilities.String import String
 from abjad.lilypondfile.LilyPondFile import LilyPondFile

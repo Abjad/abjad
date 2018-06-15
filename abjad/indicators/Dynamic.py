@@ -3,7 +3,7 @@ from abjad import mathtools
 from abjad.enumerations import Down
 from abjad.enumerations import Up
 from abjad.enumerations import VerticalAlignment
-from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.mathtools.Infinity import Infinity
 from abjad.mathtools.NegativeInfinity import NegativeInfinity

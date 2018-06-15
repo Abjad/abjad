@@ -1,7 +1,7 @@
 import collections
 import inspect
 import operator
-from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.system.AbjadValueObject import AbjadValueObject
 
 
 class Pattern(AbjadValueObject):

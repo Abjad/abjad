@@ -1,6 +1,6 @@
 import collections
 from abjad import mathtools
-from abjad.abctools.AbjadObject import AbjadObject
+from abjad.system.AbjadObject import AbjadObject
 
 
 class Parentage(AbjadObject, collections.Sequence):

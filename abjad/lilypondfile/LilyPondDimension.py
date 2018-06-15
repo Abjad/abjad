@@ -1,8 +1,8 @@
 import numbers
-from abjad import abctools
+from abjad import system
 
 
-class LilyPondDimension(abctools.AbjadObject):
+class LilyPondDimension(system.AbjadObject):
     r"""
     A LilyPond file ``\paper`` block dimension.
 

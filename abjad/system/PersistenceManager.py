@@ -2,7 +2,7 @@ import os
 import re
 import shutil
 import tempfile
-from abjad.abctools.AbjadObject import AbjadObject
+from abjad.system.AbjadObject import AbjadObject
 
 
 class PersistenceManager(AbjadObject):

@@ -1,6 +1,6 @@
 import collections
 import typing
-from abjad.abctools.AbjadObject import AbjadObject
+from abjad.system.AbjadObject import AbjadObject
 from abjad.markups import MarkupCommand
 from abjad.scheme import Scheme
 from abjad.scheme import SchemePair

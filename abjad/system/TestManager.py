@@ -1,7 +1,7 @@
 import difflib
 import os
 import pathlib
-from abjad.abctools.AbjadObject import AbjadObject
+from abjad.system.AbjadObject import AbjadObject
 
 
 class TestManager(AbjadObject):

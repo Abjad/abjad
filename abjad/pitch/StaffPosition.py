@@ -1,7 +1,7 @@
 import functools
 import numbers
 from . import constants
-from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.system.AbjadValueObject import AbjadValueObject
 
 
 @functools.total_ordering

@@ -1,6 +1,6 @@
 import collections
 import typing
-from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.enumerations import Up
 from abjad.markups import Markup
 from abjad.mathtools.Ratio import Ratio

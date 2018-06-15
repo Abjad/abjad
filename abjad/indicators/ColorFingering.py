@@ -2,7 +2,7 @@ import functools
 import typing
 from abjad import mathtools
 from abjad.enumerations import Up
-from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.markups import Markup
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle

@@ -9,7 +9,7 @@ ignored_classes = (
     abjad.StorageFormatManager,
     )
 
-classes = abjad.documentationtools.list_all_abjad_classes(
+classes = pytest.helpers.list_all_abjad_classes(
     ignored_classes=ignored_classes,
     )
 

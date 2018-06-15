@@ -1,7 +1,7 @@
 import abjad
 
 
-class Aggregate(abjad.abctools.AbjadValueObject):
+class Aggregate(abjad.system.AbjadValueObject):
 
     __slots__ = ('_pitch_segment', '_ratio')
 

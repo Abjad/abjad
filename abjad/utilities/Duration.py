@@ -3,7 +3,7 @@ import math
 import re
 import typing
 from abjad import mathtools
-from abjad.abctools.AbjadObject import AbjadObject
+from abjad.system.AbjadObject import AbjadObject
 from abjad.exceptions import AssignabilityError
 try:
     from quicktions import Fraction  # type: ignore

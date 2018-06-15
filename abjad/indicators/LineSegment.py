@@ -1,5 +1,5 @@
 import typing
-from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.enumerations import Center
 from abjad.enumerations import VerticalAlignment
 from abjad.lilypondnames.LilyPondGrobOverride import LilyPondGrobOverride

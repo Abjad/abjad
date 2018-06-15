@@ -1,6 +1,6 @@
 import shutil
 import tempfile
-from abjad.abctools.ContextManager import ContextManager
+from .ContextManager import ContextManager
 
 
 class TemporaryDirectory(ContextManager):

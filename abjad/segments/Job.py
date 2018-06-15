@@ -1,7 +1,7 @@
 import typing
 from .Path import Path
 from .Tags import Tags
-from abjad.abctools.AbjadObject import AbjadObject
+from abjad.system.AbjadObject import AbjadObject
 from abjad.utilities.String import String
 from abjad.top.activate import activate
 from abjad.top.deactivate import deactivate

@@ -7,7 +7,7 @@ def test_custom_score_template_class_01():
     Score template with named contexts.
     """
 
-    class NamedContextScoreTemplate(abjad.abctools.AbjadObject):
+    class NamedContextScoreTemplate(abjad.system.AbjadObject):
 
         ### INITIALIZER ###
 
@@ -49,7 +49,7 @@ def test_custom_score_template_class_02():
     CAUTION: always use built-in LilyPond score context; do not rename.
     """
 
-    class CustomContextScoreTemplate(abjad.abctools.AbjadObject):
+    class CustomContextScoreTemplate(abjad.system.AbjadObject):
 
         ### INITIALIZER ###
 

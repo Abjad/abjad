@@ -8,7 +8,7 @@ from abjad import markups as abjad_markups
 from abjad import core
 from abjad import pitch as abjad_pitch
 from abjad import scheme as abjad_scheme
-from abjad.abctools.AbjadObject import AbjadObject
+from abjad.system.AbjadObject import AbjadObject
 from abjad.top import attach
 
 

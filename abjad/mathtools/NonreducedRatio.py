@@ -1,6 +1,6 @@
 import collections
 import fractions
-from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.system.AbjadValueObject import AbjadValueObject
 
 
 class NonreducedRatio(AbjadValueObject, collections.Sequence):

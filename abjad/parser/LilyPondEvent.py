@@ -1,4 +1,4 @@
-from abjad.abctools.AbjadObject import AbjadObject
+from abjad.system.AbjadObject import AbjadObject
 
 
 # TODO: should not inherit from AbjadObject because no slots

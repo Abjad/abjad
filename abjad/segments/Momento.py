@@ -1,5 +1,5 @@
 import typing
-from abjad.abctools.AbjadObject import AbjadObject
+from abjad.system.AbjadObject import AbjadObject
 from abjad.system.Tag import Tag
 
 

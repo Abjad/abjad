@@ -3,7 +3,7 @@ import typing
 from abjad.indicators.Clef import Clef
 from abjad.indicators.MarginMarkup import MarginMarkup
 from abjad.instruments.Instrument import Instrument
-from abjad import abctools
+from abjad.system import AbjadValueObject
 from abjad.utilities.OrderedDict import OrderedDict
 from abjad.utilities.String import String
 from abjad.lilypondfile.LilyPondFile import LilyPondFile
@@ -27,7 +27,7 @@ from .PartManifest import PartManifest
 from .Tags import Tags
 
 
-class ScoreTemplate(abctools.AbjadValueObject):
+class ScoreTemplate(AbjadValueObject):
     """
     Abstract score template.
     """

@@ -1,6 +1,6 @@
 import copy
 from abjad.enumerations import Left, Right
-from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.utilities import Infinity, NegativeInfinity
 
 

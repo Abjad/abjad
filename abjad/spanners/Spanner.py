@@ -1,6 +1,6 @@
 import copy
 import typing
-from abjad.abctools.AbjadObject import AbjadObject
+from abjad.system.AbjadObject import AbjadObject
 from abjad.core.Leaf import Leaf
 from abjad.core.Selection import Selection
 from abjad.enumerations import Left

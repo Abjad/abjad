@@ -5,12 +5,12 @@ import math
 import numbers
 import sys
 from abjad.enumerations import Exact, Less, More
-from abjad import abctools
 from abjad import mathtools
+from abjad.system import AbjadValueObject
 from abjad.system.Signature import Signature
 
 
-class Sequence(abctools.AbjadValueObject, collections.Sequence):
+class Sequence(AbjadValueObject, collections.Sequence):
     """
     Sequence.
 

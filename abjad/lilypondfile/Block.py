@@ -1,4 +1,4 @@
-from abjad.abctools.AbjadObject import AbjadObject
+from abjad.system.AbjadObject import AbjadObject
 from abjad.system.LilyPondFormatManager import \
     LilyPondFormatManager
 from abjad.system.StorageFormatManager import StorageFormatManager

@@ -1,13 +1,13 @@
 import collections
 import itertools
 import ply  # type: ignore
-from abjad import abctools
 from abjad import indicators as abjad_indicators
 from abjad import lilypondfile as abjad_lilypondfile
 from abjad import markups as abjad_markups
 from abjad import pitch as abjad_pitch
 from abjad import core
 from abjad import spanners as abjad_spanners
+from abjad.system import Parser
 from ._parse import _parse
 from ._parse_debug import _parse_debug
 from abjad.top.attach import attach
@@ -20,7 +20,7 @@ ply.yacc.LRParser._lilypond_patch_parse = _parse
 ply.yacc.LRParser._lilypond_patch_parse_debug = _parse_debug
 
 
-class LilyPondParser(abctools.Parser):
+class LilyPondParser(Parser):
     r"""A LilyPond syntax parser.
 
     ..  container:: example
@@ -359,7 +359,7 @@ class LilyPondParser(abctools.Parser):
         self._syndef = abjad_parser.LilyPondSyntacticalDefinition(self)
 
         # build PLY parser and lexer
-        abctools.Parser.__init__(self, debug=debug)
+        Parser.__init__(self, debug=debug)
 
         self._reset_parser_variables()
 

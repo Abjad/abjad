@@ -1,6 +1,6 @@
 import re
 from abjad import system
-from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.system.AbjadValueObject import AbjadValueObject
 
 
 class ChordSuspension(AbjadValueObject):

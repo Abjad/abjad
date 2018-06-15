@@ -15,7 +15,7 @@ ignored_classes = (
     abjad.Parentage,
     abjad.Selection,
     abjad.Selection,
-    abjad.rhythmtree.RhythmTreeParser,
+    abjad.abjad.rhythmtrees.RhythmTreeParser,
     abjad.VerticalMoment,
     abjad.LilyPondFormatBundle,
     abjad.SlotContributions,
@@ -26,7 +26,7 @@ ignored_classes = (
     abjad.tonalanalysis.RootedChordClass
     )
 
-classes = abjad.documentationtools.list_all_abjad_classes(
+classes = pytest.helpers.list_all_abjad_classes(
     ignored_classes=ignored_classes,
     )
 

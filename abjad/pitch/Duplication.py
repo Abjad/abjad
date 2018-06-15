@@ -1,8 +1,8 @@
 import collections
-from abjad import abctools
+from abjad.system import AbjadValueObject
 
 
-class Duplication(abctools.AbjadValueObject):
+class Duplication(AbjadValueObject):
     r'''Duplication.
 
     ..  container:: example:

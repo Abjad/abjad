@@ -5,7 +5,7 @@ import six
 import tempfile
 import time
 import traceback
-from abjad.abctools.AbjadObject import AbjadObject
+from abjad.system.AbjadObject import AbjadObject
 from six.moves import StringIO
 from six.moves import configparser
 

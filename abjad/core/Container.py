@@ -858,7 +858,7 @@ class Container(Component):
                 else:
                     parsed = parent
         elif user_input.startswith('rtm:'):
-            parsed = abjad.rhythmtree.parse_rtm_syntax(user_input[4:])
+            parsed = abjad.rhythmtrees.parse_rtm_syntax(user_input[4:])
         else:
             if (
                 not user_input.startswith('<<') or

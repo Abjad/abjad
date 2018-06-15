@@ -1,5 +1,4 @@
 from abjad import Left, Right
-from abjad import abctools
 from abjad import utilities
 from abjad import mathtools
 from abjad import pitch as abjad_pitch
@@ -7,9 +6,10 @@ from abjad import core
 from abjad import spanners
 from abjad.top import attach
 from abjad.top import detach
+from abjad.system import Parser
 
 
-class ReducedLyParser(abctools.Parser):
+class ReducedLyParser(Parser):
     r"""
     Parses the "reduced-ly" syntax, a modified subset of LilyPond syntax.
 
@@ -173,7 +173,7 @@ class ReducedLyParser(abctools.Parser):
     def __init__(self, debug=False):
         self._default_duration = utilities.Duration((1, 4))
         self._toplevel_component_count = None
-        abctools.Parser.__init__(self, debug=debug)
+        Parser.__init__(self, debug=debug)
 
     ### LEX SETUP ###
 
