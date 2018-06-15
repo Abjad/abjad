@@ -1,5 +1,5 @@
 import typing
-from abjad.abctools.AbjadObject import AbjadObject
+from abjad.system.AbjadObject import AbjadObject
 from abjad.utilities.String import String
 from abjad.system.FormatSpecification import FormatSpecification
 from .Part import Part

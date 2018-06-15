@@ -2,7 +2,7 @@ from typing import Callable, Dict  # noqa
 from abjad import core
 from abjad import indicators as abjad_indicators
 from abjad import pitch as abjad_pitch
-from abjad.abctools.AbjadObject import AbjadObject
+from abjad.system.AbjadObject import AbjadObject
 from abjad.top import attach
 
 

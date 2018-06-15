@@ -11,7 +11,7 @@ ignored_classes = (
     abjad.Tags,
     )
 
-classes = abjad.documentationtools.list_all_abjad_classes(
+classes = pytest.helpers.list_all_abjad_classes(
     ignored_classes=ignored_classes,
     )
 
@@ -66,7 +66,7 @@ valid_types = (
 #            assert all(isinstance(_, valid_types) for _ in value)
 #
 #
-#functions = abjad.documentationtools.list_all_abjad_functions()
+#functions = pytest.helpers.list_all_abjad_functions()
 #if functions:
 #    @pytest.mark.parametrize('function', functions)
 #    def test_abjad___init___03(function):

@@ -1,6 +1,6 @@
 import copy
 import typing
-from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.system.AbjadValueObject import AbjadValueObject
 from .Tag import Tag
 
 

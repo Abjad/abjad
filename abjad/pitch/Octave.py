@@ -2,7 +2,7 @@ import functools
 import math
 import numbers
 import re
-from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.system.AbjadValueObject import AbjadValueObject
 from . import constants
 
 

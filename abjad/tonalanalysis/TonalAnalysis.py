@@ -1,9 +1,9 @@
-from abjad import abctools
+from abjad import system
 from abjad import mathtools
 from abjad import pitch as abjad_pitch
 
 
-class TonalAnalysis(abctools.AbjadObject):
+class TonalAnalysis(system.AbjadObject):
     r"""
     Tonal analysis agent.
 

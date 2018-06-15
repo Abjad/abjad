@@ -1,5 +1,5 @@
 import typing
-from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 
 

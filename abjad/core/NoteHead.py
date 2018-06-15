@@ -1,7 +1,7 @@
 import copy
 import functools
 import typing
-from abjad.abctools.AbjadObject import AbjadObject
+from abjad.system.AbjadObject import AbjadObject
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.pitch.NamedPitch import NamedPitch
 from abjad.system.FormatSpecification import FormatSpecification

@@ -1,4 +1,4 @@
-from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.system.AbjadValueObject import AbjadValueObject
 
 
 class Inversion(AbjadValueObject):

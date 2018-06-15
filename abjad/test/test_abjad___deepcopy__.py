@@ -8,14 +8,14 @@ ignored_classes = (
     abjad.parser.LilyPondParser,
     abjad.parser.ReducedLyParser,
     abjad.parser.SchemeParser,
-    abjad.rhythmtree.RhythmTreeParser,
+    abjad.abjad.rhythmtrees.RhythmTreeParser,
     abjad.RedirectedStreams,
     abjad.StorageFormatManager,
     abjad.FormatSpecification,
     abjad.tonalanalysis.RootedChordClass
     )
 
-classes = abjad.documentationtools.list_all_abjad_classes(
+classes = pytest.helpers.list_all_abjad_classes(
     ignored_classes=ignored_classes,
     )
 
@@ -28,7 +28,7 @@ def test_abjad___deepcopy___01(class_):
     if (
         '_get_storage_format_specification' not in dir(class_) or
         '_get_format_specification' not in dir(class_)
-        ):
+    ):
         return
     if inspect.isabstract(class_):
         return

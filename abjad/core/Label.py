@@ -1,6 +1,6 @@
 import collections
 import inspect
-from abjad.abctools.AbjadObject import AbjadObject
+from abjad.system.AbjadObject import AbjadObject
 from abjad.enumerations import Up
 from abjad.scheme import SchemeColor
 

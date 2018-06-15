@@ -1,6 +1,6 @@
 from abjad.enumerations import HorizontalAlignment
 from abjad.enumerations import Right
-from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.scheme import Scheme
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 

@@ -101,7 +101,7 @@ def graph(
         Graphs rhythm tree:
 
         >>> rtm_syntax = '(3 ((2 (2 1)) 2))'
-        >>> parser = abjad.rhythmtree.RhythmTreeParser()
+        >>> parser = abjad.rhythmtrees.RhythmTreeParser()
         >>> rhythm_tree = parser(rtm_syntax)[0]
         >>> abjad.graph(rhythm_tree) # doctest: +SKIP
 

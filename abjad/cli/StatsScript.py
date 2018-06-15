@@ -62,12 +62,12 @@ class StatsScript(CLI):
         print(result)
 
     def _process_args(self, arguments):
-        from abjad import documentationtools
+        from abjad import utilities
         path = arguments.path
         if not os.path.isdir(path):
             path = os.path.dirname(path)
         counts = self._setup_counts()
-        for module in documentationtools.yield_all_modules(
+        for module in utilities.yield_all_modules(
             code_root=path,
             ignored_file_names=[],
             ):

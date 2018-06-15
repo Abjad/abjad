@@ -1,6 +1,6 @@
 import collections
 import typing
-from abjad.abctools.AbjadObject import AbjadObject
+from abjad.system.AbjadObject import AbjadObject
 from abjad.exceptions import ExtraSpannerError
 from abjad.spanners.Spanner import Spanner
 from abjad.top.inspect import inspect

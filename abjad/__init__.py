@@ -24,7 +24,7 @@ del AbjadConfiguration
 from abjad import parser
 
 # import all tools packages
-from abjad.abctools import *
+from abjad.system import *
 from abjad.utilities import *
 
 index = Pattern.index
@@ -43,7 +43,6 @@ from abjad.scheme import *
 from abjad.core import *
 from abjad.segments import *
 from abjad.spanners import *
-from abjad.system import *
 from abjad.top import *
 
 # import all the way down to module to satisfy mypy:
@@ -68,7 +67,7 @@ except NameError:
 from abjad import cli
 from abjad import demos
 from abjad import ly
-from abjad import documentationtools
+from abjad import utilities
 from abjad import tonalanalysis
 
 # singletons

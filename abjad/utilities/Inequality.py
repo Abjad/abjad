@@ -1,6 +1,6 @@
 import abc
 import operator
-from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.system.AbjadValueObject import AbjadValueObject
 
 
 class Inequality(AbjadValueObject):

@@ -26,14 +26,15 @@ ignored_classes = (
     abjad.parser.LilyPondSyntacticalDefinition,
     abjad.parser.ReducedLyParser,
     abjad.parser.SchemeParser,
-    abjad.rhythmtree.RhythmTreeParser,
+    abjad.abjad.rhythmtrees.RhythmTreeParser,
     abjad.StorageFormatManager,
     abjad.FormatSpecification,
     )
 
-classes = abjad.documentationtools.list_all_abjad_classes(
+classes = pytest.helpers.list_all_abjad_classes(
     ignored_classes=ignored_classes,
     )
+
 
 @pytest.mark.parametrize('class_', classes)
 def test_abjad___doc___01(class_):
@@ -59,7 +60,7 @@ def test_abjad___doc___01(class_):
         raise Exception(message)
 
 
-functions = abjad.documentationtools.list_all_abjad_functions()
+functions = pytest.helpers.list_all_abjad_functions()
 if functions:
     @pytest.mark.parametrize('function', functions)
     def test_abjad___doc___02(function):

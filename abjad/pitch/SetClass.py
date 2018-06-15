@@ -1,5 +1,5 @@
 from abjad import mathtools
-from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.system.AbjadValueObject import AbjadValueObject
 
 
 class SetClass(AbjadValueObject):

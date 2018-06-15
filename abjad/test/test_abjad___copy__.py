@@ -9,7 +9,7 @@ ignored_classes = (
     abjad.FormatSpecification,
     )
 
-classes = abjad.documentationtools.list_all_abjad_classes(
+classes = pytest.helpers.list_all_abjad_classes(
     ignored_classes=ignored_classes,
     )
 
@@ -22,7 +22,7 @@ def test_abjad___copy___01(class_):
     if (
         '_get_storage_format_specification' not in dir(class_) or
         '_get_format_specification' not in dir(class_)
-        ): 
+    ):
         return
     if inspect.isabstract(class_):
         return

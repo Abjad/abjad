@@ -3,7 +3,7 @@ import numbers
 import typing
 from abjad import Fraction
 from abjad import mathtools
-from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.enumerations import Center
 from abjad.enumerations import Down
 from abjad.enumerations import Up

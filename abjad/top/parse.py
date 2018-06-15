@@ -26,13 +26,13 @@ def parse(string, language='english'):
 
     Returns Abjad component.
     """
-    from abjad import rhythmtree
-    from abjad import parser as abjad_parser
+    import abjad.parser
+    import abjad.rhythmtrees
     if string.startswith('abj:'):
-        return abjad_parser.parse_reduced_ly_syntax(string[4:])
+        return abjad.parser.parse_reduced_ly_syntax(string[4:])
     elif string.startswith('rtm:'):
-        return rhythmtree.parse_rtm_syntax(string[4:])
+        return abjad.rhythmtrees.parse_rtm_syntax(string[4:])
     if language not in _lilypond_parsers_by_language:
-        parser = abjad_parser.LilyPondParser(default_language=language)
+        parser = abjad.parser.LilyPondParser(default_language=language)
         _lilypond_parsers_by_language[language] = parser
     return _lilypond_parsers_by_language[language](string)

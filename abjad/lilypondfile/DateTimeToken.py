@@ -1,5 +1,5 @@
 import time
-from abjad.abctools.AbjadObject import AbjadObject
+from abjad.system.AbjadObject import AbjadObject
 
 
 class DateTimeToken(AbjadObject):

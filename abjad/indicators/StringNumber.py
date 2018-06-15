@@ -1,6 +1,6 @@
 import collections
 import typing
-from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.system.AbjadValueObject import AbjadValueObject
 
 
 class StringNumber(AbjadValueObject):

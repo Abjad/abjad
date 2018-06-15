@@ -1,5 +1,5 @@
 import typing
-from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.mathtools.Enumerator import Enumerator
 from abjad.pitch.NamedPitch import NamedPitch
 from abjad.pitch.NamedPitchClass import NamedPitchClass

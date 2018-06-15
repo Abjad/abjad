@@ -1,11 +1,10 @@
 from ply import lex  # type: ignore
-from ply import yacc  # type: ignore
 from abjad.exceptions import SchemeParserFinishedError
-from abjad import abctools
 from abjad import scheme as abjad_scheme
+from abjad.system import Parser
 
 
-class SchemeParser(abctools.Parser):
+class SchemeParser(Parser):
     """
     SchemeParser` mimics how LilyPond's embedded Scheme parser behaves.
 
@@ -36,10 +35,7 @@ class SchemeParser(abctools.Parser):
         self.expression_depth = None
         self.result = None
         self.string_accumulator = None
-        abctools.Parser.__init__(
-            self,
-            debug=debug,
-            )
+        Parser.__init__(self, debug=debug)
 
     ### PRIVATE METHODS ###
 
@@ -49,19 +45,19 @@ class SchemeParser(abctools.Parser):
 
     ### LEX SETUP ###
 
-    A               = r'[A-Za-z]'
-    N               = r'[0-9]'
-    DIGIT           = r'{}'.format(N)
-    UNSIGNED        = r'{}+'.format(N)
-    HEX             = r'(X|x)[A-Fa-f0-9]+'
-    INT             = r'(-?{})'.format(UNSIGNED)
-    REAL            = r'(({}\.{}*)|(-?\.{}+))'.format(INT, N, N)
-    INITIAL         = r'({}|!|\$|%|&|\*|/|<|>|\?|~|_|\^|:|=)'.format(A)
-    SUBSEQUENT      = r'({}|{}|\.|\+|-)'.format(INITIAL, N)
-    #IDENTIFIER      = r'({}{}*|\+|-|\.\.\.)'.format(INITIAL, SUBSEQUENT)
+    A = r'[A-Za-z]'
+    N = r'[0-9]'
+    DIGIT = r'{}'.format(N)
+    UNSIGNED = r'{}+'.format(N)
+    HEX = r'(X|x)[A-Fa-f0-9]+'
+    INT = r'(-?{})'.format(UNSIGNED)
+    REAL = r'(({}\.{}*)|(-?\.{}+))'.format(INT, N, N)
+    INITIAL = r'({}|!|\$|%|&|\*|/|<|>|\?|~|_|\^|:|=)'.format(A)
+    SUBSEQUENT = r'({}|{}|\.|\+|-)'.format(INITIAL, N)
+    #IDENTIFIER = r'({}{}*|\+|-|\.\.\.)'.format(INITIAL, SUBSEQUENT)
 
     # this has been rewritten to prevent Sphinx from complaining that it looks like bad ReST
-    IDENTIFIER      = r'([A-Za-z!\$%&\*/<>\?~_\^:=][A-Za-z0-9!\$%&\*/<>\?~_\^:=\.\+-]*|[\+-]|\.\.\.)'
+    IDENTIFIER = r'([A-Za-z!\$%&\*/<>\?~_\^:=][A-Za-z0-9!\$%&\*/<>\?~_\^:=\.\+-]*|[\+-]|\.\.\.)'
 
     states = (
         ('quote', 'exclusive'),

@@ -1,5 +1,5 @@
 import abc
-from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.system.AbjadValueObject import AbjadValueObject
 
 
 class TimeRelation(AbjadValueObject):

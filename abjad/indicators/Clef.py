@@ -1,5 +1,5 @@
 import typing
-from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.pitch.NamedPitch import NamedPitch
 from abjad.pitch.StaffPosition import StaffPosition
 from abjad.system.FormatSpecification import FormatSpecification

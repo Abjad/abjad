@@ -1,7 +1,7 @@
 import functools
 import typing
 from abjad.typings import Number
-from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.enumerations import HorizontalAlignment
 from abjad.enumerations import VerticalAlignment
 from abjad.mathtools.NonreducedFraction import NonreducedFraction

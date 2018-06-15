@@ -1,4 +1,4 @@
-from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.pitch.IntervalSegment import IntervalSegment
 from abjad.pitch.NamedInterval import NamedInterval
 from abjad.system.FormatSpecification import FormatSpecification

@@ -1,9 +1,9 @@
 import functools
 import itertools
-from abjad import abctools
+from abjad.system import AbjadValueObject
 
 
-class Enumerator(abctools.AbjadValueObject):
+class Enumerator(AbjadValueObject):
     """
     Enumerator.
 

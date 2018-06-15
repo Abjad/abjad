@@ -2,7 +2,7 @@ import collections
 import copy
 import inspect
 import itertools
-from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.enumerations import Exact
 from abjad.enumerations import Less
 from abjad.enumerations import More

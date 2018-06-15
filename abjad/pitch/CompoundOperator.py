@@ -1,5 +1,5 @@
 import collections
-from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.system.AbjadValueObject import AbjadValueObject
 
 
 class CompoundOperator(AbjadValueObject):

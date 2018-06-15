@@ -1,7 +1,7 @@
 import collections
 import numbers
 import typing
-from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.system.AbjadValueObject import AbjadValueObject
 
 
 class NoteMaker(AbjadValueObject):

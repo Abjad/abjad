@@ -1,7 +1,7 @@
 import os
 import subprocess
 import time
-from abjad.abctools.ContextManager import ContextManager
+from .ContextManager import ContextManager
 
 
 class Timer(ContextManager):

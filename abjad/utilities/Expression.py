@@ -3,7 +3,7 @@ import itertools
 import numbers
 from typing import List  # noqa
 from abjad.system.Signature import Signature
-from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.system.AbjadValueObject import AbjadValueObject
 
 
 class Expression(AbjadValueObject):

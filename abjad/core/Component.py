@@ -3,7 +3,7 @@ import bisect
 import copy
 import uqbar.graphs
 from abjad import mathtools
-from abjad.abctools.AbjadObject import AbjadObject
+from abjad.system.AbjadObject import AbjadObject
 from abjad.enumerations import Down
 from abjad.enumerations import Right
 from abjad.enumerations import Up

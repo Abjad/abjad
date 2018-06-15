@@ -3,7 +3,7 @@ import copy
 import inspect
 import pathlib
 from abjad.indicators.LilyPondLiteral import LilyPondLiteral
-from abjad.abctools.AbjadObject import AbjadObject
+from abjad.system.AbjadObject import AbjadObject
 from abjad.pitch.NamedPitch import NamedPitch
 from abjad.core.Component import Component
 from abjad.core.Container import Container

@@ -2,7 +2,7 @@ import importlib
 import os
 import subprocess
 from abjad import system
-from abjad.abctools.AbjadValueObject import AbjadValueObject
+from abjad.system.AbjadValueObject import AbjadValueObject
 
 
 class PackageGitCommitToken(AbjadValueObject):

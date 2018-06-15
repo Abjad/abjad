@@ -4,7 +4,7 @@ except ImportError:
     import fractions # type: ignore
 import typing
 from abjad import system
-from abjad.abctools.AbjadObject import AbjadObject
+from abjad.system.AbjadObject import AbjadObject
 
 
 class NonreducedFraction(AbjadObject, fractions.Fraction):
