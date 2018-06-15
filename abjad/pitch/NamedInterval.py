@@ -536,6 +536,12 @@ class NamedInterval(Interval):
             >>> abjad.NamedInterval.from_pitch_carriers("cf'", 'bs')
             NamedInterval('-dd2')
 
+            >>> abjad.NamedInterval.from_pitch_carriers("cff'", 'aqs')
+            NamedInterval('-ddd+3')
+
+            >>> abjad.NamedInterval.from_pitch_carriers("cff'", 'atqs')
+            NamedInterval('-dddd+3')
+
         Returns named interval.
         """
         import abjad
@@ -561,6 +567,10 @@ class NamedInterval(Interval):
             named_ic_number -= 7
             numbered_ic_number -= 12
 
+        # Multiply-diminished intervals can have opposite signs
+        if named_sign and (named_sign == -numbered_sign):
+            numbered_ic_number *= -1
+
         quartertone = ''
         if numbered_ic_number % 1:
             quartertone = '+'
@@ -572,10 +582,6 @@ class NamedInterval(Interval):
             constants._diatonic_number_and_quality_to_semitones[
                 named_ic_number].items()
             }
-
-        # Multiply-diminished intervals can have opposite signs
-        if named_sign and (named_sign == -numbered_sign):
-            numbered_ic_number *= -1
 
         quality = ''
 
