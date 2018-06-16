@@ -69,7 +69,7 @@ keywords = ', '.join(keywords)
 install_requires = [
     'ply',
     'roman',
-    'uqbar>=0.2.13',
+    'uqbar>=0.2.14',
     ]
 
 if __name__ == '__main__':
