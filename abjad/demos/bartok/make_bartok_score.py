@@ -3,6 +3,9 @@ import copy
 
 
 def make_bartok_score():
+    """
+    Build the Bartok example score.
+    """
     score = abjad.Score()
     piano_staff = abjad.StaffGroup([], lilypond_type='PianoStaff')
     upper_staff = abjad.Staff([])

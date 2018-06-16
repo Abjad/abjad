@@ -1,4 +1,3 @@
-import collections
 import types
 
 
@@ -14,21 +13,17 @@ def list_all_functions(modules=None):
             ...     )
 
     '''
-    from abjad import abjad_configuration
     from abjad import utilities
     all_functions = set()
-    paths = []
-    if modules is None:
-        paths.append(abjad_configuration.abjad_directory)
-    elif isinstance(modules, types.ModuleType):
-        paths.extend(modules.__path__)
-    elif isinstance(modules, collections.Iterable):
-        for module in modules:
-            if isinstance(module, types.ModuleType):
-                paths.extend(module.__path__)
-    for path in paths:
-        for x in utilities.yield_all_classes(code_root=path):
-            all_functions.add(x)
+    for module in utilities.yield_all_modules(modules):
+        name = module.__name__.split('.')[-1]
+        if name.startswith('_'):
+            continue
+        if not hasattr(module, name):
+            continue
+        obj = getattr(module, name)
+        if isinstance(obj, types.FunctionType):
+            all_functions.add(obj)
     return list(sorted(
         all_functions,
         key=lambda x: (x.__module__, x.__name__)

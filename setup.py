@@ -43,8 +43,7 @@ classifiers = [
 
 entry_points = {
     'console_scripts': [
-        'abjad = abjad.tools.systemtools.run_abjad:run_abjad',
-        'ajv = abjad.cli.run_ajv:run_ajv',
+        'ajv = abjad.cli:run_ajv',
         ]
     }
 
@@ -69,7 +68,7 @@ keywords = ', '.join(keywords)
 install_requires = [
     'ply',
     'roman',
-    'uqbar>=0.2.13',
+    'uqbar>=0.2.14',
     ]
 
 if __name__ == '__main__':
