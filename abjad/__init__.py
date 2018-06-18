@@ -1,8 +1,10 @@
 import os
-if os.path.abspath('.')[-3:] == 'top':
+import pathlib
+if pathlib.Path('.').name == 'top':
     message = 'do not start Abjad from top/ directory (because of inspect.py).'
     raise Exception(message)
 del os
+del pathlib
 
 from fractions import Fraction  # noqa
 try:
@@ -12,7 +14,6 @@ except ImportError:
 
 from abjad.enumerations import *
 from abjad.exceptions import *
-from abjad.typings import *
 
 # ensure that the ~/.abjad directory and friends are setup
 # and instantiate Abjad's configuration singleton
@@ -44,12 +45,6 @@ from abjad.core import *
 from abjad.segments import *
 from abjad.spanners import *
 from abjad.top import *
-
-# import all the way down to module to satisfy mypy:
-from abjad.mathtools.Enumerator import Enumerator
-from abjad.mathtools.NonreducedFraction import NonreducedFraction
-from abjad.mathtools.NonreducedRatio import NonreducedRatio
-from abjad.mathtools.Ratio import Ratio
 
 # timespan classes (but not functions):
 from abjad.timespans.AnnotatedTimespan import AnnotatedTimespan

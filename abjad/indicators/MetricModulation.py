@@ -3,12 +3,12 @@ import typing
 from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.enumerations import Up
 from abjad.markups import Markup
-from abjad.mathtools.Ratio import Ratio
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.top.inspect import inspect
 from abjad.top.new import new
 from abjad.top.select import select
 from abjad.utilities.Duration import Duration
+from abjad.utilities.Ratio import Ratio
 
 
 class MetricModulation(AbjadValueObject):

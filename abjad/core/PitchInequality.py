@@ -1,4 +1,6 @@
 import collections
+from abjad.pitch.NumberedPitch import NumberedPitch
+from abjad.pitch.PitchSet import PitchSet
 from abjad.system.AbjadValueObject import AbjadValueObject
 
 
@@ -51,59 +53,49 @@ class PitchInequality(AbjadValueObject):
 
     def __init__(
         self,
-        operator_string='&',
+        operator_string: str = '&',
         pitches=None,
-        ):
-        import abjad
+        ) -> None:
         assert operator_string in self._set_theoretic_operator_strings
         self._operator_string = operator_string
         # only intersection is currently implemented
         if not isinstance(pitches, collections.Iterable):
             pitches = [pitches]
-        pitches = abjad.PitchSet(
+        pitches = PitchSet(
             items=pitches,
-            item_class=abjad.NumberedPitch,
+            item_class=NumberedPitch,
             )
         self._pitches = pitches
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, argument):
+    def __call__(self, argument) -> bool:
         """
         Calls inequality on ``argument``.
-
-        Returns true or false.
         """
-        import abjad
         if not self.pitches:
             return False
-        pitch_set = abjad.PitchSet.from_selection(
+        pitch_set = PitchSet.from_selection(
             argument,
-            item_class=abjad.NumberedPitch,
+            item_class=NumberedPitch,
             )
         if self.operator_string == '&':
             return bool(self.pitches.intersection(pitch_set))
         else:
-            message = 'implement {!r}.'
-            message = message.format(self.operator_string)
-            raise NotImplementedError(message)
+            raise NotImplementedError('implement {self.operator_string!r}.')
 
     ### PUBLIC PROPERTIES ###
 
     @property
-    def operator_string(self):
+    def operator_string(self) -> str:
         """
         Gets operator string.
-
-        Returns string.
         """
         return self._operator_string
 
     @property
-    def pitches(self):
+    def pitches(self) -> PitchSet:
         """
         Gets pitches.
-
-        Returns numbered pitch set.
         """
         return self._pitches

@@ -1,3 +1,6 @@
+import typing
+from abjad import mathtools
+from abjad import typings
 from .Inequality import Inequality
 
 
@@ -39,39 +42,33 @@ class LengthInequality(Inequality):
 
     def __init__(
         self,
-        operator_string='<',
-        length=None,
-        ):
-        import abjad
+        operator_string: str = '<',
+        length: typing.Union[int, typings.Infinities] = None,
+        ) -> None:
         Inequality.__init__(self, operator_string=operator_string)
         if length is None:
-            length = abjad.mathtools.Infinity()
-        assert 0 <= length
-        infinities = (
-            abjad.mathtools.Infinity(),
-            abjad.mathtools.NegativeInfinity(),
+            length = mathtools.Infinity()
+        prototype = (
+            int,
+            mathtools.Infinity,
+            mathtools.NegativeInfinity,
             )
-        if length not in infinities:
-            length = int(length)
+        assert isinstance(length, prototype), repr(length)
         self._length = length
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, argument):
+    def __call__(self, argument) -> bool:
         """
         Calls inequality on ``argument``.
-
-        Returns true or false.
         """
         return self._operator_function(len(argument), self.length)
 
     ### PUBLIC PROPERTIES ###
 
     @property
-    def length(self):
+    def length(self) -> typing.Union[int, typings.Infinities]:
         """
         Gets length.
-
-        Returns integer.
         """
         return self._length

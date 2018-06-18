@@ -1,8 +1,8 @@
 import itertools
 from abjad.exceptions import AssignabilityError
 from abjad.exceptions import MissingSpannerError
-from abjad.mathtools.Ratio import Ratio
 from abjad.utilities.Duration import Duration
+from abjad.utilities.Ratio import Ratio
 from .Selection import Selection
 
 

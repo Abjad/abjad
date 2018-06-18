@@ -7,6 +7,7 @@ from abjad import indicators as abjad_indicators
 from abjad import mathtools
 from abjad import system
 from abjad.system.AbjadValueObject import AbjadValueObject
+from abjad.utilities.NonreducedFraction import NonreducedFraction
 from abjad.utilities.TypedCounter import TypedCounter
 from abjad.utilities.TypedList import TypedList
 
@@ -355,16 +356,16 @@ class Meter(AbjadValueObject):
             is_fraction_like
         ):
             if isinstance(argument, tuple):
-                fraction = mathtools.NonreducedFraction(argument)
+                fraction = NonreducedFraction(argument)
             elif isinstance(argument, core.Measure):
                 prototype = abjad_indicators.TimeSignature
                 time_signature = argument._get_effective(prototype)
-                fraction = mathtools.NonreducedFraction(
+                fraction = NonreducedFraction(
                     time_signature.numerator,
                     time_signature.denominator,
                     )
             else:
-                fraction = mathtools.NonreducedFraction(
+                fraction = NonreducedFraction(
                     argument.numerator,
                     argument.denominator,
                     )
@@ -692,9 +693,9 @@ class Meter(AbjadValueObject):
             return result
         result = recurse(self.root_node)
         for x in result:
-            start_offset = mathtools.NonreducedFraction(
+            start_offset = NonreducedFraction(
                 x.start_offset).with_denominator(self.denominator)
-            stop_offset = mathtools.NonreducedFraction(
+            stop_offset = NonreducedFraction(
                 x.stop_offset).with_denominator(self.denominator)
             yield start_offset, stop_offset
 
