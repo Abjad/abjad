@@ -2003,7 +2003,7 @@ class Iteration(AbjadObject):
                 >>> for spanner in abjad.iterate(staff).spanners():
                 ...     spanner
                 ...
-                Beam("c'8, d'8, ... [5] ..., b'8, c''8")
+                Beam("c'8, d'8, ... [5] ..., b'8, c''8", durations=(), span_beam_count=1)
                 Slur("c'8, d'8, e'8, f'8")
                 Slur("g'8, a'8, f'8, b'8, c''8")
 
@@ -2046,7 +2046,7 @@ class Iteration(AbjadObject):
                 >>> for spanner in abjad.iterate(staff).spanners(reverse=True):
                 ...     spanner
                 ...
-                Beam("c'8, d'8, ... [5] ..., b'8, c''8")
+                Beam("c'8, d'8, ... [5] ..., b'8, c''8", durations=(), span_beam_count=1)
                 Slur("g'8, a'8, f'8, b'8, c''8")
                 Slur("c'8, d'8, e'8, f'8")
 

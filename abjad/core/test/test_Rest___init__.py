@@ -188,7 +188,7 @@ def test_Rest___init___12():
     Initialize multiple rests from spanned notes.
     """
 
-    voice = abjad.Voice("c'8 [ d'8 e'8 f'8 ]")
+    voice = abjad.Voice("c'8 ( d'8 e'8 f'8 )")
     for note in voice:
         rest = abjad.Rest(note)
         abjad.mutate(note).replace(rest)
@@ -198,11 +198,11 @@ def test_Rest___init___12():
         \new Voice
         {
             r8
-            [
+            (
             r8
             r8
             r8
-            ]
+            )
         }
         """
         )

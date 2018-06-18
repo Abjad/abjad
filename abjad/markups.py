@@ -117,37 +117,6 @@ class Markup(AbjadValueObject):
             f'4
         }
 
-        Markup can even be tagged inside automatically generated markup
-        columns:
-
-        >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> abjad.attach(abjad.Markup('Allegro'), staff[0])
-        >>> markup = abjad.Markup('non troppo')
-        >>> abjad.attach(markup, staff[0], tag='RED:M1')
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        >>> abjad.f(staff)
-        \new Staff
-        {
-            c'4
-            - \markup {
-                \column
-                    {
-                        \line
-                            {
-                                Allegro
-                            }
-                        \line %! RED:M1
-                            { %! RED:M1
-                                "non troppo" %! RED:M1
-                            } %! RED:M1
-                    }
-                }
-            d'4
-            e'4
-            f'4
-        }
-
     ..  container:: example
 
         Markup can be deactively tagged:
@@ -175,41 +144,6 @@ class Markup(AbjadValueObject):
             f'4
         }
 
-        Markup can even be deactivately tagged inside automatically generated
-        markup columns:
-
-        >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> abjad.attach(abjad.Markup('Allegro'), staff[0])
-        >>> abjad.attach(
-        ...     abjad.Markup('non troppo'),
-        ...     staff[0],
-        ...     deactivate=True,
-        ...     tag='RED',
-        ...     )
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        >>> abjad.f(staff)
-        \new Staff
-        {
-            c'4
-            - \markup {
-                \column
-                    {
-                        \line
-                            {
-                                Allegro
-                            }
-                    %@% \line %! RED
-                    %@%     { %! RED
-                    %@%         "non troppo" %! RED
-                    %@%     } %! RED
-                    }
-                }
-            d'4
-            e'4
-            f'4
-        }
-
     ..  container:: example
 
         REGRESSION: make sure the first italic markup doesn't disappear after
@@ -227,19 +161,12 @@ class Markup(AbjadValueObject):
         {
             c'4
             ^ \markup {
-                \column
-                    {
-                        \line
-                            {
-                                \italic
-                                    Allegro
-                            }
-                        \line
-                            {
-                                \italic
-                                    "non troppo"
-                            }
-                    }
+                \italic
+                    Allegro
+                }
+            ^ \markup {
+                \italic
+                    "non troppo"
                 }
             d'4
             e'4
@@ -256,7 +183,6 @@ class Markup(AbjadValueObject):
         '_direction',
         '_format_slot',
         '_lilypond_tweak_manager',
-        '_stack_priority',
         )
 
     _private_attributes_to_copy = (
@@ -270,7 +196,6 @@ class Markup(AbjadValueObject):
         contents=None,
         *,
         direction: VerticalAlignment = None,
-        stack_priority: int = 0,
         tweaks: typing.Union[
             typing.List[typing.Tuple], LilyPondTweakManager] = None,
         ) -> None:
@@ -315,8 +240,6 @@ class Markup(AbjadValueObject):
             assert isinstance(direction_, VerticalAlignment), repr(direction_)
         self._direction = direction_
         self._lilypond_tweak_manager = None
-        assert isinstance(stack_priority, int), repr(stack_priority)
-        self._stack_priority = stack_priority
         LilyPondTweakManager.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
@@ -707,7 +630,6 @@ class Markup(AbjadValueObject):
     def _get_format_specification(self):
         agent = StorageFormatManager(self)
         names = list(agent.signature_keyword_names)
-        names.remove('stack_priority')
         return FormatSpecification(
             client=self,
             repr_is_indented=False,
@@ -773,87 +695,6 @@ class Markup(AbjadValueObject):
 
         """
         return self._direction
-
-    @property
-    def stack_priority(self):
-        r"""
-        Gets stack priority of markup.
-
-        ..  container:: example
-
-            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-            >>> abjad.attach(abjad.Markup(('Non',  'troppo'), stack_priority=1000), staff[1])
-            >>> abjad.attach(abjad.Markup('allegro', stack_priority=0), staff[1])
-
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  doctest:
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    c'8
-                    d'8
-                    - \markup {
-                        \column
-                            {
-                                \line
-                                    {
-                                        Non
-                                        troppo
-                                    }
-                                \line
-                                    {
-                                        allegro
-                                    }
-                            }
-                        }
-                    e'8
-                    f'8
-                }
-
-        ..  container:: example
-
-            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-            >>> abjad.attach(abjad.Markup(('non',  'troppo'), stack_priority=0), staff[1])
-            >>> abjad.attach(abjad.Markup('Allegro', stack_priority=1000), staff[1])
-
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  doctest:
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    c'8
-                    d'8
-                    - \markup {
-                        \column
-                            {
-                                \line
-                                    {
-                                        Allegro
-                                    }
-                                \line
-                                    {
-                                        non
-                                        troppo
-                                    }
-                            }
-                        }
-                    e'8
-                    f'8
-                }
-
-        Higher priority equals greater absolute distance from staff.
-
-        Defaults to zero.
-
-        Set to integer.
-
-        Returns integer.
-        """
-        return self._stack_priority
 
     @property
     def tweaks(self) -> typing.Optional[LilyPondTweakManager]:
@@ -1426,7 +1267,7 @@ class Markup(AbjadValueObject):
         return class_(contents=command, direction=direction)
 
     @classmethod
-    def from_literal(class_, string, direction=None, stack_priority=0):
+    def from_literal(class_, string, direction=None):
         r"""
         Makes markup from literal ``string`` and bypasses parser.
 
@@ -1443,7 +1284,6 @@ class Markup(AbjadValueObject):
         markup = class_(
             contents='',
             direction=direction,
-            stack_priority=stack_priority,
             )
         markup._contents = (string,)
         return markup

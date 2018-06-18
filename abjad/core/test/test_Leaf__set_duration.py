@@ -326,7 +326,7 @@ def test_Leaf__set_duration_11():
     """
 
     voice = abjad.Voice("c'8 r8 e'8 f'8")
-    beam = abjad.Beam()
+    beam = abjad.Beam(beam_lone_notes=True, beam_rests=True)
     abjad.attach(beam, voice[:3])
 
     assert format(voice) == abjad.String.normalize(

@@ -5,21 +5,21 @@ import pytest
 def test_LilyPondParser__spanners__Beam_01():
 
     maker = abjad.NoteMaker()
-    target = abjad.Container(maker([0] * 4, [(1, 4)]))
-    beam = abjad.Beam()
+    target = abjad.Container(maker([0] * 4, [(1, 8)]))
+    beam = abjad.Beam(beam_lone_notes=True)
     abjad.attach(beam, target[0:3])
-    beam = abjad.Beam()
+    beam = abjad.Beam(beam_lone_notes=True)
     abjad.attach(beam, target[3:])
 
     assert format(target) == abjad.String.normalize(
         r"""
         {
-            c'4
+            c'8
             [
-            c'4
-            c'4
+            c'8
+            c'8
             ]
-            c'4
+            c'8
             [
             ]
         }
@@ -33,32 +33,32 @@ def test_LilyPondParser__spanners__Beam_01():
 
 def test_LilyPondParser__spanners__Beam_02():
     """
-        With start and stop reversed.
+    With start and stop reversed.
     """
 
     maker = abjad.NoteMaker()
-    target = abjad.Container(maker([0] * 4, [(1, 4)]))
-    beam = abjad.Beam()
+    target = abjad.Container(maker([0] * 4, [(1, 8)]))
+    beam = abjad.Beam(beam_lone_notes=True)
     abjad.attach(beam, target[0:3])
-    beam = abjad.Beam()
+    beam = abjad.Beam(beam_lone_notes=True)
     abjad.attach(beam, target[3:])
 
     assert format(target) == abjad.String.normalize(
         r"""
         {
-            c'4
+            c'8
             [
-            c'4
-            c'4
+            c'8
+            c'8
             ]
-            c'4
+            c'8
             [
             ]
         }
         """
         )
 
-    string = r"""\relative c' { c [ c c ] c ] [ }"""
+    string = r"""\relative c' { c8 [ c c ] c ] [ }"""
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
     assert format(target) == format(result) and target is not result
@@ -67,7 +67,7 @@ def test_LilyPondParser__spanners__Beam_02():
 def test_LilyPondParser__spanners__Beam_03():
 
     maker = abjad.NoteMaker()
-    target = abjad.Container(maker([0] * 4, [(1, 4)]))
+    target = abjad.Container(maker([0] * 4, [(1, 8)]))
     beam = abjad.Beam()
     abjad.attach(beam, target[:])
     beam = abjad.Beam()
@@ -76,13 +76,13 @@ def test_LilyPondParser__spanners__Beam_03():
     assert format(target) == abjad.String.normalize(
         r"""
         {
-            c'4
+            c'8
             [
-            c'4
+            c'8
             [
-            c'4
+            c'8
             ]
-            c'4
+            c'8
             ]
         }
         """
@@ -94,7 +94,7 @@ def test_LilyPondParser__spanners__Beam_03():
 def test_LilyPondParser__spanners__Beam_04():
 
     maker = abjad.NoteMaker()
-    target = abjad.Container(maker([0] * 4, [(1, 4)]))
+    target = abjad.Container(maker([0] * 4, [(1, 8)]))
     beam = abjad.Beam()
     abjad.attach(beam, target[:3])
     beam = abjad.Beam()
@@ -103,13 +103,13 @@ def test_LilyPondParser__spanners__Beam_04():
     assert format(target) == abjad.String.normalize(
         r"""
         {
-            c'4
+            c'8
             [
-            c'4
-            c'4
+            c'8
+            c'8
             ]
             [
-            c'4
+            c'8
             ]
         }
         """
@@ -120,13 +120,13 @@ def test_LilyPondParser__spanners__Beam_04():
 
 def test_LilyPondParser__spanners__Beam_05():
 
-    string = "{ c'4 [ c'4 c'4 c'4 }"
+    string = "{ c'8 [ c'8 c'8 c'8 }"
     assert pytest.raises(Exception, "LilyPondParser()(string)")
 
 
 def test_LilyPondParser__spanners__Beam_06():
 
-    string = "{ c'4 c'4 c'4 c'4 ] }"
+    string = "{ c'8 c'8 c'8 c'8 ] }"
     result = abjad.parser.LilyPondParser()(string)
     assert not abjad.inspect(result[-1]).get_spanners()
 
@@ -137,21 +137,21 @@ def test_LilyPondParser__spanners__Beam_07():
     """
 
     maker = abjad.NoteMaker()
-    target = abjad.Container(maker([0] * 4, [(1, 4)]))
-    beam = abjad.Beam(direction=abjad.Up)
+    target = abjad.Container(maker([0] * 4, [(1, 8)]))
+    beam = abjad.Beam(beam_lone_notes=True, direction=abjad.Up)
     abjad.attach(beam, target[0:3])
-    beam = abjad.Beam(direction=abjad.Down)
+    beam = abjad.Beam(beam_lone_notes=True, direction=abjad.Down)
     abjad.attach(beam, target[3:])
 
     assert format(target) == abjad.String.normalize(
         r"""
         {
-            c'4
+            c'8
             ^ [
-            c'4
-            c'4
+            c'8
+            c'8
             ]
-            c'4
+            c'8
             _ [
             ]
         }

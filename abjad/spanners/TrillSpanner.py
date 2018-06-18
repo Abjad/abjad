@@ -59,14 +59,6 @@ class TrillSpanner(Spanner):
 
     ..  container:: example
 
-        Requires at least two leaves:
-
-        >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> trill = abjad.TrillSpanner()
-        >>> abjad.attach(trill, staff[:1])
-
-    ..  container:: example
-
         REGRESSION. Pitched trill spanner must appear after markup to avoid
         hiding markup in graphic output:
 

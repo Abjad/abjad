@@ -9,9 +9,9 @@ def test_Mutation_replace_01():
     """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    beam_1 = abjad.Beam()
+    beam_1 = abjad.Beam(beam_lone_notes=True)
     abjad.attach(beam_1, staff[:2])
-    beam_2 = abjad.Beam()
+    beam_2 = abjad.Beam(beam_lone_notes=True)
     abjad.attach(beam_2, staff[2:])
     crescendo = abjad.Hairpin('<')
     abjad.attach(crescendo, staff[:])
@@ -193,9 +193,9 @@ def test_Mutation_replace_04():
     """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    beam_1 = abjad.Beam()
+    beam_1 = abjad.Beam(beam_lone_notes=True)
     abjad.attach(beam_1, staff[:2])
-    beam_2 = abjad.Beam()
+    beam_2 = abjad.Beam(beam_lone_notes=True)
     abjad.attach(beam_2, staff[2:])
     crescendo = abjad.Hairpin('<')
     abjad.attach(crescendo, staff[:])
