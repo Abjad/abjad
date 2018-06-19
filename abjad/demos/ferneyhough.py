@@ -1,4 +1,6 @@
+#! /usr/bin/env python
 import abjad
+import sys
 
 
 class FerneyhoughDemo(object):
@@ -773,7 +775,7 @@ class FerneyhoughDemo(object):
         tuplet_duration,
         outer_tuplet_proportions,
         inner_tuplet_subdivision_count,
-        ):
+    ):
         """
         Makes nested tuplet.
         """
@@ -793,7 +795,7 @@ class FerneyhoughDemo(object):
         tuplet_duration,
         outer_tuplet_proportions,
         column_count,
-        ):
+    ):
         """
         Makes row of nested tuplets.
         """
@@ -814,7 +816,7 @@ class FerneyhoughDemo(object):
         tuplet_duration,
         row_count,
         column_count,
-        ):
+    ):
         """
         Makes rows of nested tuplets.
         """
@@ -848,3 +850,28 @@ class FerneyhoughDemo(object):
             abjad.attach(time_signature, leaf)
             score.append(staff)
         return score
+
+
+if __name__ == '__main__':
+
+    arguments = sys.argv[1:]
+    if len(arguments) != 3:
+        print('USAGE: tuplet_duration row_count column_count')
+        print(' e.g.: python main.py 1/4 11 6')
+        sys.exit(0)
+
+    tuplet_duration = abjad.Duration(arguments[0])
+    row_count = int(arguments[1])
+    column_count = int(arguments[2])
+
+    assert 0 < tuplet_duration
+    assert 0 < row_count
+    assert 0 < column_count
+
+    demo = abjad.demos.ferneyhough.FerneyhoughDemo()
+    lilypond_file = demo(
+        tuplet_duration=tuplet_duration,
+        row_count=row_count,
+        column_count=column_count,
+        )
+    abjad.show(lilypond_file)

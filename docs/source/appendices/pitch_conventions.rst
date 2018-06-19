@@ -20,7 +20,6 @@ Abjad numbers pitches like this:
 ..  abjad::
 
     pitches = range(-12, 12 + 1)
-    abjad_configuration.set_default_accidental_spelling('sharps')
 
 ..  abjad::
 
@@ -79,7 +78,6 @@ Abjad numbers diatonic pitches like this:
     pitches.extend([0 + x for x in diatonic_pitches])
     pitches.extend([12 + x for x in diatonic_pitches])
     pitches.append(24)
-    abjad_configuration.set_default_accidental_spelling('sharps')
 
 ..  abjad::
 
@@ -156,8 +154,7 @@ Abjad designates octaves with both numbers and ticks:
 Default accidental spelling
 ---------------------------
 
-By default Abjad picks between enharmonic equivalents according to
-the following table:
+Abjad picks between enharmonic equivalents according to the following table:
 
     ============================        ====================================
     pitch-class number                  pitch-class name
@@ -175,21 +172,3 @@ the following table:
     10                                  Bb
     11                                  B
     ============================        ====================================
-
-You can change the default accidental spelling like this:
-
-..  abjad::
-
-    abjad_configuration.set_default_accidental_spelling('sharps')
-
-Or like this:
-
-..  abjad::
-
-    abjad_configuration.set_default_accidental_spelling('flats')
-
-Or like this:
-
-..  abjad::
-
-    abjad_configuration.set_default_accidental_spelling('mixed')

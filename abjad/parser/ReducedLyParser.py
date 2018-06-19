@@ -224,7 +224,7 @@ class ReducedLyParser(Parser):
     def t_FRACTION(self, t):
         r'([1-9]\d*/[1-9]\d*)'
         parts = t.value.split('/')
-        t.value = utilities.NonreducedFraction(int(parts[0]), int(parts[1]))
+        t.value = mathtools.NonreducedFraction(int(parts[0]), int(parts[1]))
         return t
 
     def t_INTEGER_N(self, t):

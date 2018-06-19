@@ -4,7 +4,8 @@ from . import constants
 
 
 class NamedInterval(Interval):
-    '''Named interval.
+    """
+    Named interval.
 
     ..  container:: example
 
@@ -41,7 +42,7 @@ class NamedInterval(Interval):
         >>> abjad.NamedInterval(('M', 3))
         NamedInterval('+M3')
 
-    '''
+    """
 
     ### CLASS VARIABLES ##
 
@@ -55,7 +56,8 @@ class NamedInterval(Interval):
     ### SPECIAL METHODS ###
 
     def __abs__(self):
-        r'''Gets absolute value of named interval.
+        """
+        Gets absolute value of named interval.
 
         ..  container:: example
 
@@ -66,14 +68,15 @@ class NamedInterval(Interval):
             NamedInterval('+M9')
 
         Returns named interval.
-        '''
+        """
         return type(self)((
             self.quality,
             abs(self.number),
             ))
 
     def __add__(self, argument):
-        r'''Adds `argument` to named interval.
+        """
+        Adds `argument` to named interval.
 
         ..  container:: example
 
@@ -81,7 +84,7 @@ class NamedInterval(Interval):
             NamedInterval('+M10')
 
         Returns new named interval.
-        '''
+        """
         import abjad
         try:
             argument = type(self)(argument)
@@ -92,7 +95,8 @@ class NamedInterval(Interval):
         return NamedInterval.from_pitch_carriers(dummy_pitch, new_pitch)
 
     def __copy__(self, *arguments):
-        r'''Copies named interval.
+        """
+        Copies named interval.
 
         >>> import copy
 
@@ -102,14 +106,15 @@ class NamedInterval(Interval):
             NamedInterval('+M9')
 
         Returns new named interval.
-        '''
+        """
         return type(self)((
             self.quality,
             self.number,
             ))
 
     def __eq__(self, argument):
-        r'''Is true when named interval equal `argument`.
+        """
+        Is true when named interval equal `argument`.
 
         ..  container:: example
 
@@ -138,25 +143,28 @@ class NamedInterval(Interval):
             >>> interval_3 == interval_3
             True
 
-        '''
+        """
         return super(NamedInterval, self).__eq__(argument)
 
     def __float__(self):
-        r'''Coerce to semitones as float.
+        """
+        Coerce to semitones as float.
 
         Returns float.
-        '''
+        """
         return float(self.semitones)
 
     def __hash__(self):
-        r'''Hashes named interval.
+        """
+        Hashes named interval.
 
         Returns number.
-        '''
+        """
         return super(NamedInterval, self).__hash__()
 
     def __lt__(self, argument):
-        r'''Is true when `argument` is a named interval with a number greater
+        """
+        Is true when `argument` is a named interval with a number greater
         than that of this named interval.
 
         ..  container:: example
@@ -181,7 +189,7 @@ class NamedInterval(Interval):
             False
 
         Returns true or false.
-        '''
+        """
         if isinstance(argument, type(self)):
             if self.number == argument.number:
                 return self.semitones < argument.semitones
@@ -189,7 +197,8 @@ class NamedInterval(Interval):
         return False
 
     def __mul__(self, argument):
-        r'''Multiplies named interval by `argument`.
+        """
+        Multiplies named interval by `argument`.
 
         ..  container:: example
 
@@ -197,7 +206,7 @@ class NamedInterval(Interval):
             NamedInterval('+A25')
 
         Returns new named interval.
-        '''
+        """
         import abjad
         if not isinstance(argument, int):
             message = 'must be integer: {!r}.'
@@ -215,7 +224,8 @@ class NamedInterval(Interval):
         return result
 
     def __neg__(self):
-        r'''Negates named interval.
+        """
+        Negates named interval.
 
         ..  container:: example
 
@@ -228,14 +238,15 @@ class NamedInterval(Interval):
             NamedInterval('+M9')
 
         Returns new named interval.
-        '''
+        """
         return type(self)((
             self.quality,
             -self.number,
             ))
 
     def __radd__(self, argument):
-        r'''Adds named interval to `argument`.
+        """
+        Adds named interval to `argument`.
 
         ..  container:: example
 
@@ -243,7 +254,7 @@ class NamedInterval(Interval):
             NamedInterval('+M10')
 
         Returns new named interval.
-        '''
+        """
         try:
             argument = type(self)(argument)
         except Exception:
@@ -251,7 +262,8 @@ class NamedInterval(Interval):
         return argument.__add__(self)
 
     def __rmul__(self, argument):
-        r'''Multiplies `argument` by named interval.
+        """
+        Multiplies `argument` by named interval.
 
         ..  container:: example
 
@@ -259,11 +271,12 @@ class NamedInterval(Interval):
             NamedInterval('+A25')
 
         Returns new named interval.
-        '''
+        """
         return self * argument
 
     def __str__(self):
-        r'''Gets string representation of named interval.
+        """
+        Gets string representation of named interval.
 
         ..  container:: example
 
@@ -271,11 +284,12 @@ class NamedInterval(Interval):
             '+M9'
 
         Returns string.
-        '''
+        """
         return self.name
 
     def __sub__(self, argument):
-        r'''Subtracts `argument` from named interval.
+        """
+        Subtracts `argument` from named interval.
 
         ..  container:: example
 
@@ -286,7 +300,7 @@ class NamedInterval(Interval):
             NamedInterval('-P8')
 
         Returns new named interval.
-        '''
+        """
         import abjad
         try:
             argument = type(self)(argument)
@@ -346,7 +360,8 @@ class NamedInterval(Interval):
 
     @property
     def direction_number(self):
-        r'''Gets direction number of named interval.
+        """
+        Gets direction number of named interval.
 
         ..  container:: example
 
@@ -366,14 +381,15 @@ class NamedInterval(Interval):
             -1
 
         Returns ``-1``, ``0`` or ``1``.
-        '''
+        """
         if self.quality == 'P' and abs(self.number) == 1:
             return 0
         return mathtools.sign(self.number)
 
     @property
     def interval_class(self):
-        r'''Gets interval class of named interval.
+        """
+        Gets interval class of named interval.
 
         ..  container:: example
 
@@ -390,12 +406,13 @@ class NamedInterval(Interval):
             NamedIntervalClass('+P8')
 
         Returns named interval-class.
-        '''
+        """
         return self._interval_class
 
     @property
     def name(self):
-        r'''Gets name of named interval.
+        """
+        Gets name of named interval.
 
         ..  container:: example
 
@@ -403,7 +420,7 @@ class NamedInterval(Interval):
             '+M9'
 
         Returns string.
-        '''
+        """
         direction_symbol = constants._direction_number_to_direction_symbol[
             self.direction_number]
         return '{}{}{}'.format(
@@ -414,7 +431,8 @@ class NamedInterval(Interval):
 
     @property
     def number(self):
-        r'''Gets number of named interval.
+        """
+        Gets number of named interval.
 
         ..  container:: example
 
@@ -422,7 +440,7 @@ class NamedInterval(Interval):
             9
 
         Returns nonnegative number.
-        '''
+        """
         number = self._interval_class._number
         direction = mathtools.sign(number)
         number = abs(number) + (7 * self.octaves)
@@ -430,23 +448,26 @@ class NamedInterval(Interval):
 
     @property
     def octaves(self):
-        r'''Gets octaves of interval.
+        """
+        Gets octaves of interval.
 
         Returns nonnegative number.
-        '''
+        """
         return self._octaves
 
     @property
     def quality(self):
-        r'''Gets quality of named interval.
+        """
+        Gets quality of named interval.
 
         Returns string.
-        '''
+        """
         return self._interval_class.quality
 
     @property
     def semitones(self):
-        r'''Gets semitones of named interval.
+        """
+        Gets semitones of named interval.
 
         ..  container:: example
 
@@ -466,7 +487,7 @@ class NamedInterval(Interval):
             -12
 
         Returns number.
-        '''
+        """
         direction = self.direction_number
         diatonic_number = abs(self._interval_class._number)
         quality = self._validate_quality_and_diatonic_number(
@@ -477,7 +498,8 @@ class NamedInterval(Interval):
 
     @property
     def staff_spaces(self):
-        r'''Gets staff spaces of named interval.
+        """
+        Gets staff spaces of named interval.
 
         ..  container:: example
 
@@ -497,7 +519,7 @@ class NamedInterval(Interval):
             -7
 
         Returns nonnegative integer.
-        '''
+        """
         if self.direction_number == -1:
             return self.number + 1
         elif not self.direction_number:
@@ -602,7 +624,8 @@ class NamedInterval(Interval):
         return class_((quality, named_i_number * direction))
 
     def transpose(self, pitch_carrier):
-        r'''Transposes `pitch_carrier` by named interval.
+        """
+        Transposes `pitch_carrier` by named interval.
 
         ..  container:: example
 
@@ -615,5 +638,5 @@ class NamedInterval(Interval):
             Chord("<df' f' af'>4")
 
         Returns new (copied) object of `pitch_carrier` type.
-        '''
+        """
         return super().transpose(pitch_carrier)

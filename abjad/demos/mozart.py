@@ -1,8 +1,12 @@
+#! /usr/bin/env python
+import abjad
+import random
+
+
 def make_mozart_measure_corpus():
     """
     Makes Mozart measure corpus.
     """
-
     return [
         [
             {'b': 'c4 r8', 't': "e''8 c''8 g'8"},
@@ -92,8 +96,10 @@ def make_mozart_measure_corpus():
             {'b': 'c8 d8 d,8',
                 't': "a'16 e''16 <b' d''>16 <a' c''>16 <g' b'>16 <fs' a'>16"},
             {'b': 'c8 d8 d,8',
-                't': "<b' d''>16 ( <a' c''>16 ) <a' c''>16 ( <g' b'>16 ) "
-                    "<g' b'>16 ( <fs' a'>16 )"},
+                't': (
+                    "<b' d''>16 ( <a' c''>16 ) <a' c''>16 ( <g' b'>16 ) "
+                    "<g' b'>16 ( <fs' a'>16 )"
+                )},
             {'b': 'c8 d8 d,8', 't': "e''16 g''16 d''16 c''16 b'16 a'16"},
             {'b': 'c8 d8 d,8', 't': "a'16 e''16 d''16 g''16 fs''16 a''16"},
             {'b': 'c8 d8 d,8', 't': "e''16 a''16 g''16 b''16 fs''16 a''16"},
@@ -219,3 +225,130 @@ def make_mozart_measure_corpus():
             {'b': 'c4 c,8', 't': "c''8 c'8 r8"},
         ],
     ]
+
+
+def choose_mozart_measures():
+    """
+    Chooses Mozart measures.
+    """
+    measure_corpus = abjad.demos.mozart.make_mozart_measure_corpus()
+    chosen_measures = []
+    for i, choices in enumerate(measure_corpus):
+        if i == 7:  # get both alternative endings for mm. 8
+            chosen_measures.extend(choices)
+        else:
+            choice = random.choice(choices)
+            chosen_measures.append(choice)
+    return chosen_measures
+
+
+def make_mozart_measure(measure_dict):
+    """
+    Makes Mozart measure.
+    """
+    # parse the contents of a measure definition dictionary
+    # wrap the expression to be parsed inside a LilyPond { } block
+    treble = abjad.parse('{{ {} }}'.format(measure_dict['t']))
+    bass = abjad.parse('{{ {} }}'.format(measure_dict['b']))
+    return treble, bass
+
+
+def make_mozart_score():
+    """
+    Makes Mozart score.
+    """
+    score_template = abjad.TwoStaffPianoScoreTemplate()
+    score = score_template()
+    # select the measures to use
+    choices = abjad.demos.mozart.choose_mozart_measures()
+    # create and populate the volta containers
+    treble_volta = abjad.Container()
+    bass_volta = abjad.Container()
+    for choice in choices[:7]:
+        treble, bass = abjad.demos.mozart.make_mozart_measure(choice)
+        treble_volta.append(treble)
+        bass_volta.append(bass)
+    # abjad.attach indicators to the volta containers
+    command = abjad.LilyPondLiteral(
+        r'\repeat volta 2',
+        'before'
+        )
+    abjad.attach(command, treble_volta)
+    command = abjad.LilyPondLiteral(
+        r'\repeat volta 2',
+        'before'
+        )
+    abjad.attach(command, bass_volta)
+    # append the volta containers to our staves
+    score['RHVoice'].append(treble_volta)
+    score['LHVoice'].append(bass_volta)
+    # create and populate the alternative ending containers
+    treble_alternative = abjad.Container()
+    bass_alternative = abjad.Container()
+    for choice in choices[7:9]:
+        treble, bass = abjad.demos.mozart.make_mozart_measure(choice)
+        treble_alternative.append(treble)
+        bass_alternative.append(bass)
+    # abjad.attach indicators to the alternative containers
+    command = abjad.LilyPondLiteral(
+        r'\alternative',
+        'before'
+        )
+    abjad.attach(command, treble_alternative)
+    command = abjad.LilyPondLiteral(
+        r'\alternative',
+        'before'
+        )
+    abjad.attach(command, bass_alternative)
+    # append the alternative containers to our staves
+    score['RHVoice'].append(treble_alternative)
+    score['LHVoice'].append(bass_alternative)
+    # create the remaining measures
+    for choice in choices[9:]:
+        treble, bass = abjad.demos.mozart.make_mozart_measure(choice)
+        score['RHVoice'].append(treble)
+        score['LHVoice'].append(bass)
+    # abjad.attach indicators
+    time_signature = abjad.TimeSignature((3, 8))
+    leaf = abjad.inspect(score['RHStaff']).get_leaf(0)
+    abjad.attach(time_signature, leaf)
+    bar_line = abjad.BarLine('|.')
+    leaf = abjad.inspect(score['RHStaff']).get_leaf(-1)
+    abjad.attach(bar_line, leaf)
+    bar_line = abjad.BarLine('|.')
+    leaf = abjad.inspect(score['LHStaff']).get_leaf(-1)
+    abjad.attach(bar_line, leaf)
+    # remove the default piano instrument and add a custom one:
+    abjad.detach(abjad.Instrument, score['PianoStaff'])
+    klavier = abjad.Piano(
+        name='Katzenklavier',
+        short_name='kk.',
+        )
+    leaf = abjad.inspect(score['PianoStaff']).get_leaf(0)
+    abjad.attach(klavier, leaf)
+    return score
+
+
+def make_mozart_lilypond_file():
+    """
+    Makes Mozart LilyPond file.
+    """
+    score = abjad.demos.mozart.make_mozart_score()
+    lilypond_file = abjad.LilyPondFile.new(
+        music=score,
+        global_staff_size=12,
+        )
+    title = abjad.Markup(r'\bold \sans "Ein Musikalisches Wuerfelspiel"')
+    composer = abjad.Scheme("W. A. Mozart (maybe?)")
+    lilypond_file.header_block.title = title
+    lilypond_file.header_block.composer = composer
+    lilypond_file.layout_block.ragged_right = True
+    list_ = abjad.SchemeAssociativeList([('basic_distance', 8)])
+    lilypond_file.paper_block.markup_system_spacing = list_
+    lilypond_file.paper_block.paper_width = 180
+    return lilypond_file
+
+
+if __name__ == '__main__':
+    lilypond_file = abjad.demos.mozart.make_mozart_lilypond_file()
+    abjad.show(lilypond_file)

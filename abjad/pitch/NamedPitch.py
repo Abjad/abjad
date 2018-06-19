@@ -5,7 +5,8 @@ from . import constants
 
 
 class NamedPitch(Pitch):
-    r'''Named pitch.
+    """
+    Named pitch.
 
     ..  container:: example
 
@@ -189,7 +190,7 @@ class NamedPitch(Pitch):
                 c''1 * 1/4
             }
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -215,7 +216,8 @@ class NamedPitch(Pitch):
     ### SPECIAL METHODS ###
 
     def __add__(self, interval):
-        r'''Adds named pitch to `interval`.
+        """
+        Adds named pitch to `interval`.
 
         ..  container:: example
 
@@ -229,13 +231,14 @@ class NamedPitch(Pitch):
             NamedPitch("ds''")
 
         Returns new named pitch.
-        '''
+        """
         import abjad
         interval = abjad.NamedInterval(interval)
         return interval.transpose(self)
 
     def __copy__(self, *arguments):
-        r'''Copies named pitch.
+        """
+        Copies named pitch.
 
         >>> import copy
 
@@ -259,11 +262,12 @@ class NamedPitch(Pitch):
             NamedPitch("cs''", arrow=Up)
 
         Returns new named pitch.
-        '''
+        """
         return type(self)(self, arrow=self.arrow)
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is a named pitch equal to this named pitch.
+        """
+        Is true when `argument` is a named pitch equal to this named pitch.
 
         ..  container:: example
 
@@ -293,18 +297,20 @@ class NamedPitch(Pitch):
             True
 
         Returns true or false.
-        '''
+        """
         return super(NamedPitch, self).__eq__(argument)
 
     def __hash__(self):
-        r'''Hashes named pitch.
+        """
+        Hashes named pitch.
 
         Returns integer.
-        '''
+        """
         return super(NamedPitch, self).__hash__()
 
     def __lt__(self, argument):
-        r'''Is true when named pitch is less than `argument`.
+        """
+        Is true when named pitch is less than `argument`.
 
         ..  container:: example
 
@@ -334,7 +340,7 @@ class NamedPitch(Pitch):
             False
 
         Returns true or false.
-        '''
+        """
         try:
             argument = type(self)(argument)
         except (TypeError, ValueError):
@@ -346,7 +352,8 @@ class NamedPitch(Pitch):
         return self_dpn < argument_dpn
 
     def __radd__(self, interval):
-        r'''Right-addition not defined on named pitches.
+        """
+        Right-addition not defined on named pitches.
 
         ..  container:: example
 
@@ -355,13 +362,14 @@ class NamedPitch(Pitch):
                 ...
             NotImplementedError: right-addition not defined on NamedPitch.
 
-        '''
+        """
         message = 'right-addition not defined on {}.'
         message = message.format(type(self).__name__)
         raise NotImplementedError(message)
 
     def __str__(self):
-        r'''Gets string representation of named pitch.
+        """
+        Gets string representation of named pitch.
 
         ..  container:: example
 
@@ -375,11 +383,12 @@ class NamedPitch(Pitch):
             "df''"
 
         Returns string.
-        '''
+        """
         return self.name
 
     def __sub__(self, argument):
-        r'''Subtracts `argument` from named pitch.
+        """
+        Subtracts `argument` from named pitch.
 
         ..  container:: example
 
@@ -390,7 +399,7 @@ class NamedPitch(Pitch):
             NamedInterval('+P4')
 
         Returns named interval.
-        '''
+        """
         import abjad
         if isinstance(argument, type(self)):
             return abjad.NamedInterval.from_pitch_carriers(self, argument)
@@ -508,7 +517,8 @@ class NamedPitch(Pitch):
 
     @property
     def accidental(self):
-        r'''Gets accidental of named pitch.
+        """
+        Gets accidental of named pitch.
 
         ..  container:: example
 
@@ -522,12 +532,13 @@ class NamedPitch(Pitch):
             Accidental('flat')
 
         Returns accidental.
-        '''
+        """
         return self.pitch_class.accidental
 
     @property
     def arrow(self):
-        r'''Gets arrow of named pitch.
+        """
+        Gets arrow of named pitch.
 
         ..  container:: example
 
@@ -548,12 +559,13 @@ class NamedPitch(Pitch):
             NamedPitch("cs''", arrow=Down)
 
         Returns up, down or none.
-        '''
+        """
         return self._pitch_class.arrow
 
     @property
     def hertz(self):
-        r'''Gets frequency of named pitch in Hertz.
+        """
+        Gets frequency of named pitch in Hertz.
 
         ..  container:: example
 
@@ -567,12 +579,13 @@ class NamedPitch(Pitch):
             554.36...
 
         Returns float.
-        '''
+        """
         return super(NamedPitch, self).hertz
 
     @property
     def name(self):
-        r'''Gets name of named pitch.
+        """
+        Gets name of named pitch.
 
         ..  container:: example
 
@@ -586,7 +599,7 @@ class NamedPitch(Pitch):
             "df''"
 
         Returns string.
-        '''
+        """
         return '{!s}{!s}'.format(
             self.pitch_class,
             self.octave,
@@ -594,7 +607,8 @@ class NamedPitch(Pitch):
 
     @property
     def number(self):
-        r'''Gets number of named pitch.
+        """
+        Gets number of named pitch.
 
         ..  container:: example
 
@@ -611,7 +625,7 @@ class NamedPitch(Pitch):
             -1
 
         Returns number.
-        '''
+        """
         diatonic_pc_number = self.pitch_class._get_diatonic_pc_number()
         pc_number = constants._diatonic_pc_number_to_pitch_class_number[diatonic_pc_number]
         alteration = self.pitch_class._get_alteration()
@@ -622,7 +636,8 @@ class NamedPitch(Pitch):
 
     @property
     def octave(self):
-        r'''Gets octave of named pitch.
+        """
+        Gets octave of named pitch.
 
         ..  container:: example
 
@@ -636,12 +651,13 @@ class NamedPitch(Pitch):
             Octave(5)
 
         Returns octave.
-        '''
+        """
         return self._octave
 
     @property
     def pitch_class(self):
-        r'''Gets pitch-class of named pitch.
+        """
+        Gets pitch-class of named pitch.
 
         ..  container:: example
 
@@ -655,14 +671,15 @@ class NamedPitch(Pitch):
             NamedPitchClass('df')
 
         Returns named pitch-class.
-        '''
+        """
         return self._pitch_class
 
     ### PUBLIC METHODS ###
 
     @classmethod
     def from_hertz(class_, hertz):
-        r'''Makes named pitch from `hertz`.
+        """
+        Makes named pitch from `hertz`.
 
         ..  container:: example
 
@@ -677,11 +694,12 @@ class NamedPitch(Pitch):
             NamedPitch("c''")
 
         Returns newly constructed named pitch.
-        '''
+        """
         return super(NamedPitch, class_).from_hertz(hertz)
 
     def get_name(self, locale=None):
-        r'''Gets name of named pitch according to `locale`.
+        """
+        Gets name of named pitch according to `locale`.
 
         ..  container:: example
 
@@ -694,7 +712,7 @@ class NamedPitch(Pitch):
         Set `locale` to `'us'` or none.
 
         Returns string.
-        '''
+        """
         if locale is None:
             return self.name
         elif locale == 'us':
@@ -709,7 +727,8 @@ class NamedPitch(Pitch):
             raise ValueError(message)
 
     def invert(self, axis=None):
-        r'''Inverts named pitch around `axis`.
+        """
+        Inverts named pitch around `axis`.
 
         ..  container:: example
 
@@ -741,11 +760,12 @@ class NamedPitch(Pitch):
         Interprets none-valued `axis` equal to middle C.
 
         Returns new named pitch.
-        '''
+        """
         return super(NamedPitch, self).invert(axis=axis)
 
     def multiply(self, n=1):
-        r'''Multiplies named pitch.
+        """
+        Multiplies named pitch.
 
         ..  container:: example
 
@@ -762,7 +782,7 @@ class NamedPitch(Pitch):
             NamedPitch("cs''")
 
         Returns new named pitch.
-        '''
+        """
         return super(NamedPitch, self).multiply(n=n)
 
     def simplify(self):
@@ -817,7 +837,8 @@ class NamedPitch(Pitch):
 
     # TODO: duplicate on NumberedPitch
     def to_staff_position(self, clef=None):
-        r'''Changes named pitch to staff position.
+        """
+        Changes named pitch to staff position.
 
         ..  container:: example
 
@@ -1009,7 +1030,7 @@ class NamedPitch(Pitch):
                 }
 
         Returns staff position.
-        '''
+        """
         import abjad
         staff_position_number = self._get_diatonic_pitch_number()
         if clef is not None:
@@ -1019,7 +1040,8 @@ class NamedPitch(Pitch):
         return staff_position
 
     def transpose(self, n=0):
-        r'''Transposes named pitch by index `n`.
+        """
+        Transposes named pitch by index `n`.
 
         ..  container:: example
 
@@ -1036,7 +1058,7 @@ class NamedPitch(Pitch):
             NamedPitch('bf')
 
         Returns new named pitch.
-        '''
+        """
         import abjad
         interval = abjad.NamedInterval(n)
         pitch_number = self.number + interval.semitones

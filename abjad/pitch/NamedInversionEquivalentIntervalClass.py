@@ -3,7 +3,8 @@ from abjad.pitch.NamedIntervalClass import NamedIntervalClass
 
 
 class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
-    '''Named inversion-equivalent interval-class.
+    """
+    Named inversion-equivalent interval-class.
 
     ..  container:: example
 
@@ -44,7 +45,7 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
         >>> abjad.NamedInversionEquivalentIntervalClass(interval_class)
         NamedInversionEquivalentIntervalClass('P1')
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -62,7 +63,8 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is a named inversion-equivalent
+        """
+        Is true when `argument` is a named inversion-equivalent
         interval-class with name equal to that of this named
         inversion-equivalent interval-class.
 
@@ -95,16 +97,16 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
             True
 
         Returns true or false.
-        '''
+        """
         return super(NamedInversionEquivalentIntervalClass, self).__eq__(
             argument,
             )
 
     def __hash__(self):
-        r'''Hashes named inversion-equivalent interval-class.
+        r"""Hashes named inversion-equivalent interval-class.
 
         Returns integer.
-        '''
+        """
         return super(NamedInversionEquivalentIntervalClass, self).__hash__()
 
     ### PRIVATE METHODS ###
@@ -150,7 +152,8 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
 
     @classmethod
     def from_pitch_carriers(class_, pitch_carrier_1, pitch_carrier_2):
-        '''Makes named inversion-equivalent interval-class from
+        """
+        Makes named inversion-equivalent interval-class from
         `pitch_carrier_1` and `pitch_carrier_2`.
 
         ..  container:: example
@@ -163,7 +166,7 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
             NamedInversionEquivalentIntervalClass('+M2')
 
         Returns new named inversion-equivalent interval-class.
-        '''
+        """
         import abjad
         named_interval = abjad.NamedInterval.from_pitch_carriers(
             pitch_carrier_1,

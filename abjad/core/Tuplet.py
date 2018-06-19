@@ -4,6 +4,9 @@ from abjad import Fraction
 from abjad import mathtools
 from abjad.exceptions import AssignabilityError
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
+from abjad.mathtools.NonreducedFraction import NonreducedFraction
+from abjad.mathtools.NonreducedRatio import NonreducedRatio
+from abjad.mathtools.Ratio import Ratio
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.top.inspect import inspect
 from abjad.top.iterate import iterate
@@ -11,9 +14,6 @@ from abjad.top.override import override
 from abjad.top.tweak import tweak
 from abjad.utilities.Duration import Duration
 from abjad.utilities.Multiplier import Multiplier
-from abjad.utilities.NonreducedFraction import NonreducedFraction
-from abjad.utilities.NonreducedRatio import NonreducedRatio
-from abjad.utilities.Ratio import Ratio
 from .Container import Container
 from .Leaf import Leaf
 from .LeafMaker import LeafMaker

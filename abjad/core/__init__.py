@@ -36,9 +36,4 @@ from .Tuplet import Tuplet
 from .VerticalMoment import VerticalMoment
 from .Voice import Voice
 
-from .Inequality import Inequality
-from .DurationInequality import DurationInequality
-from .LengthInequality import LengthInequality
-from .PitchInequality import PitchInequality
-
 _documentation_section = 'core'
