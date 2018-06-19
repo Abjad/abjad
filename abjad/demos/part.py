@@ -707,5 +707,6 @@ def make_part_lilypond_file():
 
 
 if __name__ == '__main__':
+    from abjad import show
     lilypond_file = make_part_lilypond_file()
-    abjad.show(lilypond_file)
+    show(lilypond_file)

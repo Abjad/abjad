@@ -350,5 +350,6 @@ def make_mozart_lilypond_file():
 
 
 if __name__ == '__main__':
+    from abjad import show
     lilypond_file = abjad.demos.mozart.make_mozart_lilypond_file()
-    abjad.show(lilypond_file)
+    show(lilypond_file)

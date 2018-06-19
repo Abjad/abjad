@@ -3,7 +3,7 @@ import abjad
 import sys
 
 
-class FerneyhoughDemo(object):
+class FerneyhoughDemo:
     r"""
     Ferneyhough demo.
 
@@ -853,6 +853,7 @@ class FerneyhoughDemo(object):
 
 
 if __name__ == '__main__':
+    from abjad import show
 
     arguments = sys.argv[1:]
     if len(arguments) != 3:
@@ -874,4 +875,4 @@ if __name__ == '__main__':
         row_count=row_count,
         column_count=column_count,
         )
-    abjad.show(lilypond_file)
+    show(lilypond_file)

@@ -88,7 +88,7 @@ def make_desordre_measure(pitches):
     Returns a measure.
     """
     for sequence in pitches:
-        container = abjad.demos.ligeti.make_desordre_cell(sequence)
+        container = make_desordre_cell(sequence)
         time_signature = abjad.inspect(container).get_duration()
         time_signature = abjad.NonreducedFraction(time_signature)
         time_signature = time_signature.with_denominator(8)
@@ -103,7 +103,7 @@ def make_desordre_staff(pitches):
 
     staff = abjad.Staff()
     for sequence in pitches:
-        measure = abjad.demos.ligeti.make_desordre_measure(sequence)
+        measure = make_desordre_measure(sequence)
         staff.append(measure)
     return staff
 
@@ -119,7 +119,7 @@ def make_desordre_score(pitches):
 
     # build the music
     for hand in pitches:
-        staff = abjad.demos.ligeti.make_desordre_staff(hand)
+        staff = make_desordre_staff(hand)
         staff_group.append(staff)
 
     # set clef and key signature to left hand staff
@@ -207,12 +207,9 @@ def make_desordre_lilypond_file(score):
     return lilypond_file
 
 
-def main():
-    pitches = abjad.demos.ligeti.make_desordre_pitches()
-    score = abjad.demos.ligeti.make_desordre_score(pitches)
-    lilypond_file = abjad.demos.ligeti.make_desordre_lilypond_file(score)
-    return lilypond_file
-
-
 if __name__ == '__main__':
-    abjad.show(main())
+    from abjad import show
+    pitches = make_desordre_pitches()
+    score = make_desordre_score(pitches)
+    lilypond_file = make_desordre_lilypond_file(score)
+    show(lilypond_file)
