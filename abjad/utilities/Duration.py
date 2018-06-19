@@ -9,7 +9,6 @@ try:
     from quicktions import Fraction  # type: ignore
 except ImportError:
     from fractions import Fraction
-from .NonreducedFraction import NonreducedFraction
 
 
 class Duration(AbjadObject, Fraction):
@@ -115,7 +114,7 @@ class Duration(AbjadObject, Fraction):
             argument = arguments[0]
             if type(argument) is class_:
                 return argument
-            if isinstance(argument, NonreducedFraction):
+            if isinstance(argument, mathtools.NonreducedFraction):
                 return Fraction.__new__(class_, *argument.pair)
             try:
                 return Fraction.__new__(class_, *argument)
@@ -198,7 +197,7 @@ class Duration(AbjadObject, Fraction):
         """
         if (
             len(arguments) == 1 and
-            isinstance(arguments[0], NonreducedFraction)
+            isinstance(arguments[0], mathtools.NonreducedFraction)
             ):
             result = arguments[0].__radd__(self)
         else:
@@ -341,7 +340,7 @@ class Duration(AbjadObject, Fraction):
         """
         if (
             len(arguments) == 1 and
-            isinstance(arguments[0], NonreducedFraction)
+            isinstance(arguments[0], mathtools.NonreducedFraction)
             ):
             result = arguments[0].__rmul__(self)
         else:
@@ -460,7 +459,7 @@ class Duration(AbjadObject, Fraction):
         """
         if (
             len(arguments) == 1 and
-            isinstance(arguments[0], NonreducedFraction)
+            isinstance(arguments[0], mathtools.NonreducedFraction)
             ):
             return arguments[0].__rsub__(self)
         else:
@@ -489,7 +488,7 @@ class Duration(AbjadObject, Fraction):
     @staticmethod
     def _group_by_implied_prolation(durations):
         durations = [
-            NonreducedFraction(duration)
+            mathtools.NonreducedFraction(duration)
             for duration in durations
             ]
         assert 0 < len(durations)
@@ -1049,7 +1048,7 @@ class Duration(AbjadObject, Fraction):
     @staticmethod
     def durations_to_nonreduced_fractions(
         durations: typing.List,
-        ) -> typing.List[NonreducedFraction]:
+        ) -> typing.List[mathtools.NonreducedFraction]:
         """
         Changes ``durations`` to nonreduced fractions sharing least common
         denominator.
@@ -1072,7 +1071,7 @@ class Duration(AbjadObject, Fraction):
         denominators = [_.denominator for _ in durations_]
         lcd = mathtools.least_common_multiple(*denominators)
         nonreduced_fractions = [
-            NonreducedFraction(_).with_denominator(lcd)
+            mathtools.NonreducedFraction(_).with_denominator(lcd)
             for _ in durations_
             ]
         return nonreduced_fractions
@@ -1340,5 +1339,5 @@ class Duration(AbjadObject, Fraction):
 
         Returns new duration.
         """
-        nonreduced_fraction = NonreducedFraction(self)
+        nonreduced_fraction = mathtools.NonreducedFraction(self)
         return nonreduced_fraction.with_denominator(denominator)

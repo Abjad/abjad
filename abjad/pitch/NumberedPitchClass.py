@@ -369,20 +369,7 @@ class NumberedPitchClass(PitchClass):
 
         Returns string.
         '''
-        from abjad import abjad_configuration
-        accidental_spelling = abjad_configuration['accidental_spelling']
-        if accidental_spelling == 'mixed':
-            return constants._pitch_class_number_to_pitch_class_name[self.number]
-        elif accidental_spelling == 'sharps':
-            return constants._pitch_class_number_to_pitch_class_name_with_sharps[
-                self.number]
-        elif accidental_spelling == 'flats':
-            return constants._pitch_class_number_to_pitch_class_name_with_flats[
-                self.number]
-        else:
-            message = 'unknown accidental spelling: {!r}.'
-            message = message.format(accidental_spelling)
-            raise ValueError(message)
+        return constants._pitch_class_number_to_pitch_class_name[self.number]
 
     @property
     def number(self):

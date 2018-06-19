@@ -14,9 +14,6 @@ class AbjadConfiguration(Configuration):
 
         >>> abjad_configuration = abjad.AbjadConfiguration()
 
-        >>> abjad_configuration['accidental_spelling']
-        'mixed'
-
     ..  container:: example
 
         Behavior at instantiation:
@@ -89,13 +86,6 @@ class AbjadConfiguration(Configuration):
                     'output',
                     ),
                 'validator': str,
-                },
-            'accidental_spelling': {
-                'comment': [
-                    'Default accidental spelling (mixed|sharps|flats).',
-                    ],
-                'default': 'mixed',
-                'validator': lambda x: x in ('mixed', 'sharps', 'flats'),
                 },
             'composer_email': {
                 'comment': ['Your email.'],
@@ -519,48 +509,3 @@ class AbjadConfiguration(Configuration):
         except ImportError:
             pass
         return dependencies
-
-    @staticmethod
-    def set_default_accidental_spelling(spelling='mixed'):
-        """
-        Sets default accidental spelling.
-
-        ..  container:: example
-
-            Sets default accidental spelling to sharps:
-
-            >>> abjad_configuration = abjad.AbjadConfiguration()
-            >>> abjad_configuration.set_default_accidental_spelling('sharps')
-
-            >>> [abjad.Note(13, (1, 4)), abjad.Note(15, (1, 4))]
-            [Note("cs''4"), Note("ds''4")]
-
-        ..  container:: example
-
-            Sets default accidental spelling to flats:
-
-            >>> abjad_configuration = abjad.AbjadConfiguration()
-            >>> abjad_configuration.set_default_accidental_spelling('flats')
-
-            >>> [abjad.Note(13, (1, 4)), abjad.Note(15, (1, 4))]
-            [Note("df''4"), Note("ef''4")]
-
-        ..  container:: example
-
-            Sets default accidental spelling to mixed:
-
-            >>> abjad_configuration = abjad.AbjadConfiguration()
-            >>> abjad_configuration.set_default_accidental_spelling()
-
-            >>> [abjad.Note(13, (1, 4)), abjad.Note(15, (1, 4))]
-            [Note("cs''4"), Note("ef''4")]
-
-        Defaults to ``'mixed'``.
-
-        Mixed test case must appear last here for doc tests to check correctly.
-
-        Returns none.
-        """
-        from abjad import abjad_configuration
-        assert spelling in ('mixed', 'sharps', 'flats'), repr(spelling)
-        abjad_configuration['accidental_spelling'] = spelling

@@ -5,18 +5,18 @@ del mathtools
 
 from .CyclicTuple import CyclicTuple
 from .Duration import Duration
-from .Enumerator import Enumerator
+from .Inequality import Inequality
+from .DurationInequality import DurationInequality
 from .Expression import Expression
+from .LengthInequality import LengthInequality
 from .Multiplier import Multiplier
-from .NonreducedFraction import NonreducedFraction
-from .NonreducedRatio import NonreducedRatio
 from .Offset import Offset
 from .Pattern import Pattern
 from .TypedCollection import TypedCollection
 from .TypedTuple import TypedTuple
 from .OrderedDict import OrderedDict
 from .PatternTuple import PatternTuple
-from .Ratio import Ratio
+from .PitchInequality import PitchInequality
 from .Sequence import Sequence
 from .SortedCollection import SortedCollection
 from .String import String

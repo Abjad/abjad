@@ -14,8 +14,6 @@ from abjad.top.inspect import inspect as abjad_inspect
 from abjad.top.iterate import iterate
 from .Component import Component
 from .Leaf import Leaf
-from .LengthInequality import LengthInequality
-from .PitchInequality import PitchInequality
 
 
 class Selection(AbjadValueObject, collections.Sequence):
@@ -2020,10 +2018,10 @@ class Selection(AbjadValueObject, collections.Sequence):
                 }
 
         """
+        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        inequality = LengthInequality(operator, length=length)
-        return self.filter(inequality)
+        return self.filter(abjad.LengthInequality(operator, length))
 
     def filter_pitches(self, operator, pitches):
         r"""
@@ -2246,10 +2244,10 @@ class Selection(AbjadValueObject, collections.Sequence):
 
         Returns new selection (or expression).
         """
+        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        inequality = PitchInequality(operator, pitches=pitches)
-        return self.filter(inequality)
+        return self.filter(abjad.PitchInequality(operator, pitches))
 
     def filter_preprolated(self, operator, duration):
         r"""

@@ -4,7 +4,8 @@ from . import constants
 
 
 class NamedIntervalClass(IntervalClass):
-    '''Named interval-class.
+    """
+    Named interval-class.
 
     ..  container:: example
 
@@ -13,8 +14,7 @@ class NamedIntervalClass(IntervalClass):
         >>> abjad.NamedIntervalClass('-M9')
         NamedIntervalClass('-M2')
 
-
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -31,7 +31,8 @@ class NamedIntervalClass(IntervalClass):
     ### SPECIAL METHODS ###
 
     def __abs__(self):
-        r'''Gets absolute value of named interval-class.
+        """
+        Gets absolute value of named interval-class.
 
         ..  container:: example
 
@@ -39,17 +40,18 @@ class NamedIntervalClass(IntervalClass):
             NamedIntervalClass('+M2')
 
         Returns new named interval-class.
-        '''
+        """
         return type(self)((
             self.quality,
             abs(self.number),
             ))
 
     def __add__(self, argument):
-        r'''Adds `argument` to named interval-class.
+        """
+        Adds `argument` to named interval-class.
 
         Returns new named interval-class.
-        '''
+        """
         import abjad
         try:
             argument = type(self)(argument)
@@ -64,7 +66,8 @@ class NamedIntervalClass(IntervalClass):
         return type(self)(interval)
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is a named interval-class with direction
+        """
+        Is true when `argument` is a named interval-class with direction
         number, quality string and number equal to those of this named
         interval-class.
 
@@ -96,14 +99,15 @@ class NamedIntervalClass(IntervalClass):
             True
 
         Returns true or false.
-        '''
+        """
         return super(NamedIntervalClass, self).__eq__(argument)
 
     def __float__(self):
-        r'''Coerce to float.
+        """
+        Coerce to float.
 
         Returns float.
-        '''
+        """
         return float(self._named_to_numbered(
             self.direction_number,
             self._quality,
@@ -111,14 +115,16 @@ class NamedIntervalClass(IntervalClass):
             ))
 
     def __hash__(self):
-        r'''Hashes named interval-class.
+        """
+        Hashes named interval-class.
 
         Returns integer.
-        '''
+        """
         return super(NamedIntervalClass, self).__hash__()
 
     def __lt__(self, argument):
-        r'''Is true when `argument` is a named interval class with a number
+        """
+        Is true when `argument` is a named interval class with a number
         greater than that of this named interval.
 
         ..  container:: example
@@ -149,7 +155,7 @@ class NamedIntervalClass(IntervalClass):
             False
 
         Returns true or false.
-        '''
+        """
         import abjad
         try:
             argument = type(self)(argument)
@@ -162,10 +168,11 @@ class NamedIntervalClass(IntervalClass):
         return self.number < argument.number
 
     def __radd__(self, argument):
-        r'''Adds interval-class to ``argument``.
+        """
+        Adds interval-class to `argument`.
 
         Returns new named interval-class.
-        '''
+        """
         try:
             argument = type(self)(argument)
         except Exception:
@@ -173,7 +180,8 @@ class NamedIntervalClass(IntervalClass):
         return argument.__add__(self)
 
     def __str__(self):
-        r'''Gets string representation of named interval-class.
+        """
+        Gets string representation of named interval-class.
 
         ..  container:: example
 
@@ -181,14 +189,15 @@ class NamedIntervalClass(IntervalClass):
             '-M2'
 
         Returns string.
-        '''
+        """
         return self.name
 
     def __sub__(self, argument):
-        r'''Subtracts `argument` from named interval-class.
+        """
+        Subtracts `argument` from named interval-class.
 
         Returns new named interval-class.
-        '''
+        """
         import abjad
         try:
             argument = type(self)(argument)
@@ -248,7 +257,8 @@ class NamedIntervalClass(IntervalClass):
 
     @property
     def direction_number(self):
-        r'''Gets direction number of named interval-class.
+        """
+        Gets direction number of named interval-class.
 
         ..  container:: example
 
@@ -262,14 +272,15 @@ class NamedIntervalClass(IntervalClass):
             -1
 
         Returns -1, 0 or 1.
-        '''
+        """
         if self.quality == 'P' and abs(self.number) == 1:
             return 0
         return mathtools.sign(self.number)
 
     @property
     def name(self):
-        r'''Gets name of named interval-class.
+        """
+        Gets name of named interval-class.
 
         ..  container:: example
 
@@ -277,7 +288,7 @@ class NamedIntervalClass(IntervalClass):
             '-M2'
 
         Returns string.
-        '''
+        """
         return '{}{}{}'.format(
             constants._direction_number_to_direction_symbol[
                 self.direction_number],
@@ -287,17 +298,19 @@ class NamedIntervalClass(IntervalClass):
 
     @property
     def quality(self):
-        r'''Gets quality of named interval-class.
+        """
+        Gets quality of named interval-class.
 
         Returns string.
-        '''
+        """
         return self._quality
 
     ### PUBLIC METHODS ###
 
     @classmethod
     def from_pitch_carriers(class_, pitch_carrier_1, pitch_carrier_2):
-        '''Makes named interval-class from `pitch_carrier_1` and
+        """
+        Makes named interval-class from `pitch_carrier_1` and
         `pitch_carrier_2`.
 
         ..  container:: example
@@ -341,7 +354,7 @@ class NamedIntervalClass(IntervalClass):
             NamedIntervalClass('-m3')
 
         Returns newly constructed named interval-class.
-        '''
+        """
         import abjad
         named_interval = abjad.NamedInterval.from_pitch_carriers(
             pitch_carrier_1,

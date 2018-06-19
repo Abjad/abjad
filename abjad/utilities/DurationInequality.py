@@ -1,11 +1,4 @@
-import typing
-from abjad import mathtools
-from abjad import typings
-from abjad.utilities.Duration import Duration
-from abjad.top.inspect import inspect
-from .Component import Component
 from .Inequality import Inequality
-from .Selection import Selection
 
 
 class DurationInequality(Inequality):
@@ -47,66 +40,63 @@ class DurationInequality(Inequality):
 
     def __init__(
         self,
-        operator_string: str = '<',
-        duration: typing.Union[
-            Duration,
-            typings.Infinities,
-            typings.IntegerPair,
-            ] = None,
-        *,
-        preprolated: bool = None,
-        ) -> None:
+        operator_string='<',
+        duration=None,
+        preprolated=None,
+        ):
+        import abjad
         Inequality.__init__(self, operator_string=operator_string)
         if duration is None:
-            duration = mathtools.Infinity()
+            duration = abjad.mathtools.Infinity()
         infinities = (
-            mathtools.Infinity(),
-            mathtools.NegativeInfinity(),
+            abjad.mathtools.Infinity(),
+            abjad.mathtools.NegativeInfinity(),
             )
         if duration not in infinities:
-            duration = Duration(duration)
+            duration = abjad.Duration(duration)
             assert 0 <= duration
-        prototype = (
-            Duration,
-            mathtools.Infinity,
-            mathtools.NegativeInfinity,
-            )
-        assert isinstance(duration, prototype)
         self._duration = duration
         self._preprolated = preprolated
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, argument) -> bool:
+    def __call__(self, argument):
         """
         Calls inequality on ``argument``.
+
+        Returns true or false.
         """
-        if isinstance(argument, Component):
+        import abjad
+        if isinstance(argument, abjad.Component):
             if self.preprolated:
                 duration = argument._get_preprolated_duration()
             else:
-                duration = inspect(argument).get_duration()
-        elif isinstance(argument, Selection):
+                duration = abjad.inspect(argument).get_duration()
+        elif isinstance(argument, abjad.Selection):
             if self.preprolated:
                 duration = argument._get_preprolated_duration()
             else:
-                duration = inspect(argument).get_duration()
+                duration = abjad.inspect(argument).get_duration()
         else:
-            duration = Duration(argument)
+            duration = abjad.Duration(argument)
         return self._operator_function(duration, self.duration)
 
     ### PUBLIC PROPERTIES ###
 
     @property
-    def duration(self) -> typing.Union[Duration, typings.Infinities]:
+    def duration(self):
         """
         Gets duration.
+
+        Returns duration.
         """
         return self._duration
 
     @property
-    def preprolated(self) -> typing.Optional[bool]:
+    def preprolated(self):
         """
         Is true when inequality evaluates preprolated duration.
+
+        Returns true, false or none.
         """
         return self._preprolated

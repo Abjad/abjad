@@ -4,7 +4,7 @@ from . import constants
 
 
 class NamedPitchClass(PitchClass):
-    '''Named pitch-class.
+    """Named pitch-class.
 
     ..  container:: example
 
@@ -108,7 +108,7 @@ class NamedPitchClass(PitchClass):
         >>> abjad.NamedPitchClass(abjad.Note("dqs''8."))
         NamedPitchClass('dqs')
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -138,7 +138,8 @@ class NamedPitchClass(PitchClass):
     ### SPECIAL METHODS ###
 
     def __add__(self, named_interval):
-        r'''Adds `named_interval` to named pitch-class.
+        """
+        Adds `named_interval` to named pitch-class.
 
         ..  container:: example
 
@@ -149,14 +150,15 @@ class NamedPitchClass(PitchClass):
             NamedPitchClass('b')
 
         Returns new named pitch-class.
-        '''
+        """
         import abjad
         dummy_pitch = abjad.NamedPitch((self.name, 4))
         pitch = named_interval.transpose(dummy_pitch)
         return type(self)(pitch)
 
     def __copy__(self, *arguments):
-        r'''Copies named pitch-class.
+        """
+        Copies named pitch-class.
 
         ..  container:: example
 
@@ -165,11 +167,12 @@ class NamedPitchClass(PitchClass):
             NamedPitchClass('cs')
 
         Returns new named pitch-class.
-        '''
+        """
         return super(NamedPitchClass, self).__copy__(*arguments)
 
     def __eq__(self, argument):
-        r'''Is true when `argument` can be coerced to a named pitch-class with
+        """
+        Is true when `argument` can be coerced to a named pitch-class with
         pitch-class name equal to that of this named pitch-class.
 
         ..  container:: example
@@ -200,11 +203,12 @@ class NamedPitchClass(PitchClass):
             True
 
         Returns true or false.
-        '''
+        """
         return super(NamedPitchClass, self).__eq__(argument)
 
     def __format__(self, format_specification=''):
-        r'''Formats named pitch-class.
+        """
+        Formats named pitch-class.
 
         ..  container:: example
 
@@ -214,21 +218,23 @@ class NamedPitchClass(PitchClass):
         Set `format_specification` to `''`, `'lilypond'` or `'storage'`.
 
         Returns string.
-        '''
+        """
         superclass = super(NamedPitchClass, self)
         return superclass.__format__(format_specification=format_specification)
 
     def __hash__(self):
-        r'''Hashes named pitch-class.
+        """
+        Hashes named pitch-class.
 
         Required to be explicitly redefined on Python 3 if __eq__ changes.
 
         Returns integer.
-        '''
+        """
         return super(NamedPitchClass, self).__hash__()
 
     def __lt__(self, argument):
-        r'''Is true when `argument` is a named pitch-class with a pitch
+        """
+        Is true when `argument` is a named pitch-class with a pitch
         number greater than that of this named pitch-class.
 
         ..  container:: example
@@ -246,7 +252,7 @@ class NamedPitchClass(PitchClass):
             False
 
         Raises type error when `argument` is not a named pitch-class.
-        '''
+        """
         if not isinstance(argument, type(self)):
             message = 'can not compare named pitch-class to {!r}.'
             message = message.format(argument)
@@ -254,7 +260,8 @@ class NamedPitchClass(PitchClass):
         return self.number < argument.number
 
     def __radd__(self, interval):
-        r'''Right-addition not defined on named pitch-classes.
+        """
+        Right-addition not defined on named pitch-classes.
 
         ..  container:: example
 
@@ -263,13 +270,14 @@ class NamedPitchClass(PitchClass):
                 ...
             NotImplementedError: right-addition not defined on NamedPitchClass.
 
-        '''
+        """
         message = 'right-addition not defined on {}.'
         message = message.format(type(self).__name__)
         raise NotImplementedError(message)
 
     def __str__(self):
-        r'''Gets string representation of named pitch-class.
+        """
+        Gets string representation of named pitch-class.
 
         ..  container:: example
 
@@ -277,11 +285,12 @@ class NamedPitchClass(PitchClass):
             'cs'
 
         Returns string.
-        '''
+        """
         return self.name
 
     def __sub__(self, argument):
-        r'''Subtracts `argument` from named pitch-class.
+        """
+        Subtracts `argument` from named pitch-class.
 
         ..  container:: example
 
@@ -295,7 +304,7 @@ class NamedPitchClass(PitchClass):
             NamedInversionEquivalentIntervalClass('+A1')
 
         Returns named inversion-equivalent interval-class.
-        '''
+        """
         import abjad
         if not isinstance(argument, type(self)):
             message = 'must be named pitch-class: {!r}.'
@@ -369,7 +378,8 @@ class NamedPitchClass(PitchClass):
 
     @property
     def accidental(self):
-        r'''Gets accidental.
+        """
+        Gets accidental.
 
         ..  container:: example
 
@@ -377,20 +387,22 @@ class NamedPitchClass(PitchClass):
             Accidental('sharp')
 
         Returns accidental.
-        '''
+        """
         return self._accidental
 
     @property
     def arrow(self):
-        r'''Gets arrow of named pitch-class.
+        """
+        Gets arrow of named pitch-class.
 
         Returns up, down or none.
-        '''
+        """
         return self._accidental.arrow
 
     @property
     def name(self):
-        r'''Gets name of named pitch-class.
+        """
+        Gets name of named pitch-class.
 
         ..  container:: example
 
@@ -398,7 +410,7 @@ class NamedPitchClass(PitchClass):
             'cs'
 
         Returns string.
-        '''
+        """
         diatonic_pc_name = constants._diatonic_pc_number_to_diatonic_pc_name[
             self._diatonic_pc_number
             ]
@@ -406,7 +418,8 @@ class NamedPitchClass(PitchClass):
 
     @property
     def number(self):
-        r'''Gets number.
+        """
+        Gets number.
 
         ..  container:: example
 
@@ -414,7 +427,7 @@ class NamedPitchClass(PitchClass):
             1
 
         Returns nonnegative integer or float.
-        '''
+        """
         dictionary = constants._diatonic_pc_number_to_pitch_class_number
         result = dictionary[self._diatonic_pc_number]
         result += self._accidental.semitones
@@ -423,7 +436,8 @@ class NamedPitchClass(PitchClass):
 
     @property
     def pitch_class_label(self):
-        r'''Gets pitch-class label.
+        """
+        Gets pitch-class label.
 
         ..  container:: example
 
@@ -431,7 +445,7 @@ class NamedPitchClass(PitchClass):
             'C#'
 
         Returns string.
-        '''
+        """
         return '{}{}'.format(
             self._get_diatonic_pc_name().upper(),
             self.accidental.symbol,
@@ -440,10 +454,11 @@ class NamedPitchClass(PitchClass):
     ### PUBLIC METHODS ###
 
     def invert(self, axis=None):
-        r'''Inverts named pitch-class.
+        """
+        Inverts named pitch-class.
 
         Not yet implemented.
-        '''
+        """
         import abjad
         axis = axis or abjad.NamedPitch('c')
         axis = abjad.NamedPitch(axis)
@@ -454,7 +469,8 @@ class NamedPitchClass(PitchClass):
         return result
 
     def multiply(self, n=1):
-        r'''Multiplies named pitch-class by `n`.
+        """
+        Multiplies named pitch-class by `n`.
 
         ..  container:: example
 
@@ -462,11 +478,12 @@ class NamedPitchClass(PitchClass):
             NamedPitchClass('ef')
 
         Returns new named pitch-class.
-        '''
+        """
         return type(self)(n * self.number)
 
     def transpose(self, n=0):
-        r'''Transposes named pitch-class by index named interval `n`.
+        """
+        Transposes named pitch-class by index named interval `n`.
 
         ..  container:: example
 
@@ -483,7 +500,7 @@ class NamedPitchClass(PitchClass):
             NamedPitchClass('ds')
 
         Returns new named pitch-class.
-        '''
+        """
         import abjad
         interval = abjad.NamedInterval(n)
         pitch = abjad.NamedPitch((self.name, 4))

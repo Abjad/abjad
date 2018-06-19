@@ -382,9 +382,6 @@ it::
     # Defaults to $HOME.abjad/output/
     abjad_output_directory = /Users/username/.abjad/output
 
-    # Default accidental spelling (mixed|sharps|flats).
-    accidental_spelling = mixed
-
     # Comma-separated list of LilyPond files that 
     # Abjad will "\include" in all generated *.ly files
     lilypond_includes = ,

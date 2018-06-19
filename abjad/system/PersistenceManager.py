@@ -124,7 +124,7 @@ class PersistenceManager(AbjadObject):
         ly_file_path, abjad_formatting_time = result
         timer = abjad.Timer()
         with timer:
-            abjad.IOManager.run_lilypond(ly_file_path)
+            success = abjad.IOManager.run_lilypond(ly_file_path)
         lilypond_rendering_time = timer.elapsed_time
         if os.name == 'nt':
             extension = 'mid'
@@ -136,7 +136,12 @@ class PersistenceManager(AbjadObject):
             )
         if remove_ly:
             os.remove(ly_file_path)
-        return midi_file_path, abjad_formatting_time, lilypond_rendering_time
+        return (
+            midi_file_path,
+            abjad_formatting_time,
+            lilypond_rendering_time,
+            success,
+            )
 
     def as_module(self, module_file_path, object_name):
         """

@@ -1,4 +1,3 @@
-# TODO: move to bound method of utilities.Ratio
 def partition_integer_by_ratio(n, ratio):
     """
     Partitions positive integer-equivalent ``n`` by ``ratio``.
@@ -55,13 +54,11 @@ def partition_integer_by_ratio(n, ratio):
     Returns list of integers.
     """
     from abjad import mathtools
-    # TODO: move to bound method of Ratio
-    from abjad.utilities.Ratio import Ratio
     if not mathtools.is_integer_equivalent_number(n):
         message = 'is not integer-equivalent number: {!r}.'
         message = message.format(n)
         raise TypeError(message)
-    ratio = Ratio(ratio).numbers
+    ratio = mathtools.Ratio(ratio).numbers
     if not all(
         mathtools.is_integer_equivalent_number(part)
         for part in ratio
