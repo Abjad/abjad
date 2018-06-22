@@ -756,8 +756,8 @@ def test_Mutation_split_10():
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     leaves = abjad.select(staff).leaves()
-    beam_1 = abjad.Beam()
-    beam_2 = abjad.Beam()
+    beam_1 = abjad.Beam(beam_lone_notes=True)
+    beam_2 = abjad.Beam(beam_lone_notes=True)
     abjad.attach(beam_1, leaves[:2])
     abjad.attach(beam_2, leaves[-2:])
     slur = abjad.Slur()
@@ -839,8 +839,8 @@ def test_Mutation_split_11():
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     leaves = abjad.select(staff).leaves()
-    beam_1 = abjad.Beam()
-    beam_2 = abjad.Beam()
+    beam_1 = abjad.Beam(beam_lone_notes=True)
+    beam_2 = abjad.Beam(beam_lone_notes=True)
     abjad.attach(beam_1, leaves[:2])
     abjad.attach(beam_2, leaves[-2:])
     slur = abjad.Slur()
@@ -931,8 +931,8 @@ def test_Mutation_split_12():
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     leaves = abjad.select(staff).leaves()
-    beam_1 = abjad.Beam()
-    beam_2 = abjad.Beam()
+    beam_1 = abjad.Beam(beam_lone_notes=True)
+    beam_2 = abjad.Beam(beam_lone_notes=True)
     abjad.attach(beam_1, leaves[:2])
     abjad.attach(beam_2, leaves[-2:])
     slur = abjad.Slur()
@@ -1019,8 +1019,8 @@ def test_Mutation_split_13():
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     leaves = abjad.select(staff).leaves()
-    beam_1 = abjad.Beam()
-    beam_2 = abjad.Beam()
+    beam_1 = abjad.Beam(beam_lone_notes=True)
+    beam_2 = abjad.Beam(beam_lone_notes=True)
     abjad.attach(beam_1, leaves[:2])
     abjad.attach(beam_2, leaves[-2:])
     slur = abjad.Slur()
@@ -1170,8 +1170,8 @@ def test_Mutation_split_15():
         abjad.Measure((2, 8), "c'8 d'8"),
         abjad.Measure((2, 8), "e'8 f'8"),
         ]
-    beam_1 = abjad.Beam()
-    beam_2 = abjad.Beam()
+    beam_1 = abjad.Beam(beam_lone_notes=True)
+    beam_2 = abjad.Beam(beam_lone_notes=True)
     abjad.attach(beam_1, measures[0][:])
     abjad.attach(beam_2, measures[1][:])
 
@@ -1247,8 +1247,8 @@ def test_Mutation_split_16():
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     leaves = abjad.select(staff).leaves()
-    beam_1 = abjad.Beam()
-    beam_2 = abjad.Beam()
+    beam_1 = abjad.Beam(beam_lone_notes=True)
+    beam_2 = abjad.Beam(beam_lone_notes=True)
     abjad.attach(beam_1, leaves[:2])
     abjad.attach(beam_2, leaves[-2:])
     slur = abjad.Slur()
@@ -1335,8 +1335,8 @@ def test_Mutation_split_17():
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     leaves = abjad.select(staff).leaves()
-    beam_1 = abjad.Beam()
-    beam_2 = abjad.Beam()
+    beam_1 = abjad.Beam(beam_lone_notes=True)
+    beam_2 = abjad.Beam(beam_lone_notes=True)
     abjad.attach(beam_1, leaves[:2])
     abjad.attach(beam_2, leaves[-2:])
     slur = abjad.Slur()
@@ -1428,8 +1428,8 @@ def test_Mutation_split_18():
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     leaves = abjad.select(staff).leaves()
-    beam_1 = abjad.Beam()
-    beam_2 = abjad.Beam()
+    beam_1 = abjad.Beam(beam_lone_notes=True)
+    beam_2 = abjad.Beam(beam_lone_notes=True)
     abjad.attach(beam_1, leaves[:2])
     abjad.attach(beam_2, leaves[-2:])
     slur = abjad.Slur()
@@ -1519,8 +1519,8 @@ def test_Mutation_split_19():
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     leaves = abjad.select(staff).leaves()
-    beam_1 = abjad.Beam()
-    beam_2 = abjad.Beam()
+    beam_1 = abjad.Beam(beam_lone_notes=True)
+    beam_2 = abjad.Beam(beam_lone_notes=True)
     abjad.attach(beam_1, leaves[:2])
     abjad.attach(beam_2, leaves[-2:])
     slur = abjad.Slur()
@@ -1795,8 +1795,8 @@ def test_Mutation_split_22():
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     leaves = abjad.select(staff).leaves()
-    beam_1 = abjad.Beam()
-    beam_2 = abjad.Beam()
+    beam_1 = abjad.Beam(beam_lone_notes=True)
+    beam_2 = abjad.Beam(beam_lone_notes=True)
     abjad.attach(beam_1, leaves[:2])
     abjad.attach(beam_2, leaves[-2:])
     slur = abjad.Slur()
@@ -1881,8 +1881,8 @@ def test_Mutation_split_23():
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     leaves = abjad.select(staff).leaves()
-    beam_1 = abjad.Beam()
-    beam_2 = abjad.Beam()
+    beam_1 = abjad.Beam(beam_lone_notes=True)
+    beam_2 = abjad.Beam(beam_lone_notes=True)
     abjad.attach(beam_1, leaves[:2])
     abjad.attach(beam_2, leaves[-2:])
     slur = abjad.Slur()
@@ -2878,9 +2878,9 @@ def test_Mutation_split_37():
     staff.append(abjad.Measure((2, 8), "c'8 d'8"))
     staff.append(abjad.Measure((2, 8), "e'8 f'8"))
     leaves = abjad.select(staff).leaves()
-    beam = abjad.Beam()
+    beam = abjad.Beam(beam_lone_notes=True)
     abjad.attach(beam, leaves[:2])
-    beam = abjad.Beam()
+    beam = abjad.Beam(beam_lone_notes=True)
     abjad.attach(beam, leaves[-2:])
     slur = abjad.Slur()
     abjad.attach(slur, leaves)
@@ -2959,7 +2959,7 @@ def test_Mutation_split_38():
 
     staff = abjad.Staff([abjad.Measure((3, 8), "c'8. d'8.")])
     leaves = abjad.select(staff).leaves()
-    beam = abjad.Beam()
+    beam = abjad.Beam(beam_lone_notes=True)
     abjad.attach(beam, leaves)
     slur = abjad.Slur()
     abjad.attach(slur, leaves)
@@ -3155,7 +3155,7 @@ def test_Mutation_split_41():
 
     voice = abjad.Voice([abjad.Container("c'8 d'8 e'8 f'8")])
     leaves = abjad.select(voice).leaves()
-    beam = abjad.Beam()
+    beam = abjad.Beam(beam_lone_notes=True)
     abjad.attach(beam, leaves)
     slur = abjad.Slur()
     abjad.attach(slur, leaves)
@@ -3452,7 +3452,7 @@ def test_Mutation_split_46():
     measure = abjad.Measure((3, 12), "c'8. d'8.", implicit_scaling=True)
     staff = abjad.Staff([measure])
     leaves = abjad.select(staff).leaves()
-    beam = abjad.Beam()
+    beam = abjad.Beam(beam_lone_notes=True)
     abjad.attach(beam, leaves)
 
     assert format(staff) == abjad.String.normalize(

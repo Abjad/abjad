@@ -304,31 +304,6 @@ class Inspection(AbjadObject):
         r"""
         Gets badly formed components.
 
-        ..  container:: example
-
-            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-            >>> staff[1].written_duration = (1, 4)
-            >>> beam = abjad.Beam()
-            >>> abjad.attach(beam, staff[:])
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    c'8
-                    [
-                    d'4
-                    e'8
-                    f'8
-                    ]
-                }
-
-            >>> abjad.inspect(staff).get_badly_formed_components()
-            [Note("d'4")]
-
-            Beamed long notes are not well-formed.
-
         Returns list.
         """
         import abjad
@@ -1257,13 +1232,13 @@ class Inspection(AbjadObject):
             []
 
             >>> abjad.inspect(staff[0]).get_spanners()
-            [Beam("c'8, d'8")]
+            [Beam("c'8, d'8", durations=(), span_beam_count=1)]
 
             >>> beams = abjad.inspect(staff[:]).get_spanners()
             >>> beams = list(beams)
             >>> beams.sort()
             >>> beams
-            [Beam("c'8, d'8"), Beam("e'8, f'8")]
+            [Beam("c'8, d'8", durations=(), span_beam_count=1), Beam("e'8, f'8", durations=(), span_beam_count=1)]
 
         """
         if isinstance(self.client, Container):
@@ -1707,41 +1682,7 @@ class Inspection(AbjadObject):
         """
         Is true when client is well-formed.
 
-        ..  container:: example
-
-            >>> staff = abjad.Staff("c'8 [ d' e' f'4. ]")
-
-            >>> abjad.inspect(staff[:3]).is_well_formed()
-            True
-
-            >>> abjad.inspect(staff[-1]).is_well_formed()
-            False
-
-            >>> abjad.inspect(staff).is_well_formed()
-            False
-
-        ..  container:: example
-
-            Checks can be turned off:
-
-            >>> staff = abjad.Staff("c'8 [ d' e' f'4. ]")
-
-            >>> abjad.inspect(staff[:3]).is_well_formed(
-            ...     check_beamed_long_notes=False,
-            ...     )
-            True
-
-            >>> abjad.inspect(staff[-1]).is_well_formed(
-            ...     check_beamed_long_notes=False,
-            ...     )
-            True
-
-            >>> abjad.inspect(staff).is_well_formed(
-            ...     check_beamed_long_notes=False,
-            ...     )
-            True
-
-        Returns false.
+        Returns true or false.
         """
         import abjad
         manager = abjad.WellformednessManager()
@@ -1887,83 +1828,6 @@ class Inspection(AbjadObject):
         ):
         r"""
         Tabulates well-formedness.
-
-        ..  container:: example
-
-            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-            >>> staff[1].written_duration = (1, 4)
-            >>> beam = abjad.Beam()
-            >>> abjad.attach(beam, staff[:])
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    c'8
-                    [
-                    d'4
-                    e'8
-                    f'8
-                    ]
-                }
-
-            >>> agent = abjad.inspect(staff)
-            >>> result = agent.tabulate_wellformedness()
-
-            >>> print(result)
-            1 /	1 beamed long notes
-            0 /	1 discontiguous spanners
-            0 /	5 duplicate ids
-            0 /	1 empty containers
-            0 /	0 misdurated measures
-            0 /	0 misfilled measures
-            0 /	0 mismatched enchained hairpins
-            0 /	0 mispitched ties
-            0 /	4 misrepresented flags
-            0 /	5 missing parents
-            0 /	0 nested measures
-            0 /	4 notes on wrong clef
-            0 /	4 out of range notes
-            0 /	1 overlapping beams
-            0 /	0 overlapping glissandi
-            0 /	0 overlapping hairpins
-            0 /	0 overlapping octavation spanners
-            0 /	0 overlapping ties
-            0 /	0 overlapping trill spanners
-            0 /	0 tied rests
-
-            Beamed long notes are not well-formed.
-
-        ..  container:: example
-
-            Checks can be turned off:
-
-            >>> agent = abjad.inspect(staff)
-            >>> result = agent.tabulate_wellformedness(
-            ...     check_overlapping_beams=False, 
-            ...     check_overlapping_glissandi=False, 
-            ...     check_overlapping_hairpins=False, 
-            ...     check_overlapping_octavation_spanners=False, 
-            ...     check_overlapping_ties=False, 
-            ...     check_overlapping_trill_spanners=False, 
-            ...     )
-
-            >>> print(result)
-            1 /	1 beamed long notes
-            0 /	1 discontiguous spanners
-            0 /	5 duplicate ids
-            0 /	1 empty containers
-            0 /	0 misdurated measures
-            0 /	0 misfilled measures
-            0 /	0 mismatched enchained hairpins
-            0 /	0 mispitched ties
-            0 /	4 misrepresented flags
-            0 /	5 missing parents
-            0 /	0 nested measures
-            0 /	4 notes on wrong clef
-            0 /	4 out of range notes
-            0 /	0 tied rests
 
         Returns string.
         """

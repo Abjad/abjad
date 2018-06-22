@@ -248,7 +248,7 @@ def test_Container_insert_10():
     """
 
     staff = abjad.Staff([abjad.Note(n, (1, 8)) for n in range(4)])
-    beam = abjad.Beam()
+    beam = abjad.Beam(beam_lone_notes=True)
     abjad.attach(beam, staff[:])
     staff.insert(1, abjad.Rest('r4'), fracture_spanners=True)
 
@@ -331,7 +331,7 @@ def test_Container_insert_13():
     """
 
     staff = abjad.Staff([abjad.Note(n, (1, 8)) for n in range(4)])
-    beam = abjad.Beam()
+    beam = abjad.Beam(beam_lone_notes=True)
     abjad.attach(beam, staff[:])
     staff.insert(-1, abjad.Rest('r4'), fracture_spanners=True)
 

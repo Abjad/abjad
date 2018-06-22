@@ -482,13 +482,18 @@ class LilyPondParser(Parser):
                     # and starting events are processed before ending ones
                     for event in starting_events:
                         if all_spanners[spanner_class]:
-                            message = 'already have beam.'
-                            raise Exception(message)
+                            raise Exception('already have beam.')
                         if hasattr(event, 'direction'):
-                            all_spanners[spanner_class].append(
-                                spanner_class(direction=event.direction))
+                            spanner_ = spanner_class(
+                                beam_lone_notes=True,
+                                direction=event.direction,
+                                )
+                            all_spanners[spanner_class].append(spanner_)
                         else:
-                            all_spanners[spanner_class].append(spanner_class())
+                            spanner_ = spanner_class(
+                                beam_lone_notes=True,
+                                )
+                            all_spanners[spanner_class].append(spanner_)
                     for _ in stopping_events:
                         if all_spanners[spanner_class]:
                             all_spanners[spanner_class][0]._append(leaf)
@@ -556,7 +561,7 @@ class LilyPondParser(Parser):
                             message = message.format(spanner_class.__name__)
                             raise Exception(message)
 
-                elif spanner_class is abjad_spanners.HorizontalBracketSpanner:
+                elif spanner_class is abjad_spanners.HorizontalBracket:
                     # Brackets can nest, meaning
                     # multiple brackets can begin or end on a leaf
                     # but can not both begin and end on the same leaf
@@ -893,7 +898,7 @@ class LilyPondParser(Parser):
             'CrescendoEvent': abjad_spanners.Hairpin,
             'DecrescendoEvent': abjad_spanners.Hairpin,
             'GlissandoEvent': abjad_spanners.Glissando,
-            'NoteGroupingEvent': abjad_spanners.HorizontalBracketSpanner,
+            'NoteGroupingEvent': abjad_spanners.HorizontalBracket,
             'PhrasingSlurEvent': abjad_spanners.PhrasingSlur,
             'SlurEvent': abjad_spanners.Slur,
             'TextSpanEvent': abjad_spanners.TextSpanner,

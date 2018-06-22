@@ -125,26 +125,15 @@ def tweak(argument):
             \new Staff
             {
                 c'4
-                ^ \markup {
-                    \column
-                        {
-                            \line
-                                {
-                                    "Allegro assai ..."
-                                }
-                            \line
-                                {
-                                    "... ma non troppo"
-                                }
-                        }
-                    }
+                - \tweak color #red
+                ^ \markup { "Allegro assai ..." }
+                - \tweak color #blue
+                - \tweak staff-padding #4
+                ^ \markup { "... ma non troppo" }
                 d'4
                 e'4
                 f'4
             }
-
-        ..  todo:: Remove courtesty autocolumn. This will make tweaks
-            work on every markup.
 
     ..  container:: example
 

@@ -259,7 +259,7 @@ class BenchmarkScoreMaker(AbjadObject):
             [4],
             cyclic=True,
             ):
-            beam = abjad.DuratedComplexBeam()
+            beam = abjad.Beam()
             abjad.attach(beam, part)
         return voice
 
@@ -282,7 +282,7 @@ class BenchmarkScoreMaker(AbjadObject):
             [20],
             cyclic=True,
             ):
-            beam = abjad.DuratedComplexBeam()
+            beam = abjad.Beam()
             abjad.attach(beam, part)
         return voice
 
@@ -305,7 +305,7 @@ class BenchmarkScoreMaker(AbjadObject):
             [100],
             cyclic=True,
             ):
-            beam = abjad.DuratedComplexBeam()
+            beam = abjad.Beam()
             abjad.attach(beam, part)
         return voice
 

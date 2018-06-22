@@ -81,23 +81,9 @@ def detach(argument, target=None, by_id=False):
         \new Staff
         {
             c'4
-            ^ \markup {
-                \column
-                    {
-                        \line                             %! +SCORE
-                            {                             %! +SCORE
-                                tutti                     %! +SCORE
-                            }                             %! +SCORE
-                    %@% \line                             %! +PARTS_VIOLIN_1
-                    %@%     {                             %! +PARTS_VIOLIN_1
-                    %@%         "with the others"         %! +PARTS_VIOLIN_1
-                    %@%     }                             %! +PARTS_VIOLIN_1
-                    %@% \line                             %! +PARTS_VIOLIN_2
-                    %@%     {                             %! +PARTS_VIOLIN_2
-                    %@%         "with the others"         %! +PARTS_VIOLIN_2
-                    %@%     }                             %! +PARTS_VIOLIN_2
-                    }
-                }
+            ^ \markup { tutti }                           %! +SCORE
+        %@% ^ \markup { "with the others" }               %! +PARTS_VIOLIN_1
+        %@% ^ \markup { "with the others" }               %! +PARTS_VIOLIN_2
             d'4
             e'4
             f'4
@@ -146,23 +132,9 @@ def detach(argument, target=None, by_id=False):
         \new Staff
         {
             c'4
-            ^ \markup {
-                \column
-                    {
-                        \line                             %! +SCORE
-                            {                             %! +SCORE
-                                tutti                     %! +SCORE
-                            }                             %! +SCORE
-                    %@% \line                             %! +PARTS_VIOLIN_1
-                    %@%     {                             %! +PARTS_VIOLIN_1
-                    %@%         "with the others"         %! +PARTS_VIOLIN_1
-                    %@%     }                             %! +PARTS_VIOLIN_1
-                    %@% \line                             %! +PARTS_VIOLIN_2
-                    %@%     {                             %! +PARTS_VIOLIN_2
-                    %@%         "with the others"         %! +PARTS_VIOLIN_2
-                    %@%     }                             %! +PARTS_VIOLIN_2
-                    }
-                }
+            ^ \markup { tutti }                           %! +SCORE
+        %@% ^ \markup { "with the others" }               %! +PARTS_VIOLIN_1
+        %@% ^ \markup { "with the others" }               %! +PARTS_VIOLIN_2
             d'4
             e'4
             f'4
@@ -181,19 +153,8 @@ def detach(argument, target=None, by_id=False):
         \new Staff
         {
             c'4
-            ^ \markup {
-                \column
-                    {
-                        \line                             %! +SCORE
-                            {                             %! +SCORE
-                                tutti                     %! +SCORE
-                            }                             %! +SCORE
-                    %@% \line                             %! +PARTS_VIOLIN_2
-                    %@%     {                             %! +PARTS_VIOLIN_2
-                    %@%         "with the others"         %! +PARTS_VIOLIN_2
-                    %@%     }                             %! +PARTS_VIOLIN_2
-                    }
-                }
+            ^ \markup { tutti }                           %! +SCORE
+        %@% ^ \markup { "with the others" }               %! +PARTS_VIOLIN_2
             d'4
             e'4
             f'4

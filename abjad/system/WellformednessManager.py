@@ -81,43 +81,6 @@ class WellformednessManager(AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    def check_beamed_long_notes(self, argument=None):
-        r"""
-        Checks beamed long notes.
-
-        ..  container:: example
-
-            >>> staff = abjad.Staff("c'8 d' e' f'4.")
-            >>> abjad.attach(abjad.Beam(), staff[:])
-
-            >>> manager = abjad.WellformednessManager()
-            >>> violators, total = manager.check_beamed_long_notes(staff)
-            >>> violators
-            [Note("f'4.")]
-
-        Returns pair.
-
-        First item in pair is list of beamed long notes.
-
-        Second item in pair is count of all long notes in ``argument``.
-        """
-        import abjad
-        violators, total = [], set()
-        smart_beams = (
-            abjad.DuratedComplexBeam,
-            abjad.MultipartBeam,
-            )
-        for leaf in abjad.iterate(argument).leaves():
-            if leaf.written_duration < abjad.Duration(1, 4):
-                continue
-            total.add(leaf)
-            beams = abjad.inspect(leaf).get_spanners(abjad.Beam)
-            for beam in beams:
-                if isinstance(beam, smart_beams):
-                    continue
-                violators.append(leaf)
-        return violators, len(total)
-
     def check_discontiguous_spanners(self, argument=None):
         """
         Checks discontiguous spanners.
@@ -239,7 +202,6 @@ class WellformednessManager(AbjadObject):
 
             >>> agent = abjad.inspect(staff)
             >>> print(agent.tabulate_wellformedness())
-            0 /	4 beamed long notes
             0 /	2 discontiguous spanners
             0 /	5 duplicate ids
             0 / 1 empty containers
@@ -308,7 +270,6 @@ class WellformednessManager(AbjadObject):
 
             >>> agent = abjad.inspect(staff)
             >>> print(agent.tabulate_wellformedness())
-            0 /	2 beamed long notes
             0 /	1 discontiguous spanners
             0 /	3 duplicate ids
             0 / 1 empty containers
@@ -338,7 +299,6 @@ class WellformednessManager(AbjadObject):
 
             >>> agent = abjad.inspect(staff)
             >>> print(agent.tabulate_wellformedness())
-            0 /	2 beamed long notes
             0 /	1 discontiguous spanners
             0 /	3 duplicate ids
             0 / 1 empty containers
@@ -464,7 +424,6 @@ class WellformednessManager(AbjadObject):
 
             >>> agent = abjad.inspect(staff)
             >>> print(agent.tabulate_wellformedness())
-            0 /	0 beamed long notes
             0 /	0 discontiguous spanners
             0 /	5 duplicate ids
             0 /	1 empty containers
@@ -514,7 +473,6 @@ class WellformednessManager(AbjadObject):
             >>> print(agent.tabulate_wellformedness(
             ...     allow_percussion_clef=True,
             ...     ))
-            0 /	0 beamed long notes
             0 /	0 discontiguous spanners
             0 /	5 duplicate ids
             0 /	1 empty containers
@@ -543,7 +501,6 @@ class WellformednessManager(AbjadObject):
             >>> print(agent.tabulate_wellformedness(
             ...     allow_percussion_clef=False,
             ...     ))
-            0 /	0 beamed long notes
             0 /	0 discontiguous spanners
             0 /	5 duplicate ids
             0 /	1 empty containers
@@ -613,7 +570,6 @@ class WellformednessManager(AbjadObject):
 
             >>> agent = abjad.inspect(staff)
             >>> print(agent.tabulate_wellformedness())
-            0 /	0 beamed long notes
             0 /	0 discontiguous spanners
             0 /	5 duplicate ids
             0 /	1 empty containers
@@ -677,8 +633,8 @@ class WellformednessManager(AbjadObject):
             >>> for beam in sorted(violators):
             ...     beam
             ...
-            Beam("c'8, d'8, e'8")
-            Beam("e'8, f'8")
+            Beam("c'8, d'8, e'8", durations=(), span_beam_count=1)
+            Beam("e'8, f'8", durations=(), span_beam_count=1)
 
             (Enchained beams are not well-formed either.)
 
@@ -719,7 +675,6 @@ class WellformednessManager(AbjadObject):
 
             >>> agent = abjad.inspect(staff)
             >>> print(agent.tabulate_wellformedness())
-            0 /	4 beamed long notes
             0 /	2 discontiguous spanners
             0 /	5 duplicate ids
             0 / 1 empty containers
@@ -782,7 +737,6 @@ class WellformednessManager(AbjadObject):
 
             >>> agent = abjad.inspect(staff)
             >>> print(agent.tabulate_wellformedness())
-            0 /	4 beamed long notes
             0 /	2 discontiguous spanners
             0 /	5 duplicate ids
             0 / 1 empty containers
@@ -873,7 +827,6 @@ class WellformednessManager(AbjadObject):
 
             >>> agent = abjad.inspect(staff)
             >>> print(agent.tabulate_wellformedness())
-            0 /	4 beamed long notes
             0 /	2 discontiguous spanners
             0 /	5 duplicate ids
             0 /	1 empty containers

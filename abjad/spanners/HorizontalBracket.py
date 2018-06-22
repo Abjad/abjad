@@ -3,26 +3,26 @@ from abjad.markups import Markup
 from .Spanner import Spanner
 
 
-class HorizontalBracketSpanner(Spanner):
+class HorizontalBracket(Spanner):
     r"""
-    Horizontal bracket spanner.
+    Horizontal bracket.
 
     ..  container:: example
 
         >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
         >>> voice.consists_commands.append('Horizontal_bracket_engraver')
 
-        >>> spanner = abjad.HorizontalBracketSpanner()
+        >>> spanner = abjad.HorizontalBracket()
         >>> abjad.tweak(spanner).staff_padding = 6
         >>> abjad.tweak(spanner).color = 'blue'
         >>> abjad.attach(spanner, voice[:])
 
-        >>> spanner = abjad.HorizontalBracketSpanner()
+        >>> spanner = abjad.HorizontalBracket()
         >>> abjad.tweak(spanner).staff_padding = 4
         >>> abjad.tweak(spanner).color = 'red'
         >>> abjad.attach(spanner, voice[:2])
 
-        >>> spanner = abjad.HorizontalBracketSpanner()
+        >>> spanner = abjad.HorizontalBracket()
         >>> abjad.tweak(spanner).staff_padding = 4
         >>> abjad.tweak(spanner).color = 'red'
         >>> abjad.attach(spanner, voice[2:])
@@ -107,7 +107,7 @@ class HorizontalBracketSpanner(Spanner):
 
             >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
             >>> voice.consists_commands.append('Horizontal_bracket_engraver')
-            >>> spanner = abjad.HorizontalBracketSpanner()
+            >>> spanner = abjad.HorizontalBracket()
             >>> abjad.tweak(spanner).staff_padding = 4
             >>> abjad.attach(spanner, voice[:3])
             >>> abjad.show(voice) # doctest: +SKIP
@@ -134,7 +134,7 @@ class HorizontalBracketSpanner(Spanner):
 
             >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
             >>> voice.consists_commands.append('Horizontal_bracket_engraver')
-            >>> spanner = abjad.HorizontalBracketSpanner(leak=True)
+            >>> spanner = abjad.HorizontalBracket(leak=True)
             >>> abjad.tweak(spanner).staff_padding = 4
             >>> abjad.attach(spanner, voice[:3])
             >>> abjad.show(voice) # doctest: +SKIP
@@ -158,19 +158,19 @@ class HorizontalBracketSpanner(Spanner):
                 }
 
         """
-        return super(HorizontalBracketSpanner, self).leak
+        return super(HorizontalBracket, self).leak
 
     @property
     def markup(self) -> typing.Optional[Markup]:
         """
-        Gets horizonal bracket spanner markup.
+        Gets horizonal bracket markup.
 
         ..  container:: example
 
             Gets markup:
 
             >>> markup = abjad.Markup('3-1[012]').smaller()
-            >>> spanner = abjad.HorizontalBracketSpanner(markup=markup)
+            >>> spanner = abjad.HorizontalBracket(markup=markup)
 
             >>> spanner.markup
             Markup(contents=[MarkupCommand('smaller', '3-1[012]')])
@@ -179,7 +179,7 @@ class HorizontalBracketSpanner(Spanner):
 
             Defaults to none:
 
-            >>> spanner = abjad.HorizontalBracketSpanner()
+            >>> spanner = abjad.HorizontalBracket()
             >>> spanner.markup is None
             True
 
@@ -194,11 +194,11 @@ class HorizontalBracketSpanner(Spanner):
 
         ..  container:: example
 
-            >>> abjad.HorizontalBracketSpanner().start_command()
+            >>> abjad.HorizontalBracket().start_command()
             ['\\startGroup']
 
         """
-        return super(HorizontalBracketSpanner, self).start_command()
+        return super(HorizontalBracket, self).start_command()
 
     def stop_command(self) -> typing.Optional[str]:
         r"""
@@ -206,16 +206,16 @@ class HorizontalBracketSpanner(Spanner):
 
         ..  container:: example
 
-            >>> abjad.HorizontalBracketSpanner().stop_command()
+            >>> abjad.HorizontalBracket().stop_command()
             '\\stopGroup'
 
             With leak:
 
-            >>> abjad.HorizontalBracketSpanner(leak=True).stop_command()
+            >>> abjad.HorizontalBracket(leak=True).stop_command()
             '<> \\stopGroup'
 
         """
-        string = super(HorizontalBracketSpanner, self).stop_command()
+        string = super(HorizontalBracket, self).stop_command()
         if self.leak:
             string = f'{self._empty_chord} {string}'
         return string

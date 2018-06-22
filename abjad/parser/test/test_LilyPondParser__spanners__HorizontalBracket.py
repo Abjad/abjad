@@ -6,11 +6,11 @@ def test_LilyPondParser__spanners__HorizontalBracket_01():
 
     maker = abjad.NoteMaker()
     target = abjad.Container(maker([0] * 4, [(1, 4)]))
-    bracket = abjad.HorizontalBracketSpanner()
+    bracket = abjad.HorizontalBracket()
     abjad.attach(bracket, target[:])
-    bracket = abjad.HorizontalBracketSpanner()
+    bracket = abjad.HorizontalBracket()
     abjad.attach(bracket, target[:2])
-    bracket = abjad.HorizontalBracketSpanner()
+    bracket = abjad.HorizontalBracket()
     abjad.attach(bracket, target[2:])
 
     assert format(target) == abjad.String.normalize(

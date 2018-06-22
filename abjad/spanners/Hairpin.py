@@ -1,9 +1,9 @@
 import typing
 from .Spanner import Spanner
+from abjad import enumerations
 from abjad.core.Chord import Chord
 from abjad.core.Leaf import Leaf
 from abjad.core.Note import Note
-from abjad.enumerations import VerticalAlignment
 from abjad.indicators.Dynamic import Dynamic
 from abjad.lilypondnames.LilyPondGrobOverride import LilyPondGrobOverride
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
@@ -119,9 +119,9 @@ class Hairpin(Spanner):
             \new Voice
             {
                 c'2.
+                \f
                 - \tweak circled-tip ##t
                 \>
-                \f
                 r4
                 \!
             }
@@ -231,7 +231,6 @@ class Hairpin(Spanner):
             {
                 r8
                 d'8
-                \<
                 _ #(make-dynamic-script
                     (markup
                         #:whiteout
@@ -244,6 +243,7 @@ class Hairpin(Spanner):
                             )
                         )
                     )
+                \<
                 e'8
                 f'8
                 g'8
@@ -305,11 +305,13 @@ class Hairpin(Spanner):
         descriptor: str = None,
         *,
         context: str = None,
-        direction: VerticalAlignment = None,
+        direction: enumerations.VerticalAlignment = None,
         leak: bool = None,
         start_dynamic_is_textual: bool = None,
         stop_dynamic_is_textual: bool = None,
         ) -> None:
+        if isinstance(leak, str):
+            leak = Dynamic(leak)
         Spanner.__init__(self, leak=leak)
         if context is not None:
             assert isinstance(context, str), repr(context)
@@ -414,6 +416,8 @@ class Hairpin(Spanner):
         if self._right_broken and dynamic.name == 'niente':
             return [string]
         next_dynamic = self._get_next_piecewise_dynamic_from(leaf)
+        if next_dynamic is None and isinstance(self.leak, Dynamic):
+            next_dynamic = self.leak
         if not next_dynamic:
             return []
         if dynamic.name == 'niente' or next_dynamic.name == 'niente':
@@ -433,8 +437,6 @@ class Hairpin(Spanner):
         else:
             string = dynamic._get_lilypond_format()
         string = self._add_direction(string)
-        if leaf is self[-1]:
-            string = self._add_leak(string)
         previous_dynamic = self._get_previous_piecewise_dynamic_from(leaf)
         if previous_dynamic is None:
             bundle.right.spanner_starts.append(string)
@@ -444,7 +446,7 @@ class Hairpin(Spanner):
     def _add_piecewise_hairpin_start(self, leaf, bundle, tweaks):
         if (leaf is self[0] and
             self._left_broken is not None and
-            1 < len(self)):
+            self._is_long_enough()):
             string = '\\' + self._left_broken
             string = self._add_direction(string)
             strings = tweaks + [string]
@@ -454,6 +456,8 @@ class Hairpin(Spanner):
             if dynamic is None:
                 return
             next_dynamic = self._get_next_piecewise_dynamic_from(leaf)
+            if next_dynamic is None and isinstance(self.leak, Dynamic):
+                next_dynamic = self.leak
             if next_dynamic is None:
                 if self._right_broken is not None:
                     right_broken = self._right_broken
@@ -478,6 +482,21 @@ class Hairpin(Spanner):
                 string = self._add_direction(string)
                 strings = tweaks + [string]
         bundle.right.spanner_starts.extend(strings)
+
+    def _add_piecewise_leaked_termination(self, leaf, bundle):
+        if not self.leak:
+            return
+        if leaf is not self[-1]:
+            return
+        assert isinstance(self.leak, Dynamic), repr(self.leak)
+        dynamic = self.leak
+        if dynamic.name == 'niente':
+            string = r'\!'
+        else:
+            string = dynamic._get_lilypond_format()
+        string = self._add_direction(string)
+        string = self._add_leak(string)
+        bundle.right.spanner_starts.append(string)
 
     def _add_piecewise_right_broken_hairpin_stop(self, leaf, bundle):
         if self._right_broken is None:
@@ -564,10 +583,11 @@ class Hairpin(Spanner):
         tweaks = self._make_circled_tip_tweaks(leaf)
         tweaks_ = tweak(self)._list_format_contributions()
         tweaks.extend(tweaks_)
-        self._add_piecewise_hairpin_start(leaf, bundle, tweaks)
         self._add_piecewise_dynamic(leaf, bundle)
+        self._add_piecewise_hairpin_start(leaf, bundle, tweaks)
+        self._add_piecewise_leaked_termination(leaf, bundle)
         self._add_piecewise_right_broken_hairpin_stop(leaf, bundle)
-        if self._is_my_only(leaf):
+        if self._is_my_only(leaf) and not self.leak:
             bundle.right.spanner_starts.extend(bundle.right.spanner_stops)
             bundle.right.spanner_stops[:] = []
         return bundle
@@ -642,6 +662,13 @@ class Hairpin(Spanner):
                 
     def _is_lone_pleaf(self):
         if len(self) == 1 and isinstance(self[0], (Chord, Note)):
+            return True
+        return False
+
+    def _is_long_enough(self):
+        if 1 < len(self):
+            return True
+        if self.leak and len(self) == 1:
             return True
         return False
 
@@ -755,8 +782,8 @@ class Hairpin(Spanner):
                     {
                         \voiceOne
                         e'8
-                        \<
                         \mf
+                        \<
                         f'8
                         g'8
                         \f
@@ -781,8 +808,8 @@ class Hairpin(Spanner):
                     {
                         \voiceTwo
                         c'2
-                        \<
                         \pp
+                        \<
                         b2
                         ~
                         b8
@@ -841,8 +868,8 @@ class Hairpin(Spanner):
                     d'4
                     e'4
                     f'4
-                %@% \<                                            %! SHOW_TO_JOIN_BROKEN_SPANNERS
                     \p
+                %@% \<                                            %! SHOW_TO_JOIN_BROKEN_SPANNERS
                 }
 
             >>> segment_2 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
@@ -886,8 +913,8 @@ class Hairpin(Spanner):
                         d'4
                         e'4
                         f'4
-                        \<                                        %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                         \p
+                        \<                                        %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                     }
                     \context Voice = "MainVoice"
                     {
@@ -923,8 +950,8 @@ class Hairpin(Spanner):
                     d'4
                     e'4
                     f'4
-                %@% \<                                            %! SHOW_TO_JOIN_BROKEN_SPANNERS
                     \p
+                %@% \<                                            %! SHOW_TO_JOIN_BROKEN_SPANNERS
                 }
 
             >>> segment_2 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
@@ -969,8 +996,8 @@ class Hairpin(Spanner):
                         d'4
                         e'4
                         f'4
-                        \<                                        %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                         \p
+                        \<                                        %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                     }
                     \context Voice = "MainVoice"
                     {
@@ -1004,8 +1031,8 @@ class Hairpin(Spanner):
                 }
                 {
                     c'4
-                    \<
                     \p
+                    \<
                     d'4
                     e'4
                     f'4
@@ -1050,8 +1077,8 @@ class Hairpin(Spanner):
                     }
                     {
                         c'4
-                        \<
                         \p
+                        \<
                         d'4
                         e'4
                         f'4
@@ -1088,8 +1115,8 @@ class Hairpin(Spanner):
                 }
                 {
                     c'4
-                    \<
                     \p
+                    \<
                     d'4
                     e'4
                     f'4
@@ -1135,8 +1162,8 @@ class Hairpin(Spanner):
                     }
                     {
                         c'4
-                        \<
                         \p
+                        \<
                         d'4
                         e'4
                         f'4
@@ -1513,9 +1540,9 @@ class Hairpin(Spanner):
                     d'4
                     e'4
                     f'4
+                    \p
                 %@% - \tweak circled-tip ##t                      %! SHOW_TO_JOIN_BROKEN_SPANNERS
                 %@% \>                                            %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                    \p
                 }
 
             >>> segment_2 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
@@ -1559,9 +1586,9 @@ class Hairpin(Spanner):
                         d'4
                         e'4
                         f'4
+                        \p
                         - \tweak circled-tip ##t                  %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                         \>                                        %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \p
                     }
                     \context Voice = "MainVoice"
                     {
@@ -1597,9 +1624,9 @@ class Hairpin(Spanner):
                     d'4
                     e'4
                     f'4
+                    \p
                 %@% - \tweak circled-tip ##t                      %! SHOW_TO_JOIN_BROKEN_SPANNERS
                 %@% \>                                            %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                    \p
                 }
 
             >>> segment_2 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
@@ -1644,9 +1671,9 @@ class Hairpin(Spanner):
                         d'4
                         e'4
                         f'4
+                        \p
                         - \tweak circled-tip ##t                  %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                         \>                                        %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \p
                     }
                     \context Voice = "MainVoice"
                     {
@@ -1680,9 +1707,9 @@ class Hairpin(Spanner):
                 }
                 {
                     c'4
+                    \p
                     - \tweak circled-tip ##t
                     \>
-                    \p
                     d'4
                     e'4
                     f'4
@@ -1727,9 +1754,9 @@ class Hairpin(Spanner):
                     }
                     {
                         c'4
+                        \p
                         - \tweak circled-tip ##t
                         \>
-                        \p
                         d'4
                         e'4
                         f'4
@@ -1766,9 +1793,9 @@ class Hairpin(Spanner):
                 }
                 {
                     c'4
+                    \p
                     - \tweak circled-tip ##t
                     \>
-                    \p
                     d'4
                     e'4
                     f'4
@@ -1814,9 +1841,9 @@ class Hairpin(Spanner):
                     }
                     {
                         c'4
+                        \p
                         - \tweak circled-tip ##t
                         \>
-                        \p
                         d'4
                         e'4
                         f'4
@@ -1932,9 +1959,9 @@ class Hairpin(Spanner):
                 \new Voice
                 {
                     c'2
+                    \f
                     - \tweak circled-tip ##t
                     \>
-                    \f
                     d'4
                     \!
                     r4
@@ -1943,10 +1970,9 @@ class Hairpin(Spanner):
             With leak:
 
             >>> voice = abjad.Voice("c'2 d'4 r4")
-            >>> hairpin = abjad.Hairpin(leak=True)
+            >>> hairpin = abjad.Hairpin(leak='niente')
             >>> abjad.attach(hairpin, voice[:2])
             >>> hairpin.attach(abjad.Dynamic('f'), hairpin[0])
-            >>> hairpin.attach(abjad.Dynamic('niente'), hairpin[-1])
             >>> abjad.show(voice) # doctest: +SKIP
 
             ..  docs::
@@ -1955,10 +1981,31 @@ class Hairpin(Spanner):
                 \new Voice
                 {
                     c'2
+                    \f
                     - \tweak circled-tip ##t
                     \>
-                    \f
                     d'4
+                    <> \!
+                    r4
+                }
+
+            REGRESSION. Leak on a single leaf:
+
+            >>> voice = abjad.Voice("c'2. r4")
+            >>> hairpin = abjad.Hairpin(leak='niente')
+            >>> abjad.attach(hairpin, voice[:1])
+            >>> hairpin.attach(abjad.Dynamic('f'), hairpin[0])
+            >>> abjad.show(voice) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(voice)
+                \new Voice
+                {
+                    c'2.
+                    \f
+                    - \tweak circled-tip ##t
+                    \>
                     <> \!
                     r4
                 }
@@ -2008,6 +2055,20 @@ class Hairpin(Spanner):
                     <> \!
                     r4
                 }
+
+        ..  container:: example
+
+            REGRESSION. Leak survives copy:
+
+            >>> import copy
+
+            >>> hairpin = abjad.Hairpin(leak=True)
+            >>> copy.copy(hairpin)
+            Hairpin(leak=True)
+
+            >>> hairpin = abjad.Hairpin(leak='niente')
+            >>> copy.copy(hairpin)
+            Hairpin(leak=Dynamic('niente', direction=Down, ordinal=NegativeInfinity, name_is_textual=True, sforzando=False))
 
         """
         return super(Hairpin, self).leak
@@ -2145,8 +2206,8 @@ class Hairpin(Spanner):
                 {
                     r8
                     d'8
-                    \<
                     _ #(make-dynamic-script (markup #:whiteout #:normal-text #:italic "barely audible"))
+                    \<
                     e'8
                     f'8
                     g'8
@@ -2180,8 +2241,8 @@ class Hairpin(Spanner):
             {
                 r8
                 d'8
-                \<
                 \barely_audible
+                \<
                 e'8
                 f'8
                 g'8
@@ -2258,8 +2319,8 @@ class Hairpin(Spanner):
                 {
                     r8
                     d'8
-                    \<
                     \p
+                    \<
                     e'8
                     f'8
                     g'8
@@ -2293,8 +2354,8 @@ class Hairpin(Spanner):
             {
                 r8
                 d'8
-                \<
                 \p
+                \<
                 e'8
                 f'8
                 g'8
@@ -2330,9 +2391,9 @@ class Hairpin(Spanner):
                 \new Staff
                 {
                     c'4
+                    \p
                     - \tweak color #blue
                     \<
-                    \p
                     d'4
                     e'4
                     f'4
@@ -2378,8 +2439,8 @@ class Hairpin(Spanner):
                 }
                 {
                     c'8
-                    \<
                     \p
+                    \<
                     d'8
                     e'8
                     \f
@@ -2433,7 +2494,6 @@ class Hairpin(Spanner):
                 }
                 {
                     c'8
-                    \<
                     _ #(make-dynamic-script
                         (markup
                             #:whiteout
@@ -2446,6 +2506,7 @@ class Hairpin(Spanner):
                                 )
                             )
                         )
+                    \<
                     d'8
                     e'8
                     _ #(make-dynamic-script
@@ -2542,9 +2603,9 @@ class Hairpin(Spanner):
                 }
                 {
                     c'8
+                    \f
                     - \tweak circled-tip ##t
                     \>
-                    \f
                     d'8
                     e'8
                     r8

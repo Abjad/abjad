@@ -14,7 +14,7 @@ def test_Container_remove_01():
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
     slur = abjad.Slur()
     abjad.attach(slur, voice[:])
-    beam = abjad.Beam()
+    beam = abjad.Beam(beam_lone_notes=True)
     abjad.attach(beam, voice[1:2])
 
     assert format(voice) == abjad.String.normalize(

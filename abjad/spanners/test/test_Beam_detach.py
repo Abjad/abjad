@@ -7,7 +7,7 @@ def test_Beam_detach_01():
     """
 
     staff = abjad.Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
-    beam = abjad.Beam()
+    beam = abjad.Beam(beam_lone_notes=True)
     abjad.attach(beam, staff[:1])
 
     assert format(staff) == abjad.String.normalize(

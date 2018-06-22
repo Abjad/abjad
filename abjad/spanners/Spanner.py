@@ -1,16 +1,16 @@
 import copy
 import typing
-from abjad.system.AbjadObject import AbjadObject
 from abjad.core.Leaf import Leaf
 from abjad.core.Selection import Selection
 from abjad.enumerations import Left
 from abjad.enumerations import Right
+from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.segments.Tags import Tags
+from abjad.system.AbjadObject import AbjadObject
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.StorageFormatManager import StorageFormatManager
-from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.system.Tag import Tag
 from abjad.system.Wrapper import Wrapper
 from abjad.timespans import Timespan
@@ -68,8 +68,6 @@ class Spanner(AbjadObject):
         self._deactivate = None
         self._ignore_attachment_test = None
         self._ignore_before_attach = None
-        if leak is not None:
-            leak = bool(leak)
         self._leak = leak
         self._leaves: typing.List[Leaf] = []
         self._left_broken = None
@@ -297,7 +295,7 @@ class Spanner(AbjadObject):
         return result
 
     def _copy_keywords(self, new):
-        pass
+        new._leak = copy.copy(self.leak)
 
     def _detach(self):
         self._sever_all_leaves()

@@ -30,23 +30,6 @@ def test_Spanner__remove_01():
         )
 
     beam._remove(beam[1])
-
-    "Spanner is now discontiguous: c'8, e'8, f'8 but no d'8."
-
-    assert format(voice) == abjad.String.normalize(
-        r"""
-        \new Voice
-        {
-            c'8
-            [
-            d'8
-            e'8
-            f'8
-            ]
-        }
-        """
-        )
-
     assert not abjad.inspect(voice).is_well_formed()
 
 
