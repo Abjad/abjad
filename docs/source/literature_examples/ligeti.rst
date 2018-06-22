@@ -72,7 +72,7 @@ lower Voice will hold the eighth note run. First the eighth notes:
 
     voice_lower = abjad.Voice(notes)
     voice_lower.name = 'rh_lower'
-    command = abjad.LilyPondCommand('voiceTwo')
+    command = abjad.LilyPondLiteral(r'\voiceTwo')
     leaf = abjad.inspect(voice_lower).get_leaf(0)
     attach(command, leaf)
 
@@ -95,7 +95,7 @@ Now we construct the octave:
 
     voice_higher = abjad.Voice([chord])
     voice_higher.name = 'rh_higher'
-    command = abjad.LilyPondCommand('voiceOne')
+    command = abjad.LilyPondLiteral(r'\voiceOne')
     abjad.attach(command, voice_higher)
 
 The duration of the chord is half the duration of the running eighth notes if
@@ -107,7 +107,7 @@ number to 1, forcing the stem to always point up.
 Finally we combine the two voices in a simultaneous container:
 
 ..  abjad::
-    
+
     container = abjad.Container([voice_lower, voice_higher])
     container.is_simultaneous = True
 
@@ -115,7 +115,7 @@ This results in the complete *Désordre* *cell*:
 
 ..  abjad::
     :stylesheet: literature-examples.ily
-    
+
     cell = abjad.Staff([container])
     show(cell)
 
@@ -186,7 +186,7 @@ The final result:
 
 ..  abjad::
 
-    top = [
+    upper = [
         [[-1, 4, 5], [-1, 4, 5, 7, 9]], 
         [[0, 7, 9], [-1, 4, 5, 7, 9]], 
         [[2, 4, 5, 7, 9], [0, 5, 7]], 
@@ -200,7 +200,7 @@ The final result:
 
 ..  abjad::
 
-    bottom = [
+    lower = [
         [[-9, -4, -2], [-9, -4, -2, 1, 3]], 
         [[-6, -2, 1], [-9, -4, -2, 1, 3]], 
         [[-4, -2, 1, 3, 6], [-4, -2, 1]], 
@@ -214,7 +214,7 @@ The final result:
 
 ..  abjad::
 
-    score = ligeti.make_desordre_score([top, bottom])
+    score = ligeti.make_desordre_score([upper, lower])
 
 ..  abjad::
 
@@ -237,9 +237,8 @@ into the staff context.
 `Polymetric notation <http://lilypond.org/doc/v2.12/Documentation/user/lilypond/Displaying-rhythms#Polymetric-notation>`_
 to learn all about how this works.)
 
-In this example we a custom ``documentationtools`` function to set up our
-LilyPond file automatically.
+In this example we a custom function to set up our LilyPond file automatically.
 
-Explore the ``abjad/demos/desordre/`` directory for the complete code to
+Explore the ``abjad/demos/ligeti/`` directory for the complete code to
 this example, or import it into your Python session directly with ``from
-abjad.demos import desordre``.
+abjad.demos import ligeti``.

@@ -12,7 +12,7 @@ def make_bartok_score():
 
     # Build score skeleton
     score = abjad.Score()
-    piano_staff = abjad.StaffGroup([], lilypond_type='PianoStaff')
+    piano_staff = abjad.StaffGroup(lilypond_type='PianoStaff')
     upper_staff = abjad.Staff([])
     lower_staff = abjad.Staff([])
     piano_staff.append(upper_staff)
@@ -81,9 +81,8 @@ def make_bartok_score():
     score.add_final_bar_line()
 
     # Select leaves for attaching spanners to
-    abjad.selector = abjad.select().leaves()
-    upper_leaves = abjad.selector(upper_staff)
-    lower_leaves = abjad.selector(lower_staff)
+    upper_leaves = abjad.select(upper_staff).leaves()
+    lower_leaves = abjad.select(lower_staff).leaves()
 
     # Attach beams
     beam = abjad.Beam()
@@ -110,7 +109,7 @@ def make_bartok_score():
     # Attach a ritardando with markup
     markup = abjad.Markup('ritard.')
     text_spanner = abjad.TextSpanner()
-    abjad.override(text_spanner).text_spanner.bound_details__left__text = markup
+    abjad.tweak(text_spanner).bound_details__left__text = markup
     abjad.attach(text_spanner, upper_leaves[-7:])
 
     # Tie notes
@@ -128,6 +127,8 @@ def make_bartok_score():
 
 
 if __name__ == '__main__':
+    # for mypy
     from abjad import show
+
     lilypond_file = make_bartok_score()
     show(lilypond_file)

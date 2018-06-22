@@ -78,8 +78,8 @@ class Arpeggio(AbjadValueObject):
         bundle = LilyPondFormatBundle()
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions()
-            bundle.right.articulations.extend(tweaks)
-        bundle.right.articulations.append(r'\arpeggio')
+            bundle.after.articulations.extend(tweaks)
+        bundle.after.articulations.append(r'\arpeggio')
         if self.direction in (Up, Down):
             if self.direction is Up:
                 command = r'\arpeggioArrowUp'

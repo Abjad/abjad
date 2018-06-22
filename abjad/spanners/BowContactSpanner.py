@@ -255,8 +255,8 @@ class BowContactSpanner(Spanner):
             tweaks = self._make_glissando_tweaks(
                 bow_motion_technique=bow_motion_technique,
                 )
-            bundle.right.spanner_starts.extend(tweaks)
-            bundle.right.spanner_starts.extend(self.start_command())
+            bundle.after.spanner_starts.extend(tweaks)
+            bundle.after.spanner_starts.extend(self.start_command())
         return bundle
 
     def _get_piecewise(self, leaf):
@@ -344,7 +344,7 @@ class BowContactSpanner(Spanner):
             elif direction_change is Down:
                 articulation = Articulation('downbow', direction=Up)
             string = str(articulation)
-        bundle.right.articulations.append(string)
+        bundle.after.articulations.append(string)
 
     def _make_glissando_tweaks(
         self,
@@ -408,7 +408,7 @@ class BowContactSpanner(Spanner):
         """
         Attaches ``indicator`` to ``leaf`` in spanner.
         """
-        return super(BowContactSpanner, self)._attach_piecewise(
+        return super()._attach_piecewise(
             indicator,
             leaf,
             deactivate=deactivate,
@@ -426,7 +426,7 @@ class BowContactSpanner(Spanner):
             ['\\glissando']
 
         """
-        return super(BowContactSpanner, self).start_command()
+        return super().start_command()
 
     def stop_command(self) -> typing.Optional[str]:
         """
@@ -438,4 +438,4 @@ class BowContactSpanner(Spanner):
             True
 
         """
-        return super(BowContactSpanner, self).stop_command()
+        return super().stop_command()

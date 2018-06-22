@@ -150,12 +150,6 @@ class RehearsalMark(AbjadValueObject):
         """
         return self._get_lilypond_format()
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _contents_repr_string(self):
-        return str(self)
-
     ### PRIVATE METHODS ###
 
     def _get_lilypond_format(self):

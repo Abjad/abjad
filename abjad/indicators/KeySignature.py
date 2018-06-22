@@ -105,12 +105,6 @@ class KeySignature(AbjadValueObject):
         """
         return f'{self.tonic!s}-{self.mode!s}'
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _contents_repr_string(self):
-        return f'{self.tonic!r}, {self.mode!r}'
-
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):

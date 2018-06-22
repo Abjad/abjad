@@ -240,12 +240,6 @@ class Clef(AbjadValueObject):
             format_specification=format_specification,
             )
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _contents_repr_string(self):
-        return repr(self._name)
-
     ### PRIVATE METHODS ###
 
     def _calculate_middle_c_position(self, clef_name):

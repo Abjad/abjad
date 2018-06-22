@@ -1,4 +1,5 @@
 import typing
+from abjad import typings
 from abjad.core.Chord import Chord
 from abjad.core.Component import Component
 from abjad.core.MultimeasureRest import MultimeasureRest
@@ -11,6 +12,7 @@ from abjad.top.inspect import inspect
 from abjad.top.iterate import iterate
 from abjad.top.sequence import sequence
 from abjad.top.tweak import tweak
+from abjad.utilities.DurationInequality import DurationInequality
 from abjad.utilities.String import String
 from .Spanner import Spanner
 
@@ -161,7 +163,11 @@ class Tie(Spanner):
         self,
         *,
         direction: typing.Union[str, VerticalAlignment] = None,
-        repeat: bool = None,
+        repeat: typing.Union[
+            bool,
+            typings.IntegerPair,
+            DurationInequality,
+            ] = None,
         ) -> None:
         Spanner.__init__(self)
         direction = String.to_tridirectional_lilypond_symbol(direction)
@@ -226,22 +232,22 @@ class Tie(Spanner):
                     return bundle
                 strings = self.start_command()
                 strings = self._tag_show(strings)
-                bundle.right.spanners.extend(strings)
+                bundle.after.spanners.extend(strings)
             elif isinstance(leaf._get_leaf(1), silent):
                 return bundle
             else:
                 strings = self.start_command()
-                bundle.right.spanners.extend(strings)
+                bundle.after.spanners.extend(strings)
         else:
             if leaf is self[0]:
                 if not self._left_broken:
                     return bundle
                 strings = [self.stop_command()]
                 strings = self._tag_show(strings)
-                bundle.right.spanners.extend(strings)
+                bundle.after.spanners.extend(strings)
             else:
                 strings = [self.stop_command()]
-                bundle.right.spanners.extend(strings)
+                bundle.after.spanners.extend(strings)
         return bundle
 
     ### PUBLIC PROPERTIES ###
@@ -876,7 +882,9 @@ class Tie(Spanner):
         return self._direction
 
     @property
-    def repeat(self) -> typing.Optional[bool]:
+    def repeat(self) -> typing.Union[
+        bool, DurationInequality, typings.IntegerPair, None,
+        ]:
         r"""
         Is true when tie should use the LilyPond ``\repeatTie`` command.
 

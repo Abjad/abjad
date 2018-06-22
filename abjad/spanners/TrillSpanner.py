@@ -91,6 +91,7 @@ class TrillSpanner(Spanner):
     __slots__ = (
         '_interval',
         '_is_harmonic',
+        '_leak',
         '_pitch',
         )
 
@@ -108,7 +109,7 @@ class TrillSpanner(Spanner):
         leak: bool = None,
         pitch: typing.Union[str, NamedPitch] = None,
         ) -> None:
-        Spanner.__init__(self, leak=leak)
+        Spanner.__init__(self)
         if interval is not None and pitch is not None:
             message = 'only pitch or interval, not both:'
             message += f' {interval!r} + {pitch!r}.'
@@ -119,6 +120,9 @@ class TrillSpanner(Spanner):
         if is_harmonic is not None:
             is_harmonic = bool(is_harmonic)
         self._is_harmonic = is_harmonic
+        if leak is not None:
+            leak = bool(leak)
+        self._leak = leak
         if pitch is not None:
             pitch = NamedPitch(pitch)
         self._pitch = pitch
@@ -134,9 +138,26 @@ class TrillSpanner(Spanner):
         if len(self) == 1 and self._left_broken:
             strings = [self.stop_command()]
             strings = self._tag_show(strings)
-            bundle.right.spanner_stops.extend(strings)
+            bundle.after.spanner_stops.extend(strings)
             return bundle
+        # important: pitch trill must start AFTER markup
         if leaf is self[0]:
+            if self.pitch is not None or self.interval is not None:
+                if self.is_harmonic:
+                    string = '(lambda (grob) (grob-interpret-markup grob'
+                    string += r' #{ \markup \musicglyph #"noteheads.s0harmonic" #}))'
+                    scheme = Scheme(string, verbatim=True)
+                    override = LilyPondGrobOverride(
+                        grob_name='TrillPitchHead',
+                        property_path=('stencil',),
+                        value=scheme,
+                        )
+                    string = override.tweak_string(grob=True)
+                    bundle.after.spanner_starts.append(string)
+                strings = [r'\pitchedTrill']
+                if self._left_broken:
+                    strings = self._tag_hide(strings)
+                bundle.opening.spanners.extend(strings)
             if self.pitch is not None:
                 pitch_string = str(self.pitch)
             elif self.interval is not None:
@@ -149,30 +170,13 @@ class TrillSpanner(Spanner):
                 strings[-1] += ' ' + pitch_string
             if self._left_broken:
                 strings = self._tag_hide(strings)
-            # important: pitch trill must start AFTER markup
             bundle.after.spanner_starts.extend(strings)
-            if self.pitch is not None or self.interval is not None:
-                if self.is_harmonic:
-                    string = '(lambda (grob) (grob-interpret-markup grob'
-                    string += r' #{ \markup \musicglyph #"noteheads.s0harmonic" #}))'
-                    scheme = Scheme(string, verbatim=True)
-                    override = LilyPondGrobOverride(
-                        grob_name='TrillPitchHead',
-                        property_path=('stencil',),
-                        value=scheme,
-                        )
-                    string = override.tweak_string(grob=True)
-                    bundle.right.spanner_starts.append(string)
-                strings = [r'\pitchedTrill']
-                if self._left_broken:
-                    strings = self._tag_hide(strings)
-                bundle.opening.spanners.extend(strings)
         if leaf is self[-1]:
             if 1 < len(self):
                 strings = [self.stop_command()]
                 if self._right_broken:
                     strings = self._tag_hide(strings)
-                bundle.right.spanner_stops.extend(strings)
+                bundle.after.spanner_stops.extend(strings)
         return bundle
 
     ### PUBLIC PROPERTIES ###
@@ -603,7 +607,7 @@ class TrillSpanner(Spanner):
                 }
 
         """
-        return super(TrillSpanner, self).leak
+        return self._leak
 
     @property
     def pitch(self) -> typing.Optional[NamedPitch]:
@@ -751,7 +755,7 @@ class TrillSpanner(Spanner):
             ['\\startTrillSpan']
 
         """
-        return super(TrillSpanner, self).start_command()
+        return super().start_command()
 
     def stop_command(self) -> typing.Optional[str]:
         r"""
@@ -768,6 +772,6 @@ class TrillSpanner(Spanner):
             '<> \\stopTrillSpan'
 
         """
-        string = super(TrillSpanner, self).stop_command()
+        string = super().stop_command()
         string = self._add_leak(string)
         return string

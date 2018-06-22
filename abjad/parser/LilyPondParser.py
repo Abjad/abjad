@@ -504,7 +504,7 @@ class LilyPondParser(Parser):
                     # but only one may start on a given leaf,
                     # and the event must start and end on separate leaves.
                     # If a hairpin already exists and another starts,
-                    # the pre-existant spanner is ended.
+                    # the preexistent spanner is ended.
                     for _ in stopping_events:
                         if all_spanners[spanner_class]:
                             all_spanners[spanner_class][0]._append(leaf)
@@ -527,8 +527,7 @@ class LilyPondParser(Parser):
                             spanner = spanner_class(descriptor=shape)
                             all_spanners[spanner_class].append(spanner)
                     elif 1 < len(starting_events):
-                        message = 'simultaneous dynamic span events.'
-                        raise Exception(message)
+                        raise Exception('simultaneous dynamic span events.')
 
                 elif spanner_class in [
                     abjad_spanners.Slur,

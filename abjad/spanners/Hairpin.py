@@ -306,13 +306,10 @@ class Hairpin(Spanner):
         *,
         context: str = None,
         direction: enumerations.VerticalAlignment = None,
-        leak: bool = None,
         start_dynamic_is_textual: bool = None,
         stop_dynamic_is_textual: bool = None,
         ) -> None:
-        if isinstance(leak, str):
-            leak = Dynamic(leak)
-        Spanner.__init__(self, leak=leak)
+        Spanner.__init__(self)
         if context is not None:
             assert isinstance(context, str), repr(context)
         self._context = context
@@ -401,7 +398,7 @@ class Hairpin(Spanner):
 
         Redefined in tandem with __eq__.
         """
-        return super(Hairpin, self).__hash__()
+        return super().__hash__()
 
     ### PRIVATE METHODS ###
 
@@ -416,8 +413,6 @@ class Hairpin(Spanner):
         if self._right_broken and dynamic.name == 'niente':
             return [string]
         next_dynamic = self._get_next_piecewise_dynamic_from(leaf)
-        if next_dynamic is None and isinstance(self.leak, Dynamic):
-            next_dynamic = self.leak
         if not next_dynamic:
             return []
         if dynamic.name == 'niente' or next_dynamic.name == 'niente':
@@ -439,9 +434,9 @@ class Hairpin(Spanner):
         string = self._add_direction(string)
         previous_dynamic = self._get_previous_piecewise_dynamic_from(leaf)
         if previous_dynamic is None:
-            bundle.right.spanner_starts.append(string)
+            bundle.after.spanner_starts.append(string)
         else:
-            bundle.right.spanner_stops.append(string)
+            bundle.after.spanner_stops.append(string)
 
     def _add_piecewise_hairpin_start(self, leaf, bundle, tweaks):
         if (leaf is self[0] and
@@ -456,8 +451,6 @@ class Hairpin(Spanner):
             if dynamic is None:
                 return
             next_dynamic = self._get_next_piecewise_dynamic_from(leaf)
-            if next_dynamic is None and isinstance(self.leak, Dynamic):
-                next_dynamic = self.leak
             if next_dynamic is None:
                 if self._right_broken is not None:
                     right_broken = self._right_broken
@@ -481,22 +474,7 @@ class Hairpin(Spanner):
                 string = r'\>'
                 string = self._add_direction(string)
                 strings = tweaks + [string]
-        bundle.right.spanner_starts.extend(strings)
-
-    def _add_piecewise_leaked_termination(self, leaf, bundle):
-        if not self.leak:
-            return
-        if leaf is not self[-1]:
-            return
-        assert isinstance(self.leak, Dynamic), repr(self.leak)
-        dynamic = self.leak
-        if dynamic.name == 'niente':
-            string = r'\!'
-        else:
-            string = dynamic._get_lilypond_format()
-        string = self._add_direction(string)
-        string = self._add_leak(string)
-        bundle.right.spanner_starts.append(string)
+        bundle.after.spanner_starts.extend(strings)
 
     def _add_piecewise_right_broken_hairpin_stop(self, leaf, bundle):
         if self._right_broken is None:
@@ -507,7 +485,7 @@ class Hairpin(Spanner):
             return
         strings = [self._stop_command]
         strings = self._tag_hide(strings)
-        bundle.right.spanner_stops.extend(strings)
+        bundle.after.spanner_stops.extend(strings)
 
     def _attachment_test_all(self, argument):
         if isinstance(argument, (Chord, Note)):
@@ -549,22 +527,22 @@ class Hairpin(Spanner):
         bundle = self._get_basic_lilypond_format_bundle(leaf)
         if self._is_lone_pleaf():
             string = self._get_directed_start_dynamic()
-            bundle.right.spanner_starts.append(string)
+            bundle.after.spanner_starts.append(string)
             return bundle
         if leaf is self[0] and self._has_niente():
             override = self._circled_tip()
             string = override.tweak_string()
-            bundle.right.spanner_starts.append(string)
+            bundle.after.spanner_starts.append(string)
         if leaf is self[0]:
             strings = self.start_command()
-            bundle.right.spanner_starts.extend(strings)
+            bundle.after.spanner_starts.extend(strings)
             if self._has_sounding_start_dynamic():
                 string = self._get_directed_start_dynamic()
-                bundle.right.spanner_starts.append(string)
+                bundle.after.spanner_starts.append(string)
         if leaf is self[-1]:
             string = self.stop_command()
             if string is not None:
-                bundle.right.spanner_stops.append(string)
+                bundle.after.spanner_stops.append(string)
         return bundle
 
     def _get_next_piecewise_dynamic_from(self, leaf):
@@ -585,11 +563,10 @@ class Hairpin(Spanner):
         tweaks.extend(tweaks_)
         self._add_piecewise_dynamic(leaf, bundle)
         self._add_piecewise_hairpin_start(leaf, bundle, tweaks)
-        self._add_piecewise_leaked_termination(leaf, bundle)
         self._add_piecewise_right_broken_hairpin_stop(leaf, bundle)
-        if self._is_my_only(leaf) and not self.leak:
-            bundle.right.spanner_starts.extend(bundle.right.spanner_stops)
-            bundle.right.spanner_stops[:] = []
+        if self._is_my_only(leaf):
+            bundle.after.spanner_starts.extend(bundle.after.spanner_stops)
+            bundle.after.spanner_stops[:] = []
         return bundle
 
     def _get_previous_piecewise_dynamic_from(self, leaf):
@@ -667,8 +644,6 @@ class Hairpin(Spanner):
 
     def _is_long_enough(self):
         if 1 < len(self):
-            return True
-        if self.leak and len(self) == 1:
             return True
         return False
 
@@ -1936,144 +1911,6 @@ class Hairpin(Spanner):
         return self._direction
 
     @property
-    def leak(self):
-        r"""
-        Is true when hairpin leaks one leaf to the right.
-
-        ..  container:: example
-
-            Piecewise.
-
-            Without leak:
-
-            >>> voice = abjad.Voice("c'2 d'4 r4")
-            >>> hairpin = abjad.Hairpin()
-            >>> abjad.attach(hairpin, voice[:2])
-            >>> hairpin.attach(abjad.Dynamic('f'), hairpin[0])
-            >>> hairpin.attach(abjad.Dynamic('niente'), hairpin[-1])
-            >>> abjad.show(voice) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(voice)
-                \new Voice
-                {
-                    c'2
-                    \f
-                    - \tweak circled-tip ##t
-                    \>
-                    d'4
-                    \!
-                    r4
-                }
-
-            With leak:
-
-            >>> voice = abjad.Voice("c'2 d'4 r4")
-            >>> hairpin = abjad.Hairpin(leak='niente')
-            >>> abjad.attach(hairpin, voice[:2])
-            >>> hairpin.attach(abjad.Dynamic('f'), hairpin[0])
-            >>> abjad.show(voice) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(voice)
-                \new Voice
-                {
-                    c'2
-                    \f
-                    - \tweak circled-tip ##t
-                    \>
-                    d'4
-                    <> \!
-                    r4
-                }
-
-            REGRESSION. Leak on a single leaf:
-
-            >>> voice = abjad.Voice("c'2. r4")
-            >>> hairpin = abjad.Hairpin(leak='niente')
-            >>> abjad.attach(hairpin, voice[:1])
-            >>> hairpin.attach(abjad.Dynamic('f'), hairpin[0])
-            >>> abjad.show(voice) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(voice)
-                \new Voice
-                {
-                    c'2.
-                    \f
-                    - \tweak circled-tip ##t
-                    \>
-                    <> \!
-                    r4
-                }
-
-        ..  container:: example
-
-            Conventional:
-
-            Without leak:
-
-            >>> voice = abjad.Voice("c'2 d'4 r4")
-            >>> hairpin = abjad.Hairpin('f > niente')
-            >>> abjad.attach(hairpin, voice[:2])
-            >>> abjad.show(voice) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(voice)
-                \new Voice
-                {
-                    c'2
-                    - \tweak circled-tip ##t
-                    \>
-                    \f
-                    d'4
-                    \!
-                    r4
-                }
-
-            With leak:
-
-            >>> voice = abjad.Voice("c'2 d'4 r4")
-            >>> hairpin = abjad.Hairpin('f > niente', leak=True)
-            >>> abjad.attach(hairpin, voice[:2])
-            >>> abjad.show(voice) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(voice)
-                \new Voice
-                {
-                    c'2
-                    - \tweak circled-tip ##t
-                    \>
-                    \f
-                    d'4
-                    <> \!
-                    r4
-                }
-
-        ..  container:: example
-
-            REGRESSION. Leak survives copy:
-
-            >>> import copy
-
-            >>> hairpin = abjad.Hairpin(leak=True)
-            >>> copy.copy(hairpin)
-            Hairpin(leak=True)
-
-            >>> hairpin = abjad.Hairpin(leak='niente')
-            >>> copy.copy(hairpin)
-            Hairpin(leak=Dynamic('niente', direction=Down, ordinal=NegativeInfinity, name_is_textual=True, sforzando=False))
-
-        """
-        return super(Hairpin, self).leak
-
-    @property
     def shape_string(self) -> str:
         r"""
         Gets shape string.
@@ -2401,7 +2238,7 @@ class Hairpin(Spanner):
                 }
 
         """
-        return super(Hairpin, self).tweaks
+        return super().tweaks
 
     ### PUBLIC METHODS ###
 
@@ -2635,7 +2472,7 @@ class Hairpin(Spanner):
             (Note("c'8"), Dynamic('f'))
 
         """
-        return super(Hairpin, self)._attach_piecewise(
+        return super()._attach_piecewise(
             indicator,
             leaf,
             deactivate=deactivate,
@@ -2789,12 +2626,10 @@ class Hairpin(Spanner):
         leaf = self[-1]
         if self._has_sounding_stop_dynamic():
             string = self._get_directed_stop_dynamic()
-            string = self._add_leak(string)
             return string
         effective_dynamic = inspect(leaf).get_effective(Dynamic)
         if effective_dynamic is None or effective_dynamic.name == 'niente':
             string = self._stop_command
-            string = self._add_leak(string)
             return string
         if effective_dynamic not in inspect(leaf).wrappers():
             found_match = False
@@ -2803,6 +2638,5 @@ class Hairpin(Spanner):
                     found_match = True
             if not found_match:
                 string = self._stop_command
-                string = self._add_leak(string)
                 return string
         return None

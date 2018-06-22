@@ -22,7 +22,7 @@ few measure from Bartók's *Mikrokosmos*.
 
     from abjad.demos import bartok
     score = bartok.make_bartok_score()
-    show(score)
+    abjad.show(score)
 
 ..  toctree::
 
@@ -38,8 +38,8 @@ Ferneyhough's pre-compositional process.
 
     from abjad.demos.ferneyhough import FerneyhoughDemo
     ferneyhough = FerneyhoughDemo()
-    lilypond_file = ferneyhough.make_lilypond_file(Duration(1, 4), 6, 6)
-    show(lilypond_file)
+    lilypond_file = ferneyhough.make_lilypond_file(abjad.Duration(1, 4), 6, 6)
+    abjad.show(lilypond_file)
 
 ..  toctree::
 
@@ -55,7 +55,7 @@ of Ligeti's *Désordre*.
     :stylesheet: literature-examples.ily
 
     from abjad.demos import ligeti
-    top = [
+    upper = [
         [[-1, 4, 5], [-1, 4, 5, 7, 9]], 
         [[0, 7, 9], [-1, 4, 5, 7, 9]], 
         [[2, 4, 5, 7, 9], [0, 5, 7]], 
@@ -66,7 +66,7 @@ of Ligeti's *Désordre*.
         [[-5, 4, 5, 7, 9, 11, 12]], 
         [[2, 9, 11], [2, 9, 11, 12, 14]],
         ]
-    bottom = [
+    lower = [
         [[-9, -4, -2], [-9, -4, -2, 1, 3]], 
         [[-6, -2, 1], [-9, -4, -2, 1, 3]], 
         [[-4, -2, 1, 3, 6], [-4, -2, 1]], 
@@ -77,9 +77,9 @@ of Ligeti's *Désordre*.
         [[-11, -2, 1, -6, -4, -2, 1, 3]], 
         [[-6, 1, 3], [-6, -4, -2, 1, 3]],
         ]
-    score = ligeti.make_desordre_score([top, bottom])
+    score = ligeti.make_desordre_score([upper, lower])
     lilypond_file = ligeti.make_desordre_lilypond_file(score)
-    show(lilypond_file)
+    abjad.show(lilypond_file)
 
 ..  toctree::
 
@@ -98,7 +98,7 @@ this implementation of Mozart's dice game.
 
     from abjad.demos import mozart
     lilypond_file = mozart.make_mozart_lilypond_file()
-    show(lilypond_file)
+    abjad.show(lilypond_file)
 
 ..  toctree::
 
@@ -118,7 +118,7 @@ Memory of Benhamin Britten*.
 
     from abjad.demos import part
     lilypond_file = part.make_part_lilypond_file()
-    show(lilypond_file)
+    abjad.show(lilypond_file)
 
 ..  toctree::
 

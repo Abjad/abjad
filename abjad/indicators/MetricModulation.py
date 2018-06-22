@@ -915,12 +915,6 @@ class MetricModulation(AbjadValueObject):
         """
         return str(self._get_markup())
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _contents_repr_string(self):
-        return str(self)
-
     ### PRIVATE METHODS ###
 
     def _get_left_markup(self):
@@ -937,7 +931,7 @@ class MetricModulation(AbjadValueObject):
         markup = self._get_markup()
         markup = new(markup, direction=Up)
         markup_format_pieces = markup._get_format_pieces()
-        bundle.right.markup.extend(markup_format_pieces)
+        bundle.after.markup.extend(markup_format_pieces)
         return bundle
 
     def _get_markup(self, music_scale_pair=(0.75, 0.75)):

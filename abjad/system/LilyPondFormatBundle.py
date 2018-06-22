@@ -23,7 +23,6 @@ class LilyPondFormatBundle(AbjadObject):
         '_grob_overrides',
         '_grob_reverts',
         '_opening',
-        '_right',
         )
 
     ### INITIALIZER ###
@@ -36,7 +35,6 @@ class LilyPondFormatBundle(AbjadObject):
         self._after = abjad.SlotContributions()
         self._opening = abjad.SlotContributions()
         self._closing = abjad.SlotContributions()
-        self._right = abjad.SlotContributions()
         self._context_settings = []
         self._grob_overrides = []
         self._grob_reverts = []
@@ -52,7 +50,6 @@ class LilyPondFormatBundle(AbjadObject):
             'after',
             'opening',
             'closing',
-            'right',
             )
         grob_contribution_names = (
             'context_settings',
@@ -101,7 +98,6 @@ class LilyPondFormatBundle(AbjadObject):
         self.after.tag(tag, deactivate)
         self.opening.tag(tag, deactivate)
         self.closing.tag(tag, deactivate)
-        self.right.tag(tag, deactivate)
         self._context_settings = abjad.LilyPondFormatManager.tag(
             self.context_settings,
             tag,
@@ -134,7 +130,6 @@ class LilyPondFormatBundle(AbjadObject):
         self.after.update(format_bundle.after)
         self.opening.update(format_bundle.opening)
         self.closing.update(format_bundle.closing)
-        self.right.update(format_bundle.right)
         self.context_settings.extend(format_bundle.context_settings)
         self.grob_overrides.extend(format_bundle.grob_overrides)
         self.grob_reverts.extend(format_bundle.grob_reverts)
@@ -222,11 +217,11 @@ class LilyPondFormatBundle(AbjadObject):
         """
         return self._opening
 
-    @property
-    def right(self):
-        """
-        Right slot contributions.
-
-        Returns slot contributions object.
-        """
-        return self._right
+#    @property
+#    def right(self):
+#        """
+#        Right slot contributions.
+#
+#        Returns slot contributions object.
+#        """
+#        return self._right

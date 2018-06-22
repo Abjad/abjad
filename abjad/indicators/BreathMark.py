@@ -94,12 +94,6 @@ class BreathMark(AbjadValueObject):
         """
         return r'\breathe'
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _contents_repr_string(self):
-        return str(self)
-
     ### PRIVATE METHODS ###
 
     def _get_lilypond_format(self):
@@ -109,7 +103,7 @@ class BreathMark(AbjadValueObject):
         bundle = LilyPondFormatBundle()
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions(directed=False)
-            bundle.right.articulations.extend(tweaks)
+            bundle.after.articulations.extend(tweaks)
         bundle.after.commands.append(self._get_lilypond_format())
         return bundle
 

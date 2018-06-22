@@ -110,7 +110,7 @@ class Fermata(AbjadValueObject):
 
     _context = 'Score'
 
-    _format_slot = 'right'
+    _format_slot = 'after'
 
     ### INITIALIZER ###
 
@@ -150,12 +150,6 @@ class Fermata(AbjadValueObject):
         """
         return rf'\{self.command}'
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _contents_repr_string(self):
-        return str(self)
-
     ### PRIVATE METHODS ###
 
     def _get_lilypond_format(self):
@@ -165,8 +159,8 @@ class Fermata(AbjadValueObject):
         bundle = LilyPondFormatBundle()
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions()
-            bundle.right.articulations.extend(tweaks)
-        bundle.right.articulations.append(self._get_lilypond_format())
+            bundle.after.articulations.extend(tweaks)
+        bundle.after.articulations.append(self._get_lilypond_format())
         return bundle
 
     ### PUBLIC METHODS ###

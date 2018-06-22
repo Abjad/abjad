@@ -69,7 +69,7 @@ class ColorFingering(AbjadValueObject):
         '_number',
         )
 
-    _format_slot = 'right'
+    _format_slot = 'after'
 
     _publish_storage_format = True
 
@@ -149,12 +149,6 @@ class ColorFingering(AbjadValueObject):
             return (self.number or 0) < (argument.number or 0)
         raise TypeError('unorderable types')
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _contents_repr_string(self):
-        return repr(self.number)
-
     ### PRIVATE METHODS ###
 
     def _get_lilypond_format(self):
@@ -164,11 +158,11 @@ class ColorFingering(AbjadValueObject):
         bundle = LilyPondFormatBundle()
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions()
-            bundle.right.markup.extend(tweaks)
+            bundle.after.markup.extend(tweaks)
         markup = self.markup
         markup = new(markup, direction=Up)
         markup_format_pieces = markup._get_format_pieces()
-        bundle.right.markup.extend(markup_format_pieces)
+        bundle.after.markup.extend(markup_format_pieces)
         return bundle
 
     ### PUBLIC PROPERTIES ###

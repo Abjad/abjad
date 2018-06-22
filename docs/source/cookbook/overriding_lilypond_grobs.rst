@@ -19,11 +19,11 @@ LilyPond grobs control the typographic details of the score:
 
 ..  abjad::
 
-    f(staff)
+    abjad.f(staff)
 
 ..  abjad::
 
-    show(staff)
+    abjad.show(staff)
 
 In the example above LilyPond creates a grob for every printed glyph.  This
 includes the clef and time signature as well as the note-heads, stems and
@@ -41,7 +41,7 @@ All Abjad containers have a grob-override plug-in:
 ..  abjad::
 
     staff = abjad.Staff("c'4 d'4 e'4 f'4 g'4 a'4 g'2")
-    show(staff)
+    abjad.show(staff)
 
 ..  abjad::
 
@@ -49,7 +49,7 @@ All Abjad containers have a grob-override plug-in:
 
 ..  abjad::
 
-    show(staff)
+    abjad.show(staff)
 
 All Abjad leaves have a grob-override plug-in, too:
 
@@ -64,19 +64,7 @@ All Abjad leaves have a grob-override plug-in, too:
 
 ..  abjad::
 
-    show(staff)
-
-And so do Abjad spanners:
-
-..  abjad::
-
-    slur = abjad.Slur()
-    attach(slur, staff[:])
-    abjad.override(slur).slur.color = 'red'
-
-..  abjad::
-
-    show(staff)
+    abjad.show(staff)
 
 
 Nested Grob properties can be overriden
@@ -100,7 +88,7 @@ double-underscores:
 
     staff = abjad.Staff()
     abjad.override(staff).staff_grouper.staff_staff_spacing__basic_distance = 7
-    f(staff)
+    abjad.f(staff)
 
 Abjad will explode the double-underscore delimited Python property into a
 LilyPond property list.

@@ -18,7 +18,7 @@ Here is what we want to end up with:
     :hide:
     :stylesheet: literature-examples.ily
 
-    show(make_bartok_score())
+    abjad.show(make_bartok_score())
 
 The score
 ---------
@@ -93,29 +93,29 @@ The first three measures of the lower staff contain only one voice:
 
 The last two measures of the lower staff contain two voices each.
 
-We use LilyPond ``\voiceOne`` and ``\voiceTwo`` commands to set
+We use LilyPond ``\voiceOne`` and ``\voiceTwo`` literals to set
 the direction of stems in different voices. And we set ``is_simltaneous``
 to true for each of the last two measures:
 
 ..  abjad::
 
     upper_voice = abjad.Voice("b2", name='upper voice')
-    command = abjad.LilyPondCommand('voiceOne')
-    abjad.attach(command, upper_voice)
+    literal = abjad.LilyPondLiteral(r'\voiceOne')
+    abjad.attach(literal, upper_voice)
     lower_voice = abjad.Voice("b4 a4", name='lower voice')
-    command = abjad.LilyPondCommand('voiceTwo')
-    abjad.attach(command, lower_voice)
+    literal = abjad.LilyPondLiteral(r'\voiceTwo')
+    abjad.attach(literal, lower_voice)
     lower_measures[3].extend([upper_voice, lower_voice])
     lower_measures[3].is_simultaneous = True
 
 ..  abjad::
 
     upper_voice = abjad.Voice("b2", name='upper voice')
-    command = abjad.LilyPondCommand('voiceOne')
-    abjad.attach(command, upper_voice)
+    literal = abjad.LilyPondLiteral(r'\voiceOne')
+    abjad.attach(literal, upper_voice)
     lower_voice = abjad.Voice("g2", name='lower voice')
-    command = abjad.LilyPondCommand('voiceTwo')
-    abjad.attach(command, lower_voice)
+    literal = abjad.LilyPondLiteral(r'\voiceTwo')
+    abjad.attach(literal, lower_voice)
     lower_measures[4].extend([upper_voice, lower_voice])
     lower_measures[4].is_simultaneous = True
 
@@ -229,7 +229,7 @@ A ritardando marking above the last seven notes of the upper staff:
 
     markup = abjad.Markup('ritard.')
     text_spanner = abjad.TextSpanner()
-    abjad.override(text_spanner).text_spanner.bound_details__left__text = markup
+    abjad.tweak(text_spanner).bound_details__left__text = markup
     abjad.attach(text_spanner, upper_leaves[-7:])
 
 And ties connecting the last two notes in each staff:

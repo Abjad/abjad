@@ -95,12 +95,6 @@ class StaffChange(AbjadValueObject):
         value = Scheme.format_scheme_value(self.staff.name)
         return rf'\change Staff = {value}'
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _contents_repr_string(self):
-        return repr(self.staff)
-
     ### PRIVATE METHODS ###
 
     def _get_lilypond_format(self):

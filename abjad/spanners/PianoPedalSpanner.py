@@ -39,6 +39,7 @@ class PianoPedalSpanner(Spanner):
 
     __slots__ = (
         '_kind',
+        '_leak',
         '_style',
         )
 
@@ -63,10 +64,13 @@ class PianoPedalSpanner(Spanner):
         leak: bool = None,
         style: str = 'mixed',
         ) -> None:
-        Spanner.__init__(self, leak=leak)
+        Spanner.__init__(self)
         if kind not in list(self._kinds.keys()):
             raise ValueError(f'kind must be in {list(self._kinds.keys())!r}.')
         self._kind = kind
+        if leak is not None:
+            leak = bool(leak)
+        self._leak = leak
         if style not in self._styles:
             raise ValueError(f'style must be in {self._styles!r}.')
         self._style = style
@@ -94,9 +98,9 @@ class PianoPedalSpanner(Spanner):
                 )
             bundle.update(context_setting)
             strings = self.start_command()
-            bundle.right.spanner_starts.extend(strings)
+            bundle.after.spanner_starts.extend(strings)
             string = self.stop_command()
-            bundle.right.spanner_starts.append(string)
+            bundle.after.spanner_starts.append(string)
         elif leaf is self[0]:
             style = SchemeSymbol(self.style)
             context_setting = LilyPondContextSetting(
@@ -106,10 +110,10 @@ class PianoPedalSpanner(Spanner):
                 )
             bundle.update(context_setting)
             strings = self.start_command()
-            bundle.right.spanner_starts.extend(strings)
+            bundle.after.spanner_starts.extend(strings)
         elif leaf is self[-1]:
             string = self.stop_command()
-            bundle.right.spanner_stops.append(string)
+            bundle.after.spanner_stops.append(string)
         return bundle
 
     ### PUBLIC PROPERTIES ###
@@ -268,7 +272,7 @@ class PianoPedalSpanner(Spanner):
                 }
 
         """
-        return super(PianoPedalSpanner, self).leak
+        return self._leak
 
     @property
     def style(self) -> str:
@@ -380,7 +384,7 @@ class PianoPedalSpanner(Spanner):
             ['\\unaCorda']
 
         """
-        return super(PianoPedalSpanner, self).start_command()
+        return super().start_command()
 
     def stop_command(self) -> typing.Optional[str]:
         r"""

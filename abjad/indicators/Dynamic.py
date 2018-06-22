@@ -115,6 +115,7 @@ class Dynamic(AbjadValueObject):
     __slots__ = (
         '_command',
         '_direction',
+        '_format_hairpin_stop',
         '_hide',
         '_lilypond_tweak_manager',
         '_name',
@@ -200,7 +201,7 @@ class Dynamic(AbjadValueObject):
         6: 'fffff',
         }
 
-    _format_slot = 'right'
+    _format_slot = 'after'
 
     _lilypond_dynamic_commands = [
         _ for _ in _dynamic_names if not _ == 'niente'
@@ -226,6 +227,7 @@ class Dynamic(AbjadValueObject):
         *,
         command: str = None,
         direction: VerticalAlignment = None,
+        format_hairpin_stop: bool = None,
         hide: bool = None,
         name_is_textual: bool = None,
         ordinal: typing.Union[int, Infinity, NegativeInfinity] = None,
@@ -254,6 +256,9 @@ class Dynamic(AbjadValueObject):
         if direction is not None:
             assert direction in (Down, Up), repr(direction)
         self._direction = direction
+        if format_hairpin_stop is not None:
+            format_hairpin_stop = bool(format_hairpin_stop)
+        self._format_hairpin_stop = format_hairpin_stop
         if hide is not None:
             hide = bool(hide)
         self._hide = hide
@@ -346,12 +351,6 @@ class Dynamic(AbjadValueObject):
         Redefined in tandem with __eq__.
         """
         return super(Dynamic, self).__hash__()
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _contents_repr_string(self):
-        return repr(self._name)
 
     ### PRIVATE METHODS ###
 
@@ -447,10 +446,10 @@ class Dynamic(AbjadValueObject):
         bundle = LilyPondFormatBundle()
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions()
-            bundle.right.articulations.extend(tweaks)
+            bundle.after.articulations.extend(tweaks)
         if not self.hide:
             string = self._get_lilypond_format()
-            bundle.right.articulations.append(string)
+            bundle.after.articulations.append(string)
         return bundle
 
     ### PUBLIC PROPERTIES ###
@@ -675,6 +674,13 @@ class Dynamic(AbjadValueObject):
 
         """
         return bool(self.name) and self.name[0] == '"'
+
+    @property
+    def format_hairpin_stop(self) -> typing.Optional[bool]:
+        r"""
+        Is true when dynamic formats LilyPond ``\!`` hairpin stop.
+        """
+        return self._format_hairpin_stop
 
     @property
     def hide(self) -> typing.Optional[bool]:

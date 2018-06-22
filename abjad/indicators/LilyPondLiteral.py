@@ -140,7 +140,6 @@ class LilyPondLiteral(AbjadValueObject):
         'before',
         'closing',
         'opening',
-        'right',
         )
 
     _can_attach_to_containers = True
@@ -355,7 +354,6 @@ class LilyPondLiteral(AbjadValueObject):
             'before'
             'closing'
             'opening'
-            'right'
 
         """
         return LilyPondLiteral._allowable_format_slots

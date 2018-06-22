@@ -305,12 +305,6 @@ class TimeSignature(AbjadValueObject):
         """
         return f'{self.numerator}/{self.denominator}'
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _contents_repr_string(self):
-        return f'{self.numerator}/{self.denominator}'
-
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):

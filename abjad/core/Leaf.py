@@ -170,8 +170,13 @@ class Leaf(Component):
 
     def _format_after_slot(self, bundle):
         result = []
+        result.append(('stem_tremolos', bundle.after.stem_tremolos))
+        result.append(('articulations', bundle.after.articulations))
+        # NOTE: LilyPond demands that markup appear before \startTrillSpan
+        #       or else pitched trills hide markup:
+        result.append(('markup', bundle.after.markup))
         result.append(('spanners', bundle.after.spanners))
-        result.append(('indicators', bundle.after.indicators))
+        result.append(('spanner_stops', bundle.after.spanner_stops))
         result.append(('spanner_starts', bundle.after.spanner_starts))
         result.append(('commands', bundle.after.commands))
         result.append(('comments', bundle.after.comments))
@@ -217,21 +222,6 @@ class Leaf(Component):
     def _format_leaf_body(self, bundle):
         indent = LilyPondFormatManager.indent
         result = self._format_leaf_nucleus()[1]
-        result.extend(bundle.right.stem_tremolos)
-        result.extend(bundle.right.articulations)
-        result.extend(bundle.right.commands)
-        result.extend(bundle.right.indicators)
-        result.extend(bundle.right.spanners)
-        result.extend(bundle.right.spanner_stops)
-        result.extend(bundle.right.spanner_starts)
-        result.extend(bundle.right.comments)
-        markup = bundle.right.markup
-        if markup:
-            result.extend(f'{_}' for _ in markup)
-        trill_pitches = bundle.right.trill_pitches
-        if trill_pitches:
-            assert all(isinstance(_, str) for _ in trill_pitches)
-            result.extend(trill_pitches)
         return ['self body', result]
 
     def _format_leaf_nucleus(self):

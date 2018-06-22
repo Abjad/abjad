@@ -1944,27 +1944,27 @@ class Expression(AbjadValueObject):
                                 8
                             }
                         d'8
-                        ~
                         ^ \markup {
                             \fraction
                                 1
                                 2
                             }
+                        ~
                         d'4.
                         e'16
+                        ^ \markup {
+                            \fraction
+                                1
+                                16
+                            }
                         [
-                        ^ \markup {
-                            \fraction
-                                1
-                                16
-                            }
                         ef'16
-                        ]
                         ^ \markup {
                             \fraction
                                 1
                                 16
                             }
+                        ]
                     }
 
         Returns expression.

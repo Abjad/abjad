@@ -49,6 +49,7 @@ class PhrasingSlur(Spanner):
 
     __slots__ = (
         '_direction',
+        '_leak',
         )
 
     _start_command = r'\('
@@ -63,9 +64,12 @@ class PhrasingSlur(Spanner):
         direction: typing.Union[str, VerticalAlignment] = None,
         leak: bool = None,
         ) -> None:
-        Spanner.__init__(self, leak=leak)
+        Spanner.__init__(self)
         direction_ = String.to_tridirectional_lilypond_symbol(direction)
         self._direction = direction_
+        if leak is not None:
+            leak = bool(leak)
+        self._leak = leak
 
     ### PRIVATE METHODS ###
 
@@ -82,17 +86,17 @@ class PhrasingSlur(Spanner):
         if self._is_my_only(leaf):
             if self.leak:
                 strings = self.start_command()
-                bundle.right.spanner_starts.extend(strings)
+                bundle.after.spanner_starts.extend(strings)
                 string = self.stop_command()
-                bundle.right.spanner_starts.append(string)
+                bundle.after.spanner_starts.append(string)
             return bundle
         assert 1 < len(self)
         if leaf is self[0]:
             strings = self.start_command()
-            bundle.right.spanner_starts.extend(strings)
+            bundle.after.spanner_starts.extend(strings)
         elif leaf is self[-1]:
             string = self.stop_command()
-            bundle.right.spanner_stops.append(string)
+            bundle.after.spanner_stops.append(string)
         return bundle
 
     ### PUBLIC PROPERTIES ###
@@ -241,7 +245,7 @@ class PhrasingSlur(Spanner):
                 }
 
         """
-        return super(PhrasingSlur, self).leak
+        return self._leak
 
     ### PUBLIC METHODS ###
 
@@ -260,7 +264,7 @@ class PhrasingSlur(Spanner):
             ['^ \\(']
 
         """
-        return super(PhrasingSlur, self).start_command()
+        return super().start_command()
 
     def stop_command(self) -> typing.Optional[str]:
         r"""
@@ -277,7 +281,7 @@ class PhrasingSlur(Spanner):
             '<> \\)'
 
         """
-        string = super(PhrasingSlur, self).stop_command()
+        string = super().stop_command()
         if self.leak:
             string = f'{self._empty_chord} {string}'
         return string
