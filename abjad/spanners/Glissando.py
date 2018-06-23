@@ -168,12 +168,12 @@ class Glissando(Spanner):
                     value=SchemeSymbol(self.style),
                     )
                 string = override.tweak_string()
-                bundle.right.spanner_starts.append(string)
+                bundle.after.spanner_starts.append(string)
         if should_attach_glissando:
             strings = self.start_command()
             if tag:
                 strings = self._tag_show(strings)
-            bundle.right.spanner_starts.extend(strings)
+            bundle.after.spanner_starts.extend(strings)
         return bundle
 
     @staticmethod
@@ -728,18 +728,6 @@ class Glissando(Spanner):
         pass
 
     @property
-    def leak(self) -> None:
-        """
-        Glissando does not implement ``leak``.
-        
-        The LilyPond ``\glissando`` command is unary instead of matchfix.
-
-        This means that there is no ``\stopGlissando`` command to leak to the
-        right.
-        """
-        pass
-
-    @property
     def parenthesize_repeats(self) -> typing.Optional[bool]:
         r"""
         Is true when glissando should parenthesize repeated pitches.
@@ -931,7 +919,7 @@ class Glissando(Spanner):
             ['\\glissando']
 
         """
-        return super(Glissando, self).start_command()
+        return super().start_command()
 
     def stop_command(self) -> typing.Optional[str]:
         """
@@ -943,4 +931,4 @@ class Glissando(Spanner):
             True
 
         """
-        return super(Glissando, self).stop_command()
+        return super().stop_command()

@@ -432,6 +432,10 @@ class TextSpanner(Spanner):
             {
                 \once \override TextScript.color = #blue
                 c'4
+                ^ \markup {
+                    \italic
+                        leggieriss.
+                    }
                 - \tweak Y-extent ##f
                 - \tweak bound-details.left.text \markup {
                     \concat
@@ -460,10 +464,6 @@ class TextSpanner(Spanner):
                         }
                     }
                 \startTextSpan
-                ^ \markup {
-                    \italic
-                        leggieriss.
-                    }
                 d'4
                 e'4
                 f'4
@@ -506,6 +506,7 @@ class TextSpanner(Spanner):
 
     __slots__ = (
         '_commands',
+        '_leak',
         '_lilypond_id',
         '_skip_attachment_test_all',
         )
@@ -521,11 +522,14 @@ class TextSpanner(Spanner):
         leak: bool = None,
         lilypond_id: int = None,
         ) -> None:
-        Spanner.__init__(self, leak=leak)
+        Spanner.__init__(self)
         if commands is not None:
             assert isinstance(commands, tuple), repr(commands)
             assert all(isinstance(_, str) for _ in commands), repr(commands)
         self._commands = commands
+        if leak is not None:
+            leak = bool(leak)
+        self._leak = leak
         if lilypond_id is not None:
             assert lilypond_id in self._lilypond_ids, repr(lilypond_id)
         self._lilypond_id = lilypond_id
@@ -578,20 +582,20 @@ class TextSpanner(Spanner):
                 if self._wrappers:
                     override = self._y_extent_false()
                     string = override.tweak_string()
-                    bundle.right.spanner_starts.append(string)
+                    bundle.after.spanner_starts.append(string)
                     line_segment = self._make_invisible_line_segment()
                     tweaks = line_segment._get_lilypond_grob_overrides(
                         tweaks=True)
-                    bundle.right.spanner_starts.extend(tweaks)
-                bundle.right.spanner_starts.extend(self.start_command())
+                    bundle.after.spanner_starts.extend(tweaks)
+                bundle.after.spanner_starts.extend(self.start_command())
             if component is self[-1]:
                 stop_command = self.stop_command()
                 if self.leak:
                     # leaked stop command must appear *after* start command;
                     # so stop command appears here in spanner *starts*:
-                    bundle.right.spanner_starts.append(self.stop_command())
+                    bundle.after.spanner_starts.append(self.stop_command())
                 else:
-                    bundle.right.spanner_stops.append(self.stop_command())
+                    bundle.after.spanner_stops.append(self.stop_command())
             return bundle
 
 #        if has_indicators and (
@@ -602,15 +606,15 @@ class TextSpanner(Spanner):
 #            if self.leak:
 #                # leaked stop command must appear *after* start command;
 #                # so stop command appears here in spanner *starts*:
-#                bundle.right.spanner_starts.append(stop_command)
+#                bundle.after.spanner_starts.append(stop_command)
 #            else:
-#                bundle.right.spanner_stops.append(stop_command)
+#                bundle.after.spanner_stops.append(stop_command)
 
         if (not component is self[-1]) or (len(self) == 1 and self.leak):
             if self._wrappers:
                 override = self._y_extent_false()
                 string = override.tweak_string()
-                bundle.right.spanner_starts.append(string)
+                bundle.after.spanner_starts.append(string)
             if line_segment is None:
                 line_segment = self._make_invisible_line_segment()
             if markup is not None:
@@ -628,9 +632,9 @@ class TextSpanner(Spanner):
                     value=markup,
                     )
                 string = override.tweak_string()
-                bundle.right.spanner_starts.append(string)
+                bundle.after.spanner_starts.append(string)
             tweaks = line_segment._get_lilypond_grob_overrides(tweaks=True)
-            bundle.right.spanner_starts.extend(tweaks)
+            bundle.after.spanner_starts.extend(tweaks)
         if last_leaf_markup is not None:
             right_hspace = line_segment.right_padding or 0
             # optical correction to draw last markup left:
@@ -650,10 +654,10 @@ class TextSpanner(Spanner):
                 value=last_leaf_markup,
                 )
             string = override.tweak_string()
-            bundle.right.spanner_starts.append(string)
+            bundle.after.spanner_starts.append(string)
         # start- and stop-commands added after tweaks
         if ((not component is self[-1]) or (len(self) == 1 and self.leak)):
-            bundle.right.spanner_starts.extend(self.start_command())
+            bundle.after.spanner_starts.extend(self.start_command())
 
         if (has_indicators and 
             (not component is self[0]) or (len(self) == 1 and self.leak)
@@ -662,9 +666,9 @@ class TextSpanner(Spanner):
             if self.leak:
                 # leaked stop command must appear *after* start command;
                 # so stop command appears here in spanner *starts*:
-                bundle.right.spanner_starts.append(stop_command)
+                bundle.after.spanner_starts.append(stop_command)
             else:
-                bundle.right.spanner_stops.append(stop_command)
+                bundle.after.spanner_stops.append(stop_command)
 
         return bundle
 
@@ -972,7 +976,7 @@ class TextSpanner(Spanner):
                 }
 
         """
-        return super(TextSpanner, self).leak
+        return self._leak
 
     @property
     def lilypond_id(self) -> typing.Optional[int]:
@@ -1216,7 +1220,7 @@ class TextSpanner(Spanner):
         assert isinstance(leaf, Leaf), repr(leaf)
         if tag is not None:
             assert isinstance(tag, Tag), repr(tag)
-        return super(TextSpanner, self)._attach_piecewise(
+        return super()._attach_piecewise(
             indicator,
             leaf,
             deactivate=deactivate,
@@ -1234,7 +1238,7 @@ class TextSpanner(Spanner):
             ['\\startTextSpan']
 
         """
-        return super(TextSpanner, self).start_command()
+        return super().start_command()
 
     def stop_command(self) -> typing.Optional[str]:
         r"""

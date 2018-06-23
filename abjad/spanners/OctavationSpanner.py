@@ -101,24 +101,6 @@ class OctavationSpanner(Spanner):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def leak(self) -> None:
-        r"""
-        Octavation spanner does not implement ``leak``.
-
-        Most LilyPond spanners are controlled by a pair of matching start- and
-        stop-commands that LilyPond treats as LilyPond postevents.
-
-        By contrast the LilyPond ``\ottava`` command is unary. (This is also
-        true of the LilyPond ``\glissando`` command.)
-
-        The LilyPond ``\ottava`` command is also a LilyPond event (that
-        LilyPond demans appear before a note, rest or chord) rather than a
-        LilyPond postevent (that LilyPond demands appear after a note, rest or
-        chord).
-        """
-        pass
-
-    @property
     def start(self) -> typing.Optional[int]:
         """
         Gets octavation start.
@@ -214,7 +196,7 @@ class OctavationSpanner(Spanner):
             ['\\ottava #1']
 
         """
-        return super(OctavationSpanner, self).start_command()
+        return super().start_command()
 
     def stop_command(self) -> typing.Optional[str]:
         r"""

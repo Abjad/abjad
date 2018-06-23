@@ -66,12 +66,12 @@ well as beams, slurs, ties, and articulations.
         c'4 ( d'4 <cs' e'>8 ) -. r8 
         <g' b' d''>4 ^ \marcato ~ <g' b' d''>1
         """)
-    f(staff)
+    abjad.f(staff)
 
 ..  abjad::
     :stylesheet: literature-examples.ily
 
-    show(staff)
+    abjad.show(staff)
 
 So, instead of storing our musical information as Abjad components, we'll
 represent each fragment in the corpus as a pair of strings: one representing
@@ -195,31 +195,31 @@ something like this:
 What you see above is really just two containers, each with a little text
 ("\repeat volta n" and "alternative") prepended to their opening curly brace.
 To create that structure in Abjad, we'll need to use the
-:py:class:`~abjad.tools.indicatortools.LilyPondCommand` class, which allows you
-to place LilyPond commands like "\break" relative to any score component:
+:py:class:`~abjad.indicators.LilyPondLiteral` class, which allows you to place
+LilyPond literals like "\break" relative to any score component:
 
 ..  abjad::
 
     container = abjad.Container("c'4 d'4 e'4 f'4")
-    command = abjad.LilyPondCommand('before-the-container', 'before')
-    abjad.attach(command, container)
-    command = abjad.LilyPondCommand('after-the-container', 'after')
-    abjad.attach(command, container)
-    command = abjad.LilyPondCommand('opening-of-the-container', 'opening')
-    abjad.attach(command, container)
-    command = abjad.LilyPondCommand('closing-of-the-container', 'closing')
-    abjad.attach(command, container)
-    command = abjad.LilyPondCommand('to-the-right-of-a-note', 'right')
-    abjad.attach(command, container[2])
-    f(container)
+    literal = abjad.LilyPondLiteral('before-the-container', 'before')
+    abjad.attach(literal, container)
+    literal = abjad.LilyPondLiteral('after-the-container', 'after')
+    abjad.attach(literal, container)
+    literal = abjad.LilyPondLiteral('opening-of-the-container', 'opening')
+    abjad.attach(literal, container)
+    literal = abjad.LilyPondLiteral('closing-of-the-container', 'closing')
+    abjad.attach(literal, container)
+    literal = abjad.LilyPondLiteral('to-the-right-of-a-note', 'right')
+    abjad.attach(literal, container[2])
+    abjad.f(container)
 
 Notice the second argument to each
-:py:class:`~abjad.tools.indicatortools.LilyPondCommand` above, like `before`
-and `closing`.  These are format slot indications, which control where the
-command is placed in the LilyPond code relative to the score element it is
-attached to.  To mimic LilyPond's repeat syntax, we'll have to create two
-:py:class:`~abjad.tools.indicatortools.LilyPondCommand` instances, both using
-the "before" format slot, insuring that their command is placed before their
+:py:class:`~abjad.indicators.LilyPondLiteral` above, like `before` and
+`closing`.  These are format slot indications, which control where the literal
+is placed in the LilyPond code relative to the score element it is attached to.
+To mimic LilyPond's repeat syntax, we'll have to create two
+:py:class:`~abjad.indicators.LilyPondLiteral` instances, both using the
+"before" format slot, insuring that their literal is placed before their
 container's opening curly brace.
 
 Now let's take a look at the code that puts our score together:
@@ -228,7 +228,7 @@ Now let's take a look at the code that puts our score together:
     :stylesheet: literature-examples.ily
 
     score = mozart.make_mozart_score()
-    show(score)
+    abjad.show(score)
 
 Our instrument name got cut off!  Looks like we need to do a little formatting.
 
@@ -242,11 +242,11 @@ controlling the overall *look* of a musical document, often through its
 object-oriented access to these settings through the its `lilypondfiletools`
 module.
 
-We'll use :py:func:`abjad.tools.lilypondfiletools.LilyPondFile.new` to
-wrap our :py:class:`~abjad.tools.scoretools.Score` inside a
-:py:class:`~abjad.tools.lilypondfiletools.LilyPondFile` instance.  From there
-we can access the other "blocks" of our document to add a title, a composer's
-name, change the global staff size, paper size, staff spacing and so forth.
+We'll use :py:func:`abjad.lilypondfile.LilyPondFile.new` to wrap our
+:py:class:`~abjad.core.Score` inside a
+:py:class:`~abjad.lilypondfile.LilyPondFile` instance.  From there we can
+access the other "blocks" of our document to add a title, a composer's name,
+change the global staff size, paper size, staff spacing and so forth.
 
 ..  abjad::
 
@@ -282,7 +282,7 @@ And now the final result:
 ..  abjad::
     :stylesheet: literature-examples.ily
 
-    show(lilypond_file)
+    abjad.show(lilypond_file)
 
 Explore the ``abjad/demos/mozart/`` directory for the complete code to this
 example, or import it into your Python session directly with ``from

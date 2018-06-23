@@ -2412,7 +2412,7 @@ class Mutation(AbjadObject):
 
             >>> staff = abjad.Staff("c'8 e' d' f' c' e' d' f'")
             >>> leaves = staff[:]
-            >>> hairpin = abjad.Hairpin(descriptor='p < f')
+            >>> hairpin = abjad.Hairpin('p < f')
             >>> abjad.attach(hairpin, leaves)
             >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 3
             >>> abjad.show(staff) # doctest: +SKIP
@@ -2475,7 +2475,7 @@ class Mutation(AbjadObject):
             Splits leaves and fracture crossing spanners:
 
             >>> staff = abjad.Staff("c'8 e' d' f' c' e' d' f'")
-            >>> hairpin = abjad.Hairpin(descriptor='p < f')
+            >>> hairpin = abjad.Hairpin('p < f')
             >>> abjad.attach(hairpin, staff[:])
             >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 3
             >>> abjad.show(staff) # doctest: +SKIP
@@ -2547,7 +2547,7 @@ class Mutation(AbjadObject):
 
             >>> staff = abjad.Staff("c'8 e' d' f' c' e' d' f'")
             >>> leaves = staff[:]
-            >>> hairpin = abjad.Hairpin(descriptor='p < f')
+            >>> hairpin = abjad.Hairpin('p < f')
             >>> abjad.attach(hairpin, leaves)
             >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 3
             >>> abjad.show(staff) # doctest: +SKIP
@@ -2614,7 +2614,7 @@ class Mutation(AbjadObject):
 
             >>> staff = abjad.Staff("c'8 e' d' f' c' e' d' f'")
             >>> leaves = staff[:]
-            >>> hairpin = abjad.Hairpin(descriptor='p < f')
+            >>> hairpin = abjad.Hairpin('p < f')
             >>> abjad.attach(hairpin, leaves)
             >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 3
             >>> abjad.show(staff) # doctest: +SKIP
@@ -2754,7 +2754,7 @@ class Mutation(AbjadObject):
             Splits leaves cyclically and ties split notes:
 
             >>> staff = abjad.Staff("c'1 d'1")
-            >>> hairpin = abjad.Hairpin(descriptor='p < f')
+            >>> hairpin = abjad.Hairpin('p < f')
             >>> abjad.attach(hairpin, staff[:])
             >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 3
             >>> abjad.show(staff) # doctest: +SKIP
@@ -2807,7 +2807,7 @@ class Mutation(AbjadObject):
             As above but with repeat ties:
 
             >>> staff = abjad.Staff("c'1 d'1")
-            >>> hairpin = abjad.Hairpin(descriptor='p < f')
+            >>> hairpin = abjad.Hairpin('p < f')
             >>> abjad.attach(hairpin, staff[:])
             >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 3
 
@@ -2851,7 +2851,7 @@ class Mutation(AbjadObject):
             ...     name='1',
             ...     )
             >>> staff = abjad.Staff([voice])
-            >>> hairpin = abjad.Hairpin(descriptor='p < f')
+            >>> hairpin = abjad.Hairpin('p < f')
             >>> abjad.attach(hairpin, voice[:])
             >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 3
             >>> abjad.show(staff) # doctest: +SKIP

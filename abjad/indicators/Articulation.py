@@ -163,7 +163,7 @@ class Articulation(AbjadValueObject):
             assert isinstance(direction_, VerticalAlignment), repr(direction_)
             assert direction_ in (Up, Down, Center), repr(direction_)
         self._direction = direction_
-        self._format_slot = 'right'
+        self._format_slot = 'after'
         self._lilypond_tweak_manager = None
         LilyPondTweakManager.set_tweaks(self, tweaks)
 
@@ -213,15 +213,6 @@ class Articulation(AbjadValueObject):
         else:
             return ''
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _contents_repr_string(self):
-        if self.direction is not None:
-            return f'{self.name!r}, {self.direction!r}'
-        else:
-            return repr(self.name)
-
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
@@ -241,8 +232,8 @@ class Articulation(AbjadValueObject):
         bundle = LilyPondFormatBundle()
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions()
-            bundle.right.articulations.extend(tweaks)
-        bundle.right.articulations.append(self._get_lilypond_format())
+            bundle.after.articulations.extend(tweaks)
+        bundle.after.articulations.append(self._get_lilypond_format())
         return bundle
 
     ### PUBLIC PROPERTIES ###

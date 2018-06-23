@@ -47,7 +47,7 @@ class StemTremolo(AbjadValueObject):
         '_tremolo_flags',
         )
 
-    _format_slot = 'right'
+    _format_slot = 'after'
 
     ### INITIALIZER ###
 
@@ -124,7 +124,7 @@ class StemTremolo(AbjadValueObject):
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = LilyPondFormatBundle()
-        bundle.right.stem_tremolos.append(self._get_lilypond_format())
+        bundle.after.stem_tremolos.append(self._get_lilypond_format())
         return bundle
 
     ### PUBLIC PROPERTIES ###

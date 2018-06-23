@@ -107,7 +107,7 @@ Key points:
     staff = make_annotated_staff()
     spanner = OscillationSpanner()
     abjad.attach(spanner, staff[:])
-    show(staff)
+    abjad.show(staff)
 
 Basic glissando functionality
 -----------------------------
@@ -115,11 +115,11 @@ Basic glissando functionality
 ..  abjad::
 
     staff = abjad.Staff("g'4. d''8 b'2 b'8 r8 f''4. d'8. f'16 r8")
-    show(staff)
+    abjad.show(staff)
 
 ..  abjad::
 
-    f(staff)
+    abjad.f(staff)
 
 ..  abjad::
     :strip-prompt:
@@ -135,11 +135,11 @@ Basic glissando functionality
 
     spanner = OscillationSpanner()
     abjad.attach(spanner, staff[:])
-    show(staff)
+    abjad.show(staff)
 
 ..  abjad::
 
-    f(staff)
+    abjad.f(staff)
 
 Avoiding orphan and final leaves
 --------------------------------
@@ -171,11 +171,11 @@ Avoiding orphan and final leaves
 
 ..  abjad::
 
-    show(staff)
+    abjad.show(staff)
 
 ..  abjad::
 
-    f(staff)
+    abjad.f(staff)
 
 Avoiding silences
 -----------------
@@ -203,11 +203,11 @@ Avoiding silences
 
 ..  abjad::
 
-    show(staff)
+    abjad.show(staff)
 
 ..  abjad::
 
-    f(staff)
+    abjad.f(staff)
 
 Making object-oriented typographic overrides
 --------------------------------------------
@@ -216,8 +216,8 @@ Making object-oriented typographic overrides
 
     staff = abjad.Staff("c'4 d'4 e'4 f'4")
     abjad.override(staff[1]).note_head.style = 'cross'
-    show(staff)
-    f(staff)
+    abjad.show(staff)
+    abjad.f(staff)
 
 ..  abjad::
 
@@ -228,8 +228,8 @@ Making object-oriented typographic overrides
         value=abjad.SchemeSymbol('cross'),
         )
     abjad.attach(grob_override, staff[2])
-    show(staff)
-    f(staff)
+    abjad.show(staff)
+    abjad.f(staff)
 
 ..  abjad::
 
@@ -280,11 +280,11 @@ Integrating overrides during formatting
     staff = abjad.Staff("g'4. d''8 b'2 b'8 r8 f''4. d'8. f'16 r8")
     spanner = OscillationSpanner()
     abjad.attach(spanner, staff[:])
-    show(staff)
+    abjad.show(staff)
 
 ..  abjad::
 
-    f(staff)
+    abjad.f(staff)
 
 A simple non-formatting annotation class
 ----------------------------------------
@@ -313,11 +313,11 @@ A simple non-formatting annotation class
 ..  abjad::
 
     staff = make_annotated_staff()
-    show(staff)
+    abjad.show(staff)
 
 ..  abjad::
 
-    f(staff)
+    abjad.f(staff)
 
 Making the spanner annotation-aware
 -----------------------------------
@@ -380,11 +380,11 @@ Making the spanner annotation-aware
     staff = make_annotated_staff()
     spanner = OscillationSpanner()
     abjad.attach(spanner, staff[:])
-    show(staff)
+    abjad.show(staff)
 
 ..  abjad::
 
-    f(staff)
+    abjad.f(staff)
 
 Refactoring the custom spanner class
 ------------------------------------
@@ -448,22 +448,22 @@ Preparing for deployment
     for i, leaf in enumerate(selector(staff)):
         abjad.attach(annotations[i], leaf)
 
-    show(staff)
+    abjad.show(staff)
 
 Deploying the spanner
 ---------------------
 
 ..  abjad::
 
-    talea_rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
-        burnish_specifier=rhythmmakertools.BurnishSpecifier(
+    talea_rhythm_maker = abjadext.rmakers.TaleaRhythmMaker(
+        burnish_specifier=abjadext.rmakers.BurnishSpecifier(
             left_classes=[abjad.Rest],
             left_counts=[0, 1],
             right_classes=[abjad.Rest],
             right_counts=[0, 0, 1],
             ),
         extra_counts_per_division=[1, 0, 0],
-        talea=rhythmmakertools.Talea(
+        talea=abjadext.rmakers.Talea(
             counts=[2, 3, 1, 3, 1, 4, 2, 2],
             denominator=8,
             ),
@@ -476,7 +476,7 @@ Deploying the spanner
     selections = talea_rhythm_maker(divisions)
     measures = abjad.Measure.from_selections(selections, time_signatures=divisions)
     staff = abjad.Staff(measures)
-    show(staff)
+    abjad.show(staff)
 
 All of the notes' pitches are middle-C, so we'll apply some pitches cyclically
 to each logical tie:
@@ -504,7 +504,7 @@ The result?
 
 ..  abjad::
 
-    show(staff)
+    abjad.show(staff)
 
 Now that we know the ingredients required, we can package the entire
 staff-creation process into a function and run it with different variations,
@@ -542,6 +542,6 @@ via rotation:
 ..  abjad::
 
     staff = make_fancy_staff(rotation=2)
-    show(staff)
+    abjad.show(staff)
     staff = make_fancy_staff(rotation=5)
-    show(staff)
+    abjad.show(staff)

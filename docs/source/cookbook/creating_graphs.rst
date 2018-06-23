@@ -55,7 +55,7 @@ Key points:
             )
         # Build context mapping.
         context_mapping = {}
-        for i, context in enumerate(lilypondnametools.LilyPondContext.list_all_contexts()):
+        for i, context in enumerate(abjad.LilyPondContext.list_all_contexts()):
             name = context.name
             fillcolor = i % 9 + 1
             label = r'\n'.join(abjad.String(name).delimit_words())
@@ -151,7 +151,7 @@ Collecting data for the graph
 
 ..  abjad::
 
-    for context in lilypondnametools.LilyPondContext.list_all_contexts():
+    for context in abjad.LilyPondContext.list_all_contexts():
         print(context.name)
         for child_context in context.accepts:
             print('\t' + child_context.name)
@@ -184,7 +184,7 @@ Populating the graph
 ..  abjad::
 
     context_mapping = {}
-    for context in lilypondnametools.LilyPondContext.list_all_contexts():
+    for context in abjad.LilyPondContext.list_all_contexts():
         node = uqbar.graphs.Node(
             name=context.name,
             attributes={'label': context.name},

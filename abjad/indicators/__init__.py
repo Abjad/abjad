@@ -1,4 +1,3 @@
-from .Accelerando import Accelerando
 from .Arpeggio import Arpeggio
 from .LineSegment import LineSegment
 from .ArrowLineSegment import ArrowLineSegment
@@ -13,6 +12,7 @@ from .Clef import Clef
 from .ColorFingering import ColorFingering
 from .Dynamic import Dynamic
 from .Fermata import Fermata
+from .HairpinStart import HairpinStart
 from .KeyCluster import KeyCluster
 from .KeySignature import KeySignature
 from .LaissezVibrer import LaissezVibrer
@@ -24,7 +24,6 @@ from .MetronomeMark import MetronomeMark
 from .Mode import Mode
 from .RehearsalMark import RehearsalMark
 from .Repeat import Repeat
-from .Ritardando import Ritardando
 from .Staccatissimo import Staccatissimo
 from .Staccato import Staccato
 from .StaffChange import StaffChange

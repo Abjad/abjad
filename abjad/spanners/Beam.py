@@ -164,6 +164,7 @@ class Beam(Spanner):
         '_beam_rests',
         '_direction',
         '_durations',
+        '_leak',
         '_span_beam_count',
         '_stemlet_length',
         )
@@ -185,7 +186,7 @@ class Beam(Spanner):
         span_beam_count: int = 1,
         stemlet_length: typings.Number = None,
         ) -> None:
-        Spanner.__init__(self, leak=leak)
+        Spanner.__init__(self)
         direction = String.to_tridirectional_lilypond_symbol(direction)
         if beam_lone_notes is not None:
             beam_lone_notes = bool(beam_lone_notes)
@@ -196,6 +197,9 @@ class Beam(Spanner):
         self._direction = direction
         durations = self._coerce_durations(durations)
         self._durations: typing.Tuple[Duration, ...] = durations
+        if leak is not None:
+            leak = bool(leak)
+        self._leak = leak
         if span_beam_count is not None:
             assert isinstance(span_beam_count, int)
         self._span_beam_count = span_beam_count
@@ -250,17 +254,17 @@ class Beam(Spanner):
                     )
                 ):
                 strings = self.start_command()
-                bundle.right.spanner_starts.extend(strings)
+                bundle.after.spanner_starts.extend(strings)
             if (leaf is self[-1] or
                 not next_leaf or
                 not self._is_beamable(next_leaf, beam_rests=self.beam_rests)):
                 string = self.stop_command()
-                for spanner_start in bundle.right.spanner_starts:
+                for spanner_start in bundle.after.spanner_starts:
                     if '[' in spanner_start:
-                        bundle.right.spanner_starts.append(string)
+                        bundle.after.spanner_starts.append(string)
                         break
                 else:
-                    bundle.right.spanner_stops.append(string)
+                    bundle.after.spanner_stops.append(string)
 
     def _add_stemlet_length(self, leaf, bundle):
         if self.stemlet_length is None:
@@ -480,12 +484,12 @@ class Beam(Spanner):
                     not next_leaf_is_beamable):
                     stop_piece = self.stop_command()
             if start_pieces and stop_piece:
-                bundle.right.spanner_starts.extend(start_pieces)
-                bundle.right.spanner_starts.append(stop_piece)
+                bundle.after.spanner_starts.extend(start_pieces)
+                bundle.after.spanner_starts.append(stop_piece)
             elif start_pieces:
-                bundle.right.spanner_starts.extend(start_pieces)
+                bundle.after.spanner_starts.extend(start_pieces)
             elif stop_piece:
-                bundle.right.spanner_stops.append(stop_piece)
+                bundle.after.spanner_stops.append(stop_piece)
         self._add_stemlet_length(leaf, bundle)
         return bundle
 
@@ -1004,7 +1008,7 @@ class Beam(Spanner):
                 }
 
         """
-        return super(Beam, self).leak
+        return self._leak
 
     @property
     def span_beam_count(self) -> int:
@@ -1181,7 +1185,7 @@ class Beam(Spanner):
             ['^ [']
 
         """
-        return super(Beam, self).start_command()
+        return super().start_command()
 
     def stop_command(self) -> typing.Optional[str]:
         """
@@ -1198,6 +1202,6 @@ class Beam(Spanner):
             '<> ]'
 
         """
-        string = super(Beam, self).stop_command()
+        string = super().stop_command()
         string = self._add_leak(string)
         return string

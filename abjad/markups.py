@@ -234,7 +234,7 @@ class Markup(AbjadValueObject):
         assert isinstance(new_contents, tuple), repr(new_contents)
         assert all(isinstance(_, (str, MarkupCommand)) for _ in new_contents), repr(new_contents)
         self._contents = new_contents
-        self._format_slot = 'right'
+        self._format_slot = 'after'
         direction_ = String.to_tridirectional_ordinal_constant(direction)
         if direction_ is not None:
             assert isinstance(direction_, VerticalAlignment), repr(direction_)

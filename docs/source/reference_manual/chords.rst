@@ -8,8 +8,8 @@ You can make chords from a LilyPond input string:
 
 ..  abjad::
 
-    chord = Chord("<ef' f' cs''>4")
-    show(chord)
+    chord = abjad.Chord("<ef' f' cs''>4")
+    abjad.show(chord)
 
 
 Making chords from numbers
@@ -19,8 +19,8 @@ You can also make chords from numbers:
 
 ..  abjad::
 
-    chord = Chord([4, 6, 14], Duration(1, 4))
-    show(chord)
+    chord = abjad.Chord([4, 6, 14], abjad.Duration(1, 4))
+    abjad.show(chord)
 
 
 Understanding the interpreter representation of a chord
@@ -48,8 +48,8 @@ Set the written duration of a chord like this:
 
 ..  abjad::
 
-    chord.written_duration = Duration(3, 16)
-    show(chord)
+    chord.written_duration = abjad.Duration(3, 16)
+    abjad.show(chord)
 
 
 Getting and setting the written pitches of a chord
@@ -66,7 +66,7 @@ Set the written pitches of a chord like this:
 ..  abjad::
 
     chord.written_pitches = ("e'", "fs'", "gs'")
-    show(chord)
+    abjad.show(chord)
 
 
 Getting chord note-heads
@@ -88,20 +88,20 @@ You can append with a pitch name:
 
 ..  abjad::
 
-    chord = Chord("<f' g' ef''>4")
+    chord = abjad.Chord("<f' g' ef''>4")
     show(chord)
 
 ..  abjad::
 
     chord.note_heads.append("a'")
-    show(chord)
+    abjad.show(chord)
 
 Or with a pitch number:
 
 ..  abjad::
 
     chord.note_heads.append(10)
-    show(chord)
+    abjad.show(chord)
 
 
 Extending chords
@@ -113,20 +113,20 @@ You can extend with pitch names:
 
 ..  abjad::
 
-    chord = Chord("<fs' gs' e''>4")
-    show(chord)
+    chord = abjad.Chord("<fs' gs' e''>4")
+    abjad.show(chord)
 
 ..  abjad::
 
     chord.note_heads.extend(["a'", "b'"])
-    show(chord)
+    abjad.show(chord)
 
 Or with pitch numbers:
 
 ..  abjad::
 
     chord.note_heads.extend([13, 14])
-    show(chord)
+    abjad.show(chord)
 
 
 Deleting chord note-heads
@@ -136,13 +136,13 @@ Delete chord note-heads with ``del()``.
 
 ..  abjad::
 
-    chord = Chord("<g' a' f''>4")
-    show(chord)
+    chord = abjad.Chord("<g' a' f''>4")
+    abjad.show(chord)
 
 ..  abjad::
 
     del(chord.note_heads[-1])
-    show(chord)
+    abjad.show(chord)
 
 
 Tweaking chord note-heads
@@ -152,15 +152,15 @@ Tweak chord note-heads like this:
 
 ..  abjad::
 
-    chord = Chord("<af' bf' gf''>4")
-    show(chord)
+    chord = abjad.Chord("<af' bf' gf''>4")
+    abjad.show(chord)
 
 ..  abjad::
 
-    chord.note_heads[0].tweak.color = 'red'
-    chord.note_heads[1].tweak.color = 'blue'
-    chord.note_heads[2].tweak.color = 'green'
-    show(chord)
+    abjad.tweak(chord.note_heads[0]).color = 'red'
+    abjad.tweak(chord.note_heads[1]).color = 'blue'
+    abjad.tweak(chord.note_heads[2]).color = 'green'
+    abjad.show(chord)
 
 
 Working with empty chords
@@ -170,7 +170,7 @@ Abjad allows empty chords:
 
 ..  abjad::
 
-    chord = Chord([], Duration(1, 4))
+    chord = abjad.Chord([], abjad.Duration(1, 4))
     chord
 
 Empty chords don't constitute valid LilyPond input.
@@ -182,4 +182,4 @@ You can add pitches back to an empty chord at any time:
 ..  abjad::
 
     chord.note_heads.extend([9, 11, 17])
-    show(chord)
+    abjad.show(chord)

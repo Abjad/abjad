@@ -19,7 +19,6 @@ class SlotContributions(AbjadObject):
         '_spanner_starts',
         '_spanner_stops',
         '_stem_tremolos',
-        '_trill_pitches',
         )
 
     ### INITIALIZER ###
@@ -34,7 +33,6 @@ class SlotContributions(AbjadObject):
         self._spanner_starts: typing.List[str] = []
         self._spanner_stops: typing.List[str] = []
         self._stem_tremolos: typing.List[str] = []
-        self._trill_pitches: typing.List[str] = []
 
     ### PRIVATE METHODS ###
 
@@ -50,7 +48,6 @@ class SlotContributions(AbjadObject):
             'spanner_starts',
             'spanner_stops',
             'stem_tremolos',
-            'trill_pitches',
             ]
         names = [_ for _ in names if getattr(self, _)]
         return abjad.FormatSpecification(
@@ -96,7 +93,6 @@ class SlotContributions(AbjadObject):
             'spanner_starts',
             'spanner_stops',
             'stem_tremolos',
-            'trill_pitches',
             )
         return any(getattr(self, contribution_category)
             for contribution_category in contribution_categories)
@@ -142,13 +138,6 @@ class SlotContributions(AbjadObject):
         Gets stem tremolos.
         """
         return self._stem_tremolos
-
-    @property
-    def trill_pitches(self) -> typing.List[str]:
-        """
-        Gets trill pitches.
-        """
-        return self._trill_pitches
 
     ### PUBLIC METHODS ###
 
@@ -198,7 +187,6 @@ class SlotContributions(AbjadObject):
         for string in self.spanner_starts:
             strings.extend(string.split('\n'))
         self._spanner_starts = abjad.LilyPondFormatManager.tag(
-            #self.spanner_starts,
             strings,
             tag,
             deactivate,
@@ -210,11 +198,6 @@ class SlotContributions(AbjadObject):
             )
         self._stem_tremolos = abjad.LilyPondFormatManager.tag(
             self.stem_tremolos,
-            tag,
-            deactivate,
-            )
-        self._trill_pitches = abjad.LilyPondFormatManager.tag(
-            self.trill_pitches,
             tag,
             deactivate,
             )
@@ -233,4 +216,3 @@ class SlotContributions(AbjadObject):
         self.spanner_starts.extend(slot_contributions.spanner_starts)
         self.spanner_stops.extend(slot_contributions.spanner_stops)
         self.stem_tremolos.extend(slot_contributions.stem_tremolos)
-        self.trill_pitches.extend(slot_contributions.trill_pitches)

@@ -30,8 +30,8 @@ def label(client=None, deactivate=None, tag=None):
                     d'4
                     ^ \markup { 1/6 }
                     e'4
-                    ~
                     ^ \markup { 1/3 }
+                    ~
                 }
                 e'4
                 ef'4
@@ -83,8 +83,8 @@ def label(client=None, deactivate=None, tag=None):
                     d'4
                     ^ \markup { 1/6 }
                     e'4
-                    ~
                     ^ \markup { 1/3 }
+                    ~
                 }
                 e'4
                 ef'4

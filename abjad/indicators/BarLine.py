@@ -50,12 +50,6 @@ class BarLine(AbjadValueObject):
         assert isinstance(abbreviation, str), repr(abbreviation)
         self._abbreviation = abbreviation
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _contents_repr_string(self):
-        return repr(self.abbreviation)
-
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):

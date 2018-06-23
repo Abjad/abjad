@@ -4,7 +4,6 @@ from .BowContactSpanner import BowContactSpanner
 from .Glissando import Glissando
 from .Hairpin import Hairpin
 from .HorizontalBracket import HorizontalBracket
-from .MetronomeMarkSpanner import MetronomeMarkSpanner
 from .OctavationSpanner import OctavationSpanner
 from .PhrasingSlur import PhrasingSlur
 from .PianoPedalSpanner import PianoPedalSpanner

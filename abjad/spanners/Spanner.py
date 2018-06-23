@@ -41,7 +41,6 @@ class Spanner(AbjadObject):
         '_deactivate',
         '_ignore_attachment_test',
         '_ignore_before_attach',
-        '_leak',
         '_leaves',
         '_left_broken',
         '_lilypond_setting_name_manager',
@@ -59,16 +58,11 @@ class Spanner(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        *,
-        leak: bool = None,
-        ) -> None:
+    def __init__(self) -> None:
         self._contiguity_constraint = 'logical voice'
         self._deactivate = None
         self._ignore_attachment_test = None
         self._ignore_before_attach = None
-        self._leak = leak
         self._leaves: typing.List[Leaf] = []
         self._left_broken = None
         self._lilypond_setting_name_manager = None
@@ -158,7 +152,7 @@ class Spanner(AbjadObject):
         return string
 
     def _add_leak(self, string):
-        if self.leak:
+        if getattr(self, 'leak', None):
             string = f'{self._empty_chord} {string}'
         return string
 
@@ -295,7 +289,8 @@ class Spanner(AbjadObject):
         return result
 
     def _copy_keywords(self, new):
-        new._leak = copy.copy(self.leak)
+        if hasattr(self, 'leak'):
+            new._leak = copy.copy(self.leak)
 
     def _detach(self):
         self._sever_all_leaves()
@@ -623,14 +618,6 @@ class Spanner(AbjadObject):
         self._contiguity_constraint = None
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def leak(self) -> typing.Optional[bool]:
-        """
-        Is true when spanner stop command leaks one leaf to the right with
-        LilyPond empty chord ``<>`` construct.
-        """
-        return self._leak
 
     @property
     def leaves(self) -> Selection:

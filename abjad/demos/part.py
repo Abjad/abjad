@@ -667,8 +667,7 @@ def configure_lilypond_file(lilypond_file):
         )
     abjad.override(context_block).vertical_axis_group.remove_first = True
     lilypond_file.layout_block.items.append(context_block)
-    slash_separator = abjad.LilyPondLiteral(r'\slashSeparator')
-    lilypond_file.paper_block.system_separator_markup = slash_separator
+    lilypond_file.paper_block.system_separator_markup = 'slashSeparator'
     bottom_margin = abjad.LilyPondDimension(0.5, 'in')
     lilypond_file.paper_block.bottom_margin = bottom_margin
     top_margin = abjad.LilyPondDimension(0.5, 'in')

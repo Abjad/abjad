@@ -201,11 +201,12 @@ class LogicalTie(Selection):
 
         ..  container:: example
 
-            >>> staff = abjad.Staff(r"c'8 ~ c'16 cqs''4")
-            >>> crescendo = abjad.Hairpin('p < f')
-            >>> abjad.attach(crescendo, staff[:])
+            >>> staff = abjad.Staff(r"df'8 c'8 ~ c'16 cqs''4")
+            >>> abjad.attach(abjad.Dynamic('p'), staff[0])
+            >>> abjad.attach(abjad.HairpinStart('<'), staff[0])
+            >>> abjad.attach(abjad.Dynamic('f'), staff[-1])
             >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 3
-            >>> time_signature = abjad.TimeSignature((7, 16))
+            >>> time_signature = abjad.TimeSignature((9, 16))
             >>> abjad.attach(time_signature, staff[0])
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -218,23 +219,20 @@ class LogicalTie(Selection):
                     \override DynamicLineSpanner.staff-padding = #3
                 }
                 {
-                    \time 7/16
+                    \time 9/16
+                    df'8
+                    \p
+                    \<
                     c'8
                     ~
-                    \<
-                    \p
                     c'16
                     cqs''4
                     \f
                 }
 
-            >>> logical_tie = abjad.inspect(staff[0]).get_logical_tie()
+            >>> logical_tie = abjad.inspect(staff[1]).get_logical_tie()
             >>> logical_tie.to_tuplet([2, 1, 1, 1])
             Tuplet(Multiplier(3, 5), "c'8 c'16 c'16 c'16")
-
-            >>> time_signature = abjad.TimeSignature((7, 16))
-            >>> leaf = abjad.inspect(staff).get_leaf(0)
-            >>> abjad.attach(time_signature, leaf)
 
             ..  docs::
 
@@ -245,12 +243,13 @@ class LogicalTie(Selection):
                     \override DynamicLineSpanner.staff-padding = #3
                 }
                 {
+                    \time 9/16
+                    df'8
+                    \p
+                    \<
                     \tweak text #tuplet-number::calc-fraction-text
                     \times 3/5 {
-                        \time 7/16
                         c'8
-                        \<
-                        \p
                         c'16
                         c'16
                         c'16
@@ -264,7 +263,7 @@ class LogicalTie(Selection):
         ..  container:: example
 
             >>> staff = abjad.Staff(r"c'8 ~ c'16 cqs''4")
-            >>> crescendo = abjad.Hairpin(descriptor='p < f')
+            >>> crescendo = abjad.Hairpin('p < f')
             >>> abjad.attach(crescendo, staff[:])
             >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 3
             >>> time_signature = abjad.TimeSignature((7, 16))

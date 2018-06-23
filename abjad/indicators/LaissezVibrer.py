@@ -31,7 +31,7 @@ class LaissezVibrer(AbjadValueObject):
         '_lilypond_tweak_manager',
         )
 
-    _format_slot = 'right'
+    _format_slot = 'after'
 
     _time_orientation: HorizontalAlignment = HorizontalAlignment.Right
 
@@ -71,8 +71,8 @@ class LaissezVibrer(AbjadValueObject):
         bundle = LilyPondFormatBundle()
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions()
-            bundle.right.articulations.extend(tweaks)
-        bundle.right.articulations.append(self._get_lilypond_format())
+            bundle.after.articulations.extend(tweaks)
+        bundle.after.articulations.append(self._get_lilypond_format())
         return bundle
 
     ### PUBLIC PROPERTIES ###

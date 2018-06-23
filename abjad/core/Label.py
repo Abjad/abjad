@@ -1956,27 +1956,27 @@ class Label(AbjadObject):
                                 8
                             }
                         d'8
-                        ~
                         ^ \markup {
                             \fraction
                                 1
                                 2
                             }
+                        ~
                         d'4.
                         e'16
+                        ^ \markup {
+                            \fraction
+                                1
+                                16
+                            }
                         [
-                        ^ \markup {
-                            \fraction
-                                1
-                                16
-                            }
                         ef'16
-                        ]
                         ^ \markup {
                             \fraction
                                 1
                                 16
                             }
+                        ]
                     }
 
             ..  container:: example expression
@@ -1998,27 +1998,27 @@ class Label(AbjadObject):
                                 8
                             }
                         d'8
-                        ~
                         ^ \markup {
                             \fraction
                                 1
                                 2
                             }
+                        ~
                         d'4.
                         e'16
+                        ^ \markup {
+                            \fraction
+                                1
+                                16
+                            }
                         [
-                        ^ \markup {
-                            \fraction
-                                1
-                                16
-                            }
                         ef'16
-                        ]
                         ^ \markup {
                             \fraction
                                 1
                                 16
                             }
+                        ]
                     }
 
         ..  container:: example
@@ -2043,27 +2043,27 @@ class Label(AbjadObject):
                                 16
                             }
                         d'8
-                        ~
                         ^ \markup {
                             \fraction
                                 8
                                 16
                             }
+                        ~
                         d'4.
                         e'16
+                        ^ \markup {
+                            \fraction
+                                1
+                                16
+                            }
                         [
-                        ^ \markup {
-                            \fraction
-                                1
-                                16
-                            }
                         ef'16
-                        ]
                         ^ \markup {
                             \fraction
                                 1
                                 16
                             }
+                        ]
                     }
 
             ..  container:: example expression
@@ -2085,27 +2085,27 @@ class Label(AbjadObject):
                                 16
                             }
                         d'8
-                        ~
                         ^ \markup {
                             \fraction
                                 8
                                 16
                             }
+                        ~
                         d'4.
                         e'16
+                        ^ \markup {
+                            \fraction
+                                1
+                                16
+                            }
                         [
-                        ^ \markup {
-                            \fraction
-                                1
-                                16
-                            }
                         ef'16
-                        ]
                         ^ \markup {
                             \fraction
                                 1
                                 16
                             }
+                        ]
                     }
 
         Returns none.
@@ -2150,12 +2150,12 @@ class Label(AbjadObject):
                         <g' a'>4
                         ^ \markup { 1 }
                         af'8
-                        ~
                         ^ \markup { 2 }
+                        ~
                         af'8
                         gf'8
-                        ~
                         ^ \markup { 3 }
+                        ~
                         gf'4
                     }
 
@@ -2181,12 +2181,12 @@ class Label(AbjadObject):
                         <g' a'>4
                         ^ \markup { 1 }
                         af'8
-                        ~
                         ^ \markup { 2 }
+                        ~
                         af'8
                         gf'8
-                        ~
                         ^ \markup { 3 }
+                        ~
                         gf'4
                     }
 
@@ -2213,13 +2213,13 @@ class Label(AbjadObject):
                         <c' bf'>8
                         <g' a'>4
                         af'8
-                        ~
                         ^ \markup { 0 }
+                        ~
                         af'8
                         ^ \markup { 1 }
                         gf'8
-                        ~
                         ^ \markup { 2 }
+                        ~
                         gf'4
                         ^ \markup { 3 }
                     }
@@ -2246,13 +2246,13 @@ class Label(AbjadObject):
                         <c' bf'>8
                         <g' a'>4
                         af'8
-                        ~
                         ^ \markup { 0 }
+                        ~
                         af'8
                         ^ \markup { 1 }
                         gf'8
-                        ~
                         ^ \markup { 2 }
+                        ~
                         gf'4
                         ^ \markup { 3 }
                     }
@@ -2345,13 +2345,13 @@ class Label(AbjadObject):
                         <g' a'>4
                         ^ \markup { 1 }
                         af'8
-                        ~
                         ^ \markup { 2 }
+                        ~
                         af'8
                         ^ \markup { 3 }
                         gf'8
-                        ~
                         ^ \markup { 4 }
+                        ~
                         gf'4
                         ^ \markup { 5 }
                     }
@@ -2380,13 +2380,13 @@ class Label(AbjadObject):
                         <g' a'>4
                         ^ \markup { 1 }
                         af'8
-                        ~
                         ^ \markup { 2 }
+                        ~
                         af'8
                         ^ \markup { 3 }
                         gf'8
-                        ~
                         ^ \markup { 4 }
+                        ~
                         gf'4
                         ^ \markup { 5 }
                     }
@@ -2966,8 +2966,8 @@ class Label(AbjadObject):
                                 }
                             }
                         g'4
-                        ~
                         ^ \markup { g' }
+                        ~
                         g'8
                         r8
                         fs''4
@@ -3001,8 +3001,8 @@ class Label(AbjadObject):
                                 }
                             }
                         g'4
-                        ~
                         ^ \markup { g' }
+                        ~
                         g'8
                         r8
                         fs''4
@@ -3039,8 +3039,8 @@ class Label(AbjadObject):
                                 }
                             }
                         g'4
-                        ~
                         ^ \markup { G4 }
+                        ~
                         g'8
                         r8
                         fs''4
@@ -3074,8 +3074,8 @@ class Label(AbjadObject):
                                 }
                             }
                         g'4
-                        ~
                         ^ \markup { G4 }
+                        ~
                         g'8
                         r8
                         fs''4
@@ -3113,8 +3113,8 @@ class Label(AbjadObject):
                                 }
                             }
                         g'4
-                        ~
                         ^ \markup { 7 }
+                        ~
                         g'8
                         r8
                         fs''4
@@ -3149,8 +3149,8 @@ class Label(AbjadObject):
                                 }
                             }
                         g'4
-                        ~
                         ^ \markup { 7 }
+                        ~
                         g'8
                         r8
                         fs''4
@@ -3188,8 +3188,8 @@ class Label(AbjadObject):
                                 }
                             }
                         g'4
-                        ~
                         ^ \markup { 7 }
+                        ~
                         g'8
                         r8
                         fs''4
@@ -3224,8 +3224,8 @@ class Label(AbjadObject):
                                 }
                             }
                         g'4
-                        ~
                         ^ \markup { 7 }
+                        ~
                         g'8
                         r8
                         fs''4
@@ -3263,19 +3263,19 @@ class Label(AbjadObject):
                     }
                     {
                         df''4
-                        \startGroup
                         ^ \markup { df'' }
+                        \startGroup
                         c''4
-                        \stopGroup
                         ^ \markup { c'' }
+                        \stopGroup
                         f'4
                         fs'4
                         d''4
-                        \startGroup
                         ^ \markup { d'' }
+                        \startGroup
                         ds''4
-                        \stopGroup
                         ^ \markup { ds'' }
+                        \stopGroup
                     }
 
             ..  container:: example expression
@@ -3305,19 +3305,19 @@ class Label(AbjadObject):
                     }
                     {
                         df''4
-                        \startGroup
                         ^ \markup { df'' }
+                        \startGroup
                         c''4
-                        \stopGroup
                         ^ \markup { c'' }
+                        \stopGroup
                         f'4
                         fs'4
                         d''4
-                        \startGroup
                         ^ \markup { d'' }
+                        \startGroup
                         ds''4
-                        \stopGroup
                         ^ \markup { ds'' }
+                        \stopGroup
                     }
 
         ..  container:: example
@@ -3351,19 +3351,19 @@ class Label(AbjadObject):
                     }
                     {
                         df''4
-                        \startGroup
                         ^ \markup { 13 }
+                        \startGroup
                         c''4
-                        \stopGroup
                         ^ \markup { 12 }
+                        \stopGroup
                         f'4
                         fs'4
                         d''4
-                        \startGroup
                         ^ \markup { 14 }
+                        \startGroup
                         ds''4
-                        \stopGroup
                         ^ \markup { 15 }
+                        \stopGroup
                     }
 
             ..  container:: example expression
@@ -3394,19 +3394,19 @@ class Label(AbjadObject):
                     }
                     {
                         df''4
-                        \startGroup
                         ^ \markup { 13 }
+                        \startGroup
                         c''4
-                        \stopGroup
                         ^ \markup { 12 }
+                        \stopGroup
                         f'4
                         fs'4
                         d''4
-                        \startGroup
                         ^ \markup { 14 }
+                        \startGroup
                         ds''4
-                        \stopGroup
                         ^ \markup { 15 }
+                        \stopGroup
                     }
 
         ..  container:: example
@@ -3441,19 +3441,19 @@ class Label(AbjadObject):
                     }
                     {
                         df''4
-                        \startGroup
                         ^ \markup { 1 }
+                        \startGroup
                         c''4
-                        \stopGroup
                         ^ \markup { 0 }
+                        \stopGroup
                         f'4
                         fs'4
                         d''4
-                        \startGroup
                         ^ \markup { 2 }
+                        \startGroup
                         ds''4
-                        \stopGroup
                         ^ \markup { 3 }
+                        \stopGroup
                     }
 
             ..  container:: example expression
@@ -3484,19 +3484,19 @@ class Label(AbjadObject):
                     }
                     {
                         df''4
-                        \startGroup
                         ^ \markup { 1 }
+                        \startGroup
                         c''4
-                        \stopGroup
                         ^ \markup { 0 }
+                        \stopGroup
                         f'4
                         fs'4
                         d''4
-                        \startGroup
                         ^ \markup { 2 }
+                        \startGroup
                         ds''4
-                        \stopGroup
                         ^ \markup { 3 }
+                        \stopGroup
                     }
 
         Returns none.
@@ -3586,7 +3586,6 @@ class Label(AbjadObject):
                     }
                     {
                         df''8
-                        \startGroup
                         ^ \markup {
                             \tiny
                                 \line
@@ -3594,13 +3593,13 @@ class Label(AbjadObject):
                                         "SC(4-3){0, 1, 3, 4}"
                                     }
                             }
+                        \startGroup
                         c''8
                         bf'8
                         a'8
                         \stopGroup
                         f'4.
                         fs'8
-                        \startGroup
                         ^ \markup {
                             \tiny
                                 \line
@@ -3608,6 +3607,7 @@ class Label(AbjadObject):
                                         "SC(4-20){0, 1, 5, 8}"
                                     }
                             }
+                        \startGroup
                         g'8
                         b'8
                         d''2.
@@ -3642,7 +3642,6 @@ class Label(AbjadObject):
                     }
                     {
                         df''8
-                        \startGroup
                         ^ \markup {
                             \tiny
                                 \line
@@ -3650,13 +3649,13 @@ class Label(AbjadObject):
                                         "SC(4-3){0, 1, 3, 4}"
                                     }
                             }
+                        \startGroup
                         c''8
                         bf'8
                         a'8
                         \stopGroup
                         f'4.
                         fs'8
-                        \startGroup
                         ^ \markup {
                             \tiny
                                 \line
@@ -3664,6 +3663,7 @@ class Label(AbjadObject):
                                         "SC(4-20){0, 1, 5, 8}"
                                     }
                             }
+                        \startGroup
                         g'8
                         b'8
                         d''2.
@@ -3703,7 +3703,6 @@ class Label(AbjadObject):
                     }
                     {
                         df''8
-                        \startGroup
                         ^ \markup {
                             \tiny
                                 \line
@@ -3711,13 +3710,13 @@ class Label(AbjadObject):
                                         "SC(4-6){0, 1, 3, 4}"
                                     }
                             }
+                        \startGroup
                         c''8
                         bf'8
                         a'8
                         \stopGroup
                         f'4.
                         fs'8
-                        \startGroup
                         ^ \markup {
                             \tiny
                                 \line
@@ -3725,6 +3724,7 @@ class Label(AbjadObject):
                                         "SC(4-16){0, 1, 5, 8}"
                                     }
                             }
+                        \startGroup
                         g'8
                         b'8
                         d''2.
@@ -3760,7 +3760,6 @@ class Label(AbjadObject):
                     }
                     {
                         df''8
-                        \startGroup
                         ^ \markup {
                             \tiny
                                 \line
@@ -3768,13 +3767,13 @@ class Label(AbjadObject):
                                         "SC(4-6){0, 1, 3, 4}"
                                     }
                             }
+                        \startGroup
                         c''8
                         bf'8
                         a'8
                         \stopGroup
                         f'4.
                         fs'8
-                        \startGroup
                         ^ \markup {
                             \tiny
                                 \line
@@ -3782,6 +3781,7 @@ class Label(AbjadObject):
                                         "SC(4-16){0, 1, 5, 8}"
                                     }
                             }
+                        \startGroup
                         g'8
                         b'8
                         d''2.
@@ -3820,7 +3820,6 @@ class Label(AbjadObject):
                     }
                     {
                         df''8
-                        \startGroup
                         ^ \markup {
                             \tiny
                                 \line
@@ -3828,13 +3827,13 @@ class Label(AbjadObject):
                                         "SC(4-6){0, 1, 3, 4}"
                                     }
                             }
+                        \startGroup
                         c''8
                         bf'8
                         a'8
                         \stopGroup
                         f'4.
                         fs'8
-                        \startGroup
                         ^ \markup {
                             \tiny
                                 \line
@@ -3842,6 +3841,7 @@ class Label(AbjadObject):
                                         "SC(4-16){0, 1, 5, 8}"
                                     }
                             }
+                        \startGroup
                         g'8
                         b'8
                         d''2.
@@ -3877,7 +3877,6 @@ class Label(AbjadObject):
                     }
                     {
                         df''8
-                        \startGroup
                         ^ \markup {
                             \tiny
                                 \line
@@ -3885,13 +3884,13 @@ class Label(AbjadObject):
                                         "SC(4-6){0, 1, 3, 4}"
                                     }
                             }
+                        \startGroup
                         c''8
                         bf'8
                         a'8
                         \stopGroup
                         f'4.
                         fs'8
-                        \startGroup
                         ^ \markup {
                             \tiny
                                 \line
@@ -3899,6 +3898,7 @@ class Label(AbjadObject):
                                         "SC(4-16){0, 1, 5, 8}"
                                     }
                             }
+                        \startGroup
                         g'8
                         b'8
                         d''2.
@@ -3973,8 +3973,8 @@ class Label(AbjadObject):
                             d'4
                             ^ \markup { 1/6 }
                             e'4
-                            ~
                             ^ \markup { 1/3 }
+                            ~
                         }
                         e'4
                         ef'4
@@ -4009,8 +4009,8 @@ class Label(AbjadObject):
                             d'4
                             ^ \markup { 1/6 }
                             e'4
-                            ~
                             ^ \markup { 1/3 }
+                            ~
                         }
                         e'4
                         ef'4

@@ -32,7 +32,7 @@ Attachments
 
     articulations
     instruments
-    lilypond_commands
+    lilypond_literals
     lilypond_comments
 
 LilyPond files

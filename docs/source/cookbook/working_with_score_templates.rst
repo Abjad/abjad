@@ -14,7 +14,7 @@ Creating a basic score template
 ..  abjad::
     :strip-prompt:
 
-    class StringTrioScoreTemplate(abctools.AbjadObject):
+    class StringTrioScoreTemplate(abjad.AbjadObject):
 
         def __call__(self):
 

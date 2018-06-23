@@ -25,18 +25,18 @@ transpose music or change the way beams look in your score.
 Inspecting output
 -----------------
 
-Use ``dir()`` to take a look at the contents of the ``systemtools`` package:
+Use ``dir()`` to take a look at the contents of the ``system`` package:
 
 ..  abjad::
     :text-width: 80
 
-    dir(systemtools)
+    dir(system)
 
-The ``systemtools`` package implements I/O functions that help you work with the
-files you create in Abjad.
+The ``abjad.IOManager`` class implements I/O functions that help you work with
+the files you create in Abjad.
 
-Use ``systemtools.open_last_ly()`` to see the last LilyPond input file created
-in Abjad:
+Use ``abjad.IOManager.open_last_ly()`` to see the last LilyPond input file
+created in Abjad:
 
 ::
 
@@ -69,13 +69,13 @@ Notice:
 5.  Abjad includes a one-note score expression similar to the one you created
     in the last tutorial.
 
-When you called ``show(note)`` Abjad created the LilyPond input file shown
+When you called ``abjad.show(note)`` Abjad created the LilyPond input file shown
 above. Abjad then called LilyPond on that ``.ly`` file to create a PDF.
 
 (Quit your text editor in the usual way to return to the Python interpreter.)
 
-Now use ``systemtools.open_last_log()`` to see the output LilyPond created as
-it ran:
+Now use ``abjad.IOManager.open_last_log()`` to see the output LilyPond created
+as it ran:
 
 ::
 

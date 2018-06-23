@@ -51,7 +51,6 @@ class LilyPondComment(AbjadValueObject):
         'before',
         'closing',
         'opening',
-        'right',
         )
 
     _can_attach_to_containers = True
@@ -99,12 +98,6 @@ class LilyPondComment(AbjadValueObject):
 
         """
         return rf'% {self.string}'
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _contents_repr_string(self):
-        return repr(self._string)
 
     ### PRIVATE METHODS ###
 
@@ -191,7 +184,6 @@ class LilyPondComment(AbjadValueObject):
             'before'
             'closing'
             'opening'
-            'right'
 
         """
         return LilyPondComment._allowable_format_slots

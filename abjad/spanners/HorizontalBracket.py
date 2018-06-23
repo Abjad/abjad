@@ -62,6 +62,7 @@ class HorizontalBracket(Spanner):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_leak',
         '_markup',
         )
 
@@ -77,7 +78,10 @@ class HorizontalBracket(Spanner):
         leak: bool = None,
         markup: Markup = None,
         ) -> None:
-        Spanner.__init__(self, leak=leak)
+        Spanner.__init__(self)
+        if leak is not None:
+            leak = bool(leak)
+        self._leak = leak
         if markup is not None:
             assert isinstance(markup, Markup)
         self._markup = markup
@@ -88,10 +92,10 @@ class HorizontalBracket(Spanner):
         bundle = self._get_basic_lilypond_format_bundle(leaf)
         if leaf is self[0]:
             strings = self.start_command()
-            bundle.right.spanner_starts.extend(strings)
+            bundle.after.spanner_starts.extend(strings)
         if leaf is self[-1]:
             string = self.stop_command()
-            bundle.right.spanner_stops.append(string)
+            bundle.after.spanner_stops.append(string)
         return bundle
 
     ### PUBLIC PROPERTIES ###
@@ -158,7 +162,7 @@ class HorizontalBracket(Spanner):
                 }
 
         """
-        return super(HorizontalBracket, self).leak
+        return self._leak
 
     @property
     def markup(self) -> typing.Optional[Markup]:
@@ -198,7 +202,7 @@ class HorizontalBracket(Spanner):
             ['\\startGroup']
 
         """
-        return super(HorizontalBracket, self).start_command()
+        return super().start_command()
 
     def stop_command(self) -> typing.Optional[str]:
         r"""
@@ -215,7 +219,7 @@ class HorizontalBracket(Spanner):
             '<> \\stopGroup'
 
         """
-        string = super(HorizontalBracket, self).stop_command()
+        string = super().stop_command()
         if self.leak:
             string = f'{self._empty_chord} {string}'
         return string

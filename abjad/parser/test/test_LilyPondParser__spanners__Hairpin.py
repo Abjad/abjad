@@ -6,9 +6,9 @@ def test_LilyPondParser__spanners__Hairpin_01():
 
     maker = abjad.NoteMaker()
     target = abjad.Staff(maker([0] * 5, [(1, 4)]))
-    hairpin = abjad.Hairpin(descriptor='<')
+    hairpin = abjad.Hairpin('<')
     abjad.attach(hairpin, target[:3])
-    hairpin = abjad.Hairpin(descriptor='>')
+    hairpin = abjad.Hairpin('>')
     abjad.attach(hairpin, target[2:])
     dynamic = abjad.Dynamic('ppp')
     abjad.attach(dynamic, target[-1])
@@ -39,11 +39,11 @@ def test_LilyPondParser__spanners__Hairpin_02():
 
     maker = abjad.NoteMaker()
     target = abjad.Container(maker([0] * 4, [(1, 4)]))
-    hairpin = abjad.Hairpin(descriptor='<')
+    hairpin = abjad.Hairpin('<')
     abjad.attach(hairpin, target[0:2])
-    hairpin = abjad.Hairpin(descriptor='<')
+    hairpin = abjad.Hairpin('<')
     abjad.attach(hairpin, target[1:3])
-    hairpin = abjad.Hairpin(descriptor='<')
+    hairpin = abjad.Hairpin('<')
     abjad.attach(hairpin, target[2:])
 
     assert format(target) == abjad.String.normalize(
@@ -76,9 +76,9 @@ def test_LilyPondParser__spanners__Hairpin_03():
 
     maker = abjad.NoteMaker()
     target = abjad.Staff(maker([0] * 3, [(1, 4)]))
-    hairpin = abjad.Hairpin(descriptor='<')
+    hairpin = abjad.Hairpin('<')
     abjad.attach(hairpin, target[0:2])
-    hairpin = abjad.Hairpin(descriptor='>')
+    hairpin = abjad.Hairpin('>')
     abjad.attach(hairpin, target[1:])
     dynamic = abjad.Dynamic('p')
     abjad.attach(dynamic, target[1])
@@ -140,9 +140,9 @@ def test_LilyPondParser__spanners__Hairpin_07():
 
     maker = abjad.NoteMaker()
     target = abjad.Staff(maker([0] * 5, [(1, 4)]))
-    hairpin = abjad.Hairpin(descriptor='<', direction=abjad.Up)
+    hairpin = abjad.Hairpin('<', direction=abjad.Up)
     abjad.attach(hairpin, target[:3])
-    hairpin = abjad.Hairpin(descriptor='>', direction=abjad.Down)
+    hairpin = abjad.Hairpin('>', direction=abjad.Down)
     abjad.attach(hairpin, target[2:])
     dynamic = abjad.Dynamic('ppp')
     abjad.attach(dynamic, target[-1])

@@ -9,8 +9,8 @@ You can make rests from a LilyPond input string:
 
 ..  abjad::
 
-    rest = Rest('r8')
-    show(rest)
+    rest = abjad.Rest('r8')
+    abjad.show(rest)
 
 
 Making rests from durations
@@ -20,8 +20,8 @@ You can make rests from durations:
 
 ..  abjad::
 
-    rest = Rest(Duration(1, 4))
-    show(rest)
+    rest = abjad.Rest(abjad.Duration(1, 4))
+    abjad.show(rest)
 
 
 Making rests from other Abjad leaves
@@ -31,9 +31,9 @@ You can also make rests from other Abjad leaves:
 
 ..  abjad::
 
-    note = Note("d'4..")
-    rest = Rest(note)
-    show(rest)
+    note = abjad.Note("d'4..")
+    rest = abjad.Rest(note)
+    abjad.show(rest)
 
 
 Understanding the interpreter representation of a rest
@@ -56,23 +56,23 @@ Create multimeasure rests like this:
 
 ..  abjad::
 
-    multimeasure_rest = scoretools.MultimeasureRest('R1')
-    show(multimeasure_rest)
+    multimeasure_rest = abjad.MultimeasureRest('R1')
+    abjad.show(multimeasure_rest)
 
 Multiply the duration of multimeasure rests like this:
 
 ..  abjad::
 
-    attach(Multiplier(4), multimeasure_rest)
-    staff = Staff([multimeasure_rest])
-    show(staff)
+    abjad.attach(abjad.Multiplier(4), multimeasure_rest)
+    staff = abjad.Staff([multimeasure_rest])
+    abjad.show(staff)
 
-Use a LilyPond command to compress full-bar rests:
+Use a LilyPond literal to compress full-bar rests:
 
 ..  abjad::
 
-    command = indicatortools.LilyPondCommand('compressFullBarRests')
-    attach(command, staff)
+    command = abjad.LilyPondLiteral(r'\compressFullBarRests')
+    abjad.attach(command, staff)
     show(staff)
 
 
@@ -89,5 +89,5 @@ Set the written duration of rests like this:
 
 ..  abjad::
 
-    rest.written_duration = Duration(3, 16)
-    show(rest)
+    rest.written_duration = abjad.Duration(3, 16)
+    abjad.show(rest)
