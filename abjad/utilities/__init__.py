@@ -5,6 +5,7 @@ del mathtools
 
 from .CyclicTuple import CyclicTuple
 from .Duration import Duration
+from .Enumerator import Enumerator
 from .Inequality import Inequality
 from .DurationInequality import DurationInequality
 from .Expression import Expression

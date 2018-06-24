@@ -85,7 +85,7 @@ Key points:
             prototype = (abjad.Chord, abjad.Note)
             next_leaf = abjad.inspect(leaf).get_leaf(1)
             if isinstance(leaf, prototype) and isinstance(next_leaf, prototype):
-                lilypond_format_bundle.right.spanner_starts.append(r'\glissando')
+                lilypond_format_bundle.after.spanner_starts.append(r'\glissando')
                 self._apply_annotation_overrides(leaf, lilypond_format_bundle)
             return lilypond_format_bundle
 
@@ -128,7 +128,7 @@ Basic glissando functionality
 
         def _get_lilypond_format_bundle(self, leaf):
             lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
-            lilypond_format_bundle.right.spanner_starts.append(r'\glissando')
+            lilypond_format_bundle.after.spanner_starts.append(r'\glissando')
             return lilypond_format_bundle
 
 ..  abjad::
@@ -160,7 +160,7 @@ Avoiding orphan and final leaves
             lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
             if leaf is self[-1] or self._is_my_only(leaf):
                 return lilypond_format_bundle
-            lilypond_format_bundle.right.spanner_starts.append(r'\glissando')
+            lilypond_format_bundle.after.spanner_starts.append(r'\glissando')
             return lilypond_format_bundle
 
 ..  abjad::
@@ -192,7 +192,7 @@ Avoiding silences
             prototype = (abjad.Chord, abjad.Note)
             next_leaf = abjad.inspect(leaf).get_leaf(1)
             if isinstance(leaf, prototype) and isinstance(next_leaf, prototype):
-                lilypond_format_bundle.right.spanner_starts.append(r'\glissando')
+                lilypond_format_bundle.after.spanner_starts.append(r'\glissando')
             return lilypond_format_bundle
 
 ..  abjad::
@@ -272,7 +272,7 @@ Integrating overrides during formatting
             prototype = (abjad.Chord, abjad.Note)
             next_leaf = abjad.inspect(leaf).get_leaf(1)
             if isinstance(leaf, prototype) and isinstance(next_leaf, prototype):
-                lilypond_format_bundle.right.spanner_starts.append(r'\glissando')
+                lilypond_format_bundle.after.spanner_starts.append(r'\glissando')
             return lilypond_format_bundle
 
 ..  abjad::
@@ -350,7 +350,7 @@ Making the spanner annotation-aware
             prototype = (abjad.Chord, abjad.Note)
             next_leaf = abjad.inspect(leaf).get_leaf(1)
             if isinstance(leaf, prototype) and isinstance(next_leaf, prototype):
-                lilypond_format_bundle.right.spanner_starts.append(r'\glissando')
+                lilypond_format_bundle.after.spanner_starts.append(r'\glissando')
                 annotations = abjad.inspect(leaf).get_indicators(OscillationSize)
                 if not annotations:
                     annotations = [OscillationSize.SMALL]

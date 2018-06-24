@@ -29,8 +29,6 @@ class TwoStaffPianoScoreTemplate(ScoreTemplate):
                 {
                     \context Voice = "RHVoice"
                     {
-                        \set PianoStaff.instrumentName = \markup { Piano } %! ST1
-                        \set PianoStaff.shortInstrumentName = \markup { Pf. } %! ST1
                         s1
                     }
                 }

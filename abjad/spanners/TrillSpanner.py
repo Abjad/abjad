@@ -153,7 +153,7 @@ class TrillSpanner(Spanner):
                         value=scheme,
                         )
                     string = override.tweak_string(grob=True)
-                    bundle.after.spanner_starts.append(string)
+                    bundle.after.trill_spanner_starts.append(string)
                 strings = [r'\pitchedTrill']
                 if self._left_broken:
                     strings = self._tag_hide(strings)
@@ -170,7 +170,7 @@ class TrillSpanner(Spanner):
                 strings[-1] += ' ' + pitch_string
             if self._left_broken:
                 strings = self._tag_hide(strings)
-            bundle.after.spanner_starts.extend(strings)
+            bundle.after.trill_spanner_starts.extend(strings)
         if leaf is self[-1]:
             if 1 < len(self):
                 strings = [self.stop_command()]

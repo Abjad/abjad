@@ -12,7 +12,6 @@ from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.enumerations import Down
 from abjad.exceptions import ImpreciseMetronomeMarkError
 from abjad.markups import Markup
-from abjad.mathtools.Enumerator import Enumerator
 from abjad.mathtools.NonreducedFraction import NonreducedFraction
 from abjad.mathtools.Ratio import Ratio
 from abjad.scheme import Scheme
@@ -22,6 +21,7 @@ from abjad.top.new import new
 from abjad.top.sequence import sequence
 from abjad.typings import Number
 from abjad.utilities.Duration import Duration
+from abjad.utilities.Enumerator import Enumerator
 from abjad.utilities.Multiplier import Multiplier
 
 

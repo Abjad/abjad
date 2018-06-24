@@ -21,7 +21,7 @@ class IntervalClassSet(Set):
             )
         if isinstance(items, prototype):
             items = list(items)
-            enumerator = abjad.mathtools.Enumerator(items)
+            enumerator = abjad.utilities.Enumerator(items)
             pairs = enumerator.yield_pairs()
             items = [second - first for first, second in pairs]
         Set.__init__(

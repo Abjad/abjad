@@ -1,8 +1,8 @@
 import abc
 import typing
+from abjad import instruments
 from abjad.indicators.Clef import Clef
 from abjad.indicators.MarginMarkup import MarginMarkup
-from abjad.instruments.Instrument import Instrument
 from abjad.system import AbjadValueObject
 from abjad.utilities.OrderedDict import OrderedDict
 from abjad.utilities.String import String
@@ -133,7 +133,7 @@ class ScoreTemplate(AbjadValueObject):
     def allows_instrument(
         self,
         staff_name: str,
-        instrument: Instrument,
+        instrument: instruments.Instrument,
         ) -> bool:
         """
         Is true when ``staff_name`` allows ``instrument``.
@@ -204,7 +204,7 @@ class ScoreTemplate(AbjadValueObject):
                 leaf = inspect(voices[0]).get_leaf(0)
             if leaf is None:
                 continue
-            instrument = inspect(leaf).get_indicator(Instrument)
+            instrument = inspect(leaf).get_indicator(instruments.Instrument)
             if instrument is None:
                 string = 'default_instrument'
                 instrument = inspect(staff__group).get_annotation(string)
