@@ -360,7 +360,7 @@ class StorageFormatManager(AbjadValueObject):
             >>> for type_ in types:
             ...     type_
             ...
-            <class 'abjad.instruments.Flute.Flute'>
+            <class 'abjad.instruments.Flute'>
             <class 'abjad.markups.Markup'>
             <class 'abjad.pitch.Accidental.Accidental'>
             <class 'abjad.pitch.NamedPitch.NamedPitch'>
@@ -557,6 +557,7 @@ class StorageFormatManager(AbjadValueObject):
                 context='Staff',
                 middle_c_sounding_pitch=abjad.NamedPitch("c'"),
                 pitch_range=abjad.PitchRange('[C4, D7]'),
+                primary=True,
                 )
 
             >>> agent = abjad.StorageFormatManager(flute)

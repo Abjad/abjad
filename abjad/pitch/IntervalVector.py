@@ -1,5 +1,5 @@
-from abjad import mathtools
 from abjad.pitch.Vector import Vector
+from abjad.utilities.Enumerator import Enumerator
 
 
 class IntervalVector(Vector):
@@ -59,7 +59,7 @@ class IntervalVector(Vector):
             abjad.PitchClassSet,
             )):
             intervals = []
-            enumerator = mathtools.Enumerator(items)
+            enumerator = Enumerator(items)
             pairs = enumerator.yield_pairs()
             for first, second in pairs:
                 intervals.append(second - first)

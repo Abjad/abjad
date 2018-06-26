@@ -203,7 +203,7 @@ class LogicalTie(Selection):
 
             >>> staff = abjad.Staff(r"df'8 c'8 ~ c'16 cqs''4")
             >>> abjad.attach(abjad.Dynamic('p'), staff[0])
-            >>> abjad.attach(abjad.HairpinStart('<'), staff[0])
+            >>> abjad.attach(abjad.DynamicTrend('<'), staff[0])
             >>> abjad.attach(abjad.Dynamic('f'), staff[-1])
             >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 3
             >>> time_signature = abjad.TimeSignature((9, 16))

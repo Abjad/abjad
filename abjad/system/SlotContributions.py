@@ -19,6 +19,7 @@ class SlotContributions(AbjadObject):
         '_spanner_starts',
         '_spanner_stops',
         '_stem_tremolos',
+        '_trill_spanner_starts',
         )
 
     ### INITIALIZER ###
@@ -33,6 +34,7 @@ class SlotContributions(AbjadObject):
         self._spanner_starts: typing.List[str] = []
         self._spanner_stops: typing.List[str] = []
         self._stem_tremolos: typing.List[str] = []
+        self._trill_spanner_starts: typing.List[str] = []
 
     ### PRIVATE METHODS ###
 
@@ -48,6 +50,7 @@ class SlotContributions(AbjadObject):
             'spanner_starts',
             'spanner_stops',
             'stem_tremolos',
+            'trill_spanner_starts',
             ]
         names = [_ for _ in names if getattr(self, _)]
         return abjad.FormatSpecification(
@@ -93,6 +96,7 @@ class SlotContributions(AbjadObject):
             'spanner_starts',
             'spanner_stops',
             'stem_tremolos',
+            'trill_spanner_starts',
             )
         return any(getattr(self, contribution_category)
             for contribution_category in contribution_categories)
@@ -138,6 +142,13 @@ class SlotContributions(AbjadObject):
         Gets stem tremolos.
         """
         return self._stem_tremolos
+
+    @property
+    def trill_spanner_starts(self) -> typing.List[str]:
+        """
+        Gets trill spanner starts.
+        """
+        return self._trill_spanner_starts
 
     ### PUBLIC METHODS ###
 
@@ -216,3 +227,4 @@ class SlotContributions(AbjadObject):
         self.spanner_starts.extend(slot_contributions.spanner_starts)
         self.spanner_stops.extend(slot_contributions.spanner_stops)
         self.stem_tremolos.extend(slot_contributions.stem_tremolos)
+        self.trill_spanner_starts.extend(slot_contributions.trill_spanner_starts)

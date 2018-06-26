@@ -209,20 +209,20 @@ class TestManager(AbjadObject):
         -     short_name='fl.',
         +     short_name='bass fl.',
         ?                 +++++
-            markup=abjad.Markup(
+              markup=abjad.Markup(
         -         contents=['Flute'],
         ?                    ^
         +         contents=['Bass flute'],
         ?                    ^^^^^^
-                ),
-            short_markup=abjad.Markup(
+                  ),
+              short_markup=abjad.Markup(
         -         contents=['Fl.'],
         ?                    ^
         +         contents=['Bass fl.'],
         ?                    ^^^^^^
-                ),
-            allowable_clefs=('treble',),
-            context='Staff',
+                  ),
+              allowable_clefs=('treble',),
+              context='Staff',
         -     middle_c_sounding_pitch=abjad.NamedPitch("c'"),
         ?                                              ^  -
         +     middle_c_sounding_pitch=abjad.NamedPitch('c'),
@@ -231,7 +231,8 @@ class TestManager(AbjadObject):
         ?                                     ^  ^^
         +     pitch_range=abjad.PitchRange('[C3, C6]'),
         ?                                     ^  ^^
-            )
+        -     primary=True,
+              )
 
         Returns string.
         """

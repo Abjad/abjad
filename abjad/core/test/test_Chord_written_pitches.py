@@ -29,34 +29,6 @@ def test_Chord_written_pitches_02():
 
 def test_Chord_written_pitches_03():
     """
-    Transpose sounding pitches to written pitches.
-    """
-
-    staff = abjad.Staff("<c''' e'''>4 <d''' fs'''>4")
-    glockenspiel = abjad.Glockenspiel()
-    abjad.attach(glockenspiel, staff[0])
-    abjad.Instrument.transpose_from_sounding_pitch(staff)
-
-    assert format(staff) == abjad.String.normalize(
-        r"""
-        \new Staff
-        {
-            \set Staff.instrumentName = \markup { Glockenspiel }
-            \set Staff.shortInstrumentName = \markup { Gkspl. }
-            <c' e'>4
-            <d' fs'>4
-        }
-        """
-        )
-
-    assert staff[0].written_pitches == (
-        abjad.NamedPitch("c'"),
-        abjad.NamedPitch("e'"),
-        )
-
-
-def test_Chord_written_pitches_04():
-    """
     Set written pitches with pitch numbers.
     """
 
@@ -68,7 +40,7 @@ def test_Chord_written_pitches_04():
     assert format(chord) == "<d' ef' e'>4"
 
 
-def test_Chord_written_pitches_05():
+def test_Chord_written_pitches_04():
     """
     Set written pitches with pitches.
     """
@@ -83,7 +55,7 @@ def test_Chord_written_pitches_05():
     assert format(chord) == "<d' ef' e'>4"
 
 
-def test_Chord_written_pitches_06():
+def test_Chord_written_pitches_05():
     """
     Set written pitches with both pitches and pitch numbers.
     """

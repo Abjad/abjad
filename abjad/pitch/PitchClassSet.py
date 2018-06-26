@@ -1,5 +1,6 @@
 import copy
 from abjad.pitch.Set import Set
+from abjad.utilities.Enumerator import Enumerator
 
 
 class PitchClassSet(Set):
@@ -542,7 +543,7 @@ class PitchClassSet(Set):
         if not len(self) == len(segment):
             message = 'set and segment must be on equal length.'
             raise ValueError(message)
-        enumerator = abjad.Enumerator(self)
+        enumerator = Enumerator(self)
         for pitch_classes in enumerator.yield_permutations():
             candidate = abjad.PitchClassSegment(pitch_classes)
             if candidate._is_equivalent_under_transposition(segment):

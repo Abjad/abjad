@@ -3,6 +3,7 @@ from .Beam import Beam
 from .BowContactSpanner import BowContactSpanner
 from .Glissando import Glissando
 from .Hairpin import Hairpin
+from .Hairpin import hairpin
 from .HorizontalBracket import HorizontalBracket
 from .OctavationSpanner import OctavationSpanner
 from .PhrasingSlur import PhrasingSlur

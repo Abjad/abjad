@@ -1664,8 +1664,6 @@ class Iteration(AbjadObject):
                 >>> abjad.f(staff)
                 \new Staff
                 {
-                    \set Staff.instrumentName = \markup { Violin }
-                    \set Staff.shortInstrumentName = \markup { Vn. }
                     c'8
                     r8
                     <d fs>8

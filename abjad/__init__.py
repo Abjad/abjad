@@ -12,7 +12,6 @@ except ImportError:
 
 from abjad.enumerations import *
 from abjad.exceptions import *
-from abjad.typings import *
 
 # ensure that the ~/.abjad directory and friends are setup
 # and instantiate Abjad's configuration singleton
@@ -26,6 +25,9 @@ from abjad import parser
 # import all tools packages
 from abjad.system import *
 from abjad.utilities import *
+
+# typings after utilities (for Expression)
+from abjad.typings import *
 
 index = Pattern.index
 index_all = Pattern.index_all
@@ -46,7 +48,6 @@ from abjad.spanners import *
 from abjad.top import *
 
 # import all the way down to module to satisfy mypy:
-from abjad.mathtools.Enumerator import Enumerator
 from abjad.mathtools.NonreducedFraction import NonreducedFraction
 from abjad.mathtools.NonreducedRatio import NonreducedRatio
 from abjad.mathtools.Ratio import Ratio

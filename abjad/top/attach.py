@@ -247,7 +247,7 @@ def attach(
     if hasattr(attachable, '_attachment_test_all'):
         result = attachable._attachment_test_all(target)
         if result is not True:
-            assert isinstance(result, list)
+            assert isinstance(result, list), repr(result)
             result = ['  ' + _ for _ in result]
             message = f'{attachable!r}._attachment_test_all():'
             result.insert(0, message)

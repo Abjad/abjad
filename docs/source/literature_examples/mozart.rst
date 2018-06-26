@@ -209,8 +209,6 @@ LilyPond literals like "\break" relative to any score component:
     abjad.attach(literal, container)
     literal = abjad.LilyPondLiteral('closing-of-the-container', 'closing')
     abjad.attach(literal, container)
-    literal = abjad.LilyPondLiteral('to-the-right-of-a-note', 'right')
-    abjad.attach(literal, container[2])
     abjad.f(container)
 
 Notice the second argument to each

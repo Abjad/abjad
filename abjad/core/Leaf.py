@@ -172,12 +172,16 @@ class Leaf(Component):
         result = []
         result.append(('stem_tremolos', bundle.after.stem_tremolos))
         result.append(('articulations', bundle.after.articulations))
-        # NOTE: LilyPond demands that markup appear before \startTrillSpan
-        #       or else pitched trills hide markup:
         result.append(('markup', bundle.after.markup))
         result.append(('spanners', bundle.after.spanners))
         result.append(('spanner_stops', bundle.after.spanner_stops))
         result.append(('spanner_starts', bundle.after.spanner_starts))
+        # NOTE: LilyPond demands \startTrillSpan appear after almost all
+        #       other format contributions; pitched trills dangerously
+        #       suppress markup and the starts of other spanners when
+        #       \startTrillSpan appears lexically prior to those commands;
+        #       but \startTrillSpan must appear before calls to \set.
+        result.append(('trill_spanner_starts', bundle.after.trill_spanner_starts))
         result.append(('commands', bundle.after.commands))
         result.append(('comments', bundle.after.comments))
         return result

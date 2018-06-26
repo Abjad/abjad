@@ -136,6 +136,7 @@ class Inspection(AbjadObject):
                         ),
                     middle_c_sounding_pitch=abjad.NamedPitch("c'"),
                     pitch_range=abjad.PitchRange('[C2, G5]'),
+                    primary=True,
                     ),
                 tag=abjad.Tag(),
                 )
@@ -1139,8 +1140,6 @@ class Inspection(AbjadObject):
                 >>> abjad.f(staff)
                 \new Staff
                 {
-                    \set Staff.instrumentName = \markup { Piccolo }
-                    \set Staff.shortInstrumentName = \markup { Picc. }
                     d'8
                     e'8
                     f'8
@@ -1168,8 +1167,6 @@ class Inspection(AbjadObject):
                 >>> abjad.f(staff)
                 \new Staff
                 {
-                    \set Staff.instrumentName = \markup { Glockenspiel }
-                    \set Staff.shortInstrumentName = \markup { Gkspl. }
                     <c' e'>4
                     <d' fs'>4
                 }

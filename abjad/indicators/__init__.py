@@ -11,8 +11,8 @@ from .BreathMark import BreathMark
 from .Clef import Clef
 from .ColorFingering import ColorFingering
 from .Dynamic import Dynamic
+from .DynamicTrend import DynamicTrend
 from .Fermata import Fermata
-from .HairpinStart import HairpinStart
 from .KeyCluster import KeyCluster
 from .KeySignature import KeySignature
 from .LaissezVibrer import LaissezVibrer
@@ -30,10 +30,8 @@ from .StaffChange import StaffChange
 from .StartMarkup import StartMarkup
 from .StemTremolo import StemTremolo
 from .StringContactPoint import StringContactPoint
-from .StringNumber import StringNumber
 from .TimeSignature import TimeSignature
 from .Tremolo import Tremolo
-from .Tuning import Tuning
 from .WoodwindFingering import WoodwindFingering
 
 _documentation_section = 'core'

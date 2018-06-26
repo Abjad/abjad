@@ -3526,7 +3526,6 @@ class Selection(AbjadValueObject, collections.Sequence):
 
         Returns nested selection (or expression).
         """
-        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
         def predicate(argument):

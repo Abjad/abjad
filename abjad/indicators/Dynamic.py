@@ -9,6 +9,7 @@ from abjad.mathtools.Infinity import Infinity
 from abjad.mathtools.NegativeInfinity import NegativeInfinity
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
+from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.utilities.String import String
 
 
@@ -117,10 +118,12 @@ class Dynamic(AbjadValueObject):
         '_direction',
         '_format_hairpin_stop',
         '_hide',
+        '_leak',
         '_lilypond_tweak_manager',
         '_name',
         '_name_is_textual',
         '_ordinal',
+        '_right_broken',
         '_sforzando',
         )
 
@@ -229,8 +232,10 @@ class Dynamic(AbjadValueObject):
         direction: VerticalAlignment = None,
         format_hairpin_stop: bool = None,
         hide: bool = None,
+        leak: bool = None,
         name_is_textual: bool = None,
         ordinal: typing.Union[int, Infinity, NegativeInfinity] = None,
+        right_broken: bool = None,
         sforzando: bool = None,
         tweaks: typing.Union[
             typing.List[typing.Tuple], LilyPondTweakManager] = None,
@@ -262,12 +267,18 @@ class Dynamic(AbjadValueObject):
         if hide is not None:
             hide = bool(hide)
         self._hide = hide
+        if leak is not None:
+            leak = bool(leak)
+        self._leak = leak
         if name_is_textual is not None:
             name_is_textual = bool(name_is_textual)
         self._name_is_textual = name_is_textual
         if ordinal is not None:
             assert isinstance(ordinal, (int, Infinity, NegativeInfinity))
         self._ordinal = ordinal
+        if right_broken is not None:
+            right_broken = bool(right_broken)
+        self._right_broken = right_broken
         if sforzando is not None:
             sforzando = bool(sforzando)
         self._sforzando = sforzando
@@ -354,6 +365,11 @@ class Dynamic(AbjadValueObject):
 
     ### PRIVATE METHODS ###
 
+    def _add_leak(self, string):
+        if self.leak:
+            string = f'<> {string}'
+        return string
+
     def _attachment_test_all(self, component_expression):
         import abjad
         if not isinstance(component_expression, abjad.Leaf):
@@ -419,7 +435,7 @@ class Dynamic(AbjadValueObject):
         return string
 
     def _get_format_specification(self):
-        keywords = ['command', 'direction', 'hide']
+        keywords = ['command', 'direction', 'hide', 'leak']
         if self._ordinal is not None:
             keywords.append('ordinal')
         keywords.append('name_is_textual')
@@ -435,12 +451,19 @@ class Dynamic(AbjadValueObject):
 
     def _get_lilypond_format(self):
         if self.command:
-            return self.command
-        if self.effort:
-            return self._format_effort_dynamic()
-        if self.name_is_textual:
-            return self._format_textual(self.direction, self.name)
-        return rf'\{self.name}'
+            string = self.command
+        elif self.effort:
+            string = self._format_effort_dynamic()
+        elif self.name_is_textual:
+            string = self._format_textual(self.direction, self.name)
+        else:
+            string = rf'\{self.name}'
+        string = self._add_leak(string)
+        if self.right_broken is True:
+            strings = [string]
+            strings = self._tag_hide(strings)
+            string = strings[0]
+        return string
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = LilyPondFormatBundle()
@@ -451,6 +474,16 @@ class Dynamic(AbjadValueObject):
             string = self._get_lilypond_format()
             bundle.after.articulations.append(string)
         return bundle
+
+    @staticmethod
+    def _tag_hide(strings):
+        import abjad
+        abjad_tags = abjad.Tags()
+        return LilyPondFormatManager.tag(
+            strings,
+            deactivate=False,
+            tag=abjad_tags.HIDE_TO_JOIN_BROKEN_SPANNERS,
+            )
 
     ### PUBLIC PROPERTIES ###
 
@@ -717,6 +750,85 @@ class Dynamic(AbjadValueObject):
         return self._hide
 
     @property
+    def leak(self) -> typing.Optional[bool]:
+        r"""
+        Is true when dynamic formats LilyPond empty chord ``<>`` symbol.
+
+        ..  container:: example
+
+            Without leaked stop dynamic:
+
+            >>> staff = abjad.Staff("c'4 d' e' r")
+            >>> start = abjad.Dynamic('mf')
+            >>> trend = abjad.DynamicTrend('>')
+            >>> stop = abjad.Dynamic('pp')
+            >>> abjad.attach(start, staff[0])
+            >>> abjad.attach(trend, staff[0])
+            >>> abjad.attach(stop, staff[-2])
+            >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                \with
+                {
+                    \override DynamicLineSpanner.staff-padding = #4
+                }
+                {
+                    c'4
+                    \mf
+                    \>
+                    d'4
+                    e'4
+                    \pp
+                    r4
+                }
+
+            With leaked stop dynamic:
+
+            >>> staff = abjad.Staff("c'4 d' e' r")
+            >>> start = abjad.Dynamic('mf')
+            >>> trend = abjad.DynamicTrend('>')
+            >>> stop = abjad.Dynamic('pp', leak=True)
+            >>> abjad.attach(start, staff[0])
+            >>> abjad.attach(trend, staff[0])
+            >>> abjad.attach(stop, staff[-2])
+            >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                \with
+                {
+                    \override DynamicLineSpanner.staff-padding = #4
+                }
+                {
+                    c'4
+                    \mf
+                    \>
+                    d'4
+                    e'4
+                    <> \pp
+                    r4
+                }
+
+        ..  container:: example
+
+            Leak survives copy:
+
+            >>> import copy
+            >>> dynamic = abjad.Dynamic('pp', leak=True)
+            >>> copy.copy(dynamic)
+            Dynamic('pp', leak=True, ordinal=-3, sforzando=False)
+
+        """
+        return self._leak
+
+    @property
     def name(self) -> str:
         r"""
         Gets name.
@@ -939,6 +1051,42 @@ class Dynamic(AbjadValueObject):
 
         """
         return self._persistent
+
+    @property
+    def right_broken(self) -> typing.Optional[bool]:
+        r"""
+        Is true when dynamic formats with right broken tag.
+
+        ..  container:: example
+
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> start = abjad.Dynamic('p')
+            >>> trend = abjad.DynamicTrend('>')
+            >>> stop = abjad.Dynamic('niente', command=r'\!', right_broken=True)
+            >>> abjad.attach(start, staff[0])
+            >>> abjad.attach(trend, staff[0])
+            >>> abjad.attach(stop, staff[-1])
+            >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4.5
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            >>> abjad.f(staff)
+            \new Staff
+            \with
+            {
+                \override DynamicLineSpanner.staff-padding = #4.5
+            }
+            {
+                c'4
+                \p
+                \>
+                d'4
+                e'4
+                f'4
+                \! %! HIDE_TO_JOIN_BROKEN_SPANNERS
+            }
+
+        """
+        return self._right_broken
 
     @property
     def sforzando(self) -> typing.Optional[bool]:

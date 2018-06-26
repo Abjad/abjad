@@ -1,17 +1,23 @@
 import typing
+from abjad import typings
 from .Spanner import Spanner
 from abjad import enumerations
 from abjad.core.Chord import Chord
+from abjad.core.Component import Component
 from abjad.core.Leaf import Leaf
 from abjad.core.Note import Note
+from abjad.core.Selection import Selection
 from abjad.indicators.Dynamic import Dynamic
+from abjad.indicators.DynamicTrend import DynamicTrend
 from abjad.lilypondnames.LilyPondGrobOverride import LilyPondGrobOverride
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.system.Tag import Tag
 from abjad.system.Wrapper import Wrapper
+from abjad.top.attach import attach
 from abjad.top.inspect import inspect
 from abjad.top.select import select
 from abjad.top.tweak import tweak
+from abjad.utilities.Expression import Expression
 from abjad.utilities.String import String
 
 
@@ -2640,3 +2646,108 @@ class Hairpin(Spanner):
                 string = self._stop_command
                 return string
         return None
+
+def hairpin(
+    descriptor: str,
+    argument: typing.Union[Component, Selection],
+    start_selector: typings.Selector = 'abjad.select().leaf(0)',
+    stop_selector: typings.Selector = 'abjad.select().leaf(-1)',
+    ) -> None:
+    r"""
+    Attaches hairpin indicators.
+
+    ..  container:: example
+
+        With three-part string descriptor:
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> abjad.hairpin('p < f', staff[:])
+        >>> abjad.override(staff[0]).dynamic_line_spanner.staff_padding = 4
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                \once \override DynamicLineSpanner.staff-padding = #4
+                c'4
+                \p
+                \<
+                d'4
+                e'4
+                f'4
+                \f
+            }
+
+    ..  container:: example
+
+        With dynamic objects:
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> start = abjad.Dynamic('niente', command=r'\!')
+        >>> trend = abjad.DynamicTrend('o<|')
+        >>> abjad.tweak(trend).color = 'blue'
+        >>> stop = abjad.Dynamic('"f"')
+        >>> abjad.hairpin([start, trend, stop], staff[:])
+        >>> abjad.override(staff[0]).dynamic_line_spanner.staff_padding = 4
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                \once \override DynamicLineSpanner.staff-padding = #4
+                c'4
+                \!
+                - \tweak color #blue
+                - \tweak circled-tip ##t
+                - \tweak stencil #abjad-flared-hairpin
+                \<
+                d'4
+                e'4
+                f'4
+                _ #(make-dynamic-script
+                    (markup
+                        #:whiteout
+                        #:line (
+                            #:general-align Y -2 #:normal-text #:larger "“"
+                            #:hspace -0.4
+                            #:dynamic "f"
+                            #:hspace -0.2
+                            #:general-align Y -2 #:normal-text #:larger "”"
+                            )
+                        )
+                    )
+            }
+
+    """
+    import abjad
+
+    if isinstance(descriptor, str):
+        start, shape, stop = descriptor.split()
+        start_dynamic = Dynamic(start)
+        dynamic_trend = DynamicTrend(shape)
+        stop_dynamic = Dynamic(stop)
+    else:
+        assert isinstance(descriptor, list), repr(descriptor)
+        assert len(descriptor) == 3, repr(descriptor)
+        start_dynamic, dynamic_trend, stop_dynamic = descriptor
+
+    assert isinstance(start_dynamic, Dynamic), repr(start_dynamic)
+    if isinstance(start_selector, str):
+        start_selector = eval(start_selector)
+    assert isinstance(start_selector, Expression)
+    start_leaf = start_selector(argument)
+    attach(start_dynamic, start_leaf)
+
+    assert isinstance(dynamic_trend, DynamicTrend), repr(dynamic_trend)
+    attach(dynamic_trend, start_leaf)
+    
+    assert isinstance(stop_dynamic, Dynamic), repr(stop_dynamic)
+    if isinstance(stop_selector, str):
+        stop_selector = eval(stop_selector)
+    assert isinstance(stop_selector, Expression)
+    stop_leaf = stop_selector(argument)
+    attach(stop_dynamic, stop_leaf)
