@@ -1,9 +1,9 @@
 import collections
 import typing
-from abjad.system.AbjadValueObject import AbjadValueObject
-from abjad.enumerations import Up
+from abjad import enums
 from abjad.markups import Markup
 from abjad.mathtools.Ratio import Ratio
+from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.top.inspect import inspect
 from abjad.top.new import new
@@ -929,7 +929,7 @@ class MetricModulation(AbjadValueObject):
     def _get_lilypond_format_bundle(self, component=None):
         bundle = LilyPondFormatBundle()
         markup = self._get_markup()
-        markup = new(markup, direction=Up)
+        markup = new(markup, direction=enums.Up)
         markup_format_pieces = markup._get_format_pieces()
         bundle.after.markup.extend(markup_format_pieces)
         return bundle

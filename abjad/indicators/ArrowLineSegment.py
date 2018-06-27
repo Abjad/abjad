@@ -1,8 +1,7 @@
 import typing
-from abjad.enumerations import Center
-from abjad.enumerations import VerticalAlignment
+from abjad import enums
+from abjad import typings
 from abjad.markups import Markup
-from abjad.typings import Number
 from .LineSegment import LineSegment
 
 
@@ -98,22 +97,24 @@ class ArrowLineSegment(LineSegment):
     def __init__(
         self,
         *,
-        arrow_width: Number = 0.25,
-        dash_fraction: Number = 1,
-        dash_period: Number = None,
-        left_broken_padding: Number = None,
+        arrow_width: typings.Number = 0.25,
+        dash_fraction: typings.Number = 1,
+        dash_period: typings.Number = None,
+        left_broken_padding: typings.Number = None,
         left_broken_text: typing.Union[bool, str, Markup] = None,
-        left_hspace: Number = 0.25,
-        left_padding: Number = None,
+        left_hspace: typings.Number = 0.25,
+        left_padding: typings.Number = None,
         left_stencil_align_direction_y: typing.Union[
-            Number, VerticalAlignment, None] = VerticalAlignment.Center,
+            typings.Number, enums.VerticalAlignment, None
+            ] = enums.Center,
         right_arrow: bool = True,
         right_broken_arrow: bool = None,
-        right_broken_padding: Number = 0,
+        right_broken_padding: typings.Number = 0,
         right_broken_text: typing.Union[bool, str, Markup] = False,
-        right_padding: Number = 0.5,
+        right_padding: typings.Number = 0.5,
         right_stencil_align_direction_y: typing.Union[
-            Number, VerticalAlignment, None] = VerticalAlignment.Center,
+            typings.Number, enums.VerticalAlignment, None
+            ] = enums.Center,
         style: str = None,
         ) -> None:
         super(ArrowLineSegment, self).__init__(
@@ -143,7 +144,7 @@ class ArrowLineSegment(LineSegment):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def arrow_width(self) -> typing.Optional[Number]:
+    def arrow_width(self) -> typing.Optional[typings.Number]:
         r"""
         Gets arrow width of arrow.
 
@@ -352,7 +353,7 @@ class ArrowLineSegment(LineSegment):
         return super(ArrowLineSegment, self).arrow_width
 
     @property
-    def dash_fraction(self) -> typing.Optional[Number]:
+    def dash_fraction(self) -> typing.Optional[typings.Number]:
         r"""
         Gets dash fraction of arrow.
 
@@ -558,7 +559,7 @@ class ArrowLineSegment(LineSegment):
         return super(ArrowLineSegment, self).dash_fraction
 
     @property
-    def dash_period(self) -> typing.Optional[Number]:
+    def dash_period(self) -> typing.Optional[typings.Number]:
         r"""
         Gets dash period of arrow.
 

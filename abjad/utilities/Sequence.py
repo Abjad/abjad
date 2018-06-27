@@ -4,7 +4,7 @@ import itertools
 import math
 import numbers
 import sys
-from abjad.enumerations import Exact, Less, More
+from abjad import enums
 from abjad import mathtools
 from abjad.system import AbjadValueObject
 from abjad.system.Signature import Signature
@@ -830,7 +830,7 @@ class Sequence(AbjadValueObject, collections.Sequence):
             indicator = 'R' + indicator
         if overhang is True:
             indicator += '+'
-        elif overhang is Exact:
+        elif overhang is enums.Exact:
             indicator += '!'
         return indicator
 
@@ -3336,9 +3336,9 @@ class Sequence(AbjadValueObject, collections.Sequence):
         if part:
             if overhang is True:
                 result.append(part)
-            elif overhang is Exact and len(part) == count:
+            elif overhang is enums.Exact and len(part) == count:
                 result.append(part)
-            elif overhang is Exact and len(part) != count:
+            elif overhang is enums.Exact and len(part) != count:
                 message = 'sequence does not partition exactly.'
                 raise Exception(message)
         if reversed_:
@@ -3464,7 +3464,7 @@ class Sequence(AbjadValueObject, collections.Sequence):
         parts = self.partition_by_counts(
             counts,
             cyclic=False,
-            overhang=Exact,
+            overhang=enums.Exact,
             )
         return type(self)(parts)
 
@@ -3636,7 +3636,7 @@ class Sequence(AbjadValueObject, collections.Sequence):
         weights,
         cyclic=False,
         overhang=False,
-        allow_part_weights=Exact,
+        allow_part_weights=enums.Exact,
         ):
         r"""
         Partitions sequence by ``weights`` exactly.
@@ -3851,7 +3851,7 @@ class Sequence(AbjadValueObject, collections.Sequence):
         Returns nested sequence.
         """
         import abjad
-        if allow_part_weights is Exact:
+        if allow_part_weights is enums.Exact:
             candidate = type(self)(self)
             candidate = candidate.split(
                 weights,
@@ -3864,7 +3864,7 @@ class Sequence(AbjadValueObject, collections.Sequence):
             else:
                 message = 'can not partition exactly.'
                 raise Exception(message)
-        elif allow_part_weights is More:
+        elif allow_part_weights is enums.More:
             if not cyclic:
                 return Sequence._partition_sequence_once_by_weights_at_least(
                     self,
@@ -3877,7 +3877,7 @@ class Sequence(AbjadValueObject, collections.Sequence):
                     weights,
                     overhang=overhang,
                     )
-        elif allow_part_weights is Less:
+        elif allow_part_weights is enums.Less:
             if not cyclic:
                 return Sequence._partition_sequence_once_by_weights_at_most(
                     self,
@@ -4228,7 +4228,7 @@ class Sequence(AbjadValueObject, collections.Sequence):
                 items.append(item)
         return type(self)(items[start:stop_index])
 
-    def repeat_to_weight(self, weight, allow_total=Exact):
+    def repeat_to_weight(self, weight, allow_total=enums.Exact):
         """
         Repeats sequence to ``weight``.
 
@@ -4272,7 +4272,7 @@ class Sequence(AbjadValueObject, collections.Sequence):
         import abjad
         assert isinstance(weight, numbers.Number), repr(weight)
         assert 0 <= weight
-        if allow_total is Exact:
+        if allow_total is enums.Exact:
             sequence_weight = abjad.mathtools.weight(self)
             complete_repetitions = int(
                 math.ceil(float(weight) / float(sequence_weight))
@@ -4297,7 +4297,7 @@ class Sequence(AbjadValueObject, collections.Sequence):
                         break
                 else:
                     break
-        elif allow_total is Less:
+        elif allow_total is enums.Less:
             items = [self[0]]
             i = 1
             while abjad.mathtools.weight(items) < weight:
@@ -4306,7 +4306,7 @@ class Sequence(AbjadValueObject, collections.Sequence):
             if weight < abjad.mathtools.weight(items):
                 items = items[:-1]
             return type(self)(items)
-        elif allow_total is More:
+        elif allow_total is enums.More:
             items = [self[0]]
             i = 1
             while abjad.mathtools.weight(items) < weight:
@@ -4919,7 +4919,7 @@ class Sequence(AbjadValueObject, collections.Sequence):
         if cyclic:
             weights = Sequence(weights).repeat_to_weight(
                 mathtools.weight(self),
-                allow_total=abjad.Less,
+                allow_total=enums.Less,
                 )
         for weight in weights:
             current_piece_weight = mathtools.weight(current_piece)

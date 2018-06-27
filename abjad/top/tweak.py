@@ -1,7 +1,4 @@
-from abjad.enumerations import Down
-from abjad.enumerations import Left
-from abjad.enumerations import Right
-from abjad.enumerations import Up
+from abjad import enums
 
 
 def tweak(argument):
@@ -247,7 +244,7 @@ def tweak(argument):
 
     """
     import abjad
-    constants = (Down, Left, Right, Up)
+    constants = (enums.Down, enums.Left, enums.Right, enums.Up)
     prototype = (bool, int, float, str, tuple, abjad.Scheme)
     if argument in constants or isinstance(argument, prototype):
         manager = abjad.LilyPondTweakManager()

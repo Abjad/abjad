@@ -1,11 +1,8 @@
 import copy
 import typing
-from abjad.system.AbjadValueObject import AbjadValueObject
-from abjad.enumerations import Center
-from abjad.enumerations import Down
-from abjad.enumerations import Up
-from abjad.enumerations import VerticalAlignment
+from abjad import enums
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
+from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.system.StorageFormatManager import StorageFormatManager
@@ -144,7 +141,7 @@ class Articulation(AbjadValueObject):
         self,
         name: str = None,
         *,
-        direction: typing.Union[str, VerticalAlignment] = None,
+        direction: typing.Union[str, enums.VerticalAlignment] = None,
         tweaks: typing.Union[
             typing.List[typing.Tuple], LilyPondTweakManager] = None,
         ) -> None:
@@ -160,8 +157,8 @@ class Articulation(AbjadValueObject):
         self._name = name
         direction_ = String.to_tridirectional_ordinal_constant(direction)
         if direction_ is not None:
-            assert isinstance(direction_, VerticalAlignment), repr(direction_)
-            assert direction_ in (Up, Down, Center), repr(direction_)
+            assert isinstance(direction_, enums.VerticalAlignment), repr(direction_)
+            assert direction_ in (enums.Up, enums.Down, enums.Center), repr(direction_)
         self._direction = direction_
         self._format_slot = 'after'
         self._lilypond_tweak_manager = None
@@ -239,7 +236,7 @@ class Articulation(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def direction(self) -> typing.Optional[VerticalAlignment]:
+    def direction(self) -> typing.Optional[enums.VerticalAlignment]:
         """
         Gets direction of articulation.
 

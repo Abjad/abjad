@@ -1,7 +1,7 @@
 import copy
 from ply import lex  # type: ignore
-from abjad.exceptions import SchemeParserFinishedError
 from abjad import core
+from abjad import exceptions
 from abjad.system.AbjadObject import AbjadObject
 
 
@@ -402,7 +402,7 @@ class LilyPondLexicalDefinition(AbjadObject):
         #print 'PREPARSE'
         try:
             scheme_parser(input_string)
-        except SchemeParserFinishedError:
+        except exceptions.SchemeParserFinishedError:
             result = scheme_parser.result
             cursor_end = scheme_parser.cursor_end
             #print 'PARSED: {!r}'.format(input_string[:cursor_end])

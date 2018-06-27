@@ -1,8 +1,8 @@
 import collections
 import inspect
-from abjad.system.AbjadObject import AbjadObject
-from abjad.enumerations import Up
+from abjad import enums
 from abjad.scheme import SchemeColor
+from abjad.system.AbjadObject import AbjadObject
 
 
 class Label(AbjadObject):
@@ -753,7 +753,7 @@ class Label(AbjadObject):
         for leaf in  abjad.iterate(self.client).leaves():
             abjad.detach(abjad.Markup, leaf)
 
-    def vertical_moments(self, direction=Up, prototype=None):
+    def vertical_moments(self, direction=enums.Up, prototype=None):
         r'''
         Labels vertical moments.
 
@@ -1925,13 +1925,13 @@ class Label(AbjadObject):
                 raise TypeError(message)
             if label is not None:
                 label = label.tiny()
-                if direction is Up:
+                if direction is enums.Up:
                     leaf = vertical_moment.start_leaves[0]
                 else:
                     leaf = vertical_moment.start_leaves[-1]
                 self._attach(label, leaf)
 
-    def with_durations(self, direction=Up, denominator=None):
+    def with_durations(self, direction=enums.Up, denominator=None):
         r"""Labels logical ties with durations.
 
         ..  container:: example
@@ -2122,7 +2122,7 @@ class Label(AbjadObject):
             label = abjad.Markup.fraction(*pair, direction=direction)
             self._attach(label, logical_tie.head)
 
-    def with_indices(self, direction=Up, prototype=None):
+    def with_indices(self, direction=enums.Up, prototype=None):
         r"""Labels logical ties with indices.
 
         ..  container:: example
@@ -2501,7 +2501,7 @@ class Label(AbjadObject):
             first_leaf = leaves[0]
             self._attach(label, first_leaf)
 
-    def with_intervals(self, direction=Up, prototype=None):
+    def with_intervals(self, direction=enums.Up, prototype=None):
         r"""
         Labels consecutive notes with intervals.
 
@@ -2932,7 +2932,7 @@ class Label(AbjadObject):
                 if label is not None:
                     self._attach(label, note)
 
-    def with_pitches(self, direction=Up, locale=None, prototype=None):
+    def with_pitches(self, direction=enums.Up, locale=None, prototype=None):
         r"""
         Labels logical ties with pitches.
 
@@ -3550,7 +3550,7 @@ class Label(AbjadObject):
                 label = abjad.new(label, direction=direction)
                 self._attach(label, leaf)
 
-    def with_set_classes(self, direction=Up, prototype=None):
+    def with_set_classes(self, direction=enums.Up, prototype=None):
         r"""
         Labels items in client with set-classes.
 

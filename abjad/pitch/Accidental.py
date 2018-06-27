@@ -1,6 +1,6 @@
 import functools
 import numbers
-from abjad.enumerations import VerticalAlignment
+from abjad import enums
 from abjad import mathtools
 from abjad.system.AbjadValueObject import AbjadValueObject
 from . import constants
@@ -120,8 +120,8 @@ class Accidental(AbjadValueObject):
         self._semitones = semitones
         self._arrow = _arrow
         if arrow is not None:
-            arrow = VerticalAlignment.from_expr(arrow)
-            if arrow is VerticalAlignment.Center:
+            arrow = enums.VerticalAlignment.from_expr(arrow)
+            if arrow is enums.Center:
                 arrow = None
             self._arrow = arrow
 

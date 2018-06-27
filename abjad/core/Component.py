@@ -2,13 +2,10 @@ import abc
 import bisect
 import copy
 import uqbar.graphs
+from abjad import enums
+from abjad import exceptions
 from abjad import mathtools
 from abjad.system.AbjadObject import AbjadObject
-from abjad.enumerations import Down
-from abjad.enumerations import Right
-from abjad.enumerations import Up
-from abjad.exceptions import MissingMetronomeMarkError
-from abjad.exceptions import MissingMeasureError
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.StorageFormatManager import StorageFormatManager
@@ -484,10 +481,10 @@ class Component(AbjadObject):
     def _get_markup(self, direction=None):
         import abjad
         markup = self._get_indicators(abjad.Markup)
-        if direction is Up:
-            return tuple(x for x in markup if x.direction is Up)
-        elif direction is Down:
-            return tuple(x for x in markup if x.direction is Down)
+        if direction is enums.Up:
+            return tuple(x for x in markup if x.direction is enums.Up)
+        elif direction is enums.Down:
+            return tuple(x for x in markup if x.direction is enums.Down)
         return markup
 
     def _get_next_measure(self):
@@ -497,7 +494,7 @@ class Component(AbjadObject):
                 include_self=False):
                 if isinstance(parent, abjad.Measure):
                     return parent
-            raise MissingMeasureError
+            raise exceptions.MissingMeasureError
         elif isinstance(self, abjad.Measure):
             return self._get_in_my_logical_voice(1, prototype=abjad.Measure)
         elif isinstance(self, abjad.Container):
@@ -505,14 +502,14 @@ class Component(AbjadObject):
             contents = [x for x in contents if isinstance(x, abjad.Measure)]
             if contents:
                 return contents[0]
-            raise MissingMeasureError
+            raise exceptions.MissingMeasureError
         elif isinstance(self, (list, tuple)):
             measure_generator = abjad.iterate(self).components(abjad.Measure)
             try:
                 measure = next(measure_generator)
                 return measure
             except StopIteration:
-                raise MissingMeasureError
+                raise exceptions.MissingMeasureError
         else:
             message = 'unknown component: {!r}.'
             raise TypeError(message.format(self))
@@ -558,7 +555,7 @@ class Component(AbjadObject):
                 include_self=False):
                 if isinstance(parent, abjad.Measure):
                     return parent
-            raise MissingMeasureError
+            raise exceptions.MissingMeasureError
         elif isinstance(self, abjad.Measure):
             return self._get_in_my_logical_voice(-1, prototype=abjad.Measure)
         elif isinstance(self, abjad.Container):
@@ -566,7 +563,7 @@ class Component(AbjadObject):
             contents = [x for x in contents if isinstance(x, abjad.Measure)]
             if contents:
                 return contents[0]
-            raise MissingMeasureError
+            raise exceptions.MissingMeasureError
         elif isinstance(self, (list, tuple)):
             measure_generator = abjad.iterate(self).components(
                 abjad.Measure,
@@ -576,7 +573,7 @@ class Component(AbjadObject):
                 measure = next(measure_generator)
                 return measure
             except StopIteration:
-                raise MissingMeasureError
+                raise exceptions.MissingMeasureError
         else:
             message = 'unknown component: {!r}.'
             raise TypeError(message.format(self))
@@ -602,7 +599,7 @@ class Component(AbjadObject):
         if in_seconds:
             self._update_now(offsets_in_seconds=True)
             if self._start_offset_in_seconds is None:
-                raise MissingMetronomeMarkError
+                raise exceptions.MissingMetronomeMarkError
             return Timespan(
                 start_offset=self._start_offset_in_seconds,
                 stop_offset=self._stop_offset_in_seconds,
@@ -749,13 +746,13 @@ class Component(AbjadObject):
     def _splice(
         self,
         components,
-        direction=Right,
+        direction=enums.Right,
         grow_spanners=True,
         ):
         import abjad
         assert all(isinstance(x, Component) for x in components)
         selection = abjad.select(self)
-        if direction is Right:
+        if direction is enums.Right:
             if grow_spanners:
                 insert_offset = abjad.inspect(self).get_timespan().stop_offset
                 receipt = selection._get_dominant_spanners()

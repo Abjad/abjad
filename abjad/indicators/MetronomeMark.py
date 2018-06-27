@@ -7,19 +7,19 @@ except ImportError:
 import functools
 import math
 import typing
+from abjad import enums
+from abjad import exceptions
 from abjad import mathtools
-from abjad.system.AbjadValueObject import AbjadValueObject
-from abjad.enumerations import Down
-from abjad.exceptions import ImpreciseMetronomeMarkError
+from abjad import typings
 from abjad.markups import Markup
 from abjad.mathtools.NonreducedFraction import NonreducedFraction
 from abjad.mathtools.Ratio import Ratio
 from abjad.scheme import Scheme
+from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.top.new import new
 from abjad.top.sequence import sequence
-from abjad.typings import Number
 from abjad.utilities.Duration import Duration
 from abjad.utilities.Enumerator import Enumerator
 from abjad.utilities.Multiplier import Multiplier
@@ -243,7 +243,7 @@ class MetronomeMark(AbjadValueObject):
         self,
         reference_duration: typing.Union[
             Duration, typing.Tuple[int, int]] = None,
-        units_per_minute: Number = None,
+        units_per_minute: typings.Number = None,
         textual_indication: Markup = None,
         *,
         custom_markup: Markup = None,
@@ -336,7 +336,7 @@ class MetronomeMark(AbjadValueObject):
         if not isinstance(argument, type(self)):
             raise TypeError(argument)
         if self.is_imprecise or argument.is_imprecise:
-            raise ImpreciseMetronomeMarkError
+            raise exceptions.ImpreciseMetronomeMarkError
         assert isinstance(self.quarters_per_minute, Fraction)
         assert isinstance(argument.quarters_per_minute, Fraction)
         assert isinstance(self.reference_duration, Duration)
@@ -382,9 +382,9 @@ class MetronomeMark(AbjadValueObject):
 
         """
         if self.is_imprecise:
-            raise ImpreciseMetronomeMarkError
+            raise exceptions.ImpreciseMetronomeMarkError
         if getattr(argument, 'is_imprecise', False):
-            raise ImpreciseMetronomeMarkError
+            raise exceptions.ImpreciseMetronomeMarkError
         assert isinstance(self.quarters_per_minute, Fraction)
         if isinstance(argument, type(self)):
             assert isinstance(argument.quarters_per_minute, Fraction)
@@ -525,7 +525,7 @@ class MetronomeMark(AbjadValueObject):
         if not isinstance(multiplier, (int, float, Duration)):
             return None
         if self.is_imprecise:
-            raise ImpreciseMetronomeMarkError
+            raise exceptions.ImpreciseMetronomeMarkError
         assert isinstance(self.units_per_minute, (int, float, Fraction))
         new_units_per_minute = multiplier * self.units_per_minute
         new_reference_duration = Duration(self.reference_duration)
@@ -611,7 +611,7 @@ class MetronomeMark(AbjadValueObject):
         if not isinstance(multiplier, (int, float, Duration)):
             return None
         if self.is_imprecise:
-            raise ImpreciseMetronomeMarkError
+            raise exceptions.ImpreciseMetronomeMarkError
         assert isinstance(self.units_per_minute, (int, float, Fraction))
         new_units_per_minute = multiplier * self.units_per_minute
         new_reference_duration = Duration(self.reference_duration)
@@ -713,7 +713,7 @@ class MetronomeMark(AbjadValueObject):
         if not isinstance(argument, type(self)):
             raise Exception('must be metronome mark: {argument!r}.')
         if self.is_imprecise or argument.is_imprecise:
-            raise ImpreciseMetronomeMarkError
+            raise exceptions.ImpreciseMetronomeMarkError
         assert isinstance(self.quarters_per_minute, (int, float, Fraction))
         assert isinstance(argument.quarters_per_minute, (int, float, Fraction))
         assert isinstance(self.reference_duration, Duration)
@@ -836,7 +836,7 @@ class MetronomeMark(AbjadValueObject):
             self.reference_duration.dot_count,
             stem_height,
             )
-        lhs = lhs.general_align('Y', Down).fontsize(-6)
+        lhs = lhs.general_align('Y', enums.Down).fontsize(-6)
         equals = Markup('=')
         units = Markup(self.units_per_minute)
         rhs = equals + units

@@ -1,14 +1,7 @@
 import typing
-from abjad.system.AbjadValueObject import AbjadValueObject
-from abjad.enumerations import (
-    Center,
-    Down,
-    HorizontalAlignment,
-    Right,
-    Up,
-    VerticalAlignment,
-    )
+from abjad import enums
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
+from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.utilities.String import String
 
@@ -73,23 +66,23 @@ class Staccato(AbjadValueObject):
         '_lilypond_tweak_manager',
         )
 
-    _format_slot: HorizontalAlignment = HorizontalAlignment.Right
+    _format_slot: enums.HorizontalAlignment = enums.Right
 
-    _time_orientation: HorizontalAlignment = HorizontalAlignment.Right
+    _time_orientation: enums.HorizontalAlignment = enums.Right
 
     ### INITIALIZER ###
 
     def __init__(
         self,
         *,
-        direction: VerticalAlignment = None,
+        direction: enums.VerticalAlignment = None,
         tweaks: typing.Union[
             typing.List[typing.Tuple], LilyPondTweakManager] = None,
         ) -> None:
         direction_ = String.to_tridirectional_ordinal_constant(direction)
         if direction_ is not None:
-            assert isinstance(direction_, VerticalAlignment), repr(direction_)
-            directions = (Up, Down, Center, None)
+            assert isinstance(direction_, enums.VerticalAlignment), repr(direction_)
+            directions = (enums.Up, enums.Down, enums.Center, None)
             assert direction_ in directions, repr(direction_)
         self._direction = direction_
         self._lilypond_tweak_manager = None
@@ -125,7 +118,7 @@ class Staccato(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def direction(self) -> typing.Optional[VerticalAlignment]:
+    def direction(self) -> typing.Optional[enums.VerticalAlignment]:
         """
         Gets direction of articulation.
 

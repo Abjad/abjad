@@ -2,12 +2,9 @@ import collections
 import numbers
 import typing
 from abjad import Fraction
+from abjad import enums
 from abjad import mathtools
 from abjad.system.AbjadValueObject import AbjadValueObject
-from abjad.enumerations import Center
-from abjad.enumerations import Down
-from abjad.enumerations import Up
-from abjad.enumerations import VerticalAlignment
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.scheme import Scheme
 from abjad.scheme import SchemeColor
@@ -195,7 +192,7 @@ class Markup(AbjadValueObject):
         self,
         contents=None,
         *,
-        direction: VerticalAlignment = None,
+        direction: enums.VerticalAlignment = None,
         tweaks: typing.Union[
             typing.List[typing.Tuple], LilyPondTweakManager] = None,
         ) -> None:
@@ -217,7 +214,7 @@ class Markup(AbjadValueObject):
         elif isinstance(contents, type(self)):
             direction = direction or contents.direction
             if direction is not None:
-                assert isinstance(direction, (str, VerticalAlignment)), repr(direction)
+                assert isinstance(direction, (str, enums.VerticalAlignment)), repr(direction)
             new_contents = tuple(contents.contents)
         elif isinstance(contents, collections.Sequence) and 0 < len(contents):
             new_contents_ = []
@@ -237,7 +234,7 @@ class Markup(AbjadValueObject):
         self._format_slot = 'after'
         direction_ = String.to_tridirectional_ordinal_constant(direction)
         if direction_ is not None:
-            assert isinstance(direction_, VerticalAlignment), repr(direction_)
+            assert isinstance(direction_, enums.VerticalAlignment), repr(direction_)
         self._direction = direction_
         self._lilypond_tweak_manager = None
         LilyPondTweakManager.set_tweaks(self, tweaks)
@@ -677,7 +674,7 @@ class Markup(AbjadValueObject):
         return list(self._contents)
 
     @property
-    def direction(self) -> typing.Optional[VerticalAlignment]:
+    def direction(self) -> typing.Optional[enums.VerticalAlignment]:
         r"""
         Gets direction of markup.
 
@@ -1330,11 +1327,11 @@ class Markup(AbjadValueObject):
         contents = self._parse_markup_command_argument(self)
         axis = Scheme(axis)
         # TODO: make Scheme(Up) work
-        if direction is Up:
+        if direction is enums.Up:
             direction = Scheme('UP')
-        elif direction is Down:
+        elif direction is enums.Down:
             direction = Scheme('DOWN')
-        elif direction is Center:
+        elif direction is enums.Center:
             direction = Scheme('CENTER')
         elif isinstance(direction, numbers.Number):
             direction = Scheme(str(direction))

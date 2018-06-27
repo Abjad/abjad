@@ -1,8 +1,8 @@
 import collections
-from abjad.enumerations import Left, Right
-from abjad.utilities.TypedList import TypedList
+from abjad import enums
 from abjad.utilities import Infinity
 from abjad.utilities import NegativeInfinity
+from abjad.utilities.TypedList import TypedList
 from abjad.top.new import new
 
 
@@ -920,7 +920,7 @@ class TimespanList(TypedList):
 
     ### PUBLIC METHODS ###
 
-    def clip_timespan_durations(self, minimum=None, maximum=None, anchor=Left):
+    def clip_timespan_durations(self, minimum=None, maximum=None, anchor=enums.Left):
         """
         Clips timespan durations.
 
@@ -1046,7 +1046,7 @@ class TimespanList(TypedList):
         Returns new timespan list.
         """
         import abjad
-        assert anchor in (Left, Right)
+        assert anchor in (enums.Left, enums.Right)
         if minimum is not None:
             minimum = abjad.Duration(minimum)
         if maximum is not None:
@@ -1056,7 +1056,7 @@ class TimespanList(TypedList):
         timespans = type(self)()
         for timespan in self:
             if minimum is not None and timespan.duration < minimum:
-                if anchor is Left:
+                if anchor is enums.Left:
                     new_timespan = timespan.set_duration(minimum)
                 else:
                     new_start_offset = timespan.stop_offset - minimum
@@ -1066,7 +1066,7 @@ class TimespanList(TypedList):
                         stop_offset=timespan.stop_offset,
                         )
             elif maximum is not None and maximum < timespan.duration:
-                if anchor is Left:
+                if anchor is enums.Left:
                     new_timespan = timespan.set_duration(maximum)
                 else:
                     new_start_offset = timespan.stop_offset - maximum
@@ -2647,7 +2647,7 @@ class TimespanList(TypedList):
         self[:] = new_timespans
         return self
 
-    def round_offsets(self, multiplier, anchor=Left, must_be_well_formed=True):
+    def round_offsets(self, multiplier, anchor=enums.Left, must_be_well_formed=True):
         """
         Rounds offsets of timespans in list to multiples of ``multiplier``.
 
@@ -2798,7 +2798,7 @@ class TimespanList(TypedList):
         self[:] = timespans
         return self
 
-    def scale(self, multiplier, anchor=Left):
+    def scale(self, multiplier, anchor=enums.Left):
         """
         Scales timespan by ``multiplier`` relative to ``anchor``.
 

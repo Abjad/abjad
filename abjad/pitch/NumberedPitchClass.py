@@ -1,4 +1,4 @@
-from abjad.enumerations import VerticalAlignment
+from abjad import enums
 from abjad.pitch.PitchClass import PitchClass
 from . import constants
 
@@ -76,8 +76,8 @@ class NumberedPitchClass(PitchClass):
     def __init__(self, number=0, *, arrow=None):
         super().__init__(number or 0)
         if arrow is not None:
-            arrow = VerticalAlignment.from_expr(arrow)
-            if arrow is VerticalAlignment.Center:
+            arrow = enums.VerticalAlignment.from_expr(arrow)
+            if arrow is enums.Center:
                 arrow = None
             self._arrow = arrow
 

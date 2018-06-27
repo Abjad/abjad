@@ -10,7 +10,7 @@ try:
 except ImportError:
     pass
 
-from abjad.enumerations import *
+from abjad.enums import *
 from abjad.exceptions import *
 
 # ensure that the ~/.abjad directory and friends are setup

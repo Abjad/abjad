@@ -1,5 +1,5 @@
 from ply import lex  # type: ignore
-from abjad.exceptions import SchemeParserFinishedError
+from abjad import exceptions
 from abjad import scheme as abjad_scheme
 from abjad.system import Parser
 
@@ -296,7 +296,7 @@ class SchemeParser(Parser):
         self.cursor_end = p.slice[0].cursor_end
         if self.debug:
             print('PARSED {!r}'.format(self.lexer.lexdata[:self.cursor_end]))
-        raise SchemeParserFinishedError
+        raise exceptions.SchemeParserFinishedError
 
     ### definition ###
 
@@ -412,7 +412,7 @@ class SchemeParser(Parser):
             #print p[1]
             self.result = p[0]
             self.cursor_end = p.slice[0].cursor_end
-            raise SchemeParserFinishedError
+            raise exceptions.SchemeParserFinishedError
 
     def p_constant__number(self, p):
         """
@@ -425,7 +425,7 @@ class SchemeParser(Parser):
             #print p[1]
             self.result = p[0]
             self.cursor_end = p.slice[0].cursor_end
-            raise SchemeParserFinishedError
+            raise exceptions.SchemeParserFinishedError
 
     def p_constant__string(self, p):
         """
@@ -438,7 +438,7 @@ class SchemeParser(Parser):
             #print p[1]
             self.result = p[0]
             self.cursor_end = p.slice[0].cursor_end
-            raise SchemeParserFinishedError
+            raise exceptions.SchemeParserFinishedError
 
     ### formals ###
 

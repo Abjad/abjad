@@ -1,5 +1,5 @@
 import typing
-from abjad.enumerations import VerticalAlignment
+from abjad import enums
 from abjad.utilities.String import String
 from .Spanner import Spanner
 
@@ -83,7 +83,7 @@ class Slur(Spanner):
     def __init__(
         self,
         *,
-        direction: typing.Union[str, VerticalAlignment] = None,
+        direction: typing.Union[str, enums.VerticalAlignment] = None,
         leak: bool = None,
         ) -> None:
         Spanner.__init__(self)

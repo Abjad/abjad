@@ -1,6 +1,5 @@
 from abjad.system.AbjadObject import AbjadObject
-from abjad.enumerations import Exact
-from abjad.enumerations import Right
+from abjad import enums
 from abjad.indicators.TimeSignature import TimeSignature
 from abjad.meter import Meter
 from abjad.pitch.NamedInterval import NamedInterval
@@ -2375,7 +2374,7 @@ class Mutation(AbjadObject):
     def splice(
         self,
         components,
-        direction=Right,
+        direction=enums.Right,
         grow_spanners=True,
         ):
         """
@@ -3264,7 +3263,7 @@ class Mutation(AbjadObject):
         result = sequence(result).flatten(depth=-1)
         result = select(result).partition_by_durations(
             durations_copy,
-            fill=Exact,
+            fill=enums.Exact,
             )
         # return list of shards
         assert all(isinstance(_, Selection) for _ in result)

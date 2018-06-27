@@ -1,6 +1,5 @@
 import itertools
-from abjad.exceptions import AssignabilityError
-from abjad.exceptions import MissingSpannerError
+from abjad import exceptions
 from abjad.mathtools.Ratio import Ratio
 from abjad.utilities.Duration import Duration
 from .Selection import Selection
@@ -157,7 +156,7 @@ class LogicalTie(Selection):
         import abjad
         try:
             tie = self[0]._get_spanner(prototype=abjad.Tie)
-        except MissingSpannerError:
+        except exceptions.MissingSpannerError:
             assert self.is_trivial
             return abjad.select(self[0])
         selection = tie.leaves
@@ -303,7 +302,7 @@ class LogicalTie(Selection):
         maker = abjad.NoteMaker()
         try:
             notes = [abjad.Note(0, _) for _ in written_durations]
-        except AssignabilityError:
+        except exceptions.AssignabilityError:
             denominator = target_duration._denominator
             note_durations = [
                 Duration(_, denominator)

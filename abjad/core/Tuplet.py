@@ -1,8 +1,8 @@
 import math
 import typing
 from abjad import Fraction
+from abjad import exceptions
 from abjad import mathtools
-from abjad.exceptions import AssignabilityError
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.mathtools.NonreducedFraction import NonreducedFraction
 from abjad.mathtools.NonreducedRatio import NonreducedRatio
@@ -1391,7 +1391,7 @@ class Tuplet(Container):
                 Note(0, x) if 0 < x else Rest(abs(x))
                 for x in written_durations
                 ]
-        except AssignabilityError:
+        except exceptions.AssignabilityError:
             denominator = duration.denominator
             note_durations = [
                 Duration(x, denominator)
@@ -1699,7 +1699,7 @@ class Tuplet(Container):
         maker = NoteMaker()
         try:
             notes = [Note(0, x) for x in written_durations]
-        except AssignabilityError:
+        except exceptions.AssignabilityError:
             denominator = target_duration.denominator
             note_durations = [
                 Duration(_, denominator)
@@ -1877,7 +1877,7 @@ class Tuplet(Container):
                     duration = inspect(note).get_duration()
                     tuplet = Tuplet.from_duration(duration, [note])
                     return tuplet
-                except AssignabilityError:
+                except exceptions.AssignabilityError:
                     note_maker = NoteMaker()
                     notes = note_maker(0, duration)
                     duration = inspect(notes).get_duration()
@@ -1887,7 +1887,7 @@ class Tuplet(Container):
                     rest = Rest(duration)
                     duration = inspect(rest).get_duration()
                     return Tuplet.from_duration(duration, [rest])
-                except AssignabilityError:
+                except exceptions.AssignabilityError:
                     leaf_maker = LeafMaker()
                     rests = leaf_maker([None], duration)
                     duration = inspect(rests).get_duration()
@@ -1909,7 +1909,7 @@ class Tuplet(Container):
                     try:
                         note = Note(0, (x, denominator))
                         components.append(note)
-                    except AssignabilityError:
+                    except exceptions.AssignabilityError:
                         maker = NoteMaker()
                         notes = maker(0, (x, denominator))
                         components.extend(notes)

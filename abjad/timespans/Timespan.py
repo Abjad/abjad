@@ -1,7 +1,8 @@
 import copy
-from abjad.enumerations import Left, Right
+from abjad import enums
 from abjad.system.AbjadValueObject import AbjadValueObject
-from abjad.utilities import Infinity, NegativeInfinity
+from abjad.utilities import Infinity
+from abjad.utilities import NegativeInfinity
 
 
 class Timespan(AbjadValueObject):
@@ -1193,7 +1194,7 @@ class Timespan(AbjadValueObject):
         new_stop_offset = axis - start_distance
         return self.set_offsets(new_start_offset, new_stop_offset)
 
-    def round_offsets(self, multiplier, anchor=Left, must_be_well_formed=True):
+    def round_offsets(self, multiplier, anchor=enums.Left, must_be_well_formed=True):
         """
         Rounds timespan offsets to multiple of ``multiplier``.
 
@@ -1230,7 +1231,7 @@ class Timespan(AbjadValueObject):
         new_stop_offset = abjad.Offset(
             int(round(self._stop_offset / multiplier)) * multiplier)
         if (new_start_offset == new_stop_offset) and must_be_well_formed:
-            if anchor is Left:
+            if anchor is enums.Left:
                 new_stop_offset = new_stop_offset + multiplier
             else:
                 new_start_offset = new_start_offset - multiplier
@@ -1241,7 +1242,7 @@ class Timespan(AbjadValueObject):
             )
         return result
 
-    def scale(self, multiplier, anchor=Left):
+    def scale(self, multiplier, anchor=enums.Left):
         """
         Scales timespan by ``multiplier``.
 
@@ -1267,10 +1268,10 @@ class Timespan(AbjadValueObject):
         multiplier = abjad.Multiplier(multiplier)
         assert 0 < multiplier
         new_duration = multiplier * self.duration
-        if anchor == Left:
+        if anchor == enums.Left:
             new_start_offset = self._start_offset
             new_stop_offset = self._start_offset + new_duration
-        elif anchor == Right:
+        elif anchor == enums.Right:
             new_stop_offset = self._stop_offset
             new_start_offset = self._stop_offset - new_duration
         else:

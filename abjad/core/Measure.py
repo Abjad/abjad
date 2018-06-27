@@ -1,6 +1,5 @@
 import copy
-from abjad.exceptions import OverfullContainerError
-from abjad.exceptions import UnderfullContainerError
+from abjad import exceptions
 from .Container import Container
 
 
@@ -253,9 +252,9 @@ class Measure(Container):
             message += ' with non-power-of-two denominator.'
             raise Exception(message)
         if effective_time_signature.duration < self._get_preprolated_duration():
-            raise OverfullContainerError
+            raise exceptions.OverfullContainerError
         if self._get_preprolated_duration() < effective_time_signature.duration:
-            raise UnderfullContainerError
+            raise exceptions.UnderfullContainerError
 
     def _conditionally_adjust_time_signature(self, old_denominator):
         import abjad

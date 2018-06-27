@@ -1,7 +1,6 @@
 import collections
+from abjad import enums
 from abjad.system.AbjadObject import AbjadObject
-from abjad.enumerations import Left
-from abjad.enumerations import Right
 
 
 class Iteration(AbjadObject):
@@ -238,7 +237,7 @@ class Iteration(AbjadObject):
         """
         import abjad
         if direction is None:
-            direction = Left
+            direction = enums.Left
         def _next_node_depth_first(component, total):
             """
             If client has unvisited components, return next unvisited
@@ -304,7 +303,7 @@ class Iteration(AbjadObject):
             queue.pop()
             return node, rank
         def _advance_node_depth_first(node, rank, direction):
-            if direction is Left:
+            if direction is enums.Left:
                 node, rank = _next_node_depth_first(node, rank)
             else:
                 node, rank = _previous_node_depth_first(node, rank)
@@ -678,9 +677,9 @@ class Iteration(AbjadObject):
         parentage = abjad.inspect(self.client).get_parentage()
         logical_voice = parentage.logical_voice
         if reverse:
-            direction = Right
+            direction = enums.Right
         else:
-            direction = Left
+            direction = enums.Left
         for component in abjad.iterate(self.client)._depth_first(
             capped=False,
             direction=direction,
