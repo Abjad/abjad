@@ -1,7 +1,6 @@
 import typing
+from abjad import enums
 from abjad.system.AbjadValueObject import AbjadValueObject
-from abjad.enumerations import HorizontalAlignment
-from abjad.enumerations import Right
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 
@@ -67,7 +66,7 @@ class BreathMark(AbjadValueObject):
 
     _format_slot = 'after'
 
-    _time_orientation: HorizontalAlignment = HorizontalAlignment.Right
+    _time_orientation: enums.HorizontalAlignment = enums.Right
 
     ### INITIALIZER ###
 

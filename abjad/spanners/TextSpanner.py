@@ -1,7 +1,6 @@
 import typing
-from .Spanner import Spanner
+from abjad import enums
 from abjad.core.Leaf import Leaf
-from abjad.enumerations import Center
 from abjad.indicators.LineSegment import LineSegment
 from abjad.lilypondnames.LilyPondGrobOverride import LilyPondGrobOverride
 from abjad.markups import Markup
@@ -11,6 +10,7 @@ from abjad.top.inspect import inspect
 from abjad.top.new import new
 from abjad.top.select import select
 from abjad.utilities.OrderedDict import OrderedDict
+from .Spanner import Spanner
 
 
 class TextSpanner(Spanner):
@@ -678,11 +678,11 @@ class TextSpanner(Spanner):
             dash_period=0,
             left_broken_text=False,
             left_hspace=0.25,
-            left_stencil_align_direction_y=Center,
+            left_stencil_align_direction_y=enums.Center,
             right_broken_padding=0,
             right_broken_text=False,
             right_padding=1.5,
-            right_stencil_align_direction_y=Center,
+            right_stencil_align_direction_y=enums.Center,
             )
 
     def _should_format_last_leaf_markup(self, component):

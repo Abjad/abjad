@@ -1,6 +1,6 @@
 import collections
 import typing
-from abjad import enumerations
+from abjad import enums
 from abjad import typings
 from abjad.core.Chord import Chord
 from abjad.core.Leaf import Leaf
@@ -180,7 +180,7 @@ class Beam(Spanner):
         *,
         beam_lone_notes: bool = None,
         beam_rests: bool = None,
-        direction: typing.Union[str, enumerations.VerticalAlignment] = None,
+        direction: typing.Union[str, enums.VerticalAlignment] = None,
         durations: typing.Iterable[Duration] = None,
         leak: bool = None,
         span_beam_count: int = 1,

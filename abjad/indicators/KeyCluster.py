@@ -1,11 +1,6 @@
-from abjad.system.AbjadValueObject import AbjadValueObject
-from abjad.enumerations import (
-    Center,
-    Down,
-    Up,
-    VerticalAlignment,
-    )
+from abjad import enums
 from abjad.markups import Markup
+from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 
 
@@ -61,12 +56,12 @@ class KeyCluster(AbjadValueObject):
         include_black_keys: bool = True,
         include_white_keys: bool = True,
         hide: bool = False,
-        markup_direction: VerticalAlignment = VerticalAlignment.Up,
+        markup_direction: enums.VerticalAlignment = enums.Up,
         ) -> None:
         assert include_black_keys or include_white_keys
         self._include_black_keys = bool(include_black_keys)
         self._include_white_keys = bool(include_white_keys)
-        assert markup_direction in (Up, Center, Down)
+        assert markup_direction in (enums.Up, enums.Center, enums.Down)
         self._markup_direction = markup_direction
         self._hide = bool(hide)
 
@@ -303,7 +298,7 @@ class KeyCluster(AbjadValueObject):
         return self._include_white_keys
 
     @property
-    def markup_direction(self) -> VerticalAlignment:
+    def markup_direction(self) -> enums.VerticalAlignment:
         r"""
         Gets markup direction.
 

@@ -1,6 +1,6 @@
+from abjad import enums
+from abjad import exceptions
 from abjad.system.AbjadObject import AbjadObject
-from abjad.exceptions import MissingMetronomeMarkError
-from abjad.enumerations import Left
 
 
 class UpdateManager(AbjadObject):
@@ -46,7 +46,7 @@ class UpdateManager(AbjadObject):
             capped=True,
             unique=True,
             forbid=None,
-            direction=Left,
+            direction=enums.Left,
             )
         return components
 
@@ -206,26 +206,6 @@ class UpdateManager(AbjadObject):
         component._stop_offset = stop_offset
         component._timespan._start_offset = start_offset
         component._timespan._stop_offset = stop_offset
-
-#    @staticmethod
-#    def _update_component_offsets_in_seconds(component):
-#        import abjad
-#        try:
-#            duration = component._get_duration(in_seconds=True)
-#            previous = component._get_nth_component_in_time_order_from(-1)
-#            if previous is not None:
-#                timespan = abjad.inspect(previous).get_timespan(
-#                    in_seconds=True)
-#                component._start_offset_in_seconds = timespan.stop_offset
-#            else:
-#                component._start_offset_in_seconds = abjad.Offset(0)
-#            # this one case is possible for containers only
-#            if component._start_offset_in_seconds is None:
-#                raise MissingMetronomeMarkError
-#            stop_offset = component._start_offset_in_seconds + duration
-#            component._stop_offset_in_seconds = stop_offset
-#        except MissingMetronomeMarkError:
-#            pass
 
     def _update_now(
         self,

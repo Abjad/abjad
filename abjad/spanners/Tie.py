@@ -1,4 +1,5 @@
 import typing
+from abjad import enums
 from abjad import typings
 from abjad.core.Chord import Chord
 from abjad.core.Component import Component
@@ -6,7 +7,6 @@ from abjad.core.MultimeasureRest import MultimeasureRest
 from abjad.core.Note import Note
 from abjad.core.Rest import Rest
 from abjad.core.Skip import Skip
-from abjad.enumerations import VerticalAlignment
 from abjad.top.detach import detach
 from abjad.top.inspect import inspect
 from abjad.top.iterate import iterate
@@ -162,7 +162,7 @@ class Tie(Spanner):
     def __init__(
         self,
         *,
-        direction: typing.Union[str, VerticalAlignment] = None,
+        direction: typing.Union[str, enums.VerticalAlignment] = None,
         repeat: typing.Union[
             bool,
             typings.IntegerPair,

@@ -1,5 +1,5 @@
 import typing
-from abjad import enumerations
+from abjad import enums
 from abjad.lilypondnames.LilyPondGrobOverride import LilyPondGrobOverride
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 # TODO: move Tags from segments.py into system.py
@@ -63,7 +63,7 @@ class DynamicTrend(AbjadValueObject):
         '--',
         )
 
-    _time_orientation: enumerations.HorizontalAlignment = enumerations.Right
+    _time_orientation: enums.HorizontalAlignment = enums.Right
 
     ### INITIALIZER ###
 
@@ -482,6 +482,19 @@ class DynamicTrend(AbjadValueObject):
 
         """
         return self._shape
+
+    @property
+    def spanner_start(self) -> bool:
+        """
+        Is true.
+
+        ..  container:: example
+
+            >>> abjad.DynamicTrend('<').spanner_start
+            True
+
+        """
+        return True
 
     @property
     def tweaks(self) -> typing.Optional[LilyPondTweakManager]:

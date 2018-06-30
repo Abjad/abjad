@@ -1,11 +1,8 @@
 import abc
 import copy
 import uqbar.graphs
-from abjad.enumerations import Left
-from abjad.enumerations import Right
-from abjad.exceptions import AssignabilityError
-from abjad.exceptions import MissingMetronomeMarkError
-from abjad.exceptions import MissingSpannerError
+from abjad import enums
+from abjad import exceptions
 from abjad.indicators.MetronomeMark import MetronomeMark
 from abjad.mathtools.NonreducedFraction import NonreducedFraction
 from abjad.mathtools.Ratio import Ratio
@@ -318,7 +315,7 @@ class Leaf(Component):
     def _get_spanner(self, prototype=None):
         spanners = self._get_spanners(prototype=prototype)
         if not spanners:
-            raise MissingSpannerError('no spanner found.')
+            raise exceptions.MissingSpannerError('no spanner found.')
         elif len(spanners) == 1:
             return spanners.pop()
         else:
@@ -436,7 +433,7 @@ class Leaf(Component):
         try:
             self.written_duration = new_duration
             return select(self)
-        except AssignabilityError:
+        except exceptions.AssignabilityError:
             pass
         # make new notes or tuplets if new duration is nonassignable
         maker = abjad.NoteMaker(
@@ -537,20 +534,20 @@ class Leaf(Component):
             first_selection = result_selections[0]
             for spanner in inspect(first_selection[-1]).get_spanners():
                 index = spanner._index(first_selection[-1])
-                spanner._fracture(index, direction=Right)
+                spanner._fracture(index, direction=enums.Right)
             last_selection = result_selections[-1]
             for spanner in inspect(last_selection[0]).get_spanners():
                 index = spanner._index(last_selection[0])
-                spanner._fracture(index, direction=Left)
+                spanner._fracture(index, direction=enums.Left)
             for middle_selection in result_selections[1:-1]:
                 spanners = inspect(middle_selection[0]).get_spanners()
                 for spanner in spanners:
                     index = spanner._index(middle_selection[0])
-                    spanner._fracture(index, direction=Left)
+                    spanner._fracture(index, direction=enums.Left)
                 spanners = inspect(middle_selection[-1]).get_spanners()
                 for spanner in spanners:
                     index = spanner._index(middle_selection[-1])
-                    spanner._fracture(index, direction=Right)
+                    spanner._fracture(index, direction=enums.Right)
         # move indicators
         first_result_leaf = result_leaves[0]
         last_result_leaf = result_leaves[-1]
@@ -558,10 +555,10 @@ class Leaf(Component):
             if isinstance(indicator, Multiplier):
                 continue
             detach(indicator, self)
-            direction = getattr(indicator, '_time_orientation', Left)
-            if direction is Left:
+            direction = getattr(indicator, '_time_orientation', enums.Left)
+            if direction is enums.Left:
                 attach(indicator, first_result_leaf)
-            elif direction == Right:
+            elif direction == enums.Right:
                 attach(indicator, last_result_leaf)
             else:
                 raise ValueError(direction)
@@ -597,7 +594,7 @@ class Leaf(Component):
                 mark.units_per_minute * 60
                 )
             return Duration(result)
-        raise MissingMetronomeMarkError
+        raise exceptions.MissingMetronomeMarkError
 
     def _get_formatted_duration(self):
         duration_string = self.written_duration.lilypond_duration_string
@@ -657,5 +654,5 @@ class Leaf(Component):
         if not rational.is_assignable:
             message = 'not assignable duration: {!r}.'
             message = message.format(rational)
-            raise AssignabilityError(message)
+            raise exceptions.AssignabilityError(message)
         self._written_duration = rational

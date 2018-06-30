@@ -1,12 +1,10 @@
 import typing
+from abjad import enums
 from abjad import mathtools
-from abjad.enumerations import Down
-from abjad.enumerations import Up
-from abjad.enumerations import VerticalAlignment
-from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.mathtools.Infinity import Infinity
 from abjad.mathtools.NegativeInfinity import NegativeInfinity
+from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
@@ -123,7 +121,6 @@ class Dynamic(AbjadValueObject):
         '_name',
         '_name_is_textual',
         '_ordinal',
-        '_right_broken',
         '_sforzando',
         )
 
@@ -229,13 +226,12 @@ class Dynamic(AbjadValueObject):
         name: typing.Union[str, 'Dynamic'] = 'f',
         *,
         command: str = None,
-        direction: VerticalAlignment = None,
+        direction: enums.VerticalAlignment = None,
         format_hairpin_stop: bool = None,
         hide: bool = None,
         leak: bool = None,
         name_is_textual: bool = None,
         ordinal: typing.Union[int, Infinity, NegativeInfinity] = None,
-        right_broken: bool = None,
         sforzando: bool = None,
         tweaks: typing.Union[
             typing.List[typing.Tuple], LilyPondTweakManager] = None,
@@ -252,14 +248,14 @@ class Dynamic(AbjadValueObject):
             name_is_textual = True
         if not name_is_textual:
             for letter in name_.strip('"'):
-                assert letter in self._lilypond_dynamic_alphabet, repr(letter)
+                assert letter in self._lilypond_dynamic_alphabet, repr(name_)
         self._name = name_
         if command is not None:
             assert isinstance(command, str), repr(command)
             assert command.startswith('\\'), repr(command)
         self._command = command
         if direction is not None:
-            assert direction in (Down, Up), repr(direction)
+            assert direction in (enums.Down, enums.Up), repr(direction)
         self._direction = direction
         if format_hairpin_stop is not None:
             format_hairpin_stop = bool(format_hairpin_stop)
@@ -276,9 +272,6 @@ class Dynamic(AbjadValueObject):
         if ordinal is not None:
             assert isinstance(ordinal, (int, Infinity, NegativeInfinity))
         self._ordinal = ordinal
-        if right_broken is not None:
-            right_broken = bool(right_broken)
-        self._right_broken = right_broken
         if sforzando is not None:
             sforzando = bool(sforzando)
         self._sforzando = sforzando
@@ -427,7 +420,7 @@ class Dynamic(AbjadValueObject):
     @staticmethod
     def _format_textual(direction, string):
         if direction is None:
-            direction = Down
+            direction = enums.Down
         direction = String.to_tridirectional_lilypond_symbol(direction)
         assert isinstance(string, str), repr(string)
         string = f'(markup #:whiteout #:normal-text #:italic "{string}")'
@@ -459,10 +452,6 @@ class Dynamic(AbjadValueObject):
         else:
             string = rf'\{self.name}'
         string = self._add_leak(string)
-        if self.right_broken is True:
-            strings = [string]
-            strings = self._tag_hide(strings)
-            string = strings[0]
         return string
 
     def _get_lilypond_format_bundle(self, component=None):
@@ -522,7 +511,7 @@ class Dynamic(AbjadValueObject):
         return self._context
 
     @property
-    def direction(self) -> typing.Optional[VerticalAlignment]:
+    def direction(self) -> typing.Optional[enums.VerticalAlignment]:
         """
         Gets direction for effort dynamics only.
 
@@ -542,7 +531,7 @@ class Dynamic(AbjadValueObject):
         if self._direction is not None:
             return self._direction
         elif self.name == 'niente' or self.effort:
-            return Down
+            return enums.Down
         else:
             return None
 
@@ -1051,42 +1040,6 @@ class Dynamic(AbjadValueObject):
 
         """
         return self._persistent
-
-    @property
-    def right_broken(self) -> typing.Optional[bool]:
-        r"""
-        Is true when dynamic formats with right broken tag.
-
-        ..  container:: example
-
-            >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> start = abjad.Dynamic('p')
-            >>> trend = abjad.DynamicTrend('>')
-            >>> stop = abjad.Dynamic('niente', command=r'\!', right_broken=True)
-            >>> abjad.attach(start, staff[0])
-            >>> abjad.attach(trend, staff[0])
-            >>> abjad.attach(stop, staff[-1])
-            >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4.5
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            >>> abjad.f(staff)
-            \new Staff
-            \with
-            {
-                \override DynamicLineSpanner.staff-padding = #4.5
-            }
-            {
-                c'4
-                \p
-                \>
-                d'4
-                e'4
-                f'4
-                \! %! HIDE_TO_JOIN_BROKEN_SPANNERS
-            }
-
-        """
-        return self._right_broken
 
     @property
     def sforzando(self) -> typing.Optional[bool]:

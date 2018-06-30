@@ -1,7 +1,6 @@
-from abjad.enumerations import HorizontalAlignment
-from abjad.enumerations import Right
-from abjad.system.AbjadValueObject import AbjadValueObject
+from abjad import enums
 from abjad.scheme import Scheme
+from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 
 
@@ -55,7 +54,7 @@ class StaffChange(AbjadValueObject):
 
     _format_slot = 'opening'
 
-    _time_orientation: HorizontalAlignment = HorizontalAlignment.Right
+    _time_orientation: enums.HorizontalAlignment = enums.Right
 
     ### INITIALIZER ###
 

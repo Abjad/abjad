@@ -1,9 +1,8 @@
 import collections
 import typing
 import uqbar.graphs
-from abjad.enumerations import Left
-from abjad.enumerations import Right
-from abjad.exceptions import ParentageError
+from abjad import enums
+from abjad import exceptions
 from abjad.top.inspect import inspect
 from abjad.top.iterate import iterate
 from abjad.top.select import select
@@ -925,7 +924,7 @@ class Container(Component):
             message = 'must attach grace container to note or chord.'
             raise Exception(message)
         if self._check_for_cycles(argument):
-            raise ParentageError('attempted to induce cycles.')
+            raise exceptions.ParentageError('attempted to induce cycles.')
         if (i.start == i.stop and
             i.start is not None and
             i.stop is not None and
@@ -1024,7 +1023,7 @@ class Container(Component):
         if fracture_spanners:
             for spanner in inspect(left).get_spanners():
                 index = spanner._index(left)
-                spanner._fracture(index, direction=Right)
+                spanner._fracture(index, direction=enums.Right)
         # return new left and right containers
         return halves
 
@@ -1162,7 +1161,7 @@ class Container(Component):
                 if timespan.start_offset == start_offset:
                     for spanner in inspect(parent).get_spanners():
                         index = spanner._index(parent)
-                        spanner._fracture(index, direction=Left)
+                        spanner._fracture(index, direction=enums.Left)
                 if parent is component:
                     break
         # crawl back up through duration-crossing containers and split each
@@ -1705,12 +1704,12 @@ class Container(Component):
         if previous_leaf:
             for spanner in inspect(previous_leaf).get_spanners():
                 index = spanner._index(previous_leaf)
-                spanner._fracture(index, direction=Right)
+                spanner._fracture(index, direction=enums.Right)
         next_leaf = component._get_leaf(1)
         if next_leaf:
             for spanner in inspect(next_leaf).get_spanners():
                 index = spanner._index(next_leaf)
-                spanner._fracture(index, direction=Left)
+                spanner._fracture(index, direction=enums.Left)
 
     def pop(self, i=-1):
         r"""

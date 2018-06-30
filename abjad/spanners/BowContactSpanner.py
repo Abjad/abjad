@@ -1,10 +1,9 @@
 import typing
+from abjad import enums
 from abjad.core.Leaf import Leaf
 from abjad.core.MultimeasureRest import MultimeasureRest
 from abjad.core.Rest import Rest
 from abjad.core.Skip import Skip
-from abjad.enumerations import Down
-from abjad.enumerations import Up
 from abjad.indicators.Articulation import Articulation
 from abjad.indicators.BowContactPoint import BowContactPoint
 from abjad.indicators.BowMotionTechnique import BowMotionTechnique
@@ -311,38 +310,38 @@ class BowContactSpanner(Spanner):
             previous_contact_point is None or
             previous_contact_point.contact_point is None):
             if this_contact_point < next_contact_point:
-                direction_change = Down
+                direction_change = enums.Down
             elif next_contact_point < this_contact_point:
-                direction_change = Up
+                direction_change = enums.Up
         else:
             previous_leaf = inspect(leaf).get_leaf(-1)
             agent = inspect(previous_leaf)
             previous_contact_point = agent.get_indicator(BowContactPoint)
             if (previous_contact_point < this_contact_point and
                 next_contact_point < this_contact_point):
-                direction_change = Up
+                direction_change = enums.Up
             elif (this_contact_point < previous_contact_point and
                 this_contact_point < next_contact_point):
-                direction_change = Down
+                direction_change = enums.Down
             elif (this_contact_point == previous_contact_point):
                 if this_contact_point < next_contact_point:
                     cautionary_change = True
-                    direction_change = Down
+                    direction_change = enums.Down
                 elif next_contact_point < this_contact_point:
                     cautionary_change = True
-                    direction_change = Up
+                    direction_change = enums.Up
         if direction_change is None:
             return
         if cautionary_change:
-            if direction_change is Up:
+            if direction_change is enums.Up:
                 string = r'^ \parenthesize \upbow'
-            elif direction_change is Down:
+            elif direction_change is enums.Down:
                 string = r'^ \parenthesize \downbow'
         else:
-            if direction_change is Up:
-                articulation = Articulation('upbow', direction=Up)
-            elif direction_change is Down:
-                articulation = Articulation('downbow', direction=Up)
+            if direction_change is enums.Up:
+                articulation = Articulation('upbow', direction=enums.Up)
+            elif direction_change is enums.Down:
+                articulation = Articulation('downbow', direction=enums.Up)
             string = str(articulation)
         bundle.after.articulations.append(string)
 

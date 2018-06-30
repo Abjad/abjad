@@ -1,12 +1,7 @@
 import typing
-from abjad.system.AbjadValueObject import AbjadValueObject
-from abjad.enumerations import (
-    Center,
-    Down,
-    Up,
-    VerticalAlignment,
-    )
+from abjad import enums
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
+from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 
 
@@ -59,12 +54,12 @@ class Arpeggio(AbjadValueObject):
     def __init__(
         self,
         *,
-        direction: VerticalAlignment = None,
+        direction: enums.VerticalAlignment = None,
         tweaks: typing.Union[
             typing.List[typing.Tuple], LilyPondTweakManager] = None,
         ) -> None:
         if direction is not None:
-            assert direction in (Up, Down, Center)
+            assert direction in (enums.Up, enums.Down, enums.Center)
         self._direction = direction
         self._lilypond_tweak_manager = None
         LilyPondTweakManager.set_tweaks(self, tweaks)
@@ -80,8 +75,8 @@ class Arpeggio(AbjadValueObject):
             tweaks = self.tweaks._list_format_contributions()
             bundle.after.articulations.extend(tweaks)
         bundle.after.articulations.append(r'\arpeggio')
-        if self.direction in (Up, Down):
-            if self.direction is Up:
+        if self.direction in (enums.Up, enums.Down):
+            if self.direction is enums.Up:
                 command = r'\arpeggioArrowUp'
             else:
                 command = r'\arpeggioArrowDown'
@@ -91,7 +86,7 @@ class Arpeggio(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def direction(self) -> typing.Optional[VerticalAlignment]:
+    def direction(self) -> typing.Optional[enums.VerticalAlignment]:
         """
         Gets direction of arpeggio.
 

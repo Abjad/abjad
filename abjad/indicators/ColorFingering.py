@@ -1,10 +1,10 @@
 import functools
 import typing
+from abjad import enums
 from abjad import mathtools
-from abjad.enumerations import Up
-from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.markups import Markup
+from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.top.new import new
 
@@ -160,7 +160,7 @@ class ColorFingering(AbjadValueObject):
             tweaks = self.tweaks._list_format_contributions()
             bundle.after.markup.extend(tweaks)
         markup = self.markup
-        markup = new(markup, direction=Up)
+        markup = new(markup, direction=enums.Up)
         markup_format_pieces = markup._get_format_pieces()
         bundle.after.markup.extend(markup_format_pieces)
         return bundle

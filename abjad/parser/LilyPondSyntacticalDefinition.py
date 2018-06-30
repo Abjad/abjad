@@ -1,11 +1,11 @@
 from ply import lex  # type: ignore
-from abjad.exceptions import LilyPondParserError
 from abjad import Fraction
 from abjad import utilities
 from abjad import indicators as abjad_indicators
 from abjad import lilypondfile as abjad_lilypondfile
 from abjad import markups as abjad_markups
 from abjad import core
+from abjad import exceptions
 from abjad import pitch as abjad_pitch
 from abjad import scheme as abjad_scheme
 from abjad.system.AbjadObject import AbjadObject
@@ -3346,4 +3346,4 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     def p_error(self, p):
         #print p
-        raise LilyPondParserError(p)
+        raise exceptions.LilyPondParserError(p)

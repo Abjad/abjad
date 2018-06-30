@@ -1,6 +1,6 @@
 import inspect
-from abjad.enumerations import Up
-from abjad import system
+from abjad import enums
+from abjad.system.Signature import Signature
 from abjad.pitch.Segment import Segment
 from abjad.top import new
 
@@ -128,7 +128,7 @@ class PitchClassSegment(Segment):
 
     ### SPECIAL METHODS ###
 
-    @system.Signature(
+    @Signature(
         markup_maker_callback='_make___add___markup',
         string_template_callback='_make___add___string_template',
         )
@@ -870,7 +870,7 @@ class PitchClassSegment(Segment):
         superclass = super(PitchClassSegment, self)
         return superclass.__format__(format_specification=format_specification)
 
-    @system.Signature(
+    @Signature(
         markup_maker_callback='_make___getitem___markup',
         string_template_callback='_make___getitem___string_template',
         )
@@ -1194,7 +1194,7 @@ class PitchClassSegment(Segment):
         superclass = super(PitchClassSegment, self)
         return superclass.__getitem__(argument)
 
-    def __illustrate__(self, expression_markup_direction=Up, **keywords):
+    def __illustrate__(self, expression_markup_direction=enums.Up, **keywords):
         r'''Illustrates segment.
 
         ..  container:: example
@@ -1658,7 +1658,7 @@ class PitchClassSegment(Segment):
         superclass = super(PitchClassSegment, self)
         return superclass.index(item)
 
-    @system.Signature(
+    @Signature(
         is_operator=True,
         method_name='I',
         subscript='axis',
@@ -1925,7 +1925,7 @@ class PitchClassSegment(Segment):
                 note.written_pitch = pitch
         return result
 
-    @system.Signature(
+    @Signature(
         is_operator=True,
         method_name='M',
         subscript='n',
@@ -2247,7 +2247,7 @@ class PitchClassSegment(Segment):
         items = [_.multiply(n) for _ in items]
         return type(self)(items=items)
 
-    @system.Signature()
+    @Signature()
     def permute(self, row=None):
         r'''Permutes segment by twelve-tone `row`.
 
@@ -2350,7 +2350,7 @@ class PitchClassSegment(Segment):
         items = row(self)
         return type(self)(items=items)
 
-    @system.Signature(is_operator=True, method_name='R')
+    @Signature(is_operator=True, method_name='R')
     def retrograde(self):
         r'''Gets retrograde of segment.
 
@@ -2528,7 +2528,7 @@ class PitchClassSegment(Segment):
             return self._update_expression(inspect.currentframe())
         return type(self)(items=reversed(self))
 
-    @system.Signature(
+    @Signature(
         is_operator=True,
         method_name_callback='_make_rotate_method_name',
         subscript='n',
@@ -3105,7 +3105,7 @@ class PitchClassSegment(Segment):
         item_class = class_._to_pitch_item_class(self.item_class)
         return abjad.PitchSegment(items=self.items, item_class=item_class)
 
-    @system.Signature(
+    @Signature(
         is_operator=True,
         method_name='T',
         subscript='n',

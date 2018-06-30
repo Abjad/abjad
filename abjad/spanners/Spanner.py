@@ -1,9 +1,8 @@
 import copy
 import typing
+from abjad import enums
 from abjad.core.Leaf import Leaf
 from abjad.core.Selection import Selection
-from abjad.enumerations import Left
-from abjad.enumerations import Right
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.segments.Tags import Tags
 from abjad.system.AbjadObject import AbjadObject
@@ -335,9 +334,9 @@ class Spanner(AbjadObject):
         """
         if i < 0:
             i = len(self) + i
-        if direction is Left:
+        if direction is enums.Left:
             return self._fracture_left(i)
-        elif direction is Right:
+        elif direction is enums.Right:
             return self._fracture_right(i)
         elif direction is None:
             left = self._copy(self[:i])

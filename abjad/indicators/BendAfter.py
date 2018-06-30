@@ -1,10 +1,9 @@
 import typing
-from abjad.system.AbjadValueObject import AbjadValueObject
-from abjad.enumerations import HorizontalAlignment
-from abjad.enumerations import Right
+from abjad import enums
+from abjad import typings
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
+from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
-from abjad.typings import Number
 
 
 class BendAfter(AbjadValueObject):
@@ -52,13 +51,13 @@ class BendAfter(AbjadValueObject):
 
     _format_slot = 'after'
 
-    _time_orientation: HorizontalAlignment = HorizontalAlignment.Right
+    _time_orientation: enums.HorizontalAlignment = enums.Right
 
     ### INITIALIZER ###
 
     def __init__(
         self,
-        bend_amount: Number = -4,
+        bend_amount: typings.Number = -4,
         *,
         tweaks: typing.Union[
             typing.List[typing.Tuple], LilyPondTweakManager] = None,
@@ -98,7 +97,7 @@ class BendAfter(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def bend_amount(self) -> Number:
+    def bend_amount(self) -> typings.Number:
         """
         Gets bend amount of bend after.
 

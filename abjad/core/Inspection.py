@@ -1,8 +1,8 @@
 import collections
 import typing
-from abjad.system.AbjadObject import AbjadObject
-from abjad.exceptions import ExtraSpannerError
+from abjad import exceptions
 from abjad.spanners.Spanner import Spanner
+from abjad.system.AbjadObject import AbjadObject
 from abjad.top.inspect import inspect
 from .Container import Container
 
@@ -1197,7 +1197,7 @@ class Inspection(AbjadObject):
         elif len(spanners) == 1:
             return spanners[0]
         else:
-            raise ExtraSpannerError
+            raise exceptions.ExtraSpannerError
 
     def get_spanners(self, prototype=None) -> typing.List[Spanner]:
         r"""

@@ -2,16 +2,15 @@ import collections
 import copy
 import inspect
 import itertools
+from abjad import enums
+from abjad import exceptions
 from abjad.system.AbjadValueObject import AbjadValueObject
-from abjad.enumerations import Exact
-from abjad.enumerations import Less
-from abjad.enumerations import More
-from abjad.exceptions import ExtraSpannerError
-from abjad.exceptions import MissingSpannerError
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.top.inspect import inspect as abjad_inspect
 from abjad.top.iterate import iterate
+from abjad.utilities.CyclicTuple import CyclicTuple
+from abjad.utilities.Duration import Duration
 from .Component import Component
 from .Leaf import Leaf
 
@@ -525,11 +524,11 @@ class Selection(AbjadValueObject, collections.Sequence):
             return
         try:
             left_tie = left_leaf._get_spanner(abjad.Tie)
-        except MissingSpannerError:
+        except exceptions.MissingSpannerError:
             left_tie = None
         try:
             right_tie = right_leaf._get_spanner(abjad.Tie)
-        except MissingSpannerError:
+        except exceptions.MissingSpannerError:
             right_tie = None
         if left_tie is not None and right_tie is not None:
             left_tie._fuse_by_reference(right_tie)
@@ -848,11 +847,11 @@ class Selection(AbjadValueObject, collections.Sequence):
     def _get_spanner(self, prototype=None):
         spanners = self._get_spanners(prototype=prototype)
         if not spanners:
-            raise MissingSpannerError
+            raise exceptions.MissingSpannerError
         elif len(spanners) == 1:
             return spanners.pop()
         else:
-            raise ExtraSpannerError
+            raise exceptions.ExtraSpannerError
 
     def _get_spanners(self, prototype=None):
         import abjad
@@ -2625,6 +2624,120 @@ class Selection(AbjadValueObject, collections.Sequence):
         if self._expression:
             return self._update_expression(inspect.currentframe())
         return type(self)(abjad.sequence(self).flatten(depth=depth))
+
+    def group(self):
+        r"""
+        Groups selection.
+
+        ..  container:: example
+
+            ..  container:: example
+
+                >>> staff = abjad.Staff(r'''
+                ...     c'8 ~ c'16 c'16 r8 c'16 c'16
+                ...     d'8 ~ d'16 d'16 r8 d'16 d'16
+                ...     ''')
+                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.show(staff, strict=89) # doctest: +SKIP
+
+                >>> result = abjad.select(staff).leaves(pitched=True).group()
+
+                >>> for item in result:
+                ...     item
+                ...
+                Selection([Note("c'8"), Note("c'16"), Note("c'16"), Note("c'16"), Note("c'16"), Note("d'8"), Note("d'16"), Note("d'16"), Note("d'16"), Note("d'16")])
+
+            ..  container:: example expression
+
+                >>> selector = abjad.select().leaves(pitched=True).group()
+                >>> result = selector(staff)
+
+                >>> selector.print(result)
+                Selection([Selection([Note("c'8"), Note("c'16"), Note("c'16"), Note("c'16"), Note("c'16"), Note("d'8"), Note("d'16"), Note("d'16"), Note("d'16"), Note("d'16")])])
+
+                >>> selector.color(result)
+                >>> abjad.show(staff, strict=89) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff, strict=89)
+                \new Staff
+                \with
+                {
+                    autoBeaming = ##f
+                }
+                {
+                    \once \override Accidental.color = #green
+                    \once \override Beam.color = #green
+                    \once \override Dots.color = #green
+                    \once \override NoteHead.color = #green
+                    \once \override Stem.color = #green
+                    c'8
+                    ~
+                    \once \override Accidental.color = #green
+                    \once \override Beam.color = #green
+                    \once \override Dots.color = #green
+                    \once \override NoteHead.color = #green
+                    \once \override Stem.color = #green
+                    c'16
+                    \once \override Accidental.color = #green
+                    \once \override Beam.color = #green
+                    \once \override Dots.color = #green
+                    \once \override NoteHead.color = #green
+                    \once \override Stem.color = #green
+                    c'16
+                    r8
+                    \once \override Accidental.color = #green
+                    \once \override Beam.color = #green
+                    \once \override Dots.color = #green
+                    \once \override NoteHead.color = #green
+                    \once \override Stem.color = #green
+                    c'16
+                    \once \override Accidental.color = #green
+                    \once \override Beam.color = #green
+                    \once \override Dots.color = #green
+                    \once \override NoteHead.color = #green
+                    \once \override Stem.color = #green
+                    c'16
+                    \once \override Accidental.color = #green
+                    \once \override Beam.color = #green
+                    \once \override Dots.color = #green
+                    \once \override NoteHead.color = #green
+                    \once \override Stem.color = #green
+                    d'8
+                    ~
+                    \once \override Accidental.color = #green
+                    \once \override Beam.color = #green
+                    \once \override Dots.color = #green
+                    \once \override NoteHead.color = #green
+                    \once \override Stem.color = #green
+                    d'16
+                    \once \override Accidental.color = #green
+                    \once \override Beam.color = #green
+                    \once \override Dots.color = #green
+                    \once \override NoteHead.color = #green
+                    \once \override Stem.color = #green
+                    d'16
+                    r8
+                    \once \override Accidental.color = #green
+                    \once \override Beam.color = #green
+                    \once \override Dots.color = #green
+                    \once \override NoteHead.color = #green
+                    \once \override Stem.color = #green
+                    d'16
+                    \once \override Accidental.color = #green
+                    \once \override Beam.color = #green
+                    \once \override Dots.color = #green
+                    \once \override NoteHead.color = #green
+                    \once \override Stem.color = #green
+                    d'16
+                }
+
+        Returns nested selection (or expression).
+        """
+        if self._expression:
+            return self._update_expression(inspect.currentframe(), lone=True)
+        return self.group_by()
 
     def group_by(self, predicate=None):
         r'''
@@ -7830,15 +7943,15 @@ class Selection(AbjadValueObject, collections.Sequence):
         import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        fill = fill or abjad.Exact
-        durations = [abjad.Duration(_) for _ in durations]
+        fill = fill or enums.Exact
+        durations = [Duration(_) for _ in durations]
         if cyclic:
-            durations = abjad.CyclicTuple(durations)
+            durations = CyclicTuple(durations)
         result = []
         part = []
         current_duration_index = 0
         target_duration = durations[current_duration_index]
-        cumulative_duration = abjad.Duration(0)
+        cumulative_duration = Duration(0)
         components_copy = list(self)
         while True:
             try:
@@ -7857,17 +7970,16 @@ class Selection(AbjadValueObject, collections.Sequence):
                 part.append(component)
                 result.append(part)
                 part = []
-                cumulative_duration = abjad.Duration(0)
+                cumulative_duration = Duration(0)
                 current_duration_index += 1
                 try:
                     target_duration = durations[current_duration_index]
                 except IndexError:
                     break
             elif target_duration < candidate_duration:
-                if fill is Exact:
-                    message = 'must partition exactly.'
-                    raise Exception(message)
-                elif fill is Less:
+                if fill is enums.Exact:
+                    raise Exception('must partition exactly.')
+                elif fill is enums.Less:
                     result.append(part)
                     part = [component]
                     if in_seconds:
@@ -7892,7 +8004,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                             cumulative_duration,
                             )
                         raise Exception(message)
-                elif fill is More:
+                elif fill is enums.More:
                     part.append(component)
                     result.append(part)
                     part = []

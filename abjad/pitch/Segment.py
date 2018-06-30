@@ -1,9 +1,9 @@
 import abc
 import collections
 import types
-from abjad.enumerations import Up
+from abjad import enums
 from abjad import mathtools
-from abjad import system
+from abjad.system.FormatSpecification import FormatSpecification
 from abjad.utilities.TypedTuple import TypedTuple
 
 
@@ -63,7 +63,7 @@ class Segment(TypedTuple):
 
     def __illustrate__(
         self,
-        markup_direction=Up,
+        markup_direction=enums.Up,
         figure_name=None,
         **keywords
         ):
@@ -173,7 +173,7 @@ class Segment(TypedTuple):
             message = 'invalid item class: {!r}.'
             message = message.format(self.item_class)
             raise ValueError(message)
-        return system.FormatSpecification(
+        return FormatSpecification(
             client=self,
             repr_is_indented=False,
             repr_kwargs_names=['name'],

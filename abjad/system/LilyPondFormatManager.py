@@ -1,12 +1,8 @@
 import typing
-from abjad.system.AbjadObject import AbjadObject
-from abjad.enumerations import Center
-from abjad.enumerations import Down
-from abjad.enumerations import Left
-from abjad.enumerations import Right
-from abjad.enumerations import Up
+from abjad import enums
 from abjad.scheme import Scheme
 from abjad.scheme import SchemePair
+from abjad.system.AbjadObject import AbjadObject
 from abjad.utilities.String import String
 from .LilyPondFormatBundle import LilyPondFormatBundle
 
@@ -60,11 +56,11 @@ class LilyPondFormatManager(AbjadObject):
                 continue
             # store markup wrappers
             elif isinstance(wrapper.indicator, abjad.Markup):
-                if wrapper.indicator.direction is Up:
+                if wrapper.indicator.direction is enums.Up:
                     up_markup_wrappers.append(wrapper)
-                elif wrapper.indicator.direction is Down:
+                elif wrapper.indicator.direction is enums.Down:
                     down_markup_wrappers.append(wrapper)
-                elif wrapper.indicator.direction in (abjad.Center, None):
+                elif wrapper.indicator.direction in (enums.Center, None):
                     neutral_markup_wrappers.append(wrapper)
             # store context wrappers
             elif wrapper.context is not None:
@@ -145,7 +141,7 @@ class LilyPondFormatManager(AbjadObject):
             arrow = written_pitch.arrow
         except AttributeError:
             arrow = None
-        if arrow in (abjad.Up, abjad.Down):
+        if arrow in (enums.Up, enums.Down):
             contributions_ = written_pitch._list_format_contributions()
             contributions.extend(contributions_)
         bundle.grob_overrides.extend(contributions)
@@ -359,7 +355,7 @@ class LilyPondFormatManager(AbjadObject):
             pass
         elif argument in (True, False):
             argument = Scheme(argument)
-        elif argument in (Up, Down, Left, Right, Center):
+        elif argument in (enums.Up, enums.Down, enums.Left, enums.Right, enums.Center):
             argument = Scheme(repr(argument).lower())
         elif isinstance(argument, int) or isinstance(argument, float):
             argument = Scheme(argument)
