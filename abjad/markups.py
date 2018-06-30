@@ -2889,7 +2889,7 @@ class MarkupCommand(AbjadValueObject):
         self._arguments = tuple(arguments)
         self._deactivate = None
         self._force_quotes = False
-        assert isinstance(name, str) and len(name) and name.find(' ') == -1
+        assert isinstance(name, str) and len(name)
         self._name = name
         self._tag = None
 
@@ -3075,16 +3075,6 @@ class MarkupCommand(AbjadValueObject):
         return self._get_lilypond_format()
 
     ### PRIVATE METHODS ###
-
-    def _escape_string(self, string):
-        if -1 == string.find(' '):
-            return string
-        string = repr(string)
-        if string.startswith("'") and string.endswith("'"):
-            string = string.replace('"', '\"')
-            string = '"' + string[1:]
-            string = string[:-1] + '"'
-        return string
 
     def _get_format_pieces(self):
         import abjad

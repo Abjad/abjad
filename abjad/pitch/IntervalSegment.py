@@ -1,10 +1,12 @@
 from abjad import mathtools
-from abjad.pitch.Segment import Segment
-from abjad.top import new
+from abjad.top.new import new
+from abjad.utilities.Multiplier import Multiplier
+from .Segment import Segment
 
 
 class IntervalSegment(Segment):
-    r'''Interval segment.
+    """
+    Interval segment.
 
     ..  container:: example
 
@@ -22,7 +24,7 @@ class IntervalSegment(Segment):
         >>> abjad.IntervalSegment(pitch_segment)
         IntervalSegment(['+M2', '+M2', '+m2', '+M2', '+M2', '+M2', '+m2'])
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -64,35 +66,40 @@ class IntervalSegment(Segment):
 
     @property
     def slope(self):
-        r'''Slope of interval segment.
+        """
+        Gets slope of interval segment.
 
-        The slope of a interval segment is the sum of its
-        intervals divided by its length:
+        ..  container:: example
 
-        >>> abjad.IntervalSegment([1, 2]).slope
-        Multiplier(3, 2)
+            The slope of a interval segment is the sum of its
+            intervals divided by its length:
+
+            >>> abjad.IntervalSegment([1, 2]).slope
+            Multiplier(3, 2)
 
         Returns multiplier.
-        '''
-        import abjad
+        """
         result = sum([x.number for x in self]) / len(self)
-        return abjad.Multiplier.from_float(result)
+        return Multiplier.from_float(result)
 
     @property
     def spread(self):
-        r'''Gets spread of interval segment.
+        """
+        Gets spread of interval segment.
 
-        The maximum interval spanned by any combination of
-        the intervals within a numbered interval segment.
+        ..  container:: example
 
-        >>> abjad.IntervalSegment([1, 2, -3, 1, -2, 1]).spread
-        NumberedInterval(4)
+            The maximum interval spanned by any combination of
+            the intervals within a numbered interval segment.
 
-        >>> abjad.IntervalSegment([1, 1, 1, 2, -3, -2]).spread
-        NumberedInterval(5)
+            >>> abjad.IntervalSegment([1, 2, -3, 1, -2, 1]).spread
+            NumberedInterval(4)
+
+            >>> abjad.IntervalSegment([1, 1, 1, 2, -3, -2]).spread
+            NumberedInterval(5)
 
         Returns numbered interval.
-        '''
+        """
         import abjad
         current = maximum = minimum = 0
         for x in self:
@@ -111,17 +118,20 @@ class IntervalSegment(Segment):
         selection,
         item_class=None,
         ):
-        r'''Makes interval segment from component `selection`.
+        """
+        Makes interval segment from component `selection`.
 
-        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-        >>> abjad.IntervalSegment.from_selection(
-        ...     staff,
-        ...     item_class=abjad.NumberedInterval,
-        ...     )
-        IntervalSegment([2, 2, 1, 2, 2, 2, 1])
+        ..  container:: example
+
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+            >>> abjad.IntervalSegment.from_selection(
+            ...     staff,
+            ...     item_class=abjad.NumberedInterval,
+            ...     )
+            IntervalSegment([2, 2, 1, 2, 2, 2, 1])
 
         Returns interval segment.
-        '''
+        """
         import abjad
         pitch_segment = abjad.PitchSegment.from_selection(selection)
         pitches = [_ for _ in pitch_segment]
@@ -132,26 +142,30 @@ class IntervalSegment(Segment):
             )
 
     def has_duplicates(self):
-        r'''True if segment has duplicate items.
+        """
+        Is true if segment has duplicate items.
 
-        >>> intervals = 'm2 M3 -aug4 m2 P5'
-        >>> segment = abjad.IntervalSegment(intervals)
-        >>> segment.has_duplicates()
-        True
+        ..  container:: example
 
-        >>> intervals = 'M3 -aug4 m2 P5'
-        >>> segment = abjad.IntervalSegment(intervals)
-        >>> segment.has_duplicates()
-        False
+            >>> intervals = 'm2 M3 -aug4 m2 P5'
+            >>> segment = abjad.IntervalSegment(intervals)
+            >>> segment.has_duplicates()
+            True
+
+            >>> intervals = 'M3 -aug4 m2 P5'
+            >>> segment = abjad.IntervalSegment(intervals)
+            >>> segment.has_duplicates()
+            False
 
         Returns true or false.
-        '''
+        """
         import abjad
         return len(abjad.IntervalSet(self)) < len(self)
 
     def rotate(self, n=0):
-        r'''Rotates interval segment by index `n`.
+        """
+        Rotates interval segment by index `n`.
 
         Returns new interval segment.
-        '''
+        """
         return new(self, self[-n:] + self[:-n])

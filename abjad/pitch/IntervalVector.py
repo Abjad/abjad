@@ -1,9 +1,10 @@
-from abjad.pitch.Vector import Vector
 from abjad.utilities.Enumerator import Enumerator
+from .Vector import Vector
 
 
 class IntervalVector(Vector):
-    r'''Interval vector.
+    """
+    Interval vector.
 
     ..  container:: example
 
@@ -42,7 +43,7 @@ class IntervalVector(Vector):
         +9 2
         +10 1
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -73,7 +74,8 @@ class IntervalVector(Vector):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        r'''Gets interpret representation of interval vector.
+        """
+        Gets interpret representation of interval vector.
 
         ..  container:: example
 
@@ -98,7 +100,7 @@ class IntervalVector(Vector):
             IntervalVector({-11: 1, -10: 1, -9: 1, -8: 2, -7: 3, -6: 3, -5: 4, -4: 4, -3: 4, -2: 5, -1: 6, 1: 5, 2: 5, 3: 5, 4: 4, 5: 3, 6: 3, 7: 2, 8: 2, 9: 2, 10: 1}, item_class=NumberedInterval)
 
         Returns string.
-        '''
+        """
         superclass = super(IntervalVector, self)
         return superclass.__repr__()
 
@@ -127,10 +129,11 @@ class IntervalVector(Vector):
         selection,
         item_class=None,
         ):
-        r'''Makes interval vector from `selection`.
+        """
+        Makes interval vector from `selection`.
 
         Returns interval vector.
-        '''
+        """
         import abjad
         pitch_segment = abjad.PitchSegment.from_selection(selection)
         return class_(

@@ -1,8 +1,10 @@
+from abjad import markups
 from abjad.system.AbjadValueObject import AbjadValueObject
 
 
 class Inversion(AbjadValueObject):
-    r'''Inversion operator.
+    """
+    Inversion operator.
 
     ..  container:: example
 
@@ -15,7 +17,7 @@ class Inversion(AbjadValueObject):
         Inversion(axis=NamedPitch("ef''"))
 
     Object model of twelve-tone inversion operator.
-    '''
+    """
 
     ### CLASS VARIABLES ##
 
@@ -34,7 +36,8 @@ class Inversion(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __add__(self, operator):
-        r'''Composes inversion and `operator`.
+        r"""
+        Composes inversion and `operator`.
 
         ..  container:: example
 
@@ -113,12 +116,13 @@ class Inversion(AbjadValueObject):
                     ],
                 )
 
-        '''
+        """
         import abjad
         return abjad.CompoundOperator._compose_operators(self, operator)
 
     def __call__(self, argument):
-        r'''Calls inversion on `argument`.
+        """
+        Calls inversion on `argument`.
 
         ..  container:: example
 
@@ -184,7 +188,7 @@ class Inversion(AbjadValueObject):
             PitchClassSet(['c', 'af', 'bf'])
 
         Returns new object with type equal to that of `argument`.
-        '''
+        """
         if hasattr(argument, 'invert'):
             result = argument.invert(axis=self.axis)
         else:
@@ -194,7 +198,8 @@ class Inversion(AbjadValueObject):
         return result
 
     def __radd__(self, operator):
-        r'''Right-addition not defined on inversion.
+        """
+        Right-addition not defined on inversion.
 
         ..  container:: example
 
@@ -204,13 +209,14 @@ class Inversion(AbjadValueObject):
             NotImplementedError: right-addition not defined on Inversion.
 
         Raises not implemented error.
-        '''
+        """
         message = 'right-addition not defined on {}.'
         message = message.format(type(self).__name__)
         raise NotImplementedError(message)
 
     def __str__(self):
-        r'''Gets string representation of operator.
+        """
+        Gets string representation of operator.
 
         ..  container:: example
 
@@ -222,7 +228,7 @@ class Inversion(AbjadValueObject):
             >>> str(abjad.Inversion(axis=15))
             'I(Eb5)'
 
-        '''
+        """
         if self.axis is None:
             return 'I'
         string = 'I({})'
@@ -232,12 +238,11 @@ class Inversion(AbjadValueObject):
     ### PRIVATE METHODS ###
 
     def _get_markup(self, direction=None):
-        import abjad
-        markup = abjad.Markup('I', direction=direction)
+        markup = markups.Markup('I', direction=direction)
         if self.axis is not None:
             axis = self.axis.get_name(locale='us')
-            subscript = abjad.Markup(axis).sub()
-            markup = abjad.Markup.concat([markup, subscript])
+            subscript = markups.Markup(axis).sub()
+            markup = markups.Markup.concat([markup, subscript])
         return markup
 
     def _is_identity_operator(self):
@@ -247,7 +252,8 @@ class Inversion(AbjadValueObject):
 
     @property
     def axis(self):
-        r'''Gets axis of inversion.
+        """
+        Gets axis of inversion.
 
         ..  container:: example
 
@@ -262,5 +268,5 @@ class Inversion(AbjadValueObject):
             NamedPitch("ef''")
 
         Returns named pitch or none.
-        '''
+        """
         return self._axis

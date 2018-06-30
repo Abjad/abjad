@@ -1,10 +1,11 @@
 import copy
-from abjad.pitch.Set import Set
 from abjad.utilities.Enumerator import Enumerator
+from .Set import Set
 
 
 class PitchClassSet(Set):
-    '''Pitch-class set.
+    """
+    Pitch-class set.
 
     ..  container:: example
 
@@ -28,7 +29,7 @@ class PitchClassSet(Set):
         >>> named_pitch_class_set
         PitchClassSet(['c', 'd', 'ef', 'bqs'])
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -37,7 +38,8 @@ class PitchClassSet(Set):
     ### SPECIAL METHODS ###
 
     def __contains__(self, argument):
-        r'''Is true when pitch-class set contains `argument`.
+        """
+        Is true when pitch-class set contains `argument`.
 
         ..  container:: example
 
@@ -63,18 +65,20 @@ class PitchClassSet(Set):
             False
 
         Returns true or false.
-        '''
+        """
         return super(PitchClassSet, self).__contains__(argument)
 
     def __hash__(self):
-        r'''Hashes pitch-class set.
+        """
+        Hashes pitch-class set.
 
         Returns integer.
-        '''
+        """
         return super(PitchClassSet, self).__hash__()
 
     def __illustrate__(self):
-        r'''Illustrates pitch-class set.
+        r"""
+        Illustrates pitch-class set.
 
         ..  container:: example
 
@@ -120,7 +124,7 @@ class PitchClassSet(Set):
             >>> isinstance(setting.__illustrate__(), prototype)
             True
 
-        '''
+        """
         import abjad
         chord = abjad.Chord(self, abjad.Duration(1))
         voice = abjad.Voice([chord])
@@ -130,7 +134,8 @@ class PitchClassSet(Set):
         return lilypond_file
 
     def __str__(self):
-        r'''Gets string representation of pitch-class set.
+        """
+        Gets string representation of pitch-class set.
 
         ..  container:: example
 
@@ -149,7 +154,7 @@ class PitchClassSet(Set):
             'PC{6, 7, 10, 10.5}'
 
         Returns string.
-        '''
+        """
         import abjad
         items = [str(_) for _ in sorted(self)]
         separator = ' '
@@ -238,7 +243,8 @@ class PitchClassSet(Set):
         selection,
         item_class=None,
         ):
-        r'''Makes pitch-class set from `selection`.
+        """
+        Makes pitch-class set from `selection`.
 
         ..  container:: example
 
@@ -249,7 +255,7 @@ class PitchClassSet(Set):
             PitchClassSet(['c', 'd', 'fs', 'g', 'a', 'b'])
 
         Returns pitch-class set.
-        '''
+        """
         import abjad
         pitch_segment = abjad.PitchSegment.from_selection(selection)
         return class_(
@@ -258,7 +264,8 @@ class PitchClassSet(Set):
             )
 
     def get_normal_order(self):
-        r'''Gets normal order.
+        """
+        Gets normal order.
 
         ..  container:: example
 
@@ -303,7 +310,7 @@ class PitchClassSet(Set):
             PitchClassSegment([0, 3, 6, 9])
 
         Returns pitch-class segment.
-        '''
+        """
         import abjad
         if not len(self):
             return abjad.PitchClassSegment(
@@ -320,7 +327,8 @@ class PitchClassSet(Set):
         return self._get_most_compact_ordering(candidates)
 
     def get_prime_form(self, transposition_only=False):
-        r'''Gets prime form.
+        """
+        Gets prime form.
 
         ..  container:: example
 
@@ -423,7 +431,7 @@ class PitchClassSet(Set):
             PitchClassSet([0, 1, 2, 3, 6, 7])
 
         Returns new pitch-class set.
-        '''
+        """
         import abjad
         if not len(self):
             return copy.copy(self)
@@ -454,7 +462,8 @@ class PitchClassSet(Set):
         return prime_form
 
     def invert(self, axis=None):
-        r'''Inverts pitch-class set.
+        """
+        Inverts pitch-class set.
 
         ..  container:: example
 
@@ -464,11 +473,12 @@ class PitchClassSet(Set):
             PitchClassSet([1.5, 2, 5, 6])
 
         Returns numbered pitch-class set.
-        '''
+        """
         return type(self)([pc.invert(axis=axis) for pc in self])
 
     def is_transposed_subset(self, pcset):
-        r'''Is true when pitch-class set is transposed subset of `pcset`.
+        """
+        Is true when pitch-class set is transposed subset of `pcset`.
 
         ..  container:: example
 
@@ -483,14 +493,15 @@ class PitchClassSet(Set):
             True
 
         Returns true or false.
-        '''
+        """
         for n in range(12):
             if self.transpose(n).issubset(pcset):
                 return True
         return False
 
     def is_transposed_superset(self, pcset):
-        r'''Is true when pitch-class set is transposed superset of `pcset`.
+        """
+        Is true when pitch-class set is transposed superset of `pcset`.
 
         ..  container:: example
 
@@ -505,14 +516,15 @@ class PitchClassSet(Set):
             True
 
         Returns true or false.
-        '''
+        """
         for n in range(12):
             if self.transpose(n).issuperset(pcset):
                 return True
         return False
 
     def multiply(self, n):
-        r'''Multiplies pitch-class set by `n`.
+        """
+        Multiplies pitch-class set by `n`.
 
         ..  container:: example
 
@@ -522,13 +534,14 @@ class PitchClassSet(Set):
             PitchClassSet([2, 4.5, 6, 11])
 
         Returns new pitch-class set.
-        '''
+        """
         import abjad
         items = (pitch_class.multiply(n) for pitch_class in self)
         return abjad.new(self, items=items)
 
     def order_by(self, segment):
-        r'''Orders pitch-class set by pitch-class `segment`.
+        """
+        Orders pitch-class set by pitch-class `segment`.
 
         ..  container:: example
 
@@ -538,7 +551,7 @@ class PitchClassSet(Set):
             PitchClassSegment("b e c")
 
         Returns pitch-class segment.
-        '''
+        """
         import abjad
         if not len(self) == len(segment):
             message = 'set and segment must be on equal length.'
@@ -553,7 +566,8 @@ class PitchClassSet(Set):
         raise ValueError(message)
 
     def transpose(self, n=0):
-        r'''Transposes all pitch-classes in pitch-class set by index `n`.
+        """
+        Transposes all pitch-classes in pitch-class set by index `n`.
 
         ..  container:: example
 
@@ -579,7 +593,7 @@ class PitchClassSet(Set):
             11 PC{5, 6, 9, 9.5}
 
         Returns new pitch-class set.
-        '''
+        """
         import abjad
         items = (pitch_class + n for pitch_class in self)
         return abjad.new(self, items=items)

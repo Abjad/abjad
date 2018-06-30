@@ -4,12 +4,14 @@ import types
 from abjad import enums
 from abjad import mathtools
 from abjad.system.FormatSpecification import FormatSpecification
+from abjad.utilities.Duration import Duration
 from abjad.utilities.TypedTuple import TypedTuple
 
 
 class Segment(TypedTuple):
-    r'''Abstract segment.
-    '''
+    """
+    Abstract segment.
+    """
 
     ### CLASS VARIABLES ##
 
@@ -67,14 +69,15 @@ class Segment(TypedTuple):
         figure_name=None,
         **keywords
         ):
-        r'''Illustrates segment.
+        """
+        Illustrates segment.
 
         Returns LilyPond file.
-        '''
+        """
         import abjad
         notes = []
         for item in self:
-            note = abjad.Note(item, abjad.Duration(1, 8))
+            note = abjad.Note(item, Duration(1, 8))
             notes.append(note)
         markup = None
         if self._equivalence_markup:
@@ -127,10 +130,11 @@ class Segment(TypedTuple):
         return lilypond_file
 
     def __str__(self):
-        r'''Gets string representation of segment.
+        """
+        Gets string representation of segment.
 
         Returns string.
-        '''
+        """
         items = [str(_) for _ in self]
         return '<{}>'.format(', '.join(items))
 
@@ -198,16 +202,18 @@ class Segment(TypedTuple):
         selection,
         item_class=None,
         ):
-        r'''Makes segment from `selection`.
+        """
+        Makes segment from `selection`.
 
         Returns new segment.
-        '''
+        """
         raise NotImplementedError
 
     @abc.abstractmethod
     def has_duplicates(self):
-        r'''Is true when segment has duplicates.
+        """
+        Is true when segment has duplicates.
 
         Returns true or false.
-        '''
+        """
         raise NotImplementedError

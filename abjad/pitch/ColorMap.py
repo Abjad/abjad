@@ -1,9 +1,10 @@
 from abjad.system.AbjadValueObject import AbjadValueObject
+from .NumberedPitchClass import NumberedPitchClass
 
 
-# TODO: implement __illustrate__
 class ColorMap(AbjadValueObject):
-    '''Color map.
+    """
+    Color map.
 
     ..  container:: example
 
@@ -29,7 +30,7 @@ class ColorMap(AbjadValueObject):
             )
 
     Color maps are immutable.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -55,7 +56,8 @@ class ColorMap(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __format__(self, format_specification=''):
-        r'''Formats color map.
+        """
+        Formats color map.
 
         ..  container:: example
 
@@ -79,12 +81,13 @@ class ColorMap(AbjadValueObject):
                 )
 
         Returns string.
-        '''
+        """
         superclass = super(ColorMap, self)
         return superclass.__format__(format_specification=format_specification)
 
     def __getitem__(self, pitch_class):
-        r'''Gets `pitch_class` color.
+        """
+        Gets `pitch_class` color.
 
         ..  container:: example
 
@@ -101,18 +104,16 @@ class ColorMap(AbjadValueObject):
             'green'
 
         Returns string.
-        '''
-        import abjad
-        pitch_class = abjad.NumberedPitchClass(pitch_class)
+        """
+        pitch_class = NumberedPitchClass(pitch_class)
         return self._color_dictionary[pitch_class.number]
 
     ### PRIVATE METHODS ###
 
     def _initialize_color_dictionary(self):
-        import abjad
         for pitch_iterable, color in zip(self.pitch_iterables, self.colors):
             for pitch in pitch_iterable:
-                pc = abjad.NumberedPitchClass(pitch)
+                pc = NumberedPitchClass(pitch)
                 keys = self._color_dictionary.keys()
                 if pc.number in list(keys):
                     print(pc, list(self._color_dictionary.keys()))
@@ -125,7 +126,8 @@ class ColorMap(AbjadValueObject):
 
     @property
     def colors(self):
-        r'''Gets colors.
+        """
+        Gets colors.
 
         ..  container:: example
 
@@ -142,12 +144,13 @@ class ColorMap(AbjadValueObject):
             ['red', 'green', 'blue']
 
         Returns list.
-        '''
+        """
         return self._colors
 
     @property
     def is_twelve_tone_complete(self):
-        r'''Is true when color map contains all 12-ET pitch-classes.
+        """
+        Is true when color map contains all 12-ET pitch-classes.
 
         ..  container:: example
 
@@ -164,13 +167,14 @@ class ColorMap(AbjadValueObject):
             True
 
         Return boolean.
-        '''
+        """
         pcs = range(12)
         return set(pcs).issubset(set(self._color_dictionary.keys()))
 
     @property
     def is_twenty_four_tone_complete(self):
-        r'''Is true when color map contains all 24-ET pitch-classes.
+        """
+        Is true when color map contains all 24-ET pitch-classes.
 
         ..  container:: example
 
@@ -187,14 +191,15 @@ class ColorMap(AbjadValueObject):
             False
 
         Return boolean.
-        '''
+        """
         pcs = [x / 2.0 for x in range(24)]
         pcs = [int(x) if int(x) == x else x for x in pcs]
         return set(pcs).issubset(set(self._color_dictionary.keys()))
 
     @property
     def pairs(self):
-        r'''Gets pairs.
+        """
+        Gets pairs.
 
         ..  container:: example
 
@@ -224,13 +229,14 @@ class ColorMap(AbjadValueObject):
             (11, 'green')
 
         Returns list.
-        '''
+        """
         items = list(self._color_dictionary.items())
         return list(sorted(items))
 
     @property
     def pitch_iterables(self):
-        r'''Gets pitch iterables.
+        """
+        Gets pitch iterables.
 
         ..  container:: example
 
@@ -247,13 +253,14 @@ class ColorMap(AbjadValueObject):
             [[-8, 2, 10, 21], [0, 11, 32, 41], [15, 25, 42, 43]]
 
         Returns list.
-        '''
+        """
         return self._pitch_iterables
 
     ### PUBLIC METHODS ###
 
     def get(self, key, alternative=None):
-        r'''Gets `key` from color map.
+        """
+        Gets `key` from color map.
 
         ..  container:: example
 
@@ -272,7 +279,7 @@ class ColorMap(AbjadValueObject):
         Returns `alternative` when `key` is not found.
 
         Returns string.
-        '''
+        """
         try:
             return self[key]
         except (KeyError, TypeError, ValueError):

@@ -1,10 +1,11 @@
-from abjad.pitch.Set import Set
 from abjad.utilities.Enumerator import Enumerator
+from .Set import Set
 
 
 class IntervalSet(Set):
-    r'''Interval set.
-    '''
+    """
+    Interval set.
+    """
 
     ### CLASS VARIABLES ###
 
@@ -52,7 +53,8 @@ class IntervalSet(Set):
 
     @classmethod
     def from_selection(class_, selection, item_class=None):
-        r'''Initialize interval set from component selection:
+        """
+        Initializes interval set from component selection.
 
         ..  container:: example
 
@@ -82,7 +84,7 @@ class IntervalSet(Set):
             NamedInterval('+M13')
 
         Returns interval set.
-        '''
+        """
         import abjad
         pitch_segment = abjad.PitchSegment.from_selection(selection)
         enumerator = Enumerator(pitch_segment)

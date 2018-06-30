@@ -1,5 +1,5 @@
 import numbers
-from abjad.pitch.NamedIntervalClass import NamedIntervalClass
+from .NamedIntervalClass import NamedIntervalClass
 
 
 class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
@@ -103,7 +103,8 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
             )
 
     def __hash__(self):
-        r"""Hashes named inversion-equivalent interval-class.
+        """
+        Hashes named inversion-equivalent interval-class.
 
         Returns integer.
         """

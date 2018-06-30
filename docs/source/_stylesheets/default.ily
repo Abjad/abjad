@@ -1,6 +1,7 @@
 \version "2.19.0"
 
 #(ly:set-option 'relative-includes #t)
+\include "abjad.ily"
 \include "flared-hairpin.ily"
 \include "text-spanner-id.ily"
 

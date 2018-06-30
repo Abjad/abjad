@@ -1,14 +1,15 @@
 import abc
 import collections
 import types
-from abjad import system
-from abjad import utilities
+from abjad.system.FormatSpecification import FormatSpecification
+from abjad.utilities.TypedCollection import TypedCollection
 from abjad.utilities.TypedFrozenset import TypedFrozenset
 
 
 class Set(TypedFrozenset):
-    '''Abstract set.
-    '''
+    """
+    Abstract set.
+    """
 
     ### CLASS VARIABLES ###
 
@@ -29,7 +30,7 @@ class Set(TypedFrozenset):
         if item_class is None:
             item_class = self._named_item_class
             if items is not None:
-                if (isinstance(items, utilities.TypedCollection) and
+                if (isinstance(items, TypedCollection) and
                     issubclass(items.item_class, self._parent_item_class)):
                     item_class = items.item_class
                 elif len(items):
@@ -52,10 +53,11 @@ class Set(TypedFrozenset):
     ### SPECIAL METHODS ###
 
     def __str__(self):
-        r'''Gets string representation.
+        """
+        Gets string representation.
 
         Returns string.
-        '''
+        """
         items = self._get_sorted_repr_items()
         items = [str(_) for _ in items]
         return '{{{}}}'.format(', '.join(items))
@@ -78,7 +80,7 @@ class Set(TypedFrozenset):
 
     def _get_format_specification(self):
         repr_items = self._get_sorted_repr_items()
-        return system.FormatSpecification(
+        return FormatSpecification(
             client=self,
             repr_is_indented=False,
             repr_args_values=[repr_items],
@@ -109,12 +111,13 @@ class Set(TypedFrozenset):
 
     @property
     def cardinality(self):
-        r'''Gets cardinality of set.
+        """
+        Gets cardinality of set.
 
         Defined equal to length of set.
 
         Returns nonnegative integer.
-        '''
+        """
         return len(self)
 
     ### PUBLIC METHODS ###
@@ -125,8 +128,9 @@ class Set(TypedFrozenset):
         selection,
         item_class=None,
         ):
-        r'''Makes set from `selection`.
+        """
+        Makes set from `selection`.
 
         Returns set.
-        '''
+        """
         raise NotImplementedError

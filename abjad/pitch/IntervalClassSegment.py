@@ -1,10 +1,11 @@
 from abjad import mathtools
-from abjad.pitch.Segment import Segment
-from abjad.top import new
+from abjad.top.new import new
+from .Segment import Segment
 
 
 class IntervalClassSegment(Segment):
-    r'''Interval-class segment.
+    """
+    Interval-class segment.
 
     ..  container:: example
 
@@ -23,7 +24,7 @@ class IntervalClassSegment(Segment):
         IntervalClassSegment(['+P4', '+P5', '+P4', '+P5'])
 
     Returns interval-class segment.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -50,7 +51,8 @@ class IntervalClassSegment(Segment):
 
     @property
     def is_tertian(self):
-        r'''Is true when all named interval-classes in segment are tertian.
+        """
+        Is true when all named interval-classes in segment are tertian.
 
         ..  container:: example
 
@@ -62,7 +64,7 @@ class IntervalClassSegment(Segment):
             True
 
         Returns true or false.
-        '''
+        """
         import abjad
         inversion_equivalent_interval_class_segment = new(
             self,
@@ -77,7 +79,8 @@ class IntervalClassSegment(Segment):
 
     @classmethod
     def from_selection(class_, selection, item_class=None):
-        r'''Initializes interval-class segment from component selection.
+        """
+        Initializes interval-class segment from component selection.
 
         ..  container:: example
 
@@ -88,7 +91,7 @@ class IntervalClassSegment(Segment):
             IntervalClassSegment(['-M2', '-M3', '-m3', '+m7', '+M7', '-P5'])
 
         Returns interval-class segment.
-        '''
+        """
         import abjad
         pitch_segment = abjad.PitchSegment.from_selection(selection)
         pitches = [_ for _ in pitch_segment]
@@ -99,7 +102,8 @@ class IntervalClassSegment(Segment):
             )
 
     def has_duplicates(self):
-        r'''Is true when segment contains duplicates.
+        """
+        Is true when segment contains duplicates.
 
         ..  container:: example
 
@@ -114,7 +118,7 @@ class IntervalClassSegment(Segment):
             False
 
         Returns true or false.
-        '''
+        """
         import abjad
         return len(abjad.IntervalClassSet(
             self, item_class=self.item_class)) < len(self)

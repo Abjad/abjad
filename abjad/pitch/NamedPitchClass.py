@@ -1,10 +1,12 @@
-from abjad.pitch.Pitch import Pitch
-from abjad.pitch.PitchClass import PitchClass
+from abjad.system.FormatSpecification import FormatSpecification
 from . import constants
+from .Pitch import Pitch
+from .PitchClass import PitchClass
 
 
 class NamedPitchClass(PitchClass):
-    """Named pitch-class.
+    """
+    Named pitch-class.
 
     ..  container:: example
 
@@ -357,9 +359,8 @@ class NamedPitchClass(PitchClass):
             self._diatonic_pc_number]
 
     def _get_format_specification(self):
-        import abjad
         values = [self.name]
-        return abjad.FormatSpecification(
+        return FormatSpecification(
             client=self,
             coerce_for_equality=True,
             storage_format_is_indented=False,

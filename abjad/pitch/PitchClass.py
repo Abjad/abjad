@@ -8,8 +8,9 @@ from . import constants
 
 @functools.total_ordering
 class PitchClass(AbjadValueObject):
-    '''Abstract pitch-class.
-    '''
+    """
+    Abstract pitch-class.
+    """
 
     ### CLASS VARIABLES ###
 
@@ -49,19 +50,21 @@ class PitchClass(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __float__(self):
-        r'''Coerce to float.
+        """
+        Coerce to float.
 
         Returns float.
-        '''
+        """
         return float(self.number)
 
     def __format__(self, format_specification=''):
-        r'''Formats pitch-class.
+        """
+        Formats pitch-class.
 
         Set `format_specification` to `''`, `'lilypond'` or `'storage'`.
 
         Returns string.
-        '''
+        """
         if format_specification == 'lilypond':
             return self._get_lilypond_format()
         return super(PitchClass, self).__format__(
@@ -70,10 +73,11 @@ class PitchClass(AbjadValueObject):
 
     @abc.abstractmethod
     def __lt__(self, argument):
-        r'''Is true when pitch-class is less than `argument`.
+        """
+        Is true when pitch-class is less than `argument`.
 
         Returns true or false.
-        '''
+        """
         raise NotImplementedError
 
     ### PRIVATE METHODS ###
@@ -117,38 +121,43 @@ class PitchClass(AbjadValueObject):
 
     @abc.abstractproperty
     def accidental(self):
-        r'''Gets accidental of pitch-class.
-        '''
+        """
+        Gets accidental of pitch-class.
+        """
         raise NotImplementedError
 
     @abc.abstractproperty
     def pitch_class_label(self):
-        r'''Gets pitch-class label of pitch-class.
-        '''
+        """
+        Gets pitch-class label of pitch-class.
+        """
         raise NotImplementedError
 
     ### PUBLIC METHODS ###
 
     @abc.abstractmethod
     def invert(self, axis=None):
-        r'''Inverts pitch-class about `axis`.
+        """
+        Inverts pitch-class about `axis`.
 
         Returns new pitch-class.
-        '''
+        """
         raise NotImplementedError
 
     @abc.abstractmethod
     def multiply(self, n=1):
-        r'''Multiplies pitch-class by `n`.
+        """
+        Multiplies pitch-class by `n`.
 
         Returns new pitch-class.
-        '''
+        """
         raise NotImplementedError
 
     @abc.abstractmethod
     def transpose(self, n=0):
-        r'''Transposes pitch-class by index `n`.
+        """
+        Transposes pitch-class by index `n`.
 
         Returns new pitch-class.
-        '''
+        """
         raise NotImplementedError

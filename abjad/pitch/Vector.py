@@ -1,15 +1,16 @@
 import abc
 import collections
 import types
-from abjad import system
-from abjad import utilities
 from abjad import mathtools
+from abjad.system.FormatSpecification import FormatSpecification
+from abjad.utilities.TypedCollection import TypedCollection
 from abjad.utilities.TypedCounter import TypedCounter
 
 
 class Vector(TypedCounter):
-    '''Abstract vector.
-    '''
+    """
+    Abstract vector.
+    """
 
     ### CLASS VARIABLES ##
 
@@ -34,7 +35,7 @@ class Vector(TypedCounter):
         if item_class is None:
             item_class = self._named_item_class
             if items is not None:
-                if (isinstance(items, utilities.TypedCollection) and
+                if (isinstance(items, TypedCollection) and
                     issubclass(items.item_class, self._parent_item_class)):
                     item_class = items.item_class
                 elif len(items):
@@ -58,10 +59,11 @@ class Vector(TypedCounter):
     ### SPECIAL METHODS ###
 
     def __str__(self):
-        r'''String representation of vector.
+        """
+        String representation of vector.
 
         Returns string.
-        '''
+        """
         parts = ['{}: {}'.format(key, value)
             for key, value in self.items()]
         return '<{}>'.format(', '.join(parts))
@@ -112,7 +114,7 @@ class Vector(TypedCounter):
                     float(k.number)): v
                 for k, v in self.items()
                 }
-        return system.FormatSpecification(
+        return FormatSpecification(
             client=self,
             repr_is_indented=False,
             repr_args_values=[repr_items],
@@ -127,8 +129,9 @@ class Vector(TypedCounter):
         selection,
         item_class=None,
         ):
-        r'''Makes vector from `selection`.
+        """
+        Makes vector from `selection`.
 
         Returns vector.
-        '''
+        """
         raise NotImplementedError

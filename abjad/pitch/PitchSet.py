@@ -1,10 +1,14 @@
 import collections
 import inspect
-from abjad.pitch.Set import Set
+from abjad.top.new import new
+from abjad.utilities.Duration import Duration
+from .Set import Set
+
 
 
 class PitchSet(Set):
-    r'''Pitch set.
+    r"""
+    Pitch set.
 
     ..  container:: example
 
@@ -38,7 +42,7 @@ class PitchSet(Set):
             ['bf,', 'aqs', 'bqf', "fs'", "g'"]
             )
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -48,7 +52,8 @@ class PitchSet(Set):
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument):
-        r'''Is true when pitch set equals `argument`.
+        """
+        Is true when pitch set equals `argument`.
 
         ..  container:: example
 
@@ -87,18 +92,20 @@ class PitchSet(Set):
             True
 
         Return true or false.
-        '''
+        """
         return super(PitchSet, self).__eq__(argument)
 
     def __hash__(self):
-        r'''Hashes pitch set.
+        """
+        Hashes pitch set.
 
         Returns number.
-        '''
+        """
         return super(PitchSet, self).__hash__()
 
     def __illustrate__(self):
-        r'''Illustrates pitch set.
+        r"""
+        Illustrates pitch set.
 
         ..  container:: example
 
@@ -173,7 +180,7 @@ class PitchSet(Set):
                 >>
 
         Returns LilyPond file.
-        '''
+        """
         import abjad
         upper, lower = [], []
         for pitch in self:
@@ -182,11 +189,11 @@ class PitchSet(Set):
             else:
                 upper.append(pitch)
         if upper:
-            upper = abjad.Chord(upper, abjad.Duration(1))
+            upper = abjad.Chord(upper, Duration(1))
         else:
             upper = abjad.Skip((1, 1))
         if lower:
-            lower = abjad.Chord(lower, abjad.Duration(1))
+            lower = abjad.Chord(lower, Duration(1))
         else:
             lower = abjad.Skip((1, 1))
         upper_voice = abjad.Voice([upper])
@@ -221,10 +228,11 @@ class PitchSet(Set):
     ### PRIVATE METHODS ###
 
     def _is_equivalent_under_transposition(self, argument):
-        r'''True if pitch set is equivalent to `argument` under transposition.
+        """
+        True if pitch set is equivalent to `argument` under transposition.
 
         Returns true or false.
-        '''
+        """
         import abjad
         if not isinstance(argument, type(self)):
             return False
@@ -235,7 +243,7 @@ class PitchSet(Set):
             abjad.NamedPitch(self[0], 4)
             )
         new_pitches = (x + difference for x in self)
-        new_pitches = abjad.new(self, items=new_pitches)
+        new_pitches = new(self, items=new_pitches)
         return argument == new_pitches
 
     def _sort_self(self):
@@ -246,7 +254,8 @@ class PitchSet(Set):
 
     @property
     def duplicate_pitch_classes(self):
-        r'''Gets duplicate pitch-classes in pitch set.
+        """
+        Gets duplicate pitch-classes in pitch set.
 
         ..  container:: example
 
@@ -265,7 +274,7 @@ class PitchSet(Set):
             PitchClassSet([10.5])
 
         Returns pitch-class set.
-        '''
+        """
         import abjad
         pitch_classes = []
         duplicate_pitch_classes = []
@@ -281,7 +290,8 @@ class PitchSet(Set):
 
     @property
     def hertz(self):
-        r'''Gets hertz of pitches in pitch segment.
+        """
+        Gets hertz of pitches in pitch segment.
 
         ..  container:: example
 
@@ -290,12 +300,13 @@ class PitchSet(Set):
             [130.81..., 164.81..., 195.99..., 246.94...]
 
         Returns set.
-        '''
+        """
         return set(_.hertz for _ in self)
 
     @property
     def is_pitch_class_unique(self):
-        r'''Is true when pitch set is pitch-class-unique.
+        """
+        Is true when pitch set is pitch-class-unique.
 
         ..  container:: example
 
@@ -318,7 +329,7 @@ class PitchSet(Set):
             False
 
         Returns true or false.
-        '''
+        """
         import abjad
         numbered_pitch_class_set = abjad.PitchClassSet(
             self, item_class=abjad.NumberedPitchClass)
@@ -332,7 +343,8 @@ class PitchSet(Set):
         selection,
         item_class=None,
         ):
-        r'''Makes pitch set from `selection`.
+        """
+        Makes pitch set from `selection`.
 
         ..  container:: example
 
@@ -343,7 +355,7 @@ class PitchSet(Set):
             PitchSet(['c', 'g', 'b', "c'", "d'", "fs'", "a'"])
 
         Returns pitch set.
-        '''
+        """
         import abjad
         pitch_segment = abjad.PitchSegment.from_selection(selection)
         return class_(
@@ -352,16 +364,17 @@ class PitchSet(Set):
             )
 
     def invert(self, axis):
-        r'''Inverts pitch set about `axis`.
+        """
+        Inverts pitch set about `axis`.
 
         Returns new pitch set.
-        '''
-        import abjad
+        """
         items = (pitch.invert(axis) for pitch in self)
-        return abjad.new(self, items=items)
+        return new(self, items=items)
 
     def issubset(self, argument):
-        r'''Is true when pitch set is subset of `argument`.
+        """
+        Is true when pitch set is subset of `argument`.
 
         ..  container:: example
 
@@ -381,11 +394,12 @@ class PitchSet(Set):
             True
 
         Returns true or false.
-        '''
+        """
         return super(PitchSet, self).issubset(argument)
 
     def issuperset(self, argument):
-        r'''Is true when pitch set is superset of `argument`.
+        """
+        Is true when pitch set is superset of `argument`.
 
         ..  container:: example
 
@@ -405,11 +419,12 @@ class PitchSet(Set):
             True
 
         Returns true or false.
-        '''
+        """
         return super(PitchSet, self).issubset(argument)
 
     def register(self, pitch_classes):
-        '''Registers `pitch_classes` by pitch set.
+        """
+        Registers `pitch_classes` by pitch set.
 
         ..  container:: example
 
@@ -435,7 +450,7 @@ class PitchSet(Set):
             NumberedPitch(23)
 
         Returns list of zero or more numbered pitches.
-        '''
+        """
         import abjad
         if isinstance(pitch_classes, collections.Iterable):
             result = [
@@ -451,10 +466,10 @@ class PitchSet(Set):
         return result
 
     def transpose(self, n=0):
-        r'''Transposes pitch set by index `n`.
+        """
+        Transposes pitch set by index `n`.
 
         Returns new pitch set.
-        '''
-        import abjad
+        """
         items = (pitch.transpose(n=n) for pitch in self)
-        return abjad.new(self, items=items)
+        return new(self, items=items)

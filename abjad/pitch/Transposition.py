@@ -1,9 +1,11 @@
 import collections
+from abjad import markups
 from abjad.system.AbjadValueObject import AbjadValueObject
 
 
 class Transposition(AbjadValueObject):
-    r'''Transposition operator.
+    """
+    Transposition operator.
 
     ..  container:: example
 
@@ -16,7 +18,7 @@ class Transposition(AbjadValueObject):
         Transposition(n=2)
 
     Object model of twelve-tone transposition operator.
-    '''
+    """
 
     ### CLASS VARIABLES ##
 
@@ -32,7 +34,8 @@ class Transposition(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __add__(self, operator):
-        r'''Composes transposition and `operator`.
+        r"""
+        Composes transposition and `operator`.
 
         ..  container:: example
 
@@ -98,12 +101,13 @@ class Transposition(AbjadValueObject):
                 }
 
         Returns compound operator.
-        '''
+        """
         import abjad
         return abjad.CompoundOperator._compose_operators(self, operator)
 
     def __call__(self, argument):
-        r'''Calls transposition on `argument`.
+        """
+        Calls transposition on `argument`.
 
         ..  container:: example
 
@@ -133,7 +137,7 @@ class Transposition(AbjadValueObject):
             [NumberedPitch(17), NumberedPitch(18)]
 
         Returns new object with type equal to that of `argument`.
-        '''
+        """
         if hasattr(argument, 'transpose'):
             result = argument.transpose(self.n)
         elif isinstance(argument, collections.Iterable):
@@ -149,7 +153,8 @@ class Transposition(AbjadValueObject):
         return result
 
     def __radd__(self, operator):
-        r'''Right-addition not defined on transposition.
+        """
+        Right-addition not defined on transposition.
 
         ..  container:: example
 
@@ -159,13 +164,14 @@ class Transposition(AbjadValueObject):
             NotImplementedError: right-addition not defined on Transposition.
 
         Raises not implemented error.
-        '''
+        """
         message = 'right-addition not defined on {}.'
         message = message.format(type(self).__name__)
         raise NotImplementedError(message)
 
     def __str__(self):
-        r'''Gets string representation of operator.
+        """
+        Gets string representation of operator.
 
         ..  container:: example
 
@@ -177,7 +183,7 @@ class Transposition(AbjadValueObject):
             >>> str(abjad.Transposition(n=2))
             'T2'
 
-        '''
+        """
         string = 'T{}'
         string = string.format(self.n)
         return string
@@ -185,10 +191,9 @@ class Transposition(AbjadValueObject):
     ### PRIVATE METHODS ###
 
     def _get_markup(self, direction=None):
-        import abjad
-        operator = abjad.Markup('T', direction=None)
-        subscript = abjad.Markup(self.n).sub()
-        markup = abjad.Markup.concat([operator, subscript])
+        operator = markups.Markup('T', direction=None)
+        subscript = markups.Markup(self.n).sub()
+        markup = markups.Markup.concat([operator, subscript])
         return markup
 
     def _is_identity_operator(self):
@@ -200,7 +205,8 @@ class Transposition(AbjadValueObject):
 
     @property
     def n(self):
-        r'''Gets index of transposition.
+        """
+        Gets index of transposition.
 
         ..  container:: example
 
@@ -215,5 +221,5 @@ class Transposition(AbjadValueObject):
             2
 
         Set to integer, interval or none.
-        '''
+        """
         return self._n

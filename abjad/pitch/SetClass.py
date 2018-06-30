@@ -3,7 +3,8 @@ from abjad.system.AbjadValueObject import AbjadValueObject
 
 
 class SetClass(AbjadValueObject):
-    r'''Set-class.
+    """
+    Set-class.
 
     ..  container:: example
 
@@ -170,7 +171,7 @@ class SetClass(AbjadValueObject):
         SC(6-50){0, 1, 4, 6, 7, 9}
 
     There are 352 SG1 set-classes and 224 SG2 set-classes.
-    '''
+    """
 
     ### CLASS VARIABLES ##
 
@@ -993,7 +994,8 @@ class SetClass(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __str__(self):
-        r'''Gets string representation.
+        """
+        Gets string representation.
 
         ..  container:: example
 
@@ -1026,7 +1028,7 @@ class SetClass(AbjadValueObject):
             SC(4-29){0, 2, 6, 7}
 
         Returns string.
-        '''
+        """
         string = 'SC({}-{}){!s}'
         string = string.format(self.cardinality, self.rank, self.prime_form)
         string = string.replace('PC', '')
@@ -1036,7 +1038,8 @@ class SetClass(AbjadValueObject):
 
     @staticmethod
     def _classify_set_classes():
-        r'''Was only necessary to run during implementation of SetClass.
+        """
+        Was only necessary to run during implementation of SetClass.
 
         Generated the ...
 
@@ -1047,7 +1050,7 @@ class SetClass(AbjadValueObject):
         ... dictionaries attached as class attributes.
 
         Archived here in case other identifier systems are needed in future.
-        '''
+        """
         import abjad
         all_prime_forms = {}
         for cardinality in range(12 + 1):
@@ -1116,7 +1119,8 @@ class SetClass(AbjadValueObject):
 
     @property
     def cardinality(self):
-        r'''Gets cardinality.
+        """
+        Gets cardinality.
 
         ..  container:: example
 
@@ -1160,12 +1164,13 @@ class SetClass(AbjadValueObject):
         Set to integer between 0 and 12, inclusive.
 
         Returns integer between 0 and 12, inclusive.
-        '''
+        """
         return self._cardinality
 
     @property
     def is_inversion_equivalent(self):
-        r'''Is true when set-class is inversion-equivalent.
+        """
+        Is true when set-class is inversion-equivalent.
 
         ..  container:: example
 
@@ -1233,7 +1238,7 @@ class SetClass(AbjadValueObject):
             False
 
         Returns true or false.
-        '''
+        """
         prime_form = self.prime_form
         inverted_pitch_class_set = prime_form.invert()
         inverted_set_class = type(self).from_pitch_class_set(
@@ -1245,7 +1250,8 @@ class SetClass(AbjadValueObject):
 
     @property
     def lex_rank(self):
-        r'''Is true when set-class uses lex rank.
+        """
+        Is true when set-class uses lex rank.
 
         ..  container:: example
 
@@ -1291,12 +1297,13 @@ class SetClass(AbjadValueObject):
         Defaults to none.
 
         Returns true, false or none.
-        '''
+        """
         return self._lex_rank
 
     @property
     def prime_form(self):
-        r'''Gets prime form.
+        """
+        Gets prime form.
 
         ..  container:: example
 
@@ -1338,12 +1345,13 @@ class SetClass(AbjadValueObject):
             PitchClassSet([0, 2, 6, 7])
 
         Returns numbered pitch-class set.
-        '''
+        """
         return self._prime_form
 
     @property
     def rank(self):
-        r'''Gets rank.
+        """
+        Gets rank.
 
         ..  container:: example
 
@@ -1387,12 +1395,13 @@ class SetClass(AbjadValueObject):
         Set to positive integer.
 
         Returns positive integer.
-        '''
+        """
         return self._rank
 
     @property
     def transposition_only(self):
-        r'''Is true when set-class collects pitch-class sets related only by
+        """
+        Is true when set-class collects pitch-class sets related only by
         transposition.
 
         ..  container:: example
@@ -1430,7 +1439,7 @@ class SetClass(AbjadValueObject):
         Defaults to none.
 
         Returns true, false or none.
-        '''
+        """
         return self._transposition_only
 
     ### PUBLIC METHODS ###
@@ -1442,7 +1451,8 @@ class SetClass(AbjadValueObject):
         lex_rank=None,
         transposition_only=None,
         ):
-        r'''Makes set-class from `pitch_class_set`.
+        """
+        Makes set-class from `pitch_class_set`.
 
         ..  container:: example
 
@@ -1537,7 +1547,7 @@ class SetClass(AbjadValueObject):
             SC(3-17){0, 4, 7}
 
         Returns set-class.
-        '''
+        """
         import abjad
         pitch_class_set = abjad.PitchClassSet(
             items=pitch_class_set,
@@ -1569,7 +1579,8 @@ class SetClass(AbjadValueObject):
         lex_rank=None,
         transposition_only=None,
         ):
-        r'''List set-classes.
+        """
+        List set-classes.
 
         ..  container:: example
 
@@ -1705,7 +1716,7 @@ class SetClass(AbjadValueObject):
             SC(4-43){0, 4, 6, 7}
 
         Returns list of set-classes.
-        '''
+        """
         if transposition_only:
             identifiers = SetClass._transposition_only_identifier_to_prime_form
         elif lex_rank:

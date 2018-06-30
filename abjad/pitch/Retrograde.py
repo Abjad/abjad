@@ -1,8 +1,10 @@
+from abjad import markups
 from abjad.system.AbjadValueObject import AbjadValueObject
 
 
 class Retrograde(AbjadValueObject):
-    r'''Retrograde operator.
+    """
+    Retrograde operator.
 
     ..  container:: example:
 
@@ -10,7 +12,7 @@ class Retrograde(AbjadValueObject):
         Retrograde()
 
     Object model of twelve-tone retrograde operator.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -29,7 +31,8 @@ class Retrograde(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __add__(self, operator):
-        r'''Composes retrograde and `operator`.
+        r"""
+        Composes retrograde and `operator`.
 
         ..  container:: example
 
@@ -108,12 +111,13 @@ class Retrograde(AbjadValueObject):
                     ],
                 )
 
-        '''
+        """
         import abjad
         return abjad.CompoundOperator._compose_operators(self, operator)
 
     def __call__(self, argument):
-        r'''Calls retrograde on `argument`.
+        """
+        Calls retrograde on `argument`.
 
         ..  container:: example
 
@@ -145,7 +149,7 @@ class Retrograde(AbjadValueObject):
             PitchSegment("e' d' c' a' g' f' c'' b'")
 
         Returns new object with type equal to that of `argument`.
-        '''
+        """
         import abjad
         if isinstance(argument, (abjad.Pitch, abjad.PitchClass)):
             return argument
@@ -167,7 +171,8 @@ class Retrograde(AbjadValueObject):
         return result
 
     def __radd__(self, operator):
-        r'''Right-addition not defined on retrograde.
+        """
+        Right-addition not defined on retrograde.
 
         ..  container:: example
 
@@ -177,26 +182,26 @@ class Retrograde(AbjadValueObject):
             NotImplementedError: right-addition not defined on Retrograde.
 
         Raises not implemented error.
-        '''
+        """
         message = 'right-addition not defined on {}.'
         message = message.format(type(self).__name__)
         raise NotImplementedError(message)
 
     def __str__(self):
-        r'''Gets string representation of operator.
+        """
+        Gets string representation of operator.
 
         ..  container:: example
 
             >>> str(abjad.Retrograde())
             'R'
 
-        '''
+        """
         return 'R'
 
     ### PRIVATE METHODS ###
 
     def _get_markup(self, direction=None):
-        from abjad import markups
         return markups.Markup('R', direction=direction)
 
     def _is_identity_operator(self):
@@ -206,7 +211,8 @@ class Retrograde(AbjadValueObject):
 
     @property
     def period(self):
-        r'''Gets optional period of retrograde.
+        """
+        Gets optional period of retrograde.
 
         ..  todo:: Deprecated. Use Expression followed by Retrograde instead.
 
@@ -217,5 +223,5 @@ class Retrograde(AbjadValueObject):
             3
 
         Returns integer or none.
-        '''
+        """
         return self._period

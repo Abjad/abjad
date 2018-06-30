@@ -1,8 +1,10 @@
+from abjad import markups
 from abjad.system.AbjadValueObject import AbjadValueObject
 
 
 class Rotation(AbjadValueObject):
-    r'''Rotation operator.
+    """
+    Rotation operator.
 
     ..  container:: example:
 
@@ -15,7 +17,7 @@ class Rotation(AbjadValueObject):
         Rotation(n=1)
 
     Object model of the twelve-tone rotation operator.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -39,7 +41,8 @@ class Rotation(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __add__(self, operator):
-        r'''Composes rotation and `operator`.
+        r"""
+        Composes rotation and `operator`.
 
         ..  container:: example
 
@@ -120,12 +123,13 @@ class Rotation(AbjadValueObject):
                     ],
                 )
 
-        '''
+        """
         import abjad
         return abjad.CompoundOperator._compose_operators(self, operator)
 
     def __call__(self, argument):
-        r'''Calls rotation on `argument`.
+        """
+        Calls rotation on `argument`.
 
         ..  container:: example
 
@@ -182,7 +186,7 @@ class Rotation(AbjadValueObject):
             PitchSegment("c' af bf f' df' ef' b' as'")
 
         Returns new object with type equal to that of `argument`.
-        '''
+        """
         import abjad
         if isinstance(argument, (abjad.Pitch, abjad.PitchClass)):
             return argument
@@ -205,7 +209,8 @@ class Rotation(AbjadValueObject):
         return result
 
     def __radd__(self, operator):
-        r'''Right-addition not defined on rotation.
+        """
+        Right-addition not defined on rotation.
 
         ..  container:: example
 
@@ -215,13 +220,14 @@ class Rotation(AbjadValueObject):
             NotImplementedError: right-addition not defined on Rotation.
 
         Raises not implemented error.
-        '''
+        """
         message = 'right-addition not defined on {}.'
         message = message.format(type(self).__name__)
         raise NotImplementedError(message)
 
     def __str__(self):
-        r'''Gets string representation of operator.
+        """
+        Gets string representation of operator.
 
         ..  container:: example
 
@@ -243,7 +249,7 @@ class Rotation(AbjadValueObject):
             >>> str(abjad.Rotation(n=1, stravinsky=True))
             'rs1'
 
-        '''
+        """
         string = 'r{}'
         if self.stravinsky:
             string = 'rs{}'
@@ -253,11 +259,10 @@ class Rotation(AbjadValueObject):
     ### PRIVATE METHODS ###
 
     def _get_markup(self, direction=None):
-        import abjad
-        operator = abjad.Markup('r', direction=direction)
-        subscript = abjad.Markup(self.n).sub()
-        hspace = abjad.Markup.hspace(-0.25)
-        markup = abjad.Markup.concat([operator, hspace, subscript])
+        operator = markups.Markup('r', direction=direction)
+        subscript = markups.Markup(self.n).sub()
+        hspace = markups.Markup.hspace(-0.25)
+        markup = markups.Markup.concat([operator, hspace, subscript])
         return markup
 
     def _is_identity_operator(self):
@@ -269,7 +274,8 @@ class Rotation(AbjadValueObject):
 
     @property
     def n(self):
-        r'''Gets index of rotation.
+        """
+        Gets index of rotation.
 
         ..  container:: example
 
@@ -284,12 +290,13 @@ class Rotation(AbjadValueObject):
             2
 
         Returns integer.
-        '''
+        """
         return self._n
 
     @property
     def period(self):
-        r'''Gets period of rotation.
+        """
+        Gets period of rotation.
 
         ..  todo:: Deprecated.
 
@@ -300,13 +307,13 @@ class Rotation(AbjadValueObject):
             3
 
         Returns integer or none.
-        '''
+        """
         return self._period
 
     @property
     def stravinsky(self):
-        r'''Is true when rotation uses Stravinsky-style back-transposition to
-        zero.
+        """
+        Is true when rotation uses Stravinsky-style back-transposition to zero.
 
         ..  container:: example
 
@@ -315,5 +322,5 @@ class Rotation(AbjadValueObject):
             False
 
         Returns true or false.
-        '''
+        """
         return self._stravinsky

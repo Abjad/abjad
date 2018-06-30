@@ -4,13 +4,15 @@ import math
 import numbers
 from abjad import mathtools
 from abjad.system.AbjadValueObject import AbjadValueObject
+from abjad.system.StorageFormatManager import StorageFormatManager
 from . import constants
 
 
 @functools.total_ordering
 class Pitch(AbjadValueObject):
-    '''Abstract pitch.
-    '''
+    """
+    Abstract pitch.
+    """
 
     ### CLASS VARIABLES ###
 
@@ -76,31 +78,33 @@ class Pitch(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __float__(self):
-        r'''Coerce to float.
+        """
+        Coerce to float.
 
         Returns float.
-        '''
+        """
         return float(self.number)
 
     def __format__(self, format_specification=''):
-        r'''Formats pitch.
+        """
+        Formats pitch.
 
         Set `format_specification` to `''`, `'lilypond'` or `'storage'`.
 
         Returns string.
-        '''
-        import abjad
+        """
         if format_specification in ('', 'lilypond'):
             return self._get_lilypond_format()
         elif format_specification == 'storage':
-            return abjad.StorageFormatManager(self).get_storage_format()
+            return StorageFormatManager(self).get_storage_format()
         return str(self)
 
     def __illustrate__(self):
-        r'''Illustrates pitch.
+        """
+        Illustrates pitch.
 
         Returns LilyPond file.
-        '''
+        """
         import abjad
         pitch = abjad.NamedPitch(self)
         note = abjad.Note(pitch, 1)
@@ -115,10 +119,11 @@ class Pitch(AbjadValueObject):
 
     @abc.abstractmethod
     def __lt__(self, argument):
-        r'''Is true when pitch is less than `argument`.
+        """
+        Is true when pitch is less than `argument`.
 
         Returns true or false.
-        '''
+        """
         raise NotImplementedError
 
     ### PRIVATE PROPERTIES ###
@@ -177,49 +182,55 @@ class Pitch(AbjadValueObject):
 
     @abc.abstractproperty
     def arrow(self):
-        r'''Gets arrow of pitch.
-        '''
+        """
+        Gets arrow of pitch.
+        """
         raise NotImplementedError
 
     @abc.abstractproperty
     def hertz(self):
-        r'''Gets frequency of pitch in Hertz.
+        """
+        Gets frequency of pitch in Hertz.
 
         Returns float.
-        '''
+        """
         hertz = pow(2., (float(self.number) - 9.) / 12.) * 440.
         return hertz
 
     @abc.abstractproperty
     def name(self):
-        r'''Gets name of pitch.
+        """
+        Gets name of pitch.
 
         Returns string.
-        '''
+        """
         raise NotImplementedError
 
     @abc.abstractproperty
     def number(self):
-        r'''Gets number of pitch.
+        """
+        Gets number of pitch.
 
         Returns number.
-        '''
+        """
         raise NotImplementedError
 
     @abc.abstractproperty
     def octave(self):
-        r'''Gets octave of pitch.
+        """
+        Gets octave of pitch.
 
         Returns octave.
-        '''
+        """
         raise NotImplementedError
 
     @abc.abstractproperty
     def pitch_class(self):
-        r'''Gets pitch-class of pitch.
+        """
+        Gets pitch-class of pitch.
 
         Returns pitch-class.
-        '''
+        """
         raise NotImplementedError
 
     ### PUBLIC METHODS ###
@@ -227,30 +238,33 @@ class Pitch(AbjadValueObject):
     @classmethod
     @abc.abstractmethod
     def from_hertz(class_, hertz):
-        r'''Creates pitch from `hertz`.
+        """
+        Creates pitch from `hertz`.
 
         Returns new pitch.
-        '''
+        """
         midi = 9. + (12. * math.log(float(hertz) / 440., 2))
         pitch = class_(midi)
         return pitch
 
     @abc.abstractmethod
     def get_name(self, locale=None):
-        r'''Gets name of pitch according to `locale`.
+        """
+        Gets name of pitch according to `locale`.
 
         Returns string.
-        '''
+        """
         raise NotImplementedError
 
     @abc.abstractmethod
     def invert(self, axis=None):
-        r'''Inverts pitch about `axis`.
+        """
+        Inverts pitch about `axis`.
 
         Interprets `axis` of none equal to middle C.
 
         Returns new pitch.
-        '''
+        """
         import abjad
         axis = axis or abjad.NamedPitch("c'")
         axis = type(self)(axis)
@@ -260,16 +274,18 @@ class Pitch(AbjadValueObject):
 
     @abc.abstractmethod
     def multiply(self, n=1):
-        r'''Multiplies pitch by `n`.
+        """
+        Multiplies pitch by `n`.
 
         Returns new pitch.
-        '''
+        """
         return type(self)(n * self.number)
 
     @abc.abstractmethod
     def transpose(self, n):
-        r'''Transposes pitch by index `n`.
+        """
+        Transposes pitch by index `n`.
 
         Returns new pitch.
-        '''
+        """
         raise NotImplementedError

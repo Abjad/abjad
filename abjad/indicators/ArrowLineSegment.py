@@ -870,13 +870,7 @@ class ArrowLineSegment(LineSegment):
                                         #0.25
                                 }
                             }
-                        - \tweak dash-period 0
-                        - \tweak bound-details.left-broken.text ##f
-                        - \tweak bound-details.left.stencil-align-dir-y #center
-                        - \tweak bound-details.right-broken.padding 0
-                        - \tweak bound-details.right-broken.text ##f
-                        - \tweak bound-details.right.padding 1.5
-                        - \tweak bound-details.right.stencil-align-dir-y #center
+                        - \abjad_start_text_span_invisible
                         \startTextSpan
                         c''4.
                         \stopTextSpan
@@ -988,13 +982,7 @@ class ArrowLineSegment(LineSegment):
                                         #0.25
                                 }
                             }
-                        - \tweak dash-period 0
-                        - \tweak bound-details.left-broken.text ##f
-                        - \tweak bound-details.left.stencil-align-dir-y #center
-                        - \tweak bound-details.right-broken.padding 0
-                        - \tweak bound-details.right-broken.text ##f
-                        - \tweak bound-details.right.padding 1.5
-                        - \tweak bound-details.right.stencil-align-dir-y #center
+                        - \abjad_start_text_span_invisible
                         \startTextSpan
                         c''4.
                         \stopTextSpan
@@ -1096,13 +1084,7 @@ class ArrowLineSegment(LineSegment):
                                         #0.25
                                 }
                             }
-                        - \tweak dash-period 0
-                        - \tweak bound-details.left-broken.text ##f
-                        - \tweak bound-details.left.stencil-align-dir-y #center
-                        - \tweak bound-details.right-broken.padding 0
-                        - \tweak bound-details.right-broken.text ##f
-                        - \tweak bound-details.right.padding 1.5
-                        - \tweak bound-details.right.stencil-align-dir-y #center
+                        - \abjad_start_text_span_invisible
                         \startTextSpan
                         c''4.
                         \stopTextSpan
@@ -1203,13 +1185,7 @@ class ArrowLineSegment(LineSegment):
                                         #0.25
                                 }
                             }
-                        - \tweak dash-period 0
-                        - \tweak bound-details.left-broken.text ##f
-                        - \tweak bound-details.left.stencil-align-dir-y #center
-                        - \tweak bound-details.right-broken.padding 0
-                        - \tweak bound-details.right-broken.text ##f
-                        - \tweak bound-details.right.padding 1.5
-                        - \tweak bound-details.right.stencil-align-dir-y #center
+                        - \abjad_start_text_span_invisible
                         \startTextSpan
                         c''4.
                         \stopTextSpan
