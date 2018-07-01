@@ -272,7 +272,7 @@ class Offset(Duration):
         if isinstance(argument, type(self)) and self.pair == argument.pair:
             return self._get_grace_displacement() == \
                 argument._get_grace_displacement()
-        return super(Offset, self).__eq__(argument)
+        return super().__eq__(argument)
 
     def __ge__(self, argument):
         """
@@ -333,7 +333,7 @@ class Offset(Duration):
         if isinstance(argument, type(self)) and self.pair == argument.pair:
             return self._get_grace_displacement() >= \
                 argument._get_grace_displacement()
-        return super(Offset, self).__ge__(argument)
+        return super().__ge__(argument)
 
     def __gt__(self, argument):
         """
@@ -402,7 +402,7 @@ class Offset(Duration):
 
         Redefined in tandem with __eq__.
         """
-        return super(Offset, self).__hash__()
+        return super().__hash__()
 
     def __le__(self, argument):
         """
@@ -463,7 +463,7 @@ class Offset(Duration):
         if isinstance(argument, type(self)) and self.pair == argument.pair:
             return self._get_grace_displacement() <= \
                 argument._get_grace_displacement()
-        return super(Offset, self).__le__(argument)
+        return super().__le__(argument)
 
     def __lt__(self, argument):
         """
@@ -541,7 +541,7 @@ class Offset(Duration):
         if isinstance(argument, type(self)) and self.pair == argument.pair:
             return self._get_grace_displacement() < \
                 argument._get_grace_displacement()
-        return super(Offset, self).__lt__(argument)
+        return super().__lt__(argument)
 
     def __repr__(self):
         """
@@ -566,7 +566,7 @@ class Offset(Duration):
                 )
 
         """
-        return super(Offset, self).__repr__()
+        return super().__repr__()
 
     def __sub__(self, argument):
         """
@@ -589,9 +589,9 @@ class Offset(Duration):
         Returns duration or offset.
         """
         if isinstance(argument, type(self)):
-            return Duration(super(Offset, self).__sub__(argument))
+            return Duration(super().__sub__(argument))
         elif isinstance(argument, Duration):
-            return super(Offset, self).__sub__(argument)
+            return super().__sub__(argument)
         else:
             argument = type(self)(argument)
             return self - argument

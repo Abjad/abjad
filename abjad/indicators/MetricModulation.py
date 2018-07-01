@@ -710,7 +710,7 @@ class MetricModulation(AbjadValueObject):
                 )
 
         """
-        return super(MetricModulation, self).__format__(
+        return super().__format__(
             format_specification=format_specification
             )
 
@@ -720,7 +720,7 @@ class MetricModulation(AbjadValueObject):
 
         Redefined in tandem with __eq__.
         """
-        return super(MetricModulation, self).__hash__()
+        return super().__hash__()
 
     def __illustrate__(self):
         r"""

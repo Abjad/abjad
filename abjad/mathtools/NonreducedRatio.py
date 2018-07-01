@@ -54,7 +54,7 @@ class NonreducedRatio(AbjadValueObject, collections.Sequence):
 
         Returns true or false.
         """
-        return super(NonreducedRatio, self).__eq__(argument)
+        return super().__eq__(argument)
 
     def __format__(self, format_specification=''):
         """
@@ -97,7 +97,7 @@ class NonreducedRatio(AbjadValueObject, collections.Sequence):
 
         Returns integer.
         """
-        return super(NonreducedRatio, self).__hash__()
+        return super().__hash__()
 
     def __iter__(self):
         """

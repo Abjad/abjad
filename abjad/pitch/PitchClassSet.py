@@ -66,7 +66,7 @@ class PitchClassSet(Set):
 
         Returns true or false.
         """
-        return super(PitchClassSet, self).__contains__(argument)
+        return super().__contains__(argument)
 
     def __hash__(self):
         """
@@ -74,7 +74,7 @@ class PitchClassSet(Set):
 
         Returns integer.
         """
-        return super(PitchClassSet, self).__hash__()
+        return super().__hash__()
 
     def __illustrate__(self):
         r"""

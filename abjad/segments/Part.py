@@ -147,7 +147,7 @@ class Part(AbjadObject):
         """
         Hashes part.
         """
-        return super(Part, self).__hash__()
+        return super().__hash__()
 
     ### PUBLIC PROPERTIES ###
 

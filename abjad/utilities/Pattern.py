@@ -630,7 +630,7 @@ class Pattern(AbjadValueObject):
     def _get_format_specification(self):
         import abjad
         if self.template is None:
-            return super(Pattern, self)._get_format_specification()
+            return super()._get_format_specification()
         return abjad.FormatSpecification(
             client=self,
             repr_is_indented=False,

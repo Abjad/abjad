@@ -299,7 +299,7 @@ class NamedPitch(Pitch):
 
         Returns true or false.
         """
-        return super(NamedPitch, self).__eq__(argument)
+        return super().__eq__(argument)
 
     def __hash__(self):
         """
@@ -307,7 +307,7 @@ class NamedPitch(Pitch):
 
         Returns integer.
         """
-        return super(NamedPitch, self).__hash__()
+        return super().__hash__()
 
     def __lt__(self, argument):
         """
@@ -580,7 +580,7 @@ class NamedPitch(Pitch):
 
         Returns float.
         """
-        return super(NamedPitch, self).hertz
+        return super().hertz
 
     @property
     def name(self):
@@ -695,7 +695,7 @@ class NamedPitch(Pitch):
 
         Returns newly constructed named pitch.
         """
-        return super(NamedPitch, class_).from_hertz(hertz)
+        return super().from_hertz(hertz)
 
     def get_name(self, locale=None):
         """
@@ -761,7 +761,7 @@ class NamedPitch(Pitch):
 
         Returns new named pitch.
         """
-        return super(NamedPitch, self).invert(axis=axis)
+        return super().invert(axis=axis)
 
     def multiply(self, n=1):
         """
@@ -783,7 +783,7 @@ class NamedPitch(Pitch):
 
         Returns new named pitch.
         """
-        return super(NamedPitch, self).multiply(n=n)
+        return super().multiply(n=n)
 
     def simplify(self):
         """

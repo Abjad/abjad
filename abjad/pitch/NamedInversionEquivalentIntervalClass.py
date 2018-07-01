@@ -98,9 +98,7 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
 
         Returns true or false.
         """
-        return super(NamedInversionEquivalentIntervalClass, self).__eq__(
-            argument,
-            )
+        return super().__eq__( argument)
 
     def __hash__(self):
         """
@@ -108,7 +106,7 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
 
         Returns integer.
         """
-        return super(NamedInversionEquivalentIntervalClass, self).__hash__()
+        return super().__hash__()
 
     ### PRIVATE METHODS ###
 

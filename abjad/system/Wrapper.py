@@ -238,7 +238,7 @@ class Wrapper(AbjadValueObject):
                                 #0.25
                         }
                     }
-                - \abjad_start_text_span_invisible
+                - \abjad_invisible_line_segment
                 \startTextSpan
                 d'4
                 e'4
@@ -271,7 +271,7 @@ class Wrapper(AbjadValueObject):
                                 #0.25
                         }
                     }
-                - \abjad_start_text_span_invisible
+                - \abjad_invisible_line_segment
                 \startTextSpan
                 d'4
                 e'4

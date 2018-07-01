@@ -364,7 +364,7 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         """
-        return super(Markup, self).__eq__(argument)
+        return super().__eq__(argument)
 
     def __format__(self, format_specification=''):
         r"""
@@ -441,7 +441,7 @@ class Markup(AbjadValueObject):
             True
 
         """
-        return super(Markup, self).__hash__()
+        return super().__hash__()
 
     def __illustrate__(self):
         r"""
@@ -3015,7 +3015,7 @@ class MarkupCommand(AbjadValueObject):
 
         Redefined in tandem with __eq__.
         """
-        return super(MarkupCommand, self).__hash__()
+        return super().__hash__()
 
     def __repr__(self):
         r"""
@@ -3040,8 +3040,7 @@ class MarkupCommand(AbjadValueObject):
 
         Returns string.
         """
-        superclass = super(MarkupCommand, self)
-        return superclass.__format__()
+        return super().__format__()
 
     def __str__(self):
         r"""
@@ -3385,8 +3384,7 @@ class MarkupList(TypedList):
 
         Returns true or false.
         """
-        superclass = super(MarkupList, self)
-        return superclass.__contains__(item)
+        return super().__contains__(item)
 
     def __format__(self, format_specification=''):
         """
@@ -3415,8 +3413,7 @@ class MarkupList(TypedList):
 
         Returns string.
         """
-        superclass = super(MarkupList, self)
-        return superclass.__format__(format_specification=format_specification)
+        return super().__format__(format_specification=format_specification)
 
     def __iadd__(self, argument):
         r"""
@@ -3468,8 +3465,7 @@ class MarkupList(TypedList):
 
         Returns none.
         """
-        superclass = super(MarkupList, self)
-        return superclass.__iadd__(argument)
+        return super().__iadd__(argument)
 
     def __illustrate__(self):
         r"""
@@ -3555,8 +3551,7 @@ class MarkupList(TypedList):
 
         Returns none.
         """
-        superclass = super(MarkupList, self)
-        return superclass.__setitem__(i, argument)
+        return super().__setitem__(i, argument)
 
     ### PRIVATE METHODS ###
 
@@ -3592,7 +3587,7 @@ class MarkupList(TypedList):
 
         Returns markup class.
         """
-        return super(MarkupList, self).item_class
+        return super().item_class
 
     @property
     def items(self):
@@ -3625,8 +3620,7 @@ class MarkupList(TypedList):
 
         Returns tuple.
         """
-        superclass = super(MarkupList, self)
-        return superclass.items
+        return super().items
 
     @property
     def keep_sorted(self):
@@ -3681,8 +3675,7 @@ class MarkupList(TypedList):
 
         Returns true, false or none.
         """
-        superclass = super(MarkupList, self)
-        return superclass.keep_sorted
+        return super().keep_sorted
 
     @keep_sorted.setter
     def keep_sorted(self, keep_sorted):
@@ -3716,8 +3709,7 @@ class MarkupList(TypedList):
 
         Returns none.
         """
-        superclass = super(MarkupList, self)
-        superclass.append(item)
+        super().append(item)
 
     def center_column(self, direction=None):
         r"""
@@ -3876,8 +3868,7 @@ class MarkupList(TypedList):
 
         Returns none.
         """
-        superclass = super(MarkupList, self)
-        return superclass.count(item)
+        return super().count(item)
 
     def extend(self, items):
         r"""
@@ -3916,8 +3907,7 @@ class MarkupList(TypedList):
 
         Returns none.
         """
-        superclass = super(MarkupList, self)
-        superclass.extend(items)
+        super().extend(items)
 
     def index(self, item):
         r"""
@@ -3959,8 +3949,7 @@ class MarkupList(TypedList):
 
         Returns none.
         """
-        superclass = super(MarkupList, self)
-        return superclass.index(item)
+        return super().index(item)
 
     def insert(self, i, item):
         """
@@ -3988,8 +3977,7 @@ class MarkupList(TypedList):
 
         Returns markup class.
         """
-        superclass = super(MarkupList, self)
-        superclass.insert(i, item)
+        super().insert(i, item)
 
     def left_column(self, direction=None):
         r"""
@@ -4110,8 +4098,7 @@ class MarkupList(TypedList):
 
         Returns none.
         """
-        superclass = super(MarkupList, self)
-        return superclass.pop(i=i)
+        return super().pop(i=i)
 
     def remove(self, item):
         r"""
@@ -4147,8 +4134,7 @@ class MarkupList(TypedList):
 
         Returns none.
         """
-        superclass = super(MarkupList, self)
-        superclass.remove(item)
+        super().remove(item)
 
     def right_column(self, direction=None):
         r"""

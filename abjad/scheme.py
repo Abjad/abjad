@@ -571,7 +571,7 @@ class SchemeMoment(Scheme):
             False
 
         """
-        return super(SchemeMoment, self).__eq__(argument)
+        return super().__eq__(argument)
 
     def __hash__(self) -> int:
         """
@@ -579,7 +579,7 @@ class SchemeMoment(Scheme):
 
         Redefined in tandem with ``__eq__``.
         """
-        return super(SchemeMoment, self).__hash__()
+        return super().__hash__()
 
     def __lt__(self, argument) -> bool:
         """
@@ -697,9 +697,7 @@ class SchemePair(Scheme):
             abjad.SchemePair((-1, 1))
 
         """
-        return super(SchemePair, self).__format__(
-            format_specification=format_specification,
-            )
+        return super().__format__(format_specification=format_specification)
 
     ### PRIVATE METHODS ###
 

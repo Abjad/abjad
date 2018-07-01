@@ -340,7 +340,7 @@ class NumberedPitch(Pitch):
 
         Returns float.
         """
-        return super(NumberedPitch, self).hertz
+        return super().hertz
 
     @property
     def name(self):
@@ -426,7 +426,7 @@ class NumberedPitch(Pitch):
 
         Returns newly constructed numbered pitch.
         """
-        return super(NumberedPitch, class_).from_hertz(hertz)
+        return super().from_hertz(hertz)
 
     def get_name(self, locale=None):
         """
@@ -555,7 +555,7 @@ class NumberedPitch(Pitch):
 
         Returns new numbered pitch.
         """
-        return super(NumberedPitch, self).multiply(n=n)
+        return super().multiply(n=n)
 
     def transpose(self, n=0):
         """

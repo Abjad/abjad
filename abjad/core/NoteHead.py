@@ -126,7 +126,7 @@ class NoteHead(AbjadObject):
 
         Redefined in tandem with __eq__.
         """
-        return super(NoteHead, self).__hash__()
+        return super().__hash__()
 
     def __lt__(self, argument) -> bool:
         """
@@ -152,7 +152,7 @@ class NoteHead(AbjadObject):
             NoteHead("cs''")
 
         """
-        return super(NoteHead, self).__repr__()
+        return super().__repr__()
 
     def __str__(self) -> str:
         """

@@ -35,9 +35,9 @@ class Selection(AbjadValueObject, collections.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Run([Note("c'4"), Note("d'8")])
-            Run([Note("e'8")])
-            Run([Note("f'16"), Note("g'8"), Note("a'4")])
+            Selection([Note("c'4"), Note("d'8")])
+            Selection([Note("e'8")])
+            Selection([Note("f'16"), Note("g'8"), Note("a'4")])
 
         ..  container:: example expression
 
@@ -45,9 +45,9 @@ class Selection(AbjadValueObject, collections.Sequence):
             >>> result = selector(staff)
 
             >>> selector.print(result)
-            Run([Note("c'4"), Note("d'8")])
-            Run([Note("e'8")])
-            Run([Note("f'16"), Note("g'8"), Note("a'4")])
+            Selection([Note("c'4"), Note("d'8")])
+            Selection([Note("e'8")])
+            Selection([Note("f'16"), Note("g'8"), Note("a'4")])
 
             >>> selector.color(result)
             >>> abjad.show(staff) # doctest: +SKIP
@@ -442,7 +442,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
         Redefined in tandem with __eq__.
         """
-        return super(Selection, self).__hash__()
+        return super().__hash__()
 
     def __illustrate__(self):
         """
@@ -499,7 +499,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
         Returns string.
         """
-        return super(Selection, self).__repr__()
+        return super().__repr__()
 
     def __setstate__(self, state):
         """
@@ -1688,7 +1688,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                 >>> for item in result:
                 ...     item
                 ...
-                Run([Note("d'8"), Note("e'8")])
+                Selection([Note("d'8"), Note("e'8")])
 
             ..  container:: example expression
 
@@ -1699,7 +1699,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> selector.print(result)
-                Run([Note("d'8"), Note("e'8")])
+                Selection([Note("d'8"), Note("e'8")])
 
             ..  docs::
 
@@ -1758,7 +1758,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                 >>> for item in result:
                 ...     item
                 ...
-                Run([Note("d'8"), Note("e'8")])
+                Selection([Note("d'8"), Note("e'8")])
 
             ..  container:: example expression
 
@@ -1767,7 +1767,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                 >>> result = selector(staff)
 
                 >>> selector.print(result)
-                Run([Note("d'8"), Note("e'8")])
+                Selection([Note("d'8"), Note("e'8")])
 
                 >>> selector.color(result)
                 >>> abjad.show(staff) # doctest: +SKIP
@@ -1817,8 +1817,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                 >>> for item in result:
                 ...     item
                 ...
-                Run([Note("c'8")])
-                Run([Note("d'8"), Note("e'8")])
+                Selection([Note("c'8")])
+                Selection([Note("d'8"), Note("e'8")])
 
             ..  container:: example expresison
 
@@ -1827,8 +1827,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                 >>> result = selector(staff)
 
                 >>> selector.print(result)
-                Run([Note("c'8")])
-                Run([Note("d'8"), Note("e'8")])
+                Selection([Note("c'8")])
+                Selection([Note("d'8"), Note("e'8")])
 
                 >>> selector.color(result)
                 >>> abjad.show(staff) # doctest: +SKIP
@@ -1893,8 +1893,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                 >>> for item in result:
                 ...     item
                 ...
-                Run([Note("d'8"), Note("e'8")])
-                Run([Note("f'8"), Note("g'8"), Note("a'8")])
+                Selection([Note("d'8"), Note("e'8")])
+                Selection([Note("f'8"), Note("g'8"), Note("a'8")])
 
             ..  container:: example expression
 
@@ -1902,8 +1902,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                 >>> result = selector(staff)
 
                 >>> selector.print(result)
-                Run([Note("d'8"), Note("e'8")])
-                Run([Note("f'8"), Note("g'8"), Note("a'8")])
+                Selection([Note("d'8"), Note("e'8")])
+                Selection([Note("f'8"), Note("g'8"), Note("a'8")])
 
                 >>> selector.color(result)
                 >>> abjad.show(staff) # doctest: +SKIP
@@ -1967,8 +1967,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                 >>> for item in result:
                 ...     item
                 ...
-                Run([Note("c'8")])
-                Run([Note("d'8"), Note("e'8")])
+                Selection([Note("c'8")])
+                Selection([Note("d'8"), Note("e'8")])
 
             ..  container:: example expression
 
@@ -1976,8 +1976,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                 >>> result = selector(staff)
 
                 >>> selector.print(result)
-                Run([Note("c'8")])
-                Run([Note("d'8"), Note("e'8")])
+                Selection([Note("c'8")])
+                Selection([Note("d'8"), Note("e'8")])
 
                 >>> selector.color(result)
                 >>> abjad.show(staff) # doctest: +SKIP
@@ -2268,7 +2268,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                 >>> for item in result:
                 ...     item
                 ...
-                Run([Note("d'8"), Note("e'8")])
+                Selection([Note("d'8"), Note("e'8")])
 
             ..  container:: example expression
 
@@ -2277,7 +2277,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                 >>> result = selector(staff)
 
                 >>> selector.print(result)
-                Run([Note("d'8"), Note("e'8")])
+                Selection([Note("d'8"), Note("e'8")])
 
                 >>> selector.color(result)
                 >>> abjad.show(staff) # doctest: +SKIP
@@ -2327,8 +2327,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                 >>> for item in result:
                 ...     item
                 ...
-                Run([Note("c'8")])
-                Run([Note("d'8"), Note("e'8")])
+                Selection([Note("c'8")])
+                Selection([Note("d'8"), Note("e'8")])
 
             ..  container:: example expresison
 
@@ -2337,8 +2337,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                 >>> result = selector(staff)
 
                 >>> selector.print(result)
-                Run([Note("c'8")])
-                Run([Note("d'8"), Note("e'8")])
+                Selection([Note("c'8")])
+                Selection([Note("d'8"), Note("e'8")])
 
                 >>> selector.color(result)
                 >>> abjad.show(staff) # doctest: +SKIP
@@ -6274,8 +6274,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                 >>> for item in result:
                 ...     item
                 ...
-                Run([Note("d'8"), Note("e'8")])
-                Run([Note("f'8"), Note("g'8"), Note("a'8")])
+                Selection([Note("d'8"), Note("e'8")])
+                Selection([Note("f'8"), Note("g'8"), Note("a'8")])
 
             ..  container:: example expression
 
@@ -6283,8 +6283,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                 >>> result = selector(staff)
 
                 >>> selector.print(result)
-                Run([Note("d'8"), Note("e'8")])
-                Run([Note("f'8"), Note("g'8"), Note("a'8")])
+                Selection([Note("d'8"), Note("e'8")])
+                Selection([Note("f'8"), Note("g'8"), Note("a'8")])
 
                 >>> selector.color(result)
                 >>> abjad.show(staff) # doctest: +SKIP
@@ -8454,7 +8454,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                 >>> result = abjad.select(staff).run(-1)
 
                 >>> result
-                Run([Note("e'16"), Note("e'16"), Note("e'16"), Chord("<fs' gs'>4"), Chord("<fs' gs'>16")])
+                Selection([Note("e'16"), Note("e'16"), Note("e'16"), Chord("<fs' gs'>4"), Chord("<fs' gs'>16")])
 
             ..  container:: example expression
 
@@ -8462,7 +8462,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                 >>> result = selector(staff)
 
                 >>> selector.print(result)
-                Run([Note("e'16"), Note("e'16"), Note("e'16"), Chord("<fs' gs'>4"), Chord("<fs' gs'>16")])
+                Selection([Note("e'16"), Note("e'16"), Note("e'16"), Chord("<fs' gs'>4"), Chord("<fs' gs'>16")])
 
                 >>> selector.color(result)
                 >>> abjad.show(lilypond_file) # doctest: +SKIP
@@ -8572,9 +8572,9 @@ class Selection(AbjadValueObject, collections.Sequence):
                 >>> for item in result:
                 ...     item
                 ...
-                Run([Note("c'16"), Note("c'16"), Note("c'16"), Chord("<d' e'>4"), Chord("<d' e'>16")])
-                Run([Note("d'16"), Note("d'16"), Note("d'16"), Chord("<e' fs'>4"), Chord("<e' fs'>16")])
-                Run([Note("e'16"), Note("e'16"), Note("e'16"), Chord("<fs' gs'>4"), Chord("<fs' gs'>16")])
+                Selection([Note("c'16"), Note("c'16"), Note("c'16"), Chord("<d' e'>4"), Chord("<d' e'>16")])
+                Selection([Note("d'16"), Note("d'16"), Note("d'16"), Chord("<e' fs'>4"), Chord("<e' fs'>16")])
+                Selection([Note("e'16"), Note("e'16"), Note("e'16"), Chord("<fs' gs'>4"), Chord("<fs' gs'>16")])
 
             ..  container:: example expression
 
@@ -8582,9 +8582,9 @@ class Selection(AbjadValueObject, collections.Sequence):
                 >>> result = selector(staff)
 
                 >>> selector.print(result)
-                Run([Note("c'16"), Note("c'16"), Note("c'16"), Chord("<d' e'>4"), Chord("<d' e'>16")])
-                Run([Note("d'16"), Note("d'16"), Note("d'16"), Chord("<e' fs'>4"), Chord("<e' fs'>16")])
-                Run([Note("e'16"), Note("e'16"), Note("e'16"), Chord("<fs' gs'>4"), Chord("<fs' gs'>16")])
+                Selection([Note("c'16"), Note("c'16"), Note("c'16"), Chord("<d' e'>4"), Chord("<d' e'>16")])
+                Selection([Note("d'16"), Note("d'16"), Note("d'16"), Chord("<e' fs'>4"), Chord("<e' fs'>16")])
+                Selection([Note("e'16"), Note("e'16"), Note("e'16"), Chord("<fs' gs'>4"), Chord("<fs' gs'>16")])
 
                 >>> selector.color(result)
                 >>> abjad.show(lilypond_file) # doctest: +SKIP
@@ -8714,7 +8714,7 @@ class Selection(AbjadValueObject, collections.Sequence):
         if self._expression:
             return self._update_expression(inspect.currentframe())
         result = Selection.leaves(self, pitched=True)
-        result = result.group_by_contiguity().map(abjad.Run)
+        result = result.group_by_contiguity().map(abjad.Selection)
         return result
 
     def top(self):

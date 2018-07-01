@@ -184,7 +184,7 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
     ### INITIALIZER ###
 
     def __init__(self, staff_count=2):
-        super(GroupedRhythmicStavesScoreTemplate, self).__init__()
+        super().__init__()
         assert isinstance(staff_count, (int, collections.Iterable))
         if isinstance(staff_count, collections.Iterable):
             staff_count = list(staff_count)

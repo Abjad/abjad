@@ -21,7 +21,26 @@
 
 %%% TEXT SPANNER TWEAKS %%%
 
-abjad_start_text_span_invisible = #(
+abjad_dashed_hook = #(
+    define-music-function (parser location grob) (ly:music?)
+    #{
+    - \tweak dash-fraction 0.25                                             
+    - \tweak dash-period 1.5                                                
+    - \tweak bound-details.left-broken.text ##f                             
+    - \tweak bound-details.left.stencil-align-dir-y 0                       
+    - \tweak bound-details.right-broken.arrow ##f                           
+    - \tweak bound-details.right-broken.padding 0                           
+    - \tweak bound-details.right-broken.text ##f                            
+    % right padding to avoid last leaf in spanner:
+    - \tweak bound-details.right.padding 1.25                               
+    - \tweak bound-details.right.text \markup {                             
+        \draw-line                                                          
+            #'(0 . -1)                                                      
+        }                                                                   
+    $grob
+    #})
+
+abjad_invisible_line_segment = #(
     define-music-function (parser location grob) (ly:music?)
     #{
     - \tweak dash-period 0

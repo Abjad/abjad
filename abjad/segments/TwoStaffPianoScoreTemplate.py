@@ -54,7 +54,7 @@ class TwoStaffPianoScoreTemplate(ScoreTemplate):
     ### INITIALIZER ###
 
     def __init__(self):
-        super(TwoStaffPianoScoreTemplate, self).__init__()
+        super().__init__()
         self.voice_abbreviations.update({
             'rh': 'RHVoice',
             'lh': 'LHVoice',

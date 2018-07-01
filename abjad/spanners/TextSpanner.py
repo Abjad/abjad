@@ -46,7 +46,7 @@ class TextSpanner(Spanner):
                                 #0.25
                         }
                     }
-                - \abjad_start_text_span_invisible
+                - \abjad_invisible_line_segment
                 \startTextSpan
                 d'4
                 e'4
@@ -72,7 +72,7 @@ class TextSpanner(Spanner):
             {
                 c'4
                 - \tweak Y-extent ##f
-                - \abjad_start_text_span_invisible
+                - \abjad_invisible_line_segment
                 - \tweak bound-details.right.text \markup {
                     \concat
                         {
@@ -117,7 +117,7 @@ class TextSpanner(Spanner):
                                 #0.25
                         }
                     }
-                - \abjad_start_text_span_invisible
+                - \abjad_invisible_line_segment
                 - \tweak bound-details.right.text \markup {
                     \concat
                         {
@@ -567,7 +567,7 @@ class TextSpanner(Spanner):
                     override = self._y_extent_false()
                     string = override.tweak_string()
                     bundle.after.spanner_starts.append(string)
-                    string = r'- \abjad_start_text_span_invisible'
+                    string = r'- \abjad_invisible_line_segment'
                     forced_left_hspace = 0.25
                     forced_right_hspace = 1.5
                     bundle.after.spanner_starts.append(string)
@@ -587,7 +587,7 @@ class TextSpanner(Spanner):
                 string = override.tweak_string()
                 bundle.after.spanner_starts.append(string)
             if line_segment is None:
-                command = r'- \abjad_start_text_span_invisible'
+                command = r'- \abjad_invisible_line_segment'
                 forced_left_hspace = 0.25
                 forced_right_hspace = 1.5
             if markup is not None:

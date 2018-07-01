@@ -198,7 +198,7 @@ def tweak(argument):
                                 #0.25
                         }
                     }
-                - \abjad_start_text_span_invisible
+                - \abjad_invisible_line_segment
                 - \tweak bound-details.right.text \markup {
                     \concat
                         {

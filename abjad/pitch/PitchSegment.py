@@ -140,7 +140,7 @@ class PitchSegment(Segment):
 
         Returns true or false.
         """
-        return super(PitchSegment, self).__contains__(argument)
+        return super().__contains__(argument)
 
     def __illustrate__(self):
         r"""

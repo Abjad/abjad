@@ -64,8 +64,7 @@ class PitchClassVector(Vector):
 
         Returns string.
         """
-        superclass = super(PitchClassVector, self)
-        return superclass.__format__(format_specification=format_specification)
+        return super().__format__(format_specification=format_specification)
 
     def __repr__(self):
         """
@@ -93,8 +92,7 @@ class PitchClassVector(Vector):
 
         Returns string.
         """
-        superclass = super(PitchClassVector, self)
-        return superclass.__repr__()
+        return super().__repr__()
 
     ### PRIVATE PROPERTIES ###
 

@@ -91,7 +91,7 @@ class Tremolo(AbjadValueObject):
             True
 
         """
-        return super(Tremolo, self).__copy__(*arguments)
+        return super().__copy__(*arguments)
 
     def __format__(self, format_specification='') -> str:
         """
@@ -138,7 +138,7 @@ class Tremolo(AbjadValueObject):
             'Tremolo(beam_count=3)'
 
         """
-        return super(Tremolo, self).__str__()
+        return super().__str__()
 
     ### PUBLIC PROPERTIES ###
 

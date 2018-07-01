@@ -125,7 +125,7 @@ class Octave(AbjadValueObject):
 
         Returns true or false.
         """
-        return super(Octave, self).__eq__(argument)
+        return super().__eq__(argument)
 
     def __float__(self):
         """
@@ -141,7 +141,7 @@ class Octave(AbjadValueObject):
 
         Returns integer.
         """
-        return super(Octave, self).__hash__()
+        return super().__hash__()
 
     def __int__(self):
         """

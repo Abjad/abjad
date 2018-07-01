@@ -503,7 +503,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
         assert 0 <= viola_count
         assert 0 <= cello_count
         assert 0 <= contrabass_count
-        super(StringOrchestraScoreTemplate, self).__init__()
+        super().__init__()
         self._violin_count = int(violin_count)
         self._viola_count = int(viola_count)
         self._cello_count = int(cello_count)

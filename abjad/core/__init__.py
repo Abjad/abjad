@@ -27,7 +27,6 @@ from .NoteHeadList import NoteHeadList
 from .NoteMaker import NoteMaker
 from .Parentage import Parentage
 from .Rest import Rest
-from .Run import Run
 from .Score import Score
 from .Skip import Skip
 from .Staff import Staff

@@ -53,7 +53,7 @@ class Infinity(AbjadValueObject):
 
         Returns true or false.
         """
-        return super(Infinity, self).__eq__(argument)
+        return super().__eq__(argument)
 
     def __float__(self):
         """
@@ -87,7 +87,7 @@ class Infinity(AbjadValueObject):
 
         Returns integer.
         """
-        return super(Infinity, self).__hash__()
+        return super().__hash__()
 
     def __le__(self, argument):
         """

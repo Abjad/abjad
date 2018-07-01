@@ -296,7 +296,7 @@ class Sequence(AbjadValueObject, collections.Sequence):
 
         Returns true or false.
         """
-        return super(Sequence, self).__eq__(argument)
+        return super().__eq__(argument)
 
     def __format__(self, format_specification=''):
         """
@@ -330,8 +330,7 @@ class Sequence(AbjadValueObject, collections.Sequence):
 
         Returns string.
         """
-        superclass = super(Sequence, self)
-        return superclass.__format__(format_specification=format_specification)
+        return super().__format__(format_specification=format_specification)
 
     @Signature(
         markup_maker_callback='_make___getitem___markup',
@@ -564,7 +563,7 @@ class Sequence(AbjadValueObject, collections.Sequence):
 
         Returns integer.
         """
-        return super(Sequence, self).__hash__()
+        return super().__hash__()
 
     def __len__(self):
         """

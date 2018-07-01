@@ -344,7 +344,7 @@ class Dynamic(AbjadValueObject):
                 message = f'{self.name!r} is not a LilyPond dynamic command.'
                 raise Exception(message)
             return self._get_lilypond_format()
-        return super(Dynamic, self).__format__(
+        return super().__format__(
             format_specification=format_specification
             )
 
@@ -354,7 +354,7 @@ class Dynamic(AbjadValueObject):
 
         Redefined in tandem with __eq__.
         """
-        return super(Dynamic, self).__hash__()
+        return super().__hash__()
 
     ### PRIVATE METHODS ###
 

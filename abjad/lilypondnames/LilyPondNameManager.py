@@ -33,7 +33,7 @@ class LilyPondNameManager(object):
 
         Redefined in tandem with __eq__.
         """
-        return super(LilyPondNameManager, self).__hash__()
+        return super().__hash__()
 
     def __repr__(self) -> str:
         """

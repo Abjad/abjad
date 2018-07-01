@@ -424,8 +424,7 @@ class TwelveToneRow(PitchClassSegment):
             <class 'abjad.lilypondfile.LilyPondFile.LilyPondFile'>
 
         """
-        superclass = super(PitchClassSegment, self)
-        return superclass.__illustrate__(**keywords)
+        return super().__illustrate__(**keywords)
 
     def __mul__(self, argument):
         r"""
@@ -688,8 +687,7 @@ class TwelveToneRow(PitchClassSegment):
             <class 'abc.ABCMeta'>
 
         """
-        superclass = super(PitchClassSegment, self)
-        return superclass.item_class
+        return super().item_class
 
     @property
     def items(self):
@@ -752,8 +750,7 @@ class TwelveToneRow(PitchClassSegment):
             True
 
         """
-        superclass = super(PitchClassSegment, self)
-        return superclass.items
+        return super().items
 
     ### PUBLIC METHODS ###
 
@@ -798,8 +795,7 @@ class TwelveToneRow(PitchClassSegment):
             True
 
         """
-        superclass = super(TwelveToneRow, self)
-        return superclass.count(item)
+        return super().count(item)
 
     @classmethod
     def from_selection(
@@ -845,8 +841,7 @@ class TwelveToneRow(PitchClassSegment):
 
         Returns false.
         """
-        superclass = super(TwelveToneRow, self)
-        return superclass.has_duplicates()
+        return super().has_duplicates()
 
     def index(self, item):
         """
@@ -882,8 +877,7 @@ class TwelveToneRow(PitchClassSegment):
             True
 
         """
-        superclass = super(TwelveToneRow, self)
-        return superclass.index(item)
+        return super().index(item)
 
     def invert(self, axis=None):
         r"""
@@ -1141,8 +1135,7 @@ class TwelveToneRow(PitchClassSegment):
             TwelveToneRow([1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0])
 
         """
-        superclass = super(TwelveToneRow, self)
-        return superclass.multiply(n=n)
+        return super().multiply(n=n)
 
     def retrograde(self):
         r"""
@@ -1225,8 +1218,7 @@ class TwelveToneRow(PitchClassSegment):
             TwelveToneRow([1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0])
 
         """
-        superclass = super(TwelveToneRow, self)
-        return superclass.retrograde()
+        return super().retrograde()
 
     def rotate(self, n=0, stravinsky=False):
         r"""
@@ -1367,8 +1359,7 @@ class TwelveToneRow(PitchClassSegment):
             TwelveToneRow([0, 10, 4, 7, 8, 6, 5, 11, 3, 9, 1, 2])
 
         """
-        superclass = super(TwelveToneRow, self)
-        return superclass.rotate(n=n, stravinsky=stravinsky)
+        return super().rotate(n=n, stravinsky=stravinsky)
 
     def transpose(self, n=0):
         r"""
@@ -1480,5 +1471,4 @@ class TwelveToneRow(PitchClassSegment):
             TwelveToneRow([1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0])
 
         """
-        superclass = super(TwelveToneRow, self)
-        return superclass.transpose(n=n)
+        return super().transpose(n=n)

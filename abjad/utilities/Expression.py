@@ -369,7 +369,7 @@ class Expression(AbjadValueObject):
 
         Returns true or false.
         """
-        return super(Expression, self).__eq__(argument)
+        return super().__eq__(argument)
 
     def __format__(self, format_specification=''):
         """
@@ -386,9 +386,7 @@ class Expression(AbjadValueObject):
 
         Returns string.
         """
-        return super(Expression, self).__format__(
-            format_specification=format_specification,
-            )
+        return super().__format__(format_specification=format_specification)
 
     def __getattr__(self, name):
         """
@@ -433,7 +431,7 @@ class Expression(AbjadValueObject):
 
         Returns integer.
         """
-        return super(Expression, self).__hash__()
+        return super().__hash__()
 
     def __iadd__(self, i):  # type: ignore
         """
@@ -464,7 +462,7 @@ class Expression(AbjadValueObject):
 
         Returns string.
         """
-        return super(Expression, self).__repr__()
+        return super().__repr__()
 
     def __setitem__(self, i, argument):
         """
@@ -488,7 +486,7 @@ class Expression(AbjadValueObject):
 
         Returns string.
         """
-        return super(Expression, self).__str__()
+        return super().__str__()
 
     ### PRIVATE METHODS ###
 
@@ -761,7 +759,7 @@ class Expression(AbjadValueObject):
     def _get_format_specification(self):
         import abjad
         if self.template is None:
-            return super(Expression, self)._get_format_specification()
+            return super()._get_format_specification()
         return abjad.FormatSpecification(
             client=self,
             repr_is_indented=False,

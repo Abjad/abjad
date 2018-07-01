@@ -131,7 +131,7 @@ class Path(pathlib.PosixPath):
 
         Returns new path.
         """
-        result = super(Path, self).__rtruediv__(argument)
+        result = super().__rtruediv__(argument)
         result._scores = getattr(self, '_scores', None)
         return result
 
@@ -141,7 +141,7 @@ class Path(pathlib.PosixPath):
 
         Returns new path.
         """
-        result = super(Path, self).__truediv__(argument)
+        result = super().__truediv__(argument)
         result._scores = getattr(self, '_scores', None)
         return result
 

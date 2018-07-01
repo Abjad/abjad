@@ -126,7 +126,7 @@ class StartMarkup(AbjadValueObject):
 
         Redefined in tandem with __eq__.
         """
-        return super(StartMarkup, self).__hash__()
+        return super().__hash__()
 
     ### PRIVATE PROPERTIES ###
 

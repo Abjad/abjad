@@ -291,7 +291,7 @@ class PitchRange(AbjadValueObject):
 
         Returns true or false.
         """
-        return super(PitchRange, self).__eq__(argument)
+        return super().__eq__(argument)
 
     def __format__(self, format_specification=''):
         """
@@ -314,7 +314,7 @@ class PitchRange(AbjadValueObject):
 
         Returns integer.
         """
-        return super(PitchRange, self).__hash__()
+        return super().__hash__()
 
     def __illustrate__(self):
         r"""

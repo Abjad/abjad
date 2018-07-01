@@ -82,8 +82,7 @@ class ColorMap(AbjadValueObject):
 
         Returns string.
         """
-        superclass = super(ColorMap, self)
-        return superclass.__format__(format_specification=format_specification)
+        return super().__format__(format_specification=format_specification)
 
     def __getitem__(self, pitch_class):
         """

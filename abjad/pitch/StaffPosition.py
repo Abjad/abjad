@@ -91,7 +91,7 @@ class StaffPosition(AbjadValueObject):
 
         Returns true or false.
         """
-        return super(StaffPosition, self).__eq__(argument)
+        return super().__eq__(argument)
 
     def __hash__(self):
         """
@@ -99,7 +99,7 @@ class StaffPosition(AbjadValueObject):
 
         Returns integer.
         """
-        return super(StaffPosition, self).__hash__()
+        return super().__hash__()
 
     def __lt__(self, argument):
         """

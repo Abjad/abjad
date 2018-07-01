@@ -94,7 +94,7 @@ class GroupedStavesScoreTemplate(ScoreTemplate):
     ### INITIALIZER ###
 
     def __init__(self, staff_count=2):
-        super(GroupedStavesScoreTemplate, self).__init__()
+        super().__init__()
         self._staff_count = staff_count
 
     ### SPECIAL METHODS ###
@@ -144,7 +144,7 @@ class GroupedStavesScoreTemplate(ScoreTemplate):
             OrderedDict([])
 
         """
-        return super(GroupedStavesScoreTemplate, self).voice_abbreviations
+        return super().voice_abbreviations
 
     @property
     def staff_count(self):

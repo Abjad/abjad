@@ -101,7 +101,7 @@ class NamedIntervalClass(IntervalClass):
 
         Returns true or false.
         """
-        return super(NamedIntervalClass, self).__eq__(argument)
+        return super().__eq__(argument)
 
     def __float__(self):
         """
@@ -121,7 +121,7 @@ class NamedIntervalClass(IntervalClass):
 
         Returns integer.
         """
-        return super(NamedIntervalClass, self).__hash__()
+        return super().__hash__()
 
     def __lt__(self, argument):
         """

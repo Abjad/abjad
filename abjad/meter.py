@@ -401,7 +401,7 @@ class Meter(AbjadValueObject):
 
         Returns true or false.
         """
-        return super(Meter, self).__eq__(argument)
+        return super().__eq__(argument)
 
     def __format__(self, format_specification=''):
         """
@@ -655,7 +655,7 @@ class Meter(AbjadValueObject):
 
         Returns integer.
         """
-        return super(Meter, self).__hash__()
+        return super().__hash__()
 
     def __iter__(self):
         """
@@ -1938,7 +1938,7 @@ class MetricAccentKernel(AbjadValueObject):
 
         Returns true or false.
         """
-        return super(MetricAccentKernel, self).__eq__(argument)
+        return super().__eq__(argument)
 
     def __hash__(self):
         """
@@ -1948,7 +1948,7 @@ class MetricAccentKernel(AbjadValueObject):
 
         Returns integer.
         """
-        return super(MetricAccentKernel, self).__hash__()
+        return super().__hash__()
 
     ### PRIVATE METHODS ###
 

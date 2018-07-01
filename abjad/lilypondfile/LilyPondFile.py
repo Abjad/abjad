@@ -476,8 +476,7 @@ class LilyPondFile(AbjadObject):
 
         Returns string.
         """
-        superclass = super(LilyPondFile, self)
-        return superclass.__repr__()
+        return super().__repr__()
 
     ### PRIVATE METHODS ###
 

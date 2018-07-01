@@ -109,7 +109,7 @@ class OffsetTimespanTimeRelation(TimeRelation):
 
         Returns true or false.
         """
-        return super(OffsetTimespanTimeRelation, self).__eq__(argument)
+        return super().__eq__(argument)
 
     def __format__(self, format_specification=''):
         """
@@ -142,8 +142,7 @@ class OffsetTimespanTimeRelation(TimeRelation):
 
         Returns string.
         """
-        superclass = super(OffsetTimespanTimeRelation, self)
-        return superclass.__format__(format_specification=format_specification)
+        return super().__format__(format_specification=format_specification)
 
     def __hash__(self):
         """
@@ -153,7 +152,7 @@ class OffsetTimespanTimeRelation(TimeRelation):
 
         Returns integer.
         """
-        return super(OffsetTimespanTimeRelation, self).__hash__()
+        return super().__hash__()
 
     ### PUBLIC PROPERTIES ###
 

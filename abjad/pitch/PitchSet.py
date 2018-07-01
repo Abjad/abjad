@@ -93,7 +93,7 @@ class PitchSet(Set):
 
         Return true or false.
         """
-        return super(PitchSet, self).__eq__(argument)
+        return super().__eq__(argument)
 
     def __hash__(self):
         """
@@ -101,7 +101,7 @@ class PitchSet(Set):
 
         Returns number.
         """
-        return super(PitchSet, self).__hash__()
+        return super().__hash__()
 
     def __illustrate__(self):
         r"""
@@ -395,7 +395,7 @@ class PitchSet(Set):
 
         Returns true or false.
         """
-        return super(PitchSet, self).issubset(argument)
+        return super().issubset(argument)
 
     def issuperset(self, argument):
         """
@@ -420,7 +420,7 @@ class PitchSet(Set):
 
         Returns true or false.
         """
-        return super(PitchSet, self).issubset(argument)
+        return super().issubset(argument)
 
     def register(self, pitch_classes):
         """
