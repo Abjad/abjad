@@ -1,5 +1,4 @@
 from .activate import activate
-from .analyze import analyze
 from .annotate import annotate
 from .attach import attach
 from .deactivate import deactivate

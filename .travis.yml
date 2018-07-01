@@ -21,6 +21,7 @@ before_install:
 - sh lilypond-${LILYPOND_VERSION}-1.linux-64.sh --batch
 - pip install -U pip coverage
 - pip install --target /tmp/typehints --no-deps uqbar>=0.2.13
+- pip install --target /tmp/typehints --no-deps abjad-ext-tonality>=3.0.0a0
 - export MYPYPATH=/tmp/typehints
 - export PATH=/home/travis/bin:$PATH
 
@@ -40,6 +41,7 @@ install:
 - if [[ $ACCELERATED == true ]]; then pip install -e .[accelerated]; fi
 
 script:
+- pip install --quiet -e .[tonality]
 - coverage run -a `which pytest`
 - mypy abjad
 - pip install --quiet -e .[book,cli,ipython,nauert]
