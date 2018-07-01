@@ -35,7 +35,6 @@ def test_abjad___format___01(class_):
 ignored_classes = (
     abjad.Path,
     abjad.Meter,
-    abjad.tonalanalysis.RootedChordClass,
     abjad.StorageFormatManager,
     abjad.FormatSpecification,
     )

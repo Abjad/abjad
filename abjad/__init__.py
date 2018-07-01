@@ -69,7 +69,6 @@ from abjad import cli
 from abjad import demos
 from abjad import ly
 from abjad import utilities
-from abjad import tonalanalysis
 
 # singletons
 tags = segments.Tags()

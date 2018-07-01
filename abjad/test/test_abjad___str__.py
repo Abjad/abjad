@@ -12,7 +12,6 @@ _allowed_to_be_empty_string = (
     abjad.SchemeColor,
     abjad.String,
     abjad.Tag,
-    abjad.tonalanalysis.ChordSuspension,
     )
 
 ignored_classes = (

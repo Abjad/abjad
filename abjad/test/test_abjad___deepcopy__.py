@@ -12,7 +12,6 @@ ignored_classes = (
     abjad.RedirectedStreams,
     abjad.StorageFormatManager,
     abjad.FormatSpecification,
-    abjad.tonalanalysis.RootedChordClass
     )
 
 classes = pytest.helpers.list_all_abjad_classes(
