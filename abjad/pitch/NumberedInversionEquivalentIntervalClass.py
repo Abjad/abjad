@@ -1,8 +1,9 @@
-from abjad.pitch.NumberedIntervalClass import NumberedIntervalClass
+from .NumberedIntervalClass import NumberedIntervalClass
 
 
 class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
-    '''Numbered inversion-equivalent interval-class.
+    """
+    Numbered inversion-equivalent interval-class.
 
     ..  container:: example
 
@@ -28,7 +29,7 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
         >>> abjad.NumberedInversionEquivalentIntervalClass('1')
         NumberedInversionEquivalentIntervalClass(1)
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -45,7 +46,8 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
     ### SPECIAL METHODS ###
 
     def __abs__(self):
-        r'''Gets absolute value of numbered inversion-equivalent
+        """
+        Gets absolute value of numbered inversion-equivalent
         interval-class.
 
         ..  container:: example
@@ -57,20 +59,22 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
             NumberedInversionEquivalentIntervalClass(1.5)
 
         Returns new numbered inversion-equivalent interval-class.
-        '''
+        """
         return type(self)(abs(self.number))
 
     def __lt__(self, argument):
-        r'''Is true when `argument` is a numbered inversion-equivalent
+        """
+        Is true when `argument` is a numbered inversion-equivalent
         interval-class with a number less than this numbered
         inversion-equivalent interval-class.
-        '''
+        """
         if isinstance(argument, type(self)):
             return self.number < argument.number
         return False
 
     def __neg__(self):
-        r'''Negates numbered inversion-equivalent interval-class.
+        """
+        Negates numbered inversion-equivalent interval-class.
 
         ..  container:: example
 
@@ -81,11 +85,12 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
             NumberedInversionEquivalentIntervalClass(1.5)
 
         Returns new numbered inversion-equivalent interval-class.
-        '''
+        """
         return type(self)(self.number)
 
     def __str__(self):
-        r'''Gets string representation of numbered inversion-equivalent
+        """
+        Gets string representation of numbered inversion-equivalent
         interval-class.
 
         ..  container:: example
@@ -97,5 +102,5 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
             '1.5'
 
         Returns string.
-        '''
+        """
         return str(self.number)

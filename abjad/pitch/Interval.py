@@ -9,8 +9,9 @@ from . import constants
 
 @functools.total_ordering
 class Interval(AbjadValueObject):
-    '''Abstract interval.
-    '''
+    """
+    Abstract interval.
+    """
 
     ### CLASS VARIABLES ###
 
@@ -62,7 +63,7 @@ class Interval(AbjadValueObject):
             self._from_named_parts(direction, quality, diatonic_number)
         elif isinstance(argument, numbers.Number):
             self._from_number(argument)
-        elif isinstance(argument, (abjad.Interval, abjad.IntervalClass)):
+        elif isinstance(argument, (Interval, abjad.IntervalClass)):
             self._from_interval_or_interval_class(argument)
         else:
             message = 'can not initialize {} from {!r}.'
@@ -73,40 +74,45 @@ class Interval(AbjadValueObject):
 
     @abc.abstractmethod
     def __abs__(self):
-        r'''Gets absolute value of interval.
+        """
+        Gets absolute value of interval.
 
         Returns new interval.
-        '''
+        """
         raise NotImplementedError
 
     def __float__(self):
-        r'''Coerce to semitones as float.
+        """
+        Coerce to semitones as float.
 
         Returns float.
-        '''
+        """
         raise NotImplementedError
 
     @abc.abstractmethod
     def __lt__(self, argument):
-        r'''Is true when interval is less than `argument`.
+        """
+        Is true when interval is less than `argument`.
 
         Returns true or false.
-        '''
+        """
         raise NotImplementedError
 
     @abc.abstractmethod
     def __neg__(self):
-        r'''Negates interval.
+        """
+        Negates interval.
 
         Returns interval.
-        '''
+        """
         raise NotImplementedError
 
     def __str__(self):
-        r'''Gets string representation of interval.
+        """
+        Gets string representation of interval.
 
         Returns string.
-        '''
+        """
         return str(self.number)
 
     ### PRIVATE METHODS ###
@@ -207,64 +213,66 @@ class Interval(AbjadValueObject):
 
     @property
     def cents(self):
-        '''
+        """
         Gets cents of interval.
 
         Returns nonnegative number.
-        '''
+        """
         return 100 * self.semitones
 
     @abc.abstractproperty
     def direction_number(self):
-        '''
+        """
         Gets direction number of interval
 
         Returns integer.
-        '''
+        """
         raise NotImplementedError
 
     @abc.abstractproperty
     def interval_class(self):
-        '''
+        """
         Gets interval-class of interval.
 
         Returns interval-class.
-        '''
+        """
         raise NotImplementedError
 
     @abc.abstractproperty
     def number(self):
-        '''
+        """
         Gets number of interval.
 
         Returns integer.
-        '''
+        """
         raise NotImplementedError
 
     @abc.abstractproperty
     def octaves(self):
-        r'''Gets octaves of interval.
+        """
+        Gets octaves of interval.
 
         Returns nonnegative number.
-        '''
+        """
         raise NotImplementedError
 
     @abc.abstractproperty
     def semitones(self):
-        '''
+        """
         Gets semitones of interval.
 
         Returns integer or float.
-        '''
+        """
         raise NotImplementedError
 
     ### PUBLIC METHODS ###
 
     def transpose(self, pitch_carrier):
-        r'''Transposes `pitch_carrier` by interval.
+        """
+        Transposes `pitch_carrier` by interval.
 
         Returns new pitch carrier.
-        '''
+        """
         import abjad
         if isinstance(pitch_carrier, (abjad.Pitch, abjad.PitchClass)):
             return pitch_carrier.transpose(self)

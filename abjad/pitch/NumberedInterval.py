@@ -1,10 +1,12 @@
 from abjad import mathtools
-from abjad.pitch.Interval import Interval
+from abjad.system.FormatSpecification import FormatSpecification
 from . import constants
+from .Interval import Interval
 
 
 class NumberedInterval(Interval):
-    '''Numbered interval.
+    """
+    Numbered interval.
 
     ..  container:: example
 
@@ -34,7 +36,7 @@ class NumberedInterval(Interval):
         >>> abjad.NumberedInterval('-P4')
         NumberedInterval(-5)
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -48,7 +50,8 @@ class NumberedInterval(Interval):
     ### SPECIAL METHODS ###
 
     def __abs__(self):
-        r'''Absolute value of numbered interval.
+        """
+        Absolute value of numbered interval.
 
         ..  container:: example
 
@@ -56,11 +59,12 @@ class NumberedInterval(Interval):
             NumberedInterval(14)
 
         Returns new numbered interval.
-        '''
+        """
         return type(self)(abs(self.number))
 
     def __add__(self, argument):
-        r'''Adds `argument` to numbered interval.
+        """
+        Adds `argument` to numbered interval.
 
         ..  container:: example
 
@@ -71,7 +75,7 @@ class NumberedInterval(Interval):
             NumberedInterval(-11)
 
         Returns new numbered interval.
-        '''
+        """
         try:
             argument = type(self)(argument)
         except Exception:
@@ -79,7 +83,8 @@ class NumberedInterval(Interval):
         return type(self)(float(self) + float(argument))
 
     def __copy__(self):
-        r'''Copies numbered interval.
+        """
+        Copies numbered interval.
 
         >>> import copy
 
@@ -89,11 +94,12 @@ class NumberedInterval(Interval):
             NumberedInterval(-14)
 
         Returns new numbered interval.
-        '''
+        """
         return type(self)(self.number)
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is a numbered interval with number equal to that of
+        """
+        Is true when `argument` is a numbered interval with number equal to that of
         this numbered interval.
 
         ..  container:: example
@@ -124,25 +130,28 @@ class NumberedInterval(Interval):
             True
 
         Returns true or false.
-        '''
+        """
         return super(NumberedInterval, self).__eq__(argument)
 
     def __float__(self):
-        r'''Coerce to float.
+        """
+        Coerce to float.
 
         Returns float.
-        '''
+        """
         return float(self.number)
 
     def __hash__(self):
-        r'''Hashes numbered interval.
+        """
+        Hashes numbered interval.
 
         Returns integer.
-        '''
+        """
         return super(NumberedInterval, self).__hash__()
 
     def __lt__(self, argument):
-        r'''Is true when `argument` is a numbered interval with same direction
+        """
+        Is true when `argument` is a numbered interval with same direction
         number as this numbered interval and with number greater than that of
         this numbered interval.
 
@@ -180,7 +189,7 @@ class NumberedInterval(Interval):
             False
 
         Returns true or false.
-        '''
+        """
         if not isinstance(argument, type(self)):
             message = 'must be numbered interval: {!r}.'
             message = message.format(argument)
@@ -191,7 +200,8 @@ class NumberedInterval(Interval):
         return abs(self.number) < abs(argument.number)
 
     def __neg__(self):
-        r'''Negates numbered interval.
+        """
+        Negates numbered interval.
 
         ..  container:: example
 
@@ -199,11 +209,12 @@ class NumberedInterval(Interval):
             NumberedInterval(14)
 
         Returns new numbered interval.
-        '''
+        """
         return type(self)(-self.number)
 
     def __radd__(self, argument):
-        r'''Adds numbered interval to `argument`.
+        """
+        Adds numbered interval to `argument`.
 
         ..  container:: example
 
@@ -216,7 +227,7 @@ class NumberedInterval(Interval):
             NumberedInterval(-11)
 
         Returns new numbered interval.
-        '''
+        """
         try:
             argument = type(self)(argument)
         except Exception:
@@ -224,19 +235,21 @@ class NumberedInterval(Interval):
         return type(self)(float(self) + float(argument))
 
     def __str__(self):
-        r'''String representation of numbered interval.
+        """
+        String representation of numbered interval.
 
         Returns string.
-        '''
+        """
         direction_symbol = constants._direction_number_to_direction_symbol[
             mathtools.sign(self.number)]
         return '{}{}'.format(direction_symbol, abs(self.number))
 
     def __sub__(self, argument):
-        r'''Subtracts `argument` from numbered interval.
+        """
+        Subtracts `argument` from numbered interval.
 
         Returns new numbered interval.
-        '''
+        """
         try:
             argument = type(self)(argument)
         except Exception:
@@ -269,9 +282,8 @@ class NumberedInterval(Interval):
         self._from_number(float(argument))
 
     def _get_format_specification(self):
-        import abjad
         values = [self.number]
-        return abjad.FormatSpecification(
+        return FormatSpecification(
             client=self,
             coerce_for_equality=True,
             repr_is_indented=False,
@@ -283,7 +295,8 @@ class NumberedInterval(Interval):
 
     @property
     def direction_number(self):
-        r'''Gets direction number of numbered interval.
+        """
+        Gets direction number of numbered interval.
 
         ..  container:: example
 
@@ -297,20 +310,22 @@ class NumberedInterval(Interval):
             1
 
         Returns integer.
-        '''
+        """""
         return mathtools.sign(self.number)
 
     @property
     def interval_class(self):
-        r'''Gets interval class of numbered interval.
+        """
+        Gets interval class of numbered interval.
 
         Returns numbered interval-class.
-        '''
+        """
         return self._interval_class
 
     @property
     def number(self):
-        r'''Gets number of numbered interval.
+        """
+        Gets number of numbered interval.
 
         ..  container:: example
 
@@ -324,7 +339,7 @@ class NumberedInterval(Interval):
             0
 
         Returns number.
-        '''
+        """
         number = self._interval_class._number
         direction = mathtools.sign(number)
         number = abs(number) + (12 * self.octaves)
@@ -332,15 +347,17 @@ class NumberedInterval(Interval):
 
     @property
     def octaves(self):
-        r'''Gets octaves of interval.
+        """
+        Gets octaves of interval.
 
         Returns nonnegative number.
-        '''
+        """
         return self._octaves
 
     @property
     def semitones(self):
-        r'''Gets semitones corresponding to numbered interval.
+        """
+        Gets semitones corresponding to numbered interval.
 
         ..  container:: example
 
@@ -348,14 +365,14 @@ class NumberedInterval(Interval):
             -14
 
         Returns nonnegative number.
-        '''
+        """
         return self.number
 
     ### PUBLIC METHODS ###
 
     @classmethod
     def from_pitch_carriers(class_, pitch_carrier_1, pitch_carrier_2):
-        '''Makes numbered interval from `pitch_carrier_1` and
+        """Makes numbered interval from `pitch_carrier_1` and
         `pitch_carrier_2`.
 
         ..  container:: example
@@ -391,7 +408,7 @@ class NumberedInterval(Interval):
             NumberedInterval(-14)
 
         Returns numbered interval.
-        '''
+        """
         import abjad.pitch
         pitch_1 = abjad.pitch.NamedPitch(pitch_carrier_1)
         pitch_2 = abjad.pitch.NamedPitch(pitch_carrier_2)
@@ -401,7 +418,8 @@ class NumberedInterval(Interval):
         return class_(number)
 
     def transpose(self, pitch_carrier):
-        r'''Transposes `pitch_carrier`.
+        """
+        Transposes `pitch_carrier`.
 
         ..  container:: example
 
@@ -414,5 +432,5 @@ class NumberedInterval(Interval):
             Chord("<df' f' af'>4")
 
         Returns newly constructed object of `pitch_carrier` type.
-        '''
+        """
         return super().transpose(pitch_carrier)

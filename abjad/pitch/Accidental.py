@@ -3,12 +3,14 @@ import numbers
 from abjad import enums
 from abjad import mathtools
 from abjad.system.AbjadValueObject import AbjadValueObject
+from abjad.system.FormatSpecification import FormatSpecification
 from . import constants
 
 
 @functools.total_ordering
 class Accidental(AbjadValueObject):
-    '''Accidental.
+    """
+    Accidental.
 
     ..  container:: example
 
@@ -43,7 +45,7 @@ class Accidental(AbjadValueObject):
         >>> abjad.Accidental('ssss')
         Accidental('ssss')
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -128,7 +130,8 @@ class Accidental(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __add__(self, argument):
-        r'''Adds `argument` to accidental.
+        """
+        Adds `argument` to accidental.
 
         ..  container:: example
 
@@ -141,7 +144,7 @@ class Accidental(AbjadValueObject):
             Accidental('three-quarters sharp')
 
         Returns new accidental.
-        '''
+        """
         if not isinstance(argument, type(self)):
             message = 'can only add accidental to other accidental.'
             raise TypeError(message)
@@ -149,7 +152,8 @@ class Accidental(AbjadValueObject):
         return type(self)(semitones)
 
     def __call__(self, argument):
-        r'''Calls accidental on `argument`.
+        """
+        Calls accidental on `argument`.
 
         >>> accidental = abjad.Accidental('s')
 
@@ -186,7 +190,7 @@ class Accidental(AbjadValueObject):
             NumberedPitchClass(1.5)
 
         Returns new object of `argument` type.
-        '''
+        """
         if not hasattr(argument, '_apply_accidental'):
             message = 'do not know how to apply accidental to {!r}.'
             message = message.format(argument)
@@ -194,7 +198,8 @@ class Accidental(AbjadValueObject):
         return argument._apply_accidental(self)
 
     def __lt__(self, argument):
-        r'''Is true when `argument` is an accidental with semitones greater
+        """
+        Is true when `argument` is an accidental with semitones greater
         than those of this accidental.
 
         ..  container:: example
@@ -225,11 +230,12 @@ class Accidental(AbjadValueObject):
             False
 
         Returns true or false.
-        '''
+        """
         return self.semitones < argument.semitones
 
     def __neg__(self):
-        r'''Negates accidental.
+        """
+        Negates accidental.
 
         ..  container:: example
 
@@ -258,16 +264,18 @@ class Accidental(AbjadValueObject):
             Accidental('double flat')
 
         Returns new accidental.
-        '''
+        """
         return type(self)(-self.semitones)
 
     def __radd__(self, argument):
-        r'''Raises not implemented error on accidental.
-        '''
+        """
+        Raises not implemented error on accidental.
+        """
         raise NotImplementedError
 
     def __str__(self):
-        r'''Gets string representation of accidental.
+        """
+        Gets string representation of accidental.
 
         ..  container:: example
 
@@ -296,7 +304,7 @@ class Accidental(AbjadValueObject):
             'ss'
 
         Returns string.
-        '''
+        """
         if self.semitones in constants._accidental_semitones_to_abbreviation:
             return constants._accidental_semitones_to_abbreviation[self.semitones]
         character = 's'
@@ -310,7 +318,8 @@ class Accidental(AbjadValueObject):
         return abbreviation
 
     def __sub__(self, argument):
-        r'''Subtracts `argument` from accidental.
+        """
+        Subtracts `argument` from accidental.
 
         ..  container:: example
 
@@ -323,7 +332,7 @@ class Accidental(AbjadValueObject):
             Accidental('quarter flat')
 
         Returns new accidental.
-        '''
+        """
         if not isinstance(argument, type(self)):
             message = 'can only subtract accidental from other accidental.'
             raise TypeError(message)
@@ -345,8 +354,7 @@ class Accidental(AbjadValueObject):
         return list(constants._accidental_semitones_to_abbreviation.keys())
 
     def _get_format_specification(self):
-        import abjad
-        return abjad.FormatSpecification(
+        return FormatSpecification(
             client=self,
             repr_is_indented=False,
             storage_format_args_values=[self.name],
@@ -373,7 +381,8 @@ class Accidental(AbjadValueObject):
 
     @property
     def arrow(self):
-        r'''Gets arrow of accidental.
+        """
+        Gets arrow of accidental.
 
         ..  container:: example
 
@@ -394,17 +403,18 @@ class Accidental(AbjadValueObject):
             >>> abjad.Accidental('sharp', arrow=abjad.Down).arrow
             Down
 
-        ArrowLineSegment property is currently a stub in the object model. You can set the
+        Arrow property is currently a stub in the object model. You can set the
         property but accidental math and formatting currently ignore the
         setting.
 
         Returns up, down or none.
-        '''
+        """
         return self._arrow
 
     @property
     def name(self):
-        r'''Gets name of accidental.
+        """
+        Gets name of accidental.
 
         ..  container:: example
 
@@ -433,7 +443,7 @@ class Accidental(AbjadValueObject):
             'double sharp'
 
         Returns string.
-        '''
+        """
         try:
             abbreviation = constants._accidental_semitones_to_abbreviation[self.semitones]
             name = constants._accidental_abbreviation_to_name[abbreviation]
@@ -443,7 +453,8 @@ class Accidental(AbjadValueObject):
 
     @property
     def semitones(self):
-        r'''Gets semitones of accidental.
+        """
+        Gets semitones of accidental.
 
         ..  container:: example
 
@@ -472,12 +483,13 @@ class Accidental(AbjadValueObject):
             2
 
         Returns number.
-        '''
+        """
         return self._semitones
 
     @property
     def symbol(self):
-        r'''Gets symbol of accidental.
+        """
+        Gets symbol of accidental.
 
         ..  container:: example
 
@@ -506,16 +518,18 @@ class Accidental(AbjadValueObject):
             '##'
 
         Returns string.
-        '''
+        """
         abbreviation = constants._accidental_semitones_to_abbreviation[self.semitones]
         symbol = constants._accidental_abbreviation_to_symbol[abbreviation]
         return symbol
 
     ### PUBLIC METHODS ###
 
+    # TODO: move somewhere else; remove late imports
     @staticmethod
     def respell_with_flats(selection):
-        r'''Respells `selection` with flats.
+        r"""
+        Respells `selection` with flats.
 
         ..  container:: example
 
@@ -554,7 +568,7 @@ class Accidental(AbjadValueObject):
                 }
 
         Returns none.
-        '''
+        """
         import abjad
         for leaf in abjad.iterate(selection).leaves():
             if isinstance(leaf, abjad.Note):
@@ -564,9 +578,11 @@ class Accidental(AbjadValueObject):
                     pitch = note_head.written_pitch._respell_with_flats()
                     note_head.written_pitch = pitch
 
+    # TODO: move somewhere else; remove late imports
     @staticmethod
     def respell_with_sharps(selection):
-        r'''Respells `selection` with sharps.
+        r"""
+        Respells `selection` with sharps.
 
         ..  container:: example
 
@@ -605,7 +621,7 @@ class Accidental(AbjadValueObject):
                 }
 
         Returns none.
-        '''
+        """
         import abjad
         for leaf in abjad.iterate(selection).leaves():
             if isinstance(leaf, abjad.Note):

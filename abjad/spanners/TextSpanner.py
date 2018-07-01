@@ -46,13 +46,7 @@ class TextSpanner(Spanner):
                                 #0.25
                         }
                     }
-                - \tweak dash-period 0
-                - \tweak bound-details.left-broken.text ##f
-                - \tweak bound-details.left.stencil-align-dir-y #center
-                - \tweak bound-details.right-broken.padding 0
-                - \tweak bound-details.right-broken.text ##f
-                - \tweak bound-details.right.padding 1.5
-                - \tweak bound-details.right.stencil-align-dir-y #center
+                - \abjad_start_text_span_invisible
                 \startTextSpan
                 d'4
                 e'4
@@ -78,13 +72,7 @@ class TextSpanner(Spanner):
             {
                 c'4
                 - \tweak Y-extent ##f
-                - \tweak dash-period 0
-                - \tweak bound-details.left-broken.text ##f
-                - \tweak bound-details.left.stencil-align-dir-y #center
-                - \tweak bound-details.right-broken.padding 0
-                - \tweak bound-details.right-broken.text ##f
-                - \tweak bound-details.right.padding 1.5
-                - \tweak bound-details.right.stencil-align-dir-y #center
+                - \abjad_start_text_span_invisible
                 - \tweak bound-details.right.text \markup {
                     \concat
                         {
@@ -129,13 +117,7 @@ class TextSpanner(Spanner):
                                 #0.25
                         }
                     }
-                - \tweak dash-period 0
-                - \tweak bound-details.left-broken.text ##f
-                - \tweak bound-details.left.stencil-align-dir-y #center
-                - \tweak bound-details.right-broken.padding 0
-                - \tweak bound-details.right-broken.text ##f
-                - \tweak bound-details.right.padding 1.5
-                - \tweak bound-details.right.stencil-align-dir-y #center
+                - \abjad_start_text_span_invisible
                 - \tweak bound-details.right.text \markup {
                     \concat
                         {
@@ -575,6 +557,8 @@ class TextSpanner(Spanner):
             last_leaf_markup = inspect(self[-1]).get_piecewise(self, Markup)
         else:
             last_leaf_markup = None
+        forced_left_hspace = None
+        forced_right_hspace = None
         indicators = (markup, line_segment, last_leaf_markup)
         has_indicators = any(_ is not None for _ in indicators)
         if not has_indicators:
@@ -583,10 +567,10 @@ class TextSpanner(Spanner):
                     override = self._y_extent_false()
                     string = override.tweak_string()
                     bundle.after.spanner_starts.append(string)
-                    line_segment = self._make_invisible_line_segment()
-                    tweaks = line_segment._get_lilypond_grob_overrides(
-                        tweaks=True)
-                    bundle.after.spanner_starts.extend(tweaks)
+                    string = r'- \abjad_start_text_span_invisible'
+                    forced_left_hspace = 0.25
+                    forced_right_hspace = 1.5
+                    bundle.after.spanner_starts.append(string)
                 bundle.after.spanner_starts.extend(self.start_command())
             if component is self[-1]:
                 stop_command = self.stop_command()
@@ -597,31 +581,22 @@ class TextSpanner(Spanner):
                 else:
                     bundle.after.spanner_stops.append(self.stop_command())
             return bundle
-
-#        if has_indicators and (
-#            (not component is self[0]) or
-#            (component is self[0] and self.leak)
-#            ):
-#            stop_command = self.stop_command()
-#            if self.leak:
-#                # leaked stop command must appear *after* start command;
-#                # so stop command appears here in spanner *starts*:
-#                bundle.after.spanner_starts.append(stop_command)
-#            else:
-#                bundle.after.spanner_stops.append(stop_command)
-
         if (not component is self[-1]) or (len(self) == 1 and self.leak):
             if self._wrappers:
                 override = self._y_extent_false()
                 string = override.tweak_string()
                 bundle.after.spanner_starts.append(string)
             if line_segment is None:
-                line_segment = self._make_invisible_line_segment()
+                command = r'- \abjad_start_text_span_invisible'
+                forced_left_hspace = 0.25
+                forced_right_hspace = 1.5
             if markup is not None:
-                if line_segment.left_hspace is not None:
+                if forced_left_hspace is not None:
+                    left_hspace = forced_left_hspace
+                else:
                     left_hspace = line_segment.left_hspace
-                    left_hspace = Markup.hspace(left_hspace)
-                    markup = Markup.concat([markup, left_hspace])
+                left_hspace = Markup.hspace(left_hspace)
+                markup = Markup.concat([markup, left_hspace])
                 override = LilyPondGrobOverride(
                     grob_name='TextSpanner',
                     property_path=(
@@ -633,10 +608,16 @@ class TextSpanner(Spanner):
                     )
                 string = override.tweak_string()
                 bundle.after.spanner_starts.append(string)
-            tweaks = line_segment._get_lilypond_grob_overrides(tweaks=True)
-            bundle.after.spanner_starts.extend(tweaks)
+            if line_segment is not None:
+                tweaks = line_segment._get_lilypond_grob_overrides(tweaks=True)
+                bundle.after.spanner_starts.extend(tweaks)
+            else:
+                bundle.after.spanner_starts.append(command)
         if last_leaf_markup is not None:
-            right_hspace = line_segment.right_padding or 0
+            if forced_right_hspace is not None:
+                right_hspace = forced_right_hspace
+            else:
+                right_hspace = line_segment.right_padding or 0
             # optical correction to draw last markup left:
             right_hspace -= 0.5
             right_hspace = Markup.hspace(right_hspace)
@@ -671,19 +652,6 @@ class TextSpanner(Spanner):
                 bundle.after.spanner_stops.append(stop_command)
 
         return bundle
-
-    @staticmethod
-    def _make_invisible_line_segment():
-        return LineSegment(
-            dash_period=0,
-            left_broken_text=False,
-            left_hspace=0.25,
-            left_stencil_align_direction_y=enums.Center,
-            right_broken_padding=0,
-            right_broken_text=False,
-            right_padding=1.5,
-            right_stencil_align_direction_y=enums.Center,
-            )
 
     def _should_format_last_leaf_markup(self, component):
         if inspect(self[-1]).get_piecewise(self, Markup, None) is None:

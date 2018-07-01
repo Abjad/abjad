@@ -1,9 +1,17 @@
 import collections
+from abjad import markups
 from abjad.system.AbjadValueObject import AbjadValueObject
+from .Duplication import Duplication
+from .Inversion import Inversion
+from .Multiplication import Multiplication
+from .Retrograde import Retrograde
+from .Rotation import Rotation
+from .Transposition import Transposition
 
 
 class CompoundOperator(AbjadValueObject):
-    r'''Compound operator.
+    """
+    Compound operator.
 
     ..  container:: example
 
@@ -20,7 +28,7 @@ class CompoundOperator(AbjadValueObject):
         >>> operator(pitch_classes)
         PitchClassSegment([2, 7, 8, 11])
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -46,7 +54,8 @@ class CompoundOperator(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __add__(self, operator):
-        r'''Composes compound operator and `operator`.
+        """
+        Composes compound operator and `operator`.
 
         ..  container:: example
 
@@ -87,7 +96,7 @@ class CompoundOperator(AbjadValueObject):
                 )
 
         Returns new compound operator.
-        '''
+        """
         operators = list(self.operators)
         if isinstance(operator, type(self)):
             operators[0:0] = operator.operators
@@ -99,7 +108,8 @@ class CompoundOperator(AbjadValueObject):
         return result
 
     def __call__(self, argument):
-        r'''Calls compound operator on `argument`.
+        """
+        Calls compound operator on `argument`.
 
         ..  container:: example
 
@@ -119,7 +129,7 @@ class CompoundOperator(AbjadValueObject):
             PitchClassSegment([2, 7, 8, 11])
 
         Returns new object with type equal to that of `argument`.
-        '''
+        """
         if self.operators is None:
             return argument
         for transform in self.operators:
@@ -127,7 +137,8 @@ class CompoundOperator(AbjadValueObject):
         return argument
 
     def __radd__(self, operator):
-        r'''Composes `operator` and compound operator.
+        """
+        Composes `operator` and compound operator.
 
         ..  container
 
@@ -147,7 +158,7 @@ class CompoundOperator(AbjadValueObject):
             'M5T1R'
 
         Returns new compound operator.
-        '''
+        """
         operators = list(self.operators)
         if isinstance(operator, type(self)):
             operators.extend(operator.operators)
@@ -159,7 +170,8 @@ class CompoundOperator(AbjadValueObject):
         return result
 
     def __str__(self):
-        r'''Gets string representation of compound operator.
+        """
+        Gets string representation of compound operator.
 
         ..  container:: example
 
@@ -182,7 +194,7 @@ class CompoundOperator(AbjadValueObject):
             ''
 
         Returns string.
-        '''
+        """
         result = []
         operators = self.operators or []
         for operator in reversed(operators):
@@ -209,7 +221,6 @@ class CompoundOperator(AbjadValueObject):
         return result
 
     def _get_markup(self, direction=None):
-        import abjad
         markups = []
         operators = self.operators or []
         for operator in operators:
@@ -222,7 +233,7 @@ class CompoundOperator(AbjadValueObject):
         elif len(markups) == 1:
             markup = markups[0]
         else:
-            markup = abjad.Markup.concat(markups, direction=direction)
+            markup = markups.Markup.concat(markups, direction=direction)
         return markup
 
     def _with_operator(self, operator):
@@ -237,7 +248,8 @@ class CompoundOperator(AbjadValueObject):
 
     @property
     def operators(self):
-        r'''Gets operators.
+        """
+        Gets operators.
 
         ..  container:: example
 
@@ -254,13 +266,14 @@ class CompoundOperator(AbjadValueObject):
             Transposition(n=2)
 
         Returns list of operators.
-        '''
+        """
         if self._operators is not None:
             return list(self._operators)
 
     @property
     def show_identity_operators(self):
-        r'''Is true when string representation of operator should show identity
+        """
+        Is true when string representation of operator should show identity
         operators.
 
         ..  container:: example
@@ -292,13 +305,14 @@ class CompoundOperator(AbjadValueObject):
         Set to true, false or none.
 
         Returns true, false or none.
-        '''
+        """
         return self._show_identity_operators
 
     ### PUBLIC METHODS ###
 
     def duplicate(self, counts=None, indices=None, period=None):
-        r'''Configures compound operator to duplicate pitches by `counts`, with
+        """
+        Configures compound operator to duplicate pitches by `counts`, with
         optional `indices` and `period`.
 
         ..  container:: example
@@ -315,9 +329,8 @@ class CompoundOperator(AbjadValueObject):
                 )
 
         Returns new compound operator.
-        '''
-        import abjad
-        operator = abjad.Duplication(
+        """
+        operator = Duplication(
             counts=counts,
             indices=indices,
             period=period,
@@ -325,7 +338,8 @@ class CompoundOperator(AbjadValueObject):
         return self._with_operator(operator)
 
     def invert(self, axis=None):
-        r'''Configures compound operator to invert pitches about `axis`.
+        """
+        Configures compound operator to invert pitches about `axis`.
 
         ..  container:: example
 
@@ -341,13 +355,13 @@ class CompoundOperator(AbjadValueObject):
                 )
 
         Returns new compound operator.
-        '''
-        import abjad
-        operator = abjad.Inversion(axis=axis)
+        """
+        operator = Inversion(axis=axis)
         return self._with_operator(operator)
 
     def multiply(self, n=1):
-        r'''Configures compound operator to multiply pitch-classes by index `n`.
+        """
+        Configures compound operator to multiply pitch-classes by index `n`.
 
         ..  container:: example
 
@@ -363,13 +377,13 @@ class CompoundOperator(AbjadValueObject):
                 )
 
         Returns new compound operator.
-        '''
-        import abjad
-        operator = abjad.Multiplication(n=n)
+        """
+        operator = Multiplication(n=n)
         return self._with_operator(operator)
 
     def retrograde(self, period=None):
-        r'''Configures compound operator to retrograde pitches.
+        """
+        Configures compound operator to retrograde pitches.
 
         ..  container:: example
 
@@ -383,13 +397,13 @@ class CompoundOperator(AbjadValueObject):
                 )
 
         Returns new compound operator.
-        '''
-        import abjad
-        operator = abjad.Retrograde(period=period)
+        """
+        operator = Retrograde(period=period)
         return self._with_operator(operator)
 
     def rotate(self, n=0, period=None, stravinsky=None):
-        r'''Configures compound operator to rotate pitches by index `n`.
+        """
+        Configures compound operator to rotate pitches by index `n`.
 
         ..  container:: example
 
@@ -405,9 +419,8 @@ class CompoundOperator(AbjadValueObject):
                 )
 
         Returns new compound operator.
-        '''
-        import abjad
-        operator = abjad.Rotation(
+        """
+        operator = Rotation(
             n=n,
             period=period,
             stravinsky=stravinsky,
@@ -415,7 +428,8 @@ class CompoundOperator(AbjadValueObject):
         return self._with_operator(operator)
 
     def transpose(self, n=0):
-        r'''Configures compound operator to transpose pitches by index `n`.
+        """
+        Configures compound operator to transpose pitches by index `n`.
 
         ..  container:: example
 
@@ -432,7 +446,6 @@ class CompoundOperator(AbjadValueObject):
                 )
 
         Returns new compound operator.
-        '''
-        import abjad
-        operator = abjad.Transposition(n=n)
+        """
+        operator = Transposition(n=n)
         return self._with_operator(operator)

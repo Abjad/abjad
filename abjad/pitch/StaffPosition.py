@@ -2,11 +2,13 @@ import functools
 import numbers
 from . import constants
 from abjad.system.AbjadValueObject import AbjadValueObject
+from abjad.system.FormatSpecification import FormatSpecification
 
 
 @functools.total_ordering
 class StaffPosition(AbjadValueObject):
-    r'''Staff position.
+    """
+    Staff position.
 
     ..  container:: example
 
@@ -37,7 +39,7 @@ class StaffPosition(AbjadValueObject):
         >>> abjad.StaffPosition(staff_position)
         StaffPosition(-2)
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -56,7 +58,8 @@ class StaffPosition(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is a staff position with the same number as
+        """
+        Is true when `argument` is a staff position with the same number as
         this staff position.
 
         ..  container:: example
@@ -87,18 +90,20 @@ class StaffPosition(AbjadValueObject):
             True
 
         Returns true or false.
-        '''
+        """
         return super(StaffPosition, self).__eq__(argument)
 
     def __hash__(self):
-        r'''Hashes staff position.
+        """
+        Hashes staff position.
 
         Returns integer.
-        '''
+        """
         return super(StaffPosition, self).__hash__()
 
     def __lt__(self, argument):
-        r'''Is true when staff position is less than `argument`.
+        """
+        Is true when staff position is less than `argument`.
 
         ..  container:: example
 
@@ -128,7 +133,7 @@ class StaffPosition(AbjadValueObject):
             False
 
         Returns true or false.
-        '''
+        """
         try:
             argument = type(self)(argument)
         except Exception:
@@ -136,7 +141,8 @@ class StaffPosition(AbjadValueObject):
         return self.number < argument.number
 
     def __str__(self):
-        r'''Gets string representation of staff position.
+        """
+        Gets string representation of staff position.
 
         ..  container:: example
 
@@ -144,14 +150,13 @@ class StaffPosition(AbjadValueObject):
             'StaffPosition(-2)'
 
         Returns string.
-        '''
+        """
         return '{}({})'.format(type(self).__name__, self.number)
 
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        import abjad
-        return abjad.FormatSpecification(
+        return FormatSpecification(
             client=self,
             repr_is_indented=False,
             storage_format_is_indented=False,
@@ -163,7 +168,8 @@ class StaffPosition(AbjadValueObject):
 
     @property
     def number(self):
-        r'''Gets staff position number.
+        """
+        Gets staff position number.
 
         ..  container:: example
 
@@ -171,13 +177,14 @@ class StaffPosition(AbjadValueObject):
             -2
 
         Returns number.
-        '''
+        """
         return self._number
 
     ### PUBLIC METHODS ###
 
     def to_pitch(self, clef='treble'):
-        r'''Makes named pitch from staff position and `clef`.
+        """
+        Makes named pitch from staff position and `clef`.
 
         ..  container:: example
 
@@ -276,7 +283,7 @@ class StaffPosition(AbjadValueObject):
             StaffPosition(5)	a'
 
         Returns new named pitch.
-        '''
+        """
         import abjad
         clef = abjad.Clef(clef)
         offset_staff_position_number = self.number

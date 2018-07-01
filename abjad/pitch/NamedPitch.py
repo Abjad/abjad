@@ -1,7 +1,8 @@
 import math
 from abjad import mathtools
-from abjad.pitch.Pitch import Pitch
 from . import constants
+from abjad.system.FormatSpecification import FormatSpecification
+from .Pitch import Pitch
 
 
 class NamedPitch(Pitch):
@@ -472,8 +473,7 @@ class NamedPitch(Pitch):
         return diatonic_pitch_number
 
     def _get_format_specification(self):
-        import abjad
-        return abjad.FormatSpecification(
+        return FormatSpecification(
             self,
             coerce_for_equality=True,
             repr_is_indented=False,

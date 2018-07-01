@@ -1,10 +1,12 @@
 from abjad import enums
-from abjad.pitch.PitchClass import PitchClass
+from abjad.system.FormatSpecification import FormatSpecification
 from . import constants
+from .PitchClass import PitchClass
 
 
 class NumberedPitchClass(PitchClass):
-    '''Numbered pitch-class.
+    """
+    Numbered pitch-class.
 
     ..  container:: example
 
@@ -62,7 +64,7 @@ class NumberedPitchClass(PitchClass):
         >>> abjad.NumberedPitchClass(abjad.Note("a'8."))
         NumberedPitchClass(9)
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -84,7 +86,8 @@ class NumberedPitchClass(PitchClass):
     ### SPECIAL METHODS ###
 
     def __add__(self, argument):
-        r'''Adds `argument` to numbered pitch-class.
+        """
+        Adds `argument` to numbered pitch-class.
 
         ..  container:: example
 
@@ -103,13 +106,14 @@ class NumberedPitchClass(PitchClass):
             NumberedPitchClass(0)
 
         Returns new numbered pitch-class.
-        '''
+        """
         import abjad
         interval = abjad.NumberedInterval(argument)
         return type(self)(self.number + interval.number % 12)
 
     def __copy__(self, *arguments):
-        r'''Copies numbered pitch-class.
+        """
+        Copies numbered pitch-class.
 
         ..  container:: example
 
@@ -119,11 +123,12 @@ class NumberedPitchClass(PitchClass):
             NumberedPitchClass(9)
 
         Returns new numbered pitch-class.
-        '''
+        """
         return type(self)(self)
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is a numbered pitch-class with pitch-class
+        """
+        Is true when `argument` is a numbered pitch-class with pitch-class
         number equal to that of this numbered pitch-class.
 
         ..  container:: example
@@ -154,11 +159,12 @@ class NumberedPitchClass(PitchClass):
             True
 
         Returns true or false.
-        '''
+        """
         return super(NumberedPitchClass, self).__eq__(argument)
 
     def __format__(self, format_specification=''):
-        r'''Formats numbered pitch-class.
+        """
+        Formats numbered pitch-class.
 
         ..  container:: example
 
@@ -168,21 +174,23 @@ class NumberedPitchClass(PitchClass):
         Set `format_specification` to `''`, `'lilypond'` or `'storage'`.
 
         Returns string.
-        '''
+        """
         superclass = super(NumberedPitchClass, self)
         return superclass.__format__(format_specification=format_specification)
 
     def __hash__(self):
-        r'''Hashes numbered pitch-class.
+        """
+        Hashes numbered pitch-class.
 
         Required to be explicitly redefined on Python 3 if __eq__ changes.
 
         Returns integer.
-        '''
+        """
         return super(NumberedPitchClass, self).__hash__()
 
     def __lt__(self, argument):
-        r'''Is true when `argument` is a numbered pitch-class with a pitch
+        """
+        Is true when `argument` is a numbered pitch-class with a pitch
         number greater than that of this numberd pitch-class.
 
         ..  container:: example
@@ -200,7 +208,7 @@ class NumberedPitchClass(PitchClass):
             False
 
         Raises type error when `argument` is not a numbered pitch-class.
-        '''
+        """
         if not isinstance(argument, type(self)):
             message = 'can not compare numbered pitch-class to {!r}.'
             message = message.format(argument)
@@ -208,7 +216,8 @@ class NumberedPitchClass(PitchClass):
         return self.number < argument.number
 
     def __neg__(self):
-        r'''Negates numbered pitch-class.
+        """
+        Negates numbered pitch-class.
 
         ..  container:: example
 
@@ -217,11 +226,12 @@ class NumberedPitchClass(PitchClass):
             NumberedPitchClass(3)
 
         Returns new numbered pitch-class.
-        '''
+        """
         return type(self)(-self.number)
 
     def __radd__(self, argument):
-        r'''Right-addition not defined on numbered pitch-classes.
+        """
+        Right-addition not defined on numbered pitch-classes.
 
         ..  container:: example
 
@@ -231,20 +241,22 @@ class NumberedPitchClass(PitchClass):
             NotImplementedError: right-addition not defined on NumberedPitchClass.
 
         Raises not implemented error.
-        '''
+        """
         message = 'right-addition not defined on {}.'
         message = message.format(type(self).__name__)
         raise NotImplementedError(message)
 
     def __str__(self):
-        r'''Gets string representation of numbered pitch-class.
+        """
+        Gets string representation of numbered pitch-class.
 
         Returns string.
-        '''
+        """
         return str(self.number)
 
     def __sub__(self, argument):
-        r'''Subtracts `argument` from numbered pitch-class.
+        """
+        Subtracts `argument` from numbered pitch-class.
 
         Subtraction is defined against both numbered intervals
         and against other pitch-classes.
@@ -272,7 +284,7 @@ class NumberedPitchClass(PitchClass):
             NumberedPitchClass(5)
 
         Returns numbered inversion-equivalent interval-class.
-        '''
+        """
         import abjad
         if isinstance(argument, type(self)):
             interval_class_number = abs(
@@ -320,9 +332,8 @@ class NumberedPitchClass(PitchClass):
             self._get_diatonic_pc_name()]
 
     def _get_format_specification(self):
-        import abjad
         values = [self.number]
-        return abjad.FormatSpecification(
+        return FormatSpecification(
             client=self,
             coerce_for_equality=True,
             storage_format_is_indented=False,
@@ -338,7 +349,8 @@ class NumberedPitchClass(PitchClass):
 
     @property
     def accidental(self):
-        r'''Gets accidental.
+        """
+        Gets accidental.
 
         ..  container:: example
 
@@ -346,21 +358,23 @@ class NumberedPitchClass(PitchClass):
             Accidental('sharp')
 
         Returns accidental.
-        '''
+        """
         import abjad
         return abjad.NamedPitch(self.number).accidental
 
     @property
     def arrow(self):
-        r'''Gets arrow of numbered pitch-class.
+        """
+        Gets arrow of numbered pitch-class.
 
         Returns up, down or none.
-        '''
+        """
         return self._arrow
 
     @property
     def name(self):
-        r'''Gets name of numbered pitch-class.
+        """
+        Gets name of numbered pitch-class.
 
         ..  container:: example
 
@@ -368,12 +382,13 @@ class NumberedPitchClass(PitchClass):
             'cs'
 
         Returns string.
-        '''
+        """
         return constants._pitch_class_number_to_pitch_class_name[self.number]
 
     @property
     def number(self):
-        r'''Gets number.
+        """
+        Gets number.
 
         ..  container:: example
 
@@ -385,12 +400,13 @@ class NumberedPitchClass(PitchClass):
             >>> abjad.NumberedPitchClass(13).number
             1
 
-        '''
+        """
         return self._number
 
     @property
     def pitch_class_label(self):
-        r'''Gets pitch-class / octave label.
+        """
+        Gets pitch-class / octave label.
 
         ..  container:: example
 
@@ -398,7 +414,7 @@ class NumberedPitchClass(PitchClass):
             'C#'
 
         Returns string.
-        '''
+        """
         return '{}{}'.format(
             self._get_diatonic_pc_name().upper(),
             self.accidental.symbol,
@@ -407,7 +423,8 @@ class NumberedPitchClass(PitchClass):
     ### PUBLIC METHODS ###
 
     def invert(self, axis=None):
-        r'''Inverts numbered pitch-class.
+        """
+        Inverts numbered pitch-class.
 
         ..  container:: example
 
@@ -431,7 +448,7 @@ class NumberedPitchClass(PitchClass):
         Interprets axis of inversion equal to pitch-class 0.
 
         Returns new numbered pitch-class.
-        '''
+        """
         import abjad
         axis = axis or abjad.NumberedPitch('c')
         axis = abjad.NumberedPitch(axis)
@@ -442,7 +459,8 @@ class NumberedPitchClass(PitchClass):
         return result
 
     def multiply(self, n=1):
-        r'''Multiplies pitch-class number by `n`.
+        """
+        Multiplies pitch-class number by `n`.
 
         ..  container:: example
 
@@ -464,11 +482,12 @@ class NumberedPitchClass(PitchClass):
             NumberedPitchClass(11) NumberedPitchClass(7)
 
         Returns new numbered pitch-class.
-        '''
+        """
         return type(self)(n * self.number)
 
     def transpose(self, n=0):
-        r'''Transposes numbered pitch-class by index `n`.
+        """
+        Transposes numbered pitch-class by index `n`.
 
         ..  container:: example
 
@@ -490,5 +509,5 @@ class NumberedPitchClass(PitchClass):
             NumberedPitchClass(11) NumberedPitchClass(10)
 
         Returns new numbered pitch-class.
-        '''
+        """
         return type(self)(self.number + n)

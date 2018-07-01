@@ -1,6 +1,7 @@
 from abjad import mathtools
-from abjad.pitch.Interval import Interval
+from abjad.system.FormatSpecification import FormatSpecification
 from . import constants
+from .Interval import Interval
 
 
 class NamedInterval(Interval):
@@ -346,9 +347,8 @@ class NamedInterval(Interval):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        import abjad
         values = [self.name]
-        return abjad.FormatSpecification(
+        return FormatSpecification(
             client=self,
             coerce_for_equality=True,
             repr_is_indented=False,

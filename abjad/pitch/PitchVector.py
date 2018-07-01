@@ -1,8 +1,9 @@
-from abjad.pitch.Vector import Vector
+from .Vector import Vector
 
 
 class PitchVector(Vector):
-    r'''Pitch vector.
+    """
+    Pitch vector.
 
     ..  container:: example
 
@@ -25,7 +26,7 @@ class PitchVector(Vector):
         15 1
         16 2
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -34,7 +35,8 @@ class PitchVector(Vector):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        r'''Gets interpreter representation of pitch vector.
+        """
+        Gets interpreter representation of pitch vector.
 
         ..  container:: example
 
@@ -56,7 +58,7 @@ class PitchVector(Vector):
                 PitchVector({-3: 2, -2: 1, 0: 1, 1: 1, 6: 1, 7: 1, 14: 1, 15: 1, 16: 2}, item_class=NumberedPitch)
 
         Returns string.
-        '''
+        """
         superclass = super(PitchVector, self)
         return superclass.__repr__()
 
@@ -85,10 +87,11 @@ class PitchVector(Vector):
         selection,
         item_class=None,
         ):
-        r'''Makes pitch vector from `selection`.
+        """
+        Makes pitch vector from `selection`.
 
         Returns pitch vector.
-        '''
+        """
         import abjad
         pitch_segment = abjad.PitchSegment.from_selection(selection)
         return class_(

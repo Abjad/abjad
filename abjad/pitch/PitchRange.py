@@ -4,11 +4,14 @@ import functools
 import numbers
 from . import constants
 from abjad.system.AbjadValueObject import AbjadValueObject
+from abjad.system.FormatSpecification import FormatSpecification
+from abjad.system.StorageFormatManager import StorageFormatManager
 
 
 @functools.total_ordering
 class PitchRange(AbjadValueObject):
-    r"""Pitch range.
+    """
+    Pitch range.
 
     ..  container:: example
 
@@ -49,7 +52,8 @@ class PitchRange(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __contains__(self, argument):
-        r'''Is true when pitch range contains `argument`.
+        """
+        Is true when pitch range contains `argument`.
 
         ..  container:: example
 
@@ -220,7 +224,7 @@ class PitchRange(AbjadValueObject):
             True
 
         Returns true or false.
-        '''
+        """
         import abjad
         if (
             hasattr(argument, '_has_effective_indicator') and
@@ -254,7 +258,8 @@ class PitchRange(AbjadValueObject):
         return False
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is a pitch range with start and stop equal
+        """
+        Is true when `argument` is a pitch range with start and stop equal
         to those of this pitch range.
 
         ..  container:: example
@@ -285,33 +290,35 @@ class PitchRange(AbjadValueObject):
             True
 
         Returns true or false.
-        '''
+        """
         return super(PitchRange, self).__eq__(argument)
 
     def __format__(self, format_specification=''):
-        r'''Formats pitch range.
+        """
+        Formats pitch range.
 
         Set `format_specification` to `''` or `'storage'`.
         Interprets `''` equal to `'storage'`.
 
         Returns string.
-        '''
-        import abjad
+        """
         if format_specification in ('', 'storage'):
-            return abjad.StorageFormatManager(self).get_storage_format()
+            return StorageFormatManager(self).get_storage_format()
         return str(self)
 
     def __hash__(self):
-        r'''Hashes pitch range.
+        """
+        Hashes pitch range.
 
         Required to be explicitly redefined on Python 3 if __eq__ changes.
 
         Returns integer.
-        '''
+        """
         return super(PitchRange, self).__hash__()
 
     def __illustrate__(self):
-        r"""Illustrates pitch range.
+        r"""
+        Illustrates pitch range.
 
         ..  container:: example
 
@@ -393,7 +400,8 @@ class PitchRange(AbjadValueObject):
         return lilypond_file
 
     def __lt__(self, argument):
-        r'''Is true when start pitch of this pitch-range is less than start
+        """
+        Is true when start pitch of this pitch-range is less than start
         pitch of `argument` pitch range.
 
         ..  container:: example
@@ -424,7 +432,7 @@ class PitchRange(AbjadValueObject):
             False
 
         Returns true or false.
-        '''
+        """
         try:
             argument = type(self)(argument)
         except (TypeError, ValueError):
@@ -482,8 +490,7 @@ class PitchRange(AbjadValueObject):
                     return self.start_pitch < pitch < self.stop_pitch
 
     def _get_format_specification(self):
-        import abjad
-        return abjad.FormatSpecification(
+        return FormatSpecification(
             self,
             coerce_for_equality=True,
             repr_is_indented=False,
@@ -578,7 +585,8 @@ class PitchRange(AbjadValueObject):
 
     @property
     def range_string(self):
-        r'''Gets range string of pitch range.
+        """
+        Gets range string of pitch range.
 
         ..  container:: example
 
@@ -587,40 +595,43 @@ class PitchRange(AbjadValueObject):
             '[C3, C7]'
 
         Returns string.
-        '''
+        """
         return self._get_named_range_string()
 
     @property
     def start_pitch(self):
-        r'''Start pitch of pitch range.
+        """
+        Start pitch of pitch range.
 
         >>> pitch_range = abjad.PitchRange('[C3, C7]')
         >>> pitch_range.start_pitch
         NamedPitch('c')
 
         Returns pitch.
-        '''
+        """
         if self._start is None:
             return None
         return self._start[0]
 
     @property
     def start_pitch_is_included_in_range(self):
-        r'''Is true when start pitch is included in range.
+        """
+        Is true when start pitch is included in range.
 
         >>> pitch_range = abjad.PitchRange('[C3, C7]')
         >>> pitch_range.start_pitch_is_included_in_range
         True
 
         Returns true or false.
-        '''
+        """
         if self._start is None:
             return True
         return self._start[1] == 'inclusive'
 
     @property
     def stop_pitch(self):
-        r"""Stop pitch of pitch range.
+        """
+        Stop pitch of pitch range.
 
         >>> pitch_range = abjad.PitchRange('[C3, C7]')
         >>> pitch_range.stop_pitch
@@ -634,14 +645,15 @@ class PitchRange(AbjadValueObject):
 
     @property
     def stop_pitch_is_included_in_range(self):
-        r'''Is true when stop pitch is included in range.
+        """
+        Is true when stop pitch is included in range.
 
         >>> pitch_range = abjad.PitchRange('[C3, C7]')
         >>> pitch_range.stop_pitch_is_included_in_range
         True
 
         Returns true or false.
-        '''
+        """
         if self._stop is None:
             return True
         return self._stop[1] == 'inclusive'
@@ -655,7 +667,8 @@ class PitchRange(AbjadValueObject):
         start_pitch_is_included_in_range=True,
         stop_pitch_is_included_in_range=True,
         ):
-        r'''Initializes pitch range from numbers.
+        """
+        Initializes pitch range from numbers.
 
         ..  container:: example
 
@@ -663,7 +676,7 @@ class PitchRange(AbjadValueObject):
             PitchRange('[F#2, G5]')
 
         Returns pitch range.
-        '''
+        """
         import abjad
         if start_pitch is None:
             start_pitch_string = '-inf'
@@ -691,7 +704,7 @@ class PitchRange(AbjadValueObject):
 
     @classmethod
     def is_range_string(class_, argument):
-        '''Is true when `argument` is a pitch range string.
+        """Is true when `argument` is a pitch range string.
 
         ..  container:: example
 
@@ -717,13 +730,14 @@ class PitchRange(AbjadValueObject):
         brackets and round parentheses.
 
         Returns true or false.
-        '''
+        """
         if not isinstance(argument, str):
             return False
         return bool(constants._range_string_regex.match(argument))
 
     def list_octave_transpositions(self, pitch_carrier):
-        r"""Lists octave transpositions of `pitch_carrier` in pitch range.
+        """
+        Lists octave transpositions of `pitch_carrier` in pitch range.
 
         ..  container:: example
 
@@ -775,7 +789,8 @@ class PitchRange(AbjadValueObject):
         return result
 
     def voice_pitch_class(self, pitch_class):
-        r"""Voices `pitch_class`:
+        """
+        Voices `pitch_class`:
 
         ..  container:: example
 

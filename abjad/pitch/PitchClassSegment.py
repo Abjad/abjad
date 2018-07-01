@@ -1,12 +1,13 @@
 import inspect
 from abjad import enums
 from abjad.system.Signature import Signature
-from abjad.pitch.Segment import Segment
-from abjad.top import new
+from abjad.top.new import new
+from .Segment import Segment
 
 
 class PitchClassSegment(Segment):
-    r'''Pitch-class segment.
+    r"""
+    Pitch-class segment.
 
     ..  container:: example
 
@@ -109,7 +110,7 @@ class PitchClassSegment(Segment):
                     \override Score.BarLine.transparent = ##f
                 }
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -133,7 +134,8 @@ class PitchClassSegment(Segment):
         string_template_callback='_make___add___string_template',
         )
     def __add__(self, argument):
-        r'''Adds `argument` to segment.
+        r"""
+        Adds `argument` to segment.
 
         ..  container:: example
 
@@ -746,7 +748,7 @@ class PitchClassSegment(Segment):
                 }
 
         Returns new segment.
-        '''
+        """
         if self._expression:
             return self._update_expresion(inspect.currentframe())
         argument = type(self)(items=argument)
@@ -754,7 +756,8 @@ class PitchClassSegment(Segment):
         return type(self)(items=items)
 
     def __contains__(self, argument):
-        r'''Is true when pitch-class segment contains `argument`.
+        r"""
+        Is true when pitch-class segment contains `argument`.
 
         ..  container:: example
 
@@ -784,11 +787,12 @@ class PitchClassSegment(Segment):
             False
 
         Returns true or false.
-        '''
+        """
         return super(PitchClassSegment, self).__contains__(argument)
 
     def __format__(self, format_specification=''):
-        r'''Formats segment.
+        r"""
+        Formats segment.
 
         ..  container:: example
 
@@ -866,7 +870,7 @@ class PitchClassSegment(Segment):
                 }
 
         Returns string.
-        '''
+        """
         superclass = super(PitchClassSegment, self)
         return superclass.__format__(format_specification=format_specification)
 
@@ -875,7 +879,8 @@ class PitchClassSegment(Segment):
         string_template_callback='_make___getitem___string_template',
         )
     def __getitem__(self, argument):
-        r'''Gets `argument` from segment.
+        r"""
+        Gets `argument` from segment.
 
         ..  container:: example
 
@@ -1185,7 +1190,7 @@ class PitchClassSegment(Segment):
             >>> isinstance(segment, abjad.PitchClassSegment)
             True
 
-        '''
+        """
         if self._expression:
             return self._update_expression(
                 inspect.currentframe(),
@@ -1195,7 +1200,8 @@ class PitchClassSegment(Segment):
         return superclass.__getitem__(argument)
 
     def __illustrate__(self, expression_markup_direction=enums.Up, **keywords):
-        r'''Illustrates segment.
+        r"""
+        Illustrates segment.
 
         ..  container:: example
 
@@ -1254,7 +1260,7 @@ class PitchClassSegment(Segment):
             >>> isinstance(segment.__illustrate__(), prototype)
             True
 
-        '''
+        """
         superclass = super(PitchClassSegment, self)
         return superclass.__illustrate__(
             expression_markup_direction=expression_markup_direction,
@@ -1262,7 +1268,8 @@ class PitchClassSegment(Segment):
             )
 
     def __mul__(self, n):
-        r'''Multiplies pitch-class segment by `n`.
+        r"""
+        Multiplies pitch-class segment by `n`.
 
         ..  container:: example
 
@@ -1271,11 +1278,12 @@ class PitchClassSegment(Segment):
             PitchClassSegment([10, 10.5, 6, 7, 10.5, 7, 10, 10.5, 6, 7, 10.5, 7])
 
         Returns new pitch-class segment.
-        '''
+        """
         return super(PitchClassSegment, self).__mul__(n)
 
     def __repr__(self):
-        r'''Gets interpreter representation.
+        r"""
+        Gets interpreter representation.
 
         ..  container:: example
 
@@ -1286,7 +1294,7 @@ class PitchClassSegment(Segment):
             PitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
 
         Returns string.
-        '''
+        """
         import abjad
         if self.item_class is abjad.NamedPitchClass:
             contents = ' '.join([str(_) for _ in self])
@@ -1297,7 +1305,8 @@ class PitchClassSegment(Segment):
         return '{}({})'.format(type(self).__name__, contents)
 
     def __rmul__(self, n):
-        r'''Multiplies `n` by pitch-class segment.
+        r"""
+        Multiplies `n` by pitch-class segment.
 
         ..  container:: example
 
@@ -1306,11 +1315,12 @@ class PitchClassSegment(Segment):
             PitchClassSegment([10, 10.5, 6, 7, 10.5, 7, 10, 10.5, 6, 7, 10.5, 7])
 
         Returns new pitch-class segment.
-        '''
+        """
         return super(PitchClassSegment, self).__rmul__(n)
 
     def __str__(self):
-        r'''Gets string representation of pitch-class segment.
+        r"""
+        Gets string representation of pitch-class segment.
 
         ..  container::
 
@@ -1332,7 +1342,7 @@ class PitchClassSegment(Segment):
             'PC<bf bqf fs g bqf g>'
 
         Returns string.
-        '''
+        """
         import abjad
         items = [str(_) for _ in self]
         separator = ' '
@@ -1403,7 +1413,8 @@ class PitchClassSegment(Segment):
 
     @property
     def item_class(self):
-        r'''Gets item class of segment.
+        r"""
+        Gets item class of segment.
 
         ..  container:: example
 
@@ -1438,13 +1449,14 @@ class PitchClassSegment(Segment):
             >>> type(segment.item_class)
             <class 'abc.ABCMeta'>
 
-        '''
+        """
         superclass = super(PitchClassSegment, self)
         return superclass.item_class
 
     @property
     def items(self):
-        r'''Gets items in segment.
+        r"""
+        Gets items in segment.
 
         ..  container:: example
 
@@ -1518,14 +1530,15 @@ class PitchClassSegment(Segment):
             >>> isinstance(segment.items, list)
             True
 
-        '''
+        """
         superclass = super(PitchClassSegment, self)
         return superclass.items
 
     ### PUBLIC METHODS ###
 
     def count(self, item):
-        r'''Counts `item` in segment.
+        """
+        Counts `item` in segment.
 
         ..  container:: example
 
@@ -1556,13 +1569,14 @@ class PitchClassSegment(Segment):
             >>> isinstance(segment.count('text'), int)
             True
 
-        '''
+        """
         superclass = super(PitchClassSegment, self)
         return superclass.count(item)
 
     @classmethod
     def from_selection(class_, selection, item_class=None):
-        r'''Initializes segment from `selection`.
+        """
+        Initializes segment from `selection`.
 
         ..  container:: example
 
@@ -1584,7 +1598,7 @@ class PitchClassSegment(Segment):
             >>> segment
             PitchClassSegment("c d fs a b c g")
 
-        '''
+        """
         import abjad
         pitch_segment = abjad.PitchSegment.from_selection(selection)
         return class_(
@@ -1593,7 +1607,8 @@ class PitchClassSegment(Segment):
             )
 
     def has_duplicates(self):
-        r'''Is true when segment contains duplicate items.
+        """
+        Is true when segment contains duplicate items.
 
         ..  container:: example
 
@@ -1618,12 +1633,13 @@ class PitchClassSegment(Segment):
             False
 
         Returns true or false.
-        '''
+        """
         import abjad
         return len(abjad.PitchClassSet(self)) < len(self)
 
     def index(self, item):
-        r'''Gets index of `item` in segment.
+        """
+        Gets index of `item` in segment.
 
         ..  container:: example
 
@@ -1654,7 +1670,7 @@ class PitchClassSegment(Segment):
             >>> isinstance(segment.index(-1.5), int)
             True
 
-        '''
+        """
         superclass = super(PitchClassSegment, self)
         return superclass.index(item)
 
@@ -1664,7 +1680,8 @@ class PitchClassSegment(Segment):
         subscript='axis',
         )
     def invert(self, axis=None):
-        r'''Inverts segment.
+        r"""
+        Inverts segment.
 
         ..  container:: example
 
@@ -1832,14 +1849,15 @@ class PitchClassSegment(Segment):
             >>> isinstance(segment, abjad.PitchClassSegment)
             True
 
-        '''
+        """
         if self._expression:
             return self._update_expression(inspect.currentframe())
         items = [_.invert(axis=axis) for _ in self]
         return type(self)(items=items)
 
     def make_notes(self, n=None, written_duration=None):
-        r'''Makes first `n` notes in segment.
+        r"""
+        Makes first `n` notes in segment.
 
         ..  container:: example
 
@@ -1911,7 +1929,7 @@ class PitchClassSegment(Segment):
             >>> isinstance(segment.make_notes(), abjad.Selection)
             True
 
-        '''
+        """
         import abjad
         n = n or len(self)
         written_duration = written_duration or abjad.Duration(1, 8)
@@ -1931,7 +1949,8 @@ class PitchClassSegment(Segment):
         subscript='n',
         )
     def multiply(self, n=1):
-        r'''Multiplies pitch-classes in segment by `n`.
+        r"""
+        Multiplies pitch-classes in segment by `n`.
 
         ..  container:: example
 
@@ -2239,7 +2258,7 @@ class PitchClassSegment(Segment):
             >>> isinstance(segment, abjad.PitchClassSegment)
             True
 
-        '''
+        """
         import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -2249,7 +2268,8 @@ class PitchClassSegment(Segment):
 
     @Signature()
     def permute(self, row=None):
-        r'''Permutes segment by twelve-tone `row`.
+        r"""
+        Permutes segment by twelve-tone `row`.
 
         ..  container:: example
 
@@ -2342,7 +2362,7 @@ class PitchClassSegment(Segment):
                 }
 
         Returns new segment.
-        '''
+        """
         import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -2352,7 +2372,8 @@ class PitchClassSegment(Segment):
 
     @Signature(is_operator=True, method_name='R')
     def retrograde(self):
-        r'''Gets retrograde of segment.
+        r"""
+        Gets retrograde of segment.
 
         ..  container:: example
 
@@ -2523,7 +2544,7 @@ class PitchClassSegment(Segment):
             >>> isinstance(segment, abjad.PitchClassSegment)
             True
 
-        '''
+        """
         if self._expression:
             return self._update_expression(inspect.currentframe())
         return type(self)(items=reversed(self))
@@ -2534,7 +2555,8 @@ class PitchClassSegment(Segment):
         subscript='n',
         )
     def rotate(self, n=0, stravinsky=False):
-        r'''Rotates segment by index `n`.
+        r"""
+        Rotates segment by index `n`.
 
         ..  container:: example
 
@@ -2849,7 +2871,7 @@ class PitchClassSegment(Segment):
             >>> isinstance(segment, abjad.PitchClassSegment)
             True
 
-        '''
+        """
         import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -2862,7 +2884,8 @@ class PitchClassSegment(Segment):
         return type(self)(items=items)
 
     def to_pitch_classes(self):
-        r'''Changes to pitch-classes.
+        r"""
+        Changes to pitch-classes.
 
         ..  container:: example
 
@@ -2966,12 +2989,12 @@ class PitchClassSegment(Segment):
                 }
 
         Returns new segment.
-        '''
-        import abjad
-        return abjad.new(self)
+        """
+        return new(self)
 
     def to_pitches(self):
-        r'''Changes to pitches.
+        r"""
+        Changes to pitches.
 
         ..  container:: example
 
@@ -3099,7 +3122,7 @@ class PitchClassSegment(Segment):
                 >>
 
         Returns new segment.
-        '''
+        """
         import abjad
         class_ = abjad.Pitch
         item_class = class_._to_pitch_item_class(self.item_class)
@@ -3111,7 +3134,8 @@ class PitchClassSegment(Segment):
         subscript='n',
         )
     def transpose(self, n=0):
-        r'''Transposes segment by index `n`.
+        r"""
+        Transposes segment by index `n`.
 
         ..  container:: example
 
@@ -3353,14 +3377,15 @@ class PitchClassSegment(Segment):
             >>> isinstance(segment, abjad.PitchClassSegment)
             True
 
-        '''
+        """
         if self._expression:
             return self._update_expression(inspect.currentframe())
         items = [_.transpose(n=n) for _ in self]
         return type(self)(items=items)
 
     def voice_horizontally(self, initial_octave=4):
-        r'''Voices segment with each pitch as close to the previous pitch as
+        r"""
+        Voices segment with each pitch as close to the previous pitch as
         possible.
 
         ..  todo:: Should be implemented somewhere else.
@@ -3430,7 +3455,7 @@ class PitchClassSegment(Segment):
             >>> voiced_segment
             PitchSegment("c' b d' e' f' g' e' b a c'")
 
-        '''
+        """
         import abjad
         initial_octave = abjad.Octave(initial_octave)
         pitches = []
@@ -3459,7 +3484,8 @@ class PitchClassSegment(Segment):
             )
 
     def voice_vertically(self, initial_octave=4):
-        r'''Voices segment with each pitch higher than the previous.
+        r"""
+        Voices segment with each pitch higher than the previous.
 
         ..  todo:: Should be implemented somewhere else.
 
@@ -3467,12 +3493,8 @@ class PitchClassSegment(Segment):
 
             Voices vertically:
 
-            >>> import abjadext.tonality
-            >>> scale_degree_numbers = [1, 3, 5, 7, 9, 11, 13]
-            >>> scale = abjadext.tonality.Scale(('c', 'minor'))
-            >>> segment = abjad.PitchClassSegment((
-            ...     scale.scale_degree_to_named_pitch_class(x)
-            ...     for x in scale_degree_numbers))
+            >>> string = "c' ef' g' bf' d'' f'' af''"
+            >>> segment = abjad.PitchClassSegment(string)
             >>> abjad.show(segment) # doctest: +SKIP
 
             >>> voiced_segment = segment.voice_vertically()
@@ -3526,7 +3548,7 @@ class PitchClassSegment(Segment):
             >>> voiced_segment
             PitchSegment("c' ef' g' bf' d'' f'' af''")
 
-        '''
+        """
         import abjad
         initial_octave = abjad.Octave(initial_octave)
         pitches = []

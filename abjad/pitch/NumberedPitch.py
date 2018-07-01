@@ -1,10 +1,12 @@
 from abjad import mathtools
-from abjad.pitch.Pitch import Pitch
+from abjad.system.FormatSpecification import FormatSpecification
 from . import constants
+from .Pitch import Pitch
 
 
 class NumberedPitch(Pitch):
-    r'''Numbered pitch.
+    r"""
+    Numbered pitch.
 
     ..  container:: example
 
@@ -66,7 +68,7 @@ class NumberedPitch(Pitch):
                 cs''1 * 1/4
             }
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -91,7 +93,8 @@ class NumberedPitch(Pitch):
     ### SPECIAL METHODS ###
 
     def __add__(self, argument):
-        r'''Adds `argument` to numbered pitch.
+        """
+        Adds `argument` to numbered pitch.
 
         ..  container:: example
 
@@ -102,13 +105,13 @@ class NumberedPitch(Pitch):
             NumberedPitch(25)
 
         Returns new numbered pitch.
-        '''
+        """
         argument = type(self)(argument)
         semitones = float(self) + float(argument)
         return type(self)(semitones)
 
     def __lt__(self, argument):
-        r'''Is true when `argument` can be coerced to a numbered pitch and when this
+        r"""Is true when `argument` can be coerced to a numbered pitch and when this
         numbered pitch is less than `argument`.
 
         ..  container:: example
@@ -139,7 +142,7 @@ class NumberedPitch(Pitch):
             False
 
         Returns true or false.
-        '''
+        """
         try:
             argument = type(self)(argument)
         except (ValueError, TypeError):
@@ -147,7 +150,8 @@ class NumberedPitch(Pitch):
         return self.number < argument.number
 
     def __neg__(self):
-        r'''Negates numbered pitch.
+        """
+        Negates numbered pitch.
 
         ..  container:: example
 
@@ -158,11 +162,12 @@ class NumberedPitch(Pitch):
             NumberedPitch(13.5)
 
         Returns new numbered pitch.
-        '''
+        """
         return type(self)(-self.number)
 
     def __radd__(self, argument):
-        r'''Adds numbered pitch to `argument`.
+        """
+        Adds numbered pitch to `argument`.
 
         ..  container:: example
 
@@ -175,19 +180,21 @@ class NumberedPitch(Pitch):
             NumberedPitch(25)
 
         Returns new numbered pitch.
-        '''
+        """
         argument = type(self)(argument)
         return argument.__add__(self)
 
     def __str__(self):
-        r'''Gets string representation of numbered pitch.
+        """
+        Gets string representation of numbered pitch.
 
         Returns string.
-        '''
+        """
         return str(self.number)
 
     def __sub__(self, argument):
-        r'''Subtracts `argument` from numbered pitch.
+        """
+        Subtracts `argument` from numbered pitch.
 
         ..  container:: example
 
@@ -201,7 +208,7 @@ class NumberedPitch(Pitch):
             NumberedInterval(-1)
 
         Returns numbered interval.
-        '''
+        """
         import abjad
         if isinstance(argument, type(self)):
             return abjad.NumberedInterval.from_pitch_carriers(
@@ -213,8 +220,8 @@ class NumberedPitch(Pitch):
     ### PRIVATE METHODS ###
 
     def _apply_accidental(self, accidental=None):
-        from abjad.pitch.Accidental import Accidental
-        accidental = Accidental(accidental)
+        import abjad
+        accidental = abjad.Accidental(accidental)
         semitones = self.number + accidental.semitones
         return type(self)(semitones)
 
@@ -257,8 +264,7 @@ class NumberedPitch(Pitch):
         return result
 
     def _get_format_specification(self):
-        import abjad
-        return abjad.FormatSpecification(
+        return FormatSpecification(
             client=self,
             coerce_for_equality=True,
             repr_is_indented=False,
@@ -274,7 +280,8 @@ class NumberedPitch(Pitch):
 
     @property
     def accidental(self):
-        r'''Gets accidental of numbered pitch.
+        """
+        Gets accidental of numbered pitch.
 
         ..  container:: example
 
@@ -282,12 +289,13 @@ class NumberedPitch(Pitch):
             Accidental('sharp')
 
         Returns accidental.
-        '''
+        """
         return self.pitch_class.accidental
 
     @property
     def arrow(self):
-        r'''Gets arrow of numbered pitch.
+        """
+        Gets arrow of numbered pitch.
 
         ..  container:: example
 
@@ -311,12 +319,13 @@ class NumberedPitch(Pitch):
             Down
 
         Returns up, down or none.
-        '''
+        """
         return self._pitch_class.arrow
 
     @property
     def hertz(self):
-        r'''Gets frequency of numbered pitch in Hertz.
+        """
+        Gets frequency of numbered pitch in Hertz.
 
         ..  container:: example
 
@@ -330,12 +339,13 @@ class NumberedPitch(Pitch):
             523.25...
 
         Returns float.
-        '''
+        """
         return super(NumberedPitch, self).hertz
 
     @property
     def name(self):
-        r'''Gets name of numbered pitch.
+        """
+        Gets name of numbered pitch.
 
         ..  container:: example
 
@@ -343,7 +353,7 @@ class NumberedPitch(Pitch):
             "cs''"
 
         Returns string
-        '''
+        """
         return '{}{}'.format(
             self.pitch_class.name,
             self.octave.ticks,
@@ -351,7 +361,8 @@ class NumberedPitch(Pitch):
 
     @property
     def number(self):
-        r'''Gets number of numbered pitch.
+        """
+        Gets number of numbered pitch.
 
         ..  container:: example
 
@@ -359,7 +370,7 @@ class NumberedPitch(Pitch):
             13
 
         Returns number.
-        '''
+        """
         pc_number = float(self.pitch_class)
         octave_base_pitch = (self.octave.number - 4) * 12
         return mathtools.integer_equivalent_number_to_integer(
@@ -368,7 +379,8 @@ class NumberedPitch(Pitch):
 
     @property
     def octave(self):
-        r'''Gets octave of numbered pitch.
+        """
+        Gets octave of numbered pitch.
 
         ..  container:: example
 
@@ -376,12 +388,13 @@ class NumberedPitch(Pitch):
             Octave(5)
 
         Returns octave.
-        '''
+        """
         return self._octave
 
     @property
     def pitch_class(self):
-        r'''Gets pitch-class of numbered pitch.
+        """
+        Gets pitch-class of numbered pitch.
 
         ..  container:: example
 
@@ -389,14 +402,15 @@ class NumberedPitch(Pitch):
             NumberedPitchClass(1)
 
         Returns numbered pitch-class.
-        '''
+        """
         return self._pitch_class
 
     ### PUBLIC METHODS ###
 
     @classmethod
     def from_hertz(class_, hertz):
-        r'''Makes numbered pitch from `hertz`.
+        """
+        Makes numbered pitch from `hertz`.
 
         ..  container:: example
 
@@ -411,11 +425,12 @@ class NumberedPitch(Pitch):
             NumberedPitch(12)
 
         Returns newly constructed numbered pitch.
-        '''
+        """
         return super(NumberedPitch, class_).from_hertz(hertz)
 
     def get_name(self, locale=None):
-        r'''Gets name of numbered pitch name according to `locale`.
+        """
+        Gets name of numbered pitch name according to `locale`.
 
         ..  container:: example
 
@@ -428,12 +443,13 @@ class NumberedPitch(Pitch):
         Set `locale` to `'us'` or none.
 
         Returns string.
-        '''
+        """
         import abjad
         return abjad.NamedPitch(self).get_name(locale=locale)
 
     def interpolate(self, stop_pitch, fraction):
-        r'''Interpolates between numbered pitch and `stop_pitch` by `fraction`.
+        """
+        Interpolates between numbered pitch and `stop_pitch` by `fraction`.
 
         ..  container:: example
 
@@ -472,7 +488,7 @@ class NumberedPitch(Pitch):
             NumberedPitch(0)
 
         Returns new numbered pitch.
-        '''
+        """
         import abjad
         assert 0 <= fraction <= 1, repr(fraction)
         stop_pitch = type(self)(stop_pitch)
@@ -494,7 +510,8 @@ class NumberedPitch(Pitch):
         return pitch
 
     def invert(self, axis=None):
-        r'''Inverts numbered pitch around `axis`.
+        """
+        Inverts numbered pitch around `axis`.
 
         ..  container:: example
 
@@ -524,11 +541,12 @@ class NumberedPitch(Pitch):
             NumberedPitch(-8)
 
         Returns new numbered pitch.
-        '''
+        """
         return Pitch.invert(self, axis=axis)
 
     def multiply(self, n=1):
-        r'''Multiplies numbered pitch by index `n`.
+        """
+        Multiplies numbered pitch by index `n`.
 
         ..  container:: example
 
@@ -536,11 +554,12 @@ class NumberedPitch(Pitch):
             NumberedPitch(42)
 
         Returns new numbered pitch.
-        '''
+        """
         return super(NumberedPitch, self).multiply(n=n)
 
     def transpose(self, n=0):
-        r'''Tranposes numbered pitch by `n` semitones.
+        """
+        Tranposes numbered pitch by `n` semitones.
 
         ..  container:: example
 
@@ -548,7 +567,7 @@ class NumberedPitch(Pitch):
             NumberedPitch(14)
 
         Returns new numbered pitch.
-        '''
+        """
         import abjad
         interval = abjad.NumberedInterval(n)
         return type(self)(float(self) + float(interval))

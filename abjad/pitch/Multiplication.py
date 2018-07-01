@@ -1,8 +1,10 @@
+from abjad import markups
 from abjad.system.AbjadValueObject import AbjadValueObject
 
 
 class Multiplication(AbjadValueObject):
-    r'''Multiplication operator.
+    """
+    Multiplication operator.
 
     ..  container:: example
 
@@ -15,7 +17,7 @@ class Multiplication(AbjadValueObject):
         Multiplication(n=5)
 
     Object model of twelve-tone multiplication operator.
-    '''
+    """
 
     ### CLASS VARIABLES ##
 
@@ -31,7 +33,8 @@ class Multiplication(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __add__(self, operator):
-        r'''Composes multiplication and `operator`.
+        r"""
+        Composes multiplication and `operator`.
 
         ..  container:: example
 
@@ -98,12 +101,13 @@ class Multiplication(AbjadValueObject):
                 }
 
         Returns compound operator.
-        '''
+        """
         import abjad
         return abjad.CompoundOperator._compose_operators(self, operator)
 
     def __call__(self, argument):
-        r"""Calls multiplication on `argument`.
+        """
+        Calls multiplication on `argument`.
 
         ..  container:: example
 
@@ -134,7 +138,8 @@ class Multiplication(AbjadValueObject):
         return result
 
     def __radd__(self, operator):
-        r'''Right-addition not defined on multiplication.
+        """
+        Right-addition not defined on multiplication.
 
         ..  container:: example
 
@@ -144,13 +149,14 @@ class Multiplication(AbjadValueObject):
             NotImplementedError: right-addition not defined on Multiplication.
 
         Raises not implemented error.
-        '''
+        """
         message = 'right-addition not defined on {}.'
         message = message.format(type(self).__name__)
         raise NotImplementedError(message)
 
     def __str__(self):
-        r'''Gets string representation of operator.
+        """
+        Gets string representation of operator.
 
         ..  container:: example
 
@@ -162,7 +168,7 @@ class Multiplication(AbjadValueObject):
             >>> str(abjad.Multiplication(n=5))
             'M5'
 
-        '''
+        """
         string = 'M{}'
         string = string.format(self.n)
         return string
@@ -170,10 +176,9 @@ class Multiplication(AbjadValueObject):
     ### PRIVATE METHODS ###
 
     def _get_markup(self, direction=None):
-        import abjad
-        operator = abjad.Markup('M', direction=direction)
-        subscript = abjad.Markup(self.n).sub()
-        markup = abjad.Markup.concat([operator, subscript])
+        operator = markups.Markup('M', direction=direction)
+        subscript = markups.Markup(self.n).sub()
+        markup = markups.Markup.concat([operator, subscript])
         return markup
 
     def _is_identity_operator(self):
@@ -185,7 +190,8 @@ class Multiplication(AbjadValueObject):
 
     @property
     def n(self):
-        r'''Gets index of multiplication.
+        """
+        Gets index of multiplication.
 
         ..  container:: example
 
@@ -200,5 +206,5 @@ class Multiplication(AbjadValueObject):
             5
 
         Set to integer or none.
-        '''
+        """
         return self._n

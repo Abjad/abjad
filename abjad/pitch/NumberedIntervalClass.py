@@ -1,9 +1,11 @@
 from abjad import mathtools
-from abjad.pitch.IntervalClass import IntervalClass
+from abjad.system.FormatSpecification import FormatSpecification
+from .IntervalClass import IntervalClass
 
 
 class NumberedIntervalClass(IntervalClass):
-    '''Numbered interval-class.
+    """
+    Numbered interval-class.
 
     ..  container:: example
 
@@ -32,7 +34,7 @@ class NumberedIntervalClass(IntervalClass):
         >>> abjad.NumberedIntervalClass('-P8')
         NumberedIntervalClass(-12)
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -48,17 +50,19 @@ class NumberedIntervalClass(IntervalClass):
     ### SPECIAL METHODS ###
 
     def __abs__(self):
-        r'''Gets absolute value of numbered interval-class.
+        """
+        Gets absolute value of numbered interval-class.
 
         Returns new numbered interval-class.
-        '''
+        """
         return type(self)(abs(self.number))
 
     def __add__(self, argument):
-        r'''Adds `argument` to numbered interval-class.
+        """
+        Adds `argument` to numbered interval-class.
 
         Returns new numbered interval-class.
-        '''
+        """
         try:
             argument = type(self)(argument)
         except Exception:
@@ -66,10 +70,11 @@ class NumberedIntervalClass(IntervalClass):
         return type(self)(float(self) + float(argument))
 
     def __radd__(self, argument):
-        r'''Adds `argument` to numbered interval-class.
+        """
+        Adds `argument` to numbered interval-class.
 
         Returns new numbered interval-class.
-        '''
+        """
         try:
             argument = type(self)(argument)
         except Exception:
@@ -77,7 +82,8 @@ class NumberedIntervalClass(IntervalClass):
         return type(self)(float(self) + float(argument))
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is a numbered interval-class with number
+        """
+        Is true when `argument` is a numbered interval-class with number
         equal to that of this numbered interval-class.
 
         ..  container:: example
@@ -108,25 +114,28 @@ class NumberedIntervalClass(IntervalClass):
             True
 
         Returns true or false.
-        '''
+        """
         return super(NumberedIntervalClass, self).__eq__(argument)
 
     def __float__(self):
-        r'''Coerce to semitones as float.
+        """
+        Coerce to semitones as float.
 
         Returns float.
-        '''
+        """
         return float(self._number)
 
     def __hash__(self):
-        r'''Hashes numbered interval-class.
+        """
+        Hashes numbered interval-class.
 
         Returns integer.
-        '''
+        """
         return super(NumberedIntervalClass, self).__hash__()
 
     def __lt__(self, argument):
-        r'''Is true when numbered interval-class is less than `argument`.
+        """
+        Is true when numbered interval-class is less than `argument`.
 
         ..  container:: example
 
@@ -156,7 +165,7 @@ class NumberedIntervalClass(IntervalClass):
             False
 
         Returns true or false.
-        '''
+        """
         try:
             argument = type(self)(argument)
         except Exception:
@@ -164,7 +173,8 @@ class NumberedIntervalClass(IntervalClass):
         return self.number < argument.number
 
     def __str__(self):
-        r'''Gets string representation of numbered interval-class.
+        """
+        Gets string representation of numbered interval-class.
 
         ..  container:: example
 
@@ -177,17 +187,18 @@ class NumberedIntervalClass(IntervalClass):
             >>> str(abjad.NumberedIntervalClass(13))
             '+1'
 
-        '''
+        """
         string = super(NumberedIntervalClass, self).__str__()
         if 0 < self.number:
             string = '+' + string
         return string
 
     def __sub__(self, argument):
-        r'''Subtracts `argument` from numbered interval-class.
+        """
+        Subtracts `argument` from numbered interval-class.
 
         Returns new numbered interval-class.
-        '''
+        """
         try:
             argument = type(self)(argument)
         except Exception:
@@ -215,8 +226,7 @@ class NumberedIntervalClass(IntervalClass):
         self._from_number(float(argument))
 
     def _get_format_specification(self):
-        import abjad
-        return abjad.FormatSpecification(
+        return FormatSpecification(
             client=self,
             coerce_for_equality=True,
             repr_is_indented=False,
@@ -228,10 +238,11 @@ class NumberedIntervalClass(IntervalClass):
 
     @property
     def direction_number(self):
-        r'''Gets direction number of numbered interval-class.
+        """
+        Gets direction number of numbered interval-class.
 
         Returns -1, 0 or 1.
-        '''
+        """
         if self.number < 1:
             return -1
         elif self.number == 1:
@@ -243,7 +254,7 @@ class NumberedIntervalClass(IntervalClass):
 
     @classmethod
     def from_pitch_carriers(class_, pitch_carrier_1, pitch_carrier_2):
-        '''Makes numbered interval-class from `pitch_carrier_1` and
+        """Makes numbered interval-class from `pitch_carrier_1` and
         `pitch_carrier_2`.
 
         ..  container:: example
@@ -291,7 +302,7 @@ class NumberedIntervalClass(IntervalClass):
             NumberedIntervalClass(-2)
 
         Returns numbered interval-class.
-        '''
+        """
         import abjad
         interval = abjad.NumberedInterval.from_pitch_carriers(
             pitch_carrier_1,

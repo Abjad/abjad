@@ -12,6 +12,7 @@ from abjad import exceptions
 from abjad import mathtools
 from abjad import typings
 from abjad.markups import Markup
+from abjad.markups import MarkupCommand
 from abjad.mathtools.NonreducedFraction import NonreducedFraction
 from abjad.mathtools.Ratio import Ratio
 from abjad.scheme import Scheme
@@ -23,6 +24,7 @@ from abjad.top.sequence import sequence
 from abjad.utilities.Duration import Duration
 from abjad.utilities.Enumerator import Enumerator
 from abjad.utilities.Multiplier import Multiplier
+from .LilyPondLiteral import LilyPondLiteral
 
 
 @functools.total_ordering
@@ -831,17 +833,13 @@ class MetronomeMark(AbjadValueObject):
         if self.custom_markup is not None:
             return self.custom_markup
         duration_log = int(math.log(self.reference_duration.denominator, 2))
-        lhs = Markup.note_by_number(
-            duration_log,
-            self.reference_duration.dot_count,
-            stem_height,
-            )
-        lhs = lhs.general_align('Y', enums.Down).fontsize(-6)
-        equals = Markup('=')
-        units = Markup(self.units_per_minute)
-        rhs = equals + units
-        rhs = rhs.upright()
-        markup = lhs + rhs
+        string = 'abjad-metronome-mark-markup'
+        string += f' #{duration_log}'
+        string += f' #{self.reference_duration.dot_count}'
+        string += f' #{stem_height}'
+        string += f' #"{self.units_per_minute}"'
+        command = MarkupCommand(string)
+        markup = Markup(contents=[command])
         return markup
 
     ### PUBLIC PROPERTIES ###

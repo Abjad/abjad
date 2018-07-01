@@ -1,10 +1,10 @@
-from abjad.pitch.PitchClassSegment import PitchClassSegment
-from abjad.top import new
-
+from abjad.top.new import new
+from .PitchClassSegment import PitchClassSegment
 
 
 class TwelveToneRow(PitchClassSegment):
-    '''Twelve-tone row.
+    """
+    Twelve-tone row.
 
     ..  container:: example
 
@@ -28,7 +28,7 @@ class TwelveToneRow(PitchClassSegment):
         >>> row
         TwelveToneRow([1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0])
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -49,7 +49,8 @@ class TwelveToneRow(PitchClassSegment):
     ### SPECIAL METHODS ###
 
     def __call__(self, pitch_classes):
-        r'''Calls row on `pitch_classes`.
+        r"""
+        Calls row on `pitch_classes`.
 
         ..  container:: example
 
@@ -265,7 +266,7 @@ class TwelveToneRow(PitchClassSegment):
                 }
 
         Returns permuted pitch-classes in object of type `pitch_classes`.
-        '''
+        """
         import abjad
         new_pitch_classes = []
         for pitch_class in pitch_classes:
@@ -277,7 +278,8 @@ class TwelveToneRow(PitchClassSegment):
         return result
 
     def __getitem__(self, argument):
-        r'''Gets item or slice identified by `argument`.
+        r"""
+        Gets item or slice identified by `argument`.
 
         ..  container:: example
 
@@ -339,7 +341,7 @@ class TwelveToneRow(PitchClassSegment):
             >>> row[-6:]
             PitchClassSegment([5, 4, 10, 2, 8, 0])
 
-        '''
+        """
         import abjad
         item = self._collection.__getitem__(argument)
         try:
@@ -351,7 +353,8 @@ class TwelveToneRow(PitchClassSegment):
             return item
 
     def __illustrate__(self, **keywords):
-        r'''Illustrates row.
+        r"""
+        Illustrates row.
 
         ..  container:: example
 
@@ -420,12 +423,13 @@ class TwelveToneRow(PitchClassSegment):
             >>> type(row.__illustrate__())
             <class 'abjad.lilypondfile.LilyPondFile.LilyPondFile'>
 
-        '''
+        """
         superclass = super(PitchClassSegment, self)
         return superclass.__illustrate__(**keywords)
 
     def __mul__(self, argument):
-        r'''Multiplies row by `argument`.
+        r"""
+        Multiplies row by `argument`.
 
         ..  container:: example
 
@@ -525,11 +529,12 @@ class TwelveToneRow(PitchClassSegment):
             PitchClassSegment([1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0, 1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0])
 
         Returns pitch-class segment.
-        '''
+        """
         return PitchClassSegment(self) * argument
 
     def __rmul__(self, argument):
-        r'''Multiplies `argument` by row.
+        r"""
+        Multiplies `argument` by row.
 
         ..  container:: example
 
@@ -627,7 +632,7 @@ class TwelveToneRow(PitchClassSegment):
             >>> segment
             PitchClassSegment([1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0, 1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0])
 
-        '''
+        """
         return PitchClassSegment(self) * argument
 
     ### PRIVATE PROPERTIES ###
@@ -651,7 +656,8 @@ class TwelveToneRow(PitchClassSegment):
 
     @property
     def item_class(self):
-        r'''Gets item class of row.
+        """
+        Gets item class of row.
 
         ..  container:: example
 
@@ -681,13 +687,14 @@ class TwelveToneRow(PitchClassSegment):
             >>> type(row.item_class)
             <class 'abc.ABCMeta'>
 
-        '''
+        """
         superclass = super(PitchClassSegment, self)
         return superclass.item_class
 
     @property
     def items(self):
-        r'''Gets items in row.
+        """
+        Gets items in row.
 
         ..  container:: example
 
@@ -744,14 +751,15 @@ class TwelveToneRow(PitchClassSegment):
             >>> isinstance(row.items, list)
             True
 
-        '''
+        """
         superclass = super(PitchClassSegment, self)
         return superclass.items
 
     ### PUBLIC METHODS ###
 
     def count(self, item):
-        r'''Counts `item` in row.
+        """
+        Counts `item` in row.
 
         ..  container:: example
 
@@ -789,7 +797,7 @@ class TwelveToneRow(PitchClassSegment):
             >>> isinstance(row.count('text'), int)
             True
 
-        '''
+        """
         superclass = super(TwelveToneRow, self)
         return superclass.count(item)
 
@@ -799,16 +807,18 @@ class TwelveToneRow(PitchClassSegment):
         selection,
         item_class=None,
         ):
-        r'''Makes row from `selection`.
+        """
+        Makes row from `selection`.
 
         Not yet implemented.
 
         Returns twelve-tone row.
-        '''
+        """
         raise NotImplementedError
 
     def has_duplicates(self):
-        r'''Is false for all rows.
+        """
+        Is false for all rows.
 
         ..  container:: example
 
@@ -834,12 +844,13 @@ class TwelveToneRow(PitchClassSegment):
         Twelve-tone rows have no duplicates.
 
         Returns false.
-        '''
+        """
         superclass = super(TwelveToneRow, self)
         return superclass.has_duplicates()
 
     def index(self, item):
-        r'''Gets index of `item` in row.
+        """
+        Gets index of `item` in row.
 
         ..  container:: example
 
@@ -870,12 +881,13 @@ class TwelveToneRow(PitchClassSegment):
             >>> isinstance(row.index(9), int)
             True
 
-        '''
+        """
         superclass = super(TwelveToneRow, self)
         return superclass.index(item)
 
     def invert(self, axis=None):
-        r'''Inverts row about optional `axis`.
+        r"""
+        Inverts row about optional `axis`.
 
         ..  container:: example
 
@@ -1016,14 +1028,15 @@ class TwelveToneRow(PitchClassSegment):
             >>> inversion
             TwelveToneRow([9, 11, 1, 7, 4, 3, 5, 6, 0, 8, 2, 10])
 
-        '''
+        """
         if axis is None:
             axis = self[0]
         items = [pc.invert(axis=axis) for pc in self]
         return new(self, items=items)
 
     def multiply(self, n=1):
-        r'''Multiplies pitch-classes in row by `n`.
+        r"""
+        Multiplies pitch-classes in row by `n`.
 
         ..  container:: example
 
@@ -1127,12 +1140,13 @@ class TwelveToneRow(PitchClassSegment):
             >>> multiplication
             TwelveToneRow([1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0])
 
-        '''
+        """
         superclass = super(TwelveToneRow, self)
         return superclass.multiply(n=n)
 
     def retrograde(self):
-        r'''Gets retrograde of row.
+        r"""
+        Gets retrograde of row.
 
         ..  container:: example
 
@@ -1210,12 +1224,13 @@ class TwelveToneRow(PitchClassSegment):
             >>> retrograde
             TwelveToneRow([1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0])
 
-        '''
+        """
         superclass = super(TwelveToneRow, self)
         return superclass.retrograde()
 
     def rotate(self, n=0, stravinsky=False):
-        r'''Rotates row by index `n`.
+        r"""
+        Rotates row by index `n`.
 
         ..  container:: example
 
@@ -1351,12 +1366,13 @@ class TwelveToneRow(PitchClassSegment):
             >>> rotation
             TwelveToneRow([0, 10, 4, 7, 8, 6, 5, 11, 3, 9, 1, 2])
 
-        '''
+        """
         superclass = super(TwelveToneRow, self)
         return superclass.rotate(n=n, stravinsky=stravinsky)
 
     def transpose(self, n=0):
-        r'''Transposes row by index `n`.
+        r"""
+        Transposes row by index `n`.
 
         ..  container:: example
 
@@ -1463,6 +1479,6 @@ class TwelveToneRow(PitchClassSegment):
             >>> transposition
             TwelveToneRow([1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0])
 
-        '''
+        """
         superclass = super(TwelveToneRow, self)
         return superclass.transpose(n=n)

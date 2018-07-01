@@ -1,9 +1,11 @@
 import collections
-from abjad.system import AbjadValueObject
+from abjad.system.AbjadValueObject import AbjadValueObject
+from abjad.utilities.CyclicTuple import CyclicTuple
 
 
 class Duplication(AbjadValueObject):
-    r'''Duplication.
+    """
+    Duplication.
 
     ..  container:: example:
 
@@ -15,7 +17,7 @@ class Duplication(AbjadValueObject):
             period=4,
             )
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -57,7 +59,8 @@ class Duplication(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, argument):
-        r'''Calls rotation on `argument`.
+        """
+        Calls rotation on `argument`.
 
         ..  container:: example
 
@@ -151,7 +154,7 @@ class Duplication(AbjadValueObject):
             PitchClassSegment([0, 1, 1, 4, 4, 4, 7, 7, 7, 7, 9])
 
         Returns new object with type equal to that of `argument`.
-        '''
+        """
         import abjad
 
         if not isinstance(argument, collections.Sequence):
@@ -167,7 +170,7 @@ class Duplication(AbjadValueObject):
             if isinstance(counts, int):
                 return type(argument)(argument * counts)
             else:
-                counts = abjad.CyclicTuple(counts)
+                counts = CyclicTuple(counts)
                 result = []
                 for i, x in enumerate(argument):
                     count = counts[i]
@@ -180,7 +183,7 @@ class Duplication(AbjadValueObject):
 
         if isinstance(counts, int):
             counts = [counts]
-        counts = abjad.CyclicTuple(counts)
+        counts = CyclicTuple(counts)
 
         if not self.indices:
             if isinstance(argument, abjad.TypedCollection):
@@ -221,7 +224,8 @@ class Duplication(AbjadValueObject):
 
     @property
     def counts(self):
-        r'''Gets counts of duplication.
+        """
+        Gets counts of duplication.
 
         ..  container:: example
 
@@ -230,12 +234,13 @@ class Duplication(AbjadValueObject):
             1
 
         Returns integer or none.
-        '''
+        """
         return self._counts
 
     @property
     def indices(self):
-        r'''Gets indices of duplication.
+        """
+        Gets indices of duplication.
 
         ..  container:: example
 
@@ -247,12 +252,13 @@ class Duplication(AbjadValueObject):
             (0, -1)
 
         Returns integer or none.
-        '''
+        """
         return self._indices
 
     @property
     def period(self):
-        r'''Gets period of duplication.
+        """
+        Gets period of duplication.
 
         ..  container:: example
 
@@ -261,5 +267,5 @@ class Duplication(AbjadValueObject):
             3
 
         Returns integer or none.
-        '''
+        """
         return self._period

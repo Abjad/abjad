@@ -3,12 +3,14 @@ import math
 import numbers
 import re
 from abjad.system.AbjadValueObject import AbjadValueObject
+from abjad.system.FormatSpecification import FormatSpecification
 from . import constants
 
 
 @functools.total_ordering
 class Octave(AbjadValueObject):
-    r'''Octave.
+    """
+    Octave.
 
     ..  container:: example:
 
@@ -38,7 +40,7 @@ class Octave(AbjadValueObject):
         >>> abjad.Octave(abjad.Octave(2))
         Octave(2)
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -91,7 +93,8 @@ class Octave(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is octave with same octave number.
+        """
+        Is true when `argument` is octave with same octave number.
 
         ..  container:: example
 
@@ -121,7 +124,7 @@ class Octave(AbjadValueObject):
             True
 
         Returns true or false.
-        '''
+        """
         return super(Octave, self).__eq__(argument)
 
     def __float__(self):
@@ -133,10 +136,11 @@ class Octave(AbjadValueObject):
         return float(self.number)
 
     def __hash__(self):
-        r'''Hashes octave.
+        """
+        Hashes octave.
 
         Returns integer.
-        '''
+        """
         return super(Octave, self).__hash__()
 
     def __int__(self):
@@ -148,7 +152,8 @@ class Octave(AbjadValueObject):
         return int(self.number)
 
     def __lt__(self, argument):
-        r'''Is true when octave is less than `argument`.
+        """
+        Is true when octave is less than `argument`.
 
         ..  container:: example
 
@@ -178,7 +183,7 @@ class Octave(AbjadValueObject):
             False
 
         Returns true or false.
-        '''
+        """
         try:
             argument = type(self)(argument)
         except:
@@ -186,7 +191,8 @@ class Octave(AbjadValueObject):
         return self.number < argument.number
 
     def __str__(self):
-        r'''Gets string representation of octave.
+        """
+        Gets string representation of octave.
 
         Defined equal to LilyPond octave / tick representation of octave.
 
@@ -202,14 +208,13 @@ class Octave(AbjadValueObject):
             ''
 
         Returns string.
-        '''
+        """
         return self.ticks
 
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        import abjad
-        return abjad.FormatSpecification(
+        return FormatSpecification(
             client=self,
             repr_is_indented=False,
             storage_format_is_indented=False,
@@ -227,7 +232,8 @@ class Octave(AbjadValueObject):
 
     @property
     def number(self):
-        r'''Gets octave number.
+        """
+        Gets octave number.
 
         ..  container:: example
 
@@ -235,12 +241,13 @@ class Octave(AbjadValueObject):
             5
 
         Returns integer.
-        '''
+        """
         return self._number
 
     @property
     def pitch_number(self):
-        r'''Gets pitch number of first note in octave.
+        """
+        Gets pitch number of first note in octave.
 
         ..  container:: example
 
@@ -254,12 +261,13 @@ class Octave(AbjadValueObject):
             -12
 
         Returns integer.
-        '''
+        """
         return (self.number - 4) * 12
 
     @property
     def pitch_range(self):
-        r'''Gets pitch range of octave.
+        """
+        Gets pitch range of octave.
 
         ..  container:: example
 
@@ -267,7 +275,7 @@ class Octave(AbjadValueObject):
             PitchRange('[C5, C6)')
 
         Returns pitch range.
-        '''
+        """
         import abjad
         return abjad.PitchRange(
             '[C{}, C{})'.format(
@@ -277,7 +285,8 @@ class Octave(AbjadValueObject):
 
     @property
     def ticks(self):
-        r"""Gets LilyPond octave tick string.
+        """
+        Gets LilyPond octave tick string.
 
         ..  container:: example
 
@@ -306,7 +315,7 @@ class Octave(AbjadValueObject):
 
     @classmethod
     def from_pitch(class_, pitch):
-        '''Makes octave from `pitch`.
+        """Makes octave from `pitch`.
 
         ..  container:: example
 
@@ -323,7 +332,7 @@ class Octave(AbjadValueObject):
             Octave(5)
 
         Returns integer.
-        '''
+        """
         import abjad
         if isinstance(pitch, numbers.Number):
             number = int(math.floor(pitch / 12)) + 4

@@ -1,8 +1,9 @@
-from abjad.pitch.Segment import Segment
+from .Segment import Segment
 
 
 class PitchSegment(Segment):
-    r'''Pitch segment.
+    r"""
+    Pitch segment.
 
     ..  container:: example
 
@@ -96,7 +97,7 @@ class PitchSegment(Segment):
         >>> min(segment)
         NumberedPitch(-2)
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -116,7 +117,8 @@ class PitchSegment(Segment):
     ### SPECIAL METHODS ###
 
     def __contains__(self, argument):
-        r'''Is true when pitch segment contains `argument`.
+        """
+        Is true when pitch segment contains `argument`.
 
         ..  container:: example
 
@@ -137,11 +139,12 @@ class PitchSegment(Segment):
             False
 
         Returns true or false.
-        '''
+        """
         return super(PitchSegment, self).__contains__(argument)
 
     def __illustrate__(self):
-        r'''Illustrates pitch segment.
+        r"""
+        Illustrates pitch segment.
 
         ..  container:: example
 
@@ -178,7 +181,7 @@ class PitchSegment(Segment):
                 >>
 
         Returns LilyPond file.
-        '''
+        """
         import abjad
         named_pitches = [abjad.NamedPitch(x) for x in self]
         maker = abjad.NoteMaker()
@@ -192,10 +195,11 @@ class PitchSegment(Segment):
         return lilypond_file
 
     def __repr__(self):
-        r'''Gets interpreter representation of segment.
+        """
+        Gets interpreter representation of segment.
 
         Returns string.
-        '''
+        """
         import abjad
         if self.item_class is abjad.NamedPitch:
             contents = ' '.join([str(_) for _ in self])
@@ -206,7 +210,8 @@ class PitchSegment(Segment):
         return '{}({})'.format(type(self).__name__, contents)
 
     def __str__(self):
-        r'''Gets pitch segment string.
+        """
+        Gets pitch segment string.
 
         ..  container:: example
 
@@ -223,7 +228,7 @@ class PitchSegment(Segment):
             "<bf, aqs fs' g' bqf g'>"
 
         Returns string.
-        '''
+        """
         import abjad
         items = [str(_) for _ in self]
         separator = ' '
@@ -268,7 +273,8 @@ class PitchSegment(Segment):
 
     @property
     def hertz(self):
-        r'''Gets Hertz of pitches in segment.
+        """
+        Gets Hertz of pitches in segment.
 
         ..  container:: example
 
@@ -277,12 +283,13 @@ class PitchSegment(Segment):
             [130.81..., 164.81..., 195.99..., 246.94...]
 
         Returns list.
-        '''
+        """
         return [_.hertz for _ in self]
 
     @property
     def inflection_point_count(self):
-        r'''Gets segment inflection point count.
+        r"""
+        Gets segment inflection point count.
 
         ..  container:: example
 
@@ -322,12 +329,13 @@ class PitchSegment(Segment):
             2
 
         Returns nonnegative integer.
-        '''
+        """
         return len(self.local_minima) + len(self.local_maxima)
 
     @property
     def local_maxima(self):
-        r'''Gets segment local maxima.
+        r"""
+        Gets segment local maxima.
 
         ..  container:: example
 
@@ -367,7 +375,7 @@ class PitchSegment(Segment):
             [NumberedPitch(7)]
 
         Returns list.
-        '''
+        """
         result = []
         if 3 <= len(self):
             for i in range(1, len(self) - 1):
@@ -378,7 +386,8 @@ class PitchSegment(Segment):
 
     @property
     def local_minima(self):
-        r'''Gets segment local minima.
+        r"""
+        Gets segment local minima.
 
         ..  container:: example
 
@@ -418,7 +427,7 @@ class PitchSegment(Segment):
             [NumberedPitch(-1.5)]
 
         Returns list.
-        '''
+        """
         result = []
         if 3 <= len(self):
             for i in range(1, len(self) - 1):
@@ -435,7 +444,8 @@ class PitchSegment(Segment):
         selection,
         item_class=None,
         ):
-        r'''Makes pitch segment from `selection`.
+        r"""
+        Makes pitch segment from `selection`.
 
         ..  container:: example
 
@@ -480,7 +490,7 @@ class PitchSegment(Segment):
                 >>
 
         Returns pitch segment.
-        '''
+        """
         import abjad
         if not isinstance(selection, abjad.Selection):
             selection = abjad.select(selection)
@@ -501,7 +511,8 @@ class PitchSegment(Segment):
             )
 
     def has_duplicates(self):
-        r'''Is true when segment has duplicates.
+        """
+        Is true when segment has duplicates.
 
         ..  container:: example
 
@@ -516,12 +527,13 @@ class PitchSegment(Segment):
             False
 
         Returns true or false.
-        '''
+        """
         import abjad
         return len(abjad.PitchSet(self)) < len(self)
 
     def invert(self, axis=None):
-        r'''Inverts pitch segment about `axis`.
+        r"""
+        Inverts pitch segment about `axis`.
 
         ..  container:: example
 
@@ -593,13 +605,14 @@ class PitchSegment(Segment):
                 >>
 
         Returns new pitch segment.
-        '''
+        """
         import abjad
         items = [_.invert(axis=axis) for _ in self]
         return abjad.new(self, items=items)
 
     def make_notes(self, n=None, written_duration=None):
-        r'''Makes first `n` notes in pitch segment.
+        r"""
+        Makes first `n` notes in pitch segment.
 
         ..  todo:: Move somewhere else.
 
@@ -659,7 +672,7 @@ class PitchSegment(Segment):
                 }
 
         Returns list of notes.
-        '''
+        """
         import abjad
         n = n or len(self)
         written_duration = written_duration or abjad.Duration(1, 8)
@@ -673,7 +686,8 @@ class PitchSegment(Segment):
         return result
 
     def multiply(self, n=1):
-        r'''Multiplies pitch segment by index `n`.
+        r"""
+        Multiplies pitch segment by index `n`.
 
         ..  container:: example
 
@@ -745,13 +759,14 @@ class PitchSegment(Segment):
                 >>
 
         Returns new pitch segment.
-        '''
+        """
         import abjad
         items = [_.multiply(n=n) for _ in self]
         return abjad.new(self, items=items)
 
     def retrograde(self):
-        r'''Retrograde of pitch segment.
+        r"""
+        Retrograde of pitch segment.
 
         ..  container:: example
 
@@ -823,12 +838,13 @@ class PitchSegment(Segment):
                 >>
 
         Returns new pitch segment.
-        '''
+        """
         import abjad
         return abjad.new(self, items=reversed(self))
 
     def rotate(self, n=0, stravinsky=False):
-        r'''Rotates pitch segment by index `n`.
+        r"""
+        Rotates pitch segment by index `n`.
 
         ..  container:: example
 
@@ -900,7 +916,7 @@ class PitchSegment(Segment):
                 >>
 
         Returns new pitch segment.
-        '''
+        """
         import abjad
         rotated_pitches = abjad.sequence(self._collection).rotate(n=n)
         new_segment = abjad.new(self, items=rotated_pitches)
@@ -911,7 +927,8 @@ class PitchSegment(Segment):
         return new_segment
 
     def to_pitch_classes(self):
-        r'''Changes to pitch-classes.
+        r"""
+        Changes to pitch-classes.
 
         ..  container:: example
 
@@ -1032,14 +1049,15 @@ class PitchSegment(Segment):
                 }
 
         Returns new segment.
-        '''
+        """
         import abjad
         class_ = abjad.Pitch
         item_class = class_._to_pitch_class_item_class(self.item_class)
         return abjad.PitchClassSegment(items=self.items, item_class=item_class)
 
     def to_pitches(self):
-        r'''Changes to pitches.
+        r"""
+        Changes to pitches.
 
         ..  container:: example
 
@@ -1184,12 +1202,13 @@ class PitchSegment(Segment):
                 >>
 
         Returns new segment.
-        '''
+        """
         import abjad
         return abjad.new(self)
 
     def transpose(self, n=0):
-        r'''Transposes pitch segment by index `n`.
+        r"""
+        Transposes pitch segment by index `n`.
 
         ..  container:: example
 
@@ -1261,7 +1280,7 @@ class PitchSegment(Segment):
                 >>
 
         Returns new pitch segment.
-        '''
+        """
         import abjad
         items = [_.transpose(n=n) for _ in self]
         return abjad.new(self, items=items)

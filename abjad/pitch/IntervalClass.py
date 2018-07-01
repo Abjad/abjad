@@ -9,8 +9,9 @@ from . import constants
 
 @functools.total_ordering
 class IntervalClass(AbjadValueObject):
-    '''Abstract interval-class.
-    '''
+    """
+    Abstract interval-class.
+    """
 
     ### CLASS VARIABLES ###
 
@@ -69,68 +70,57 @@ class IntervalClass(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __abs__(self):
-        r'''Gets absolute value of interval-class.
+        """
+        Gets absolute value of interval-class.
 
         Returns new interval-class.
-        '''
+        """
         return type(self)(abs(self._number))
 
     @abc.abstractmethod
     def __add__(self, argument):
-        r'''Adds `argument` to interval-class.
+        """
+        Adds `argument` to interval-class.
 
         Returns new interval-class.
-        '''
+        """
         raise NotImplementedError
 
     def __float__(self):
-        r'''Coerce to semitones as float.
+        """
+        Coerce to semitones as float.
 
         Returns float.
-        '''
+        """
         raise NotImplementedError
 
     @abc.abstractmethod
     def __lt__(self, argument):
-        r'''Is true when interval-class is less than `argument`.
+        """
+        Is true when interval-class is less than `argument`.
 
         Returns true or false.
-        '''
+        """
         raise NotImplementedError
 
     def __str__(self):
-        r'''Gets string representation of interval-class.
+        """
+        Gets string representation of interval-class.
 
         Returns string.
-        '''
+        """
         return str(self.number)
 
     @abc.abstractmethod
     def __sub__(self, argument):
-        r'''Subtracts `argument` from interval-class.
+        """
+        Subtracts `argument` from interval-class.
 
         Returns new interval-class.
-        '''
+        """
         raise NotImplementedError
 
     ### PRIVATE METHODS ###
-
-#    #@abc.abstractmethod
-#    def _from_named_parts(
-#        self,
-#        direction,
-#        quality,
-#        diatonic_number,
-#        ):
-#        raise NotImplementedError
-#
-#    #@abc.abstractmethod
-#    def _from_number(self, argument):
-#        raise NotImplementedError
-#
-#    #@abc.abstractmethod
-#    def _from_interval_or_interval_class(self, argument):
-#        raise NotImplementedError
 
     @classmethod
     def _named_to_numbered(cls, direction, quality, diatonic_number):
@@ -219,19 +209,21 @@ class IntervalClass(AbjadValueObject):
 
     @property
     def number(self):
-        r'''Gets number of interval-class.
+        """
+        Gets number of interval-class.
 
         Returns number.
-        '''
+        """
         return self._number
 
     ### PUBLIC METHODS ###
 
     def transpose(self, pitch_carrier):
-        r'''Transposes `pitch_carrier` by interval-class.
+        """
+        Transposes `pitch_carrier` by interval-class.
 
         Returns new pitch carrier.
-        '''
+        """
         import abjad
         if isinstance(pitch_carrier, (abjad.Pitch, abjad.PitchClass)):
             return pitch_carrier.transpose(self)
