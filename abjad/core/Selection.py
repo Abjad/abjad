@@ -531,11 +531,18 @@ class Selection(AbjadValueObject, collections.Sequence):
         except exceptions.MissingSpannerError:
             right_tie = None
         if left_tie is not None and right_tie is not None:
-            left_tie._fuse_by_reference(right_tie)
+            result = left_tie._copy(left_tie[:])
+            left_tie._block_all_leaves()
+            right_tie._block_all_leaves()
+            result._extend(right_tie)
         elif left_tie is not None and right_tie is None:
             left_tie._append(right_leaf)
         elif left_tie is None and right_tie is not None:
-            right_tie._append_left(left_leaf)
+            leaves = [left_leaf] + right_tie[:1]
+            leaves = abjad.select(leaves)
+            assert leaves.are_contiguous_logical_voice()
+            left_leaf._append_spanner(right_tie)
+            right_tie._leaves.insert(0, left_leaf)
         elif left_tie is None and right_tie is None:
             tie = abjad.Tie(repeat=repeat_ties)
             leaves = abjad.select([left_leaf, right_leaf])
@@ -596,15 +603,12 @@ class Selection(AbjadValueObject, collections.Sequence):
                 new_component = component.__copy__()
             new_components.append(new_component)
         new_components = type(self)(new_components)
-        # find spanners and piecewise indicators
+        # find spanners
         spanner_to_pairs = abjad.OrderedDict()
         for i, component in enumerate(iterate(self).components()):
             for spanner in abjad_inspect(component).get_spanners():
                 pairs = spanner_to_pairs.setdefault(spanner, [])
                 wrappers = []
-                for wrapper in abjad_inspect(component).wrappers():
-                    if wrapper.spanner is spanner:
-                        wrappers.append(wrapper)
                 if wrappers:
                     for wrapper in wrappers:
                         pairs.append((i, wrapper))
@@ -629,9 +633,6 @@ class Selection(AbjadValueObject, collections.Sequence):
                 new_spanner, wrapper = pair
                 if new_component not in new_spanner:
                     new_spanner._append(new_component)
-                if wrapper is not None:
-                    wrapper = copy.copy(wrapper)
-                    new_spanner.attach(wrapper, new_component)
         return new_components
 
     def _fuse(self):

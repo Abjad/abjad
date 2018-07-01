@@ -569,8 +569,12 @@ class Duration(AbjadObject, Fraction):
         abjad.override(staff).stem.length = 5
         abjad.override(staff).tuplet_bracket.bracket_visibility = True
         abjad.override(staff).tuplet_bracket.direction = abjad.Up
+        abjad.override(staff).tuplet_bracket.minimum_length = 4
         abjad.override(staff).tuplet_bracket.padding = 1.25
         abjad.override(staff).tuplet_bracket.shorten_pair = (-1, -1.5)
+        scheme = abjad.Scheme('ly:spanner::set-spacing-rods')
+        abjad.override(staff).tuplet_bracket.springs_and_rods = scheme
+        abjad.override(staff).tuplet_number.font_size = 0
         scheme = abjad.Scheme('tuplet-number::calc-fraction-text')
         abjad.override(staff).tuplet_number.text = scheme
         abjad.setting(staff).tuplet_full_length = True
@@ -1181,8 +1185,11 @@ class Duration(AbjadObject, Fraction):
                                     \override Stem.length = #5
                                     \override TupletBracket.bracket-visibility = ##t
                                     \override TupletBracket.direction = #up
+                                    \override TupletBracket.minimum-length = #4
                                     \override TupletBracket.padding = #1.25
                                     \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                    \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
+                                    \override TupletNumber.font-size = #0
                                     \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                     tupletFullLength = ##t
                                 }
@@ -1226,13 +1233,17 @@ class Duration(AbjadObject, Fraction):
                                     \override Stem.length = #5
                                     \override TupletBracket.bracket-visibility = ##t
                                     \override TupletBracket.direction = #up
+                                    \override TupletBracket.minimum-length = #4
                                     \override TupletBracket.padding = #1.25
                                     \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                    \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
+                                    \override TupletNumber.font-size = #0
                                     \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                     tupletFullLength = ##t
                                 }
                                 {
-                                    c'4 ~
+                                    c'4
+                                    ~
                                     c'16
                                 }
                             >>
@@ -1282,13 +1293,17 @@ class Duration(AbjadObject, Fraction):
                                             \override Stem.length = #5
                                             \override TupletBracket.bracket-visibility = ##t
                                             \override TupletBracket.direction = #up
+                                            \override TupletBracket.minimum-length = #4
                                             \override TupletBracket.padding = #1.25
                                             \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                            \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
+                                            \override TupletNumber.font-size = #0
                                             \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                             tupletFullLength = ##t
                                         }
                                         {
-                                            c'4 ~
+                                            c'4
+                                            ~
                                             c'16
                                         }
                                     >>

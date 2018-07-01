@@ -60,72 +60,6 @@ class MetronomeMark(AbjadValueObject):
 
     ..  container:: example
 
-        Initializes float-valued metronome mark:
-
-        >>> score = abjad.Score([])
-        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-        >>> score.append(staff)
-        >>> mark = abjad.MetronomeMark((1, 4), 90.1)
-        >>> abjad.attach(mark, staff[0])
-        >>> abjad.show(score) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> abjad.f(score)
-            \new Score
-            <<
-                \new Staff
-                {
-                    \tempo \markup {
-                        \scale
-                            #'(0.75 . 0.75)
-                            \score
-                                {
-                                    \new Score
-                                    \with
-                                    {
-                                        \override SpacingSpanner.spacing-increment = #0.5
-                                        proportionalNotationDuration = ##f
-                                    }
-                                    <<
-                                        \new RhythmicStaff
-                                        \with
-                                        {
-                                            \remove Time_signature_engraver
-                                            \remove Staff_symbol_engraver
-                                            \override Stem.direction = #up
-                                            \override Stem.length = #5
-                                            \override TupletBracket.bracket-visibility = ##t
-                                            \override TupletBracket.direction = #up
-                                            \override TupletBracket.padding = #1.25
-                                            \override TupletBracket.shorten-pair = #'(-1 . -1.5)
-                                            \override TupletNumber.text = #tuplet-number::calc-fraction-text
-                                            tupletFullLength = ##t
-                                        }
-                                        {
-                                            c'4
-                                        }
-                                    >>
-                                    \layout {
-                                        indent = #0
-                                        ragged-right = ##t
-                                    }
-                                }
-                        =
-                        \general-align
-                            #Y
-                            #-0.5
-                            90.1
-                        }
-                    c'8
-                    d'8
-                    e'8
-                    f'8
-                }
-            >>
-
-    ..  container:: example
-
         Initializes rational-valued metronome mark:
 
         >>> score = abjad.Score([])
@@ -163,8 +97,11 @@ class MetronomeMark(AbjadValueObject):
                                             \override Stem.length = #5
                                             \override TupletBracket.bracket-visibility = ##t
                                             \override TupletBracket.direction = #up
+                                            \override TupletBracket.minimum-length = #4
                                             \override TupletBracket.padding = #1.25
                                             \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                            \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
+                                            \override TupletNumber.font-size = #0
                                             \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                             tupletFullLength = ##t
                                         }
@@ -221,6 +158,86 @@ class MetronomeMark(AbjadValueObject):
                 }
             >>
 
+    ..  container:: example
+
+        Use rational-value units-per-minute together with custom markup for
+        float-valued metornome marks:
+
+        >>> score = abjad.Score([])
+        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+        >>> score.append(staff)
+        >>> markup = abjad.MetronomeMark.make_tempo_equation_markup(
+        ...     abjad.Duration(1, 4),
+        ...     90.1,
+        ...     )
+        >>> mark = abjad.MetronomeMark(
+        ...     (1, 4),
+        ...     Fraction(900, 10),
+        ...     custom_markup=markup,
+        ...     )
+        >>> abjad.attach(mark, staff[0])
+        >>> abjad.show(score) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(score)
+            \new Score
+            <<
+                \new Staff
+                {
+                    \tempo \markup {
+                        \scale
+                            #'(0.75 . 0.75)
+                            \score
+                                {
+                                    \new Score
+                                    \with
+                                    {
+                                        \override SpacingSpanner.spacing-increment = #0.5
+                                        proportionalNotationDuration = ##f
+                                    }
+                                    <<
+                                        \new RhythmicStaff
+                                        \with
+                                        {
+                                            \remove Time_signature_engraver
+                                            \remove Staff_symbol_engraver
+                                            \override Stem.direction = #up
+                                            \override Stem.length = #5
+                                            \override TupletBracket.bracket-visibility = ##t
+                                            \override TupletBracket.direction = #up
+                                            \override TupletBracket.minimum-length = #4
+                                            \override TupletBracket.padding = #1.25
+                                            \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                            \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
+                                            \override TupletNumber.font-size = #0
+                                            \override TupletNumber.text = #tuplet-number::calc-fraction-text
+                                            tupletFullLength = ##t
+                                        }
+                                        {
+                                            c'4
+                                        }
+                                    >>
+                                    \layout {
+                                        indent = #0
+                                        ragged-right = ##t
+                                    }
+                                }
+                        =
+                        \general-align
+                            #Y
+                            #-0.5
+                            90.1
+                        }
+                    c'8
+                    d'8
+                    e'8
+                    f'8
+                }
+            >>
+
+        (Abjad models all timekeeping with rationals.)
+
     """
 
     ### CLASS VARIABLES ###
@@ -258,9 +275,13 @@ class MetronomeMark(AbjadValueObject):
             units_per_minute = 60
         if reference_duration:
             reference_duration = Duration(reference_duration)
+        if isinstance(units_per_minute, float):
+            raise Exception(
+                f'do not set units-per-minute to float ({units_per_minute});'
+                ' use fraction with textual indication instead.'
+                )
         prototype = (
             int,
-            float,
             Fraction,
             collections.Sequence,
             type(None),
@@ -268,13 +289,10 @@ class MetronomeMark(AbjadValueObject):
         assert isinstance(units_per_minute, prototype)
         if isinstance(units_per_minute, collections.Sequence):
             assert len(units_per_minute) == 2
-            item_prototype = (int, float, Duration)
+            item_prototype = (int, Duration)
             assert units_per_minute is not None
             assert all(isinstance(x, item_prototype) for x in units_per_minute)
             units_per_minute = tuple(sorted(units_per_minute))
-        if isinstance(units_per_minute, float):
-            units_per_minute = mathtools.integer_equivalent_number_to_integer(
-                units_per_minute)
         self._reference_duration = reference_duration
         self._textual_indication = textual_indication
         self._units_per_minute = units_per_minute
@@ -392,9 +410,13 @@ class MetronomeMark(AbjadValueObject):
             assert isinstance(argument.quarters_per_minute, Fraction)
             result = self.quarters_per_minute / argument.quarters_per_minute
             return Multiplier(result)
-        elif isinstance(argument, (int, float, Fraction)):
-            assert isinstance(self.units_per_minute, (int, float, Fraction))
+        elif isinstance(argument, (int, Fraction)):
+            assert isinstance(self.units_per_minute, (int, Fraction))
             units_per_minute = self.units_per_minute / argument
+            if mathtools.is_integer_equivalent_number(units_per_minute):
+                units_per_minute = int(units_per_minute)
+            else:
+                units_per_minute = Fraction(units_per_minute)
             result = new(self, units_per_minute=units_per_minute)
             return result
         else:
@@ -439,7 +461,15 @@ class MetronomeMark(AbjadValueObject):
             False
 
         """
-        return super().__eq__(argument)
+        if not isinstance(argument, type(self)):
+            return False
+        # 'hide' is excluded from equality testing:
+        if (self.reference_duration == argument.reference_duration and
+            self.units_per_minute == argument.units_per_minute and
+            self.textual_indication == argument.textual_indication and
+            self.custom_markup == argument.custom_markup):
+            return True
+        return False
 
     def __format__(self, format_specification='') -> str:
         r"""
@@ -637,14 +667,6 @@ class MetronomeMark(AbjadValueObject):
 
         ..  container:: example
 
-            Float-valued metronome mark:
-
-            >>> mark = abjad.MetronomeMark((1, 4), 90.1)
-            >>> str(mark)
-            '4=90.1'
-
-        ..  container:: example
-
             Rational-valued metronome mark:
 
             >>> mark = abjad.MetronomeMark((1, 4), (90, 96))
@@ -833,13 +855,12 @@ class MetronomeMark(AbjadValueObject):
         if self.custom_markup is not None:
             return self.custom_markup
         duration_log = int(math.log(self.reference_duration.denominator, 2))
-        string = 'abjad-metronome-mark-markup'
-        string += f' #{duration_log}'
-        string += f' #{self.reference_duration.dot_count}'
-        string += f' #{stem_height}'
-        string += f' #"{self.units_per_minute}"'
-        command = MarkupCommand(string)
-        markup = Markup(contents=[command])
+        markup = Markup.abjad_metronome_mark(
+            duration_log,
+            self.reference_duration.dot_count,
+            stem_height,
+            self.units_per_minute,
+            )
         return markup
 
     ### PUBLIC PROPERTIES ###
@@ -860,7 +881,7 @@ class MetronomeMark(AbjadValueObject):
             >>> markup = markup.with_color('red')
             >>> mark = abjad.MetronomeMark(
             ...     reference_duration=(1, 4),
-            ...     units_per_minute=67.5,
+            ...     units_per_minute=Fraction(135, 2),
             ...     custom_markup=markup,
             ...     )
             >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
@@ -899,8 +920,11 @@ class MetronomeMark(AbjadValueObject):
                                                         \override Stem.length = #5
                                                         \override TupletBracket.bracket-visibility = ##t
                                                         \override TupletBracket.direction = #up
+                                                        \override TupletBracket.minimum-length = #4
                                                         \override TupletBracket.padding = #1.25
                                                         \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                        \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
+                                                        \override TupletNumber.font-size = #0
                                                         \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                         tupletFullLength = ##t
                                                     }
@@ -1072,7 +1096,7 @@ class MetronomeMark(AbjadValueObject):
 
             140 quarters per minute:
 
-            >>> mark = abjad.MetronomeMark((3, 32), 52.5)
+            >>> mark = abjad.MetronomeMark((3, 32), Fraction(105, 2))
             >>> mark.quarters_per_minute
             Fraction(140, 1)
 
@@ -1153,9 +1177,8 @@ class MetronomeMark(AbjadValueObject):
         """
         pass
 
-    # TODO: restrict units_per_minute to inf, fraction and NOT float
     @property
-    def units_per_minute(self) -> typing.Union[int, float, Fraction, None]:
+    def units_per_minute(self) -> typing.Union[int, Fraction, None]:
         """
         Gets units per minute of metronome mark.
 
@@ -1168,12 +1191,6 @@ class MetronomeMark(AbjadValueObject):
             90
 
         ..  container:: example
-
-            Float-valued metronome mark:
-
-            >>> mark = abjad.MetronomeMark((1, 4), 90.1)
-            >>> mark.units_per_minute
-            90.1
 
             Rational-valued metronome mark:
 
@@ -1352,8 +1369,11 @@ class MetronomeMark(AbjadValueObject):
                                         \override Stem.length = #5
                                         \override TupletBracket.bracket-visibility = ##t
                                         \override TupletBracket.direction = #up
+                                        \override TupletBracket.minimum-length = #4
                                         \override TupletBracket.padding = #1.25
                                         \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                        \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
+                                        \override TupletNumber.font-size = #0
                                         \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                         tupletFullLength = ##t
                                     }
@@ -1407,8 +1427,11 @@ class MetronomeMark(AbjadValueObject):
                                         \override Stem.length = #5
                                         \override TupletBracket.bracket-visibility = ##t
                                         \override TupletBracket.direction = #up
+                                        \override TupletBracket.minimum-length = #4
                                         \override TupletBracket.padding = #1.25
                                         \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                        \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
+                                        \override TupletNumber.font-size = #0
                                         \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                         tupletFullLength = ##t
                                     }
@@ -1462,8 +1485,11 @@ class MetronomeMark(AbjadValueObject):
                                         \override Stem.length = #5
                                         \override TupletBracket.bracket-visibility = ##t
                                         \override TupletBracket.direction = #up
+                                        \override TupletBracket.minimum-length = #4
                                         \override TupletBracket.padding = #1.25
                                         \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                        \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
+                                        \override TupletNumber.font-size = #0
                                         \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                         tupletFullLength = ##t
                                     }
@@ -1522,13 +1548,17 @@ class MetronomeMark(AbjadValueObject):
                                         \override Stem.length = #5
                                         \override TupletBracket.bracket-visibility = ##t
                                         \override TupletBracket.direction = #up
+                                        \override TupletBracket.minimum-length = #4
                                         \override TupletBracket.padding = #1.25
                                         \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                        \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
+                                        \override TupletNumber.font-size = #0
                                         \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                         tupletFullLength = ##t
                                     }
                                     {
-                                        c'4 ~
+                                        c'4
+                                        ~
                                         c'16
                                     }
                                 >>
@@ -1575,8 +1605,11 @@ class MetronomeMark(AbjadValueObject):
                                         \override Stem.length = #5
                                         \override TupletBracket.bracket-visibility = ##t
                                         \override TupletBracket.direction = #up
+                                        \override TupletBracket.minimum-length = #4
                                         \override TupletBracket.padding = #1.25
                                         \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                        \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
+                                        \override TupletNumber.font-size = #0
                                         \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                         tupletFullLength = ##t
                                     }
@@ -1635,15 +1668,22 @@ class MetronomeMark(AbjadValueObject):
                                         \override Stem.length = #5
                                         \override TupletBracket.bracket-visibility = ##t
                                         \override TupletBracket.direction = #up
+                                        \override TupletBracket.minimum-length = #4
                                         \override TupletBracket.padding = #1.25
                                         \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                        \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
+                                        \override TupletNumber.font-size = #0
                                         \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                         tupletFullLength = ##t
                                     }
                                     {
-                                        c'16 ~ [
-                                        c'8. ~
-                                        c'16 ]
+                                        c'16
+                                        ~
+                                        [
+                                        c'8.
+                                        ~
+                                        c'16
+                                        ]
                                     }
                                 >>
                                 \layout {

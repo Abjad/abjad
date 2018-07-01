@@ -172,52 +172,6 @@ def tweak(argument):
 
     ..  container:: example
 
-        Tweaks text spanner:
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
-        >>> spanner = abjad.TextSpanner()
-        >>> abjad.attach(spanner, staff[:])
-        >>> spanner.attach(abjad.Markup('pont.').upright(), spanner[0])
-        >>> spanner.attach(abjad.Markup('tasto').upright(), spanner[-1])
-        >>> abjad.tweak(spanner).staff_padding = 2.5
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> abjad.f(staff)
-            \new Staff
-            {
-                c'4
-                - \tweak Y-extent ##f
-                - \tweak bound-details.left.text \markup {
-                    \concat
-                        {
-                            \upright
-                                pont.
-                            \hspace
-                                #0.25
-                        }
-                    }
-                - \abjad_invisible_line_segment
-                - \tweak bound-details.right.text \markup {
-                    \concat
-                        {
-                            \hspace
-                                #1.0
-                            \upright
-                                tasto
-                        }
-                    }
-                - \tweak staff-padding #2.5
-                \startTextSpan
-                d'4
-                e'4
-                f'4
-                \stopTextSpan
-            }
-
-    ..  container:: example
-
         Returns LilyPond tweak manager:
 
         >>> abjad.tweak(markup_1)
@@ -244,9 +198,9 @@ def tweak(argument):
         manager = abjad.LilyPondTweakManager()
         manager._pending_value = argument
         return manager
-    if not hasattr(argument, '_lilypond_tweak_manager'):
+    if not hasattr(argument, '_tweaks'):
         name = type(argument).__name__
         raise NotImplementedError(f'{name} does not allow tweaks (yet).')
-    if argument._lilypond_tweak_manager is None:
-        argument._lilypond_tweak_manager = abjad.LilyPondTweakManager()
-    return argument._lilypond_tweak_manager
+    if argument._tweaks is None:
+        argument._tweaks = abjad.LilyPondTweakManager()
+    return argument._tweaks

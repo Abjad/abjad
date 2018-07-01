@@ -70,11 +70,10 @@ class Articulation(AbjadValueObject):
     __slots__ = (
         '_direction',
         '_format_slot',
-        '_lilypond_tweak_manager',
         '_name',
+        '_tweaks',
         )
 
-    # TODO: derive dynamically from LilyPond codebase
     _articulations_supported = (
         'accent',
         'marcato',
@@ -124,7 +123,6 @@ class Articulation(AbjadValueObject):
         '_',
         )
 
-    # TODO: derive dynamically from LilyPond codebase
     _shortcut_to_word = {
         '^': 'marcato',
         '+': 'stopped',
@@ -161,7 +159,7 @@ class Articulation(AbjadValueObject):
             assert direction_ in (enums.Up, enums.Down, enums.Center), repr(direction_)
         self._direction = direction_
         self._format_slot = 'after'
-        self._lilypond_tweak_manager = None
+        self._tweaks = None
         LilyPondTweakManager.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
@@ -321,4 +319,4 @@ class Articulation(AbjadValueObject):
                 -\marcato
 
         """
-        return self._lilypond_tweak_manager
+        return self._tweaks

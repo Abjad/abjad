@@ -46,7 +46,7 @@ class Arpeggio(AbjadValueObject):
 
     __slots__ = (
         '_direction',
-        '_lilypond_tweak_manager',
+        '_tweaks',
         )
 
     ### INITIALIZER ###
@@ -61,7 +61,7 @@ class Arpeggio(AbjadValueObject):
         if direction is not None:
             assert direction in (enums.Up, enums.Down, enums.Center)
         self._direction = direction
-        self._lilypond_tweak_manager = None
+        self._tweaks = None
         LilyPondTweakManager.set_tweaks(self, tweaks)
 
     ### PRIVATE METHODS ###
@@ -130,4 +130,4 @@ class Arpeggio(AbjadValueObject):
                 \arpeggio
 
         """
-        return self._lilypond_tweak_manager
+        return self._tweaks

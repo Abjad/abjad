@@ -110,9 +110,6 @@ class Wrapper(AbjadValueObject):
         '_deactivate',
         '_effective_context',
         '_indicator',
-        '_left_broken',
-        '_right_broken',
-        '_spanner',
         '_synthetic_offset',
         '_tag',
         )
@@ -129,16 +126,13 @@ class Wrapper(AbjadValueObject):
         context: str = None,
         deactivate: bool = None,
         indicator=None,
-        left_broken: bool = None,
-        right_broken: bool = None,
-        spanner=None,
         synthetic_offset: int = None,
         tag: typing.Union[str, Tag] = None,
         ) -> None:
-        from abjad.utilities.Offset import Offset
         from abjad.core.Component import Component
         from abjad.core.Context import Context
         from abjad.spanners.Spanner import Spanner
+        from abjad.utilities.Offset import Offset
         assert not isinstance(indicator, type(self)), repr(indicator)
         if alternate is not None:
             assert isinstance(alternate, tuple) and len(alternate) == 2
@@ -159,19 +153,6 @@ class Wrapper(AbjadValueObject):
         self._deactivate = deactivate
         self._effective_context = None
         self._indicator = indicator
-        if spanner is not None:
-            assert isinstance(spanner, Spanner)
-        self._spanner = spanner
-        if left_broken is not None:
-            left_broken = bool(left_broken)
-        if left_broken and spanner is None:
-            raise Exception('set left_broken only with spanners.')
-        self._left_broken = left_broken
-        if right_broken is not None:
-            right_broken = bool(right_broken)
-        if right_broken and spanner is None:
-            raise Exception('set right_broken only with spanners.')
-        self._right_broken = right_broken
         if synthetic_offset is not None:
             synthetic_offset = Offset(synthetic_offset)
         self._synthetic_offset = synthetic_offset
@@ -216,79 +197,6 @@ class Wrapper(AbjadValueObject):
             >>> leaf = new_staff[0]
             >>> abjad.inspect(leaf).get_annotation('bow_direction')
             Down
-
-        ..  container:: example
-
-            Mutation preserves spanner:
-
-            >>> old_staff = abjad.Staff("c'4 d'4 e'4 f'4")
-            >>> spanner = abjad.TextSpanner()
-            >>> abjad.attach(spanner, old_staff[:])
-            >>> spanner.attach(abjad.Markup('pont.'), old_staff[0])
-            >>> abjad.f(old_staff)
-            \new Staff
-            {
-                c'4
-                - \tweak Y-extent ##f
-                - \tweak bound-details.left.text \markup {
-                    \concat
-                        {
-                            pont.
-                            \hspace
-                                #0.25
-                        }
-                    }
-                - \abjad_invisible_line_segment
-                \startTextSpan
-                d'4
-                e'4
-                f'4
-                \stopTextSpan
-            }
-
-            >>> leaf = old_staff[0]
-            >>> wrapper = abjad.inspect(leaf).wrapper()
-            >>> abjad.f(wrapper)
-            abjad.Wrapper(
-                indicator=abjad.Markup(
-                    contents=['pont.'],
-                    ),
-                spanner=abjad.TextSpanner(),
-                tag=abjad.Tag(),
-                )
-
-            >>> new_staff = abjad.mutate(old_staff).copy()
-            >>> abjad.f(new_staff)
-            \new Staff
-            {
-                c'4
-                - \tweak Y-extent ##f
-                - \tweak bound-details.left.text \markup {
-                    \concat
-                        {
-                            pont.
-                            \hspace
-                                #0.25
-                        }
-                    }
-                - \abjad_invisible_line_segment
-                \startTextSpan
-                d'4
-                e'4
-                f'4
-                \stopTextSpan
-            }
-
-            >>> leaf = new_staff[0]
-            >>> wrapper = abjad.inspect(leaf).wrapper()
-            >>> abjad.f(wrapper)
-            abjad.Wrapper(
-                indicator=abjad.Markup(
-                    contents=['pont.'],
-                    ),
-                spanner=abjad.TextSpanner(),
-                tag=abjad.Tag(),
-                )
 
         ..  container:: example
 
@@ -384,9 +292,9 @@ class Wrapper(AbjadValueObject):
                 tag=abjad.Tag('RED:M1'),
                 )
 
-        Copies all properties except component and spanner.
+        Copies all properties except component.
         
-        Copy operations must supply component and spanner after wrapper copy.
+        Copy operations must supply component after wrapper copy.
 
         Returns new indicator wrapper.
         """
@@ -397,7 +305,6 @@ class Wrapper(AbjadValueObject):
             context=self.context,
             deactivate=self.deactivate,
             indicator=copy.copy(self.indicator),
-            spanner = None,
             synthetic_offset=self.synthetic_offset,
             tag=self.tag,
             )
@@ -500,9 +407,6 @@ class Wrapper(AbjadValueObject):
             'context',
             'deactivate',
             'indicator',
-            'left_broken',
-            'right_broken',
-            'spanner',
             'synthetic_offset',
             'tag',
             ]
@@ -680,29 +584,6 @@ class Wrapper(AbjadValueObject):
         Gets indicator of indicator wrapper.
         """
         return self._indicator
-
-    @property
-    def left_broken(self) -> typing.Optional[bool]:
-        """
-        Is true when spanner is left-open.
-        """
-        return self._left_broken
-
-    @property
-    def right_broken(self) -> typing.Optional[bool]:
-        """
-        Is true when spanner is right-open.
-        """
-        return self._right_broken
-
-    @property
-    def spanner(self):
-        """
-        Gets wrapper spanner.
-
-        Returns spanner or none.
-        """
-        return self._spanner
 
     @property
     def start_offset(self):

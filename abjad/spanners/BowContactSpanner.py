@@ -16,7 +16,6 @@ from abjad.top.inspect import inspect
 from .Spanner import Spanner
 
 
-
 class BowContactSpanner(Spanner):
     r"""
     Bow contact spanner.
@@ -27,18 +26,15 @@ class BowContactSpanner(Spanner):
         >>> staff.extend(r"c'4. c'8 \times 2/3 { c'4 c'4 c'4 }")
 
         >>> leaves = abjad.select(staff).leaves()
-        >>> spanner = abjad.BowContactSpanner()
-        >>> abjad.attach(spanner, leaves)
-        >>> spanner.attach(abjad.BowMotionTechnique('jete'), leaves[0])
-        >>> spanner.attach(abjad.BowContactPoint((1, 4)), leaves[0])
-        >>> spanner.attach(abjad.BowContactPoint((3, 4)), leaves[1])
-        >>> spanner.attach(abjad.BowContactPoint((1, 2)), leaves[2])
-        >>> spanner.attach(abjad.BowMotionTechnique('circular'),
-        ...     leaves[3])
-        >>> spanner.attach(abjad.BowContactPoint((1, 1)), leaves[3])
-        >>> spanner.attach(abjad.BowContactPoint((0, 1)), leaves[4])
+        >>> abjad.attach(abjad.BowMotionTechnique('jete'), leaves[0])
+        >>> abjad.attach(abjad.BowContactPoint((1, 4)), leaves[0])
+        >>> abjad.attach(abjad.BowContactPoint((3, 4)), leaves[1])
+        >>> abjad.attach(abjad.BowContactPoint((1, 2)), leaves[2])
+        >>> abjad.attach(abjad.BowMotionTechnique('circular'), leaves[3])
+        >>> abjad.attach(abjad.BowContactPoint((1, 1)), leaves[3])
+        >>> abjad.attach(abjad.BowContactPoint((0, 1)), leaves[4])
 
-        >>> abjad.attach(abjad.Clef('percussion'), staff[0])
+        >>> abjad.attach(abjad.Clef('percussion'), leaves[0])
         >>> abjad.override(staff).bar_line.transparent = True
         >>> abjad.override(staff).dots.staff_position = -8
         >>> abjad.override(staff).flag.Y_offset = -8.5
@@ -51,6 +47,8 @@ class BowContactSpanner(Spanner):
         >>> abjad.override(staff).stem.length = 8
         >>> abjad.override(staff).stem.stem_begin_position = -9
         >>> abjad.override(staff).time_signature.stencil = False
+
+        >>> abjad.attach(abjad.BowContactSpanner(), leaves)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -73,23 +71,23 @@ class BowContactSpanner(Spanner):
                 \override TimeSignature.stencil = ##f
             }
             {
-                \clef "percussion"
-                \tweak Y-offset #-1.0
-                \tweak stencil #ly:text-interface::print
-                \tweak text \markup {
+                \once \override Glissando.style = #'dotted-line
+                \once \override NoteHead.Y-offset = -1.0
+                \once \override NoteHead.stencil = #ly:text-interface::print
+                \once \override NoteHead.text = \markup {
                     \center-align
                         \vcenter
                             \fraction
                                 1
                                 4
                     }
+                \clef "percussion"
                 c'4.
                 ^\downbow
-                - \tweak style #'dotted-line
                 \glissando
-                \tweak Y-offset #1.0
-                \tweak stencil #ly:text-interface::print
-                \tweak text \markup {
+                \once \override NoteHead.Y-offset = 1.0
+                \once \override NoteHead.stencil = #ly:text-interface::print
+                \once \override NoteHead.text = \markup {
                     \center-align
                         \vcenter
                             \fraction
@@ -100,9 +98,9 @@ class BowContactSpanner(Spanner):
                 ^\upbow
                 \glissando
                 \times 2/3 {
-                    \tweak Y-offset #0.0
-                    \tweak stencil #ly:text-interface::print
-                    \tweak text \markup {
+                    \once \override NoteHead.Y-offset = 0.0
+                    \once \override NoteHead.stencil = #ly:text-interface::print
+                    \once \override NoteHead.text = \markup {
                         \center-align
                             \vcenter
                                 \fraction
@@ -112,9 +110,10 @@ class BowContactSpanner(Spanner):
                     c'4
                     ^\downbow
                     \glissando
-                    \tweak Y-offset #2.0
-                    \tweak stencil #ly:text-interface::print
-                    \tweak text \markup {
+                    \once \override Glissando.style = #'zigzag
+                    \once \override NoteHead.Y-offset = 2.0
+                    \once \override NoteHead.stencil = #ly:text-interface::print
+                    \once \override NoteHead.text = \markup {
                         \center-align
                             \vcenter
                                 \fraction
@@ -123,11 +122,10 @@ class BowContactSpanner(Spanner):
                         }
                     c'4
                     ^\upbow
-                    - \tweak style #'zigzag
                     \glissando
-                    \tweak Y-offset #-2.0
-                    \tweak stencil #ly:text-interface::print
-                    \tweak text \markup {
+                    \once \override NoteHead.Y-offset = -2.0
+                    \once \override NoteHead.stencil = #ly:text-interface::print
+                    \once \override NoteHead.text = \markup {
                         \center-align
                             \vcenter
                                 \fraction
@@ -140,19 +138,16 @@ class BowContactSpanner(Spanner):
 
     ..  container:: example
 
-        Use ``abjad.BowContactPoint(None)`` to indicate unbowed actions, such
-        as pizzicato:
+        Use ``BowContactPoint(None)`` to indicate un-bowed actions, such as
+        pizzicato.
 
-        >>> staff = abjad.Staff()
-        >>> staff.extend(r"c'4 c'4 c'4 c'4")
+        >>> staff = abjad.Staff(r"c'4 c'4 c'4 c'4")
 
-        >>> leaves = abjad.select(staff).leaves()
-        >>> spanner = abjad.BowContactSpanner()
-        >>> abjad.attach(spanner, leaves)
-        >>> spanner.attach(abjad.BowContactPoint(None), leaves[0])
-        >>> spanner.attach(abjad.BowContactPoint((3, 4)), leaves[1])
-        >>> spanner.attach(abjad.BowContactPoint((1, 2)), leaves[2])
-        >>> spanner.attach(abjad.BowContactPoint(None), leaves[3])
+        >>> leaves = staff[:]
+        >>> abjad.attach(abjad.BowContactPoint(None), leaves[0])
+        >>> abjad.attach(abjad.BowContactPoint((3, 4)), leaves[1])
+        >>> abjad.attach(abjad.BowContactPoint((1, 2)), leaves[2])
+        >>> abjad.attach(abjad.BowContactPoint(None), leaves[3])
 
         >>> abjad.attach(abjad.Clef('percussion'), staff[0])
         >>> abjad.override(staff).bar_line.transparent = True
@@ -163,10 +158,12 @@ class BowContactSpanner(Spanner):
         >>> abjad.override(staff).glissando.thickness = 2
         >>> abjad.override(staff).script.staff_padding = 3
         >>> abjad.override(staff).staff_symbol.transparent = True
-        >>> abjad.override(staff).stem.direction = abjad.Down
+        >>> abjad.override(staff).stem.direction =abjad.Down
         >>> abjad.override(staff).stem.length = 8
         >>> abjad.override(staff).stem.stem_begin_position = -9
         >>> abjad.override(staff).time_signature.stencil = False
+
+        >>> abjad.abjad.attach(abjad.BowContactSpanner(), leaves)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -192,9 +189,9 @@ class BowContactSpanner(Spanner):
                 \once \override NoteHead.style = #'cross
                 \clef "percussion"
                 c'4
-                \tweak Y-offset #1.0
-                \tweak stencil #ly:text-interface::print
-                \tweak text \markup {
+                \once \override NoteHead.Y-offset = 1.0
+                \once \override NoteHead.stencil = #ly:text-interface::print
+                \once \override NoteHead.text = \markup {
                     \center-align
                         \vcenter
                             \fraction
@@ -204,9 +201,9 @@ class BowContactSpanner(Spanner):
                 c'4
                 ^\upbow
                 \glissando
-                \tweak Y-offset #0.0
-                \tweak stencil #ly:text-interface::print
-                \tweak text \markup {
+                \once \override NoteHead.Y-offset = 0.0
+                \once \override NoteHead.stencil = #ly:text-interface::print
+                \once \override NoteHead.text = \markup {
                     \center-align
                         \vcenter
                             \fraction
@@ -222,73 +219,98 @@ class BowContactSpanner(Spanner):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
-
-    _start_command = r'\glissando'
+    __slots__ = (
+        )
 
     ### PRIVATE METHODS ###
 
-    def _get_lilypond_format_bundle(self, leaf):
-        bundle = self._get_basic_lilypond_format_bundle(leaf)
-        indicators = self._get_piecewise(leaf)
-        bow_contact_point = indicators[0]
-        bow_motion_technique = indicators[1]
-        if bow_contact_point is None:
-            return bundle
-        if bow_contact_point.contact_point is None:
-            self._make_pizzicato_overrides(bundle)
-            return bundle
-        if self._is_my_only(leaf):
-            return bundle
-        tweaks = self._make_bow_contact_point_tweaks(
-            leaf,
-            bow_contact_point=bow_contact_point,
-            )
-        if self._next_leaf_is_bowed(leaf):
-            self._make_bow_direction_change_contributions(
-                bow_contact_point=bow_contact_point,
-                leaf=leaf,
-                bundle=bundle,
-                )
-            # tweaks immediately before start command:
-            tweaks = self._make_glissando_tweaks(
-                bow_motion_technique=bow_motion_technique,
-                )
-            bundle.after.spanner_starts.extend(tweaks)
-            bundle.after.spanner_starts.extend(self.start_command())
-        return bundle
-
-    def _get_piecewise(self, leaf):
-        bow_contact_point = inspect(leaf).get_indicator(BowContactPoint, None)
-        bow_motion_technique = inspect(leaf).get_indicator(
-            BowMotionTechnique,
-            None,
-            )
+    def _get_annotations(self, leaf):
+        inspector = inspect(leaf)
+        bow_contact_point = None
+        prototype = BowContactPoint
+        if inspector.has_indicator(prototype):
+            bow_contact_point = inspector.get_indicator(prototype)
+        bow_motion_technique = None
+        prototype = BowMotionTechnique
+        if inspector.has_indicator(prototype):
+            bow_motion_technique = inspector.get_indicator(prototype)
         return (
             bow_contact_point,
             bow_motion_technique,
             )
 
-    def _make_bow_contact_point_tweaks(
-        self,
-        leaf,
-        bow_contact_point=None,
-        ):
-        import abjad
+    def _get_lilypond_format_bundle(self, leaf):
+        lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
+        indicators = self._get_annotations(leaf)
+        bow_contact_point = indicators[0]
+        bow_motion_technique = indicators[1]
+        #print(leaf)
         if bow_contact_point is None:
-            return tweaks
-        note_head = leaf.note_head
-        value = Scheme('ly:text-interface::print')
-        abjad.tweak(note_head).stencil = value
-        abjad.tweak(note_head).text = bow_contact_point.markup
+            #print('\t', None)
+            return lilypond_format_bundle
+        if bow_contact_point.contact_point is None:
+            #print('\t', 'PIZZ')
+            self._make_pizzicato_overrides(lilypond_format_bundle)
+            return lilypond_format_bundle
+        if len(self) == 1:
+            #print('\t', 'ONLY')
+            return lilypond_format_bundle
+        #print('\t', 'NORM')
+        self._make_bow_contact_point_overrides(
+            bow_contact_point=bow_contact_point,
+            lilypond_format_bundle=lilypond_format_bundle,
+            )
+        if self._next_leaf_is_bowed(leaf):
+            lilypond_format_bundle.after.spanner_starts.append(r'\glissando')
+            self._make_bow_direction_change_contributions(
+                bow_contact_point=bow_contact_point,
+                leaf=leaf,
+                lilypond_format_bundle=lilypond_format_bundle,
+                )
+            self._make_glissando_overrides(
+                bow_motion_technique=bow_motion_technique,
+                lilypond_format_bundle=lilypond_format_bundle,
+                )
+        return lilypond_format_bundle
+
+    def _make_bow_contact_point_overrides(
+        self,
+        bow_contact_point=None,
+        lilypond_format_bundle=None,
+        ):
+        if bow_contact_point is None:
+            return
+        override_ = LilyPondGrobOverride(
+            grob_name='NoteHead',
+            once=True,
+            property_path='stencil',
+            value=Scheme('ly:text-interface::print'),
+            )
+        string = override_.override_string
+        lilypond_format_bundle.grob_overrides.append(string)
+        override_ = LilyPondGrobOverride(
+            grob_name='NoteHead',
+            once=True,
+            property_path='text',
+            value=bow_contact_point.markup,
+            )
+        string = override_.override_string
+        lilypond_format_bundle.grob_overrides.append(string)
         y_offset = float((4 * bow_contact_point.contact_point) - 2)
-        abjad.tweak(note_head).Y_offset = y_offset
+        override_ = LilyPondGrobOverride(
+            grob_name='NoteHead',
+            once=True,
+            property_path='Y-offset',
+            value=y_offset,
+            )
+        string = override_.override_string
+        lilypond_format_bundle.grob_overrides.append(string)
 
     def _make_bow_direction_change_contributions(
         self,
         bow_contact_point=None,
         leaf=None,
-        bundle=None,
+        lilypond_format_bundle=None,
         ):
         cautionary_change = False
         direction_change = None
@@ -302,21 +324,22 @@ class BowContactSpanner(Spanner):
         previous_leaf = inspect(leaf).get_leaf(-1)
         previous_contact_point = None
         if previous_leaf is not None:
-            agent = inspect(previous_leaf)
-            previous_contact_points = agent.get_indicators(BowContactPoint)
+            previous_contact_points = inspect(previous_leaf
+                ).get_indicators(BowContactPoint)
             if previous_contact_points:
                 previous_contact_point = previous_contact_points[0]
         if (leaf is self[0] or
             previous_contact_point is None or
-            previous_contact_point.contact_point is None):
+            previous_contact_point.contact_point is None
+            ):
             if this_contact_point < next_contact_point:
                 direction_change = enums.Down
             elif next_contact_point < this_contact_point:
                 direction_change = enums.Up
         else:
             previous_leaf = inspect(leaf).get_leaf(-1)
-            agent = inspect(previous_leaf)
-            previous_contact_point = agent.get_indicator(BowContactPoint)
+            previous_contact_point = inspect(previous_leaf).get_indicator(
+                BowContactPoint)
             if (previous_contact_point < this_contact_point and
                 next_contact_point < this_contact_point):
                 direction_change = enums.Up
@@ -333,38 +356,37 @@ class BowContactSpanner(Spanner):
         if direction_change is None:
             return
         if cautionary_change:
-            if direction_change is enums.Up:
+            if direction_change == enums.Up:
                 string = r'^ \parenthesize \upbow'
-            elif direction_change is enums.Down:
+            elif direction_change == enums.Down:
                 string = r'^ \parenthesize \downbow'
         else:
-            if direction_change is enums.Up:
+            if direction_change == enums.Up:
                 articulation = Articulation('upbow', direction=enums.Up)
-            elif direction_change is enums.Down:
+            elif direction_change == enums.Down:
                 articulation = Articulation('downbow', direction=enums.Up)
             string = str(articulation)
-        bundle.after.articulations.append(string)
+        lilypond_format_bundle.after.articulations.append(string)
 
-    def _make_glissando_tweaks(
+    def _make_glissando_overrides(
         self,
         bow_motion_technique=None,
+        lilypond_format_bundle=None,
         ):
-        tweaks = []
         if bow_motion_technique is not None:
             style = SchemeSymbol(bow_motion_technique.glissando_style)
-            override = LilyPondGrobOverride(
+            override_ = LilyPondGrobOverride(
                 grob_name='Glissando',
                 once=True,
                 property_path='style',
                 value=style,
                 )
-            string = override.tweak_string()
-            tweaks.append(string)
-        return tweaks
+            string = override_.override_string
+            lilypond_format_bundle.grob_overrides.append(string)
 
     def _make_pizzicato_overrides(
         self,
-        bundle=None,
+        lilypond_format_bundle=None,
         ):
         style = SchemeSymbol('cross')
         override_ = LilyPondGrobOverride(
@@ -374,7 +396,7 @@ class BowContactSpanner(Spanner):
             value=style,
             )
         string = override_.override_string
-        bundle.grob_overrides.append(string)
+        lilypond_format_bundle.grob_overrides.append(string)
 
     def _next_leaf_is_bowed(self, leaf):
         if leaf is self[-1]:
@@ -393,48 +415,3 @@ class BowContactSpanner(Spanner):
         elif next_contact_point.contact_point is None:
             return False
         return True
-
-    ### PUBLIC METHODS ###
-
-    def attach(
-        self,
-        indicator: typing.Union[BowContactPoint, BowMotionTechnique],
-        leaf: Leaf,
-        deactivate: bool = None,
-        tag: typing.Union[str, Tag] = None,
-        wrapper: bool = None,
-        ) -> typing.Optional[Wrapper]:
-        """
-        Attaches ``indicator`` to ``leaf`` in spanner.
-        """
-        return super()._attach_piecewise(
-            indicator,
-            leaf,
-            deactivate=deactivate,
-            tag=tag,
-            wrapper=wrapper,
-            )
-
-    def start_command(self) -> typing.List[str]:
-        r"""
-        Gets start command.
-
-        ..  container:: example
-
-            >>> abjad.BowContactSpanner().start_command()
-            ['\\glissando']
-
-        """
-        return super().start_command()
-
-    def stop_command(self) -> typing.Optional[str]:
-        """
-        Gets stop command.
-
-        ..  container:: example
-
-            >>> abjad.BowContactSpanner().stop_command() is None
-            True
-
-        """
-        return super().stop_command()

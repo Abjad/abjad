@@ -25,7 +25,7 @@ class Component(AbjadObject):
     __slots__ = (
         '_indicators_are_current',
         '_is_forbidden_to_update',
-        '_lilypond_grob_name_manager',
+        '_overrides',
         '_lilypond_setting_name_manager',
         '_measure_number',
         '_offsets_are_current',
@@ -48,7 +48,7 @@ class Component(AbjadObject):
         self._measure_number = None
         self._offsets_are_current = False
         self._offsets_in_seconds_are_current = False
-        self._lilypond_grob_name_manager = None
+        self._overrides = None
         self._parent = None
         self._lilypond_setting_name_manager = None
         self._start_offset = None
@@ -74,9 +74,9 @@ class Component(AbjadObject):
         """
         import abjad
         new_component = type(self)(*self.__getnewargs__())
-        if getattr(self, '_lilypond_grob_name_manager', None) is not None:
+        if getattr(self, '_overrides', None) is not None:
             manager = copy.copy(abjad.override(self))
-            new_component._lilypond_grob_name_manager = manager
+            new_component._overrides = manager
         if getattr(self, '_lilypond_setting_name_manager', None) is not None:
             manager = copy.copy(abjad.setting(self))
             new_component._lilypond_setting_name_manager = manager
@@ -84,9 +84,8 @@ class Component(AbjadObject):
             new_wrapper = copy.copy(wrapper)
             abjad.attach(new_wrapper, new_component)
         for wrapper in abjad.inspect(self).wrappers():
-            if wrapper.spanner is None:
-                new_wrapper = copy.copy(wrapper)
-                abjad.attach(new_wrapper, new_component)
+            new_wrapper = copy.copy(wrapper)
+            abjad.attach(new_wrapper, new_component)
         return new_component
 
     def __format__(self, format_specification=''):

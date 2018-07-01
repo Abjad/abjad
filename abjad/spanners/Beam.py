@@ -164,7 +164,6 @@ class Beam(Spanner):
         '_beam_rests',
         '_direction',
         '_durations',
-        '_leak',
         '_span_beam_count',
         '_stemlet_length',
         )
@@ -182,7 +181,6 @@ class Beam(Spanner):
         beam_rests: bool = None,
         direction: typing.Union[str, enums.VerticalAlignment] = None,
         durations: typing.Iterable[Duration] = None,
-        leak: bool = None,
         span_beam_count: int = 1,
         stemlet_length: typings.Number = None,
         ) -> None:
@@ -197,9 +195,6 @@ class Beam(Spanner):
         self._direction = direction
         durations = self._coerce_durations(durations)
         self._durations: typing.Tuple[Duration, ...] = durations
-        if leak is not None:
-            leak = bool(leak)
-        self._leak = leak
         if span_beam_count is not None:
             assert isinstance(span_beam_count, int)
         self._span_beam_count = span_beam_count
@@ -253,12 +248,12 @@ class Beam(Spanner):
                     beam_rests=self.beam_rests,
                     )
                 ):
-                strings = self.start_command()
+                strings = self._tweaked_start_command_strings()
                 bundle.after.spanner_starts.extend(strings)
             if (leaf is self[-1] or
                 not next_leaf or
                 not self._is_beamable(next_leaf, beam_rests=self.beam_rests)):
-                string = self.stop_command()
+                string = self._stop_command_string()
                 for spanner_start in bundle.after.spanner_starts:
                     if '[' in spanner_start:
                         bundle.after.spanner_starts.append(string)
@@ -397,9 +392,8 @@ class Beam(Spanner):
             ):
             left = current_flag_count
             right = min(current_flag_count, next_flag_count)
-        # TODO: should be following be elif instead of if?
         # [beamable leaf unbeamable]
-        if (self._is_beamable(
+        elif (self._is_beamable(
                 previous_leaf,
                 beam_rests=self.beam_rests,
                 ) and
@@ -471,18 +465,18 @@ class Beam(Spanner):
             stop_piece = None
             if leaf is self[0]:
                 if next_leaf_is_beamable or self.beam_lone_notes:
-                    start_pieces = self.start_command()
+                    start_pieces = self._tweaked_start_command_strings()
             else:
                 if (not previous_leaf_is_beamable and
                     (next_leaf_is_beamable or self.beam_lone_notes)):
-                    start_pieces = self.start_command()
+                    start_pieces = self._tweaked_start_command_strings()
             if leaf is self[-1]:
                 if previous_leaf_is_beamable or self.beam_lone_notes:
-                    stop_piece = self.stop_command()
+                    stop_piece = self._stop_command_string()
             else:
                 if ((previous_leaf_is_beamable or self.beam_lone_notes) and
                     not next_leaf_is_beamable):
-                    stop_piece = self.stop_command()
+                    stop_piece = self._stop_command_string()
             if start_pieces and stop_piece:
                 bundle.after.spanner_starts.extend(start_pieces)
                 bundle.after.spanner_starts.append(stop_piece)
@@ -948,69 +942,6 @@ class Beam(Spanner):
         return self._durations
 
     @property
-    def leak(self):
-        r"""
-        Is true when beam leaks one leaf to the right with LilyPond empty chord
-        ``<>`` construct.
-
-        ..  container:: example
-
-            Without leak:
-
-            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8 g'2")
-            >>> abjad.setting(staff).auto_beaming = False
-            >>> beam = abjad.Beam()
-            >>> abjad.attach(beam, staff[:3])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                \with
-                {
-                    autoBeaming = ##f
-                }
-                {
-                    c'8
-                    [
-                    d'8
-                    e'8
-                    ]
-                    f'8
-                    g'2
-                }
-
-            With leak:
-
-            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8 g'2")
-            >>> abjad.setting(staff).auto_beaming = False
-            >>> beam = abjad.Beam(leak=True)
-            >>> abjad.attach(beam, staff[:3])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                \with
-                {
-                    autoBeaming = ##f
-                }
-                {
-                    c'8
-                    [
-                    d'8
-                    e'8
-                    <> ]
-                    f'8
-                    g'2
-                }
-
-        """
-        return self._leak
-
-    @property
     def span_beam_count(self) -> int:
         r"""
         Gets span beam count.
@@ -1167,41 +1098,3 @@ class Beam(Spanner):
 
         """
         return self._stemlet_length
-
-    ### PUBLIC METHODS ###
-
-    def start_command(self) -> typing.List[str]:
-        """
-        Gets start command.
-
-        ..  container:: example
-
-            >>> abjad.Beam().start_command()
-            ['[']
-
-            With direction:
-
-            >>> abjad.Beam(direction=abjad.Up).start_command()
-            ['^ [']
-
-        """
-        return super().start_command()
-
-    def stop_command(self) -> typing.Optional[str]:
-        """
-        Gets stop command.
-
-        ..  container:: example
-
-            >>> abjad.Beam().stop_command()
-            ']'
-
-            Leaked to the right:
-
-            >>> abjad.Beam(leak=True).stop_command()
-            '<> ]'
-
-        """
-        string = super().stop_command()
-        string = self._add_leak(string)
-        return string

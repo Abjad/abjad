@@ -46,7 +46,7 @@ class BendAfter(AbjadValueObject):
 
     __slots__ = (
         '_bend_amount',
-        '_lilypond_tweak_manager',
+        '_tweaks',
         )
 
     _format_slot = 'after'
@@ -64,7 +64,7 @@ class BendAfter(AbjadValueObject):
         ) -> None:
         assert isinstance(bend_amount, (int, float)), repr(bend_amount)
         self._bend_amount = bend_amount
-        self._lilypond_tweak_manager = None
+        self._tweaks = None
         LilyPondTweakManager.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
@@ -146,4 +146,4 @@ class BendAfter(AbjadValueObject):
                 }
 
         """
-        return self._lilypond_tweak_manager
+        return self._tweaks

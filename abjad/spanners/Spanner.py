@@ -4,13 +4,13 @@ from abjad import enums
 from abjad.core.Leaf import Leaf
 from abjad.core.Selection import Selection
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
-from abjad.segments.Tags import Tags
 from abjad.system.AbjadObject import AbjadObject
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.system.Tag import Tag
+from abjad.system.Tags import Tags
 from abjad.system.Wrapper import Wrapper
 from abjad.timespans import Timespan
 from abjad.top.inspect import inspect
@@ -41,19 +41,13 @@ class Spanner(AbjadObject):
         '_ignore_attachment_test',
         '_ignore_before_attach',
         '_leaves',
-        '_left_broken',
         '_lilypond_setting_name_manager',
-        '_lilypond_tweak_manager',
-        '_right_broken',
         '_tag',
+        '_tweaks',
         '_wrappers',
         )
 
     _empty_chord = '<>'
-
-    _start_command: typing.Optional[str] = None
-
-    _stop_command: typing.Optional[str] = None
 
     ### INITIALIZER ###
 
@@ -63,11 +57,9 @@ class Spanner(AbjadObject):
         self._ignore_attachment_test = None
         self._ignore_before_attach = None
         self._leaves: typing.List[Leaf] = []
-        self._left_broken = None
         self._lilypond_setting_name_manager = None
-        self._lilypond_tweak_manager = None
-        self._right_broken = None
         self._tag = None
+        self._tweaks = None
         self._wrappers: typing.List[Wrapper] = []
 
     ### SPECIAL METHODS ###
@@ -92,8 +84,8 @@ class Spanner(AbjadObject):
         new = type(self)(*self.__getnewargs__())
         if getattr(self, '_lilypond_setting_name_manager', None) is not None:
             new._lilypond_setting_name_manager = copy.copy(setting(self))
-        if getattr(self, '_lilypond_tweak_manager', None) is not None:
-            new._lilypond_tweak_manager = copy.copy(tweak(self))
+        if getattr(self, '_tweaks', None) is not None:
+            new._tweaks = copy.copy(tweak(self))
         self._copy_keywords(new)
         return new
 
@@ -150,11 +142,6 @@ class Spanner(AbjadObject):
             string = f'{self.direction} {string}'
         return string
 
-    def _add_leak(self, string):
-        if getattr(self, 'leak', None):
-            string = f'{self._empty_chord} {string}'
-        return string
-
     def _append(self, leaf):
         if self._ignore_attachment_test:
             pass
@@ -167,13 +154,6 @@ class Spanner(AbjadObject):
                 raise Exception(type(self), leaves)
         leaf._append_spanner(self)
         self._leaves.append(leaf)
-
-    def _append_left(self, leaf):
-        leaves = [leaf] + self[:1]
-        leaves = select(leaves)
-        assert leaves.are_contiguous_logical_voice()
-        leaf._append_spanner(self)
-        self._leaves.insert(0, leaf)
 
     def _at_least_two_leaves(self, argument):
         leaves = select(argument).leaves()
@@ -188,8 +168,6 @@ class Spanner(AbjadObject):
         self,
         argument,
         deactivate=None,
-        left_broken=None,
-        right_broken=None,
         tag=None,
         ):
         assert not self, repr(self)
@@ -197,50 +175,9 @@ class Spanner(AbjadObject):
         assert argument.are_leaves(), repr(argument)
         self._extend(argument)
         self._deactivate = deactivate
-        self._left_broken = left_broken
-        self._right_broken = right_broken
         if tag is not None:
             tag = Tag(tag)
         self._tag = tag
-
-    def _attach_piecewise(
-        self,
-        indicator,
-        leaf: Leaf,
-        alternate: typing.Tuple[str, str] = None,
-        deactivate: bool = None,
-        tag: typing.Union[str, Tag] = None,
-        wrapper: bool = None,
-        ) -> typing.Optional[Wrapper]:
-        if deactivate is not None:
-            assert isinstance(deactivate, bool)
-        if leaf not in self:
-            raise Exception(f'must be leaf in spanner: {leaf!r}.')
-        if isinstance(indicator, Wrapper):
-            alternate = indicator.alternate
-            annotation = indicator.annotation
-            context = indicator.context
-            deactivate = deactivate or indicator.deactivate
-            synthetic_offset = indicator.synthetic_offset
-            tag = tag or indicator.tag
-            indicator._detach()
-            indicator = indicator.indicator
-        context = getattr(self, 'context', None)
-        context = context or getattr(indicator, 'context', None)
-        wrapper_ = Wrapper(
-            alternate=alternate,
-            component=leaf,
-            context=context,
-            deactivate=deactivate,
-            indicator=indicator,
-            spanner=self,
-            tag=tag,
-            )
-        wrapper_._bind_to_component(leaf)
-        self._wrappers.append(wrapper_)
-        if wrapper:
-            return wrapper_
-        return None
 
     def _attachment_test(self, argument):
         return isinstance(argument, Leaf)
@@ -288,8 +225,7 @@ class Spanner(AbjadObject):
         return result
 
     def _copy_keywords(self, new):
-        if hasattr(self, 'leak'):
-            new._leak = copy.copy(self.leak)
+        pass
 
     def _detach(self):
         self._sever_all_leaves()
@@ -305,22 +241,6 @@ class Spanner(AbjadObject):
                 raise Exception(message)
         for leaf in leaves:
             self._append(leaf)
-
-    def _extend_left(self, leaves):
-        leaf_input = leaves + list(self[:1])
-        leaf_input = select(leaf_input)
-        assert leaf_input.are_contiguous_logical_voice()
-        for leaf in reversed(leaves):
-            self._append_left(leaf)
-
-    def _format_after_leaf(self, leaf):
-        return []
-
-    def _format_before_leaf(self, leaf):
-        return []
-
-    def _format_right_of_leaf(self, leaf):
-        return []
 
     def _fracture(self, i, direction=None):
         """
@@ -360,13 +280,6 @@ class Spanner(AbjadObject):
         self._block_all_leaves()
         return self, left, right
 
-    def _fuse_by_reference(self, spanner):
-        result = self._copy(self[:])
-        self._block_all_leaves()
-        spanner._block_all_leaves()
-        result._extend(spanner.leaves)
-        return [(self, spanner, result)]
-
     def _get_basic_lilypond_format_bundle(self, leaf):
         bundle = LilyPondFormatBundle()
         return bundle
@@ -383,15 +296,6 @@ class Spanner(AbjadObject):
             middle = f', ... [{number}] ..., '
             return left + middle + right
 
-    def _get_duration(self, in_seconds=False):
-        return sum(_._get_duration(in_seconds=in_seconds) for _ in self)
-
-    def _get_duration_in_seconds(self):
-        duration = Duration(0)
-        for leaf in self.leaves:
-            duration += leaf._get_duration(in_seconds=True)
-        return duration
-
     def _get_format_specification(self):
         agent = StorageFormatManager(self)
         names = list(agent.signature_keyword_names)
@@ -406,66 +310,9 @@ class Spanner(AbjadObject):
             storage_format_kwargs_names=names,
             )
 
-    def _get_indicators(self, prototype=None, unwrap=True):
-        prototype = prototype or (object,)
-        if not isinstance(prototype, tuple):
-            prototype = (prototype,)
-        prototype_objects, prototype_classes = [], []
-        for indicator_prototype in prototype:
-            if isinstance(indicator_prototype, type):
-                prototype_classes.append(indicator_prototype)
-            else:
-                prototype_objects.append(indicator_prototype)
-        prototype_objects = tuple(prototype_objects)
-        prototype_classes = tuple(prototype_classes)
-        matching_indicators = []
-        for wrapper in self._wrappers:
-            if isinstance(wrapper, prototype_classes):
-                matching_indicators.append(wrapper)
-            elif any(wrapper == x for x in prototype_objects):
-                matching_indicators.append(wrapper)
-            elif isinstance(wrapper, Wrapper):
-                if isinstance(wrapper.indicator, prototype_classes):
-                    matching_indicators.append(wrapper)
-                elif any(wrapper.indicator == x for x in prototype_objects):
-                    matching_indicators.append(wrapper)
-        if unwrap:
-            matching_indicators = [x.indicator for x in matching_indicators]
-        matching_indicators = tuple(matching_indicators)
-        return matching_indicators
-
     def _get_lilypond_format_bundle(self, leaf):
         bundle = self._get_basic_lilypond_format_bundle(leaf)
         return bundle
-
-    def _get_my_first_leaf(self):
-        if self.leaves:
-            return self.leaves[0]
-
-    def _get_my_last_leaf(self):
-        if self.leaves:
-            return self.leaves[-1]
-
-    def _get_my_nth_leaf(self, n):
-        return self.leaves[n]
-
-    def _get_piecewise_indicator(self, leaf, prototype=None):
-        indicators = self._get_piecewise_indicators(leaf, prototype)
-        if not indicators:
-            message = 'no piecewise {prototype!s} indicator found.'
-            raise Exception(message)
-        if len(indicators) == 1:
-            return indicators[0]
-        message = f'multiple piecewise {prototype!s} indicators found.'
-        raise Exception(message)
-
-    def _get_piecewise_indicators(self, leaf, prototype=None):
-        assert leaf in self, repr(leaf)
-        indicators = []
-        for wrapper in inspect(leaf).wrappers(prototype):
-            if wrapper.spanner is self:
-                indicators.append(wrapper.indicator)
-        return indicators
 
     def _get_preprolated_duration(self):
         return sum([_._get_preprolated_duration() for _ in self])
@@ -489,10 +336,6 @@ class Spanner(AbjadObject):
             start_offset=start_offset,
             stop_offset=stop_offset,
             )
-
-    def _has_piecewise_indicator(self, leaf, prototype=None):
-        indicators = self._get_piecewise_indicators(leaf, prototype)
-        return bool(indicators)
 
     def _index(self, leaf):
         return self._leaves.index(leaf)
@@ -536,9 +379,6 @@ class Spanner(AbjadObject):
     def _is_my_only(self, leaf):
         return len(self) == 1 and leaf is self[0]
 
-    def _is_trending(self, leaf):
-        return False
-
     def _remove(self, leaf):
         """
         Not composer-safe.
@@ -571,6 +411,9 @@ class Spanner(AbjadObject):
         self._block_leaf(leaf)
         self._remove_leaf(leaf)
 
+    def _stop_command_string(self):
+        return self._stop_command
+
     def _start_offset_in_me(self, leaf):
         leaf_start_offset = inspect(leaf).get_timespan().start_offset
         self_start_offset = inspect(self).get_timespan().start_offset
@@ -596,6 +439,15 @@ class Spanner(AbjadObject):
             deactivate=True,
             tag=abjad_tags.SHOW_TO_JOIN_BROKEN_SPANNERS,
             )
+
+    def _tweaked_start_command_strings(self):
+        strings = []
+        contributions = tweak(self)._list_format_contributions()
+        strings.extend(contributions)
+        start_command = self._start_command
+        start_command = self._add_direction(start_command)
+        strings.append(start_command)
+        return strings
 
     def _unblock_all_leaves(self):
         """
@@ -634,45 +486,4 @@ class Spanner(AbjadObject):
         """
         Gets tweaks.
         """
-        return self._lilypond_tweak_manager
-
-    ### PUBLC METHODS ###
-
-    def index(self, leaf: Leaf) -> int:
-        """
-        Gets index of ``leaf`` in spanner.
-        """
-        return self.leaves.index(leaf)
-        
-    def start_command(self) -> typing.List[str]:
-        """
-        Gets start command.
-
-        ..  container:: example
-
-            >>> abjad.Spanner().start_command()
-            []
-
-        """
-        strings: typing.List[str] = []
-        contributions = tweak(self)._list_format_contributions()
-        strings.extend(contributions)
-        string = self._start_command
-        if string:
-            assert isinstance(string, str), repr(string)
-            string = self._add_direction(string)
-            assert isinstance(string, str), repr(string)
-            strings.append(string)
-        return strings
-
-    def stop_command(self) -> typing.Optional[str]:
-        """
-        Gets stop command.
-
-        ..  container:: example
-
-            >>> abjad.Spanner().stop_command() is None
-            True
-
-        """
-        return self._stop_command
+        return self._tweaks

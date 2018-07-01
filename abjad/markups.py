@@ -179,11 +179,11 @@ class Markup(AbjadValueObject):
         '_contents',
         '_direction',
         '_format_slot',
-        '_lilypond_tweak_manager',
+        '_tweaks',
         )
 
     _private_attributes_to_copy = (
-        '_lilypond_tweak_manager',
+        '_tweaks',
         )
 
     ### INITIALIZER ###
@@ -236,7 +236,7 @@ class Markup(AbjadValueObject):
         if direction_ is not None:
             assert isinstance(direction_, enums.VerticalAlignment), repr(direction_)
         self._direction = direction_
-        self._lilypond_tweak_manager = None
+        self._tweaks = None
         LilyPondTweakManager.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
@@ -581,17 +581,9 @@ class Markup(AbjadValueObject):
 
     def _get_format_pieces(self):
         import abjad
-
-#        if self._lilypond_tweak_manager is None:
-#            tweaks = []
-#        else:
-#            tweaks = self._lilypond_tweak_manager._list_format_contributions()
-
         tweaks = []
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions()
-        #print(self.contents, self.tweaks, tweaks)
-
         indent = abjad.LilyPondFormatManager.indent
         direction = ''
         if self.direction is not None:
@@ -693,6 +685,7 @@ class Markup(AbjadValueObject):
         """
         return self._direction
 
+    # TODO: Tweaks do not appear on markup without direction!
     @property
     def tweaks(self) -> typing.Optional[LilyPondTweakManager]:
         r"""
@@ -748,9 +741,43 @@ class Markup(AbjadValueObject):
             >>> abjad.show(staff) # doctest: +SKIP
 
         """
-        return self._lilypond_tweak_manager
+        return self._tweaks
 
     ### PUBLIC METHODS ###
+
+    @classmethod
+    def abjad_metronome_mark(
+        class_,
+        duration_log,
+        dot_count,
+        stem_height,
+        units_per_minute,
+        direction=None,
+        ):
+        r"""
+        Abjad ``\abjad-metronome-mark-markup`` command.
+
+        ..  container:: example
+
+            >>> markup = abjad.Markup.abjad_metronome_mark(
+            ...     2, 0, 1, 67.5, direction=abjad.Up,
+            ...     )
+            >>> abjad.f(markup)
+            ^ \markup {
+                \abjad-metronome-mark-markup #2 #0 #1 #"67.5"
+                }
+
+            >>> abjad.show(markup) # doctest: +SKIP
+
+        Returns new markup
+        """
+        string = 'abjad-metronome-mark-markup'
+        string += f' #{duration_log}'
+        string += f' #{dot_count}'
+        string += f' #{stem_height}'
+        string += f' #"{units_per_minute}"'
+        command = MarkupCommand(string)
+        return class_(contents=command, direction=direction)
 
     def bold(self):
         r"""

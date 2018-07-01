@@ -1,6 +1,6 @@
 import typing
-from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.utilities.String import String
+from .AbjadValueObject import AbjadValueObject
 
 
 class Tags(AbjadValueObject):

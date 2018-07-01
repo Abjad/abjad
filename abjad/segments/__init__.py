@@ -15,6 +15,5 @@ from .SegmentMaker import SegmentMaker
 from .StringOrchestraScoreTemplate import StringOrchestraScoreTemplate
 from .StringQuartetScoreTemplate import StringQuartetScoreTemplate
 from .TwoStaffPianoScoreTemplate import TwoStaffPianoScoreTemplate
-from .Tags import Tags
 
 _documentation_section = 'unstable'

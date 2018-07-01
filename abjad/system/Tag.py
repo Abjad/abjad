@@ -349,7 +349,7 @@ class Tag(AbjadObject):
             True
 
         """
-        from abjad.segments.Tags import Tags
+        from abjad.system.Tags import Tags
         tags = Tags().persistent_indicator_tags()
         for word in self:
             if word in tags:

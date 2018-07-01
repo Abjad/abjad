@@ -117,11 +117,11 @@ class Dynamic(AbjadValueObject):
         '_format_hairpin_stop',
         '_hide',
         '_leak',
-        '_lilypond_tweak_manager',
         '_name',
         '_name_is_textual',
         '_ordinal',
         '_sforzando',
+        '_tweaks',
         )
 
     _composite_dynamic_name_to_steady_state_dynamic_name = {
@@ -275,7 +275,7 @@ class Dynamic(AbjadValueObject):
         if sforzando is not None:
             sforzando = bool(sforzando)
         self._sforzando = sforzando
-        self._lilypond_tweak_manager = None
+        self._tweaks = None
         LilyPondTweakManager.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
@@ -1195,4 +1195,4 @@ class Dynamic(AbjadValueObject):
                 \f
 
         """
-        return self._lilypond_tweak_manager
+        return self._tweaks

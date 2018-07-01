@@ -105,7 +105,7 @@ class Fermata(AbjadValueObject):
 
     __slots__ = (
         '_command',
-        '_lilypond_tweak_manager',
+        '_tweaks',
         )
 
     _context = 'Score'
@@ -123,7 +123,7 @@ class Fermata(AbjadValueObject):
         ) -> None:
         assert command in self._allowable_commands, repr(command)
         self._command = command
-        self._lilypond_tweak_manager = None
+        self._tweaks = None
         LilyPondTweakManager.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
@@ -271,4 +271,4 @@ class Fermata(AbjadValueObject):
                 \fermata
 
         """
-        return self._lilypond_tweak_manager
+        return self._tweaks

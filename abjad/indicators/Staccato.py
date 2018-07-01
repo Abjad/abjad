@@ -63,7 +63,7 @@ class Staccato(AbjadValueObject):
 
     __slots__ = (
         '_direction',
-        '_lilypond_tweak_manager',
+        '_tweaks',
         )
 
     _format_slot: enums.HorizontalAlignment = enums.Right
@@ -85,7 +85,7 @@ class Staccato(AbjadValueObject):
             directions = (enums.Up, enums.Down, enums.Center, None)
             assert direction_ in directions, repr(direction_)
         self._direction = direction_
-        self._lilypond_tweak_manager = None
+        self._tweaks = None
         LilyPondTweakManager.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
@@ -170,4 +170,4 @@ class Staccato(AbjadValueObject):
                 \staccato
 
         """
-        return self._lilypond_tweak_manager
+        return self._tweaks

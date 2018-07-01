@@ -130,7 +130,7 @@ class LilyPondLiteral(AbjadValueObject):
         '_argument',
         '_directed',
         '_format_slot',
-        '_lilypond_tweak_manager',
+        '_tweaks',
         )
 
     _allowable_format_slots = (
@@ -163,7 +163,7 @@ class LilyPondLiteral(AbjadValueObject):
         if directed is not None:
             directed = bool(directed)
         self._directed = directed
-        self._lilypond_tweak_manager = None
+        self._tweaks = None
         LilyPondTweakManager.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
@@ -334,7 +334,7 @@ class LilyPondLiteral(AbjadValueObject):
                 }
 
         """
-        return self._lilypond_tweak_manager
+        return self._tweaks
 
     ### PUBLIC METHODS ###
 

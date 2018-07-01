@@ -198,7 +198,7 @@ class LilyPondTweakManager(LilyPondNameManager):
         """
         Sets ``tweaks`` on ``argument``.
         """
-        if not hasattr(argument, '_lilypond_tweak_manager'):
+        if not hasattr(argument, '_tweaks'):
             name = type(argument).__name__
             raise NotImplementedError(f'{name} does not allow tweaks (yet).')
         if not tweaks:
@@ -210,9 +210,9 @@ class LilyPondTweakManager(LilyPondNameManager):
         assert all(isinstance(_, tuple) for _ in tweaks), repr(tweaks)
         if not tweaks:
             return
-        if argument._lilypond_tweak_manager is None:
-            argument._lilypond_tweak_manager = LilyPondTweakManager()
-        manager = argument._lilypond_tweak_manager
+        if argument._tweaks is None:
+            argument._tweaks = LilyPondTweakManager()
+        manager = argument._tweaks
         for tweak in tweaks:
             if len(tweak) == 2:
                 attribute, value = tweak

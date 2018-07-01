@@ -91,8 +91,9 @@ class TrillSpanner(Spanner):
     __slots__ = (
         '_interval',
         '_is_harmonic',
-        '_leak',
+        '_left_broken',
         '_pitch',
+        '_right_broken',
         )
 
     _start_command = r'\startTrillSpan'
@@ -106,8 +107,9 @@ class TrillSpanner(Spanner):
         *,
         interval: typing.Union[str, NamedInterval] = None,
         is_harmonic: bool = None,
-        leak: bool = None,
+        left_broken: bool = None,
         pitch: typing.Union[str, NamedPitch] = None,
+        right_broken: bool = None,
         ) -> None:
         Spanner.__init__(self)
         if interval is not None and pitch is not None:
@@ -120,12 +122,15 @@ class TrillSpanner(Spanner):
         if is_harmonic is not None:
             is_harmonic = bool(is_harmonic)
         self._is_harmonic = is_harmonic
-        if leak is not None:
-            leak = bool(leak)
-        self._leak = leak
+        if left_broken is not None:
+            left_broken = bool(left_broken)
+        self._left_broken = left_broken
         if pitch is not None:
             pitch = NamedPitch(pitch)
         self._pitch = pitch
+        if right_broken is not None:
+            right_broken = bool(right_broken)
+        self._right_broken = right_broken
 
     ### PRIVATE METHODS ###
 
@@ -136,7 +141,7 @@ class TrillSpanner(Spanner):
     def _get_lilypond_format_bundle(self, leaf):
         bundle = LilyPondFormatBundle()
         if len(self) == 1 and self._left_broken:
-            strings = [self.stop_command()]
+            strings = [self._stop_command_string()]
             strings = self._tag_show(strings)
             bundle.after.spanner_stops.extend(strings)
             return bundle
@@ -165,7 +170,7 @@ class TrillSpanner(Spanner):
                 pitch_string = str(pitch)
             else:
                 pitch_string = None
-            strings = self.start_command()
+            strings = self._tweaked_start_command_strings()
             if pitch_string:
                 strings[-1] += ' ' + pitch_string
             if self._left_broken:
@@ -173,7 +178,7 @@ class TrillSpanner(Spanner):
             bundle.after.trill_spanner_starts.extend(strings)
         if leaf is self[-1]:
             if 1 < len(self):
-                strings = [self.stop_command()]
+                strings = [self._stop_command_string()]
                 if self._right_broken:
                     strings = self._tag_hide(strings)
                 bundle.after.spanner_stops.extend(strings)
@@ -181,6 +186,7 @@ class TrillSpanner(Spanner):
 
     ### PUBLIC PROPERTIES ###
 
+    @property
     def cross_segment_examples(self):
         r"""
         Cross-segment examples.
@@ -190,7 +196,8 @@ class TrillSpanner(Spanner):
             Cross-segment example #1 (one-to-one):
 
             >>> segment_1 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
-            >>> abjad.attach(abjad.TrillSpanner(), segment_1[-1:], right_broken=True)
+            >>> trill_spanner = abjad.TrillSpanner(right_broken=True)
+            >>> abjad.attach(trill_spanner, segment_1[-1:])
             >>> abjad.show(segment_1, strict=50) # doctest: +SKIP
 
             ..  docs::
@@ -206,7 +213,8 @@ class TrillSpanner(Spanner):
                 }
 
             >>> segment_2 = abjad.Voice("g'4 f'2 r4", name='MainVoice')
-            >>> abjad.attach(abjad.TrillSpanner(), segment_2[:1], left_broken=True)
+            >>> trill_spanner = abjad.TrillSpanner(left_broken=True)
+            >>> abjad.attach(trill_spanner, segment_2[:1])
             >>> abjad.show(segment_2, strict=50) # doctest: +SKIP
 
             ..  docs::
@@ -255,7 +263,8 @@ class TrillSpanner(Spanner):
             Cross-segment example #2 (one-to-many):
 
             >>> segment_1 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
-            >>> abjad.attach(abjad.TrillSpanner(), segment_1[-1:], right_broken=True)
+            >>> trill_spanner = abjad.TrillSpanner(right_broken=True)
+            >>> abjad.attach(trill_spanner, segment_1[-1:])
             >>> abjad.show(segment_1, strict=50) # doctest: +SKIP
 
             ..  docs::
@@ -271,7 +280,8 @@ class TrillSpanner(Spanner):
                 }
 
             >>> segment_2 = abjad.Voice("g'4 f'2 r4", name='MainVoice')
-            >>> abjad.attach(abjad.TrillSpanner(), segment_2[:], left_broken=True)
+            >>> trill_spanner = abjad.TrillSpanner(left_broken=True)
+            >>> abjad.attach(trill_spanner, segment_2[:])
             >>> abjad.show(segment_2, strict=50) # doctest: +SKIP
 
             ..  docs::
@@ -322,7 +332,8 @@ class TrillSpanner(Spanner):
             Cross-segment example #3 (many-to-one):
 
             >>> segment_1 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
-            >>> abjad.attach(abjad.TrillSpanner(), segment_1[:], right_broken=True)
+            >>> trill_spanner = abjad.TrillSpanner(right_broken=True)
+            >>> abjad.attach(trill_spanner, segment_1[:])
             >>> abjad.show(segment_1, strict=50) # doctest: +SKIP
 
             ..  docs::
@@ -339,7 +350,8 @@ class TrillSpanner(Spanner):
                 }
 
             >>> segment_2 = abjad.Voice("g'4 f'2 r4", name='MainVoice')
-            >>> abjad.attach(abjad.TrillSpanner(), segment_2[:1], left_broken=True)
+            >>> trill_spanner = abjad.TrillSpanner(left_broken=True)
+            >>> abjad.attach(trill_spanner, segment_2[:1])
             >>> abjad.show(segment_2, strict=50) # doctest: +SKIP
 
             ..  docs::
@@ -389,7 +401,8 @@ class TrillSpanner(Spanner):
             Cross-segment example #4 (many-to-many):
 
             >>> segment_1 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
-            >>> abjad.attach(abjad.TrillSpanner(), segment_1[:], right_broken=True)
+            >>> trill_spanner = abjad.TrillSpanner(right_broken=True)
+            >>> abjad.attach(trill_spanner, segment_1[:])
             >>> abjad.show(segment_1, strict=50) # doctest: +SKIP
 
             ..  docs::
@@ -406,7 +419,8 @@ class TrillSpanner(Spanner):
                 }
 
             >>> segment_2 = abjad.Voice("g'4 f'2 r4", name='MainVoice')
-            >>> abjad.attach(abjad.TrillSpanner(), segment_2[:], left_broken=True)
+            >>> trill_spanner = abjad.TrillSpanner(left_broken=True)
+            >>> abjad.attach(trill_spanner, segment_2[:])
             >>> abjad.show(segment_2, strict=50) # doctest: +SKIP
 
             ..  docs::
@@ -560,54 +574,11 @@ class TrillSpanner(Spanner):
         return self._is_harmonic
 
     @property
-    def leak(self) -> typing.Optional[bool]:
-        r"""
-        Is true when spanner leaks one leaf to the right.
-
-        ..  container:: example
-
-            Without leak:
-
-            >>> staff = abjad.Staff("c'8 d'8 e'8 r8")
-            >>> trill = abjad.TrillSpanner()
-            >>> abjad.attach(trill, staff[:-1])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    c'8
-                    \startTrillSpan
-                    d'8
-                    e'8
-                    \stopTrillSpan
-                    r8
-                }
-
-            With leak:
-
-            >>> staff = abjad.Staff("c'8 d'8 e'8 r8")
-            >>> trill = abjad.TrillSpanner(leak=True)
-            >>> abjad.attach(trill, staff[:-1])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    c'8
-                    \startTrillSpan
-                    d'8
-                    e'8
-                    <> \stopTrillSpan
-                    r8
-                }
-
+    def left_broken(self) -> typing.Optional[bool]:
         """
-        return self._leak
+        Is true when spanner is left-broken.
+        """
+        return self._left_broken
 
     @property
     def pitch(self) -> typing.Optional[NamedPitch]:
@@ -743,35 +714,9 @@ class TrillSpanner(Spanner):
         """
         return self.pitch
 
-    ### PUBLIC METHODS ###
-
-    def start_command(self) -> typing.List[str]:
-        r"""
-        Gets start command.
-
-        ..  container:: example
-
-            >>> abjad.TrillSpanner().start_command()
-            ['\\startTrillSpan']
-
+    @property
+    def right_broken(self) -> typing.Optional[bool]:
         """
-        return super().start_command()
-
-    def stop_command(self) -> typing.Optional[str]:
-        r"""
-        Gets stop command.
-
-        ..  container:: example
-
-            >>> abjad.TrillSpanner().stop_command()
-            '\\stopTrillSpan'
-
-            With leak:
-
-            >>> abjad.TrillSpanner(leak=True).stop_command()
-            '<> \\stopTrillSpan'
-
+        Is true when spanner is right-broken.
         """
-        string = super().stop_command()
-        string = self._add_leak(string)
-        return string
+        return self._right_broken

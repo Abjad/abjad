@@ -1,7 +1,6 @@
 import typing
-from abjad import typings
-from .Spanner import Spanner
 from abjad import enums
+from abjad import typings
 from abjad.core.Chord import Chord
 from abjad.core.Component import Component
 from abjad.core.Leaf import Leaf
@@ -19,15 +18,19 @@ from abjad.top.select import select
 from abjad.top.tweak import tweak
 from abjad.utilities.Expression import Expression
 from abjad.utilities.String import String
+from .Spanner import Spanner
 
 
 class Hairpin(Spanner):
     r"""
     Hairpin.
 
+    ..  note:: ``abjad.Hairpin`` is deprecated. Use the ``abjad.hairpin()``
+        factory function instead.
+
     ..  container:: example
 
-        Conventional crescendo:
+        Crescendo:
 
         >>> voice = abjad.Voice("r8 d' e' f' g' a' b' r")
         >>> hairpin = abjad.Hairpin('p < f')
@@ -66,7 +69,7 @@ class Hairpin(Spanner):
 
     ..  container:: example
 
-        Conventional diminuendo:
+        Decrescendo:
 
         >>> voice = abjad.Voice("r8 d' e' f' g' a' b' r")
         >>> hairpin = abjad.Hairpin('f > p')
@@ -105,7 +108,7 @@ class Hairpin(Spanner):
 
     ..  container:: example
 
-        Diminuendi al niente:
+        Decrescendo al niente:
 
         >>> voice = abjad.Voice("c'2. r4")
         >>> hairpin = abjad.Hairpin('f > niente')
@@ -133,7 +136,7 @@ class Hairpin(Spanner):
 
     ..  container:: example
 
-        Multiple conventional hairpins enchained with dynamics:
+        Multiple hairpins enchained with dynamics:
 
         >>> voice = abjad.Voice("c'8 d' e' f' c' d' e' f' c'")
         >>> abjad.attach(abjad.Dynamic('p'), voice[0])
@@ -199,9 +202,7 @@ class Hairpin(Spanner):
         '_direction',
         '_shape_string',
         '_start_dynamic',
-        '_start_dynamic_is_textual',
         '_stop_dynamic',
-        '_stop_dynamic_is_textual',
         )
 
     _stop_command = r'\!'
@@ -213,18 +214,10 @@ class Hairpin(Spanner):
         descriptor: str = None,
         *,
         direction: enums.VerticalAlignment = None,
-        start_dynamic_is_textual: bool = None,
-        stop_dynamic_is_textual: bool = None,
         ) -> None:
         Spanner.__init__(self)
         direction_ = String.to_tridirectional_lilypond_symbol(direction)
         self._direction = direction_
-        if start_dynamic_is_textual is not None:
-            start_dynamic_is_textual = bool(start_dynamic_is_textual)
-        self._start_dynamic_is_textual = start_dynamic_is_textual
-        if stop_dynamic_is_textual is not None:
-            stop_dynamic_is_textual = bool(stop_dynamic_is_textual)
-        self._stop_dynamic_is_textual = stop_dynamic_is_textual
         self._descriptor: typing.Optional[str] = None
         if descriptor is not None:
             assert self._is_valid_descriptor(descriptor), repr(descriptor)
@@ -234,16 +227,10 @@ class Hairpin(Spanner):
             assert shape_string in ('<', '>')
             self._shape_string = shape_string
             if start_dynamic is not None:
-                start_dynamic = Dynamic(
-                    start_dynamic,
-                    name_is_textual=self.start_dynamic_is_textual,
-                    )
+                start_dynamic = Dynamic(start_dynamic)
             self._start_dynamic = start_dynamic
             if stop_dynamic is not None:
-                stop_dynamic = Dynamic(
-                    stop_dynamic,
-                    name_is_textual=self.stop_dynamic_is_textual,
-                    )
+                stop_dynamic = Dynamic(stop_dynamic)
             self._stop_dynamic = stop_dynamic
         else:
             self._descriptor = None
@@ -352,13 +339,13 @@ class Hairpin(Spanner):
             string = override.tweak_string()
             bundle.after.spanner_starts.append(string)
         if leaf is self[0]:
-            strings = self.start_command()
+            strings = self._tweaked_start_command_strings()
             bundle.after.spanner_starts.extend(strings)
             if self._has_sounding_start_dynamic():
                 string = self._get_directed_start_dynamic()
                 bundle.after.spanner_starts.append(string)
         if leaf is self[-1]:
-            string = self.stop_command()
+            string = self._stop_command_string()
             if string is not None:
                 bundle.after.spanner_stops.append(string)
         return bundle
@@ -367,10 +354,6 @@ class Hairpin(Spanner):
         if self.start_dynamic and self.start_dynamic.name == 'niente':
             return True
         if self.stop_dynamic and self.stop_dynamic.name == 'niente':
-            return True
-        if self._right_broken == 'niente':
-            return True
-        if self._left_broken == 'niente':
             return True
         return False
 
@@ -384,19 +367,10 @@ class Hairpin(Spanner):
             return True
         return False
 
-    @staticmethod
-    def _is_hairpin_shape_string(argument):
-        return argument in Hairpin._hairpin_shape_strings
-
     def _is_lone_pleaf(self):
         if len(self) == 1 and isinstance(self[0], (Chord, Note)):
             return True
         return False
-
-    def _is_trending(self, leaf):
-        if leaf not in self:
-            return False
-        return True
 
     def _is_valid_descriptor(self, descriptor):
         start, shape, stop = self._parse_descriptor(descriptor)
@@ -404,23 +378,14 @@ class Hairpin(Spanner):
             return False
         if start is not None:
             try:
-                start = Dynamic(
-                    start,
-                    name_is_textual=self.start_dynamic_is_textual,
-                    )
+                start = Dynamic(start)
             except AssertionError:
                 return False
         if stop is not None:
             try:
-                stop = Dynamic(
-                    stop,
-                    name_is_textual=self.stop_dynamic_is_textual,
-                    )
+                stop = Dynamic(stop)
             except AssertionError:
                 return False
-        if (getattr(start, 'name_is_textual', None) or
-            getattr(stop, 'name_is_textual', None)):
-            return True
         if start is not None and stop is not None:
             start_ordinal = start.ordinal
             stop_ordinal = stop.ordinal
@@ -454,6 +419,34 @@ class Hairpin(Spanner):
                 stop = parts[2]
         assert shape in ('<', '>')
         return start, shape, stop
+
+    def _stop_command_string(self):
+        leaf = self[-1]
+        if self._has_sounding_stop_dynamic():
+            string = self._get_directed_stop_dynamic()
+            return string
+        effective_dynamic = inspect(leaf).get_effective(Dynamic)
+        if effective_dynamic is None or effective_dynamic.name == 'niente':
+            string = self._stop_command
+            return string
+        if effective_dynamic not in inspect(leaf).wrappers():
+            found_match = False
+            for indicator in inspect(leaf).get_indicators(Dynamic):
+                if indicator == effective_dynamic:
+                    found_match = True
+            if not found_match:
+                string = self._stop_command
+                return string
+        return None
+
+    def _tweaked_start_command_strings(self):
+        strings = []
+        contributions = tweak(self)._list_format_contributions()
+        strings.extend(contributions)
+        string = rf'\{self.shape_string}'
+        string = self._add_direction(string)
+        strings.append(string)
+        return strings
 
     ### PUBLIC PROPERTIES ###
 
@@ -602,47 +595,6 @@ class Hairpin(Spanner):
         return self._start_dynamic
 
     @property
-    def start_dynamic_is_textual(self) -> typing.Optional[bool]:
-        r"""
-        Is true when start dynamic is textual.
-
-        ..  container:: example
-
-            Conventional:
-
-            >>> voice = abjad.Voice("r8 d' e' f' g' a' b' r")
-            >>> hairpin = abjad.Hairpin(
-            ...     'appena_udibile < f',
-            ...     start_dynamic_is_textual=True,
-            ...     )
-            >>> abjad.attach(hairpin, voice[1:-1])
-
-            Only LilyPond output appears below because the example command
-            is meant to be user-defined:
-
-            >>> abjad.f(voice)
-            \new Voice
-            {
-                r8
-                d'8
-                \<
-                \appena_udibile
-                e'8
-                f'8
-                g'8
-                a'8
-                b'8
-                \f
-                r8
-            }
-
-            >>> hairpin.start_dynamic_is_textual
-            True
-
-        """
-        return self._start_dynamic_is_textual
-
-    @property
     def stop_dynamic(self) -> typing.Optional[Dynamic]:
         r"""
         Gets stop dynamic.
@@ -679,20 +631,11 @@ class Hairpin(Spanner):
         return self._stop_dynamic
 
     @property
-    def stop_dynamic_is_textual(self) -> typing.Optional[bool]:
-        r"""
-        Is true when stop dynamic is textual.
-        """
-        return self._stop_dynamic_is_textual
-
-    @property
     def tweaks(self) -> typing.Optional[LilyPondTweakManager]:
         r"""
         Gets tweaks.
 
         ..  container:: example
-
-            Tweaks work with piecewise hairpins:
 
             >>> hairpin = abjad.Hairpin('p < f')
             >>> abjad.tweak(hairpin).color = 'blue'
@@ -720,170 +663,10 @@ class Hairpin(Spanner):
 
     ### PUBLIC METHODS ###
 
-    def start_command(self) -> typing.List[str]:
-        r"""
-        Gets start command.
-
-        ..  container:: example
-
-            >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> hairpin = abjad.Hairpin('<')
-            >>> abjad.attach(hairpin, staff[:])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    c'4
-                    \<
-                    d'4
-                    e'4
-                    f'4
-                    \!
-                }
-
-            >>> hairpin.start_command()
-            ['\\<']
-
-        ..  container:: example
-
-            With direction:
-
-            >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> hairpin = abjad.Hairpin('<', direction=abjad.Up)
-            >>> abjad.attach(hairpin, staff[:])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    c'4
-                    ^ \<
-                    d'4
-                    e'4
-                    f'4
-                    \!
-                }
-
-            >>> hairpin.start_command()
-            ['^ \\<']
-
-        """
-        strings: typing.List[str] = []
-        contributions = tweak(self)._list_format_contributions()
-        strings.extend(contributions)
-        string = rf'\{self.shape_string}'
-        string = self._add_direction(string)
-        strings.append(string)
-        return strings
-
-    def stop_command(self) -> typing.Optional[str]:
-        r"""
-        Gets stop command.
-
-        ..  container:: example
-
-            >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> hairpin = abjad.Hairpin('<')
-            >>> abjad.attach(hairpin, staff[:])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    c'4
-                    \<
-                    d'4
-                    e'4
-                    f'4
-                    \!
-                }
-
-            >>> hairpin.stop_command()
-            '\\!'
-
-        ..  container:: example
-
-            With stop dynamic:
-
-            >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> abjad.attach(abjad.Dynamic('f'), staff[-1])
-            >>> hairpin = abjad.Hairpin('p < f')
-            >>> abjad.attach(hairpin, staff[:])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    c'4
-                    \<
-                    \p
-                    d'4
-                    e'4
-                    f'4
-                    \f
-                    \f
-                }
-
-            >>> hairpin.stop_command()
-            '\\f'
-
-        ..  container:: example
-
-            With dynamic on stop leaf:
-
-            >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> abjad.attach(abjad.Dynamic('f'), staff[-1])
-            >>> hairpin = abjad.Hairpin('<')
-            >>> abjad.attach(hairpin, staff[:])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    c'4
-                    \<
-                    d'4
-                    e'4
-                    f'4
-                    \f
-                }
-
-            >>> hairpin.stop_command() is None
-            True
-
-        """
-        leaf = self[-1]
-        if self._has_sounding_stop_dynamic():
-            string = self._get_directed_stop_dynamic()
-            return string
-        effective_dynamic = inspect(leaf).get_effective(Dynamic)
-        if effective_dynamic is None or effective_dynamic.name == 'niente':
-            string = self._stop_command
-            return string
-        if effective_dynamic not in inspect(leaf).wrappers():
-            found_match = False
-            for indicator in inspect(leaf).get_indicators(Dynamic):
-                if indicator == effective_dynamic:
-                    found_match = True
-            if not found_match:
-                string = self._stop_command
-                return string
-        return None
-
 def hairpin(
     descriptor: str,
     argument: typing.Union[Component, Selection],
+    *,
     selector: typings.Selector = 'abjad.select().leaves()',
     ) -> None:
     r"""

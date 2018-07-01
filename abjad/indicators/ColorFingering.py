@@ -65,8 +65,8 @@ class ColorFingering(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_lilypond_tweak_manager',
         '_number',
+        '_tweaks',
         )
 
     _format_slot = 'after'
@@ -85,7 +85,7 @@ class ColorFingering(AbjadValueObject):
         if number is not None:
             assert mathtools.is_positive_integer(number)
         self._number = number
-        self._lilypond_tweak_manager = None
+        self._tweaks = None
         LilyPondTweakManager.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ##
@@ -295,4 +295,4 @@ class ColorFingering(AbjadValueObject):
 
 
         """
-        return self._lilypond_tweak_manager
+        return self._tweaks

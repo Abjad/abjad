@@ -62,7 +62,6 @@ class HorizontalBracket(Spanner):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_leak',
         '_markup',
         )
 
@@ -75,13 +74,9 @@ class HorizontalBracket(Spanner):
     def __init__(
         self,
         *,
-        leak: bool = None,
         markup: Markup = None,
         ) -> None:
         Spanner.__init__(self)
-        if leak is not None:
-            leak = bool(leak)
-        self._leak = leak
         if markup is not None:
             assert isinstance(markup, Markup)
         self._markup = markup
@@ -91,78 +86,14 @@ class HorizontalBracket(Spanner):
     def _get_lilypond_format_bundle(self, leaf):
         bundle = self._get_basic_lilypond_format_bundle(leaf)
         if leaf is self[0]:
-            strings = self.start_command()
+            strings = self._tweaked_start_command_strings()
             bundle.after.spanner_starts.extend(strings)
         if leaf is self[-1]:
-            string = self.stop_command()
+            string = self._stop_command_string()
             bundle.after.spanner_stops.append(string)
         return bundle
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def leak(self):
-        r"""
-        Is true when spanner leaks one leaf to the right.
-
-        ..  container:: example
-
-            Without leak:
-
-            >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
-            >>> voice.consists_commands.append('Horizontal_bracket_engraver')
-            >>> spanner = abjad.HorizontalBracket()
-            >>> abjad.tweak(spanner).staff_padding = 4
-            >>> abjad.attach(spanner, voice[:3])
-            >>> abjad.show(voice) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(voice)
-                \new Voice
-                \with
-                {
-                    \consists Horizontal_bracket_engraver
-                }
-                {
-                    c'4
-                    - \tweak staff-padding #4
-                    \startGroup
-                    d'4
-                    e'4
-                    \stopGroup
-                    f'4
-                }
-
-            With leak:
-
-            >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
-            >>> voice.consists_commands.append('Horizontal_bracket_engraver')
-            >>> spanner = abjad.HorizontalBracket(leak=True)
-            >>> abjad.tweak(spanner).staff_padding = 4
-            >>> abjad.attach(spanner, voice[:3])
-            >>> abjad.show(voice) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(voice)
-                \new Voice
-                \with
-                {
-                    \consists Horizontal_bracket_engraver
-                }
-                {
-                    c'4
-                    - \tweak staff-padding #4
-                    \startGroup
-                    d'4
-                    e'4
-                    <> \stopGroup
-                    f'4
-                }
-
-        """
-        return self._leak
 
     @property
     def markup(self) -> typing.Optional[Markup]:
@@ -189,37 +120,3 @@ class HorizontalBracket(Spanner):
 
         """
         return self._markup
-
-    ### PUBLIC METHODS ###
-
-    def start_command(self) -> typing.List[str]:
-        r"""
-        Gets start command.
-
-        ..  container:: example
-
-            >>> abjad.HorizontalBracket().start_command()
-            ['\\startGroup']
-
-        """
-        return super().start_command()
-
-    def stop_command(self) -> typing.Optional[str]:
-        r"""
-        Gets stop command.
-
-        ..  container:: example
-
-            >>> abjad.HorizontalBracket().stop_command()
-            '\\stopGroup'
-
-            With leak:
-
-            >>> abjad.HorizontalBracket(leak=True).stop_command()
-            '<> \\stopGroup'
-
-        """
-        string = super().stop_command()
-        if self.leak:
-            string = f'{self._empty_chord} {string}'
-        return string

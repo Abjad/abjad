@@ -34,7 +34,7 @@ class NoteHead(AbjadObject):
         '_is_cautionary',
         '_is_forced',
         '_is_parenthesized',
-        '_lilypond_tweak_manager',
+        '_tweaks',
         '_written_pitch',
         )
 
@@ -54,7 +54,7 @@ class NoteHead(AbjadObject):
         if client is not None:
             assert isinstance(client, abjad.Leaf)
         self._client = client
-        self._lilypond_tweak_manager = None
+        self._tweaks = None
         if isinstance(written_pitch, type(self)):
             note_head = written_pitch
             written_pitch = note_head.written_pitch

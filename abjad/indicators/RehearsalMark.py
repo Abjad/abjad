@@ -45,9 +45,9 @@ class RehearsalMark(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_lilypond_tweak_manager',
         '_markup',
         '_number',
+        '_tweaks',
         )
 
     _context = 'Score'
@@ -62,7 +62,7 @@ class RehearsalMark(AbjadValueObject):
         tweaks: typing.Union[
             typing.List[typing.Tuple], LilyPondTweakManager] = None,
         ) -> None:
-        self._lilypond_tweak_manager = None
+        self._tweaks = None
         self._markup = markup
         self._number = number
         LilyPondTweakManager.set_tweaks(self, tweaks)
@@ -118,7 +118,7 @@ class RehearsalMark(AbjadValueObject):
 
         """
         mark_ = new(self)
-        mark_._lilypond_tweak_manager = copy.copy(self.tweaks)
+        mark_._tweaks = copy.copy(self.tweaks)
         return mark_
 
     def __str__(self) -> str:
@@ -271,7 +271,7 @@ class RehearsalMark(AbjadValueObject):
                 c'4
 
         """
-        return self._lilypond_tweak_manager
+        return self._tweaks
 
     ### PUBLIC METHODS ###
 
