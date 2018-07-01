@@ -84,7 +84,7 @@ class Mode(AbjadValueObject):
 
         Returns true or false.
         """
-        return super(Mode, self).__eq__(argument)
+        return super().__eq__(argument)
 
     def __hash__(self):
         """
@@ -94,7 +94,7 @@ class Mode(AbjadValueObject):
 
         Returns integer.
         """
-        return super(Mode, self).__hash__()
+        return super().__hash__()
 
     def __len__(self):
         """

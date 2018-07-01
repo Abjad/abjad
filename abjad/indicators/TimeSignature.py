@@ -259,7 +259,7 @@ class TimeSignature(AbjadValueObject):
 
         Redefined in tandem with __eq__.
         """
-        return super(TimeSignature, self).__hash__()
+        return super().__hash__()
 
     def __le__(self, argument) -> bool:
         """

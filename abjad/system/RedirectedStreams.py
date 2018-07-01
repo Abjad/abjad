@@ -78,7 +78,7 @@ class RedirectedStreams(ContextManager):
 
         Returns string.
         """
-        return super(RedirectedStreams, self).__repr__()
+        return super().__repr__()
 
     ### PRIVATE METHODS ###
 

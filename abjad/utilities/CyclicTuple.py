@@ -110,7 +110,7 @@ class CyclicTuple(AbjadObject):
 
         Redefined in tandem with __eq__.
         """
-        return super(CyclicTuple, self).__hash__()
+        return super().__hash__()
 
     def __iter__(self) -> typing.Iterator:
         """

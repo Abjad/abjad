@@ -170,7 +170,7 @@ class NamedPitchClass(PitchClass):
 
         Returns new named pitch-class.
         """
-        return super(NamedPitchClass, self).__copy__(*arguments)
+        return super().__copy__(*arguments)
 
     def __eq__(self, argument):
         """
@@ -206,7 +206,7 @@ class NamedPitchClass(PitchClass):
 
         Returns true or false.
         """
-        return super(NamedPitchClass, self).__eq__(argument)
+        return super().__eq__(argument)
 
     def __format__(self, format_specification=''):
         """
@@ -221,8 +221,7 @@ class NamedPitchClass(PitchClass):
 
         Returns string.
         """
-        superclass = super(NamedPitchClass, self)
-        return superclass.__format__(format_specification=format_specification)
+        return super().__format__(format_specification=format_specification)
 
     def __hash__(self):
         """
@@ -232,7 +231,7 @@ class NamedPitchClass(PitchClass):
 
         Returns integer.
         """
-        return super(NamedPitchClass, self).__hash__()
+        return super().__hash__()
 
     def __lt__(self, argument):
         """

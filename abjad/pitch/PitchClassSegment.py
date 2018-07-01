@@ -788,7 +788,7 @@ class PitchClassSegment(Segment):
 
         Returns true or false.
         """
-        return super(PitchClassSegment, self).__contains__(argument)
+        return super().__contains__(argument)
 
     def __format__(self, format_specification=''):
         r"""
@@ -871,8 +871,7 @@ class PitchClassSegment(Segment):
 
         Returns string.
         """
-        superclass = super(PitchClassSegment, self)
-        return superclass.__format__(format_specification=format_specification)
+        return super().__format__(format_specification=format_specification)
 
     @Signature(
         markup_maker_callback='_make___getitem___markup',
@@ -1196,8 +1195,7 @@ class PitchClassSegment(Segment):
                 inspect.currentframe(),
                 precedence=100,
                 )
-        superclass = super(PitchClassSegment, self)
-        return superclass.__getitem__(argument)
+        return super().__getitem__(argument)
 
     def __illustrate__(self, expression_markup_direction=enums.Up, **keywords):
         r"""
@@ -1261,8 +1259,7 @@ class PitchClassSegment(Segment):
             True
 
         """
-        superclass = super(PitchClassSegment, self)
-        return superclass.__illustrate__(
+        return super().__illustrate__(
             expression_markup_direction=expression_markup_direction,
             **keywords
             )
@@ -1279,7 +1276,7 @@ class PitchClassSegment(Segment):
 
         Returns new pitch-class segment.
         """
-        return super(PitchClassSegment, self).__mul__(n)
+        return super().__mul__(n)
 
     def __repr__(self):
         r"""
@@ -1316,7 +1313,7 @@ class PitchClassSegment(Segment):
 
         Returns new pitch-class segment.
         """
-        return super(PitchClassSegment, self).__rmul__(n)
+        return super().__rmul__(n)
 
     def __str__(self):
         r"""
@@ -1370,8 +1367,7 @@ class PitchClassSegment(Segment):
     ### PRIVATE METHODS ###
 
     def _get_padded_string(self, width=2):
-        superclass = super(PitchClassSegment, self)
-        string = superclass._get_padded_string(width=width)
+        string = super()._get_padded_string(width=width)
         return 'PC<' + string[1:-1] + '>'
 
     def _is_equivalent_under_transposition(self, argument):
@@ -1450,8 +1446,7 @@ class PitchClassSegment(Segment):
             <class 'abc.ABCMeta'>
 
         """
-        superclass = super(PitchClassSegment, self)
-        return superclass.item_class
+        return super().item_class
 
     @property
     def items(self):
@@ -1531,8 +1526,7 @@ class PitchClassSegment(Segment):
             True
 
         """
-        superclass = super(PitchClassSegment, self)
-        return superclass.items
+        return super().items
 
     ### PUBLIC METHODS ###
 
@@ -1570,8 +1564,7 @@ class PitchClassSegment(Segment):
             True
 
         """
-        superclass = super(PitchClassSegment, self)
-        return superclass.count(item)
+        return super().count(item)
 
     @classmethod
     def from_selection(class_, selection, item_class=None):
@@ -1671,8 +1664,7 @@ class PitchClassSegment(Segment):
             True
 
         """
-        superclass = super(PitchClassSegment, self)
-        return superclass.index(item)
+        return super().index(item)
 
     @Signature(
         is_operator=True,

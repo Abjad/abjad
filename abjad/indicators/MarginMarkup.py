@@ -131,7 +131,7 @@ class MarginMarkup(AbjadValueObject):
             True
 
         """
-        return super(MarginMarkup, self).__hash__()
+        return super().__hash__()
 
     ### PRIVATE PROPERTIES ###
 

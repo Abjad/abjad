@@ -236,7 +236,7 @@ class Clef(AbjadValueObject):
         """
         if format_specification == 'lilypond':
             return self._get_lilypond_format()
-        return super(Clef, self).__format__(
+        return super().__format__(
             format_specification=format_specification,
             )
 

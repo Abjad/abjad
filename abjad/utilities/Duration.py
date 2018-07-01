@@ -287,7 +287,7 @@ class Duration(AbjadObject, Fraction):
 
         Returns integer.
         """
-        return super(Duration, self).__hash__()
+        return super().__hash__()
 
     def __le__(self, argument):
         """

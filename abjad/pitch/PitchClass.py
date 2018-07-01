@@ -67,9 +67,7 @@ class PitchClass(AbjadValueObject):
         """
         if format_specification == 'lilypond':
             return self._get_lilypond_format()
-        return super(PitchClass, self).__format__(
-            format_specification=format_specification
-            )
+        return super().__format__(format_specification=format_specification)
 
     @abc.abstractmethod
     def __lt__(self, argument):

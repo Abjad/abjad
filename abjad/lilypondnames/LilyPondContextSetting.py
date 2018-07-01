@@ -58,7 +58,7 @@ class LilyPondContextSetting(AbjadValueObject):
         Is true when ``argument`` is a LilyPond context setting with
         equivalent keyword values.
         """
-        return super(LilyPondContextSetting, self).__eq__(argument)
+        return super().__eq__(argument)
 
     def __hash__(self) -> int:
         """
@@ -66,7 +66,7 @@ class LilyPondContextSetting(AbjadValueObject):
 
         Redefined in tandem with __eq__.
         """
-        return super(LilyPondContextSetting, self).__hash__()
+        return super().__hash__()
 
     ### PRIVATE METHODS ###
 

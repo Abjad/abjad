@@ -115,7 +115,7 @@ class NumberedIntervalClass(IntervalClass):
 
         Returns true or false.
         """
-        return super(NumberedIntervalClass, self).__eq__(argument)
+        return super().__eq__(argument)
 
     def __float__(self):
         """
@@ -131,7 +131,7 @@ class NumberedIntervalClass(IntervalClass):
 
         Returns integer.
         """
-        return super(NumberedIntervalClass, self).__hash__()
+        return super().__hash__()
 
     def __lt__(self, argument):
         """
@@ -188,7 +188,7 @@ class NumberedIntervalClass(IntervalClass):
             '+1'
 
         """
-        string = super(NumberedIntervalClass, self).__str__()
+        string = super().__str__()
         if 0 < self.number:
             string = '+' + string
         return string

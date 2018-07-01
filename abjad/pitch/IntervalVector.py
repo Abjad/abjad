@@ -101,8 +101,7 @@ class IntervalVector(Vector):
 
         Returns string.
         """
-        superclass = super(IntervalVector, self)
-        return superclass.__repr__()
+        return super().__repr__()
 
     ### PRIVATE PROPERTIES ###
 

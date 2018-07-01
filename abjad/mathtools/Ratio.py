@@ -76,7 +76,7 @@ class Ratio(NonreducedRatio):
             True
 
         """
-        return super(Ratio, self).__eq__(argument)
+        return super().__eq__(argument)
 
     def __getitem__(self, argument):
         """
@@ -102,7 +102,7 @@ class Ratio(NonreducedRatio):
 
         Returns integer.
         """
-        return super(Ratio, self).__hash__()
+        return super().__hash__()
 
     def __len__(self):
         """

@@ -244,7 +244,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         Returns true or false.
         """
-        return super(TimespanTimespanTimeRelation, self).__eq__(argument)
+        return super().__eq__(argument)
 
     def __hash__(self):
         """

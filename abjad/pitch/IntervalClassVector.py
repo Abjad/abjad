@@ -90,8 +90,7 @@ class IntervalClassVector(Vector):
 
         Returns string.
         """
-        superclass = super(IntervalClassVector, self)
-        return superclass.__repr__()
+        return super().__repr__()
 
     ### PRIVATE PROPERTIES ###
 

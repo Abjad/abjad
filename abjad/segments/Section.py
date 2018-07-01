@@ -166,7 +166,7 @@ class Section(AbjadObject):
         """
         Hashes section.
         """
-        return super(Section, self).__hash__()
+        return super().__hash__()
 
     ### PUBLIC PROPERTIES ###
 

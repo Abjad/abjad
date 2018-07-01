@@ -75,7 +75,7 @@ class StringQuartetScoreTemplate(ScoreTemplate):
     ### INITIALIZER ###
 
     def __init__(self):
-        super(StringQuartetScoreTemplate, self).__init__()
+        super().__init__()
         self.voice_abbreviations.update({
             'vn1': 'First Violin Voice',
             'vn2': 'Second Violin Voice',

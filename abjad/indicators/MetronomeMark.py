@@ -439,7 +439,7 @@ class MetronomeMark(AbjadValueObject):
             False
 
         """
-        return super(MetronomeMark, self).__eq__(argument)
+        return super().__eq__(argument)
 
     def __format__(self, format_specification='') -> str:
         r"""

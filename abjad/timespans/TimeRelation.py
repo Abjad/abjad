@@ -59,7 +59,7 @@ class TimeRelation(AbjadValueObject):
 
         Returns integer.
         """
-        return super(TimeRelation, self).__hash__()
+        return super().__hash__()
 
     ### PUBLIC PROPERTIES ###
 

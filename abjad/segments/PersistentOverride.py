@@ -134,7 +134,7 @@ class PersistentOverride(AbjadObject):
         """
         Hashes persistent override.
         """
-        return super(PersistentOverride, self).__hash__()
+        return super().__hash__()
 
     ### PRIVATE METHODS ###
 

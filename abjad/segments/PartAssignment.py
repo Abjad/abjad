@@ -194,7 +194,7 @@ class PartAssignment(AbjadValueObject):
         """
         Hashes part assignment.
         """
-        return super(PartAssignment, self).__hash__()
+        return super().__hash__()
 
     def __iter__(self):
         """

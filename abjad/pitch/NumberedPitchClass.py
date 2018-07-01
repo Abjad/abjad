@@ -160,7 +160,7 @@ class NumberedPitchClass(PitchClass):
 
         Returns true or false.
         """
-        return super(NumberedPitchClass, self).__eq__(argument)
+        return super().__eq__(argument)
 
     def __format__(self, format_specification=''):
         """
@@ -175,8 +175,7 @@ class NumberedPitchClass(PitchClass):
 
         Returns string.
         """
-        superclass = super(NumberedPitchClass, self)
-        return superclass.__format__(format_specification=format_specification)
+        return super().__format__(format_specification=format_specification)
 
     def __hash__(self):
         """
@@ -186,7 +185,7 @@ class NumberedPitchClass(PitchClass):
 
         Returns integer.
         """
-        return super(NumberedPitchClass, self).__hash__()
+        return super().__hash__()
 
     def __lt__(self, argument):
         """

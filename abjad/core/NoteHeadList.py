@@ -131,8 +131,7 @@ class NoteHeadList(TypedList):
 
         Returns note-head.
         """
-        superclass = super(NoteHeadList, self)
-        return superclass.extend(items)
+        return super().extend(items)
 
     def get(self, pitch):
         r"""
@@ -231,8 +230,7 @@ class NoteHeadList(TypedList):
 
         Returns note-head.
         """
-        superclass = super(NoteHeadList, self)
-        return superclass.pop(i=i)
+        return super().pop(i=i)
 
     def remove(self, item):
         r"""
@@ -258,8 +256,7 @@ class NoteHeadList(TypedList):
                 <ef' f''>4
 
         """
-        superclass = super(NoteHeadList, self)
-        return superclass.remove(item)
+        return super().remove(item)
 
     ### PUBLIC PROPERTIES ###
 

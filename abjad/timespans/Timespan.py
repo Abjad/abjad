@@ -105,7 +105,7 @@ class Timespan(AbjadValueObject):
 
         Returns true or false.
         """
-        return super(Timespan, self).__eq__(argument)
+        return super().__eq__(argument)
 
     def __format__(self, format_specification=''):
         """
@@ -195,7 +195,7 @@ class Timespan(AbjadValueObject):
 
         Returns integer.
         """
-        return super(Timespan, self).__hash__()
+        return super().__hash__()
 
     def __illustrate__(self, range_=None, scale=None):
         """

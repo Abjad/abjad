@@ -252,7 +252,7 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
 
         Returns integer.
         """
-        return super(NonreducedFraction, self).__hash__()
+        return super().__hash__()
 
     def __le__(self, argument):
         """
@@ -326,8 +326,7 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
         if argument == -1:
             pair = (self.denominator, self.numerator)
             return self._from_pair(pair)
-        superclass = super(NonreducedFraction, self)
-        return superclass.__pow__(argument)
+        return super().__pow__(argument)
 
     def __radd__(self, argument):
         """

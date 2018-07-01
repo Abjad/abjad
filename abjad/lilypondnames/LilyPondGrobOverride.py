@@ -85,7 +85,7 @@ class LilyPondGrobOverride(AbjadValueObject):
         Is true when ``argument`` is a LilyPond grob override with equivalent
         keyword values.
         """
-        return super(LilyPondGrobOverride, self).__eq__(argument)
+        return super().__eq__(argument)
 
     def __hash__(self) -> int:
         """
@@ -93,7 +93,7 @@ class LilyPondGrobOverride(AbjadValueObject):
 
         Redefined in tandem with __eq__.
         """
-        return super(LilyPondGrobOverride, self).__hash__()
+        return super().__hash__()
 
     ### PRIVATE METHODS ###
 
