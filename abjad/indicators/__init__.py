@@ -1,6 +1,4 @@
 from .Arpeggio import Arpeggio
-from .LineSegment import LineSegment
-from .ArrowLineSegment import ArrowLineSegment
 from .Articulation import Articulation
 from .BarLine import BarLine
 from .BendAfter import BendAfter
@@ -28,7 +26,9 @@ from .Staccatissimo import Staccatissimo
 from .Staccato import Staccato
 from .StaffChange import StaffChange
 from .StartMarkup import StartMarkup
+from .StartTextSpan import StartTextSpan
 from .StemTremolo import StemTremolo
+from .StopTextSpan import StopTextSpan
 from .StringContactPoint import StringContactPoint
 from .TimeSignature import TimeSignature
 from .Tremolo import Tremolo

@@ -407,7 +407,20 @@ class LilyPondGrobOverride(AbjadValueObject):
             >>> override.tweak_string(directed=False)
             '\\tweak color #red'
 
+        ..  container:: example
+
+            LilyPond literals are allowed:
+
+            >>> override = abjad.LilyPondGrobOverride(
+            ...     grob_name='TextSpann',
+            ...     property_path=('bound-details', 'left-broken', 'text'),
+            ...     value=abjad.LilyPondLiteral(r'\markup \upright pont.'),
+            ...     )
+            >>> override.tweak_string(directed=False)
+            '\\tweak bound-details.left-broken.text \\markup \\upright pont.'
+
         """
+        from abjad.indicators.LilyPondLiteral import LilyPondLiteral
         if directed:
             result = [r'- \tweak']
         else:
@@ -418,6 +431,10 @@ class LilyPondGrobOverride(AbjadValueObject):
             property_path = self.property_path
         string = '.'.join(property_path)
         result.append(string)
-        string = Scheme.format_embedded_scheme_value(self.value)
+        if isinstance(self.value, LilyPondLiteral):
+            assert isinstance(self.value.argument, str)
+            string = self.value.argument
+        else:
+            string = Scheme.format_embedded_scheme_value(self.value)
         result.append(string)
         return ' '.join(result)

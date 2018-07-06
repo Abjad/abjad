@@ -6,7 +6,6 @@ import typing
 from .Line import Line
 from .Part import Part
 from .PartManifest import PartManifest
-from .Tags import Tags
 from abjad.core.MultimeasureRest import MultimeasureRest
 from abjad.core.Container import Container
 from abjad.core.Score import Score
@@ -18,6 +17,7 @@ from abjad.indicators.MarginMarkup import MarginMarkup
 from abjad.indicators.TimeSignature import TimeSignature
 from abjad.system.IOManager import IOManager
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
+from abjad.system.Tags import Tags
 from abjad.top.activate import activate
 from abjad.top.attach import attach
 from abjad.top.deactivate import deactivate

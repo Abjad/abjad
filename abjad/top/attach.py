@@ -3,8 +3,6 @@ def attach(
     target,
     context=None,
     deactivate=None,
-    left_broken=None,
-    right_broken=None,
     synthetic_offset=None,
     tag=None,
     wrapper=None,
@@ -228,16 +226,6 @@ def attach(
         message = message.format(attachable)
         raise Exception(message)
 
-    if left_broken is not None and not isinstance(attachable, abjad.Spanner):
-        message = 'set left_broken only for spanners, not {!r}.'
-        message = message.format(attachable)
-        raise Exception(message)
-
-    if right_broken is not None and not isinstance(attachable, abjad.Spanner):
-        message = 'set right_broken only for spanners, not {!r}.'
-        message = message.format(attachable)
-        raise Exception(message)
-            
     if deactivate is True and tag is None:
         raise Exception(f'tag must exist when deactivate is true.')
 
@@ -263,8 +251,6 @@ def attach(
         attachable._attach(
             target,
             deactivate=deactivate,
-            left_broken=left_broken,
-            right_broken=right_broken,
             tag=tag,
             )
         return
@@ -302,10 +288,6 @@ def attach(
         annotation = attachable.annotation
         context = context or attachable.context
         deactivate = deactivate or attachable.deactivate
-        if left_broken is None:
-            left_broken = attachable.left_broken
-        if right_broken is None:
-            right_broken = attachable.right_broken
         synthetic_offset = synthetic_offset or attachable.synthetic_offset
         tag = tag or attachable.tag
         attachable._detach()
@@ -320,8 +302,6 @@ def attach(
         context=context,
         deactivate=deactivate,
         indicator=attachable,
-        left_broken=left_broken,
-        right_broken=right_broken,
         synthetic_offset=synthetic_offset,
         tag=tag,
         )

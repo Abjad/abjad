@@ -71,7 +71,6 @@ class Slur(Spanner):
 
     __slots__ = (
         '_direction',
-        '_leak',
         )
 
     _start_command = '('
@@ -84,20 +83,14 @@ class Slur(Spanner):
         self,
         *,
         direction: typing.Union[str, enums.VerticalAlignment] = None,
-        leak: bool = None,
         ) -> None:
         Spanner.__init__(self)
         direction = String.to_tridirectional_lilypond_symbol(direction)
         self._direction = direction
-        if leak is not None:
-            leak = bool(leak)
-        self._leak = leak
 
     ### PRIVATE METHODS ###
 
     def _attachment_test_all(self, component_expression):
-        if self.leak:
-            return True
         return self._at_least_two_leaves(component_expression)
 
     def _copy_keywords(self, new):
@@ -106,18 +99,13 @@ class Slur(Spanner):
     def _get_lilypond_format_bundle(self, leaf):
         bundle = self._get_basic_lilypond_format_bundle(leaf)
         if self._is_my_only(leaf):
-            if self.leak:
-                strings = self.start_command()
-                bundle.after.spanner_starts.extend(strings)
-                string = self.stop_command()
-                bundle.after.spanner_starts.append(string)
             return bundle
         assert 1 < len(self)
         if leaf is self[0]:
-            strings = self.start_command()
+            strings = self._tweaked_start_command_strings()
             bundle.after.spanner_starts.extend(strings)
         elif leaf is self[-1]:
-            string = self.stop_command()
+            string = self._stop_command_string()
             bundle.after.spanner_stops.append(string)
         return bundle
 
@@ -196,109 +184,3 @@ class Slur(Spanner):
 
         """
         return self._direction
-
-    @property
-    def leak(self):
-        r"""
-        Is true when slur leaks one leaf to the right.
-
-        ..  container:: example
-
-            Without leak: 
-
-            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-            >>> slur = abjad.Slur()
-            >>> abjad.attach(slur, staff[:-1])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    c'8
-                    (
-                    d'8
-                    e'8
-                    )
-                    f'8
-                }
-
-            With leak: 
-
-            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-            >>> slur = abjad.Slur(leak=True)
-            >>> abjad.attach(slur, staff[:-1])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    c'8
-                    (
-                    d'8
-                    e'8
-                    <> )
-                    f'8
-                }
-
-        ..  container:: example
-
-            Leaked slurs can be attached to a lone leaf:
-
-            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-            >>> slur = abjad.Slur(leak=True)
-            >>> abjad.attach(slur, staff[:1])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    c'8
-                    (
-                    <> )
-                    d'8
-                    e'8
-                    f'8
-                }
-
-        """
-        return self._leak
-
-    ### PUBLIC METHODS ###
-
-    def start_command(self) -> typing.List[str]:
-        """
-        Gets start command.
-
-        ..  container:: example
-
-            >>> abjad.Slur().start_command()
-            ['(']
-
-        """
-        return super().start_command()
-
-    def stop_command(self) -> typing.Optional[str]:
-        """
-        Gets stop command.
-
-        ..  container:: example
-
-            >>> abjad.Slur().stop_command()
-            ')'
-
-            With leak:
-
-            >>> abjad.Slur(leak=True).stop_command()
-            '<> )'
-
-        """
-        string = super().stop_command()
-        if self.leak:
-            string = f'{self._empty_chord} {string}'
-        return string

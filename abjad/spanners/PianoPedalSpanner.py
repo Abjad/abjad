@@ -39,7 +39,6 @@ class PianoPedalSpanner(Spanner):
 
     __slots__ = (
         '_kind',
-        '_leak',
         '_style',
         )
 
@@ -61,16 +60,12 @@ class PianoPedalSpanner(Spanner):
         self,
         *,
         kind: str = 'sustain',
-        leak: bool = None,
         style: str = 'mixed',
         ) -> None:
         Spanner.__init__(self)
         if kind not in list(self._kinds.keys()):
             raise ValueError(f'kind must be in {list(self._kinds.keys())!r}.')
         self._kind = kind
-        if leak is not None:
-            leak = bool(leak)
-        self._leak = leak
         if style not in self._styles:
             raise ValueError(f'style must be in {self._styles!r}.')
         self._style = style
@@ -80,6 +75,10 @@ class PianoPedalSpanner(Spanner):
     @property
     def _start_command(self):
         return self._kinds[self.kind][0]
+
+    @property
+    def _stop_command(self):
+        return self._kinds[self.kind][1]
 
     ### PRIVATE METHODS ###
 
@@ -97,9 +96,9 @@ class PianoPedalSpanner(Spanner):
                 value=style,
                 )
             bundle.update(context_setting)
-            strings = self.start_command()
+            strings = self._tweaked_start_command_strings()
             bundle.after.spanner_starts.extend(strings)
-            string = self.stop_command()
+            string = self._stop_command_string()
             bundle.after.spanner_starts.append(string)
         elif leaf is self[0]:
             style = SchemeSymbol(self.style)
@@ -109,10 +108,10 @@ class PianoPedalSpanner(Spanner):
                 value=style,
                 )
             bundle.update(context_setting)
-            strings = self.start_command()
+            strings = self._tweaked_start_command_strings()
             bundle.after.spanner_starts.extend(strings)
         elif leaf is self[-1]:
-            string = self.stop_command()
+            string = self._stop_command_string()
             bundle.after.spanner_stops.append(string)
         return bundle
 
@@ -219,62 +218,6 @@ class PianoPedalSpanner(Spanner):
         return self._kind
 
     @property
-    def leak(self) -> typing.Optional[bool]:
-        r"""
-        Is true when piano pedal spanner leaks one leaf to the right.
-
-        ..  container:: example
-
-            Without leak
-
-            >>> staff = abjad.Staff("c'8 d'8 r8 f'8")
-            >>> spanner = abjad.PianoPedalSpanner(kind='sustain')
-            >>> abjad.tweak(spanner).sustain_pedal_line_spanner.staff_padding = 5
-            >>> abjad.attach(spanner, staff[:2])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    \set Staff.pedalSustainStyle = #'mixed
-                    c'8
-                    - \tweak SustainPedalLineSpanner.staff-padding #5
-                    \sustainOn
-                    d'8
-                    \sustainOff
-                    r8
-                    f'8
-                }
-
-            With leak:
-
-            >>> staff = abjad.Staff("c'8 d'8 r8 f'8")
-            >>> spanner = abjad.PianoPedalSpanner(kind='sustain', leak=True)
-            >>> abjad.tweak(spanner).sustain_pedal_line_spanner.staff_padding = 5
-            >>> abjad.attach(spanner, staff[:2])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    \set Staff.pedalSustainStyle = #'mixed
-                    c'8
-                    - \tweak SustainPedalLineSpanner.staff-padding #5
-                    \sustainOn
-                    d'8
-                    <> \sustainOff
-                    r8
-                    f'8
-                }
-
-        """
-        return self._leak
-
-    @property
     def style(self) -> str:
         r"""
         Gets style of piano pedal spanner.
@@ -365,57 +308,3 @@ class PianoPedalSpanner(Spanner):
         Returns ``'mixed'``, ``'bracket'`` or ``'text'``.
         """
         return self._style
-
-    ### PUBLIC METHODS ###
-
-    def start_command(self) -> typing.List[str]:
-        r"""
-        Gets start command.
-
-        ..  container:: example
-
-            >>> abjad.PianoPedalSpanner(kind='sustain').start_command()
-            ['\\sustainOn']
-
-            >>> abjad.PianoPedalSpanner(kind='sostenuto').start_command()
-            ['\\sostenutoOn']
-
-            >>> abjad.PianoPedalSpanner(kind='corda').start_command()
-            ['\\unaCorda']
-
-        """
-        return super().start_command()
-
-    def stop_command(self) -> typing.Optional[str]:
-        r"""
-        Gets stop command.
-
-        ..  container:: example
-
-            >>> abjad.PianoPedalSpanner(kind='sustain').stop_command()
-            '\\sustainOff'
-
-            >>> abjad.PianoPedalSpanner(kind='sostenuto').stop_command()
-            '\\sostenutoOff'
-
-            >>> abjad.PianoPedalSpanner(kind='corda').stop_command()
-            '\\treCorde'
-
-            With leak:
-
-            >>> spanner =abjad.PianoPedalSpanner(kind='sustain', leak=True)
-            >>> spanner.stop_command()
-            '<> \\sustainOff'
-
-            >>> spanner =abjad.PianoPedalSpanner(kind='sostenuto', leak=True)
-            >>> spanner.stop_command()
-            '<> \\sostenutoOff'
-
-            >>> spanner =abjad.PianoPedalSpanner(kind='corda', leak=True)
-            >>> spanner.stop_command()
-            '<> \\treCorde'
-
-        """
-        string = self._kinds[self.kind][1]
-        string = self._add_leak(string)
-        return string

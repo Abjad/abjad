@@ -103,8 +103,8 @@ def make_bartok_score():
     # Attach hairpins
     crescendo = abjad.Hairpin('<')
     abjad.attach(crescendo, upper_leaves[-7:-2])
-    diminuendo = abjad.Hairpin('>')
-    abjad.attach(diminuendo, upper_leaves[-2:])
+    decrescendo = abjad.Hairpin('>')
+    abjad.attach(decrescendo, upper_leaves[-2:])
 
     # Attach a ritardando with markup
     markup = abjad.Markup('ritard.')

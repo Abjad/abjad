@@ -71,7 +71,7 @@ from abjad import ly
 from abjad import utilities
 
 # singletons
-tags = segments.Tags()
+tags = system.Tags()
 
 # HOUSECLEANING HELPER: uncomment below and run tests;
 #                       checks for hasattr() calls against properties:

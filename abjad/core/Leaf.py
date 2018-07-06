@@ -114,8 +114,8 @@ class Leaf(Component):
         return node
 
     def _copy_override_and_set_from_leaf(self, leaf):
-        if getattr(leaf, '_lilypond_grob_name_manager', None) is not None:
-            self._lilypond_grob_name_manager = copy.copy(override(leaf))
+        if getattr(leaf, '_overrides', None) is not None:
+            self._overrides = copy.copy(override(leaf))
         if getattr(leaf, '_lilypond_setting_name_manager', None) is not None:
             self._lilypond_setting_name_manager = copy.copy(
                 setting(leaf))
@@ -180,6 +180,7 @@ class Leaf(Component):
         #       but \startTrillSpan must appear before calls to \set.
         result.append(('trill_spanner_starts', bundle.after.trill_spanner_starts))
         result.append(('commands', bundle.after.commands))
+        result.append(('commands', bundle.after.leaks))
         result.append(('comments', bundle.after.comments))
         return result
 
@@ -321,16 +322,6 @@ class Leaf(Component):
         else:
             message = f'multiple spanners found: {spanners!r}'
             raise ExtraSpannerError(message)
-
-    def _get_spanner_indicators(self, prototype=None, unwrap=True):
-        indicators = []
-        for spanner in self._get_spanners():
-            indicators_ = spanner._get_indicators(
-                prototype=prototype,
-                unwrap=unwrap,
-                )
-            indicators.extend(indicators_)
-        return indicators
 
     def _get_spanners(self, prototype=None):
         import abjad

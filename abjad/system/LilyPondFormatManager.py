@@ -30,9 +30,6 @@ class LilyPondFormatManager(AbjadObject):
         for parent in parentage:
             wrappers_ = abjad.inspect(parent).wrappers()
             wrappers.extend(wrappers_)
-            if hasattr(parent, '_spanners'):
-                wrappers_ = parent._get_spanner_indicators(unwrap=False)
-                wrappers.extend(wrappers_)
         up_markup_wrappers = []
         down_markup_wrappers = []
         neutral_markup_wrappers = []
@@ -46,7 +43,7 @@ class LilyPondFormatManager(AbjadObject):
                 not hasattr(indicator, '_get_lilypond_format_bundle')
                 ):
                 continue
-            elif wrapper.annotation is not None or wrapper.spanner is not None:
+            elif wrapper.annotation is not None:
                 continue
             # skip comments and commands unless attached directly to us
             elif (wrapper.context is None and

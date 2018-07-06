@@ -54,9 +54,9 @@ class KeySignature(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_lilypond_tweak_manager',
         '_mode',
         '_tonic',
+        '_tweaks',
         )
 
     _context = 'Staff'
@@ -79,7 +79,7 @@ class KeySignature(AbjadValueObject):
         ) -> None:
         self._tonic = NamedPitchClass(tonic)
         self._mode = Mode(mode)
-        self._lilypond_tweak_manager = None
+        self._tweaks = None
         LilyPondTweakManager.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
@@ -306,4 +306,4 @@ class KeySignature(AbjadValueObject):
                 }
 
         """
-        return self._lilypond_tweak_manager
+        return self._tweaks

@@ -154,7 +154,9 @@ class Tie(Spanner):
 
     __slots__ = (
         '_direction',
+        '_left_broken',
         '_repeat',
+        '_right_broken',
         )
 
     ### INITIALIZER ###
@@ -163,16 +165,24 @@ class Tie(Spanner):
         self,
         *,
         direction: typing.Union[str, enums.VerticalAlignment] = None,
+        left_broken: bool = None,
         repeat: typing.Union[
             bool,
             typings.IntegerPair,
             DurationInequality,
             ] = None,
+        right_broken: bool = None,
         ) -> None:
         Spanner.__init__(self)
         direction = String.to_tridirectional_lilypond_symbol(direction)
         self._direction = direction
+        if left_broken is not None:
+            left_broken = bool(left_broken)
+        self._left_broken = left_broken
         self._repeat = repeat
+        if right_broken is not None:
+            right_broken = bool(right_broken)
+        self._right_broken = right_broken
 
     ### PRIVATE METHODS ###
 
@@ -230,28 +240,48 @@ class Tie(Spanner):
             if leaf is self[-1]:
                 if not self._right_broken:
                     return bundle
-                strings = self.start_command()
+                strings = self._start_command_strings()
                 strings = self._tag_show(strings)
                 bundle.after.spanners.extend(strings)
             elif isinstance(leaf._get_leaf(1), silent):
                 return bundle
             else:
-                strings = self.start_command()
+                strings = self._start_command_strings()
                 bundle.after.spanners.extend(strings)
         else:
             if leaf is self[0]:
                 if not self._left_broken:
                     return bundle
-                strings = [self.stop_command()]
+                strings = [self._stop_command_string()]
                 strings = self._tag_show(strings)
                 bundle.after.spanners.extend(strings)
             else:
-                strings = [self.stop_command()]
+                strings = [self._stop_command_string()]
                 bundle.after.spanners.extend(strings)
         return bundle
 
+    def _start_command_strings(self):
+        strings = []
+        if self.repeat:
+            return strings
+        contributions = tweak(self)._list_format_contributions()
+        strings.extend(contributions)
+        string = '~'
+        string = self._add_direction(string)
+        strings.append(string)
+        return strings
+
+    def _stop_command_string(self):
+        if self.repeat:
+            string = r'\repeatTie'
+            string = self._add_direction(string)
+            return string
+        else:
+            return ''
+
     ### PUBLIC PROPERTIES ###
 
+    @property
     def cross_segment_examples(self):
         r"""
         Cross-segment examples.
@@ -261,7 +291,8 @@ class Tie(Spanner):
             [Tie] cross-segment example #1 (one-to-one):
 
             >>> segment_1 = abjad.Voice("c'4 d' f' f'", name='MainVoice')
-            >>> abjad.attach(abjad.Tie(), segment_1[-1:], right_broken=True)
+            >>> tie = abjad.Tie(right_broken=True)
+            >>> abjad.attach(tie, segment_1[-1:])
             >>> abjad.show(segment_1, strict=50) # doctest: +SKIP
 
             ..  docs::
@@ -325,7 +356,8 @@ class Tie(Spanner):
             [Tie] cross-segment example #2 (one-to-many):
 
             >>> segment_1 = abjad.Voice("c'4 d' f' f'", name='MainVoice')
-            >>> abjad.attach(abjad.Tie(), segment_1[-1:], right_broken=True)
+            >>> tie = abjad.Tie(right_broken=True)
+            >>> abjad.attach(tie, segment_1[-1:])
             >>> abjad.show(segment_1, strict=50) # doctest: +SKIP
 
             ..  docs::
@@ -392,7 +424,8 @@ class Tie(Spanner):
             [Tie] cross-segment example #3 (many-to-one):
 
             >>> segment_1 = abjad.Voice("c'4 d' f' f'", name='MainVoice')
-            >>> abjad.attach(abjad.Tie(), segment_1[-2:], right_broken=True)
+            >>> tie = abjad.Tie(right_broken=True)
+            >>> abjad.attach(tie, segment_1[-2:])
             >>> abjad.show(segment_1, strict=50) # doctest: +SKIP
 
             ..  docs::
@@ -458,7 +491,8 @@ class Tie(Spanner):
             [Tie] cross-segment example #4 (many-to-many):
 
             >>> segment_1 = abjad.Voice("c'4 d' f' f'", name='MainVoice')
-            >>> abjad.attach(abjad.Tie(), segment_1[-2:], right_broken=True)
+            >>> tie = abjad.Tie(right_broken=True)
+            >>> abjad.attach(tie, segment_1[-2:])
             >>> abjad.show(segment_1, strict=50) # doctest: +SKIP
 
             ..  docs::
@@ -540,8 +574,8 @@ class Tie(Spanner):
                 }
 
             >>> segment_2 = abjad.Voice("f'4 f' d' c'", name='MainVoice')
-            >>> repeat_tie = abjad.Tie(repeat=True)
-            >>> abjad.attach(repeat_tie, segment_2[:1], left_broken=True)
+            >>> repeat_tie = abjad.Tie(repeat=True, left_broken=True)
+            >>> abjad.attach(repeat_tie, segment_2[:1])
             >>> abjad.show(segment_2, strict=50) # doctest: +SKIP
 
             ..  docs::
@@ -605,8 +639,8 @@ class Tie(Spanner):
                 }
 
             >>> segment_2 = abjad.Voice("f'4 f' d' c'", name='MainVoice')
-            >>> repeat_tie = abjad.Tie(repeat=True)
-            >>> abjad.attach(repeat_tie, segment_2[:2], left_broken=True)
+            >>> repeat_tie = abjad.Tie(left_broken=True, repeat=True)
+            >>> abjad.attach(repeat_tie, segment_2[:2])
             >>> abjad.show(segment_2, strict=50) # doctest: +SKIP
 
             ..  docs::
@@ -675,8 +709,8 @@ class Tie(Spanner):
                 }
 
             >>> segment_2 = abjad.Voice("f'4 f' d' c'", name='MainVoice')
-            >>> repeat_tie = abjad.Tie(repeat=True)
-            >>> abjad.attach(repeat_tie, segment_2[:1], left_broken=True)
+            >>> repeat_tie = abjad.Tie(left_broken=True, repeat=True)
+            >>> abjad.attach(repeat_tie, segment_2[:1])
             >>> abjad.show(segment_2, strict=50) # doctest: +SKIP
 
             ..  docs::
@@ -744,8 +778,8 @@ class Tie(Spanner):
                 }
 
             >>> segment_2 = abjad.Voice("f'4 f' d' c'", name='MainVoice')
-            >>> repeat_tie = abjad.Tie(repeat=True)
-            >>> abjad.attach(repeat_tie, segment_2[:2], left_broken=True)
+            >>> repeat_tie = abjad.Tie(left_broken=True, repeat=True)
+            >>> abjad.attach(repeat_tie, segment_2[:2])
 
             ..  docs::
 
@@ -882,6 +916,13 @@ class Tie(Spanner):
         return self._direction
 
     @property
+    def left_broken(self) -> typing.Optional[bool]:
+        """
+        Is true when spanner is left-broken.
+        """
+        return self._left_broken
+
+    @property
     def repeat(self) -> typing.Union[
         bool, DurationInequality, typings.IntegerPair, None,
         ]:
@@ -912,52 +953,9 @@ class Tie(Spanner):
         """
         return self._repeat
 
-    ### PUBLIC METHODS ###
-
-    def start_command(self) -> typing.List[str]:
+    @property
+    def right_broken(self) -> typing.Optional[bool]:
         """
-        Gets start command.
-
-        ..  container:: example
-
-            >>> abjad.Tie().start_command()
-            ['~']
-
-        ..  container:: example
-
-            >>> abjad.Tie(repeat=True).start_command()
-            []
-
+        Is true when spanner is right-broken.
         """
-        strings: typing.List[str] = []
-        if self.repeat:
-            return strings
-        contributions = tweak(self)._list_format_contributions()
-        strings.extend(contributions)
-        string = '~'
-        string = self._add_direction(string)
-        strings.append(string)
-        return strings
-
-    # TODO: teach stop_command to return list including tweaks
-    def stop_command(self) -> typing.Optional[str]:
-        r"""
-        Gets stop command.
-
-        ..  container:: example
-
-            >>> abjad.Tie().stop_command()
-            ''
-
-        ..  container:: example
-
-            >>> abjad.Tie(repeat=True).stop_command()
-            '\\repeatTie'
-
-        """
-        if self.repeat:
-            string = r'\repeatTie'
-            string = self._add_direction(string)
-            return string
-        else:
-            return ''
+        return self._right_broken

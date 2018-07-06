@@ -10,6 +10,7 @@ from .PhrasingSlur import PhrasingSlur
 from .PianoPedalSpanner import PianoPedalSpanner
 from .Slur import Slur
 from .TextSpanner import TextSpanner
+from .TextSpanner import text_spanner
 from .Tie import Tie
 from .TrillSpanner import TrillSpanner
 

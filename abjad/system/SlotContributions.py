@@ -14,6 +14,7 @@ class SlotContributions(AbjadObject):
         '_commands',
         '_comments',
         '_indicators',
+        '_leaks',
         '_markup',
         '_spanners',
         '_spanner_starts',
@@ -29,6 +30,7 @@ class SlotContributions(AbjadObject):
         self._commands: typing.List[str] = []
         self._comments: typing.List[str] = []
         self._indicators: typing.List[str] = []
+        self._leaks: typing.List[str] = []
         self._markup: typing.List[str] = []
         self._spanners: typing.List[str] = []
         self._spanner_starts: typing.List[str] = []
@@ -91,6 +93,7 @@ class SlotContributions(AbjadObject):
             'commands',
             'comments',
             'indicators',
+            'leaks',
             'markup',
             'spanners',
             'spanner_starts',
@@ -107,6 +110,13 @@ class SlotContributions(AbjadObject):
         Gets indicators.
         """
         return self._indicators
+
+    @property
+    def leaks(self) -> typing.List[str]:
+        """
+        Gets leaks.
+        """
+        return self._leaks
 
     @property
     def markup(self) -> typing.List[str]:
@@ -183,6 +193,11 @@ class SlotContributions(AbjadObject):
             tag,
             deactivate,
             )
+        self._leaks = abjad.LilyPondFormatManager.tag(
+            self.leaks,
+            tag,
+            deactivate,
+            )
         self._markup = abjad.LilyPondFormatManager.tag(
             self.markup,
             tag,
@@ -222,9 +237,12 @@ class SlotContributions(AbjadObject):
         self.commands.extend(slot_contributions.commands)
         self.comments.extend(slot_contributions.comments)
         self.indicators.extend(slot_contributions.indicators)
+        self.leaks.extend(slot_contributions.leaks)
         self.markup.extend(slot_contributions.markup)
         self.spanners.extend(slot_contributions.spanners)
         self.spanner_starts.extend(slot_contributions.spanner_starts)
         self.spanner_stops.extend(slot_contributions.spanner_stops)
         self.stem_tremolos.extend(slot_contributions.stem_tremolos)
-        self.trill_spanner_starts.extend(slot_contributions.trill_spanner_starts)
+        self.trill_spanner_starts.extend(
+            slot_contributions.trill_spanner_starts
+            )

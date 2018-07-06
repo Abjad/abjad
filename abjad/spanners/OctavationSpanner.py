@@ -82,6 +82,10 @@ class OctavationSpanner(Spanner):
     def _start_command(self):
         return rf'\ottava #{self.start}'
 
+    @property
+    def _stop_command(self):
+        return rf'\ottava #{self.stop}'
+
     ### PRIVATE METHODS ###
 
     def _copy_keywords(self, new):
@@ -91,10 +95,10 @@ class OctavationSpanner(Spanner):
     def _get_lilypond_format_bundle(self, leaf):
         bundle = self._get_basic_lilypond_format_bundle(leaf)
         if leaf is self[0]:
-            strings = self.start_command()
+            strings = self._tweaked_start_command_strings()
             bundle.before.commands.extend(strings)
         if leaf is self[-1]:
-            string = self.stop_command()
+            string = self._stop_command_string()
             bundle.after.commands.append(string)
         return bundle
 
@@ -133,79 +137,3 @@ class OctavationSpanner(Spanner):
 
         """
         return self._stop
-
-    ### PUBLIC METHODS ###
-
-    # TODO: add two or three more examples to better show what's going on
-    def adjust_automatically(
-        self,
-        ottava_breakpoint: int = None,
-        quindecisima_breakpoint: int = None,
-        ) -> None:
-        r"""
-        Adjusts octavation spanner start and stop automatically according to
-        ``ottava_breakpoint`` and ``quindecisima_breakpoint``.
-
-        ..  container:: example
-
-            >>> measure = abjad.Measure((4, 8), "c'''8 d'''8 ef'''8 f'''8")
-            >>> octavation = abjad.OctavationSpanner(start=1)
-            >>> abjad.attach(octavation, measure[:])
-            >>> abjad.show(measure) # doctest: +SKIP
-
-            >>> octavation.adjust_automatically(ottava_breakpoint=14)
-            >>> abjad.show(measure) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(measure)
-                {   % measure
-                    \time 4/8
-                    \ottava #1
-                    c'''8
-                    d'''8
-                    ef'''8
-                    f'''8
-                    \ottava #0
-                }   % measure
-
-        Adjusts start and stop according to the diatonic pitch number of
-        the maximum pitch in spanner.
-        """
-        pitches = PitchSegment.from_selection(self)
-        max_pitch = max(pitches)
-        max_numbered_diatonic_pitch = max_pitch._get_diatonic_pitch_number()
-        if ottava_breakpoint is not None:
-            if ottava_breakpoint <= max_numbered_diatonic_pitch:
-                # TODO: do not adjust in place
-                #       create & attach new spanner instead
-                self._start = 1
-                if quindecisima_breakpoint is not None:
-                    if quindecisima_breakpoint <= max_numbered_diatonic_pitch:
-                        self._start = 2
-                        
-    ### PUBLIC METHODS ###
-
-    def start_command(self) -> typing.List[str]:
-        r"""
-        Gets start command.
-
-        ..  container:: example
-
-            >>> abjad.OctavationSpanner(start=1).start_command()
-            ['\\ottava #1']
-
-        """
-        return super().start_command()
-
-    def stop_command(self) -> typing.Optional[str]:
-        r"""
-        Gets stop command.
-
-        ..  container:: example
-
-            >>> abjad.OctavationSpanner(start=1).stop_command()
-            '\\ottava #0'
-
-        """
-        return rf'\ottava #{self.stop}'

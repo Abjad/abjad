@@ -67,6 +67,7 @@ class Glissando(Spanner):
         '_allow_repeats',
         '_allow_ties',
         '_parenthesize_repeats',
+        '_right_broken',
         '_stems',
         '_style',
         )
@@ -81,6 +82,7 @@ class Glissando(Spanner):
         allow_repeats: bool = None,
         allow_ties: bool = None,
         parenthesize_repeats: bool = None,
+        right_broken: bool = None,
         stems: bool = None,
         style: str = None,
         ) -> None:
@@ -94,6 +96,9 @@ class Glissando(Spanner):
         if parenthesize_repeats is not None:
             parenthesize_repeats = bool(parenthesize_repeats)
         self._parenthesize_repeats = parenthesize_repeats
+        if right_broken is not None:
+            right_broken = bool(right_broken)
+        self._right_broken = right_broken
         if stems is not None:
             stems = bool(stems)
         self._stems = stems
@@ -170,7 +175,7 @@ class Glissando(Spanner):
                 string = override.tweak_string()
                 bundle.after.spanner_starts.append(string)
         if should_attach_glissando:
-            strings = self.start_command()
+            strings = self._tweaked_start_command_strings()
             if tag:
                 strings = self._tag_show(strings)
             bundle.after.spanner_starts.extend(strings)
@@ -451,7 +456,11 @@ class Glissando(Spanner):
             Cross-segment example #1 (one-to-one):
 
             >>> segment_1 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
-            >>> abjad.attach(abjad.Glissando(), segment_1[-1:], right_broken=True)
+            >>> glissando = abjad.Glissando(right_broken=True)
+            >>> abjad.attach(
+            ...     glissando,
+            ...     segment_1[-1:],
+            ...     )
             >>> abjad.show(segment_1, strict=50) # doctest: +SKIP
 
             ..  docs::
@@ -515,7 +524,8 @@ class Glissando(Spanner):
             Cross-segment example #2 (one-to-many):
 
             >>> segment_1 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
-            >>> abjad.attach(abjad.Glissando(), segment_1[-1:], right_broken=True)
+            >>> glissando = abjad.Glissando(right_broken=True)
+            >>> abjad.attach(glissando, segment_1[-1:])
             >>> abjad.show(segment_1, strict=50) # doctest: +SKIP
 
             ..  docs::
@@ -584,7 +594,8 @@ class Glissando(Spanner):
             Cross-segment example #3 (many-to-one):
 
             >>> segment_1 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
-            >>> abjad.attach(abjad.Glissando(), segment_1[:], right_broken=True)
+            >>> glissando = abjad.Glissando(right_broken=True)
+            >>> abjad.attach(glissando, segment_1[:])
             >>> abjad.show(segment_1, strict=50) # doctest: +SKIP
 
             ..  docs::
@@ -654,7 +665,8 @@ class Glissando(Spanner):
             Cross-segment example #4 (many-to-many):
 
             >>> segment_1 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
-            >>> abjad.attach(abjad.Glissando(), segment_1[:], right_broken=True)
+            >>> glissando = abjad.Glissando(right_broken=True)
+            >>> abjad.attach(glissando, segment_1[:])
             >>> abjad.show(segment_1, strict=50) # doctest: +SKIP
 
             ..  docs::
@@ -840,6 +852,13 @@ class Glissando(Spanner):
         return self._parenthesize_repeats
 
     @property
+    def right_broken(self) -> typing.Optional[bool]:
+        """
+        Is true when spanner is right-broken.
+        """
+        return self._right_broken
+
+    @property
     def stems(self) -> typing.Optional[bool]:
         r"""
         Is true when glissando formats stems-only timing marks non nonedge
@@ -906,29 +925,3 @@ class Glissando(Spanner):
 
         """
         return self._style
-
-    ## PUBLIC METHODS ###
-
-    def start_command(self) -> typing.List[str]:
-        r"""
-        Gets start command.
-
-        ..  container:: example
-
-            >>> abjad.Glissando().start_command()
-            ['\\glissando']
-
-        """
-        return super().start_command()
-
-    def stop_command(self) -> typing.Optional[str]:
-        """
-        Gets stop command.
-
-        ..  container:: example
-
-            >>> abjad.Glissando().stop_command() is None
-            True
-
-        """
-        return super().stop_command()

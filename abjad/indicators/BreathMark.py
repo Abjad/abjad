@@ -61,7 +61,7 @@ class BreathMark(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_lilypond_tweak_manager',
+        '_tweaks',
         )
 
     _format_slot = 'after'
@@ -76,7 +76,7 @@ class BreathMark(AbjadValueObject):
         tweaks: typing.Union[
             typing.List[typing.Tuple], LilyPondTweakManager] = None,
         ) -> None:
-        self._lilypond_tweak_manager = None
+        self._tweaks = None
         LilyPondTweakManager.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
@@ -143,4 +143,4 @@ class BreathMark(AbjadValueObject):
                 \breathe
 
         """
-        return self._lilypond_tweak_manager
+        return self._tweaks

@@ -21,6 +21,7 @@ from .SlotContributions import SlotContributions
 from .StorageFormatManager import StorageFormatManager
 from .StorageFormatSpecification import StorageFormatSpecification
 from .Tag import Tag
+from .Tags import Tags
 from .TemporaryDirectory import TemporaryDirectory
 from .TemporaryDirectoryChange import TemporaryDirectoryChange
 from .TestManager import TestManager

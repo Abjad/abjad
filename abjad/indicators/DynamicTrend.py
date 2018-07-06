@@ -2,12 +2,11 @@ import typing
 from abjad import enums
 from abjad.lilypondnames.LilyPondGrobOverride import LilyPondGrobOverride
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
-# TODO: move Tags from segments.py into system.py
-#from abjad.segments.Tags import Tags
 from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
-#abjad_tags = Tags()
+from abjad.system.Tags import Tags
+abjad_tags = Tags()
 
 
 class DynamicTrend(AbjadValueObject):
@@ -47,8 +46,8 @@ class DynamicTrend(AbjadValueObject):
 
     __slots__ = (
         '_left_broken',
-        '_lilypond_tweak_manager',
         '_shape',
+        '_tweaks',
         )
 
     _crescendo_start = r'\<'
@@ -80,7 +79,7 @@ class DynamicTrend(AbjadValueObject):
         self._left_broken = left_broken
         assert shape in self._known_shapes, repr(shape)
         self._shape = shape
-        self._lilypond_tweak_manager = None
+        self._tweaks = None
         LilyPondTweakManager.set_tweaks(self, tweaks)
 
     ### PRIVATE METHODS ###
@@ -560,4 +559,4 @@ class DynamicTrend(AbjadValueObject):
                 }
 
         """
-        return self._lilypond_tweak_manager
+        return self._tweaks

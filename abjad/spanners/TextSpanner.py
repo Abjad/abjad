@@ -1,14 +1,20 @@
 import typing
 from abjad import enums
+from abjad import typings
+from abjad.core.Component import Component
 from abjad.core.Leaf import Leaf
-from abjad.indicators.LineSegment import LineSegment
+from abjad.core.Selection import Selection
+from abjad.indicators.StartTextSpan import StartTextSpan
+from abjad.indicators.StopTextSpan import StopTextSpan
 from abjad.lilypondnames.LilyPondGrobOverride import LilyPondGrobOverride
 from abjad.markups import Markup
 from abjad.system.Tag import Tag
 from abjad.system.Wrapper import Wrapper
+from abjad.top.attach import attach
 from abjad.top.inspect import inspect
 from abjad.top.new import new
 from abjad.top.select import select
+from abjad.utilities.Expression import Expression
 from abjad.utilities.OrderedDict import OrderedDict
 from .Spanner import Spanner
 
@@ -17,189 +23,14 @@ class TextSpanner(Spanner):
     r"""
     Text spanner.
 
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
-        >>> spanner = abjad.TextSpanner()
-        >>> abjad.attach(spanner, staff[:])
-        >>> spanner.attach(abjad.Markup('pont.').upright(), spanner[0])
-        >>> abjad.override(staff).text_spanner.staff_padding = 2.5
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> abjad.f(staff)
-            \new Staff
-            \with
-            {
-                \override TextSpanner.staff-padding = #2.5
-            }
-            {
-                c'4
-                - \tweak Y-extent ##f
-                - \tweak bound-details.left.text \markup {
-                    \concat
-                        {
-                            \upright
-                                pont.
-                            \hspace
-                                #0.25
-                        }
-                    }
-                - \abjad_invisible_line_segment
-                \startTextSpan
-                d'4
-                e'4
-                f'4
-                \stopTextSpan
-            }
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
-        >>> spanner = abjad.TextSpanner()
-        >>> abjad.attach(spanner, staff[:])
-        >>> spanner.attach(abjad.Markup('tasto').upright(), spanner[-1])
-        >>> abjad.override(staff).text_spanner.staff_padding = 2.5
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> abjad.f(staff)
-            \new Staff
-            \with
-            {
-                \override TextSpanner.staff-padding = #2.5
-            }
-            {
-                c'4
-                - \tweak Y-extent ##f
-                - \abjad_invisible_line_segment
-                - \tweak bound-details.right.text \markup {
-                    \concat
-                        {
-                            \hspace
-                                #1.0
-                            \upright
-                                tasto
-                        }
-                    }
-                \startTextSpan
-                d'4
-                e'4
-                f'4
-                \stopTextSpan
-            }
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
-        >>> spanner = abjad.TextSpanner()
-        >>> abjad.attach(spanner, staff[:])
-        >>> spanner.attach(abjad.Markup('pont.').upright(), spanner[0])
-        >>> spanner.attach(abjad.Markup('tasto').upright(), spanner[-1])
-        >>> abjad.override(staff).text_spanner.staff_padding = 2.5
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> abjad.f(staff)
-            \new Staff
-            \with
-            {
-                \override TextSpanner.staff-padding = #2.5
-            }
-            {
-                c'4
-                - \tweak Y-extent ##f
-                - \tweak bound-details.left.text \markup {
-                    \concat
-                        {
-                            \upright
-                                pont.
-                            \hspace
-                                #0.25
-                        }
-                    }
-                - \abjad_invisible_line_segment
-                - \tweak bound-details.right.text \markup {
-                    \concat
-                        {
-                            \hspace
-                                #1.0
-                            \upright
-                                tasto
-                        }
-                    }
-                \startTextSpan
-                d'4
-                e'4
-                f'4
-                \stopTextSpan
-            }
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
-        >>> spanner = abjad.TextSpanner()
-        >>> abjad.attach(spanner, staff[:])
-        >>> spanner.attach(abjad.Markup('pont.').upright(), spanner[0])
-        >>> spanner.attach(abjad.ArrowLineSegment(), spanner[0])
-        >>> spanner.attach(abjad.Markup('tasto').upright(), spanner[-1])
-        >>> abjad.override(staff).text_spanner.staff_padding = 2.5
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> abjad.f(staff)
-            \new Staff
-            \with
-            {
-                \override TextSpanner.staff-padding = #2.5
-            }
-            {
-                c'4
-                - \tweak Y-extent ##f
-                - \tweak bound-details.left.text \markup {
-                    \concat
-                        {
-                            \upright
-                                pont.
-                            \hspace
-                                #0.25
-                        }
-                    }
-                - \tweak arrow-width 0.25
-                - \tweak dash-fraction 1
-                - \tweak bound-details.left.stencil-align-dir-y #center
-                - \tweak bound-details.right.arrow ##t
-                - \tweak bound-details.right-broken.padding 0
-                - \tweak bound-details.right-broken.text ##f
-                - \tweak bound-details.right.padding 0.5
-                - \tweak bound-details.right.stencil-align-dir-y #center
-                - \tweak bound-details.right.text \markup {
-                    \concat
-                        {
-                            \hspace
-                                #0.0
-                            \upright
-                                tasto
-                        }
-                    }
-                \startTextSpan
-                d'4
-                e'4
-                f'4
-                \stopTextSpan
-            }
+    ..  note:: ``abjad.TextSpanner`` spanner is deprecated. Use the
+        ``abjad.text_spanner()`` factory function instead.
 
     ..  container:: example
 
         >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
         >>> spanner = abjad.TextSpanner()
         >>> abjad.attach(spanner, staff[:])
-        >>> arrow = abjad.ArrowLineSegment()
-        >>> spanner.attach(abjad.Markup('one').upright(), spanner[0])
-        >>> spanner.attach(arrow, spanner[0])
-        >>> spanner.attach(abjad.Markup('two').upright(), spanner[1])
-        >>> spanner.attach(arrow, spanner[1])
-        >>> spanner.attach(abjad.Markup('three').upright(), spanner[2])
-        >>> spanner.attach(arrow, spanner[2])
-        >>> spanner.attach(abjad.Markup('four').upright(), spanner[3])
         >>> abjad.override(staff).text_spanner.staff_padding = 2.5
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -213,238 +44,6 @@ class TextSpanner(Spanner):
             }
             {
                 c'4
-                - \tweak Y-extent ##f
-                - \tweak bound-details.left.text \markup {
-                    \concat
-                        {
-                            \upright
-                                one
-                            \hspace
-                                #0.25
-                        }
-                    }
-                - \tweak arrow-width 0.25
-                - \tweak dash-fraction 1
-                - \tweak bound-details.left.stencil-align-dir-y #center
-                - \tweak bound-details.right.arrow ##t
-                - \tweak bound-details.right-broken.padding 0
-                - \tweak bound-details.right-broken.text ##f
-                - \tweak bound-details.right.padding 0.5
-                - \tweak bound-details.right.stencil-align-dir-y #center
-                \startTextSpan
-                d'4
-                \stopTextSpan
-                - \tweak Y-extent ##f
-                - \tweak bound-details.left.text \markup {
-                    \concat
-                        {
-                            \upright
-                                two
-                            \hspace
-                                #0.25
-                        }
-                    }
-                - \tweak arrow-width 0.25
-                - \tweak dash-fraction 1
-                - \tweak bound-details.left.stencil-align-dir-y #center
-                - \tweak bound-details.right.arrow ##t
-                - \tweak bound-details.right-broken.padding 0
-                - \tweak bound-details.right-broken.text ##f
-                - \tweak bound-details.right.padding 0.5
-                - \tweak bound-details.right.stencil-align-dir-y #center
-                \startTextSpan
-                e'4
-                \stopTextSpan
-                - \tweak Y-extent ##f
-                - \tweak bound-details.left.text \markup {
-                    \concat
-                        {
-                            \upright
-                                three
-                            \hspace
-                                #0.25
-                        }
-                    }
-                - \tweak arrow-width 0.25
-                - \tweak dash-fraction 1
-                - \tweak bound-details.left.stencil-align-dir-y #center
-                - \tweak bound-details.right.arrow ##t
-                - \tweak bound-details.right-broken.padding 0
-                - \tweak bound-details.right-broken.text ##f
-                - \tweak bound-details.right.padding 0.5
-                - \tweak bound-details.right.stencil-align-dir-y #center
-                - \tweak bound-details.right.text \markup {
-                    \concat
-                        {
-                            \hspace
-                                #0.0
-                            \upright
-                                four
-                        }
-                    }
-                \startTextSpan
-                f'4
-                \stopTextSpan
-            }
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
-        >>> spanner = abjad.TextSpanner()
-        >>> abjad.attach(spanner, staff[:])
-        >>> arrow = abjad.ArrowLineSegment(left_hspace=0.75, right_padding=1)
-        >>> spanner.attach(abjad.Markup('one').upright(), spanner[0])
-        >>> spanner.attach(arrow, spanner[0])
-        >>> spanner.attach(abjad.Markup('two').upright(), spanner[1])
-        >>> spanner.attach(arrow, spanner[1])
-        >>> spanner.attach(abjad.Markup('three').upright(), spanner[2])
-        >>> spanner.attach(arrow, spanner[2])
-        >>> spanner.attach(abjad.Markup('four').upright(), spanner[3])
-        >>> abjad.override(staff).text_spanner.staff_padding = 2.5
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> abjad.f(staff)
-            \new Staff
-            \with
-            {
-                \override TextSpanner.staff-padding = #2.5
-            }
-            {
-                c'4
-                - \tweak Y-extent ##f
-                - \tweak bound-details.left.text \markup {
-                    \concat
-                        {
-                            \upright
-                                one
-                            \hspace
-                                #0.75
-                        }
-                    }
-                - \tweak arrow-width 0.25
-                - \tweak dash-fraction 1
-                - \tweak bound-details.left.stencil-align-dir-y #center
-                - \tweak bound-details.right.arrow ##t
-                - \tweak bound-details.right-broken.padding 0
-                - \tweak bound-details.right-broken.text ##f
-                - \tweak bound-details.right.padding 1
-                - \tweak bound-details.right.stencil-align-dir-y #center
-                \startTextSpan
-                d'4
-                \stopTextSpan
-                - \tweak Y-extent ##f
-                - \tweak bound-details.left.text \markup {
-                    \concat
-                        {
-                            \upright
-                                two
-                            \hspace
-                                #0.75
-                        }
-                    }
-                - \tweak arrow-width 0.25
-                - \tweak dash-fraction 1
-                - \tweak bound-details.left.stencil-align-dir-y #center
-                - \tweak bound-details.right.arrow ##t
-                - \tweak bound-details.right-broken.padding 0
-                - \tweak bound-details.right-broken.text ##f
-                - \tweak bound-details.right.padding 1
-                - \tweak bound-details.right.stencil-align-dir-y #center
-                \startTextSpan
-                e'4
-                \stopTextSpan
-                - \tweak Y-extent ##f
-                - \tweak bound-details.left.text \markup {
-                    \concat
-                        {
-                            \upright
-                                three
-                            \hspace
-                                #0.75
-                        }
-                    }
-                - \tweak arrow-width 0.25
-                - \tweak dash-fraction 1
-                - \tweak bound-details.left.stencil-align-dir-y #center
-                - \tweak bound-details.right.arrow ##t
-                - \tweak bound-details.right-broken.padding 0
-                - \tweak bound-details.right-broken.text ##f
-                - \tweak bound-details.right.padding 1
-                - \tweak bound-details.right.stencil-align-dir-y #center
-                - \tweak bound-details.right.text \markup {
-                    \concat
-                        {
-                            \hspace
-                                #0.5
-                            \upright
-                                four
-                        }
-                    }
-                \startTextSpan
-                f'4
-                \stopTextSpan
-            }
-
-    ..  container:: example
-
-        Nonpiecewise markup can be styled independently:
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
-        >>> spanner = abjad.TextSpanner()
-        >>> abjad.attach(spanner, staff[:])
-        >>> spanner.attach(abjad.Markup('ord.').upright(), spanner[0])
-        >>> spanner.attach(abjad.ArrowLineSegment(), spanner[0])
-        >>> spanner.attach(abjad.Markup('pont.').upright(), spanner[-1])
-        >>> markup = abjad.Markup('leggieriss.', direction=abjad.Up).italic()
-        >>> abjad.attach(markup, staff[0])
-        >>> abjad.override(staff[0]).text_script.color = 'blue'
-        >>> abjad.override(staff).text_spanner.staff_padding = 2.5
-        >>> abjad.override(staff).text_script.staff_padding = 5
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> abjad.f(staff)
-            \new Staff
-            \with
-            {
-                \override TextScript.staff-padding = #5
-                \override TextSpanner.staff-padding = #2.5
-            }
-            {
-                \once \override TextScript.color = #blue
-                c'4
-                ^ \markup {
-                    \italic
-                        leggieriss.
-                    }
-                - \tweak Y-extent ##f
-                - \tweak bound-details.left.text \markup {
-                    \concat
-                        {
-                            \upright
-                                ord.
-                            \hspace
-                                #0.25
-                        }
-                    }
-                - \tweak arrow-width 0.25
-                - \tweak dash-fraction 1
-                - \tweak bound-details.left.stencil-align-dir-y #center
-                - \tweak bound-details.right.arrow ##t
-                - \tweak bound-details.right-broken.padding 0
-                - \tweak bound-details.right-broken.text ##f
-                - \tweak bound-details.right.padding 0.5
-                - \tweak bound-details.right.stencil-align-dir-y #center
-                - \tweak bound-details.right.text \markup {
-                    \concat
-                        {
-                            \hspace
-                                #0.0
-                            \upright
-                                pont.
-                        }
-                    }
                 \startTextSpan
                 d'4
                 e'4
@@ -487,34 +86,17 @@ class TextSpanner(Spanner):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_commands',
-        '_leak',
-        '_lilypond_id',
         '_skip_attachment_test_all',
         )
 
-    _lilypond_ids = (1, 2, 3)
+    _start_command = r'\startTextSpan'
+
+    _stop_command = r'\stopTextSpan'
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        *,
-        commands: typing.Tuple[str, str] = None,
-        leak: bool = None,
-        lilypond_id: int = None,
-        ) -> None:
+    def __init__(self) -> None:
         Spanner.__init__(self)
-        if commands is not None:
-            assert isinstance(commands, tuple), repr(commands)
-            assert all(isinstance(_, str) for _ in commands), repr(commands)
-        self._commands = commands
-        if leak is not None:
-            leak = bool(leak)
-        self._leak = leak
-        if lilypond_id is not None:
-            assert lilypond_id in self._lilypond_ids, repr(lilypond_id)
-        self._lilypond_id = lilypond_id
         self._skip_attachment_test_all = False
 
     ### PRIVATE METHODS ###
@@ -522,707 +104,203 @@ class TextSpanner(Spanner):
     def _attachment_test_all(self, argument):
         if self._skip_attachment_test_all:
             return True
-        if not self.leak:
-            result = self._at_least_two_leaves(argument)
-            if result is not True:
-                return result
+        result = self._at_least_two_leaves(argument)
+        if result is not True:
+            return result
         leaves = select(argument).leaves()
-        existing_spanners = inspect(leaves).get_spanners(
-            prototype=TextSpanner,
-            )
-        for spanner in existing_spanners:
-            if (spanner.lilypond_id == self.lilypond_id and
-                spanner.commands == self.commands):
-                if leaves[0] is spanner[-1] or leaves[-1] is spanner[0]:
-                    continue
-                message = 'Overlapping text spanners'
-                message += f' with LilyPond ID {self.lilypond_id}'
-                message += f' and commands {self.commands}.'
-                return [message]
         return True
-
-    def _copy_keywords(self, new):
-        Spanner._copy_keywords(self, new)
-        new._lilypond_id = self.lilypond_id
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = self._get_basic_lilypond_format_bundle(component)
-        markup = inspect(component).get_piecewise(self, Markup, None)
-        line_segment = inspect(component).get_piecewise(
-            self,
-            LineSegment,
-            None,
-            )
-        if self._should_format_last_leaf_markup(component):
-            last_leaf_markup = inspect(self[-1]).get_piecewise(self, Markup)
-        else:
-            last_leaf_markup = None
-        forced_left_hspace = None
-        forced_right_hspace = None
-        indicators = (markup, line_segment, last_leaf_markup)
-        has_indicators = any(_ is not None for _ in indicators)
-        if not has_indicators:
-            if component is self[0]:
-                if self._wrappers:
-                    override = self._y_extent_false()
-                    string = override.tweak_string()
-                    bundle.after.spanner_starts.append(string)
-                    string = r'- \abjad_invisible_line_segment'
-                    forced_left_hspace = 0.25
-                    forced_right_hspace = 1.5
-                    bundle.after.spanner_starts.append(string)
-                bundle.after.spanner_starts.extend(self.start_command())
-            if component is self[-1]:
-                stop_command = self.stop_command()
-                if self.leak:
-                    # leaked stop command must appear *after* start command;
-                    # so stop command appears here in spanner *starts*:
-                    bundle.after.spanner_starts.append(self.stop_command())
-                else:
-                    bundle.after.spanner_stops.append(self.stop_command())
-            return bundle
-        if (not component is self[-1]) or (len(self) == 1 and self.leak):
-            if self._wrappers:
-                override = self._y_extent_false()
-                string = override.tweak_string()
-                bundle.after.spanner_starts.append(string)
-            if line_segment is None:
-                command = r'- \abjad_invisible_line_segment'
-                forced_left_hspace = 0.25
-                forced_right_hspace = 1.5
-            if markup is not None:
-                if forced_left_hspace is not None:
-                    left_hspace = forced_left_hspace
-                else:
-                    left_hspace = line_segment.left_hspace
-                left_hspace = Markup.hspace(left_hspace)
-                markup = Markup.concat([markup, left_hspace])
-                override = LilyPondGrobOverride(
-                    grob_name='TextSpanner',
-                    property_path=(
-                        'bound-details',
-                        'left',
-                        'text',
-                        ),
-                    value=markup,
-                    )
-                string = override.tweak_string()
-                bundle.after.spanner_starts.append(string)
-            if line_segment is not None:
-                tweaks = line_segment._get_lilypond_grob_overrides(tweaks=True)
-                bundle.after.spanner_starts.extend(tweaks)
-            else:
-                bundle.after.spanner_starts.append(command)
-        if last_leaf_markup is not None:
-            if forced_right_hspace is not None:
-                right_hspace = forced_right_hspace
-            else:
-                right_hspace = line_segment.right_padding or 0
-            # optical correction to draw last markup left:
-            right_hspace -= 0.5
-            right_hspace = Markup.hspace(right_hspace)
-            last_leaf_markup = Markup.concat(
-                [right_hspace, last_leaf_markup],
-                )
-            last_leaf_markup = new(last_leaf_markup, direction=None)
-            override = LilyPondGrobOverride(
-                grob_name='TextSpanner',
-                property_path=(
-                    'bound-details',
-                    'right',
-                    'text',
-                    ),
-                value=last_leaf_markup,
-                )
-            string = override.tweak_string()
-            bundle.after.spanner_starts.append(string)
-        # start- and stop-commands added after tweaks
-        if ((not component is self[-1]) or (len(self) == 1 and self.leak)):
-            bundle.after.spanner_starts.extend(self.start_command())
-
-        if (has_indicators and 
-            (not component is self[0]) or (len(self) == 1 and self.leak)
-            ):
-            stop_command = self.stop_command()
-            if self.leak:
-                # leaked stop command must appear *after* start command;
-                # so stop command appears here in spanner *starts*:
-                bundle.after.spanner_starts.append(stop_command)
-            else:
-                bundle.after.spanner_stops.append(stop_command)
-
+        if component is self[0]:
+            strings = self._tweaked_start_command_strings()
+            bundle.after.spanner_starts.extend(strings)
+        if component is self[-1]:
+            string = self._stop_command_string()
+            bundle.after.spanner_stops.append(string)
         return bundle
 
-    def _should_format_last_leaf_markup(self, component):
-        if inspect(self[-1]).get_piecewise(self, Markup, None) is None:
-            return
-        leaf = None
-        for leaf in reversed(self[:-1]):
-            markup = inspect(leaf).get_piecewise(self, Markup, None)
-            if markup is not None:
-                break
-            line_segment = inspect(leaf).get_piecewise(self, LineSegment, None)
-            if line_segment is not None:
-                break
-        return component is leaf
+def text_spanner(
+    argument: typing.Union[Component, Selection],
+    *,
+    selector: typings.Selector = 'abjad.select().leaves()',
+    start_text_span: StartTextSpan = None,
+    stop_text_span: StopTextSpan = None,
+    ) -> None:
+    r"""
+    Attaches text span indicators.
 
-    @property
-    def _start_command(self):
-        if self.commands is not None:
-            start_command, stop_command = self.commands
-            return start_command
-        if self.lilypond_id is None:
-            return r'\startTextSpan'
-        elif self.lilypond_id == 1:
-            return r'\startTextSpanOne'
-        elif self.lilypond_id == 2:
-            return r'\startTextSpanTwo'
-        elif self.lilypond_id == 3:
-            return r'\startTextSpanThree'
-        else:
-            raise ValueError(self.lilypond_id)
+    ..  container:: example
 
-    def _stop_command(self):
-        if self.commands is not None:
-            start_command, stop_command = self.commands
-            return stop_command
-        if self.lilypond_id is None:
-            return r'\stopTextSpan'
-        elif self.lilypond_id == 1:
-            return r'\stopTextSpanOne'
-        elif self.lilypond_id == 2:
-            return r'\stopTextSpanTwo'
-        elif self.lilypond_id == 3:
-            return r'\stopTextSpanThree'
-        else:
-            raise ValueError(self.lilypond_id)
+        Single spanner:
 
-    @staticmethod
-    def _y_extent_false():
-        return LilyPondGrobOverride(
-            grob_name='TextSpanner',
-            once=True,
-            property_path=(
-                'Y-extent',
-                ),
-            value=False,
-            )
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> start_text_span = abjad.StartTextSpan(
+        ...     left_text=abjad.Markup('pont.').upright(),
+        ...     right_text=abjad.Markup('tasto').upright(),
+        ...     style='solid_line_with_arrow',
+        ...     )
+        >>> abjad.text_spanner(staff[:], start_text_span=start_text_span)
+        >>> abjad.override(staff[0]).text_spanner.staff_padding = 4
+        >>> abjad.show(staff) # doctest: +SKIP
 
-    ### PUBLIC PROPERTIES ###
+        ..  docs::
 
-    @property
-    def commands(self) -> typing.Optional[typing.Tuple[str, str]]:
-        r"""
-        Gets custom start- and stop-commands.
-
-        ..  container:: example
-
-            >>> start_command = r'\startParameterXYZTextSpan'
-            >>> stop_command = r'\stopParameterXYZTextSpan'
-            >>> spanner = abjad.TextSpanner(
-            ...     commands=(start_command, stop_command),
-            ...     )
-            >>> spanner.commands
-            ('\\startParameterXYZTextSpan', '\\stopParameterXYZTextSpan')
-
-            >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> abjad.attach(spanner, staff[:])
             >>> abjad.f(staff)
             \new Staff
             {
+                \once \override TextSpanner.staff-padding = #4
                 c'4
-                \startParameterXYZTextSpan
+                - \abjad_solid_line_with_arrow
+                - \tweak bound-details.left.text \markup {
+                    \concat
+                        {
+                            \upright
+                                pont.
+                            \hspace
+                                #0.5
+                        }
+                    }
+                - \tweak bound-details.right.text \markup {
+                    \upright
+                        tasto
+                    }
+                \startTextSpan
                 d'4
                 e'4
                 f'4
-                \stopParameterXYZTextSpan
+                \stopTextSpan
             }
 
-            Only LilyPond output is shown here because notational output would
-            require the definition of ``\startParameterXYZTextSpan`` and
-            ``\stopParameterXYZTextSpan`` beforehand.
+    ..  container:: example
 
-        """
-        return self._commands
+        Enchained spanners:
 
-    @property
-    def leak(self) -> typing.Optional[bool]:
-        r"""
-        Is true when spanner leaks one leaf to the right.
+        >>> staff = abjad.Staff("c'4 d' e' f' r")
+        >>> start_text_span = abjad.StartTextSpan(
+        ...     left_text=abjad.Markup('pont.').upright(),
+        ...     style='dashed_line_with_arrow',
+        ...     )
+        >>> abjad.text_spanner(staff[:3], start_text_span=start_text_span)
+        >>> start_text_span = abjad.StartTextSpan(
+        ...     left_text=abjad.Markup('tasto').upright(),
+        ...     right_text=abjad.Markup('pont.').upright(),
+        ...     style='dashed_line_with_arrow',
+        ...     )
+        >>> abjad.text_spanner(staff[-3:], start_text_span=start_text_span)
+        >>> abjad.override(staff).text_spanner.staff_padding = 4
+        >>> abjad.show(staff) # doctest: +SKIP
 
-        ..  container:: example
+        ..  docs::
 
-            Without leak:
-
-            >>> staff = abjad.Staff("c'4 d'4 e'4 r4")
-            >>> spanner = abjad.TextSpanner()
-            >>> abjad.attach(spanner, staff[:-1])
-            >>> spanner.attach(abjad.Markup('pont.').upright(), spanner[0])
-            >>> spanner.attach(abjad.ArrowLineSegment(), spanner[0])
-            >>> spanner.attach(abjad.Markup('tasto').upright(), spanner[-1])
-            >>> abjad.override(staff).text_spanner.staff_padding = 2.5
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                \with
-                {
-                    \override TextSpanner.staff-padding = #2.5
-                }
-                {
-                    c'4
-                    - \tweak Y-extent ##f
-                    - \tweak bound-details.left.text \markup {
-                        \concat
-                            {
-                                \upright
-                                    pont.
-                                \hspace
-                                    #0.25
-                            }
+            >>> abjad.f(staff)
+            \new Staff
+            \with
+            {
+                \override TextSpanner.staff-padding = #4
+            }
+            {
+                c'4
+                - \abjad_dashed_line_with_arrow
+                - \tweak bound-details.left.text \markup {
+                    \concat
+                        {
+                            \upright
+                                pont.
+                            \hspace
+                                #0.5
                         }
-                    - \tweak arrow-width 0.25
-                    - \tweak dash-fraction 1
-                    - \tweak bound-details.left.stencil-align-dir-y #center
-                    - \tweak bound-details.right.arrow ##t
-                    - \tweak bound-details.right-broken.padding 0
-                    - \tweak bound-details.right-broken.text ##f
-                    - \tweak bound-details.right.padding 0.5
-                    - \tweak bound-details.right.stencil-align-dir-y #center
-                    - \tweak bound-details.right.text \markup {
-                        \concat
-                            {
-                                \hspace
-                                    #0.0
-                                \upright
-                                    tasto
-                            }
+                    }
+                \startTextSpan
+                d'4
+                e'4
+                \stopTextSpan
+                - \abjad_dashed_line_with_arrow
+                - \tweak bound-details.left.text \markup {
+                    \concat
+                        {
+                            \upright
+                                tasto
+                            \hspace
+                                #0.5
                         }
-                    \startTextSpan
-                    d'4
-                    e'4
-                    \stopTextSpan
-                    r4
-                }
+                    }
+                - \tweak bound-details.right.text \markup {
+                    \upright
+                        pont.
+                    }
+                \startTextSpan
+                f'4
+                r4
+                \stopTextSpan
+            }
 
-            With leak:
+        >>> staff = abjad.Staff("c'4 d' e' f' r")
+        >>> start_text_span = abjad.StartTextSpan(
+        ...     left_text=abjad.Markup('pont.').upright(),
+        ...     style='dashed_line_with_arrow',
+        ...     )
+        >>> abjad.text_spanner(staff[:3], start_text_span=start_text_span)
+        >>> start_text_span = abjad.StartTextSpan(
+        ...     left_text=abjad.Markup('tasto').upright(),
+        ...     style='solid_line_with_hook',
+        ...     )
+        >>> abjad.text_spanner(staff[-3:], start_text_span=start_text_span)
+        >>> abjad.override(staff).text_spanner.staff_padding = 4
+        >>> abjad.show(staff) # doctest: +SKIP
 
-            >>> staff = abjad.Staff("c'4 d'4 e'4 r4")
-            >>> spanner = abjad.TextSpanner(leak=True)
-            >>> abjad.attach(spanner, staff[:-1])
-            >>> spanner.attach(abjad.Markup('pont.').upright(), spanner[0])
-            >>> spanner.attach(abjad.ArrowLineSegment(), spanner[0])
-            >>> spanner.attach(abjad.Markup('tasto').upright(), spanner[-1])
-            >>> abjad.override(staff).text_spanner.staff_padding = 2.5
-            >>> abjad.show(staff) # doctest: +SKIP
+        ..  docs::
 
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                \with
-                {
-                    \override TextSpanner.staff-padding = #2.5
-                }
-                {
-                    c'4
-                    - \tweak Y-extent ##f
-                    - \tweak bound-details.left.text \markup {
-                        \concat
-                            {
-                                \upright
-                                    pont.
-                                \hspace
-                                    #0.25
-                            }
+            >>> abjad.f(staff)
+            \new Staff
+            \with
+            {
+                \override TextSpanner.staff-padding = #4
+            }
+            {
+                c'4
+                - \abjad_dashed_line_with_arrow
+                - \tweak bound-details.left.text \markup {
+                    \concat
+                        {
+                            \upright
+                                pont.
+                            \hspace
+                                #0.5
                         }
-                    - \tweak arrow-width 0.25
-                    - \tweak dash-fraction 1
-                    - \tweak bound-details.left.stencil-align-dir-y #center
-                    - \tweak bound-details.right.arrow ##t
-                    - \tweak bound-details.right-broken.padding 0
-                    - \tweak bound-details.right-broken.text ##f
-                    - \tweak bound-details.right.padding 0.5
-                    - \tweak bound-details.right.stencil-align-dir-y #center
-                    - \tweak bound-details.right.text \markup {
-                        \concat
-                            {
-                                \hspace
-                                    #0.0
-                                \upright
-                                    tasto
-                            }
+                    }
+                \startTextSpan
+                d'4
+                e'4
+                \stopTextSpan
+                - \abjad_solid_line_with_hook
+                - \tweak bound-details.left.text \markup {
+                    \concat
+                        {
+                            \upright
+                                tasto
+                            \hspace
+                                #0.5
                         }
-                    \startTextSpan
-                    d'4
-                    e'4
-                    <> \stopTextSpan
-                    r4
-                }
+                    }
+                \startTextSpan
+                f'4
+                r4
+                \stopTextSpan
+            }
 
-        ..  container:: example
+    """
+    import abjad
+    start_text_span = start_text_span or StartTextSpan()
+    stop_text_span = stop_text_span or StopTextSpan()
 
-            REGRESSION. Leaked text spanners with no indicators may attach to a
-            single leaf:
-
-            >>> staff = abjad.Staff("c'4 d'4 e'4 r4")
-            >>> spanner = abjad.TextSpanner(leak=True)
-            >>> abjad.attach(spanner, staff[:1])
-            >>> abjad.override(staff).text_spanner.staff_padding = 2.5
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                \with
-                {
-                    \override TextSpanner.staff-padding = #2.5
-                }
-                {
-                    c'4
-                    \startTextSpan
-                    <> \stopTextSpan
-                    d'4
-                    e'4
-                    r4
-                }
-
-        ..  container:: example
-
-            REGRESSION. Leaked text spanners with a start indicator may attach
-            to a single leaf:
-
-            >>> staff = abjad.Staff("c'4 d'4 e'4 r4")
-            >>> spanner = abjad.TextSpanner(leak=True)
-            >>> abjad.attach(spanner, staff[:1])
-            >>> spanner.attach(abjad.Markup('pont.').upright(), spanner[0])
-            >>> dashed_hook = abjad.LineSegment.make_dashed_hook()
-            >>> spanner.attach(dashed_hook, spanner[0])
-            >>> abjad.override(staff).text_spanner.staff_padding = 2.5
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                \with
-                {
-                    \override TextSpanner.staff-padding = #2.5
-                }
-                {
-                    c'4
-                    - \tweak Y-extent ##f
-                    - \tweak bound-details.left.text \markup {
-                        \concat
-                            {
-                                \upright
-                                    pont.
-                                \hspace
-                                    #0.5
-                            }
-                        }
-                    - \tweak dash-fraction 0.25
-                    - \tweak dash-period 1.5
-                    - \tweak bound-details.left-broken.text ##f
-                    - \tweak bound-details.left.stencil-align-dir-y 0
-                    - \tweak bound-details.right-broken.arrow ##f
-                    - \tweak bound-details.right-broken.padding 0
-                    - \tweak bound-details.right-broken.text ##f
-                    - \tweak bound-details.right.padding 1.25
-                    - \tweak bound-details.right.text \markup {
-                        \draw-line
-                            #'(0 . -1)
-                        }
-                    \startTextSpan
-                    <> \stopTextSpan
-                    d'4
-                    e'4
-                    r4
-                }
-
-        """
-        return self._leak
-
-    @property
-    def lilypond_id(self) -> typing.Optional[int]:
-        r"""
-        Gets LilyPond ID.
-
-        ..  container:: example
-
-            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-
-            >>> spanner_1 = abjad.TextSpanner(lilypond_id=1)
-            >>> abjad.attach(spanner_1, staff[:])
-            >>> spanner_1.attach(abjad.Markup('ord.').upright(), spanner_1[0])
-            >>> spanner_1.attach(abjad.ArrowLineSegment(), spanner_1[0])
-            >>> spanner_1.attach(abjad.Markup('pont.').upright(), spanner_1[-1])
-            >>> abjad.tweak(spanner_1).staff_padding = 2.5
-
-            >>> spanner = abjad.TextSpanner()
-            >>> abjad.attach(spanner, staff[:])
-            >>> spanner.attach(abjad.Markup('A').upright(), spanner[0])
-            >>> spanner.attach(abjad.ArrowLineSegment(), spanner[0])
-            >>> spanner.attach(abjad.Markup('B').upright(), spanner[-1])
-            >>> abjad.tweak(spanner).staff_padding = 5
-
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    c'4
-                    - \tweak Y-extent ##f
-                    - \tweak bound-details.left.text \markup {
-                        \concat
-                            {
-                                \upright
-                                    ord.
-                                \hspace
-                                    #0.25
-                            }
-                        }
-                    - \tweak arrow-width 0.25
-                    - \tweak dash-fraction 1
-                    - \tweak bound-details.left.stencil-align-dir-y #center
-                    - \tweak bound-details.right.arrow ##t
-                    - \tweak bound-details.right-broken.padding 0
-                    - \tweak bound-details.right-broken.text ##f
-                    - \tweak bound-details.right.padding 0.5
-                    - \tweak bound-details.right.stencil-align-dir-y #center
-                    - \tweak bound-details.right.text \markup {
-                        \concat
-                            {
-                                \hspace
-                                    #0.0
-                                \upright
-                                    pont.
-                            }
-                        }
-                    - \tweak staff-padding #2.5
-                    \startTextSpanOne
-                    - \tweak Y-extent ##f
-                    - \tweak bound-details.left.text \markup {
-                        \concat
-                            {
-                                \upright
-                                    A
-                                \hspace
-                                    #0.25
-                            }
-                        }
-                    - \tweak arrow-width 0.25
-                    - \tweak dash-fraction 1
-                    - \tweak bound-details.left.stencil-align-dir-y #center
-                    - \tweak bound-details.right.arrow ##t
-                    - \tweak bound-details.right-broken.padding 0
-                    - \tweak bound-details.right-broken.text ##f
-                    - \tweak bound-details.right.padding 0.5
-                    - \tweak bound-details.right.stencil-align-dir-y #center
-                    - \tweak bound-details.right.text \markup {
-                        \concat
-                            {
-                                \hspace
-                                    #0.0
-                                \upright
-                                    B
-                            }
-                        }
-                    - \tweak staff-padding #5
-                    \startTextSpan
-                    d'4
-                    e'4
-                    fs'4
-                    \stopTextSpanOne
-                    \stopTextSpan
-                }
-
-            Simultaneous text spanners can be freely positioned vertically as
-            shown below only when Y-extent is set to false; Abjad text spanners
-            set Y-extent to false for this reason:
-           
-            >>> abjad.tweak(spanner_1).staff_padding = 5
-            >>> abjad.tweak(spanner).staff_padding = 2.5
-
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    c'4
-                    - \tweak Y-extent ##f
-                    - \tweak bound-details.left.text \markup {
-                        \concat
-                            {
-                                \upright
-                                    ord.
-                                \hspace
-                                    #0.25
-                            }
-                        }
-                    - \tweak arrow-width 0.25
-                    - \tweak dash-fraction 1
-                    - \tweak bound-details.left.stencil-align-dir-y #center
-                    - \tweak bound-details.right.arrow ##t
-                    - \tweak bound-details.right-broken.padding 0
-                    - \tweak bound-details.right-broken.text ##f
-                    - \tweak bound-details.right.padding 0.5
-                    - \tweak bound-details.right.stencil-align-dir-y #center
-                    - \tweak bound-details.right.text \markup {
-                        \concat
-                            {
-                                \hspace
-                                    #0.0
-                                \upright
-                                    pont.
-                            }
-                        }
-                    - \tweak staff-padding #5
-                    \startTextSpanOne
-                    - \tweak Y-extent ##f
-                    - \tweak bound-details.left.text \markup {
-                        \concat
-                            {
-                                \upright
-                                    A
-                                \hspace
-                                    #0.25
-                            }
-                        }
-                    - \tweak arrow-width 0.25
-                    - \tweak dash-fraction 1
-                    - \tweak bound-details.left.stencil-align-dir-y #center
-                    - \tweak bound-details.right.arrow ##t
-                    - \tweak bound-details.right-broken.padding 0
-                    - \tweak bound-details.right-broken.text ##f
-                    - \tweak bound-details.right.padding 0.5
-                    - \tweak bound-details.right.stencil-align-dir-y #center
-                    - \tweak bound-details.right.text \markup {
-                        \concat
-                            {
-                                \hspace
-                                    #0.0
-                                \upright
-                                    B
-                            }
-                        }
-                    - \tweak staff-padding #2.5
-                    \startTextSpan
-                    d'4
-                    e'4
-                    fs'4
-                    \stopTextSpanOne
-                    \stopTextSpan
-                }
-
-        ..  container:: example
-
-            LilyPond ID survives copy:
-
-            >>> import copy
-
-            >>> spanner_1 = abjad.TextSpanner(lilypond_id=1)
-            >>> spanner_1
-            TextSpanner(lilypond_id=1)
-
-            >>> spanner_2 = copy.copy(spanner_1)
-            >>> spanner_2
-            TextSpanner(lilypond_id=1)
-
-            >>> spanner_1.lilypond_id == spanner_2.lilypond_id
-            True
-
-            And new:
-
-            >>> spanner_1 = abjad.TextSpanner(lilypond_id=1)
-            >>> spanner_1
-            TextSpanner(lilypond_id=1)
-
-            >>> spanner_2 = abjad.new(spanner_1)
-            >>> spanner_2
-            TextSpanner(lilypond_id=1)
-
-            >>> spanner_1.lilypond_id == spanner_2.lilypond_id
-            True
-
-        ..  container:: example
-
-            Raises exception when attempting to attach text spanners with
-            duplicate LilyPond ID / command profile:
-
-            >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> spanner = abjad.TextSpanner(lilypond_id=1)
-            >>> spanner_1 = abjad.TextSpanner(lilypond_id=1)
-            >>> abjad.attach(spanner, staff[:])
-            >>> abjad.attach(spanner_1, staff[:])
-            Traceback (most recent call last):
-                ...
-            Exception: TextSpanner(lilypond_id=1)._attachment_test_all():
-              Overlapping text spanners with LilyPond ID 1 and commands None.
-
-        """
-        return self._lilypond_id
-
-    ### PUBLIC METHODS ###
-
-    def attach(
-        self,
-        indicator: typing.Union[LineSegment, Markup, Wrapper], 
-        leaf: Leaf,
-        deactivate: bool = None,
-        tag: typing.Union[str, Tag] = None,
-        wrapper: bool = None,
-        ) -> typing.Optional[Wrapper]:
-        """
-        Attaches ``indicator`` to ``leaf`` in spanner.
-        """
-        prototype = (LineSegment, Markup, Wrapper)
-        assert isinstance(indicator, prototype), repr(indicator)
-        assert isinstance(leaf, Leaf), repr(leaf)
-        if tag is not None:
-            assert isinstance(tag, Tag), repr(tag)
-        return super()._attach_piecewise(
-            indicator,
-            leaf,
-            deactivate=deactivate,
-            tag=tag,
-            wrapper=wrapper,
-            )
-
-    def start_command(self) -> typing.List[str]:
-        r"""
-        Gets start command.
-
-        ..  container:: example
-
-            >>> abjad.TextSpanner().start_command()
-            ['\\startTextSpan']
-
-        """
-        return super().start_command()
-
-    def stop_command(self) -> typing.Optional[str]:
-        r"""
-        Gets stop command.
-
-        ..  container:: example
-
-            >>> abjad.TextSpanner().stop_command()
-            '\\stopTextSpan'
-
-            With leak:
-
-            >>> abjad.TextSpanner(leak=True).stop_command()
-            '<> \\stopTextSpan'
-
-        """
-        string = self._stop_command()
-        string = self._add_leak(string)
-        return string
+    if isinstance(selector, str):
+        selector = eval(selector)
+    assert isinstance(selector, Expression)
+    argument = selector(argument)
+    leaves = select(argument).leaves()
+    start_leaf = leaves[0]
+    stop_leaf = leaves[-1]
+    
+    attach(start_text_span, start_leaf)
+    attach(stop_text_span, stop_leaf)

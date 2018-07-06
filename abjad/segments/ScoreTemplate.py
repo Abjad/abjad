@@ -16,6 +16,7 @@ from abjad.core.Staff import Staff
 from abjad.core.StaffGroup import StaffGroup
 from abjad.core.Voice import Voice
 from abjad.system.Tag import Tag
+from abjad.system.Tags import Tags
 from abjad.system.Wrapper import Wrapper
 from abjad.top.attach import attach
 from abjad.top.inspect import inspect
@@ -24,7 +25,6 @@ from abjad.top.new import new
 from abjad.top.select import select
 from .PartAssignment import PartAssignment
 from .PartManifest import PartManifest
-from .Tags import Tags
 
 
 class ScoreTemplate(AbjadValueObject):
