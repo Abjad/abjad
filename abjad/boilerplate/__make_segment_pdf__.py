@@ -75,7 +75,7 @@ if __name__ == '__main__':
 
     try:
         text = illustration_ly.read_text()
-        text = abjad.LilyPondFormatManager.left_shift_tags(text, realign=89)
+        text = abjad.LilyPondFormatManager.left_shift_tags(text, realign=99)
         illustration_ly.write_text(text)
         for job in [
             abjad.Job.handle_edition_tags(illustration_ly),

@@ -178,7 +178,7 @@ class Markup(AbjadValueObject):
         '_annotation',
         '_contents',
         '_direction',
-        '_format_slot',
+        '_literal',
         '_tweaks',
         )
 
@@ -193,6 +193,7 @@ class Markup(AbjadValueObject):
         contents=None,
         *,
         direction: enums.VerticalAlignment = None,
+        literal: bool = None,
         tweaks: typing.Union[
             typing.List[typing.Tuple], LilyPondTweakManager] = None,
         ) -> None:
@@ -231,11 +232,13 @@ class Markup(AbjadValueObject):
         assert isinstance(new_contents, tuple), repr(new_contents)
         assert all(isinstance(_, (str, MarkupCommand)) for _ in new_contents), repr(new_contents)
         self._contents = new_contents
-        self._format_slot = 'after'
         direction_ = String.to_tridirectional_ordinal_constant(direction)
         if direction_ is not None:
             assert isinstance(direction_, enums.VerticalAlignment), repr(direction_)
         self._direction = direction_
+        if literal is not None:
+            literal = bool(literal)
+        self._literal = literal
         self._tweaks = None
         LilyPondTweakManager.set_tweaks(self, tweaks)
 
@@ -591,11 +594,12 @@ class Markup(AbjadValueObject):
                 self.direction)
         if len(self.contents) == 1 and isinstance(self.contents[0], str):
             content = self.contents[0]
-            content = Scheme.format_scheme_value(content)
-            if content:
-                content = '{{ {} }}'.format(content)
-            else:
-                content = '{}'
+            if not self.literal:
+                content = Scheme.format_scheme_value(content)
+                if content:
+                    content = '{{ {} }}'.format(content)
+                else:
+                    content = '{}'
             if direction:
                 string = r'{} \markup {}'.format(direction, content)
                 return tweaks + [string]
@@ -684,6 +688,36 @@ class Markup(AbjadValueObject):
 
         """
         return self._direction
+
+    @property
+    def literal(self) -> typing.Optional[bool]:
+        """
+        Is true when markup formats contents literally.
+
+        ..  container:: example
+
+            Adds neither quotes nor braces:
+
+            >>> string = r'\custom-function #1 #4'
+            >>> markup = abjad.Markup.from_literal(string, literal=True)
+            >>> abjad.f(markup)
+            \markup \custom-function #1 #4
+
+        ..  container:: example
+
+            Works with direction:
+
+            >>> string = r'\custom-function #1 #4'
+            >>> markup = abjad.Markup.from_literal(
+            ...     string,
+            ...     direction=abjad.Up,
+            ...     literal=True,
+            ...     )
+            >>> abjad.f(markup)
+            ^ \markup \custom-function #1 #4
+
+        """
+        return self._literal
 
     # TODO: Tweaks do not appear on markup without direction!
     @property
@@ -1291,7 +1325,7 @@ class Markup(AbjadValueObject):
         return class_(contents=command, direction=direction)
 
     @classmethod
-    def from_literal(class_, string, direction=None):
+    def from_literal(class_, string, direction=None, literal=None):
         r"""
         Makes markup from literal ``string`` and bypasses parser.
 
@@ -1308,6 +1342,7 @@ class Markup(AbjadValueObject):
         markup = class_(
             contents='',
             direction=direction,
+            literal=literal,
             )
         markup._contents = (string,)
         return markup

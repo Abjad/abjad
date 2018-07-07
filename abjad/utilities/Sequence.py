@@ -8,6 +8,7 @@ from abjad import enums
 from abjad import mathtools
 from abjad.system import AbjadValueObject
 from abjad.system.Signature import Signature
+from .Expression import Expression
 
 
 class Sequence(AbjadValueObject, collections.Sequence):
@@ -1001,7 +1002,6 @@ class Sequence(AbjadValueObject, collections.Sequence):
             left_over = current_part + l_copy
             if left_over:
                 result.append(left_over)
-        #return result
         result = [class_(_) for _ in result]
         return class_(items=result)
 
@@ -1011,8 +1011,7 @@ class Sequence(AbjadValueObject, collections.Sequence):
         evaluation_template=None,
         map_operand=None,
         ):
-        import abjad
-        callback = abjad.Expression._frame_to_callback(
+        callback = Expression._frame_to_callback(
             frame,
             evaluation_template=evaluation_template,
             map_operand=map_operand,
@@ -1700,10 +1699,9 @@ class Sequence(AbjadValueObject, collections.Sequence):
 
         Returns new sequence.
         """
-        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        cumulative_sum = abjad.mathtools.cumulative_sums(self, start=None)[-1]
+        cumulative_sum = mathtools.cumulative_sums(self, start=None)[-1]
         return type(self)([cumulative_sum])
 
     @Signature(
@@ -3459,7 +3457,7 @@ class Sequence(AbjadValueObject, collections.Sequence):
             return self._update_expression(inspect.currentframe())
         ratio = abjad.Ratio(ratio)
         length = len(self)
-        counts = abjad.mathtools.partition_integer_by_ratio(length, ratio)
+        counts = mathtools.partition_integer_by_ratio(length, ratio)
         parts = self.partition_by_counts(
             counts,
             cyclic=False,

@@ -458,10 +458,16 @@ class Dynamic(AbjadValueObject):
         bundle = LilyPondFormatBundle()
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions()
-            bundle.after.articulations.extend(tweaks)
+            if self.leak:
+                bundle.after.leaks.extend(tweaks)
+            else:
+                bundle.after.articulations.extend(tweaks)
         if not self.hide:
             string = self._get_lilypond_format()
-            bundle.after.articulations.append(string)
+            if self.leak:
+                bundle.after.leaks.append(string)
+            else:
+                bundle.after.articulations.append(string)
         return bundle
 
     @staticmethod
@@ -803,6 +809,40 @@ class Dynamic(AbjadValueObject):
                     e'4
                     <> \pp
                     r4
+                }
+
+        ..  container:: example
+
+            Leaks format after spanners:
+
+            >>> staff = abjad.Staff("c'8 [ d' e' ] f'")
+            >>> start = abjad.Dynamic('mf')
+            >>> trend = abjad.DynamicTrend('>')
+            >>> stop = abjad.Dynamic('pp', leak=True)
+            >>> abjad.attach(start, staff[0])
+            >>> abjad.attach(trend, staff[0])
+            >>> abjad.attach(stop, staff[-2])
+            >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                \with
+                {
+                    \override DynamicLineSpanner.staff-padding = #4
+                }
+                {
+                    c'8
+                    \mf
+                    \>
+                    [
+                    d'8
+                    e'8
+                    ]
+                    <> \pp
+                    f'8
                 }
 
         ..  container:: example
