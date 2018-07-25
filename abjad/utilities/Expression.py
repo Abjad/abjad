@@ -1,7 +1,7 @@
 import inspect
 import itertools
 import numbers
-from typing import List  # noqa
+import typing
 from abjad.system.Signature import Signature
 from abjad.system.AbjadValueObject import AbjadValueObject
 
@@ -97,7 +97,7 @@ class Expression(AbjadValueObject):
         '_template',
         )
 
-    _private_attributes_to_copy = []  # type: List[str]
+    _private_attributes_to_copy: typing.List[str] = []
 
     _publish_storage_format = True
 
@@ -951,6 +951,8 @@ class Expression(AbjadValueObject):
             message = message.format(class_)
             raise TypeError(message)
         parts = class_.__module__.split('.')
+        if parts[-1] != class_.__name__:
+            parts.append(class_.__name__)
         if 'abjad' in parts:
             parts = [_ for _ in parts if 'tools' not in _]
         evaluation_template = '.'.join(parts)
@@ -1122,6 +1124,8 @@ class Expression(AbjadValueObject):
             function = getattr(function_self, function_name)
             class_ = function_self.__class__
             parts = class_.__module__.split('.')
+            if parts[-1] != class_.__name__:
+                parts.append(class_.__name__)
             if 'abjad' in parts:
                 parts = [_ for _ in parts if 'tools' not in _]
             parts.append(function_name)

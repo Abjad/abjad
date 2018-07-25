@@ -78,6 +78,8 @@ class StartTextSpan(AbjadValueObject):
         '_tweaks',
         )
 
+    _publish_storage_format = True
+
     _styles = (
         'dashed_line_with_arrow',
         'dashed_line_with_hook',
@@ -248,28 +250,28 @@ class StartTextSpan(AbjadValueObject):
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
 
-            >>> command = abjad.StartTextSpan(
+            >>> start_text_span = abjad.StartTextSpan(
             ...     left_text=abjad.Markup('pont.').upright(),
             ...     right_text=abjad.Markup('tasto').upright(),
             ...     style='dashed_line_with_arrow',
             ...     )
-            >>> abjad.tweak(command).color = 'blue'
-            >>> abjad.tweak(command).staff_padding = 2.5
-            >>> abjad.attach(command, staff[0])
-            >>> command = abjad.StopTextSpan()
-            >>> abjad.attach(command, staff[-1])
+            >>> abjad.tweak(start_text_span).color = 'blue'
+            >>> abjad.tweak(start_text_span).staff_padding = 2.5
+            >>> abjad.attach(start_text_span, staff[0])
+            >>> stop_text_span = abjad.StopTextSpan()
+            >>> abjad.attach(stop_text_span, staff[-1])
 
-            >>> command = abjad.StartTextSpan(
+            >>> start_text_span = abjad.StartTextSpan(
             ...     command=r'\startTextSpanOne',
             ...     left_text=abjad.Markup('A').upright(),
             ...     right_text=abjad.Markup('B').upright(),
             ...     style='dashed_line_with_arrow',
             ...     )
-            >>> abjad.tweak(command).color = 'red'
-            >>> abjad.tweak(command).staff_padding = 6
-            >>> abjad.attach(command, staff[0])
-            >>> command = abjad.StopTextSpan(command=r'\stopTextSpanOne')
-            >>> abjad.attach(command, staff[-1])
+            >>> abjad.tweak(start_text_span).color = 'red'
+            >>> abjad.tweak(start_text_span).staff_padding = 6
+            >>> abjad.attach(start_text_span, staff[0])
+            >>> stop_text_span = abjad.StopTextSpan(command=r'\stopTextSpanOne')
+            >>> abjad.attach(stop_text_span, staff[-1])
 
             >>> markup = abjad.Markup('SPACER', direction=abjad.Up)
             >>> abjad.tweak(markup).transparent = True
@@ -450,15 +452,15 @@ class StartTextSpan(AbjadValueObject):
         ..  container:: example
 
             >>> staff = abjad.Staff("c'4 d' e' fs'")
-            >>> command = abjad.StartTextSpan(
+            >>> start_text_span = abjad.StartTextSpan(
             ...     left_text=abjad.Markup('pont.').upright(),
             ...     right_text=abjad.Markup('tasto').upright(),
             ...     style='dashed_line_with_arrow',
             ...     )
-            >>> abjad.tweak(command).staff_padding = 2.5
-            >>> abjad.attach(command, staff[0])
-            >>> command = abjad.StopTextSpan()
-            >>> abjad.attach(command, staff[-1])
+            >>> abjad.tweak(start_text_span).staff_padding = 2.5
+            >>> abjad.attach(start_text_span, staff[0])
+            >>> stop_text_span = abjad.StopTextSpan()
+            >>> abjad.attach(stop_text_span, staff[-1])
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -492,14 +494,14 @@ class StartTextSpan(AbjadValueObject):
         ..  container:: example
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> command = abjad.StartTextSpan(
+            >>> start_text_span = abjad.StartTextSpan(
             ...     left_text=abjad.Markup('pont.').upright(),
             ...     style='dashed_line_with_hook',
             ...     )
-            >>> abjad.tweak(command).staff_padding = 2.5
-            >>> abjad.attach(command, staff[0])
-            >>> command = abjad.StopTextSpan()
-            >>> abjad.attach(command, staff[-1])
+            >>> abjad.tweak(start_text_span).staff_padding = 2.5
+            >>> abjad.attach(start_text_span, staff[0])
+            >>> stop_text_span = abjad.StopTextSpan()
+            >>> abjad.attach(stop_text_span, staff[-1])
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -529,15 +531,15 @@ class StartTextSpan(AbjadValueObject):
         ..  container:: example
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> command = abjad.StartTextSpan(
+            >>> start_text_span = abjad.StartTextSpan(
             ...     left_text=abjad.Markup('pont.').upright(),
             ...     right_text=abjad.Markup('tasto').upright(),
             ...     style='invisible_line',
             ...     )
-            >>> abjad.tweak(command).staff_padding = 2.5
-            >>> abjad.attach(command, staff[0])
-            >>> command = abjad.StopTextSpan()
-            >>> abjad.attach(command, staff[-1])
+            >>> abjad.tweak(start_text_span).staff_padding = 2.5
+            >>> abjad.attach(start_text_span, staff[0])
+            >>> stop_text_span = abjad.StopTextSpan()
+            >>> abjad.attach(stop_text_span, staff[-1])
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -571,15 +573,15 @@ class StartTextSpan(AbjadValueObject):
         ..  container:: example
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> command = abjad.StartTextSpan(
+            >>> start_text_span = abjad.StartTextSpan(
             ...     left_text=abjad.Markup('pont.').upright(),
             ...     right_text=abjad.Markup('tasto').upright(),
             ...     style='solid_line_with_arrow',
             ...     )
-            >>> abjad.tweak(command).staff_padding = 2.5
-            >>> abjad.attach(command, staff[0])
-            >>> command = abjad.StopTextSpan()
-            >>> abjad.attach(command, staff[-1])
+            >>> abjad.tweak(start_text_span).staff_padding = 2.5
+            >>> abjad.attach(start_text_span, staff[0])
+            >>> stop_text_span = abjad.StopTextSpan()
+            >>> abjad.attach(stop_text_span, staff[-1])
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -613,14 +615,14 @@ class StartTextSpan(AbjadValueObject):
         ..  container:: example
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> command = abjad.StartTextSpan(
+            >>> start_text_span = abjad.StartTextSpan(
             ...     left_text=abjad.Markup('pont.').upright(),
             ...     style='solid_line_with_hook',
             ...     )
-            >>> abjad.tweak(command).staff_padding = 2.5
-            >>> abjad.attach(command, staff[0])
-            >>> command = abjad.StopTextSpan()
-            >>> abjad.attach(command, staff[-1])
+            >>> abjad.tweak(start_text_span).staff_padding = 2.5
+            >>> abjad.attach(start_text_span, staff[0])
+            >>> stop_text_span = abjad.StopTextSpan()
+            >>> abjad.attach(stop_text_span, staff[-1])
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -661,16 +663,16 @@ class StartTextSpan(AbjadValueObject):
         ..  container:: example
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> command = abjad.StartTextSpan(
+            >>> start_text_span = abjad.StartTextSpan(
             ...     left_text=abjad.Markup('pont.').upright(),
             ...     right_text=abjad.Markup('tasto').upright(),
             ...     style='dashed_line_with_arrow',
             ...     )
-            >>> abjad.tweak(command).color = 'blue'
-            >>> abjad.tweak(command).staff_padding = 2.5
-            >>> abjad.attach(command, staff[0])
-            >>> command = abjad.StopTextSpan()
-            >>> abjad.attach(command, staff[-1])
+            >>> abjad.tweak(start_text_span).color = 'blue'
+            >>> abjad.tweak(start_text_span).staff_padding = 2.5
+            >>> abjad.attach(start_text_span, staff[0])
+            >>> stop_text_span = abjad.StopTextSpan()
+            >>> abjad.attach(stop_text_span, staff[-1])
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -701,6 +703,33 @@ class StartTextSpan(AbjadValueObject):
                     f'4
                     \stopTextSpan
                 }
+
+        ..  container:: example
+
+            REGRESSION. Tweaks survive copy:
+
+            >>> import copy
+            >>> start_text_span = abjad.StartTextSpan(
+            ...     style='dashed_line_with_arrow',
+            ...     )
+            >>> abjad.tweak(start_text_span).color = 'blue'
+            >>> abjad.tweak(start_text_span).staff_padding = 2.5
+            >>> abjad.f(start_text_span)
+            abjad.StartTextSpan(
+                command='\\startTextSpan',
+                concat_hspace_left=0.5,
+                style='dashed_line_with_arrow',
+                tweaks=LilyPondTweakManager(('color', 'blue'), ('staff_padding', 2.5)),
+                )
+
+            >>> start_text_span_2 = copy.copy(start_text_span)
+            >>> abjad.f(start_text_span_2)
+            abjad.StartTextSpan(
+                command='\\startTextSpan',
+                concat_hspace_left=0.5,
+                style='dashed_line_with_arrow',
+                tweaks=LilyPondTweakManager(('color', 'blue'), ('staff_padding', 2.5)),
+                )
 
         """
         return self._tweaks

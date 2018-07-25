@@ -4109,7 +4109,7 @@ class Label(AbjadObject):
                 >>> abjad.attach(mark, staff[0])
                 >>> abjad.label(staff).with_start_offsets(
                 ...     clock_time=True,
-                ...     markup_command='make-dark-cyan',
+                ...     markup_command=r'\make-dark-cyan',
                 ...     )
                 Duration(8, 1)
 
@@ -4129,25 +4129,13 @@ class Label(AbjadObject):
                     {
                         \tempo 4=60
                         c'2
-                        ^ \markup {
-                            \make-dark-cyan
-                                0'00''
-                            }
+                        ^ \markup \make-dark-cyan "0'00''"
                         d'2
-                        ^ \markup {
-                            \make-dark-cyan
-                                0'02''
-                            }
+                        ^ \markup \make-dark-cyan "0'02''"
                         e'2
-                        ^ \markup {
-                            \make-dark-cyan
-                                0'04''
-                            }
+                        ^ \markup \make-dark-cyan "0'04''"
                         f'2
-                        ^ \markup {
-                            \make-dark-cyan
-                                0'06''
-                            }
+                        ^ \markup \make-dark-cyan "0'06''"
                     }
                 >>
 
@@ -4180,25 +4168,13 @@ class Label(AbjadObject):
                     {
                         \tempo 4=60
                         c'2
-                        ^ \markup {
-                            \make-dark-cyan
-                                0'00''
-                            }
+                        ^ \markup make-dark-cyan "0'00''"
                         d'2
-                        ^ \markup {
-                            \make-dark-cyan
-                                0'02''
-                            }
+                        ^ \markup make-dark-cyan "0'02''"
                         e'2
-                        ^ \markup {
-                            \make-dark-cyan
-                                0'04''
-                            }
+                        ^ \markup make-dark-cyan "0'04''"
                         f'2
-                        ^ \markup {
-                            \make-dark-cyan
-                                0'06''
-                            }
+                        ^ \markup make-dark-cyan "0'06''"
                     }
                 >>
 
@@ -4230,9 +4206,15 @@ class Label(AbjadObject):
                 string = str(start_offset)
                 if brackets:
                     string = '[' + string + ']'
-            label = abjad.Markup(string, direction=direction)
             if markup_command is not None:
-                label = label.with_literal(markup_command)
+                string = f'{markup_command} {string}'
+                label = abjad.Markup.from_literal(
+                    string,
+                    direction=direction,
+                    literal=True
+                    )
+            else:
+                label = abjad.Markup(string, direction=direction)
             self._attach(label, logical_tie.head)
         total_duration = abjad.Duration(timespan.stop_offset)
         if global_offset is not None:
