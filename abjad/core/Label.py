@@ -1,8 +1,39 @@
 import collections
 import inspect
 from abjad import enums
+from abjad.indicators.LilyPondComment import LilyPondComment
+from abjad.indicators.LilyPondLiteral import LilyPondLiteral
+from abjad.markups import Markup
+from abjad.markups import MarkupCommand
+from abjad.mathtools.NonreducedFraction import NonreducedFraction
+from abjad.pitch.IntervalClassVector import IntervalClassVector
+from abjad.pitch.NamedInterval import NamedInterval
+from abjad.pitch.NamedIntervalClass import NamedIntervalClass
+from abjad.pitch.NamedPitch import NamedPitch
+from abjad.pitch.NumberedInversionEquivalentIntervalClass import \
+    NumberedInversionEquivalentIntervalClass
+from abjad.pitch.NumberedInterval import NumberedInterval
+from abjad.pitch.NumberedIntervalClass import NumberedIntervalClass
+from abjad.pitch.NumberedPitch import NumberedPitch
+from abjad.pitch.NumberedPitchClass import NumberedPitchClass
+from abjad.pitch.PitchClassSet import PitchClassSet
+from abjad.pitch.PitchSegment import PitchSegment
+from abjad.pitch.SetClass import SetClass
 from abjad.scheme import SchemeColor
 from abjad.system.AbjadObject import AbjadObject
+from abjad.top.attach import attach
+from abjad.top.detach import detach
+from abjad.top.inspect import inspect as abjad_inspect
+from abjad.top.iterate import iterate
+from abjad.top.new import new
+from abjad.top.override import override
+from abjad.top.select import select
+from abjad.utilities.Duration import Duration
+from abjad.utilities.Expression import Expression
+from .Component import Component
+from .Chord import Chord
+from .Note import Note
+from .Skip import Skip
 
 
 class Label(AbjadObject):
@@ -205,9 +236,8 @@ class Label(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self, client=None, deactivate=None, tag=None):
-        import abjad
         prototype = (
-            abjad.Component,
+            Component,
             collections.Iterable,
             type(None),
             )
@@ -223,8 +253,7 @@ class Label(AbjadObject):
     ### PRIVATE METHODS ###
 
     def _attach(self, label, leaf):
-        import abjad
-        abjad.attach(
+        attach(
             label,
             leaf,
             deactivate=self.deactivate,
@@ -232,24 +261,17 @@ class Label(AbjadObject):
             )
 
     def _color_leaf(self, leaf, color):
-        import abjad
-        if isinstance(leaf, (abjad.Note, abjad.Chord)):
-            abjad.override(leaf).accidental.color = color
-            abjad.override(leaf).beam.color = color
-            abjad.override(leaf).dots.color = color
-            abjad.override(leaf).note_head.color = color
-            abjad.override(leaf).stem.color = color
-        elif isinstance(leaf, (abjad.MultimeasureRest, abjad.Rest)):
-            abjad.override(leaf).dots.color = color
-            abjad.override(leaf).rest.color = color
-        elif isinstance(leaf, abjad.Skip):
-            comment = abjad.LilyPondComment(color)
+        if isinstance(leaf, Skip):
+            comment = LilyPondComment(color)
             self._attach(comment, leaf)
+        else:
+            string = fr'\abjad_color_music "{color}"'
+            literal = LilyPondLiteral(string)
+            self._attach(literal, leaf)
         return leaf
 
     def _update_expression(self, frame):
-        import abjad
-        callback = abjad.Expression._frame_to_callback(frame)
+        callback = Expression._frame_to_callback(frame)
         return self._expression.append_callback(callback)
 
     ### PUBLIC PROPERTIES ###
@@ -360,17 +382,16 @@ class Label(AbjadObject):
 
         Returns none.
         """
-        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        abjad.override(self.client).accidental.color = color
-        abjad.override(self.client).beam.color = color
-        abjad.override(self.client).dots.color = color
-        abjad.override(self.client).note_head.color = color
-        abjad.override(self.client).rest.color = color
-        abjad.override(self.client).stem.color = color
-        abjad.override(self.client).tuplet_bracket.color = color
-        abjad.override(self.client).tuplet_number.color = color
+        override(self.client).accidental.color = color
+        override(self.client).beam.color = color
+        override(self.client).dots.color = color
+        override(self.client).note_head.color = color
+        override(self.client).rest.color = color
+        override(self.client).stem.color = color
+        override(self.client).tuplet_bracket.color = color
+        override(self.client).tuplet_number.color = color
 
     def color_leaves(self, color='red'):
         r"""
@@ -393,23 +414,14 @@ class Label(AbjadObject):
                     >>> abjad.f(staff)
                     \new Staff
                     {
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         cs'8.
                         [
-                        \once \override Dots.color = #red
-                        \once \override Rest.color = #red
+                        \abjad_color_music "red"
                         r8.
                         % red
                         s8.
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         <c' cs' a'>8.
                         ]
                     }
@@ -428,33 +440,23 @@ class Label(AbjadObject):
                     >>> abjad.f(staff)
                     \new Staff
                     {
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         cs'8.
                         [
-                        \once \override Dots.color = #red
-                        \once \override Rest.color = #red
+                        \abjad_color_music "red"
                         r8.
                         % red
                         s8.
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         <c' cs' a'>8.
                         ]
                     }
 
         Returns none.
         """
-        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        for leaf in abjad.iterate(self.client).leaves():
+        for leaf in iterate(self.client).leaves():
             self._color_leaf(leaf, color)
 
     def color_note_heads(self, color_map=None):
@@ -645,25 +647,24 @@ class Label(AbjadObject):
 
         Returns none.
         """
-        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
         color_map = color_map or self._pc_number_to_color
-        for leaf in abjad.iterate(self.client).leaves():
-            if isinstance(leaf, abjad.Chord):
+        for leaf in iterate(self.client).leaves():
+            if isinstance(leaf, Chord):
                 for note_head in leaf.note_heads:
                     number = note_head.written_pitch.number
-                    pc = abjad.NumberedPitchClass(number)
+                    pc = NumberedPitchClass(number)
                     color = color_map.get(pc, None)
                     if color is not None:
                         note_head.tweaks.color = color
-            elif isinstance(leaf, abjad.Note):
+            elif isinstance(leaf, Note):
                 note_head = leaf.note_head
                 number = note_head.written_pitch.number
-                pc = abjad.NumberedPitchClass(number)
+                pc = NumberedPitchClass(number)
                 color = color_map[pc.number]
                 if color is not None:
-                    abjad.override(leaf).note_head.color = color
+                    override(leaf).note_head.color = color
 
     def remove_markup(self):
         r"""
@@ -747,11 +748,10 @@ class Label(AbjadObject):
 
         Returns none.
         """
-        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        for leaf in  abjad.iterate(self.client).leaves():
-            abjad.detach(abjad.Markup, leaf)
+        for leaf in iterate(self.client).leaves():
+            detach(Markup, leaf)
 
     def vertical_moments(self, direction=enums.Up, prototype=None):
         r'''
@@ -1823,26 +1823,25 @@ class Label(AbjadObject):
 
         Returns none.
         '''
-        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
         prototype = prototype or int
-        vertical_moments = abjad.iterate(self.client).vertical_moments()
+        vertical_moments = iterate(self.client).vertical_moments()
         for index, vertical_moment in enumerate(vertical_moments):
             label = None
             if prototype is int:
-                label = abjad.Markup(index, direction=direction)
-            elif prototype is abjad.NumberedPitch:
+                label = Markup(index, direction=direction)
+            elif prototype is NumberedPitch:
                 leaves = vertical_moment.leaves
-                pitches = abjad.PitchSegment.from_selection(leaves)
+                pitches = PitchSegment.from_selection(leaves)
                 if not pitches:
                     continue
                 pitch_numbers = [pitch.number for pitch in pitches]
-                pitch_numbers = [abjad.Markup(_) for _ in pitch_numbers]
-                label = abjad.Markup.column(pitch_numbers, direction=direction)
-            elif prototype is abjad.NumberedPitchClass:
+                pitch_numbers = [Markup(_) for _ in pitch_numbers]
+                label = Markup.column(pitch_numbers, direction=direction)
+            elif prototype is NumberedPitchClass:
                 leaves = vertical_moment.leaves
-                pitches = abjad.PitchSegment.from_selection(leaves)
+                pitches = PitchSegment.from_selection(leaves)
                 if not pitches:
                     continue
                 pitch_classes = [pitch.pitch_class.number for pitch in pitches]
@@ -1850,11 +1849,11 @@ class Label(AbjadObject):
                 pitch_classes.sort()
                 pitch_classes.reverse()
                 numbers = [str(_) for _ in pitch_classes]
-                markup = [abjad.Markup(_) for _ in numbers]
-                label = abjad.Markup.column(markup, direction=direction)
-            elif prototype is abjad.NumberedInterval:
+                markup = [Markup(_) for _ in numbers]
+                label = Markup.column(markup, direction=direction)
+            elif prototype is NumberedInterval:
                 leaves = vertical_moment.leaves
-                notes = [_ for _ in leaves if isinstance(_, abjad.Note)]
+                notes = [_ for _ in leaves if isinstance(_, Note)]
                 if not notes:
                     continue
                 notes.sort(key=lambda x: x.written_pitch.number)
@@ -1863,17 +1862,17 @@ class Label(AbjadObject):
                 upper_notes = notes[:-1]
                 named_intervals = []
                 for upper_note in upper_notes:
-                    named_interval = abjad.NamedInterval.from_pitch_carriers(
+                    named_interval = NamedInterval.from_pitch_carriers(
                         bass_note.written_pitch,
                         upper_note.written_pitch,
                         )
                     named_intervals.append(named_interval)
                 numbers = [x.number for x in named_intervals]
-                markup = [abjad.Markup(_) for _ in numbers]
-                label = abjad.Markup.column(markup, direction=direction)
-            elif prototype is abjad.NumberedIntervalClass:
+                markup = [Markup(_) for _ in numbers]
+                label = Markup.column(markup, direction=direction)
+            elif prototype is NumberedIntervalClass:
                 leaves = vertical_moment.leaves
-                notes = [_ for _ in leaves if isinstance(_, abjad.Note)]
+                notes = [_ for _ in leaves if isinstance(_, Note)]
                 if not notes:
                     continue
                 notes.sort(key=lambda x: x.written_pitch.number)
@@ -1882,43 +1881,43 @@ class Label(AbjadObject):
                 upper_notes = notes[:-1]
                 numbers = []
                 for upper_note in upper_notes:
-                    interval = abjad.NamedInterval.from_pitch_carriers(
+                    interval = NamedInterval.from_pitch_carriers(
                         bass_note.written_pitch,
                         upper_note.written_pitch,
                         )
-                    interval_class = abjad.NumberedIntervalClass(interval)
+                    interval_class = NumberedIntervalClass(interval)
                     number = interval_class.number
                     numbers.append(number)
-                markup = [abjad.Markup(_) for _ in numbers]
-                label = abjad.Markup.column(markup, direction=direction)
-            elif prototype is abjad.IntervalClassVector:
+                markup = [Markup(_) for _ in numbers]
+                label = Markup.column(markup, direction=direction)
+            elif prototype is IntervalClassVector:
                 leaves = vertical_moment.leaves
-                pitches = abjad.PitchSegment.from_selection(leaves)
+                pitches = PitchSegment.from_selection(leaves)
                 if not pitches:
                     continue
-                interval_class_vector = abjad.IntervalClassVector(
+                interval_class_vector = IntervalClassVector(
                     pitches,
-                    item_class=abjad.NumberedInversionEquivalentIntervalClass,
+                    item_class=NumberedInversionEquivalentIntervalClass,
                     )
                 markup = interval_class_vector._label
-                label = abjad.Markup(markup, direction=direction)
-            elif (prototype is abjad.SetClass or
-                isinstance(prototype, abjad.SetClass)):
-                if prototype is abjad.SetClass:
+                label = Markup(markup, direction=direction)
+            elif (prototype is SetClass or
+                isinstance(prototype, SetClass)):
+                if prototype is SetClass:
                     prototype = prototype()
-                assert isinstance(prototype, abjad.SetClass)
+                assert isinstance(prototype, SetClass)
                 leaves = vertical_moment.leaves
-                pitch_class_set = abjad.PitchClassSet.from_selection(leaves)
+                pitch_class_set = PitchClassSet.from_selection(leaves)
                 if not pitch_class_set:
                     continue
-                set_class = abjad.SetClass.from_pitch_class_set(
+                set_class = SetClass.from_pitch_class_set(
                     pitch_class_set,
                     lex_rank=prototype.lex_rank,
                     transposition_only=prototype.transposition_only,
                     )
                 string = str(set_class)
-                command = abjad.MarkupCommand('line', [string])
-                label = abjad.Markup(command, direction=direction)
+                command = MarkupCommand('line', [string])
+                label = Markup(command, direction=direction)
             else:
                 message = 'unknown prototype: {!r}.'
                 message = message.format(prototype)
@@ -2110,16 +2109,15 @@ class Label(AbjadObject):
 
         Returns none.
         """
-        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        for logical_tie in  abjad.iterate(self.client).logical_ties():
-            duration = abjad.inspect(logical_tie).get_duration()
+        for logical_tie in iterate(self.client).logical_ties():
+            duration = abjad_inspect(logical_tie).get_duration()
             if denominator is not None:
-                duration = abjad.NonreducedFraction(duration)
+                duration = NonreducedFraction(duration)
                 duration = duration.with_denominator(denominator)
             pair = duration.pair
-            label = abjad.Markup.fraction(*pair, direction=direction)
+            label = Markup.fraction(*pair, direction=direction)
             self._attach(label, logical_tie.head)
 
     def with_indices(self, direction=enums.Up, prototype=None):
@@ -2486,18 +2484,17 @@ class Label(AbjadObject):
 
         Returns none.
         """
-        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
         if prototype is None:
-            items = abjad.iterate(self.client).logical_ties()
+            items = iterate(self.client).logical_ties()
         else:
-            items = abjad.iterate(self.client).components(prototype=prototype)
+            items = iterate(self.client).components(prototype=prototype)
         items = list(items)
         for index, item in enumerate(items):
             string = str(index)
-            label = abjad.Markup(string, direction=direction)
-            leaves = abjad.select(item).leaves()
+            label = Markup(string, direction=direction)
+            leaves = select(item).leaves()
             first_leaf = leaves[0]
             self._attach(label, first_leaf)
 
@@ -2902,33 +2899,31 @@ class Label(AbjadObject):
 
         Returns none.
         """
-        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        prototype = prototype or abjad.NamedInterval
-        for note in  abjad.iterate(self.client).leaves(abjad.Note):
+        prototype = prototype or NamedInterval
+        for note in  iterate(self.client).leaves(Note):
             label = None
-            next_leaf = abjad.inspect(note).get_leaf(1)
-            if isinstance(next_leaf, abjad.Note):
-                interval = abjad.NamedInterval.from_pitch_carriers(
+            next_leaf = abjad_inspect(note).get_leaf(1)
+            if isinstance(next_leaf, Note):
+                interval = NamedInterval.from_pitch_carriers(
                     note,
                     next_leaf,
                     )
-                if prototype is abjad.NamedInterval:
-                    label = abjad.Markup(interval, direction=direction)
-                elif prototype is abjad.NamedIntervalClass:
-                    label = abjad.NamedIntervalClass(interval)
-                    label = abjad.Markup(label, direction=direction)
-                elif prototype is abjad.NumberedInterval:
-                    label = abjad.NumberedInterval(interval)
-                    label = abjad.Markup(label, direction=direction)
-                elif prototype is abjad.NumberedIntervalClass:
-                    label = abjad.NumberedIntervalClass(interval)
-                    label = abjad.Markup(label, direction=direction)
-                elif prototype is abjad.NumberedInversionEquivalentIntervalClass:
-                    label = abjad.NumberedInversionEquivalentIntervalClass(
-                        interval)
-                    label = abjad.Markup(label, direction=direction)
+                if prototype is NamedInterval:
+                    label = Markup(interval, direction=direction)
+                elif prototype is NamedIntervalClass:
+                    label = NamedIntervalClass(interval)
+                    label = Markup(label, direction=direction)
+                elif prototype is NumberedInterval:
+                    label = NumberedInterval(interval)
+                    label = Markup(label, direction=direction)
+                elif prototype is NumberedIntervalClass:
+                    label = NumberedIntervalClass(interval)
+                    label = Markup(label, direction=direction)
+                elif prototype is NumberedInversionEquivalentIntervalClass:
+                    label = NumberedInversionEquivalentIntervalClass(interval)
+                    label = Markup(label, direction=direction)
                 if label is not None:
                     self._attach(label, note)
 
@@ -3501,53 +3496,52 @@ class Label(AbjadObject):
 
         Returns none.
         """
-        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        prototype = prototype or abjad.NamedPitch
-        logical_ties = abjad.iterate(self.client).logical_ties()
+        prototype = prototype or NamedPitch
+        logical_ties = iterate(self.client).logical_ties()
         for logical_tie in logical_ties:
             leaf = logical_tie.head
             label = None
-            if prototype is abjad.NamedPitch:
-                if isinstance(leaf, abjad.Note):
+            if prototype is NamedPitch:
+                if isinstance(leaf, Note):
                     label = leaf.written_pitch.get_name(locale=locale)
-                    label = abjad.Markup.from_literal(
+                    label = Markup.from_literal(
                         label,
                         direction=direction,
                         )
-                elif isinstance(leaf, abjad.Chord):
+                elif isinstance(leaf, Chord):
                     pitches = leaf.written_pitches
                     pitches = reversed(pitches)
                     pitches = [
-                        abjad.Markup.from_literal(_.get_name(locale=locale))
+                        Markup.from_literal(_.get_name(locale=locale))
                         for _ in pitches
                         ]
-                    label = abjad.Markup.column(pitches, direction=direction)
-            elif prototype is abjad.NumberedPitch:
-                if isinstance(leaf, abjad.Note):
+                    label = Markup.column(pitches, direction=direction)
+            elif prototype is NumberedPitch:
+                if isinstance(leaf, Note):
                     pitch = leaf.written_pitch.number
                     label = str(pitch)
-                    label = abjad.Markup(label, direction=direction)
-                elif isinstance(leaf, abjad.Chord):
+                    label = Markup(label, direction=direction)
+                elif isinstance(leaf, Chord):
                     pitches = leaf.written_pitches
                     pitches = reversed(pitches)
                     pitches = [_.number for _ in pitches]
-                    pitches = [abjad.Markup(_) for _ in pitches]
-                    label = abjad.Markup.column(pitches)
-            elif prototype is abjad.NumberedPitchClass:
-                if isinstance(leaf, abjad.Note):
+                    pitches = [Markup(_) for _ in pitches]
+                    label = Markup.column(pitches)
+            elif prototype is NumberedPitchClass:
+                if isinstance(leaf, Note):
                     pitch = leaf.written_pitch.pitch_class.number
                     label = str(pitch)
-                    label = abjad.Markup(label, direction=direction)
-                elif isinstance(leaf, abjad.Chord):
+                    label = Markup(label, direction=direction)
+                elif isinstance(leaf, Chord):
                     pitches = leaf.written_pitches
                     pitches = reversed(pitches)
                     pitches = [_.pitch_class.number for _ in pitches]
-                    pitches = [abjad.Markup(_) for _ in pitches]
-                    label = abjad.Markup.column(pitches)
+                    pitches = [Markup(_) for _ in pitches]
+                    label = Markup.column(pitches)
             if label is not None:
-                label = abjad.new(label, direction=direction)
+                label = new(label, direction=direction)
                 self._attach(label, leaf)
 
     def with_set_classes(self, direction=enums.Up, prototype=None):
@@ -3907,25 +3901,24 @@ class Label(AbjadObject):
 
         Returns none.
         """
-        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        prototype = prototype or abjad.SetClass()
-        if prototype is abjad.SetClass:
+        prototype = prototype or SetClass()
+        if prototype is SetClass:
             prototype = prototype()
-        assert isinstance(prototype, abjad.SetClass), repr(prototype)
+        assert isinstance(prototype, SetClass), repr(prototype)
         for selection in self._client:
-            pitch_class_set = abjad.PitchClassSet.from_selection(selection)
+            pitch_class_set = PitchClassSet.from_selection(selection)
             if not pitch_class_set:
                 continue
-            set_class = abjad.SetClass.from_pitch_class_set(
+            set_class = SetClass.from_pitch_class_set(
                 pitch_class_set,
                 lex_rank=prototype.lex_rank,
                 transposition_only=prototype.transposition_only,
                 )
             string = str(set_class)
-            command = abjad.MarkupCommand('line', [string])
-            label = abjad.Markup(command, direction=direction)
+            command = MarkupCommand('line', [string])
+            label = Markup(command, direction=direction)
             if label is not None:
                 label = label.tiny()
                 leaf = selection[0]
@@ -4180,15 +4173,14 @@ class Label(AbjadObject):
 
         Returns total duration.
         """
-        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        direction = direction or abjad.Up
+        direction = direction or enums.Up
         if global_offset is not None:
-            assert isinstance(global_offset, abjad.Duration)
-        for logical_tie in abjad.iterate(self.client).logical_ties():
+            assert isinstance(global_offset, Duration)
+        for logical_tie in iterate(self.client).logical_ties():
             if clock_time:
-                inspector = abjad.inspect(logical_tie.head)
+                inspector = abjad_inspect(logical_tie.head)
                 timespan = inspector.get_timespan(in_seconds=True)
                 start_offset = timespan.start_offset
                 if global_offset is not None:
@@ -4199,7 +4191,7 @@ class Label(AbjadObject):
                 else:
                     string = '"{}"'.format(string)
             else:
-                timespan = abjad.inspect(logical_tie.head).get_timespan()
+                timespan = abjad_inspect(logical_tie.head).get_timespan()
                 start_offset = timespan.start_offset
                 if global_offset is not None:
                     start_offset += global_offset
@@ -4208,15 +4200,15 @@ class Label(AbjadObject):
                     string = '[' + string + ']'
             if markup_command is not None:
                 string = f'{markup_command} {string}'
-                label = abjad.Markup.from_literal(
+                label = Markup.from_literal(
                     string,
                     direction=direction,
                     literal=True
                     )
             else:
-                label = abjad.Markup(string, direction=direction)
+                label = Markup(string, direction=direction)
             self._attach(label, logical_tie.head)
-        total_duration = abjad.Duration(timespan.stop_offset)
+        total_duration = Duration(timespan.stop_offset)
         if global_offset is not None:
             total_duration += global_offset
         return total_duration

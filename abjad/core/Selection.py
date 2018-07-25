@@ -2,17 +2,36 @@ import collections
 import copy
 import inspect
 import itertools
+import typing
 from abjad import enums
 from abjad import exceptions
+from abjad import mathtools
+from abjad.mathtools.Ratio import Ratio
+from abjad.pitch.PitchSet import PitchSet
 from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.StorageFormatManager import StorageFormatManager
+from abjad.top.attach import attach
 from abjad.top.inspect import inspect as abjad_inspect
 from abjad.top.iterate import iterate
+from abjad.top.mutate import mutate
+from abjad.top.new import new
 from abjad.utilities.CyclicTuple import CyclicTuple
 from abjad.utilities.Duration import Duration
+from abjad.utilities.DurationInequality import DurationInequality
+from abjad.utilities.LengthInequality import LengthInequality
+from abjad.utilities.OrderedDict import OrderedDict
+from abjad.utilities.Pattern import Pattern
+from abjad.utilities.PitchInequality import PitchInequality
+from abjad.utilities.Sequence import Sequence
+from abjad.utilities.Expression import Expression
+from .Chord import Chord
 from .Component import Component
 from .Leaf import Leaf
+from .MultimeasureRest import MultimeasureRest
+from .Note import Note
+from .Rest import Rest
+from .Skip import Skip
 
 
 class Selection(AbjadValueObject, collections.Sequence):
@@ -61,45 +80,21 @@ class Selection(AbjadValueObject, collections.Sequence):
                 autoBeaming = ##f
             }
             {
-                \once \override Accidental.color = #red
-                \once \override Beam.color = #red
-                \once \override Dots.color = #red
-                \once \override NoteHead.color = #red
-                \once \override Stem.color = #red
+                \abjad_color_music "red"
                 c'4
                 \times 2/3 {
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     d'8
                     r8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     e'8
                 }
                 r16
-                \once \override Accidental.color = #red
-                \once \override Beam.color = #red
-                \once \override Dots.color = #red
-                \once \override NoteHead.color = #red
-                \once \override Stem.color = #red
+                \abjad_color_music "red"
                 f'16
-                \once \override Accidental.color = #red
-                \once \override Beam.color = #red
-                \once \override Dots.color = #red
-                \once \override NoteHead.color = #red
-                \once \override Stem.color = #red
+                \abjad_color_music "red"
                 g'8
-                \once \override Accidental.color = #red
-                \once \override Beam.color = #red
-                \once \override Dots.color = #red
-                \once \override NoteHead.color = #red
-                \once \override Stem.color = #red
+                \abjad_color_music "red"
                 a'4
             }
 
@@ -216,32 +211,19 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     c'8
                     d'8
                     ~
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     d'8
                     e'8
                     ~
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     e'8
                     ~
                     e'8
-                    \once \override Dots.color = #blue
-                    \once \override Rest.color = #blue
+                    \abjad_color_music "blue"
                     r8
                     f'8
                 }
@@ -287,34 +269,18 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     c'8
                     d'8
                     ~
                     d'8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     e'8
                     ~
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     e'8
                     ~
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     e'8
                     r8
                     f'8
@@ -369,19 +335,11 @@ class Selection(AbjadValueObject, collections.Sequence):
                 c'8
                 d'8
                 ~
-                \once \override Accidental.color = #blue
-                \once \override Beam.color = #blue
-                \once \override Dots.color = #blue
-                \once \override NoteHead.color = #blue
-                \once \override Stem.color = #blue
+                \abjad_color_music "blue"
                 d'8
                 e'8
                 ~
-                \once \override Accidental.color = #red
-                \once \override Beam.color = #red
-                \once \override Dots.color = #red
-                \once \override NoteHead.color = #red
-                \once \override Stem.color = #red
+                \abjad_color_music "red"
                 e'8
                 ~
                 e'8
@@ -400,17 +358,16 @@ class Selection(AbjadValueObject, collections.Sequence):
 
         Returns new selection (or expression) when ``argument`` is a pattern.
         """
-        import abjad
         if self._expression:
-            method = abjad.Expression._make___getitem___string_template
+            method = Expression._make___getitem___string_template
             template = method(argument)
             template = template.format(self._expression.template)
             return self._update_expression(
                 inspect.currentframe(),
                 template=template,
                 )
-        if isinstance(argument, abjad.Pattern):
-            items = abjad.sequence(self.items).retain_pattern(argument)
+        if isinstance(argument, Pattern):
+            items = Sequence(self.items).retain_pattern(argument)
             result = type(self)(items)
         else:
             result = self.items.__getitem__(argument)
@@ -462,7 +419,7 @@ class Selection(AbjadValueObject, collections.Sequence):
         Returns LilyPond file.
         """
         import abjad
-        components = abjad.mutate(self).copy()
+        components = mutate(self).copy()
         staff = abjad.Staff(components)
         found_different_pitch = False
         for pitch in iterate(staff).pitches():
@@ -513,7 +470,7 @@ class Selection(AbjadValueObject, collections.Sequence):
     ### PRIVATE METHODS ###
 
     def _attach_tie_to_leaf_pair(self, repeat_ties=False):
-        import abjad
+        from abjad.spanners.Tie import Tie
         assert len(self) == 2
         left_leaf, right_leaf = self
         assert isinstance(left_leaf, Leaf), left_leaf
@@ -523,11 +480,11 @@ class Selection(AbjadValueObject, collections.Sequence):
         if left_logical_tie == right_logical_tie:
             return
         try:
-            left_tie = left_leaf._get_spanner(abjad.Tie)
+            left_tie = left_leaf._get_spanner(Tie)
         except exceptions.MissingSpannerError:
             left_tie = None
         try:
-            right_tie = right_leaf._get_spanner(abjad.Tie)
+            right_tie = right_leaf._get_spanner(Tie)
         except exceptions.MissingSpannerError:
             right_tie = None
         if left_tie is not None and right_tie is not None:
@@ -539,20 +496,19 @@ class Selection(AbjadValueObject, collections.Sequence):
             left_tie._append(right_leaf)
         elif left_tie is None and right_tie is not None:
             leaves = [left_leaf] + right_tie[:1]
-            leaves = abjad.select(leaves)
+            leaves = Selection(leaves)
             assert leaves.are_contiguous_logical_voice()
             left_leaf._append_spanner(right_tie)
             right_tie._leaves.insert(0, left_leaf)
         elif left_tie is None and right_tie is None:
-            tie = abjad.Tie(repeat=repeat_ties)
-            leaves = abjad.select([left_leaf, right_leaf])
-            abjad.attach(tie, leaves)
+            tie = Tie(repeat=repeat_ties)
+            leaves = Selection([left_leaf, right_leaf])
+            attach(tie, leaves)
 
     def _attach_tie_to_leaves(self, repeat_ties=False):
-        import abjad
-        pairs = abjad.sequence(self).nwise()
+        pairs = Sequence(self).nwise()
         for leaf_pair in pairs:
-            selection = abjad.select(leaf_pair)
+            selection = Selection(leaf_pair)
             selection._attach_tie_to_leaf_pair(
                 repeat_ties=repeat_ties,
                 )
@@ -583,7 +539,7 @@ class Selection(AbjadValueObject, collections.Sequence):
             )
         components = list(generator)
         if components:
-            if trim:
+            if trim in (True, enums.Left):
                 components = Selection._trim_subresult(components, trim)
             if head is not None:
                 components = Selection._head_filter_subresult(components, head)
@@ -593,18 +549,18 @@ class Selection(AbjadValueObject, collections.Sequence):
         return class_(result)
 
     def _copy(self):
-        import abjad
+        from .Container import Container
         assert self.are_contiguous_logical_voice()
         new_components = []
         for component in self:
-            if isinstance(component, abjad.Container):
+            if isinstance(component, Container):
                 new_component = component._copy_with_children()
             else:
                 new_component = component.__copy__()
             new_components.append(new_component)
         new_components = type(self)(new_components)
         # find spanners
-        spanner_to_pairs = abjad.OrderedDict()
+        spanner_to_pairs = OrderedDict()
         for i, component in enumerate(iterate(self).components()):
             for spanner in abjad_inspect(component).get_spanners():
                 pairs = spanner_to_pairs.setdefault(spanner, [])
@@ -615,12 +571,12 @@ class Selection(AbjadValueObject, collections.Sequence):
                 else:
                     pairs.append((i, None))
         # copy spanners
-        new_spanner_to_pairs = abjad.OrderedDict()
+        new_spanner_to_pairs = OrderedDict()
         for spanner, pairs in spanner_to_pairs.items():
             new_spanner = copy.copy(spanner)
             new_spanner_to_pairs[new_spanner] = pairs
         # make reversed map
-        index_to_pairs = abjad.OrderedDict()
+        index_to_pairs = OrderedDict()
         for new_spanner, pairs in new_spanner_to_pairs.items():
             for (i, wrapper) in pairs:
                 pairs = index_to_pairs.setdefault(i, [])
@@ -636,17 +592,17 @@ class Selection(AbjadValueObject, collections.Sequence):
         return new_components
 
     def _fuse(self):
-        import abjad
+        from .Measure import Measure
+        from .Tuplet import Tuplet
         assert self.are_contiguous_logical_voice()
         if self.are_leaves():
             return self._fuse_leaves()
-        elif all(isinstance(_, abjad.Tuplet) for _ in self):
+        elif all(isinstance(_, Tuplet) for _ in self):
             return self._fuse_tuplets()
-        elif all(isinstance(_, abjad.Measure) for _ in self):
+        elif all(isinstance(_, Measure) for _ in self):
             return self._fuse_measures()
         else:
-            message = 'can not fuse.'
-            raise Exception(message)
+            raise Exception('can not fuse.')
 
     def _fuse_leaves(self):
         assert self.are_leaves()
@@ -663,8 +619,8 @@ class Selection(AbjadValueObject, collections.Sequence):
         return leaves[0]._set_duration(total_preprolated)
 
     def _fuse_measures(self):
-        import abjad
-        assert self.are_contiguous_same_parent(prototype=abjad.Measure)
+        from .Measure import Measure
+        assert self.are_contiguous_same_parent(prototype=Measure)
         if len(self) == 0:
             return None
         # TODO: instantiate a new measure
@@ -674,10 +630,10 @@ class Selection(AbjadValueObject, collections.Sequence):
         implicit_scaling = self[0].implicit_scaling
         assert all(
             x.implicit_scaling == implicit_scaling for x in self)
-        selection = abjad.select(self)
+        selection = Selection(self)
         parent, start, stop = selection._get_parent_and_start_stop_indices()
         old_denominators = []
-        new_duration = abjad.Duration(0)
+        new_duration = Duration(0)
         for measure in self:
             effective_time_signature = measure.time_signature
             old_denominators.append(effective_time_signature.denominator)
@@ -696,7 +652,7 @@ class Selection(AbjadValueObject, collections.Sequence):
             measure_components = measure[:]
             measure_components._set_parents(None)
             components += measure_components
-        new_measure = abjad.Measure(new_time_signature, components)
+        new_measure = Measure(new_time_signature, components)
         new_measure.implicit_scaling = self[0].implicit_scaling
         if parent is not None:
             self._give_dominant_spanners([new_measure])
@@ -706,8 +662,9 @@ class Selection(AbjadValueObject, collections.Sequence):
         return new_measure
 
     def _fuse_tuplets(self):
-        import abjad
-        assert self.are_contiguous_same_parent(prototype=abjad.Tuplet)
+        from .Container import Container
+        from .Tuplet import Tuplet
+        assert self.are_contiguous_same_parent(prototype=Tuplet)
         if len(self) == 0:
             return None
         first = self[0]
@@ -720,14 +677,14 @@ class Selection(AbjadValueObject, collections.Sequence):
             if type(tuplet) != first_type:
                 message = 'tuplets must be same type.'
                 raise TypeError(message)
-        assert isinstance(first, abjad.Tuplet)
-        new_tuplet = abjad.Tuplet(first_multiplier, [])
+        assert isinstance(first, Tuplet)
+        new_tuplet = Tuplet(first_multiplier, [])
         wrapped = False
         if (abjad_inspect(self[0]).get_parentage().root is not
             abjad_inspect(self[-1]).get_parentage().root):
-            dummy_container = abjad.Container(self)
+            dummy_container = Container(self)
             wrapped = True
-        abjad.mutate(self).swap(new_tuplet)
+        mutate(self).swap(new_tuplet)
         if wrapped:
             del(dummy_container[:])
         return new_tuplet
@@ -855,8 +812,8 @@ class Selection(AbjadValueObject, collections.Sequence):
             raise exceptions.ExtraSpannerError
 
     def _get_spanners(self, prototype=None):
-        import abjad
-        prototype = prototype or (abjad.Spanner,)
+        from abjad.spanners.Spanner import Spanner
+        prototype = prototype or (Spanner,)
         if not isinstance(prototype, tuple):
             prototype = (prototype, )
         assert isinstance(prototype, tuple)
@@ -871,11 +828,10 @@ class Selection(AbjadValueObject, collections.Sequence):
 
     @staticmethod
     def _get_template(frame, selector):
-        import abjad
         try:
             frame_info = inspect.getframeinfo(frame)
             function_name = frame_info.function
-            arguments = abjad.Expression._wrap_arguments(frame)
+            arguments = Expression._wrap_arguments(frame)
         finally:
             del frame
         template = f'.{function_name}({arguments})'
@@ -885,9 +841,9 @@ class Selection(AbjadValueObject, collections.Sequence):
         """
         Not composer-safe.
         """
-        import abjad
+        from .Container import Container
         assert self.are_contiguous_same_parent()
-        assert isinstance(container, abjad.Container)
+        assert isinstance(container, Container)
         assert not container
         components = []
         for component in self:
@@ -903,9 +859,8 @@ class Selection(AbjadValueObject, collections.Sequence):
         Returns none.
         Not composer-safe.
         """
-        import abjad
         assert self.are_contiguous_logical_voice()
-        assert abjad.select(recipients).are_contiguous_logical_voice()
+        assert Selection(recipients).are_contiguous_logical_voice()
         receipt = self._get_dominant_spanners()
         for spanner, index in receipt:
             for recipient in reversed(recipients):
@@ -917,9 +872,9 @@ class Selection(AbjadValueObject, collections.Sequence):
         """
         Not composer-safe.
         """
-        import abjad
+        from .Container import Container
         assert self.are_contiguous_same_parent()
-        assert isinstance(container, abjad.Container)
+        assert isinstance(container, Container)
         parent, start, stop = self._get_parent_and_start_stop_indices()
         if parent is not None:
             parent._components.__setitem__(slice(start, start), [container])
@@ -928,7 +883,6 @@ class Selection(AbjadValueObject, collections.Sequence):
 
     @staticmethod
     def _head_filter_subresult(result, head):
-        import abjad
         result_ = []
         for item in result:
             if isinstance(item, Component):
@@ -937,7 +891,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                     result_.append(item)
                 else:
                     pass
-            elif isinstance(item, abjad.Selection):
+            elif isinstance(item, Selection):
                 if not all(isinstance(_, Component) for _ in item):
                     raise NotImplementedError(item)
                 selection = []
@@ -947,15 +901,14 @@ class Selection(AbjadValueObject, collections.Sequence):
                         selection.append(item)
                     else:
                         pass
-                selection = abjad.select(selection)
+                selection = Selection(selection)
                 result_.append(selection)
             else:
                 raise TypeError(item)
         assert isinstance(result_, list), repr(result_)
-        return abjad.select(result_)
+        return Selection(result_)
 
     def _iterate_components(self, recurse=True, reverse=False):
-        import abjad
         if recurse:
             return iterate(self).components()
         else:
@@ -978,7 +931,6 @@ class Selection(AbjadValueObject, collections.Sequence):
 
     @staticmethod
     def _tail_filter_subresult(result, tail):
-        import abjad
         result_ = []
         for item in result:
             if isinstance(item, Component):
@@ -987,7 +939,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                     result_.append(item)
                 else:
                     pass
-            elif isinstance(item, abjad.Selection):
+            elif isinstance(item, Selection):
                 if not all(isinstance(_, Component) for _ in item):
                     raise NotImplementedError(item)
                 selection = []
@@ -997,60 +949,62 @@ class Selection(AbjadValueObject, collections.Sequence):
                         selection.append(item)
                     else:
                         pass
-                selection = abjad.select(selection)
+                selection = Selection(selection)
                 result_.append(selection)
             else:
                 raise TypeError(item)
         assert isinstance(result_, list), repr(result_)
-        return abjad.select(result_)
+        return Selection(result_)
 
     @staticmethod
     def _trim_subresult(result, trim):
-        import abjad
-        if trim is True:
-            trim = (abjad.MultimeasureRest, abjad.Rest, abjad.Skip)
+        assert trim in (True, enums.Left)
+        prototype = (MultimeasureRest, Rest, Skip)
         result_ = []
         found_good_component = False
         for item in result:
             if isinstance(item, Component):
-                if not isinstance(item, trim):
+                if not isinstance(item, prototype):
                     found_good_component = True
-            elif isinstance(item, abjad.Selection):
+            elif isinstance(item, Selection):
                 if not all(isinstance(_, Component) for _ in item):
                     raise NotImplementedError(item)
                 selection = []
                 for component in item:
-                    if not isinstance(component, trim):
+                    if not isinstance(component, prototype):
                         found_good_component = True
                     if found_good_component:
                         selection.append(component)
-                item = abjad.select(selection)
+                item = Selection(selection)
             else:
                 raise TypeError(item)
             if found_good_component:
                 result_.append(item)
-        result__ = []
-        found_good_component = False
-        for item in reversed(result_):
-            if isinstance(item, Component):
-                if not isinstance(item, trim):
-                    found_good_component = True
-            elif isinstance(item, abjad.Selection):
-                if not all(isinstance(_, Component) for _ in item):
-                    raise NotImplementedError(item)
-                selection = []
-                for component in reversed(item):
-                    if not isinstance(component, trim):
+        if trim is enums.Left:
+            result = Selection(result_)
+        else:
+            result__ = []
+            found_good_component = False
+            for item in reversed(result_):
+                if isinstance(item, Component):
+                    if not isinstance(item, prototype):
                         found_good_component = True
-                    if found_good_component:
-                        selection.insert(0, component)
-                item = abjad.select(selection)
-            else:
-                raise TypeError(item)
-            if found_good_component:
-                result__.insert(0, item)
-        assert isinstance(result__, list), repr(result__)
-        result = abjad.select(result__)
+                elif isinstance(item, Selection):
+                    if not all(isinstance(_, Component) for _ in item):
+                        raise NotImplementedError(item)
+                    selection = []
+                    for component in reversed(item):
+                        if not isinstance(component, prototype):
+                            found_good_component = True
+                        if found_good_component:
+                            selection.insert(0, component)
+                    item = Selection(selection)
+                else:
+                    raise TypeError(item)
+                if found_good_component:
+                    result__.insert(0, item)
+            assert isinstance(result__, list), repr(result__)
+            result = Selection(result__)
         return result
 
     def _update_expression(
@@ -1061,26 +1015,24 @@ class Selection(AbjadValueObject, collections.Sequence):
         map_operand=None,
         template=None,
         ):
-        import abjad
-        callback = abjad.Expression._frame_to_callback(
+        callback = Expression._frame_to_callback(
             frame,
             evaluation_template=evaluation_template,
             map_operand=map_operand,
             )
-        callback = abjad.new(callback, lone=lone)
+        callback = new(callback, lone=lone)
         expression = self._expression.append_callback(callback)
         if template is None:
             template = self._get_template(frame, self._expression)
-        return abjad.new(expression, template=template)
+        return new(expression, template=template)
 
     def _withdraw_from_crossing_spanners(self):
         """
         Not composer-safe.
         """
-        import abjad
         assert self.are_contiguous_logical_voice()
         crossing_spanners = self._get_crossing_spanners()
-        components_including_children = abjad.select(self).components()
+        components_including_children = Selection(self).components()
         for crossing_spanner in list(crossing_spanners):
             spanner_components = crossing_spanner.leaves[:]
             for component in components_including_children:
@@ -1123,7 +1075,6 @@ class Selection(AbjadValueObject, collections.Sequence):
 
         Returns true or false.
         """
-        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
         if not isinstance(self, collections.Iterable):
@@ -1182,7 +1133,6 @@ class Selection(AbjadValueObject, collections.Sequence):
 
         Returns true or false.
         """
-        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
         return all(isinstance(_, Leaf) for _ in self)
@@ -1204,7 +1154,6 @@ class Selection(AbjadValueObject, collections.Sequence):
 
         Returns true or false.
         """
-        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
         prototype = prototype or (Component,)
@@ -1266,7 +1215,6 @@ class Selection(AbjadValueObject, collections.Sequence):
 
         Returns true or false.
         """
-        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
         prototype = prototype or (Component, )
@@ -1395,11 +1343,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                             e'16
                             <fs' gs'>4
                             ~
-                            \once \override Accidental.color = #green
-                            \once \override Beam.color = #green
-                            \once \override Dots.color = #green
-                            \once \override NoteHead.color = #green
-                            \once \override Stem.color = #green
+                            \abjad_color_music "green"
                             <fs' gs'>16
                         }
                     }   % measure
@@ -1486,84 +1430,47 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \times 10/9 {
                             r16
                             bf'16
-                            \once \override Accidental.color = #red
-                            \once \override Beam.color = #red
-                            \once \override Dots.color = #red
-                            \once \override NoteHead.color = #red
-                            \once \override Stem.color = #red
+                            \abjad_color_music "red"
                             <a'' b''>16
                             c'16
-                            \once \override Accidental.color = #blue
-                            \once \override Beam.color = #blue
-                            \once \override Dots.color = #blue
-                            \once \override NoteHead.color = #blue
-                            \once \override Stem.color = #blue
+                            \abjad_color_music "blue"
                             <d' e'>4
                             ~
-                            \once \override Accidental.color = #red
-                            \once \override Beam.color = #red
-                            \once \override Dots.color = #red
-                            \once \override NoteHead.color = #red
-                            \once \override Stem.color = #red
+                            \abjad_color_music "red"
                             <d' e'>16
                         }
                         \times 8/9 {
                             r16
                             bf'16
-                            \once \override Accidental.color = #blue
-                            \once \override Beam.color = #blue
-                            \once \override Dots.color = #blue
-                            \once \override NoteHead.color = #blue
-                            \once \override Stem.color = #blue
+                            \abjad_color_music "blue"
                             <a'' b''>16
                             d'16
-                            \once \override Accidental.color = #red
-                            \once \override Beam.color = #red
-                            \once \override Dots.color = #red
-                            \once \override NoteHead.color = #red
-                            \once \override Stem.color = #red
+                            \abjad_color_music "red"
                             <e' fs'>4
                             ~
-                            \once \override Accidental.color = #blue
-                            \once \override Beam.color = #blue
-                            \once \override Dots.color = #blue
-                            \once \override NoteHead.color = #blue
-                            \once \override Stem.color = #blue
+                            \abjad_color_music "blue"
                             <e' fs'>16
                         }
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
                             r16
                             bf'16
-                            \once \override Accidental.color = #red
-                            \once \override Beam.color = #red
-                            \once \override Dots.color = #red
-                            \once \override NoteHead.color = #red
-                            \once \override Stem.color = #red
+                            \abjad_color_music "red"
                             <a'' b''>16
                             e'16
-                            \once \override Accidental.color = #blue
-                            \once \override Beam.color = #blue
-                            \once \override Dots.color = #blue
-                            \once \override NoteHead.color = #blue
-                            \once \override Stem.color = #blue
+                            \abjad_color_music "blue"
                             <fs' gs'>4
                             ~
-                            \once \override Accidental.color = #red
-                            \once \override Beam.color = #red
-                            \once \override Dots.color = #red
-                            \once \override NoteHead.color = #red
-                            \once \override Stem.color = #red
+                            \abjad_color_music "red"
                             <fs' gs'>16
                         }
                     }   % measure
                 }
 
         """
-        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        return self.components(abjad.Chord)
+        return self.components(Chord)
 
     def components(self, prototype=None, grace_notes=None, reverse=False):
         r"""
@@ -1616,50 +1523,25 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     c'4
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     d'8
                     ~
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     d'16
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     e'16
                     ~
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     e'8
                     r4
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     g'8
                 }
 
         Returns new selection (or expression).
         """
-        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
         generator = iterate(self).components(
@@ -1713,17 +1595,9 @@ class Selection(AbjadValueObject, collections.Sequence):
                 {
                     c'8
                     r8
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     d'8
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     e'8
                     r8
                     f'8
@@ -1784,17 +1658,9 @@ class Selection(AbjadValueObject, collections.Sequence):
                 {
                     c'8
                     r8
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     d'8
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     e'8
                     r8
                     f'8
@@ -1843,24 +1709,12 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     c'8
                     r8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     d'8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     e'8
                     r8
                     f'8
@@ -1870,10 +1724,9 @@ class Selection(AbjadValueObject, collections.Sequence):
 
         Returns new selection (or expression).
         """
-        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        return self.filter(abjad.DurationInequality(operator, duration))
+        return self.filter(DurationInequality(operator, duration))
 
     def filter_length(self, operator, length):
         r"""
@@ -1920,36 +1773,16 @@ class Selection(AbjadValueObject, collections.Sequence):
                 {
                     c'8
                     r8
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     d'8
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     e'8
                     r8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     f'8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     g'8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     a'8
                 }
 
@@ -1992,24 +1825,12 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     c'8
                     r8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     d'8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     e'8
                     r8
                     f'8
@@ -2018,10 +1839,9 @@ class Selection(AbjadValueObject, collections.Sequence):
                 }
 
         """
-        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        return self.filter(abjad.LengthInequality(operator, length))
+        return self.filter(LengthInequality(operator, length))
 
     def filter_pitches(self, operator, pitches):
         r"""
@@ -2071,29 +1891,17 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     c'8
                     d'8
                     ~
                     d'8
                     e'8
                     r8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     <c' e' g'>8
                     ~
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     <c' e' g'>4
                 }
 
@@ -2143,34 +1951,18 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     c'8
                     d'8
                     ~
                     d'8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     e'8
                     r8
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     <c' e' g'>8
                     ~
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     <c' e' g'>4
                 }
 
@@ -2216,38 +2008,25 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     c'8
                     d'8
                     ~
                     d'8
                     e'8
                     r8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     <c' e' g'>8
                     ~
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     <c' e' g'>4
                 }
 
         Returns new selection (or expression).
         """
-        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        return self.filter(abjad.PitchInequality(operator, pitches))
+        return self.filter(PitchInequality(operator, pitches))
 
     def filter_preprolated(self, operator, duration):
         r"""
@@ -2294,17 +2073,9 @@ class Selection(AbjadValueObject, collections.Sequence):
                 {
                     c'8
                     r8
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     d'8
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     e'8
                     r8
                     f'8
@@ -2353,24 +2124,12 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     c'8
                     r8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     d'8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     e'8
                     r8
                     f'8
@@ -2380,10 +2139,9 @@ class Selection(AbjadValueObject, collections.Sequence):
 
         Returns new selection (or expression).
         """
-        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        inequality = abjad.DurationInequality(
+        inequality = DurationInequality(
             operator,
             duration,
             preprolated=True,
@@ -2452,14 +2210,9 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \time 7/4
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
-                            \once \override Dots.color = #red
-                            \once \override Rest.color = #red
+                            \abjad_color_music "red"
                             r16
-                            \once \override Accidental.color = #red
-                            \once \override Beam.color = #red
-                            \once \override Dots.color = #red
-                            \once \override NoteHead.color = #red
-                            \once \override Stem.color = #red
+                            \abjad_color_music "red"
                             bf'16
                             <a'' b''>16
                             c'16
@@ -2468,14 +2221,9 @@ class Selection(AbjadValueObject, collections.Sequence):
                             <d' e'>16
                         }
                         \times 8/9 {
-                            \once \override Dots.color = #blue
-                            \once \override Rest.color = #blue
+                            \abjad_color_music "blue"
                             r16
-                            \once \override Accidental.color = #blue
-                            \once \override Beam.color = #blue
-                            \once \override Dots.color = #blue
-                            \once \override NoteHead.color = #blue
-                            \once \override Stem.color = #blue
+                            \abjad_color_music "blue"
                             bf'16
                             <a'' b''>16
                             d'16
@@ -2485,14 +2233,9 @@ class Selection(AbjadValueObject, collections.Sequence):
                         }
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
-                            \once \override Dots.color = #red
-                            \once \override Rest.color = #red
+                            \abjad_color_music "red"
                             r16
-                            \once \override Accidental.color = #red
-                            \once \override Beam.color = #red
-                            \once \override Dots.color = #red
-                            \once \override NoteHead.color = #red
-                            \once \override Stem.color = #red
+                            \abjad_color_music "red"
                             bf'16
                             <a'' b''>16
                             e'16
@@ -2568,14 +2311,9 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \time 7/4
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
-                            \once \override Dots.color = #red
-                            \once \override Rest.color = #red
+                            \abjad_color_music "red"
                             r16
-                            \once \override Accidental.color = #blue
-                            \once \override Beam.color = #blue
-                            \once \override Dots.color = #blue
-                            \once \override NoteHead.color = #blue
-                            \once \override Stem.color = #blue
+                            \abjad_color_music "blue"
                             bf'16
                             <a'' b''>16
                             c'16
@@ -2584,14 +2322,9 @@ class Selection(AbjadValueObject, collections.Sequence):
                             <d' e'>16
                         }
                         \times 8/9 {
-                            \once \override Dots.color = #red
-                            \once \override Rest.color = #red
+                            \abjad_color_music "red"
                             r16
-                            \once \override Accidental.color = #blue
-                            \once \override Beam.color = #blue
-                            \once \override Dots.color = #blue
-                            \once \override NoteHead.color = #blue
-                            \once \override Stem.color = #blue
+                            \abjad_color_music "blue"
                             bf'16
                             <a'' b''>16
                             d'16
@@ -2601,14 +2334,9 @@ class Selection(AbjadValueObject, collections.Sequence):
                         }
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
-                            \once \override Dots.color = #red
-                            \once \override Rest.color = #red
+                            \abjad_color_music "red"
                             r16
-                            \once \override Accidental.color = #blue
-                            \once \override Beam.color = #blue
-                            \once \override Dots.color = #blue
-                            \once \override NoteHead.color = #blue
-                            \once \override Stem.color = #blue
+                            \abjad_color_music "blue"
                             bf'16
                             <a'' b''>16
                             e'16
@@ -2621,10 +2349,9 @@ class Selection(AbjadValueObject, collections.Sequence):
 
         Returns new selection (or expression).
         """
-        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        return type(self)(abjad.sequence(self).flatten(depth=depth))
+        return type(self)(Sequence(self).flatten(depth=depth))
 
     def group(self):
         r"""
@@ -2668,69 +2395,29 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \once \override Accidental.color = #green
-                    \once \override Beam.color = #green
-                    \once \override Dots.color = #green
-                    \once \override NoteHead.color = #green
-                    \once \override Stem.color = #green
+                    \abjad_color_music "green"
                     c'8
                     ~
-                    \once \override Accidental.color = #green
-                    \once \override Beam.color = #green
-                    \once \override Dots.color = #green
-                    \once \override NoteHead.color = #green
-                    \once \override Stem.color = #green
+                    \abjad_color_music "green"
                     c'16
-                    \once \override Accidental.color = #green
-                    \once \override Beam.color = #green
-                    \once \override Dots.color = #green
-                    \once \override NoteHead.color = #green
-                    \once \override Stem.color = #green
+                    \abjad_color_music "green"
                     c'16
                     r8
-                    \once \override Accidental.color = #green
-                    \once \override Beam.color = #green
-                    \once \override Dots.color = #green
-                    \once \override NoteHead.color = #green
-                    \once \override Stem.color = #green
+                    \abjad_color_music "green"
                     c'16
-                    \once \override Accidental.color = #green
-                    \once \override Beam.color = #green
-                    \once \override Dots.color = #green
-                    \once \override NoteHead.color = #green
-                    \once \override Stem.color = #green
+                    \abjad_color_music "green"
                     c'16
-                    \once \override Accidental.color = #green
-                    \once \override Beam.color = #green
-                    \once \override Dots.color = #green
-                    \once \override NoteHead.color = #green
-                    \once \override Stem.color = #green
+                    \abjad_color_music "green"
                     d'8
                     ~
-                    \once \override Accidental.color = #green
-                    \once \override Beam.color = #green
-                    \once \override Dots.color = #green
-                    \once \override NoteHead.color = #green
-                    \once \override Stem.color = #green
+                    \abjad_color_music "green"
                     d'16
-                    \once \override Accidental.color = #green
-                    \once \override Beam.color = #green
-                    \once \override Dots.color = #green
-                    \once \override NoteHead.color = #green
-                    \once \override Stem.color = #green
+                    \abjad_color_music "green"
                     d'16
                     r8
-                    \once \override Accidental.color = #green
-                    \once \override Beam.color = #green
-                    \once \override Dots.color = #green
-                    \once \override NoteHead.color = #green
-                    \once \override Stem.color = #green
+                    \abjad_color_music "green"
                     d'16
-                    \once \override Accidental.color = #green
-                    \once \override Beam.color = #green
-                    \once \override Dots.color = #green
-                    \once \override NoteHead.color = #green
-                    \once \override Stem.color = #green
+                    \abjad_color_music "green"
                     d'16
                 }
 
@@ -2785,69 +2472,29 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \once \override Accidental.color = #green
-                    \once \override Beam.color = #green
-                    \once \override Dots.color = #green
-                    \once \override NoteHead.color = #green
-                    \once \override Stem.color = #green
+                    \abjad_color_music "green"
                     c'8
                     ~
-                    \once \override Accidental.color = #green
-                    \once \override Beam.color = #green
-                    \once \override Dots.color = #green
-                    \once \override NoteHead.color = #green
-                    \once \override Stem.color = #green
+                    \abjad_color_music "green"
                     c'16
-                    \once \override Accidental.color = #green
-                    \once \override Beam.color = #green
-                    \once \override Dots.color = #green
-                    \once \override NoteHead.color = #green
-                    \once \override Stem.color = #green
+                    \abjad_color_music "green"
                     c'16
                     r8
-                    \once \override Accidental.color = #green
-                    \once \override Beam.color = #green
-                    \once \override Dots.color = #green
-                    \once \override NoteHead.color = #green
-                    \once \override Stem.color = #green
+                    \abjad_color_music "green"
                     c'16
-                    \once \override Accidental.color = #green
-                    \once \override Beam.color = #green
-                    \once \override Dots.color = #green
-                    \once \override NoteHead.color = #green
-                    \once \override Stem.color = #green
+                    \abjad_color_music "green"
                     c'16
-                    \once \override Accidental.color = #green
-                    \once \override Beam.color = #green
-                    \once \override Dots.color = #green
-                    \once \override NoteHead.color = #green
-                    \once \override Stem.color = #green
+                    \abjad_color_music "green"
                     d'8
                     ~
-                    \once \override Accidental.color = #green
-                    \once \override Beam.color = #green
-                    \once \override Dots.color = #green
-                    \once \override NoteHead.color = #green
-                    \once \override Stem.color = #green
+                    \abjad_color_music "green"
                     d'16
-                    \once \override Accidental.color = #green
-                    \once \override Beam.color = #green
-                    \once \override Dots.color = #green
-                    \once \override NoteHead.color = #green
-                    \once \override Stem.color = #green
+                    \abjad_color_music "green"
                     d'16
                     r8
-                    \once \override Accidental.color = #green
-                    \once \override Beam.color = #green
-                    \once \override Dots.color = #green
-                    \once \override NoteHead.color = #green
-                    \once \override Stem.color = #green
+                    \abjad_color_music "green"
                     d'16
-                    \once \override Accidental.color = #green
-                    \once \override Beam.color = #green
-                    \once \override Dots.color = #green
-                    \once \override NoteHead.color = #green
-                    \once \override Stem.color = #green
+                    \abjad_color_music "green"
                     d'16
                 }
 
@@ -2920,60 +2567,28 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     c'8
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     d'8
                     r8
                     \times 2/3 {
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         e'8
                         r8
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         f'8
                     }
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     g'8
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     a'8
                     r8
                     r8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     <c' e' g'>8
                     ~
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     <c' e' g'>4
                 }
 
@@ -3021,54 +2636,22 @@ class Selection(AbjadValueObject, collections.Sequence):
                 }
                 {
                     c'4
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     d'16
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     d'16
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     d'16
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     d'16
                     e'4
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     f'16
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     f'16
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     f'16
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     f'16
                 }
 
@@ -3118,11 +2701,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                 }
                 {
                     c'4
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     d'8
                     ~
                     d'16
@@ -3130,11 +2709,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                     ~
                     e'8
                     f'4
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     g'8
                 }
 
@@ -3192,69 +2767,29 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     c'8
                     ~
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     c'16
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     c'16
                     r8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     c'16
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     c'16
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     d'8
                     ~
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     d'16
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     d'16
                     r8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     d'16
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     d'16
                 }
 
@@ -3311,75 +2846,34 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     c'8
                     ~
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     c'16
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     c'16
                     r8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     c'16
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     c'16
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     d'8
                     ~
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     d'16
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     d'16
                     r8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     d'16
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     d'16
                 }
 
         Returns new selection (or expression).
         '''
-        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
         result, selection = [], []
@@ -3449,75 +2943,34 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     c'4
                     ~
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     c'16
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     d'16
                     ~
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     d'16
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     d'16
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     e'4
                     ~
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     e'16
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     f'16
                     ~
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     f'16
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     f'16
                 }
 
         Returns nested selection (or expression).
         """
-        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
         def predicate(argument):
@@ -3572,69 +3025,29 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     c'4
                     ~
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     c'16
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     d'16
                     ~
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     d'16
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     d'16
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     e'4
                     ~
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     e'16
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     f'16
                     ~
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     f'16
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     f'16
                 }
 
@@ -3700,56 +3113,24 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
                     \time 2/8
+                    \abjad_color_music "red"
                     c'8
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     d'8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     e'8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     f'8
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
                     \time 3/8
+                    \abjad_color_music "red"
                     g'8
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     a'8
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     b'8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
                     \time 1/8
+                    \abjad_color_music "blue"
                     c''8
                 }
 
@@ -3802,56 +3183,24 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
                     \time 2/8
+                    \abjad_color_music "red"
                     c'8
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     d'8
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     e'8
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     f'8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
                     \time 3/8
+                    \abjad_color_music "blue"
                     g'8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     a'8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     b'8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
                     \time 1/8
+                    \abjad_color_music "blue"
                     c''8
                 }
 
@@ -3904,36 +3253,20 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
                     \time 2/8
+                    \abjad_color_music "red"
                     c'8
                     d'8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     e'8
                     f'8
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
                     \time 3/8
+                    \abjad_color_music "red"
                     g'8
                     a'8
                     b'8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
                     \time 1/8
+                    \abjad_color_music "blue"
                     c''8
                 }
 
@@ -3989,34 +3322,18 @@ class Selection(AbjadValueObject, collections.Sequence):
                 {
                     \time 2/8
                     c'8
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     d'8
                     e'8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     f'8
                     \time 3/8
                     g'8
                     a'8
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     b'8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
                     \time 1/8
+                    \abjad_color_music "blue"
                     c''8
                 }
 
@@ -4064,59 +3381,26 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     c'4
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     d'4
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     e'4
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     f'4
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     g'4
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     a'4
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     b'4
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     c''4
                 }
 
         Returns new selection (or expression).
         """
-        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
         def _get_first_component(argument):
@@ -4187,79 +3471,38 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     c'4
                     ~
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     c'16
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     d'16
                     ~
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     d'16
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     d'16
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     e'4
                     ~
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     e'16
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     f'16
                     ~
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     f'16
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     f'16
                 }
 
         Returns nested selection (or expression).
         """
-        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
         def predicate(argument):
-            return abjad.PitchSet.from_selection(argument)
+            return PitchSet.from_selection(argument)
         return self.group_by(predicate)
 
     def leaf(self, n):
@@ -4343,11 +3586,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                             e'16
                             <fs' gs'>4
                             ~
-                            \once \override Accidental.color = #green
-                            \once \override Beam.color = #green
-                            \once \override Dots.color = #green
-                            \once \override NoteHead.color = #green
-                            \once \override Stem.color = #green
+                            \abjad_color_music "green"
                             <fs' gs'>16
                         }
                     }   % measure
@@ -4361,12 +3600,12 @@ class Selection(AbjadValueObject, collections.Sequence):
     def leaves(
         self,
         prototype=None,
-        grace_notes=False,
-        head=None,
-        pitched=None,
-        reverse=False,
-        tail=None,
-        trim=None,
+        grace_notes: bool = False,
+        head: bool = None,
+        pitched: bool = None,
+        reverse: bool = False,
+        tail: bool = None,
+        trim: typing.Union[bool, enums.HorizontalAlignment] = None,
         ):
         r'''
         Selects leaves (without grace notes).
@@ -4430,55 +3669,27 @@ class Selection(AbjadValueObject, collections.Sequence):
                 }
                 {
                     \times 2/3 {
-                        \once \override Dots.color = #red
-                        \once \override Rest.color = #red
+                        \abjad_color_music "red"
                         r8
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         d'8
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         e'8
                     }
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     f'8
-                    \once \override Dots.color = #red
-                    \once \override Rest.color = #red
+                    \abjad_color_music "red"
                     r8
-                    \once \override Dots.color = #blue
-                    \once \override Rest.color = #blue
+                    \abjad_color_music "blue"
                     r8
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     f'8
                     \times 2/3 {
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         e'8
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         d'8
-                        \once \override Dots.color = #blue
-                        \once \override Rest.color = #blue
+                        \abjad_color_music "blue"
                         r8
                     }
                 }
@@ -4535,45 +3746,21 @@ class Selection(AbjadValueObject, collections.Sequence):
                 {
                     \times 2/3 {
                         r8
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         d'8
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         e'8
                     }
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     f'8
                     r8
                     r8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     f'8
                     \times 2/3 {
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         e'8
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         d'8
                         r8
                     }
@@ -4640,52 +3827,112 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \times 2/3 {
                         r8
                         \ottava #1
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         d'8
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         e'8
                     }
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     f'8
-                    \once \override Dots.color = #blue
-                    \once \override Rest.color = #blue
+                    \abjad_color_music "blue"
                     r8
-                    \once \override Dots.color = #red
-                    \once \override Rest.color = #red
+                    \abjad_color_music "red"
                     r8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     f'8
                     \times 2/3 {
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         e'8
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         d'8
                         \ottava #0
                         r8
+                    }
+                }
+
+        ..  container:: example
+
+            Set ``trim`` to ``abjad.Left`` to trim rests at left (and preserve
+            rests at right):
+
+            ..  container:: example
+
+                >>> staff = abjad.Staff(r"""
+                ...     \times 2/3 { r8 d' e' } f' r
+                ...     r f' \times 2/3 { e' d' r8 }
+                ...     """)
+                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.show(staff) # doctest: +SKIP
+
+                >>> result = abjad.select(staff).leaves(trim=abjad.Left)
+
+                >>> for item in result:
+                ...     item
+                ...
+                Note("d'8")
+                Note("e'8")
+                Note("f'8")
+                Rest('r8')
+                Rest('r8')
+                Note("f'8")
+                Note("e'8")
+                Note("d'8")
+                Rest('r8')
+
+            ..  container:: example expression
+
+                >>> selector = abjad.select().leaves(trim=abjad.Left)
+                >>> result = selector(staff)
+
+                >>> selector.print(result)
+                Note("d'8")
+                Note("e'8")
+                Note("f'8")
+                Rest('r8')
+                Rest('r8')
+                Note("f'8")
+                Note("e'8")
+                Note("d'8")
+                Rest('r8')
+
+                >>> abjad.attach(abjad.OctavationSpanner(), result)
+
+                >>> selector.color(result)
+                >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                \with
+                {
+                    autoBeaming = ##f
+                }
+                {
+                    \times 2/3 {
+                        r8
+                        \ottava #1
+                        \abjad_color_music "red"
+                        d'8
+                        \abjad_color_music "blue"
+                        e'8
+                    }
+                    \abjad_color_music "red"
+                    f'8
+                    \abjad_color_music "blue"
+                    r8
+                    \abjad_color_music "red"
+                    r8
+                    \abjad_color_music "blue"
+                    f'8
+                    \times 2/3 {
+                        \abjad_color_music "red"
+                        e'8
+                        \abjad_color_music "blue"
+                        d'8
+                        \abjad_color_music "red"
+                        r8
+                        \ottava #0
                     }
                 }
 
@@ -4749,61 +3996,27 @@ class Selection(AbjadValueObject, collections.Sequence):
                 }
                 {
                     \times 2/3 {
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         c'8
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         d'8
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         e'8
                     }
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     f'8
-                    \once \override Dots.color = #red
-                    \once \override Rest.color = #red
+                    \abjad_color_music "red"
                     r8
-                    \once \override Dots.color = #blue
-                    \once \override Rest.color = #blue
+                    \abjad_color_music "blue"
                     r8
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     f'8
                     \times 2/3 {
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         e'8
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         d'8
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         c'8
                     }
                 }
@@ -4861,20 +4074,11 @@ class Selection(AbjadValueObject, collections.Sequence):
                 }
                 {
                     \times 2/3 {
-                        \once \override Dots.color = #red
-                        \once \override Rest.color = #red
+                        \abjad_color_music "red"
                         r8
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         d'8
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         e'8
                     }
                     f'8
@@ -4882,20 +4086,11 @@ class Selection(AbjadValueObject, collections.Sequence):
                     r8
                     f'8
                     \times 2/3 {
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         e'8
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         d'8
-                        \once \override Dots.color = #blue
-                        \once \override Rest.color = #blue
+                        \abjad_color_music "blue"
                         r8
                     }
                 }
@@ -4950,17 +4145,9 @@ class Selection(AbjadValueObject, collections.Sequence):
                 {
                     \times 2/3 {
                         r8
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         d'8
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         e'8
                     }
                     f'8
@@ -4968,17 +4155,9 @@ class Selection(AbjadValueObject, collections.Sequence):
                     r8
                     f'8
                     \times 2/3 {
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         e'8
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         d'8
                         r8
                     }
@@ -5035,17 +4214,9 @@ class Selection(AbjadValueObject, collections.Sequence):
                 }
                 {
                     \times 2/3 {
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         c'8
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         d'8
                         ~
                         d'8
@@ -5055,19 +4226,11 @@ class Selection(AbjadValueObject, collections.Sequence):
                     r8
                     e'8
                     \times 2/3 {
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         d'8
                         ~
                         d'8
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         c'8
                     }
                 }
@@ -5124,19 +4287,11 @@ class Selection(AbjadValueObject, collections.Sequence):
                 }
                 {
                     \times 2/3 {
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         c'8
                         d'8
                         ~
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         d'8
                     }
                     e'8
@@ -5146,17 +4301,9 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \times 2/3 {
                         d'8
                         ~
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         d'8
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         c'8
                     }
                 }
@@ -5208,11 +4355,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                 }
                 {
                     \times 2/3 {
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         <c' e' g'>8
                         ~
                         <c' e' g'>8
@@ -5224,11 +4367,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                     <g d' fs'>8
                     \times 2/3 {
                         e'8
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         <c' d'>8
                         ~
                         <c' d'>8
@@ -5237,11 +4376,11 @@ class Selection(AbjadValueObject, collections.Sequence):
 
         Returns new selection (or expression).
         '''
-        import abjad
+        assert trim in (True, False, enums.Left, None)
         if self._expression:
             return self._update_expression(inspect.currentframe())
         if pitched:
-            prototype = (abjad.Chord, abjad.Note)
+            prototype = (Chord, Note)
         elif prototype is None:
             prototype = Leaf
         return self._components(
@@ -5310,51 +4449,25 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     c'8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     d'8
                     ~
                     {
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         d'8
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         e'8
-                        \once \override Dots.color = #blue
-                        \once \override Rest.color = #blue
+                        \abjad_color_music "blue"
                         r8
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         f'8
                         ~
                     }
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     f'8
-                    \once \override Dots.color = #blue
-                    \once \override Rest.color = #blue
+                    \abjad_color_music "blue"
                     r8
                 }
 
@@ -5401,46 +4514,22 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     c'8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     d'8
                     ~
                     {
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         d'8
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         e'8
                         r8
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         f'8
                         ~
                     }
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     f'8
                     r8
                 }
@@ -5490,35 +4579,19 @@ class Selection(AbjadValueObject, collections.Sequence):
                 }
                 {
                     c'8
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     d'8
                     ~
                     {
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         d'8
                         e'8
                         r8
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         f'8
                         ~
                     }
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     f'8
                     r8
                 }
@@ -5572,71 +4645,35 @@ class Selection(AbjadValueObject, collections.Sequence):
                 }
                 {
                     \times 2/3 {
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         c'8
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         d'8
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         e'8
                         ~
                     }
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     e'8
                     f'8
                     ~
                     \times 2/3 {
                         f'8
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         g'8
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         a'8
                         ~
                     }
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     a'8
                     b'8
                     ~
                     \times 2/3 {
                         b'8
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         c''8
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         d''8
                     }
                 }
@@ -5699,48 +4736,27 @@ class Selection(AbjadValueObject, collections.Sequence):
                     ~
                     \times 2/3 {
                         f'8
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         g'8
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         a'8
                         ~
                     }
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     a'8
                     b'8
                     ~
                     \times 2/3 {
                         b'8
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         c''8
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         d''8
                     }
                 }
 
         Returns new selection (or expression).
         '''
-        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
         generator = iterate(self).logical_ties(
@@ -5800,20 +4816,11 @@ class Selection(AbjadValueObject, collections.Sequence):
                 }
                 {
                     \times 2/3 {
-                        \once \override Dots.color = #red
-                        \once \override Rest.color = #red
+                        \abjad_color_music "red"
                         r8
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         d'8
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         e'8
                     }
                     f'8
@@ -5821,20 +4828,11 @@ class Selection(AbjadValueObject, collections.Sequence):
                     r8
                     f'8
                     \times 2/3 {
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         e'8
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         d'8
-                        \once \override Dots.color = #blue
-                        \once \override Rest.color = #blue
+                        \abjad_color_music "blue"
                         r8
                     }
                 }
@@ -5890,55 +4888,27 @@ class Selection(AbjadValueObject, collections.Sequence):
                 }
                 {
                     \times 2/3 {
-                        \once \override Dots.color = #red
-                        \once \override Rest.color = #red
+                        \abjad_color_music "red"
                         r8
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         d'8
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         e'8
                     }
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     f'8
-                    \once \override Dots.color = #red
-                    \once \override Rest.color = #red
+                    \abjad_color_music "red"
                     r8
-                    \once \override Dots.color = #blue
-                    \once \override Rest.color = #blue
+                    \abjad_color_music "blue"
                     r8
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     f'8
                     \times 2/3 {
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         e'8
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         d'8
-                        \once \override Dots.color = #blue
-                        \once \override Rest.color = #blue
+                        \abjad_color_music "blue"
                         r8
                     }
                 }
@@ -5987,28 +4957,16 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     c'4
                     \times 2/3 {
                         d'8
                         r8
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         e'8
                     }
                     r16
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     f'16
                     g'8
                     a'4
@@ -6104,11 +5062,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                             r16
                             bf'16
                             <a'' b''>16
-                            \once \override Accidental.color = #green
-                            \once \override Beam.color = #green
-                            \once \override Dots.color = #green
-                            \once \override NoteHead.color = #green
-                            \once \override Stem.color = #green
+                            \abjad_color_music "green"
                             e'16
                             <fs' gs'>4
                             ~
@@ -6191,18 +5145,10 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
                             r16
-                            \once \override Accidental.color = #red
-                            \once \override Beam.color = #red
-                            \once \override Dots.color = #red
-                            \once \override NoteHead.color = #red
-                            \once \override Stem.color = #red
+                            \abjad_color_music "red"
                             bf'16
                             <a'' b''>16
-                            \once \override Accidental.color = #blue
-                            \once \override Beam.color = #blue
-                            \once \override Dots.color = #blue
-                            \once \override NoteHead.color = #blue
-                            \once \override Stem.color = #blue
+                            \abjad_color_music "blue"
                             c'16
                             <d' e'>4
                             ~
@@ -6210,18 +5156,10 @@ class Selection(AbjadValueObject, collections.Sequence):
                         }
                         \times 8/9 {
                             r16
-                            \once \override Accidental.color = #red
-                            \once \override Beam.color = #red
-                            \once \override Dots.color = #red
-                            \once \override NoteHead.color = #red
-                            \once \override Stem.color = #red
+                            \abjad_color_music "red"
                             bf'16
                             <a'' b''>16
-                            \once \override Accidental.color = #blue
-                            \once \override Beam.color = #blue
-                            \once \override Dots.color = #blue
-                            \once \override NoteHead.color = #blue
-                            \once \override Stem.color = #blue
+                            \abjad_color_music "blue"
                             d'16
                             <e' fs'>4
                             ~
@@ -6230,18 +5168,10 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
                             r16
-                            \once \override Accidental.color = #red
-                            \once \override Beam.color = #red
-                            \once \override Dots.color = #red
-                            \once \override NoteHead.color = #red
-                            \once \override Stem.color = #red
+                            \abjad_color_music "red"
                             bf'16
                             <a'' b''>16
-                            \once \override Accidental.color = #blue
-                            \once \override Beam.color = #blue
-                            \once \override Dots.color = #blue
-                            \once \override NoteHead.color = #blue
-                            \once \override Stem.color = #blue
+                            \abjad_color_music "blue"
                             e'16
                             <fs' gs'>4
                             ~
@@ -6251,10 +5181,9 @@ class Selection(AbjadValueObject, collections.Sequence):
                 }
 
         """
-        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        return self.components(abjad.Note)
+        return self.components(Note)
 
     def nontrivial(self):
         r"""
@@ -6301,41 +5230,20 @@ class Selection(AbjadValueObject, collections.Sequence):
                 {
                     c'8
                     r8
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     d'8
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     e'8
                     r8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     f'8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     g'8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     a'8
                 }
 
         """
-        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
         return self.filter_length('>', 1)
@@ -6400,20 +5308,11 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     c'8
-                    \once \override Dots.color = #red
-                    \once \override Rest.color = #red
+                    \abjad_color_music "red"
                     r8
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     d'8
                     e'8
                     r8
@@ -6470,35 +5369,17 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     c'8
-                    \once \override Dots.color = #red
-                    \once \override Rest.color = #red
+                    \abjad_color_music "red"
                     r8
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     d'8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     e'8
-                    \once \override Dots.color = #blue
-                    \once \override Rest.color = #blue
+                    \abjad_color_music "blue"
                     r8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     f'8
                     g'8
                     a'8
@@ -6554,47 +5435,21 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     c'8
-                    \once \override Dots.color = #red
-                    \once \override Rest.color = #red
+                    \abjad_color_music "red"
                     r8
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     d'8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     e'8
-                    \once \override Dots.color = #blue
-                    \once \override Rest.color = #blue
+                    \abjad_color_music "blue"
                     r8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     f'8
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     g'8
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     a'8
                 }
 
@@ -6648,47 +5503,21 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     c'8
-                    \once \override Dots.color = #red
-                    \once \override Rest.color = #red
+                    \abjad_color_music "red"
                     r8
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     d'8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     e'8
-                    \once \override Dots.color = #blue
-                    \once \override Rest.color = #blue
+                    \abjad_color_music "blue"
                     r8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     f'8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     g'8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     a'8
                 }
 
@@ -6749,62 +5578,27 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     c'8
-                    \once \override Dots.color = #blue
-                    \once \override Rest.color = #blue
+                    \abjad_color_music "blue"
                     r8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     d'8
-                    \once \override Accidental.color = #cyan
-                    \once \override Beam.color = #cyan
-                    \once \override Dots.color = #cyan
-                    \once \override NoteHead.color = #cyan
-                    \once \override Stem.color = #cyan
+                    \abjad_color_music "cyan"
                     e'8
-                    \once \override Dots.color = #cyan
-                    \once \override Rest.color = #cyan
+                    \abjad_color_music "cyan"
                     r8
-                    \once \override Accidental.color = #cyan
-                    \once \override Beam.color = #cyan
-                    \once \override Dots.color = #cyan
-                    \once \override NoteHead.color = #cyan
-                    \once \override Stem.color = #cyan
+                    \abjad_color_music "cyan"
                     f'8
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     g'8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     a'8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     b'8
-                    \once \override Dots.color = #cyan
-                    \once \override Rest.color = #cyan
+                    \abjad_color_music "cyan"
                     r8
-                    \once \override Accidental.color = #cyan
-                    \once \override Beam.color = #cyan
-                    \once \override Dots.color = #cyan
-                    \once \override NoteHead.color = #cyan
-                    \once \override Stem.color = #cyan
+                    \abjad_color_music "cyan"
                     c''8
                 }
 
@@ -6814,11 +5608,10 @@ class Selection(AbjadValueObject, collections.Sequence):
             'Selection'
 
         """
-        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
         result = []
-        groups = abjad.sequence(self).partition_by_counts(
+        groups = Sequence(self).partition_by_counts(
             [abs(_) for _ in counts],
             cyclic=cyclic,
             enchain=enchain,
@@ -6832,7 +5625,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                 groups[-1] += last_group
         subresult = []
         if cyclic:
-            counts = abjad.CyclicTuple(counts)
+            counts = CyclicTuple(counts)
         for i, group in enumerate(groups):
             try:
                 count = counts[i]
@@ -6918,59 +5711,27 @@ class Selection(AbjadValueObject, collections.Sequence):
                 {
                     {   % measure
                         \time 2/8
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         c'8
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         d'8
                     }   % measure
                     {   % measure
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         e'8
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         f'8
                     }   % measure
                     {   % measure
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         g'8
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         a'8
                     }   % measure
                     {   % measure
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         b'8
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         c''8
                     }   % measure
                 }
@@ -7032,25 +5793,13 @@ class Selection(AbjadValueObject, collections.Sequence):
                 {
                     {   % measure
                         \time 2/8
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         c'8
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         d'8
                     }   % measure
                     {   % measure
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         e'8
                         f'8
                     }   % measure
@@ -7129,59 +5878,27 @@ class Selection(AbjadValueObject, collections.Sequence):
                 {
                     {   % measure
                         \time 2/8
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         c'8
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         d'8
                     }   % measure
                     {   % measure
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         e'8
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         f'8
                     }   % measure
                     {   % measure
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         g'8
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         a'8
                     }   % measure
                     {   % measure
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         b'8
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         c''8
                     }   % measure
                 }
@@ -7255,53 +5972,25 @@ class Selection(AbjadValueObject, collections.Sequence):
                 {
                     {   % measure
                         \time 2/8
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         c'8
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         d'8
                     }   % measure
                     {   % measure
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         e'8
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         f'8
                     }   % measure
                     {   % measure
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         g'8
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         a'8
                     }   % measure
                     {   % measure
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         b'8
                         c''8
                     }   % measure
@@ -7364,11 +6053,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                 {
                     {   % measure
                         \time 2/8
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         c'8
                         d'8
                     }   % measure
@@ -7449,45 +6134,21 @@ class Selection(AbjadValueObject, collections.Sequence):
                     {   % measure
                         \time 2/8
                         \tempo 4=60
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         c'8
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         d'8
                     }   % measure
                     {   % measure
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         e'8
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         f'8
                     }   % measure
                     {   % measure
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         g'8
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         a'8
                     }   % measure
                     {   % measure
@@ -7560,59 +6221,27 @@ class Selection(AbjadValueObject, collections.Sequence):
                     {   % measure
                         \time 2/8
                         \tempo 4=60
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         c'8
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         d'8
                     }   % measure
                     {   % measure
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         e'8
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         f'8
                     }   % measure
                     {   % measure
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         g'8
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         a'8
                     }   % measure
                     {   % measure
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         b'8
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         c''8
                     }   % measure
                 }
@@ -7678,25 +6307,13 @@ class Selection(AbjadValueObject, collections.Sequence):
                     {   % measure
                         \time 2/8
                         \tempo 4=60
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         c'8
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         d'8
                     }   % measure
                     {   % measure
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         e'8
                         f'8
                     }   % measure
@@ -7783,53 +6400,25 @@ class Selection(AbjadValueObject, collections.Sequence):
                     {   % measure
                         \time 2/8
                         \tempo 4=60
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         c'8
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         d'8
                     }   % measure
                     {   % measure
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         e'8
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         f'8
                     }   % measure
                     {   % measure
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         g'8
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         a'8
                     }   % measure
                     {   % measure
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         b'8
                         c''8
                     }   % measure
@@ -7896,11 +6485,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                     {   % measure
                         \time 2/8
                         \tempo 4=60
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         c'8
                         d'8
                     }   % measure
@@ -7941,7 +6526,6 @@ class Selection(AbjadValueObject, collections.Sequence):
             'Selection'
 
         """
-        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
         fill = fill or enums.Exact
@@ -8009,7 +6593,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                     part.append(component)
                     result.append(part)
                     part = []
-                    cumulative_duration = abjad.Duration(0)
+                    cumulative_duration = Duration(0)
                     current_duration_index += 1
                     try:
                         target_duration = durations[current_duration_index]
@@ -8070,52 +6654,25 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     c'8
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     d'8
-                    \once \override Dots.color = #red
-                    \once \override Rest.color = #red
+                    \abjad_color_music "red"
                     r8
                     \times 2/3 {
-                        \once \override Accidental.color = #red
-                        \once \override Beam.color = #red
-                        \once \override Dots.color = #red
-                        \once \override NoteHead.color = #red
-                        \once \override Stem.color = #red
+                        \abjad_color_music "red"
                         e'8
-                        \once \override Dots.color = #red
-                        \once \override Rest.color = #red
+                        \abjad_color_music "red"
                         r8
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         f'8
                     }
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     g'8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     a'8
-                    \once \override Dots.color = #blue
-                    \once \override Rest.color = #blue
+                    \abjad_color_music "blue"
                     r8
                 }
 
@@ -8163,52 +6720,25 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     c'8
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     d'8
-                    \once \override Dots.color = #red
-                    \once \override Rest.color = #red
+                    \abjad_color_music "red"
                     r8
                     \times 2/3 {
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         e'8
-                        \once \override Dots.color = #blue
-                        \once \override Rest.color = #blue
+                        \abjad_color_music "blue"
                         r8
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         f'8
                     }
-                    \once \override Accidental.color = #cyan
-                    \once \override Beam.color = #cyan
-                    \once \override Dots.color = #cyan
-                    \once \override NoteHead.color = #cyan
-                    \once \override Stem.color = #cyan
+                    \abjad_color_music "cyan"
                     g'8
-                    \once \override Accidental.color = #cyan
-                    \once \override Beam.color = #cyan
-                    \once \override Dots.color = #cyan
-                    \once \override NoteHead.color = #cyan
-                    \once \override Stem.color = #cyan
+                    \abjad_color_music "cyan"
                     a'8
-                    \once \override Dots.color = #cyan
-                    \once \override Rest.color = #cyan
+                    \abjad_color_music "cyan"
                     r8
                 }
 
@@ -8218,15 +6748,11 @@ class Selection(AbjadValueObject, collections.Sequence):
             'Selection'
 
         """
-        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        ratio = ratio or abjad.Ratio((1,))
-        counts = abjad.mathtools.partition_integer_by_ratio(
-            len(self),
-            ratio,
-            )
-        parts = abjad.sequence(self).partition_by_counts(counts=counts)
+        ratio = ratio or Ratio((1,))
+        counts = mathtools.partition_integer_by_ratio(len(self), ratio)
+        parts = Sequence(self).partition_by_counts(counts=counts)
         selections = [type(self)(_) for _ in parts]
         return type(self)(selections)
 
@@ -8305,8 +6831,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                         }
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
-                            \once \override Dots.color = #green
-                            \once \override Rest.color = #green
+                            \abjad_color_music "green"
                             r16
                             bf'16
                             <a'' b''>16
@@ -8385,8 +6910,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \time 7/4
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
-                            \once \override Dots.color = #red
-                            \once \override Rest.color = #red
+                            \abjad_color_music "red"
                             r16
                             bf'16
                             <a'' b''>16
@@ -8396,8 +6920,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                             <d' e'>16
                         }
                         \times 8/9 {
-                            \once \override Dots.color = #blue
-                            \once \override Rest.color = #blue
+                            \abjad_color_music "blue"
                             r16
                             bf'16
                             <a'' b''>16
@@ -8408,8 +6931,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                         }
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
-                            \once \override Dots.color = #red
-                            \once \override Rest.color = #red
+                            \abjad_color_music "red"
                             r16
                             bf'16
                             <a'' b''>16
@@ -8422,10 +6944,9 @@ class Selection(AbjadValueObject, collections.Sequence):
                 }
 
         """
-        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        return self.components((abjad.MultimeasureRest, abjad.Rest))
+        return self.components((MultimeasureRest, Rest))
 
     def run(self, n):
         r"""
@@ -8503,36 +7024,16 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
                             r16
-                            \once \override Accidental.color = #green
-                            \once \override Beam.color = #green
-                            \once \override Dots.color = #green
-                            \once \override NoteHead.color = #green
-                            \once \override Stem.color = #green
+                            \abjad_color_music "green"
                             e'16
-                            \once \override Accidental.color = #green
-                            \once \override Beam.color = #green
-                            \once \override Dots.color = #green
-                            \once \override NoteHead.color = #green
-                            \once \override Stem.color = #green
+                            \abjad_color_music "green"
                             e'16
-                            \once \override Accidental.color = #green
-                            \once \override Beam.color = #green
-                            \once \override Dots.color = #green
-                            \once \override NoteHead.color = #green
-                            \once \override Stem.color = #green
+                            \abjad_color_music "green"
                             e'16
-                            \once \override Accidental.color = #green
-                            \once \override Beam.color = #green
-                            \once \override Dots.color = #green
-                            \once \override NoteHead.color = #green
-                            \once \override Stem.color = #green
+                            \abjad_color_music "green"
                             <fs' gs'>4
                             ~
-                            \once \override Accidental.color = #green
-                            \once \override Beam.color = #green
-                            \once \override Dots.color = #green
-                            \once \override NoteHead.color = #green
-                            \once \override Stem.color = #green
+                            \abjad_color_music "green"
                             <fs' gs'>16
                         }
                     }   % measure
@@ -8606,116 +7107,55 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
                             r16
-                            \once \override Accidental.color = #red
-                            \once \override Beam.color = #red
-                            \once \override Dots.color = #red
-                            \once \override NoteHead.color = #red
-                            \once \override Stem.color = #red
+                            \abjad_color_music "red"
                             c'16
-                            \once \override Accidental.color = #red
-                            \once \override Beam.color = #red
-                            \once \override Dots.color = #red
-                            \once \override NoteHead.color = #red
-                            \once \override Stem.color = #red
+                            \abjad_color_music "red"
                             c'16
-                            \once \override Accidental.color = #red
-                            \once \override Beam.color = #red
-                            \once \override Dots.color = #red
-                            \once \override NoteHead.color = #red
-                            \once \override Stem.color = #red
+                            \abjad_color_music "red"
                             c'16
-                            \once \override Accidental.color = #red
-                            \once \override Beam.color = #red
-                            \once \override Dots.color = #red
-                            \once \override NoteHead.color = #red
-                            \once \override Stem.color = #red
+                            \abjad_color_music "red"
                             <d' e'>4
                             ~
-                            \once \override Accidental.color = #red
-                            \once \override Beam.color = #red
-                            \once \override Dots.color = #red
-                            \once \override NoteHead.color = #red
-                            \once \override Stem.color = #red
+                            \abjad_color_music "red"
                             <d' e'>16
                         }
                         \times 8/9 {
                             r16
-                            \once \override Accidental.color = #blue
-                            \once \override Beam.color = #blue
-                            \once \override Dots.color = #blue
-                            \once \override NoteHead.color = #blue
-                            \once \override Stem.color = #blue
+                            \abjad_color_music "blue"
                             d'16
-                            \once \override Accidental.color = #blue
-                            \once \override Beam.color = #blue
-                            \once \override Dots.color = #blue
-                            \once \override NoteHead.color = #blue
-                            \once \override Stem.color = #blue
+                            \abjad_color_music "blue"
                             d'16
-                            \once \override Accidental.color = #blue
-                            \once \override Beam.color = #blue
-                            \once \override Dots.color = #blue
-                            \once \override NoteHead.color = #blue
-                            \once \override Stem.color = #blue
+                            \abjad_color_music "blue"
                             d'16
-                            \once \override Accidental.color = #blue
-                            \once \override Beam.color = #blue
-                            \once \override Dots.color = #blue
-                            \once \override NoteHead.color = #blue
-                            \once \override Stem.color = #blue
+                            \abjad_color_music "blue"
                             <e' fs'>4
                             ~
-                            \once \override Accidental.color = #blue
-                            \once \override Beam.color = #blue
-                            \once \override Dots.color = #blue
-                            \once \override NoteHead.color = #blue
-                            \once \override Stem.color = #blue
+                            \abjad_color_music "blue"
                             <e' fs'>16
                         }
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
                             r16
-                            \once \override Accidental.color = #red
-                            \once \override Beam.color = #red
-                            \once \override Dots.color = #red
-                            \once \override NoteHead.color = #red
-                            \once \override Stem.color = #red
+                            \abjad_color_music "red"
                             e'16
-                            \once \override Accidental.color = #red
-                            \once \override Beam.color = #red
-                            \once \override Dots.color = #red
-                            \once \override NoteHead.color = #red
-                            \once \override Stem.color = #red
+                            \abjad_color_music "red"
                             e'16
-                            \once \override Accidental.color = #red
-                            \once \override Beam.color = #red
-                            \once \override Dots.color = #red
-                            \once \override NoteHead.color = #red
-                            \once \override Stem.color = #red
+                            \abjad_color_music "red"
                             e'16
-                            \once \override Accidental.color = #red
-                            \once \override Beam.color = #red
-                            \once \override Dots.color = #red
-                            \once \override NoteHead.color = #red
-                            \once \override Stem.color = #red
+                            \abjad_color_music "red"
                             <fs' gs'>4
                             ~
-                            \once \override Accidental.color = #red
-                            \once \override Beam.color = #red
-                            \once \override Dots.color = #red
-                            \once \override NoteHead.color = #red
-                            \once \override Stem.color = #red
+                            \abjad_color_music "red"
                             <fs' gs'>16
                         }
                     }   % measure
                 }
 
         """
-        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
         result = Selection.leaves(self, pitched=True)
-        result = result.group_by_contiguity().map(abjad.Selection)
+        result = result.group_by_contiguity().map(Selection)
         return result
 
     def top(self):
@@ -8772,67 +7212,40 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     c'8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     d'8
-                    \once \override Dots.color = #red
-                    \once \override Rest.color = #red
+                    \abjad_color_music "red"
                     r8
                     \times 2/3 {
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         e'8
-                        \once \override Dots.color = #blue
-                        \once \override Rest.color = #blue
+                        \abjad_color_music "blue"
                         r8
-                        \once \override Accidental.color = #blue
-                        \once \override Beam.color = #blue
-                        \once \override Dots.color = #blue
-                        \once \override NoteHead.color = #blue
-                        \once \override Stem.color = #blue
+                        \abjad_color_music "blue"
                         f'8
                     }
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     g'8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     a'8
-                    \once \override Dots.color = #red
-                    \once \override Rest.color = #red
+                    \abjad_color_music "red"
                     r8
                 }
 
         """
-        import abjad
+        from .Context import Context
         if self._expression:
             return self._update_expression(inspect.currentframe())
         result = []
         for component in iterate(self).components(Component):
             parentage = abjad_inspect(component).get_parentage()
             for component_ in parentage:
-                if isinstance(component_, abjad.Context):
+                if isinstance(component_, Context):
                     break
                 parent = abjad_inspect(component_).get_parentage().parent
-                if isinstance(parent, abjad.Context) or parent is None:
+                if isinstance(parent, Context) or parent is None:
                     if component_ not in result:
                         result.append(component_)
                     break
@@ -8913,39 +7326,18 @@ class Selection(AbjadValueObject, collections.Sequence):
                         }
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
-                            \once \override Dots.color = #green
-                            \once \override Rest.color = #green
+                            \abjad_color_music "green"
                             r16
-                            \once \override Accidental.color = #green
-                            \once \override Beam.color = #green
-                            \once \override Dots.color = #green
-                            \once \override NoteHead.color = #green
-                            \once \override Stem.color = #green
+                            \abjad_color_music "green"
                             bf'16
-                            \once \override Accidental.color = #green
-                            \once \override Beam.color = #green
-                            \once \override Dots.color = #green
-                            \once \override NoteHead.color = #green
-                            \once \override Stem.color = #green
+                            \abjad_color_music "green"
                             <a'' b''>16
-                            \once \override Accidental.color = #green
-                            \once \override Beam.color = #green
-                            \once \override Dots.color = #green
-                            \once \override NoteHead.color = #green
-                            \once \override Stem.color = #green
+                            \abjad_color_music "green"
                             e'16
-                            \once \override Accidental.color = #green
-                            \once \override Beam.color = #green
-                            \once \override Dots.color = #green
-                            \once \override NoteHead.color = #green
-                            \once \override Stem.color = #green
+                            \abjad_color_music "green"
                             <fs' gs'>4
                             ~
-                            \once \override Accidental.color = #green
-                            \once \override Beam.color = #green
-                            \once \override Dots.color = #green
-                            \once \override NoteHead.color = #green
-                            \once \override Stem.color = #green
+                            \abjad_color_music "green"
                             <fs' gs'>16
                         }
                     }   % measure
@@ -9018,122 +7410,59 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \time 7/4
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
-                            \once \override Dots.color = #red
-                            \once \override Rest.color = #red
+                            \abjad_color_music "red"
                             r16
-                            \once \override Accidental.color = #red
-                            \once \override Beam.color = #red
-                            \once \override Dots.color = #red
-                            \once \override NoteHead.color = #red
-                            \once \override Stem.color = #red
+                            \abjad_color_music "red"
                             bf'16
-                            \once \override Accidental.color = #red
-                            \once \override Beam.color = #red
-                            \once \override Dots.color = #red
-                            \once \override NoteHead.color = #red
-                            \once \override Stem.color = #red
+                            \abjad_color_music "red"
                             <a'' b''>16
-                            \once \override Accidental.color = #red
-                            \once \override Beam.color = #red
-                            \once \override Dots.color = #red
-                            \once \override NoteHead.color = #red
-                            \once \override Stem.color = #red
+                            \abjad_color_music "red"
                             c'16
-                            \once \override Accidental.color = #red
-                            \once \override Beam.color = #red
-                            \once \override Dots.color = #red
-                            \once \override NoteHead.color = #red
-                            \once \override Stem.color = #red
+                            \abjad_color_music "red"
                             <d' e'>4
                             ~
-                            \once \override Accidental.color = #red
-                            \once \override Beam.color = #red
-                            \once \override Dots.color = #red
-                            \once \override NoteHead.color = #red
-                            \once \override Stem.color = #red
+                            \abjad_color_music "red"
                             <d' e'>16
                         }
                         \times 8/9 {
-                            \once \override Dots.color = #blue
-                            \once \override Rest.color = #blue
+                            \abjad_color_music "blue"
                             r16
-                            \once \override Accidental.color = #blue
-                            \once \override Beam.color = #blue
-                            \once \override Dots.color = #blue
-                            \once \override NoteHead.color = #blue
-                            \once \override Stem.color = #blue
+                            \abjad_color_music "blue"
                             bf'16
-                            \once \override Accidental.color = #blue
-                            \once \override Beam.color = #blue
-                            \once \override Dots.color = #blue
-                            \once \override NoteHead.color = #blue
-                            \once \override Stem.color = #blue
+                            \abjad_color_music "blue"
                             <a'' b''>16
-                            \once \override Accidental.color = #blue
-                            \once \override Beam.color = #blue
-                            \once \override Dots.color = #blue
-                            \once \override NoteHead.color = #blue
-                            \once \override Stem.color = #blue
+                            \abjad_color_music "blue"
                             d'16
-                            \once \override Accidental.color = #blue
-                            \once \override Beam.color = #blue
-                            \once \override Dots.color = #blue
-                            \once \override NoteHead.color = #blue
-                            \once \override Stem.color = #blue
+                            \abjad_color_music "blue"
                             <e' fs'>4
                             ~
-                            \once \override Accidental.color = #blue
-                            \once \override Beam.color = #blue
-                            \once \override Dots.color = #blue
-                            \once \override NoteHead.color = #blue
-                            \once \override Stem.color = #blue
+                            \abjad_color_music "blue"
                             <e' fs'>16
                         }
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
-                            \once \override Dots.color = #red
-                            \once \override Rest.color = #red
+                            \abjad_color_music "red"
                             r16
-                            \once \override Accidental.color = #red
-                            \once \override Beam.color = #red
-                            \once \override Dots.color = #red
-                            \once \override NoteHead.color = #red
-                            \once \override Stem.color = #red
+                            \abjad_color_music "red"
                             bf'16
-                            \once \override Accidental.color = #red
-                            \once \override Beam.color = #red
-                            \once \override Dots.color = #red
-                            \once \override NoteHead.color = #red
-                            \once \override Stem.color = #red
+                            \abjad_color_music "red"
                             <a'' b''>16
-                            \once \override Accidental.color = #red
-                            \once \override Beam.color = #red
-                            \once \override Dots.color = #red
-                            \once \override NoteHead.color = #red
-                            \once \override Stem.color = #red
+                            \abjad_color_music "red"
                             e'16
-                            \once \override Accidental.color = #red
-                            \once \override Beam.color = #red
-                            \once \override Dots.color = #red
-                            \once \override NoteHead.color = #red
-                            \once \override Stem.color = #red
+                            \abjad_color_music "red"
                             <fs' gs'>4
                             ~
-                            \once \override Accidental.color = #red
-                            \once \override Beam.color = #red
-                            \once \override Dots.color = #red
-                            \once \override NoteHead.color = #red
-                            \once \override Stem.color = #red
+                            \abjad_color_music "red"
                             <fs' gs'>16
                         }
                     }   % measure
                 }
 
         """
-        import abjad
+        from .Tuplet import Tuplet
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        return self.components(abjad.Tuplet)
+        return self.components(Tuplet)
 
     def with_next_leaf(self):
         r"""
@@ -9182,47 +7511,21 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     c'8
-                    \once \override Dots.color = #red
-                    \once \override Rest.color = #red
+                    \abjad_color_music "red"
                     r8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     d'8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     e'8
-                    \once \override Dots.color = #blue
-                    \once \override Rest.color = #blue
+                    \abjad_color_music "blue"
                     r8
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     f'8
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     g'8
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     a'8
                 }
 
@@ -9272,44 +7575,22 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     c'8
-                    \once \override Dots.color = #red
-                    \once \override Rest.color = #red
+                    \abjad_color_music "red"
                     r8
                     d'8
                     ~
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     d'8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     e'8
                     ~
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     e'8
-                    \once \override Dots.color = #red
-                    \once \override Rest.color = #red
+                    \abjad_color_music "red"
                     r8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     f'8
                 }
 
@@ -9368,59 +7649,34 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
                     \set Staff.pedalSustainStyle = #'mixed
+                    \abjad_color_music "red"
                     c'8
                     \sustainOn
-                    \once \override Dots.color = #red
-                    \once \override Rest.color = #red
+                    \abjad_color_music "red"
                     r8
                     \sustainOff
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
                     \set Staff.pedalSustainStyle = #'mixed
+                    \abjad_color_music "blue"
                     d'8
                     ~
                     \sustainOn
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     d'8
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
                     \set Staff.pedalSustainStyle = #'mixed
+                    \abjad_color_music "blue"
+                    \abjad_color_music "red"
                     e'8
                     ~
                     \sustainOff
                     \sustainOn
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     e'8
-                    \once \override Dots.color = #red
-                    \once \override Rest.color = #red
+                    \abjad_color_music "red"
                     r8
                     \sustainOff
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
                     \set Staff.pedalSustainStyle = #'mixed
+                    \abjad_color_music "blue"
                     f'8
                     \sustainOn
                     \sustainOff
@@ -9428,7 +7684,6 @@ class Selection(AbjadValueObject, collections.Sequence):
 
         Returns new selection (or expression).
         """
-        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
         leaves = list(self.leaves())
@@ -9483,47 +7738,21 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     c'8
-                    \once \override Dots.color = #blue
-                    \once \override Rest.color = #blue
+                    \abjad_color_music "blue"
                     r8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     d'8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     e'8
-                    \once \override Dots.color = #red
-                    \once \override Rest.color = #red
+                    \abjad_color_music "red"
                     r8
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     f'8
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     g'8
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     a'8
                 }
 
@@ -9573,44 +7802,22 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     c'8
-                    \once \override Dots.color = #blue
-                    \once \override Rest.color = #blue
+                    \abjad_color_music "blue"
                     r8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     d'8
                     ~
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     d'8
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
+                    \abjad_color_music "red"
                     e'8
                     ~
                     e'8
-                    \once \override Dots.color = #blue
-                    \once \override Rest.color = #blue
+                    \abjad_color_music "blue"
                     r8
-                    \once \override Accidental.color = #blue
-                    \once \override Beam.color = #blue
-                    \once \override Dots.color = #blue
-                    \once \override NoteHead.color = #blue
-                    \once \override Stem.color = #blue
+                    \abjad_color_music "blue"
                     f'8
                 }
 

@@ -2,6 +2,7 @@ import inspect
 import itertools
 import numbers
 import typing
+import uqbar.enums
 from abjad.system.Signature import Signature
 from abjad.system.AbjadValueObject import AbjadValueObject
 
@@ -1210,23 +1211,23 @@ class Expression(AbjadValueObject):
                 item_strings.append(item_string)
             items = ', '.join(item_strings)
             if isinstance(argument, list):
-                argument = '[{}]'.format(items)
+                argument = f'[{items}]'
             elif isinstance(argument, tuple):
                 if item_count == 1:
                     items += ','
-                argument = '({})'.format(items)
+                argument = f'({items})'
             else:
                 raise Exception(repr(argument))
         elif isinstance(argument, slice):
             argument = repr(argument)
+        elif isinstance(argument, uqbar.enums.StrictEnumeration):
+            argument = f'abjad.{repr(argument)}'
         # abjad object
         elif not inspect.isclass(argument):
             try:
                 argument = format(argument, 'storage')
             except (TypeError, ValueError):
-                message = 'can not make storage format: {!r}.'
-                message = message.format(argument)
-                raise Exception(message)
+                raise Exception(f'can not make storage format: {argument!r}.')
         # abjad class
         elif inspect.isclass(argument) and 'abjad' in argument.__module__:
             argument = argument.__module__.split('.')
@@ -1236,9 +1237,7 @@ class Expression(AbjadValueObject):
         elif inspect.isclass(argument) and 'abjad' not in argument.__module__:
             argument = argument.__name__
         else:
-            message = 'can not make evaluable string: {!r}.'
-            message = message.format(argument)
-            raise Exception(message)
+            raise Exception(f'can not make evaluable string: {argument!r}.')
         return argument
 
     @staticmethod

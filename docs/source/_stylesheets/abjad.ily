@@ -1,3 +1,19 @@
+%%% COLOR OVERRIDES %%%
+
+abjad_color_music = #(
+    define-music-function (parser location color music) (symbol? ly:music?)
+    #{
+    \once \override Accidental.color = #(x11-color #'color)
+    \once \override Beam.color = #(x11-color #'color)
+    \once \override Dots.color = #(x11-color #'color)
+    \once \override Flag.color = #(x11-color #'color)
+    \once \override NoteHead.color = #(x11-color #'color)
+    \once \override Rest.color = #(x11-color #'color)
+    \once \override Stem.color = #(x11-color #'color)
+    $music
+    #}
+    )
+
 %%% METRONOME MARK FUNCTIONS %%%
 
 #(define-markup-command

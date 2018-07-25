@@ -179,12 +179,28 @@ class Tie(Spanner):
         if left_broken is not None:
             left_broken = bool(left_broken)
         self._left_broken = left_broken
-        self._repeat = repeat
+        repeat_ = repeat
+        if isinstance(repeat, tuple) and len(repeat) == 2:
+            repeat_ = DurationInequality(
+                operator_string='>=',
+                duration=repeat,
+                )
+        if repeat_ is not None:
+            assert isinstance(repeat_, (bool, DurationInequality))
+        self._repeat = repeat_
         if right_broken is not None:
             right_broken = bool(right_broken)
         self._right_broken = right_broken
 
     ### PRIVATE METHODS ###
+
+    def _add_tweaks_and_direction(self, command):
+        strings = []
+        contributions = tweak(self)._list_format_contributions()
+        strings.extend(contributions)
+        string = self._add_direction(command)
+        strings.append(string)
+        return strings
 
     def _attachment_test(self, component):
         if self._ignore_attachment_test:
@@ -223,61 +239,67 @@ class Tie(Spanner):
         for leaf in iterate(argument).leaves():
             detach(Tie, leaf)
 
+    def _can_have_conventional_tie(self, leaf):
+        if self.repeat is True:
+            return False
+        if self.repeat in (False, None):
+            return True
+        assert isinstance(self.repeat, DurationInequality)
+        return not self.repeat(leaf)
+
+    def _can_have_repeat_tie(self, leaf):
+        if self.repeat is None:
+            return False
+        if isinstance(self.repeat, bool):
+            return self.repeat
+        previous = inspect(leaf).get_leaf(-1)
+        if previous is None:
+            return True
+        if previous not in self:
+            return False
+        assert isinstance(self.repeat, DurationInequality)
+        return self.repeat(previous)
+
+    def _conventional_tie_strings(self):
+        return self._add_tweaks_and_direction('~')
+
     def _copy_keywords(self, new):
         new._direction = self.direction
         new._repeat = self.repeat
 
     def _get_lilypond_format_bundle(self, leaf):
         bundle = self._get_basic_lilypond_format_bundle(leaf)
-        silent = (
+        prototype = (
             MultimeasureRest,
             Rest,
             Skip,
             )
-        if isinstance(leaf, silent):
+        if isinstance(leaf, prototype):
             return bundle
-        if not self.repeat:
-            if leaf is self[-1]:
-                if not self._right_broken:
-                    return bundle
-                strings = self._start_command_strings()
-                strings = self._tag_show(strings)
-                bundle.after.spanners.extend(strings)
-            elif isinstance(leaf._get_leaf(1), silent):
-                return bundle
-            else:
-                strings = self._start_command_strings()
-                bundle.after.spanners.extend(strings)
-        else:
+        if self._can_have_repeat_tie(leaf):
             if leaf is self[0]:
-                if not self._left_broken:
-                    return bundle
-                strings = [self._stop_command_string()]
-                strings = self._tag_show(strings)
-                bundle.after.spanners.extend(strings)
+                if self._left_broken:
+                    strings = self._repeat_tie_strings()
+                    strings = self._tag_show(strings)
+                    bundle.after.spanners.extend(strings)
             else:
-                strings = [self._stop_command_string()]
+                strings = self._repeat_tie_strings()
+                bundle.after.spanners.extend(strings)
+        if self._can_have_conventional_tie(leaf):
+            if leaf is self[-1]:
+                if self._right_broken:
+                    strings = self._conventional_tie_strings()
+                    strings = self._tag_show(strings)
+                    bundle.after.spanners.extend(strings)
+            elif isinstance(leaf._get_leaf(1), prototype):
+                pass
+            else:
+                strings = self._conventional_tie_strings()
                 bundle.after.spanners.extend(strings)
         return bundle
 
-    def _start_command_strings(self):
-        strings = []
-        if self.repeat:
-            return strings
-        contributions = tweak(self)._list_format_contributions()
-        strings.extend(contributions)
-        string = '~'
-        string = self._add_direction(string)
-        strings.append(string)
-        return strings
-
-    def _stop_command_string(self):
-        if self.repeat:
-            string = r'\repeatTie'
-            string = self._add_direction(string)
-            return string
-        else:
-            return ''
+    def _repeat_tie_strings(self):
+        return self._add_tweaks_and_direction(r'\repeatTie')
 
     ### PUBLIC PROPERTIES ###
 
@@ -927,12 +949,16 @@ class Tie(Spanner):
         bool, DurationInequality, typings.IntegerPair, None,
         ]:
         r"""
+        Gets repeat-tie threshold.
+
         Is true when tie should use the LilyPond ``\repeatTie`` command.
 
         ..  container:: example
 
-            >>> staff = abjad.Staff("c'8 c'8 c'8 c'8")
-            >>> tie = abjad.Tie(direction=abjad.Up, repeat=True)
+            Formats all ties as repeat-ties when ``repeat`` is true:
+
+            >>> staff = abjad.Staff("c'2 c'8 c'4.")
+            >>> tie = abjad.Tie(repeat=True)
             >>> abjad.attach(tie, staff[:])
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -941,15 +967,62 @@ class Tie(Spanner):
                 >>> abjad.f(staff)
                 \new Staff
                 {
+                    c'2
                     c'8
-                    c'8
-                    ^ \repeatTie
-                    c'8
-                    ^ \repeatTie
-                    c'8
-                    ^ \repeatTie
+                    \repeatTie
+                    c'4.
+                    \repeatTie
                 }
 
+        ..  container:: example
+
+            Formats only ties that satisfy duration inequality when ``repeat``
+            is a duration inequality:
+
+            >>> staff = abjad.Staff("c'2 c'8 c'4.")
+            >>> repeat = abjad.DurationInequality(
+            ...     operator_string='>=',
+            ...     duration=abjad.Duration(1, 4),
+            ...     )
+            >>> tie = abjad.Tie(repeat=repeat)
+            >>> abjad.attach(tie, staff[:])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..   docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    c'2
+                    c'8
+                    \repeatTie
+                    ~
+                    c'4.
+                }
+
+            Coerces integer pair to >= inequality:
+
+            >>> staff = abjad.Staff("c'2 c'8 c'4.")
+            >>> tie = abjad.Tie(repeat=(1, 4))
+            >>> abjad.attach(tie, staff[:])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..   docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    c'2
+                    c'8
+                    \repeatTie
+                    ~
+                    c'4.
+                }
+
+        Durations that satisfy inequality can be said to "meet repeat-tie
+        threshold." Durations that do not meet repeat-tie threshold format
+        conventional tie on current note; durations that do meet repeat-tie
+        threshold format repeat-tie on following note.
         """
         return self._repeat
 

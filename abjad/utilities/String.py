@@ -1470,16 +1470,16 @@ class String(str):
         ..  container:: example:
 
             >>> abjad.String.to_bidirectional_direction_string('^')
-            'up'
+            'Up'
 
             >>> abjad.String.to_bidirectional_direction_string('_')
-            'down'
+            'Down'
 
             >>> abjad.String.to_bidirectional_direction_string(1)
-            'up'
+            'Up'
 
             >>> abjad.String.to_bidirectional_direction_string(-1)
-            'down'
+            'Down'
 
         """
         try:
@@ -1743,25 +1743,25 @@ class String(str):
         ..  container:: example
 
             >>> abjad.String.to_tridirectional_direction_string('^')
-            'up'
+            'Up'
 
             >>> abjad.String.to_tridirectional_direction_string('-')
-            'center'
+            'Center'
 
             >>> abjad.String.to_tridirectional_direction_string('_')
-            'down'
+            'Down'
 
             >>> abjad.String.to_tridirectional_direction_string(1)
-            'up'
+            'Up'
 
             >>> abjad.String.to_tridirectional_direction_string(0)
-            'center'
+            'Center'
 
             >>> abjad.String.to_tridirectional_direction_string(-1)
-            'down'
+            'Down'
 
             >>> abjad.String.to_tridirectional_direction_string('default')
-            'center'
+            'Center'
 
         ..  container:: example
 

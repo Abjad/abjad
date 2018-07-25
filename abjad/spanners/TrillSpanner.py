@@ -648,6 +648,13 @@ class TrillSpanner(Spanner):
         return self._pitch
 
     @property
+    def right_broken(self) -> typing.Optional[bool]:
+        """
+        Is true when spanner is right-broken.
+        """
+        return self._right_broken
+
+    @property
     def written_pitch(self) -> typing.Optional[NamedPitch]:
         r"""
         Gets written pitch of trill spanner.
@@ -713,10 +720,3 @@ class TrillSpanner(Spanner):
         Returns named pitch or none.
         """
         return self.pitch
-
-    @property
-    def right_broken(self) -> typing.Optional[bool]:
-        """
-        Is true when spanner is right-broken.
-        """
-        return self._right_broken
