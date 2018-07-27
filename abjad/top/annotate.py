@@ -21,13 +21,13 @@ def annotate(component, annotation, indicator):
                 f'4
             }
 
-        >>> abjad.inspect(staff[0]).get_annotation('bow_direction')
+        >>> abjad.inspect(staff[0]).annotation('bow_direction')
         Down
 
-        >>> abjad.inspect(staff[0]).get_annotation('bow_fraction') is None
+        >>> abjad.inspect(staff[0]).annotation('bow_fraction') is None
         True
 
-        >>> abjad.inspect(staff[0]).get_annotation('bow_fraction', 99)
+        >>> abjad.inspect(staff[0]).annotation('bow_fraction', 99)
         99
 
     Returns none.

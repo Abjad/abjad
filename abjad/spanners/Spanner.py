@@ -1,3 +1,4 @@
+import collections
 import copy
 import typing
 from abjad import enums
@@ -412,8 +413,8 @@ class Spanner(AbjadObject):
         self._remove_leaf(leaf)
 
     def _start_offset_in_me(self, leaf):
-        leaf_start_offset = inspect(leaf).get_timespan().start_offset
-        self_start_offset = inspect(self).get_timespan().start_offset
+        leaf_start_offset = inspect(leaf).timespan().start_offset
+        self_start_offset = inspect(self).timespan().start_offset
         return leaf_start_offset - self_start_offset
 
     def _stop_command_string(self):
@@ -487,3 +488,6 @@ class Spanner(AbjadObject):
         Gets tweaks.
         """
         return self._tweaks
+
+
+collections.Sequence.register(Spanner)

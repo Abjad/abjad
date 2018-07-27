@@ -620,7 +620,7 @@ class Mutation(AbjadObject):
                 }
 
             >>> for leaf in staff:
-            ...     leaf, abjad.inspect(leaf).get_effective(abjad.Clef)
+            ...     leaf, abjad.inspect(leaf).effective(abjad.Clef)
             ...
             (Note("c'2"), Clef('alto'))
             (Note("f'4"), Clef('alto'))
@@ -641,7 +641,7 @@ class Mutation(AbjadObject):
                 }
 
             >>> for leaf in staff:
-            ...     leaf, abjad.inspect(leaf).get_effective(abjad.Clef)
+            ...     leaf, abjad.inspect(leaf).effective(abjad.Clef)
             ...
             (Chord("<d' e'>2"), None)
             (Note("f'4"), None)
@@ -672,7 +672,7 @@ class Mutation(AbjadObject):
                 }
 
             >>> for leaf in staff:
-            ...     leaf, abjad.inspect(leaf).get_effective(abjad.Clef)
+            ...     leaf, abjad.inspect(leaf).effective(abjad.Clef)
             ...
             (Note("c'2"), Clef('alto'))
             (Note("f'4"), Clef('alto'))
@@ -694,7 +694,7 @@ class Mutation(AbjadObject):
                 }
 
             >>> for leaf in staff:
-            ...     leaf, abjad.inspect(leaf).get_effective(abjad.Clef)
+            ...     leaf, abjad.inspect(leaf).effective(abjad.Clef)
             ...
             (Chord("<d' e'>2"), Clef('alto'))
             (Note("f'4"), Clef('alto'))
@@ -1960,7 +1960,7 @@ class Mutation(AbjadObject):
                     d'8
                 }
 
-            >>> logical_tie = abjad.inspect(staff[0]).get_logical_tie()
+            >>> logical_tie = abjad.inspect(staff[0]).logical_tie()
             >>> agent = abjad.mutate(logical_tie)
             >>> logical_tie = agent.scale(abjad.Multiplier(3, 2))
             >>> abjad.show(staff) # doctest: +SKIP
@@ -2057,7 +2057,7 @@ class Mutation(AbjadObject):
                     d'16
                 }
 
-            >>> logical_tie = abjad.inspect(staff[0]).get_logical_tie()
+            >>> logical_tie = abjad.inspect(staff[0]).logical_tie()
             >>> agent = abjad.mutate(logical_tie)
             >>> logical_tie = agent.scale(abjad.Multiplier(5, 4))
             >>> abjad.show(staff) # doctest: +SKIP
@@ -2159,7 +2159,7 @@ class Mutation(AbjadObject):
                     -\accent
                 }
 
-            >>> logical_tie = abjad.inspect(staff[0]).get_logical_tie()
+            >>> logical_tie = abjad.inspect(staff[0]).logical_tie()
             >>> agent = abjad.mutate(logical_tie)
             >>> logical_tie = agent.scale(abjad.Multiplier(4, 3))
             >>> abjad.show(staff) # doctest: +SKIP
@@ -2325,7 +2325,7 @@ class Mutation(AbjadObject):
             >>> tuplet = abjad.Tuplet((4, 5), "c'8 d'8 e'8 f'8 g'8")
             >>> staff.append(tuplet)
             >>> time_signature = abjad.TimeSignature((4, 8))
-            >>> leaf = abjad.inspect(staff).get_leaf(0)
+            >>> leaf = abjad.inspect(staff).leaf(0)
             >>> abjad.attach(time_signature, leaf)
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -3148,7 +3148,7 @@ class Mutation(AbjadObject):
             else:
                 return [], components
         # calculate total component duration
-        total_component_duration = inspect(components).get_duration()
+        total_component_duration = inspect(components).duration()
         total_split_duration = sum(durations)
         # calculate durations
         if cyclic:
@@ -3189,7 +3189,7 @@ class Mutation(AbjadObject):
             else:
                 break
             # find where current component endpoint will position us
-            duration_ = inspect(current_component).get_duration()
+            duration_ = inspect(current_component).duration()
             candidate_shard_duration = current_shard_duration + duration_
             # if current component would fill current shard exactly
             if candidate_shard_duration == next_split_point:
@@ -3204,7 +3204,7 @@ class Mutation(AbjadObject):
                 local_split_duration -= current_shard_duration
                 if isinstance(current_component, Leaf):
                     leaf_split_durations = [local_split_duration]
-                    duration_ = inspect(current_component).get_duration()
+                    duration_ = inspect(current_component).duration()
                     current_duration = duration_
                     additional_required_duration = current_duration
                     additional_required_duration -= local_split_duration
@@ -3246,7 +3246,7 @@ class Mutation(AbjadObject):
             # if current component would not fill current shard
             elif candidate_shard_duration < next_split_point:
                 shard.append(current_component)
-                duration_ = inspect(current_component).get_duration()
+                duration_ = inspect(current_component).duration()
                 current_shard_duration += duration_
                 advance_to_next_offset = False
             else:
@@ -3602,7 +3602,7 @@ class Mutation(AbjadObject):
             >>> prototype = abjad.TimeSignature
             >>> for component in abjad.iterate(staff).components():
             ...     inspection = abjad.inspect(component)
-            ...     time_signature = inspection.get_effective(prototype)
+            ...     time_signature = inspection.effective(prototype)
             ...     print(component, time_signature)
             ...
             <Staff{1}> 3/8

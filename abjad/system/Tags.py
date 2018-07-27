@@ -170,8 +170,6 @@ class Tags(AbjadValueObject):
 
         ### METRONOME MARKS ###
 
-        'METRONOME_MARK_SPANNER',
-
         'EXPLICIT_METRONOME_MARK',
         'EXPLICIT_METRONOME_MARK_WITH_COLOR',
 
@@ -256,7 +254,7 @@ class Tags(AbjadValueObject):
         Raises attribute error when ``tag`` is unknown.
         """
         if tag not in self._known_tags:
-            raise AttributeError('unknown tag: {!r}.'.format(tag))
+            raise AttributeError('unknown tag {!r}.'.format(tag))
         return tag
 
     ### PUBLIC METHODS ###
@@ -439,7 +437,6 @@ class Tags(AbjadValueObject):
             'LOCAL_MEASURE_NUMBER_MARKUP'
             'MEASURE_INDEX_MARKUP'
             'MEASURE_NUMBER_MARKUP'
-            'METRONOME_MARK_SPANNER'
             'REDUNDANT_TIME_SIGNATURE_COLOR'
             'STAGE_NUMBER_MARKUP'
 
@@ -450,7 +447,6 @@ class Tags(AbjadValueObject):
             self.LOCAL_MEASURE_NUMBER_MARKUP,
             self.MEASURE_INDEX_MARKUP,
             self.MEASURE_NUMBER_MARKUP,
-            self.METRONOME_MARK_SPANNER,
             self.REDUNDANT_TIME_SIGNATURE_COLOR,
             self.STAGE_NUMBER_MARKUP,
             ]

@@ -315,7 +315,7 @@ class LeafMaker(AbjadValueObject):
         >>> leaves = maker(pitches, durations)
         >>> staff = abjad.Staff(leaves)
         >>> time_signature = abjad.TimeSignature((5, 14))
-        >>> leaf = abjad.inspect(staff).get_leaf(0)
+        >>> leaf = abjad.inspect(staff).leaf(0)
         >>> abjad.attach(time_signature, leaf)
         >>> abjad.show(staff) # doctest: +SKIP
 

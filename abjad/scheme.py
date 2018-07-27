@@ -648,7 +648,7 @@ class SchemePair(Scheme):
 
     ..  container:: example
 
-        Regression tests:
+        REGRESSION:
 
         Right-hand side string forces quotes:
 

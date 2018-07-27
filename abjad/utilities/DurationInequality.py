@@ -71,12 +71,12 @@ class DurationInequality(Inequality):
             if self.preprolated:
                 duration = argument._get_preprolated_duration()
             else:
-                duration = abjad.inspect(argument).get_duration()
+                duration = abjad.inspect(argument).duration()
         elif isinstance(argument, abjad.Selection):
             if self.preprolated:
                 duration = argument._get_preprolated_duration()
             else:
-                duration = abjad.inspect(argument).get_duration()
+                duration = abjad.inspect(argument).duration()
         else:
             duration = abjad.Duration(argument)
         return self._operator_function(duration, self.duration)

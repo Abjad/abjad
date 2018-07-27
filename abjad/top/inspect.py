@@ -24,7 +24,7 @@ def inspect(client):
 
         Gets duration of first note in staff:
 
-        >>> abjad.inspect(staff[0]).get_duration()
+        >>> abjad.inspect(staff[0]).duration()
         Duration(1, 4)
 
     ..  container:: example

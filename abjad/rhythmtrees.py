@@ -618,7 +618,7 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeContainer)
                         tie = abjad.Tie()
                         abjad.attach(tie, leaves)
             assert tuplet.multiplier == 1, repr(tuplet.multiplier)
-            contents_duration = abjad.inspect(tuplet).get_duration()
+            contents_duration = abjad.inspect(tuplet).duration()
             target_duration = tuplet_duration
             multiplier = target_duration / contents_duration
             tuplet.multiplier = multiplier

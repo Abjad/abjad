@@ -29,11 +29,11 @@ def timespan_2_starts_during_timespan_1(
         >>> abjad.show(score) # doctest: +SKIP
 
         >>> start_offsets = [
-        ...     abjad.inspect(note).get_timespan().start_offset
+        ...     abjad.inspect(note).timespan().start_offset
         ...     for note in staff_1
         ...     ]
         >>> stop_offsets = [
-        ...     abjad.inspect(note).get_timespan().stop_offset
+        ...     abjad.inspect(note).timespan().stop_offset
         ...     for note in staff_1
         ...     ]
 

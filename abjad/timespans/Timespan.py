@@ -715,8 +715,8 @@ class Timespan(AbjadValueObject):
         elif hasattr(argument, '_get_timespan'):
             start_offset, stop_offset = argument._get_timespan().offsets
         # TODO: remove this branch in favor of the _get_timespan above
-        #elif hasattr(argument, 'get_timespan'):
-        #    start_offset, stop_offset = argument.get_timespan().offsets
+        #elif hasattr(argument, 'timespan'):
+        #    start_offset, stop_offset = argument.timespan().offsets
         else:
             raise ValueError(argument)
         return abjad.new(
@@ -735,7 +735,7 @@ class Timespan(AbjadValueObject):
         if hasattr(timespan, '_get_timespan'):
             return True
         # TODO: remove this branch in favor of the _get_timespan above
-        if hasattr(timespan, 'get_timespan'):
+        if hasattr(timespan, 'timespan'):
             return True
         if getattr(timespan, 'timespan', 'foo') != 'foo':
             return True

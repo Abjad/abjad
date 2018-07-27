@@ -116,11 +116,11 @@ class Score(Context):
         import abjad
         bar_line = abjad.BarLine(abbreviation)
         if not to_each_voice:
-            last_leaf = abjad.inspect(self).get_leaf(-1)
+            last_leaf = abjad.inspect(self).leaf(-1)
             abjad.attach(bar_line, last_leaf, tag='SCORE1')
         else:
             for voice in abjad.iterate(self).components(abjad.Voice):
-                last_leaf = abjad.inspect(voice).get_leaf(-1)
+                last_leaf = abjad.inspect(voice).leaf(-1)
                 abjad.attach(bar_line, last_leaf, tag='SCORE1')
         return bar_line
 
@@ -368,7 +368,7 @@ class Score(Context):
         score.append(staff_group)
         for leaf in leaves:
             treble_pitches, bass_pitches = [], []
-            for pitch in abjad.inspect(leaf).get_pitches():
+            for pitch in abjad.inspect(leaf).pitches():
                 if pitch < lowest_treble_pitch:
                     bass_pitches.append(pitch)
                 else:

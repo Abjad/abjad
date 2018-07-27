@@ -315,16 +315,16 @@ def edit_cello_voice(score, durated_reservoir):
     """
     voice = score['Cello Voice']
     descents = durated_reservoir['Cello']
-    logical_tie = abjad.inspect(voice[-1]).get_logical_tie()
+    logical_tie = abjad.inspect(voice[-1]).logical_tie()
     for leaf in logical_tie.leaves:
-        parent = abjad.inspect(leaf).get_parentage().parent
+        parent = abjad.inspect(leaf).parentage().parent
         index = parent.index(leaf)
         parent[index] = abjad.Chord(['e,', 'a,'], leaf.written_duration)
     selection = voice[-len(descents[-1]):]
     unison_descent = abjad.mutate(selection).copy()
     voice.extend(unison_descent)
     for chord in unison_descent:
-        index = abjad.inspect(chord).get_parentage().parent.index(chord)
+        index = abjad.inspect(chord).parentage().parent.index(chord)
         parent[index] = abjad.Note(
             chord.written_pitches[1], chord.written_duration)
         articulation = abjad.Articulation('accent')
@@ -552,7 +552,7 @@ def apply_final_bar_lines(score):
     """
     for voice in abjad.iterate(score).components(abjad.Voice):
         bar_line = abjad.BarLine('|.')
-        leaf = abjad.inspect(voice).get_leaf(-1)
+        leaf = abjad.inspect(voice).leaf(-1)
         abjad.attach(bar_line, leaf)
 
 
@@ -596,7 +596,7 @@ def configure_score(score):
     """
     # configure bell staff
     bell_staff = score['Bell Staff']
-    leaf = abjad.inspect(bell_staff).get_leaf(0)
+    leaf = abjad.inspect(bell_staff).leaf(0)
     clef = abjad.Clef('treble')
     abjad.attach(clef, leaf)
     bells = abjad.Instrument(
@@ -611,7 +611,7 @@ def configure_score(score):
     abjad.attach(time_signature, leaf)
     # configure first violin staff
     first_violin_staff = score['First Violin Staff']
-    leaf = abjad.inspect(first_violin_staff).get_leaf(0)
+    leaf = abjad.inspect(first_violin_staff).leaf(0)
     clef = abjad.Clef('treble')
     abjad.attach(clef, leaf)
     violin = abjad.Violin(
@@ -621,7 +621,7 @@ def configure_score(score):
     abjad.attach(violin, leaf)
     # configure second violin staff
     second_violin_staff = score['Second Violin Staff']
-    leaf = abjad.inspect(second_violin_staff).get_leaf(0)
+    leaf = abjad.inspect(second_violin_staff).leaf(0)
     clef = abjad.Clef('treble')
     abjad.attach(clef, leaf)
     violin = abjad.Violin(
@@ -630,19 +630,19 @@ def configure_score(score):
         )
     abjad.attach(violin, leaf)
     # configure viola staff
-    leaf = abjad.inspect(score['Viola Staff']).get_leaf(0)
+    leaf = abjad.inspect(score['Viola Staff']).leaf(0)
     clef = abjad.Clef('alto')
     abjad.attach(clef, leaf)
     viola = abjad.Viola()
     abjad.attach(viola, leaf)
     # configure cello staff
-    leaf = abjad.inspect(score['Cello Staff']).get_leaf(0)
+    leaf = abjad.inspect(score['Cello Staff']).leaf(0)
     clef = abjad.Clef('bass')
     abjad.attach(clef, leaf)
     cello = abjad.Cello()
     abjad.attach(cello, leaf)
     # configure bass staff
-    leaf = abjad.inspect(score['Bass Staff']).get_leaf(0)
+    leaf = abjad.inspect(score['Bass Staff']).leaf(0)
     clef = abjad.Clef('bass')
     abjad.attach(clef, leaf)
     contrabass = abjad.Contrabass(

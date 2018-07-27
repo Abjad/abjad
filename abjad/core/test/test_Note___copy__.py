@@ -68,7 +68,7 @@ def test_Note___copy___04():
         )
 
     note_2 = copy.copy(note_1)
-    grace_container_2 = abjad.inspect(note_2).get_after_grace_container()
+    grace_container_2 = abjad.inspect(note_2).after_grace_container()
 
     assert format(note_2) == abjad.String.normalize(
         r"""
@@ -150,12 +150,12 @@ def test_Note___copy___06():
     new_note = copy.deepcopy(note)
 
     assert new_note is not note
-    assert abjad.inspect(note).get_parentage().parent is staff
-    assert abjad.inspect(new_note).get_parentage().parent is not staff
-    assert isinstance(abjad.inspect(new_note).get_parentage().parent, abjad.Staff)
+    assert abjad.inspect(note).parentage().parent is staff
+    assert abjad.inspect(new_note).parentage().parent is not staff
+    assert isinstance(abjad.inspect(new_note).parentage().parent, abjad.Staff)
     assert format(new_note) == format(note)
-    assert format(abjad.inspect(note).get_parentage().parent) == \
-        format(abjad.inspect(new_note).get_parentage().parent)
+    assert format(abjad.inspect(note).parentage().parent) == \
+        format(abjad.inspect(new_note).parentage().parent)
 
 
 def test_Note___copy___07():

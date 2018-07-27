@@ -29,10 +29,10 @@ def test_Parentage__get_governor_01( ):
     """
 
     leaves = abjad.select(voice).leaves()
-    assert abjad.inspect(leaves[0]).get_parentage()._get_governor() is voice[0][0]
-    assert abjad.inspect(leaves[1]).get_parentage()._get_governor() is voice[0][0]
-    assert abjad.inspect(leaves[2]).get_parentage()._get_governor() is voice[0][1]
-    assert abjad.inspect(leaves[3]).get_parentage()._get_governor() is voice[0][1]
+    assert abjad.inspect(leaves[0]).parentage()._get_governor() is voice[0][0]
+    assert abjad.inspect(leaves[1]).parentage()._get_governor() is voice[0][0]
+    assert abjad.inspect(leaves[2]).parentage()._get_governor() is voice[0][1]
+    assert abjad.inspect(leaves[3]).parentage()._get_governor() is voice[0][1]
 
 
 def test_Parentage__get_governor_02( ):
@@ -41,7 +41,7 @@ def test_Parentage__get_governor_02( ):
     """
 
     note = abjad.Note(0, (1, 8))
-    assert abjad.inspect(note).get_parentage()._get_governor() is None
+    assert abjad.inspect(note).parentage()._get_governor() is None
 
 
 def test_Parentage__get_governor_03( ):
@@ -67,10 +67,10 @@ def test_Parentage__get_governor_03( ):
     """
 
     leaves = abjad.select(staff).leaves()
-    assert abjad.inspect(leaves[0]).get_parentage()._get_governor() is staff
-    assert abjad.inspect(leaves[1]).get_parentage()._get_governor() is staff
-    assert abjad.inspect(leaves[2]).get_parentage()._get_governor() is staff
-    assert abjad.inspect(leaves[3]).get_parentage()._get_governor() is staff
+    assert abjad.inspect(leaves[0]).parentage()._get_governor() is staff
+    assert abjad.inspect(leaves[1]).parentage()._get_governor() is staff
+    assert abjad.inspect(leaves[2]).parentage()._get_governor() is staff
+    assert abjad.inspect(leaves[3]).parentage()._get_governor() is staff
 
 
 def test_Parentage__get_governor_04( ):
@@ -95,6 +95,6 @@ def test_Parentage__get_governor_04( ):
     }
     """
 
-    assert abjad.inspect(staff[0][0]).get_parentage()._get_governor() is staff
-    assert abjad.inspect(staff[0]).get_parentage()._get_governor() is staff
-    assert abjad.inspect(staff).get_parentage()._get_governor() is staff
+    assert abjad.inspect(staff[0][0]).parentage()._get_governor() is staff
+    assert abjad.inspect(staff[0]).parentage()._get_governor() is staff
+    assert abjad.inspect(staff).parentage()._get_governor() is staff

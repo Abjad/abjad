@@ -2,7 +2,7 @@ import abjad
 import pytest
 
 
-def test_Inspection_get_duration_01():
+def test_Inspection_duration_01():
     """
     Spanner duration in seconds equals sum of duration of all leaves in
     spanner, in seconds.
@@ -49,13 +49,13 @@ def test_Inspection_get_duration_01():
         """
         )
 
-    assert abjad.inspect(beam).get_duration(in_seconds=True) == abjad.Duration(100, 21)
-    assert abjad.inspect(crescendo).get_duration(in_seconds=True) == abjad.Duration(40, 21)
-    assert abjad.inspect(decrescendo).get_duration(in_seconds=True) == \
+    assert abjad.inspect(beam).duration(in_seconds=True) == abjad.Duration(100, 21)
+    assert abjad.inspect(crescendo).duration(in_seconds=True) == abjad.Duration(40, 21)
+    assert abjad.inspect(decrescendo).duration(in_seconds=True) == \
         abjad.Duration(20, 7)
 
 
-def test_Inspection_get_duration_02():
+def test_Inspection_duration_02():
 
     voice = abjad.Voice(
         [abjad.Measure((2, 12), "c'8 d'8", implicit_scaling=True),
@@ -95,12 +95,12 @@ def test_Inspection_get_duration_02():
         """
         )
 
-    assert abjad.inspect(beam).get_duration() == abjad.Duration(5, 12)
-    assert abjad.inspect(crescendo).get_duration() == abjad.Duration(2, 12)
-    assert abjad.inspect(decrescendo).get_duration() == abjad.Duration(2, 8)
+    assert abjad.inspect(beam).duration() == abjad.Duration(5, 12)
+    assert abjad.inspect(crescendo).duration() == abjad.Duration(2, 12)
+    assert abjad.inspect(decrescendo).duration() == abjad.Duration(2, 8)
 
 
-def test_Inspection_get_duration_03():
+def test_Inspection_duration_03():
     """
     Container duration in seconds equals sum of leaf durations in seconds.
     """
@@ -129,20 +129,20 @@ def test_Inspection_get_duration_03():
         """
         )
 
-    assert abjad.inspect(score).get_duration(in_seconds=True) == abjad.Duration(400, 133)
+    assert abjad.inspect(score).duration(in_seconds=True) == abjad.Duration(400, 133)
 
 
-def test_Inspection_get_duration_04():
+def test_Inspection_duration_04():
     """
     Container can not calculate duration in seconds without metronome mark.
     """
 
     container = abjad.Container("c'8 d'8 e'8 f'8")
-    statement = 'inspect(container).get_duration(in_seconds=True)'
+    statement = 'inspect(container).duration(in_seconds=True)'
     assert pytest.raises(Exception, statement)
 
 
-def test_Inspection_get_duration_05():
+def test_Inspection_duration_05():
     """
     Clock duration equals duration divide by effective tempo.
     """
@@ -168,17 +168,17 @@ def test_Inspection_get_duration_05():
         """
         )
 
-    assert abjad.inspect(staff[0]).get_duration(in_seconds=True) == abjad.Duration(15, 19)
-    assert abjad.inspect(staff[1]).get_duration(in_seconds=True) == abjad.Duration(15, 19)
-    assert abjad.inspect(staff[2]).get_duration(in_seconds=True) == abjad.Duration(5, 7)
-    assert abjad.inspect(staff[3]).get_duration(in_seconds=True) == abjad.Duration(5, 7)
+    assert abjad.inspect(staff[0]).duration(in_seconds=True) == abjad.Duration(15, 19)
+    assert abjad.inspect(staff[1]).duration(in_seconds=True) == abjad.Duration(15, 19)
+    assert abjad.inspect(staff[2]).duration(in_seconds=True) == abjad.Duration(5, 7)
+    assert abjad.inspect(staff[3]).duration(in_seconds=True) == abjad.Duration(5, 7)
 
 
-def test_Inspection_get_duration_06():
+def test_Inspection_duration_06():
     """
     Clock duration can not calculate without metronome mark.
     """
 
     note = abjad.Note("c'4")
-    statement = 'inspect(note).get_duration(in_seconds=True)'
+    statement = 'inspect(note).duration(in_seconds=True)'
     assert pytest.raises(Exception, statement)

@@ -254,7 +254,7 @@ class MetronomeMark(AbjadValueObject):
 
     _format_slot = 'opening'
 
-    _persistent = 'abjad.MetronomeMark'
+    _parameter = 'METRONOME_MARK'
 
     ### INITIALIZER ###
 
@@ -1013,7 +1013,7 @@ class MetronomeMark(AbjadValueObject):
 
             >>> for leaf in abjad.iterate(staff).leaves():
             ...     prototype = abjad.MetronomeMark
-            ...     leaf, abjad.inspect(leaf).get_effective(prototype)
+            ...     leaf, abjad.inspect(leaf).effective(prototype)
             ...
             (Note("c'4"), MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=72))
             (Note("d'4"), MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=72))
@@ -1059,17 +1059,17 @@ class MetronomeMark(AbjadValueObject):
         return True
 
     @property
-    def persistent(self) -> str:
+    def parameter(self) -> str:
         """
-        Is ``'abjad.MetronomeMark'``.
+        Is ``'METRONOME_MARK'``.
 
         ..  container:: example
 
-            >>> abjad.MetronomeMark((1, 8), 52).persistent
-            'abjad.MetronomeMark'
+            >>> abjad.MetronomeMark((1, 8), 52).parameter
+            'METRONOME_MARK'
 
         """
-        return self._persistent
+        return self._parameter
 
     @property
     def quarters_per_minute(self) -> typing.Union[tuple, None, Fraction]:

@@ -14,7 +14,7 @@ class LogicalTie(Selection):
         >>> staff = abjad.Staff("c' d' e' ~ e'")
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> abjad.inspect(staff[2]).get_logical_tie()
+        >>> abjad.inspect(staff[2]).logical_tie()
         LogicalTie([Note("e'4"), Note("e'4")])
 
     """
@@ -181,7 +181,7 @@ class LogicalTie(Selection):
         Returns tie spanner.
         """
         import abjad
-        return abjad.inspect(self[0]).get_spanner(abjad.Tie)
+        return abjad.inspect(self[0]).spanner(abjad.Tie)
 
     @property
     def written_duration(self):
@@ -229,7 +229,7 @@ class LogicalTie(Selection):
                     \f
                 }
 
-            >>> logical_tie = abjad.inspect(staff[1]).get_logical_tie()
+            >>> logical_tie = abjad.inspect(staff[1]).logical_tie()
             >>> logical_tie.to_tuplet([2, 1, 1, 1])
             Tuplet(Multiplier(3, 5), "c'8 c'16 c'16 c'16")
 

@@ -77,7 +77,7 @@ class VerticalMoment(AbjadObject):
             assert isinstance(components, collections.Iterable)
             components = list(components)
             components.sort(
-                key=lambda _: abjad.inspect(_).get_parentage().score_index)
+                key=lambda _: abjad.inspect(_).parentage().score_index)
         self._components = components
 
     ### SPECIAL METHODS ###
@@ -146,8 +146,8 @@ class VerticalMoment(AbjadObject):
         hi = len(container)
         while lo < hi:
             mid = (lo + hi) // 2
-            start_offset = abjad.inspect(container[mid]).get_timespan().start_offset
-            stop_offset = abjad.inspect(container[mid]).get_timespan().stop_offset
+            start_offset = abjad.inspect(container[mid]).timespan().start_offset
+            stop_offset = abjad.inspect(container[mid]).timespan().stop_offset
             if start_offset <= offset < stop_offset:
                 lo = mid + 1
             # if container[mid] is of nonzero duration
@@ -176,13 +176,13 @@ class VerticalMoment(AbjadObject):
         else:
             raise TypeError(message)
         governors.sort(
-            key=lambda x: abjad.inspect(x).get_parentage().score_index)
+            key=lambda x: abjad.inspect(x).parentage().score_index)
         governors = tuple(governors)
         components = []
         for governor in governors:
             components.extend(VerticalMoment._recurse(governor, offset))
         components.sort(
-            key=lambda x: abjad.inspect(x).get_parentage().score_index)
+            key=lambda x: abjad.inspect(x).parentage().score_index)
         components = tuple(components)
         return governors, components
 
@@ -194,8 +194,8 @@ class VerticalMoment(AbjadObject):
     def _recurse(component, offset):
         import abjad
         result = []
-        if (abjad.inspect(component).get_timespan().start_offset <=
-            offset < abjad.inspect(component).get_timespan().stop_offset):
+        if (abjad.inspect(component).timespan().start_offset <=
+            offset < abjad.inspect(component).timespan().stop_offset):
             result.append(component)
             if hasattr(component, 'components'):
                 if component.is_simultaneous:
@@ -273,8 +273,8 @@ class VerticalMoment(AbjadObject):
         import abjad
         candidate_shortest_leaf = self.leaves[0]
         for leaf in self.leaves[1:]:
-            if (abjad.inspect(leaf).get_timespan().stop_offset <
-                abjad.inspect(candidate_shortest_leaf).get_timespan().stop_offset):
+            if (abjad.inspect(leaf).timespan().stop_offset <
+                abjad.inspect(candidate_shortest_leaf).timespan().stop_offset):
                 candidate_shortest_leaf = leaf
         next_leaf = candidate_shortest_leaf._get_in_my_logical_voice(
             1, prototype=abjad.Leaf)
@@ -378,7 +378,7 @@ class VerticalMoment(AbjadObject):
         for leaf in self.leaves:
             #print ''
             #print leaf
-            leaf_start = abjad.inspect(leaf).get_timespan().start_offset
+            leaf_start = abjad.inspect(leaf).timespan().start_offset
             if leaf_start < self.offset:
                 #print 'found leaf starting before this moment ...'
                 if most_recent_start_offset <= leaf_start:
@@ -389,7 +389,7 @@ class VerticalMoment(AbjadObject):
                 try:
                     previous_leaf = leaf._get_in_my_logical_voice(
                         -1, prototype=abjad.Leaf)
-                    start = abjad.inspect(previous_leaf).get_timespan().start_offset
+                    start = abjad.inspect(previous_leaf).timespan().start_offset
                     #print previous_leaf, start
                     if most_recent_start_offset <= start:
                         most_recent_start_offset = start
@@ -413,7 +413,7 @@ class VerticalMoment(AbjadObject):
         result = []
         for component in self.components:
             if abjad.inspect(
-                component).get_timespan().start_offset == self.offset:
+                component).timespan().start_offset == self.offset:
                 result.append(component)
         result = tuple(result)
         return result

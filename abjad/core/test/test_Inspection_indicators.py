@@ -1,7 +1,7 @@
 import abjad
 
 
-def test_Inspection_get_indicators_01():
+def test_Inspection_indicators_01():
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     slur = abjad.Slur()
@@ -27,13 +27,13 @@ def test_Inspection_get_indicators_01():
         """
         ), format(staff)
 
-    indicators = abjad.inspect(staff[0]).get_indicators(abjad.LilyPondLiteral)
+    indicators = abjad.inspect(staff[0]).indicators(abjad.LilyPondLiteral)
     assert command_1 in indicators
     assert command_2 in indicators
     assert len(indicators) == 2
 
 
-def test_Inspection_get_indicators_02():
+def test_Inspection_indicators_02():
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     slur = abjad.Slur()
@@ -59,13 +59,13 @@ def test_Inspection_get_indicators_02():
         """
         ), format(staff)
 
-    items = abjad.inspect(staff[0]).get_indicators()
+    items = abjad.inspect(staff[0]).indicators()
     assert comment in items
     assert command in items
     assert len(items) == 2
 
 
-def test_Inspection_get_indicators_03():
+def test_Inspection_indicators_03():
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     clef = abjad.Clef('treble')
@@ -87,11 +87,11 @@ def test_Inspection_get_indicators_03():
         """
         ), format(staff)
 
-    indicators = abjad.inspect(staff[0]).get_indicators()
+    indicators = abjad.inspect(staff[0]).indicators()
     assert len(indicators) == 2
 
 
-def test_Inspection_get_indicators_04():
+def test_Inspection_indicators_04():
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     comment_1 = abjad.LilyPondComment('comment 1')
@@ -113,17 +113,17 @@ def test_Inspection_get_indicators_04():
         """
         ), format(staff)
 
-    indicators = abjad.inspect(staff[0]).get_indicators(abjad.LilyPondComment)
+    indicators = abjad.inspect(staff[0]).indicators(abjad.LilyPondComment)
     assert comment_1 in indicators
     assert comment_2 in indicators
     assert len(indicators) == 2
 
 
-def test_Inspection_get_indicators_05():
+def test_Inspection_indicators_05():
 
     note = abjad.Note("c'4")
     stem_tremolo = abjad.StemTremolo(16)
     abjad.attach(stem_tremolo, note)
-    stem_tremolos = abjad.inspect(note).get_indicators(abjad.StemTremolo)
+    stem_tremolos = abjad.inspect(note).indicators(abjad.StemTremolo)
 
     assert stem_tremolos[0] is stem_tremolo

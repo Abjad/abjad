@@ -218,7 +218,7 @@ class UpdateManager(AbjadObject):
         assert offsets or offsets_in_seconds or indicators
         if component._is_forbidden_to_update:
             return
-        parentage = abjad.inspect(component).get_parentage(
+        parentage = abjad.inspect(component).parentage(
             include_self=True,
             grace_notes=True,
             )
@@ -290,7 +290,7 @@ class UpdateManager(AbjadObject):
         import abjad
         wrappers = []
         prototype = abjad.TimeSignature
-        score_root = abjad.inspect(component).get_parentage(
+        score_root = abjad.inspect(component).parentage(
             include_self=True).root
         for component in self._iterate_entire_score(score_root):
             wrappers_ = abjad.inspect(component).wrappers(prototype)
@@ -298,7 +298,7 @@ class UpdateManager(AbjadObject):
         pairs = []
         for wrapper in wrappers:
             inspector = abjad.inspect(wrapper.component)
-            start_offset = inspector.get_timespan().start_offset
+            start_offset = inspector.timespan().start_offset
             time_signature = wrapper.indicator
             pair = start_offset, time_signature
             pairs.append(pair)
@@ -310,10 +310,10 @@ class UpdateManager(AbjadObject):
         elif not pairs:
             pairs = [default_pair]
         pairs.sort(key=lambda x: x[0])
-        parentage = abjad.inspect(component).get_parentage()
+        parentage = abjad.inspect(component).parentage()
         score_root = parentage.root
         inspector = abjad.inspect(score_root)
-        score_stop_offset = inspector.get_timespan().stop_offset
+        score_stop_offset = inspector.timespan().stop_offset
         dummy_last_pair = (score_stop_offset, None)
         pairs.append(dummy_last_pair)
         measure_start_offsets = []
@@ -334,7 +334,7 @@ class UpdateManager(AbjadObject):
         ):
         import abjad
         inspector = abjad.inspect(component)
-        component_start_offset = inspector.get_timespan().start_offset
+        component_start_offset = inspector.timespan().start_offset
         measure_number_start_offsets = measure_number_start_offsets[:]
         measure_number_start_offsets.append(abjad.mathtools.Infinity())
         pairs = abjad.sequence(measure_number_start_offsets)
@@ -351,7 +351,7 @@ class UpdateManager(AbjadObject):
         import abjad
         measure_start_offsets = self._get_measure_start_offsets(component)
         assert measure_start_offsets, repr(measure_start_offsets)
-        score_root = abjad.inspect(component).get_parentage(
+        score_root = abjad.inspect(component).parentage(
             include_self=True).root
         for component in self._iterate_entire_score(score_root):
             measure_number = self._to_measure_number(

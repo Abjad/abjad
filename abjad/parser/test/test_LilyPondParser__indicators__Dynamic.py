@@ -24,5 +24,5 @@ def test_LilyPondParser__indicators__Dynamic_01():
     result = parser(string)
     assert format(target) == format(result) and target is not result
     for x in result:
-        dynamics = abjad.inspect(x).get_indicators(abjad.Dynamic)
+        dynamics = abjad.inspect(x).indicators(abjad.Dynamic)
         assert len(dynamics) == 1

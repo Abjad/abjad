@@ -209,7 +209,7 @@ class Beam(Spanner):
             left, right = self._get_left_right_for_exterior_leaf(leaf)
         elif self._is_just_left_of_gap(leaf):
             left = leaf.written_duration.flag_count
-            next_leaf = inspect(leaf).get_leaf(1)
+            next_leaf = inspect(leaf).leaf(1)
             if self._is_beamable(
                 next_leaf,
                 beam_rests=self.beam_rests,
@@ -218,7 +218,7 @@ class Beam(Spanner):
             else:
                 right = 0
         elif self._is_just_right_of_gap(leaf):
-            previous_leaf = inspect(leaf).get_leaf(-1)
+            previous_leaf = inspect(leaf).leaf(-1)
             if self._is_beamable(
                 previous_leaf,
                 beam_rests=self.beam_rests,
@@ -265,14 +265,14 @@ class Beam(Spanner):
         if self.stemlet_length is None:
             return
         if leaf is self[0]:
-            parentage = inspect(leaf).get_parentage()
+            parentage = inspect(leaf).parentage()
             staff = parentage.get_first(Staff)
             lilypond_type = staff.lilypond_type
             string = r'\override {}.Stem.stemlet-length = {}'
             string = string.format(lilypond_type, self.stemlet_length)
             bundle.before.commands.append(string)
         if leaf is self[-1]:
-            parentage = inspect(leaf).get_parentage()
+            parentage = inspect(leaf).parentage()
             staff = parentage.get_first(Staff)
             lilypond_type = staff.lilypond_type
             string = r'\revert {}.Stem.stemlet-length'
@@ -300,8 +300,8 @@ class Beam(Spanner):
         self, left, right = Spanner._fracture_left(self, i)
         if self.durations:
             weights = [
-                inspect(left).get_duration(),
-                inspect(right).get_duration(),
+                inspect(left).duration(),
+                inspect(right).duration(),
                 ]
             assert sum(self.durations) == sum(weights)
             split_durations = sequence(self.durations)
@@ -319,8 +319,8 @@ class Beam(Spanner):
         self, left, right = Spanner._fracture_right(self, i)
         if self.durations:
             weights = [
-                inspect(left).get_duration(),
-                inspect(right).get_duration(),
+                inspect(left).duration(),
+                inspect(right).duration(),
                 ]
             assert sum(self.durations) == sum(weights)
             split_durations = sequence(self.durations)

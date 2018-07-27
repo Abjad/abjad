@@ -56,7 +56,7 @@ class Hairpin(Spanner):
             }
 
         >>> for leaf in abjad.select(voice).leaves():
-        ...     leaf, abjad.inspect(leaf).get_effective(abjad.Dynamic)
+        ...     leaf, abjad.inspect(leaf).effective(abjad.Dynamic)
         ...
         (Rest('r8'), None)
         (Note("d'8"), None)
@@ -95,7 +95,7 @@ class Hairpin(Spanner):
             }
 
         >>> for leaf in abjad.select(voice).leaves():
-        ...     leaf, abjad.inspect(leaf).get_effective(abjad.Dynamic)
+        ...     leaf, abjad.inspect(leaf).effective(abjad.Dynamic)
         ...
         (Rest('r8'), None)
         (Note("d'8"), None)
@@ -129,7 +129,7 @@ class Hairpin(Spanner):
             }
 
         >>> for leaf in abjad.select(voice).leaves():
-        ...     leaf, abjad.inspect(leaf).get_effective(abjad.Dynamic)
+        ...     leaf, abjad.inspect(leaf).effective(abjad.Dynamic)
         ...
         (Note("c'2."), None)
         (Rest('r4'), None)
@@ -176,7 +176,7 @@ class Hairpin(Spanner):
             }
 
         >>> for leaf in abjad.select(voice).leaves():
-        ...     leaf, abjad.inspect(leaf).get_effective(abjad.Dynamic)
+        ...     leaf, abjad.inspect(leaf).effective(abjad.Dynamic)
         ...
         (Note("c'8"), Dynamic('p'))
         (Note("d'8"), Dynamic('p'))
@@ -427,13 +427,13 @@ class Hairpin(Spanner):
         if self._has_sounding_stop_dynamic():
             string = self._get_directed_stop_dynamic()
             return string
-        effective_dynamic = inspect(leaf).get_effective(Dynamic)
+        effective_dynamic = inspect(leaf).effective(Dynamic)
         if effective_dynamic is None or effective_dynamic.name == 'niente':
             string = self._stop_command
             return string
         if effective_dynamic not in inspect(leaf).wrappers():
             found_match = False
-            for indicator in inspect(leaf).get_indicators(Dynamic):
+            for indicator in inspect(leaf).indicators(Dynamic):
                 if indicator == effective_dynamic:
                     found_match = True
             if not found_match:

@@ -54,7 +54,7 @@ class Instrument(AbjadValueObject):
             >>
 
         >>> for leaf in abjad.select(voice_1).leaves():
-        ...     leaf, abjad.inspect(leaf).get_effective(abjad.Instrument)
+        ...     leaf, abjad.inspect(leaf).effective(abjad.Instrument)
         ...
         (Note("e'8"), Flute())
         (Note("g'8"), Flute())
@@ -62,7 +62,7 @@ class Instrument(AbjadValueObject):
         (Note("a'8"), Flute())
 
         >>> for leaf in abjad.select(voice_2).leaves():
-        ...     leaf, abjad.inspect(leaf).get_effective(abjad.Instrument)
+        ...     leaf, abjad.inspect(leaf).effective(abjad.Instrument)
         ...
         (Note("c'2"), Viola())
 
@@ -89,7 +89,7 @@ class Instrument(AbjadValueObject):
 
     _latent = True
 
-    _persistent = 'abjad.Instrument'
+    _parameter = 'INSTRUMENT'
 
     _publish_storage_format = True
 
@@ -269,15 +269,13 @@ class Instrument(AbjadValueObject):
         return self._name
 
     @property
-    def persistent(self):
+    def parameter(self) -> str:
         """
-        Is set to ``'abjad.Instrument'`` for all instruments.
+        Is set to ``'INSTRUMENT'`` for all instruments.
 
         Class constant.
-
-        Returns true.
         """
-        return self._persistent
+        return self._parameter
 
     @property
     def pitch_range(self):
@@ -377,7 +375,7 @@ class Instrument(AbjadValueObject):
         """
         import abjad
         for leaf in abjad.iterate(argument).leaves(pitched=True):
-            instrument = abjad.inspect(leaf).get_effective(abjad.Instrument)
+            instrument = abjad.inspect(leaf).effective(abjad.Instrument)
             if not instrument:
                 continue
             sounding_pitch = instrument.middle_c_sounding_pitch
@@ -436,7 +434,7 @@ class Instrument(AbjadValueObject):
         """
         import abjad
         for leaf in abjad.iterate(argument).leaves(pitched=True):
-            instrument = abjad.inspect(leaf).get_effective(abjad.Instrument)
+            instrument = abjad.inspect(leaf).effective(abjad.Instrument)
             if not instrument:
                 continue
             sounding_pitch = instrument.middle_c_sounding_pitch
@@ -2240,7 +2238,7 @@ class Flute(Instrument):
         }
 
         >>> for leaf in abjad.select(staff).leaves():
-        ...     leaf, abjad.inspect(leaf).get_effective(abjad.Instrument)
+        ...     leaf, abjad.inspect(leaf).effective(abjad.Instrument)
         ...
         (Note("c'4"), Flute())
         (Note("d'4"), Flute())

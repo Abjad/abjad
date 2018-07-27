@@ -11,7 +11,7 @@ def test_LogicalTie__fuse_leaves_by_immediate_parent_01():
     tie = abjad.Tie()
     abjad.attach(tie, leaves)
 
-    logical_tie = abjad.inspect(leaves[1]).get_logical_tie()
+    logical_tie = abjad.inspect(leaves[1]).logical_tie()
     result = logical_tie._fuse_leaves_by_immediate_parent()
 
     assert format(staff) == abjad.String.normalize(
@@ -58,7 +58,7 @@ def test_LogicalTie__fuse_leaves_by_immediate_parent_02():
         """
         )
 
-    logical_tie = abjad.inspect(staff[1]).get_logical_tie()
+    logical_tie = abjad.inspect(staff[1]).logical_tie()
     result = logical_tie._fuse_leaves_by_immediate_parent()
 
     assert format(staff) == abjad.String.normalize(
@@ -80,7 +80,7 @@ def test_LogicalTie__fuse_leaves_by_immediate_parent_03():
     """
 
     note = abjad.Note("c'4")
-    logical_tie = abjad.inspect(note).get_logical_tie()
+    logical_tie = abjad.inspect(note).logical_tie()
     result = logical_tie._fuse_leaves_by_immediate_parent()
     assert len(result) == 1
     assert abjad.inspect(note).is_well_formed()

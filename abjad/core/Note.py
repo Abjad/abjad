@@ -124,7 +124,7 @@ class Note(Leaf):
 
     def _get_sounding_pitch(self):
         import abjad
-        if 'sounding pitch' in abjad.inspect(self).get_indicators(str):
+        if 'sounding pitch' in abjad.inspect(self).indicators(str):
             return self.written_pitch
         else:
             instrument = self._get_effective(abjad.Instrument)

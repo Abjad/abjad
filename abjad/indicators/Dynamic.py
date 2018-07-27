@@ -99,7 +99,7 @@ class Dynamic(AbjadValueObject):
             >>
 
         >>> for leaf in abjad.select(staff).leaves():
-        ...     leaf, abjad.inspect(leaf).get_effective(abjad.Dynamic)
+        ...     leaf, abjad.inspect(leaf).effective(abjad.Dynamic)
         ...
         (Note("e'8"), Dynamic('f'))
         (Note("g'8"), Dynamic('f'))
@@ -209,7 +209,7 @@ class Dynamic(AbjadValueObject):
 
     _lilypond_dynamic_alphabet = 'fmprsz'
 
-    _persistent = True
+    _parameter = True
 
     _to_width = {
         '"f"': 2,
@@ -734,7 +734,7 @@ class Dynamic(AbjadValueObject):
             }
 
             >>> for leaf in abjad.iterate(voice).leaves():
-            ...     leaf, abjad.inspect(leaf).get_effective(abjad.Dynamic)
+            ...     leaf, abjad.inspect(leaf).effective(abjad.Dynamic)
             ...
             (Note("c'4"), Dynamic('f'))
             (Note("d'4"), Dynamic('f'))
@@ -1069,17 +1069,17 @@ class Dynamic(AbjadValueObject):
         return ordinal
 
     @property
-    def persistent(self) -> bool:
+    def parameter(self) -> bool:
         """
         Is true.
 
         ..  container:: example
 
-            >>> abjad.Dynamic('f').persistent
+            >>> abjad.Dynamic('f').parameter
             True
 
         """
-        return self._persistent
+        return self._parameter
 
     @property
     def sforzando(self) -> typing.Optional[bool]:

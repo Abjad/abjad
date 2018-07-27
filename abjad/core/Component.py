@@ -80,7 +80,7 @@ class Component(AbjadObject):
         if getattr(self, '_lilypond_setting_name_manager', None) is not None:
             manager = copy.copy(abjad.setting(self))
             new_component._lilypond_setting_name_manager = manager
-        for wrapper in abjad.inspect(self).annotations():
+        for wrapper in abjad.inspect(self).annotation_wrappers():
             new_wrapper = copy.copy(wrapper)
             abjad.attach(new_wrapper, new_component)
         for wrapper in abjad.inspect(self).wrappers():
@@ -154,7 +154,7 @@ class Component(AbjadObject):
 
     def _as_graphviz_node(self):
         import abjad
-        score_index = abjad.inspect(self).get_parentage().score_index
+        score_index = abjad.inspect(self).parentage().score_index
         score_index = '_'.join(str(_) for _ in score_index)
         class_name = type(self).__name__
         if score_index:
@@ -191,7 +191,7 @@ class Component(AbjadObject):
 
     def _check_for_cycles(self, components):
         import abjad
-        parentage = abjad.inspect(self).get_parentage()
+        parentage = abjad.inspect(self).parentage()
         for component in components:
             if component in parentage:
                 return True
@@ -296,7 +296,7 @@ class Component(AbjadObject):
         if in_seconds:
             return self._get_duration_in_seconds()
         else:
-            parentage = abjad.inspect(self).get_parentage(include_self=False)
+            parentage = abjad.inspect(self).parentage(include_self=False)
             return parentage.prolation * self._get_preprolated_duration()
 
     def _get_effective(self, prototype, unwrap=True, n=0):
@@ -312,7 +312,7 @@ class Component(AbjadObject):
                     return
         self._update_now(indicators=True)
         candidate_wrappers = {}
-        parentage = abjad.inspect(self).get_parentage(
+        parentage = abjad.inspect(self).parentage(
             include_self=True,
             grace_notes=True,
             )
@@ -345,7 +345,7 @@ class Component(AbjadObject):
         if not candidate_wrappers:
             return
         all_offsets = sorted(candidate_wrappers)
-        start_offset = abjad.inspect(self).get_timespan().start_offset
+        start_offset = abjad.inspect(self).timespan().start_offset
         index = bisect.bisect(all_offsets, start_offset) - 1 + int(n)
         if index < 0:
             return
@@ -362,7 +362,7 @@ class Component(AbjadObject):
         if staff_change is not None:
             effective_staff = staff_change.staff
         else:
-            parentage = abjad.inspect(self).get_parentage()
+            parentage = abjad.inspect(self).parentage()
             effective_staff = parentage.get_first(abjad.Staff)
         return effective_staff
 
@@ -489,7 +489,7 @@ class Component(AbjadObject):
     def _get_next_measure(self):
         import abjad
         if isinstance(self, abjad.Leaf):
-            for parent in abjad.inspect(self).get_parentage(
+            for parent in abjad.inspect(self).parentage(
                 include_self=False):
                 if isinstance(parent, abjad.Measure):
                     return parent
@@ -518,14 +518,14 @@ class Component(AbjadObject):
         assert mathtools.is_integer_equivalent(n)
         def next(component):
             if component is not None:
-                for parent in abjad.inspect(component).get_parentage(
+                for parent in abjad.inspect(component).parentage(
                     include_self=True):
                     next_sibling = parent._get_sibling(1)
                     if next_sibling is not None:
                         return next_sibling
         def previous(component):
             if component is not None:
-                for parent in abjad.inspect(component).get_parentage(
+                for parent in abjad.inspect(component).parentage(
                     include_self=True):
                     next_sibling = parent._get_sibling(-1)
                     if next_sibling is not None:
@@ -550,7 +550,7 @@ class Component(AbjadObject):
     def _get_previous_measure(self):
         import abjad
         if isinstance(self, abjad.Leaf):
-            for parent in abjad.inspect(self).get_parentage(
+            for parent in abjad.inspect(self).parentage(
                 include_self=False):
                 if isinstance(parent, abjad.Measure):
                     return parent
@@ -609,9 +609,9 @@ class Component(AbjadObject):
 
     def _get_vertical_moment(self, governor=None):
         import abjad
-        offset = abjad.inspect(self).get_timespan().start_offset
+        offset = abjad.inspect(self).timespan().start_offset
         if governor is None:
-            governor = abjad.inspect(self).get_parentage().root
+            governor = abjad.inspect(self).parentage().root
         return abjad.VerticalMoment(governor, offset)
 
     def _get_vertical_moment_at(self, offset):
@@ -649,7 +649,7 @@ class Component(AbjadObject):
     def _remove_and_shrink_durated_parent_containers(self):
         import abjad
         prolated_leaf_duration = self._get_duration()
-        parentage = abjad.inspect(self).get_parentage(include_self=False)
+        parentage = abjad.inspect(self).parentage(include_self=False)
         prolations = parentage._prolations
         current_prolation, i = Duration(1), 0
         parent = self._parent
@@ -683,7 +683,7 @@ class Component(AbjadObject):
                         abjad.mutate(x).wrap(tuplet)
             parent = parent._parent
             i += 1
-        parentage = abjad.inspect(self).get_parentage(include_self=False)
+        parentage = abjad.inspect(self).parentage(include_self=False)
         parent = self._parent
         if parent:
             index = parent.index(self)
@@ -697,7 +697,7 @@ class Component(AbjadObject):
     def _remove_from_parent(self):
         import abjad
         self._update_later(offsets=True)
-        for component in abjad.inspect(self).get_parentage(include_self=False):
+        for component in abjad.inspect(self).parentage(include_self=False):
             if not isinstance(component, abjad.Context):
                 continue
             for wrapper in component._dependent_wrappers[:]:
@@ -710,7 +710,7 @@ class Component(AbjadObject):
     def _remove_named_children_from_parentage(self, name_dictionary):
         import abjad
         if self._parent is not None and name_dictionary:
-            for parent in abjad.inspect(self).get_parentage(
+            for parent in abjad.inspect(self).parentage(
                 include_self=False):
                 named_children = parent._named_children
                 for name in name_dictionary:
@@ -722,7 +722,7 @@ class Component(AbjadObject):
     def _restore_named_children_to_parentage(self, name_dictionary):
         import abjad
         if self._parent is not None and name_dictionary:
-            for parent in abjad.inspect(self).get_parentage(
+            for parent in abjad.inspect(self).parentage(
                 include_self=False):
                 named_children = parent._named_children
                 for name in name_dictionary:
@@ -753,13 +753,13 @@ class Component(AbjadObject):
         selection = abjad.select(self)
         if direction is enums.Right:
             if grow_spanners:
-                insert_offset = abjad.inspect(self).get_timespan().stop_offset
+                insert_offset = abjad.inspect(self).timespan().stop_offset
                 receipt = selection._get_dominant_spanners()
                 for spanner, index in receipt:
                     insert_component = None
                     for component in spanner:
                         start_offset = abjad.inspect(
-                            component).get_timespan().start_offset
+                            component).timespan().start_offset
                         if start_offset == insert_offset:
                             insert_component = component
                             break
@@ -786,11 +786,11 @@ class Component(AbjadObject):
             return [self] + components
         else:
             if grow_spanners:
-                offset = abjad.inspect(self).get_timespan().start_offset
+                offset = abjad.inspect(self).timespan().start_offset
                 receipt = selection._get_dominant_spanners()
                 for spanner, x in receipt:
                     for component in spanner:
-                        timespan = abjad.inspect(component).get_timespan()
+                        timespan = abjad.inspect(component).timespan()
                         if timespan.start_offset == offset:
                             index = spanner._index(component)
                             break
@@ -817,7 +817,7 @@ class Component(AbjadObject):
     def _update_later(self, offsets=False, offsets_in_seconds=False):
         import abjad
         assert offsets or offsets_in_seconds
-        for component in abjad.inspect(self).get_parentage(include_self=True):
+        for component in abjad.inspect(self).parentage(include_self=True):
             if offsets:
                 component._offsets_are_current = False
             elif offsets_in_seconds:

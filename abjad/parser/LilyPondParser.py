@@ -777,10 +777,10 @@ class LilyPondParser(Parser):
 
     def _get_span_events(self, leaf):
         import abjad
-        annotation = abjad.inspect(leaf).get_annotation('spanners', [])
+        annotation = abjad.inspect(leaf).annotation('spanners', [])
         abjad.detach(annotation, leaf)
         assert isinstance(annotation, list), repr(annotation)
-        assert abjad.inspect(leaf).get_annotation('spanners') is None
+        assert abjad.inspect(leaf).annotation('spanners') is None
         return annotation
 
     def _pop_variable_scope(self):
@@ -807,7 +807,7 @@ class LilyPondParser(Parser):
             elif isinstance(post_event, nonspanner_post_event_types):
                 attach(post_event, leaf)
             else:
-                annotation = abjad.inspect(leaf).get_annotation('spanners')
+                annotation = abjad.inspect(leaf).annotation('spanners')
                 if annotation is None:
                     annotation = []
                     abjad.annotate(leaf, 'spanners', annotation)

@@ -64,7 +64,7 @@ def make_bartok_score():
 
     # Add bass clef
     clef = abjad.Clef('bass')
-    leaf = abjad.inspect(lower_staff).get_leaf(0)
+    leaf = abjad.inspect(lower_staff).leaf(0)
     abjad.attach(clef, leaf)
 
     # Add dynamics

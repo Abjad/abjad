@@ -31,7 +31,7 @@ def test_VerticalMoment_previous_vertical_moment_01():
     selector = abjad.select().leaves()
     leaves = selector(score)
     last_leaf = leaves[-1]
-    vertical_moment = abjad.inspect(last_leaf).get_vertical_moment()
+    vertical_moment = abjad.inspect(last_leaf).vertical_moment()
     assert vertical_moment.offset == abjad.Offset(3, 8)
 
     vertical_moment = vertical_moment.previous_vertical_moment

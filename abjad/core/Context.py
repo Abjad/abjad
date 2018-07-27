@@ -232,10 +232,10 @@ class Context(Container):
             if wrapper.annotation:
                 continue
             indicator = wrapper.indicator
-            if not getattr(indicator, 'persistent', False):
+            if not getattr(indicator, 'parameter', False):
                 continue
-            if isinstance(indicator.persistent, str):
-                key = indicator.persistent
+            if isinstance(indicator.parameter, str):
+                key = indicator.parameter
             else:
                 key = str(type(indicator))
             if (key not in wrappers or

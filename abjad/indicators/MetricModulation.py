@@ -698,10 +698,6 @@ class MetricModulation(AbjadValueObject):
         '_right_rhythm',
         )
 
-    _context = 'Score'
-
-    _persistent = 'abjad.MetronomeMark'
-
     _publish_storage_format = True
 
     ### INITIALIZER ###
@@ -1077,24 +1073,6 @@ class MetricModulation(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def context(self) -> str:
-        """
-        Gets (historically conventional) context.
-
-        ..  container:: example
-
-            >>> metric_modulation = abjad.MetricModulation(
-            ...     left_rhythm=abjad.Note("c'4"),
-            ...     right_rhythm=abjad.Note("c'4."),
-            ...     )
-            >>> metric_modulation.context
-            'Score'
-
-        Override with ``abjad.attach(..., context='...')``.
-        """
-        return self._context
-
-    @property
     def hide(self) -> typing.Optional[bool]:
         """
         Is true when metric modulation generates no LilyPond output.
@@ -1136,23 +1114,6 @@ class MetricModulation(AbjadValueObject):
         return self._left_rhythm
 
     @property
-    def persistent(self) -> str:
-        """
-        Is ``'abjad.MetronomeMark'``.
-
-        ..  container:: example
-
-            >>> metric_modulation = abjad.MetricModulation(
-            ...     left_rhythm=abjad.Note("c'4"),
-            ...     right_rhythm=abjad.Note("c'4."),
-            ...     )
-            >>> metric_modulation.persistent
-            'abjad.MetronomeMark'
-
-        """
-        return self._persistent
-
-    @property
     def ratio(self) -> Ratio:
         """
         Gets ratio of metric modulation.
@@ -1167,8 +1128,8 @@ class MetricModulation(AbjadValueObject):
             Ratio((2, 3))
 
         """
-        left_duration = inspect(self.left_rhythm).get_duration()
-        right_duration = inspect(self.right_rhythm).get_duration()
+        left_duration = inspect(self.left_rhythm).duration()
+        right_duration = inspect(self.right_rhythm).duration()
         duration = left_duration / right_duration
         ratio = Ratio(duration.pair)
         return ratio

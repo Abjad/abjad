@@ -180,7 +180,7 @@ class Chord(Leaf):
             for note_head in note_heads:
                 durated_pitch = format(note_head) + duration_string
                 durated_pitches.append(durated_pitch)
-            tremolo = abjad.inspect(self).get_indicator(abjad.Tremolo)
+            tremolo = abjad.inspect(self).indicator(abjad.Tremolo)
             if tremolo.is_slurred:
                 durated_pitches[0] = durated_pitches[0] + r' \('
                 durated_pitches[-1] = durated_pitches[-1] + r' \)'
@@ -204,7 +204,7 @@ class Chord(Leaf):
 
     def _format_repeat_tremolo_command(self):
         import abjad
-        tremolo = abjad.inspect(self).get_indicator(abjad.Tremolo)
+        tremolo = abjad.inspect(self).indicator(abjad.Tremolo)
         reattack_duration = self._get_tremolo_reattack_duration()
         repeat_count = self.written_duration / reattack_duration / 2
         if not mathtools.is_integer_equivalent(repeat_count):
@@ -232,7 +232,7 @@ class Chord(Leaf):
 
     def _get_sounding_pitches(self):
         import abjad
-        if 'sounding pitch' in abjad.inspect(self).get_indicators(str):
+        if 'sounding pitch' in abjad.inspect(self).indicators(str):
             return self.written_pitches
         else:
             instrument = self._get_effective(abjad.Instrument)
@@ -252,7 +252,7 @@ class Chord(Leaf):
 
     def _get_tremolo_reattack_duration(self):
         import abjad
-        tremolos = abjad.inspect(self).get_indicators(abjad.Tremolo)
+        tremolos = abjad.inspect(self).indicators(abjad.Tremolo)
         if not tremolos:
             return
         tremolo = tremolos[0]

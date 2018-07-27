@@ -978,7 +978,7 @@ class String(str):
 
         ..  container:: example
 
-            Regressions:
+            REGRESSION:
 
             >>> abjad.String.match_strings(strings, '||')
             []
@@ -1090,7 +1090,7 @@ class String(str):
 
         ..  container:: example
 
-            Regressions:
+            REGRESSION:
 
             >>> string = abjad.String('IOManager')
             >>> string.match_word_starts(['I', 'O'])
@@ -1569,9 +1569,9 @@ class String(str):
             'METRONOME_MARK'
 
         """
-        persistent = getattr(indicator, 'persistent', None)
-        if isinstance(persistent, str):
-            stem = persistent.lstrip('abjad.')
+        parameter = getattr(indicator, 'parameter', None)
+        if isinstance(parameter, str):
+            stem = parameter.lstrip('abjad.')
         else:
             stem = type(indicator).__name__
         return String(stem).to_shout_case()

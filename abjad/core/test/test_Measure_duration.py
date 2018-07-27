@@ -22,7 +22,7 @@ def test_Measure_duration_01():
 
     assert measure._get_contents_duration() == abjad.Duration(3, 8)
     assert measure._get_preprolated_duration() == abjad.Duration(3, 8)
-    assert abjad.inspect(measure).get_duration() == abjad.Duration(3, 8)
+    assert abjad.inspect(measure).duration() == abjad.Duration(3, 8)
 
 
 def test_Measure_duration_02():
@@ -48,7 +48,7 @@ def test_Measure_duration_02():
 
     assert measure._get_contents_duration() == abjad.Duration(3, 8)
     assert measure._get_preprolated_duration() == abjad.Duration(3, 10)
-    assert abjad.inspect(measure).get_duration() == abjad.Duration(3, 10)
+    assert abjad.inspect(measure).duration() == abjad.Duration(3, 10)
 
 
 def test_Measure_duration_03():
@@ -62,7 +62,7 @@ def test_Measure_duration_03():
 
     assert measure._get_contents_duration() == abjad.Duration(4, 8)
     assert measure._get_preprolated_duration() == abjad.Duration(4, 8)
-    assert abjad.inspect(measure).get_duration() == abjad.Duration(4, 8)
+    assert abjad.inspect(measure).duration() == abjad.Duration(4, 8)
 
 
 def test_Measure_duration_04():
@@ -77,4 +77,4 @@ def test_Measure_duration_04():
 
     assert measure._get_contents_duration() == abjad.Duration(4, 8)
     assert measure._get_preprolated_duration() == abjad.Duration(4, 10)
-    assert abjad.inspect(measure).get_duration() == abjad.Duration(4, 10)
+    assert abjad.inspect(measure).duration() == abjad.Duration(4, 10)

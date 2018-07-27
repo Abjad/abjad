@@ -228,11 +228,11 @@ def detach(argument, target=None, by_id=False):
     inspector = abjad.inspect(target)
     if isinstance(argument, type):
         if issubclass(argument, abjad.Spanner):
-            spanners = inspector.get_spanners(argument)
+            spanners = inspector.spanners(argument)
         elif issubclass(argument, abjad.AfterGraceContainer):
-            after_grace_container = inspector.get_after_grace_container()
+            after_grace_container = inspector.after_grace_container()
         elif issubclass(argument, abjad.GraceContainer):
-            grace_container = inspector.get_grace_container()
+            grace_container = inspector.grace_container()
         else:
             assert hasattr(target, '_wrappers')
             result = []
@@ -247,11 +247,11 @@ def detach(argument, target=None, by_id=False):
             return result
     else:
         if isinstance(argument, abjad.Spanner):
-            spanners = inspector.get_spanners(argument)
+            spanners = inspector.spanners(argument)
         elif isinstance(argument, abjad.AfterGraceContainer):
-            after_grace_container = inspector.get_after_grace_container()
+            after_grace_container = inspector.after_grace_container()
         elif isinstance(argument, abjad.GraceContainer):
-            grace_container = inspector.get_grace_container()
+            grace_container = inspector.grace_container()
         else:
             assert hasattr(target, '_wrappers')
             result = []

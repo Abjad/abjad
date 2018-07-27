@@ -120,7 +120,7 @@ class TimeSignature(AbjadValueObject):
 
     _format_slot = 'opening'
 
-    _persistent = True
+    _parameter = True
 
     ### INITIALIZER ###
 
@@ -428,7 +428,7 @@ class TimeSignature(AbjadValueObject):
 
             >>> for leaf in abjad.iterate(staff).leaves():
             ...     prototype = abjad.TimeSignature 
-            ...     leaf, abjad.inspect(leaf).get_effective(prototype)
+            ...     leaf, abjad.inspect(leaf).effective(prototype)
             ...
             (Note("c'4"), TimeSignature((4, 4)))
             (Note("d'4"), TimeSignature((4, 4)))
@@ -502,17 +502,17 @@ class TimeSignature(AbjadValueObject):
         return self._partial
 
     @property
-    def persistent(self) -> bool:
+    def parameter(self) -> bool:
         """
         Is true.
 
         ..  container:: example
 
-            >>> abjad.TimeSignature((3, 8)).persistent
+            >>> abjad.TimeSignature((3, 8)).parameter
             True
 
         """
-        return self._persistent
+        return self._parameter
 
     @property
     def tweaks(self) -> None:

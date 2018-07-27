@@ -39,7 +39,7 @@ class PersistentOverride(AbjadObject):
         '_value',
         )
 
-    _persistent = True
+    _parameter = True
     
     _publish_storage_format = True
 
@@ -159,7 +159,7 @@ class PersistentOverride(AbjadObject):
         bundle = LilyPondFormatBundle()
         if self.hide:
             return bundle
-        #staff = abjad.inspect(component).get_parentage().get_first(abjad.Staff)
+        #staff = abjad.inspect(component).parentage().get_first(abjad.Staff)
         #strings = self._get_lilypond_format(context=staff)
         strings = self._get_lilypond_format()
         bundle.before.commands.extend(strings)
@@ -268,9 +268,9 @@ class PersistentOverride(AbjadObject):
         return self._hide
 
     @property
-    def persistent(self) -> bool:
+    def parameter(self) -> bool:
         """
-        Is class constant true.
+        Is true.
 
         ..  container:: example
 
@@ -281,11 +281,12 @@ class PersistentOverride(AbjadObject):
             ...     value=(-2, 0),
             ...     )
 
-            >>> override.persistent
+            >>> override.parameter
             True
 
+        Class constant.
         """
-        return self._persistent
+        return self._parameter
 
     @property
     def value(self) -> typing.Optional[str]:

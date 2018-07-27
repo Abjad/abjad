@@ -562,7 +562,7 @@ class Selection(AbjadValueObject, collections.Sequence):
         # find spanners
         spanner_to_pairs = OrderedDict()
         for i, component in enumerate(iterate(self).components()):
-            for spanner in abjad_inspect(component).get_spanners():
+            for spanner in abjad_inspect(component).spanners():
                 pairs = spanner_to_pairs.setdefault(spanner, [])
                 wrappers = []
                 if wrappers:
@@ -680,8 +680,8 @@ class Selection(AbjadValueObject, collections.Sequence):
         assert isinstance(first, Tuplet)
         new_tuplet = Tuplet(first_multiplier, [])
         wrapped = False
-        if (abjad_inspect(self[0]).get_parentage().root is not
-            abjad_inspect(self[-1]).get_parentage().root):
+        if (abjad_inspect(self[0]).parentage().root is not
+            abjad_inspect(self[-1]).parentage().root):
             dummy_container = Container(self)
             wrapped = True
         mutate(self).swap(new_tuplet)
@@ -783,9 +783,9 @@ class Selection(AbjadValueObject, collections.Sequence):
         start_offsets, stop_offsets = [], []
         for component in self:
             start_offsets.append(
-                abjad_inspect(component).get_timespan().start_offset)
+                abjad_inspect(component).timespan().start_offset)
             stop_offsets.append(
-                abjad_inspect(component).get_timespan().stop_offset)
+                abjad_inspect(component).timespan().stop_offset)
         return start_offsets, stop_offsets
 
     def _get_parent_and_start_stop_indices(self):
@@ -886,7 +886,7 @@ class Selection(AbjadValueObject, collections.Sequence):
         result_ = []
         for item in result:
             if isinstance(item, Component):
-                logical_tie = abjad_inspect(item).get_logical_tie()
+                logical_tie = abjad_inspect(item).logical_tie()
                 if head == (item is logical_tie.head):
                     result_.append(item)
                 else:
@@ -896,7 +896,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                     raise NotImplementedError(item)
                 selection = []
                 for component in item:
-                    logical_tie = abjad_inspect(component).get_logical_tie()
+                    logical_tie = abjad_inspect(component).logical_tie()
                     if head == logical_tie.head:
                         selection.append(item)
                     else:
@@ -934,7 +934,7 @@ class Selection(AbjadValueObject, collections.Sequence):
         result_ = []
         for item in result:
             if isinstance(item, Component):
-                logical_tie = abjad_inspect(item).get_logical_tie()
+                logical_tie = abjad_inspect(item).logical_tie()
                 if tail == (item is logical_tie.tail):
                     result_.append(item)
                 else:
@@ -944,7 +944,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                     raise NotImplementedError(item)
                 selection = []
                 for component in item:
-                    logical_tie = abjad_inspect(component).get_logical_tie()
+                    logical_tie = abjad_inspect(component).logical_tie()
                     if tail == logical_tie.tail:
                         selection.append(item)
                     else:
@@ -1091,23 +1091,23 @@ class Selection(AbjadValueObject, collections.Sequence):
                 if not isinstance(component, prototype):
                     all_are_orphans_of_correct_type = False
                     break
-                if not abjad_inspect(component).get_parentage().is_orphan:
+                if not abjad_inspect(component).parentage().is_orphan:
                     all_are_orphans_of_correct_type = False
                     break
             if all_are_orphans_of_correct_type:
                 return True
         if not allow_orphans:
-            if any(abjad_inspect(x).get_parentage().is_orphan for x in self):
+            if any(abjad_inspect(x).parentage().is_orphan for x in self):
                 return False
         first = self[0]
         if not isinstance(first, prototype):
             return False
-        first_parentage = abjad_inspect(first).get_parentage()
+        first_parentage = abjad_inspect(first).parentage()
         first_logical_voice = first_parentage.logical_voice
         first_root = first_parentage.root
         previous = first
         for current in self[1:]:
-            current_parentage = abjad_inspect(current).get_parentage()
+            current_parentage = abjad_inspect(current).parentage()
             current_logical_voice = current_parentage.logical_voice
             # false if wrong type of component found
             if not isinstance(current, prototype):
@@ -1168,7 +1168,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                 if not isinstance(component, prototype):
                     all_are_orphans_of_correct_type = False
                     break
-                if not abjad_inspect(component).get_parentage().is_orphan:
+                if not abjad_inspect(component).parentage().is_orphan:
                     all_are_orphans_of_correct_type = False
                     break
             if all_are_orphans_of_correct_type:
@@ -1177,12 +1177,12 @@ class Selection(AbjadValueObject, collections.Sequence):
         if not isinstance(first, prototype):
             return False
         orphan_components = True
-        if not abjad_inspect(first).get_parentage().is_orphan:
+        if not abjad_inspect(first).parentage().is_orphan:
             orphan_components = False
         same_logical_voice = True
-        first_signature = abjad_inspect(first).get_parentage().logical_voice
+        first_signature = abjad_inspect(first).parentage().logical_voice
         for component in self[1:]:
-            parentage = abjad_inspect(component).get_parentage()
+            parentage = abjad_inspect(component).parentage()
             if not parentage.is_orphan:
                 orphan_components = False
             if not allow_orphans and orphan_components:
@@ -1229,7 +1229,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                 if not isinstance(component, prototype):
                     all_are_orphans_of_correct_type = False
                     break
-                if not abjad_inspect(component).get_parentage().is_orphan:
+                if not abjad_inspect(component).parentage().is_orphan:
                     all_are_orphans_of_correct_type = False
                     break
             if all_are_orphans_of_correct_type:
@@ -1249,7 +1249,7 @@ class Selection(AbjadValueObject, collections.Sequence):
         for current in self[1:]:
             if not isinstance(current, prototype):
                 return False
-            if not abjad_inspect(current).get_parentage().is_orphan:
+            if not abjad_inspect(current).parentage().is_orphan:
                 orphan_components = False
             if current._parent is not first_parent:
                 same_parent = False
@@ -2879,8 +2879,8 @@ class Selection(AbjadValueObject, collections.Sequence):
         result, selection = [], []
         selection.extend(self[:1])
         for item in self[1:]:
-            this_timespan = abjad_inspect(selection[-1]).get_timespan()
-            that_timespan = abjad_inspect(item).get_timespan()
+            this_timespan = abjad_inspect(selection[-1]).timespan()
+            that_timespan = abjad_inspect(item).timespan()
             if this_timespan.stop_offset == that_timespan.start_offset:
                 selection.append(item)
             else:
@@ -2974,7 +2974,7 @@ class Selection(AbjadValueObject, collections.Sequence):
         if self._expression:
             return self._update_expression(inspect.currentframe())
         def predicate(argument):
-            return abjad_inspect(argument).get_duration()
+            return abjad_inspect(argument).duration()
         return self.group_by(predicate)
 
     def group_by_length(self):
@@ -3938,7 +3938,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
         ..  container:: example
 
-            Regression: selects trimmed leaves (even when there are no rests to
+            REGRESSION: selects trimmed leaves (even when there are no rests to
             trim):
 
             ..  container:: example
@@ -6084,7 +6084,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                 ...     )
                 >>> abjad.setting(staff).auto_beaming = False
                 >>> mark = abjad.MetronomeMark((1, 4), 60)
-                >>> leaf = abjad.inspect(staff).get_leaf(0)
+                >>> leaf = abjad.inspect(staff).leaf(0)
                 >>> abjad.attach(mark, leaf, context='Staff')
                 >>> abjad.show(staff) # doctest: +SKIP
 
@@ -6170,7 +6170,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                 ...     )
                 >>> abjad.setting(staff).auto_beaming = False
                 >>> mark = abjad.MetronomeMark((1, 4), 60)
-                >>> leaf = abjad.inspect(staff).get_leaf(0)
+                >>> leaf = abjad.inspect(staff).leaf(0)
                 >>> abjad.attach(mark, leaf, context='Staff')
                 >>> abjad.show(staff) # doctest: +SKIP
 
@@ -6259,7 +6259,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                 ...     )
                 >>> abjad.setting(staff).auto_beaming = False
                 >>> mark = abjad.MetronomeMark((1, 4), 60)
-                >>> leaf = abjad.inspect(staff).get_leaf(0)
+                >>> leaf = abjad.inspect(staff).leaf(0)
                 >>> abjad.attach(mark, leaf, context='Staff')
                 >>> abjad.show(staff) # doctest: +SKIP
 
@@ -6340,7 +6340,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                 ...     )
                 >>> abjad.setting(staff).auto_beaming = False
                 >>> mark = abjad.MetronomeMark((1, 4), 60)
-                >>> leaf = abjad.inspect(staff).get_leaf(0)
+                >>> leaf = abjad.inspect(staff).leaf(0)
                 >>> abjad.attach(mark, leaf, context='Staff')
                 >>> abjad.show(staff) # doctest: +SKIP
 
@@ -6437,7 +6437,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                 ...     )
                 >>> abjad.setting(staff).auto_beaming = False
                 >>> mark = abjad.MetronomeMark((1, 4), 60)
-                >>> leaf = abjad.inspect(staff).get_leaf(0)
+                >>> leaf = abjad.inspect(staff).leaf(0)
                 >>> abjad.attach(mark, leaf, context='Staff')
                 >>> abjad.show(staff) # doctest: +SKIP
 
@@ -6545,7 +6545,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                 break
             component_duration = component._get_duration()
             if in_seconds:
-                component_duration = abjad_inspect(component).get_duration(
+                component_duration = abjad_inspect(component).duration(
                     in_seconds=True)
             candidate_duration = cumulative_duration + component_duration
             if candidate_duration < target_duration:
@@ -6569,12 +6569,12 @@ class Selection(AbjadValueObject, collections.Sequence):
                     part = [component]
                     if in_seconds:
                         cumulative_duration = sum([
-                            abjad_inspect(_).get_duration(in_seconds=True)
+                            abjad_inspect(_).duration(in_seconds=True)
                             for _ in part
                             ])
                     else:
                         cumulative_duration = sum([
-                            abjad_inspect(_).get_duration() for _ in part
+                            abjad_inspect(_).duration() for _ in part
                             ])
                     current_duration_index += 1
                     try:
@@ -7240,11 +7240,11 @@ class Selection(AbjadValueObject, collections.Sequence):
             return self._update_expression(inspect.currentframe())
         result = []
         for component in iterate(self).components(Component):
-            parentage = abjad_inspect(component).get_parentage()
+            parentage = abjad_inspect(component).parentage()
             for component_ in parentage:
                 if isinstance(component_, Context):
                     break
-                parent = abjad_inspect(component_).get_parentage().parent
+                parent = abjad_inspect(component_).parentage().parent
                 if isinstance(parent, Context) or parent is None:
                     if component_ not in result:
                         result.append(component_)

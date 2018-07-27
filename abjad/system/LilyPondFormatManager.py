@@ -26,7 +26,7 @@ class LilyPondFormatManager(AbjadObject):
     def _collect_indicators(component):
         import abjad
         wrappers = []
-        parentage = abjad.inspect(component).get_parentage(include_self=True)
+        parentage = abjad.inspect(component).parentage(include_self=True)
         for parent in parentage:
             wrappers_ = abjad.inspect(parent).wrappers()
             wrappers.extend(wrappers_)
@@ -230,7 +230,7 @@ class LilyPondFormatManager(AbjadObject):
         if not hasattr(component, '_spanners'):
             return
         pairs = []
-        for spanner in abjad.inspect(component).get_spanners():
+        for spanner in abjad.inspect(component).spanners():
             spanner_bundle = spanner._get_lilypond_format_bundle(component)
             spanner_bundle.tag_format_contributions(
                 spanner._tag,

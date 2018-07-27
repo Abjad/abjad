@@ -44,7 +44,7 @@ class Parentage(AbjadObject, collections.Sequence):
 
         >>> bass_voice = score['Bass Voice']
         >>> note = bass_voice[0]
-        >>> for component in abjad.inspect(note).get_parentage():
+        >>> for component in abjad.inspect(note).parentage():
         ...     component
         ...
         Note('c4')
@@ -201,7 +201,7 @@ class Parentage(AbjadObject, collections.Sequence):
                 }
 
             >>> for leaf in abjad.iterate(voice).leaves():
-            ...     parentage = abjad.inspect(leaf).get_parentage()
+            ...     parentage = abjad.inspect(leaf).parentage()
             ...     print(leaf, parentage.is_grace_note)
             ...
             c'4 False
@@ -260,7 +260,7 @@ class Parentage(AbjadObject, collections.Sequence):
                 >>
 
             >>> note = voice[0]
-            >>> parentage = abjad.inspect(note).get_parentage()
+            >>> parentage = abjad.inspect(note).parentage()
             >>> logical_voice = parentage.logical_voice
 
             >>> for key, value in logical_voice.items():
@@ -368,7 +368,7 @@ class Parentage(AbjadObject, collections.Sequence):
                 >>
 
             >>> for leaf in abjad.select(score).leaves():
-            ...     parentage = abjad.inspect(leaf).get_parentage()
+            ...     parentage = abjad.inspect(leaf).parentage()
             ...     leaf, parentage.score_index
             ...
             (Note("c''2"), (0, 0, 0))
@@ -405,7 +405,7 @@ class Parentage(AbjadObject, collections.Sequence):
 
             >>> leaves = abjad.iterate(voice).components()
             >>> for leaf in leaves:
-            ...     parentage = abjad.inspect(leaf).get_parentage()
+            ...     parentage = abjad.inspect(leaf).parentage()
             ...     leaf, parentage.score_index
             ...
             (Voice("c'8 d'8 e'8 f'8"), ())
@@ -455,13 +455,13 @@ class Parentage(AbjadObject, collections.Sequence):
                     }
                 }
 
-            >>> abjad.inspect(note).get_parentage().tuplet_depth
+            >>> abjad.inspect(note).parentage().tuplet_depth
             1
 
-            >>> abjad.inspect(tuplet).get_parentage().tuplet_depth
+            >>> abjad.inspect(tuplet).parentage().tuplet_depth
             0
 
-            >>> abjad.inspect(staff).get_parentage().tuplet_depth
+            >>> abjad.inspect(staff).parentage().tuplet_depth
             0
 
         Returns nonnegative integer.

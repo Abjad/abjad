@@ -183,7 +183,7 @@ def test_Measure___delitem___07():
     del(measure[:1])
 
     assert len(measure) == 3
-    assert abjad.inspect(measure).get_indicator(abjad.TimeSignature)
+    assert abjad.inspect(measure).indicator(abjad.TimeSignature)
     assert not abjad.inspect(measure).is_well_formed()
 
 
@@ -199,5 +199,5 @@ def test_Measure___delitem___08():
     del(measure[:1])
 
     assert len(measure) == 3
-    assert abjad.inspect(measure).get_indicator(abjad.TimeSignature)
+    assert abjad.inspect(measure).indicator(abjad.TimeSignature)
     assert not abjad.inspect(measure).is_well_formed()

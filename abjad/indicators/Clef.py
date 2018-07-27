@@ -135,7 +135,7 @@ class Clef(AbjadValueObject):
         But Abjad components work fine:
 
         >>> for leaf in abjad.select(voice_1).leaves():
-        ...     leaf, abjad.inspect(leaf).get_effective(abjad.Clef)
+        ...     leaf, abjad.inspect(leaf).effective(abjad.Clef)
         ...
         (Note("e'8"), Clef('treble'))
         (Note("g'8"), Clef('treble'))
@@ -145,7 +145,7 @@ class Clef(AbjadValueObject):
         (Note("b'8"), Clef('treble'))
 
         >>> for leaf in abjad.select(voice_2).leaves():
-        ...     leaf, abjad.inspect(leaf).get_effective(abjad.Clef)
+        ...     leaf, abjad.inspect(leaf).effective(abjad.Clef)
         ...
         (Note("c'4."), Clef('treble'))
         (Note('c,8'), Clef('bass'))
@@ -181,7 +181,7 @@ class Clef(AbjadValueObject):
 
     _format_slot = 'opening'
 
-    _persistent = True
+    _parameter = True
 
     _redraw = True
 
@@ -386,7 +386,7 @@ class Clef(AbjadValueObject):
             }
 
             >>> for leaf in abjad.iterate(staff).leaves():
-            ...     leaf, abjad.inspect(leaf).get_effective(abjad.Clef)
+            ...     leaf, abjad.inspect(leaf).effective(abjad.Clef)
             ...
             (Note("c'4"), Clef('treble'))
             (Note("d'4"), Clef('treble'))
@@ -441,18 +441,18 @@ class Clef(AbjadValueObject):
         return self._name
 
     @property
-    def persistent(self) -> bool:
+    def parameter(self) -> bool:
         """
         Is true.
 
         ..  container:: example
 
-            >>> abjad.Clef('treble').persistent
+            >>> abjad.Clef('treble').parameter
             True
 
         Class constant.
         """
-        return self._persistent
+        return self._parameter
         
     @property
     def redraw(self) -> bool:
