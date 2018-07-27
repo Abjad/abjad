@@ -31,7 +31,7 @@ class HorizontalAlignment(uqbar.enums.StrictEnumeration):
         return self.name
 
     def __str__(self):
-        return self.name.lower()
+        return self.name
 
 
 class VerticalAlignment(uqbar.enums.StrictEnumeration):
@@ -60,7 +60,7 @@ class VerticalAlignment(uqbar.enums.StrictEnumeration):
         return self.name
 
     def __str__(self):
-        return self.name.lower()
+        return self.name
 
     @classmethod
     def from_expr(cls, expr):

@@ -192,6 +192,7 @@ class Tags(AbjadValueObject):
         ### PITCH HANDLING ###
 
         'ALLOW_OCTAVE',
+        'ALLOW_OUT_OF_RANGE',
         'ALLOW_REPEAT_PITCH',
         'DO_NOT_TRANSPOSE',
         'NOT_YET_PITCHED',

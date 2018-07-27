@@ -411,13 +411,13 @@ class Spanner(AbjadObject):
         self._block_leaf(leaf)
         self._remove_leaf(leaf)
 
-    def _stop_command_string(self):
-        return self._stop_command
-
     def _start_offset_in_me(self, leaf):
         leaf_start_offset = inspect(leaf).get_timespan().start_offset
         self_start_offset = inspect(self).get_timespan().start_offset
         return leaf_start_offset - self_start_offset
+
+    def _stop_command_string(self):
+        return self._stop_command
 
     def _stop_offset_in_me(self, leaf):
         leaf_start_offset = self._start_offset_in_me(leaf)

@@ -238,6 +238,8 @@ class Hairpin(Spanner):
             self._start_dynamic = None
             self._stop_dynamic = None
 
+    ### SPECIAL METHODS ###
+
     def __eq__(self, argument) -> bool:
         r"""
         Is true when hairpin equals ``argument``.
