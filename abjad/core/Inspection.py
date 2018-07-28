@@ -1598,13 +1598,17 @@ class Inspection(AbjadObject):
         """
         if isinstance(self.client, Component):
             return self.client._get_timespan(in_seconds=in_seconds)
-        assert isinstance(self.client, collections.Sequence), repr(self.client)
-        timespan = Inspection(self.client[0]).timespan(
-            in_seconds=in_seconds,
-            )
+        assert isinstance(self.client, collections.Iterable), repr(self.client)
+        remaining_items = []
+        for i, item in enumerate(self.client):
+            if i == 0:
+                first_item = item
+            else:
+                remaining_items.append(item)
+        timespan = Inspection(first_item).timespan(in_seconds=in_seconds)
         start_offset = timespan.start_offset
         stop_offset = timespan.stop_offset
-        for item in self.client[1:]:
+        for item in remaining_items:
             timespan = Inspection(item).timespan(in_seconds=in_seconds)
             if timespan.start_offset < start_offset:
                 start_offset = timespan.start_offset

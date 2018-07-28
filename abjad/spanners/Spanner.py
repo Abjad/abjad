@@ -1,4 +1,3 @@
-import collections
 import copy
 import typing
 from abjad import enums
@@ -488,6 +487,3 @@ class Spanner(AbjadObject):
         Gets tweaks.
         """
         return self._tweaks
-
-
-collections.Sequence.register(Spanner) # noqa
