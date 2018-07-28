@@ -17,7 +17,8 @@ docs:
 
 release:
 	make clean
+	make -C docs clean
 	make docs
 	make build
-	make -C abjad/docs upload
+	make -C docs upload
 	twine upload dist/*.tar.gz
