@@ -54,7 +54,12 @@ extras_require = {
     'ipython': ['abjad-ext-ipython >= 3.0.0a0, < 3.1.0'],
     'nauert': ['abjad-ext-nauert >= 3.0.0a0, < 3.1.0'],
     'rmakers': ['abjad-ext-rmakers >= 3.0.0a0, < 3.1.0'],
-    'test': ['mypy', 'pytest>=3.5.0', 'pytest-helpers-namespace>=2017.11.11'],
+    'test': [
+        'mypy',
+        'pytest>=3.5.0',
+        'pytest-cov',
+        'pytest-helpers-namespace',
+        ],
     'tonality': ['abjad-ext-tonality >= 3.0.0a0, < 3.1.0'],
     }
 
