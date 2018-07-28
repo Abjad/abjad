@@ -1,2 +1,0 @@
-Working with LilyPond stylesheets
-=================================
