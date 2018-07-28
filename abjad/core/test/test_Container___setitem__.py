@@ -1021,7 +1021,7 @@ def test_Container___setitem___21():
     """
 
     staff = abjad.Staff("c'8 [ { d'8 e'8 } f'8 ]")
-    beam = abjad.inspect(staff[0]).get_spanner(abjad.Beam)
+    beam = abjad.inspect(staff[0]).spanner(abjad.Beam)
 
     leaves = abjad.select(staff).leaves()
     assert beam.leaves == leaves

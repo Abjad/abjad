@@ -24,5 +24,5 @@ def test_LilyPondParser__indicators__BarLine_01():
     parser = abjad.parser.LilyPondParser()
     result = parser(format(target))
     assert format(target) == format(result) and target is not result
-    items = abjad.inspect(result[2]).get_indicators()
+    items = abjad.inspect(result[2]).indicators()
     assert 1 == len(items) and isinstance(items[0], abjad.BarLine)

@@ -35,7 +35,7 @@ class BowMotionTechnique(AbjadValueObject):
         '_technique_name',
         )
 
-    _persistent = True
+    _parameter = True
 
     _publish_storage_format = True
 
@@ -75,17 +75,17 @@ class BowMotionTechnique(AbjadValueObject):
         return 'line'
 
     @property
-    def persistent(self) -> bool:
+    def parameter(self) -> bool:
         """
         Is true.
 
         ..  container:: example
 
-            >>> abjad.BowMotionTechnique('jete').persistent
+            >>> abjad.BowMotionTechnique('jete').parameter
             True
 
         """
-        return self._persistent
+        return self._parameter
 
     @property
     def technique_name(self) -> typing.Optional[str]:

@@ -559,7 +559,7 @@ class Measure(Container):
             Multiplier(2, 3)
 
             >>> for note in measure:
-            ...     note, abjad.inspect(note).get_duration()
+            ...     note, abjad.inspect(note).duration()
             (Note("c'8"), Duration(1, 12))
             (Note("d'8"), Duration(1, 12))
             (Note("e'8"), Duration(1, 12))
@@ -746,9 +746,9 @@ class Measure(Container):
         import abjad
         assert len(selections)
         if not time_signatures:
-            time_signatures = [_.get_duration() for _ in selections]
+            time_signatures = [_.duration() for _ in selections]
         assert len(selections) == len(time_signatures)
-        durations = [abjad.inspect(_).get_duration() for _ in selections]
+        durations = [abjad.inspect(_).duration() for _ in selections]
         assert durations == [abjad.Duration(_) for _ in time_signatures]
         maker = abjad.MeasureMaker()
         measures = maker(time_signatures)

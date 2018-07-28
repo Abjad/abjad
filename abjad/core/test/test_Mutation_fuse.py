@@ -48,8 +48,8 @@ def test_Mutation_fuse_04():
     assert fused[0].written_duration == abjad.Duration(1, 4)
     assert fused[1].written_duration == abjad.Duration(1, 16)
 
-    tie_1 = abjad.inspect(fused[0]).get_spanner(abjad.Tie)
-    tie_2 = abjad.inspect(fused[1]).get_spanner(abjad.Tie)
+    tie_1 = abjad.inspect(fused[0]).spanner(abjad.Tie)
+    tie_2 = abjad.inspect(fused[1]).spanner(abjad.Tie)
 
     assert tie_1 is tie_2
     assert voice[0] is fused[0]
@@ -76,7 +76,7 @@ def test_Mutation_fuse_05():
         """
         )
 
-    assert abjad.inspect(staff).get_duration() == abjad.Duration(3, 8)
+    assert abjad.inspect(staff).duration() == abjad.Duration(3, 8)
 
     abjad.mutate(staff[:]).fuse()
 
@@ -89,7 +89,7 @@ def test_Mutation_fuse_05():
         """
         )
 
-    assert abjad.inspect(staff).get_duration() == abjad.Duration(3, 8)
+    assert abjad.inspect(staff).duration() == abjad.Duration(3, 8)
     assert abjad.inspect(staff).is_well_formed()
 
 

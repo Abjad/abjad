@@ -89,7 +89,7 @@ def make_desordre_measure(pitches):
     """
     for sequence in pitches:
         container = make_desordre_cell(sequence)
-        time_signature = abjad.inspect(container).get_duration()
+        time_signature = abjad.inspect(container).duration()
         time_signature = abjad.NonreducedFraction(time_signature)
         time_signature = time_signature.with_denominator(8)
         measure = abjad.Measure(time_signature, [container])
@@ -123,7 +123,7 @@ def make_desordre_score(pitches):
         staff_group.append(staff)
 
     # set clef and key signature to left hand staff
-    leaf = abjad.inspect(staff_group[1]).get_leaf(0)
+    leaf = abjad.inspect(staff_group[1]).leaf(0)
     clef = abjad.Clef('bass')
     abjad.attach(clef, leaf)
     key_signature = abjad.KeySignature('b', 'major')

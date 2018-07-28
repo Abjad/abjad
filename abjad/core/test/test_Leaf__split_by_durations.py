@@ -220,7 +220,7 @@ def test_Leaf__split_by_durations_06():
     """
 
     staff = abjad.Staff(r"\times 2/3 { c'8 [ d'8 e'8 ] }")
-    leaf = abjad.inspect(staff).get_leaf(0)
+    leaf = abjad.inspect(staff).leaf(0)
     halves = leaf._split_by_durations([abjad.Duration(1, 20)])
 
     assert format(staff) == abjad.String.normalize(
@@ -331,8 +331,8 @@ def test_Leaf__split_by_durations_09():
     assert isinstance(halves[1][0], abjad.Note)
     assert halves[0][0].written_duration == abjad.Duration(1, 8)
     assert halves[1][0].written_duration == abjad.Duration(1, 8)
-    assert len(abjad.inspect(halves[0][0]).get_logical_tie()) == 1
-    assert len(abjad.inspect(halves[1][0]).get_logical_tie()) == 1
+    assert len(abjad.inspect(halves[0][0]).logical_tie()) == 1
+    assert len(abjad.inspect(halves[1][0]).logical_tie()) == 1
 
 
 def test_Leaf__split_by_durations_10():
@@ -379,9 +379,9 @@ def test_Leaf__split_by_durations_11():
     assert halves[0][0].written_duration == abjad.Duration(4, 32)
     assert halves[0][1].written_duration == abjad.Duration(1, 32)
     assert halves[1][0].written_duration == abjad.Duration(3, 32)
-    assert len(abjad.inspect(halves[0][0]).get_logical_tie()) == 2
-    assert len(abjad.inspect(halves[0][1]).get_logical_tie()) == 2
-    assert len(abjad.inspect(halves[1][0]).get_logical_tie()) == 1
+    assert len(abjad.inspect(halves[0][0]).logical_tie()) == 2
+    assert len(abjad.inspect(halves[0][1]).logical_tie()) == 2
+    assert len(abjad.inspect(halves[1][0]).logical_tie()) == 1
 
 
 def test_Leaf__split_by_durations_12():
@@ -396,9 +396,9 @@ def test_Leaf__split_by_durations_12():
 
     assert len(staff) == 2
     for leaf in staff[:]:
-        assert abjad.inspect(leaf).get_spanners() == [tie]
+        assert abjad.inspect(leaf).spanners() == [tie]
         prototype = (abjad.Tie,)
-        assert abjad.inspect(leaf).get_spanner(prototype) is tie
+        assert abjad.inspect(leaf).spanner(prototype) is tie
 
     assert abjad.inspect(staff).is_well_formed()
 
@@ -419,7 +419,7 @@ def test_Leaf__split_by_durations_13():
 
     assert len(staff) == 5
     for l in staff:
-        assert abjad.inspect(l).get_spanners() == [beam]
+        assert abjad.inspect(l).spanners() == [beam]
         assert l._get_spanner(abjad.Beam) is beam
 
     assert abjad.inspect(staff).is_well_formed()
@@ -441,8 +441,8 @@ def test_Leaf__split_by_durations_14():
     assert len(halves[0]) == 2
     assert len(halves[1]) == 1
     for l in staff:
-        assert abjad.inspect(l).get_spanners() == [tie]
-        assert abjad.inspect(l).get_spanner(abjad.Tie) is tie
+        assert abjad.inspect(l).spanners() == [tie]
+        assert abjad.inspect(l).spanner(abjad.Tie) is tie
 
     assert abjad.inspect(staff).is_well_formed()
 
@@ -457,8 +457,8 @@ def test_Leaf__split_by_durations_15():
     abjad.attach(after_grace, note)
     halves = note._split_by_durations([abjad.Duration(1, 8)])
 
-    assert abjad.inspect(halves[0][0]).get_after_grace_container() is None
-    assert len(abjad.inspect(halves[1][0]).get_after_grace_container()) == 1
+    assert abjad.inspect(halves[0][0]).after_grace_container() is None
+    assert len(abjad.inspect(halves[1][0]).after_grace_container()) == 1
 
 
 def test_Leaf__split_by_durations_16():
@@ -475,7 +475,7 @@ def test_Leaf__split_by_durations_16():
     assert getattr(halves[0][0], 'after_grace', None) is None
     assert getattr(halves[0][1], 'after_grace', None) is None
     assert len(halves[1]) == 1
-    after_grace = abjad.inspect(halves[1][0]).get_after_grace_container()
+    after_grace = abjad.inspect(halves[1][0]).after_grace_container()
     assert len(after_grace) == 1
 
 
@@ -491,7 +491,7 @@ def test_Leaf__split_by_durations_17():
 
     assert len(halves[0]) == 1
     assert len(halves[1]) == 1
-    grace_container = abjad.inspect(halves[0][0]).get_grace_container()
+    grace_container = abjad.inspect(halves[0][0]).grace_container()
     assert len(grace_container) == 1
     assert not hasattr(halves[1][0], 'grace') is None
 

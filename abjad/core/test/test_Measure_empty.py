@@ -10,7 +10,7 @@ def test_Measure_empty_01():
     assert pytest.raises(abjad.UnderfullContainerError, 'format(measure)')
     assert len(measure) == 0
     assert measure._get_preprolated_duration() == 0
-    assert abjad.inspect(measure).get_duration() == 0
+    assert abjad.inspect(measure).duration() == 0
     assert not abjad.inspect(measure).is_well_formed()
 
 
@@ -22,5 +22,5 @@ def test_Measure_empty_02():
     assert pytest.raises(abjad.UnderfullContainerError, 'format(measure)')
     assert len(measure) == 0
     assert measure._get_preprolated_duration() == 0
-    assert abjad.inspect(measure).get_duration() == 0
+    assert abjad.inspect(measure).duration() == 0
     assert not abjad.inspect(measure).is_well_formed()

@@ -283,7 +283,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
             Note("d''4")
             Note("ef''4")
 
-            >>> abjad.inspect(result).get_timespan()
+            >>> abjad.inspect(result).timespan()
             Timespan(start_offset=Offset(20, 1), stop_offset=Offset(22, 1))
 
         ``counttime_components`` must belong to a single voice.
@@ -302,7 +302,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
         # iterate counttime components
         result = []
         for counttime_component in counttime_components:
-            if self(timespan_2=abjad.inspect(counttime_component).get_timespan()):
+            if self(timespan_2=abjad.inspect(counttime_component).timespan()):
                 result.append(counttime_component)
         # return result
         return abjad.select(result)
@@ -319,11 +319,11 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
             >>> staff = abjad.Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
             >>> start_offsets = [
-            ...     abjad.inspect(note).get_timespan().start_offset
+            ...     abjad.inspect(note).timespan().start_offset
             ...     for note in staff
             ...     ]
             >>> stop_offsets = [
-            ...     abjad.inspect(note).get_timespan().stop_offset
+            ...     abjad.inspect(note).timespan().stop_offset
             ...     for note in staff
             ...     ]
 

@@ -7,11 +7,13 @@ from abjad.core.MultimeasureRest import MultimeasureRest
 from abjad.core.Note import Note
 from abjad.core.Rest import Rest
 from abjad.core.Skip import Skip
+from abjad.indicators.Clef import Clef
 from abjad.top.detach import detach
 from abjad.top.inspect import inspect
 from abjad.top.iterate import iterate
 from abjad.top.sequence import sequence
 from abjad.top.tweak import tweak
+from abjad.utilities.Duration import Duration
 from abjad.utilities.DurationInequality import DurationInequality
 from abjad.utilities.String import String
 from .Spanner import Spanner
@@ -180,11 +182,7 @@ class Tie(Spanner):
             left_broken = bool(left_broken)
         self._left_broken = left_broken
         repeat_ = repeat
-        if isinstance(repeat, tuple) and len(repeat) == 2:
-            repeat_ = DurationInequality(
-                operator_string='>=',
-                duration=repeat,
-                )
+        repeat_ = self._coerce_inequality(repeat)
         if repeat_ is not None:
             assert isinstance(repeat_, (bool, DurationInequality))
         self._repeat = repeat_
@@ -252,13 +250,22 @@ class Tie(Spanner):
             return False
         if isinstance(self.repeat, bool):
             return self.repeat
-        previous = inspect(leaf).get_leaf(-1)
+        previous = inspect(leaf).leaf(-1)
         if previous is None:
             return True
         if previous not in self:
             return False
         assert isinstance(self.repeat, DurationInequality)
         return self.repeat(previous)
+
+    @staticmethod
+    def _coerce_inequality(argument):
+        if isinstance(argument, tuple) and len(argument) == 2:
+            return DurationInequality(
+                operator_string='>=',
+                duration=argument,
+                )
+        return argument
 
     def _conventional_tie_strings(self):
         return self._add_tweaks_and_direction('~')
@@ -279,11 +286,11 @@ class Tie(Spanner):
         if self._can_have_repeat_tie(leaf):
             if leaf is self[0]:
                 if self._left_broken:
-                    strings = self._repeat_tie_strings()
+                    strings = self._repeat_tie_strings(leaf)
                     strings = self._tag_show(strings)
                     bundle.after.spanners.extend(strings)
             else:
-                strings = self._repeat_tie_strings()
+                strings = self._repeat_tie_strings(leaf)
                 bundle.after.spanners.extend(strings)
         if self._can_have_conventional_tie(leaf):
             if leaf is self[-1]:
@@ -298,8 +305,30 @@ class Tie(Spanner):
                 bundle.after.spanners.extend(strings)
         return bundle
 
-    def _repeat_tie_strings(self):
-        return self._add_tweaks_and_direction(r'\repeatTie')
+    def _repeat_tie_strings(self, leaf):
+        strings = []
+        if self._should_force_repeat_tie_up(leaf):
+            strings.append(r'- \tweak direction #up')
+        strings_ = self._add_tweaks_and_direction(r'\repeatTie')
+        strings.extend(strings_)
+        return strings
+
+    @staticmethod
+    def _should_force_repeat_tie_up(leaf):
+        if not isinstance(leaf, (Note, Chord)):
+            return False
+        if leaf.written_duration < Duration(1):
+            return False
+        clef = inspect(leaf).effective(Clef, default=Clef('treble'))
+        if isinstance(leaf, Note):
+            written_pitches = [leaf.written_pitch]
+        else:
+            written_pitches = leaf.written_pitches
+        for written_pitch in written_pitches:
+            staff_position = written_pitch.to_staff_position(clef=clef)
+            if staff_position.number == 0:
+                return True
+        return False
 
     ### PUBLIC PROPERTIES ###
 
@@ -951,8 +980,6 @@ class Tie(Spanner):
         r"""
         Gets repeat-tie threshold.
 
-        Is true when tie should use the LilyPond ``\repeatTie`` command.
-
         ..  container:: example
 
             Formats all ties as repeat-ties when ``repeat`` is true:
@@ -1019,10 +1046,44 @@ class Tie(Spanner):
                     c'4.
                 }
 
-        Durations that satisfy inequality can be said to "meet repeat-tie
-        threshold." Durations that do not meet repeat-tie threshold format
-        conventional tie on current note; durations that do meet repeat-tie
-        threshold format repeat-tie on following note.
+            Durations that satisfy inequality can be said to "meet repeat-tie
+            threshold." Durations that do not meet repeat-tie threshold format
+            conventional tie on current note; durations that do meet repeat-tie
+            threshold format repeat-tie on following note.
+
+        ..  container:: example
+
+            LILYPOND FIX. Automatically tweaks repeat tie direction up when
+            repeat tie connects to long-duration note at staff position zero:
+
+            >>> tie = abjad.Tie(repeat=True)
+            >>> staff = abjad.Staff(r"b'4 b'4 b'2 b'1 b'\breve")
+            >>> abjad.attach(abjad.TimeSignature((8, 4)), staff[-1])
+            >>> abjad.attach(tie, staff[:])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..   docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    b'4
+                    b'4
+                    \repeatTie
+                    b'2
+                    \repeatTie
+                    b'1
+                    - \tweak direction #up
+                    \repeatTie
+                    \time 8/4
+                    b'\breve
+                    - \tweak direction #up
+                    \repeatTie
+                }
+
+            Without this fix, LilyPond incorrectly down-renders the last two
+            repeat-ties in the example above.
+
         """
         return self._repeat
 

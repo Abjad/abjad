@@ -303,7 +303,7 @@ class Leaf(Component):
     def _get_logical_tie(self):
         import abjad
         for component in [self]:
-            ties = inspect(component).get_spanners(abjad.Tie)
+            ties = inspect(component).spanners(abjad.Tie)
             if len(ties) == 1:
                 tie = ties.pop()
                 return abjad.LogicalTie(items=tie.leaves)
@@ -475,7 +475,7 @@ class Leaf(Component):
         import abjad
         durations = [Duration(_) for _ in durations]
         durations = sequence(durations)
-        leaf_duration = inspect(self).get_duration()
+        leaf_duration = inspect(self).duration()
         if cyclic:
             durations = durations.repeat_to_weight(leaf_duration)
         if sum(durations) < leaf_duration:
@@ -488,7 +488,7 @@ class Leaf(Component):
         # detach grace containers
         grace_container = self._detach_grace_container()
         after_grace_container = self._detach_after_grace_container()
-        leaf_prolation = inspect(self).get_parentage().prolation
+        leaf_prolation = inspect(self).parentage().prolation
         for duration in durations:
             new_leaf = copy.copy(self)
             preprolated_duration = duration / leaf_prolation
@@ -508,7 +508,7 @@ class Leaf(Component):
                 detach(abjad.Tie, leaf)
         # strip result leaves of indicators (other than multipliers)
         for leaf in result_leaves:
-            multiplier = inspect(leaf).get_indicator(Multiplier)
+            multiplier = inspect(leaf).indicator(Multiplier)
             detach(object, leaf)
             if multiplier is not None:
                 attach(multiplier, leaf)
@@ -523,26 +523,26 @@ class Leaf(Component):
         # fracture spanners
         if fracture_spanners:
             first_selection = result_selections[0]
-            for spanner in inspect(first_selection[-1]).get_spanners():
+            for spanner in inspect(first_selection[-1]).spanners():
                 index = spanner._index(first_selection[-1])
                 spanner._fracture(index, direction=enums.Right)
             last_selection = result_selections[-1]
-            for spanner in inspect(last_selection[0]).get_spanners():
+            for spanner in inspect(last_selection[0]).spanners():
                 index = spanner._index(last_selection[0])
                 spanner._fracture(index, direction=enums.Left)
             for middle_selection in result_selections[1:-1]:
-                spanners = inspect(middle_selection[0]).get_spanners()
+                spanners = inspect(middle_selection[0]).spanners()
                 for spanner in spanners:
                     index = spanner._index(middle_selection[0])
                     spanner._fracture(index, direction=enums.Left)
-                spanners = inspect(middle_selection[-1]).get_spanners()
+                spanners = inspect(middle_selection[-1]).spanners()
                 for spanner in spanners:
                     index = spanner._index(middle_selection[-1])
                     spanner._fracture(index, direction=enums.Right)
         # move indicators
         first_result_leaf = result_leaves[0]
         last_result_leaf = result_leaves[-1]
-        for indicator in inspect(self).get_indicators():
+        for indicator in inspect(self).indicators():
             if isinstance(indicator, Multiplier):
                 continue
             detach(indicator, self)

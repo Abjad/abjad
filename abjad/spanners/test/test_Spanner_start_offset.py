@@ -28,5 +28,5 @@ def test_Spanner_start_offset_01():
         """
         )
 
-    assert abjad.inspect(beam).get_timespan().start_offset == abjad.Duration(1, 8)
-    assert abjad.inspect(glissando).get_timespan().start_offset == abjad.Duration(0)
+    assert abjad.inspect(beam).timespan().start_offset == abjad.Duration(1, 8)
+    assert abjad.inspect(glissando).timespan().start_offset == abjad.Duration(0)

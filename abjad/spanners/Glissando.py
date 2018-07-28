@@ -183,12 +183,12 @@ class Glissando(Spanner):
 
     @staticmethod
     def _is_last_in_tie_chain(leaf):
-        logical_tie = inspect(leaf).get_logical_tie()
+        logical_tie = inspect(leaf).logical_tie()
         return leaf is logical_tie[-1]
 
     @staticmethod
     def _next_leaf_changes_current_pitch(leaf):
-        next_leaf = inspect(leaf).get_leaf(n=1)
+        next_leaf = inspect(leaf).leaf(n=1)
         if (isinstance(leaf, Note) and
             isinstance(next_leaf, Note) and
             leaf.written_pitch == next_leaf.written_pitch):
@@ -209,7 +209,7 @@ class Glissando(Spanner):
 
     @staticmethod
     def _previous_leaf_changes_current_pitch(leaf):
-        previous_leaf = inspect(leaf).get_leaf(n=-1)
+        previous_leaf = inspect(leaf).leaf(n=-1)
         if (isinstance(leaf, Note) and
             isinstance(previous_leaf, Note) and
             leaf.written_pitch == previous_leaf.written_pitch):

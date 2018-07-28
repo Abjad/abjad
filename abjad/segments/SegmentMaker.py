@@ -113,7 +113,7 @@ class SegmentMaker(AbjadObject):
                     assert container_identifier.is_lilypond_identifier()
                     assert container_identifier not in \
                         container_to_part_assignment
-                    timespan = inspect(container).get_timespan()
+                    timespan = inspect(container).timespan()
                     pair = (part, timespan)
                     container_to_part_assignment[container_identifier] = pair
                     container.identifier = f'%*% {container_identifier}'

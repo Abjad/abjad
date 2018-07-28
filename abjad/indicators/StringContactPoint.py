@@ -56,7 +56,7 @@ class StringContactPoint(AbjadValueObject):
         'sul tasto',
         )
 
-    _persistent = True
+    _parameter = True
 
     _publish_storage_format = True
 
@@ -140,17 +140,17 @@ class StringContactPoint(AbjadValueObject):
         return markup
 
     @property
-    def persistent(self) -> bool:
+    def parameter(self) -> bool:
         """
         Is true.
 
         ..  container:: example
 
-            >>> abjad.StringContactPoint('sul tasto').persistent
+            >>> abjad.StringContactPoint('sul tasto').parameter
             True
 
         """
-        return self._persistent
+        return self._parameter
 
     @property
     def tweaks(self) -> None:

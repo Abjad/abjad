@@ -182,7 +182,7 @@ class Wrapper(AbjadValueObject):
             }
 
             >>> leaf = old_staff[0]
-            >>> abjad.inspect(leaf).get_annotation('bow_direction')
+            >>> abjad.inspect(leaf).annotation('bow_direction')
             Down
 
             >>> new_staff = abjad.mutate(old_staff).copy()
@@ -195,7 +195,7 @@ class Wrapper(AbjadValueObject):
             }
 
             >>> leaf = new_staff[0]
-            >>> abjad.inspect(leaf).get_annotation('bow_direction')
+            >>> abjad.inspect(leaf).annotation('bow_direction')
             Down
 
         ..  container:: example
@@ -343,13 +343,13 @@ class Wrapper(AbjadValueObject):
             return None
         context = getattr(abjad, self.context, self.context)
         if isinstance(context, type):
-            for component in abjad.inspect(self.component).get_parentage():
+            for component in abjad.inspect(self.component).parentage():
                 if not isinstance(component, abjad.Context):
                     continue
                 if isinstance(component, context):
                     return component
         elif isinstance(context, str):
-            for component in abjad.inspect(self.component).get_parentage():
+            for component in abjad.inspect(self.component).parentage():
                 if not isinstance(component, abjad.Context):
                     continue
                 if (component.name == context or
@@ -480,7 +480,7 @@ class Wrapper(AbjadValueObject):
             wrapper.deactivate is not True and
             wrapper.indicator != self.indicator):
             if wrapper.start_offset == self.start_offset:
-                parentage = abjad.inspect(component).get_parentage()
+                parentage = abjad.inspect(component).parentage()
                 context = parentage.get_first(abjad.Context)
                 message = f'\n\nCan not attach ...\n\n{self.indicator}\n\n...'
                 message += f' to {repr(component)}'
@@ -491,7 +491,7 @@ class Wrapper(AbjadValueObject):
                     message += ' to the same leaf.'
                 else:
                     inspection = abjad.inspect(wrapper.component)
-                    parentage = inspection.get_parentage()
+                    parentage = inspection.parentage()
                     context = parentage.get_first(abjad.Context)
                     message += f' to {repr(wrapper.component)}'
                     message += f' in {context.name}.'
@@ -537,7 +537,7 @@ class Wrapper(AbjadValueObject):
             >>> note = abjad.Note("c'4")
             >>> articulation = abjad.Articulation('accent', direction=abjad.Up)
             >>> abjad.annotate(note, 'foo', articulation)
-            >>> abjad.inspect(note).get_annotation('foo')
+            >>> abjad.inspect(note).annotation('foo')
             Articulation('accent', Up)
 
         """
@@ -598,7 +598,7 @@ class Wrapper(AbjadValueObject):
         from abjad.top.inspect import inspect
         if self._synthetic_offset is not None:
             return self._synthetic_offset
-        return inspect(self._component).get_timespan().start_offset
+        return inspect(self._component).timespan().start_offset
 
     @property
     def synthetic_offset(self):

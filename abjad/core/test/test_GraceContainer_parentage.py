@@ -18,7 +18,7 @@ def test_GraceContainer_parentage_02():
     note = abjad.Note(1, (1, 4))
     grace_container = abjad.GraceContainer()
     abjad.attach(grace_container, note)
-    grace_container = abjad.inspect(note).get_grace_container()
+    grace_container = abjad.inspect(note).grace_container()
     assert isinstance(grace_container, abjad.GraceContainer)
     assert grace_container._carrier is note
     assert grace_container._carrier is note

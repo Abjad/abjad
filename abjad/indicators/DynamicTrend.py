@@ -50,6 +50,8 @@ class DynamicTrend(AbjadValueObject):
         '_tweaks',
         )
 
+    _context = 'Voice'
+
     _crescendo_start = r'\<'
 
     _decrescendo_start = r'\>'
@@ -161,6 +163,52 @@ class DynamicTrend(AbjadValueObject):
             )
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def context(self) -> str:
+        r"""
+        Returns (historically conventional) context ``'Voice'``.
+
+        ..  container:: example
+
+            >>> abjad.DynamicTrend('<').context
+            'Voice'
+
+        ..  container:: example
+
+            >>> voice = abjad.Voice("c'4 d' e' f'")
+            >>> abjad.attach(abjad.Dynamic('p'), voice[0])
+            >>> abjad.attach(abjad.DynamicTrend('<'), voice[0])
+            >>> abjad.attach(abjad.Dynamic('f'), voice[-1])
+            >>> abjad.show(voice) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(voice)
+                \new Voice
+                {
+                    c'4
+                    \p
+                    \<
+                    d'4
+                    e'4
+                    f'4
+                    \f
+                }
+
+
+            >>> for leaf in voice:
+            ...     print(leaf, abjad.inspect(leaf).effective(abjad.DynamicTrend))
+            c'4 DynamicTrend(shape='<')
+            d'4 DynamicTrend(shape='<')
+            e'4 DynamicTrend(shape='<')
+            f'4 DynamicTrend(shape='<')
+
+        Class constant.
+
+        Override with ``abjad.attach(..., context='...')``.
+        """
+        return self._context
 
     @property
     def known_shapes(self) -> typing.Tuple[str, ...]:

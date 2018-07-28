@@ -28,7 +28,7 @@ class BowPressure(AbjadValueObject):
         '_pressure',
         )
 
-    _persistent = True
+    _parameter = True
 
     _publish_storage_format = True
 
@@ -40,17 +40,17 @@ class BowPressure(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def persistent(self) -> bool:
+    def parameter(self) -> bool:
         """
         Is true.
 
         ..  container:: example
 
-            >>> abjad.BowPressure('overpressure').persistent
+            >>> abjad.BowPressure('overpressure').parameter
             True
 
         """
-        return self._persistent
+        return self._parameter
 
     @property
     def pressure(self) -> typing.Optional[str]:

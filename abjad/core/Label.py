@@ -2112,7 +2112,7 @@ class Label(AbjadObject):
         if self._expression:
             return self._update_expression(inspect.currentframe())
         for logical_tie in iterate(self.client).logical_ties():
-            duration = abjad_inspect(logical_tie).get_duration()
+            duration = abjad_inspect(logical_tie).duration()
             if denominator is not None:
                 duration = NonreducedFraction(duration)
                 duration = duration.with_denominator(denominator)
@@ -2904,7 +2904,7 @@ class Label(AbjadObject):
         prototype = prototype or NamedInterval
         for note in  iterate(self.client).leaves(Note):
             label = None
-            next_leaf = abjad_inspect(note).get_leaf(1)
+            next_leaf = abjad_inspect(note).leaf(1)
             if isinstance(next_leaf, Note):
                 interval = NamedInterval.from_pitch_carriers(
                     note,
@@ -4181,7 +4181,7 @@ class Label(AbjadObject):
         for logical_tie in iterate(self.client).logical_ties():
             if clock_time:
                 inspector = abjad_inspect(logical_tie.head)
-                timespan = inspector.get_timespan(in_seconds=True)
+                timespan = inspector.timespan(in_seconds=True)
                 start_offset = timespan.start_offset
                 if global_offset is not None:
                     start_offset += global_offset
@@ -4191,7 +4191,7 @@ class Label(AbjadObject):
                 else:
                     string = '"{}"'.format(string)
             else:
-                timespan = abjad_inspect(logical_tie.head).get_timespan()
+                timespan = abjad_inspect(logical_tie.head).timespan()
                 start_offset = timespan.start_offset
                 if global_offset is not None:
                     start_offset += global_offset

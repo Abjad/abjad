@@ -31,12 +31,12 @@ def test_Container__get_spanners_that_dominate_component_pair_01():
         """
         )
 
-    parentage = abjad.inspect(container[0]).get_parentage()
-    spanners = abjad.inspect(parentage).get_spanners()
+    parentage = abjad.inspect(container[0]).parentage()
+    spanners = abjad.inspect(parentage).spanners()
     spanners == [beam, slur, trill]
     
-    parentage = abjad.inspect(container).get_parentage()
-    spanners = abjad.inspect(parentage).get_spanners()
+    parentage = abjad.inspect(container).parentage()
+    spanners = abjad.inspect(parentage).spanners()
     spanners == [trill]
 
 
@@ -70,5 +70,5 @@ def test_Container__get_spanners_that_dominate_component_pair_02():
         """
         )
 
-    parentage = abjad.inspect(container).get_parentage(include_self=False)
-    assert abjad.inspect(parentage).get_spanners() == []
+    parentage = abjad.inspect(container).parentage(include_self=False)
+    assert abjad.inspect(parentage).spanners() == []

@@ -28,7 +28,7 @@ def test_VerticalMoment_next_vertical_moment_01():
         """
         )
 
-    vertical_moment = abjad.inspect(score).get_vertical_moment_at(abjad.Offset(0))
+    vertical_moment = abjad.inspect(score).vertical_moment_at(abjad.Offset(0))
     assert vertical_moment.offset == abjad.Offset(0)
 
     vertical_moment = vertical_moment.next_vertical_moment

@@ -41,7 +41,7 @@ class Descendants(AbjadObject, collections.Sequence):
                 }
             >>
 
-        >>> for component in abjad.inspect(score).get_descendants():
+        >>> for component in abjad.inspect(score).descendants():
         ...     component
         ...
         <Score<<2>>>
@@ -54,7 +54,7 @@ class Descendants(AbjadObject, collections.Sequence):
 
         >>> bass_voice = score['Bass Voice']
         >>> agent = abjad.inspect(bass_voice)
-        >>> for component in agent.get_descendants():
+        >>> for component in agent.descendants():
         ...     component
         ...
         Voice('b,4', name='Bass Voice')
@@ -90,8 +90,8 @@ class Descendants(AbjadObject, collections.Sequence):
         else:
             for component in components:
                 append_x = True
-                if not (abjad.inspect(component).get_timespan().start_offset < cross_offset and
-                    cross_offset < abjad.inspect(component).get_timespan().stop_offset):
+                if not (abjad.inspect(component).timespan().start_offset < cross_offset and
+                    cross_offset < abjad.inspect(component).timespan().stop_offset):
                     append_x = False
                 if append_x:
                     result.append(component)

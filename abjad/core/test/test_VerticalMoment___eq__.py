@@ -30,10 +30,10 @@ def test_VerticalMoment___eq___01():
 
     staff_group = score[1]
 
-    vertical_moment_1 = abjad.inspect(staff_group).get_vertical_moment_at(abjad.Offset(1, 8))
+    vertical_moment_1 = abjad.inspect(staff_group).vertical_moment_at(abjad.Offset(1, 8))
     "VerticalMoment(PianoStaff<<2>>, abjad.Staff{2}, a'4, abjad.Staff{4}, e'8)"
 
-    vertical_moment_2 = abjad.inspect(staff_group).get_vertical_moment_at(abjad.Offset(1, 8))
+    vertical_moment_2 = abjad.inspect(staff_group).vertical_moment_at(abjad.Offset(1, 8))
     "VerticalMoment(PianoStaff<<2>>, abjad.Staff{2}, a'4, abjad.Staff{4}, e'8)"
 
     assert vertical_moment_1 == vertical_moment_2
@@ -95,11 +95,11 @@ def test_VerticalMoment___eq___02():
         )
 
     vertical_moment_1 = abjad.inspect(
-        staff_group).get_vertical_moment_at(abjad.Offset(1, 8))
+        staff_group).vertical_moment_at(abjad.Offset(1, 8))
     "VerticalMoment(PianoStaff<<2>>, abjad.Staff{2}, a'4, abjad.Staff{4}, e'8)"
 
     vertical_moment_2 = abjad.inspect(
-        staff_group[0]).get_vertical_moment_at(abjad.Offset(1, 8))
+        staff_group[0]).vertical_moment_at(abjad.Offset(1, 8))
     "VerticalMoment(abjad.Staff{2}, a'4, abjad.Staff{4}, e'8)"
 
     assert not vertical_moment_1 == vertical_moment_2

@@ -128,7 +128,7 @@ def test_LilyPondParser__spanners__Beam_06():
 
     string = "{ c'8 c'8 c'8 c'8 ] }"
     result = abjad.parser.LilyPondParser()(string)
-    assert not abjad.inspect(result[-1]).get_spanners()
+    assert not abjad.inspect(result[-1]).spanners()
 
 
 def test_LilyPondParser__spanners__Beam_07():

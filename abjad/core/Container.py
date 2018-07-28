@@ -462,7 +462,7 @@ class Container(Component):
         for component in argument:
             if not isinstance(component, Component):
                 return False
-            if not inspect(component).get_parentage().is_orphan:
+            if not inspect(component).parentage().is_orphan:
                 return False
         return True
 
@@ -500,7 +500,7 @@ class Container(Component):
         return new_container
 
     def _eject_contents(self):
-        if inspect(self).get_parentage().parent is not None:
+        if inspect(self).parentage().parent is not None:
             message = 'can not eject contents of in-score container.'
             raise Exception(message)
         contents = self[:]
@@ -719,16 +719,16 @@ class Container(Component):
         """
         if left is None or right is None:
             return []
-        left_descendants = inspect(left).get_descendants()
-        left_contained = inspect(left_descendants).get_spanners()
-        right_descendants = inspect(right).get_descendants()
-        right_contained = inspect(right_descendants).get_spanners()
+        left_descendants = inspect(left).descendants()
+        left_contained = inspect(left_descendants).spanners()
+        right_descendants = inspect(right).descendants()
+        right_contained = inspect(right_descendants).spanners()
         dominant_spanners = set(left_contained) & set(right_contained)
         dominant_spanners = list(dominant_spanners)
-        right_start_offset = inspect(right).get_timespan().start_offset
+        right_start_offset = inspect(right).timespan().start_offset
         components_after_gap = []
-        for component in inspect(right).get_lineage():
-            if inspect(component).get_timespan().start_offset == right_start_offset:
+        for component in inspect(right).lineage():
+            if inspect(component).timespan().start_offset == right_start_offset:
                 components_after_gap.append(component)
         receipt = []
         for spanner in dominant_spanners:
@@ -828,15 +828,15 @@ class Container(Component):
         import abjad
         for component in self:
             if isinstance(component, abjad.Leaf):
-                ties = inspect(component).get_spanners(abjad.Tie)
+                ties = inspect(component).spanners(abjad.Tie)
                 if not ties or tuple(ties)[0].leaves[-1] is component:
-                    yield inspect(component).get_logical_tie()
+                    yield inspect(component).logical_tie()
             else:
                 assert isinstance(component, abjad.Container)
                 yield component
 
     def _move_spanners_to_children(self):
-        for spanner in inspect(self).get_spanners():
+        for spanner in inspect(self).spanners():
             i = spanner._index(self)
             spanner._components.__setitem__(slice(i, i + 1), self[:])
             for component in self:
@@ -851,7 +851,7 @@ class Container(Component):
             parser = abjad.parser.ReducedLyParser()
             parsed = parser(user_input[4:])
             if parser._toplevel_component_count == 1:
-                parent = inspect(parsed).get_parentage().parent
+                parent = inspect(parsed).parentage().parent
                 if parent is None:
                     parsed = Container([parsed])
                 else:
@@ -936,7 +936,7 @@ class Container(Component):
         spanners_receipt = self._get_spanners_that_dominate_slice(start, stop)
         for component in old_components:
             for child in abjad.iterate([component]).components():
-                for spanner in inspect(child).get_spanners():
+                for spanner in inspect(child).spanners():
                     spanner._remove(child)
         del(self[start:stop])
         # must withdraw before setting in self!
@@ -1021,7 +1021,7 @@ class Container(Component):
             right._set_parent(None)
         # fracture spanners if requested
         if fracture_spanners:
-            for spanner in inspect(left).get_spanners():
+            for spanner in inspect(left).spanners():
                 index = spanner._index(left)
                 spanner._fracture(index, direction=enums.Right)
         # return new left and right containers
@@ -1049,13 +1049,13 @@ class Container(Component):
         if duration == 0:
             return [], self
         # get split point score offset
-        timespan = inspect(self).get_timespan()
+        timespan = inspect(self).timespan()
         global_split_point = timespan.start_offset + duration
         # get any duration-crossing descendents
         cross_offset = timespan.start_offset + duration
         duration_crossing_descendants = []
-        for descendant in inspect(self).get_descendants():
-            timespan = inspect(descendant).get_timespan()
+        for descendant in inspect(self).descendants():
+            timespan = inspect(descendant).timespan()
             start_offset = timespan.start_offset
             stop_offset = timespan.stop_offset
             if start_offset < cross_offset < stop_offset:
@@ -1071,7 +1071,7 @@ class Container(Component):
         # code that crawls and splits later on will be happier
         if len(measures) == 1:
             measure = measures[0]
-            timespan = inspect(measure).get_timespan()
+            timespan = inspect(measure).timespan()
             start_offset = timespan.start_offset
             split_point_in_measure = global_split_point - start_offset
             if measure.has_non_power_of_two_denominator:
@@ -1088,11 +1088,11 @@ class Container(Component):
                     non_power_of_two_product *= non_power_of_two_factor
                 measure._scale_denominator(non_power_of_two_product)
                 # rederive duration crossers with possibly new measure contents
-                timespan = inspect(self).get_timespan()
+                timespan = inspect(self).timespan()
                 cross_offset = timespan.start_offset + duration
                 duration_crossing_descendants = []
-                for descendant in inspect(self).get_descendants():
-                    timespan = inspect(descendant).get_timespan()
+                for descendant in inspect(self).descendants():
+                    timespan = inspect(descendant).timespan()
                     start_offset = timespan.start_offset
                     stop_offset = timespan.stop_offset
                     if start_offset < cross_offset < stop_offset:
@@ -1107,7 +1107,7 @@ class Container(Component):
         if isinstance(bottom, abjad.Leaf):
             assert isinstance(bottom, abjad.Leaf)
             did_split_leaf = True
-            timespan = inspect(bottom).get_timespan()
+            timespan = inspect(bottom).timespan()
             start_offset = timespan.start_offset
             split_point_in_bottom = global_split_point - start_offset
             left_list, right_list = bottom._split_by_durations(
@@ -1128,10 +1128,10 @@ class Container(Component):
         else:
             duration_crossing_containers = duration_crossing_descendants[:]
             for leaf in abjad.iterate(bottom).leaves():
-                timespan = inspect(leaf).get_timespan()
+                timespan = inspect(leaf).timespan()
                 if timespan.start_offset == global_split_point:
                     leaf_right_of_split = leaf
-                    leaf_left_of_split = inspect(leaf).get_leaf(-1)
+                    leaf_left_of_split = inspect(leaf).leaf(-1)
                     break
             else:
                 message = 'can not split empty container {!r}.'
@@ -1142,9 +1142,9 @@ class Container(Component):
         # find component to right of split
         # that is also immediate child of last duration-crossing container
         agent = inspect(leaf_right_of_split)
-        parentage = agent.get_parentage(include_self=True)
+        parentage = agent.parentage(include_self=True)
         for component in parentage:
-            parent = inspect(component).get_parentage().parent
+            parent = inspect(component).parentage().parent
             if parent is duration_crossing_containers[-1]:
                 highest_level_component_right_of_split = component
                 break
@@ -1155,11 +1155,11 @@ class Container(Component):
         # and fracture spanners if requested
         if fracture_spanners:
             agent = inspect(leaf_right_of_split)
-            start_offset = agent.get_timespan().start_offset
-            for parent in agent.get_parentage():
-                timespan = inspect(parent).get_timespan()
+            start_offset = agent.timespan().start_offset
+            for parent in agent.parentage():
+                timespan = inspect(parent).timespan()
                 if timespan.start_offset == start_offset:
-                    for spanner in inspect(parent).get_spanners():
+                    for spanner in inspect(parent).spanners():
                         index = spanner._index(parent)
                         spanner._fracture(index, direction=enums.Left)
                 if parent is component:
@@ -1177,8 +1177,8 @@ class Container(Component):
         # NOTE: If logical tie here is convenience, then fusing is good.
         #       If logical tie here is user-given, then fusing is less good.
         #       Maybe later model difference between user logical ties and not.
-        left_logical_tie = inspect(leaf_left_of_split).get_logical_tie()
-        right_logical_tie = inspect(leaf_right_of_split).get_logical_tie()
+        left_logical_tie = inspect(leaf_left_of_split).logical_tie()
+        right_logical_tie = inspect(leaf_right_of_split).logical_tie()
         left_logical_tie._fuse_leaves_by_immediate_parent()
         right_logical_tie._fuse_leaves_by_immediate_parent()
         # reapply tie here if crawl above killed tie applied to leaves
@@ -1188,8 +1188,8 @@ class Container(Component):
                 isinstance(leaf_left_of_split, abjad.Note)
                 ):
                 if (
-                    inspect(leaf_left_of_split).get_parentage().root is
-                    inspect(leaf_right_of_split).get_parentage().root
+                    inspect(leaf_left_of_split).parentage().root is
+                    inspect(leaf_right_of_split).parentage().root
                     ):
                     leaves_around_split = (
                         leaf_left_of_split,
@@ -1228,7 +1228,7 @@ class Container(Component):
         right_container = self.__copy__()
         left_container.extend(left_components)
         right_container.extend(right_components)
-        if inspect(self).get_parentage().parent is not None:
+        if inspect(self).parentage().parent is not None:
             containers = select([left_container, right_container])
             abjad.mutate(self).replace(containers)
         # return list-wrapped halves of container
@@ -1419,7 +1419,7 @@ class Container(Component):
     def name(self, argument):
         assert isinstance(argument, (str, type(None)))
         old_name = self._name
-        for parent in inspect(self).get_parentage(include_self=False):
+        for parent in inspect(self).parentage(include_self=False):
             named_children = parent._named_children
             if old_name is not None:
                 named_children[old_name].remove(self)
@@ -1702,12 +1702,12 @@ class Container(Component):
         self._components.insert(i, component)
         previous_leaf = component._get_leaf(-1)
         if previous_leaf:
-            for spanner in inspect(previous_leaf).get_spanners():
+            for spanner in inspect(previous_leaf).spanners():
                 index = spanner._index(previous_leaf)
                 spanner._fracture(index, direction=enums.Right)
         next_leaf = component._get_leaf(1)
         if next_leaf:
-            for spanner in inspect(next_leaf).get_spanners():
+            for spanner in inspect(next_leaf).spanners():
                 index = spanner._index(next_leaf)
                 spanner._fracture(index, direction=enums.Left)
 

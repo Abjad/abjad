@@ -1406,7 +1406,7 @@ class LilyPondFile(AbjadObject):
                     break
         if isinstance(selections, list):
             if divisions is None:
-                duration = abjad_inspect(selections).get_duration()
+                duration = abjad_inspect(selections).duration()
                 divisions = [duration]
             time_signatures = time_signatures or divisions
             maker = MeasureMaker(implicit_scaling=implicit_scaling)
@@ -1451,7 +1451,7 @@ class LilyPondFile(AbjadObject):
                 voices.append(voice)
             staff = Staff(voices, is_simultaneous=True)
             if divisions is None:
-                duration = abjad_inspect(staff).get_duration()
+                duration = abjad_inspect(staff).duration()
                 divisions = [duration]
         else:
             message = 'must be list or dictionary of selections:'

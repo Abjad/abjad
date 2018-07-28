@@ -674,7 +674,7 @@ class Iteration(AbjadObject):
         """
         import abjad
         prototype = prototype or abjad.Component
-        parentage = abjad.inspect(self.client).get_parentage()
+        parentage = abjad.inspect(self.client).parentage()
         logical_voice = parentage.logical_voice
         if reverse:
             direction = enums.Right
@@ -686,7 +686,7 @@ class Iteration(AbjadObject):
             ):
             if not isinstance(component, prototype):
                 continue
-            parentage = abjad.inspect(component).get_parentage()
+            parentage = abjad.inspect(component).parentage()
             if parentage.logical_voice == logical_voice:
                 yield component
 
@@ -868,8 +868,8 @@ class Iteration(AbjadObject):
         grace_container, after_grace_container = None, None
         if grace_notes is not False and isinstance(argument, abjad.Leaf):
             inspection = abjad.inspect(argument)
-            grace_container = inspection.get_grace_container()
-            after_grace_container = inspection.get_after_grace_container()
+            grace_container = inspection.grace_container()
+            after_grace_container = inspection.after_grace_container()
         if not reverse:
             if grace_notes is not False and grace_container:
                 for component in grace_container:
@@ -1597,7 +1597,7 @@ class Iteration(AbjadObject):
 
         ..  container:: example
 
-            Regression: yields logical tie even when leaves are missing in
+            REGRESSION: yields logical tie even when leaves are missing in
             input:
 
             ..  container:: example
@@ -1637,7 +1637,7 @@ class Iteration(AbjadObject):
             grace_notes=grace_notes,
             reverse=reverse,
             ):
-            logical_tie = abjad.inspect(leaf).get_logical_tie()
+            logical_tie = abjad.inspect(leaf).logical_tie()
             if leaf is not logical_tie.head:
                 continue
             if (nontrivial is None or
@@ -1678,7 +1678,7 @@ class Iteration(AbjadObject):
         """
         import abjad
         for leaf in abjad.iterate(self.client).leaves(pitched=True):
-            instrument = abjad.inspect(leaf).get_effective(abjad.Instrument)
+            instrument = abjad.inspect(leaf).effective(abjad.Instrument)
             if instrument is None:
                 message = 'no instrument found.'
                 raise ValueError(message)
@@ -2052,13 +2052,13 @@ class Iteration(AbjadObject):
         import abjad
         visited_spanners = set()
         for component in self.components(reverse=reverse):
-            spanners = abjad.inspect(component).get_spanners(
+            spanners = abjad.inspect(component).spanners(
                 prototype=prototype,
                 )
             spanners = sorted(spanners,
                 key=lambda x: (
                     type(x).__name__,
-                    abjad.inspect(x).get_timespan(),
+                    abjad.inspect(x).timespan(),
                     ),
                 )
             for spanner in spanners:
@@ -2214,11 +2214,11 @@ class Iteration(AbjadObject):
         if not reverse:
             while components:
                 current_start_offset = min(
-                    abjad.inspect(_).get_timespan().start_offset
+                    abjad.inspect(_).timespan().start_offset
                     for _ in components
                     )
                 components.sort(
-                    key=lambda x: abjad.inspect(x).get_parentage(
+                    key=lambda x: abjad.inspect(x).parentage(
                         grace_notes=True).score_index,
                     reverse=True,
                     )
@@ -2226,7 +2226,7 @@ class Iteration(AbjadObject):
                 components = []
                 while components_to_process:
                     component = components_to_process.pop()
-                    start_offset = abjad.inspect(component).get_timespan().start_offset
+                    start_offset = abjad.inspect(component).timespan().start_offset
                     #print('    COMPONENT:', component)
                     if current_start_offset < start_offset:
                         components.append(component)
@@ -2252,11 +2252,11 @@ class Iteration(AbjadObject):
                 #print('STEP')
                 #print()
                 current_stop_offset = max(
-                    abjad.inspect(_).get_timespan().stop_offset
+                    abjad.inspect(_).timespan().stop_offset
                     for _ in components
                     )
                 components.sort(
-                    key=lambda x: abjad.inspect(x).get_parentage(
+                    key=lambda x: abjad.inspect(x).parentage(
                         grace_notes=True).score_index,
                     reverse=True,
                     )
@@ -2264,7 +2264,7 @@ class Iteration(AbjadObject):
                 components = []
                 while components_to_process:
                     component = components_to_process.pop()
-                    stop_offset = abjad.inspect(component).get_timespan().stop_offset
+                    stop_offset = abjad.inspect(component).timespan().stop_offset
                     #print('\tCOMPONENT:', component)
                     if stop_offset < current_stop_offset:
                         components.insert(0, component)
@@ -2433,7 +2433,7 @@ class Iteration(AbjadObject):
         import abjad
         def _buffer_components_starting_with(component, buffer, stop_offsets):
             buffer.append(component)
-            stop_offset = abjad.inspect(component).get_timespan().stop_offset
+            stop_offset = abjad.inspect(component).timespan().stop_offset
             stop_offsets.append(stop_offset)
             if isinstance(component, abjad.Container):
                 if component.is_simultaneous:
@@ -2458,7 +2458,7 @@ class Iteration(AbjadObject):
                 offset = abjad.Offset(current_offset)
                 components = list(buffer)
                 components.sort(
-                    key=lambda _: abjad.inspect(_).get_parentage().score_index
+                    key=lambda _: abjad.inspect(_).parentage().score_index
                     )
                 vertical_moment._offset = offset
                 vertical_moment._governors = governors
@@ -2482,7 +2482,7 @@ class Iteration(AbjadObject):
                 raise StopIteration
         def _update_buffer(current_offset, buffer, stop_offsets):
             for component in buffer[:]:
-                offset = abjad.inspect(component).get_timespan().stop_offset
+                offset = abjad.inspect(component).timespan().stop_offset
                 if offset <= current_offset:
                     buffer.remove(component)
                     try:
@@ -2502,7 +2502,7 @@ class Iteration(AbjadObject):
         else:
             moments_in_governor = []
             for component in self.components():
-                offset = abjad.inspect(component).get_timespan().start_offset
+                offset = abjad.inspect(component).timespan().start_offset
                 if offset not in moments_in_governor:
                     moments_in_governor.append(offset)
             moments_in_governor.sort()

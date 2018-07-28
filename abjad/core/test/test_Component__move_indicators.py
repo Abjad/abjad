@@ -19,10 +19,10 @@ def test_Component__move_indicators_01():
         """
         )
 
-    assert len(abjad.inspect(staff[0]).get_indicators()) == 2
-    assert len(abjad.inspect(staff[1]).get_indicators()) == 0
-    assert len(abjad.inspect(staff[2]).get_indicators()) == 0
-    assert len(abjad.inspect(staff[3]).get_indicators()) == 0
+    assert len(abjad.inspect(staff[0]).indicators()) == 2
+    assert len(abjad.inspect(staff[1]).indicators()) == 0
+    assert len(abjad.inspect(staff[2]).indicators()) == 0
+    assert len(abjad.inspect(staff[3]).indicators()) == 0
 
     staff[0]._move_indicators(staff[2])
 
@@ -40,7 +40,7 @@ def test_Component__move_indicators_01():
         """
         )
 
-    assert len(abjad.inspect(staff[0]).get_indicators()) == 0
-    assert len(abjad.inspect(staff[1]).get_indicators()) == 0
-    assert len(abjad.inspect(staff[2]).get_indicators()) == 2
-    assert len(abjad.inspect(staff[3]).get_indicators()) == 0
+    assert len(abjad.inspect(staff[0]).indicators()) == 0
+    assert len(abjad.inspect(staff[1]).indicators()) == 0
+    assert len(abjad.inspect(staff[2]).indicators()) == 2
+    assert len(abjad.inspect(staff[3]).indicators()) == 0

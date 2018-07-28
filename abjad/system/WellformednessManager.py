@@ -52,7 +52,7 @@ class WellformednessManager(AbjadObject):
         import abjad
         violators, spanners = set(), set()
         for leaf in abjad.iterate(argument).leaves():
-            spanners_ = list(abjad.inspect(leaf).get_spanners(prototype))
+            spanners_ = list(abjad.inspect(leaf).spanners(prototype))
             spanners.update(spanners_)
             if 1 < len(spanners_):
                 if len(spanners_) == 2:
@@ -95,8 +95,8 @@ class WellformednessManager(AbjadObject):
         """
         import abjad
         violators = []
-        descendants = abjad.inspect(argument).get_descendants()
-        spanners = abjad.inspect(descendants).get_spanners()
+        descendants = abjad.inspect(argument).descendants()
+        spanners = abjad.inspect(descendants).spanners()
         for spanner in spanners:
             if spanner._contiguity_constraint == 'logical voice':
                 if not spanner[:].are_contiguous_logical_voice():
@@ -229,7 +229,7 @@ class WellformednessManager(AbjadObject):
         import abjad
         violators, total = [], set()
         for leaf in abjad.iterate(argument).leaves():
-            hairpins = abjad.inspect(leaf).get_spanners(abjad.Hairpin)
+            hairpins = abjad.inspect(leaf).spanners(abjad.Hairpin)
             hairpins = list(hairpins)
             total.update(hairpins)
             if len(hairpins) <= 1:
@@ -324,13 +324,13 @@ class WellformednessManager(AbjadObject):
         import abjad
         violators, ties = [], set()
         for leaf in abjad.iterate(argument).leaves(pitched=True):
-            ties_ = abjad.inspect(leaf).get_spanners(abjad.Tie)
+            ties_ = abjad.inspect(leaf).spanners(abjad.Tie)
             ties.update(ties_)
         for tie in ties:
             for first_leaf, second_leaf in abjad.sequence(tie).nwise():
-                first_pitches = abjad.inspect(first_leaf).get_pitches()
+                first_pitches = abjad.inspect(first_leaf).pitches()
                 first_pitches = set([_.number for _ in first_pitches])
-                second_pitches = abjad.inspect(second_leaf).get_pitches()
+                second_pitches = abjad.inspect(second_leaf).pitches()
                 second_pitches = set([_.number for _ in second_pitches])
                 if not (first_pitches & second_pitches):
                     violators.append(tie)
@@ -374,7 +374,7 @@ class WellformednessManager(AbjadObject):
         for i, component in enumerate(components):
             total.add(component)
             if 0 < i:
-                if abjad.inspect(component).get_parentage().parent is None:
+                if abjad.inspect(component).parentage().parent is None:
                     violators.append(component)
         return violators, len(total)
 
@@ -388,7 +388,7 @@ class WellformednessManager(AbjadObject):
         violators, total = [], set()
         for measure in abjad.iterate(argument).components(abjad.Measure):
             total.add(measure)
-            parentage = abjad.inspect(measure).get_parentage(
+            parentage = abjad.inspect(measure).parentage(
                 include_self=False,
                 )
             if parentage.get_first(abjad.Measure):
@@ -523,10 +523,10 @@ class WellformednessManager(AbjadObject):
         violators, total = [], set()
         for leaf in abjad.iterate(argument).leaves():
             total.add(leaf)
-            instrument = abjad.inspect(leaf).get_effective(abjad.Instrument)
+            instrument = abjad.inspect(leaf).effective(abjad.Instrument)
             if instrument is None:
                 continue
-            clef = abjad.inspect(leaf).get_effective(abjad.Clef)
+            clef = abjad.inspect(leaf).effective(abjad.Clef)
             if clef is None:
                 continue
             allowable_clefs = [
@@ -590,7 +590,7 @@ class WellformednessManager(AbjadObject):
         violators, total = [], set()
         for leaf in abjad.iterate(argument).leaves(pitched=True):
             total.add(leaf)
-            instrument = abjad.inspect(leaf).get_effective(abjad.Instrument)
+            instrument = abjad.inspect(leaf).effective(abjad.Instrument)
             if instrument is None:
                 continue
             if leaf not in instrument.pitch_range:
@@ -638,7 +638,7 @@ class WellformednessManager(AbjadObject):
         import abjad
         violators, total = [], set()
         for leaf in abjad.iterate(argument).leaves():
-            beams = abjad.inspect(leaf).get_spanners(abjad.Beam)
+            beams = abjad.inspect(leaf).spanners(abjad.Beam)
             total.update(beams)
             if 1 < len(beams):
                 for beam in beams:
@@ -706,7 +706,7 @@ class WellformednessManager(AbjadObject):
         violators, total = [], set()
         prototype = abjad.OctavationSpanner
         for leaf in abjad.iterate(argument).leaves():
-            spanners = abjad.inspect(leaf).get_spanners(prototype)
+            spanners = abjad.inspect(leaf).spanners(prototype)
             total.update(spanners)
             if 1 < len(spanners):
                 for spanner in spanners:
@@ -756,7 +756,7 @@ class WellformednessManager(AbjadObject):
         import abjad
         violators, total = [], set()
         for leaf in abjad.iterate(argument).leaves():
-            spanners = abjad.inspect(leaf).get_spanners(abjad.Tie)
+            spanners = abjad.inspect(leaf).spanners(abjad.Tie)
             total.update(spanners)
             if 1 < len(spanners):
                 for spanner in spanners:

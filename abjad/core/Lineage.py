@@ -41,7 +41,7 @@ class Lineage(AbjadObject, collections.Sequence):
                 }
             >>
 
-        >>> for component in abjad.inspect(score).get_lineage():
+        >>> for component in abjad.inspect(score).lineage():
         ...     component
         ...
         <Score<<2>>>
@@ -53,7 +53,7 @@ class Lineage(AbjadObject, collections.Sequence):
         Note('b,4')
 
         >>> bass_voice = score['Bass Voice']
-        >>> for component in abjad.inspect(bass_voice).get_lineage():
+        >>> for component in abjad.inspect(bass_voice).lineage():
         ...     component
         ...
         <Score<<2>>>
@@ -82,10 +82,10 @@ class Lineage(AbjadObject, collections.Sequence):
         if component is not None:
             components.extend(
                 reversed(
-                abjad.inspect(component).get_parentage(include_self=False)))
+                abjad.inspect(component).parentage(include_self=False)))
             components.append(component)
             components.extend(
-                abjad.inspect(component).get_descendants(include_self=False))
+                abjad.inspect(component).descendants(include_self=False))
         self._components = components
 
     ### SPECIAL METHODS ###

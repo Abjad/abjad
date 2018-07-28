@@ -251,7 +251,7 @@ class Tuplet(Container):
         return f'{{ {self.multiplier!s} {self._get_contents_summary()} }}'
 
     def _get_edge_height_tweak_string(self):
-        measure = inspect(self).get_parentage().get_first(Measure)
+        measure = inspect(self).parentage().get_first(Measure)
         if measure and measure.implicit_scaling:
             return
         duration = self._get_preprolated_duration()
@@ -513,7 +513,7 @@ class Tuplet(Container):
             Ignored when tuplet number text is overridden explicitly:
 
             >>> tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
-            >>> duration = abjad.inspect(tuplet).get_duration()
+            >>> duration = abjad.inspect(tuplet).duration()
             >>> markup = duration.to_score_markup()
             >>> abjad.override(tuplet).tuplet_number.text = markup
             >>> staff = abjad.Staff([tuplet])
@@ -880,13 +880,13 @@ class Tuplet(Container):
 
         """
         if preserve_duration:
-            old_duration = inspect(self).get_duration()
+            old_duration = inspect(self).duration()
         Container.append(self, component)
         if preserve_duration:
             new_duration = self._get_contents_duration()
             multiplier = old_duration / new_duration
             self.multiplier = multiplier
-            assert inspect(self).get_duration() == old_duration
+            assert inspect(self).duration() == old_duration
 
     def augmentation(self) -> bool:
         r"""
@@ -1047,13 +1047,13 @@ class Tuplet(Container):
 
         """
         if preserve_duration:
-            old_duration = inspect(self).get_duration()
+            old_duration = inspect(self).duration()
         Container.extend(self, argument)
         if preserve_duration:
             new_duration = self._get_contents_duration()
             multiplier = old_duration / new_duration
             self.multiplier = multiplier
-            assert inspect(self).get_duration() == old_duration
+            assert inspect(self).duration() == old_duration
 
     @staticmethod
     def from_duration(
@@ -1084,7 +1084,7 @@ class Tuplet(Container):
             raise Exception(f'components must be nonempty: {components!r}.')
         target_duration = Duration(duration)
         tuplet = Tuplet(1, components)
-        contents_duration = inspect(tuplet).get_duration()
+        contents_duration = inspect(tuplet).duration()
         multiplier = target_duration / contents_duration
         tuplet.multiplier = multiplier
         return tuplet
@@ -1709,7 +1709,7 @@ class Tuplet(Container):
                 for _ in proportions.numbers
                 ]
             notes = maker(0, note_durations)
-        contents_duration = inspect(notes).get_duration()
+        contents_duration = inspect(notes).duration()
         multiplier = target_duration / contents_duration
         tuplet = Tuplet(multiplier, notes)
         tuplet.normalize_multiplier()
@@ -1877,23 +1877,23 @@ class Tuplet(Container):
             if 0 < ratio.numbers[0]:
                 try:
                     note = Note(0, duration)
-                    duration = inspect(note).get_duration()
+                    duration = inspect(note).duration()
                     tuplet = Tuplet.from_duration(duration, [note])
                     return tuplet
                 except exceptions.AssignabilityError:
                     note_maker = NoteMaker()
                     notes = note_maker(0, duration)
-                    duration = inspect(notes).get_duration()
+                    duration = inspect(notes).duration()
                     return Tuplet.from_duration(duration, notes)
             elif ratio.numbers[0] < 0:
                 try:
                     rest = Rest(duration)
-                    duration = inspect(rest).get_duration()
+                    duration = inspect(rest).duration()
                     return Tuplet.from_duration(duration, [rest])
                 except exceptions.AssignabilityError:
                     leaf_maker = LeafMaker()
                     rests = leaf_maker([None], duration)
-                    duration = inspect(rests).get_duration()
+                    duration = inspect(rests).duration()
                     return Tuplet.from_duration(duration, rests)
             else:
                 raise ValueError('no divide zero values.')

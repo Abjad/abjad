@@ -63,7 +63,7 @@ if __name__ == '__main__':
             time_signatures = []
             prototype = abjad.TimeSignature
             for skip in context:
-                time_signature = abjad.inspect(skip).get_effective(prototype)
+                time_signature = abjad.inspect(skip).effective(prototype)
                 assert isinstance(time_signature, prototype)
                 time_signatures.append(str(time_signature))
         else:

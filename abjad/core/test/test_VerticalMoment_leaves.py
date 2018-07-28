@@ -30,7 +30,7 @@ def test_VerticalMoment_leaves_01():
 
     staff_group = score[1]
 
-    vertical_moment = abjad.inspect(score).get_vertical_moment_at(abjad.Offset(1, 8))
+    vertical_moment = abjad.inspect(score).vertical_moment_at(abjad.Offset(1, 8))
 
     "(abjad.Note(d'', 8), abjad.Note(a', 4), abjad.Note(e', 8))"
 

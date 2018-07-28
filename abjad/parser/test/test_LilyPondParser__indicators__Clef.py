@@ -20,5 +20,5 @@ def test_LilyPondParser__indicators__Clef_01():
     parser = abjad.parser.LilyPondParser()
     result = parser(format(target))
     assert format(target) == format(result) and target is not result
-    clefs = abjad.inspect(result[0]).get_indicators(abjad.Clef)
+    clefs = abjad.inspect(result[0]).indicators(abjad.Clef)
     assert len(clefs) == 1

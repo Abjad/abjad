@@ -187,34 +187,34 @@ class ScoreTemplate(AbjadValueObject):
             for voice in voices:
                 leaves = select(voice).leaves()
                 if not all(isinstance(_, empty_prototype) for _ in leaves):
-                    leaf = inspect(voice).get_leaf(0)
+                    leaf = inspect(voice).leaf(0)
             # otherwise, find first leaf in voice in non-removable staff
             if leaf is None:
                 for voice in voices:
                     voice_might_vanish = False
-                    for component in inspect(voice).get_parentage():
-                        if inspect(component).get_annotation(tag) is True:
+                    for component in inspect(voice).parentage():
+                        if inspect(component).annotation(tag) is True:
                             voice_might_vanish = True
                     if not voice_might_vanish:
-                        leaf = inspect(voice).get_leaf(0)
+                        leaf = inspect(voice).leaf(0)
                         if leaf is not None:    
                             break
             # otherwise, as last resort find first leaf in first voice
             if leaf is None:
-                leaf = inspect(voices[0]).get_leaf(0)
+                leaf = inspect(voices[0]).leaf(0)
             if leaf is None:
                 continue
-            instrument = inspect(leaf).get_indicator(instruments.Instrument)
+            instrument = inspect(leaf).indicator(instruments.Instrument)
             if instrument is None:
                 string = 'default_instrument'
-                instrument = inspect(staff__group).get_annotation(string)
+                instrument = inspect(staff__group).annotation(string)
                 if instrument is not None:
                     wrapper = attach(instrument, leaf, tag='ST1', wrapper=True)
                     wrappers.append(wrapper)
-            margin_markup = inspect(leaf).get_indicator(MarginMarkup)
+            margin_markup = inspect(leaf).indicator(MarginMarkup)
             if margin_markup is None:
                 string = 'default_margin_markup'
-                margin_markup = inspect(staff__group).get_annotation(string)
+                margin_markup = inspect(staff__group).annotation(string)
                 if margin_markup is not None:
                     wrapper = attach(
                         margin_markup,
@@ -224,11 +224,11 @@ class ScoreTemplate(AbjadValueObject):
                         )
                     wrappers.append(wrapper)
         for staff in staves:
-            leaf = inspect(staff).get_leaf(0)
-            clef = inspect(leaf).get_indicator(Clef)
+            leaf = inspect(staff).leaf(0)
+            clef = inspect(leaf).indicator(Clef)
             if clef is not None:
                 continue
-            clef = inspect(staff).get_annotation('default_clef')
+            clef = inspect(staff).annotation('default_clef')
             if clef is not None:
                 wrapper = attach(clef, leaf, tag='ST3', wrapper=True)
                 wrappers.append(wrapper)

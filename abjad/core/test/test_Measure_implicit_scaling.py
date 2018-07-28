@@ -12,7 +12,7 @@ def test_Measure_implicit_scaling_01():
     measure = abjad.Measure((4, 4), abjad.Note("c'4") * 4)
 
     assert measure[0].written_duration == abjad.Duration(1, 4)
-    assert abjad.inspect(measure[0]).get_duration() == abjad.Duration(1, 4)
+    assert abjad.inspect(measure[0]).duration() == abjad.Duration(1, 4)
 
 
 def test_Measure_implicit_scaling_02():
@@ -30,9 +30,9 @@ def test_Measure_implicit_scaling_02():
     leaves = abjad.select(measure).leaves()
 
     assert leaves[0].written_duration == abjad.Duration(1, 4)
-    assert abjad.inspect(leaves[0]).get_duration() == abjad.Duration(1, 4)
+    assert abjad.inspect(leaves[0]).duration() == abjad.Duration(1, 4)
     assert leaves[1].written_duration == abjad.Duration(1, 4)
-    assert abjad.inspect(leaves[1]).get_duration() == abjad.Duration(1, 6)
+    assert abjad.inspect(leaves[1]).duration() == abjad.Duration(1, 6)
 
 
 def test_Measure_implicit_scaling_03():
@@ -50,9 +50,9 @@ def test_Measure_implicit_scaling_03():
     leaves = abjad.select(measure).leaves()
 
     assert leaves[0].written_duration == abjad.Duration(1, 4)
-    assert abjad.inspect(leaves[0]).get_duration() == abjad.Duration(1, 4)
+    assert abjad.inspect(leaves[0]).duration() == abjad.Duration(1, 4)
     assert leaves[1].written_duration == abjad.Duration(1, 4)
-    assert abjad.inspect(leaves[1]).get_duration() == abjad.Duration(1, 9)
+    assert abjad.inspect(leaves[1]).duration() == abjad.Duration(1, 9)
 
 
 def test_Measure_implicit_scaling_04():
@@ -65,7 +65,7 @@ def test_Measure_implicit_scaling_04():
     measure.implicit_scaling = True
 
     assert measure[0].written_duration == abjad.Duration(1, 4)
-    assert abjad.inspect(measure[0]).get_duration() == abjad.Duration(1, 5)
+    assert abjad.inspect(measure[0]).duration() == abjad.Duration(1, 5)
 
 
 def test_Measure_implicit_scaling_05():
@@ -84,9 +84,9 @@ def test_Measure_implicit_scaling_05():
     leaves = abjad.select(measure).leaves()
 
     assert leaves[0].written_duration == abjad.Duration(1, 4)
-    assert abjad.inspect(leaves[0]).get_duration() == abjad.Duration(1, 5)
+    assert abjad.inspect(leaves[0]).duration() == abjad.Duration(1, 5)
     assert leaves[1].written_duration == abjad.Duration(1, 4)
-    assert abjad.inspect(leaves[1]).get_duration() == abjad.Duration(2, 15)
+    assert abjad.inspect(leaves[1]).duration() == abjad.Duration(2, 15)
 
 
 def test_Measure_implicit_scaling_06():
@@ -105,6 +105,6 @@ def test_Measure_implicit_scaling_06():
     leaves = abjad.select(measure).leaves()
 
     assert leaves[0].written_duration == abjad.Duration(1, 4)
-    assert abjad.inspect(leaves[0]).get_duration() == abjad.Duration(1, 5)
+    assert abjad.inspect(leaves[0]).duration() == abjad.Duration(1, 5)
     assert leaves[1].written_duration == abjad.Duration(1, 4)
-    assert abjad.inspect(leaves[1]).get_duration() == abjad.Duration(4, 45)
+    assert abjad.inspect(leaves[1]).duration() == abjad.Duration(4, 45)

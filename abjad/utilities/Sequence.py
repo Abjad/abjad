@@ -3197,7 +3197,7 @@ class Sequence(AbjadValueObject, collections.Sequence):
 
         ..  container:: example
 
-            Regression: partitions sequence cyclically into enchained parts by
+            REGRESSION: partitions sequence cyclically into enchained parts by
             counts; does not return false 1-element part at end:
 
             ..  container:: example

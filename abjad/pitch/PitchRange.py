@@ -228,7 +228,7 @@ class PitchRange(AbjadValueObject):
         import abjad
         if (
             hasattr(argument, '_has_effective_indicator') and
-            'unpitched' in abjad.inspect(argument).get_indicators(str)
+            'unpitched' in abjad.inspect(argument).indicators(str)
             ):
             return True
         elif isinstance(argument, (int, float)):
@@ -237,10 +237,10 @@ class PitchRange(AbjadValueObject):
         elif isinstance(argument, abjad.NamedPitch):
             return self._contains_pitch(argument)
         elif isinstance(argument, abjad.Note):
-            sounding_pitch = abjad.inspect(argument).get_sounding_pitch()
+            sounding_pitch = abjad.inspect(argument).sounding_pitch()
             return self._contains_pitch(sounding_pitch)
         elif isinstance(argument, abjad.Chord):
-            sounding_pitches = abjad.inspect(argument).get_sounding_pitches()
+            sounding_pitches = abjad.inspect(argument).sounding_pitches()
             return all(self._contains_pitch(x) for x in sounding_pitches)
         elif isinstance(argument, (abjad.Rest, abjad.Skip)):
             return True

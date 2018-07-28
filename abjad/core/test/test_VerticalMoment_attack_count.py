@@ -28,8 +28,8 @@ def test_VerticalMoment_attack_count_01():
         """
         )
 
-    vertical_moment = abjad.inspect(score).get_vertical_moment_at(abjad.Offset(0))
+    vertical_moment = abjad.inspect(score).vertical_moment_at(abjad.Offset(0))
     assert vertical_moment.attack_count == 3
 
-    vertical_moment = abjad.inspect(score).get_vertical_moment_at(abjad.Offset(1, 8))
+    vertical_moment = abjad.inspect(score).vertical_moment_at(abjad.Offset(1, 8))
     assert vertical_moment.attack_count == 1

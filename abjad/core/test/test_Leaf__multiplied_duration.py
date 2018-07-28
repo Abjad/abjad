@@ -30,12 +30,12 @@ def test_Leaf__multiplied_duration_03():
     abjad.attach(abjad.Multiplier(2, 3), note)
 
     assert note.written_duration == abjad.Duration(3, 8)
-    assert abjad.inspect(note).get_indicator(abjad.Multiplier) == abjad.Multiplier(2, 3)
+    assert abjad.inspect(note).indicator(abjad.Multiplier) == abjad.Multiplier(2, 3)
     assert note._get_multiplied_duration() == abjad.Duration(1, 4)
 
     note.written_duration = abjad.Duration(1, 4)
     abjad.detach(abjad.Multiplier, note)
 
     assert note.written_duration == abjad.Duration(1, 4)
-    assert abjad.inspect(note).get_indicators(abjad.Multiplier) == ()
+    assert abjad.inspect(note).indicators(abjad.Multiplier) == []
     assert note._get_multiplied_duration() == abjad.Duration(1, 4)
