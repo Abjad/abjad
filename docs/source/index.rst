@@ -281,7 +281,7 @@ Miscellaneous information
     appendices/index
 
 ..  _CCRMA Summer Workshop: https://ccrma.stanford.edu/workshops/python-and-abjad-in-music-comp-2018
-..  _CCRMA: https://ccrma.standford.edu
+..  _CCRMA: https://ccrma.stanford.edu
 ..  _GitHub: https://github.com/Abjad/abjad
 ..  _IPython: http://ipython.org/
 ..  _Josiah Wolf Oberholtzer: http://josiahwolfoberholtzer.com
