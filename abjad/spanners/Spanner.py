@@ -490,4 +490,4 @@ class Spanner(AbjadObject):
         return self._tweaks
 
 
-collections.Sequence.register(Spanner)
+collections.Sequence.register(Spanner) # noqa
