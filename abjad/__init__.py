@@ -1,9 +1,3 @@
-import os
-if os.path.abspath('.')[-3:] == 'top':
-    message = 'do not start Abjad from top/ directory (because of inspect.py).'
-    raise Exception(message)
-del os
-
 from fractions import Fraction  # noqa
 try:
     from quicktions import Fraction  # type: ignore
