@@ -1760,9 +1760,6 @@ class String(str):
             >>> abjad.String.to_tridirectional_direction_string(-1)
             'Down'
 
-            >>> abjad.String.to_tridirectional_direction_string('default')
-            'Center'
-
         ..  container:: example
 
             Returns none when ``argument`` is none:
@@ -1791,10 +1788,7 @@ class String(str):
             >>> abjad.String.to_tridirectional_lilypond_symbol(abjad.Up)
             '^'
 
-            >>> abjad.String.to_tridirectional_lilypond_symbol('neutral')
-            '-'
-
-            >>> abjad.String.to_tridirectional_lilypond_symbol('default')
+            >>> abjad.String.to_tridirectional_lilypond_symbol('center')
             '-'
 
             >>> abjad.String.to_tridirectional_lilypond_symbol(abjad.Down)
