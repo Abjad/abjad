@@ -17,7 +17,6 @@ docs:
 
 release:
 	make clean
-	make -C docs clean
 	make docs
 	make build
 	make -C docs upload
