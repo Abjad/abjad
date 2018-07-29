@@ -339,7 +339,7 @@ class AbjadConfiguration(Configuration):
 
             >>> abjad_configuration = abjad.AbjadConfiguration()
             >>> abjad_configuration.get_abjad_startup_string()
-            'Abjad 3.0.0rc1 (development)'
+            'Abjad 3.0.0 (development)'
 
         Returns string.
         """
@@ -359,7 +359,7 @@ class AbjadConfiguration(Configuration):
 
             >>> abjad_configuration = abjad.AbjadConfiguration()
             >>> abjad_configuration.get_abjad_version_string()
-            '3.0.0rc1'
+            '3.0.0'
 
         Returns string.
         """

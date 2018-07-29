@@ -80,7 +80,7 @@ Once you have Abjad installed, fire up Python and import it:
     Type "help", "copyright", "credits" or "license" for more information.
     >>> import abjad
     >>> abjad.__version__
-    '3.0.0rc1'
+    '3.0.0'
 
 Congratulations!
 
