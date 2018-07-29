@@ -74,7 +74,7 @@ give them a 6/4 time signature, just so they line up properly.
 
     staff = abjad.Staff(sequence(descents).flatten())
     time_signature = abjad.TimeSignature((6, 4))
-    leaf = abjad.inspect(staff).get_leaf(0)
+    leaf = abjad.inspect(staff).leaf(0)
     abjad.attach(time_signature, leaf)
     show(staff)
 
@@ -92,7 +92,7 @@ Let's look at the second violins too:
 
     staff = abjad.Staff(sequence(descents).flatten())
     time_signature = abjad.TimeSignature((6, 4))
-    leaf = abjad.inspect(staff).get_leaf(0)
+    leaf = abjad.inspect(staff).leaf(0)
     abjad.attach(time_signature, leaf)
     show(staff)
 
@@ -113,7 +113,7 @@ the bar lines accidentally:
     staff = abjad.Staff(abjad.sequence(descents).flatten())
     shards = abjad.mutate(staff[:]).split([(3, 2)], cyclic=True)
     time_signature = abjad.TimeSignature((6, 4))
-    leaf = abjad.inspect(staff).get_leaf(0)
+    leaf = abjad.inspect(staff).leaf(0)
     abjad.attach(time_signature, leaf)
     show(staff)
 

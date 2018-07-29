@@ -107,7 +107,7 @@ Abjad implements LilyPond multpliers as multiplier objects.
 ..  abjad::
 
     note.written_duration
-    abjad.inspect(note).get_duration()
+    abjad.inspect(note).duration()
 
 ..  abjad::
 
@@ -163,7 +163,7 @@ Every note in the measure equals one sixteenth of a whole note:
 ..  abjad::
 
     note = measure[0]
-    abjad.inspect(note).get_duration()
+    abjad.inspect(note).duration()
 
 But now consider this measure:
 
@@ -186,7 +186,7 @@ Every note in this measures
 ..  abjad::
 
     note = tuplet[0]
-    abjad.inspect(note).get_duration()
+    abjad.inspect(note).duration()
 
 The notes in this measure are "sixteenth notes" with a duration equal to a
 value other than ``1/16``. Abjad formalizes this distinction in the difference

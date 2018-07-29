@@ -50,7 +50,7 @@ Use ``abjad.inspect()`` the get the duration of a container:
 
 ..  abjad::
 
-    abjad.inspect(container).get_duration()
+    abjad.inspect(container).duration()
 
 
 Adding one component to the end of a container

@@ -102,7 +102,7 @@ Use the inspector to get the duration of a score:
 
 ..  abjad::
 
-    abjad.inspect(score).get_duration()
+    abjad.inspect(score).duration()
 
 
 Appending one component to the bottom of a score

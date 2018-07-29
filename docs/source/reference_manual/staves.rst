@@ -93,7 +93,7 @@ Use the inspector to get the duration of a staff:
 
 ..  abjad::
 
-    inspect(staff).get_duration()
+    inspect(staff).duration()
 
 
 Appending one component to the end of a staff

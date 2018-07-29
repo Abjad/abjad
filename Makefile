@@ -16,8 +16,8 @@ docs:
 	make -C docs html
 
 release:
-	make clean
 	make docs
+	make clean
 	make build
 	make -C docs upload
 	twine upload dist/*.tar.gz
