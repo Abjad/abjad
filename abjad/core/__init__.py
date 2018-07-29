@@ -1,3 +1,8 @@
+"""
+Abjad's core component classes: notes, rests, chords, tuplets, measures,
+containers and contexts.
+"""
+
 from .Component import Component
 from .Container import Container
 from .GraceContainer import GraceContainer
@@ -34,5 +39,3 @@ from .StaffGroup import StaffGroup
 from .Tuplet import Tuplet
 from .VerticalMoment import VerticalMoment
 from .Voice import Voice
-
-_documentation_section = 'core'

@@ -16,7 +16,7 @@ of your operating system. You should know how move around the filesystem, how
 to list the contents of directories and how to copy files. You should know
 enough about environment variables to make sure that your operating system
 knows where Abjad is installed. You might also consider installing any OS
-updates on your computer, too, since you'll need Python 2.7 or Python 3.3+ to
+updates on your computer, too, since you'll need Python 3.6+ to
 run Abjad. When you start building scores with Abjad you'll find the system to
 be almost entirely platform-independent.
 

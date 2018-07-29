@@ -1,6 +1,6 @@
-##########
-Abjad 2.21
-##########
+#####
+Abjad
+#####
 
 Abjad helps composers build up complex pieces of music notation in an iterative
 and incremental way. Use Abjad to create symbolic representations of all the
@@ -53,16 +53,13 @@ Package Index, via `pip`_:
 **Caution**:
 
     We strongly encourage you to *not* install Abjad globally via ``sudo pip
-    install``, but to use a virtual environment instead. If you're already
-    working in a virtual environment, simply omit the ``sudo``.
+    install``, but to use a :ref:`virtual environment <virtual-environments>`
+    instead. If you're already working in a virtual environment, simply omit
+    the ``sudo``.
 
 **Note**:
 
-    Abjad supports Python 2.7 and above. Python 2.7.9 and above provide `pip`_
-    out-of-the-box. For earlier versions of Python 2.7, you may need to install
-    `pip`_ yourself. While you can use the old ``easy_install`` tool (``sudo
-    easy_install pip``), we strongly recommend the `pip`_-installation
-    instructions found here: https://pip.pypa.io/en/stable/installing/.
+    Abjad supports Python 3.6 and above.
 
 To install the cutting-edge version Abjad from its `GitHub`_ repository, via
 `git <https://git-scm.com/>`_ and `pip`_:
@@ -71,19 +68,19 @@ To install the cutting-edge version Abjad from its `GitHub`_ repository, via
 
     ~$ git clone https://github.com/Abjad/abjad.git 
     ~$ cd abjad
-    abjad$ sudo pip install .
+    abjad$ pip install .
 
 Once you have Abjad installed, fire up Python and import it:
 
 ..  code-block:: bash
 
     ~$ python
-    Python 3.6.2 (v3.6.2:5fd33b5926, Jul 16 2017, 20:11:06) 
+    Python 3.6.5 (v3.6.5:f59c0932b4, Mar 28 2018, 03:03:55) 
     [GCC 4.2.1 (Apple Inc. build 5666) (dot 3)] on darwin
     Type "help", "copyright", "credits" or "license" for more information.
     >>> import abjad
     >>> abjad.__version__
-    '2.21'
+    '3.0.0rc1'
 
 Congratulations!
 
@@ -105,7 +102,8 @@ command-line by running the following command:
 ..  code-block:: bash
 
     ~$ lilypond --version
-    GNU LilyPond 2.19.80
+
+    GNU LilyPond 2.19.82
 
     Copyright (c) 1996--2015 by
       Han-Wen Nienhuys <hanwen@xs4all.nl>
@@ -164,7 +162,22 @@ command-line by running the following command:
     dot - graphviz version 2.38.0 (20140413.2041)
 
 All of the graph images in Abjad's API documentation were created via
-`graphviz`_. See `topleveltools.graph()` for more details.
+`graphviz`_. See :py:func:`~abjad.top.graph` for more
+details.
+
+Install extension packages
+--------------------------
+
+Abjad's extension packages can be installed via the following commands:
+
+..  code-block:: bash
+
+    ~$ pip install abjad[book]      # documentation tools
+    ~$ pip install abjad[cli]       # score package command-line tools 
+    ~$ pip install abjad[ipython]   # ipython integration 
+    ~$ pip install abjad[nauert]    # quantization tools
+    ~$ pip install abjad[rmakers]   # rhythm-maker tools
+    ~$ pip install abjad[tonality]  # tonal analysis tools
 
 Development installation
 ------------------------
@@ -177,7 +190,7 @@ documentation locally, clone Abjad from the Github repository and install it in
 
     ~$ git clone https://github.com/Abjad/abjad.git
     ~$ cd abjad
-    abjad$ sudo pip install -e .[development]  # NOTE: no spaces in the string after "install"
+    abjad$ sudo pip install -e .[book,test]  # NOTE: no spaces in the string after "install"
 
 Installing Abjad in development mode will install the following `Python`_
 package dependencies (along with their own dependencies):
@@ -264,7 +277,7 @@ its **development** and **ipython** extra dependencies:
 
 ..  code-block:: bash
 
-    ~$ sudo pip install abjad[development,ipython]  # NOTE: no spaces in the string after "install"
+    ~$ sudo pip install abjad[ipython]  # NOTE: no spaces in the string after "install"
 
 Capturing MIDI files into an `IPython notebook`_ requires the `timidity`_
 package.
@@ -285,7 +298,7 @@ Once all dependencies have been installed, create a new `IPython notebook`_ and
 run the following "magic" command in a cell to load Abjad's `IPython`_
 extension::
 
-    %load_ext abjad.ext.ipython
+    %load_ext abjadext.ipython
 
 Once loaded, notation and MIDI files can be embedded in your notebook whenever
 you use `show(...)` and `play(...)` on valid Abjad objects.
@@ -456,7 +469,6 @@ you might want to set your ``pdf_viewer`` to ``evince`` and your
 ..  _MacTeX: https://tug.org/mactex/
 ..  _PyPDF2: http://pythonhosted.org/PyPDF2/
 ..  _PyPI: https://pypi.python.org/pypi/Abjad
-..  _PyPy: http://pypy.org/
 ..  _Python: https://www.python.org/
 ..  _Sphinx: http://sphinx-doc.org/
 ..  _TeXLive: https://www.tug.org/texlive/

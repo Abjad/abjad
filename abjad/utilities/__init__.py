@@ -1,3 +1,7 @@
+"""
+Utility classes and functions.
+"""
+
 from abjad import mathtools  # noqa
 Infinity = mathtools.Infinity()
 NegativeInfinity = mathtools.NegativeInfinity()

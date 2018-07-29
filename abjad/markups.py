@@ -1,3 +1,7 @@
+"""
+Tools for modeling LilyPond's markup and postscript.
+"""
+
 import collections
 import numbers
 import typing

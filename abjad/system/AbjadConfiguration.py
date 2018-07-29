@@ -339,7 +339,7 @@ class AbjadConfiguration(Configuration):
 
             >>> abjad_configuration = abjad.AbjadConfiguration()
             >>> abjad_configuration.get_abjad_startup_string()
-            'Abjad 3.0 (development)'
+            'Abjad 3.0.0rc1 (development)'
 
         Returns string.
         """
@@ -359,7 +359,7 @@ class AbjadConfiguration(Configuration):
 
             >>> abjad_configuration = abjad.AbjadConfiguration()
             >>> abjad_configuration.get_abjad_version_string()
-            '3.0'
+            '3.0.0rc1'
 
         Returns string.
         """
@@ -375,7 +375,7 @@ class AbjadConfiguration(Configuration):
 
             >>> abjad_configuration = abjad.AbjadConfiguration()
             >>> abjad_configuration.get_lilypond_minimum_version_string() # doctest: +SKIP
-            '2.17.0'
+            '2.19.0'
 
         Returns string.
         """
@@ -393,7 +393,7 @@ class AbjadConfiguration(Configuration):
 
             >>> abjad_configuration = abjad.AbjadConfiguration()
             >>> abjad_configuration.get_lilypond_version_string() # doctest: +SKIP
-            '2.19.1'
+            '2.19.82'
 
         Returns string.
         """
@@ -425,7 +425,7 @@ class AbjadConfiguration(Configuration):
 
             >>> abjad_configuration = abjad.AbjadConfiguration()
             >>> abjad_configuration.get_python_version_string() # doctest: +SKIP
-            '2.7.5'
+            '3.6.4'
 
         Returns string.
         """

@@ -1,3 +1,6 @@
+"""
+Tools for modeling and manipulating 24ET pitches.
+"""
 from .constants import *
 from .Accidental import Accidental
 from .ColorMap import ColorMap
@@ -42,5 +45,3 @@ from .SetClass import SetClass
 from .StaffPosition import StaffPosition
 from .Transposition import Transposition
 from .TwelveToneRow import TwelveToneRow
-
-_documentation_section = 'core'

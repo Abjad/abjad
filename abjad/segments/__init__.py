@@ -1,3 +1,7 @@
+"""
+Tools for high-level score modeling.
+"""
+
 from .ScoreTemplate import ScoreTemplate
 from .GroupedRhythmicStavesScoreTemplate import \
     GroupedRhythmicStavesScoreTemplate
@@ -15,5 +19,3 @@ from .SegmentMaker import SegmentMaker
 from .StringOrchestraScoreTemplate import StringOrchestraScoreTemplate
 from .StringQuartetScoreTemplate import StringQuartetScoreTemplate
 from .TwoStaffPianoScoreTemplate import TwoStaffPianoScoreTemplate
-
-_documentation_section = 'unstable'

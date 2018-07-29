@@ -1,3 +1,7 @@
+"""
+Abjad's LilyPond parser and supporting classes.
+"""
+
 from .Music import Music
 from .ContextSpeccedMusic import ContextSpeccedMusic
 from .GuileProxy import GuileProxy
@@ -16,5 +20,3 @@ from .SequentialMusic import SequentialMusic
 from .SimultaneousMusic import SimultaneousMusic
 from .SyntaxNode import SyntaxNode
 from .parse_reduced_ly_syntax import parse_reduced_ly_syntax
-
-_documentation_section = 'internals'

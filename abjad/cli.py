@@ -1,3 +1,7 @@
+"""
+Command-line tools.
+"""
+
 import fnmatch
 import importlib
 import inspect

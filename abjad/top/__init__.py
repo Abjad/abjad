@@ -1,3 +1,7 @@
+"""
+Abjad's top-level functions.
+"""
+
 from .activate import activate
 from .annotate import annotate
 from .attach import attach

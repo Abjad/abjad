@@ -163,14 +163,9 @@ Visit our score gallery for many more examples:
 
     gallery
 
-
-Upcoming Events
----------------
-
 `CCRMA Summer Workshop`_ 
 ````````````````````````
-
-August 07-11, 2017 | Palo Alto, CA
+Summers | Palo Alto, CA
 
 Introduction to the production of professionally engraved musical scores
 using the Python programming language and the Abjad API for Formalized
@@ -193,6 +188,9 @@ Topics covered include:
 -   controlling the details of musical typography programmatically.
 
 Taught by Jeff Treviño, Trevor Bača, and Josiah Wolf Oberholtzer.
+
+..  note:: Visit the `CCRMA`_ website for the most up-to-date scheduling
+           information about this annual course.
 
 Texts on Abjad
 --------------
@@ -248,6 +246,19 @@ examples to see these features in action:
     core_concepts/index
     reference_manual/index
 
+Extensions
+----------
+
+Abjad supports a collection of extension packages providing additional
+documentation, tooling and compositional support.
+
+- Documentation extension: https://github.com/abjad/abjad-ext-book
+- Score project commandline tools: https://github.com/abjad/abjad-ext-cli
+- IPython integration: https://github.com/abjad/abjad-ext-ipython
+- Quantization tools: https://github.com/abjad/abjad-ext-nauert
+- Rhythm-maker tools: https://github.com/abjad/abjad-ext-rmakers
+- Tonal analysis tools: https://github.com/abjad/abjad-ext-tonality
+
 Abjad's codebase in detail
 --------------------------
 
@@ -255,11 +266,6 @@ Abjad's codebase in detail
     :maxdepth: 2
 
     api/index
-
-..  toctree::
-    :maxdepth: 2
-
-    developer_documentation/index
 
 Miscellaneous information
 -------------------------
@@ -269,6 +275,8 @@ Miscellaneous information
 
     appendices/index
 
+..  _CCRMA Summer Workshop: https://ccrma.stanford.edu/workshops/python-and-abjad-in-music-comp-2018
+..  _CCRMA: https://ccrma.stanford.edu
 ..  _GitHub: https://github.com/Abjad/abjad
 ..  _IPython: http://ipython.org/
 ..  _Josiah Wolf Oberholtzer: http://josiahwolfoberholtzer.com
@@ -279,4 +287,3 @@ Miscellaneous information
 ..  _Sphinx: http://sphinx-doc.org/
 ..  _Trevor Bača: http://www.trevorbaca.com/
 ..  _pip: https://pip.pypa.io/en/stable/
-..  _CCRMA Summer Workshop: https://ccrma.stanford.edu/workshops/abjad-2017

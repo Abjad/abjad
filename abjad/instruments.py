@@ -1,3 +1,7 @@
+"""
+Instrument classes.
+"""
+
 import copy
 import typing
 from abjad.system.AbjadValueObject import AbjadValueObject

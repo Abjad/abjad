@@ -1,3 +1,7 @@
+"""
+Utilities for typehinting.
+"""
+
 import typing
 from abjad.utilities.Expression import Expression
 

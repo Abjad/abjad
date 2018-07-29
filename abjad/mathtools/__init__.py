@@ -45,5 +45,3 @@ from .partition_integer_into_canonic_parts import partition_integer_into_canonic
 from .sign import sign
 from .weight import weight
 from .yield_all_compositions_of_integer import yield_all_compositions_of_integer
-
-_documentation_section = 'core'

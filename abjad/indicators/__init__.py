@@ -1,3 +1,7 @@
+"""
+Tools for modeling "indicators".
+"""
+
 from .Arpeggio import Arpeggio
 from .Articulation import Articulation
 from .BarLine import BarLine
@@ -33,5 +37,3 @@ from .StringContactPoint import StringContactPoint
 from .TimeSignature import TimeSignature
 from .Tremolo import Tremolo
 from .WoodwindFingering import WoodwindFingering
-
-_documentation_section = 'core'

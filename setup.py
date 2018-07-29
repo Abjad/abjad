@@ -37,6 +37,7 @@ classifiers = [
     'Development Status :: 5 - Production/Stable',
     'License :: OSI Approved :: GNU General Public License (GPL)',
     'Programming Language :: Python :: 3.6',
+    'Programming Language :: Python :: 3.7',
     'Programming Language :: Python :: Implementation :: CPython',
     'Topic :: Artistic Software',
     ]
@@ -49,13 +50,18 @@ entry_points = {
 
 extras_require = {
     'accelerated': ['quicktions>=1.3'],
-    'book': ['abjad-ext-book >= 3.0.0a0, < 3.1.0'],
-    'cli': ['abjad-ext-cli >= 3.0.0a0, < 3.1.0'],
-    'ipython': ['abjad-ext-ipython >= 3.0.0a0, < 3.1.0'],
-    'nauert': ['abjad-ext-nauert >= 3.0.0a0, < 3.1.0'],
-    'rmakers': ['abjad-ext-rmakers >= 3.0.0a0, < 3.1.0'],
-    'test': ['mypy', 'pytest>=3.5.0', 'pytest-helpers-namespace>=2017.11.11'],
-    'tonality': ['abjad-ext-tonality >= 3.0.0a0, < 3.1.0'],
+    'book': ['abjad-ext-book >= 3.0.0, < 3.1.0'],
+    'cli': ['abjad-ext-cli >= 3.0.0, < 3.1.0'],
+    'ipython': ['abjad-ext-ipython >= 3.0.0, < 3.1.0'],
+    'nauert': ['abjad-ext-nauert >= 3.0.0, < 3.1.0'],
+    'rmakers': ['abjad-ext-rmakers >= 3.0.0, < 3.1.0'],
+    'tonality': ['abjad-ext-tonality >= 3.0.0, < 3.1.0'],
+    'test': [
+        'mypy',
+        'pytest>=3.5.0',
+        'pytest-cov',
+        'pytest-helpers-namespace',
+        ],
     }
 
 keywords = [
@@ -69,7 +75,7 @@ keywords = ', '.join(keywords)
 install_requires = [
     'ply',
     'roman',
-    'uqbar>=0.2.14',
+    'uqbar>=0.2.15',
     ]
 
 if __name__ == '__main__':

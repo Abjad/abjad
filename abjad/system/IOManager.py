@@ -279,8 +279,8 @@ class IOManager(AbjadObject):
 
         ..  container:: example
 
-            >>> abjad.IOManager.find_executable('python2.7') # doctest: +SKIP
-            ['/usr/bin/python2.7']
+            >>> abjad.IOManager.find_executable('python3.6') # doctest: +SKIP
+            ['/usr/bin/python3.6']
 
         Returns list of zero or more full paths to ``name``.
         """
@@ -650,8 +650,7 @@ class IOManager(AbjadObject):
         stats_stream = io.StringIO()
         stats = pstats.Stats(profile, stream=stats_stream)
         if sort_by == 'cum':
-            if platform.python_version() == '2.7.5':  # why so specific?
-                sort_by = 'cumulative'
+            sort_by = 'cumulative'
         if strip_dirs:
             stats.strip_dirs().sort_stats(sort_by).print_stats(line_count)
         else:
