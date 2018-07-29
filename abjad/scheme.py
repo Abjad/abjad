@@ -1,3 +1,7 @@
+"""
+Tools for modeling Scheme datastructures used in LilyPond.
+"""
+
 import functools
 import typing
 from abjad import enums

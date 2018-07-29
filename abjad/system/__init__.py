@@ -1,3 +1,7 @@
+"""
+Abjad's system internals.
+"""
+
 from .AbjadConfiguration import AbjadConfiguration
 from .AbjadObject import AbjadObject
 from .AbjadValueObject import AbjadValueObject
@@ -29,5 +33,3 @@ from .Timer import Timer
 from .UpdateManager import UpdateManager
 from .WellformednessManager import WellformednessManager
 from .Wrapper import Wrapper
-
-_documentation_section = 'internals'

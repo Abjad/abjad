@@ -1,3 +1,7 @@
+"""
+Tools for modeling "rhythm-trees".
+"""
+
 import abc
 import typing
 import uqbar.containers

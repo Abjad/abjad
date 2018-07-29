@@ -1,3 +1,7 @@
+"""
+Tools for modeling spanners: slurs, beams, glissandi, etc.
+"""
+
 from .Spanner import Spanner
 from .Beam import Beam
 from .BowContactSpanner import BowContactSpanner
@@ -13,5 +17,3 @@ from .TextSpanner import TextSpanner
 from .TextSpanner import text_spanner
 from .Tie import Tie
 from .TrillSpanner import TrillSpanner
-
-_documentation_section = 'core'

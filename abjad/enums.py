@@ -1,3 +1,7 @@
+"""
+Enumerations.
+"""
+
 import uqbar.enums
 
 

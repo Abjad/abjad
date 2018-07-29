@@ -1,3 +1,7 @@
+"""
+Tools for modeling LilyPond's "grobs", "context", "engravers", etc.
+"""
+
 from .LilyPondContext import LilyPondContext
 from .LilyPondContextSetting import LilyPondContextSetting
 from .LilyPondEngraver import LilyPondEngraver
@@ -8,5 +12,3 @@ from .LilyPondGrobNameManager import LilyPondGrobNameManager
 from .LilyPondGrobOverride import LilyPondGrobOverride
 from .LilyPondSettingNameManager import LilyPondSettingNameManager
 from .LilyPondTweakManager import LilyPondTweakManager
-
-_documentation_section = 'internals'

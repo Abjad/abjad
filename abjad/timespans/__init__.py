@@ -1,3 +1,7 @@
+"""
+Tools for modeling "timespans".
+"""
+
 from .Timespan import Timespan
 from .AnnotatedTimespan import AnnotatedTimespan
 from .CompoundInequality import CompoundInequality
@@ -39,5 +43,3 @@ from .timespan_2_stops_during_timespan_1 import timespan_2_stops_during_timespan
 from .timespan_2_stops_when_timespan_1_starts import timespan_2_stops_when_timespan_1_starts
 from .timespan_2_stops_when_timespan_1_stops import timespan_2_stops_when_timespan_1_stops
 from .timespan_2_trisects_timespan_1 import timespan_2_trisects_timespan_1
-
-_documentation_section = 'core'
