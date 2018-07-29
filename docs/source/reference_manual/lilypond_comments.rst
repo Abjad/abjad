@@ -113,7 +113,7 @@ Use ``abjad.inspect()`` to get the LilyPond comments attached to any component:
 
 ..  abjad::
 
-    abjad.inspect(note).get_indicators(abjad.LilyPondComment)
+    abjad.inspect(note).indicators(abjad.LilyPondComment)
 
 
 Detaching LilyPond comments

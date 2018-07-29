@@ -51,7 +51,7 @@ Use ``attach()`` to attach a LilyPond literal to any Abjad leaf:
     staff.extend("{ cs''16 ( d''16 f''16 d''16 ) }")
     staff.extend("{ a'8 b'8 c''2 }")
     key_signature = abjad.KeySignature('f', 'major')
-    leaf = abjad.inspect(staff).get_leaf(0)
+    leaf = abjad.inspect(staff).leaf(0)
     abjad.attach(key_signature, leaf)
 
 ..  abjad::
@@ -70,7 +70,7 @@ Use ``abjad.inspect()`` to get the LilyPond literals attached to a leaf:
 
 ..  abjad::
 
-    abjad.inspect(staff[-2]).get_indicators(abjad.LilyPondLiteral)
+    abjad.inspect(staff[-2]).indicators(abjad.LilyPondLiteral)
 
 
 Detaching LilyPond literals

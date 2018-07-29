@@ -46,7 +46,7 @@ Use ``abjad.inspect()`` to get the instrument attached to a leaf:
 
 ..  abjad::
 
-    abjad.inspect(staff[0]).get_indicator(abjad.Instrument)
+    abjad.inspect(staff[0]).indicator(abjad.Instrument)
 
 
 Inspecting a component's effective instrument
@@ -58,7 +58,7 @@ component:
 ..  abjad::
 
     for note in staff:
-        abjad.inspect(note).get_effective(abjad.Instrument)
+        abjad.inspect(note).effective(abjad.Instrument)
 
 
 Detaching instruments from a component

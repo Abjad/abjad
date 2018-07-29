@@ -73,7 +73,7 @@ lower Voice will hold the eighth note run. First the eighth notes:
     voice_lower = abjad.Voice(notes)
     voice_lower.name = 'rh_lower'
     command = abjad.LilyPondLiteral(r'\voiceTwo')
-    leaf = abjad.inspect(voice_lower).get_leaf(0)
+    leaf = abjad.inspect(voice_lower).leaf(0)
     attach(command, leaf)
 
 The notes belonging to the eighth note run are first beamed and slurred. Then

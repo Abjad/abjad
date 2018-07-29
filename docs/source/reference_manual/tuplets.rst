@@ -110,7 +110,7 @@ Use the inspector to get the duration of a tuplet:
 
 ..  abjad::
 
-    abjad.inspect(tuplet).get_duration()
+    abjad.inspect(tuplet).duration()
 
 
 Understanding rhythmic augmentation and diminution

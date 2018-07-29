@@ -135,7 +135,7 @@ clef just like the top staff. Let's change that:
 
 ..  abjad::
 
-    leaf = abjad.inspect(lower_staff).get_leaf(0)
+    leaf = abjad.inspect(lower_staff).leaf(0)
     attach(abjad.Clef('bass'), leaf)
 
 Now let's add dynamics. For the top staff, we'll add them to the first
