@@ -7,7 +7,7 @@ def test_Staff_engraver_consists_01():
     staff.consists_commands.append('Horizontal_bracket_engraver')
     staff.consists_commands.append('Instrument_name_engraver')
 
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()
     assert format(staff) == abjad.String.normalize(
         r"""
         \new Staff

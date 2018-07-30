@@ -63,4 +63,4 @@ def test_Measure_measure_number_03():
         """
         )
 
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()

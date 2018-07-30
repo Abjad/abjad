@@ -45,7 +45,7 @@ class MarginMarkup(AbjadValueObject):
 
     _latent = True
 
-    _parameter = True
+    _persistent = True
 
     _publish_storage_format = True
 
@@ -225,7 +225,7 @@ class MarginMarkup(AbjadValueObject):
         return self._markup
 
     @property
-    def parameter(self) -> bool:
+    def persistent(self) -> bool:
         """
         Is true.
 
@@ -234,12 +234,12 @@ class MarginMarkup(AbjadValueObject):
             >>> margin_markup = abjad.MarginMarkup(
             ...     markup=abjad.Markup('Vc.'),
             ...     )
-            >>> margin_markup.parameter
+            >>> margin_markup.persistent
             True
 
         Class constant.
         """
-        return self._parameter
+        return self._persistent
 
     @property
     def redraw(self) -> bool:

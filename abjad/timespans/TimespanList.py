@@ -571,13 +571,13 @@ class TimespanList(TypedList):
         return True
 
     @property
-    def all_are_well_formed(self):
+    def all_are_wellformed(self):
         """
-        Is true when all timespans are well-formed.
+        Is true when all timespans are wellformed.
 
         ..  container:: example
 
-            Is true when all timespans are well-formed:
+            Is true when all timespans are wellformed:
 
             >>> timespans = abjad.TimespanList([
             ...     abjad.Timespan(0, 3),
@@ -586,12 +586,12 @@ class TimespanList(TypedList):
             ...     ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
-            >>> timespans.all_are_well_formed
+            >>> timespans.all_are_wellformed
             True
 
         ..  container:: example
 
-            Is true when all timespans are well-formed:
+            Is true when all timespans are wellformed:
 
             >>> timespans = abjad.TimespanList([
             ...     abjad.Timespan(0, 16),
@@ -602,21 +602,21 @@ class TimespanList(TypedList):
             ...     ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
-            >>> timespans.all_are_well_formed
+            >>> timespans.all_are_wellformed
             True
 
         ..  container:: example
 
             Is true when timespan list is empty:
 
-            >>> abjad.TimespanList().all_are_well_formed
+            >>> abjad.TimespanList().all_are_wellformed
             True
 
-        Is false when timespans are not all well-formed.
+        Is false when timespans are not all wellformed.
 
         Returns true or false.
         """
-        return all(self._get_timespan(argument).is_well_formed for argument in self)
+        return all(self._get_timespan(argument).is_wellformed for argument in self)
 
     @property
     def axis(self):
@@ -2486,7 +2486,7 @@ class TimespanList(TypedList):
 
         Operates in place and returns timespan list.
         """
-        timespans = [x for x in self if x.is_well_formed]
+        timespans = [x for x in self if x.is_wellformed]
         self[:] = timespans
         return self
 
@@ -2647,7 +2647,7 @@ class TimespanList(TypedList):
         self[:] = new_timespans
         return self
 
-    def round_offsets(self, multiplier, anchor=enums.Left, must_be_well_formed=True):
+    def round_offsets(self, multiplier, anchor=enums.Left, must_be_wellformed=True):
         """
         Rounds offsets of timespans in list to multiples of ``multiplier``.
 
@@ -2764,7 +2764,7 @@ class TimespanList(TypedList):
             >>> rounded_timespans = timespans.round_offsets(
             ...     5,
             ...     anchor=abjad.Right,
-            ...     must_be_well_formed=False,
+            ...     must_be_wellformed=False,
             ...     )
 
             >>> abjad.f(rounded_timespans)
@@ -2792,7 +2792,7 @@ class TimespanList(TypedList):
             timespan = timespan.round_offsets(
                 multiplier,
                 anchor=anchor,
-                must_be_well_formed=must_be_well_formed,
+                must_be_wellformed=must_be_wellformed,
                 )
             timespans.append(timespan)
         self[:] = timespans

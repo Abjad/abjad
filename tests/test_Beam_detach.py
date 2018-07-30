@@ -46,7 +46,7 @@ def test_Beam_detach_01():
         """
         )
 
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()
 
 
 def test_Beam_detach_02():
@@ -94,4 +94,4 @@ def test_Beam_detach_02():
         """
         )
 
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()

@@ -22,7 +22,7 @@ def test_Component__remove_and_shrink_durated_parent_containers_01():
         """
         )
 
-    assert abjad.inspect(container).is_well_formed()
+    assert abjad.inspect(container).is_wellformed()
 
 
 def test_Component__remove_and_shrink_durated_parent_containers_02():
@@ -47,7 +47,7 @@ def test_Component__remove_and_shrink_durated_parent_containers_02():
         """
         )
 
-    assert abjad.inspect(voice).is_well_formed()
+    assert abjad.inspect(voice).is_wellformed()
 
 
 def test_Component__remove_and_shrink_durated_parent_containers_03():
@@ -72,7 +72,7 @@ def test_Component__remove_and_shrink_durated_parent_containers_03():
         """
         )
 
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()
 
 
 def test_Component__remove_and_shrink_durated_parent_containers_04():
@@ -108,7 +108,7 @@ def test_Component__remove_and_shrink_durated_parent_containers_04():
         """
         )
 
-    assert abjad.inspect(tuplet).is_well_formed()
+    assert abjad.inspect(tuplet).is_wellformed()
 
 
 def test_Component__remove_and_shrink_durated_parent_containers_05():
@@ -151,4 +151,4 @@ def test_Component__remove_and_shrink_durated_parent_containers_05():
         """
         )
 
-    assert abjad.inspect(tuplet).is_well_formed()
+    assert abjad.inspect(tuplet).is_wellformed()

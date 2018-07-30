@@ -209,7 +209,9 @@ class Dynamic(AbjadValueObject):
 
     _lilypond_dynamic_alphabet = 'fmprsz'
 
-    _parameter = True
+    _parameter = 'DYNAMIC'
+
+    _persistent = True
 
     _to_width = {
         '"f"': 2,
@@ -1069,17 +1071,30 @@ class Dynamic(AbjadValueObject):
         return ordinal
 
     @property
-    def parameter(self) -> bool:
+    def parameter(self) -> str:
+        """
+        Returns ``'DYNAMIC'``.
+
+        ..  container:: example
+
+            >>> abjad.Dynamic('f').parameter
+            'DYNAMIC'
+
+        """
+        return self._parameter
+
+    @property
+    def persistent(self) -> bool:
         """
         Is true.
 
         ..  container:: example
 
-            >>> abjad.Dynamic('f').parameter
+            >>> abjad.Dynamic('f').persistent
             True
 
         """
-        return self._parameter
+        return self._persistent
 
     @property
     def sforzando(self) -> typing.Optional[bool]:

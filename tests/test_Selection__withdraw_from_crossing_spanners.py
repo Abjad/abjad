@@ -74,7 +74,7 @@ def test_Selection__withdraw_from_crossing_spanners_01():
         """
         )
 
-    assert abjad.inspect(voice).is_well_formed()
+    assert abjad.inspect(voice).is_wellformed()
 
 
 def test_Selection__withdraw_from_crossing_spanners_02():
@@ -147,7 +147,7 @@ def test_Selection__withdraw_from_crossing_spanners_02():
         """
         )
 
-    assert abjad.inspect(voice).is_well_formed()
+    assert abjad.inspect(voice).is_wellformed()
 
 
 def test_Selection__withdraw_from_crossing_spanners_03():
@@ -201,4 +201,4 @@ def test_Selection__withdraw_from_crossing_spanners_03():
     selector = abjad.select().leaves()
     leaves = selector(voice)
     leaves[2:3]._withdraw_from_crossing_spanners()
-    assert not abjad.inspect(voice).is_well_formed()
+    assert not abjad.inspect(voice).is_wellformed()

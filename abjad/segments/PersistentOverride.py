@@ -39,7 +39,7 @@ class PersistentOverride(AbjadObject):
         '_value',
         )
 
-    _parameter = True
+    _persistent = True
     
     _publish_storage_format = True
 
@@ -268,7 +268,7 @@ class PersistentOverride(AbjadObject):
         return self._hide
 
     @property
-    def parameter(self) -> bool:
+    def persistent(self) -> bool:
         """
         Is true.
 
@@ -281,12 +281,12 @@ class PersistentOverride(AbjadObject):
             ...     value=(-2, 0),
             ...     )
 
-            >>> override.parameter
+            >>> override.persistent
             True
 
         Class constant.
         """
-        return self._parameter
+        return self._persistent
 
     @property
     def value(self) -> typing.Optional[str]:

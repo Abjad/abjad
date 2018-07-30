@@ -21,7 +21,7 @@ def test_Mutation_scale_01():
         """
         )
 
-    assert abjad.inspect(voice).is_well_formed()
+    assert abjad.inspect(voice).is_wellformed()
 
 
 def test_Mutation_scale_02():
@@ -52,7 +52,7 @@ def test_Mutation_scale_02():
         """
         )
 
-    assert abjad.inspect(voice).is_well_formed()
+    assert abjad.inspect(voice).is_wellformed()
 
 
 def test_Mutation_scale_03():
@@ -87,7 +87,7 @@ def test_Mutation_scale_03():
         """
         )
 
-    assert abjad.inspect(voice).is_well_formed()
+    assert abjad.inspect(voice).is_wellformed()
 
 
 def test_Mutation_scale_04():
@@ -130,7 +130,7 @@ def test_Mutation_scale_04():
         """
         )
 
-    assert abjad.inspect(voice).is_well_formed()
+    assert abjad.inspect(voice).is_wellformed()
 
 
 def test_Mutation_scale_05():
@@ -175,7 +175,7 @@ def test_Mutation_scale_05():
         """
         )
 
-    assert abjad.inspect(voice).is_well_formed()
+    assert abjad.inspect(voice).is_wellformed()
 
 
 def test_Mutation_scale_06():
@@ -223,7 +223,7 @@ def test_Mutation_scale_06():
         """
         )
 
-    assert abjad.inspect(voice).is_well_formed()
+    assert abjad.inspect(voice).is_wellformed()
 
 
 def test_Mutation_scale_07():
@@ -279,4 +279,4 @@ def test_Mutation_scale_07():
         """
         )
 
-    assert abjad.inspect(voice).is_well_formed()
+    assert abjad.inspect(voice).is_wellformed()

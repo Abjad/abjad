@@ -33,7 +33,7 @@ def test_Mutation_replace_measure_contents_01():
         """
         )
 
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()
 
 
 def test_Mutation_replace_measure_contents_02():
@@ -75,7 +75,7 @@ def test_Mutation_replace_measure_contents_02():
         """
         )
 
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()
 
 
 def test_Mutation_replace_measure_contents_03():
@@ -138,7 +138,7 @@ def test_Mutation_replace_measure_contents_05():
         """
         )
 
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()
 
 
 def test_Mutation_replace_measure_contents_06():
@@ -174,4 +174,4 @@ def test_Mutation_replace_measure_contents_06():
         """
         )
 
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()

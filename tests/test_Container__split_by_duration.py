@@ -71,7 +71,7 @@ def test_Container__split_by_duration_01():
         """
         ), format(staff)
 
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()
 
 
 def test_Container__split_by_duration_02():
@@ -149,7 +149,7 @@ def test_Container__split_by_duration_02():
         """
         ), format(staff)
 
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()
 
 
 def test_Container__split_by_duration_03():
@@ -236,7 +236,7 @@ def test_Container__split_by_duration_03():
         """
         ), format(staff)
 
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()
 
 
 def test_Container__split_by_duration_04():
@@ -321,7 +321,7 @@ def test_Container__split_by_duration_04():
         """
         ), format(staff)
 
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()
 
 
 def test_Container__split_by_duration_05():
@@ -399,7 +399,7 @@ def test_Container__split_by_duration_05():
         """
         ), format(staff)
 
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()
 
 
 def test_Container__split_by_duration_06():
@@ -565,7 +565,7 @@ def test_Container__split_by_duration_07():
         """
         ), format(staff)
 
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()
 
 
 def test_Container__split_by_duration_08():
@@ -640,7 +640,7 @@ def test_Container__split_by_duration_08():
         """
         ), format(staff)
 
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()
 
 
 def test_Container__split_by_duration_09():
@@ -720,7 +720,7 @@ def test_Container__split_by_duration_09():
         """
         ), format(staff)
 
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()
 
 
 def test_Container__split_by_duration_10():
@@ -808,7 +808,7 @@ def test_Container__split_by_duration_10():
         """
         ), format(staff)
 
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()
 
 
 def test_Container__split_by_duration_11():
@@ -897,7 +897,7 @@ def test_Container__split_by_duration_11():
         """
         ), format(staff)
 
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()
 
 
 def test_Container__split_by_duration_12():
@@ -992,7 +992,7 @@ def test_Container__split_by_duration_12():
         """
         ), format(staff)
 
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()
 
 
 def test_Container__split_by_duration_13():
@@ -1071,7 +1071,7 @@ def test_Container__split_by_duration_13():
         """
         ), format(staff)
 
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()
 
 
 def test_Container__split_by_duration_14():
@@ -1156,7 +1156,7 @@ def test_Container__split_by_duration_14():
         """
         ), format(staff)
 
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()
 
 
 def test_Container__split_by_duration_15():
@@ -1246,7 +1246,7 @@ def test_Container__split_by_duration_15():
         """
         ), format(staff)
 
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()
 
 
 def test_Container__split_by_duration_16():
@@ -1297,7 +1297,7 @@ def test_Container__split_by_duration_16():
         """
         ), format(staff)
 
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()
 
 
 def test_Container__split_by_duration_17():
@@ -1379,7 +1379,7 @@ def test_Container__split_by_duration_17():
         """
         ), format(staff)
 
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()
 
 
 def test_Container__split_by_duration_18():
@@ -1408,5 +1408,5 @@ def test_Container__split_by_duration_18():
         """
         ), format(halves[-1][0])
 
-    assert abjad.inspect(halves[0][0]).is_well_formed()
-    assert abjad.inspect(halves[-1][0]).is_well_formed()
+    assert abjad.inspect(halves[0][0]).is_wellformed()
+    assert abjad.inspect(halves[-1][0]).is_wellformed()

@@ -63,8 +63,8 @@ def test_Mutation_copy_01():
         }
         """
         )
-    assert abjad.inspect(voice).is_well_formed()
-    assert abjad.inspect(new).is_well_formed()
+    assert abjad.inspect(voice).is_wellformed()
+    assert abjad.inspect(new).is_wellformed()
 
 
 def test_Mutation_copy_02():
@@ -129,8 +129,8 @@ def test_Mutation_copy_02():
         }
         """
         )
-    assert abjad.inspect(voice).is_well_formed()
-    assert abjad.inspect(new).is_well_formed()
+    assert abjad.inspect(voice).is_wellformed()
+    assert abjad.inspect(new).is_wellformed()
 
 
 def test_Mutation_copy_03():
@@ -193,8 +193,8 @@ def test_Mutation_copy_03():
         }
         """
         )
-    assert abjad.inspect(voice).is_well_formed()
-    assert abjad.inspect(new).is_well_formed()
+    assert abjad.inspect(voice).is_wellformed()
+    assert abjad.inspect(new).is_wellformed()
 
 
 def test_Mutation_copy_04():
@@ -266,7 +266,7 @@ def test_Mutation_copy_04():
         }
         """
         )
-    assert abjad.inspect(new_voice).is_well_formed()
+    assert abjad.inspect(new_voice).is_wellformed()
 
 
 def test_Mutation_copy_05():
@@ -333,8 +333,8 @@ def test_Mutation_copy_05():
         }
         """
         )
-    assert abjad.inspect(voice).is_well_formed()
-    assert abjad.inspect(new_voice).is_well_formed()
+    assert abjad.inspect(voice).is_wellformed()
+    assert abjad.inspect(new_voice).is_wellformed()
 
 
 def test_Mutation_copy_06():
@@ -394,8 +394,8 @@ def test_Mutation_copy_06():
         }
         """
         )
-    assert abjad.inspect(voice).is_well_formed()
-    assert abjad.inspect(new_voice).is_well_formed()
+    assert abjad.inspect(voice).is_wellformed()
+    assert abjad.inspect(new_voice).is_wellformed()
 
 
 def test_Mutation_copy_07():
@@ -459,8 +459,8 @@ def test_Mutation_copy_07():
         """
         )
 
-    assert abjad.inspect(voice).is_well_formed()
-    assert abjad.inspect(new_voice).is_well_formed()
+    assert abjad.inspect(voice).is_wellformed()
+    assert abjad.inspect(new_voice).is_wellformed()
 
 
 def test_Mutation_copy_08():
@@ -516,4 +516,4 @@ def test_Mutation_copy_08():
         }
         """
         )
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()

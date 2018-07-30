@@ -8,7 +8,6 @@ from abjad.pitch.PitchSet import PitchSet
 from abjad.spanners.Spanner import Spanner
 from abjad.system.AbjadObject import AbjadObject
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
-from abjad.system.WellformednessManager import WellformednessManager
 from abjad.system.Wrapper import Wrapper
 from abjad.timespans.Timespan import Timespan
 from abjad.top.inspect import inspect
@@ -28,6 +27,7 @@ from .Selection import Selection
 from .Staff import Staff
 from .Tuplet import Tuplet
 from .VerticalMoment import VerticalMoment
+from .Wellformedness import Wellformedness
 
 
 class Inspection(AbjadObject):
@@ -290,7 +290,7 @@ class Inspection(AbjadObject):
         r"""
         Gets badly formed components.
         """
-        manager = WellformednessManager()
+        manager = Wellformedness()
         violators: typing.List[Component] = []
         for violators_, total, check_name in manager(self.client):
             violators.extend(violators_)
@@ -440,10 +440,12 @@ class Inspection(AbjadObject):
 
     def effective(
         self,
-        prototype=None,
-        unwrap=True,
-        n=0,
+        prototype,
+        *,
+        command=None,
         default=None,
+        n=0,
+        unwrap=True,
         ) -> typing.Any:
         r"""
         Gets effective indicator.
@@ -646,9 +648,10 @@ class Inspection(AbjadObject):
         if not isinstance(self.client, Component):
             raise Exception('can only get effective on components.')
         result = self.client._get_effective(
-            prototype=prototype,
-            unwrap=unwrap,
+            prototype,
+            command=command,
             n=n,
+            unwrap=unwrap,
             )
         if result is None:
             result = default
@@ -664,7 +667,9 @@ class Inspection(AbjadObject):
 
     def effective_wrapper(
         self,
-        prototype=None,
+        prototype,
+        *,
+        command=None,
         n=0,
         ) -> typing.Optional[Wrapper]:
         r"""
@@ -707,7 +712,7 @@ class Inspection(AbjadObject):
             f'4 Wrapper(context='Staff', indicator=Clef('alto'), tag=Tag())
 
         """
-        return self.effective(prototype=prototype, n=n, unwrap=False)
+        return self.effective(prototype, command=command, n=n, unwrap=False)
 
     def grace_container(self) -> typing.Optional[GraceContainer]:
         r"""
@@ -900,7 +905,7 @@ class Inspection(AbjadObject):
                 return True
         return False
 
-    def is_well_formed(
+    def is_wellformed(
         self,
         check_beamed_long_notes=True,
         check_discontiguous_spanners=True,
@@ -917,16 +922,16 @@ class Inspection(AbjadObject):
         check_out_of_range_notes=True,
         check_overlapping_beams=True,
         check_overlapping_glissandi=True,
-        check_overlapping_hairpins=True,
         check_overlapping_octavation_spanners=True,
         check_overlapping_ties=True,
         check_overlapping_trill_spanners=True,
-        check_tied_rests=True,
+        check_unterminated_hairpins=True,
+        check_unterminated_text_spanners=True,
         ) -> bool:
         """
-        Is true when client is well-formed.
+        Is true when client is wellformed.
         """
-        manager = WellformednessManager()
+        manager = Wellformedness()
         for violators, total, check_name in manager(self.client):
             if eval(check_name) is not True:
                 continue
@@ -1429,7 +1434,6 @@ class Inspection(AbjadObject):
         check_empty_containers=True,
         check_misdurated_measures=True,
         check_misfilled_measures=True,
-        check_mismatched_enchained_hairpins=True,
         check_mispitched_ties=True,
         check_misrepresented_flags=True,
         check_missing_parents=True,
@@ -1438,16 +1442,16 @@ class Inspection(AbjadObject):
         check_out_of_range_notes=True,
         check_overlapping_beams=True,
         check_overlapping_glissandi=True,
-        check_overlapping_hairpins=True,
         check_overlapping_octavation_spanners=True,
         check_overlapping_ties=True,
         check_overlapping_trill_spanners=True,
-        check_tied_rests=True,
+        check_unterminated_hairpins=True,
+        check_unterminated_text_spanners=True,
         ) -> str:
         r"""
-        Tabulates well-formedness.
+        Tabulates wellformedness.
         """
-        manager = WellformednessManager(
+        manager = Wellformedness(
             allow_percussion_clef=allow_percussion_clef,
             )
         triples = manager(self.client)

@@ -59,7 +59,7 @@ def test_Mutation_replace_01():
         """
         ), format(staff)
 
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()
 
 
 def test_Mutation_replace_02():
@@ -121,7 +121,7 @@ def test_Mutation_replace_02():
         """
         ), format(staff)
 
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()
 
 
 def test_Mutation_replace_03():
@@ -182,7 +182,7 @@ def test_Mutation_replace_03():
         """
         ), format(staff)
 
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()
 
 
 def test_Mutation_replace_04():
@@ -240,7 +240,7 @@ def test_Mutation_replace_04():
         """
         ), format(staff)
 
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()
 
 
 def test_Mutation_replace_05():
@@ -295,7 +295,7 @@ def test_Mutation_replace_05():
         """
         ), format(staff)
 
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()
 
 
 def test_Mutation_replace_06():
@@ -349,4 +349,4 @@ def test_Mutation_replace_06():
         ), format(staff)
 
     assert not voice
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()

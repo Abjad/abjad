@@ -23,7 +23,7 @@ def test_Measure___delitem___01():
         """
         )
 
-    assert abjad.inspect(measure).is_well_formed()
+    assert abjad.inspect(measure).is_wellformed()
 
 
 def test_Measure___delitem___02():
@@ -48,7 +48,7 @@ def test_Measure___delitem___02():
         """
         )
 
-    assert abjad.inspect(measure).is_well_formed()
+    assert abjad.inspect(measure).is_wellformed()
 
 
 def test_Measure___delitem___03():
@@ -72,7 +72,7 @@ def test_Measure___delitem___03():
         """
         )
 
-    assert abjad.inspect(measure).is_well_formed()
+    assert abjad.inspect(measure).is_wellformed()
 
 
 def test_Measure___delitem___04():
@@ -98,7 +98,7 @@ def test_Measure___delitem___04():
         """
         )
 
-    assert abjad.inspect(measure).is_well_formed()
+    assert abjad.inspect(measure).is_wellformed()
 
 
 def test_Measure___delitem___05():
@@ -126,7 +126,7 @@ def test_Measure___delitem___05():
         """
         )
 
-    assert abjad.inspect(measure).is_well_formed()
+    assert abjad.inspect(measure).is_wellformed()
 
 
 def test_Measure___delitem___06():
@@ -169,7 +169,7 @@ def test_Measure___delitem___06():
         """
         )
 
-    assert abjad.inspect(measure).is_well_formed()
+    assert abjad.inspect(measure).is_wellformed()
 
 
 def test_Measure___delitem___07():
@@ -184,7 +184,7 @@ def test_Measure___delitem___07():
 
     assert len(measure) == 3
     assert abjad.inspect(measure).indicator(abjad.TimeSignature)
-    assert not abjad.inspect(measure).is_well_formed()
+    assert not abjad.inspect(measure).is_wellformed()
 
 
 def test_Measure___delitem___08():
@@ -200,4 +200,4 @@ def test_Measure___delitem___08():
 
     assert len(measure) == 3
     assert abjad.inspect(measure).indicator(abjad.TimeSignature)
-    assert not abjad.inspect(measure).is_well_formed()
+    assert not abjad.inspect(measure).is_wellformed()

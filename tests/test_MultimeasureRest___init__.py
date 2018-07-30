@@ -14,4 +14,4 @@ def test_MultimeasureRest___init___01():
         """
         )
 
-    assert abjad.inspect(multimeasure_rest).is_well_formed()
+    assert abjad.inspect(multimeasure_rest).is_wellformed()

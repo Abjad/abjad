@@ -64,6 +64,10 @@ class DynamicTrend(AbjadValueObject):
         '--',
         )
 
+    _parameter = 'DYNAMIC'
+
+    _persistent = True
+
     _time_orientation: enums.HorizontalAlignment = enums.Right
 
     ### INITIALIZER ###
@@ -265,6 +269,32 @@ class DynamicTrend(AbjadValueObject):
 
         """
         return self._left_broken
+
+    @property
+    def parameter(self) -> str:
+        """
+        Returns ``'DYNAMIC'``.
+
+        ..  container:: example
+
+            >>> abjad.DynamicTrend('<').parameter
+            'DYNAMIC'
+
+        """
+        return self._parameter
+
+    @property
+    def persistent(self) -> bool:
+        """
+        Is true.
+
+        ..  container:: example
+
+            >>> abjad.DynamicTrend('<').persistent
+            True
+
+        """
+        return self._persistent
 
     @property
     def shape(self) -> str:

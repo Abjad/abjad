@@ -181,7 +181,7 @@ class Clef(AbjadValueObject):
 
     _format_slot = 'opening'
 
-    _parameter = True
+    _persistent = True
 
     _redraw = True
 
@@ -441,18 +441,18 @@ class Clef(AbjadValueObject):
         return self._name
 
     @property
-    def parameter(self) -> bool:
+    def persistent(self) -> bool:
         """
         Is true.
 
         ..  container:: example
 
-            >>> abjad.Clef('treble').parameter
+            >>> abjad.Clef('treble').persistent
             True
 
         Class constant.
         """
-        return self._parameter
+        return self._persistent
         
     @property
     def redraw(self) -> bool:

@@ -299,7 +299,7 @@ class Component(AbjadObject):
             parentage = abjad.inspect(self).parentage(include_self=False)
             return parentage.prolation * self._get_preprolated_duration()
 
-    def _get_effective(self, prototype, unwrap=True, n=0):
+    def _get_effective(self, prototype, *, command=None, n=0, unwrap=True):
         import abjad
         # return time signature attached to measure regardless of context
         if (prototype == abjad.TimeSignature or
@@ -322,10 +322,11 @@ class Component(AbjadObject):
                 if wrapper.annotation:
                     continue
                 if isinstance(wrapper.indicator, prototype):
-                    #offset = wrapper.start_offset
-                    #candidate_wrappers.setdefault(offset, []).append(wrapper)
+                    if (command is not None and
+                        wrapper.indicator.command != command):
+                        continue
                     these_wrappers.append(wrapper)
-            # activate indicator takes precendence over inactive indicator
+            # active indicator takes precendence over inactive indicator
             if (any(_.deactivate is True for _ in these_wrappers) and
                 not all(_.deactivate is True for _ in these_wrappers)):
                 these_wrappers = [
@@ -340,6 +341,9 @@ class Component(AbjadObject):
                 if wrapper.annotation:
                     continue
                 if isinstance(wrapper.indicator, prototype):
+                    if (command is not None and
+                        wrapper.indicator.command != command):
+                        continue
                     offset = wrapper.start_offset
                     candidate_wrappers.setdefault(offset, []).append(wrapper)
         if not candidate_wrappers:
@@ -618,8 +622,8 @@ class Component(AbjadObject):
         import abjad
         return abjad.VerticalMoment(self, offset)
 
-    def _has_effective_indicator(self, prototype=None):
-        indicator = self._get_effective(prototype=prototype)
+    def _has_effective_indicator(self, prototype, *, command=None):
+        indicator = self._get_effective(prototype, command=command)
         return indicator is not None
 
     def _has_indicator(self, prototype=None):

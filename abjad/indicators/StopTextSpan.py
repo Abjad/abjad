@@ -21,6 +21,12 @@ class StopTextSpan(AbjadValueObject):
         '_leak',
         )
 
+    _context = 'Voice'
+
+    _parameter = 'TEXT_SPANNER'
+
+    _persistent = True
+
     _publish_storage_format = True
 
     ### INITIALIZER ###
@@ -58,6 +64,22 @@ class StopTextSpan(AbjadValueObject):
         Gets command.
         """
         return self._command
+
+    @property
+    def context(self) -> str:
+        """
+        Returns (historically conventional) context ``'Voice'``.
+
+        ..  container:: example
+
+            >>> abjad.StopTextSpan().context
+            'Voice'
+
+        Class constant.
+
+        Override with ``abjad.attach(..., context='...')``.
+        """
+        return self._context
 
     @property
     def enchained(self) -> bool:
@@ -214,6 +236,34 @@ class StopTextSpan(AbjadValueObject):
 
         """
         return self._leak
+
+    @property
+    def parameter(self) -> str:
+        """
+        Returns ``'TEXT_SPANNER'``.
+
+        ..  container:: example
+
+            >>> abjad.StopTextSpan().parameter
+            'TEXT_SPANNER'
+
+        Class constant.
+        """
+        return self._parameter
+
+    @property
+    def persistent(self) -> bool:
+        """
+        Is true.
+
+        ..  container:: example
+
+            >>> abjad.StopTextSpan().persistent
+            True
+
+        Class constant.
+        """
+        return self._persistent
 
     @property
     def spanner_stop(self) -> bool:

@@ -25,7 +25,7 @@ def test_TrillSpanner_pitch_01():
         """
         )
 
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()
 
 
 def test_TrillSpanner_pitch_02():
@@ -51,4 +51,4 @@ def test_TrillSpanner_pitch_02():
         """
         )
 
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()

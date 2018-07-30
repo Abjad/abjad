@@ -31,7 +31,7 @@ def test_LogicalTie__fuse_leaves_by_immediate_parent_01():
         )
 
     assert len(result) == 2
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()
 
 
 def test_LogicalTie__fuse_leaves_by_immediate_parent_02():
@@ -70,7 +70,7 @@ def test_LogicalTie__fuse_leaves_by_immediate_parent_02():
         """
         )
 
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()
     assert len(result) == 1
 
 
@@ -83,4 +83,4 @@ def test_LogicalTie__fuse_leaves_by_immediate_parent_03():
     logical_tie = abjad.inspect(note).logical_tie()
     result = logical_tie._fuse_leaves_by_immediate_parent()
     assert len(result) == 1
-    assert abjad.inspect(note).is_well_formed()
+    assert abjad.inspect(note).is_wellformed()

@@ -474,7 +474,11 @@ class Wrapper(AbjadValueObject):
         if self.deactivate is True:
             return
         prototype = type(self.indicator)
-        wrapper = abjad.inspect(component).effective_wrapper(prototype)
+        command = getattr(self.indicator, 'command', None)
+        wrapper = abjad.inspect(component).effective_wrapper(
+            prototype,
+            command=command,
+            )
         if (wrapper is not None and
             wrapper.context is not None and
             wrapper.deactivate is not True and

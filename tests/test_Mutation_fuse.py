@@ -90,7 +90,7 @@ def test_Mutation_fuse_05():
         )
 
     assert abjad.inspect(staff).duration() == abjad.Duration(3, 8)
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()
 
 
 def test_Mutation_fuse_06():
@@ -152,7 +152,7 @@ def test_Mutation_fuse_06():
     assert len(tuplet_1) == 0
     assert len(tuplet_2) == 0
     assert new is not tuplet_1 and new is not tuplet_2
-    assert abjad.inspect(new).is_well_formed()
+    assert abjad.inspect(new).is_wellformed()
 
 
 def test_Mutation_fuse_07():
@@ -213,7 +213,7 @@ def test_Mutation_fuse_07():
         """
         )
 
-    assert abjad.inspect(voice).is_well_formed()
+    assert abjad.inspect(voice).is_wellformed()
 
 
 def test_Mutation_fuse_08():
@@ -280,7 +280,7 @@ def test_Mutation_fuse_08():
         """
         )
 
-    assert abjad.inspect(voice).is_well_formed()
+    assert abjad.inspect(voice).is_wellformed()
 
 
 def test_Mutation_fuse_09():
@@ -344,7 +344,7 @@ def test_Mutation_fuse_10():
         """
         )
 
-    assert abjad.inspect(voice).is_well_formed()
+    assert abjad.inspect(voice).is_wellformed()
 
 
 def test_Mutation_fuse_11():
@@ -405,7 +405,7 @@ def test_Mutation_fuse_11():
         """
         )
 
-    assert abjad.inspect(new).is_well_formed()
+    assert abjad.inspect(new).is_wellformed()
 
 
 def test_Mutation_fuse_12():
@@ -460,7 +460,7 @@ def test_Mutation_fuse_12():
         """
         )
 
-    assert abjad.inspect(voice).is_well_formed()
+    assert abjad.inspect(voice).is_wellformed()
 
 
 def test_Mutation_fuse_13():
@@ -514,7 +514,7 @@ def test_Mutation_fuse_13():
         """
         )
 
-    assert abjad.inspect(voice).is_well_formed()
+    assert abjad.inspect(voice).is_wellformed()
 
 
 def test_Mutation_fuse_14():
@@ -573,7 +573,7 @@ def test_Mutation_fuse_14():
         """
         )
 
-    assert abjad.inspect(voice).is_well_formed()
+    assert abjad.inspect(voice).is_wellformed()
 
 
 def test_Mutation_fuse_15():
@@ -652,7 +652,7 @@ def test_Mutation_fuse_17():
         """
         )
 
-    assert abjad.inspect(voice).is_well_formed()
+    assert abjad.inspect(voice).is_wellformed()
 
 
 def test_Mutation_fuse_18():
@@ -727,7 +727,7 @@ def test_Mutation_fuse_18():
         """
         )
 
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()
 
 
 @pytest.mark.skip()
@@ -780,7 +780,7 @@ def test_Mutation_fuse_19():
     assert new is not measure_1 and new is not measure_2
     assert len(measure_1) == 0
     assert len(measure_2) == 0
-    assert abjad.inspect(new).is_well_formed()
+    assert abjad.inspect(new).is_wellformed()
 
 
 @pytest.mark.skip()
@@ -831,7 +831,7 @@ def test_Mutation_fuse_20():
         """
         )
 
-    assert abjad.inspect(voice).is_well_formed()
+    assert abjad.inspect(voice).is_wellformed()
 
 
 @pytest.mark.skip()
@@ -881,7 +881,7 @@ def test_Mutation_fuse_21():
         """
         )
 
-    assert abjad.inspect(voice).is_well_formed()
+    assert abjad.inspect(voice).is_wellformed()
 
 
 @pytest.mark.skip()
@@ -935,7 +935,7 @@ def test_Mutation_fuse_22():
         """
         )
 
-    assert abjad.inspect(voice).is_well_formed()
+    assert abjad.inspect(voice).is_wellformed()
 
 
 @pytest.mark.skip()
@@ -1013,7 +1013,7 @@ def test_Mutation_fuse_25():
         """
         )
 
-    assert abjad.inspect(voice).is_well_formed()
+    assert abjad.inspect(voice).is_wellformed()
 
 
 @pytest.mark.skip()
@@ -1131,4 +1131,4 @@ def test_Mutation_fuse_27():
         """
         )
 
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()

@@ -236,7 +236,7 @@ class Mutation(AbjadObject):
 
             New container is well formed:
 
-            >>> abjad.inspect(staff).is_well_formed()
+            >>> abjad.inspect(staff).is_wellformed()
             True
 
             Old container is empty:
@@ -647,7 +647,7 @@ class Mutation(AbjadObject):
             (Note("f'4"), None)
             (Note("g'4"), None)
 
-            >>> abjad.inspect(staff).is_well_formed()
+            >>> abjad.inspect(staff).is_wellformed()
             True
 
         ..  container:: example
@@ -700,7 +700,7 @@ class Mutation(AbjadObject):
             (Note("f'4"), Clef('alto'))
             (Note("g'4"), Clef('alto'))
 
-            >>> abjad.inspect(staff).is_well_formed()
+            >>> abjad.inspect(staff).is_wellformed()
             True
 
         ..  container:: example
