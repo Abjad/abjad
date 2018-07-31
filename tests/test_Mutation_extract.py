@@ -47,8 +47,8 @@ def test_Mutation_extract_01():
         """
         )
 
-    assert abjad.inspect(note).is_well_formed()
-    assert abjad.inspect(voice).is_well_formed()
+    assert abjad.inspect(note).is_wellformed()
+    assert abjad.inspect(voice).is_wellformed()
 
 
 def test_Mutation_extract_02():
@@ -97,9 +97,9 @@ def test_Mutation_extract_02():
         )
 
     for note in notes:
-        assert abjad.inspect(note).is_well_formed()
+        assert abjad.inspect(note).is_wellformed()
 
-    assert abjad.inspect(voice).is_well_formed()
+    assert abjad.inspect(voice).is_wellformed()
 
 
 def test_Mutation_extract_03():
@@ -152,7 +152,7 @@ def test_Mutation_extract_03():
         )
 
     assert not container
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()
 
 
 def test_Mutation_extract_04():
@@ -227,4 +227,4 @@ def test_Mutation_extract_04():
     for container in containers:
         assert not container
 
-    assert abjad.inspect(voice).is_well_formed()
+    assert abjad.inspect(voice).is_wellformed()

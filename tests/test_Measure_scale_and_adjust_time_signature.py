@@ -24,7 +24,7 @@ def test_Measure_scale_and_adjust_time_signature_01():
         """
         )
 
-    assert abjad.inspect(measure).is_well_formed()
+    assert abjad.inspect(measure).is_wellformed()
 
 
 
@@ -48,7 +48,7 @@ def test_Measure_scale_and_adjust_time_signature_02():
         """
         )
 
-    assert abjad.inspect(measure).is_well_formed()
+    assert abjad.inspect(measure).is_wellformed()
 
 
 def test_Measure_scale_and_adjust_time_signature_03():
@@ -71,7 +71,7 @@ def test_Measure_scale_and_adjust_time_signature_03():
         """
         )
 
-    assert abjad.inspect(measure).is_well_formed()
+    assert abjad.inspect(measure).is_wellformed()
 
 
 def test_Measure_scale_and_adjust_time_signature_04():
@@ -83,7 +83,7 @@ def test_Measure_scale_and_adjust_time_signature_04():
     measure = abjad.Measure((9, 16), "c'8. d'8. e'8.")
     measure.scale_and_adjust_time_signature(abjad.Multiplier(2, 3))
 
-    assert abjad.inspect(measure).is_well_formed()
+    assert abjad.inspect(measure).is_wellformed()
     assert format(measure) == abjad.String.normalize(
         r"""
         {   % measure
@@ -124,7 +124,7 @@ def test_Measure_scale_and_adjust_time_signature_05():
         """
         )
 
-    assert abjad.inspect(measure).is_well_formed()
+    assert abjad.inspect(measure).is_wellformed()
 
 
 def test_Measure_scale_and_adjust_time_signature_06():
@@ -147,7 +147,7 @@ def test_Measure_scale_and_adjust_time_signature_06():
         """
         )
 
-    assert abjad.inspect(measure).is_well_formed()
+    assert abjad.inspect(measure).is_wellformed()
 
 
 def test_Measure_scale_and_adjust_time_signature_07():
@@ -160,7 +160,7 @@ def test_Measure_scale_and_adjust_time_signature_07():
     measure = abjad.Measure((6, 16), "c'16 d'16 e'16 f'16 g'16 a'16")
     measure.scale_and_adjust_time_signature(abjad.Multiplier(1, 2))
 
-    assert abjad.inspect(measure).is_well_formed()
+    assert abjad.inspect(measure).is_wellformed()
     assert format(measure) == abjad.String.normalize(
         r"""
         {   % measure
@@ -186,7 +186,7 @@ def test_Measure_scale_and_adjust_time_signature_08():
     measure = abjad.Measure((6, 16), "c'16 d'16 e'16 f'16 g'16 a'16")
     measure.scale_and_adjust_time_signature(abjad.Multiplier(1, 4))
 
-    assert abjad.inspect(measure).is_well_formed()
+    assert abjad.inspect(measure).is_wellformed()
     assert format(measure) == abjad.String.normalize(
         r"""
         {   % measure
@@ -212,7 +212,7 @@ def test_Measure_scale_and_adjust_time_signature_09():
     measure = abjad.Measure((6, 16), "c'16 d'16 e'16 f'16 g'16 a'16")
     measure.scale_and_adjust_time_signature(abjad.Multiplier(2))
 
-    assert abjad.inspect(measure).is_well_formed()
+    assert abjad.inspect(measure).is_wellformed()
     assert format(measure) == abjad.String.normalize(
         r"""
         {   % measure
@@ -238,7 +238,7 @@ def test_Measure_scale_and_adjust_time_signature_10():
     measure = abjad.Measure((6, 16), "c'16 d'16 e'16 f'16 g'16 a'16")
     measure.scale_and_adjust_time_signature(abjad.Multiplier(4))
 
-    assert abjad.inspect(measure).is_well_formed()
+    assert abjad.inspect(measure).is_wellformed()
     assert format(measure) == abjad.String.normalize(
         r"""
         {   % measure

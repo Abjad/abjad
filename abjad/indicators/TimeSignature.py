@@ -120,7 +120,7 @@ class TimeSignature(AbjadValueObject):
 
     _format_slot = 'opening'
 
-    _parameter = True
+    _persistent = True
 
     ### INITIALIZER ###
 
@@ -502,17 +502,17 @@ class TimeSignature(AbjadValueObject):
         return self._partial
 
     @property
-    def parameter(self) -> bool:
+    def persistent(self) -> bool:
         """
         Is true.
 
         ..  container:: example
 
-            >>> abjad.TimeSignature((3, 8)).parameter
+            >>> abjad.TimeSignature((3, 8)).persistent
             True
 
         """
-        return self._parameter
+        return self._persistent
 
     @property
     def tweaks(self) -> None:

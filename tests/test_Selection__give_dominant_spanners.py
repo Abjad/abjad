@@ -74,7 +74,7 @@ def test_Selection__give_dominant_spanners_01():
         """
         )
 
-    assert not abjad.inspect(voice).is_well_formed()
+    assert not abjad.inspect(voice).is_wellformed()
 
     "Slur is contiguous but recipient participates in discont. cresc."
 
@@ -93,4 +93,4 @@ def test_Selection__give_dominant_spanners_01():
         """
         )
 
-    assert not abjad.inspect(recipient).is_well_formed()
+    assert not abjad.inspect(recipient).is_wellformed()

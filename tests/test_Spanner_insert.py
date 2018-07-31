@@ -30,7 +30,7 @@ def test_Spanner_insert_01():
 
     beam._insert(1, voice[:][-1])
 
-    assert not abjad.inspect(voice).is_well_formed()
+    assert not abjad.inspect(voice).is_wellformed()
 
 
 def test_Spanner_insert_02():

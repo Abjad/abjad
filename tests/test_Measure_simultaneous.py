@@ -39,4 +39,4 @@ def test_Measure_simultaneous_01():
         """
         )
 
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()

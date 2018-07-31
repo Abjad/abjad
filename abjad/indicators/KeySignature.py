@@ -63,7 +63,7 @@ class KeySignature(AbjadValueObject):
 
     _format_slot = 'opening'
 
-    _parameter = True
+    _persistent = True
     
     _redraw = True
 
@@ -208,18 +208,18 @@ class KeySignature(AbjadValueObject):
         return f'{tonic!s} {self.mode.mode_name!s}'
 
     @property
-    def parameter(self) -> bool:
+    def persistent(self) -> bool:
         """
         Is true.
 
         ..  container:: example
 
-            >>> abjad.KeySignature('e', 'major').parameter
+            >>> abjad.KeySignature('e', 'major').persistent
             True
 
         Class constant.
         """
-        return self._parameter
+        return self._persistent
 
     @property
     def redraw(self) -> bool:

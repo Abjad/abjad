@@ -11,7 +11,7 @@ def test_Measure_empty_01():
     assert len(measure) == 0
     assert measure._get_preprolated_duration() == 0
     assert abjad.inspect(measure).duration() == 0
-    assert not abjad.inspect(measure).is_well_formed()
+    assert not abjad.inspect(measure).is_wellformed()
 
 
 def test_Measure_empty_02():
@@ -23,4 +23,4 @@ def test_Measure_empty_02():
     assert len(measure) == 0
     assert measure._get_preprolated_duration() == 0
     assert abjad.inspect(measure).duration() == 0
-    assert not abjad.inspect(measure).is_well_formed()
+    assert not abjad.inspect(measure).is_wellformed()

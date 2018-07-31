@@ -254,10 +254,10 @@ class Container(Component):
                     }
                 }
 
-            >>> abjad.inspect(voice).is_well_formed()
+            >>> abjad.inspect(voice).is_wellformed()
             True
 
-            First tuplet is no longer slurred but is still well-formed:
+            First tuplet is no longer slurred but is still wellformed:
 
             >>> abjad.show(tuplet_1) # doctest: +SKIP
 
@@ -270,7 +270,7 @@ class Container(Component):
                     e'4
                 }
 
-            >>> abjad.inspect(tuplet_1).is_well_formed()
+            >>> abjad.inspect(tuplet_1).is_wellformed()
             True
 
         Withdraws component(s) from crossing spanners.

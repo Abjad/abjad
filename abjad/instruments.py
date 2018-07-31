@@ -93,7 +93,7 @@ class Instrument(AbjadValueObject):
 
     _latent = True
 
-    _parameter = 'INSTRUMENT'
+    _persistent = True
 
     _publish_storage_format = True
 
@@ -273,13 +273,13 @@ class Instrument(AbjadValueObject):
         return self._name
 
     @property
-    def parameter(self) -> str:
+    def persistent(self) -> bool:
         """
-        Is set to ``'INSTRUMENT'`` for all instruments.
+        Is true.
 
         Class constant.
         """
-        return self._parameter
+        return self._persistent
 
     @property
     def pitch_range(self):

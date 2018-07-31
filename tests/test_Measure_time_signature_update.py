@@ -23,4 +23,4 @@ def test_Measure_time_signature_update_01():
         """
         )
 
-    assert abjad.inspect(measure).is_well_formed()
+    assert abjad.inspect(measure).is_wellformed()

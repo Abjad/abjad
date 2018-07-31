@@ -1568,10 +1568,21 @@ class String(str):
             >>> abjad.String.to_indicator_stem(metronome_mark)
             'METRONOME_MARK'
 
+            >>> start_text_span = abjad.StartTextSpan()
+            >>> abjad.String.to_indicator_stem(start_text_span)
+            'TEXT_SPANNER'
+
+            >>> stop_text_span = abjad.StopTextSpan()
+            >>> abjad.String.to_indicator_stem(stop_text_span)
+            'TEXT_SPANNER'
+
         """
-        parameter = getattr(indicator, 'parameter', None)
-        if isinstance(parameter, str):
-            stem = parameter.lstrip('abjad.')
+        from abjad.instruments import Instrument
+        assert getattr(indicator, 'persistent', False), repr(indicator)
+        if isinstance(indicator, Instrument):
+            stem = 'INSTRUMENT'
+        elif hasattr(indicator, 'parameter'):
+            stem = indicator.parameter
         else:
             stem = type(indicator).__name__
         return String(stem).to_shout_case()

@@ -121,10 +121,7 @@ class IOManager(AbjadObject):
         lines = []
         string = pipe.read()
         for line in string.splitlines():
-            try:
-                line = line.decode('utf-8')
-            except UnicodeDecodeError:
-                continue
+            line = line.decode(errors='ignore')
             lines.append(line)
         return '\n'.join(lines)
 
@@ -721,7 +718,7 @@ class IOManager(AbjadObject):
             stderr=subprocess.STDOUT,
             )
         subprocess_output, _ = process.communicate()
-        subprocess_output = subprocess_output.decode('utf-8')
+        subprocess_output = subprocess_output.decode(errors='ignore')
         exit_code = process.returncode
         with open(log_file_path, 'w') as file_pointer:
             file_pointer.write(date + '\n')

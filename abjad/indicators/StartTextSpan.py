@@ -78,6 +78,12 @@ class StartTextSpan(AbjadValueObject):
         '_tweaks',
         )
 
+    _context = 'Voice'
+
+    _parameter = 'TEXT_SPANNER'
+
+    _persistent = True
+
     _publish_storage_format = True
 
     _styles = (
@@ -351,6 +357,22 @@ class StartTextSpan(AbjadValueObject):
         return self._concat_hspace_right
 
     @property
+    def context(self) -> str:
+        """
+        Returns (historically conventional) context ``'Voice'``.
+
+        ..  container:: example
+
+            >>> abjad.StartTextSpan().context
+            'Voice'
+
+        Class constant.
+
+        Override with ``abjad.attach(..., context='...')``.
+        """
+        return self._context
+
+    @property
     def direction(self) -> typing.Optional[String]:
         """
         Gets direction.
@@ -415,6 +437,34 @@ class StartTextSpan(AbjadValueObject):
 
         """
         return self._left_text
+
+    @property
+    def parameter(self) -> str:
+        """
+        Returns ``'TEXT_SPANNER'``.
+
+        ..  container:: example
+
+            >>> abjad.StartTextSpan().parameter
+            'TEXT_SPANNER'
+
+        Class constant.
+        """
+        return self._parameter
+
+    @property
+    def persistent(self) -> bool:
+        """
+        Is true.
+
+        ..  container:: example
+
+            >>> abjad.StartTextSpan().persistent
+            True
+
+        Class constant.
+        """
+        return self._persistent
 
     @property
     def right_padding(self) -> typing.Optional[typings.Number]:

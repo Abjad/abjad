@@ -26,7 +26,7 @@ def test_Container_extend_01():
         """
         )
 
-    assert abjad.inspect(voice).is_well_formed()
+    assert abjad.inspect(voice).is_wellformed()
 
 
 def test_Container_extend_02():
@@ -59,7 +59,7 @@ def test_Container_extend_02():
         """
         )
 
-    assert abjad.inspect(voice_1).is_well_formed()
+    assert abjad.inspect(voice_1).is_wellformed()
 
 
 def test_Container_extend_03():
@@ -84,7 +84,7 @@ def test_Container_extend_03():
         """
         )
 
-    assert abjad.inspect(voice).is_well_formed()
+    assert abjad.inspect(voice).is_wellformed()
 
 
 def test_Container_extend_04():
@@ -110,7 +110,7 @@ def test_Container_extend_04():
         """
         )
 
-    assert abjad.inspect(voice).is_well_formed()
+    assert abjad.inspect(voice).is_wellformed()
 
 
 def test_Container_extend_05():
@@ -171,7 +171,7 @@ def test_Container_extend_07():
         """
         )
 
-    assert abjad.inspect(voice_1).is_well_formed()
+    assert abjad.inspect(voice_1).is_wellformed()
 
     assert format(voice_2) == abjad.String.normalize(
         r"""
@@ -185,7 +185,7 @@ def test_Container_extend_07():
         """
         )
 
-    assert abjad.inspect(voice_2).is_well_formed()
+    assert abjad.inspect(voice_2).is_wellformed()
 
 
 def test_Container_extend_08():
@@ -238,7 +238,7 @@ def test_Container_extend_08():
         """
         )
 
-    assert abjad.inspect(voice_1).is_well_formed()
+    assert abjad.inspect(voice_1).is_wellformed()
 
     assert format(voice_2) == abjad.String.normalize(
         r"""
@@ -252,7 +252,7 @@ def test_Container_extend_08():
         """
         )
 
-    assert abjad.inspect(voice_2).is_well_formed()
+    assert abjad.inspect(voice_2).is_wellformed()
 
 
 def test_Container_extend_09():
@@ -276,7 +276,7 @@ def test_Container_extend_09():
         """
         )
 
-    assert abjad.inspect(container).is_well_formed()
+    assert abjad.inspect(container).is_wellformed()
 
 
 def test_Container_extend_10():
@@ -308,4 +308,4 @@ def test_Container_extend_10():
         """
         )
 
-    assert abjad.inspect(container).is_well_formed()
+    assert abjad.inspect(container).is_wellformed()

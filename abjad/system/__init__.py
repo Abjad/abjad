@@ -31,5 +31,4 @@ from .TemporaryDirectoryChange import TemporaryDirectoryChange
 from .TestManager import TestManager
 from .Timer import Timer
 from .UpdateManager import UpdateManager
-from .WellformednessManager import WellformednessManager
 from .Wrapper import Wrapper

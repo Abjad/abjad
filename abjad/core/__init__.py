@@ -39,3 +39,4 @@ from .StaffGroup import StaffGroup
 from .Tuplet import Tuplet
 from .VerticalMoment import VerticalMoment
 from .Voice import Voice
+from .Wellformedness import Wellformedness

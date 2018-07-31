@@ -47,7 +47,7 @@ def test_Container___setitem___01():
         """
         )
 
-    assert abjad.inspect(voice).is_well_formed()
+    assert abjad.inspect(voice).is_wellformed()
 
 
 def test_Container___setitem___02():
@@ -102,7 +102,7 @@ def test_Container___setitem___02():
         """
         )
 
-    assert abjad.inspect(voice).is_well_formed()
+    assert abjad.inspect(voice).is_wellformed()
 
 
 def test_Container___setitem___03():
@@ -154,7 +154,7 @@ def test_Container___setitem___03():
         """
         )
 
-    assert abjad.inspect(voice).is_well_formed()
+    assert abjad.inspect(voice).is_wellformed()
 
 
 def test_Container___setitem___04():
@@ -213,7 +213,7 @@ def test_Container___setitem___04():
         """
         )
 
-    assert abjad.inspect(voice).is_well_formed()
+    assert abjad.inspect(voice).is_wellformed()
 
 
 def test_Container___setitem___05():
@@ -265,7 +265,7 @@ def test_Container___setitem___05():
         """
         )
 
-    assert abjad.inspect(voice).is_well_formed()
+    assert abjad.inspect(voice).is_wellformed()
 
 
 def test_Container___setitem___06():
@@ -319,7 +319,7 @@ def test_Container___setitem___06():
         """
         )
 
-    assert abjad.inspect(voice).is_well_formed()
+    assert abjad.inspect(voice).is_wellformed()
 
 
 def test_Container___setitem___07():
@@ -379,7 +379,7 @@ def test_Container___setitem___07():
         """
         )
 
-    assert abjad.inspect(voice_1).is_well_formed()
+    assert abjad.inspect(voice_1).is_wellformed()
 
     assert format(voice_2) == abjad.String.normalize(
         r"""
@@ -393,7 +393,7 @@ def test_Container___setitem___07():
         """
         )
 
-    assert abjad.inspect(voice_2).is_well_formed()
+    assert abjad.inspect(voice_2).is_wellformed()
 
 
 def test_Container___setitem___08():
@@ -466,7 +466,7 @@ def test_Container___setitem___08():
         """
         )
 
-    assert abjad.inspect(voice_1).is_well_formed()
+    assert abjad.inspect(voice_1).is_wellformed()
 
     assert format(voice_2) == abjad.String.normalize(
         r"""
@@ -479,7 +479,7 @@ def test_Container___setitem___08():
         """
         )
 
-    assert abjad.inspect(voice_2).is_well_formed()
+    assert abjad.inspect(voice_2).is_wellformed()
 
 
 def test_Container___setitem___09():
@@ -502,7 +502,7 @@ def test_Container___setitem___09():
         """
         )
 
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()
 
 
 def test_Container___setitem___10():
@@ -530,7 +530,7 @@ def test_Container___setitem___10():
         """
         )
 
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()
 
 
 def test_Container___setitem___11():
@@ -582,7 +582,7 @@ def test_Container___setitem___11():
         """
         )
 
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()
 
 
 def test_Container___setitem___12():
@@ -608,7 +608,7 @@ def test_Container___setitem___12():
         """
         )
 
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()
 
 
 def test_Container___setitem___13():
@@ -636,7 +636,7 @@ def test_Container___setitem___13():
         """
         )
 
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()
 
 
 def test_Container___setitem___14():
@@ -682,7 +682,7 @@ def test_Container___setitem___14():
         """
         )
 
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()
     assert len(container) == 0
 
 
@@ -731,7 +731,7 @@ def test_Container___setitem___15():
         """
         )
 
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()
 
 
 def test_Container___setitem___16():
@@ -834,7 +834,7 @@ def test_Container___setitem___17():
         """
         )
 
-    assert abjad.inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_wellformed()
 
 
 def test_Container___setitem___18():
@@ -874,7 +874,7 @@ def test_Container___setitem___18():
         """
         )
 
-    assert abjad.inspect(voice).is_well_formed()
+    assert abjad.inspect(voice).is_wellformed()
 
 
 def test_Container___setitem___19():
@@ -899,7 +899,7 @@ def test_Container___setitem___19():
         """
         )
 
-    assert abjad.inspect(voice).is_well_formed()
+    assert abjad.inspect(voice).is_wellformed()
 
 
 def test_Container___setitem___20():

@@ -1,5 +1,6 @@
 import collections
 import itertools
+import typing
 import ply  # type: ignore
 from abjad import indicators as abjad_indicators
 from abjad import lilypondfile as abjad_lilypondfile
@@ -21,7 +22,8 @@ ply.yacc.LRParser._lilypond_patch_parse_debug = _parse_debug
 
 
 class LilyPondParser(Parser):
-    r"""A LilyPond syntax parser.
+    r"""
+    A LilyPond syntax parser.
 
     ..  container:: example
 
@@ -367,7 +369,7 @@ class LilyPondParser(Parser):
 
     def __call__(self, input_string):
         """
-        Calls LilyPond parser on `input_string`.
+        Calls LilyPond parser on ``input_string``.
 
         Returns Abjad components.
         """
@@ -918,13 +920,14 @@ class LilyPondParser(Parser):
 
     @staticmethod
     def _transpose_enharmonically(pitch_a, pitch_b, pitch_c):
-        r'''Transpose `pitch_c` by the distance between `pitch_b`
-        and `pitch_a`.
+        """
+        Transpose ``pitch_c`` by the distance between ``pitch_b``
+        and ``pitch_a1``.
 
         This function was reverse-engineered from LilyPond's source code.
 
         Returns named pitch.
-        '''
+        """
         def normalize_alteration(step, alteration):
             while 2. < alteration:
                 alteration -= step_size(step)
@@ -997,8 +1000,9 @@ class LilyPondParser(Parser):
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def list_known_contexts():
-        r'''Lists all LilyPond contexts recognized by LilyPond parser.
+    def list_known_contexts() -> typing.List[str]:
+        """
+        Lists all LilyPond contexts recognized by LilyPond parser.
 
         ..  container:: example
 
@@ -1039,14 +1043,14 @@ class LilyPondParser(Parser):
             VaticanaVoice
             Voice
 
-        Returns list.
-        '''
+        """
         from abjad.ly import contexts
         return sorted(contexts.keys())
 
     @staticmethod
-    def list_known_dynamics():
-        r'''Lists all dynamics recognized by LilyPond parser.
+    def list_known_dynamics() -> typing.Tuple[str, ...]:
+        """
+        Lists all dynamics recognized by LilyPond parser.
 
         ..  container:: example
 
@@ -1076,8 +1080,7 @@ class LilyPondParser(Parser):
             sp
             spp
 
-        Returns tuple.
-        '''
+        """
         from abjad.ly import current_module
         result = []
         for key, value in current_module.items():
@@ -1086,12 +1089,12 @@ class LilyPondParser(Parser):
             if 'dynamic-event' in value.get('types', ()):
                 result.append(key)
         result.sort()
-        result = tuple(result)
-        return result
+        return tuple(result)
 
     @staticmethod
-    def list_known_grobs():
-        r'''Lists all LilyPond grobs recognized by LilyPond parser.
+    def list_known_grobs() -> typing.List[str]:
+        """
+        Lists all LilyPond grobs recognized by LilyPond parser.
 
         ..  container:: example
 
@@ -1239,14 +1242,14 @@ class LilyPondParser(Parser):
             VoltaBracket
             VoltaBracketSpanner
 
-        Returns tuple.
-        '''
+        """
         from abjad.ly import grob_interfaces
         return sorted(grob_interfaces.keys())
 
     @staticmethod
-    def list_known_languages():
-        r'''Lists all note-input languages recognized by LilyPond parser.
+    def list_known_languages() -> typing.List[str]:
+        """
+        Lists all note-input languages recognized by LilyPond parser.
 
         ..  container:: example
 
@@ -1268,14 +1271,14 @@ class LilyPondParser(Parser):
             svenska
             vlaams
 
-        Returns list.
-        '''
+        """
         from abjad.ly import language_pitch_names
         return sorted(language_pitch_names.keys())
 
     @staticmethod
-    def list_known_markup_functions():
-        r'''Lists all markup functions recognized by LilyPond parser.
+    def list_known_markup_functions() -> typing.List[str]:
+        """
+        Lists all markup functions recognized by LilyPond parser.
 
         ..  container:: example
 
@@ -1438,15 +1441,15 @@ class LilyPondParser(Parser):
             wordwrap-string
             wordwrap-string-internal
 
-        Returns list.
-        '''
+        """
         from abjad.ly import markup_functions
         from abjad.ly import markup_list_functions
         return sorted(list(markup_functions.keys()) + list(markup_list_functions.keys()))
 
     @staticmethod
-    def list_known_music_functions():
-        r'''Lists all music functions recognized by LilyPond parser.
+    def list_known_music_functions() -> typing.List[str]:
+        """
+        Lists all music functions recognized by LilyPond parser.
 
         ..  container:: example
 
@@ -1470,17 +1473,18 @@ class LilyPondParser(Parser):
             times
             transpose
 
-        Returns list.
-        '''
+        """
         from abjad import parser as abjad_parser
         from abjad.ly import current_module
         music_functions = []
         for name in current_module:
-            if not isinstance(current_module[name], dict):
+            dictionary = current_module[name]
+            if not isinstance(dictionary, dict):
                 continue
-            if 'type' not in current_module[name]:
+            assert isinstance(dictionary, dict)
+            if 'type' not in dictionary:
                 continue
-            if not current_module[name]['type'] == 'ly:music-function?':
+            if not dictionary['type'] == 'ly:music-function?':
                 continue
             if not hasattr(abjad_parser.GuileProxy, name):
                 continue
@@ -1488,26 +1492,42 @@ class LilyPondParser(Parser):
         return sorted(music_functions)
 
     @classmethod
-    def register_markup_function(class_, name, signature):
-        r'''Registers a custom markup function globally with LilyPondParser.
+    def register_markup_function(class_, name, signature, undo=None) -> None:
+        r"""
+        Registers a custom markup function globally with LilyPondParser.
 
-        >>> name = 'my-custom-markup-function'
-        >>> signature = ['markup?']
-        >>> class_ = abjad.parser.LilyPondParser
-        >>> class_.register_markup_function(name, signature)
+        ..  container:: example
 
-        >>> parser = abjad.parser.LilyPondParser()
-        >>> string = r"\markup { \my-custom-markup-function { foo bar baz } }"
-        >>> parser(string)
-        Markup(contents=[MarkupCommand('my-custom-markup-function', ['foo', 'bar', 'baz'])])
+            >>> name = 'my-custom-markup-function'
+            >>> signature = ['markup?']
+            >>> class_ = abjad.parser.LilyPondParser
+            >>> class_.register_markup_function(name, signature)
 
-        `signature` should be a sequence of zero or more type-predicate names,
-        as understood by LilyPond.  Consult LilyPond's documentation for a
-        complete list of all understood type-predicates.
+            >>> parser = abjad.parser.LilyPondParser()
+            >>> string = r"\markup { \my-custom-markup-function { foo bar baz } }"
+            >>> parser(string)
+            Markup(contents=[MarkupCommand('my-custom-markup-function', ['foo', 'bar', 'baz'])])
 
-        Returns none.
-        '''
+        ``signature`` should be a sequence of zero or more type-predicate
+        names, as understood by LilyPond.  Consult LilyPond's documentation for
+        a complete list of all understood type-predicates.
+
+        ..  container:: example
+
+            Set ``undo=True`` to unregister.
+
+            >>> name = 'my-custom-markup-function'
+            >>> signature = ['markup?']
+            >>> class_ = abjad.parser.LilyPondParser
+            >>> class_.register_markup_function(name, signature, undo=True)
+
+            NOTE. Added to allow doctests to pass on TravisCI.
+
+        """
         from abjad.ly.markup_functions import markup_functions
+        if undo is True:
+            del(markup_functions[name])
+            return
         assert isinstance(name, str)
         assert all(not x.isspace() for x in name)
         assert isinstance(signature, collections.Iterable)
@@ -1520,8 +1540,9 @@ class LilyPondParser(Parser):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def available_languages(self):
-        r'''Tuple of pitch-name languages supported by LilyPondParser.
+    def available_languages(self) -> typing.Tuple[str, ...]:
+        r"""
+        Tuple of pitch-name languages supported by LilyPondParser.
 
         ..  container:: example
 
@@ -1544,12 +1565,13 @@ class LilyPondParser(Parser):
             vlaams
 
         Returns tuple.
-        '''
+        """
         return tuple(sorted(self._language_pitch_names.keys()))
 
     @property
-    def default_language(self):
-        r'''Gets and sets default language of parser.
+    def default_language(self) -> str:
+        """
+        Gets and sets default language of parser.
 
         ..  container:: example
 
@@ -1568,8 +1590,7 @@ class LilyPondParser(Parser):
             >>> parser('{ c des e fis }')
             Container('c4 df4 e4 fs4')
 
-        Returns string.
-        '''
+        """
         return self._default_language
 
     @default_language.setter
@@ -1579,12 +1600,14 @@ class LilyPondParser(Parser):
 
     @property
     def lexer_rules_object(self):
-        r'''Lexer rules object of LilyPond parser.
-        '''
+        """
+        Lexer rules object of LilyPond parser.
+        """
         return self._lexdef
 
     @property
     def parser_rules_object(self):
-        r'''Parser rules object of LilyPond parser.
-        '''
+        """
+        Parser rules object of LilyPond parser.
+        """
         return self._syndef

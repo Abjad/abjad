@@ -642,9 +642,9 @@ class Timespan(AbjadValueObject):
             start_offset=stop_offsets[0],
             stop_offset=stop_offsets[1],
             )
-        if timespan_1.is_well_formed:
+        if timespan_1.is_wellformed:
             result.append(timespan_1)
-        if timespan_2.is_well_formed:
+        if timespan_2.is_wellformed:
             result.append(timespan_2)
         result.sort()
         return result
@@ -1194,7 +1194,7 @@ class Timespan(AbjadValueObject):
         new_stop_offset = axis - start_distance
         return self.set_offsets(new_start_offset, new_stop_offset)
 
-    def round_offsets(self, multiplier, anchor=enums.Left, must_be_well_formed=True):
+    def round_offsets(self, multiplier, anchor=enums.Left, must_be_wellformed=True):
         """
         Rounds timespan offsets to multiple of ``multiplier``.
 
@@ -1217,7 +1217,7 @@ class Timespan(AbjadValueObject):
             >>> timespan.round_offsets(
             ...     2,
             ...     anchor=abjad.Right,
-            ...     must_be_well_formed=False,
+            ...     must_be_wellformed=False,
             ...     )
             Timespan(start_offset=Offset(0, 1), stop_offset=Offset(0, 1))
 
@@ -1230,7 +1230,7 @@ class Timespan(AbjadValueObject):
             int(round(self._start_offset / multiplier)) * multiplier)
         new_stop_offset = abjad.Offset(
             int(round(self._stop_offset / multiplier)) * multiplier)
-        if (new_start_offset == new_stop_offset) and must_be_well_formed:
+        if (new_start_offset == new_stop_offset) and must_be_wellformed:
             if anchor is enums.Left:
                 new_stop_offset = new_stop_offset + multiplier
             else:
@@ -2186,13 +2186,13 @@ class Timespan(AbjadValueObject):
         return self._stop_offset - self._start_offset
 
     @property
-    def is_well_formed(self):
+    def is_wellformed(self):
         """
         Is true when timespan start offset preceeds timespan stop offset.
 
         ..  container:: example
 
-            >>> abjad.Timespan(0, 10).is_well_formed
+            >>> abjad.Timespan(0, 10).is_wellformed
             True
 
         Returns true or false.

@@ -59,7 +59,7 @@ def test_Mutation_swap_01():
         """
         )
 
-    assert abjad.inspect(voice).is_well_formed()
+    assert abjad.inspect(voice).is_wellformed()
 
 
 def test_Mutation_swap_02():
@@ -134,7 +134,7 @@ def test_Mutation_swap_02():
         """
         )
 
-    assert abjad.inspect(voice).is_well_formed()
+    assert abjad.inspect(voice).is_wellformed()
 
 
 def test_Mutation_swap_03():
@@ -208,7 +208,7 @@ def test_Mutation_swap_03():
         """
         )
 
-    assert abjad.inspect(voice).is_well_formed()
+    assert abjad.inspect(voice).is_wellformed()
 
 
 def test_Mutation_swap_04():
@@ -313,4 +313,4 @@ def test_Mutation_swap_07():
         """
         )
 
-    assert abjad.inspect(new_measure).is_well_formed()
+    assert abjad.inspect(new_measure).is_wellformed()

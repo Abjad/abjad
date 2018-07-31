@@ -256,6 +256,8 @@ class MetronomeMark(AbjadValueObject):
 
     _parameter = 'METRONOME_MARK'
 
+    _persistent = True
+
     ### INITIALIZER ###
 
     def __init__(
@@ -1070,6 +1072,19 @@ class MetronomeMark(AbjadValueObject):
 
         """
         return self._parameter
+
+    @property
+    def persistent(self) -> bool:
+        """
+        Is true.
+
+        ..  container:: example
+
+            >>> abjad.MetronomeMark((1, 8), 52).persistent
+            True
+
+        """
+        return self._persistent
 
     @property
     def quarters_per_minute(self) -> typing.Union[tuple, None, Fraction]:
