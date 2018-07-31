@@ -57,7 +57,7 @@ def attach(
                 d'4
                 e'4
                 f'4
-                -\accent
+                - \accent
             }
 
     ..  container:: example

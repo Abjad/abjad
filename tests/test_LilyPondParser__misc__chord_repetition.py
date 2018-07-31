@@ -49,21 +49,21 @@ def test_LilyPondParser__misc__chord_repetition_02():
     abjad.attach(articulation, target[-1])
 
     assert format(target) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             <c' e' g'>8
             \p
             <c' e' g'>8
             <c' e' g'>4
-            -\staccatissimo
+            - \staccatissimo
             <c' e' g'>8.
             ^ \markup { text }
             <c' e' g'>16
             <c' e' g'>4
-            -\staccatissimo
+            - \staccatissimo
         }
-        '''
+        """
         )
 
     string = r'''\new Staff { <c' e' g'>8\p q q4-| q8.^"text" q16 q4-| }'''

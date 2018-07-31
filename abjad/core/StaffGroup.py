@@ -48,14 +48,16 @@ class StaffGroup(Context):
     def __init__(
         self,
         components=None,
-        lilypond_type='StaffGroup',
-        is_simultaneous=True,
-        name=None,
-        ):
+        lilypond_type: str = 'StaffGroup',
+        is_simultaneous: bool = True,
+        name: str = None,
+        tag: str = None,
+        ) -> None:
         Context.__init__(
             self,
             components=components,
             lilypond_type=lilypond_type,
             is_simultaneous=is_simultaneous,
             name=name,
+            tag=tag,
             )

@@ -1,7 +1,17 @@
 import collections
+import fractions
 import numbers
 import typing
+from abjad import mathtools
+from abjad.mathtools.NonreducedFraction import NonreducedFraction
+from abjad.mathtools.Ratio import Ratio
 from abjad.system.AbjadValueObject import AbjadValueObject
+from abjad.utilities.Duration import Duration
+from abjad.utilities.Multiplier import Multiplier
+from abjad.utilities.Sequence import Sequence
+from .LeafMaker import LeafMaker
+from .Note import Note
+from .Selection import Selection
 
 
 class NoteMaker(AbjadValueObject):
@@ -173,6 +183,7 @@ class NoteMaker(AbjadValueObject):
     __slots__ = (
         '_decrease_monotonic',
         '_repeat_ties',
+        '_tag',
         )
 
     _publish_storage_format = True
@@ -181,39 +192,41 @@ class NoteMaker(AbjadValueObject):
 
     def __init__(
         self,
-        decrease_monotonic=True,
-        repeat_ties=False,
-        ):
+        *,
+        decrease_monotonic: bool = True,
+        repeat_ties: bool = False,
+        tag: str = None,
+        ) -> None:
         self._decrease_monotonic = decrease_monotonic
         self._repeat_ties = repeat_ties
+        if tag is not None:
+            assert isinstance(tag, str), repr(tag)
+        self._tag = tag
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, pitches, durations):
+    def __call__(self, pitches, durations) -> Selection:
         """
         Calls note-maker on ``pitches`` and ``durations``.
-
-        Returns selection.
         """
-        import abjad
+        from .Tuplet import Tuplet
         if isinstance(pitches, str):
             pitches = pitches.split()
         if not isinstance(pitches, collections.Iterable):
             pitches = [pitches]
         if isinstance(durations, (numbers.Number, tuple)):
             durations = [durations]
-        nonreduced_fractions = [abjad.NonreducedFraction(_) for _ in durations]
+        nonreduced_fractions = Sequence(
+            [NonreducedFraction(_) for _ in durations]
+            )
         size = max(len(nonreduced_fractions), len(pitches))
-        nonreduced_fractions = abjad.sequence(nonreduced_fractions)
         nonreduced_fractions = nonreduced_fractions.repeat_to_length(size)
-        pitches = abjad.sequence(pitches).repeat_to_length(size)
-        Duration = abjad.Duration
-        durations = Duration._group_by_implied_prolation(
-            nonreduced_fractions)
-        result = []
+        pitches = Sequence(pitches).repeat_to_length(size)
+        durations = Duration._group_by_implied_prolation(nonreduced_fractions)
+        result: typing.List[typing.Union[Note, Tuplet]] = []
         for duration in durations:
             # get factors in denominator of duration group duration not 1 or 2
-            factors = set(abjad.mathtools.factors(duration[0].denominator))
+            factors = set(mathtools.factors(duration[0].denominator))
             factors.discard(1)
             factors.discard(2)
             ps = pitches[0:len(duration)]
@@ -225,26 +238,27 @@ class NoteMaker(AbjadValueObject):
                         duration,
                         decrease_monotonic=self.decrease_monotonic,
                         repeat_ties=self.repeat_ties,
+                        tag=self.tag,
                         )
                     )
             else:
                 # compute prolation
                 denominator = duration[0].denominator
-                numerator = abjad.mathtools.greatest_power_of_two_less_equal(
+                numerator = mathtools.greatest_power_of_two_less_equal(
                     denominator)
-                multiplier = (numerator, denominator)
-                ratio = 1 / abjad.Fraction(*multiplier)
-                duration = [ratio * abjad.Duration(d) for d in duration]
+                multiplier = Multiplier(numerator, denominator)
+                ratio = multiplier.reciprocal
+                duration = [ratio * Duration(d) for d in duration]
                 ns = self._make_unprolated_notes(
                     ps,
                     duration,
                     decrease_monotonic=self.decrease_monotonic,
                     repeat_ties=self.repeat_ties,
+                    tag=self.tag,
                     )
-                tuplet = abjad.Tuplet(multiplier, ns)
+                tuplet = Tuplet(multiplier, ns)
                 result.append(tuplet)
-        result = abjad.select(result)
-        return result
+        return Selection(result)
 
     ### PRIVATE METHODS ###
 
@@ -254,18 +268,19 @@ class NoteMaker(AbjadValueObject):
         durations,
         decrease_monotonic=True,
         repeat_ties=False,
+        tag=None,
         ):
-        import abjad
         assert len(pitches) == len(durations)
         result = []
         for pitch, duration in zip(pitches, durations):
             result.extend(
-                abjad.LeafMaker._make_tied_leaf(
-                    abjad.Note,
+                LeafMaker._make_tied_leaf(
+                    Note,
                     duration,
                     pitches=pitch,
                     decrease_monotonic=decrease_monotonic,
                     repeat_ties=repeat_ties,
+                    tag=tag,
                     )
                 )
         return result
@@ -273,11 +288,9 @@ class NoteMaker(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def decrease_monotonic(self):
+    def decrease_monotonic(self) -> typing.Optional[bool]:
         """
         Is true when durations decrease monotonically.
-
-        Returns true, false or none.
         """
         return self._decrease_monotonic
 
@@ -287,3 +300,28 @@ class NoteMaker(AbjadValueObject):
         Is true when ties are repeat ties.
         """
         return self._repeat_ties
+
+    @property
+    def tag(self) -> typing.Optional[str]:
+        r"""
+        Gets tag.
+
+        ..  container:: example
+
+            >>> maker = abjad.NoteMaker(tag='note_maker')
+            >>> notes = maker([0], [(1, 16), (1, 8), (1, 8)])
+            >>> staff = abjad.Staff(notes)
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    c'16 %! note_maker
+                    c'8 %! note_maker
+                    c'8 %! note_maker
+                }
+
+        """
+        return self._tag

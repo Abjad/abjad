@@ -64,9 +64,17 @@ class AfterGraceContainer(Container):
 
     ### INITIALIZER ###
 
-    def __init__(self, components=None):
+    def __init__(
+        self,
+        components=None,
+        tag: str = None,
+        ) -> None:
         self._carrier = None
-        Container.__init__(self, components)
+        Container.__init__(
+            self,
+            components,
+            tag=tag,
+            )
 
     ### SPECIAL METHODS ###
 

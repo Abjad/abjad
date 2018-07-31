@@ -23,13 +23,13 @@ class DrumNoteHead(NoteHead):
 
     def __init__(
         self,
-        written_pitch='snare',
+        written_pitch: str = 'snare',
         client=None,
-        is_cautionary=None,
-        is_forced=None,
-        is_parenthesized=None,
+        is_cautionary: bool = None,
+        is_forced: bool = None,
+        is_parenthesized: bool = None,
         tweaks=(),
-        ):
+        ) -> None:
         from abjad.ly import drums
         NoteHead.__init__(
             self,

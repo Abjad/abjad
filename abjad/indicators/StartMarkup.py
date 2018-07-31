@@ -29,6 +29,24 @@ class StartMarkup(AbjadValueObject):
                 f'4
             }
 
+    ..  container:: example
+
+        Set instrument name to custom-defined LilyPond function like this:
+
+        >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+        >>> start_markup = abjad.StartMarkup(markup=r'\my_instrument_name')
+        >>> abjad.attach(start_markup, staff[0])
+
+        >>> abjad.f(staff)
+        \new Staff
+        {
+            \set Staff.instrumentName = \my_instrument_name
+            c'4
+            d'4
+            e'4
+            f'4
+        }
+
     """
 
     ### CLASS VARIABLES ###
@@ -54,9 +72,8 @@ class StartMarkup(AbjadValueObject):
         self._context = context
         assert isinstance(format_slot, str), repr(format_slot)
         self._format_slot = format_slot
-        if isinstance(markup, str):
-            markup = Markup(markup)
-        assert isinstance(markup, Markup), repr(markup)
+        if markup is not None:
+            assert isinstance(markup, (str, Markup)), repr(markup)
         self._markup = markup
 
     ### SPECIAL METHODS ###
@@ -143,21 +160,26 @@ class StartMarkup(AbjadValueObject):
 
     def _get_lilypond_format(self, context=None):
         result = []
-        markup = self.markup
-        if markup.direction is not None:
-            markup = new(
-                markup,
-                direction=None,
-                )
         if isinstance(context, str):
             pass
         elif context is not None:
             context = context.lilypond_type
         else:
             context = self._lilypond_type
-        pieces = markup._get_format_pieces()
-        result.append(rf'\set {context!s}.instrumentName =')
-        result.extend(pieces)
+        if isinstance(self.markup, Markup):
+            markup = self.markup
+            if markup.direction is not None:
+                markup = new(
+                    markup,
+                    direction=None,
+                    )
+            pieces = markup._get_format_pieces()
+            result.append(rf'\set {context!s}.instrumentName =')
+            result.extend(pieces)
+        else:
+            assert isinstance(self.markup, str)
+            string = rf'\set {context!s}.instrumentName = {self.markup}'
+            result.append(string)
         return result
 
     def _get_lilypond_format_bundle(self, component=None):
@@ -175,7 +197,8 @@ class StartMarkup(AbjadValueObject):
 
         ..  container:: example
 
-            >>> abjad.StartMarkup().context
+            >>> start_markup = abjad.StartMarkup(markup=abjad.Markup('Cellos'))
+            >>> start_markup.context
             'Staff'
 
         """
@@ -188,21 +211,23 @@ class StartMarkup(AbjadValueObject):
 
         ..  container:: example
 
-            >>> abjad.StartMarkup().format_slot
+            >>> start_markup = abjad.StartMarkup(markup=abjad.Markup('Cellos'))
+            >>> start_markup.format_slot
             'before'
 
         """
         return self._format_slot
 
     @property
-    def markup(self) -> Markup:
+    def markup(self) -> typing.Union[str, Markup]:
         """
         Gets (instrument name) markup.
 
         ..  container:: example
 
-            >>> abjad.StartMarkup().markup
-            Markup(contents=['instrument name'])
+            >>> start_markup = abjad.StartMarkup(markup=abjad.Markup('Cellos'))
+            >>> start_markup.markup
+            Markup(contents=['Cellos'])
 
         """
         return self._markup

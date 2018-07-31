@@ -72,14 +72,22 @@ class Line(AbjadObject):
             >>> abjad.Line(string).get_tags()
             ['MEASURE_NUMBER_MARKUP', 'SM31']
 
+        ..  container:: example
+
+            REGRESSION. Works with multiple ``%!`` prefixes:
+
+            >>> string = '    %@%  \with-color %! SM31 %! SM32'
+            >>> line = abjad.Line(string)
+            >>> line.get_tags()
+            ['SM31', 'SM32']
+
         Returns list of zero or more strings.
         """
         tags = []
         if ' %! ' in self.string:
-            index = self.string.find('%! ')
-            string = self.string[index+2:].strip()
-            parts = string.split()
-            tags.extend(parts[0].split(':'))
+            for chunk in self.string.split(' %! ')[1:]:
+                parts = chunk.split()
+                tags.extend(parts[0].split(':'))
         return tags
 
     def is_active(self):
@@ -196,6 +204,19 @@ class Line(AbjadObject):
 
             >>> line.match(predicate)
             False
+
+        ..  container:: example
+
+            REGRESSION. Works with multiple ``%!`` prefixes:
+
+            >>> string = '    %@%  \with-color %! SM31 %! SM32'
+            >>> line = abjad.Line(string)
+
+            >>> line.match('SM31')
+            True
+
+            >>> line.match('SM32')
+            True
 
         Returns true or false.
         """

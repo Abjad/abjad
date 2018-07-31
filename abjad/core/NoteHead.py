@@ -1,10 +1,12 @@
 import copy
 import functools
 import typing
+from abjad.pitch import NamedPitch
 from abjad.system.AbjadObject import AbjadObject
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.pitch.NamedPitch import NamedPitch
 from abjad.system.FormatSpecification import FormatSpecification
+from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.top.tweak import tweak
 
@@ -207,7 +209,6 @@ class NoteHead(AbjadObject):
             )
 
     def _get_format_pieces(self):
-        import abjad
         assert self.written_pitch
         result = []
         if self.is_parenthesized:
@@ -215,7 +216,7 @@ class NoteHead(AbjadObject):
         strings = self.tweaks._list_format_contributions(directed=False)
         result.extend(strings)
         written_pitch = self.written_pitch
-        if isinstance(written_pitch, abjad.NamedPitch):
+        if isinstance(written_pitch, NamedPitch):
             written_pitch = written_pitch.simplify()
         kernel = format(written_pitch)
         if self.is_forced:
@@ -226,19 +227,18 @@ class NoteHead(AbjadObject):
         return result
 
     def _get_lilypond_format(self, formatted_duration=None):
-        import abjad
         pieces = self._get_format_pieces()
         if formatted_duration is not None:
             pieces[-1] = pieces[-1] + formatted_duration
         if self.alternative:
-            pieces = abjad.LilyPondFormatManager.tag(
+            pieces = LilyPondFormatManager.tag(
                 pieces,
                 tag=self.alternative[2],
                 )
             pieces_ = self.alternative[0]._get_format_pieces()
             if formatted_duration is not None:
                 pieces_[-1] = pieces_[-1] + formatted_duration
-            pieces_ = abjad.LilyPondFormatManager.tag(
+            pieces_ = LilyPondFormatManager.tag(
                 pieces_,
                 deactivate=True,
                 tag=self.alternative[1],

@@ -23,10 +23,30 @@ class MarginMarkup(AbjadValueObject):
             >>> abjad.f(staff)
             \new Staff
             {
-                \set Staff.instrumentName =
-                \markup { Vc. }
                 \set Staff.shortInstrumentName =
                 \markup { Vc. }
+                c'4
+                d'4
+                e'4
+                f'4
+            }
+
+    ..  container:: example
+
+        Set markup to externally defined command string like this:
+
+        >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+        >>> margin_markup = abjad.MarginMarkup(
+        ...     markup=r'\my_custom_instrument_name',
+        ...     )
+        >>> abjad.attach(margin_markup, staff[0])
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                \set Staff.shortInstrumentName = \my_custom_instrument_name
                 c'4
                 d'4
                 e'4
@@ -58,10 +78,16 @@ class MarginMarkup(AbjadValueObject):
         *,
         context: str = 'Staff',
         format_slot: str = 'before',
-        markup: Markup = None,
+        markup: typing.Union[str, Markup] = None,
         ) -> None:
+        if context is not None:
+            assert isinstance(context, str), repr(context)
         self._context = context
+        if format_slot is not None:
+            assert isinstance(format_slot, str), repr(format_slot)
         self._format_slot = format_slot
+        if markup is not None:
+            assert isinstance(markup, (str, Markup)), repr(markup)
         self._markup = markup
 
     ### SPECIAL METHODS ###
@@ -148,23 +174,26 @@ class MarginMarkup(AbjadValueObject):
 
     def _get_lilypond_format(self, context=None):
         result = []
-        markup = self.markup
-        if markup.direction is not None:
-            markup = new(
-                markup,
-                direction=None,
-                )
         if isinstance(context, str):
             pass
         elif context is not None:
             context = context.lilypond_type
         else:
             context = self._lilypond_type
-        pieces = markup._get_format_pieces()
-        result.append(rf'\set {context!s}.instrumentName =')
-        result.extend(pieces)
-        result.append(rf'\set {context!s}.shortInstrumentName =')
-        result.extend(pieces)
+        if isinstance(self.markup, Markup):
+            markup = self.markup
+            if markup.direction is not None:
+                markup = new(
+                    markup,
+                    direction=None,
+                    )
+            pieces = markup._get_format_pieces()
+            result.append(rf'\set {context!s}.shortInstrumentName =')
+            result.extend(pieces)
+        else:
+            assert isinstance(self.markup, str)
+            string = rf'\set {context!s}.shortInstrumentName = {self.markup}'
+            result.append(string)
         return result
 
     def _get_lilypond_format_bundle(self, component=None):
@@ -218,7 +247,7 @@ class MarginMarkup(AbjadValueObject):
         return self._latent
 
     @property
-    def markup(self) -> typing.Optional[Markup]:
+    def markup(self) -> typing.Optional[typing.Union[str, Markup]]:
         """
         Gets (instrument name) markup.
         """

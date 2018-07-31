@@ -1,6 +1,21 @@
 import collections
 import numbers
+import typing
+from abjad import mathtools
+from abjad import pitch as abjad_pitch
+from abjad.mathtools.NonreducedFraction import NonreducedFraction
 from abjad.system.AbjadValueObject import AbjadValueObject
+from abjad.top.attach import attach
+from abjad.utilities.Duration import Duration
+from abjad.utilities.Multiplier import Multiplier
+from abjad.utilities.Sequence import Sequence
+from .Chord import Chord
+from .Leaf import Leaf
+from .MultimeasureRest import MultimeasureRest
+from .Note import Note
+from .Rest import Rest
+from .Skip import Skip
+from .Selection import Selection
 
 
 class LeafMaker(AbjadValueObject):
@@ -434,6 +449,7 @@ class LeafMaker(AbjadValueObject):
         '_metrical_hierarchy',
         '_skips_instead_of_rests',
         '_repeat_ties',
+        '_tag',
         '_use_multimeasure_rests',
         )
 
@@ -443,48 +459,53 @@ class LeafMaker(AbjadValueObject):
 
     def __init__(
         self,
-        decrease_monotonic=True,
+        *,
+        decrease_monotonic: bool = True,
         forbidden_duration=None,
         metrical_hierarchy=None,
-        skips_instead_of_rests=False,
-        repeat_ties=False,
-        use_multimeasure_rests=False,
-        ):
+        skips_instead_of_rests: bool = False,
+        repeat_ties: bool = False,
+        tag: str = None,
+        use_multimeasure_rests: bool = False,
+        ) -> None:
         self._decrease_monotonic = decrease_monotonic
         self._forbidden_duration = forbidden_duration
         self._metrical_hierarchy = metrical_hierarchy
         self._skips_instead_of_rests = skips_instead_of_rests
         self._repeat_ties = repeat_ties
+        if tag is not None:
+            assert isinstance(tag, str), repr(tag)
+        self._tag = tag
         self._use_multimeasure_rests = use_multimeasure_rests
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, pitches, durations):
+    def __call__(self, pitches, durations) -> Selection:
         """
         Calls leaf-maker on ``pitches`` and ``durations``.
 
         Returns selection.
         """
-        import abjad
+        from .Tuplet import Tuplet
         if isinstance(pitches, str):
             pitches = pitches.split()
         if not isinstance(pitches, collections.Iterable):
             pitches = [pitches]
         if isinstance(durations, (numbers.Number, tuple)):
             durations = [durations]
-        nonreduced_fractions = [abjad.NonreducedFraction(_) for _ in durations]
+        nonreduced_fractions = Sequence(
+            [NonreducedFraction(_) for _ in durations]
+            )
         size = max(len(nonreduced_fractions), len(pitches))
-        nonreduced_fractions = abjad.sequence(nonreduced_fractions)
         nonreduced_fractions = nonreduced_fractions.repeat_to_length(size)
-        pitches = abjad.sequence(pitches).repeat_to_length(size)
-        Duration = abjad.Duration
+        pitches = Sequence(pitches).repeat_to_length(size)
         duration_groups = Duration._group_by_implied_prolation(
             nonreduced_fractions
             )
-        result = []
+        result: typing.List[typing.Union[Tuplet, Leaf]] = []
         for duration_group in duration_groups:
             # get factors in denominator of duration group other than 1, 2.
-            factors = abjad.mathtools.factors(duration_group[0].denominator)
+            factors = mathtools.factors(duration_group[0].denominator)
             factors = set(factors)
             factors.discard(1)
             factors.discard(2)
@@ -497,37 +518,39 @@ class LeafMaker(AbjadValueObject):
                         duration,
                         decrease_monotonic=self.decrease_monotonic,
                         forbidden_duration=self.forbidden_duration,
-                        skips_instead_of_rests=self.skips_instead_of_rests,
-                        use_multimeasure_rests=self.use_multimeasure_rests,
                         repeat_ties=self.repeat_ties,
+                        skips_instead_of_rests=self.skips_instead_of_rests,
+                        tag=self.tag,
+                        use_multimeasure_rests=self.use_multimeasure_rests,
                         )
                     result.extend(leaves)
             else:
                 # compute tuplet prolation
                 denominator = duration_group[0].denominator
-                numerator = abjad.mathtools.greatest_power_of_two_less_equal(
+                numerator = mathtools.greatest_power_of_two_less_equal(
                     denominator)
                 multiplier = (numerator, denominator)
-                ratio = 1 / abjad.Duration(*multiplier)
+                ratio = 1 / Duration(*multiplier)
                 duration_group = [
-                    ratio * abjad.Duration(duration)
+                    ratio * Duration(duration)
                     for duration in duration_group
                     ]
                 # make tuplet leaves
-                tuplet_leaves = []
+                tuplet_leaves: typing.List[Leaf] = []
                 for pitch, duration in zip(current_pitches, duration_group):
                     leaves = self._make_leaf_on_pitch(
                         pitch,
                         duration,
                         decrease_monotonic=self.decrease_monotonic,
-                        skips_instead_of_rests=self.skips_instead_of_rests,
-                        use_multimeasure_rests=self.use_multimeasure_rests,
                         repeat_ties=self.repeat_ties,
+                        skips_instead_of_rests=self.skips_instead_of_rests,
+                        tag=self.tag,
+                        use_multimeasure_rests=self.use_multimeasure_rests,
                         )
                     tuplet_leaves.extend(leaves)
-                tuplet = abjad.Tuplet(multiplier, tuplet_leaves)
+                tuplet = Tuplet(multiplier, tuplet_leaves)
                 result.append(tuplet)
-        return abjad.select(result)
+        return Selection(result)
 
     ### PRIVATE METHODS ###
 
@@ -535,69 +558,72 @@ class LeafMaker(AbjadValueObject):
     def _make_leaf_on_pitch(
         pitch,
         duration,
+        *,
         decrease_monotonic=True,
         forbidden_duration=None,
         skips_instead_of_rests=False,
-        use_multimeasure_rests=False,
         repeat_ties=False,
+        tag=None,
+        use_multimeasure_rests=False,
         ):
-        import abjad
         note_prototype = (
             numbers.Number,
             str,
-            abjad.NamedPitch,
-            abjad.NumberedPitch,
-            abjad.PitchClass,
+            abjad_pitch.NamedPitch,
+            abjad_pitch.NumberedPitch,
+            abjad_pitch.PitchClass,
             )
         chord_prototype = (tuple, list)
         rest_prototype = (type(None),)
         if isinstance(pitch, note_prototype):
             leaves = LeafMaker._make_tied_leaf(
-                abjad.Note,
+                Note,
                 duration,
                 decrease_monotonic=decrease_monotonic,
                 forbidden_duration=forbidden_duration,
                 pitches=pitch,
                 repeat_ties=repeat_ties,
+                tag=tag,
                 )
         elif isinstance(pitch, chord_prototype):
             leaves = LeafMaker._make_tied_leaf(
-                abjad.Chord,
+                Chord,
                 duration,
                 decrease_monotonic=decrease_monotonic,
                 forbidden_duration=forbidden_duration,
                 pitches=pitch,
                 repeat_ties=repeat_ties,
+                tag=tag,
                 )
         elif isinstance(pitch, rest_prototype) and skips_instead_of_rests:
             leaves = LeafMaker._make_tied_leaf(
-                abjad.Skip,
+                Skip,
                 duration,
                 decrease_monotonic=decrease_monotonic,
                 forbidden_duration=forbidden_duration,
                 pitches=None,
                 repeat_ties=repeat_ties,
+                tag=tag,
                 )
         elif isinstance(pitch, rest_prototype) and not use_multimeasure_rests:
             leaves = LeafMaker._make_tied_leaf(
-                abjad.Rest,
+                Rest,
                 duration,
                 decrease_monotonic=decrease_monotonic,
                 forbidden_duration=forbidden_duration,
                 pitches=None,
                 repeat_ties=repeat_ties,
+                tag=tag,
                 )
         elif isinstance(pitch, rest_prototype) and use_multimeasure_rests:
-            multimeasure_rest = abjad.MultimeasureRest((1))
-            multiplier = abjad.Multiplier(duration)
-            abjad.attach(multiplier, multimeasure_rest)
+            multimeasure_rest = MultimeasureRest((1), tag=tag)
+            multiplier = Multiplier(duration)
+            attach(multiplier, multimeasure_rest)
             leaves = (
                 multimeasure_rest,
                 )
         else:
-            message = 'unknown pitch: {!r}.'
-            message = message.format(pitch)
-            raise ValueError(message)
+            raise ValueError(f'unknown pitch: {pitch!r}.')
         return leaves
 
     @staticmethod
@@ -607,14 +633,15 @@ class LeafMaker(AbjadValueObject):
         decrease_monotonic=True,
         forbidden_duration=None,
         pitches=None,
+        tag=None,
         tie_parts=True,
         repeat_ties=False,
         ):
-        import abjad
+        from abjad.spanners.Tie import Tie
         # check input
-        duration = abjad.Duration(duration)
+        duration = Duration(duration)
         if forbidden_duration is not None:
-            forbidden_duration = abjad.Duration(forbidden_duration)
+            forbidden_duration = Duration(forbidden_duration)
             assert forbidden_duration.is_assignable
             assert forbidden_duration.numerator == 1
         # find preferred numerator of written durations if necessary
@@ -624,18 +651,18 @@ class LeafMaker(AbjadValueObject):
                 2 * forbidden_duration.denominator,
                 duration.denominator,
                 ]
-            denominator = abjad.mathtools.least_common_multiple(*denominators)
-            forbidden_duration = abjad.NonreducedFraction(forbidden_duration)
+            denominator = mathtools.least_common_multiple(*denominators)
+            forbidden_duration = NonreducedFraction(forbidden_duration)
             forbidden_duration = forbidden_duration.with_denominator(
                 denominator)
-            duration = abjad.NonreducedFraction(duration)
+            duration = NonreducedFraction(duration)
             duration = duration.with_denominator(denominator)
             forbidden_numerator = forbidden_duration.numerator
             assert forbidden_numerator % 2 == 0
             preferred_numerator = forbidden_numerator / 2
         # make written duration numerators
         numerators = []
-        parts = abjad.mathtools.partition_integer_into_canonic_parts(
+        parts = mathtools.partition_integer_into_canonic_parts(
             duration.numerator)
         if (forbidden_duration is not None and
             forbidden_duration <= duration):
@@ -656,7 +683,7 @@ class LeafMaker(AbjadValueObject):
         # make one leaf per written duration
         result = []
         for numerator in numerators:
-            written_duration = abjad.Duration(
+            written_duration = Duration(
                 numerator,
                 duration.denominator,
                 )
@@ -664,21 +691,20 @@ class LeafMaker(AbjadValueObject):
                 arguments = (pitches, written_duration)
             else:
                 arguments = (written_duration, )
-            result.append(class_(*arguments))
-        result = abjad.select(result)
+            result.append(class_(*arguments, tag=tag))
+        result = Selection(result)
         # apply tie spanner if required
         if tie_parts and 1 < len(result):
-            if not issubclass(class_, (abjad.Rest, abjad.Skip)):
-                tie = abjad.Tie(repeat=repeat_ties)
-                abjad.attach(tie, result)
+            if not issubclass(class_, (Rest, Skip)):
+                tie = Tie(repeat=repeat_ties)
+                attach(tie, result)
         # return result
         return result
 
     @staticmethod
     def _partition_less_than_double(n, m):
-        import abjad
-        assert abjad.mathtools.is_positive_integer_equivalent_number(n)
-        assert abjad.mathtools.is_positive_integer_equivalent_number(m)
+        assert mathtools.is_positive_integer_equivalent_number(n)
+        assert mathtools.is_positive_integer_equivalent_number(m)
         n, m = int(n), int(m)
         result = []
         current_value = n
@@ -733,6 +759,36 @@ class LeafMaker(AbjadValueObject):
         Is true when ties are repeat ties.
         """
         return self._repeat_ties
+
+    @property
+    def tag(self) -> typing.Optional[str]:
+        r"""
+        Gets tag.
+
+        ..  container:: example
+
+            Integer and string elements in ``pitches`` result in notes:
+
+            >>> maker = abjad.LeafMaker(tag='leaf_maker')
+            >>> pitches = [2, 4, 'F#5', 'G#5']
+            >>> duration = abjad.Duration(1, 4)
+            >>> leaves = maker(pitches, duration)
+            >>> staff = abjad.Staff(leaves)
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    d'4 %! leaf_maker
+                    e'4 %! leaf_maker
+                    fs''4 %! leaf_maker
+                    gs''4 %! leaf_maker
+                }
+
+        """
+        return self._tag
 
     @property
     def use_multimeasure_rests(self):

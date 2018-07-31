@@ -15,18 +15,18 @@ def f(argument, strict=None):
         \new Staff
         {
             c'4
-            -\staccato
+            - \staccato
             ^ \markup {
                 \with-color
                     #blue
                     Allegro
                 }
             d'4
-            -\staccato
+            - \staccato
             e'4
-            -\staccato
+            - \staccato
             f'4
-            -\staccato
+            - \staccato
         }
 
         >>> abjad.show(staff) # doctest: +SKIP

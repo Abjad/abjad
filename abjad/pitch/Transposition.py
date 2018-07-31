@@ -71,7 +71,7 @@ class Transposition(AbjadValueObject):
                     fs'8
                     af'8
                     a'8
-                    \bar "|." %! SCORE1
+                    \bar "|." %! SCORE_1
                     \override Score.BarLine.transparent = ##f
                 }
 
@@ -96,7 +96,7 @@ class Transposition(AbjadValueObject):
                     fs'8
                     af'8
                     a'8
-                    \bar "|." %! SCORE1
+                    \bar "|." %! SCORE_1
                     \override Score.BarLine.transparent = ##f
                 }
 

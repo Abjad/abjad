@@ -831,14 +831,17 @@ class Wellformedness(AbjadObject):
             for wrapper in wrappers:
                 if isinstance(wrapper.indicator, StartTextSpan):
                     total += 1
-                    string = wrapper.indicator.command
-                    string = string.strip(r'\start')
-                    open_spanners[string] = wrapper.component
+                    command = wrapper.indicator.command
+                    command = command.strip(r'\start')
+                    if command not in open_spanners:
+                        open_spanners[command] = []
+                    open_spanners[command].append(wrapper.component)
                 elif isinstance(wrapper.indicator, StopTextSpan):
-                    string = wrapper.indicator.command
-                    string = string.strip(r'\stop')
-                    assert string in open_spanners, repr(string)
-                    del(open_spanners[string])
-            for string, component in open_spanners.items():
-                violators.append(component)
+                    command = wrapper.indicator.command
+                    command = command.strip(r'\stop')
+                    assert command in open_spanners, repr(command)
+                    open_spanners[command].pop()
+            for command, list_ in open_spanners.items():
+                for component in list_:
+                    violators.append(component)
         return violators, total

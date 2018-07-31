@@ -477,7 +477,7 @@ class Wrapper(AbjadValueObject):
         command = getattr(self.indicator, 'command', None)
         wrapper = abjad.inspect(component).effective_wrapper(
             prototype,
-            command=command,
+            attributes={'command': command},
             )
         if (wrapper is not None and
             wrapper.context is not None and

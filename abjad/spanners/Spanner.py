@@ -161,7 +161,7 @@ class Spanner(AbjadObject):
             return True
         return [
             'Requires at least two leaves.',
-            f'Not just {leaves[0]!r}.',
+            f'Not just {leaves!r}.',
             ]
 
     def _attach(

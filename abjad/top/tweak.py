@@ -1,7 +1,11 @@
 from abjad import enums
 
 
-def tweak(argument):
+def tweak(
+    argument,
+    deactivate=None,
+    tag=None,
+    ):
     r"""
     Makes LilyPond tweak manager.
 
@@ -172,6 +176,29 @@ def tweak(argument):
 
     ..  container:: example
 
+        Tweaks can be tagged:
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> markup = abjad.Markup('Allegro assai', direction=abjad.Up)
+        >>> abjad.tweak(markup, tag='+PARTS').color = 'red'
+        >>> abjad.attach(markup, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                c'4
+                - \tweak color #red %! +PARTS
+                ^ \markup { "Allegro assai" }
+                d'4
+                e'4
+                f'4
+            }
+
+    ..  container:: example
+
         Returns LilyPond tweak manager:
 
         >>> abjad.tweak(markup_1)
@@ -195,12 +222,15 @@ def tweak(argument):
     constants = (enums.Down, enums.Left, enums.Right, enums.Up)
     prototype = (bool, int, float, str, tuple, abjad.Scheme)
     if argument in constants or isinstance(argument, prototype):
-        manager = abjad.LilyPondTweakManager()
+        manager = abjad.LilyPondTweakManager(deactivate=deactivate, tag=tag)
         manager._pending_value = argument
         return manager
     if not hasattr(argument, '_tweaks'):
         name = type(argument).__name__
         raise NotImplementedError(f'{name} does not allow tweaks (yet).')
     if argument._tweaks is None:
-        argument._tweaks = abjad.LilyPondTweakManager()
+        argument._tweaks = abjad.LilyPondTweakManager(
+            deactivate=deactivate,
+            tag=tag,
+            )
     return argument._tweaks

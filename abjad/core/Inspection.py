@@ -1,6 +1,8 @@
 import collections
 import typing
+from abjad import enums
 from abjad import exceptions
+from abjad import typings
 from abjad.indicators.TimeSignature import TimeSignature
 from abjad.markups import Markup
 from abjad.pitch.NamedPitch import NamedPitch
@@ -13,6 +15,7 @@ from abjad.timespans.Timespan import Timespan
 from abjad.top.inspect import inspect
 from abjad.top.iterate import iterate
 from abjad.utilities.Duration import Duration
+from abjad.utilities.Offset import Offset
 from .AfterGraceContainer import AfterGraceContainer
 from .Chord import Chord
 from .Component import Component
@@ -149,9 +152,9 @@ class Inspection(AbjadObject):
 
     def annotation(
         self,
-        annotation,
-        default=None,
-        unwrap=True,
+        annotation: typing.Any,
+        default: typing.Any = None,
+        unwrap: bool = True,
         ) -> typing.Any:
         r"""
         Gets annotation.
@@ -296,7 +299,10 @@ class Inspection(AbjadObject):
             violators.extend(violators_)
         return violators
 
-    def contents(self, include_self=True) -> typing.Optional[Selection]:
+    def contents(
+        self,
+        include_self: bool = True,
+        ) -> typing.Optional[Selection]:
         r"""
         Gets contents.
 
@@ -338,7 +344,10 @@ class Inspection(AbjadObject):
             raise Exception('can only get contents of component.')
         return self.client._get_contents(include_self=include_self)
 
-    def descendants(self, include_self=True) -> Selection:
+    def descendants(
+        self,
+        include_self: bool = True,
+        ) -> Selection:
         r"""
         Gets descendants.
 
@@ -404,7 +413,10 @@ class Inspection(AbjadObject):
         result = Selection(descendants)
         return result
 
-    def duration(self, in_seconds=False) -> Duration:
+    def duration(
+        self,
+        in_seconds: bool = False,
+        ) -> Duration:
         r"""
         Gets duration.
 
@@ -440,12 +452,12 @@ class Inspection(AbjadObject):
 
     def effective(
         self,
-        prototype,
+        prototype: typings.Prototype,
         *,
-        command=None,
-        default=None,
-        n=0,
-        unwrap=True,
+        attributes: typing.Dict = None,
+        default: bool = None,
+        n: int = 0,
+        unwrap: bool = True,
         ) -> typing.Any:
         r"""
         Gets effective indicator.
@@ -644,12 +656,67 @@ class Inspection(AbjadObject):
             e'4 3/8
             f'4 3/8
 
+        ..  container:: example
+
+            Test attributes like this:
+
+            >>> voice = abjad.Voice("c'4 d' e' f'")
+            >>> start_text_span = abjad.StartTextSpan()
+            >>> abjad.attach(start_text_span, voice[0])
+            >>> stop_text_span = abjad.StopTextSpan()
+            >>> abjad.attach(stop_text_span, voice[2])
+            >>> abjad.show(voice) # doctest: +SKIP 
+
+            ..  docs::
+
+                >>> abjad.f(voice)
+                \new Voice
+                {
+                    c'4
+                    \startTextSpan
+                    d'4
+                    e'4
+                    \stopTextSpan
+                    f'4
+                }
+
+            >>> for note in voice:
+            ...     note, abjad.inspect(note).effective(abjad.StartTextSpan)
+            ...
+            (Note("c'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5))
+            (Note("d'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5))
+            (Note("e'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5))
+            (Note("f'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5))
+
+            >>> for note in voice:
+            ...     note, abjad.inspect(note).effective(abjad.StopTextSpan)
+            ...
+            (Note("c'4"), None)
+            (Note("d'4"), None)
+            (Note("e'4"), StopTextSpan(command='\\stopTextSpan'))
+            (Note("f'4"), StopTextSpan(command='\\stopTextSpan'))
+
+            >>> attributes = {'parameter': 'TEXT_SPANNER'}
+            >>> for note in voice:
+            ...     indicator = abjad.inspect(note).effective(
+            ...         object,
+            ...         attributes=attributes,
+            ...         )
+            ...     note, indicator
+            ...
+            (Note("c'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5))
+            (Note("d'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5))
+            (Note("e'4"), StopTextSpan(command='\\stopTextSpan'))
+            (Note("f'4"), StopTextSpan(command='\\stopTextSpan'))
+
         """
         if not isinstance(self.client, Component):
             raise Exception('can only get effective on components.')
+        if attributes is not None:
+            assert isinstance(attributes, dict), repr(attributes)
         result = self.client._get_effective(
             prototype,
-            command=command,
+            attributes=attributes,
             n=n,
             unwrap=unwrap,
             )
@@ -667,10 +734,10 @@ class Inspection(AbjadObject):
 
     def effective_wrapper(
         self,
-        prototype,
+        prototype: typings.Prototype,
         *,
-        command=None,
-        n=0,
+        attributes: typing.Dict = None,
+        n: int = 0,
         ) -> typing.Optional[Wrapper]:
         r"""
         Gets effective wrapper.
@@ -712,7 +779,14 @@ class Inspection(AbjadObject):
             f'4 Wrapper(context='Staff', indicator=Clef('alto'), tag=Tag())
 
         """
-        return self.effective(prototype, command=command, n=n, unwrap=False)
+        if attributes is not None:
+            assert isinstance(attributes, dict), repr(attributes)
+        return self.effective(
+            prototype,
+            attributes=attributes,
+            n=n,
+            unwrap=False,
+            )
 
     def grace_container(self) -> typing.Optional[GraceContainer]:
         r"""
@@ -750,23 +824,86 @@ class Inspection(AbjadObject):
             raise Exception('can only get grace container on leaf.')
         return self.client._grace_container
 
-    def has_effective_indicator(self, prototype=None) -> bool:
+    def has_effective_indicator(
+        self,
+        prototype: typings.Prototype = None,
+        *,
+        attributes: typing.Dict = None,
+        ) -> bool:
         """
         Is true when client has effective indicator.
         """
         if not isinstance(self.client, Component):
             raise Exception('can only get effective indicator on component.')
-        return self.client._has_effective_indicator(prototype=prototype)
+        if attributes is not None:
+            assert isinstance(attributes, dict), repr(attributes)
+        return self.client._has_effective_indicator(
+            prototype=prototype,
+            attributes=attributes,
+            )
 
-    def has_indicator(self, prototype=None) -> bool:
-        """
+    def has_indicator(
+        self,
+        prototype: typings.Prototype = None,
+        *,
+        attributes: typing.Dict = None,
+        ) -> bool:
+        r"""
         Is true when client has one or more indicators.
+
+        ..  container:: example
+
+            >>> voice = abjad.Voice("c'4 c'4 c'4 c'4")
+            >>> abjad.attach(abjad.Clef('treble'), voice[0])
+            >>> abjad.attach(abjad.Clef('alto'), voice[2])
+            >>> abjad.show(voice) # doctest: +SKIP 
+
+            ..  docs::
+
+                >>> abjad.f(voice)
+                \new Voice
+                {
+                    \clef "treble"
+                    c'4
+                    c'4
+                    \clef "alto"
+                    c'4
+                    c'4
+                }
+
+            >>> attributes = {'name': 'alto'}
+            >>> abjad.inspect(voice[0]).has_indicator(abjad.Clef)
+            True
+
+            >>> abjad.inspect(voice[0]).has_indicator(
+            ...     abjad.Clef,
+            ...     attributes=attributes,
+            ...     )
+            False
+
+            >>> abjad.inspect(voice[2]).has_indicator(abjad.Clef)
+            True
+
+            >>> abjad.inspect(voice[2]).has_indicator(
+            ...     abjad.Clef,
+            ...     attributes=attributes,
+            ...     )
+            True
+
         """
         if not isinstance(self.client, Component):
             raise Exception('can only get indicator on component.')
-        return self.client._has_indicator(prototype=prototype)
+        if attributes is not None:
+            assert isinstance(attributes, dict), repr(attributes)
+        return self.client._has_indicator(
+            prototype=prototype,
+            attributes=attributes,
+            )
 
-    def has_spanner(self, prototype=None) -> bool:
+    def has_spanner(
+        self,
+        prototype: typings.Prototype = None,
+        ) -> bool:
         """
         Is true when client has one or more spanners.
         """
@@ -776,9 +913,10 @@ class Inspection(AbjadObject):
 
     def indicator(
         self,
-        prototype=None,
-        default=None,
-        unwrap=True,
+        prototype: typings.Prototype = None,
+        *,
+        default: typing.Any = None,
+        unwrap: bool = True,
         ) -> typing.Any:
         """
         Gets indicator.
@@ -801,7 +939,13 @@ class Inspection(AbjadObject):
         else:
             raise Exception('multiple indicators attached to client.')
 
-    def indicators(self, prototype=None, unwrap=True) -> typing.List:
+    def indicators(
+        self,
+        prototype: typings.Prototype = None,
+        *,
+        attributes: typing.Dict = None,
+        unwrap: bool = True,
+        ) -> typing.List:
         r"""
         Get indicators.
 
@@ -820,13 +964,13 @@ class Inspection(AbjadObject):
                 \new Staff
                 {
                     c'4
-                    -\marcato
+                    - \marcato
                     d'4
-                    -\marcato
+                    - \marcato
                     e'4
-                    -\marcato
+                    - \marcato
                     f'4
-                    -\marcato
+                    - \marcato
                 }
 
             >>> abjad.inspect(staff).indicators(abjad.Articulation)
@@ -839,8 +983,11 @@ class Inspection(AbjadObject):
         # TODO: extend to any non-none client
         if not isinstance(self.client, Component):
             raise Exception('can only get indicators on component.')
+        if attributes is not None:
+            assert isinstance(attributes, dict), repr(attributes)
         result = self.client._get_indicators(
             prototype=prototype,
+            attributes=attributes,
             unwrap=unwrap,
             )
         return list(result)
@@ -907,26 +1054,26 @@ class Inspection(AbjadObject):
 
     def is_wellformed(
         self,
-        check_beamed_long_notes=True,
-        check_discontiguous_spanners=True,
-        check_duplicate_ids=True,
-        check_empty_containers=True,
-        check_misdurated_measures=True,
-        check_misfilled_measures=True,
-        check_mismatched_enchained_hairpins=True,
-        check_mispitched_ties=True,
-        check_misrepresented_flags=True,
-        check_missing_parents=True,
-        check_nested_measures=True,
-        check_notes_on_wrong_clef=True,
-        check_out_of_range_notes=True,
-        check_overlapping_beams=True,
-        check_overlapping_glissandi=True,
-        check_overlapping_octavation_spanners=True,
-        check_overlapping_ties=True,
-        check_overlapping_trill_spanners=True,
-        check_unterminated_hairpins=True,
-        check_unterminated_text_spanners=True,
+        check_beamed_long_notes: bool = True,
+        check_discontiguous_spanners: bool = True,
+        check_duplicate_ids: bool = True,
+        check_empty_containers: bool = True,
+        check_misdurated_measures: bool = True,
+        check_misfilled_measures: bool = True,
+        check_mismatched_enchained_hairpins: bool = True,
+        check_mispitched_ties: bool = True,
+        check_misrepresented_flags: bool = True,
+        check_missing_parents: bool = True,
+        check_nested_measures: bool = True,
+        check_notes_on_wrong_clef: bool = True,
+        check_out_of_range_notes: bool = True,
+        check_overlapping_beams: bool = True,
+        check_overlapping_glissandi: bool = True,
+        check_overlapping_octavation_spanners: bool = True,
+        check_overlapping_ties: bool = True,
+        check_overlapping_trill_spanners: bool = True,
+        check_unterminated_hairpins: bool = True,
+        check_unterminated_text_spanners: bool = True,
         ) -> bool:
         """
         Is true when client is wellformed.
@@ -939,7 +1086,7 @@ class Inspection(AbjadObject):
                 return False
         return True
 
-    def leaf(self, n=0) -> typing.Optional[Leaf]:
+    def leaf(self, n: int = 0) -> typing.Optional[Leaf]:
         r"""
         Gets leaf ``n``.
 
@@ -1085,7 +1232,11 @@ class Inspection(AbjadObject):
             raise Exception('can only get logical tie on leaf.')
         return self.client._get_logical_tie()
 
-    def markup(self, direction=None) -> typing.List[Markup]:
+    def markup(
+        self,
+        *,
+        direction: enums.VerticalAlignment = None,
+        ) -> typing.List[Markup]:
         """
         Gets markup.
         """
@@ -1097,8 +1248,9 @@ class Inspection(AbjadObject):
 
     def parentage(
         self,
-        include_self=True,
-        grace_notes=False,
+        *,
+        include_self: bool = True,
+        grace_notes: bool = False,
         ) -> Parentage:
         r"""
         Gets parentage.
@@ -1347,8 +1499,9 @@ class Inspection(AbjadObject):
 
     def spanner(
         self,
-        prototype=None,
-        default=None,
+        prototype: typings.Prototype = None,
+        *,
+        default: typing.Any = None,
         ) -> typing.Any:
         """
         Gets spanner.
@@ -1371,7 +1524,10 @@ class Inspection(AbjadObject):
         else:
             raise exceptions.ExtraSpannerError
 
-    def spanners(self, prototype=None) -> typing.List[Spanner]:
+    def spanners(
+        self,
+        prototype: typings.Prototype = None,
+        ) -> typing.List[Spanner]:
         r"""
         Gets spanners.
 
@@ -1427,26 +1583,26 @@ class Inspection(AbjadObject):
 
     def tabulate_wellformedness(
         self,
-        allow_percussion_clef=None,
-        check_beamed_long_notes=True,
-        check_discontiguous_spanners=True,
-        check_duplicate_ids=True,
-        check_empty_containers=True,
-        check_misdurated_measures=True,
-        check_misfilled_measures=True,
-        check_mispitched_ties=True,
-        check_misrepresented_flags=True,
-        check_missing_parents=True,
-        check_nested_measures=True,
-        check_notes_on_wrong_clef=True,
-        check_out_of_range_notes=True,
-        check_overlapping_beams=True,
-        check_overlapping_glissandi=True,
-        check_overlapping_octavation_spanners=True,
-        check_overlapping_ties=True,
-        check_overlapping_trill_spanners=True,
-        check_unterminated_hairpins=True,
-        check_unterminated_text_spanners=True,
+        allow_percussion_clef: bool = None,
+        check_beamed_long_notes: bool = True,
+        check_discontiguous_spanners: bool = True,
+        check_duplicate_ids: bool = True,
+        check_empty_containers: bool = True,
+        check_misdurated_measures: bool = True,
+        check_misfilled_measures: bool = True,
+        check_mispitched_ties: bool = True,
+        check_misrepresented_flags: bool = True,
+        check_missing_parents: bool = True,
+        check_nested_measures: bool = True,
+        check_notes_on_wrong_clef: bool = True,
+        check_out_of_range_notes: bool = True,
+        check_overlapping_beams: bool = True,
+        check_overlapping_glissandi: bool = True,
+        check_overlapping_octavation_spanners: bool = True,
+        check_overlapping_ties: bool = True,
+        check_overlapping_trill_spanners: bool = True,
+        check_unterminated_hairpins: bool = True,
+        check_unterminated_text_spanners: bool = True,
         ) -> str:
         r"""
         Tabulates wellformedness.
@@ -1466,7 +1622,7 @@ class Inspection(AbjadObject):
             strings.append(string)
         return '\n'.join(strings)
 
-    def timespan(self, in_seconds=False) -> Timespan:
+    def timespan(self, in_seconds: bool = False) -> Timespan:
         r"""
         Gets timespan.
 
@@ -1620,7 +1776,7 @@ class Inspection(AbjadObject):
                 stop_offset = timespan.stop_offset
         return Timespan(start_offset, stop_offset)
 
-    def tuplet(self, n=0) -> typing.Optional[Tuplet]:
+    def tuplet(self, n: int = 0) -> typing.Optional[Tuplet]:
         r"""
         Gets tuplet ``n``.
 
@@ -1692,7 +1848,7 @@ class Inspection(AbjadObject):
                 return tuplet
         return None
 
-    def vertical_moment(self, governor=None) -> VerticalMoment:
+    def vertical_moment(self, governor: Component = None) -> VerticalMoment:
         r"""
         Gets vertical moment.
 
@@ -1766,7 +1922,7 @@ class Inspection(AbjadObject):
             raise Exception('can only get vertical moment on component.')
         return self.client._get_vertical_moment(governor=governor)
 
-    def vertical_moment_at(self, offset) -> VerticalMoment:
+    def vertical_moment_at(self, offset: Offset) -> VerticalMoment:
         """
         Gets vertical moment at ``offset``.
         """
@@ -1774,7 +1930,12 @@ class Inspection(AbjadObject):
             raise Exception('can only get vertical moment on component.')
         return self.client._get_vertical_moment_at(offset)
 
-    def wrapper(self, prototype=None) -> typing.Optional[Wrapper]:
+    def wrapper(
+        self,
+        prototype: typings.Prototype = None,
+        *,
+        attributes: typing.Dict = None,
+        ) -> typing.Optional[Wrapper]:
         r"""
         Gets wrapper.
 
@@ -1793,13 +1954,13 @@ class Inspection(AbjadObject):
                 \new Staff
                 {
                     c'4
-                    -\marcato
+                    - \marcato
                     d'4
-                    -\marcato
+                    - \marcato
                     e'4
-                    -\marcato
+                    - \marcato
                     f'4
-                    -\marcato
+                    - \marcato
                 }
 
             >>> abjad.inspect(staff).wrapper(abjad.Articulation) is None
@@ -1811,10 +1972,16 @@ class Inspection(AbjadObject):
         Raises exception when more than one indicator of ``prototype`` attach
         to client.
         """
+        if attributes is not None:
+            assert isinstance(attributes, dict), repr(attributes)
         return self.indicator(prototype=prototype, unwrap=False)
 
-    def wrappers(self, prototype=None) -> typing.Optional[
-        typing.List[Wrapper]
+    def wrappers(
+        self,
+        prototype: typings.Prototype = None,
+        *,
+        attributes: typing.Dict = None,
+        ) -> typing.Optional[typing.List[Wrapper]
         ]:
         r"""
         Gets wrappers.
@@ -1834,13 +2001,13 @@ class Inspection(AbjadObject):
                 \new Staff
                 {
                     c'4
-                    -\marcato
+                    - \marcato
                     d'4
-                    -\marcato
+                    - \marcato
                     e'4
-                    -\marcato
+                    - \marcato
                     f'4
-                    -\marcato
+                    - \marcato
                 }
 
             >>> abjad.inspect(staff).wrappers(abjad.Articulation)
@@ -1850,4 +2017,6 @@ class Inspection(AbjadObject):
             [Wrapper(indicator=Articulation('^'), tag=Tag())]
 
         """
+        if attributes is not None:
+            assert isinstance(attributes, dict), repr(attributes)
         return self.indicators(prototype=prototype, unwrap=False)

@@ -59,10 +59,15 @@ class TextSpanner(Spanner):
         >>> spanner = abjad.TextSpanner()
         >>> abjad.attach(spanner, staff[:1])
         Traceback (most recent call last):
-            ...
+          File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/doctest.py", line 1330, in __run
+            compileflags, 1), test.globs)
+          File "<doctest TextSpanner.py[8]>", line 1, in <module>
+            abjad.attach(spanner, staff[:1])
+          File "/Users/trevorbaca/abjad/abjad/top/attach.py", line 243, in attach
+            raise Exception(message)
         Exception: TextSpanner()._attachment_test_all():
           Requires at least two leaves.
-          Not just Note("c'4").
+          Not just Selection([Note("c'4")]).
 
     ..  container:: example
 

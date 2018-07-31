@@ -985,7 +985,7 @@ class PitchSegment(Segment):
                     g'8
                     bqf'8
                     g'8
-                    \bar "|." %! SCORE1
+                    \bar "|." %! SCORE_1
                     \override Score.BarLine.transparent = ##f
                 }
 
@@ -1044,7 +1044,7 @@ class PitchSegment(Segment):
                     g'8
                     bqf'8
                     g'8
-                    \bar "|." %! SCORE1
+                    \bar "|." %! SCORE_1
                     \override Score.BarLine.transparent = ##f
                 }
 

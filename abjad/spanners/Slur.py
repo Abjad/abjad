@@ -60,10 +60,15 @@ class Slur(Spanner):
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> abjad.attach(abjad.Slur(), staff[:1])
         Traceback (most recent call last):
-            ...
+          File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/doctest.py", line 1330, in __run
+            compileflags, 1), test.globs)
+          File "<doctest Slur.py[11]>", line 1, in <module>
+            abjad.attach(abjad.Slur(), staff[:1])
+          File "/Users/trevorbaca/abjad/abjad/top/attach.py", line 243, in attach
+            raise Exception(message)
         Exception: Slur()._attachment_test_all():
           Requires at least two leaves.
-          Not just Note("c'4").
+          Not just Selection([Note("c'4")]).
 
     """
 

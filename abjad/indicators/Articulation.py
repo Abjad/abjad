@@ -204,7 +204,7 @@ class Articulation(AbjadValueObject):
                     self.direction)
                 assert isinstance(direction_, String), repr(direction)
                 direction = direction_
-            return f'{direction}\{string}'
+            return f'{direction} \{string}'
         else:
             return ''
 
@@ -299,7 +299,7 @@ class Articulation(AbjadValueObject):
                 >>> abjad.f(note)
                 c'4
                 - \tweak color #blue
-                -\marcato
+                - \marcato
 
         ..  container:: example
 
@@ -316,7 +316,7 @@ class Articulation(AbjadValueObject):
                 >>> abjad.f(note)
                 c'4
                 - \tweak color #blue
-                -\marcato
+                - \marcato
 
         """
         return self._tweaks

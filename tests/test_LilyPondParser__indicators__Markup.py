@@ -73,7 +73,7 @@ def test_LilyPondParser__indicators__Markup_03():
         \new Staff
         {
             c'4
-            -\staccato
+            - \staccato
             ^ \markup { hello }
             d'4
         }
