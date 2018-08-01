@@ -1,4 +1,5 @@
 import copy
+from abjad.instruments import Instrument
 from abjad.lilypondnames.LilyPondContext import LilyPondContext
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from .Container import Container
@@ -237,6 +238,8 @@ class Context(Container):
             assert isinstance(indicator.persistent, bool)
             if hasattr(indicator, 'parameter'):
                 key = indicator.parameter
+            elif isinstance(indicator, Instrument):
+                key = 'Instrument'
             else:
                 key = str(type(indicator))
             if (key not in wrappers or
