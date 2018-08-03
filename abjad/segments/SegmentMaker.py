@@ -221,8 +221,9 @@ class SegmentMaker(AbjadObject):
         """
         import abjad
         offset_to_measure_number = {}
-        context = score['TimeSignatureContext']
-        measures = abjad.select(context).leaves().group_by_measure()
+        for voice in abjad.iterate(score).components(abjad.Voice):
+            break
+        measures = abjad.select(voice).leaves().group_by_measure()
         for i, measure in enumerate(measures):
             measure_number = i + 1
             first_leaf = abjad.select(measure).leaf(0)
@@ -234,7 +235,10 @@ class SegmentMaker(AbjadObject):
             if measure_number is None:
                 continue
             context = abjad.inspect(leaf).parentage().get_first(abjad.Context)
-            string = f'% [{context.name} measure {measure_number}]'
+            if context.name is None:
+                string = f'% [{context.lilypond_type} measure {measure_number}]'
+            else:
+                string = f'% [{context.name} measure {measure_number}]'
             literal = abjad.LilyPondLiteral(string, 'absolute_before')
             abjad.attach(literal, leaf, tag='COMMENT_MEASURE_NUMBERS')
 
