@@ -221,9 +221,10 @@ class SegmentMaker(AbjadObject):
         """
         import abjad
         offset_to_measure_number = {}
-        for voice in abjad.iterate(score).components(abjad.Voice):
-            break
-        measures = abjad.select(voice).leaves().group_by_measure()
+        for context in abjad.iterate(score).components(abjad.Context):
+            if not context.is_simultaneous:
+                break
+        measures = abjad.select(context).leaves().group_by_measure()
         for i, measure in enumerate(measures):
             measure_number = i + 1
             first_leaf = abjad.select(measure).leaf(0)
