@@ -354,7 +354,7 @@ class NumberedPitchClass(PitchClass):
         ..  container:: example
 
             >>> abjad.NumberedPitchClass(1).accidental
-            Accidental('sharp')
+            Accidental('s')
 
         Returns accidental.
         """

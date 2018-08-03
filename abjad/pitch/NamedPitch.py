@@ -523,13 +523,13 @@ class NamedPitch(Pitch):
         ..  container:: example
 
             >>> abjad.NamedPitch("c''").accidental
-            Accidental('natural')
+            Accidental('')
 
             >>> abjad.NamedPitch("cs''").accidental
-            Accidental('sharp')
+            Accidental('s')
 
             >>> abjad.NamedPitch("df''").accidental
-            Accidental('flat')
+            Accidental('f')
 
         Returns accidental.
         """

@@ -15,28 +15,28 @@ class Accidental(AbjadValueObject):
     ..  container:: example
 
         >>> abjad.Accidental('ff')
-        Accidental('double flat')
+        Accidental('ff')
 
         >>> abjad.Accidental('tqf')
-        Accidental('three-quarters flat')
+        Accidental('tqf')
 
         >>> abjad.Accidental('f')
-        Accidental('flat')
+        Accidental('f')
 
         >>> abjad.Accidental('')
-        Accidental('natural')
+        Accidental('')
 
         >>> abjad.Accidental('qs')
-        Accidental('quarter sharp')
+        Accidental('qs')
 
         >>> abjad.Accidental('s')
-        Accidental('sharp')
+        Accidental('s')
 
         >>> abjad.Accidental('tqs')
-        Accidental('three-quarters sharp')
+        Accidental('tqs')
 
         >>> abjad.Accidental('ss')
-        Accidental('double sharp')
+        Accidental('ss')
 
     ..  container:: example
 
@@ -64,8 +64,8 @@ class Accidental(AbjadValueObject):
             pass
         elif isinstance(name, str):
             if name in constants._accidental_name_to_abbreviation:
-                name = constants._accidental_name_to_abbreviation[name]
-                semitones = constants._accidental_abbreviation_to_semitones[name]
+                abbreviation = constants._accidental_name_to_abbreviation[name]
+                semitones = constants._accidental_abbreviation_to_semitones[abbreviation]
             else:
                 match = constants._comprehensive_accidental_regex.match(name)
                 if not match:
@@ -138,10 +138,10 @@ class Accidental(AbjadValueObject):
             >>> accidental = abjad.Accidental('qs')
 
             >>> accidental + accidental
-            Accidental('sharp')
+            Accidental('s')
 
             >>> accidental + accidental + accidental
-            Accidental('three-quarters sharp')
+            Accidental('tqs')
 
         Returns new accidental.
         """
@@ -240,28 +240,28 @@ class Accidental(AbjadValueObject):
         ..  container:: example
 
             >>> -abjad.Accidental('ff')
-            Accidental('double sharp')
+            Accidental('ss')
 
             >>> -abjad.Accidental('tqf')
-            Accidental('three-quarters sharp')
+            Accidental('tqs')
 
             >>> -abjad.Accidental('f')
-            Accidental('sharp')
+            Accidental('s')
 
             >>> -abjad.Accidental('')
-            Accidental('natural')
+            Accidental('')
 
             >>> -abjad.Accidental('qs')
-            Accidental('quarter flat')
+            Accidental('qf')
 
             >>> -abjad.Accidental('s')
-            Accidental('flat')
+            Accidental('f')
 
             >>> -abjad.Accidental('tqs')
-            Accidental('three-quarters flat')
+            Accidental('tqf')
 
             >>> -abjad.Accidental('ss')
-            Accidental('double flat')
+            Accidental('ff')
 
         Returns new accidental.
         """
@@ -326,10 +326,10 @@ class Accidental(AbjadValueObject):
             >>> accidental = abjad.Accidental('qs')
 
             >>> accidental - accidental
-            Accidental('natural')
+            Accidental('')
 
             >>> accidental - accidental - accidental
-            Accidental('quarter flat')
+            Accidental('qf')
 
         Returns new accidental.
         """
@@ -357,7 +357,7 @@ class Accidental(AbjadValueObject):
         return FormatSpecification(
             client=self,
             repr_is_indented=False,
-            storage_format_args_values=[self.name],
+            storage_format_args_values=[self.abbreviation],
             storage_format_is_indented=False,
             storage_format_kwargs_names=['arrow'],
             )
@@ -378,6 +378,27 @@ class Accidental(AbjadValueObject):
         return bool(constants._symbolic_accidental_regex.match(argument))
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def abbreviation(self):
+        """
+        Gets abbreviation of accidental.
+
+        Returns string.
+        """
+        sign = mathtools.sign(self.semitones)
+        if sign == 0:
+            return ''
+        div, mod = divmod(abs(self.semitones), 1)
+        token = 's'
+        if sign == -1:
+            token = 'f'
+        if div == 1 and mod:
+            return 'tq' + token
+        abbreviation = token * int(div)
+        if mod:
+            abbreviation += 'q' + token
+        return abbreviation
 
     @property
     def arrow(self):
