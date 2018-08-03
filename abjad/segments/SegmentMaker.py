@@ -221,8 +221,9 @@ class SegmentMaker(AbjadObject):
         """
         import abjad
         offset_to_measure_number = {}
-        leaves = abjad.select(score).leaves()
-        for i, measure in enumerate(abjad.select(leaves).group_by_measure()):
+        context = score['TimeSignatureContext']
+        measures = abjad.select(context).leaves().group_by_measure()
+        for i, measure in enumerate(measures):
             measure_number = i + 1
             first_leaf = abjad.select(measure).leaf(0)
             start_offset = abjad.inspect(first_leaf).timespan().start_offset
