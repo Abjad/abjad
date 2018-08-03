@@ -214,6 +214,29 @@ class SegmentMaker(AbjadObject):
 
     ### PUBLIC METHODS ###
 
+    @staticmethod
+    def comment_measure_numbers(score):
+        """
+        Comments measure numbers in ``score``.
+        """
+        import abjad
+        offset_to_measure_number = {}
+        leaves = abjad.select(score).leaves()
+        for i, measure in enumerate(abjad.select(leaves).group_by_measure()):
+            measure_number = i + 1
+            first_leaf = abjad.select(measure).leaf(0)
+            start_offset = abjad.inspect(first_leaf).timespan().start_offset
+            offset_to_measure_number[start_offset] = measure_number
+        for leaf in abjad.iterate(score).leaves():
+            offset = abjad.inspect(leaf).timespan().start_offset
+            measure_number = offset_to_measure_number.get(offset, None)
+            if measure_number is None:
+                continue
+            context = abjad.inspect(leaf).parentage().get_first(abjad.Context)
+            string = f'% [{context.name} measure {measure_number}]'
+            literal = abjad.LilyPondLiteral(string, 'absolute_before')
+            abjad.attach(literal, leaf, tag='COMMENT_MEASURE_NUMBERS')
+
     def run(
         self,
         deactivate: typing.List[str] = None,
