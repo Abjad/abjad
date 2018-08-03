@@ -21,6 +21,6 @@ def play(argument):
     from abjad import abjad_configuration
     assert hasattr(argument, '__illustrate__')
     result = abjad.persist(argument).as_midi()
-    midi_file_path, abjad_formatting_time, lilypond_rendering_time = result
+    midi_file_path = result[0]
     midi_player = abjad_configuration['midi_player']
     abjad.IOManager.open_file(midi_file_path, midi_player)
