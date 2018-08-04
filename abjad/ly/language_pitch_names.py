@@ -73,7 +73,6 @@ language_pitch_names = {
         'bisih': NamedPitchClass('btqs'),
         'bisis': NamedPitchClass('bss'),
     },
-
     'catalan':  {
         'dobb': NamedPitchClass('cff'),
         'dob': NamedPitchClass('cf'),
@@ -125,7 +124,6 @@ language_pitch_names = {
         'sis': NamedPitchClass('bs'),
         'siss': NamedPitchClass('bss'),
     },
-
     'deutsch':  {
         'ceses': NamedPitchClass('cff'),
         'ceseh': NamedPitchClass('ctqf'),
@@ -193,7 +191,6 @@ language_pitch_names = {
         'hisih': NamedPitchClass('btqs'),
         'hisis': NamedPitchClass('bss'),
     },
-
     'english':  {
         'cff': NamedPitchClass('cff'),
         'ctqf': NamedPitchClass('ctqf'),
@@ -300,8 +297,17 @@ language_pitch_names = {
         'b-natural': NamedPitchClass('b'),
         'b-sharp': NamedPitchClass('bs'),
         'b-sharpsharp': NamedPitchClass('bss'),
+        **{
+            diatonic_pitch_class_name + accidental_abbreviation:
+                NamedPitchClass(diatonic_pitch_class_name + accidental_abbreviation)
+            for diatonic_pitch_class_name in 'cdefgab'
+            for accidental_abbreviation in [
+                'rf', 'rs', 'trf', 'trs', 'xf', 'xs', 'fxf', 'fxs', 'sxf',
+                'sxs', 'ef', 'es', 'tef', 'tes', 'fef', 'fes', 'sef', 'ses',
+                'tf', 'ts', 'ftf', 'fts', 'stf', 'sts', 'etf', 'ets', 'ttf',
+                'tts']
+        }
     },
-
     'espanol':  {
         'dobb': NamedPitchClass('cff'),
         'dotcb': NamedPitchClass('ctqf'),
@@ -374,7 +380,6 @@ language_pitch_names = {
         'siss': NamedPitchClass('bss'),
         'six': NamedPitchClass('bss'),
     },
-
     'italiano':  {
         'dobb': NamedPitchClass('cff'),
         'dobsb': NamedPitchClass('ctqf'),
@@ -440,7 +445,6 @@ language_pitch_names = {
         'sidsd': NamedPitchClass('btqs'),
         'sidd': NamedPitchClass('bss'),
     },
-
     'norsk':  {
         'ceses': NamedPitchClass('cff'),
         'cessess': NamedPitchClass('cff'),
@@ -487,7 +491,6 @@ language_pitch_names = {
         'ges': NamedPitchClass('gf'),
         'gess': NamedPitchClass('gf'),
         'g': NamedPitchClass('g'),
-        'g': NamedPitchClass('g'),
         'gis': NamedPitchClass('gs'),
         'giss': NamedPitchClass('gs'),
         'gisis': NamedPitchClass('gss'),
@@ -508,14 +511,12 @@ language_pitch_names = {
         'bes': NamedPitchClass('bff'),
         'bess': NamedPitchClass('bff'),
         'b': NamedPitchClass('bf'),
-        'b': NamedPitchClass('bf'),
         'h': NamedPitchClass('b'),
         'his': NamedPitchClass('bs'),
         'hiss': NamedPitchClass('bs'),
         'hisis': NamedPitchClass('bss'),
         'hississ': NamedPitchClass('bss'),
     },
-
     'portugues':  {
         'dobb': NamedPitchClass('cff'),
         'dobtqt': NamedPitchClass('ctqf'),
@@ -581,7 +582,6 @@ language_pitch_names = {
         'sistqt': NamedPitchClass('btqs'),
         'siss': NamedPitchClass('bss'),
     },
-
     'suomi':  {
         'ceses': NamedPitchClass('cff'),
         'ces': NamedPitchClass('cf'),
@@ -622,7 +622,6 @@ language_pitch_names = {
         'his': NamedPitchClass('bs'),
         'hisis': NamedPitchClass('bss'),
     },
-
     'svenska':  {
         'cessess': NamedPitchClass('cff'),
         'cess': NamedPitchClass('cf'),
@@ -660,7 +659,6 @@ language_pitch_names = {
         'hiss': NamedPitchClass('bs'),
         'hississ': NamedPitchClass('bss'),
     },
-
     'vlaams':  {
         'dobb': NamedPitchClass('cff'),
         'dob': NamedPitchClass('cf'),
@@ -698,7 +696,6 @@ language_pitch_names = {
         'sik': NamedPitchClass('bs'),
         'sikk': NamedPitchClass('bss'),
     },
-
     'español':  {
         'dobb': NamedPitchClass('cff'),
         'dotcb': NamedPitchClass('ctqf'),
@@ -771,7 +768,6 @@ language_pitch_names = {
         'siss': NamedPitchClass('bss'),
         'six': NamedPitchClass('bss'),
     },
-
     'français':  {
         'dobb': NamedPitchClass('cff'),
         'dobsb': NamedPitchClass('ctqf'),
@@ -837,5 +833,4 @@ language_pitch_names = {
         'sidsd': NamedPitchClass('btqs'),
         'sidd': NamedPitchClass('bss'),
     },
-
-    }
+}
