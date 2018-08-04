@@ -63,43 +63,39 @@ class Accidental(AbjadValueObject):
         if name is None:
             pass
         elif isinstance(name, str):
-            if name in constants._accidental_name_to_abbreviation:
-                abbreviation = constants._accidental_name_to_abbreviation[name]
-                semitones = constants._accidental_abbreviation_to_semitones[abbreviation]
+            match = constants._comprehensive_accidental_regex.match(name)
+            if not match:
+                try:
+                    pitch = abjad.NamedPitch(name)
+                    semitones = pitch.accidental.semitones
+                    _arrow = pitch.accidental.arrow
+                except Exception:
+                    message = 'can not instantiate {} from {!r}.'
+                    message = message.format(type(self).__name__, name)
+                    raise TypeError(message)
             else:
-                match = constants._comprehensive_accidental_regex.match(name)
-                if not match:
-                    try:
-                        pitch = abjad.NamedPitch(name)
-                        semitones = pitch.accidental.semitones
-                        _arrow = pitch.accidental.arrow
-                    except Exception:
-                        message = 'can not instantiate {} from {!r}.'
-                        message = message.format(type(self).__name__, name)
-                        raise TypeError(message)
-                else:
-                    group_dict = match.groupdict()
-                    if group_dict['alphabetic_accidental']:
-                        prefix, _, suffix = name.partition('q')
-                        if prefix.startswith('s'):
-                            semitones += len(prefix)
-                        elif prefix.startswith('f'):
-                            semitones -= len(prefix)
-                        if suffix == 's':
-                            semitones += 0.5
-                            if prefix == 't':
-                                semitones += 1
-                        elif suffix == 'f':
-                            semitones -= 0.5
-                            if prefix == 't':
-                                semitones -= 1
-                    elif group_dict['symbolic_accidental']:
-                        semitones += name.count('#')
-                        semitones -= name.count('b')
-                        if name.endswith('+'):
-                            semitones += 0.5
-                        elif name.endswith('~'):
-                            semitones -= 0.5
+                group_dict = match.groupdict()
+                if group_dict['alphabetic_accidental']:
+                    prefix, _, suffix = name.partition('q')
+                    if prefix.startswith('s'):
+                        semitones += len(prefix)
+                    elif prefix.startswith('f'):
+                        semitones -= len(prefix)
+                    if suffix == 's':
+                        semitones += 0.5
+                        if prefix == 't':
+                            semitones += 1
+                    elif suffix == 'f':
+                        semitones -= 0.5
+                        if prefix == 't':
+                            semitones -= 1
+                elif group_dict['symbolic_accidental']:
+                    semitones += name.count('#')
+                    semitones -= name.count('b')
+                    if name.endswith('+'):
+                        semitones += 0.5
+                    elif name.endswith('~'):
+                        semitones -= 0.5
         elif isinstance(name, numbers.Number):
             semitones = float(name)
             assert (semitones % 1.) in (0., 0.5)
@@ -196,6 +192,12 @@ class Accidental(AbjadValueObject):
             message = message.format(argument)
             raise TypeError(message)
         return argument._apply_accidental(self)
+
+    def __float__(self):
+        return float(self.semitones)
+
+    def __int__(self):
+        return int(self.semitones)
 
     def __lt__(self, argument):
         """
@@ -357,7 +359,7 @@ class Accidental(AbjadValueObject):
         return FormatSpecification(
             client=self,
             repr_is_indented=False,
-            storage_format_args_values=[self.abbreviation],
+            storage_format_args_values=[str(self)],
             storage_format_is_indented=False,
             storage_format_kwargs_names=['arrow'],
             )
@@ -380,27 +382,6 @@ class Accidental(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def abbreviation(self):
-        """
-        Gets abbreviation of accidental.
-
-        Returns string.
-        """
-        sign = mathtools.sign(self.semitones)
-        if sign == 0:
-            return ''
-        div, mod = divmod(abs(self.semitones), 1)
-        token = 's'
-        if sign == -1:
-            token = 'f'
-        if div == 1 and mod:
-            return 'tq' + token
-        abbreviation = token * int(div)
-        if mod:
-            abbreviation += 'q' + token
-        return abbreviation
-
-    @property
     def arrow(self):
         """
         Gets arrow of accidental.
@@ -409,19 +390,19 @@ class Accidental(AbjadValueObject):
 
             Most accidentals carry no arrow:
 
-            >>> abjad.Accidental('sharp').arrow is None
+            >>> abjad.Accidental('s').arrow is None
             True
 
         ..  container:: example
 
             Sharp with up-arrow:
 
-            >>> abjad.Accidental('sharp', arrow=abjad.Up).arrow
+            >>> abjad.Accidental('s', arrow=abjad.Up).arrow
             Up
 
             Sharp with down-arrow:
 
-            >>> abjad.Accidental('sharp', arrow=abjad.Down).arrow
+            >>> abjad.Accidental('s', arrow=abjad.Down).arrow
             Down
 
         Arrow property is currently a stub in the object model. You can set the
@@ -431,46 +412,6 @@ class Accidental(AbjadValueObject):
         Returns up, down or none.
         """
         return self._arrow
-
-    @property
-    def name(self):
-        """
-        Gets name of accidental.
-
-        ..  container:: example
-
-            >>> abjad.Accidental('ff').name
-            'double flat'
-
-            >>> abjad.Accidental('tqf').name
-            'three-quarters flat'
-
-            >>> abjad.Accidental('f').name
-            'flat'
-
-            >>> abjad.Accidental('').name
-            'natural'
-
-            >>> abjad.Accidental('qs').name
-            'quarter sharp'
-
-            >>> abjad.Accidental('s').name
-            'sharp'
-
-            >>> abjad.Accidental('tqs').name
-            'three-quarters sharp'
-
-            >>> abjad.Accidental('ss').name
-            'double sharp'
-
-        Returns string.
-        """
-        try:
-            abbreviation = constants._accidental_semitones_to_abbreviation[self.semitones]
-            name = constants._accidental_abbreviation_to_name[abbreviation]
-        except KeyError:
-            name = str(self)
-        return name
 
     @property
     def semitones(self):

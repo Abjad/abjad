@@ -489,11 +489,15 @@ class NamedPitch(Pitch):
         contributions = []
         if self.arrow is None:
             return contributions
+        assert abs(float(self.accidental)) == 1.0
+        if float(self.accidental) == 1.0:
+            name = 'sharp'
+        else:
+            name = 'flat'
         string = r'\once \override Accidental.stencil ='
         string += ' #ly:text-interface::print'
         contributions.append(string)
-        glyph = f'accidentals.{self.accidental.name}'
-        glyph += f'.arrow{str(self.arrow).lower()}'
+        glyph = f'accidentals.{name}.arrow{str(self.arrow).lower()}'
         string = r'\once \override Accidental.text ='
         string += rf' \markup {{ \musicglyph #"{glyph}" }}'
         contributions.append(string)

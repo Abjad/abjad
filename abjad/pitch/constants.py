@@ -8,18 +8,6 @@ _direction_number_to_direction_symbol = {
     -1: '-',
 }
 
-_accidental_abbreviation_to_name = {
-    'ss': 'double sharp',
-    'tqs': 'three-quarters sharp',
-    's': 'sharp',
-    'qs': 'quarter sharp',
-    '': 'natural',
-    'qf': 'quarter flat',
-    'f': 'flat',
-    'tqf': 'three-quarters flat',
-    'ff': 'double flat',
-}
-
 _accidental_abbreviation_to_semitones = {
     'ff': -2,
     'tqf': -1.5,
@@ -42,18 +30,6 @@ _accidental_abbreviation_to_symbol = {
     's': '#',
     'tqs': '#+',
     'ss': '##',
-}
-
-_accidental_name_to_abbreviation = {
-    'double sharp': 'ss',
-    'three-quarters sharp': 'tqs',
-    'sharp': 's',
-    'quarter sharp': 'qs',
-    'natural': '',
-    'quarter flat': 'qf',
-    'flat': 'f',
-    'three-quarters flat': 'tqf',
-    'double flat': 'ff',
 }
 
 _accidental_semitones_to_abbreviation = {
