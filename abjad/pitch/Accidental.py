@@ -1,10 +1,13 @@
 import functools
-import numbers
 from abjad import enums
 from abjad import mathtools
 from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.system.FormatSpecification import FormatSpecification
 from . import constants
+try:
+    from quicktions import Fraction
+except ImportError:
+    from fractions import Fraction
 
 
 @functools.total_ordering
@@ -96,9 +99,15 @@ class Accidental(AbjadValueObject):
                         semitones += 0.5
                     elif name.endswith('~'):
                         semitones -= 0.5
-        elif isinstance(name, numbers.Number):
+                elif group_dict['ekmelily_accidental']:
+                    semitones = constants._accidental_abbreviation_to_semitones[
+                        group_dict['ekmelily_accidental']]
+        elif isinstance(name, (int, float)):
             semitones = float(name)
             assert (semitones % 1.) in (0., 0.5)
+        elif isinstance(name, Fraction):
+            semitones = name
+            assert semitones.denominator in (1, 2, 3, 4, 6, 8, 12)
         elif hasattr(name, 'accidental'):
             _arrow = name.accidental.arrow
             semitones = name.accidental.semitones
@@ -114,7 +123,8 @@ class Accidental(AbjadValueObject):
                 message = 'can not initialize accidental from value: {!r}'
                 message = message.format(name)
                 raise ValueError(message)
-        semitones = mathtools.integer_equivalent_number_to_integer(semitones)
+        if isinstance(semitones, float):
+            semitones = mathtools.integer_equivalent_number_to_integer(semitones)
         self._semitones = semitones
         self._arrow = _arrow
         if arrow is not None:

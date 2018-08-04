@@ -1,4 +1,9 @@
 import re
+try:
+    from quicktions import Fraction
+except ImportError:
+    from fractions import Fraction
+
 
 ### MAPPINGS ###
 
@@ -18,6 +23,34 @@ _accidental_abbreviation_to_semitones = {
     's': 1,
     'tqs': 1.5,
     'ss': 2,
+    'rf': Fraction(-1, 3) * 2,
+    'rs': Fraction(1, 3) * 2,
+    'trf': Fraction(-2, 3) * 2,
+    'trs': Fraction(2, 3) * 2,
+    'xf': Fraction(-1, 6) * 2,
+    'xs': Fraction(1, 6) * 2,
+    'fxf': Fraction(-5, 6) * 2,
+    'fxs': Fraction(5, 6) * 2,
+    'sxf': Fraction(-7, 6) * 2,
+    'sxs': Fraction(7, 6) * 2,
+    'ef': Fraction(-1, 8) * 2,
+    'es': Fraction(1, 8) * 2,
+    'tef': Fraction(-3, 8) * 2,
+    'tes': Fraction(3, 8) * 2,
+    'fef': Fraction(-5, 8) * 2,
+    'fes': Fraction(5, 8) * 2,
+    'sef': Fraction(-7, 8) * 2,
+    'ses': Fraction(7, 8) * 2,
+    'tf': Fraction(-1, 12) * 2,
+    'ts': Fraction(1, 12) * 2,
+    'ftf': Fraction(-5, 12) * 2,
+    'fts': Fraction(5, 12) * 2,
+    'stf': Fraction(-7, 12) * 2,
+    'sts': Fraction(7, 12) * 2,
+    'etf': Fraction(-11, 12) * 2,
+    'ets': Fraction(11, 12) * 2,
+    'ttf': Fraction(-13, 12) * 2,
+    'tts': Fraction(13, 12) * 2,
 }
 
 _accidental_abbreviation_to_symbol = {
@@ -42,6 +75,34 @@ _accidental_semitones_to_abbreviation = {
     1.0: 's',
     1.5: 'tqs',
     2.0: 'ss',
+    Fraction(-1, 3) * 2: 'rf',
+    Fraction(1, 3) * 2: 'rs',
+    Fraction(-2, 3) * 2: 'trf',
+    Fraction(2, 3) * 2: 'trs',
+    Fraction(-1, 6) * 2: 'xf',
+    Fraction(1, 6) * 2: 'xs',
+    Fraction(-5, 6) * 2: 'fxf',
+    Fraction(5, 6) * 2: 'fxs',
+    Fraction(-7, 6) * 2: 'sxf',
+    Fraction(7, 6) * 2: 'sxs',
+    Fraction(-1, 8) * 2: 'ef',
+    Fraction(1, 8) * 2: 'es',
+    Fraction(-3, 8) * 2: 'tef',
+    Fraction(3, 8) * 2: 'tes',
+    Fraction(-5, 8) * 2: 'fef',
+    Fraction(5, 8) * 2: 'fes',
+    Fraction(-7, 8) * 2: 'sef',
+    Fraction(7, 8) * 2: 'ses',
+    Fraction(-1, 12) * 2: 'tf',
+    Fraction(1, 12) * 2: 'ts',
+    Fraction(-5, 12) * 2: 'ftf',
+    Fraction(5, 12) * 2: 'fts',
+    Fraction(-7, 12) * 2: 'stf',
+    Fraction(7, 12) * 2: 'sts',
+    Fraction(-11, 12) * 2: 'etf',
+    Fraction(11, 12) * 2: 'ets',
+    Fraction(-13, 12) * 2: 'ttf',
+    Fraction(13, 12) * 2: 'tts',
 }
 
 _symbolic_accidental_to_abbreviation = {
@@ -301,6 +362,15 @@ _symbolic_accidental_regex_atom = (
     ')'
 )
 
+_ekmelily_accidental_regex_atom = (
+    '(?P<ekmelily_accidental>'
+    '[tf]?r[fs]|'
+    '[fs]?x[fs]|'
+    '[tfs]?e[fs]|'
+    '[fset]?t[fs]'
+    ')'
+)
+
 _octave_number_regex_atom = (
     '(?P<octave_number>{}|)'.format(_integer_regex_atom)
 )
@@ -322,10 +392,11 @@ _diatonic_pc_name_regex_atom = (
 ### REGEX BODIES ###
 
 _comprehensive_accidental_regex_body = (
-    '(?P<comprehensive_accidental>{}|{})'
+    '(?P<comprehensive_accidental>{}|{}|{})'
 ).format(
     _alphabetic_accidental_regex_atom,
     _symbolic_accidental_regex_atom,
+    _ekmelily_accidental_regex_atom,
 )
 
 _comprehensive_octave_regex_body = (
