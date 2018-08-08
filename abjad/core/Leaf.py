@@ -1,5 +1,6 @@
 import abc
 import copy
+import typing
 import uqbar.graphs
 from abjad import enums
 from abjad import exceptions
@@ -8,6 +9,7 @@ from abjad.mathtools.NonreducedFraction import NonreducedFraction
 from abjad.mathtools.Ratio import Ratio
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
+from abjad.system.Tag import Tag
 from abjad.top.attach import attach
 from abjad.top.detach import detach
 from abjad.top.inspect import inspect
@@ -40,12 +42,17 @@ class Leaf(Component):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, written_duration):
-        Component.__init__(self)
+    def __init__(
+        self,
+        written_duration,
+        tag: str = None,
+        ) -> None:
+        from abjad.spanners.Spanner import Spanner
+        Component.__init__(self, tag=tag)
         self._after_grace_container = None
         self._grace_container = None
         self._leaf_index = None
-        self._spanners = []
+        self._spanners: typing.List[Spanner] = []
         self.written_duration = Duration(written_duration)
 
     ### SPECIAL METHODS ###
@@ -227,7 +234,15 @@ class Leaf(Component):
         return ['self body', result]
 
     def _format_leaf_nucleus(self):
-        return ['nucleus', self._get_body()]
+        strings = self._get_body()
+        if self.tag:
+            tag = Tag(self.tag)
+            strings = LilyPondFormatManager.tag(
+                strings,
+                tag=tag,
+                )
+        #return ['nucleus', self._get_body()]
+        return ['nucleus', strings]
 
     def _format_open_brackets_slot(self, bundle):
         return []

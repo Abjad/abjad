@@ -105,7 +105,7 @@ def test_Note___copy___05():
         }
         \once \override NoteHead.color = #red
         c'4
-        -\staccato
+        - \staccato
         """
         )
 
@@ -137,7 +137,7 @@ def test_Note___copy___06():
             }
             \once \override NoteHead.color = #red
             c'8
-            -\staccato
+            - \staccato
             [
             c'8
             e'8

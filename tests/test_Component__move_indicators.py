@@ -11,7 +11,7 @@ def test_Component__move_indicators_01():
         {
             \clef "bass"
             c4
-            -\staccato
+            - \staccato
             d4
             e4
             f4
@@ -34,7 +34,7 @@ def test_Component__move_indicators_01():
             d4
             \clef "bass"
             e4
-            -\staccato
+            - \staccato
             f4
         }
         """

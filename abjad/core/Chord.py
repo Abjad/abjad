@@ -1,6 +1,17 @@
 import copy
+import typing
+from abjad import instruments
 from abjad import mathtools
+from abjad import pitch as abjad_pitch
+from abjad.indicators.Tremolo import Tremolo
+from abjad.system.LilyPondFormatManager import LilyPondFormatManager
+from abjad.top.inspect import inspect
+from abjad.top.parse import parse
+from abjad.utilities.Duration import Duration
+from .DrumNoteHead import DrumNoteHead
 from .Leaf import Leaf
+from .NoteHead import NoteHead
+from .NoteHeadList import NoteHeadList
 
 
 class Chord(Leaf):
@@ -29,19 +40,18 @@ class Chord(Leaf):
 
     ### INITIALIZER ###
 
-    def __init__(self, *arguments):
-        import abjad
+    def __init__(self, *arguments, tag: str = None) -> None:
         from abjad.ly import drums
         assert len(arguments) in (0, 1, 2)
-        self._note_heads = abjad.NoteHeadList(client=self)
+        self._note_heads = NoteHeadList(client=self)
         if len(arguments) == 1 and isinstance(arguments[0], str):
             string = '{{ {} }}'.format(arguments[0])
-            parsed = abjad.parse(string)
+            parsed = parse(string)
             assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
-            arguments = [parsed[0]]
-        are_cautionary = []
-        are_forced = []
-        are_parenthesized = []
+            arguments = tuple([parsed[0]])
+        are_cautionary: typing.List[typing.Optional[bool]] = []
+        are_forced: typing.List[typing.Optional[bool]] = []
+        are_parenthesized: typing.List[typing.Optional[bool]] = []
         if len(arguments) == 1 and isinstance(arguments[0], Leaf):
             leaf = arguments[0]
             written_pitches = []
@@ -69,12 +79,10 @@ class Chord(Leaf):
                 written_pitches = written_pitches.written_pitches
         elif len(arguments) == 0:
             written_pitches = [0, 4, 7]
-            written_duration = abjad.Duration(1, 4)
+            written_duration = Duration(1, 4)
         else:
-            message = 'can not initialize chord from {!r}.'
-            message = message.format(arguments)
-            raise ValueError(message)
-        Leaf.__init__(self, written_duration)
+            raise ValueError(f'can not initialize chord from {arguments!r}.')
+        Leaf.__init__(self, written_duration, tag=tag)
         if not are_cautionary:
             are_cautionary = [None] * len(written_pitches)
         if not are_forced:
@@ -90,14 +98,14 @@ class Chord(Leaf):
             if not is_parenthesized:
                 is_parenthesized = None
             if written_pitch not in drums:
-                note_head = abjad.NoteHead(
+                note_head = NoteHead(
                     written_pitch=written_pitch,
                     is_cautionary=is_cautionary,
                     is_forced=is_forced,
                     is_parenthesized=is_parenthesized,
                     )
             else:
-                note_head = abjad.DrumNoteHead(
+                note_head = DrumNoteHead(
                     written_pitch=written_pitch,
                     is_cautionary=is_cautionary,
                     is_forced=is_forced,
@@ -133,12 +141,11 @@ class Chord(Leaf):
     ### PRIVATE METHODS ###
 
     def _format_before_slot(self, bundle):
-        import abjad
         result = []
         result.append(self._format_grace_body())
         result.append(('comments', bundle.before.comments))
         commands = bundle.before.commands
-        if abjad.inspect(self).has_indicator(abjad.Tremolo):
+        if inspect(self).has_indicator(Tremolo):
             tremolo_command = self._format_repeat_tremolo_command()
             commands = list(commands)
             commands.append(tremolo_command)
@@ -151,16 +158,14 @@ class Chord(Leaf):
         return result
 
     def _format_close_brackets_slot(self, bundle):
-        import abjad
         result = []
-        if abjad.inspect(self).has_indicator(abjad.Tremolo):
+        if inspect(self).has_indicator(Tremolo):
             brackets_close = ['}']
             result.append([('close brackets', ''), brackets_close])
         return result
 
     def _format_leaf_nucleus(self):
-        import abjad
-        indent = abjad.LilyPondFormatManager.indent
+        indent = LilyPondFormatManager.indent
         result = []
         note_heads = self.note_heads
         if any('\n' in format(x) for x in note_heads):
@@ -173,14 +178,14 @@ class Chord(Leaf):
             result.append('>')
             result = '\n'.join(result)
             result += str(self._get_formatted_duration())
-        elif abjad.inspect(self).has_indicator(abjad.Tremolo):
+        elif inspect(self).has_indicator(Tremolo):
             reattack_duration = self._get_tremolo_reattack_duration()
             duration_string = reattack_duration.lilypond_duration_string
             durated_pitches = []
             for note_head in note_heads:
                 durated_pitch = format(note_head) + duration_string
                 durated_pitches.append(durated_pitch)
-            tremolo = abjad.inspect(self).indicator(abjad.Tremolo)
+            tremolo = inspect(self).indicator(Tremolo)
             if tremolo.is_slurred:
                 durated_pitches[0] = durated_pitches[0] + r' \('
                 durated_pitches[-1] = durated_pitches[-1] + r' \)'
@@ -195,16 +200,14 @@ class Chord(Leaf):
         return ['nucleus', [result]]
 
     def _format_open_brackets_slot(self, bundle):
-        import abjad
         result = []
-        if abjad.inspect(self).has_indicator(abjad.Tremolo):
+        if inspect(self).has_indicator(Tremolo):
             brackets_open = ['{']
             result.append([('open brackets', ''), brackets_open])
         return result
 
     def _format_repeat_tremolo_command(self):
-        import abjad
-        tremolo = abjad.inspect(self).indicator(abjad.Tremolo)
+        tremolo = inspect(self).indicator(Tremolo)
         reattack_duration = self._get_tremolo_reattack_duration()
         repeat_count = self.written_duration / reattack_duration / 2
         if not mathtools.is_integer_equivalent(repeat_count):
@@ -231,16 +234,15 @@ class Chord(Leaf):
             return self._get_compact_representation()
 
     def _get_sounding_pitches(self):
-        import abjad
-        if 'sounding pitch' in abjad.inspect(self).indicators(str):
+        if 'sounding pitch' in inspect(self).indicators(str):
             return self.written_pitches
         else:
-            instrument = self._get_effective(abjad.Instrument)
+            instrument = self._get_effective(instruments.Instrument)
             if instrument:
                 sounding_pitch = instrument.middle_c_sounding_pitch
             else:
-                sounding_pitch = abjad.NamedPitch('C4')
-            interval = abjad.NamedPitch('C4') - sounding_pitch
+                sounding_pitch = abjad_pitch.NamedPitch('C4')
+            interval = abjad_pitch.NamedPitch('C4') - sounding_pitch
             sounding_pitches = [
                 interval.transpose(pitch)
                 for pitch in self.written_pitches
@@ -251,14 +253,13 @@ class Chord(Leaf):
         return ' '.join([str(x) for x in self.note_heads])
 
     def _get_tremolo_reattack_duration(self):
-        import abjad
-        tremolos = abjad.inspect(self).indicators(abjad.Tremolo)
+        tremolos = inspect(self).indicators(Tremolo)
         if not tremolos:
             return
         tremolo = tremolos[0]
         exponent = 2 + tremolo.beam_count
         denominator = 2 ** exponent
-        reattack_duration = abjad.Duration(1, denominator)
+        reattack_duration = Duration(1, denominator)
         return reattack_duration
 
     ### PUBLIC PROPERTIES ###
@@ -405,10 +406,9 @@ class Chord(Leaf):
 
         Returns tuple.
         """
-        import abjad
-        return abjad.PitchSegment(
+        return abjad_pitch.PitchSegment(
             items=(note_head.written_pitch for note_head in self.note_heads),
-            item_class=abjad.NamedPitch,
+            item_class=abjad_pitch.NamedPitch,
             )
 
     @written_pitches.setter

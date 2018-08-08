@@ -40,7 +40,7 @@ class LilyPondParser(Parser):
             d'8
             e'8
             fs'2
-            -\fermata
+            - \fermata
             )
         }
 
@@ -74,10 +74,10 @@ class LilyPondParser(Parser):
                 \>
                 (
                 d'8
-                -\portato
+                - \portato
                 [
                 e'8
-                ^\accent
+                ^ \accent
                 f'8
                 \ppp
                 \<
@@ -91,7 +91,7 @@ class LilyPondParser(Parser):
                 \stopTrillSpan
                 c''8
                 \sfz
-                -\accent
+                - \accent
                 )
             }
 

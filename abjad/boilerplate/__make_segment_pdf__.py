@@ -153,7 +153,7 @@ if __name__ == '__main__':
 
     try:
         if getattr(maker, 'do_not_externalize', False) is not True:
-            illustration_ly.extern()
+            illustration_ly.extern(realign=99)
             illustration_ily = illustration_ly.with_suffix('.ily')
             assert illustration_ily.is_file()
         with abjad.Timer() as timer:

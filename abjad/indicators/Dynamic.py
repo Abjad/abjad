@@ -8,7 +8,9 @@ from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
+from abjad.system.Tags import Tags
 from abjad.utilities.String import String
+abjad_tags = Tags()
 
 
 class Dynamic(AbjadValueObject):
@@ -474,8 +476,6 @@ class Dynamic(AbjadValueObject):
 
     @staticmethod
     def _tag_hide(strings):
-        import abjad
-        abjad_tags = abjad.Tags()
         return LilyPondFormatManager.tag(
             strings,
             deactivate=False,

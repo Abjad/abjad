@@ -1954,7 +1954,7 @@ class Mutation(AbjadObject):
                 {
                     \time 3/8
                     c'8
-                    -\accent
+                    - \accent
                     ~
                     c'8
                     d'8
@@ -1972,7 +1972,7 @@ class Mutation(AbjadObject):
                 {
                     \time 3/8
                     c'4.
-                    -\accent
+                    - \accent
                     d'8
                 }
 
@@ -2051,7 +2051,7 @@ class Mutation(AbjadObject):
                 {
                     \time 5/16
                     c'8
-                    -\accent
+                    - \accent
                     ~
                     c'8
                     d'16
@@ -2069,7 +2069,7 @@ class Mutation(AbjadObject):
                 {
                     \time 5/16
                     c'4
-                    -\accent
+                    - \accent
                     ~
                     c'16
                     d'16
@@ -2156,7 +2156,7 @@ class Mutation(AbjadObject):
                 \new Staff
                 {
                     c'8
-                    -\accent
+                    - \accent
                 }
 
             >>> logical_tie = abjad.inspect(staff[0]).logical_tie()
@@ -2172,7 +2172,7 @@ class Mutation(AbjadObject):
                     \tweak edge-height #'(0.7 . 0)
                     \times 2/3 {
                         c'4
-                        -\accent
+                        - \accent
                     }
                 }
 
@@ -3088,11 +3088,11 @@ class Mutation(AbjadObject):
                 \new Staff
                 {
                     c'4
-                    -\marcato
+                    - \marcato
                     d'4
                     \laissezVibrer
                     e'4
-                    -\marcato
+                    - \marcato
                     f'4
                     \laissezVibrer
                 }
@@ -3112,7 +3112,7 @@ class Mutation(AbjadObject):
                 \new Staff
                 {
                     c'8
-                    -\marcato
+                    - \marcato
                     ~
                     c'8
                     d'8
@@ -3120,7 +3120,7 @@ class Mutation(AbjadObject):
                     d'8
                     \laissezVibrer
                     e'8
-                    -\marcato
+                    - \marcato
                     ~
                     e'8
                     f'8

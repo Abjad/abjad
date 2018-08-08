@@ -699,7 +699,7 @@ def test_LilyPondGrobNameManager___setattr___28():
         r"""
         \once \override Script.color = #red
         c'4
-        -\staccato
+        - \staccato
         """
         )
 

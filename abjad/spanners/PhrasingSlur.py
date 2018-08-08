@@ -38,10 +38,15 @@ class PhrasingSlur(Spanner):
         >>> phrasing_slur = abjad.PhrasingSlur()
         >>> abjad.attach(phrasing_slur, staff[:1])
         Traceback (most recent call last):
-            ...
+          File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/doctest.py", line 1330, in __run
+            compileflags, 1), test.globs)
+          File "<doctest PhrasingSlur.py[7]>", line 1, in <module>
+            abjad.attach(phrasing_slur, staff[:1])
+          File "/Users/trevorbaca/abjad/abjad/top/attach.py", line 243, in attach
+            raise Exception(message)
         Exception: PhrasingSlur()._attachment_test_all():
           Requires at least two leaves.
-          Not just Note("c'8").
+          Not just Selection([Note("c'8")]).
 
     """
 

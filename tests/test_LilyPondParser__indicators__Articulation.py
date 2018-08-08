@@ -26,19 +26,19 @@ def test_LilyPondParser__indicators__Articulation_01():
         \new Staff
         {
             c''4
-            ^\marcato
+            ^ \marcato
             c''4
-            _\stopped
+            _ \stopped
             c''4
-            -\tenuto
+            - \tenuto
             c''4
-            -\staccatissimo
+            - \staccatissimo
             c''4
-            -\accent
+            - \accent
             c''4
-            -\staccato
+            - \staccato
             c''2
-            -\portato
+            - \portato
         }
         """
         )
@@ -71,14 +71,7 @@ def test_LilyPondParser__indicators__Articulation_02():
     articulation = abjad.Articulation('portato')
     abjad.attach(articulation, target[0])
 
-    r"""
-    \new Staff {
-        c'4 ^\marcato _\stopped -\tenuto -\staccatissimo -\accent -\staccato -\portato
-    }
-    """
-
     string = r"""\new Staff { c'4 ^^ _+ -- -| -> -. -_ }"""
-
 
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
@@ -108,13 +101,13 @@ def test_LilyPondParser__indicators__Articulation_03():
         r"""
         {
             c''4
-            -\staccato
+            - \staccato
             c''4
-            -\mordent
+            - \mordent
             b'2
-            -\turn
+            - \turn
             c''1
-            -\fermata
+            - \fermata
         }
         """
         )

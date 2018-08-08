@@ -8,6 +8,7 @@ from abjad.mathtools.NonreducedFraction import NonreducedFraction
 from abjad.mathtools.NonreducedRatio import NonreducedRatio
 from abjad.mathtools.Ratio import Ratio
 from abjad.system.FormatSpecification import FormatSpecification
+from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.top.inspect import inspect
 from abjad.top.iterate import iterate
 from abjad.top.override import override
@@ -127,10 +128,11 @@ class Tuplet(Container):
         denominator: int = None,
         force_fraction: bool = None,
         hide: bool = None,
+        tag: str = None,
         tweaks: typing.Union[
             typing.List[typing.Tuple], LilyPondTweakManager] = None,
         ) -> None:
-        Container.__init__(self, components)
+        Container.__init__(self, components, tag=tag)
         multiplier = Multiplier(multiplier)
         self.multiplier = multiplier
         self.denominator = denominator
@@ -186,7 +188,13 @@ class Tuplet(Container):
     def _format_close_brackets_slot(self, bundle):
         result = []
         if self.multiplier:
-            result.append([('self_brackets', 'close'), '}'])
+            strings = ['}']
+            if self.tag is not None:
+                strings = LilyPondFormatManager.tag(
+                    strings,
+                    tag=self.tag,
+                    )
+            result.append([('self_brackets', 'close'), strings])
         return tuple(result)
 
     def _format_closing_slot(self, bundle):
@@ -216,7 +224,6 @@ class Tuplet(Container):
                 scale_durations_command_string = \
                     self._get_scale_durations_command_string()
                 contributions = [scale_durations_command_string]
-                result.append([contributor, contributions])
             else:
                 contributor = ('self_brackets', 'open')
                 contributions = []
@@ -233,10 +240,14 @@ class Tuplet(Container):
                     directed=False,
                     )
                 contributions.extend(strings)
-
                 times_command_string = self._get_times_command_string()
                 contributions.append(times_command_string)
-                result.append([contributor, contributions])
+            if self.tag is not None:
+                contributions = LilyPondFormatManager.tag(
+                    contributions,
+                    tag=self.tag,
+                    )
+            result.append([contributor, contributions])
         return tuple(result)
 
     def _format_opening_slot(self, bundle):
@@ -741,6 +752,26 @@ class Tuplet(Container):
             raise ValueError(message)
 
     @property
+    def tag(self) -> typing.Optional[str]:
+        r"""
+        Gets tag.
+
+        ..  container:: example
+
+            >>> tuplet = abjad.Tuplet((2, 3), "c'4 d' e'", tag='RED')
+            >>> abjad.show(tuplet) # doctest: +SKIP
+
+            >>> abjad.f(tuplet, strict=20)
+            \times 2/3 {        %! RED
+                c'4
+                d'4
+                e'4
+            }                   %! RED
+
+        """
+        return super().tag
+
+    @property
     def tweaks(self):
         r"""
         Gets tweaks.
@@ -1059,6 +1090,8 @@ class Tuplet(Container):
     def from_duration(
         duration: typing.Union[typing.Tuple[int, int], Duration],
         components,
+        *,
+        tag: str = None,
         ) -> 'Tuplet':
         r"""
         Makes tuplet from ``duration`` and ``components``.
@@ -1083,7 +1116,7 @@ class Tuplet(Container):
         if not len(components):
             raise Exception(f'components must be nonempty: {components!r}.')
         target_duration = Duration(duration)
-        tuplet = Tuplet(1, components)
+        tuplet = Tuplet(1, components, tag=tag)
         contents_duration = inspect(tuplet).duration()
         multiplier = target_duration / contents_duration
         tuplet.multiplier = multiplier
@@ -1093,7 +1126,9 @@ class Tuplet(Container):
     def from_duration_and_ratio(
         duration,
         ratio,
+        *,
         decrease_monotonic: bool = True,
+        tag: str = None,
         ) -> 'Tuplet':
         r"""
         Makes tuplet from ``duration`` and ``ratio``.
@@ -1388,10 +1423,13 @@ class Tuplet(Container):
         basic_written_duration = \
             basic_prolated_duration.equal_or_greater_assignable
         written_durations = [x * basic_written_duration for x in ratio.numbers]
-        leaf_maker = LeafMaker(decrease_monotonic=decrease_monotonic)
+        leaf_maker = LeafMaker(
+            decrease_monotonic=decrease_monotonic,
+            tag=tag,
+            )
         try:
             notes = [
-                Note(0, x) if 0 < x else Rest(abs(x))
+                Note(0, x, tag=tag) if 0 < x else Rest(abs(x), tag=tag)
                 for x in written_durations
                 ]
         except exceptions.AssignabilityError:
@@ -1408,8 +1446,8 @@ class Tuplet(Container):
                 abs(note_duration)
                 for note_duration in note_durations
                 ]
-            notes = leaf_maker(pitches, leaf_durations)
-        tuplet = Tuplet.from_duration(duration, notes)
+            notes = list(leaf_maker(pitches, leaf_durations))
+        tuplet = Tuplet.from_duration(duration, notes, tag=tag)
         tuplet.normalize_multiplier()
         return tuplet
 
@@ -1708,7 +1746,7 @@ class Tuplet(Container):
                 Duration(_, denominator)
                 for _ in proportions.numbers
                 ]
-            notes = maker(0, note_durations)
+            notes = list(maker(0, note_durations))
         contents_duration = inspect(notes).duration()
         multiplier = target_duration / contents_duration
         tuplet = Tuplet(multiplier, notes)
@@ -1719,6 +1757,8 @@ class Tuplet(Container):
     def from_ratio_and_pair(
         ratio: typing.Union[typing.Tuple, NonreducedRatio],
         fraction: typing.Union[typing.Tuple, NonreducedFraction],
+        *,
+        tag: str = None,
         ) -> 'Tuplet':
         r"""
         Makes tuplet from nonreduced ``ratio`` and nonreduced ``fraction``.
@@ -1876,25 +1916,25 @@ class Tuplet(Container):
         if len(ratio.numbers) == 1:
             if 0 < ratio.numbers[0]:
                 try:
-                    note = Note(0, duration)
+                    note = Note(0, duration, tag=tag)
                     duration = inspect(note).duration()
-                    tuplet = Tuplet.from_duration(duration, [note])
+                    tuplet = Tuplet.from_duration(duration, [note], tag=tag)
                     return tuplet
                 except exceptions.AssignabilityError:
-                    note_maker = NoteMaker()
+                    note_maker = NoteMaker(tag=tag)
                     notes = note_maker(0, duration)
                     duration = inspect(notes).duration()
-                    return Tuplet.from_duration(duration, notes)
+                    return Tuplet.from_duration(duration, notes, tag=tag)
             elif ratio.numbers[0] < 0:
                 try:
-                    rest = Rest(duration)
+                    rest = Rest(duration, tag=tag)
                     duration = inspect(rest).duration()
-                    return Tuplet.from_duration(duration, [rest])
+                    return Tuplet.from_duration(duration, [rest], tag=tag)
                 except exceptions.AssignabilityError:
-                    leaf_maker = LeafMaker()
+                    leaf_maker = LeafMaker(tag=tag)
                     rests = leaf_maker([None], duration)
                     duration = inspect(rests).duration()
-                    return Tuplet.from_duration(duration, rests)
+                    return Tuplet.from_duration(duration, rests, tag=tag)
             else:
                 raise ValueError('no divide zero values.')
         else:
@@ -1904,22 +1944,22 @@ class Tuplet(Container):
                     math.log(numerator, 2)
                     )
             denominator = int(denominator * 2 ** exponent)
-            components = []
+            components: typing.List[typing.Union[Note, Rest]] = []
             for x in ratio.numbers:
                 if not x:
                     raise ValueError('no divide zero values.')
                 if 0 < x:
                     try:
-                        note = Note(0, (x, denominator))
+                        note = Note(0, (x, denominator), tag=tag)
                         components.append(note)
                     except exceptions.AssignabilityError:
-                        maker = NoteMaker()
+                        maker = NoteMaker(tag=tag)
                         notes = maker(0, (x, denominator))
                         components.extend(notes)
                 else:
-                    rests = Rest((-x, denominator))
-                    components.append(rests)
-            return Tuplet.from_duration(duration, components)
+                    rest = Rest((-x, denominator), tag=tag)
+                    components.append(rest)
+            return Tuplet.from_duration(duration, components, tag=tag)
 
     def normalize_multiplier(self) -> None:
         r"""

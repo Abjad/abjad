@@ -71,7 +71,7 @@ class Multiplication(AbjadValueObject):
                     cs'8
                     b'8
                     e'8
-                    \bar "|." %! SCORE1
+                    \bar "|." %! SCORE_1
                     \override Score.BarLine.transparent = ##f
                 }
 
@@ -96,7 +96,7 @@ class Multiplication(AbjadValueObject):
                     cs'8
                     b'8
                     e'8
-                    \bar "|." %! SCORE1
+                    \bar "|." %! SCORE_1
                     \override Score.BarLine.transparent = ##f
                 }
 

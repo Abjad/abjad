@@ -41,6 +41,18 @@ class LilyPondTweakManager(LilyPondNameManager):
         
     """
 
+    ### INITIALIZER ###
+
+    def __init__(
+        self,
+        deactivate: bool = None,
+        tag: str = None,
+        ) -> None:
+        if deactivate is not None:
+            self._currently_deactivated = deactivate
+        if tag is not None:
+            self._currently_tagging = tag
+
     ### SPECIAL METHODS ###
 
     def __getattr__(self, name) -> typing.Union[
@@ -100,6 +112,74 @@ class LilyPondTweakManager(LilyPondNameManager):
 
         ..  container:: example
 
+            Tweaks may be tagged:
+
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> markup = abjad.Markup('Allegro', direction=abjad.Up).italic()
+            >>> abjad.tweak(markup, tag='+PARTS').color = 'red'
+            >>> abjad.attach(markup, staff[0])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                c'4
+                - \tweak color #red %! +PARTS
+                ^ \markup {
+                    \italic
+                        Allegro
+                    }
+                d'4
+                e'4
+                f'4
+            }
+
+            Tweaks may be tagged with ``deactivate=True``:
+
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> markup = abjad.Markup('Allegro', direction=abjad.Up).italic()
+            >>> abjad.tweak(markup, deactivate=True, tag='+PARTS').color = 'red'
+            >>> abjad.attach(markup, staff[0])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                c'4
+            %@% - \tweak color #red     %! +PARTS
+                ^ \markup {
+                    \italic
+                        Allegro
+                    }
+                d'4
+                e'4
+                f'4
+            }
+
+            Tweak tags and indicator tags may be set together:
+
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> markup = abjad.Markup('Allegro', direction=abjad.Up).italic()
+            >>> abjad.tweak(markup, tag='+PARTS').color = 'red'
+            >>> abjad.attach(markup, staff[0], tag='RED:M1')
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                c'4
+                - \tweak color #red %! +PARTS %! RED:M1
+                ^ \markup {                   %! RED:M1
+                    \italic                   %! RED:M1
+                        Allegro               %! RED:M1
+                    }                         %! RED:M1
+                d'4
+                e'4
+                f'4
+            }
+
+        ..  container:: example
+
             Tweak expressions work like this:
 
             >>> abjad.tweak('red').color
@@ -114,6 +194,10 @@ class LilyPondTweakManager(LilyPondNameManager):
         """
         from abjad.ly import contexts
         from abjad.ly import grob_interfaces
+        if name == '_currently_deactivated':
+            return vars(self).get('_currently_deactivated')
+        if name == '_currently_tagging':
+            return vars(self).get('_currently_tagging')
         if '_pending_value' in vars(self):
             _pending_value = self._pending_value
             self.__setattr__(name, _pending_value)
@@ -141,11 +225,36 @@ class LilyPondTweakManager(LilyPondNameManager):
                 message = f'{type_name} object has no attribute {name!r}.'
                 raise AttributeError(message)
 
+    def __setattr__(self, name, value):
+        """
+        Sets attribute ``name`` equal to ``value``.
+        """
+        tag = getattr(self, '_currently_tagging', None)
+        deactivate = getattr(self, '_currently_deactivated', None)
+        if tag is not None:
+            if deactivate is True:
+                value = ('TAGGED', value, tag, True)
+            else:
+                value = ('TAGGED', value, tag)
+        object.__setattr__(self, name, value)
+        if name in ('_currently_deactivated', '_currently_tagging'):
+            return
+        try:
+            delattr(self, '_currently_deactivated')
+        except AttributeError:
+            pass
+        try:
+            delattr(self, '_currently_tagging')
+        except AttributeError:
+            pass
+
     ### PRIVATE METHODS ###
 
     def _get_attribute_tuples(self) -> typing.List[typing.Tuple]:
         result: typing.List[typing.Tuple] = []
         for name, value in vars(self).items():
+            if name == '_currently_tagging':
+                continue
             if type(value) is LilyPondNameManager:
                 grob_name = name
                 grob_proxy = value
@@ -172,14 +281,30 @@ class LilyPondTweakManager(LilyPondNameManager):
                 attribute = attribute_tuple[1]
                 value = attribute_tuple[2]
             else:
-                message = 'invalid attribute tuple: {attribute_tuple!r}.'
+                message = f'invalid attribute tuple: {attribute_tuple!r}.'
                 raise ValueError(message)
+            deactivate = False
+            if isinstance(value, tuple) and value[0] == 'TAGGED':
+                if len(value) == 4:
+                    deactivate = value[3]
+                tag = value[2]
+                value = value[1]
+            else:
+                tag = None
             string = LilyPondFormatManager.make_lilypond_tweak_string(
                 attribute,
                 value,
                 directed=directed,
                 grob=grob,
                 )
+            if tag is not None:
+                strings = [string]
+                strings = LilyPondFormatManager.tag(
+                    strings,
+                    deactivate=deactivate,
+                    tag=tag,
+                    )
+                string = strings[0]
             result.append(string)
         result.sort()
         return result

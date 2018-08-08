@@ -71,7 +71,8 @@ class ScoreTemplate(AbjadValueObject):
         """
         score: Score = self()
         for voice in iterate(score).components(Voice):
-            voice.append(Skip(1))
+            skip = Skip(1, tag='ScoreTemplate.__illustrate__')
+            voice.append(skip)
         self.attach_defaults(score)
         lilypond_file: LilyPondFile = score.__illustrate__()
         lilypond_file = new(
@@ -88,16 +89,19 @@ class ScoreTemplate(AbjadValueObject):
         global_rests = Context(
             lilypond_type='GlobalRests',
             name='GlobalRests',
+            tag='_make_global_context',
             )
         global_skips = Context(
             lilypond_type='GlobalSkips',
             name='GlobalSkips',
+            tag='_make_global_context',
             )
         global_context = Context(
             [global_rests, global_skips],
             lilypond_type='GlobalContext',
             is_simultaneous=True,
             name='GlobalContext',
+            tag='_make_global_context',
             )
         return global_context
 
@@ -209,7 +213,12 @@ class ScoreTemplate(AbjadValueObject):
                 string = 'default_instrument'
                 instrument = inspect(staff__group).annotation(string)
                 if instrument is not None:
-                    wrapper = attach(instrument, leaf, tag='ST1', wrapper=True)
+                    wrapper = attach(
+                        instrument,
+                        leaf,
+                        tag='attach_defaults',
+                        wrapper=True,
+                        )
                     wrappers.append(wrapper)
             margin_markup = inspect(leaf).indicator(MarginMarkup)
             if margin_markup is None:
@@ -219,7 +228,7 @@ class ScoreTemplate(AbjadValueObject):
                     wrapper = attach(
                         margin_markup,
                         leaf,
-                        tag=Tag('-PARTS').prepend('ST2'),
+                        tag=Tag('-PARTS').prepend('attach_defaults'),
                         wrapper=True,
                         )
                     wrappers.append(wrapper)
@@ -230,7 +239,12 @@ class ScoreTemplate(AbjadValueObject):
                 continue
             clef = inspect(staff).annotation('default_clef')
             if clef is not None:
-                wrapper = attach(clef, leaf, tag='ST3', wrapper=True)
+                wrapper = attach(
+                    clef,
+                    leaf,
+                    tag='attach_defaults',
+                    wrapper=True,
+                    )
                 wrappers.append(wrapper)
         return wrappers
 

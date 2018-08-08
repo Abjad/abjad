@@ -1,18 +1,32 @@
 import abc
 import bisect
 import copy
+import typing
 import uqbar.graphs
 from abjad import enums
 from abjad import exceptions
 from abjad import mathtools
+from abjad.indicators.StaffChange import StaffChange
+from abjad.indicators.TimeSignature import TimeSignature
+from abjad.markups import Markup
 from abjad.system.AbjadObject import AbjadObject
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.StorageFormatManager import StorageFormatManager
+from abjad.system.Tag import Tag
 from abjad.system.UpdateManager import UpdateManager
 from abjad.system.Wrapper import Wrapper
+from abjad.top.attach import attach
+from abjad.top.detach import detach
+from abjad.top.inspect import inspect
+from abjad.top.iterate import iterate
+from abjad.top.mutate import mutate
+from abjad.top.override import override
+from abjad.top.select import select
+from abjad.top.setting import setting
 from abjad.timespans.Timespan import Timespan
 from abjad.utilities.Duration import Duration
+from .VerticalMoment import VerticalMoment
 
 
 class Component(AbjadObject):
@@ -35,6 +49,7 @@ class Component(AbjadObject):
         '_start_offset_in_seconds',
         '_stop_offset',
         '_stop_offset_in_seconds',
+        '_tag',
         '_timespan',
         '_wrappers',
         )
@@ -42,7 +57,11 @@ class Component(AbjadObject):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, name=None):
+    def __init__(
+        self,
+        name: str = None,
+        tag: str = None,
+        ) -> None:
         self._indicators_are_current = False
         self._is_forbidden_to_update = False
         self._measure_number = None
@@ -55,8 +74,11 @@ class Component(AbjadObject):
         self._start_offset_in_seconds = None
         self._stop_offset = None
         self._stop_offset_in_seconds = None
+        if tag is not None:
+            assert isinstance(tag, str), repr(tag)
+        self._tag = tag
         self._timespan = Timespan()
-        self._wrappers = []
+        self._wrappers: typing.List[Wrapper] = []
 
     ### SPECIAL METHODS ###
 
@@ -72,20 +94,19 @@ class Component(AbjadObject):
 
         Returns new component.
         """
-        import abjad
         new_component = type(self)(*self.__getnewargs__())
         if getattr(self, '_overrides', None) is not None:
-            manager = copy.copy(abjad.override(self))
+            manager = copy.copy(override(self))
             new_component._overrides = manager
         if getattr(self, '_lilypond_setting_name_manager', None) is not None:
-            manager = copy.copy(abjad.setting(self))
+            manager = copy.copy(setting(self))
             new_component._lilypond_setting_name_manager = manager
-        for wrapper in abjad.inspect(self).annotation_wrappers():
+        for wrapper in inspect(self).annotation_wrappers():
             new_wrapper = copy.copy(wrapper)
-            abjad.attach(new_wrapper, new_component)
-        for wrapper in abjad.inspect(self).wrappers():
+            attach(new_wrapper, new_component)
+        for wrapper in inspect(self).wrappers():
             new_wrapper = copy.copy(wrapper)
-            abjad.attach(new_wrapper, new_component)
+            attach(new_wrapper, new_component)
         return new_component
 
     def __format__(self, format_specification=''):
@@ -127,11 +148,11 @@ class Component(AbjadObject):
         import abjad
         components = []
         for i in range(n):
-            component = abjad.mutate(self).copy()
+            component = mutate(self).copy()
             components.append(component)
-        for component in abjad.iterate(components).components():
-            abjad.detach(abjad.Spanner, component)
-        result = abjad.select(components)
+        for component in iterate(components).components():
+            detach(abjad.Spanner, component)
+        result = select(components)
         return result
 
     def __repr__(self):
@@ -153,8 +174,7 @@ class Component(AbjadObject):
     ### PRIVATE METHODS ###
 
     def _as_graphviz_node(self):
-        import abjad
-        score_index = abjad.inspect(self).parentage().score_index
+        score_index = inspect(self).parentage().score_index
         score_index = '_'.join(str(_) for _ in score_index)
         class_name = type(self).__name__
         if score_index:
@@ -190,8 +210,7 @@ class Component(AbjadObject):
         return name_dictionary
 
     def _check_for_cycles(self, components):
-        import abjad
-        parentage = abjad.inspect(self).parentage()
+        parentage = inspect(self).parentage()
         for component in components:
             if component in parentage:
                 return True
@@ -201,7 +220,7 @@ class Component(AbjadObject):
         import abjad
         if scale_contents:
             self._scale_contents(self.multiplier)
-        selection = abjad.select([self])
+        selection = select([self])
         parent, start, stop = selection._get_parent_and_start_stop_indices()
         components = list(getattr(self, 'components', ()))
         parent.__setitem__(slice(start, stop + 1), components)
@@ -255,12 +274,11 @@ class Component(AbjadObject):
         pass
 
     def _get_contents(self, include_self=True):
-        import abjad
         result = []
         if include_self:
             result.append(self)
         result.extend(getattr(self, 'components', []))
-        result = abjad.select(result)
+        result = select(result)
         return result
 
     def _get_descendants(self, include_self=True):
@@ -292,27 +310,36 @@ class Component(AbjadObject):
         return result
 
     def _get_duration(self, in_seconds=False):
-        import abjad
         if in_seconds:
             return self._get_duration_in_seconds()
         else:
-            parentage = abjad.inspect(self).parentage(include_self=False)
+            parentage = inspect(self).parentage(include_self=False)
             return parentage.prolation * self._get_preprolated_duration()
 
-    def _get_effective(self, prototype, *, command=None, n=0, unwrap=True):
+    def _get_effective(
+        self,
+        prototype,
+        *,
+        attributes=None,
+        command=None,
+        n=0,
+        unwrap=True,
+        ):
         import abjad
         # return time signature attached to measure regardless of context
-        if (prototype == abjad.TimeSignature or
-            prototype == (abjad.TimeSignature,)):
+        if (prototype == TimeSignature or prototype == (TimeSignature,)):
             if isinstance(self, abjad.Measure):
-                if self._has_indicator(abjad.TimeSignature):
-                    indicator = self._get_indicator(abjad.TimeSignature)
+                if self._has_indicator(TimeSignature, attributes=attributes):
+                    indicator = self._get_indicator(
+                        TimeSignature,
+                        attributes=attributes,
+                        )
                     return indicator
                 else:
                     return
         self._update_now(indicators=True)
         candidate_wrappers = {}
-        parentage = abjad.inspect(self).parentage(
+        parentage = inspect(self).parentage(
             include_self=True,
             grace_notes=True,
             )
@@ -322,8 +349,15 @@ class Component(AbjadObject):
                 if wrapper.annotation:
                     continue
                 if isinstance(wrapper.indicator, prototype):
+                    append_wrapper = True
                     if (command is not None and
                         wrapper.indicator.command != command):
+                        continue
+                    if attributes is not None:
+                        for name, value in attributes.items():
+                            if getattr(wrapper.indicator, name, None) != value:
+                                append_wrapper = False
+                    if not append_wrapper:
                         continue
                     these_wrappers.append(wrapper)
             # active indicator takes precendence over inactive indicator
@@ -341,15 +375,22 @@ class Component(AbjadObject):
                 if wrapper.annotation:
                     continue
                 if isinstance(wrapper.indicator, prototype):
+                    append_wrapper = True
                     if (command is not None and
                         wrapper.indicator.command != command):
+                        continue
+                    if attributes is not None:
+                        for name, value in attributes.items():
+                            if getattr(wrapper.indicator, name, None) != value:
+                                append_wrapper = False
+                    if not append_wrapper:
                         continue
                     offset = wrapper.start_offset
                     candidate_wrappers.setdefault(offset, []).append(wrapper)
         if not candidate_wrappers:
             return
         all_offsets = sorted(candidate_wrappers)
-        start_offset = abjad.inspect(self).timespan().start_offset
+        start_offset = inspect(self).timespan().start_offset
         index = bisect.bisect(all_offsets, start_offset) - 1 + int(n)
         if index < 0:
             return
@@ -362,11 +403,11 @@ class Component(AbjadObject):
 
     def _get_effective_staff(self):
         import abjad
-        staff_change = self._get_effective(abjad.StaffChange)
+        staff_change = self._get_effective(StaffChange)
         if staff_change is not None:
             effective_staff = staff_change.staff
         else:
-            parentage = abjad.inspect(self).parentage()
+            parentage = inspect(self).parentage()
             effective_staff = parentage.get_first(abjad.Staff)
         return effective_staff
 
@@ -412,9 +453,8 @@ class Component(AbjadObject):
             )
 
     def _get_in_my_logical_voice(self, n, prototype=None):
-        import abjad
         if 0 <= n:
-            generator = abjad.iterate(self)._logical_voice(
+            generator = iterate(self)._logical_voice(
                 prototype=prototype,
                 reverse=False,
                 )
@@ -423,7 +463,7 @@ class Component(AbjadObject):
                     return component
         else:
             n = abs(n)
-            generator = abjad.iterate(self)._logical_voice(
+            generator = iterate(self)._logical_voice(
                 prototype=prototype,
                 reverse=True,
                 )
@@ -431,19 +471,35 @@ class Component(AbjadObject):
                 if i == n:
                     return component
 
-    def _get_indicator(self, prototype=None, unwrap=True):
-        indicators = self._get_indicators(prototype=prototype, unwrap=unwrap)
+    def _get_indicator(
+        self,
+        prototype=None,
+        *,
+        attributes=None,
+        unwrap=True,
+        ):
+        indicators = self._get_indicators(
+            prototype=prototype,
+            attributes=attributes,
+            unwrap=unwrap,
+            )
         if not indicators:
-            message = 'no attached indicators found matching {!r}.'
-            message = message.format(prototype)
-            raise ValueError(message)
+            raise ValueError(
+                f'no attached indicators found matching {prototype!r}.'
+                )
         if 1 < len(indicators):
-            message = 'multiple attached indicators found matching {!r}.'
-            message = message.format(prototype)
-            raise ValueError(message)
+            raise ValueError(
+                f'multiple attached indicators found matching {prototype!r}.'
+                )
         return indicators[0]
 
-    def _get_indicators(self, prototype=None, unwrap=True):
+    def _get_indicators(
+        self,
+        prototype=None,
+        *,
+        attributes=None,
+        unwrap=True,
+        ):
         prototype = prototype or (object,)
         if not isinstance(prototype, tuple):
             prototype = (prototype,)
@@ -468,6 +524,15 @@ class Component(AbjadObject):
                     result.append(wrapper)
                 elif any(wrapper.indicator == _ for _ in prototype_objects):
                     result.append(wrapper)
+        if attributes is not None:
+            result_ = []
+            for wrapper in result:
+                for name, value in attributes.items():
+                    if getattr(wrapper.indicator, name, None) != value:
+                        break
+                else:
+                    result_.append(wrapper)
+            result = result_
         if unwrap:
             result = [_.indicator for _ in result]
         result = tuple(result)
@@ -482,8 +547,7 @@ class Component(AbjadObject):
         return abjad.Lineage(self)
 
     def _get_markup(self, direction=None):
-        import abjad
-        markup = self._get_indicators(abjad.Markup)
+        markup = self._get_indicators(Markup)
         if direction is enums.Up:
             return tuple(x for x in markup if x.direction is enums.Up)
         elif direction is enums.Down:
@@ -493,7 +557,7 @@ class Component(AbjadObject):
     def _get_next_measure(self):
         import abjad
         if isinstance(self, abjad.Leaf):
-            for parent in abjad.inspect(self).parentage(
+            for parent in inspect(self).parentage(
                 include_self=False):
                 if isinstance(parent, abjad.Measure):
                     return parent
@@ -507,7 +571,7 @@ class Component(AbjadObject):
                 return contents[0]
             raise exceptions.MissingMeasureError
         elif isinstance(self, (list, tuple)):
-            measure_generator = abjad.iterate(self).components(abjad.Measure)
+            measure_generator = iterate(self).components(abjad.Measure)
             try:
                 measure = next(measure_generator)
                 return measure
@@ -518,18 +582,17 @@ class Component(AbjadObject):
             raise TypeError(message.format(self))
 
     def _get_nth_component_in_time_order_from(self, n):
-        import abjad
         assert mathtools.is_integer_equivalent(n)
         def next(component):
             if component is not None:
-                for parent in abjad.inspect(component).parentage(
+                for parent in inspect(component).parentage(
                     include_self=True):
                     next_sibling = parent._get_sibling(1)
                     if next_sibling is not None:
                         return next_sibling
         def previous(component):
             if component is not None:
-                for parent in abjad.inspect(component).parentage(
+                for parent in inspect(component).parentage(
                     include_self=True):
                     next_sibling = parent._get_sibling(-1)
                     if next_sibling is not None:
@@ -554,7 +617,7 @@ class Component(AbjadObject):
     def _get_previous_measure(self):
         import abjad
         if isinstance(self, abjad.Leaf):
-            for parent in abjad.inspect(self).parentage(
+            for parent in inspect(self).parentage(
                 include_self=False):
                 if isinstance(parent, abjad.Measure):
                     return parent
@@ -568,7 +631,7 @@ class Component(AbjadObject):
                 return contents[0]
             raise exceptions.MissingMeasureError
         elif isinstance(self, (list, tuple)):
-            measure_generator = abjad.iterate(self).components(
+            measure_generator = iterate(self).components(
                 abjad.Measure,
                 reverse=True,
                 )
@@ -598,7 +661,6 @@ class Component(AbjadObject):
                         return self._parent[index + n]
 
     def _get_timespan(self, in_seconds=False):
-        import abjad
         if in_seconds:
             self._update_now(offsets_in_seconds=True)
             if self._start_offset_in_seconds is None:
@@ -612,22 +674,38 @@ class Component(AbjadObject):
             return self._timespan
 
     def _get_vertical_moment(self, governor=None):
-        import abjad
-        offset = abjad.inspect(self).timespan().start_offset
+        offset = inspect(self).timespan().start_offset
         if governor is None:
-            governor = abjad.inspect(self).parentage().root
-        return abjad.VerticalMoment(governor, offset)
+            governor = inspect(self).parentage().root
+        return VerticalMoment(governor, offset)
 
     def _get_vertical_moment_at(self, offset):
-        import abjad
-        return abjad.VerticalMoment(self, offset)
+        return VerticalMoment(self, offset)
 
-    def _has_effective_indicator(self, prototype, *, command=None):
-        indicator = self._get_effective(prototype, command=command)
+    def _has_effective_indicator(
+        self,
+        prototype,
+        *,
+        attributes=None,
+        command=None,
+        ):
+        indicator = self._get_effective(
+            prototype,
+            attributes=attributes,
+            command=command,
+            )
         return indicator is not None
 
-    def _has_indicator(self, prototype=None):
-        indicators = self._get_indicators(prototype=prototype)
+    def _has_indicator(
+        self,
+        prototype=None,
+        *,
+        attributes=None,
+        ):
+        indicators = self._get_indicators(
+            prototype=prototype,
+            attributes=attributes,
+            )
         return bool(indicators)
 
     def _is_immediate_temporal_successor_of(self, component):
@@ -644,36 +722,34 @@ class Component(AbjadObject):
         return component in temporal_successors
 
     def _move_indicators(self, recipient_component):
-        import abjad
-        for wrapper in abjad.inspect(self).wrappers():
-            abjad.detach(wrapper, self)
-            abjad.attach(wrapper, recipient_component)
+        for wrapper in inspect(self).wrappers():
+            detach(wrapper, self)
+            attach(wrapper, recipient_component)
 
     # TODO: eventually reimplement as a keyword option to remove()
     def _remove_and_shrink_durated_parent_containers(self):
         import abjad
         prolated_leaf_duration = self._get_duration()
-        parentage = abjad.inspect(self).parentage(include_self=False)
+        parentage = inspect(self).parentage(include_self=False)
         prolations = parentage._prolations
         current_prolation, i = Duration(1), 0
         parent = self._parent
         while parent is not None and not parent.is_simultaneous:
             current_prolation *= prolations[i]
             if isinstance(parent, abjad.Measure):
-                indicator = parent._get_indicator(abjad.TimeSignature)
+                indicator = parent._get_indicator(TimeSignature)
                 parent_time_signature = indicator
                 old_prolation = parent_time_signature.implied_prolation
                 naive_time_signature = (
                     parent_time_signature.duration - prolated_leaf_duration)
-                better_time_signature = abjad.NonreducedFraction(
+                better_time_signature = mathtools.NonreducedFraction(
                     naive_time_signature)
                 better_time_signature = better_time_signature.with_denominator(
                     parent_time_signature.denominator)
-                better_time_signature = abjad.TimeSignature(
-                    better_time_signature)
-                abjad.detach(abjad.TimeSignature, parent)
-                abjad.attach(better_time_signature, parent)
-                indicator = parent._get_indicator(abjad.TimeSignature)
+                better_time_signature = TimeSignature(better_time_signature)
+                detach(TimeSignature, parent)
+                attach(better_time_signature, parent)
+                indicator = parent._get_indicator(TimeSignature)
                 parent_time_signature = indicator
                 new_prolation = parent_time_signature.implied_prolation
                 adjusted_prolation = old_prolation / new_prolation
@@ -681,13 +757,13 @@ class Component(AbjadObject):
                     if adjusted_prolation != 1:
                         new_target = x._get_preprolated_duration()
                         new_target *= adjusted_prolation
-                        contents_duration = abjad.inspect(x)
+                        contents_duration = inspect(x)
                         multiplier = new_target / contents_duration
                         tuplet = abjad.Tuplet(multiplier, [])
-                        abjad.mutate(x).wrap(tuplet)
+                        mutate(x).wrap(tuplet)
             parent = parent._parent
             i += 1
-        parentage = abjad.inspect(self).parentage(include_self=False)
+        parentage = inspect(self).parentage(include_self=False)
         parent = self._parent
         if parent:
             index = parent.index(self)
@@ -701,7 +777,7 @@ class Component(AbjadObject):
     def _remove_from_parent(self):
         import abjad
         self._update_later(offsets=True)
-        for component in abjad.inspect(self).parentage(include_self=False):
+        for component in inspect(self).parentage(include_self=False):
             if not isinstance(component, abjad.Context):
                 continue
             for wrapper in component._dependent_wrappers[:]:
@@ -712,9 +788,8 @@ class Component(AbjadObject):
         self._parent = None
 
     def _remove_named_children_from_parentage(self, name_dictionary):
-        import abjad
         if self._parent is not None and name_dictionary:
-            for parent in abjad.inspect(self).parentage(
+            for parent in inspect(self).parentage(
                 include_self=False):
                 named_children = parent._named_children
                 for name in name_dictionary:
@@ -726,7 +801,7 @@ class Component(AbjadObject):
     def _restore_named_children_to_parentage(self, name_dictionary):
         import abjad
         if self._parent is not None and name_dictionary:
-            for parent in abjad.inspect(self).parentage(
+            for parent in inspect(self).parentage(
                 include_self=False):
                 named_children = parent._named_children
                 for name in name_dictionary:
@@ -754,15 +829,15 @@ class Component(AbjadObject):
         ):
         import abjad
         assert all(isinstance(x, Component) for x in components)
-        selection = abjad.select(self)
+        selection = select(self)
         if direction is enums.Right:
             if grow_spanners:
-                insert_offset = abjad.inspect(self).timespan().stop_offset
+                insert_offset = inspect(self).timespan().stop_offset
                 receipt = selection._get_dominant_spanners()
                 for spanner, index in receipt:
                     insert_component = None
                     for component in spanner:
-                        start_offset = abjad.inspect(
+                        start_offset = inspect(
                             component).timespan().start_offset
                         if start_offset == insert_offset:
                             insert_component = component
@@ -772,11 +847,11 @@ class Component(AbjadObject):
                     else:
                         insert_index = len(spanner)
                     for component in reversed(components):
-                        leaves = abjad.select(component).leaves()
+                        leaves = select(component).leaves()
                         for leaf in reversed(leaves):
                             spanner._insert(insert_index, leaf)
                             leaf._append_spanner(spanner)
-            selection = abjad.select(self)
+            selection = select(self)
             parent, start, stop = \
                 selection._get_parent_and_start_stop_indices()
             if parent is not None:
@@ -790,23 +865,23 @@ class Component(AbjadObject):
             return [self] + components
         else:
             if grow_spanners:
-                offset = abjad.inspect(self).timespan().start_offset
+                offset = inspect(self).timespan().start_offset
                 receipt = selection._get_dominant_spanners()
                 for spanner, x in receipt:
                     for component in spanner:
-                        timespan = abjad.inspect(component).timespan()
+                        timespan = inspect(component).timespan()
                         if timespan.start_offset == offset:
                             index = spanner._index(component)
                             break
                     else:
                         raise ValueError('no component in spanner at offset.')
                     for component in reversed(components):
-                        leaves = abjad.select(component).leaves()
+                        leaves = select(component).leaves()
                         for leaf in reversed(leaves):
                             spanner._insert(index, leaf)
                             if isinstance(component, abjad.Leaf):
                                 component._append_spanner(spanner)
-            selection = abjad.select(self)
+            selection = select(self)
             parent, start, stop = \
                 selection._get_parent_and_start_stop_indices()
             if parent is not None:
@@ -818,10 +893,15 @@ class Component(AbjadObject):
                     parent.__setitem__(slice(start, start), components)
             return components + [self]
 
+    def _tag_strings(self, strings):
+        return LilyPondFormatManager.tag(
+            strings,
+            tag=self.tag,
+            )
+
     def _update_later(self, offsets=False, offsets_in_seconds=False):
-        import abjad
         assert offsets or offsets_in_seconds
-        for component in abjad.inspect(self).parentage(include_self=True):
+        for component in inspect(self).parentage(include_self=True):
             if offsets:
                 component._offsets_are_current = False
             elif offsets_in_seconds:
@@ -844,3 +924,12 @@ class Component(AbjadObject):
             offsets_in_seconds=offsets_in_seconds,
             indicators=indicators,
             )
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def tag(self):
+        """
+        Gets component tag.
+        """
+        return self._tag

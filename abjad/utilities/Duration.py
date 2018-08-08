@@ -156,9 +156,7 @@ class Duration(AbjadObject, Fraction):
                     class_,
                     *[int(x) for x in arguments]
                     )
-        message = 'can not construct duration: {!r}.'
-        message = message.format(arguments)
-        raise ValueError(message)
+        raise ValueError(f'can not construct duration: {arguments!r}.')
 
     ### SPECIAL METHODS ###
 

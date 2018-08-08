@@ -52,7 +52,7 @@ class LilyPondDimension(system.AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _get_format_pieces(self):
+    def _get_format_pieces(self, tag=None):
         return [r'{}\{}'.format(self.value, self.unit)]
 
     def _get_lilypond_format(self):

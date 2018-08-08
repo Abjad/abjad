@@ -123,30 +123,24 @@ class Selection(AbjadValueObject, collections.Sequence):
 
     ### SPECIAL METHODS ###
 
-    def __add__(self, argument):
+    def __add__(self, argument) -> typing.Union['Selection', Expression]:
         """
         Cocatenates ``argument`` to selection.
-
-        Returns new selection.
         """
         assert isinstance(argument, collections.Iterable)
         items = self.items + tuple(argument)
         return type(self)(items=items)
 
-    def __contains__(self, argument):
+    def __contains__(self, argument) -> bool:
         """
         Is true when ``argument`` is in selection.
-
-        Returns true or false.
         """
         return argument in self.items
 
-    def __eq__(self, argument):
+    def __eq__(self, argument) -> bool:
         """
         Is true when selection and ``argument`` are of the same type
         and when items in selection equal item in ``argument``.
-
-        Returns true or false.
         """
         if isinstance(argument, type(self)):
             return self.items == argument.items
@@ -154,17 +148,18 @@ class Selection(AbjadValueObject, collections.Sequence):
             return self.items == tuple(argument)
         return False
 
-    def __format__(self, format_specification=''):
+    def __format__(self, format_specification='') -> str:
         """
-        Formats duration.
-
-        Returns string.
+        Formats selection.
         """
         if format_specification in ('', 'storage'):
             return StorageFormatManager(self).get_storage_format()
         raise ValueError(repr(format_specification))
 
-    def __getitem__(self, argument):
+    def __getitem__(
+        self,
+        argument,
+        ):
         r"""
         Gets item, slice or pattern ``argument`` in selection.
 
@@ -375,11 +370,9 @@ class Selection(AbjadValueObject, collections.Sequence):
                 result = type(self)(result)
         return result
 
-    def __getstate__(self):
+    def __getstate__(self) -> dict:
         """
         Gets state of selection.
-
-        Returns dictionary.
         """
         if hasattr(self, '__dict__'):
             state = vars(self).copy()
@@ -393,7 +386,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                     pass
         return state
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         """
         Hashes selection.
 
@@ -432,37 +425,29 @@ class Selection(AbjadValueObject, collections.Sequence):
         lilypond_file = abjad.LilyPondFile.new(score)
         return lilypond_file
 
-    def __len__(self):
+    def __len__(self) -> int:
         """
         Gets number of items in selection.
-
-        Returns nonnegative integer.
         """
         return len(self.items)
 
-    def __radd__(self, argument):
+    def __radd__(self, argument) -> typing.Union['Selection', Expression]:
         """
         Concatenates selection to ``argument``.
-
-        Returns newly created selection.
         """
         assert isinstance(argument, collections.Iterable)
         items = tuple(argument) + self.items
         return type(self)(items=items)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """
         Gets interpreter representation of selection.
-
-        Returns string.
         """
         return super().__repr__()
 
-    def __setstate__(self, state):
+    def __setstate__(self, state) -> None:
         """
         Sets state of selection.
-
-        Returns none.
         """
         for key, value in state.items():
             setattr(self, key, value)
@@ -1043,7 +1028,7 @@ class Selection(AbjadValueObject, collections.Sequence):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def items(self):
+    def items(self) -> typing.Tuple:
         """
         Gets items.
 
@@ -1052,13 +1037,16 @@ class Selection(AbjadValueObject, collections.Sequence):
             >>> abjad.Staff("c'4 d'4 e'4 f'4")[:].items
             (Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4"))
 
-        Returns tuple.
         """
         return self._items
 
     ### PUBLIC METHODS ###
 
-    def are_contiguous_logical_voice(self, prototype=None, allow_orphans=True):
+    def are_contiguous_logical_voice(
+        self,
+        prototype=None,
+        allow_orphans=True,
+        ) -> typing.Union[bool, Expression]:
         """
         Is true when items in selection are contiguous components in the
         same logical voice.
@@ -1073,7 +1061,6 @@ class Selection(AbjadValueObject, collections.Sequence):
             >>> selection.are_contiguous_logical_voice()
             False
 
-        Returns true or false.
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -1122,7 +1109,7 @@ class Selection(AbjadValueObject, collections.Sequence):
             previous = current
         return True
 
-    def are_leaves(self):
+    def are_leaves(self) -> typing.Union[bool, Expression]:
         """
         Is true when items in selection are all leaves.
 
@@ -1131,13 +1118,16 @@ class Selection(AbjadValueObject, collections.Sequence):
             >>> abjad.Staff("c'4 d'4 e'4 f'4")[:].are_leaves()
             True
 
-        Returns true or false.
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
         return all(isinstance(_, Leaf) for _ in self)
 
-    def are_logical_voice(self, prototype=None, allow_orphans=True):
+    def are_logical_voice(
+        self,
+        prototype=None,
+        allow_orphans=True,
+        ) -> typing.Union[bool, Expression]:
         """
         Is true when items in selection are all components in the same
         logical voice.
@@ -1152,7 +1142,6 @@ class Selection(AbjadValueObject, collections.Sequence):
             >>> selection.are_logical_voice()
             True
 
-        Returns true or false.
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -1198,7 +1187,11 @@ class Selection(AbjadValueObject, collections.Sequence):
                 return False
         return True
 
-    def are_contiguous_same_parent(self, prototype=None, allow_orphans=True):
+    def are_contiguous_same_parent(
+        self,
+        prototype=None,
+        allow_orphans=True,
+        ) -> typing.Union[bool, Expression]:
         """
         Is true when items in selection are all contiguous components in
         the same parent.
@@ -1213,7 +1206,6 @@ class Selection(AbjadValueObject, collections.Sequence):
             >>> selection.are_contiguous_same_parent()
             False
 
-        Returns true or false.
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -1262,7 +1254,7 @@ class Selection(AbjadValueObject, collections.Sequence):
             previous = current
         return True
 
-    def chord(self, n):
+    def chord(self, n) -> typing.Union[Chord, Expression]:
         r"""
         Selects chord ``n``.
 
@@ -1354,7 +1346,7 @@ class Selection(AbjadValueObject, collections.Sequence):
             return self._update_expression(inspect.currentframe(), lone=True)
         return self.chords()[n]
 
-    def chords(self):
+    def chords(self) -> typing.Union['Selection', Expression]:
         r"""
         Selects chords.
 
@@ -1472,7 +1464,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             return self._update_expression(inspect.currentframe())
         return self.components(Chord)
 
-    def components(self, prototype=None, grace_notes=None, reverse=False):
+    def components(
+        self,
+        prototype=None,
+        grace_notes=None,
+        reverse=False,
+        ) -> typing.Union['Selection', Expression]:
         r"""
         Selects components.
 
@@ -1540,7 +1537,6 @@ class Selection(AbjadValueObject, collections.Sequence):
                     g'8
                 }
 
-        Returns new selection (or expression).
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -1551,7 +1547,10 @@ class Selection(AbjadValueObject, collections.Sequence):
             )
         return type(self)(generator)
 
-    def filter(self, predicate=None):
+    def filter(
+        self,
+        predicate=None,
+        ) -> typing.Union['Selection', Expression]:
         r"""
         Filters selection by ``predicate``.
 
@@ -1605,7 +1604,6 @@ class Selection(AbjadValueObject, collections.Sequence):
                     a'8
                 }
 
-        Returns new selection (or expression).
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -1613,7 +1611,11 @@ class Selection(AbjadValueObject, collections.Sequence):
             return type(self)(self)
         return type(self)([_ for _ in self if predicate(_)])
 
-    def filter_duration(self, operator, duration):
+    def filter_duration(
+        self,
+        operator,
+        duration,
+        ) -> typing.Union['Selection', Expression]:
         r"""
         Filters selection by ``operator`` and ``duration``.
 
@@ -1722,13 +1724,16 @@ class Selection(AbjadValueObject, collections.Sequence):
                     a'8
                 }
 
-        Returns new selection (or expression).
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
         return self.filter(DurationInequality(operator, duration))
 
-    def filter_length(self, operator, length):
+    def filter_length(
+        self,
+        operator,
+        length,
+        ) -> typing.Union['Selection', Expression]:
         r"""
         Filters selection by ``operator`` and ``length``.
 
@@ -1843,7 +1848,11 @@ class Selection(AbjadValueObject, collections.Sequence):
             return self._update_expression(inspect.currentframe())
         return self.filter(LengthInequality(operator, length))
 
-    def filter_pitches(self, operator, pitches):
+    def filter_pitches(
+        self,
+        operator,
+        pitches,
+        ) -> typing.Union['Selection', Expression]:
         r"""
         Filters selection by ``operator`` and ``pitches``.
 
@@ -2022,13 +2031,16 @@ class Selection(AbjadValueObject, collections.Sequence):
                     <c' e' g'>4
                 }
 
-        Returns new selection (or expression).
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
         return self.filter(PitchInequality(operator, pitches))
 
-    def filter_preprolated(self, operator, duration):
+    def filter_preprolated(
+        self,
+        operator,
+        duration,
+        ) -> typing.Union['Selection', Expression]:
         r"""
         Filters selection by ``operator`` and preprolated ``duration``.
 
@@ -2148,7 +2160,10 @@ class Selection(AbjadValueObject, collections.Sequence):
             )
         return self.filter(inequality)
 
-    def flatten(self, depth=1):
+    def flatten(
+        self,
+        depth: int = 1,
+        ) -> typing.Union['Selection', Expression]:
         r"""
         Flattens selection to ``depth``.
 
@@ -2347,13 +2362,12 @@ class Selection(AbjadValueObject, collections.Sequence):
                     }   % measure
                 }
 
-        Returns new selection (or expression).
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
         return type(self)(Sequence(self).flatten(depth=depth))
 
-    def group(self):
+    def group(self) -> typing.Union['Selection', Expression]:
         r"""
         Groups selection.
 
@@ -2421,13 +2435,15 @@ class Selection(AbjadValueObject, collections.Sequence):
                     d'16
                 }
 
-        Returns nested selection (or expression).
         """
         if self._expression:
             return self._update_expression(inspect.currentframe(), lone=True)
         return self.group_by()
 
-    def group_by(self, predicate=None):
+    def group_by(
+        self,
+        predicate=None,
+        ) -> typing.Union['Selection', Expression]:
         r'''
         Groups items in selection by ``predicate``.
 
@@ -2498,7 +2514,6 @@ class Selection(AbjadValueObject, collections.Sequence):
                     d'16
                 }
 
-        Returns nested selection (or expression).
         '''
         if self._expression:
             return self._update_expression(
@@ -2516,7 +2531,7 @@ class Selection(AbjadValueObject, collections.Sequence):
             items.append(item)
         return type(self)(items)
 
-    def group_by_contiguity(self):
+    def group_by_contiguity(self) -> typing.Union['Selection', Expression]:
         r'''
         Groups items in selection by contiguity.
 
@@ -2872,11 +2887,11 @@ class Selection(AbjadValueObject, collections.Sequence):
                     d'16
                 }
 
-        Returns new selection (or expression).
         '''
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        result, selection = [], []
+        result = []
+        selection: typing.List[typing.Union[Component, Selection]] = []
         selection.extend(self[:1])
         for item in self[1:]:
             this_timespan = abjad_inspect(selection[-1]).timespan()
@@ -2890,7 +2905,7 @@ class Selection(AbjadValueObject, collections.Sequence):
             result.append(type(self)(selection))
         return type(self)(result)
 
-    def group_by_duration(self):
+    def group_by_duration(self) -> typing.Union['Selection', Expression]:
         r"""
         Groups items in selection by duration.
 
@@ -2969,7 +2984,6 @@ class Selection(AbjadValueObject, collections.Sequence):
                     f'16
                 }
 
-        Returns nested selection (or expression).
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -2977,7 +2991,7 @@ class Selection(AbjadValueObject, collections.Sequence):
             return abjad_inspect(argument).duration()
         return self.group_by(predicate)
 
-    def group_by_length(self):
+    def group_by_length(self) -> typing.Union['Selection', Expression]:
         r"""
         Groups items in selection by length.
 
@@ -3051,7 +3065,6 @@ class Selection(AbjadValueObject, collections.Sequence):
                     f'16
                 }
 
-        Returns nested selection (or expression).
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -3061,7 +3074,7 @@ class Selection(AbjadValueObject, collections.Sequence):
             return len(argument)
         return self.group_by(predicate)
 
-    def group_by_measure(self):
+    def group_by_measure(self) -> typing.Union['Selection', Expression]:
         r"""
         Groups items in selection by measure.
 
@@ -3399,7 +3412,6 @@ class Selection(AbjadValueObject, collections.Sequence):
                     c''4
                 }
 
-        Returns new selection (or expression).
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -3423,7 +3435,7 @@ class Selection(AbjadValueObject, collections.Sequence):
             selections.append(selection)
         return type(self)(selections)
 
-    def group_by_pitch(self):
+    def group_by_pitch(self) -> typing.Union['Selection', Expression]:
         r"""
         Groups items in selection by pitches.
 
@@ -3497,7 +3509,6 @@ class Selection(AbjadValueObject, collections.Sequence):
                     f'16
                 }
 
-        Returns nested selection (or expression).
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -3505,7 +3516,7 @@ class Selection(AbjadValueObject, collections.Sequence):
             return PitchSet.from_selection(argument)
         return self.group_by(predicate)
 
-    def leaf(self, n):
+    def leaf(self, n) -> typing.Union[Leaf, Expression]:
         r"""
         Selects leaf ``n``.
 
@@ -3606,7 +3617,7 @@ class Selection(AbjadValueObject, collections.Sequence):
         reverse: bool = False,
         tail: bool = None,
         trim: typing.Union[bool, enums.HorizontalAlignment] = None,
-        ):
+        ) -> typing.Union['Selection', Expression]:
         r'''
         Selects leaves (without grace notes).
 
@@ -4374,7 +4385,6 @@ class Selection(AbjadValueObject, collections.Sequence):
                     }
                 }
 
-        Returns new selection (or expression).
         '''
         assert trim in (True, False, enums.Left, None)
         if self._expression:
@@ -4398,7 +4408,7 @@ class Selection(AbjadValueObject, collections.Sequence):
         nontrivial=None,
         pitched=None,
         reverse=False,
-        ):
+        ) -> typing.Union['Selection', Expression]:
         r'''
         Selects logical ties (without grace notes).
 
@@ -4755,7 +4765,6 @@ class Selection(AbjadValueObject, collections.Sequence):
                     }
                 }
 
-        Returns new selection (or expression).
         '''
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -4767,7 +4776,10 @@ class Selection(AbjadValueObject, collections.Sequence):
             )
         return type(self)(generator)
 
-    def map(self, expression=None):
+    def map(
+        self,
+        expression=None,
+        ) -> typing.Union['Selection', Expression]:
         r'''
         Maps ``expression`` to items in selection.
 
@@ -4984,7 +4996,7 @@ class Selection(AbjadValueObject, collections.Sequence):
             return type(self)(self)
         return type(self)([expression(_) for _ in self])
 
-    def note(self, n):
+    def note(self, n) -> typing.Union[Note, Expression]:
         r"""
         Selects note ``n``.
 
@@ -5076,7 +5088,7 @@ class Selection(AbjadValueObject, collections.Sequence):
             return self._update_expression(inspect.currentframe(), lone=True)
         return self.notes()[n]
 
-    def notes(self):
+    def notes(self) -> typing.Union['Selection', Expression]:
         r"""
         Selects notes.
 
@@ -5185,7 +5197,7 @@ class Selection(AbjadValueObject, collections.Sequence):
             return self._update_expression(inspect.currentframe())
         return self.components(Note)
 
-    def nontrivial(self):
+    def nontrivial(self) -> typing.Union['Selection', Expression]:
         r"""
         Filters selection by length greater than 1.
 
@@ -5251,12 +5263,13 @@ class Selection(AbjadValueObject, collections.Sequence):
     def partition_by_counts(
         self,
         counts,
+        *,
         cyclic=False,
         enchain=False,
         fuse_overhang=False,
         nonempty=False,
         overhang=False,
-        ):
+        ) -> typing.Union['Selection', Expression]:
         r"""
         Partitions selection by ``counts``.
 
@@ -5602,10 +5615,211 @@ class Selection(AbjadValueObject, collections.Sequence):
                     c''8
                 }
 
-        Returns nested selection (or expression):
+        ..  container:: example
 
-            >>> type(result).__name__
-            'Selection'
+            With negative ``counts``.
+
+            Partitions leaves alternately into parts 2 and -3 (without
+            overhang):
+
+            ..  container:: example
+
+                >>> string = "c'8 r8 d'8 e'8 r8 f'8 g'8 a'8 b'8 r8 c''8"
+                >>> staff = abjad.Staff(string)
+                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.show(staff) # doctest: +SKIP
+
+                >>> result = abjad.select(staff).leaves().partition_by_counts(
+                ...     [2, -3],
+                ...     cyclic=True,
+                ...     )
+
+                >>> for item in result:
+                ...     item
+                ...
+                Selection([Note("c'8"), Rest('r8')])
+                Selection([Note("f'8"), Note("g'8")])
+
+            ..  container:: example expression
+
+                >>> selector = abjad.select().leaves().partition_by_counts(
+                ...     [2, -3],
+                ...     cyclic=True,
+                ...     )
+                >>> result = selector(staff)
+
+                >>> selector.print(result)
+                Selection([Note("c'8"), Rest('r8')])
+                Selection([Note("f'8"), Note("g'8")])
+
+                >>> selector.color(result)
+                >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                \with
+                {
+                    autoBeaming = ##f
+                }
+                {
+                    \abjad_color_music "red"
+                    c'8
+                    \abjad_color_music "red"
+                    r8
+                    d'8
+                    e'8
+                    r8
+                    \abjad_color_music "blue"
+                    f'8
+                    \abjad_color_music "blue"
+                    g'8
+                    a'8
+                    b'8
+                    r8
+                    c''8
+                }
+
+        ..  container:: example
+
+            With negative ``counts``.
+
+            Partitions leaves alternately into parts 2 and -3 (with overhang):
+
+            ..  container:: example
+
+                >>> string = "c'8 r8 d'8 e'8 r8 f'8 g'8 a'8 b'8 r8 c''8"
+                >>> staff = abjad.Staff(string)
+                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.show(staff) # doctest: +SKIP
+
+                >>> result = abjad.select(staff).leaves().partition_by_counts(
+                ...     [2, -3],
+                ...     cyclic=True,
+                ...     overhang=True,
+                ...     )
+
+                >>> for item in result:
+                ...     item
+                ...
+                Selection([Note("c'8"), Rest('r8')])
+                Selection([Note("f'8"), Note("g'8")])
+                Selection([Note("c''8")])
+
+            ..  container:: example expression
+
+                >>> selector = abjad.select().leaves().partition_by_counts(
+                ...     [2, -3],
+                ...     cyclic=True,
+                ...     overhang=True,
+                ...     )
+                >>> result = selector(staff)
+
+                >>> selector.print(result)
+                Selection([Note("c'8"), Rest('r8')])
+                Selection([Note("f'8"), Note("g'8")])
+                Selection([Note("c''8")])
+
+                >>> selector.color(result)
+                >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                \with
+                {
+                    autoBeaming = ##f
+                }
+                {
+                    \abjad_color_music "red"
+                    c'8
+                    \abjad_color_music "red"
+                    r8
+                    d'8
+                    e'8
+                    r8
+                    \abjad_color_music "blue"
+                    f'8
+                    \abjad_color_music "blue"
+                    g'8
+                    a'8
+                    b'8
+                    r8
+                    \abjad_color_music "red"
+                    c''8
+                }
+
+        ..  container:: example
+
+            REGRESSION. Noncyclic counts work when ``overhang`` is true:
+
+            ..  container:: example
+
+                >>> string = "c'8 r8 d'8 e'8 r8 f'8 g'8 a'8 b'8 r8 c''8"
+                >>> staff = abjad.Staff(string)
+                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.show(staff) # doctest: +SKIP
+
+                >>> result = abjad.select(staff).leaves().partition_by_counts(
+                ...     [3],
+                ...     overhang=True,
+                ...     )
+
+                >>> for item in result:
+                ...     item
+                ...
+                Selection([Note("c'8"), Rest('r8'), Note("d'8")])
+                Selection([Note("e'8"), Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8"), Note("b'8"), Rest('r8'), Note("c''8")])
+
+            ..  container:: example expression
+
+                >>> selector = abjad.select().leaves().partition_by_counts(
+                ...     [3],
+                ...     overhang=True,
+                ...     )
+                >>> result = selector(staff)
+
+                >>> selector.print(result)
+                Selection([Note("c'8"), Rest('r8'), Note("d'8")])
+                Selection([Note("e'8"), Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8"), Note("b'8"), Rest('r8'), Note("c''8")])
+
+                >>> selector.color(result)
+                >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                \with
+                {
+                    autoBeaming = ##f
+                }
+                {
+                    \abjad_color_music "red"
+                    c'8
+                    \abjad_color_music "red"
+                    r8
+                    \abjad_color_music "red"
+                    d'8
+                    \abjad_color_music "blue"
+                    e'8
+                    \abjad_color_music "blue"
+                    r8
+                    \abjad_color_music "blue"
+                    f'8
+                    \abjad_color_music "blue"
+                    g'8
+                    \abjad_color_music "blue"
+                    a'8
+                    \abjad_color_music "blue"
+                    b'8
+                    \abjad_color_music "blue"
+                    r8
+                    \abjad_color_music "blue"
+                    c''8
+                }
 
         """
         if self._expression:
@@ -5618,6 +5832,7 @@ class Selection(AbjadValueObject, collections.Sequence):
             overhang=overhang,
             )
         groups = list(groups)
+        total = len(groups)
         if overhang and fuse_overhang and 1 < len(groups):
             last_count = counts[(len(groups) - 1) % len(counts)]
             if len(groups[-1]) != last_count:
@@ -5627,12 +5842,15 @@ class Selection(AbjadValueObject, collections.Sequence):
         if cyclic:
             counts = CyclicTuple(counts)
         for i, group in enumerate(groups):
-            try:
-                count = counts[i]
-            except:
-                raise Exception(counts, i)
-            if count < 0:
-                continue
+            if overhang and i == total - 1:
+                pass
+            else:
+                try:
+                    count = counts[i]
+                except:
+                    raise Exception(counts, i)
+                if count < 0:
+                    continue
             items = type(self)(group)
             subresult.append(items)
         if nonempty and not subresult:
@@ -5644,11 +5862,12 @@ class Selection(AbjadValueObject, collections.Sequence):
     def partition_by_durations(
         self,
         durations,
+        *,
         cyclic=False,
         fill=None,
         in_seconds=False,
         overhang=False,
-        ):
+        ) -> typing.Union['Selection', Expression]:
         r"""
         Partitions selection by ``durations``.
 
@@ -6568,14 +6787,16 @@ class Selection(AbjadValueObject, collections.Sequence):
                     result.append(part)
                     part = [component]
                     if in_seconds:
-                        cumulative_duration = sum([
+                        sum_ = sum([
                             abjad_inspect(_).duration(in_seconds=True)
                             for _ in part
                             ])
+                        cumulative_duration = Duration(sum_)
                     else:
-                        cumulative_duration = sum([
+                        sum_ = sum([
                             abjad_inspect(_).duration() for _ in part
                             ])
+                        cumulative_duration = Duration(sum_)
                     current_duration_index += 1
                     try:
                         target_duration = durations[current_duration_index]
@@ -6605,10 +6826,13 @@ class Selection(AbjadValueObject, collections.Sequence):
         if len(components_copy):
             if overhang:
                 result.append(components_copy)
-        result = [type(self)(_) for _ in result]
-        return type(self)(result)
+        selections = [type(self)(_) for _ in result]
+        return type(self)(selections)
 
-    def partition_by_ratio(self, ratio):
+    def partition_by_ratio(
+        self,
+        ratio,
+        ) -> typing.Union['Selection', Expression]:
         r"""
         Partitions selection by ``ratio``.
 
@@ -6742,11 +6966,6 @@ class Selection(AbjadValueObject, collections.Sequence):
                     r8
                 }
 
-        Returns nested selection (or expression):
-
-            >>> type(result).__name__
-            'Selection'
-
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -6756,7 +6975,7 @@ class Selection(AbjadValueObject, collections.Sequence):
         selections = [type(self)(_) for _ in parts]
         return type(self)(selections)
 
-    def rest(self, n):
+    def rest(self, n) -> typing.Union[Rest, Expression]:
         r"""
         Selects rest ``n``.
 
@@ -6848,7 +7067,7 @@ class Selection(AbjadValueObject, collections.Sequence):
             return self._update_expression(inspect.currentframe(), lone=True)
         return  self.rests()[n]
 
-    def rests(self):
+    def rests(self) -> typing.Union['Selection', Expression]:
         r"""
         Selects rests.
 
@@ -6948,7 +7167,7 @@ class Selection(AbjadValueObject, collections.Sequence):
             return self._update_expression(inspect.currentframe())
         return self.components((MultimeasureRest, Rest))
 
-    def run(self, n):
+    def run(self, n) -> typing.Union['Selection', Expression]:
         r"""
         Selects run ``n``.
 
@@ -7044,7 +7263,7 @@ class Selection(AbjadValueObject, collections.Sequence):
             return self._update_expression(inspect.currentframe(), lone=True)
         return self.runs()[n]
 
-    def runs(self):
+    def runs(self) -> typing.Union['Selection', Expression]:
         r"""
         Selects runs.
 
@@ -7158,7 +7377,7 @@ class Selection(AbjadValueObject, collections.Sequence):
         result = result.group_by_contiguity().map(Selection)
         return result
 
-    def top(self):
+    def top(self) -> typing.Union['Selection', Expression]:
         r"""
         Selects top components.
 
@@ -7238,7 +7457,7 @@ class Selection(AbjadValueObject, collections.Sequence):
         from .Context import Context
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        result = []
+        result: typing.List[typing.Union[Component, Selection]] = []
         for component in iterate(self).components(Component):
             parentage = abjad_inspect(component).parentage()
             for component_ in parentage:
@@ -7251,7 +7470,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                     break
         return type(self)(result)
 
-    def tuplet(self, n):
+    def tuplet(self, n) -> typing.Union[Component, Expression]:
         r"""
         Selects tuplet ``n``.
 
@@ -7348,7 +7567,7 @@ class Selection(AbjadValueObject, collections.Sequence):
             return self._update_expression(inspect.currentframe(), lone=True)
         return self.tuplets()[n]
 
-    def tuplets(self):
+    def tuplets(self) -> typing.Union['Selection', Expression]:
         r"""
         Selects tuplets.
 
@@ -7464,7 +7683,7 @@ class Selection(AbjadValueObject, collections.Sequence):
             return self._update_expression(inspect.currentframe())
         return self.components(Tuplet)
 
-    def with_next_leaf(self):
+    def with_next_leaf(self) -> typing.Union['Selection', Expression]:
         r"""
         Extends selection with next leaf.
 
@@ -7692,7 +7911,7 @@ class Selection(AbjadValueObject, collections.Sequence):
             leaves.append(next_leaf)
         return type(self)(leaves)
 
-    def with_previous_leaf(self):
+    def with_previous_leaf(self) -> typing.Union['Selection', Expression]:
         r"""
         Extends selection with previous leaf.
 
@@ -7821,7 +8040,6 @@ class Selection(AbjadValueObject, collections.Sequence):
                     f'8
                 }
 
-        Returns new selection (or expression).
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())

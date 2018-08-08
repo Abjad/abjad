@@ -1,3 +1,5 @@
+from abjad.top.parse import parse
+from abjad.utilities.Duration import Duration
 from .Leaf import Leaf
 
 
@@ -29,21 +31,20 @@ class Rest(Leaf):
 
     ### INITIALIZER ###
 
-    def __init__(self, written_duration=None):
-        import abjad
+    def __init__(self, written_duration=None, tag: str = None) -> None:
         original_input = written_duration
         if isinstance(written_duration, str):
             string = f'{{ {written_duration} }}'
-            parsed = abjad.parse(string)
+            parsed = parse(string)
             assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
             written_duration = parsed[0]
         if isinstance(written_duration, Leaf):
             written_duration = written_duration.written_duration
         elif written_duration is None:
-            written_duration = abjad.Duration(1, 4)
+            written_duration = Duration(1, 4)
         else:
-            written_duration = abjad.Duration(written_duration)
-        Leaf.__init__(self, written_duration)
+            written_duration = Duration(written_duration)
+        Leaf.__init__(self, written_duration, tag=tag)
         if isinstance(original_input, Leaf):
             self._copy_override_and_set_from_leaf(original_input)
 

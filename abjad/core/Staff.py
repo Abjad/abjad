@@ -85,14 +85,16 @@ class Staff(Context):
     def __init__(
         self,
         components=None,
-        lilypond_type='Staff',
-        is_simultaneous=None,
-        name=None,
-        ):
+        lilypond_type: str = 'Staff',
+        is_simultaneous: bool = None,
+        name: str = None,
+        tag: str = None,
+        ) -> None:
         Context.__init__(
             self,
             components=components,
             lilypond_type=lilypond_type,
             is_simultaneous=is_simultaneous,
             name=name,
+            tag=tag,
             )

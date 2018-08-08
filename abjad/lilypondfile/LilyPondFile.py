@@ -2,6 +2,7 @@ import collections
 import copy
 import inspect
 import pathlib
+import typing
 from abjad.indicators.LilyPondLiteral import LilyPondLiteral
 from abjad.system.AbjadObject import AbjadObject
 from abjad.pitch.NamedPitch import NamedPitch
@@ -109,6 +110,7 @@ class LilyPondFile(AbjadObject):
         '_items',
         '_lilypond_language_token',
         '_lilypond_version_token',
+        '_tag',
         '_use_relative_includes',
         )
 
@@ -124,8 +126,9 @@ class LilyPondFile(AbjadObject):
         items=None,
         lilypond_language_token=None,
         lilypond_version_token=None,
+        tag: str = None,
         use_relative_includes=None,
-        ):
+        ) -> None:
         comments = comments or ()
         comments = tuple(comments)
         self._comments = comments
@@ -140,12 +143,15 @@ class LilyPondFile(AbjadObject):
         self._items = list(items or [])
         self._lilypond_language_token = None
         if lilypond_language_token is not False:
-            token = LilyPondLanguageToken()
-            self._lilypond_language_token = token
+            language = LilyPondLanguageToken()
+            self._lilypond_language_token = language
         self._lilypond_version_token = None
         if lilypond_version_token is not False:
-            token = LilyPondVersionToken()
-            self._lilypond_version_token = token
+            version = LilyPondVersionToken()
+            self._lilypond_version_token = version
+        if tag is not None:
+            assert isinstance(tag, str), repr(tag)
+        self._tag = tag
         self._use_relative_includes = use_relative_includes
 
     ### SPECIAL METHODS ###
@@ -255,7 +261,7 @@ class LilyPondFile(AbjadObject):
                         \new Staff
                         {
                             c'8
-                            -\staccato
+                            - \staccato
                             - \markup { Allegro }
                             d'8
                             e'8
@@ -480,7 +486,7 @@ class LilyPondFile(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _get_format_pieces(self):
+    def _get_format_pieces(self, tag=None):
         result = []
         if self.date_time_token is not None:
             string = f'% {self.date_time_token}'
@@ -512,7 +518,7 @@ class LilyPondFile(AbjadObject):
             if ('_get_lilypond_format' in dir(item) and
                 not isinstance(item, str)):
                 try:
-                    string = item._get_lilypond_format()
+                    string = item._get_lilypond_format(tag=self.tag)
                 except TypeError:
                     string = item._get_lilypond_format()
                 if string:
@@ -885,6 +891,23 @@ class LilyPondFile(AbjadObject):
                     return item
 
     @property
+    def tag(self) -> typing.Optional[str]:
+        """
+        Gets tag.
+
+        ..  container:: example
+
+            Gets score block:
+
+            >>> lilypond_file = abjad.LilyPondFile.new(tag='LILY_POND_FILE')
+
+            >>> lilypond_file.tag
+            'LILY_POND_FILE'
+
+        """
+        return self._tag
+
+    @property
     def use_relative_includes(self):
         """
         Is true when LilyPond file should use relative includes.
@@ -917,6 +940,7 @@ class LilyPondFile(AbjadObject):
         global_staff_size=None,
         lilypond_language_token=None,
         lilypond_version_token=None,
+        tag: str = None,
         use_relative_includes=None,
         ):
         r"""
@@ -987,6 +1011,7 @@ class LilyPondFile(AbjadObject):
             global_staff_size=global_staff_size,
             lilypond_language_token=lilypond_language_token,
             lilypond_version_token=lilypond_version_token,
+            tag=tag,
             use_relative_includes=use_relative_includes,
             )
         lilypond_file.header_block.tagline = False

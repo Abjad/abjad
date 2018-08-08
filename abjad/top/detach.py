@@ -22,7 +22,7 @@ def detach(argument, target=None, by_id=False):
             \new Staff
             {
                 c'4
-                -\accent
+                - \accent
                 d'4
                 e'4
                 f'4

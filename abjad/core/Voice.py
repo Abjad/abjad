@@ -1,3 +1,4 @@
+import typing
 from .Context import Context
 
 
@@ -36,14 +37,40 @@ class Voice(Context):
     def __init__(
         self,
         components=None,
-        lilypond_type='Voice',
-        is_simultaneous=None,
-        name=None,
-        ):
+        lilypond_type: str = 'Voice',
+        is_simultaneous: bool = None,
+        name: str = None,
+        tag: str = None,
+        ) -> None:
         Context.__init__(
             self,
             components=components,
             lilypond_type=lilypond_type,
             is_simultaneous=is_simultaneous,
             name=name,
+            tag=tag,
             )
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def tag(self) -> typing.Optional[str]:
+        r"""
+        Gets tag.
+
+        ..  container:: example
+
+            >>> voice = abjad.Voice("c'4 d' e' f'", tag='RED')
+            >>> abjad.show(voice) # doctest: +SKIP
+
+            >>> abjad.f(voice, strict=20)
+            \new Voice          %! RED
+            {                   %! RED
+                c'4
+                d'4
+                e'4
+                f'4
+            }                   %! RED
+
+        """
+        return super().tag

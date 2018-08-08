@@ -14,74 +14,74 @@ class GroupedStavesScoreTemplate(ScoreTemplate):
 
         ..  docs::
 
-            >>> abjad.f(template.__illustrate__()[abjad.Score])
-            \context Score = "Grouped Staves Score"
-            <<
-                \context StaffGroup = "Grouped Staves Staff Group"
-                <<
-                    \context Staff = "Staff 1"
-                    {
-                        \context Voice = "Voice 1"
-                        {
-                            s1
-                        }
-                    }
-                    \context Staff = "Staff 2"
-                    {
-                        \context Voice = "Voice 2"
-                        {
-                            s1
-                        }
-                    }
-                    \context Staff = "Staff 3"
-                    {
-                        \context Voice = "Voice 3"
-                        {
-                            s1
-                        }
-                    }
-                    \context Staff = "Staff 4"
-                    {
-                        \context Voice = "Voice 4"
-                        {
-                            s1
-                        }
-                    }
-                >>
-            >>
+            >>> abjad.f(template.__illustrate__()[abjad.Score], strict=60)
+            \context Score = "Grouped Staves Score"                     %! GroupedStavesScoreTemplate
+            <<                                                          %! GroupedStavesScoreTemplate
+                \context StaffGroup = "Grouped Staves Staff Group"      %! GroupedStavesScoreTemplate
+                <<                                                      %! GroupedStavesScoreTemplate
+                    \context Staff = "Staff 1"                          %! GroupedStavesScoreTemplate
+                    {                                                   %! GroupedStavesScoreTemplate
+                        \context Voice = "Voice 1"                      %! GroupedStavesScoreTemplate
+                        {                                               %! GroupedStavesScoreTemplate
+                            s1                                          %! ScoreTemplate.__illustrate__
+                        }                                               %! GroupedStavesScoreTemplate
+                    }                                                   %! GroupedStavesScoreTemplate
+                    \context Staff = "Staff 2"                          %! GroupedStavesScoreTemplate
+                    {                                                   %! GroupedStavesScoreTemplate
+                        \context Voice = "Voice 2"                      %! GroupedStavesScoreTemplate
+                        {                                               %! GroupedStavesScoreTemplate
+                            s1                                          %! ScoreTemplate.__illustrate__
+                        }                                               %! GroupedStavesScoreTemplate
+                    }                                                   %! GroupedStavesScoreTemplate
+                    \context Staff = "Staff 3"                          %! GroupedStavesScoreTemplate
+                    {                                                   %! GroupedStavesScoreTemplate
+                        \context Voice = "Voice 3"                      %! GroupedStavesScoreTemplate
+                        {                                               %! GroupedStavesScoreTemplate
+                            s1                                          %! ScoreTemplate.__illustrate__
+                        }                                               %! GroupedStavesScoreTemplate
+                    }                                                   %! GroupedStavesScoreTemplate
+                    \context Staff = "Staff 4"                          %! GroupedStavesScoreTemplate
+                    {                                                   %! GroupedStavesScoreTemplate
+                        \context Voice = "Voice 4"                      %! GroupedStavesScoreTemplate
+                        {                                               %! GroupedStavesScoreTemplate
+                            s1                                          %! ScoreTemplate.__illustrate__
+                        }                                               %! GroupedStavesScoreTemplate
+                    }                                                   %! GroupedStavesScoreTemplate
+                >>                                                      %! GroupedStavesScoreTemplate
+            >>                                                          %! GroupedStavesScoreTemplate
 
         >>> score = template()
-        >>> abjad.f(score)
-        \context Score = "Grouped Staves Score"
-        <<
-            \context StaffGroup = "Grouped Staves Staff Group"
-            <<
-                \context Staff = "Staff 1"
-                {
-                    \context Voice = "Voice 1"
-                    {
-                    }
-                }
-                \context Staff = "Staff 2"
-                {
-                    \context Voice = "Voice 2"
-                    {
-                    }
-                }
-                \context Staff = "Staff 3"
-                {
-                    \context Voice = "Voice 3"
-                    {
-                    }
-                }
-                \context Staff = "Staff 4"
-                {
-                    \context Voice = "Voice 4"
-                    {
-                    }
-                }
-            >>
-        >>
+        >>> abjad.f(score, strict=60)
+        \context Score = "Grouped Staves Score"                     %! GroupedStavesScoreTemplate
+        <<                                                          %! GroupedStavesScoreTemplate
+            \context StaffGroup = "Grouped Staves Staff Group"      %! GroupedStavesScoreTemplate
+            <<                                                      %! GroupedStavesScoreTemplate
+                \context Staff = "Staff 1"                          %! GroupedStavesScoreTemplate
+                {                                                   %! GroupedStavesScoreTemplate
+                    \context Voice = "Voice 1"                      %! GroupedStavesScoreTemplate
+                    {                                               %! GroupedStavesScoreTemplate
+                    }                                               %! GroupedStavesScoreTemplate
+                }                                                   %! GroupedStavesScoreTemplate
+                \context Staff = "Staff 2"                          %! GroupedStavesScoreTemplate
+                {                                                   %! GroupedStavesScoreTemplate
+                    \context Voice = "Voice 2"                      %! GroupedStavesScoreTemplate
+                    {                                               %! GroupedStavesScoreTemplate
+                    }                                               %! GroupedStavesScoreTemplate
+                }                                                   %! GroupedStavesScoreTemplate
+                \context Staff = "Staff 3"                          %! GroupedStavesScoreTemplate
+                {                                                   %! GroupedStavesScoreTemplate
+                    \context Voice = "Voice 3"                      %! GroupedStavesScoreTemplate
+                    {                                               %! GroupedStavesScoreTemplate
+                    }                                               %! GroupedStavesScoreTemplate
+                }                                                   %! GroupedStavesScoreTemplate
+                \context Staff = "Staff 4"                          %! GroupedStavesScoreTemplate
+                {                                                   %! GroupedStavesScoreTemplate
+                    \context Voice = "Voice 4"                      %! GroupedStavesScoreTemplate
+                    {                                               %! GroupedStavesScoreTemplate
+                    }                                               %! GroupedStavesScoreTemplate
+                }                                                   %! GroupedStavesScoreTemplate
+            >>                                                      %! GroupedStavesScoreTemplate
+        >>                                                          %! GroupedStavesScoreTemplate
 
     """
 
@@ -107,25 +107,30 @@ class GroupedStavesScoreTemplate(ScoreTemplate):
         """
         import abjad
         staves = []
+        tag = 'GroupedStavesScoreTemplate'
         for index in range(self.staff_count):
             number = index + 1
             voice = abjad.Voice(
                 [],
                 name='Voice {}'.format(number),
+                tag=tag,
                 )
             staff = abjad.Staff(
                 [voice],
                 name='Staff {}'.format(number),
+                tag=tag,
                 )
             staves.append(staff)
             self.voice_abbreviations['v{}'.format(number)] = voice.name
         staff_group = abjad.StaffGroup(
             staves,
             name='Grouped Staves Staff Group',
+            tag=tag,
             )
         score = abjad.Score(
             [staff_group],
             name='Grouped Staves Score',
+            tag=tag,
             )
         return score
 

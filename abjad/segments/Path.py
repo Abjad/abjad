@@ -1141,7 +1141,9 @@ class Path(pathlib.PosixPath):
 
     def extern(
         self,
+        *,
         include_path: 'Path' = None,
+        realign: int = None,
         score_path: 'Path' = None,
         ) -> None:
         """
@@ -1175,7 +1177,8 @@ class Path(pathlib.PosixPath):
                     preamble_lines.append(line)
                 elif ' %*% ' in line:
                     words = line.split()
-                    name = words[-1]
+                    site = words.index('%*%')
+                    name = words[site + 1]
                     # first line in expression:
                     if name not in stack:
                         stack[name] = []
@@ -1187,7 +1190,13 @@ class Path(pathlib.PosixPath):
                         del(stack[name])
                         count = len(line) - len(line.lstrip())
                         indent = count * ' '
-                        dereference = indent + fr'\{name}' + '\n'
+                        dereference = indent + fr'\{name}'
+                        strings = LilyPondFormatManager.tag(
+                            [dereference],
+                            tag='extern',
+                            )
+                        dereference = strings[0]
+                        dereference = dereference + '\n'
                         if bool(stack):
                             items = list(stack.items())
                             items[-1][-1].append(dereference)
@@ -1211,7 +1220,11 @@ class Path(pathlib.PosixPath):
         preamble_lines.append('\n')
         lines.extend(preamble_lines)
         lines.extend(score_lines)
-        text = ''.join(lines)
+        lines_ = []
+        for line in lines:
+            line_ = LilyPondFormatManager.align_tags(line, n=realign)
+            lines_.append(line_)
+        text = ''.join(lines_)
         score_path.write_text(text)
         lines = []
         items = list(finished_variables.items())
@@ -1223,8 +1236,8 @@ class Path(pathlib.PosixPath):
             first_line = first_line[count:]
             first_line = f'{name} = {first_line}'
             words = first_line.split()
-            assert words[-2] == '%*%', repr(words)
-            first_line = ' '.join(words[:-2]) + '\n'
+            site = words.index('%*%')
+            first_line = ' '.join(words[:site]) + '\n'
             lines.append(first_line)
             for variable_line in variable_lines[1:]:
                 assert variable_line[:count].isspace(), repr(line)
@@ -1232,12 +1245,18 @@ class Path(pathlib.PosixPath):
                 lines.append(variable_line)
             last_line = lines[-1]
             words = last_line.split()
-            assert words[-2] == '%*%', repr(words)
-            last_line = ' '.join(words[:-2]) + '\n'
+            site = words.index('%*%')
+            last_line = ' '.join(words[:site]) + '\n'
             lines[-1] = last_line
             if i < total - 1:
                 lines.append('\n')
                 lines.append('\n')
+        if realign is not None:
+            lines_ = []
+            for line in lines:
+                line_ = LilyPondFormatManager.align_tags(line, n=realign)
+                lines_.append(line_)
+            lines = lines_
         text = ''.join(lines)
         include_path.write_text(text)
 

@@ -1,6 +1,6 @@
 import copy
-from .Context import Context
-
+import typing
+from .Context import Context 
 
 class Score(Context):
     r"""
@@ -49,17 +49,51 @@ class Score(Context):
     def __init__(
         self,
         components=None,
-        lilypond_type='Score',
-        is_simultaneous=True,
-        name=None,
-        ):
+        lilypond_type: str = 'Score',
+        is_simultaneous: bool = True,
+        name: str = None,
+        tag: str = None,
+        ) -> None:
         Context.__init__(
             self,
             components=components,
             lilypond_type=lilypond_type,
             is_simultaneous=is_simultaneous,
             name=name,
+            tag=tag,
             )
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def tag(self) -> typing.Optional[str]:
+        r"""
+        Gets tag.
+
+        ..  container:: example
+
+            >>> voice = abjad.Voice("c'4 d' e' f'", tag='RED')
+            >>> staff = abjad.Staff([voice], tag='BLUE')
+            >>> score = abjad.Score([staff], tag='GREEN')
+            >>> abjad.show(score) # doctest: +SKIP
+
+            >>> abjad.f(score, strict=20)
+            \new Score          %! GREEN
+            <<                  %! GREEN
+                \new Staff      %! BLUE
+                {               %! BLUE
+                    \new Voice  %! RED
+                    {           %! RED
+                        c'4
+                        d'4
+                        e'4
+                        f'4
+                    }           %! RED
+                }               %! BLUE
+            >>                  %! GREEN
+
+        """
+        return super().tag
 
     ### PUBLIC METHODS ###
 
@@ -105,7 +139,7 @@ class Score(Context):
                     d'4
                     e'4
                     f'4
-                    \bar "|." %! SCORE1
+                    \bar "|." %! SCORE_1
                 }
             >>
 
@@ -117,11 +151,11 @@ class Score(Context):
         bar_line = abjad.BarLine(abbreviation)
         if not to_each_voice:
             last_leaf = abjad.inspect(self).leaf(-1)
-            abjad.attach(bar_line, last_leaf, tag='SCORE1')
+            abjad.attach(bar_line, last_leaf, tag='SCORE_1')
         else:
             for voice in abjad.iterate(self).components(abjad.Voice):
                 last_leaf = abjad.inspect(voice).leaf(-1)
-                abjad.attach(bar_line, last_leaf, tag='SCORE1')
+                abjad.attach(bar_line, last_leaf, tag='SCORE_1')
         return bar_line
 
     def add_final_markup(self, markup, extra_offset=None):
@@ -156,14 +190,14 @@ class Score(Context):
                         e'4
                         \once \override TextScript.extra-offset = #'(0.5 . -2)
                         f'4
-                        _ \markup { %! SCORE2
-                            \italic %! SCORE2
-                                \right-column %! SCORE2
-                                    { %! SCORE2
-                                        "Bremen - Boston - LA." %! SCORE2
-                                        "July 2010 - May 2011." %! SCORE2
-                                    } %! SCORE2
-                            } %! SCORE2
+                        _ \markup {                             %! SCORE_2
+                            \italic                             %! SCORE_2
+                                \right-column                   %! SCORE_2
+                                    {                           %! SCORE_2
+                                        "Bremen - Boston - LA." %! SCORE_2
+                                        "July 2010 - May 2011." %! SCORE_2
+                                    }                           %! SCORE_2
+                            }                                   %! SCORE_2
                     }
                 >>
 
@@ -203,14 +237,14 @@ class Score(Context):
                         f'4
                         \once \override MultiMeasureRestText.extra-offset = #'(14.5 . -2)
                         R1
-                        _ \markup { %! SCORE2
-                            \italic %! SCORE2
-                                \right-column %! SCORE2
-                                    { %! SCORE2
-                                        "Bremen - Boston - LA." %! SCORE2
-                                        "July 2010 - May 2011." %! SCORE2
-                                    } %! SCORE2
-                            } %! SCORE2
+                        _ \markup {                             %! SCORE_2
+                            \italic                             %! SCORE_2
+                                \right-column                   %! SCORE_2
+                                    {                           %! SCORE_2
+                                        "Bremen - Boston - LA." %! SCORE_2
+                                        "July 2010 - May 2011." %! SCORE_2
+                                    }                           %! SCORE_2
+                            }                                   %! SCORE_2
                     }
                 >>
 
@@ -220,7 +254,7 @@ class Score(Context):
         selection = abjad.select(self)
         last_leaf = selection._get_component(abjad.Leaf, -1)
         markup = copy.copy(markup)
-        abjad.attach(markup, last_leaf, tag='SCORE2')
+        abjad.attach(markup, last_leaf, tag='SCORE_2')
         if extra_offset is not None:
             if isinstance(last_leaf, abjad.MultimeasureRest):
                 grob_proxy = abjad.override(last_leaf).multi_measure_rest_text

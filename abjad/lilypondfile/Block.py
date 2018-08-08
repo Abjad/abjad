@@ -173,7 +173,7 @@ class Block(AbjadObject):
             result.extend(pieces)
         return result
 
-    def _get_format_pieces(self):
+    def _get_format_pieces(self, tag=None):
         import abjad
         indent = LilyPondFormatManager.indent
         result = []
@@ -187,6 +187,12 @@ class Block(AbjadObject):
             result.append(string)
             return result
         string = '{} {{'.format(self._escaped_name)
+        if tag is not None:
+            strings = LilyPondFormatManager.tag(
+                [string],
+                tag=tag,
+                )
+            string = strings[0]
         result.append(string)
         for item in self.items:
             if isinstance(item, abjad.ContextBlock):
@@ -202,7 +208,15 @@ class Block(AbjadObject):
         formatted_context_blocks = [
             indent + _ for _ in formatted_context_blocks]
         result.extend(formatted_context_blocks)
-        result.append('}')
+        string = '}'
+        if tag is not None:
+            strings = LilyPondFormatManager.tag(
+                [string],
+                tag=tag,
+                )
+            string = strings[0]
+        result.append(string)
+
         return result
 
     def _get_format_specification(self):
@@ -216,7 +230,6 @@ class Block(AbjadObject):
     def _get_formatted_user_attributes(self):
         import abjad
         result = []
-        #prototype = (abjad.Scheme, abjad.LilyPondLiteral)
         prototype = abjad.Scheme
         for value in self.items:
             if isinstance(value, prototype):
@@ -224,7 +237,6 @@ class Block(AbjadObject):
         prototype = (
             abjad.Scheme,
             abjad.LilyPondDimension,
-            #abjad.LilyPondLiteral,
             )
         for key in self._public_attribute_names:
             assert not key.startswith('_'), repr(key)
@@ -246,17 +258,13 @@ class Block(AbjadObject):
                 formatted_value = abjad.Scheme(value)
                 formatted_value = format(formatted_value, 'lilypond')
                 formatted_value = [formatted_value]
-            setting = '{!s} = {!s}'
-            setting = setting.format(
-                formatted_key,
-                formatted_value[0],
-                )
+            setting = f'{formatted_key!s} = {formatted_value[0]!s}'
             result.append(setting)
             result.extend(formatted_value[1:])
         return result
 
-    def _get_lilypond_format(self):
-        return '\n'.join(self._get_format_pieces())
+    def _get_lilypond_format(self, tag=None):
+        return '\n'.join(self._get_format_pieces(tag=tag))
 
     ### PUBLIC PROPERTIES ###
 

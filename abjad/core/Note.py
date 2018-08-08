@@ -1,5 +1,9 @@
 import copy
+import typing
+from abjad import instruments
 from abjad.pitch.NamedPitch import NamedPitch
+from abjad.top.inspect import inspect
+from abjad.top.parse import parse
 from abjad.utilities.Duration import Duration
 from .DrumNoteHead import DrumNoteHead
 from .Leaf import Leaf
@@ -20,7 +24,6 @@ class Note(Leaf):
             >>> abjad.f(note)
             cs''8.
 
-
     """
 
     ### CLASS VARIABLES ###
@@ -33,15 +36,14 @@ class Note(Leaf):
 
     ### INITIALIZER ###
 
-    def __init__(self, *arguments):
-        import abjad
+    def __init__(self, *arguments, tag: str = None) -> None:
         from abjad.ly import drums
         assert len(arguments) in (0, 1, 2)
         if len(arguments) == 1 and isinstance(arguments[0], str):
             string = '{{ {} }}'.format(arguments[0])
-            parsed = abjad.parse(string)
+            parsed = parse(string)
             assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
-            arguments = [parsed[0]]
+            arguments = tuple([parsed[0]])
         is_cautionary = False
         is_forced = False
         is_parenthesized = False
@@ -67,9 +69,8 @@ class Note(Leaf):
             written_pitch = 'C4'
             written_duration = Duration(1, 4)
         else:
-            message = 'can not initialize note from {!r}.'
-            raise ValueError(message.format(arguments))
-        Leaf.__init__(self, written_duration)
+            raise ValueError('can not initialize note from {arguments!r}.')
+        Leaf.__init__(self, written_duration, tag=tag)
         if written_pitch is not None:
             if written_pitch not in drums:
                 self.note_head = NoteHead(
@@ -86,17 +87,15 @@ class Note(Leaf):
                     is_parenthesized=is_parenthesized,
                     )
         else:
-            self.note_head = None
+            self._note_head = None
         if len(arguments) == 1 and isinstance(arguments[0], Leaf):
             self._copy_override_and_set_from_leaf(arguments[0])
 
     ### SPECIAL METHODS ###
 
-    def __getnewargs__(self):
+    def __getnewargs__(self) -> typing.Tuple:
         """
         Gets new arguments.
-
-        Returns tuple.
         """
         return (self.written_pitch, self.written_duration)
 
@@ -118,16 +117,15 @@ class Note(Leaf):
     def _get_compact_representation_with_tie(self):
         logical_tie = self._get_logical_tie()
         if 1 < len(logical_tie) and self is not logical_tie[-1]:
-            return '{} ~'.format(self._get_body()[0])
+            return f'{self._get_body()[0]} ~'
         else:
             return self._get_body()[0]
 
     def _get_sounding_pitch(self):
-        import abjad
-        if 'sounding pitch' in abjad.inspect(self).indicators(str):
+        if 'sounding pitch' in inspect(self).indicators(str):
             return self.written_pitch
         else:
-            instrument = self._get_effective(abjad.Instrument)
+            instrument = self._get_effective(instruments.Instrument)
             if instrument:
                 sounding_pitch = instrument.middle_c_sounding_pitch
             else:
@@ -139,7 +137,7 @@ class Note(Leaf):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def note_head(self) -> NoteHead:
+    def note_head(self) -> typing.Optional[NoteHead]:
         """
         Gets and sets note-head.
 
@@ -209,7 +207,6 @@ class Note(Leaf):
                 >>> abjad.f(note)
                 cs''16
 
-        Returns duration
         """
         return Leaf.written_duration.fget(self)
 
@@ -218,7 +215,7 @@ class Note(Leaf):
         return Leaf.written_duration.fset(self, argument)
 
     @property
-    def written_pitch(self) -> NamedPitch:
+    def written_pitch(self) -> typing.Optional[NamedPitch]:
         """
         Gets and sets written pitch.
 
@@ -246,7 +243,6 @@ class Note(Leaf):
                 >>> abjad.f(note)
                 d''8.
 
-        Returns named pitch.
         """
         if self.note_head is not None:
             return self.note_head.written_pitch

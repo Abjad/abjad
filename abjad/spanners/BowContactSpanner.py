@@ -83,7 +83,7 @@ class BowContactSpanner(Spanner):
                     }
                 \clef "percussion"
                 c'4.
-                ^\downbow
+                ^ \downbow
                 \glissando
                 \once \override NoteHead.Y-offset = 1.0
                 \once \override NoteHead.stencil = #ly:text-interface::print
@@ -95,7 +95,7 @@ class BowContactSpanner(Spanner):
                                 4
                     }
                 c'8
-                ^\upbow
+                ^ \upbow
                 \glissando
                 \times 2/3 {
                     \once \override NoteHead.Y-offset = 0.0
@@ -108,7 +108,7 @@ class BowContactSpanner(Spanner):
                                     2
                         }
                     c'4
-                    ^\downbow
+                    ^ \downbow
                     \glissando
                     \once \override Glissando.style = #'zigzag
                     \once \override NoteHead.Y-offset = 2.0
@@ -121,7 +121,7 @@ class BowContactSpanner(Spanner):
                                     1
                         }
                     c'4
-                    ^\upbow
+                    ^ \upbow
                     \glissando
                     \once \override NoteHead.Y-offset = -2.0
                     \once \override NoteHead.stencil = #ly:text-interface::print
@@ -199,7 +199,7 @@ class BowContactSpanner(Spanner):
                                 4
                     }
                 c'4
-                ^\upbow
+                ^ \upbow
                 \glissando
                 \once \override NoteHead.Y-offset = 0.0
                 \once \override NoteHead.stencil = #ly:text-interface::print

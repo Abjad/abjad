@@ -1558,6 +1558,9 @@ class String(str):
             >>> abjad.String.to_indicator_stem(abjad.Dynamic('f'))
             'DYNAMIC'
 
+            >>> abjad.String.to_indicator_stem(abjad.DynamicTrend('<'))
+            'DYNAMIC'
+
             >>> abjad.String.to_indicator_stem(abjad.Cello())
             'INSTRUMENT'
 
@@ -1581,6 +1584,8 @@ class String(str):
         assert getattr(indicator, 'persistent', False), repr(indicator)
         if isinstance(indicator, Instrument):
             stem = 'INSTRUMENT'
+        elif getattr(indicator, 'parameter', None) == 'TEMPO':
+            stem = 'METRONOME_MARK'
         elif hasattr(indicator, 'parameter'):
             stem = indicator.parameter
         else:

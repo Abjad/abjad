@@ -3,11 +3,22 @@ import typing
 import uqbar.graphs
 from abjad import enums
 from abjad import exceptions
+from abjad import mathtools
+from abjad import rhythmtrees
+from abjad.indicators.TimeSignature import TimeSignature
+from abjad.mathtools.NonreducedFraction import NonreducedFraction
+from abjad.system.FormatSpecification import FormatSpecification
+from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.top.inspect import inspect
 from abjad.top.iterate import iterate
+from abjad.top.mutate import mutate
+from abjad.top.parse import parse
 from abjad.top.select import select
 from abjad.utilities.Duration import Duration
+from abjad.utilities.Sequence import Sequence
 from .Component import Component
+from .Leaf import Leaf
+from .Note import Note
 from .Selection import Selection
 
 
@@ -142,7 +153,7 @@ class Container(Component):
         {
             c'4
             :16
-            -\marcato
+            - \marcato
             ^ \markup { Allegro }
             d'4
             e'4
@@ -172,9 +183,10 @@ class Container(Component):
         identifier: str = None,
         is_simultaneous: bool = None,
         name: str = None,
+        tag: str = None,
         ) -> None:
         components = components or []
-        Component.__init__(self)
+        Component.__init__(self, tag=tag)
         self._named_children: dict = {}
         self._is_simultaneous = None
         self._initialize_components(components)
@@ -316,7 +328,7 @@ class Container(Component):
         """
         Gets new container arguments.
         """
-        return [], self.identifier, self.is_simultaneous, self.name
+        return [], self.identifier, self.is_simultaneous, self.name, self.tag
 
     def __graph__(self, spanner=None, **keywords):
         """
@@ -340,7 +352,7 @@ class Container(Component):
                 all_are_leaves = True
                 pending_node_order = []
                 for child in component:
-                    if not isinstance(child, abjad.Leaf):
+                    if not isinstance(child, Leaf):
                         all_are_leaves = False
                     child_node, child_node_order = recurse(
                         child, this_leaf_cluster)
@@ -356,7 +368,6 @@ class Container(Component):
                 leaf_cluster.append(component_node)
             return component_node, node_order
 
-        import abjad
         node_order = []
         node_mapping = {}
         graph = uqbar.graphs.Graph(
@@ -380,7 +391,7 @@ class Container(Component):
         graph._node_order = node_order
 
         if spanner:
-            pairs = abjad.sequence(spanner.leaves).nwise()
+            pairs = Sequence(spanner.leaves).nwise()
             for component_one, component_two in pairs:
                 node_one = node_mapping[component_one]
                 node_two = node_mapping[component_two]
@@ -397,7 +408,7 @@ class Container(Component):
                 table.attributes['border'] = 4
                 table.attributes['bgcolor'] = 'grey80'
                 if isinstance(component, Container):
-                    for child in abjad.iterate(component)._depth_first():
+                    for child in iterate(component)._depth_first():
                         if child is component:
                             continue
                         node = node_mapping[child]
@@ -477,7 +488,6 @@ class Container(Component):
             )
 
     def _as_graphviz_node(self):
-        import abjad
         node = Component._as_graphviz_node(self)
         node[0].append(
             uqbar.graphs.TableRow([
@@ -533,6 +543,11 @@ class Container(Component):
                 brackets_close = [f'}}   {self.identifier}']
             else:
                 brackets_close = ['}']
+        if self.tag is not None:
+            brackets_close = LilyPondFormatManager.tag(
+                brackets_close,
+                tag=self.tag,
+                )
         result.append([('close brackets', ''), brackets_close])
         return tuple(result)
 
@@ -544,8 +559,7 @@ class Container(Component):
         return self._format_slot_contributions_with_indent(result)
 
     def _format_content_pieces(self):
-        import abjad
-        indent = abjad.LilyPondFormatManager.indent
+        indent = LilyPondFormatManager.indent
         result = []
         for component in self.components:
             string = component.__format__(
@@ -577,6 +591,11 @@ class Container(Component):
                 brackets_open = [f'{{   {self.identifier}']
             else:
                 brackets_open = ['{']
+        if self.tag is not None:
+            brackets_open = LilyPondFormatManager.tag(
+                brackets_open,
+                tag=self.tag,
+                )
         result.append([('open brackets', ''), brackets_open])
         return tuple(result)
 
@@ -589,8 +608,7 @@ class Container(Component):
         return self._format_slot_contributions_with_indent(result)
 
     def _format_slot_contributions_with_indent(self, slot):
-        import abjad
-        indent = abjad.LilyPondFormatManager.indent
+        indent = LilyPondFormatManager.indent
         result = []
         for contributor, contributions in slot:
             result.append(
@@ -674,7 +692,6 @@ class Container(Component):
             return duration
 
     def _get_format_specification(self):
-        import abjad
         repr_text = None
         repr_args_values = []
         repr_kwargs_names = self._get_repr_kwargs_names()
@@ -688,7 +705,7 @@ class Container(Component):
             storage_format_args_values.append(lilypond_format)
             if not self[:].are_leaves():
                 repr_text = self._get_abbreviated_string_format()
-        return abjad.FormatSpecification(
+        return FormatSpecification(
             client=self,
             repr_args_values=repr_args_values,
             repr_kwargs_names=repr_kwargs_names,
@@ -825,14 +842,14 @@ class Container(Component):
         return recurse(self)
 
     def _iterate_topmost(self):
-        import abjad
+        from abjad.spanners.Tie import Tie
         for component in self:
-            if isinstance(component, abjad.Leaf):
-                ties = inspect(component).spanners(abjad.Tie)
+            if isinstance(component, Leaf):
+                ties = inspect(component).spanners(Tie)
                 if not ties or tuple(ties)[0].leaves[-1] is component:
                     yield inspect(component).logical_tie()
             else:
-                assert isinstance(component, abjad.Container)
+                assert isinstance(component, Container)
                 yield component
 
     def _move_spanners_to_children(self):
@@ -845,10 +862,11 @@ class Container(Component):
         return self
 
     def _parse_string(self, string):
-        import abjad
+        from abjad.parser.ReducedLyParser import ReducedLyParser
+        from abjad.lilypondfile.LilyPondFile import LilyPondFile
         user_input = string.strip()
         if user_input.startswith('abj:'):
-            parser = abjad.parser.ReducedLyParser()
+            parser = ReducedLyParser()
             parsed = parser(user_input[4:])
             if parser._toplevel_component_count == 1:
                 parent = inspect(parsed).parentage().parent
@@ -857,15 +875,15 @@ class Container(Component):
                 else:
                     parsed = parent
         elif user_input.startswith('rtm:'):
-            parsed = abjad.rhythmtrees.parse_rtm_syntax(user_input[4:])
+            parsed = rhythmtrees.parse_rtm_syntax(user_input[4:])
         else:
             if (
                 not user_input.startswith('<<') or
                 not user_input.endswith('>>')
                 ):
                 user_input = '{{ {} }}'.format(user_input)
-            parsed = abjad.parse(user_input)
-            if isinstance(parsed, abjad.LilyPondFile):
+            parsed = parse(user_input)
+            if isinstance(parsed, LilyPondFile):
                 parsed = Container(parsed.items[:])
             assert isinstance(parsed, Container)
         return parsed
@@ -900,9 +918,9 @@ class Container(Component):
 
         Only private methods should set this keyword.
         """
-        import abjad
+        from .GraceContainer import GraceContainer
         argument_indicators = []
-        for component in abjad.iterate(argument).components():
+        for component in iterate(argument).components():
             wrappers = inspect(component).wrappers()
             argument_indicators.extend(wrappers)
         if isinstance(i, int):
@@ -919,10 +937,9 @@ class Container(Component):
             else:
                 new_argument.append(item)
         argument = new_argument
-        assert all(isinstance(_, abjad.Component) for _ in argument)
-        if any(isinstance(_, abjad.GraceContainer) for _ in argument):
-            message = 'must attach grace container to note or chord.'
-            raise Exception(message)
+        assert all(isinstance(_, Component) for _ in argument)
+        if any(isinstance(_, GraceContainer) for _ in argument):
+            raise Exception('must attach grace container to note or chord.')
         if self._check_for_cycles(argument):
             raise exceptions.ParentageError('attempted to induce cycles.')
         if (i.start == i.stop and
@@ -935,7 +952,7 @@ class Container(Component):
         old_components = self[start:stop]
         spanners_receipt = self._get_spanners_that_dominate_slice(start, stop)
         for component in old_components:
-            for child in abjad.iterate([component]).components():
+            for child in iterate([component]).components():
                 for spanner in inspect(child).spanners():
                     spanner._remove(child)
         del(self[start:stop])
@@ -971,39 +988,40 @@ class Container(Component):
 
         Returns split parts.
         """
-        import abjad
+        from .Measure import Measure
+        from .Tuplet import Tuplet
         # partition my components
         left_components = self[:i]
         right_components = self[i:]
         # instantiate new left and right containers
-        if isinstance(self, abjad.Measure):
-            time_signature = self._get_effective(abjad.TimeSignature)
+        if isinstance(self, Measure):
+            time_signature = self._get_effective(TimeSignature)
             denominator = time_signature.denominator
             left_duration = sum([_._get_duration() for _ in left_components])
-            left_pair = abjad.NonreducedFraction(left_duration)
+            left_pair = NonreducedFraction(left_duration)
             left_pair = left_pair.with_multiple_of_denominator(denominator)
-            left_time_signature = abjad.TimeSignature(left_pair)
+            left_time_signature = TimeSignature(left_pair)
             left = type(self)(left_time_signature, [])
-            abjad.mutate(left_components).wrap(left)
+            mutate(left_components).wrap(left)
             left.implicit_scaling = self.implicit_scaling
             right_duration = sum([_._get_duration() for _ in right_components])
-            right_pair = abjad.NonreducedFraction(right_duration)
+            right_pair = NonreducedFraction(right_duration)
             right_pair = right_pair.with_multiple_of_denominator(denominator)
-            right_time_signature = abjad.TimeSignature(right_pair)
+            right_time_signature = TimeSignature(right_pair)
             right = type(self)(right_time_signature, [])
-            abjad.mutate(right_components).wrap(right)
+            mutate(right_components).wrap(right)
             right.implicit_scaling = self.implicit_scaling
-        elif isinstance(self, abjad.Tuplet):
+        elif isinstance(self, Tuplet):
             multiplier = self.multiplier
             left = type(self)(multiplier, [])
-            abjad.mutate(left_components).wrap(left)
+            mutate(left_components).wrap(left)
             right = type(self)(multiplier, [])
-            abjad.mutate(right_components).wrap(right)
+            mutate(right_components).wrap(right)
         else:
             left = self.__copy__()
-            abjad.mutate(left_components).wrap(left)
+            mutate(left_components).wrap(left)
             right = self.__copy__()
-            abjad.mutate(right_components).wrap(right)
+            mutate(right_components).wrap(right)
         # save left and right containers together for iteration
         halves = (left, right)
         nonempty_halves = [half for half in halves if len(half)]
@@ -1034,7 +1052,7 @@ class Container(Component):
         tie_split_notes=True,
         repeat_ties=False,
         ):
-        import abjad
+        from .Measure import Measure
         if self.is_simultaneous:
             return self._split_simultaneous_by_duration(
                 duration=duration,
@@ -1063,7 +1081,7 @@ class Container(Component):
         # get any duration-crossing measure descendents
         measures = [
             _ for _ in duration_crossing_descendants
-            if isinstance(_, abjad.Measure)
+            if isinstance(_, Measure)
             ]
         # if we must split a power-of-two measure at non-power-of-two
         # split point then go ahead and transform the power-of-two measure
@@ -1076,12 +1094,12 @@ class Container(Component):
             split_point_in_measure = global_split_point - start_offset
             if measure.has_non_power_of_two_denominator:
                 pass
-            elif not abjad.mathtools.is_nonnegative_integer_power_of_two(
+            elif not mathtools.is_nonnegative_integer_power_of_two(
                 split_point_in_measure.denominator):
                 non_power_of_two_factors = self._remove_powers_of_two(
                     split_point_in_measure.denominator
                     )
-                non_power_of_two_factors = abjad.mathtools.factors(
+                non_power_of_two_factors = mathtools.factors(
                     non_power_of_two_factors)
                 non_power_of_two_product = 1
                 for non_power_of_two_factor in non_power_of_two_factors:
@@ -1098,14 +1116,13 @@ class Container(Component):
                     if start_offset < cross_offset < stop_offset:
                         duration_crossing_descendants.append(descendant)
         elif 1 < len(measures):
-            message = 'measures can not nest.'
-            raise Exception(message)
+            raise Exception('measures can not nest.')
         # any duration-crossing leaf will be at end of list
         bottom = duration_crossing_descendants[-1]
         did_split_leaf = False
         # if split point necessitates leaf split
-        if isinstance(bottom, abjad.Leaf):
-            assert isinstance(bottom, abjad.Leaf)
+        if isinstance(bottom, Leaf):
+            assert isinstance(bottom, Leaf)
             did_split_leaf = True
             timespan = inspect(bottom).timespan()
             start_offset = timespan.start_offset
@@ -1127,7 +1144,7 @@ class Container(Component):
         # in order to start upward crawl through duration-crossing containers
         else:
             duration_crossing_containers = duration_crossing_descendants[:]
-            for leaf in abjad.iterate(bottom).leaves():
+            for leaf in iterate(bottom).leaves():
                 timespan = inspect(leaf).timespan()
                 if timespan.start_offset == global_split_point:
                     leaf_right_of_split = leaf
@@ -1167,7 +1184,7 @@ class Container(Component):
         # crawl back up through duration-crossing containers and split each
         previous = highest_level_component_right_of_split
         for container in reversed(duration_crossing_containers):
-            assert isinstance(container, abjad.Container)
+            assert isinstance(container, Container)
             index = container.index(previous)
             left, right = container._split_at_index(
                 index,
@@ -1185,7 +1202,7 @@ class Container(Component):
         if did_split_leaf:
             if (
                 tie_split_notes and
-                isinstance(leaf_left_of_split, abjad.Note)
+                isinstance(leaf_left_of_split, Note)
                 ):
                 if (
                     inspect(leaf_left_of_split).parentage().root is
@@ -1209,7 +1226,6 @@ class Container(Component):
         tie_split_notes=True,
         repeat_ties=False,
         ):
-        import abjad
         assert self.is_simultaneous
         left_components, right_components = [], []
         for component in self[:]:
@@ -1230,7 +1246,7 @@ class Container(Component):
         right_container.extend(right_components)
         if inspect(self).parentage().parent is not None:
             containers = select([left_container, right_container])
-            abjad.mutate(self).replace(containers)
+            mutate(self).replace(containers)
         # return list-wrapped halves of container
         return [left_container], [right_container]
 

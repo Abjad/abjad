@@ -1,7 +1,9 @@
 import copy
+import typing
 from abjad.instruments import Instrument
 from abjad.lilypondnames.LilyPondContext import LilyPondContext
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
+from abjad.system.Wrapper import Wrapper
 from .Container import Container
 
 
@@ -69,19 +71,21 @@ class Context(Container):
     def __init__(
         self,
         components=None,
-        lilypond_type='Context',
-        is_simultaneous=None,
-        name=None,
-        ):
-        self._consists_commands = []
-        self._dependent_wrappers = []
-        self._remove_commands = []
+        lilypond_type: str = 'Context',
+        is_simultaneous: bool = None,
+        name: str  = None,
+        tag: str = None,
+        ) -> None:
+        self._consists_commands: typing.List[str] = []
+        self._dependent_wrappers: typing.List[Wrapper] = []
+        self._remove_commands: typing.List[str] = []
         self.lilypond_type = lilypond_type
         Container.__init__(
             self,
             is_simultaneous=is_simultaneous,
             components=components,
             name=name,
+            tag=tag,
             )
 
     ### SPECIAL METHODS ###
@@ -130,12 +134,12 @@ class Context(Container):
 
     ### PRIVATE METHODS ###
 
-    def _format_closing_slot(context, bundle):
+    def _format_closing_slot(self, bundle):
         result = []
         result.append(('indicators', bundle.closing.indicators))
         result.append(('commands', bundle.closing.commands))
         result.append(('comments', bundle.closing.comments))
-        return context._format_slot_contributions_with_indent(result)
+        return self._format_slot_contributions_with_indent(result)
 
     def _format_consists_commands(self):
         result = []
@@ -151,66 +155,73 @@ class Context(Container):
             string = rf'\new {self.lilypond_type}'
         return string
 
-    def _format_open_brackets_slot(context, bundle):
+    def _format_open_brackets_slot(self, bundle):
         indent = LilyPondFormatManager.indent
         result = []
-        if context.is_simultaneous:
-            if context.identifier:
-                open_bracket = f'<<  {context.identifier}'
+        if self.is_simultaneous:
+            if self.identifier:
+                open_bracket = f'<<  {self.identifier}'
             else:
                 open_bracket = '<<'
         else:
-            if context.identifier:
-                open_bracket = f'{{   {context.identifier}'
+            if self.identifier:
+                open_bracket = f'{{   {self.identifier}'
             else:
                 open_bracket = '{'
         brackets_open = [open_bracket]
-        remove_commands = context._format_remove_commands()
-        consists_commands = context._format_consists_commands()
+        remove_commands = self._format_remove_commands()
+        consists_commands = self._format_consists_commands()
         overrides = bundle.grob_overrides
         settings = bundle.context_settings
         if remove_commands or consists_commands or overrides or settings:
-            contributions = [context._format_invocation(), r'\with', '{']
+            contributions = [self._format_invocation(), r'\with', '{']
+            contributions = self._tag_strings(contributions)
             contributions = tuple(contributions)
             identifier_pair = ('context_brackets', 'open')
             result.append((identifier_pair, contributions))
             contributions = [indent + _ for _ in remove_commands]
+            contributions = self._tag_strings(contributions)
             contributions = tuple(contributions)
             identifier_pair = ('engraver removals', 'remove_commands')
             result.append((identifier_pair, contributions))
             contributions = [indent + _ for _ in consists_commands]
+            contributions = self._tag_strings(contributions)
             contributions = tuple(contributions)
             identifier_pair = ('engraver consists', 'consists_commands')
             result.append((identifier_pair, contributions))
             contributions = [indent + _ for _ in overrides]
+            contributions = self._tag_strings(contributions)
             contributions = tuple(contributions)
             identifier_pair = ('overrides', 'overrides')
             result.append((identifier_pair, contributions))
             contributions = [indent + _ for _ in settings]
+            contributions = self._tag_strings(contributions)
             contributions = tuple(contributions)
             identifier_pair = ('settings', 'settings')
             result.append((identifier_pair, contributions))
             contributions = ['}} {}'.format(brackets_open[0])]
             contributions = ['}', open_bracket]
+            contributions = self._tag_strings(contributions)
             contributions = tuple(contributions)
             identifier_pair = ('context_brackets', 'open')
             result.append((identifier_pair, contributions))
         else:
-            contribution = context._format_invocation()
+            contribution = self._format_invocation()
             contribution += ' {}'.format(brackets_open[0])
             contributions = [contribution]
-            contributions = [context._format_invocation(), open_bracket]
+            contributions = [self._format_invocation(), open_bracket]
+            contributions = self._tag_strings(contributions)
             contributions = tuple(contributions)
             identifier_pair = ('context_brackets', 'open')
             result.append((identifier_pair, contributions))
         return tuple(result)
 
-    def _format_opening_slot(context, bundle):
+    def _format_opening_slot(self, bundle):
         result = []
         result.append(('comments', bundle.opening.comments))
         result.append(('indicators', bundle.opening.indicators))
         result.append(('commands', bundle.opening.commands))
-        return context._format_slot_contributions_with_indent(result)
+        return self._format_slot_contributions_with_indent(result)
 
     def _format_remove_commands(self):
         result = []
@@ -340,3 +351,29 @@ class Context(Container):
 
         """
         return self._remove_commands
+
+    @property
+    def tag(self) -> typing.Optional[str]:
+        r"""
+        Gets tag.
+
+        ..  container:: example
+
+            >>> context = abjad.Context(
+            ...     "c'4 d' e' f'",
+            ...     lilypond_type='CustomContext',
+            ...     tag='RED',
+            ...     )
+            >>> abjad.show(context) # doctest: +SKIP
+
+            >>> abjad.f(context, strict=20)
+            \new CustomContext  %! RED
+            {                   %! RED
+                c'4
+                d'4
+                e'4
+                f'4
+            }                   %! RED
+
+        """
+        return super().tag
