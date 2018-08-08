@@ -41,7 +41,7 @@ if __name__ == '__main__':
         print(message)
         segment_maker_runtime = (count, counter)
         segment_directory.write_metadata_py(maker.metadata)
-        result = abjad.persist(lilypond_file).as_ly(illustration_ly, strict=89)
+        result = abjad.persist(lilypond_file).as_ly(illustration_ly, strict=79)
         abjad_format_time = int(result[1])
         count = abjad_format_time
         counter = abjad.String('second').pluralize(count)
@@ -75,7 +75,7 @@ if __name__ == '__main__':
 
     try:
         text = illustration_ly.read_text()
-        text = abjad.LilyPondFormatManager.left_shift_tags(text, realign=99)
+        text = abjad.LilyPondFormatManager.left_shift_tags(text, realign=79)
         illustration_ly.write_text(text)
         for job in [
             abjad.Job.handle_edition_tags(illustration_ly),
@@ -153,7 +153,7 @@ if __name__ == '__main__':
 
     try:
         if getattr(maker, 'do_not_externalize', False) is not True:
-            illustration_ly.extern(realign=99)
+            illustration_ly.extern(realign=79)
             illustration_ily = illustration_ly.with_suffix('.ily')
             assert illustration_ily.is_file()
         with abjad.Timer() as timer:

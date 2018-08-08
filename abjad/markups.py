@@ -601,27 +601,27 @@ class Markup(AbjadValueObject):
             if not self.literal:
                 content = Scheme.format_scheme_value(content)
                 if content:
-                    content = '{{ {} }}'.format(content)
+                    content= f'\markup {{ {content} }}'
                 else:
-                    content = '{}'
+                    content = '\markup {}'
             if direction:
-                string = r'{} \markup {}'.format(direction, content)
-                return tweaks + [string]
+                string = rf'{direction} {content}'
             else:
-                return tweaks + [r'\markup {}'.format(content)]
+                string = content
+            return tweaks + [string]
         if direction:
-            string = r'{} \markup {{'.format(direction)
+            string = rf'{direction} \markup {{'
             pieces = [string]
         else:
             pieces = [r'\markup {']
         for content in self.contents:
             if isinstance(content, str):
                 content = Scheme.format_scheme_value(content)
-                pieces.append('{}{}'.format(indent, content))
+                pieces.append(f'{indent}{content}')
             else:
                 pieces_ = content._get_format_pieces()
-                pieces.extend(['{}{}'.format(indent, _) for _ in pieces_])
-        pieces.append('{}}}'.format(indent))
+                pieces.extend([f'{indent}{_}' for _ in pieces_])
+        pieces.append(f'{indent}}}')
         return tweaks + pieces
 
     def _get_format_specification(self):
@@ -705,7 +705,7 @@ class Markup(AbjadValueObject):
             >>> string = r'\custom-function #1 #4'
             >>> markup = abjad.Markup.from_literal(string, literal=True)
             >>> abjad.f(markup)
-            \markup \custom-function #1 #4
+            \custom-function #1 #4
 
         ..  container:: example
 
@@ -718,7 +718,7 @@ class Markup(AbjadValueObject):
             ...     literal=True,
             ...     )
             >>> abjad.f(markup)
-            ^ \markup \custom-function #1 #4
+            ^ \custom-function #1 #4
 
         """
         return self._literal
@@ -1336,6 +1336,17 @@ class Markup(AbjadValueObject):
         ..  container:: example
 
             >>> markup = abjad.Markup.from_literal('F#4')
+            >>> abjad.f(markup)
+            \markup { "F#4" }
+
+            >>> abjad.show(markup) # doctest: +SKIP
+
+        ..  container:: example
+
+            With ``literal`` set to true:
+
+            >>> string = r'\markup { "F#4" }'
+            >>> markup = abjad.Markup.from_literal(string, literal=True)
             >>> abjad.f(markup)
             \markup { "F#4" }
 

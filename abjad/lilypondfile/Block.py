@@ -1,6 +1,5 @@
 from abjad.system.AbjadObject import AbjadObject
-from abjad.system.LilyPondFormatManager import \
-    LilyPondFormatManager
+from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.StorageFormatManager import StorageFormatManager
 
 
@@ -162,15 +161,22 @@ class Block(AbjadObject):
                 result.extend(pieces)
             result.append(indent + '}')
         elif isinstance(item, str):
-            string = indent + item
+            if item.isspace():
+                string = ''
+            else:
+                string = indent + item
             result.append(string)
         elif '_get_format_pieces' in dir(item):
             try:
                 pieces = item._get_format_pieces()
             except TypeError:
                 pieces = item._get_format_pieces()
-            pieces = (indent + item for item in pieces)
-            result.extend(pieces)
+            for piece in pieces:
+                if piece.isspace():
+                    piece = ''
+                else:
+                    piece = indent + piece
+                result.append(piece)
         return result
 
     def _get_format_pieces(self, tag=None):

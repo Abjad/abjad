@@ -109,17 +109,22 @@ class Component(AbjadObject):
             attach(new_wrapper, new_component)
         return new_component
 
-    def __format__(self, format_specification=''):
+    def __format__(self, format_specification='') -> str:
         """
         Formats component.
-
-        Returns string.
         """
         if format_specification in ('', 'lilypond'):
-            return self._get_lilypond_format()
-        elif format_specification == 'storage':
-            return StorageFormatManager(self).get_storage_format()
-        raise ValueError(repr(format_specification))
+            string = self._get_lilypond_format()
+        else:
+            assert format_specification == 'storage'
+            string = StorageFormatManager(self).get_storage_format()
+        lines = []
+        for line in string.split('\n'):
+            if line.isspace():
+                line = ''
+            lines.append(line)
+        string = '\n'.join(lines)
+        return string
 
     def __getnewargs__(self):
         """

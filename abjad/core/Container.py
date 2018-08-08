@@ -560,15 +560,18 @@ class Container(Component):
 
     def _format_content_pieces(self):
         indent = LilyPondFormatManager.indent
-        result = []
+        strings = []
         for component in self.components:
             string = component.__format__(
                 format_specification='lilypond'
                 )
-            parts = string.split('\n')
-            result.extend(parts)
-        result = [indent + _ for _ in result]
-        return result
+            for string in string.split('\n'):
+                if string.isspace():
+                    string = ''
+                else:
+                    string = indent + string
+                strings.append(string)
+        return strings
 
     def _format_contents_slot(self, bundle):
         result = []
@@ -611,8 +614,15 @@ class Container(Component):
         indent = LilyPondFormatManager.indent
         result = []
         for contributor, contributions in slot:
-            result.append(
-                (contributor, tuple([indent + x for x in contributions])))
+            strings = []
+            for string in contributions:
+                if string.isspace():
+                    string = ''
+                else:
+                    string = indent + string
+                strings.append(string)
+            pair = (contributor, strings)
+            result.append(pair)
         return tuple(result)
 
     def _get_abbreviated_string_format(self):
