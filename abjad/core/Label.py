@@ -4092,7 +4092,7 @@ class Label(AbjadObject):
         ..  container:: example
 
             Labels logical tie start offsets with clock time and custom markup
-            command:
+            command. No PDF shown here because command is custom:
 
             ..  container:: example
 
@@ -4102,13 +4102,12 @@ class Label(AbjadObject):
                 >>> abjad.attach(mark, staff[0])
                 >>> abjad.label(staff).with_start_offsets(
                 ...     clock_time=True,
-                ...     markup_command=r'\make-dark-cyan',
+                ...     markup_command=r'\dark_cyan_markup',
                 ...     )
                 Duration(8, 1)
 
                 >>> abjad.override(staff).text_script.staff_padding = 4
                 >>> abjad.override(staff).tuplet_bracket.staff_padding = 0
-                >>> abjad.show(score) # doctest: +SKIP
 
                 >>> abjad.f(score)
                 \new Score
@@ -4122,13 +4121,13 @@ class Label(AbjadObject):
                     {
                         \tempo 4=60
                         c'2
-                        ^ \markup \make-dark-cyan "0'00''"
+                        ^ \dark_cyan_markup "0'00''"
                         d'2
-                        ^ \markup \make-dark-cyan "0'02''"
+                        ^ \dark_cyan_markup "0'02''"
                         e'2
-                        ^ \markup \make-dark-cyan "0'04''"
+                        ^ \dark_cyan_markup "0'04''"
                         f'2
-                        ^ \markup \make-dark-cyan "0'06''"
+                        ^ \dark_cyan_markup "0'06''"
                     }
                 >>
 
@@ -4140,14 +4139,13 @@ class Label(AbjadObject):
                 >>> abjad.attach(mark, staff[0])
                 >>> expression = abjad.label().with_start_offsets(
                 ...     clock_time=True,
-                ...     markup_command='make-dark-cyan',
+                ...     markup_command=r'\dark_cyan_markup',
                 ...     )
                 >>> expression(staff)
                 Duration(8, 1)
 
                 >>> abjad.override(staff).text_script.staff_padding = 4
                 >>> abjad.override(staff).tuplet_bracket.staff_padding = 0
-                >>> abjad.show(score) # doctest: +SKIP
 
                 >>> abjad.f(score)
                 \new Score
@@ -4161,13 +4159,13 @@ class Label(AbjadObject):
                     {
                         \tempo 4=60
                         c'2
-                        ^ \markup make-dark-cyan "0'00''"
+                        ^ \dark_cyan_markup "0'00''"
                         d'2
-                        ^ \markup make-dark-cyan "0'02''"
+                        ^ \dark_cyan_markup "0'02''"
                         e'2
-                        ^ \markup make-dark-cyan "0'04''"
+                        ^ \dark_cyan_markup "0'04''"
                         f'2
-                        ^ \markup make-dark-cyan "0'06''"
+                        ^ \dark_cyan_markup "0'06''"
                     }
                 >>
 
@@ -4187,9 +4185,9 @@ class Label(AbjadObject):
                     start_offset += global_offset
                 string = start_offset.to_clock_string()
                 if brackets:
-                    string = '"[{}]"'.format(string)
+                    string = f'"[{string}]"'
                 else:
-                    string = '"{}"'.format(string)
+                    string = f'"{string}"'
             else:
                 timespan = abjad_inspect(logical_tie.head).timespan()
                 start_offset = timespan.start_offset

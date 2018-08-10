@@ -229,7 +229,6 @@ class Leaf(Component):
         return ['grace body', result]
 
     def _format_leaf_body(self, bundle):
-        indent = LilyPondFormatManager.indent
         result = self._format_leaf_nucleus()[1]
         return ['self body', result]
 
@@ -241,7 +240,6 @@ class Leaf(Component):
                 strings,
                 tag=tag,
                 )
-        #return ['nucleus', self._get_body()]
         return ['nucleus', strings]
 
     def _format_open_brackets_slot(self, bundle):

@@ -1215,7 +1215,12 @@ class Path(pathlib.PosixPath):
             include_name = include_path.name
         else:
             include_name = str(include_path)
-        preamble_lines.append(f'\\include "{include_name}"\n')
+        foo = f'\\include "{include_name}"'
+        foo = LilyPondFormatManager.tag(
+            [foo],
+            tag='extern',
+            )[0]
+        preamble_lines.append(foo + '\n')
         preamble_lines.append('\n')
         preamble_lines.append('\n')
         lines.extend(preamble_lines)
@@ -1237,16 +1242,29 @@ class Path(pathlib.PosixPath):
             first_line = f'{name} = {first_line}'
             words = first_line.split()
             site = words.index('%*%')
-            first_line = ' '.join(words[:site]) + '\n'
+            first_line = ' '.join(words[:site])
+            first_line = LilyPondFormatManager.tag(
+                [first_line],
+                tag='extern',
+                )[0]
+            first_line += '\n'
             lines.append(first_line)
             for variable_line in variable_lines[1:]:
                 assert variable_line[:count].isspace(), repr(line)
                 variable_line = variable_line[count:]
+                if variable_line == '':
+                    variable_line = '\n'
+                assert variable_line.endswith('\n'), repr(variable_line)
                 lines.append(variable_line)
             last_line = lines[-1]
             words = last_line.split()
             site = words.index('%*%')
-            last_line = ' '.join(words[:site]) + '\n'
+            last_line = ' '.join(words[:site])
+            last_line = LilyPondFormatManager.tag(
+                [last_line],
+                tag='extern',
+                )[0]
+            last_line += '\n'
             lines[-1] = last_line
             if i < total - 1:
                 lines.append('\n')

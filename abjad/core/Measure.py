@@ -319,9 +319,12 @@ class Measure(Container):
                 self.implied_prolation.denominator,
                 )
             result.append(string)
-            pieces = Container._format_content_pieces(self)
-            pieces = [indent + _ for _ in pieces]
-            result.extend(pieces)
+            for piece in Container._format_content_pieces(self):
+                if piece.isspace():
+                    piece = ''
+                else:
+                    piece = indent + piece
+                result.append(piece)
             result.append(indent + '}')
         else:
             result.extend(

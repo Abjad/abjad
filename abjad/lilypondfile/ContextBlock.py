@@ -68,32 +68,32 @@ class ContextBlock(Block):
         import abjad
         indent = abjad.LilyPondFormatManager.indent
         result = []
-        string = '{} {{'.format(self._escaped_name)
+        string = f'{self._escaped_name} {{'
         result.append(string)
         manager = abjad.LilyPondFormatManager
         # CAUTION: source context name must come before type_ to allow
         # context redefinition.
         if self.source_lilypond_type is not None:
-            string = indent + r'\{}'.format(self.source_lilypond_type)
+            string = indent + rf'\{self.source_lilypond_type}'
             result.append(string)
         if self.name is not None:
-            string = indent + r'\name {}'.format(self.name)
+            string = indent + rf'\name {self.name}'
             result.append(string)
         if self.type_ is not None:
-            string = indent + r'\type {}'.format(self.type_)
+            string = indent + rf'\type {self.type_}'
             result.append(string)
         if self.alias is not None:
-            string = indent + r'\alias {}'.format(self.alias)
+            string = indent + rf'\alias {self.alias}'
             result.append(string)
         for statement in self.remove_commands:
-            string = indent + r'\remove {}'.format(statement)
+            string = indent + rf'\remove {statement}'
             result.append(string)
         # CAUTION: LilyPond \consists statements are order-significant!
         for statement in self.consists_commands:
-            string = indent + r'\consists {}'.format(statement)
+            string = indent + rf'\consists {statement}'
             result.append(string)
         for statement in self.accepts_commands:
-            string = indent + r'\accepts {}'.format(statement)
+            string = indent + rf'\accepts {statement}'
             result.append(string)
         overrides = abjad.override(self)._list_format_contributions('override')
         for statement in overrides:
@@ -113,9 +113,12 @@ class ContextBlock(Block):
                 string = indent + '{}'.format(item)
                 result.append(string)
             elif '_get_format_pieces' in dir(item):
-                pieces = item._get_format_pieces()
-                pieces = [indent + item for item in pieces]
-                result.extend(pieces)
+                for piece in item._get_format_pieces():
+                    if piece.isspace():
+                        piece = ''
+                    else:
+                        piece = indent + piece
+                    result.append(piece)
             else:
                 pass
         result.append('}')

@@ -17,6 +17,7 @@ from abjad.core.Staff import Staff
 from abjad.core.Voice import Voice
 from abjad.scheme import Scheme
 from abjad.scheme import SpacingVector
+from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.top.attach import attach
 from abjad.top.inspect import inspect as abjad_inspect
@@ -499,14 +500,26 @@ class LilyPondFile(AbjadObject):
         if self.lilypond_language_token is not None:
             string = f'{self.lilypond_language_token}'
             includes.append(string)
+        if self.tag is not None:
+            includes = LilyPondFormatManager.tag(
+                includes,
+                tag=self.tag,
+                )
         includes = '\n'.join(includes)
         if includes:
             result.append(includes)
+        postincludes = []
         if self.use_relative_includes:
             string = "#(ly:set-option 'relative-includes #t)"
-            result.append(string)
-        result.extend(self._get_formatted_includes())
-        result.extend(self._get_formatted_scheme_settings())
+            postincludes.append(string)
+        postincludes.extend(self._get_formatted_includes())
+        postincludes.extend(self._get_formatted_scheme_settings())
+        if self.tag is not None:
+            postincludes = LilyPondFormatManager.tag(
+                postincludes,
+                tag=self.tag,
+                )
+        result.extend(postincludes)
         result.extend(self._get_formatted_blocks())
         return result
 

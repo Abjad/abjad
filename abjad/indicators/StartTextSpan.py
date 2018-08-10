@@ -7,7 +7,6 @@ from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.utilities.String import String
-from .LilyPondLiteral import LilyPondLiteral
 
 
 class StartTextSpan(AbjadValueObject):
@@ -103,11 +102,10 @@ class StartTextSpan(AbjadValueObject):
         concat_hspace_left: typings.Number = 0.5,
         concat_hspace_right: typings.Number = None,
         direction: enums.VerticalAlignment = None,
-        left_broken_text: typing.Union[
-            bool, LilyPondLiteral, markups.Markup] = None,
-        left_text: typing.Union[LilyPondLiteral, markups.Markup] = None,
+        left_broken_text: typing.Union[bool, str, markups.Markup] = None,
+        left_text: typing.Union[str, markups.Markup] = None,
         right_padding: typings.Number = None,
-        right_text: typing.Union[LilyPondLiteral, markups.Markup] = None,
+        right_text: typing.Union[str, markups.Markup] = None,
         style: str = None,
         tweaks: typing.Union[
             typing.List[typing.Tuple], LilyPondTweakManager] = None,
@@ -127,14 +125,14 @@ class StartTextSpan(AbjadValueObject):
             assert isinstance(left_broken_text, (bool, markups.Markup))
         self._left_broken_text = left_broken_text
         if left_text is not None:
-            prototype = (LilyPondLiteral, markups.Markup)
+            prototype = (str, markups.Markup)
             assert isinstance(left_text, prototype), repr(left_text)
         self._left_text = left_text
         if right_padding is not None:
             assert isinstance(right_padding, (int, float)), repr(right_padding)
         self._right_padding = right_padding
         if right_text is not None:
-            prototype = (LilyPondLiteral, markups.Markup)
+            prototype = (str, markups.Markup)
             assert isinstance(right_text, prototype), repr(right_text)
         self._right_text = right_text
         if style is not None:
@@ -163,15 +161,13 @@ class StartTextSpan(AbjadValueObject):
         string = override.tweak_string(self)
         return string
 
-    def _get_left_text_tweak(self):
-        import abjad
-        if isinstance(self.left_text, LilyPondLiteral):
-            markup = self.left_text
-        else:
-            concat_hspace_left_markup = markups.Markup.hspace(
-                self.concat_hspace_left)
-            markup_list = [self.left_text, concat_hspace_left_markup]
-            markup = markups.Markup.concat(markup_list)
+    def _get_left_text_directive(self):
+        if isinstance(self.left_text, str):
+            return self.left_text
+        concat_hspace_left_markup = markups.Markup.hspace(
+            self.concat_hspace_left)
+        markup_list = [self.left_text, concat_hspace_left_markup]
+        markup = markups.Markup.concat(markup_list)
         override = LilyPondGrobOverride(
             grob_name='TextSpanner',
             property_path=(
@@ -190,7 +186,7 @@ class StartTextSpan(AbjadValueObject):
             string = rf'- \abjad_{self.style}'
             bundle.after.spanner_starts.append(string)
         if self.left_text:
-            string = self._get_left_text_tweak()
+            string = self._get_left_text_directive()
             bundle.after.spanner_starts.append(string)
         if self.left_broken_text is not None:
             string = self._get_left_broken_text_tweak()
@@ -222,6 +218,8 @@ class StartTextSpan(AbjadValueObject):
         return string
 
     def _get_right_text_tweak(self):
+        if isinstance(self.right_text, str):
+            return self.right_text
         if self.concat_hspace_right is not None:
             number = self.concat_hspace_right
             concat_hspace_right_markup = markups.Markup.hspace(number)
@@ -394,20 +392,23 @@ class StartTextSpan(AbjadValueObject):
         return self._left_broken_text
 
     @property
-    def left_text(self) -> typing.Union[LilyPondLiteral, markups.Markup, None]:
+    def left_text(self) -> typing.Union[str, markups.Markup, None]:
         r"""
         Gets left text.
 
         ..  container:: example
 
-            LilyPond literals are allowed in place of markup:
+            String literals are allowed in place of markup:
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> left_string = r'\markup \concat { \upright pont. \hspace #0.5 }'
+            >>> left_text = r'- \tweak bound-details.left.text \markup'
+            >>> left_text += r' \concat { \upright pont. \hspace #0.5 }'
+            >>> right_text = r'- \tweak bound-details.right.text \markup'
+            >>> right_text += r' \upright tasto'
             >>> right_string = r'\markup \upright tasto'
             >>> start_text_span = abjad.StartTextSpan(
-            ...     left_text=abjad.LilyPondLiteral(left_string),
-            ...     right_text=abjad.LilyPondLiteral(right_string),
+            ...     left_text=left_text,
+            ...     right_text=right_text,
             ...     style='solid_line_with_arrow',
             ...     )
             >>> abjad.tweak(start_text_span).staff_padding = 2.5
@@ -432,8 +433,6 @@ class StartTextSpan(AbjadValueObject):
                     f'4
                     \stopTextSpan
                 }
-
-            Use with custom markup functions.
 
         """
         return self._left_text
@@ -474,8 +473,7 @@ class StartTextSpan(AbjadValueObject):
         return self._right_padding
 
     @property
-    def right_text(self) -> typing.Union[
-        LilyPondLiteral, markups.Markup, None]:
+    def right_text(self) -> typing.Union[str, markups.Markup, None]:
         """
         Gets right text.
         """

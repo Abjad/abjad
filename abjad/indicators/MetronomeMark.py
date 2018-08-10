@@ -853,10 +853,11 @@ class MetronomeMark(AbjadValueObject):
         markup = Duration._to_score_markup(selection)
         return markup
 
-    def _get_markup(self, stem_height=1):
+    def _get_markup(self):
         if self.custom_markup is not None:
             return self.custom_markup
         duration_log = int(math.log(self.reference_duration.denominator, 2))
+        stem_height = 1
         markup = Markup.abjad_metronome_mark(
             duration_log,
             self.reference_duration.dot_count,
@@ -864,6 +865,19 @@ class MetronomeMark(AbjadValueObject):
             self.units_per_minute,
             )
         return markup
+
+    def _get_markup_arguments(self):
+        assert self.custom_markup is None
+        duration_log = int(math.log(self.reference_duration.denominator, 2))
+        dot_count = self.reference_duration.dot_count
+        stem_height = 1
+        units_per_minute = self.units_per_minute
+        return (
+            duration_log,
+            dot_count,
+            stem_height,
+            units_per_minute,
+            )
 
     ### PUBLIC PROPERTIES ###
 
