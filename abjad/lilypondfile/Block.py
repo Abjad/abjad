@@ -189,10 +189,10 @@ class Block(AbjadObject):
             not len(self.items)):
             if self.name == 'score':
                 return ''
-            string = '{} {{}}'.format(self._escaped_name)
+            string = f'{self._escaped_name} {{}}'
             result.append(string)
             return result
-        string = '{} {{'.format(self._escaped_name)
+        string = f'{self._escaped_name} {{'
         if tag is not None:
             strings = LilyPondFormatManager.tag(
                 [string],
@@ -252,7 +252,7 @@ class Block(AbjadObject):
             for i, k in enumerate(formatted_key):
                 formatted_key[i] = k.replace('_', '-')
                 if 0 < i:
-                    string = "#'{}".format(formatted_key[i])
+                    string = f"#'{formatted_key[i]}"
                     formatted_key[i] = string
             formatted_key = ' '.join(formatted_key)
             # format value
@@ -305,7 +305,7 @@ class Block(AbjadObject):
             >>> lilypond_file.items.append(score_block)
 
             >>> abjad.f(lilypond_file)
-            \score {
+            \score { %! LilyPondFile
                 <<
                 { \include "layout.ly" }
                 \new Staff
@@ -316,7 +316,7 @@ class Block(AbjadObject):
                     f'4
                 }
                 >>
-            }
+            } %! LilyPondFile
 
         Returns list.
         """

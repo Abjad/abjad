@@ -60,12 +60,12 @@ class LilyPondVersionToken(AbjadObject):
 
         Returns string.
         """
-        return '{}({!r})'.format(type(self).__name__, self.version_string)
+        return '{type(self).__name__}({self.version_string!r})'
 
     ### PRIVATE METHODS ###
 
     def _get_lilypond_format(self):
-        return r'\version "{}"'.format(self.version_string)
+        return rf'\version "{self.version_string}"'
 
     ### PUBLIC PROPERTIES ###
 

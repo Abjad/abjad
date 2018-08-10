@@ -167,9 +167,7 @@ class GraceContainer(Container):
     def _attach(self, leaf):
         import abjad
         if not isinstance(leaf, abjad.Leaf):
-            message = 'must attach to leaf: {!r}.'
-            message = message.format(leaf)
-            raise TypeError(message)
+            raise TypeError(f'must attach to leaf {leaf!r}.')
         leaf._grace_container = self
         self._carrier = leaf
 

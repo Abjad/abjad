@@ -245,17 +245,17 @@ class LilyPondFile(AbjadObject):
             >>> lilypond_file._lilypond_version_token = None
 
             >>> abjad.f(lilypond_file)
-            \language "english"
+            \language "english" %! LilyPondFile
             <BLANKLINE>
-            \header {
+            \header { %! LilyPondFile
                 tagline = ##f
-            }
+            } %! LilyPondFile
             <BLANKLINE>
             \layout {}
             <BLANKLINE>
             \paper {}
             <BLANKLINE>
-            \score {
+            \score { %! LilyPondFile
                 {
                     \new Score
                     <<
@@ -270,7 +270,7 @@ class LilyPondFile(AbjadObject):
                         }
                     >>
                 }
-            }
+            } %! LilyPondFile
 
         Returns string.
         """
@@ -381,7 +381,7 @@ class LilyPondFile(AbjadObject):
                 >>> del(lilypond_file.items[:3])
 
                 >>> abjad.f(lilypond_file)
-                \score {
+                \score { %! LilyPondFile
                     <<
                         {
                             \include "layout.ly"
@@ -394,7 +394,7 @@ class LilyPondFile(AbjadObject):
                             f'4
                         }
                     >>
-                }
+                } %! LilyPondFile
 
                 >>> lilypond_file[abjad.Staff]
                 Staff("c'4 d'4 e'4 f'4", name='CustomStaff')
@@ -467,20 +467,6 @@ class LilyPondFile(AbjadObject):
         """
         Gets interpreter representation of LilyPond file.
 
-        ..  container:: example
-
-            Gets interpreter representation:
-
-            >>> lilypond_file = abjad.LilyPondFile.new()
-
-            >>> lilypond_file
-            LilyPondFile(comments=[],
-            includes=[],
-            items=[<Block(name='header')>, <Block(name='layout')>,
-            <Block(name='paper')>, <Block(name='score')>],
-            lilypond_language_token=LilyPondLanguageToken(),
-            lilypond_version_token=LilyPondVersionToken(version_string='...'))
-
         Returns string.
         """
         return super().__repr__()
@@ -514,11 +500,6 @@ class LilyPondFile(AbjadObject):
             postincludes.append(string)
         postincludes.extend(self._get_formatted_includes())
         postincludes.extend(self._get_formatted_scheme_settings())
-        if self.tag is not None:
-            postincludes = LilyPondFormatManager.tag(
-                postincludes,
-                tag=self.tag,
-                )
         result.extend(postincludes)
         result.extend(self._get_formatted_blocks())
         return result
@@ -568,6 +549,10 @@ class LilyPondFile(AbjadObject):
             else:
                 result.append(format(include))
         if result:
+            result = LilyPondFormatManager.tag(
+                result,
+                tag=self.tag,
+                )
             result = ['\n'.join(result)]
         return result
 
@@ -583,6 +568,10 @@ class LilyPondFile(AbjadObject):
             string = f'#(set-global-staff-size {global_staff_size})'
             result.append(string)
         if result:
+            result = LilyPondFormatManager.tag(
+                result,
+                tag=self.tag,
+                )
             result = ['\n'.join(result)]
         return result
 
@@ -783,7 +772,7 @@ class LilyPondFile(AbjadObject):
             >>> abjad.f(lilypond_file)
             \customCommand
             <BLANKLINE>
-            \score {
+            \score { %! LilyPondFile
                 \new Staff
                 {
                     c'4
@@ -791,7 +780,7 @@ class LilyPondFile(AbjadObject):
                     e'4
                     f'4
                 }
-            }
+            } %! LilyPondFile
 
         ..  container:: example
 
@@ -904,7 +893,7 @@ class LilyPondFile(AbjadObject):
                     return item
 
     @property
-    def tag(self) -> typing.Optional[str]:
+    def tag(self) -> str:
         """
         Gets tag.
 
@@ -912,13 +901,17 @@ class LilyPondFile(AbjadObject):
 
             Gets score block:
 
-            >>> lilypond_file = abjad.LilyPondFile.new(tag='LILY_POND_FILE')
+            >>> string = 'make_lilypond_file'
+            >>> lilypond_file = abjad.LilyPondFile.new(tag=string)
 
             >>> lilypond_file.tag
-            'LILY_POND_FILE'
+            'make_lilypond_file:LilyPondFile'
 
         """
-        return self._tag
+        if self._tag is not None:
+            return f'{self._tag}:LilyPondFile'
+        else:
+            return 'LilyPondFile'
 
     @property
     def use_relative_includes(self):
@@ -1416,16 +1409,13 @@ class LilyPondFile(AbjadObject):
         if isinstance(selections, list):
             for selection in selections:
                 if not isinstance(selection, Selection):
-                    message = f'must be selection: {selection!r}.'
-                    raise TypeError(message)
+                    raise TypeError(f'must be selection: {selection!r}.')
         elif isinstance(selections, dict):
             for selection in selections.values():
                 if not isinstance(selection, Selection):
-                    message = f'must be selection: {selection!r}.'
-                    raise TypeError(message)
+                    raise TypeError(f'must be selection: {selection!r}.')
         else:
-            message = f'must be list or dictionary: {selections!r}.'
-            raise TypeError(message)
+            raise TypeError(f'must be list or dictionary: {selections!r}.')
         score = Score()
         lilypond_file = LilyPondFile.new(
             score,

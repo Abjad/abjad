@@ -126,12 +126,8 @@ class VerticalMoment(AbjadObject):
         """
         if not self.components:
             return f'{type(self).__name__}()'
-        result = '{}({}, <<{}>>)'
-        result = result.format(
-            type(self).__name__,
-            str(self.offset),
-            len(self.leaves),
-            )
+        length = len(self.leaves)
+        result = f'{type(self).__name__}({str(self.offset)}, <<{length}>>)'
         return result
 
     ### PRIVATE METHODS ###

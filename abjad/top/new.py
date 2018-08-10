@@ -3,7 +3,7 @@ import types
 
 def new(argument, **keywords):
     r"""
-    Makes new ``argument`` with optional ``keywords``.
+    Makes new ``argument`` with ``keywords``.
 
     ..  container:: example
 
@@ -49,13 +49,32 @@ def new(argument, **keywords):
                 f'4
             }
 
+
+    ..  container:: example
+
+        REGRESSION. Can be used to set existing properties to none:
+
+        >>> markup = abjad.Markup('Andante assai', direction=abjad.Up).italic()
+        >>> abjad.f(markup)
+        ^ \markup {
+            \italic
+                "Andante assai"
+            }
+
+        >>> markup = abjad.new(markup, direction=None)
+        >>> abjad.f(markup)
+        \markup {
+            \italic
+                "Andante assai"
+            }
+
     Returns new object with type equal to that of ``argument``.
     """
     import abjad
     if argument is None:
         return argument
-    agent = abjad.StorageFormatManager(argument)
-    template_dict = agent.get_template_dict()
+    manager = abjad.StorageFormatManager(argument)
+    template_dict = manager.get_template_dict()
     recursive_arguments = {}
     for key, value in keywords.items():
         if '__' in key:
@@ -65,17 +84,17 @@ def new(argument, **keywords):
             pair = (subkey, value)
             recursive_arguments[key].append(pair)
             continue
-        if key in template_dict or agent.signature_accepts_kwargs:
+        if key in template_dict or manager.signature_accepts_kwargs:
             template_dict[key] = value
         elif isinstance(getattr(argument, key, None), types.MethodType):
             method = getattr(argument, key)
             result = method(value)
             if isinstance(result, type(argument)):
                 argument = result
-                template_dict.update(abjad.StorageFormatManager(
-                    argument).get_template_dict())
+                manager_ = abjad.StorageFormatManager(argument)
+                template_dict.update(manager_.get_template_dict())
         else:
-            message = '{} has no key {!r}'.format(type(argument), key)
+            message = f'{type(argument)} has no key {key!r}.'
             raise KeyError(message)
     for key, pairs in recursive_arguments.items():
         recursed_object = getattr(argument, key)
@@ -86,7 +105,7 @@ def new(argument, **keywords):
         if key in template_dict:
             template_dict[key] = recursed_object
     positional_values = []
-    for name in agent.signature_positional_names:
+    for name in manager.signature_positional_names:
         if name in template_dict:
             positional_values.append(template_dict.pop(name))
     result = type(argument)(*positional_values, **template_dict)

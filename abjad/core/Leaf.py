@@ -162,15 +162,15 @@ class Leaf(Component):
                 result.append(r'\afterGrace')
         return ['after grace opening', result]
 
-    def _format_absolute_after_slot(self, bundle):
-        result = []
-        result.append(('literals', bundle.absolute_after.commands))
-        return result
-
-    def _format_absolute_before_slot(self, bundle):
-        result = []
-        result.append(('literals', bundle.absolute_before.commands))
-        return result
+#    def _format_absolute_after_slot(self, bundle):
+#        result = []
+#        result.append(('literals', bundle.absolute_after.commands))
+#        return result
+#
+#    def _format_absolute_before_slot(self, bundle):
+#        result = []
+#        result.append(('literals', bundle.absolute_before.commands))
+#        return result
 
     def _format_after_slot(self, bundle):
         result = []
@@ -349,8 +349,9 @@ class Leaf(Component):
             elif isinstance(spanner_item, abjad.Spanner):
                 spanner_objects.append(spanner_item)
             else:
-                message = 'must be spanner class or spanner object: {!r}'
-                message = message.format(spanner_item)
+                message = 'must be spanner class or spanner object'
+                message += f' (not {spanner_item!r})'
+                raise Exception(message)
         prototype = tuple(prototype)
         spanner_objects = tuple(spanner_objects)
         matching_spanners = []
@@ -610,10 +611,9 @@ class Leaf(Component):
         elif len(multipliers) == 1:
             multiplier = multipliers[0]
         elif 1 < len(multipliers):
-            message = 'more than one LilyPond duration multiplier.'
-            raise ValueError(message)
+            raise ValueError('more than one LilyPond duration multiplier.')
         if multiplier is not None:
-            result = '{} * {!s}'.format(duration_string, multiplier)
+            result = f'{duration_string} * {multiplier!s}'
         else:
             result = duration_string
         return result
@@ -656,7 +656,6 @@ class Leaf(Component):
     def written_duration(self, argument):
         rational = Duration(argument)
         if not rational.is_assignable:
-            message = 'not assignable duration: {!r}.'
-            message = message.format(rational)
+            message = f'not assignable duration: {rational!r}.'
             raise exceptions.AssignabilityError(message)
         self._written_duration = rational

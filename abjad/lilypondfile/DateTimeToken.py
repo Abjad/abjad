@@ -58,7 +58,7 @@ class DateTimeToken(AbjadObject):
         Returns string.
         """
         date_string = self._date_string or ''
-        return '{}({})'.format(type(self).__name__, date_string)
+        return f'{type(self).__name__}({date_string})'
 
     ### PRIVATE METHODS ###
 

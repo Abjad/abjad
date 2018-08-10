@@ -56,7 +56,7 @@ class PackageGitCommitToken(AbjadValueObject):
     ### PRIVATE METHODS ###
 
     def _get_commit_timestamp(self, commit_hash):
-        command = 'git show -s --format=%ci {}'.format(commit_hash)
+        command = f'git show -s --format=%ci {commit_hash}'
         return self._run_command(command)
 
     def _get_git_branch(self):
@@ -73,7 +73,6 @@ class PackageGitCommitToken(AbjadValueObject):
             git_branch = self._get_git_branch()
             git_hash = self._get_git_hash()
             timestamp = self._get_commit_timestamp(git_hash)
-            #print(git_branch, git_hash, timestamp)
         date, time, _ = timestamp.split()
         return 'package "{}" @ {} [{}] ({} {})'.format(
             self._package_name,

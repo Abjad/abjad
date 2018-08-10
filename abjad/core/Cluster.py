@@ -39,7 +39,7 @@ class Cluster(Container):
             brackets_open = ['<<']
         else:
             brackets_open = ['{']
-        contributions = [r'\makeClusters {}'.format(brackets_open[0])]
+        contributions = [rf'\makeClusters {brackets_open[0]}']
         result.append([contributor, contributions])
         return tuple(result)
 

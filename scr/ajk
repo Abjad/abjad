@@ -14,6 +14,7 @@ command += r' --ignore-dir=build'
 command += r' --ignore-dir=docs'
 command += r' --ignore-file=ext:eps'
 command += r' --ignore-file=is:.coverage'
+command += r' --sort-files'
 if "'" in argument:
     command += r' "{}"'
 else:

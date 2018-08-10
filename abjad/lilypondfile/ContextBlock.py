@@ -110,7 +110,7 @@ class ContextBlock(Block):
             result.append(string)
         for item in self.items:
             if isinstance(item, str):
-                string = indent + '{}'.format(item)
+                string = indent + f'{item}'
                 result.append(string)
             elif '_get_format_pieces' in dir(item):
                 for piece in item._get_format_pieces():

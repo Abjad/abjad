@@ -80,21 +80,21 @@ class Selection(AbjadValueObject, collections.Sequence):
                 autoBeaming = ##f
             }
             {
-                \abjad_color_music "red"
+                \abjad-color-music #'red
                 c'4
                 \times 2/3 {
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     d'8
                     r8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     e'8
                 }
                 r16
-                \abjad_color_music "red"
+                \abjad-color-music #'red
                 f'16
-                \abjad_color_music "red"
+                \abjad-color-music #'red
                 g'8
-                \abjad_color_music "red"
+                \abjad-color-music #'red
                 a'4
             }
 
@@ -206,19 +206,19 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     c'8
                     d'8
                     ~
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     d'8
                     e'8
                     ~
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     e'8
                     ~
                     e'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     r8
                     f'8
                 }
@@ -264,18 +264,18 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     c'8
                     d'8
                     ~
                     d'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     e'8
                     ~
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     e'8
                     ~
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     e'8
                     r8
                     f'8
@@ -330,11 +330,11 @@ class Selection(AbjadValueObject, collections.Sequence):
                 c'8
                 d'8
                 ~
-                \abjad_color_music "blue"
+                \abjad-color-music #'blue
                 d'8
                 e'8
                 ~
-                \abjad_color_music "red"
+                \abjad-color-music #'red
                 e'8
                 ~
                 e'8
@@ -1335,7 +1335,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                             e'16
                             <fs' gs'>4
                             ~
-                            \abjad_color_music "green"
+                            \abjad-color-music #'green
                             <fs' gs'>16
                         }
                     }   % measure
@@ -1422,38 +1422,38 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \times 10/9 {
                             r16
                             bf'16
-                            \abjad_color_music "red"
+                            \abjad-color-music #'red
                             <a'' b''>16
                             c'16
-                            \abjad_color_music "blue"
+                            \abjad-color-music #'blue
                             <d' e'>4
                             ~
-                            \abjad_color_music "red"
+                            \abjad-color-music #'red
                             <d' e'>16
                         }
                         \times 8/9 {
                             r16
                             bf'16
-                            \abjad_color_music "blue"
+                            \abjad-color-music #'blue
                             <a'' b''>16
                             d'16
-                            \abjad_color_music "red"
+                            \abjad-color-music #'red
                             <e' fs'>4
                             ~
-                            \abjad_color_music "blue"
+                            \abjad-color-music #'blue
                             <e' fs'>16
                         }
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
                             r16
                             bf'16
-                            \abjad_color_music "red"
+                            \abjad-color-music #'red
                             <a'' b''>16
                             e'16
-                            \abjad_color_music "blue"
+                            \abjad-color-music #'blue
                             <fs' gs'>4
                             ~
-                            \abjad_color_music "red"
+                            \abjad-color-music #'red
                             <fs' gs'>16
                         }
                     }   % measure
@@ -1520,20 +1520,20 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     c'4
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     d'8
                     ~
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     d'16
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     e'16
                     ~
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     e'8
                     r4
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     g'8
                 }
 
@@ -1594,9 +1594,9 @@ class Selection(AbjadValueObject, collections.Sequence):
                 {
                     c'8
                     r8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     d'8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     e'8
                     r8
                     f'8
@@ -1660,9 +1660,9 @@ class Selection(AbjadValueObject, collections.Sequence):
                 {
                     c'8
                     r8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     d'8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     e'8
                     r8
                     f'8
@@ -1711,12 +1711,12 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     c'8
                     r8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     d'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     e'8
                     r8
                     f'8
@@ -1778,16 +1778,16 @@ class Selection(AbjadValueObject, collections.Sequence):
                 {
                     c'8
                     r8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     d'8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     e'8
                     r8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     f'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     g'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     a'8
                 }
 
@@ -1830,12 +1830,12 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     c'8
                     r8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     d'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     e'8
                     r8
                     f'8
@@ -1900,17 +1900,17 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     c'8
                     d'8
                     ~
                     d'8
                     e'8
                     r8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     <c' e' g'>8
                     ~
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     <c' e' g'>4
                 }
 
@@ -1960,18 +1960,18 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     c'8
                     d'8
                     ~
                     d'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     e'8
                     r8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     <c' e' g'>8
                     ~
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     <c' e' g'>4
                 }
 
@@ -2017,17 +2017,17 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     c'8
                     d'8
                     ~
                     d'8
                     e'8
                     r8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     <c' e' g'>8
                     ~
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     <c' e' g'>4
                 }
 
@@ -2085,9 +2085,9 @@ class Selection(AbjadValueObject, collections.Sequence):
                 {
                     c'8
                     r8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     d'8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     e'8
                     r8
                     f'8
@@ -2136,12 +2136,12 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     c'8
                     r8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     d'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     e'8
                     r8
                     f'8
@@ -2225,9 +2225,9 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \time 7/4
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
-                            \abjad_color_music "red"
+                            \abjad-color-music #'red
                             r16
-                            \abjad_color_music "red"
+                            \abjad-color-music #'red
                             bf'16
                             <a'' b''>16
                             c'16
@@ -2236,9 +2236,9 @@ class Selection(AbjadValueObject, collections.Sequence):
                             <d' e'>16
                         }
                         \times 8/9 {
-                            \abjad_color_music "blue"
+                            \abjad-color-music #'blue
                             r16
-                            \abjad_color_music "blue"
+                            \abjad-color-music #'blue
                             bf'16
                             <a'' b''>16
                             d'16
@@ -2248,9 +2248,9 @@ class Selection(AbjadValueObject, collections.Sequence):
                         }
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
-                            \abjad_color_music "red"
+                            \abjad-color-music #'red
                             r16
-                            \abjad_color_music "red"
+                            \abjad-color-music #'red
                             bf'16
                             <a'' b''>16
                             e'16
@@ -2326,9 +2326,9 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \time 7/4
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
-                            \abjad_color_music "red"
+                            \abjad-color-music #'red
                             r16
-                            \abjad_color_music "blue"
+                            \abjad-color-music #'blue
                             bf'16
                             <a'' b''>16
                             c'16
@@ -2337,9 +2337,9 @@ class Selection(AbjadValueObject, collections.Sequence):
                             <d' e'>16
                         }
                         \times 8/9 {
-                            \abjad_color_music "red"
+                            \abjad-color-music #'red
                             r16
-                            \abjad_color_music "blue"
+                            \abjad-color-music #'blue
                             bf'16
                             <a'' b''>16
                             d'16
@@ -2349,9 +2349,9 @@ class Selection(AbjadValueObject, collections.Sequence):
                         }
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
-                            \abjad_color_music "red"
+                            \abjad-color-music #'red
                             r16
-                            \abjad_color_music "blue"
+                            \abjad-color-music #'blue
                             bf'16
                             <a'' b''>16
                             e'16
@@ -2409,29 +2409,29 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \abjad_color_music "green"
+                    \abjad-color-music #'green
                     c'8
                     ~
-                    \abjad_color_music "green"
+                    \abjad-color-music #'green
                     c'16
-                    \abjad_color_music "green"
+                    \abjad-color-music #'green
                     c'16
                     r8
-                    \abjad_color_music "green"
+                    \abjad-color-music #'green
                     c'16
-                    \abjad_color_music "green"
+                    \abjad-color-music #'green
                     c'16
-                    \abjad_color_music "green"
+                    \abjad-color-music #'green
                     d'8
                     ~
-                    \abjad_color_music "green"
+                    \abjad-color-music #'green
                     d'16
-                    \abjad_color_music "green"
+                    \abjad-color-music #'green
                     d'16
                     r8
-                    \abjad_color_music "green"
+                    \abjad-color-music #'green
                     d'16
-                    \abjad_color_music "green"
+                    \abjad-color-music #'green
                     d'16
                 }
 
@@ -2488,29 +2488,29 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \abjad_color_music "green"
+                    \abjad-color-music #'green
                     c'8
                     ~
-                    \abjad_color_music "green"
+                    \abjad-color-music #'green
                     c'16
-                    \abjad_color_music "green"
+                    \abjad-color-music #'green
                     c'16
                     r8
-                    \abjad_color_music "green"
+                    \abjad-color-music #'green
                     c'16
-                    \abjad_color_music "green"
+                    \abjad-color-music #'green
                     c'16
-                    \abjad_color_music "green"
+                    \abjad-color-music #'green
                     d'8
                     ~
-                    \abjad_color_music "green"
+                    \abjad-color-music #'green
                     d'16
-                    \abjad_color_music "green"
+                    \abjad-color-music #'green
                     d'16
                     r8
-                    \abjad_color_music "green"
+                    \abjad-color-music #'green
                     d'16
-                    \abjad_color_music "green"
+                    \abjad-color-music #'green
                     d'16
                 }
 
@@ -2582,28 +2582,28 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     c'8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     d'8
                     r8
                     \times 2/3 {
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         e'8
                         r8
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         f'8
                     }
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     g'8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     a'8
                     r8
                     r8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     <c' e' g'>8
                     ~
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     <c' e' g'>4
                 }
 
@@ -2651,22 +2651,22 @@ class Selection(AbjadValueObject, collections.Sequence):
                 }
                 {
                     c'4
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     d'16
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     d'16
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     d'16
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     d'16
                     e'4
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     f'16
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     f'16
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     f'16
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     f'16
                 }
 
@@ -2716,7 +2716,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                 }
                 {
                     c'4
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     d'8
                     ~
                     d'16
@@ -2724,7 +2724,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                     ~
                     e'8
                     f'4
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     g'8
                 }
 
@@ -2782,29 +2782,29 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     c'8
                     ~
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     c'16
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     c'16
                     r8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     c'16
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     c'16
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     d'8
                     ~
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     d'16
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     d'16
                     r8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     d'16
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     d'16
                 }
 
@@ -2861,29 +2861,29 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     c'8
                     ~
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     c'16
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     c'16
                     r8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     c'16
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     c'16
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     d'8
                     ~
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     d'16
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     d'16
                     r8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     d'16
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     d'16
                 }
 
@@ -2958,29 +2958,29 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     c'4
                     ~
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     c'16
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     d'16
                     ~
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     d'16
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     d'16
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     e'4
                     ~
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     e'16
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     f'16
                     ~
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     f'16
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     f'16
                 }
 
@@ -3039,29 +3039,29 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     c'4
                     ~
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     c'16
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     d'16
                     ~
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     d'16
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     d'16
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     e'4
                     ~
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     e'16
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     f'16
                     ~
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     f'16
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     f'16
                 }
 
@@ -3127,23 +3127,23 @@ class Selection(AbjadValueObject, collections.Sequence):
                 }
                 {
                     \time 2/8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     c'8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     d'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     e'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     f'8
                     \time 3/8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     g'8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     a'8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     b'8
                     \time 1/8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     c''8
                 }
 
@@ -3197,23 +3197,23 @@ class Selection(AbjadValueObject, collections.Sequence):
                 }
                 {
                     \time 2/8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     c'8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     d'8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     e'8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     f'8
                     \time 3/8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     g'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     a'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     b'8
                     \time 1/8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     c''8
                 }
 
@@ -3267,19 +3267,19 @@ class Selection(AbjadValueObject, collections.Sequence):
                 }
                 {
                     \time 2/8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     c'8
                     d'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     e'8
                     f'8
                     \time 3/8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     g'8
                     a'8
                     b'8
                     \time 1/8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     c''8
                 }
 
@@ -3335,18 +3335,18 @@ class Selection(AbjadValueObject, collections.Sequence):
                 {
                     \time 2/8
                     c'8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     d'8
                     e'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     f'8
                     \time 3/8
                     g'8
                     a'8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     b'8
                     \time 1/8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     c''8
                 }
 
@@ -3394,21 +3394,21 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     c'4
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     d'4
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     e'4
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     f'4
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     g'4
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     a'4
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     b'4
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     c''4
                 }
 
@@ -3483,29 +3483,29 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     c'4
                     ~
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     c'16
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     d'16
                     ~
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     d'16
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     d'16
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     e'4
                     ~
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     e'16
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     f'16
                     ~
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     f'16
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     f'16
                 }
 
@@ -3597,7 +3597,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                             e'16
                             <fs' gs'>4
                             ~
-                            \abjad_color_music "green"
+                            \abjad-color-music #'green
                             <fs' gs'>16
                         }
                     }   % measure
@@ -3680,27 +3680,27 @@ class Selection(AbjadValueObject, collections.Sequence):
                 }
                 {
                     \times 2/3 {
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         r8
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         d'8
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         e'8
                     }
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     f'8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     r8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     r8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     f'8
                     \times 2/3 {
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         e'8
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         d'8
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         r8
                     }
                 }
@@ -3757,21 +3757,21 @@ class Selection(AbjadValueObject, collections.Sequence):
                 {
                     \times 2/3 {
                         r8
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         d'8
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         e'8
                     }
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     f'8
                     r8
                     r8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     f'8
                     \times 2/3 {
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         e'8
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         d'8
                         r8
                     }
@@ -3838,23 +3838,23 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \times 2/3 {
                         r8
                         \ottava #1
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         d'8
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         e'8
                     }
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     f'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     r8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     r8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     f'8
                     \times 2/3 {
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         e'8
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         d'8
                         \ottava #0
                         r8
@@ -3923,25 +3923,25 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \times 2/3 {
                         r8
                         \ottava #1
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         d'8
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         e'8
                     }
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     f'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     r8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     r8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     f'8
                     \times 2/3 {
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         e'8
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         d'8
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         r8
                         \ottava #0
                     }
@@ -4007,27 +4007,27 @@ class Selection(AbjadValueObject, collections.Sequence):
                 }
                 {
                     \times 2/3 {
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         c'8
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         d'8
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         e'8
                     }
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     f'8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     r8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     r8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     f'8
                     \times 2/3 {
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         e'8
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         d'8
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         c'8
                     }
                 }
@@ -4085,11 +4085,11 @@ class Selection(AbjadValueObject, collections.Sequence):
                 }
                 {
                     \times 2/3 {
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         r8
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         d'8
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         e'8
                     }
                     f'8
@@ -4097,11 +4097,11 @@ class Selection(AbjadValueObject, collections.Sequence):
                     r8
                     f'8
                     \times 2/3 {
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         e'8
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         d'8
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         r8
                     }
                 }
@@ -4156,9 +4156,9 @@ class Selection(AbjadValueObject, collections.Sequence):
                 {
                     \times 2/3 {
                         r8
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         d'8
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         e'8
                     }
                     f'8
@@ -4166,9 +4166,9 @@ class Selection(AbjadValueObject, collections.Sequence):
                     r8
                     f'8
                     \times 2/3 {
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         e'8
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         d'8
                         r8
                     }
@@ -4225,9 +4225,9 @@ class Selection(AbjadValueObject, collections.Sequence):
                 }
                 {
                     \times 2/3 {
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         c'8
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         d'8
                         ~
                         d'8
@@ -4237,11 +4237,11 @@ class Selection(AbjadValueObject, collections.Sequence):
                     r8
                     e'8
                     \times 2/3 {
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         d'8
                         ~
                         d'8
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         c'8
                     }
                 }
@@ -4298,11 +4298,11 @@ class Selection(AbjadValueObject, collections.Sequence):
                 }
                 {
                     \times 2/3 {
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         c'8
                         d'8
                         ~
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         d'8
                     }
                     e'8
@@ -4312,9 +4312,9 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \times 2/3 {
                         d'8
                         ~
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         d'8
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         c'8
                     }
                 }
@@ -4366,7 +4366,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                 }
                 {
                     \times 2/3 {
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         <c' e' g'>8
                         ~
                         <c' e' g'>8
@@ -4378,7 +4378,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                     <g d' fs'>8
                     \times 2/3 {
                         e'8
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         <c' d'>8
                         ~
                         <c' d'>8
@@ -4459,25 +4459,25 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     c'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     d'8
                     ~
                     {
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         d'8
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         e'8
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         r8
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         f'8
                         ~
                     }
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     f'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     r8
                 }
 
@@ -4524,22 +4524,22 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     c'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     d'8
                     ~
                     {
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         d'8
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         e'8
                         r8
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         f'8
                         ~
                     }
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     f'8
                     r8
                 }
@@ -4589,19 +4589,19 @@ class Selection(AbjadValueObject, collections.Sequence):
                 }
                 {
                     c'8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     d'8
                     ~
                     {
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         d'8
                         e'8
                         r8
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         f'8
                         ~
                     }
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     f'8
                     r8
                 }
@@ -4655,35 +4655,35 @@ class Selection(AbjadValueObject, collections.Sequence):
                 }
                 {
                     \times 2/3 {
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         c'8
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         d'8
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         e'8
                         ~
                     }
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     e'8
                     f'8
                     ~
                     \times 2/3 {
                         f'8
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         g'8
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         a'8
                         ~
                     }
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     a'8
                     b'8
                     ~
                     \times 2/3 {
                         b'8
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         c''8
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         d''8
                     }
                 }
@@ -4746,21 +4746,21 @@ class Selection(AbjadValueObject, collections.Sequence):
                     ~
                     \times 2/3 {
                         f'8
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         g'8
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         a'8
                         ~
                     }
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     a'8
                     b'8
                     ~
                     \times 2/3 {
                         b'8
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         c''8
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         d''8
                     }
                 }
@@ -4828,11 +4828,11 @@ class Selection(AbjadValueObject, collections.Sequence):
                 }
                 {
                     \times 2/3 {
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         r8
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         d'8
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         e'8
                     }
                     f'8
@@ -4840,11 +4840,11 @@ class Selection(AbjadValueObject, collections.Sequence):
                     r8
                     f'8
                     \times 2/3 {
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         e'8
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         d'8
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         r8
                     }
                 }
@@ -4900,27 +4900,27 @@ class Selection(AbjadValueObject, collections.Sequence):
                 }
                 {
                     \times 2/3 {
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         r8
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         d'8
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         e'8
                     }
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     f'8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     r8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     r8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     f'8
                     \times 2/3 {
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         e'8
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         d'8
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         r8
                     }
                 }
@@ -4969,16 +4969,16 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     c'4
                     \times 2/3 {
                         d'8
                         r8
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         e'8
                     }
                     r16
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     f'16
                     g'8
                     a'4
@@ -5074,7 +5074,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                             r16
                             bf'16
                             <a'' b''>16
-                            \abjad_color_music "green"
+                            \abjad-color-music #'green
                             e'16
                             <fs' gs'>4
                             ~
@@ -5157,10 +5157,10 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
                             r16
-                            \abjad_color_music "red"
+                            \abjad-color-music #'red
                             bf'16
                             <a'' b''>16
-                            \abjad_color_music "blue"
+                            \abjad-color-music #'blue
                             c'16
                             <d' e'>4
                             ~
@@ -5168,10 +5168,10 @@ class Selection(AbjadValueObject, collections.Sequence):
                         }
                         \times 8/9 {
                             r16
-                            \abjad_color_music "red"
+                            \abjad-color-music #'red
                             bf'16
                             <a'' b''>16
-                            \abjad_color_music "blue"
+                            \abjad-color-music #'blue
                             d'16
                             <e' fs'>4
                             ~
@@ -5180,10 +5180,10 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
                             r16
-                            \abjad_color_music "red"
+                            \abjad-color-music #'red
                             bf'16
                             <a'' b''>16
-                            \abjad_color_music "blue"
+                            \abjad-color-music #'blue
                             e'16
                             <fs' gs'>4
                             ~
@@ -5242,16 +5242,16 @@ class Selection(AbjadValueObject, collections.Sequence):
                 {
                     c'8
                     r8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     d'8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     e'8
                     r8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     f'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     g'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     a'8
                 }
 
@@ -5321,11 +5321,11 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     c'8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     r8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     d'8
                     e'8
                     r8
@@ -5382,17 +5382,17 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     c'8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     r8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     d'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     e'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     r8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     f'8
                     g'8
                     a'8
@@ -5448,21 +5448,21 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     c'8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     r8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     d'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     e'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     r8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     f'8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     g'8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     a'8
                 }
 
@@ -5516,21 +5516,21 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     c'8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     r8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     d'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     e'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     r8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     f'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     g'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     a'8
                 }
 
@@ -5591,27 +5591,27 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     c'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     r8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     d'8
-                    \abjad_color_music "cyan"
+                    \abjad-color-music #'cyan
                     e'8
-                    \abjad_color_music "cyan"
+                    \abjad-color-music #'cyan
                     r8
-                    \abjad_color_music "cyan"
+                    \abjad-color-music #'cyan
                     f'8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     g'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     a'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     b'8
-                    \abjad_color_music "cyan"
+                    \abjad-color-music #'cyan
                     r8
-                    \abjad_color_music "cyan"
+                    \abjad-color-music #'cyan
                     c''8
                 }
 
@@ -5664,16 +5664,16 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     c'8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     r8
                     d'8
                     e'8
                     r8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     f'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     g'8
                     a'8
                     b'8
@@ -5733,21 +5733,21 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     c'8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     r8
                     d'8
                     e'8
                     r8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     f'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     g'8
                     a'8
                     b'8
                     r8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     c''8
                 }
 
@@ -5797,27 +5797,27 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     c'8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     r8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     d'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     e'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     r8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     f'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     g'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     a'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     b'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     r8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     c''8
                 }
 
@@ -5930,27 +5930,27 @@ class Selection(AbjadValueObject, collections.Sequence):
                 {
                     {   % measure
                         \time 2/8
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         c'8
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         d'8
                     }   % measure
                     {   % measure
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         e'8
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         f'8
                     }   % measure
                     {   % measure
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         g'8
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         a'8
                     }   % measure
                     {   % measure
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         b'8
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         c''8
                     }   % measure
                 }
@@ -6012,13 +6012,13 @@ class Selection(AbjadValueObject, collections.Sequence):
                 {
                     {   % measure
                         \time 2/8
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         c'8
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         d'8
                     }   % measure
                     {   % measure
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         e'8
                         f'8
                     }   % measure
@@ -6097,27 +6097,27 @@ class Selection(AbjadValueObject, collections.Sequence):
                 {
                     {   % measure
                         \time 2/8
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         c'8
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         d'8
                     }   % measure
                     {   % measure
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         e'8
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         f'8
                     }   % measure
                     {   % measure
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         g'8
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         a'8
                     }   % measure
                     {   % measure
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         b'8
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         c''8
                     }   % measure
                 }
@@ -6191,25 +6191,25 @@ class Selection(AbjadValueObject, collections.Sequence):
                 {
                     {   % measure
                         \time 2/8
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         c'8
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         d'8
                     }   % measure
                     {   % measure
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         e'8
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         f'8
                     }   % measure
                     {   % measure
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         g'8
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         a'8
                     }   % measure
                     {   % measure
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         b'8
                         c''8
                     }   % measure
@@ -6272,7 +6272,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                 {
                     {   % measure
                         \time 2/8
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         c'8
                         d'8
                     }   % measure
@@ -6353,21 +6353,21 @@ class Selection(AbjadValueObject, collections.Sequence):
                     {   % measure
                         \time 2/8
                         \tempo 4=60
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         c'8
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         d'8
                     }   % measure
                     {   % measure
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         e'8
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         f'8
                     }   % measure
                     {   % measure
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         g'8
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         a'8
                     }   % measure
                     {   % measure
@@ -6440,27 +6440,27 @@ class Selection(AbjadValueObject, collections.Sequence):
                     {   % measure
                         \time 2/8
                         \tempo 4=60
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         c'8
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         d'8
                     }   % measure
                     {   % measure
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         e'8
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         f'8
                     }   % measure
                     {   % measure
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         g'8
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         a'8
                     }   % measure
                     {   % measure
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         b'8
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         c''8
                     }   % measure
                 }
@@ -6526,13 +6526,13 @@ class Selection(AbjadValueObject, collections.Sequence):
                     {   % measure
                         \time 2/8
                         \tempo 4=60
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         c'8
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         d'8
                     }   % measure
                     {   % measure
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         e'8
                         f'8
                     }   % measure
@@ -6619,25 +6619,25 @@ class Selection(AbjadValueObject, collections.Sequence):
                     {   % measure
                         \time 2/8
                         \tempo 4=60
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         c'8
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         d'8
                     }   % measure
                     {   % measure
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         e'8
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         f'8
                     }   % measure
                     {   % measure
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         g'8
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         a'8
                     }   % measure
                     {   % measure
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         b'8
                         c''8
                     }   % measure
@@ -6704,7 +6704,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                     {   % measure
                         \time 2/8
                         \tempo 4=60
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         c'8
                         d'8
                     }   % measure
@@ -6803,12 +6803,9 @@ class Selection(AbjadValueObject, collections.Sequence):
                     except IndexError:
                         break
                     if target_duration < cumulative_duration:
-                        message = 'target duration {}'
-                        message += ' is less than cumulative duration {}.'
-                        message = message.format(
-                            target_duration,
-                            cumulative_duration,
-                            )
+                        message = f'target duration {target_duration} is less'
+                        message += ' than cumulative duration'
+                        message += f' {cumulative_duration}.'
                         raise Exception(message)
                 elif fill is enums.More:
                     part.append(component)
@@ -6878,25 +6875,25 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     c'8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     d'8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     r8
                     \times 2/3 {
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         e'8
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         r8
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         f'8
                     }
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     g'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     a'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     r8
                 }
 
@@ -6944,25 +6941,25 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     c'8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     d'8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     r8
                     \times 2/3 {
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         e'8
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         r8
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         f'8
                     }
-                    \abjad_color_music "cyan"
+                    \abjad-color-music #'cyan
                     g'8
-                    \abjad_color_music "cyan"
+                    \abjad-color-music #'cyan
                     a'8
-                    \abjad_color_music "cyan"
+                    \abjad-color-music #'cyan
                     r8
                 }
 
@@ -7050,7 +7047,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                         }
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
-                            \abjad_color_music "green"
+                            \abjad-color-music #'green
                             r16
                             bf'16
                             <a'' b''>16
@@ -7129,7 +7126,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \time 7/4
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
-                            \abjad_color_music "red"
+                            \abjad-color-music #'red
                             r16
                             bf'16
                             <a'' b''>16
@@ -7139,7 +7136,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                             <d' e'>16
                         }
                         \times 8/9 {
-                            \abjad_color_music "blue"
+                            \abjad-color-music #'blue
                             r16
                             bf'16
                             <a'' b''>16
@@ -7150,7 +7147,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                         }
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
-                            \abjad_color_music "red"
+                            \abjad-color-music #'red
                             r16
                             bf'16
                             <a'' b''>16
@@ -7243,16 +7240,16 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
                             r16
-                            \abjad_color_music "green"
+                            \abjad-color-music #'green
                             e'16
-                            \abjad_color_music "green"
+                            \abjad-color-music #'green
                             e'16
-                            \abjad_color_music "green"
+                            \abjad-color-music #'green
                             e'16
-                            \abjad_color_music "green"
+                            \abjad-color-music #'green
                             <fs' gs'>4
                             ~
-                            \abjad_color_music "green"
+                            \abjad-color-music #'green
                             <fs' gs'>16
                         }
                     }   % measure
@@ -7326,45 +7323,45 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
                             r16
-                            \abjad_color_music "red"
+                            \abjad-color-music #'red
                             c'16
-                            \abjad_color_music "red"
+                            \abjad-color-music #'red
                             c'16
-                            \abjad_color_music "red"
+                            \abjad-color-music #'red
                             c'16
-                            \abjad_color_music "red"
+                            \abjad-color-music #'red
                             <d' e'>4
                             ~
-                            \abjad_color_music "red"
+                            \abjad-color-music #'red
                             <d' e'>16
                         }
                         \times 8/9 {
                             r16
-                            \abjad_color_music "blue"
+                            \abjad-color-music #'blue
                             d'16
-                            \abjad_color_music "blue"
+                            \abjad-color-music #'blue
                             d'16
-                            \abjad_color_music "blue"
+                            \abjad-color-music #'blue
                             d'16
-                            \abjad_color_music "blue"
+                            \abjad-color-music #'blue
                             <e' fs'>4
                             ~
-                            \abjad_color_music "blue"
+                            \abjad-color-music #'blue
                             <e' fs'>16
                         }
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
                             r16
-                            \abjad_color_music "red"
+                            \abjad-color-music #'red
                             e'16
-                            \abjad_color_music "red"
+                            \abjad-color-music #'red
                             e'16
-                            \abjad_color_music "red"
+                            \abjad-color-music #'red
                             e'16
-                            \abjad_color_music "red"
+                            \abjad-color-music #'red
                             <fs' gs'>4
                             ~
-                            \abjad_color_music "red"
+                            \abjad-color-music #'red
                             <fs' gs'>16
                         }
                     }   % measure
@@ -7431,25 +7428,25 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     c'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     d'8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     r8
                     \times 2/3 {
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         e'8
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         r8
-                        \abjad_color_music "blue"
+                        \abjad-color-music #'blue
                         f'8
                     }
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     g'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     a'8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     r8
                 }
 
@@ -7545,18 +7542,18 @@ class Selection(AbjadValueObject, collections.Sequence):
                         }
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
-                            \abjad_color_music "green"
+                            \abjad-color-music #'green
                             r16
-                            \abjad_color_music "green"
+                            \abjad-color-music #'green
                             bf'16
-                            \abjad_color_music "green"
+                            \abjad-color-music #'green
                             <a'' b''>16
-                            \abjad_color_music "green"
+                            \abjad-color-music #'green
                             e'16
-                            \abjad_color_music "green"
+                            \abjad-color-music #'green
                             <fs' gs'>4
                             ~
-                            \abjad_color_music "green"
+                            \abjad-color-music #'green
                             <fs' gs'>16
                         }
                     }   % measure
@@ -7629,49 +7626,49 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \time 7/4
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
-                            \abjad_color_music "red"
+                            \abjad-color-music #'red
                             r16
-                            \abjad_color_music "red"
+                            \abjad-color-music #'red
                             bf'16
-                            \abjad_color_music "red"
+                            \abjad-color-music #'red
                             <a'' b''>16
-                            \abjad_color_music "red"
+                            \abjad-color-music #'red
                             c'16
-                            \abjad_color_music "red"
+                            \abjad-color-music #'red
                             <d' e'>4
                             ~
-                            \abjad_color_music "red"
+                            \abjad-color-music #'red
                             <d' e'>16
                         }
                         \times 8/9 {
-                            \abjad_color_music "blue"
+                            \abjad-color-music #'blue
                             r16
-                            \abjad_color_music "blue"
+                            \abjad-color-music #'blue
                             bf'16
-                            \abjad_color_music "blue"
+                            \abjad-color-music #'blue
                             <a'' b''>16
-                            \abjad_color_music "blue"
+                            \abjad-color-music #'blue
                             d'16
-                            \abjad_color_music "blue"
+                            \abjad-color-music #'blue
                             <e' fs'>4
                             ~
-                            \abjad_color_music "blue"
+                            \abjad-color-music #'blue
                             <e' fs'>16
                         }
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
-                            \abjad_color_music "red"
+                            \abjad-color-music #'red
                             r16
-                            \abjad_color_music "red"
+                            \abjad-color-music #'red
                             bf'16
-                            \abjad_color_music "red"
+                            \abjad-color-music #'red
                             <a'' b''>16
-                            \abjad_color_music "red"
+                            \abjad-color-music #'red
                             e'16
-                            \abjad_color_music "red"
+                            \abjad-color-music #'red
                             <fs' gs'>4
                             ~
-                            \abjad_color_music "red"
+                            \abjad-color-music #'red
                             <fs' gs'>16
                         }
                     }   % measure
@@ -7730,21 +7727,21 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     c'8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     r8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     d'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     e'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     r8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     f'8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     g'8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     a'8
                 }
 
@@ -7794,22 +7791,22 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     c'8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     r8
                     d'8
                     ~
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     d'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     e'8
                     ~
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     e'8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     r8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     f'8
                 }
 
@@ -7869,33 +7866,33 @@ class Selection(AbjadValueObject, collections.Sequence):
                 }
                 {
                     \set Staff.pedalSustainStyle = #'mixed
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     c'8
                     \sustainOn
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     r8
                     \sustainOff
                     \set Staff.pedalSustainStyle = #'mixed
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     d'8
                     ~
                     \sustainOn
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     d'8
                     \set Staff.pedalSustainStyle = #'mixed
-                    \abjad_color_music "blue"
-                    \abjad_color_music "red"
+                    \abjad-color-music #'blue
+                    \abjad-color-music #'red
                     e'8
                     ~
                     \sustainOff
                     \sustainOn
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     e'8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     r8
                     \sustainOff
                     \set Staff.pedalSustainStyle = #'mixed
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     f'8
                     \sustainOn
                     \sustainOff
@@ -7957,21 +7954,21 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     c'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     r8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     d'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     e'8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     r8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     f'8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     g'8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     a'8
                 }
 
@@ -8021,22 +8018,22 @@ class Selection(AbjadValueObject, collections.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     c'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     r8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     d'8
                     ~
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     d'8
-                    \abjad_color_music "red"
+                    \abjad-color-music #'red
                     e'8
                     ~
                     e'8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     r8
-                    \abjad_color_music "blue"
+                    \abjad-color-music #'blue
                     f'8
                 }
 
