@@ -199,7 +199,7 @@ class Context(Container):
             contributions = tuple(contributions)
             identifier_pair = ('settings', 'settings')
             result.append((identifier_pair, contributions))
-            contributions = ['}} {}'.format(brackets_open[0])]
+            contributions = [f'}} {brackets_open[0]}']
             contributions = ['}', open_bracket]
             contributions = self._tag_strings(contributions)
             contributions = tuple(contributions)
@@ -207,7 +207,7 @@ class Context(Container):
             result.append((identifier_pair, contributions))
         else:
             contribution = self._format_invocation()
-            contribution += ' {}'.format(brackets_open[0])
+            contribution += f' {brackets_open[0]}'
             contributions = [contribution]
             contributions = [self._format_invocation(), open_bracket]
             contributions = self._tag_strings(contributions)
@@ -226,7 +226,7 @@ class Context(Container):
     def _format_remove_commands(self):
         result = []
         for engraver in self.remove_commands:
-            string = r'\remove {}'.format(engraver)
+            string = rf'\remove {engraver}'
             result.append(string)
         return result
 

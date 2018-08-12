@@ -312,17 +312,11 @@ class Container(Component):
             return select(self.components.__getitem__(argument))
         elif isinstance(argument, str):
             if argument not in self._named_children:
-                message = 'can not find component named {!r}.'
-                message = message.format(argument)
-                raise ValueError(message)
+                raise ValueError(f'can not find component named {argument!r}.')
             elif 1 < len(self._named_children.__getitem__(argument)):
-                message = 'multiple components named {!r}.'
-                message = message.format(argument)
-                raise ValueError(message)
+                raise ValueError(f'multiple components named {argument!r}.')
             return self._named_children.__getitem__(argument)[0]
-        message = 'can not get container at {!r}.'
-        message = message.format(argument)
-        raise ValueError(message)
+        raise ValueError(f'can not get container at {argument!r}.')
 
     def __getnewargs__(self) -> tuple:
         """
@@ -636,7 +630,7 @@ class Container(Component):
             open_bracket_string, close_bracket_string = '{', '}'
         name = self.name
         if name is not None:
-            name = '-"{}"'.format(name)
+            name = f'-"{name}"'
         else:
             name = ''
         if hasattr(self, '_lilypond_type'):
@@ -661,7 +655,7 @@ class Container(Component):
     def _get_compact_representation(self):
         if not self:
             return '{ }'
-        return '{{ {} }}'.format(self._get_contents_summary())
+        return f'{{ {self._get_contents_summary()} }}'
 
     def _get_contents_duration(self):
         if self.is_simultaneous:
@@ -823,9 +817,7 @@ class Container(Component):
             else:
                 self[:] = parsed[:]
         else:
-            message = 'can not initialize container from {!r}.'
-            message = message.format(components)
-            raise TypeError(message)
+            raise TypeError("can't initialize container from {components!r}.")
 
     def _is_one_of_my_first_leaves(self, leaf):
         return leaf in self._get_descendants_starting_with()
@@ -891,7 +883,7 @@ class Container(Component):
                 not user_input.startswith('<<') or
                 not user_input.endswith('>>')
                 ):
-                user_input = '{{ {} }}'.format(user_input)
+                user_input = f'{{ {user_input} }}'
             parsed = parse(user_input)
             if isinstance(parsed, LilyPondFile):
                 parsed = Container(parsed.items[:])
@@ -1161,9 +1153,7 @@ class Container(Component):
                     leaf_left_of_split = inspect(leaf).leaf(-1)
                     break
             else:
-                message = 'can not split empty container {!r}.'
-                message = message.format(bottom)
-                raise Exception(message)
+                raise Exception('can not split empty container {bottom!r}.')
         assert leaf_left_of_split is not None
         assert leaf_right_of_split is not None
         # find component to right of split
@@ -1592,8 +1582,7 @@ class Container(Component):
             if element is component:
                 return i
         else:
-            message = 'component {!r} not in Abjad container {!r}.'
-            message = message.format(component, self)
+            message = f'component {component!r} not in container {self!r}.'
             raise ValueError(message)
 
     def insert(self, i, component, fracture_spanners=False) -> None:

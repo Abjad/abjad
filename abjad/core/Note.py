@@ -40,7 +40,7 @@ class Note(Leaf):
         from abjad.ly import drums
         assert len(arguments) in (0, 1, 2)
         if len(arguments) == 1 and isinstance(arguments[0], str):
-            string = '{{ {} }}'.format(arguments[0])
+            string = f'{{ {arguments[0]} }}'
             parsed = parse(string)
             assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
             arguments = tuple([parsed[0]])

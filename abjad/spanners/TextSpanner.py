@@ -143,7 +143,7 @@ def text_spanner(
         >>> start_text_span = abjad.StartTextSpan(
         ...     left_text=abjad.Markup('pont.').upright(),
         ...     right_text=abjad.Markup('tasto').upright(),
-        ...     style='solid_line_with_arrow',
+        ...     style='solid-line-with-arrow',
         ...     )
         >>> abjad.text_spanner(staff[:], start_text_span=start_text_span)
         >>> abjad.override(staff[0]).text_spanner.staff_padding = 4
@@ -156,7 +156,7 @@ def text_spanner(
             {
                 \once \override TextSpanner.staff-padding = #4
                 c'4
-                - \abjad_solid_line_with_arrow
+                - \abjad-solid-line-with-arrow
                 - \tweak bound-details.left.text \markup {
                     \concat
                         {
@@ -184,13 +184,13 @@ def text_spanner(
         >>> staff = abjad.Staff("c'4 d' e' f' r")
         >>> start_text_span = abjad.StartTextSpan(
         ...     left_text=abjad.Markup('pont.').upright(),
-        ...     style='dashed_line_with_arrow',
+        ...     style='dashed-line-with-arrow',
         ...     )
         >>> abjad.text_spanner(staff[:3], start_text_span=start_text_span)
         >>> start_text_span = abjad.StartTextSpan(
         ...     left_text=abjad.Markup('tasto').upright(),
         ...     right_text=abjad.Markup('pont.').upright(),
-        ...     style='dashed_line_with_arrow',
+        ...     style='dashed-line-with-arrow',
         ...     )
         >>> abjad.text_spanner(staff[-3:], start_text_span=start_text_span)
         >>> abjad.override(staff).text_spanner.staff_padding = 4
@@ -206,7 +206,7 @@ def text_spanner(
             }
             {
                 c'4
-                - \abjad_dashed_line_with_arrow
+                - \abjad-dashed-line-with-arrow
                 - \tweak bound-details.left.text \markup {
                     \concat
                         {
@@ -220,7 +220,7 @@ def text_spanner(
                 d'4
                 e'4
                 \stopTextSpan
-                - \abjad_dashed_line_with_arrow
+                - \abjad-dashed-line-with-arrow
                 - \tweak bound-details.left.text \markup {
                     \concat
                         {
@@ -243,12 +243,12 @@ def text_spanner(
         >>> staff = abjad.Staff("c'4 d' e' f' r")
         >>> start_text_span = abjad.StartTextSpan(
         ...     left_text=abjad.Markup('pont.').upright(),
-        ...     style='dashed_line_with_arrow',
+        ...     style='dashed-line-with-arrow',
         ...     )
         >>> abjad.text_spanner(staff[:3], start_text_span=start_text_span)
         >>> start_text_span = abjad.StartTextSpan(
         ...     left_text=abjad.Markup('tasto').upright(),
-        ...     style='solid_line_with_hook',
+        ...     style='solid-line-with-hook',
         ...     )
         >>> abjad.text_spanner(staff[-3:], start_text_span=start_text_span)
         >>> abjad.override(staff).text_spanner.staff_padding = 4
@@ -264,7 +264,7 @@ def text_spanner(
             }
             {
                 c'4
-                - \abjad_dashed_line_with_arrow
+                - \abjad-dashed-line-with-arrow
                 - \tweak bound-details.left.text \markup {
                     \concat
                         {
@@ -278,7 +278,7 @@ def text_spanner(
                 d'4
                 e'4
                 \stopTextSpan
-                - \abjad_solid_line_with_hook
+                - \abjad-solid-line-with-hook
                 - \tweak bound-details.left.text \markup {
                     \concat
                         {

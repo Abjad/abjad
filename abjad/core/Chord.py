@@ -45,7 +45,7 @@ class Chord(Leaf):
         assert len(arguments) in (0, 1, 2)
         self._note_heads = NoteHeadList(client=self)
         if len(arguments) == 1 and isinstance(arguments[0], str):
-            string = '{{ {} }}'.format(arguments[0])
+            string = f'{{ {arguments[0]} }}'
             parsed = parse(string)
             assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
             arguments = tuple([parsed[0]])
@@ -211,26 +211,21 @@ class Chord(Leaf):
         reattack_duration = self._get_tremolo_reattack_duration()
         repeat_count = self.written_duration / reattack_duration / 2
         if not mathtools.is_integer_equivalent(repeat_count):
-            message = 'can not tremolo duration {} with {} beams.'
-            message = message.format(self.written_duration, tremolo.beam_count)
+            message = f'can not tremolo duration {self.written_duration}'
+            message += f' with {tremolo.beam_count} beams.'
             raise Exception(message)
         repeat_count = int(repeat_count)
         command = r'\repeat tremolo {}'.format(repeat_count)
         return command
 
     def _get_compact_representation(self):
-        return '<{}>{}'.format(
-            self._get_summary(),
-            self._get_formatted_duration(),
-            )
+        return f'<{self._get_summary()}>{self._get_formatted_duration()}'
 
     def _get_compact_representation_with_tie(self):
         logical_tie = self._get_logical_tie()
         if 1 < len(logical_tie) and self is not logical_tie[-1]:
-            #return '{} ~'.format(self._get_body()[0])
-            return '{} ~'.format(self._get_compact_representation())
+            return f'{self._get_compact_representation()} ~'
         else:
-            #return self._get_body()[0]
             return self._get_compact_representation()
 
     def _get_sounding_pitches(self):

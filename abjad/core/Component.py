@@ -183,7 +183,7 @@ class Component(AbjadObject):
         score_index = '_'.join(str(_) for _ in score_index)
         class_name = type(self).__name__
         if score_index:
-            name = '{}_{}'.format(class_name, score_index)
+            name = f'{class_name}_{score_index}'
         else:
             name = class_name
         node = uqbar.graphs.Node(
@@ -231,11 +231,21 @@ class Component(AbjadObject):
         parent.__setitem__(slice(start, stop + 1), components)
         return self
 
+#    def _format_absolute_after_slot(self, bundle):
+#        return []
+#
+#    def _format_absolute_before_slot(self, bundle):
+#        return []
+
     def _format_absolute_after_slot(self, bundle):
-        return []
+        result = []
+        result.append(('literals', bundle.absolute_after.commands))
+        return result
 
     def _format_absolute_before_slot(self, bundle):
-        return []
+        result = []
+        result.append(('literals', bundle.absolute_before.commands))
+        return result
 
     def _format_after_slot(self, bundle):
         pass
@@ -437,7 +447,7 @@ class Component(AbjadObject):
         elif isinstance(slot_identifier, str):
             slot_name = slot_identifier.replace(' ', '_')
             assert slot_name in slot_names
-        method_name = '_format_{}_slot'.format(slot_name)
+        method_name = f'_format_{slot_name}_slot'
         method = getattr(self, method_name)
         for source, contributions in method(bundle):
             result.extend(contributions)
@@ -583,8 +593,7 @@ class Component(AbjadObject):
             except StopIteration:
                 raise exceptions.MissingMeasureError
         else:
-            message = 'unknown component: {!r}.'
-            raise TypeError(message.format(self))
+            raise TypeError(f'unknown component {self!r}.')
 
     def _get_nth_component_in_time_order_from(self, n):
         assert mathtools.is_integer_equivalent(n)
@@ -646,8 +655,7 @@ class Component(AbjadObject):
             except StopIteration:
                 raise exceptions.MissingMeasureError
         else:
-            message = 'unknown component: {!r}.'
-            raise TypeError(message.format(self))
+            raise Exception(f'unknown component {self!r}.')
 
     def _get_sibling(self, n):
         if n == 0:

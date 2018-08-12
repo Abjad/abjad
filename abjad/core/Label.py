@@ -242,8 +242,7 @@ class Label(AbjadObject):
             type(None),
             )
         if not isinstance(client, prototype):
-            message = 'must be component, iterable or none: {!r}.'
-            message = message.format(client)
+            message = f'must be component, iterable or none: {client!r}.'
             raise TypeError(message)
         self._client = client
         self._deactivate = deactivate
@@ -265,7 +264,7 @@ class Label(AbjadObject):
             comment = LilyPondComment(color)
             self._attach(comment, leaf)
         else:
-            string = fr'\abjad_color_music "{color}"'
+            string = fr"\abjad-color-music #'{color}"
             literal = LilyPondLiteral(string)
             self._attach(literal, leaf)
         return leaf
@@ -414,14 +413,14 @@ class Label(AbjadObject):
                     >>> abjad.f(staff)
                     \new Staff
                     {
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         cs'8.
                         [
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         r8.
                         % red
                         s8.
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         <c' cs' a'>8.
                         ]
                     }
@@ -440,14 +439,14 @@ class Label(AbjadObject):
                     >>> abjad.f(staff)
                     \new Staff
                     {
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         cs'8.
                         [
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         r8.
                         % red
                         s8.
-                        \abjad_color_music "red"
+                        \abjad-color-music #'red
                         <c' cs' a'>8.
                         ]
                     }
@@ -1919,9 +1918,7 @@ class Label(AbjadObject):
                 command = MarkupCommand('line', [string])
                 label = Markup(command, direction=direction)
             else:
-                message = 'unknown prototype: {!r}.'
-                message = message.format(prototype)
-                raise TypeError(message)
+                raise TypeError(f'unknown prototype {prototype!r}.')
             if label is not None:
                 label = label.tiny()
                 if direction is enums.Up:

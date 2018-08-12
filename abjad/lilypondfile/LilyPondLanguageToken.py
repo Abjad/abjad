@@ -49,7 +49,7 @@ class LilyPondLanguageToken(AbjadValueObject):
 
         Returns string.
         """
-        return '{}()'.format(type(self).__name__)
+        return f'{type(self).__name__}()'
 
     ### PRIVATE METHODS ###
 

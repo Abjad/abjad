@@ -101,7 +101,7 @@ class StopTextSpan(AbjadValueObject):
             >>> command = abjad.StartTextSpan(
             ...     left_text=abjad.Markup('pont.').upright(),
             ...     right_text=abjad.Markup('tasto').upright(),
-            ...     style='dashed_line_with_arrow',
+            ...     style='dashed-line-with-arrow',
             ...     )
             >>> abjad.tweak(command).staff_padding = 2.5
             >>> abjad.attach(command, staff[0])
@@ -115,7 +115,7 @@ class StopTextSpan(AbjadValueObject):
                 \new Staff
                 {
                     c'4
-                    - \abjad_dashed_line_with_arrow
+                    - \abjad-dashed-line-with-arrow
                     - \tweak bound-details.left.text \markup {
                         \concat
                             {
@@ -143,7 +143,7 @@ class StopTextSpan(AbjadValueObject):
             >>> command = abjad.StartTextSpan(
             ...     left_text=abjad.Markup('pont.').upright(),
             ...     right_text=abjad.Markup('tasto').upright(),
-            ...     style='dashed_line_with_arrow',
+            ...     style='dashed-line-with-arrow',
             ...     )
             >>> abjad.tweak(command).staff_padding = 2.5
             >>> abjad.attach(command, staff[0])
@@ -157,7 +157,7 @@ class StopTextSpan(AbjadValueObject):
                 \new Staff
                 {
                     c'4
-                    - \abjad_dashed_line_with_arrow
+                    - \abjad-dashed-line-with-arrow
                     - \tweak bound-details.left.text \markup {
                         \concat
                             {
@@ -190,7 +190,7 @@ class StopTextSpan(AbjadValueObject):
             >>> command = abjad.StartTextSpan(
             ...     left_text=abjad.Markup('pont.').upright(),
             ...     right_text=abjad.Markup('tasto').upright(),
-            ...     style='dashed_line_with_arrow',
+            ...     style='dashed-line-with-arrow',
             ...     )
             >>> abjad.tweak(command).staff_padding = 2.5
             >>> abjad.attach(command, staff[0])
@@ -204,7 +204,7 @@ class StopTextSpan(AbjadValueObject):
                 \new Staff
                 {
                     c'8
-                    - \abjad_dashed_line_with_arrow
+                    - \abjad-dashed-line-with-arrow
                     - \tweak bound-details.left.text \markup {
                         \concat
                             {
