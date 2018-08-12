@@ -2,8 +2,6 @@
 
 #(ly:set-option 'relative-includes #t)
 \include "abjad.ily"
-\include "flared-hairpin.ily"
-\include "text-spanner-id.ily"
 
 #(set-global-staff-size 18)
 
@@ -57,13 +55,6 @@
 
         proportionalNotationDuration = #(ly:make-moment 1 20)
         tupletFullLength = ##t
-    }
-
-    % VOICE
-    \context {
-        \Voice
-        \remove Text_spanner_engraver
-        \consists \alternateTextSpannerEngraver
     }
 
 }

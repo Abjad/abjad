@@ -36,6 +36,7 @@ def test_Measure_duration_02():
     assert format(measure) == abjad.String.normalize(
         r"""
         {   % measure
+            #(ly:expect-warning "strange time signature found")
             \time 3/10
             \scaleDurations #'(4 . 5) {
                 c'8

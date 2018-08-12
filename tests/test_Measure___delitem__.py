@@ -116,6 +116,7 @@ def test_Measure___delitem___05():
     assert format(measure) == abjad.String.normalize(
         r"""
         {   % measure
+            #(ly:expect-warning "strange time signature found")
             \time 3/9
             \scaleDurations #'(8 . 9) {
                 d'8
@@ -143,6 +144,7 @@ def test_Measure___delitem___06():
     assert format(measure) == abjad.String.normalize(
         r"""
         {   % measure
+            #(ly:expect-warning "strange time signature found")
             \time 3/9
             \scaleDurations #'(8 . 9) {
                 c'16
@@ -159,6 +161,7 @@ def test_Measure___delitem___06():
     assert format(measure) == abjad.String.normalize(
         r"""
         {   % measure
+            #(ly:expect-warning "strange time signature found")
             \time 5/18
             \scaleDurations #'(8 . 9) {
                 d'16

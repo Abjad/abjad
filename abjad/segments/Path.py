@@ -41,10 +41,11 @@ class Path(pathlib.PosixPath):
         >>> path.materials
         Path*('/path/to/scores/my_score/my_score/materials')
 
-        >>> path.materials('instruments')
+        >>> instruments = path.materials / 'instruments'
+        >>> instruments
         Path*('/path/to/scores/my_score/my_score/materials/instruments')
 
-        >>> path.materials('instruments').is_material()
+        >>> instruments.is_material()
         True
 
     """
@@ -111,10 +112,11 @@ class Path(pathlib.PosixPath):
         """
         Calls path on ``names``.
         """
-        path = self
-        for name in names:
-            path /= name
-        return path
+        raise Exception('Deprecated: use / instead.')
+#        path = self
+#        for name in names:
+#            path /= name
+#        return path
 
     def __repr__(self) -> str:
         """
@@ -363,7 +365,7 @@ class Path(pathlib.PosixPath):
                 pass
             elif name in self._secondary_names:
                 continue
-            path = self(name)
+            path = self / name
             try:
                 path.relative_to(self)
             except ValueError:
@@ -536,12 +538,12 @@ class Path(pathlib.PosixPath):
             ...     )
             >>> path.builds
             Path*('/path/to/scores/my_score/my_score/builds')
-            >>> path.builds('letter')
+            >>> path.builds/ 'letter'
             Path*('/path/to/scores/my_score/my_score/builds/letter')
 
         """
         if self.contents:
-            return self.contents('builds')
+            return self.contents / 'builds'
         else:
             return None
 
@@ -558,7 +560,7 @@ class Path(pathlib.PosixPath):
             ...     )
             >>> path.contents
             Path*('/path/to/scores/my_score/my_score')
-            >>> path.contents('etc', 'notes.txt')
+            >>> path.contents / 'etc' / 'notes.txt'
             Path*('/path/to/scores/my_score/my_score/etc/notes.txt')
 
         """
@@ -568,7 +570,7 @@ class Path(pathlib.PosixPath):
         parts = self.relative_to(scores).parts
         if not parts:
             return None
-        result = scores(parts[0], parts[0])
+        result = scores / parts[0] / parts[0]
         result._scores = getattr(self, '_scores', None)
         return result
 
@@ -585,12 +587,12 @@ class Path(pathlib.PosixPath):
             ...     )
             >>> path.distribution
             Path*('/path/to/scores/my_score/my_score/distribution')
-            >>> path.distribution('score.pdf')
+            >>> path.distribution/ 'score.pdf'
             Path*('/path/to/scores/my_score/my_score/distribution/score.pdf')
 
         """
         if self.contents:
-            return self.contents('distribution')
+            return self.contents/ 'distribution'
         else:
             return None
 
@@ -607,12 +609,12 @@ class Path(pathlib.PosixPath):
             ...     )
             >>> path.etc
             Path*('/path/to/scores/my_score/my_score/etc')
-            >>> path.etc('notes.txt')
+            >>> path.etc / 'notes.txt'
             Path*('/path/to/scores/my_score/my_score/etc/notes.txt')
 
         """
         if self.contents:
-            return self.contents('etc')
+            return self.contents / 'etc'
         else:
             return None
 
@@ -629,12 +631,12 @@ class Path(pathlib.PosixPath):
             ...     )
             >>> path.materials
             Path*('/path/to/scores/my_score/my_score/materials')
-            >>> path.materials('instruments')
+            >>> path.materials / 'instruments'
             Path*('/path/to/scores/my_score/my_score/materials/instruments')
 
         """
         if self.contents:
-            return self.contents('materials')
+            return self.contents / 'materials'
         else:
             return None
 
@@ -651,7 +653,7 @@ class Path(pathlib.PosixPath):
             ...     )
             >>> path.scores
             Path*('/path/to/scores')
-            >>> path.scores('red_score', 'red_score')
+            >>> path.scores / 'red_score' / 'red_score'
             Path*('/path/to/scores/red_score/red_score')
 
         """
@@ -680,12 +682,12 @@ class Path(pathlib.PosixPath):
             ...     )
             >>> path.segments
             Path*('/path/to/scores/my_score/my_score/segments')
-            >>> path.segments('segment_01')
+            >>> path.segments / 'segment_01'
             Path*('/path/to/scores/my_score/my_score/segments/segment_01')
 
         """
         if self.contents:
-            return self.contents('segments')
+            return self.contents / 'segments'
         else:
             return None
 
@@ -702,12 +704,12 @@ class Path(pathlib.PosixPath):
             ...     )
             >>> path.stylesheets
             Path*('/path/to/scores/my_score/my_score/stylesheets')
-            >>> path.stylesheets('stylesheet.ily')
+            >>> path.stylesheets / 'stylesheet.ily'
             Path*('/path/to/scores/my_score/my_score/stylesheets/stylesheet.ily')
 
         """
         if self.contents:
-            return self.contents('stylesheets')
+            return self.contents / 'stylesheets'
         else:
             return None
 
@@ -724,12 +726,12 @@ class Path(pathlib.PosixPath):
             ...     )
             >>> path.test
             Path*('/path/to/scores/my_score/my_score/test')
-            >>> path.test('test_materials.py')
+            >>> path.test / 'test_materials.py'
             Path*('/path/to/scores/my_score/my_score/test/test_materials.py')
 
         """
         if self.contents:
-            return self.contents('test')
+            return self.contents / 'test'
         else:
             return None
 
@@ -746,12 +748,12 @@ class Path(pathlib.PosixPath):
             ...     )
             >>> path.tools
             Path*('/path/to/scores/my_score/my_score/tools')
-            >>> path.tools('SegmentMaker.py')
+            >>> path.tools / 'SegmentMaker.py'
             Path*('/path/to/scores/my_score/my_score/tools/SegmentMaker.py')
 
         """
         if self.contents:
-            return self.contents('tools')
+            return self.contents / 'tools'
         else:
             return None
 
@@ -768,12 +770,12 @@ class Path(pathlib.PosixPath):
             ...     )
             >>> path.wrapper
             Path*('/path/to/scores/my_score')
-            >>> path.wrapper('my_score', 'etc')
+            >>> path.wrapper / 'my_score' / 'etc'
             Path*('/path/to/scores/my_score/my_score/etc')
 
         """
         if self.contents:
-            result = type(self)(self.contents()).parent
+            result = type(self)(self.contents).parent
             _scores = getattr(self, '_scores', None)
             setattr(result, '_scores', _scores)
             return result
@@ -826,7 +828,7 @@ class Path(pathlib.PosixPath):
             assert self.is_dir()
             count, skipped = 0, 0
             for path in sorted(self.glob('**/*')):
-                path = Path(path)
+                path = type(self)(path)
                 if not path.suffix in ('.ily', '.ly'):
                     continue
                 if not (path.name.startswith('illustration') or
@@ -904,7 +906,7 @@ class Path(pathlib.PosixPath):
         metadata[name] = value
         self.write_metadata_py(metadata)
 
-    def coerce(self, name, suffix=None):
+    def coerce(self, name, suffix=None) -> str:
         """
         Coerces asset ``name``.
 
@@ -919,25 +921,26 @@ class Path(pathlib.PosixPath):
 
             In build directory:
 
-            >>> path.builds('letter').coerce('back cover.tex')
+            >>> build = path.builds / 'letter'
+            >>> build.coerce('back cover.tex')
             'back cover.tex'
-            >>> path.builds('letter').coerce('Back Cover.tex')
+            >>> build.coerce('Back Cover.tex')
             'Back Cover.tex'
-            >>> path.builds('letter').coerce('BACK_COVER.tex')
+            >>> build.coerce('BACK_COVER.tex')
             'BACK_COVER.tex'
 
-            >>> path.builds('letter').coerce('new music.ly')
+            >>> build.coerce('new music.ly')
             'new music.ly'
-            >>> path.builds('letter').coerce('New Music.ly')
+            >>> build.coerce('New Music.ly')
             'New Music.ly'
-            >>> path.builds('letter').coerce('NEW_MUSIC.ly')
+            >>> build.coerce('NEW_MUSIC.ly')
             'NEW_MUSIC.ly'
 
-            >>> path.builds('letter').coerce('page_layout.py')
+            >>> build.coerce('page_layout.py')
             'page_layout.py'
-            >>> path.builds('letter').coerce('Page Layout.py')
+            >>> build.coerce('Page Layout.py')
             'Page Layout.py'
-            >>> path.builds('letter').coerce('PAGE_LAYOUT.py')
+            >>> build.coerce('PAGE_LAYOUT.py')
             'PAGE_LAYOUT.py'
 
         ..  container:: example
@@ -1380,19 +1383,21 @@ class Path(pathlib.PosixPath):
             >>> path.contents.get_identifier()
             '(untitled score)'
 
-            >>> path.materials('tempi').get_identifier()
+            >>> material = path.materials / 'tempi'
+            >>> material.get_identifier()
             'tempi'
 
-            >>> path.materials().get_identifier()
+            >>> path.materials.get_identifier()
             'materials'
 
-            >>> path.segments('segment_01').get_identifier()
+            >>> segment = path.segments / 'segment_01'
+            >>> segment.get_identifier()
             'segment_01'
 
-            >>> path.segments().get_identifier()
+            >>> path.segments.get_identifier()
             'segments'
 
-            >>> path.wrapper().get_identifier()
+            >>> path.wrapper.get_identifier()
             '(untitled score)'
 
         Returns title when path is contents directory.
@@ -1402,7 +1407,7 @@ class Path(pathlib.PosixPath):
         Returns path name otherwise.
         """
         if self.is_wrapper():
-            result = self.contents().get_title()
+            result = self.contents.get_title()
         elif self.is_contents():
             result = self.get_title()
         elif self.is_dir():
@@ -1451,7 +1456,7 @@ class Path(pathlib.PosixPath):
         """
         Gets __metadata__.py file in path.
         """
-        metadata_py_path = self('__metadata__.py')
+        metadata_py_path = self/ '__metadata__.py'
         metadata = None
         if metadata_py_path.is_file():
             file_contents_string = metadata_py_path.read_text()
@@ -1513,7 +1518,8 @@ class Path(pathlib.PosixPath):
             >>> path.materials.get_name_predicate()
             <function String.is_package_name at ...>
 
-            >>> path.materials('tempi').get_name_predicate()
+            >>> material = path.materials / 'tempi'
+            >>> material.get_name_predicate()
             <function String.is_lowercase_file_name at ...>
 
             >>> path.scores.get_name_predicate()
@@ -1522,7 +1528,8 @@ class Path(pathlib.PosixPath):
             >>> path.segments.get_name_predicate()
             <function String.is_segment_name at ...>
 
-            >>> path.segments('segment_01').get_name_predicate()
+            >>> segment = path.segments / 'segment_01'
+            >>> segment.get_name_predicate()
             <function String.is_lowercase_file_name at ...>
 
             >>> path.wrapper.get_name_predicate() is None
@@ -1596,8 +1603,8 @@ class Path(pathlib.PosixPath):
                 path = self
             else:
                 index = paths.index(self)
-                paths = CyclicTuple(paths)
-                path = paths[index + 1]
+                cyclic_paths = CyclicTuple(paths)
+                path = cyclic_paths[index + 1]
         elif self.is_materials():
             paths = self.list_paths()
             path = paths[0]
@@ -1610,8 +1617,8 @@ class Path(pathlib.PosixPath):
                 path = None
             else:
                 index = paths.index(self)
-                paths = CyclicTuple(paths)
-                path = paths[index + 1]
+                cyclic_paths = CyclicTuple(paths)
+                path = cyclic_paths[index + 1]
         elif self.is_segments():
             paths = self.list_paths()
             path = paths[0]
@@ -1654,9 +1661,10 @@ class Path(pathlib.PosixPath):
         wrapper = self.wrapper
         if wrapper == wrappers[-1] and not cyclic:
             return None
+        assert isinstance(wrapper, Path)
         index = wrappers.index(wrapper)
-        wrappers = CyclicTuple(wrappers)
-        return wrappers[index + 1]
+        cyclic_wrappers = CyclicTuple(wrappers)
+        return cyclic_wrappers[index + 1]
 
     def get_part_identifier(self) -> typing.Optional[str]:
         """
@@ -1733,8 +1741,8 @@ class Path(pathlib.PosixPath):
                 path = None
             else:
                 index = paths.index(self)
-                paths = CyclicTuple(paths)
-                path = paths[index - 1]
+                cyclic_paths = CyclicTuple(paths)
+                path = cyclic_paths[index - 1]
         elif self.is_materials():
             paths = self.list_paths()
             path = paths[-1]
@@ -1747,8 +1755,8 @@ class Path(pathlib.PosixPath):
                 path = None
             else:
                 index = paths.index(self)
-                paths = CyclicTuple(paths)
-                path = paths[index - 1]
+                cyclic_paths = CyclicTuple(paths)
+                path = cyclic_paths[index - 1]
         elif self.is_segments():
             paths = self.list_paths()
             path = paths[-1]
@@ -1791,9 +1799,10 @@ class Path(pathlib.PosixPath):
         wrapper = self.wrapper
         if wrapper == wrappers[0] and not cyclic:
             return None
+        assert wrapper is not None
         index = wrappers.index(wrapper)
-        wrappers = CyclicTuple(wrappers)
-        return wrappers[index - 1]
+        cyclic_wrappers = CyclicTuple(wrappers)
+        return cyclic_wrappers[index - 1]
 
     def get_time_signature_metadata(self) -> typing.List[TimeSignature]:
         """
@@ -1816,7 +1825,7 @@ class Path(pathlib.PosixPath):
                 time_signatures_.append(time_signature)
         return time_signatures_
 
-    def get_title(self, year=True):
+    def get_title(self, year=True) -> typing.Optional[str]:
         """
         Gets score title.
 
@@ -1835,7 +1844,7 @@ class Path(pathlib.PosixPath):
         if year and self.get_metadatum('year'):
             title = self.get_title(year=False)
             year = self.get_metadatum('year')
-            result = '{} ({})'.format(title, year)
+            result = f'{title} ({year})'
             return result
         else:
             result = self.get_metadatum('title')
@@ -1950,7 +1959,7 @@ class Path(pathlib.PosixPath):
             ...     '/path/to/scores/my_score/my_score',
             ...     scores='/path/to/scores',
             ...     )
-            >>> path = path('build', '_assets')
+            >>> path = path / 'build' / '_assets'
             >>> path.is__assets()
             True
 
@@ -1983,7 +1992,8 @@ class Path(pathlib.PosixPath):
                 ...     '/path/to/scores/my_score/my_score',
                 ...     scores='/path/to/scores',
                 ...     )
-                >>> path.builds('letter').is_build()
+                >>> build = path.builds / 'letter'
+                >>> build.is_build()
                 True
 
         """
@@ -2153,22 +2163,28 @@ class Path(pathlib.PosixPath):
             ...     scores='/path/to/scores',
             ...     )
 
-            >>> path.segments('_').is_introduction_segment()
+            >>> segment = path.segments / '_'
+            >>> segment.is_introduction_segment()
             True
 
-            >>> path.segments('_1').is_introduction_segment()
+            >>> segment = path.segments / '_1'
+            >>> segment.is_introduction_segment()
             True
 
-            >>> path.segments('_99').is_introduction_segment()
+            >>> segment = path.segments / '_99'
+            >>> segment.is_introduction_segment()
             True
 
-            >>> path.segments('_1A').is_introduction_segment()
+            >>> segment = path.segments / '_1A'
+            >>> segment.is_introduction_segment()
             False
 
-            >>> path.segments('1').is_introduction_segment()
+            >>> segment = path.segments / '1'
+            >>> segment.is_introduction_segment()
             False
 
-            >>> path.segments('A').is_introduction_segment()
+            >>> segment = path.segments / 'A'
+            >>> segment.is_introduction_segment()
             False
 
         """
@@ -2198,7 +2214,8 @@ class Path(pathlib.PosixPath):
             ...     '/path/to/scores/my_score/my_score',
             ...     scores='/path/to/scores',
             ...     )
-            >>> path.materials('tempi').is_material()
+            >>> material = path.materials / 'tempi'
+            >>> material.is_material()
             True
 
         """
@@ -2218,13 +2235,15 @@ class Path(pathlib.PosixPath):
             >>> path.materials.is_material_or_segment()
             False
 
-            >>> path.materials('tempi').is_material_or_segment()
+            >>> material = path.materials / 'tempi'
+            >>> material.is_material_or_segment()
             True
 
             >>> path.segments.is_material_or_segment()
             False
 
-            >>> path.segments('A').is_material_or_segment()
+            >>> segment = path.segments / 'A'
+            >>> segment.is_material_or_segment()
             True
 
         """
@@ -2260,13 +2279,15 @@ class Path(pathlib.PosixPath):
             >>> path.materials.is_materials_or_segments()
             True
 
-            >>> path.materials('tempi').is_materials_or_segments()
+            >>> material = path.materials / 'tempi'
+            >>> material.is_materials_or_segments()
             False
 
             >>> path.segments.is_materials_or_segments()
             True
 
-            >>> path.segments('A').is_materials_or_segments()
+            >>> segment = path.segments / 'A'
+            >>> segment.is_materials_or_segments()
             False
 
         """
@@ -2286,7 +2307,8 @@ class Path(pathlib.PosixPath):
             >>> path.builds.is_part()
             False
 
-            >>> path.builds('arch-a-parts').is_part()
+            >>> build = path.builds / 'arch-a-parts'
+            >>> build.is_part()
             False
 
         """
@@ -2306,7 +2328,8 @@ class Path(pathlib.PosixPath):
             >>> path.builds.is_parts()
             False
 
-            >>> path.builds('arch-a-score').is_parts()
+            >>> build = path.builds / 'arch-a-score'
+            >>> build.is_parts()
             False
 
         """
@@ -2332,7 +2355,8 @@ class Path(pathlib.PosixPath):
             >>> path.builds.is_score_build()
             False
 
-            >>> path.builds('arch-a-score').is_score_build()
+            >>> build = path.builds / 'arch-a-score'
+            >>> build.is_score_build()
             True
 
         """
@@ -2390,7 +2414,8 @@ class Path(pathlib.PosixPath):
             >>> path.stylesheets.is_score_package_path()
             True
 
-            >>> path('build', '_assets').is_score_package_path()
+            >>> path = path / 'build' / '_assets'
+            >>> path.is_score_package_path()
             True
 
         """
@@ -2463,7 +2488,8 @@ class Path(pathlib.PosixPath):
             ...     '/path/to/scores/my_score/my_score',
             ...     scores='/path/to/scores',
             ...     )
-            >>> path.segments('segment_01').is_segment()
+            >>> segment = path.segments / 'segment_01'
+            >>> segment.is_segment()
             True
 
         ..  container:: example
@@ -2677,7 +2703,7 @@ class Path(pathlib.PosixPath):
         else:
             return False
 
-    def list_paths(self):
+    def list_paths(self) -> typing.List['Path']:
         """
         Lists paths ordered by view (if any).
 
@@ -2699,7 +2725,7 @@ class Path(pathlib.PosixPath):
             paths = self._sort_by_identifier(paths)
         return paths
 
-    def list_secondary_paths(self):
+    def list_secondary_paths(self) -> typing.List['Path']:
         """
         Lists secondary paths.
 
@@ -2713,14 +2739,13 @@ class Path(pathlib.PosixPath):
             >>> path.list_secondary_paths()
             []
 
-        Returns list.
         """
         paths = []
         for path in sorted(self.glob('*')):
             if path.name in sorted(self._secondary_names):
                 if path.name == 'stylesheet.ily' and self.is_stylesheets():
                     continue
-                paths.append(path)
+                paths.append(type(self)(path))
         return paths
 
     def part_to_identifiers(
@@ -2763,22 +2788,48 @@ class Path(pathlib.PosixPath):
                 identifiers.append(identifier)
         return identifiers
 
-    def remove(self):
+    def remove(self) -> None:
         """
         Removes path if it exists.
-
-        Returns none.
         """
         if self.is_file():
             self.unlink()
         elif self.is_dir():
             shutil.rmtree(str(self))
 
-    def remove_metadatum(self, name):
+    def remove_lilypond_warnings(
+        self,
+        crescendo_too_small: bool = None,
+        decrescendo_too_small: bool = None,
+        overwriting_glissando: bool = None,
+        ) -> None:
+        """
+        Removes LilyPond warnings from ``.log``.
+        """
+        assert self.name == '.log', repr(self)
+        lines = []
+        skip = 0
+        with open(self) as pointer:
+            for line in pointer.readlines():
+                if 0 < skip:
+                    skip -= 1
+                    continue
+                if crescendo_too_small and 'crescendo too small' in line:
+                    skip = 2
+                    continue
+                if decrescendo_too_small and 'decrescendo too small' in line:
+                    skip = 2
+                    continue
+                if overwriting_glissando and 'overwriting glissando' in line:
+                    skip = 1
+                    continue
+                lines.append(line)
+        text = ''.join(lines)
+        self.write_text(text)
+
+    def remove_metadatum(self, name) -> None:
         """
         Removes metadatum.
-
-        Returns none.
         """
         assert ' ' not in name, repr(name)
         metadata = self.get_metadata()
@@ -2856,7 +2907,7 @@ class Path(pathlib.PosixPath):
             attach(literal, staff_group)
         return skeleton
 
-    def segment_number_to_path(self, number):
+    def segment_number_to_path(self, number) -> typing.Optional['Path']:
         """
         Changes segment number to path.
 
@@ -2869,20 +2920,21 @@ class Path(pathlib.PosixPath):
 
             >>> path.segment_number_to_path(1)
 
-        Returns path.
         """
-        for path in sorted(self.segments().glob('*')):
+        assert self.segments is not None
+        for path in sorted(self.segments.glob('*')):
             if not path.is_dir():
                 continue
             if not path.name.startswith('segment_'):
                 continue
             body = path.name[8:]
             try:
-                body = int(body)
+                number_ = int(body)
             except ValueError:
                 continue
-            if body == number:
-                return path
+            if number_ == number:
+                return type(self)(path)
+        return None
 
     def to_part(self) -> Part:
         """
@@ -2918,20 +2970,22 @@ class Path(pathlib.PosixPath):
             >>> path.segments.trim()
             'my_score/segments'
 
-            >>> path.segments('segment_01').trim()
+            >>> segment = path.segments / 'segment_01'
+            >>> segment.trim()
             'my_score/segments/segment_01'
 
             >>> path.materials.trim()
             'my_score/materials'
 
-            >>> path.materials('tempi').trim()
+            >>> material = path.materials / 'tempi'
+            >>> material.trim()
             'my_score/materials/tempi'
 
         """
         import abjad
         configuration = abjad.abjad_configuration
         if self.scores is None or self.is_wrapper() or self.is_contents():
-            home_directory = Path(configuration.home_directory)
+            home_directory = type(self)(configuration.home_directory)
             if str(self).startswith(str(home_directory)):
                 return '../' + str(self.relative_to(home_directory))
             return str(self)
@@ -2943,13 +2997,12 @@ class Path(pathlib.PosixPath):
             return str(self)
         return str(path)
 
-    def update_order_dependent_segment_metadata(self):
+    def update_order_dependent_segment_metadata(self) -> None:
         """
         Updates order-dependent segment metadata.
-
-        Returns none.
         """
-        paths = self.segments().list_paths()
+        assert self.segments is not None
+        paths = self.segments.list_paths()
         if not paths:
             return
         segment_count = len(paths)
@@ -2972,58 +3025,50 @@ class Path(pathlib.PosixPath):
                 return
             next_bar_number = first_bar_number + measure_count
 
-    def with_name(self, name):
+    def with_name(self, name) -> 'Path':
         """
         Gets path with ``name``.
-
-        Returns path.
         """
         return self.parent / name
 
-    def with_parent(self, name):
+    def with_parent(self, name) -> 'Path':
         """
         Gets path with parent ``name``.
-
-        Returns path.
         """
         return self.parent.parent / name / self.name
 
-    def with_score(self, name):
+    def with_score(self, name) -> typing.Optional['Path']:
         """
         Gets path with score ``name``.
-
-        Returns path.
         """
+        assert self.scores is not None
         if not self.is_score_package_path():
-            return
+            return None
         if self.is_wrapper():
             return self.with_name(name)
         if self.is_contents():
-            return self.scores(name, name)
-        path = self.scores(name, name)
+            return self.scores / name / name
+        path = self.scores / name / name
         for part in self.parts[len(self.scores.parts) + 2:]:
             path /= part
         return path
 
-    def write_metadata_py(self, metadata):
+    def write_metadata_py(self, metadata) -> None:
         """
         Writes ``metadata`` to ``__metadata__.py`` in current directory.
-
-        Returns none.
         """
-        import abjad
-        metadata_py_path = self('__metadata__.py')
+        metadata_py_path = self / '__metadata__.py'
         lines = []
         lines.append('import abjad')
         lines.append('')
         lines.append('')
-        metadata = abjad.OrderedDict(metadata)
-        items = list(metadata.items())
+        dictionary = OrderedDict(metadata)
+        items = list(dictionary.items())
         items.sort()
-        metadata = abjad.OrderedDict(items)
-        if metadata:
-            line = format(metadata, 'storage')
-            line = 'metadata = {}'.format(line)
+        dictionary = OrderedDict(items)
+        if dictionary:
+            line = format(dictionary, 'storage')
+            line = f'metadata = {line}'
             lines.append(line)
         else:
             lines.append('metadata = abjad.OrderedDict()')

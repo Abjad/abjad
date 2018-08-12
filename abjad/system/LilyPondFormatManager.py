@@ -522,6 +522,9 @@ class LilyPondFormatManager(AbjadObject):
         length = max([len(_) for _ in strings])
         strings_ = []
         for string in strings:
+            if '%!' in string and r'\tweak' in string:
+                strings_.append(string)
+                continue
             if '%!' not in string:
                 pad = length - len(string)
             else:

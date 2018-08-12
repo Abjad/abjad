@@ -793,6 +793,7 @@ class Measure(Container):
 
                 >>> abjad.f(measure)
                 {   % measure
+                    #(ly:expect-warning "strange time signature found")
                     \time 3/12
                     \scaleDurations #'(2 . 3) {
                         c'8

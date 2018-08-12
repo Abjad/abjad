@@ -9,12 +9,16 @@ import re
 import shutil
 import subprocess
 import sys
+import traceback
+import typing
 from abjad.system.AbjadObject import AbjadObject
+from .AbjadConfiguration import AbjadConfiguration
+_configuration = AbjadConfiguration()
 
 
 class IOManager(AbjadObject):
     """
-    Manages Abjad IO.
+    IO manager.
     """
 
     ### CLASS VARIABLES ###
@@ -31,8 +35,7 @@ class IOManager(AbjadObject):
             directory = '.'
         if not os.path.isdir(directory):
             lines = []
-            line = 'Attention: {!r} does not exist on your system.'
-            line = line.format(directory)
+            line = f'Attention: {directory!r} does not exist on your system.'
             lines.append(line)
             lines.append('Abjad will now create it to store all output files.')
             lines.append('Press any key to continue.')
@@ -43,6 +46,7 @@ class IOManager(AbjadObject):
     @staticmethod
     def _make_score_package(
         score_package_path,
+        *,
         composer_email=None,
         composer_full_name=None,
         composer_last_name=None,
@@ -51,11 +55,9 @@ class IOManager(AbjadObject):
         score_title=None,
         year=None,
         ):
-        import abjad
-        configuration = abjad.AbjadConfiguration()
         score_package_name = os.path.basename(score_package_path)
         source_path = os.path.join(
-            configuration.boilerplate_directory,
+            _configuration.boilerplate_directory,
             'score',
             )
         target_path = score_package_path
@@ -127,18 +129,15 @@ class IOManager(AbjadObject):
 
     @staticmethod
     def _warn_when_output_directory_almost_full(last_number):
-        import abjad
-        abjad_output_directory = abjad.abjad_configuration[
-            'abjad_output_directory']
+        abjad_output_directory = _configuration['abjad_output_directory']
         max_number = 10000
         lines = []
         lines.append('')
         lines.append('WARNING: Abjad output directory almost full!')
-        line = 'Abjad output directory contains {} files '
-        line += 'and only {} are allowed.'
-        line = line.format(last_number, max_number)
+        line = f'Abjad output directory contains {last_number} files '
+        line += f'and only {max_number} are allowed.'
         lines.append(line)
-        line = 'Please empty {} soon!'.format(abjad_output_directory)
+        line = f'Please empty {abjad_output_directory} soon!'
         lines.append(line)
         lines.append('')
         for line in lines:
@@ -147,15 +146,13 @@ class IOManager(AbjadObject):
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def clear_terminal():
+    def clear_terminal() -> None:
         """
         Clears terminal.
 
         Runs ``clear`` if OS is POSIX-compliant (UNIX / Linux / MacOS).
 
         Runs ``cls`` if OS is not POSIX-compliant (Windows).
-
-        Returns none.
         """
         if os.name == 'posix':
             command = 'clear'
@@ -165,34 +162,32 @@ class IOManager(AbjadObject):
 
     @staticmethod
     def count_function_calls(
-        argument,
-        global_context=None,
-        local_context=None,
-        fixed_point=True,
-        ):
+        argument: str,
+        *,
+        global_context: dict = None,
+        local_context: dict = None,
+        fixed_point: bool = True,
+        ) -> int:
         """
         Counts function calls required to execute ``argument``.
-
-        Wraps ``IOManager.profile(argument)``.
-
-        Returns nonnegative integer.
         """
-        def extract_count(profile_output):
+        def extract_count(profile_output) -> int:
             return int(profile_output.splitlines()[2].split()[0])
         if fixed_point:
             # profile at least twice to ensure consist results from profiler;
             # not sure why but profiler eventually levels off to consistent
             # output
-            last_result, current_result = 'foo', 'bar'
+            last_result, current_result = -1, 0
             while current_result != last_result:
                 last_result = current_result
-                current_result = IOManager.profile(
+                string = IOManager.profile(
                     argument,
                     print_to_terminal=False,
                     global_context=global_context,
                     local_context=local_context,
                     )
-                current_result = extract_count(current_result)
+                assert isinstance(string, str)
+                current_result = extract_count(string)
             return current_result
         result = IOManager.profile(
             argument,
@@ -200,11 +195,16 @@ class IOManager(AbjadObject):
             global_context=global_context,
             local_context=local_context,
             )
-        result = extract_count(result)
-        return result
+        assert isinstance(result, str)
+        count = extract_count(result)
+        return count
 
     @staticmethod
-    def execute_file(path=None, attribute_names=None):
+    def execute_file(
+        path: str = None,
+        *,
+        attribute_names: typing.Tuple[str] = None,
+        ) -> typing.Optional[typing.Tuple[str]]:
         """
         Executes file ``path``.
 
@@ -212,29 +212,29 @@ class IOManager(AbjadObject):
         """
         assert path is not None
         assert isinstance(attribute_names, tuple)
-        path = pathlib.Path(path)
-        if not path.is_file():
-            return
-        file_contents_string = path.read_text()
+        path_ = pathlib.Path(path)
+        if not path_.is_file():
+            return None
+        file_contents_string = path_.read_text()
         try:
             result = IOManager.execute_string(
                 file_contents_string,
-                attribute_names,
+                attribute_names=attribute_names,
                 )
         except:
-            message = 'Exception raised in {}.'.format(path)
+            message = f'Exception raised in {path_}.'
             # use print instead of display
             # to force to terminal even when called in silent context
             print(message)
             traceback.print_exc()
-            return 'corrupt'
         return result
 
     @staticmethod
     def execute_string(
-        string,
-        attribute_names=None,
-        local_namespace=None,
+        string: str,
+        *,
+        attribute_names: typing.Tuple[str] = None,
+        local_namespace: dict = None,
         ):
         """
         Executes ``string``.
@@ -243,7 +243,10 @@ class IOManager(AbjadObject):
 
             >>> string = 'foo = 23'
             >>> attribute_names = ('foo', 'bar')
-            >>> abjad.IOManager.execute_string(string, attribute_names)
+            >>> abjad.IOManager.execute_string(
+            ...     string,
+            ...     attribute_names=attribute_names,
+            ...     )
             (23, None)
 
         Returns ``attribute_names`` from executed string.
@@ -264,11 +267,14 @@ class IOManager(AbjadObject):
                 result.append(local_namespace[name])
             else:
                 result.append(None)
-        result = tuple(result)
-        return result
+        return tuple(result)
 
     @staticmethod
-    def find_executable(name, flags=os.X_OK):
+    def find_executable(
+        name: str,
+        *,
+        flags: int = os.X_OK,
+        ) -> typing.List[str]:
         """
         Finds executable ``name``.
 
@@ -302,9 +308,9 @@ class IOManager(AbjadObject):
 
     @staticmethod
     def get_last_output_file_name(
-        extension=None,
-        output_directory=None,
-        ):
+        extension: str = None,
+        output_directory: str = None,
+        ) -> typing.Optional[str]:
         """
         Gets last output file name in ``output_directory``.
 
@@ -317,15 +323,12 @@ class IOManager(AbjadObject):
         ``output_directory`` is none.
 
         Returns none when output directory contains no output files.
-
-        Returns string or none.
         """
-        import abjad
         pattern = re.compile('\d{4,4}.[a-z]{2,3}')
-        output_directory = output_directory or abjad.abjad_configuration[
-            'abjad_output_directory']
+        string = 'abjad_output_directory'
+        output_directory = output_directory or _configuration[string]
         if not os.path.exists(output_directory):
-            return
+            return None
         all_file_names = os.listdir(output_directory)
         if extension:
             all_output = [
@@ -342,9 +345,10 @@ class IOManager(AbjadObject):
 
     @staticmethod
     def get_next_output_file_name(
-        file_extension='ly',
-        output_directory=None,
-        ):
+        *,
+        file_extension: str = 'ly',
+        output_directory: str = None,
+        ) -> str:
         """
         Gets next output file name with ``file_extension`` in
         ``output_directory``.
@@ -356,17 +360,15 @@ class IOManager(AbjadObject):
 
         Gets next output file name with ``file_extension`` in Abjad output
         directory when ``output_directory`` is none.
-
-        Returns string.
         """
-        assert file_extension.isalpha() and \
-            0 < len(file_extension) < 4, repr(file_extension)
+        assert (file_extension.isalpha() and
+            0 < len(file_extension) < 4), repr(file_extension)
         last_output = IOManager.get_last_output_file_name(
             output_directory=output_directory,
             )
         if last_output is None:
             next_number = 1
-            next_output_file_name = '0001.{}'.format(file_extension)
+            next_output_file_name = f'0001.{file_extension}'
         else:
             last_number = int(last_output.split('.')[0])
             next_number = last_number + 1
@@ -380,7 +382,7 @@ class IOManager(AbjadObject):
         return next_output_file_name
 
     @staticmethod
-    def make_subprocess(command):
+    def make_subprocess(command: str) -> subprocess.Popen:
         """
         Makes Popen instance.
 
@@ -409,7 +411,12 @@ class IOManager(AbjadObject):
             )
 
     @staticmethod
-    def open_file(file_path, application=None, line_number=None):
+    def open_file(
+        file_path: str,
+        *,
+        application: str = None,
+        line_number: int = None,
+        ) -> None:
         """
         Opens ``file_path``.
 
@@ -423,51 +430,49 @@ class IOManager(AbjadObject):
 
         Respects ``line_number`` when ``file_path`` can be opened with text
         editor.
-
-        Returns none.
         """
-        import abjad
+        # special import necessary to satisfy parameterized pytests:
+        from abjad import abjad_configuration as _configuration
         if sys.platform.lower().startswith('win'):
-            os.startfile(file_path)
+            os.startfile(file_path) # noqa
             return
         viewer = None
         if sys.platform.lower().startswith('linux'):
             viewer = application or 'xdg-open'
         elif file_path.endswith('.pdf'):
-            viewer = application or abjad.abjad_configuration['pdf_viewer']
+            viewer = application or _configuration['pdf_viewer']
         elif file_path.endswith((
             '.log',
             '.py',
             '.rst',
             '.txt',
             )):
-            viewer = application or abjad.abjad_configuration['text_editor']
+            viewer = application or _configuration['text_editor']
         elif file_path.endswith((
             '.mid',
             '.midi',
             )):
-            viewer = application or abjad.abjad_configuration['midi_player']
+            viewer = application or _configuration['midi_player']
         viewer = viewer or 'open'
         if line_number:
-            command = '{} +{} {}'.format(viewer, line_number, file_path)
+            command = f'{viewer} +{line_number} {file_path}'
         else:
-            command = '{} {}'.format(viewer, file_path)
+            command = f'{viewer} {file_path}'
         IOManager.spawn_subprocess(command)
 
     @staticmethod
-    def open_last_log():
+    def open_last_log() -> None:
         """
         Opens LilyPond log file in operating system-specific text editor.
-
-        Returns none.
         """
-        import abjad
-        text_editor = abjad.abjad_configuration.get_text_editor()
-        file_path = abjad.abjad_configuration.lilypond_log_file_path
+        text_editor = _configuration.get_text_editor()
+        file_path = _configuration.lilypond_log_file_path
         IOManager.open_file(file_path, application=text_editor)
 
     @staticmethod
-    def open_last_ly(target=-1):
+    def open_last_ly(
+        target: int = -1,
+        ) -> None:
         """
         Opens last LilyPond output file produced by Abjad.
 
@@ -475,13 +480,9 @@ class IOManager(AbjadObject):
 
         Set ``target=-2`` to open the next-to-last LilyPond output file
         produced by Abjad, and so on.
-
-        Returns none.
         """
-        import abjad
-        abjad_output_directory = abjad.abjad_configuration[
-            'abjad_output_directory']
-        text_editor = abjad.abjad_configuration.get_text_editor()
+        abjad_output_directory = _configuration['abjad_output_directory']
+        text_editor = _configuration.get_text_editor()
         if isinstance(target, int) and target < 0:
             last_lilypond = IOManager.get_last_output_file_name()
             if last_lilypond:
@@ -507,18 +508,18 @@ class IOManager(AbjadObject):
         elif isinstance(target, str):
             target_ly = os.path.join(abjad_output_directory, target)
         else:
-            message = 'can not get target LilyPond input from {}.'
-            message = message.format(target)
+            message = f'can not get target LilyPond input from {target}.'
             raise ValueError(message)
         if os.path.exists(target_ly):
             IOManager.open_file(target_ly, application=text_editor)
         else:
-            message = 'Target LilyPond input file {} does not exist.'
-            message = message.format(target_ly)
+            message = f'Target LilyPond input file {target_ly} does not exist.'
             print(message)
 
     @staticmethod
-    def open_last_pdf(target=-1):
+    def open_last_pdf(
+        target: int = -1,
+        ) -> None:
         """
         Opens last PDF generated by Abjad.
 
@@ -528,12 +529,8 @@ class IOManager(AbjadObject):
         the ``config.py`` file.
 
         Set ``target=-2`` to open the next-to-last PDF generated by Abjad.
-
-        Returns none.
         """
-        import abjad
-        abjad_output_directory = abjad.abjad_configuration[
-            'abjad_output_directory']
+        abjad_output_directory = _configuration['abjad_output_directory']
         if isinstance(target, int) and target < 0:
             last_lilypond_file_path = IOManager.get_last_output_file_name()
             if last_lilypond_file_path:
@@ -561,28 +558,26 @@ class IOManager(AbjadObject):
                 target,
                 )
         else:
-            message = 'can not get target pdf name from {}.'
-            message = message.format(target)
-            raise ValueError(message)
+            raise ValueError(f'can not get target pdf name from {target}.')
         if os.stat(target_pdf):
-            pdf_viewer = abjad.abjad_configuration['pdf_viewer']
-            IOManager.open_file(target_pdf, pdf_viewer)
+            pdf_viewer = _configuration['pdf_viewer']
+            IOManager.open_file(target_pdf, application=pdf_viewer)
         else:
-            message = 'target PDF {} does not exist.'
-            message = message.format(target_pdf)
-            print(message)
+            print(f'target PDF {target_pdf} does not exist.')
 
     @staticmethod
     def profile(
-        argument,
-        sort_by='cumulative',
-        line_count=12, strip_dirs=True,
-        print_callers=False,
-        print_callees=False,
-        global_context=None,
-        local_context=None,
-        print_to_terminal=True,
-        ):
+        argument: str,
+        *,
+        global_context: dict = None,
+        line_count: int = 12,
+        local_context: dict = None,
+        print_callers: bool = False,
+        print_callees: bool = False,
+        print_to_terminal: bool = True,
+        sort_by: str = 'cumulative',
+        strip_dirs: bool = True,
+        ) -> typing.Optional[str]:
         """
         Profiles ``argument``.
 
@@ -634,6 +629,7 @@ class IOManager(AbjadObject):
         """
         now_string = datetime.datetime.today().strftime('%a %b %d %H:%M:%S %Y')
         profile = cProfile.Profile()
+        local_context = local_context or locals()
         if global_context is None:
             profile = profile.run(
                 argument,
@@ -660,19 +656,15 @@ class IOManager(AbjadObject):
         stats_stream.close()
         if print_to_terminal:
             print(result)
-        else:
-            return result
+            return None
+        return result
 
     @staticmethod
-    def run_command(command):
+    def run_command(command: str) -> typing.List[str]:
         """
-        Makes subprocess with ``command``.
+        Runs command in subprocess.
 
-        Runs command.
-
-        Displays nothing.
-
-        Returns stdout from subprocess.
+        Returns list of strings read from subprocess stdout.
         """
         process = IOManager.make_subprocess(command)
         lines = IOManager._read_from_pipe(process.stdout)
@@ -680,7 +672,13 @@ class IOManager(AbjadObject):
         return lines
 
     @staticmethod
-    def run_lilypond(ly_path, flags=None, lilypond_path=None):
+    def run_lilypond(
+        ly_path: str,
+        *,
+        flags: str = None,
+        lilypond_log_file_path: str = None,
+        lilypond_path: str = None,
+        ) -> bool:
         """
         Runs LilyPond on ``ly_path``.
 
@@ -689,22 +687,22 @@ class IOManager(AbjadObject):
 
         Then appends redirected output of LilyPond output to the LilyPond log
         file.
-
-        Returns none.
         """
-        import abjad
         ly_path = str(ly_path)
-        lilypond_path = abjad.abjad_configuration.get('lilypond_path')
+        lilypond_path = _configuration.get('lilypond_path')
         if not lilypond_path:
-            lilypond_path = abjad.IOManager.find_executable('lilypond')
-            if lilypond_path:
-                lilypond_path = lilypond_path[0]
+            lilypond_paths = IOManager.find_executable('lilypond')
+            if lilypond_paths:
+                lilypond_path = lilypond_paths[0]
             else:
                 lilypond_path = 'lilypond'
         lilypond_base, extension = os.path.splitext(ly_path)
         flags = flags or ''
         date = datetime.datetime.now().strftime('%c')
-        log_file_path = abjad.abjad_configuration.lilypond_log_file_path
+        if lilypond_log_file_path is None:
+            log_file_path = _configuration.lilypond_log_file_path
+        else:
+            log_file_path = lilypond_log_file_path
         command = '{} {} -dno-point-and-click -o {} {}'.format(
             lilypond_path,
             flags,
@@ -734,15 +732,11 @@ class IOManager(AbjadObject):
         return True
 
     @staticmethod
-    def save_last_ly_as(file_path):
+    def save_last_ly_as(file_path: str) -> None:
         """
         Saves last LilyPond file created by Abjad as ``file_path``.
-
-        Returns none.
         """
-        import abjad
-        abjad_output_directory = abjad.abjad_configuration[
-            'abjad_output_directory']
+        abjad_output_directory = _configuration['abjad_output_directory']
         last_output_file_name = IOManager.get_last_output_file_name(
             extension='.ly',
             )
@@ -757,18 +751,15 @@ class IOManager(AbjadObject):
                 new.write(''.join(old.readlines()))
 
     @staticmethod
-    def save_last_pdf_as(file_path):
+    def save_last_pdf_as(file_path: str) -> None:
         """
         Saves last PDF created by Abjad as ``file_path``.
-
-        Returns none.
         """
-        import abjad
-        abjad_output_directory = abjad.abjad_configuration[
-            'abjad_output_directory']
+        abjad_output_directory = _configuration['abjad_output_directory']
         last_output_file_name = IOManager.get_last_output_file_name(
             extension='.pdf',
             )
+        assert isinstance(last_output_file_name, str)
         last_pdf_full_name = os.path.join(
             abjad_output_directory,
             last_output_file_name,
@@ -778,7 +769,7 @@ class IOManager(AbjadObject):
                 new.write(''.join(old.readlines()))
 
     @staticmethod
-    def spawn_subprocess(command):
+    def spawn_subprocess(command: str) -> int:
         """
         Spawns subprocess and runs ``command``.
 
@@ -786,7 +777,5 @@ class IOManager(AbjadObject):
         deprecated ``os.system()`` using Python's ``subprocess`` module.
 
         Redirects stderr to stdout.
-
-        Returns integer exit code.
         """
         return subprocess.call(command, shell=True)

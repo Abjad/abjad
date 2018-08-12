@@ -214,12 +214,13 @@ Broken elbowed hairpins are possible, though more complex definitions
              (cons xtrans ytrans))))
          '())))
 
+% NOTE: changed from Mike Solomon's original definition:
 #(define-public abjad-flared-hairpin
   (elbowed-hairpin '((1.0 . 0.4) (1.25 . 1.0)) - #t))
 
-%#(define-public constante-hairpin
-%   (elbowed-hairpin '((1.0 . 0.0) (1.0 . 1.0)) * #f))
-%
+#(define-public constante-hairpin
+   (elbowed-hairpin '((1.0 . 0.0) (1.0 . 1.0)) * #f))
+
 %#(define-public normal-hairpin
 %   (elbowed-hairpin '((1.0 . 1.0)) * #t))
 %

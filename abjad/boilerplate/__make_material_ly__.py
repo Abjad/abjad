@@ -36,7 +36,7 @@ if __name__ == '__main__':
         sys.exit(0)
 
     try:
-        ly = directory('illustration.ly')
+        ly = directory / 'illustration.ly'
         with abjad.Timer() as timer:
             abjad.persist(lilypond_file).as_ly(ly, strict=89)
         count = int(timer.elapsed_time)

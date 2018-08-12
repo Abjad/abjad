@@ -2171,6 +2171,7 @@ def test_Mutation_split_28():
         \new Voice
         {
             {   % measure
+                #(ly:expect-warning "strange time signature found")
                 \time 3/9
                 \scaleDurations #'(8 . 9) {
                     c'8
@@ -2180,12 +2181,14 @@ def test_Mutation_split_28():
                 }
             }   % measure
             {   % measure
+                #(ly:expect-warning "strange time signature found")
                 \time 1/9
                 \scaleDurations #'(8 . 9) {
                     f'8
                 }
             }   % measure
             {   % measure
+                #(ly:expect-warning "strange time signature found")
                 \time 2/9
                 \scaleDurations #'(8 . 9) {
                     g'8
@@ -2709,6 +2712,7 @@ def test_Mutation_split_35():
         \new Voice
         {
             {   % measure
+                #(ly:expect-warning "strange time signature found")
                 \time 3/9
                 \scaleDurations #'(8 . 9) {
                     c'8
@@ -2740,6 +2744,7 @@ def test_Mutation_split_35():
     assert format(left) == abjad.String.normalize(
         r"""
         {   % measure
+            #(ly:expect-warning "strange time signature found")
             \time 1/9
             \scaleDurations #'(8 . 9) {
                 f'8
@@ -2752,6 +2757,7 @@ def test_Mutation_split_35():
     assert format(right) == abjad.String.normalize(
         r"""
         {   % measure
+            #(ly:expect-warning "strange time signature found")
             \time 2/9
             \scaleDurations #'(8 . 9) {
                 g'8
@@ -2770,6 +2776,7 @@ def test_Mutation_split_35():
         \new Voice
         {
             {   % measure
+                #(ly:expect-warning "strange time signature found")
                 \time 3/9
                 \scaleDurations #'(8 . 9) {
                     c'8
@@ -2779,6 +2786,7 @@ def test_Mutation_split_35():
                 }
             }   % measure
             {   % measure
+                #(ly:expect-warning "strange time signature found")
                 \time 1/9
                 \scaleDurations #'(8 . 9) {
                     f'8
@@ -2786,6 +2794,7 @@ def test_Mutation_split_35():
                 }
             }   % measure
             {   % measure
+                #(ly:expect-warning "strange time signature found")
                 \time 2/9
                 \scaleDurations #'(8 . 9) {
                     g'8
@@ -3460,6 +3469,7 @@ def test_Mutation_split_46():
         \new Staff
         {
             {   % measure
+                #(ly:expect-warning "strange time signature found")
                 \time 3/12
                 \scaleDurations #'(2 . 3) {
                     c'8.
@@ -3483,6 +3493,7 @@ def test_Mutation_split_46():
         \new Staff
         {
             {   % measure
+                #(ly:expect-warning "strange time signature found")
                 \time 3/24
                 \scaleDurations #'(2 . 3) {
                     c'8.

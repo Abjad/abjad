@@ -27,6 +27,7 @@ def test_Inspection_duration_01():
         \new Voice
         {
             {   % measure
+                #(ly:expect-warning "strange time signature found")
                 \time 2/12
                 \scaleDurations #'(2 . 3) {
                     \tempo 8=42
@@ -74,6 +75,7 @@ def test_Inspection_duration_02():
         \new Voice
         {
             {   % measure
+                #(ly:expect-warning "strange time signature found")
                 \time 2/12
                 \scaleDurations #'(2 . 3) {
                     c'8

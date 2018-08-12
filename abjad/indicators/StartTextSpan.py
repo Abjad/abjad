@@ -704,6 +704,20 @@ class StartTextSpan(AbjadValueObject):
         return self._style
 
     @property
+    def trend(self) -> bool:
+        """
+        Is true.
+
+        ..  container:: example
+
+            >>> abjad.StartTextSpan().trend
+            True
+
+        Class constant.
+        """
+        return True
+
+    @property
     def tweaks(self) -> typing.Optional[LilyPondTweakManager]:
         r"""
         Gets tweaks

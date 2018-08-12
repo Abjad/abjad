@@ -183,4 +183,4 @@ def graph(
 
     pdf_viewer = abjad_configuration['pdf_viewer']
     ABJADOUTPUT = abjad_configuration['abjad_output_directory']
-    system.IOManager.open_file(img_path, pdf_viewer)
+    system.IOManager.open_file(img_path, application=pdf_viewer)

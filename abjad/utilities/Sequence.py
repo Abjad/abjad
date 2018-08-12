@@ -1,13 +1,17 @@
 import collections
+import copy
+import fractions
 import inspect
 import itertools
 import math
 import numbers
 import sys
+import typing
 from abjad import enums
 from abjad import mathtools
-from abjad.system import AbjadValueObject
+from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.system.Signature import Signature
+from .CyclicTuple import CyclicTuple
 from .Expression import Expression
 
 
@@ -93,7 +97,7 @@ class Sequence(AbjadValueObject, collections.Sequence):
         markup_maker_callback='_make___add___markup',
         string_template_callback='_make___add___string_template',
         )
-    def __add__(self, argument):
+    def __add__(self, argument) -> 'Sequence':
         r"""
         Adds ``argument`` to sequence.
 
@@ -266,7 +270,6 @@ class Sequence(AbjadValueObject, collections.Sequence):
                             }
                         }
 
-        Returns new sequence.
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -274,7 +277,7 @@ class Sequence(AbjadValueObject, collections.Sequence):
         items = self.items + argument.items
         return type(self)(items)
 
-    def __eq__(self, argument):
+    def __eq__(self, argument) -> bool:
         """
         Is true when ``argument`` is a sequence with items equal to those of
         this sequence.
@@ -295,11 +298,10 @@ class Sequence(AbjadValueObject, collections.Sequence):
             >>> abjad.sequence([1, 2, 3, 4, 5, 6]) == ([1, 2, 3, 4, 5, 6])
             False
 
-        Returns true or false.
         """
         return super().__eq__(argument)
 
-    def __format__(self, format_specification=''):
+    def __format__(self, format_specification='') -> str:
         """
         Formats sequence.
 
@@ -329,7 +331,6 @@ class Sequence(AbjadValueObject, collections.Sequence):
                 proxy_class=abjad.Sequence,
                 )
 
-        Returns string.
         """
         return super().__format__(format_specification=format_specification)
 
@@ -337,7 +338,7 @@ class Sequence(AbjadValueObject, collections.Sequence):
         markup_maker_callback='_make___getitem___markup',
         string_template_callback='_make___getitem___string_template',
         )
-    def __getitem__(self, argument):
+    def __getitem__(self, argument) -> typing.Any:
         r"""
         Gets item or slice identified by ``argument``.
 
@@ -556,17 +557,15 @@ class Sequence(AbjadValueObject, collections.Sequence):
             return type(self)(result)
         return result
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         """
         Hashes sequence.
 
         Required to be explicitly redefined on Python 3 if __eq__ changes.
-
-        Returns integer.
         """
         return super().__hash__()
 
-    def __len__(self):
+    def __len__(self) -> int:
         """
         Gets length of sequence.
 
@@ -584,7 +583,6 @@ class Sequence(AbjadValueObject, collections.Sequence):
             >>> len(abjad.sequence('text'))
             4
 
-        Returns nonnegative integer.
         """
         return len(self._items)
 
@@ -592,7 +590,7 @@ class Sequence(AbjadValueObject, collections.Sequence):
         markup_maker_callback='_make___radd___markup',
         string_template_callback='_make___radd___string_template',
         )
-    def __radd__(self, argument):
+    def __radd__(self, argument) -> 'Sequence':
         r"""
         Adds sequence to ``argument``.
 
@@ -710,7 +708,6 @@ class Sequence(AbjadValueObject, collections.Sequence):
                             }
                         }
 
-        Returns new sequence.
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -718,7 +715,7 @@ class Sequence(AbjadValueObject, collections.Sequence):
         items = argument.items + self.items
         return type(self)(items)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """
         Gets interpreter representation of sequence.
 
@@ -736,11 +733,9 @@ class Sequence(AbjadValueObject, collections.Sequence):
             >>> abjad.sequence([1, 2, 3, 4, 5, 6])
             Sequence([1, 2, 3, 4, 5, 6])
 
-        Returns string.
         """
         items = ', '.join([repr(_) for _ in self.items])
-        string = '{}([{}])'
-        string = string.format(type(self).__name__, items)
+        string = f'{type(self).__name__}([{items}])'
         if self._expression:
             string = '*' + string
         return string
@@ -791,8 +786,8 @@ class Sequence(AbjadValueObject, collections.Sequence):
 
     @staticmethod
     def _make_map_markup(markup, operand):
-        import abjad
-        markup_list = abjad.MarkupList()
+        from abjad import markups
+        markup_list = markups.MarkupList()
         operand_markup = operand.get_markup(name='X')
         markup_list.append(operand_markup)
         markup_list.append('/@')
@@ -821,9 +816,9 @@ class Sequence(AbjadValueObject, collections.Sequence):
         indicator = [str(_) for _ in counts]
         indicator = ', '.join(indicator)
         if cyclic:
-            indicator = '<{}>'.format(indicator)
+            indicator = f'<{indicator}>'
         else:
-            indicator = '[{}]'.format(indicator)
+            indicator = f'[{indicator}]'
         if enchain:
             indicator = 'E' + indicator
         if reversed_:
@@ -849,9 +844,9 @@ class Sequence(AbjadValueObject, collections.Sequence):
         indicator = [str(_) for _ in weights]
         indicator = ', '.join(indicator)
         if cyclic:
-            indicator = '<{}>'.format(indicator)
+            indicator = f'<{indicator}>'
         else:
-            indicator = '[{}]'.format(indicator)
+            indicator = f'[{indicator}]'
         if overhang:
             indicator += '+'
         return indicator
@@ -1021,7 +1016,7 @@ class Sequence(AbjadValueObject, collections.Sequence):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def items(self):
+    def items(self) -> typing.Tuple[typing.Any, ...]:
         """
         Gets sequence items.
 
@@ -1053,14 +1048,16 @@ class Sequence(AbjadValueObject, collections.Sequence):
                 >>> expression([1, 2, 3, 4, 5, 6]).items
                 (1, 2, 3, 4, 5, 6)
 
-        Returns tuple.
         """
         return self._items
 
     ### PUBLIC METHODS ###
 
     @Signature()
-    def filter(self, predicate=None):
+    def filter(
+        self,
+        predicate=None,
+        ) -> 'Sequence':
         """
         Filters sequence by ``predicate``.
 
@@ -1128,7 +1125,6 @@ class Sequence(AbjadValueObject, collections.Sequence):
 
         ..  todo:: supply with clean string and markup templates.
 
-        Returns new sequence.
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -1142,7 +1138,12 @@ class Sequence(AbjadValueObject, collections.Sequence):
 
     # TODO: remove indices=None parameter
     @Signature()
-    def flatten(self, classes=None, depth=1, indices=None):
+    def flatten(
+        self,
+        classes=None,
+        depth=1,
+        indices=None,
+        ) -> 'Sequence':
         r"""
         Flattens sequence.
 
@@ -1387,13 +1388,12 @@ class Sequence(AbjadValueObject, collections.Sequence):
                             }
                         }
 
-        Returns new sequence.
         """
-        import abjad
+        from abjad.core.Selection import Selection
         if self._expression:
             return self._update_expression(inspect.currentframe())
         if classes is None:
-            classes = (collections.Sequence, abjad.Selection)
+            classes = (collections.Sequence, Selection)
         if Sequence not in classes:
             classes = tuple(list(classes) + [Sequence])
         if indices is None:
@@ -1404,7 +1404,10 @@ class Sequence(AbjadValueObject, collections.Sequence):
                 self._flatten_at_indices_helper(self, indices, classes, depth)
                 )
 
-    def group_by(self, predicate=None):
+    def group_by(
+        self,
+        predicate=None,
+        ) -> 'Sequence':
         """
         Groups sequence items by value of items.
 
@@ -1469,7 +1472,7 @@ class Sequence(AbjadValueObject, collections.Sequence):
                 items.append(item)
         return type(self)(items)
 
-    def is_decreasing(self, strict=True):
+    def is_decreasing(self, strict=True) -> bool:
         """
         Is true when sequence decreases.
 
@@ -1505,7 +1508,6 @@ class Sequence(AbjadValueObject, collections.Sequence):
             >>> abjad.Sequence().is_decreasing(strict=False)
             True
 
-        Returns true or false.
         """
         if strict:
             try:
@@ -1530,7 +1532,7 @@ class Sequence(AbjadValueObject, collections.Sequence):
             except TypeError:
                 return False
 
-    def is_increasing(self, strict=True):
+    def is_increasing(self, strict=True) -> bool:
         """
         Is true when sequence increases.
 
@@ -1566,7 +1568,6 @@ class Sequence(AbjadValueObject, collections.Sequence):
             >>> abjad.Sequence().is_increasing(strict=False)
             True
 
-        Returns true or false.
         """
         if strict:
             try:
@@ -1591,7 +1592,7 @@ class Sequence(AbjadValueObject, collections.Sequence):
             except TypeError:
                 return False
 
-    def is_permutation(self, length=None):
+    def is_permutation(self, length=None) -> bool:
         """
         Is true when sequence is a permutation.
 
@@ -1609,11 +1610,10 @@ class Sequence(AbjadValueObject, collections.Sequence):
             >>> abjad.sequence([1, 1, 5, 3, 2, 1]).is_permutation()
             False
 
-        Returns true or false.
         """
         return tuple(sorted(self)) == tuple(range(len(self)))
 
-    def is_repetition_free(self):
+    def is_repetition_free(self) -> bool:
         """
         Is true when sequence is repetition-free.
 
@@ -1638,7 +1638,6 @@ class Sequence(AbjadValueObject, collections.Sequence):
             >>> abjad.sequence([0, 1, 2, 2, 7, 8]).is_repetition_free()
             False
 
-        Returns true or false.
         """
         try:
             for left, right in self.nwise():
@@ -1649,7 +1648,7 @@ class Sequence(AbjadValueObject, collections.Sequence):
             return False
 
     @Signature()
-    def join(self):
+    def join(self) -> 'Sequence':
         r"""
         Join subsequences in ``sequence``.
 
@@ -1697,7 +1696,6 @@ class Sequence(AbjadValueObject, collections.Sequence):
                         }
                     }
 
-        Returns new sequence.
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -1708,7 +1706,7 @@ class Sequence(AbjadValueObject, collections.Sequence):
         markup_maker_callback='_make_map_markup',
         string_template_callback='_make_map_string_template',
         )
-    def map(self, operand=None):
+    def map(self, operand=None) -> 'Sequence':
         r"""
         Maps ``operand`` to sequence items.
 
@@ -1779,7 +1777,6 @@ class Sequence(AbjadValueObject, collections.Sequence):
             >>> sequence.map()
             Sequence([1, 2, 3, 4, 5, 6])
 
-        Returns new sequence.
         """
         if self._expression:
             return self._update_expression(
@@ -1790,10 +1787,15 @@ class Sequence(AbjadValueObject, collections.Sequence):
         if operand is not None:
             items = [operand(_) for _ in self]
         else:
-            items = self.items[:]
+            items = list(self.items[:])
         return type(self)(items)
 
-    def nwise(self, n=2, cyclic=False, wrapped=False):
+    def nwise(
+        self,
+        n=2,
+        cyclic=False,
+        wrapped=False,
+        ) -> typing.Generator:
         """
         Iterates sequence ``n`` at a time.
 
@@ -1944,8 +1946,6 @@ class Sequence(AbjadValueObject, collections.Sequence):
             Sequence([9])
 
         Ignores ``wrapped`` when ``cyclic`` is true.
-
-        Returns generator.
         """
         if cyclic:
             item_buffer = []
@@ -1968,7 +1968,7 @@ class Sequence(AbjadValueObject, collections.Sequence):
                 current += 1
                 current %= len_sequence
         elif wrapped:
-            first_n_minus_1 = []
+            first_n_minus_1: typing.List[typing.Any] = []
             item_buffer = []
             for item in self:
                 item_buffer.append(item)
@@ -2001,7 +2001,7 @@ class Sequence(AbjadValueObject, collections.Sequence):
         enchain=False,
         overhang=False,
         reversed_=False,
-        ):
+        ) -> 'Sequence':
         r"""
         Partitions sequence by ``counts``.
 
@@ -3298,18 +3298,16 @@ class Sequence(AbjadValueObject, collections.Sequence):
 
         Returns nested sequence.
         """
-        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
         if not all(isinstance(_, int) and 0 <= _ for _ in counts):
-            message = 'must be nonnegative integers: {!r}.'
-            message = message.format(counts)
+            message = f'must be nonnegative integers: {counts!r}.'
             raise Exception(counts)
         sequence = self
         if reversed_:
             sequence = type(self)(reversed(sequence))
         if counts:
-            counts = abjad.CyclicTuple(counts)
+            counts = CyclicTuple(counts)
         else:
             return type(self)([sequence])
         result = []
@@ -3352,7 +3350,10 @@ class Sequence(AbjadValueObject, collections.Sequence):
         argument_list_callback='_make_partition_ratio_indicator',
         method_name='partition',
         )
-    def partition_by_ratio_of_lengths(self, ratio):
+    def partition_by_ratio_of_lengths(
+        self,
+        ratio,
+        ) -> 'Sequence':
         r"""
         Partitions sequence by ``ratio`` of lengths.
 
@@ -3450,12 +3451,11 @@ class Sequence(AbjadValueObject, collections.Sequence):
                             }
                         }
 
-        Returns a sequence of sequences.
+        Returns nested sequence.
         """
-        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        ratio = abjad.Ratio(ratio)
+        ratio = mathtools.Ratio(ratio)
         length = len(self)
         counts = mathtools.partition_integer_by_ratio(length, ratio)
         parts = self.partition_by_counts(
@@ -3465,7 +3465,10 @@ class Sequence(AbjadValueObject, collections.Sequence):
             )
         return type(self)(parts)
 
-    def partition_by_ratio_of_weights(self, weights):
+    def partition_by_ratio_of_weights(
+        self,
+        weights,
+        ) -> 'Sequence':
         """
         Partitions sequence by ratio of ``weights``.
 
@@ -3597,27 +3600,24 @@ class Sequence(AbjadValueObject, collections.Sequence):
 
         Returns nested sequence.
         """
-        import abjad
-        list_weight = abjad.mathtools.weight(self)
-        weights_parts = abjad.mathtools.partition_integer_by_ratio(
+        list_weight = mathtools.weight(self)
+        weights_parts = mathtools.partition_integer_by_ratio(
             list_weight,
             weights,
             )
-        cumulative_weights = abjad.mathtools.cumulative_sums(
+        cumulative_weights = mathtools.cumulative_sums(
             weights_parts,
             start=None,
             )
         items = []
-        sublist = []
+        sublist: typing.List[typing.Any] = []
         items.append(sublist)
         current_cumulative_weight = cumulative_weights.pop(0)
         for item in self:
-            if not isinstance(item, (int, float, abjad.Fraction)):
-                message = 'must be number: {!r}.'
-                message = message.format(item)
-                raise TypeError(message)
+            if not isinstance(item, (int, float, fractions.Fraction)):
+                raise TypeError(f'must be number: {item!r}.')
             sublist.append(item)
-            while current_cumulative_weight <= abjad.mathtools.weight(
+            while current_cumulative_weight <= mathtools.weight(
                 type(self)(items).flatten(depth=-1)):
                 try:
                     current_cumulative_weight = cumulative_weights.pop(0)
@@ -3625,8 +3625,8 @@ class Sequence(AbjadValueObject, collections.Sequence):
                     items.append(sublist)
                 except IndexError:
                     break
-        items = [type(self)(_) for _ in items]
-        return type(self)(items)
+        items_ = [type(self)(_) for _ in items]
+        return type(self)(items_)
 
     def partition_by_weights(
         self,
@@ -3634,7 +3634,7 @@ class Sequence(AbjadValueObject, collections.Sequence):
         cyclic=False,
         overhang=False,
         allow_part_weights=enums.Exact,
-        ):
+        ) -> 'Sequence':
         r"""
         Partitions sequence by ``weights`` exactly.
 
@@ -3847,7 +3847,6 @@ class Sequence(AbjadValueObject, collections.Sequence):
 
         Returns nested sequence.
         """
-        import abjad
         if allow_part_weights is enums.Exact:
             candidate = type(self)(self)
             candidate = candidate.split(
@@ -3893,7 +3892,10 @@ class Sequence(AbjadValueObject, collections.Sequence):
             raise ValueError(message)
 
     @Signature()
-    def permute(self, permutation):
+    def permute(
+        self,
+        permutation,
+        ) -> 'Sequence':
         r"""
         Permutes sequence by ``permutation``.
 
@@ -3947,15 +3949,12 @@ class Sequence(AbjadValueObject, collections.Sequence):
                 ...
             ValueError: permutation Sequence([3, 0, 1, 2]) must match length of sequence Sequence([1, 2, 3, 4, 5, 6]).
 
-        Returns new sequence.
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
         permutation = type(self)(permutation)
         if not permutation.is_permutation():
-            message = 'must be permutation: {!r}.'
-            message = message.format(permutation)
-            raise ValueError(message)
+            raise ValueError(f'must be permutation: {permutation!r}.')
         if len(permutation) != len(self):
             message = 'permutation {!r} must match length of sequence {!r}.'
             message = message.format(permutation, self)
@@ -3968,7 +3967,11 @@ class Sequence(AbjadValueObject, collections.Sequence):
         return type(self)(result)
 
     # TODO: change input to pattern
-    def remove(self, indices=None, period=None):
+    def remove(
+        self,
+        indices=None,
+        period=None,
+        ) -> 'Sequence':
         """
         Removes items at ``indices``.
 
@@ -4020,7 +4023,6 @@ class Sequence(AbjadValueObject, collections.Sequence):
             >>> sequence.remove(indices=[-97, -98, -99])
             Sequence([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
 
-        Returns new sequence.
         """
         items = []
         length = len(self)
@@ -4042,7 +4044,7 @@ class Sequence(AbjadValueObject, collections.Sequence):
                 items.append(item)
         return type(self)(items)
 
-    def remove_repeats(self):
+    def remove_repeats(self) -> 'Sequence':
         """
         Removes repeats from ``sequence``.
 
@@ -4053,7 +4055,6 @@ class Sequence(AbjadValueObject, collections.Sequence):
             >>> sequence.remove_repeats()
             Sequence([31, 35, 31, 35])
 
-        Returns new sequence.
         """
         items = [self[0]]
         for item in self[1:]:
@@ -4062,7 +4063,10 @@ class Sequence(AbjadValueObject, collections.Sequence):
         return type(self)(items)
 
     @Signature()
-    def repeat(self, n=1):
+    def repeat(
+        self,
+        n=1,
+        ) -> 'Sequence':
         r"""
         Repeats sequence.
 
@@ -4171,7 +4175,7 @@ class Sequence(AbjadValueObject, collections.Sequence):
                             }
                         }
 
-        Returns sequence of sequences.
+        Returns nested sequence.
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -4180,7 +4184,11 @@ class Sequence(AbjadValueObject, collections.Sequence):
             items.append(self[:])
         return type(self)(items)
 
-    def repeat_to_length(self, length=None, start=0):
+    def repeat_to_length(
+        self,
+        length=None,
+        start=0,
+        ) -> 'Sequence':
         """
         Repeats sequence to ``length``.
 
@@ -4212,7 +4220,6 @@ class Sequence(AbjadValueObject, collections.Sequence):
             >>> abjad.sequence([1, 2, 3]).repeat_to_length(10, start=100)
             Sequence([2, 3, 1, 2, 3, 1, 2, 3, 1, 2])
 
-        Returns new sequence.
         """
         assert mathtools.is_nonnegative_integer(length), repr(length)
         assert len(self), repr(self)
@@ -4225,7 +4232,11 @@ class Sequence(AbjadValueObject, collections.Sequence):
                 items.append(item)
         return type(self)(items[start:stop_index])
 
-    def repeat_to_weight(self, weight, allow_total=enums.Exact):
+    def repeat_to_weight(
+        self,
+        weight,
+        allow_total=enums.Exact,
+        ) -> 'Sequence':
         """
         Repeats sequence to ``weight``.
 
@@ -4264,13 +4275,10 @@ class Sequence(AbjadValueObject, collections.Sequence):
             >>> [_.pair for _ in sequence]
             [(3, 16), (3, 16), (3, 16), (3, 16), (3, 16), (3, 16), (2, 16)]
 
-        Returns new sequence.
         """
-        import abjad
-        assert isinstance(weight, numbers.Number), repr(weight)
         assert 0 <= weight
         if allow_total is enums.Exact:
-            sequence_weight = abjad.mathtools.weight(self)
+            sequence_weight = mathtools.weight(self)
             complete_repetitions = int(
                 math.ceil(float(weight) / float(sequence_weight))
                 )
@@ -4288,7 +4296,7 @@ class Sequence(AbjadValueObject, collections.Sequence):
                         absolute_amount_to_keep = element_weight - overage
                         assert 0 < absolute_amount_to_keep
                         signed_amount_to_keep = absolute_amount_to_keep
-                        signed_amount_to_keep *= abjad.mathtools.sign(item)
+                        signed_amount_to_keep *= mathtools.sign(item)
                         items.pop()
                         items.append(signed_amount_to_keep)
                         break
@@ -4297,26 +4305,53 @@ class Sequence(AbjadValueObject, collections.Sequence):
         elif allow_total is enums.Less:
             items = [self[0]]
             i = 1
-            while abjad.mathtools.weight(items) < weight:
+            while mathtools.weight(items) < weight:
                 items.append(self[i % len(self)])
                 i += 1
-            if weight < abjad.mathtools.weight(items):
+            if weight < mathtools.weight(items):
                 items = items[:-1]
             return type(self)(items)
         elif allow_total is enums.More:
             items = [self[0]]
             i = 1
-            while abjad.mathtools.weight(items) < weight:
+            while mathtools.weight(items) < weight:
                 items.append(self[i % len(self)])
                 i += 1
             return type(self)(items)
         else:
-            message = 'is not an ordinal value constant: {!r}.'
-            message = message.format(allow_total)
+            message = f'is not an ordinal value constant: {allow_total!r}.'
             raise ValueError(message)
         return type(self)(items=items)
 
-    def replace(self, indices, new_material):
+    def replace(
+        self,
+        old,
+        new,
+        ) -> 'Sequence':
+        """
+        Replaces ``old`` with ``new``.
+
+        ..  container:: example
+
+            >>> sequence = abjad.sequence([0, 2, 3, 0, 2, 3, 0, 2, 3])
+            >>> sequence.replace(0, 1)
+            Sequence([1, 2, 3, 1, 2, 3, 1, 2, 3])
+
+        """
+        items = []
+        for item in self:
+            if item == old:
+                new_copy = copy.copy(new)
+                items.append(new_copy)
+            else:
+                items.append(item)
+        return type(self)(items=items)
+
+    def replace_at(
+        self,
+        indices,
+        new_material,
+        ) -> 'Sequence':
         """
         Replaces items at ``indices`` with ``new_material``.
 
@@ -4325,7 +4360,7 @@ class Sequence(AbjadValueObject, collections.Sequence):
             Replaces items at indices 0, 2, 4, 6:
 
             >>> sequence = abjad.sequence(range(16))
-            >>> sequence.replace(
+            >>> sequence.replace_at(
             ...     ([0], 2),
             ...     (['A', 'B', 'C', 'D'], None),
             ...     )
@@ -4336,7 +4371,7 @@ class Sequence(AbjadValueObject, collections.Sequence):
             Replaces elements at indices 0, 1, 8, 13:
 
             >>> sequence = abjad.sequence(range(16))
-            >>> sequence.replace(
+            >>> sequence.replace_at(
             ...     ([0, 1, 8, 13], None),
             ...     (['A', 'B', 'C', 'D'], None),
             ...     )
@@ -4347,7 +4382,7 @@ class Sequence(AbjadValueObject, collections.Sequence):
             Replaces every item at even index:
 
             >>> sequence = abjad.sequence(range(16))
-            >>> sequence.replace(
+            >>> sequence.replace_at(
             ...     ([0], 2),
             ...     (['*'], 1),
             ...     )
@@ -4360,34 +4395,30 @@ class Sequence(AbjadValueObject, collections.Sequence):
             with ``'B'``:
 
             >>> sequence = abjad.sequence(range(16))
-            >>> sequence.replace(
+            >>> sequence.replace_at(
             ...     ([0], 2),
             ...     (['A', 'B'], 3),
             ...     )
             Sequence(['A', 1, 'B', 3, 4, 5, 'A', 7, 'B', 9, 10, 11, 'A', 13, 'B', 15])
 
-        Returns new sequence.
         """
-        assert isinstance(indices, collections.Iterable)
+        assert isinstance(indices, collections.Sequence)
         assert len(indices) == 2
         index_values, index_period = indices
-        assert isinstance(index_values, collections.Iterable)
+        assert isinstance(index_values, collections.Sequence)
         index_values = list(index_values)
         assert isinstance(index_period, (int, type(None)))
-        assert isinstance(new_material, collections.Iterable)
+        assert isinstance(new_material, collections.Sequence)
         assert len(new_material) == 2
         material_values, material_period = new_material
-        assert isinstance(material_values, collections.Iterable)
+        assert isinstance(material_values, collections.Sequence)
         material_values = list(material_values)
         assert isinstance(material_period, (int, type(None)))
-        try:
-            maxint = sys.maxint
-        except AttributeError:
-            maxint = sys.maxsize
+        maxsize = sys.maxsize
         if index_period is None:
-            index_period = maxint
+            index_period = maxsize
         if material_period is None:
-            material_period = maxint
+            material_period = maxsize
         items = []
         material_index = 0
         for index, item in enumerate(self):
@@ -4404,7 +4435,11 @@ class Sequence(AbjadValueObject, collections.Sequence):
         return type(self)(items=items)
 
     # TODO: remove in favor of self.retain_pattern()
-    def retain(self, indices=None, period=None):
+    def retain(
+        self,
+        indices=None,
+        period=None,
+        ) -> 'Sequence':
         """
         Retains items at ``indices``.
 
@@ -4449,7 +4484,6 @@ class Sequence(AbjadValueObject, collections.Sequence):
             >>> sequence.retain(indices=[-97, -98, -99])
             Sequence([])
 
-        Returns new sequence.
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -4473,7 +4507,10 @@ class Sequence(AbjadValueObject, collections.Sequence):
                 items.append(item)
         return type(self)(items=items)
 
-    def retain_pattern(self, pattern):
+    def retain_pattern(
+        self,
+        pattern,
+        ) -> 'Sequence':
         """
         Retains items at indices matching ``pattern``.
 
@@ -4513,7 +4550,6 @@ class Sequence(AbjadValueObject, collections.Sequence):
             >>> sequence.retain_pattern(abjad.index([-97, -98, -99]))
             Sequence([])
 
-        Returns new sequence.
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -4528,7 +4564,10 @@ class Sequence(AbjadValueObject, collections.Sequence):
         is_operator=True,
         method_name_callback='_make_reverse_method_name',
         )
-    def reverse(self, recurse=False):
+    def reverse(
+        self,
+        recurse=False,
+        ) -> 'Sequence':
         r"""
         Reverses sequence.
 
@@ -4619,7 +4658,6 @@ class Sequence(AbjadValueObject, collections.Sequence):
                             }
                         }
 
-        Returns new sequence.
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -4640,7 +4678,10 @@ class Sequence(AbjadValueObject, collections.Sequence):
         method_name='r',
         subscript='n',
         )
-    def rotate(self, n=0):
+    def rotate(
+        self,
+        n=0,
+        ) -> 'Sequence':
         r"""
         Rotates sequence by index ``n``.
 
@@ -4764,7 +4805,6 @@ class Sequence(AbjadValueObject, collections.Sequence):
                             }
                         }
 
-        Returns new sequence.
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -4787,7 +4827,11 @@ class Sequence(AbjadValueObject, collections.Sequence):
             return self._update_expression(inspect.currentframe())
         return abjad.select(self)
 
-    def sort(self, key=None, reverse=False):
+    def sort(
+        self,
+        key=None,
+        reverse=False,
+        ) -> 'Sequence':
         """
         Sorts sequence.
 
@@ -4800,7 +4844,6 @@ class Sequence(AbjadValueObject, collections.Sequence):
             >>> sequence
             Sequence([3, 2, 5, 4, 1, 6])
 
-        Returns new sequence.
         """
         items = list(self)
         items.sort(key=key, reverse=reverse)
@@ -4809,7 +4852,12 @@ class Sequence(AbjadValueObject, collections.Sequence):
     @Signature(
         argument_list_callback='_make_split_indicator',
         )
-    def split(self, weights, cyclic=False, overhang=False):
+    def split(
+        self,
+        weights,
+        cyclic=False,
+        overhang=False,
+        ) -> 'Sequence':
         r"""
         Splits sequence by ``weights``.
 
@@ -4905,14 +4953,12 @@ class Sequence(AbjadValueObject, collections.Sequence):
             Sequence([7, -8])
             Sequence([-2, 1])
 
-        Returns new sequence.
         """
-        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
         result = []
         current_index = 0
-        current_piece = []
+        current_piece: typing.List[typing.Any] = []
         if cyclic:
             weights = Sequence(weights).repeat_to_weight(
                 mathtools.weight(self),
@@ -4925,8 +4971,8 @@ class Sequence(AbjadValueObject, collections.Sequence):
                 current_index += 1
                 current_piece_weight = mathtools.weight(current_piece)
             if current_piece_weight == weight:
-                current_piece = type(self)(current_piece)
-                result.append(current_piece)
+                current_piece_ = type(self)(current_piece)
+                result.append(current_piece_)
                 current_piece = []
             elif weight < current_piece_weight:
                 overage = current_piece_weight - weight
@@ -4934,20 +4980,20 @@ class Sequence(AbjadValueObject, collections.Sequence):
                 needed = abs(current_last_element) - overage
                 needed *= mathtools.sign(current_last_element)
                 current_piece.append(needed)
-                current_piece = type(self)(current_piece)
-                result.append(current_piece)
+                current_piece_ = type(self)(current_piece)
+                result.append(current_piece_)
                 overage *= mathtools.sign(current_last_element)
                 current_piece = [overage]
         if overhang:
             last_piece = current_piece
             last_piece.extend(self[current_index:])
             if last_piece:
-                last_piece = type(self)(last_piece)
-                result.append(last_piece)
+                last_piece_ = type(self)(last_piece)
+                result.append(last_piece_)
         return type(self)(items=result)
 
     @Signature()
-    def sum(self):
+    def sum(self) -> typing.Any:
         r"""
         Sums sequence.
 
@@ -5071,7 +5117,6 @@ class Sequence(AbjadValueObject, collections.Sequence):
                             }
                         }
 
-        Returns new sequence.
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -5082,7 +5127,10 @@ class Sequence(AbjadValueObject, collections.Sequence):
             result += item
         return result
 
-    def sum_by_sign(self, sign=(-1, 0, 1)):
+    def sum_by_sign(
+        self,
+        sign=(-1, 0, 1),
+        ) -> 'Sequence':
         """
         Sums consecutive sequence items by ``sign``.
 
@@ -5134,8 +5182,6 @@ class Sequence(AbjadValueObject, collections.Sequence):
         Sums consecutive zero-valued elements when ``0`` in ``sign``.
 
         Sums consecutive positive elements when ``1`` in ``sign``.
-
-        Returns new sequence.
         """
         items = []
         generator = itertools.groupby(self, mathtools.sign)
@@ -5147,7 +5193,11 @@ class Sequence(AbjadValueObject, collections.Sequence):
                     items.append(item)
         return type(self)(items=items)
 
-    def truncate(self, sum_=None, weight=None):
+    def truncate(
+        self,
+        sum_=None,
+        weight=None,
+        ) -> 'Sequence':
         """
         Truncates sequence.
 
@@ -5208,8 +5258,6 @@ class Sequence(AbjadValueObject, collections.Sequence):
         Ignores ``sum`` when ``weight`` and ``sum`` are both set.
 
         Raises value error on negative ``sum``.
-
-        Returns new sequence.
         """
         if weight is not None:
             assert 0 <= weight, repr(weight)
@@ -5240,7 +5288,7 @@ class Sequence(AbjadValueObject, collections.Sequence):
                         break
         return type(self)(items=items)
 
-    def weight(self):
+    def weight(self) -> typing.Any:
         """
         Gets weight.
 
@@ -5270,7 +5318,6 @@ class Sequence(AbjadValueObject, collections.Sequence):
             >>> abjad.sequence([[1, -7, -7], [1, -8 -8]]).weight()
             32
 
-        Returns new sequence.
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -5285,7 +5332,11 @@ class Sequence(AbjadValueObject, collections.Sequence):
                 weights.append(abs(item))
         return sum(weights)
 
-    def zip(self, cyclic=False, truncate=True):
+    def zip(
+        self,
+        cyclic=False,
+        truncate=True,
+        ) -> 'Sequence':
         """
         Zips sequences in sequence.
 
@@ -5341,10 +5392,8 @@ class Sequence(AbjadValueObject, collections.Sequence):
         """
         for item in self:
             if not isinstance(item, collections.Iterable):
-                message = 'must by iterable: {!r}.'
-                message = message.format(item)
-                raise Exception(message)
-        items = []
+                raise Exception(f'must by iterable: {item!r}.')
+        items: typing.List[typing.Any] = []
         if cyclic:
             if not min(len(_) for _ in self):
                 return type(self)(items=items)
@@ -5355,8 +5404,8 @@ class Sequence(AbjadValueObject, collections.Sequence):
                     index = i % len(item)
                     element = item[index]
                     part.append(element)
-                part = type(self)(items=part)
-                items.append(part)
+                part_ = type(self)(items=part)
+                items.append(part_)
         elif not truncate:
             maximum_length = max([len(_) for _ in self])
             for i in range(maximum_length):
@@ -5366,8 +5415,8 @@ class Sequence(AbjadValueObject, collections.Sequence):
                         part.append(item[i])
                     except IndexError:
                         pass
-                part = type(self)(items=part)
-                items.append(part)
+                part_ = type(self)(items=part)
+                items.append(part_)
         elif truncate:
             for item in zip(*self):
                 item = type(self)(items=item)

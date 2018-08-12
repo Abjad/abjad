@@ -341,6 +341,7 @@ class LeafMaker(AbjadValueObject):
             {
                 \tweak edge-height #'(0.7 . 0)
                 \times 4/7 {
+                    #(ly:expect-warning "strange time signature found")
                     \time 5/14
                     f'2
                     ~

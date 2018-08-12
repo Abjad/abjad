@@ -222,11 +222,12 @@ class Wellformedness(AbjadObject):
             0 /	3 missing parents
             0 /	0 nested measures
             0 /	2 notes on wrong clef
-            0 /	2 out of range notes
+            0 /	2 out of range pitches
             0 /	0 overlapping beams
             0 /	0 overlapping glissandi
             0 /	0 overlapping octavation spanners
             0 /	0 overlapping trill spanners
+            0 /	0 unmatched stop text spans
             0 /	0 unterminated hairpins
             0 /	0 unterminated text spanners
 
@@ -249,11 +250,12 @@ class Wellformedness(AbjadObject):
             0 /	3 missing parents
             0 /	0 nested measures
             0 /	2 notes on wrong clef
-            0 /	2 out of range notes
+            0 /	2 out of range pitches
             0 /	0 overlapping beams
             0 /	0 overlapping glissandi
             0 /	0 overlapping octavation spanners
             0 /	0 overlapping trill spanners
+            0 /	0 unmatched stop text spans
             0 /	0 unterminated hairpins
             0 /	0 unterminated text spanners
 
@@ -366,11 +368,12 @@ class Wellformedness(AbjadObject):
             0 /	5 missing parents
             0 /	0 nested measures
             4 /	4 notes on wrong clef
-            0 /	4 out of range notes
+            0 /	4 out of range pitches
             0 /	0 overlapping beams
             0 /	0 overlapping glissandi
             0 /	0 overlapping octavation spanners
             0 /	0 overlapping trill spanners
+            0 /	0 unmatched stop text spans
             0 /	0 unterminated hairpins
             0 /	0 unterminated text spanners
 
@@ -409,11 +412,12 @@ class Wellformedness(AbjadObject):
             0 /	5 missing parents
             0 /	0 nested measures
             0 /	4 notes on wrong clef
-            0 /	4 out of range notes
+            0 /	4 out of range pitches
             0 /	0 overlapping beams
             0 /	0 overlapping glissandi
             0 /	0 overlapping octavation spanners
             0 /	0 overlapping trill spanners
+            0 /	0 unmatched stop text spans
             0 /	0 unterminated hairpins
             0 /	0 unterminated text spanners
 
@@ -433,11 +437,12 @@ class Wellformedness(AbjadObject):
             0 /	5 missing parents
             0 /	0 nested measures
             4 /	4 notes on wrong clef
-            0 /	4 out of range notes
+            0 /	4 out of range pitches
             0 /	0 overlapping beams
             0 /	0 overlapping glissandi
             0 /	0 overlapping octavation spanners
             0 /	0 overlapping trill spanners
+            0 /	0 unmatched stop text spans
             0 /	0 unterminated hairpins
             0 /	0 unterminated text spanners
 
@@ -459,7 +464,7 @@ class Wellformedness(AbjadObject):
                 violators.append(leaf)
         return violators, len(total)
 
-    def check_out_of_range_notes(self, argument=None):
+    def check_out_of_range_pitches(self, argument=None):
         r"""
         Checks out-of-range notes.
 
@@ -495,11 +500,12 @@ class Wellformedness(AbjadObject):
             0 /	5 missing parents
             0 /	0 nested measures
             0 /	4 notes on wrong clef
-            1 /	2 out of range notes
+            1 /	2 out of range pitches
             0 /	0 overlapping beams
             0 /	0 overlapping glissandi
             0 /	0 overlapping octavation spanners
             0 /	0 overlapping trill spanners
+            0 /	0 unmatched stop text spans
             0 /	0 unterminated hairpins
             0 /	0 unterminated text spanners
 
@@ -655,11 +661,12 @@ class Wellformedness(AbjadObject):
             0 /	5 missing parents
             0 /	0 nested measures
             0 /	4 notes on wrong clef
-            0 /	4 out of range notes
+            0 /	4 out of range pitches
             0 /	0 overlapping beams
             0 /	0 overlapping glissandi
             0 /	0 overlapping octavation spanners
             2 /	2 overlapping trill spanners
+            0 /	0 unmatched stop text spans
             0 /	0 unterminated hairpins
             0 /	0 unterminated text spanners
 
@@ -668,6 +675,100 @@ class Wellformedness(AbjadObject):
         Returns violators and total.
         """
         return self._check_overlapping_spanners(argument, TrillSpanner)
+
+    def check_unmatched_stop_text_spans(self, argument=None):
+        r"""
+        Checks unmatched stop text spans.
+
+        ..  container:: example
+
+            Unmatched stop text span is not wellformed:
+
+            >>> voice = abjad.Voice("c'4 c'4 c'4 c'4")
+            >>> stop_text_span = abjad.StopTextSpan()
+            >>> abjad.attach(stop_text_span, voice[-1])
+            >>> abjad.f(voice)
+            \new Voice
+            {
+                c'4
+                c'4
+                c'4
+                c'4
+                \stopTextSpan
+            }
+
+            >>> agent = abjad.inspect(voice)
+            >>> print(agent.tabulate_wellformedness())
+            0 /	0 discontiguous spanners
+            0 /	5 duplicate ids
+            0 /	1 empty containers
+            0 /	0 misdurated measures
+            0 /	0 misfilled measures
+            0 /	0 mispitched ties
+            0 /	4 misrepresented flags
+            0 /	5 missing parents
+            0 /	0 nested measures
+            0 /	4 notes on wrong clef
+            0 /	4 out of range pitches
+            0 /	0 overlapping beams
+            0 /	0 overlapping glissandi
+            0 /	0 overlapping octavation spanners
+            0 /	0 overlapping trill spanners
+            1 /	0 unmatched stop text spans
+            0 /	0 unterminated hairpins
+            0 /	0 unterminated text spanners
+
+            Matched stop text span is wellformed:
+
+            >>> voice = abjad.Voice("c'4 c'4 c'4 c'4")
+            >>> start_text_span = abjad.StartTextSpan()
+            >>> abjad.attach(start_text_span, voice[0])
+            >>> stop_text_span = abjad.StopTextSpan()
+            >>> abjad.attach(stop_text_span, voice[-1])
+            >>> abjad.show(voice) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(voice)
+                \new Voice
+                {
+                    c'4
+                    \startTextSpan
+                    c'4
+                    c'4
+                    c'4
+                    \stopTextSpan
+                }
+
+            >>> abjad.inspect(voice).is_wellformed()
+            True
+
+        Returns violators and total.
+        """
+        violators, total = [], 0
+        for context in iterate(argument).components(Context):
+            wrappers = context._dependent_wrappers[:]
+            wrappers.sort(key=lambda _: _.start_offset)
+            open_spanners = {}
+            for wrapper in wrappers:
+                if isinstance(wrapper.indicator, StartTextSpan):
+                    total += 1
+                    command = wrapper.indicator.command
+                    command = command.replace('start', '')
+                    command = command.replace('Start', '')
+                    if command not in open_spanners:
+                        open_spanners[command] = []
+                    open_spanners[command].append(wrapper.component)
+                elif isinstance(wrapper.indicator, StopTextSpan):
+                    command = wrapper.indicator.command
+                    command = command.replace('stop', '')
+                    command = command.replace('Stop', '')
+                    if (command not in open_spanners or
+                        not open_spanners[command]):
+                        violators.append(wrapper.component)
+                    else:
+                        open_spanners[command].pop()
+        return violators, total
 
     def check_unterminated_hairpins(self, argument=None):
         r"""
@@ -702,11 +803,51 @@ class Wellformedness(AbjadObject):
             0 /	5 missing parents
             0 /	0 nested measures
             0 /	4 notes on wrong clef
-            0 /	4 out of range notes
+            0 /	4 out of range pitches
             0 /	0 overlapping beams
             0 /	0 overlapping glissandi
             0 /	0 overlapping octavation spanners
             0 /	0 overlapping trill spanners
+            0 /	0 unmatched stop text spans
+            1 /	1 unterminated hairpins
+            0 /	0 unterminated text spanners
+
+            Even with start dynamic:
+
+            >>> voice = abjad.Voice("c'4 c'4 c'4 c'4")
+            >>> dynamic = abjad.Dynamic('f')
+            >>> abjad.attach(dynamic, voice[0])
+            >>> dynamic_trend = abjad.DynamicTrend('<')
+            >>> abjad.attach(dynamic_trend, voice[0])
+            >>> abjad.f(voice)
+            \new Voice
+            {
+                c'4
+                \f
+                \<
+                c'4
+                c'4
+                c'4
+            }
+
+            >>> agent = abjad.inspect(voice)
+            >>> print(agent.tabulate_wellformedness())
+            0 /	0 discontiguous spanners
+            0 /	5 duplicate ids
+            0 /	1 empty containers
+            0 /	0 misdurated measures
+            0 /	0 misfilled measures
+            0 /	0 mispitched ties
+            0 /	4 misrepresented flags
+            0 /	5 missing parents
+            0 /	0 nested measures
+            0 /	4 notes on wrong clef
+            0 /	4 out of range pitches
+            0 /	0 overlapping beams
+            0 /	0 overlapping glissandi
+            0 /	0 overlapping octavation spanners
+            0 /	0 overlapping trill spanners
+            0 /	0 unmatched stop text spans
             1 /	1 unterminated hairpins
             0 /	0 unterminated text spanners
 
@@ -740,16 +881,18 @@ class Wellformedness(AbjadObject):
         violators, total = [], 0
         for context in iterate(argument).components(Context):
             last_dynamic = None
-            last_text_spanner = None
+            last_tag = None
             wrappers = context._dependent_wrappers[:]
             wrappers.sort(key=lambda _: _.start_offset)
             for wrapper in wrappers:
                 parameter = getattr(wrapper.indicator, 'parameter', None)
                 if parameter == 'DYNAMIC':
                     last_dynamic = wrapper.indicator
+                    last_tag = wrapper.tag
                     if isinstance(wrapper.indicator, DynamicTrend):
                         total += 1
-            if isinstance(last_dynamic, DynamicTrend):
+            if (isinstance(last_dynamic, DynamicTrend) and
+                'right_broken' not in str(last_tag)):
                 violators.append(wrapper.component)
         return violators, total
 
@@ -786,11 +929,12 @@ class Wellformedness(AbjadObject):
             0 /	5 missing parents
             0 /	0 nested measures
             0 /	4 notes on wrong clef
-            0 /	4 out of range notes
+            0 /	4 out of range pitches
             0 /	0 overlapping beams
             0 /	0 overlapping glissandi
             0 /	0 overlapping octavation spanners
             0 /	0 overlapping trill spanners
+            0 /	1 unmatched stop text spans
             0 /	0 unterminated hairpins
             1 /	1 unterminated text spanners
 
@@ -823,8 +967,6 @@ class Wellformedness(AbjadObject):
         """
         violators, total = [], 0
         for context in iterate(argument).components(Context):
-            last_dynamic = None
-            last_text_spanner = None
             wrappers = context._dependent_wrappers[:]
             wrappers.sort(key=lambda _: _.start_offset)
             open_spanners = {}
@@ -832,15 +974,21 @@ class Wellformedness(AbjadObject):
                 if isinstance(wrapper.indicator, StartTextSpan):
                     total += 1
                     command = wrapper.indicator.command
-                    command = command.strip(r'\start')
+                    command = command.replace('start', '')
+                    command = command.replace('Start', '')
                     if command not in open_spanners:
                         open_spanners[command] = []
                     open_spanners[command].append(wrapper.component)
                 elif isinstance(wrapper.indicator, StopTextSpan):
                     command = wrapper.indicator.command
-                    command = command.strip(r'\stop')
-                    assert command in open_spanners, repr(command)
-                    open_spanners[command].pop()
+                    command = command.replace('stop', '')
+                    command = command.replace('Stop', '')
+                    if (command not in open_spanners or
+                        not open_spanners[command]):
+                        # unmatched stop text span
+                        pass
+                    else:
+                        open_spanners[command].pop()
             for command, list_ in open_spanners.items():
                 for component in list_:
                     violators.append(component)

@@ -179,23 +179,43 @@ def tweak(
         Tweaks can be tagged:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> markup = abjad.Markup('Allegro assai', direction=abjad.Up)
-        >>> abjad.tweak(markup, tag='+PARTS').color = 'red'
-        >>> abjad.attach(markup, staff[0])
+        >>> dynamic = abjad.Dynamic('f')
+        >>> abjad.tweak(dynamic, tag='RED').color = 'red'
+        >>> abjad.attach(dynamic, staff[0])
+
+        >>> abjad.f(staff)
+        \new Staff
+        {
+            c'4
+            - \tweak color #red %! RED
+            \f
+            d'4
+            e'4
+            f'4
+        }
+
         >>> abjad.show(staff) # doctest: +SKIP
 
-        ..  docs::
+        REGRESSION. Tweaked tags can be set multiple times:
 
-            >>> abjad.f(staff)
-            \new Staff
-            {
-                c'4
-                - \tweak color #red %! +PARTS
-                ^ \markup { "Allegro assai" }
-                d'4
-                e'4
-                f'4
-            }
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> dynamic = abjad.Dynamic('f')
+        >>> abjad.tweak(dynamic, tag='RED').color = 'red'
+        >>> abjad.tweak(dynamic, tag='BLUE').color = 'blue'
+        >>> abjad.attach(dynamic, staff[0])
+
+        >>> abjad.f(staff)
+        \new Staff
+        {
+            c'4
+            - \tweak color #blue %! BLUE
+            \f
+            d'4
+            e'4
+            f'4
+        }
+
+        >>> abjad.show(staff) # doctest: +SKIP
 
     ..  container:: example
 
@@ -229,8 +249,15 @@ def tweak(
         name = type(argument).__name__
         raise NotImplementedError(f'{name} does not allow tweaks (yet).')
     if argument._tweaks is None:
-        argument._tweaks = abjad.LilyPondTweakManager(
+        manager = abjad.LilyPondTweakManager(
             deactivate=deactivate,
             tag=tag,
             )
-    return argument._tweaks
+        argument._tweaks = manager
+    else:
+        manager = argument._tweaks
+        manager.__init__(
+            deactivate=deactivate,
+            tag=tag,
+            )
+    return manager

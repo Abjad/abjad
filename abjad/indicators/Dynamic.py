@@ -362,11 +362,6 @@ class Dynamic(AbjadValueObject):
 
     ### PRIVATE METHODS ###
 
-    def _add_leak(self, string):
-        if self.leak:
-            string = f'<> {string}'
-        return string
-
     def _attachment_test_all(self, component_expression):
         import abjad
         if not isinstance(component_expression, abjad.Leaf):
@@ -455,11 +450,12 @@ class Dynamic(AbjadValueObject):
             string = self._format_textual(self.direction, self.name)
         else:
             string = rf'\{self.name}'
-        string = self._add_leak(string)
         return string
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = LilyPondFormatBundle()
+        if self.leak:
+            bundle.after.leaks.append('<>')
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions()
             if self.leak:
@@ -849,6 +845,51 @@ class Dynamic(AbjadValueObject):
 
         ..  container:: example
 
+            Leaked and nonleaked dynamic may be attached to the same leaf:
+
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> abjad.attach(abjad.Dynamic('f'), staff[0])
+            >>> abjad.attach(abjad.Dynamic('p', leak=True), staff[0])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    c'4
+                    \f
+                    <> \p
+                    d'4
+                    e'4
+                    f'4
+                }
+
+        ..  container:: example
+
+            Leaks and tweaks on the same dynamic format correctly;
+            LilyPond empty chord ``<>`` symbol appears before postevents:
+
+            >>> staff = abjad.Staff("r4 d' e' f'")
+            >>> dynamic = abjad.Dynamic('f', leak=True)
+            >>> abjad.tweak(dynamic).color = 'blue'
+            >>> abjad.attach(dynamic, staff[0])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                r4
+                <>
+                - \tweak color #blue
+                \f
+                d'4
+                e'4
+                f'4
+            }
+
+        ..  container:: example
+
             Leak survives copy:
 
             >>> import copy
@@ -1129,6 +1170,45 @@ class Dynamic(AbjadValueObject):
             self.name.endswith('z')):
             return True
         return False
+
+    @property
+    def regression(self):
+        r"""
+        Documents regressions.
+
+        ..  container:: example
+
+            Duplicate dynamics raise exception on attach:
+
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> dynamic = abjad.Dynamic('p')
+            >>> abjad.attach(dynamic, staff[0])
+            >>> dynamic = abjad.Dynamic('p')
+            >>> abjad.attach(dynamic, staff[0])
+            Traceback (most recent call last):
+                ...
+            abjad.exceptions.PersistentIndicatorError: 
+            <BLANKLINE>
+            Can not attach ...
+            <BLANKLINE>
+            abjad.Wrapper(
+                context='Voice',
+                indicator=abjad.Dynamic('p'),
+                tag=abjad.Tag(),
+                )
+            <BLANKLINE>
+                ... to Note("c'4") in None because ...
+            <BLANKLINE>
+            abjad.Wrapper(
+                context='Voice',
+                indicator=abjad.Dynamic('p'),
+                tag=abjad.Tag(),
+                )
+            <BLANKLINE>
+                ... is already attached to the same leaf.
+
+        """
+        pass
 
     ### PUBLIC METHODS ###
 

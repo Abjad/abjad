@@ -164,15 +164,15 @@ class LilyPondTweakManager(LilyPondNameManager):
             >>> abjad.attach(markup, staff[0], tag='RED:M1')
             >>> abjad.show(staff) # doctest: +SKIP
 
-            >>> abjad.f(staff)
+            >>> abjad.f(staff, strict=40)
             \new Staff
             {
                 c'4
-                - \tweak color #red %! +PARTS %! RED:M1
-                ^ \markup {                   %! RED:M1
-                    \italic                   %! RED:M1
-                        Allegro               %! RED:M1
-                    }                         %! RED:M1
+                - \tweak color #red                 %! +PARTS
+                ^ \markup {                         %! RED:M1
+                    \italic                         %! RED:M1
+                        Allegro                     %! RED:M1
+                    }                               %! RED:M1
                 d'4
                 e'4
                 f'4

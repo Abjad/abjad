@@ -1,7 +1,12 @@
 import collections
 import inspect
 import operator
+from abjad import mathtools
 from abjad.system.AbjadValueObject import AbjadValueObject
+from abjad.system.FormatSpecification import FormatSpecification
+from abjad.top.new import new
+from .Expression import Expression
+from .Sequence import Sequence
 
 
 class Pattern(AbjadValueObject):
@@ -155,6 +160,7 @@ class Pattern(AbjadValueObject):
     def __init__(
         self,
         indices=None,
+        *,
         inverted=None,
         operator=None,
         patterns=None,
@@ -162,7 +168,6 @@ class Pattern(AbjadValueObject):
         period=None,
         template=None,
         ):
-        import abjad
         if indices is not None:
             assert all(isinstance(_, int) for _ in indices), repr(indices)
             indices = tuple(indices)
@@ -174,7 +179,7 @@ class Pattern(AbjadValueObject):
             assert operator in self._name_to_operator, repr(operator)
         self._operator = operator
         if period is not None:
-            assert abjad.mathtools.is_positive_integer(period), repr(period)
+            assert mathtools.is_positive_integer(period), repr(period)
         if patterns is not None:
             assert all(isinstance(_, type(self)) for _ in patterns)
             patterns = tuple(patterns)
@@ -352,9 +357,8 @@ class Pattern(AbjadValueObject):
 
         Returns new pattern.
         """
-        import abjad
         inverted = not self.inverted
-        return abjad.new(self, inverted=inverted, template=None)
+        return new(self, inverted=inverted, template=None)
 
     def __len__(self):
         """
@@ -628,10 +632,9 @@ class Pattern(AbjadValueObject):
         return False
 
     def _get_format_specification(self):
-        import abjad
         if self.template is None:
             return super()._get_format_specification()
-        return abjad.FormatSpecification(
+        return FormatSpecification(
             client=self,
             repr_is_indented=False,
             storage_format_is_indented=False,
@@ -642,11 +645,10 @@ class Pattern(AbjadValueObject):
 
     @staticmethod
     def _get_template(frame):
-        import abjad
         try:
             frame_info = inspect.getframeinfo(frame)
             function_name = frame_info.function
-            arguments = abjad.Expression._wrap_arguments(
+            arguments = Expression._wrap_arguments(
                 frame,
                 static_class=Pattern,
                 )
@@ -1002,13 +1004,12 @@ class Pattern(AbjadValueObject):
 
         Returns positive integer or none.
         """
-        import abjad
         if self._period is not None:
             return self._period
         if self.patterns:
             periods = [_.period for _ in self.patterns]
             if None not in periods:
-                return abjad.mathtools.least_common_multiple(*periods)
+                return mathtools.least_common_multiple(*periods)
 
     @property
     def template(self):
@@ -1351,7 +1352,6 @@ class Pattern(AbjadValueObject):
 
         Returns new sequence.
         """
-        import abjad
         assert isinstance(sequence, collections.Iterable), repr(sequence)
         length = len(sequence)
         items = []
@@ -1359,7 +1359,7 @@ class Pattern(AbjadValueObject):
             if self.matches_index(i, length):
                 item = sequence[i]
                 items.append(item)
-        return abjad.sequence(items=items)
+        return Sequence(items=items)
 
     @staticmethod
     def index(indices, period=None, inverted=None):
@@ -2449,12 +2449,11 @@ class Pattern(AbjadValueObject):
 
         Returns new pattern.
         """
-        import abjad
         if not self.patterns:
             indices = [-index - 1 for index in self.indices]
-            return abjad.new(self, indices=indices)
+            return new(self, indices=indices)
         patterns = [_.reverse() for _ in self.patterns]
-        return abjad.new(self, patterns=patterns)
+        return new(self, patterns=patterns)
 
     def rotate(self, n=0):
         """
@@ -2651,9 +2650,8 @@ class Pattern(AbjadValueObject):
 
         Returns new pattern.
         """
-        import abjad
         if not self.patterns:
             indices = [index + n for index in self.indices]
-            return abjad.new(self, indices=indices)
+            return new(self, indices=indices)
         patterns = [_.rotate(n=n) for _ in self.patterns]
-        return abjad.new(self, patterns=patterns)
+        return new(self, patterns=patterns)

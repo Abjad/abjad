@@ -1054,6 +1054,7 @@ class Inspection(AbjadObject):
 
     def is_wellformed(
         self,
+        allow_percussion_clef: bool = None,
         check_beamed_long_notes: bool = True,
         check_discontiguous_spanners: bool = True,
         check_duplicate_ids: bool = True,
@@ -1066,19 +1067,22 @@ class Inspection(AbjadObject):
         check_missing_parents: bool = True,
         check_nested_measures: bool = True,
         check_notes_on_wrong_clef: bool = True,
-        check_out_of_range_notes: bool = True,
+        check_out_of_range_pitches: bool = True,
         check_overlapping_beams: bool = True,
         check_overlapping_glissandi: bool = True,
         check_overlapping_octavation_spanners: bool = True,
         check_overlapping_ties: bool = True,
         check_overlapping_trill_spanners: bool = True,
+        check_unmatched_stop_text_spans: bool = True,
         check_unterminated_hairpins: bool = True,
         check_unterminated_text_spanners: bool = True,
         ) -> bool:
         """
         Is true when client is wellformed.
         """
-        manager = Wellformedness()
+        manager = Wellformedness(
+            allow_percussion_clef=allow_percussion_clef,
+            )
         for violators, total, check_name in manager(self.client):
             if eval(check_name) is not True:
                 continue
@@ -1595,12 +1599,13 @@ class Inspection(AbjadObject):
         check_missing_parents: bool = True,
         check_nested_measures: bool = True,
         check_notes_on_wrong_clef: bool = True,
-        check_out_of_range_notes: bool = True,
+        check_out_of_range_pitches: bool = True,
         check_overlapping_beams: bool = True,
         check_overlapping_glissandi: bool = True,
         check_overlapping_octavation_spanners: bool = True,
         check_overlapping_ties: bool = True,
         check_overlapping_trill_spanners: bool = True,
+        check_unmatched_stop_text_spans: bool = True,
         check_unterminated_hairpins: bool = True,
         check_unterminated_text_spanners: bool = True,
         ) -> str:

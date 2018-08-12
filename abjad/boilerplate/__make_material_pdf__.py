@@ -36,7 +36,7 @@ if __name__ == '__main__':
         sys.exit(0)
 
     try:
-        pdf = directory('illustration.pdf')
+        pdf = directory / 'illustration.pdf'
         with abjad.Timer() as timer:
             abjad.persist(lilypond_file).as_pdf(pdf, strict=89)
         count = int(timer.elapsed_time)
