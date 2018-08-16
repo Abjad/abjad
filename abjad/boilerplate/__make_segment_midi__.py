@@ -59,7 +59,7 @@ if __name__ == '__main__':
 
     try:
         segment = ide.Path(__file__).parent
-        midi = segment('segment.midi')
+        midi = segment / 'segment.midi'
         with abjad.Timer() as timer:
             abjad.persist(lilypond_file).as_midi(midi, remove_ly=True)
         count = int(timer.elapsed_time)

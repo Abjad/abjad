@@ -26,7 +26,7 @@ if __name__ == '__main__':
             scores=scores_directory,
             )
         assert segment_directory.is_score_package_path(), repr(segment_directory)
-        illustration_ly = segment_directory('illustration.ly')
+        illustration_ly = segment_directory / 'illustration.ly'
         print(' Running segment-maker ...')
         with abjad.Timer() as timer:
             lilypond_file = maker.run(
@@ -90,11 +90,11 @@ if __name__ == '__main__':
         sys.exit(1)
 
     try:
-        layout_py = segment_directory('layout.py')
+        layout_py = segment_directory / 'layout.py'
         if not layout_py.exists():
             print(' Writing stub layout.py ...')
             layout_py.write_text('')
-        layout_ly = segment_directory('layout.ly')
+        layout_ly = segment_directory / 'layout.ly'
         if not layout_ly.exists():
             print(' Writing stub layout.ly ...')
             layout_ly.write_text('')
@@ -156,9 +156,18 @@ if __name__ == '__main__':
             illustration_ly.extern(realign=79)
             illustration_ily = illustration_ly.with_suffix('.ily')
             assert illustration_ily.is_file()
+        lilypond_log_file_path = illustration_ily.parent / '.log'
         with abjad.Timer() as timer:
             print(' Running LilyPond ...')
-            abjad.IOManager.run_lilypond(illustration_ly)
+            abjad.IOManager.run_lilypond(
+                illustration_ly,
+                lilypond_log_file_path=lilypond_log_file_path,
+                )
+        lilypond_log_file_path.remove_lilypond_warnings(
+            crescendo_too_small=True,
+            decrescendo_too_small=True,
+            overwriting_glissando=True,
+            )
         lilypond_runtime = int(timer.elapsed_time)
         count = lilypond_runtime
         counter = abjad.String('second').pluralize(count)
@@ -170,7 +179,7 @@ if __name__ == '__main__':
         sys.exit(1)
 
     try:
-        history = segment_directory('.history')
+        history = segment_directory / '.history'
         with history.open(mode='a') as pointer:
             pointer.write('\n')
             line = time.strftime('%Y-%m-%d %H:%M:%S') + '\n'

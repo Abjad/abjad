@@ -320,18 +320,21 @@ class TimeSignature(AbjadValueObject):
             )
 
     def _get_lilypond_format(self):
+        result = []
         if self.hide:
-            return []
-        elif self.partial is None:
-            return rf'\time {self.numerator}/{self.denominator}'
+            return result
+        if self.has_non_power_of_two_denominator:
+            string = '#(ly:expect-warning "strange time signature found")'
+            result.append(string)
+        if self.partial is None:
+            result.append(rf'\time {self.numerator}/{self.denominator}')
         else:
-            result = []
             duration_string = self.partial.lilypond_duration_string
             partial_directive = rf'\partial {duration_string}'
             result.append(partial_directive)
             string = rf'\time {self.numerator}/{self.denominator}'
             result.append(string)
-            return result
+        return result
 
     ### PUBLIC PROPERTIES ###
 
@@ -379,7 +382,7 @@ class TimeSignature(AbjadValueObject):
 
     @property
     def has_non_power_of_two_denominator(self) -> bool:
-        """
+        r"""
         Is true when time signature has non-power-of-two denominator.
 
         ..  container:: example
@@ -397,6 +400,30 @@ class TimeSignature(AbjadValueObject):
             >>> time_signature = abjad.TimeSignature((3, 8))
             >>> time_signature.has_non_power_of_two_denominator
             False
+
+        ..  container::
+
+            Suppresses LilyPond "strange time signature" warning:
+
+            >>> tuplet = abjad.Tuplet((2, 3), "c'4 d' e' f'")
+            >>> staff = abjad.Staff([tuplet])
+            >>> time_signature = abjad.TimeSignature((4, 3))
+            >>> abjad.attach(time_signature, tuplet[0])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                \tweak edge-height #'(0.7 . 0)
+                \times 2/3 {
+                    #(ly:expect-warning "strange time signature found")
+                    \time 4/3
+                    c'4
+                    d'4
+                    e'4
+                    f'4
+                }
+            }
 
         """
         return self._has_non_power_of_two_denominator

@@ -59,9 +59,15 @@ class Wrapper(AbjadValueObject):
         >>> abjad.attach(abjad.Clef('treble'), voice_2[0])
         Traceback (most recent call last):
             ...
-        abjad...PersistentIndicatorError: Can not attach ...
+        abjad...PersistentIndicatorError:
         <BLANKLINE>
-            abjad.Clef('treble')
+        Can not attach ...
+        <BLANKLINE>
+        abjad.Wrapper(
+            context='Staff',
+            indicator=abjad.Clef('treble'),
+            tag=abjad.Tag(),
+            )
         <BLANKLINE>
             ... to Note("c'4") in VoiceII because ...
         <BLANKLINE>
@@ -81,9 +87,15 @@ class Wrapper(AbjadValueObject):
         >>> abjad.attach(abjad.Clef('treble'), voice_1[0])
         Traceback (most recent call last):
             ...
-        abjad...PersistentIndicatorError: Can not attach ...
+        abjad...PersistentIndicatorError:
         <BLANKLINE>
-            abjad.Clef('treble')
+        Can not attach ...
+        <BLANKLINE>
+            abjad.Wrapper(
+                context='Staff',
+                indicator=abjad.Clef('treble'),
+                tag=abjad.Tag(),
+                )
         <BLANKLINE>
             ... to Note("c''4") in VoiceI because ...
         <BLANKLINE>
@@ -479,34 +491,32 @@ class Wrapper(AbjadValueObject):
             prototype,
             attributes={'command': command},
             )
-        if (wrapper is not None and
-            wrapper.context is not None and
-            wrapper.deactivate is not True and
-            wrapper.indicator != self.indicator):
-            if wrapper.start_offset == self.start_offset:
-                parentage = abjad.inspect(component).parentage()
-                context = parentage.get_first(abjad.Context)
-                message = f'\n\nCan not attach ...\n\n{self.indicator}\n\n...'
-                message += f' to {repr(component)}'
-                message += f' in {context.name} because ...'
-                message += f'\n\n{format(wrapper)}\n\n'
-                message += '... is already attached'
-                if component is wrapper.component:
-                    message += ' to the same leaf.'
-                else:
-                    inspection = abjad.inspect(wrapper.component)
-                    parentage = inspection.parentage()
-                    context = parentage.get_first(abjad.Context)
-                    message += f' to {repr(wrapper.component)}'
-                    message += f' in {context.name}.'
-                message += '\n'
-                message = message.format(
-                    self.indicator,
-                    repr(component),
-                    format(wrapper),
-                    repr(wrapper.component),
-                    )
-                raise abjad.PersistentIndicatorError(message)
+        if (wrapper is None or
+            wrapper.context is None or
+            wrapper.deactivate is True or
+            wrapper.start_offset != self.start_offset):
+            return
+        my_leak = getattr(self.indicator, 'leak', None)
+        if getattr(wrapper.indicator, 'leak', None) != my_leak:
+            return
+        context = abjad.inspect(component).parentage().get_first(abjad.Context)
+        parentage = abjad.inspect(wrapper.component).parentage()
+        wrapper_context = parentage.get_first(abjad.Context)
+        if (wrapper.indicator == self.indicator and
+            context is not wrapper_context):
+            return
+        message = f'\n\nCan not attach ...\n\n{self}\n\n...'
+        message += f' to {repr(component)}'
+        message += f' in {context.name} because ...'
+        message += f'\n\n{format(wrapper)}\n\n'
+        message += '... is already attached'
+        if component is wrapper.component:
+            message += ' to the same leaf.'
+        else:
+            message += f' to {repr(wrapper.component)}'
+            message += f' in {wrapper_context.name}.'
+        message += '\n'
+        raise abjad.PersistentIndicatorError(message)
 
     ### PUBLIC PROPERTIES ###
 

@@ -206,6 +206,7 @@ def test_Container__split_by_duration_03():
         \new Staff
         {
             {   % measure
+                #(ly:expect-warning "strange time signature found")
                 \time 4/20
                 \scaleDurations #'(4 . 5) {
                     c'8
@@ -218,6 +219,7 @@ def test_Container__split_by_duration_03():
                 }
             }   % measure
             {   % measure
+                #(ly:expect-warning "strange time signature found")
                 \time 1/20
                 \scaleDurations #'(4 . 5) {
                     d'16
@@ -291,6 +293,7 @@ def test_Container__split_by_duration_04():
         \new Staff
         {
             {   % measure
+                #(ly:expect-warning "strange time signature found")
                 \time 4/20
                 \scaleDurations #'(4 . 5) {
                     c'8
@@ -303,6 +306,7 @@ def test_Container__split_by_duration_04():
                 }
             }   % measure
             {   % measure
+                #(ly:expect-warning "strange time signature found")
                 \time 1/20
                 \scaleDurations #'(4 . 5) {
                     d'16
@@ -775,6 +779,7 @@ def test_Container__split_by_duration_10():
         \new Staff
         {
             {   % measure
+                #(ly:expect-warning "strange time signature found")
                 \time 4/20
                 \scaleDurations #'(4 . 5) {
                     c'8
@@ -788,6 +793,7 @@ def test_Container__split_by_duration_10():
                 }
             }   % measure
             {   % measure
+                #(ly:expect-warning "strange time signature found")
                 \time 1/20
                 \scaleDurations #'(4 . 5) {
                     d'16
@@ -863,6 +869,7 @@ def test_Container__split_by_duration_11():
         \new Staff
         {
             {   % measure
+                #(ly:expect-warning "strange time signature found")
                 \time 4/20
                 \scaleDurations #'(4 . 5) {
                     c'8
@@ -877,6 +884,7 @@ def test_Container__split_by_duration_11():
                 }
             }   % measure
             {   % measure
+                #(ly:expect-warning "strange time signature found")
                 \time 1/20
                 \scaleDurations #'(4 . 5) {
                     d'16
@@ -955,6 +963,7 @@ def test_Container__split_by_duration_12():
         \new Staff
         {
             {   % measure
+                #(ly:expect-warning "strange time signature found")
                 \time 14/40
                 \scaleDurations #'(4 . 5) {
                     c'8
@@ -971,6 +980,7 @@ def test_Container__split_by_duration_12():
                 }
             }   % measure
             {   % measure
+                #(ly:expect-warning "strange time signature found")
                 \time 1/40
                 \scaleDurations #'(4 . 5) {
                     e'32
@@ -1215,6 +1225,7 @@ def test_Container__split_by_duration_15():
         \new Staff
         {
             {   % measure
+                #(ly:expect-warning "strange time signature found")
                 \time 2/24
                 \scaleDurations #'(2 . 3) {
                     c'8. * 1/2
@@ -1226,6 +1237,7 @@ def test_Container__split_by_duration_15():
                 }
             }   % measure
             {   % measure
+                #(ly:expect-warning "strange time signature found")
                 \time 1/24
                 \scaleDurations #'(2 . 3) {
                     d'8. * 1/3
@@ -1281,12 +1293,14 @@ def test_Container__split_by_duration_16():
         \new Staff
         {
             {   % measure
+                #(ly:expect-warning "strange time signature found")
                 \time 16/80
                 \scaleDurations #'(4 . 5) {
                     s1 * 1/4
                 }
             }   % measure
             {   % measure
+                #(ly:expect-warning "strange time signature found")
                 \time 9/80
                 \scaleDurations #'(4 . 5) {
                     s1 * 1/16
@@ -1322,6 +1336,7 @@ def test_Container__split_by_duration_17():
         \new Staff
         {
             {   % measure
+                #(ly:expect-warning "strange time signature found")
                 \time 15/80
                 \scaleDurations #'(4 . 5) {
                     c'32
@@ -1352,6 +1367,7 @@ def test_Container__split_by_duration_17():
         \new Staff
         {
             {   % measure
+                #(ly:expect-warning "strange time signature found")
                 \time 14/80
                 \scaleDurations #'(4 . 5) {
                     c'32
@@ -1368,6 +1384,7 @@ def test_Container__split_by_duration_17():
                 }
             }   % measure
             {   % measure
+                #(ly:expect-warning "strange time signature found")
                 \time 1/80
                 \scaleDurations #'(4 . 5) {
                     c''64

@@ -574,6 +574,20 @@ class DynamicTrend(AbjadValueObject):
         return True
 
     @property
+    def trend(self) -> bool:
+        """
+        Is true.
+
+        ..  container:: example
+
+            >>> abjad.DynamicTrend('<').trend
+            True
+
+        Class constant.
+        """
+        return True
+
+    @property
     def tweaks(self) -> typing.Optional[LilyPondTweakManager]:
         r"""
         Gets tweaks

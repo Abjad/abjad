@@ -29,7 +29,7 @@ if __name__ == '__main__':
 
     try:
         buildspace_directory = maker.parent
-        layout_py = buildspace_directory('{layout_module_name}.py')
+        layout_py = buildspace_directory / '{layout_module_name}.py'
         document_name = abjad.String(buildspace_directory.name).to_shout_case()
     except:
         traceback.print_exc()
@@ -74,7 +74,6 @@ if __name__ == '__main__':
         sys.exit(1)
 
     try:
-        print(' Running segment-maker ...')
         maker = baca.SegmentMaker(
             breaks=breaks,
             do_not_check_persistence=True,
@@ -85,7 +84,10 @@ if __name__ == '__main__':
             spacing=spacing,
             time_signatures=time_signatures,
             )
-        lilypond_file = maker.run(remove=abjad.tags.layout_removal_tags())
+        lilypond_file = maker.run(
+            do_not_print_timing=True,
+            remove=abjad.tags.layout_removal_tags(),
+            )
         context = lilypond_file['GlobalSkips']
         skips = baca.select(context).skips()
         for skip in skips:
@@ -111,7 +113,7 @@ if __name__ == '__main__':
         else:
             text = line_1 + line_2 + '\n\n' + text
         layout_ly = layout_module_name.replace('_', '-') + '.ly'
-        layout_ly = buildspace_directory(layout_ly)
+        layout_ly = buildspace_directory / layout_ly
         layout_ly.write_text(text)
         counter = abjad.String('measure').pluralize(measure_count)
         message = f' Writing {{measure_count}} {{counter}}'

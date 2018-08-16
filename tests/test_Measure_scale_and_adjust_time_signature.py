@@ -14,6 +14,7 @@ def test_Measure_scale_and_adjust_time_signature_01():
     assert format(measure) == abjad.String.normalize(
         r"""
         {   % measure
+            #(ly:expect-warning "strange time signature found")
             \time 3/12
             \scaleDurations #'(2 . 3) {
                 c'8
@@ -108,6 +109,7 @@ def test_Measure_scale_and_adjust_time_signature_05():
     assert format(measure) == abjad.String.normalize(
         r"""
         {   % measure
+            #(ly:expect-warning "strange time signature found")
             \time 9/24
             \scaleDurations #'(2 . 3) {
                 c'16

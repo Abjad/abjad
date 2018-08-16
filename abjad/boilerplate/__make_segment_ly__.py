@@ -58,7 +58,7 @@ if __name__ == '__main__':
         sys.exit(1)
 
     try:
-        illustration_ly = segment('illustration.ly')
+        illustration_ly = segment / 'illustration.ly'
         result = abjad.persist(lilypond_file).as_ly(illustration_ly, strict=89)
         abjad_format_time = int(result[1])
         count = abjad_format_time

@@ -544,6 +544,7 @@ def test_Mutation_fuse_14():
                 [
             }   % measure
             {   % measure
+                #(ly:expect-warning "strange time signature found")
                 \time 1/12
                 \scaleDurations #'(2 . 3) {
                     d'8
@@ -561,6 +562,7 @@ def test_Mutation_fuse_14():
         \new Voice
         {
             {   % measure
+                #(ly:expect-warning "strange time signature found")
                 \time 5/24
                 \scaleDurations #'(2 . 3) {
                     c'8.
@@ -675,6 +677,7 @@ def test_Mutation_fuse_18():
         \new Staff
         {
             {   % measure
+                #(ly:expect-warning "strange time signature found")
                 \time 9/80
                 \scaleDurations #'(4 . 5) {
                     c'64
@@ -704,6 +707,7 @@ def test_Mutation_fuse_18():
         \new Staff
         {
             {   % measure
+                #(ly:expect-warning "strange time signature found")
                 \time 19/80
                 \scaleDurations #'(4 . 5) {
                     c'64

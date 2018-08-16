@@ -97,16 +97,19 @@ class Tags(AbjadValueObject):
 
         'EXPLICIT_DYNAMIC',
         'EXPLICIT_DYNAMIC_COLOR',
+        # TODO: remove these two:
         'EXPLICIT_DYNAMIC_COLOR_CANCELLATION',
         'EXPLICIT_DYNAMIC_REDRAW_COLOR',
 
         'REAPPLIED_DYNAMIC',
         'REAPPLIED_DYNAMIC_COLOR',
+        # TODO: remove these two:
         'REAPPLIED_DYNAMIC_COLOR_CANCELLATION',
         'REAPPLIED_DYNAMIC_REDRAW_COLOR',
 
         'REDUNDANT_DYNAMIC',
         'REDUNDANT_DYNAMIC_COLOR',
+        # TODO: remove these two:
         'REDUNDANT_DYNAMIC_COLOR_CANCELLATION',
         'REDUNDANT_DYNAMIC_REDRAW_COLOR',
 

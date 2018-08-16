@@ -9,6 +9,7 @@ def test_Measure_should_scale_contents_01():
     assert format(measure) == abjad.String.normalize(
         r"""
         {   % measure
+            #(ly:expect-warning "strange time signature found")
             \time 5/12
             \tweak edge-height #'(0.7 . 0)
             \times 2/3 {
