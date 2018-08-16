@@ -416,7 +416,7 @@ class IOManager(AbjadObject):
         *,
         application: str = None,
         line_number: int = None,
-        ) -> None:
+        ):
         """
         Opens ``file_path``.
 
@@ -434,7 +434,9 @@ class IOManager(AbjadObject):
         # special import necessary to satisfy parameterized pytests:
         from abjad import abjad_configuration as _configuration
         if sys.platform.lower().startswith('win'):
-            os.startfile(file_path) # noqa
+            startfile = getattr(os, 'startfile', None)
+            assert startfile is not None
+            startfile(file_path)
             return
         viewer = None
         if sys.platform.lower().startswith('linux'):
