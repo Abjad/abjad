@@ -70,6 +70,7 @@ class Glissando(Spanner):
         '_right_broken',
         '_stems',
         '_style',
+        '_zero_padding',
         )
 
     _start_command = r'\glissando'
@@ -85,6 +86,7 @@ class Glissando(Spanner):
         right_broken: bool = None,
         stems: bool = None,
         style: str = None,
+        zero_padding: bool = None,
         ) -> None:
         Spanner.__init__(self)
         if allow_repeats is not None:
@@ -105,6 +107,9 @@ class Glissando(Spanner):
         if style is not None:
             assert isinstance(style, str), repr(style)
         self._style = style
+        if zero_padding is not None:
+            zero_padding = bool(zero_padding)
+        self._zero_padding = zero_padding
 
     ### PRIVATE METHODS ###
 
@@ -219,6 +224,14 @@ class Glissando(Spanner):
             leaf.written_pitches == previous_leaf.written_pitches):
             return False
         return True
+
+    def _tweaked_start_command_strings(self):
+        strings = []
+        if self.zero_padding:
+            strings.append(r'- \abjad-zero-padding-glissando')
+        strings_ = super()._tweaked_start_command_strings()
+        strings.extend(strings_)
+        return strings
 
     ### PUBLIC PROPERTIES ###
 
@@ -925,3 +938,81 @@ class Glissando(Spanner):
 
         """
         return self._style
+
+    @property
+    def zero_padding(self) -> typing.Optional[bool]:
+        r"""
+        Is true when glissando formats with zero padding and no extra space for
+        dots.
+
+        ..  container:: example
+
+            >>> staff = abjad.Staff("d'8 d'4. d'4. d'8")
+            >>> glissando = abjad.Glissando(
+            ...     allow_repeats=True,
+            ...     zero_padding=True,
+            ...     )
+            >>> abjad.attach(glissando, staff[:])
+            >>> for note in staff[1:]:
+            ...     abjad.override(note).note_head.transparent = True
+            ...     abjad.override(note).note_head.X_extent = (0, 0)
+            ...
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    d'8
+                    - \abjad-zero-padding-glissando
+                    \glissando
+                    \once \override NoteHead.X-extent = #'(0 . 0)
+                    \once \override NoteHead.transparent = ##t
+                    d'4.
+                    - \abjad-zero-padding-glissando
+                    \glissando
+                    \once \override NoteHead.X-extent = #'(0 . 0)
+                    \once \override NoteHead.transparent = ##t
+                    d'4.
+                    - \abjad-zero-padding-glissando
+                    \glissando
+                    \once \override NoteHead.X-extent = #'(0 . 0)
+                    \once \override NoteHead.transparent = ##t
+                    d'8
+                }
+
+        ..  container:: example
+
+            >>> staff = abjad.Staff("c'8. d'8. e'8. f'8.")
+            >>> glissando = abjad.Glissando(zero_padding=True)
+            >>> abjad.attach(glissando, staff[:])
+            >>> for note in staff[1:-1]:
+            ...     abjad.override(note).note_head.transparent = True
+            ...     abjad.override(note).note_head.X_extent = (0, 0)
+            ...
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    c'8.
+                    - \abjad-zero-padding-glissando
+                    \glissando
+                    \once \override NoteHead.X-extent = #'(0 . 0)
+                    \once \override NoteHead.transparent = ##t
+                    d'8.
+                    - \abjad-zero-padding-glissando
+                    \glissando
+                    \once \override NoteHead.X-extent = #'(0 . 0)
+                    \once \override NoteHead.transparent = ##t
+                    e'8.
+                    - \abjad-zero-padding-glissando
+                    \glissando
+                    f'8.
+                }
+
+        """
+        return self._zero_padding

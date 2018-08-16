@@ -149,6 +149,7 @@ class Articulation(AbjadValueObject):
             direction = direction or argument.direction
         name = str(name)
         if '\\' in name:
+            raise Exception('DEPRECATED?')
             direction, name = name.split('\\')
             direction = direction.strip()
             name = name.strip()
