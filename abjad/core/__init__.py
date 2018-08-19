@@ -23,8 +23,6 @@ from .LeafMaker import LeafMaker
 from .Lineage import Lineage
 from .Selection import Selection
 from .LogicalTie import LogicalTie
-from .Measure import Measure
-from .MeasureMaker import MeasureMaker
 from .MultimeasureRest import MultimeasureRest
 from .Mutation import Mutation
 from .Note import Note

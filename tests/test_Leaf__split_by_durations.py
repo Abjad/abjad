@@ -22,7 +22,7 @@ def test_Leaf__split_by_durations_01():
             ]
         }
         """
-        )
+        ), print(format(staff))
 
     halves = staff[1]._split_by_durations(
         [abjad.Duration(1, 32)],
@@ -42,7 +42,7 @@ def test_Leaf__split_by_durations_01():
             ]
         }
         """
-        )
+        ), print(format(staff))
 
     assert abjad.inspect(staff).is_wellformed()
 
@@ -67,7 +67,7 @@ def test_Leaf__split_by_durations_02():
             ]
         }
         """
-        )
+        ), print(format(staff))
 
     halves = staff[1]._split_by_durations(
         [abjad.Duration(1, 32)],
@@ -89,7 +89,7 @@ def test_Leaf__split_by_durations_02():
             ]
         }
         """
-        )
+        ), print(format(staff))
 
     assert abjad.inspect(staff).is_wellformed()
 
@@ -114,7 +114,7 @@ def test_Leaf__split_by_durations_03():
             ]
         }
         """
-        )
+        ), print(format(staff))
 
     halves = staff[1]._split_by_durations(
         [abjad.Duration(1, 32)],
@@ -135,7 +135,7 @@ def test_Leaf__split_by_durations_03():
             ]
         }
         """
-        )
+        ), print(format(staff))
 
     assert abjad.inspect(staff).is_wellformed()
 
@@ -170,7 +170,7 @@ def test_Leaf__split_by_durations_04():
             ]
         }
         """
-        )
+        ), print(format(staff))
 
     assert abjad.inspect(staff).is_wellformed()
 
@@ -203,7 +203,7 @@ def test_Leaf__split_by_durations_05():
             ]
         }
         """
-        )
+        ), print(format(staff))
 
     assert abjad.inspect(staff).is_wellformed()
 
@@ -240,7 +240,7 @@ def test_Leaf__split_by_durations_06():
             }
         }
         """
-        )
+        ), print(format(staff))
 
     assert abjad.inspect(staff).is_wellformed()
 
@@ -271,7 +271,7 @@ def test_Leaf__split_by_durations_07():
             }
         }
         """
-        )
+        ), print(format(staff))
 
     halves = leaves[1]._split_by_durations(
         [abjad.Duration(1, 24)],
@@ -293,7 +293,7 @@ def test_Leaf__split_by_durations_07():
             }
         }
         """
-        )
+        ), print(format(staff))
 
     assert abjad.inspect(voice).is_wellformed()
 
@@ -499,8 +499,8 @@ def test_Leaf__split_by_durations_17():
 def test_Leaf__split_by_durations_18():
 
     staff = abjad.Staff()
-    staff.append(abjad.Measure((2, 8), "c'8 d'8"))
-    staff.append(abjad.Measure((2, 8), "e'8 f'8"))
+    staff.append(abjad.Container("c'8 d'8"))
+    staff.append(abjad.Container("e'8 f'8"))
     leaves = abjad.select(staff).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves[:2])
@@ -513,24 +513,23 @@ def test_Leaf__split_by_durations_18():
         r"""
         \new Staff
         {
-            {   % measure
-                \time 2/8
+            {
                 c'8
                 [
                 (
                 d'8
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
                 e'8
                 [
                 f'8
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     halves = leaves[0]._split_by_durations(
         [abjad.Duration(1, 32)],
@@ -542,25 +541,24 @@ def test_Leaf__split_by_durations_18():
         r"""
         \new Staff
         {
-            {   % measure
-                \time 2/8
+            {
                 c'32
                 [
                 (
                 c'16.
                 d'8
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
                 e'8
                 [
                 f'8
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     assert abjad.inspect(staff).is_wellformed()
 
@@ -572,8 +570,8 @@ def test_Leaf__split_by_durations_19():
     """
 
     staff = abjad.Staff()
-    staff.append(abjad.Measure((2, 8), "c'8 d'8"))
-    staff.append(abjad.Measure((2, 8), "e'8 f'8"))
+    staff.append(abjad.Container("c'8 d'8"))
+    staff.append(abjad.Container("e'8 f'8"))
     leaves = abjad.select(staff).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves[:2])
@@ -586,24 +584,23 @@ def test_Leaf__split_by_durations_19():
         r"""
         \new Staff
         {
-            {   % measure
-                \time 2/8
+            {
                 c'8
                 [
                 (
                 d'8
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
                 e'8
                 [
                 f'8
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     halves = leaves[0]._split_by_durations(
         [abjad.Duration(1, 32)],
@@ -615,8 +612,7 @@ def test_Leaf__split_by_durations_19():
         r"""
         \new Staff
         {
-            {   % measure
-                \time 2/8
+            {
                 c'32
                 ~
                 [
@@ -624,17 +620,17 @@ def test_Leaf__split_by_durations_19():
                 c'16.
                 d'8
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
                 e'8
                 [
                 f'8
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     assert abjad.inspect(staff).is_wellformed()
 
@@ -645,8 +641,8 @@ def test_Leaf__split_by_durations_20():
     """
 
     staff = abjad.Staff()
-    staff.append(abjad.Measure((2, 8), "c'8 d'8"))
-    staff.append(abjad.Measure((2, 8), "e'8 f'8"))
+    staff.append(abjad.Container("c'8 d'8"))
+    staff.append(abjad.Container("e'8 f'8"))
     leaves = abjad.select(staff).leaves()
     beam = abjad.Beam(beam_lone_notes=True)
     abjad.attach(beam, leaves[:2])
@@ -659,24 +655,23 @@ def test_Leaf__split_by_durations_20():
         r"""
         \new Staff
         {
-            {   % measure
-                \time 2/8
+            {
                 c'8
                 [
                 (
                 d'8
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
                 e'8
                 [
                 f'8
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     halves = leaves[0]._split_by_durations(
         [abjad.Duration(1, 32)],
@@ -688,8 +683,7 @@ def test_Leaf__split_by_durations_20():
         r"""
         \new Staff
         {
-            {   % measure
-                \time 2/8
+            {
                 c'32
                 [
                 ]
@@ -698,17 +692,17 @@ def test_Leaf__split_by_durations_20():
                 (
                 d'8
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
                 e'8
                 [
                 f'8
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     assert abjad.inspect(staff).is_wellformed()
 
@@ -721,8 +715,8 @@ def test_Leaf__split_by_durations_21():
     """
 
     staff = abjad.Staff()
-    staff.append(abjad.Measure((2, 8), "c'8 d'8"))
-    staff.append(abjad.Measure((2, 8), "e'8 f'8"))
+    staff.append(abjad.Container("c'8 d'8"))
+    staff.append(abjad.Container("e'8 f'8"))
     leaves = abjad.select(staff).leaves()
     beam = abjad.Beam(beam_lone_notes=True)
     abjad.attach(beam, leaves[:2])
@@ -735,24 +729,23 @@ def test_Leaf__split_by_durations_21():
         r"""
         \new Staff
         {
-            {   % measure
-                \time 2/8
+            {
                 c'8
                 [
                 (
                 d'8
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
                 e'8
                 [
                 f'8
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     halves = leaves[1]._split_by_durations(
         [abjad.Duration(1, 32)],
@@ -764,8 +757,7 @@ def test_Leaf__split_by_durations_21():
         r"""
         \new Staff
         {
-            {   % measure
-                \time 2/8
+            {
                 c'8
                 [
                 (
@@ -776,17 +768,17 @@ def test_Leaf__split_by_durations_21():
                 [
                 ]
                 (
-            }   % measure
-            {   % measure
+            }
+            {
                 e'8
                 [
                 f'8
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     assert abjad.inspect(staff).is_wellformed()
 
@@ -821,8 +813,8 @@ def test_Leaf__split_by_durations_23():
     """
 
     staff = abjad.Staff()
-    staff.append(abjad.Measure((2, 8), "c'8 d'8"))
-    staff.append(abjad.Measure((2, 8), "e'8 f'8"))
+    staff.append(abjad.Container("c'8 d'8"))
+    staff.append(abjad.Container("e'8 f'8"))
     leaves = abjad.select(staff).leaves()
     beam = abjad.Beam(beam_lone_notes=True)
     abjad.attach(beam, leaves[:2])
@@ -835,24 +827,23 @@ def test_Leaf__split_by_durations_23():
         r"""
         \new Staff
         {
-            {   % measure
-                \time 2/8
+            {
                 c'8
                 [
                 (
                 d'8
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
                 e'8
                 [
                 f'8
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     halves = leaves[0]._split_by_durations(
         [abjad.Duration(1, 32)],
@@ -864,8 +855,7 @@ def test_Leaf__split_by_durations_23():
         r"""
         \new Staff
         {
-            {   % measure
-                \time 2/8
+            {
                 c'32
                 ~
                 [
@@ -875,17 +865,17 @@ def test_Leaf__split_by_durations_23():
                 (
                 d'8
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
                 e'8
                 [
                 f'8
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     assert abjad.inspect(staff).is_wellformed()
 

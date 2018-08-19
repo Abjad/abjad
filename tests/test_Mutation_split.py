@@ -10,8 +10,8 @@ def test_Mutation_split_01():
     """
 
     staff = abjad.Staff()
-    staff.append(abjad.Measure((2, 8), "c'8 d'8"))
-    staff.append(abjad.Measure((2, 8), "e'8 f'8"))
+    staff.append(abjad.Container("c'8 d'8"))
+    staff.append(abjad.Container("e'8 f'8"))
     leaves = abjad.select(staff).leaves()
     beam_1 = abjad.Beam()
     beam_2 = abjad.Beam()
@@ -24,24 +24,23 @@ def test_Mutation_split_01():
         r"""
         \new Staff
         {
-            {   % measure
-                \time 2/8
+            {
                 c'8
                 [
                 (
                 d'8
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
                 e'8
                 [
                 f'8
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     notes = staff[0][1:2]
     result = abjad.mutate(notes).split(
@@ -54,8 +53,7 @@ def test_Mutation_split_01():
         r"""
         \new Staff
         {
-            {   % measure
-                \time 2/8
+            {
                 c'8
                 [
                 (
@@ -65,17 +63,17 @@ def test_Mutation_split_01():
                 ~
                 d'32
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
                 e'8
                 [
                 f'8
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     assert abjad.inspect(staff).is_wellformed()
     assert len(result) == 3
@@ -101,24 +99,25 @@ def test_Mutation_split_02():
         r"""
         \new Staff
         {
-            {   % measure
+            {
                 \time 2/8
                 c'8
                 [
                 (
                 d'8
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 e'8
                 [
                 f'8
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     result = abjad.mutate(leaves).split(
         [abjad.Duration(3, 32)],
@@ -130,7 +129,7 @@ def test_Mutation_split_02():
         r"""
         \new Staff
         {
-            {   % measure
+            {
                 \time 2/8
                 c'16.
                 ~
@@ -141,8 +140,9 @@ def test_Mutation_split_02():
                 ~
                 d'16
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 e'32
                 ~
                 [
@@ -152,10 +152,10 @@ def test_Mutation_split_02():
                 f'32
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     assert abjad.inspect(staff).is_wellformed()
     assert len(result) == 6
@@ -163,7 +163,7 @@ def test_Mutation_split_02():
 
 def test_Mutation_split_03():
     """
-    Cyclically splits measure in score.
+    Cyclically splits containers in score.
     
     Doesn't fracture spanners.
     """
@@ -181,24 +181,25 @@ def test_Mutation_split_03():
         r"""
         \new Staff
         {
-            {   % measure
+            {
                 \time 2/8
                 c'8
                 [
                 (
                 d'8
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 e'8
                 [
                 f'8
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     measures = staff[:1]
     result = abjad.mutate(measures).split(
@@ -212,32 +213,31 @@ def test_Mutation_split_03():
         r"""
         \new Staff
         {
-            {   % measure
-                \time 3/32
+            {
+                \time 2/8
                 c'16.
                 [
                 (
-            }   % measure
-            {   % measure
+            }
+            {
                 c'32
                 d'16
-            }   % measure
-            {   % measure
-                \time 2/32
+            }
+            {
                 d'16
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
                 \time 2/8
                 e'8
                 [
                 f'8
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     assert abjad.inspect(staff).is_wellformed()
     assert len(result) == 3
@@ -263,24 +263,25 @@ def test_Mutation_split_04():
         r"""
         \new Staff
         {
-            {   % measure
+            {
                 \time 2/8
                 c'8
                 [
                 (
                 d'8
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 e'8
                 [
                 f'8
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     measures = staff[:]
     result = abjad.mutate(measures).split(
@@ -294,42 +295,39 @@ def test_Mutation_split_04():
         r"""
         \new Staff
         {
-            {   % measure
-                \time 3/32
+            {
+                \time 2/8
                 c'16.
                 [
                 (
-            }   % measure
-            {   % measure
+            }
+            {
                 c'32
                 d'16
-            }   % measure
-            {   % measure
-                \time 2/32
+            }
+            {
                 d'16
                 ]
-            }   % measure
-            {   % measure
-                \time 1/32
+            }
+            {
+                \time 2/8
                 e'32
                 [
-            }   % measure
-            {   % measure
-                \time 3/32
+            }
+            {
                 e'16.
-            }   % measure
-            {   % measure
+            }
+            {
                 f'16.
-            }   % measure
-            {   % measure
-                \time 1/32
+            }
+            {
                 f'32
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     assert abjad.inspect(staff).is_wellformed()
     assert len(result) == 6
@@ -343,8 +341,8 @@ def test_Mutation_split_05():
     """
 
     measures = [
-        abjad.Measure((2, 8), "c'8 d'8"),
-        abjad.Measure((2, 8), "e'8 f'8"),
+        abjad.Container("c'8 d'8"),
+        abjad.Container("e'8 f'8"),
         ]
     leaves = abjad.select(measures).leaves()
     beam_1 = abjad.Beam()
@@ -366,40 +364,35 @@ def test_Mutation_split_05():
         r"""
         \new Staff
         {
-            {   % measure
-                \time 3/32
+            {
                 c'16.
                 [
-            }   % measure
-            {   % measure
+            }
+            {
                 c'32
                 d'16
-            }   % measure
-            {   % measure
-                \time 2/32
+            }
+            {
                 d'16
                 ]
-            }   % measure
-            {   % measure
-                \time 1/32
+            }
+            {
                 e'32
                 [
-            }   % measure
-            {   % measure
-                \time 3/32
+            }
+            {
                 e'16.
-            }   % measure
-            {   % measure
+            }
+            {
                 f'16.
-            }   % measure
-            {   % measure
-                \time 1/32
+            }
+            {
                 f'32
                 ]
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     assert abjad.inspect(staff).is_wellformed()
     assert len(result) == 6
@@ -425,24 +418,25 @@ def test_Mutation_split_06():
         r"""
         \new Staff
         {
-            {   % measure
+            {
                 \time 2/8
                 c'8
                 [
                 (
                 d'8
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 e'8
                 [
                 f'8
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     notes = staff[0][1:]
     result = abjad.mutate(notes).split(
@@ -456,7 +450,7 @@ def test_Mutation_split_06():
         r"""
         \new Staff
         {
-            {   % measure
+            {
                 \time 2/8
                 c'8
                 [
@@ -469,17 +463,18 @@ def test_Mutation_split_06():
                 ~
                 d'32
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 e'8
                 [
                 f'8
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     assert abjad.inspect(staff).is_wellformed()
     assert len(result) == 4
@@ -505,24 +500,25 @@ def test_Mutation_split_07():
         r"""
         \new Staff
         {
-            {   % measure
+            {
                 \time 2/8
                 c'8
                 [
                 (
                 d'8
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 e'8
                 [
                 f'8
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     result = abjad.mutate(leaves).split(
         [abjad.Duration(1, 16)],
@@ -535,7 +531,7 @@ def test_Mutation_split_07():
         r"""
         \new Staff
         {
-            {   % measure
+            {
                 \time 2/8
                 c'16
                 ~
@@ -546,8 +542,9 @@ def test_Mutation_split_07():
                 ~
                 d'16
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 e'16
                 ~
                 [
@@ -557,10 +554,10 @@ def test_Mutation_split_07():
                 f'16
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     assert abjad.inspect(staff).is_wellformed()
     assert len(result) == 8
@@ -586,24 +583,25 @@ def test_Mutation_split_08():
         r"""
         \new Staff
         {
-            {   % measure
+            {
                 \time 2/8
                 c'8
                 [
                 (
                 d'8
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 e'8
                 [
                 f'8
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     measures = staff[:1]
     result = abjad.mutate(measures).split(
@@ -615,37 +613,37 @@ def test_Mutation_split_08():
 
     assert format(staff) == abjad.String.normalize(
         r"""
-        \new Staff 
+        \new Staff
         {
-            {   % measure
-                \time 1/16
+            {
+                \time 2/8
                 c'16
                 ~
                 [
                 (
-            }   % measure
-            {   % measure
+            }
+            {
                 c'16
-            }   % measure
-            {   % measure
+            }
+            {
                 d'16
                 ~
-            }   % measure
-            {   % measure
+            }
+            {
                 d'16
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
                 \time 2/8
                 e'8
                 [
                 f'8
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     assert abjad.inspect(staff).is_wellformed()
     assert len(result) == 4
@@ -671,24 +669,25 @@ def test_Mutation_split_09():
         r"""
         \new Staff
         {
-            {   % measure
+            {
                 \time 2/8
                 c'8
                 [
                 (
                 d'8
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 e'8
                 [
                 f'8
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     measures = staff[:]
     result = abjad.mutate(measures).split(
@@ -702,46 +701,43 @@ def test_Mutation_split_09():
         r"""
         \new Staff
         {
-            {   % measure
-                \time 3/32
+            {
+                \time 2/8
                 c'16.
                 ~
                 [
                 (
-            }   % measure
-            {   % measure
+            }
+            {
                 c'32
                 d'16
                 ~
-            }   % measure
-            {   % measure
-                \time 2/32
+            }
+            {
                 d'16
                 ]
-            }   % measure
-            {   % measure
-                \time 1/32
+            }
+            {
+                \time 2/8
                 e'32
                 ~
                 [
-            }   % measure
-            {   % measure
-                \time 3/32
+            }
+            {
                 e'16.
-            }   % measure
-            {   % measure
+            }
+            {
                 f'16.
                 ~
-            }   % measure
-            {   % measure
-                \time 1/32
+            }
+            {
                 f'32
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     assert abjad.inspect(staff).is_wellformed()
     assert len(result) == 6
@@ -767,24 +763,25 @@ def test_Mutation_split_10():
         r"""
         \new Staff
         {
-            {   % measure
+            {
                 \time 2/8
                 c'8
                 [
                 (
                 d'8
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 e'8
                 [
                 f'8
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     notes = staff[0][1:2]
     result = abjad.mutate(notes).split(
@@ -797,7 +794,7 @@ def test_Mutation_split_10():
         r"""
         \new Staff
         {
-            {   % measure
+            {
                 \time 2/8
                 c'8
                 [
@@ -814,17 +811,18 @@ def test_Mutation_split_10():
                 [
                 ]
                 (
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 e'8
                 [
                 f'8
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     assert abjad.inspect(staff).is_wellformed()
     assert len(result) == 3
@@ -850,24 +848,25 @@ def test_Mutation_split_11():
         r"""
         \new Staff
         {
-            {   % measure
+            {
                 \time 2/8
                 c'8
                 [
                 (
                 d'8
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 e'8
                 [
                 f'8
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     result = abjad.mutate(leaves).split(
         [abjad.Duration(3, 32)],
@@ -879,7 +878,7 @@ def test_Mutation_split_11():
         r"""
         \new Staff
         {
-            {   % measure
+            {
                 \time 2/8
                 c'16.
                 ~
@@ -896,8 +895,9 @@ def test_Mutation_split_11():
                 [
                 ]
                 (
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 e'32
                 ~
                 )
@@ -913,10 +913,10 @@ def test_Mutation_split_11():
                 f'32
                 [
                 ]
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     assert abjad.inspect(staff).is_wellformed()
     assert len(result) == 6
@@ -942,24 +942,25 @@ def test_Mutation_split_12():
         r"""
         \new Staff
         {
-            {   % measure
+            {
                 \time 2/8
                 c'8
                 [
                 (
                 d'8
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 e'8
                 [
                 f'8
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     measures = staff[:1]
     result = abjad.mutate(measures).split(
@@ -973,38 +974,37 @@ def test_Mutation_split_12():
         r"""
         \new Staff
         {
-            {   % measure
-                \time 3/32
+            {
+                \time 2/8
                 c'16.
                 [
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
                 c'32
                 [
                 (
                 d'16
                 ]
                 )
-            }   % measure
-            {   % measure
-                \time 2/32
+            }
+            {
                 d'16
                 [
                 ]
                 (
-            }   % measure
-            {   % measure
+            }
+            {
                 \time 2/8
                 e'8
                 [
                 f'8
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     assert abjad.inspect(staff).is_wellformed()
     assert len(result) == 3
@@ -1030,24 +1030,25 @@ def test_Mutation_split_13():
         r"""
         \new Staff
         {
-            {   % measure
+            {
                 \time 2/8
                 c'8
                 [
                 (
                 d'8
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 e'8
                 [
                 f'8
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     measures = staff[:]
     result = abjad.mutate(measures).split(
@@ -1061,54 +1062,51 @@ def test_Mutation_split_13():
         r"""
         \new Staff
         {
-            {   % measure
-                \time 3/32
+            {
+                \time 2/8
                 c'16.
                 [
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
                 c'32
                 [
                 (
                 d'16
                 ]
                 )
-            }   % measure
-            {   % measure
-                \time 2/32
+            }
+            {
                 d'16
                 [
                 ]
                 (
-            }   % measure
-            {   % measure
-                \time 1/32
+            }
+            {
+                \time 2/8
                 e'32
                 )
                 [
                 ]
-            }   % measure
-            {   % measure
-                \time 3/32
+            }
+            {
                 e'16.
                 [
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
                 f'16.
                 [
                 ]
-            }   % measure
-            {   % measure
-                \time 1/32
+            }
+            {
                 f'32
                 [
                 ]
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     assert abjad.inspect(staff).is_wellformed()
     assert len(result) == 6
@@ -1153,7 +1151,7 @@ def test_Mutation_split_14():
             f'32
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     assert abjad.inspect(staff).is_wellformed()
     assert len(result) == 6
@@ -1167,8 +1165,8 @@ def test_Mutation_split_15():
     """
 
     measures = [
-        abjad.Measure((2, 8), "c'8 d'8"),
-        abjad.Measure((2, 8), "e'8 f'8"),
+        abjad.Container("c'8 d'8"),
+        abjad.Container("e'8 f'8"),
         ]
     beam_1 = abjad.Beam(beam_lone_notes=True)
     beam_2 = abjad.Beam(beam_lone_notes=True)
@@ -1189,50 +1187,45 @@ def test_Mutation_split_15():
         r"""
         \new Staff
         {
-            {   % measure
-                \time 3/32
+            {
                 c'16.
                 [
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
                 c'32
                 [
                 d'16
                 ]
-            }   % measure
-            {   % measure
-                \time 2/32
+            }
+            {
                 d'16
                 [
                 ]
-            }   % measure
-            {   % measure
-                \time 1/32
+            }
+            {
                 e'32
                 [
                 ]
-            }   % measure
-            {   % measure
-                \time 3/32
+            }
+            {
                 e'16.
                 [
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
                 f'16.
                 [
                 ]
-            }   % measure
-            {   % measure
-                \time 1/32
+            }
+            {
                 f'32
                 [
                 ]
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     assert abjad.inspect(staff).is_wellformed()
     assert len(result) == 6
@@ -1258,24 +1251,25 @@ def test_Mutation_split_16():
         r"""
         \new Staff
         {
-            {   % measure
+            {
                 \time 2/8
                 c'8
                 [
                 (
                 d'8
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 e'8
                 [
                 f'8
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     notes = staff[0][1:]
     result = abjad.mutate(notes).split(
@@ -1289,7 +1283,7 @@ def test_Mutation_split_16():
         r"""
         \new Staff
         {
-            {   % measure
+            {
                 \time 2/8
                 c'8
                 [
@@ -1310,17 +1304,18 @@ def test_Mutation_split_16():
                 [
                 ]
                 (
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 e'8
                 [
                 f'8
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     assert abjad.inspect(staff).is_wellformed()
     assert len(result) == 4
@@ -1346,24 +1341,25 @@ def test_Mutation_split_17():
         r"""
         \new Staff
         {
-            {   % measure
+            {
                 \time 2/8
                 c'8
                 [
                 (
                 d'8
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 e'8
                 [
                 f'8
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     result = abjad.mutate(leaves).split(
         [abjad.Duration(1, 16)],
@@ -1376,7 +1372,7 @@ def test_Mutation_split_17():
         r"""
         \new Staff
         {
-            {   % measure
+            {
                 \time 2/8
                 c'16
                 ~
@@ -1393,8 +1389,9 @@ def test_Mutation_split_17():
                 [
                 ]
                 (
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 e'16
                 ~
                 )
@@ -1410,10 +1407,10 @@ def test_Mutation_split_17():
                 f'16
                 [
                 ]
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     assert abjad.inspect(staff).is_wellformed()
     assert len(result) == 8
@@ -1439,24 +1436,25 @@ def test_Mutation_split_18():
         r"""
         \new Staff
         {
-            {   % measure
+            {
                 \time 2/8
                 c'8
                 [
                 (
                 d'8
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 e'8
                 [
                 f'8
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     measures = staff[:1]
     result = abjad.mutate(measures).split(
@@ -1470,41 +1468,41 @@ def test_Mutation_split_18():
         r"""
         \new Staff
         {
-            {   % measure
-                \time 1/16
+            {
+                \time 2/8
                 c'16
                 ~
                 [
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
                 c'16
                 [
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
                 d'16
                 ~
                 [
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
                 d'16
                 [
                 ]
                 (
-            }   % measure
-            {   % measure
+            }
+            {
                 \time 2/8
                 e'8
                 [
                 f'8
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     assert abjad.inspect(staff).is_wellformed()
     assert len(result) == 4
@@ -1530,24 +1528,25 @@ def test_Mutation_split_19():
         r"""
         \new Staff
         {
-            {   % measure
+            {
                 \time 2/8
                 c'8
                 [
                 (
                 d'8
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 e'8
                 [
                 f'8
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     measures = staff[:]
     result = abjad.mutate(measures).split(
@@ -1561,14 +1560,14 @@ def test_Mutation_split_19():
         r"""
         \new Staff
         {
-            {   % measure
-                \time 3/32
+            {
+                \time 2/8
                 c'16.
                 ~
                 [
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
                 c'32
                 [
                 (
@@ -1576,43 +1575,40 @@ def test_Mutation_split_19():
                 ~
                 ]
                 )
-            }   % measure
-            {   % measure
-                \time 2/32
+            }
+            {
                 d'16
                 [
                 ]
                 (
-            }   % measure
-            {   % measure
-                \time 1/32
+            }
+            {
+                \time 2/8
                 e'32
                 ~
                 )
                 [
                 ]
-            }   % measure
-            {   % measure
-                \time 3/32
+            }
+            {
                 e'16.
                 [
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
                 f'16.
                 ~
                 [
                 ]
-            }   % measure
-            {   % measure
-                \time 1/32
+            }
+            {
                 f'32
                 [
                 ]
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     assert abjad.inspect(staff).is_wellformed()
     assert len(result) == 6
@@ -1638,24 +1634,25 @@ def test_Mutation_split_20():
         r"""
         \new Staff
         {
-            {   % measure
+            {
                 \time 2/8
                 c'8
                 [
                 (
                 d'8
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 e'8
                 [
                 f'8
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     measures = staff[:1]
     result = abjad.mutate(measures).split(
@@ -1669,32 +1666,30 @@ def test_Mutation_split_20():
         r"""
         \new Staff
         {
-            {   % measure
-                \time 1/32
+            {
+                \time 2/8
                 c'32
                 [
                 (
-            }   % measure
-            {   % measure
-                \time 3/32
+            }
+            {
                 c'16.
-            }   % measure
-            {   % measure
-                \time 4/32
+            }
+            {
                 d'8
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
                 \time 2/8
                 e'8
                 [
                 f'8
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     assert abjad.inspect(staff).is_wellformed()
     assert len(result) == 3
@@ -1720,24 +1715,25 @@ def test_Mutation_split_21():
         r"""
         \new Staff
         {
-            {   % measure
+            {
                 \time 2/8
                 c'8
                 [
                 (
                 d'8
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 e'8
                 [
                 f'8
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     measures = staff[:]
     result = abjad.mutate(measures).split(
@@ -1751,36 +1747,33 @@ def test_Mutation_split_21():
         r"""
         \new Staff
         {
-            {   % measure
-                \time 1/32
+            {
+                \time 2/8
                 c'32
                 [
                 (
-            }   % measure
-            {   % measure
-                \time 3/32
+            }
+            {
                 c'16.
-            }   % measure
-            {   % measure
-                \time 4/32
+            }
+            {
                 d'8
                 ]
-            }   % measure
-            {   % measure
-                \time 1/32
+            }
+            {
+                \time 2/8
                 e'32
                 [
-            }   % measure
-            {   % measure
-                \time 7/32
+            }
+            {
                 e'16.
                 f'8
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     assert abjad.inspect(staff).is_wellformed()
     assert len(result) == 4
@@ -1806,24 +1799,25 @@ def test_Mutation_split_22():
         r"""
         \new Staff
         {
-            {   % measure
+            {
                 \time 2/8
                 c'8
                 [
                 (
                 d'8
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 e'8
                 [
                 f'8
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     measures = staff[:1]
     result = abjad.mutate(measures).split(
@@ -1837,36 +1831,34 @@ def test_Mutation_split_22():
         r"""
         \new Staff
         {
-            {   % measure
-                \time 1/32
+            {
+                \time 2/8
                 c'32
                 [
                 ]
-            }   % measure
-            {   % measure
-                \time 3/32
+            }
+            {
                 c'16.
                 [
                 ]
-            }   % measure
-            {   % measure
-                \time 4/32
+            }
+            {
                 d'8
                 [
                 ]
                 (
-            }   % measure
-            {   % measure
+            }
+            {
                 \time 2/8
                 e'8
                 [
                 f'8
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     assert abjad.inspect(staff).is_wellformed()
     assert len(result) == 3
@@ -1892,24 +1884,25 @@ def test_Mutation_split_23():
         r"""
         \new Staff
         {
-            {   % measure
+            {
                 \time 2/8
                 c'8
                 [
                 (
                 d'8
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 e'8
                 [
                 f'8
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     measures = staff[:]
     result = abjad.mutate(measures).split(
@@ -1924,44 +1917,41 @@ def test_Mutation_split_23():
         r"""
         \new Staff
         {
-            {   % measure
-                \time 1/32
+            {
+                \time 2/8
                 c'32
                 [
                 ]
-            }   % measure
-            {   % measure
-                \time 3/32
+            }
+            {
                 c'16.
                 [
                 ]
-            }   % measure
-            {   % measure
-                \time 4/32
+            }
+            {
                 d'8
                 [
                 ]
                 (
-            }   % measure
-            {   % measure
-                \time 1/32
+            }
+            {
+                \time 2/8
                 e'32
                 )
                 [
                 ]
-            }   % measure
-            {   % measure
-                \time 7/32
+            }
+            {
                 e'16.
                 [
                 (
                 f'8
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
 
 def test_Mutation_split_24():
@@ -1995,7 +1985,7 @@ def test_Mutation_split_24():
             c'16
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     assert abjad.inspect(staff).is_wellformed()
     assert len(result) == 3
@@ -2019,7 +2009,7 @@ def test_Mutation_split_25():
             ]
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     notes = staff[:]
     result = abjad.mutate(notes).split(
@@ -2046,7 +2036,7 @@ def test_Mutation_split_25():
             ]
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     assert abjad.inspect(staff).is_wellformed()
 
@@ -2093,7 +2083,7 @@ def test_Mutation_split_26():
             }
         }
         """
-        ), format(voice)
+        ), print(format(voice))
 
     assert abjad.inspect(voice).is_wellformed()
 
@@ -2106,8 +2096,8 @@ def test_Mutation_split_27():
     """
 
     voice = abjad.Voice()
-    voice.append(abjad.Measure((3, 8), "c'8 d'8 e'8"))
-    voice.append(abjad.Measure((3, 8), "f'8 g'8 a'8"))
+    voice.append(abjad.Container("c'8 d'8 e'8"))
+    voice.append(abjad.Container("f'8 g'8 a'8"))
     leaves = abjad.select(voice).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
@@ -2122,83 +2112,23 @@ def test_Mutation_split_27():
         r"""
         \new Voice
         {
-            {   % measure
-                \time 3/8
+            {
                 c'8
                 [
                 d'8
                 e'8
-            }   % measure
-            {   % measure
-                \time 1/8
+            }
+            {
                 f'8
-            }   % measure
-            {   % measure
-                \time 2/8
+            }
+            {
                 g'8
                 a'8
                 ]
-            }   % measure
+            }
         }
         """
-        ), format(voice)
-
-    assert abjad.inspect(voice).is_wellformed()
-
-
-def test_Mutation_split_28():
-    """
-    Splits in-score measure without power-of-two denominator.
-
-    Does not frature spanners.
-    """
-
-    voice = abjad.Voice()
-    voice.append(abjad.Measure((3, 9), "c'8 d'8 e'8", implicit_scaling=True))
-    voice.append(abjad.Measure((3, 9), "f'8 g'8 a'8", implicit_scaling=True))
-    leaves = abjad.select(voice).leaves()
-    beam = abjad.Beam()
-    abjad.attach(beam, leaves)
-
-    measures = voice[1:2]
-    result = abjad.mutate(measures).split(
-        [abjad.Duration(1, 9)],
-        fracture_spanners=False,
-        )
-
-    assert format(voice) == abjad.String.normalize(
-        r"""
-        \new Voice
-        {
-            {   % measure
-                #(ly:expect-warning "strange time signature found")
-                \time 3/9
-                \scaleDurations #'(8 . 9) {
-                    c'8
-                    [
-                    d'8
-                    e'8
-                }
-            }   % measure
-            {   % measure
-                #(ly:expect-warning "strange time signature found")
-                \time 1/9
-                \scaleDurations #'(8 . 9) {
-                    f'8
-                }
-            }   % measure
-            {   % measure
-                #(ly:expect-warning "strange time signature found")
-                \time 2/9
-                \scaleDurations #'(8 . 9) {
-                    g'8
-                    a'8
-                    ]
-                }
-            }   % measure
-        }
-        """
-        ), format(voice)
+        ), print(format(voice))
 
     assert abjad.inspect(voice).is_wellformed()
 
@@ -2228,7 +2158,7 @@ def test_Mutation_split_29():
             d'8
         }
         """
-        ), format(voice_1)
+        ), print(format(voice_1))
 
     assert abjad.inspect(voice_1).is_wellformed()
 
@@ -2240,7 +2170,7 @@ def test_Mutation_split_29():
             f'8
         }
         """
-        ), format(voice_2)
+        ), print(format(voice_2))
 
     assert abjad.inspect(voice_2).is_wellformed()
 
@@ -2269,7 +2199,7 @@ def test_Mutation_split_30():
             d'8
         }
         """
-        ), format(left)
+        ), print(format(left))
 
     assert format(right) == abjad.String.normalize(
         r"""
@@ -2279,7 +2209,7 @@ def test_Mutation_split_30():
             f'8
         }
         """
-        ), format(right)
+        ), print(format(right))
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -2287,7 +2217,7 @@ def test_Mutation_split_30():
         {
         }
         """
-        ), format(voice)
+        ), print(format(voice))
 
     assert format(staff) == abjad.String.normalize(
         r"""
@@ -2305,7 +2235,7 @@ def test_Mutation_split_30():
             }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     assert abjad.inspect(staff).is_wellformed()
 
@@ -2347,7 +2277,7 @@ def test_Mutation_split_31():
             }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     assert format(left) == abjad.String.normalize(
         r"""
@@ -2357,7 +2287,7 @@ def test_Mutation_split_31():
             d'8
         }
         """
-        ), format(left)
+        ), print(format(left))
 
     assert format(right) == abjad.String.normalize(
         r"""
@@ -2367,14 +2297,14 @@ def test_Mutation_split_31():
             ]
         }
         """
-        ), format(right)
+        ), print(format(right))
 
     assert format(voice) == abjad.String.normalize(
         r"""
         {
         }
         """
-        ), format(voice)
+        ), print(format(voice))
 
     assert format(staff) == abjad.String.normalize(
         r"""
@@ -2392,7 +2322,7 @@ def test_Mutation_split_31():
             }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     assert abjad.inspect(staff).is_wellformed()
 
@@ -2427,7 +2357,7 @@ def test_Mutation_split_32():
             c'8
         }
         """
-        ), format(left)
+        ), print(format(left))
 
     assert format(right) == abjad.String.normalize(
         r"""
@@ -2439,14 +2369,14 @@ def test_Mutation_split_32():
             ]
         }
         """
-        ), format(right)
+        ), print(format(right))
 
     assert format(tuplet) == abjad.String.normalize(
         r"""
         \times 4/5 {
         }
         """
-        ), format(tuplet)
+        ), print(format(tuplet))
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -2467,7 +2397,7 @@ def test_Mutation_split_32():
             }
         }
         """
-        ), format(voice)
+        ), print(format(voice))
 
     assert format(staff) == abjad.String.normalize(
         r"""
@@ -2491,7 +2421,7 @@ def test_Mutation_split_32():
             }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     assert abjad.inspect(staff).is_wellformed()
 
@@ -2529,7 +2459,7 @@ def test_Mutation_split_33():
             }
         }
         """
-        ), format(voice)
+        ), print(format(voice))
 
     result = abjad.mutate([tuplet]).split(
         [abjad.Duration(1, 12)],
@@ -2547,7 +2477,7 @@ def test_Mutation_split_33():
             ]
         }
         """
-        ), format(left)
+        ), print(format(left))
 
     assert format(right) == abjad.String.normalize(
         r"""
@@ -2559,7 +2489,7 @@ def test_Mutation_split_33():
             ]
         }
         """
-        ), format(right)
+        ), print(format(right))
 
     assert format(tuplet) == '\\times 2/3 {\n}'
 
@@ -2587,7 +2517,7 @@ def test_Mutation_split_33():
             }
         }
         """
-        ), format(voice)
+        ), print(format(voice))
 
     assert abjad.inspect(voice).is_wellformed()
 
@@ -2600,8 +2530,8 @@ def test_Mutation_split_34():
     """
 
     voice = abjad.Voice()
-    voice.append(abjad.Measure((3, 8), "c'8 d'8 e'8"))
-    voice.append(abjad.Measure((3, 8), "f'8 g'8 a'8"))
+    voice.append(abjad.Container("c'8 d'8 e'8"))
+    voice.append(abjad.Container("f'8 g'8 a'8"))
     leaves = abjad.select(voice).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
@@ -2611,22 +2541,21 @@ def test_Mutation_split_34():
         r"""
         \new Voice
         {
-            {   % measure
-                \time 3/8
+            {
                 c'8
                 [
                 d'8
                 e'8
-            }   % measure
-            {   % measure
+            }
+            {
                 f'8
                 g'8
                 a'8
                 ]
-            }   % measure
+            }
         }
         """
-        ), format(voice)
+        ), print(format(voice))
 
     result = abjad.mutate([measure]).split(
         [abjad.Duration(1, 8)],
@@ -2638,174 +2567,47 @@ def test_Mutation_split_34():
 
     assert format(left) == abjad.String.normalize(
         r"""
-        {   % measure
-            \time 1/8
+        {
             f'8
             ]
-        }   % measure
+        }
         """
-        ), format(left)
+        ), print(format(left))
 
     assert format(right) == abjad.String.normalize(
         r"""
-        {   % measure
-            \time 2/8
+        {
             g'8
             [
             a'8
             ]
-        }   % measure
+        }
         """
-        ), format(right)
-
-    assert pytest.raises(abjad.UnderfullContainerError, 'format(measure)')
+        ), print(format(right))
 
     assert format(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
-            {   % measure
-                \time 3/8
+            {
                 c'8
                 [
                 d'8
                 e'8
-            }   % measure
-            {   % measure
-                \time 1/8
-                f'8
-                ]
-            }   % measure
-            {   % measure
-                \time 2/8
-                g'8
-                [
-                a'8
-                ]
-            }   % measure
-        }
-        """
-        ), format(voice)
-
-    assert abjad.inspect(voice).is_wellformed()
-
-
-def test_Mutation_split_35():
-    """
-    Splits measure without power-of-two denominator.
-
-    Fractures spanners.
-    """
-
-    voice = abjad.Voice()
-    measure = abjad.Measure((3, 9), "c'8 d'8 e'8", implicit_scaling=True)
-    voice.append(measure)
-    measure = abjad.Measure((3, 9), "f'8 g'8 a'8", implicit_scaling=True)
-    voice.append(measure)
-    leaves = abjad.select(voice).leaves()
-    beam = abjad.Beam()
-    abjad.attach(beam, leaves)
-    measure = voice[1]
-
-    assert format(voice) == abjad.String.normalize(
-        r"""
-        \new Voice
-        {
-            {   % measure
-                #(ly:expect-warning "strange time signature found")
-                \time 3/9
-                \scaleDurations #'(8 . 9) {
-                    c'8
-                    [
-                    d'8
-                    e'8
-                }
-            }   % measure
-            {   % measure
-                \scaleDurations #'(8 . 9) {
-                    f'8
-                    g'8
-                    a'8
-                    ]
-                }
-            }   % measure
-        }
-        """
-        ), format(voice)
-
-    result = abjad.mutate([measure]).split(
-        [abjad.Duration(1, 9)],
-        fracture_spanners=True,
-        )
-
-    left = result[0][0]
-    right = result[1][0]
-
-    assert format(left) == abjad.String.normalize(
-        r"""
-        {   % measure
-            #(ly:expect-warning "strange time signature found")
-            \time 1/9
-            \scaleDurations #'(8 . 9) {
+            }
+            {
                 f'8
                 ]
             }
-        }   % measure
-        """
-        ), format(left)
-
-    assert format(right) == abjad.String.normalize(
-        r"""
-        {   % measure
-            #(ly:expect-warning "strange time signature found")
-            \time 2/9
-            \scaleDurations #'(8 . 9) {
+            {
                 g'8
                 [
                 a'8
                 ]
             }
-        }   % measure
-        """
-        ), format(right)
-
-    assert pytest.raises(abjad.UnderfullContainerError, 'format(measure)')
-
-    assert format(voice) == abjad.String.normalize(
-        r"""
-        \new Voice
-        {
-            {   % measure
-                #(ly:expect-warning "strange time signature found")
-                \time 3/9
-                \scaleDurations #'(8 . 9) {
-                    c'8
-                    [
-                    d'8
-                    e'8
-                }
-            }   % measure
-            {   % measure
-                #(ly:expect-warning "strange time signature found")
-                \time 1/9
-                \scaleDurations #'(8 . 9) {
-                    f'8
-                    ]
-                }
-            }   % measure
-            {   % measure
-                #(ly:expect-warning "strange time signature found")
-                \time 2/9
-                \scaleDurations #'(8 . 9) {
-                    g'8
-                    [
-                    a'8
-                    ]
-                }
-            }   % measure
         }
         """
-        ), format(voice)
+        ), print(format(voice))
 
     assert abjad.inspect(voice).is_wellformed()
 
@@ -2833,7 +2635,7 @@ def test_Mutation_split_36():
             ]
         }
         """
-        ), format(voice)
+        ), print(format(voice))
 
     result = abjad.mutate([voice]).split(
         [abjad.Duration(1, 4)],
@@ -2853,7 +2655,7 @@ def test_Mutation_split_36():
             ]
         }
         """
-        ), format(left)
+        ), print(format(left))
 
     assert format(right) == abjad.String.normalize(
         r"""
@@ -2865,7 +2667,7 @@ def test_Mutation_split_36():
             ]
         }
         """
-        ), format(right)
+        ), print(format(right))
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -2873,7 +2675,7 @@ def test_Mutation_split_36():
         {
         }
         """
-        ), format(voice)
+        ), print(format(voice))
 
 
 def test_Mutation_split_37():
@@ -2884,8 +2686,8 @@ def test_Mutation_split_37():
     """
 
     staff = abjad.Staff()
-    staff.append(abjad.Measure((2, 8), "c'8 d'8"))
-    staff.append(abjad.Measure((2, 8), "e'8 f'8"))
+    staff.append(abjad.Container("c'8 d'8"))
+    staff.append(abjad.Container("e'8 f'8"))
     leaves = abjad.select(staff).leaves()
     beam = abjad.Beam(beam_lone_notes=True)
     abjad.attach(beam, leaves[:2])
@@ -2898,24 +2700,23 @@ def test_Mutation_split_37():
         r"""
         \new Staff
         {
-            {   % measure
-                \time 2/8
+            {
                 c'8
                 [
                 (
                 d'8
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
                 e'8
                 [
                 f'8
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     measures = staff[:1]
     result = abjad.mutate(measures).split(
@@ -2930,29 +2731,27 @@ def test_Mutation_split_37():
         r"""
         \new Staff
         {
-            {   % measure
-                \time 1/8
+            {
                 c'8
                 [
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
                 d'8
                 [
                 ]
                 (
-            }   % measure
-            {   % measure
-                \time 2/8
+            }
+            {
                 e'8
                 [
                 f'8
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     assert abjad.inspect(staff).is_wellformed()
 
@@ -2966,7 +2765,7 @@ def test_Mutation_split_38():
     Changes measure denominator.
     """
 
-    staff = abjad.Staff([abjad.Measure((3, 8), "c'8. d'8.")])
+    staff = abjad.Staff([abjad.Container("c'8. d'8.")])
     leaves = abjad.select(staff).leaves()
     beam = abjad.Beam(beam_lone_notes=True)
     abjad.attach(beam, leaves)
@@ -2977,18 +2776,17 @@ def test_Mutation_split_38():
         r"""
         \new Staff
         {
-            {   % measure
-                \time 3/8
+            {
                 c'8.
                 [
                 (
                 d'8.
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     measures = staff[:1]
     result = abjad.mutate(measures).split(
@@ -3000,20 +2798,19 @@ def test_Mutation_split_38():
         r"""
         \new Staff
         {
-            {   % measure
-                \time 3/16
+            {
                 c'8.
                 [
                 ]
-            }   % measure
-            {   % measure
+            }
+            {
                 d'8.
                 [
                 ]
-            }   % measure
+            }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     assert abjad.inspect(staff).is_wellformed()
     assert len(result) == 2
@@ -3053,7 +2850,7 @@ def test_Mutation_split_39():
             }
         }
         """
-        ), format(voice)
+        ), print(format(voice))
 
     note = voice[0]
     result = abjad.mutate(note).split(
@@ -3088,7 +2885,7 @@ def test_Mutation_split_39():
             }
         }
         """
-        ), format(voice)
+        ), print(format(voice))
 
     assert abjad.inspect(voice).is_wellformed()
 
@@ -3121,7 +2918,7 @@ def test_Mutation_split_40():
             }
         }
         """
-        ), format(voice)
+        ), print(format(voice))
 
     container = voice[0]
     result = abjad.mutate(container).split(
@@ -3152,7 +2949,7 @@ def test_Mutation_split_40():
             }
         }
         """
-        ), format(voice)
+        ), print(format(voice))
 
     assert abjad.inspect(voice).is_wellformed()
 
@@ -3185,7 +2982,7 @@ def test_Mutation_split_41():
             }
         }
         """
-        ), format(voice)
+        ), print(format(voice))
 
     container = voice[0]
     result = abjad.mutate(container).split(
@@ -3220,7 +3017,7 @@ def test_Mutation_split_41():
             }
         }
         """
-        ), format(voice)
+        ), print(format(voice))
 
     assert abjad.inspect(voice).is_wellformed()
     assert len(result) == 4
@@ -3256,7 +3053,7 @@ def test_Mutation_split_42():
             }
         }
         """
-        ), format(voice)
+        ), print(format(voice))
 
     container = voice[0]
     result = abjad.mutate(container).split(
@@ -3287,7 +3084,7 @@ def test_Mutation_split_42():
             }
         }
         """
-        ), format(voice)
+        ), print(format(voice))
 
     assert abjad.inspect(voice).is_wellformed()
     assert len(result) == 2
@@ -3321,7 +3118,7 @@ def test_Mutation_split_43():
             }
         }
         """
-        ), format(voice)
+        ), print(format(voice))
 
     container = voice[0]
     result = abjad.mutate(container).split(
@@ -3346,7 +3143,7 @@ def test_Mutation_split_43():
             }
         }
         """
-        ), format(voice)
+        ), print(format(voice))
 
     assert abjad.inspect(voice).is_wellformed()
     assert len(result) == 1
@@ -3382,7 +3179,7 @@ def test_Mutation_split_44():
             }
         }
         """
-        ), format(voice)
+        ), print(format(voice))
 
     container = voice[0]
     result = abjad.mutate(container).split(
@@ -3413,7 +3210,7 @@ def test_Mutation_split_44():
             }
         }
         """
-        ), format(voice)
+        ), print(format(voice))
 
     assert abjad.inspect(voice).is_wellformed()
     assert len(result) == 2
@@ -3444,73 +3241,6 @@ def test_Mutation_split_45():
             }
         }
         """
-        ), format(staff)
+        ), print(format(staff))
 
     assert abjad.inspect(staff).is_wellformed()
-
-
-def test_Mutation_split_46():
-    """
-    Splits in-score measure without power-of-two denominator.
-
-    Fractures spanners but does not tie over split.
-    
-    Changes measure denominator.
-    """
-
-    measure = abjad.Measure((3, 12), "c'8. d'8.", implicit_scaling=True)
-    staff = abjad.Staff([measure])
-    leaves = abjad.select(staff).leaves()
-    beam = abjad.Beam(beam_lone_notes=True)
-    abjad.attach(beam, leaves)
-
-    assert format(staff) == abjad.String.normalize(
-        r"""
-        \new Staff
-        {
-            {   % measure
-                #(ly:expect-warning "strange time signature found")
-                \time 3/12
-                \scaleDurations #'(2 . 3) {
-                    c'8.
-                    [
-                    d'8.
-                    ]
-                }
-            }   % measure
-        }
-        """
-        ), format(staff)
-
-    measures = staff[:1]
-    result = abjad.mutate(measures).split(
-        [abjad.Duration(3, 24)],
-        fracture_spanners=True,
-        )
-
-    assert format(staff) == abjad.String.normalize(
-        r"""
-        \new Staff
-        {
-            {   % measure
-                #(ly:expect-warning "strange time signature found")
-                \time 3/24
-                \scaleDurations #'(2 . 3) {
-                    c'8.
-                    [
-                    ]
-                }
-            }   % measure
-            {   % measure
-                \scaleDurations #'(2 . 3) {
-                    d'8.
-                    [
-                    ]
-                }
-            }   % measure
-        }
-        """
-        ), format(staff)
-
-    assert abjad.inspect(staff).is_wellformed()
-    assert len(result) == 2

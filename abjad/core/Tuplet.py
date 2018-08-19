@@ -18,7 +18,6 @@ from abjad.utilities.Multiplier import Multiplier
 from .Container import Container
 from .Leaf import Leaf
 from .LeafMaker import LeafMaker
-from .Measure import Measure
 from .Note import Note
 from .NoteMaker import NoteMaker
 from .Rest import Rest
@@ -262,9 +261,6 @@ class Tuplet(Container):
         return f'{{ {self.multiplier!s} {self._get_contents_summary()} }}'
 
     def _get_edge_height_tweak_string(self):
-        measure = inspect(self).parentage().get_first(Measure)
-        if measure and measure.implicit_scaling:
-            return
         duration = self._get_preprolated_duration()
         denominator = duration.denominator
         if not mathtools.is_nonnegative_integer_power_of_two(denominator):
@@ -1142,8 +1138,9 @@ class Tuplet(Container):
             ...     abjad.Duration(3, 16),
             ...     abjad.Ratio((1, 1, 1, -1, -1)),
             ...     )
+            >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
             >>> staff = abjad.Staff(
-            ...     [abjad.Measure((3, 16), [tuplet])],
+            ...     [tuplet],
             ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
@@ -1151,16 +1148,14 @@ class Tuplet(Container):
             ..  docs::
 
                 >>> abjad.f(staff[0])
-                {   % measure
+                \times 4/5 {
                     \time 3/16
-                    \times 4/5 {
-                        c'32.
-                        c'32.
-                        c'32.
-                        r32.
-                        r32.
-                    }
-                }   % measure
+                    c'32.
+                    c'32.
+                    c'32.
+                    r32.
+                    r32.
+                }
 
             Allows tupletted leaves to return with dots when some ``ratio``
             do not equal ``1``:
@@ -1169,8 +1164,9 @@ class Tuplet(Container):
             ...     abjad.Duration(3, 16),
             ...     abjad.Ratio((1, -2, -2, 3, 3)),
             ...     )
+            >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
             >>> staff = abjad.Staff(
-            ...     [abjad.Measure((3, 16), [tuplet])],
+            ...     [tuplet],
             ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
@@ -1178,17 +1174,15 @@ class Tuplet(Container):
             ..  docs::
 
                 >>> abjad.f(staff[0])
-                {   % measure
+                \tweak text #tuplet-number::calc-fraction-text
+                \times 6/11 {
                     \time 3/16
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 6/11 {
-                        c'32
-                        r16
-                        r16
-                        c'16.
-                        c'16.
-                    }
-                }   % measure
+                    c'32
+                    r16
+                    r16
+                    c'16.
+                    c'16.
+                }
 
             Interprets nonassignable ``ratio`` according to
             ``increase_monotonic``:
@@ -1198,8 +1192,9 @@ class Tuplet(Container):
             ...     abjad.Ratio((5, -1, 5)),
             ...     increase_monotonic=True,
             ...     )
+            >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
             >>> staff = abjad.Staff(
-            ...     [abjad.Measure((3, 16), [tuplet])],
+            ...     [tuplet],
             ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
@@ -1207,14 +1202,12 @@ class Tuplet(Container):
             ..  docs::
 
                 >>> abjad.f(staff[0])
-                {   % measure
+                \times 8/11 {
                     \time 3/16
-                    \times 8/11 {
-                        c'16...
-                        r64.
-                        c'16...
-                    }
-                }   % measure
+                    c'16...
+                    r64.
+                    c'16...
+                }
 
         ..  container:: example
 
@@ -1225,8 +1218,9 @@ class Tuplet(Container):
             ...     abjad.Duration(3, 16),
             ...     abjad.Ratio((1, 1, 1, -1, -1)),
             ...     )
+            >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
             >>> staff = abjad.Staff(
-            ...     [abjad.Measure((3, 16), [tuplet])],
+            ...     [tuplet],
             ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
@@ -1234,16 +1228,14 @@ class Tuplet(Container):
             ..  docs::
 
                 >>> abjad.f(staff[0])
-                {   % measure
+                \times 4/5 {
                     \time 3/16
-                    \times 4/5 {
-                        c'32.
-                        c'32.
-                        c'32.
-                        r32.
-                        r32.
-                    }
-                }   % measure
+                    c'32.
+                    c'32.
+                    c'32.
+                    r32.
+                    r32.
+                }
 
             Interprets nonassignable ``ratio`` according to
             ``increase_monotonic``:
@@ -1253,8 +1245,9 @@ class Tuplet(Container):
             ...     abjad.Ratio((5, -1, 5)),
             ...     increase_monotonic=True,
             ...     )
+            >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
             >>> staff = abjad.Staff(
-            ...     [abjad.Measure((3, 16), [tuplet])],
+            ...     [tuplet],
             ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
@@ -1262,14 +1255,12 @@ class Tuplet(Container):
             ..  docs::
 
                 >>> abjad.f(staff[0])
-                {   % measure
+                \times 8/11 {
                     \time 3/16
-                    \times 8/11 {
-                        c'16...
-                        r64.
-                        c'16...
-                    }
-                }   % measure
+                    c'16...
+                    r64.
+                    c'16...
+                }
 
         ..  container:: example
 
@@ -1283,8 +1274,9 @@ class Tuplet(Container):
             ...     abjad.Duration(3, 16),
             ...     abjad.Ratio((1, 1, 1, -1, -1)),
             ...     )
+            >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
             >>> staff = abjad.Staff(
-            ...     [abjad.Measure((3, 16), [tuplet])],
+            ...     [tuplet],
             ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
@@ -1292,16 +1284,14 @@ class Tuplet(Container):
             ..  docs::
 
                 >>> abjad.f(staff[0])
-                {   % measure
+                \times 4/5 {
                     \time 3/16
-                    \times 4/5 {
-                        c'32.
-                        c'32.
-                        c'32.
-                        r32.
-                        r32.
-                    }
-                }   % measure
+                    c'32.
+                    c'32.
+                    c'32.
+                    r32.
+                    r32.
+                }
 
             Allows tupletted leaves to return with dots when some ``ratio``
             do not equal ``1``:
@@ -1310,8 +1300,9 @@ class Tuplet(Container):
             ...     abjad.Duration(3, 16),
             ...     abjad.Ratio((1, -2, -2, 3, 3)),
             ...     )
+            >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
             >>> staff = abjad.Staff(
-            ...     [abjad.Measure((3, 16), [tuplet])],
+            ...     [tuplet],
             ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
@@ -1319,17 +1310,15 @@ class Tuplet(Container):
             ..  docs::
 
                 >>> abjad.f(staff[0])
-                {   % measure
+                \tweak text #tuplet-number::calc-fraction-text
+                \times 6/11 {
                     \time 3/16
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 6/11 {
-                        c'32
-                        r16
-                        r16
-                        c'16.
-                        c'16.
-                    }
-                }   % measure
+                    c'32
+                    r16
+                    r16
+                    c'16.
+                    c'16.
+                }
 
             Interprets nonassignable ``ratio`` according to
             ``increase_monotonic``:
@@ -1339,8 +1328,9 @@ class Tuplet(Container):
             ...     abjad.Ratio((5, -1, 5)),
             ...     increase_monotonic=True,
             ...     )
+            >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
             >>> staff = abjad.Staff(
-            ...     [abjad.Measure((3, 16), [tuplet])],
+            ...     [tuplet],
             ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
@@ -1348,14 +1338,12 @@ class Tuplet(Container):
             ..  docs::
 
                 >>> abjad.f(staff[0])
-                {   % measure
+                \times 8/11 {
                     \time 3/16
-                    \times 8/11 {
-                        c'16...
-                        r64.
-                        c'16...
-                    }
-                }   % measure
+                    c'16...
+                    r64.
+                    c'16...
+                }
 
         ..  container:: example
 
@@ -1366,8 +1354,9 @@ class Tuplet(Container):
             ...     abjad.Duration(3, 16),
             ...     abjad.Ratio((1, 1, 1, -1, -1)),
             ...     )
+            >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
             >>> staff = abjad.Staff(
-            ...     [abjad.Measure((3, 16), [tuplet])],
+            ...     [tuplet],
             ...     lilypond_type = 'RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
@@ -1375,16 +1364,14 @@ class Tuplet(Container):
             ..  docs::
 
                 >>> abjad.f(staff[0])
-                {   % measure
+                \times 4/5 {
                     \time 3/16
-                    \times 4/5 {
-                        c'32.
-                        c'32.
-                        c'32.
-                        r32.
-                        r32.
-                    }
-                }   % measure
+                    c'32.
+                    c'32.
+                    c'32.
+                    r32.
+                    r32.
+                }
 
             Interprets nonassignable ``ratio`` according to ``direction``:
 
@@ -1393,8 +1380,9 @@ class Tuplet(Container):
             ...     abjad.Ratio((5, -1, 5)),
             ...     increase_monotonic=True,
             ...     )
+            >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
             >>> staff = abjad.Staff(
-            ...     [abjad.Measure((3, 16), [tuplet])],
+            ...     [tuplet],
             ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(measure) # doctest: +SKIP
@@ -1402,14 +1390,12 @@ class Tuplet(Container):
             ..  docs::
 
                 >>> abjad.f(staff[0])
-                {   % measure
+                \times 8/11 {
                     \time 3/16
-                    \times 8/11 {
-                        c'16...
-                        r64.
-                        c'16...
-                    }
-                }   % measure
+                    c'16...
+                    r64.
+                    c'16...
+                }
 
         Reduces ``ratio`` relative to each other.
 
@@ -1465,8 +1451,9 @@ class Tuplet(Container):
             ...     note,
             ...     abjad.Ratio((1,)),
             ...     )
+            >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
             >>> staff = abjad.Staff(
-            ...     [abjad.Measure((3, 16), [tuplet])],
+            ...     [tuplet],
             ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
@@ -1476,6 +1463,7 @@ class Tuplet(Container):
                 >>> abjad.f(tuplet)
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 1/1 {
+                    \time 3/16
                     c'8.
                 }
 
@@ -1485,8 +1473,9 @@ class Tuplet(Container):
             ...     note,
             ...     [1, 2],
             ...     )
+            >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
             >>> staff = abjad.Staff(
-            ...     [abjad.Measure((3, 16), [tuplet])],
+            ...     [tuplet],
             ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
@@ -1496,6 +1485,7 @@ class Tuplet(Container):
                 >>> abjad.f(tuplet)
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 1/1 {
+                    \time 3/16
                     c'16
                     c'8
                 }
@@ -1506,8 +1496,9 @@ class Tuplet(Container):
             ...     note,
             ...     abjad.Ratio((1, 2, 2)),
             ...     )
+            >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
             >>> staff = abjad.Staff(
-            ...     [abjad.Measure((3, 16), [tuplet])],
+            ...     [tuplet],
             ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
@@ -1516,6 +1507,7 @@ class Tuplet(Container):
 
                 >>> abjad.f(tuplet)
                 \times 4/5 {
+                    \time 3/16
                     c'32.
                     c'16.
                     c'16.
@@ -1527,8 +1519,9 @@ class Tuplet(Container):
             ...     note,
             ...     [1, 2, 2, 3],
             ...     )
+            >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
             >>> staff = abjad.Staff(
-            ...     [abjad.Measure((3, 16), [tuplet])],
+            ...     [tuplet],
             ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
@@ -1538,6 +1531,7 @@ class Tuplet(Container):
                 >>> abjad.f(tuplet)
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 3/4 {
+                    \time 3/16
                     c'32
                     c'16
                     c'16
@@ -1550,8 +1544,9 @@ class Tuplet(Container):
             ...     note,
             ...     [1, 2, 2, 3, 3],
             ...     )
+            >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
             >>> staff = abjad.Staff(
-            ...     [abjad.Measure((3, 16), [tuplet])],
+            ...     [tuplet],
             ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
@@ -1561,6 +1556,7 @@ class Tuplet(Container):
                 >>> abjad.f(tuplet)
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 6/11 {
+                    \time 3/16
                     c'32
                     c'16
                     c'16
@@ -1574,8 +1570,9 @@ class Tuplet(Container):
             ...     note,
             ...     abjad.Ratio((1, 2, 2, 3, 3, 4)),
             ...     )
+            >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
             >>> staff = abjad.Staff(
-            ...     [abjad.Measure((3, 16), [tuplet])],
+            ...     [tuplet],
             ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
@@ -1584,6 +1581,7 @@ class Tuplet(Container):
 
                 >>> abjad.f(tuplet)
                 \times 4/5 {
+                    \time 3/16
                     c'64
                     c'32
                     c'32
@@ -1598,8 +1596,9 @@ class Tuplet(Container):
             ...     note,
             ...     [1],
             ...     )
+            >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
             >>> staff = abjad.Staff(
-            ...     [abjad.Measure((3, 16), [tuplet])],
+            ...     [tuplet],
             ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
@@ -1609,6 +1608,7 @@ class Tuplet(Container):
                 >>> abjad.f(tuplet)
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 1/1 {
+                    \time 3/16
                     c'8.
                 }
 
@@ -1618,8 +1618,9 @@ class Tuplet(Container):
             ...     note,
             ...     [1, 2],
             ...     )
+            >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
             >>> staff = abjad.Staff(
-            ...     [abjad.Measure((3, 16), [tuplet])],
+            ...     [tuplet],
             ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
@@ -1629,6 +1630,7 @@ class Tuplet(Container):
                 >>> abjad.f(tuplet)
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 1/1 {
+                    \time 3/16
                     c'16
                     c'8
                 }
@@ -1639,8 +1641,9 @@ class Tuplet(Container):
             ...     note,
             ...     [1, 2, 2],
             ...     )
+            >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
             >>> staff = abjad.Staff(
-            ...     [abjad.Measure((3, 16), [tuplet])],
+            ...     [tuplet],
             ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
@@ -1649,6 +1652,7 @@ class Tuplet(Container):
 
                 >>> abjad.f(tuplet)
                 \times 4/5 {
+                    \time 3/16
                     c'32.
                     c'16.
                     c'16.
@@ -1660,8 +1664,9 @@ class Tuplet(Container):
             ...     note,
             ...     [1, 2, 2, 3],
             ...     )
+            >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
             >>> staff = abjad.Staff(
-            ...     [abjad.Measure((3, 16), [tuplet])],
+            ...     [tuplet],
             ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
@@ -1671,6 +1676,7 @@ class Tuplet(Container):
                 >>> abjad.f(tuplet)
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 3/4 {
+                    \time 3/16
                     c'32
                     c'16
                     c'16
@@ -1683,8 +1689,9 @@ class Tuplet(Container):
             ...     note,
             ...     [1, 2, 2, 3, 3],
             ...     )
+            >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
             >>> staff = abjad.Staff(
-            ...     [abjad.Measure((3, 16), [tuplet])],
+            ...     [tuplet],
             ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
@@ -1694,6 +1701,7 @@ class Tuplet(Container):
                 >>> abjad.f(tuplet)
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 6/11 {
+                    \time 3/16
                     c'32
                     c'16
                     c'16
@@ -1707,8 +1715,9 @@ class Tuplet(Container):
             ...     note,
             ...     [1, 2, 2, 3, 3, 4],
             ...     )
+            >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
             >>> staff = abjad.Staff(
-            ...     [abjad.Measure((3, 16), [tuplet])],
+            ...     [tuplet],
             ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
@@ -1717,6 +1726,7 @@ class Tuplet(Container):
 
                 >>> abjad.f(tuplet)
                 \times 4/5 {
+                    \time 3/16
                     c'64
                     c'32
                     c'32
@@ -1767,8 +1777,9 @@ class Tuplet(Container):
             ...     abjad.NonreducedRatio((1,)),
             ...     abjad.NonreducedFraction(7, 16),
             ...     )
+            >>> abjad.attach(abjad.TimeSignature((7, 16)), tuplet[0])
             >>> staff = abjad.Staff(
-            ...     [abjad.Measure((7, 16), [tuplet])],
+            ...     [tuplet],
             ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
@@ -1776,20 +1787,19 @@ class Tuplet(Container):
             ..  docs::
 
                 >>> abjad.f(staff[0])
-                {   % measure
+                \tweak text #tuplet-number::calc-fraction-text
+                \times 1/1 {
                     \time 7/16
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 1/1 {
-                        c'4..
-                    }
-                }   % measure
+                    c'4..
+                }
 
             >>> tuplet = abjad.Tuplet.from_ratio_and_pair(
             ...     abjad.NonreducedRatio((1, 2)),
             ...     abjad.NonreducedFraction(7, 16),
             ...     )
+            >>> abjad.attach(abjad.TimeSignature((7, 16)), tuplet[0])
             >>> staff = abjad.Staff(
-            ...     [abjad.Measure((7, 16), [tuplet])],
+            ...     [tuplet],
             ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
@@ -1797,21 +1807,20 @@ class Tuplet(Container):
             ..  docs::
 
                 >>> abjad.f(staff[0])
-                {   % measure
+                \tweak text #tuplet-number::calc-fraction-text
+                \times 7/6 {
                     \time 7/16
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 7/6 {
-                        c'8
-                        c'4
-                    }
-                }   % measure
+                    c'8
+                    c'4
+                }
 
             >>> tuplet = abjad.Tuplet.from_ratio_and_pair(
             ...     abjad.NonreducedRatio((1, 2, 4)),
             ...     abjad.NonreducedFraction(7, 16),
             ...     )
+            >>> abjad.attach(abjad.TimeSignature((7, 16)), tuplet[0])
             >>> staff = abjad.Staff(
-            ...     [abjad.Measure((7, 16), [tuplet])],
+            ...     [tuplet],
             ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
@@ -1819,22 +1828,21 @@ class Tuplet(Container):
             ..  docs::
 
                 >>> abjad.f(staff[0])
-                {   % measure
+                \tweak text #tuplet-number::calc-fraction-text
+                \times 1/1 {
                     \time 7/16
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 1/1 {
-                        c'16
-                        c'8
-                        c'4
-                    }
-                }   % measure
+                    c'16
+                    c'8
+                    c'4
+                }
 
             >>> tuplet = abjad.Tuplet.from_ratio_and_pair(
             ...     abjad.NonreducedRatio((1, 2, 4, 1)),
             ...     abjad.NonreducedFraction(7, 16),
             ...     )
+            >>> abjad.attach(abjad.TimeSignature((7, 16)), tuplet[0])
             >>> staff = abjad.Staff(
-            ...     [abjad.Measure((7, 16), [tuplet])],
+            ...     [tuplet],
             ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
@@ -1842,23 +1850,22 @@ class Tuplet(Container):
             ..  docs::
 
                 >>> abjad.f(staff[0])
-                {   % measure
+                \tweak text #tuplet-number::calc-fraction-text
+                \times 7/8 {
                     \time 7/16
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 7/8 {
-                        c'16
-                        c'8
-                        c'4
-                        c'16
-                    }
-                }   % measure
+                    c'16
+                    c'8
+                    c'4
+                    c'16
+                }
 
             >>> tuplet = abjad.Tuplet.from_ratio_and_pair(
             ...     abjad.NonreducedRatio((1, 2, 4, 1, 2)),
             ...     abjad.NonreducedFraction(7, 16),
             ...     )
+            >>> abjad.attach(abjad.TimeSignature((7, 16)), tuplet[0])
             >>> staff = abjad.Staff(
-            ...     [abjad.Measure((7, 16), [tuplet])],
+            ...     [tuplet],
             ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
@@ -1866,24 +1873,23 @@ class Tuplet(Container):
             ..  docs::
 
                 >>> abjad.f(staff[0])
-                {   % measure
+                \tweak text #tuplet-number::calc-fraction-text
+                \times 7/10 {
                     \time 7/16
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 7/10 {
-                        c'16
-                        c'8
-                        c'4
-                        c'16
-                        c'8
-                    }
-                }   % measure
+                    c'16
+                    c'8
+                    c'4
+                    c'16
+                    c'8
+                }
 
             >>> tuplet = abjad.Tuplet.from_ratio_and_pair(
             ...     abjad.NonreducedRatio((1, 2, 4, 1, 2, 4)),
             ...     abjad.NonreducedFraction(7, 16),
             ...     )
+            >>> abjad.attach(abjad.TimeSignature((7, 16)), tuplet[0])
             >>> staff = abjad.Staff(
-            ...     [abjad.Measure((7, 16), [tuplet])],
+            ...     [tuplet],
             ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
@@ -1891,17 +1897,15 @@ class Tuplet(Container):
             ..  docs::
 
                 >>> abjad.f(staff[0])
-                {   % measure
+                \times 1/2 {
                     \time 7/16
-                    \times 1/2 {
-                        c'16
-                        c'8
-                        c'4
-                        c'16
-                        c'8
-                        c'4
-                    }
-                }   % measure
+                    c'16
+                    c'8
+                    c'4
+                    c'16
+                    c'8
+                    c'4
+                }
 
         Interprets ``d`` as tuplet denominator.
         """
@@ -2440,60 +2444,63 @@ class Tuplet(Container):
             Redudant tuplet:
 
             >>> tuplet = abjad.Tuplet((3, 4), "c'4 c'4")
-            >>> measure = abjad.Measure((3, 8), [tuplet])
-            >>> abjad.show(measure) # doctest: +SKIP
+            >>> abjad.attach(abjad.TimeSignature((3, 8)), tuplet[0])
+            >>> staff = abjad.Staff([tuplet])
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(measure)
-                {   % measure
+                >>> abjad.f(tuplet)
+                \tweak text #tuplet-number::calc-fraction-text
+                \times 3/4 {
                     \time 3/8
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 3/4 {
-                        c'4
-                        c'4
-                    }
-                }   % measure
+                    c'4
+                    c'4
+                }
 
             >>> tuplet.trivializable()
             True
 
             Can be rewritten without a tuplet bracket:
 
-                >>> measure = abjad.Measure((3, 8), "c'8. c'8.")
-                >>> abjad.show(measure) # doctest: +SKIP
+            >>> staff = abjad.Staff("c'8. c'8.")
+            >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[0])
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(measure)
-                {   % measure
+                >>> abjad.f(staff)
+                \new Staff
+                {
                     \time 3/8
                     c'8.
                     c'8.
-                }   % measure
+                }
 
         ..  container:: example
 
             Nontrivializable tuplet:
 
             >>> tuplet = abjad.Tuplet((3, 5), "c'4 c'4 c'4 c'4 c'4")
-            >>> measure = abjad.Measure((3, 4), [tuplet])
-            >>> abjad.show(measure) # doctest: +SKIP
+            >>> abjad.attach(abjad.TimeSignature((3, 4)), tuplet[0])
+            >>> staff = abjad.Staff([tuplet])
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(measure)
-                {   % measure
-                    \time 3/4
+                >>> abjad.f(staff)
+                \new Staff
+                {
                     \tweak text #tuplet-number::calc-fraction-text
                     \times 3/5 {
+                        \time 3/4
                         c'4
                         c'4
                         c'4
                         c'4
                         c'4
                     }
-                }   % measure
+                }
 
             >>> tuplet.trivializable()
             False
@@ -2505,20 +2512,22 @@ class Tuplet(Container):
             REGRESSION. Nontrivializable tuplet:
 
             >>> tuplet = abjad.Tuplet((3, 4), "c'2. c4")
-            >>> measure = abjad.Measure((3, 4), [tuplet])
-            >>> abjad.show(measure) # doctest: +SKIP
+            >>> abjad.attach(abjad.TimeSignature((3, 4)), tuplet[0])
+            >>> staff = abjad.Staff([tuplet])
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                        >>> abjad.f(measure)
-                        {   % measure
-                            \time 3/4
-                            \tweak text #tuplet-number::calc-fraction-text
-                            \times 3/4 {
-                                c'2.
-                                c4
-                            }
-                        }   % measure
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 3/4 {
+                        \time 3/4
+                        c'2.
+                        c4
+                    }
+                }
 
             >>> tuplet.trivializable()
             False

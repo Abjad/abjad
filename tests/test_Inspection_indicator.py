@@ -159,11 +159,3 @@ def test_Inspection_indicator_14():
     indicator = abjad.inspect(staff[0]).indicator(abjad.Instrument)
 
     assert indicator is violin
-
-
-def test_Inspection_indicator_15():
-
-    measure = abjad.Measure((4, 8), "c'8 d'8 e'8 f'8")
-    indicator = abjad.inspect(measure).indicator(abjad.TimeSignature)
-
-    assert indicator == abjad.TimeSignature((4, 8))

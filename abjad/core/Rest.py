@@ -10,16 +10,18 @@ class Rest(Leaf):
     ..  container:: example
 
         >>> rest = abjad.Rest('r8.')
-        >>> measure = abjad.Measure((3, 16), [rest])
-        >>> abjad.show(measure) # doctest: +SKIP
+        >>> abjad.attach(abjad.TimeSignature((3, 16)), rest)
+        >>> staff = abjad.Staff([rest])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> abjad.f(measure)
-            {   % measure
+            >>> abjad.f(staff)
+            \new Staff
+            {
                 \time 3/16
                 r8.
-            }   % measure
+            }
 
     """
 

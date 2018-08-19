@@ -73,7 +73,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> abjad.f(staff, strict=89)
             \new Staff
             \with
             {
@@ -199,7 +199,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -257,7 +257,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -320,7 +320,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> abjad.f(staff, strict=89)
             \new Staff
             \with
             {
@@ -577,17 +577,14 @@ class Selection(AbjadValueObject, collections.Sequence):
         return new_components
 
     def _fuse(self):
-        from .Measure import Measure
         from .Tuplet import Tuplet
         assert self.are_contiguous_logical_voice()
         if self.are_leaves():
             return self._fuse_leaves()
         elif all(isinstance(_, Tuplet) for _ in self):
             return self._fuse_tuplets()
-        elif all(isinstance(_, Measure) for _ in self):
-            return self._fuse_measures()
         else:
-            raise Exception('can not fuse.')
+            raise Exception('can only fuse leaves and tuplets (not {self}).')
 
     def _fuse_leaves(self):
         assert self.are_leaves()
@@ -602,49 +599,6 @@ class Selection(AbjadValueObject, collections.Sequence):
                 index = parent.index(leaf)
                 del(parent[index])
         return leaves[0]._set_duration(total_preprolated)
-
-    def _fuse_measures(self):
-        from .Measure import Measure
-        assert self.are_contiguous_same_parent(prototype=Measure)
-        if len(self) == 0:
-            return None
-        # TODO: instantiate a new measure
-        #       instead of returning a reference to existing measure
-        if len(self) == 1:
-            return self[0]
-        implicit_scaling = self[0].implicit_scaling
-        assert all(
-            x.implicit_scaling == implicit_scaling for x in self)
-        selection = Selection(self)
-        parent, start, stop = selection._get_parent_and_start_stop_indices()
-        old_denominators = []
-        new_duration = Duration(0)
-        for measure in self:
-            effective_time_signature = measure.time_signature
-            old_denominators.append(effective_time_signature.denominator)
-            new_duration += effective_time_signature.duration
-        new_time_signature = measure._duration_to_time_signature(
-            new_duration,
-            old_denominators,
-            )
-        components = []
-        for measure in self:
-            # scale before reassignment to prevent logical tie scale drama
-            signature = measure.time_signature
-            prolation = signature.implied_prolation
-            multiplier = prolation / new_time_signature.implied_prolation
-            measure._scale_contents(multiplier)
-            measure_components = measure[:]
-            measure_components._set_parents(None)
-            components += measure_components
-        new_measure = Measure(new_time_signature, components)
-        new_measure.implicit_scaling = self[0].implicit_scaling
-        if parent is not None:
-            self._give_dominant_spanners([new_measure])
-        self._set_parents(None)
-        if parent is not None:
-            parent.insert(start, new_measure)
-        return new_measure
 
     def _fuse_tuplets(self):
         from .Container import Container
@@ -1297,17 +1251,22 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
-                \new Staff
-                \with
-                {
-                    \override TupletBracket.direction = #up
-                    \override TupletBracket.staff-padding = #3
-                    autoBeaming = ##f
-                }
-                {
-                    {   % measure
+                >>> abjad.f(lilypond_file[abjad.Score], strict=89)
+                \new Score
+                <<
+                    \new GlobalContext
+                    {
                         \time 7/4
+                        s1 * 7/4
+                    }
+                    \new Staff
+                    \with
+                    {
+                        \override TupletBracket.direction = #up
+                        \override TupletBracket.staff-padding = #3
+                        autoBeaming = ##f
+                    }
+                    {
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
                             r16
@@ -1338,8 +1297,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             \abjad-color-music #'green
                             <fs' gs'>16
                         }
-                    }   % measure
-                }
+                    }
+                >>
 
         """
         if self._expression:
@@ -1407,17 +1366,22 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
-                \new Staff
-                \with
-                {
-                    \override TupletBracket.direction = #up
-                    \override TupletBracket.staff-padding = #3
-                    autoBeaming = ##f
-                }
-                {
-                    {   % measure
+                >>> abjad.f(lilypond_file[abjad.Score], strict=89)
+                \new Score
+                <<
+                    \new GlobalContext
+                    {
                         \time 7/4
+                        s1 * 7/4
+                    }
+                    \new Staff
+                    \with
+                    {
+                        \override TupletBracket.direction = #up
+                        \override TupletBracket.staff-padding = #3
+                        autoBeaming = ##f
+                    }
+                    {
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
                             r16
@@ -1456,8 +1420,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             \abjad-color-music #'red
                             <fs' gs'>16
                         }
-                    }   % measure
-                }
+                    }
+                >>
 
         """
         if self._expression:
@@ -1513,7 +1477,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -1585,7 +1549,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -1651,7 +1615,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -1704,7 +1668,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -1769,7 +1733,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -1823,7 +1787,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -1893,7 +1857,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -1953,7 +1917,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -2010,7 +1974,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -2076,7 +2040,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -2129,7 +2093,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -2212,17 +2176,22 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
-                \new Staff
-                \with
-                {
-                    \override TupletBracket.direction = #up
-                    \override TupletBracket.staff-padding = #3
-                    autoBeaming = ##f
-                }
-                {
-                    {   % measure
+                >>> abjad.f(lilypond_file[abjad.Score], strict=89)
+                \new Score
+                <<
+                    \new GlobalContext
+                    {
                         \time 7/4
+                        s1 * 7/4
+                    }
+                    \new Staff
+                    \with
+                    {
+                        \override TupletBracket.direction = #up
+                        \override TupletBracket.staff-padding = #3
+                        autoBeaming = ##f
+                    }
+                    {
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
                             \abjad-color-music #'red
@@ -2258,8 +2227,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             ~
                             <fs' gs'>16
                         }
-                    }   % measure
-                }
+                    }
+                >>
 
         ..  container:: example
 
@@ -2313,17 +2282,22 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
-                \new Staff
-                \with
-                {
-                    \override TupletBracket.direction = #up
-                    \override TupletBracket.staff-padding = #3
-                    autoBeaming = ##f
-                }
-                {
-                    {   % measure
+                >>> abjad.f(lilypond_file[abjad.Score], strict=89)
+                \new Score
+                <<
+                    \new GlobalContext
+                    {
                         \time 7/4
+                        s1 * 7/4
+                    }
+                    \new Staff
+                    \with
+                    {
+                        \override TupletBracket.direction = #up
+                        \override TupletBracket.staff-padding = #3
+                        autoBeaming = ##f
+                    }
+                    {
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
                             \abjad-color-music #'red
@@ -2359,8 +2333,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             ~
                             <fs' gs'>16
                         }
-                    }   % measure
-                }
+                    }
+                >>
 
         """
         if self._expression:
@@ -2481,7 +2455,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -2575,7 +2549,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -2643,7 +2617,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -2708,7 +2682,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -2775,7 +2749,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -2854,7 +2828,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -2951,7 +2925,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -3032,7 +3006,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -3119,7 +3093,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -3189,7 +3163,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -3259,7 +3233,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -3326,7 +3300,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -3387,7 +3361,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -3476,7 +3450,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -3559,17 +3533,22 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
-                \new Staff
-                \with
-                {
-                    \override TupletBracket.direction = #up
-                    \override TupletBracket.staff-padding = #3
-                    autoBeaming = ##f
-                }
-                {
-                    {   % measure
+                >>> abjad.f(lilypond_file[abjad.Score], strict=89)
+                \new Score
+                <<
+                    \new GlobalContext
+                    {
                         \time 7/4
+                        s1 * 7/4
+                    }
+                    \new Staff
+                    \with
+                    {
+                        \override TupletBracket.direction = #up
+                        \override TupletBracket.staff-padding = #3
+                        autoBeaming = ##f
+                    }
+                    {
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
                             r16
@@ -3600,8 +3579,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             \abjad-color-music #'green
                             <fs' gs'>16
                         }
-                    }   % measure
-                }
+                    }
+                >>
 
         """
         if self._expression:
@@ -3672,7 +3651,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -3748,7 +3727,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -3828,7 +3807,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -3913,7 +3892,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -3999,7 +3978,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -4077,7 +4056,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -4147,7 +4126,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -4217,7 +4196,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -4290,7 +4269,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -4358,7 +4337,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -4452,7 +4431,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -4517,7 +4496,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -4581,7 +4560,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -4647,7 +4626,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -4728,7 +4707,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -4820,7 +4799,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -4892,7 +4871,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -4962,7 +4941,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -5039,17 +5018,22 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
-                \new Staff
-                \with
-                {
-                    \override TupletBracket.direction = #up
-                    \override TupletBracket.staff-padding = #3
-                    autoBeaming = ##f
-                }
-                {
-                    {   % measure
+                >>> abjad.f(lilypond_file[abjad.Score], strict=89)
+                \new Score
+                <<
+                    \new GlobalContext
+                    {
                         \time 7/4
+                        s1 * 7/4
+                    }
+                    \new Staff
+                    \with
+                    {
+                        \override TupletBracket.direction = #up
+                        \override TupletBracket.staff-padding = #3
+                        autoBeaming = ##f
+                    }
+                    {
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
                             r16
@@ -5080,8 +5064,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             ~
                             <fs' gs'>16
                         }
-                    }   % measure
-                }
+                    }
+                >>
 
         """
         if self._expression:
@@ -5143,17 +5127,22 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
-                \new Staff
-                \with
-                {
-                    \override TupletBracket.direction = #up
-                    \override TupletBracket.staff-padding = #3
-                    autoBeaming = ##f
-                }
-                {
-                    {   % measure
+                >>> abjad.f(lilypond_file[abjad.Score], strict=89)
+                \new Score
+                <<
+                    \new GlobalContext
+                    {
                         \time 7/4
+                        s1 * 7/4
+                    }
+                    \new Staff
+                    \with
+                    {
+                        \override TupletBracket.direction = #up
+                        \override TupletBracket.staff-padding = #3
+                        autoBeaming = ##f
+                    }
+                    {
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
                             r16
@@ -5189,8 +5178,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             ~
                             <fs' gs'>16
                         }
-                    }   % measure
-                }
+                    }
+                >>
 
         """
         if self._expression:
@@ -5233,7 +5222,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -5314,7 +5303,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -5375,7 +5364,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -5441,7 +5430,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -5509,7 +5498,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -5584,7 +5573,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -5657,7 +5646,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -5726,7 +5715,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -5790,7 +5779,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -5921,38 +5910,41 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
                     autoBeaming = ##f
                 }
                 {
-                    {   % measure
+                    {
                         \time 2/8
                         \abjad-color-music #'red
                         c'8
                         \abjad-color-music #'red
                         d'8
-                    }   % measure
-                    {   % measure
+                    }
+                    {
+                        \time 2/8
                         \abjad-color-music #'red
                         e'8
                         \abjad-color-music #'blue
                         f'8
-                    }   % measure
-                    {   % measure
+                    }
+                    {
+                        \time 2/8
                         \abjad-color-music #'blue
                         g'8
                         \abjad-color-music #'blue
                         a'8
-                    }   % measure
-                    {   % measure
+                    }
+                    {
+                        \time 2/8
                         \abjad-color-music #'red
                         b'8
                         \abjad-color-music #'red
                         c''8
-                    }   % measure
+                    }
                 }
 
         ..  container:: example
@@ -6003,33 +5995,36 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
                     autoBeaming = ##f
                 }
                 {
-                    {   % measure
+                    {
                         \time 2/8
                         \abjad-color-music #'red
                         c'8
                         \abjad-color-music #'red
                         d'8
-                    }   % measure
-                    {   % measure
+                    }
+                    {
+                        \time 2/8
                         \abjad-color-music #'red
                         e'8
                         f'8
-                    }   % measure
-                    {   % measure
+                    }
+                    {
+                        \time 2/8
                         g'8
                         a'8
-                    }   % measure
-                    {   % measure
+                    }
+                    {
+                        \time 2/8
                         b'8
                         c''8
-                    }   % measure
+                    }
                 }
 
         ..  container:: example
@@ -6088,38 +6083,41 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
                     autoBeaming = ##f
                 }
                 {
-                    {   % measure
+                    {
                         \time 2/8
                         \abjad-color-music #'red
                         c'8
                         \abjad-color-music #'red
                         d'8
-                    }   % measure
-                    {   % measure
+                    }
+                    {
+                        \time 2/8
                         \abjad-color-music #'blue
                         e'8
                         \abjad-color-music #'red
                         f'8
-                    }   % measure
-                    {   % measure
+                    }
+                    {
+                        \time 2/8
                         \abjad-color-music #'red
                         g'8
                         \abjad-color-music #'blue
                         a'8
-                    }   % measure
-                    {   % measure
+                    }
+                    {
+                        \time 2/8
                         \abjad-color-music #'red
                         b'8
                         \abjad-color-music #'red
                         c''8
-                    }   % measure
+                    }
                 }
 
         ..  container:: example
@@ -6182,37 +6180,40 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
                     autoBeaming = ##f
                 }
                 {
-                    {   % measure
+                    {
                         \time 2/8
                         \abjad-color-music #'red
                         c'8
                         \abjad-color-music #'blue
                         d'8
-                    }   % measure
-                    {   % measure
+                    }
+                    {
+                        \time 2/8
                         \abjad-color-music #'red
                         e'8
                         \abjad-color-music #'blue
                         f'8
-                    }   % measure
-                    {   % measure
+                    }
+                    {
+                        \time 2/8
                         \abjad-color-music #'red
                         g'8
                         \abjad-color-music #'blue
                         a'8
-                    }   % measure
-                    {   % measure
+                    }
+                    {
+                        \time 2/8
                         \abjad-color-music #'red
                         b'8
                         c''8
-                    }   % measure
+                    }
                 }
 
         ..  container:: example
@@ -6263,31 +6264,34 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
                     autoBeaming = ##f
                 }
                 {
-                    {   % measure
+                    {
                         \time 2/8
                         \abjad-color-music #'red
                         c'8
                         d'8
-                    }   % measure
-                    {   % measure
+                    }
+                    {
+                        \time 2/8
                         e'8
                         f'8
-                    }   % measure
-                    {   % measure
+                    }
+                    {
+                        \time 2/8
                         g'8
                         a'8
-                    }   % measure
-                    {   % measure
+                    }
+                    {
+                        \time 2/8
                         b'8
                         c''8
-                    }   % measure
+                    }
                 }
 
         ..  container:: example
@@ -6343,37 +6347,40 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
                     autoBeaming = ##f
                 }
                 {
-                    {   % measure
-                        \time 2/8
+                    {
                         \tempo 4=60
+                        \time 2/8
                         \abjad-color-music #'red
                         c'8
                         \abjad-color-music #'red
                         d'8
-                    }   % measure
-                    {   % measure
+                    }
+                    {
+                        \time 2/8
                         \abjad-color-music #'red
                         e'8
                         \abjad-color-music #'blue
                         f'8
-                    }   % measure
-                    {   % measure
+                    }
+                    {
+                        \time 2/8
                         \abjad-color-music #'blue
                         g'8
                         \abjad-color-music #'blue
                         a'8
-                    }   % measure
-                    {   % measure
+                    }
+                    {
+                        \time 2/8
                         b'8
                         c''8
-                    }   % measure
+                    }
                 }
 
         ..  container:: example
@@ -6430,39 +6437,42 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
                     autoBeaming = ##f
                 }
                 {
-                    {   % measure
-                        \time 2/8
+                    {
                         \tempo 4=60
+                        \time 2/8
                         \abjad-color-music #'red
                         c'8
                         \abjad-color-music #'red
                         d'8
-                    }   % measure
-                    {   % measure
+                    }
+                    {
+                        \time 2/8
                         \abjad-color-music #'red
                         e'8
                         \abjad-color-music #'blue
                         f'8
-                    }   % measure
-                    {   % measure
+                    }
+                    {
+                        \time 2/8
                         \abjad-color-music #'blue
                         g'8
                         \abjad-color-music #'blue
                         a'8
-                    }   % measure
-                    {   % measure
+                    }
+                    {
+                        \time 2/8
                         \abjad-color-music #'red
                         b'8
                         \abjad-color-music #'red
                         c''8
-                    }   % measure
+                    }
                 }
 
         ..  container:: example
@@ -6516,34 +6526,37 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
                     autoBeaming = ##f
                 }
                 {
-                    {   % measure
-                        \time 2/8
+                    {
                         \tempo 4=60
+                        \time 2/8
                         \abjad-color-music #'red
                         c'8
                         \abjad-color-music #'red
                         d'8
-                    }   % measure
-                    {   % measure
+                    }
+                    {
+                        \time 2/8
                         \abjad-color-music #'red
                         e'8
                         f'8
-                    }   % measure
-                    {   % measure
+                    }
+                    {
+                        \time 2/8
                         g'8
                         a'8
-                    }   % measure
-                    {   % measure
+                    }
+                    {
+                        \time 2/8
                         b'8
                         c''8
-                    }   % measure
+                    }
                 }
 
         ..  container:: example
@@ -6609,38 +6622,41 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
                     autoBeaming = ##f
                 }
                 {
-                    {   % measure
-                        \time 2/8
+                    {
                         \tempo 4=60
+                        \time 2/8
                         \abjad-color-music #'red
                         c'8
                         \abjad-color-music #'blue
                         d'8
-                    }   % measure
-                    {   % measure
+                    }
+                    {
+                        \time 2/8
                         \abjad-color-music #'red
                         e'8
                         \abjad-color-music #'blue
                         f'8
-                    }   % measure
-                    {   % measure
+                    }
+                    {
+                        \time 2/8
                         \abjad-color-music #'red
                         g'8
                         \abjad-color-music #'blue
                         a'8
-                    }   % measure
-                    {   % measure
+                    }
+                    {
+                        \time 2/8
                         \abjad-color-music #'red
                         b'8
                         c''8
-                    }   % measure
+                    }
                 }
 
         ..  container:: example
@@ -6694,32 +6710,35 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
                     autoBeaming = ##f
                 }
                 {
-                    {   % measure
-                        \time 2/8
+                    {
                         \tempo 4=60
+                        \time 2/8
                         \abjad-color-music #'red
                         c'8
                         d'8
-                    }   % measure
-                    {   % measure
+                    }
+                    {
+                        \time 2/8
                         e'8
                         f'8
-                    }   % measure
-                    {   % measure
+                    }
+                    {
+                        \time 2/8
                         g'8
                         a'8
-                    }   % measure
-                    {   % measure
+                    }
+                    {
+                        \time 2/8
                         b'8
                         c''8
-                    }   % measure
+                    }
                 }
 
         Interprets ``fill`` as ``Exact`` when ``fill`` is none.
@@ -6868,7 +6887,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -6934,7 +6953,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -7015,17 +7034,22 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
-                \new Staff
-                \with
-                {
-                    \override TupletBracket.direction = #up
-                    \override TupletBracket.staff-padding = #3
-                    autoBeaming = ##f
-                }
-                {
-                    {   % measure
+                >>> abjad.f(lilypond_file[abjad.Score], strict=89)
+                \new Score
+                <<
+                    \new GlobalContext
+                    {
                         \time 7/4
+                        s1 * 7/4
+                    }
+                    \new Staff
+                    \with
+                    {
+                        \override TupletBracket.direction = #up
+                        \override TupletBracket.staff-padding = #3
+                        autoBeaming = ##f
+                    }
+                    {
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
                             r16
@@ -7056,8 +7080,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             ~
                             <fs' gs'>16
                         }
-                    }   % measure
-                }
+                    }
+                >>
 
         """
         if self._expression:
@@ -7113,17 +7137,22 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
-                \new Staff
-                \with
-                {
-                    \override TupletBracket.direction = #up
-                    \override TupletBracket.staff-padding = #3
-                    autoBeaming = ##f
-                }
-                {
-                    {   % measure
+                >>> abjad.f(lilypond_file[abjad.Score], strict=89)
+                \new Score
+                <<
+                    \new GlobalContext
+                    {
                         \time 7/4
+                        s1 * 7/4
+                    }
+                    \new Staff
+                    \with
+                    {
+                        \override TupletBracket.direction = #up
+                        \override TupletBracket.staff-padding = #3
+                        autoBeaming = ##f
+                    }
+                    {
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
                             \abjad-color-music #'red
@@ -7156,8 +7185,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             ~
                             <fs' gs'>16
                         }
-                    }   % measure
-                }
+                    }
+                >>
 
         """
         if self._expression:
@@ -7207,17 +7236,22 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
-                \new Staff
-                \with
-                {
-                    \override TupletBracket.direction = #up
-                    \override TupletBracket.staff-padding = #3
-                    autoBeaming = ##f
-                }
-                {
-                    {   % measure
+                >>> abjad.f(lilypond_file[abjad.Score], strict=89)
+                \new Score
+                <<
+                    \new GlobalContext
+                    {
                         \time 7/4
+                        s1 * 7/4
+                    }
+                    \new Staff
+                    \with
+                    {
+                        \override TupletBracket.direction = #up
+                        \override TupletBracket.staff-padding = #3
+                        autoBeaming = ##f
+                    }
+                    {
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
                             r16
@@ -7252,8 +7286,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             \abjad-color-music #'green
                             <fs' gs'>16
                         }
-                    }   % measure
-                }
+                    }
+                >>
 
         """
         if self._expression:
@@ -7309,17 +7343,22 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
-                \new Staff
-                \with
-                {
-                    \override TupletBracket.direction = #up
-                    \override TupletBracket.staff-padding = #3
-                    autoBeaming = ##f
-                }
-                {
-                    {   % measure
+                >>> abjad.f(lilypond_file[abjad.Score], strict=89)
+                \new Score
+                <<
+                    \new GlobalContext
+                    {
                         \time 7/4
+                        s1 * 7/4
+                    }
+                    \new Staff
+                    \with
+                    {
+                        \override TupletBracket.direction = #up
+                        \override TupletBracket.staff-padding = #3
+                        autoBeaming = ##f
+                    }
+                    {
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
                             r16
@@ -7364,8 +7403,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             \abjad-color-music #'red
                             <fs' gs'>16
                         }
-                    }   % measure
-                }
+                    }
+                >>
 
         """
         if self._expression:
@@ -7421,7 +7460,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -7510,17 +7549,22 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
-                \new Staff
-                \with
-                {
-                    \override TupletBracket.direction = #up
-                    \override TupletBracket.staff-padding = #3
-                    autoBeaming = ##f
-                }
-                {
-                    {   % measure
+                >>> abjad.f(lilypond_file[abjad.Score], strict=89)
+                \new Score
+                <<
+                    \new GlobalContext
+                    {
                         \time 7/4
+                        s1 * 7/4
+                    }
+                    \new Staff
+                    \with
+                    {
+                        \override TupletBracket.direction = #up
+                        \override TupletBracket.staff-padding = #3
+                        autoBeaming = ##f
+                    }
+                    {
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
                             r16
@@ -7556,8 +7600,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             \abjad-color-music #'green
                             <fs' gs'>16
                         }
-                    }   % measure
-                }
+                    }
+                >>
 
         """
         if self._expression:
@@ -7613,17 +7657,22 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
-                \new Staff
-                \with
-                {
-                    \override TupletBracket.direction = #up
-                    \override TupletBracket.staff-padding = #3
-                    autoBeaming = ##f
-                }
-                {
-                    {   % measure
+                >>> abjad.f(lilypond_file[abjad.Score], strict=89)
+                \new Score
+                <<
+                    \new GlobalContext
+                    {
                         \time 7/4
+                        s1 * 7/4
+                    }
+                    \new Staff
+                    \with
+                    {
+                        \override TupletBracket.direction = #up
+                        \override TupletBracket.staff-padding = #3
+                        autoBeaming = ##f
+                    }
+                    {
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
                             \abjad-color-music #'red
@@ -7671,8 +7720,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             \abjad-color-music #'red
                             <fs' gs'>16
                         }
-                    }   % measure
-                }
+                    }
+                >>
 
         """
         from .Tuplet import Tuplet
@@ -7720,7 +7769,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -7784,7 +7833,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -7857,7 +7906,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -7947,7 +7996,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {
@@ -8011,7 +8060,7 @@ class Selection(AbjadValueObject, collections.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> abjad.f(staff, strict=89)
                 \new Staff
                 \with
                 {

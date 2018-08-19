@@ -266,9 +266,6 @@ def attach(
         acceptable = False
         if isinstance(attachable, (dict, str, abjad.Wrapper)):
             acceptable = True
-        if (isinstance(attachable, abjad.TimeSignature) and
-            isinstance(target, abjad.Measure)):
-            acceptable = True
         if getattr(attachable, '_can_attach_to_containers', False):
             acceptable = True
         if not acceptable:

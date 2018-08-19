@@ -249,19 +249,6 @@ class VerticalMoment(AbjadObject):
         return result
 
     @property
-    def measures(self):
-        """
-        Tuple of zero or more measures at vertical moment.
-        """
-        import abjad
-        result = []
-        for component in self.components:
-            if isinstance(component, abjad.Measure):
-                result.append(component)
-        result = tuple(result)
-        return result
-
-    @property
     def next_vertical_moment(self):
         """
         Reference to next vertical moment forward in time.
@@ -334,18 +321,6 @@ class VerticalMoment(AbjadObject):
         import abjad
         result = [x for x in self.overlap_components
             if isinstance(x, abjad.Leaf)]
-        result = tuple(result)
-        return result
-
-    @property
-    def overlap_measures(self):
-        """
-        Tuple of measures in vertical moment starting before vertical
-        moment, ordered by score index.
-        """
-        import abjad
-        result = self.overlap_components
-        result = [_ for _ in result if isinstance(_, abjad.Measure)]
         result = tuple(result)
         return result
 

@@ -9,8 +9,8 @@ def test_Mutation_copy_01():
     Returns Python list of copied components.
     """
 
-    voice = abjad.Voice("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
-    leaves = abjad.select(voice).leaves()
+    staff = abjad.Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
+    leaves = abjad.select(staff).leaves()
     slur = abjad.Slur()
     abjad.attach(slur, leaves)
     trill = abjad.TrillSpanner()
@@ -18,40 +18,43 @@ def test_Mutation_copy_01():
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
 
-    assert format(voice) == abjad.String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r"""
-        \new Voice
+        \new Staff
         {
-            {   % measure
+            {
                 \time 2/8
                 c'8
                 [
                 (
                 \startTrillSpan
                 d'8
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 e'8
                 f'8
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 g'8
                 a'8
                 ]
                 )
                 \stopTrillSpan
-            }   % measure
+            }
         }
         """
-        )
+        ), print(format(staff))
 
     result = abjad.mutate(leaves[2:4]).copy()
-    new = abjad.Voice(result)
+    new = abjad.Staff(result)
 
     assert format(new) == abjad.String.normalize(
         r"""
-        \new Voice
+        \new Staff
         {
+            \time 2/8
             e'8
             [
             (
@@ -61,9 +64,9 @@ def test_Mutation_copy_01():
             )
             \stopTrillSpan
         }
-        """
+        """, print(format(new))
         )
-    assert abjad.inspect(voice).is_wellformed()
+    assert abjad.inspect(staff).is_wellformed()
     assert abjad.inspect(new).is_wellformed()
 
 
@@ -72,8 +75,8 @@ def test_Mutation_copy_02():
     Copy one measure and fracture spanners.
     """
 
-    voice = abjad.Voice("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
-    leaves = abjad.select(voice).leaves()
+    staff = abjad.Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
+    leaves = abjad.select(staff).leaves()
     slur = abjad.Slur()
     abjad.attach(slur, leaves)
     trill = abjad.TrillSpanner()
@@ -81,41 +84,43 @@ def test_Mutation_copy_02():
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
 
-    assert format(voice) == abjad.String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r"""
-        \new Voice
+        \new Staff
         {
-            {   % measure
+            {
                 \time 2/8
                 c'8
                 [
                 (
                 \startTrillSpan
                 d'8
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 e'8
                 f'8
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 g'8
                 a'8
                 ]
                 )
                 \stopTrillSpan
-            }   % measure
+            }
         }
         """
-        )
+        ), print(format(staff))
 
-    result = abjad.mutate(voice[1:2]).copy()
-    new = abjad.Voice(result)
+    result = abjad.mutate(staff[1:2]).copy()
+    new = abjad.Staff(result)
 
     assert format(new) == abjad.String.normalize(
         r"""
-        \new Voice
+        \new Staff
         {
-            {   % measure
+            {
                 \time 2/8
                 e'8
                 [
@@ -125,11 +130,12 @@ def test_Mutation_copy_02():
                 ]
                 )
                 \stopTrillSpan
-            }   % measure
+            }
         }
         """
-        )
-    assert abjad.inspect(voice).is_wellformed()
+        ), print(format(new))
+
+    assert abjad.inspect(staff).is_wellformed()
     assert abjad.inspect(new).is_wellformed()
 
 
@@ -138,8 +144,8 @@ def test_Mutation_copy_03():
     Three notes crossing measure boundaries.
     """
 
-    voice = abjad.Voice("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
-    leaves = abjad.select(voice).leaves()
+    staff = abjad.Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
+    leaves = abjad.select(staff).leaves()
     slur = abjad.Slur()
     abjad.attach(slur, leaves)
     trill = abjad.TrillSpanner()
@@ -147,44 +153,47 @@ def test_Mutation_copy_03():
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
 
-    assert format(voice) == abjad.String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r"""
-        \new Voice
+        \new Staff
         {
-            {   % measure
+            {
                 \time 2/8
                 c'8
                 [
                 (
                 \startTrillSpan
                 d'8
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 e'8
                 f'8
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 g'8
                 a'8
                 ]
                 )
                 \stopTrillSpan
-            }   % measure
+            }
         }
         """
-        )
+        ), print(format(staff))
 
     result = abjad.mutate(leaves[-3:]).copy()
-    new = abjad.Voice(result)
+    new = abjad.Staff(result)
 
     assert format(new) == abjad.String.normalize(
         r"""
-        \new Voice
+        \new Staff
         {
             f'8
             [
             (
             \startTrillSpan
+            \time 2/8
             g'8
             a'8
             ]
@@ -192,275 +201,300 @@ def test_Mutation_copy_03():
             \stopTrillSpan
         }
         """
-        )
-    assert abjad.inspect(voice).is_wellformed()
+        ), print(format(new))
+
+    assert abjad.inspect(staff).is_wellformed()
     assert abjad.inspect(new).is_wellformed()
 
 
 def test_Mutation_copy_04():
 
-    voice = abjad.Voice("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
+    staff = abjad.Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
         "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
-    leaves = abjad.select(voice).leaves()
+    leaves = abjad.select(staff).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
     slur = abjad.Slur()
     abjad.attach(slur, leaves)
 
-    assert format(voice) == abjad.String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r"""
-        \new Voice
+        \new Staff
         {
-            {   % measure
+            {
                 \time 2/8
                 c'8
                 [
                 (
                 d'8
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 e'8
                 f'8
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 g'8
                 a'8
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 b'8
                 c''8
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        )
+        ), print(format(staff))
 
-    selection = abjad.select(voice)
+    selection = abjad.select(staff)
     new_selection = abjad.mutate(selection).copy()
-    new_voice = new_selection[0]
-    for component in abjad.iterate(new_voice).components():
+    new_staff = new_selection[0]
+    for component in abjad.iterate(new_staff).components():
         abjad.detach(abjad.Spanner, component)
 
-    assert format(new_voice) == abjad.String.normalize(
+    assert format(new_staff) == abjad.String.normalize(
         r"""
-        \new Voice
+        \new Staff
         {
-            {   % measure
+            {
                 \time 2/8
                 c'8
                 d'8
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 e'8
                 f'8
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 g'8
                 a'8
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 b'8
                 c''8
-            }   % measure
+            }
         }
         """
-        )
-    assert abjad.inspect(new_voice).is_wellformed()
+        ), print(format(new_staff))
+
+    assert abjad.inspect(new_staff).is_wellformed()
 
 
 def test_Mutation_copy_05():
 
-    voice = abjad.Voice("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
+    staff = abjad.Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
         "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
-    leaves = abjad.select(voice).leaves()
+    leaves = abjad.select(staff).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
     slur = abjad.Slur()
     abjad.attach(slur, leaves)
 
-    assert format(voice) == abjad.String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r"""
-        \new Voice
+        \new Staff
         {
-            {   % measure
+            {
                 \time 2/8
                 c'8
                 [
                 (
                 d'8
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 e'8
                 f'8
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 g'8
                 a'8
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 b'8
                 c''8
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        )
+        ), print(format(staff))
 
-    result = abjad.mutate(voice[1:]).copy()
-    new_voice = abjad.Voice(result)
-    for component in abjad.iterate(new_voice).components():
+    result = abjad.mutate(staff[1:]).copy()
+    new_staff = abjad.Staff(result)
+    for component in abjad.iterate(new_staff).components():
         abjad.detach(abjad.Spanner, component)
 
-    assert format(new_voice) == abjad.String.normalize(
+    assert format(new_staff) == abjad.String.normalize(
         r"""
-        \new Voice
+        \new Staff
         {
-            {   % measure
+            {
                 \time 2/8
                 e'8
                 f'8
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 g'8
                 a'8
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 b'8
                 c''8
-            }   % measure
+            }
         }
         """
-        )
-    assert abjad.inspect(voice).is_wellformed()
-    assert abjad.inspect(new_voice).is_wellformed()
+        ), print(format(new_staff))
+
+    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(new_staff).is_wellformed()
 
 
 def test_Mutation_copy_06():
 
-    voice = abjad.Voice("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
+    staff = abjad.Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
         "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
-    leaves = abjad.select(voice).leaves()
+    leaves = abjad.select(staff).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
     slur = abjad.Slur()
     abjad.attach(slur, leaves)
 
-    assert format(voice) == abjad.String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r"""
-        \new Voice
+        \new Staff
         {
-            {   % measure
+            {
                 \time 2/8
                 c'8
                 [
                 (
                 d'8
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 e'8
                 f'8
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 g'8
                 a'8
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 b'8
                 c''8
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        )
+        ), print(format(staff))
 
     result = abjad.mutate(leaves[:6]).copy()
-    new_voice = abjad.Voice(result)
-    for component in abjad.iterate(new_voice).components():
+    new_staff = abjad.Staff(result)
+    for component in abjad.iterate(new_staff).components():
         abjad.detach(abjad.Spanner, component)
 
-    assert format(new_voice) == abjad.String.normalize(
+    assert format(new_staff) == abjad.String.normalize(
         r"""
-        \new Voice
+        \new Staff
         {
+            \time 2/8
             c'8
             d'8
+            \time 2/8
             e'8
             f'8
+            \time 2/8
             g'8
             a'8
         }
         """
-        )
-    assert abjad.inspect(voice).is_wellformed()
-    assert abjad.inspect(new_voice).is_wellformed()
+        ), print(format(new_staff))
+
+    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(new_staff).is_wellformed()
 
 
 def test_Mutation_copy_07():
 
-    voice = abjad.Voice("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
+    staff = abjad.Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
         "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
-    leaves = abjad.select(voice).leaves()
+    leaves = abjad.select(staff).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
     slur = abjad.Slur()
     abjad.attach(slur, leaves)
 
-    assert format(voice) == abjad.String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r"""
-        \new Voice
+        \new Staff
         {
-            {   % measure
+            {
                 \time 2/8
                 c'8
                 [
                 (
                 d'8
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 e'8
                 f'8
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 g'8
                 a'8
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 b'8
                 c''8
                 ]
                 )
-            }   % measure
+            }
         }
         """
-        )
+        ), print(format(staff))
 
-    result = abjad.mutate(voice[-2:]).copy()
-    new_voice = abjad.Voice(result)
-    for component in abjad.iterate(new_voice).components():
+    result = abjad.mutate(staff[-2:]).copy()
+    new_staff = abjad.Staff(result)
+    for component in abjad.iterate(new_staff).components():
         abjad.detach(abjad.Spanner, component)
 
-    assert format(new_voice) == abjad.String.normalize(
+    assert format(new_staff) == abjad.String.normalize(
         r"""
-        \new Voice
+        \new Staff
         {
-            {   % measure
+            {
                 \time 2/8
                 g'8
                 a'8
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 b'8
                 c''8
-            }   % measure
+            }
         }
         """
-        )
+        ), print(format(new_staff))
 
-    assert abjad.inspect(voice).is_wellformed()
-    assert abjad.inspect(new_voice).is_wellformed()
+    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(new_staff).is_wellformed()
 
 
 def test_Mutation_copy_08():

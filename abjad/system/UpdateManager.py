@@ -125,17 +125,9 @@ class UpdateManager(AbjadObject):
             for context in contexts:
                 for leaf_index, leaf in enumerate(iterate(context).leaves()):
                     leaf._leaf_index = leaf_index
-                for measure_index, measure in enumerate(
-                    iterate(context).components(abjad.Measure)):
-                    measure_number = measure_index + 1
-                    measure._measure_number = measure_number
         else:
             for leaf_index, leaf in enumerate(iterate(score_root).leaves()):
                 leaf._leaf_index = leaf_index
-            for measure_index, measure in enumerate(
-                iterate(score_root).components(abjad.Measure)):
-                measure_number = measure_index + 1
-                measure._measure_number = measure_number
 
     def _update_all_offsets(self, score_root):
         """

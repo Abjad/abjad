@@ -462,58 +462,6 @@ class Mutation(AbjadObject):
 
             All ``tuplets`` must be of the same type.
 
-        ..  container:: example
-
-            Fuses in-score measures:
-
-            >>> staff = abjad.Staff()
-            >>> staff.append(abjad.Measure((1, 4), "c'8 d'8"))
-            >>> staff.append(abjad.Measure((2, 8), "e'8 f'8"))
-            >>> slur = abjad.Slur()
-            >>> leaves = abjad.select(staff).leaves()
-            >>> abjad.attach(slur, leaves)
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    {   % measure
-                        \time 1/4
-                        c'8
-                        (
-                        d'8
-                    }   % measure
-                    {   % measure
-                        \time 2/8
-                        e'8
-                        f'8
-                        )
-                    }   % measure
-                }
-
-            >>> measures = staff[:]
-            >>> abjad.mutate(measures).fuse()
-            Measure((2, 4), "c'8 d'8 e'8 f'8")
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    {   % measure
-                        \time 2/4
-                        c'8
-                        (
-                        d'8
-                        e'8
-                        f'8
-                        )
-                    }   % measure
-                }
-
         Returns selection.
         """
         if isinstance(self.client, Component):
@@ -766,118 +714,6 @@ class Mutation(AbjadObject):
             if context is not None:
                 context._dependent_wrappers.append(wrapper)
 
-    # TODO: fix bug in function that causes tied notes to become untied
-    def replace_measure_contents(self, new_contents):
-        r"""
-        Replaces contents of measures in client with ``new_contents``.
-
-        ..  container:: example
-
-            Replaces skip-filled measures with notes:
-
-            >>> maker = abjad.MeasureMaker()
-            >>> measures = maker([(1, 8), (3, 16)])
-            >>> staff = abjad.Staff(measures)
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    {   % measure
-                        \time 1/8
-                        s1 * 1/8
-                    }   % measure
-                    {   % measure
-                        \time 3/16
-                        s1 * 3/16
-                    }   % measure
-                }
-
-            >>> notes = [
-            ...     abjad.Note("c'16"),
-            ...     abjad.Note("d'16"),
-            ...     abjad.Note("e'16"),
-            ...     abjad.Note("f'16"),
-            ...     ]
-            >>> abjad.mutate(staff).replace_measure_contents(notes)
-            [Measure((1, 8), "c'16 d'16"), Measure((3, 16), "e'16 f'16 s1 * 1/16")]
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    {   % measure
-                        \time 1/8
-                        c'16
-                        d'16
-                    }   % measure
-                    {   % measure
-                        \time 3/16
-                        e'16
-                        f'16
-                        s1 * 1/16
-                    }   % measure
-                }
-
-        Preserves duration of all measures.
-
-        Skips measures that are too small.
-
-        Pads extra space at end of measures with spacer skip.
-
-        Raises stop iteration if not enough measures.
-
-        Returns measures iterated.
-        """
-        # init return list
-        result = []
-        # get first measure and first time signature
-        current_measure = self.client._get_next_measure()
-        result.append(current_measure)
-        current_time_signature = current_measure.time_signature
-        # to avoide pychecker slice assignment error
-        #del(current_measure[:])
-        current_measure.__delitem__(slice(0, len(current_measure)))
-        # iterate new contents
-        new_contents = list(new_contents)
-        while new_contents:
-            # find candidate duration of new element plus current measure
-            current_element = new_contents[0]
-            multiplier = current_time_signature.implied_prolation
-            preprolated_duration = current_element._get_preprolated_duration()
-            duration = multiplier * preprolated_duration
-            candidate_duration = current_measure._get_duration() + duration
-            # if new element fits in current measure
-            if candidate_duration <= current_time_signature.duration:
-                current_element = new_contents.pop(0)
-                current_measure._append_without_withdrawing_from_crossing_spanners(
-                    current_element)
-            # otherwise restore current measure and advance to next measure
-            else:
-                current_time_signature = TimeSignature(current_time_signature)
-                detach(TimeSignature, current_measure)
-                attach(current_time_signature, current_measure)
-                current_measure._append_spacer_skip()
-                current_measure = current_measure._get_next_measure()
-                if current_measure is None:
-                    raise StopIteration
-                result.append(current_measure)
-                current_time_signature = current_measure.time_signature
-                # to avoid pychecker slice assignment error
-                #del(current_measure[:])
-                current_measure.__delitem__(slice(0, len(current_measure)))
-        # restore last iterated measure
-        current_time_signature = TimeSignature(current_time_signature)
-        detach(TimeSignature, current_measure)
-        attach(current_time_signature, current_measure)
-        current_measure._append_spacer_skip()
-        # return iterated measures
-        return result
-
     def rewrite_meter(
         self,
         meter,
@@ -907,12 +743,12 @@ class Mutation(AbjadObject):
                 >>> abjad.f(staff)
                 \new Staff
                 {
-                    {   % measure
+                    {
                         \time 2/4
                         c'2
                         ~
-                    }   % measure
-                    {   % measure
+                    }
+                    {
                         \time 4/4
                         c'32
                         d'2..
@@ -920,11 +756,11 @@ class Mutation(AbjadObject):
                         d'16
                         e'32
                         ~
-                    }   % measure
-                    {   % measure
+                    }
+                    {
                         \time 2/4
                         e'2
-                    }   % measure
+                    }
                 }
 
             >>> meter = abjad.Meter((4, 4))
@@ -943,12 +779,12 @@ class Mutation(AbjadObject):
                 >>> abjad.f(staff)
                 \new Staff
                 {
-                    {   % measure
+                    {
                         \time 2/4
                         c'2
                         ~
-                    }   % measure
-                    {   % measure
+                    }
+                    {
                         \time 4/4
                         c'32
                         d'8..
@@ -958,11 +794,11 @@ class Mutation(AbjadObject):
                         d'8..
                         e'32
                         ~
-                    }   % measure
-                    {   % measure
+                    }
+                    {
                         \time 2/4
                         e'2
-                    }   % measure
+                    }
                 }
 
         ..  container:: example
@@ -977,12 +813,12 @@ class Mutation(AbjadObject):
                 >>> abjad.f(staff)
                 \new Staff
                 {
-                    {   % measure
+                    {
                         \time 2/4
                         c'2
                         ~
-                    }   % measure
-                    {   % measure
+                    }
+                    {
                         \time 4/4
                         c'32
                         d'2..
@@ -990,11 +826,11 @@ class Mutation(AbjadObject):
                         d'16
                         e'32
                         ~
-                    }   % measure
-                    {   % measure
+                    }
+                    {
                         \time 2/4
                         e'2
-                    }   % measure
+                    }
                 }
 
             >>> rtm = '(4/4 ((2/4 (1/4 1/4)) (2/4 (1/4 1/4))))'
@@ -1016,12 +852,12 @@ class Mutation(AbjadObject):
                 >>> abjad.f(staff)
                 \new Staff
                 {
-                    {   % measure
+                    {
                         \time 2/4
                         c'2
                         ~
-                    }   % measure
-                    {   % measure
+                    }
+                    {
                         \time 4/4
                         c'32
                         d'4...
@@ -1029,11 +865,11 @@ class Mutation(AbjadObject):
                         d'4...
                         e'32
                         ~
-                    }   % measure
-                    {   % measure
+                    }
+                    {
                         \time 2/4
                         e'2
-                    }   % measure
+                    }
                 }
 
         ..  container:: example
@@ -1042,127 +878,158 @@ class Mutation(AbjadObject):
             ``maximum_dot_count``:
 
             >>> string = "abj: | 3/4 c'32 d'8 e'8 fs'4... |"
-            >>> measure = abjad.parse(string)
-            >>> abjad.show(measure) # doctest: +SKIP
+            >>> staff = abjad.Staff(string)
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(measure)
-                {   % measure
-                    \time 3/4
-                    c'32
-                    d'8
-                    e'8
-                    fs'4...
-                }   % measure
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    {
+                        \time 3/4
+                        c'32
+                        d'8
+                        e'8
+                        fs'4...
+                    }
+                }
 
             Without constraining the ``maximum_dot_count``:
 
-            >>> abjad.mutate(measure[:]).rewrite_meter(measure)
-            >>> abjad.show(measure) # doctest: +SKIP
+            >>> measure = staff[0]
+            >>> time_signature = abjad.inspect(measure[0]).indicator(
+            ...     abjad.TimeSignature
+            ...     )
+            >>> abjad.mutate(measure[:]).rewrite_meter(time_signature)
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(measure)
-                {   % measure
-                    \time 3/4
-                    c'32
-                    d'16.
-                    ~
-                    d'32
-                    e'16.
-                    ~
-                    e'32
-                    fs'4...
-                }   % measure
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    {
+                        \time 3/4
+                        c'32
+                        d'16.
+                        ~
+                        d'32
+                        e'16.
+                        ~
+                        e'32
+                        fs'4...
+                    }
+                }
 
             Constraining the ``maximum_dot_count`` to ``2``:
 
-            >>> measure = abjad.parse(string)
+            >>> staff = abjad.Staff(string)
+            >>> measure = staff[0]
+            >>> time_signature = abjad.inspect(measure[0]).indicator(
+            ...     abjad.TimeSignature
+            ...     )
             >>> abjad.mutate(measure[:]).rewrite_meter(
-            ...     measure,
+            ...     time_signature,
             ...     maximum_dot_count=2,
             ...     )
-            >>> abjad.show(measure) # doctest: +SKIP
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(measure)
-                {   % measure
-                    \time 3/4
-                    c'32
-                    d'16.
-                    ~
-                    d'32
-                    e'16.
-                    ~
-                    e'32
-                    fs'8..
-                    ~
-                    fs'4
-                }   % measure
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    {
+                        \time 3/4
+                        c'32
+                        d'16.
+                        ~
+                        d'32
+                        e'16.
+                        ~
+                        e'32
+                        fs'8..
+                        ~
+                        fs'4
+                    }
+                }
 
             Constraining the ``maximum_dot_count`` to ``1``:
 
-            >>> measure = abjad.parse(string)
+            >>> staff = abjad.Staff(string)
+            >>> measure = staff[0]
+            >>> time_signature = abjad.inspect(measure[0]).indicator(
+            ...     abjad.TimeSignature
+            ...     )
             >>> abjad.mutate(measure[:]).rewrite_meter(
-            ...     measure,
+            ...     time_signature,
             ...     maximum_dot_count=1,
             ...     )
-            >>> abjad.show(measure) # doctest: +SKIP
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(measure)
-                {   % measure
-                    \time 3/4
-                    c'32
-                    d'16.
-                    ~
-                    d'32
-                    e'16.
-                    ~
-                    e'32
-                    fs'16.
-                    ~
-                    fs'8
-                    ~
-                    fs'4
-                }   % measure
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    {
+                        \time 3/4
+                        c'32
+                        d'16.
+                        ~
+                        d'32
+                        e'16.
+                        ~
+                        e'32
+                        fs'16.
+                        ~
+                        fs'8
+                        ~
+                        fs'4
+                    }
+                }
 
             Constraining the ``maximum_dot_count`` to ``0``:
 
-            >>> measure = abjad.parse(string)
+            >>> staff = abjad.Staff(string)
+            >>> measure = staff[0]
+            >>> time_signature = abjad.inspect(measure[0]).indicator(
+            ...     abjad.TimeSignature
+            ...     )
             >>> abjad.mutate(measure[:]).rewrite_meter(
-            ...     measure,
+            ...     time_signature,
             ...     maximum_dot_count=0,
             ...     )
-            >>> abjad.show(measure) # doctest: +SKIP
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(measure)
-                {   % measure
-                    \time 3/4
-                    c'32
-                    d'16
-                    ~
-                    d'32
-                    ~
-                    d'32
-                    e'16
-                    ~
-                    e'32
-                    ~
-                    e'32
-                    fs'16
-                    ~
-                    fs'32
-                    ~
-                    fs'8
-                    ~
-                    fs'4
-                }   % measure
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    {
+                        \time 3/4
+                        c'32
+                        d'16
+                        ~
+                        d'32
+                        ~
+                        d'32
+                        e'16
+                        ~
+                        e'32
+                        ~
+                        e'32
+                        fs'16
+                        ~
+                        fs'32
+                        ~
+                        fs'8
+                        ~
+                        fs'4
+                    }
+                }
 
         ..  container:: example
 
@@ -1192,82 +1059,106 @@ class Mutation(AbjadObject):
             a ``boundary_depth``:
 
             >>> string = "abj: | 9/8 c'2 d'2 e'8 |"
-            >>> measure = abjad.parse(string)
-            >>> abjad.show(measure) # doctest: +SKIP
+            >>> staff = abjad.Staff(string)
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(measure)
-                {   % measure
-                    \time 9/8
-                    c'2
-                    d'2
-                    e'8
-                }   % measure
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    {
+                        \time 9/8
+                        c'2
+                        d'2
+                        e'8
+                    }
+                }
 
-            >>> abjad.mutate(measure[:]).rewrite_meter(measure)
-            >>> abjad.show(measure) # doctest: +SKIP
+            >>> measure = staff[0]
+            >>> time_signature = abjad.inspect(measure[0]).indicator(
+            ...     abjad.TimeSignature
+            ...     )
+            >>> abjad.mutate(measure[:]).rewrite_meter(time_signature)
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(measure)
-                {   % measure
-                    \time 9/8
-                    c'2
-                    d'4
-                    ~
-                    d'4
-                    e'8
-                }   % measure
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    {
+                        \time 9/8
+                        c'2
+                        d'4
+                        ~
+                        d'4
+                        e'8
+                    }
+                }
 
             With a ``boundary_depth`` of `1`, logical ties which cross any
             offsets created by nodes with a depth of `1` in this Meter's rhythm
             tree - i.e.  `0/8`, `3/8`, `6/8` and `9/8` - which do not also
             begin and end at any of those offsets, will be split:
 
-            >>> measure = abjad.parse(string)
+            >>> staff = abjad.Staff(string)
+            >>> measure = staff[0]
+            >>> time_signature = abjad.inspect(measure[0]).indicator(
+            ...     abjad.TimeSignature
+            ...     )
             >>> abjad.mutate(measure[:]).rewrite_meter(
-            ...     measure,
+            ...     time_signature,
             ...     boundary_depth=1,
             ...     )
-            >>> abjad.show(measure) # doctest: +SKIP
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(measure)
-                {   % measure
-                    \time 9/8
-                    c'4.
-                    ~
-                    c'8
-                    d'4
-                    ~
-                    d'4
-                    e'8
-                }   % measure
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    {
+                        \time 9/8
+                        c'4.
+                        ~
+                        c'8
+                        d'4
+                        ~
+                        d'4
+                        e'8
+                    }
+                }
 
             For this `9/8` meter, and this input notation, A ``boundary_depth``
             of `2` causes no change, as all logical ties already align to
             multiples of `1/8`:
 
-            >>> measure = abjad.parse(string)
+            >>> staff = abjad.Staff(string)
+            >>> measure = staff[0]
+            >>> time_signature = abjad.inspect(measure[0]).indicator(
+            ...     abjad.TimeSignature
+            ...     )
             >>> abjad.mutate(measure[:]).rewrite_meter(
-            ...     measure,
+            ...     time_signature,
             ...     boundary_depth=2,
             ...     )
-            >>> abjad.show(measure) # doctest: +SKIP
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(measure)
-                {   % measure
-                    \time 9/8
-                    c'2
-                    d'4
-                    ~
-                    d'4
-                    e'8
-                }   % measure
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    {
+                        \time 9/8
+                        c'2
+                        d'4
+                        ~
+                        d'4
+                        e'8
+                    }
+                }
 
         ..  container:: example
 
@@ -1315,31 +1206,35 @@ class Mutation(AbjadObject):
                         \consists Default_bar_line_engraver
                     }
                     {
-                        {   % measure
+                        {
                             \time 3/4
                             c'2
                             c'4
-                        }   % measure
-                        {   % measure
+                        }
+                        {
+                            \time 3/4
                             c'4
                             c'2
-                        }   % measure
-                        {   % measure
+                        }
+                        {
+                            \time 3/4
                             c'4.
                             c'4.
-                        }   % measure
-                        {   % measure
+                        }
+                        {
+                            \time 3/4
                             c'2
                             ~
                             c'8
                             c'8
-                        }   % measure
-                        {   % measure
+                        }
+                        {
+                            \time 3/4
                             c'8
                             c'8
                             ~
                             c'2
-                        }   % measure
+                        }
                     }
                     \new Staff
                     \with
@@ -1349,38 +1244,47 @@ class Mutation(AbjadObject):
                         \consists Default_bar_line_engraver
                     }
                     {
-                        {   % measure
+                        {
                             \time 6/8
                             c'2
                             c'4
-                        }   % measure
-                        {   % measure
+                        }
+                        {
+                            \time 6/8
                             c'4
                             c'2
-                        }   % measure
-                        {   % measure
+                        }
+                        {
+                            \time 6/8
                             c'4.
                             c'4.
-                        }   % measure
-                        {   % measure
+                        }
+                        {
+                            \time 6/8
                             c'2
                             ~
                             c'8
                             c'8
-                        }   % measure
-                        {   % measure
+                        }
+                        {
+                            \time 6/8
                             c'8
                             c'8
                             ~
                             c'2
-                        }   % measure
+                        }
                     }
                 >>
 
             Here we establish a meter without specifying any boundary depth:
 
-            >>> for measure in abjad.iterate(score).components(abjad.Measure):
-            ...     abjad.mutate(measure[:]).rewrite_meter(measure)
+            >>> for staff in score:
+            ...     for container in staff:
+            ...         leaf = abjad.inspect(container).leaf(0)
+            ...         time_signature = abjad.inspect(leaf).indicator(
+            ...             abjad.TimeSignature
+            ...             )
+            ...         abjad.mutate(container[:]).rewrite_meter(time_signature)
             ...
             >>> abjad.show(score) # doctest: +SKIP
 
@@ -1403,31 +1307,35 @@ class Mutation(AbjadObject):
                         \consists Default_bar_line_engraver
                     }
                     {
-                        {   % measure
+                        {
                             \time 3/4
                             c'2
                             c'4
-                        }   % measure
-                        {   % measure
+                        }
+                        {
+                            \time 3/4
                             c'4
                             c'2
-                        }   % measure
-                        {   % measure
+                        }
+                        {
+                            \time 3/4
                             c'4.
                             c'4.
-                        }   % measure
-                        {   % measure
+                        }
+                        {
+                            \time 3/4
                             c'2
                             ~
                             c'8
                             c'8
-                        }   % measure
-                        {   % measure
+                        }
+                        {
+                            \time 3/4
                             c'8
                             c'8
                             ~
                             c'2
-                        }   % measure
+                        }
                     }
                     \new Staff
                     \with
@@ -1437,41 +1345,50 @@ class Mutation(AbjadObject):
                         \consists Default_bar_line_engraver
                     }
                     {
-                        {   % measure
+                        {
                             \time 6/8
                             c'2
                             c'4
-                        }   % measure
-                        {   % measure
+                        }
+                        {
+                            \time 6/8
                             c'4
                             c'2
-                        }   % measure
-                        {   % measure
+                        }
+                        {
+                            \time 6/8
                             c'4.
                             c'4.
-                        }   % measure
-                        {   % measure
+                        }
+                        {
+                            \time 6/8
                             c'4.
                             ~
                             c'4
                             c'8
-                        }   % measure
-                        {   % measure
+                        }
+                        {
+                            \time 6/8
                             c'8
                             c'4
                             ~
                             c'4.
-                        }   % measure
+                        }
                     }
                 >>
 
             Here we reestablish meter at a boundary depth of `1`:
 
-            >>> for measure in abjad.iterate(score).components(abjad.Measure):
-            ...     abjad.mutate(measure[:]).rewrite_meter(
-            ...         measure,
-            ...         boundary_depth=1,
-            ...         )
+            >>> for staff in score:
+            ...     for container in staff:
+            ...         leaf = abjad.inspect(container).leaf(0)
+            ...         time_signature = abjad.inspect(leaf).indicator(
+            ...             abjad.TimeSignature
+            ...             )
+            ...         abjad.mutate(container[:]).rewrite_meter(
+            ...             time_signature,
+            ...             boundary_depth=1,
+            ...             )
             ...
             >>> abjad.show(score) # doctest: +SKIP
 
@@ -1494,35 +1411,39 @@ class Mutation(AbjadObject):
                         \consists Default_bar_line_engraver
                     }
                     {
-                        {   % measure
+                        {
                             \time 3/4
                             c'2
                             c'4
-                        }   % measure
-                        {   % measure
+                        }
+                        {
+                            \time 3/4
                             c'4
                             c'2
-                        }   % measure
-                        {   % measure
+                        }
+                        {
+                            \time 3/4
                             c'4
                             ~
                             c'8
                             c'8
                             ~
                             c'4
-                        }   % measure
-                        {   % measure
+                        }
+                        {
+                            \time 3/4
                             c'2
                             ~
                             c'8
                             c'8
-                        }   % measure
-                        {   % measure
+                        }
+                        {
+                            \time 3/4
                             c'8
                             c'8
                             ~
                             c'2
-                        }   % measure
+                        }
                     }
                     \new Staff
                     \with
@@ -1532,35 +1453,39 @@ class Mutation(AbjadObject):
                         \consists Default_bar_line_engraver
                     }
                     {
-                        {   % measure
+                        {
                             \time 6/8
                             c'4.
                             ~
                             c'8
                             c'4
-                        }   % measure
-                        {   % measure
+                        }
+                        {
+                            \time 6/8
                             c'4
                             c'8
                             ~
                             c'4.
-                        }   % measure
-                        {   % measure
+                        }
+                        {
+                            \time 6/8
                             c'4.
                             c'4.
-                        }   % measure
-                        {   % measure
+                        }
+                        {
+                            \time 6/8
                             c'4.
                             ~
                             c'4
                             c'8
-                        }   % measure
-                        {   % measure
+                        }
+                        {
+                            \time 6/8
                             c'8
                             c'4
                             ~
                             c'4.
-                        }   % measure
+                        }
                     }
                 >>
 
@@ -1574,32 +1499,35 @@ class Mutation(AbjadObject):
             >>> string = "abj: | 4/4 c'16 ~ c'4 d'8. ~ "
             >>> string += "2/3 { d'8. ~ 3/5 { d'16 e'8. f'16 ~ } } "
             >>> string += "f'4 |"
-            >>> measure = abjad.parse(string)
-            >>> abjad.show(measure) # doctest: +SKIP
+            >>> staff = abjad.Staff(string)
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(measure)
-                {   % measure
-                    \time 4/4
-                    c'16
-                    ~
-                    c'4
-                    d'8.
-                    ~
-                    \times 2/3 {
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    {
+                        \time 4/4
+                        c'16
+                        ~
+                        c'4
                         d'8.
                         ~
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \times 3/5 {
-                            d'16
-                            e'8.
-                            f'16
+                        \times 2/3 {
+                            d'8.
                             ~
+                            \tweak text #tuplet-number::calc-fraction-text
+                            \times 3/5 {
+                                d'16
+                                e'8.
+                                f'16
+                                ~
+                            }
                         }
+                        f'4
                     }
-                    f'4
-                }   % measure
+                }
 
             When establishing a meter on a selection of components which
             contain containers, like tuplets or containers, ``rewrite_meter()``
@@ -1607,39 +1535,46 @@ class Mutation(AbjadObject):
             time signature is derived from the preprolated preprolated_duration
             of the container's contents:
 
+            >>> measure = staff[0]
+            >>> time_signature = abjad.inspect(measure[0]).indicator(
+            ...     abjad.TimeSignature
+            ...     )
             >>> abjad.mutate(measure[:]).rewrite_meter(
-            ...     measure,
+            ...     time_signature,
             ...     boundary_depth=1,
             ...     )
-            >>> abjad.show(measure) # doctest: +SKIP
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(measure)
-                {   % measure
-                    \time 4/4
-                    c'4
-                    ~
-                    c'16
-                    d'8.
-                    ~
-                    \times 2/3 {
-                        d'8
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    {
+                        \time 4/4
+                        c'4
                         ~
-                        d'16
+                        c'16
+                        d'8.
                         ~
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \times 3/5 {
+                        \times 2/3 {
+                            d'8
+                            ~
                             d'16
-                            e'8
                             ~
-                            e'16
-                            f'16
-                            ~
+                            \tweak text #tuplet-number::calc-fraction-text
+                            \times 3/5 {
+                                d'16
+                                e'8
+                                ~
+                                e'16
+                                f'16
+                                ~
+                            }
                         }
+                        f'4
                     }
-                    f'4
-                }   % measure
+                }
 
         ..  container:: example
 
@@ -1647,34 +1582,38 @@ class Mutation(AbjadObject):
             measure because the first note in the measure starts at the
             beginning of a level-0 beat in meter:
 
-            >>> measure = abjad.Measure((6, 8), "c'4.. c'16 ~ c'4")
+            >>> staff = abjad.Staff("c'4.. c'16 ~ c'4")
+            >>> abjad.attach(abjad.TimeSignature((6, 8)), staff[0])
             >>> meter = abjad.Meter((6, 8))
-            >>> abjad.mutate(measure[:]).rewrite_meter(meter)
-            >>> abjad.show(measure) # doctest: +SKIP
+            >>> abjad.mutate(staff[:]).rewrite_meter(meter)
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(measure)
-                {   % measure
+                >>> abjad.f(staff)
+                \new Staff
+                {
                     \time 6/8
                     c'4..
                     c'16
                     ~
                     c'4
-                }   % measure
+                }
 
             Setting boundary depth to 1 subdivides the first note in this
             measure:
 
-            >>> measure = abjad.Measure((6, 8), "c'4.. c'16 ~ c'4")
+            >>> staff = abjad.Staff("c'4.. c'16 ~ c'4")
+            >>> abjad.attach(abjad.TimeSignature((6, 8)), staff[0])
             >>> meter = abjad.Meter((6, 8))
-            >>> abjad.mutate(measure[:]).rewrite_meter(meter, boundary_depth=1)
-            >>> abjad.show(measure) # doctest: +SKIP
+            >>> abjad.mutate(staff[:]).rewrite_meter(meter, boundary_depth=1)
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(measure)
-                {   % measure
+                >>> abjad.f(staff)
+                \new Staff
+                {
                     \time 6/8
                     c'4.
                     ~
@@ -1682,23 +1621,25 @@ class Mutation(AbjadObject):
                     c'16
                     ~
                     c'4
-                }   % measure
+                }
 
             Another way of doing this is by setting preferred boundary depth on
             the meter itself:
 
-            >>> measure = abjad.Measure((6, 8), "c'4.. c'16 ~ c'4")
+            >>> staff = abjad.Staff("c'4.. c'16 ~ c'4")
+            >>> abjad.attach(abjad.TimeSignature((6, 8)), staff[0])
             >>> meter = abjad.Meter(
             ...     (6, 8),
             ...     preferred_boundary_depth=1,
             ...     )
-            >>> abjad.mutate(measure[:]).rewrite_meter(meter)
-            >>> abjad.show(measure) # doctest: +SKIP
+            >>> abjad.mutate(staff[:]).rewrite_meter(meter)
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(measure)
-                {   % measure
+                >>> abjad.f(staff)
+                \new Staff
+                {
                     \time 6/8
                     c'4.
                     ~
@@ -1706,7 +1647,7 @@ class Mutation(AbjadObject):
                     c'16
                     ~
                     c'4
-                }   % measure
+                }
 
             This makes it possible to divide different meters in different
             ways.
@@ -1715,31 +1656,34 @@ class Mutation(AbjadObject):
 
             Uses repeat ties:
 
-            >>> measure = abjad.Measure((4, 4), "c'4. c'4. c'4")
-            >>> abjad.show(measure) # doctest: +SKIP
+            >>> staff = abjad.Staff("c'4. c'4. c'4")
+            >>> abjad.attach(abjad.TimeSignature((4, 4)), staff[0])
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(measure)
-                {   % measure
+                >>> abjad.f(staff)
+                \new Staff
+                {
                     \time 4/4
                     c'4.
                     c'4.
                     c'4
-                }   % measure
+                }
 
             >>> meter = abjad.Meter((4, 4))
-            >>> abjad.mutate(measure[:]).rewrite_meter(
+            >>> abjad.mutate(staff[:]).rewrite_meter(
             ...     meter,
             ...     boundary_depth=1,
             ...     repeat_ties=True,
             ...     )
-            >>> abjad.show(measure) # doctest: +SKIP
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(measure)
-                {   % measure
+                >>> abjad.f(staff)
+                \new Staff
+                {
                     \time 4/4
                     c'4
                     c'8
@@ -1748,27 +1692,23 @@ class Mutation(AbjadObject):
                     c'4
                     \repeatTie
                     c'4
-                }   % measure
+                }
 
         ..  container:: example
 
             Rewrites notes and tuplets:
 
-            >>> measure = abjad.Measure((6, 4), [
-            ...     abjad.Note("c'4."),
-            ...     abjad.Tuplet((6, 7), "c'4. r16"),
-            ...     abjad.Tuplet((6, 7), "r16 c'4."),
-            ...     abjad.Note("c'4."),
-            ...     ])
             >>> string = r"c'8 ~ c'8 ~ c'8 \times 6/7 { c'4. r16 }"
             >>> string += r" \times 6/7 { r16 c'4. } c'8 ~ c'8 ~ c'8"
-            >>> measure = abjad.Measure((6, 4), string)
-            >>> abjad.show(measure) # doctest: +SKIP
+            >>> staff = abjad.Staff(string)
+            >>> abjad.attach(abjad.TimeSignature((6, 4)), staff[0])
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(measure)
-                {   % measure
+                >>> abjad.f(staff)
+                \new Staff
+                {
                     \time 6/4
                     c'8
                     ~
@@ -1790,19 +1730,20 @@ class Mutation(AbjadObject):
                     c'8
                     ~
                     c'8
-                }   % measure
+                }
 
             >>> meter = abjad.Meter((6, 4))
-            >>> abjad.mutate(measure[:]).rewrite_meter(
+            >>> abjad.mutate(staff[:]).rewrite_meter(
             ...     meter,
             ...     boundary_depth=1,
             ...     )
-            >>> abjad.show(measure) # doctest: +SKIP
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(measure)
-                {   % measure
+                >>> abjad.f(staff)
+                \new Staff
+                {
                     \time 6/4
                     c'4.
                     \tweak text #tuplet-number::calc-fraction-text
@@ -1822,28 +1763,24 @@ class Mutation(AbjadObject):
                         c'4
                     }
                     c'4.
-                }   % measure
+                }
 
             The tied note rewriting is good while the tuplet rewriting
             could use some adjustment.
 
             Rewrites notes but not tuplets:
 
-            >>> measure = abjad.Measure((6, 4), [
-            ...     abjad.Note("c'4."),
-            ...     abjad.Tuplet((6, 7), "c'4. r16"),
-            ...     abjad.Tuplet((6, 7), "r16 c'4."),
-            ...     abjad.Note("c'4."),
-            ...     ])
             >>> string = r"c'8 ~ c'8 ~ c'8 \times 6/7 { c'4. r16 }"
             >>> string += r" \times 6/7 { r16 c'4. } c'8 ~ c'8 ~ c'8"
-            >>> measure = abjad.Measure((6, 4), string)
-            >>> abjad.show(measure) # doctest: +SKIP
+            >>> staff = abjad.Staff(string)
+            >>> abjad.attach(abjad.TimeSignature((6, 4)), staff[0])
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(measure)
-                {   % measure
+                >>> abjad.f(staff)
+                \new Staff
+                {
                     \time 6/4
                     c'8
                     ~
@@ -1865,20 +1802,21 @@ class Mutation(AbjadObject):
                     c'8
                     ~
                     c'8
-                }   % measure
+                }
 
             >>> meter = abjad.Meter((6, 4))
-            >>> abjad.mutate(measure[:]).rewrite_meter(
+            >>> abjad.mutate(staff[:]).rewrite_meter(
             ...     meter,
             ...     boundary_depth=1,
             ...     rewrite_tuplets=False,
             ...     )
-            >>> abjad.show(measure) # doctest: +SKIP
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(measure)
-                {   % measure
+                >>> abjad.f(staff)
+                \new Staff
+                {
                     \time 6/4
                     c'4.
                     \tweak text #tuplet-number::calc-fraction-text
@@ -1892,7 +1830,7 @@ class Mutation(AbjadObject):
                         c'4.
                     }
                     c'4.
-                }   % measure
+                }
 
         Operates in place and returns none.
         """
@@ -1900,6 +1838,10 @@ class Mutation(AbjadObject):
         if isinstance(selection, Container):
             selection = selection[:]
         assert isinstance(selection, Selection)
+        if isinstance(meter, TimeSignature):
+            meter = Meter(meter)
+        if not isinstance(meter, Meter):
+            raise Exception(f'must be meter or time signature (not {meter}).')
         result = Meter._rewrite_meter(
             selection,
             meter,
@@ -3275,11 +3217,12 @@ class Mutation(AbjadObject):
 
         ..  container:: example
 
-            Swaps measures for tuplet:
+            Swaps containers for tuplet:
 
             >>> staff = abjad.Staff()
-            >>> staff.append(abjad.Measure((3, 4), "c'4 d'4 e'4"))
-            >>> staff.append(abjad.Measure((3, 4), "d'4 e'4 f'4"))
+            >>> staff.append(abjad.Container("c'4 d'4 e'4"))
+            >>> staff.append(abjad.Container("d'4 e'4 f'4"))
+            >>> abjad.attach(abjad.TimeSignature((3, 4)), staff[0][0])
             >>> leaves = abjad.select(staff).leaves()
             >>> hairpin = abjad.Hairpin('p < f')
             >>> abjad.attach(hairpin, leaves)
@@ -3293,7 +3236,7 @@ class Mutation(AbjadObject):
                 >>> abjad.f(staff)
                 \new Staff
                 {
-                    {   % measure
+                    {
                         \time 3/4
                         c'4
                         \<
@@ -3301,20 +3244,20 @@ class Mutation(AbjadObject):
                         (
                         d'4
                         e'4
-                    }   % measure
-                    {   % measure
+                    }
+                    {
                         d'4
                         e'4
                         f'4
                         \f
                         )
-                    }   % measure
+                    }
                 }
 
-            >>> measures = staff[:]
+            >>> containers = staff[:]
             >>> tuplet = abjad.Tuplet((2, 3), [])
             >>> tuplet.denominator = 4
-            >>> abjad.mutate(measures).swap(tuplet)
+            >>> abjad.mutate(containers).swap(tuplet)
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -3323,6 +3266,7 @@ class Mutation(AbjadObject):
                 \new Staff
                 {
                     \times 4/6 {
+                        \time 3/4
                         c'4
                         \<
                         \p
@@ -3361,29 +3305,27 @@ class Mutation(AbjadObject):
             Transposes notes and chords in staff:
 
             >>> staff = abjad.Staff()
-            >>> staff.append(abjad.Measure((4, 4), "c'4 d'4 e'4 r4"))
-            >>> staff.append(abjad.Measure((3, 4), "d'4 e'4 <f' a' c''>4"))
+            >>> staff.extend("c'4 d'4 e'4 r4")
+            >>> abjad.attach(abjad.TimeSignature((4, 4)), staff[0])
+            >>> staff.extend("d'4 e'4 <f' a' c''>4")
+            >>> abjad.attach(abjad.TimeSignature((3, 4)), staff[4])
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                    >>> abjad.f(staff)
-                    \new Staff
-                    {
-                        {   % measure
-                            \time 4/4
-                            c'4
-                            d'4
-                            e'4
-                            r4
-                        }   % measure
-                        {   % measure
-                            \time 3/4
-                            d'4
-                            e'4
-                            <f' a' c''>4
-                        }   % measure
-                    }
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    \time 4/4
+                    c'4
+                    d'4
+                    e'4
+                    r4
+                    \time 3/4
+                    d'4
+                    e'4
+                    <f' a' c''>4
+                }
 
             >>> abjad.mutate(staff).transpose("+m3")
             >>> abjad.show(staff) # doctest: +SKIP
@@ -3393,19 +3335,15 @@ class Mutation(AbjadObject):
                 >>> abjad.f(staff)
                 \new Staff
                 {
-                    {   % measure
-                        \time 4/4
-                        ef'4
-                        f'4
-                        g'4
-                        r4
-                    }   % measure
-                    {   % measure
-                        \time 3/4
-                        f'4
-                        g'4
-                        <af' c'' ef''>4
-                    }   % measure
+                    \time 4/4
+                    ef'4
+                    f'4
+                    g'4
+                    r4
+                    \time 3/4
+                    f'4
+                    g'4
+                    <af' c'' ef''>4
                 }
 
         Returns none.
@@ -3505,26 +3443,27 @@ class Mutation(AbjadObject):
 
         ..  container:: example
 
-            Wraps leaves in measure:
+            Wraps leaves in container:
 
             >>> notes = [abjad.Note(n, (1, 8)) for n in range(8)]
-            >>> voice = abjad.Voice(notes)
-            >>> measure = abjad.Measure((4, 8), [])
-            >>> abjad.mutate(voice[:4]).wrap(measure)
-            >>> abjad.show(voice) # doctest: +SKIP
+            >>> staff = abjad.Staff(notes)
+            >>> abjad.attach(abjad.TimeSignature((4, 8)), staff[0])
+            >>> container = abjad.Container()
+            >>> abjad.mutate(staff[:4]).wrap(container)
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(voice)
-                \new Voice
+                >>> abjad.f(staff)
+                \new Staff
                 {
-                    {   % measure
+                    {
                         \time 4/8
                         c'8
                         cs'8
                         d'8
                         ef'8
-                    }   % measure
+                    }
                     e'8
                     f'8
                     fs'8
@@ -3533,13 +3472,13 @@ class Mutation(AbjadObject):
 
         ..  container:: example
 
-            Wraps each leaf in measure:
+            Wraps each leaf in tuplet:
 
             >>> notes = [abjad.Note(n, (1, 1)) for n in range(4)]
             >>> staff = abjad.Staff(notes)
             >>> for note in staff:
-            ...     measure = abjad.Measure((1, 1), [])
-            ...     abjad.mutate(note).wrap(measure)
+            ...     tuplet = abjad.Tuplet((2, 3))
+            ...     abjad.mutate(note).wrap(tuplet)
             ...
 
             ..  docs::
@@ -3547,19 +3486,22 @@ class Mutation(AbjadObject):
                 >>> abjad.f(staff)
                 \new Staff
                 {
-                    {   % measure
-                        \time 1/1
+                    \tweak edge-height #'(0.7 . 0)
+                    \times 2/3 {
                         c'1
-                    }   % measure
-                    {   % measure
+                    }
+                    \tweak edge-height #'(0.7 . 0)
+                    \times 2/3 {
                         cs'1
-                    }   % measure
-                    {   % measure
+                    }
+                    \tweak edge-height #'(0.7 . 0)
+                    \times 2/3 {
                         d'1
-                    }   % measure
-                    {   % measure
+                    }
+                    \tweak edge-height #'(0.7 . 0)
+                    \times 2/3 {
                         ef'1
-                    }   % measure
+                    }
                 }
 
         ..  container:: example

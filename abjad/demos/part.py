@@ -172,19 +172,20 @@ def add_bell_music_to_score(score):
     def make_bell_phrase():
         phrase = []
         for _ in range(3):
-            measure = abjad.Measure((6, 4), r"r2. a'2.")
+            measure = abjad.Container("r2. a'2.")
+            abjad.attach(abjad.TimeSignature((6, 4)), measure[0])
             abjad.attach(abjad.LaissezVibrer(), measure[-1])
             phrase.append(measure)
-            phrase.append(abjad.Measure((6, 4), 'R1.'))
+            phrase.append(abjad.Container('R1.'))
         for _ in range(2):
-            phrase.append(abjad.Measure((6, 4), 'R1.'))
+            phrase.append(abjad.Container('R1.'))
         return phrase
     bell_voice = score['Bell Voice']
     for _ in range(11):
         bell_voice.extend(make_bell_phrase())
     for _ in range(19):
-        bell_voice.append(abjad.Measure((6, 4), 'R1.'))
-    measure = abjad.Measure((6, 4), r"a'1.")
+        bell_voice.append(abjad.Container('R1.'))
+    measure = abjad.Container(r"a'1.")
     abjad.attach(abjad.LaissezVibrer(), measure[-1])
     bell_voice.append(measure)
 
@@ -217,8 +218,8 @@ def add_string_music_to_score(score):
         for voice in abjad.iterate(strings_staff_group).components(abjad.Voice):
             shards = abjad.mutate(voice[:]).split([(6, 4)], cyclic=True)
             for shard in shards:
-                measure = abjad.Measure((6, 4), [])
-                abjad.mutate(shard).wrap(measure)
+                container = abjad.Container()
+                abjad.mutate(shard).wrap(container)
 
 
 def edit_first_violin_voice(score, durated_reservoir):
