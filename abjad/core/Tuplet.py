@@ -1127,7 +1127,7 @@ class Tuplet(Container):
         duration,
         ratio,
         *,
-        decrease_monotonic: bool = True,
+        increase_monotonic: bool = None,
         tag: str = None,
         ) -> 'Tuplet':
         r"""
@@ -1191,12 +1191,12 @@ class Tuplet(Container):
                 }   % measure
 
             Interprets nonassignable ``ratio`` according to
-            ``decrease_monotonic``:
+            ``increase_monotonic``:
 
             >>> tuplet = abjad.Tuplet.from_duration_and_ratio(
             ...     abjad.Duration(3, 16),
             ...     abjad.Ratio((5, -1, 5)),
-            ...     decrease_monotonic=False,
+            ...     increase_monotonic=True,
             ...     )
             >>> staff = abjad.Staff(
             ...     [abjad.Measure((3, 16), [tuplet])],
@@ -1246,12 +1246,12 @@ class Tuplet(Container):
                 }   % measure
 
             Interprets nonassignable ``ratio`` according to
-            ``decrease_monotonic``:
+            ``increase_monotonic``:
 
             >>> tuplet = abjad.Tuplet.from_duration_and_ratio(
             ...     abjad.Duration(3, 16),
             ...     abjad.Ratio((5, -1, 5)),
-            ...     decrease_monotonic=False,
+            ...     increase_monotonic=True,
             ...     )
             >>> staff = abjad.Staff(
             ...     [abjad.Measure((3, 16), [tuplet])],
@@ -1332,12 +1332,12 @@ class Tuplet(Container):
                 }   % measure
 
             Interprets nonassignable ``ratio`` according to
-            ``decrease_monotonic``:
+            ``increase_monotonic``:
 
             >>> tuplet = abjad.Tuplet.from_duration_and_ratio(
             ...     abjad.Duration(3, 16),
             ...     abjad.Ratio((5, -1, 5)),
-            ...     decrease_monotonic=False,
+            ...     increase_monotonic=True,
             ...     )
             >>> staff = abjad.Staff(
             ...     [abjad.Measure((3, 16), [tuplet])],
@@ -1391,7 +1391,7 @@ class Tuplet(Container):
             >>> tuplet = abjad.Tuplet.from_duration_and_ratio(
             ...     abjad.Duration(3, 16),
             ...     abjad.Ratio((5, -1, 5)),
-            ...     decrease_monotonic=False,
+            ...     increase_monotonic=True,
             ...     )
             >>> staff = abjad.Staff(
             ...     [abjad.Measure((3, 16), [tuplet])],
@@ -1414,8 +1414,6 @@ class Tuplet(Container):
         Reduces ``ratio`` relative to each other.
 
         Interprets negative ``ratio`` as rests.
-
-        Returns tuplet.
         """
         duration = Duration(duration)
         ratio = Ratio(ratio)
@@ -1424,7 +1422,7 @@ class Tuplet(Container):
             basic_prolated_duration.equal_or_greater_assignable
         written_durations = [x * basic_written_duration for x in ratio.numbers]
         leaf_maker = LeafMaker(
-            decrease_monotonic=decrease_monotonic,
+            increase_monotonic=increase_monotonic,
             tag=tag,
             )
         try:

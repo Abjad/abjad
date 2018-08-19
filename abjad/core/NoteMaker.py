@@ -89,10 +89,10 @@ class NoteMaker(AbjadValueObject):
 
     ..  container:: example
 
-        Set ``decrease_monotonic=True`` to express tied values in decreasing
+        Set ``increase_monotonic=False`` to express tied values in decreasing
         duration:
 
-        >>> maker = abjad.NoteMaker(decrease_monotonic=True)
+        >>> maker = abjad.NoteMaker(increase_monotonic=False)
         >>> notes = maker([0], [(13, 16)])
         >>> staff = abjad.Staff(notes)
         >>> abjad.show(staff) # doctest: +SKIP
@@ -109,10 +109,10 @@ class NoteMaker(AbjadValueObject):
 
     ..  container:: example
 
-        Set ``decrease_monotonic=False`` to express tied values in increasing
+        Set ``increase_monotonic=True`` to express tied values in increasing
         duration:
 
-        >>> maker = abjad.NoteMaker(decrease_monotonic=False)
+        >>> maker = abjad.NoteMaker(increase_monotonic=True)
         >>> notes = maker([0], [(13, 16)])
         >>> staff = abjad.Staff(notes)
         >>> abjad.show(staff) # doctest: +SKIP
@@ -181,7 +181,7 @@ class NoteMaker(AbjadValueObject):
     __documentation_section__ = 'Makers'
 
     __slots__ = (
-        '_decrease_monotonic',
+        '_increase_monotonic',
         '_repeat_ties',
         '_tag',
         )
@@ -193,11 +193,15 @@ class NoteMaker(AbjadValueObject):
     def __init__(
         self,
         *,
-        decrease_monotonic: bool = True,
-        repeat_ties: bool = False,
+        increase_monotonic: bool = None,
+        repeat_ties: bool = None,
         tag: str = None,
         ) -> None:
-        self._decrease_monotonic = decrease_monotonic
+        if increase_monotonic is not None:
+            increase_monotonic = bool(increase_monotonic)
+        self._increase_monotonic = increase_monotonic
+        if repeat_ties is not None:
+            repeat_ties = bool(repeat_ties)
         self._repeat_ties = repeat_ties
         if tag is not None:
             assert isinstance(tag, str), repr(tag)
@@ -236,7 +240,7 @@ class NoteMaker(AbjadValueObject):
                     self._make_unprolated_notes(
                         ps,
                         duration,
-                        decrease_monotonic=self.decrease_monotonic,
+                        increase_monotonic=self.increase_monotonic,
                         repeat_ties=self.repeat_ties,
                         tag=self.tag,
                         )
@@ -252,7 +256,7 @@ class NoteMaker(AbjadValueObject):
                 ns = self._make_unprolated_notes(
                     ps,
                     duration,
-                    decrease_monotonic=self.decrease_monotonic,
+                    increase_monotonic=self.increase_monotonic,
                     repeat_ties=self.repeat_ties,
                     tag=self.tag,
                     )
@@ -266,7 +270,7 @@ class NoteMaker(AbjadValueObject):
     def _make_unprolated_notes(
         pitches,
         durations,
-        decrease_monotonic=True,
+        increase_monotonic=None,
         repeat_ties=False,
         tag=None,
         ):
@@ -278,7 +282,7 @@ class NoteMaker(AbjadValueObject):
                     Note,
                     duration,
                     pitches=pitch,
-                    decrease_monotonic=decrease_monotonic,
+                    increase_monotonic=increase_monotonic,
                     repeat_ties=repeat_ties,
                     tag=tag,
                     )
@@ -288,11 +292,11 @@ class NoteMaker(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def decrease_monotonic(self) -> typing.Optional[bool]:
+    def increase_monotonic(self) -> typing.Optional[bool]:
         """
-        Is true when durations decrease monotonically.
+        Is true when durations increase monotonically.
         """
-        return self._decrease_monotonic
+        return self._increase_monotonic
 
     @property
     def repeat_ties(self) -> typing.Optional[bool]:

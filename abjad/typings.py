@@ -3,10 +3,13 @@ Utilities for typehinting.
 """
 
 import typing
+from abjad.utilities.Duration import Duration
 from abjad.utilities.Expression import Expression
 
 
 IntegerPair = typing.Tuple[int, int]
+
+DurationTyping = typing.Union[IntegerPair, Duration]
 
 Number = typing.Union[int, float]
 

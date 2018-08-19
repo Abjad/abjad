@@ -4,6 +4,7 @@ Tools for modeling musical meter.
 
 import bisect
 import collections
+import typing
 import uqbar.graphs
 import abjad.rhythmtrees
 from abjad import core
@@ -171,7 +172,7 @@ class Meter(AbjadValueObject):
 
         >>> meter = abjad.Meter(
         ...     (7, 4),
-        ...     decrease_monotonic=False,
+        ...     increase_monotonic=True,
         ...     )
         >>> print(meter.pretty_rtm_format)
         (7/4 (
@@ -246,7 +247,7 @@ class Meter(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_decrease_monotonic',
+        '_increase_monotonic',
         '_denominator',
         '_numerator',
         '_preferred_boundary_depth',
@@ -258,9 +259,9 @@ class Meter(AbjadValueObject):
     def __init__(
         self,
         argument=None,
-        decrease_monotonic=True,
+        increase_monotonic=None,
         preferred_boundary_depth=None,
-    ):
+        ):
 
         argument = argument or (4, 4)
         assert isinstance(preferred_boundary_depth, (int, type(None)))
@@ -270,8 +271,8 @@ class Meter(AbjadValueObject):
             node,
             factors,
             denominator,
-            decrease_monotonic,
-        ):
+            increase_monotonic,
+            ):
             if factors:
                 factor, factors = factors[0], factors[1:]
                 preprolated_duration = \
@@ -287,7 +288,7 @@ class Meter(AbjadValueObject):
                                 child,
                                 factors,
                                 denominator,
-                                decrease_monotonic,
+                                increase_monotonic,
                                 )
                     else:
                         for _ in range(factor):
@@ -298,7 +299,7 @@ class Meter(AbjadValueObject):
                     parts = [3]
                     total = 3
                     while total < factor:
-                        if decrease_monotonic:
+                        if not increase_monotonic:
                             parts.append(2)
                         else:
                             parts.insert(0, 2)
@@ -315,7 +316,7 @@ class Meter(AbjadValueObject):
                                     child,
                                     factors,
                                     denominator,
-                                    decrease_monotonic,
+                                    increase_monotonic,
                                     )
                         else:
                             for _ in range(part):
@@ -328,7 +329,7 @@ class Meter(AbjadValueObject):
                     preprolated_duration=(1, denominator))
                     for _ in range(node.preprolated_duration.numerator)])
 
-        decrease_monotonic = bool(decrease_monotonic)
+        increase_monotonic = bool(increase_monotonic)
 
         try:
             numerator = argument.numerator
@@ -340,7 +341,7 @@ class Meter(AbjadValueObject):
         if isinstance(argument, type(self)):
             root = argument.root_node
             numerator, denominator = argument.numerator, argument.denominator
-            decrease_monotonic = argument.decrease_monotonic
+            increase_monotonic = argument.increase_monotonic
 
         elif isinstance(argument, (str, abjad.rhythmtrees.RhythmTreeContainer)):
             if isinstance(argument, str):
@@ -383,7 +384,7 @@ class Meter(AbjadValueObject):
                 root,
                 factors,
                 denominator,
-                decrease_monotonic,
+                increase_monotonic,
                 )
 
         else:
@@ -394,7 +395,7 @@ class Meter(AbjadValueObject):
         self._root_node = root
         self._numerator = numerator
         self._denominator = denominator
-        self._decrease_monotonic = decrease_monotonic
+        self._increase_monotonic = increase_monotonic
 
     ### SPECIAL METHODS ###
 
@@ -1130,10 +1131,10 @@ class Meter(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def decrease_monotonic(self):
+    def increase_monotonic(self) -> typing.Optional[bool]:
         """
         Is true when meter divides large primes into collections of ``2``
-        and ``3`` that decrease monotonically.
+        and ``3`` that increase monotonically.
 
         ..  container:: example
 
@@ -1141,11 +1142,11 @@ class Meter(AbjadValueObject):
 
             >>> meter = abjad.Meter(
             ...     (7, 4),
-            ...     decrease_monotonic=True,
+            ...     increase_monotonic=False,
             ...     )
 
-            >>> meter.decrease_monotonic
-            True
+            >>> meter.increase_monotonic
+            False
 
             >>> print(meter.pretty_rtm_format)
             (7/4 (
@@ -1169,11 +1170,11 @@ class Meter(AbjadValueObject):
 
             >>> meter = abjad.Meter(
             ...     (7, 4),
-            ...     decrease_monotonic=False,
+            ...     increase_monotonic=True
             ...     )
 
-            >>> meter.decrease_monotonic
-            False
+            >>> meter.increase_monotonic
+            True
 
             >>> print(meter.pretty_rtm_format)
             (7/4 (
@@ -1188,9 +1189,8 @@ class Meter(AbjadValueObject):
                     1/4
                     1/4))))
 
-        Returns true or false.
         """
-        return self._decrease_monotonic
+        return self._increase_monotonic
 
     @property
     def denominator(self):

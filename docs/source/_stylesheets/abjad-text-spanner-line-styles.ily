@@ -1,3 +1,17 @@
+%%% GLISSANDO LINE STYLES %%%
+
+abjad-zero-padding-glissando = #(
+    define-music-function
+    (parser location music)
+    (ly:music?)
+    #{
+    - \tweak bound-details.left.padding 0
+    - \tweak bound-details.left.start-at-dot ##f
+    - \tweak bound-details.right.padding 0
+    $music
+    #}
+    )
+
 %%% TEXT SPANNER LINE STYLES %%%
 
 abjad-dashed-line-with-arrow = #(
