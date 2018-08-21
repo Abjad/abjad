@@ -550,7 +550,7 @@ class SchemeMoment(Scheme):
 
     def __init__(
         self,
-        duration: typing.Union[typing.Tuple[int, int]] = (0, 1),
+        duration: typings.IntegerPair = (0, 1),
         ) -> None:
         pair = NonreducedFraction(duration).pair
         Scheme.__init__(self, pair)

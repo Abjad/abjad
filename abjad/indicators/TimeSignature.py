@@ -1,6 +1,7 @@
 import collections
 import typing
 from abjad import mathtools
+from abjad import typings
 from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.mathtools.NonreducedFraction import NonreducedFraction
 from abjad.system.FormatSpecification import FormatSpecification
@@ -126,7 +127,7 @@ class TimeSignature(AbjadValueObject):
 
     def __init__(
         self,
-        pair: typing.Tuple[int, int] = (4, 4),
+        pair: typings.IntegerPair = (4, 4),
         *,
         partial: Duration = None,
         hide: bool = None,
@@ -503,7 +504,7 @@ class TimeSignature(AbjadValueObject):
         return self._numerator
 
     @property
-    def pair(self) -> typing.Tuple[int, int]:
+    def pair(self) -> typings.IntegerPair:
         """
         Gets numerator / denominator pair corresponding to time siganture.
 

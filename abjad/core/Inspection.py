@@ -1322,7 +1322,9 @@ class Inspection(AbjadObject):
 
         """
         if not isinstance(self.client, Component):
-            raise Exception('can only get parentage on component.')
+            message = 'can only get parentage on component'
+            message += f' (not {self.client}).'
+            raise Exception(message)
         return self.client._get_parentage(
             include_self=include_self,
             grace_notes=grace_notes,

@@ -3,6 +3,7 @@ import typing
 from abjad import Fraction
 from abjad import exceptions
 from abjad import mathtools
+from abjad import typings
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.mathtools.NonreducedFraction import NonreducedFraction
 from abjad.mathtools.NonreducedRatio import NonreducedRatio
@@ -1084,7 +1085,7 @@ class Tuplet(Container):
 
     @staticmethod
     def from_duration(
-        duration: typing.Union[typing.Tuple[int, int], Duration],
+        duration: typings.DurationTyping,
         components,
         *,
         tag: str = None,

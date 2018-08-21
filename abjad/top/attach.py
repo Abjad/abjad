@@ -16,9 +16,7 @@ def attach(
 
     Third for attaches grace container ``attachable`` to leaf ``target``.
 
-    Fourth form attaches time signature ``attachable`` to measure ``target``.
-
-    Fifth form attaches wrapper ``attachable`` to unknown (?) ``target``.
+    Fourth form attaches wrapper ``attachable`` to unknown (?) ``target``.
 
     ..  container:: example
 
@@ -222,8 +220,7 @@ def attach(
         )
 
     if context is not None and isinstance(attachable, nonindicator_prototype):
-        message = 'set context only for indicators, not {!r}.'
-        message = message.format(attachable)
+        message = f'set context only for indicators, not {attachable!r}.'
         raise Exception(message)
 
     if deactivate is True and tag is None:
@@ -302,7 +299,6 @@ def attach(
         synthetic_offset=synthetic_offset,
         tag=tag,
         )
-    wrapper_._bind_to_component(component)
 
     if wrapper is True:
         return wrapper_

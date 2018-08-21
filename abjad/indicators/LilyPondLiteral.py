@@ -128,6 +128,7 @@ class LilyPondLiteral(AbjadValueObject):
 
     __slots__ = (
         '_argument',
+        '_context',
         '_directed',
         '_format_slot',
         '_tweaks',
@@ -153,6 +154,7 @@ class LilyPondLiteral(AbjadValueObject):
         argument: typing.Union[str, typing.List[str]] = '',
         format_slot: str = 'opening',
         *,
+        context: str = None,
         directed: bool = None,
         tweaks: typing.Union[
             typing.List[typing.Tuple], LilyPondTweakManager] = None,
@@ -160,6 +162,9 @@ class LilyPondLiteral(AbjadValueObject):
         self._argument = argument
         assert format_slot in self._allowable_format_slots, repr(format_slot)
         self._format_slot = format_slot
+        if context is not None:
+            assert isinstance(context, str), repr(context)
+        self._context = context
         if directed is not None:
             directed = bool(directed)
         self._directed = directed
@@ -223,6 +228,59 @@ class LilyPondLiteral(AbjadValueObject):
 
         """
         return self._argument
+
+    @property
+    def context(self) -> typing.Optional[str]:
+        r"""
+        Gets (optional) context of LilyPond literal.
+
+        ..  container:: example
+
+            >>> abjad.LilyPondLiteral(r'\slurDotted').context is None
+            True
+
+            >>> literal = abjad.LilyPondLiteral(
+            ...     r'\voiceOne',
+            ...     context='Voice',
+            ...     )
+            >>> literal.context
+            'Voice'
+
+        ..  container:: example
+
+            REGRESSION. Duplicate noncontexted literals are allowed:
+
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> literal = abjad.LilyPondLiteral('% text')
+            >>> abjad.attach(literal, staff[0])
+            >>> literal = abjad.LilyPondLiteral('% text')
+            >>> abjad.attach(literal, staff[0])
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                % text
+                % text
+                c'4
+                d'4
+                e'4
+                f'4
+            }
+
+        Duplicate contexted literals raise persistent indicator error:
+
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> literal = abjad.LilyPondLiteral(r'\voiceOne', context='Voice')
+            >>> abjad.attach(literal, staff[0])
+            >>> literal = abjad.LilyPondLiteral(r'\voiceOne', context='Voice')
+            >>> abjad.attach(literal, staff[0])
+            Traceback (most recent call last):
+                ...
+            abjad.exceptions.PersistentIndicatorError: 
+            ...
+
+        """
+        return self._context
 
     @property
     def directed(self) -> typing.Optional[bool]:

@@ -1,4 +1,4 @@
-def annotate(component, annotation, indicator):
+def annotate(component, annotation, indicator) -> None:
     r"""
     Annotates ``component`` with ``indicator``.
 
@@ -32,11 +32,10 @@ def annotate(component, annotation, indicator):
 
     Returns none.
     """
-    import abjad
+    from abjad.system.Wrapper import Wrapper
     assert isinstance(annotation, str), repr(annotation)
-    wrapper = abjad.Wrapper(
+    wrapper = Wrapper(
         annotation=annotation,
         component=component,
         indicator=indicator,
         )
-    wrapper._bind_to_component(component)

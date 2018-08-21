@@ -61,7 +61,8 @@ class LilyPondFormatManager(AbjadObject):
                     neutral_markup_wrappers.append(wrapper)
             # store context wrappers
             elif wrapper.context is not None:
-                if wrapper._is_formattable_for_component(component):
+                if (wrapper.annotation is None and
+                    wrapper.component is component):
                     context_wrappers.append(wrapper)
             # store noncontext wrappers
             else:
