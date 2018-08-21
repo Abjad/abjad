@@ -1133,13 +1133,6 @@ class Container(Component):
                 fracture_spanners=fracture_spanners,
                 )
             previous = right
-        # NOTE: If logical tie here is convenience, then fusing is good.
-        #       If logical tie here is user-given, then fusing is less good.
-        #       Maybe later model difference between user logical ties and not.
-        left_logical_tie = inspect(leaf_left_of_split).logical_tie()
-        right_logical_tie = inspect(leaf_right_of_split).logical_tie()
-        left_logical_tie._fuse_leaves_by_immediate_parent()
-        right_logical_tie._fuse_leaves_by_immediate_parent()
         # reapply tie here if crawl above killed tie applied to leaves
         if did_split_leaf:
             if (

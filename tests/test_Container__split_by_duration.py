@@ -147,7 +147,7 @@ def test_Container__split_by_duration_02():
 
 def test_Container__split_by_duration_03():
     """
-    Split in-score at split offset without power-of-two denominator. Do not
+    Split in-score at split offset with non-power-of-two denominator. Do not
     fracture spanners and do not tie leaves after split.
     """
 
@@ -187,13 +187,9 @@ def test_Container__split_by_duration_03():
     halves = staff[0]._split_by_duration(
         abjad.Duration(1, 5),
         fracture_spanners=False,
-        #tie_split_notes=False,
+        tie_split_notes=False,
         )
 
-    # FIXME
-    # TODO: The tie at the split locus here is a (small) bug.
-    #       Eventually should fix.
-    #       The tie after the d'16. is the incorrect one.
     assert format(staff) == abjad.String.normalize(
         r"""
         \new Staff
@@ -205,9 +201,8 @@ def test_Container__split_by_duration_03():
             }
             {
                 \times 4/5 {
-                    d'8
-                    ~
-                    d'32
+                    d'16.
+                    d'16
                     ]
                 }
             }
@@ -227,8 +222,7 @@ def test_Container__split_by_duration_03():
 
 def test_Container__split_by_duration_04():
     """
-    Split in-score container with power-of-two time signature denominator
-    at split offset without power-of-two denominator.
+    Split in-score container at split offset with non-power-of-two denominator.
     Do fracture spanners and do tie leaves after split.
     """
 
@@ -282,9 +276,9 @@ def test_Container__split_by_duration_04():
             }
             {
                 \times 4/5 {
-                    d'8
+                    d'16.
                     ~
-                    d'32
+                    d'16
                     ]
                 }
             }
@@ -684,8 +678,7 @@ def test_Container__split_by_duration_09():
 
 def test_Container__split_by_duration_10():
     """
-    Split in-score container with power-of-two time signature denominator
-    at split offset without power-of-two denominator.
+    Split in-score container at split offset with non-power-of-two denominator.
     Do fracture spanners but do not tie leaves after split.
     """
 
@@ -764,7 +757,7 @@ def test_Container__split_by_duration_10():
 
 def test_Container__split_by_duration_11():
     """
-    Split in-score container at split offset without power-of-two denominator.
+    Split in-score container at split offset with non-power-of-two denominator.
     Do fracture spanners and do tie leaves after split.
     """
 
@@ -844,7 +837,7 @@ def test_Container__split_by_duration_11():
 
 def test_Container__split_by_duration_12():
     """
-    Split container at split offset without power-of-two denominator. Do
+    Split container at split offset with non-power-of-two denominator. Do
     fracture spanners but do not tie across split locus. This test results from
     a fix. What's being tested here is contents rederivation.
     """
@@ -1084,7 +1077,7 @@ def test_Container__split_by_duration_14():
 def test_Container__split_by_duration_15():
     """
     Split container with multiplied leaves. Split at through-leaf offset
-    without power-of-two denominator. Leaf written durations adjust for change
+    with non-power-of-two denominator. Leaf written durations adjust for change
     from power-of-two denominator to non-power-of-two denominator. Leaf
     multipliers also change.
     """
@@ -1165,7 +1158,7 @@ def test_Container__split_by_duration_15():
 def test_Container__split_by_duration_16():
     """
     Split container with multiplied leaves. Split at through-leaf offset
-    without power-of-two denominator.
+    with non-power-of-two denominator.
     """
 
     staff = abjad.Staff([abjad.Container("s1 * 5/16")])
