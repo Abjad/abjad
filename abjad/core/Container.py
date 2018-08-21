@@ -1043,10 +1043,8 @@ class Container(Component):
                 tie_split_notes=tie_split_notes,
                 repeat_ties=repeat_ties,
                 )
-        # check input
         duration = Duration(duration)
         assert 0 <= duration, repr(duration)
-        # if zero duration then return empty list and self
         if duration == 0:
             return [], self
         # get split point score offset
@@ -1061,44 +1059,6 @@ class Container(Component):
             stop_offset = timespan.stop_offset
             if start_offset < cross_offset < stop_offset:
                 duration_crossing_descendants.append(descendant)
-        # get any duration-crossing measure descendents
-        measures = []
-        # if we must split a power-of-two measure at non-power-of-two
-        # split point then go ahead and transform the power-of-two measure
-        # to non-power-of-two equivalent now;
-        # code that crawls and splits later on will be happier
-        if len(measures) == 1:
-            raise Exception('measures no longer exist')
-            measure = measures[0]
-            timespan = inspect(measure).timespan()
-            start_offset = timespan.start_offset
-            split_point_in_measure = global_split_point - start_offset
-            if measure.has_non_power_of_two_denominator:
-                pass
-            elif not mathtools.is_nonnegative_integer_power_of_two(
-                split_point_in_measure.denominator):
-                non_power_of_two_factors = self._remove_powers_of_two(
-                    split_point_in_measure.denominator
-                    )
-                non_power_of_two_factors = mathtools.factors(
-                    non_power_of_two_factors)
-                non_power_of_two_product = 1
-                for non_power_of_two_factor in non_power_of_two_factors:
-                    non_power_of_two_product *= non_power_of_two_factor
-                measure._scale_denominator(non_power_of_two_product)
-                # rederive duration crossers with possibly new measure contents
-                timespan = inspect(self).timespan()
-                cross_offset = timespan.start_offset + duration
-                duration_crossing_descendants = []
-                for descendant in inspect(self).descendants():
-                    timespan = inspect(descendant).timespan()
-                    start_offset = timespan.start_offset
-                    stop_offset = timespan.stop_offset
-                    if start_offset < cross_offset < stop_offset:
-                        duration_crossing_descendants.append(descendant)
-        elif 1 < len(measures):
-            raise Exception('measures no longer exist')
-            raise Exception('measures can not nest.')
         # any duration-crossing leaf will be at end of list
         bottom = duration_crossing_descendants[-1]
         did_split_leaf = False
@@ -1109,15 +1069,18 @@ class Container(Component):
             timespan = inspect(bottom).timespan()
             start_offset = timespan.start_offset
             split_point_in_bottom = global_split_point - start_offset
-            left_list, right_list = bottom._split_by_durations(
+            new_leaves = bottom._split_by_durations(
                 [split_point_in_bottom],
                 fracture_spanners=fracture_spanners,
                 tie_split_notes=tie_split_notes,
                 repeat_ties=repeat_ties,
                 )
-            right = right_list[0]
-            leaf_right_of_split = right
-            leaf_left_of_split = left_list[-1]
+            for leaf in new_leaves:
+                timespan = inspect(leaf).timespan()
+                if timespan.stop_offset == global_split_point:
+                    leaf_left_of_split = leaf
+                if timespan.start_offset == global_split_point:
+                    leaf_right_of_split = leaf
             duration_crossing_containers = duration_crossing_descendants[:-1]
             if not len(duration_crossing_containers):
                 return left_list, right_list
@@ -1146,8 +1109,7 @@ class Container(Component):
                 highest_level_component_right_of_split = component
                 break
         else:
-            message = 'should not be able to get here.'
-            raise ValueError(message)
+            raise ValueError('should not be able to get here.')
         # crawl back up through duration-crossing containers
         # and fracture spanners if requested
         if fracture_spanners:

@@ -416,6 +416,7 @@ class IOManager(AbjadObject):
         *,
         application: str = None,
         line_number: int = None,
+        test: bool = None,
         ):
         """
         Opens ``file_path``.
@@ -460,7 +461,8 @@ class IOManager(AbjadObject):
             command = f'{viewer} +{line_number} {file_path}'
         else:
             command = f'{viewer} {file_path}'
-        IOManager.spawn_subprocess(command)
+        if not test:
+            IOManager.spawn_subprocess(command)
 
     @staticmethod
     def open_last_log() -> None:

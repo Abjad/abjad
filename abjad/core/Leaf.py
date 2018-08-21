@@ -584,9 +584,9 @@ class Leaf(Component):
             result_leaves._attach_tie_to_leaves(
                 repeat_ties=repeat_ties,
                 )
-        assert isinstance(result_selections, list), repr(result_selections)
-        assert all(isinstance(_, abjad.Selection) for _ in result_selections)
-        return result_selections
+        assert isinstance(result_leaves, abjad.Selection)
+        assert all(isinstance(_, abjad.Leaf) for _ in result_leaves)
+        return result_leaves
 
     ### PRIVATE PROPERTIES ###
 

@@ -2,7 +2,6 @@ import abjad
 import pytest
 
 
-@pytest.mark.skip('Pending 2.19.24 update.')
 def test_LilyPondParser__lilypondfile__HeaderBlock_01():
     string = r"""
     globalvariable = "This is a global variable."
@@ -16,7 +15,7 @@ def test_LilyPondParser__lilypondfile__HeaderBlock_01():
         \new Staff { c'4 ^ \markup { \globalvariable } }
     }
     """
-    result = parse(string)
+    result = abjad.parse(string)
     assert isinstance(result, abjad.LilyPondFile)
     assert len(result.items) == 2
     assert format(result.items[0]) == abjad.String.normalize(
@@ -35,16 +34,18 @@ def test_LilyPondParser__lilypondfile__HeaderBlock_01():
     assert format(result.items[1]) == abjad.String.normalize(
         r"""
         \score {
-            \new Staff {
-                c'4 ^ \markup { This is a global variable. }
+            \new Staff
+            {
+                c'4
+                ^ \markup { "This is a global variable." }
             }
         }
         """
         )
 
 
-@pytest.mark.skip('Pending 2.19.24 update.')
 def test_LilyPondParser__lilypondfile__HeaderBlock_02():
+
     string = r"""
     \header {
         composername = "Foo von Bar"
@@ -56,25 +57,26 @@ def test_LilyPondParser__lilypondfile__HeaderBlock_02():
         c'1
     }
     """
-    result = parse(string)
+
+    result = abjad.parse(string)
     assert isinstance(result, abjad.LilyPondFile)
     assert len(result.items) == 2
     assert format(result.items[0]) == abjad.String.normalize(
         r"""
         \header {
+            composername = #"Foo von Bar"
             composer = \markup {
                 by
                 \bold
                     "Foo von Bar"
                 }
-            composername = #"Foo von Bar"
-            tagline = ##f
             title = \markup {
                 The
                 ballad
                 of
                 "Foo von Bar"
                 }
+            tagline = \markup {}
         }
         """)
     assert format(result.items[1]) == abjad.String.normalize(

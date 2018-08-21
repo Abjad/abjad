@@ -145,7 +145,6 @@ def test_Container__split_by_duration_02():
     assert abjad.inspect(staff).is_wellformed()
 
 
-@pytest.mark.skip('FIXME')
 def test_Container__split_by_duration_03():
     """
     Split in-score at split offset without power-of-two denominator. Do not
@@ -188,20 +187,44 @@ def test_Container__split_by_duration_03():
     halves = staff[0]._split_by_duration(
         abjad.Duration(1, 5),
         fracture_spanners=False,
+        #tie_split_notes=False,
         )
 
+    # FIXME
     # TODO: The tie at the split locus here is a (small) bug.
     #       Eventually should fix.
     #       The tie after the d'16. is the incorrect one.
     assert format(staff) == abjad.String.normalize(
         r"""
+        \new Staff
+        {
+            {
+                c'8
+                [
+                (
+            }
+            {
+                \times 4/5 {
+                    d'8
+                    ~
+                    d'32
+                    ]
+                }
+            }
+            {
+                e'8
+                [
+                f'8
+                ]
+                )
+            }
+        }
         """
         ), print(format(staff))
 
     assert abjad.inspect(staff).is_wellformed()
 
 
-@pytest.mark.skip('FIXME')
 def test_Container__split_by_duration_04():
     """
     Split in-score container with power-of-two time signature denominator
@@ -250,6 +273,29 @@ def test_Container__split_by_duration_04():
 
     assert format(staff) == abjad.String.normalize(
         r"""
+        \new Staff
+        {
+            {
+                c'8
+                [
+                (
+            }
+            {
+                \times 4/5 {
+                    d'8
+                    ~
+                    d'32
+                    ]
+                }
+            }
+            {
+                e'8
+                [
+                f'8
+                ]
+                )
+            }
+        }
         """
         ), print(format(staff))
 
@@ -636,7 +682,6 @@ def test_Container__split_by_duration_09():
     assert abjad.inspect(staff).is_wellformed()
 
 
-@pytest.mark.skip('FIXME')
 def test_Container__split_by_duration_10():
     """
     Split in-score container with power-of-two time signature denominator
@@ -685,13 +730,38 @@ def test_Container__split_by_duration_10():
 
     assert format(staff) == abjad.String.normalize(
         r"""
+        \new Staff
+        {
+            {
+                c'8
+                [
+                (
+            }
+            {
+                \times 4/5 {
+                    d'16.
+                    ]
+                    )
+                    d'16
+                    [
+                    ]
+                    (
+                }
+            }
+            {
+                e'8
+                [
+                f'8
+                ]
+                )
+            }
+        }
         """
         ), print(format(staff))
 
     assert abjad.inspect(staff).is_wellformed()
 
 
-@pytest.mark.skip('FIXME')
 def test_Container__split_by_duration_11():
     """
     Split in-score container at split offset without power-of-two denominator.
@@ -739,13 +809,39 @@ def test_Container__split_by_duration_11():
 
     assert format(staff) == abjad.String.normalize(
         r"""
+        \new Staff
+        {
+            {
+                c'8
+                [
+                (
+            }
+            {
+                \times 4/5 {
+                    d'16.
+                    ~
+                    ]
+                    )
+                    d'16
+                    [
+                    ]
+                    (
+                }
+            }
+            {
+                e'8
+                [
+                f'8
+                ]
+                )
+            }
+        }
         """
         ), print(format(staff))
 
     assert abjad.inspect(staff).is_wellformed()
 
 
-@pytest.mark.skip('FIXME')
 def test_Container__split_by_duration_12():
     """
     Split container at split offset without power-of-two denominator. Do
@@ -795,6 +891,35 @@ def test_Container__split_by_duration_12():
 
     assert format(staff) == abjad.String.normalize(
         r"""
+        \new Staff
+        {
+            {
+                c'8
+                [
+                (
+                d'8
+            }
+            {
+                \times 4/5 {
+                    e'8
+                    ~
+                    ]
+                    )
+                    e'32
+                    [
+                    ]
+                    (
+                }
+            }
+            {
+                c'8
+                [
+                d'8
+                e'8
+                ]
+                )
+            }
+        }
         """
         ), print(format(staff))
 
@@ -1078,7 +1203,7 @@ def test_Container__split_by_duration_16():
     assert abjad.inspect(staff).is_wellformed()
 
 
-def test_Container__split_by_duration_18():
+def test_Container__split_by_duration_17():
     """
     Make sure tie (re)application happens only where sensible.
     """

@@ -1569,7 +1569,7 @@ values = [
 
 
 @pytest.mark.parametrize('pitch_a, pitch_b, name', values)
-def test_from_pitch_carriers(pitch_a, pitch_b, name):
+def test_NamedInterval_01(pitch_a, pitch_b, name):
     pitch_a = NamedPitch(pitch_a)
     pitch_b = NamedPitch(pitch_b)
     interval = NamedInterval.from_pitch_carriers(pitch_a, pitch_b)

@@ -347,7 +347,7 @@ def test_Mutation_fuse_10():
     assert abjad.inspect(voice).is_wellformed()
 
 
-def test_Mutation_fuse_15():
+def test_Mutation_fuse_11():
     """
     Fusing empty selection returns none.
     """

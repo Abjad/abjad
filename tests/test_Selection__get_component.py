@@ -1,7 +1,7 @@
 import abjad
 
 
-def test_Selection__get_component_03():
+def test_Selection__get_component_01():
     """
     Read forwards for positive n.
     """
@@ -36,7 +36,7 @@ def test_Selection__get_component_03():
     assert abjad.select(staff)._get_component(abjad.Leaf, 5) is staff[2][1]
 
 
-def test_Selection__get_component_04():
+def test_Selection__get_component_02():
     """
     Read backwards for negative n.
     """
@@ -71,7 +71,7 @@ def test_Selection__get_component_04():
     assert abjad.select(staff)._get_component(abjad.Leaf, -6) is staff[0][0]
 
 
-def test_Selection__get_component_05():
+def test_Selection__get_component_03():
 
     staff = abjad.Staff(
         r"""
@@ -102,7 +102,7 @@ def test_Selection__get_component_05():
     assert abjad.select(staff)._get_component(abjad.Staff, 0) is staff
 
 
-def test_Selection__get_component_06():
+def test_Selection__get_component_04():
     """
     Iterates backwards with negative values of n.
     """

@@ -13,10 +13,9 @@ pdf_path = os.path.join(
 paths = [ly_path, pdf_path]
 
 
-@pytest.mark.skip('FIXME')
 def test_PersistenceManager_as_pdf_01():
     """
-    Agent abjad.persists PDF file when no PDF file exists.
+    Persists PDF file when no PDF file exists.
     """
 
     note = abjad.Note("c'4")
@@ -26,10 +25,9 @@ def test_PersistenceManager_as_pdf_01():
         assert isinstance(result, tuple)
 
 
-@pytest.mark.skip('FIXME')
 def test_PersistenceManager_as_pdf_02():
     """
-    Agent abjad.persists PDF file when equivalent PDF file already exists.
+    Persists PDF file when equivalent PDF file already exists.
     """
 
     note = abjad.Note("c'4")

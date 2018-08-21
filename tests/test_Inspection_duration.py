@@ -2,7 +2,7 @@ import abjad
 import pytest
 
 
-def test_Inspection_duration_03():
+def test_Inspection_duration_01():
     """
     Container duration in seconds equals sum of leaf durations in seconds.
     """
@@ -34,7 +34,7 @@ def test_Inspection_duration_03():
     assert abjad.inspect(score).duration(in_seconds=True) == abjad.Duration(400, 133)
 
 
-def test_Inspection_duration_04():
+def test_Inspection_duration_02():
     """
     Container can not calculate duration in seconds without metronome mark.
     """
@@ -44,7 +44,7 @@ def test_Inspection_duration_04():
     assert pytest.raises(Exception, statement)
 
 
-def test_Inspection_duration_05():
+def test_Inspection_duration_03():
     """
     Clock duration equals duration divide by effective tempo.
     """
@@ -76,7 +76,7 @@ def test_Inspection_duration_05():
     assert abjad.inspect(staff[3]).duration(in_seconds=True) == abjad.Duration(5, 7)
 
 
-def test_Inspection_duration_06():
+def test_Inspection_duration_04():
     """
     Clock duration can not calculate without metronome mark.
     """

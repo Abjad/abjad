@@ -24,7 +24,7 @@ def test_Leaf__split_by_durations_01():
         """
         ), print(format(staff))
 
-    halves = staff[1]._split_by_durations(
+    new_leaves = staff[1]._split_by_durations(
         [abjad.Duration(1, 32)],
         fracture_spanners=False,
         tie_split_notes=False,
@@ -69,7 +69,7 @@ def test_Leaf__split_by_durations_02():
         """
         ), print(format(staff))
 
-    halves = staff[1]._split_by_durations(
+    new_leaves = staff[1]._split_by_durations(
         [abjad.Duration(1, 32)],
         fracture_spanners=True,
         tie_split_notes=False,
@@ -116,7 +116,7 @@ def test_Leaf__split_by_durations_03():
         """
         ), print(format(staff))
 
-    halves = staff[1]._split_by_durations(
+    new_leaves = staff[1]._split_by_durations(
         [abjad.Duration(1, 32)],
         fracture_spanners=False,
         tie_split_notes=True,
@@ -149,7 +149,7 @@ def test_Leaf__split_by_durations_04():
 
     staff = abjad.Staff("c'8 [ d'8 e'8 ]")
 
-    halves = staff[1]._split_by_durations(
+    new_leaves = staff[1]._split_by_durations(
         [abjad.Duration(1, 32)],
         fracture_spanners=True,
         tie_split_notes=True,
@@ -184,7 +184,7 @@ def test_Leaf__split_by_durations_05():
 
     staff = abjad.Staff("c'8 [ d'8 e'8 ]")
 
-    halves = staff[1]._split_by_durations(
+    new_leaves = staff[1]._split_by_durations(
         [abjad.Duration(1, 24)],
         tie_split_notes=False,
         )
@@ -221,7 +221,7 @@ def test_Leaf__split_by_durations_06():
 
     staff = abjad.Staff(r"\times 2/3 { c'8 [ d'8 e'8 ] }")
     leaf = abjad.inspect(staff).leaf(0)
-    halves = leaf._split_by_durations([abjad.Duration(1, 20)])
+    new_leaves = leaf._split_by_durations([abjad.Duration(1, 20)])
 
     assert format(staff) == abjad.String.normalize(
         r"""
@@ -273,7 +273,7 @@ def test_Leaf__split_by_durations_07():
         """
         ), print(format(staff))
 
-    halves = leaves[1]._split_by_durations(
+    new_leaves = leaves[1]._split_by_durations(
         [abjad.Duration(1, 24)],
         tie_split_notes=False,
         )
@@ -313,75 +313,46 @@ def test_Leaf__split_by_durations_08():
 
 def test_Leaf__split_by_durations_09():
     """
-    Returns two lists of zero or more leaves.
+    Returns selection of new leaves.
     """
 
     note = abjad.Note("c'4")
 
-    halves = note._split_by_durations(
+    new_leaves = note._split_by_durations(
         [abjad.Duration(1, 8)],
         tie_split_notes=False,
         )
 
-    assert isinstance(halves, list)
-    assert len(halves) == 2
-    assert len(halves[0]) == 1
-    assert len(halves[1]) == 1
-    assert isinstance(halves[0][0], abjad.Note)
-    assert isinstance(halves[1][0], abjad.Note)
-    assert halves[0][0].written_duration == abjad.Duration(1, 8)
-    assert halves[1][0].written_duration == abjad.Duration(1, 8)
-    assert len(abjad.inspect(halves[0][0]).logical_tie()) == 1
-    assert len(abjad.inspect(halves[1][0]).logical_tie()) == 1
+    assert isinstance(new_leaves, abjad.Selection)
+    assert all(isinstance(_, abjad.Note) for _ in new_leaves)
 
 
 def test_Leaf__split_by_durations_10():
     """
-    Returns two lists of zero or more leaves.
+    Returns selection of new leaves.
     """
 
     note = abjad.Note("c'4")
-    halves = note._split_by_durations([abjad.Duration(1, 16)])
+    new_leaves = note._split_by_durations([abjad.Duration(1, 16)])
 
-    assert isinstance(halves, list)
-    assert len(halves) == 2
-    assert len(halves[0]) == 1
-    assert len(halves[1]) == 1
-    assert isinstance(halves[0][0], abjad.Note)
-    assert isinstance(halves[1][0], abjad.Note)
-    assert halves[0][0].written_duration == abjad.Duration(1, 16)
-    assert halves[1][0].written_duration == abjad.Duration(3, 16)
+    assert isinstance(new_leaves, abjad.Selection)
+    assert all(isinstance(_, abjad.Note) for _ in new_leaves)
 
 
 def test_Leaf__split_by_durations_11():
     """
-    Nonassignable power-of-two duration produces two lists.
-
-    Left list contains two notes tied together.
-
-    Right list contains only one note.
+    Nonassignable power-of-two duration returns selection of new leaves.
     """
 
     note = abjad.Note("c'4")
 
-    halves = note._split_by_durations(
+    new_leaves = note._split_by_durations(
         [abjad.Duration(5, 32)],
         tie_split_notes=False,
         )
 
-    assert isinstance(halves, list)
-    assert len(halves) == 2
-    assert len(halves[0]) == 2
-    assert len(halves[1]) == 1
-    assert isinstance(halves[0][0], abjad.Note)
-    assert isinstance(halves[0][1], abjad.Note)
-    assert isinstance(halves[1][0], abjad.Note)
-    assert halves[0][0].written_duration == abjad.Duration(4, 32)
-    assert halves[0][1].written_duration == abjad.Duration(1, 32)
-    assert halves[1][0].written_duration == abjad.Duration(3, 32)
-    assert len(abjad.inspect(halves[0][0]).logical_tie()) == 2
-    assert len(abjad.inspect(halves[0][1]).logical_tie()) == 2
-    assert len(abjad.inspect(halves[1][0]).logical_tie()) == 1
+    assert isinstance(new_leaves, abjad.Selection)
+    assert all(isinstance(_, abjad.Note) for _ in new_leaves)
 
 
 def test_Leaf__split_by_durations_12():
@@ -392,7 +363,7 @@ def test_Leaf__split_by_durations_12():
     staff = abjad.Staff([abjad.Note("c'4")])
     tie = abjad.Tie()
     abjad.attach(tie, staff[:])
-    halves = staff[0]._split_by_durations([abjad.Duration(1, 8)])
+    new_leaves = staff[0]._split_by_durations([abjad.Duration(1, 8)])
 
     assert len(staff) == 2
     for leaf in staff[:]:
@@ -412,7 +383,7 @@ def test_Leaf__split_by_durations_13():
     beam = abjad.Beam()
     abjad.attach(beam, staff[:])
 
-    halves = staff[0]._split_by_durations(
+    new_leaves = staff[0]._split_by_durations(
         [abjad.Duration(1, 16)],
         tie_split_notes=False,
         )
@@ -435,14 +406,23 @@ def test_Leaf__split_by_durations_14():
     staff = abjad.Staff([abjad.Note("c'4")])
     tie = abjad.Tie()
     abjad.attach(tie, staff[:])
-    halves = staff[0]._split_by_durations([abjad.Duration(5, 32)])
 
-    assert len(halves) == 2
-    assert len(halves[0]) == 2
-    assert len(halves[1]) == 1
-    for l in staff:
-        assert abjad.inspect(l).spanners() == [tie]
-        assert abjad.inspect(l).spanner(abjad.Tie) is tie
+    new_leaves = staff[0]._split_by_durations([abjad.Duration(5, 32)])
+    assert isinstance(new_leaves, abjad.Selection)
+    assert all(isinstance(_, abjad.Note) for _ in new_leaves)
+
+    assert format(staff) == abjad.String.normalize(
+        r"""
+        \new Staff
+        {
+            c'8
+            ~
+            c'32
+            ~
+            c'16.
+        }
+        """
+        ), print(format(staff))
 
     assert abjad.inspect(staff).is_wellformed()
 
@@ -455,10 +435,28 @@ def test_Leaf__split_by_durations_15():
     note = abjad.Note("c'4")
     after_grace = abjad.AfterGraceContainer([abjad.Note(0, (1, 32))])
     abjad.attach(after_grace, note)
-    halves = note._split_by_durations([abjad.Duration(1, 8)])
 
-    assert abjad.inspect(halves[0][0]).after_grace_container() is None
-    assert len(abjad.inspect(halves[1][0]).after_grace_container()) == 1
+    new_leaves = note._split_by_durations([abjad.Duration(1, 8)])
+    staff = abjad.Staff(new_leaves)
+
+    assert format(staff) == abjad.String.normalize(
+        r"""
+        \new Staff
+        {
+            c'8
+            ~
+            \afterGrace
+            c'8
+            {
+                c'32
+            }
+        }
+        """
+        ), print(format(staff))
+
+    assert abjad.inspect(new_leaves[0]).after_grace_container() is None
+    assert len(abjad.inspect(new_leaves[1]).after_grace_container()) == 1
+    abjad.inspect(staff).is_wellformed()
 
 
 def test_Leaf__split_by_durations_16():
@@ -469,14 +467,28 @@ def test_Leaf__split_by_durations_16():
     note = abjad.Note("c'4")
     grace = abjad.AfterGraceContainer([abjad.Note(0, (1, 32))])
     abjad.attach(grace, note)
-    halves = note._split_by_durations([abjad.Duration(5, 32)])
 
-    assert len(halves) == 2
-    assert getattr(halves[0][0], 'after_grace', None) is None
-    assert getattr(halves[0][1], 'after_grace', None) is None
-    assert len(halves[1]) == 1
-    after_grace = abjad.inspect(halves[1][0]).after_grace_container()
-    assert len(after_grace) == 1
+    new_leaves = note._split_by_durations([abjad.Duration(5, 32)])
+    staff = abjad.Staff(new_leaves)
+
+    assert format(staff) == abjad.String.normalize(
+        r"""
+        \new Staff
+        {
+            c'8
+            ~
+            c'32
+            ~
+            \afterGrace
+            c'16.
+            {
+                c'32
+            }
+        }
+        """
+        ), print(format(staff))
+
+    abjad.inspect(staff).is_wellformed()
 
 
 def test_Leaf__split_by_durations_17():
@@ -487,13 +499,25 @@ def test_Leaf__split_by_durations_17():
     note = abjad.Note("c'4")
     grace = abjad.GraceContainer([abjad.Note(0, (1, 32))])
     abjad.attach(grace, note)
-    halves = note._split_by_durations([abjad.Duration(1, 16)])
 
-    assert len(halves[0]) == 1
-    assert len(halves[1]) == 1
-    grace_container = abjad.inspect(halves[0][0]).grace_container()
-    assert len(grace_container) == 1
-    assert not hasattr(halves[1][0], 'grace') is None
+    new_leaves = note._split_by_durations([abjad.Duration(1, 16)])
+    staff = abjad.Staff(new_leaves)
+
+    assert format(staff) == abjad.String.normalize(
+        r"""
+        \new Staff
+        {
+            \grace {
+                c'32
+            }
+            c'16
+            ~
+            c'8.
+        }
+        """
+        ), print(format(staff))
+
+    abjad.inspect(staff).is_wellformed()
 
 
 def test_Leaf__split_by_durations_18():
@@ -531,7 +555,7 @@ def test_Leaf__split_by_durations_18():
         """
         ), print(format(staff))
 
-    halves = leaves[0]._split_by_durations(
+    new_leaves = leaves[0]._split_by_durations(
         [abjad.Duration(1, 32)],
         fracture_spanners=False,
         tie_split_notes=False,
@@ -602,7 +626,7 @@ def test_Leaf__split_by_durations_19():
         """
         ), print(format(staff))
 
-    halves = leaves[0]._split_by_durations(
+    new_leaves = leaves[0]._split_by_durations(
         [abjad.Duration(1, 32)],
         fracture_spanners=False,
         tie_split_notes=True,
@@ -673,7 +697,7 @@ def test_Leaf__split_by_durations_20():
         """
         ), print(format(staff))
 
-    halves = leaves[0]._split_by_durations(
+    new_leaves = leaves[0]._split_by_durations(
         [abjad.Duration(1, 32)],
         fracture_spanners=True,
         tie_split_notes=False,
@@ -747,7 +771,7 @@ def test_Leaf__split_by_durations_21():
         """
         ), print(format(staff))
 
-    halves = leaves[1]._split_by_durations(
+    new_leaves = leaves[1]._split_by_durations(
         [abjad.Duration(1, 32)],
         fracture_spanners=True,
         tie_split_notes=False,
@@ -794,16 +818,28 @@ def test_Leaf__split_by_durations_22():
 
     assert format(note) == "c'8\n[\n]"
 
-    halves = note._split_by_durations(
+    new_leaves = note._split_by_durations(
         [abjad.Duration(1, 32)],
         fracture_spanners=True,
         )
+    staff = abjad.Staff(new_leaves)
 
-    assert format(halves[0][0]) == "c'32\n~\n[\n]"
-    assert abjad.inspect(halves[0][0]).is_wellformed()
+    assert format(staff) == abjad.String.normalize(
+        r"""
+        \new Staff
+        {
+            c'32
+            ~
+            [
+            ]
+            c'16.
+            [
+            ]
+        }
+        """
+        ), print(format(staff))
 
-    assert format(halves[1][0]) == "c'16.\n[\n]"
-    assert abjad.inspect(halves[1][0]).is_wellformed()
+    assert abjad.inspect(staff).is_wellformed()
 
 
 def test_Leaf__split_by_durations_23():
@@ -845,7 +881,7 @@ def test_Leaf__split_by_durations_23():
         """
         ), print(format(staff))
 
-    halves = leaves[0]._split_by_durations(
+    new_leaves = leaves[0]._split_by_durations(
         [abjad.Duration(1, 32)],
         fracture_spanners=True,
         tie_split_notes=True,
@@ -884,8 +920,8 @@ def test_Leaf__split_by_durations_24():
     """
     Split leaf with LilyPond multiplier.
     Split at split offset with power-of-two denominator.
-    Halves carry original written duration.
-    Halves carry adjusted LilyPond multipliers.
+    new_leaves carry original written duration.
+    new_leaves carry adjusted LilyPond multipliers.
     """
 
     note = abjad.Note(0, (1, 8))
@@ -893,25 +929,32 @@ def test_Leaf__split_by_durations_24():
 
     assert format(note) == "c'8 * 1/2"
 
-    halves = note._split_by_durations(
+    new_leaves = note._split_by_durations(
         [abjad.Duration(1, 32)],
         fracture_spanners=True,
         tie_split_notes=False,
         )
 
-    assert format(halves[0][0]) == "c'8 * 1/4"
-    assert format(halves[1][0]) == "c'8 * 1/4"
+    staff = abjad.Staff(new_leaves)
+    assert format(staff) == abjad.String.normalize(
+        r"""
+        \new Staff
+        {
+            c'8 * 1/4
+            c'8 * 1/4
+        }
+        """
+        ), print(format(staff))
 
-    assert abjad.inspect(halves[0][0]).is_wellformed()
-    assert abjad.inspect(halves[1][0]).is_wellformed()
+    assert abjad.inspect(staff).is_wellformed()
 
 
 def test_Leaf__split_by_durations_25():
     """
     Split leaf with LilyPond multiplier.
     Split at offset without power-of-two denominator.
-    Halves carry original written duration.
-    Halves carry adjusted LilyPond multipliers.
+    new_leaves carry original written duration.
+    new_leaves carry adjusted LilyPond multipliers.
     """
 
     note = abjad.Note(0, (1, 8))
@@ -919,14 +962,21 @@ def test_Leaf__split_by_durations_25():
 
     assert format(note) == "c'8 * 1/2"
 
-    halves = note._split_by_durations(
+    new_leaves = note._split_by_durations(
         [abjad.Duration(1, 48)],
         fracture_spanners=True,
         tie_split_notes=False,
         )
 
-    assert format(halves[0][0]) == "c'8 * 1/6"
-    assert format(halves[1][0]) == "c'8 * 1/3"
+    staff = abjad.Staff(new_leaves)
+    assert format(staff) == abjad.String.normalize(
+        r"""
+        \new Staff
+        {
+            c'8 * 1/6
+            c'8 * 1/3
+        }
+        """
+        ), print(format(staff))
 
-    assert abjad.inspect(halves[0][0]).is_wellformed()
-    assert abjad.inspect(halves[1][0]).is_wellformed()
+    assert abjad.inspect(staff).is_wellformed()

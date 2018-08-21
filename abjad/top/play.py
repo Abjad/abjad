@@ -1,5 +1,9 @@
-def play(argument):
-    r"""
+import typing
+from .persist import persist
+
+
+def play(argument: typing.Any, test: bool = None) -> None:
+    """
     Plays ``argument``.
 
     ..  container:: example
@@ -14,13 +18,11 @@ def play(argument):
     Appends ``.midi`` filename extension under other operating systems.
 
     Opens MIDI file.
-
-    Returns none.
     """
-    import abjad
     from abjad import abjad_configuration
+    from abjad.system.IOManager import IOManager
     assert hasattr(argument, '__illustrate__')
-    result = abjad.persist(argument).as_midi()
+    result = persist(argument).as_midi()
     midi_file_path = result[0]
     midi_player = abjad_configuration['midi_player']
-    abjad.IOManager.open_file(midi_file_path, midi_player)
+    IOManager.open_file(midi_file_path, application=midi_player, test=test)

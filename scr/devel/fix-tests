@@ -20,14 +20,13 @@ def fix_test_case_names():
                 result
             total_test_cases += total_test_cases_in_module
             total_nonmatching_names += total_nonmatching_names_in_module
-    print('Total test modules: {}'.format(total_test_modules))
-    print('Total test cases:   {}'.format(total_test_cases))
+    print(f'Total test modules: {total_test_modules}')
+    print(f'Total test cases:   {total_test_cases}')
     if total_nonmatching_names == 1:
         suffix = ''
     else:
         suffix = 's'
-    print('Total misnamed test case name{}: {}'.format(
-        suffix, total_nonmatching_names))
+    print(f'Total misnamed test case name{suffix}: {total_nonmatching_names}')
 
 
 def process_test_module_name_fixes(test_module, directory):
@@ -40,7 +39,8 @@ def process_test_module_name_fixes(test_module, directory):
     with open(full_module_name, 'r') as file_pointer:
         lines = file_pointer.readlines()
     for line in lines:
-        if line.startswith('def test') or line.startswith('#def test'):
+        if ((line.startswith('def test') or line.startswith('#def test')) and
+            'init' not in line):
             test_cases_in_current_module += 1
 
             # TODO: replace with regex
@@ -60,11 +60,13 @@ def process_test_module_name_fixes(test_module, directory):
 
             if not actual_test_case_prefix == desired_test_case_prefix:
                 total_nonmatching_names_in_current_module += 1
-                print('NONMATCHING in {}'.format(test_module))
+                print(f'NONMATCHING in {test_module}')
                 new_line = line.replace(
                     actual_test_case_prefix, desired_test_case_prefix)
-                print('OLD LINE:  {}'.format(line.strip('\n')))
-                print('NEW LINE:  {}'.format(new_line.strip('\n')))
+                stripped_line = line.strip('\n')
+                stripped_new_line = new_line.strip('\n')
+                print(f"OLD LINE:  {stripped_line}")
+                print(f"NEW LINE:  {stripped_new_line}")
                 choice = 'y'
                 if choice.lower() == 'y':
                     new_lines.append(new_line)
@@ -100,14 +102,15 @@ def fix_test_case_numbers():
             misnumbered_cases_in_current_module = result[1]
             total_test_cases += test_cases_in_current_module
             total_misnumbered_cases += misnumbered_cases_in_current_module
-    print('Total test modules: {}'.format(total_test_modules))
-    print('Total test cases:   {}'.format(total_test_cases))
+    print(f'Total test modules: {total_test_modules}')
+    print(f'Total test cases:   {total_test_cases}')
     if total_misnumbered_cases == 1:
         suffix = ''
     else:
         suffix = 's'
-    print('Total misnumbered test case name{}: {}'.format(
-        suffix, total_misnumbered_cases))
+    print(
+        f'Total misnumbered test case name{suffix}: {total_misnumbered_cases}'
+        )
 
 
 def process_test_module_number_fixes(test_module, directory):
@@ -121,7 +124,8 @@ def process_test_module_number_fixes(test_module, directory):
         lines = file_pointer.readlines()
     current_case_number = 1
     for line in lines:
-        if line.startswith('def test') or line.startswith('#def test'):
+        if ((line.startswith('def test') or line.startswith('#def test')) and
+            'init' not in line):
             test_cases_in_current_module += 1
             desired_test_case_number = str(current_case_number).zfill(2)
 
@@ -131,11 +135,13 @@ def process_test_module_number_fixes(test_module, directory):
 
             if not actual_test_case_number == desired_test_case_number:
                 misnumbered_cases_in_current_module += 1
-                print('NONMATCHING in {}'.format(test_module))
+                print(f'NONMATCHING in {test_module}')
                 new_line = line.replace(
                     actual_test_case_number, desired_test_case_number)
-                print('OLD LINE:  {}'.format(line.strip('\n')))
-                print('NEW LINE:  {}'.format(new_line.strip('\n')))
+                stripped_line = line.strip('\n')
+                stripped_new_line = new_line.strip('\n')
+                print(f"OLD LINE:  {stripped_line}")
+                print(f"NEW LINE:  {stripped_new_line}")
                 choice = 'y'
                 if choice.lower() == 'y':
                     new_lines.append(new_line)
