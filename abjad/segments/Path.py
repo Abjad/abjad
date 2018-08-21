@@ -3,9 +3,7 @@ import os
 import pathlib
 import shutil
 import typing
-from .Line import Line
-from .Part import Part
-from .PartManifest import PartManifest
+from abjad import typings
 from abjad.core.MultimeasureRest import MultimeasureRest
 from abjad.core.Container import Container
 from abjad.core.Score import Score
@@ -25,6 +23,9 @@ from abjad.top.iterate import iterate
 from abjad.utilities.CyclicTuple import CyclicTuple
 from abjad.utilities.OrderedDict import OrderedDict
 from abjad.utilities.String import String
+from .Line import Line
+from .Part import Part
+from .PartManifest import PartManifest
 
 
 class Path(pathlib.PosixPath):
@@ -1090,7 +1091,7 @@ class Path(pathlib.PosixPath):
     def count(
         self,
         tag: typing.Union[str, typing.Callable],
-        ) -> typing.Tuple[typing.Tuple[int, int], typing.Tuple[int, int]]:
+        ) -> typing.Tuple[typings.IntegerPair, typings.IntegerPair]:
         """
         Counts ``tag`` in path.
 

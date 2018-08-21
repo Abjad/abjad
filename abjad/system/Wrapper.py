@@ -1,6 +1,8 @@
 import copy
 import typing
 from abjad.system.AbjadValueObject import AbjadValueObject
+from .FormatSpecification import FormatSpecification
+from .LilyPondFormatManager import LilyPondFormatManager
 from .Tag import Tag
 
 
@@ -115,7 +117,6 @@ class Wrapper(AbjadValueObject):
     __documentation_section__ = 'Internals'
 
     __slots__ = (
-        '_alternate',
         '_annotation',
         '_component',
         '_context',
@@ -132,28 +133,22 @@ class Wrapper(AbjadValueObject):
 
     def __init__(
         self,
-        alternate: typing.Tuple[str, str] = None,
         annotation: str = None,
-        component=None,
+        component = None,
         context: str = None,
         deactivate: bool = None,
-        indicator=None,
+        indicator: typing.Any = None,
         synthetic_offset: int = None,
         tag: typing.Union[str, Tag] = None,
         ) -> None:
         from abjad.core.Component import Component
-        from abjad.core.Context import Context
-        from abjad.spanners.Spanner import Spanner
         from abjad.utilities.Offset import Offset
         assert not isinstance(indicator, type(self)), repr(indicator)
-        if alternate is not None:
-            assert isinstance(alternate, tuple) and len(alternate) == 2
-        self._alternate = alternate
         if annotation is not None:
             assert isinstance(annotation, str), repr(annotation)
         self._annotation = annotation
         if component is not None:
-            assert isinstance(component, (Component, Spanner))
+            assert isinstance(component, Component), repr(component)
         self._component = component
         if deactivate is not None:
             deactivate = bool(deactivate)
@@ -172,12 +167,14 @@ class Wrapper(AbjadValueObject):
             assert isinstance(tag, (str, Tag))
         tag = Tag(tag)
         self._tag: Tag = tag
+        if component is not None:
+            self._bind_component(component)
 
     ### SPECIAL METHODS ###
 
     def __copy__(self, *arguments) -> 'Wrapper':
         r"""
-        Copies indicator wrapper.
+        Copies wrapper.
 
         ..  container:: example
 
@@ -307,11 +304,8 @@ class Wrapper(AbjadValueObject):
         Copies all properties except component.
         
         Copy operations must supply component after wrapper copy.
-
-        Returns new indicator wrapper.
         """
         new = type(self)(
-            alternate=self.alternate,
             annotation=self.annotation,
             component=None,
             context=self.context,
@@ -324,25 +318,24 @@ class Wrapper(AbjadValueObject):
 
     ### PRIVATE METHODS ###
 
+    def _bind_component(self, component):
+        if getattr(self.indicator, 'context', None) is not None:
+            self._warn_duplicate_indicator(component)
+            self._unbind_component()
+            self._component = component
+            self._update_effective_context()
+            if getattr(self.indicator, '_mutates_offsets_in_seconds', False):
+                self._component._update_later(offsets_in_seconds=True)
+        component._wrappers.append(self)
+
     def _bind_correct_effective_context(self, correct_effective_context):
-        import abjad
         self._unbind_effective_context()
         if correct_effective_context is not None:
             correct_effective_context._dependent_wrappers.append(self)
         self._effective_context = correct_effective_context
         self._update_effective_context()
-        if isinstance(self.indicator, abjad.MetronomeMark):
+        if getattr(self.indicator, '_mutates_offsets_in_seconds', False):
             correct_effective_context._update_later(offsets_in_seconds=True)
-
-    def _bind_to_component(self, component):
-        import abjad
-        self._warn_duplicate_indicator(component)
-        self._unbind_component()
-        self._component = component
-        self._update_effective_context()
-        if isinstance(self.indicator, abjad.MetronomeMark):
-            self._component._update_later(offsets_in_seconds=True)
-        component._wrappers.append(self)
 
     def _detach(self):
         self._unbind_component()
@@ -376,7 +369,6 @@ class Wrapper(AbjadValueObject):
         return self._effective_context
 
     def _get_format_pieces(self):
-        import abjad
         result = []
         if self.annotation:
             return result
@@ -397,7 +389,7 @@ class Wrapper(AbjadValueObject):
         if isinstance(lilypond_format, str):
             lilypond_format = [lilypond_format]
         assert isinstance(lilypond_format, (tuple, list))
-        lilypond_format = abjad.LilyPondFormatManager.tag(
+        lilypond_format = LilyPondFormatManager.tag(
             lilypond_format,
             self.tag,
             deactivate=self.deactivate,
@@ -409,9 +401,7 @@ class Wrapper(AbjadValueObject):
         return result
 
     def _get_format_specification(self):
-        import abjad
         keywords = [
-            'alternate',
             'annotation',
             'context',
             'deactivate',
@@ -419,52 +409,30 @@ class Wrapper(AbjadValueObject):
             'synthetic_offset',
             'tag',
             ]
-        return abjad.FormatSpecification(
+        return FormatSpecification(
             client=self,
             storage_format_args_values=None,
             storage_format_kwargs_names=keywords,
             )
 
-    def _is_formattable_for_component(self, component):
-        import abjad
-        if self.annotation:
-            return False
-        if getattr(self.indicator, '_format_slot', None) == 'right':
-            if self.component is component:
-                return True
-        elif self.component is component:
-            return True
-        return False
-
     def _unbind_component(self):
-        component = self.component
-        if component is not None:
-            if hasattr(component, '_wrappers'):
-                if self in component._wrappers:
-                    component._wrappers.remove(self)
+        if self._component is not None and self in self._component._wrappers:
+            self._component._wrappers.remove(self)
         self._component = None
 
     def _unbind_effective_context(self):
-        effective_context = self._effective_context
-        if effective_context is not None:
-            try:
-                effective_context._dependent_wrappers.remove(self)
-            except ValueError:
-                pass
+        if (self._effective_context is not None and
+            self in self._effective_context._dependent_wrappers):
+            self._effective_context._dependent_wrappers.remove(self)
         self._effective_context = None
 
     def _update_effective_context(self):
-        current_effective_context = self._effective_context
         correct_effective_context = self._find_correct_effective_context()
-        if current_effective_context is not correct_effective_context:
+        if self._effective_context is not correct_effective_context:
             self._bind_correct_effective_context(correct_effective_context)
 
     def _warn_duplicate_indicator(self, component):
         import abjad
-        if isinstance(component, abjad.Spanner):
-            return
-        if isinstance(self.indicator, abjad.LilyPondLiteral):
-            return
         if self.deactivate is True:
             return
         prototype = type(self.indicator)
@@ -503,21 +471,9 @@ class Wrapper(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def alternate(self) -> typing.Optional[typing.Tuple[str, str]]:
-        """
-        Gets alternate tagging information.
-
-        Set only by ``MetronomeMarkSpanner.attach(..., alternate=None)``
-        keyword.
-
-        Returns (color, tag) pair, or none.
-        """
-        return self._alternate
-
-    @property
     def annotation(self) -> typing.Optional[str]:
         """
-        Gets indicator wrapper annotation.
+        Gets wrapper annotation.
 
         ..  container:: example
 
@@ -542,22 +498,16 @@ class Wrapper(AbjadValueObject):
     @property
     def component(self):
         """
-        Gets start component of indicator wrapper.
+        Gets start component.
 
-        Returns component.
+        Returns component or none.
         """
-        from abjad.spanners.Spanner import Spanner
-        if isinstance(self._component, Spanner):
-            if self._component:
-                return self._component[0]
-            else:
-                return None
         return self._component
 
     @property
     def context(self) -> typing.Optional[str]:
         """
-        Gets context of indicator wrapper.
+        Gets context (name).
         """
         return self._context
 
@@ -577,14 +527,14 @@ class Wrapper(AbjadValueObject):
     @property
     def indicator(self) -> typing.Any:
         """
-        Gets indicator of indicator wrapper.
+        Gets indicator.
         """
         return self._indicator
 
     @property
     def start_offset(self):
         """
-        Gets start offset of indicator wrapper.
+        Gets start offset.
 
         This is either the wrapper's synthetic offset or the start offset of
         the wrapper's component.
@@ -599,7 +549,7 @@ class Wrapper(AbjadValueObject):
     @property
     def synthetic_offset(self):
         """
-        Gets synthetic offset of indicator wrapper.
+        Gets synthetic offset.
 
         Returns offset or none.
         """

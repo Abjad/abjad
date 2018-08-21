@@ -1,4 +1,5 @@
 import typing
+from abjad import typings
 from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.utilities.String import String
 from abjad.system.FormatSpecification import FormatSpecification
@@ -52,7 +53,7 @@ class PartAssignment(AbjadValueObject):
     token_type = typing.Union[
         None,
         int,
-        typing.Tuple[int, int],
+        typings.IntegerPair,
         typing.List[int],
         ]
 

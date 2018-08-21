@@ -254,6 +254,8 @@ class MetronomeMark(AbjadValueObject):
 
     _format_slot = 'opening'
 
+    _mutates_offsets_in_seconds = True
+
     _parameter = 'METRONOME_MARK'
 
     _persistent = True
@@ -262,8 +264,7 @@ class MetronomeMark(AbjadValueObject):
 
     def __init__(
         self,
-        reference_duration: typing.Union[
-            Duration, typing.Tuple[int, int]] = None,
+        reference_duration: typings.DurationTyping = None,
         units_per_minute: typings.Number = None,
         textual_indication: Markup = None,
         *,

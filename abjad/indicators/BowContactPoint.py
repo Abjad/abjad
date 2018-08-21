@@ -1,5 +1,6 @@
 import functools
 import typing
+from abjad import typings
 from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.markups import Markup
 from abjad.utilities.Multiplier import Multiplier
@@ -46,7 +47,7 @@ class BowContactPoint(AbjadValueObject):
 
     def __init__(
         self,
-        contact_point: typing.Tuple[int, int] = None
+        contact_point: typings.IntegerPair = None,
         ) -> None:
         contact_point_ = None
         if contact_point is not None:
