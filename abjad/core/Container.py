@@ -817,7 +817,7 @@ class Container(Component):
             else:
                 self[:] = parsed[:]
         else:
-            raise TypeError("can't initialize container from {components!r}.")
+            raise TypeError(f"can't initialize container from {components!r}.")
 
     def _is_one_of_my_first_leaves(self, leaf):
         return leaf in self._get_descendants_starting_with()
@@ -990,30 +990,12 @@ class Container(Component):
 
         Returns split parts.
         """
-        from .Measure import Measure
         from .Tuplet import Tuplet
         # partition my components
         left_components = self[:i]
         right_components = self[i:]
         # instantiate new left and right containers
-        if isinstance(self, Measure):
-            time_signature = self._get_effective(TimeSignature)
-            denominator = time_signature.denominator
-            left_duration = sum([_._get_duration() for _ in left_components])
-            left_pair = NonreducedFraction(left_duration)
-            left_pair = left_pair.with_multiple_of_denominator(denominator)
-            left_time_signature = TimeSignature(left_pair)
-            left = type(self)(left_time_signature, [])
-            mutate(left_components).wrap(left)
-            left.implicit_scaling = self.implicit_scaling
-            right_duration = sum([_._get_duration() for _ in right_components])
-            right_pair = NonreducedFraction(right_duration)
-            right_pair = right_pair.with_multiple_of_denominator(denominator)
-            right_time_signature = TimeSignature(right_pair)
-            right = type(self)(right_time_signature, [])
-            mutate(right_components).wrap(right)
-            right.implicit_scaling = self.implicit_scaling
-        elif isinstance(self, Tuplet):
+        if isinstance(self, Tuplet):
             multiplier = self.multiplier
             left = type(self)(multiplier, [])
             mutate(left_components).wrap(left)
@@ -1054,7 +1036,6 @@ class Container(Component):
         tie_split_notes=True,
         repeat_ties=False,
         ):
-        from .Measure import Measure
         if self.is_simultaneous:
             return self._split_simultaneous_by_duration(
                 duration=duration,
@@ -1081,15 +1062,13 @@ class Container(Component):
             if start_offset < cross_offset < stop_offset:
                 duration_crossing_descendants.append(descendant)
         # get any duration-crossing measure descendents
-        measures = [
-            _ for _ in duration_crossing_descendants
-            if isinstance(_, Measure)
-            ]
+        measures = []
         # if we must split a power-of-two measure at non-power-of-two
         # split point then go ahead and transform the power-of-two measure
         # to non-power-of-two equivalent now;
         # code that crawls and splits later on will be happier
         if len(measures) == 1:
+            raise Exception('measures no longer exist')
             measure = measures[0]
             timespan = inspect(measure).timespan()
             start_offset = timespan.start_offset
@@ -1118,6 +1097,7 @@ class Container(Component):
                     if start_offset < cross_offset < stop_offset:
                         duration_crossing_descendants.append(descendant)
         elif 1 < len(measures):
+            raise Exception('measures no longer exist')
             raise Exception('measures can not nest.')
         # any duration-crossing leaf will be at end of list
         bottom = duration_crossing_descendants[-1]

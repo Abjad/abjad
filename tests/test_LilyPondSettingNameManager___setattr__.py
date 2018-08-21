@@ -82,24 +82,23 @@ def test_LilyPondSettingNameManager___setattr___04():
     """
 
     staff = abjad.Staff()
-    staff.append(abjad.Measure((2, 8), "c'8 d'8"))
-    staff.append(abjad.Measure((2, 8), "e'8 f'8"))
+    staff.append(abjad.Container("c'8 d'8"))
+    staff.append(abjad.Container("e'8 f'8"))
     abjad.setting(staff[0]).score.current_bar_number = 12
 
     assert format(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
-            {   % measure
+            {
                 \set Score.currentBarNumber = #12
-                \time 2/8
                 c'8
                 d'8
-            }   % measure
-            {   % measure
+            }
+            {
                 e'8
                 f'8
-            }   % measure
+            }
         }
         """
         )

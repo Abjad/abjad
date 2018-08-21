@@ -405,9 +405,6 @@ class Wrapper(AbjadValueObject):
         result.extend(lilypond_format)
         if self._get_effective_context() is not None:
             return result
-        if isinstance(self.indicator, abjad.TimeSignature):
-            if isinstance(self.component, abjad.Measure):
-                return result
         result = [rf'%%% {_} %%%' for _ in result]
         return result
 
@@ -432,22 +429,7 @@ class Wrapper(AbjadValueObject):
         import abjad
         if self.annotation:
             return False
-        if isinstance(self.component, abjad.Measure):
-            if self.component is component:
-                if not isinstance(self.indicator, abjad.TimeSignature):
-                    return True
-                elif component.always_format_time_signature:
-                    return True
-                else:
-                    previous_measure = self.component._get_previous_measure()
-                    if previous_measure is not None:
-                        previous_effective_time_signature = \
-                            previous_measure.time_signature
-                    else:
-                        previous_effective_time_signature = None
-                    if not self.indicator == previous_effective_time_signature:
-                        return True
-        elif getattr(self.indicator, '_format_slot', None) == 'right':
+        if getattr(self.indicator, '_format_slot', None) == 'right':
             if self.component is component:
                 return True
         elif self.component is component:

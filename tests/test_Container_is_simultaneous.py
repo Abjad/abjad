@@ -10,7 +10,6 @@ def test_Container_is_simultaneous_01():
 
     assert not abjad.Container().is_simultaneous
     assert not abjad.Tuplet().is_simultaneous
-    assert not abjad.Measure().is_simultaneous
     assert abjad.Score().is_simultaneous
     assert not abjad.Container().is_simultaneous
     assert not abjad.Staff().is_simultaneous

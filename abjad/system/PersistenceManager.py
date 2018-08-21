@@ -262,10 +262,10 @@ class PersistenceManager(AbjadObject):
         ..  container:: example
 
             >>> staff = abjad.Staff()
-            >>> measure = abjad.Measure((4, 4), "c'4 d'4 e'4 f'4")
+            >>> container = abjad.Container("c'4 d'4 e'4 f'4")
             >>> command = abjad.LilyPondLiteral(r'\break', 'after')
-            >>> abjad.attach(command, measure[-1])
-            >>> staff.extend(measure * 200)
+            >>> abjad.attach(command, container[-1])
+            >>> staff.extend(200 * container)
 
             >>> result = persist(staff).as_png() # doctest: +SKIP
             >>> for x in result[0]: # doctest: +SKIP

@@ -6,7 +6,7 @@ def test_LogicalTie__fuse_leaves_by_immediate_parent_01():
     Fuse leaves in logical tie with same immediate parent.
     """
 
-    staff = abjad.Staff(2 * abjad.Measure((2, 8), "c'8 c'8"))
+    staff = abjad.Staff(2 * abjad.Container("c'8 c'8"))
     leaves = abjad.select(staff).leaves()
     tie = abjad.Tie()
     abjad.attach(tie, leaves)
@@ -18,14 +18,13 @@ def test_LogicalTie__fuse_leaves_by_immediate_parent_01():
         r"""
         \new Staff
         {
-            {   % measure
-                \time 2/8
+            {
                 c'4
                 ~
-            }   % measure
-            {   % measure
+            }
+            {
                 c'4
-            }   % measure
+            }
         }
         """
         )

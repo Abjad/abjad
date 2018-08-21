@@ -57,33 +57,35 @@ def test_Selection__get_crossing_spanners_02():
     Helper gets spanners that cross in from above.
     """
 
-    voice = abjad.Voice("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
-    leaves = abjad.select(voice).leaves()
+    staff = abjad.Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
+    leaves = abjad.select(staff).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves[2:5])
 
-    assert format(voice) == abjad.String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r"""
-        \new Voice
+        \new Staff
         {
-            {   % measure
+            {
                 \time 2/8
                 c'8
                 d'8
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 e'8
                 [
                 f'8
-            }   % measure
-            {   % measure
+            }
+            {
+                \time 2/8
                 g'8
                 ]
                 a'8
-            }   % measure
+            }
         }
         """
-        )
+        ), print(format(staff))
 
     spanners = abjad.select(leaves)._get_crossing_spanners()
 

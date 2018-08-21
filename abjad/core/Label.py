@@ -318,14 +318,17 @@ class Label(AbjadObject):
 
             ..  container:: example
 
-                >>> measure = abjad.Measure((2, 8), "c'8 d'8")
-                >>> abjad.label(measure).color_container('red')
-                >>> abjad.show(measure) # doctest: +SKIP
+                >>> staff = abjad.Staff("c'8 d'8")
+                >>> abjad.attach(abjad.TimeSignature((2, 8)), staff[0])
+                >>> abjad.label(staff).color_container('red')
+                >>> abjad.show(staff) # doctest: +SKIP
 
                 ..  docs::
 
-                    >>> abjad.f(measure)
-                    {   % measure
+                    >>> abjad.f(staff)
+                    \new Staff
+                    \with
+                    {
                         \override Accidental.color = #red
                         \override Beam.color = #red
                         \override Dots.color = #red
@@ -334,30 +337,27 @@ class Label(AbjadObject):
                         \override Stem.color = #red
                         \override TupletBracket.color = #red
                         \override TupletNumber.color = #red
+                    }
+                    {
                         \time 2/8
                         c'8
                         d'8
-                        \revert Accidental.color
-                        \revert Beam.color
-                        \revert Dots.color
-                        \revert NoteHead.color
-                        \revert Rest.color
-                        \revert Stem.color
-                        \revert TupletBracket.color
-                        \revert TupletNumber.color
-                    }   % measure
+                    }
 
             ..  container:: example expression
 
-                >>> measure = abjad.Measure((2, 8), "c'8 d'8")
+                >>> staff = abjad.Staff("c'8 d'8")
+                >>> abjad.attach(abjad.TimeSignature((2, 8)), staff[0])
                 >>> expression = abjad.label().color_container('red')
-                >>> expression(measure)
-                >>> abjad.show(measure) # doctest: +SKIP
+                >>> expression(staff)
+                >>> abjad.show(staff) # doctest: +SKIP
 
                 ..  docs::
 
-                    >>> abjad.f(measure)
-                    {   % measure
+                    >>> abjad.f(staff)
+                    \new Staff
+                    \with
+                    {
                         \override Accidental.color = #red
                         \override Beam.color = #red
                         \override Dots.color = #red
@@ -366,18 +366,12 @@ class Label(AbjadObject):
                         \override Stem.color = #red
                         \override TupletBracket.color = #red
                         \override TupletNumber.color = #red
+                    }
+                    {
                         \time 2/8
                         c'8
                         d'8
-                        \revert Accidental.color
-                        \revert Beam.color
-                        \revert Dots.color
-                        \revert NoteHead.color
-                        \revert Rest.color
-                        \revert Stem.color
-                        \revert TupletBracket.color
-                        \revert TupletNumber.color
-                    }   % measure
+                    }
 
         Returns none.
         """

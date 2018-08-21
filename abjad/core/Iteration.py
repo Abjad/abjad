@@ -720,9 +720,10 @@ class Iteration(AbjadObject):
             ..  container:: example
 
                 >>> staff = abjad.Staff()
-                >>> staff.append(abjad.Measure((2, 8), "c'8 d'8"))
-                >>> staff.append(abjad.Measure((2, 8), "e'8 f'8"))
-                >>> staff.append(abjad.Measure((2, 8), "g'8 a'8"))
+                >>> staff.extend("c'8 d'8")
+                >>> staff.extend("e'8 f'8")
+                >>> staff.extend("g'8 a'8")
+                >>> abjad.attach(abjad.TimeSignature((2, 8)), staff[0])
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 ..  docs::
@@ -730,19 +731,13 @@ class Iteration(AbjadObject):
                     >>> abjad.f(staff)
                     \new Staff
                     {
-                        {   % measure
-                            \time 2/8
-                            c'8
-                            d'8
-                        }   % measure
-                        {   % measure
-                            e'8
-                            f'8
-                        }   % measure
-                        {   % measure
-                            g'8
-                            a'8
-                        }   % measure
+                        \time 2/8
+                        c'8
+                        d'8
+                        e'8
+                        f'8
+                        g'8
+                        a'8
                     }
 
             ..  container:: example
@@ -1030,9 +1025,10 @@ class Iteration(AbjadObject):
             ..  container:: example
 
                 >>> staff = abjad.Staff()
-                >>> staff.append(abjad.Measure((2, 8), "<c' bf'>8 <g' a'>8"))
-                >>> staff.append(abjad.Measure((2, 8), "af'8 r8"))
-                >>> staff.append(abjad.Measure((2, 8), "r8 gf'8"))
+                >>> staff.extend("<c' bf'>8 <g' a'>8")
+                >>> staff.extend("af'8 r8")
+                >>> staff.extend("r8 gf'8")
+                >>> abjad.attach(abjad.TimeSignature((2, 8)), staff[0])
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 ..  docs::
@@ -1040,19 +1036,13 @@ class Iteration(AbjadObject):
                     >>> abjad.f(staff)
                     \new Staff
                     {
-                        {   % measure
-                            \time 2/8
-                            <c' bf'>8
-                            <g' a'>8
-                        }   % measure
-                        {   % measure
-                            af'8
-                            r8
-                        }   % measure
-                        {   % measure
-                            r8
-                            gf'8
-                        }   % measure
+                        \time 2/8
+                        <c' bf'>8
+                        <g' a'>8
+                        af'8
+                        r8
+                        r8
+                        gf'8
                     }
 
             ..  container:: example
@@ -1213,9 +1203,10 @@ class Iteration(AbjadObject):
             ..  container:: example
 
                 >>> staff = abjad.Staff()
-                >>> staff.append(abjad.Measure((2, 8), "<c' bf'>8 <g' a'>8"))
-                >>> staff.append(abjad.Measure((2, 8), "af'8 r8"))
-                >>> staff.append(abjad.Measure((2, 8), "r8 gf'8"))
+                >>> staff.extend("<c' bf'>8 <g' a'>8")
+                >>> staff.extend("af'8 r8")
+                >>> staff.extend("r8 gf'8")
+                >>> abjad.attach(abjad.TimeSignature((2, 8)), staff[0])
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 ..  docs::
@@ -1223,19 +1214,13 @@ class Iteration(AbjadObject):
                     >>> abjad.f(staff)
                     \new Staff
                     {
-                        {   % measure
-                            \time 2/8
-                            <c' bf'>8
-                            <g' a'>8
-                        }   % measure
-                        {   % measure
-                            af'8
-                            r8
-                        }   % measure
-                        {   % measure
-                            r8
-                            gf'8
-                        }   % measure
+                        \time 2/8
+                        <c' bf'>8
+                        <g' a'>8
+                        af'8
+                        r8
+                        r8
+                        gf'8
                     }
 
             ..  container:: example
@@ -1255,9 +1240,10 @@ class Iteration(AbjadObject):
             ..  container:: example
 
                 >>> staff = abjad.Staff()
-                >>> staff.append(abjad.Measure((2, 8), "<c' bf'>8 <g' a'>8"))
-                >>> staff.append(abjad.Measure((2, 8), "af'8 r8"))
-                >>> staff.append(abjad.Measure((2, 8), "r8 gf'8"))
+                >>> staff.extend("<c' bf'>8 <g' a'>8")
+                >>> staff.extend("af'8 r8")
+                >>> staff.extend("r8 gf'8")
+                >>> abjad.attach(abjad.TimeSignature((2, 8)), staff[0])
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 ..  docs::
@@ -1265,19 +1251,13 @@ class Iteration(AbjadObject):
                     >>> abjad.f(staff)
                     \new Staff
                     {
-                        {   % measure
-                            \time 2/8
-                            <c' bf'>8
-                            <g' a'>8
-                        }   % measure
-                        {   % measure
-                            af'8
-                            r8
-                        }   % measure
-                        {   % measure
-                            r8
-                            gf'8
-                        }   % measure
+                        \time 2/8
+                        <c' bf'>8
+                        <g' a'>8
+                        af'8
+                        r8
+                        r8
+                        gf'8
                     }
 
             ..  container:: example
@@ -1295,9 +1275,10 @@ class Iteration(AbjadObject):
             ..  container:: example
 
                 >>> staff = abjad.Staff()
-                >>> staff.append(abjad.Measure((2, 8), "<c' bf'>8 <g' a'>8"))
-                >>> staff.append(abjad.Measure((2, 8), "af'8 r8"))
-                >>> staff.append(abjad.Measure((2, 8), "r8 gf'8"))
+                >>> staff.extend("<c' bf'>8 <g' a'>8")
+                >>> staff.extend("af'8 r8")
+                >>> staff.extend("r8 gf'8")
+                >>> abjad.attach(abjad.TimeSignature((2, 8)), staff[0])
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 ..  docs::
@@ -1305,19 +1286,13 @@ class Iteration(AbjadObject):
                     >>> abjad.f(staff)
                     \new Staff
                     {
-                        {   % measure
-                            \time 2/8
-                            <c' bf'>8
-                            <g' a'>8
-                        }   % measure
-                        {   % measure
-                            af'8
-                            r8
-                        }   % measure
-                        {   % measure
-                            r8
-                            gf'8
-                        }   % measure
+                        \time 2/8
+                        <c' bf'>8
+                        <g' a'>8
+                        af'8
+                        r8
+                        r8
+                        gf'8
                     }
 
             ..  container:: example

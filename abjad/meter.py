@@ -12,6 +12,8 @@ from abjad import indicators as abjad_indicators
 from abjad import mathtools
 from abjad import system
 from abjad.system.AbjadValueObject import AbjadValueObject
+from abjad.timespans.Timespan import Timespan
+from abjad.timespans.TimespanList import TimespanList
 from abjad.utilities.TypedCounter import TypedCounter
 from abjad.utilities.TypedList import TypedList
 
@@ -262,11 +264,9 @@ class Meter(AbjadValueObject):
         increase_monotonic=None,
         preferred_boundary_depth=None,
         ):
-
         argument = argument or (4, 4)
         assert isinstance(preferred_boundary_depth, (int, type(None)))
         self._preferred_boundary_depth = preferred_boundary_depth
-
         def recurse(
             node,
             factors,
@@ -328,21 +328,17 @@ class Meter(AbjadValueObject):
                 node.extend([abjad.rhythmtrees.RhythmTreeLeaf(
                     preprolated_duration=(1, denominator))
                     for _ in range(node.preprolated_duration.numerator)])
-
         increase_monotonic = bool(increase_monotonic)
-
         try:
             numerator = argument.numerator
             denominator = argument.denominator
             is_fraction_like = True
         except AttributeError:
             is_fraction_like = False
-
         if isinstance(argument, type(self)):
             root = argument.root_node
             numerator, denominator = argument.numerator, argument.denominator
             increase_monotonic = argument.increase_monotonic
-
         elif isinstance(argument, (str, abjad.rhythmtrees.RhythmTreeContainer)):
             if isinstance(argument, str):
                 parsed = abjad.rhythmtrees.RhythmTreeParser()(argument)
@@ -354,20 +350,9 @@ class Meter(AbjadValueObject):
                 assert node.prolation == 1
             numerator = root.preprolated_duration.numerator
             denominator = root.preprolated_duration.denominator
-
-        elif (
-            isinstance(argument, (tuple, core.Measure)) or
-            is_fraction_like
-        ):
+        elif (is_fraction_like or isinstance(argument, tuple)):
             if isinstance(argument, tuple):
                 fraction = mathtools.NonreducedFraction(argument)
-            elif isinstance(argument, core.Measure):
-                prototype = abjad_indicators.TimeSignature
-                time_signature = argument._get_effective(prototype)
-                fraction = mathtools.NonreducedFraction(
-                    time_signature.numerator,
-                    time_signature.denominator,
-                    )
             else:
                 fraction = mathtools.NonreducedFraction(
                     argument.numerator,
@@ -386,11 +371,9 @@ class Meter(AbjadValueObject):
                 denominator,
                 increase_monotonic,
                 )
-
         else:
-            message = 'can not initialize {}: {!r}.'
-            message = message.format(type(self).__name__, argument)
-            raise ValueError(message)
+            name = type(self).__name__
+            raise ValueError(f'can not initialize {name}: {argument!r}.')
 
         self._root_node = root
         self._numerator = numerator
@@ -703,7 +686,7 @@ class Meter(AbjadValueObject):
                 x.stop_offset).with_denominator(self.denominator)
             yield start_offset, stop_offset
 
-    def __str__(self):
+    def __str__(self) -> str:
         """
         Gets string representation of meter.
 
@@ -723,9 +706,8 @@ class Meter(AbjadValueObject):
             7/8
             8/8
 
-        Returns string.
         """
-        return '{}/{}'.format(self.numerator, self.denominator)
+        return f'{self.numerator}/{self.denominator}'
 
     ### PRIVATE METHODS ###
 
@@ -738,88 +720,6 @@ class Meter(AbjadValueObject):
             )
 
     @staticmethod
-    def _make_gridded_test_rhythm(grid_length, rhythm_number, denominator=16):
-        """
-        Make test rhythm number ``rhythm_number`` that fits ``grid_length``.
-
-        Returns selection of one or more possibly tied notes.
-
-        ..  container:: example
-
-            The eight test rhythms that fit a length-``4`` grid:
-
-            >>> for rhythm_number in range(8):
-            ...     notes = abjad.Meter._make_gridded_test_rhythm(
-            ...         4, rhythm_number, denominator=4)
-            ...     measure = abjad.Measure((4, 4), notes)
-            ...     print('{}\t{}'.format(rhythm_number, str(measure)))
-            ...
-            0	Measure((4, 4), "c'1")
-            1	Measure((4, 4), "c'2. c'4")
-            2	Measure((4, 4), "c'2 c'4 c'4")
-            3	Measure((4, 4), "c'2 c'2")
-            4	Measure((4, 4), "c'4 c'4 c'2")
-            5	Measure((4, 4), "c'4 c'4 c'4 c'4")
-            6	Measure((4, 4), "c'4 c'2 c'4")
-            7	Measure((4, 4), "c'4 c'2.")
-
-        ..  container:: example
-
-            The sixteenth test rhythms for that a length-``5`` grid:
-
-            >>> for rhythm_number in range(16):
-            ...     notes = abjad.Meter._make_gridded_test_rhythm(
-            ...         5, rhythm_number, denominator=4)
-            ...     measure = abjad.Measure((5, 4), notes)
-            ...     print('{}\t{}'.format(rhythm_number, str(measure)))
-            ...
-            0	Measure((5, 4), "c'1 ~ c'4")
-            1	Measure((5, 4), "c'1 c'4")
-            2	Measure((5, 4), "c'2. c'4 c'4")
-            3	Measure((5, 4), "c'2. c'2")
-            4	Measure((5, 4), "c'2 c'4 c'2")
-            5	Measure((5, 4), "c'2 c'4 c'4 c'4")
-            6	Measure((5, 4), "c'2 c'2 c'4")
-            7	Measure((5, 4), "c'2 c'2.")
-            8	Measure((5, 4), "c'4 c'4 c'2.")
-            9	Measure((5, 4), "c'4 c'4 c'2 c'4")
-            10	Measure((5, 4), "c'4 c'4 c'4 c'4 c'4")
-            11	Measure((5, 4), "c'4 c'4 c'4 c'2")
-            12	Measure((5, 4), "c'4 c'2 c'2")
-            13	Measure((5, 4), "c'4 c'2 c'4 c'4")
-            14	Measure((5, 4), "c'4 c'2. c'4")
-            15	Measure((5, 4), "c'4 c'1")
-
-        Use for testing meter establishment.
-        """
-        import abjad
-        # check input
-        assert abjad.mathtools.is_positive_integer(grid_length)
-        assert isinstance(rhythm_number, int)
-        assert abjad.mathtools.is_positive_integer_power_of_two(denominator)
-        # find count of all rhythms that fit grid length
-        rhythm_count = 2 ** (grid_length - 1)
-        # read rhythm number cyclically to allow large and
-        # negative rhythm numbers
-        rhythm_number = rhythm_number % rhythm_count
-        # find binary representation of rhythm
-        binary_representation = abjad.mathtools.integer_to_binary_string(
-            rhythm_number)
-        binary_representation = binary_representation.zfill(grid_length)
-        # partition binary representation of rhythm
-        parts = abjad.sequence(binary_representation).group_by()
-        # find durations
-        durations = [
-            abjad.Duration(len(part), denominator)
-            for part in parts
-            ]
-        # make notes
-        maker = abjad.NoteMaker()
-        notes = maker([0], durations)
-        # return notes
-        return notes
-
-    @staticmethod
     def _rewrite_meter(
         components,
         meter,
@@ -828,13 +728,13 @@ class Meter(AbjadValueObject):
         maximum_dot_count=None,
         rewrite_tuplets=True,
         repeat_ties=False,
-    ):
+        ):
         def recurse(
             boundary_depth=None,
             boundary_offsets=None,
             depth=0,
             logical_tie=None,
-        ):
+            ):
             offsets = abjad.meter._MeterManager.get_offsets_at_depth(
                 depth,
                 offset_inventory,
@@ -851,7 +751,7 @@ class Meter(AbjadValueObject):
                 logical_tie_starts_in_offsets=logical_tie_starts_in_offsets,
                 logical_tie_stops_in_offsets=logical_tie_stops_in_offsets,
                 maximum_dot_count=maximum_dot_count,
-            ):
+                ):
                 #print('UNACCEPTABLE:', logical_tie, logical_tie_start_offset, logical_tie_stop_offset)
                 #print('\t', ' '.join([str(x) for x in offsets]))
                 split_offset = None
@@ -896,7 +796,7 @@ class Meter(AbjadValueObject):
                 boundary_offsets=boundary_offsets,
                 logical_tie_start_offset=logical_tie_start_offset,
                 logical_tie_stop_offset=logical_tie_stop_offset,
-            ):
+                ):
                 #print('BOUNDARY CROSSING', logical_tie, logical_tie_start_offset, logical_tie_stop_offset)
                 offsets = boundary_offsets
                 if logical_tie_start_offset in boundary_offsets:
@@ -1010,7 +910,7 @@ class Meter(AbjadValueObject):
         discard_final_orphan_downbeat=True,
         maximum_run_length=None,
         starting_offset=None,
-    ):
+        ):
         """
         Finds the best-matching sequence of meters for the offsets
         contained in ``argument``.
@@ -1070,7 +970,7 @@ class Meter(AbjadValueObject):
         self,
         denominator,
         normalize=True,
-    ):
+        ):
         r"""
         Generates a dictionary of all offsets in a meter up
         to ``denominator``.
@@ -1787,10 +1687,10 @@ class MeterList(TypedList):
         import abjad
         durations = [_.duration for _ in self]
         total_duration = sum(durations)
-        offsets = abjad.mathtools.cumulative_sums(durations, start=0)
-        timespans = abjad.TimespanList()
+        offsets = mathtools.cumulative_sums(durations, start=0)
+        timespans = TimespanList()
         for one, two in abjad.sequence(offsets).nwise():
-            timespan = abjad.Timespan(
+            timespan = Timespan(
                 start_offset=one,
                 stop_offset=two,
                 )
@@ -2146,7 +2046,7 @@ class OffsetCounter(TypedCounter):
         import abjad
         if not self:
             return abjad.Markup.null().__illustrate__()
-        if isinstance(range_, abjad.Timespan):
+        if isinstance(range_, Timespan):
             minimum, maximum = range_.start_offset, range_.stop_offset
         elif range_ is not None:
             minimum, maximum = range_
@@ -2521,13 +2421,13 @@ class _MeterManager(system.AbjadObject):
             >>> abjad.f(staff)
             \new Staff
             {
-                {   % measure
+                {
                     \time 2/4
                     c'4
                     d'4
                     ~
-                }   % measure
-                {   % measure
+                }
+                {
                     \time 4/4
                     d'8.
                     r16
@@ -2543,8 +2443,9 @@ class _MeterManager(system.AbjadObject):
                     }
                     f'4
                     ~
-                }   % measure
-                {   % measure
+                }
+                {
+                    \time 4/4
                     f'8
                     g'8
                     ~
@@ -2554,12 +2455,12 @@ class _MeterManager(system.AbjadObject):
                     a'8
                     b'8
                     ~
-                }   % measure
-                {   % measure
+                }
+                {
                     \time 2/4
                     b'4
                     c''4
-                }   % measure
+                }
             }
 
         >>> for x in abjad.meter._MeterManager.iterate_rewrite_inputs(

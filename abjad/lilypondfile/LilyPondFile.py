@@ -4,14 +4,15 @@ import inspect
 import pathlib
 import typing
 from abjad.indicators.LilyPondLiteral import LilyPondLiteral
+from abjad.indicators.TimeSignature import TimeSignature
 from abjad.system.AbjadObject import AbjadObject
 from abjad.pitch.NamedPitch import NamedPitch
 from abjad.core.Component import Component
 from abjad.core.Container import Container
 from abjad.core.Context import Context
-from abjad.core.MeasureMaker import MeasureMaker
 from abjad.core.Note import Note
 from abjad.core.Score import Score
+from abjad.core.Skip import Skip
 from abjad.core.Selection import Selection
 from abjad.core.Staff import Staff
 from abjad.core.Voice import Voice
@@ -25,6 +26,7 @@ from abjad.top.iterate import iterate
 from abjad.top.mutate import mutate
 from abjad.top.override import override
 from abjad.top.sequence import sequence
+from abjad.utilities.Multiplier import Multiplier
 from .Block import Block
 from .ContextBlock import ContextBlock
 from .DateTimeToken import DateTimeToken
@@ -1067,52 +1069,37 @@ class LilyPondFile(AbjadObject):
                 <<
                     \new GlobalContext
                     {
-                        {   % measure
-                            \time 3/4
-                            s1 * 3/4
-                        }   % measure
-                        {   % measure
-                            \time 4/8
-                            s1 * 1/2
-                        }   % measure
-                        {   % measure
-                            \time 1/4
-                            s1 * 1/4
-                        }   % measure
+                        \time 3/4
+                        s1 * 3/4
+                        \time 4/8
+                        s1 * 1/2
+                        \time 1/4
+                        s1 * 1/4
                     }
                     \new RhythmicStaff
                     {
-                        {   % measure
-                            \time 3/4
-                            c'8
-                            [
-                            c'8
-                            c'8
-                            c'8
-                            c'8
-                            c'8
-                            ]
-                        }   % measure
-                        {   % measure
-                            \time 4/8
-                            c'16
-                            [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            ]
-                        }   % measure
-                        {   % measure
-                            \time 1/4
-                            c'8
-                            [
-                            c'8
-                            ]
-                        }   % measure
+                        c'8
+                        [
+                        c'8
+                        c'8
+                        c'8
+                        c'8
+                        c'8
+                        ]
+                        c'16
+                        [
+                        c'16
+                        c'16
+                        c'16
+                        c'16
+                        c'16
+                        c'16
+                        c'16
+                        ]
+                        c'8
+                        [
+                        c'8
+                        ]
                     }
                 >>
 
@@ -1144,52 +1131,37 @@ class LilyPondFile(AbjadObject):
                 <<
                     \new GlobalContext
                     {
-                        {   % measure
-                            \time 6/8
-                            s1 * 3/4
-                        }   % measure
-                        {   % measure
-                            \time 4/8
-                            s1 * 1/2
-                        }   % measure
-                        {   % measure
-                            \time 2/8
-                            s1 * 1/4
-                        }   % measure
+                        \time 6/8
+                        s1 * 3/4
+                        \time 4/8
+                        s1 * 1/2
+                        \time 2/8
+                        s1 * 1/4
                     }
                     \new RhythmicStaff
                     {
-                        {   % measure
-                            \time 6/8
-                            c'8
-                            [
-                            c'8
-                            c'8
-                            c'8
-                            c'8
-                            c'8
-                            ]
-                        }   % measure
-                        {   % measure
-                            \time 4/8
-                            c'16
-                            [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            ]
-                        }   % measure
-                        {   % measure
-                            \time 2/8
-                            c'8
-                            [
-                            c'8
-                            ]
-                        }   % measure
+                        c'8
+                        [
+                        c'8
+                        c'8
+                        c'8
+                        c'8
+                        c'8
+                        ]
+                        c'16
+                        [
+                        c'16
+                        c'16
+                        c'16
+                        c'16
+                        c'16
+                        c'16
+                        c'16
+                        ]
+                        c'8
+                        [
+                        c'8
+                        ]
                     }
                 >>
 
@@ -1221,52 +1193,37 @@ class LilyPondFile(AbjadObject):
                 <<
                     \new GlobalContext
                     {
-                        {   % measure
-                            \time 3/4
-                            s1 * 3/4
-                        }   % measure
-                        {   % measure
-                            \time 4/8
-                            s1 * 1/2
-                        }   % measure
-                        {   % measure
-                            \time 1/4
-                            s1 * 1/4
-                        }   % measure
+                        \time 3/4
+                        s1 * 3/4
+                        \time 4/8
+                        s1 * 1/2
+                        \time 1/4
+                        s1 * 1/4
                     }
                     \new Staff
                     {
-                        {   % measure
-                            \time 3/4
-                            c'8
-                            [
-                            c'8
-                            c'8
-                            c'8
-                            c'8
-                            c'8
-                            ]
-                        }   % measure
-                        {   % measure
-                            \time 4/8
-                            c'16
-                            [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            ]
-                        }   % measure
-                        {   % measure
-                            \time 1/4
-                            c'8
-                            [
-                            c'8
-                            ]
-                        }   % measure
+                        c'8
+                        [
+                        c'8
+                        c'8
+                        c'8
+                        c'8
+                        c'8
+                        ]
+                        c'16
+                        [
+                        c'16
+                        c'16
+                        c'16
+                        c'16
+                        c'16
+                        c'16
+                        c'16
+                        ]
+                        c'8
+                        [
+                        c'8
+                        ]
                     }
                 >>
 
@@ -1318,18 +1275,9 @@ class LilyPondFile(AbjadObject):
                 <<
                     \new GlobalContext
                     {
-                        {   % measure
-                            \time 3/4
-                            s1 * 3/4
-                        }   % measure
-                        {   % measure
-                            \time 4/8
-                            s1 * 1/2
-                        }   % measure
-                        {   % measure
-                            \time 1/4
-                            s1 * 1/4
-                        }   % measure
+                        s1 * 3/4
+                        s1 * 1/2
+                        s1 * 1/4
                     }
                     \new Staff
                     <<
@@ -1437,25 +1385,12 @@ class LilyPondFile(AbjadObject):
                 duration = abjad_inspect(selections).duration()
                 divisions = [duration]
             time_signatures = time_signatures or divisions
-            maker = MeasureMaker(implicit_scaling=implicit_scaling)
-            measures = maker(time_signatures)
+            time_signatures = [TimeSignature(_) for _ in time_signatures]
             if pitched_staff:
-                staff = Staff(measures)
+                staff = Staff()
             else:
-                staff = Staff(measures, lilypond_type='RhythmicStaff')
-            selections = sequence(selections).flatten(depth=-1)
-            selections_ = copy.deepcopy(selections)
-            try:
-                agent = mutate(staff)
-                measures = agent.replace_measure_contents(selections)
-            except StopIteration:
-                if pitched_staff:
-                    staff = Staff(selections_)
-                else:
-                    staff = Staff(
-                        selections_,
-                        lilypond_type='RhythmicStaff',
-                        )
+                staff = Staff(lilypond_type='RhythmicStaff')
+            staff.extend(selections)
         elif isinstance(selections, dict):
             voices = []
             for voice_name in sorted(selections):
@@ -1489,8 +1424,13 @@ class LilyPondFile(AbjadObject):
         assert isinstance(divisions, collections.Sequence), repr(divisions)
         time_signatures = time_signatures or divisions
         context = Context(lilypond_type='GlobalContext')
-        maker = MeasureMaker(implicit_scaling=implicit_scaling)
-        measures = maker(time_signatures)
-        context.extend(measures)
+        skips = []
+        for time_signature in time_signatures:
+            skip = Skip(1)
+            multiplier = Multiplier(time_signature)
+            attach(multiplier, skip)
+            attach(time_signature, skip, context='Score')
+            skips.append(skip)
+        context.extend(skips)
         score.insert(0, context)
         return lilypond_file

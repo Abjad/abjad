@@ -79,21 +79,19 @@ def make_desordre_cell(pitches):
     return container
 
 
-def make_desordre_measure(pitches):
+def make_desordre_measure(pitches) -> abjad.Container:
     """
     Makes a measure composed of *Désordre cells*.
 
     ``pitches`` is a list of lists of number (e.g., [[1, 2, 3], [2, 3, 4]])
-
-    Returns a measure.
     """
     for sequence in pitches:
         container = make_desordre_cell(sequence)
         time_signature = abjad.inspect(container).duration()
         time_signature = abjad.NonreducedFraction(time_signature)
         time_signature = time_signature.with_denominator(8)
-        measure = abjad.Measure(time_signature, [container])
-    return measure
+        abjad.attach(time_signature, container[0])
+    return container
 
 
 def make_desordre_staff(pitches):

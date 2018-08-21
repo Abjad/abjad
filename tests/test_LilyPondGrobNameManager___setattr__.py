@@ -1006,20 +1006,19 @@ def test_LilyPondGrobNameManager___setattr___40():
     Override LilyPond abjad.TimeSignature grob.
     """
 
-    measure = abjad.Measure((4, 8), "c'8 d'8 e'8 f'8")
+    measure = abjad.Container("c'8 d'8 e'8 f'8")
     abjad.override(measure).time_signature.transparent = True
 
     assert format(measure) == abjad.String.normalize(
         r"""
-        {   % measure
+        {
             \override TimeSignature.transparent = ##t
-            \time 4/8
             c'8
             d'8
             e'8
             f'8
             \revert TimeSignature.transparent
-        }   % measure
+        }
         """
         )
 
@@ -1029,20 +1028,19 @@ def test_LilyPondGrobNameManager___setattr___41():
     Override LilyPond abjad.TimeSignature grob.
     """
 
-    measure = abjad.Measure((4, 8), "c'8 d'8 e'8 f'8")
+    measure = abjad.Container("c'8 d'8 e'8 f'8")
     abjad.override(measure).staff.time_signature.transparent = True
 
     assert format(measure) == abjad.String.normalize(
         r"""
-        {   % measure
+        {
             \override Staff.TimeSignature.transparent = ##t
-            \time 4/8
             c'8
             d'8
             e'8
             f'8
             \revert Staff.TimeSignature.transparent
-        }   % measure
+        }
         """
         )
 

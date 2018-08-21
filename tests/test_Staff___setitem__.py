@@ -155,19 +155,3 @@ def test_Staff___setitem___09():
         else:
             assert isinstance(x, abjad.Note)
     assert abjad.inspect(staff).is_wellformed()
-
-
-def test_Staff___setitem___10():
-    """
-    Slice-assign measures.
-    """
-
-    staff = abjad.Staff(abjad.Note(0, (1, 8)) * 8)
-    staff[0:4] = abjad.Measure((2, 8), abjad.Note(0, (1, 8)) * 2) * 2
-    assert len(staff) == 6
-    for i, x in enumerate(staff):
-        if i in [0, 1]:
-            assert isinstance(x, abjad.Measure)
-        else:
-            assert isinstance(x, abjad.Note)
-    assert abjad.inspect(staff).is_wellformed()

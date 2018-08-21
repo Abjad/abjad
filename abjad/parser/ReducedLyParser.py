@@ -1,4 +1,5 @@
 from abjad import Left, Right
+from abjad import indicators
 from abjad import utilities
 from abjad import mathtools
 from abjad import pitch as abjad_pitch
@@ -6,6 +7,7 @@ from abjad import core
 from abjad import spanners
 from abjad.top import attach
 from abjad.top import detach
+from abjad.top import inspect
 from abjad.system import Parser
 
 
@@ -115,25 +117,29 @@ class ReducedLyParser(Parser):
 
         >>> string = '| 4/4 4 4 4 4 || 3/8 8 8 8 |'
         >>> container = parser(string)
-        >>> abjad.show(container) # doctest: +SKIP
+        >>> staff = abjad.Staff([container])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> abjad.f(container)
+            >>> abjad.f(staff)
+            \new Staff
             {
-                {   % measure
-                    \time 4/4
-                    c'4
-                    c'4
-                    c'4
-                    c'4
-                }   % measure
-                {   % measure
-                    \time 3/8
-                    c'8
-                    c'8
-                    c'8
-                }   % measure
+                {
+                    {
+                        \time 4/4
+                        c'4
+                        c'4
+                        c'4
+                        c'4
+                    }
+                    {
+                        \time 3/8
+                        c'8
+                        c'8
+                        c'8
+                    }
+                }
             }
 
     ..  container:: example
@@ -406,9 +412,12 @@ class ReducedLyParser(Parser):
         """
         measure : PIPE FRACTION component_list PIPE
         """
-        measure = core.Measure(p[2].pair)
+        measure = core.Container()
         for x in p[3]:
             measure.append(x)
+        leaf = inspect(measure).leaf(0)
+        time_signature = indicators.TimeSignature(p[2].pair)
+        attach(time_signature, leaf)
         p[0] = measure
 
     def p_negative_leaf_duration__INTEGER_N__dots(self, p):
@@ -417,8 +426,8 @@ class ReducedLyParser(Parser):
         """
         duration_log = p[1]
         dots = '.' * p[2]
-        duration = utilities.Duration.from_lilypond_duration_string(
-            '{}{}'.format(abs(duration_log), dots))
+        string = f'{abs(duration_log)}{dots}'
+        duration = utilities.Duration.from_lilypond_duration_string(string)
         self._default_duration = duration
         p[0] = duration
 

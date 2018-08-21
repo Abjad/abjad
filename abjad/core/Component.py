@@ -341,17 +341,6 @@ class Component(AbjadObject):
         unwrap=True,
         ):
         import abjad
-        # return time signature attached to measure regardless of context
-        if (prototype == TimeSignature or prototype == (TimeSignature,)):
-            if isinstance(self, abjad.Measure):
-                if self._has_indicator(TimeSignature, attributes=attributes):
-                    indicator = self._get_indicator(
-                        TimeSignature,
-                        attributes=attributes,
-                        )
-                    return indicator
-                else:
-                    return
         self._update_now(indicators=True)
         candidate_wrappers = {}
         parentage = inspect(self).parentage(
@@ -569,32 +558,6 @@ class Component(AbjadObject):
             return tuple(x for x in markup if x.direction is enums.Down)
         return markup
 
-    def _get_next_measure(self):
-        import abjad
-        if isinstance(self, abjad.Leaf):
-            for parent in inspect(self).parentage(
-                include_self=False):
-                if isinstance(parent, abjad.Measure):
-                    return parent
-            raise exceptions.MissingMeasureError
-        elif isinstance(self, abjad.Measure):
-            return self._get_in_my_logical_voice(1, prototype=abjad.Measure)
-        elif isinstance(self, abjad.Container):
-            contents = self._get_descendants_starting_with()
-            contents = [x for x in contents if isinstance(x, abjad.Measure)]
-            if contents:
-                return contents[0]
-            raise exceptions.MissingMeasureError
-        elif isinstance(self, (list, tuple)):
-            measure_generator = iterate(self).components(abjad.Measure)
-            try:
-                measure = next(measure_generator)
-                return measure
-            except StopIteration:
-                raise exceptions.MissingMeasureError
-        else:
-            raise TypeError(f'unknown component {self!r}.')
-
     def _get_nth_component_in_time_order_from(self, n):
         assert mathtools.is_integer_equivalent(n)
         def next(component):
@@ -627,35 +590,6 @@ class Component(AbjadObject):
             include_self=include_self,
             grace_notes=grace_notes,
             )
-
-    def _get_previous_measure(self):
-        import abjad
-        if isinstance(self, abjad.Leaf):
-            for parent in inspect(self).parentage(
-                include_self=False):
-                if isinstance(parent, abjad.Measure):
-                    return parent
-            raise exceptions.MissingMeasureError
-        elif isinstance(self, abjad.Measure):
-            return self._get_in_my_logical_voice(-1, prototype=abjad.Measure)
-        elif isinstance(self, abjad.Container):
-            contents = self._get_descendants_stopping_with()
-            contents = [x for x in contents if isinstance(x, abjad.Measure)]
-            if contents:
-                return contents[0]
-            raise exceptions.MissingMeasureError
-        elif isinstance(self, (list, tuple)):
-            measure_generator = iterate(self).components(
-                abjad.Measure,
-                reverse=True,
-                )
-            try:
-                measure = next(measure_generator)
-                return measure
-            except StopIteration:
-                raise exceptions.MissingMeasureError
-        else:
-            raise Exception(f'unknown component {self!r}.')
 
     def _get_sibling(self, n):
         if n == 0:
@@ -749,31 +683,6 @@ class Component(AbjadObject):
         parent = self._parent
         while parent is not None and not parent.is_simultaneous:
             current_prolation *= prolations[i]
-            if isinstance(parent, abjad.Measure):
-                indicator = parent._get_indicator(TimeSignature)
-                parent_time_signature = indicator
-                old_prolation = parent_time_signature.implied_prolation
-                naive_time_signature = (
-                    parent_time_signature.duration - prolated_leaf_duration)
-                better_time_signature = mathtools.NonreducedFraction(
-                    naive_time_signature)
-                better_time_signature = better_time_signature.with_denominator(
-                    parent_time_signature.denominator)
-                better_time_signature = TimeSignature(better_time_signature)
-                detach(TimeSignature, parent)
-                attach(better_time_signature, parent)
-                indicator = parent._get_indicator(TimeSignature)
-                parent_time_signature = indicator
-                new_prolation = parent_time_signature.implied_prolation
-                adjusted_prolation = old_prolation / new_prolation
-                for x in parent:
-                    if adjusted_prolation != 1:
-                        new_target = x._get_preprolated_duration()
-                        new_target *= adjusted_prolation
-                        contents_duration = inspect(x)
-                        multiplier = new_target / contents_duration
-                        tuplet = abjad.Tuplet(multiplier, [])
-                        mutate(x).wrap(tuplet)
             parent = parent._parent
             i += 1
         parentage = inspect(self).parentage(include_self=False)

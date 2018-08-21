@@ -15,7 +15,6 @@ from abjad.top.setting import setting
 from abjad.utilities.Sequence import Sequence
 from .Container import Container
 from .Context import Context
-from .Measure import Measure
 
 
 class Wellformedness(AbjadObject):
@@ -170,35 +169,6 @@ class Wellformedness(AbjadObject):
                 violators.append(container)
         return violators, len(containers)
 
-    def check_misdurated_measures(self, argument=None):
-        """
-        Checks misdurated measures.
-
-        Returns violators and total.
-        """
-        violators, total = [], set()
-        for measure in iterate(argument).components(Measure):
-            total.add(measure)
-            time_signature = measure.time_signature
-            if time_signature is not None:
-                duration = measure._get_preprolated_duration()
-                if duration != time_signature.duration:
-                    violators.append(measure)
-        return violators, len(total)
-
-    def check_misfilled_measures(self, argument=None):
-        """
-        Checks misfilled measures.
-
-        Returns violators and total.
-        """
-        violators, total = [], set()
-        for measure in iterate(argument).components(Measure):
-            total.add(measure)
-            if measure.is_misfilled:
-                violators.append(measure)
-        return violators, len(total)
-
     def check_mispitched_ties(self, argument=None):
         r"""
         Checks mispitched notes.
@@ -215,12 +185,9 @@ class Wellformedness(AbjadObject):
             0 /	1 discontiguous spanners
             0 /	3 duplicate ids
             0 /	1 empty containers
-            0 /	0 misdurated measures
-            0 /	0 misfilled measures
             1 /	1 mispitched ties
             0 /	2 misrepresented flags
             0 /	3 missing parents
-            0 /	0 nested measures
             0 /	2 notes on wrong clef
             0 /	2 out of range pitches
             0 /	0 overlapping beams
@@ -243,12 +210,9 @@ class Wellformedness(AbjadObject):
             0 /	1 discontiguous spanners
             0 /	3 duplicate ids
             0 /	1 empty containers
-            0 /	0 misdurated measures
-            0 /	0 misfilled measures
             1 /	1 mispitched ties
             0 /	2 misrepresented flags
             0 /	3 missing parents
-            0 /	0 nested measures
             0 /	2 notes on wrong clef
             0 /	2 out of range pitches
             0 /	0 overlapping beams
@@ -315,22 +279,6 @@ class Wellformedness(AbjadObject):
                     violators.append(component)
         return violators, len(total)
 
-    def check_nested_measures(self, argument=None):
-        """
-        Checks nested measures.
-
-        Returns violators and total.
-        """
-        violators, total = [], set()
-        for measure in iterate(argument).components(Measure):
-            total.add(measure)
-            parentage = inspect(measure).parentage(
-                include_self=False,
-                )
-            if parentage.get_first(Measure):
-                violators.append(measure)
-        return violators, len(total)
-
     def check_notes_on_wrong_clef(self, argument=None):
         r"""
         Checks notes and chords on wrong clef.
@@ -361,12 +309,9 @@ class Wellformedness(AbjadObject):
             0 /	0 discontiguous spanners
             0 /	5 duplicate ids
             0 /	1 empty containers
-            0 /	0 misdurated measures
-            0 /	0 misfilled measures
             0 /	0 mispitched ties
             0 /	4 misrepresented flags
             0 /	5 missing parents
-            0 /	0 nested measures
             4 /	4 notes on wrong clef
             0 /	4 out of range pitches
             0 /	0 overlapping beams
@@ -405,12 +350,9 @@ class Wellformedness(AbjadObject):
             0 /	0 discontiguous spanners
             0 /	5 duplicate ids
             0 /	1 empty containers
-            0 /	0 misdurated measures
-            0 /	0 misfilled measures
             0 /	0 mispitched ties
             0 /	4 misrepresented flags
             0 /	5 missing parents
-            0 /	0 nested measures
             0 /	4 notes on wrong clef
             0 /	4 out of range pitches
             0 /	0 overlapping beams
@@ -430,12 +372,9 @@ class Wellformedness(AbjadObject):
             0 /	0 discontiguous spanners
             0 /	5 duplicate ids
             0 /	1 empty containers
-            0 /	0 misdurated measures
-            0 /	0 misfilled measures
             0 /	0 mispitched ties
             0 /	4 misrepresented flags
             0 /	5 missing parents
-            0 /	0 nested measures
             4 /	4 notes on wrong clef
             0 /	4 out of range pitches
             0 /	0 overlapping beams
@@ -493,12 +432,9 @@ class Wellformedness(AbjadObject):
             0 /	0 discontiguous spanners
             0 /	5 duplicate ids
             0 /	1 empty containers
-            0 /	0 misdurated measures
-            0 /	0 misfilled measures
             0 /	0 mispitched ties
             0 /	4 misrepresented flags
             0 /	5 missing parents
-            0 /	0 nested measures
             0 /	4 notes on wrong clef
             1 /	2 out of range pitches
             0 /	0 overlapping beams
@@ -654,12 +590,9 @@ class Wellformedness(AbjadObject):
             0 /	2 discontiguous spanners
             0 /	5 duplicate ids
             0 /	1 empty containers
-            0 /	0 misdurated measures
-            0 /	0 misfilled measures
             0 /	0 mispitched ties
             0 /	4 misrepresented flags
             0 /	5 missing parents
-            0 /	0 nested measures
             0 /	4 notes on wrong clef
             0 /	4 out of range pitches
             0 /	0 overlapping beams
@@ -702,12 +635,9 @@ class Wellformedness(AbjadObject):
             0 /	0 discontiguous spanners
             0 /	5 duplicate ids
             0 /	1 empty containers
-            0 /	0 misdurated measures
-            0 /	0 misfilled measures
             0 /	0 mispitched ties
             0 /	4 misrepresented flags
             0 /	5 missing parents
-            0 /	0 nested measures
             0 /	4 notes on wrong clef
             0 /	4 out of range pitches
             0 /	0 overlapping beams
@@ -796,12 +726,9 @@ class Wellformedness(AbjadObject):
             0 /	0 discontiguous spanners
             0 /	5 duplicate ids
             0 /	1 empty containers
-            0 /	0 misdurated measures
-            0 /	0 misfilled measures
             0 /	0 mispitched ties
             0 /	4 misrepresented flags
             0 /	5 missing parents
-            0 /	0 nested measures
             0 /	4 notes on wrong clef
             0 /	4 out of range pitches
             0 /	0 overlapping beams
@@ -835,12 +762,9 @@ class Wellformedness(AbjadObject):
             0 /	0 discontiguous spanners
             0 /	5 duplicate ids
             0 /	1 empty containers
-            0 /	0 misdurated measures
-            0 /	0 misfilled measures
             0 /	0 mispitched ties
             0 /	4 misrepresented flags
             0 /	5 missing parents
-            0 /	0 nested measures
             0 /	4 notes on wrong clef
             0 /	4 out of range pitches
             0 /	0 overlapping beams
@@ -922,12 +846,9 @@ class Wellformedness(AbjadObject):
             0 /	0 discontiguous spanners
             0 /	5 duplicate ids
             0 /	1 empty containers
-            0 /	0 misdurated measures
-            0 /	0 misfilled measures
             0 /	0 mispitched ties
             0 /	4 misrepresented flags
             0 /	5 missing parents
-            0 /	0 nested measures
             0 /	4 notes on wrong clef
             0 /	4 out of range pitches
             0 /	0 overlapping beams

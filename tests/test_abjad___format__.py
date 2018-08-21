@@ -66,7 +66,6 @@ def test_abjad___format___02(class_):
 
 
 ignored_classes = (
-    abjad.Measure,
     abjad.Path,
     abjad.Tags,
     abjad.parser.SyntaxNode,
@@ -85,5 +84,5 @@ def test_abjad___format___03(class_):
     if inspect.isabstract(class_):
         return
     object_ = class_()
-    string = '{}'.format(object_)
+    string = f'{object_}'
     print(string)

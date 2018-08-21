@@ -365,10 +365,9 @@ class LeafMaker(AbjadValueObject):
         >>> leaves
         Selection([MultimeasureRest('R1 * 3/8'), MultimeasureRest('R1 * 5/8')])
 
-        >>> staff = abjad.Staff([
-        ...     abjad.Measure((3, 8), [leaves[0]]),
-        ...     abjad.Measure((5, 8), [leaves[1]]),
-        ...     ])
+        >>> abjad.attach(abjad.TimeSignature((3, 8)), leaves[0])
+        >>> abjad.attach(abjad.TimeSignature((5, 8)), leaves[1])
+        >>> staff = abjad.Staff(leaves)
         >>> staff.lilypond_type = 'RhythmicStaff'
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -377,14 +376,10 @@ class LeafMaker(AbjadValueObject):
             >>> abjad.f(staff)
             \new RhythmicStaff
             {
-                {   % measure
-                    \time 3/8
-                    R1 * 3/8
-                }   % measure
-                {   % measure
-                    \time 5/8
-                    R1 * 5/8
-                }   % measure
+                \time 3/8
+                R1 * 3/8
+                \time 5/8
+                R1 * 5/8
             }
 
     ..  container:: example

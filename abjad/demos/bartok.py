@@ -21,21 +21,26 @@ def make_bartok_score():
 
     # Build upper measures
     upper_measures = []
-    upper_measures.append(abjad.Measure((2, 4), []))
-    upper_measures.append(abjad.Measure((3, 4), []))
-    upper_measures.append(abjad.Measure((2, 4), []))
-    upper_measures.append(abjad.Measure((2, 4), []))
-    upper_measures.append(abjad.Measure((2, 4), []))
+    upper_measures.append(abjad.Container())
+    upper_measures.append(abjad.Container())
+    upper_measures.append(abjad.Container())
+    upper_measures.append(abjad.Container())
+    upper_measures.append(abjad.Container())
     lower_measures = copy.deepcopy(upper_measures)
     upper_staff.extend(upper_measures)
     lower_staff.extend(lower_measures)
 
     # Add leaves to upper measures
     upper_measures[0].extend("a'8 g'8 f'8 e'8")
+    abjad.attach(abjad.TimeSignature((2, 4)), upper_measures[0][0])
     upper_measures[1].extend("d'4 g'8 f'8 e'8 d'8")
+    abjad.attach(abjad.TimeSignature((3, 4)), upper_measures[1][0])
     upper_measures[2].extend("c'8 d'16 e'16 f'8 e'8")
+    abjad.attach(abjad.TimeSignature((2, 4)), upper_measures[2][0])
     upper_measures[3].append("d'2")
+    abjad.attach(abjad.TimeSignature((2, 4)), upper_measures[3][0])
     upper_measures[4].append("d'2")
+    abjad.attach(abjad.TimeSignature((2, 4)), upper_measures[4][0])
 
     # Add leaves to lower measures
     lower_measures[0].extend("b4 d'8 c'8")
