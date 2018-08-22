@@ -44,7 +44,7 @@ def test_Leaf__split_by_durations_01():
         """
         ), print(format(staff))
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
 
 
 def test_Leaf__split_by_durations_02():
@@ -91,7 +91,7 @@ def test_Leaf__split_by_durations_02():
         """
         ), print(format(staff))
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
 
 
 def test_Leaf__split_by_durations_03():
@@ -137,7 +137,7 @@ def test_Leaf__split_by_durations_03():
         """
         ), print(format(staff))
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
 
 
 def test_Leaf__split_by_durations_04():
@@ -172,7 +172,7 @@ def test_Leaf__split_by_durations_04():
         """
         ), print(format(staff))
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
 
 
 def test_Leaf__split_by_durations_05():
@@ -205,7 +205,7 @@ def test_Leaf__split_by_durations_05():
         """
         ), print(format(staff))
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
 
 
 def test_Leaf__split_by_durations_06():
@@ -242,7 +242,7 @@ def test_Leaf__split_by_durations_06():
         """
         ), print(format(staff))
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
 
 
 def test_Leaf__split_by_durations_07():
@@ -295,7 +295,7 @@ def test_Leaf__split_by_durations_07():
         """
         ), print(format(staff))
 
-    assert abjad.inspect(voice).is_wellformed()
+    assert abjad.inspect(voice).wellformed()
 
 
 def test_Leaf__split_by_durations_08():
@@ -371,7 +371,7 @@ def test_Leaf__split_by_durations_12():
         prototype = (abjad.Tie,)
         assert abjad.inspect(leaf).spanner(prototype) is tie
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
 
 
 def test_Leaf__split_by_durations_13():
@@ -393,7 +393,7 @@ def test_Leaf__split_by_durations_13():
         assert abjad.inspect(l).spanners() == [beam]
         assert l._get_spanner(abjad.Beam) is beam
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
 
 
 def test_Leaf__split_by_durations_14():
@@ -424,7 +424,7 @@ def test_Leaf__split_by_durations_14():
         """
         ), print(format(staff))
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
 
 
 def test_Leaf__split_by_durations_15():
@@ -456,7 +456,7 @@ def test_Leaf__split_by_durations_15():
 
     assert abjad.inspect(new_leaves[0]).after_grace_container() is None
     assert len(abjad.inspect(new_leaves[1]).after_grace_container()) == 1
-    abjad.inspect(staff).is_wellformed()
+    abjad.inspect(staff).wellformed()
 
 
 def test_Leaf__split_by_durations_16():
@@ -488,7 +488,7 @@ def test_Leaf__split_by_durations_16():
         """
         ), print(format(staff))
 
-    abjad.inspect(staff).is_wellformed()
+    abjad.inspect(staff).wellformed()
 
 
 def test_Leaf__split_by_durations_17():
@@ -517,7 +517,7 @@ def test_Leaf__split_by_durations_17():
         """
         ), print(format(staff))
 
-    abjad.inspect(staff).is_wellformed()
+    abjad.inspect(staff).wellformed()
 
 
 def test_Leaf__split_by_durations_18():
@@ -584,7 +584,7 @@ def test_Leaf__split_by_durations_18():
         """
         ), print(format(staff))
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
 
 
 def test_Leaf__split_by_durations_19():
@@ -656,7 +656,7 @@ def test_Leaf__split_by_durations_19():
         """
         ), print(format(staff))
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
 
 
 def test_Leaf__split_by_durations_20():
@@ -728,7 +728,7 @@ def test_Leaf__split_by_durations_20():
         """
         ), print(format(staff))
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
 
 
 def test_Leaf__split_by_durations_21():
@@ -804,7 +804,7 @@ def test_Leaf__split_by_durations_21():
         """
         ), print(format(staff))
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
 
 
 def test_Leaf__split_by_durations_22():
@@ -839,7 +839,7 @@ def test_Leaf__split_by_durations_22():
         """
         ), print(format(staff))
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
 
 
 def test_Leaf__split_by_durations_23():
@@ -913,7 +913,7 @@ def test_Leaf__split_by_durations_23():
         """
         ), print(format(staff))
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
 
 
 def test_Leaf__split_by_durations_24():
@@ -946,7 +946,7 @@ def test_Leaf__split_by_durations_24():
         """
         ), print(format(staff))
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
 
 
 def test_Leaf__split_by_durations_25():
@@ -979,4 +979,4 @@ def test_Leaf__split_by_durations_25():
         """
         ), print(format(staff))
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()

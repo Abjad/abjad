@@ -1,6 +1,8 @@
 import collections
+import typing
 from abjad import mathtools
 from abjad.system.AbjadObject import AbjadObject
+from abjad.utilities.Multiplier import Multiplier
 
 
 class Parentage(AbjadObject, collections.Sequence):
@@ -10,11 +12,11 @@ class Parentage(AbjadObject, collections.Sequence):
     ..  container:: example
 
         >>> score = abjad.Score()
-        >>> string = r"""\new Voice = "Treble Voice" { e'4 }"""
-        >>> treble_staff = abjad.Staff(string, name='Treble Staff')
+        >>> string = r"""\new Voice = "Treble_Voice" { e'4 }"""
+        >>> treble_staff = abjad.Staff(string, name='Treble_Staff')
         >>> score.append(treble_staff)
-        >>> string = r"""\new Voice = "Bass Voice" { c4 }"""
-        >>> bass_staff = abjad.Staff(string, name='Bass Staff')
+        >>> string = r"""\new Voice = "Bass_Voice" { c4 }"""
+        >>> bass_staff = abjad.Staff(string, name='Bass_Staff')
         >>> clef = abjad.Clef('bass')
         >>> abjad.attach(clef, bass_staff[0][0])
         >>> score.append(bass_staff)
@@ -25,16 +27,16 @@ class Parentage(AbjadObject, collections.Sequence):
             >>> abjad.f(score)
             \new Score
             <<
-                \context Staff = "Treble Staff"
+                \context Staff = "Treble_Staff"
                 {
-                    \context Voice = "Treble Voice"
+                    \context Voice = "Treble_Voice"
                     {
                         e'4
                     }
                 }
-                \context Staff = "Bass Staff"
+                \context Staff = "Bass_Staff"
                 {
-                    \context Voice = "Bass Voice"
+                    \context Voice = "Bass_Voice"
                     {
                         \clef "bass"
                         c4
@@ -42,14 +44,14 @@ class Parentage(AbjadObject, collections.Sequence):
                 }
             >>
 
-        >>> bass_voice = score['Bass Voice']
+        >>> bass_voice = score['Bass_Voice']
         >>> note = bass_voice[0]
         >>> for component in abjad.inspect(note).parentage():
         ...     component
         ...
         Note('c4')
-        Voice('c4', name='Bass Voice')
-        <Staff-"Bass Staff"{1}>
+        Voice('c4', name='Bass_Voice')
+        <Staff-"Bass_Staff"{1}>
         <Score<<2>>>
 
     '''
@@ -103,44 +105,27 @@ class Parentage(AbjadObject, collections.Sequence):
         """
         return self.components.__getitem__(argument)
 
-    def __len__(self):
+    def __len__(self) -> int:
         """
         Gets number of components in parentage.
-
-        Returns nonnegative integer.
         """
         return len(self.components)
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _prolations(self):
-        import abjad
-        prolations = []
-        default = abjad.Multiplier(1)
-        for parent in self:
-            prolation = getattr(parent, 'implied_prolation', default)
-            prolations.append(prolation)
-        return prolations
-
     ### PRIVATE METHODS ###
-
-    def _get_governor(self):
-        import abjad
-        for component in self:
-            if (isinstance(component, abjad.Container) and
-                not component.is_simultaneous):
-                if component._parent is None:
-                    return component
-                if (isinstance(component._parent, abjad.Container) and
-                    component._parent.is_simultaneous):
-                    return component
 
     @staticmethod
     def _id_string(component):
         lhs = component.__class__.__name__
         rhs = getattr(component, 'name', None) or id(component)
         return f'{lhs}-{rhs!r}'
+
+    def _prolations(self):
+        prolations = []
+        default = Multiplier(1)
+        for parent in self:
+            prolation = getattr(parent, 'implied_prolation', default)
+            prolations.append(prolation)
+        return prolations
 
     ### PUBLIC PROPERTIES ###
 
@@ -163,72 +148,342 @@ class Parentage(AbjadObject, collections.Sequence):
         return self._components
 
     @property
-    def depth(self):
-        """
-        Length of proper parentage of component.
-
-        Returns nonnegative integer.
-        """
-        return len(self[1:])
-
-    @property
-    def is_grace_note(self):
-        r"""
-        Is true when parentage contains a grace container.
-
-        .. container:: example
-
-            Grace notes:
-
-            >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
-            >>> container = abjad.GraceContainer("c'16 d'16")
-            >>> abjad.attach(container, voice[1])
-            >>> abjad.show(voice) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(voice)
-                \new Voice
-                {
-                    c'4
-                    \grace {
-                        c'16
-                        d'16
-                    }
-                    d'4
-                    e'4
-                    f'4
-                }
-
-            >>> for leaf in abjad.iterate(voice).leaves():
-            ...     parentage = abjad.inspect(leaf).parentage()
-            ...     print(leaf, parentage.is_grace_note)
-            ...
-            c'4 False
-            c'16 True
-            d'16 True
-            d'4 False
-            e'4 False
-            f'4 False
-
-        Returns true or false.
-        """
-        import abjad
-        grace_container = self.get_first(prototype=abjad.GraceContainer)
-        if grace_container is not None:
-            return True
-        return False
-
-    @property
-    def is_orphan(self):
+    def orphan(self) -> bool:
         """
         Is true when component has no parent.
-
-        Returns true or false.
         """
         return self.parent is None
 
     @property
+    def parent(self):
+        """
+        Gets parent.
+
+        Returns none when component has no parent.
+
+        Returns component or none.
+        """
+        return self.get(n=1)
+
+    @property
+    def prolation(self) -> Multiplier:
+        """
+        Gets prolation.
+        """
+        prolations = [Multiplier(1)] + self._prolations()
+        products = mathtools.cumulative_products(prolations)
+        return products[-1]
+
+    @property
+    def root(self):
+        """
+        Gets root.
+
+        Root defined equal to last component in parentage.
+
+        Returns component.
+        """
+        return self.get(n=-1)
+
+    ### PUBLIC METHODS ###
+
+    def count(self, prototype=None) -> int:
+        r"""
+        Gets number of ``prototype`` in parentage.
+
+        ..  container:: example
+
+            Gets tuplet count:
+
+            >>> tuplet = abjad.Tuplet((2, 3), "c'2 d'2 e'2")
+            >>> staff = abjad.Staff([tuplet])
+            >>> note = tuplet[0]
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    \times 2/3 {
+                        c'2
+                        d'2
+                        e'2
+                    }
+                }
+
+            >>> abjad.inspect(note).parentage().count(abjad.Tuplet)
+            1
+
+            >>> abjad.inspect(tuplet).parentage().count(abjad.Tuplet)
+            1
+
+            >>> abjad.inspect(staff).parentage().count(abjad.Tuplet)
+            0
+
+        ..  container:: example
+
+            Gets voice count:
+
+            >>> outer_red_voice = abjad.Voice("e''8 d''", name='Red_Voice')
+            >>> inner_red_voice = abjad.Voice("c''4 b' c''8", name='Red_Voice')
+            >>> inner_blue_voice = abjad.Voice("e'4 f' e'8", name='Blue_Voice')
+            >>> container = abjad.Container(
+            ...     [inner_red_voice, inner_blue_voice],
+            ...     is_simultaneous=True,
+            ...     )
+            >>> outer_red_voice.append(container)
+            >>> outer_red_voice.extend("d''8")
+            >>> abjad.override(outer_red_voice).note_head.color = 'red'
+            >>> literal = abjad.LilyPondLiteral(r'\voiceOne')
+            >>> abjad.attach(literal, outer_red_voice[0])
+            >>> abjad.override(inner_blue_voice).note_head.color = 'blue'
+            >>> literal = abjad.LilyPondLiteral(r'\voiceTwo')
+            >>> abjad.attach(literal, inner_blue_voice[0])
+            >>> dynamic = abjad.Dynamic('f')
+            >>> abjad.attach(dynamic, outer_red_voice[0])
+            >>> abjad.show(outer_red_voice) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(outer_red_voice)
+                \context Voice = "Red_Voice"
+                \with
+                {
+                    \override NoteHead.color = #red
+                }
+                {
+                    \voiceOne
+                    e''8
+                    \f
+                    d''8
+                    <<
+                        \context Voice = "Red_Voice"
+                        {
+                            c''4
+                            b'4
+                            c''8
+                        }
+                        \context Voice = "Blue_Voice"
+                        \with
+                        {
+                            \override NoteHead.color = #blue
+                        }
+                        {
+                            \voiceTwo
+                            e'4
+                            f'4
+                            e'8
+                        }
+                    >>
+                    d''8
+                }
+
+            >>> for leaf in abjad.iterate(outer_red_voice).leaves():
+            ...     depth = abjad.inspect(leaf).parentage().count(abjad.Voice)
+            ...     print(leaf, depth)
+            ...
+            e''8 1
+            d''8 1
+            c''4 2
+            b'4 2
+            c''8 2
+            e'4 2
+            f'4 2
+            e'8 2
+            d''8 1
+
+        """
+        from .Component import Component
+        n = 0
+        if prototype is None:
+            prototype = Component
+        for component in self:
+            if isinstance(component, prototype):
+                n += 1
+        return n
+
+    def get(self, prototype=None, n=0):
+        r"""
+        Gets instance ``n`` of ``prototype`` in parentage.
+
+        ..  container:: example
+
+            >>> outer_red_voice = abjad.Voice("e''8 d''", name='Red_Voice')
+            >>> inner_red_voice = abjad.Voice("c''4 b' c''8", name='Red_Voice')
+            >>> inner_blue_voice = abjad.Voice("e'4 f' e'8", name='Blue_Voice')
+            >>> container = abjad.Container(
+            ...     [inner_red_voice, inner_blue_voice],
+            ...     is_simultaneous=True,
+            ...     )
+            >>> outer_red_voice.append(container)
+            >>> outer_red_voice.extend("d''8")
+            >>> abjad.override(outer_red_voice).note_head.color = 'red'
+            >>> literal = abjad.LilyPondLiteral(r'\voiceOne')
+            >>> abjad.attach(literal, outer_red_voice[0])
+            >>> abjad.override(inner_blue_voice).note_head.color = 'blue'
+            >>> literal = abjad.LilyPondLiteral(r'\voiceTwo')
+            >>> abjad.attach(literal, inner_blue_voice[0])
+            >>> dynamic = abjad.Dynamic('f')
+            >>> abjad.attach(dynamic, outer_red_voice[0])
+            >>> abjad.show(outer_red_voice) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(outer_red_voice)
+                \context Voice = "Red_Voice"
+                \with
+                {
+                    \override NoteHead.color = #red
+                }
+                {
+                    \voiceOne
+                    e''8
+                    \f
+                    d''8
+                    <<
+                        \context Voice = "Red_Voice"
+                        {
+                            c''4
+                            b'4
+                            c''8
+                        }
+                        \context Voice = "Blue_Voice"
+                        \with
+                        {
+                            \override NoteHead.color = #blue
+                        }
+                        {
+                            \voiceTwo
+                            e'4
+                            f'4
+                            e'8
+                        }
+                    >>
+                    d''8
+                }
+
+            ..  container:: example
+
+                >>> leaf = abjad.inspect(inner_red_voice).leaf(0)
+                >>> leaf
+                Note("c''4")
+
+                >>> parentage = abjad.inspect(leaf).parentage()
+
+                Returns self when ``n=0``:
+
+                >>> parentage.get(abjad.Component, 0)
+                Note("c''4")
+
+                Returns parents with positive ``n``:
+
+                >>> parentage.get(abjad.Component, 1)
+                Voice("c''4 b'4 c''8", name='Red_Voice')
+
+                >>> parentage.get(abjad.Component, 2)
+                <<<2>>>
+
+                >>> parentage.get(abjad.Component, 3)
+                <Voice-"Red_Voice"{4}>
+
+                Returns none with ``n`` greater than score depth:
+
+                >>> parentage.get(abjad.Component, 4) is None
+                True
+
+                >>> parentage.get(abjad.Component, 5) is None
+                True
+
+                >>> parentage.get(abjad.Component, 99) is None
+                True
+
+                Returns score root with ``n=-1``:
+
+                >>> parentage.get(abjad.Component, -1)
+                <Voice-"Red_Voice"{4}>
+
+                With other negative ``n``: 
+
+                >>> parentage.get(abjad.Component, -2)
+                <<<2>>>
+
+                >>> parentage.get(abjad.Component, -3)
+                Voice("c''4 b'4 c''8", name='Red_Voice')
+
+                >>> parentage.get(abjad.Component, -4)
+                Note("c''4")
+
+                Returns none for sufficiently negative ``n``:
+
+                >>> parentage.get(abjad.Component, -5) is None
+                True
+
+                >>> parentage.get(abjad.Component, -7) is None
+                True
+
+                >>> parentage.get(abjad.Component, -99) is None
+                True
+
+            ..  container:: example
+
+                Works with nested voices and tuplets:
+
+                >>> leaf = abjad.inspect(inner_red_voice).leaf(0)
+                >>> parentage = abjad.inspect(leaf).parentage()
+                >>> leaf
+                Note("c''4")
+
+                Nonnegative ``n``:
+
+                >>> parentage.get(abjad.Voice, 0)
+                Voice("c''4 b'4 c''8", name='Red_Voice')
+
+                >>> parentage.get(abjad.Voice, 1)
+                <Voice-"Red_Voice"{4}>
+
+                >>> parentage.get(abjad.Voice, 2) is None
+                True
+
+                >>> parentage.get(abjad.Voice, 9) is None
+                True
+
+                Negative ``n``:
+
+                >>> parentage.get(abjad.Voice, -1)
+                <Voice-"Red_Voice"{4}>
+
+                >>> parentage.get(abjad.Voice, -2)
+                Voice("c''4 b'4 c''8", name='Red_Voice')
+
+                >>> parentage.get(abjad.Voice, -3) is None
+                True
+
+                >>> parentage.get(abjad.Voice, -99) is None
+                True
+
+        Returns component or none.
+        """
+        import abjad
+        if prototype is None:
+            prototype = (abjad.Component,)
+        if not isinstance(prototype, tuple):
+            prototype = (prototype,)
+        if 0 <= n:
+            i = 0
+            for component in self:
+                if isinstance(component, prototype):
+                    if i == n:
+                        return component
+                    i += 1
+        else:
+            i = -1
+            for component in reversed(self):
+                if isinstance(component, prototype):
+                    if i == n:
+                        return component
+                    i -= 1
+
     def logical_voice(self):
         r"""
         Gets logical voice.
@@ -261,7 +516,7 @@ class Parentage(AbjadObject, collections.Sequence):
 
             >>> note = voice[0]
             >>> parentage = abjad.inspect(note).parentage()
-            >>> logical_voice = parentage.logical_voice
+            >>> logical_voice = parentage.logical_voice()
 
             >>> for key, value in logical_voice.items():
             ...     print('%12s: %s' % (key, value))
@@ -296,43 +551,140 @@ class Parentage(AbjadObject, collections.Sequence):
                     logical_voice['score'] = self._id_string(component)
         return logical_voice
 
-    @property
-    def parent(self):
+    def outermost_voice_content(self) -> typing.Optional[bool]:
+        r"""
+        Is true when component is immediate child of outermost voice.
+
+        ..  container:: example
+
+            >>> outer_red_voice = abjad.Voice("e''8 d''", name='Red_Voice')
+            >>> inner_red_voice = abjad.Voice("c''4 b' c''8", name='Red_Voice')
+            >>> inner_blue_voice = abjad.Voice("e'4 f' e'8", name='Blue_Voice')
+            >>> container = abjad.Container(
+            ...     [inner_red_voice, inner_blue_voice],
+            ...     is_simultaneous=True,
+            ...     )
+            >>> outer_red_voice.append(container)
+            >>> outer_red_voice.extend("d''8")
+            >>> abjad.override(outer_red_voice).note_head.color = 'red'
+            >>> literal = abjad.LilyPondLiteral(r'\voiceOne')
+            >>> abjad.attach(literal, outer_red_voice[0])
+            >>> abjad.override(inner_blue_voice).note_head.color = 'blue'
+            >>> literal = abjad.LilyPondLiteral(r'\voiceTwo')
+            >>> abjad.attach(literal, inner_blue_voice[0])
+            >>> dynamic = abjad.Dynamic('f')
+            >>> abjad.attach(dynamic, outer_red_voice[0])
+            >>> abjad.show(outer_red_voice) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(outer_red_voice)
+                \context Voice = "Red_Voice"
+                \with
+                {
+                    \override NoteHead.color = #red
+                }
+                {
+                    \voiceOne
+                    e''8
+                    \f
+                    d''8
+                    <<
+                        \context Voice = "Red_Voice"
+                        {
+                            c''4
+                            b'4
+                            c''8
+                        }
+                        \context Voice = "Blue_Voice"
+                        \with
+                        {
+                            \override NoteHead.color = #blue
+                        }
+                        {
+                            \voiceTwo
+                            e'4
+                            f'4
+                            e'8
+                        }
+                    >>
+                    d''8
+                }
+
+            >>> for component in abjad.iterate(outer_red_voice).components():
+            ...     parentage = abjad.inspect(component).parentage()
+            ...     print(component, parentage.outermost_voice_content())
+            ...
+            <Voice-"Red_Voice"{4}> False
+            e''8 True
+            d''8 True
+            <<<2>>> True
+            Voice("c''4 b'4 c''8", name='Red_Voice') False
+            c''4 False
+            b'4 False
+            c''8 False
+            Voice("e'4 f'4 e'8", name='Blue_Voice') False
+            e'4 False
+            f'4 False
+            e'8 False
+            d''8 True
+
+        ..  container:: example
+
+            Innermost context functions as voice when no voice is found:
+
+            >>> string = r"c'8 d' r \times 2/3 { e' r f' } g' a' r"
+            >>> staff = abjad.Staff(string)
+            >>> abjad.setting(staff).auto_beaming = False
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                \with
+                {
+                    autoBeaming = ##f
+                }
+                {
+                    c'8
+                    d'8
+                    r8
+                    \times 2/3 {
+                        e'8
+                        r8
+                        f'8
+                    }
+                    g'8
+                    a'8
+                    r8
+                }
+
+            >>> for component in abjad.iterate(staff).components():
+            ...     parentage = abjad.inspect(component).parentage()
+            ...     print(component, parentage.outermost_voice_content())
+            ...
+            <Staff{7}> False
+            c'8 True
+            d'8 True
+            r8 True
+            Tuplet(Multiplier(2, 3), "e'8 r8 f'8") True
+            e'8 False
+            r8 False
+            f'8 False
+            g'8 True
+            a'8 True
+            r8 True
+
         """
-        Gets parent.
+        from .Context import Context
+        from .Voice import Voice
+        context = self.get(Voice, -1) or self.get(Context)
+        if context is not None:
+            return self.component._parent is context
+        return None
 
-        Returns none when component has no parent.
-
-        Returns component or none.
-        """
-        if 1 < len(self):
-            return self[1]
-
-    @property
-    def prolation(self):
-        """
-        Gets prolation.
-
-        Returns multiplier.
-        """
-        import abjad
-        prolations = [abjad.Multiplier(1)] + self._prolations
-        products = mathtools.cumulative_products(prolations)
-        return products[-1]
-
-    @property
-    def root(self):
-        """
-        Gets root.
-
-        Root defined equal to last component in parentage.
-
-        Returns component.
-        """
-        return self[-1]
-
-    @property
-    def score_index(self):
+    def score_index(self) -> typing.Tuple[int, ...]:
         r"""
         Gets score index.
 
@@ -369,7 +721,7 @@ class Parentage(AbjadObject, collections.Sequence):
 
             >>> for leaf in abjad.select(score).leaves():
             ...     parentage = abjad.inspect(leaf).parentage()
-            ...     leaf, parentage.score_index
+            ...     leaf, parentage.score_index()
             ...
             (Note("c''2"), (0, 0, 0))
             (Note("b'2"), (0, 0, 1))
@@ -406,7 +758,7 @@ class Parentage(AbjadObject, collections.Sequence):
             >>> leaves = abjad.iterate(voice).components()
             >>> for leaf in leaves:
             ...     parentage = abjad.inspect(leaf).parentage()
-            ...     leaf, parentage.score_index
+            ...     leaf, parentage.score_index()
             ...
             (Voice("c'8 d'8 e'8 f'8"), ())
             (Note("c'8"), (0,))
@@ -420,76 +772,10 @@ class Parentage(AbjadObject, collections.Sequence):
 
         Returns tuple of zero or more nonnegative integers.
         """
-        result = []
+        result: typing.List[int] = []
         current = self[0]
         for parent in self[1:]:
             index = parent.index(current)
             result.insert(0, index)
             current = parent
-        result = tuple(result)
-        return result
-
-    @property
-    def tuplet_depth(self):
-        r"""
-        Gets tuplet depth.
-
-        ..  container:: example
-
-            Gets tuplet depth:
-
-            >>> tuplet = abjad.Tuplet((2, 3), "c'2 d'2 e'2")
-            >>> staff = abjad.Staff([tuplet])
-            >>> note = tuplet[0]
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    \times 2/3 {
-                        c'2
-                        d'2
-                        e'2
-                    }
-                }
-
-            >>> abjad.inspect(note).parentage().tuplet_depth
-            1
-
-            >>> abjad.inspect(tuplet).parentage().tuplet_depth
-            0
-
-            >>> abjad.inspect(staff).parentage().tuplet_depth
-            0
-
-        Returns nonnegative integer.
-        """
-        import abjad
-        result = 0
-        # should probably interate up to only first simultaneous container
-        # in parentage.
-        # note that we probably need a named idea for 'parentage
-        # up to first simultaneous container'.
-        for parent in self[1:]:
-            if isinstance(parent, abjad.Tuplet):
-                result += 1
-        return result
-
-    ### PUBLIC METHODS ###
-
-    def get_first(self, prototype=None):
-        """
-        Gets first instance of ``prototype`` in parentage.
-
-        Returns component or none.
-        """
-        import abjad
-        if prototype is None:
-            prototype = (abjad.Component,)
-        if not isinstance(prototype, tuple):
-            prototype = (prototype,)
-        for component in self:
-            if isinstance(component, prototype):
-                return component
+        return tuple(result)

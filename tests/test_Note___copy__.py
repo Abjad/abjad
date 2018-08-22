@@ -206,4 +206,4 @@ def test_Note___copy___07():
         }
         """
         )
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()

@@ -159,8 +159,6 @@ class PersistentOverride(AbjadObject):
         bundle = LilyPondFormatBundle()
         if self.hide:
             return bundle
-        #staff = abjad.inspect(component).parentage().get_first(abjad.Staff)
-        #strings = self._get_lilypond_format(context=staff)
         strings = self._get_lilypond_format()
         bundle.before.commands.extend(strings)
         return bundle

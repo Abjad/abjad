@@ -31,7 +31,7 @@ def test_Beam__fracture_01():
         """
         )
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
 
 
 def test_Beam__fracture_02():
@@ -61,7 +61,7 @@ def test_Beam__fracture_02():
         """
         )
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
 
 
 def test_Beam__fracture_03():
@@ -94,7 +94,7 @@ def test_Beam__fracture_03():
         """
         )
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
 
 
 def test_Beam__fracture_04():
@@ -124,7 +124,7 @@ def test_Beam__fracture_04():
         """
         )
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
 
 
 def test_Beam__fracture_05():
@@ -159,7 +159,7 @@ def test_Beam__fracture_05():
         """
         )
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
 
 
 def test_Beam__fracture_06():
@@ -192,7 +192,7 @@ def test_Beam__fracture_06():
         """
         )
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
 
 
 def test_Beam__fracture_07():
@@ -225,7 +225,7 @@ def test_Beam__fracture_07():
         """
         )
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
 
 
 def test_Beam__fracture_08():
@@ -258,7 +258,7 @@ def test_Beam__fracture_08():
         """
         )
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
 
 
 def test_Beam__fracture_09():

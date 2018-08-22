@@ -328,7 +328,7 @@ class Wrapper(AbjadValueObject):
                 self._component._update_later(offsets_in_seconds=True)
         component._wrappers.append(self)
 
-    def _bind_correct_effective_context(self, correct_effective_context):
+    def _bind_effective_context(self, correct_effective_context):
         self._unbind_effective_context()
         if correct_effective_context is not None:
             correct_effective_context._dependent_wrappers.append(self)
@@ -347,21 +347,33 @@ class Wrapper(AbjadValueObject):
         if self.context is None:
             return None
         context = getattr(abjad, self.context, self.context)
+        candidate = None
+        parentage = abjad.inspect(self.component).parentage()
         if isinstance(context, type):
-            for component in abjad.inspect(self.component).parentage():
+            for component in parentage:
                 if not isinstance(component, abjad.Context):
                     continue
                 if isinstance(component, context):
-                    return component
+                    candidate = component
+                    break
         elif isinstance(context, str):
-            for component in abjad.inspect(self.component).parentage():
+            for component in parentage:
                 if not isinstance(component, abjad.Context):
                     continue
                 if (component.name == context or
                     component.lilypond_type == context):
-                    return component
+                    candidate = component
+                    break
         else:
             raise TypeError('must be context or string: {context!r}.')
+        if isinstance(candidate, abjad.Voice):
+            for component in reversed(parentage):
+                if not isinstance(component, abjad.Voice):
+                    continue
+                if component.name == candidate.name:
+                    candidate = component
+                    break
+        return candidate
 
     def _get_effective_context(self):
         if self.component is not None:
@@ -428,8 +440,9 @@ class Wrapper(AbjadValueObject):
 
     def _update_effective_context(self):
         correct_effective_context = self._find_correct_effective_context()
+        #print(correct_effective_context)
         if self._effective_context is not correct_effective_context:
-            self._bind_correct_effective_context(correct_effective_context)
+            self._bind_effective_context(correct_effective_context)
 
     def _warn_duplicate_indicator(self, component):
         import abjad
@@ -449,9 +462,9 @@ class Wrapper(AbjadValueObject):
         my_leak = getattr(self.indicator, 'leak', None)
         if getattr(wrapper.indicator, 'leak', None) != my_leak:
             return
-        context = abjad.inspect(component).parentage().get_first(abjad.Context)
+        context = abjad.inspect(component).parentage().get(abjad.Context)
         parentage = abjad.inspect(wrapper.component).parentage()
-        wrapper_context = parentage.get_first(abjad.Context)
+        wrapper_context = parentage.get(abjad.Context)
         if (wrapper.indicator == self.indicator and
             context is not wrapper_context):
             return

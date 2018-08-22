@@ -1,7 +1,7 @@
 import abjad
 
 
-def test_Inspection_is_bar_line_crossing_01():
+def test_Inspection_bar_line_crossing_01():
     """
     Works with partial.
     """
@@ -24,19 +24,19 @@ def test_Inspection_is_bar_line_crossing_01():
         """
         )
 
-    assert not abjad.inspect(staff[0]).is_bar_line_crossing()
-    assert not abjad.inspect(staff[1]).is_bar_line_crossing()
-    assert abjad.inspect(staff[2]).is_bar_line_crossing()
-    assert not abjad.inspect(staff[3]).is_bar_line_crossing()
+    assert not abjad.inspect(staff[0]).bar_line_crossing()
+    assert not abjad.inspect(staff[1]).bar_line_crossing()
+    assert abjad.inspect(staff[2]).bar_line_crossing()
+    assert not abjad.inspect(staff[3]).bar_line_crossing()
 
 
-def test_Inspection_is_bar_line_crossing_02():
+def test_Inspection_bar_line_crossing_02():
     """
     Works when no explicit time signature is abjad.attached.
     """
 
     staff = abjad.Staff("c'2 d'1 e'2")
 
-    assert not abjad.inspect(staff[0]).is_bar_line_crossing()
-    assert abjad.inspect(staff[1]).is_bar_line_crossing()
-    assert not abjad.inspect(staff[2]).is_bar_line_crossing()
+    assert not abjad.inspect(staff[0]).bar_line_crossing()
+    assert abjad.inspect(staff[1]).bar_line_crossing()
+    assert not abjad.inspect(staff[2]).bar_line_crossing()

@@ -88,12 +88,12 @@ if __name__ == '__main__':
             do_not_print_timing=True,
             remove=abjad.tags.layout_removal_tags(),
             )
-        context = lilypond_file['GlobalSkips']
+        context = lilypond_file['Global_Skips']
         skips = baca.select(context).skips()
         for skip in skips:
             abjad.detach(abjad.TimeSignature, skip)
         score = lilypond_file['Score']
-        del(score['MusicContext'])
+        del(score['Music_Context'])
     except:
         traceback.print_exc()
         sys.exit(1)
@@ -101,7 +101,7 @@ if __name__ == '__main__':
     try:
         score = lilypond_file['Score']
         text = format(score, 'lilypond')
-        text = text.replace('GlobalSkips', 'PageLayout')
+        text = text.replace('Global_Skips', 'Page_Layout')
         text = abjad.LilyPondFormatManager.left_shift_tags(text, realign=89)
         time_signatures = [str(_) for _ in time_signatures]
         line_1 = f'% time_signatures = {{time_signatures}}\n'
@@ -126,7 +126,7 @@ if __name__ == '__main__':
     try:
         bol_measure_numbers = []
         prototype = abjad.LilyPondLiteral
-        skips = abjad.iterate(score['GlobalSkips']).leaves(abjad.Skip)
+        skips = abjad.iterate(score['Global_Skips']).leaves(abjad.Skip)
         for i, skip in enumerate(skips):
             for literal in abjad.inspect(skip).indicators(prototype):
                 if literal.argument in (r'\break', r'\pageBreak'):

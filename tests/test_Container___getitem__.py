@@ -68,8 +68,8 @@ def test_Container___getitem___05():
     template = abjad.StringQuartetScoreTemplate()
     score = template()
 
-    assert score['First Violin Staff'].name == 'First Violin Staff'
-    assert score['First Violin Voice'].name == 'First Violin Voice'
+    assert score['First_Violin_Staff'].name == 'First_Violin_Staff'
+    assert score['First_Violin_Voice'].name == 'First_Violin_Voice'
 
 
 def test_Container___getitem___06():
@@ -91,13 +91,13 @@ def test_Container___getitem___07():
     template = abjad.StringQuartetScoreTemplate()
     score = template()
 
-    assert score['First Violin Voice'].name == 'First Violin Voice'
+    assert score['First_Violin_Voice'].name == 'First_Violin_Voice'
 
-    score['Cello Staff'].append(abjad.Voice(name='First Violin Voice'))
+    score['Cello_Staff'].append(abjad.Voice(name='First_Violin_Voice'))
 
-    assert pytest.raises(Exception, "score['First Violin Voice']")
+    assert pytest.raises(Exception, "score['First_Violin_Voice']")
 
-    extra_first_violin_voice = score['Cello Staff'].pop()
+    extra_first_violin_voice = score['Cello_Staff'].pop()
 
-    assert score['First Violin Voice'].name == 'First Violin Voice'
-    assert score['First Violin Voice'] is not extra_first_violin_voice
+    assert score['First_Violin_Voice'].name == 'First_Violin_Voice'
+    assert score['First_Violin_Voice'] is not extra_first_violin_voice

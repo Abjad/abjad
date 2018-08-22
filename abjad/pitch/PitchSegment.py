@@ -22,7 +22,7 @@ class PitchSegment(Segment):
             >>> abjad.f(lilypond_file[abjad.StaffGroup])
             \new PianoStaff
             <<
-                \context Staff = "Treble Staff"
+                \context Staff = "Treble_Staff"
                 {
                     \clef "treble"
                     r1 * 1/8
@@ -32,7 +32,7 @@ class PitchSegment(Segment):
                     r1 * 1/8
                     g'1 * 1/8
                 }
-                \context Staff = "Bass Staff"
+                \context Staff = "Bass_Staff"
                 {
                     \clef "bass"
                     bf1 * 1/8
@@ -61,7 +61,7 @@ class PitchSegment(Segment):
             >>> abjad.f(lilypond_file[abjad.StaffGroup])
             \new PianoStaff
             <<
-                \context Staff = "Treble Staff"
+                \context Staff = "Treble_Staff"
                 {
                     \clef "treble"
                     r1 * 1/8
@@ -71,7 +71,7 @@ class PitchSegment(Segment):
                     r1 * 1/8
                     g'1 * 1/8
                 }
-                \context Staff = "Bass Staff"
+                \context Staff = "Bass_Staff"
                 {
                     \clef "bass"
                     bf,1 * 1/8
@@ -158,7 +158,7 @@ class PitchSegment(Segment):
                 >>> abjad.f(lilypond_file[abjad.StaffGroup])
                 \new PianoStaff
                 <<
-                    \context Staff = "Treble Staff"
+                    \context Staff = "Treble_Staff"
                     {
                         \clef "treble"
                         r1 * 1/8
@@ -168,7 +168,7 @@ class PitchSegment(Segment):
                         r1 * 1/8
                         g'1 * 1/8
                     }
-                    \context Staff = "Bass Staff"
+                    \context Staff = "Bass_Staff"
                     {
                         \clef "bass"
                         bf,1 * 1/8
@@ -303,7 +303,7 @@ class PitchSegment(Segment):
                 >>> abjad.f(lilypond_file[abjad.StaffGroup])
                 \new PianoStaff
                 <<
-                    \context Staff = "Treble Staff"
+                    \context Staff = "Treble_Staff"
                     {
                         \clef "treble"
                         r1 * 1/8
@@ -313,7 +313,7 @@ class PitchSegment(Segment):
                         r1 * 1/8
                         g'1 * 1/8
                     }
-                    \context Staff = "Bass Staff"
+                    \context Staff = "Bass_Staff"
                     {
                         \clef "bass"
                         bf1 * 1/8
@@ -349,7 +349,7 @@ class PitchSegment(Segment):
                 >>> abjad.f(lilypond_file[abjad.StaffGroup])
                 \new PianoStaff
                 <<
-                    \context Staff = "Treble Staff"
+                    \context Staff = "Treble_Staff"
                     {
                         \clef "treble"
                         r1 * 1/8
@@ -359,7 +359,7 @@ class PitchSegment(Segment):
                         r1 * 1/8
                         g'1 * 1/8
                     }
-                    \context Staff = "Bass Staff"
+                    \context Staff = "Bass_Staff"
                     {
                         \clef "bass"
                         bf1 * 1/8
@@ -401,7 +401,7 @@ class PitchSegment(Segment):
                 >>> abjad.f(lilypond_file[abjad.StaffGroup])
                 \new PianoStaff
                 <<
-                    \context Staff = "Treble Staff"
+                    \context Staff = "Treble_Staff"
                     {
                         \clef "treble"
                         r1 * 1/8
@@ -411,7 +411,7 @@ class PitchSegment(Segment):
                         r1 * 1/8
                         g'1 * 1/8
                     }
-                    \context Staff = "Bass Staff"
+                    \context Staff = "Bass_Staff"
                     {
                         \clef "bass"
                         bf1 * 1/8
@@ -465,7 +465,7 @@ class PitchSegment(Segment):
                 >>> abjad.f(lilypond_file[abjad.StaffGroup])
                 \new PianoStaff
                 <<
-                    \context Staff = "Treble Staff"
+                    \context Staff = "Treble_Staff"
                     {
                         \clef "treble"
                         c'1 * 1/8
@@ -476,7 +476,7 @@ class PitchSegment(Segment):
                         r1 * 1/8
                         r1 * 1/8
                     }
-                    \context Staff = "Bass Staff"
+                    \context Staff = "Bass_Staff"
                     {
                         \clef "bass"
                         r1 * 1/8
@@ -547,7 +547,7 @@ class PitchSegment(Segment):
                 >>> abjad.f(lilypond_file[abjad.StaffGroup])
                 \new PianoStaff
                 <<
-                    \context Staff = "Treble Staff"
+                    \context Staff = "Treble_Staff"
                     {
                         \clef "treble"
                         r1 * 1/8
@@ -557,7 +557,7 @@ class PitchSegment(Segment):
                         r1 * 1/8
                         g'1 * 1/8
                     }
-                    \context Staff = "Bass Staff"
+                    \context Staff = "Bass_Staff"
                     {
                         \clef "bass"
                         bf1 * 1/8
@@ -582,7 +582,7 @@ class PitchSegment(Segment):
                 >>> abjad.f(lilypond_file[abjad.StaffGroup])
                 \new PianoStaff
                 <<
-                    \context Staff = "Treble Staff"
+                    \context Staff = "Treble_Staff"
                     {
                         \clef "treble"
                         d'1 * 1/8
@@ -592,7 +592,7 @@ class PitchSegment(Segment):
                         dqf'1 * 1/8
                         r1 * 1/8
                     }
-                    \context Staff = "Bass Staff"
+                    \context Staff = "Bass_Staff"
                     {
                         \clef "bass"
                         r1 * 1/8
@@ -701,7 +701,7 @@ class PitchSegment(Segment):
                 >>> abjad.f(lilypond_file[abjad.StaffGroup])
                 \new PianoStaff
                 <<
-                    \context Staff = "Treble Staff"
+                    \context Staff = "Treble_Staff"
                     {
                         \clef "treble"
                         r1 * 1/8
@@ -711,7 +711,7 @@ class PitchSegment(Segment):
                         r1 * 1/8
                         g'1 * 1/8
                     }
-                    \context Staff = "Bass Staff"
+                    \context Staff = "Bass_Staff"
                     {
                         \clef "bass"
                         bf1 * 1/8
@@ -736,7 +736,7 @@ class PitchSegment(Segment):
                 >>> abjad.f(lilypond_file[abjad.StaffGroup])
                 \new PianoStaff
                 <<
-                    \context Staff = "Treble Staff"
+                    \context Staff = "Treble_Staff"
                     {
                         \clef "treble"
                         r1 * 1/8
@@ -746,7 +746,7 @@ class PitchSegment(Segment):
                         r1 * 1/8
                         a''1 * 1/8
                     }
-                    \context Staff = "Bass Staff"
+                    \context Staff = "Bass_Staff"
                     {
                         \clef "bass"
                         fs1 * 1/8
@@ -780,7 +780,7 @@ class PitchSegment(Segment):
                 >>> abjad.f(lilypond_file[abjad.StaffGroup])
                 \new PianoStaff
                 <<
-                    \context Staff = "Treble Staff"
+                    \context Staff = "Treble_Staff"
                     {
                         \clef "treble"
                         r1 * 1/8
@@ -790,7 +790,7 @@ class PitchSegment(Segment):
                         r1 * 1/8
                         g'1 * 1/8
                     }
-                    \context Staff = "Bass Staff"
+                    \context Staff = "Bass_Staff"
                     {
                         \clef "bass"
                         bf1 * 1/8
@@ -815,7 +815,7 @@ class PitchSegment(Segment):
                 >>> abjad.f(lilypond_file[abjad.StaffGroup])
                 \new PianoStaff
                 <<
-                    \context Staff = "Treble Staff"
+                    \context Staff = "Treble_Staff"
                     {
                         \clef "treble"
                         g'1 * 1/8
@@ -825,7 +825,7 @@ class PitchSegment(Segment):
                         r1 * 1/8
                         r1 * 1/8
                     }
-                    \context Staff = "Bass Staff"
+                    \context Staff = "Bass_Staff"
                     {
                         \clef "bass"
                         r1 * 1/8
@@ -858,7 +858,7 @@ class PitchSegment(Segment):
                 >>> abjad.f(lilypond_file[abjad.StaffGroup])
                 \new PianoStaff
                 <<
-                    \context Staff = "Treble Staff"
+                    \context Staff = "Treble_Staff"
                     {
                         \clef "treble"
                         r1 * 1/8
@@ -868,7 +868,7 @@ class PitchSegment(Segment):
                         r1 * 1/8
                         g'1 * 1/8
                     }
-                    \context Staff = "Bass Staff"
+                    \context Staff = "Bass_Staff"
                     {
                         \clef "bass"
                         bf1 * 1/8
@@ -893,7 +893,7 @@ class PitchSegment(Segment):
                 >>> abjad.f(lilypond_file[abjad.StaffGroup])
                 \new PianoStaff
                 <<
-                    \context Staff = "Treble Staff"
+                    \context Staff = "Treble_Staff"
                     {
                         \clef "treble"
                         g'1 * 1/8
@@ -903,7 +903,7 @@ class PitchSegment(Segment):
                         g'1 * 1/8
                         r1 * 1/8
                     }
-                    \context Staff = "Bass Staff"
+                    \context Staff = "Bass_Staff"
                     {
                         \clef "bass"
                         r1 * 1/8
@@ -944,7 +944,7 @@ class PitchSegment(Segment):
                 >>> abjad.f(lilypond_file[abjad.StaffGroup])
                 \new PianoStaff
                 <<
-                    \context Staff = "Treble Staff"
+                    \context Staff = "Treble_Staff"
                     {
                         \clef "treble"
                         r1 * 1/8
@@ -954,7 +954,7 @@ class PitchSegment(Segment):
                         r1 * 1/8
                         g'1 * 1/8
                     }
-                    \context Staff = "Bass Staff"
+                    \context Staff = "Bass_Staff"
                     {
                         \clef "bass"
                         bf1 * 1/8
@@ -1003,7 +1003,7 @@ class PitchSegment(Segment):
                 >>> abjad.f(lilypond_file[abjad.StaffGroup])
                 \new PianoStaff
                 <<
-                    \context Staff = "Treble Staff"
+                    \context Staff = "Treble_Staff"
                     {
                         \clef "treble"
                         r1 * 1/8
@@ -1013,7 +1013,7 @@ class PitchSegment(Segment):
                         r1 * 1/8
                         g'1 * 1/8
                     }
-                    \context Staff = "Bass Staff"
+                    \context Staff = "Bass_Staff"
                     {
                         \clef "bass"
                         bf,1 * 1/8
@@ -1073,7 +1073,7 @@ class PitchSegment(Segment):
                 >>> abjad.f(lilypond_file[abjad.StaffGroup])
                 \new PianoStaff
                 <<
-                    \context Staff = "Treble Staff"
+                    \context Staff = "Treble_Staff"
                     {
                         \clef "treble"
                         r1 * 1/8
@@ -1083,7 +1083,7 @@ class PitchSegment(Segment):
                         r1 * 1/8
                         g'1 * 1/8
                     }
-                    \context Staff = "Bass Staff"
+                    \context Staff = "Bass_Staff"
                     {
                         \clef "bass"
                         bf1 * 1/8
@@ -1108,7 +1108,7 @@ class PitchSegment(Segment):
                 >>> abjad.f(lilypond_file[abjad.StaffGroup])
                 \new PianoStaff
                 <<
-                    \context Staff = "Treble Staff"
+                    \context Staff = "Treble_Staff"
                     {
                         \clef "treble"
                         r1 * 1/8
@@ -1118,7 +1118,7 @@ class PitchSegment(Segment):
                         r1 * 1/8
                         g'1 * 1/8
                     }
-                    \context Staff = "Bass Staff"
+                    \context Staff = "Bass_Staff"
                     {
                         \clef "bass"
                         bf1 * 1/8
@@ -1144,7 +1144,7 @@ class PitchSegment(Segment):
                 >>> abjad.f(lilypond_file[abjad.StaffGroup])
                 \new PianoStaff
                 <<
-                    \context Staff = "Treble Staff"
+                    \context Staff = "Treble_Staff"
                     {
                         \clef "treble"
                         r1 * 1/8
@@ -1154,7 +1154,7 @@ class PitchSegment(Segment):
                         r1 * 1/8
                         g'1 * 1/8
                     }
-                    \context Staff = "Bass Staff"
+                    \context Staff = "Bass_Staff"
                     {
                         \clef "bass"
                         bf,1 * 1/8
@@ -1179,7 +1179,7 @@ class PitchSegment(Segment):
                 >>> abjad.f(lilypond_file[abjad.StaffGroup])
                 \new PianoStaff
                 <<
-                    \context Staff = "Treble Staff"
+                    \context Staff = "Treble_Staff"
                     {
                         \clef "treble"
                         r1 * 1/8
@@ -1189,7 +1189,7 @@ class PitchSegment(Segment):
                         r1 * 1/8
                         g'1 * 1/8
                     }
-                    \context Staff = "Bass Staff"
+                    \context Staff = "Bass_Staff"
                     {
                         \clef "bass"
                         bf,1 * 1/8
@@ -1222,7 +1222,7 @@ class PitchSegment(Segment):
                 >>> abjad.f(lilypond_file[abjad.StaffGroup])
                 \new PianoStaff
                 <<
-                    \context Staff = "Treble Staff"
+                    \context Staff = "Treble_Staff"
                     {
                         \clef "treble"
                         r1 * 1/8
@@ -1232,7 +1232,7 @@ class PitchSegment(Segment):
                         r1 * 1/8
                         g'1 * 1/8
                     }
-                    \context Staff = "Bass Staff"
+                    \context Staff = "Bass_Staff"
                     {
                         \clef "bass"
                         bf1 * 1/8
@@ -1257,7 +1257,7 @@ class PitchSegment(Segment):
                 >>> abjad.f(lilypond_file[abjad.StaffGroup])
                 \new PianoStaff
                 <<
-                    \context Staff = "Treble Staff"
+                    \context Staff = "Treble_Staff"
                     {
                         \clef "treble"
                         a'1 * 1/8
@@ -1267,7 +1267,7 @@ class PitchSegment(Segment):
                         aqs'1 * 1/8
                         fs''1 * 1/8
                     }
-                    \context Staff = "Bass Staff"
+                    \context Staff = "Bass_Staff"
                     {
                         \clef "bass"
                         r1 * 1/8

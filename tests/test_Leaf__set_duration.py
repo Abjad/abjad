@@ -42,7 +42,7 @@ def test_Leaf__set_duration_01():
         """
         )
 
-    assert abjad.inspect(voice).is_wellformed()
+    assert abjad.inspect(voice).wellformed()
 
 def test_Leaf__set_duration_02():
     """
@@ -90,7 +90,7 @@ def test_Leaf__set_duration_02():
         """
         )
 
-    assert abjad.inspect(voice).is_wellformed()
+    assert abjad.inspect(voice).wellformed()
 
 
 def test_Leaf__set_duration_03():
@@ -133,7 +133,7 @@ def test_Leaf__set_duration_03():
         """
         )
 
-    assert abjad.inspect(voice).is_wellformed()
+    assert abjad.inspect(voice).wellformed()
 
 
 def test_Leaf__set_duration_04():
@@ -181,7 +181,7 @@ def test_Leaf__set_duration_04():
         """
         )
 
-    assert abjad.inspect(voice).is_wellformed()
+    assert abjad.inspect(voice).wellformed()
 
 
 def test_Leaf__set_duration_05():
@@ -227,7 +227,7 @@ def test_Leaf__set_duration_05():
         """
         )
 
-    assert abjad.inspect(voice).is_wellformed()
+    assert abjad.inspect(voice).wellformed()
 
 
 def test_Leaf__set_duration_06():
@@ -244,7 +244,7 @@ def test_Leaf__set_duration_06():
 
     note._set_duration(abjad.Duration(1, 32))
 
-    assert abjad.inspect(note).is_wellformed()
+    assert abjad.inspect(note).wellformed()
     assert format(note) == "c'8 * 1/4"
 
 
@@ -262,7 +262,7 @@ def test_Leaf__set_duration_07():
 
     note._set_duration(abjad.Duration(3, 32))
 
-    assert abjad.inspect(note).is_wellformed()
+    assert abjad.inspect(note).wellformed()
     assert format(note) == "c'8 * 3/4"
 
 
@@ -280,7 +280,7 @@ def test_Leaf__set_duration_08():
 
     note._set_duration(abjad.Duration(5, 32))
 
-    assert abjad.inspect(note).is_wellformed()
+    assert abjad.inspect(note).wellformed()
     assert format(note) == "c'8 * 5/4"
 
 
@@ -298,7 +298,7 @@ def test_Leaf__set_duration_09():
 
     note._set_duration(abjad.Duration(1, 24))
 
-    assert abjad.inspect(note).is_wellformed()
+    assert abjad.inspect(note).wellformed()
     assert format(note) == "c'8 * 1/3"
 
 
@@ -316,7 +316,7 @@ def test_Leaf__set_duration_10():
 
     note._set_duration(abjad.Duration(5, 24))
 
-    assert abjad.inspect(note).is_wellformed()
+    assert abjad.inspect(note).wellformed()
     assert format(note) == "c'8 * 5/3"
 
 
@@ -360,4 +360,4 @@ def test_Leaf__set_duration_11():
         """
         )
 
-    assert abjad.inspect(voice).is_wellformed()
+    assert abjad.inspect(voice).wellformed()

@@ -53,8 +53,8 @@ if __name__ == '__main__':
         sys.exit(1)
 
     try:
-        if 'GlobalSkips' in lilypond_file:
-            context = lilypond_file['GlobalSkips']
+        if 'Global_Skips' in lilypond_file:
+            context = lilypond_file['Global_Skips']
             measure_count = len(context)
             counter = abjad.String('measure').pluralize(measure_count)
             message = f' Wrote {{measure_count}} {{counter}}'

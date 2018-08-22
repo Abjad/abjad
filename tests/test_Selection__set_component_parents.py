@@ -21,6 +21,6 @@ def test_Selection__set_component_parents_01():
 
     "Selection now in container voice_1."
 
-    assert abjad.inspect(voice_1).is_wellformed()
+    assert abjad.inspect(voice_1).wellformed()
     assert selection[0]._parent is voice_1
     assert selection[0] in voice_1

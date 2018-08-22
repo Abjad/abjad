@@ -30,7 +30,7 @@ def test_Spanner__remove_01():
         )
 
     beam._remove(beam[1])
-    assert not abjad.inspect(voice).is_wellformed()
+    assert not abjad.inspect(voice).wellformed()
 
 
 def test_Spanner__remove_02():
@@ -94,7 +94,7 @@ def test_Spanner__remove_02():
         """
         )
 
-    assert abjad.inspect(voice).is_wellformed()
+    assert abjad.inspect(voice).wellformed()
 
 
 def test_Spanner__remove_03():

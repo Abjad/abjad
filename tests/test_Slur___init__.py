@@ -96,7 +96,7 @@ def test_Slur___init___02():
         """
         )
 
-    assert abjad.inspect(container).is_wellformed()
+    assert abjad.inspect(container).wellformed()
 
 
 def test_Slur___init___03():
@@ -159,4 +159,4 @@ def test_Slur___init___03():
         """
         )
 
-    assert abjad.inspect(container).is_wellformed()
+    assert abjad.inspect(container).wellformed()

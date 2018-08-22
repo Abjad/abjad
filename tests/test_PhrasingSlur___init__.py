@@ -30,4 +30,4 @@ def test_PhrasingSlur___init___02():
         """
         )
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()

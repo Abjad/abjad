@@ -642,9 +642,9 @@ class Timespan(AbjadValueObject):
             start_offset=stop_offsets[0],
             stop_offset=stop_offsets[1],
             )
-        if timespan_1.is_wellformed:
+        if timespan_1.wellformed:
             result.append(timespan_1)
-        if timespan_2.is_wellformed:
+        if timespan_2.wellformed:
             result.append(timespan_2)
         result.sort()
         return result
@@ -2186,13 +2186,13 @@ class Timespan(AbjadValueObject):
         return self._stop_offset - self._start_offset
 
     @property
-    def is_wellformed(self):
+    def wellformed(self):
         """
         Is true when timespan start offset preceeds timespan stop offset.
 
         ..  container:: example
 
-            >>> abjad.Timespan(0, 10).is_wellformed
+            >>> abjad.Timespan(0, 10).wellformed
             True
 
         Returns true or false.

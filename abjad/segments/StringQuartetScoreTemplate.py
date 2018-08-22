@@ -14,41 +14,41 @@ class StringQuartetScoreTemplate(ScoreTemplate):
         >>> abjad.show(template) # doctest: +SKIP
 
         >>> abjad.f(template.__illustrate__()[abjad.Score], strict=60)
-        \context Score = "String Quartet Score"                     %! StringQuartetScoreTemplate
+        \context Score = "String_Quartet_Score"                     %! StringQuartetScoreTemplate
         <<                                                          %! StringQuartetScoreTemplate
-            \context StaffGroup = "String Quartet Staff Group"      %! StringQuartetScoreTemplate
+            \context StaffGroup = "String_Quartet_Staff_Group"      %! StringQuartetScoreTemplate
             <<                                                      %! StringQuartetScoreTemplate
                 \tag #'first-violin
-                \context Staff = "First Violin Staff"               %! StringQuartetScoreTemplate
+                \context Staff = "First_Violin_Staff"               %! StringQuartetScoreTemplate
                 {                                                   %! StringQuartetScoreTemplate
-                    \context Voice = "First Violin Voice"           %! StringQuartetScoreTemplate
+                    \context Voice = "First_Violin_Voice"           %! StringQuartetScoreTemplate
                     {                                               %! StringQuartetScoreTemplate
                         \clef "treble"                              %! attach_defaults
                         s1                                          %! ScoreTemplate.__illustrate__
                     }                                               %! StringQuartetScoreTemplate
                 }                                                   %! StringQuartetScoreTemplate
                 \tag #'second-violin
-                \context Staff = "Second Violin Staff"              %! StringQuartetScoreTemplate
+                \context Staff = "Second_Violin_Staff"              %! StringQuartetScoreTemplate
                 {                                                   %! StringQuartetScoreTemplate
-                    \context Voice = "Second Violin Voice"          %! StringQuartetScoreTemplate
+                    \context Voice = "Second_Violin_Voice"          %! StringQuartetScoreTemplate
                     {                                               %! StringQuartetScoreTemplate
                         \clef "treble"                              %! attach_defaults
                         s1                                          %! ScoreTemplate.__illustrate__
                     }                                               %! StringQuartetScoreTemplate
                 }                                                   %! StringQuartetScoreTemplate
                 \tag #'viola
-                \context Staff = "Viola Staff"                      %! StringQuartetScoreTemplate
+                \context Staff = "Viola_Staff"                      %! StringQuartetScoreTemplate
                 {                                                   %! StringQuartetScoreTemplate
-                    \context Voice = "Viola Voice"                  %! StringQuartetScoreTemplate
+                    \context Voice = "Viola_Voice"                  %! StringQuartetScoreTemplate
                     {                                               %! StringQuartetScoreTemplate
                         \clef "alto"                                %! attach_defaults
                         s1                                          %! ScoreTemplate.__illustrate__
                     }                                               %! StringQuartetScoreTemplate
                 }                                                   %! StringQuartetScoreTemplate
                 \tag #'cello
-                \context Staff = "Cello Staff"                      %! StringQuartetScoreTemplate
+                \context Staff = "Cello_Staff"                      %! StringQuartetScoreTemplate
                 {                                                   %! StringQuartetScoreTemplate
-                    \context Voice = "Cello Voice"                  %! StringQuartetScoreTemplate
+                    \context Voice = "Cello_Voice"                  %! StringQuartetScoreTemplate
                     {                                               %! StringQuartetScoreTemplate
                         \clef "bass"                                %! attach_defaults
                         s1                                          %! ScoreTemplate.__illustrate__
@@ -98,12 +98,12 @@ class StringQuartetScoreTemplate(ScoreTemplate):
         # make first violin voice and staff
         first_violin_voice = abjad.Voice(
             [],
-            name='First Violin Voice',
+            name='First_Violin_Voice',
             tag=class_name,
             )
         first_violin_staff = abjad.Staff(
             [first_violin_voice],
-            name='First Violin Staff',
+            name='First_Violin_Staff',
             tag=class_name,
             )
         clef = abjad.Clef('treble')
@@ -116,12 +116,12 @@ class StringQuartetScoreTemplate(ScoreTemplate):
         # make second violin voice and staff
         second_violin_voice = abjad.Voice(
             [],
-            name='Second Violin Voice',
+            name='Second_Violin_Voice',
             tag=class_name,
             )
         second_violin_staff = abjad.Staff(
             [second_violin_voice],
-            name='Second Violin Staff',
+            name='Second_Violin_Staff',
             tag=class_name,
             )
         clef = abjad.Clef('treble')
@@ -134,12 +134,12 @@ class StringQuartetScoreTemplate(ScoreTemplate):
         # make viola voice and staff
         viola_voice = abjad.Voice(
             [],
-            name='Viola Voice',
+            name='Viola_Voice',
             tag=class_name,
             )
         viola_staff = abjad.Staff(
             [viola_voice],
-            name='Viola Staff',
+            name='Viola_Staff',
             tag=class_name,
             )
         clef = abjad.Clef('alto')
@@ -152,12 +152,12 @@ class StringQuartetScoreTemplate(ScoreTemplate):
         # make cello voice and staff
         cello_voice = abjad.Voice(
             [],
-            name='Cello Voice',
+            name='Cello_Voice',
             tag=class_name,
             )
         cello_staff = abjad.Staff(
             [cello_voice],
-            name='Cello Staff',
+            name='Cello_Staff',
             tag=class_name,
             )
         clef = abjad.Clef('bass')
@@ -174,14 +174,14 @@ class StringQuartetScoreTemplate(ScoreTemplate):
             viola_staff,
             cello_staff,
             ],
-            name='String Quartet Staff Group',
+            name='String_Quartet_Staff_Group',
             tag=class_name,
             )
 
         # make string quartet score
         string_quartet_score = abjad.Score(
             [string_quartet_staff_group],
-            name='String Quartet Score',
+            name='String_Quartet_Score',
             tag=class_name,
             )
 

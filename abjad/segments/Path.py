@@ -1860,26 +1860,26 @@ class Path(pathlib.PosixPath):
         ..  container:: example
 
             >>> abjad.Path.global_rest_identifier('_')
-            'i_GlobalRests'
+            'i_Global_Rests'
 
             >>> abjad.Path.global_rest_identifier('_1')
-            'i_a_GlobalRests'
+            'i_a_Global_Rests'
 
             >>> abjad.Path.global_rest_identifier('_2')
-            'i_b_GlobalRests'
+            'i_b_Global_Rests'
 
             >>> abjad.Path.global_rest_identifier('A')
-            'A_GlobalRests'
+            'A_Global_Rests'
 
             >>> abjad.Path.global_rest_identifier('A1')
-            'A_a_GlobalRests'
+            'A_a_Global_Rests'
 
             >>> abjad.Path.global_rest_identifier('A2')
-            'A_b_GlobalRests'
+            'A_b_Global_Rests'
 
         """
         identifier = String(segment_name).to_segment_lilypond_identifier()
-        identifier = String(f'{identifier}_GlobalRests')
+        identifier = String(f'{identifier}_Global_Rests')
         return identifier
 
     def global_rest_identifiers(self) -> typing.List[String]:
@@ -1894,7 +1894,7 @@ class Path(pathlib.PosixPath):
             paths = []
         for segment in paths:
             identifier = String(segment.name).to_segment_lilypond_identifier()
-            identifier = String(f'{identifier}_GlobalRests')
+            identifier = String(f'{identifier}_Global_Rests')
             identifiers.append(identifier)
         return identifiers
 
@@ -1945,7 +1945,7 @@ class Path(pathlib.PosixPath):
                 if staff in contexts:
                     identifier_ = f'{identifier}_{staff}'
                 else:
-                    identifier_ =  f'{identifier}_GlobalRests'
+                    identifier_ =  f'{identifier}_Global_Rests'
                 identifier = String(identifier_)
                 identifiers.append(identifier)
         return dictionary
@@ -2852,12 +2852,12 @@ class Path(pathlib.PosixPath):
             return None
         skeleton = score_template.skeleton()
         indent = 4 * ' '
-        context = skeleton['GlobalSkips']
+        context = skeleton['Global_Skips']
         identifiers = self.global_skip_identifiers()
         strings = ['\\' + _ for _ in identifiers]
         literal = LilyPondLiteral(strings)
         attach(literal, context)
-        context = skeleton['GlobalRests']
+        context = skeleton['Global_Rests']
         identifiers = self.global_rest_identifiers()
         strings = ['\\' + _ for _ in identifiers]
         literal = LilyPondLiteral(strings)

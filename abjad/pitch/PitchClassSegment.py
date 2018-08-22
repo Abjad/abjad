@@ -3027,7 +3027,7 @@ class PitchClassSegment(Segment):
                 >>> abjad.f(lilypond_file[abjad.StaffGroup])
                 \new PianoStaff
                 <<
-                    \context Staff = "Treble Staff"
+                    \context Staff = "Treble_Staff"
                     {
                         \clef "treble"
                         bf'1 * 1/8
@@ -3037,7 +3037,7 @@ class PitchClassSegment(Segment):
                         bqf'1 * 1/8
                         g'1 * 1/8
                     }
-                    \context Staff = "Bass Staff"
+                    \context Staff = "Bass_Staff"
                     {
                         \clef "bass"
                         r1 * 1/8
@@ -3091,7 +3091,7 @@ class PitchClassSegment(Segment):
                 >>> abjad.f(lilypond_file[abjad.StaffGroup])
                 \new PianoStaff
                 <<
-                    \context Staff = "Treble Staff"
+                    \context Staff = "Treble_Staff"
                     {
                         \clef "treble"
                         bf'1 * 1/8
@@ -3101,7 +3101,7 @@ class PitchClassSegment(Segment):
                         bqf'1 * 1/8
                         g'1 * 1/8
                     }
-                    \context Staff = "Bass Staff"
+                    \context Staff = "Bass_Staff"
                     {
                         \clef "bass"
                         r1 * 1/8
@@ -3409,7 +3409,7 @@ class PitchClassSegment(Segment):
                 <<
                     \new PianoStaff
                     <<
-                        \context Staff = "Treble Staff"
+                        \context Staff = "Treble_Staff"
                         {
                             \clef "treble"
                             c'1 * 1/8
@@ -3423,7 +3423,7 @@ class PitchClassSegment(Segment):
                             r1 * 1/8
                             c'1 * 1/8
                         }
-                        \context Staff = "Bass Staff"
+                        \context Staff = "Bass_Staff"
                         {
                             \clef "bass"
                             r1 * 1/8
@@ -3508,7 +3508,7 @@ class PitchClassSegment(Segment):
                 <<
                     \new PianoStaff
                     <<
-                        \context Staff = "Treble Staff"
+                        \context Staff = "Treble_Staff"
                         {
                             \clef "treble"
                             c'1 * 1/8
@@ -3519,7 +3519,7 @@ class PitchClassSegment(Segment):
                             f''1 * 1/8
                             af''1 * 1/8
                         }
-                        \context Staff = "Bass Staff"
+                        \context Staff = "Bass_Staff"
                         {
                             \clef "bass"
                             r1 * 1/8

@@ -80,16 +80,18 @@ class SegmentMaker(AbjadObject):
         segment_name = String(segment_name).to_segment_lilypond_identifier()
         contexts = []
         try:
-            context = self.score['GlobalSkips']
+            context = self.score['Global_Skips']
             contexts.append(context)
         except ValueError:
             pass
         try:
-            context = self.score['GlobalRests']
+            context = self.score['Global_Rests']
             contexts.append(context)
         except ValueError:
             pass
         for voice in iterate(self.score).components(Voice):
+            if inspect(voice).annotation('INTERMITTENT') is True:
+                continue
             contexts.append(voice)
         container_to_part_assignment = OrderedDict()
         for context in contexts:
@@ -156,17 +158,17 @@ class SegmentMaker(AbjadObject):
     def _make_global_context(self):
         global_rests = Context(
             lilypond_type='GlobalRests',
-            name='GlobalRests',
+            name='Global_Rests',
             )
         global_skips = Context(
             lilypond_type='GlobalSkips',
-            name='GlobalSkips',
+            name='Global_Skips',
             )
         global_context = Context(
             [global_rests, global_skips],
             lilypond_type='GlobalContext',
             is_simultaneous=True,
-            name='GlobalContext',
+            name='Global_Context',
             )
         return global_context
 
@@ -235,7 +237,7 @@ class SegmentMaker(AbjadObject):
             measure_number = offset_to_measure_number.get(offset, None)
             if measure_number is None:
                 continue
-            context = abjad.inspect(leaf).parentage().get_first(abjad.Context)
+            context = abjad.inspect(leaf).parentage().get(abjad.Context)
             if context.name is None:
                 string = f'% [{context.lilypond_type} measure {measure_number}]'
             else:

@@ -66,8 +66,8 @@ def test_Mutation_copy_01():
         }
         """, print(format(new))
         )
-    assert abjad.inspect(staff).is_wellformed()
-    assert abjad.inspect(new).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
+    assert abjad.inspect(new).wellformed()
 
 
 def test_Mutation_copy_02():
@@ -135,8 +135,8 @@ def test_Mutation_copy_02():
         """
         ), print(format(new))
 
-    assert abjad.inspect(staff).is_wellformed()
-    assert abjad.inspect(new).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
+    assert abjad.inspect(new).wellformed()
 
 
 def test_Mutation_copy_03():
@@ -203,8 +203,8 @@ def test_Mutation_copy_03():
         """
         ), print(format(new))
 
-    assert abjad.inspect(staff).is_wellformed()
-    assert abjad.inspect(new).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
+    assert abjad.inspect(new).wellformed()
 
 
 def test_Mutation_copy_04():
@@ -283,7 +283,7 @@ def test_Mutation_copy_04():
         """
         ), print(format(new_staff))
 
-    assert abjad.inspect(new_staff).is_wellformed()
+    assert abjad.inspect(new_staff).wellformed()
 
 
 def test_Mutation_copy_05():
@@ -356,8 +356,8 @@ def test_Mutation_copy_05():
         """
         ), print(format(new_staff))
 
-    assert abjad.inspect(staff).is_wellformed()
-    assert abjad.inspect(new_staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
+    assert abjad.inspect(new_staff).wellformed()
 
 
 def test_Mutation_copy_06():
@@ -424,8 +424,8 @@ def test_Mutation_copy_06():
         """
         ), print(format(new_staff))
 
-    assert abjad.inspect(staff).is_wellformed()
-    assert abjad.inspect(new_staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
+    assert abjad.inspect(new_staff).wellformed()
 
 
 def test_Mutation_copy_07():
@@ -493,8 +493,8 @@ def test_Mutation_copy_07():
         """
         ), print(format(new_staff))
 
-    assert abjad.inspect(staff).is_wellformed()
-    assert abjad.inspect(new_staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
+    assert abjad.inspect(new_staff).wellformed()
 
 
 def test_Mutation_copy_08():
@@ -550,4 +550,4 @@ def test_Mutation_copy_08():
         }
         """
         )
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()

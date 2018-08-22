@@ -21,7 +21,7 @@ def test_PhrasingSlur_direction_01():
         """
         )
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
 
 
 def test_PhrasingSlur_direction_02():
@@ -44,4 +44,4 @@ def test_PhrasingSlur_direction_02():
         """
         )
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()

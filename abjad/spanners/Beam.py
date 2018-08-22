@@ -265,15 +265,13 @@ class Beam(Spanner):
         if self.stemlet_length is None:
             return
         if leaf is self[0]:
-            parentage = inspect(leaf).parentage()
-            staff = parentage.get_first(Staff)
+            staff = inspect(leaf).parentage().get(Staff)
             lilypond_type = staff.lilypond_type
             string = r'\override {}.Stem.stemlet-length = {}'
             string = string.format(lilypond_type, self.stemlet_length)
             bundle.before.commands.append(string)
         if leaf is self[-1]:
-            parentage = inspect(leaf).parentage()
-            staff = parentage.get_first(Staff)
+            staff = inspect(leaf).parentage().get(Staff)
             lilypond_type = staff.lilypond_type
             string = r'\revert {}.Stem.stemlet-length'
             string = string.format(lilypond_type, self.stemlet_length)
