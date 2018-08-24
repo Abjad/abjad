@@ -41,7 +41,7 @@ def test_Selection__attach_tie_to_leaf_pair_01():
         """
         )
 
-    assert abjad.inspect(voice).is_wellformed()
+    assert abjad.inspect(voice).wellformed()
 
 
 def test_Selection__attach_tie_to_leaf_pair_02():
@@ -88,7 +88,7 @@ def test_Selection__attach_tie_to_leaf_pair_02():
         """
         )
 
-    assert abjad.inspect(voice).is_wellformed()
+    assert abjad.inspect(voice).wellformed()
 
 
 def test_Selection__attach_tie_to_leaf_pair_03():
@@ -114,4 +114,4 @@ def test_Selection__attach_tie_to_leaf_pair_03():
         """
         )
 
-    assert abjad.inspect(voice).is_wellformed()
+    assert abjad.inspect(voice).wellformed()

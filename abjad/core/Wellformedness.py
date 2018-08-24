@@ -450,6 +450,8 @@ class Wellformedness(AbjadObject):
         violators, total = [], set()
         for leaf in iterate(argument).leaves(pitched=True):
             total.add(leaf)
+            if inspect(leaf).annotation('HIDDEN') is True:
+                continue
             instrument = inspect(leaf).effective(Instrument)
             if instrument is None:
                 continue
@@ -558,7 +560,7 @@ class Wellformedness(AbjadObject):
                     \stopTrillSpan
                 }
 
-            >>> abjad.inspect(staff).is_wellformed()
+            >>> abjad.inspect(staff).wellformed()
             True
 
         ..  container:: example
@@ -670,7 +672,7 @@ class Wellformedness(AbjadObject):
                     \stopTextSpan
                 }
 
-            >>> abjad.inspect(voice).is_wellformed()
+            >>> abjad.inspect(voice).wellformed()
             True
 
         Returns violators and total.
@@ -797,7 +799,7 @@ class Wellformedness(AbjadObject):
                     \f
                 }
 
-            >>> abjad.inspect(voice).is_wellformed()
+            >>> abjad.inspect(voice).wellformed()
             True
 
         Returns violators and total.
@@ -881,7 +883,7 @@ class Wellformedness(AbjadObject):
                     \stopTextSpan
                 }
 
-            >>> abjad.inspect(voice).is_wellformed()
+            >>> abjad.inspect(voice).wellformed()
             True
 
         Returns violators and total.

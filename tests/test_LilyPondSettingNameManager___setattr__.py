@@ -25,7 +25,7 @@ def test_LilyPondSettingNameManager___setattr___01():
         """
         )
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
 
 
 def test_LilyPondSettingNameManager___setattr___02():
@@ -49,7 +49,7 @@ def test_LilyPondSettingNameManager___setattr___02():
         """
         )
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
 
 
 def test_LilyPondSettingNameManager___setattr___03():
@@ -73,7 +73,7 @@ def test_LilyPondSettingNameManager___setattr___03():
         """
         )
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
 
 
 def test_LilyPondSettingNameManager___setattr___04():
@@ -103,7 +103,7 @@ def test_LilyPondSettingNameManager___setattr___04():
         """
         )
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
 
 
 def test_LilyPondSettingNameManager___setattr___05():
@@ -130,7 +130,7 @@ def test_LilyPondSettingNameManager___setattr___05():
         """
         )
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
 
 
 def test_LilyPondSettingNameManager___setattr___06():
@@ -157,7 +157,7 @@ def test_LilyPondSettingNameManager___setattr___06():
         """
         )
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
 
 
 def test_LilyPondSettingNameManager___setattr___07():
@@ -189,7 +189,7 @@ def test_LilyPondSettingNameManager___setattr___07():
         """
         )
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
 
 
 def test_LilyPondSettingNameManager___setattr___08():
@@ -220,7 +220,7 @@ def test_LilyPondSettingNameManager___setattr___08():
         """
         )
 
-    assert abjad.inspect(score).is_wellformed()
+    assert abjad.inspect(score).wellformed()
 
 
 def test_LilyPondSettingNameManager___setattr___09():
@@ -247,7 +247,7 @@ def test_LilyPondSettingNameManager___setattr___09():
         """
         )
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
 
 
 def test_LilyPondSettingNameManager___setattr___10():
@@ -279,7 +279,7 @@ def test_LilyPondSettingNameManager___setattr___10():
         """
         )
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
 
 
 def test_LilyPondSettingNameManager___setattr___11():
@@ -306,7 +306,7 @@ def test_LilyPondSettingNameManager___setattr___11():
         """
         )
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
 
 
 def test_LilyPondSettingNameManager___setattr___12():
@@ -330,7 +330,7 @@ def test_LilyPondSettingNameManager___setattr___12():
         """
         )
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
 
 
 def test_LilyPondSettingNameManager___setattr___13():

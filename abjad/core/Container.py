@@ -189,11 +189,12 @@ class Container(Component):
         Component.__init__(self, tag=tag)
         self._named_children: dict = {}
         self._is_simultaneous = None
+        # sets name temporarily for _find_correct_effective_context:
+        self._name = name
         self._initialize_components(components)
         self.identifier = identifier
         self.is_simultaneous = is_simultaneous
-        # NOTE: name must be set up *after* parent
-        self._name = None
+        # sets name permanently after _initalize_components:
         self.name = name
 
     ### SPECIAL METHODS ###
@@ -266,7 +267,7 @@ class Container(Component):
                     }
                 }
 
-            >>> abjad.inspect(voice).is_wellformed()
+            >>> abjad.inspect(voice).wellformed()
             True
 
             First tuplet is no longer slurred but is still wellformed:
@@ -282,7 +283,7 @@ class Container(Component):
                     e'4
                 }
 
-            >>> abjad.inspect(tuplet_1).is_wellformed()
+            >>> abjad.inspect(tuplet_1).wellformed()
             True
 
         Withdraws component(s) from crossing spanners.
@@ -467,7 +468,7 @@ class Container(Component):
         for component in argument:
             if not isinstance(component, Component):
                 return False
-            if not inspect(component).parentage().is_orphan:
+            if not inspect(component).parentage().orphan:
                 return False
         return True
 

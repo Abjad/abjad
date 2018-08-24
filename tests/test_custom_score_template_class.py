@@ -17,9 +17,9 @@ def test_custom_score_template_class_01():
         ### SPECIAL METHODS ###
 
         def __call__(self):
-            voice = abjad.Voice(name='Blue Voice')
-            staff = abjad.Staff(name='Red Staff')
-            score = abjad.Score(name='Green Score')
+            voice = abjad.Voice(name='Blue_Voice')
+            staff = abjad.Staff(name='Red_Staff')
+            score = abjad.Score(name='Green_Score')
             staff.append(voice)
             score.append(staff)
             return score
@@ -29,11 +29,11 @@ def test_custom_score_template_class_01():
 
     assert format(score) == abjad.String.normalize(
         r"""
-        \context Score = "Green Score"
+        \context Score = "Green_Score"
         <<
-            \context Staff = "Red Staff"
+            \context Staff = "Red_Staff"
             {
-                \context Voice = "Blue Voice"
+                \context Voice = "Blue_Voice"
                 {
                 }
             }

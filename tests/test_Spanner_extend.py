@@ -34,7 +34,7 @@ def test_Spanner_extend_01():
         """
         )
 
-    assert abjad.inspect(voice).is_wellformed()
+    assert abjad.inspect(voice).wellformed()
 
 
 def test_Spanner_extend_02():

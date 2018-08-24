@@ -236,7 +236,7 @@ class Mutation(AbjadObject):
 
             New container is well formed:
 
-            >>> abjad.inspect(staff).is_wellformed()
+            >>> abjad.inspect(staff).wellformed()
             True
 
             Old container is empty:
@@ -595,7 +595,7 @@ class Mutation(AbjadObject):
             (Note("f'4"), None)
             (Note("g'4"), None)
 
-            >>> abjad.inspect(staff).is_wellformed()
+            >>> abjad.inspect(staff).wellformed()
             True
 
         ..  container:: example
@@ -648,7 +648,7 @@ class Mutation(AbjadObject):
             (Note("f'4"), Clef('alto'))
             (Note("g'4"), Clef('alto'))
 
-            >>> abjad.inspect(staff).is_wellformed()
+            >>> abjad.inspect(staff).wellformed()
             True
 
         ..  container:: example
@@ -2895,11 +2895,11 @@ class Mutation(AbjadObject):
 
             >>> voice_1 = abjad.Voice(
             ...     "e''4 ( es'' f'' fs'' )",
-            ...     name='Voice 1',
+            ...     name='Voice_1',
             ...     )
             >>> voice_2 = abjad.Voice(
             ...     r"c'4 \p \< cs' d' ds' \f",
-            ...     name='Voice 2',
+            ...     name='Voice_2',
             ...     )
             >>> abjad.override(voice_1).stem.direction = abjad.Up
             >>> abjad.override(voice_1).slur.direction = abjad.Up
@@ -2917,7 +2917,7 @@ class Mutation(AbjadObject):
                 \new Staff
                 {
                     <<
-                        \context Voice = "Voice 1"
+                        \context Voice = "Voice_1"
                         \with
                         {
                             \override Slur.direction = #up
@@ -2931,7 +2931,7 @@ class Mutation(AbjadObject):
                             fs''4
                             )
                         }
-                        \context Voice = "Voice 2"
+                        \context Voice = "Voice_2"
                         \with
                         {
                             \override Stem.direction = #down
@@ -2961,7 +2961,7 @@ class Mutation(AbjadObject):
             \new Staff
             {
                 <<
-                    \context Voice = "Voice 1"
+                    \context Voice = "Voice_1"
                     \with
                     {
                         \override Slur.direction = #up
@@ -2973,7 +2973,7 @@ class Mutation(AbjadObject):
                         es''8
                         ~
                     }
-                    \context Voice = "Voice 2"
+                    \context Voice = "Voice_2"
                     \with
                     {
                         \override Stem.direction = #down
@@ -2987,7 +2987,7 @@ class Mutation(AbjadObject):
                     }
                 >>
                 <<
-                    \context Voice = "Voice 1"
+                    \context Voice = "Voice_1"
                     \with
                     {
                         \override Slur.direction = #up
@@ -2999,7 +2999,7 @@ class Mutation(AbjadObject):
                         fs''4
                         )
                     }
-                    \context Voice = "Voice 2"
+                    \context Voice = "Voice_2"
                     \with
                     {
                         \override Stem.direction = #down

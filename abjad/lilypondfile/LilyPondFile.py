@@ -299,27 +299,27 @@ class LilyPondFile(AbjadObject):
 
             Searches score:
 
-            >>> voice_1 = abjad.Voice("c''4 b' a' g'", name='Custom Voice 1')
+            >>> voice_1 = abjad.Voice("c''4 b' a' g'", name='Custom_Voice_1')
             >>> abjad.attach(abjad.LilyPondLiteral(r'\voiceOne'), voice_1)
-            >>> voice_2 = abjad.Voice("c'4 d' e' f'", name='Custom Voice 2')
+            >>> voice_2 = abjad.Voice("c'4 d' e' f'", name='Custom_Voice_2')
             >>> abjad.attach(abjad.LilyPondLiteral(r'\voiceTwo'), voice_2)
             >>> staff = abjad.Staff(
             ...     [voice_1, voice_2],
             ...     is_simultaneous=True,
-            ...     name='Custom Staff',
+            ...     name='Custom_Staff',
             ...     )
-            >>> score = abjad.Score([staff], name='Custom Score')
+            >>> score = abjad.Score([staff], name='Custom_Score')
             >>> lilypond_file = abjad.LilyPondFile.new(score)
             >>> abjad.show(score) # doctest: +SKIP
 
             ..  docs::
 
                 >>> abjad.f(score)
-                \context Score = "Custom Score"
+                \context Score = "Custom_Score"
                 <<
-                    \context Staff = "Custom Staff"
+                    \context Staff = "Custom_Staff"
                     <<
-                        \context Voice = "Custom Voice 1"
+                        \context Voice = "Custom_Voice_1"
                         {
                             \voiceOne
                             c''4
@@ -327,7 +327,7 @@ class LilyPondFile(AbjadObject):
                             a'4
                             g'4
                         }
-                        \context Voice = "Custom Voice 2"
+                        \context Voice = "Custom_Voice_2"
                         {
                             \voiceTwo
                             c'4
@@ -341,26 +341,26 @@ class LilyPondFile(AbjadObject):
             >>> lilypond_file['score']
             <Block(name='score')>
 
-            >>> lilypond_file['Custom Score']
-            <Score-"Custom Score"<<1>>>
+            >>> lilypond_file['Custom_Score']
+            <Score-"Custom_Score"<<1>>>
 
             >>> lilypond_file[abjad.Score]
-            <Score-"Custom Score"<<1>>>
+            <Score-"Custom_Score"<<1>>>
 
-            >>> lilypond_file['Custom Staff']
-            <Staff-"Custom Staff"<<2>>>
+            >>> lilypond_file['Custom_Staff']
+            <Staff-"Custom_Staff"<<2>>>
 
             >>> lilypond_file[abjad.Staff]
-            <Staff-"Custom Staff"<<2>>>
+            <Staff-"Custom_Staff"<<2>>>
 
-            >>> lilypond_file['Custom Voice 1']
-            Voice("c''4 b'4 a'4 g'4", name='Custom Voice 1')
+            >>> lilypond_file['Custom_Voice_1']
+            Voice("c''4 b'4 a'4 g'4", name='Custom_Voice_1')
 
-            >>> lilypond_file['Custom Voice 2']
-            Voice("c'4 d'4 e'4 f'4", name='Custom Voice 2')
+            >>> lilypond_file['Custom_Voice_2']
+            Voice("c'4 d'4 e'4 f'4", name='Custom_Voice_2')
 
             >>> lilypond_file[abjad.Voice]
-            Voice("c''4 b'4 a'4 g'4", name='Custom Voice 1')
+            Voice("c''4 b'4 a'4 g'4", name='Custom_Voice_1')
 
         ..  container:: example
 
@@ -370,7 +370,7 @@ class LilyPondFile(AbjadObject):
                 >>> string = r'\include "layout.ly"'
                 >>> literal = abjad.LilyPondLiteral(string, 'opening')
                 >>> abjad.attach(literal, include_container)
-                >>> staff = abjad.Staff("c'4 d' e' f'", name='CustomStaff')
+                >>> staff = abjad.Staff("c'4 d' e' f'", name='Custom_Staff')
                 >>> container = abjad.Container(
                 ...     [include_container, staff],
                 ...     is_simultaneous=True,
@@ -388,7 +388,7 @@ class LilyPondFile(AbjadObject):
                         {
                             \include "layout.ly"
                         }
-                        \context Staff = "CustomStaff"
+                        \context Staff = "Custom_Staff"
                         {
                             c'4
                             d'4
@@ -399,10 +399,10 @@ class LilyPondFile(AbjadObject):
                 } %! LilyPondFile
 
                 >>> lilypond_file[abjad.Staff]
-                Staff("c'4 d'4 e'4 f'4", name='CustomStaff')
+                Staff("c'4 d'4 e'4 f'4", name='Custom_Staff')
 
-                >>> lilypond_file['CustomStaff']
-                Staff("c'4 d'4 e'4 f'4", name='CustomStaff')
+                >>> lilypond_file['Custom_Staff']
+                Staff("c'4 d'4 e'4 f'4", name='Custom_Staff')
 
         Returns item.
 
@@ -589,8 +589,8 @@ class LilyPondFile(AbjadObject):
         assert isinstance(font_size, (int, float))
         assert isinstance(padding, (int, float))
         block = ContextBlock(
+            name='Global_Context',
             type_='Engraver_group',
-            name='GlobalContext',
             )
         block.consists_commands.append('Axis_group_engraver')
         block.consists_commands.append('Time_signature_engraver')
@@ -1255,16 +1255,16 @@ class LilyPondFile(AbjadObject):
             ...
             >>> selection_2 = selections[0] + selections[1] + selections[2]
             >>> selections = {
-            ...     'Voice 1': selection_1,
-            ...     'Voice 2': selection_2,
+            ...     'Voice_1': selection_1,
+            ...     'Voice_2': selection_2,
             ... }
             >>> lilypond_file = abjad.LilyPondFile.rhythm(
             ...     selections,
             ...     divisions,
             ...     )
-            >>> voice_1 = lilypond_file['Voice 1']
+            >>> voice_1 = lilypond_file['Voice_1']
             >>> abjad.attach(abjad.LilyPondLiteral(r'\voiceOne'), voice_1)
-            >>> voice_2 = lilypond_file['Voice 2']
+            >>> voice_2 = lilypond_file['Voice_2']
             >>> abjad.attach(abjad.LilyPondLiteral(r'\voiceTwo'), voice_2)
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
@@ -1281,7 +1281,7 @@ class LilyPondFile(AbjadObject):
                     }
                     \new Staff
                     <<
-                        \context Voice = "Voice 1"
+                        \context Voice = "Voice_1"
                         {
                             \voiceOne
                             e'8
@@ -1307,7 +1307,7 @@ class LilyPondFile(AbjadObject):
                             e'8
                             ]
                         }
-                        \context Voice = "Voice 2"
+                        \context Voice = "Voice_2"
                         {
                             \voiceTwo
                             c'16
@@ -1400,10 +1400,10 @@ class LilyPondFile(AbjadObject):
                 voice = Voice(selections_, name=voice_name)
                 if attach_lilypond_voice_commands:
                     voice_name_to_command_string = {
-                        'Voice 1': 'voiceOne',
-                        'Voice 2': 'voiceTwo',
-                        'Voice 3': 'voiceThree',
-                        'Voice 4': 'voiceFour',
+                        'Voice_1': 'voiceOne',
+                        'Voice_2': 'voiceTwo',
+                        'Voice_3': 'voiceThree',
+                        'Voice_4': 'voiceFour',
                         }
                     command_string = voice_name_to_command_string.get(
                         voice_name,

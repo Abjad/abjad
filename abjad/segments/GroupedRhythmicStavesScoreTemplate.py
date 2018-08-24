@@ -18,37 +18,37 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
         ..  docs::
 
             >>> abjad.f(template_1.__illustrate__()[abjad.Score], strict=60)
-            \context Score = "Grouped Rhythmic Staves Score"            %! GroupedRhythmicStavesScoreTemplate
+            \context Score = "Grouped_Rhythmic_Staves_Score"            %! GroupedRhythmicStavesScoreTemplate
             <<                                                          %! GroupedRhythmicStavesScoreTemplate
-                \context StaffGroup = "Grouped Rhythmic Staves Staff Group" %! GroupedRhythmicStavesScoreTemplate
+                \context StaffGroup = "Grouped_Rhythmic_Staves_Staff_Group" %! GroupedRhythmicStavesScoreTemplate
                 <<                                                      %! GroupedRhythmicStavesScoreTemplate
-                    \context RhythmicStaff = "Staff 1"                  %! GroupedRhythmicStavesScoreTemplate
+                    \context RhythmicStaff = "Staff_1"                  %! GroupedRhythmicStavesScoreTemplate
                     {                                                   %! GroupedRhythmicStavesScoreTemplate
-                        \context Voice = "Voice 1"                      %! GroupedRhythmicStavesScoreTemplate
+                        \context Voice = "Voice_1"                      %! GroupedRhythmicStavesScoreTemplate
                         {                                               %! GroupedRhythmicStavesScoreTemplate
                             \clef "percussion"                          %! attach_defaults
                             s1                                          %! ScoreTemplate.__illustrate__
                         }                                               %! GroupedRhythmicStavesScoreTemplate
                     }                                                   %! GroupedRhythmicStavesScoreTemplate
-                    \context RhythmicStaff = "Staff 2"                  %! GroupedRhythmicStavesScoreTemplate
+                    \context RhythmicStaff = "Staff_2"                  %! GroupedRhythmicStavesScoreTemplate
                     {                                                   %! GroupedRhythmicStavesScoreTemplate
-                        \context Voice = "Voice 2"                      %! GroupedRhythmicStavesScoreTemplate
+                        \context Voice = "Voice_2"                      %! GroupedRhythmicStavesScoreTemplate
                         {                                               %! GroupedRhythmicStavesScoreTemplate
                             \clef "percussion"                          %! attach_defaults
                             s1                                          %! ScoreTemplate.__illustrate__
                         }                                               %! GroupedRhythmicStavesScoreTemplate
                     }                                                   %! GroupedRhythmicStavesScoreTemplate
-                    \context RhythmicStaff = "Staff 3"                  %! GroupedRhythmicStavesScoreTemplate
+                    \context RhythmicStaff = "Staff_3"                  %! GroupedRhythmicStavesScoreTemplate
                     {                                                   %! GroupedRhythmicStavesScoreTemplate
-                        \context Voice = "Voice 3"                      %! GroupedRhythmicStavesScoreTemplate
+                        \context Voice = "Voice_3"                      %! GroupedRhythmicStavesScoreTemplate
                         {                                               %! GroupedRhythmicStavesScoreTemplate
                             \clef "percussion"                          %! attach_defaults
                             s1                                          %! ScoreTemplate.__illustrate__
                         }                                               %! GroupedRhythmicStavesScoreTemplate
                     }                                                   %! GroupedRhythmicStavesScoreTemplate
-                    \context RhythmicStaff = "Staff 4"                  %! GroupedRhythmicStavesScoreTemplate
+                    \context RhythmicStaff = "Staff_4"                  %! GroupedRhythmicStavesScoreTemplate
                     {                                                   %! GroupedRhythmicStavesScoreTemplate
-                        \context Voice = "Voice 4"                      %! GroupedRhythmicStavesScoreTemplate
+                        \context Voice = "Voice_4"                      %! GroupedRhythmicStavesScoreTemplate
                         {                                               %! GroupedRhythmicStavesScoreTemplate
                             \clef "percussion"                          %! attach_defaults
                             s1                                          %! ScoreTemplate.__illustrate__
@@ -61,31 +61,31 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
         >>> abjad.show(score) # doctest: +SKIP
 
         >>> abjad.f(score, strict=60)
-        \context Score = "Grouped Rhythmic Staves Score"            %! GroupedRhythmicStavesScoreTemplate
+        \context Score = "Grouped_Rhythmic_Staves_Score"            %! GroupedRhythmicStavesScoreTemplate
         <<                                                          %! GroupedRhythmicStavesScoreTemplate
-            \context StaffGroup = "Grouped Rhythmic Staves Staff Group" %! GroupedRhythmicStavesScoreTemplate
+            \context StaffGroup = "Grouped_Rhythmic_Staves_Staff_Group" %! GroupedRhythmicStavesScoreTemplate
             <<                                                      %! GroupedRhythmicStavesScoreTemplate
-                \context RhythmicStaff = "Staff 1"                  %! GroupedRhythmicStavesScoreTemplate
+                \context RhythmicStaff = "Staff_1"                  %! GroupedRhythmicStavesScoreTemplate
                 {                                                   %! GroupedRhythmicStavesScoreTemplate
-                    \context Voice = "Voice 1"                      %! GroupedRhythmicStavesScoreTemplate
+                    \context Voice = "Voice_1"                      %! GroupedRhythmicStavesScoreTemplate
                     {                                               %! GroupedRhythmicStavesScoreTemplate
                     }                                               %! GroupedRhythmicStavesScoreTemplate
                 }                                                   %! GroupedRhythmicStavesScoreTemplate
-                \context RhythmicStaff = "Staff 2"                  %! GroupedRhythmicStavesScoreTemplate
+                \context RhythmicStaff = "Staff_2"                  %! GroupedRhythmicStavesScoreTemplate
                 {                                                   %! GroupedRhythmicStavesScoreTemplate
-                    \context Voice = "Voice 2"                      %! GroupedRhythmicStavesScoreTemplate
+                    \context Voice = "Voice_2"                      %! GroupedRhythmicStavesScoreTemplate
                     {                                               %! GroupedRhythmicStavesScoreTemplate
                     }                                               %! GroupedRhythmicStavesScoreTemplate
                 }                                                   %! GroupedRhythmicStavesScoreTemplate
-                \context RhythmicStaff = "Staff 3"                  %! GroupedRhythmicStavesScoreTemplate
+                \context RhythmicStaff = "Staff_3"                  %! GroupedRhythmicStavesScoreTemplate
                 {                                                   %! GroupedRhythmicStavesScoreTemplate
-                    \context Voice = "Voice 3"                      %! GroupedRhythmicStavesScoreTemplate
+                    \context Voice = "Voice_3"                      %! GroupedRhythmicStavesScoreTemplate
                     {                                               %! GroupedRhythmicStavesScoreTemplate
                     }                                               %! GroupedRhythmicStavesScoreTemplate
                 }                                                   %! GroupedRhythmicStavesScoreTemplate
-                \context RhythmicStaff = "Staff 4"                  %! GroupedRhythmicStavesScoreTemplate
+                \context RhythmicStaff = "Staff_4"                  %! GroupedRhythmicStavesScoreTemplate
                 {                                                   %! GroupedRhythmicStavesScoreTemplate
-                    \context Voice = "Voice 4"                      %! GroupedRhythmicStavesScoreTemplate
+                    \context Voice = "Voice_4"                      %! GroupedRhythmicStavesScoreTemplate
                     {                                               %! GroupedRhythmicStavesScoreTemplate
                     }                                               %! GroupedRhythmicStavesScoreTemplate
                 }                                                   %! GroupedRhythmicStavesScoreTemplate
@@ -102,35 +102,35 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
         ..  docs::
 
             >>> abjad.f(template_2.__illustrate__()[abjad.Score], strict=60)
-            \context Score = "Grouped Rhythmic Staves Score"            %! GroupedRhythmicStavesScoreTemplate
+            \context Score = "Grouped_Rhythmic_Staves_Score"            %! GroupedRhythmicStavesScoreTemplate
             <<                                                          %! GroupedRhythmicStavesScoreTemplate
-                \context StaffGroup = "Grouped Rhythmic Staves Staff Group" %! GroupedRhythmicStavesScoreTemplate
+                \context StaffGroup = "Grouped_Rhythmic_Staves_Staff_Group" %! GroupedRhythmicStavesScoreTemplate
                 <<                                                      %! GroupedRhythmicStavesScoreTemplate
-                    \context RhythmicStaff = "Staff 1"                  %! GroupedRhythmicStavesScoreTemplate
+                    \context RhythmicStaff = "Staff_1"                  %! GroupedRhythmicStavesScoreTemplate
                     <<                                                  %! GroupedRhythmicStavesScoreTemplate
-                        \context Voice = "Voice 1-1"                    %! GroupedRhythmicStavesScoreTemplate
+                        \context Voice = "Voice_1_1"                    %! GroupedRhythmicStavesScoreTemplate
                         {                                               %! GroupedRhythmicStavesScoreTemplate
                             s1                                          %! ScoreTemplate.__illustrate__
                         }                                               %! GroupedRhythmicStavesScoreTemplate
-                        \context Voice = "Voice 1-2"                    %! GroupedRhythmicStavesScoreTemplate
+                        \context Voice = "Voice_1_2"                    %! GroupedRhythmicStavesScoreTemplate
                         {                                               %! GroupedRhythmicStavesScoreTemplate
                             s1                                          %! ScoreTemplate.__illustrate__
                         }                                               %! GroupedRhythmicStavesScoreTemplate
                     >>                                                  %! GroupedRhythmicStavesScoreTemplate
-                    \context RhythmicStaff = "Staff 2"                  %! GroupedRhythmicStavesScoreTemplate
+                    \context RhythmicStaff = "Staff_2"                  %! GroupedRhythmicStavesScoreTemplate
                     {                                                   %! GroupedRhythmicStavesScoreTemplate
-                        \context Voice = "Voice 2"                      %! GroupedRhythmicStavesScoreTemplate
+                        \context Voice = "Voice_2"                      %! GroupedRhythmicStavesScoreTemplate
                         {                                               %! GroupedRhythmicStavesScoreTemplate
                             s1                                          %! ScoreTemplate.__illustrate__
                         }                                               %! GroupedRhythmicStavesScoreTemplate
                     }                                                   %! GroupedRhythmicStavesScoreTemplate
-                    \context RhythmicStaff = "Staff 3"                  %! GroupedRhythmicStavesScoreTemplate
+                    \context RhythmicStaff = "Staff_3"                  %! GroupedRhythmicStavesScoreTemplate
                     <<                                                  %! GroupedRhythmicStavesScoreTemplate
-                        \context Voice = "Voice 3-1"                    %! GroupedRhythmicStavesScoreTemplate
+                        \context Voice = "Voice_3_1"                    %! GroupedRhythmicStavesScoreTemplate
                         {                                               %! GroupedRhythmicStavesScoreTemplate
                             s1                                          %! ScoreTemplate.__illustrate__
                         }                                               %! GroupedRhythmicStavesScoreTemplate
-                        \context Voice = "Voice 3-2"                    %! GroupedRhythmicStavesScoreTemplate
+                        \context Voice = "Voice_3_2"                    %! GroupedRhythmicStavesScoreTemplate
                         {                                               %! GroupedRhythmicStavesScoreTemplate
                             s1                                          %! ScoreTemplate.__illustrate__
                         }                                               %! GroupedRhythmicStavesScoreTemplate
@@ -142,31 +142,31 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
         >>> abjad.show(score) # doctest: +SKIP
 
         >>> abjad.f(score, strict=60)
-        \context Score = "Grouped Rhythmic Staves Score"            %! GroupedRhythmicStavesScoreTemplate
+        \context Score = "Grouped_Rhythmic_Staves_Score"            %! GroupedRhythmicStavesScoreTemplate
         <<                                                          %! GroupedRhythmicStavesScoreTemplate
-            \context StaffGroup = "Grouped Rhythmic Staves Staff Group" %! GroupedRhythmicStavesScoreTemplate
+            \context StaffGroup = "Grouped_Rhythmic_Staves_Staff_Group" %! GroupedRhythmicStavesScoreTemplate
             <<                                                      %! GroupedRhythmicStavesScoreTemplate
-                \context RhythmicStaff = "Staff 1"                  %! GroupedRhythmicStavesScoreTemplate
+                \context RhythmicStaff = "Staff_1"                  %! GroupedRhythmicStavesScoreTemplate
                 <<                                                  %! GroupedRhythmicStavesScoreTemplate
-                    \context Voice = "Voice 1-1"                    %! GroupedRhythmicStavesScoreTemplate
+                    \context Voice = "Voice_1_1"                    %! GroupedRhythmicStavesScoreTemplate
                     {                                               %! GroupedRhythmicStavesScoreTemplate
                     }                                               %! GroupedRhythmicStavesScoreTemplate
-                    \context Voice = "Voice 1-2"                    %! GroupedRhythmicStavesScoreTemplate
+                    \context Voice = "Voice_1_2"                    %! GroupedRhythmicStavesScoreTemplate
                     {                                               %! GroupedRhythmicStavesScoreTemplate
                     }                                               %! GroupedRhythmicStavesScoreTemplate
                 >>                                                  %! GroupedRhythmicStavesScoreTemplate
-                \context RhythmicStaff = "Staff 2"                  %! GroupedRhythmicStavesScoreTemplate
+                \context RhythmicStaff = "Staff_2"                  %! GroupedRhythmicStavesScoreTemplate
                 {                                                   %! GroupedRhythmicStavesScoreTemplate
-                    \context Voice = "Voice 2"                      %! GroupedRhythmicStavesScoreTemplate
+                    \context Voice = "Voice_2"                      %! GroupedRhythmicStavesScoreTemplate
                     {                                               %! GroupedRhythmicStavesScoreTemplate
                     }                                               %! GroupedRhythmicStavesScoreTemplate
                 }                                                   %! GroupedRhythmicStavesScoreTemplate
-                \context RhythmicStaff = "Staff 3"                  %! GroupedRhythmicStavesScoreTemplate
+                \context RhythmicStaff = "Staff_3"                  %! GroupedRhythmicStavesScoreTemplate
                 <<                                                  %! GroupedRhythmicStavesScoreTemplate
-                    \context Voice = "Voice 3-1"                    %! GroupedRhythmicStavesScoreTemplate
+                    \context Voice = "Voice_3_1"                    %! GroupedRhythmicStavesScoreTemplate
                     {                                               %! GroupedRhythmicStavesScoreTemplate
                     }                                               %! GroupedRhythmicStavesScoreTemplate
-                    \context Voice = "Voice 3-2"                    %! GroupedRhythmicStavesScoreTemplate
+                    \context Voice = "Voice_3_2"                    %! GroupedRhythmicStavesScoreTemplate
                     {                                               %! GroupedRhythmicStavesScoreTemplate
                     }                                               %! GroupedRhythmicStavesScoreTemplate
                 >>                                                  %! GroupedRhythmicStavesScoreTemplate
@@ -204,9 +204,9 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
         if isinstance(self.staff_count, int):
             for index in range(self.staff_count):
                 number = index + 1
-                name = 'Voice {}'.format(number)
+                name = 'Voice_{}'.format(number)
                 voice = abjad.Voice([], name=name, tag=tag)
-                name = 'Staff {}'.format(number)
+                name = 'Staff_{}'.format(number)
                 staff = abjad.Staff([voice], name=name, tag=tag)
                 staff.lilypond_type = 'RhythmicStaff'
                 abjad.annotate(staff, 'default_clef', abjad.Clef('percussion'))
@@ -216,7 +216,7 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
         elif isinstance(self.staff_count, list):
             for staff_index, voice_count in enumerate(self.staff_count):
                 staff_number = staff_index + 1
-                name = 'Staff {}'.format(staff_number)
+                name = 'Staff_{}'.format(staff_number)
                 staff = abjad.Staff(name=name, tag=tag)
                 staff.lilypond_type = 'RhythmicStaff'
                 assert 1 <= voice_count
@@ -225,10 +225,10 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
                     if voice_count == 1:
                         voice_identifier = str(staff_number)
                     else:
-                        voice_identifier = '{}-{}'.format(
+                        voice_identifier = '{}_{}'.format(
                             staff_number, voice_number)
                         staff.is_simultaneous = True
-                    name = 'Voice {}'.format(voice_identifier)
+                    name = 'Voice_{}'.format(voice_identifier)
                     voice = abjad.Voice([], name=name, tag=tag)
                     staff.append(voice)
                     key = 'v{}'.format(voice_identifier)
@@ -236,12 +236,12 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
                 staves.append(staff)
         grouped_rhythmic_staves_staff_group = abjad.StaffGroup(
             staves,
-            name='Grouped Rhythmic Staves Staff Group',
+            name='Grouped_Rhythmic_Staves_Staff_Group',
             tag=tag,
             )
         grouped_rhythmic_staves_score = abjad.Score(
             [grouped_rhythmic_staves_staff_group],
-            name='Grouped Rhythmic Staves Score',
+            name='Grouped_Rhythmic_Staves_Score',
             tag=tag,
             )
         return grouped_rhythmic_staves_score

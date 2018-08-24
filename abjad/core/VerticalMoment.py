@@ -77,7 +77,7 @@ class VerticalMoment(AbjadObject):
             assert isinstance(components, collections.Iterable)
             components = list(components)
             components.sort(
-                key=lambda _: abjad.inspect(_).parentage().score_index)
+                key=lambda _: abjad.inspect(_).parentage().score_index())
         self._components = components
 
     ### SPECIAL METHODS ###
@@ -172,13 +172,13 @@ class VerticalMoment(AbjadObject):
         else:
             raise TypeError(message)
         governors.sort(
-            key=lambda x: abjad.inspect(x).parentage().score_index)
+            key=lambda x: abjad.inspect(x).parentage().score_index())
         governors = tuple(governors)
         components = []
         for governor in governors:
             components.extend(VerticalMoment._recurse(governor, offset))
         components.sort(
-            key=lambda x: abjad.inspect(x).parentage().score_index)
+            key=lambda x: abjad.inspect(x).parentage().score_index())
         components = tuple(components)
         return governors, components
 

@@ -75,7 +75,7 @@ def test_Mutation_split_01():
         """
         ), print(format(staff))
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
     assert len(result) == 3
 
 
@@ -157,7 +157,7 @@ def test_Mutation_split_02():
         """
         ), print(format(staff))
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
     assert len(result) == 6
 
 
@@ -239,7 +239,7 @@ def test_Mutation_split_03():
         """
         ), print(format(staff))
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
     assert len(result) == 3
 
 
@@ -329,7 +329,7 @@ def test_Mutation_split_04():
         """
         ), print(format(staff))
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
     assert len(result) == 6
 
 
@@ -394,7 +394,7 @@ def test_Mutation_split_05():
         """
         ), print(format(staff))
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
     assert len(result) == 6
 
 
@@ -476,7 +476,7 @@ def test_Mutation_split_06():
         """
         ), print(format(staff))
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
     assert len(result) == 4
 
 
@@ -559,7 +559,7 @@ def test_Mutation_split_07():
         """
         ), print(format(staff))
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
     assert len(result) == 8
 
 
@@ -645,7 +645,7 @@ def test_Mutation_split_08():
         """
         ), print(format(staff))
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
     assert len(result) == 4
 
 
@@ -739,7 +739,7 @@ def test_Mutation_split_09():
         """
         ), print(format(staff))
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
     assert len(result) == 6
 
 
@@ -824,7 +824,7 @@ def test_Mutation_split_10():
         """
         ), print(format(staff))
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
     assert len(result) == 3
 
 
@@ -918,7 +918,7 @@ def test_Mutation_split_11():
         """
         ), print(format(staff))
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
     assert len(result) == 6
 
 
@@ -1006,7 +1006,7 @@ def test_Mutation_split_12():
         """
         ), print(format(staff))
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
     assert len(result) == 3
 
 
@@ -1108,7 +1108,7 @@ def test_Mutation_split_13():
         """
         ), print(format(staff))
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
     assert len(result) == 6
 
 
@@ -1153,7 +1153,7 @@ def test_Mutation_split_14():
         """
         ), print(format(staff))
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
     assert len(result) == 6
 
 
@@ -1227,7 +1227,7 @@ def test_Mutation_split_15():
         """
         ), print(format(staff))
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
     assert len(result) == 6
 
 
@@ -1317,7 +1317,7 @@ def test_Mutation_split_16():
         """
         ), print(format(staff))
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
     assert len(result) == 4
 
 
@@ -1412,7 +1412,7 @@ def test_Mutation_split_17():
         """
         ), print(format(staff))
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
     assert len(result) == 8
 
 
@@ -1504,7 +1504,7 @@ def test_Mutation_split_18():
         """
         ), print(format(staff))
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
     assert len(result) == 4
 
 
@@ -1610,7 +1610,7 @@ def test_Mutation_split_19():
         """
         ), print(format(staff))
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
     assert len(result) == 6
 
 
@@ -1691,7 +1691,7 @@ def test_Mutation_split_20():
         """
         ), print(format(staff))
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
     assert len(result) == 3
 
 
@@ -1775,7 +1775,7 @@ def test_Mutation_split_21():
         """
         ), print(format(staff))
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
     assert len(result) == 4
 
 
@@ -1860,7 +1860,7 @@ def test_Mutation_split_22():
         """
         ), print(format(staff))
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
     assert len(result) == 3
 
 
@@ -1911,7 +1911,7 @@ def test_Mutation_split_23():
         fracture_spanners=True,
         tie_split_notes=False)
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
     assert len(result) == 4
     assert format(staff) == abjad.String.normalize(
         r"""
@@ -1987,7 +1987,7 @@ def test_Mutation_split_24():
         """
         ), print(format(staff))
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
     assert len(result) == 3
 
 
@@ -2038,7 +2038,7 @@ def test_Mutation_split_25():
         """
         ), print(format(staff))
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
 
 
 def test_Mutation_split_26():
@@ -2085,7 +2085,7 @@ def test_Mutation_split_26():
         """
         ), print(format(voice))
 
-    assert abjad.inspect(voice).is_wellformed()
+    assert abjad.inspect(voice).wellformed()
 
 
 def test_Mutation_split_27():
@@ -2130,7 +2130,7 @@ def test_Mutation_split_27():
         """
         ), print(format(voice))
 
-    assert abjad.inspect(voice).is_wellformed()
+    assert abjad.inspect(voice).wellformed()
 
 
 def test_Mutation_split_28():
@@ -2160,7 +2160,7 @@ def test_Mutation_split_28():
         """
         ), print(format(voice_1))
 
-    assert abjad.inspect(voice_1).is_wellformed()
+    assert abjad.inspect(voice_1).wellformed()
 
     assert format(voice_2) == abjad.String.normalize(
         r"""
@@ -2172,7 +2172,7 @@ def test_Mutation_split_28():
         """
         ), print(format(voice_2))
 
-    assert abjad.inspect(voice_2).is_wellformed()
+    assert abjad.inspect(voice_2).wellformed()
 
 
 def test_Mutation_split_29():
@@ -2237,7 +2237,7 @@ def test_Mutation_split_29():
         """
         ), print(format(staff))
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
 
 
 def test_Mutation_split_30():
@@ -2324,7 +2324,7 @@ def test_Mutation_split_30():
         """
         ), print(format(staff))
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
 
 
 def test_Mutation_split_31():
@@ -2423,7 +2423,7 @@ def test_Mutation_split_31():
         """
         ), print(format(staff))
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
 
 
 def test_Mutation_split_32():
@@ -2519,7 +2519,7 @@ def test_Mutation_split_32():
         """
         ), print(format(voice))
 
-    assert abjad.inspect(voice).is_wellformed()
+    assert abjad.inspect(voice).wellformed()
 
 
 def test_Mutation_split_33():
@@ -2609,7 +2609,7 @@ def test_Mutation_split_33():
         """
         ), print(format(voice))
 
-    assert abjad.inspect(voice).is_wellformed()
+    assert abjad.inspect(voice).wellformed()
 
 
 def test_Mutation_split_34():
@@ -2753,7 +2753,7 @@ def test_Mutation_split_35():
         """
         ), print(format(staff))
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
 
 
 def test_Mutation_split_36():
@@ -2812,7 +2812,7 @@ def test_Mutation_split_36():
         """
         ), print(format(staff))
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
     assert len(result) == 2
 
 
@@ -2887,7 +2887,7 @@ def test_Mutation_split_37():
         """
         ), print(format(voice))
 
-    assert abjad.inspect(voice).is_wellformed()
+    assert abjad.inspect(voice).wellformed()
 
 
 def test_Mutation_split_38():
@@ -2951,7 +2951,7 @@ def test_Mutation_split_38():
         """
         ), print(format(voice))
 
-    assert abjad.inspect(voice).is_wellformed()
+    assert abjad.inspect(voice).wellformed()
 
 
 def test_Mutation_split_39():
@@ -3019,7 +3019,7 @@ def test_Mutation_split_39():
         """
         ), print(format(voice))
 
-    assert abjad.inspect(voice).is_wellformed()
+    assert abjad.inspect(voice).wellformed()
     assert len(result) == 4
 
 
@@ -3086,7 +3086,7 @@ def test_Mutation_split_40():
         """
         ), print(format(voice))
 
-    assert abjad.inspect(voice).is_wellformed()
+    assert abjad.inspect(voice).wellformed()
     assert len(result) == 2
 
 
@@ -3145,7 +3145,7 @@ def test_Mutation_split_41():
         """
         ), print(format(voice))
 
-    assert abjad.inspect(voice).is_wellformed()
+    assert abjad.inspect(voice).wellformed()
     assert len(result) == 1
 
 
@@ -3212,7 +3212,7 @@ def test_Mutation_split_42():
         """
         ), print(format(voice))
 
-    assert abjad.inspect(voice).is_wellformed()
+    assert abjad.inspect(voice).wellformed()
     assert len(result) == 2
 
 
@@ -3243,4 +3243,4 @@ def test_Mutation_split_43():
         """
         ), print(format(staff))
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()

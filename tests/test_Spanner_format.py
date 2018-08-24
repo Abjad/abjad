@@ -23,4 +23,4 @@ def test_Spanner_format_01():
         """
         )
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()

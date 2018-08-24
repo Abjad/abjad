@@ -38,7 +38,7 @@ def test_Inspection_effective_staff_01():
         """
         )
 
-    assert abjad.inspect(staff_group).is_wellformed()
+    assert abjad.inspect(staff_group).wellformed()
     assert abjad.inspect(staff_group[0][0]).effective_staff() is staff_group[1]
     assert abjad.inspect(staff_group[0][1]).effective_staff() is staff_group[1]
     assert abjad.inspect(staff_group[0][2]).effective_staff() is staff_group[1]
@@ -89,7 +89,7 @@ def test_Inspection_effective_staff_02():
         """
         )
 
-    assert abjad.inspect(staff_group).is_wellformed()
+    assert abjad.inspect(staff_group).wellformed()
     assert abjad.inspect(staff_group[0][0]).effective_staff() is staff_group[1]
     assert abjad.inspect(staff_group[0][1]).effective_staff() is staff_group[1]
     assert abjad.inspect(staff_group[0][2]).effective_staff() is staff_group[0]
@@ -137,7 +137,7 @@ def test_Inspection_effective_staff_03():
         """
         )
 
-    assert abjad.inspect(staff_group).is_wellformed()
+    assert abjad.inspect(staff_group).wellformed()
 
 
 def test_Inspection_effective_staff_04():
@@ -180,7 +180,7 @@ def test_Inspection_effective_staff_04():
         """
         )
 
-    assert abjad.inspect(staff_group).is_wellformed()
+    assert abjad.inspect(staff_group).wellformed()
     assert abjad.inspect(staff_group[0][0]).effective_staff() is staff_group[1]
     assert abjad.inspect(staff_group[0][1]).effective_staff() is staff_group[1]
     assert abjad.inspect(staff_group[0][2]).effective_staff() is staff_group[1]

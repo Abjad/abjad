@@ -88,19 +88,19 @@ class ScoreTemplate(AbjadValueObject):
     def _make_global_context(self):
         global_rests = Context(
             lilypond_type='GlobalRests',
-            name='GlobalRests',
+            name='Global_Rests',
             tag='_make_global_context',
             )
         global_skips = Context(
             lilypond_type='GlobalSkips',
-            name='GlobalSkips',
+            name='Global_Skips',
             tag='_make_global_context',
             )
         global_context = Context(
             [global_rests, global_skips],
             lilypond_type='GlobalContext',
             is_simultaneous=True,
-            name='GlobalContext',
+            name='Global_Context',
             tag='_make_global_context',
             )
         return global_context
@@ -192,6 +192,7 @@ class ScoreTemplate(AbjadValueObject):
                 leaves = select(voice).leaves()
                 if not all(isinstance(_, empty_prototype) for _ in leaves):
                     leaf = inspect(voice).leaf(0)
+                    break
             # otherwise, find first leaf in voice in non-removable staff
             if leaf is None:
                 for voice in voices:

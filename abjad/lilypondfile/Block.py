@@ -95,11 +95,11 @@ class Block(AbjadObject):
             Gets score with name ``'Red Example Score'`` in score block:
 
             >>> block = abjad.Block(name='score')
-            >>> score = abjad.Score(name='Red Example Score')
+            >>> score = abjad.Score(name='Red_Example_Score')
             >>> block.items.append(score)
 
-            >>> block['Red Example Score']
-            Score(is_simultaneous=True, name='Red Example Score')
+            >>> block['Red_Example_Score']
+            Score(is_simultaneous=True, name='Red_Example_Score')
 
         Returns item.
 

@@ -17,7 +17,7 @@ def test_Container_insert_01():
     abjad.attach(beam, voice[:])
     voice.insert(0, abjad.Rest((1, 8)))
 
-    assert abjad.inspect(voice).is_wellformed()
+    assert abjad.inspect(voice).wellformed()
     assert format(voice) == abjad.String.normalize(
         r"""
         \new Voice
@@ -44,7 +44,7 @@ def test_Container_insert_02():
     abjad.attach(beam, voice[:])
     voice.insert(1, abjad.Note(1, (1, 8)))
 
-    assert abjad.inspect(voice).is_wellformed()
+    assert abjad.inspect(voice).wellformed()
     assert format(voice) == abjad.String.normalize(
         r"""
         \new Voice
@@ -71,7 +71,7 @@ def test_Container_insert_03():
     abjad.attach(beam, staff[:])
     staff.insert(4, abjad.Rest((1, 4)))
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
     assert format(staff) == abjad.String.normalize(
         r"""
         \new Staff
@@ -98,7 +98,7 @@ def test_Container_insert_04():
     abjad.attach(beam, staff[:])
     staff.insert(1000, abjad.Rest((1, 4)))
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
     assert format(staff) == abjad.String.normalize(
         r"""
         \new Staff
@@ -125,7 +125,7 @@ def test_Container_insert_05():
     abjad.attach(beam, voice[:])
     voice.insert(-1, abjad.Note(4.5, (1, 8)))
 
-    assert abjad.inspect(voice).is_wellformed()
+    assert abjad.inspect(voice).wellformed()
     assert format(voice) == abjad.String.normalize(
         r"""
         \new Voice
@@ -152,7 +152,7 @@ def test_Container_insert_06():
     abjad.attach(beam, voice[:])
     voice.insert(-1000, abjad.Rest((1, 8)))
 
-    assert abjad.inspect(voice).is_wellformed()
+    assert abjad.inspect(voice).wellformed()
     assert format(voice) == abjad.String.normalize(
         r"""
         \new Voice
@@ -180,8 +180,8 @@ def test_Container_insert_07():
     note = voice[0]
     staff.insert(1, voice[0])
 
-    assert abjad.inspect(voice).is_wellformed()
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(voice).wellformed()
+    assert abjad.inspect(staff).wellformed()
     assert not note in voice
     assert note._parent is staff
 
@@ -193,7 +193,7 @@ def test_Container_insert_08():
     abjad.attach(beam, staff[:])
     staff.insert(1, abjad.Note("cs'8"), fracture_spanners=False)
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
     assert format(staff) == abjad.String.normalize(
         r"""
         \new Staff
@@ -225,7 +225,7 @@ def test_Container_insert_09():
     abjad.attach(beam, staff[:])
     staff.insert(0, abjad.Rest('r4'), fracture_spanners=True)
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
     assert format(staff) == abjad.String.normalize(
         r"""
         \new Staff
@@ -252,7 +252,7 @@ def test_Container_insert_10():
     abjad.attach(beam, staff[:])
     staff.insert(1, abjad.Rest('r4'), fracture_spanners=True)
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
     assert format(staff) == abjad.String.normalize(
         r"""
         \new Staff
@@ -281,7 +281,7 @@ def test_Container_insert_11():
     abjad.attach(beam, staff[:])
     staff.insert(4, abjad.Rest('r4'), fracture_spanners=True)
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
     assert format(staff) == abjad.String.normalize(
         r"""
         \new Staff 
@@ -308,7 +308,7 @@ def test_Container_insert_12():
     abjad.attach(beam, staff[:])
     staff.insert(1000, abjad.Rest('r4'), fracture_spanners=True)
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
     assert format(staff) == abjad.String.normalize(
         r"""
         \new Staff
@@ -335,7 +335,7 @@ def test_Container_insert_13():
     abjad.attach(beam, staff[:])
     staff.insert(-1, abjad.Rest('r4'), fracture_spanners=True)
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
     assert format(staff) == abjad.String.normalize(
         r"""
         \new Staff
@@ -379,7 +379,7 @@ def test_Container_insert_14():
         """
         )
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
 
 
 def test_Container_insert_15():
@@ -393,7 +393,7 @@ def test_Container_insert_15():
     note = voice[0]
     staff.insert(1, voice[0], fracture_spanners=True)
 
-    assert abjad.inspect(voice).is_wellformed()
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(voice).wellformed()
+    assert abjad.inspect(staff).wellformed()
     assert not note in voice
     assert note._parent is staff

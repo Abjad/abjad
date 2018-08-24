@@ -14,17 +14,17 @@ class Context(Container):
     ..  container:: example
 
         >>> context = abjad.Context(
-        ...     name='MeterVoice',
         ...     lilypond_type='GlobalContext',
+        ...     name='Meter_Voice',
         ...     )
 
         >>> context
-        Context(lilypond_type='GlobalContext', name='MeterVoice')
+        Context(lilypond_type='GlobalContext', name='Meter_Voice')
 
         ..  docs::
 
             >>> abjad.f(context)
-            \context GlobalContext = "MeterVoice"
+            \context GlobalContext = "Meter_Voice"
             {
             }
 
@@ -119,12 +119,14 @@ class Context(Container):
         """
         Gets interpreter representation of context.
 
-        >>> context = abjad.Context(
-        ...     name='MeterVoice',
-        ...     lilypond_type='GlobalContext',
-        ...     )
-        >>> repr(context)
-        "Context(lilypond_type='GlobalContext', name='MeterVoice')"
+        ..  container:: example
+
+            >>> context = abjad.Context(
+            ...     lilypond_type='GlobalContext',
+            ...     name='Meter_Voice',
+            ...     )
+            >>> repr(context)
+            "Context(lilypond_type='GlobalContext', name='Meter_Voice')"
 
         Returns string.
         """
@@ -272,18 +274,20 @@ class Context(Container):
         Unordered set of LilyPond engravers to include
         in context definition.
 
-        Manage with add, update, other standard set commands:
+        ..  container:: example
 
-        >>> staff = abjad.Staff([])
-        >>> staff.consists_commands.append('Horizontal_bracket_engraver')
-        >>> abjad.f(staff)
-        \new Staff
-        \with
-        {
-            \consists Horizontal_bracket_engraver
-        }
-        {
-        }
+            Manage with add, update, other standard set commands:
+
+            >>> staff = abjad.Staff([])
+            >>> staff.consists_commands.append('Horizontal_bracket_engraver')
+            >>> abjad.f(staff)
+            \new Staff
+            \with
+            {
+                \consists Horizontal_bracket_engraver
+            }
+            {
+            }
 
         """
         return self._consists_commands
@@ -336,18 +340,20 @@ class Context(Container):
         r"""
         Unordered set of LilyPond engravers to remove from context.
 
-        Manage with add, update, other standard set commands:
+        ..  container:: example
 
-        >>> staff = abjad.Staff([])
-        >>> staff.remove_commands.append('Time_signature_engraver')
-        >>> abjad.f(staff)
-        \new Staff
-        \with
-        {
-            \remove Time_signature_engraver
-        }
-        {
-        }
+            Manage with add, update, other standard set commands:
+
+            >>> staff = abjad.Staff([])
+            >>> staff.remove_commands.append('Time_signature_engraver')
+            >>> abjad.f(staff)
+            \new Staff
+            \with
+            {
+                \remove Time_signature_engraver
+            }
+            {
+            }
 
         """
         return self._remove_commands

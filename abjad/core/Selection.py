@@ -6,6 +6,7 @@ import typing
 from abjad import enums
 from abjad import exceptions
 from abjad import mathtools
+from abjad import typings
 from abjad.mathtools.Ratio import Ratio
 from abjad.pitch.PitchSet import PitchSet
 from abjad.system.AbjadValueObject import AbjadValueObject
@@ -509,10 +510,12 @@ class Selection(AbjadValueObject, collections.Sequence):
         class_,
         argument,
         prototype=None,
+        *,
+        exclude=None,
+        grace_notes=None,
         head=None,
         tail=None,
         trim=None,
-        grace_notes=None,
         ):
         prototype = prototype or Component
         if not isinstance(prototype, tuple):
@@ -520,6 +523,7 @@ class Selection(AbjadValueObject, collections.Sequence):
         result = []
         generator = iterate(argument).components(
             prototype,
+            exclude=exclude,
             grace_notes=grace_notes,
             )
         components = list(generator)
@@ -999,6 +1003,7 @@ class Selection(AbjadValueObject, collections.Sequence):
     def are_contiguous_logical_voice(
         self,
         prototype=None,
+        *,
         allow_orphans=True,
         ) -> typing.Union[bool, Expression]:
         """
@@ -1032,24 +1037,24 @@ class Selection(AbjadValueObject, collections.Sequence):
                 if not isinstance(component, prototype):
                     all_are_orphans_of_correct_type = False
                     break
-                if not abjad_inspect(component).parentage().is_orphan:
+                if not abjad_inspect(component).parentage().orphan:
                     all_are_orphans_of_correct_type = False
                     break
             if all_are_orphans_of_correct_type:
                 return True
         if not allow_orphans:
-            if any(abjad_inspect(x).parentage().is_orphan for x in self):
+            if any(abjad_inspect(x).parentage().orphan for x in self):
                 return False
         first = self[0]
         if not isinstance(first, prototype):
             return False
         first_parentage = abjad_inspect(first).parentage()
-        first_logical_voice = first_parentage.logical_voice
+        first_logical_voice = first_parentage.logical_voice()
         first_root = first_parentage.root
         previous = first
         for current in self[1:]:
             current_parentage = abjad_inspect(current).parentage()
-            current_logical_voice = current_parentage.logical_voice
+            current_logical_voice = current_parentage.logical_voice()
             # false if wrong type of component found
             if not isinstance(current, prototype):
                 return False
@@ -1080,6 +1085,7 @@ class Selection(AbjadValueObject, collections.Sequence):
     def are_logical_voice(
         self,
         prototype=None,
+        *,
         allow_orphans=True,
         ) -> typing.Union[bool, Expression]:
         """
@@ -1111,7 +1117,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                 if not isinstance(component, prototype):
                     all_are_orphans_of_correct_type = False
                     break
-                if not abjad_inspect(component).parentage().is_orphan:
+                if not abjad_inspect(component).parentage().orphan:
                     all_are_orphans_of_correct_type = False
                     break
             if all_are_orphans_of_correct_type:
@@ -1120,17 +1126,17 @@ class Selection(AbjadValueObject, collections.Sequence):
         if not isinstance(first, prototype):
             return False
         orphan_components = True
-        if not abjad_inspect(first).parentage().is_orphan:
+        if not abjad_inspect(first).parentage().orphan:
             orphan_components = False
         same_logical_voice = True
-        first_signature = abjad_inspect(first).parentage().logical_voice
+        first_signature = abjad_inspect(first).parentage().logical_voice()
         for component in self[1:]:
             parentage = abjad_inspect(component).parentage()
-            if not parentage.is_orphan:
+            if not parentage.orphan:
                 orphan_components = False
             if not allow_orphans and orphan_components:
                 return False
-            if parentage.logical_voice != first_signature:
+            if parentage.logical_voice() != first_signature:
                 same_logical_voice = False
             if not allow_orphans and not same_logical_voice:
                 return False
@@ -1144,6 +1150,7 @@ class Selection(AbjadValueObject, collections.Sequence):
     def are_contiguous_same_parent(
         self,
         prototype=None,
+        *,
         allow_orphans=True,
         ) -> typing.Union[bool, Expression]:
         """
@@ -1175,7 +1182,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                 if not isinstance(component, prototype):
                     all_are_orphans_of_correct_type = False
                     break
-                if not abjad_inspect(component).parentage().is_orphan:
+                if not abjad_inspect(component).parentage().orphan:
                     all_are_orphans_of_correct_type = False
                     break
             if all_are_orphans_of_correct_type:
@@ -1195,7 +1202,7 @@ class Selection(AbjadValueObject, collections.Sequence):
         for current in self[1:]:
             if not isinstance(current, prototype):
                 return False
-            if not abjad_inspect(current).parentage().is_orphan:
+            if not abjad_inspect(current).parentage().orphan:
                 orphan_components = False
             if current._parent is not first_parent:
                 same_parent = False
@@ -1208,7 +1215,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             previous = current
         return True
 
-    def chord(self, n) -> typing.Union[Chord, Expression]:
+    def chord(
+        self,
+        n: int,
+        *,
+        exclude: typings.Strings = None,
+        ) -> typing.Union[Chord, Expression]:
         r"""
         Selects chord ``n``.
 
@@ -1303,9 +1315,13 @@ class Selection(AbjadValueObject, collections.Sequence):
         """
         if self._expression:
             return self._update_expression(inspect.currentframe(), lone=True)
-        return self.chords()[n]
+        return self.chords(exclude=exclude)[n]
 
-    def chords(self) -> typing.Union['Selection', Expression]:
+    def chords(
+        self,
+        *,
+        exclude: typings.Strings = None,
+        ) -> typing.Union['Selection', Expression]:
         r"""
         Selects chords.
 
@@ -1426,13 +1442,15 @@ class Selection(AbjadValueObject, collections.Sequence):
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        return self.components(Chord)
+        return self.components(Chord, exclude=exclude)
 
     def components(
         self,
-        prototype=None,
-        grace_notes=None,
-        reverse=False,
+        prototype = None,
+        *,
+        exclude: typings.Strings = None,
+        grace_notes: bool = None,
+        reverse: bool = None,
         ) -> typing.Union['Selection', Expression]:
         r"""
         Selects components.
@@ -1506,8 +1524,9 @@ class Selection(AbjadValueObject, collections.Sequence):
             return self._update_expression(inspect.currentframe())
         generator = iterate(self).components(
             prototype=prototype,
-            reverse=reverse,
+            exclude=exclude,
             grace_notes=grace_notes,
+            reverse=reverse,
             )
         return type(self)(generator)
 
@@ -1578,7 +1597,7 @@ class Selection(AbjadValueObject, collections.Sequence):
     def filter_duration(
         self,
         operator,
-        duration,
+        duration: typings.DurationTyping,
         ) -> typing.Union['Selection', Expression]:
         r"""
         Filters selection by ``operator`` and ``duration``.
@@ -1696,7 +1715,7 @@ class Selection(AbjadValueObject, collections.Sequence):
     def filter_length(
         self,
         operator,
-        length,
+        length: int,
         ) -> typing.Union['Selection', Expression]:
         r"""
         Filters selection by ``operator`` and ``length``.
@@ -2003,7 +2022,7 @@ class Selection(AbjadValueObject, collections.Sequence):
     def filter_preprolated(
         self,
         operator,
-        duration,
+        duration: typings.DurationTyping,
         ) -> typing.Union['Selection', Expression]:
         r"""
         Filters selection by ``operator`` and preprolated ``duration``.
@@ -3490,7 +3509,7 @@ class Selection(AbjadValueObject, collections.Sequence):
             return PitchSet.from_selection(argument)
         return self.group_by(predicate)
 
-    def leaf(self, n) -> typing.Union[Leaf, Expression]:
+    def leaf(self, n: int) -> typing.Union[Leaf, Expression]:
         r"""
         Selects leaf ``n``.
 
@@ -3589,7 +3608,9 @@ class Selection(AbjadValueObject, collections.Sequence):
 
     def leaves(
         self,
-        prototype=None,
+        prototype = None,
+        *,
+        exclude: typings.Strings = None,
         grace_notes: bool = False,
         head: bool = None,
         pitched: bool = None,
@@ -4364,6 +4385,86 @@ class Selection(AbjadValueObject, collections.Sequence):
                     }
                 }
 
+        ..  container:: example
+
+            Excludes leaves with ``'HIDDEN'`` annotation:
+
+            ..  container:: example
+
+                >>> staff = abjad.Staff(r"""
+                ...     \times 2/3 { r8 d' e' } f' r
+                ...     r f' \times 2/3 { e' d' r8 }
+                ...     """)
+                >>> abjad.annotate(staff[-1][-2], 'HIDDEN', True)
+                >>> abjad.annotate(staff[-1][-1], 'HIDDEN', True)
+                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.show(staff) # doctest: +SKIP
+
+                >>> result = abjad.select(staff).leaves(exclude='HIDDEN')
+
+                >>> for item in result:
+                ...     item
+                ...
+                Rest('r8')
+                Note("d'8")
+                Note("e'8")
+                Note("f'8")
+                Rest('r8')
+                Rest('r8')
+                Note("f'8")
+                Note("e'8")
+
+            ..  container:: example expression
+
+                >>> selector = abjad.select().leaves(exclude='HIDDEN')
+                >>> result = selector(staff)
+
+                >>> selector.print(result)
+                Rest('r8')
+                Note("d'8")
+                Note("e'8")
+                Note("f'8")
+                Rest('r8')
+                Rest('r8')
+                Note("f'8")
+                Note("e'8")
+
+                >>> selector.color(result)
+                >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff, strict=89)
+                \new Staff
+                \with
+                {
+                    autoBeaming = ##f
+                }
+                {
+                    \times 2/3 {
+                        \abjad-color-music #'red
+                        r8
+                        \abjad-color-music #'blue
+                        d'8
+                        \abjad-color-music #'red
+                        e'8
+                    }
+                    \abjad-color-music #'blue
+                    f'8
+                    \abjad-color-music #'red
+                    r8
+                    \abjad-color-music #'blue
+                    r8
+                    \abjad-color-music #'red
+                    f'8
+                    \times 2/3 {
+                        \abjad-color-music #'blue
+                        e'8
+                        d'8
+                        r8
+                    }
+                }
+
         '''
         assert trim in (True, False, enums.Left, None)
         if self._expression:
@@ -4375,18 +4476,21 @@ class Selection(AbjadValueObject, collections.Sequence):
         return self._components(
             self,
             prototype=prototype,
+            exclude=exclude,
+            grace_notes=grace_notes,
             head=head,
             tail=tail,
             trim=trim,
-            grace_notes=grace_notes,
             )
 
     def logical_ties(
         self,
-        grace_notes=False,
-        nontrivial=None,
-        pitched=None,
-        reverse=False,
+        *,
+        exclude: typings.Strings = None,
+        grace_notes: bool = None,
+        nontrivial: bool = None,
+        pitched: bool = None,
+        reverse: bool = None,
         ) -> typing.Union['Selection', Expression]:
         r'''
         Selects logical ties (without grace notes).
@@ -4748,10 +4852,11 @@ class Selection(AbjadValueObject, collections.Sequence):
         if self._expression:
             return self._update_expression(inspect.currentframe())
         generator = iterate(self).logical_ties(
+            exclude=exclude,
+            grace_notes=grace_notes,
             nontrivial=nontrivial,
             pitched=pitched,
             reverse=reverse,
-            grace_notes=grace_notes,
             )
         return type(self)(generator)
 
@@ -4975,7 +5080,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             return type(self)(self)
         return type(self)([expression(_) for _ in self])
 
-    def note(self, n) -> typing.Union[Note, Expression]:
+    def note(
+        self,
+        n: int,
+        *,
+        exclude: typings.Strings = None,
+        ) -> typing.Union[Note, Expression]:
         r"""
         Selects note ``n``.
 
@@ -5070,9 +5180,13 @@ class Selection(AbjadValueObject, collections.Sequence):
         """
         if self._expression:
             return self._update_expression(inspect.currentframe(), lone=True)
-        return self.notes()[n]
+        return self.notes(exclude=exclude)[n]
 
-    def notes(self) -> typing.Union['Selection', Expression]:
+    def notes(
+        self,
+        *,
+        exclude: typings.Strings = None,
+        ) -> typing.Union['Selection', Expression]:
         r"""
         Selects notes.
 
@@ -5184,7 +5298,7 @@ class Selection(AbjadValueObject, collections.Sequence):
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        return self.components(Note)
+        return self.components(Note, exclude=exclude)
 
     def nontrivial(self) -> typing.Union['Selection', Expression]:
         r"""
@@ -6991,7 +7105,12 @@ class Selection(AbjadValueObject, collections.Sequence):
         selections = [type(self)(_) for _ in parts]
         return type(self)(selections)
 
-    def rest(self, n) -> typing.Union[Rest, Expression]:
+    def rest(
+        self,
+        n: int,
+        *,
+        exclude: typings.Strings = None,
+        ) -> typing.Union[Rest, Expression]:
         r"""
         Selects rest ``n``.
 
@@ -7088,7 +7207,11 @@ class Selection(AbjadValueObject, collections.Sequence):
             return self._update_expression(inspect.currentframe(), lone=True)
         return  self.rests()[n]
 
-    def rests(self) -> typing.Union['Selection', Expression]:
+    def rests(
+        self,
+        *,
+        exclude: typings.Strings = None,
+        ) -> typing.Union['Selection', Expression]:
         r"""
         Selects rests.
 
@@ -7191,9 +7314,14 @@ class Selection(AbjadValueObject, collections.Sequence):
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        return self.components((MultimeasureRest, Rest))
+        return self.components((MultimeasureRest, Rest), exclude=exclude)
 
-    def run(self, n) -> typing.Union['Selection', Expression]:
+    def run(
+        self,
+        n: int,
+        *,
+        exclude: typings.Strings = None,
+        ) -> typing.Union['Selection', Expression]:
         r"""
         Selects run ``n``.
 
@@ -7292,9 +7420,13 @@ class Selection(AbjadValueObject, collections.Sequence):
         """
         if self._expression:
             return self._update_expression(inspect.currentframe(), lone=True)
-        return self.runs()[n]
+        return self.runs(exclude=exclude)[n]
 
-    def runs(self) -> typing.Union['Selection', Expression]:
+    def runs(
+        self,
+        *,
+        exclude: typings.Strings = None,
+        ) -> typing.Union['Selection', Expression]:
         r"""
         Selects runs.
 
@@ -7409,11 +7541,15 @@ class Selection(AbjadValueObject, collections.Sequence):
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        result = Selection.leaves(self, pitched=True)
+        result = Selection.leaves(self, exclude=exclude, pitched=True)
         result = result.group_by_contiguity().map(Selection)
         return result
 
-    def top(self) -> typing.Union['Selection', Expression]:
+    def top(
+        self,
+        *,
+        exclude: typings.Strings = None,
+        ) -> typing.Union['Selection', Expression]:
         r"""
         Selects top components.
 
@@ -7494,19 +7630,20 @@ class Selection(AbjadValueObject, collections.Sequence):
         if self._expression:
             return self._update_expression(inspect.currentframe())
         result: typing.List[typing.Union[Component, Selection]] = []
-        for component in iterate(self).components(Component):
-            parentage = abjad_inspect(component).parentage()
-            for component_ in parentage:
-                if isinstance(component_, Context):
-                    break
-                parent = abjad_inspect(component_).parentage().parent
-                if isinstance(parent, Context) or parent is None:
-                    if component_ not in result:
-                        result.append(component_)
-                    break
+        for component in iterate(self).components(exclude=exclude):
+            for component_ in  abjad_inspect(component).parentage():
+                parentage_ = abjad_inspect(component_).parentage()
+                if (parentage_.outermost_voice_content() and
+                    component_ not in result):
+                    result.append(component_)
         return type(self)(result)
 
-    def tuplet(self, n) -> typing.Union[Component, Expression]:
+    def tuplet(
+        self,
+        n: int,
+        *,
+        exclude: typings.Strings = None,
+        ) -> typing.Union[Component, Expression]:
         r"""
         Selects tuplet ``n``.
 
@@ -7606,9 +7743,13 @@ class Selection(AbjadValueObject, collections.Sequence):
         """
         if self._expression:
             return self._update_expression(inspect.currentframe(), lone=True)
-        return self.tuplets()[n]
+        return self.tuplets(exclude=exclude)[n]
 
-    def tuplets(self) -> typing.Union['Selection', Expression]:
+    def tuplets(
+        self,
+        *,
+        exclude: typings.Strings = None,
+        ) -> typing.Union['Selection', Expression]:
         r"""
         Selects tuplets.
 
@@ -7727,7 +7868,7 @@ class Selection(AbjadValueObject, collections.Sequence):
         from .Tuplet import Tuplet
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        return self.components(Tuplet)
+        return self.components(Tuplet, exclude=exclude)
 
     def with_next_leaf(self) -> typing.Union['Selection', Expression]:
         r"""

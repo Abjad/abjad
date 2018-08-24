@@ -279,10 +279,10 @@ class Score(Context):
             <<
                 \new PianoStaff
                 <<
-                    \context Staff = "Treble Staff"
+                    \context Staff = "Treble_Staff"
                     {
                     }
-                    \context Staff = "Bass Staff"
+                    \context Staff = "Bass_Staff"
                     {
                     }
                 >>
@@ -303,7 +303,7 @@ class Score(Context):
                 <<
                     \new PianoStaff
                     <<
-                        \context Staff = "Treble Staff"
+                        \context Staff = "Treble_Staff"
                         {
                             \clef "treble"
                             r4
@@ -313,7 +313,7 @@ class Score(Context):
                             e'4
                             f''4
                         }
-                        \context Staff = "Bass Staff"
+                        \context Staff = "Bass_Staff"
                         {
                             \clef "bass"
                             c4
@@ -355,7 +355,7 @@ class Score(Context):
                 <<
                     \new PianoStaff
                     <<
-                        \context Staff = "Treble Staff"
+                        \context Staff = "Treble_Staff"
                         {
                             \clef "treble"
                             r16
@@ -369,7 +369,7 @@ class Score(Context):
                             f'16
                             g'16
                         }
-                        \context Staff = "Bass Staff"
+                        \context Staff = "Bass_Staff"
                         {
                             \clef "bass"
                             c16
@@ -392,8 +392,8 @@ class Score(Context):
         import abjad
         leaves = leaves or []
         lowest_treble_pitch = abjad.NamedPitch(lowest_treble_pitch)
-        treble_staff = abjad.Staff(name='Treble Staff')
-        bass_staff = abjad.Staff(name='Bass Staff')
+        treble_staff = abjad.Staff(name='Treble_Staff')
+        bass_staff = abjad.Staff(name='Bass_Staff')
         staff_group = abjad.StaffGroup(
             [treble_staff, bass_staff],
             lilypond_type='PianoStaff',

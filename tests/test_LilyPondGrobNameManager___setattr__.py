@@ -80,7 +80,7 @@ def test_LilyPondGrobNameManager___setattr___03():
         >>
         """
         )
-    assert abjad.inspect(score).is_wellformed()
+    assert abjad.inspect(score).wellformed()
 
 
 def test_LilyPondGrobNameManager___setattr___04():
@@ -110,7 +110,7 @@ def test_LilyPondGrobNameManager___setattr___04():
         """
         )
 
-    assert abjad.inspect(score).is_wellformed()
+    assert abjad.inspect(score).wellformed()
 
 
 def test_LilyPondGrobNameManager___setattr___05():
@@ -347,7 +347,7 @@ def test_LilyPondGrobNameManager___setattr___13():
         """
         )
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
 
 
 def test_LilyPondGrobNameManager___setattr___14():
@@ -381,7 +381,7 @@ def test_LilyPondGrobNameManager___setattr___14():
         """
         )
 
-    assert abjad.inspect(score).is_wellformed()
+    assert abjad.inspect(score).wellformed()
 
 
 def test_LilyPondGrobNameManager___setattr___15():
@@ -435,7 +435,7 @@ def test_LilyPondGrobNameManager___setattr___16():
         """
         )
 
-    assert abjad.inspect(score).is_wellformed()
+    assert abjad.inspect(score).wellformed()
 
 
 def test_LilyPondGrobNameManager___setattr___17():
@@ -453,7 +453,7 @@ def test_LilyPondGrobNameManager___setattr___17():
         """
         )
 
-    assert abjad.inspect(note).is_wellformed()
+    assert abjad.inspect(note).wellformed()
 
 
 def test_LilyPondGrobNameManager___setattr___18():
@@ -480,7 +480,7 @@ def test_LilyPondGrobNameManager___setattr___18():
         """
         )
 
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
 
 
 def test_LilyPondGrobNameManager___setattr___19():
@@ -630,7 +630,7 @@ def test_LilyPondGrobNameManager___setattr___25():
         """
         )
 
-    assert abjad.inspect(voice).is_wellformed()
+    assert abjad.inspect(voice).wellformed()
 
 
 def test_LilyPondGrobNameManager___setattr___26():
@@ -782,7 +782,7 @@ def test_LilyPondGrobNameManager___setattr___31():
         <<
             \new PianoStaff
             <<
-                \context Staff = "Treble Staff"
+                \context Staff = "Treble_Staff"
                 {
                     \clef "treble"
                     c'8
@@ -790,7 +790,7 @@ def test_LilyPondGrobNameManager___setattr___31():
                     e'8
                     f'8
                 }
-                \context Staff = "Bass Staff"
+                \context Staff = "Bass_Staff"
                 {
                     \clef "bass"
                     c'8
@@ -803,7 +803,7 @@ def test_LilyPondGrobNameManager___setattr___31():
         """
         )
 
-    assert abjad.inspect(score).is_wellformed()
+    assert abjad.inspect(score).wellformed()
 
 
 def test_LilyPondGrobNameManager___setattr___32():
@@ -1100,7 +1100,7 @@ def test_LilyPondGrobNameManager___setattr___43():
         """
         )
 
-    assert abjad.inspect(voice).is_wellformed()
+    assert abjad.inspect(voice).wellformed()
 
 
 def test_LilyPondGrobNameManager___setattr___44():
@@ -1128,7 +1128,7 @@ def test_LilyPondGrobNameManager___setattr___44():
         """
         )
 
-    assert abjad.inspect(voice).is_wellformed()
+    assert abjad.inspect(voice).wellformed()
 
 
 def test_LilyPondGrobNameManager___setattr___45():
@@ -1151,7 +1151,7 @@ def test_LilyPondGrobNameManager___setattr___45():
         """
         )
 
-    assert abjad.inspect(tuplet).is_wellformed()
+    assert abjad.inspect(tuplet).wellformed()
 
 
 def test_LilyPondGrobNameManager___setattr___46():
@@ -1182,7 +1182,7 @@ def test_LilyPondGrobNameManager___setattr___46():
         """
         )
 
-    assert abjad.inspect(voice).is_wellformed()
+    assert abjad.inspect(voice).wellformed()
 
 
 def test_LilyPondGrobNameManager___setattr___47():
@@ -1210,7 +1210,7 @@ def test_LilyPondGrobNameManager___setattr___47():
         """
         )
 
-    assert abjad.inspect(voice).is_wellformed()
+    assert abjad.inspect(voice).wellformed()
 
 
 def test_LilyPondGrobNameManager___setattr___48():
@@ -1241,7 +1241,7 @@ def test_LilyPondGrobNameManager___setattr___48():
         """
         )
 
-    assert abjad.inspect(voice).is_wellformed()
+    assert abjad.inspect(voice).wellformed()
 
 
 def test_LilyPondGrobNameManager___setattr___49():

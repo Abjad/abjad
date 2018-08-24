@@ -179,7 +179,7 @@ class Component(AbjadObject):
     ### PRIVATE METHODS ###
 
     def _as_graphviz_node(self):
-        score_index = inspect(self).parentage().score_index
+        score_index = inspect(self).parentage().score_index()
         score_index = '_'.join(str(_) for _ in score_index)
         class_name = type(self).__name__
         if score_index:
@@ -347,8 +347,15 @@ class Component(AbjadObject):
             include_self=True,
             grace_notes=True,
             )
+        enclosing_voice_name = None
         for component in parentage:
-            these_wrappers = []
+            if isinstance(component, abjad.Voice):
+                if (enclosing_voice_name is not None and
+                    component.name != enclosing_voice_name):
+                    continue
+                else:
+                    enclosing_voice_name = component.name or id(component)
+            local_wrappers = []
             for wrapper in component._wrappers:
                 if wrapper.annotation:
                     continue
@@ -363,14 +370,14 @@ class Component(AbjadObject):
                                 append_wrapper = False
                     if not append_wrapper:
                         continue
-                    these_wrappers.append(wrapper)
+                    local_wrappers.append(wrapper)
             # active indicator takes precendence over inactive indicator
-            if (any(_.deactivate is True for _ in these_wrappers) and
-                not all(_.deactivate is True for _ in these_wrappers)):
-                these_wrappers = [
-                    _ for _ in these_wrappers if _.deactivate is not True
+            if (any(_.deactivate is True for _ in local_wrappers) and
+                not all(_.deactivate is True for _ in local_wrappers)):
+                local_wrappers = [
+                    _ for _ in local_wrappers if _.deactivate is not True
                     ]
-            for wrapper in these_wrappers:
+            for wrapper in local_wrappers:
                 offset = wrapper.start_offset
                 candidate_wrappers.setdefault(offset, []).append(wrapper)
             if not isinstance(component, abjad.Context):
@@ -411,8 +418,7 @@ class Component(AbjadObject):
         if staff_change is not None:
             effective_staff = staff_change.staff
         else:
-            parentage = inspect(self).parentage()
-            effective_staff = parentage.get_first(abjad.Staff)
+            effective_staff = inspect(self).parentage().get(abjad.Staff)
         return effective_staff
 
     def _get_format_contributions_for_slot(self, slot_identifier, bundle=None):
@@ -672,29 +678,6 @@ class Component(AbjadObject):
         for wrapper in inspect(self).wrappers():
             detach(wrapper, self)
             attach(wrapper, recipient_component)
-
-    # TODO: eventually reimplement as a keyword option to remove()
-    def _remove_and_shrink_durated_parent_containers(self):
-        import abjad
-        prolated_leaf_duration = self._get_duration()
-        parentage = inspect(self).parentage(include_self=False)
-        prolations = parentage._prolations
-        current_prolation, i = Duration(1), 0
-        parent = self._parent
-        while parent is not None and not parent.is_simultaneous:
-            current_prolation *= prolations[i]
-            parent = parent._parent
-            i += 1
-        parentage = inspect(self).parentage(include_self=False)
-        parent = self._parent
-        if parent:
-            index = parent.index(self)
-            del(parent[index])
-        for x in parentage:
-            if not len(x):
-                x._extract()
-            else:
-                break
 
     def _remove_from_parent(self):
         import abjad

@@ -10,13 +10,13 @@ class Lineage(AbjadObject, collections.Sequence):
 
         >>> score = abjad.Score()
         >>> staff = abjad.Staff(
-        ...     r"""\new Voice = "Treble Voice" { c'4 }""",
-        ...     name='Treble Staff',
+        ...     r"""\new Voice = "Treble_Voice" { c'4 }""",
+        ...     name='Treble_Staff',
         ...     )
         >>> score.append(staff)
         >>> bass = abjad.Staff(
-        ...     r"""\new Voice = "Bass Voice" { b,4 }""",
-        ...     name='Bass Staff',
+        ...     r"""\new Voice = "Bass_Voice" { b,4 }""",
+        ...     name='Bass_Staff',
         ...     )
         >>> score.append(bass)
 
@@ -25,16 +25,16 @@ class Lineage(AbjadObject, collections.Sequence):
             >>> abjad.f(score)
             \new Score
             <<
-                \context Staff = "Treble Staff"
+                \context Staff = "Treble_Staff"
                 {
-                    \context Voice = "Treble Voice"
+                    \context Voice = "Treble_Voice"
                     {
                         c'4
                     }
                 }
-                \context Staff = "Bass Staff"
+                \context Staff = "Bass_Staff"
                 {
-                    \context Voice = "Bass Voice"
+                    \context Voice = "Bass_Voice"
                     {
                         b,4
                     }
@@ -45,20 +45,20 @@ class Lineage(AbjadObject, collections.Sequence):
         ...     component
         ...
         <Score<<2>>>
-        <Staff-"Treble Staff"{1}>
-        Voice("c'4", name='Treble Voice')
+        <Staff-"Treble_Staff"{1}>
+        Voice("c'4", name='Treble_Voice')
         Note("c'4")
-        <Staff-"Bass Staff"{1}>
-        Voice('b,4', name='Bass Voice')
+        <Staff-"Bass_Staff"{1}>
+        Voice('b,4', name='Bass_Voice')
         Note('b,4')
 
-        >>> bass_voice = score['Bass Voice']
+        >>> bass_voice = score['Bass_Voice']
         >>> for component in abjad.inspect(bass_voice).lineage():
         ...     component
         ...
         <Score<<2>>>
-        <Staff-"Bass Staff"{1}>
-        Voice('b,4', name='Bass Voice')
+        <Staff-"Bass_Staff"{1}>
+        Voice('b,4', name='Bass_Voice')
         Note('b,4')
 
     '''

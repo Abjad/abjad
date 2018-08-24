@@ -14,122 +14,122 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
         >>> abjad.f(template.__illustrate__()[abjad.Score], strict=89)
         \context Score = "Score"                                                                 %! StringOrchestraScoreTemplate
         <<                                                                                       %! StringOrchestraScoreTemplate
-            \tag #'(Violin1 Violin2 Violin3 Violin4 Violin5 Violin6 Viola1 Viola2 Viola3 Viola4 Cello1 Cello2 Cello3 Contrabass1 Contrabass2) %! StringOrchestraScoreTemplate
-            \context GlobalContext = "GlobalContext"                                             %! StringOrchestraScoreTemplate
+            \tag #'(Violin_1 Violin_2 Violin_3 Violin_4 Violin_5 Violin_6 Viola_1 Viola_2 Viola_3 Viola_4 Cello_1 Cello_2 Cello_3 Contrabass_1 Contrabass_2) %! StringOrchestraScoreTemplate
+            \context GlobalContext = "Global_Context"                                            %! StringOrchestraScoreTemplate
             {                                                                                    %! StringOrchestraScoreTemplate
             }                                                                                    %! StringOrchestraScoreTemplate
-            \context StaffGroup = "Outer Staff Group"                                            %! StringOrchestraScoreTemplate
+            \context StaffGroup = "Outer_Staff_Group"                                            %! StringOrchestraScoreTemplate
             <<                                                                                   %! StringOrchestraScoreTemplate
-                \context ViolinStaffGroup = "Violin Staff Group"                                 %! StringOrchestraScoreTemplate
+                \context ViolinStaffGroup = "Violin_Staff_Group"                                 %! StringOrchestraScoreTemplate
                 <<                                                                               %! StringOrchestraScoreTemplate
-                    \tag #'Violin1                                                               %! StringOrchestraScoreTemplate
-                    \context StringPerformerStaffGroup = "Violin 1 Staff Group"                  %! StringOrchestraScoreTemplate
+                    \tag #'Violin_1                                                              %! StringOrchestraScoreTemplate
+                    \context StringPerformerStaffGroup = "Violin_1_Staff_Group"                  %! StringOrchestraScoreTemplate
                     <<                                                                           %! StringOrchestraScoreTemplate
-                        \context BowingStaff = "Violin 1 Bowing Staff"                           %! StringOrchestraScoreTemplate
+                        \context BowingStaff = "Violin_1_Bowing_Staff"                           %! StringOrchestraScoreTemplate
                         <<                                                                       %! StringOrchestraScoreTemplate
-                            \context BowingVoice = "Violin 1 Bowing Voice"                       %! StringOrchestraScoreTemplate
+                            \context BowingVoice = "Violin_1_Bowing_Voice"                       %! StringOrchestraScoreTemplate
                             {                                                                    %! StringOrchestraScoreTemplate
                                 s1                                                               %! ScoreTemplate.__illustrate__
                             }                                                                    %! StringOrchestraScoreTemplate
                         >>                                                                       %! StringOrchestraScoreTemplate
-                        \context FingeringStaff = "Violin 1 Fingering Staff"                     %! StringOrchestraScoreTemplate
+                        \context FingeringStaff = "Violin_1_Fingering_Staff"                     %! StringOrchestraScoreTemplate
                         <<                                                                       %! StringOrchestraScoreTemplate
-                            \context FingeringVoice = "Violin 1 Fingering Voice"                 %! StringOrchestraScoreTemplate
+                            \context FingeringVoice = "Violin_1_Fingering_Voice"                 %! StringOrchestraScoreTemplate
                             {                                                                    %! StringOrchestraScoreTemplate
                                 \clef "treble"                                                   %! attach_defaults
                                 s1                                                               %! ScoreTemplate.__illustrate__
                             }                                                                    %! StringOrchestraScoreTemplate
                         >>                                                                       %! StringOrchestraScoreTemplate
                     >>                                                                           %! StringOrchestraScoreTemplate
-                    \tag #'Violin2                                                               %! StringOrchestraScoreTemplate
-                    \context StringPerformerStaffGroup = "Violin 2 Staff Group"                  %! StringOrchestraScoreTemplate
+                    \tag #'Violin_2                                                              %! StringOrchestraScoreTemplate
+                    \context StringPerformerStaffGroup = "Violin_2_Staff_Group"                  %! StringOrchestraScoreTemplate
                     <<                                                                           %! StringOrchestraScoreTemplate
-                        \context BowingStaff = "Violin 2 Bowing Staff"                           %! StringOrchestraScoreTemplate
+                        \context BowingStaff = "Violin_2_Bowing_Staff"                           %! StringOrchestraScoreTemplate
                         <<                                                                       %! StringOrchestraScoreTemplate
-                            \context BowingVoice = "Violin 2 Bowing Voice"                       %! StringOrchestraScoreTemplate
+                            \context BowingVoice = "Violin_2_Bowing_Voice"                       %! StringOrchestraScoreTemplate
                             {                                                                    %! StringOrchestraScoreTemplate
                                 s1                                                               %! ScoreTemplate.__illustrate__
                             }                                                                    %! StringOrchestraScoreTemplate
                         >>                                                                       %! StringOrchestraScoreTemplate
-                        \context FingeringStaff = "Violin 2 Fingering Staff"                     %! StringOrchestraScoreTemplate
+                        \context FingeringStaff = "Violin_2_Fingering_Staff"                     %! StringOrchestraScoreTemplate
                         <<                                                                       %! StringOrchestraScoreTemplate
-                            \context FingeringVoice = "Violin 2 Fingering Voice"                 %! StringOrchestraScoreTemplate
+                            \context FingeringVoice = "Violin_2_Fingering_Voice"                 %! StringOrchestraScoreTemplate
                             {                                                                    %! StringOrchestraScoreTemplate
                                 \clef "treble"                                                   %! attach_defaults
                                 s1                                                               %! ScoreTemplate.__illustrate__
                             }                                                                    %! StringOrchestraScoreTemplate
                         >>                                                                       %! StringOrchestraScoreTemplate
                     >>                                                                           %! StringOrchestraScoreTemplate
-                    \tag #'Violin3                                                               %! StringOrchestraScoreTemplate
-                    \context StringPerformerStaffGroup = "Violin 3 Staff Group"                  %! StringOrchestraScoreTemplate
+                    \tag #'Violin_3                                                              %! StringOrchestraScoreTemplate
+                    \context StringPerformerStaffGroup = "Violin_3_Staff_Group"                  %! StringOrchestraScoreTemplate
                     <<                                                                           %! StringOrchestraScoreTemplate
-                        \context BowingStaff = "Violin 3 Bowing Staff"                           %! StringOrchestraScoreTemplate
+                        \context BowingStaff = "Violin_3_Bowing_Staff"                           %! StringOrchestraScoreTemplate
                         <<                                                                       %! StringOrchestraScoreTemplate
-                            \context BowingVoice = "Violin 3 Bowing Voice"                       %! StringOrchestraScoreTemplate
+                            \context BowingVoice = "Violin_3_Bowing_Voice"                       %! StringOrchestraScoreTemplate
                             {                                                                    %! StringOrchestraScoreTemplate
                                 s1                                                               %! ScoreTemplate.__illustrate__
                             }                                                                    %! StringOrchestraScoreTemplate
                         >>                                                                       %! StringOrchestraScoreTemplate
-                        \context FingeringStaff = "Violin 3 Fingering Staff"                     %! StringOrchestraScoreTemplate
+                        \context FingeringStaff = "Violin_3_Fingering_Staff"                     %! StringOrchestraScoreTemplate
                         <<                                                                       %! StringOrchestraScoreTemplate
-                            \context FingeringVoice = "Violin 3 Fingering Voice"                 %! StringOrchestraScoreTemplate
+                            \context FingeringVoice = "Violin_3_Fingering_Voice"                 %! StringOrchestraScoreTemplate
                             {                                                                    %! StringOrchestraScoreTemplate
                                 \clef "treble"                                                   %! attach_defaults
                                 s1                                                               %! ScoreTemplate.__illustrate__
                             }                                                                    %! StringOrchestraScoreTemplate
                         >>                                                                       %! StringOrchestraScoreTemplate
                     >>                                                                           %! StringOrchestraScoreTemplate
-                    \tag #'Violin4                                                               %! StringOrchestraScoreTemplate
-                    \context StringPerformerStaffGroup = "Violin 4 Staff Group"                  %! StringOrchestraScoreTemplate
+                    \tag #'Violin_4                                                              %! StringOrchestraScoreTemplate
+                    \context StringPerformerStaffGroup = "Violin_4_Staff_Group"                  %! StringOrchestraScoreTemplate
                     <<                                                                           %! StringOrchestraScoreTemplate
-                        \context BowingStaff = "Violin 4 Bowing Staff"                           %! StringOrchestraScoreTemplate
+                        \context BowingStaff = "Violin_4_Bowing_Staff"                           %! StringOrchestraScoreTemplate
                         <<                                                                       %! StringOrchestraScoreTemplate
-                            \context BowingVoice = "Violin 4 Bowing Voice"                       %! StringOrchestraScoreTemplate
+                            \context BowingVoice = "Violin_4_Bowing_Voice"                       %! StringOrchestraScoreTemplate
                             {                                                                    %! StringOrchestraScoreTemplate
                                 s1                                                               %! ScoreTemplate.__illustrate__
                             }                                                                    %! StringOrchestraScoreTemplate
                         >>                                                                       %! StringOrchestraScoreTemplate
-                        \context FingeringStaff = "Violin 4 Fingering Staff"                     %! StringOrchestraScoreTemplate
+                        \context FingeringStaff = "Violin_4_Fingering_Staff"                     %! StringOrchestraScoreTemplate
                         <<                                                                       %! StringOrchestraScoreTemplate
-                            \context FingeringVoice = "Violin 4 Fingering Voice"                 %! StringOrchestraScoreTemplate
+                            \context FingeringVoice = "Violin_4_Fingering_Voice"                 %! StringOrchestraScoreTemplate
                             {                                                                    %! StringOrchestraScoreTemplate
                                 \clef "treble"                                                   %! attach_defaults
                                 s1                                                               %! ScoreTemplate.__illustrate__
                             }                                                                    %! StringOrchestraScoreTemplate
                         >>                                                                       %! StringOrchestraScoreTemplate
                     >>                                                                           %! StringOrchestraScoreTemplate
-                    \tag #'Violin5                                                               %! StringOrchestraScoreTemplate
-                    \context StringPerformerStaffGroup = "Violin 5 Staff Group"                  %! StringOrchestraScoreTemplate
+                    \tag #'Violin_5                                                              %! StringOrchestraScoreTemplate
+                    \context StringPerformerStaffGroup = "Violin_5_Staff_Group"                  %! StringOrchestraScoreTemplate
                     <<                                                                           %! StringOrchestraScoreTemplate
-                        \context BowingStaff = "Violin 5 Bowing Staff"                           %! StringOrchestraScoreTemplate
+                        \context BowingStaff = "Violin_5_Bowing_Staff"                           %! StringOrchestraScoreTemplate
                         <<                                                                       %! StringOrchestraScoreTemplate
-                            \context BowingVoice = "Violin 5 Bowing Voice"                       %! StringOrchestraScoreTemplate
+                            \context BowingVoice = "Violin_5_Bowing_Voice"                       %! StringOrchestraScoreTemplate
                             {                                                                    %! StringOrchestraScoreTemplate
                                 s1                                                               %! ScoreTemplate.__illustrate__
                             }                                                                    %! StringOrchestraScoreTemplate
                         >>                                                                       %! StringOrchestraScoreTemplate
-                        \context FingeringStaff = "Violin 5 Fingering Staff"                     %! StringOrchestraScoreTemplate
+                        \context FingeringStaff = "Violin_5_Fingering_Staff"                     %! StringOrchestraScoreTemplate
                         <<                                                                       %! StringOrchestraScoreTemplate
-                            \context FingeringVoice = "Violin 5 Fingering Voice"                 %! StringOrchestraScoreTemplate
+                            \context FingeringVoice = "Violin_5_Fingering_Voice"                 %! StringOrchestraScoreTemplate
                             {                                                                    %! StringOrchestraScoreTemplate
                                 \clef "treble"                                                   %! attach_defaults
                                 s1                                                               %! ScoreTemplate.__illustrate__
                             }                                                                    %! StringOrchestraScoreTemplate
                         >>                                                                       %! StringOrchestraScoreTemplate
                     >>                                                                           %! StringOrchestraScoreTemplate
-                    \tag #'Violin6                                                               %! StringOrchestraScoreTemplate
-                    \context StringPerformerStaffGroup = "Violin 6 Staff Group"                  %! StringOrchestraScoreTemplate
+                    \tag #'Violin_6                                                              %! StringOrchestraScoreTemplate
+                    \context StringPerformerStaffGroup = "Violin_6_Staff_Group"                  %! StringOrchestraScoreTemplate
                     <<                                                                           %! StringOrchestraScoreTemplate
-                        \context BowingStaff = "Violin 6 Bowing Staff"                           %! StringOrchestraScoreTemplate
+                        \context BowingStaff = "Violin_6_Bowing_Staff"                           %! StringOrchestraScoreTemplate
                         <<                                                                       %! StringOrchestraScoreTemplate
-                            \context BowingVoice = "Violin 6 Bowing Voice"                       %! StringOrchestraScoreTemplate
+                            \context BowingVoice = "Violin_6_Bowing_Voice"                       %! StringOrchestraScoreTemplate
                             {                                                                    %! StringOrchestraScoreTemplate
                                 s1                                                               %! ScoreTemplate.__illustrate__
                             }                                                                    %! StringOrchestraScoreTemplate
                         >>                                                                       %! StringOrchestraScoreTemplate
-                        \context FingeringStaff = "Violin 6 Fingering Staff"                     %! StringOrchestraScoreTemplate
+                        \context FingeringStaff = "Violin_6_Fingering_Staff"                     %! StringOrchestraScoreTemplate
                         <<                                                                       %! StringOrchestraScoreTemplate
-                            \context FingeringVoice = "Violin 6 Fingering Voice"                 %! StringOrchestraScoreTemplate
+                            \context FingeringVoice = "Violin_6_Fingering_Voice"                 %! StringOrchestraScoreTemplate
                             {                                                                    %! StringOrchestraScoreTemplate
                                 \clef "treble"                                                   %! attach_defaults
                                 s1                                                               %! ScoreTemplate.__illustrate__
@@ -137,78 +137,78 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                         >>                                                                       %! StringOrchestraScoreTemplate
                     >>                                                                           %! StringOrchestraScoreTemplate
                 >>                                                                               %! StringOrchestraScoreTemplate
-                \context ViolaStaffGroup = "Viola Staff Group"                                   %! StringOrchestraScoreTemplate
+                \context ViolaStaffGroup = "Viola_Staff_Group"                                   %! StringOrchestraScoreTemplate
                 <<                                                                               %! StringOrchestraScoreTemplate
-                    \tag #'Viola1                                                                %! StringOrchestraScoreTemplate
-                    \context StringPerformerStaffGroup = "Viola 1 Staff Group"                   %! StringOrchestraScoreTemplate
+                    \tag #'Viola_1                                                               %! StringOrchestraScoreTemplate
+                    \context StringPerformerStaffGroup = "Viola_1_Staff_Group"                   %! StringOrchestraScoreTemplate
                     <<                                                                           %! StringOrchestraScoreTemplate
-                        \context BowingStaff = "Viola 1 Bowing Staff"                            %! StringOrchestraScoreTemplate
+                        \context BowingStaff = "Viola_1_Bowing_Staff"                            %! StringOrchestraScoreTemplate
                         <<                                                                       %! StringOrchestraScoreTemplate
-                            \context BowingVoice = "Viola 1 Bowing Voice"                        %! StringOrchestraScoreTemplate
+                            \context BowingVoice = "Viola_1_Bowing_Voice"                        %! StringOrchestraScoreTemplate
                             {                                                                    %! StringOrchestraScoreTemplate
                                 s1                                                               %! ScoreTemplate.__illustrate__
                             }                                                                    %! StringOrchestraScoreTemplate
                         >>                                                                       %! StringOrchestraScoreTemplate
-                        \context FingeringStaff = "Viola 1 Fingering Staff"                      %! StringOrchestraScoreTemplate
+                        \context FingeringStaff = "Viola_1_Fingering_Staff"                      %! StringOrchestraScoreTemplate
                         <<                                                                       %! StringOrchestraScoreTemplate
-                            \context FingeringVoice = "Viola 1 Fingering Voice"                  %! StringOrchestraScoreTemplate
+                            \context FingeringVoice = "Viola_1_Fingering_Voice"                  %! StringOrchestraScoreTemplate
                             {                                                                    %! StringOrchestraScoreTemplate
                                 \clef "alto"                                                     %! attach_defaults
                                 s1                                                               %! ScoreTemplate.__illustrate__
                             }                                                                    %! StringOrchestraScoreTemplate
                         >>                                                                       %! StringOrchestraScoreTemplate
                     >>                                                                           %! StringOrchestraScoreTemplate
-                    \tag #'Viola2                                                                %! StringOrchestraScoreTemplate
-                    \context StringPerformerStaffGroup = "Viola 2 Staff Group"                   %! StringOrchestraScoreTemplate
+                    \tag #'Viola_2                                                               %! StringOrchestraScoreTemplate
+                    \context StringPerformerStaffGroup = "Viola_2_Staff_Group"                   %! StringOrchestraScoreTemplate
                     <<                                                                           %! StringOrchestraScoreTemplate
-                        \context BowingStaff = "Viola 2 Bowing Staff"                            %! StringOrchestraScoreTemplate
+                        \context BowingStaff = "Viola_2_Bowing_Staff"                            %! StringOrchestraScoreTemplate
                         <<                                                                       %! StringOrchestraScoreTemplate
-                            \context BowingVoice = "Viola 2 Bowing Voice"                        %! StringOrchestraScoreTemplate
+                            \context BowingVoice = "Viola_2_Bowing_Voice"                        %! StringOrchestraScoreTemplate
                             {                                                                    %! StringOrchestraScoreTemplate
                                 s1                                                               %! ScoreTemplate.__illustrate__
                             }                                                                    %! StringOrchestraScoreTemplate
                         >>                                                                       %! StringOrchestraScoreTemplate
-                        \context FingeringStaff = "Viola 2 Fingering Staff"                      %! StringOrchestraScoreTemplate
+                        \context FingeringStaff = "Viola_2_Fingering_Staff"                      %! StringOrchestraScoreTemplate
                         <<                                                                       %! StringOrchestraScoreTemplate
-                            \context FingeringVoice = "Viola 2 Fingering Voice"                  %! StringOrchestraScoreTemplate
+                            \context FingeringVoice = "Viola_2_Fingering_Voice"                  %! StringOrchestraScoreTemplate
                             {                                                                    %! StringOrchestraScoreTemplate
                                 \clef "alto"                                                     %! attach_defaults
                                 s1                                                               %! ScoreTemplate.__illustrate__
                             }                                                                    %! StringOrchestraScoreTemplate
                         >>                                                                       %! StringOrchestraScoreTemplate
                     >>                                                                           %! StringOrchestraScoreTemplate
-                    \tag #'Viola3                                                                %! StringOrchestraScoreTemplate
-                    \context StringPerformerStaffGroup = "Viola 3 Staff Group"                   %! StringOrchestraScoreTemplate
+                    \tag #'Viola_3                                                               %! StringOrchestraScoreTemplate
+                    \context StringPerformerStaffGroup = "Viola_3_Staff_Group"                   %! StringOrchestraScoreTemplate
                     <<                                                                           %! StringOrchestraScoreTemplate
-                        \context BowingStaff = "Viola 3 Bowing Staff"                            %! StringOrchestraScoreTemplate
+                        \context BowingStaff = "Viola_3_Bowing_Staff"                            %! StringOrchestraScoreTemplate
                         <<                                                                       %! StringOrchestraScoreTemplate
-                            \context BowingVoice = "Viola 3 Bowing Voice"                        %! StringOrchestraScoreTemplate
+                            \context BowingVoice = "Viola_3_Bowing_Voice"                        %! StringOrchestraScoreTemplate
                             {                                                                    %! StringOrchestraScoreTemplate
                                 s1                                                               %! ScoreTemplate.__illustrate__
                             }                                                                    %! StringOrchestraScoreTemplate
                         >>                                                                       %! StringOrchestraScoreTemplate
-                        \context FingeringStaff = "Viola 3 Fingering Staff"                      %! StringOrchestraScoreTemplate
+                        \context FingeringStaff = "Viola_3_Fingering_Staff"                      %! StringOrchestraScoreTemplate
                         <<                                                                       %! StringOrchestraScoreTemplate
-                            \context FingeringVoice = "Viola 3 Fingering Voice"                  %! StringOrchestraScoreTemplate
+                            \context FingeringVoice = "Viola_3_Fingering_Voice"                  %! StringOrchestraScoreTemplate
                             {                                                                    %! StringOrchestraScoreTemplate
                                 \clef "alto"                                                     %! attach_defaults
                                 s1                                                               %! ScoreTemplate.__illustrate__
                             }                                                                    %! StringOrchestraScoreTemplate
                         >>                                                                       %! StringOrchestraScoreTemplate
                     >>                                                                           %! StringOrchestraScoreTemplate
-                    \tag #'Viola4                                                                %! StringOrchestraScoreTemplate
-                    \context StringPerformerStaffGroup = "Viola 4 Staff Group"                   %! StringOrchestraScoreTemplate
+                    \tag #'Viola_4                                                               %! StringOrchestraScoreTemplate
+                    \context StringPerformerStaffGroup = "Viola_4_Staff_Group"                   %! StringOrchestraScoreTemplate
                     <<                                                                           %! StringOrchestraScoreTemplate
-                        \context BowingStaff = "Viola 4 Bowing Staff"                            %! StringOrchestraScoreTemplate
+                        \context BowingStaff = "Viola_4_Bowing_Staff"                            %! StringOrchestraScoreTemplate
                         <<                                                                       %! StringOrchestraScoreTemplate
-                            \context BowingVoice = "Viola 4 Bowing Voice"                        %! StringOrchestraScoreTemplate
+                            \context BowingVoice = "Viola_4_Bowing_Voice"                        %! StringOrchestraScoreTemplate
                             {                                                                    %! StringOrchestraScoreTemplate
                                 s1                                                               %! ScoreTemplate.__illustrate__
                             }                                                                    %! StringOrchestraScoreTemplate
                         >>                                                                       %! StringOrchestraScoreTemplate
-                        \context FingeringStaff = "Viola 4 Fingering Staff"                      %! StringOrchestraScoreTemplate
+                        \context FingeringStaff = "Viola_4_Fingering_Staff"                      %! StringOrchestraScoreTemplate
                         <<                                                                       %! StringOrchestraScoreTemplate
-                            \context FingeringVoice = "Viola 4 Fingering Voice"                  %! StringOrchestraScoreTemplate
+                            \context FingeringVoice = "Viola_4_Fingering_Voice"                  %! StringOrchestraScoreTemplate
                             {                                                                    %! StringOrchestraScoreTemplate
                                 \clef "alto"                                                     %! attach_defaults
                                 s1                                                               %! ScoreTemplate.__illustrate__
@@ -216,59 +216,59 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                         >>                                                                       %! StringOrchestraScoreTemplate
                     >>                                                                           %! StringOrchestraScoreTemplate
                 >>                                                                               %! StringOrchestraScoreTemplate
-                \context CelloStaffGroup = "Cello Staff Group"                                   %! StringOrchestraScoreTemplate
+                \context CelloStaffGroup = "Cello_Staff_Group"                                   %! StringOrchestraScoreTemplate
                 <<                                                                               %! StringOrchestraScoreTemplate
-                    \tag #'Cello1                                                                %! StringOrchestraScoreTemplate
-                    \context StringPerformerStaffGroup = "Cello 1 Staff Group"                   %! StringOrchestraScoreTemplate
+                    \tag #'Cello_1                                                               %! StringOrchestraScoreTemplate
+                    \context StringPerformerStaffGroup = "Cello_1_Staff_Group"                   %! StringOrchestraScoreTemplate
                     <<                                                                           %! StringOrchestraScoreTemplate
-                        \context BowingStaff = "Cello 1 Bowing Staff"                            %! StringOrchestraScoreTemplate
+                        \context BowingStaff = "Cello_1_Bowing_Staff"                            %! StringOrchestraScoreTemplate
                         <<                                                                       %! StringOrchestraScoreTemplate
-                            \context BowingVoice = "Cello 1 Bowing Voice"                        %! StringOrchestraScoreTemplate
+                            \context BowingVoice = "Cello_1_Bowing_Voice"                        %! StringOrchestraScoreTemplate
                             {                                                                    %! StringOrchestraScoreTemplate
                                 s1                                                               %! ScoreTemplate.__illustrate__
                             }                                                                    %! StringOrchestraScoreTemplate
                         >>                                                                       %! StringOrchestraScoreTemplate
-                        \context FingeringStaff = "Cello 1 Fingering Staff"                      %! StringOrchestraScoreTemplate
+                        \context FingeringStaff = "Cello_1_Fingering_Staff"                      %! StringOrchestraScoreTemplate
                         <<                                                                       %! StringOrchestraScoreTemplate
-                            \context FingeringVoice = "Cello 1 Fingering Voice"                  %! StringOrchestraScoreTemplate
+                            \context FingeringVoice = "Cello_1_Fingering_Voice"                  %! StringOrchestraScoreTemplate
                             {                                                                    %! StringOrchestraScoreTemplate
                                 \clef "bass"                                                     %! attach_defaults
                                 s1                                                               %! ScoreTemplate.__illustrate__
                             }                                                                    %! StringOrchestraScoreTemplate
                         >>                                                                       %! StringOrchestraScoreTemplate
                     >>                                                                           %! StringOrchestraScoreTemplate
-                    \tag #'Cello2                                                                %! StringOrchestraScoreTemplate
-                    \context StringPerformerStaffGroup = "Cello 2 Staff Group"                   %! StringOrchestraScoreTemplate
+                    \tag #'Cello_2                                                               %! StringOrchestraScoreTemplate
+                    \context StringPerformerStaffGroup = "Cello_2_Staff_Group"                   %! StringOrchestraScoreTemplate
                     <<                                                                           %! StringOrchestraScoreTemplate
-                        \context BowingStaff = "Cello 2 Bowing Staff"                            %! StringOrchestraScoreTemplate
+                        \context BowingStaff = "Cello_2_Bowing_Staff"                            %! StringOrchestraScoreTemplate
                         <<                                                                       %! StringOrchestraScoreTemplate
-                            \context BowingVoice = "Cello 2 Bowing Voice"                        %! StringOrchestraScoreTemplate
+                            \context BowingVoice = "Cello_2_Bowing_Voice"                        %! StringOrchestraScoreTemplate
                             {                                                                    %! StringOrchestraScoreTemplate
                                 s1                                                               %! ScoreTemplate.__illustrate__
                             }                                                                    %! StringOrchestraScoreTemplate
                         >>                                                                       %! StringOrchestraScoreTemplate
-                        \context FingeringStaff = "Cello 2 Fingering Staff"                      %! StringOrchestraScoreTemplate
+                        \context FingeringStaff = "Cello_2_Fingering_Staff"                      %! StringOrchestraScoreTemplate
                         <<                                                                       %! StringOrchestraScoreTemplate
-                            \context FingeringVoice = "Cello 2 Fingering Voice"                  %! StringOrchestraScoreTemplate
+                            \context FingeringVoice = "Cello_2_Fingering_Voice"                  %! StringOrchestraScoreTemplate
                             {                                                                    %! StringOrchestraScoreTemplate
                                 \clef "bass"                                                     %! attach_defaults
                                 s1                                                               %! ScoreTemplate.__illustrate__
                             }                                                                    %! StringOrchestraScoreTemplate
                         >>                                                                       %! StringOrchestraScoreTemplate
                     >>                                                                           %! StringOrchestraScoreTemplate
-                    \tag #'Cello3                                                                %! StringOrchestraScoreTemplate
-                    \context StringPerformerStaffGroup = "Cello 3 Staff Group"                   %! StringOrchestraScoreTemplate
+                    \tag #'Cello_3                                                               %! StringOrchestraScoreTemplate
+                    \context StringPerformerStaffGroup = "Cello_3_Staff_Group"                   %! StringOrchestraScoreTemplate
                     <<                                                                           %! StringOrchestraScoreTemplate
-                        \context BowingStaff = "Cello 3 Bowing Staff"                            %! StringOrchestraScoreTemplate
+                        \context BowingStaff = "Cello_3_Bowing_Staff"                            %! StringOrchestraScoreTemplate
                         <<                                                                       %! StringOrchestraScoreTemplate
-                            \context BowingVoice = "Cello 3 Bowing Voice"                        %! StringOrchestraScoreTemplate
+                            \context BowingVoice = "Cello_3_Bowing_Voice"                        %! StringOrchestraScoreTemplate
                             {                                                                    %! StringOrchestraScoreTemplate
                                 s1                                                               %! ScoreTemplate.__illustrate__
                             }                                                                    %! StringOrchestraScoreTemplate
                         >>                                                                       %! StringOrchestraScoreTemplate
-                        \context FingeringStaff = "Cello 3 Fingering Staff"                      %! StringOrchestraScoreTemplate
+                        \context FingeringStaff = "Cello_3_Fingering_Staff"                      %! StringOrchestraScoreTemplate
                         <<                                                                       %! StringOrchestraScoreTemplate
-                            \context FingeringVoice = "Cello 3 Fingering Voice"                  %! StringOrchestraScoreTemplate
+                            \context FingeringVoice = "Cello_3_Fingering_Voice"                  %! StringOrchestraScoreTemplate
                             {                                                                    %! StringOrchestraScoreTemplate
                                 \clef "bass"                                                     %! attach_defaults
                                 s1                                                               %! ScoreTemplate.__illustrate__
@@ -276,40 +276,40 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                         >>                                                                       %! StringOrchestraScoreTemplate
                     >>                                                                           %! StringOrchestraScoreTemplate
                 >>                                                                               %! StringOrchestraScoreTemplate
-                \context ContrabassStaffGroup = "Contrabass Staff Group"                         %! StringOrchestraScoreTemplate
+                \context ContrabassStaffGroup = "Contrabass_Staff_Group"                         %! StringOrchestraScoreTemplate
                 <<                                                                               %! StringOrchestraScoreTemplate
-                    \tag #'Contrabass1                                                           %! StringOrchestraScoreTemplate
-                    \context StringPerformerStaffGroup = "Contrabass 1 Staff Group"              %! StringOrchestraScoreTemplate
+                    \tag #'Contrabass_1                                                          %! StringOrchestraScoreTemplate
+                    \context StringPerformerStaffGroup = "Contrabass_1_Staff_Group"              %! StringOrchestraScoreTemplate
                     <<                                                                           %! StringOrchestraScoreTemplate
-                        \context BowingStaff = "Contrabass 1 Bowing Staff"                       %! StringOrchestraScoreTemplate
+                        \context BowingStaff = "Contrabass_1_Bowing_Staff"                       %! StringOrchestraScoreTemplate
                         <<                                                                       %! StringOrchestraScoreTemplate
-                            \context BowingVoice = "Contrabass 1 Bowing Voice"                   %! StringOrchestraScoreTemplate
+                            \context BowingVoice = "Contrabass_1_Bowing_Voice"                   %! StringOrchestraScoreTemplate
                             {                                                                    %! StringOrchestraScoreTemplate
                                 s1                                                               %! ScoreTemplate.__illustrate__
                             }                                                                    %! StringOrchestraScoreTemplate
                         >>                                                                       %! StringOrchestraScoreTemplate
-                        \context FingeringStaff = "Contrabass 1 Fingering Staff"                 %! StringOrchestraScoreTemplate
+                        \context FingeringStaff = "Contrabass_1_Fingering_Staff"                 %! StringOrchestraScoreTemplate
                         <<                                                                       %! StringOrchestraScoreTemplate
-                            \context FingeringVoice = "Contrabass 1 Fingering Voice"             %! StringOrchestraScoreTemplate
+                            \context FingeringVoice = "Contrabass_1_Fingering_Voice"             %! StringOrchestraScoreTemplate
                             {                                                                    %! StringOrchestraScoreTemplate
                                 \clef "bass_8"                                                   %! attach_defaults
                                 s1                                                               %! ScoreTemplate.__illustrate__
                             }                                                                    %! StringOrchestraScoreTemplate
                         >>                                                                       %! StringOrchestraScoreTemplate
                     >>                                                                           %! StringOrchestraScoreTemplate
-                    \tag #'Contrabass2                                                           %! StringOrchestraScoreTemplate
-                    \context StringPerformerStaffGroup = "Contrabass 2 Staff Group"              %! StringOrchestraScoreTemplate
+                    \tag #'Contrabass_2                                                          %! StringOrchestraScoreTemplate
+                    \context StringPerformerStaffGroup = "Contrabass_2_Staff_Group"              %! StringOrchestraScoreTemplate
                     <<                                                                           %! StringOrchestraScoreTemplate
-                        \context BowingStaff = "Contrabass 2 Bowing Staff"                       %! StringOrchestraScoreTemplate
+                        \context BowingStaff = "Contrabass_2_Bowing_Staff"                       %! StringOrchestraScoreTemplate
                         <<                                                                       %! StringOrchestraScoreTemplate
-                            \context BowingVoice = "Contrabass 2 Bowing Voice"                   %! StringOrchestraScoreTemplate
+                            \context BowingVoice = "Contrabass_2_Bowing_Voice"                   %! StringOrchestraScoreTemplate
                             {                                                                    %! StringOrchestraScoreTemplate
                                 s1                                                               %! ScoreTemplate.__illustrate__
                             }                                                                    %! StringOrchestraScoreTemplate
                         >>                                                                       %! StringOrchestraScoreTemplate
-                        \context FingeringStaff = "Contrabass 2 Fingering Staff"                 %! StringOrchestraScoreTemplate
+                        \context FingeringStaff = "Contrabass_2_Fingering_Staff"                 %! StringOrchestraScoreTemplate
                         <<                                                                       %! StringOrchestraScoreTemplate
-                            \context FingeringVoice = "Contrabass 2 Fingering Voice"             %! StringOrchestraScoreTemplate
+                            \context FingeringVoice = "Contrabass_2_Fingering_Voice"             %! StringOrchestraScoreTemplate
                             {                                                                    %! StringOrchestraScoreTemplate
                                 \clef "bass_8"                                                   %! attach_defaults
                                 s1                                                               %! ScoreTemplate.__illustrate__
@@ -335,46 +335,46 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
         >>> abjad.f(template.__illustrate__()[abjad.Score], strict=89)
         \context Score = "Score"                                                                 %! StringOrchestraScoreTemplate
         <<                                                                                       %! StringOrchestraScoreTemplate
-            \tag #'(Violin1 Violin2 Viola Cello)                                                 %! StringOrchestraScoreTemplate
-            \context GlobalContext = "GlobalContext"                                             %! StringOrchestraScoreTemplate
+            \tag #'(Violin_1 Violin_2 Viola Cello)                                               %! StringOrchestraScoreTemplate
+            \context GlobalContext = "Global_Context"                                            %! StringOrchestraScoreTemplate
             {                                                                                    %! StringOrchestraScoreTemplate
             }                                                                                    %! StringOrchestraScoreTemplate
-            \context StaffGroup = "Outer Staff Group"                                            %! StringOrchestraScoreTemplate
+            \context StaffGroup = "Outer_Staff_Group"                                            %! StringOrchestraScoreTemplate
             <<                                                                                   %! StringOrchestraScoreTemplate
-                \context ViolinStaffGroup = "Violin Staff Group"                                 %! StringOrchestraScoreTemplate
+                \context ViolinStaffGroup = "Violin_Staff_Group"                                 %! StringOrchestraScoreTemplate
                 <<                                                                               %! StringOrchestraScoreTemplate
-                    \tag #'Violin1                                                               %! StringOrchestraScoreTemplate
-                    \context StringPerformerStaffGroup = "Violin 1 Staff Group"                  %! StringOrchestraScoreTemplate
+                    \tag #'Violin_1                                                              %! StringOrchestraScoreTemplate
+                    \context StringPerformerStaffGroup = "Violin_1_Staff_Group"                  %! StringOrchestraScoreTemplate
                     <<                                                                           %! StringOrchestraScoreTemplate
-                        \context BowingStaff = "Violin 1 Bowing Staff"                           %! StringOrchestraScoreTemplate
+                        \context BowingStaff = "Violin_1_Bowing_Staff"                           %! StringOrchestraScoreTemplate
                         <<                                                                       %! StringOrchestraScoreTemplate
-                            \context BowingVoice = "Violin 1 Bowing Voice"                       %! StringOrchestraScoreTemplate
+                            \context BowingVoice = "Violin_1_Bowing_Voice"                       %! StringOrchestraScoreTemplate
                             {                                                                    %! StringOrchestraScoreTemplate
                                 s1                                                               %! ScoreTemplate.__illustrate__
                             }                                                                    %! StringOrchestraScoreTemplate
                         >>                                                                       %! StringOrchestraScoreTemplate
-                        \context FingeringStaff = "Violin 1 Fingering Staff"                     %! StringOrchestraScoreTemplate
+                        \context FingeringStaff = "Violin_1_Fingering_Staff"                     %! StringOrchestraScoreTemplate
                         <<                                                                       %! StringOrchestraScoreTemplate
-                            \context FingeringVoice = "Violin 1 Fingering Voice"                 %! StringOrchestraScoreTemplate
+                            \context FingeringVoice = "Violin_1_Fingering_Voice"                 %! StringOrchestraScoreTemplate
                             {                                                                    %! StringOrchestraScoreTemplate
                                 \clef "treble"                                                   %! attach_defaults
                                 s1                                                               %! ScoreTemplate.__illustrate__
                             }                                                                    %! StringOrchestraScoreTemplate
                         >>                                                                       %! StringOrchestraScoreTemplate
                     >>                                                                           %! StringOrchestraScoreTemplate
-                    \tag #'Violin2                                                               %! StringOrchestraScoreTemplate
-                    \context StringPerformerStaffGroup = "Violin 2 Staff Group"                  %! StringOrchestraScoreTemplate
+                    \tag #'Violin_2                                                              %! StringOrchestraScoreTemplate
+                    \context StringPerformerStaffGroup = "Violin_2_Staff_Group"                  %! StringOrchestraScoreTemplate
                     <<                                                                           %! StringOrchestraScoreTemplate
-                        \context BowingStaff = "Violin 2 Bowing Staff"                           %! StringOrchestraScoreTemplate
+                        \context BowingStaff = "Violin_2_Bowing_Staff"                           %! StringOrchestraScoreTemplate
                         <<                                                                       %! StringOrchestraScoreTemplate
-                            \context BowingVoice = "Violin 2 Bowing Voice"                       %! StringOrchestraScoreTemplate
+                            \context BowingVoice = "Violin_2_Bowing_Voice"                       %! StringOrchestraScoreTemplate
                             {                                                                    %! StringOrchestraScoreTemplate
                                 s1                                                               %! ScoreTemplate.__illustrate__
                             }                                                                    %! StringOrchestraScoreTemplate
                         >>                                                                       %! StringOrchestraScoreTemplate
-                        \context FingeringStaff = "Violin 2 Fingering Staff"                     %! StringOrchestraScoreTemplate
+                        \context FingeringStaff = "Violin_2_Fingering_Staff"                     %! StringOrchestraScoreTemplate
                         <<                                                                       %! StringOrchestraScoreTemplate
-                            \context FingeringVoice = "Violin 2 Fingering Voice"                 %! StringOrchestraScoreTemplate
+                            \context FingeringVoice = "Violin_2_Fingering_Voice"                 %! StringOrchestraScoreTemplate
                             {                                                                    %! StringOrchestraScoreTemplate
                                 \clef "treble"                                                   %! attach_defaults
                                 s1                                                               %! ScoreTemplate.__illustrate__
@@ -382,21 +382,21 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                         >>                                                                       %! StringOrchestraScoreTemplate
                     >>                                                                           %! StringOrchestraScoreTemplate
                 >>                                                                               %! StringOrchestraScoreTemplate
-                \context ViolaStaffGroup = "Viola Staff Group"                                   %! StringOrchestraScoreTemplate
+                \context ViolaStaffGroup = "Viola_Staff_Group"                                   %! StringOrchestraScoreTemplate
                 <<                                                                               %! StringOrchestraScoreTemplate
                     \tag #'Viola                                                                 %! StringOrchestraScoreTemplate
-                    \context StringPerformerStaffGroup = "Viola Staff Group"                     %! StringOrchestraScoreTemplate
+                    \context StringPerformerStaffGroup = "Viola_Staff_Group"                     %! StringOrchestraScoreTemplate
                     <<                                                                           %! StringOrchestraScoreTemplate
-                        \context BowingStaff = "Viola Bowing Staff"                              %! StringOrchestraScoreTemplate
+                        \context BowingStaff = "Viola_Bowing_Staff"                              %! StringOrchestraScoreTemplate
                         <<                                                                       %! StringOrchestraScoreTemplate
-                            \context BowingVoice = "Viola Bowing Voice"                          %! StringOrchestraScoreTemplate
+                            \context BowingVoice = "Viola_Bowing_Voice"                          %! StringOrchestraScoreTemplate
                             {                                                                    %! StringOrchestraScoreTemplate
                                 s1                                                               %! ScoreTemplate.__illustrate__
                             }                                                                    %! StringOrchestraScoreTemplate
                         >>                                                                       %! StringOrchestraScoreTemplate
-                        \context FingeringStaff = "Viola Fingering Staff"                        %! StringOrchestraScoreTemplate
+                        \context FingeringStaff = "Viola_Fingering_Staff"                        %! StringOrchestraScoreTemplate
                         <<                                                                       %! StringOrchestraScoreTemplate
-                            \context FingeringVoice = "Viola Fingering Voice"                    %! StringOrchestraScoreTemplate
+                            \context FingeringVoice = "Viola_Fingering_Voice"                    %! StringOrchestraScoreTemplate
                             {                                                                    %! StringOrchestraScoreTemplate
                                 \clef "alto"                                                     %! attach_defaults
                                 s1                                                               %! ScoreTemplate.__illustrate__
@@ -404,21 +404,21 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                         >>                                                                       %! StringOrchestraScoreTemplate
                     >>                                                                           %! StringOrchestraScoreTemplate
                 >>                                                                               %! StringOrchestraScoreTemplate
-                \context CelloStaffGroup = "Cello Staff Group"                                   %! StringOrchestraScoreTemplate
+                \context CelloStaffGroup = "Cello_Staff_Group"                                   %! StringOrchestraScoreTemplate
                 <<                                                                               %! StringOrchestraScoreTemplate
                     \tag #'Cello                                                                 %! StringOrchestraScoreTemplate
-                    \context StringPerformerStaffGroup = "Cello Staff Group"                     %! StringOrchestraScoreTemplate
+                    \context StringPerformerStaffGroup = "Cello_Staff_Group"                     %! StringOrchestraScoreTemplate
                     <<                                                                           %! StringOrchestraScoreTemplate
-                        \context BowingStaff = "Cello Bowing Staff"                              %! StringOrchestraScoreTemplate
+                        \context BowingStaff = "Cello_Bowing_Staff"                              %! StringOrchestraScoreTemplate
                         <<                                                                       %! StringOrchestraScoreTemplate
-                            \context BowingVoice = "Cello Bowing Voice"                          %! StringOrchestraScoreTemplate
+                            \context BowingVoice = "Cello_Bowing_Voice"                          %! StringOrchestraScoreTemplate
                             {                                                                    %! StringOrchestraScoreTemplate
                                 s1                                                               %! ScoreTemplate.__illustrate__
                             }                                                                    %! StringOrchestraScoreTemplate
                         >>                                                                       %! StringOrchestraScoreTemplate
-                        \context FingeringStaff = "Cello Fingering Staff"                        %! StringOrchestraScoreTemplate
+                        \context FingeringStaff = "Cello_Fingering_Staff"                        %! StringOrchestraScoreTemplate
                         <<                                                                       %! StringOrchestraScoreTemplate
-                            \context FingeringVoice = "Cello Fingering Voice"                    %! StringOrchestraScoreTemplate
+                            \context FingeringVoice = "Cello_Fingering_Voice"                    %! StringOrchestraScoreTemplate
                             {                                                                    %! StringOrchestraScoreTemplate
                                 \clef "bass"                                                     %! attach_defaults
                                 s1                                                               %! ScoreTemplate.__illustrate__
@@ -445,26 +445,26 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
         \context Score = "Score"                                                                 %! StringOrchestraScoreTemplate
         <<                                                                                       %! StringOrchestraScoreTemplate
             \tag #'(Cello)                                                                       %! StringOrchestraScoreTemplate
-            \context GlobalContext = "GlobalContext"                                             %! StringOrchestraScoreTemplate
+            \context GlobalContext = "Global_Context"                                            %! StringOrchestraScoreTemplate
             {                                                                                    %! StringOrchestraScoreTemplate
             }                                                                                    %! StringOrchestraScoreTemplate
-            \context StaffGroup = "Outer Staff Group"                                            %! StringOrchestraScoreTemplate
+            \context StaffGroup = "Outer_Staff_Group"                                            %! StringOrchestraScoreTemplate
             <<                                                                                   %! StringOrchestraScoreTemplate
-                \context CelloStaffGroup = "Cello Staff Group"                                   %! StringOrchestraScoreTemplate
+                \context CelloStaffGroup = "Cello_Staff_Group"                                   %! StringOrchestraScoreTemplate
                 <<                                                                               %! StringOrchestraScoreTemplate
                     \tag #'Cello                                                                 %! StringOrchestraScoreTemplate
-                    \context StringPerformerStaffGroup = "Cello Staff Group"                     %! StringOrchestraScoreTemplate
+                    \context StringPerformerStaffGroup = "Cello_Staff_Group"                     %! StringOrchestraScoreTemplate
                     <<                                                                           %! StringOrchestraScoreTemplate
-                        \context BowingStaff = "Cello Bowing Staff"                              %! StringOrchestraScoreTemplate
+                        \context BowingStaff = "Cello_Bowing_Staff"                              %! StringOrchestraScoreTemplate
                         <<                                                                       %! StringOrchestraScoreTemplate
-                            \context BowingVoice = "Cello Bowing Voice"                          %! StringOrchestraScoreTemplate
+                            \context BowingVoice = "Cello_Bowing_Voice"                          %! StringOrchestraScoreTemplate
                             {                                                                    %! StringOrchestraScoreTemplate
                                 s1                                                               %! ScoreTemplate.__illustrate__
                             }                                                                    %! StringOrchestraScoreTemplate
                         >>                                                                       %! StringOrchestraScoreTemplate
-                        \context FingeringStaff = "Cello Fingering Staff"                        %! StringOrchestraScoreTemplate
+                        \context FingeringStaff = "Cello_Fingering_Staff"                        %! StringOrchestraScoreTemplate
                         <<                                                                       %! StringOrchestraScoreTemplate
-                            \context FingeringVoice = "Cello Fingering Voice"                    %! StringOrchestraScoreTemplate
+                            \context FingeringVoice = "Cello_Fingering_Voice"                    %! StringOrchestraScoreTemplate
                             {                                                                    %! StringOrchestraScoreTemplate
                                 \clef "bass"                                                     %! attach_defaults
                                 s1                                                               %! ScoreTemplate.__illustrate__
@@ -530,7 +530,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
         ### SCORE ###
 
         staff_group = abjad.StaffGroup(
-            name='Outer Staff Group',
+            name='Outer_Staff_Group',
             tag=tag,
             )
 
@@ -611,8 +611,8 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
         ### TIME SIGNATURE CONTEXT ###
 
         global_context = abjad.Context(
-            name='GlobalContext',
             lilypond_type='GlobalContext',
+            name='Global_Context',
             tag=tag,
             )
         instrument_tags = ' '.join(tag_names)
@@ -635,7 +635,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
         name = instrument.name.title()
         instrument_staff_group = abjad.StaffGroup(
             lilypond_type='{}StaffGroup'.format(name),
-            name='{} Staff Group'.format(name),
+            name='{}_Staff_Group'.format(name),
             tag=tag,
             )
         tag_names = []
@@ -669,7 +669,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
         import abjad
         tag = 'StringOrchestraScoreTemplate'
         if number is not None:
-            name = '{} {}'.format(
+            name = '{}_{}'.format(
                 instrument.name.title(),
                 number,
                 )
@@ -678,7 +678,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
         pitch_range = instrument.pitch_range
         staff_group = abjad.StaffGroup(
             lilypond_type='StringPerformerStaffGroup',
-            name='{} Staff Group'.format(name),
+            name='{}_Staff_Group'.format(name),
             tag=tag,
             )
         tag_name = name.replace(' ', '')
@@ -689,7 +689,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
             lh_voice = abjad.Voice(
                 [],
                 lilypond_type='FingeringVoice',
-                name='{} Fingering Voice'.format(name),
+                name='{}_Fingering_Voice'.format(name),
                 tag=tag,
                 )
             abbreviation = lh_voice.name.lower().replace(' ', '_')
@@ -699,7 +699,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                     lh_voice
                     ],
                 lilypond_type='FingeringStaff',
-                name='{} Fingering Staff'.format(name),
+                name='{}_Fingering_Staff'.format(name),
                 tag=tag,
                 )
             lh_staff.is_simultaneous = True
@@ -708,7 +708,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
             rh_voice = abjad.Voice(
                 [],
                 lilypond_type='BowingVoice',
-                name='{} Bowing Voice'.format(name),
+                name='{}_Bowing_Voice'.format(name),
                 tag=tag,
                 )
             abbreviation = rh_voice.name.lower().replace(' ', '_')
@@ -718,7 +718,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                     rh_voice
                     ],
                 lilypond_type='BowingStaff',
-                name='{} Bowing Staff'.format(name),
+                name='{}_Bowing_Staff'.format(name),
                 tag=tag,
                 )
             rh_staff.is_simultaneous = True
@@ -727,7 +727,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
             lh_voice = abjad.Voice(
                 [],
                 lilypond_type='FingeringVoice',
-                name='{} Voice'.format(name),
+                name='{}_Voice'.format(name),
                 tag=tag,
                 )
             lh_staff = abjad.Staff(
@@ -735,7 +735,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                     lh_voice
                     ],
                 lilypond_type='FingeringStaff',
-                name='{} Staff'.format(name),
+                name='{}_Staff'.format(name),
                 tag=tag,
                 )
             lh_staff.is_simultaneous = True

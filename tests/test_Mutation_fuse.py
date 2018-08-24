@@ -90,7 +90,7 @@ def test_Mutation_fuse_05():
         )
 
     assert abjad.inspect(staff).duration() == abjad.Duration(3, 8)
-    assert abjad.inspect(staff).is_wellformed()
+    assert abjad.inspect(staff).wellformed()
 
 
 def test_Mutation_fuse_06():
@@ -152,7 +152,7 @@ def test_Mutation_fuse_06():
     assert len(tuplet_1) == 0
     assert len(tuplet_2) == 0
     assert new is not tuplet_1 and new is not tuplet_2
-    assert abjad.inspect(new).is_wellformed()
+    assert abjad.inspect(new).wellformed()
 
 
 def test_Mutation_fuse_07():
@@ -213,7 +213,7 @@ def test_Mutation_fuse_07():
         """
         )
 
-    assert abjad.inspect(voice).is_wellformed()
+    assert abjad.inspect(voice).wellformed()
 
 
 def test_Mutation_fuse_08():
@@ -280,7 +280,7 @@ def test_Mutation_fuse_08():
         """
         )
 
-    assert abjad.inspect(voice).is_wellformed()
+    assert abjad.inspect(voice).wellformed()
 
 
 def test_Mutation_fuse_09():
@@ -344,7 +344,7 @@ def test_Mutation_fuse_10():
         """
         )
 
-    assert abjad.inspect(voice).is_wellformed()
+    assert abjad.inspect(voice).wellformed()
 
 
 def test_Mutation_fuse_11():

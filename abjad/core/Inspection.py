@@ -299,6 +299,54 @@ class Inspection(AbjadObject):
             violators.extend(violators_)
         return violators
 
+    def bar_line_crossing(self) -> bool:
+        r"""
+        Is true when client crosses bar line.
+
+        ..  container:: example
+
+            >>> staff = abjad.Staff("c'4 d'4 e'4")
+            >>> time_signature = abjad.TimeSignature((3, 8))
+            >>> abjad.attach(time_signature, staff[0])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    \time 3/8
+                    c'4
+                    d'4
+                    e'4
+                }
+
+            >>> for note in staff:
+            ...     result = abjad.inspect(note).bar_line_crossing()
+            ...     print(note, result)
+            ...
+            c'4 False
+            d'4 True
+            e'4 False
+
+        """
+        if not isinstance(self.client, Component):
+            raise Exception('can only get indicator on component.')
+        time_signature = self.client._get_effective(TimeSignature)
+        if time_signature is None:
+            time_signature_duration = Duration(4, 4)
+        else:
+            time_signature_duration = time_signature.duration
+        partial = getattr(time_signature, 'partial', 0)
+        partial = partial or 0
+        start_offset = Inspection(self.client).timespan().start_offset
+        shifted_start = start_offset - partial
+        shifted_start %= time_signature_duration
+        stop_offset = self.client._get_duration() + shifted_start
+        if time_signature_duration < stop_offset:
+            return True
+        return False
+
     def contents(
         self,
         include_self: bool = True,
@@ -824,6 +872,18 @@ class Inspection(AbjadObject):
             raise Exception('can only get grace container on leaf.')
         return self.client._grace_container
 
+    def grace_note(self) -> bool:
+        """
+        Is true when client is grace note.
+        """
+        if not isinstance(self.client, Leaf):
+            return False
+        prototype = (AfterGraceContainer, GraceContainer)
+        for component in Inspection(self.client).parentage():
+            if isinstance(component, prototype):
+                return True
+        return False
+
     def has_effective_indicator(
         self,
         prototype: typings.Prototype = None,
@@ -991,104 +1051,6 @@ class Inspection(AbjadObject):
             unwrap=unwrap,
             )
         return list(result)
-
-    def is_bar_line_crossing(self) -> bool:
-        r"""
-        Is true when client crosses bar line.
-
-        ..  container:: example
-
-            >>> staff = abjad.Staff("c'4 d'4 e'4")
-            >>> time_signature = abjad.TimeSignature((3, 8))
-            >>> abjad.attach(time_signature, staff[0])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    \time 3/8
-                    c'4
-                    d'4
-                    e'4
-                }
-
-            >>> for note in staff:
-            ...     result = abjad.inspect(note).is_bar_line_crossing()
-            ...     print(note, result)
-            ...
-            c'4 False
-            d'4 True
-            e'4 False
-
-        """
-        if not isinstance(self.client, Component):
-            raise Exception('can only get indicator on component.')
-        time_signature = self.client._get_effective(TimeSignature)
-        if time_signature is None:
-            time_signature_duration = Duration(4, 4)
-        else:
-            time_signature_duration = time_signature.duration
-        partial = getattr(time_signature, 'partial', 0)
-        partial = partial or 0
-        start_offset = Inspection(self.client).timespan().start_offset
-        shifted_start = start_offset - partial
-        shifted_start %= time_signature_duration
-        stop_offset = self.client._get_duration() + shifted_start
-        if time_signature_duration < stop_offset:
-            return True
-        return False
-
-    def is_grace_note(self) -> bool:
-        """
-        Is true when client is grace note.
-        """
-        if not isinstance(self.client, Leaf):
-            return False
-        prototype = (AfterGraceContainer, GraceContainer)
-        for component in Inspection(self.client).parentage():
-            if isinstance(component, prototype):
-                return True
-        return False
-
-    def is_wellformed(
-        self,
-        allow_percussion_clef: bool = None,
-        check_beamed_long_notes: bool = True,
-        check_discontiguous_spanners: bool = True,
-        check_duplicate_ids: bool = True,
-        check_empty_containers: bool = True,
-        check_misdurated_measures: bool = True,
-        check_misfilled_measures: bool = True,
-        check_mismatched_enchained_hairpins: bool = True,
-        check_mispitched_ties: bool = True,
-        check_misrepresented_flags: bool = True,
-        check_missing_parents: bool = True,
-        check_nested_measures: bool = True,
-        check_notes_on_wrong_clef: bool = True,
-        check_out_of_range_pitches: bool = True,
-        check_overlapping_beams: bool = True,
-        check_overlapping_glissandi: bool = True,
-        check_overlapping_octavation_spanners: bool = True,
-        check_overlapping_ties: bool = True,
-        check_overlapping_trill_spanners: bool = True,
-        check_unmatched_stop_text_spans: bool = True,
-        check_unterminated_hairpins: bool = True,
-        check_unterminated_text_spanners: bool = True,
-        ) -> bool:
-        """
-        Is true when client is wellformed.
-        """
-        manager = Wellformedness(
-            allow_percussion_clef=allow_percussion_clef,
-            )
-        for violators, total, check_name in manager(self.client):
-            if eval(check_name) is not True:
-                continue
-            if violators:
-                return False
-        return True
 
     def leaf(self, n: int = 0) -> typing.Optional[Leaf]:
         r"""
@@ -1936,6 +1898,44 @@ class Inspection(AbjadObject):
         if not isinstance(self.client, Component):
             raise Exception('can only get vertical moment on component.')
         return self.client._get_vertical_moment_at(offset)
+
+    def wellformed(
+        self,
+        allow_percussion_clef: bool = None,
+        check_beamed_long_notes: bool = True,
+        check_discontiguous_spanners: bool = True,
+        check_duplicate_ids: bool = True,
+        check_empty_containers: bool = True,
+        check_misdurated_measures: bool = True,
+        check_misfilled_measures: bool = True,
+        check_mismatched_enchained_hairpins: bool = True,
+        check_mispitched_ties: bool = True,
+        check_misrepresented_flags: bool = True,
+        check_missing_parents: bool = True,
+        check_nested_measures: bool = True,
+        check_notes_on_wrong_clef: bool = True,
+        check_out_of_range_pitches: bool = True,
+        check_overlapping_beams: bool = True,
+        check_overlapping_glissandi: bool = True,
+        check_overlapping_octavation_spanners: bool = True,
+        check_overlapping_ties: bool = True,
+        check_overlapping_trill_spanners: bool = True,
+        check_unmatched_stop_text_spans: bool = True,
+        check_unterminated_hairpins: bool = True,
+        check_unterminated_text_spanners: bool = True,
+        ) -> bool:
+        """
+        Is true when client is wellformed.
+        """
+        manager = Wellformedness(
+            allow_percussion_clef=allow_percussion_clef,
+            )
+        for violators, total, check_name in manager(self.client):
+            if eval(check_name) is not True:
+                continue
+            if violators:
+                return False
+        return True
 
     def wrapper(
         self,

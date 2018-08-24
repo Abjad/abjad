@@ -616,7 +616,7 @@ class TimespanList(TypedList):
 
         Returns true or false.
         """
-        return all(self._get_timespan(argument).is_wellformed for argument in self)
+        return all(self._get_timespan(argument).wellformed for argument in self)
 
     @property
     def axis(self):
@@ -2486,7 +2486,7 @@ class TimespanList(TypedList):
 
         Operates in place and returns timespan list.
         """
-        timespans = [x for x in self if x.is_wellformed]
+        timespans = [x for x in self if x.wellformed]
         self[:] = timespans
         return self
 
