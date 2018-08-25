@@ -89,6 +89,8 @@ if __name__ == '__main__':
             remove=abjad.tags.layout_removal_tags(),
             )
         context = lilypond_file['Global_Skips']
+        context.lilypond_type = 'PageLayout'
+        context.name = 'Page_Layout'
         skips = baca.select(context).skips()
         for skip in skips:
             abjad.detach(abjad.TimeSignature, skip)
@@ -126,7 +128,7 @@ if __name__ == '__main__':
     try:
         bol_measure_numbers = []
         prototype = abjad.LilyPondLiteral
-        skips = abjad.iterate(score['Global_Skips']).leaves(abjad.Skip)
+        skips = abjad.iterate(score['Page_Layout']).leaves(abjad.Skip)
         for i, skip in enumerate(skips):
             for literal in abjad.inspect(skip).indicators(prototype):
                 if literal.argument in (r'\break', r'\pageBreak'):

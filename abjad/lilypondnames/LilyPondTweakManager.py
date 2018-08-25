@@ -228,7 +228,35 @@ class LilyPondTweakManager(LilyPondNameManager):
     def __setattr__(self, name, value):
         """
         Sets attribute ``name`` equal to ``value``.
+
+        ..  container:: example
+
+            Allows LilyPond colors:
+
+            >>> abjad.tweak('ForestGreen').color
+            LilyPondTweakManager(('color', 'ForestGreen'))
+
+            >>> string = "#(x11-color 'blue)"
+            >>> abjad.tweak(string).color
+            LilyPondTweakManager(('color', "#(x11-color 'blue)"))
+
+            Raises exception on unknown color:
+
+            >>> abjad.tweak('SavannahGreen').color
+            Traceback (most recent call last):
+                ...
+            Exception: 'SavannahGreen' is not a LilyPond color.
+
         """
+        from abjad.ly.colors import colors
+        if name == 'color':
+            if 'x11-color' in value:
+                _, color = value.split()
+                color = color.strip("'").strip(')')
+            else:
+                color = value
+            if color not in colors:
+                raise Exception(f'{repr(value)} is not a LilyPond color.')
         tag = getattr(self, '_currently_tagging', None)
         deactivate = getattr(self, '_currently_deactivated', None)
         if tag is not None:
