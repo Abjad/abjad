@@ -2529,13 +2529,29 @@ class Markup(AbjadValueObject):
 
             >>> abjad.show(markup) # doctest: +SKIP
 
+        ..  container:: example
+
+            Raises exception on unknown color:
+
+            >>> markup = abjad.Markup('Allegro assai')
+            >>> markup = markup.with_color(abjad.SchemeColor('SavannahGreen'))
+            Traceback (most recent call last):
+                ...
+            Exception: 'SavannahGreen' is not a LilyPond color.
+
         Returns new markup.
         """
+        from abjad.ly.colors import colors
         contents = self._parse_markup_command_argument(self)
         if isinstance(color, str):
+            if color not in colors:
+                raise Exception(f'{repr(color)} is not a LilyPond color.')
             color = Scheme(color)
         elif isinstance(color, SchemeColor):
-            pass
+            _, string = str(color).split()
+            string = string.strip("'").strip(')')
+            if string not in colors:
+                raise Exception(f'{repr(string)} is not a LilyPond color.')
         else:
             raise TypeError(color)
         command = MarkupCommand('with-color', color, contents)
