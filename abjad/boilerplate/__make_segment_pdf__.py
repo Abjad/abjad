@@ -179,8 +179,8 @@ if __name__ == '__main__':
         sys.exit(1)
 
     try:
-        history = segment_directory / '.history'
-        with history.open(mode='a') as pointer:
+        performance = segment_directory / '.performance'
+        with performance.open(mode='a') as pointer:
             pointer.write('\n')
             line = time.strftime('%Y-%m-%d %H:%M:%S') + '\n'
             pointer.write(line)

@@ -249,6 +249,22 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def staff_count(self):
+        """
+        Gets score template staff count.
+
+        ..  container:: example
+
+            >>> class_ = abjad.GroupedRhythmicStavesScoreTemplate
+            >>> template = class_(staff_count=4)
+            >>> template.staff_count
+            4
+
+        Returns nonnegative integer.
+        """
+        return self._staff_count
+
+    @property
     def voice_abbreviations(self):
         """
         Gets context name abbreviations.
@@ -265,19 +281,3 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
             GroupedRhythmicStavesScoreTemplate,
             self,
             ).voice_abbreviations
-
-    @property
-    def staff_count(self):
-        """
-        Gets score template staff count.
-
-        ..  container:: example
-
-            >>> class_ = abjad.GroupedRhythmicStavesScoreTemplate
-            >>> template = class_(staff_count=4)
-            >>> template.staff_count
-            4
-
-        Returns nonnegative integer.
-        """
-        return self._staff_count

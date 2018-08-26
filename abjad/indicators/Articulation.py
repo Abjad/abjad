@@ -205,7 +205,7 @@ class Articulation(AbjadValueObject):
                     self.direction)
                 assert isinstance(direction_, String), repr(direction)
                 direction = direction_
-            return f'{direction} \{string}'
+            return fr'{direction} \{string}'
         else:
             return ''
 

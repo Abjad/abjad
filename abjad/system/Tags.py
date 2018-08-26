@@ -79,7 +79,7 @@ class Tags(AbjadValueObject):
         'CLOCK_TIME_MARKUP',
         'FIGURE_NAME_MARKUP',
         'LOCAL_MEASURE_NUMBER_MARKUP',
-        'MEASURE_INDEX_MARKUP',
+        'LOCAL_MEASURE_INDEX_MARKUP',
         'MEASURE_NUMBER_MARKUP',
         'SPACING_MARKUP',
         'SPACING_OVERRIDE_MARKUP',
@@ -342,7 +342,7 @@ class Tags(AbjadValueObject):
             'CLOCK_TIME_MARKUP'
             'FIGURE_NAME_MARKUP'
             'LOCAL_MEASURE_NUMBER_MARKUP'
-            'MEASURE_INDEX_MARKUP'
+            'LOCAL_MEASURE_INDEX_MARKUP'
             'MEASURE_NUMBER_MARKUP'
             'SPACING_MARKUP'
             'STAGE_NUMBER_MARKUP'
@@ -352,7 +352,7 @@ class Tags(AbjadValueObject):
             self.CLOCK_TIME_MARKUP,
             self.FIGURE_NAME_MARKUP,
             self.LOCAL_MEASURE_NUMBER_MARKUP,
-            self.MEASURE_INDEX_MARKUP,
+            self.LOCAL_MEASURE_INDEX_MARKUP,
             self.MEASURE_NUMBER_MARKUP,
             self.SPACING_MARKUP,
             self.STAGE_NUMBER_MARKUP,
@@ -438,7 +438,7 @@ class Tags(AbjadValueObject):
             'EMPTY_START_BAR'
             'EXPLICIT_TIME_SIGNATURE_COLOR'
             'LOCAL_MEASURE_NUMBER_MARKUP'
-            'MEASURE_INDEX_MARKUP'
+            'LOCAL_MEASURE_INDEX_MARKUP'
             'MEASURE_NUMBER_MARKUP'
             'REDUNDANT_TIME_SIGNATURE_COLOR'
             'STAGE_NUMBER_MARKUP'
@@ -448,7 +448,7 @@ class Tags(AbjadValueObject):
             self.EMPTY_START_BAR,
             self.EXPLICIT_TIME_SIGNATURE_COLOR,
             self.LOCAL_MEASURE_NUMBER_MARKUP,
-            self.MEASURE_INDEX_MARKUP,
+            self.LOCAL_MEASURE_INDEX_MARKUP,
             self.MEASURE_NUMBER_MARKUP,
             self.REDUNDANT_TIME_SIGNATURE_COLOR,
             self.STAGE_NUMBER_MARKUP,
