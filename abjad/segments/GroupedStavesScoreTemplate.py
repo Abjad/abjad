@@ -137,21 +137,6 @@ class GroupedStavesScoreTemplate(ScoreTemplate):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def voice_abbreviations(self):
-        """
-        Gets context name abbreviations.
-
-        ..  container::
-
-            >>> class_ = abjad.GroupedStavesScoreTemplate
-            >>> template = class_(staff_count=4)
-            >>> template.voice_abbreviations
-            OrderedDict([])
-
-        """
-        return super().voice_abbreviations
-
-    @property
     def staff_count(self):
         """
         Gets staff count.
@@ -165,3 +150,18 @@ class GroupedStavesScoreTemplate(ScoreTemplate):
 
         """
         return self._staff_count
+
+    @property
+    def voice_abbreviations(self):
+        """
+        Gets context name abbreviations.
+
+        ..  container::
+
+            >>> class_ = abjad.GroupedStavesScoreTemplate
+            >>> template = class_(staff_count=4)
+            >>> template.voice_abbreviations
+            OrderedDict([])
+
+        """
+        return super().voice_abbreviations
