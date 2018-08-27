@@ -9,8 +9,8 @@ def test_LilyPondParser__misc__default_duration_01():
         [0],
         [(1, 4), (1, 2), (1, 2), (1, 8), (1, 8), (3, 16), (3, 16)]
         ))
-    abjad.attach(abjad.Multiplier(5, 17), target[-2])
-    abjad.attach(abjad.Multiplier(5, 17), target[-1])
+    target[-2].multiplier = (5, 17)
+    target[-1].multiplier = (5, 17)
 
     assert format(target) == abjad.String.normalize(
         r"""

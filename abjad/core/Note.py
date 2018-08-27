@@ -1,6 +1,7 @@
 import copy
 import typing
 from abjad import instruments
+from abjad import typings
 from abjad.pitch.NamedPitch import NamedPitch
 from abjad.top.inspect import inspect
 from abjad.top.parse import parse
@@ -24,6 +25,26 @@ class Note(Leaf):
             >>> abjad.f(note)
             cs''8.
 
+    ..  container:: example
+
+        REGRESSION. Initialized from other note:
+
+        >>> note = abjad.Note("cs''4", multiplier=(1, 1))
+        >>> abjad.show(note) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(note)
+            cs''4 * 1
+
+        >>> new_note = abjad.Note(note)
+        >>> abjad.show(new_note) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(new_note)
+            cs''4 * 1
+
     """
 
     ### CLASS VARIABLES ###
@@ -36,7 +57,12 @@ class Note(Leaf):
 
     ### INITIALIZER ###
 
-    def __init__(self, *arguments, tag: str = None) -> None:
+    def __init__(
+        self,
+        *arguments,
+        multiplier: typings.DurationTyping = None,
+        tag: str = None,
+        ) -> None:
         from abjad.ly import drums
         assert len(arguments) in (0, 1, 2)
         if len(arguments) == 1 and isinstance(arguments[0], str):
@@ -51,6 +77,8 @@ class Note(Leaf):
             leaf = arguments[0]
             written_pitch = None
             written_duration = leaf.written_duration
+            if multiplier is None:
+                multiplier = leaf.multiplier
             if 'written_pitch' in dir(leaf):
                 written_pitch = leaf.note_head.written_pitch
                 is_cautionary = leaf.note_head.is_cautionary
@@ -70,7 +98,12 @@ class Note(Leaf):
             written_duration = Duration(1, 4)
         else:
             raise ValueError('can not initialize note from {arguments!r}.')
-        Leaf.__init__(self, written_duration, tag=tag)
+        Leaf.__init__(
+            self,
+            written_duration,
+            multiplier=multiplier,
+            tag=tag,
+            )
         if written_pitch is not None:
             if written_pitch not in drums:
                 self.note_head = NoteHead(

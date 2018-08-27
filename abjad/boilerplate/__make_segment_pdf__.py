@@ -79,7 +79,7 @@ if __name__ == '__main__':
         illustration_ly.write_text(text)
         for job in [
             abjad.Job.handle_edition_tags(illustration_ly),
-            abjad.Job.show_music_annotations(illustration_ly, undo=True),
+            #abjad.Job.show_music_annotations(illustration_ly, undo=True),
             abjad.Job.handle_fermata_bar_lines(segment_directory),
             abjad.Job.handle_shifted_clefs(segment_directory),
             ]:
@@ -179,8 +179,8 @@ if __name__ == '__main__':
         sys.exit(1)
 
     try:
-        performance = segment_directory / '.performance'
-        with performance.open(mode='a') as pointer:
+        optimization = segment_directory / '.optimization'
+        with optimization.open(mode='a') as pointer:
             pointer.write('\n')
             line = time.strftime('%Y-%m-%d %H:%M:%S') + '\n'
             pointer.write(line)

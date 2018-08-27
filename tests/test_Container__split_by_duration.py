@@ -930,7 +930,7 @@ def test_Container__split_by_duration_13():
     staff.append(abjad.Container("e'8 f'8"))
     leaves = abjad.select(staff).leaves()
     for leaf in leaves:
-        abjad.attach(abjad.Multiplier(1, 2), leaf)
+        leaf.multiplier = (1, 2)
     beam = abjad.Beam(beam_lone_notes=True)
     abjad.attach(beam, leaves[:2])
     beam = abjad.Beam(beam_lone_notes=True)
@@ -1006,7 +1006,7 @@ def test_Container__split_by_duration_14():
     staff.append(abjad.Container("e'8 f'8"))
     leaves = abjad.select(staff).leaves()
     for leaf in leaves:
-        abjad.attach(abjad.Multiplier(1, 2), leaf)
+        leaf.multiplier = (1, 2)
     beam = abjad.Beam(beam_lone_notes=True)
     abjad.attach(beam, leaves[:2])
     beam = abjad.Beam(beam_lone_notes=True)
@@ -1087,7 +1087,7 @@ def test_Container__split_by_duration_15():
     staff.append(abjad.Container("e'8 f'8"))
     leaves = abjad.select(staff).leaves()
     for leaf in leaves:
-        abjad.attach(abjad.Multiplier(1, 2), leaf)
+        leaf.multiplier = (1, 2)
     beam = abjad.Beam(beam_lone_notes=True)
     abjad.attach(beam, leaves[:2])
     beam = abjad.Beam(beam_lone_notes=True)

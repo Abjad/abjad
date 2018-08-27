@@ -107,8 +107,7 @@ class Pitch(AbjadValueObject):
         """
         import abjad
         pitch = abjad.NamedPitch(self)
-        note = abjad.Note(pitch, 1)
-        abjad.attach(abjad.Multiplier(1, 4), note)
+        note = abjad.Note(pitch, 1, multiplier=(1, 4))
         clef = abjad.Clef.from_selection([pitch])
         abjad.attach(clef, note)
         staff = abjad.Staff()

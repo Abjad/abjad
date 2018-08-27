@@ -1,3 +1,4 @@
+from abjad import typings
 from abjad.top.parse import parse
 from abjad.utilities.Duration import Duration
 from .Leaf import Leaf
@@ -36,7 +37,12 @@ class Skip(Leaf):
 
     ### INITIALIZER ###
 
-    def __init__(self, *arguments, tag: str = None) -> None:
+    def __init__(
+        self,
+        *arguments,
+        multiplier: typings.DurationTyping = None,
+        tag: str = None,
+        ) -> None:
         input_leaf = None
         written_duration = None
         if len(arguments) == 1 and isinstance(arguments[0], str):
@@ -55,7 +61,12 @@ class Skip(Leaf):
         else:
             message = f'can not initialize skip from {arguments!r}.'
             raise ValueError(message)
-        Leaf.__init__(self, written_duration, tag=tag)
+        Leaf.__init__(
+            self,
+            written_duration,
+            multiplier=multiplier,
+            tag=tag,
+            )
         if input_leaf is not None:
             self._copy_override_and_set_from_leaf(input_leaf)
 
