@@ -16,8 +16,7 @@ def test_Rest___init___02():
     Initialize rest from other rest.
     """
 
-    rest_1 = abjad.Rest('r4')
-    abjad.attach(abjad.Multiplier(1, 2), rest_1)
+    rest_1 = abjad.Rest('r4', multiplier=(1, 2))
     abjad.override(rest_1).staff.note_head.color = 'red'
     rest_2 = abjad.Rest(rest_1)
 

@@ -924,8 +924,7 @@ def test_Leaf__split_by_durations_24():
     new_leaves carry adjusted LilyPond multipliers.
     """
 
-    note = abjad.Note(0, (1, 8))
-    abjad.attach(abjad.Multiplier(1, 2), note)
+    note = abjad.Note(0, (1, 8), multiplier=(1, 2))
 
     assert format(note) == "c'8 * 1/2"
 
@@ -957,8 +956,7 @@ def test_Leaf__split_by_durations_25():
     new_leaves carry adjusted LilyPond multipliers.
     """
 
-    note = abjad.Note(0, (1, 8))
-    abjad.attach(abjad.Multiplier(1, 2), note)
+    note = abjad.Note(0, (1, 8), multiplier=(1, 2))
 
     assert format(note) == "c'8 * 1/2"
 

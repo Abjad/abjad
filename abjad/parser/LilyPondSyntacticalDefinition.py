@@ -1100,7 +1100,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         self.client._chord_pitch_orders[chord] = pitches
         if p[2].multiplier is not None:
             multiplier = utilities.Multiplier(p[2].multiplier)
-            attach(multiplier, chord)
+            chord.multiplier = multiplier
         self.client._process_post_events(chord, p[3])
         annotation = {'UnrelativableMusic': True}
         attach(annotation, chord)
@@ -1114,7 +1114,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         rest = core.MultimeasureRest(p[2].duration)
         if p[2].multiplier is not None:
             multiplier = utilities.Multiplier(p[2].multiplier)
-            attach(multiplier, rest)
+            result.multiplier = multiplier
         self.client._process_post_events(rest, p[3])
         p[0] = rest
 
@@ -2374,7 +2374,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         self.client._chord_pitch_orders[chord] = pitches
         if p[2].multiplier is not None:
             multiplier = utilities.Multiplier(p[2].multiplier)
-            attach(multiplier, chord)
+            chord.multiplier = multiplier
         self.client._process_post_events(chord, post_events)
         p[0] = chord
 
@@ -2989,7 +2989,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
             rest = core.Skip(p[2].duration)
         if p[2].multiplier is not None:
             multiplier = utilities.Multiplier(p[2].multiplier)
-            attach(multiplier, rest)
+            rest.multiplier = multiplier
         p[0] = rest
 
     def p_simple_element__pitch__exclamations__questions__octave_check__optional_notemode_duration__optional_rest(self, p):
@@ -3002,7 +3002,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
             leaf = core.Rest(p[5].duration)
         if p[5].multiplier is not None:
             multiplier = utilities.Multiplier(p[5].multiplier)
-            attach(multiplier, leaf)
+            leaf.multiplier = multiplier
         # TODO: handle exclamations, questions, octave_check
         p[0] = leaf
 

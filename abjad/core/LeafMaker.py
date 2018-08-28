@@ -636,8 +636,7 @@ class LeafMaker(AbjadValueObject):
                 )
         elif isinstance(pitch, rest_prototype) and use_multimeasure_rests:
             multimeasure_rest = MultimeasureRest((1), tag=tag)
-            multiplier = Multiplier(duration)
-            attach(multiplier, multimeasure_rest)
+            multimeasure_rest.multiplier = duration
             leaves = (
                 multimeasure_rest,
                 )
@@ -651,6 +650,7 @@ class LeafMaker(AbjadValueObject):
         duration,
         increase_monotonic=None,
         forbidden_duration=None,
+        multiplier=None,
         pitches=None,
         tag=None,
         tie_parts=True,
@@ -708,7 +708,7 @@ class LeafMaker(AbjadValueObject):
                 arguments = (pitches, written_duration)
             else:
                 arguments = (written_duration, )
-            result.append(class_(*arguments, tag=tag))
+            result.append(class_(*arguments, multiplier=multiplier, tag=tag))
         result = Selection(result)
         # apply tie spanner if required
         if tie_parts and 1 < len(result):

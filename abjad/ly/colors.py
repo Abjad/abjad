@@ -1,7 +1,7 @@
 lilypond_version = "2.19.82"
 
 
-colors = set([
+normal_colors = set([
     'black',
     'white',
     'red',
@@ -19,6 +19,8 @@ colors = set([
     'darkmagenta',
     'darkyellow',
     ])
+
+colors = set(normal_colors)
 
 colors.update([
     'snow',
@@ -157,9 +159,7 @@ colors.update([
     'DarkMagenta',
     'DarkRed',
     'LightGreen',
-
     ])
-
 
 for string in (
     'snow',

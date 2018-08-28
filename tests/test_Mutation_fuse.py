@@ -63,8 +63,8 @@ def test_Mutation_fuse_05():
     """
 
     staff = abjad.Staff([abjad.Skip((1, 1)), abjad.Skip((1, 1))])
-    abjad.attach(abjad.Multiplier(1, 16), staff[0])
-    abjad.attach(abjad.Multiplier(5, 16), staff[1])
+    staff[0].multiplier = (1, 16)
+    staff[1].multiplier = (5, 16)
 
     assert format(staff) == abjad.String.normalize(
         r"""

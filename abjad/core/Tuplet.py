@@ -235,7 +235,6 @@ class Tuplet(Container):
                     self._get_edge_height_tweak_string()
                 if edge_height_tweak_string:
                     contributions.append(edge_height_tweak_string)
-
                 strings = tweak(self)._list_format_contributions(
                     directed=False,
                     )
@@ -2412,8 +2411,8 @@ class Tuplet(Container):
             Tuplet is not trivial when multipliers attach to tuplet leaves:
 
             >>> tuplet = abjad.Tuplet((1, 1), "c'8 d'8 e'8")
-            >>> abjad.attach(abjad.Multiplier(3, 2), tuplet[0])
-            >>> abjad.attach(abjad.Multiplier(1, 2), tuplet[-1])
+            >>> tuplet[0].multiplier = (3, 2)
+            >>> tuplet[-1].multiplier = (1, 2)
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             ..  docs::
@@ -2431,7 +2430,7 @@ class Tuplet(Container):
 
         """
         for leaf in iterate(self).leaves():
-            if inspect(leaf).has_indicator(Multiplier):
+            if leaf.multiplier is not None:
                 return False
         return self.multiplier == 1
 

@@ -1427,8 +1427,7 @@ class LilyPondFile(AbjadObject):
         skips = []
         for time_signature in time_signatures:
             skip = Skip(1)
-            multiplier = Multiplier(time_signature)
-            attach(multiplier, skip)
+            skip.multiplier = time_signature
             attach(time_signature, skip, context='Score')
             skips.append(skip)
         context.extend(skips)

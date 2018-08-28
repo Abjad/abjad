@@ -189,7 +189,7 @@ class PitchSegment(Segment):
         result = abjad.Score.make_piano_score(leaves=notes, sketch=True)
         score, treble_staff, bass_staff = result
         for leaf in abjad.iterate(score).leaves():
-            abjad.attach(abjad.Multiplier(1, 8), leaf)
+            leaf.multiplier = (1, 8)
         abjad.override(score).rest.transparent = True
         lilypond_file = abjad.LilyPondFile.new(score)
         return lilypond_file

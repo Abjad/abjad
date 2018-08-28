@@ -247,6 +247,7 @@ class SegmentMaker(AbjadObject):
 
     def run(
         self,
+        activate: typing.List[str] = None,
         deactivate: typing.List[str] = None,
         do_not_print_timing: bool = None,
         environment: str = None,

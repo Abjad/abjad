@@ -91,20 +91,6 @@ class Multiplier(Duration):
         >>> isinstance(abjad.Multiplier(3, 16), numbers.Number)
         True
 
-    ..  container:: example
-
-        Attaching a multiplier to a score component multiplies that component's
-        duration:
-
-        >>> note = abjad.Note("c'1")
-        >>> abjad.f(note)
-        c'1
-
-        >>> multiplier = abjad.Multiplier(3, 8)
-        >>> abjad.attach(multiplier, note)
-        >>> abjad.f(note)
-        c'1 * 3/8
-
     """
 
     ### CLASS VARIABLES ###

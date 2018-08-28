@@ -2196,8 +2196,7 @@ class Mutation(AbjadObject):
 
             Scales note carrying LilyPond multiplier:
 
-            >>> note = abjad.Note("c'8")
-            >>> abjad.attach(abjad.Multiplier(1, 2), note)
+            >>> note = abjad.Note("c'8", multiplier=(1, 2))
             >>> abjad.show(note) # doctest: +SKIP
 
             ..  docs::

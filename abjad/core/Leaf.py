@@ -35,6 +35,7 @@ class Leaf(Component):
         '_after_grace_container',
         '_grace_container',
         '_leaf_index',
+        '_multiplier',
         '_spanners',
         '_written_duration',
         )
@@ -45,6 +46,8 @@ class Leaf(Component):
     def __init__(
         self,
         written_duration,
+        *,
+        multiplier = None,
         tag: str = None,
         ) -> None:
         from abjad.spanners.Spanner import Spanner
@@ -53,7 +56,8 @@ class Leaf(Component):
         self._grace_container = None
         self._leaf_index = None
         self._spanners: typing.List[Spanner] = []
-        self.written_duration = Duration(written_duration)
+        self.multiplier = multiplier
+        self.written_duration = written_duration
 
     ### SPECIAL METHODS ###
 
@@ -64,6 +68,7 @@ class Leaf(Component):
         Returns new leaf.
         """
         new = Component.__copy__(self, *arguments)
+        new.multiplier = self.multiplier
         grace_container = self._grace_container
         if grace_container is not None:
             new_grace_container = grace_container._copy_with_children()
@@ -429,10 +434,9 @@ class Leaf(Component):
         import abjad
         new_duration = Duration(new_duration)
         # change LilyPond multiplier if leaf already has LilyPond multiplier
-        if self._get_indicators(Multiplier):
-            detach(Multiplier, self)
+        if self.multiplier is not None:
             multiplier = new_duration.__div__(self.written_duration)
-            attach(multiplier, self)
+            self.multiplier = multiplier
             return select(self)
         # change written duration if new duration is assignable
         try:
@@ -520,12 +524,9 @@ class Leaf(Component):
         if inspect(self).has_spanner(abjad.Tie):
             for leaf in result_leaves:
                 detach(abjad.Tie, leaf)
-        # strip result leaves of indicators (other than multipliers)
+        # strip result leaves of all indicators
         for leaf in result_leaves:
-            multiplier = inspect(leaf).indicator(Multiplier)
             detach(object, leaf)
-            if multiplier is not None:
-                attach(multiplier, leaf)
         # replace leaf with flattened result
         selection = select(self)
         parent, start, stop = selection._get_parent_and_start_stop_indices()
@@ -557,8 +558,6 @@ class Leaf(Component):
         first_result_leaf = result_leaves[0]
         last_result_leaf = result_leaves[-1]
         for indicator in inspect(self).indicators():
-            if isinstance(indicator, Multiplier):
-                continue
             detach(indicator, self)
             direction = getattr(indicator, '_time_orientation', enums.Left)
             if direction is enums.Left:
@@ -603,38 +602,18 @@ class Leaf(Component):
 
     def _get_formatted_duration(self):
         duration_string = self.written_duration.lilypond_duration_string
-        multiplier = None
-        multiplier_prototype = (Multiplier, NonreducedFraction)
-        multipliers = self._get_indicators(multiplier_prototype)
-        if not multipliers:
-            pass
-        elif len(multipliers) == 1:
-            multiplier = multipliers[0]
-        elif 1 < len(multipliers):
-            raise ValueError('more than one LilyPond duration multiplier.')
-        if multiplier is not None:
-            result = f'{duration_string} * {multiplier!s}'
+        if self.multiplier is not None:
+            result = f'{duration_string} * {self.multiplier!s}'
         else:
             result = duration_string
         return result
 
     def _get_multiplied_duration(self):
         if self.written_duration:
-            multiplier_prototype = (Multiplier, NonreducedFraction)
-            if self._get_indicators(multiplier_prototype):
-                multipliers = self._get_indicators(multiplier_prototype)
-                if 1 == len(multipliers):
-                    multiplier = multipliers[0]
-                    multiplier = Duration(multiplier)
-                elif 1 < len(multipliers):
-                    message = 'more than one duration multiplier.'
-                    raise ValueError(message)
-                multiplied_duration = multiplier * self.written_duration
-                return multiplied_duration
-            else:
-                return Duration(self.written_duration)
-        else:
-            return None
+            if self.multiplier is not None:
+                duration = self.multiplier * self.written_duration
+                return Duration(duration)
+            return Duration(self.written_duration)
 
     def _get_preprolated_duration(self):
         return self._get_multiplied_duration()
@@ -642,20 +621,31 @@ class Leaf(Component):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def written_duration(self):
+    def multiplier(self) -> typing.Union[Multiplier, NonreducedFraction, None]:
         """
-        Written duration of leaf.
+        Gets duration multiplier.
+        """
+        return self._multiplier
 
-        Set to duration.
+    @multiplier.setter
+    def multiplier(self, argument):
+        if isinstance(argument, (NonreducedFraction, type(None))):
+            multiplier = argument
+        else:
+            multiplier = Multiplier(argument)
+        self._multiplier = multiplier
 
-        Returns duration.
+    @property
+    def written_duration(self) -> Duration:
+        """
+        Gets written duration of leaf.
         """
         return self._written_duration
 
     @written_duration.setter
     def written_duration(self, argument):
-        rational = Duration(argument)
-        if not rational.is_assignable:
-            message = f'not assignable duration: {rational!r}.'
+        duration = Duration(argument)
+        if not duration.is_assignable:
+            message = f'not assignable duration: {duration!r}.'
             raise exceptions.AssignabilityError(message)
-        self._written_duration = rational
+        self._written_duration = duration

@@ -3,6 +3,7 @@ import typing
 from abjad import instruments
 from abjad import mathtools
 from abjad import pitch as abjad_pitch
+from abjad import typings
 from abjad.indicators.Tremolo import Tremolo
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.top.inspect import inspect
@@ -28,6 +29,26 @@ class Chord(Leaf):
             >>> abjad.f(chord)
             <e' cs'' f''>4
 
+    ..  container:: example
+
+        REGRESSION. Initializes from other chord:
+
+        >>> chord = abjad.Chord("<e' cs'' f''>4", multiplier=(1, 2))
+        >>> abjad.show(chord) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(chord)
+            <e' cs'' f''>4 * 1/2
+
+        >>> new_chord = abjad.Chord(chord)
+        >>> abjad.show(new_chord) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(new_chord)
+            <e' cs'' f''>4 * 1/2
+
     """
 
     ### CLASS VARIABLES ###
@@ -40,7 +61,12 @@ class Chord(Leaf):
 
     ### INITIALIZER ###
 
-    def __init__(self, *arguments, tag: str = None) -> None:
+    def __init__(
+        self,
+        *arguments,
+        multiplier: typings.DurationTyping = None,
+        tag: str = None,
+        ) -> None:
         from abjad.ly import drums
         assert len(arguments) in (0, 1, 2)
         self._note_heads = NoteHeadList(client=self)
@@ -56,6 +82,8 @@ class Chord(Leaf):
             leaf = arguments[0]
             written_pitches = []
             written_duration = leaf.written_duration
+            if multiplier is None:
+                multiplier = leaf.multiplier
             if 'written_pitch' in dir(leaf):
                 written_pitches.append(leaf.note_head.written_pitch)
                 are_cautionary = [leaf.note_head.is_cautionary]
@@ -82,7 +110,12 @@ class Chord(Leaf):
             written_duration = Duration(1, 4)
         else:
             raise ValueError(f'can not initialize chord from {arguments!r}.')
-        Leaf.__init__(self, written_duration, tag=tag)
+        Leaf.__init__(
+            self,
+            written_duration,
+            multiplier=multiplier,
+            tag=tag,
+            )
         if not are_cautionary:
             are_cautionary = [None] * len(written_pitches)
         if not are_forced:

@@ -391,7 +391,7 @@ class PitchRange(AbjadValueObject):
             abjad.attach(abjad.Clef('treble'), treble_staff[0])
             abjad.attach(abjad.Clef('bass'), bass_staff[0])
         for leaf in abjad.iterate(score).leaves():
-            abjad.attach(abjad.Multiplier(1, 4), leaf)
+            leaf.multiplier = (1, 4)
         abjad.override(score).bar_line.stencil = False
         abjad.override(score).span_bar.stencil = False
         abjad.override(score).glissando.thickness = 2
