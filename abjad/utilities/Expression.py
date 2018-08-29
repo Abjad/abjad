@@ -56,24 +56,11 @@ class Expression(AbjadValueObject):
         >>> expression('111')
         7
 
-    ..  container:: example expression
-
-        Makes three-integer addition expression:
-
-        >>> expression = abjad.Expression(
-        ...     argument_count=3,
-        ...     evaluation_template='{} + {} + {}',
-        ...     )
-
-        >>> expression(1, 2, 3)
-        6
-
     """
 
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_argument_count',
         '_argument_values',
         '_callbacks',
         '_evaluation_template',
@@ -106,7 +93,6 @@ class Expression(AbjadValueObject):
 
     def __init__(
         self,
-        argument_count=None,
         argument_values=None,
         callbacks=None,
         evaluation_template=None,
@@ -130,9 +116,6 @@ class Expression(AbjadValueObject):
         subexpressions=None,
         template=None,
         ):
-        if argument_count is not None:
-            assert isinstance(argument_count, int) and 0 <= argument_count
-        self._argument_count = argument_count
         if argument_values is not None:
             assert isinstance(argument_values, dict)
             argument_values = argument_values or None
@@ -214,37 +197,31 @@ class Expression(AbjadValueObject):
 
             Adds expressions:
 
-            >>> expression_1 = abjad.Expression(
-            ...     argument_count=3,
-            ...     evaluation_template='{} + {} + {}',
-            ...     )
-            >>> expression_2 = abjad.Expression(
-            ...     argument_count=2,
-            ...     evaluation_template='{} + {}',
-            ...     )
-            >>> expression = expression_1 + expression_2
+            >>> expression = abjad.Expression()
+            >>> expression = expression.sequence()
+            >>> expression = expression + [4, 5, 6]
             >>> abjad.f(expression)
             abjad.Expression(
-                argument_count=2,
-                evaluation_template='{}.__add__({})',
-                is_composite=True,
-                markup_maker_callback='_make_add_expression_markup',
-                qualified_method_name='abjad.Expression.__add__',
-                string_template='{} + {}',
-                subexpressions=(
+                callbacks=[
                     abjad.Expression(
-                        argument_count=3,
-                        evaluation_template='{} + {} + {}',
+                        evaluation_template='abjad.utilities.Sequence',
+                        is_initializer=True,
+                        string_template='{}',
                         ),
                     abjad.Expression(
-                        argument_count=2,
-                        evaluation_template='{} + {}',
+                        argument_values={
+                            'argument': [4, 5, 6],
+                            },
+                        evaluation_template='{}.__add__([4, 5, 6])',
+                        qualified_method_name='abjad.utilities.Sequence.__add__',
+                        string_template='{} + [4, 5, 6]',
                         ),
-                    ),
+                    ],
+                proxy_class=abjad.Sequence,
                 )
 
-            >>> expression(1, 2, 3, 4, 5)
-            15
+            >>> expression([1, 2, 3])
+            Sequence([1, 2, 3, 4, 5, 6])
 
         """
         if not isinstance(i, Expression):
@@ -259,7 +236,6 @@ class Expression(AbjadValueObject):
         module_names.sort()
         module_names = module_names or None
         return type(self)(
-            argument_count=2,
             evaluation_template=evaluation_template,
             is_composite=True,
             markup_maker_callback='_make_add_expression_markup',
@@ -272,7 +248,7 @@ class Expression(AbjadValueObject):
 
     def __call__(self, *arguments, **keywords):
         """
-        Calls expression on ``arguments`` with ``keywords``.
+        Calls expression on ``argument`` with ``keywords``.
 
         ..  container:: example expression
 
@@ -285,27 +261,12 @@ class Expression(AbjadValueObject):
 
         Returns ouput of last callback.
         """
-        arguments = list(arguments)
         results = []
         for subexpression in self.subexpressions or []:
-            argument_count = subexpression.argument_count or 1
-            arguments_ = []
-            for i in range(argument_count):
-                argument = arguments.pop(0)
-                arguments_.append(argument)
-            result = subexpression(*arguments_, **keywords)
+            result = subexpression(*arguments, **keywords)
             keywords = {}
             results.append(result)
         arguments = results or arguments
-        if self.argument_count is not None:
-            if len(arguments) != self.argument_count:
-                message = '{} arguments (not {}) required: {!r}.'
-                message = message.format(
-                    self.argument_count,
-                    len(arguments),
-                    arguments,
-                    )
-                raise Exception(message)
         thread_arguments = False
         if self.evaluation_template is not None:
             result = self._evaluate(*arguments, **keywords)
@@ -566,17 +527,6 @@ class Expression(AbjadValueObject):
             assert isinstance(self.subclass_hook, str)
             subclass_hook = getattr(self, self.subclass_hook)
             return subclass_hook(*arguments)
-        argument_count = self.argument_count or 1
-        if (len(arguments) != argument_count and
-            len(arguments) != 0):
-            message = '{} {} (not {}) required: {!r}.'
-            message = message.format(
-                argument_count,
-                abjad.String('argument').pluralize(argument_count),
-                len(arguments),
-                arguments,
-                )
-            raise Exception(message)
         globals_ = self._make_globals()
         statement = self.evaluation_template
         strings = []
@@ -1306,19 +1256,6 @@ class Expression(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def argument_count(self):
-        """
-        Gets argument count.
-
-        Defaults to none.
-
-        Set to nonnegative integer or none.
-
-        Returns nonnegative integer or none.
-        """
-        return self._argument_count
-
-    @property
     def argument_values(self):
         """
         Gets argument values.
@@ -1757,9 +1694,18 @@ class Expression(AbjadValueObject):
         Returns markup or none.
         """
         import abjad
-        argument_count = self.argument_count or 1
         markup = None
-        if argument_count <= 1:
+        if self.subexpressions:
+            markups = []
+            for subexpression in self.subexpressions or []:
+                markup = subexpression.get_markup()
+                markups.append(markup)
+            markup = self._make_method_markup(markups)
+            markup = self._apply_callback_markup(
+                markup,
+                previous_callback=self,
+                )
+        else:
             if name is None:
                 name = self.name
             if name is None:
@@ -1771,24 +1717,7 @@ class Expression(AbjadValueObject):
                 message = 'expression name not found: {!r}.'
                 message = message.format(self)
                 raise ValueError(message)
-            #markup = self._compile_callback_markup(name)
             markup = self._apply_callback_markup(name)
-        else:
-            markups = []
-            for subexpression in self.subexpressions or []:
-                #markup = subexpression.get_markup_directly()
-                markup = subexpression.get_markup()
-                markups.append(markup)
-            if len(markups) != argument_count:
-                message = 'argument count of {} with {} markups found.'
-                message = message.format(argument_count, len(markups))
-                raise ValueError(message)
-            markup = self._make_method_markup(markups)
-            #markup = self._compile_callback_markup(
-            markup = self._apply_callback_markup(
-                markup,
-                previous_callback=self,
-                )
         if markup is not None:
             markup = abjad.new(markup, direction=direction)
         return markup
@@ -1876,29 +1805,11 @@ class Expression(AbjadValueObject):
 
         Returns string or none.
         """
-        argument_count = self.argument_count or 1
-        if argument_count <= 1:
-            if name is None:
-                name = self.name
-            if name is None:
-                for callback in self.callbacks or []:
-                    if callback.name is not None:
-                        name = callback.name
-                        break
-            if name is None:
-                message = 'expression name not found: {!r}.'
-                message = message.format(self)
-                raise ValueError(message)
-            return self._compile_callback_strings(name)
-        else:
+        if self.subexpressions:
             strings = []
             for subexpression in self.subexpressions or []:
                 string = subexpression.get_string()
                 strings.append(string)
-            if len(strings) != argument_count:
-                message = 'argument count of {} with {} strings found.'
-                message = message.format(argument_count, len(strings))
-                raise ValueError(message)
             template = self.string_template
             if template is None:
                 message = 'expression has no string template: {!r}.'
@@ -1911,6 +1822,19 @@ class Expression(AbjadValueObject):
                 message = message.format(self, template, e)
                 raise Exception(message)
             return self._compile_callback_strings(string)
+        else:
+            if name is None:
+                name = self.name
+            if name is None:
+                for callback in self.callbacks or []:
+                    if callback.name is not None:
+                        name = callback.name
+                        break
+            if name is None:
+                message = 'expression name not found: {!r}.'
+                message = message.format(self)
+                raise ValueError(message)
+            return self._compile_callback_strings(name)
 
     def label(self, **keywords):
         r"""
@@ -1978,7 +1902,6 @@ class Expression(AbjadValueObject):
 
     @staticmethod
     def make_callback(
-        argument_count=None,
         evaluation_template=None,
         force_return=None,
         has_parentheses=None,
@@ -1999,7 +1922,6 @@ class Expression(AbjadValueObject):
         Returns expression.
         """
         return Expression(
-            argument_count=argument_count,
             evaluation_template=evaluation_template,
             force_return=force_return,
             has_parentheses=has_parentheses,

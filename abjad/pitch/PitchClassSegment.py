@@ -189,101 +189,17 @@ class PitchClassSegment(Segment):
 
             ..  container:: example expression
 
-                >>> expression_J = abjad.Expression(name='J')
-                >>> expression_J = expression_J.pitch_class_segment()
-                >>> expression_K = abjad.Expression(name='K')
-                >>> expression_K = expression_K.pitch_class_segment()
-                >>> expression = expression_J + expression_K
+                >>> expression = abjad.Expression(name='J')
+                >>> expression = expression.pitch_class_segment()
+                >>> expression = expression + pitch_names
 
-                >>> expression(pitch_numbers, pitch_names)
+                >>> expression(pitch_numbers)
                 PitchClassSegment([10, 10.5, 6, 7, 10.5, 7, 0, 3, 11.5, 2])
 
                 >>> expression.get_string()
-                'J + K'
+                "J + ['c', 'ef', 'bqs,', 'd']"
 
-                >>> segment = expression(pitch_numbers, pitch_names)
-                >>> markup = expression.get_markup()
-                >>> abjad.show(segment, figure_name=markup) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> lilypond_file = segment.__illustrate__(
-                    ...     figure_name=markup,
-                    ...     )
-                    >>> abjad.f(lilypond_file[abjad.Voice])
-                    \new Voice
-                    {
-                        bf'8
-                        ^ \markup {
-                            \line
-                                {
-                                    \bold
-                                        J
-                                    +
-                                    \bold
-                                        K
-                                }
-                            }
-                        bqf'8
-                        fs'8
-                        g'8
-                        bqf'8
-                        g'8
-                        c'8
-                        ef'8
-                        bqs'8
-                        d'8
-                        \bar "|." %! SCORE_1
-                        \override Score.BarLine.transparent = ##f
-                    }
-
-        ..  container:: example
-
-            Adds K and J:
-
-            ..  container:: example
-
-                >>> K + J
-                PitchClassSegment("c ef bqs d bf bqf fs g bqf g")
-
-                >>> segment = K + J
-                >>> abjad.show(segment) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> lilypond_file = segment.__illustrate__()
-                    >>> abjad.f(lilypond_file[abjad.Voice])
-                    \new Voice
-                    {
-                        c'8
-                        ef'8
-                        bqs'8
-                        d'8
-                        bf'8
-                        bqf'8
-                        fs'8
-                        g'8
-                        bqf'8
-                        g'8
-                        \bar "|." %! SCORE_1
-                        \override Score.BarLine.transparent = ##f
-                    }
-
-            ..  container:: example expression
-
-                >>> expression_J = abjad.Expression(name='J')
-                >>> expression_J = expression_J.pitch_class_segment()
-                >>> expression_K = abjad.Expression(name='K')
-                >>> expression_K = expression_K.pitch_class_segment()
-                >>> expression = expression_K + expression_J
-
-                >>> expression(pitch_names, pitch_numbers)
-                PitchClassSegment("c ef bqs d bf bqf fs g bqf g")
-
-                >>> expression.get_string()
-                'K + J'
-
-                >>> segment = expression(pitch_names, pitch_numbers)
+                >>> segment = expression(pitch_names)
                 >>> markup = expression.get_markup()
                 >>> abjad.show(segment, figure_name=markup) # doctest: +SKIP
 
@@ -300,21 +216,18 @@ class PitchClassSegment(Segment):
                             \line
                                 {
                                     \bold
-                                        K
-                                    +
-                                    \bold
                                         J
+                                    +
+                                    "['c', 'ef', 'bqs,', 'd']"
                                 }
                             }
                         ef'8
                         bqs'8
                         d'8
-                        bf'8
-                        bqf'8
-                        fs'8
-                        g'8
-                        bqf'8
-                        g'8
+                        c'8
+                        ef'8
+                        bqs'8
+                        d'8
                         \bar "|." %! SCORE_1
                         \override Score.BarLine.transparent = ##f
                     }
@@ -366,14 +279,13 @@ class PitchClassSegment(Segment):
                 >>> expression_J = expression_J.pitch_class_segment()
                 >>> expression = expression_J + expression_J + expression_J
 
-                >>> expression(pitch_numbers, pitch_numbers, pitch_numbers)
+                >>> expression(pitch_numbers)
                 PitchClassSegment([10, 10.5, 6, 7, 10.5, 7, 10, 10.5, 6, 7, 10.5, 7, 10, 10.5, 6, 7, 10.5, 7])
 
                 >>> expression.get_string()
                 'J + J + J'
 
-                >>> list_ = [pitch_numbers, pitch_numbers, pitch_numbers]
-                >>> segment = expression(*list_)
+                >>> segment = expression(pitch_numbers)
                 >>> markup = expression.get_markup()
                 >>> abjad.show(segment, figure_name=markup) # doctest: +SKIP
 
@@ -457,21 +369,18 @@ class PitchClassSegment(Segment):
 
             ..  container:: example expression
 
-                >>> expression_J = abjad.Expression(name='J')
-                >>> expression_J = expression_J.pitch_class_segment()
-                >>> expression_J = expression_J.rotate(n=1)
-                >>> expression_K = abjad.Expression(name='K')
-                >>> expression_K = expression_K.pitch_class_segment()
-                >>> expression_K = expression_K.rotate(n=2)
-                >>> expression = expression_J + expression_K
+                >>> expression = abjad.Expression(name='J')
+                >>> expression = expression.pitch_class_segment()
+                >>> expression = expression.rotate(n=1)
+                >>> expression = expression + K.rotate(n=2)
 
-                >>> expression(pitch_numbers, pitch_names)
+                >>> expression(pitch_numbers)
                 PitchClassSegment([7, 10, 10.5, 6, 7, 10.5, 11.5, 2, 0, 3])
 
                 >>> expression.get_string()
-                'r1(J) + r2(K)'
+                'r1(J) + PC<bqs d c ef>'
 
-                >>> segment = expression(pitch_numbers, pitch_names)
+                >>> segment = expression(pitch_numbers)
                 >>> markup = expression.get_markup()
                 >>> abjad.show(segment, figure_name=markup) # doctest: +SKIP
 
@@ -496,14 +405,7 @@ class PitchClassSegment(Segment):
                                                 J
                                         }
                                     +
-                                    \concat
-                                        {
-                                            r
-                                            \sub
-                                                2
-                                            \bold
-                                                K
-                                        }
+                                    "PC<bqs d c ef>"
                                 }
                             }
                         bf'8
@@ -554,22 +456,19 @@ class PitchClassSegment(Segment):
 
             ..  container:: example expression
 
-                >>> expression_J = abjad.Expression(name='J')
-                >>> expression_J = expression_J.pitch_class_segment()
-                >>> expression_J = expression_J.rotate(n=1)
-                >>> expression_K = abjad.Expression(name='K')
-                >>> expression_K = expression_K.pitch_class_segment()
-                >>> expression_K = expression_K.rotate(n=2)
-                >>> expression = expression_J + expression_K
+                >>> expression = abjad.Expression(name='J')
+                >>> expression = expression.pitch_class_segment()
+                >>> expression = expression.rotate(n=1)
+                >>> expression = expression + K.rotate(n=2)
                 >>> expression = expression.retrograde()
 
-                >>> expression(pitch_numbers, pitch_names)
+                >>> expression(pitch_numbers)
                 PitchClassSegment([3, 0, 2, 11.5, 10.5, 7, 6, 10.5, 10, 7])
 
                 >>> expression.get_string()
-                'R(r1(J) + r2(K))'
+                'R(r1(J) + PC<bqs d c ef>)'
 
-                >>> segment = expression(pitch_numbers, pitch_names)
+                >>> segment = expression(pitch_numbers)
                 >>> markup = expression.get_markup()
                 >>> abjad.show(segment, figure_name=markup) # doctest: +SKIP
 
@@ -586,30 +485,18 @@ class PitchClassSegment(Segment):
                             \concat
                                 {
                                     R
-                                    \concat
+                                    \line
                                         {
-                                            (
-                                            \line
+                                            \concat
                                                 {
-                                                    \concat
-                                                        {
-                                                            r
-                                                            \sub
-                                                                1
-                                                            \bold
-                                                                J
-                                                        }
-                                                    +
-                                                    \concat
-                                                        {
-                                                            r
-                                                            \sub
-                                                                2
-                                                            \bold
-                                                                K
-                                                        }
+                                                    r
+                                                    \sub
+                                                        1
+                                                    \bold
+                                                        J
                                                 }
-                                            )
+                                            +
+                                            "PC<bqs d c ef>"
                                         }
                                 }
                             }
@@ -630,22 +517,19 @@ class PitchClassSegment(Segment):
 
             Establishes equivalence:
 
-            >>> expression_J = abjad.Expression(name='J')
-            >>> expression_J = expression_J.pitch_class_segment()
-            >>> expression_J = expression_J.rotate(n=1)
-            >>> expression_K = abjad.Expression(name='K')
-            >>> expression_K = expression_K.pitch_class_segment()
-            >>> expression_K = expression_K.rotate(n=2)
-            >>> expression = expression_J + expression_K
+            >>> expression = abjad.Expression(name='J')
+            >>> expression = expression.pitch_class_segment()
+            >>> expression = expression.rotate(n=1)
+            >>> expression = expression + K.rotate(n=2)
             >>> expression = expression.establish_equivalence(name='Q')
 
-            >>> expression(pitch_numbers, pitch_names)
+            >>> expression(pitch_numbers)
             PitchClassSegment([7, 10, 10.5, 6, 7, 10.5, 11.5, 2, 0, 3])
 
             >>> expression.get_string()
-            'Q = r1(J) + r2(K)'
+            'Q = r1(J) + PC<bqs d c ef>'
 
-            >>> segment = expression(pitch_numbers, pitch_names)
+            >>> segment = expression(pitch_numbers)
             >>> markup = expression.get_markup()
             >>> abjad.show(segment, figure_name=markup) # doctest: +SKIP
 
@@ -675,14 +559,7 @@ class PitchClassSegment(Segment):
                                                     J
                                             }
                                         +
-                                        \concat
-                                            {
-                                                r
-                                                \sub
-                                                    2
-                                                \bold
-                                                    K
-                                            }
+                                        "PC<bqs d c ef>"
                                     }
                             }
                         }
@@ -705,13 +582,13 @@ class PitchClassSegment(Segment):
 
             >>> expression = expression.transpose(n=1)
 
-            >>> expression(pitch_numbers, pitch_names)
+            >>> expression(pitch_numbers)
             PitchClassSegment([8, 11, 11.5, 7, 8, 11.5, 0.5, 3, 1, 4])
 
             >>> expression.get_string()
             'T1(Q)'
 
-            >>> segment = expression(pitch_numbers, pitch_names)
+            >>> segment = expression(pitch_numbers)
             >>> markup = expression.get_markup()
             >>> abjad.show(segment, figure_name=markup) # doctest: +SKIP
 
@@ -750,7 +627,7 @@ class PitchClassSegment(Segment):
         Returns new segment.
         """
         if self._expression:
-            return self._update_expresion(inspect.currentframe())
+            return self._update_expression(inspect.currentframe())
         argument = type(self)(items=argument)
         items = self.items + argument.items
         return type(self)(items=items)
