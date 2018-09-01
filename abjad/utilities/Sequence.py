@@ -188,17 +188,15 @@ class Sequence(AbjadValueObject, collections.Sequence):
 
             ..  container:: example expression
 
-                >>> expression_1 = abjad.Expression(name='J')
-                >>> expression_1 = expression_1.sequence()
-                >>> expression_2 = abjad.Expression(name='K')
-                >>> expression_2 = expression_2.sequence()
-                >>> expression = expression_1 + expression_2
+                >>> expression = abjad.Expression(name='J')
+                >>> expression = expression.sequence()
+                >>> expression = expression + [4, 5, 6]
 
-                >>> expression([1, 2, 3], [4, 5, 6])
+                >>> expression([1, 2, 3])
                 Sequence([1, 2, 3, 4, 5, 6])
 
                 >>> expression.get_string()
-                'J + K'
+                'J + [4, 5, 6]'
 
                 >>> markup = expression.get_markup()
                 >>> abjad.show(markup) # doctest: +SKIP
@@ -212,8 +210,7 @@ class Sequence(AbjadValueObject, collections.Sequence):
                                 \bold
                                     J
                                 +
-                                \bold
-                                    K
+                                "[4, 5, 6]"
                             }
                         }
 
@@ -231,18 +228,16 @@ class Sequence(AbjadValueObject, collections.Sequence):
 
             ..  container:: example expression
 
-                >>> expression_1 = abjad.Expression(name='J')
-                >>> expression_1 = expression_1.sequence()
-                >>> expression_2 = abjad.Expression(name='K')
-                >>> expression_2 = expression_2.sequence()
-                >>> expression = expression_1 + expression_2
+                >>> expression = abjad.Expression(name='J')
+                >>> expression = expression.sequence()
+                >>> expression = expression + [4, 5, 6]
                 >>> expression = expression.reverse()
 
-                >>> expression([1, 2, 3], [4, 5, 6])
+                >>> expression([1, 2, 3])
                 Sequence([6, 5, 4, 3, 2, 1])
 
                 >>> expression.get_string()
-                'R(J + K)'
+                'R(J + [4, 5, 6])'
 
                 >>> markup = expression.get_markup()
                 >>> abjad.show(markup) # doctest: +SKIP
@@ -254,18 +249,12 @@ class Sequence(AbjadValueObject, collections.Sequence):
                         \concat
                             {
                                 R
-                                \concat
+                                \line
                                     {
-                                        (
-                                        \line
-                                            {
-                                                \bold
-                                                    J
-                                                +
-                                                \bold
-                                                    K
-                                            }
-                                        )
+                                        \bold
+                                            J
+                                        +
+                                        "[4, 5, 6]"
                                     }
                             }
                         }
@@ -679,17 +668,15 @@ class Sequence(AbjadValueObject, collections.Sequence):
 
             ..  container:: example expression
 
-                >>> expression_1 = abjad.Expression(name='J')
-                >>> expression_1 = expression_1.sequence()
-                >>> expression_2 = abjad.Expression(name='K')
-                >>> expression_2 = expression_2.sequence()
-                >>> expression = expression_1 + expression_2
+                >>> expression = abjad.Expression(name='J')
+                >>> expression = expression.sequence()
+                >>> expression = [1, 2, 3] + expression
 
-                >>> expression([1, 2, 3], [4, 5, 6])
+                >>> expression([4, 5, 6])
                 Sequence([1, 2, 3, 4, 5, 6])
 
                 >>> expression.get_string()
-                'J + K'
+                '[1, 2, 3] + J'
 
                 >>> markup = expression.get_markup()
                 >>> abjad.show(markup) # doctest: +SKIP
@@ -700,11 +687,10 @@ class Sequence(AbjadValueObject, collections.Sequence):
                     \markup {
                         \line
                             {
-                                \bold
-                                    J
+                                "[1, 2, 3]"
                                 +
                                 \bold
-                                    K
+                                    J
                             }
                         }
 

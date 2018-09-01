@@ -125,8 +125,70 @@ class Selection(AbjadValueObject, collections.Sequence):
     ### SPECIAL METHODS ###
 
     def __add__(self, argument) -> typing.Union['Selection', Expression]:
-        """
+        r"""
         Cocatenates ``argument`` to selection.
+
+        ..  container:: example
+
+            Adds selections:
+
+            ..  container:: example
+
+                >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
+                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.show(staff) # doctest: +SKIP
+
+                >>> left = abjad.select(staff).leaves()[:2]
+                >>> right = abjad.select(staff).leaves()[-2:]
+                >>> result = left + right
+
+                >>> for item in result:
+                ...     item
+                ...
+                Note("c'8")
+                Rest('r8')
+                Note("g'8")
+                Note("a'8")
+
+            ..  container:: example expression
+
+                >>> left = abjad.select().leaves()[:2]
+                >>> right = abjad.select().leaves()[-2:]
+                >>> selector = left + right
+                >>> result = selector(staff)
+
+                >>> selector.print(result)
+                Note("c'8")
+                Rest('r8')
+                Note("g'8")
+                Note("a'8")
+
+                >>> selector.color(result)
+                >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff, strict=89)
+                \new Staff
+                \with
+                {
+                    autoBeaming = ##f
+                }
+                {
+                    \abjad-color-music #'red
+                    c'8
+                    \abjad-color-music #'blue
+                    r8
+                    d'8
+                    e'8
+                    r8
+                    f'8
+                    \abjad-color-music #'red
+                    g'8
+                    \abjad-color-music #'blue
+                    a'8
+                }
+
         """
         assert isinstance(argument, collections.Iterable)
         items = self.items + tuple(argument)
@@ -436,6 +498,9 @@ class Selection(AbjadValueObject, collections.Sequence):
         """
         Concatenates selection to ``argument``.
         """
+        if self._expression:
+            raise Exception('BBB')
+            return self._update_expression(inspect.currentframe())
         assert isinstance(argument, collections.Iterable)
         items = tuple(argument) + self.items
         return type(self)(items=items)
