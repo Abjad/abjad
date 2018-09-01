@@ -1,7 +1,7 @@
 import abjad
 
 
-def test_Selection_is_wellformed_01():
+def test_Selection_wellformed_01():
     """
     Well-formedness checking runs correctly against leaves.
     """
@@ -9,7 +9,7 @@ def test_Selection_is_wellformed_01():
     assert abjad.inspect(note).wellformed()
 
 
-def test_Selection_is_wellformed_02():
+def test_Selection_wellformed_02():
     """
     Well-formedness checking runs correctly against containers.
     """

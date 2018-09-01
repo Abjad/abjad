@@ -298,7 +298,7 @@ class Tie(Spanner):
                     strings = self._conventional_tie_strings()
                     strings = self._tag_show(strings)
                     bundle.after.spanners.extend(strings)
-            elif isinstance(leaf._get_leaf(1), prototype):
+            elif isinstance(leaf._leaf(1), prototype):
                 pass
             else:
                 strings = self._conventional_tie_strings()

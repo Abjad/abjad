@@ -74,7 +74,7 @@ class Descendants(AbjadObject, collections.Sequence):
 
     ### INITIALIZER ###
 
-    def __init__(self, component=None, cross_offset=None, include_self=True):
+    def __init__(self, component=None, cross_offset=None):
         import abjad
         assert isinstance(component, (abjad.Component, type(None)))
         self._component = component
@@ -82,8 +82,6 @@ class Descendants(AbjadObject, collections.Sequence):
             components = ()
         else:
             components = list(abjad.select(component).components())
-            if not include_self:
-                components.remove(component)
         result = []
         if cross_offset is None:
             result = components

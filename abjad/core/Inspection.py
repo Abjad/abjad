@@ -20,6 +20,7 @@ from .AfterGraceContainer import AfterGraceContainer
 from .Chord import Chord
 from .Component import Component
 from .Container import Container
+from .Descendants import Descendants
 from .GraceContainer import GraceContainer
 from .Leaf import Leaf
 from .Lineage import Lineage
@@ -349,7 +350,6 @@ class Inspection(AbjadObject):
 
     def contents(
         self,
-        include_self: bool = True,
         ) -> typing.Optional[Selection]:
         r"""
         Gets contents.
@@ -379,23 +379,14 @@ class Inspection(AbjadObject):
             Tuplet(Multiplier(2, 3), "c'8 d'8 e'8")
             Note("f'4")
 
-            >>> for component in abjad.inspect(staff).contents(
-            ...     include_self=False,
-            ...     ):
-            ...     component
-            ...
-            Tuplet(Multiplier(2, 3), "c'8 d'8 e'8")
-            Note("f'4")
-
         """
         if not isinstance(self.client, Component):
             raise Exception('can only get contents of component.')
-        return self.client._get_contents(include_self=include_self)
+        return self.client._get_contents()
 
     def descendants(
         self,
-        include_self: bool = True,
-        ) -> Selection:
+        ) -> typing.Union[Descendants, Selection]:
         r"""
         Gets descendants.
 
@@ -427,30 +418,9 @@ class Inspection(AbjadObject):
             Note("e'8")
             Note("f'4")
 
-            >>> for component in abjad.inspect(staff).descendants(
-            ...     include_self=False,
-            ...     ):
-            ...     component
-            ...
-            Tuplet(Multiplier(2, 3), "c'8 d'8 e'8")
-            Note("c'8")
-            Note("d'8")
-            Note("e'8")
-            Note("f'4")
-
-            >>> for component in abjad.inspect(staff[:1]).descendants(
-            ...     include_self=False,
-            ...     ):
-            ...     component
-            ...
-            Tuplet(Multiplier(2, 3), "c'8 d'8 e'8")
-            Note("c'8")
-            Note("d'8")
-            Note("e'8")
-
         """
         if isinstance(self.client, Component):
-            return self.client._get_descendants(include_self=include_self)
+            return Descendants(self.client)
         descendants: typing.List[Component] = []
         assert isinstance(self.client, Selection)
         for argument in self.client:
@@ -542,6 +512,7 @@ class Inspection(AbjadObject):
             c'4 Clef('alto')
             d'4 Clef('alto')
             e'4 Clef('alto')
+            AcciaccaturaContainer("fs'16") None
             fs'16 Clef('alto')
             f'4 Clef('alto')
 
@@ -823,6 +794,7 @@ class Inspection(AbjadObject):
             c'4 Wrapper(context='Staff', indicator=Clef('alto'), tag=Tag())
             d'4 Wrapper(context='Staff', indicator=Clef('alto'), tag=Tag())
             e'4 Wrapper(context='Staff', indicator=Clef('alto'), tag=Tag())
+            AcciaccaturaContainer("fs'16") None
             fs'16 Wrapper(context='Staff', indicator=Clef('alto'), tag=Tag())
             f'4 Wrapper(context='Staff', indicator=Clef('alto'), tag=Tag())
 
@@ -1088,43 +1060,18 @@ class Inspection(AbjadObject):
 
             Gets leaf ``n`` **from** client when client is a leaf.
 
-            With positive indices:
+            >>> leaf = staff[0][1]
+            >>> leaf
+            Note("d'8")
 
-            >>> first_leaf = staff[0][0]
-            >>> first_leaf
+            >>> abjad.inspect(leaf).leaf(-1)
             Note("c'8")
 
-            >>> for n in range(8):
-            ...     leaf = abjad.inspect(first_leaf).leaf(n)
-            ...     print(n, leaf)
-            ...
-            0 c'8
-            1 d'8
-            2 e'8
-            3 f'8
-            4 None
-            5 None
-            6 None
-            7 None
+            >>> abjad.inspect(leaf).leaf(0)
+            Note("d'8")
 
-            With negative indices:
-
-            >>> last_leaf = staff[0][-1]
-            >>> last_leaf
-            Note("f'8")
-
-            >>> for n in range(0, -8, -1):
-            ...     leaf = abjad.inspect(last_leaf).leaf(n)
-            ...     print(n, leaf)
-            ...
-            0 f'8
-            -1 e'8
-            -2 d'8
-            -3 c'8
-            -4 None
-            -5 None
-            -6 None
-            -7 None
+            >>> abjad.inspect(leaf).leaf(1)
+            Note("e'8")
 
         ..  container:: example
 
@@ -1136,41 +1083,19 @@ class Inspection(AbjadObject):
             >>> first_voice
             Voice("c'8 d'8 e'8 f'8")
 
-            >>> for n in range(8):
-            ...     leaf = abjad.inspect(first_voice).leaf(n)
-            ...     print(n, leaf)
-            ...
-            0 c'8
-            1 d'8
-            2 e'8
-            3 f'8
-            4 None
-            5 None
-            6 None
-            7 None
+            >>> abjad.inspect(first_voice).leaf(-1)
+            Note("f'8")
 
-            With negative indices:
+            >>> abjad.inspect(first_voice).leaf(0)
+            Note("c'8")
 
-            >>> first_voice = staff[0]
-            >>> first_voice
-            Voice("c'8 d'8 e'8 f'8")
-
-            >>> for n in range(-1, -9, -1):
-            ...     leaf = abjad.inspect(first_voice).leaf(n)
-            ...     print(n, leaf)
-            ...
-            -1 f'8
-            -2 e'8
-            -3 d'8
-            -4 c'8
-            -5 None
-            -6 None
-            -7 None
-            -8 None
+            >>> abjad.inspect(first_voice).leaf(1)
+            Note("d'8")
 
         """
+        assert n in (-1, 0, 1), repr(n)
         if isinstance(self.client, Leaf):
-            return self.client._get_leaf(n)
+            return self.client._leaf(n)
         if 0 <= n:
             reverse = False
         else:
@@ -1188,7 +1113,7 @@ class Inspection(AbjadObject):
         """
         if not isinstance(self.client, Component):
             raise Exception('can only get lineage on component.')
-        return self.client._get_lineage()
+        return Lineage(self.client)
 
     def logical_tie(self) -> LogicalTie:
         """
@@ -1215,7 +1140,6 @@ class Inspection(AbjadObject):
     def parentage(
         self,
         *,
-        include_self: bool = True,
         grace_notes: bool = False,
         ) -> Parentage:
         r"""
@@ -1287,10 +1211,7 @@ class Inspection(AbjadObject):
             message = 'can only get parentage on component'
             message += f' (not {self.client}).'
             raise Exception(message)
-        return self.client._get_parentage(
-            include_self=include_self,
-            grace_notes=grace_notes,
-            )
+        return Parentage(self.client, grace_notes=grace_notes)
 
     def pitches(self) -> typing.Optional[PitchSet]:
         """
@@ -1816,88 +1737,6 @@ class Inspection(AbjadObject):
             if i == n:
                 return tuplet
         return None
-
-    def vertical_moment(self, governor: Component = None) -> VerticalMoment:
-        r"""
-        Gets vertical moment.
-
-        ..  container:: example
-
-            >>> score = abjad.Score()
-            >>> tuplet = abjad.Tuplet((4, 3), "d''8 c''8 b'8")
-            >>> score.append(abjad.Staff([tuplet]))
-            >>> staff_group = abjad.StaffGroup(lilypond_type='PianoStaff')
-            >>> staff_group.append(abjad.Staff("a'4 g'4"))
-            >>> staff_group.append(abjad.Staff("f'8 e'8 d'8 c'8"))
-            >>> clef = abjad.Clef('bass')
-            >>> abjad.attach(clef, staff_group[1][0])
-            >>> score.append(staff_group)
-            >>> abjad.show(score) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(score)
-                \new Score
-                <<
-                    \new Staff
-                    {
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \times 4/3 {
-                            d''8
-                            c''8
-                            b'8
-                        }
-                    }
-                    \new PianoStaff
-                    <<
-                        \new Staff
-                        {
-                            a'4
-                            g'4
-                        }
-                        \new Staff
-                        {
-                            \clef "bass"
-                            f'8
-                            e'8
-                            d'8
-                            c'8
-                        }
-                    >>
-                >>
-
-            >>> agent = abjad.inspect(staff_group[1][0])
-            >>> moment = agent.vertical_moment(governor=staff_group)
-            >>> moment.leaves
-            Selection([Note("a'4"), Note("f'8")])
-
-            >>> agent = abjad.inspect(staff_group[1][1])
-            >>> moment = agent.vertical_moment(governor=staff_group)
-            >>> moment.leaves
-            Selection([Note("a'4"), Note("e'8")])
-
-            >>> agent = abjad.inspect(staff_group[1][2])
-            >>> moment = agent.vertical_moment(governor=staff_group)
-            >>> moment.leaves
-            Selection([Note("g'4"), Note("d'8")])
-
-            >>> agent = abjad.inspect(staff_group[1][3])
-            >>> moment = agent.vertical_moment(governor=staff_group)
-            >>> moment.leaves
-            Selection([Note("g'4"), Note("c'8")])
-
-        """
-        if not isinstance(self.client, Component):
-            raise Exception('can only get vertical moment on component.')
-        return self.client._get_vertical_moment(governor=governor)
-
-    def vertical_moment_at(self, offset: Offset) -> VerticalMoment:
-        """
-        Gets vertical moment at ``offset``.
-        """
-        if not isinstance(self.client, Component):
-            raise Exception('can only get vertical moment on component.')
-        return self.client._get_vertical_moment_at(offset)
 
     def wellformed(
         self,

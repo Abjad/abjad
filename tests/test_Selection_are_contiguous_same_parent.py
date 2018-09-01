@@ -63,7 +63,6 @@ def test_Selection_are_contiguous_same_parent_02():
         )
 
     assert abjad.select(voice).are_contiguous_same_parent()
-    assert not abjad.select(voice).are_contiguous_same_parent(allow_orphans=False)
 
     assert voice[:].are_contiguous_same_parent()
 
@@ -75,17 +74,12 @@ def test_Selection_are_contiguous_same_parent_02():
 
 
 def test_Selection_are_contiguous_same_parent_03():
-    """
-    Is true for orphan leaves when allow_orphans is true.
-    Is false for orphan leaves when allow_orphans is false.
-    """
 
     notes = [
         abjad.Note("c'8"),
         abjad.Note("d'8"), abjad.Note("e'8"), abjad.Note("f'8")]
 
     assert abjad.select(notes).are_contiguous_same_parent()
-    assert not abjad.select(notes).are_contiguous_same_parent(allow_orphans=False)
 
 
 def test_Selection_are_contiguous_same_parent_04():

@@ -81,11 +81,10 @@ class Lineage(AbjadObject, collections.Sequence):
         components = []
         if component is not None:
             components.extend(
-                reversed(
-                abjad.inspect(component).parentage(include_self=False)))
+                reversed(abjad.inspect(component).parentage()[1:])
+                )
             components.append(component)
-            components.extend(
-                abjad.inspect(component).descendants(include_self=False))
+            components.extend(abjad.inspect(component).descendants()[1:])
         self._components = components
 
     ### SPECIAL METHODS ###

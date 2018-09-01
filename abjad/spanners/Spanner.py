@@ -358,7 +358,7 @@ class Spanner(AbjadObject):
             return True
         elif leaf is self[-1]:
             return True
-        elif not leaf._get_leaf(-1) and not leaf._get_leaf(1):
+        elif not leaf._leaf(-1) and not leaf._leaf(1):
             return True
         else:
             return False

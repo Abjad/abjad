@@ -1068,8 +1068,6 @@ class Selection(AbjadValueObject, collections.Sequence):
     def are_contiguous_logical_voice(
         self,
         prototype=None,
-        *,
-        allow_orphans=True,
         ) -> typing.Union[bool, Expression]:
         """
         Is true when items in selection are contiguous components in the
@@ -1096,29 +1094,22 @@ class Selection(AbjadValueObject, collections.Sequence):
         assert isinstance(prototype, tuple)
         if len(self) == 0:
             return True
-        all_are_orphans_of_correct_type = True
-        if allow_orphans:
-            for component in self:
-                if not isinstance(component, prototype):
-                    all_are_orphans_of_correct_type = False
-                    break
-                if not abjad_inspect(component).parentage().orphan:
-                    all_are_orphans_of_correct_type = False
-                    break
-            if all_are_orphans_of_correct_type:
-                return True
-        if not allow_orphans:
-            if any(abjad_inspect(x).parentage().orphan for x in self):
-                return False
+        if all(
+            isinstance(_, prototype) and abjad_inspect(_).parentage().orphan
+            for _ in self
+            ):
+            return True
         first = self[0]
         if not isinstance(first, prototype):
             return False
-        first_parentage = abjad_inspect(first).parentage()
+        first_parentage = abjad_inspect(first).parentage(grace_notes=True)
         first_logical_voice = first_parentage.logical_voice()
         first_root = first_parentage.root
         previous = first
         for current in self[1:]:
-            current_parentage = abjad_inspect(current).parentage()
+            current_parentage = abjad_inspect(current).parentage(
+                grace_notes=True
+                )
             current_logical_voice = current_parentage.logical_voice()
             # false if wrong type of component found
             if not isinstance(current, prototype):
@@ -1128,7 +1119,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                 return False
             # false if components are in same score and are discontiguous
             if current_parentage.root == first_root:
-                if not previous._is_immediate_temporal_successor_of(current):
+                if not previous._immediately_precedes(current):
                     return False
             previous = current
         return True
@@ -1150,8 +1141,6 @@ class Selection(AbjadValueObject, collections.Sequence):
     def are_logical_voice(
         self,
         prototype=None,
-        *,
-        allow_orphans=True,
         ) -> typing.Union[bool, Expression]:
         """
         Is true when items in selection are all components in the same
@@ -1176,47 +1165,28 @@ class Selection(AbjadValueObject, collections.Sequence):
         assert isinstance(prototype, tuple)
         if len(self) == 0:
             return True
-        all_are_orphans_of_correct_type = True
-        if allow_orphans:
-            for component in self:
-                if not isinstance(component, prototype):
-                    all_are_orphans_of_correct_type = False
-                    break
-                if not abjad_inspect(component).parentage().orphan:
-                    all_are_orphans_of_correct_type = False
-                    break
-            if all_are_orphans_of_correct_type:
-                return True
+        if all(
+            isinstance(_, prototype) and abjad_inspect(_).parentage().orphan
+            for _ in self
+            ):
+            return True
         first = self[0]
         if not isinstance(first, prototype):
             return False
-        orphan_components = True
-        if not abjad_inspect(first).parentage().orphan:
-            orphan_components = False
         same_logical_voice = True
-        first_signature = abjad_inspect(first).parentage().logical_voice()
+        parentage = abjad_inspect(first).parentage(grace_notes=True)
+        first_logical_voice = parentage.logical_voice()
         for component in self[1:]:
-            parentage = abjad_inspect(component).parentage()
-            if not parentage.orphan:
-                orphan_components = False
-            if not allow_orphans and orphan_components:
-                return False
-            if parentage.logical_voice() != first_signature:
+            parentage = abjad_inspect(component).parentage(grace_notes=True)
+            if parentage.logical_voice() != first_logical_voice:
                 same_logical_voice = False
-            if not allow_orphans and not same_logical_voice:
-                return False
-            if (allow_orphans and
-                not orphan_components and
-                not same_logical_voice
-                ):
+            if not parentage.orphan and not same_logical_voice:
                 return False
         return True
 
     def are_contiguous_same_parent(
         self,
         prototype=None,
-        *,
-        allow_orphans=True,
         ) -> typing.Union[bool, Expression]:
         """
         Is true when items in selection are all contiguous components in
@@ -1241,40 +1211,26 @@ class Selection(AbjadValueObject, collections.Sequence):
         assert isinstance(prototype, tuple)
         if len(self) == 0:
             return True
-        all_are_orphans_of_correct_type = True
-        if allow_orphans:
-            for component in self:
-                if not isinstance(component, prototype):
-                    all_are_orphans_of_correct_type = False
-                    break
-                if not abjad_inspect(component).parentage().orphan:
-                    all_are_orphans_of_correct_type = False
-                    break
-            if all_are_orphans_of_correct_type:
-                return True
+        if all(
+            isinstance(_, prototype) and abjad_inspect(_).parentage().orphan
+            for _ in self
+            ):
+            return True
         first = self[0]
         if not isinstance(first, prototype):
             return False
         first_parent = first._parent
-        if first_parent is None:
-            if allow_orphans:
-                orphan_components = True
-            else:
-                return False
         same_parent = True
         strictly_contiguous = True
         previous = first
         for current in self[1:]:
             if not isinstance(current, prototype):
                 return False
-            if not abjad_inspect(current).parentage().orphan:
-                orphan_components = False
             if current._parent is not first_parent:
                 same_parent = False
-            if not previous._is_immediate_temporal_successor_of(current):
+            if not previous._immediately_precedes(current):
                 strictly_contiguous = False
-            if ((not allow_orphans or
-                (allow_orphans and not orphan_components)) and
+            if (not abjad_inspect(current).parentage().orphan and
                 (not same_parent or not strictly_contiguous)):
                 return False
             previous = current
@@ -1583,6 +1539,307 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \abjad-color-music #'blue
                     g'8
                 }
+
+        ..  container:: example
+
+            Selects both main notes and graces when ``grace_notes=None``:
+
+            ..  container:: example
+
+                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+                >>> container = abjad.GraceContainer("cf''16 bf'16")
+                >>> abjad.attach(container, staff[1])
+                >>> container = abjad.AfterGraceContainer("af'16 gf'16")
+                >>> abjad.attach(container, staff[1])
+                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.show(staff) # doctest: +SKIP
+
+                ..  docs::
+
+                    >>> abjad.f(staff)
+                    \new Staff
+                    \with
+                    {
+                        autoBeaming = ##f
+                    }
+                    {
+                        c'8
+                        \grace {
+                            cf''16
+                            bf'16
+                        }
+                        \afterGrace
+                        d'8
+                        {
+                            af'16
+                            gf'16
+                        }
+                        e'8
+                        f'8
+                    }
+
+                >>> result = abjad.select(staff).components(
+                ...     abjad.Leaf,
+                ...     grace_notes=None,
+                ...     )
+
+                >>> for item in result:
+                ...     item
+                ...
+                Note("c'8")
+                Note("cf''16")
+                Note("bf'16")
+                Note("d'8")
+                Note("af'16")
+                Note("gf'16")
+                Note("e'8")
+                Note("f'8")
+
+            ..  container:: example expression
+
+                >>> selector = abjad.select().components(
+                ...     abjad.Leaf,
+                ...     grace_notes=None,
+                ...     )
+                >>> result = selector(staff)
+
+                >>> selector.print(result)
+                Note("c'8")
+                Note("cf''16")
+                Note("bf'16")
+                Note("d'8")
+                Note("af'16")
+                Note("gf'16")
+                Note("e'8")
+                Note("f'8")
+
+                >>> selector.color(result)
+                >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff, strict=89)
+                \new Staff
+                \with
+                {
+                    autoBeaming = ##f
+                }
+                {
+                    \abjad-color-music #'red
+                    c'8
+                    \grace {
+                        \abjad-color-music #'blue
+                        cf''16
+                        \abjad-color-music #'red
+                        bf'16
+                    }
+                    \afterGrace
+                    \abjad-color-music #'blue
+                    d'8
+                    {
+                        \abjad-color-music #'red
+                        af'16
+                        \abjad-color-music #'blue
+                        gf'16
+                    }
+                    \abjad-color-music #'red
+                    e'8
+                    \abjad-color-music #'blue
+                    f'8
+                }
+
+        ..  container:: example
+
+            Excludes grace notes when ``grace_notes=False``:
+
+            ..  container:: example
+
+                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+                >>> container = abjad.GraceContainer("cf''16 bf'16")
+                >>> abjad.attach(container, staff[1])
+                >>> container = abjad.AfterGraceContainer("af'16 gf'16")
+                >>> abjad.attach(container, staff[1])
+                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.show(staff) # doctest: +SKIP
+
+                ..  docs::
+
+                    >>> abjad.f(staff)
+                    \new Staff
+                    \with
+                    {
+                        autoBeaming = ##f
+                    }
+                    {
+                        c'8
+                        \grace {
+                            cf''16
+                            bf'16
+                        }
+                        \afterGrace
+                        d'8
+                        {
+                            af'16
+                            gf'16
+                        }
+                        e'8
+                        f'8
+                    }
+
+                >>> result = abjad.select(staff).components(
+                ...     abjad.Leaf,
+                ...     grace_notes=False,
+                ...     )
+
+                >>> for item in result:
+                ...     item
+                ...
+                Note("c'8")
+                Note("d'8")
+                Note("e'8")
+                Note("f'8")
+
+            ..  container:: example expression
+
+                >>> selector = abjad.select().components(
+                ...     abjad.Leaf,
+                ...     grace_notes=False,
+                ...     )
+                >>> result = selector(staff)
+
+                >>> selector.print(result)
+                Note("c'8")
+                Note("d'8")
+                Note("e'8")
+                Note("f'8")
+
+                >>> selector.color(result)
+                >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff, strict=89)
+                \new Staff
+                \with
+                {
+                    autoBeaming = ##f
+                }
+                {
+                    \abjad-color-music #'red
+                    c'8
+                    \grace {
+                        cf''16
+                        bf'16
+                    }
+                    \afterGrace
+                    \abjad-color-music #'blue
+                    d'8
+                    {
+                        af'16
+                        gf'16
+                    }
+                    \abjad-color-music #'red
+                    e'8
+                    \abjad-color-music #'blue
+                    f'8
+                }
+
+        ..  container:: example
+
+            Selects only grace notes when ``grace_notes=True``:
+
+            ..  container:: example
+
+                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+                >>> container = abjad.GraceContainer("cf''16 bf'16")
+                >>> abjad.attach(container, staff[1])
+                >>> container = abjad.AfterGraceContainer("af'16 gf'16")
+                >>> abjad.attach(container, staff[1])
+                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.show(staff) # doctest: +SKIP
+
+                ..  docs::
+
+                    >>> abjad.f(staff)
+                    \new Staff
+                    \with
+                    {
+                        autoBeaming = ##f
+                    }
+                    {
+                        c'8
+                        \grace {
+                            cf''16
+                            bf'16
+                        }
+                        \afterGrace
+                        d'8
+                        {
+                            af'16
+                            gf'16
+                        }
+                        e'8
+                        f'8
+                    }
+
+                >>> result = abjad.select(staff).components(
+                ...     abjad.Leaf,
+                ...     grace_notes=True,
+                ...     )
+
+                >>> for item in result:
+                ...     item
+                ...
+                Note("cf''16")
+                Note("bf'16")
+                Note("af'16")
+                Note("gf'16")
+
+            ..  container:: example expression
+
+                >>> selector = abjad.select().components(
+                ...     abjad.Leaf,
+                ...     grace_notes=True,
+                ...     )
+                >>> result = selector(staff)
+
+                >>> selector.print(result)
+                Note("cf''16")
+                Note("bf'16")
+                Note("af'16")
+                Note("gf'16")
+
+                >>> selector.color(result)
+                >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff, strict=89)
+                \new Staff
+                \with
+                {
+                    autoBeaming = ##f
+                }
+                {
+                    c'8
+                    \grace {
+                        \abjad-color-music #'red
+                        cf''16
+                        \abjad-color-music #'blue
+                        bf'16
+                    }
+                    \afterGrace
+                    d'8
+                    {
+                        \abjad-color-music #'red
+                        af'16
+                        \abjad-color-music #'blue
+                        gf'16
+                    }
+                    e'8
+                    f'8
+                }
+
 
         """
         if self._expression:
@@ -3676,7 +3933,7 @@ class Selection(AbjadValueObject, collections.Sequence):
         prototype = None,
         *,
         exclude: typings.Strings = None,
-        grace_notes: bool = False,
+        grace_notes: bool = None,
         head: bool = None,
         pitched: bool = None,
         reverse: bool = False,
@@ -4530,6 +4787,288 @@ class Selection(AbjadValueObject, collections.Sequence):
                     }
                 }
 
+        ..  container:: example
+
+            Selects both main notes and graces when ``grace_notes=None``:
+
+            ..  container:: example
+
+                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+                >>> container = abjad.GraceContainer("cf''16 bf'16")
+                >>> abjad.attach(container, staff[1])
+                >>> container = abjad.AfterGraceContainer("af'16 gf'16")
+                >>> abjad.attach(container, staff[1])
+                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.show(staff) # doctest: +SKIP
+
+                ..  docs::
+
+                    >>> abjad.f(staff)
+                    \new Staff
+                    \with
+                    {
+                        autoBeaming = ##f
+                    }
+                    {
+                        c'8
+                        \grace {
+                            cf''16
+                            bf'16
+                        }
+                        \afterGrace
+                        d'8
+                        {
+                            af'16
+                            gf'16
+                        }
+                        e'8
+                        f'8
+                    }
+
+                >>> result = abjad.select(staff).leaves(grace_notes=None)
+
+                >>> for item in result:
+                ...     item
+                ...
+                Note("c'8")
+                Note("cf''16")
+                Note("bf'16")
+                Note("d'8")
+                Note("af'16")
+                Note("gf'16")
+                Note("e'8")
+                Note("f'8")
+
+            ..  container:: example expression
+
+                >>> selector = abjad.select().leaves(grace_notes=None)
+                >>> result = selector(staff)
+
+                >>> selector.print(result)
+                Note("c'8")
+                Note("cf''16")
+                Note("bf'16")
+                Note("d'8")
+                Note("af'16")
+                Note("gf'16")
+                Note("e'8")
+                Note("f'8")
+
+                >>> selector.color(result)
+                >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff, strict=89)
+                \new Staff
+                \with
+                {
+                    autoBeaming = ##f
+                }
+                {
+                    \abjad-color-music #'red
+                    c'8
+                    \grace {
+                        \abjad-color-music #'blue
+                        cf''16
+                        \abjad-color-music #'red
+                        bf'16
+                    }
+                    \afterGrace
+                    \abjad-color-music #'blue
+                    d'8
+                    {
+                        \abjad-color-music #'red
+                        af'16
+                        \abjad-color-music #'blue
+                        gf'16
+                    }
+                    \abjad-color-music #'red
+                    e'8
+                    \abjad-color-music #'blue
+                    f'8
+                }
+
+        ..  container:: example
+
+            Excludes grace notes when ``grace_notes=False``:
+
+            ..  container:: example
+
+                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+                >>> container = abjad.GraceContainer("cf''16 bf'16")
+                >>> abjad.attach(container, staff[1])
+                >>> container = abjad.AfterGraceContainer("af'16 gf'16")
+                >>> abjad.attach(container, staff[1])
+                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.show(staff) # doctest: +SKIP
+
+                ..  docs::
+
+                    >>> abjad.f(staff)
+                    \new Staff
+                    \with
+                    {
+                        autoBeaming = ##f
+                    }
+                    {
+                        c'8
+                        \grace {
+                            cf''16
+                            bf'16
+                        }
+                        \afterGrace
+                        d'8
+                        {
+                            af'16
+                            gf'16
+                        }
+                        e'8
+                        f'8
+                    }
+
+                >>> result = abjad.select(staff).leaves(grace_notes=False)
+
+                >>> for item in result:
+                ...     item
+                ...
+                Note("c'8")
+                Note("d'8")
+                Note("e'8")
+                Note("f'8")
+
+            ..  container:: example expression
+
+                >>> selector = abjad.select().leaves(grace_notes=False)
+                >>> result = selector(staff)
+
+                >>> selector.print(result)
+                Note("c'8")
+                Note("d'8")
+                Note("e'8")
+                Note("f'8")
+
+                >>> selector.color(result)
+                >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff, strict=89)
+                \new Staff
+                \with
+                {
+                    autoBeaming = ##f
+                }
+                {
+                    \abjad-color-music #'red
+                    c'8
+                    \grace {
+                        cf''16
+                        bf'16
+                    }
+                    \afterGrace
+                    \abjad-color-music #'blue
+                    d'8
+                    {
+                        af'16
+                        gf'16
+                    }
+                    \abjad-color-music #'red
+                    e'8
+                    \abjad-color-music #'blue
+                    f'8
+                }
+
+        ..  container:: example
+
+            Selects only grace notes when ``grace_notes=True``:
+
+            ..  container:: example
+
+                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+                >>> container = abjad.GraceContainer("cf''16 bf'16")
+                >>> abjad.attach(container, staff[1])
+                >>> container = abjad.AfterGraceContainer("af'16 gf'16")
+                >>> abjad.attach(container, staff[1])
+                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.show(staff) # doctest: +SKIP
+
+                ..  docs::
+
+                    >>> abjad.f(staff)
+                    \new Staff
+                    \with
+                    {
+                        autoBeaming = ##f
+                    }
+                    {
+                        c'8
+                        \grace {
+                            cf''16
+                            bf'16
+                        }
+                        \afterGrace
+                        d'8
+                        {
+                            af'16
+                            gf'16
+                        }
+                        e'8
+                        f'8
+                    }
+
+                >>> result = abjad.select(staff).leaves(grace_notes=True)
+
+                >>> for item in result:
+                ...     item
+                ...
+                Note("cf''16")
+                Note("bf'16")
+                Note("af'16")
+                Note("gf'16")
+
+            ..  container:: example expression
+
+                >>> selector = abjad.select().leaves(grace_notes=True)
+                >>> result = selector(staff)
+
+                >>> selector.print(result)
+                Note("cf''16")
+                Note("bf'16")
+                Note("af'16")
+                Note("gf'16")
+
+                >>> selector.color(result)
+                >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff, strict=89)
+                \new Staff
+                \with
+                {
+                    autoBeaming = ##f
+                }
+                {
+                    c'8
+                    \grace {
+                        \abjad-color-music #'red
+                        cf''16
+                        \abjad-color-music #'blue
+                        bf'16
+                    }
+                    \afterGrace
+                    d'8
+                    {
+                        \abjad-color-music #'red
+                        af'16
+                        \abjad-color-music #'blue
+                        gf'16
+                    }
+                    e'8
+                    f'8
+                }
+
         '''
         assert trim in (True, False, enums.Left, None)
         if self._expression:
@@ -4911,6 +5450,288 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \abjad-color-music #'blue
                         d''8
                     }
+                }
+
+        ..  container:: example
+
+            Selects both main notes and graces when ``grace_notes=None``:
+
+            ..  container:: example
+
+                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+                >>> container = abjad.GraceContainer("cf''16 bf'16")
+                >>> abjad.attach(container, staff[1])
+                >>> container = abjad.AfterGraceContainer("af'16 gf'16")
+                >>> abjad.attach(container, staff[1])
+                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.show(staff) # doctest: +SKIP
+
+                ..  docs::
+
+                    >>> abjad.f(staff)
+                    \new Staff
+                    \with
+                    {
+                        autoBeaming = ##f
+                    }
+                    {
+                        c'8
+                        \grace {
+                            cf''16
+                            bf'16
+                        }
+                        \afterGrace
+                        d'8
+                        {
+                            af'16
+                            gf'16
+                        }
+                        e'8
+                        f'8
+                    }
+
+                >>> result = abjad.select(staff).logical_ties(grace_notes=None)
+
+                >>> for item in result:
+                ...     item
+                ...
+                LogicalTie([Note("c'8")])
+                LogicalTie([Note("cf''16")])
+                LogicalTie([Note("bf'16")])
+                LogicalTie([Note("d'8")])
+                LogicalTie([Note("af'16")])
+                LogicalTie([Note("gf'16")])
+                LogicalTie([Note("e'8")])
+                LogicalTie([Note("f'8")])
+
+            ..  container:: example expression
+
+                >>> selector = abjad.select().logical_ties(grace_notes=None)
+                >>> result = selector(staff)
+
+                >>> selector.print(result)
+                LogicalTie([Note("c'8")])
+                LogicalTie([Note("cf''16")])
+                LogicalTie([Note("bf'16")])
+                LogicalTie([Note("d'8")])
+                LogicalTie([Note("af'16")])
+                LogicalTie([Note("gf'16")])
+                LogicalTie([Note("e'8")])
+                LogicalTie([Note("f'8")])
+
+                >>> selector.color(result)
+                >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff, strict=89)
+                \new Staff
+                \with
+                {
+                    autoBeaming = ##f
+                }
+                {
+                    \abjad-color-music #'red
+                    c'8
+                    \grace {
+                        \abjad-color-music #'blue
+                        cf''16
+                        \abjad-color-music #'red
+                        bf'16
+                    }
+                    \afterGrace
+                    \abjad-color-music #'blue
+                    d'8
+                    {
+                        \abjad-color-music #'red
+                        af'16
+                        \abjad-color-music #'blue
+                        gf'16
+                    }
+                    \abjad-color-music #'red
+                    e'8
+                    \abjad-color-music #'blue
+                    f'8
+                }
+
+        ..  container:: example
+
+            Excludes grace notes when ``grace_notes=False``:
+
+            ..  container:: example
+
+                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+                >>> container = abjad.GraceContainer("cf''16 bf'16")
+                >>> abjad.attach(container, staff[1])
+                >>> container = abjad.AfterGraceContainer("af'16 gf'16")
+                >>> abjad.attach(container, staff[1])
+                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.show(staff) # doctest: +SKIP
+
+                ..  docs::
+
+                    >>> abjad.f(staff)
+                    \new Staff
+                    \with
+                    {
+                        autoBeaming = ##f
+                    }
+                    {
+                        c'8
+                        \grace {
+                            cf''16
+                            bf'16
+                        }
+                        \afterGrace
+                        d'8
+                        {
+                            af'16
+                            gf'16
+                        }
+                        e'8
+                        f'8
+                    }
+
+                >>> result = abjad.select(staff).logical_ties(grace_notes=False)
+
+                >>> for item in result:
+                ...     item
+                ...
+                LogicalTie([Note("c'8")])
+                LogicalTie([Note("d'8")])
+                LogicalTie([Note("e'8")])
+                LogicalTie([Note("f'8")])
+
+            ..  container:: example expression
+
+                >>> selector = abjad.select().logical_ties(grace_notes=False)
+                >>> result = selector(staff)
+
+                >>> selector.print(result)
+                LogicalTie([Note("c'8")])
+                LogicalTie([Note("d'8")])
+                LogicalTie([Note("e'8")])
+                LogicalTie([Note("f'8")])
+
+                >>> selector.color(result)
+                >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff, strict=89)
+                \new Staff
+                \with
+                {
+                    autoBeaming = ##f
+                }
+                {
+                    \abjad-color-music #'red
+                    c'8
+                    \grace {
+                        cf''16
+                        bf'16
+                    }
+                    \afterGrace
+                    \abjad-color-music #'blue
+                    d'8
+                    {
+                        af'16
+                        gf'16
+                    }
+                    \abjad-color-music #'red
+                    e'8
+                    \abjad-color-music #'blue
+                    f'8
+                }
+
+        ..  container:: example
+
+            Selects only grace notes when ``grace_notes=True``:
+
+            ..  container:: example
+
+                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+                >>> container = abjad.GraceContainer("cf''16 bf'16")
+                >>> abjad.attach(container, staff[1])
+                >>> container = abjad.AfterGraceContainer("af'16 gf'16")
+                >>> abjad.attach(container, staff[1])
+                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.show(staff) # doctest: +SKIP
+
+                ..  docs::
+
+                    >>> abjad.f(staff)
+                    \new Staff
+                    \with
+                    {
+                        autoBeaming = ##f
+                    }
+                    {
+                        c'8
+                        \grace {
+                            cf''16
+                            bf'16
+                        }
+                        \afterGrace
+                        d'8
+                        {
+                            af'16
+                            gf'16
+                        }
+                        e'8
+                        f'8
+                    }
+
+                >>> result = abjad.select(staff).logical_ties(grace_notes=True)
+
+                >>> for item in result:
+                ...     item
+                ...
+                LogicalTie([Note("cf''16")])
+                LogicalTie([Note("bf'16")])
+                LogicalTie([Note("af'16")])
+                LogicalTie([Note("gf'16")])
+
+            ..  container:: example expression
+
+                >>> selector = abjad.select().logical_ties(grace_notes=True)
+                >>> result = selector(staff)
+
+                >>> selector.print(result)
+                LogicalTie([Note("cf''16")])
+                LogicalTie([Note("bf'16")])
+                LogicalTie([Note("af'16")])
+                LogicalTie([Note("gf'16")])
+
+                >>> selector.color(result)
+                >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff, strict=89)
+                \new Staff
+                \with
+                {
+                    autoBeaming = ##f
+                }
+                {
+                    c'8
+                    \grace {
+                        \abjad-color-music #'red
+                        cf''16
+                        \abjad-color-music #'blue
+                        bf'16
+                    }
+                    \afterGrace
+                    d'8
+                    {
+                        \abjad-color-music #'red
+                        af'16
+                        \abjad-color-music #'blue
+                        gf'16
+                    }
+                    e'8
+                    f'8
                 }
 
         '''
@@ -8158,7 +8979,7 @@ class Selection(AbjadValueObject, collections.Sequence):
         if self._expression:
             return self._update_expression(inspect.currentframe())
         leaves = list(self.leaves())
-        next_leaf = leaves[-1]._get_leaf(1)
+        next_leaf = leaves[-1]._leaf(1)
         if next_leaf is not None:
             leaves.append(next_leaf)
         return type(self)(leaves)
@@ -8296,7 +9117,7 @@ class Selection(AbjadValueObject, collections.Sequence):
         if self._expression:
             return self._update_expression(inspect.currentframe())
         leaves = list(self.leaves())
-        previous_leaf = leaves[0]._get_leaf(-1)
+        previous_leaf = leaves[0]._leaf(-1)
         if previous_leaf is not None:
             leaves.insert(0, previous_leaf)
         return type(self)(leaves)

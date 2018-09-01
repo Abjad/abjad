@@ -52,6 +52,43 @@ class AfterGraceContainer(Container):
     Fill grace containers with notes, rests or chords.
 
     Attach after grace containers to notes, rests or chords.
+
+    ..  container:: example
+
+        REGRESSION. After grace containers format correctly with main note
+        articulations and markup:
+
+        >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
+        >>> string = '#(define afterGraceFraction (cons 15 16))'
+        >>> literal = abjad.LilyPondLiteral(string)
+        >>> abjad.attach(literal, voice[0])
+        >>> after_grace_container = abjad.AfterGraceContainer("c'16 d'16")
+        >>> abjad.attach(after_grace_container, voice[1])
+        >>> leaves = abjad.select(voice).leaves(grace_notes=None)
+        >>> markup = abjad.Markup('Allegro', direction=abjad.Up)
+        >>> abjad.attach(markup, leaves[1])
+        >>> abjad.attach(abjad.Staccato(), leaves[1])
+        >>> abjad.show(voice) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(voice)
+            \new Voice
+            {
+                #(define afterGraceFraction (cons 15 16))
+                c'4
+                \afterGrace
+                d'4
+                ^ \markup { Allegro }
+                \staccato
+                {
+                    c'16
+                    d'16
+                }
+                e'4
+                f'4
+            }
+
     """
 
     ### CLASS VARIABLES ###
@@ -59,7 +96,7 @@ class AfterGraceContainer(Container):
     __documentation_section__ = 'Containers'
 
     __slots__ = (
-        '_carrier',
+        '_main_leaf',
         )
 
     ### INITIALIZER ###
@@ -69,7 +106,7 @@ class AfterGraceContainer(Container):
         components=None,
         tag: str = None,
         ) -> None:
-        self._carrier = None
+        self._main_leaf = None
         Container.__init__(
             self,
             components,
@@ -93,13 +130,13 @@ class AfterGraceContainer(Container):
         if not isinstance(leaf, abjad.Leaf):
             raise TypeError(f'must attach to leaf (not {leaf!r}).')
         leaf._after_grace_container = self
-        self._carrier = leaf
+        self._main_leaf = leaf
 
     def _detach(self):
-        if self._carrier is not None:
-            carrier = self._carrier
-            carrier._after_grace_container = None
-            self._carrier = None
+        if self._main_leaf is not None:
+            main_leaf = self._main_leaf
+            main_leaf._after_grace_container = None
+            self._main_leaf = None
         return self
 
     def _format_open_brackets_slot(self, bundle):

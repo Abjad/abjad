@@ -3,8 +3,11 @@ import itertools
 import numbers
 import typing
 import uqbar.enums
-from abjad.system.Signature import Signature
 from abjad.system.AbjadValueObject import AbjadValueObject
+from abjad.system.FormatSpecification import FormatSpecification
+from abjad.system.Signature import Signature
+from abjad.top.label import label
+from abjad.top.new import new
 
 
 class Expression(AbjadValueObject):
@@ -296,12 +299,10 @@ class Expression(AbjadValueObject):
     def __dict__(self):
         """
         Gets attributes.
-
-        Returns list or strings.
         """
         return dir(self)
 
-    def __eq__(self, argument):
+    def __eq__(self, argument) -> bool:
         """
         Is true when expression storage format equals ``argument`` storage
         format.
@@ -329,11 +330,10 @@ class Expression(AbjadValueObject):
             >>> expression_1 == 'text'
             False
 
-        Returns true or false.
         """
         return super().__eq__(argument)
 
-    def __format__(self, format_specification=''):
+    def __format__(self, format_specification='') -> str:
         """
         Formats expression.
 
@@ -346,7 +346,6 @@ class Expression(AbjadValueObject):
             >>> abjad.f(expression)
             abjad.Expression()
 
-        Returns string.
         """
         return super().__format__(format_specification=format_specification)
 
@@ -387,11 +386,9 @@ class Expression(AbjadValueObject):
         proxy_method = self.__getattr__('__getitem__')
         return proxy_method(argument)
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         """
         Hashes expression.
-
-        Returns integer.
         """
         return super().__hash__()
 
@@ -409,7 +406,7 @@ class Expression(AbjadValueObject):
         proxy_method = self.__getattr__('__radd__')
         return proxy_method(i)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """
         Gets interpreter representation.
 
@@ -422,7 +419,6 @@ class Expression(AbjadValueObject):
             >>> expression
             Expression()
 
-        Returns string.
         """
         return super().__repr__()
 
@@ -433,7 +429,7 @@ class Expression(AbjadValueObject):
         proxy_method = self.__getattr__('__setitem__')
         return proxy_method(i, argument)
 
-    def __str__(self):
+    def __str__(self) -> str:
         """
         Gets string representation of expression.
 
@@ -446,7 +442,6 @@ class Expression(AbjadValueObject):
             >>> str(expression)
             'Expression()'
 
-        Returns string.
         """
         return super().__str__()
 
@@ -458,19 +453,20 @@ class Expression(AbjadValueObject):
         direction=None,
         previous_callback=None,
         ):
-        import abjad
+        from abjad.markups import Markup
+        from abjad.markups import MarkupList
         if previous_callback and previous_callback.next_name:
             name = previous_callback.next_name
         markup = name
         if isinstance(markup, str):
-            markup = abjad.Markup(markup).bold()
+            markup = Markup(markup).bold()
         if not self.callbacks:
             return markup
         callback = self.callbacks[0]
         if (previous_callback and
             previous_callback.is_composite and
             not callback.is_composite):
-            markup = abjad.MarkupList(['(', markup, ')']).concat()
+            markup = MarkupList(['(', markup, ')']).concat()
         markup = callback._make_method_markup(markup)
         previous_precedence = callback.precedence or 0
         previous_callback = callback
@@ -478,7 +474,7 @@ class Expression(AbjadValueObject):
             if previous_callback and previous_callback.next_name:
                 markup = previous_callback.next_name
                 if isinstance(markup, str):
-                    markup = abjad.Markup(markup).bold()
+                    markup = Markup(markup).bold()
             current_precedence = callback.precedence or 0
             parenthesize_argument = False
             if (previous_precedence < current_precedence and
@@ -489,10 +485,10 @@ class Expression(AbjadValueObject):
             if previous_callback and previous_callback.next_name:
                 parenthesize_argument = False
             if parenthesize_argument:
-                markup = abjad.MarkupList(['(', markup, ')']).concat()
+                markup = MarkupList(['(', markup, ')']).concat()
             markup = callback._make_method_markup(markup)
             previous_callback = callback
-        markup = abjad.new(markup, direction=direction)
+        markup = new(markup, direction=direction)
         return markup
 
     def _compile_callback_strings(self, name):
@@ -517,7 +513,6 @@ class Expression(AbjadValueObject):
         return string
 
     def _evaluate(self, *arguments, **keywords):
-        import abjad
         assert self.evaluation_template
         if self.evaluation_template == 'map':
             return self._evaluate_map(*arguments)
@@ -708,10 +703,9 @@ class Expression(AbjadValueObject):
         return template
 
     def _get_format_specification(self):
-        import abjad
         if self.template is None:
             return super()._get_format_specification()
-        return abjad.FormatSpecification(
+        return FormatSpecification(
             client=self,
             repr_is_indented=False,
             storage_format_is_indented=False,
@@ -760,8 +754,8 @@ class Expression(AbjadValueObject):
 
     @staticmethod
     def _make___add___markup(markup, argument):
-        import abjad
-        markup_list = abjad.MarkupList()
+        from abjad.markups import MarkupList
+        markup_list = MarkupList()
         markup_list.append(markup)
         markup_list.append('+')
         markup_list.append(str(argument))
@@ -774,11 +768,12 @@ class Expression(AbjadValueObject):
 
     @staticmethod
     def _make___getitem___markup(markup, argument):
-        import abjad
-        markup_list = abjad.MarkupList()
+        from abjad.markups import Markup
+        from abjad.markups import MarkupList
+        markup_list = MarkupList()
         markup_list.append(markup)
         string = Expression._make_subscript_string(argument, markup=True)
-        subscript_markup = abjad.Markup(string).sub()
+        subscript_markup = Markup(string).sub()
         markup_list.append(subscript_markup)
         markup = markup_list.concat()
         return markup
@@ -790,8 +785,8 @@ class Expression(AbjadValueObject):
 
     @staticmethod
     def _make___radd___markup(markup, argument):
-        import abjad
-        markup_list = abjad.MarkupList()
+        from abjad.markups import MarkupList
+        markup_list = MarkupList()
         markup_list.append(str(argument))
         markup_list.append('+')
         markup_list.append(markup)
@@ -804,12 +799,13 @@ class Expression(AbjadValueObject):
 
     @staticmethod
     def _make_establish_equivalence_markup(lhs, rhs):
-        import abjad
-        markup_list = abjad.MarkupList()
-        lhs = abjad.Markup(lhs).bold()
+        from abjad.markups import Markup
+        from abjad.markups import MarkupList
+        markup_list = MarkupList()
+        lhs = Markup(lhs).bold()
         markup_list.append(lhs)
         markup_list.append('=')
-        assert isinstance(rhs, abjad.Markup)
+        assert isinstance(rhs, Markup)
         markup_list.append(rhs)
         markup = markup_list.line()
         return markup
@@ -824,9 +820,9 @@ class Expression(AbjadValueObject):
 
     @staticmethod
     def _make_expression_add_markup(markups):
-        import abjad
+        from abjad.markups import MarkupList
         assert len(markups) == 2
-        markup_list = abjad.MarkupList()
+        markup_list = MarkupList()
         markup_list.append(markups[0])
         markup_list.append('+')
         markup_list.append(markups[1])
@@ -841,12 +837,12 @@ class Expression(AbjadValueObject):
         method,
         argument_values,
         ):
-        import abjad
+        from abjad.markups import MarkupList
         if argument_list_callback:
             arguments = argument_list_callback(**argument_values)
         else:
             arguments = Expression._wrap_arguments_new(method, argument_values)
-        markup_list = abjad.MarkupList()
+        markup_list = MarkupList()
         markup_list.append(method_name + '(')
         markup_list.append(markup)
         if arguments:
@@ -876,6 +872,7 @@ class Expression(AbjadValueObject):
         return template
 
     def _make_globals(self):
+        # import for evaluation context:
         import abjad
         globals_ = {'abjad': abjad}
         globals_.update(abjad.__dict__.copy())
@@ -918,10 +915,10 @@ class Expression(AbjadValueObject):
             )
 
     def _make_method_markup(self, markup):
-        import abjad
+        from abjad.markups import Markup
         if self.is_initializer:
             assert self.qualified_method_name is None
-            return abjad.Markup(markup)
+            return Markup(markup)
         qualified_method_name = self.qualified_method_name
         assert isinstance(qualified_method_name, str), repr(self)
         if qualified_method_name == 'abjad.Expression.establish_equivalence':
@@ -1003,14 +1000,15 @@ class Expression(AbjadValueObject):
         subscript=None,
         superscript=None,
         ):
-        import abjad
-        markup_list = abjad.MarkupList([method_name, markup])
+        from abjad.markups import Markup
+        from abjad.markups import MarkupList
+        markup_list = MarkupList([method_name, markup])
         if superscript is not None:
-            superscript = abjad.Markup(str(superscript))
+            superscript = Markup(str(superscript))
             superscript = superscript.super()
             markup_list.insert(1, superscript)
         if subscript is not None:
-            subscript = abjad.Markup(str(subscript))
+            subscript = Markup(str(subscript))
             subscript = subscript.sub()
             markup_list.insert(1, subscript)
         markup = markup_list.concat()
@@ -1032,8 +1030,8 @@ class Expression(AbjadValueObject):
 
     @staticmethod
     def _make_subscript_string(i, markup=False):
-        import abjad
-        if isinstance(i, (int, abjad.Pattern)):
+        from .Pattern import Pattern
+        if isinstance(i, (int, Pattern)):
             if markup:
                 subscript_string = '{i}'
             else:
@@ -1256,20 +1254,14 @@ class Expression(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def argument_values(self):
+    def argument_values(self) -> typing.Optional[typing.Dict]:
         """
         Gets argument values.
-
-        Defaults to none.
-
-        Set to dictionary or none.
-
-        Returns dictionary or none.
         """
         return self._argument_values
 
     @property
-    def callbacks(self):
+    def callbacks(self) -> typing.Optional[typing.List]:
         """
         Gets callbacks.
 
@@ -1281,91 +1273,55 @@ class Expression(AbjadValueObject):
             >>> expression.callbacks is None
             True
 
-        Set to callbacks or none.
         """
         if self._callbacks:
             return list(self._callbacks)
+        return None
 
     @property
-    def evaluation_template(self):
+    def evaluation_template(self) -> typing.Optional[str]:
         """
         Gets evaluation template.
-
-        Defaults to none.
-
-        Set to string.
-
-        Returns string.
         """
         return self._evaluation_template
 
     @property
-    def force_return(self):
+    def force_return(self) -> typing.Optional[bool]:
         """
         Is true when expression should return primary input argument.
-
-        Defaults to none.
-
-        Set to true, false or none.
-
-        Returns true, false or none.
         """
         return self._force_return
 
     @property
-    def has_parentheses(self):
+    def has_parentheses(self) -> typing.Optional[bool]:
         """
         Is true when expression has parentheses.
-
-        Defaults to none.
-
-        Set to true, false or none.
-
-        Returns true, false or none.
         """
         return self._has_parentheses
 
     @property
-    def is_composite(self):
+    def is_composite(self) -> typing.Optional[bool]:
         """
         Is true when expression is composite.
-
-        Defaults to none.
-
-        Set to true, false or none.
-
-        Returns true, false or none.
         """
         return self._is_composite
 
     @property
-    def is_initializer(self):
+    def is_initializer(self) -> typing.Optional[bool]:
         """
         Is true when expression is initializer.
-
-        Defaults to none.
-
-        Set to true, false or none.
-
-        Returns true, false or none.
         """
         return self._is_initializer
 
     @property
-    def is_postfix(self):
+    def is_postfix(self) -> typing.Optional[bool]:
         """
         Is true when expression is postfix.
-
-        Defaults to none.
-
-        Set to true, false or none.
-
-        Returns true, false or none.
         """
         return self._is_postfix
 
     @property
-    def is_selector(self):
+    def is_selector(self) -> typing.Optional[bool]:
         """
         Is true when expression is selector.
 
@@ -1387,72 +1343,42 @@ class Expression(AbjadValueObject):
         return False
 
     @property
-    def keywords(self):
+    def keywords(self) -> typing.Dict:
         """
         Gets keywords.
-
-        Defaults to none.
-
-        Set to dictionary or none.
-
-        Returns dictionary or none.
         """
         return self._keywords
 
     @property
-    def lone(self):
+    def lone(self) -> typing.Optional[bool]:
         """
         Is true when expression return a singular get-item.
-
-        Defaults to none.
-
-        Set to true, false or none.
-
-        Returns true, false or none.
         """
         return self._lone
 
     @property
-    def map_operand(self):
+    def map_operand(self) -> typing.Optional['Expression']:
         """
         Gets expression to map.
-
-        Defaults to none.
-
-        Set to expression or none.
-
-        Returns expression or none.
         """
         return self._map_operand
 
     @property
-    def markup_maker_callback(self):
+    def markup_maker_callback(self) -> typing.Optional[str]:
         """
         Gets markup-maker callback.
-
-        Defaults to none.
-
-        Set to string or none.
-
-        Returns string or none.
         """
         return self._markup_maker_callback
 
     @property
-    def module_names(self):
+    def module_names(self) -> typing.Optional[typing.List[str]]:
         """
         Gets module names.
-
-        Defaults to none.
-
-        Set to strings or none.
-
-        Returns strings or none.
         """
         return self._module_names
 
     @property
-    def name(self):
+    def name(self) -> typing.Optional[str]:
         """
         Gets name.
 
@@ -1468,37 +1394,20 @@ class Expression(AbjadValueObject):
             >>> expression.name
             'J'
 
-        Defaults to none.
-
-        Set to string or none.
-
-        Returns string or none.
         """
         return self._name
 
     @property
-    def next_name(self):
+    def next_name(self) -> typing.Optional[str]:
         """
         Gets next name.
-
-        Defaults to none.
-
-        Set to string or none.
-
-        Returns string or none.
         """
         return self._next_name
 
     @property
-    def precedence(self):
+    def precedence(self) -> typing.Optional[int]:
         """
         Gets precedence.
-
-        Defaults to none.
-
-        Set to integer or none.
-
-        Returns integer or none.
         """
         return self._precedence
 
@@ -1516,69 +1425,47 @@ class Expression(AbjadValueObject):
         return self._proxy_class
 
     @property
-    def qualified_method_name(self):
+    def qualified_method_name(self) -> typing.Optional[str]:
         """
         Gets qualified method name of expression.
-
-        Returns string or none.
         """
         return self._qualified_method_name
 
     @property
-    def string_template(self):
+    def string_template(self) -> typing.Optional[str]:
         """
         Gets string template.
-
-        Defaults to none.
-
-        Set to string or none.
-
-        Returns string or none.
         """
         return self._string_template
 
     @property
-    def subclass_hook(self):
+    def subclass_hook(self) -> typing.Optional[str]:
         """
         Gets subclass hook.
 
         Only to be set by expression subclasses.
 
         Set to name of custom evaluation method.
-
-        Defaults to none.
-
-        Set to string or none.
-
-        Returns string or none.
         """
         return self._subclass_hook
 
     @property
-    def subexpressions(self):
+    def subexpressions(self) -> typing.Optional[typing.List['Expression']]:
         """
         Gets subexpressions.
-
-        Defaults to none.
-
-        Set to expressions or none.
-
-        Returns list of expressions or none.
         """
         return self._subexpressions
 
     @property
-    def template(self):
+    def template(self) -> typing.Optional[str]:
         """
         Gets template.
-
-        Returns string or none.
         """
         return self._template
 
     ### PUBLIC METHODS ###
 
-    def append_callback(self, callback):
+    def append_callback(self, callback) -> 'Expression':
         """
         Appends callback to expression.
 
@@ -1601,31 +1488,28 @@ class Expression(AbjadValueObject):
             Expression(evaluation_template='int({})')
             Expression(evaluation_template='{}**2')
 
-        Returns new expression.
         """
-        import abjad
         callbacks = self.callbacks or []
         callbacks = callbacks + [callback]
-        return abjad.new(self, callbacks=callbacks)
+        return new(self, callbacks=callbacks)
 
-    def color(self, argument, colors=None):
-        """Colors ``argument``.
-
-        Returns none.
+    def color(self, argument, colors=None) -> None:
         """
-        import abjad
+        Colors ``argument``.
+        """
+        from .CyclicTuple import CyclicTuple
         if self._is_singular_get_item():
             colors = colors or ['green']
             color = colors[0]
-            abjad.label(argument).color_leaves(color=color)
+            label(argument).color_leaves(color=color)
         else:
             colors = colors or ['red', 'blue']
-            colors = abjad.CyclicTuple(colors)
+            colors = CyclicTuple(colors)
             for i, item in enumerate(argument):
                 color = colors[i]
-                abjad.label(item).color_leaves(color=color)
+                label(item).color_leaves(color=color)
 
-    def establish_equivalence(self, name):
+    def establish_equivalence(self, name) -> 'Expression':
         r"""
         Makes new expression with ``name``.
 
@@ -1672,7 +1556,6 @@ class Expression(AbjadValueObject):
                         }
                     }
 
-        Returns new expression.
         """
         template = '{name} = {{}}'
         template = template.format(name=name)
@@ -1693,7 +1576,6 @@ class Expression(AbjadValueObject):
 
         Returns markup or none.
         """
-        import abjad
         markup = None
         if self.subexpressions:
             markups = []
@@ -1719,10 +1601,10 @@ class Expression(AbjadValueObject):
                 raise ValueError(message)
             markup = self._apply_callback_markup(name)
         if markup is not None:
-            markup = abjad.new(markup, direction=direction)
+            markup = new(markup, direction=direction)
         return markup
 
-    def get_string(self, name=None):
+    def get_string(self, name=None) -> typing.Optional[str]:
         """
         Gets string.
 
@@ -1803,7 +1685,6 @@ class Expression(AbjadValueObject):
                 >>> abjad.Expression.get_string(expression, name='K')
                 'r2(I(K))'
 
-        Returns string or none.
         """
         if self.subexpressions:
             strings = []
@@ -1836,7 +1717,7 @@ class Expression(AbjadValueObject):
                 raise ValueError(message)
             return self._compile_callback_strings(name)
 
-    def label(self, **keywords):
+    def label(self, **keywords) -> 'Expression':
         r"""
         Makes label expression.
 
@@ -1892,13 +1773,12 @@ class Expression(AbjadValueObject):
                         ]
                     }
 
-        Returns expression.
         """
-        import abjad
-        class_ = abjad.Label
+        from abjad.core.Label import Label
+        class_ = Label
         callback = self._make_initializer_callback(class_, **keywords)
         expression = self.append_callback(callback)
-        return abjad.new(expression, proxy_class=class_)
+        return new(expression, proxy_class=class_)
 
     @staticmethod
     def make_callback(
@@ -1915,11 +1795,9 @@ class Expression(AbjadValueObject):
         precedence=None,
         qualified_method_name=None,
         string_template=None,
-        ):
+        ) -> 'Expression':
         """
         Makes callback.
-
-        Returns expression.
         """
         return Expression(
             evaluation_template=evaluation_template,
@@ -1937,7 +1815,7 @@ class Expression(AbjadValueObject):
             string_template=string_template,
             )
 
-    def pitch_class_segment(self, **keywords):
+    def pitch_class_segment(self, **keywords) -> 'Expression':
         r"""
         Makes pitch-class segment expression.
 
@@ -1993,40 +1871,35 @@ class Expression(AbjadValueObject):
                         \override Score.BarLine.transparent = ##f
                     }
 
-        Returns expression.
         """
-        import abjad
-        class_ = abjad.PitchClassSegment
+        from abjad.pitch.PitchClassSegment import PitchClassSegment
+        class_ = PitchClassSegment
         callback = self._make_initializer_callback(
             class_,
             string_template='{}',
             **keywords
             )
         expression = self.append_callback(callback)
-        return abjad.new(expression, proxy_class=class_)
+        return new(expression, proxy_class=class_)
 
     # TODO: add examples
-    def pitch_set(self, **keywords):
+    def pitch_set(self, **keywords) -> 'Expression':
         """
         Makes pitch set expression.
-
-        Returns expression.
         """
-        import abjad
-        class_ = abjad.PitchSet
+        from abjad.pitch.PitchSet import PitchSet
+        class_ = PitchSet
         callback = self._make_initializer_callback(
             class_,
             string_template='{}',
             **keywords
             )
         expression = self.append_callback(callback)
-        return abjad.new(expression, proxy_class=class_)
+        return new(expression, proxy_class=class_)
 
-    def print(self, argument):
+    def print(self, argument) -> None:
         """
         Prints ``argument``.
-
-        Returns none.
         """
         if self._is_singular_get_item():
             print(repr(argument))
@@ -2034,7 +1907,7 @@ class Expression(AbjadValueObject):
             for item in argument:
                 print(repr(item))
 
-    def select(self, **keywords):
+    def select(self, **keywords) -> 'Expression':
         r"""
         Makes select expression.
 
@@ -2081,19 +1954,18 @@ class Expression(AbjadValueObject):
                 Rest('r8')
                 Note("gf'8")
 
-        Returns expression.
         """
-        import abjad
-        class_ = abjad.Selection
+        from abjad.core.Selection import Selection
+        class_ = Selection
         callback = self._make_initializer_callback(class_, **keywords)
         expression = self.append_callback(callback)
-        return abjad.new(
+        return new(
             expression,
             proxy_class=class_,
             template='abjad.select()',
             )
 
-    def sequence(self, **keywords):
+    def sequence(self, **keywords) -> 'Expression':
         """
         Makes sequence expression.
 
@@ -2108,19 +1980,18 @@ class Expression(AbjadValueObject):
             >>> expression([1, 2, 3, [4, 5, [6]]])
             Sequence([4, 5, 6, 3, 2, 1])
 
-        Returns expression.
         """
-        import abjad
-        class_ = abjad.Sequence
+        from .Sequence import Sequence
+        class_ = Sequence
         callback = self._make_initializer_callback(
             class_,
             string_template='{}',
             **keywords
             )
         expression = self.append_callback(callback)
-        return abjad.new(expression, proxy_class=class_)
+        return new(expression, proxy_class=class_)
 
-    def wrap_in_list(self):
+    def wrap_in_list(self) -> 'Expression':
         """
         Makes expression to wrap argument in list.
 
@@ -2141,7 +2012,6 @@ class Expression(AbjadValueObject):
                     ],
                 )
 
-        Returns expression.
         """
         callback = self.make_callback(evaluation_template='[{}]')
         return self.append_callback(callback)

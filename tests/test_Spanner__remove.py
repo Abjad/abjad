@@ -12,24 +12,24 @@ def test_Spanner__remove_01():
     """
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
-    beam = abjad.Beam()
-    abjad.attach(beam, voice[:])
+    slur = abjad.Slur()
+    abjad.attach(slur, voice[:])
 
     assert format(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
             c'8
-            [
+            (
             d'8
             e'8
             f'8
-            ]
+            )
         }
         """
         )
 
-    beam._remove(beam[1])
+    slur._remove(slur[1])
     assert not abjad.inspect(voice).wellformed()
 
 

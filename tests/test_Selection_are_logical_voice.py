@@ -12,7 +12,6 @@ def test_Selection_are_logical_voice_01():
         abjad.Note("c'8"),
         abjad.Note("d'8"), abjad.Note("e'8"), abjad.Note("f'8")]
     assert abjad.select(notes).are_logical_voice()
-    assert not abjad.select(notes).are_logical_voice(allow_orphans=False)
 
 
 def test_Selection_are_logical_voice_02():

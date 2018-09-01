@@ -192,6 +192,7 @@ class Beam(Spanner):
         if beam_rests is not None:
             beam_rests = bool(beam_rests)
         self._beam_rests = beam_rests
+        self._contiguity_constraint = None
         self._direction = direction
         durations = self._coerce_durations(durations)
         self._durations: typing.Tuple[Duration, ...] = durations
@@ -239,8 +240,8 @@ class Beam(Spanner):
 
     def _add_start_and_stops(self, leaf, bundle):
         if self._is_beamable(leaf, beam_rests=self.beam_rests):
-            previous_leaf = leaf._get_leaf(-1)
-            next_leaf = leaf._get_leaf(1)
+            previous_leaf = leaf._leaf(-1)
+            next_leaf = leaf._leaf(1)
             if (leaf is self[0] or
                 not previous_leaf or
                 not self._is_beamable(
@@ -344,11 +345,11 @@ class Beam(Spanner):
         if self._is_my_only(leaf):
             left, right = None, None
         # first
-        elif leaf is self[0] or not leaf._get_leaf(-1):
+        elif leaf is self[0] or not leaf._leaf(-1):
             left = 0
             right = leaf.written_duration.flag_count
         # last
-        elif leaf is self[-1] or leaf._get_leaf(1):
+        elif leaf is self[-1] or leaf._leaf(1):
             left = leaf.written_duration.flag_count
             right = 0
         else:
@@ -364,10 +365,10 @@ class Beam(Spanner):
         Four cases total for beamability of surrounding leaves.
         """
         import abjad
-        previous_leaf = leaf._get_leaf(-1)
+        previous_leaf = leaf._leaf(-1)
         previous_written = previous_leaf.written_duration
         current_written = leaf.written_duration
-        next_leaf = leaf._get_leaf(1)
+        next_leaf = leaf._leaf(1)
         next_written = next_leaf.written_duration
         previous_flag_count = previous_written.flag_count
         current_flag_count = current_written.flag_count
@@ -439,7 +440,7 @@ class Beam(Spanner):
             if self._is_beamable(leaf_, beam_rests=self.beam_rests):
                 beamable_leaf_count += 1
         if self.beam_lone_notes or 2 <= beamable_leaf_count:
-            previous_leaf = leaf._get_leaf(-1)
+            previous_leaf = leaf._leaf(-1)
             if previous_leaf not in self.leaves:
                 previous_leaf = None
             if (previous_leaf in self.leaves and
@@ -450,7 +451,7 @@ class Beam(Spanner):
                 previous_leaf_is_beamable = True
             else:
                 previous_leaf_is_beamable = False
-            next_leaf = leaf._get_leaf(1)
+            next_leaf = leaf._leaf(1)
             if (next_leaf in self.leaves and
                 self._is_beamable(
                     next_leaf,

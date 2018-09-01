@@ -222,7 +222,6 @@ class Component(AbjadObject):
         return False
 
     def _extract(self, scale_contents=False):
-        import abjad
         if scale_contents:
             self._scale_contents(self.multiplier)
         selection = select([self])
@@ -230,12 +229,6 @@ class Component(AbjadObject):
         components = list(getattr(self, 'components', ()))
         parent.__setitem__(slice(start, stop + 1), components)
         return self
-
-#    def _format_absolute_after_slot(self, bundle):
-#        return []
-#
-#    def _format_absolute_before_slot(self, bundle):
-#        return []
 
     def _format_absolute_after_slot(self, bundle):
         result = []
@@ -288,23 +281,18 @@ class Component(AbjadObject):
     def _format_opening_slot(self, bundle):
         pass
 
-    def _get_contents(self, include_self=True):
+    def _get_contents(self):
         result = []
-        if include_self:
-            result.append(self)
+        result.append(self)
         result.extend(getattr(self, 'components', []))
         result = select(result)
         return result
 
-    def _get_descendants(self, include_self=True):
-        import abjad
-        return abjad.Descendants(self, include_self=include_self)
-
     def _get_descendants_starting_with(self):
-        import abjad
+        from .Container import Container
         result = []
         result.append(self)
-        if isinstance(self, abjad.Container):
+        if isinstance(self, Container):
             if self.is_simultaneous:
                 for x in self:
                     result.extend(x._get_descendants_starting_with())
@@ -313,10 +301,10 @@ class Component(AbjadObject):
         return result
 
     def _get_descendants_stopping_with(self):
-        import abjad
+        from .Container import Container
         result = []
         result.append(self)
-        if isinstance(self, abjad.Container):
+        if isinstance(self, Container):
             if self.is_simultaneous:
                 for x in self:
                     result.extend(x._get_descendants_stopping_with())
@@ -327,8 +315,10 @@ class Component(AbjadObject):
     def _get_duration(self, in_seconds=False):
         if in_seconds:
             return self._get_duration_in_seconds()
+        elif self._parent is None:
+            return self._get_preprolated_duration()
         else:
-            parentage = inspect(self).parentage(include_self=False)
+            parentage = inspect(self._parent).parentage()
             return parentage.prolation * self._get_preprolated_duration()
 
     def _get_effective(
@@ -340,16 +330,16 @@ class Component(AbjadObject):
         n=0,
         unwrap=True,
         ):
-        import abjad
+        from .Context import Context
+        from .Voice import Voice
         self._update_now(indicators=True)
         candidate_wrappers = {}
         parentage = inspect(self).parentage(
-            include_self=True,
             grace_notes=True,
             )
         enclosing_voice_name = None
         for component in parentage:
-            if isinstance(component, abjad.Voice):
+            if isinstance(component, Voice):
                 if (enclosing_voice_name is not None and
                     component.name != enclosing_voice_name):
                     continue
@@ -380,7 +370,7 @@ class Component(AbjadObject):
             for wrapper in local_wrappers:
                 offset = wrapper.start_offset
                 candidate_wrappers.setdefault(offset, []).append(wrapper)
-            if not isinstance(component, abjad.Context):
+            if not isinstance(component, Context):
                 continue
             for wrapper in component._dependent_wrappers:
                 if wrapper.annotation:
@@ -413,12 +403,12 @@ class Component(AbjadObject):
         return wrapper
 
     def _get_effective_staff(self):
-        import abjad
+        from .Staff import Staff
         staff_change = self._get_effective(StaffChange)
         if staff_change is not None:
             effective_staff = staff_change.staff
         else:
-            effective_staff = inspect(self).parentage().get(abjad.Staff)
+            effective_staff = inspect(self).parentage().get(Staff)
         return effective_staff
 
     def _get_format_contributions_for_slot(self, slot_identifier, bundle=None):
@@ -461,25 +451,6 @@ class Component(AbjadObject):
             repr_args_values=values,
             storage_format_kwargs_names=[]
             )
-
-    def _get_in_my_logical_voice(self, n, prototype=None):
-        if 0 <= n:
-            generator = iterate(self)._logical_voice(
-                prototype=prototype,
-                reverse=False,
-                )
-            for i, component in enumerate(generator):
-                if i == n:
-                    return component
-        else:
-            n = abs(n)
-            generator = iterate(self)._logical_voice(
-                prototype=prototype,
-                reverse=True,
-                )
-            for i, component in enumerate(generator):
-                if i == n:
-                    return component
 
     def _get_indicator(
         self,
@@ -552,10 +523,6 @@ class Component(AbjadObject):
         self._update_now(indicators=True)
         return self._format_component()
 
-    def _get_lineage(self):
-        import abjad
-        return abjad.Lineage(self)
-
     def _get_markup(self, direction=None):
         markup = self._get_indicators(Markup)
         if direction is enums.Up:
@@ -563,55 +530,6 @@ class Component(AbjadObject):
         elif direction is enums.Down:
             return tuple(x for x in markup if x.direction is enums.Down)
         return markup
-
-    def _get_nth_component_in_time_order_from(self, n):
-        assert mathtools.is_integer_equivalent(n)
-        def next(component):
-            if component is not None:
-                for parent in inspect(component).parentage(
-                    include_self=True):
-                    next_sibling = parent._get_sibling(1)
-                    if next_sibling is not None:
-                        return next_sibling
-        def previous(component):
-            if component is not None:
-                for parent in inspect(component).parentage(
-                    include_self=True):
-                    next_sibling = parent._get_sibling(-1)
-                    if next_sibling is not None:
-                        return next_sibling
-        result = self
-        if 0 < n:
-            for i in range(n):
-                result = next(result)
-        elif n < 0:
-            for i in range(abs(n)):
-                result = previous(result)
-        return result
-
-    def _get_parentage(self, include_self=True, grace_notes=False):
-        import abjad
-        return abjad.Parentage(
-            self,
-            include_self=include_self,
-            grace_notes=grace_notes,
-            )
-
-    def _get_sibling(self, n):
-        if n == 0:
-            return self
-        elif 0 < n:
-            if self._parent is not None:
-                if not self._parent.is_simultaneous:
-                    index = self._parent.index(self)
-                    if index + n < len(self._parent):
-                        return self._parent[index + n]
-        elif n < 0:
-            if self._parent is not None:
-                if not self._parent.is_simultaneous:
-                    index = self._parent.index(self)
-                    if 0 <= index + n:
-                        return self._parent[index + n]
 
     def _get_timespan(self, in_seconds=False):
         if in_seconds:
@@ -625,15 +543,6 @@ class Component(AbjadObject):
         else:
             self._update_now(offsets=True)
             return self._timespan
-
-    def _get_vertical_moment(self, governor=None):
-        offset = inspect(self).timespan().start_offset
-        if governor is None:
-            governor = inspect(self).parentage().root
-        return VerticalMoment(governor, offset)
-
-    def _get_vertical_moment_at(self, offset):
-        return VerticalMoment(self, offset)
 
     def _has_effective_indicator(
         self,
@@ -661,18 +570,19 @@ class Component(AbjadObject):
             )
         return bool(indicators)
 
-    def _is_immediate_temporal_successor_of(self, component):
-        temporal_successors = []
+    def _immediately_precedes(self, component):
+        successors = []
         current = self
         while current is not None:
-            next_sibling = current._get_sibling(1)
-            if next_sibling is None:
+            sibling = current.__sibling_with_graces(1)
+            #sibling = current._sibling(1)
+            if sibling is None:
                 current = current._parent
             else:
-                descendants = next_sibling._get_descendants_starting_with()
-                temporal_successors = descendants
+                descendants = sibling._get_descendants_starting_with()
+                successors = descendants
                 break
-        return component in temporal_successors
+        return component in successors
 
     def _move_indicators(self, recipient_component):
         for wrapper in inspect(self).wrappers():
@@ -680,10 +590,10 @@ class Component(AbjadObject):
             attach(wrapper, recipient_component)
 
     def _remove_from_parent(self):
-        import abjad
+        from .Context import Context
         self._update_later(offsets=True)
-        for component in inspect(self).parentage(include_self=False):
-            if not isinstance(component, abjad.Context):
+        for component in inspect(self).parentage()[1:]:
+            if not isinstance(component, Context):
                 continue
             for wrapper in component._dependent_wrappers[:]:
                 if wrapper.component is self:
@@ -694,8 +604,7 @@ class Component(AbjadObject):
 
     def _remove_named_children_from_parentage(self, name_dictionary):
         if self._parent is not None and name_dictionary:
-            for parent in inspect(self).parentage(
-                include_self=False):
+            for parent in inspect(self).parentage()[1:]:
                 named_children = parent._named_children
                 for name in name_dictionary:
                     for component in name_dictionary[name]:
@@ -704,10 +613,8 @@ class Component(AbjadObject):
                         del named_children[name]
 
     def _restore_named_children_to_parentage(self, name_dictionary):
-        import abjad
         if self._parent is not None and name_dictionary:
-            for parent in inspect(self).parentage(
-                include_self=False):
+            for parent in inspect(self).parentage()[1:]:
                 named_children = parent._named_children
                 for name in name_dictionary:
                     if name in named_children:
@@ -726,13 +633,81 @@ class Component(AbjadObject):
         self._restore_named_children_to_parentage(named_children)
         self._update_later(offsets=True)
 
+    def _sibling(self, n):
+        assert n in (-1, 1), repr(n)
+        for parent in inspect(self).parentage():
+            sibling = parent.__sibling(mathtools.sign(n))
+            if sibling is not None:
+                return sibling
+
+    def __sibling(self, n):
+        assert n in (-1, 1), repr(self, n)
+        if self._parent is None:
+            return None
+        if self._parent.is_simultaneous:
+            return None
+        index = self._parent.index(self) + n
+        if 0 <= index < len(self._parent):
+            return self._parent[index]
+
+    def __sibling_with_graces(self, n):
+        assert n in (-1, 1), repr(self, n)
+        if self._parent is None:
+            return None
+        if self._parent.is_simultaneous:
+            return None
+        if (n == 1 and
+            getattr(self._parent, '_main_leaf', None) and
+            self._parent._main_leaf._grace_container is self._parent and
+            self is self._parent[-1]):
+            return self._parent._main_leaf
+        if (n == 1 and
+            getattr(self._parent, '_main_leaf', None) and
+            self._parent._main_leaf._after_grace_container is self._parent and
+            self is self._parent[-1]):
+            main_leaf = self._parent._main_leaf
+            if main_leaf is main_leaf._parent[-1]:
+                return None
+            index = main_leaf._parent.index(main_leaf)
+            return main_leaf._parent[index + 1]
+        if (n == 1 and
+            getattr(self, '_after_grace_container', None)):
+            return self._after_grace_container[0]
+        if (n == -1 and
+            getattr(self._parent, '_main_leaf', None) and
+            self._parent._main_leaf._after_grace_container is self._parent and
+            self is self._parent[0]):
+            return self._parent._main_leaf
+        if (n == -1 and
+            getattr(self._parent, '_main_leaf', None) and
+            self._parent._main_leaf._grace_container is self._parent and
+            self is self._parent[0]):
+            main_leaf = self._parent._main_leaf
+            if main_leaf is main_leaf._parent[0]:
+                return None
+            index = main_leaf._parent.index(main_leaf)
+            return main_leaf._parent[index - 1]
+        if (n == -1 and
+            getattr(self, '_grace_container', None)):
+            return self._grace_container[-1]
+        index = self._parent.index(self) + n
+        result = None
+        if not(0 <= index < len(self._parent)):
+            return None
+        candidate = self._parent[index]
+        if n == 1 and getattr(candidate, '_grace_container', None):
+            return candidate._grace_container[0]
+        if n == -1 and getattr(candidate, '_after_grace_container', None):
+            return candidate._after_grace_container[-1]
+        return candidate
+
     def _splice(
         self,
         components,
         direction=enums.Right,
         grow_spanners=True,
         ):
-        import abjad
+        from .Leaf import Leaf
         assert all(isinstance(x, Component) for x in components)
         selection = select(self)
         if direction is enums.Right:
@@ -784,7 +759,7 @@ class Component(AbjadObject):
                         leaves = select(component).leaves()
                         for leaf in reversed(leaves):
                             spanner._insert(index, leaf)
-                            if isinstance(component, abjad.Leaf):
+                            if isinstance(component, Leaf):
                                 component._append_spanner(spanner)
             selection = select(self)
             parent, start, stop = \
@@ -806,7 +781,7 @@ class Component(AbjadObject):
 
     def _update_later(self, offsets=False, offsets_in_seconds=False):
         assert offsets or offsets_in_seconds
-        for component in inspect(self).parentage(include_self=True):
+        for component in inspect(self).parentage():
             if offsets:
                 component._offsets_are_current = False
             elif offsets_in_seconds:

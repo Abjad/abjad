@@ -11,24 +11,24 @@ def test_Spanner_insert_01():
     """
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
-    beam = abjad.Beam()
-    abjad.attach(beam, voice[:2])
+    slur = abjad.Slur()
+    abjad.attach(slur, voice[:2])
 
     assert format(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
             c'8
-            [
+            (
             d'8
-            ]
+            )
             e'8
             f'8
         }
         """
         )
 
-    beam._insert(1, voice[:][-1])
+    slur._insert(1, voice[:][-1])
 
     assert not abjad.inspect(voice).wellformed()
 
