@@ -3,9 +3,6 @@ import typing
 from abjad import instruments
 from abjad.indicators.Clef import Clef
 from abjad.indicators.MarginMarkup import MarginMarkup
-from abjad.system import AbjadValueObject
-from abjad.utilities.OrderedDict import OrderedDict
-from abjad.utilities.String import String
 from abjad.lilypondfile.LilyPondFile import LilyPondFile
 from abjad.core.Context import Context
 from abjad.core.MultimeasureRest import MultimeasureRest
@@ -15,6 +12,7 @@ from abjad.core.Skip import Skip
 from abjad.core.Staff import Staff
 from abjad.core.StaffGroup import StaffGroup
 from abjad.core.Voice import Voice
+from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.system.Tag import Tag
 from abjad.system.Tags import Tags
 from abjad.system.Wrapper import Wrapper
@@ -23,11 +21,13 @@ from abjad.top.inspect import inspect
 from abjad.top.iterate import iterate
 from abjad.top.new import new
 from abjad.top.select import select
+from abjad.utilities.OrderedDict import OrderedDict
+from abjad.utilities.String import String
 from .PartAssignment import PartAssignment
 from .PartManifest import PartManifest
 
 
-class ScoreTemplate(AbjadValueObject):
+class ScoreTemplate(object):
     """
     Abstract score template.
     """
@@ -82,6 +82,12 @@ class ScoreTemplate(AbjadValueObject):
             includes=includes,
             )
         return lilypond_file
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PRIVATE METHODS ###
 

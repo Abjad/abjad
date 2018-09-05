@@ -1,11 +1,12 @@
 import copy
 from abjad import enums
-from abjad.system.AbjadValueObject import AbjadValueObject
+from abjad.system.FormatSpecification import FormatSpecification
+from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.utilities import Infinity
 from abjad.utilities import NegativeInfinity
 
 
-class Timespan(AbjadValueObject):
+class Timespan(object):
     """
     Timespan.
 
@@ -105,7 +106,7 @@ class Timespan(AbjadValueObject):
 
         Returns true or false.
         """
-        return super().__eq__(argument)
+        return StorageFormatManager.compare_objects(self, argument)
 
     def __format__(self, format_specification=''):
         """
@@ -387,6 +388,12 @@ class Timespan(AbjadValueObject):
             stop_offset=new_stop_offset,
             )
         return abjad.TimespanList([timespan])
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     def __sub__(self, argument):
         """
@@ -679,6 +686,9 @@ class Timespan(AbjadValueObject):
             return self.intersects_timespan(argument) or \
                 self.stops_when_timespan_starts(argument)
         return False
+
+    def _get_format_specification(self):
+        return FormatSpecification(client=self)
 
     @staticmethod
     def _get_offsets(argument):

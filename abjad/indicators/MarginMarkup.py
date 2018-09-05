@@ -1,11 +1,11 @@
 import typing
-from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.markups import Markup
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
+from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.top.new import new
 
 
-class MarginMarkup(AbjadValueObject):
+class MarginMarkup(object):
     r"""
     Margin markup.
 
@@ -141,7 +141,8 @@ class MarginMarkup(AbjadValueObject):
         return False
 
     def __hash__(self) -> int:
-        r"""Hashes margin markup.
+        r"""
+        Hashes margin markup.
 
         Redefined in tandem with __eq__.
 
@@ -157,7 +158,18 @@ class MarginMarkup(AbjadValueObject):
             True
 
         """
-        return super().__hash__()
+        hash_values = StorageFormatManager(self).get_hash_values()
+        try:
+            result = hash(hash_values)
+        except TypeError:
+            raise TypeError(f'unhashable type: {self}')
+        return result
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PRIVATE PROPERTIES ###
 

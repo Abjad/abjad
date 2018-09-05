@@ -1,8 +1,8 @@
 from abjad import markups
-from abjad.system.AbjadValueObject import AbjadValueObject
+from abjad.system.StorageFormatManager import StorageFormatManager
 
 
-class Retrograde(AbjadValueObject):
+class Retrograde(object):
     """
     Retrograde operator.
 
@@ -104,10 +104,8 @@ class Retrograde(AbjadValueObject):
             >>> abjad.f(operator)
             abjad.CompoundOperator(
                 operators=[
-                    abjad.Retrograde(),
-                    abjad.Transposition(
-                        n=3,
-                        ),
+                    Retrograde(),
+                    Transposition(n=3),
                     ],
                 )
 
@@ -170,6 +168,24 @@ class Retrograde(AbjadValueObject):
             result = result + shard
         return result
 
+    def __eq__(self, argument) -> bool:
+        """
+        Is true when all initialization values of Abjad value object equal
+        the initialization values of ``argument``.
+        """
+        return StorageFormatManager.compare_objects(self, argument)
+
+    def __hash__(self) -> int:
+        """
+        Hashes Abjad value object.
+        """
+        hash_values = StorageFormatManager(self).get_hash_values()
+        try:
+            result = hash(hash_values)
+        except TypeError:
+            raise TypeError(f'unhashable type: {self}')
+        return result
+
     def __radd__(self, operator):
         """
         Right-addition not defined on retrograde.
@@ -186,6 +202,12 @@ class Retrograde(AbjadValueObject):
         message = 'right-addition not defined on {}.'
         message = message.format(type(self).__name__)
         raise NotImplementedError(message)
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     def __str__(self):
         """

@@ -683,8 +683,8 @@ class TwelveToneRow(PitchClassSegment):
 
             Returns numbered pitch-class class:
 
-            >>> type(row.item_class)
-            <class 'abc.ABCMeta'>
+            >>> row.item_class
+            <class 'abjad.pitch.NumberedPitchClass.NumberedPitchClass'>
 
         """
         return super().item_class

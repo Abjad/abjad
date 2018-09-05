@@ -1,11 +1,10 @@
 from abjad import mathtools
-from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.system.StorageFormatManager import StorageFormatManager
 
 
-class StemTremolo(AbjadValueObject):
+class StemTremolo(object):
     """
     Stem tremolo.
 
@@ -62,6 +61,13 @@ class StemTremolo(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
+    def __eq__(self, argument) -> bool:
+        """
+        Is true when all initialization values of Abjad value object equal
+        the initialization values of ``argument``.
+        """
+        return StorageFormatManager.compare_objects(self, argument)
+
     def __format__(self, format_specification='') -> str:
         """
         Formats stem tremolo.
@@ -87,6 +93,23 @@ class StemTremolo(AbjadValueObject):
             return self._get_lilypond_format()
         assert format_specification == 'storage'
         return StorageFormatManager(self).get_storage_format()
+
+    def __hash__(self) -> int:
+        """
+        Hashes Abjad value object.
+        """
+        hash_values = StorageFormatManager(self).get_hash_values()
+        try:
+            result = hash(hash_values)
+        except TypeError:
+            raise TypeError(f'unhashable type: {self}')
+        return result
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     def __str__(self) -> str:
         """

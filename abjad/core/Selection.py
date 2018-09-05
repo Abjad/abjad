@@ -9,7 +9,6 @@ from abjad import mathtools
 from abjad import typings
 from abjad.mathtools.Ratio import Ratio
 from abjad.pitch.PitchSet import PitchSet
-from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.top.attach import attach
@@ -35,7 +34,7 @@ from .Rest import Rest
 from .Skip import Skip
 
 
-class Selection(AbjadValueObject, collections.Sequence):
+class Selection(collections.Sequence):
     r"""
     Selection of items (components / or other selections).
 
@@ -455,7 +454,12 @@ class Selection(AbjadValueObject, collections.Sequence):
 
         Redefined in tandem with __eq__.
         """
-        return super().__hash__()
+        hash_values = StorageFormatManager(self).get_hash_values()
+        try:
+            result = hash(hash_values)
+        except TypeError:
+            raise TypeError(f'unhashable type: {self}')
+        return result
 
     def __illustrate__(self):
         """
@@ -509,7 +513,7 @@ class Selection(AbjadValueObject, collections.Sequence):
         """
         Gets interpreter representation of selection.
         """
-        return super().__repr__()
+        return StorageFormatManager(self).get_repr_format()
 
     def __setstate__(self, state) -> None:
         """

@@ -1,8 +1,7 @@
 import typing
-from abjad.system.AbjadValueObject import AbjadValueObject
 
 
-class BowMotionTechnique(AbjadValueObject):
+class BowMotionTechnique(object):
     """
     Bow motion technique.
 

@@ -11,14 +11,14 @@ from abjad import core
 from abjad import indicators as abjad_indicators
 from abjad import mathtools
 from abjad import system
-from abjad.system.AbjadValueObject import AbjadValueObject
+from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.timespans.Timespan import Timespan
 from abjad.timespans.TimespanList import TimespanList
 from abjad.utilities.TypedCounter import TypedCounter
 from abjad.utilities.TypedList import TypedList
 
 
-class Meter(AbjadValueObject):
+class Meter(object):
     """
     Meter.
 
@@ -389,7 +389,7 @@ class Meter(AbjadValueObject):
 
         Returns true or false.
         """
-        return super().__eq__(argument)
+        return StorageFormatManager.compare_objects(self, argument)
 
     def __format__(self, format_specification=''):
         """
@@ -685,6 +685,12 @@ class Meter(AbjadValueObject):
             stop_offset = mathtools.NonreducedFraction(
                 x.stop_offset).with_denominator(self.denominator)
             yield start_offset, stop_offset
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     def __str__(self) -> str:
         """
@@ -1759,7 +1765,7 @@ class MeterList(TypedList):
         return abjad.meter.Meter
 
 
-class MetricAccentKernel(AbjadValueObject):
+class MetricAccentKernel(object):
     """
     Metric accent kernel.
 
@@ -1847,6 +1853,14 @@ class MetricAccentKernel(AbjadValueObject):
         """
         return super().__eq__(argument)
 
+    def __format__(self, format_specification='') -> str:
+        """
+        Formats object.
+        """
+        if format_specification in ('', 'storage'):
+            return StorageFormatManager(self).get_storage_format()
+        return str(self)
+
     def __hash__(self):
         """
         Hashes metric accent kernel.
@@ -1856,6 +1870,12 @@ class MetricAccentKernel(AbjadValueObject):
         Returns integer.
         """
         return super().__hash__()
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PRIVATE METHODS ###
 
@@ -2094,7 +2114,7 @@ class OffsetCounter(TypedCounter):
         return abjad.Offset
 
 
-class _MeterFittingSession(AbjadValueObject):
+class _MeterFittingSession(object):
     """
     Meter-fitting session.
 

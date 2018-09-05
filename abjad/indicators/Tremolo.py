@@ -1,9 +1,8 @@
 import typing
-from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.system.StorageFormatManager import StorageFormatManager
 
 
-class Tremolo(AbjadValueObject):
+class Tremolo(object):
     r"""
     Tremolo (of exactly two notes).
 
@@ -72,26 +71,12 @@ class Tremolo(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __copy__(self, *arguments) -> 'Tremolo':
+    def __eq__(self, argument) -> bool:
         """
-        Copies tremolo.
-
-        ..  container:: example
-
-            Copies tremolo:
-
-            >>> import copy
-            >>> tremolo_1 = abjad.Tremolo(beam_count=2)
-            >>> tremolo_2 = copy.copy(tremolo_1)
-
-            >>> tremolo_1 == tremolo_2
-            True
-
-            >>> tremolo_1 is not tremolo_2
-            True
-
+        Is true when all initialization values of Abjad value object equal
+        the initialization values of ``argument``.
         """
-        return super().__copy__(*arguments)
+        return StorageFormatManager.compare_objects(self, argument)
 
     def __format__(self, format_specification='') -> str:
         """
@@ -122,6 +107,23 @@ class Tremolo(AbjadValueObject):
             return StorageFormatManager(self).get_storage_format()
         assert format_specification == 'lilypond'
         raise Exception('no LilyPond format available.')
+
+    def __hash__(self) -> int:
+        """
+        Hashes Abjad value object.
+        """
+        hash_values = StorageFormatManager(self).get_hash_values()
+        try:
+            result = hash(hash_values)
+        except TypeError:
+            raise TypeError(f'unhashable type: {self}')
+        return result
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     def __str__(self) -> str:
         """

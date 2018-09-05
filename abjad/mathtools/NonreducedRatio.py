@@ -1,9 +1,9 @@
 import collections
 import fractions
-from abjad.system.AbjadValueObject import AbjadValueObject
+from abjad.system.StorageFormatManager import StorageFormatManager
 
 
-class NonreducedRatio(AbjadValueObject, collections.Sequence):
+class NonreducedRatio(collections.Sequence):
     """
     Nonreduced ratio.
 
@@ -54,7 +54,7 @@ class NonreducedRatio(AbjadValueObject, collections.Sequence):
 
         Returns true or false.
         """
-        return super().__eq__(argument)
+        return StorageFormatManager.compare_objects(self, argument)
 
     def __format__(self, format_specification=''):
         """
@@ -120,6 +120,12 @@ class NonreducedRatio(AbjadValueObject, collections.Sequence):
         Returns integer.
         """
         return len(self._numbers)
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     def __reversed__(self):
         """

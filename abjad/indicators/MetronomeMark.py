@@ -16,7 +16,7 @@ from abjad.markups import MarkupCommand
 from abjad.mathtools.NonreducedFraction import NonreducedFraction
 from abjad.mathtools.Ratio import Ratio
 from abjad.scheme import Scheme
-from abjad.system.AbjadValueObject import AbjadValueObject
+from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.top.new import new
@@ -28,7 +28,7 @@ from .LilyPondLiteral import LilyPondLiteral
 
 
 @functools.total_ordering
-class MetronomeMark(AbjadValueObject):
+class MetronomeMark(object):
     r"""
     MetronomeMark.
 
@@ -522,7 +522,12 @@ class MetronomeMark(AbjadValueObject):
 
         Redefined in tandem with __eq__.
         """
-        return AbjadValueObject.__hash__(self)
+        hash_values = StorageFormatManager(self).get_hash_values()
+        try:
+            result = hash(hash_values)
+        except TypeError:
+            raise TypeError(f'unhashable type: {self}')
+        return result
 
     def __lt__(self, argument) -> bool:
         """
@@ -621,6 +626,12 @@ class MetronomeMark(AbjadValueObject):
         if not isinstance(argument, type(self)):
             raise TypeError(argument)
         return argument.__add__(self)
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     def __rmul__(self, multiplier) -> typing.Optional['MetronomeMark']:
         """
@@ -818,6 +829,9 @@ class MetronomeMark(AbjadValueObject):
             return string
         string = f'{self._dotted}={self.units_per_minute}'
         return string
+
+    def _get_format_specification(self):
+        return FormatSpecification(client=self)
 
     ### PRIVATE METHODS ###
 

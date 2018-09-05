@@ -1,11 +1,11 @@
 import importlib
 import os
 import subprocess
-from abjad import system
-from abjad.system.AbjadValueObject import AbjadValueObject
+from abjad.system.StorageFormatManager import StorageFormatManager
+from abjad.system.TemporaryDirectoryChange import TemporaryDirectoryChange
 
 
-class PackageGitCommitToken(AbjadValueObject):
+class PackageGitCommitToken(object):
     """
     A Python package git commit token.
 
@@ -50,8 +50,14 @@ class PackageGitCommitToken(AbjadValueObject):
         if format_specification in ('', 'lilypond'):
             return self._get_lilypond_format()
         elif format_specification == 'storage':
-            return system.StorageFormatManager(self).get_storage_format()
+            return StorageFormatManager(self).get_storage_format()
         return str(self)
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PRIVATE METHODS ###
 
@@ -69,7 +75,7 @@ class PackageGitCommitToken(AbjadValueObject):
 
     def _get_lilypond_format(self):
         path = self._get_package_path()
-        with system.TemporaryDirectoryChange(path):
+        with TemporaryDirectoryChange(path):
             git_branch = self._get_git_branch()
             git_hash = self._get_git_hash()
             timestamp = self._get_commit_timestamp(git_hash)

@@ -7,7 +7,6 @@ import typing
 from abjad import enums
 from abjad import typings
 from abjad.mathtools.NonreducedFraction import NonreducedFraction
-from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.StorageFormatManager import StorageFormatManager
@@ -15,7 +14,7 @@ from abjad.utilities.String import String
 
 
 
-class Scheme(AbjadValueObject):
+class Scheme(object):
     r"""
     Abjad model of Scheme code.
 
@@ -249,6 +248,15 @@ class Scheme(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
+    def __eq__(self, argument) -> bool:
+        """
+        Is true when all initialization values of Abjad value object equal
+        the initialization values of ``argument``.
+
+        Returns true or false.
+        """
+        return StorageFormatManager.compare_objects(self, argument)
+
     def __format__(self, format_specification='') -> str:
         """
         Formats scheme.
@@ -275,6 +283,12 @@ class Scheme(AbjadValueObject):
             return self._get_lilypond_format()
         assert format_specification == 'storage'
         return StorageFormatManager(self).get_storage_format()
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     def __str__(self) -> str:
         """

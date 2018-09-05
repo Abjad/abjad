@@ -13,33 +13,20 @@ class AbjadValueObject(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __copy__(self, *arguments):
-        """
-        Copies Abjad value object.
-
-        Returns new Abjad value object.
-        """
-        import abjad
-        return abjad.new(self)
-
-    def __eq__(self, argument):
+    def __eq__(self, argument) -> bool:
         """
         Is true when all initialization values of Abjad value object equal
         the initialization values of ``argument``.
-
-        Returns true or false.
         """
-        import abjad
-        return abjad.TestManager.compare_objects(self, argument)
+        from .StorageFormatManager import StorageFormatManager
+        return StorageFormatManager.compare_objects(self, argument)
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         """
         Hashes Abjad value object.
-
-        Returns integer.
         """
-        from abjad import system
-        hash_values = system.StorageFormatManager(self).get_hash_values()
+        from .StorageFormatManager import StorageFormatManager
+        hash_values = StorageFormatManager(self).get_hash_values()
         try:
             result = hash(hash_values)
         except TypeError:

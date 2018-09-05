@@ -21,6 +21,8 @@ def test_abjad___slots___01(class_):
     """
     if inspect.isabstract(class_):
         return
+    if getattr(class_, '_is_abstract', None) is True:
+        return
     attrs = inspect.classify_class_attrs(class_)
     attrs = dict((attr.name, attr) for attr in attrs)
     if '__slots__' not in attrs:

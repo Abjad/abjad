@@ -5,7 +5,6 @@ import typing
 from abjad import mathtools
 from abjad.mathtools.NonreducedFraction import NonreducedFraction
 from abjad.mathtools.Ratio import Ratio
-from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.utilities.Duration import Duration
 from abjad.utilities.Multiplier import Multiplier
 from abjad.utilities.Sequence import Sequence
@@ -14,7 +13,7 @@ from .Note import Note
 from .Selection import Selection
 
 
-class NoteMaker(AbjadValueObject):
+class NoteMaker(object):
     r"""
     Note-maker.
 

@@ -1,8 +1,7 @@
 import abc
-from abjad.system.AbjadValueObject import AbjadValueObject
 
 
-class TimeRelation(AbjadValueObject):
+class TimeRelation(object):
     """
     Time relation.
 

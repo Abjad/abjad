@@ -2,7 +2,6 @@ import copy
 import typing
 from abjad import enums
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
-from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.system.StorageFormatManager import StorageFormatManager
@@ -10,7 +9,7 @@ from abjad.top.attach import attach
 from abjad.utilities.String import String
 
 
-class Articulation(AbjadValueObject):
+class Articulation(object):
     r"""
     Articulation.
 
@@ -165,6 +164,12 @@ class Articulation(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
+    def __eq__(self, argument):
+        """
+        Is true when articulation equals ``argument``.
+        """
+        return StorageFormatManager.compare_objects(self, argument)
+
     def __format__(self, format_specification='') -> str:
         """
         Formats articulation.
@@ -178,6 +183,12 @@ class Articulation(AbjadValueObject):
             assert format_specification == 'lilypond'
             return self._get_lilypond_format()
 
+    def __hash__(self):
+        """
+        Redefined with ``__eq__()``.
+        """
+        return super().__hash__()
+
     def __illustrate__(self):
         """
         Illustrates articulation.
@@ -189,6 +200,12 @@ class Articulation(AbjadValueObject):
         attach(articulation, note)
         lilypond_file = abjad.LilyPondFile.new(note)
         return lilypond_file
+
+    def __repr__(self):
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     def __str__(self) -> str:
         """

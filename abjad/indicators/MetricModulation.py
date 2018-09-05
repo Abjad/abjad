@@ -3,15 +3,15 @@ import typing
 from abjad import enums
 from abjad.markups import Markup
 from abjad.mathtools.Ratio import Ratio
-from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
+from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.top.inspect import inspect
 from abjad.top.new import new
 from abjad.top.select import select
 from abjad.utilities.Duration import Duration
 
 
-class MetricModulation(AbjadValueObject):
+class MetricModulation(object):
     r"""
     Metric modulation.
 
@@ -814,9 +814,9 @@ class MetricModulation(AbjadValueObject):
                 )
 
         """
-        return super().__format__(
-            format_specification=format_specification
-            )
+        if format_specification in ('', 'storage'):
+            return StorageFormatManager(self).get_storage_format()
+        return str(self)
 
     def __hash__(self) -> int:
         """
@@ -824,7 +824,12 @@ class MetricModulation(AbjadValueObject):
 
         Redefined in tandem with __eq__.
         """
-        return super().__hash__()
+        hash_values = StorageFormatManager(self).get_hash_values()
+        try:
+            result = hash(hash_values)
+        except TypeError:
+            raise TypeError(f'unhashable type: {self}')
+        return result
 
     def __illustrate__(self):
         r"""
@@ -928,6 +933,12 @@ class MetricModulation(AbjadValueObject):
         lilypond_file = abjad.LilyPondFile.new()
         lilypond_file.items.append(self._get_markup())
         return lilypond_file
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     def __str__(self) -> str:
         r"""

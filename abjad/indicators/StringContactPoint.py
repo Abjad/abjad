@@ -1,8 +1,8 @@
-from abjad.system.AbjadValueObject import AbjadValueObject
+from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.markups import Markup
 
 
-class StringContactPoint(AbjadValueObject):
+class StringContactPoint(object):
     """
     String contact point.
 
@@ -71,6 +71,32 @@ class StringContactPoint(AbjadValueObject):
         contact_point = str(contact_point)
         assert contact_point in self._contact_points
         self._contact_point = contact_point
+
+    ### SPECIAL METHODS ###
+
+    def __eq__(self, argument) -> bool:
+        """
+        Is true when all initialization values of Abjad value object equal
+        the initialization values of ``argument``.
+        """
+        return StorageFormatManager.compare_objects(self, argument)
+
+    def __hash__(self) -> int:
+        """
+        Hashes Abjad value object.
+        """
+        hash_values = StorageFormatManager(self).get_hash_values()
+        try:
+            result = hash(hash_values)
+        except TypeError:
+            raise TypeError(f'unhashable type: {self}')
+        return result
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PUBLIC PROPERTIES ###
 

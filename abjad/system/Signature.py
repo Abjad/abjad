@@ -1,7 +1,4 @@
-from abjad.system.AbjadValueObject import AbjadValueObject
-
-
-class Signature(AbjadValueObject):
+class Signature(object):
     """
     Signature.
 

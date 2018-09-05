@@ -1,7 +1,4 @@
-from abjad.system.AbjadValueObject import AbjadValueObject
-
-
-class LilyPondLanguageToken(AbjadValueObject):
+class LilyPondLanguageToken(object):
     r"""
     A LilyPond file ``\language`` token.
 

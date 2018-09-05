@@ -2,13 +2,13 @@ import functools
 import math
 import numbers
 import re
-from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.system.FormatSpecification import FormatSpecification
+from abjad.system.StorageFormatManager import StorageFormatManager
 from . import constants
 
 
 @functools.total_ordering
-class Octave(AbjadValueObject):
+class Octave(object):
     """
     Octave.
 
@@ -125,7 +125,7 @@ class Octave(AbjadValueObject):
 
         Returns true or false.
         """
-        return super().__eq__(argument)
+        return StorageFormatManager.compare_objects(self, argument)
 
     def __float__(self):
         """
@@ -141,7 +141,12 @@ class Octave(AbjadValueObject):
 
         Returns integer.
         """
-        return super().__hash__()
+        hash_values = StorageFormatManager(self).get_hash_values()
+        try:
+            result = hash(hash_values)
+        except TypeError:
+            raise TypeError(f'unhashable type: {self}')
+        return result
 
     def __int__(self):
         """
@@ -189,6 +194,12 @@ class Octave(AbjadValueObject):
         except:
             False
         return self.number < argument.number
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     def __str__(self):
         """

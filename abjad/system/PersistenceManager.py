@@ -143,51 +143,51 @@ class PersistenceManager(AbjadObject):
             success,
             )
 
-    def as_module(self, module_file_path, object_name):
-        """
-        Persists client as Python module.
-
-        ..  container:: example
-
-            >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(0, 1),
-            ...     abjad.Timespan(2, 4),
-            ...     abjad.Timespan(6, 8),
-            ...     ])
-            >>> abjad.persist(timespans).as_module( # doctest: +SKIP
-            ...     '~/example.py',
-            ...     'timespans',
-            ...     )
-
-        Returns none.
-        """
-        import abjad
-        agent = abjad.StorageFormatManager(self._client)
-        result = []
-        import_statements = agent.get_import_statements()
-        result.extend(import_statements)
-        result.extend(('', ''))
-        if (
-            '_get_storage_format_specification' in dir(self._client) or
-            '_get_format_specification' in dir(self._client)
-            ):
-            storage_pieces = format(self._client, 'storage')
-        else:
-            try:
-                storage_pieces = agent._dispatch_formatting(self._client)
-                storage_pieces = ''.join(storage_pieces)
-            except ValueError:
-                storage_pieces = repr(self._client)
-        storage_pieces = storage_pieces.splitlines()
-        line = '{} = {}'.format(object_name, storage_pieces[0])
-        result.append(line)
-        result.extend(storage_pieces[1:])
-        result = '\n'.join(result)
-        module_file_path = os.path.expanduser(module_file_path)
-        directory = os.path.dirname(module_file_path)
-        abjad.IOManager._ensure_directory_existence(directory)
-        with open(module_file_path, 'w') as f:
-            f.write(result)
+#    def as_module(self, module_file_path, object_name):
+#        """
+#        Persists client as Python module.
+#
+#        ..  container:: example
+#
+#            >>> timespans = abjad.TimespanList([
+#            ...     abjad.Timespan(0, 1),
+#            ...     abjad.Timespan(2, 4),
+#            ...     abjad.Timespan(6, 8),
+#            ...     ])
+#            >>> abjad.persist(timespans).as_module( # doctest: +SKIP
+#            ...     '~/example.py',
+#            ...     'timespans',
+#            ...     )
+#
+#        Returns none.
+#        """
+#        import abjad
+#        agent = abjad.StorageFormatManager(self._client)
+#        result = []
+#        import_statements = agent.get_import_statements()
+#        result.extend(import_statements)
+#        result.extend(('', ''))
+#        if (
+#            '_get_storage_format_specification' in dir(self._client) or
+#            '_get_format_specification' in dir(self._client)
+#            ):
+#            storage_pieces = format(self._client, 'storage')
+#        else:
+#            try:
+#                storage_pieces = agent._dispatch_formatting(self._client)
+#                storage_pieces = ''.join(storage_pieces)
+#            except ValueError:
+#                storage_pieces = repr(self._client)
+#        storage_pieces = storage_pieces.splitlines()
+#        line = '{} = {}'.format(object_name, storage_pieces[0])
+#        result.append(line)
+#        result.extend(storage_pieces[1:])
+#        result = '\n'.join(result)
+#        module_file_path = os.path.expanduser(module_file_path)
+#        directory = os.path.dirname(module_file_path)
+#        abjad.IOManager._ensure_directory_existence(directory)
+#        with open(module_file_path, 'w') as f:
+#            f.write(result)
 
     def as_pdf(
         self,

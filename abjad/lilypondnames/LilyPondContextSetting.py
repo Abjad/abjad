@@ -1,10 +1,9 @@
 import typing
-from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.scheme import Scheme
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 
 
-class LilyPondContextSetting(AbjadValueObject):
+class LilyPondContextSetting(object):
     r"""
     LilyPond context setting.
 

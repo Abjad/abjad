@@ -2,11 +2,9 @@ import copy
 from ply import lex  # type: ignore
 from abjad import core
 from abjad import exceptions
-from abjad.system.AbjadObject import AbjadObject
 
 
-# TODO: should not inherit from AbjadObject because no slots
-class LilyPondLexicalDefinition(AbjadObject):
+class LilyPondLexicalDefinition(object):
     """
     The lexical definition of LilyPond's syntax.
 

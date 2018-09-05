@@ -1319,8 +1319,8 @@ class PitchClassSegment(Segment):
 
             Returns class:
 
-            >>> type(segment.item_class)
-            <class 'abc.ABCMeta'>
+            >>> segment.item_class
+            <class 'abjad.pitch.NamedPitchClass.NamedPitchClass'>
 
         """
         return super().item_class

@@ -264,33 +264,6 @@ def test_LilyPondGrobNameManager___setattr___10():
 
 def test_LilyPondGrobNameManager___setattr___11():
     """
-    Override LilyPond abjad.DynamicTextSpanner grob.
-    """
-
-    staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    abjad.override(staff).dynamic_text_spanner.staff_padding = 2
-    abjad.override(staff).dynamic_text_spanner.Y_extent = (-1.5, 1.5)
-
-    assert format(staff) == abjad.String.normalize(
-        r"""
-        \new Staff
-        \with
-        {
-            \override DynamicTextSpanner.Y-extent = #'(-1.5 . 1.5)
-            \override DynamicTextSpanner.staff-padding = #2
-        }
-        {
-            c'8
-            d'8
-            e'8
-            f'8
-        }
-        """
-        )
-
-
-def test_LilyPondGrobNameManager___setattr___12():
-    """
     Override LilyPond Hairpin grob.
     """
 
@@ -316,7 +289,7 @@ def test_LilyPondGrobNameManager___setattr___12():
         )
 
 
-def test_LilyPondGrobNameManager___setattr___13():
+def test_LilyPondGrobNameManager___setattr___12():
     """
     Override LilyPond InstrumentName grob.
     """
@@ -350,7 +323,7 @@ def test_LilyPondGrobNameManager___setattr___13():
     assert abjad.inspect(staff).wellformed()
 
 
-def test_LilyPondGrobNameManager___setattr___14():
+def test_LilyPondGrobNameManager___setattr___13():
     """
     Override LilyPond abjad.MetronomeMark grob.
     """
@@ -384,7 +357,7 @@ def test_LilyPondGrobNameManager___setattr___14():
     assert abjad.inspect(score).wellformed()
 
 
-def test_LilyPondGrobNameManager___setattr___15():
+def test_LilyPondGrobNameManager___setattr___14():
     """
     Override LilyPond MultiMeasureRestGrob.
     """
@@ -406,7 +379,7 @@ def test_LilyPondGrobNameManager___setattr___15():
         )
 
 
-def test_LilyPondGrobNameManager___setattr___16():
+def test_LilyPondGrobNameManager___setattr___15():
     """
     Override LilyPond NonMusicalPaperColumn grob.
     """
@@ -438,7 +411,7 @@ def test_LilyPondGrobNameManager___setattr___16():
     assert abjad.inspect(score).wellformed()
 
 
-def test_LilyPondGrobNameManager___setattr___17():
+def test_LilyPondGrobNameManager___setattr___16():
     """
     Override LilyPond abjad.NoteColumn grob.
     """
@@ -456,7 +429,7 @@ def test_LilyPondGrobNameManager___setattr___17():
     assert abjad.inspect(note).wellformed()
 
 
-def test_LilyPondGrobNameManager___setattr___18():
+def test_LilyPondGrobNameManager___setattr___17():
     """
     Override LilyPond abjad.NoteColumn grob.
     """
@@ -483,7 +456,7 @@ def test_LilyPondGrobNameManager___setattr___18():
     assert abjad.inspect(staff).wellformed()
 
 
-def test_LilyPondGrobNameManager___setattr___19():
+def test_LilyPondGrobNameManager___setattr___18():
     """
     Override LilyPond abjad.NoteHead grob.
     """
@@ -503,7 +476,7 @@ def test_LilyPondGrobNameManager___setattr___19():
     assert format(note.note_head) == "cs'"
 
 
-def test_LilyPondGrobNameManager___setattr___20():
+def test_LilyPondGrobNameManager___setattr___19():
     """
     Notehead styles are handled just like all other grob abjad.overrides.
     """
@@ -523,7 +496,7 @@ def test_LilyPondGrobNameManager___setattr___20():
     assert format(note.note_head) == "cs'"
 
 
-def test_LilyPondGrobNameManager___setattr___21():
+def test_LilyPondGrobNameManager___setattr___20():
     """
     Notehead style abjad.overrides are handled just like all other
     note_head grob abjad.overrides, even for note_heads in chords.
@@ -544,7 +517,7 @@ def test_LilyPondGrobNameManager___setattr___21():
         )
 
 
-def test_LilyPondGrobNameManager___setattr___22():
+def test_LilyPondGrobNameManager___setattr___21():
     """
     Notehead shape style abjad.overrides are just normal grob abjad.overrides.
     """
@@ -564,7 +537,7 @@ def test_LilyPondGrobNameManager___setattr___22():
     assert format(note) == "cs'4"
 
 
-def test_LilyPondGrobNameManager___setattr___23():
+def test_LilyPondGrobNameManager___setattr___22():
     """
     Notehead solfege style abjad.overrides are just normal grob abjad.overrides.
     Modern versions of LilyPond now handles solfege abjad.overrides
@@ -586,7 +559,7 @@ def test_LilyPondGrobNameManager___setattr___23():
     assert format(note) == "cs'4"
 
 
-def test_LilyPondGrobNameManager___setattr___24():
+def test_LilyPondGrobNameManager___setattr___23():
     """
     Override LilyPond abjad.NoteHead grob.
     """
@@ -606,7 +579,7 @@ def test_LilyPondGrobNameManager___setattr___24():
     assert format(note) == "cs''4"
 
 
-def test_LilyPondGrobNameManager___setattr___25():
+def test_LilyPondGrobNameManager___setattr___24():
     """
     Override LilyPond abjad.NoteHead grob.
     """
@@ -633,7 +606,7 @@ def test_LilyPondGrobNameManager___setattr___25():
     assert abjad.inspect(voice).wellformed()
 
 
-def test_LilyPondGrobNameManager___setattr___26():
+def test_LilyPondGrobNameManager___setattr___25():
     """
     Override LilyPond RehearsalMark grob.
     """
@@ -660,7 +633,7 @@ def test_LilyPondGrobNameManager___setattr___26():
         )
 
 
-def test_LilyPondGrobNameManager___setattr___27():
+def test_LilyPondGrobNameManager___setattr___26():
     """
     Override LilyPond abjad.Rest grob.
     """
@@ -685,7 +658,7 @@ def test_LilyPondGrobNameManager___setattr___27():
         )
 
 
-def test_LilyPondGrobNameManager___setattr___28():
+def test_LilyPondGrobNameManager___setattr___27():
     """
     Override LilyPond Script grob.
     """
@@ -704,7 +677,7 @@ def test_LilyPondGrobNameManager___setattr___28():
         )
 
 
-def test_LilyPondGrobNameManager___setattr___29():
+def test_LilyPondGrobNameManager___setattr___28():
     """
     Override LilyPond Script grob.
     """
@@ -731,7 +704,7 @@ def test_LilyPondGrobNameManager___setattr___29():
         )
 
 
-def test_LilyPondGrobNameManager___setattr___30():
+def test_LilyPondGrobNameManager___setattr___29():
     """
     Override LilyPond SpacingSpanner grob.
     """
@@ -758,7 +731,7 @@ def test_LilyPondGrobNameManager___setattr___30():
     assert not len(score)
 
 
-def test_LilyPondGrobNameManager___setattr___31():
+def test_LilyPondGrobNameManager___setattr___30():
     """
     Override LilyPond SpanBar grob.
     """
@@ -806,7 +779,7 @@ def test_LilyPondGrobNameManager___setattr___31():
     assert abjad.inspect(score).wellformed()
 
 
-def test_LilyPondGrobNameManager___setattr___32():
+def test_LilyPondGrobNameManager___setattr___31():
     """
     Override LilyPond StaffSymbol grob.
     """
@@ -831,7 +804,7 @@ def test_LilyPondGrobNameManager___setattr___32():
         )
 
 
-def test_LilyPondGrobNameManager___setattr___33():
+def test_LilyPondGrobNameManager___setattr___32():
     """
     Override LilyPond StaffSymbol grob.
     """
@@ -853,7 +826,7 @@ def test_LilyPondGrobNameManager___setattr___33():
         )
 
 
-def test_LilyPondGrobNameManager___setattr___34():
+def test_LilyPondGrobNameManager___setattr___33():
     """
     Override LilyPond StaffSymbol grob.
     """
@@ -879,7 +852,7 @@ def test_LilyPondGrobNameManager___setattr___34():
         )
 
 
-def test_LilyPondGrobNameManager___setattr___35():
+def test_LilyPondGrobNameManager___setattr___34():
     """
     Override LilyPond Stem grob.
     """
@@ -896,7 +869,7 @@ def test_LilyPondGrobNameManager___setattr___35():
         )
 
 
-def test_LilyPondGrobNameManager___setattr___36():
+def test_LilyPondGrobNameManager___setattr___35():
     """
     Override LilyPond StemTremolo grob.
     """
@@ -923,7 +896,7 @@ def test_LilyPondGrobNameManager___setattr___36():
         )
 
 
-def test_LilyPondGrobNameManager___setattr___37():
+def test_LilyPondGrobNameManager___setattr___36():
     """
     Override LilyPond SystemStartBar grob.
     """
@@ -960,7 +933,7 @@ def test_LilyPondGrobNameManager___setattr___37():
         )
 
 
-def test_LilyPondGrobNameManager___setattr___38():
+def test_LilyPondGrobNameManager___setattr___37():
     """
     Override LilyPond Tie grob.
     """
@@ -976,7 +949,7 @@ def test_LilyPondGrobNameManager___setattr___38():
         )
 
 
-def test_LilyPondGrobNameManager___setattr___39():
+def test_LilyPondGrobNameManager___setattr___38():
     """
     Override LilyPond abjad.TimeSignature grob.
     """
@@ -1001,7 +974,7 @@ def test_LilyPondGrobNameManager___setattr___39():
         )
 
 
-def test_LilyPondGrobNameManager___setattr___40():
+def test_LilyPondGrobNameManager___setattr___39():
     """
     Override LilyPond abjad.TimeSignature grob.
     """
@@ -1023,7 +996,7 @@ def test_LilyPondGrobNameManager___setattr___40():
         )
 
 
-def test_LilyPondGrobNameManager___setattr___41():
+def test_LilyPondGrobNameManager___setattr___40():
     """
     Override LilyPond abjad.TimeSignature grob.
     """
@@ -1045,7 +1018,7 @@ def test_LilyPondGrobNameManager___setattr___41():
         )
 
 
-def test_LilyPondGrobNameManager___setattr___42():
+def test_LilyPondGrobNameManager___setattr___41():
     """
     Override LilyPond TrillPitchAccidental grob.
     """
@@ -1072,7 +1045,7 @@ def test_LilyPondGrobNameManager___setattr___42():
         )
 
 
-def test_LilyPondGrobNameManager___setattr___43():
+def test_LilyPondGrobNameManager___setattr___42():
     """
     Override LilyPond abjad.TupletBracket grob.
     """
@@ -1103,7 +1076,7 @@ def test_LilyPondGrobNameManager___setattr___43():
     assert abjad.inspect(voice).wellformed()
 
 
-def test_LilyPondGrobNameManager___setattr___44():
+def test_LilyPondGrobNameManager___setattr___43():
     """
     Override LilyPond abjad.TupletBracket grob.
     """
@@ -1131,7 +1104,7 @@ def test_LilyPondGrobNameManager___setattr___44():
     assert abjad.inspect(voice).wellformed()
 
 
-def test_LilyPondGrobNameManager___setattr___45():
+def test_LilyPondGrobNameManager___setattr___44():
     """
     Override LilyPond abjad.TupletNumber grob.
     """
@@ -1154,7 +1127,7 @@ def test_LilyPondGrobNameManager___setattr___45():
     assert abjad.inspect(tuplet).wellformed()
 
 
-def test_LilyPondGrobNameManager___setattr___46():
+def test_LilyPondGrobNameManager___setattr___45():
     """
     Override LilyPond abjad.TupletNumber grob.
     """
@@ -1185,7 +1158,7 @@ def test_LilyPondGrobNameManager___setattr___46():
     assert abjad.inspect(voice).wellformed()
 
 
-def test_LilyPondGrobNameManager___setattr___47():
+def test_LilyPondGrobNameManager___setattr___46():
     """
     Override LilyPond abjad.TupletNumber grob.
     """
@@ -1213,7 +1186,7 @@ def test_LilyPondGrobNameManager___setattr___47():
     assert abjad.inspect(voice).wellformed()
 
 
-def test_LilyPondGrobNameManager___setattr___48():
+def test_LilyPondGrobNameManager___setattr___47():
     """
     Override LilyPond abjad.TupletNumber grob.
     """
@@ -1244,7 +1217,7 @@ def test_LilyPondGrobNameManager___setattr___48():
     assert abjad.inspect(voice).wellformed()
 
 
-def test_LilyPondGrobNameManager___setattr___49():
+def test_LilyPondGrobNameManager___setattr___48():
     """
     Override LilyPond VerticalAlignment grob.
     """
@@ -1271,7 +1244,7 @@ def test_LilyPondGrobNameManager___setattr___49():
         )
 
 
-def test_LilyPondGrobNameManager___setattr___50():
+def test_LilyPondGrobNameManager___setattr___49():
     """
     Override LilyPond VerticalAxis grob.
     """
@@ -1298,7 +1271,7 @@ def test_LilyPondGrobNameManager___setattr___50():
         )
 
 
-def test_LilyPondGrobNameManager___setattr___51():
+def test_LilyPondGrobNameManager___setattr___50():
     """
     InputSetExpression attribute on erroneous grob name raises exception.
     """

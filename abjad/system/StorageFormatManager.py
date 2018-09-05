@@ -2,10 +2,10 @@ import collections
 import importlib
 import inspect
 import types
-from abjad.system.AbjadValueObject import AbjadValueObject
+from abjad.utilities.OrderedDict import OrderedDict
 
 
-class StorageFormatManager(AbjadValueObject):
+class StorageFormatManager(object):
     """
     Manages Abjad object storage formats.
     """
@@ -58,7 +58,6 @@ class StorageFormatManager(AbjadValueObject):
         as_storage_format=True,
         is_indented=True,
         ):
-        import abjad
         if isinstance(self._client, types.MethodType):
             return self._format_method()
         elif isinstance(self._client, type):
@@ -82,7 +81,7 @@ class StorageFormatManager(AbjadValueObject):
         elif isinstance(self._client, (list, tuple)):
             return self._format_sequence(as_storage_format, is_indented)
         elif isinstance(self._client, (
-            abjad.OrderedDict,
+            OrderedDict,
             collections.OrderedDict,
             )):
             return self._format_ordered_mapping(as_storage_format, is_indented)
@@ -347,95 +346,95 @@ class StorageFormatManager(AbjadValueObject):
         parts.append(class_name)
         return parts
 
-    @staticmethod
-    def _get_types(subject, result=None):
-        """
-        Gets all non-builtin types referenced in storage format.
-
-        ..  container:: example
-
-            >>> flute = abjad.Flute()
-
-            >>> types = abjad.StorageFormatManager._get_types(flute)
-            >>> for type_ in types:
-            ...     type_
-            ...
-            <class 'abjad.instruments.Flute'>
-            <class 'abjad.markups.Markup'>
-            <class 'abjad.pitch.Accidental.Accidental'>
-            <class 'abjad.pitch.NamedPitch.NamedPitch'>
-            <class 'abjad.pitch.Octave.Octave'>
-            <class 'abjad.pitch.PitchRange.PitchRange'>
-
-        ..  container:: example
-
-            >>> dictionary = abjad.OrderedDict(
-            ...     item_class=abjad.NamedPitch,
-            ...     )
-
-            >>> types = abjad.StorageFormatManager._get_types(dictionary)
-            >>> for _ in types:
-            ...     _
-            ...
-            <class 'abjad.pitch.NamedPitch.NamedPitch'>
-            <class 'abjad.utilities.OrderedDict.OrderedDict'>
-
-        Returns tuple of types.
-        """
-        import abjad
-        type_type = type
-        if result is None:
-            result = set()
-        agent = StorageFormatManager(subject)
-        if isinstance(subject, str):
-            return []
-        arguments = []
-        if not isinstance(subject, type_type):
-            if hasattr(subject, '_get_storage_format_specification'):
-                specification = subject._get_storage_format_specification()
-                keyword_argument_names = specification.keyword_argument_names
-                if keyword_argument_names is None:
-                    keyword_argument_names = agent.signature_keyword_names
-                for name in keyword_argument_names:
-                    value = getattr(subject, name)
-                    arguments.append(value)
-                positional_argument_values = specification.positional_argument_values
-                if positional_argument_values is None:
-                    signature = agent.inspect_signature(subject)
-                    names, _, _, _ = signature
-                    positional_argument_values = [
-                        agent._get(name) for name in names]
-                arguments.extend(positional_argument_values)
-            else:
-                arguments.extend(agent.get_template_dict().values())
-        if isinstance(subject, collections.Mapping):
-            for key, value in subject.items():
-                result.update(agent._get_types(key))
-                result.update(agent._get_types(value))
-        elif isinstance(subject, collections.Iterable):
-            for value in subject:
-                result.update(agent._get_types(value))
-        arguments.append(subject)
-        for argument in arguments:
-            if not isinstance(argument, type_type):
-                if argument is not subject:
-                    result.update(agent._get_types(argument))
-            if isinstance(argument, type_type):
-                if not issubclass(argument, abjad.AbjadObject):
-                    continue
-            elif type(argument).__module__ in (
-                'builtins',
-                '__builtin__',
-                'abc',
-                ):
-                continue
-            if not isinstance(argument, type_type):
-                if argument is not subject:
-                    result.update(agent._get_types(argument))
-                argument = type(argument)
-            result.add(argument)
-        result = sorted(result, key=lambda x: (x.__module__, x.__name__))
-        return result
+#    @staticmethod
+#    def _get_types(subject, result=None):
+#        """
+#        Gets all non-builtin types referenced in storage format.
+#
+#        ..  container:: example
+#
+#            >>> flute = abjad.Flute()
+#
+#            >>> types = abjad.StorageFormatManager._get_types(flute)
+#            >>> for type_ in types:
+#            ...     type_
+#            ...
+#            <class 'abjad.instruments.Flute'>
+#            <class 'abjad.markups.Markup'>
+#            <class 'abjad.pitch.Accidental.Accidental'>
+#            <class 'abjad.pitch.NamedPitch.NamedPitch'>
+#            <class 'abjad.pitch.Octave.Octave'>
+#            <class 'abjad.pitch.PitchRange.PitchRange'>
+#
+#        ..  container:: example
+#
+#            >>> dictionary = abjad.OrderedDict(
+#            ...     item_class=abjad.NamedPitch,
+#            ...     )
+#
+#            >>> types = abjad.StorageFormatManager._get_types(dictionary)
+#            >>> for _ in types:
+#            ...     _
+#            ...
+#            <class 'abjad.pitch.NamedPitch.NamedPitch'>
+#            <class 'abjad.utilities.OrderedDict.OrderedDict'>
+#
+#        Returns tuple of types.
+#        """
+#        import abjad
+#        type_type = type
+#        if result is None:
+#            result = set()
+#        agent = StorageFormatManager(subject)
+#        if isinstance(subject, str):
+#            return []
+#        arguments = []
+#        if not isinstance(subject, type_type):
+#            if hasattr(subject, '_get_storage_format_specification'):
+#                specification = subject._get_storage_format_specification()
+#                keyword_argument_names = specification.keyword_argument_names
+#                if keyword_argument_names is None:
+#                    keyword_argument_names = agent.signature_keyword_names
+#                for name in keyword_argument_names:
+#                    value = getattr(subject, name)
+#                    arguments.append(value)
+#                positional_argument_values = specification.positional_argument_values
+#                if positional_argument_values is None:
+#                    signature = agent.inspect_signature(subject)
+#                    names, _, _, _ = signature
+#                    positional_argument_values = [
+#                        agent._get(name) for name in names]
+#                arguments.extend(positional_argument_values)
+#            else:
+#                arguments.extend(agent.get_template_dict().values())
+#        if isinstance(subject, collections.Mapping):
+#            for key, value in subject.items():
+#                result.update(agent._get_types(key))
+#                result.update(agent._get_types(value))
+#        elif isinstance(subject, collections.Iterable):
+#            for value in subject:
+#                result.update(agent._get_types(value))
+#        arguments.append(subject)
+#        for argument in arguments:
+#            if not isinstance(argument, type_type):
+#                if argument is not subject:
+#                    result.update(agent._get_types(argument))
+#            if isinstance(argument, type_type):
+#                if not issubclass(argument, abjad.AbjadObject):
+#                    continue
+#            elif type(argument).__module__ in (
+#                'builtins',
+#                '__builtin__',
+#                'abc',
+#                ):
+#                continue
+#            if not isinstance(argument, type_type):
+#                if argument is not subject:
+#                    result.update(agent._get_types(argument))
+#                argument = type(argument)
+#            result.add(argument)
+#        result = sorted(result, key=lambda x: (x.__module__, x.__name__))
+#        return result
 
     def _get_whitespace(self, is_indented):
         if is_indented:
@@ -467,7 +466,7 @@ class StorageFormatManager(AbjadValueObject):
 
     @property
     def format_specification(self):
-        from abjad import system
+        from .FormatSpecification import FormatSpecification
         if self._format_specification is None:
             if (
                 not isinstance(self._client, type) and
@@ -476,7 +475,7 @@ class StorageFormatManager(AbjadValueObject):
                 self._format_specification = \
                     self._client._get_format_specification()
             else:
-                self._format_specification = system.FormatSpecification(
+                self._format_specification = FormatSpecification(
                     self._client)
         return self._format_specification
 
@@ -504,6 +503,29 @@ class StorageFormatManager(AbjadValueObject):
         return self._signature_positional_names
 
     ### PUBLIC METHODS ###
+
+    @staticmethod
+    def compare_objects(object_one, object_two):
+        """
+        Compares ``object_one`` to ``object_two``.
+
+        Returns true or false.
+        """
+        manager_one = StorageFormatManager(object_one)
+        if manager_one.format_specification.coerce_for_equality:
+            try:
+                object_two = type(object_one)(object_two)
+            except (
+                TypeError,
+                ValueError,
+                ):
+                return False
+        elif not isinstance(object_two, type(object_one)):
+            return False
+        manager_two = StorageFormatManager(object_two)
+        template_1 = manager_one.get_template_dict()
+        template_2 = manager_two.get_template_dict()
+        return template_1 == template_2
 
     def get_class_name_prefix(
         self,
@@ -536,68 +558,68 @@ class StorageFormatManager(AbjadValueObject):
         values.extend(self._make_hashable(v) for k, v in template_items)
         return tuple(values)
 
-    def get_import_statements(self):
-        """
-        Gets import statements.
-
-        ..  container:: example
-
-            >>> flute = abjad.Flute()
-            >>> abjad.f(flute)
-            abjad.Flute(
-                name='flute',
-                short_name='fl.',
-                markup=abjad.Markup(
-                    contents=['Flute'],
-                    ),
-                short_markup=abjad.Markup(
-                    contents=['Fl.'],
-                    ),
-                allowable_clefs=('treble',),
-                context='Staff',
-                middle_c_sounding_pitch=abjad.NamedPitch("c'"),
-                pitch_range=abjad.PitchRange('[C4, D7]'),
-                primary=True,
-                )
-
-            >>> agent = abjad.StorageFormatManager(flute)
-            >>> for line in agent.get_import_statements():
-            ...     line
-            ...
-            'from abjad import instruments'
-            'from abjad import markups'
-            'from abjad import pitch'
-
-        Returns tuple of strings.
-        """
-        import_statements = set()
-        classes = self._get_types(self.client)
-        for class_ in classes:
-            agent = StorageFormatManager(class_)
-            root_package_name = agent.get_root_package_name()
-            if root_package_name in ('builtins', '__builtin__'):
-                continue
-            elif root_package_name == 'abjad':
-                tools_package_name = agent.get_tools_package_name()
-                import_statement = 'from abjad import {}'.format(
-                    tools_package_name)
-            else:
-                import_statement = 'import {}'.format(root_package_name)
-            import_statements.add(import_statement)
-        return tuple(sorted(import_statements))
+#    def get_import_statements(self):
+#        """
+#        Gets import statements.
+#
+#        ..  container:: example
+#
+#            >>> flute = abjad.Flute()
+#            >>> abjad.f(flute)
+#            abjad.Flute(
+#                name='flute',
+#                short_name='fl.',
+#                markup=abjad.Markup(
+#                    contents=['Flute'],
+#                    ),
+#                short_markup=abjad.Markup(
+#                    contents=['Fl.'],
+#                    ),
+#                allowable_clefs=('treble',),
+#                context='Staff',
+#                middle_c_sounding_pitch=abjad.NamedPitch("c'"),
+#                pitch_range=abjad.PitchRange('[C4, D7]'),
+#                primary=True,
+#                )
+#
+#            >>> agent = abjad.StorageFormatManager(flute)
+#            >>> for line in agent.get_import_statements():
+#            ...     line
+#            ...
+#            'from abjad import instruments'
+#            'from abjad import markups'
+#            'from abjad import pitch'
+#
+#        Returns tuple of strings.
+#        """
+#        import_statements = set()
+#        classes = self._get_types(self.client)
+#        for class_ in classes:
+#            agent = StorageFormatManager(class_)
+#            root_package_name = agent.get_root_package_name()
+#            if root_package_name in ('builtins', '__builtin__'):
+#                continue
+#            elif root_package_name == 'abjad':
+#                tools_package_name = agent.get_tools_package_name()
+#                import_statement = 'from abjad import {}'.format(
+#                    tools_package_name)
+#            else:
+#                import_statement = 'import {}'.format(root_package_name)
+#            import_statements.add(import_statement)
+#        return tuple(sorted(import_statements))
 
     def get_repr_format(self):
-        assert hasattr(self._client, '_get_format_specification')
+        #assert hasattr(self._client, '_get_format_specification')
         pieces = self._format_specced_object(
             as_storage_format=False,
             )
         return ''.join(pieces)
 
     def get_repr_keyword_dict(self):
-        from abjad import system
+        from .StorageFormatSpecification import StorageFormatSpecification
         names = self.specification.repr_kwargs_names
         if names is None:
-            specification = system.StorageFormatSpecification(self.client)
+            specification = StorageFormatSpecification(self.client)
             names = specification.keyword_argument_names or ()
         keyword_dict = {}
         for name in names:
@@ -605,10 +627,10 @@ class StorageFormatManager(AbjadValueObject):
         return keyword_dict
 
     def get_repr_positional_values(self):
-        from abjad import system
+        from .StorageFormatSpecification import StorageFormatSpecification
         values = self.specification.repr_args_values
         if values is None:
-            specification = system.StorageFormatSpecification(self.client)
+            specification = StorageFormatSpecification(self.client)
             values = specification.positional_argument_values or ()
         return tuple(values)
 
@@ -616,11 +638,11 @@ class StorageFormatManager(AbjadValueObject):
         return self._get_module_path_parts(self._client)[0]
 
     def get_storage_format(self):
-        assert (
-            '_get_storage_format_specification' in dir(self._client) or
-            hasattr(self._client, '_get_storage_format_specification') or
-            hasattr(self._client, '_get_format_specification')
-            )
+#        assert (
+#            '_get_storage_format_specification' in dir(self._client) or
+#            hasattr(self._client, '_get_storage_format_specification') or
+#            hasattr(self._client, '_get_format_specification')
+#            )
         pieces = self._format_specced_object(
             as_storage_format=True,
             )
@@ -628,13 +650,13 @@ class StorageFormatManager(AbjadValueObject):
         return result
 
     def get_storage_format_keyword_dict(self):
-        from abjad import system
+        from .StorageFormatSpecificat import StorageFormatSpecification
         names = self.specification.storage_format_kwargs_names
         if names is None:
             if hasattr(self.client, '_get_storage_format_specification'):
                 specification = self.client._get_storage_format_specification()
             else:
-                specification = system.StorageFormatSpecification(self.client)
+                specification = StorageFormatSpecification(self.client)
             names = specification.keyword_argument_names or ()
         keyword_dict = {}
         for name in names:
@@ -642,13 +664,13 @@ class StorageFormatManager(AbjadValueObject):
         return keyword_dict
 
     def get_storage_format_positional_values(self):
-        from abjad import system
+        from .StorageFormatSpecification import StorageFormatSpecification
         values = self.specification.storage_format_args_values
         if values is None:
             if hasattr(self.client, '_get_storage_format_specification'):
                 specification = self.client._get_storage_format_specification()
             else:
-                specification = system.StorageFormatSpecification(self.client)
+                specification = StorageFormatSpecification(self.client)
             values = specification.positional_argument_values or ()
         return tuple(values)
 

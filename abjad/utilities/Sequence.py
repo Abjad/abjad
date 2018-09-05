@@ -9,13 +9,14 @@ import sys
 import typing
 from abjad import enums
 from abjad import mathtools
-from abjad.system.AbjadValueObject import AbjadValueObject
+from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.Signature import Signature
+from abjad.system.StorageFormatManager import StorageFormatManager
 from .CyclicTuple import CyclicTuple
 from .Expression import Expression
 
 
-class Sequence(AbjadValueObject, collections.Sequence):
+class Sequence(collections.Sequence):
     """
     Sequence.
 
@@ -288,7 +289,7 @@ class Sequence(AbjadValueObject, collections.Sequence):
             False
 
         """
-        return super().__eq__(argument)
+        return StorageFormatManager.compare_objects(self, argument)
 
     def __format__(self, format_specification='') -> str:
         """
@@ -321,7 +322,9 @@ class Sequence(AbjadValueObject, collections.Sequence):
                 )
 
         """
-        return super().__format__(format_specification=format_specification)
+        if format_specification in ('', 'storage'):
+            return StorageFormatManager(self).get_storage_format()
+        return str(self)
 
     @Signature(
         markup_maker_callback='_make___getitem___markup',
@@ -549,10 +552,13 @@ class Sequence(AbjadValueObject, collections.Sequence):
     def __hash__(self) -> int:
         """
         Hashes sequence.
-
-        Required to be explicitly redefined on Python 3 if __eq__ changes.
         """
-        return super().__hash__()
+        hash_values = StorageFormatManager(self).get_hash_values()
+        try:
+            result = hash(hash_values)
+        except TypeError:
+            raise TypeError(f'unhashable type: {self}')
+        return result
 
     def __len__(self) -> int:
         """
@@ -769,6 +775,9 @@ class Sequence(AbjadValueObject, collections.Sequence):
                 depth_ = depth - 1
                 for item_ in Sequence._flatten_helper(item, classes, depth_):
                     yield item_
+
+    def _get_format_specification(self):
+        return FormatSpecification(client=self)
 
     @staticmethod
     def _make_map_markup(markup, operand):

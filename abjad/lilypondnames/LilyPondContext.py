@@ -1,10 +1,10 @@
 import typing
-from abjad.system.AbjadValueObject import AbjadValueObject
 from .LilyPondEngraver import LilyPondEngraver
 from .LilyPondGrob import LilyPondGrob
+from abjad.system.StorageFormatManager import StorageFormatManager
 
 
-class LilyPondContext(AbjadValueObject):
+class LilyPondContext(object):
     r"""
     LilyPond context.
 
@@ -94,6 +94,12 @@ class LilyPondContext(AbjadValueObject):
         from abjad.ly import contexts
         assert name in contexts
         self._name = name
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PUBLIC PROPERTIES ###
 
@@ -918,9 +924,7 @@ class LilyPondContext(AbjadValueObject):
             ...     removes=['Note_heads_engraver'],
             ...     )
             >>> print(format(custom_context))
-            abjad.LilyPondContext(
-                name='BowingStaff',
-                )
+            LilyPondContext(name='BowingStaff')
 
             >>> custom_context.is_custom
             True

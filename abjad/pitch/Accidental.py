@@ -2,13 +2,13 @@ import functools
 import numbers
 from abjad import enums
 from abjad import mathtools
-from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.system.FormatSpecification import FormatSpecification
+from abjad.system.StorageFormatManager import StorageFormatManager
 from . import constants
 
 
 @functools.total_ordering
-class Accidental(AbjadValueObject):
+class Accidental(object):
     """
     Accidental.
 
@@ -197,6 +197,24 @@ class Accidental(AbjadValueObject):
             raise TypeError(message)
         return argument._apply_accidental(self)
 
+    def __eq__(self, argument) -> bool:
+        """
+        Is true when all initialization values of Abjad value object equal
+        the initialization values of ``argument``.
+        """
+        return StorageFormatManager.compare_objects(self, argument)
+
+    def __hash__(self) -> int:
+        """
+        Hashes Abjad value object.
+        """
+        hash_values = StorageFormatManager(self).get_hash_values()
+        try:
+            result = hash(hash_values)
+        except TypeError:
+            raise TypeError(f'unhashable type: {self}')
+        return result
+
     def __lt__(self, argument):
         """
         Is true when `argument` is an accidental with semitones greater
@@ -272,6 +290,12 @@ class Accidental(AbjadValueObject):
         Raises not implemented error on accidental.
         """
         raise NotImplementedError
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     def __str__(self):
         """

@@ -1,7 +1,7 @@
-from abjad.system.AbjadValueObject import AbjadValueObject
+from abjad.system.StorageFormatManager import StorageFormatManager
 
 
-class Infinity(AbjadValueObject):
+class Infinity(object):
     """
     Infinity.
 
@@ -47,13 +47,11 @@ class Infinity(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, argument):
+    def __eq__(self, argument) -> bool:
         """
         Is true when ``argument`` is also infinity.
-
-        Returns true or false.
         """
-        return super().__eq__(argument)
+        return StorageFormatManager.compare_objects(self, argument)
 
     def __float__(self):
         """
@@ -83,11 +81,14 @@ class Infinity(AbjadValueObject):
         """
         Hashes infinity.
 
-        Required to be explicitly redefined on Python 3 if __eq__ changes.
-
-        Returns integer.
+        Redefined with ``__eq__()``.
         """
-        return super().__hash__()
+        hash_values = StorageFormatManager(self).get_hash_values()
+        try:
+            result = hash(hash_values)
+        except TypeError:
+            raise TypeError(f'unhashable type: {self}')
+        return result
 
     def __le__(self, argument):
         """
@@ -104,6 +105,12 @@ class Infinity(AbjadValueObject):
         Returns true or false.
         """
         return self._value < argument
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     def __sub__(self, argument):
         """

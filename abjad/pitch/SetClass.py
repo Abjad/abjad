@@ -1,8 +1,8 @@
 from abjad import mathtools
-from abjad.system.AbjadValueObject import AbjadValueObject
+from abjad.system.StorageFormatManager import StorageFormatManager
 
 
-class SetClass(AbjadValueObject):
+class SetClass(object):
     """
     Set-class.
 
@@ -992,6 +992,41 @@ class SetClass(AbjadValueObject):
         self._prime_form = prime_form
 
     ### SPECIAL METHODS ###
+
+    def __eq__(self, argument) -> bool:
+        """
+        Is true when all initialization values of Abjad value object equal
+        the initialization values of ``argument``.
+        """
+        return StorageFormatManager.compare_objects(self, argument)
+
+    def __format__(self, format_specification='') -> str:
+        """
+        Formats Abjad object.
+
+        Set ``format_specification`` to ``''`` or ``'storage'``.
+        Interprets ``''`` equal to ``'storage'``.
+        """
+        if format_specification in ('', 'storage'):
+            return StorageFormatManager(self).get_storage_format()
+        return str(self)
+
+    def __hash__(self) -> int:
+        """
+        Hashes Abjad value object.
+        """
+        hash_values = StorageFormatManager(self).get_hash_values()
+        try:
+            result = hash(hash_values)
+        except TypeError:
+            raise TypeError(f'unhashable type: {self}')
+        return result
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     def __str__(self):
         """

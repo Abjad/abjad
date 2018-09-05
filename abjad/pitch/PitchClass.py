@@ -2,12 +2,12 @@ import abc
 import functools
 import numbers
 from abjad import mathtools
-from abjad.system.AbjadValueObject import AbjadValueObject
+from abjad.system.StorageFormatManager import StorageFormatManager
 from . import constants
 
 
 @functools.total_ordering
-class PitchClass(AbjadValueObject):
+class PitchClass(object):
     """
     Abstract pitch-class.
     """
@@ -15,6 +15,8 @@ class PitchClass(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = ()
+
+    _is_abstract = True
 
     ### INITIALIZER ###
 
@@ -49,6 +51,13 @@ class PitchClass(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
+    def __eq__(self, argument) -> bool:
+        """
+        Is true when all initialization values of Abjad value object equal
+        the initialization values of ``argument``.
+        """
+        return StorageFormatManager.compare_objects(self, argument)
+
     def __float__(self):
         """
         Coerce to float.
@@ -67,7 +76,20 @@ class PitchClass(AbjadValueObject):
         """
         if format_specification == 'lilypond':
             return self._get_lilypond_format()
-        return super().__format__(format_specification=format_specification)
+        if format_specification in ('', 'storage'):
+            return StorageFormatManager(self).get_storage_format()
+        return str(self)
+
+    def __hash__(self) -> int:
+        """
+        Hashes Abjad value object.
+        """
+        hash_values = StorageFormatManager(self).get_hash_values()
+        try:
+            result = hash(hash_values)
+        except TypeError:
+            raise TypeError(f'unhashable type: {self}')
+        return result
 
     @abc.abstractmethod
     def __lt__(self, argument):
@@ -77,6 +99,12 @@ class PitchClass(AbjadValueObject):
         Returns true or false.
         """
         raise NotImplementedError
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PRIVATE METHODS ###
 

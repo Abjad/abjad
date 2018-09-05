@@ -23,6 +23,8 @@ def test_abjad___init___01(class_):
     """
     if inspect.isabstract(class_):
         return
+    if getattr(class_, '_is_abstract', None) is True:
+        return
     instance = class_()
     assert instance is not None
 
@@ -46,6 +48,8 @@ valid_types = (
 #    r'''Make sure class initializer keyword argument values are immutable.
 #    '''
 #    if inspect.isabstract(class_):
+#        return
+#    if getattr(class_, '_is_abstract', None) is True:
 #        return
 #    object_ = class_()
 #    initializer = object_.__init__

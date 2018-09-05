@@ -1,10 +1,10 @@
 import typing
-from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
+from abjad.system.StorageFormatManager import StorageFormatManager
 
 
-class BarLine(AbjadValueObject):
+class BarLine(object):
     r"""
     Bar line.
 
@@ -49,6 +49,14 @@ class BarLine(AbjadValueObject):
     def __init__(self, abbreviation: str = '|') -> None:
         assert isinstance(abbreviation, str), repr(abbreviation)
         self._abbreviation = abbreviation
+
+    ### SPECIAL METHODS ###
+
+    def __repr__(self):
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PRIVATE METHODS ###
 

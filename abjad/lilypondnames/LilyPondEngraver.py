@@ -1,9 +1,9 @@
 import typing
-from abjad.system.AbjadValueObject import AbjadValueObject
 from .LilyPondGrob import LilyPondGrob
+from abjad.system.StorageFormatManager import StorageFormatManager
 
 
-class LilyPondEngraver(AbjadValueObject):
+class LilyPondEngraver(object):
     """
     LilyPond engraver.
 
@@ -11,9 +11,7 @@ class LilyPondEngraver(AbjadValueObject):
 
         >>> engraver = abjad.LilyPondEngraver('Auto_beam_engraver')
         >>> print(format(engraver))
-        abjad.LilyPondEngraver(
-            name='Auto_beam_engraver',
-            )
+        LilyPondEngraver(name='Auto_beam_engraver')
 
     """
 
@@ -41,6 +39,12 @@ class LilyPondEngraver(AbjadValueObject):
         from abjad.ly import engravers
         assert name in engravers
         self._name = name
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PUBLIC METHODS ###
 

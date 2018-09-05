@@ -2,7 +2,6 @@ import collections
 import typing
 from abjad import mathtools
 from abjad import typings
-from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.mathtools.NonreducedFraction import NonreducedFraction
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.StorageFormatManager import StorageFormatManager
@@ -10,7 +9,7 @@ from abjad.utilities.Duration import Duration
 from abjad.utilities.Multiplier import Multiplier
 
 
-class TimeSignature(AbjadValueObject):
+class TimeSignature(object):
     r"""
     Time signature.
 
@@ -211,7 +210,6 @@ class TimeSignature(AbjadValueObject):
         is a tuple with first and second elements equal to numerator and
         denominator of this time signature.
         """
-        # custom definition retained only bc tests currently break with super()
         if isinstance(argument, type(self)):
             return (self.numerator == argument.numerator and
                 self.denominator == argument.denominator)
@@ -260,7 +258,12 @@ class TimeSignature(AbjadValueObject):
 
         Redefined in tandem with __eq__.
         """
-        return super().__hash__()
+        hash_values = StorageFormatManager(self).get_hash_values()
+        try:
+            result = hash(hash_values)
+        except TypeError:
+            raise TypeError(f'unhashable type: {self}')
+        return result
 
     def __le__(self, argument) -> bool:
         """
@@ -293,6 +296,12 @@ class TimeSignature(AbjadValueObject):
 
         """
         return self.__add__(argument)
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     def __str__(self) -> str:
         """

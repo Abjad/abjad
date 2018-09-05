@@ -3,13 +3,12 @@ import functools
 import math
 import numbers
 from abjad import mathtools
-from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.system.StorageFormatManager import StorageFormatManager
 from . import constants
 
 
 @functools.total_ordering
-class Pitch(AbjadValueObject):
+class Pitch(object):
     """
     Abstract pitch.
     """
@@ -20,6 +19,8 @@ class Pitch(AbjadValueObject):
         '_pitch_class',
         '_octave',
         )
+
+    _is_abstract = True
 
     ### INITIALIZER ###
 
@@ -77,6 +78,13 @@ class Pitch(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
+    def __eq__(self, argument) -> bool:
+        """
+        Is true when all initialization values of Abjad value object equal
+        the initialization values of ``argument``.
+        """
+        return StorageFormatManager.compare_objects(self, argument)
+
     def __float__(self):
         """
         Coerce to float.
@@ -98,6 +106,17 @@ class Pitch(AbjadValueObject):
         elif format_specification == 'storage':
             return StorageFormatManager(self).get_storage_format()
         return str(self)
+
+    def __hash__(self) -> int:
+        """
+        Hashes Abjad value object.
+        """
+        hash_values = StorageFormatManager(self).get_hash_values()
+        try:
+            result = hash(hash_values)
+        except TypeError:
+            raise TypeError(f'unhashable type: {self}')
+        return result
 
     def __illustrate__(self):
         """
@@ -124,6 +143,12 @@ class Pitch(AbjadValueObject):
         Returns true or false.
         """
         raise NotImplementedError
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PRIVATE PROPERTIES ###
 

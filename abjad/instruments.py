@@ -4,15 +4,16 @@ Instrument classes.
 
 import copy
 import typing
-from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.pitch.NamedPitch import NamedPitch
 from abjad.pitch.NamedPitchClass import NamedPitchClass
 from abjad.pitch.PitchRange import PitchRange
 from abjad.pitch.PitchSegment import PitchSegment
+from abjad.system.FormatSpecification import FormatSpecification
+from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.utilities.Enumerator import Enumerator
 
 
-class Instrument(AbjadValueObject):
+class Instrument(object):
     r"""
     Instrument.
 
@@ -149,6 +150,43 @@ class Instrument(AbjadValueObject):
         self._primary = primary
         self._performer_names = ['instrumentalist']
         self._starting_clefs = copy.copy(allowable_clefs)
+
+    ### SPECIAL METHODS ###
+
+    def __eq__(self, argument) -> bool:
+        """
+        Is true when all initialization values of Abjad value object equal
+        the initialization values of ``argument``.
+        """
+        return StorageFormatManager.compare_objects(self, argument)
+
+    def __format__(self, format_specification='') -> str:
+        """
+        Formats Abjad object.
+
+        Set ``format_specification`` to ``''`` or ``'storage'``.
+        Interprets ``''`` equal to ``'storage'``.
+        """
+        if format_specification in ('', 'storage'):
+            return StorageFormatManager(self).get_storage_format()
+        return str(self)
+
+    def __hash__(self) -> int:
+        """
+        Hashes Abjad value object.
+        """
+        hash_values = StorageFormatManager(self).get_hash_values()
+        try:
+            result = hash(hash_values)
+        except TypeError:
+            raise TypeError(f'unhashable type: {self}')
+        return result
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PRIVATE PROPERTIES ###
 
@@ -455,7 +493,7 @@ class Instrument(AbjadValueObject):
                 leaf.written_pitches = pitches
 
 
-class StringNumber(AbjadValueObject):
+class StringNumber(object):
     """
     String number.
 
@@ -505,6 +543,26 @@ class StringNumber(AbjadValueObject):
         numbers_ = tuple(int(_) for _ in numbers_)
         assert all(0 < _ < 7 for _ in numbers_)
         self._numbers = numbers_
+
+    ### SPECIAL METHDOS ###
+
+    def __eq__(self, argument) -> bool:
+        """
+        Is true when all initialization values of Abjad value object equal
+        the initialization values of ``argument``.
+        """
+        return StorageFormatManager.compare_objects(self, argument)
+
+    def __hash__(self) -> int:
+        """
+        Hashes Abjad value object.
+        """
+        hash_values = StorageFormatManager(self).get_hash_values()
+        try:
+            result = hash(hash_values)
+        except TypeError:
+            raise TypeError(f'unhashable type: {self}')
+        return result
 
     ### PUBLIC PROPERTIES ###
 
@@ -565,7 +623,7 @@ class StringNumber(AbjadValueObject):
         pass
 
 
-class Tuning(AbjadValueObject):
+class Tuning(object):
     """
     Tuning.
 
@@ -611,6 +669,48 @@ class Tuning(AbjadValueObject):
                 item_class=NamedPitch,
                 )
         self._pitches: typing.Optional[PitchSegment] = pitches
+
+    ### SPECIAL METHODS ###
+
+    def __eq__(self, argument) -> bool:
+        """
+        Is true when all initialization values of Abjad value object equal
+        the initialization values of ``argument``.
+        """
+        return StorageFormatManager.compare_objects(self, argument)
+
+    def __format__(self, format_specification='') -> str:
+        """
+        Formats Abjad object.
+
+        Set ``format_specification`` to ``''`` or ``'storage'``.
+        Interprets ``''`` equal to ``'storage'``.
+        """
+        if format_specification in ('', 'storage'):
+            return StorageFormatManager(self).get_storage_format()
+        return str(self)
+
+    def __hash__(self) -> int:
+        """
+        Hashes Abjad value object.
+        """
+        hash_values = StorageFormatManager(self).get_hash_values()
+        try:
+            result = hash(hash_values)
+        except TypeError:
+            raise TypeError(f'unhashable type: {self}')
+        return result
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
+
+    ### PRIVATE METHODS ###
+
+    def _get_format_specification(self):
+        return FormatSpecification(client=self)
 
     ### PUBLIC PROPERTIES ###
 

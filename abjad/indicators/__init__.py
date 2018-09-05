@@ -30,8 +30,12 @@ from .Staccatissimo import Staccatissimo
 from .Staccato import Staccato
 from .StaffChange import StaffChange
 from .StartMarkup import StartMarkup
+from .StartSlur import StartSlur
+from .StartPhrasingSlur import StartPhrasingSlur
 from .StartTextSpan import StartTextSpan
 from .StemTremolo import StemTremolo
+from .StopPhrasingSlur import StopPhrasingSlur
+from .StopSlur import StopSlur
 from .StopTextSpan import StopTextSpan
 from .StringContactPoint import StringContactPoint
 from .TimeSignature import TimeSignature

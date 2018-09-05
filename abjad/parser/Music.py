@@ -1,8 +1,7 @@
 import abc
-from abjad.system.AbjadObject import AbjadObject
 
 
-class Music(AbjadObject):
+class Music(object):
     """
     Abjad model of the LilyPond AST music node.
     """

@@ -1,13 +1,13 @@
 import functools
 import typing
 from abjad import typings
-from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.markups import Markup
+from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.utilities.Multiplier import Multiplier
 
 
 @functools.total_ordering
-class BowContactPoint(AbjadValueObject):
+class BowContactPoint(object):
     """
     Bow contact point.
 
@@ -95,6 +95,12 @@ class BowContactPoint(AbjadValueObject):
             argument_contact_point = argument.contact_point or 0
             return self_contact_point < argument_contact_point
         raise TypeError('unorderable types')
+
+    def __repr__(self):
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PUBLIC PROPERTIES ###
 

@@ -3,13 +3,12 @@ import copy
 import functools
 import numbers
 from . import constants
-from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.StorageFormatManager import StorageFormatManager
 
 
 @functools.total_ordering
-class PitchRange(AbjadValueObject):
+class PitchRange(object):
     """
     Pitch range.
 
@@ -291,7 +290,7 @@ class PitchRange(AbjadValueObject):
 
         Returns true or false.
         """
-        return super().__eq__(argument)
+        return StorageFormatManager.compare_objects(self, argument)
 
     def __format__(self, format_specification=''):
         """
@@ -314,7 +313,12 @@ class PitchRange(AbjadValueObject):
 
         Returns integer.
         """
-        return super().__hash__()
+        hash_values = StorageFormatManager(self).get_hash_values()
+        try:
+            result = hash(hash_values)
+        except TypeError:
+            raise TypeError(f'unhashable type: {self}')
+        return result
 
     def __illustrate__(self):
         r"""
@@ -440,6 +444,12 @@ class PitchRange(AbjadValueObject):
         if self.start_pitch == argument.start_pitch:
             return self.stop_pitch < argument.stop_pitch
         return self.start_pitch < argument.start_pitch
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PRIVATE PROPERTIES ###
 

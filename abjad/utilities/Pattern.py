@@ -2,14 +2,14 @@ import collections
 import inspect
 import operator
 from abjad import mathtools
-from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.system.FormatSpecification import FormatSpecification
+from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.top.new import new
 from .Expression import Expression
 from .Sequence import Sequence
 
 
-class Pattern(AbjadValueObject):
+class Pattern(object):
     """
     Pattern.
 
@@ -289,6 +289,14 @@ class Pattern(AbjadValueObject):
             result = type(self)(operator='and', patterns=[self, pattern])
         return result
 
+    def __format__(self, format_specification='') -> str:
+        """
+        Formats object.
+        """
+        if format_specification in ('', 'storage'):
+            return StorageFormatManager(self).get_storage_format()
+        return str(self)
+
     def __invert__(self):
         """
         Inverts pattern.
@@ -521,6 +529,12 @@ class Pattern(AbjadValueObject):
             result = type(self)(operator='or', patterns=[self, pattern])
         return result
 
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
+
     def __xor__(self, pattern):
         """
         Logical XOR of two patterns.
@@ -633,7 +647,8 @@ class Pattern(AbjadValueObject):
 
     def _get_format_specification(self):
         if self.template is None:
-            return super()._get_format_specification()
+            #return super()._get_format_specification()
+            return FormatSpecification(client=self)
         return FormatSpecification(
             client=self,
             repr_is_indented=False,

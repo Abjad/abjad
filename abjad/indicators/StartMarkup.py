@@ -1,11 +1,11 @@
 import typing
-from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.markups import Markup
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
+from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.top.new import new
 
 
-class StartMarkup(AbjadValueObject):
+class StartMarkup(object):
     r"""
     Start markup.
 
@@ -143,7 +143,18 @@ class StartMarkup(AbjadValueObject):
 
         Redefined in tandem with __eq__.
         """
-        return super().__hash__()
+        hash_values = StorageFormatManager(self).get_hash_values()
+        try:
+            result = hash(hash_values)
+        except TypeError:
+            raise TypeError(f'unhashable type: {self}')
+        return result
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PRIVATE PROPERTIES ###
 

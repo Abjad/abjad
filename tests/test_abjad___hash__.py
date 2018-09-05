@@ -22,6 +22,8 @@ def test_abjad___hash___01(class_):
     """
     if inspect.isabstract(class_):
         return
+    if getattr(class_, '_is_abstract', None) is True:
+        return
     if getattr(class_, '__hash__', None) is None:
         return
     instance = class_()
