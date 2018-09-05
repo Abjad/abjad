@@ -52,7 +52,7 @@ class Spanner(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self) -> None:
-        self._contiguity_constraint = 'logical voice'
+        self._contiguity_constraint: typing.Optional[str] = 'logical voice'
         self._deactivate = None
         self._ignore_attachment_test = None
         self._ignore_before_attach = None
