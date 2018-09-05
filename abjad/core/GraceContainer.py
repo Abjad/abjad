@@ -143,13 +143,13 @@ class GraceContainer(Container):
     __documentation_section__ = 'Containers'
 
     __slots__ = (
-        '_carrier',
+        '_main_leaf',
         )
 
     ### INITIALIZER ###
 
     def __init__(self, components=None, tag: str = None) -> None:
-        self._carrier = None
+        self._main_leaf = None
         Container.__init__(self, components, tag=tag)
 
     ### SPECIAL METHODS ###
@@ -169,13 +169,13 @@ class GraceContainer(Container):
         if not isinstance(leaf, abjad.Leaf):
             raise TypeError(f'must attach to leaf {leaf!r}.')
         leaf._grace_container = self
-        self._carrier = leaf
+        self._main_leaf = leaf
 
     def _detach(self):
-        if self._carrier is not None:
-            carrier = self._carrier
-            carrier._grace_container = None
-            self._carrier = None
+        if self._main_leaf is not None:
+            main_leaf = self._main_leaf
+            main_leaf._grace_container = None
+            self._main_leaf = None
         return self
 
     def _format_open_brackets_slot(self, bundle):

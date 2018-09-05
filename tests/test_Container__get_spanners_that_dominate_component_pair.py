@@ -38,37 +38,3 @@ def test_Container__get_spanners_that_dominate_component_pair_01():
     parentage = abjad.inspect(container).parentage()
     spanners = abjad.inspect(parentage).spanners()
     spanners == [trill]
-
-
-def test_Container__get_spanners_that_dominate_component_pair_02():
-    """
-    Get spanners in improper parentage.
-    """
-
-    container = abjad.Container("c'8 d'8 e'8 f'8")
-    beam = abjad.Beam()
-    abjad.attach(beam, container[:])
-    slur = abjad.Slur()
-    abjad.attach(slur, container[:])
-    trill = abjad.TrillSpanner()
-    abjad.attach(trill, container[:])
-
-    assert format(container) == abjad.String.normalize(
-        r"""
-        {
-            c'8
-            [
-            (
-            \startTrillSpan
-            d'8
-            e'8
-            f'8
-            ]
-            )
-            \stopTrillSpan
-        }
-        """
-        )
-
-    parentage = abjad.inspect(container).parentage(include_self=False)
-    assert abjad.inspect(parentage).spanners() == []

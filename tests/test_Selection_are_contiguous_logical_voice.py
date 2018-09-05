@@ -42,18 +42,11 @@ def test_Selection_are_contiguous_logical_voice_02():
 
 
 def test_Selection_are_contiguous_logical_voice_03():
-    """
-    Is true for orphan components when allow_orphans is true.
-    Is false for orphan components when allow_orphans is False.
-    """
 
     notes = [
         abjad.Note("c'8"),
         abjad.Note("d'8"), abjad.Note("e'8"), abjad.Note("f'8")]
     assert abjad.select(notes).are_contiguous_logical_voice()
-    assert not abjad.select(notes).are_contiguous_logical_voice(
-        allow_orphans=False,
-        )
 
 
 def test_Selection_are_contiguous_logical_voice_04():

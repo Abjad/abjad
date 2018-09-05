@@ -167,16 +167,6 @@ class Leaf(Component):
                 result.append(r'\afterGrace')
         return ['after grace opening', result]
 
-#    def _format_absolute_after_slot(self, bundle):
-#        result = []
-#        result.append(('literals', bundle.absolute_after.commands))
-#        return result
-#
-#    def _format_absolute_before_slot(self, bundle):
-#        result = []
-#        result.append(('literals', bundle.absolute_before.commands))
-#        return result
-
     def _format_after_slot(self, bundle):
         result = []
         result.append(('stem_tremolos', bundle.after.stem_tremolos))
@@ -193,6 +183,7 @@ class Leaf(Component):
         result.append(('trill_spanner_starts', bundle.after.trill_spanner_starts))
         result.append(('commands', bundle.after.commands))
         result.append(('commands', bundle.after.leaks))
+        result.append(self._format_after_grace_body())
         result.append(('comments', bundle.after.comments))
         return result
 
@@ -200,6 +191,7 @@ class Leaf(Component):
         result = []
         result.append(self._format_grace_body())
         result.append(('comments', bundle.before.comments))
+        result.append(self._format_after_grace_opening())
         result.append(('commands', bundle.before.commands))
         result.append(('indicators', bundle.before.indicators))
         result.append(('grob reverts', bundle.grob_reverts))
@@ -213,7 +205,6 @@ class Leaf(Component):
 
     def _format_closing_slot(self, bundle):
         result = []
-        result.append(self._format_after_grace_body())
         result.append(('spanners', bundle.closing.spanners))
         result.append(('commands', bundle.closing.commands))
         result.append(('indicators', bundle.closing.indicators))
@@ -253,9 +244,9 @@ class Leaf(Component):
     def _format_opening_slot(self, bundle):
         result = []
         result.append(('comments', bundle.opening.comments))
+        #result.append(self._format_after_grace_opening())
         result.append(('indicators', bundle.opening.indicators))
         result.append(('commands', bundle.opening.commands))
-        result.append(self._format_after_grace_opening())
         result.append(('spanners', bundle.opening.spanners))
         return result
 
@@ -275,48 +266,6 @@ class Leaf(Component):
             storage_format_is_indented=False,
             storage_format_kwargs_names=[],
             )
-
-    def _get_leaf(self, n):
-
-        def next(component):
-            new_component = component._get_nth_component_in_time_order_from(1)
-            if new_component is None:
-                return
-            candidates = new_component._get_descendants_starting_with()
-            candidates = [
-                x for x in candidates if isinstance(x, Leaf)
-                ]
-            for candidate in candidates:
-                selection = select([component, candidate])
-                if selection.are_logical_voice():
-                    return candidate
-
-        def previous(component):
-            new_component = component._get_nth_component_in_time_order_from(-1)
-            if new_component is None:
-                return
-            candidates = new_component._get_descendants_stopping_with()
-            candidates = [
-                x for x in candidates if isinstance(x, Leaf)
-                ]
-            for candidate in candidates:
-                selection = select([component, candidate])
-                if selection.are_logical_voice():
-                    return candidate
-        current_leaf = self
-        if n < 0:
-            for i in range(abs(n)):
-                current_leaf = previous(current_leaf)
-                if current_leaf is None:
-                    break
-        elif n == 0:
-            pass
-        else:
-            for i in range(n):
-                current_leaf = next(current_leaf)
-                if current_leaf is None:
-                    break
-        return current_leaf
 
     def _get_logical_tie(self):
         import abjad
@@ -372,6 +321,23 @@ class Leaf(Component):
     def _has_spanner(self, prototype=None):
         spanners = self._get_spanners(prototype=prototype)
         return bool(spanners)
+
+    def _leaf(self, n):
+        assert n in (-1, 0, 1), repr(n)
+        if n == 0:
+            return self
+        sibling = self._sibling(n)
+        if sibling is None:
+            return None
+        if n == 1:
+            components = sibling._get_descendants_starting_with()
+        else:
+            components = sibling._get_descendants_stopping_with()
+        for component in components:
+            if not isinstance(component, Leaf):
+                continue
+            if select([self, component]).are_logical_voice():
+                return component
 
     def _process_contribution_packet(self, contribution_packet):
         manager = LilyPondFormatManager

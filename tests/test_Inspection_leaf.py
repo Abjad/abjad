@@ -3,7 +3,8 @@ import abjad
 
 def test_Inspection_leaf_01():
 
-    staff = abjad.Staff([abjad.Voice("c'8 d'8 e'8 f'8"), abjad.Voice("g'8 a'8 b'8 c''8")])
+    staff = abjad.Staff(
+        [abjad.Voice("c'8 d'8 e'8 f'8"), abjad.Voice("g'8 a'8 b'8 c''8")])
 
     assert format(staff) == abjad.String.normalize(
         r"""
@@ -28,16 +29,9 @@ def test_Inspection_leaf_01():
         )
 
     leaves = abjad.select(staff).leaves()
+    assert abjad.inspect(leaves[0]).leaf(-1) is None
     assert abjad.inspect(leaves[0]).leaf(0) is leaves[0]
     assert abjad.inspect(leaves[0]).leaf(1) is leaves[1]
-    assert abjad.inspect(leaves[0]).leaf(2) is leaves[2]
-    assert abjad.inspect(leaves[0]).leaf(3) is leaves[3]
-    assert abjad.inspect(leaves[0]).leaf(4) is None
-    assert abjad.inspect(leaves[0]).leaf(5) is None
-    assert abjad.inspect(leaves[0]).leaf(6) is None
-    assert abjad.inspect(leaves[0]).leaf(7) is None
-
-    assert abjad.inspect(leaves[0]).leaf(-1) is None
 
 
 def test_Inspection_leaf_02():

@@ -52,7 +52,7 @@ class Spanner(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self) -> None:
-        self._contiguity_constraint = 'logical voice'
+        self._contiguity_constraint: typing.Optional[str] = 'logical voice'
         self._deactivate = None
         self._ignore_attachment_test = None
         self._ignore_before_attach = None
@@ -358,7 +358,7 @@ class Spanner(AbjadObject):
             return True
         elif leaf is self[-1]:
             return True
-        elif not leaf._get_leaf(-1) and not leaf._get_leaf(1):
+        elif not leaf._leaf(-1) and not leaf._leaf(1):
             return True
         else:
             return False

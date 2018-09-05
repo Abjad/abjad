@@ -449,7 +449,7 @@ class Label(AbjadObject):
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        for leaf in iterate(self.client).leaves():
+        for leaf in iterate(self.client).leaves(do_not_iterate_grace_containers=True):
             self._color_leaf(leaf, color)
 
     def color_note_heads(self, color_map=None):

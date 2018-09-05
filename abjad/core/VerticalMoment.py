@@ -1,5 +1,8 @@
 import collections
 from abjad.system.AbjadObject import AbjadObject
+from abjad.system.FormatSpecification import FormatSpecification
+from abjad.top.inspect import inspect
+from abjad.utilities.Offset import Offset
 
 
 class VerticalMoment(AbjadObject):
@@ -62,23 +65,8 @@ class VerticalMoment(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self, components=None, offset=None):
-        import abjad
-        if components is None:
-            self._offset = offset
-            self._components = ()
-            self._governors = ()
-        else:
-            governors, components = self._from_offset(components, offset)
-            offset = abjad.Offset(offset)
-            self._offset = offset
-            assert isinstance(governors, collections.Iterable)
-            governors = tuple(governors)
-            self._governors = governors
-            assert isinstance(components, collections.Iterable)
-            components = list(components)
-            components.sort(
-                key=lambda _: abjad.inspect(_).parentage().score_index())
         self._components = components
+        self._offset = offset
 
     ### SPECIAL METHODS ###
 
@@ -102,6 +90,18 @@ class VerticalMoment(AbjadObject):
         """
         Hases vertical moment.
 
+        ..  container:: example
+
+            Vertical moments can be hashed:
+
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+            >>> vms = []
+            >>> vms.extend(abjad.iterate(staff).vertical_moments())
+            >>> vms.extend(abjad.iterate(staff).vertical_moments())
+
+            >>> assert len(vms) == 8
+            >>> assert len(set(vms)) == 4
+
         Redefined in tandem with __eq__.
         """
         if self.components:
@@ -109,8 +109,79 @@ class VerticalMoment(AbjadObject):
         return 0
 
     def __len__(self):
-        """
+        r"""
         Length of vertical moment.
+
+        ..  container:: example
+
+            >>> score = abjad.Score(
+            ... r'''
+            ...    \new Staff {
+            ...        \times 4/3 {
+            ...            d''8
+            ...            c''8
+            ...            b'8
+            ...        }
+            ...    }
+            ...    \new PianoStaff <<
+            ...        \new Staff {
+            ...            a'4
+            ...            g'4
+            ...        }
+            ...        \new Staff {
+            ...            \clef "bass"
+            ...            f'8
+            ...            e'8
+            ...            d'8
+            ...            c'8
+            ...        }
+            ...    >>
+            ...    '''
+            ...    )
+
+            >>> abjad.show(score) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(score)
+                \new Score
+                <<
+                    \new Staff
+                    {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 4/3 {
+                            d''8
+                            c''8
+                            b'8
+                        }
+                    }
+                    \new PianoStaff
+                    <<
+                        \new Staff
+                        {
+                            a'4
+                            g'4
+                        }
+                        \new Staff
+                        {
+                            \clef "bass"
+                            f'8
+                            e'8
+                            d'8
+                            c'8
+                        }
+                    >>
+                >>
+
+            >>> for moment in abjad.iterate(score).vertical_moments():
+            ...     print(moment, len(moment))
+            ...
+            VerticalMoment(0, <<3>>) 9
+            VerticalMoment(1/8, <<3>>) 9
+            VerticalMoment(1/6, <<3>>) 9
+            VerticalMoment(1/4, <<3>>) 9
+            VerticalMoment(1/3, <<3>>) 9
+            VerticalMoment(3/8, <<3>>) 9
 
         Defined equal to the number of components in vertical moment.
 
@@ -130,93 +201,93 @@ class VerticalMoment(AbjadObject):
         result = f'{type(self).__name__}({str(self.offset)}, <<{length}>>)'
         return result
 
-    ### PRIVATE METHODS ###
-
-    @staticmethod
-    def _find_index(container, offset):
-        """
-        Based off of Python's bisect.bisect() function.
-        """
-        import abjad
-        lo = 0
-        hi = len(container)
-        while lo < hi:
-            mid = (lo + hi) // 2
-            start_offset = abjad.inspect(container[mid]).timespan().start_offset
-            stop_offset = abjad.inspect(container[mid]).timespan().stop_offset
-            if start_offset <= offset < stop_offset:
-                lo = mid + 1
-            # if container[mid] is of nonzero duration
-            elif start_offset < stop_offset:
-                hi = mid
-            # container[mid] is of zero duration so we skip it
-            else:
-                lo = mid + 1
-        return lo - 1
-
-    @staticmethod
-    def _from_offset(argument, offset):
-        import abjad
-        offset = abjad.Offset(offset)
-        governors = []
-        prototype = (list, tuple, abjad.Selection)
-        message = f'must be component or of Abjad components: {argument!r}.'
-        if isinstance(argument, abjad.Component):
-            governors.append(argument)
-        elif isinstance(argument, prototype):
-            for x in argument:
-                if isinstance(x, abjad.Component):
-                    governors.append(x)
-                else:
-                    raise TypeError(message)
-        else:
-            raise TypeError(message)
-        governors.sort(
-            key=lambda x: abjad.inspect(x).parentage().score_index())
-        governors = tuple(governors)
-        components = []
-        for governor in governors:
-            components.extend(VerticalMoment._recurse(governor, offset))
-        components.sort(
-            key=lambda x: abjad.inspect(x).parentage().score_index())
-        components = tuple(components)
-        return governors, components
-
-    def _get_format_specification(self):
-        import abjad
-        return abjad.FormatSpecification(client=self)
-
-    @staticmethod
-    def _recurse(component, offset):
-        import abjad
-        result = []
-        if (abjad.inspect(component).timespan().start_offset <=
-            offset < abjad.inspect(component).timespan().stop_offset):
-            result.append(component)
-            if hasattr(component, 'components'):
-                if component.is_simultaneous:
-                    for x in component:
-                        result.extend(VerticalMoment._recurse(x, offset))
-                else:
-                    child = component[
-                        VerticalMoment._find_index(component, offset)]
-                    result.extend(VerticalMoment._recurse(child, offset))
-        return result
-
     ### PUBLIC PROPERTIES ###
 
     @property
     def attack_count(self):
-        """
+        r"""
         Positive integer number of pitch carriers starting at vertical
         moment.
+
+        ..  container:: example
+
+            >>> score = abjad.Score(
+            ... r'''
+            ...    \new Staff {
+            ...        \times 4/3 {
+            ...            d''8
+            ...            c''8
+            ...            b'8
+            ...        }
+            ...    }
+            ...    \new PianoStaff <<
+            ...        \new Staff {
+            ...            a'4
+            ...            g'4
+            ...        }
+            ...        \new Staff {
+            ...            \clef "bass"
+            ...            f'8
+            ...            e'8
+            ...            d'8
+            ...            c'8
+            ...        }
+            ...    >>
+            ...    '''
+            ...    )
+
+            >>> abjad.show(score) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(score)
+                \new Score
+                <<
+                    \new Staff
+                    {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 4/3 {
+                            d''8
+                            c''8
+                            b'8
+                        }
+                    }
+                    \new PianoStaff
+                    <<
+                        \new Staff
+                        {
+                            a'4
+                            g'4
+                        }
+                        \new Staff
+                        {
+                            \clef "bass"
+                            f'8
+                            e'8
+                            d'8
+                            c'8
+                        }
+                    >>
+                >>
+
+            >>> for moment in abjad.iterate(score).vertical_moments():
+            ...     print(moment, moment.attack_count)
+            ...
+            VerticalMoment(0, <<3>>) 3
+            VerticalMoment(1/8, <<3>>) 1
+            VerticalMoment(1/6, <<3>>) 1
+            VerticalMoment(1/4, <<3>>) 2
+            VerticalMoment(1/3, <<3>>) 1
+            VerticalMoment(3/8, <<3>>) 1
+
         """
-        import abjad
-        attack_carriers = []
+        from .Chord import Chord
+        from .Note import Note
+        leaves = []
         for leaf in self.start_leaves:
-            if isinstance(leaf, (abjad.Note, abjad.Chord)):
-                attack_carriers.append(leaf)
-        return len(attack_carriers)
+            if isinstance(leaf, (Note, Chord)):
+                leaves.append(leaf)
+        return len(leaves)
 
     @property
     def components(self):
@@ -237,43 +308,99 @@ class VerticalMoment(AbjadObject):
 
     @property
     def leaves(self):
-        """
+        r"""
         Tuple of zero or more leaves at vertical moment.
+
+        ..  container:: example
+
+            >>> score = abjad.Score(
+            ... r'''
+            ...    \new Staff {
+            ...        \times 4/3 {
+            ...            d''8
+            ...            c''8
+            ...            b'8
+            ...        }
+            ...    }
+            ...    \new PianoStaff <<
+            ...        \new Staff {
+            ...            a'4
+            ...            g'4
+            ...        }
+            ...        \new Staff {
+            ...            \clef "bass"
+            ...            f'8
+            ...            e'8
+            ...            d'8
+            ...            c'8
+            ...        }
+            ...    >>
+            ...    '''
+            ...    )
+
+            >>> abjad.show(score) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(score)
+                \new Score
+                <<
+                    \new Staff
+                    {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 4/3 {
+                            d''8
+                            c''8
+                            b'8
+                        }
+                    }
+                    \new PianoStaff
+                    <<
+                        \new Staff
+                        {
+                            a'4
+                            g'4
+                        }
+                        \new Staff
+                        {
+                            \clef "bass"
+                            f'8
+                            e'8
+                            d'8
+                            c'8
+                        }
+                    >>
+                >>
+
+            >>> for moment in abjad.iterate(score).vertical_moments():
+            ...     print(moment.offset, moment.leaves)
+            ...
+            0 Selection([Note("d''8"), Note("a'4"), Note("f'8")])
+            1/8 Selection([Note("d''8"), Note("a'4"), Note("e'8")])
+            1/6 Selection([Note("c''8"), Note("a'4"), Note("e'8")])
+            1/4 Selection([Note("c''8"), Note("g'4"), Note("d'8")])
+            1/3 Selection([Note("b'8"), Note("g'4"), Note("d'8")])
+            3/8 Selection([Note("b'8"), Note("g'4"), Note("c'8")])
+
         """
-        import abjad
+        from .Leaf import Leaf
+        from .Selection import Selection
         result = []
         for component in self.components:
-            if isinstance(component, abjad.Leaf):
+            if isinstance(component, Leaf):
                 result.append(component)
-        result = abjad.select(result)
+        result = Selection(result)
         return result
-
-    @property
-    def next_vertical_moment(self):
-        """
-        Reference to next vertical moment forward in time.
-        """
-        import abjad
-        candidate_shortest_leaf = self.leaves[0]
-        for leaf in self.leaves[1:]:
-            if (abjad.inspect(leaf).timespan().stop_offset <
-                abjad.inspect(candidate_shortest_leaf).timespan().stop_offset):
-                candidate_shortest_leaf = leaf
-        next_leaf = candidate_shortest_leaf._get_in_my_logical_voice(
-            1, prototype=abjad.Leaf)
-        next_vertical_moment = next_leaf._get_vertical_moment()
-        return next_vertical_moment
 
     @property
     def notes(self):
         """
         Tuple of zero or more notes at vertical moment.
         """
-        import abjad
+        from .Note import Note
         result = []
-        prototype = (abjad.Note,)
         for component in self.components:
-            if isinstance(component, prototype):
+            if isinstance(component, Note):
                 result.append(component)
         result = tuple(result)
         return result
@@ -283,9 +410,10 @@ class VerticalMoment(AbjadObject):
         """
         Tuple of zero or more notes and chords at vertical moment.
         """
-        import abjad
+        from .Chord import Chord
+        from .Note import Note
         result = []
-        prototype = (abjad.Chord, abjad.Note)
+        prototype = (Chord, Note)
         for component in self.components:
             if isinstance(component, prototype):
                 result.append(component)
@@ -318,9 +446,9 @@ class VerticalMoment(AbjadObject):
         Tuple of leaves in vertical moment starting before vertical moment,
         ordered by score index.
         """
-        import abjad
+        from .Leaf import Leaf
         result = [x for x in self.overlap_components
-            if isinstance(x, abjad.Leaf)]
+            if isinstance(x, Leaf)]
         result = tuple(result)
         return result
 
@@ -330,49 +458,11 @@ class VerticalMoment(AbjadObject):
         Tuple of notes in vertical moment starting before vertical moment,
         ordered by score index.
         """
-        import abjad
+        from .Note import Note
         result = self.overlap_components
-        result = [_ for _ in result if isinstance(_, abjad.Note)]
+        result = [_ for _ in result if isinstance(_, Note)]
         result = tuple(result)
         return result
-
-    @property
-    def previous_vertical_moment(self):
-        """
-        Reference to previous vertical moment backward in time.
-        """
-        import abjad
-        if self.offset == 0:
-            raise IndexError
-        most_recent_start_offset = abjad.Offset(0)
-        token_leaf = None
-        for leaf in self.leaves:
-            #print ''
-            #print leaf
-            leaf_start = abjad.inspect(leaf).timespan().start_offset
-            if leaf_start < self.offset:
-                #print 'found leaf starting before this moment ...'
-                if most_recent_start_offset <= leaf_start:
-                    most_recent_start_offset = leaf_start
-                    token_leaf = leaf
-            else:
-                #print 'found leaf starting on this moment ...'
-                try:
-                    previous_leaf = leaf._get_in_my_logical_voice(
-                        -1, prototype=abjad.Leaf)
-                    start = abjad.inspect(previous_leaf).timespan().start_offset
-                    #print previous_leaf, start
-                    if most_recent_start_offset <= start:
-                        most_recent_start_offset = start
-                        token_leaf = previous_leaf
-                except IndexError:
-                    pass
-        #print 'token_leaf is %s ...' % token_leaf
-        if token_leaf is None:
-            token_leaf = leaf
-            #print 'token_leaf is %s ...' % token_leaf
-        previous_vertical_moment = token_leaf._get_vertical_moment()
-        return previous_vertical_moment
 
     @property
     def start_components(self):
@@ -380,10 +470,9 @@ class VerticalMoment(AbjadObject):
         Tuple of components in vertical moment starting with at vertical
         moment, ordered by score index.
         """
-        import abjad
         result = []
         for component in self.components:
-            if abjad.inspect(
+            if inspect(
                 component).timespan().start_offset == self.offset:
                 result.append(component)
         result = tuple(result)
@@ -395,9 +484,9 @@ class VerticalMoment(AbjadObject):
         Tuple of leaves in vertical moment starting with vertical moment,
         ordered by score index.
         """
-        import abjad
+        from .Leaf import Leaf
         result = [x for x in self.start_components
-            if isinstance(x, abjad.Leaf)]
+            if isinstance(x, Leaf)]
         result = tuple(result)
         return result
 
@@ -407,8 +496,8 @@ class VerticalMoment(AbjadObject):
         Tuple of notes in vertical moment starting with vertical moment,
         ordered by score index.
         """
-        import abjad
+        from .Note import Note
         result = [x for x in self.start_components
-            if isinstance(x, abjad.Note)]
+            if isinstance(x, Note)]
         result = tuple(result)
         return result

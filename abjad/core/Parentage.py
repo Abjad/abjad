@@ -71,7 +71,6 @@ class Parentage(AbjadObject, collections.Sequence):
     def __init__(
         self,
         component=None,
-        include_self=True,
         grace_notes=False,
         ):
         import abjad
@@ -81,15 +80,12 @@ class Parentage(AbjadObject, collections.Sequence):
             components = ()
         else:
             components = []
-            if include_self:
-                parent = component
-            else:
-                parent = component._parent
+            parent = component
             prototype = (abjad.AfterGraceContainer, abjad.GraceContainer)
             while parent is not None:
                 components.append(parent)
                 if grace_notes and isinstance(parent, prototype):
-                    parent = parent._carrier
+                    parent = parent._main_leaf
                 else:
                     parent = parent._parent
             components = tuple(components)
@@ -517,14 +513,65 @@ class Parentage(AbjadObject, collections.Sequence):
             >>> note = voice[0]
             >>> parentage = abjad.inspect(note).parentage()
             >>> logical_voice = parentage.logical_voice()
+            >>> abjad.f(logical_voice)
+            abjad.OrderedDict(
+                [
+                    ('score', "Score-'CustomScore'"),
+                    ('staff', "Staff-'CustomStaff'"),
+                    ('staff group', ''),
+                    ('voice', "Voice-'CustomVoice'"),
+                    ]
+                )
 
-            >>> for key, value in logical_voice.items():
-            ...     print('%12s: %s' % (key, value))
-            ...
-            score: Score-'CustomScore'
-            staff group:
-            staff: Staff-'CustomStaff'
-            voice: Voice-'CustomVoice'
+        ..  container:: example
+
+            REGRESSION. Graces notes inhabit same logical voice as their
+            client:
+
+            >>> voice = abjad.Voice("c'4 d'4 e'4 f'4", name='CustomVoice')
+            >>> note = abjad.Note("cs'16")
+            >>> grace_container = abjad.GraceContainer([note])
+            >>> abjad.attach(grace_container, voice[1])
+            >>> abjad.show(voice) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(voice)
+                \context Voice = "CustomVoice"
+                {
+                    c'4
+                    \grace {
+                        cs'16
+                    }
+                    d'4
+                    e'4
+                    f'4
+                }
+
+            >>> voice_1 = abjad.inspect(voice[1]).parentage().logical_voice()
+            >>> abjad.f(voice_1)
+            abjad.OrderedDict(
+                [
+                    ('score', ''),
+                    ('staff', ''),
+                    ('staff group', ''),
+                    ('voice', "Voice-'CustomVoice'"),
+                    ]
+                )
+
+            >>> voice_2 = abjad.inspect(note).parentage(grace_notes=True).logical_voice()
+            >>> abjad.f(voice_2)
+            abjad.OrderedDict(
+                [
+                    ('score', ''),
+                    ('staff', ''),
+                    ('staff group', ''),
+                    ('voice', "Voice-'CustomVoice'"),
+                    ]
+                )
+
+            >>> voice_1 == voice_2
+            True
 
         Returns ordered dictionary.
         """
@@ -549,6 +596,7 @@ class Parentage(AbjadObject, collections.Sequence):
             elif isinstance(component, abjad.Score):
                 if not logical_voice['score']:
                     logical_voice['score'] = self._id_string(component)
+        logical_voice = abjad.OrderedDict(logical_voice)
         return logical_voice
 
     def outermost_voice_content(self) -> typing.Optional[bool]:
@@ -762,6 +810,7 @@ class Parentage(AbjadObject, collections.Sequence):
             ...
             (Voice("c'8 d'8 e'8 f'8"), ())
             (Note("c'8"), (0,))
+            (GraceContainer("cf''16 bf'16"), ())
             (Note("cf''16"), (0,))
             (Note("bf'16"), (1,))
             (Note("d'8"), (1,))

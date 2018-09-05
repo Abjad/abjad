@@ -1,8 +1,14 @@
 import collections
 from abjad import enums
+from abjad.instruments import Instrument
+from abjad.pitch import NamedPitch
+from abjad.pitch import Pitch
+from abjad.pitch import PitchSegment
+from abjad.pitch import PitchSet
 from abjad.system.AbjadObject import AbjadObject
 from abjad.utilities.Enumerator import Enumerator
 from abjad.utilities.Offset import Offset
+from abjad.utilities.OrderedDict import OrderedDict
 from abjad.utilities.Sequence import Sequence
 from abjad.top.inspect import inspect
 
@@ -69,643 +75,6 @@ class Iteration(AbjadObject):
         assert isinstance(exclude, tuple), repr(exclude)
         return exclude
 
-    def _depth_first(
-        self,
-        *,
-        capped=True,
-        direction=None,
-        forbid=None,
-        unique=True,
-        ):
-        r"""
-        Iterates depth first.
-
-        ..  container:: example
-
-            Iterates depth first:
-
-            ..  container:: example
-
-                >>> score = abjad.Score([])
-                >>> score.append(abjad.Staff("c''4 ~ c''8 d''8 r4 ef''4"))
-                >>> score.append(abjad.Staff("r8 g'4. ~ g'8 r16 f'8. ~ f'8"))
-                >>> abjad.show(score) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> abjad.f(score)
-                    \new Score
-                    <<
-                        \new Staff
-                        {
-                            c''4
-                            ~
-                            c''8
-                            d''8
-                            r4
-                            ef''4
-                        }
-                        \new Staff
-                        {
-                            r8
-                            g'4.
-                            ~
-                            g'8
-                            r16
-                            f'8.
-                            ~
-                            f'8
-                        }
-                    >>
-
-            ..  container:: example
-
-                >>> for component in abjad.iterate(score)._depth_first():
-                ...     component
-                ...
-                <Score<<2>>>
-                Staff("c''4 ~ c''8 d''8 r4 ef''4")
-                Note("c''4")
-                Note("c''8")
-                Note("d''8")
-                Rest('r4')
-                Note("ef''4")
-                Staff("r8 g'4. ~ g'8 r16 f'8. ~ f'8")
-                Rest('r8')
-                Note("g'4.")
-                Note("g'8")
-                Rest('r16')
-                Note("f'8.")
-                Note("f'8")
-
-        ..  container:: example
-
-            Iterates depth first in reverse:
-
-            ..  container:: example
-
-                >>> score = abjad.Score([])
-                >>> score.append(abjad.Staff("c''4 ~ c''8 d''8 r4 ef''4"))
-                >>> score.append(abjad.Staff("r8 g'4. ~ g'8 r16 f'8. ~ f'8"))
-                >>> abjad.show(score) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> abjad.f(score)
-                    \new Score
-                    <<
-                        \new Staff
-                        {
-                            c''4
-                            ~
-                            c''8
-                            d''8
-                            r4
-                            ef''4
-                        }
-                        \new Staff
-                        {
-                            r8
-                            g'4.
-                            ~
-                            g'8
-                            r16
-                            f'8.
-                            ~
-                            f'8
-                        }
-                    >>
-
-            ..  container:: example
-
-                >>> agent = abjad.iterate(score)
-                >>> for component in agent._depth_first(direction=abjad.Right):
-                ...     component
-                ...
-                <Score<<2>>>
-                Staff("r8 g'4. ~ g'8 r16 f'8. ~ f'8")
-                Note("f'8")
-                Note("f'8.")
-                Rest('r16')
-                Note("g'8")
-                Note("g'4.")
-                Rest('r8')
-                Staff("c''4 ~ c''8 d''8 r4 ef''4")
-                Note("ef''4")
-                Rest('r4')
-                Note("d''8")
-                Note("c''8")
-                Note("c''4")
-
-        ..  container:: example
-
-            Iterates depth first with grace notes:
-
-            ..  container:: example
-
-                >>> voice = abjad.Voice("c'8 [ d'8 e'8 f'8 ]")
-                >>> container = abjad.GraceContainer("cf''16 bf'16")
-                >>> abjad.attach(container, voice[1])
-                >>> container = abjad.AfterGraceContainer("af'16 gf'16")
-                >>> abjad.attach(container, voice[1])
-                >>> abjad.show(voice) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> abjad.f(voice)
-                    \new Voice
-                    {
-                        c'8
-                        [
-                        \grace {
-                            cf''16
-                            bf'16
-                        }
-                        \afterGrace
-                        d'8
-                        {
-                            af'16
-                            gf'16
-                        }
-                        e'8
-                        f'8
-                        ]
-                    }
-
-            ..  container:: example
-
-                >>> for component in abjad.iterate(voice)._depth_first():
-                ...     component
-                ...
-                Voice("c'8 d'8 e'8 f'8")
-                Note("c'8")
-                Note("d'8")
-                GraceContainer("cf''16 bf'16")
-                Note("cf''16")
-                Note("bf'16")
-                AfterGraceContainer("af'16 gf'16")
-                Note("af'16")
-                Note("gf'16")
-                Note("e'8")
-                Note("f'8")
-
-        Returns generator.
-        """
-        import abjad
-        if direction is None:
-            direction = enums.Left
-        def _next_node_depth_first(component, total):
-            """
-            If client has unvisited components, return next unvisited
-            component in client.
-
-            If client has no univisited components, return client's parent.
-            """
-            # if component is a container with not-yet-returned children
-            if (isinstance(component, abjad.Container) and
-                0 < len(component) and total < len(component)):
-                # return next not-yet-returned child
-                return component[total], 0
-            # if component is a leaf with grace container attached
-            elif getattr(component, '_grace_container', None) is not None:
-                return component._grace_container, 0
-            # if component is a leaf with after grace container attached
-            elif (getattr(component, '_after_grace_container', None)
-                is not None):
-                return component._after_grace_container, 0
-            # if component is grace container with all children returned
-            elif hasattr(component, '_carrier'):
-                carrier = component._carrier
-                # if grace container has no carrier
-                if carrier is None:
-                    return None, None
-                # if there's also an after grace container
-                if (not isinstance(component, abjad.AfterGraceContainer) and
-                    carrier._after_grace_container is not None):
-                    return carrier._after_grace_container, 0
-                carrier_parent = carrier._parent
-                if carrier_parent is None:
-                    return None, None
-                # advance to next node in carrier parent
-                return carrier_parent, carrier_parent.index(carrier) + 1
-            else:
-                parent = component._parent
-                if parent is None:
-                    return None, None
-                return parent, parent.index(component) + 1
-        def _previous_node_depth_first(component, total=0):
-            """
-            If client has unvisited components, return previous unvisited
-            component in client.
-
-            If client has no univisited components, return client's parent.
-            """
-            if (isinstance(component, abjad.Container) and
-                0 < len(component) and total < len(component)):
-                return component[len(component) - 1 - total], 0
-            else:
-                parent = component._parent
-                if parent is not None:
-                    return parent, len(parent) - parent.index(component)
-                else:
-                    return None, None
-        def _handle_forbidden_node(node, queue):
-            node_parent = node._parent
-            if node_parent is not None:
-                rank = node_parent.index(node) + 1
-                node = node_parent
-            else:
-                node, rank = None, None
-            queue.pop()
-            return node, rank
-        def _advance_node_depth_first(node, rank, direction):
-            if direction is enums.Left:
-                node, rank = _next_node_depth_first(node, rank)
-            else:
-                node, rank = _previous_node_depth_first(node, rank)
-            return node, rank
-        def _is_node_forbidden(node, forbid):
-            if forbid is None:
-                return False
-            elif forbid == 'simultaneous':
-                return getattr(node, 'is_simultaneous', False)
-            else:
-                return isinstance(node, forbid)
-        def _find_yield(node, rank, queue, unique):
-            if hasattr(node, 'components'):
-                try:
-                    visited = node is queue[-1]
-                except IndexError:
-                    visited = False
-                if not visited or unique is not True:
-                    queue.append(node)
-                    return node
-                elif rank == len(node):
-                    queue.pop()
-                    return None
-            else:
-                return node
-        assert isinstance(self.client, abjad.Component)
-        component = self.client
-        client_parent, node, rank = component._parent, component, 0
-        queue = collections.deque([])
-        while node is not None and not (capped and node is client_parent):
-            result = _find_yield(node, rank, queue, unique)
-            if result is not None:
-                yield result
-            if _is_node_forbidden(node, forbid):
-                node, rank = _handle_forbidden_node(node, queue)
-            else:
-                node, rank = _advance_node_depth_first(
-                    node, rank, direction)
-        queue.clear()
-
-    def _logical_voice(self, prototype=None, reverse=False):
-        r"""
-        Iterates logical voice.
-
-        ..  container:: example
-
-            Iterates logical voice from first leaf in score:
-
-            ..  container:: example
-
-                >>> container_1 = abjad.Container([
-                ...     abjad.Voice("c'8 d'8"),
-                ...     abjad.Voice("e'8 f'8"),
-                ...     ])
-                >>> container_1.is_simultaneous = True
-                >>> container_1[0].name = 'Voice_1'
-                >>> abjad.override(container_1[0]).stem.direction = abjad.Down
-                >>> container_1[1].name = 'Voice_2'
-                >>> container_2 = abjad.Container([
-                ...     abjad.Voice("g'8 a'8"),
-                ...     abjad.Voice("b'8 c''8"),
-                ...     ])
-                >>> container_2.is_simultaneous = True
-                >>> container_2[0].name = 'Voice_1'
-                >>> abjad.override(container_2[0]).stem.direction = abjad.Down
-                >>> container_2[1].name = 'Voice_2'
-                >>> staff = abjad.Staff([container_1, container_2])
-                >>> abjad.show(staff) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> abjad.f(staff)
-                    \new Staff
-                    {
-                        <<
-                            \context Voice = "Voice_1"
-                            \with
-                            {
-                                \override Stem.direction = #down
-                            }
-                            {
-                                c'8
-                                d'8
-                            }
-                            \context Voice = "Voice_2"
-                            {
-                                e'8
-                                f'8
-                            }
-                        >>
-                        <<
-                            \context Voice = "Voice_1"
-                            \with
-                            {
-                                \override Stem.direction = #down
-                            }
-                            {
-                                g'8
-                                a'8
-                            }
-                            \context Voice = "Voice_2"
-                            {
-                                b'8
-                                c''8
-                            }
-                        >>
-                    }
-
-            ..  container:: example
-
-                >>> selector = abjad.select().leaves()
-                >>> leaves = selector(staff)
-                >>> leaf = leaves[0]
-                >>> for note in abjad.iterate(leaf)._logical_voice(
-                ...     prototype=abjad.Note,
-                ...     ):
-                ...     note
-                ...
-                Note("c'8")
-                Note("d'8")
-                Note("g'8")
-                Note("a'8")
-
-        ..  container:: example
-
-            Iterates logical voice from second leaf in score:
-
-                >>> container_1 = abjad.Container([
-                ...     abjad.Voice("c'8 d'8"),
-                ...     abjad.Voice("e'8 f'8"),
-                ...     ])
-                >>> container_1.is_simultaneous = True
-                >>> container_1[0].name = 'Voice_1'
-                >>> abjad.override(container_1[0]).stem.direction = abjad.Down
-                >>> container_1[1].name = 'Voice_2'
-                >>> container_2 = abjad.Container([
-                ...     abjad.Voice("g'8 a'8"),
-                ...     abjad.Voice("b'8 c''8"),
-                ...     ])
-                >>> container_2.is_simultaneous = True
-                >>> container_2[0].name = 'Voice_1'
-                >>> abjad.override(container_2[0]).stem.direction = abjad.Down
-                >>> container_2[1].name = 'Voice_2'
-                >>> staff = abjad.Staff([container_1, container_2])
-                >>> abjad.show(staff) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> abjad.f(staff)
-                    \new Staff
-                    {
-                        <<
-                            \context Voice = "Voice_1"
-                            \with
-                            {
-                                \override Stem.direction = #down
-                            }
-                            {
-                                c'8
-                                d'8
-                            }
-                            \context Voice = "Voice_2"
-                            {
-                                e'8
-                                f'8
-                            }
-                        >>
-                        <<
-                            \context Voice = "Voice_1"
-                            \with
-                            {
-                                \override Stem.direction = #down
-                            }
-                            {
-                                g'8
-                                a'8
-                            }
-                            \context Voice = "Voice_2"
-                            {
-                                b'8
-                                c''8
-                            }
-                        >>
-                    }
-
-            ..  container:: example
-
-                >>> leaf = leaves[1]
-                >>> agent = abjad.iterate(leaf)
-                >>> for note in agent._logical_voice(
-                ...     prototype=abjad.Note,
-                ...     ):
-                ...     note
-                ...
-                Note("d'8")
-                Note("g'8")
-                Note("a'8")
-
-        ..  container:: example
-
-            Iterates all components in logical voice:
-
-            ..  container:: example
-
-                >>> container_1 = abjad.Container([
-                ...     abjad.Voice("c'8 d'8"),
-                ...     abjad.Voice("e'8 f'8"),
-                ...     ])
-                >>> container_1.is_simultaneous = True
-                >>> container_1[0].name = 'Voice_1'
-                >>> abjad.override(container_1[0]).stem.direction = abjad.Down
-                >>> container_1[1].name = 'Voice_2'
-                >>> container_2 = abjad.Container([
-                ...     abjad.Voice("g'8 a'8"),
-                ...     abjad.Voice("b'8 c''8"),
-                ...     ])
-                >>> container_2.is_simultaneous = True
-                >>> container_2[0].name = 'Voice_1'
-                >>> abjad.override(container_2[0]).stem.direction = abjad.Down
-                >>> container_2[1].name = 'Voice_2'
-                >>> staff = abjad.Staff([container_1, container_2])
-                >>> abjad.show(staff) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> abjad.f(staff)
-                    \new Staff
-                    {
-                        <<
-                            \context Voice = "Voice_1"
-                            \with
-                            {
-                                \override Stem.direction = #down
-                            }
-                            {
-                                c'8
-                                d'8
-                            }
-                            \context Voice = "Voice_2"
-                            {
-                                e'8
-                                f'8
-                            }
-                        >>
-                        <<
-                            \context Voice = "Voice_1"
-                            \with
-                            {
-                                \override Stem.direction = #down
-                            }
-                            {
-                                g'8
-                                a'8
-                            }
-                            \context Voice = "Voice_2"
-                            {
-                                b'8
-                                c''8
-                            }
-                        >>
-                    }
-
-            ..  container:: example
-
-                >>> leaf = leaves[0]
-                >>> for component in abjad.iterate(leaf)._logical_voice():
-                ...     component
-                ...
-                Note("c'8")
-                Voice("c'8 d'8", name='Voice_1')
-                Note("d'8")
-                Voice("g'8 a'8", name='Voice_1')
-                Note("g'8")
-                Note("a'8")
-
-        ..  container:: example
-
-            Iterates all components in logical voice in reverse:
-
-            ..  container:: example
-
-                >>> container_1 = abjad.Container([
-                ...     abjad.Voice("c'8 d'8"),
-                ...     abjad.Voice("e'8 f'8"),
-                ...     ])
-                >>> container_1.is_simultaneous = True
-                >>> container_1[0].name = 'Voice_1'
-                >>> abjad.override(container_1[0]).stem.direction = abjad.Down
-                >>> container_1[1].name = 'Voice_2'
-                >>> container_2 = abjad.Container([
-                ...     abjad.Voice("g'8 a'8"),
-                ...     abjad.Voice("b'8 c''8"),
-                ...     ])
-                >>> container_2.is_simultaneous = True
-                >>> container_2[0].name = 'Voice_1'
-                >>> abjad.override(container_2[0]).stem.direction = abjad.Down
-                >>> container_2[1].name = 'Voice_2'
-                >>> staff = abjad.Staff([container_1, container_2])
-                >>> abjad.show(staff) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> abjad.f(staff)
-                    \new Staff
-                    {
-                        <<
-                            \context Voice = "Voice_1"
-                            \with
-                            {
-                                \override Stem.direction = #down
-                            }
-                            {
-                                c'8
-                                d'8
-                            }
-                            \context Voice = "Voice_2"
-                            {
-                                e'8
-                                f'8
-                            }
-                        >>
-                        <<
-                            \context Voice = "Voice_1"
-                            \with
-                            {
-                                \override Stem.direction = #down
-                            }
-                            {
-                                g'8
-                                a'8
-                            }
-                            \context Voice = "Voice_2"
-                            {
-                                b'8
-                                c''8
-                            }
-                        >>
-                    }
-
-            ..  container:: example
-
-                >>> leaf = leaves[-1]
-                >>> for note in abjad.iterate(leaf)._logical_voice(
-                ...     prototype=abjad.Note,
-                ...     reverse=True,
-                ...     ):
-                ...     note
-                ...
-                Note("c''8")
-                Note("b'8")
-                Note("f'8")
-                Note("e'8")
-
-                >>> leaf = leaves[-1]
-                >>> for component in abjad.iterate(leaf)._logical_voice(
-                ...     reverse=True,
-                ...     ):
-                ...     component
-                ...
-                Note("c''8")
-                Voice("b'8 c''8", name='Voice_2')
-                Note("b'8")
-                Voice("e'8 f'8", name='Voice_2')
-                Note("f'8")
-                Note("e'8")
-
-        Returns generator.
-        """
-        import abjad
-        prototype = prototype or abjad.Component
-        parentage = inspect(self.client).parentage()
-        logical_voice = parentage.logical_voice()
-        if reverse:
-            direction = enums.Right
-        else:
-            direction = enums.Left
-        for component in abjad.iterate(self.client)._depth_first(
-            capped=False,
-            direction=direction,
-            ):
-            if not isinstance(component, prototype):
-                continue
-            parentage = inspect(component).parentage()
-            if parentage.logical_voice() == logical_voice:
-                yield component
-
     @staticmethod
     def _should_exclude(argument, exclude):
         assert isinstance(exclude, tuple)
@@ -738,6 +107,7 @@ class Iteration(AbjadObject):
         prototype=None,
         *,
         exclude=None,
+        do_not_iterate_grace_containers=None,
         grace_notes=None,
         reverse=None,
         ):
@@ -826,9 +196,11 @@ class Iteration(AbjadObject):
                 ...
                 Voice("c'8 d'8 e'8 f'8")
                 Note("c'8")
+                GraceContainer("cf''16 bf'16")
                 Note("cf''16")
                 Note("bf'16")
                 Note("d'8")
+                AfterGraceContainer("af'16 gf'16")
                 Note("af'16")
                 Note("gf'16")
                 Note("e'8")
@@ -879,34 +251,39 @@ class Iteration(AbjadObject):
                 Voice("c'8 d'8 e'8 f'8")
                 Note("f'8")
                 Note("e'8")
+                AfterGraceContainer("af'16 gf'16")
                 Note("gf'16")
                 Note("af'16")
                 Note("d'8")
+                GraceContainer("cf''16 bf'16")
                 Note("bf'16")
                 Note("cf''16")
                 Note("c'8")
 
         Returns generator.
         """
-        import abjad
+        from .Component import Component
+        from .Leaf import Leaf
         argument = self.client
-        prototype = prototype or abjad.Component
+        prototype = prototype or Component
         grace_container, after_grace_container = None, None
         exclude = self._coerce_exclude(exclude)
         assert isinstance(exclude, tuple), repr(exclude)
-        if grace_notes is not False and isinstance(argument, abjad.Leaf):
+        if grace_notes is not False and isinstance(argument, Leaf):
             inspection = inspect(argument)
             grace_container = inspection.grace_container()
             after_grace_container = inspection.after_grace_container()
         if not reverse:
-            if grace_notes is not False and grace_container:
-                for component in grace_container:
-                    for component_ in abjad.iterate(component).components(
-                        prototype,
-                        grace_notes=grace_notes,
-                        reverse=reverse,
-                        ):
-                        yield component_
+            if (not do_not_iterate_grace_containers and
+                grace_notes is not False and
+                grace_container):
+                for component_ in Iteration(grace_container).components(
+                    prototype,
+                    do_not_iterate_grace_containers=do_not_iterate_grace_containers,
+                    grace_notes=grace_notes,
+                    reverse=reverse,
+                    ):
+                    yield component_
             if isinstance(argument, prototype):
                 if (grace_notes is None or
                     (grace_notes is True and
@@ -915,34 +292,39 @@ class Iteration(AbjadObject):
                     not inspect(argument).grace_note())):
                     if not self._should_exclude(argument, exclude):
                         yield argument
-            if grace_notes is not False and after_grace_container:
-                for component in after_grace_container:
-                    for component_ in abjad.iterate(component).components(
-                        prototype,
-                        exclude=exclude,
-                        grace_notes=grace_notes,
-                        reverse=reverse,
-                        ):
-                        yield component_
+            if (not do_not_iterate_grace_containers and
+                grace_notes is not False and
+                after_grace_container):
+                for component_ in Iteration(after_grace_container).components(
+                    prototype,
+                    exclude=exclude,
+                    do_not_iterate_grace_containers=do_not_iterate_grace_containers,
+                    grace_notes=grace_notes,
+                    reverse=reverse,
+                    ):
+                    yield component_
             if isinstance(argument, collections.Iterable):
                 for item in argument:
-                    for component in abjad.iterate(item).components(
+                    for component in Iteration(item).components(
                         prototype,
                         exclude=exclude,
+                        do_not_iterate_grace_containers=do_not_iterate_grace_containers,
                         grace_notes=grace_notes,
                         reverse=reverse,
                         ):
                         yield component
         else:
-            if grace_notes is not False and after_grace_container:
-                for component in reversed(after_grace_container):
-                    for component_ in abjad.iterate(component).components(
-                        prototype,
-                        exclude=exclude,
-                        grace_notes=grace_notes,
-                        reverse=reverse,
-                        ):
-                        yield component_
+            if (not do_not_iterate_grace_containers and
+                grace_notes is not False and
+                after_grace_container):
+                for component_ in Iteration(after_grace_container).components(
+                    prototype,
+                    exclude=exclude,
+                    do_not_iterate_grace_containers=do_not_iterate_grace_containers,
+                    grace_notes=grace_notes,
+                    reverse=reverse,
+                    ):
+                    yield component_
             if isinstance(argument, prototype):
                 if (grace_notes is None or
                     (grace_notes is True and
@@ -951,20 +333,23 @@ class Iteration(AbjadObject):
                     not inspect(argument).grace_note())):
                     if not self._should_exclude(argument, exclude):
                         yield argument
-            if grace_notes is not False and grace_container:
-                for component in reversed(grace_container):
-                    for component_ in abjad.iterate(component).components(
-                        prototype,
-                        exclude=exclude,
-                        grace_notes=grace_notes,
-                        reverse=reverse,
-                        ):
-                        yield component_
+            if (not do_not_iterate_grace_containers and
+                grace_notes is not False and
+                grace_container):
+                for component_ in Iteration(grace_container).components(
+                    prototype,
+                    exclude=exclude,
+                    do_not_iterate_grace_containers=do_not_iterate_grace_containers,
+                    grace_notes=grace_notes,
+                    reverse=reverse,
+                    ):
+                    yield component_
             if isinstance(argument, collections.Iterable):
                 for item in reversed(argument):
-                    for component in abjad.iterate(item).components(
+                    for component in Iteration(item).components(
                         prototype,
                         exclude=exclude,
+                        do_not_iterate_grace_containers=do_not_iterate_grace_containers,
                         grace_notes=grace_notes,
                         reverse=reverse,
                         ):
@@ -1012,7 +397,6 @@ class Iteration(AbjadObject):
 
                 >>> for leaf_pair in abjad.iterate(score).leaf_pairs():
                 ...     leaf_pair
-                ...
                 Selection([Note("c'8"), Note('c4')])
                 Selection([Note("c'8"), Note("d'8")])
                 Selection([Note('c4'), Note("d'8")])
@@ -1053,6 +437,7 @@ class Iteration(AbjadObject):
         prototype=None,
         *,
         exclude=None,
+        do_not_iterate_grace_containers=None,
         grace_notes=None,
         pitched=None,
         reverse=False,
@@ -1394,15 +779,21 @@ class Iteration(AbjadObject):
 
         Returns generator.
         """
-        import abjad
-        prototype = prototype or abjad.Leaf
+        from .Chord import Chord
+        from .Leaf import Leaf
+        from .MultimeasureRest import MultimeasureRest
+        from .Note import Note
+        from .Rest import Rest
+        from .Skip import Skip
+        prototype = prototype or Leaf
         if pitched is True:
-            prototype = (abjad.Chord, abjad.Note)
+            prototype = (Chord, Note)
         elif pitched is False:
-            prototype = (abjad.MultimeasureRest, abjad.Rest, abjad.Skip)
+            prototype = (MultimeasureRest, Rest, Skip)
         return self.components(
             prototype=prototype,
             exclude=exclude,
+            do_not_iterate_grace_containers=do_not_iterate_grace_containers,
             grace_notes=grace_notes,
             reverse=reverse,
             )
@@ -1739,9 +1130,8 @@ class Iteration(AbjadObject):
 
         Returns generator.
         """
-        import abjad
         for leaf in self.leaves(pitched=True):
-            instrument = inspect(leaf).effective(abjad.Instrument)
+            instrument = inspect(leaf).effective(Instrument)
             if instrument is None:
                 raise ValueError('no instrument found.')
             if leaf not in instrument.pitch_range:
@@ -1789,7 +1179,6 @@ class Iteration(AbjadObject):
 
                 >>> for pair in abjad.iterate(score).pitch_pairs():
                 ...     pair
-                ...
                 PitchSegment("c' c")
                 PitchSegment("c' d'")
                 PitchSegment("c d'")
@@ -1841,28 +1230,27 @@ class Iteration(AbjadObject):
 
         Returns generator.
         """
-        import abjad
         for leaf_pair in self.leaf_pairs():
-            pitches = sorted(abjad.iterate(leaf_pair[0]).pitches())
+            pitches = sorted(Iteration(leaf_pair[0]).pitches())
             enumerator = Enumerator(pitches)
             for pair in enumerator.yield_pairs():
-                yield abjad.PitchSegment(pair)
+                yield PitchSegment(pair)
             if isinstance(leaf_pair, set):
-                pitches = sorted(abjad.iterate(leaf_pair).pitches())
+                pitches = sorted(Iteration(leaf_pair).pitches())
                 enumerator = Enumerator(pitches)
                 for pair in enumerator.yield_pairs():
-                    yield abjad.PitchSegment(pair)
+                    yield PitchSegment(pair)
             else:
-                pitches_1 = sorted(abjad.iterate(leaf_pair[0]).pitches())
-                pitches_2 = sorted(abjad.iterate(leaf_pair[1]).pitches())
+                pitches_1 = sorted(Iteration(leaf_pair[0]).pitches())
+                pitches_2 = sorted(Iteration(leaf_pair[1]).pitches())
                 sequences = [pitches_1, pitches_2]
                 enumerator = Enumerator(sequences)
                 for pair in enumerator.yield_outer_product():
-                    yield abjad.PitchSegment(pair)
-            pitches = sorted(abjad.iterate(leaf_pair[1]).pitches())
+                    yield PitchSegment(pair)
+            pitches = sorted(Iteration(leaf_pair[1]).pitches())
             enumerator = Enumerator(pitches)
             for pair in enumerator.yield_pairs():
-                yield abjad.PitchSegment(pair)
+                yield PitchSegment(pair)
 
     def pitches(self):
         r"""
@@ -1979,18 +1367,19 @@ class Iteration(AbjadObject):
 
         Returns generator.
         """
-        import abjad
-        if isinstance(self.client, abjad.Pitch):
-            pitch = abjad.NamedPitch(self.client)
+        from abjad.spanners.Spanner import Spanner
+        from .Chord import Chord
+        if isinstance(self.client, Pitch):
+            pitch = NamedPitch(self.client)
             yield pitch
         result = []
         try:
             result.extend(self.client.pitches)
         except AttributeError:
             pass
-        if isinstance(self.client, abjad.Chord):
+        if isinstance(self.client, Chord):
             result.extend(self.client.written_pitches)
-        elif isinstance(self.client, abjad.Spanner):
+        elif isinstance(self.client, Spanner):
             for leaf in self.client.leaves:
                 try:
                     result.append(leaf.written_pitch)
@@ -2000,14 +1389,14 @@ class Iteration(AbjadObject):
                     result.extedn(leaf.written_pitches)
                 except AttributeError:
                     pass
-        elif isinstance(self.client, abjad.PitchSet):
+        elif isinstance(self.client, PitchSet):
             result.extend(sorted(list(self.client)))
         elif isinstance(self.client, (list, tuple, set)):
             for item in self.client:
-                for pitch_ in abjad.iterate(item).pitches():
+                for pitch_ in Iteration(item).pitches():
                     result.append(pitch_)
         else:
-            for leaf in abjad.iterate(self.client).leaves():
+            for leaf in Iteration(self.client).leaves():
                 try:
                     result.append(leaf.written_pitch)
                 except AttributeError:
@@ -2216,20 +1605,6 @@ class Iteration(AbjadObject):
                         }
                     >>
 
-            ..  container:: example
-
-                >>> for leaf in abjad.iterate(score).timeline(reverse=True):
-                ...     leaf
-                ...
-                Note("f'4")
-                Note("e'4")
-                Note("d'4")
-                Note("c''8")
-                Note("b'8")
-                Note("c'4")
-                Note("a'8")
-                Note("g'8")
-
         ..  container:: example
 
             Timeline-iterates leaves together grace notes:
@@ -2264,89 +1639,34 @@ class Iteration(AbjadObject):
                 ...     component
                 ...
                 Note("c'8")
+                Note("cf''16")
+                Note("bf'16")
                 Note("d'8")
                 Note("e'8")
                 Note("f'8")
 
-                ..  todo:: Incorrect because grace notes are not included.
-
         Iterates leaves when ``prototype`` is none.
         """
-        import abjad
-        prototype = prototype or abjad.Leaf
-        if isinstance(self.client, abjad.Component):
-            components = [self.client]
-        else:
-            components = list(self.client)
-        if not reverse:
-            while components:
-                current_start_offset = min(
-                    inspect(_).timespan().start_offset
-                    for _ in components
-                    )
-                components.sort(
-                    key=lambda x: inspect(x).parentage(grace_notes=True).score_index(),
-                    reverse=True,
-                    )
-                components_to_process = components[:]
-                components = []
-                while components_to_process:
-                    component = components_to_process.pop()
-                    start_offset = inspect(component).timespan().start_offset
-                    #print('    COMPONENT:', component)
-                    if current_start_offset < start_offset:
-                        components.append(component)
-                        #print('        TOO EARLY')
-                        continue
-                    if isinstance(component, prototype):
-                        #print('        YIELDING', component)
-                        yield component
-                    sibling = component._get_sibling(1)
-                    if sibling is not None:
-                        #print('        SIBLING:', sibling)
-                        components.append(sibling)
-                    if not isinstance(component, abjad.Container):
-                        continue
-                    if not len(component):
-                        continue
-                    if not component.is_simultaneous:
-                        components_to_process.append(component[0])
-                    else:
-                        components_to_process.extend(reversed(component))
-        else:
-            while components:
-                #print('STEP')
-                #print()
-                current_stop_offset = max(
-                    inspect(_).timespan().stop_offset
-                    for _ in components
-                    )
-                components.sort(
-                    key=lambda x: inspect(x).parentage(grace_notes=True).score_index(),
-                    reverse=True,
-                    )
-                components_to_process = components[:]
-                components = []
-                while components_to_process:
-                    component = components_to_process.pop()
-                    stop_offset = inspect(component).timespan().stop_offset
-                    #print('\tCOMPONENT:', component)
-                    if stop_offset < current_stop_offset:
-                        components.insert(0, component)
-                        continue
-                    if isinstance(component, prototype):
-                        yield component
-                    sibling = component._get_sibling(-1)
-                    if sibling is not None:
-                        components.insert(0, sibling)
-                    if not isinstance(component, abjad.Container):
-                        continue
-                    if not len(component):
-                        continue
-                    if not component.is_simultaneous:
-                        components_to_process.append(component[-1])
-                    else:
-                        components_to_process.extend(reversed(component))
+        components = self.leaves(
+            prototype=prototype,
+            exclude=exclude,
+            )
+        components = list(components)
+        components.sort(key=lambda _: inspect(_).timespan().start_offset)
+        offset_to_components = OrderedDict()
+        for component in components:
+            start_offset = inspect(component).timespan().start_offset
+            if start_offset not in offset_to_components:
+                offset_to_components[start_offset] = []
+        for component in components:
+            start_offset = inspect(component).timespan().start_offset
+            offset_to_components[start_offset].append(component)
+        components = []
+        for start_offset, list_ in offset_to_components.items():
+            components.extend(list_)
+        if reverse:
+            components.reverse()
+        return tuple(components)
 
     def vertical_moments(self, reverse=False):
         r'''
@@ -2494,84 +1814,37 @@ class Iteration(AbjadObject):
                 Selection([Note("a'4"), Note("e'8")])
                 Selection([Note("a'4"), Note("f'8")])
 
-        Returns generator.
+        Returns tuple.
         '''
-        import abjad
         from .Selection import Selection
-        def _buffer_components_starting_with(component, buffer, stop_offsets):
-            buffer.append(component)
-            stop_offset = inspect(component).timespan().stop_offset
-            stop_offsets.append(stop_offset)
-            if isinstance(component, abjad.Container):
-                if component.is_simultaneous:
-                    for component_ in component:
-                        _buffer_components_starting_with(
-                            component_,
-                            buffer,
-                            stop_offsets,
-                            )
-                elif component:
-                    _buffer_components_starting_with(
-                        component[0],
-                        buffer,
-                        stop_offsets,
-                        )
-        def _iterate_vertical_moments(argument):
-            governors = (argument,)
-            current_offset, stop_offsets, buffer = Offset(0), [], []
-            _buffer_components_starting_with(argument, buffer, stop_offsets)
-            while buffer:
-                vertical_moment = abjad.VerticalMoment()
-                offset = Offset(current_offset)
-                components = list(buffer)
-                components.sort(
-                    key=lambda _: inspect(_).parentage().score_index()
-                    )
-                vertical_moment._offset = offset
-                vertical_moment._governors = governors
-                vertical_moment._components = components
-                yield vertical_moment
-                current_offset, stop_offsets = min(stop_offsets), []
-                _update_buffer(current_offset, buffer, stop_offsets)
-        def _next_in_parent(component):
-            assert isinstance(component, abjad.Component), repr(component)
-            selection = Selection(component)
-            result = selection._get_parent_and_start_stop_indices()
-            parent, start, stop = result
-            assert start == stop
-            if parent is None:
-                raise StopIteration
-            if parent.is_simultaneous:
-                raise StopIteration
-            try:
-                return parent[start + 1]
-            except IndexError:
-                raise StopIteration
-        def _update_buffer(current_offset, buffer, stop_offsets):
-            for component in buffer[:]:
-                offset = inspect(component).timespan().stop_offset
-                if offset <= current_offset:
-                    buffer.remove(component)
-                    try:
-                        next_component = _next_in_parent(component)
-                        _buffer_components_starting_with(
-                            next_component,
-                            buffer,
-                            stop_offsets,
-                            )
-                    except StopIteration:
-                        pass
-                else:
-                    stop_offsets.append(offset)
-        if not reverse:
-            for x in _iterate_vertical_moments(self.client):
-                yield x
-        else:
-            moments_in_governor = []
-            for component in self.components():
-                offset = inspect(component).timespan().start_offset
-                if offset not in moments_in_governor:
-                    moments_in_governor.append(offset)
-            moments_in_governor.sort()
-            for moment_in_governor in reversed(moments_in_governor):
-                yield self.client._get_vertical_moment_at(moment_in_governor)
+        from .VerticalMoment import VerticalMoment
+        moments = []
+        components = list(self.components())
+        components.sort(key=lambda _: inspect(_).timespan().start_offset)
+        offset_to_components = OrderedDict()
+        for component in components:
+            start_offset = inspect(component).timespan().start_offset
+            if start_offset not in offset_to_components:
+                offset_to_components[start_offset] = []
+        # TODO: optimize with bisect
+        for component in components:
+            inserted = False
+            timespan = inspect(component).timespan()
+            for offset, list_ in offset_to_components.items():
+                if (timespan.start_offset <= offset < timespan.stop_offset and
+                    component not in list_):
+                    list_.append(component)
+                    inserted = True
+                elif inserted is True:
+                    break
+        moments = []
+        for offset, list_ in offset_to_components.items():
+            list_.sort(key=lambda _: inspect(_).parentage().score_index())
+            moment = VerticalMoment(
+                components=list_,
+                offset=offset,
+                )
+            moments.append(moment)
+        if reverse is True:
+            moments.reverse()
+        return tuple(moments)

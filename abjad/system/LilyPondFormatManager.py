@@ -26,8 +26,7 @@ class LilyPondFormatManager(AbjadObject):
     def _collect_indicators(component):
         import abjad
         wrappers = []
-        parentage = abjad.inspect(component).parentage(include_self=True)
-        for parent in parentage:
+        for parent in abjad.inspect(component).parentage():
             wrappers_ = abjad.inspect(parent).wrappers()
             wrappers.extend(wrappers_)
         up_markup_wrappers = []

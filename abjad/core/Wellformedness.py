@@ -275,7 +275,8 @@ class Wellformedness(AbjadObject):
         for i, component in enumerate(components):
             total.add(component)
             if 0 < i:
-                if inspect(component).parentage().parent is None:
+                parentage = inspect(component).parentage(grace_notes=True)
+                if parentage.parent is None:
                     violators.append(component)
         return violators, len(total)
 

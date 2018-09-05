@@ -403,7 +403,7 @@ class Container(Component):
                 table.attributes['border'] = 4
                 table.attributes['bgcolor'] = 'grey80'
                 if isinstance(component, Container):
-                    for child in iterate(component)._depth_first():
+                    for child in iterate(component).components():
                         if child is component:
                             continue
                         node = node_mapping[child]
@@ -772,9 +772,9 @@ class Container(Component):
             else:
                 right = self[stop]
             if left is None:
-                left = self._get_sibling(-1)
+                left = self._sibling(-1)
             if right is None:
-                right = self._get_sibling(1)
+                right = self._sibling(1)
             spanners_receipt = self._get_spanners_that_dominate_component_pair(
                 left,
                 right,
@@ -1102,9 +1102,7 @@ class Container(Component):
         assert leaf_right_of_split is not None
         # find component to right of split
         # that is also immediate child of last duration-crossing container
-        agent = inspect(leaf_right_of_split)
-        parentage = agent.parentage(include_self=True)
-        for component in parentage:
+        for component in inspect(leaf_right_of_split).parentage():
             parent = inspect(component).parentage().parent
             if parent is duration_crossing_containers[-1]:
                 highest_level_component_right_of_split = component
@@ -1371,7 +1369,7 @@ class Container(Component):
     def name(self, argument):
         assert isinstance(argument, (str, type(None)))
         old_name = self._name
-        for parent in inspect(self).parentage(include_self=False):
+        for parent in inspect(self).parentage()[1:]:
             named_children = parent._named_children
             if old_name is not None:
                 named_children[old_name].remove(self)
@@ -1651,12 +1649,12 @@ class Container(Component):
         assert isinstance(component, Component)
         component._set_parent(self)
         self._components.insert(i, component)
-        previous_leaf = component._get_leaf(-1)
+        previous_leaf = component._leaf(-1)
         if previous_leaf:
             for spanner in inspect(previous_leaf).spanners():
                 index = spanner._index(previous_leaf)
                 spanner._fracture(index, direction=enums.Right)
-        next_leaf = component._get_leaf(1)
+        next_leaf = component._leaf(1)
         if next_leaf:
             for spanner in inspect(next_leaf).spanners():
                 index = spanner._index(next_leaf)
