@@ -4,7 +4,6 @@ Abjad's system internals.
 
 from .AbjadConfiguration import AbjadConfiguration
 from .AbjadObject import AbjadObject
-from .AbjadValueObject import AbjadValueObject
 from .BenchmarkScoreMaker import BenchmarkScoreMaker
 from .Configuration import Configuration
 from .ContextManager import ContextManager
