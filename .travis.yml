@@ -48,7 +48,9 @@ script:
 #- pip install --quiet -e .[tonality]
 - mypy abjad
 - coverage run -a `which pytest`
-- pip install --quiet -e .[book,cli,ipython,nauert]
+# TODO: book has updated code; needs to be incorporated in dependency:
+#- pip install --quiet -e .[book,cli,ipython,nauert]
+- pip install --quiet -e .[cli,ipython,nauert]
 - ajv --help
 
 after_success:
