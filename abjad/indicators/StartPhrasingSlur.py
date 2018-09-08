@@ -133,7 +133,7 @@ class StartPhrasingSlur(object):
         return self._context
 
     @property
-    def direction(self) -> typing.Optional[String]:
+    def direction(self) -> typing.Optional[enums.VerticalAlignment]:
         """
         Gets direction.
         """
