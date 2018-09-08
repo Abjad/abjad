@@ -650,7 +650,7 @@ class StorageFormatManager(object):
         return result
 
     def get_storage_format_keyword_dict(self):
-        from .StorageFormatSpecificat import StorageFormatSpecification
+        from .StorageFormatSpecification import StorageFormatSpecification
         names = self.specification.storage_format_kwargs_names
         if names is None:
             if hasattr(self.client, '_get_storage_format_specification'):
