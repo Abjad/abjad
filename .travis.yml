@@ -26,6 +26,7 @@ before_install:
 - git clone https://github.com/Abjad/abjad-ext-tonality.git $TONALITY
 - pip install -e $TONALITY
 - export MYPYPATH=/tmp/typehints
+- export MYPYPATH=$MYPYPATH:$TONALITY
 - export PATH=/home/travis/bin:$PATH
 
 install:
@@ -44,7 +45,7 @@ install:
 - if [[ $ACCELERATED == true ]]; then pip install -e .[accelerated]; fi
 
 script:
-- pip install --quiet -e .[tonality]
+#- pip install --quiet -e .[tonality]
 - mypy abjad
 - coverage run -a `which pytest`
 - pip install --quiet -e .[book,cli,ipython,nauert]
