@@ -1,6 +1,6 @@
 import collections
 from abjad import markups
-from abjad.system.AbjadValueObject import AbjadValueObject
+from abjad.system.StorageFormatManager import StorageFormatManager
 from .Duplication import Duplication
 from .Inversion import Inversion
 from .Multiplication import Multiplication
@@ -9,7 +9,7 @@ from .Rotation import Rotation
 from .Transposition import Transposition
 
 
-class CompoundOperator(AbjadValueObject):
+class CompoundOperator(object):
     """
     Compound operator.
 
@@ -86,12 +86,10 @@ class CompoundOperator(AbjadValueObject):
             >>> abjad.f(operator_3)
             abjad.CompoundOperator(
                 operators=[
-                    abjad.Transposition(
-                        n=1,
-                        ),
-                    abjad.Inversion(),
-                    abjad.Retrograde(),
-                    abjad.Inversion(),
+                    Transposition(n=1),
+                    Inversion(),
+                    Retrograde(),
+                    Inversion(),
                     ],
                 )
 
@@ -136,6 +134,24 @@ class CompoundOperator(AbjadValueObject):
             argument = transform(argument)
         return argument
 
+    def __eq__(self, argument) -> bool:
+        """
+        Is true when all initialization values of Abjad value object equal
+        the initialization values of ``argument``.
+        """
+        return StorageFormatManager.compare_objects(self, argument)
+
+    def __hash__(self) -> int:
+        """
+        Hashes Abjad value object.
+        """
+        hash_values = StorageFormatManager(self).get_hash_values()
+        try:
+            result = hash(hash_values)
+        except TypeError:
+            raise TypeError(f'unhashable type: {self}')
+        return result
+
     def __radd__(self, operator):
         """
         Composes `operator` and compound operator.
@@ -168,6 +184,12 @@ class CompoundOperator(AbjadValueObject):
         for operator in operators:
             result = result._with_operator(operator)
         return result
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     def __str__(self):
         """
@@ -322,9 +344,7 @@ class CompoundOperator(AbjadValueObject):
             >>> abjad.f(operator)
             abjad.CompoundOperator(
                 operators=[
-                    abjad.Duplication(
-                        counts=1,
-                        ),
+                    Duplication(counts=1),
                     ],
                 )
 
@@ -348,9 +368,7 @@ class CompoundOperator(AbjadValueObject):
             >>> abjad.f(operator)
             abjad.CompoundOperator(
                 operators=[
-                    abjad.Inversion(
-                        axis=abjad.NamedPitch("d'"),
-                        ),
+                    Inversion(axis=NamedPitch("d'")),
                     ],
                 )
 
@@ -370,9 +388,7 @@ class CompoundOperator(AbjadValueObject):
             >>> abjad.f(operator)
             abjad.CompoundOperator(
                 operators=[
-                    abjad.Multiplication(
-                        n=3,
-                        ),
+                    Multiplication(n=3),
                     ],
                 )
 
@@ -392,7 +408,7 @@ class CompoundOperator(AbjadValueObject):
             >>> abjad.f(operator)
             abjad.CompoundOperator(
                 operators=[
-                    abjad.Retrograde(),
+                    Retrograde(),
                     ],
                 )
 
@@ -412,9 +428,7 @@ class CompoundOperator(AbjadValueObject):
             >>> abjad.f(operator)
             abjad.CompoundOperator(
                 operators=[
-                    abjad.Rotation(
-                        n=-1,
-                        ),
+                    Rotation(n=-1),
                     ],
                 )
 
@@ -439,9 +453,7 @@ class CompoundOperator(AbjadValueObject):
             >>> abjad.f(operator)
             abjad.CompoundOperator(
                 operators=[
-                    abjad.Transposition(
-                        n=1,
-                        ),
+                    Transposition(n=1),
                     ],
                 )
 

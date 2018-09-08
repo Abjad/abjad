@@ -1,7 +1,4 @@
-from abjad.system.AbjadValueObject import AbjadValueObject
-
-
-class FormatSpecification(AbjadValueObject):
+class FormatSpecification(object):
     """
     Format specification.
     """

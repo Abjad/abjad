@@ -1,12 +1,11 @@
 import typing
-from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.system.StorageFormatManager import StorageFormatManager
 
 
-class LilyPondLiteral(AbjadValueObject):
+class LilyPondLiteral(object):
     r"""
     LilyPond literal.
 
@@ -189,6 +188,13 @@ class LilyPondLiteral(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
+    def __eq__(self, argument) -> bool:
+        """
+        Is true when all initialization values of Abjad value object equal
+        the initialization values of ``argument``.
+        """
+        return StorageFormatManager.compare_objects(self, argument)
+
     def __format__(self, format_specification='') -> str:
         """
         Formats LilyPond literal.
@@ -197,6 +203,23 @@ class LilyPondLiteral(AbjadValueObject):
             return StorageFormatManager(self).get_storage_format()
         assert format_specification == 'lilypond'
         return str(self.argument)
+
+    def __hash__(self) -> int:
+        """
+        Hashes Abjad value object.
+        """
+        hash_values = StorageFormatManager(self).get_hash_values()
+        try:
+            result = hash(hash_values)
+        except TypeError:
+            raise TypeError(f'unhashable type: {self}')
+        return result
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PRIVATE METHODS ###
 

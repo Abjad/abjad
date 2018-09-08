@@ -1,7 +1,4 @@
-from abjad.system.AbjadObject import AbjadObject
-
-
-class SyntaxNode(AbjadObject):
+class SyntaxNode(object):
     """
     A node in an abstract syntax tree (AST).
 

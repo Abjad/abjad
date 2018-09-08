@@ -8,7 +8,6 @@ import typing
 from abjad import Fraction
 from abjad import enums
 from abjad import mathtools
-from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.scheme import Scheme
 from abjad.scheme import SchemeColor
@@ -20,7 +19,7 @@ from abjad.utilities.TypedList import TypedList
 from abjad.top import new
 
 
-class Markup(AbjadValueObject):
+class Markup(object):
     r"""
     LilyPond markup.
 
@@ -371,7 +370,7 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         """
-        return super().__eq__(argument)
+        return StorageFormatManager.compare_objects(self, argument)
 
     def __format__(self, format_specification=''):
         r"""
@@ -448,7 +447,12 @@ class Markup(AbjadValueObject):
             True
 
         """
-        return super().__hash__()
+        hash_values = StorageFormatManager(self).get_hash_values()
+        try:
+            result = hash(hash_values)
+        except TypeError:
+            raise TypeError(f'unhashable type: {self}')
+        return result
 
     def __illustrate__(self):
         r"""
@@ -560,6 +564,12 @@ class Markup(AbjadValueObject):
         commands.extend(self.contents)
         markup = type(self)(contents=commands, direction=self.direction)
         return markup
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     def __str__(self):
         r"""
@@ -2830,7 +2840,7 @@ class Markup(AbjadValueObject):
         return new(self, contents=command)
 
 
-class MarkupCommand(AbjadValueObject):
+class MarkupCommand(object):
     r"""
     LilyPond markup command.
 
@@ -3108,7 +3118,12 @@ class MarkupCommand(AbjadValueObject):
 
         Redefined in tandem with __eq__.
         """
-        return super().__hash__()
+        hash_values = StorageFormatManager(self).get_hash_values()
+        try:
+            result = hash(hash_values)
+        except TypeError:
+            raise TypeError(f'unhashable type: {self}')
+        return result
 
     def __repr__(self):
         r"""
@@ -3120,20 +3135,14 @@ class MarkupCommand(AbjadValueObject):
 
             >>> command = abjad.MarkupCommand('hspace', 0)
             >>> command
-            abjad.MarkupCommand(
-                'hspace',
-                0
-                )
+            MarkupCommand('hspace', 0)
 
             >>> eval(repr(command))
-            abjad.MarkupCommand(
-                'hspace',
-                0
-                )
+            MarkupCommand('hspace', 0)
 
         Returns string.
         """
-        return super().__format__()
+        return StorageFormatManager(self).get_repr_format()
 
     def __str__(self):
         r"""
@@ -4261,7 +4270,7 @@ class MarkupList(TypedList):
         return Markup(contents=command, direction=direction)
 
 
-class Postscript(AbjadValueObject):
+class Postscript(object):
     r"""
     Postscript session.
 
@@ -4359,6 +4368,35 @@ class Postscript(AbjadValueObject):
         operators = operators or None
         return type(self)(operators)
 
+    def __eq__(self, argument) -> bool:
+        """
+        Is true when all initialization values of Abjad value object equal
+        the initialization values of ``argument``.
+        """
+        return StorageFormatManager.compare_objects(self, argument)
+
+    def __format__(self, format_specification='') -> str:
+        """
+        Formats Abjad object.
+
+        Set ``format_specification`` to ``''`` or ``'storage'``.
+        Interprets ``''`` equal to ``'storage'``.
+        """
+        if format_specification in ('', 'storage'):
+            return StorageFormatManager(self).get_storage_format()
+        return str(self)
+
+    def __hash__(self) -> int:
+        """
+        Hashes Abjad value object.
+        """
+        hash_values = StorageFormatManager(self).get_hash_values()
+        try:
+            result = hash(hash_values)
+        except TypeError:
+            raise TypeError(f'unhashable type: {self}')
+        return result
+
     def __illustrate__(self):
         """
         Illustrates Postscript.
@@ -4380,6 +4418,12 @@ class Postscript(AbjadValueObject):
         operators = argument_operators + self_operators
         operators = operators or None
         return type(self)(operators)
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     def __str__(self):
         """
@@ -5300,7 +5344,7 @@ class Postscript(AbjadValueObject):
         return self._operators
 
 
-class PostscriptOperator(AbjadValueObject):
+class PostscriptOperator(object):
     """
     Postscript operator.
 
@@ -5330,6 +5374,41 @@ class PostscriptOperator(AbjadValueObject):
             self._arguments = None
 
     ### SPECIAL METHODS ###
+
+    def __eq__(self, argument) -> bool:
+        """
+        Is true when all initialization values of Abjad value object equal
+        the initialization values of ``argument``.
+        """
+        return StorageFormatManager.compare_objects(self, argument)
+
+    def __format__(self, format_specification='') -> str:
+        """
+        Formats Abjad object.
+
+        Set ``format_specification`` to ``''`` or ``'storage'``.
+        Interprets ``''`` equal to ``'storage'``.
+        """
+        if format_specification in ('', 'storage'):
+            return StorageFormatManager(self).get_storage_format()
+        return str(self)
+
+    def __hash__(self) -> int:
+        """
+        Hashes Abjad value object.
+        """
+        hash_values = StorageFormatManager(self).get_hash_values()
+        try:
+            result = hash(hash_values)
+        except TypeError:
+            raise TypeError(f'unhashable type: {self}')
+        return result
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     def __str__(self):
         """

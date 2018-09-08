@@ -4,16 +4,16 @@ from abjad import mathtools
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.mathtools.Infinity import Infinity
 from abjad.mathtools.NegativeInfinity import NegativeInfinity
-from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
+from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.system.Tags import Tags
 from abjad.utilities.String import String
 abjad_tags = Tags()
 
 
-class Dynamic(AbjadValueObject):
+class Dynamic(object):
     r"""
     Dynamic.
 
@@ -56,9 +56,8 @@ class Dynamic(AbjadValueObject):
 
         Initializes niente:
 
-        >>> dynamic = abjad.Dynamic('niente')
-        >>> format(dynamic, 'lilypond')
-        ''
+        >>> abjad.Dynamic('niente')
+        Dynamic('niente', direction=Down, name_is_textual=True)
 
     ..  container:: example
 
@@ -322,43 +321,24 @@ class Dynamic(AbjadValueObject):
             return True
         return False
 
-    def __format__(self, format_specification='') -> str:
-        r"""
-        Formats dynamic.
-
-        ..  container:: example
-
-            Gets storage format:
-
-            >>> dynamic = abjad.Dynamic('f')
-            >>> print(format(dynamic))
-            abjad.Dynamic('f')
-
-            Gets LilyPond format:
-
-            >>> dynamic = abjad.Dynamic('f')
-            >>> print(format(dynamic, 'lilypond'))
-            \f
-
-        """
-        if format_specification == 'lilypond':
-            if self.name == 'niente':
-                return ''
-            elif self.name.strip('"') not in self._lilypond_dynamic_commands:
-                message = f'{self.name!r} is not a LilyPond dynamic command.'
-                raise Exception(message)
-            return self._get_lilypond_format()
-        return super().__format__(
-            format_specification=format_specification
-            )
-
     def __hash__(self) -> int:
         """
         Hashes dynamic.
 
         Redefined in tandem with __eq__.
         """
-        return super().__hash__()
+        hash_values = StorageFormatManager(self).get_hash_values()
+        try:
+            result = hash(hash_values)
+        except TypeError:
+            raise TypeError(f'unhashable type: {self}')
+        return result
+
+    def __repr__(self):
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PRIVATE METHODS ###
 
@@ -895,7 +875,7 @@ class Dynamic(AbjadValueObject):
             >>> import copy
             >>> dynamic = abjad.Dynamic('pp', leak=True)
             >>> copy.copy(dynamic)
-            Dynamic('pp', leak=True, ordinal=-3, sforzando=False)
+            Dynamic('pp', leak=True)
 
         """
         return self._leak

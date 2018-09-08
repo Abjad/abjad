@@ -1,12 +1,12 @@
 import typing
 from abjad import typings
-from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.utilities.String import String
 from abjad.system.FormatSpecification import FormatSpecification
+from abjad.system.StorageFormatManager import StorageFormatManager
 from .Part import Part
 
 
-class PartAssignment(AbjadValueObject):
+class PartAssignment(object):
     """
     Part assignment.
 
@@ -191,6 +191,14 @@ class PartAssignment(AbjadValueObject):
                 return argument.members == self.members
         return False
 
+    def __format__(self, format_specification='') -> str:
+        """
+        Formats object.
+        """
+        if format_specification in ('', 'storage'):
+            return StorageFormatManager(self).get_storage_format()
+        return str(self)
+
     def __hash__(self) -> int:
         """
         Hashes part assignment.
@@ -212,6 +220,12 @@ class PartAssignment(AbjadValueObject):
 
         """
         return iter(self.parts)
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PRIVATE METHODS ###
 

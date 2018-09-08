@@ -31,6 +31,8 @@ def test_abjad___deepcopy___01(class_):
         return
     if inspect.isabstract(class_):
         return
+    if getattr(class_, '_is_abstract', None) is True:
+        return
     instance_one = class_()
     instance_two = copy.deepcopy(instance_one)
     instance_one_format = format(instance_one, 'storage')

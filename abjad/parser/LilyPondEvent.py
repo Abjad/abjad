@@ -1,8 +1,4 @@
-from abjad.system.AbjadObject import AbjadObject
-
-
-# TODO: should not inherit from AbjadObject because no slots
-class LilyPondEvent(AbjadObject):
+class LilyPondEvent(object):
     """
     Model of an arbitrary event in LilyPond.
 

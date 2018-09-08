@@ -26,6 +26,8 @@ def test_abjad___format___01(class_):
         return
     if inspect.isabstract(class_):
         return
+    if getattr(class_, '_is_abstract', None) is True:
+        return
     instance = class_()
     instance_format = format(instance, 'storage')
     assert isinstance(instance_format, str)
@@ -53,6 +55,8 @@ def test_abjad___format___02(class_):
         return
     if inspect.isabstract(class_):
         return
+    if getattr(class_, '_is_abstract', None) is True:
+        return
     environment = abjad.__dict__.copy()
     environment.update(abjad.demos.__dict__)
     environment['abjad'] = abjad
@@ -66,6 +70,7 @@ def test_abjad___format___02(class_):
 
 
 ignored_classes = (
+    #abjad.Parser,
     abjad.Path,
     abjad.Tags,
     abjad.parser.SyntaxNode,
@@ -82,6 +87,8 @@ def test_abjad___format___03(class_):
     All concrete classes bald-format.
     """
     if inspect.isabstract(class_):
+        return
+    if getattr(class_, '_is_abstract', None) is True:
         return
     object_ = class_()
     string = f'{object_}'

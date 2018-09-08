@@ -8,13 +8,11 @@ def test_LilyPondParser__spanners__Text_01():
     """
 
     maker = abjad.NoteMaker()
-    target = abjad.Container(maker([0] * 4, [(1, 4)]))
-    text_spanner = abjad.TextSpanner()
-    abjad.attach(text_spanner, target[2:])
-    text_spanner = abjad.TextSpanner()
-    abjad.attach(text_spanner, target[:3])
+    container = abjad.Container(maker([0] * 4, [(1, 4)]))
+    abjad.text_spanner(container[2:])
+    abjad.text_spanner(container[:3])
 
-    assert format(target) == abjad.String.normalize(
+    assert format(container) == abjad.String.normalize(
         r"""
         {
             c'4
@@ -30,8 +28,8 @@ def test_LilyPondParser__spanners__Text_01():
         )
 
     parser = abjad.parser.LilyPondParser()
-    result = parser(format(target))
-    assert format(target) == format(result) and target is not result
+    result = parser(format(container))
+    assert format(container) == format(result) and container is not result
 
 
 def test_LilyPondParser__spanners__Text_02():
@@ -41,10 +39,8 @@ def test_LilyPondParser__spanners__Text_02():
 
     maker = abjad.NoteMaker()
     target = abjad.Container(maker([0] * 4, [(1, 4)]))
-    text_spanner = abjad.TextSpanner()
-    abjad.attach(text_spanner, target[2:])
-    text_spanner = abjad.TextSpanner()
-    abjad.attach(text_spanner, target[:3])
+    abjad.text_spanner(target[2:])
+    abjad.text_spanner(target[:3])
 
     assert format(target) == abjad.String.normalize(
         r"""

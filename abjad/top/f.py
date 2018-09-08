@@ -36,7 +36,7 @@ def f(argument, strict=None):
     if strict is not None:
         assert isinstance(strict, int), repr(strict)
     if hasattr(argument, '_publish_storage_format'):
-        string = format(argument, 'storage')
+        string = abjad.StorageFormatManager(argument).get_storage_format()
     else:
         string = format(argument, 'lilypond')
     realign = None

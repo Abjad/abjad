@@ -3,12 +3,12 @@ import copy
 import functools
 import numbers
 from abjad import mathtools
-from abjad.system.AbjadValueObject import AbjadValueObject
+from abjad.system.StorageFormatManager import StorageFormatManager
 from . import constants
 
 
 @functools.total_ordering
-class Interval(AbjadValueObject):
+class Interval(object):
     """
     Abstract interval.
     """
@@ -19,6 +19,8 @@ class Interval(AbjadValueObject):
         '_interval_class',
         '_octaves',
         )
+
+    _is_abstract = True
 
     ### INITIALIZER ###
 
@@ -81,6 +83,13 @@ class Interval(AbjadValueObject):
         """
         raise NotImplementedError
 
+    def __eq__(self, argument) -> bool:
+        """
+        Is true when all initialization values of Abjad value object equal
+        the initialization values of ``argument``.
+        """
+        return StorageFormatManager.compare_objects(self, argument)
+
     def __float__(self):
         """
         Coerce to semitones as float.
@@ -88,6 +97,17 @@ class Interval(AbjadValueObject):
         Returns float.
         """
         raise NotImplementedError
+
+    def __hash__(self) -> int:
+        """
+        Hashes Abjad value object.
+        """
+        hash_values = StorageFormatManager(self).get_hash_values()
+        try:
+            result = hash(hash_values)
+        except TypeError:
+            raise TypeError(f'unhashable type: {self}')
+        return result
 
     @abc.abstractmethod
     def __lt__(self, argument):
@@ -106,6 +126,12 @@ class Interval(AbjadValueObject):
         Returns interval.
         """
         raise NotImplementedError
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     def __str__(self):
         """

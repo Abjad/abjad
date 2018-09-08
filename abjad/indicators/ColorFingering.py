@@ -4,13 +4,13 @@ from abjad import enums
 from abjad import mathtools
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.markups import Markup
-from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
+from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.top.new import new
 
 
 @functools.total_ordering
-class ColorFingering(AbjadValueObject):
+class ColorFingering(object):
     r"""
     Color fingering.
 
@@ -90,6 +90,13 @@ class ColorFingering(AbjadValueObject):
 
     ### SPECIAL METHODS ##
 
+    def __eq__(self, argument) -> bool:
+        """
+        Is true when all initialization values of Abjad value object equal
+        the initialization values of ``argument``.
+        """
+        return StorageFormatManager.compare_objects(self, argument)
+
     def __format__(self, format_specification='') -> str:
         r"""
         Formats color fingering.
@@ -108,9 +115,20 @@ class ColorFingering(AbjadValueObject):
         """
         if format_specification == 'lilypond':
             return self._get_lilypond_format()
-        return super().__format__(
-            format_specification=format_specification
-            )
+        if format_specification in ('', 'storage'):
+            return StorageFormatManager(self).get_storage_format()
+        return str(self)
+
+    def __hash__(self) -> int:
+        """
+        Hashes Abjad value object.
+        """
+        hash_values = StorageFormatManager(self).get_hash_values()
+        try:
+            result = hash(hash_values)
+        except TypeError:
+            raise TypeError(f'unhashable type: {self}')
+        return result
 
     def __lt__(self, argument) -> bool:
         """
@@ -148,6 +166,12 @@ class ColorFingering(AbjadValueObject):
         if isinstance(argument, type(self)):
             return (self.number or 0) < (argument.number or 0)
         raise TypeError('unorderable types')
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PRIVATE METHODS ###
 

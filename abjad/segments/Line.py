@@ -7,7 +7,7 @@ class Line(AbjadObject):
 
     ..  container:: example
 
-        >>> string = '    %@%  \with-color %! MEASURE_NUMBER_MARKUP:SM31'
+        >>> string = r'    %@%  \with-color %! MEASURE_NUMBER_MARKUP:SM31'
         >>> abjad.Line(string)
         Line(string='    %@%  \\with-color %! MEASURE_NUMBER_MARKUP:SM31')
 
@@ -35,7 +35,7 @@ class Line(AbjadObject):
 
         ..  container:: example
 
-            >>> string = '    %@%  \with-color %! MEASURE_NUMBER_MARKUP:SM31'
+            >>> string = r'    %@%  \with-color %! MEASURE_NUMBER_MARKUP:SM31'
             >>> str(abjad.Line(string))
             '    %@%  \\with-color %! MEASURE_NUMBER_MARKUP:SM31'
 
@@ -52,7 +52,7 @@ class Line(AbjadObject):
 
         ..  container:: example
 
-            >>> string = '    %@%  \with-color %! MEASURE_NUMBER_MARKUP:SM31'
+            >>> string = r'    %@%  \with-color %! MEASURE_NUMBER_MARKUP:SM31'
             >>> abjad.Line(string).string
             '    %@%  \\with-color %! MEASURE_NUMBER_MARKUP:SM31'
 
@@ -68,7 +68,7 @@ class Line(AbjadObject):
 
         ..  container:: example
 
-            >>> string = '    %@%  \with-color %! MEASURE_NUMBER_MARKUP:SM31'
+            >>> string = r'    %@%  \with-color %! MEASURE_NUMBER_MARKUP:SM31'
             >>> abjad.Line(string).get_tags()
             ['MEASURE_NUMBER_MARKUP', 'SM31']
 
@@ -76,7 +76,7 @@ class Line(AbjadObject):
 
             REGRESSION. Works with multiple ``%!`` prefixes:
 
-            >>> string = '    %@%  \with-color %! SM31 %! SM32'
+            >>> string = r'    %@%  \with-color %! SM31 %! SM32'
             >>> line = abjad.Line(string)
             >>> line.get_tags()
             ['SM31', 'SM32']
@@ -145,7 +145,7 @@ class Line(AbjadObject):
 
         ..  container:: example
 
-            >>> string = '    %@%  \with-color %! MEASURE_NUMBER_MARKUP:SM31'
+            >>> string = r'    %@%  \with-color %! MEASURE_NUMBER_MARKUP:SM31'
             >>> line = abjad.Line(string)
 
         ..  container:: example
@@ -209,7 +209,7 @@ class Line(AbjadObject):
 
             REGRESSION. Works with multiple ``%!`` prefixes:
 
-            >>> string = '    %@%  \with-color %! SM31 %! SM32'
+            >>> string = r'    %@%  \with-color %! SM31 %! SM32'
             >>> line = abjad.Line(string)
 
             >>> line.match('SM31')

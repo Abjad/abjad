@@ -1,9 +1,9 @@
 import typing
+from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.utilities.String import String
-from .AbjadValueObject import AbjadValueObject
 
 
-class Tags(AbjadValueObject):
+class Tags(object):
     """
     Tags.
 
@@ -259,6 +259,12 @@ class Tags(AbjadValueObject):
         if tag not in self._known_tags:
             raise AttributeError('unknown tag {!r}.'.format(tag))
         return tag
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PUBLIC METHODS ###
 

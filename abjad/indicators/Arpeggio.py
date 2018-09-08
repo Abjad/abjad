@@ -1,11 +1,10 @@
 import typing
 from abjad import enums
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
-from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 
 
-class Arpeggio(AbjadValueObject):
+class Arpeggio(object):
     r"""
     Arpeggio.
 

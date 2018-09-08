@@ -1,7 +1,4 @@
-from abjad.system.AbjadObject import AbjadObject
-
-
-class LilyPondDuration(AbjadObject):
+class LilyPondDuration(object):
     """
     Model of a duration in LilyPond.
 

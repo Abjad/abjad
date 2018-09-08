@@ -8,12 +8,10 @@ from abjad import core
 from abjad import exceptions
 from abjad import pitch as abjad_pitch
 from abjad import scheme as abjad_scheme
-from abjad.system.AbjadObject import AbjadObject
 from abjad.top import attach
 
 
-# TODO: should not inherit from AbjadObject because no slots
-class LilyPondSyntacticalDefinition(AbjadObject):
+class LilyPondSyntacticalDefinition(object):
     """
     The syntactical definition of LilyPond's syntax.
 

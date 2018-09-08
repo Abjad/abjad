@@ -1,9 +1,9 @@
 import abc
 import operator
-from abjad.system.AbjadValueObject import AbjadValueObject
+from abjad.system.StorageFormatManager import StorageFormatManager
 
 
-class Inequality(AbjadValueObject):
+class Inequality(object):
     """
     Inequality.
     """
@@ -54,10 +54,35 @@ class Inequality(AbjadValueObject):
         """
         raise NotImplementedError
 
+    def __eq__(self, argument) -> bool:
+        """
+        Is true equal to ``argument``.
+        """
+        return StorageFormatManager.compare_objects(self, argument)
+
+    def __format__(self, format_specification='') -> str:
+        """
+        Formats inequality.
+        """
+        if format_specification in ('', 'storage'):
+            return StorageFormatManager(self).get_storage_format()
+        return str(self)
+
+    def __hash__(self) -> int:
+        """
+        Hashes object.
+        """
+        hash_values = StorageFormatManager(self).get_hash_values()
+        try:
+            result = hash(hash_values)
+        except TypeError:
+            raise TypeError(f'unhashable type: {self}')
+        return result
+
     ### PUBLIC PROPERTIES ###
 
     @property
-    def operator_string(self):
+    def operator_string(self) -> str:
         """
         Gets operator string.
 

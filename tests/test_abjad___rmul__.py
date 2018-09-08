@@ -20,5 +20,7 @@ def test_abjad___rmul___01(class_):
     """
     if inspect.isabstract(class_):
         return
+    if getattr(class_, '_is_abstract', None) is True:
+        return
     if hasattr(class_, '__mul__'):
         assert hasattr(class_, '__rmul__')

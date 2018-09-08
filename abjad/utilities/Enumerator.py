@@ -1,9 +1,8 @@
 import functools
 import itertools
-from abjad.system import AbjadValueObject
 
 
-class Enumerator(AbjadValueObject):
+class Enumerator(object):
     """
     Enumerator.
 
@@ -19,9 +18,9 @@ class Enumerator(AbjadValueObject):
     ### INITIALIZER ###
 
     def __init__(self, sequence=None):
-        import abjad
+        from .Sequence import Sequence
         if sequence is not None:
-            sequence = abjad.sequence(items=sequence)
+            sequence = Sequence(items=sequence)
         self._sequence = sequence
 
     ### PRIVATE METHODS ###

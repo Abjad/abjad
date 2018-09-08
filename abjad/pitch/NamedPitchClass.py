@@ -158,20 +158,6 @@ class NamedPitchClass(PitchClass):
         pitch = named_interval.transpose(dummy_pitch)
         return type(self)(pitch)
 
-    def __copy__(self, *arguments):
-        """
-        Copies named pitch-class.
-
-        ..  container:: example
-
-            >>> import copy
-            >>> copy.copy(abjad.NamedPitchClass('cs'))
-            NamedPitchClass('cs')
-
-        Returns new named pitch-class.
-        """
-        return super().__copy__(*arguments)
-
     def __eq__(self, argument):
         """
         Is true when `argument` can be coerced to a named pitch-class with

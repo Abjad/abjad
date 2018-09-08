@@ -1,8 +1,7 @@
 import collections
-from abjad.system.AbjadValueObject import AbjadValueObject
 
 
-class PitchInequality(AbjadValueObject):
+class PitchInequality(object):
     """
     Pitch inequality.
 

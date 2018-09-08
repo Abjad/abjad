@@ -22,6 +22,8 @@ def test_abjad___repr___01(class_):
     """
     if inspect.isabstract(class_):
         return
+    if getattr(class_, '_is_abstract', None) is True:
+        return
     instance = class_()
     string = repr(instance)
     assert string is not None

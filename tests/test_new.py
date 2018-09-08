@@ -1,7 +1,7 @@
 import abjad
 
 
-class Aggregate(abjad.system.AbjadValueObject):
+class Aggregate(object):
 
     __slots__ = ('_pitch_segment', '_ratio')
 
@@ -12,6 +12,12 @@ class Aggregate(abjad.system.AbjadValueObject):
         if ratio is not None:
             ratio = abjad.Ratio(ratio)
         self._ratio = ratio
+
+    def __eq__(self, argument):
+        return abjad.StorageFormatManager.compare_objects(self, argument)
+
+    def __format__(self, format_specification=''):
+        return abjad.StorageFormatManager(self).get_storage_format()
 
     @property
     def pitch_segment(self):

@@ -1,10 +1,9 @@
 import typing
-from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.scheme import Scheme
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 
 
-class LilyPondGrobOverride(AbjadValueObject):
+class LilyPondGrobOverride(object):
     r"""
     LilyPond grob override.
 

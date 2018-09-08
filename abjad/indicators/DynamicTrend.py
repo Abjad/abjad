@@ -2,14 +2,14 @@ import typing
 from abjad import enums
 from abjad.lilypondnames.LilyPondGrobOverride import LilyPondGrobOverride
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
-from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
+from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.system.Tags import Tags
 abjad_tags = Tags()
 
 
-class DynamicTrend(AbjadValueObject):
+class DynamicTrend(object):
     r"""
     Dynamic trend.
 
@@ -87,6 +87,32 @@ class DynamicTrend(AbjadValueObject):
         self._shape = shape
         self._tweaks = None
         LilyPondTweakManager.set_tweaks(self, tweaks)
+
+    ### SPECIAL METHODS ###
+
+    def __eq__(self, argument) -> bool:
+        """
+        Is true when all initialization values of Abjad value object equal
+        the initialization values of ``argument``.
+        """
+        return StorageFormatManager.compare_objects(self, argument)
+
+    def __hash__(self) -> int:
+        """
+        Hashes Abjad value object.
+        """
+        hash_values = StorageFormatManager(self).get_hash_values()
+        try:
+            result = hash(hash_values)
+        except TypeError:
+            raise TypeError(f'unhashable type: {self}')
+        return result
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PRIVATE METHODS ###
 

@@ -2,11 +2,11 @@ import typing
 from abjad import enums
 from abjad import typings
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
-from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
+from abjad.system.StorageFormatManager import StorageFormatManager
 
 
-class BendAfter(AbjadValueObject):
+class BendAfter(object):
     r"""
     Fall or doit.
 
@@ -68,6 +68,12 @@ class BendAfter(AbjadValueObject):
         LilyPondTweakManager.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
+
+    def __repr__(self):
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     def __str__(self) -> str:
         r"""

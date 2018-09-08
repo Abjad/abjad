@@ -3,14 +3,14 @@ import itertools
 import numbers
 import typing
 import uqbar.enums
-from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.Signature import Signature
+from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.top.label import label
 from abjad.top.new import new
 
 
-class Expression(AbjadValueObject):
+class Expression(object):
     """
     Expression.
 
@@ -331,7 +331,7 @@ class Expression(AbjadValueObject):
             False
 
         """
-        return super().__eq__(argument)
+        return StorageFormatManager.compare_objects(self, argument)
 
     def __format__(self, format_specification='') -> str:
         """
@@ -347,7 +347,9 @@ class Expression(AbjadValueObject):
             abjad.Expression()
 
         """
-        return super().__format__(format_specification=format_specification)
+        if format_specification in ('', 'storage'):
+            return StorageFormatManager(self).get_storage_format()
+        return str(self)
 
     def __getattr__(self, name):
         """
@@ -420,7 +422,7 @@ class Expression(AbjadValueObject):
             Expression()
 
         """
-        return super().__repr__()
+        return StorageFormatManager(self).get_repr_format()
 
     def __setitem__(self, i, argument):
         """
@@ -704,7 +706,7 @@ class Expression(AbjadValueObject):
 
     def _get_format_specification(self):
         if self.template is None:
-            return super()._get_format_specification()
+            return FormatSpecification(client=self)
         return FormatSpecification(
             client=self,
             repr_is_indented=False,

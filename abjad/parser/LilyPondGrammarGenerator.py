@@ -1,7 +1,4 @@
-from abjad.system.AbjadObject import AbjadObject
-
-
-class LilyPondGrammarGenerator(AbjadObject):
+class LilyPondGrammarGenerator(object):
     """
     Generates a syntax skeleton from LilyPond grammar files.
     """

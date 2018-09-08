@@ -1,7 +1,4 @@
-from abjad.system.AbjadObject import AbjadObject
-
-
-class LilyPondFraction(AbjadObject):
+class LilyPondFraction(object):
     """
     Model of a fraction in LilyPond.
 

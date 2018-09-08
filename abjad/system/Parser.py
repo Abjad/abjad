@@ -6,10 +6,9 @@ import ply  # type: ignore
 import sys
 from ply import yacc  # type: ignore
 import traceback
-from abjad.system.AbjadObject import AbjadObject
 
 
-class Parser(AbjadObject):
+class Parser(object):
     """
     Abstract base class for Abjad parsers.
 
@@ -27,6 +26,8 @@ class Parser(AbjadObject):
         '_logger',
         '_parser',
         )
+
+    _is_abstract = True
 
     ### INITIALIZER ###
 

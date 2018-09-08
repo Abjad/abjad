@@ -36,6 +36,8 @@ def test_abjad___str___01(class_):
     """
     if inspect.isabstract(class_):
         return
+    if getattr(class_, '_is_abstract', None) is True:
+        return
     if issubclass(class_, Exception):
         return
     instance = class_()

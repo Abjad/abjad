@@ -11,7 +11,6 @@ from abjad.core.Score import Score
 from abjad.core.Staff import Staff
 from abjad.core.Voice import Voice
 from abjad.system.StorageFormatManager import StorageFormatManager
-from abjad.system.TestManager import TestManager
 from abjad.top.inspect import inspect
 from abjad.top.iterate import iterate
 from .PartAssignment import PartAssignment
@@ -54,7 +53,7 @@ class SegmentMaker(AbjadObject):
         """
         Is true if ``expr`` is a segment-maker with equivalent properties.
         """
-        return TestManager.compare_objects(self, expr)
+        return StorageFormatManager.compare_objects(self, expr)
 
     def __hash__(self):
         """

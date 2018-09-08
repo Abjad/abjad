@@ -1,12 +1,12 @@
 import functools
 import numbers
 from . import constants
-from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.system.FormatSpecification import FormatSpecification
+from abjad.system.StorageFormatManager import StorageFormatManager
 
 
 @functools.total_ordering
-class StaffPosition(AbjadValueObject):
+class StaffPosition(object):
     """
     Staff position.
 
@@ -91,7 +91,7 @@ class StaffPosition(AbjadValueObject):
 
         Returns true or false.
         """
-        return super().__eq__(argument)
+        return StorageFormatManager.compare_objects(self, argument)
 
     def __hash__(self):
         """
@@ -99,7 +99,12 @@ class StaffPosition(AbjadValueObject):
 
         Returns integer.
         """
-        return super().__hash__()
+        hash_values = StorageFormatManager(self).get_hash_values()
+        try:
+            result = hash(hash_values)
+        except TypeError:
+            raise TypeError(f'unhashable type: {self}')
+        return result
 
     def __lt__(self, argument):
         """
@@ -139,6 +144,12 @@ class StaffPosition(AbjadValueObject):
         except Exception:
             return False
         return self.number < argument.number
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     def __str__(self):
         """

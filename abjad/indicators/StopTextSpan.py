@@ -1,9 +1,9 @@
 import typing
-from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
+from abjad.system.StorageFormatManager import StorageFormatManager
 
 
-class StopTextSpan(AbjadValueObject):
+class StopTextSpan(object):
     r"""
     LilyPond ``\stopTextSpan`` command.
 
@@ -43,6 +43,14 @@ class StopTextSpan(AbjadValueObject):
         if leak is not None:
             leak = bool(leak)
         self._leak = leak
+
+    ### SPECIAL METHODS ###
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PRIVATE METHODS ###
 

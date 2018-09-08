@@ -1,9 +1,9 @@
 import typing
-from abjad.system.AbjadValueObject import AbjadValueObject
 from .LilyPondGrobInterface import LilyPondGrobInterface
+from abjad.system.StorageFormatManager import StorageFormatManager
 
 
-class LilyPondGrob(AbjadValueObject):
+class LilyPondGrob(object):
     """
     LilyPond grob.
 
@@ -11,9 +11,7 @@ class LilyPondGrob(AbjadValueObject):
 
         >>> grob = abjad.lilypondnames.LilyPondGrob('Beam')
         >>> print(format(grob))
-        abjad.LilyPondGrob(
-            name='Beam',
-            )
+        LilyPondGrob(name='Beam')
 
     """
 
@@ -41,6 +39,12 @@ class LilyPondGrob(AbjadValueObject):
         from abjad.ly import grob_interfaces
         assert name in grob_interfaces
         self._name = name
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PUBLIC PROPERTIES ###
 

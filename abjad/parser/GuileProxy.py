@@ -1,13 +1,11 @@
-from typing import Callable, Dict  # noqa
+import typing
 from abjad import core
 from abjad import indicators as abjad_indicators
 from abjad import pitch as abjad_pitch
-from abjad.system.AbjadObject import AbjadObject
 from abjad.top import attach
 
 
-# TODO: should not inherit from AbjadObject because no slots
-class GuileProxy(AbjadObject):
+class GuileProxy(object):
     """
     Emulates LilyPond music functions.
 
@@ -18,7 +16,7 @@ class GuileProxy(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    _function_name_mapping = {}  # type: Dict[str, Callable]
+    _function_name_mapping: typing.Dict[str, typing.Callable] = {}
 
     ### INITIALIZER ###
 

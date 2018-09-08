@@ -1,13 +1,13 @@
 import typing
-from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.pitch.NamedPitch import NamedPitch
 from abjad.pitch.StaffPosition import StaffPosition
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
+from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.top.iterate import iterate
 
 
-class Clef(AbjadValueObject):
+class Clef(object):
     r"""
     Clef.
 
@@ -216,6 +216,13 @@ class Clef(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
+    def __eq__(self, argument) -> bool:
+        """
+        Is true when all initialization values of Abjad value object equal
+        the initialization values of ``argument``.
+        """
+        return StorageFormatManager.compare_objects(self, argument)
+
     def __format__(self, format_specification='') -> str:
         r"""
         Formats clef.
@@ -232,13 +239,29 @@ class Clef(AbjadValueObject):
             >>> print(format(clef, 'lilypond'))
             \clef "treble"
 
-        Returns string.
         """
         if format_specification == 'lilypond':
             return self._get_lilypond_format()
-        return super().__format__(
-            format_specification=format_specification,
-            )
+        if format_specification in ('', 'storage'):
+            return StorageFormatManager(self).get_storage_format()
+        return str(self)
+
+    def __hash__(self) -> int:
+        """
+        Hashes Abjad value object.
+        """
+        hash_values = StorageFormatManager(self).get_hash_values()
+        try:
+            result = hash(hash_values)
+        except TypeError:
+            raise TypeError(f'unhashable type: {self}')
+        return result
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PRIVATE METHODS ###
 
