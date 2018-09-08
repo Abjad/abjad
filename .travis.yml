@@ -44,8 +44,8 @@ install:
 - if [[ $ACCELERATED == true ]]; then pip install -e .[accelerated]; fi
 
 script:
+- pip install --quiet -e .[tonality]
 - mypy abjad
-#- pip install --quiet -e .[tonality]
 - coverage run -a `which pytest`
 - pip install --quiet -e .[book,cli,ipython,nauert]
 - ajv --help
