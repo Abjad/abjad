@@ -59,7 +59,7 @@ class LilyPondVersionToken(object):
 
         Returns string.
         """
-        return '{type(self).__name__}({self.version_string!r})'
+        return f'{type(self).__name__}({self.version_string!r})'
 
     ### PRIVATE METHODS ###
 

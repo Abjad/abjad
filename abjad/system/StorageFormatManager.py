@@ -609,7 +609,6 @@ class StorageFormatManager(object):
 #        return tuple(sorted(import_statements))
 
     def get_repr_format(self):
-        #assert hasattr(self._client, '_get_format_specification')
         pieces = self._format_specced_object(
             as_storage_format=False,
             )
