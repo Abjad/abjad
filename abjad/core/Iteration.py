@@ -5,7 +5,7 @@ from abjad.pitch import NamedPitch
 from abjad.pitch import Pitch
 from abjad.pitch import PitchSegment
 from abjad.pitch import PitchSet
-from abjad.system.AbjadObject import AbjadObject
+from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.utilities.Enumerator import Enumerator
 from abjad.utilities.Offset import Offset
 from abjad.utilities.OrderedDict import OrderedDict
@@ -13,7 +13,7 @@ from abjad.utilities.Sequence import Sequence
 from abjad.top.inspect import inspect
 
 
-class Iteration(AbjadObject):
+class Iteration(object):
     r"""
     Iteration.
 
@@ -61,6 +61,14 @@ class Iteration(AbjadObject):
     def __init__(self, client=None):
         assert not isinstance(client, str), repr(client)
         self._client = client
+
+    ### SPECIAL METHODS ###
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PRIVATE METHODS ###
 

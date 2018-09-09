@@ -2337,7 +2337,7 @@ class _MeterFittingSession(object):
         return self._ordered_offsets
 
 
-class _MeterManager(system.AbjadObject):
+class _MeterManager(object):
     """
     Meter manager.
     """

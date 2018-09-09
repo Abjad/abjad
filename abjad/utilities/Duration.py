@@ -4,14 +4,14 @@ import re
 import typing
 from abjad import exceptions
 from abjad import mathtools
-from abjad.system.AbjadObject import AbjadObject
+from abjad.system.StorageFormatManager import StorageFormatManager
 try:
     from quicktions import Fraction  # type: ignore
 except ImportError:
     from fractions import Fraction
 
 
-class Duration(AbjadObject, Fraction):
+class Duration(Fraction):
     """
     Duration.
 
@@ -402,6 +402,12 @@ class Duration(AbjadObject, Fraction):
         Documentation required.
         """
         return type(self), (self.numerator, self.denominator)
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     def __rmod__(self, *arguments):
         """

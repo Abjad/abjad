@@ -2,7 +2,7 @@ import abjad
 import {score_package_name}
 
 
-class SegmentMaker(abjad.AbjadObject):
+class SegmentMaker(abjad.SegmentMaker):
     """
     Segment-maker.
     """

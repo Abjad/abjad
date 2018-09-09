@@ -1,8 +1,8 @@
 import abc
-from abjad.system.AbjadObject import AbjadObject
+from abjad.system.StorageFormatManager import StorageFormatManager
 
 
-class TypedCollection(AbjadObject):
+class TypedCollection(object):
     """
     Abstract typed collection.
     """
@@ -13,6 +13,8 @@ class TypedCollection(AbjadObject):
         '_collection',
         '_item_class',
         )
+
+    _is_abstract = True
 
     _publish_storage_format = True
 
@@ -54,6 +56,12 @@ class TypedCollection(AbjadObject):
             return self._collection == argument
         return False
 
+    def __format__(self, format_specification='') -> str:
+        """
+        Formats object.
+        """
+        return StorageFormatManager(self).get_storage_format()
+
     def __hash__(self):
         """
         Hashes typed collection.
@@ -77,6 +85,12 @@ class TypedCollection(AbjadObject):
         Returns nonnegative integer.
         """
         return len(self._collection)
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PRIVATE PROPERTIES ###
 

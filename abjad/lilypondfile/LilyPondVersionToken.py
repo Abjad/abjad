@@ -1,7 +1,7 @@
-from abjad.system.AbjadObject import AbjadObject
+from abjad.system.StorageFormatManager import StorageFormatManager
 
 
-class LilyPondVersionToken(AbjadObject):
+class LilyPondVersionToken(object):
     r"""
     A LilyPond file ``\version`` token.
 
@@ -41,11 +41,10 @@ class LilyPondVersionToken(AbjadObject):
 
         Return string.
         """
-        import abjad
         if format_specification in ('', 'lilypond'):
             return self._get_lilypond_format()
         elif format_specification == 'storage':
-            return abjad.StorageFormatManager(self).get_storage_format()
+            return StorageFormatManager(self).get_storage_format()
         return str(self)
 
     def __repr__(self):

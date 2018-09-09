@@ -1,10 +1,10 @@
 import typing
-from abjad.system.AbjadObject import AbjadObject
-from abjad.utilities.String import String
 from abjad.system.FormatSpecification import FormatSpecification
+from abjad.system.StorageFormatManager import StorageFormatManager
+from abjad.utilities.String import String
 
 
-class Part(AbjadObject):
+class Part(object):
     """
     Part.
 
@@ -148,6 +148,12 @@ class Part(AbjadObject):
         Hashes part.
         """
         return super().__hash__()
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PUBLIC PROPERTIES ###
 

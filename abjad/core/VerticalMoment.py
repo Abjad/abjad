@@ -1,11 +1,11 @@
 import collections
-from abjad.system.AbjadObject import AbjadObject
 from abjad.system.FormatSpecification import FormatSpecification
+from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.top.inspect import inspect
 from abjad.utilities.Offset import Offset
 
 
-class VerticalMoment(AbjadObject):
+class VerticalMoment(object):
     r'''
     Vertical moment.
 

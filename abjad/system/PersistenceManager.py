@@ -2,10 +2,10 @@ import os
 import re
 import shutil
 import tempfile
-from abjad.system.AbjadObject import AbjadObject
+from .StorageFormatManager import StorageFormatManager
 
 
-class PersistenceManager(AbjadObject):
+class PersistenceManager(object):
     """
     Persistence manager.
 
@@ -31,6 +31,14 @@ class PersistenceManager(AbjadObject):
 
     def __init__(self, client=None):
         self._client = client
+
+    ### SPECIAL METHODS ###
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PUBLIC METHODS ###
 

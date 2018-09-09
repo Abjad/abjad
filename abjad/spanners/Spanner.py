@@ -4,7 +4,6 @@ from abjad import enums
 from abjad.core.Leaf import Leaf
 from abjad.core.Selection import Selection
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
-from abjad.system.AbjadObject import AbjadObject
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
@@ -22,7 +21,7 @@ from abjad.utilities.Duration import Duration
 abjad_tags = Tags()
 
 
-class Spanner(AbjadObject):
+class Spanner(object):
     """
     Spanner.
 
@@ -89,6 +88,12 @@ class Spanner(AbjadObject):
         self._copy_keywords(new)
         return new
 
+    def __format__(self, format_specification='') -> str:
+        """
+        Formats object.
+        """
+        return StorageFormatManager(self).get_storage_format()
+
     def __getitem__(self, argument) -> typing.Union[Leaf, Selection]:
         """
         Gets leaf or selection identified by ``argument``.
@@ -134,6 +139,19 @@ class Spanner(AbjadObject):
         """
         assert isinstance(argument, Spanner), repr(argument)
         return repr(self) < repr(argument)
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
+
+    def __setstate__(self, state) -> None:
+        """
+        Sets state of spanner.
+        """
+        for key, value in state.items():
+            setattr(self, key, value)
 
     ### PRIVATE METHODS ###
 

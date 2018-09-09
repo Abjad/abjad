@@ -5,7 +5,6 @@ import pathlib
 import typing
 from abjad.indicators.LilyPondLiteral import LilyPondLiteral
 from abjad.indicators.TimeSignature import TimeSignature
-from abjad.system.AbjadObject import AbjadObject
 from abjad.pitch.NamedPitch import NamedPitch
 from abjad.core.Component import Component
 from abjad.core.Container import Container
@@ -34,7 +33,7 @@ from .LilyPondLanguageToken import LilyPondLanguageToken
 from .LilyPondVersionToken import LilyPondVersionToken
 
 
-class LilyPondFile(AbjadObject):
+class LilyPondFile(object):
     r"""
     A LilyPond file.
 
@@ -465,13 +464,11 @@ class LilyPondFile(AbjadObject):
         """
         return self
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """
         Gets interpreter representation of LilyPond file.
-
-        Returns string.
         """
-        return super().__repr__()
+        return StorageFormatManager(self).get_repr_format()
 
     ### PRIVATE METHODS ###
 

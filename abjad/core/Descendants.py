@@ -1,8 +1,8 @@
 import collections
-from abjad.system.AbjadObject import AbjadObject
+from abjad.system.StorageFormatManager import StorageFormatManager
 
 
-class Descendants(AbjadObject, collections.Sequence):
+class Descendants(collections.Sequence):
     r'''
     Descendants of a component.
 
@@ -112,6 +112,12 @@ class Descendants(AbjadObject, collections.Sequence):
         Returns int.
         """
         return len(self._components)
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PUBLIC PROPERTIES ###
 

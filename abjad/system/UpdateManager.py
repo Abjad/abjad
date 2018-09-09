@@ -3,7 +3,6 @@ from abjad import exceptions
 from abjad import mathtools
 from abjad.indicators.MetronomeMark import MetronomeMark
 from abjad.indicators.TimeSignature import TimeSignature
-from abjad.system.AbjadObject import AbjadObject
 from abjad.timespans.AnnotatedTimespan import AnnotatedTimespan
 from abjad.timespans.TimespanList import TimespanList
 from abjad.top.inspect import inspect
@@ -11,9 +10,10 @@ from abjad.top.iterate import iterate
 from abjad.utilities.Multiplier import Multiplier
 from abjad.utilities.Offset import Offset
 from abjad.utilities.Sequence import Sequence
+from .StorageFormatManager import StorageFormatManager
 
 
-class UpdateManager(AbjadObject):
+class UpdateManager(object):
     """
     Update manager.
 
@@ -25,6 +25,14 @@ class UpdateManager(AbjadObject):
     __documentation_section__ = 'Managers'
 
     __slots__ = ()
+
+    ### SPECIAL METHODS ###
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PRIVATE METHODS ###
 

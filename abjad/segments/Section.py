@@ -1,11 +1,11 @@
 import typing
-from abjad.system.AbjadObject import AbjadObject
 from abjad.utilities.String import String
 from abjad.system.FormatSpecification import FormatSpecification
+from abjad.system.StorageFormatManager import StorageFormatManager
 from .Part import Part
 
 
-class Section(AbjadObject):
+class Section(object):
     """
     Section.
 
@@ -167,6 +167,12 @@ class Section(AbjadObject):
         Hashes section.
         """
         return super().__hash__()
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PUBLIC PROPERTIES ###
 

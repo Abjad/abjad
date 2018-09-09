@@ -3,12 +3,12 @@ from abjad.indicators.DynamicTrend import DynamicTrend
 from abjad.indicators.StartTextSpan import StartTextSpan
 from abjad.indicators.StopTextSpan import StopTextSpan
 from abjad.instruments import Instrument
-from abjad.system.AbjadObject import AbjadObject
 from abjad.spanners.Beam import Beam
 from abjad.spanners.Glissando import Glissando
 from abjad.spanners.OctavationSpanner import OctavationSpanner
 from abjad.spanners.Tie import Tie
 from abjad.spanners.TrillSpanner import TrillSpanner
+from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.top.inspect import inspect
 from abjad.top.iterate import iterate
 from abjad.top.setting import setting
@@ -17,7 +17,7 @@ from .Container import Container
 from .Context import Context
 
 
-class Wellformedness(AbjadObject):
+class Wellformedness(object):
     """
     Wellformedness.
 
@@ -61,6 +61,12 @@ class Wellformedness(AbjadObject):
             triple = (current_violators, current_total, current_check_name)
             triples.append(triple)
         return triples
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PRIVATE METHODS ###
 

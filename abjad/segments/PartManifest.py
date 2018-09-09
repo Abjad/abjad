@@ -1,11 +1,11 @@
 import typing
-from abjad.system.AbjadObject import AbjadObject
+from abjad.system.StorageFormatManager import StorageFormatManager
 from .Part import Part
 from .PartAssignment import PartAssignment
 from .Section import Section
 
 
-class PartManifest(AbjadObject):
+class PartManifest(object):
     """
     Part manifest.
 
@@ -223,6 +223,12 @@ class PartManifest(AbjadObject):
 
         """
         return len(self.parts)
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PUBLIC PROPERTIES ###
 

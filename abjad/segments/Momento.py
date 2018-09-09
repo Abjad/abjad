@@ -1,9 +1,10 @@
 import typing
-from abjad.system.AbjadObject import AbjadObject
+from abjad.system.FormatSpecification import FormatSpecification
+from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.system.Tag import Tag
 
 
-class Momento(AbjadObject):
+class Momento(object):
     """
     Momento.
     """
@@ -47,6 +48,25 @@ class Momento(AbjadObject):
             if not isinstance(value, (int, str, dict)):
                 assert type(value).__name__ == 'PersistentOverride', repr(value)
         self._value = value
+
+    ### SPECIAL METHODS ###
+
+    def __format__(self, format_specification='') -> str:
+        """
+        Formats object.
+        """
+        return StorageFormatManager(self).get_storage_format()
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
+
+    ### PRIVATE METHODS###
+
+    def _get_format_specification(self):
+        return FormatSpecification(client=self)
 
     ### PUBLIC PROPERTIES ###
 

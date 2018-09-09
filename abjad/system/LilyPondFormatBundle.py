@@ -1,7 +1,7 @@
-from abjad.system.AbjadObject import AbjadObject
+from abjad.system.StorageFormatManager import StorageFormatManager
 
 
-class LilyPondFormatBundle(AbjadObject):
+class LilyPondFormatBundle(object):
     """
     LilyPond format bundle.
 
@@ -38,6 +38,20 @@ class LilyPondFormatBundle(AbjadObject):
         self._context_settings = []
         self._grob_overrides = []
         self._grob_reverts = []
+
+    ### SPECIAL METHODS ###
+
+    def __format__(self, format_specification='') -> str:
+        """
+        Formats object.
+        """
+        return StorageFormatManager(self).get_storage_format()
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PRIVATE METHODS ###
 

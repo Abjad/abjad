@@ -3,11 +3,11 @@ try:
 except ImportError:
     import fractions # type: ignore
 import typing
-from abjad import system
-from abjad.system.AbjadObject import AbjadObject
+from abjad.system.FormatSpecification import FormatSpecification
+from abjad.system.StorageFormatManager import StorageFormatManager
 
 
-class NonreducedFraction(AbjadObject, fractions.Fraction):
+class NonreducedFraction(fractions.Fraction):
     """
     Nonreduced fraction.
 
@@ -214,7 +214,7 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
         Returns string.
         """
         if format_specification in ('', 'storage'):
-            return system.StorageFormatManager(self).get_storage_format()
+            return StorageFormatManager(self).get_storage_format()
         return str(self)
 
     def __ge__(self, argument):
@@ -372,7 +372,7 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
 
         Returns string.
         """
-        return system.StorageFormatManager(self).get_repr_format()
+        return StorageFormatManager(self).get_repr_format()
 
     def __rmul__(self, argument):
         """
@@ -464,7 +464,7 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
         return type(self)(pair)
 
     def _get_format_specification(self):
-        return system.FormatSpecification(
+        return FormatSpecification(
             client=self,
             repr_is_indented=False,
             storage_format_args_values=[

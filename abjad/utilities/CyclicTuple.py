@@ -1,8 +1,8 @@
 import typing
-from abjad.system.AbjadObject import AbjadObject
+from abjad.system.StorageFormatManager import StorageFormatManager
 
 
-class CyclicTuple(AbjadObject):
+class CyclicTuple(object):
     """
     Cyclic tuple.
 
@@ -69,6 +69,12 @@ class CyclicTuple(AbjadObject):
             return self._items == argument._items
         return False
 
+    def __format__(self, format_specification='') -> str:
+        """
+        Formats object.
+        """
+        return StorageFormatManager(self).get_storage_format()
+
     def __getitem__(self, argument) -> typing.Any:
         """
         Gets item or slice identified by ``argument``.
@@ -128,6 +134,12 @@ class CyclicTuple(AbjadObject):
         """
         assert isinstance(self._items, tuple)
         return self._items.__len__()
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     def __str__(self) -> str:
         """

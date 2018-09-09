@@ -1,7 +1,7 @@
-from abjad.system.AbjadObject import AbjadObject
+from .StorageFormatManager import StorageFormatManager
 
 
-class StorageFormatSpecification(AbjadObject):
+class StorageFormatSpecification(object):
     """
     Storage format specification.
     """
@@ -55,6 +55,14 @@ class StorageFormatSpecification(AbjadObject):
         if storage_format_text is not None:
             storage_format_text = str(storage_format_text)
         self._storage_format_text = storage_format_text
+
+    ### SPECIAL METHODS ###
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PUBLIC PROPERTIES ###
 

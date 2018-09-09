@@ -2,7 +2,6 @@ import copy
 import functools
 import typing
 from abjad.pitch import NamedPitch
-from abjad.system.AbjadObject import AbjadObject
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.pitch.NamedPitch import NamedPitch
 from abjad.system.FormatSpecification import FormatSpecification
@@ -12,7 +11,7 @@ from abjad.top.tweak import tweak
 
 
 @functools.total_ordering
-class NoteHead(AbjadObject):
+class NoteHead(object):
     """
     Note-head.
 
@@ -154,7 +153,7 @@ class NoteHead(AbjadObject):
             NoteHead("cs''")
 
         """
-        return super().__repr__()
+        return StorageFormatManager(self).get_repr_format()
 
     def __str__(self) -> str:
         """

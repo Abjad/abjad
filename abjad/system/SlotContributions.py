@@ -1,8 +1,8 @@
 import typing
-from abjad.system.AbjadObject import AbjadObject
+from abjad.system.StorageFormatManager import StorageFormatManager
 
 
-class SlotContributions(AbjadObject):
+class SlotContributions(object):
     """
     Slot contributions.
     """
@@ -37,6 +37,14 @@ class SlotContributions(AbjadObject):
         self._spanner_stops: typing.List[str] = []
         self._stem_tremolos: typing.List[str] = []
         self._trill_spanner_starts: typing.List[str] = []
+
+    ### SPECIAL METHODS ###
+    
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PRIVATE METHODS ###
 

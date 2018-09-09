@@ -1,7 +1,7 @@
-from abjad.system.AbjadObject import AbjadObject
+from abjad.system.StorageFormatManager import StorageFormatManager
 
 
-class Line(AbjadObject):
+class Line(object):
     r"""
     Line in a LilyPond file.
 
@@ -28,6 +28,12 @@ class Line(AbjadObject):
         self._string = string
 
     ### SPECIAL METHODS ###
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     def __str__(self):
         r"""
