@@ -49,8 +49,9 @@ script:
 - mypy abjad
 - coverage run -a `which pytest`
 # TODO: book has updated code; needs to be incorporated in dependency:
+# TODO: nauert has updated code; needs to be incorporated in dependency:
 #- pip install --quiet -e .[book,cli,ipython,nauert]
-- pip install --quiet -e .[cli,ipython,nauert]
+- pip install --quiet -e .[cli,ipython]
 - ajv --help
 
 after_success:

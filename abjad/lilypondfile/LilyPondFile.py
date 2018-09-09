@@ -17,6 +17,7 @@ from abjad.core.Staff import Staff
 from abjad.core.Voice import Voice
 from abjad.scheme import Scheme
 from abjad.scheme import SpacingVector
+from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.top.attach import attach
@@ -504,6 +505,9 @@ class LilyPondFile(object):
         return result
 
     ### PRIVATE METHODS ###
+
+    def _get_format_specification(self):
+        return FormatSpecification(client=self)
 
     def _get_formatted_blocks(self):
         result = []
