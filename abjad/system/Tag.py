@@ -1,9 +1,9 @@
 import typing
-from abjad.system.AbjadObject import AbjadObject
 from .FormatSpecification import FormatSpecification
+from .StorageFormatManager import StorageFormatManager
 
 
-class Tag(AbjadObject):
+class Tag(object):
     """
     Tag.
 
@@ -188,6 +188,12 @@ class Tag(AbjadObject):
 
         """
         return iter(self.words)
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     def __str__(self):
         """

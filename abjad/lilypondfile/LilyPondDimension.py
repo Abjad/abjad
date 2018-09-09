@@ -1,8 +1,8 @@
 import numbers
-from abjad import system
+from abjad.system.StorageFormatManager import StorageFormatManager
 
 
-class LilyPondDimension(system.AbjadObject):
+class LilyPondDimension(object):
     r"""
     A LilyPond file ``\paper`` block dimension.
 
@@ -43,12 +43,15 @@ class LilyPondDimension(system.AbjadObject):
 
         Returns string.
         """
-        import abjad
         if format_specification in ('', 'lilypond'):
             return self._get_lilypond_format()
-        elif format_specification == 'storage':
-            return abjad.StorageFormatManager(self).get_storage_format()
-        return str(self)
+        return StorageFormatManager(self).get_storage_format()
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PRIVATE METHODS ###
 

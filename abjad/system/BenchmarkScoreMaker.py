@@ -1,7 +1,7 @@
-from abjad.system.AbjadObject import AbjadObject
+from .StorageFormatManager import StorageFormatManager
 
 
-class BenchmarkScoreMaker(AbjadObject):
+class BenchmarkScoreMaker(object):
     """
     Benchmark score-maker.
 
@@ -20,6 +20,14 @@ class BenchmarkScoreMaker(AbjadObject):
     __documentation_section__ = 'Benchmarking'
 
     __slots__ = ()
+
+    ### SPECIAL METHODS ###
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PUBLIC METHODS ###
 

@@ -1,9 +1,9 @@
-from abjad.system.AbjadObject import AbjadObject
+from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.StorageFormatManager import StorageFormatManager
 
 
-class Block(AbjadObject):
+class Block(object):
     """
     A LilyPond file block.
 
@@ -110,6 +110,12 @@ class Block(AbjadObject):
                 return item
         raise KeyError
 
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
+
     def __setattr__(self, name, value):
         """
         Sets block ``name`` to ``value``.
@@ -138,11 +144,11 @@ class Block(AbjadObject):
 
     @property
     def _formatted_context_blocks(self):
-        import abjad
+        from .ContextBlock import ContextBlock
         result = []
         context_blocks = []
         for item in self.items:
-            if isinstance(item, abjad.ContextBlock):
+            if isinstance(item, ContextBlock):
                 context_blocks.append(item)
         for context_block in context_blocks:
             result.extend(context_block._get_format_pieces())
@@ -180,7 +186,9 @@ class Block(AbjadObject):
         return result
 
     def _get_format_pieces(self, tag=None):
-        import abjad
+        from abjad.core.Leaf import Leaf
+        from abjad.markups import Markup
+        from .ContextBlock import ContextBlock
         indent = LilyPondFormatManager.indent
         result = []
         if (not self._get_formatted_user_attributes() and
@@ -201,9 +209,9 @@ class Block(AbjadObject):
             string = strings[0]
         result.append(string)
         for item in self.items:
-            if isinstance(item, abjad.ContextBlock):
+            if isinstance(item, ContextBlock):
                 continue
-            if isinstance(item, (abjad.Leaf, abjad.Markup)):
+            if isinstance(item, (Leaf, Markup)):
                 item = [item]
             result.extend(self._format_item(item))
         formatted_attributes = self._get_formatted_user_attributes()
@@ -226,23 +234,24 @@ class Block(AbjadObject):
         return result
 
     def _get_format_specification(self):
-        import abjad
-        return abjad.FormatSpecification(
+        return FormatSpecification(
             client=self,
             repr_is_bracketed=True,
             repr_is_indented=False,
             )
 
     def _get_formatted_user_attributes(self):
-        import abjad
+        from abjad.markups import Markup
+        from abjad.scheme import Scheme
+        from .LilyPondDimension import LilyPondDimension
         result = []
-        prototype = abjad.Scheme
+        prototype = Scheme
         for value in self.items:
             if isinstance(value, prototype):
                 result.append(format(value, 'lilypond'))
         prototype = (
-            abjad.Scheme,
-            abjad.LilyPondDimension,
+            LilyPondDimension,
+            Scheme,
             )
         for key in self._public_attribute_names:
             assert not key.startswith('_'), repr(key)
@@ -256,12 +265,12 @@ class Block(AbjadObject):
                     formatted_key[i] = string
             formatted_key = ' '.join(formatted_key)
             # format value
-            if isinstance(value, abjad.Markup):
+            if isinstance(value, Markup):
                 formatted_value = value._get_format_pieces()
             elif isinstance(value, prototype):
                 formatted_value = [format(value, 'lilypond')]
             else:
-                formatted_value = abjad.Scheme(value)
+                formatted_value = Scheme(value)
                 formatted_value = format(formatted_value, 'lilypond')
                 formatted_value = [formatted_value]
             setting = f'{formatted_key!s} = {formatted_value[0]!s}'

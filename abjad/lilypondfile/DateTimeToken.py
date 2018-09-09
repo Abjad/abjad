@@ -1,8 +1,8 @@
 import time
-from abjad.system.AbjadObject import AbjadObject
+from abjad.system.StorageFormatManager import StorageFormatManager
 
 
-class DateTimeToken(AbjadObject):
+class DateTimeToken(object):
     """
     A LilyPond file date / time token.
 
@@ -39,12 +39,9 @@ class DateTimeToken(AbjadObject):
 
         Returns string.
         """
-        import abjad
         if format_specification in ('', 'lilypond'):
             return self._get_lilypond_format()
-        elif format_specification == 'storage':
-            return abjad.StorageFormatManager(self).get_storage_format()
-        return str(self)
+        return StorageFormatManager(self).get_storage_format()
 
     def __repr__(self):
         """

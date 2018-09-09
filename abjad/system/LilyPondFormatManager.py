@@ -2,12 +2,12 @@ import typing
 from abjad import enums
 from abjad.scheme import Scheme
 from abjad.scheme import SchemePair
-from abjad.system.AbjadObject import AbjadObject
 from abjad.utilities.String import String
 from .LilyPondFormatBundle import LilyPondFormatBundle
+from .StorageFormatManager import StorageFormatManager
 
 
-class LilyPondFormatManager(AbjadObject):
+class LilyPondFormatManager(object):
     """
     Manages LilyPond formatting logic.
     """
@@ -19,6 +19,14 @@ class LilyPondFormatManager(AbjadObject):
     __slots__ = ()
 
     indent = 4 * ' '
+
+    ### SPECIAL METHODS ###
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PRIVATE METHODS ###
 

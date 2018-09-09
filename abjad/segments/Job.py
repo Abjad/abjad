@@ -1,6 +1,6 @@
 import typing
 from .Path import Path
-from abjad.system.AbjadObject import AbjadObject
+from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.system.Tags import Tags
 from abjad.utilities.String import String
 from abjad.top.activate import activate
@@ -10,7 +10,7 @@ callable_type = typing.Union[str, typing.Callable, None]
 activation_type = typing.Tuple[callable_type, str]
 
 
-class Job(AbjadObject):
+class Job(object):
     """
     Job.
     """
@@ -125,6 +125,12 @@ class Job(AbjadObject):
         else:
             assert isinstance(self.path, str)
             return text
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PUBLIC PROPERTIES ###
 

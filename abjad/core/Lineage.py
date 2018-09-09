@@ -1,8 +1,8 @@
 import collections
-from abjad.system.AbjadObject import AbjadObject
+from abjad.system.StorageFormatManager import StorageFormatManager
 
 
-class Lineage(AbjadObject, collections.Sequence):
+class Lineage(collections.Sequence):
     r'''
     Lineage of a component.
 
@@ -104,6 +104,12 @@ class Lineage(AbjadObject, collections.Sequence):
         Returns int.
         """
         return len(self._components)
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PUBLIC PROPERTIES ###
 

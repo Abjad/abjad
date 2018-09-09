@@ -1,7 +1,6 @@
 import typing
 from abjad.timespans import TimespanList
 from abjad import mathtools
-from abjad.system.AbjadObject import AbjadObject
 from abjad.utilities.OrderedDict import OrderedDict
 from abjad.utilities.String import String
 from abjad.lilypondfile.LilyPondFile import LilyPondFile
@@ -17,7 +16,7 @@ from .PartAssignment import PartAssignment
 from .Path import Path
 
 
-class SegmentMaker(AbjadObject):
+class SegmentMaker(object):
     """
     Segment-maker.
     """
@@ -55,6 +54,12 @@ class SegmentMaker(AbjadObject):
         """
         return StorageFormatManager.compare_objects(self, expr)
 
+    def __format__(self, format_specification='') -> str:
+        """
+        Formats object.
+        """
+        return StorageFormatManager(self).get_storage_format()
+
     def __hash__(self):
         """
         Hashes segment-maker.
@@ -68,6 +73,12 @@ class SegmentMaker(AbjadObject):
         """
         lilypond_file = self.run(**keywords)
         return lilypond_file
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PRIVATE METHODS ###
 

@@ -1,13 +1,12 @@
 import collections
 import typing
-from abjad.system.AbjadObject import AbjadObject
 from abjad.markups import MarkupCommand
 from abjad.scheme import Scheme
 from abjad.scheme import SchemePair
 from abjad.system.StorageFormatManager import StorageFormatManager
 
 
-class WoodwindFingering(AbjadObject):
+class WoodwindFingering(object):
     r"""
     Woodwind fingering.
 
@@ -275,9 +274,13 @@ class WoodwindFingering(AbjadObject):
 
         Set ``format_specification`` to `''` or `'storage'`.
         """
-        if format_specification in ('', 'storage'):
-            return StorageFormatManager(self).get_storage_format()
-        raise ValueError(format_specification)
+        return StorageFormatManager(self).get_storage_format()
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PRIVATE PROPERTIES ###
 

@@ -5,12 +5,10 @@ import six
 import tempfile
 import time
 import traceback
-from abjad.system.AbjadObject import AbjadObject
-from six.moves import StringIO
-from six.moves import configparser
+from .StorageFormatManager import StorageFormatManager
 
 
-class Configuration(AbjadObject):
+class Configuration(object):
     """
     Configuration.
     """
@@ -23,6 +21,8 @@ class Configuration(AbjadObject):
         '_cached_configuration_directory',
         '_settings',
         )
+
+    _is_abstract = True
 
     ### INITIALIZER ###
 
@@ -87,6 +87,12 @@ class Configuration(AbjadObject):
         """
         return len(self._settings)
 
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
+
     def __setitem__(self, i, argument):
         """
         Sets configuration item ``i`` to ``argument``.
@@ -105,16 +111,16 @@ class Configuration(AbjadObject):
     def _configuration_from_string(self, string):
         if '[main]' not in string:
             string = '[main]\n' + string
-        config_parser = configparser.ConfigParser()
+        config_parser = six.moves.configparser.ConfigParser()
         try:
             if six.PY3:
                 config_parser.read_string(string)
                 configuration = dict(config_parser['main'].items())
             else:
-                string_io = StringIO(string)
+                string_io = six.moves.StringIO(string)
                 config_parser.readfp(string_io)
                 configuration = dict(config_parser.items('main'))
-        except configparser.ParsingError:
+        except six.moves.configparser.ParsingError:
             configuration = {}
         return configuration
 

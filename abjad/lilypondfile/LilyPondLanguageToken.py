@@ -1,3 +1,6 @@
+from abjad.system.StorageFormatManager import StorageFormatManager
+
+
 class LilyPondLanguageToken(object):
     r"""
     A LilyPond file ``\language`` token.
@@ -27,12 +30,9 @@ class LilyPondLanguageToken(object):
 
         Returns string.
         """
-        import abjad
         if format_specification in ('', 'lilypond'):
             return self._get_lilypond_format()
-        elif format_specification == 'storage':
-            return abjad.StorageFormatManager(self).get_storage_format()
-        return str(self)
+        return StorageFormatManager(self).get_storage_format()
 
     def __repr__(self):
         """

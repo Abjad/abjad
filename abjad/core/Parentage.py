@@ -1,11 +1,11 @@
 import collections
 import typing
 from abjad import mathtools
-from abjad.system.AbjadObject import AbjadObject
+from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.utilities.Multiplier import Multiplier
 
 
-class Parentage(AbjadObject, collections.Sequence):
+class Parentage(collections.Sequence):
     r'''
     Parentage of a component.
 
@@ -106,6 +106,12 @@ class Parentage(AbjadObject, collections.Sequence):
         Gets number of components in parentage.
         """
         return len(self.components)
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PRIVATE METHODS ###
 

@@ -1,3 +1,6 @@
+from abjad.system.LilyPondFormatManager import LilyPondFormatManager
+from abjad.top.override import override
+from abjad.top.setting import setting
 from .Block import Block
 
 
@@ -65,12 +68,11 @@ class ContextBlock(Block):
     ### PRIVATE METHODS ###
 
     def _get_format_pieces(self, tag=None):
-        import abjad
-        indent = abjad.LilyPondFormatManager.indent
+        indent = LilyPondFormatManager.indent
         result = []
         string = f'{self._escaped_name} {{'
         result.append(string)
-        manager = abjad.LilyPondFormatManager
+        manager = LilyPondFormatManager
         # CAUTION: source context name must come before type_ to allow
         # context redefinition.
         if self.source_lilypond_type is not None:
@@ -95,12 +97,12 @@ class ContextBlock(Block):
         for statement in self.accepts_commands:
             string = indent + rf'\accepts {statement}'
             result.append(string)
-        overrides = abjad.override(self)._list_format_contributions('override')
+        overrides = override(self)._list_format_contributions('override')
         for statement in overrides:
             string = indent + statement
             result.append(string)
         setting_contributions = []
-        for key, value in abjad.setting(self)._get_attribute_tuples():
+        for key, value in setting(self)._get_attribute_tuples():
             setting_contribution = \
                 manager.format_lilypond_context_setting_in_with_block(
                     key, value)

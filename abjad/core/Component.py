@@ -9,7 +9,6 @@ from abjad import mathtools
 from abjad.indicators.StaffChange import StaffChange
 from abjad.indicators.TimeSignature import TimeSignature
 from abjad.markups import Markup
-from abjad.system.AbjadObject import AbjadObject
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.StorageFormatManager import StorageFormatManager
@@ -29,7 +28,7 @@ from abjad.utilities.Duration import Duration
 from .VerticalMoment import VerticalMoment
 
 
-class Component(AbjadObject):
+class Component(object):
     """
     Component baseclass.
     """
@@ -53,6 +52,8 @@ class Component(AbjadObject):
         '_timespan',
         '_wrappers',
         )
+
+    _is_abstract = True
 
     ### INITIALIZER ###
 
@@ -160,11 +161,9 @@ class Component(AbjadObject):
         result = select(components)
         return result
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """
-        Gets interpreter representation of leaf.
-
-        Returns string.
+        Gets interpreter representation.
         """
         return StorageFormatManager(self).get_repr_format()
 

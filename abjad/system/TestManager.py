@@ -1,10 +1,10 @@
 import difflib
 import os
 import pathlib
-from abjad.system.AbjadObject import AbjadObject
+from abjad.system.StorageFormatManager import StorageFormatManager
 
 
-class TestManager(AbjadObject):
+class TestManager(object):
     """
     Manages test logic.
     """
@@ -15,6 +15,14 @@ class TestManager(AbjadObject):
 
     __slots__ = (
         )
+
+    ### SPECIAL METHODS ###
+    
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PRIVATE METHODS ###
 

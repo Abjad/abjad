@@ -11,12 +11,12 @@ import subprocess
 import sys
 import traceback
 import typing
-from abjad.system.AbjadObject import AbjadObject
 from .AbjadConfiguration import AbjadConfiguration
+from .StorageFormatManager import StorageFormatManager
 _configuration = AbjadConfiguration()
 
 
-class IOManager(AbjadObject):
+class IOManager(object):
     """
     IO manager.
     """
@@ -26,6 +26,14 @@ class IOManager(AbjadObject):
     __documentation_section__ = 'Managers'
 
     __slots__ = ()
+
+    ### SPECIAL METHODS ###
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PRIVATE METHODS ###
 

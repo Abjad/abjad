@@ -8,8 +8,8 @@ from abjad.markups import Markup
 from abjad.pitch.NamedPitch import NamedPitch
 from abjad.pitch.PitchSet import PitchSet
 from abjad.spanners.Spanner import Spanner
-from abjad.system.AbjadObject import AbjadObject
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
+from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.system.Wrapper import Wrapper
 from abjad.timespans.Timespan import Timespan
 from abjad.top.inspect import inspect
@@ -34,7 +34,7 @@ from .VerticalMoment import VerticalMoment
 from .Wellformedness import Wellformedness
 
 
-class Inspection(AbjadObject):
+class Inspection(object):
     """
     Inspection.
 
@@ -69,6 +69,14 @@ class Inspection(AbjadObject):
             message += f' (not {client!r}).'
             raise TypeError(message)
         self._client = client
+
+    ### SPECIAL METHODS ###
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PUBLIC PROPERTIES ###
 

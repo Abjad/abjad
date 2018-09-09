@@ -1,7 +1,7 @@
 import abjad
 
 
-class {class_name}(abjad.AbjadObject):
+class {class_name}(object):
     """
     """
 

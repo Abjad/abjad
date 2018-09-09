@@ -1,8 +1,8 @@
 import abc
-from abjad.system.AbjadObject import AbjadObject
+from .StorageFormatManager import StorageFormatManager
 
 
-class ContextManager(AbjadObject):
+class ContextManager(object):
     """
     An abstract context manager class.
     """
@@ -10,6 +10,8 @@ class ContextManager(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = ()
+
+    _is_abstract = True
 
     ### INTIALIZER ###
 
@@ -32,3 +34,9 @@ class ContextManager(AbjadObject):
         Exits context manager.
         """
         raise NotImplementedError
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()

@@ -9,11 +9,12 @@ import uqbar.graphs
 from abjad import Fraction
 from abjad import core
 from abjad import mathtools
-from abjad import system
-from abjad.system import Parser
+from abjad.system.FormatSpecification import FormatSpecification
+from abjad.system.StorageFormatManager import StorageFormatManager
+from abjad.system.Parser import Parser
 
 
-class RhythmTreeMixin(system.AbjadObject):
+class RhythmTreeMixin(object):
     """
     Abstract rhythm-tree node.
     """
@@ -41,7 +42,22 @@ class RhythmTreeMixin(system.AbjadObject):
         """
         raise NotImplementedError
 
+    def __format__(self, format_specification='') -> str:
+        """
+        Formats object.
+        """
+        return StorageFormatManager(self).get_storage_format()
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
+
     ### PRIVATE METHODS ###
+
+    def _get_format_specification(self):
+        return FormatSpecification(client=self)
 
     def _update_offsets_of_entire_tree(self):
         def recurse(container, current_offset):
@@ -399,7 +415,10 @@ class RhythmTreeLeaf(RhythmTreeMixin, uqbar.containers.UniqueTreeNode):
         self._is_pitched = bool(argument)
 
 
-class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeContainer):
+class RhythmTreeContainer(
+    RhythmTreeMixin,
+    uqbar.containers.UniqueTreeContainer,
+    ):
     r"""
     Rhythm-tree container.
 

@@ -1,9 +1,9 @@
 import os
 import types
-from abjad.system.AbjadObject import AbjadObject
+from abjad.system.StorageFormatManager import StorageFormatManager
 
 
-class ImportManager(AbjadObject):
+class ImportManager(object):
     """
     Imports structured packages.
     """
@@ -13,6 +13,14 @@ class ImportManager(AbjadObject):
     __documentation_section__ = 'Managers'
 
     __slots__ = ()
+
+    ### SPECIAL METHODS ###
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PRIVATE METHODS ###
 

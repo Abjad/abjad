@@ -20,7 +20,7 @@ from abjad.pitch.PitchClassSet import PitchClassSet
 from abjad.pitch.PitchSegment import PitchSegment
 from abjad.pitch.SetClass import SetClass
 from abjad.scheme import SchemeColor
-from abjad.system.AbjadObject import AbjadObject
+from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.top.attach import attach
 from abjad.top.detach import detach
 from abjad.top.inspect import inspect as abjad_inspect
@@ -36,7 +36,7 @@ from .Note import Note
 from .Skip import Skip
 
 
-class Label(AbjadObject):
+class Label(object):
     r"""
     Label.
 
@@ -248,6 +248,14 @@ class Label(AbjadObject):
         self._deactivate = deactivate
         self._expression = None
         self._tag = tag
+
+    ### SPECIAL METHODS ###
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PRIVATE METHODS ###
 

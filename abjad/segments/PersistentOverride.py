@@ -1,11 +1,12 @@
-from abjad.system.AbjadObject import AbjadObject
 from abjad.core.Context import Context
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
+from abjad.system.FormatSpecification import FormatSpecification
+from abjad.system.StorageFormatManager import StorageFormatManager
 import typing
 
 
-class PersistentOverride(AbjadObject):
+class PersistentOverride(object):
     """
     Persistent override.
 
@@ -130,13 +131,28 @@ class PersistentOverride(AbjadObject):
             return True
         return False
 
+    def __format__(self, format_specification='') -> str:
+        """
+        Formats object.
+        """
+        return StorageFormatManager(self).get_storage_format()
+
     def __hash__(self) -> int:
         """
         Hashes persistent override.
         """
         return super().__hash__()
 
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
+
     ### PRIVATE METHODS ###
+
+    def _get_format_specification(self):
+        return FormatSpecification(client=self)
 
     def _get_lilypond_format(self, context=None):
         if isinstance(context, Context):

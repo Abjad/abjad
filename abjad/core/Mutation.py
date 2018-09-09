@@ -1,8 +1,8 @@
-from abjad.system.AbjadObject import AbjadObject
 from abjad import enums
 from abjad.indicators.TimeSignature import TimeSignature
 from abjad.meter import Meter
 from abjad.pitch.NamedInterval import NamedInterval
+from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.top.attach import attach
 from abjad.top.detach import detach
 from abjad.top.inspect import inspect
@@ -18,7 +18,7 @@ from .Note import Note
 from .Selection import Selection
 
 
-class Mutation(AbjadObject):
+class Mutation(object):
     """
     Mutation.
 
@@ -46,6 +46,14 @@ class Mutation(AbjadObject):
 
     def __init__(self, client=None):
         self._client = client
+
+    ### SPECIAL METHODS ###
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PUBLIC PROPERTIES ###
 

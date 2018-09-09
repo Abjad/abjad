@@ -2,7 +2,7 @@ import collections
 import importlib
 import inspect
 import types
-from abjad.utilities.OrderedDict import OrderedDict
+#from abjad.utilities.OrderedDict import OrderedDict
 
 
 class StorageFormatManager(object):
@@ -58,6 +58,7 @@ class StorageFormatManager(object):
         as_storage_format=True,
         is_indented=True,
         ):
+        from abjad.utilities.OrderedDict import OrderedDict
         if isinstance(self._client, types.MethodType):
             return self._format_method()
         elif isinstance(self._client, type):
@@ -420,8 +421,7 @@ class StorageFormatManager(object):
 #                if argument is not subject:
 #                    result.update(agent._get_types(argument))
 #            if isinstance(argument, type_type):
-#                if not issubclass(argument, abjad.AbjadObject):
-#                    continue
+#                continue
 #            elif type(argument).__module__ in (
 #                'builtins',
 #                '__builtin__',

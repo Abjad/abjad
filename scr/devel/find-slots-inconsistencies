@@ -19,7 +19,7 @@ def find_inconsistencies():
     abjad_classes = sorted(abjad_classes, key=lambda x: x.__module__)
     graph = abjad.InheritanceGraph(
         addresses=abjad_classes,
-        root_addresses=[abjad.AbjadObject],
+        root_addresses=[object],
         )
     bad_arcs = []
     children_without_own_slots_def = []
