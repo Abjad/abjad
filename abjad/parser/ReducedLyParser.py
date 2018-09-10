@@ -275,14 +275,14 @@ class ReducedLyParser(Parser):
         beam : BRACKET_L
         """
         import abjad
-        p[0] = (abjad.Beam, Left)
+        p[0] = (abjad.StartBeam, Left)
 
     def p_beam__BRACKET_R(self, p):
         """
         beam : BRACKET_R
         """
         import abjad
-        p[0] = (abjad.Beam, Right)
+        p[0] = (abjad.StopBeam, Right)
 
     def p_chord_body__chord_pitches(self, p):
         """
@@ -548,14 +548,14 @@ class ReducedLyParser(Parser):
         slur : PAREN_L
         """
         import abjad
-        p[0] = (abjad.Slur, Left)
+        p[0] = (abjad.StartSlur, Left)
 
     def p_slur__PAREN_R(self, p):
         """
         slur : PAREN_R
         """
         import abjad
-        p[0] = (abjad.Slur, Right)
+        p[0] = (abjad.StopSlur, Right)
 
     def p_start__EMPTY(self, p):
         """
@@ -598,17 +598,22 @@ class ReducedLyParser(Parser):
 
     def _apply_spanners(self, leaves):
         import abjad
-
-        spanner_references = {
-            abjad.Beam: None,
-            abjad.Slur: None,
-        }
-
         first_leaf = leaves[0]
         pairs = abjad.sequence(leaves).nwise(wrapped=True)
         for leaf, next_leaf in pairs:
             span_events = self._get_span_events(leaf)
             for current_class, directions in span_events.items():
+
+                if current_class in (abjad.StartSlur, abjad.StopSlur):
+                    indicator = current_class()
+                    abjad.attach(indicator, leaf)
+                    continue
+
+                if current_class in (abjad.StartBeam, abjad.StopBeam):
+                    indicator = current_class()
+                    abjad.attach(indicator, leaf)
+                    continue
+
                 starting, stopping = [], []
                 for direction in directions:
                     if direction is Left:
@@ -633,53 +638,6 @@ class ReducedLyParser(Parser):
                         tie = abjad.Tie()
                         selection = abjad.select([leaf, next_leaf])
                         attach(tie, selection)
-
-                elif current_class is abjad.Beam:
-                    # A beam may begin and end on the same leaf
-                    # but only one beam spanner may cover any given leaf,
-                    # and starting events are processed before ending ones
-                    for _ in starting:
-                        if spanner_references[current_class] is not None:
-                            message = 'already have beam.'
-                            raise Exception(message)
-                        else:
-                            spanner_references[current_class] = current_class()
-                    for _ in stopping:
-                        if spanner_references[current_class] is not None:
-                            spanner_references[current_class]._append(leaf)
-                            spanner_references[current_class] = None
-
-                elif current_class is spanners.Slur:
-                    # Slurs process stop events before start events,
-                    # they must contain more than one leaf,
-                    # but they can stop on a leaf and start on the same leaf.
-                    for _ in stopping:
-                        if spanner_references[current_class] is not None:
-                            spanner_references[current_class]._append(leaf)
-                            spanner_references[current_class] = None
-                        else:
-                            message = 'can not end: {}.'
-                            message = message.format(current_class.__name)
-                            raise Exception(message)
-                    for _ in starting:
-                        if spanner_references[current_class] is None:
-                            spanner_references[current_class] = current_class()
-                        else:
-                            message = 'already have: {}.'
-                            message = message.format(current_class.__name)
-                            raise Exception(message)
-
-            # append leaf to all tracked spanners,
-            for current_class, instance in spanner_references.items():
-                if instance is not None:
-                    instance._append(leaf)
-
-        # check for unterminated spanners
-        for current_class, instance in spanner_references.items():
-            if instance is not None:
-                message = 'unterminated {}.'
-                message = message.format(current_class.__name__)
-                raise Exception(message)
 
     def _cleanup(self, parsed):
         import abjad

@@ -1,9 +1,8 @@
 from abjad.indicators.Clef import Clef
-from abjad.indicators.DynamicTrend import DynamicTrend
+from abjad.indicators.HairpinIndicator import HairpinIndicator
 from abjad.indicators.StartTextSpan import StartTextSpan
 from abjad.indicators.StopTextSpan import StopTextSpan
 from abjad.instruments import Instrument
-from abjad.spanners.Beam import Beam
 from abjad.spanners.Glissando import Glissando
 from abjad.spanners.OctavationSpanner import OctavationSpanner
 from abjad.spanners.Tie import Tie
@@ -196,7 +195,6 @@ class Wellformedness(object):
             0 /	3 missing parents
             0 /	2 notes on wrong clef
             0 /	2 out of range pitches
-            0 /	0 overlapping beams
             0 /	0 overlapping glissandi
             0 /	0 overlapping octavation spanners
             0 /	0 overlapping trill spanners
@@ -221,7 +219,6 @@ class Wellformedness(object):
             0 /	3 missing parents
             0 /	2 notes on wrong clef
             0 /	2 out of range pitches
-            0 /	0 overlapping beams
             0 /	0 overlapping glissandi
             0 /	0 overlapping octavation spanners
             0 /	0 overlapping trill spanners
@@ -321,7 +318,6 @@ class Wellformedness(object):
             0 /	5 missing parents
             4 /	4 notes on wrong clef
             0 /	4 out of range pitches
-            0 /	0 overlapping beams
             0 /	0 overlapping glissandi
             0 /	0 overlapping octavation spanners
             0 /	0 overlapping trill spanners
@@ -362,7 +358,6 @@ class Wellformedness(object):
             0 /	5 missing parents
             0 /	4 notes on wrong clef
             0 /	4 out of range pitches
-            0 /	0 overlapping beams
             0 /	0 overlapping glissandi
             0 /	0 overlapping octavation spanners
             0 /	0 overlapping trill spanners
@@ -384,7 +379,6 @@ class Wellformedness(object):
             0 /	5 missing parents
             4 /	4 notes on wrong clef
             0 /	4 out of range pitches
-            0 /	0 overlapping beams
             0 /	0 overlapping glissandi
             0 /	0 overlapping octavation spanners
             0 /	0 overlapping trill spanners
@@ -444,7 +438,6 @@ class Wellformedness(object):
             0 /	5 missing parents
             0 /	4 notes on wrong clef
             1 /	2 out of range pitches
-            0 /	0 overlapping beams
             0 /	0 overlapping glissandi
             0 /	0 overlapping octavation spanners
             0 /	0 overlapping trill spanners
@@ -464,54 +457,6 @@ class Wellformedness(object):
                 continue
             if leaf not in instrument.pitch_range:
                 violators.append(leaf)
-        return violators, len(total)
-
-    def check_overlapping_beams(self, argument=None):
-        r"""
-        Checks overlapping beams.
-
-        ..  container:: example
-
-            Overlapping beams are wellformed:
-
-            >>> staff = abjad.Staff("c'8 d' e' f'")
-            >>> abjad.attach(abjad.Beam(), staff[:3])
-            >>> abjad.attach(abjad.Beam(), staff[2:])
-
-            >>> abjad.f(staff)
-            \new Staff
-            {
-                c'8
-                [
-                d'8
-                e'8
-                ]
-                [
-                f'8
-                ]
-            }
-
-            >>> wellformedness = abjad.Wellformedness()
-            >>> violators, total = wellformedness.check_overlapping_beams(staff)
-            >>> for beam in sorted(violators):
-            ...     beam
-            ...
-            Beam("c'8, d'8, e'8", durations=(), span_beam_count=1)
-            Beam("e'8, f'8", durations=(), span_beam_count=1)
-
-            (Enchained beams are not wellformed either.)
-
-        Returns list of overlapping beams and nonnegative integer count of
-        total beams in score.
-        """
-        violators, total = [], set()
-        for leaf in iterate(argument).leaves():
-            beams = inspect(leaf).spanners(Beam)
-            total.update(beams)
-            if 1 < len(beams):
-                for beam in beams:
-                    if beam not in violators:
-                        violators.append(beam)
         return violators, len(total)
 
     def check_overlapping_glissandi(self, argument=None):
@@ -604,7 +549,6 @@ class Wellformedness(object):
             0 /	5 missing parents
             0 /	4 notes on wrong clef
             0 /	4 out of range pitches
-            0 /	0 overlapping beams
             0 /	0 overlapping glissandi
             0 /	0 overlapping octavation spanners
             2 /	2 overlapping trill spanners
@@ -649,7 +593,6 @@ class Wellformedness(object):
             0 /	5 missing parents
             0 /	4 notes on wrong clef
             0 /	4 out of range pitches
-            0 /	0 overlapping beams
             0 /	0 overlapping glissandi
             0 /	0 overlapping octavation spanners
             0 /	0 overlapping trill spanners
@@ -718,8 +661,8 @@ class Wellformedness(object):
             Unterminated crescendo is not wellformed:
 
             >>> voice = abjad.Voice("c'4 c'4 c'4 c'4")
-            >>> dynamic_trend = abjad.DynamicTrend('<')
-            >>> abjad.attach(dynamic_trend, voice[0])
+            >>> hairpin = abjad.HairpinIndicator('<')
+            >>> abjad.attach(hairpin, voice[0])
             >>> abjad.f(voice)
             \new Voice
             {
@@ -740,7 +683,6 @@ class Wellformedness(object):
             0 /	5 missing parents
             0 /	4 notes on wrong clef
             0 /	4 out of range pitches
-            0 /	0 overlapping beams
             0 /	0 overlapping glissandi
             0 /	0 overlapping octavation spanners
             0 /	0 overlapping trill spanners
@@ -753,8 +695,8 @@ class Wellformedness(object):
             >>> voice = abjad.Voice("c'4 c'4 c'4 c'4")
             >>> dynamic = abjad.Dynamic('f')
             >>> abjad.attach(dynamic, voice[0])
-            >>> dynamic_trend = abjad.DynamicTrend('<')
-            >>> abjad.attach(dynamic_trend, voice[0])
+            >>> hairpin = abjad.HairpinIndicator('<')
+            >>> abjad.attach(hairpin, voice[0])
             >>> abjad.f(voice)
             \new Voice
             {
@@ -776,7 +718,6 @@ class Wellformedness(object):
             0 /	5 missing parents
             0 /	4 notes on wrong clef
             0 /	4 out of range pitches
-            0 /	0 overlapping beams
             0 /	0 overlapping glissandi
             0 /	0 overlapping octavation spanners
             0 /	0 overlapping trill spanners
@@ -787,8 +728,8 @@ class Wellformedness(object):
             Terminated crescendo is wellformed:
 
             >>> voice = abjad.Voice("c'4 c'4 c'4 c'4")
-            >>> dynamic_trend = abjad.DynamicTrend('<')
-            >>> abjad.attach(dynamic_trend, voice[0])
+            >>> hairpin = abjad.HairpinIndicator('<')
+            >>> abjad.attach(hairpin, voice[0])
             >>> dynamic = abjad.Dynamic('f')
             >>> abjad.attach(dynamic, voice[-1])
             >>> abjad.show(voice) # doctest: +SKIP
@@ -822,9 +763,9 @@ class Wellformedness(object):
                 if parameter == 'DYNAMIC':
                     last_dynamic = wrapper.indicator
                     last_tag = wrapper.tag
-                    if isinstance(wrapper.indicator, DynamicTrend):
+                    if isinstance(wrapper.indicator, HairpinIndicator):
                         total += 1
-            if (isinstance(last_dynamic, DynamicTrend) and
+            if (isinstance(last_dynamic, HairpinIndicator) and
                 'right_broken' not in str(last_tag)):
                 violators.append(wrapper.component)
         return violators, total
@@ -860,7 +801,6 @@ class Wellformedness(object):
             0 /	5 missing parents
             0 /	4 notes on wrong clef
             0 /	4 out of range pitches
-            0 /	0 overlapping beams
             0 /	0 overlapping glissandi
             0 /	0 overlapping octavation spanners
             0 /	0 overlapping trill spanners

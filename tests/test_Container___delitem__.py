@@ -8,7 +8,7 @@ def test_Container___delitem___01():
 
     voice = abjad.Voice("{ c'8 ( d'8 ) } { e'8 ( f'8 ) }")
     leaves = abjad.select(voice).leaves()
-    abjad.attach(abjad.Beam(), leaves)
+    abjad.beam(leaves)
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -16,8 +16,8 @@ def test_Container___delitem___01():
         {
             {
                 c'8
-                [
                 (
+                [
                 d'8
                 )
             }
@@ -25,8 +25,8 @@ def test_Container___delitem___01():
                 e'8
                 (
                 f'8
-                ]
                 )
+                ]
             }
         }
         """
@@ -42,15 +42,14 @@ def test_Container___delitem___01():
         {
             {
                 e'8
-                [
                 (
                 f'8
-                ]
                 )
+                ]
             }
         }
         """
-        )
+        ), print(format(voice))
 
     assert abjad.inspect(voice).wellformed()
 
@@ -60,11 +59,12 @@ def test_Container___delitem___01():
         {
             c'8
             (
+            [
             d'8
             )
         }
         """
-        )
+        ), print(format(container))
 
     assert abjad.inspect(container).wellformed()
 
@@ -129,7 +129,6 @@ def test_Container___delitem___04():
         \new Voice
         {
             e'8
-            [
             f'8
             ]
         }
@@ -154,7 +153,6 @@ def test_Container___delitem___05():
             c'8
             [
             d'8
-            ]
         }
         """
         )

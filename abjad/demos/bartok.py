@@ -90,26 +90,18 @@ def make_bartok_score():
     lower_leaves = abjad.select(lower_staff).leaves()
 
     # Attach beams
-    beam = abjad.Beam()
-    abjad.attach(beam, upper_leaves[:4])
-    beam = abjad.Beam()
-    abjad.attach(beam, lower_leaves[1:5])
-    beam = abjad.Beam()
-    abjad.attach(beam, lower_leaves[6:10])
+    abjad.beam(upper_leaves[:4])
+    abjad.beam(lower_leaves[1:5])
+    abjad.beam(lower_leaves[6:10])
 
     # Attach slurs
-    slur = abjad.Slur()
-    abjad.attach(slur, upper_leaves[:5])
-    slur = abjad.Slur()
-    abjad.attach(slur, upper_leaves[5:])
-    slur = abjad.Slur()
-    abjad.attach(slur, lower_leaves[1:6])
+    abjad.slur(upper_leaves[:5])
+    abjad.slur(upper_leaves[5:])
+    abjad.slur(lower_leaves[1:6])
 
     # Attach hairpins
-    crescendo = abjad.Hairpin('<')
-    abjad.attach(crescendo, upper_leaves[-7:-2])
-    decrescendo = abjad.Hairpin('>')
-    abjad.attach(decrescendo, upper_leaves[-2:])
+    abjad.hairpin('<', upper_leaves[-7:-2])
+    abjad.hairpin('>', upper_leaves[-2:])
 
     # Attach a ritardando with markup
     markup = abjad.Markup('ritard.')

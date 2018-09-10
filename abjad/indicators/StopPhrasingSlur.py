@@ -138,7 +138,7 @@ class StopPhrasingSlur(object):
             slot:
 
             >>> staff = abjad.Staff("c'8 d' e' f' r2")
-            >>> abjad.attach(abjad.Beam(), staff[:4])
+            >>> abjad.beam(staff[:4])
             >>> command = abjad.StartPhrasingSlur()
             >>> abjad.tweak(command).color = 'blue'
             >>> abjad.attach(command, staff[0])
@@ -152,9 +152,9 @@ class StopPhrasingSlur(object):
                 \new Staff
                 {
                     c'8
+                    [
                     - \tweak color #blue
                     \(
-                    [
                     d'8
                     e'8
                     f'8

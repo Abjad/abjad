@@ -10,10 +10,8 @@ def test_Container_pop_01():
     """
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
-    slur = abjad.Slur()
-    abjad.attach(slur, voice[:])
-    beam = abjad.Beam(beam_lone_notes=True)
-    abjad.attach(beam, voice[1:2])
+    abjad.slur(voice[:])
+    abjad.beam(voice[1:2], beam_lone_notes=True)
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -29,7 +27,7 @@ def test_Container_pop_01():
             )
         }
         """
-        )
+        ), print(format(voice))
 
     result = voice.pop(1)
 
@@ -44,7 +42,7 @@ def test_Container_pop_01():
             )
         }
         """
-        )
+        ), print(format(voice))
 
     assert abjad.inspect(voice).wellformed()
 
@@ -62,8 +60,7 @@ def test_Container_pop_02():
 
     staff = abjad.Staff("{ c'8 d'8 } { e'8 f'8 }")
     leaves = abjad.select(staff).leaves()
-    beam = abjad.Beam()
-    abjad.attach(beam, leaves)
+    abjad.beam(leaves)
 
     assert format(staff) == abjad.String.normalize(
         r"""
@@ -81,7 +78,7 @@ def test_Container_pop_02():
             }
         }
         """
-        )
+        ), print(format(staff))
 
     sequential = staff.pop()
 
@@ -93,11 +90,11 @@ def test_Container_pop_02():
                 c'8
                 [
                 d'8
-                ]
             }
         }
         """
-        )
+        ), print(format(staff))
+
     assert abjad.inspect(staff).wellformed()
 
     assert format(sequential) == abjad.String.normalize(
@@ -105,8 +102,9 @@ def test_Container_pop_02():
         {
             e'8
             f'8
+            ]
         }
         """
-        )
+        ), print(format(sequential))
 
     assert abjad.inspect(sequential).wellformed()

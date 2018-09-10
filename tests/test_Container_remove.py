@@ -12,10 +12,8 @@ def test_Container_remove_01():
     """
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
-    slur = abjad.Slur()
-    abjad.attach(slur, voice[:])
-    beam = abjad.Beam(beam_lone_notes=True)
-    abjad.attach(beam, voice[1:2])
+    abjad.slur(voice[:])
+    abjad.beam(voice[1:2], beam_lone_notes=True)
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -69,8 +67,7 @@ def test_Container_remove_02():
     staff = abjad.Staff("{ c'8 d'8 } { e'8 f'8 }")
     leaves = abjad.select(staff).leaves()
     sequential = staff[0]
-    beam = abjad.Beam()
-    abjad.attach(beam, leaves)
+    abjad.beam(leaves)
 
     assert format(staff) == abjad.String.normalize(
         r"""
@@ -98,7 +95,6 @@ def test_Container_remove_02():
         {
             {
                 e'8
-                [
                 f'8
                 ]
             }
@@ -112,6 +108,7 @@ def test_Container_remove_02():
         r"""
         {
             c'8
+            [
             d'8
         }
         """

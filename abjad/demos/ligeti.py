@@ -41,10 +41,8 @@ def make_desordre_cell(pitches):
 
     notes = [abjad.Note(pitch, (1, 8)) for pitch in pitches]
     notes = abjad.Selection(notes)
-    beam = abjad.Beam()
-    abjad.attach(beam, notes)
-    slur = abjad.Slur()
-    abjad.attach(slur, notes)
+    abjad.beam(notes)
+    abjad.slur(notes)
     clef = abjad.Dynamic('f')
     abjad.attach(clef, notes[0])
     dynamic = abjad.Dynamic('p')

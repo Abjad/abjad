@@ -86,7 +86,7 @@ finally attach an accent to the first note of each split group:
         if index % 2:
             abjad.mutate(shard).transpose('M7')
         if 1 < len(shard):
-            abjad.attach(abjad.Slur(), shard)
+            abjad.slur(shard)
         abjad.attach(abjad.Articulation('accent'), shard[0])
 
     abjad.show(staff)

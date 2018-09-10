@@ -5,6 +5,7 @@ Tools for modeling "indicators".
 from .Arpeggio import Arpeggio
 from .Articulation import Articulation
 from .BarLine import BarLine
+from .BeamCount import BeamCount
 from .BendAfter import BendAfter
 from .BowContactPoint import BowContactPoint
 from .BowMotionTechnique import BowMotionTechnique
@@ -13,8 +14,8 @@ from .BreathMark import BreathMark
 from .Clef import Clef
 from .ColorFingering import ColorFingering
 from .Dynamic import Dynamic
-from .DynamicTrend import DynamicTrend
 from .Fermata import Fermata
+from .HairpinIndicator import HairpinIndicator
 from .KeyCluster import KeyCluster
 from .KeySignature import KeySignature
 from .LaissezVibrer import LaissezVibrer
@@ -30,10 +31,13 @@ from .Staccatissimo import Staccatissimo
 from .Staccato import Staccato
 from .StaffChange import StaffChange
 from .StartMarkup import StartMarkup
+from .StartBeam import StartBeam
 from .StartSlur import StartSlur
 from .StartPhrasingSlur import StartPhrasingSlur
 from .StartTextSpan import StartTextSpan
 from .StemTremolo import StemTremolo
+from .StopBeam import StopBeam
+from .StopHairpin import StopHairpin
 from .StopPhrasingSlur import StopPhrasingSlur
 from .StopSlur import StopSlur
 from .StopTextSpan import StopTextSpan

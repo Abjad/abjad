@@ -580,6 +580,7 @@ class Selection(collections.Sequence):
         argument,
         prototype=None,
         *,
+        do_not_iterate_grace_containers=None,
         exclude=None,
         grace_notes=None,
         head=None,
@@ -592,6 +593,7 @@ class Selection(collections.Sequence):
         result = []
         generator = iterate(argument).components(
             prototype,
+            do_not_iterate_grace_containers=do_not_iterate_grace_containers,
             exclude=exclude,
             grace_notes=grace_notes,
             )
@@ -3936,6 +3938,7 @@ class Selection(collections.Sequence):
         self,
         prototype = None,
         *,
+        do_not_iterate_grace_containers: bool = None,
         exclude: typings.Strings = None,
         grace_notes: bool = None,
         head: bool = None,
@@ -5084,6 +5087,7 @@ class Selection(collections.Sequence):
         return self._components(
             self,
             prototype=prototype,
+            do_not_iterate_grace_containers=do_not_iterate_grace_containers,
             exclude=exclude,
             grace_notes=grace_notes,
             head=head,

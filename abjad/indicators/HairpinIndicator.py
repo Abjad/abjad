@@ -6,18 +6,19 @@ from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.system.Tags import Tags
+from abjad.utilities.String import String
 abjad_tags = Tags()
 
 
-class DynamicTrend(object):
+class HairpinIndicator(object):
     r"""
-    Dynamic trend.
+    Hairpin indicator.
 
     ..  container:: example
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> abjad.attach(abjad.Dynamic('p'), staff[0])
-        >>> abjad.attach(abjad.DynamicTrend('<'), staff[0])
+        >>> abjad.attach(abjad.HairpinIndicator('<'), staff[0])
         >>> abjad.attach(abjad.Dynamic('f'), staff[-1])
         >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4.5
         >>> abjad.show(staff) # doctest: +SKIP
@@ -45,6 +46,7 @@ class DynamicTrend(object):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_direction',
         '_left_broken',
         '_shape',
         '_tweaks',
@@ -68,6 +70,7 @@ class DynamicTrend(object):
 
     _persistent = True
 
+    # TODO: remove?
     _time_orientation: enums.HorizontalAlignment = enums.Right
 
     ### INITIALIZER ###
@@ -76,10 +79,13 @@ class DynamicTrend(object):
         self,
         shape='<',
         *,
+        direction: enums.VerticalAlignment = None,
         left_broken: bool = None,
         tweaks: typing.Union[
             typing.List[typing.Tuple], LilyPondTweakManager] = None,
         ) -> None:
+        direction_ = String.to_tridirectional_lilypond_symbol(direction)
+        self._direction = direction_
         if left_broken is not None:
             left_broken = bool(left_broken)
         self._left_broken = left_broken
@@ -115,6 +121,11 @@ class DynamicTrend(object):
         return StorageFormatManager(self).get_repr_format()
 
     ### PRIVATE METHODS ###
+
+    def _add_direction(self, string):
+        if getattr(self, 'direction', False):
+            string = f'{self.direction} {string}'
+        return string
 
     @staticmethod
     def _constante_hairpin():
@@ -158,9 +169,13 @@ class DynamicTrend(object):
             string = override.tweak_string()
             strings.append(string)
         if '<' in self.shape or '--' in self.shape:
-            strings.append(self._crescendo_start)
+            string = self._crescendo_start
+            string = self._add_direction(string)
+            strings.append(string)
         elif '>' in self.shape:
-            strings.append(self._decrescendo_start)
+            string = self._decrescendo_start
+            string = self._add_direction(string)
+            strings.append(string)
         else:
             raise ValueError(self.shape)
         if self.left_broken is True:
@@ -169,7 +184,7 @@ class DynamicTrend(object):
 
     def _get_lilypond_format_bundle(self, component=None):
         """
-        Dynamic trend contributes formatting to the 'spanners' slot
+        hairpin contributes formatting to the 'spanners' slot
         (rather than the 'commands' slot). The reason for this is that
         the LilyPond \startTrillSpan [pitch] command must appear after
         \< and \> but before \set and other commmands.
@@ -201,14 +216,14 @@ class DynamicTrend(object):
 
         ..  container:: example
 
-            >>> abjad.DynamicTrend('<').context
+            >>> abjad.HairpinIndicator('<').context
             'Voice'
 
         ..  container:: example
 
             >>> voice = abjad.Voice("c'4 d' e' f'")
             >>> abjad.attach(abjad.Dynamic('p'), voice[0])
-            >>> abjad.attach(abjad.DynamicTrend('<'), voice[0])
+            >>> abjad.attach(abjad.HairpinIndicator('<'), voice[0])
             >>> abjad.attach(abjad.Dynamic('f'), voice[-1])
             >>> abjad.show(voice) # doctest: +SKIP
 
@@ -228,17 +243,24 @@ class DynamicTrend(object):
 
 
             >>> for leaf in voice:
-            ...     print(leaf, abjad.inspect(leaf).effective(abjad.DynamicTrend))
-            c'4 DynamicTrend(shape='<')
-            d'4 DynamicTrend(shape='<')
-            e'4 DynamicTrend(shape='<')
-            f'4 DynamicTrend(shape='<')
+            ...     print(leaf, abjad.inspect(leaf).effective(abjad.HairpinIndicator))
+            c'4 HairpinIndicator(shape='<')
+            d'4 HairpinIndicator(shape='<')
+            e'4 HairpinIndicator(shape='<')
+            f'4 HairpinIndicator(shape='<')
 
         Class constant.
 
         Override with ``abjad.attach(..., context='...')``.
         """
         return self._context
+
+    @property
+    def direction(self) -> typing.Optional[String]:
+        """
+        Gets direction.
+        """
+        return self._direction
 
     @property
     def known_shapes(self) -> typing.Tuple[str, ...]:
@@ -248,7 +270,7 @@ class DynamicTrend(object):
 
         ..  container:: example
 
-            >>> for shape in abjad.DynamicTrend().known_shapes:
+            >>> for shape in abjad.HairpinIndicator().known_shapes:
             ...     shape
             '<'
             'o<'
@@ -266,14 +288,14 @@ class DynamicTrend(object):
     @property
     def left_broken(self) -> typing.Optional[bool]:
         r"""
-        Is true when dynamic trend formats with left broken tag.
+        Is true when hairpin formats with left broken tag.
 
         ..  container:: example
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> trend = abjad.DynamicTrend('<', left_broken=True)
+            >>> hairpin = abjad.HairpinIndicator('<', left_broken=True)
             >>> stop = abjad.Dynamic('f')
-            >>> abjad.attach(trend, staff[0])
+            >>> abjad.attach(hairpin, staff[0])
             >>> abjad.attach(stop, staff[-1])
             >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4.5
             >>> abjad.show(staff) # doctest: +SKIP
@@ -303,7 +325,7 @@ class DynamicTrend(object):
 
         ..  container:: example
 
-            >>> abjad.DynamicTrend('<').parameter
+            >>> abjad.HairpinIndicator('<').parameter
             'DYNAMIC'
 
         """
@@ -316,7 +338,7 @@ class DynamicTrend(object):
 
         ..  container:: example
 
-            >>> abjad.DynamicTrend('<').persistent
+            >>> abjad.HairpinIndicator('<').persistent
             True
 
         """
@@ -333,7 +355,7 @@ class DynamicTrend(object):
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> abjad.attach(abjad.Dynamic('p'), staff[0])
-            >>> abjad.attach(abjad.DynamicTrend('<'), staff[0])
+            >>> abjad.attach(abjad.HairpinIndicator('<'), staff[0])
             >>> abjad.attach(abjad.Dynamic('f'), staff[-1])
             >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4.5
             >>> abjad.show(staff) # doctest: +SKIP
@@ -360,7 +382,7 @@ class DynamicTrend(object):
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> abjad.attach(abjad.Dynamic('niente', hide=True), staff[0])
-            >>> abjad.attach(abjad.DynamicTrend('o<'), staff[0])
+            >>> abjad.attach(abjad.HairpinIndicator('o<'), staff[0])
             >>> abjad.attach(abjad.Dynamic('f'), staff[-1])
             >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4.5
             >>> abjad.show(staff) # doctest: +SKIP
@@ -387,7 +409,7 @@ class DynamicTrend(object):
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> abjad.attach(abjad.Dynamic('p'), staff[0])
-            >>> abjad.attach(abjad.DynamicTrend('<|'), staff[0])
+            >>> abjad.attach(abjad.HairpinIndicator('<|'), staff[0])
             >>> abjad.attach(abjad.Dynamic('f'), staff[-1])
             >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4.5
             >>> abjad.show(staff) # doctest: +SKIP
@@ -415,7 +437,7 @@ class DynamicTrend(object):
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> abjad.attach(abjad.Dynamic('niente', hide=True), staff[0])
-            >>> abjad.attach(abjad.DynamicTrend('o<|'), staff[0])
+            >>> abjad.attach(abjad.HairpinIndicator('o<|'), staff[0])
             >>> abjad.attach(abjad.Dynamic('f'), staff[-1])
             >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4.5
             >>> abjad.show(staff) # doctest: +SKIP
@@ -445,7 +467,7 @@ class DynamicTrend(object):
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> abjad.attach(abjad.Dynamic('f'), staff[0])
-            >>> abjad.attach(abjad.DynamicTrend('>'), staff[0])
+            >>> abjad.attach(abjad.HairpinIndicator('>'), staff[0])
             >>> abjad.attach(abjad.Dynamic('p'), staff[-1])
             >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4.5
             >>> abjad.show(staff) # doctest: +SKIP
@@ -472,7 +494,7 @@ class DynamicTrend(object):
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> abjad.attach(abjad.Dynamic('f'), staff[0])
-            >>> abjad.attach(abjad.DynamicTrend('>o'), staff[0])
+            >>> abjad.attach(abjad.HairpinIndicator('>o'), staff[0])
             >>> abjad.attach(abjad.Dynamic('niente', command=r'\!'), staff[-1])
             >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4.5
             >>> abjad.show(staff) # doctest: +SKIP
@@ -500,7 +522,7 @@ class DynamicTrend(object):
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> abjad.attach(abjad.Dynamic('f'), staff[0])
-            >>> abjad.attach(abjad.DynamicTrend('|>'), staff[0])
+            >>> abjad.attach(abjad.HairpinIndicator('|>'), staff[0])
             >>> abjad.attach(abjad.Dynamic('p'), staff[-1])
             >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4.5
             >>> abjad.show(staff) # doctest: +SKIP
@@ -528,7 +550,7 @@ class DynamicTrend(object):
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> abjad.attach(abjad.Dynamic('f'), staff[0])
-            >>> abjad.attach(abjad.DynamicTrend('|>o'), staff[0])
+            >>> abjad.attach(abjad.HairpinIndicator('|>o'), staff[0])
             >>> abjad.attach(abjad.Dynamic('niente', command=r'\!'), staff[-1])
             >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4.5
             >>> abjad.show(staff) # doctest: +SKIP
@@ -559,7 +581,7 @@ class DynamicTrend(object):
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> abjad.attach(abjad.Dynamic('p'), staff[0])
-            >>> abjad.attach(abjad.DynamicTrend('--'), staff[0])
+            >>> abjad.attach(abjad.HairpinIndicator('--'), staff[0])
             >>> abjad.attach(abjad.Dynamic('f'), staff[-1])
             >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4.5
             >>> abjad.show(staff) # doctest: +SKIP
@@ -593,7 +615,7 @@ class DynamicTrend(object):
 
         ..  container:: example
 
-            >>> abjad.DynamicTrend('<').spanner_start
+            >>> abjad.HairpinIndicator('<').spanner_start
             True
 
         """
@@ -606,7 +628,7 @@ class DynamicTrend(object):
 
         ..  container:: example
 
-            >>> abjad.DynamicTrend('<').trend
+            >>> abjad.HairpinIndicator('<').trend
             True
 
         Class constant.
@@ -622,7 +644,7 @@ class DynamicTrend(object):
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> abjad.attach(abjad.Dynamic('p'), staff[0])
-            >>> start = abjad.DynamicTrend('<')
+            >>> start = abjad.HairpinIndicator('<')
             >>> abjad.tweak(start).color = 'blue'
             >>> abjad.attach(start, staff[0])
             >>> abjad.attach(abjad.Dynamic('f'), staff[-1])
@@ -650,7 +672,7 @@ class DynamicTrend(object):
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> abjad.attach(abjad.Dynamic('p'), staff[0])
-            >>> start = abjad.DynamicTrend(tweaks=[('color', 'blue')])
+            >>> start = abjad.HairpinIndicator(tweaks=[('color', 'blue')])
             >>> abjad.tweak(start).color = 'blue'
             >>> abjad.attach(start, staff[0])
             >>> abjad.attach(abjad.Dynamic('f'), staff[-1])

@@ -1051,8 +1051,7 @@ def test_LilyPondGrobNameManager___setattr___42():
     """
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
-    beam = abjad.Beam()
-    abjad.attach(beam, voice[:])
+    abjad.beam(voice[:])
     abjad.override(voice).tuplet_bracket.direction = abjad.Down
 
     assert format(voice) == abjad.String.normalize(
@@ -1082,8 +1081,7 @@ def test_LilyPondGrobNameManager___setattr___43():
     """
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
-    beam = abjad.Beam()
-    abjad.attach(beam, voice[:])
+    abjad.beam(voice[:])
     abjad.override(voice[1]).tuplet_bracket.direction = abjad.Down
 
     assert format(voice) == abjad.String.normalize(
@@ -1133,8 +1131,7 @@ def test_LilyPondGrobNameManager___setattr___45():
     """
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
-    beam = abjad.Beam()
-    abjad.attach(beam, voice[:])
+    abjad.beam(voice[:])
     abjad.override(voice).tuplet_number.fraction = True
 
     assert format(voice) == abjad.String.normalize(
@@ -1164,8 +1161,7 @@ def test_LilyPondGrobNameManager___setattr___46():
     """
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
-    beam = abjad.Beam()
-    abjad.attach(beam, voice[:])
+    abjad.beam(voice[:])
     abjad.override(voice[1]).tuplet_number.fraction = True
 
     assert format(voice) == abjad.String.normalize(
@@ -1192,8 +1188,7 @@ def test_LilyPondGrobNameManager___setattr___47():
     """
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
-    beam = abjad.Beam()
-    abjad.attach(beam, voice[:])
+    abjad.beam(voice[:])
     abjad.override(voice).tuplet_number.text = abjad.Markup('6:4')
 
     assert format(voice) == abjad.String.normalize(

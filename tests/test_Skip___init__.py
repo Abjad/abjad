@@ -47,8 +47,7 @@ def test_Skip___init___04():
     """
 
     staff = abjad.Staff(abjad.Chord([2, 3, 4], (1, 4)) * 3)
-    beam = abjad.Beam()
-    abjad.attach(beam, staff[:])
+    abjad.beam(staff[:])
     skip = abjad.Skip(staff[0])
     assert isinstance(staff[0], abjad.Chord)
     assert isinstance(skip, abjad.Skip)
@@ -87,8 +86,7 @@ def test_Skip___init___07():
     """
 
     staff = abjad.Staff(abjad.Note(0, (1, 8)) * 3)
-    beam = abjad.Beam()
-    abjad.attach(beam, staff[:])
+    abjad.beam(staff[:])
     skip = abjad.Skip(staff[0])
     assert isinstance(staff[0], abjad.Note)
     assert isinstance(skip, abjad.Skip)
@@ -132,8 +130,7 @@ def test_Skip___init___10():
     """
 
     staff = abjad.Staff([abjad.Note(0, (1, 8)), abjad.Rest((1, 8)), abjad.Note(0, (1, 8))])
-    beam = abjad.Beam()
-    abjad.attach(beam, staff[:])
+    abjad.beam(staff[:])
     skip = abjad.Skip(staff[1])
     assert isinstance(skip, abjad.Skip)
     assert isinstance(staff[1], abjad.Rest)

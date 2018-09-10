@@ -452,7 +452,6 @@ class Leaf(Component):
         self,
         durations,
         cyclic=False,
-        fracture_spanners=False,
         tie_split_notes=True,
         repeat_ties=False,
         ):
@@ -501,25 +500,6 @@ class Leaf(Component):
         else:
             selection._give_dominant_spanners(result_components)
             selection._withdraw_from_crossing_spanners()
-        # fracture spanners
-        if fracture_spanners:
-            first_selection = result_selections[0]
-            for spanner in inspect(first_selection[-1]).spanners():
-                index = spanner._index(first_selection[-1])
-                spanner._fracture(index, direction=enums.Right)
-            last_selection = result_selections[-1]
-            for spanner in inspect(last_selection[0]).spanners():
-                index = spanner._index(last_selection[0])
-                spanner._fracture(index, direction=enums.Left)
-            for middle_selection in result_selections[1:-1]:
-                spanners = inspect(middle_selection[0]).spanners()
-                for spanner in spanners:
-                    index = spanner._index(middle_selection[0])
-                    spanner._fracture(index, direction=enums.Left)
-                spanners = inspect(middle_selection[-1]).spanners()
-                for spanner in spanners:
-                    index = spanner._index(middle_selection[-1])
-                    spanner._fracture(index, direction=enums.Right)
         # move indicators
         first_result_leaf = result_leaves[0]
         last_result_leaf = result_leaves[-1]

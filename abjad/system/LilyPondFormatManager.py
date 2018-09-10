@@ -479,44 +479,6 @@ class LilyPondFormatManager(object):
         return string
 
     @staticmethod
-    def report_spanner_format_contributions(spanner) -> str:
-        """
-        Reports spanner format contributions for every leaf in ``spanner``.
-
-        ..  container:: example
-
-            >>> staff = abjad.Staff("c8 d e f")
-            >>> spanner = abjad.Beam()
-            >>> abjad.attach(spanner, staff[:])
-
-            >>> manager = abjad.LilyPondFormatManager
-            >>> print(manager.report_spanner_format_contributions(spanner))
-            c8	abjad.LilyPondFormatBundle(
-                    after=abjad.SlotContributions(
-                        spanner_starts=['['],
-                        ),
-                    )
-            d8	abjad.LilyPondFormatBundle()
-            e8	abjad.LilyPondFormatBundle()
-            f8	abjad.LilyPondFormatBundle(
-                    after=abjad.SlotContributions(
-                        spanner_stops=[']'],
-                        ),
-                    )
-
-        Returns string or none.
-        """
-        strings = []
-        for leaf in spanner.leaves:
-            bundle = spanner._get_lilypond_format_bundle(leaf)
-            bundle_pieces = format(bundle).split('\n')
-            strings.append(f'{leaf!s}\t{bundle_pieces[0]}')
-            for piece in bundle_pieces[1:]:
-                strings.append(f'\t{piece}')
-        string = '\n'.join(strings)
-        return string
-
-    @staticmethod
     def tag(strings, tag, deactivate=None) -> typing.List[str]:
         """
         Tags ``strings`` with ``tag``.

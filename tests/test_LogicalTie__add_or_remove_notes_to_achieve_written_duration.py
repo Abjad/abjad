@@ -18,7 +18,9 @@ def test_LogicalTie__add_or_remove_notes_to_achieve_written_duration_01():
             c'8
             ~
             [
+            ]
             c'32
+            [
             ]
         }
         """
@@ -41,7 +43,6 @@ def test_LogicalTie__add_or_remove_notes_to_achieve_written_duration_02():
         {
             c'8
             [
-            ]
         }
         """
         )

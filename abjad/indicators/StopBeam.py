@@ -4,14 +4,14 @@ from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.system.StorageFormatManager import StorageFormatManager
 
 
-class StopSlur(object):
+class StopBeam(object):
     r"""
-    LilyPond ``)`` command.
+    LilyPond ``]`` command.
 
     ..  container:: example
 
-        >>> abjad.StopSlur()
-        StopSlur() 
+        >>> abjad.StopBeam()
+        StopBeam() 
 
     """
 
@@ -23,7 +23,7 @@ class StopSlur(object):
 
     _context = 'Voice'
 
-    _parameter = 'SLUR'
+    _parameter = 'BEAM'
 
     _persistent = True
 
@@ -54,12 +54,14 @@ class StopSlur(object):
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = LilyPondFormatBundle()
-        string = ')'
+        string = ']'
         if self.leak:
             string = f'<> {string}'
             bundle.after.leaks.append(string)
         else:
-            bundle.after.spanner_stops.append(string)
+            #bundle.after.spanner_stops.append(string)
+            # starts (instead of stops) so [ ] is possible on single leaf:
+            bundle.after.spanner_starts.append(string)
         return bundle
 
     ### PUBLIC PROPERTIES ###
@@ -71,7 +73,7 @@ class StopSlur(object):
 
         ..  container:: example
 
-            >>> abjad.StopSlur().context
+            >>> abjad.StopBeam().context
             'Voice'
 
         Class constant.
@@ -83,70 +85,18 @@ class StopSlur(object):
     @property
     def leak(self) -> typing.Optional[bool]:
         r"""
-        Is true when stop slur leaks LilyPond ``<>`` empty chord.
+        Is true when stop beam leaks LilyPond ``<>`` empty chord.
 
         ..  container:: example
 
             Without leak:
 
-            >>> staff = abjad.Staff("c'4 d' e' r")
-            >>> command = abjad.StartSlur()
-            >>> abjad.tweak(command).color = 'blue'
-            >>> abjad.attach(command, staff[0])
-            >>> command = abjad.StopSlur()
-            >>> abjad.attach(command, staff[-2])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    c'4
-                    - \tweak color #blue
-                    (
-                    d'4
-                    e'4
-                    )
-                    r4
-                }
-
-            With leak:
-
-            >>> staff = abjad.Staff("c'4 d' e' r")
-            >>> command = abjad.StartSlur()
-            >>> abjad.tweak(command).color = 'blue'
-            >>> abjad.attach(command, staff[0])
-            >>> command = abjad.StopSlur(leak=True)
-            >>> abjad.attach(command, staff[-2])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    c'4
-                    - \tweak color #blue
-                    (
-                    d'4
-                    e'4
-                    <> )
-                    r4
-                }
-
-        ..  container:: example
-
-            REGRESSION. Leaked contributions appear last in postevent format
-            slot:
-
-            >>> staff = abjad.Staff("c'8 d' e' f' r2")
-            >>> abjad.beam(staff[:4])
-            >>> command = abjad.StartSlur()
-            >>> abjad.tweak(command).color = 'blue'
-            >>> abjad.attach(command, staff[0])
-            >>> command = abjad.StopSlur(leak=True)
-            >>> abjad.attach(command, staff[3])
+            >>> staff = abjad.Staff("c'8 d' e' r")
+            >>> start_beam = abjad.StartBeam()
+            >>> abjad.tweak(start_beam).color = 'blue'
+            >>> abjad.attach(start_beam, staff[0])
+            >>> stop_beam = abjad.StopBeam()
+            >>> abjad.attach(stop_beam, staff[-2])
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -155,18 +105,37 @@ class StopSlur(object):
                 \new Staff
                 {
                     c'8
-                    [
                     - \tweak color #blue
-                    (
+                    [
                     d'8
                     e'8
-                    f'8
                     ]
-                    <> )
-                    r2
+                    r8
                 }
 
-            The leaked text spanner above does not inadvertantly leak the beam.
+            With leak:
+
+            >>> staff = abjad.Staff("c'8 d' e' r")
+            >>> command = abjad.StartBeam()
+            >>> abjad.tweak(command).color = 'blue'
+            >>> abjad.attach(command, staff[0])
+            >>> command = abjad.StopBeam(leak=True)
+            >>> abjad.attach(command, staff[-2])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    c'8
+                    - \tweak color #blue
+                    [
+                    d'8
+                    e'8
+                    <> ]
+                    r8
+                }
 
         """
         return self._leak
@@ -174,12 +143,12 @@ class StopSlur(object):
     @property
     def parameter(self) -> str:
         """
-        Returns ``'SLUR'``.
+        Returns ``'BEAM'``.
 
         ..  container:: example
 
-            >>> abjad.StopSlur().parameter
-            'SLUR'
+            >>> abjad.StopBeam().parameter
+            'BEAM'
 
         Class constant.
         """
@@ -192,7 +161,7 @@ class StopSlur(object):
 
         ..  container:: example
 
-            >>> abjad.StopSlur().persistent
+            >>> abjad.StopBeam().persistent
             True
 
         Class constant.
@@ -206,7 +175,7 @@ class StopSlur(object):
 
         ..  container:: example
 
-            >>> abjad.StopSlur().spanner_stop
+            >>> abjad.StopBeam().spanner_stop
             True
 
         """

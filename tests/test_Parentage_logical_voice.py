@@ -200,14 +200,9 @@ def test_Parentage_logical_voice_06():
     container[1].name = 'staff2'
     container[0][0].name = 'voicefoo'
     container[1][0].name = 'voicefoo'
-    beam = abjad.Beam()
     leaves = abjad.select(container).leaves()
-    statement = 'attach(beam, leaves)'
-    assert pytest.raises(Exception, statement)
-    beam = abjad.Beam()
-    abjad.attach(beam, leaves[:2])
-    beam = abjad.Beam()
-    abjad.attach(beam, leaves[2:])
+    abjad.beam(leaves[:2])
+    abjad.beam(leaves[2:])
 
     assert format(container) == abjad.String.normalize(
         r"""

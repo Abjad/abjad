@@ -7,8 +7,7 @@ def test_Leaf__set_duration_01():
     """
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
-    beam = abjad.Beam()
-    abjad.attach(beam, voice[:2])
+    abjad.beam(voice[:2])
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -22,7 +21,7 @@ def test_Leaf__set_duration_01():
             f'8
         }
         """
-        )
+        ), print(format(voice))
 
     voice[1]._set_duration(abjad.Duration(5, 32))
 
@@ -34,13 +33,14 @@ def test_Leaf__set_duration_01():
             [
             d'8
             ~
+            ]
             d'32
             ]
             e'8
             f'8
         }
         """
-        )
+        ), print(format(voice))
 
     assert abjad.inspect(voice).wellformed()
 
@@ -53,8 +53,7 @@ def test_Leaf__set_duration_02():
     voice = abjad.Voice("c'8 c'8 c'8 c'8")
     tie = abjad.Tie()
     abjad.attach(tie, voice[:2])
-    beam = abjad.Beam()
-    abjad.attach(beam, voice[:2])
+    abjad.beam(voice[:2])
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -69,7 +68,7 @@ def test_Leaf__set_duration_02():
             c'8
         }
         """
-        )
+        ), print(format(voice))
 
     voice[1]._set_duration(abjad.Duration(5, 32))
 
@@ -82,13 +81,14 @@ def test_Leaf__set_duration_02():
             [
             c'8
             ~
+            ]
             c'32
             ]
             c'8
             c'8
         }
         """
-        )
+        ), print(format(voice))
 
     assert abjad.inspect(voice).wellformed()
 
@@ -100,8 +100,7 @@ def test_Leaf__set_duration_03():
     """
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
-    beam = abjad.Beam()
-    abjad.attach(beam, voice[:2])
+    abjad.beam(voice[:2])
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -115,7 +114,7 @@ def test_Leaf__set_duration_03():
             f'8
         }
         """
-        )
+        ), print(format(voice))
 
     voice[1]._set_duration(abjad.Duration(3, 16))
 
@@ -131,7 +130,7 @@ def test_Leaf__set_duration_03():
             f'8
         }
         """
-        )
+        ), print(format(voice))
 
     assert abjad.inspect(voice).wellformed()
 
@@ -143,8 +142,7 @@ def test_Leaf__set_duration_04():
     """
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
-    beam = abjad.Beam()
-    abjad.attach(beam, voice[:2])
+    abjad.beam(voice[:2])
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -158,7 +156,7 @@ def test_Leaf__set_duration_04():
             f'8
         }
         """
-        )
+        ), print(format(voice))
 
     voice[1]._set_duration(abjad.Duration(5, 48))
 
@@ -172,6 +170,7 @@ def test_Leaf__set_duration_04():
             \times 2/3 {
                 d'8
                 ~
+                ]
                 d'32
                 ]
             }
@@ -179,7 +178,7 @@ def test_Leaf__set_duration_04():
             f'8
         }
         """
-        )
+        ), print(format(voice))
 
     assert abjad.inspect(voice).wellformed()
 
@@ -191,8 +190,7 @@ def test_Leaf__set_duration_05():
     """
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
-    beam = abjad.Beam()
-    abjad.attach(beam, voice[:2])
+    abjad.beam(voice[:2])
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -206,7 +204,7 @@ def test_Leaf__set_duration_05():
             f'8
         }
         """
-        )
+        ), print(format(voice))
 
     voice[1]._set_duration(abjad.Duration(1, 12))
 
@@ -225,7 +223,7 @@ def test_Leaf__set_duration_05():
             f'8
         }
         """
-        )
+        ), print(format(voice))
 
     assert abjad.inspect(voice).wellformed()
 
@@ -321,8 +319,7 @@ def test_Leaf__set_duration_11():
     """
 
     voice = abjad.Voice("c'8 r8 e'8 f'8")
-    beam = abjad.Beam(beam_lone_notes=True, beam_rests=True)
-    abjad.attach(beam, voice[:3])
+    abjad.beam(voice[:3])
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -336,7 +333,7 @@ def test_Leaf__set_duration_11():
             f'8
         }
         """
-        )
+        ), print(format(voice))
 
     voice[1]._set_duration(abjad.Duration(5, 32))
 
@@ -353,6 +350,6 @@ def test_Leaf__set_duration_11():
             f'8
         }
         """
-        )
+        ), print(format(voice))
 
     assert abjad.inspect(voice).wellformed()

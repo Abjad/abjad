@@ -733,10 +733,10 @@ class Dynamic(object):
 
             >>> staff = abjad.Staff("c'4 d' e' r")
             >>> start = abjad.Dynamic('mf')
-            >>> trend = abjad.DynamicTrend('>')
+            >>> hairpin = abjad.HairpinIndicator('>')
             >>> stop = abjad.Dynamic('pp')
             >>> abjad.attach(start, staff[0])
-            >>> abjad.attach(trend, staff[0])
+            >>> abjad.attach(hairpin, staff[0])
             >>> abjad.attach(stop, staff[-2])
             >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4
             >>> abjad.show(staff) # doctest: +SKIP
@@ -763,10 +763,10 @@ class Dynamic(object):
 
             >>> staff = abjad.Staff("c'4 d' e' r")
             >>> start = abjad.Dynamic('mf')
-            >>> trend = abjad.DynamicTrend('>')
+            >>> hairpin = abjad.HairpinIndicator('>')
             >>> stop = abjad.Dynamic('pp', leak=True)
             >>> abjad.attach(start, staff[0])
-            >>> abjad.attach(trend, staff[0])
+            >>> abjad.attach(hairpin, staff[0])
             >>> abjad.attach(stop, staff[-2])
             >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4
             >>> abjad.show(staff) # doctest: +SKIP
@@ -795,10 +795,10 @@ class Dynamic(object):
 
             >>> staff = abjad.Staff("c'8 [ d' e' ] f'")
             >>> start = abjad.Dynamic('mf')
-            >>> trend = abjad.DynamicTrend('>')
+            >>> hairpin = abjad.HairpinIndicator('>')
             >>> stop = abjad.Dynamic('pp', leak=True)
             >>> abjad.attach(start, staff[0])
-            >>> abjad.attach(trend, staff[0])
+            >>> abjad.attach(hairpin, staff[0])
             >>> abjad.attach(stop, staff[-2])
             >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4
             >>> abjad.show(staff) # doctest: +SKIP

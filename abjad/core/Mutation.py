@@ -140,7 +140,7 @@ class Mutation(object):
 
             Copy components one time:
 
-            >>> staff = abjad.Staff(r"c'8 ( d'8 e'8 f'8 )")
+            >>> staff = abjad.Staff(r"c'8 d'8 e'8 f'8")
             >>> staff.extend(r"g'8 a'8 b'8 c''8")
             >>> time_signature = abjad.TimeSignature((2, 4))
             >>> abjad.attach(time_signature, staff[0])
@@ -153,11 +153,9 @@ class Mutation(object):
                 {
                     \time 2/4
                     c'8
-                    (
                     d'8
                     e'8
                     f'8
-                    )
                     g'8
                     a'8
                     b'8
@@ -175,9 +173,7 @@ class Mutation(object):
                 \new Staff
                 {
                     e'8
-                    (
                     f'8
-                    )
                 }
 
             >>> staff[2] is new_staff[0]
@@ -269,11 +265,10 @@ class Mutation(object):
             >>> staff = abjad.Staff()
             >>> staff.append(abjad.Tuplet((3, 2), "c'4 e'4"))
             >>> staff.append(abjad.Tuplet((3, 2), "d'4 f'4"))
-            >>> hairpin = abjad.Hairpin('p < f')
             >>> leaves = abjad.select(staff).leaves()
             >>> time_signature = abjad.TimeSignature((3, 4))
             >>> abjad.attach(time_signature, leaves[0])
-            >>> abjad.attach(hairpin, leaves)
+            >>> abjad.hairpin('p < f', leaves)
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -285,8 +280,8 @@ class Mutation(object):
                     \times 3/2 {
                         \time 3/4
                         c'4
-                        \<
                         \p
+                        \<
                         e'4
                     }
                     \tweak text #tuplet-number::calc-fraction-text
@@ -308,8 +303,8 @@ class Mutation(object):
                 {
                     \time 3/4
                     c'4
-                    \<
                     \p
+                    \<
                     e'4
                     d'4
                     f'4
@@ -324,8 +319,7 @@ class Mutation(object):
             >>> staff.append(abjad.Tuplet((3, 2), "c'4 e'4"))
             >>> staff.append(abjad.Tuplet((3, 2), "d'4 f'4"))
             >>> leaves = abjad.select(staff).leaves()
-            >>> hairpin = abjad.Hairpin('p < f')
-            >>> abjad.attach(hairpin, leaves)
+            >>> abjad.hairpin('p < f', leaves)
             >>> time_signature = abjad.TimeSignature((3, 4))
             >>> abjad.attach(time_signature, leaves[0])
             >>> abjad.show(staff) # doctest: +SKIP
@@ -339,8 +333,8 @@ class Mutation(object):
                     \times 3/2 {
                         \time 3/4
                         c'4
-                        \<
                         \p
+                        \<
                         e'4
                     }
                     \tweak text #tuplet-number::calc-fraction-text
@@ -364,8 +358,8 @@ class Mutation(object):
                 {
                     \time 3/4
                     c'4.
-                    \<
                     \p
+                    \<
                     e'4.
                     d'4.
                     f'4.
@@ -405,11 +399,9 @@ class Mutation(object):
             Fuses parent-contiguous tuplets in selection:
 
             >>> tuplet_1 = abjad.Tuplet((2, 3), "c'8 d' e'")
-            >>> beam = abjad.Beam()
-            >>> abjad.attach(beam, tuplet_1[:])
+            >>> abjad.beam(tuplet_1[:])
             >>> tuplet_2 = abjad.Tuplet((2, 3), "c'16 d' e'")
-            >>> slur = abjad.Slur()
-            >>> abjad.attach(slur, tuplet_2[:])
+            >>> abjad.slur(tuplet_2[:])
             >>> staff = abjad.Staff([tuplet_1, tuplet_2])
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -495,11 +487,9 @@ class Mutation(object):
             >>> tuplet_1 = abjad.Tuplet((2, 3), "c'4 d'4 e'4")
             >>> tuplet_2 = abjad.Tuplet((2, 3), "d'4 e'4 f'4")
             >>> staff = abjad.Staff([tuplet_1, tuplet_2])
-            >>> hairpin = abjad.Hairpin('p < f')
             >>> leaves = abjad.select(staff).leaves()
-            >>> abjad.attach(hairpin, leaves)
-            >>> slur = abjad.Slur()
-            >>> abjad.attach(slur, leaves)
+            >>> abjad.hairpin('p < f', leaves)
+            >>> abjad.slur(leaves)
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -509,8 +499,8 @@ class Mutation(object):
                 {
                     \times 2/3 {
                         c'4
-                        \<
                         \p
+                        \<
                         (
                         d'4
                         e'4
@@ -527,6 +517,8 @@ class Mutation(object):
             >>> maker = abjad.NoteMaker()
             >>> notes = maker("c' d' e' f' c' d' e' f'", (1, 16))
             >>> abjad.mutate([tuplet_1]).replace(notes)
+            >>> abjad.attach(abjad.Dynamic('p'), staff[0])
+            >>> abjad.attach(abjad.HairpinIndicator('<'), staff[0])
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -535,9 +527,8 @@ class Mutation(object):
                 \new Staff
                 {
                     c'16
-                    \<
                     \p
-                    (
+                    \<
                     d'16
                     e'16
                     f'16
@@ -2029,7 +2020,7 @@ class Mutation(object):
 
             Scales container by tie-generating multiplier:
 
-            >>> container = abjad.Container(r"c'8 ( d'8 e'8 f'8 )")
+            >>> container = abjad.Container(r"c'8 d'8 e'8 f'8")
             >>> abjad.show(container) # doctest: +SKIP
 
             ..  docs::
@@ -2037,11 +2028,9 @@ class Mutation(object):
                 >>> abjad.f(container)
                 {
                     c'8
-                    (
                     d'8
                     e'8
                     f'8
-                    )
                 }
 
             >>> abjad.mutate(container).scale(abjad.Multiplier(5, 4))
@@ -2053,7 +2042,6 @@ class Mutation(object):
                 {
                     c'8
                     ~
-                    (
                     c'32
                     d'8
                     ~
@@ -2064,7 +2052,6 @@ class Mutation(object):
                     f'8
                     ~
                     f'32
-                    )
                 }
 
         ..  container:: example
@@ -2346,7 +2333,6 @@ class Mutation(object):
     def split(
         self,
         durations,
-        fracture_spanners=False,
         cyclic=False,
         tie_split_notes=True,
         repeat_ties=False,
@@ -2360,8 +2346,7 @@ class Mutation(object):
 
             >>> staff = abjad.Staff("c'8 e' d' f' c' e' d' f'")
             >>> leaves = staff[:]
-            >>> hairpin = abjad.Hairpin('p < f')
-            >>> abjad.attach(hairpin, leaves)
+            >>> abjad.hairpin('p < f', leaves)
             >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 3
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -2375,8 +2360,8 @@ class Mutation(object):
                 }
                 {
                     c'8
-                    \<
                     \p
+                    \<
                     e'8
                     d'8
                     f'8
@@ -2404,84 +2389,13 @@ class Mutation(object):
                 }
                 {
                     c'8
-                    \<
                     \p
+                    \<
                     e'16
                     e'16
                     d'8
                     f'32
                     f'16.
-                    c'8
-                    e'8
-                    d'8
-                    f'8
-                    \f
-                }
-
-        ..  container:: example
-
-            Splits leaves and fracture crossing spanners:
-
-            >>> staff = abjad.Staff("c'8 e' d' f' c' e' d' f'")
-            >>> hairpin = abjad.Hairpin('p < f')
-            >>> abjad.attach(hairpin, staff[:])
-            >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 3
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                \with
-                {
-                    \override DynamicLineSpanner.staff-padding = #3
-                }
-                {
-                    c'8
-                    \<
-                    \p
-                    e'8
-                    d'8
-                    f'8
-                    c'8
-                    e'8
-                    d'8
-                    f'8
-                    \f
-                }
-
-            >>> durations = [(3, 16), (7, 32)]
-            >>> leaves = staff[:]
-            >>> result = abjad.mutate(leaves).split(
-            ...     durations,
-            ...     fracture_spanners=True,
-            ...     tie_split_notes=False,
-            ...     )
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                \with
-                {
-                    \override DynamicLineSpanner.staff-padding = #3
-                }
-                {
-                    c'8
-                    \<
-                    \p
-                    e'16
-                    \f
-                    e'16
-                    \<
-                    \p
-                    d'8
-                    f'32
-                    \f
-                    f'16.
-                    \<
-                    \p
                     c'8
                     e'8
                     d'8
@@ -2495,8 +2409,7 @@ class Mutation(object):
 
             >>> staff = abjad.Staff("c'8 e' d' f' c' e' d' f'")
             >>> leaves = staff[:]
-            >>> hairpin = abjad.Hairpin('p < f')
-            >>> abjad.attach(hairpin, leaves)
+            >>> abjad.hairpin('p < f', leaves)
             >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 3
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -2510,8 +2423,8 @@ class Mutation(object):
                 }
                 {
                     c'8
-                    \<
                     \p
+                    \<
                     e'8
                     d'8
                     f'8
@@ -2540,8 +2453,8 @@ class Mutation(object):
                 }
                 {
                     c'8
-                    \<
                     \p
+                    \<
                     e'16
                     e'16
                     d'8
@@ -2554,147 +2467,6 @@ class Mutation(object):
                     d'16
                     f'8
                     \f
-                }
-
-        ..  container:: example
-
-            Splits leaves cyclically and fracture spanners:
-
-            >>> staff = abjad.Staff("c'8 e' d' f' c' e' d' f'")
-            >>> leaves = staff[:]
-            >>> hairpin = abjad.Hairpin('p < f')
-            >>> abjad.attach(hairpin, leaves)
-            >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 3
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                \with
-                {
-                    \override DynamicLineSpanner.staff-padding = #3
-                }
-                {
-                    c'8
-                    \<
-                    \p
-                    e'8
-                    d'8
-                    f'8
-                    c'8
-                    e'8
-                    d'8
-                    f'8
-                    \f
-                }
-
-            >>> durations = [(3, 16), (7, 32)]
-            >>> result = abjad.mutate(leaves).split(
-            ...     durations,
-            ...     cyclic=True,
-            ...     fracture_spanners=True,
-            ...     tie_split_notes=False,
-            ...     )
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                \with
-                {
-                    \override DynamicLineSpanner.staff-padding = #3
-                }
-                {
-                    c'8
-                    \<
-                    \p
-                    e'16
-                    \f
-                    e'16
-                    \<
-                    \p
-                    d'8
-                    f'32
-                    \f
-                    f'16.
-                    \<
-                    \p
-                    c'16.
-                    \f
-                    c'32
-                    \<
-                    \p
-                    e'8
-                    d'16
-                    \f
-                    d'16
-                    \<
-                    \p
-                    f'8
-                    \f
-                }
-
-        ..  container:: example
-
-            Splits tupletted leaves and fracture crossing spanners:
-
-            >>> staff = abjad.Staff()
-            >>> staff.append(abjad.Tuplet((2, 3), "c'4 d' e'"))
-            >>> staff.append(abjad.Tuplet((2, 3), "c'4 d' e'"))
-            >>> leaves = abjad.select(staff).leaves()
-            >>> slur = abjad.Slur()
-            >>> abjad.attach(slur, leaves)
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    \times 2/3 {
-                        c'4
-                        (
-                        d'4
-                        e'4
-                    }
-                    \times 2/3 {
-                        c'4
-                        d'4
-                        e'4
-                        )
-                    }
-                }
-
-            >>> durations = [(1, 4)]
-            >>> result = abjad.mutate(leaves).split(
-            ...     durations,
-            ...     fracture_spanners=True,
-            ...     tie_split_notes=False,
-            ...     )
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    \times 2/3 {
-                        c'4
-                        (
-                        d'8
-                        )
-                        d'8
-                        (
-                        e'4
-                    }
-                    \times 2/3 {
-                        c'4
-                        d'4
-                        e'4
-                        )
-                    }
                 }
 
         ..  container:: example
@@ -2702,8 +2474,7 @@ class Mutation(object):
             Splits leaves cyclically and ties split notes:
 
             >>> staff = abjad.Staff("c'1 d'1")
-            >>> hairpin = abjad.Hairpin('p < f')
-            >>> abjad.attach(hairpin, staff[:])
+            >>> abjad.hairpin('p < f', staff[:])
             >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 3
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -2717,8 +2488,8 @@ class Mutation(object):
                 }
                 {
                     c'1
-                    \<
                     \p
+                    \<
                     d'1
                     \f
                 }
@@ -2727,7 +2498,6 @@ class Mutation(object):
             >>> result = abjad.mutate(staff[:]).split(
             ...     durations,
             ...     cyclic=True,
-            ...     fracture_spanners=False,
             ...     tie_split_notes=True,
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
@@ -2742,28 +2512,26 @@ class Mutation(object):
                 }
                 {
                     c'2.
-                    ~
-                    \<
                     \p
-                    c'4
-                    d'2
                     ~
+                    c'4
+                    \<
                     d'2
                     \f
+                    ~
+                    d'2
                 }
 
             As above but with repeat ties:
 
             >>> staff = abjad.Staff("c'1 d'1")
-            >>> hairpin = abjad.Hairpin('p < f')
-            >>> abjad.attach(hairpin, staff[:])
+            >>> abjad.hairpin('p < f', staff[:])
             >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 3
 
             >>> durations = [(3, 4)]
             >>> result = abjad.mutate(staff[:]).split(
             ...     durations,
             ...     cyclic=True,
-            ...     fracture_spanners=False,
             ...     tie_split_notes=True,
             ...     repeat_ties=True,
             ...     )
@@ -2779,14 +2547,14 @@ class Mutation(object):
                 }
                 {
                     c'2.
-                    \<
                     \p
                     c'4
+                    \<
                     \repeatTie
                     d'2
-                    d'2
-                    \repeatTie
                     \f
+                    d'2
+                    \repeatTie
                 }
 
         ..  container:: example
@@ -2799,8 +2567,7 @@ class Mutation(object):
             ...     name='1',
             ...     )
             >>> staff = abjad.Staff([voice])
-            >>> hairpin = abjad.Hairpin('p < f')
-            >>> abjad.attach(hairpin, voice[:])
+            >>> abjad.hairpin('p < f', voice[:])
             >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 3
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -2816,8 +2583,8 @@ class Mutation(object):
                     \context CustomVoice = "1"
                     {
                         c'4
-                        \<
                         \p
+                        \<
                         d'4
                         e'4
                         f'4
@@ -2829,7 +2596,6 @@ class Mutation(object):
             >>> result = abjad.mutate(staff[:]).split(
             ...     durations,
             ...     cyclic=True,
-            ...     fracture_spanners=False,
             ...     tie_split_notes=True,
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
@@ -2846,13 +2612,13 @@ class Mutation(object):
                     \context CustomVoice = "1"
                     {
                         c'8
-                        ~
-                        \<
                         \p
+                        ~
                     }
                     \context CustomVoice = "1"
                     {
                         c'8
+                        \<
                     }
                     \context CustomVoice = "1"
                     {
@@ -2871,16 +2637,16 @@ class Mutation(object):
                     \context CustomVoice = "1"
                     {
                         e'8
-                    }
-                    \context CustomVoice = "1"
-                    {
-                        f'8
-                        ~
                     }
                     \context CustomVoice = "1"
                     {
                         f'8
                         \f
+                        ~
+                    }
+                    \context CustomVoice = "1"
+                    {
+                        f'8
                     }
                 }
 
@@ -2959,7 +2725,6 @@ class Mutation(object):
             >>> result = abjad.mutate(container).split(
             ...     durations,
             ...     cyclic=False,
-            ...     fracture_spanners=False,
             ...     tie_split_notes=True,
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
@@ -3050,7 +2815,6 @@ class Mutation(object):
             >>> result = abjad.mutate(staff[:]).split(
             ...     durations,
             ...     cyclic=True,
-            ...     fracture_spanners=False,
             ...     tie_split_notes=True,
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
@@ -3170,7 +2934,6 @@ class Mutation(object):
                     leaf_shards = current_component._split_by_durations(
                         leaf_split_durations,
                         cyclic=False,
-                        fracture_spanners=fracture_spanners,
                         tie_split_notes=tie_split_notes,
                         repeat_ties=repeat_ties,
                         )
@@ -3181,7 +2944,6 @@ class Mutation(object):
                     assert isinstance(current_component, Container)
                     pair = current_component._split_by_duration(
                         local_split_duration,
-                        fracture_spanners=fracture_spanners,
                         tie_split_notes=tie_split_notes,
                         repeat_ties=repeat_ties,
                         )
@@ -3231,11 +2993,9 @@ class Mutation(object):
             >>> staff.append(abjad.Container("d'4 e'4 f'4"))
             >>> abjad.attach(abjad.TimeSignature((3, 4)), staff[0][0])
             >>> leaves = abjad.select(staff).leaves()
-            >>> hairpin = abjad.Hairpin('p < f')
-            >>> abjad.attach(hairpin, leaves)
+            >>> abjad.hairpin('p < f', leaves)
             >>> measures = staff[:]
-            >>> slur = abjad.Slur()
-            >>> abjad.attach(slur, leaves)
+            >>> abjad.slur(leaves)
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -3246,8 +3006,8 @@ class Mutation(object):
                     {
                         \time 3/4
                         c'4
-                        \<
                         \p
+                        \<
                         (
                         d'4
                         e'4
@@ -3275,8 +3035,8 @@ class Mutation(object):
                     \times 4/6 {
                         \time 3/4
                         c'4
-                        \<
                         \p
+                        \<
                         (
                         d'4
                         e'4
@@ -3389,15 +3149,15 @@ class Mutation(object):
                     (
                     d'8
                     e'8
-                    ]
                     )
+                    ]
                     c'8
                     [
                     (
                     d'8
                     e'8
-                    ]
                     )
+                    ]
                 }
 
             >>> tuplet = abjad.Tuplet((2, 3), [])
@@ -3414,16 +3174,16 @@ class Mutation(object):
                     (
                     d'8
                     e'8
-                    ]
                     )
+                    ]
                     \times 2/3 {
                         c'8
                         [
                         (
                         d'8
                         e'8
-                        ]
                         )
+                        ]
                     }
                 }
 

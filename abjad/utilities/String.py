@@ -1558,7 +1558,7 @@ class String(str):
             >>> abjad.String.to_indicator_stem(abjad.Dynamic('f'))
             'DYNAMIC'
 
-            >>> abjad.String.to_indicator_stem(abjad.DynamicTrend('<'))
+            >>> abjad.String.to_indicator_stem(abjad.HairpinIndicator('<'))
             'DYNAMIC'
 
             >>> abjad.String.to_indicator_stem(abjad.Cello())
