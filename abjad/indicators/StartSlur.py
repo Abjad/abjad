@@ -134,7 +134,7 @@ class StartSlur(object):
         return self._context
 
     @property
-    def direction(self) -> typing.Optional[enums.VerticalAlignment]:
+    def direction(self) -> typing.Optional[str]:
         """
         Gets direction.
         """

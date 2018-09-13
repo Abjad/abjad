@@ -8,11 +8,13 @@ from abjad.core.Leaf import Leaf
 from abjad.core.MultimeasureRest import MultimeasureRest
 from abjad.core.Note import Note
 from abjad.core.Rest import Rest
-from abjad.core.Skip import Skip
 from abjad.core.Selection import Selection
+from abjad.core.Skip import Skip
+from abjad.core.Staff import Staff
 from abjad.indicators.BeamCount import BeamCount
 from abjad.indicators.Dynamic import Dynamic
 from abjad.indicators.HairpinIndicator import HairpinIndicator
+from abjad.indicators.LilyPondLiteral import LilyPondLiteral
 from abjad.indicators.StartBeam import StartBeam
 from abjad.indicators.StartPhrasingSlur import StartPhrasingSlur
 from abjad.indicators.StartSlur import StartSlur
@@ -610,12 +612,12 @@ def beam(
     if run:
         selection = select(run)
         runs.append(selection)
-    runs = select(runs)
+    runs_ = select(runs)
     #print(runs, 'RRR', len(runs))
     #print()
     if not beam_lone_notes:
-        runs = runs.nontrivial()
-    for run in runs:
+        runs_ = runs_.nontrivial()
+    for run in runs_:
         #print(run, 'RRR')
         if all(isinstance(_, silent_prototype) for _ in run):
             continue
@@ -676,8 +678,8 @@ def beam(
     span_beam_count = span_beam_count or 1
     durations = [Duration(_) for _ in durations]
     leaf_durations = [inspect(_).duration() for _ in original_leaves]
-    leaf_durations = Sequence(leaf_durations)
-    parts = leaf_durations.partition_by_weights(
+    leaf_durations_ = Sequence(leaf_durations)
+    parts = leaf_durations_.partition_by_weights(
         durations,
         overhang=True,
         )
