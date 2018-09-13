@@ -604,13 +604,13 @@ def beam(
         if this_index +1 == that_index:
             run.append(leaf)
         else:
-            selection = abjad.select(run)
+            selection = select(run)
             runs.append(selection)
             run = [leaf]
     if run:
-        selection = abjad.select(run)
+        selection = select(run)
         runs.append(selection)
-    runs = abjad.select(runs)
+    runs = select(runs)
     #print(runs, 'RRR', len(runs))
     #print()
     if not beam_lone_notes:
@@ -621,33 +621,33 @@ def beam(
             continue
         start_leaf = run[0]
         stop_leaf = run[-1]
-        start_beam_ = start_beam or abjad.StartBeam()
-        stop_beam_ = stop_beam or abjad.StopBeam()
-        detach(abjad.StartBeam, start_leaf)
+        start_beam_ = start_beam or StartBeam()
+        stop_beam_ = stop_beam or StopBeam()
+        detach(StartBeam, start_leaf)
         attach(start_beam_, start_leaf, tag=tag)
-        detach(abjad.StopBeam, stop_leaf)
+        detach(StopBeam, stop_leaf)
         attach(stop_beam_, stop_leaf, tag=tag)
 
         #for leaf in run:
-        #    print(leaf, abjad.inspect(leaf).indicators())
+        #    print(leaf, inspect(leaf).indicators())
 
         if stemlet_length is None:
             continue
-        staff = inspect(start_leaf).parentage().get(abjad.Staff)
+        staff = inspect(start_leaf).parentage().get(Staff)
         lilypond_type = getattr(staff, 'lilypond_type', 'Staff')
         string = r'\override {}.Stem.stemlet-length = {}'
         string = string.format(lilypond_type, stemlet_length)
-        literal = abjad.LilyPondLiteral(string)
-        for indicator in abjad.inspect(start_leaf).indicators():
+        literal = LilyPondLiteral(string)
+        for indicator in inspect(start_leaf).indicators():
             if indicator == literal:
                 break
         else:
             attach(literal, start_leaf, tag=tag)
-        staff = inspect(stop_leaf).parentage().get(abjad.Staff)
+        staff = inspect(stop_leaf).parentage().get(Staff)
         lilypond_type = getattr(staff, 'lilypond_type', 'Staff')
         string = rf'\revert {lilypond_type}.Stem.stemlet-length'
-        literal = abjad.LilyPondLiteral(string)
-        for indicator in abjad.inspect(stop_leaf).indicators():
+        literal = LilyPondLiteral(string)
+        for indicator in inspect(stop_leaf).indicators():
             if indicator == literal:
                 break
         else:
@@ -675,7 +675,7 @@ def beam(
 
     span_beam_count = span_beam_count or 1
     durations = [Duration(_) for _ in durations]
-    leaf_durations = [abjad.inspect(_).duration() for _ in original_leaves]
+    leaf_durations = [inspect(_).duration() for _ in original_leaves]
     leaf_durations = Sequence(leaf_durations)
     parts = leaf_durations.partition_by_weights(
         durations,
@@ -702,7 +702,7 @@ def beam(
             left = flag_count
             right = flag_count
             beam_count = BeamCount(left, right)
-            abjad.attach(beam_count, first_leaf, tag=tag)
+            attach(beam_count, first_leaf, tag=tag)
             continue
         if _is_beamable(first_leaf, beam_rests=False):
             if is_first_part:
@@ -710,7 +710,7 @@ def beam(
             else:
                 left = span_beam_count
             beam_count = BeamCount(left, flag_count)
-            abjad.attach(beam_count, first_leaf, tag=tag)
+            attach(beam_count, first_leaf, tag=tag)
         last_leaf = part[-1]
         if _is_beamable(last_leaf, beam_rests=False):
             flag_count = last_leaf.written_duration.flag_count
@@ -737,7 +737,7 @@ def beam(
                     left = flag_count
                     right = min(previous, flag_count)
             beam_count = BeamCount(left, right)
-            abjad.attach(beam_count, last_leaf, tag=tag)
+            attach(beam_count, last_leaf, tag=tag)
 
         # TODO: eventually remove middle leaf beam counts?
         for middle_leaf in part[1:-1]:
@@ -765,7 +765,7 @@ def beam(
                 left = min(previous, flag_count)
                 right = flag_count
             beam_count = BeamCount(left, right)
-            abjad.attach(beam_count, middle_leaf, tag=tag)
+            attach(beam_count, middle_leaf, tag=tag)
 
 def hairpin(
     descriptor: str,
@@ -959,8 +959,8 @@ def phrasing_slur(
     """
     # import allows eval statement
     import abjad
-    start_phrasing_slur = abjad.StartPhrasingSlur()
-    stop_phrasing_slur = abjad.StopPhrasingSlur()
+    start_phrasing_slur = StartPhrasingSlur()
+    stop_phrasing_slur = StopPhrasingSlur()
 
     if isinstance(selector, str):
         selector = eval(selector)
@@ -970,8 +970,8 @@ def phrasing_slur(
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
 
-    start_phrasing_slur = start_phrasing_slur or abjad.StartPhrasingSlur()
-    stop_phrasing_slur = stop_phrasing_slur or abjad.StopPhrasingSlur()
+    start_phrasing_slur = start_phrasing_slur or StartPhrasingSlur()
+    stop_phrasing_slur = stop_phrasing_slur or StopPhrasingSlur()
     
     attach(start_phrasing_slur, start_leaf)
     attach(stop_phrasing_slur, stop_leaf)
@@ -1011,8 +1011,8 @@ def slur(
     """
     # import allows eval statement
     import abjad
-    start_slur = start_slur or abjad.StartSlur()
-    stop_slur = stop_slur or abjad.StopSlur()
+    start_slur = start_slur or StartSlur()
+    stop_slur = stop_slur or StopSlur()
 
     if isinstance(selector, str):
         selector = eval(selector)
