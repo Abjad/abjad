@@ -5,8 +5,7 @@ import pytest
 def test_LilyPondParser__spanners__Glissando_01():
 
     target = abjad.Container([abjad.Note(0, 1), abjad.Note(0, 1)])
-    glissando = abjad.Glissando()
-    abjad.attach(glissando, target[:])
+    abjad.glissando(target[:])
     parser = abjad.parser.LilyPondParser()
     result = parser(format(target))
     assert format(target) == format(result) and target is not result

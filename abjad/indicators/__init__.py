@@ -15,6 +15,7 @@ from .Clef import Clef
 from .ColorFingering import ColorFingering
 from .Dynamic import Dynamic
 from .Fermata import Fermata
+from .GlissandoIndicator import GlissandoIndicator
 from .HairpinIndicator import HairpinIndicator
 from .KeyCluster import KeyCluster
 from .KeySignature import KeySignature

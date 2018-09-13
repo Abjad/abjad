@@ -69,8 +69,6 @@ def test_Mutation_swap_02():
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     leaves = abjad.select(voice).leaves()
     voice.name = 'foo'
-    glissando = abjad.Glissando()
-    abjad.attach(glissando, leaves)
     abjad.beam(leaves)
 
     assert format(voice) == abjad.String.normalize(
@@ -80,19 +78,14 @@ def test_Mutation_swap_02():
             {
                 c'8
                 [
-                \glissando
                 d'8
-                \glissando
             }
             {
                 e'8
-                \glissando
                 f'8
-                \glissando
             }
             {
                 g'8
-                \glissando
                 a'8
                 ]
             }
@@ -111,20 +104,15 @@ def test_Mutation_swap_02():
             {
                 c'8
                 [
-                \glissando
                 d'8
-                \glissando
             }
             \context Voice = "foo"
             {
                 e'8
-                \glissando
                 f'8
-                \glissando
             }
             {
                 g'8
-                \glissando
                 a'8
                 ]
             }
@@ -142,8 +130,6 @@ def test_Mutation_swap_03():
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     leaves = abjad.select(voice).leaves()
-    glissando = abjad.Glissando()
-    abjad.attach(glissando, leaves)
     abjad.beam(leaves)
 
     assert format(voice) == abjad.String.normalize(
@@ -153,19 +139,14 @@ def test_Mutation_swap_03():
             {
                 c'8
                 [
-                \glissando
                 d'8
-                \glissando
             }
             {
                 e'8
-                \glissando
                 f'8
-                \glissando
             }
             {
                 g'8
-                \glissando
                 a'8
                 ]
             }
@@ -184,20 +165,15 @@ def test_Mutation_swap_03():
             {
                 c'8
                 [
-                \glissando
                 d'8
-                \glissando
             }
             \tweak text #tuplet-number::calc-fraction-text
             \times 3/4 {
                 e'8
-                \glissando
                 f'8
-                \glissando
             }
             {
                 g'8
-                \glissando
                 a'8
                 ]
             }

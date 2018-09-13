@@ -12,7 +12,9 @@ from abjad.core.Selection import Selection
 from abjad.core.Skip import Skip
 from abjad.core.Staff import Staff
 from abjad.indicators.BeamCount import BeamCount
+from abjad.indicators.BendAfter import BendAfter
 from abjad.indicators.Dynamic import Dynamic
+from abjad.indicators.GlissandoIndicator import GlissandoIndicator
 from abjad.indicators.HairpinIndicator import HairpinIndicator
 from abjad.indicators.LilyPondLiteral import LilyPondLiteral
 from abjad.indicators.StartBeam import StartBeam
@@ -45,6 +47,10 @@ from abjad.utilities.Duration import Duration
 from abjad.utilities.Expression import Expression
 from abjad.utilities.Sequence import Sequence
 abjad_tags = Tags()
+TweaksTyping = typing.Union[
+    LilyPondTweakManager,
+    typing.Tuple[LilyPondTweakManager, int],
+    ]
 
 
 class Spanner(object):
@@ -768,6 +774,493 @@ def beam(
                 right = flag_count
             beam_count = BeamCount(left, right)
             attach(beam_count, middle_leaf, tag=tag)
+
+def glissando(
+    argument,
+    *tweaks: LilyPondTweakManager,
+    allow_repeats: bool = None,
+    allow_ties: bool = None,
+    parenthesize_repeats: bool = None,
+    right_broken: bool = None,
+    stems: bool = None,
+    style: str = None,
+    tag: str = None,
+    zero_padding: bool = None,
+    ):
+    r"""
+    Attaches glissando indicators.
+
+    ..  container:: example
+
+        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+        >>> abjad.glissando(staff[:])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                c'8
+                \glissando
+                d'8
+                \glissando
+                e'8
+                \glissando
+                f'8
+            }
+
+    ..  container:: example
+
+        Glissando avoids bend-after indicators:
+
+        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+        >>> bend_after = abjad.BendAfter()
+        >>> abjad.attach(bend_after, staff[1])
+        >>> abjad.glissando(staff[:])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                c'8
+                \glissando
+                d'8
+                - \bendAfter #'-4
+                e'8
+                \glissando
+                f'8
+            }
+
+    ..  container:: example
+
+        Does not allow repeated pitches:
+
+        >>> staff = abjad.Staff("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8")
+        >>> abjad.glissando(
+        ...     staff[:],
+        ...     allow_repeats=False,
+        ...     )
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                a8
+                a8
+                \glissando
+                b8
+                ~
+                b8
+                \glissando
+                c'8
+                c'8
+                \glissando
+                d'8
+                ~
+                d'8
+            }
+
+        This is default behavior.
+
+    ..  container:: example
+
+        Allows repeated pitches (but not ties):
+
+        >>> staff = abjad.Staff("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8")
+        >>> abjad.glissando(
+        ...     staff[:],
+        ...     allow_repeats=True,
+        ...     )
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                a8
+                \glissando
+                a8
+                \glissando
+                b8
+                ~
+                b8
+                \glissando
+                c'8
+                \glissando
+                c'8
+                \glissando
+                d'8
+                ~
+                d'8
+            }
+
+    ..  container:: example
+
+        Allows both repeated pitches and ties:
+
+        >>> staff = abjad.Staff("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8")
+        >>> abjad.glissando(
+        ...     staff[:],
+        ...     allow_repeats=True,
+        ...     allow_ties=True,
+        ...     )
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                a8
+                \glissando
+                a8
+                \glissando
+                b8
+                ~
+                \glissando
+                b8
+                \glissando
+                c'8
+                \glissando
+                c'8
+                \glissando
+                d'8
+                ~
+                \glissando
+                d'8
+            }
+
+        Ties are excluded when repeated pitches are not allowed because all
+        ties comprise repeated pitches.
+
+    ..  container:: example
+
+        Spans and parenthesizes repeated pitches:
+
+        >>> staff = abjad.Staff("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8")
+        >>> abjad.glissando(
+        ...     staff[:],
+        ...     allow_repeats=True,
+        ...     parenthesize_repeats=True,
+        ...     )
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                a8
+                \glissando
+                \parenthesize
+                a8
+                \glissando
+                b8
+                ~
+                \parenthesize
+                b8
+                \glissando
+                c'8
+                \glissando
+                \parenthesize
+                c'8
+                \glissando
+                d'8
+                ~
+                \parenthesize
+                d'8
+            }
+
+    ..  container:: example
+
+        Parenthesizes (but does not span) repeated pitches:
+
+        >>> staff = abjad.Staff("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8")
+        >>> abjad.glissando(
+        ...     staff[:],
+        ...     parenthesize_repeats=True,
+        ...     )
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                a8
+                \parenthesize
+                a8
+                \glissando
+                b8
+                ~
+                \parenthesize
+                b8
+                \glissando
+                c'8
+                \parenthesize
+                c'8
+                \glissando
+                d'8
+                ~
+                \parenthesize
+                d'8
+            }
+
+    ..  container:: example
+
+        With stems set to true:
+
+        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+        >>> abjad.glissando(
+        ...     staff[:],
+        ...     stems=True,
+        ...     )
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                c'8
+                \glissando
+                \hide NoteHead
+                \override Accidental.stencil = ##f
+                \override NoteColumn.glissando-skip = ##t
+                \override NoteHead.no-ledgers = ##t
+                d'8
+                \glissando
+                e'8
+                \glissando
+                \revert Accidental.stencil
+                \revert NoteColumn.glissando-skip
+                \revert NoteHead.no-ledgers
+                \undo \hide NoteHead
+                f'8
+            }
+
+    ..  container:: example
+
+        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+        >>> abjad.glissando(
+        ...     staff[:],
+        ...     abjad.tweak('trill').style,
+        ...     )
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                c'8
+                - \tweak style #'trill
+                \glissando
+                d'8
+                - \tweak style #'trill
+                \glissando
+                e'8
+                - \tweak style #'trill
+                \glissando
+                f'8
+            }
+
+    ..  container:: example
+
+        >>> staff = abjad.Staff("d'8 d'4. d'4. d'8")
+        >>> abjad.glissando(
+        ...     staff[:],
+        ...     allow_repeats=True,
+        ...     zero_padding=True,
+        ...     )
+        >>> for note in staff[1:]:
+        ...     abjad.override(note).note_head.transparent = True
+        ...     abjad.override(note).note_head.X_extent = (0, 0)
+        ...
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                d'8
+                - \abjad-zero-padding-glissando
+                \glissando
+                \once \override NoteHead.X-extent = #'(0 . 0)
+                \once \override NoteHead.transparent = ##t
+                d'4.
+                - \abjad-zero-padding-glissando
+                \glissando
+                \once \override NoteHead.X-extent = #'(0 . 0)
+                \once \override NoteHead.transparent = ##t
+                d'4.
+                - \abjad-zero-padding-glissando
+                \glissando
+                \once \override NoteHead.X-extent = #'(0 . 0)
+                \once \override NoteHead.transparent = ##t
+                d'8
+            }
+
+    ..  container:: example
+
+        >>> staff = abjad.Staff("c'8. d'8. e'8. f'8.")
+        >>> abjad.glissando(
+        ...     staff[:],
+        ...     zero_padding=True,
+        ...     )
+        >>> for note in staff[1:-1]:
+        ...     abjad.override(note).note_head.transparent = True
+        ...     abjad.override(note).note_head.X_extent = (0, 0)
+        ...
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                c'8.
+                - \abjad-zero-padding-glissando
+                \glissando
+                \once \override NoteHead.X-extent = #'(0 . 0)
+                \once \override NoteHead.transparent = ##t
+                d'8.
+                - \abjad-zero-padding-glissando
+                \glissando
+                \once \override NoteHead.X-extent = #'(0 . 0)
+                \once \override NoteHead.transparent = ##t
+                e'8.
+                - \abjad-zero-padding-glissando
+                \glissando
+                f'8.
+            }
+
+    """
+
+    def _is_last_in_tie_chain(leaf):
+        logical_tie = inspect(leaf).logical_tie()
+        return leaf is logical_tie[-1]
+
+    def _next_leaf_changes_current_pitch(leaf):
+        next_leaf = inspect(leaf).leaf(n=1)
+        if (isinstance(leaf, Note) and
+            isinstance(next_leaf, Note) and
+            leaf.written_pitch == next_leaf.written_pitch):
+            return False
+        elif (isinstance(leaf, Chord) and
+            isinstance(next_leaf, Chord) and
+            leaf.written_pitches == next_leaf.written_pitches):
+            return False
+        return True
+
+    def _parenthesize_leaf(leaf):
+        if isinstance(leaf, Note):
+            leaf.note_head.is_parenthesized = True
+        elif isinstance(leaf, Chord):
+            for note_head in leaf.note_heads:
+                note_head.is_parenthesized = True
+
+    def _previous_leaf_changes_current_pitch(leaf):
+        previous_leaf = inspect(leaf).leaf(n=-1)
+        if (isinstance(leaf, Note) and
+            isinstance(previous_leaf, Note) and
+            leaf.written_pitch == previous_leaf.written_pitch):
+            return False
+        elif (isinstance(leaf, Chord) and
+            isinstance(previous_leaf, Chord) and
+            leaf.written_pitches == previous_leaf.written_pitches):
+            return False
+        return True
+
+    leaves = select(argument).leaves()
+    for leaf in leaves:
+        if leaf is not leaves[0]:
+            if parenthesize_repeats:
+                if not _previous_leaf_changes_current_pitch(leaf):
+                    _parenthesize_leaf(leaf)
+        should_attach_glissando = False
+        deactivate_glissando = None
+        if inspect(leaf).has_indicator(BendAfter):
+            pass
+        elif leaf is leaves[-1]:
+            if right_broken is True:
+                should_attach_glissando = True
+                tag_ = True
+        elif not isinstance(leaf, (Chord, Note)):
+            pass
+        elif allow_repeats and allow_ties:
+            should_attach_glissando = True
+        elif allow_repeats and not allow_ties:
+            should_attach_glissando = _is_last_in_tie_chain(leaf)
+        elif not allow_repeats and allow_ties:
+            if _next_leaf_changes_current_pitch(leaf):
+                should_attach_glissando = True
+        elif (not allow_repeats and not allow_ties):
+            if _next_leaf_changes_current_pitch(leaf):
+                if _is_last_in_tie_chain(leaf):
+                    should_attach_glissando = True
+        if stems:
+            if leaf is leaves[1]:
+                strings = [
+                    r'\hide NoteHead',
+                    r'\override Accidental.stencil = ##f',
+                    r'\override NoteColumn.glissando-skip = ##t',
+                    r'\override NoteHead.no-ledgers = ##t',
+                    ]
+                literal = LilyPondLiteral(strings)
+                attach(literal, leaf, tag=tag)
+            if leaf is leaves[-1]:
+                strings = [
+                    r'\revert Accidental.stencil',
+                    r'\revert NoteColumn.glissando-skip',
+                    r'\revert NoteHead.no-ledgers',
+                    r'\undo \hide NoteHead',
+                    ]
+                if right_broken:
+                    deactivate_glissando = True
+                    #strings_ = self._tag_hide(strings)
+                    #bundle.grob_reverts.extend(strings_)
+                    #strings_ = self._tag_show(strings)
+                    #bundle.after.commands.extend(strings_)
+                    literal = LilyPondLiteral(strings, 'after')
+                    attach(
+                        literal,
+                        leaf,
+                        deactivate=True,
+                        tag=abjad_tags.SHOW_TO_JOIN_BROKEN_SPANNERS,
+                        )
+                    literal = LilyPondLiteral(strings)
+                    attach(
+                        literal,
+                        leaf,
+                        deactivate=False,
+                        tag=abjad_tags.HIDE_TO_JOIN_BROKEN_SPANNERS,
+                        )
+                else:
+                    literal = LilyPondLiteral(strings)
+                    attach(
+                        literal,
+                        leaf,
+                        tag=tag,
+                        )
+        if should_attach_glissando:
+            glissando = GlissandoIndicator(
+                tweaks=tweaks,
+                zero_padding=zero_padding,
+                )
+            attach(
+                glissando,
+                leaf,
+                deactivate=deactivate_glissando,
+                tag=tag,
+                )
 
 def hairpin(
     descriptor: str,

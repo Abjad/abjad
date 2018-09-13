@@ -368,21 +368,20 @@ class PitchRange(object):
         stop_pitch_clef = abjad.Clef.from_selection(self.stop_pitch)
         start_note = abjad.Note(self.start_pitch, 1)
         stop_note = abjad.Note(self.stop_pitch, 1)
-        glissando = abjad.Glissando()
         if start_pitch_clef == stop_pitch_clef:
             if start_pitch_clef == abjad.Clef('bass'):
                 bass_staff = abjad.Staff()
                 abjad.attach(abjad.Clef('bass'), bass_staff)
                 bass_staff.extend([start_note, stop_note])
                 bass_leaves = abjad.select(bass_staff).leaves()
-                abjad.attach(glissando, bass_leaves)
+                abjad.glissando(bass_leaves)
                 score = abjad.Score([bass_staff])
             else:
                 treble_staff = abjad.Staff()
                 abjad.attach(abjad.Clef('treble'), treble_staff)
                 treble_staff.extend([start_note, stop_note])
                 treble_leaves = abjad.select(treble_staff).leaves()
-                abjad.attach(glissando, treble_leaves)
+                abjad.glissando(treble_leaves)
                 score = abjad.Score([treble_staff])
         else:
             result = abjad.Score.make_piano_score()
@@ -390,7 +389,7 @@ class PitchRange(object):
             bass_staff.extend([start_note, stop_note])
             treble_staff.extend(abjad.Skip(1) * 2)
             bass_leaves = abjad.select(bass_staff).leaves()
-            abjad.attach(glissando, bass_leaves)
+            abjad.glissando(bass_leaves)
             abjad.attach(abjad.StaffChange(treble_staff), bass_staff[1])
             abjad.attach(abjad.Clef('treble'), treble_staff[0])
             abjad.attach(abjad.Clef('bass'), bass_staff[0])
