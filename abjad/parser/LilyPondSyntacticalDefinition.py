@@ -2637,14 +2637,13 @@ class LilyPondSyntacticalDefinition(object):
 
     def p_post_event_nofinger__script_dir__direction_less_event(self, p):
         'post_event_nofinger : script_dir direction_less_event'
-        #p[2].direction = p[1]
+        import abjad
         # TODO: this is cheating; articulation direction should be given
         #       at initialization and not after (as is done here)
         try:
             p[2].direction = p[1]
         except AttributeError:
-            direction = \
-                utilities.String.to_tridirectional_ordinal_constant(p[1])
+            direction = abjad.String.to_tridirectional_lilypond_symbol(p[1])
             assert hasattr(p[2], '_direction')
             p[2]._direction = direction
         p[0] = p[2]
@@ -2652,15 +2651,13 @@ class LilyPondSyntacticalDefinition(object):
 
     def p_post_event_nofinger__script_dir__direction_reqd_event(self, p):
         'post_event_nofinger : script_dir direction_reqd_event'
-        # TODO: give indicators, markup and spanners the same direction_string
-        #       functionality.
+        import abjad
         # TODO: this is cheating; articulation direction should be given
         #       at initialization and not after (as is done here)
         try:
             p[2].direction = p[1]
         except AttributeError:
-            direction = \
-                utilities.String.to_tridirectional_ordinal_constant(p[1])
+            direction = abjad.String.to_tridirectional_ordinal_constant(p[1])
             assert hasattr(p[2], '_direction')
             p[2]._direction = direction
         p[0] = p[2]

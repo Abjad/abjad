@@ -14,8 +14,7 @@ class LilyPondLiteral(object):
         Dotted slur:
 
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-        >>> slur = abjad.Slur()
-        >>> abjad.attach(slur, staff[:])
+        >>> abjad.slur(staff[:])
         >>> literal = abjad.LilyPondLiteral(r'\slurDotted')
         >>> abjad.attach(literal, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
@@ -39,7 +38,7 @@ class LilyPondLiteral(object):
         Use the absolute before and absolute after format slots like this:
 
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-        >>> abjad.attach(abjad.Slur(), staff[:])
+        >>> abjad.slur(staff[:])
         >>> literal = abjad.LilyPondLiteral(r'\slurDotted')
         >>> abjad.attach(literal, staff[0])
         >>> literal = abjad.LilyPondLiteral('', format_slot='absolute_before')
@@ -75,7 +74,7 @@ class LilyPondLiteral(object):
         LilyPond literals can be tagged:
 
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-        >>> abjad.attach(abjad.Slur(), staff[:])
+        >>> abjad.slur(staff[:])
         >>> literal = abjad.LilyPondLiteral(r'\slurDotted')
         >>> abjad.attach(literal, staff[0], tag='RED')
         >>> abjad.show(staff) # doctest: +SKIP
@@ -97,7 +96,7 @@ class LilyPondLiteral(object):
         Multiline input is allowed:
 
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-        >>> abjad.attach(abjad.Slur(), staff[:])
+        >>> abjad.slur(staff[:])
         >>> lines = [
         ...     r'\stopStaff',
         ...     r'\startStaff',

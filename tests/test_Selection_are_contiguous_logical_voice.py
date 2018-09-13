@@ -81,8 +81,7 @@ def test_Selection_are_contiguous_logical_voice_07():
     """
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8 g'8 a'8")
-    beam = abjad.Beam()
-    abjad.attach(beam, voice[:])
+    abjad.beam(voice[:])
 
     assert format(voice) == abjad.String.normalize(
         r"""

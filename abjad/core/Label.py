@@ -405,8 +405,7 @@ class Label(object):
             ..  container:: example
 
                 >>> staff = abjad.Staff("cs'8. r8. s8. <c' cs' a'>8.")
-                >>> beam = abjad.Beam(beam_rests=True)
-                >>> abjad.attach(beam, staff[:])
+                >>> abjad.beam(staff[:])
                 >>> abjad.label(staff).color_leaves('red')
                 >>> abjad.show(staff) # doctest: +SKIP
 
@@ -430,8 +429,7 @@ class Label(object):
             ..  container:: example expression
 
                 >>> staff = abjad.Staff("cs'8. r8. s8. <c' cs' a'>8.")
-                >>> beam = abjad.Beam(beam_rests=True)
-                >>> abjad.attach(beam, staff[:])
+                >>> abjad.beam(staff[:])
                 >>> expression = abjad.label().color_leaves('red')
                 >>> expression(staff)
                 >>> abjad.show(staff) # doctest: +SKIP
@@ -2412,26 +2410,34 @@ class Label(object):
                         \times 2/3 {
                             c'8
                             ^ \markup { 0 }
+                            [
                             d'8
                             e'8
+                            ]
                         }
                         \times 2/3 {
                             c'8
                             ^ \markup { 1 }
+                            [
                             d'8
                             e'8
+                            ]
                         }
                         \times 2/3 {
                             c'8
                             ^ \markup { 2 }
+                            [
                             d'8
                             e'8
+                            ]
                         }
                         \times 2/3 {
                             c'8
                             ^ \markup { 3 }
+                            [
                             d'8
                             e'8
+                            ]
                         }
                     }
 
@@ -2458,26 +2464,34 @@ class Label(object):
                         \times 2/3 {
                             c'8
                             ^ \markup { 0 }
+                            [
                             d'8
                             e'8
+                            ]
                         }
                         \times 2/3 {
                             c'8
                             ^ \markup { 1 }
+                            [
                             d'8
                             e'8
+                            ]
                         }
                         \times 2/3 {
                             c'8
                             ^ \markup { 2 }
+                            [
                             d'8
                             e'8
+                            ]
                         }
                         \times 2/3 {
                             c'8
                             ^ \markup { 3 }
+                            [
                             d'8
                             e'8
+                            ]
                         }
                     }
 

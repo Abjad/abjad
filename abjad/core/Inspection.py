@@ -1427,41 +1427,6 @@ class Inspection(object):
         ) -> typing.List[Spanner]:
         r"""
         Gets spanners.
-
-        ..  container:: example
-
-            >>> staff = abjad.Staff("c'8 d' e' f'")
-            >>> abjad.attach(abjad.Beam(), staff[:2])
-            >>> abjad.attach(abjad.Beam(), staff[2:])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    c'8
-                    [
-                    d'8
-                    ]
-                    e'8
-                    [
-                    f'8
-                    ]
-                }
-
-            >>> abjad.inspect(staff).spanners()
-            []
-
-            >>> abjad.inspect(staff[0]).spanners()
-            [Beam("c'8, d'8", durations=(), span_beam_count=1)]
-
-            >>> beams = abjad.inspect(staff[:]).spanners()
-            >>> beams = list(beams)
-            >>> beams.sort()
-            >>> beams
-            [Beam("c'8, d'8", durations=(), span_beam_count=1), Beam("e'8, f'8", durations=(), span_beam_count=1)]
-
         """
         if isinstance(self.client, Container):
             return []
@@ -1625,8 +1590,8 @@ class Inspection(object):
         ..  container:: example
 
             >>> staff = abjad.Staff("c'8 d' e' f'")
-            >>> abjad.attach(abjad.Beam(), staff[:2])
-            >>> abjad.attach(abjad.Beam(), staff[2:])
+            >>> abjad.beam(staff[:2])
+            >>> abjad.beam(staff[2:])
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::

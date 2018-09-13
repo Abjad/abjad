@@ -1271,8 +1271,7 @@ class Iteration(object):
             ..  container:: example
 
                 >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-                >>> beam = abjad.Beam()
-                >>> abjad.attach(beam, staff[:])
+                >>> abjad.beam(staff[:])
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 ..  docs::
@@ -1291,40 +1290,6 @@ class Iteration(object):
             ..  container:: example
 
                 >>> for pitch in abjad.iterate(staff).pitches():
-                ...     pitch
-                ...
-                NamedPitch("c'")
-                NamedPitch("d'")
-                NamedPitch("e'")
-                NamedPitch("f'")
-
-        ..  container:: example
-
-            Iterates pitches in spanner:
-
-            ..  container:: example
-
-                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-                >>> beam = abjad.Beam()
-                >>> abjad.attach(beam, staff[:])
-                >>> abjad.show(staff) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> abjad.f(staff)
-                    \new Staff
-                    {
-                        c'8
-                        [
-                        d'8
-                        e'8
-                        f'8
-                        ]
-                    }
-
-            ..  container:: example
-
-                >>> for pitch in abjad.iterate(beam).pitches():
                 ...     pitch
                 ...
                 NamedPitch("c'")
@@ -1419,92 +1384,6 @@ class Iteration(object):
     def spanners(self, prototype=None, reverse=False):
         r"""
         Iterates spanners.
-
-        ..  container:: example
-
-            Iterates spanners:
-
-            ..  container:: example
-
-                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8 g'8 a'8 f'8 b'8 c''8")
-                >>> abjad.attach(abjad.Slur(), staff[:4])
-                >>> abjad.attach(abjad.Slur(), staff[4:])
-                >>> abjad.attach(abjad.Beam(), staff[:])
-                >>> abjad.show(staff) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> abjad.f(staff)
-                    \new Staff
-                    {
-                        c'8
-                        [
-                        (
-                        d'8
-                        e'8
-                        f'8
-                        )
-                        g'8
-                        (
-                        a'8
-                        f'8
-                        b'8
-                        c''8
-                        ]
-                        )
-                    }
-
-            ..  container:: example
-
-                >>> for spanner in abjad.iterate(staff).spanners():
-                ...     spanner
-                ...
-                Beam("c'8, d'8, ... [5] ..., b'8, c''8", durations=(), span_beam_count=1)
-                Slur("c'8, d'8, e'8, f'8")
-                Slur("g'8, a'8, f'8, b'8, c''8")
-
-        ..  container:: example
-
-            Iterates spanners in reverse:
-
-            ..  container:: example
-
-                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8 g'8 a'8 f'8 b'8 c''8")
-                >>> abjad.attach(abjad.Slur(), staff[:4])
-                >>> abjad.attach(abjad.Slur(), staff[4:])
-                >>> abjad.attach(abjad.Beam(), staff[:])
-                >>> abjad.show(staff) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> abjad.f(staff)
-                    \new Staff
-                    {
-                        c'8
-                        [
-                        (
-                        d'8
-                        e'8
-                        f'8
-                        )
-                        g'8
-                        (
-                        a'8
-                        f'8
-                        b'8
-                        c''8
-                        ]
-                        )
-                    }
-
-            ..  container:: example
-
-                >>> for spanner in abjad.iterate(staff).spanners(reverse=True):
-                ...     spanner
-                ...
-                Beam("c'8, d'8, ... [5] ..., b'8, c''8", durations=(), span_beam_count=1)
-                Slur("g'8, a'8, f'8, b'8, c''8")
-                Slur("c'8, d'8, e'8, f'8")
 
         Returns generator.
         """

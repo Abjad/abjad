@@ -14,8 +14,7 @@ def test_Selection__get_dominant_spanners_01():
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     leaves = abjad.select(voice).leaves()
-    beam = abjad.Beam()
-    abjad.attach(beam, leaves[:4])
+    abjad.beam(leaves[:4])
     glissando = abjad.Glissando()
     abjad.attach(glissando, leaves[-4:])
     trill = abjad.TrillSpanner()
@@ -50,8 +49,7 @@ def test_Selection__get_dominant_spanners_01():
 
     receipt = voice[:1]._get_dominant_spanners()
 
-    assert len(receipt) == 2
-    assert (beam, 0) in receipt
+    assert len(receipt) == 1
     assert (trill, 0) in receipt
 
 
@@ -62,8 +60,7 @@ def test_Selection__get_dominant_spanners_02():
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     leaves = abjad.select(voice).leaves()
-    beam = abjad.Beam()
-    abjad.attach(beam, leaves[:4])
+    abjad.beam(leaves[:4])
     glissando = abjad.Glissando()
     abjad.attach(glissando, leaves[-4:])
     trill = abjad.TrillSpanner()
@@ -71,8 +68,7 @@ def test_Selection__get_dominant_spanners_02():
 
     receipt = voice[1:2]._get_dominant_spanners()
 
-    assert len(receipt) == 3
-    assert (beam, 2) in receipt
+    assert len(receipt) == 2
     assert (glissando, 0) in receipt
     assert (trill, 2) in receipt
 
@@ -84,8 +80,7 @@ def test_Selection__get_dominant_spanners_03():
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     leaves = abjad.select(voice).leaves()
-    beam = abjad.Beam()
-    abjad.attach(beam, leaves[:4])
+    abjad.beam(leaves[:4])
     glissando = abjad.Glissando()
     abjad.attach(glissando, leaves[-4:])
     trill = abjad.TrillSpanner()
@@ -105,8 +100,7 @@ def test_Selection__get_dominant_spanners_04():
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     leaves = abjad.select(voice).leaves()
-    beam = abjad.Beam()
-    abjad.attach(beam, leaves[:4])
+    abjad.beam(leaves[:4])
     glissando = abjad.Glissando()
     abjad.attach(glissando, leaves[-4:])
     trill = abjad.TrillSpanner()
@@ -114,8 +108,7 @@ def test_Selection__get_dominant_spanners_04():
 
     receipt= voice[:2]._get_dominant_spanners()
 
-    assert len(receipt) == 2
-    assert (beam, 0) in receipt
+    assert len(receipt) == 1
     assert (trill, 0) in receipt
 
 
@@ -126,8 +119,7 @@ def test_Selection__get_dominant_spanners_05():
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     leaves = abjad.select(voice).leaves()
-    beam = abjad.Beam()
-    abjad.attach(beam, leaves[:4])
+    abjad.beam(leaves[:4])
     glissando = abjad.Glissando()
     abjad.attach(glissando, leaves[-4:])
     trill = abjad.TrillSpanner()
@@ -147,8 +139,7 @@ def test_Selection__get_dominant_spanners_06():
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     leaves = abjad.select(voice).leaves()
-    beam = abjad.Beam()
-    abjad.attach(beam, leaves[:4])
+    abjad.beam(leaves[:4])
     glissando = abjad.Glissando()
     abjad.attach(glissando, leaves[-4:])
     trill = abjad.TrillSpanner()
@@ -167,8 +158,7 @@ def test_Selection__get_dominant_spanners_07():
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     leaves = abjad.select(voice).leaves()
-    beam = abjad.Beam()
-    abjad.attach(beam, leaves[:4])
+    abjad.beam(leaves[:4])
     glissando = abjad.Glissando()
     abjad.attach(glissando, leaves[-4:])
     trill = abjad.TrillSpanner()
@@ -189,8 +179,7 @@ def test_Selection__get_dominant_spanners_08():
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     leaves = abjad.select(voice).leaves()
-    beam = abjad.Beam()
-    abjad.attach(beam, leaves[:4])
+    abjad.beam(leaves[:4])
     glissando = abjad.Glissando()
     abjad.attach(glissando, leaves[-4:])
     trill = abjad.TrillSpanner()
@@ -198,6 +187,5 @@ def test_Selection__get_dominant_spanners_08():
 
     receipt = leaves[:2]._get_dominant_spanners()
 
-    assert len(receipt) == 2
-    assert (beam, 0) in receipt
+    assert len(receipt) == 1
     assert (trill, 0) in receipt

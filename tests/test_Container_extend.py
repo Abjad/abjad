@@ -8,8 +8,7 @@ def test_Container_extend_01():
     """
 
     voice = abjad.Voice("c'8 d'8")
-    beam = abjad.Beam()
-    abjad.attach(beam, voice[:])
+    abjad.beam(voice[:])
     voice.extend([abjad.Note("c'8"), abjad.Note("d'8")])
 
     assert format(voice) == abjad.String.normalize(
@@ -24,7 +23,7 @@ def test_Container_extend_01():
             d'8
         }
         """
-        )
+        ), print(format(voice))
 
     assert abjad.inspect(voice).wellformed()
 
@@ -35,12 +34,10 @@ def test_Container_extend_02():
     """
 
     voice_1 = abjad.Voice("c'8 d'8")
-    beam = abjad.Beam()
-    abjad.attach(beam, voice_1[:])
+    abjad.beam(voice_1[:])
 
     voice_2 = abjad.Voice("e'8 f'8")
-    beam = abjad.Beam()
-    abjad.attach(beam, voice_2[:])
+    abjad.beam(voice_2[:])
     voice_1.extend(voice_2)
 
     assert format(voice_1) == abjad.String.normalize(
@@ -57,7 +54,7 @@ def test_Container_extend_02():
             ]
         }
         """
-        )
+        ), print(format(voice_1))
 
     assert abjad.inspect(voice_1).wellformed()
 
@@ -68,8 +65,7 @@ def test_Container_extend_03():
     """
 
     voice = abjad.Voice("c'8 d'8")
-    beam = abjad.Beam()
-    abjad.attach(beam, voice[:])
+    abjad.beam(voice[:])
     voice.extend([])
 
     assert format(voice) == abjad.String.normalize(
@@ -82,7 +78,7 @@ def test_Container_extend_03():
             ]
         }
         """
-        )
+        ), print(format(voice))
 
     assert abjad.inspect(voice).wellformed()
 
@@ -94,8 +90,7 @@ def test_Container_extend_04():
     """
 
     voice = abjad.Voice("c'8 d'8")
-    beam = abjad.Beam()
-    abjad.attach(beam, voice[:])
+    abjad.beam(voice[:])
     voice.extend(abjad.Voice([]))
 
     assert format(voice) == abjad.String.normalize(
@@ -108,7 +103,7 @@ def test_Container_extend_04():
             ]
         }
         """
-        )
+        ), print(format(voice))
 
     assert abjad.inspect(voice).wellformed()
 
@@ -119,8 +114,7 @@ def test_Container_extend_05():
     """
 
     voice = abjad.Voice("c'8 d'8")
-    beam = abjad.Beam()
-    abjad.attach(beam, voice[:])
+    abjad.beam(voice[:])
 
     assert pytest.raises(Exception, 'voice.extend(7)')
     assert pytest.raises(Exception, "voice.extend('foo')")
@@ -132,8 +126,7 @@ def test_Container_extend_06():
     """
 
     voice = abjad.Voice("c'8 d'8")
-    beam = abjad.Beam()
-    abjad.attach(beam, voice[:])
+    abjad.beam(voice[:])
 
     statement = 'voice.extend(abjad.Note(4, (1, 4)))'
     assert pytest.raises(AttributeError, statement)
@@ -148,12 +141,10 @@ def test_Container_extend_07():
     """
 
     voice_1 = abjad.Voice("c'8 d'8")
-    beam = abjad.Beam()
-    abjad.attach(beam, voice_1[:])
+    abjad.beam(voice_1[:])
 
     voice_2 = abjad.Voice("c'8 d'8 e'8 f'8")
-    beam = abjad.Beam()
-    abjad.attach(beam, voice_2[:])
+    abjad.beam(voice_2[:])
 
     voice_1.extend(voice_2[-2:])
 
@@ -167,9 +158,10 @@ def test_Container_extend_07():
             ]
             e'8
             f'8
+            ]
         }
         """
-        )
+        ), print(format(voice_1))
 
     assert abjad.inspect(voice_1).wellformed()
 
@@ -180,10 +172,9 @@ def test_Container_extend_07():
             c'8
             [
             d'8
-            ]
         }
         """
-        )
+        ), print(format(voice_2))
 
     assert abjad.inspect(voice_2).wellformed()
 
@@ -195,14 +186,11 @@ def test_Container_extend_08():
     """
 
     voice_1 = abjad.Voice("c'8 d'8")
-    beam = abjad.Beam()
-    abjad.attach(beam, voice_1[:])
+    abjad.beam(voice_1[:])
 
     voice_2 = abjad.Voice("c'8 d'8 e'8 f'8")
-    beam = abjad.Beam()
-    abjad.attach(beam, voice_2[:])
-    slur = abjad.Slur()
-    abjad.attach(slur, voice_2[-2:])
+    abjad.beam(voice_2[:])
+    abjad.slur(voice_2[-2:])
 
     assert format(voice_2) == abjad.String.normalize(
         r"""
@@ -214,11 +202,11 @@ def test_Container_extend_08():
             e'8
             (
             f'8
-            ]
             )
+            ]
         }
         """
-        )
+        ), print(format(voice_2))
 
     voice_1.extend(voice_2[-2:])
 
@@ -234,9 +222,10 @@ def test_Container_extend_08():
             (
             f'8
             )
+            ]
         }
         """
-        )
+        ), print(format(voice_1))
 
     assert abjad.inspect(voice_1).wellformed()
 
@@ -247,10 +236,9 @@ def test_Container_extend_08():
             c'8
             [
             d'8
-            ]
         }
         """
-        )
+        ), print(format(voice_2))
 
     assert abjad.inspect(voice_2).wellformed()
 
@@ -274,7 +262,7 @@ def test_Container_extend_09():
             )
         }
         """
-        )
+        ), print(format(container))
 
     assert abjad.inspect(container).wellformed()
 
@@ -306,6 +294,6 @@ def test_Container_extend_10():
             c''4
         }
         """
-        )
+        ), print(format(container))
 
     assert abjad.inspect(container).wellformed()

@@ -9,18 +9,18 @@ from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.utilities.String import String
 
 
-class StartSlur(object):
+class StartBeam(object):
     r"""
-    LilyPond ``(`` command.
+    LilyPond ``[`` command.
 
     ..  container:: example
 
-        >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> start_slur = abjad.StartSlur()
-        >>> abjad.tweak(start_slur).color = 'blue'
-        >>> abjad.attach(start_slur, staff[0])
-        >>> stop_slur = abjad.StopSlur()
-        >>> abjad.attach(stop_slur, staff[-1])
+        >>> staff = abjad.Staff("c'8 d' e' f'")
+        >>> start_beam = abjad.StartBeam()
+        >>> abjad.tweak(start_beam).color = 'blue'
+        >>> abjad.attach(start_beam, staff[0])
+        >>> stop_beam = abjad.StopBeam()
+        >>> abjad.attach(stop_beam, staff[-1])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -28,19 +28,19 @@ class StartSlur(object):
             >>> abjad.f(staff)
             \new Staff
             {
-                c'4
+                c'8
                 - \tweak color #blue
-                (
-                d'4
-                e'4
-                f'4
-                )
+                [
+                d'8
+                e'8
+                f'8
+                ]
             }
 
     ..  container:: example
 
-        >>> abjad.StartSlur()
-        StartSlur()
+        >>> abjad.StartBeam()
+        StartBeam()
 
     """
 
@@ -53,7 +53,7 @@ class StartSlur(object):
 
     _context = 'Voice'
 
-    _parameter = 'SLUR'
+    _parameter = 'BEAM'
 
     _persistent = True
 
@@ -111,7 +111,7 @@ class StartSlur(object):
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions()
             bundle.after.spanner_starts.extend(tweaks)
-        string = self._add_direction('(')
+        string = self._add_direction('[')
         bundle.after.spanner_starts.append(string)
         return bundle
 
@@ -124,7 +124,7 @@ class StartSlur(object):
 
         ..  container:: example
 
-            >>> abjad.StartSlur().context
+            >>> abjad.StartBeam().context
             'Voice'
 
         Class constant.
@@ -143,12 +143,12 @@ class StartSlur(object):
     @property
     def parameter(self) -> str:
         """
-        Returns ``'SLUR'``.
+        Returns ``'BEAM'``.
 
         ..  container:: example
 
-            >>> abjad.StartSlur().parameter
-            'SLUR'
+            >>> abjad.StartBeam().parameter
+            'BEAM'
 
         Class constant.
         """
@@ -161,7 +161,7 @@ class StartSlur(object):
 
         ..  container:: example
 
-            >>> abjad.StartSlur().persistent
+            >>> abjad.StartBeam().persistent
             True
 
         Class constant.
@@ -175,7 +175,7 @@ class StartSlur(object):
 
         ..  container:: example
 
-            >>> abjad.StartSlur().spanner_start
+            >>> abjad.StartBeam().spanner_start
             True
 
         """
@@ -188,12 +188,12 @@ class StartSlur(object):
 
         ..  container:: example
 
-            >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> start_slur = abjad.StartSlur()
-            >>> abjad.tweak(start_slur).color = 'blue'
-            >>> abjad.attach(start_slur, staff[0])
-            >>> stop_slur = abjad.StopSlur()
-            >>> abjad.attach(stop_slur, staff[-1])
+            >>> staff = abjad.Staff("c'8 d' e' f'")
+            >>> start_beam = abjad.StartBeam()
+            >>> abjad.tweak(start_beam).color = 'blue'
+            >>> abjad.attach(start_beam, staff[0])
+            >>> stop_beam = abjad.StopBeam()
+            >>> abjad.attach(stop_beam, staff[-1])
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -201,13 +201,13 @@ class StartSlur(object):
                 >>> abjad.f(staff)
                 \new Staff
                 {
-                    c'4
+                    c'8
                     - \tweak color #blue
-                    (
-                    d'4
-                    e'4
-                    f'4
-                    )
+                    [
+                    d'8
+                    e'8
+                    f'8
+                    ]
                 }
 
         ..  container:: example
@@ -215,16 +215,16 @@ class StartSlur(object):
             REGRESSION. Tweaks survive copy:
 
             >>> import copy
-            >>> start_slur = abjad.StartSlur()
-            >>> abjad.tweak(start_slur).color = 'blue'
-            >>> abjad.f(start_slur)
-            abjad.StartSlur(
+            >>> start_beam = abjad.StartBeam()
+            >>> abjad.tweak(start_beam).color = 'blue'
+            >>> abjad.f(start_beam)
+            abjad.StartBeam(
                 tweaks=LilyPondTweakManager(('color', 'blue')),
                 )
 
-            >>> start_slur_2 = copy.copy(start_slur)
-            >>> abjad.f(start_slur_2)
-            abjad.StartSlur(
+            >>> start_beam_2 = copy.copy(start_beam)
+            >>> abjad.f(start_beam_2)
+            abjad.StartBeam(
                 tweaks=LilyPondTweakManager(('color', 'blue')),
                 )
 

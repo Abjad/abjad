@@ -110,6 +110,9 @@ class Duration(Fraction):
     ### CONSTRUCTOR ###
 
     def __new__(class_, *arguments):
+        """
+        Makes new duration.
+        """
         if len(arguments) == 1:
             argument = arguments[0]
             if type(argument) is class_:
@@ -1263,7 +1266,7 @@ class Duration(Fraction):
             Override tuplet number text like this:
 
             >>> tuplet = abjad.Tuplet((5, 7), "c'16 c' c' c' c' c' c'")
-            >>> abjad.attach(abjad.Beam(), tuplet[:])
+            >>> abjad.beam(tuplet[:])
             >>> staff = abjad.Staff([tuplet], lilypond_type='RhythmicStaff')
             >>> duration = abjad.inspect(tuplet).duration()
             >>> markup = duration.to_score_markup()

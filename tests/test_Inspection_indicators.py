@@ -4,8 +4,7 @@ import abjad
 def test_Inspection_indicators_01():
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    slur = abjad.Slur()
-    abjad.attach(slur, staff[:])
+    abjad.slur(staff[:])
     command_1 = abjad.LilyPondLiteral(r'\slurDotted')
     abjad.attach(command_1, staff[0])
     command_2 = abjad.LilyPondLiteral(r'\slurUp')
@@ -36,8 +35,7 @@ def test_Inspection_indicators_01():
 def test_Inspection_indicators_02():
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    slur = abjad.Slur()
-    abjad.attach(slur, staff[:])
+    abjad.slur(staff[:])
     comment = abjad.LilyPondComment('beginning of note content')
     abjad.attach(comment, staff[0])
     command = abjad.LilyPondLiteral(r'\slurDotted')
@@ -62,7 +60,7 @@ def test_Inspection_indicators_02():
     items = abjad.inspect(staff[0]).indicators()
     assert comment in items
     assert command in items
-    assert len(items) == 2
+    assert len(items) == 3
 
 
 def test_Inspection_indicators_03():

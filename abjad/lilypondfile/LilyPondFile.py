@@ -1054,7 +1054,7 @@ class LilyPondFile(object):
             ...     maker(2 * [0], [(1, 8)]),
             ...     ]
             >>> for selection in selections:
-            ...     abjad.attach(abjad.Beam(), selection[:])
+            ...     abjad.beam(selection[:])
             ...
             >>> lilypond_file = abjad.LilyPondFile.rhythm(
             ...     selections,
@@ -1116,7 +1116,7 @@ class LilyPondFile(object):
             ...     maker(2 * [0], [(1, 8)]),
             ...     ]
             >>> for selection in selections:
-            ...     abjad.attach(abjad.Beam(), selection[:])
+            ...     abjad.beam(selection[:])
             ...
             >>> lilypond_file = abjad.LilyPondFile.rhythm(
             ...     selections,
@@ -1178,7 +1178,7 @@ class LilyPondFile(object):
             ...     maker(2 * [0], [(1, 8)]),
             ...     ]
             >>> for selection in selections:
-            ...     abjad.attach(abjad.Beam(), selection[:])
+            ...     abjad.beam(selection[:])
             ...
             >>> lilypond_file = abjad.LilyPondFile.rhythm(
             ...     selections,
@@ -1240,7 +1240,7 @@ class LilyPondFile(object):
             ...     maker(2 * [0], [(1, 8)]),
             ...     ]
             >>> for selection in selections:
-            ...     abjad.attach(abjad.Beam(), selection[:])
+            ...     abjad.beam(selection[:])
             ...
             >>> for note in abjad.iterate(selections).components(abjad.Note):
             ...     note.written_pitch = abjad.NamedPitch("e'")
@@ -1252,7 +1252,7 @@ class LilyPondFile(object):
             ...     maker(4 * [0], [(1, 16)]),
             ...     ]
             >>> for selection in selections:
-            ...     abjad.attach(abjad.Beam(), selection[:])
+            ...     abjad.beam(selection[:])
             ...
             >>> selection_2 = selections[0] + selections[1] + selections[2]
             >>> selections = {

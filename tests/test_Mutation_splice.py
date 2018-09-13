@@ -4,8 +4,7 @@ import abjad
 def test_Mutation_splice_01():
 
     voice = abjad.Voice("c'8 d'8 e'8")
-    beam = abjad.Beam()
-    abjad.attach(beam, voice[:])
+    abjad.beam(voice[:])
 
     result = abjad.mutate(voice[-1]).splice(
         [abjad.Note("c'8"), abjad.Note("d'8"), abjad.Note("e'8")],
@@ -22,13 +21,13 @@ def test_Mutation_splice_01():
             [
             d'8
             e'8
+            ]
             c'8
             d'8
             e'8
-            ]
         }
         """
-        )
+        ), print(format(voice))
 
 
 def test_Mutation_splice_02():
@@ -37,8 +36,7 @@ def test_Mutation_splice_02():
     """
 
     voice = abjad.Voice("c'8 d'8 e'8")
-    beam = abjad.Beam()
-    abjad.attach(beam, voice[:])
+    abjad.beam(voice[:])
     result = abjad.mutate(voice[1]).splice(
         [abjad.Note("dqs'8")],
         grow_spanners=True,
@@ -56,7 +54,7 @@ def test_Mutation_splice_02():
             ]
         }
         """
-        )
+        ), print(format(voice))
 
     assert result == voice[1:3]
     assert abjad.inspect(voice).wellformed()
@@ -69,8 +67,7 @@ def test_Mutation_splice_03():
 
     tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
     voice = abjad.Voice([tuplet])
-    beam = abjad.Beam()
-    abjad.attach(beam, tuplet[:])
+    abjad.beam(tuplet[:])
     tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
     result = abjad.mutate(voice[-1]).splice(
         [tuplet],
@@ -86,16 +83,16 @@ def test_Mutation_splice_03():
                 [
                 d'8
                 e'8
+                ]
             }
             \times 2/3 {
                 c'8
                 d'8
                 e'8
-                ]
             }
         }
         """
-        )
+        ), print(format(voice))
 
     assert abjad.inspect(voice).wellformed()
     assert result == voice[:]
@@ -108,8 +105,7 @@ def test_Mutation_splice_04():
 
     voice = abjad.Voice(abjad.Container("c'8 c'8") * 2)
     leaves = abjad.select(voice).leaves()
-    beam = abjad.Beam()
-    abjad.attach(beam, leaves)
+    abjad.beam(leaves)
     result = abjad.mutate(voice[0]).splice(
         [abjad.Note("dqs'8")],
         grow_spanners=True,
@@ -132,7 +128,7 @@ def test_Mutation_splice_04():
             }
         }
         """
-        )
+        ), print(format(voice))
 
     assert abjad.inspect(voice).wellformed()
     assert result == voice[0:2]
@@ -144,8 +140,7 @@ def test_Mutation_splice_05():
     """
 
     voice = abjad.Voice("c'8 d'8 e'8")
-    beam = abjad.Beam()
-    abjad.attach(beam, voice[:])
+    abjad.beam(voice[:])
 
     result = abjad.mutate(voice[-1]).splice(
         [abjad.Note("c'8"), abjad.Note("d'8"), abjad.Note("e'8")],
@@ -166,7 +161,7 @@ def test_Mutation_splice_05():
             e'8
         }
         """
-        )
+        ), print(format(voice))
 
     assert abjad.inspect(voice).wellformed()
     assert result == voice[-4:]
@@ -178,8 +173,7 @@ def test_Mutation_splice_06():
     """
 
     voice = abjad.Voice("c'8 d'8 e'8")
-    beam = abjad.Beam()
-    abjad.attach(beam, voice[:])
+    abjad.beam(voice[:])
 
     result = abjad.mutate(voice[1]).splice(
         [abjad.Note("dqs'8")],
@@ -198,7 +192,7 @@ def test_Mutation_splice_06():
             ]
         }
         """
-        )
+        ), print(format(voice))
 
     assert result == voice[1:3]
     assert abjad.inspect(voice).wellformed()
@@ -210,8 +204,7 @@ def test_Mutation_splice_07():
     """
 
     voice = abjad.Voice("c'8 d'8 e'8")
-    beam = abjad.Beam()
-    abjad.attach(beam, voice[:])
+    abjad.beam(voice[:])
     notes = [abjad.Note("c'16"), abjad.Note("d'16"), abjad.Note("e'16")]
     result = abjad.mutate(voice[0]).splice(
         notes,
@@ -224,16 +217,16 @@ def test_Mutation_splice_07():
         \new Voice
         {
             c'16
-            [
             d'16
             e'16
             c'8
+            [
             d'8
             e'8
             ]
         }
         """
-        )
+        ), print(format(voice))
 
     assert abjad.inspect(voice).wellformed()
     assert result == voice[:4]
@@ -245,8 +238,7 @@ def test_Mutation_splice_08():
     """
 
     voice = abjad.Voice("c'8 d'8 e'8")
-    beam = abjad.Beam()
-    abjad.attach(beam, voice[:])
+    abjad.beam(voice[:])
     result = abjad.mutate(voice[1]).splice(
         [abjad.Note("dqf'8")],
         direction=abjad.Left,
@@ -265,7 +257,7 @@ def test_Mutation_splice_08():
             ]
         }
         """
-        )
+        ), print(format(voice))
 
     assert abjad.inspect(voice).wellformed()
     assert result == voice[1:3]
@@ -278,8 +270,7 @@ def test_Mutation_splice_09():
 
     tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
     voice = abjad.Voice([tuplet])
-    beam = abjad.Beam()
-    abjad.attach(beam, tuplet[:])
+    abjad.beam(tuplet[:])
     tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
     result = abjad.mutate(voice[0]).splice(
         [tuplet],
@@ -293,19 +284,19 @@ def test_Mutation_splice_09():
         {
             \times 2/3 {
                 c'8
-                [
                 d'8
                 e'8
             }
             \times 2/3 {
                 c'8
+                [
                 d'8
                 e'8
                 ]
             }
         }
         """
-        )
+        ), print(format(voice))
 
     assert abjad.inspect(voice).wellformed()
     assert result == voice[:]
@@ -318,8 +309,7 @@ def test_Mutation_splice_10():
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 }")
     leaves = abjad.select(voice).leaves()
-    beam = abjad.Beam()
-    abjad.attach(beam, leaves)
+    abjad.beam(leaves)
     result = abjad.mutate(voice[1]).splice(
         [abjad.Note("dqs'8")],
         direction=abjad.Left,
@@ -343,7 +333,7 @@ def test_Mutation_splice_10():
             }
         }
         """
-        )
+        ), print(format(voice))
 
     assert result == voice[1:]
     assert abjad.inspect(voice).wellformed()
@@ -355,8 +345,7 @@ def test_Mutation_splice_11():
     """
 
     voice = abjad.Voice("c'8 d'8 e'8")
-    beam = abjad.Beam()
-    abjad.attach(beam, voice[:])
+    abjad.beam(voice[:])
     notes = [abjad.Note("c'16"), abjad.Note("d'16"), abjad.Note("e'16")]
     result = abjad.mutate(voice[0]).splice(
         notes,
@@ -378,7 +367,7 @@ def test_Mutation_splice_11():
             ]
         }
         """
-        )
+        ), print(format(voice))
 
     assert abjad.inspect(voice).wellformed()
     assert result == voice[:4]
@@ -390,8 +379,7 @@ def test_Mutation_splice_12():
     """
 
     voice = abjad.Voice("c'8 d'8 e'8")
-    beam = abjad.Beam()
-    abjad.attach(beam, voice[:])
+    abjad.beam(voice[:])
     result = abjad.mutate(voice[1]).splice(
         [abjad.Note("dqf'8")],
         direction=abjad.Left,
@@ -410,7 +398,7 @@ def test_Mutation_splice_12():
             ]
         }
         """
-        )
+        ), print(format(voice))
 
     assert result == voice[1:3]
     assert abjad.inspect(voice).wellformed()

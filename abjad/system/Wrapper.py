@@ -505,7 +505,7 @@ class Wrapper(object):
             return
         message = f'\n\nCan not attach ...\n\n{self}\n\n...'
         message += f' to {repr(component)}'
-        message += f' in {context.name} because ...'
+        message += f" in {getattr(context, 'name', None)} because ..."
         message += f'\n\n{format(wrapper)}\n\n'
         message += '... is already attached'
         if component is wrapper.component:

@@ -1,8 +1,29 @@
 import copy
 import typing
 from abjad import enums
+from abjad import typings
+from abjad.core.Chord import Chord
+from abjad.core.Component import Component
 from abjad.core.Leaf import Leaf
+from abjad.core.MultimeasureRest import MultimeasureRest
+from abjad.core.Note import Note
+from abjad.core.Rest import Rest
 from abjad.core.Selection import Selection
+from abjad.core.Skip import Skip
+from abjad.core.Staff import Staff
+from abjad.indicators.BeamCount import BeamCount
+from abjad.indicators.Dynamic import Dynamic
+from abjad.indicators.HairpinIndicator import HairpinIndicator
+from abjad.indicators.LilyPondLiteral import LilyPondLiteral
+from abjad.indicators.StartBeam import StartBeam
+from abjad.indicators.StartPhrasingSlur import StartPhrasingSlur
+from abjad.indicators.StartSlur import StartSlur
+from abjad.indicators.StartTextSpan import StartTextSpan
+from abjad.indicators.StopBeam import StopBeam
+from abjad.indicators.StopHairpin import StopHairpin
+from abjad.indicators.StopSlur import StopSlur
+from abjad.indicators.StopPhrasingSlur import StopPhrasingSlur
+from abjad.indicators.StopTextSpan import StopTextSpan
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
@@ -12,12 +33,17 @@ from abjad.system.Tag import Tag
 from abjad.system.Tags import Tags
 from abjad.system.Wrapper import Wrapper
 from abjad.timespans import Timespan
+from abjad.top.attach import attach
+from abjad.top.detach import detach
 from abjad.top.inspect import inspect
+from abjad.top.iterate import iterate
 from abjad.top.override import override
 from abjad.top.select import select
 from abjad.top.setting import setting
 from abjad.top.tweak import tweak
 from abjad.utilities.Duration import Duration
+from abjad.utilities.Expression import Expression
+from abjad.utilities.Sequence import Sequence
 abjad_tags = Tags()
 
 
@@ -505,3 +531,683 @@ class Spanner(object):
         Gets tweaks.
         """
         return self._tweaks
+
+def beam(
+    argument: typing.Union[Component, Selection],
+    *,
+    beam_lone_notes: bool = None,
+    #beam_rests: bool = None,
+    beam_rests: typing.Optional[bool] = True,
+    durations: typing.Sequence[Duration] = None,
+    selector: typings.Selector = 
+        'abjad.select().leaves(do_not_iterate_grace_containers=True)',
+    span_beam_count: int = None,
+    start_beam: StartBeam = None,
+    stemlet_length: typings.Number = None,
+    stop_beam: StopBeam = None,
+    tag: str = None,
+    ) -> None:
+    r"""
+    Attaches beam indicators.
+
+    ..  container:: example
+
+        >>> staff = abjad.Staff("c'8 d' e' f'")
+        >>> abjad.beam(staff[:])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                c'8
+                [
+                d'8
+                e'8
+                f'8
+                ]
+            }
+
+    """
+    # import allows eval statement
+    import abjad
+    if isinstance(selector, str):
+        selector = eval(selector)
+    assert isinstance(selector, Expression)
+    argument = selector(argument)
+    original_leaves = iterate(argument).leaves(
+        do_not_iterate_grace_containers=True
+        )
+    original_leaves = list(original_leaves)
+
+    silent_prototype = (MultimeasureRest, Rest, Skip)
+
+    def _is_beamable(argument, beam_rests=False):
+        if isinstance(argument, (Chord, Note)):
+            if 0 < argument.written_duration.flag_count:
+                return True
+        if beam_rests and isinstance(argument, silent_prototype):
+            return True
+        return False
+    
+    leaves = []
+    for leaf in original_leaves:
+        if not _is_beamable(leaf, beam_rests=beam_rests):
+            continue
+        leaves.append(leaf)
+    #print(leaves, 'LLL')
+    runs = []
+    run = []
+    run.extend(leaves[:1])
+    for leaf in leaves[1:]:
+        this_index = original_leaves.index(run[-1])
+        that_index = original_leaves.index(leaf)
+        if this_index +1 == that_index:
+            run.append(leaf)
+        else:
+            selection = select(run)
+            runs.append(selection)
+            run = [leaf]
+    if run:
+        selection = select(run)
+        runs.append(selection)
+    runs_ = select(runs)
+    #print(runs, 'RRR', len(runs))
+    #print()
+    if not beam_lone_notes:
+        runs_ = runs_.nontrivial()
+    for run in runs_:
+        #print(run, 'RRR')
+        if all(isinstance(_, silent_prototype) for _ in run):
+            continue
+        start_leaf = run[0]
+        stop_leaf = run[-1]
+        start_beam_ = start_beam or StartBeam()
+        stop_beam_ = stop_beam or StopBeam()
+        detach(StartBeam, start_leaf)
+        attach(start_beam_, start_leaf, tag=tag)
+        detach(StopBeam, stop_leaf)
+        attach(stop_beam_, stop_leaf, tag=tag)
+
+        #for leaf in run:
+        #    print(leaf, inspect(leaf).indicators())
+
+        if stemlet_length is None:
+            continue
+        staff = inspect(start_leaf).parentage().get(Staff)
+        lilypond_type = getattr(staff, 'lilypond_type', 'Staff')
+        string = r'\override {}.Stem.stemlet-length = {}'
+        string = string.format(lilypond_type, stemlet_length)
+        literal = LilyPondLiteral(string)
+        for indicator in inspect(start_leaf).indicators():
+            if indicator == literal:
+                break
+        else:
+            attach(literal, start_leaf, tag=tag)
+        staff = inspect(stop_leaf).parentage().get(Staff)
+        lilypond_type = getattr(staff, 'lilypond_type', 'Staff')
+        string = rf'\revert {lilypond_type}.Stem.stemlet-length'
+        literal = LilyPondLiteral(string)
+        for indicator in inspect(stop_leaf).indicators():
+            if indicator == literal:
+                break
+        else:
+            attach(literal, stop_leaf, tag=tag)
+
+    if not durations:
+        return
+
+    if len(original_leaves) == 1:
+        return
+
+    def _leaf_neighbors(leaf, original_leaves):
+        assert leaf is not original_leaves[0]
+        assert leaf is not original_leaves[-1]
+        this_index = original_leaves.index(leaf) 
+        previous_leaf = original_leaves[this_index - 1]
+        previous = 0
+        if _is_beamable(previous_leaf, beam_rests=beam_rests):
+            previous = previous_leaf.written_duration.flag_count
+        next_leaf = original_leaves[this_index + 1]
+        next_ = 0
+        if _is_beamable(next_leaf, beam_rests=beam_rests):
+            next_ = next_leaf.written_duration.flag_count
+        return previous, next_
+
+    span_beam_count = span_beam_count or 1
+    durations = [Duration(_) for _ in durations]
+    leaf_durations = [inspect(_).duration() for _ in original_leaves]
+    leaf_durations_ = Sequence(leaf_durations)
+    parts = leaf_durations_.partition_by_weights(
+        durations,
+        overhang=True,
+        )
+    part_counts = [len(_) for _ in parts]
+    original_leaves = Sequence(original_leaves)
+    parts = original_leaves.partition_by_counts(
+        part_counts,
+        )
+    total_parts = len(parts)
+    for i, part in enumerate(parts):
+        is_first_part = False
+        if i == 0:
+            is_first_part = True
+        is_last_part = False
+        if i == total_parts - 1:
+            is_last_part = True
+        first_leaf = part[0]
+        flag_count = first_leaf.written_duration.flag_count
+        if len(part) == 1:
+            if not _is_beamable(first_leaf, beam_rests=False):
+                continue
+            left = flag_count
+            right = flag_count
+            beam_count = BeamCount(left, right)
+            attach(beam_count, first_leaf, tag=tag)
+            continue
+        if _is_beamable(first_leaf, beam_rests=False):
+            if is_first_part:
+                left = 0
+            else:
+                left = span_beam_count
+            beam_count = BeamCount(left, flag_count)
+            attach(beam_count, first_leaf, tag=tag)
+        last_leaf = part[-1]
+        if _is_beamable(last_leaf, beam_rests=False):
+            flag_count = last_leaf.written_duration.flag_count
+            if is_last_part:
+                left = flag_count
+                right = 0
+            else:
+                previous, next_ = _leaf_neighbors(last_leaf, original_leaves)
+                if previous == next_ == 0:
+                    left = right = flag_count
+                elif previous == 0:
+                    left = 0
+                    right = flag_count
+                elif next_ == 0:
+                    left = flag_count
+                    right = 0
+                elif previous == flag_count:
+                    left = flag_count
+                    right = min(span_beam_count, next_)
+                elif flag_count == next_:
+                    left = min(previous, flag_count)
+                    right = flag_count
+                else:
+                    left = flag_count
+                    right = min(previous, flag_count)
+            beam_count = BeamCount(left, right)
+            attach(beam_count, last_leaf, tag=tag)
+
+        # TODO: eventually remove middle leaf beam counts?
+        for middle_leaf in part[1:-1]:
+            if not _is_beamable(middle_leaf, beam_rests=beam_rests):
+                continue
+            if isinstance(middle_leaf, silent_prototype):
+                continue
+            flag_count = middle_leaf.written_duration.flag_count
+            previous, next_ = _leaf_neighbors(middle_leaf, original_leaves)
+            if previous == next_ == 0:
+                left = right = flag_count
+            elif previous == 0:
+                left = 0
+                right = flag_count
+            elif next_ == 0:
+                left = flag_count
+                right = 0
+            elif previous == flag_count:
+                left = flag_count
+                right = min(flag_count, next_)
+            elif flag_count == next_:
+                left = min(previous, flag_count)
+                right = flag_count
+            else:
+                left = min(previous, flag_count)
+                right = flag_count
+            beam_count = BeamCount(left, right)
+            attach(beam_count, middle_leaf, tag=tag)
+
+def hairpin(
+    descriptor: str,
+    argument: typing.Union[Component, Selection],
+    *,
+    selector: typings.Selector = 'abjad.select().leaves()',
+    ) -> None:
+    r"""
+    Attaches hairpin indicators.
+
+    ..  container:: example
+
+        With three-part string descriptor:
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> abjad.hairpin('p < f', staff[:])
+        >>> abjad.override(staff[0]).dynamic_line_spanner.staff_padding = 4
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                \once \override DynamicLineSpanner.staff-padding = #4
+                c'4
+                \p
+                \<
+                d'4
+                e'4
+                f'4
+                \f
+            }
+
+    ..  container:: example
+
+        With two-part string descriptor:
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> abjad.hairpin('< !', staff[:])
+        >>> abjad.override(staff[0]).dynamic_line_spanner.staff_padding = 4
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                \once \override DynamicLineSpanner.staff-padding = #4
+                c'4
+                \<
+                d'4
+                e'4
+                f'4
+                \!
+            }
+
+    ..  container:: example
+
+        With dynamic objects:
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> start = abjad.Dynamic('niente', command=r'\!')
+        >>> hairpin = abjad.HairpinIndicator('o<|')
+        >>> abjad.tweak(hairpin).color = 'blue'
+        >>> stop = abjad.Dynamic('"f"')
+        >>> abjad.hairpin([start, hairpin, stop], staff[:])
+        >>> abjad.override(staff[0]).dynamic_line_spanner.staff_padding = 4
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                \once \override DynamicLineSpanner.staff-padding = #4
+                c'4
+                \!
+                - \tweak color #blue
+                - \tweak circled-tip ##t
+                - \tweak stencil #abjad-flared-hairpin
+                \<
+                d'4
+                e'4
+                f'4
+                _ #(make-dynamic-script
+                    (markup
+                        #:whiteout
+                        #:line (
+                            #:general-align Y -2 #:normal-text #:larger "“"
+                            #:hspace -0.4
+                            #:dynamic "f"
+                            #:hspace -0.2
+                            #:general-align Y -2 #:normal-text #:larger "”"
+                            )
+                        )
+                    )
+            }
+
+    """
+    import abjad
+
+    indicators: typing.List = []
+    start_dynamic: typing.Optional[Dynamic]
+    hairpin: typing.Optional[HairpinIndicator]
+    stop_dynamic: typing.Optional[Dynamic]
+    known_shapes = HairpinIndicator('<').known_shapes
+    if isinstance(descriptor, str):
+        for string in descriptor.split():
+            if string in known_shapes:
+                hairpin = HairpinIndicator(string)
+                indicators.append(hairpin)
+            elif string == '!':
+                stop_hairpin = StopHairpin()
+                indicators.append(stop_hairpin)
+            else:
+                dynamic = Dynamic(string)
+                indicators.append(dynamic)
+    else:
+        assert isinstance(descriptor, list), repr(descriptor)
+        indicators = descriptor
+
+    start_dynamic, hairpin, stop_dynamic = None, None, None
+    if len(indicators) == 1:
+        if isinstance(indicators[0], Dynamic):
+            start_dynamic = indicators[0]
+        else:
+            hairpin = indicators[0]
+    elif len(indicators) == 2:
+        if isinstance(indicators[0], Dynamic):
+            start_dynamic = indicators[0]
+            hairpin = indicators[1]
+        else:
+            hairpin = indicators[0]
+            stop_dynamic = indicators[1]
+    elif len(indicators) == 3:
+        start_dynamic, hairpin, stop_dynamic = indicators
+    else:
+        raise Exception(indicators)
+
+    if start_dynamic is not None:
+        assert isinstance(start_dynamic, Dynamic), repr(start_dynamic)
+
+    if isinstance(selector, str):
+        selector = eval(selector)
+    assert isinstance(selector, Expression)
+    argument = selector(argument)
+    leaves = select(argument).leaves()
+    start_leaf = leaves[0]
+    stop_leaf = leaves[-1]
+
+    if start_dynamic is not None:
+        attach(start_dynamic, start_leaf)
+    if hairpin is not None:
+        attach(hairpin, start_leaf)
+    if stop_dynamic is not None:
+        attach(stop_dynamic, stop_leaf)
+
+def phrasing_slur(
+    argument: typing.Union[Component, Selection],
+    *,
+    selector: typings.Selector = 'abjad.select().leaves()',
+    start_phrasing_slur: StartPhrasingSlur = None,
+    stop_phrasing_slur: StopPhrasingSlur = None,
+    ) -> None:
+    r"""
+    Attaches phrasing slur indicators.
+
+    ..  container:: example
+
+        Single spanner:
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> abjad.phrasing_slur(staff[:])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                c'4
+                \(
+                d'4
+                e'4
+                f'4
+                \)
+            }
+
+
+    """
+    # import allows eval statement
+    import abjad
+    start_phrasing_slur = StartPhrasingSlur()
+    stop_phrasing_slur = StopPhrasingSlur()
+
+    if isinstance(selector, str):
+        selector = eval(selector)
+    assert isinstance(selector, Expression)
+    argument = selector(argument)
+    leaves = select(argument).leaves()
+    start_leaf = leaves[0]
+    stop_leaf = leaves[-1]
+
+    start_phrasing_slur = start_phrasing_slur or StartPhrasingSlur()
+    stop_phrasing_slur = stop_phrasing_slur or StopPhrasingSlur()
+    
+    attach(start_phrasing_slur, start_leaf)
+    attach(stop_phrasing_slur, stop_leaf)
+
+def slur(
+    argument: typing.Union[Component, Selection],
+    *,
+    selector: typings.Selector = 'abjad.select().leaves()',
+    start_slur: StartSlur = None,
+    stop_slur: StopSlur = None,
+    ) -> None:
+    r"""
+    Attaches slur indicators.
+
+    ..  container:: example
+
+        Single spanner:
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> abjad.slur(staff[:])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                c'4
+                (
+                d'4
+                e'4
+                f'4
+                )
+            }
+
+
+    """
+    # import allows eval statement
+    import abjad
+    start_slur = start_slur or StartSlur()
+    stop_slur = stop_slur or StopSlur()
+
+    if isinstance(selector, str):
+        selector = eval(selector)
+    assert isinstance(selector, Expression)
+    argument = selector(argument)
+    leaves = select(argument).leaves()
+    start_leaf = leaves[0]
+    stop_leaf = leaves[-1]
+
+    attach(start_slur, start_leaf)
+    attach(stop_slur, stop_leaf)
+
+def text_spanner(
+    argument: typing.Union[Component, Selection],
+    *,
+    selector: typings.Selector = 'abjad.select().leaves()',
+    start_text_span: StartTextSpan = None,
+    stop_text_span: StopTextSpan = None,
+    ) -> None:
+    r"""
+    Attaches text span indicators.
+
+    ..  container:: example
+
+        Single spanner:
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> start_text_span = abjad.StartTextSpan(
+        ...     left_text=abjad.Markup('pont.').upright(),
+        ...     right_text=abjad.Markup('tasto').upright(),
+        ...     style='solid-line-with-arrow',
+        ...     )
+        >>> abjad.text_spanner(staff[:], start_text_span=start_text_span)
+        >>> abjad.override(staff[0]).text_spanner.staff_padding = 4
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                \once \override TextSpanner.staff-padding = #4
+                c'4
+                - \abjad-solid-line-with-arrow
+                - \tweak bound-details.left.text \markup {
+                    \concat
+                        {
+                            \upright
+                                pont.
+                            \hspace
+                                #0.5
+                        }
+                    }
+                - \tweak bound-details.right.text \markup {
+                    \upright
+                        tasto
+                    }
+                \startTextSpan
+                d'4
+                e'4
+                f'4
+                \stopTextSpan
+            }
+
+    ..  container:: example
+
+        Enchained spanners:
+
+        >>> staff = abjad.Staff("c'4 d' e' f' r")
+        >>> start_text_span = abjad.StartTextSpan(
+        ...     left_text=abjad.Markup('pont.').upright(),
+        ...     style='dashed-line-with-arrow',
+        ...     )
+        >>> abjad.text_spanner(staff[:3], start_text_span=start_text_span)
+        >>> start_text_span = abjad.StartTextSpan(
+        ...     left_text=abjad.Markup('tasto').upright(),
+        ...     right_text=abjad.Markup('pont.').upright(),
+        ...     style='dashed-line-with-arrow',
+        ...     )
+        >>> abjad.text_spanner(staff[-3:], start_text_span=start_text_span)
+        >>> abjad.override(staff).text_spanner.staff_padding = 4
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            \with
+            {
+                \override TextSpanner.staff-padding = #4
+            }
+            {
+                c'4
+                - \abjad-dashed-line-with-arrow
+                - \tweak bound-details.left.text \markup {
+                    \concat
+                        {
+                            \upright
+                                pont.
+                            \hspace
+                                #0.5
+                        }
+                    }
+                \startTextSpan
+                d'4
+                e'4
+                \stopTextSpan
+                - \abjad-dashed-line-with-arrow
+                - \tweak bound-details.left.text \markup {
+                    \concat
+                        {
+                            \upright
+                                tasto
+                            \hspace
+                                #0.5
+                        }
+                    }
+                - \tweak bound-details.right.text \markup {
+                    \upright
+                        pont.
+                    }
+                \startTextSpan
+                f'4
+                r4
+                \stopTextSpan
+            }
+
+        >>> staff = abjad.Staff("c'4 d' e' f' r")
+        >>> start_text_span = abjad.StartTextSpan(
+        ...     left_text=abjad.Markup('pont.').upright(),
+        ...     style='dashed-line-with-arrow',
+        ...     )
+        >>> abjad.text_spanner(staff[:3], start_text_span=start_text_span)
+        >>> start_text_span = abjad.StartTextSpan(
+        ...     left_text=abjad.Markup('tasto').upright(),
+        ...     style='solid-line-with-hook',
+        ...     )
+        >>> abjad.text_spanner(staff[-3:], start_text_span=start_text_span)
+        >>> abjad.override(staff).text_spanner.staff_padding = 4
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            \with
+            {
+                \override TextSpanner.staff-padding = #4
+            }
+            {
+                c'4
+                - \abjad-dashed-line-with-arrow
+                - \tweak bound-details.left.text \markup {
+                    \concat
+                        {
+                            \upright
+                                pont.
+                            \hspace
+                                #0.5
+                        }
+                    }
+                \startTextSpan
+                d'4
+                e'4
+                \stopTextSpan
+                - \abjad-solid-line-with-hook
+                - \tweak bound-details.left.text \markup {
+                    \concat
+                        {
+                            \upright
+                                tasto
+                            \hspace
+                                #0.5
+                        }
+                    }
+                \startTextSpan
+                f'4
+                r4
+                \stopTextSpan
+            }
+
+    """
+    import abjad
+    start_text_span = start_text_span or StartTextSpan()
+    stop_text_span = stop_text_span or StopTextSpan()
+
+    if isinstance(selector, str):
+        selector = eval(selector)
+    assert isinstance(selector, Expression)
+    argument = selector(argument)
+    leaves = select(argument).leaves()
+    start_leaf = leaves[0]
+    stop_leaf = leaves[-1]
+    
+    attach(start_text_span, start_leaf)
+    attach(stop_text_span, stop_leaf)

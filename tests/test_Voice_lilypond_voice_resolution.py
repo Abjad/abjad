@@ -99,28 +99,6 @@ def test_Voice_lilypond_voice_resolution_02():
     """
 
 
-def test_Voice_lilypond_voice_resolution_03():
-    """
-    Two like-named voices in two differently named staves.
-    LilyPond gives unterminated beam warnings.
-    LilyPond gives grob direction programming errors.
-    We conclude that LilyPond identifies two separate voices.
-    Good example for Abjad voice resolution.
-    """
-
-    container = abjad.Container()
-    container.append(abjad.Staff([abjad.Voice("c'8 d'8")]))
-    container.append(abjad.Staff([abjad.Voice("e'8 f'8")]))
-    container[0].name = 'staff1'
-    container[1].name = 'staff2'
-    container[0][0].name = 'voicefoo'
-    container[1][0].name = 'voicefoo'
-    beam = abjad.Beam()
-    leaves = abjad.select(container).leaves()
-    statement = 'attach(beam, leaves)'
-    pytest.raises(Exception, statement)
-
-
 def test_Voice_lilypond_voice_resolution_04():
     """
     Container containing a run of leaves.

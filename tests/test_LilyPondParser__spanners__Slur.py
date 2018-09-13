@@ -9,10 +9,8 @@ def test_LilyPondParser__spanners__Slur_01():
 
     maker = abjad.NoteMaker()
     target = abjad.Container(maker([0] * 4, [(1, 4)]))
-    slur = abjad.Slur()
-    abjad.attach(slur, target[2:])
-    slur = abjad.Slur()
-    abjad.attach(slur, target[:3])
+    abjad.slur(target[2:])
+    abjad.slur(target[:3])
 
     assert format(target) == abjad.String.normalize(
         r"""
@@ -41,10 +39,8 @@ def test_LilyPondParser__spanners__Slur_02():
 
     maker = abjad.NoteMaker()
     target = abjad.Container(maker([0] * 4, [(1, 4)]))
-    slur = abjad.Slur()
-    abjad.attach(slur, target[2:])
-    slur = abjad.Slur()
-    abjad.attach(slur, target[:3])
+    abjad.slur(target[2:])
+    abjad.slur(target[:3])
 
     assert format(target) == abjad.String.normalize(
         r"""
@@ -111,10 +107,10 @@ def test_LilyPondParser__spanners__Slur_07():
 
     maker = abjad.NoteMaker()
     target = abjad.Container(maker([0] * 4, [(1, 4)]))
-    slur = abjad.Slur(direction=abjad.Down)
-    abjad.attach(slur, target[:3])
-    slur = abjad.Slur(direction=abjad.Up)
-    abjad.attach(slur, target[2:])
+    start_slur = abjad.StartSlur(direction=abjad.Down)
+    abjad.slur(target[:3], start_slur=start_slur)
+    start_slur = abjad.StartSlur(direction=abjad.Up)
+    abjad.slur(target[2:], start_slur=start_slur)
 
     assert format(target) == abjad.String.normalize(
         r"""

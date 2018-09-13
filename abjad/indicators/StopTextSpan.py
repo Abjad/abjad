@@ -187,61 +187,6 @@ class StopTextSpan(object):
                     r4
                 }
 
-        ..  container:: example
-
-            REGRESSION. Leaked contributions appear last in postevent format
-            slot:
-
-            >>> staff = abjad.Staff("c'8 d' e' f' r2")
-            >>> abjad.attach(abjad.Beam(), staff[:4])
-            >>> abjad.attach(abjad.Slur(), staff[:4])
-            >>> command = abjad.StartTextSpan(
-            ...     left_text=abjad.Markup('pont.').upright(),
-            ...     right_text=abjad.Markup('tasto').upright(),
-            ...     style='dashed-line-with-arrow',
-            ...     )
-            >>> abjad.tweak(command).staff_padding = 2.5
-            >>> abjad.attach(command, staff[0])
-            >>> command = abjad.StopTextSpan(leak=True)
-            >>> abjad.attach(command, staff[3])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    c'8
-                    - \abjad-dashed-line-with-arrow
-                    - \tweak bound-details.left.text \markup {
-                        \concat
-                            {
-                                \upright
-                                    pont.
-                                \hspace
-                                    #0.5
-                            }
-                        }
-                    - \tweak bound-details.right.text \markup {
-                        \upright
-                            tasto
-                        }
-                    - \tweak staff-padding #2.5
-                    \startTextSpan
-                    [
-                    (
-                    d'8
-                    e'8
-                    f'8
-                    ]
-                    )
-                    <> \stopTextSpan
-                    r2
-                }
-
-            The leaked text spanner above does not inadvertantly leak the beam
-            or slur.
-
         """
         return self._leak
 

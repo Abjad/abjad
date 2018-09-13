@@ -5,16 +5,12 @@ import pytest
 def test_Container_insert_01():
     """
     Insert component into container at index i.
-    Fracture spanners to the left of index i.
-    Fracture spanners to the right of index i.
-    Returns Python list of fractured spanners.
     """
 
     "Insert works just before a spanner."
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
-    beam = abjad.Beam()
-    abjad.attach(beam, voice[:])
+    abjad.beam(voice[:])
     voice.insert(0, abjad.Rest((1, 8)))
 
     assert abjad.inspect(voice).wellformed()
@@ -40,8 +36,7 @@ def test_Container_insert_02():
     """
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
-    beam = abjad.Beam()
-    abjad.attach(beam, voice[:])
+    abjad.beam(voice[:])
     voice.insert(1, abjad.Note(1, (1, 8)))
 
     assert abjad.inspect(voice).wellformed()
@@ -67,8 +62,7 @@ def test_Container_insert_03():
     """
 
     staff = abjad.Staff([abjad.Note(n, (1, 8)) for n in range(4)])
-    beam = abjad.Beam()
-    abjad.attach(beam, staff[:])
+    abjad.beam(staff[:])
     staff.insert(4, abjad.Rest((1, 4)))
 
     assert abjad.inspect(staff).wellformed()
@@ -94,8 +88,7 @@ def test_Container_insert_04():
     """
 
     staff = abjad.Staff([abjad.Note(n, (1, 8)) for n in range(4)])
-    beam = abjad.Beam()
-    abjad.attach(beam, staff[:])
+    abjad.beam(staff[:])
     staff.insert(1000, abjad.Rest((1, 4)))
 
     assert abjad.inspect(staff).wellformed()
@@ -121,8 +114,7 @@ def test_Container_insert_05():
     """
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
-    beam = abjad.Beam()
-    abjad.attach(beam, voice[:])
+    abjad.beam(voice[:])
     voice.insert(-1, abjad.Note(4.5, (1, 8)))
 
     assert abjad.inspect(voice).wellformed()
@@ -148,8 +140,7 @@ def test_Container_insert_06():
     """
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
-    beam = abjad.Beam()
-    abjad.attach(beam, voice[:])
+    abjad.beam(voice[:])
     voice.insert(-1000, abjad.Rest((1, 8)))
 
     assert abjad.inspect(voice).wellformed()
@@ -189,9 +180,8 @@ def test_Container_insert_07():
 def test_Container_insert_08():
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    beam = abjad.Beam()
-    abjad.attach(beam, staff[:])
-    staff.insert(1, abjad.Note("cs'8"), fracture_spanners=False)
+    abjad.beam(staff[:])
+    staff.insert(1, abjad.Note("cs'8"))
 
     assert abjad.inspect(staff).wellformed()
     assert format(staff) == abjad.String.normalize(
@@ -208,192 +198,3 @@ def test_Container_insert_08():
         }
         """
         )
-
-
-def test_Container_insert_09():
-    """
-    Insert component into container at index i.
-    Fracture spanners to the left of index i.
-    Fracture spanners to the right of index i.
-    Returns Python list of fractured spanners.
-    """
-
-    "Insert works just before a spanner."
-
-    staff = abjad.Staff([abjad.Note(n, (1, 8)) for n in range(4)])
-    beam = abjad.Beam()
-    abjad.attach(beam, staff[:])
-    staff.insert(0, abjad.Rest('r4'), fracture_spanners=True)
-
-    assert abjad.inspect(staff).wellformed()
-    assert format(staff) == abjad.String.normalize(
-        r"""
-        \new Staff
-        {
-            r4
-            c'8
-            [
-            cs'8
-            d'8
-            ef'8
-            ]
-        }
-        """
-        )
-
-
-def test_Container_insert_10():
-    """
-    Insert works inside a spanner.
-    """
-
-    staff = abjad.Staff([abjad.Note(n, (1, 8)) for n in range(4)])
-    beam = abjad.Beam(beam_lone_notes=True)
-    abjad.attach(beam, staff[:])
-    staff.insert(1, abjad.Rest('r4'), fracture_spanners=True)
-
-    assert abjad.inspect(staff).wellformed()
-    assert format(staff) == abjad.String.normalize(
-        r"""
-        \new Staff
-        {
-            c'8
-            [
-            ]
-            r4
-            cs'8
-            [
-            d'8
-            ef'8
-            ]
-        }
-        """
-        )
-
-
-def test_Container_insert_11():
-    """
-    Insert works just after a spanner.
-    """
-
-    staff = abjad.Staff([abjad.Note(n, (1, 8)) for n in range(4)])
-    beam = abjad.Beam()
-    abjad.attach(beam, staff[:])
-    staff.insert(4, abjad.Rest('r4'), fracture_spanners=True)
-
-    assert abjad.inspect(staff).wellformed()
-    assert format(staff) == abjad.String.normalize(
-        r"""
-        \new Staff 
-        {
-            c'8
-            [
-            cs'8
-            d'8
-            ef'8
-            ]
-            r4
-        }
-        """
-        )
-
-
-def test_Container_insert_12():
-    """
-    Insert works with really big positive values.
-    """
-
-    staff = abjad.Staff([abjad.Note(n, (1, 8)) for n in range(4)])
-    beam = abjad.Beam()
-    abjad.attach(beam, staff[:])
-    staff.insert(1000, abjad.Rest('r4'), fracture_spanners=True)
-
-    assert abjad.inspect(staff).wellformed()
-    assert format(staff) == abjad.String.normalize(
-        r"""
-        \new Staff
-        {
-            c'8
-            [
-            cs'8
-            d'8
-            ef'8
-            ]
-            r4
-        }
-        """
-        )
-
-
-def test_Container_insert_13():
-    """
-    Insert works with negative values.
-    """
-
-    staff = abjad.Staff([abjad.Note(n, (1, 8)) for n in range(4)])
-    beam = abjad.Beam(beam_lone_notes=True)
-    abjad.attach(beam, staff[:])
-    staff.insert(-1, abjad.Rest('r4'), fracture_spanners=True)
-
-    assert abjad.inspect(staff).wellformed()
-    assert format(staff) == abjad.String.normalize(
-        r"""
-        \new Staff
-        {
-            c'8
-            [
-            cs'8
-            d'8
-            ]
-            r4
-            ef'8
-            [
-            ]
-        }
-        """
-        )
-
-
-def test_Container_insert_14():
-    """
-    Insert works with really big negative values.
-    """
-
-    staff = abjad.Staff([abjad.Note(n, (1, 8)) for n in range(4)])
-    beam = abjad.Beam()
-    abjad.attach(beam, staff[:])
-    staff.insert(-1000, abjad.Rest('r4'), fracture_spanners=True)
-
-    assert format(staff) == abjad.String.normalize(
-        r"""
-        \new Staff
-        {
-            r4
-            c'8
-            [
-            cs'8
-            d'8
-            ef'8
-            ]
-        }
-        """
-        )
-
-    assert abjad.inspect(staff).wellformed()
-
-
-def test_Container_insert_15():
-    """
-    Inserting a note from one container into another container
-    changes note parent from first container to second.
-    """
-
-    voice = abjad.Voice("c'8 d'8 e'8 f'8")
-    staff = abjad.Staff("c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8")
-    note = voice[0]
-    staff.insert(1, voice[0], fracture_spanners=True)
-
-    assert abjad.inspect(voice).wellformed()
-    assert abjad.inspect(staff).wellformed()
-    assert not note in voice
-    assert note._parent is staff

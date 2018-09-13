@@ -13,28 +13,28 @@ class LilyPondTweakManager(LilyPondNameManager):
 
         Tweak managers are created by the ``abjad.tweak()`` factory function:
 
-        >>> beam = abjad.Beam()
-        >>> abjad.tweak(beam)
+        >>> markup = abjad.Markup('Allegro', direction=abjad.Up)
+        >>> abjad.tweak(markup)
         LilyPondTweakManager()
 
         Set an attribute like this:
 
-        >>> abjad.tweak(beam).color = 'red'
+        >>> abjad.tweak(markup).color = 'red'
 
         The state of the tweak manager has changed:
 
-        >>> abjad.tweak(beam)
+        >>> abjad.tweak(markup)
         LilyPondTweakManager(('color', 'red'))
 
         And the value of the attribute just set is available like this:
 
-        >>> abjad.tweak(beam).color
+        >>> abjad.tweak(markup).color
         'red'
 
         Trying to get an attribute that has not yet been set raises an
         attribute error:
 
-        >>> abjad.tweak(beam).foo
+        >>> abjad.tweak(markup).foo
         Traceback (most recent call last):
             ...
         AttributeError: LilyPondTweakManager object has no attribute 'foo'.
@@ -61,54 +61,6 @@ class LilyPondTweakManager(LilyPondNameManager):
         r"""
         Gets LilyPondNameManager (or LilyPondGrobNameManager) keyed to 
         ``name``.
-
-        ..  container:: example
-
-            Getting a grob name returns a LilyPondNameManager:
-
-            >>> hairpin = abjad.Hairpin('p < f')
-            >>> abjad.tweak(hairpin).dynamic_line_spanner
-            LilyPondNameManager()
-
-            Set a tweak with explicit grob like this:
-
-            >>> abjad.tweak(hairpin).dynamic_line_spanner.staff_padding = 5
-
-            This changes tweak manager state:
-
-            >>> abjad.tweak(hairpin)
-            LilyPondTweakManager(('dynamic_line_spanner', LilyPondNameManager(('staff_padding', 5))))
-
-            Grob is available like this:
-
-            >>> abjad.tweak(hairpin).dynamic_line_spanner
-            LilyPondNameManager(('staff_padding', 5))
-
-            Attribute is available like this:
-
-            >>> abjad.tweak(hairpin).dynamic_line_spanner.staff_padding
-            5
-
-            Grob-explicit tweak appears like this:
-
-            >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> abjad.attach(hairpin, staff[:])
-            >>> abjad.show(staff) # doctest: +SKIP
-            
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    c'4
-                    - \tweak DynamicLineSpanner.staff-padding #5
-                    \<
-                    \p
-                    d'4
-                    e'4
-                    f'4
-                    \f
-                }
 
         ..  container:: example
 

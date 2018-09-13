@@ -63,15 +63,15 @@ def test_Rest___init___05():
     Initialize rest from beamed chord.
     """
 
-    chord = abjad.Chord([2, 3, 4], abjad.Duration(1, 4))
+    chord = abjad.Chord([2, 3, 4], abjad.Duration(1, 8))
     staff = abjad.Staff(3 * chord)
-    beam = abjad.Beam()
-    abjad.attach(beam, staff[:])
+    abjad.beam(staff[:])
     rest = abjad.Rest(staff[0])
 
     assert format(rest) == abjad.String.normalize(
         r"""
-        r4
+        r8
+        [
         """,
         )
 
@@ -176,6 +176,7 @@ def test_Rest___init___11():
     assert format(rest) == abjad.String.normalize(
         r"""
         r8
+        [
         """
         )
 

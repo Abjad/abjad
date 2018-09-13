@@ -29,8 +29,8 @@ class BreathMark(object):
         Attached to notes in a staff:
 
         >>> staff = abjad.Staff("c'8 d' e' f' g' a' b' c''")
-        >>> abjad.attach(abjad.Beam(), staff[:4])
-        >>> abjad.attach(abjad.Beam(), staff[4:])
+        >>> abjad.beam(staff[:4])
+        >>> abjad.beam(staff[4:])
         >>> abjad.attach(abjad.BreathMark(), staff[3])
         >>> abjad.attach(abjad.BreathMark(), staff[7])
         >>> abjad.show(staff) # doctest: +SKIP

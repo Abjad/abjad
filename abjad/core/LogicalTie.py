@@ -202,7 +202,7 @@ class LogicalTie(Selection):
 
             >>> staff = abjad.Staff(r"df'8 c'8 ~ c'16 cqs''4")
             >>> abjad.attach(abjad.Dynamic('p'), staff[0])
-            >>> abjad.attach(abjad.DynamicTrend('<'), staff[0])
+            >>> abjad.attach(abjad.HairpinIndicator('<'), staff[0])
             >>> abjad.attach(abjad.Dynamic('f'), staff[-1])
             >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 3
             >>> time_signature = abjad.TimeSignature((9, 16))
@@ -262,8 +262,7 @@ class LogicalTie(Selection):
         ..  container:: example
 
             >>> staff = abjad.Staff(r"c'8 ~ c'16 cqs''4")
-            >>> crescendo = abjad.Hairpin('p < f')
-            >>> abjad.attach(crescendo, staff[:])
+            >>> abjad.hairpin('p < f', staff[:])
             >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 3
             >>> time_signature = abjad.TimeSignature((7, 16))
             >>> abjad.attach(time_signature, staff[0])
@@ -280,9 +279,9 @@ class LogicalTie(Selection):
                 {
                     \time 7/16
                     c'8
-                    ~
-                    \<
                     \p
+                    \<
+                    ~
                     c'16
                     cqs''4
                     \f

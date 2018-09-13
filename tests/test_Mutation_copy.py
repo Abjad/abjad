@@ -11,12 +11,10 @@ def test_Mutation_copy_01():
 
     staff = abjad.Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
     leaves = abjad.select(staff).leaves()
-    slur = abjad.Slur()
-    abjad.attach(slur, leaves)
+    abjad.slur(leaves)
     trill = abjad.TrillSpanner()
     abjad.attach(trill, leaves)
-    beam = abjad.Beam()
-    abjad.attach(beam, leaves)
+    abjad.beam(leaves)
 
     assert format(staff) == abjad.String.normalize(
         r"""
@@ -25,8 +23,8 @@ def test_Mutation_copy_01():
             {
                 \time 2/8
                 c'8
-                [
                 (
+                [
                 \startTrillSpan
                 d'8
             }
@@ -39,9 +37,9 @@ def test_Mutation_copy_01():
                 \time 2/8
                 g'8
                 a'8
-                ]
                 )
                 \stopTrillSpan
+                ]
             }
         }
         """
@@ -56,12 +54,8 @@ def test_Mutation_copy_01():
         {
             \time 2/8
             e'8
-            [
-            (
             \startTrillSpan
             f'8
-            ]
-            )
             \stopTrillSpan
         }
         """, print(format(new))
@@ -77,12 +71,10 @@ def test_Mutation_copy_02():
 
     staff = abjad.Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
     leaves = abjad.select(staff).leaves()
-    slur = abjad.Slur()
-    abjad.attach(slur, leaves)
+    abjad.slur(leaves)
     trill = abjad.TrillSpanner()
     abjad.attach(trill, leaves)
-    beam = abjad.Beam()
-    abjad.attach(beam, leaves)
+    abjad.beam(leaves)
 
     assert format(staff) == abjad.String.normalize(
         r"""
@@ -91,8 +83,8 @@ def test_Mutation_copy_02():
             {
                 \time 2/8
                 c'8
-                [
                 (
+                [
                 \startTrillSpan
                 d'8
             }
@@ -105,9 +97,9 @@ def test_Mutation_copy_02():
                 \time 2/8
                 g'8
                 a'8
-                ]
                 )
                 \stopTrillSpan
+                ]
             }
         }
         """
@@ -123,12 +115,8 @@ def test_Mutation_copy_02():
             {
                 \time 2/8
                 e'8
-                [
-                (
                 \startTrillSpan
                 f'8
-                ]
-                )
                 \stopTrillSpan
             }
         }
@@ -146,12 +134,10 @@ def test_Mutation_copy_03():
 
     staff = abjad.Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
     leaves = abjad.select(staff).leaves()
-    slur = abjad.Slur()
-    abjad.attach(slur, leaves)
+    abjad.slur(leaves)
     trill = abjad.TrillSpanner()
     abjad.attach(trill, leaves)
-    beam = abjad.Beam()
-    abjad.attach(beam, leaves)
+    abjad.beam(leaves)
 
     assert format(staff) == abjad.String.normalize(
         r"""
@@ -160,8 +146,8 @@ def test_Mutation_copy_03():
             {
                 \time 2/8
                 c'8
-                [
                 (
+                [
                 \startTrillSpan
                 d'8
             }
@@ -174,9 +160,9 @@ def test_Mutation_copy_03():
                 \time 2/8
                 g'8
                 a'8
-                ]
                 )
                 \stopTrillSpan
+                ]
             }
         }
         """
@@ -190,15 +176,13 @@ def test_Mutation_copy_03():
         \new Staff
         {
             f'8
-            [
-            (
             \startTrillSpan
             \time 2/8
             g'8
             a'8
-            ]
             )
             \stopTrillSpan
+            ]
         }
         """
         ), print(format(new))
@@ -212,10 +196,8 @@ def test_Mutation_copy_04():
     staff = abjad.Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
         "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
     leaves = abjad.select(staff).leaves()
-    beam = abjad.Beam()
-    abjad.attach(beam, leaves)
-    slur = abjad.Slur()
-    abjad.attach(slur, leaves)
+    abjad.beam(leaves)
+    abjad.slur(leaves)
 
     assert format(staff) == abjad.String.normalize(
         r"""
@@ -242,8 +224,8 @@ def test_Mutation_copy_04():
                 \time 2/8
                 b'8
                 c''8
-                ]
                 )
+                ]
             }
         }
         """
@@ -262,6 +244,8 @@ def test_Mutation_copy_04():
             {
                 \time 2/8
                 c'8
+                [
+                (
                 d'8
             }
             {
@@ -278,6 +262,8 @@ def test_Mutation_copy_04():
                 \time 2/8
                 b'8
                 c''8
+                )
+                ]
             }
         }
         """
@@ -291,10 +277,8 @@ def test_Mutation_copy_05():
     staff = abjad.Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
         "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
     leaves = abjad.select(staff).leaves()
-    beam = abjad.Beam()
-    abjad.attach(beam, leaves)
-    slur = abjad.Slur()
-    abjad.attach(slur, leaves)
+    abjad.beam(leaves)
+    abjad.slur(leaves)
 
     assert format(staff) == abjad.String.normalize(
         r"""
@@ -321,8 +305,8 @@ def test_Mutation_copy_05():
                 \time 2/8
                 b'8
                 c''8
-                ]
                 )
+                ]
             }
         }
         """
@@ -351,6 +335,8 @@ def test_Mutation_copy_05():
                 \time 2/8
                 b'8
                 c''8
+                )
+                ]
             }
         }
         """
@@ -365,10 +351,8 @@ def test_Mutation_copy_06():
     staff = abjad.Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
         "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
     leaves = abjad.select(staff).leaves()
-    beam = abjad.Beam()
-    abjad.attach(beam, leaves)
-    slur = abjad.Slur()
-    abjad.attach(slur, leaves)
+    abjad.beam(leaves)
+    abjad.slur(leaves)
 
     assert format(staff) == abjad.String.normalize(
         r"""
@@ -395,8 +379,8 @@ def test_Mutation_copy_06():
                 \time 2/8
                 b'8
                 c''8
-                ]
                 )
+                ]
             }
         }
         """
@@ -413,6 +397,8 @@ def test_Mutation_copy_06():
         {
             \time 2/8
             c'8
+            [
+            (
             d'8
             \time 2/8
             e'8
@@ -433,10 +419,8 @@ def test_Mutation_copy_07():
     staff = abjad.Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
         "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
     leaves = abjad.select(staff).leaves()
-    beam = abjad.Beam()
-    abjad.attach(beam, leaves)
-    slur = abjad.Slur()
-    abjad.attach(slur, leaves)
+    abjad.beam(leaves)
+    abjad.slur(leaves)
 
     assert format(staff) == abjad.String.normalize(
         r"""
@@ -463,8 +447,8 @@ def test_Mutation_copy_07():
                 \time 2/8
                 b'8
                 c''8
-                ]
                 )
+                ]
             }
         }
         """
@@ -488,6 +472,8 @@ def test_Mutation_copy_07():
                 \time 2/8
                 b'8
                 c''8
+                )
+                ]
             }
         }
         """
@@ -503,8 +489,7 @@ def test_Mutation_copy_08():
     """
 
     staff = abjad.Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
-    crescendo = abjad.Hairpin('<')
-    abjad.attach(crescendo, staff[:4])
+    abjad.hairpin('< !', staff[:4])
 
     assert format(staff) == abjad.String.normalize(
         r"""

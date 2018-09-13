@@ -3626,6 +3626,7 @@ class Sequence(collections.Sequence):
     def partition_by_weights(
         self,
         weights,
+        # TODO: make keyword-only:
         cyclic=False,
         overhang=False,
         allow_part_weights=enums.Exact,

@@ -90,17 +90,17 @@ def test_Note___init___08():
     Initializes note from beamed chord.
     """
 
-    chord = abjad.Chord([2, 3, 4], (1, 4))
+    chord = abjad.Chord([2, 3, 4], (1, 8))
     staff = abjad.Staff(3 * chord)
-    beam = abjad.Beam()
-    abjad.attach(beam, staff[:])
+    abjad.beam(staff[:])
     note = abjad.Note(staff[0])
 
     assert format(note) == abjad.String.normalize(
         r"""
-        d'4
+        d'8
+        [
         """
-        )
+        ), print(format(note))
 
     assert abjad.inspect(note).wellformed()
 
@@ -144,8 +144,7 @@ def test_Note___init___11():
     """
 
     staff = abjad.Staff([abjad.Note(0, (1, 8)), abjad.Rest((1, 8)), abjad.Note(0, (1, 8))])
-    beam = abjad.Beam()
-    abjad.attach(beam, staff[:])
+    abjad.beam(staff[:])
     note = abjad.Note(staff[1])
 
     assert isinstance(staff[1], abjad.Rest)
@@ -192,8 +191,7 @@ def test_Note___init___14():
     """
 
     staff = abjad.Staff([abjad.Note(0, (1, 8)), abjad.Skip((1, 8)), abjad.Note(0, (1, 8))])
-    beam = abjad.Beam()
-    abjad.attach(beam, staff[:])
+    abjad.beam(staff[:])
     note = abjad.Note(staff[1])
 
     assert isinstance(staff[1], abjad.Skip)

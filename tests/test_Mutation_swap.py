@@ -10,8 +10,7 @@ def test_Mutation_swap_01():
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     leaves = abjad.select(voice).leaves()
-    beam = abjad.Beam()
-    abjad.attach(beam, leaves)
+    abjad.beam(leaves)
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -72,8 +71,7 @@ def test_Mutation_swap_02():
     voice.name = 'foo'
     glissando = abjad.Glissando()
     abjad.attach(glissando, leaves)
-    beam = abjad.Beam()
-    abjad.attach(beam, leaves)
+    abjad.beam(leaves)
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -146,8 +144,7 @@ def test_Mutation_swap_03():
     leaves = abjad.select(voice).leaves()
     glissando = abjad.Glissando()
     abjad.attach(glissando, leaves)
-    beam = abjad.Beam()
-    abjad.attach(beam, leaves)
+    abjad.beam(leaves)
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -219,8 +216,7 @@ def test_Mutation_swap_04():
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 }")
     leaves = abjad.select(voice).leaves()
-    beam = abjad.Beam()
-    abjad.attach(beam, leaves)
+    abjad.beam(leaves)
 
     note = abjad.Note("c'4")
     assert pytest.raises(Exception, 'abjad.mutate(voice[1:2]).swap(note)')
@@ -234,8 +230,7 @@ def test_Mutation_swap_05():
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 }")
     leaves = abjad.select(voice).leaves()
-    beam = abjad.Beam()
-    abjad.attach(beam, leaves)
+    abjad.beam(leaves)
 
     tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
     assert pytest.raises(Exception, 'abjad.mutate(voice[1:2]).swap(tuplet)')
@@ -249,8 +244,7 @@ def test_Mutation_swap_06():
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     leaves = abjad.select(voice).leaves()
-    beam = abjad.Beam()
-    abjad.attach(beam, leaves)
+    abjad.beam(leaves)
 
     assert format(voice) == abjad.String.normalize(
         r"""

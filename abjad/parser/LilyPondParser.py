@@ -11,9 +11,12 @@ from abjad import spanners as abjad_spanners
 from abjad.system import Parser
 from ._parse import _parse
 from ._parse_debug import _parse_debug
+from abjad.top.annotate import annotate
 from abjad.top.attach import attach
 from abjad.top.detach import detach
+from abjad.top.inspect import inspect
 from abjad.top.select import select
+from abjad.top.sequence import sequence
 
 
 # apply monkey patch
@@ -87,8 +90,8 @@ class LilyPondParser(Parser):
                 a'8
                 \)
                 b'8
-                ]
                 \stopTrillSpan
+                ]
                 c''8
                 \sfz
                 - \accent
@@ -400,7 +403,6 @@ class LilyPondParser(Parser):
     ### PRIVATE METHODS ###
 
     def _apply_spanners(self, music):
-        import abjad
         # get local reference to methods
         _get_span_events = self._get_span_events
         _span_event_name_to_spanner_class = \
@@ -414,7 +416,7 @@ class LilyPondParser(Parser):
         first_leaf = None
         if leaves:
             first_leaf = leaves[0]
-        pairs = abjad.sequence(leaves).nwise(wrapped=True)
+        pairs = sequence(leaves).nwise(wrapped=True)
         for leaf, next_leaf in pairs:
 
             span_events = _get_span_events(leaf)
@@ -448,11 +450,11 @@ class LilyPondParser(Parser):
                             hasattr(spanner_class, 'direction')):
                             direction = span_event.direction
                             spanner = spanner_class(direction=direction)
-                            selection = abjad.select([leaf, next_leaf]).leaves()
+                            selection = select([leaf, next_leaf]).leaves()
                             attach(spanner, selection)
                         else:
                             spanner = spanner_class()
-                            selection = abjad.select([leaf, next_leaf]).leaves()
+                            selection = select([leaf, next_leaf]).leaves()
                             attach(spanner, selection)
 
                 # otherwise throw an error
@@ -461,16 +463,8 @@ class LilyPondParser(Parser):
                     message = message.format(spanner_class.__name__, leaf)
                     raise Exception(message)
 
-            # check for dynamics and terminate any hairpin
-            dynamics = leaf._get_indicators(abjad_indicators.Dynamic)
-            if dynamics and abjad_spanners.Hairpin in all_spanners and \
-                all_spanners[abjad_spanners.Hairpin]:
-                all_spanners[abjad_spanners.Hairpin][0]._append(leaf)
-                all_spanners[abjad_spanners.Hairpin].pop()
-
-            # loop through directed events, handling each as necessary
+            # loop through directed events, handling each as necessary for spanner_class, events in directed_events.items():
             for spanner_class, events in directed_events.items():
-
                 starting_events, stopping_events = [], []
                 for x in events:
                     if x.span_direction == 'start':
@@ -478,63 +472,7 @@ class LilyPondParser(Parser):
                     else:
                         stopping_events.append(x)
 
-                if spanner_class is abjad_spanners.Beam:
-                    # A beam may begin and end on the same leaf
-                    # but only one beam spanner may cover any given leaf,
-                    # and starting events are processed before ending ones
-                    for event in starting_events:
-                        if all_spanners[spanner_class]:
-                            raise Exception('already have beam.')
-                        if hasattr(event, 'direction'):
-                            spanner_ = spanner_class(
-                                beam_lone_notes=True,
-                                direction=event.direction,
-                                )
-                            all_spanners[spanner_class].append(spanner_)
-                        else:
-                            spanner_ = spanner_class(
-                                beam_lone_notes=True,
-                                )
-                            all_spanners[spanner_class].append(spanner_)
-                    for _ in stopping_events:
-                        if all_spanners[spanner_class]:
-                            all_spanners[spanner_class][0]._append(leaf)
-                            all_spanners[spanner_class].pop()
-
-                elif spanner_class is abjad_spanners.Hairpin:
-                    # Dynamic events can be ended many times,
-                    # but only one may start on a given leaf,
-                    # and the event must start and end on separate leaves.
-                    # If a hairpin already exists and another starts,
-                    # the preexistent spanner is ended.
-                    for _ in stopping_events:
-                        if all_spanners[spanner_class]:
-                            all_spanners[spanner_class][0]._append(leaf)
-                            all_spanners[spanner_class].pop()
-                    if 1 == len(starting_events):
-                        if all_spanners[spanner_class]:
-                            all_spanners[spanner_class][0]._append(leaf)
-                            all_spanners[spanner_class].pop()
-                        shape = '<'
-                        event = starting_events[0]
-                        if event.name == 'DecrescendoEvent':
-                            shape = '>'
-                        if hasattr(event, 'direction'):
-                            spanner = spanner_class(
-                                descriptor=shape,
-                                direction=event.direction,
-                                )
-                            all_spanners[spanner_class].append(spanner)
-                        else:
-                            spanner = spanner_class(descriptor=shape)
-                            all_spanners[spanner_class].append(spanner)
-                    elif 1 < len(starting_events):
-                        raise Exception('simultaneous dynamic span events.')
-
-                elif spanner_class in [
-                    abjad_spanners.Slur,
-                    abjad_spanners.PhrasingSlur,
-                    abjad_spanners.TextSpanner,
+                if spanner_class in [
                     abjad_spanners.TrillSpanner,
                     ]:
                     # these engravers process stop events before start events,
@@ -778,11 +716,10 @@ class LilyPondParser(Parser):
             }
 
     def _get_span_events(self, leaf):
-        import abjad
-        annotation = abjad.inspect(leaf).annotation('spanners', [])
-        abjad.detach(annotation, leaf)
+        annotation = inspect(leaf).annotation('spanners', [])
+        detach(annotation, leaf)
         assert isinstance(annotation, list), repr(annotation)
-        assert abjad.inspect(leaf).annotation('spanners') is None
+        assert inspect(leaf).annotation('spanners') is None
         return annotation
 
     def _pop_variable_scope(self):
@@ -790,29 +727,35 @@ class LilyPondParser(Parser):
             self._scope_stack.pop()
 
     def _process_post_events(self, leaf, post_events):
-        import abjad
+        from abjad.spanners.Spanner import Spanner
+        nonspanner_post_event_types = (
+            abjad_indicators.Articulation,
+            abjad_indicators.BarLine,
+            abjad_indicators.Dynamic,
+            abjad_indicators.HairpinIndicator,
+            abjad_indicators.LilyPondLiteral,
+            abjad_indicators.StartBeam,
+            abjad_indicators.StartPhrasingSlur,
+            abjad_indicators.StartSlur,
+            abjad_indicators.StartTextSpan,
+            abjad_indicators.StopBeam,
+            abjad_indicators.StopHairpin,
+            abjad_indicators.StopSlur,
+            abjad_indicators.StopPhrasingSlur,
+            abjad_indicators.StopTextSpan,
+            abjad_indicators.StemTremolo,
+            abjad_markups.Markup,
+            )
         for post_event in post_events:
-            # TODO: the conditional logic here will have to change;
-            #       post events like StemTremolo no longer implement _attach.
-            #       Is there a way to identify spanner LilyPondEvents?
-            #       Then we can just (blindly) attach all other post events.
-            nonspanner_post_event_types = (
-                abjad_indicators.Articulation,
-                abjad_indicators.BarLine,
-                abjad_indicators.Dynamic,
-                abjad_indicators.LilyPondLiteral,
-                abjad_indicators.StemTremolo,
-                abjad_markups.Markup,
-                )
-            if hasattr(post_event, '_attach'):
+            if isinstance(post_event, Spanner):
                 attach(post_event, leaf)
             elif isinstance(post_event, nonspanner_post_event_types):
                 attach(post_event, leaf)
             else:
-                annotation = abjad.inspect(leaf).annotation('spanners')
+                annotation = inspect(leaf).annotation('spanners')
                 if annotation is None:
                     annotation = []
-                    abjad.annotate(leaf, 'spanners', annotation)
+                    annotate(leaf, 'spanners', annotation)
                 annotation.append(post_event)
 
     def _push_extra_token(self, token):
@@ -850,7 +793,6 @@ class LilyPondParser(Parser):
 
     def _reset_parser_variables(self):
         from abjad import parser as abjad_parser
-        import abjad
         try:
             self._parser.restart()
         except:
@@ -858,8 +800,7 @@ class LilyPondParser(Parser):
         self._scope_stack = [{}]
         self._chord_pitch_orders = {}
         self._lexer.push_state('notes')
-        self._default_duration = abjad_parser.LilyPondDuration(
-            abjad.Duration(1, 4), None)
+        self._default_duration = abjad_parser.LilyPondDuration((1, 4), None)
         self._last_chord = None
         # LilyPond's default!
         # self._last_chord = core.Chord(['c', 'g', "c'"], (1, 4))
@@ -868,17 +809,47 @@ class LilyPondParser(Parser):
 
     def _resolve_event_identifier(self, identifier):
         from abjad import parser as abjad_parser
-        # without any leading slash
+        # without leading slash
         lookup = self._current_module[identifier]
         name = lookup['name']
         if name == 'ArticulationEvent':
             return abjad_indicators.Articulation(lookup['articulation-type'])
         elif name == 'AbsoluteDynamicEvent':
             return abjad_indicators.Dynamic(lookup['text'])
+        elif name == 'BeamEvent':
+            if lookup['span-direction'] == -1:
+                return abjad_indicators.StartBeam()
+            else:
+                return abjad_indicators.StopBeam()
+        elif name == 'CrescendoEvent':
+            if lookup['span-direction'] == -1:
+                return abjad_indicators.HairpinIndicator('<')
+            else:
+                return abjad_indicators.StopHairpin()
+        elif name == 'DecrescendoEvent':
+            if lookup['span-direction'] == -1:
+                return abjad_indicators.HairpinIndicator('>')
+            else:
+                return abjad_indicators.StopHairpin()
         elif name == 'LaissezVibrerEvent':
             return abjad_indicators.LilyPondLiteral(r'\laissezVibrer', 'after')
         elif name == 'LineBreakEvent':
             return abjad_indicators.LilyPondLiteral(r'\break')
+        elif name == 'PhrasingSlurEvent':
+            if lookup['span-direction'] == -1:
+                return abjad_indicators.StartPhrasingSlur()
+            else:
+                return abjad_indicators.StopPhrasingSlur()
+        elif name == 'SlurEvent':
+            if lookup['span-direction'] == -1:
+                return abjad_indicators.StartSlur()
+            else:
+                return abjad_indicators.StopSlur()
+        elif name == 'TextSpanEvent':
+            if lookup['span-direction'] == -1:
+                return abjad_indicators.StartTextSpan()
+            else:
+                return abjad_indicators.StopTextSpan()
         event = abjad_parser.LilyPondEvent(name)
         if 'span-direction' in lookup:
             if lookup['span-direction'] == -1:
@@ -895,14 +866,12 @@ class LilyPondParser(Parser):
 
     def _span_event_name_to_spanner_class(self, name):
         spanners = {
-            'BeamEvent': abjad_spanners.Beam,
-            'CrescendoEvent': abjad_spanners.Hairpin,
-            'DecrescendoEvent': abjad_spanners.Hairpin,
+            #'BeamEvent': abjad_spanners.Beam,
+            #'CrescendoEvent': abjad_spanners.Hairpin,
+            #'DecrescendoEvent': abjad_spanners.Hairpin,
             'GlissandoEvent': abjad_spanners.Glissando,
             'NoteGroupingEvent': abjad_spanners.HorizontalBracket,
-            'PhrasingSlurEvent': abjad_spanners.PhrasingSlur,
-            'SlurEvent': abjad_spanners.Slur,
-            'TextSpanEvent': abjad_spanners.TextSpanner,
+            #'SlurEvent': abjad_spanners.Slur,
             'TieEvent': abjad_spanners.Tie,
             'TrillSpanEvent': abjad_spanners.TrillSpanner,
             }

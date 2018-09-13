@@ -99,11 +99,9 @@ def test_Mutation_fuse_06():
     """
 
     tuplet_1 = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
-    beam = abjad.Beam()
-    abjad.attach(beam, tuplet_1[:])
+    abjad.beam(tuplet_1[:])
     tuplet_2 = abjad.Tuplet((2, 3), "c'16 d'16 e'16")
-    slur = abjad.Slur()
-    abjad.attach(slur, tuplet_2[:])
+    abjad.slur(tuplet_2[:])
 
     assert format(tuplet_1) == abjad.String.normalize(
         r"""
@@ -161,11 +159,9 @@ def test_Mutation_fuse_07():
     """
 
     tuplet_1 = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
-    beam = abjad.Beam()
-    abjad.attach(beam, tuplet_1[:])
+    abjad.beam(tuplet_1[:])
     tuplet_2 = abjad.Tuplet((2, 3), "c'16 d'16 e'16")
-    slur = abjad.Slur()
-    abjad.attach(slur, tuplet_2[:])
+    abjad.slur(tuplet_2[:])
     voice = abjad.Voice([tuplet_1, tuplet_2])
 
     assert format(voice) == abjad.String.normalize(
@@ -222,11 +218,9 @@ def test_Mutation_fuse_08():
     """
 
     tuplet_1 = abjad.Tuplet(abjad.Multiplier(2, 3), "c'8 d'8 e'8")
-    beam = abjad.Beam()
-    abjad.attach(beam, tuplet_1[:])
+    abjad.beam(tuplet_1[:])
     tuplet_2 = abjad.Tuplet(abjad.Multiplier(2, 3), "c'8 d'8 e'8 f'8 g'8")
-    slur = abjad.Slur()
-    abjad.attach(slur, tuplet_2[:])
+    abjad.slur(tuplet_2[:])
     voice = abjad.Voice([tuplet_1, tuplet_2])
 
     assert format(voice) == abjad.String.normalize(
@@ -304,8 +298,7 @@ def test_Mutation_fuse_10():
     tuplet_2 = abjad.Tuplet((2, 3), "c'4")
     voice = abjad.Voice([tuplet_1, tuplet_2, abjad.Note("c'4")])
     leaves = abjad.select(voice).leaves()
-    slur = abjad.Slur()
-    abjad.attach(slur, leaves)
+    abjad.slur(leaves)
 
     assert format(voice) == abjad.String.normalize(
         r"""

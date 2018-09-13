@@ -224,7 +224,7 @@ class Container(Component):
             >>> voice.append(abjad.Tuplet((2, 3), "c'4 d'4 e'4"))
             >>> voice.append(abjad.Tuplet((2, 3), "e'4 d'4 c'4"))
             >>> leaves = abjad.select(voice).leaves()
-            >>> abjad.attach(abjad.Slur(), leaves)
+            >>> abjad.slur(leaves)
             >>> abjad.show(voice) # doctest: +SKIP
 
             ..  docs::
@@ -248,6 +248,9 @@ class Container(Component):
 
             >>> tuplet_1 = voice[0]
             >>> del(voice[0])
+            >>> start_slur = abjad.StartSlur()
+            >>> leaf = abjad.select(voice).leaf(0)
+            >>> abjad.attach(start_slur, leaf)
 
             First tuplet no longer appears in voice:
 
@@ -270,7 +273,10 @@ class Container(Component):
             >>> abjad.inspect(voice).wellformed()
             True
 
-            First tuplet is no longer slurred but is still wellformed:
+            First tuplet must have start slur removed:
+
+            >>> abjad.detach(abjad.StartSlur, tuplet_1[0])
+            (StartSlur(),)
 
             >>> abjad.show(tuplet_1) # doctest: +SKIP
 
@@ -979,7 +985,7 @@ class Container(Component):
             if hasattr(indicator, '_update_effective_context'):
                 indicator._update_effective_context()
 
-    def _split_at_index(self, i, fracture_spanners=False):
+    def _split_at_index(self, i):
         """
         Splits container to the left of index ``i``.
 
@@ -1022,25 +1028,18 @@ class Container(Component):
         else:
             left._set_parent(None)
             right._set_parent(None)
-        # fracture spanners if requested
-        if fracture_spanners:
-            for spanner in inspect(left).spanners():
-                index = spanner._index(left)
-                spanner._fracture(index, direction=enums.Right)
         # return new left and right containers
         return halves
 
     def _split_by_duration(
         self,
         duration,
-        fracture_spanners=False,
         tie_split_notes=True,
         repeat_ties=False,
         ):
         if self.is_simultaneous:
             return self._split_simultaneous_by_duration(
                 duration=duration,
-                fracture_spanners=fracture_spanners,
                 tie_split_notes=tie_split_notes,
                 repeat_ties=repeat_ties,
                 )
@@ -1072,7 +1071,6 @@ class Container(Component):
             split_point_in_bottom = global_split_point - start_offset
             new_leaves = bottom._split_by_durations(
                 [split_point_in_bottom],
-                fracture_spanners=fracture_spanners,
                 tie_split_notes=tie_split_notes,
                 repeat_ties=repeat_ties,
                 )
@@ -1109,28 +1107,12 @@ class Container(Component):
                 break
         else:
             raise ValueError('should not be able to get here.')
-        # crawl back up through duration-crossing containers
-        # and fracture spanners if requested
-        if fracture_spanners:
-            agent = inspect(leaf_right_of_split)
-            start_offset = agent.timespan().start_offset
-            for parent in agent.parentage():
-                timespan = inspect(parent).timespan()
-                if timespan.start_offset == start_offset:
-                    for spanner in inspect(parent).spanners():
-                        index = spanner._index(parent)
-                        spanner._fracture(index, direction=enums.Left)
-                if parent is component:
-                    break
         # crawl back up through duration-crossing containers and split each
         previous = highest_level_component_right_of_split
         for container in reversed(duration_crossing_containers):
             assert isinstance(container, Container)
             index = container.index(previous)
-            left, right = container._split_at_index(
-                index,
-                fracture_spanners=fracture_spanners,
-                )
+            left, right = container._split_at_index(index)
             previous = right
         # reapply tie here if crawl above killed tie applied to leaves
         if did_split_leaf:
@@ -1156,7 +1138,6 @@ class Container(Component):
     def _split_simultaneous_by_duration(
         self,
         duration,
-        fracture_spanners=False,
         tie_split_notes=True,
         repeat_ties=False,
         ):
@@ -1165,7 +1146,6 @@ class Container(Component):
         for component in self[:]:
             halves = component._split_by_duration(
                 duration=duration,
-                fracture_spanners=fracture_spanners,
                 tie_split_notes=tie_split_notes,
                 repeat_ties=repeat_ties,
                 )
@@ -1519,7 +1499,7 @@ class Container(Component):
             message = f'component {component!r} not in container {self!r}.'
             raise ValueError(message)
 
-    def insert(self, i, component, fracture_spanners=False) -> None:
+    def insert(self, i, component) -> None:
         r"""
         Inserts ``component`` at index ``i`` in container.
 
@@ -1531,8 +1511,8 @@ class Container(Component):
             >>> container.extend("fs16 cs' e' a'")
             >>> container.extend("cs''16 e'' cs'' a'")
             >>> container.extend("fs'16 e' cs' fs")
-            >>> slur = abjad.Slur(direction=abjad.Down)
-            >>> abjad.attach(slur, container[:])
+            >>> start_slur = abjad.StartSlur(direction=abjad.Down)
+            >>> abjad.slur(container[:], start_slur=start_slur)
             >>> abjad.show(container) # doctest: +SKIP
 
             ..  docs::
@@ -1555,7 +1535,7 @@ class Container(Component):
                     )
                 }
 
-            >>> container.insert(-4, abjad.Note("e'4"), fracture_spanners=False)
+            >>> container.insert(-4, abjad.Note("e'4"))
             >>> abjad.show(container) # doctest: +SKIP
 
             ..  docs::
@@ -1573,64 +1553,6 @@ class Container(Component):
                     a'16
                     e'4
                     fs'16
-                    e'16
-                    cs'16
-                    fs16
-                    )
-                }
-
-        ..  container:: example
-
-            Inserts note. Fractures spanners:
-
-            >>> container = abjad.Container([])
-            >>> container.extend("fs16 cs' e' a'")
-            >>> container.extend("cs''16 e'' cs'' a'")
-            >>> container.extend("fs'16 e' cs' fs")
-            >>> slur = abjad.Slur(direction=abjad.Down)
-            >>> abjad.attach(slur, container[:])
-            >>> abjad.show(container) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(container)
-                {
-                    fs16
-                    _ (
-                    cs'16
-                    e'16
-                    a'16
-                    cs''16
-                    e''16
-                    cs''16
-                    a'16
-                    fs'16
-                    e'16
-                    cs'16
-                    fs16
-                    )
-                }
-
-            >>> container.insert(-4, abjad.Note("e'4"), fracture_spanners=True)
-            >>> abjad.show(container) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(container)
-                {
-                    fs16
-                    _ (
-                    cs'16
-                    e'16
-                    a'16
-                    cs''16
-                    e''16
-                    cs''16
-                    a'16
-                    )
-                    e'4
-                    fs'16
-                    _ (
                     e'16
                     cs'16
                     fs16
@@ -1643,22 +1565,8 @@ class Container(Component):
             selection = self._parse_string(component)
             assert len(selection) == 1, repr(selection)
             component = selection[0]
-        if not fracture_spanners:
-            self.__setitem__(slice(i, i), [component])
-            return
-        assert isinstance(component, Component)
-        component._set_parent(self)
-        self._components.insert(i, component)
-        previous_leaf = component._leaf(-1)
-        if previous_leaf:
-            for spanner in inspect(previous_leaf).spanners():
-                index = spanner._index(previous_leaf)
-                spanner._fracture(index, direction=enums.Right)
-        next_leaf = component._leaf(1)
-        if next_leaf:
-            for spanner in inspect(next_leaf).spanners():
-                index = spanner._index(next_leaf)
-                spanner._fracture(index, direction=enums.Left)
+        self.__setitem__(slice(i, i), [component])
+        return
 
     def pop(self, i=-1):
         r"""
@@ -1712,7 +1620,7 @@ class Container(Component):
 
             Removes note from container:
 
-            >>> container = abjad.Container("c'4 ( d'4 f'4 ) e'4")
+            >>> container = abjad.Container("c'4 d'4 f'4 e'4")
             >>> abjad.show(container) # doctest: +SKIP
 
             ..  docs::
@@ -1720,10 +1628,8 @@ class Container(Component):
                 >>> abjad.f(container)
                 {
                     c'4
-                    (
                     d'4
                     f'4
-                    )
                     e'4
                 }
 
@@ -1739,9 +1645,7 @@ class Container(Component):
                 >>> abjad.f(container)
                 {
                     c'4
-                    (
                     d'4
-                    )
                     e'4
                 }
 

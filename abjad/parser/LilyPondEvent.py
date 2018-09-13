@@ -27,7 +27,7 @@ class LilyPondEvent(object):
         for key in self.__dict__:
             if key == 'name':
                 continue
-            result += ', {} = {!r}'.format(key, getattr(self, key))
+            result += f', {key} = {getattr(self, key)!r}'
         return result
 
     def __repr__(self):
@@ -36,4 +36,5 @@ class LilyPondEvent(object):
 
         Returns string.
         """
-        return '{}({})'.format(type(self).__name__, str(self))
+        name = type(self).__name__
+        return f'{name}({str(self)})'
