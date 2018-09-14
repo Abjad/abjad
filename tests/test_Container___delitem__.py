@@ -209,7 +209,7 @@ def test_Container___delitem___08():
 
     voice = abjad.Voice("c'8 [ { d'8 e'8 } f'8 ]")
     leaves = abjad.select(voice).leaves()
-    abjad.attach(abjad.Glissando(), leaves)
+    abjad.glissando(leaves)
 
     assert format(voice) == abjad.String.normalize(
         r"""

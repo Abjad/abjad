@@ -332,3 +332,8 @@ class LilyPondTweakManager(LilyPondNameManager):
                 message = 'tweak tuple must have length 2 or 3'
                 message += f' (not {tweak!r}).'
                 raise ValueError(message)
+
+TweaksTyping = typing.Union[
+    LilyPondTweakManager,
+    typing.Tuple[LilyPondTweakManager, int],
+    ]

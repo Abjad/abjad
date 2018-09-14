@@ -8,8 +8,7 @@ def test_Mutation_extract_01():
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
     abjad.beam(voice[:])
-    glissando = abjad.Glissando()
-    abjad.attach(glissando, voice[:])
+    abjad.glissando(voice[:])
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -57,8 +56,7 @@ def test_Mutation_extract_02():
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
     abjad.beam(voice[:])
-    glissando = abjad.Glissando()
-    abjad.attach(glissando, voice[:])
+    abjad.glissando(voice[:])
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -162,8 +160,7 @@ def test_Mutation_extract_04():
     voice.append(abjad.Container("g'8 a'8"))
     leaves = abjad.select(voice).leaves()
     abjad.beam(leaves)
-    glissando = abjad.Glissando()
-    abjad.attach(glissando, leaves)
+    abjad.glissando(leaves)
 
     assert format(voice) == abjad.String.normalize(
         r"""

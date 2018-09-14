@@ -3,7 +3,6 @@ from abjad.indicators.HairpinIndicator import HairpinIndicator
 from abjad.indicators.StartTextSpan import StartTextSpan
 from abjad.indicators.StopTextSpan import StopTextSpan
 from abjad.instruments import Instrument
-from abjad.spanners.Glissando import Glissando
 from abjad.spanners.OctavationSpanner import OctavationSpanner
 from abjad.spanners.Tie import Tie
 from abjad.spanners.TrillSpanner import TrillSpanner
@@ -195,7 +194,6 @@ class Wellformedness(object):
             0 /	3 missing parents
             0 /	2 notes on wrong clef
             0 /	2 out of range pitches
-            0 /	0 overlapping glissandi
             0 /	0 overlapping octavation spanners
             0 /	0 overlapping trill spanners
             0 /	0 unmatched stop text spans
@@ -219,7 +217,6 @@ class Wellformedness(object):
             0 /	3 missing parents
             0 /	2 notes on wrong clef
             0 /	2 out of range pitches
-            0 /	0 overlapping glissandi
             0 /	0 overlapping octavation spanners
             0 /	0 overlapping trill spanners
             0 /	0 unmatched stop text spans
@@ -318,7 +315,6 @@ class Wellformedness(object):
             0 /	5 missing parents
             4 /	4 notes on wrong clef
             0 /	4 out of range pitches
-            0 /	0 overlapping glissandi
             0 /	0 overlapping octavation spanners
             0 /	0 overlapping trill spanners
             0 /	0 unmatched stop text spans
@@ -358,7 +354,6 @@ class Wellformedness(object):
             0 /	5 missing parents
             0 /	4 notes on wrong clef
             0 /	4 out of range pitches
-            0 /	0 overlapping glissandi
             0 /	0 overlapping octavation spanners
             0 /	0 overlapping trill spanners
             0 /	0 unmatched stop text spans
@@ -379,7 +374,6 @@ class Wellformedness(object):
             0 /	5 missing parents
             4 /	4 notes on wrong clef
             0 /	4 out of range pitches
-            0 /	0 overlapping glissandi
             0 /	0 overlapping octavation spanners
             0 /	0 overlapping trill spanners
             0 /	0 unmatched stop text spans
@@ -438,7 +432,6 @@ class Wellformedness(object):
             0 /	5 missing parents
             0 /	4 notes on wrong clef
             1 /	2 out of range pitches
-            0 /	0 overlapping glissandi
             0 /	0 overlapping octavation spanners
             0 /	0 overlapping trill spanners
             0 /	0 unmatched stop text spans
@@ -458,14 +451,6 @@ class Wellformedness(object):
             if leaf not in instrument.pitch_range:
                 violators.append(leaf)
         return violators, len(total)
-
-    def check_overlapping_glissandi(self, argument=None):
-        """
-        Checks overlapping glissandi.
-
-        Returns violators and total.
-        """
-        return self._check_overlapping_spanners(argument, Glissando)
 
     def check_overlapping_octavation_spanners(self, argument=None):
         """
@@ -549,7 +534,6 @@ class Wellformedness(object):
             0 /	5 missing parents
             0 /	4 notes on wrong clef
             0 /	4 out of range pitches
-            0 /	0 overlapping glissandi
             0 /	0 overlapping octavation spanners
             2 /	2 overlapping trill spanners
             0 /	0 unmatched stop text spans
@@ -593,7 +577,6 @@ class Wellformedness(object):
             0 /	5 missing parents
             0 /	4 notes on wrong clef
             0 /	4 out of range pitches
-            0 /	0 overlapping glissandi
             0 /	0 overlapping octavation spanners
             0 /	0 overlapping trill spanners
             1 /	0 unmatched stop text spans
@@ -683,7 +666,6 @@ class Wellformedness(object):
             0 /	5 missing parents
             0 /	4 notes on wrong clef
             0 /	4 out of range pitches
-            0 /	0 overlapping glissandi
             0 /	0 overlapping octavation spanners
             0 /	0 overlapping trill spanners
             0 /	0 unmatched stop text spans
@@ -718,7 +700,6 @@ class Wellformedness(object):
             0 /	5 missing parents
             0 /	4 notes on wrong clef
             0 /	4 out of range pitches
-            0 /	0 overlapping glissandi
             0 /	0 overlapping octavation spanners
             0 /	0 overlapping trill spanners
             0 /	0 unmatched stop text spans
@@ -801,7 +782,6 @@ class Wellformedness(object):
             0 /	5 missing parents
             0 /	4 notes on wrong clef
             0 /	4 out of range pitches
-            0 /	0 overlapping glissandi
             0 /	0 overlapping octavation spanners
             0 /	0 overlapping trill spanners
             0 /	1 unmatched stop text spans

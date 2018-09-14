@@ -9,7 +9,6 @@ def test_Container___setitem___01():
 
     voice = abjad.Voice("c'8 [ d'8 ] e'8 f'8")
     leaves = abjad.select(voice).leaves()
-    abjad.attach(abjad.Glissando(), leaves)
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -17,12 +16,9 @@ def test_Container___setitem___01():
         {
             c'8
             [
-            \glissando
             d'8
             ]
-            \glissando
             e'8
-            \glissando
             f'8
         }
         """
@@ -36,11 +32,8 @@ def test_Container___setitem___01():
         {
             c'8
             [
-            \glissando
             c''8
-            \glissando
             e'8
-            \glissando
             f'8
         }
         """
@@ -56,8 +49,6 @@ def test_Container___setitem___02():
 
     voice = abjad.Voice("c'8 [ d'8 ] e'8 f'8")
     leaves = abjad.select(voice).leaves()
-    glissando = abjad.Glissando(allow_repeats=True)
-    abjad.attach(glissando, leaves)
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -65,12 +56,9 @@ def test_Container___setitem___02():
         {
             c'8
             [
-            \glissando
             d'8
             ]
-            \glissando
             e'8
-            \glissando
             f'8
         }
         """
@@ -84,17 +72,12 @@ def test_Container___setitem___02():
         {
             c'8
             [
-            \glissando
             {
                 c'16
-                \glissando
                 c'16
-                \glissando
                 c'16
-                \glissando
             }
             e'8
-            \glissando
             f'8
         }
         """
@@ -110,7 +93,6 @@ def test_Container___setitem___03():
 
     voice = abjad.Voice("{ c'8 [ d'8 } { e'8 f'8 ] }")
     leaves = abjad.select(voice).leaves()
-    abjad.attach(abjad.Glissando(), leaves)
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -119,13 +101,10 @@ def test_Container___setitem___03():
             {
                 c'8
                 [
-                \glissando
                 d'8
-                \glissando
             }
             {
                 e'8
-                \glissando
                 f'8
                 ]
             }
@@ -142,9 +121,7 @@ def test_Container___setitem___03():
             {
                 c'8
                 [
-                \glissando
                 d'8
-                \glissando
             }
             c''8
         }
@@ -162,7 +139,6 @@ def test_Container___setitem___04():
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 }")
     leaves = abjad.select(voice).leaves()
     abjad.beam(leaves)
-    abjad.attach(abjad.Glissando(), leaves)
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -171,13 +147,10 @@ def test_Container___setitem___04():
             {
                 c'8
                 [
-                \glissando
                 d'8
-                \glissando
             }
             {
                 e'8
-                \glissando
                 f'8
                 ]
             }
@@ -194,15 +167,11 @@ def test_Container___setitem___04():
             {
                 c'8
                 [
-                \glissando
                 d'8
-                \glissando
             }
             \times 2/3 {
                 c'8
-                \glissando
                 d'8
-                \glissando
                 e'8
             }
         }
@@ -219,7 +188,6 @@ def test_Container___setitem___05():
 
     voice = abjad.Voice("{ c'8 [ d'8 } { e'8 f'8 ] }")
     leaves = abjad.select(voice).leaves()
-    abjad.attach(abjad.Glissando(), leaves)
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -228,13 +196,10 @@ def test_Container___setitem___05():
             {
                 c'8
                 [
-                \glissando
                 d'8
-                \glissando
             }
             {
                 e'8
-                \glissando
                 f'8
                 ]
             }
@@ -251,9 +216,7 @@ def test_Container___setitem___05():
             {
                 c'8
                 [
-                \glissando
                 d'8
-                \glissando
             }
             c''8
         }
@@ -418,7 +381,6 @@ def test_Container___setitem___08():
     voice_2 = abjad.Voice(notes[3:])
     abjad.mutate(voice_2[1:3]).wrap(abjad.Container())
     leaves = abjad.select(voice_2).leaves()
-    abjad.attach(abjad.Glissando(), leaves)
     leaves = abjad.select(voice_2[1]).leaves()
     abjad.slur(leaves)
 
@@ -427,14 +389,11 @@ def test_Container___setitem___08():
         \new Voice
         {
             f'8
-            \glissando
             {
                 g'8
                 (
-                \glissando
                 a'8
                 )
-                \glissando
             }
             b'8
         }
@@ -468,7 +427,6 @@ def test_Container___setitem___08():
         \new Voice
         {
             f'8
-            \glissando
             b'8
         }
         """

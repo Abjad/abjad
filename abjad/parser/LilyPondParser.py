@@ -732,6 +732,7 @@ class LilyPondParser(Parser):
             abjad_indicators.Articulation,
             abjad_indicators.BarLine,
             abjad_indicators.Dynamic,
+            abjad_indicators.GlissandoIndicator,
             abjad_indicators.HairpinIndicator,
             abjad_indicators.LilyPondLiteral,
             abjad_indicators.StartBeam,
@@ -831,6 +832,8 @@ class LilyPondParser(Parser):
                 return abjad_indicators.HairpinIndicator('>')
             else:
                 return abjad_indicators.StopHairpin()
+        elif name == 'GlissandoEvent':
+            return abjad_indicators.GlissandoIndicator()
         elif name == 'LaissezVibrerEvent':
             return abjad_indicators.LilyPondLiteral(r'\laissezVibrer', 'after')
         elif name == 'LineBreakEvent':
@@ -869,7 +872,7 @@ class LilyPondParser(Parser):
             #'BeamEvent': abjad_spanners.Beam,
             #'CrescendoEvent': abjad_spanners.Hairpin,
             #'DecrescendoEvent': abjad_spanners.Hairpin,
-            'GlissandoEvent': abjad_spanners.Glissando,
+            #'GlissandoEvent': abjad_spanners.Glissando,
             'NoteGroupingEvent': abjad_spanners.HorizontalBracket,
             #'SlurEvent': abjad_spanners.Slur,
             'TieEvent': abjad_spanners.Tie,
