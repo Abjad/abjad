@@ -76,8 +76,7 @@ class Staccatissimo(object):
         self,
         *,
         direction: enums.VerticalAlignment = None,
-        tweaks: typing.Union[
-            typing.List[typing.Tuple], LilyPondTweakManager] = None,
+        tweaks: LilyPondTweakManager = None,
         ) -> None:
         direction_ = String.to_tridirectional_ordinal_constant(direction)
         if direction_ is not None:
@@ -169,20 +168,6 @@ class Staccatissimo(object):
             >>> note = abjad.Note("c'4")
             >>> staccatissimo = abjad.Staccatissimo()
             >>> abjad.tweak(staccatissimo).color = 'blue'
-            >>> abjad.attach(staccatissimo, note)
-            >>> abjad.show(note) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(note)
-                c'4
-                - \tweak color #blue
-                \staccatissimo
-
-        ..  container:: example
-
-            >>> note = abjad.Note("c'4")
-            >>> staccatissimo = abjad.Staccatissimo(tweaks=[('color', 'blue')])
             >>> abjad.attach(staccatissimo, note)
             >>> abjad.show(note) # doctest: +SKIP
 

@@ -608,8 +608,8 @@ def configure_score(score):
     abjad.attach(bells, leaf)
     mark = abjad.MetronomeMark((1, 4), (112, 120))
     abjad.attach(mark, leaf)
-    time_signature = abjad.TimeSignature((6, 4))
-    abjad.attach(time_signature, leaf)
+    #time_signature = abjad.TimeSignature((6, 4))
+    #abjad.attach(time_signature, leaf)
     # configure first violin staff
     first_violin_staff = score['First Violin Staff']
     leaf = abjad.inspect(first_violin_staff).leaf(0)

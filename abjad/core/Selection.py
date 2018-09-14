@@ -4150,7 +4150,7 @@ class Selection(collections.Sequence):
                 Note("e'8")
                 Note("d'8")
 
-                >>> abjad.attach(abjad.OctavationSpanner(), result)
+                >>> abjad.ottava(result)
 
                 >>> selector.color(result)
                 >>> abjad.show(staff) # doctest: +SKIP
@@ -4166,7 +4166,7 @@ class Selection(collections.Sequence):
                 {
                     \times 2/3 {
                         r8
-                        \ottava #1
+                        \ottava 1
                         \abjad-color-music #'red
                         d'8
                         \abjad-color-music #'blue
@@ -4185,7 +4185,7 @@ class Selection(collections.Sequence):
                         e'8
                         \abjad-color-music #'blue
                         d'8
-                        \ottava #0
+                        \ottava 0
                         r8
                     }
                 }
@@ -4235,7 +4235,7 @@ class Selection(collections.Sequence):
                 Note("d'8")
                 Rest('r8')
 
-                >>> abjad.attach(abjad.OctavationSpanner(), result)
+                >>> abjad.ottava(result)
 
                 >>> selector.color(result)
                 >>> abjad.show(staff) # doctest: +SKIP
@@ -4251,7 +4251,7 @@ class Selection(collections.Sequence):
                 {
                     \times 2/3 {
                         r8
-                        \ottava #1
+                        \ottava 1
                         \abjad-color-music #'red
                         d'8
                         \abjad-color-music #'blue
@@ -4272,7 +4272,7 @@ class Selection(collections.Sequence):
                         d'8
                         \abjad-color-music #'red
                         r8
-                        \ottava #0
+                        \ottava 0
                     }
                 }
 
@@ -8905,6 +8905,7 @@ class Selection(collections.Sequence):
 
                 >>> staff = abjad.Staff(r"c'8 r d' ~ d' e' ~ e' r8 f'8")
                 >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).pedal_sustain_style = "#'mixed"
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).logical_ties(pitched=True)
@@ -8931,7 +8932,7 @@ class Selection(collections.Sequence):
                 Selection([Note("f'8")])
 
                 >>> for item in result:
-                ...     abjad.attach(abjad.PianoPedalSpanner(), item)
+                ...     abjad.piano_pedal(item)
                 ...
 
                 >>> selector.color(result)
@@ -8947,23 +8948,21 @@ class Selection(collections.Sequence):
                 {
                     \override SustainPedalLineSpanner.staff-padding = #6
                     autoBeaming = ##f
+                    pedalSustainStyle = #'mixed
                 }
                 {
-                    \set Staff.pedalSustainStyle = #'mixed
                     \abjad-color-music #'red
                     c'8
                     \sustainOn
                     \abjad-color-music #'red
                     r8
                     \sustainOff
-                    \set Staff.pedalSustainStyle = #'mixed
                     \abjad-color-music #'blue
                     d'8
                     ~
                     \sustainOn
                     \abjad-color-music #'blue
                     d'8
-                    \set Staff.pedalSustainStyle = #'mixed
                     \abjad-color-music #'blue
                     \abjad-color-music #'red
                     e'8
@@ -8975,11 +8974,10 @@ class Selection(collections.Sequence):
                     \abjad-color-music #'red
                     r8
                     \sustainOff
-                    \set Staff.pedalSustainStyle = #'mixed
                     \abjad-color-music #'blue
                     f'8
-                    \sustainOn
                     \sustainOff
+                    \sustainOn
                 }
 
         Returns new selection (or expression).

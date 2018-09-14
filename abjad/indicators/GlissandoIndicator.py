@@ -71,8 +71,7 @@ class GlissandoIndicator(object):
         right_broken: bool = None,
         stems: bool = None,
         style: str = None,
-        tweaks: typing.Union[
-            typing.List[typing.Tuple], LilyPondTweakManager] = None,
+        tweaks: LilyPondTweakManager = None,
         zero_padding: bool = None,
         ) -> None:
         if allow_repeats is not None:
@@ -94,9 +93,7 @@ class GlissandoIndicator(object):
             assert isinstance(style, str), repr(style)
         self._style = style
         self._tweaks = None
-        for tweak in tweaks or []:
-            assert isinstance(tweak, LilyPondTweakManager)
-            LilyPondTweakManager.set_tweaks(self, tweak)
+        LilyPondTweakManager.set_tweaks(self, tweaks)
         if zero_padding is not None:
             zero_padding = bool(zero_padding)
         self._zero_padding = zero_padding
@@ -177,6 +174,28 @@ class GlissandoIndicator(object):
     def tweaks(self) -> typing.Optional[LilyPondTweakManager]:
         r"""
         Gets tweaks
+
+        ..  container:: example
+
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> glissando = abjad.GlissandoIndicator()
+            >>> abjad.tweak(glissando).color = 'blue'
+            >>> abjad.attach(glissando, staff[0])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    c'4
+                    - \tweak color #blue
+                    \glissando
+                    d'4
+                    e'4
+                    f'4
+                }
+
         """
         return self._tweaks
 

@@ -51,11 +51,11 @@ Now let's add some empty measures:
 ..  abjad::
 
     upper_measures = []
-    upper_measures.append(abjad.Measure((2, 4), []))
-    upper_measures.append(abjad.Measure((3, 4), []))
-    upper_measures.append(abjad.Measure((2, 4), []))
-    upper_measures.append(abjad.Measure((2, 4), []))
-    upper_measures.append(abjad.Measure((2, 4), []))
+    upper_measures.append(abjad.Container())
+    upper_measures.append(abjad.Container())
+    upper_measures.append(abjad.Container())
+    upper_measures.append(abjad.Container())
+    upper_measures.append(abjad.Container())
 
 ..  abjad::
 
@@ -77,9 +77,9 @@ We begin with the upper staff:
 
 ..  abjad::
 
-    upper_measures[0].extend("a'8 g'8 f'8 e'8")
-    upper_measures[1].extend("d'4 g'8 f'8 e'8 d'8")
-    upper_measures[2].extend("c'8 d'16 e'16 f'8 e'8")
+    upper_measures[0].extend(r"\time 2/4 a'8 g'8 f'8 e'8")
+    upper_measures[1].extend(r"\time 3/4 d'4 g'8 f'8 e'8 d'8")
+    upper_measures[2].extend(r"\time 2/4 c'8 d'16 e'16 f'8 e'8")
     upper_measures[3].append("d'2")
     upper_measures[4].append("d'2")
 
@@ -124,7 +124,7 @@ Here's our work so far:
 ..  abjad::
     :stylesheet: literature-examples.ily
 
-    show(score)
+    abjad.show(score)
 
 
 The details
@@ -136,7 +136,7 @@ clef just like the top staff. Let's change that:
 ..  abjad::
 
     leaf = abjad.inspect(lower_staff).leaf(0)
-    attach(abjad.Clef('bass'), leaf)
+    abjad.attach(abjad.Clef('bass'), leaf)
 
 Now let's add dynamics. For the top staff, we'll add them to the first
 note of the first measure and the second note of the second measure. For the
@@ -145,19 +145,19 @@ measure and the fourth note of the second measure:
 
 ..  abjad::
 
-    attach(abjad.Dynamic('pp'), upper_measures[0][0])
+    abjad.attach(abjad.Dynamic('pp'), upper_measures[0][0])
 
 ..  abjad::
 
-    attach(abjad.Dynamic('mp'), upper_measures[1][1])
+    abjad.attach(abjad.Dynamic('mp'), upper_measures[1][1])
 
 ..  abjad::
 
-    attach(abjad.Dynamic('pp'), lower_measures[0][1])
+    abjad.attach(abjad.Dynamic('pp'), lower_measures[0][1])
 
 ..  abjad::
 
-    attach(abjad.Dynamic('mp'), lower_measures[1][3])
+    abjad.attach(abjad.Dynamic('mp'), lower_measures[1][3])
 
 Let's add a double bar to the end of the piece:
 
@@ -170,7 +170,7 @@ And see how things are coming out:
 ..  abjad::
     :stylesheet: literature-examples.ily
 
-    show(score)
+    abjad.show(score)
 
 Notice that the beams of the eighth and sixteenth notes appear as you would
 usually expect: grouped by beat. We get this for free thanks to LilyPond's
@@ -184,70 +184,69 @@ Let's set the beams as Bartók did with some crossing the bar lines:
 
 ..  abjad::
 
-    attach(abjad.Beam(), upper_leaves[:4])
+    abjad.beam(upper_leaves[:4])
 
 ..  abjad::
 
-    attach(abjad.Beam(), lower_leaves[1:5])
+    abjad.beam(lower_leaves[1:5])
 
 ..  abjad::
 
-    attach(abjad.Beam(), lower_leaves[6:10])
+    abjad.beam(lower_leaves[6:10])
 
 ..  abjad::
     :stylesheet: literature-examples.ily
 
-    show(score)
+    abjad.show(score)
 
 Now some slurs:
 
 ..  abjad::
 
-    attach(abjad.Slur(), upper_leaves[:5])
+    abjad.slur(upper_leaves[:5])
 
 ..  abjad::
 
-    attach(abjad.Slur(), upper_leaves[5:])
+    abjad.slur(upper_leaves[5:])
 
 ..  abjad::
 
-    attach(abjad.Slur(), lower_leaves[1:6])
+    abjad.slur(lower_leaves[1:6])
 
 Hairpins:
 
 ..  abjad::
 
-    attach(abjad.Hairpin('<'), upper_leaves[-7:-2])
+    abjad.hairpin('<', upper_leaves[-7:-2])
 
 ..  abjad::
 
-    attach(abjad.Hairpin('>'), upper_leaves[-2:])
+    abjad.hairpin('>', upper_leaves[-2:])
 
 A ritardando marking above the last seven notes of the upper staff:
 
 ..  abjad::
 
     markup = abjad.Markup('ritard.')
-    text_spanner = abjad.TextSpanner()
-    abjad.tweak(text_spanner).bound_details__left__text = markup
-    abjad.attach(text_spanner, upper_leaves[-7:])
+    start_text_span = abjad.StartTextSpan(left_text=abjad.Markup('ritard.'))
+    abjad.text_spanner(upper_leaves[-7:], start_text_span=start_text_span)
 
 And ties connecting the last two notes in each staff:
 
 ..  abjad::
 
-    attach(abjad.Tie(), upper_leaves[-2:])
+    abjad.attach(abjad.Tie(), upper_leaves[-2:])
 
 ..  abjad::
 
     note_1 = lower_staff[-2]['upper voice'][0]
     note_2 = lower_staff[-1]['upper voice'][0]
     notes = abjad.select([note_1, note_2])
-    attach(abjad.Tie(), notes)
+    abjad.attach(abjad.Tie(), notes)
 
 The final result:
 
 ..  abjad::
     :stylesheet: literature-examples.ily
 
-    show(score)
+    abjad.show(score)

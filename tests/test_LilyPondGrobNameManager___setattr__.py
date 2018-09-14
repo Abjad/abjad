@@ -503,7 +503,7 @@ def test_LilyPondGrobNameManager___setattr___20():
     """
 
     chord = abjad.Chord([1, 2, 3], (1, 4))
-    chord.note_heads[0].tweaks.style = 'harmonic'
+    abjad.tweak(chord.note_heads[0]).style = 'harmonic'
 
     assert format(chord) == abjad.String.normalize(
         r"""

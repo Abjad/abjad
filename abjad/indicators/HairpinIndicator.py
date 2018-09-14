@@ -81,8 +81,7 @@ class HairpinIndicator(object):
         *,
         direction: enums.VerticalAlignment = None,
         left_broken: bool = None,
-        tweaks: typing.Union[
-            typing.List[typing.Tuple], LilyPondTweakManager] = None,
+        tweaks: LilyPondTweakManager = None,
         ) -> None:
         direction_ = String.to_tridirectional_lilypond_symbol(direction)
         self._direction = direction_
@@ -645,34 +644,6 @@ class HairpinIndicator(object):
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> abjad.attach(abjad.Dynamic('p'), staff[0])
             >>> start = abjad.HairpinIndicator('<')
-            >>> abjad.tweak(start).color = 'blue'
-            >>> abjad.attach(start, staff[0])
-            >>> abjad.attach(abjad.Dynamic('f'), staff[-1])
-            >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4.5
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                \with
-                {
-                    \override DynamicLineSpanner.staff-padding = #4.5
-                }
-                {
-                    c'4
-                    \p
-                    - \tweak color #blue
-                    \<
-                    d'4
-                    e'4
-                    f'4
-                    \f
-                }
-
-            >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> abjad.attach(abjad.Dynamic('p'), staff[0])
-            >>> start = abjad.HairpinIndicator(tweaks=[('color', 'blue')])
             >>> abjad.tweak(start).color = 'blue'
             >>> abjad.attach(start, staff[0])
             >>> abjad.attach(abjad.Dynamic('f'), staff[-1])

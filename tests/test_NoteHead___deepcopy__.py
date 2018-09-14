@@ -5,7 +5,7 @@ import copy
 def test_NoteHead___deepcopy___01():
 
     note_head_1 = abjad.NoteHead("cs''")
-    note_head_1.tweaks.color = 'red'
+    abjad.tweak(note_head_1).color = 'red'
     note_head_1.is_cautionary = True
     note_head_1.is_forced = True
 

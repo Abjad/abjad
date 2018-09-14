@@ -118,8 +118,7 @@ class Fermata(object):
         self,
         command: str = 'fermata',
         *,
-        tweaks: typing.Union[
-            typing.List[typing.Tuple], LilyPondTweakManager] = None,
+        tweaks: LilyPondTweakManager = None,
         ) -> None:
         assert command in self._allowable_commands, repr(command)
         self._command = command
@@ -270,20 +269,6 @@ class Fermata(object):
             >>> note = abjad.Note("c'4")
             >>> fermata = abjad.Fermata()
             >>> abjad.tweak(fermata).color = 'blue'
-            >>> abjad.attach(fermata, note)
-            >>> abjad.show(note) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(note)
-                c'4
-                - \tweak color #blue
-                \fermata
-
-        ..  container:: example
-
-            >>> note = abjad.Note("c'4")
-            >>> fermata = abjad.Fermata(tweaks=[('color', 'blue')])
             >>> abjad.attach(fermata, note)
             >>> abjad.show(note) # doctest: +SKIP
 

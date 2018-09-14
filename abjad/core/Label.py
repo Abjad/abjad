@@ -28,6 +28,7 @@ from abjad.top.iterate import iterate
 from abjad.top.new import new
 from abjad.top.override import override
 from abjad.top.select import select
+from abjad.top.tweak import tweak
 from abjad.utilities.Duration import Duration
 from abjad.utilities.Expression import Expression
 from .Component import Component
@@ -656,7 +657,7 @@ class Label(object):
                     pc = NumberedPitchClass(number)
                     color = color_map.get(pc, None)
                     if color is not None:
-                        note_head.tweaks.color = color
+                        tweak(note_head).color = color
             elif isinstance(leaf, Note):
                 note_head = leaf.note_head
                 number = note_head.written_pitch.number
@@ -3251,8 +3252,7 @@ class Label(object):
                 >>> voice.consists_commands.append(string)
                 >>> selections = [voice[:2], voice[-2:]]
                 >>> for selection in selections:
-                ...     spanner = abjad.HorizontalBracket()
-                ...     abjad.attach(spanner, selection)
+                ...     abjad.horizontal_bracket(selection)
                 ...
                 >>> abjad.label(selections).with_pitches()
                 >>> abjad.override(voice).horizontal_bracket.staff_padding = 3
@@ -3292,8 +3292,7 @@ class Label(object):
                 >>> voice.consists_commands.append('Horizontal_bracket_engraver')
                 >>> selections = [voice[:2], voice[-2:]]
                 >>> for selection in selections:
-                ...     spanner = abjad.HorizontalBracket()
-                ...     abjad.attach(spanner, selection)
+                ...     abjad.horizontal_bracket(selection)
                 ...
                 >>> expression = abjad.label().with_pitches()
                 >>> expression(selections)
@@ -3338,8 +3337,7 @@ class Label(object):
                 >>> voice.consists_commands.append('Horizontal_bracket_engraver')
                 >>> selections = [voice[:2], voice[-2:]]
                 >>> for selection in selections:
-                ...     spanner = abjad.HorizontalBracket()
-                ...     abjad.attach(spanner, selection)
+                ...     abjad.horizontal_bracket(selection)
                 ...
                 >>> prototype = abjad.NumberedPitch
                 >>> abjad.label(selections).with_pitches(prototype=prototype)
@@ -3380,8 +3378,7 @@ class Label(object):
                 >>> voice.consists_commands.append('Horizontal_bracket_engraver')
                 >>> selections = [voice[:2], voice[-2:]]
                 >>> for selection in selections:
-                ...     spanner = abjad.HorizontalBracket()
-                ...     abjad.attach(spanner, selection)
+                ...     abjad.horizontal_bracket(selection)
                 ...
                 >>> prototype = abjad.NumberedPitch
                 >>> expression = abjad.label().with_pitches(prototype=prototype)
@@ -3428,8 +3425,7 @@ class Label(object):
                 >>> voice.consists_commands.append('Horizontal_bracket_engraver')
                 >>> selections = [voice[:2], voice[-2:]]
                 >>> for selection in selections:
-                ...     spanner = abjad.HorizontalBracket()
-                ...     abjad.attach(spanner, selection)
+                ...     abjad.horizontal_bracket(selection)
                 ...
                 >>> prototype = abjad.NumberedPitchClass
                 >>> abjad.label(selections).with_pitches(prototype=prototype)
@@ -3470,8 +3466,7 @@ class Label(object):
                 >>> voice.consists_commands.append('Horizontal_bracket_engraver')
                 >>> selections = [voice[:2], voice[-2:]]
                 >>> for selection in selections:
-                ...     spanner = abjad.HorizontalBracket()
-                ...     abjad.attach(spanner, selection)
+                ...     abjad.horizontal_bracket(selection)
                 ...
                 >>> prototype = abjad.NumberedPitchClass
                 >>> expression = abjad.label().with_pitches(prototype=prototype)
@@ -3573,8 +3568,7 @@ class Label(object):
                 >>> voice.consists_commands.append('Horizontal_bracket_engraver')
                 >>> selections = [voice[:4], voice[-4:]]
                 >>> for selection in selections:
-                ...     spanner = abjad.HorizontalBracket()
-                ...     abjad.attach(spanner, selection)
+                ...     abjad.horizontal_bracket(selection)
                 ...
                 >>> abjad.label(selections).with_set_classes()
                 >>> abjad.override(voice).horizontal_bracket.staff_padding = 3
@@ -3628,8 +3622,7 @@ class Label(object):
                 >>> voice.consists_commands.append('Horizontal_bracket_engraver')
                 >>> selections = [voice[:4], voice[-4:]]
                 >>> for selection in selections:
-                ...     spanner = abjad.HorizontalBracket()
-                ...     abjad.attach(spanner, selection)
+                ...     abjad.horizontal_bracket(selection)
                 ...
                 >>> expression = abjad.label().with_set_classes()
                 >>> expression(selections)
@@ -3689,8 +3682,7 @@ class Label(object):
                 >>> voice.consists_commands.append('Horizontal_bracket_engraver')
                 >>> selections = [voice[:4], voice[-4:]]
                 >>> for selection in selections:
-                ...     spanner = abjad.HorizontalBracket()
-                ...     abjad.attach(spanner, selection)
+                ...     abjad.horizontal_bracket(selection)
                 ...
                 >>> prototype = abjad.SetClass(lex_rank=True)
                 >>> abjad.label(selections).with_set_classes(prototype=prototype)
@@ -3745,8 +3737,7 @@ class Label(object):
                 >>> voice.consists_commands.append('Horizontal_bracket_engraver')
                 >>> selections = [voice[:4], voice[-4:]]
                 >>> for selection in selections:
-                ...     spanner = abjad.HorizontalBracket()
-                ...     abjad.attach(spanner, selection)
+                ...     abjad.horizontal_bracket(selection)
                 ...
                 >>> prototype = abjad.SetClass(lex_rank=True)
                 >>> expression = abjad.label().with_set_classes(prototype=prototype)
@@ -3806,8 +3797,7 @@ class Label(object):
                 >>> voice.consists_commands.append('Horizontal_bracket_engraver')
                 >>> selections = [voice[:4], voice[-4:]]
                 >>> for selection in selections:
-                ...     spanner = abjad.HorizontalBracket()
-                ...     abjad.attach(spanner, selection)
+                ...     abjad.horizontal_bracket(selection)
                 ...
                 >>> prototype = abjad.SetClass(transposition_only=True)
                 >>> abjad.label(selections).with_set_classes(prototype=prototype)
@@ -3862,8 +3852,7 @@ class Label(object):
                 >>> voice.consists_commands.append('Horizontal_bracket_engraver')
                 >>> selections = [voice[:4], voice[-4:]]
                 >>> for selection in selections:
-                ...     spanner = abjad.HorizontalBracket()
-                ...     abjad.attach(spanner, selection)
+                ...     abjad.horizontal_bracket(selection)
                 ...
                 >>> prototype = abjad.SetClass(transposition_only=True)
                 >>> expression = abjad.label().with_set_classes(prototype=prototype)

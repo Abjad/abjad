@@ -79,8 +79,7 @@ class ColorFingering(object):
         self,
         number: int = None,
         *,
-        tweaks: typing.Union[
-            typing.List[typing.Tuple], LilyPondTweakManager] = None,
+        tweaks: LilyPondTweakManager = None,
         ) -> None:
         if number is not None:
             assert mathtools.is_positive_integer(number)
@@ -290,33 +289,6 @@ class ColorFingering(object):
                     e'4
                     f'4
                 }
-
-        ..  container:: example
-
-            >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> fingering = abjad.ColorFingering(1, tweaks=[('color', 'blue')])
-            >>> abjad.attach(fingering, staff[0])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    c'4
-                    - \tweak color #blue
-                    ^ \markup {
-                        \override
-                            #'(circle-padding . 0.25)
-                            \circle
-                                \finger
-                                    1
-                        }
-                    d'4
-                    e'4
-                    f'4
-                }
-
 
         """
         return self._tweaks

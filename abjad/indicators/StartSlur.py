@@ -65,8 +65,7 @@ class StartSlur(object):
         self,
         *,
         direction: enums.VerticalAlignment = None,
-        tweaks: typing.Union[
-            typing.List[typing.Tuple], LilyPondTweakManager] = None,
+        tweaks: LilyPondTweakManager = None,
         ) -> None:
         direction_ = String.to_tridirectional_lilypond_symbol(direction)
         self._direction = direction_
@@ -185,30 +184,6 @@ class StartSlur(object):
     def tweaks(self) -> typing.Optional[LilyPondTweakManager]:
         r"""
         Gets tweaks
-
-        ..  container:: example
-
-            >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> start_slur = abjad.StartSlur()
-            >>> abjad.tweak(start_slur).color = 'blue'
-            >>> abjad.attach(start_slur, staff[0])
-            >>> stop_slur = abjad.StopSlur()
-            >>> abjad.attach(stop_slur, staff[-1])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    c'4
-                    - \tweak color #blue
-                    (
-                    d'4
-                    e'4
-                    f'4
-                    )
-                }
 
         ..  container:: example
 

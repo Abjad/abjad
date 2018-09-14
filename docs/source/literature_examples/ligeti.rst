@@ -22,7 +22,7 @@ here call a *cell*:
     :stylesheet: literature-examples.ily
 
     cell = abjad.Staff([ligeti.make_desordre_cell([1, 2, 3])])
-    show(cell)
+    abjad.show(cell)
 
 
 There are two of these cells per measure. Notice that the cells are strictly
@@ -63,10 +63,10 @@ lower Voice will hold the eighth note run. First the eighth notes:
     pitches = [1,2,3]
     maker = abjad.NoteMaker()
     notes = maker(pitches, [(1, 8)])
-    attach(abjad.Beam(), notes)
-    attach(abjad.Slur(), notes)
-    attach(abjad.Dynamic('f'), notes[0])
-    attach(abjad.Dynamic('p'), notes[1])
+    abjad.beam(notes)
+    abjad.slur(notes)
+    abjad.attach(abjad.Dynamic('f'), notes[0])
+    abjad.attach(abjad.Dynamic('p'), notes[1])
 
 ..  abjad::
 
@@ -74,7 +74,7 @@ lower Voice will hold the eighth note run. First the eighth notes:
     voice_lower.name = 'rh_lower'
     command = abjad.LilyPondLiteral(r'\voiceTwo')
     leaf = abjad.inspect(voice_lower).leaf(0)
-    attach(command, leaf)
+    abjad.attach(command, leaf)
 
 The notes belonging to the eighth note run are first beamed and slurred. Then
 we add the dynamics to the first two notes, and finally we put them inside
@@ -117,7 +117,7 @@ This results in the complete *Désordre* *cell*:
     :stylesheet: literature-examples.ily
 
     cell = abjad.Staff([container])
-    show(cell)
+    abjad.show(cell)
 
 Because this *cell* appears over and over again, we want to reuse this code to
 generate any number of these *cells*. We here encapsulate it in a function that
@@ -150,7 +150,7 @@ a Ligeti measure we would call the function like so:
     pitches = [[0, 4, 7], [0, 4, 7, 9], [4, 7, 9, 11]]
     measure = ligeti.make_desordre_measure(pitches)
     staff = abjad.Staff([measure])
-    show(staff)
+    abjad.show(staff)
 
 The staff
 ---------
@@ -168,7 +168,7 @@ full measure sequences with this new function:
 
     pitches = [[[-1, 4, 5], [-1, 4, 5, 7, 9]], [[0, 7, 9], [-1, 4, 5, 7, 9]]]
     staff = ligeti.make_desordre_staff(pitches)
-    show(staff)
+    abjad.show(staff)
 
 The score
 ---------
@@ -223,7 +223,7 @@ The final result:
 ..  abjad::
     :stylesheet: literature-examples.ily
 
-    show(lilypond_file)
+    abjad.show(lilypond_file)
 
 Now that we have the redundant aspect of the piece compactly expressed and
 encapsulated, we can play around with it by changing the sequence of pitches.

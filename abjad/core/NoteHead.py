@@ -55,19 +55,19 @@ class NoteHead(object):
         if client is not None:
             assert isinstance(client, abjad.Leaf)
         self._client = client
-        self._tweaks = None
         if isinstance(written_pitch, type(self)):
             note_head = written_pitch
             written_pitch = note_head.written_pitch
             is_cautionary = note_head.is_cautionary
             is_forced = note_head.is_forced
-            tweaks = note_head.tweaks._get_attribute_pairs()
+            tweaks = note_head.tweaks
         elif written_pitch is None:
             written_pitch = 0
         self.written_pitch = written_pitch
         self.is_cautionary = is_cautionary
         self.is_forced = is_forced
         self.is_parenthesized = is_parenthesized
+        self._tweaks = None
         LilyPondTweakManager.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
@@ -98,7 +98,7 @@ class NoteHead(object):
             self.is_cautionary,
             self.is_forced,
             self.is_parenthesized,
-            self.tweaks._get_attribute_pairs(),
+            self.tweaks,
             )
         return type(self)(*arguments)
 
@@ -192,8 +192,9 @@ class NoteHead(object):
 
     def _get_format_specification(self):
         arguments = [repr(str(self))]
-        arguments.extend(self.tweaks._get_attribute_pairs())
-        arguments = ', '.join([str(x) for x in arguments])
+        if self.tweaks:
+            arguments.extend(self.tweaks._get_attribute_pairs())
+        arguments = ', '.join([str(_) for _ in arguments])
         repr_text = f'{type(self).__name__}({arguments})'
         agent = StorageFormatManager(self)
         names = list(agent.signature_keyword_names)
@@ -212,8 +213,9 @@ class NoteHead(object):
         result = []
         if self.is_parenthesized:
             result.append(r'\parenthesize')
-        strings = self.tweaks._list_format_contributions(directed=False)
-        result.extend(strings)
+        if self.tweaks:
+            strings = self.tweaks._list_format_contributions(directed=False)
+            result.extend(strings)
         written_pitch = self.written_pitch
         if isinstance(written_pitch, NamedPitch):
             written_pitch = written_pitch.simplify()
@@ -465,23 +467,85 @@ class NoteHead(object):
         return self.written_pitch
 
     @property
-    def tweaks(self) -> LilyPondTweakManager:
+    def tweaks(self) -> typing.Optional[LilyPondTweakManager]:
         r"""
         Gets tweaks.
 
         ..  container:: example
 
             >>> note_head = abjad.NoteHead("cs''")
-            >>> note_head.tweaks
-            LilyPondTweakManager()
+            >>> note_head.tweaks is None
+            True
 
             >>> abjad.tweak(note_head).color = 'red'
+            >>> note_head.tweaks
+            LilyPondTweakManager(('color', 'red'))
+
             >>> abjad.f(note_head)
             \tweak color #red
             cs''
 
+        ..  container:: example
+
+            >>> chord = abjad.Chord([0, 2, 10], (1, 4))
+
+            >>> abjad.tweak(chord.note_heads[0]).color = 'red'
+            >>> abjad.tweak(chord.note_heads[0]).thickness = 2
+
+            >>> abjad.tweak(chord.note_heads[1]).color = 'red'
+            >>> abjad.tweak(chord.note_heads[1]).thickness = 2
+
+            >>> abjad.tweak(chord.note_heads[2]).color = 'blue'
+
+            >>> abjad.show(chord) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(chord)
+                <
+                    \tweak color #red
+                    \tweak thickness #2
+                    c'
+                    \tweak color #red
+                    \tweak thickness #2
+                    d'
+                    \tweak color #blue
+                    bf'
+                >4
+
+            >>> tweaks_1 = chord.note_heads[0].tweaks
+            >>> tweaks_2 = chord.note_heads[1].tweaks
+            >>> tweaks_3 = chord.note_heads[2].tweaks
+
+            >>> tweaks_1 == tweaks_1
+            True
+
+            >>> tweaks_1 == tweaks_2
+            True
+
+            >>> tweaks_1 != tweaks_3
+            True
+
+            >>> tweaks_2 == tweaks_1
+            True
+
+            >>> tweaks_2 == tweaks_2
+            True
+
+            >>> tweaks_2 != tweaks_3
+            True
+
+            >>> tweaks_3 != tweaks_1
+            True
+
+            >>> tweaks_3 != tweaks_2
+            True
+
+            >>> tweaks_3 == tweaks_3
+            True
+
         """
-        return tweak(self)
+        return self._tweaks
 
     @property
     def written_pitch(self) -> NamedPitch:

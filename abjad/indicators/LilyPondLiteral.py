@@ -173,8 +173,7 @@ class LilyPondLiteral(object):
         format_slot: str = 'opening',
         *,
         directed: bool = None,
-        tweaks: typing.Union[
-            typing.List[typing.Tuple], LilyPondTweakManager] = None,
+        tweaks: LilyPondTweakManager = None,
         ) -> None:
         self._argument = argument
         assert format_slot in self._allowable_format_slots, repr(format_slot)
@@ -354,12 +353,8 @@ class LilyPondLiteral(object):
         ..  container:: example
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> literal = abjad.LilyPondLiteral(
-            ...     r'\f',
-            ...     'after',
-            ...     directed=True,
-            ...     tweaks=[('color', 'blue')],
-            ...     )
+            >>> literal = abjad.LilyPondLiteral(r'\f', 'after', directed=True)
+            >>> abjad.tweak(literal).color = 'blue'
             >>> abjad.attach(literal, staff[0])
             >>> abjad.show(staff) # doctest: +SKIP
 

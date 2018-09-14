@@ -2307,25 +2307,6 @@ class Mutation(object):
             for component in self.client:
                 component._scale(multiplier)
 
-    def splice(
-        self,
-        components,
-        direction=enums.Right,
-        grow_spanners=True,
-        ):
-        """
-        Splices ``components`` to the right or left of selection.
-
-        ..  todo:: Add examples.
-
-        Returns list of components.
-        """
-        return self.client._splice(
-            components,
-            direction=direction,
-            grow_spanners=grow_spanners,
-            )
-
     # TODO: fix bug that unintentionally fractures ties.
     # TODO: add tests of tupletted notes and rests.
     # TODO: add examples that show indicator handling.

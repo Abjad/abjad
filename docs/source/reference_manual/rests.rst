@@ -63,7 +63,7 @@ Multiply the duration of multimeasure rests like this:
 
 ..  abjad::
 
-    abjad.attach(abjad.Multiplier(4), multimeasure_rest)
+    multimeasure_rest = abjad.MultimeasureRest('R1', multiplier=4)
     staff = abjad.Staff([multimeasure_rest])
     abjad.show(staff)
 

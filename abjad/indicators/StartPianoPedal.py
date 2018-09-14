@@ -9,53 +9,76 @@ from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.utilities.String import String
 
 
-class StartPhrasingSlur(object):
+class StartPianoPedal(object):
     r"""
-    LilyPond ``(`` command.
+    LilyPond ``\sustainOn``, ``\sostenutoOn``, ``\unaCorda`` commands.
 
     ..  container:: example
 
-        >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> start_phrasing_slur = abjad.StartPhrasingSlur()
-        >>> abjad.tweak(start_phrasing_slur).color = 'blue'
-        >>> abjad.attach(start_phrasing_slur, staff[0])
-        >>> stop_phrasing_slur = abjad.StopPhrasingSlur()
-        >>> abjad.attach(stop_phrasing_slur, staff[-1])
+        >>> staff = abjad.Staff("c'4 d' e' r")
+        >>> start_piano_pedal = abjad.StartPianoPedal()
+        >>> abjad.tweak(start_piano_pedal).color = 'blue'
+        >>> abjad.tweak(start_piano_pedal).parent_alignment_X = abjad.Center
+        >>> abjad.attach(start_piano_pedal, staff[0])
+        >>> stop_piano_pedal = abjad.StopPianoPedal()
+        >>> abjad.attach(stop_piano_pedal, staff[1])
+
+        >>> start_piano_pedal = abjad.StartPianoPedal()
+        >>> abjad.tweak(start_piano_pedal).color = 'red'
+        >>> abjad.attach(start_piano_pedal, staff[1])
+        >>> stop_piano_pedal = abjad.StopPianoPedal()
+        >>> abjad.attach(stop_piano_pedal, staff[2])
+
+        >>> start_piano_pedal = abjad.StartPianoPedal()
+        >>> abjad.tweak(start_piano_pedal).color = 'green'
+        >>> abjad.attach(start_piano_pedal, staff[2])
+        >>> stop_piano_pedal = abjad.StopPianoPedal()
+        >>> abjad.attach(stop_piano_pedal, staff[3])
+
+        >>> abjad.override(staff).sustain_pedal_line_spanner.staff_padding = 5
+        >>> abjad.setting(staff).pedal_sustain_style = "#'mixed"
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
             >>> abjad.f(staff)
             \new Staff
+            \with
+            {
+                \override SustainPedalLineSpanner.staff-padding = #5
+                pedalSustainStyle = #'mixed
+            }
             {
                 c'4
                 - \tweak color #blue
-                \(
+                - \tweak parent-alignment-X #center
+                \sustainOn
                 d'4
+                \sustainOff
+                - \tweak color #red
+                \sustainOn
                 e'4
-                f'4
-                \)
+                \sustainOff
+                - \tweak color #green
+                \sustainOn
+                r4
+                \sustainOff
             }
-
-    ..  container:: example
-
-        >>> abjad.StartPhrasingSlur()
-        StartPhrasingSlur()
 
     """
 
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_direction',
+        '_kind',
         '_tweaks',
         )
 
-    _context = 'Voice'
-
-    _parameter = 'PHRASING_SLUR'
+    _context = 'StaffGroup'
 
     _persistent = True
+
+    _parameter = 'PEDAL'
 
     _publish_storage_format = True
 
@@ -63,11 +86,13 @@ class StartPhrasingSlur(object):
 
     def __init__(
         self,
+        kind: str = None,
         *,
-        direction: enums.VerticalAlignment = None,
         tweaks: LilyPondTweakManager = None,
         ) -> None:
-        self._direction = direction
+        if kind is not None:
+            assert kind in ('sustain', 'sostenuto', 'corda')
+        self._kind = kind
         self._tweaks = None
         LilyPondTweakManager.set_tweaks(self, tweaks)
 
@@ -90,7 +115,7 @@ class StartPhrasingSlur(object):
         except TypeError:
             raise TypeError(f'unhashable type: {self}')
         return result
-
+    
     def __repr__(self) -> str:
         """
         Gets interpreter representation.
@@ -99,17 +124,18 @@ class StartPhrasingSlur(object):
 
     ### PRIVATE METHODS ###
 
-    def _add_direction(self, string):
-        if getattr(self, 'direction', False):
-            string = f'{self.direction} {string}'
-        return string
-
     def _get_lilypond_format_bundle(self, component=None):
         bundle = LilyPondFormatBundle()
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions()
             bundle.after.spanner_starts.extend(tweaks)
-        string = self._add_direction('\(')
+        if self.kind == 'corda':
+            string = r'\unaCorda'
+        elif self.kind == 'sostenuto':
+            string = r'\sostenutoOn'
+        else:
+            assert self.kind in ('sustain', None)
+            string = r'\sustainOn'
         bundle.after.spanner_starts.append(string)
         return bundle
 
@@ -118,12 +144,12 @@ class StartPhrasingSlur(object):
     @property
     def context(self) -> str:
         """
-        Returns (historically conventional) context ``'Voice'``.
+        Returns (historically conventional) context ``'StaffGroup'``.
 
         ..  container:: example
 
-            >>> abjad.StartPhrasingSlur().context
-            'Voice'
+            >>> abjad.StartPianoPedal().context
+            'StaffGroup'
 
         Class constant.
 
@@ -132,21 +158,21 @@ class StartPhrasingSlur(object):
         return self._context
 
     @property
-    def direction(self) -> typing.Optional[enums.VerticalAlignment]:
+    def kind(self) -> typing.Optional[str]:
         """
-        Gets direction.
+        Gets kind.
         """
-        return self._direction
+        return self._kind
 
     @property
     def parameter(self) -> str:
         """
-        Returns ``'PHRASING_SLUR'``.
+        Returns ``'PEDAL'``.
 
         ..  container:: example
 
-            >>> abjad.StartPhrasingSlur().parameter
-            'PHRASING_SLUR'
+            >>> abjad.StartPianoPedal().parameter
+            'PEDAL'
 
         Class constant.
         """
@@ -159,7 +185,7 @@ class StartPhrasingSlur(object):
 
         ..  container:: example
 
-            >>> abjad.StartPhrasingSlur().persistent
+            >>> abjad.StartPianoPedal().persistent
             True
 
         Class constant.
@@ -173,7 +199,7 @@ class StartPhrasingSlur(object):
 
         ..  container:: example
 
-            >>> abjad.StartPhrasingSlur().spanner_start
+            >>> abjad.StartPianoPedal().spanner_start
             True
 
         """
@@ -189,16 +215,16 @@ class StartPhrasingSlur(object):
             REGRESSION. Tweaks survive copy:
 
             >>> import copy
-            >>> start_phrasing_slur = abjad.StartPhrasingSlur()
-            >>> abjad.tweak(start_phrasing_slur).color = 'blue'
-            >>> abjad.f(start_phrasing_slur)
-            abjad.StartPhrasingSlur(
+            >>> start_piano_pedal = abjad.StartPianoPedal()
+            >>> abjad.tweak(start_piano_pedal).color = 'blue'
+            >>> abjad.f(start_piano_pedal)
+            abjad.StartPianoPedal(
                 tweaks=LilyPondTweakManager(('color', 'blue')),
                 )
 
-            >>> start_phrasing_slur_2 = copy.copy(start_phrasing_slur)
-            >>> abjad.f(start_phrasing_slur_2)
-            abjad.StartPhrasingSlur(
+            >>> start_piano_pedal_2 = copy.copy(start_piano_pedal)
+            >>> abjad.f(start_piano_pedal_2)
+            abjad.StartPianoPedal(
                 tweaks=LilyPondTweakManager(('color', 'blue')),
                 )
 

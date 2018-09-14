@@ -73,8 +73,7 @@ class BreathMark(object):
     def __init__(
         self,
         *,
-        tweaks: typing.Union[
-            typing.List[typing.Tuple], LilyPondTweakManager] = None,
+        tweaks: LilyPondTweakManager = None,
         ) -> None:
         self._tweaks = None
         LilyPondTweakManager.set_tweaks(self, tweaks)
@@ -142,20 +141,6 @@ class BreathMark(object):
             >>> note = abjad.Note("c'4")
             >>> breath = abjad.BreathMark()
             >>> abjad.tweak(breath).color = 'blue'
-            >>> abjad.attach(breath, note)
-            >>> abjad.show(note) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(note)
-                c'4
-                \tweak color #blue
-                \breathe
-
-        ..  container:: example
-
-            >>> note = abjad.Note("c'4")
-            >>> breath = abjad.BreathMark(tweaks=[('color', 'blue')])
             >>> abjad.attach(breath, note)
             >>> abjad.show(note) # doctest: +SKIP
 

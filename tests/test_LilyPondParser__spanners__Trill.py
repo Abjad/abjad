@@ -10,10 +10,8 @@ def test_LilyPondParser__spanners__Trill_01():
     maker = abjad.NoteMaker()
     notes = maker(4 * [0], [(1, 4)])
     target = abjad.Container(notes)
-    trill = abjad.TrillSpanner()
-    abjad.attach(trill, target[2:])
-    trill = abjad.TrillSpanner()
-    abjad.attach(trill, target[:3])
+    abjad.trill_spanner(target[2:])
+    abjad.trill_spanner(target[:3])
 
     assert format(target) == abjad.String.normalize(
         r"""
@@ -43,10 +41,8 @@ def test_LilyPondParser__spanners__Trill_02():
     maker = abjad.NoteMaker()
     notes = maker(4 * [0], [(1, 4)])
     target = abjad.Container(notes)
-    trill = abjad.TrillSpanner()
-    abjad.attach(trill, target[2:])
-    trill = abjad.TrillSpanner()
-    abjad.attach(trill, target[:3])
+    abjad.trill_spanner(target[2:])
+    abjad.trill_spanner(target[:3])
 
     assert format(target) == abjad.String.normalize(
         r"""

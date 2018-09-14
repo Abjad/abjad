@@ -132,13 +132,27 @@ class LilyPondTweakManager(LilyPondNameManager):
 
         ..  container:: example
 
-            Tweak expressions work like this:
+            Preloaded tweak managers can be made like this:
 
-            >>> abjad.tweak('red').color
+            >>> tweaks = abjad.LilyPondTweakManager()
+            >>> tweaks.color = 'red'
+            >>> tweaks.Y_offset = 6
+            >>> tweaks
+            LilyPondTweakManager(('Y_offset', 6), ('color', 'red'))
+
+            Use the ``abjad.tweak()`` factory function for a shortcut:
+
+            >>> tweaks = abjad.tweak('red').color
+            >>> tweaks
             LilyPondTweakManager(('color', 'red'))
 
-            >>> abjad.tweak(6).Y_offset
-            LilyPondTweakManager(('Y_offset', 6))
+            >>> tweaks.Y_offset = 6
+            >>> tweaks
+            LilyPondTweakManager(('Y_offset', 6), ('color', 'red'))
+
+        ..  container:: example
+
+            Set long LilyPond grob chains like this:
 
             >>> abjad.tweak(False).bound_details__left_broken__text
             LilyPondTweakManager(('bound_details__left_broken__text', False))
@@ -294,46 +308,57 @@ class LilyPondTweakManager(LilyPondNameManager):
     @staticmethod
     def set_tweaks(
         argument,
-        tweaks: typing.Union[
-            typing.List[typing.Tuple],
-            'LilyPondTweakManager',
-            None,
-            ],
+        tweaks: typing.Optional['LilyPondTweakManager'],
         ) -> None:
-        """
+        r"""
         Sets ``tweaks`` on ``argument``.
+
+        ..  container:: example
+
+            >>> glissando = abjad.GlissandoIndicator()
+            >>> glissando.tweaks is None
+            True
+
+            >>> tweaks = abjad.tweak('blue').color
+            >>> abjad.LilyPondTweakManager.set_tweaks(glissando, tweaks)
+
+            >>> abjad.tweak(glissando)
+            LilyPondTweakManager(('color', 'blue'))
+
         """
         if not hasattr(argument, '_tweaks'):
             name = type(argument).__name__
             raise NotImplementedError(f'{name} does not allow tweaks (yet).')
         if not tweaks:
             return
-        if isinstance(tweaks, LilyPondTweakManager):
-            tweaks = tweaks._get_attribute_tuples()
-        if not isinstance(tweaks, list):
-            raise Exception(f'tweaks must be list of tuples (not {tweaks!r}).')
-        assert all(isinstance(_, tuple) for _ in tweaks), repr(tweaks)
-        if not tweaks:
+        if not isinstance(tweaks, LilyPondTweakManager):
+            raise Exception(f'tweaks must be tweak manager (not {tweaks!r}).')
+        tuples = tweaks._get_attribute_tuples()
+        assert isinstance(tuples, list)
+        assert all(isinstance(_, tuple) for _ in tuples), repr(tuples)
+        if not tuples:
             return
         if argument._tweaks is None:
             argument._tweaks = LilyPondTweakManager()
         manager = argument._tweaks
-        for tweak in tweaks:
-            if len(tweak) == 2:
-                attribute, value = tweak
+        for tuple_ in tuples:
+            if len(tuple_) == 2:
+                attribute, value = tuple_
                 value = copy.copy(value)
                 setattr(manager, attribute, value)
-            elif len(tweak) == 3:
-                grob, attribute, value = tweak
+            elif len(tuple_) == 3:
+                grob, attribute, value = tuple_
                 value = copy.copy(value)
                 grob = getattr(manager, grob)
                 setattr(grob, attribute, value)
             else:
                 message = 'tweak tuple must have length 2 or 3'
-                message += f' (not {tweak!r}).'
+                message += f' (not {tuple_!r}).'
                 raise ValueError(message)
 
-TweaksTyping = typing.Union[
+IndexedTweakManager = typing.Union[
     LilyPondTweakManager,
     typing.Tuple[LilyPondTweakManager, int],
     ]
+
+IndexedTweakManagers = typing.Tuple[IndexedTweakManager, ...]

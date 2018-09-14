@@ -59,8 +59,7 @@ class RehearsalMark(object):
         *,
         number: int = None,
         markup: Markup = None,
-        tweaks: typing.Union[
-            typing.List[typing.Tuple], LilyPondTweakManager] = None,
+        tweaks: LilyPondTweakManager = None,
         ) -> None:
         self._tweaks = None
         self._markup = markup
@@ -267,23 +266,6 @@ class RehearsalMark(object):
             >>> note = abjad.Note("c'4")
             >>> mark = abjad.RehearsalMark(markup='A')
             >>> abjad.tweak(mark).color = 'blue'
-            >>> abjad.attach(mark, note)
-            >>> abjad.show(note) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(note)
-                \tweak color #blue
-                \mark A
-                c'4
-
-        ..  container:: example
-
-            >>> note = abjad.Note("c'4")
-            >>> mark = abjad.RehearsalMark(
-            ...     markup='A',
-            ...     tweaks=[('color', 'blue')],
-            ...     )
             >>> abjad.attach(mark, note)
             >>> abjad.show(note) # doctest: +SKIP
 

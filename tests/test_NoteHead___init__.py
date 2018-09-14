@@ -34,9 +34,9 @@ def test_NoteHead___init___03():
 
 def test_NoteHead___init___04():
     """
-    Initialize note-head with tweak pais.
+    Initialize note-head with tweak manager.
     """
 
-    note_head = abjad.NoteHead("cs''", tweaks=[('color', 'red')])
+    note_head = abjad.NoteHead("cs''", tweaks=abjad.tweak('red').color)
 
     assert format(note_head) == "\\tweak color #red\ncs''"

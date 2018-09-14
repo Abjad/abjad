@@ -236,8 +236,7 @@ class Dynamic(object):
         name_is_textual: bool = None,
         ordinal: typing.Union[int, Infinity, NegativeInfinity] = None,
         sforzando: bool = None,
-        tweaks: typing.Union[
-            typing.List[typing.Tuple], LilyPondTweakManager] = None,
+        tweaks: LilyPondTweakManager = None,
         ) -> None:
         if name is not None:
             assert isinstance(name, (str, type(self))), repr(name)
@@ -1282,23 +1281,6 @@ class Dynamic(object):
             >>> note = abjad.Note("c'4")
             >>> dynamic = abjad.Dynamic('f')
             >>> abjad.tweak(dynamic).color = 'blue'
-            >>> abjad.attach(dynamic, note)
-            >>> abjad.show(note) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(note)
-                c'4
-                - \tweak color #blue
-                \f
-
-        ..  container:: example
-
-            >>> note = abjad.Note("c'4")
-            >>> dynamic = abjad.Dynamic(
-            ...     'f',
-            ...     tweaks=[('color', 'blue')],
-            ...     )
             >>> abjad.attach(dynamic, note)
             >>> abjad.show(note) # doctest: +SKIP
 

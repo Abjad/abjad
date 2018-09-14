@@ -7,8 +7,8 @@ def test_NoteHead___copy___01():
     note_head_1 = abjad.NoteHead("cs''")
     note_head_1.is_cautionary = True
     note_head_1.is_forced = True
-    note_head_1.tweaks.color = 'red'
-    note_head_1.tweaks.font_size = -2
+    abjad.tweak(note_head_1).color = 'red'
+    abjad.tweak(note_head_1).font_size = -2
 
     note_head_2 = copy.copy(note_head_1)
 

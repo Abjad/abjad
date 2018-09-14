@@ -59,8 +59,7 @@ class BendAfter(object):
         self,
         bend_amount: typings.Number = -4,
         *,
-        tweaks: typing.Union[
-            typing.List[typing.Tuple], LilyPondTweakManager] = None,
+        tweaks: LilyPondTweakManager = None,
         ) -> None:
         assert isinstance(bend_amount, (int, float)), repr(bend_amount)
         self._bend_amount = bend_amount
@@ -134,8 +133,9 @@ class BendAfter(object):
         ..  container:: example
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> bend = abjad.BendAfter(-4, tweaks=[('color', 'blue')])
-            >>> abjad.attach(bend, staff[0])
+            >>> bend_after = abjad.BendAfter(-4)
+            >>> abjad.tweak(bend_after).color = 'blue'
+            >>> abjad.attach(bend_after, staff[0])
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
