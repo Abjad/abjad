@@ -1252,7 +1252,7 @@ def glissando(
                         )
         if should_attach_glissando:
             glissando = GlissandoIndicator(
-                tweaks=tweaks,
+                tweaks=list(tweaks),
                 zero_padding=zero_padding,
                 )
             attach(
