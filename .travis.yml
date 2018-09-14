@@ -28,6 +28,9 @@ before_install:
 - export MYPYPATH=/tmp/typehints
 - export MYPYPATH=$MYPYPATH:$TONALITY
 - export PATH=/home/travis/bin:$PATH
+- mypy --version
+- pip install --upgrade mypy
+- mypy --version
 
 install:
 # install without development dependencies.
