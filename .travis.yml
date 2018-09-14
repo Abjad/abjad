@@ -28,9 +28,6 @@ before_install:
 - export MYPYPATH=/tmp/typehints
 - export MYPYPATH=$MYPYPATH:$TONALITY
 - export PATH=/home/travis/bin:$PATH
-- mypy --version
-- pip install --upgrade mypy
-- mypy --version
 
 install:
 # install without development dependencies.
@@ -46,6 +43,9 @@ install:
 - pip install -e .[test]
 # install accelerated dependencies if requested
 - if [[ $ACCELERATED == true ]]; then pip install -e .[accelerated]; fi
+- mypy --version
+- pip install --upgrade mypy
+- mypy --version
 
 script:
 #- pip install --quiet -e .[tonality]
