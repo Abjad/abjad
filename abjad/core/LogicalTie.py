@@ -2,6 +2,7 @@ import itertools
 from abjad import exceptions
 from abjad.mathtools.Ratio import Ratio
 from abjad.top.attach import attach
+from abjad.top.detach import detach
 from abjad.top.inspect import inspect
 from abjad.top.mutate import mutate
 from abjad.top.select import select
@@ -52,13 +53,8 @@ class LogicalTie(Selection):
         if new_written_duration.is_assignable:
             self[0].written_duration = new_written_duration
             for leaf in self[1:]:
-                parent = leaf._parent
-                if parent:
-                    index = parent.index(leaf)
-                    del(parent[index])
-            first = self[0]
-            for spanner in first._get_spanners(Tie):
-                spanner._sever_all_leaves()
+                mutate(leaf).extract()
+            detach(Tie, self[0])
         elif new_written_duration.has_power_of_two_denominator:
             durations = maker(0, [new_written_duration])
             for leaf, token in zip(self, durations):
@@ -67,27 +63,22 @@ class LogicalTie(Selection):
                 pass
             elif len(durations) < len(self):
                 for leaf in self[len(durations):]:
-                    parent = leaf._parent
-                    if parent:
-                        index = parent.index(leaf)
-                        del(parent[index])
+                    mutate(leaf).extract()
             elif len(self) < len(durations):
-                for spanner in self[0]._get_spanners(Tie):
-                    spanner._sever_all_leaves()
+                detach(Tie, self[0])
                 difference = len(durations) - len(self)
                 extra_leaves = self[0] * difference
                 for extra_leaf in extra_leaves:
-                    for spanner in extra_leaf._get_spanners():
-                        spanner._remove(extra_leaf)
+                    detach(Tie, extra_leaf)
                 extra_tokens = durations[len(self):]
                 for leaf, token in zip(extra_leaves, extra_tokens):
                     leaf.written_duration = token.written_duration
-                ties = self[-1]._get_spanners(Tie)
-                if not ties:
-                    tie = Tie()
-                    if all(tie._attachment_test(_) for _ in self):
-                        attach(tie, self.leaves)
-                self[-1]._splice(extra_leaves)
+                parent = inspect(self[-1]).parentage().parent
+                index = parent.index(self[-1])
+                next_ = index + 1
+                parent[next_:next_] = extra_leaves
+                leaves = self.leaves + extra_leaves
+                attach(Tie(), leaves)
         else:
             durations = maker(0, new_written_duration)
             assert isinstance(durations[0], Tuplet)

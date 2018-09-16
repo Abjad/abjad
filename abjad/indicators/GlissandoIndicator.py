@@ -94,7 +94,7 @@ class GlissandoIndicator(object):
         self._style = style
         if tweaks is not None:
             assert isinstance(tweaks, LilyPondTweakManager), repr(tweaks)
-        LilyPondTweakManager.set_tweaks(self, tweaks)
+        self._tweaks = LilyPondTweakManager.set_tweaks(self, tweaks)
         if zero_padding is not None:
             zero_padding = bool(zero_padding)
         self._zero_padding = zero_padding

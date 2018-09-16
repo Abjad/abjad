@@ -18,10 +18,10 @@ from abjad.top.inspect import inspect
 from abjad.top.override import override
 from abjad.top.mutate import mutate
 from abjad.top.select import select
-from abjad.top.sequence import sequence
 from abjad.top.setting import setting
 from abjad.utilities.Duration import Duration
 from abjad.utilities.Multiplier import Multiplier
+from abjad.utilities.Sequence import Sequence
 from .Component import Component
 
 
@@ -247,7 +247,6 @@ class Leaf(Component):
     def _format_opening_slot(self, bundle):
         result = []
         result.append(('comments', bundle.opening.comments))
-        #result.append(self._format_after_grace_opening())
         result.append(('indicators', bundle.opening.indicators))
         result.append(('commands', bundle.opening.commands))
         result.append(('spanners', bundle.opening.spanners))
@@ -255,6 +254,17 @@ class Leaf(Component):
 
     def _get_compact_representation(self):
         return f'({self._get_formatted_duration()})'
+
+    def _get_duration_in_seconds(self):
+        mark = self._get_effective(MetronomeMark)
+        if mark is not None and not mark.is_imprecise:
+            result = (
+                self._get_duration() /
+                mark.reference_duration /
+                mark.units_per_minute * 60
+                )
+            return Duration(result)
+        raise exceptions.MissingMetronomeMarkError
 
     def _get_format_pieces(self):
         return self._get_lilypond_format().split('\n')
@@ -270,6 +280,14 @@ class Leaf(Component):
             storage_format_kwargs_names=[],
             )
 
+    def _get_formatted_duration(self):
+        duration_string = self.written_duration.lilypond_duration_string
+        if self.multiplier is not None:
+            result = f'{duration_string} * {self.multiplier!s}'
+        else:
+            result = duration_string
+        return result
+
     def _get_logical_tie(self):
         from abjad.spanners.Tie import Tie
         from .LogicalTie import LogicalTie
@@ -279,7 +297,7 @@ class Leaf(Component):
             return LogicalTie(items=tie.leaves)
         elif 1 < len(ties):
             message = f'parentage of {self!r} contains {len(ties)} ties.'
-            raise Exception(ties)
+            raise Exception(message)
         leaves_before, leaves_after = [], []
         current_leaf = self
         while True:
@@ -306,6 +324,16 @@ class Leaf(Component):
         leaves = leaves_before + [self] + leaves_after
         return LogicalTie(items=leaves)
 
+    def _get_multiplied_duration(self):
+        if self.written_duration:
+            if self.multiplier is not None:
+                duration = self.multiplier * self.written_duration
+                return Duration(duration)
+            return Duration(self.written_duration)
+
+    def _get_preprolated_duration(self):
+        return self._get_multiplied_duration()
+
     def _get_spanner(self, prototype=None):
         spanners = self._get_spanners(prototype=prototype)
         if not spanners:
@@ -314,7 +342,7 @@ class Leaf(Component):
             return spanners.pop()
         else:
             message = f'multiple spanners found: {spanners!r}'
-            raise ExtraSpannerError(message)
+            raise exception.ExtraSpannerError(message)
 
     def _get_spanners(self, prototype=None):
         from abjad.spanners.Spanner import Spanner
@@ -424,21 +452,20 @@ class Leaf(Component):
 
     def _set_duration(self, new_duration, repeat_ties=False):
         from abjad.spanners.Tie import Tie
+        from .Chord import Chord
+        from .Note import Note
         from .NoteMaker import NoteMaker
         from .Tuplet import Tuplet
         new_duration = Duration(new_duration)
-        # change LilyPond multiplier if leaf already has LilyPond multiplier
         if self.multiplier is not None:
             multiplier = new_duration.__div__(self.written_duration)
             self.multiplier = multiplier
             return select(self)
-        # change written duration if new duration is assignable
         try:
             self.written_duration = new_duration
             return select(self)
         except exceptions.AssignabilityError:
             pass
-        # make new notes or tuplets if new duration is nonassignable
         maker = NoteMaker(repeat_ties=repeat_ties)
         components = maker(0, new_duration)
         if isinstance(components[0], Leaf):
@@ -447,12 +474,20 @@ class Leaf(Component):
             all_leaves = [self] + tied_leaves
             for leaf, component in zip(all_leaves, components):
                 leaf.written_duration = component.written_duration
-            self._splice(tied_leaves)
-            if not inspect(self).has_spanner(Tie):
-                tie = Tie()
-                if tie._attachment_test(self):
-                    tie = Tie(repeat=repeat_ties)
-                    attach(tie, all_leaves)
+            logical_tie = self._get_logical_tie()
+            logical_tie_leaves = list(logical_tie.leaves)
+            for leaf in logical_tie:
+                detach(Tie, leaf)
+            if self._parent is not None:
+                index = self._parent.index(self)
+                next_ = index + 1
+                self._parent[next_:next_] = tied_leaves
+            index = logical_tie_leaves.index(self)
+            next_ = index + 1
+            logical_tie_leaves[next_:next_] = tied_leaves
+            if isinstance(self, (Note, Chord)):
+                tie = Tie(repeat=repeat_ties)
+                attach(tie, select(logical_tie_leaves))
             return select(all_leaves)
         else:
             assert isinstance(components[0], Tuplet)
@@ -463,44 +498,24 @@ class Leaf(Component):
             all_leaves = [self] + tied_leaves
             for leaf, component in zip(all_leaves, components):
                 leaf.written_duration = component.written_duration
-            self._splice(tied_leaves)
-            if not inspect(self).has_spanner(Tie):
-                tie = Tie()
-                if tie._attachment_test(self):
-                    tie = Tie(repeat=repeat_ties)
-                    attach(tie, all_leaves)
+            logical_tie = self._get_logical_tie()
+            logical_tie_leaves = list(logical_tie.leaves)
+            for leaf in logical_tie:
+                detach(Tie, leaf)
+            if self._parent is not None:
+                index = self._parent.index(self)
+                next_ = index + 1
+                self._parent[next_:next_] = tied_leaves
+            index = logical_tie_leaves.index(self)
+            next_ = index + 1
+            logical_tie_leaves[next_:next_] = tied_leaves
+            if isinstance(self, (Note, Chord)):
+                tie = Tie(repeat=repeat_ties)
+                attach(tie, select(logical_tie_leaves))
             multiplier = tuplet.multiplier
             tuplet = Tuplet(multiplier, [])
             mutate(all_leaves).wrap(tuplet)
             return select(tuplet)
-
-    def _splice(self, leaves):
-        assert all(isinstance(_, Leaf) for _ in leaves)
-        selection = select(self)
-        insert_offset = inspect(self).timespan().stop_offset
-        receipt = selection._get_dominant_spanners()
-        for spanner, index in receipt:
-            insert_leaf = None
-            for leaf in spanner:
-                start_offset = inspect(leaf).timespan().start_offset
-                if start_offset == insert_offset:
-                    insert_leaf = leaf
-                    break
-            if insert_leaf is not None:
-                insert_index = spanner._index(insert_leaf)
-            else:
-                insert_index = len(spanner)
-            for leaf in reversed(leaves):
-                leaves = select(leaf).leaves()
-                for leaf in reversed(leaves):
-                    spanner._insert(insert_index, leaf)
-                    leaf._append_spanner(spanner)
-        selection = select(self)
-        parent, start, stop = selection._get_parent_and_start_stop_indices()
-        if parent is not None:
-            for leaf in reversed(leaves):
-                leaf._set_parent(parent)
-                parent._components.insert(start + 1, leaf)
 
     def _split_by_durations(
         self,
@@ -517,7 +532,7 @@ class Leaf(Component):
         from .Selection import Selection
         from .Tuplet import Tuplet
         durations = [Duration(_) for _ in durations]
-        durations = sequence(durations)
+        durations = Sequence(durations)
         leaf_duration = inspect(self).duration()
         if cyclic:
             durations = durations.repeat_to_weight(leaf_duration)
@@ -525,10 +540,9 @@ class Leaf(Component):
             last_duration = leaf_duration - sum(durations)
             durations = list(durations)
             durations.append(last_duration)
-            durations = sequence(durations)
+            durations = Sequence(durations)
         durations = durations.truncate(weight=leaf_duration)
         result_selections = []
-        # detach grace containers
         grace_container = self._detach_grace_container()
         after_grace_container = self._detach_after_grace_container()
         leaf_prolation = inspect(self).parentage().prolation
@@ -540,26 +554,20 @@ class Leaf(Component):
                 repeat_ties=repeat_ties,
                 )
             result_selections.append(selection)
-        result_components = sequence(result_selections).flatten(depth=-1)
+        result_components = Sequence(result_selections).flatten(depth=-1)
         result_components = select(result_components)
         result_leaves = select(result_components).leaves()
         assert all(isinstance(_, Selection) for _ in result_selections)
         assert all(isinstance(_, Component) for _ in result_components)
         assert result_leaves.are_leaves()
-        if inspect(self).has_spanner(Tie):
-            for leaf in result_leaves:
-                detach(Tie, leaf)
+        for leaf in result_leaves:
+            detach(Tie, leaf)
         # strip result leaves of all indicators
         for leaf in result_leaves:
             detach(object, leaf)
         # replace leaf with flattened result
-        selection = select(self)
-        parent, start, stop = selection._get_parent_and_start_stop_indices()
-        if parent:
-            parent.__setitem__(slice(start, stop + 1), result_components)
-        else:
-            selection._give_dominant_spanners(result_components)
-            selection._withdraw_from_crossing_spanners()
+        if self._parent is not None:
+            mutate(self).replace(result_components)
         # move indicators
         first_result_leaf = result_leaves[0]
         last_result_leaf = result_leaves[-1]
@@ -590,37 +598,6 @@ class Leaf(Component):
         assert isinstance(result_leaves, Selection)
         assert all(isinstance(_, Leaf) for _ in result_leaves)
         return result_leaves
-
-    ### PRIVATE PROPERTIES ###
-
-    def _get_duration_in_seconds(self):
-        mark = self._get_effective(MetronomeMark)
-        if mark is not None and not mark.is_imprecise:
-            result = (
-                self._get_duration() /
-                mark.reference_duration /
-                mark.units_per_minute * 60
-                )
-            return Duration(result)
-        raise exceptions.MissingMetronomeMarkError
-
-    def _get_formatted_duration(self):
-        duration_string = self.written_duration.lilypond_duration_string
-        if self.multiplier is not None:
-            result = f'{duration_string} * {self.multiplier!s}'
-        else:
-            result = duration_string
-        return result
-
-    def _get_multiplied_duration(self):
-        if self.written_duration:
-            if self.multiplier is not None:
-                duration = self.multiplier * self.written_duration
-                return Duration(duration)
-            return Duration(self.written_duration)
-
-    def _get_preprolated_duration(self):
-        return self._get_multiplied_duration()
 
     ### PUBLIC PROPERTIES ###
 

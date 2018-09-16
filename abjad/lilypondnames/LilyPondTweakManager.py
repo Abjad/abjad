@@ -308,10 +308,10 @@ class LilyPondTweakManager(LilyPondNameManager):
     @staticmethod
     def set_tweaks(
         argument,
-        tweaks: typing.Optional['LilyPondTweakManager'],
-        ) -> None:
+        manager: typing.Optional['LilyPondTweakManager'],
+        ) -> typing.Optional['LilyPondTweakManager']:
         r"""
-        Sets ``tweaks`` on ``argument``.
+        Sets tweaks on ``argument``.
 
         ..  container:: example
 
@@ -321,6 +321,7 @@ class LilyPondTweakManager(LilyPondNameManager):
 
             >>> tweaks = abjad.tweak('blue').color
             >>> abjad.LilyPondTweakManager.set_tweaks(glissando, tweaks)
+            LilyPondTweakManager(('color', 'blue'))
 
             >>> abjad.tweak(glissando)
             LilyPondTweakManager(('color', 'blue'))
@@ -333,32 +334,28 @@ class LilyPondTweakManager(LilyPondNameManager):
                 name = type(argument).__name__
                 message = f'{name} does not implement tweaks.'
                 raise NotImplementedError(message)
-        if tweaks is None:
+        if manager is None:
             return
-        if not isinstance(tweaks, LilyPondTweakManager):
-            raise Exception(f'tweaks must be tweak manager (not {tweaks!r}).')
-        tuples = tweaks._get_attribute_tuples()
-        assert isinstance(tuples, list)
-        assert all(isinstance(_, tuple) for _ in tuples), repr(tuples)
-        if not tuples:
-            return
+        if not isinstance(manager, LilyPondTweakManager):
+            raise Exception(f'must be tweak manager (not {manager!r}).')
         if argument._tweaks is None:
             argument._tweaks = LilyPondTweakManager()
-        manager = argument._tweaks
-        for tuple_ in tuples:
+        existing_manager = argument._tweaks
+        for tuple_ in manager._get_attribute_tuples():
             if len(tuple_) == 2:
                 attribute, value = tuple_
                 value = copy.copy(value)
-                setattr(manager, attribute, value)
+                setattr(existing_manager, attribute, value)
             elif len(tuple_) == 3:
                 grob, attribute, value = tuple_
                 value = copy.copy(value)
-                grob = getattr(manager, grob)
+                grob = getattr(existing_manager, grob)
                 setattr(grob, attribute, value)
             else:
                 message = 'tweak tuple must have length 2 or 3'
                 message += f' (not {tuple_!r}).'
                 raise ValueError(message)
+        return existing_manager
 
 IndexedTweakManager = typing.Union[
     LilyPondTweakManager,

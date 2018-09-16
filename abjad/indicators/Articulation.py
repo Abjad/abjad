@@ -160,7 +160,7 @@ class Articulation(object):
         self._format_slot = 'after'
         if tweaks is not None:
             assert isinstance(tweaks, LilyPondTweakManager), repr(tweaks)
-        LilyPondTweakManager.set_tweaks(self, tweaks)
+        self._tweaks = LilyPondTweakManager.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
 
