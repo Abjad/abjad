@@ -5,6 +5,8 @@ import uqbar.graphs
 from abjad import enums
 from abjad import exceptions
 from abjad.indicators.MetronomeMark import MetronomeMark
+from abjad.indicators.RepeatTie import RepeatTie
+from abjad.indicators.TieIndicator import TieIndicator
 from abjad.mathtools.NonreducedFraction import NonreducedFraction
 from abjad.mathtools.Ratio import Ratio
 from abjad.system.FormatSpecification import FormatSpecification
@@ -14,6 +16,7 @@ from abjad.top.attach import attach
 from abjad.top.detach import detach
 from abjad.top.inspect import inspect
 from abjad.top.override import override
+from abjad.top.mutate import mutate
 from abjad.top.select import select
 from abjad.top.sequence import sequence
 from abjad.top.setting import setting
@@ -268,17 +271,40 @@ class Leaf(Component):
             )
 
     def _get_logical_tie(self):
-        import abjad
-        for component in [self]:
-            ties = inspect(component).spanners(abjad.Tie)
-            if len(ties) == 1:
-                tie = ties.pop()
-                return abjad.LogicalTie(items=tie.leaves)
-            elif 1 < len(ties):
-                message = f'parentage of {self!r} contains {len(ties)} ties.'
-                raise Exception(ties)
-        else:
-            return abjad.LogicalTie(items=self)
+        from abjad.spanners.Tie import Tie
+        from .LogicalTie import LogicalTie
+        ties = inspect(self).spanners(Tie)
+        if len(ties) == 1:
+            tie = ties.pop()
+            return LogicalTie(items=tie.leaves)
+        elif 1 < len(ties):
+            message = f'parentage of {self!r} contains {len(ties)} ties.'
+            raise Exception(ties)
+        leaves_before, leaves_after = [], []
+        current_leaf = self
+        while True:
+            previous_leaf = inspect(current_leaf).leaf(-1)
+            if previous_leaf is None:
+                break
+            if (inspect(current_leaf).has_indicator(RepeatTie) or
+                inspect(previous_leaf).has_indicator(TieIndicator)):
+                leaves_before.insert(0, previous_leaf)
+            else:
+                break
+            current_leaf = previous_leaf
+        current_leaf = self
+        while True:
+            next_leaf = inspect(current_leaf).leaf(1)
+            if next_leaf is None:
+                break
+            if (inspect(current_leaf).has_indicator(TieIndicator) or
+                inspect(next_leaf).has_indicator(RepeatTie)):
+                leaves_after.append(next_leaf)
+            else:
+                break
+            current_leaf = next_leaf
+        leaves = leaves_before + [self] + leaves_after
+        return LogicalTie(items=leaves)
 
     def _get_spanner(self, prototype=None):
         spanners = self._get_spanners(prototype=prototype)
@@ -291,8 +317,8 @@ class Leaf(Component):
             raise ExtraSpannerError(message)
 
     def _get_spanners(self, prototype=None):
-        import abjad
-        prototype = prototype or (abjad.Spanner,)
+        from abjad.spanners.Spanner import Spanner
+        prototype = prototype or (Spanner,)
         if not isinstance(prototype, tuple):
             prototype = (prototype, )
         spanner_items = prototype[:]
@@ -300,7 +326,7 @@ class Leaf(Component):
         for spanner_item in spanner_items:
             if isinstance(spanner_item, type):
                 prototype.append(spanner_item)
-            elif isinstance(spanner_item, abjad.Spanner):
+            elif isinstance(spanner_item, Spanner):
                 spanner_objects.append(spanner_item)
             else:
                 message = 'must be spanner class or spanner object'
@@ -397,7 +423,9 @@ class Leaf(Component):
         self._set_duration(new_duration)
 
     def _set_duration(self, new_duration, repeat_ties=False):
-        import abjad
+        from abjad.spanners.Tie import Tie
+        from .NoteMaker import NoteMaker
+        from .Tuplet import Tuplet
         new_duration = Duration(new_duration)
         # change LilyPond multiplier if leaf already has LilyPond multiplier
         if self.multiplier is not None:
@@ -411,9 +439,7 @@ class Leaf(Component):
         except exceptions.AssignabilityError:
             pass
         # make new notes or tuplets if new duration is nonassignable
-        maker = abjad.NoteMaker(
-            repeat_ties=repeat_ties,
-            )
+        maker = NoteMaker(repeat_ties=repeat_ties)
         components = maker(0, new_duration)
         if isinstance(components[0], Leaf):
             tied_leaf_count = len(components) - 1
@@ -421,15 +447,15 @@ class Leaf(Component):
             all_leaves = [self] + tied_leaves
             for leaf, component in zip(all_leaves, components):
                 leaf.written_duration = component.written_duration
-            self._splice(tied_leaves, grow_spanners=True)
-            if not inspect(self).has_spanner(abjad.Tie):
-                tie = abjad.Tie()
+            self._splice(tied_leaves)
+            if not inspect(self).has_spanner(Tie):
+                tie = Tie()
                 if tie._attachment_test(self):
-                    tie = abjad.Tie(repeat=repeat_ties)
+                    tie = Tie(repeat=repeat_ties)
                     attach(tie, all_leaves)
             return select(all_leaves)
         else:
-            assert isinstance(components[0], abjad.Tuplet)
+            assert isinstance(components[0], Tuplet)
             tuplet = components[0]
             components = tuplet[:]
             tied_leaf_count = len(components) - 1
@@ -437,16 +463,44 @@ class Leaf(Component):
             all_leaves = [self] + tied_leaves
             for leaf, component in zip(all_leaves, components):
                 leaf.written_duration = component.written_duration
-            self._splice(tied_leaves, grow_spanners=True)
-            if not inspect(self).has_spanner(abjad.Tie):
-                tie = abjad.Tie()
+            self._splice(tied_leaves)
+            if not inspect(self).has_spanner(Tie):
+                tie = Tie()
                 if tie._attachment_test(self):
-                    tie = abjad.Tie(repeat=repeat_ties)
+                    tie = Tie(repeat=repeat_ties)
                     attach(tie, all_leaves)
             multiplier = tuplet.multiplier
-            tuplet = abjad.Tuplet(multiplier, [])
-            abjad.mutate(all_leaves).wrap(tuplet)
+            tuplet = Tuplet(multiplier, [])
+            mutate(all_leaves).wrap(tuplet)
             return select(tuplet)
+
+    def _splice(self, leaves):
+        assert all(isinstance(_, Leaf) for _ in leaves)
+        selection = select(self)
+        insert_offset = inspect(self).timespan().stop_offset
+        receipt = selection._get_dominant_spanners()
+        for spanner, index in receipt:
+            insert_leaf = None
+            for leaf in spanner:
+                start_offset = inspect(leaf).timespan().start_offset
+                if start_offset == insert_offset:
+                    insert_leaf = leaf
+                    break
+            if insert_leaf is not None:
+                insert_index = spanner._index(insert_leaf)
+            else:
+                insert_index = len(spanner)
+            for leaf in reversed(leaves):
+                leaves = select(leaf).leaves()
+                for leaf in reversed(leaves):
+                    spanner._insert(insert_index, leaf)
+                    leaf._append_spanner(spanner)
+        selection = select(self)
+        parent, start, stop = selection._get_parent_and_start_stop_indices()
+        if parent is not None:
+            for leaf in reversed(leaves):
+                leaf._set_parent(parent)
+                parent._components.insert(start + 1, leaf)
 
     def _split_by_durations(
         self,
@@ -455,7 +509,13 @@ class Leaf(Component):
         tie_split_notes=True,
         repeat_ties=False,
         ):
-        import abjad
+        from abjad.spanners.Tie import Tie
+        from .AfterGraceContainer import AfterGraceContainer
+        from .Chord import Chord
+        from .GraceContainer import GraceContainer
+        from .Note import Note
+        from .Selection import Selection
+        from .Tuplet import Tuplet
         durations = [Duration(_) for _ in durations]
         durations = sequence(durations)
         leaf_duration = inspect(self).duration()
@@ -483,12 +543,12 @@ class Leaf(Component):
         result_components = sequence(result_selections).flatten(depth=-1)
         result_components = select(result_components)
         result_leaves = select(result_components).leaves()
-        assert all(isinstance(_, abjad.Selection) for _ in result_selections)
+        assert all(isinstance(_, Selection) for _ in result_selections)
         assert all(isinstance(_, Component) for _ in result_components)
         assert result_leaves.are_leaves()
-        if inspect(self).has_spanner(abjad.Tie):
+        if inspect(self).has_spanner(Tie):
             for leaf in result_leaves:
-                detach(abjad.Tie, leaf)
+                detach(Tie, leaf)
         # strip result leaves of all indicators
         for leaf in result_leaves:
             detach(object, leaf)
@@ -515,22 +575,20 @@ class Leaf(Component):
         # move grace containers
         if grace_container is not None:
             container = grace_container[0]
-            assert isinstance(container, abjad.GraceContainer), repr(container)
+            assert isinstance(container, GraceContainer), repr(container)
             attach(container, first_result_leaf)
         if after_grace_container is not None:
             container = after_grace_container[0]
-            prototype = abjad.AfterGraceContainer
+            prototype = AfterGraceContainer
             assert isinstance(container, prototype), repr(container)
             attach(container, last_result_leaf)
-        if isinstance(result_components[0], abjad.Tuplet):
-            abjad.mutate(result_components).fuse()
+        if isinstance(result_components[0], Tuplet):
+            mutate(result_components).fuse()
         # tie split notes
-        if isinstance(self, (abjad.Note, abjad.Chord)) and tie_split_notes:
-            result_leaves._attach_tie_to_leaves(
-                repeat_ties=repeat_ties,
-                )
-        assert isinstance(result_leaves, abjad.Selection)
-        assert all(isinstance(_, abjad.Leaf) for _ in result_leaves)
+        if isinstance(self, (Note, Chord)) and tie_split_notes:
+            result_leaves._attach_tie_to_leaves(repeat_ties=repeat_ties)
+        assert isinstance(result_leaves, Selection)
+        assert all(isinstance(_, Leaf) for _ in result_leaves)
         return result_leaves
 
     ### PRIVATE PROPERTIES ###

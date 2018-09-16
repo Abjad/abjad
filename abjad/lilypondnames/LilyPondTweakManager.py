@@ -327,9 +327,13 @@ class LilyPondTweakManager(LilyPondNameManager):
 
         """
         if not hasattr(argument, '_tweaks'):
-            name = type(argument).__name__
-            raise NotImplementedError(f'{name} does not allow tweaks (yet).')
-        if not tweaks:
+            try: 
+                argument._tweaks = None
+            except AttributeError:
+                name = type(argument).__name__
+                message = f'{name} does not implement tweaks.'
+                raise NotImplementedError(message)
+        if tweaks is None:
             return
         if not isinstance(tweaks, LilyPondTweakManager):
             raise Exception(f'tweaks must be tweak manager (not {tweaks!r}).')

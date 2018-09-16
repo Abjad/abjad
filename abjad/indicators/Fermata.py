@@ -122,7 +122,8 @@ class Fermata(object):
         ) -> None:
         assert command in self._allowable_commands, repr(command)
         self._command = command
-        self._tweaks = None
+        if tweaks is not None:
+            assert isinstance(tweaks, LilyPondTweakManager), repr(tweaks)
         LilyPondTweakManager.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###

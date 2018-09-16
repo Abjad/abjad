@@ -93,7 +93,8 @@ class StartPianoPedal(object):
         if kind is not None:
             assert kind in ('sustain', 'sostenuto', 'corda')
         self._kind = kind
-        self._tweaks = None
+        if tweaks is not None:
+            assert isinstance(tweaks, LilyPondTweakManager), repr(tweaks)
         LilyPondTweakManager.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###

@@ -84,7 +84,8 @@ class ColorFingering(object):
         if number is not None:
             assert mathtools.is_positive_integer(number)
         self._number = number
-        self._tweaks = None
+        if tweaks is not None:
+            assert isinstance(tweaks, LilyPondTweakManager), repr(tweaks)
         LilyPondTweakManager.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ##

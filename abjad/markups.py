@@ -241,7 +241,8 @@ class Markup(object):
         if literal is not None:
             literal = bool(literal)
         self._literal = literal
-        self._tweaks = None
+        if tweaks is not None:
+            assert isinstance(tweaks, LilyPondTweakManager), repr(tweaks)
         LilyPondTweakManager.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###

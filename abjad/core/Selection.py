@@ -686,11 +686,7 @@ class Selection(collections.Sequence):
         first_type = type(first)
         for tuplet in self[1:]:
             if tuplet.multiplier != first_multiplier:
-                message = 'tuplets must carry same multiplier.'
-                raise ValueError(message)
-            if type(tuplet) != first_type:
-                message = 'tuplets must be same type.'
-                raise TypeError(message)
+                raise ValueError('tuplets must carry same multiplier.')
         assert isinstance(first, Tuplet)
         new_tuplet = Tuplet(first_multiplier, [])
         wrapped = False

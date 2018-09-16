@@ -1683,7 +1683,7 @@ class MetronomeMark(object):
             >>> maker = abjad.NoteMaker()
             >>> durations = [(1, 16), (3, 16), (1, 16)]
             >>> selection = maker([0], durations)
-            >>> abjad.attach(abjad.Tie(), selection)
+            >>> abjad.tie(selection)
             >>> abjad.beam(selection)
             >>> markup = abjad.MetronomeMark.make_tempo_equation_markup(selection, 90)
             >>> abjad.show(markup) # doctest: +SKIP

@@ -638,8 +638,7 @@ class RhythmTreeContainer(
                     leaves = child(basic_written_duration)
                     tuplet.extend(leaves)
                     if 1 < len(leaves):
-                        tie = abjad.Tie()
-                        abjad.attach(tie, leaves)
+                        abjad.tie(leaves)
             assert tuplet.multiplier == 1, repr(tuplet.multiplier)
             contents_duration = abjad.inspect(tuplet).duration()
             target_duration = tuplet_duration

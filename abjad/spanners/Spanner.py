@@ -20,6 +20,7 @@ from abjad.indicators.GlissandoIndicator import GlissandoIndicator
 from abjad.indicators.HairpinIndicator import HairpinIndicator
 from abjad.indicators.LilyPondLiteral import LilyPondLiteral
 from abjad.indicators.Ottava import Ottava
+from abjad.indicators.RepeatTie import RepeatTie
 from abjad.indicators.StartBeam import StartBeam
 from abjad.indicators.StartGroup import StartGroup
 from abjad.indicators.StartPhrasingSlur import StartPhrasingSlur
@@ -35,6 +36,7 @@ from abjad.indicators.StopPhrasingSlur import StopPhrasingSlur
 from abjad.indicators.StopPianoPedal import StopPianoPedal
 from abjad.indicators.StopTextSpan import StopTextSpan
 from abjad.indicators.StopTrillSpan import StopTrillSpan
+from abjad.indicators.TieIndicator import TieIndicator
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.scheme import SchemeSymbol
 from abjad.system.FormatSpecification import FormatSpecification
@@ -49,6 +51,7 @@ from abjad.top.attach import attach
 from abjad.top.detach import detach
 from abjad.top.inspect import inspect
 from abjad.top.iterate import iterate
+from abjad.top.new import new
 from abjad.top.override import override
 from abjad.top.select import select
 from abjad.top.setting import setting
@@ -781,7 +784,10 @@ def beam(
             beam_count = BeamCount(left, right)
             attach(beam_count, middle_leaf, tag=tag)
 
-def bow_contact_spanner(argument) -> None:
+def bow_contact_spanner(
+    argument,
+    tag: str = None,
+    ) -> None:
     r"""
     Attaches bow contact format indicators.
 
@@ -1092,7 +1098,7 @@ def bow_contact_spanner(argument) -> None:
         if bow_motion_technique is not None:
             style = SchemeSymbol(bow_motion_technique.glissando_style)
             tweak(glissando).style = style
-        attach(glissando, leaf)
+        attach(glissando, leaf, tag=tag)
         _make_bow_direction_change_contributions(leaf, leaves, bow_contact_point)
 
     leaves = select(argument).leaves()
@@ -1588,6 +1594,7 @@ def hairpin(
     argument: typing.Union[Component, Selection],
     *,
     selector: typings.Selector = 'abjad.select().leaves()',
+    tag: str = None,
     ) -> None:
     r"""
     Attaches hairpin indicators.
@@ -1734,11 +1741,11 @@ def hairpin(
     stop_leaf = leaves[-1]
 
     if start_dynamic is not None:
-        attach(start_dynamic, start_leaf)
+        attach(start_dynamic, start_leaf, tag=tag)
     if hairpin is not None:
-        attach(hairpin, start_leaf)
+        attach(hairpin, start_leaf, tag=tag)
     if stop_dynamic is not None:
-        attach(stop_dynamic, stop_leaf)
+        attach(stop_dynamic, stop_leaf, tag=tag)
 
 def horizontal_bracket(
     argument: typing.Union[Component, Selection],
@@ -1746,13 +1753,12 @@ def horizontal_bracket(
     selector: typings.Selector = 'abjad.select().leaves()',
     start_group: StartGroup = None,
     stop_group: StopGroup = None,
+    tag: str = None,
     ) -> None:
     r"""
     Attaches group indicators.
 
     ..  container:: example
-
-        Single spanner:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> abjad.horizontal_bracket(staff[:])
@@ -1783,8 +1789,8 @@ def horizontal_bracket(
     leaves = select(argument).leaves()
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
-    attach(start_group, start_leaf)
-    attach(stop_group, stop_leaf)
+    attach(start_group, start_leaf, tag=tag)
+    attach(stop_group, stop_leaf, tag=tag)
 
 def ottava(
     argument: typing.Union[Component, Selection],
@@ -1792,13 +1798,12 @@ def ottava(
     selector: typings.Selector = 'abjad.select().leaves()',
     start_ottava: Ottava = Ottava(n=1),
     stop_ottava: Ottava = Ottava(n=0, format_slot='after'),
+    tag: str = None,
     ) -> None:
     r"""
     Attaches ottava indicators.
 
     ..  container:: example
-
-        Single spanner:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> abjad.ottava(staff[:])
@@ -1829,8 +1834,8 @@ def ottava(
     leaves = select(argument).leaves()
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
-    attach(start_ottava, start_leaf)
-    attach(stop_ottava, stop_leaf)
+    attach(start_ottava, start_leaf, tag=tag)
+    attach(stop_ottava, stop_leaf, tag=tag)
 
 def phrasing_slur(
     argument: typing.Union[Component, Selection],
@@ -1838,13 +1843,12 @@ def phrasing_slur(
     selector: typings.Selector = 'abjad.select().leaves()',
     start_phrasing_slur: StartPhrasingSlur = None,
     stop_phrasing_slur: StopPhrasingSlur = None,
+    tag: str = None,
     ) -> None:
     r"""
     Attaches phrasing slur indicators.
 
     ..  container:: example
-
-        Single spanner:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> abjad.phrasing_slur(staff[:])
@@ -1878,8 +1882,8 @@ def phrasing_slur(
     stop_leaf = leaves[-1]
     start_phrasing_slur = start_phrasing_slur or StartPhrasingSlur()
     stop_phrasing_slur = stop_phrasing_slur or StopPhrasingSlur()
-    attach(start_phrasing_slur, start_leaf)
-    attach(stop_phrasing_slur, stop_leaf)
+    attach(start_phrasing_slur, start_leaf, tag=tag)
+    attach(stop_phrasing_slur, stop_leaf, tag=tag)
 
 def piano_pedal(
     argument: typing.Union[Component, Selection],
@@ -1887,6 +1891,7 @@ def piano_pedal(
     selector: typings.Selector = 'abjad.select().leaves()',
     start_piano_pedal: StartPianoPedal = None,
     stop_piano_pedal: StopPianoPedal = None,
+    tag: str = None,
     ) -> None:
     r"""
     Attaches piano pedal indicators.
@@ -1929,8 +1934,8 @@ def piano_pedal(
     leaves = select(argument).leaves()
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
-    attach(start_piano_pedal, start_leaf)
-    attach(stop_piano_pedal, stop_leaf)
+    attach(start_piano_pedal, start_leaf, tag=tag)
+    attach(stop_piano_pedal, stop_leaf, tag=tag)
 
 def slur(
     argument: typing.Union[Component, Selection],
@@ -1938,13 +1943,12 @@ def slur(
     selector: typings.Selector = 'abjad.select().leaves()',
     start_slur: StartSlur = None,
     stop_slur: StopSlur = None,
+    tag: str = None,
     ) -> None:
     r"""
     Attaches slur indicators.
 
     ..  container:: example
-
-        Single spanner:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> abjad.slur(staff[:])
@@ -1976,8 +1980,8 @@ def slur(
     leaves = select(argument).leaves()
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
-    attach(start_slur, start_leaf)
-    attach(stop_slur, stop_leaf)
+    attach(start_slur, start_leaf, tag=tag)
+    attach(stop_slur, stop_leaf, tag=tag)
 
 def text_spanner(
     argument: typing.Union[Component, Selection],
@@ -1985,6 +1989,7 @@ def text_spanner(
     selector: typings.Selector = 'abjad.select().leaves()',
     start_text_span: StartTextSpan = None,
     stop_text_span: StopTextSpan = None,
+    tag: str = None,
     ) -> None:
     r"""
     Attaches text span indicators.
@@ -2159,8 +2164,125 @@ def text_spanner(
     leaves = select(argument).leaves()
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
-    attach(start_text_span, start_leaf)
-    attach(stop_text_span, stop_leaf)
+    attach(start_text_span, start_leaf, tag=tag)
+    attach(stop_text_span, stop_leaf, tag=tag)
+
+def tie(
+    argument: typing.Union[Component, Selection],
+    *,
+    direction: enums.VerticalAlignment = None,
+    selector: typings.Selector = 'abjad.select().leaves()',
+    tie: TieIndicator = None,
+    tag: str = None,
+    ) -> None:
+    r"""
+    Attaches tie indicators.
+
+    ..  container:: example
+
+        >>> staff = abjad.Staff("c'4 c' c' c'")
+        >>> abjad.tie(staff[:])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                c'4
+                ~
+                c'4
+                ~
+                c'4
+                ~
+                c'4
+            }
+
+    ..  container:: example
+
+        Removes any existing ties before attaching new tie:
+
+        >>> staff = abjad.Staff("c'4 ~ c' ~ c' ~ c'")
+        >>> abjad.tie(staff[:])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                c'4
+                ~
+                c'4
+                ~
+                c'4
+                ~
+                c'4
+            }
+
+    ..  container:: example
+
+        Ties consecutive chords if all adjacent pairs have at least one pitch
+        in common:
+
+        >>> staff = abjad.Staff("<c'>4 <c' d'>4 <d'>4")
+        >>> abjad.tie(staff[:])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                <c'>4
+                ~
+                <c' d'>4
+                ~
+                <d'>4
+            }
+
+    ..  container:: example
+
+        Enharmonics are allowed:
+
+        >>> staff = abjad.Staff("c'4 bs c' dff'")
+        >>> abjad.tie(staff[:])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                c'4
+                ~
+                bs4
+                ~
+                c'4
+                ~
+                dff'4
+            }
+
+    """
+    # import allows eval statement
+    import abjad
+    from .Tie import Tie
+    tie = tie or TieIndicator()
+    if isinstance(selector, str):
+        selector = eval(selector)
+    assert isinstance(selector, Expression)
+    argument = selector(argument)
+    leaves = select(argument).leaves()
+    if len(leaves) < 2:
+        raise Exception('must be two or more notes (not {leaves!r}).')
+    for leaf in leaves:
+        if not isinstance(leaf, (Note, Chord)):
+            raise Exception(r'tie note or chord (not {leaf!r}).')
+    for leaf in leaves[:-1]:
+        detach(TieIndicator, leaf)
+        detach(Tie, leaf)
+        tie = new(tie, direction=direction)
+        attach(tie, leaf, tag=tag)
 
 def trill_spanner(
     argument: typing.Union[Component, Selection],
@@ -2168,13 +2290,12 @@ def trill_spanner(
     selector: typings.Selector = 'abjad.select().leaves()',
     start_trill_span: StartTrillSpan = None,
     stop_trill_span: StopTrillSpan = None,
+    tag: str = None,
     ) -> None:
     r"""
     Attaches trill spanner indicators.
 
     ..  container:: example
-
-        Single spanner:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> abjad.trill_spanner(staff[:])
@@ -2205,5 +2326,5 @@ def trill_spanner(
     leaves = select(argument).leaves()
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
-    attach(start_trill_span, start_leaf)
-    attach(stop_trill_span, stop_leaf)
+    attach(start_trill_span, start_leaf, tag=tag)
+    attach(stop_trill_span, stop_leaf, tag=tag)

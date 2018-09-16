@@ -137,7 +137,8 @@ class StartTextSpan(object):
         if style is not None:
             assert style in self._styles, repr(style)
         self._style = style
-        self._tweaks = None
+        if tweaks is not None:
+            assert isinstance(tweaks, LilyPondTweakManager), repr(tweaks)
         LilyPondTweakManager.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###

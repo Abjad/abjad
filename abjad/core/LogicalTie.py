@@ -1,6 +1,10 @@
 import itertools
 from abjad import exceptions
 from abjad.mathtools.Ratio import Ratio
+from abjad.top.attach import attach
+from abjad.top.inspect import inspect
+from abjad.top.mutate import mutate
+from abjad.top.select import select
 from abjad.utilities.Duration import Duration
 from .Selection import Selection
 
@@ -40,9 +44,11 @@ class LogicalTie(Selection):
 
     def _add_or_remove_notes_to_achieve_written_duration(
         self, new_written_duration):
-        import abjad
+        from abjad.spanners.Tie import Tie
+        from .NoteMaker import NoteMaker
+        from .Tuplet import Tuplet
         new_written_duration = Duration(new_written_duration)
-        maker = abjad.NoteMaker()
+        maker = NoteMaker()
         if new_written_duration.is_assignable:
             self[0].written_duration = new_written_duration
             for leaf in self[1:]:
@@ -51,7 +57,7 @@ class LogicalTie(Selection):
                     index = parent.index(leaf)
                     del(parent[index])
             first = self[0]
-            for spanner in first._get_spanners(abjad.Tie):
+            for spanner in first._get_spanners(Tie):
                 spanner._sever_all_leaves()
         elif new_written_duration.has_power_of_two_denominator:
             durations = maker(0, [new_written_duration])
@@ -66,7 +72,7 @@ class LogicalTie(Selection):
                         index = parent.index(leaf)
                         del(parent[index])
             elif len(self) < len(durations):
-                for spanner in self[0]._get_spanners(abjad.Tie):
+                for spanner in self[0]._get_spanners(Tie):
                     spanner._sever_all_leaves()
                 difference = len(durations) - len(self)
                 extra_leaves = self[0] * difference
@@ -76,22 +82,22 @@ class LogicalTie(Selection):
                 extra_tokens = durations[len(self):]
                 for leaf, token in zip(extra_leaves, extra_tokens):
                     leaf.written_duration = token.written_duration
-                ties = self[-1]._get_spanners(abjad.Tie)
+                ties = self[-1]._get_spanners(Tie)
                 if not ties:
-                    tie = abjad.Tie()
+                    tie = Tie()
                     if all(tie._attachment_test(_) for _ in self):
-                        abjad.attach(tie, self.leaves)
-                self[-1]._splice(extra_leaves, grow_spanners=True)
+                        attach(tie, self.leaves)
+                self[-1]._splice(extra_leaves)
         else:
             durations = maker(0, new_written_duration)
-            assert isinstance(durations[0], abjad.Tuplet)
+            assert isinstance(durations[0], Tuplet)
             tuplet = durations[0]
             logical_tie = tuplet[0]._get_logical_tie()
             duration = logical_tie._get_preprolated_duration()
             self._add_or_remove_notes_to_achieve_written_duration(duration)
             multiplier = tuplet.multiplier
-            tuplet = abjad.Tuplet(multiplier, [])
-            abjad.mutate(self.leaves).wrap(tuplet)
+            tuplet = Tuplet(multiplier, [])
+            mutate(self.leaves).wrap(tuplet)
         return self[0]._get_logical_tie()
 
     def _fuse_leaves_by_immediate_parent(self):
@@ -102,11 +108,10 @@ class LogicalTie(Selection):
         return result
 
     def _get_leaves_grouped_by_immediate_parents(self):
-        import abjad
         result = []
         pairs_generator = itertools.groupby(self, lambda x: id(x._parent))
         for key, values_generator in pairs_generator:
-            group = abjad.select(list(values_generator))
+            group = select(list(values_generator))
             result.append(group)
         return result
 
@@ -134,8 +139,9 @@ class LogicalTie(Selection):
 
         Returns true or false.
         """
-        import abjad
-        return isinstance(self.head, (abjad.Note, abjad.Chord))
+        from .Chord import Chord
+        from .Note import Note
+        return isinstance(self.head, (Chord, Note))
 
     @property
     def is_trivial(self):
@@ -153,14 +159,15 @@ class LogicalTie(Selection):
 
         Returns selection.
         """
-        import abjad
+        from abjad.spanners.Tie import Tie
+        from .Selection import Selection
         try:
-            tie = self[0]._get_spanner(prototype=abjad.Tie)
+            tie = self[0]._get_spanner(Tie)
         except exceptions.MissingSpannerError:
             assert self.is_trivial
-            return abjad.select(self[0])
+            return Selection(self[0])
         selection = tie.leaves
-        assert isinstance(selection, abjad.Selection)
+        assert isinstance(selection, Selection)
         return selection
 
     @property
@@ -180,8 +187,8 @@ class LogicalTie(Selection):
 
         Returns tie spanner.
         """
-        import abjad
-        return abjad.inspect(self[0]).spanner(abjad.Tie)
+        from abjad.spanners.Tie import Tie
+        return inspect(self[0]).spanner(Tie)
 
     @property
     def written_duration(self):
@@ -289,7 +296,11 @@ class LogicalTie(Selection):
 
         Returns tuplet.
         """
-        import abjad
+        from abjad.spanners.Tie import Tie
+        from .Note import Note
+        from .Note import Note
+        from .NoteMaker import NoteMaker
+        from .Tuplet import Tuplet
         proportions = Ratio(proportions)
         target_duration = self._get_preprolated_duration()
         prolated_duration = target_duration / sum(proportions.numbers)
@@ -298,9 +309,9 @@ class LogicalTie(Selection):
         written_durations = [
             _ * basic_written_duration for _ in proportions.numbers
             ]
-        maker = abjad.NoteMaker()
+        maker = NoteMaker()
         try:
-            notes = [abjad.Note(0, _) for _ in written_durations]
+            notes = [Note(0, _) for _ in written_durations]
         except exceptions.AssignabilityError:
             denominator = target_duration._denominator
             note_durations = [
@@ -308,9 +319,9 @@ class LogicalTie(Selection):
                 for _ in proportions.numbers
                 ]
             notes = maker(0, note_durations)
-        tuplet = abjad.Tuplet.from_duration(target_duration, notes)
+        tuplet = Tuplet.from_duration(target_duration, notes)
         for leaf in self:
-            for spanner in leaf._get_spanners(abjad.Tie):
+            for spanner in leaf._get_spanners(Tie):
                 spanner._sever_all_leaves()
-        abjad.mutate(self).replace(tuplet)
+        mutate(self).replace(tuplet)
         return tuplet

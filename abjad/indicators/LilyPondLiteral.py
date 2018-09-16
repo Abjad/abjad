@@ -181,7 +181,8 @@ class LilyPondLiteral(object):
         if directed is not None:
             directed = bool(directed)
         self._directed = directed
-        self._tweaks = None
+        if tweaks is not None:
+            assert isinstance(tweaks, LilyPondTweakManager), repr(tweaks)
         LilyPondTweakManager.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###

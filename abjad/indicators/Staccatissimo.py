@@ -84,7 +84,8 @@ class Staccatissimo(object):
             directions = (enums.Up, enums.Down, enums.Center, None)
             assert direction_ in directions, repr(direction_)
         self._direction = direction_
-        self._tweaks = None
+        if tweaks is not None:
+            assert isinstance(tweaks, LilyPondTweakManager), repr(tweaks)
         LilyPondTweakManager.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###

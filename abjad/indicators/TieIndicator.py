@@ -1,26 +1,21 @@
 import typing
 from abjad import enums
-from abjad import markups
-from abjad import typings
-from abjad.lilypondnames.LilyPondGrobOverride import LilyPondGrobOverride
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.utilities.String import String
 
 
-class StartPhrasingSlur(object):
+class TieIndicator(object):
     r"""
-    LilyPond ``(`` command.
+    LilyPond ``~`` command.
 
     ..  container:: example
 
-        >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> start_phrasing_slur = abjad.StartPhrasingSlur()
-        >>> abjad.tweak(start_phrasing_slur).color = 'blue'
-        >>> abjad.attach(start_phrasing_slur, staff[0])
-        >>> stop_phrasing_slur = abjad.StopPhrasingSlur()
-        >>> abjad.attach(stop_phrasing_slur, staff[-1])
+        >>> staff = abjad.Staff("c'4 c' d' d'")
+        >>> tie = abjad.TieIndicator()
+        >>> abjad.tweak(tie).color = 'blue'
+        >>> abjad.attach(tie, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -30,17 +25,19 @@ class StartPhrasingSlur(object):
             {
                 c'4
                 - \tweak color #blue
-                \(
+                ~
+                c'4
                 d'4
-                e'4
-                f'4
-                \)
+                d'4
             }
 
-    ..  container:: example
-
-        >>> abjad.StartPhrasingSlur()
-        StartPhrasingSlur()
+        >>> for leaf in staff:
+        ...     leaf, abjad.inspect(leaf).logical_tie()
+        ...
+        (Note("c'4"), LogicalTie([Note("c'4"), Note("c'4")]))
+        (Note("c'4"), LogicalTie([Note("c'4"), Note("c'4")]))
+        (Note("d'4"), LogicalTie([Note("d'4")]))
+        (Note("d'4"), LogicalTie([Note("d'4")]))
 
     """
 
@@ -48,12 +45,11 @@ class StartPhrasingSlur(object):
 
     __slots__ = (
         '_direction',
+        '_right_broken',
         '_tweaks',
         )
 
     _context = 'Voice'
-
-    _parameter = 'PHRASING_SLUR'
 
     _persistent = True
 
@@ -65,9 +61,14 @@ class StartPhrasingSlur(object):
         self,
         *,
         direction: enums.VerticalAlignment = None,
+        right_broken: bool = None,
         tweaks: LilyPondTweakManager = None,
         ) -> None:
-        self._direction = direction
+        direction_ = String.to_tridirectional_lilypond_symbol(direction)
+        self._direction = direction_
+        if right_broken is not None:
+            right_broken = bool(right_broken)
+        self._right_broken = right_broken
         if tweaks is not None:
             assert isinstance(tweaks, LilyPondTweakManager), repr(tweaks)
         LilyPondTweakManager.set_tweaks(self, tweaks)
@@ -91,7 +92,7 @@ class StartPhrasingSlur(object):
         except TypeError:
             raise TypeError(f'unhashable type: {self}')
         return result
-
+    
     def __repr__(self) -> str:
         """
         Gets interpreter representation.
@@ -101,7 +102,7 @@ class StartPhrasingSlur(object):
     ### PRIVATE METHODS ###
 
     def _add_direction(self, string):
-        if getattr(self, 'direction', False):
+        if getattr(self, 'direction', None) is not None:
             string = f'{self.direction} {string}'
         return string
 
@@ -110,7 +111,7 @@ class StartPhrasingSlur(object):
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions()
             bundle.after.spanner_starts.extend(tweaks)
-        string = self._add_direction('\(')
+        string = self._add_direction('~')
         bundle.after.spanner_starts.append(string)
         return bundle
 
@@ -123,7 +124,7 @@ class StartPhrasingSlur(object):
 
         ..  container:: example
 
-            >>> abjad.StartPhrasingSlur().context
+            >>> abjad.TieIndicator().context
             'Voice'
 
         Class constant.
@@ -133,25 +134,33 @@ class StartPhrasingSlur(object):
         return self._context
 
     @property
-    def direction(self) -> typing.Optional[enums.VerticalAlignment]:
-        """
+    def direction(self) -> typing.Optional[str]:
+        r"""
         Gets direction.
-        """
-        return self._direction
-
-    @property
-    def parameter(self) -> str:
-        """
-        Returns ``'PHRASING_SLUR'``.
 
         ..  container:: example
 
-            >>> abjad.StartPhrasingSlur().parameter
-            'PHRASING_SLUR'
+            >>> staff = abjad.Staff("c'4 c' d' d'")
+            >>> tie = abjad.TieIndicator(direction=abjad.Up)
+            >>> abjad.tweak(tie).color = 'blue'
+            >>> abjad.attach(tie, staff[0])
+            >>> abjad.show(staff) # doctest: +SKIP
 
-        Class constant.
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    c'4
+                    - \tweak color #blue
+                    ^ ~
+                    c'4
+                    d'4
+                    d'4
+                }
+
         """
-        return self._parameter
+        return self._direction
 
     @property
     def persistent(self) -> bool:
@@ -160,25 +169,12 @@ class StartPhrasingSlur(object):
 
         ..  container:: example
 
-            >>> abjad.StartPhrasingSlur().persistent
+            >>> abjad.TieIndicator().persistent
             True
 
         Class constant.
         """
         return self._persistent
-
-    @property
-    def spanner_start(self) -> bool:
-        """
-        Is true.
-
-        ..  container:: example
-
-            >>> abjad.StartPhrasingSlur().spanner_start
-            True
-
-        """
-        return True
 
     @property
     def tweaks(self) -> typing.Optional[LilyPondTweakManager]:
@@ -187,21 +183,24 @@ class StartPhrasingSlur(object):
 
         ..  container:: example
 
-            REGRESSION. Tweaks survive copy:
+            >>> staff = abjad.Staff("c'4 c' d' d'")
+            >>> tie = abjad.TieIndicator()
+            >>> abjad.tweak(tie).color = 'blue'
+            >>> abjad.attach(tie, staff[0])
+            >>> abjad.show(staff) # doctest: +SKIP
 
-            >>> import copy
-            >>> start_phrasing_slur = abjad.StartPhrasingSlur()
-            >>> abjad.tweak(start_phrasing_slur).color = 'blue'
-            >>> abjad.f(start_phrasing_slur)
-            abjad.StartPhrasingSlur(
-                tweaks=LilyPondTweakManager(('color', 'blue')),
-                )
+            ..  docs::
 
-            >>> start_phrasing_slur_2 = copy.copy(start_phrasing_slur)
-            >>> abjad.f(start_phrasing_slur_2)
-            abjad.StartPhrasingSlur(
-                tweaks=LilyPondTweakManager(('color', 'blue')),
-                )
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    c'4
+                    - \tweak color #blue
+                    ~
+                    c'4
+                    d'4
+                    d'4
+                }
 
         """
         return self._tweaks

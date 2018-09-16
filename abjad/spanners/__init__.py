@@ -12,6 +12,7 @@ from .Spanner import ottava
 from .Spanner import phrasing_slur
 from .Spanner import piano_pedal
 from .Spanner import slur
+from .Spanner import tie
 from .Spanner import text_spanner
 from .Spanner import trill_spanner
 from .Tie import Tie
