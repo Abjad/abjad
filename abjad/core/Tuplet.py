@@ -129,8 +129,7 @@ class Tuplet(Container):
         force_fraction: bool = None,
         hide: bool = None,
         tag: str = None,
-        tweaks: typing.Union[
-            typing.List[typing.Tuple], LilyPondTweakManager] = None,
+        tweaks: LilyPondTweakManager = None,
         ) -> None:
         Container.__init__(self, components, tag=tag)
         multiplier = Multiplier(multiplier)
@@ -768,7 +767,7 @@ class Tuplet(Container):
         return super().tag
 
     @property
-    def tweaks(self):
+    def tweaks(self) -> typing.Optional[LilyPondTweakManager]:
         r"""
         Gets tweaks.
 
@@ -830,7 +829,7 @@ class Tuplet(Container):
                 shrinks to encompass only the second underlying tuplet.
 
         """
-        return tweak(self)
+        return self._tweaks
 
     ### PUBLIC METHODS ###
 

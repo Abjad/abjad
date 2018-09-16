@@ -9,18 +9,18 @@ from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.utilities.String import String
 
 
-class StartPhrasingSlur(object):
+class StartGroup(object):
     r"""
-    LilyPond ``(`` command.
+    LilyPond ``\startGroup`` command.
 
     ..  container:: example
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> start_phrasing_slur = abjad.StartPhrasingSlur()
-        >>> abjad.tweak(start_phrasing_slur).color = 'blue'
-        >>> abjad.attach(start_phrasing_slur, staff[0])
-        >>> stop_phrasing_slur = abjad.StopPhrasingSlur()
-        >>> abjad.attach(stop_phrasing_slur, staff[-1])
+        >>> start_group = abjad.StartGroup()
+        >>> abjad.tweak(start_group).color = 'blue'
+        >>> abjad.attach(start_group, staff[0])
+        >>> stop_group = abjad.StopGroup()
+        >>> abjad.attach(stop_group, staff[-1])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -30,30 +30,25 @@ class StartPhrasingSlur(object):
             {
                 c'4
                 - \tweak color #blue
-                \(
+                \startGroup
                 d'4
                 e'4
                 f'4
-                \)
+                \stopGroup
             }
 
     ..  container:: example
 
-        >>> abjad.StartPhrasingSlur()
-        StartPhrasingSlur()
+        >>> abjad.StartGroup()
+        StartGroup()
 
     """
 
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_direction',
         '_tweaks',
         )
-
-    _context = 'Voice'
-
-    _parameter = 'PHRASING_SLUR'
 
     _persistent = True
 
@@ -64,10 +59,8 @@ class StartPhrasingSlur(object):
     def __init__(
         self,
         *,
-        direction: enums.VerticalAlignment = None,
         tweaks: LilyPondTweakManager = None,
         ) -> None:
-        self._direction = direction
         self._tweaks = None
         LilyPondTweakManager.set_tweaks(self, tweaks)
 
@@ -90,7 +83,7 @@ class StartPhrasingSlur(object):
         except TypeError:
             raise TypeError(f'unhashable type: {self}')
         return result
-
+    
     def __repr__(self) -> str:
         """
         Gets interpreter representation.
@@ -99,58 +92,16 @@ class StartPhrasingSlur(object):
 
     ### PRIVATE METHODS ###
 
-    def _add_direction(self, string):
-        if getattr(self, 'direction', False):
-            string = f'{self.direction} {string}'
-        return string
-
     def _get_lilypond_format_bundle(self, component=None):
         bundle = LilyPondFormatBundle()
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions()
             bundle.after.spanner_starts.extend(tweaks)
-        string = self._add_direction('\(')
+        string = r'\startGroup'
         bundle.after.spanner_starts.append(string)
         return bundle
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def context(self) -> str:
-        """
-        Returns (historically conventional) context ``'Voice'``.
-
-        ..  container:: example
-
-            >>> abjad.StartPhrasingSlur().context
-            'Voice'
-
-        Class constant.
-
-        Override with ``abjad.attach(..., context='...')``.
-        """
-        return self._context
-
-    @property
-    def direction(self) -> typing.Optional[enums.VerticalAlignment]:
-        """
-        Gets direction.
-        """
-        return self._direction
-
-    @property
-    def parameter(self) -> str:
-        """
-        Returns ``'PHRASING_SLUR'``.
-
-        ..  container:: example
-
-            >>> abjad.StartPhrasingSlur().parameter
-            'PHRASING_SLUR'
-
-        Class constant.
-        """
-        return self._parameter
 
     @property
     def persistent(self) -> bool:
@@ -159,7 +110,7 @@ class StartPhrasingSlur(object):
 
         ..  container:: example
 
-            >>> abjad.StartPhrasingSlur().persistent
+            >>> abjad.StartGroup().persistent
             True
 
         Class constant.
@@ -173,7 +124,7 @@ class StartPhrasingSlur(object):
 
         ..  container:: example
 
-            >>> abjad.StartPhrasingSlur().spanner_start
+            >>> abjad.StartGroup().spanner_start
             True
 
         """
@@ -189,16 +140,16 @@ class StartPhrasingSlur(object):
             REGRESSION. Tweaks survive copy:
 
             >>> import copy
-            >>> start_phrasing_slur = abjad.StartPhrasingSlur()
-            >>> abjad.tweak(start_phrasing_slur).color = 'blue'
-            >>> abjad.f(start_phrasing_slur)
-            abjad.StartPhrasingSlur(
+            >>> start_group = abjad.StartGroup()
+            >>> abjad.tweak(start_group).color = 'blue'
+            >>> abjad.f(start_group)
+            abjad.StartGroup(
                 tweaks=LilyPondTweakManager(('color', 'blue')),
                 )
 
-            >>> start_phrasing_slur_2 = copy.copy(start_phrasing_slur)
-            >>> abjad.f(start_phrasing_slur_2)
-            abjad.StartPhrasingSlur(
+            >>> start_group_2 = copy.copy(start_group)
+            >>> abjad.f(start_group_2)
+            abjad.StartGroup(
                 tweaks=LilyPondTweakManager(('color', 'blue')),
                 )
 

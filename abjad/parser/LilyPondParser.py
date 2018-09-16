@@ -85,8 +85,8 @@ class LilyPondParser(Parser):
                 \ppp
                 \<
                 g'8
-                \(
                 \startTrillSpan
+                \(
                 a'8
                 \)
                 b'8
@@ -736,14 +736,18 @@ class LilyPondParser(Parser):
             abjad_indicators.HairpinIndicator,
             abjad_indicators.LilyPondLiteral,
             abjad_indicators.StartBeam,
+            abjad_indicators.StartGroup,
             abjad_indicators.StartPhrasingSlur,
             abjad_indicators.StartSlur,
             abjad_indicators.StartTextSpan,
+            abjad_indicators.StartTrillSpan,
             abjad_indicators.StopBeam,
+            abjad_indicators.StopGroup,
             abjad_indicators.StopHairpin,
             abjad_indicators.StopSlur,
             abjad_indicators.StopPhrasingSlur,
             abjad_indicators.StopTextSpan,
+            abjad_indicators.StopTrillSpan,
             abjad_indicators.StemTremolo,
             abjad_markups.Markup,
             )
@@ -838,6 +842,11 @@ class LilyPondParser(Parser):
             return abjad_indicators.LilyPondLiteral(r'\laissezVibrer', 'after')
         elif name == 'LineBreakEvent':
             return abjad_indicators.LilyPondLiteral(r'\break')
+        elif name == 'NoteGroupingEvent':
+            if lookup['span-direction'] == -1:
+                return abjad_indicators.StartGroup()
+            else:
+                return abjad_indicators.StopGroup()
         elif name == 'PhrasingSlurEvent':
             if lookup['span-direction'] == -1:
                 return abjad_indicators.StartPhrasingSlur()
@@ -853,6 +862,11 @@ class LilyPondParser(Parser):
                 return abjad_indicators.StartTextSpan()
             else:
                 return abjad_indicators.StopTextSpan()
+        elif name == 'TrillSpanEvent':
+            if lookup['span-direction'] == -1:
+                return abjad_indicators.StartTrillSpan()
+            else:
+                return abjad_indicators.StopTrillSpan()
         event = abjad_parser.LilyPondEvent(name)
         if 'span-direction' in lookup:
             if lookup['span-direction'] == -1:
@@ -873,10 +887,10 @@ class LilyPondParser(Parser):
             #'CrescendoEvent': abjad_spanners.Hairpin,
             #'DecrescendoEvent': abjad_spanners.Hairpin,
             #'GlissandoEvent': abjad_spanners.Glissando,
-            'NoteGroupingEvent': abjad_spanners.HorizontalBracket,
+            #'NoteGroupingEvent': abjad_spanners.HorizontalBracket,
             #'SlurEvent': abjad_spanners.Slur,
             'TieEvent': abjad_spanners.Tie,
-            'TrillSpanEvent': abjad_spanners.TrillSpanner,
+            #'TrillSpanEvent': abjad_spanners.TrillSpanner,
             }
         if name in spanners:
             return spanners[name]

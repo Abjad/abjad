@@ -197,8 +197,7 @@ class Markup(object):
         *,
         direction: enums.VerticalAlignment = None,
         literal: bool = None,
-        tweaks: typing.Union[
-            typing.List[typing.Tuple], LilyPondTweakManager] = None,
+        tweaks: LilyPondTweakManager = None,
         ) -> None:
         from abjad.top.parse import parse
         from abjad.markups import MarkupCommand
@@ -744,32 +743,6 @@ class Markup(object):
             >>> markup = abjad.Markup('Allegro assai', direction=abjad.Up)
             >>> markup = markup.bold()
             >>> abjad.tweak(markup).color = 'blue'
-            >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> abjad.attach(markup, staff[0])
-            >>> abjad.f(staff)
-            \new Staff
-            {
-                c'4
-                - \tweak color #blue
-                ^ \markup {
-                    \bold
-                        "Allegro assai"
-                    }
-                d'4
-                e'4
-                f'4
-            }
-
-            >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  container:: example
-
-            >>> markup = abjad.Markup(
-            ...     'Allegro assai',
-            ...     direction=abjad.Up,
-            ...     tweaks=[('color', 'blue')],
-            ...     )
-            >>> markup = markup.bold()
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> abjad.attach(markup, staff[0])
             >>> abjad.f(staff)

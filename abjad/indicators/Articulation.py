@@ -139,8 +139,7 @@ class Articulation(object):
         name: str = None,
         *,
         direction: typing.Union[str, enums.VerticalAlignment] = None,
-        tweaks: typing.Union[
-            typing.List[typing.Tuple], LilyPondTweakManager] = None,
+        tweaks: LilyPondTweakManager = None,
         ) -> None:
         if isinstance(name, type(self)):
             argument = name
@@ -309,23 +308,6 @@ class Articulation(object):
             >>> note = abjad.Note("c'4")
             >>> articulation = abjad.Articulation('marcato')
             >>> abjad.tweak(articulation).color = 'blue'
-            >>> abjad.attach(articulation, note)
-            >>> abjad.show(note) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(note)
-                c'4
-                - \tweak color #blue
-                - \marcato
-
-        ..  container:: example
-
-            >>> note = abjad.Note("c'4")
-            >>> articulation = abjad.Articulation(
-            ...     'marcato',
-            ...     tweaks=[('color', 'blue')],
-            ...     )
             >>> abjad.attach(articulation, note)
             >>> abjad.show(note) # doctest: +SKIP
 

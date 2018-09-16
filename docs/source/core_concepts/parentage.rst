@@ -53,10 +53,4 @@ Or to find the depth at which the component is embedded in its score:
 
 ..  abjad::
 
-    parentage.depth
-
-Or the number of tuplets in which the component is nested:
-
-..  abjad::
-
-    parentage.tuplet_depth
+    parentage.count(abjad.Tuplet)

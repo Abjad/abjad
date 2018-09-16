@@ -12,4 +12,5 @@ from .LilyPondGrobNameManager import LilyPondGrobNameManager
 from .LilyPondGrobOverride import LilyPondGrobOverride
 from .LilyPondSettingNameManager import LilyPondSettingNameManager
 from .LilyPondTweakManager import LilyPondTweakManager
-from .LilyPondTweakManager import TweaksTyping
+from .LilyPondTweakManager import IndexedTweakManager
+from .LilyPondTweakManager import IndexedTweakManagers

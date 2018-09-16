@@ -107,8 +107,7 @@ class StartTextSpan(object):
         right_padding: typings.Number = None,
         right_text: typing.Union[str, markups.Markup] = None,
         style: str = None,
-        tweaks: typing.Union[
-            typing.List[typing.Tuple], LilyPondTweakManager] = None,
+        tweaks: LilyPondTweakManager = None,
         ) -> None:
         assert isinstance(command, str), repr(command)
         assert command.startswith('\\'), repr(command)
@@ -747,50 +746,6 @@ class StartTextSpan(object):
     def tweaks(self) -> typing.Optional[LilyPondTweakManager]:
         r"""
         Gets tweaks
-
-        ..  container:: example
-
-            >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> start_text_span = abjad.StartTextSpan(
-            ...     left_text=abjad.Markup('pont.').upright(),
-            ...     right_text=abjad.Markup('tasto').upright(),
-            ...     style='dashed-line-with-arrow',
-            ...     )
-            >>> abjad.tweak(start_text_span).color = 'blue'
-            >>> abjad.tweak(start_text_span).staff_padding = 2.5
-            >>> abjad.attach(start_text_span, staff[0])
-            >>> stop_text_span = abjad.StopTextSpan()
-            >>> abjad.attach(stop_text_span, staff[-1])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    c'4
-                    - \abjad-dashed-line-with-arrow
-                    - \tweak bound-details.left.text \markup {
-                        \concat
-                            {
-                                \upright
-                                    pont.
-                                \hspace
-                                    #0.5
-                            }
-                        }
-                    - \tweak bound-details.right.text \markup {
-                        \upright
-                            tasto
-                        }
-                    - \tweak color #blue
-                    - \tweak staff-padding #2.5
-                    \startTextSpan
-                    d'4
-                    e'4
-                    f'4
-                    \stopTextSpan
-                }
 
         ..  container:: example
 

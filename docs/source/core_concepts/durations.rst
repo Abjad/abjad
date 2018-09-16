@@ -97,8 +97,7 @@ Abjad implements LilyPond multpliers as multiplier objects.
 
 ..  abjad::
 
-    note = abjad.Note("c'4")
-    attach(abjad.Multiplier(1, 2), note)
+    note = abjad.Note("c'4", multiplier=(1, 2))
 
 ..  abjad::
 
@@ -119,8 +118,7 @@ quarter notes:
 ..  abjad::
 
     quarter_notes = 4 * abjad.Note("c'4")
-    half_note = abjad.Note("c'2")
-    abjad.attach(abjad.Multiplier(1, 2), half_note)
+    half_note = abjad.Note("c'2", multiplier=(1, 2))
     half_notes = 4 * half_note
     top_staff = abjad.Staff(quarter_notes, lilypond_type='RhythmicStaff')
     bottom_staff = abjad.Staff(half_notes, lilypond_type='RhythmicStaff')
@@ -148,11 +146,8 @@ Consider the measure below:
 
 ..  abjad::
 
-    measure = abjad.Measure((5, 16), "c16 c c c c")
-    leaves = abjad.select(measure).leaves()
-    beam = abjad.Beam()
-    attach(beam, leaves)
-    staff = abjad.Staff([measure], lilypond_type='RhythmicStaff')
+    staff = abjad.Staff(r"\time 5/15 c16 [ c c c c ]", lilypond_type='RhythmicStaff')
+    leaves = abjad.select(staff).leaves()
 
 ..  abjad::
 
@@ -162,19 +157,16 @@ Every note in the measure equals one sixteenth of a whole note:
 
 ..  abjad::
 
-    note = measure[0]
+    note = staff[0]
     abjad.inspect(note).duration()
 
 But now consider this measure:
 
 ..  abjad::
 
-    tuplet = abjad.Tuplet((4, 5), "c16 c c c c")
-    measure = abjad.Measure((4, 16), [tuplet])
-    leaves = abjad.select(measure).leaves()
-    beam = Beam()
-    attach(beam, leaves)
-    staff = abjad.Staff([measure], lilypond_type='RhythmicStaff')
+    tuplet = abjad.Tuplet((4, 5), r"\time 4/16 c16 [ c c c c ]")
+    staff = abjad.Staff([tuplet], lilypond_type='RhythmicStaff')
+    leaves = abjad.select(staff).leaves()
 
 ..  abjad::
 

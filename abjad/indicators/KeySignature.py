@@ -74,8 +74,7 @@ class KeySignature(object):
         tonic: str = 'c',
         mode: str = 'major',
         *,
-        tweaks: typing.Union[
-            typing.List[typing.Tuple], LilyPondTweakManager] = None,
+        tweaks: LilyPondTweakManager = None,
         ) -> None:
         self._tonic = NamedPitchClass(tonic)
         self._mode = Mode(mode)
@@ -293,26 +292,6 @@ class KeySignature(object):
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> key = abjad.KeySignature('e', 'minor')
             >>> abjad.tweak(key).color = 'blue'
-            >>> abjad.attach(key, staff[0])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    \tweak color #blue
-                    \key e \minor
-                    c'4
-                    d'4
-                    e'4
-                    f'4
-                }
-
-        ..  container:: example
-
-            >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> key = abjad.KeySignature('e', 'minor', tweaks=[('color', 'blue')])
             >>> abjad.attach(key, staff[0])
             >>> abjad.show(staff) # doctest: +SKIP
 

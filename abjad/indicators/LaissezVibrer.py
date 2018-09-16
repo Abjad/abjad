@@ -39,8 +39,7 @@ class LaissezVibrer(object):
     def __init__(
         self,
         *,
-        tweaks: typing.Union[
-            typing.List[typing.Tuple], LilyPondTweakManager] = None,
+        tweaks: LilyPondTweakManager = None,
         ) -> None:
         self._tweaks = None
         LilyPondTweakManager.set_tweaks(self, tweaks)
@@ -110,20 +109,6 @@ class LaissezVibrer(object):
             >>> note = abjad.Note("c'4")
             >>> lv = abjad.LaissezVibrer()
             >>> abjad.tweak(lv).color = 'blue'
-            >>> abjad.attach(lv, note)
-            >>> abjad.show(note) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(note)
-                c'4
-                - \tweak color #blue
-                \laissezVibrer
-
-        ..  container:: example
-
-            >>> note = abjad.Note("c'4")
-            >>> lv = abjad.LaissezVibrer(tweaks=[('color', 'blue')])
             >>> abjad.attach(lv, note)
             >>> abjad.show(note) # doctest: +SKIP
 

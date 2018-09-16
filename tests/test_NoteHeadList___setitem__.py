@@ -30,7 +30,7 @@ def test_NoteHeadList___setitem___03():
 
     chord = abjad.Chord("<c' cs'' f''>4")
     note_head = abjad.NoteHead(3)
-    note_head.tweaks.color = 'red'
+    abjad.tweak(note_head).color = 'red'
     chord.note_heads[0] = note_head
 
     assert format(chord) == abjad.String.normalize(

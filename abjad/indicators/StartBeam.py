@@ -65,8 +65,7 @@ class StartBeam(object):
         self,
         *,
         direction: enums.VerticalAlignment = None,
-        tweaks: typing.Union[
-            typing.List[typing.Tuple], LilyPondTweakManager] = None,
+        tweaks: LilyPondTweakManager = None,
         ) -> None:
         direction_ = String.to_tridirectional_lilypond_symbol(direction)
         self._direction = direction_
@@ -185,30 +184,6 @@ class StartBeam(object):
     def tweaks(self) -> typing.Optional[LilyPondTweakManager]:
         r"""
         Gets tweaks
-
-        ..  container:: example
-
-            >>> staff = abjad.Staff("c'8 d' e' f'")
-            >>> start_beam = abjad.StartBeam()
-            >>> abjad.tweak(start_beam).color = 'blue'
-            >>> abjad.attach(start_beam, staff[0])
-            >>> stop_beam = abjad.StopBeam()
-            >>> abjad.attach(stop_beam, staff[-1])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    c'8
-                    - \tweak color #blue
-                    [
-                    d'8
-                    e'8
-                    f'8
-                    ]
-                }
 
         ..  container:: example
 

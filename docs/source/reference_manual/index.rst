@@ -18,7 +18,6 @@ Containers
     :numbered:
 
     containers
-    measures
     scores
     staves
     tuplets

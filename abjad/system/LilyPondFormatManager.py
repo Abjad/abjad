@@ -367,7 +367,8 @@ class LilyPondFormatManager(object):
         elif argument in Scheme.lilypond_color_constants:
             argument = Scheme(argument)
         elif isinstance(argument, str) and argument.startswith('#'):
-            argument = Scheme(argument)
+            #argument = Scheme(argument)
+            return argument
         elif isinstance(argument, str) and '::' in argument:
             argument = Scheme(argument)
         elif isinstance(argument, tuple) and len(argument) == 2:

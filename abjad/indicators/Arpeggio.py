@@ -54,8 +54,7 @@ class Arpeggio(object):
         self,
         *,
         direction: enums.VerticalAlignment = None,
-        tweaks: typing.Union[
-            typing.List[typing.Tuple], LilyPondTweakManager] = None,
+        tweaks: LilyPondTweakManager = None,
         ) -> None:
         if direction is not None:
             assert direction in (enums.Up, enums.Down, enums.Center)

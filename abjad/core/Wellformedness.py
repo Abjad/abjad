@@ -3,9 +3,7 @@ from abjad.indicators.HairpinIndicator import HairpinIndicator
 from abjad.indicators.StartTextSpan import StartTextSpan
 from abjad.indicators.StopTextSpan import StopTextSpan
 from abjad.instruments import Instrument
-from abjad.spanners.OctavationSpanner import OctavationSpanner
 from abjad.spanners.Tie import Tie
-from abjad.spanners.TrillSpanner import TrillSpanner
 from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.top.inspect import inspect
 from abjad.top.iterate import iterate
@@ -194,8 +192,6 @@ class Wellformedness(object):
             0 /	3 missing parents
             0 /	2 notes on wrong clef
             0 /	2 out of range pitches
-            0 /	0 overlapping octavation spanners
-            0 /	0 overlapping trill spanners
             0 /	0 unmatched stop text spans
             0 /	0 unterminated hairpins
             0 /	0 unterminated text spanners
@@ -217,8 +213,6 @@ class Wellformedness(object):
             0 /	3 missing parents
             0 /	2 notes on wrong clef
             0 /	2 out of range pitches
-            0 /	0 overlapping octavation spanners
-            0 /	0 overlapping trill spanners
             0 /	0 unmatched stop text spans
             0 /	0 unterminated hairpins
             0 /	0 unterminated text spanners
@@ -315,8 +309,6 @@ class Wellformedness(object):
             0 /	5 missing parents
             4 /	4 notes on wrong clef
             0 /	4 out of range pitches
-            0 /	0 overlapping octavation spanners
-            0 /	0 overlapping trill spanners
             0 /	0 unmatched stop text spans
             0 /	0 unterminated hairpins
             0 /	0 unterminated text spanners
@@ -354,8 +346,6 @@ class Wellformedness(object):
             0 /	5 missing parents
             0 /	4 notes on wrong clef
             0 /	4 out of range pitches
-            0 /	0 overlapping octavation spanners
-            0 /	0 overlapping trill spanners
             0 /	0 unmatched stop text spans
             0 /	0 unterminated hairpins
             0 /	0 unterminated text spanners
@@ -374,8 +364,6 @@ class Wellformedness(object):
             0 /	5 missing parents
             4 /	4 notes on wrong clef
             0 /	4 out of range pitches
-            0 /	0 overlapping octavation spanners
-            0 /	0 overlapping trill spanners
             0 /	0 unmatched stop text spans
             0 /	0 unterminated hairpins
             0 /	0 unterminated text spanners
@@ -432,8 +420,6 @@ class Wellformedness(object):
             0 /	5 missing parents
             0 /	4 notes on wrong clef
             1 /	2 out of range pitches
-            0 /	0 overlapping octavation spanners
-            0 /	0 overlapping trill spanners
             0 /	0 unmatched stop text spans
             0 /	0 unterminated hairpins
             0 /	0 unterminated text spanners
@@ -451,100 +437,6 @@ class Wellformedness(object):
             if leaf not in instrument.pitch_range:
                 violators.append(leaf)
         return violators, len(total)
-
-    def check_overlapping_octavation_spanners(self, argument=None):
-        """
-        Checks overlapping octavation spanners.
-
-        Returns violators and total.
-        """
-        violators, total = [], set()
-        prototype = OctavationSpanner
-        for leaf in iterate(argument).leaves():
-            spanners = inspect(leaf).spanners(prototype)
-            total.update(spanners)
-            if 1 < len(spanners):
-                for spanner in spanners:
-                    if spanner not in violators:
-                        violators.append(spanner)
-        return violators, len(total)
-
-    def check_overlapping_trill_spanners(self, argument=None):
-        r"""
-        Checks overlapping trill spanners.
-
-        ..  container:: example
-
-            Enchained trill spanners are ok:
-
-            >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> abjad.attach(abjad.TrillSpanner(), staff[:3])
-            >>> abjad.attach(abjad.TrillSpanner(), staff[2:])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    c'4
-                    \startTrillSpan
-                    d'4
-                    e'4
-                    \stopTrillSpan
-                    \startTrillSpan
-                    f'4
-                    \stopTrillSpan
-                }
-
-            >>> abjad.inspect(staff).wellformed()
-            True
-
-        ..  container:: example
-
-            Overlapping trill spanners are not wellformed:
-
-            >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> abjad.attach(abjad.TrillSpanner(), staff[:])
-            >>> abjad.attach(abjad.TrillSpanner(), staff[:])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    c'4
-                    \startTrillSpan
-                    \startTrillSpan
-                    d'4
-                    e'4
-                    f'4
-                    \stopTrillSpan
-                    \stopTrillSpan
-                }
-
-            >>> agent = abjad.inspect(staff)
-            >>> print(agent.tabulate_wellformedness())
-            0 /	2 discontiguous spanners
-            0 /	5 duplicate ids
-            0 /	1 empty containers
-            0 /	0 mispitched ties
-            0 /	4 misrepresented flags
-            0 /	5 missing parents
-            0 /	4 notes on wrong clef
-            0 /	4 out of range pitches
-            0 /	0 overlapping octavation spanners
-            2 /	2 overlapping trill spanners
-            0 /	0 unmatched stop text spans
-            0 /	0 unterminated hairpins
-            0 /	0 unterminated text spanners
-
-        Enchained hairpins are fine so long as hairpin ends match.
-
-        Returns violators and total.
-        """
-        return self._check_overlapping_spanners(argument, TrillSpanner)
 
     def check_unmatched_stop_text_spans(self, argument=None):
         r"""
@@ -577,8 +469,6 @@ class Wellformedness(object):
             0 /	5 missing parents
             0 /	4 notes on wrong clef
             0 /	4 out of range pitches
-            0 /	0 overlapping octavation spanners
-            0 /	0 overlapping trill spanners
             1 /	0 unmatched stop text spans
             0 /	0 unterminated hairpins
             0 /	0 unterminated text spanners
@@ -666,8 +556,6 @@ class Wellformedness(object):
             0 /	5 missing parents
             0 /	4 notes on wrong clef
             0 /	4 out of range pitches
-            0 /	0 overlapping octavation spanners
-            0 /	0 overlapping trill spanners
             0 /	0 unmatched stop text spans
             1 /	1 unterminated hairpins
             0 /	0 unterminated text spanners
@@ -700,8 +588,6 @@ class Wellformedness(object):
             0 /	5 missing parents
             0 /	4 notes on wrong clef
             0 /	4 out of range pitches
-            0 /	0 overlapping octavation spanners
-            0 /	0 overlapping trill spanners
             0 /	0 unmatched stop text spans
             1 /	1 unterminated hairpins
             0 /	0 unterminated text spanners
@@ -782,8 +668,6 @@ class Wellformedness(object):
             0 /	5 missing parents
             0 /	4 notes on wrong clef
             0 /	4 out of range pitches
-            0 /	0 overlapping octavation spanners
-            0 /	0 overlapping trill spanners
             0 /	1 unmatched stop text spans
             0 /	0 unterminated hairpins
             1 /	1 unterminated text spanners

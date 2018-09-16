@@ -87,8 +87,8 @@ def make_desordre_measure(pitches) -> abjad.Container:
         container = make_desordre_cell(sequence)
         time_signature = abjad.inspect(container).duration()
         time_signature = abjad.NonreducedFraction(time_signature)
-        time_signature = time_signature.with_denominator(8)
-        abjad.attach(time_signature, container[0])
+        leaf = abjad.inspect(container).leaf(0)
+        abjad.attach(time_signature, leaf)
     return container
 
 
