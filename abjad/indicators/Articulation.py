@@ -158,7 +158,8 @@ class Articulation(object):
             assert direction_ in (enums.Up, enums.Down, enums.Center), repr(direction_)
         self._direction = direction_
         self._format_slot = 'after'
-        self._tweaks = None
+        if tweaks is not None:
+            assert isinstance(tweaks, LilyPondTweakManager), repr(tweaks)
         LilyPondTweakManager.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###

@@ -75,7 +75,8 @@ class BreathMark(object):
         *,
         tweaks: LilyPondTweakManager = None,
         ) -> None:
-        self._tweaks = None
+        if tweaks is not None:
+            assert isinstance(tweaks, LilyPondTweakManager), repr(tweaks)
         LilyPondTweakManager.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###

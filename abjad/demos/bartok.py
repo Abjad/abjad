@@ -106,14 +106,13 @@ def make_bartok_score():
     abjad.text_spanner(upper_leaves[-7:], start_text_span=start_text_span)
 
     # tie notes
-    tie = abjad.Tie()
-    abjad.attach(tie, upper_leaves[-2:])
+    abjad.tie(upper_leaves[-2:])
 
     # tie more notes
     note_1 = lower_staff[-2]['upper voice'][0]
     note_2 = lower_staff[-1]['upper voice'][0]
     notes = abjad.select([note_1, note_2])
-    abjad.attach(abjad.Tie(), notes)
+    abjad.tie(notes)
 
     # return the score
     return score

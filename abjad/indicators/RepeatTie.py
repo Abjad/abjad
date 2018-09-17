@@ -1,26 +1,19 @@
 import typing
-from abjad import enums
-from abjad import markups
-from abjad import typings
-from abjad.lilypondnames.LilyPondGrobOverride import LilyPondGrobOverride
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.system.StorageFormatManager import StorageFormatManager
-from abjad.utilities.String import String
 
 
-class StartGroup(object):
+class RepeatTie(object):
     r"""
-    LilyPond ``\startGroup`` command.
+    LilyPond ``\repeatTie`` command.
 
     ..  container:: example
 
-        >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> start_group = abjad.StartGroup()
-        >>> abjad.tweak(start_group).color = 'blue'
-        >>> abjad.attach(start_group, staff[0])
-        >>> stop_group = abjad.StopGroup()
-        >>> abjad.attach(stop_group, staff[-1])
+        >>> staff = abjad.Staff("c'4 c' d' d'")
+        >>> repeat_tie = abjad.RepeatTie()
+        >>> abjad.tweak(repeat_tie).color = 'blue'
+        >>> abjad.attach(repeat_tie, staff[1])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -29,26 +22,31 @@ class StartGroup(object):
             \new Staff
             {
                 c'4
+                c'4
                 - \tweak color #blue
-                \startGroup
+                \repeatTie
                 d'4
-                e'4
-                f'4
-                \stopGroup
+                d'4
             }
 
-    ..  container:: example
-
-        >>> abjad.StartGroup()
-        StartGroup()
+        >>> for leaf in staff:
+        ...     leaf, abjad.inspect(leaf).logical_tie()
+        ...
+        (Note("c'4"), LogicalTie([Note("c'4"), Note("c'4")]))
+        (Note("c'4"), LogicalTie([Note("c'4"), Note("c'4")]))
+        (Note("d'4"), LogicalTie([Note("d'4")]))
+        (Note("d'4"), LogicalTie([Note("d'4")]))
 
     """
 
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_left_broken',
         '_tweaks',
         )
+
+    _context = 'Voice'
 
     _persistent = True
 
@@ -59,8 +57,12 @@ class StartGroup(object):
     def __init__(
         self,
         *,
+        left_broken: bool = None,
         tweaks: LilyPondTweakManager = None,
         ) -> None:
+        if left_broken is not None:
+            left_broken = bool(left_broken)
+        self._left_broken = left_broken
         if tweaks is not None:
             assert isinstance(tweaks, LilyPondTweakManager), repr(tweaks)
         LilyPondTweakManager.set_tweaks(self, tweaks)
@@ -97,12 +99,29 @@ class StartGroup(object):
         bundle = LilyPondFormatBundle()
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions()
-            bundle.after.spanner_starts.extend(tweaks)
-        string = r'\startGroup'
-        bundle.after.spanner_starts.append(string)
+            bundle.after.spanners.extend(tweaks)
+        strings = []
+        strings.append(r'\repeatTie')
+        bundle.after.spanners.extend(strings)
         return bundle
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def context(self) -> str:
+        """
+        Returns (historically conventional) context ``'Voice'``.
+
+        ..  container:: example
+
+            >>> abjad.RepeatTie().context
+            'Voice'
+
+        Class constant.
+
+        Override with ``abjad.attach(..., context='...')``.
+        """
+        return self._context
 
     @property
     def persistent(self) -> bool:
@@ -111,25 +130,12 @@ class StartGroup(object):
 
         ..  container:: example
 
-            >>> abjad.StartGroup().persistent
+            >>> abjad.RepeatTie().persistent
             True
 
         Class constant.
         """
         return self._persistent
-
-    @property
-    def spanner_start(self) -> bool:
-        """
-        Is true.
-
-        ..  container:: example
-
-            >>> abjad.StartGroup().spanner_start
-            True
-
-        """
-        return True
 
     @property
     def tweaks(self) -> typing.Optional[LilyPondTweakManager]:
@@ -138,21 +144,24 @@ class StartGroup(object):
 
         ..  container:: example
 
-            REGRESSION. Tweaks survive copy:
+            >>> staff = abjad.Staff("c'4 c' d' d'")
+            >>> repeat_tie = abjad.RepeatTie()
+            >>> abjad.tweak(repeat_tie).color = 'blue'
+            >>> abjad.attach(repeat_tie, staff[1])
+            >>> abjad.show(staff) # doctest: +SKIP
 
-            >>> import copy
-            >>> start_group = abjad.StartGroup()
-            >>> abjad.tweak(start_group).color = 'blue'
-            >>> abjad.f(start_group)
-            abjad.StartGroup(
-                tweaks=LilyPondTweakManager(('color', 'blue')),
-                )
+            ..  docs::
 
-            >>> start_group_2 = copy.copy(start_group)
-            >>> abjad.f(start_group_2)
-            abjad.StartGroup(
-                tweaks=LilyPondTweakManager(('color', 'blue')),
-                )
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    c'4
+                    c'4
+                    - \tweak color #blue
+                    \repeatTie
+                    d'4
+                    d'4
+                }
 
         """
         return self._tweaks

@@ -276,16 +276,9 @@ def test_Leaf__split_by_durations_10():
     """
 
     staff = abjad.Staff([abjad.Note("c'4")])
-    tie = abjad.Tie()
-    abjad.attach(tie, staff[:])
     new_leaves = staff[0]._split_by_durations([abjad.Duration(1, 8)])
 
     assert len(staff) == 2
-    for leaf in staff[:]:
-        assert abjad.inspect(leaf).spanners() == [tie]
-        prototype = (abjad.Tie,)
-        assert abjad.inspect(leaf).spanner(prototype) is tie
-
     assert abjad.inspect(staff).wellformed()
 
 
@@ -314,10 +307,8 @@ def test_Leaf__split_by_durations_12():
     """
 
     staff = abjad.Staff([abjad.Note("c'4")])
-    tie = abjad.Tie()
-    abjad.attach(tie, staff[:])
-
     new_leaves = staff[0]._split_by_durations([abjad.Duration(5, 32)])
+
     assert isinstance(new_leaves, abjad.Selection)
     assert all(isinstance(_, abjad.Note) for _ in new_leaves)
 

@@ -73,7 +73,8 @@ class StartTrillSpan(object):
         if pitch is not None:
             pitch = NamedPitch(pitch)
         self._pitch = pitch
-        self._tweaks = None
+        if tweaks is not None:
+            assert isinstance(tweaks, LilyPondTweakManager), repr(tweaks)
         LilyPondTweakManager.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###

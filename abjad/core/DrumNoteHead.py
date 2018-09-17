@@ -1,3 +1,4 @@
+from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from .NoteHead import NoteHead
 
 
@@ -28,7 +29,7 @@ class DrumNoteHead(NoteHead):
         is_cautionary: bool = None,
         is_forced: bool = None,
         is_parenthesized: bool = None,
-        tweaks=(),
+        tweaks: LilyPondTweakManager = None,
         ) -> None:
         from abjad.ly import drums
         NoteHead.__init__(

@@ -1,5 +1,5 @@
 """
-Tools for modeling "indicators".
+Tools for modeling indicators.
 """
 
 from .Arpeggio import Arpeggio
@@ -29,6 +29,7 @@ from .Mode import Mode
 from .Ottava import Ottava
 from .RehearsalMark import RehearsalMark
 from .Repeat import Repeat
+from .RepeatTie import RepeatTie
 from .Staccatissimo import Staccatissimo
 from .Staccato import Staccato
 from .StaffChange import StaffChange
@@ -50,6 +51,7 @@ from .StopPianoPedal import StopPianoPedal
 from .StopTextSpan import StopTextSpan
 from .StopTrillSpan import StopTrillSpan
 from .StringContactPoint import StringContactPoint
+from .TieIndicator import TieIndicator
 from .TimeSignature import TimeSignature
 from .Tremolo import Tremolo
 from .WoodwindFingering import WoodwindFingering

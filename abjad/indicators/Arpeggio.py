@@ -59,7 +59,8 @@ class Arpeggio(object):
         if direction is not None:
             assert direction in (enums.Up, enums.Down, enums.Center)
         self._direction = direction
-        self._tweaks = None
+        if tweaks is not None:
+            assert isinstance(tweaks, LilyPondTweakManager), repr(tweaks)
         LilyPondTweakManager.set_tweaks(self, tweaks)
 
     ### PRIVATE METHODS ###

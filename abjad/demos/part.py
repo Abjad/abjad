@@ -235,8 +235,7 @@ def edit_first_violin_voice(score, durated_reservoir):
     maker = abjad.NoteMaker()
     final_sustain_notes = maker(["c'"], final_sustain_rhythm)
     voice.extend(final_sustain_notes)
-    tie = abjad.Tie()
-    abjad.attach(tie, final_sustain_notes)
+    abjad.tie(final_sustain_notes)
     voice.extend('r4 r2.')
 
 
@@ -267,8 +266,7 @@ def edit_second_violin_voice(score, durated_reservoir):
     articulation = abjad.Articulation('tenuto')
     abjad.attach(articulation, final_sustain[0])
     voice.extend(final_sustain)
-    tie = abjad.Tie()
-    abjad.attach(tie, final_sustain)
+    abjad.tie(final_sustain)
     voice.extend('r4 r2.')
 
 
@@ -305,8 +303,7 @@ def edit_viola_voice(score, durated_reservoir):
     articulation = abjad.Articulation('tenuto')
     abjad.attach(articulation, final_sustain_notes[0])
     voice.extend(final_sustain_notes)
-    tie = abjad.Tie()
-    abjad.attach(tie, final_sustain_notes)
+    abjad.tie(final_sustain_notes)
     voice.extend('r4 r2.')
 
 

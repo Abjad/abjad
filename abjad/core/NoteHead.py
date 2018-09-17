@@ -67,7 +67,8 @@ class NoteHead(object):
         self.is_cautionary = is_cautionary
         self.is_forced = is_forced
         self.is_parenthesized = is_parenthesized
-        self._tweaks = None
+        if tweaks is not None:
+            assert isinstance(tweaks, LilyPondTweakManager), repr(tweaks)
         LilyPondTweakManager.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###

@@ -277,7 +277,8 @@ class Dynamic(object):
         if sforzando is not None:
             sforzando = bool(sforzando)
         self._sforzando = sforzando
-        self._tweaks = None
+        if tweaks is not None:
+            assert isinstance(tweaks, LilyPondTweakManager), repr(tweaks)
         LilyPondTweakManager.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###

@@ -43,7 +43,8 @@ class StopPianoPedal(object):
         if leak is not None:
             leak = bool(leak)
         self._leak = leak
-        self._tweaks = None
+        if tweaks is not None:
+            assert isinstance(tweaks, LilyPondTweakManager), repr(tweaks)
         LilyPondTweakManager.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###

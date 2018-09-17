@@ -64,6 +64,8 @@ class RehearsalMark(object):
         self._tweaks = None
         self._markup = markup
         self._number = number
+        if tweaks is not None:
+            assert isinstance(tweaks, LilyPondTweakManager), repr(tweaks)
         LilyPondTweakManager.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###

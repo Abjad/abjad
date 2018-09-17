@@ -8,8 +8,7 @@ def test_LogicalTie__fuse_leaves_by_immediate_parent_01():
 
     staff = abjad.Staff(2 * abjad.Container("c'8 c'8"))
     leaves = abjad.select(staff).leaves()
-    tie = abjad.Tie()
-    abjad.attach(tie, leaves)
+    abjad.tie(leaves)
 
     logical_tie = abjad.inspect(leaves[1]).logical_tie()
     result = logical_tie._fuse_leaves_by_immediate_parent()
@@ -24,10 +23,11 @@ def test_LogicalTie__fuse_leaves_by_immediate_parent_01():
             }
             {
                 c'4
+                ~
             }
         }
         """
-        )
+        ), print(format(staff))
 
     assert len(result) == 2
     assert abjad.inspect(staff).wellformed()
@@ -39,8 +39,7 @@ def test_LogicalTie__fuse_leaves_by_immediate_parent_02():
     """
 
     staff = abjad.Staff("c'8 c'8 c'8 c'8")
-    tie = abjad.Tie()
-    abjad.attach(tie, staff[:])
+    abjad.tie(staff[:])
 
     assert format(staff) == abjad.String.normalize(
         r"""
@@ -55,7 +54,7 @@ def test_LogicalTie__fuse_leaves_by_immediate_parent_02():
             c'8
         }
         """
-        )
+        ), print(format(staff))
 
     logical_tie = abjad.inspect(staff[1]).logical_tie()
     result = logical_tie._fuse_leaves_by_immediate_parent()
@@ -65,9 +64,10 @@ def test_LogicalTie__fuse_leaves_by_immediate_parent_02():
         \new Staff
         {
             c'2
+            ~
         }
         """
-        )
+        ), print(format(staff))
 
     assert abjad.inspect(staff).wellformed()
     assert len(result) == 1

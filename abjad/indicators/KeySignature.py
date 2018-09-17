@@ -78,7 +78,8 @@ class KeySignature(object):
         ) -> None:
         self._tonic = NamedPitchClass(tonic)
         self._mode = Mode(mode)
-        self._tweaks = None
+        if tweaks is not None:
+            assert isinstance(tweaks, LilyPondTweakManager), repr(tweaks)
         LilyPondTweakManager.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###

@@ -90,7 +90,8 @@ class HairpinIndicator(object):
         self._left_broken = left_broken
         assert shape in self._known_shapes, repr(shape)
         self._shape = shape
-        self._tweaks = None
+        if tweaks is not None:
+            assert isinstance(tweaks, LilyPondTweakManager), repr(tweaks)
         LilyPondTweakManager.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
