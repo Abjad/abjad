@@ -61,7 +61,7 @@ class Arpeggio(object):
         self._direction = direction
         if tweaks is not None:
             assert isinstance(tweaks, LilyPondTweakManager), repr(tweaks)
-        LilyPondTweakManager.set_tweaks(self, tweaks)
+        self._tweaks = LilyPondTweakManager.set_tweaks(self, tweaks)
 
     ### PRIVATE METHODS ###
 

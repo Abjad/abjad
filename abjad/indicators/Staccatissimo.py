@@ -86,7 +86,7 @@ class Staccatissimo(object):
         self._direction = direction_
         if tweaks is not None:
             assert isinstance(tweaks, LilyPondTweakManager), repr(tweaks)
-        LilyPondTweakManager.set_tweaks(self, tweaks)
+        self._tweaks = LilyPondTweakManager.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
 

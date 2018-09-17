@@ -12,6 +12,7 @@ from abjad.pitch.PitchSet import PitchSet
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.top.attach import attach
+from abjad.top.detach import detach
 from abjad.top.inspect import inspect as abjad_inspect
 from abjad.top.iterate import iterate
 from abjad.top.mutate import mutate
@@ -524,49 +525,20 @@ class Selection(collections.Sequence):
 
     ### PRIVATE METHODS ###
 
-    def _attach_tie_to_leaf_pair(self, repeat_ties=False):
-        from abjad.spanners.Tie import Tie
-        assert len(self) == 2
-        left_leaf, right_leaf = self
-        assert isinstance(left_leaf, Leaf), left_leaf
-        assert isinstance(right_leaf, Leaf), right_leaf
-        left_logical_tie = left_leaf._get_logical_tie()
-        right_logical_tie = right_leaf._get_logical_tie()
-        if left_logical_tie == right_logical_tie:
-            return
-        try:
-            left_tie = left_leaf._get_spanner(Tie)
-        except exceptions.MissingSpannerError:
-            left_tie = None
-        try:
-            right_tie = right_leaf._get_spanner(Tie)
-        except exceptions.MissingSpannerError:
-            right_tie = None
-        if left_tie is not None and right_tie is not None:
-            result = left_tie._copy(left_tie[:])
-            left_tie._block_all_leaves()
-            right_tie._block_all_leaves()
-            result._extend(right_tie)
-        elif left_tie is not None and right_tie is None:
-            left_tie._append(right_leaf)
-        elif left_tie is None and right_tie is not None:
-            leaves = [left_leaf] + right_tie[:1]
-            leaves = Selection(leaves)
-            assert leaves.are_contiguous_logical_voice()
-            left_leaf._append_spanner(right_tie)
-            right_tie._leaves.insert(0, left_leaf)
-        elif left_tie is None and right_tie is None:
-            tie = Tie(repeat=repeat_ties)
-            leaves = Selection([left_leaf, right_leaf])
-            attach(tie, leaves)
-
     def _attach_tie_to_leaves(self, repeat_ties=False):
-        pairs = Sequence(self).nwise()
-        for leaf_pair in pairs:
-            selection = Selection(leaf_pair)
-            selection._attach_tie_to_leaf_pair(
-                repeat_ties=repeat_ties,
-                )
+        from abjad.spanners.Tie import Tie
+        leaves = []
+        for leaf in self:
+            assert isinstance(leaf, Leaf), repr(leaf)
+            for leaf_ in abjad_inspect(leaf).logical_tie().leaves:
+                if leaf_ not in leaves:
+                    leaves.append(leaf_)
+        leaves = Selection(leaves)
+        for leaf in leaves:
+            detach(Tie, leaf)
+        tie = Tie(repeat=repeat_ties)
+        tie._contiguity_constraint = None
+        attach(tie, leaves)
 
     @staticmethod
     def _check(items):
@@ -4104,7 +4076,7 @@ class Selection(collections.Sequence):
 
         ..  container:: example
 
-            Trimmed leaves are the correct selection for ottava spanners.
+            Trimmed leaves are the correct selection for ottava brackets.
 
             Selects trimmed leaves:
 

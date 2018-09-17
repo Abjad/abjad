@@ -8,7 +8,7 @@ ignored_classes = (
     abjad.parser.LilyPondParser,
     abjad.parser.ReducedLyParser,
     abjad.parser.SchemeParser,
-    abjad.abjad.rhythmtrees.RhythmTreeParser,
+    abjad.rhythmtrees.RhythmTreeParser,
     abjad.RedirectedStreams,
     abjad.StorageFormatManager,
     abjad.FormatSpecification,

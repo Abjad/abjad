@@ -722,7 +722,6 @@ class Container(Component):
             repr_kwargs_names=repr_kwargs_names,
             repr_text=repr_text,
             storage_format_args_values=storage_format_args_values,
-            #storage_format_kwargs_names=[],
             )
 
     def _get_preprolated_duration(self):
@@ -851,12 +850,11 @@ class Container(Component):
         return recurse(self)
 
     def _iterate_topmost(self):
-        from abjad.spanners.Tie import Tie
         for component in self:
             if isinstance(component, Leaf):
-                ties = inspect(component).spanners(Tie)
-                if not ties or tuple(ties)[0].leaves[-1] is component:
-                    yield inspect(component).logical_tie()
+                logical_tie = inspect(component).logical_tie()
+                if logical_tie.is_trivial or logical_tie[-1] is component:
+                    yield logical_tie
             else:
                 assert isinstance(component, Container)
                 yield component
@@ -1129,9 +1127,7 @@ class Container(Component):
                         leaf_right_of_split,
                         )
                     selection = select(leaves_around_split)
-                    selection._attach_tie_to_leaf_pair(
-                        repeat_ties=repeat_ties,
-                        )
+                    selection._attach_tie_to_leaves(repeat_ties=repeat_ties)
         # return list-wrapped halves of container
         return [left], [right]
 

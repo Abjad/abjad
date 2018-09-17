@@ -6,14 +6,30 @@ import bisect
 import collections
 import typing
 import uqbar.graphs
-import abjad.rhythmtrees
-from abjad import core
 from abjad import indicators as abjad_indicators
 from abjad import mathtools
+from abjad import markups
+from abjad import rhythmtrees
 from abjad import system
+from abjad.core.Chord import Chord
+from abjad.core.Container import Container
+from abjad.core.LogicalTie import LogicalTie
+from abjad.core.Note import Note
+from abjad.core.Rest import Rest
+from abjad.core.Selection import Selection
+from abjad.core.Skip import Skip
+from abjad.core.Tuplet import Tuplet
+from abjad.spanners.Tie import Tie
 from abjad.system.StorageFormatManager import StorageFormatManager
+from abjad.top.inspect import inspect
+from abjad.top.mutate import mutate
 from abjad.timespans.Timespan import Timespan
 from abjad.timespans.TimespanList import TimespanList
+from abjad.timespans.TimespanList import TimespanList
+from abjad.utilities.Duration import Duration
+from abjad.utilities.Multiplier import Multiplier
+from abjad.utilities.Offset import Offset
+from abjad.utilities.Sequence import Sequence
 from abjad.utilities.TypedCounter import TypedCounter
 from abjad.utilities.TypedList import TypedList
 
@@ -281,7 +297,7 @@ class Meter(object):
                 if factor in (2, 3, 4):
                     if factors:
                         for _ in range(factor):
-                            child = abjad.rhythmtrees.RhythmTreeContainer(
+                            child = rhythmtrees.RhythmTreeContainer(
                                 preprolated_duration=preprolated_duration)
                             node.append(child)
                             recurse(
@@ -293,7 +309,7 @@ class Meter(object):
                     else:
                         for _ in range(factor):
                             node.append(
-                                abjad.rhythmtrees.RhythmTreeLeaf(
+                                rhythmtrees.RhythmTreeLeaf(
                                     preprolated_duration=(1, denominator)))
                 else:
                     parts = [3]
@@ -305,11 +321,11 @@ class Meter(object):
                             parts.insert(0, 2)
                         total += 2
                     for part in parts:
-                        grouping = abjad.rhythmtrees.RhythmTreeContainer(
+                        grouping = rhythmtrees.RhythmTreeContainer(
                             preprolated_duration=part * preprolated_duration)
                         if factors:
                             for _ in range(part):
-                                child = abjad.rhythmtrees.RhythmTreeContainer(
+                                child = rhythmtrees.RhythmTreeContainer(
                                     preprolated_duration=preprolated_duration)
                                 grouping.append(child)
                                 recurse(
@@ -321,11 +337,11 @@ class Meter(object):
                         else:
                             for _ in range(part):
                                 grouping.append(
-                                    abjad.rhythmtrees.RhythmTreeLeaf(
+                                    rhythmtrees.RhythmTreeLeaf(
                                         preprolated_duration=(1, denominator)))
                         node.append(grouping)
             else:
-                node.extend([abjad.rhythmtrees.RhythmTreeLeaf(
+                node.extend([rhythmtrees.RhythmTreeLeaf(
                     preprolated_duration=(1, denominator))
                     for _ in range(node.preprolated_duration.numerator)])
         increase_monotonic = bool(increase_monotonic)
@@ -339,9 +355,9 @@ class Meter(object):
             root = argument.root_node
             numerator, denominator = argument.numerator, argument.denominator
             increase_monotonic = argument.increase_monotonic
-        elif isinstance(argument, (str, abjad.rhythmtrees.RhythmTreeContainer)):
+        elif isinstance(argument, (str, rhythmtrees.RhythmTreeContainer)):
             if isinstance(argument, str):
-                parsed = abjad.rhythmtrees.RhythmTreeParser()(argument)
+                parsed = rhythmtrees.RhythmTreeParser()(argument)
                 assert len(parsed) == 1
                 root = parsed[0]
             else:
@@ -363,7 +379,7 @@ class Meter(object):
             # group two nested levels of 2s into a 4
             if 1 < len(factors) and factors[0] == factors[1] == 2:
                 factors[0:2] = [4]
-            root = abjad.rhythmtrees.RhythmTreeContainer(
+            root = rhythmtrees.RhythmTreeContainer(
                 preprolated_duration=fraction)
             recurse(
                 root,
@@ -583,9 +599,8 @@ class Meter(object):
                     attributes={'style': 'dotted'},
                     )
                 edge.attach(leaf_two_node, offset_node)
-        import abjad
-        offsets = abjad.MetricAccentKernel.count_offsets(
-            abjad.sequence(self.depthwise_offset_inventory).flatten(depth=-1))
+        offsets = MetricAccentKernel.count_offsets(
+            Sequence(self.depthwise_offset_inventory).flatten(depth=-1))
         graph = uqbar.graphs.Graph(
             name='G',
             attributes={
@@ -610,7 +625,7 @@ class Meter(object):
         for node in nodes:
             graphviz_node = uqbar.graphs.Node()
             graphviz_node.attributes['label'] = str(node.preprolated_duration)
-            if isinstance(node, abjad.rhythmtrees.RhythmTreeContainer):
+            if isinstance(node, rhythmtrees.RhythmTreeContainer):
                 graphviz_node.attributes['shape'] = 'triangle'
             else:
                 graphviz_node.attributes['shape'] = 'box'
@@ -630,7 +645,7 @@ class Meter(object):
             )
         graph.append(offset_subgraph)
         make_offset_node(offset, leaves[0])
-        for one, two in abjad.sequence(leaves).nwise():
+        for one, two in Sequence(leaves).nwise():
             offset = one.stop_offset
             make_offset_node(offset, one, two)
         offset = leaves[-1].stop_offset
@@ -655,8 +670,8 @@ class Meter(object):
 
 
                 >>> meter = abjad.Meter((5, 4))
-                >>> for x in meter:
-                ...    x
+                >>> for pair in meter:
+                ...    pair
                 ...
                 (NonreducedFraction(0, 4), NonreducedFraction(1, 4))
                 (NonreducedFraction(1, 4), NonreducedFraction(2, 4))
@@ -672,18 +687,18 @@ class Meter(object):
         def recurse(node):
             result = []
             for child in node:
-                if isinstance(child, abjad.rhythmtrees.RhythmTreeLeaf):
+                if isinstance(child, rhythmtrees.RhythmTreeLeaf):
                     result.append(child)
                 else:
                     result.extend(recurse(child))
             result.append(node)
             return result
         result = recurse(self.root_node)
-        for x in result:
-            start_offset = mathtools.NonreducedFraction(
-                x.start_offset).with_denominator(self.denominator)
-            stop_offset = mathtools.NonreducedFraction(
-                x.stop_offset).with_denominator(self.denominator)
+        for node in result:
+            start_offset = mathtools.NonreducedFraction(node.start_offset)
+            start_offset = start_offset.with_denominator(self.denominator)
+            stop_offset = mathtools.NonreducedFraction(node.stop_offset)
+            stop_offset = stop_offset.with_denominator(self.denominator)
             yield start_offset, stop_offset
 
     def __repr__(self) -> str:
@@ -741,27 +756,26 @@ class Meter(object):
             depth=0,
             logical_tie=None,
             ):
-            offsets = abjad.meter._MeterManager.get_offsets_at_depth(
+            offsets = _MeterManager.get_offsets_at_depth(
                 depth,
                 offset_inventory,
                 )
             #print('DEPTH:', depth)
             logical_tie_duration = logical_tie._get_preprolated_duration()
-            logical_tie_timespan = abjad.inspect(logical_tie).timespan()
+            logical_tie_timespan = inspect(logical_tie).timespan()
             logical_tie_start_offset = logical_tie_timespan.start_offset
             logical_tie_stop_offset = logical_tie_timespan.stop_offset
             logical_tie_starts_in_offsets = logical_tie_start_offset in offsets
             logical_tie_stops_in_offsets = logical_tie_stop_offset in offsets
-            if not abjad.meter._MeterManager.is_acceptable_logical_tie(
+            if not _MeterManager.is_acceptable_logical_tie(
                 logical_tie_duration=logical_tie_duration,
                 logical_tie_starts_in_offsets=logical_tie_starts_in_offsets,
                 logical_tie_stops_in_offsets=logical_tie_stops_in_offsets,
                 maximum_dot_count=maximum_dot_count,
                 ):
                 #print('UNACCEPTABLE:', logical_tie, logical_tie_start_offset, logical_tie_stop_offset)
-                #print('\t', ' '.join([str(x) for x in offsets]))
                 split_offset = None
-                offsets = abjad.meter._MeterManager.get_offsets_at_depth(
+                offsets = _MeterManager.get_offsets_at_depth(
                     depth,
                     offset_inventory,
                     )
@@ -777,11 +791,11 @@ class Meter(object):
                     split_offset -= logical_tie_start_offset
                     #print('\tREL:', split_offset)
                     #print()
-                    shards = abjad.mutate(logical_tie[:]).split(
+                    shards = mutate(logical_tie[:]).split(
                         [split_offset],
                         repeat_ties=repeat_ties,
                         )
-                    logical_ties = [abjad.LogicalTie(_) for _ in shards]
+                    logical_ties = [LogicalTie(_) for _ in shards]
                     for logical_tie in logical_ties:
                         recurse(
                             boundary_depth=boundary_depth,
@@ -797,7 +811,7 @@ class Meter(object):
                         depth=depth + 1,
                         logical_tie=logical_tie,
                         )
-            elif abjad.meter._MeterManager.is_boundary_crossing_logical_tie(
+            elif _MeterManager.is_boundary_crossing_logical_tie(
                 boundary_depth=boundary_depth,
                 boundary_offsets=boundary_offsets,
                 logical_tie_start_offset=logical_tie_start_offset,
@@ -817,11 +831,11 @@ class Meter(object):
                 split_offset -= logical_tie_start_offset
                 #print('\tREL:', split_offset)
                 #print()
-                shards = abjad.mutate(logical_tie[:]).split(
+                shards = mutate(logical_tie[:]).split(
                     [split_offset],
                     repeat_ties=repeat_ties,
                     )
-                logical_ties = [abjad.LogicalTie(shard) for shard in shards]
+                logical_ties = [LogicalTie(shard) for shard in shards]
                 for logical_tie in logical_ties:
                     recurse(
                         boundary_depth=boundary_depth,
@@ -831,43 +845,39 @@ class Meter(object):
                         )
             else:
                 #print('ACCEPTABLE:', logical_tie, logical_tie_start_offset, logical_tie_stop_offset)
-                #print('\t', ' '.join([str(x) for x in offsets]))
                 #print()
                 logical_tie[:]._fuse()
-        import abjad
-        assert isinstance(components, abjad.Selection), repr(components)
-        if not isinstance(meter, abjad.Meter):
-            meter = abjad.Meter(meter)
+        assert isinstance(components, Selection), repr(components)
+        if not isinstance(meter, Meter):
+            meter = Meter(meter)
         boundary_depth = boundary_depth or meter.preferred_boundary_depth
         # Validate arguments.
-        assert abjad.select(components).are_contiguous_logical_voice()
-        if not isinstance(meter, abjad.Meter):
-            meter = abjad.Meter(meter)
+        assert Selection(components).are_contiguous_logical_voice()
+        if not isinstance(meter, Meter):
+            meter = Meter(meter)
         if boundary_depth is not None:
             boundary_depth = int(boundary_depth)
         if maximum_dot_count is not None:
             maximum_dot_count = int(maximum_dot_count)
             assert 0 <= maximum_dot_count
         if initial_offset is None:
-            initial_offset = abjad.Offset(0)
-        initial_offset = abjad.Offset(initial_offset)
-        first_start_offset = abjad.inspect(
-            components[0]).timespan().start_offset
-        last_start_offset = abjad.inspect(
-            components[-1]).timespan().start_offset
+            initial_offset = Offset(0)
+        initial_offset = Offset(initial_offset)
+        first_start_offset = inspect(components[0]).timespan().start_offset
+        last_start_offset = inspect(components[-1]).timespan().start_offset
         difference = last_start_offset - first_start_offset + initial_offset
         assert difference < meter.implied_time_signature.duration
         # Build offset inventory, adjusted for initial offset and prolation.
-        first_offset = abjad.inspect(components[0]).timespan().start_offset
+        first_offset = inspect(components[0]).timespan().start_offset
         first_offset -= initial_offset
         if components[0]._parent is None:
             prolation = 1
         else:
-            parentage = abjad.inspect(components[0]._parent).parentage()
+            parentage = inspect(components[0]._parent).parentage()
             prolation = parentage.prolation
         offset_inventory = []
         for offsets in meter.depthwise_offset_inventory:
-            offsets = [(x * prolation) + first_offset for x in offsets]
+            offsets = [(_ * prolation) + first_offset for _ in offsets]
             offset_inventory.append(tuple(offsets))
         # Build boundary offset inventory, if applicable.
         if boundary_depth is not None:
@@ -875,10 +885,10 @@ class Meter(object):
         else:
             boundary_offsets = None
         # Cache results of iterator, as we'll be mutating the underlying collection
-        iterator = abjad.meter._MeterManager.iterate_rewrite_inputs(components)
+        iterator = _MeterManager.iterate_rewrite_inputs(components)
         items = tuple(iterator)
         for item in items:
-            if isinstance(item, abjad.LogicalTie):
+            if isinstance(item, LogicalTie):
                 #print('RECURSING:', item)
                 recurse(
                     boundary_depth=boundary_depth,
@@ -886,19 +896,19 @@ class Meter(object):
                     depth=0,
                     logical_tie=item,
                     )
-            elif isinstance(item, abjad.Tuplet) and not rewrite_tuplets:
+            elif isinstance(item, Tuplet) and not rewrite_tuplets:
                 pass
             else:
                 #print('DESCENDING:', item)
                 preprolated_duration = sum(
-                    [x._get_preprolated_duration() for x in item]
+                    [_._get_preprolated_duration() for _ in item]
                     )
                 if preprolated_duration.numerator == 1:
-                    preprolated_duration = abjad.NonreducedFraction(
+                    preprolated_duration = mathtools.NonreducedFraction(
                         preprolated_duration)
                     preprolated_duration = preprolated_duration.with_denominator(
                         preprolated_duration.denominator * 4)
-                sub_metrical_hierarchy = abjad.Meter(preprolated_duration)
+                sub_metrical_hierarchy = Meter(preprolated_duration)
                 sub_boundary_depth = 1
                 if boundary_depth is None:
                     sub_boundary_depth = None
@@ -934,9 +944,8 @@ class Meter(object):
             Matches a series of hypothetical ``4/4`` measures:
 
             >>> argument = [(0, 4), (4, 4), (8, 4), (12, 4), (16, 4)]
-            >>> for x in abjad.Meter.fit_meters(
-            ...     argument, meters):
-            ...     print(x.implied_time_signature)
+            >>> for meter in abjad.Meter.fit_meters(argument, meters):
+            ...     print(meter.implied_time_signature)
             ...
             4/4
             4/4
@@ -948,9 +957,8 @@ class Meter(object):
             Matches a series of hypothetical ``5/4`` measures:
 
             >>> argument = [(0, 4), (3, 4), (5, 4), (10, 4), (15, 4), (20, 4)]
-            >>> for x in abjad.Meter.fit_meters(
-            ...     argument, meters):
-            ...     print(x.implied_time_signature)
+            >>> for meter in abjad.Meter.fit_meters(argument, meters):
+            ...     print(meter.implied_time_signature)
             ...
             3/4
             4/4
@@ -965,8 +973,7 @@ class Meter(object):
 
         Returns list.
         """
-        import abjad
-        session = abjad.meter._MeterFittingSession(
+        session = _MeterFittingSession(
             kernel_denominator=denominator,
             maximum_run_length=maximum_run_length,
             meters=meters,
@@ -1009,17 +1016,16 @@ class Meter(object):
 
         Returns dictionary.
         """
-        import abjad
         assert mathtools.is_positive_integer_power_of_two(
             denominator // self.denominator)
         inventory = list(self.depthwise_offset_inventory)
-        old_flag_count = abjad.Duration(1, self.denominator).flag_count
-        new_flag_count = abjad.Duration(1, denominator).flag_count
+        old_flag_count = Duration(1, self.denominator).flag_count
+        new_flag_count = Duration(1, denominator).flag_count
         extra_depth = new_flag_count - old_flag_count
         for _ in range(extra_depth):
             old_offsets = inventory[-1]
             new_offsets = []
-            for first, second in abjad.sequence(old_offsets).nwise():
+            for first, second in Sequence(old_offsets).nwise():
                 new_offsets.append(first)
                 new_offsets.append((first + second) / 2)
             new_offsets.append(old_offsets[-1])
@@ -1034,8 +1040,8 @@ class Meter(object):
                 total += 1
         if normalize:
             for offset, response in kernel.items():
-                kernel[offset] = abjad.Multiplier(response, total)
-        return abjad.MetricAccentKernel(kernel)
+                kernel[offset] = Multiplier(response, total)
+        return MetricAccentKernel(kernel)
 
     ### PUBLIC PROPERTIES ###
 
@@ -1133,13 +1139,12 @@ class Meter(object):
 
         Returns dictionary.
         """
-        import abjad
         inventory = []
         all_offsets = set()
-        all_offsets.add(abjad.Offset(self.numerator, self.denominator))
+        all_offsets.add(Offset(self.numerator, self.denominator))
         for depth, nodes in sorted(self.root_node._depthwise_inventory.items()):
             for node in nodes:
-                all_offsets.add(abjad.Offset(node.start_offset))
+                all_offsets.add(Offset(node.start_offset))
             inventory.append(tuple(sorted(all_offsets)))
         return tuple(inventory)
 
@@ -1156,8 +1161,7 @@ class Meter(object):
 
         Returns duration.
         """
-        import abjad
-        return abjad.Duration(self.numerator, self.denominator)
+        return Duration(self.numerator, self.denominator)
 
     @property
     def implied_time_signature(self):
@@ -1693,12 +1697,11 @@ class MeterList(TypedList):
 
         Returns LilyPond file.
         """
-        import abjad
         durations = [_.duration for _ in self]
         total_duration = sum(durations)
         offsets = mathtools.cumulative_sums(durations, start=0)
         timespans = TimespanList()
-        for one, two in abjad.sequence(offsets).nwise():
+        for one, two in Sequence(offsets).nwise():
             timespan = Timespan(
                 start_offset=one,
                 stop_offset=two,
@@ -1708,8 +1711,8 @@ class MeterList(TypedList):
             minimum, maximum = range_
         else:
             minimum, maximum = 0, total_duration
-        minimum = float(abjad.Offset(minimum))
-        maximum = float(abjad.Offset(maximum))
+        minimum = float(Offset(minimum))
+        maximum = float(Offset(maximum))
         if scale is None:
             scale = 1.
         assert 0 < scale
@@ -1722,12 +1725,11 @@ class MeterList(TypedList):
             postscript_scale,
             draw_offsets=False,
             )
-        ps = abjad.Postscript()
-        rational_x_offset = abjad.Offset(0)
+        ps = markups.Postscript()
+        rational_x_offset = Offset(0)
         for meter in self:
             kernel_denominator = denominator or meter.denominator
-            kernel = abjad.meter.MetricAccentKernel.from_meter(
-                meter, kernel_denominator)
+            kernel = MetricAccentKernel.from_meter(meter, kernel_denominator)
             for offset, weight in sorted(kernel.kernel.items()):
                 weight = float(weight) * -40
                 ps_x_offset = float(rational_x_offset + offset)
@@ -1737,13 +1739,13 @@ class MeterList(TypedList):
                 ps = ps.rlineto(0, weight)
                 ps = ps.stroke()
             rational_x_offset += meter.duration
-        ps = abjad.Markup.postscript(ps)
-        markup_list = abjad.MarkupList([timespan_markup, ps])
+        ps = markups.Markup.postscript(ps)
+        markup_list = markups.MarkupList([timespan_markup, ps])
         lines_markup = markup_list.combine()
         fraction_markups = []
         for meter, offset in zip(self, offsets):
             numerator, denominator = meter.numerator, meter.denominator
-            fraction = abjad.Markup.fraction(numerator, denominator)
+            fraction = markups.Markup.fraction(numerator, denominator)
             fraction = fraction.center_align().fontsize(-3).sans()
             x_translation = (float(offset) * postscript_scale)
             x_translation -= postscript_x_offset
@@ -1752,17 +1754,16 @@ class MeterList(TypedList):
         fraction_markup = fraction_markups[0]
         for markup in fraction_markups[1:]:
             markup_list = [fraction_markup, markup]
-            markup_list = abjad.MarkupList(markup_list)
+            markup_list = markups.MarkupList(markup_list)
             fraction_markup = markup_list.combine()
-        markup = abjad.Markup.column([fraction_markup, lines_markup])
+        markup = markups.Markup.column([fraction_markup, lines_markup])
         return markup.__illustrate__()
 
     ### PRIVATE PROPERTIES ###
 
     @property
     def _item_coercer(self):
-        import abjad
-        return abjad.meter.Meter
+        return Meter
 
 
 class MetricAccentKernel(object):
@@ -1808,13 +1809,11 @@ class MetricAccentKernel(object):
     ### INITIALIZER ###
 
     def __init__(self, kernel=None):
-        import abjad
         kernel = kernel or {}
         assert isinstance(kernel, dict)
-        #assert 1 < len(kernel)
         for key, value in kernel.items():
-            assert isinstance(key, abjad.Offset)
-            assert isinstance(value, abjad.Multiplier)
+            assert isinstance(key, Offset)
+            assert isinstance(value, Multiplier)
         self._kernel = kernel.copy()
         self._offsets = tuple(sorted(self._kernel))
 
@@ -1834,9 +1833,8 @@ class MetricAccentKernel(object):
 
         Returns float.
         """
-        import abjad
         offset_count = self.count_offsets(argument)
-        response = abjad.Multiplier(0, 1)
+        response = Multiplier(0, 1)
         for offset, count in offset_count.items():
             if offset in self._kernel:
                 weight = self._kernel[offset]
@@ -1964,9 +1962,8 @@ class MetricAccentKernel(object):
 
         Returns new metric accent kernel.
         """
-        import abjad
-        if not isinstance(meter, abjad.Meter):
-            meter = abjad.Meter(meter)
+        if not isinstance(meter, Meter):
+            meter = Meter(meter)
         return meter.generate_offset_kernel_to_denominator(
             denominator=denominator,
             normalize=normalize,
@@ -1979,8 +1976,7 @@ class MetricAccentKernel(object):
         """
         Gets duration.
         """
-        import abjad
-        return abjad.Duration(self._offsets[-1])
+        return Duration(self._offsets[-1])
 
     @property
     def kernel(self):
@@ -2031,8 +2027,7 @@ class OffsetCounter(TypedCounter):
     ### INITIALIZER ###
 
     def __init__(self, items=None):
-        import abjad
-        TypedCounter.__init__(self, item_class=abjad.Offset)
+        TypedCounter.__init__(self, item_class=Offset)
         if items:
             for item in items:
                 try:
@@ -2040,10 +2035,10 @@ class OffsetCounter(TypedCounter):
                     self[item.stop_offset] += 1
                 except Exception:
                     if hasattr(item, '_get_timespan'):
-                        self[abjad.inspect(item).timespan().start_offset] += 1
-                        self[abjad.inspect(item).timespan().stop_offset] += 1
+                        self[inspect(item).timespan().start_offset] += 1
+                        self[inspect(item).timespan().stop_offset] += 1
                     else:
-                        offset = abjad.Offset(item)
+                        offset = Offset(item)
                         self[offset] += 1
 
     ### SPECIAL METHODS ###
@@ -2066,24 +2061,23 @@ class OffsetCounter(TypedCounter):
 
         Returns LilyPond file.
         """
-        import abjad
         if not self:
-            return abjad.Markup.null().__illustrate__()
+            return markups.Markup.null().__illustrate__()
         if isinstance(range_, Timespan):
             minimum, maximum = range_.start_offset, range_.stop_offset
         elif range_ is not None:
             minimum, maximum = range_
         else:
             minimum, maximum = min(self), max(self)
-        minimum = float(abjad.Offset(minimum))
-        maximum = float(abjad.Offset(maximum))
+        minimum = float(Offset(minimum))
+        maximum = float(Offset(maximum))
         if scale is None:
             scale = 1.
         assert 0 < scale
         postscript_scale = 150. / (maximum - minimum)
         postscript_scale *= float(scale)
         postscript_x_offset = (minimum * postscript_scale) - 1
-        ps = abjad.Postscript()
+        ps = markups.Postscript()
         ps = ps.setlinewidth(0.2)
         ps = ps.setdash([2, 1])
         for offset, count in sorted(self.items()):
@@ -2092,26 +2086,25 @@ class OffsetCounter(TypedCounter):
             ps = ps.moveto(offset, -1)
             ps = ps.rlineto(0, (float(count) * -3) + 1)
             ps = ps.stroke()
-        markup = abjad.Markup.postscript(ps)
+        markup = markups.Markup.postscript(ps)
         pieces = [markup]
         for offset in sorted(self):
-            offset = abjad.Multiplier(offset)
+            offset = Multiplier(offset)
             numerator, denominator = offset.numerator, offset.denominator
-            fraction = abjad.Markup.fraction(numerator, denominator)
+            fraction = markups.Markup.fraction(numerator, denominator)
             fraction = fraction.center_align().fontsize(-3).sans()
             x_translation = (float(offset) * postscript_scale)
             x_translation -= postscript_x_offset
             fraction = fraction.translate((x_translation, 1))
             pieces.append(fraction)
-        markup = abjad.Markup.overlay(pieces)
+        markup = markups.Markup.overlay(pieces)
         return markup.__illustrate__()
 
     ### PRIVATE PROPERTIES ###
 
     @property
     def _item_coercer(self):
-        import abjad
-        return abjad.Offset
+        return Offset
 
 
 class _MeterFittingSession(object):
@@ -2147,22 +2140,21 @@ class _MeterFittingSession(object):
         maximum_run_length=None,
         meters=None,
         offset_counter=None,
-    ):
-        import abjad
+        ):
         self._cached_offset_counters = {}
         if maximum_run_length is not None:
             maximum_run_length = int(maximum_run_length)
             assert 0 < maximum_run_length
         self._maximum_run_length = maximum_run_length
         if offset_counter:
-            self._offset_counter = abjad.MetricAccentKernel.count_offsets(
+            self._offset_counter = MetricAccentKernel.count_offsets(
                 offset_counter)
         else:
             self._offset_counter = {}
         self._ordered_offsets = tuple(sorted(self.offset_counter))
         meters = meters or ()
-        self._meters = tuple(abjad.Meter(_) for _ in meters)
-        self._kernel_denominator = abjad.Duration(kernel_denominator)
+        self._meters = tuple(Meter(_) for _ in meters)
+        self._kernel_denominator = Duration(kernel_denominator)
         self._kernels = {}
         for meter in self._meters:
             kernel = meter.generate_offset_kernel_to_denominator(
@@ -2171,7 +2163,7 @@ class _MeterFittingSession(object):
         if self.kernels:
             self._longest_kernel = sorted(
                 self._kernels,
-                key=lambda x: x.duration,
+                key=lambda _: _.duration,
                 )[-1]
         else:
             self._longest_kernel = None
@@ -2184,9 +2176,8 @@ class _MeterFittingSession(object):
 
         Returns meter list.
         """
-        import abjad
         selected_kernels = []
-        current_offset = abjad.Offset(0)
+        current_offset = Offset(0)
         while current_offset < self.ordered_offsets[-1]:
             kernel_scores = []
             kernels = self._get_kernels(selected_kernels)
@@ -2223,7 +2214,7 @@ class _MeterFittingSession(object):
             selected_kernels.append(winning_kernel)
             current_offset += winning_kernel.duration
         selected_meters = (self.kernels[_] for _ in selected_kernels)
-        selected_meters = abjad.MeterList(selected_meters)
+        selected_meters = MeterList(selected_meters)
         return selected_meters
 
     ### PRIVATE METHODS ###
@@ -2353,17 +2344,16 @@ class _MeterManager(object):
         """
         Gets offsets at ``depth`` in ``offset_inventory``.
         """
-        import abjad
         if depth < len(offset_inventory):
             return offset_inventory[depth]
         while len(offset_inventory) <= depth:
             new_offsets = []
             old_offsets = offset_inventory[-1]
-            for first, second in abjad.sequence(old_offsets).nwise():
+            for first, second in Sequence(old_offsets).nwise():
                 new_offsets.append(first)
                 difference = second - first
                 half = (first + second) / 2
-                if abjad.Duration(1, 8) < difference:
+                if Duration(1, 8) < difference:
                     new_offsets.append(half)
                 else:
                     one_quarter = (first + half) / 2
@@ -2406,7 +2396,7 @@ class _MeterManager(object):
         boundary_offsets=None,
         logical_tie_start_offset=None,
         logical_tie_stop_offset=None,
-    ):
+        ):
         """
         Is true if logical tie crosses meter boundaries.
         """
@@ -2414,14 +2404,14 @@ class _MeterManager(object):
         if boundary_depth is None:
             return False
         if not any(
-            logical_tie_start_offset < x < logical_tie_stop_offset
-            for x in boundary_offsets
-        ):
+            logical_tie_start_offset < _ < logical_tie_stop_offset
+            for _ in boundary_offsets
+            ):
             return False
         if (
             logical_tie_start_offset in boundary_offsets and
             logical_tie_stop_offset in boundary_offsets
-        ):
+            ):
             return False
         return True
 
@@ -2517,44 +2507,40 @@ class _MeterManager(object):
 
         Returns generator.
         """
-        import abjad
         last_tie = None
         current_leaf_group = None
         current_leaf_group_is_silent = False
-        for x in argument:
-            if isinstance(x, (abjad.Note, abjad.Chord)):
-                this_tie = x._get_spanners(abjad.Tie) or None
+        for component in argument:
+            if isinstance(component, (Note, Chord)):
+                this_tie = inspect(component).logical_tie()
                 if current_leaf_group is None:
                     current_leaf_group = []
                 elif (
                     current_leaf_group_is_silent or
                     this_tie is None or
                     last_tie != this_tie
-                ):
-                    yield abjad.LogicalTie(current_leaf_group)
+                    ):
+                    yield LogicalTie(current_leaf_group)
                     current_leaf_group = []
                 current_leaf_group_is_silent = False
-                current_leaf_group.append(x)
+                current_leaf_group.append(component)
                 last_tie = this_tie
-            elif isinstance(x, (abjad.Rest, abjad.Skip)):
+            elif isinstance(component, (Rest, Skip)):
                 if current_leaf_group is None:
                     current_leaf_group = []
                 elif not current_leaf_group_is_silent:
-                    yield abjad.LogicalTie(current_leaf_group)
+                    yield LogicalTie(current_leaf_group)
                     current_leaf_group = []
                 current_leaf_group_is_silent = True
-                current_leaf_group.append(x)
+                current_leaf_group.append(component)
                 last_tie = None
-            elif isinstance(x, abjad.Container):
+            elif isinstance(component, Container):
                 if current_leaf_group is not None:
-                    yield abjad.LogicalTie(current_leaf_group)
+                    yield LogicalTie(current_leaf_group)
                     current_leaf_group = None
                     last_tie = None
-                yield x
-
+                yield component
             else:
-                message = 'unhandled component: {!r}.'
-                message = message.format(x)
-                raise Exception(message)
+                raise Exception(f'unhandled component: {component!r}.')
         if current_leaf_group is not None:
-            yield abjad.LogicalTie(current_leaf_group)
+            yield LogicalTie(current_leaf_group)

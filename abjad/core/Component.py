@@ -141,8 +141,8 @@ class Component(object):
 
         Returns LilyPond file.
         """
-        import abjad
-        lilypond_file = abjad.LilyPondFile.new(self)
+        from abjad.lilypondfile.LilyPondFile import LilyPondFile
+        lilypond_file = LilyPondFile.new(self)
         return lilypond_file
 
     def __mul__(self, n):
@@ -151,13 +151,13 @@ class Component(object):
 
         Returns list of new components.
         """
-        import abjad
+        from abjad.spanners.Spanner import Spanner
         components = []
         for i in range(n):
             component = mutate(self).copy()
             components.append(component)
         for component in iterate(components).components():
-            detach(abjad.Spanner, component)
+            detach(Spanner, component)
         result = select(components)
         return result
 

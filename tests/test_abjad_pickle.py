@@ -15,7 +15,7 @@ ignored_classes = (
     abjad.Parentage,
     abjad.Selection,
     abjad.Selection,
-    abjad.abjad.rhythmtrees.RhythmTreeParser,
+    abjad.rhythmtrees.RhythmTreeParser,
     abjad.VerticalMoment,
     abjad.LilyPondFormatBundle,
     abjad.SlotContributions,
