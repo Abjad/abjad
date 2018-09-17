@@ -468,50 +468,32 @@ class Leaf(Component):
             pass
         maker = NoteMaker(repeat_ties=repeat_ties)
         components = maker(0, new_duration)
-        if isinstance(components[0], Leaf):
-            tied_leaf_count = len(components) - 1
-            tied_leaves = tied_leaf_count * self
-            all_leaves = [self] + tied_leaves
-            for leaf, component in zip(all_leaves, components):
-                leaf.written_duration = component.written_duration
-            logical_tie = self._get_logical_tie()
-            logical_tie_leaves = list(logical_tie.leaves)
-            for leaf in logical_tie:
-                detach(Tie, leaf)
-            if self._parent is not None:
-                index = self._parent.index(self)
-                next_ = index + 1
-                self._parent[next_:next_] = tied_leaves
-            index = logical_tie_leaves.index(self)
+        new_leaves = select(components).leaves()
+        following_leaf_count = len(new_leaves) - 1
+        following_leaves = following_leaf_count * self
+        all_leaves = [self] + following_leaves
+        for leaf, new_leaf in zip(all_leaves, new_leaves):
+            leaf.written_duration = new_leaf.written_duration
+        logical_tie = self._get_logical_tie()
+        logical_tie_leaves = list(logical_tie.leaves)
+        for leaf in logical_tie:
+            detach(Tie, leaf)
+        if self._parent is not None:
+            index = self._parent.index(self)
             next_ = index + 1
-            logical_tie_leaves[next_:next_] = tied_leaves
-            if isinstance(self, (Note, Chord)):
-                tie = Tie(repeat=repeat_ties)
-                attach(tie, select(logical_tie_leaves))
+            self._parent[next_:next_] = following_leaves
+        index = logical_tie_leaves.index(self)
+        next_ = index + 1
+        logical_tie_leaves[next_:next_] = following_leaves
+        if isinstance(self, (Note, Chord)):
+            tie = Tie(repeat=repeat_ties)
+            attach(tie, select(logical_tie_leaves))
+        if isinstance(components[0], Leaf):
             return select(all_leaves)
         else:
             assert isinstance(components[0], Tuplet)
+            assert len(components) == 1
             tuplet = components[0]
-            components = tuplet[:]
-            tied_leaf_count = len(components) - 1
-            tied_leaves = tied_leaf_count * self
-            all_leaves = [self] + tied_leaves
-            for leaf, component in zip(all_leaves, components):
-                leaf.written_duration = component.written_duration
-            logical_tie = self._get_logical_tie()
-            logical_tie_leaves = list(logical_tie.leaves)
-            for leaf in logical_tie:
-                detach(Tie, leaf)
-            if self._parent is not None:
-                index = self._parent.index(self)
-                next_ = index + 1
-                self._parent[next_:next_] = tied_leaves
-            index = logical_tie_leaves.index(self)
-            next_ = index + 1
-            logical_tie_leaves[next_:next_] = tied_leaves
-            if isinstance(self, (Note, Chord)):
-                tie = Tie(repeat=repeat_ties)
-                attach(tie, select(logical_tie_leaves))
             multiplier = tuplet.multiplier
             tuplet = Tuplet(multiplier, [])
             mutate(all_leaves).wrap(tuplet)
