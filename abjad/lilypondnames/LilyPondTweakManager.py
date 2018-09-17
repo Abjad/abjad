@@ -335,7 +335,7 @@ class LilyPondTweakManager(LilyPondNameManager):
                 message = f'{name} does not implement tweaks.'
                 raise NotImplementedError(message)
         if manager is None:
-            return
+            return None
         if not isinstance(manager, LilyPondTweakManager):
             raise Exception(f'must be tweak manager (not {manager!r}).')
         if argument._tweaks is None:

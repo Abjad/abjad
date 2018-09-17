@@ -132,10 +132,10 @@ class TimeSignature(object):
         hide: bool = None,
         ) -> None:
         import abjad
-        pair = getattr(pair, 'pair', pair)
-        assert isinstance(pair, collections.Iterable), repr(pair)
-        assert len(pair) == 2, repr(pair)
-        numerator, denominator = pair
+        pair_ = getattr(pair, 'pair', pair)
+        assert isinstance(pair_, tuple), repr(pair_)
+        assert len(pair_) == 2, repr(pair_)
+        numerator, denominator = pair_
         assert isinstance(numerator, int), repr(numerator)
         assert isinstance(denominator, int), repr(denominator)
         self._numerator: int = numerator
