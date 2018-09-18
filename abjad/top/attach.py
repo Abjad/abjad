@@ -219,7 +219,6 @@ def attach(
     nonindicator_prototype = (
         abjad.AfterGraceContainer,
         abjad.GraceContainer,
-        abjad.Spanner,
         )
 
     if context is not None and isinstance(attachable, nonindicator_prototype):
@@ -243,18 +242,7 @@ def attach(
             raise Exception(message)
 
     grace_container = (abjad.AfterGraceContainer, abjad.GraceContainer)
-    if isinstance(attachable, abjad.Spanner):
-        if not isinstance(target, abjad.Selection):
-            raise Exception('spanners attach to leaf selections only.')
-        if not target.are_leaves():
-            raise Exception('spanners attach to leaf selections only.')
-        attachable._attach(
-            target,
-            deactivate=deactivate,
-            tag=tag,
-            )
-        return
-    elif isinstance(attachable, grace_container):
+    if isinstance(attachable, grace_container):
         if not isinstance(target, abjad.Leaf):
             raise Exception('grace containers attach to single leaf only.')
         attachable._attach(target)

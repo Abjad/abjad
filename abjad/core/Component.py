@@ -151,13 +151,10 @@ class Component(object):
 
         Returns list of new components.
         """
-        from abjad.spanners.Spanner import Spanner
         components = []
         for i in range(n):
             component = mutate(self).copy()
             components.append(component)
-        for component in iterate(components).components():
-            detach(Spanner, component)
         result = select(components)
         return result
 

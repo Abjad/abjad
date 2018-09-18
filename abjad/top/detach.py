@@ -216,20 +216,13 @@ def detach(argument, target=None, by_id=False):
     Returns tuple of zero or more detached items.
     """
     import abjad
-    if isinstance(argument, abjad.Spanner):
-        if by_id is True:
-            raise Exception('ignoring by_id with spanner argument.')
-        argument._detach()
-        return
     assert target is not None
     after_grace_container = None
     grace_container = None
     spanners = []
     inspector = abjad.inspect(target)
     if isinstance(argument, type):
-        if issubclass(argument, abjad.Spanner):
-            spanners = inspector.spanners(argument)
-        elif issubclass(argument, abjad.AfterGraceContainer):
+        if issubclass(argument, abjad.AfterGraceContainer):
             after_grace_container = inspector.after_grace_container()
         elif issubclass(argument, abjad.GraceContainer):
             grace_container = inspector.grace_container()
@@ -246,9 +239,7 @@ def detach(argument, target=None, by_id=False):
             result = tuple(result)
             return result
     else:
-        if isinstance(argument, abjad.Spanner):
-            spanners = inspector.spanners(argument)
-        elif isinstance(argument, abjad.AfterGraceContainer):
+        if isinstance(argument, abjad.AfterGraceContainer):
             after_grace_container = inspector.after_grace_container()
         elif isinstance(argument, abjad.GraceContainer):
             grace_container = inspector.grace_container()

@@ -47,7 +47,7 @@ class LogicalTie(Selection):
 
     def _add_or_remove_notes_to_achieve_written_duration(
         self, new_written_duration):
-        from abjad.spanners.Spanner import tie as spanner_tie
+        from abjad.spanners import tie as abjad_tie
         from .NoteMaker import NoteMaker
         from .Tuplet import Tuplet
         new_written_duration = Duration(new_written_duration)
@@ -88,7 +88,7 @@ class LogicalTie(Selection):
                 parent[next_:next_] = extra_leaves
                 leaves = self.leaves + extra_leaves
                 #attach(Tie(), leaves)
-                spanner_tie(leaves)
+                abjad_tie(leaves)
         else:
             components = maker(0, new_written_duration)
             assert isinstance(components[0], Tuplet)

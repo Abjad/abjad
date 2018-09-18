@@ -302,8 +302,6 @@ def test_Leaf__split_by_durations_11():
 def test_Leaf__split_by_durations_12():
     """
     Returns three leaves with two tied.
-
-    Spanner is shared by all 3 leaves.
     """
 
     staff = abjad.Staff([abjad.Note("c'4")])

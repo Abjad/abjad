@@ -7,7 +7,6 @@ from abjad.indicators.TimeSignature import TimeSignature
 from abjad.markups import Markup
 from abjad.pitch.NamedPitch import NamedPitch
 from abjad.pitch.PitchSet import PitchSet
-from abjad.spanners.Spanner import Spanner
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.system.Wrapper import Wrapper
@@ -1411,39 +1410,16 @@ class Inspection(object):
         Returns ``default`` when no spanner of ``prototype`` attaches to
         client.
         """
-        # TODO: extend to any non-none client
-        if not isinstance(self.client, (Leaf, Selection)):
-            raise Exception('can only get spanner on leaf or selection.')
-        spanners = self.client._get_spanners(prototype=prototype)
-        assert isinstance(spanners, list), repr(spanners)
-        if not spanners:
-            return default
-        elif len(spanners) == 1:
-            return spanners[0]
-        else:
-            raise exceptions.ExtraSpannerError
+        return None
 
     def spanners(
         self,
         prototype: typings.Prototype = None,
-        ) -> typing.List[Spanner]:
+        ) -> typing.List:
         r"""
         Gets spanners.
         """
-        if isinstance(self.client, Container):
-            return []
-        if isinstance(self.client, (Leaf, Selection)):
-            return self.client._get_spanners(prototype=prototype)
-        assert isinstance(self.client, collections.Iterable), repr(self.client)
-        known_ids: typing.List[int] = []
-        result = []
-        for item in self.client:
-            for spanner in inspect(item).spanners(prototype=prototype):
-                id_ = id(spanner)
-                if id_ not in known_ids:
-                    known_ids.append(id_)
-                    result.append(spanner)
-        return result
+        return []
 
     def tabulate_wellformedness(
         self,

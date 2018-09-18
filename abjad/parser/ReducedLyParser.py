@@ -4,10 +4,10 @@ from abjad import utilities
 from abjad import mathtools
 from abjad import pitch as abjad_pitch
 from abjad import core
-from abjad import spanners
 from abjad.top import attach
 from abjad.top import detach
 from abjad.top import inspect
+from abjad.top import select
 from abjad.system import Parser
 
 
@@ -274,15 +274,13 @@ class ReducedLyParser(Parser):
         """
         beam : BRACKET_L
         """
-        import abjad
-        p[0] = (abjad.StartBeam, Left)
+        p[0] = (indicators.StartBeam, Left)
 
     def p_beam__BRACKET_R(self, p):
         """
         beam : BRACKET_R
         """
-        import abjad
-        p[0] = (abjad.StopBeam, Right)
+        p[0] = (indicators.StopBeam, Right)
 
     def p_chord_body__chord_pitches(self, p):
         """
@@ -547,15 +545,13 @@ class ReducedLyParser(Parser):
         """
         slur : PAREN_L
         """
-        import abjad
-        p[0] = (abjad.StartSlur, Left)
+        p[0] = (indicators.StartSlur, Left)
 
     def p_slur__PAREN_R(self, p):
         """
         slur : PAREN_R
         """
-        import abjad
-        p[0] = (abjad.StopSlur, Right)
+        p[0] = (indicators.StopSlur, Right)
 
     def p_start__EMPTY(self, p):
         """
@@ -582,8 +578,7 @@ class ReducedLyParser(Parser):
         """
         tie : TILDE
         """
-        import abjad
-        p[0] = (abjad.TieIndicator, Left)
+        p[0] = (indicators.TieIndicator, Left)
 
     def p_tuplet__FRACTION__container(self, p):
         """
@@ -596,63 +591,31 @@ class ReducedLyParser(Parser):
 
     ### PRIVATE METHODS ###
 
-    def _apply_spanners(self, leaves):
-        import abjad
-        first_leaf = leaves[0]
-        pairs = abjad.sequence(leaves).nwise(wrapped=True)
-        for leaf, next_leaf in pairs:
+    def _attach_indicators(self, leaves):
+        for leaf in leaves:
             span_events = self._get_span_events(leaf)
             for current_class, directions in span_events.items():
-
-                if current_class in (abjad.StartSlur, abjad.StopSlur):
+                if current_class in (indicators.StartSlur, indicators.StopSlur):
                     indicator = current_class()
-                    abjad.attach(indicator, leaf)
+                    attach(indicator, leaf)
                     continue
-
-                if current_class in (abjad.StartBeam, abjad.StopBeam):
+                if current_class in (indicators.StartBeam, indicators.StopBeam):
                     indicator = current_class()
-                    abjad.attach(indicator, leaf)
+                    attach(indicator, leaf)
                     continue
-
-                if current_class is abjad.TieIndicator:
+                if current_class is indicators.TieIndicator:
                     indicator = current_class()
-                    abjad.attach(indicator, leaf)
+                    attach(indicator, leaf)
                     continue
-
-                starting, stopping = [], []
-                for direction in directions:
-                    if direction is Left:
-                        starting.append(Left)
-                    else:
-                        stopping.append(Right)
-
-                # apply undirected events immediately,
-                # and do not maintain a reference to them
-                if current_class is abjad.Tie:
-                    if next_leaf is first_leaf:
-                        message = 'unterminated {} at {}.'
-                        message = message.format(current_class.__name__, leaf)
-                        raise Exception(message)
-                    previous_tie = [
-                        x for x in leaf._get_spanners()
-                        if isinstance(x, abjad.Tie)
-                        ]
-                    if previous_tie:
-                        previous_tie[0]._append(next_leaf)
-                    else:
-                        tie = abjad.Tie()
-                        selection = abjad.select([leaf, next_leaf])
-                        attach(tie, selection)
 
     def _cleanup(self, parsed):
-        import abjad
         container = core.Container()
         for x in parsed:
             container.append(x)
         parsed = container
-        leaves = abjad.select(parsed).leaves()
+        leaves = select(parsed).leaves()
         if leaves:
-            self._apply_spanners(leaves)
+            self._attach_indicators(leaves)
         for leaf in leaves:
             detach(dict, leaf)
         if 1 < self._toplevel_component_count:
