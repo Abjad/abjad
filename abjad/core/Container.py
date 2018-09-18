@@ -907,7 +907,7 @@ class Container(Component):
         self._scale_contents(multiplier)
 
     def _scale_contents(self, multiplier):
-        for item in  list(self._iterate_topmost()):
+        for item in list(self._iterate_topmost()):
             item._scale(multiplier)
 
     def _set_item(

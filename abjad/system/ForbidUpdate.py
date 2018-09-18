@@ -27,7 +27,7 @@ class ForbidUpdate(ContextManager):
             >>> abjad.f(staff)
             \new Staff {
                 <c' e'>8
-                <d' fs'>8 ~
+                <d' fs'>8
                 <d' fs'>2
                 <e' gs'>4
             }

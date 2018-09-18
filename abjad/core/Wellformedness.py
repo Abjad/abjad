@@ -3,7 +3,6 @@ from abjad.indicators.HairpinIndicator import HairpinIndicator
 from abjad.indicators.StartTextSpan import StartTextSpan
 from abjad.indicators.StopTextSpan import StopTextSpan
 from abjad.instruments import Instrument
-from abjad.spanners.Tie import Tie
 from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.top.inspect import inspect
 from abjad.top.iterate import iterate
@@ -171,69 +170,6 @@ class Wellformedness(object):
                 violators.append(container)
         return violators, len(containers)
 
-    def check_mispitched_ties(self, argument=None):
-        r"""
-        Checks mispitched notes.
-
-        ..  container:: example
-
-            Checks for mispitched ties attached to notes:
-
-            >>> staff = abjad.Staff("c'4 ~ c'")
-            >>> staff[1].written_pitch = abjad.NamedPitch("d'")
-
-            >>> agent = abjad.inspect(staff)
-            >>> print(agent.tabulate_wellformedness())
-            0 /	1 discontiguous spanners
-            0 /	3 duplicate ids
-            0 /	1 empty containers
-            1 /	1 mispitched ties
-            0 /	2 misrepresented flags
-            0 /	3 missing parents
-            0 /	2 notes on wrong clef
-            0 /	2 out of range pitches
-            0 /	0 unmatched stop text spans
-            0 /	0 unterminated hairpins
-            0 /	0 unterminated text spanners
-
-        ..  container:: example
-
-            Checks for mispitched ties attached to chords:
-
-            >>> staff = abjad.Staff("<c' d' bf'>4 ~ <c' d' bf'>")
-            >>> staff[1].written_pitches = [6, 9]
-
-            >>> agent = abjad.inspect(staff)
-            >>> print(agent.tabulate_wellformedness())
-            0 /	1 discontiguous spanners
-            0 /	3 duplicate ids
-            0 /	1 empty containers
-            1 /	1 mispitched ties
-            0 /	2 misrepresented flags
-            0 /	3 missing parents
-            0 /	2 notes on wrong clef
-            0 /	2 out of range pitches
-            0 /	0 unmatched stop text spans
-            0 /	0 unterminated hairpins
-            0 /	0 unterminated text spanners
-
-        Returns violator ties together with total number of ties.
-        """
-        violators, ties = [], set()
-        for leaf in iterate(argument).leaves(pitched=True):
-            ties_ = inspect(leaf).spanners(Tie)
-            ties.update(ties_)
-        for tie in ties:
-            for first_leaf, second_leaf in Sequence(tie).nwise():
-                first_pitches = inspect(first_leaf).pitches()
-                first_pitches = set([_.number for _ in first_pitches])
-                second_pitches = inspect(second_leaf).pitches()
-                second_pitches = set([_.number for _ in second_pitches])
-                if not (first_pitches & second_pitches):
-                    violators.append(tie)
-                    break
-        return violators, len(ties)
-
     def check_misrepresented_flags(self, argument=None):
         """
         Checks misrepresented flags.
@@ -304,7 +240,6 @@ class Wellformedness(object):
             0 /	0 discontiguous spanners
             0 /	5 duplicate ids
             0 /	1 empty containers
-            0 /	0 mispitched ties
             0 /	4 misrepresented flags
             0 /	5 missing parents
             4 /	4 notes on wrong clef
@@ -341,7 +276,6 @@ class Wellformedness(object):
             0 /	0 discontiguous spanners
             0 /	5 duplicate ids
             0 /	1 empty containers
-            0 /	0 mispitched ties
             0 /	4 misrepresented flags
             0 /	5 missing parents
             0 /	4 notes on wrong clef
@@ -359,7 +293,6 @@ class Wellformedness(object):
             0 /	0 discontiguous spanners
             0 /	5 duplicate ids
             0 /	1 empty containers
-            0 /	0 mispitched ties
             0 /	4 misrepresented flags
             0 /	5 missing parents
             4 /	4 notes on wrong clef
@@ -415,7 +348,6 @@ class Wellformedness(object):
             0 /	0 discontiguous spanners
             0 /	5 duplicate ids
             0 /	1 empty containers
-            0 /	0 mispitched ties
             0 /	4 misrepresented flags
             0 /	5 missing parents
             0 /	4 notes on wrong clef
@@ -464,7 +396,6 @@ class Wellformedness(object):
             0 /	0 discontiguous spanners
             0 /	5 duplicate ids
             0 /	1 empty containers
-            0 /	0 mispitched ties
             0 /	4 misrepresented flags
             0 /	5 missing parents
             0 /	4 notes on wrong clef
@@ -551,7 +482,6 @@ class Wellformedness(object):
             0 /	0 discontiguous spanners
             0 /	5 duplicate ids
             0 /	1 empty containers
-            0 /	0 mispitched ties
             0 /	4 misrepresented flags
             0 /	5 missing parents
             0 /	4 notes on wrong clef
@@ -583,7 +513,6 @@ class Wellformedness(object):
             0 /	0 discontiguous spanners
             0 /	5 duplicate ids
             0 /	1 empty containers
-            0 /	0 mispitched ties
             0 /	4 misrepresented flags
             0 /	5 missing parents
             0 /	4 notes on wrong clef
@@ -663,7 +592,6 @@ class Wellformedness(object):
             0 /	0 discontiguous spanners
             0 /	5 duplicate ids
             0 /	1 empty containers
-            0 /	0 mispitched ties
             0 /	4 misrepresented flags
             0 /	5 missing parents
             0 /	4 notes on wrong clef

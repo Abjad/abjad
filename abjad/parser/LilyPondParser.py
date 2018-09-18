@@ -473,7 +473,7 @@ class LilyPondParser(Parser):
                         stopping_events.append(x)
 
                 if spanner_class in [
-                    abjad_spanners.TrillSpanner,
+                    #abjad_spanners.TrillSpanner,
                     ]:
                     # these engravers process stop events before start events,
                     # they must contain more than one leaf, however,
@@ -749,6 +749,7 @@ class LilyPondParser(Parser):
             abjad_indicators.StopTextSpan,
             abjad_indicators.StopTrillSpan,
             abjad_indicators.StemTremolo,
+            abjad_indicators.TieIndicator,
             abjad_markups.Markup,
             )
         for post_event in post_events:
@@ -862,6 +863,8 @@ class LilyPondParser(Parser):
                 return abjad_indicators.StartTextSpan()
             else:
                 return abjad_indicators.StopTextSpan()
+        elif name == 'TieEvent':
+            return abjad_indicators.TieIndicator()
         elif name == 'TrillSpanEvent':
             if lookup['span-direction'] == -1:
                 return abjad_indicators.StartTrillSpan()
@@ -889,7 +892,7 @@ class LilyPondParser(Parser):
             #'GlissandoEvent': abjad_spanners.Glissando,
             #'NoteGroupingEvent': abjad_spanners.HorizontalBracket,
             #'SlurEvent': abjad_spanners.Slur,
-            'TieEvent': abjad_spanners.Tie,
+            #'TieEvent': abjad_spanners.Tie,
             #'TrillSpanEvent': abjad_spanners.TrillSpanner,
             }
         if name in spanners:

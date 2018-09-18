@@ -124,9 +124,9 @@ def test_Mutation_split_02():
             {
                 \time 2/8
                 c'16.
-                ~
                 [
                 (
+                ~
                 c'32
                 d'16
                 ~
@@ -136,8 +136,8 @@ def test_Mutation_split_02():
             {
                 \time 2/8
                 e'32
-                ~
                 [
+                ~
                 e'16.
                 f'16.
                 ~
@@ -505,9 +505,9 @@ def test_Mutation_split_07():
             {
                 \time 2/8
                 c'16
-                ~
                 [
                 (
+                ~
                 c'16
                 d'16
                 ~
@@ -517,8 +517,8 @@ def test_Mutation_split_07():
             {
                 \time 2/8
                 e'16
-                ~
                 [
+                ~
                 e'16
                 f'16
                 ~
@@ -585,9 +585,9 @@ def test_Mutation_split_08():
             {
                 \time 2/8
                 c'16
-                ~
                 [
                 (
+                ~
             }
             {
                 c'16
@@ -667,9 +667,9 @@ def test_Mutation_split_09():
             {
                 \time 2/8
                 c'16.
-                ~
                 [
                 (
+                ~
             }
             {
                 c'32
@@ -683,8 +683,8 @@ def test_Mutation_split_09():
             {
                 \time 2/8
                 e'32
-                ~
                 [
+                ~
             }
             {
                 e'16.

@@ -462,6 +462,44 @@ class Mutation(object):
 
             All ``tuplets`` must be of the same type.
 
+        ..  container:: example
+
+            REGRESSION. Trims tie from fused note:
+
+            >>> staff = abjad.Staff("d'8 ~ d'32 ~ d'16 d'32")
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    d'8
+                    ~
+                    d'32
+                    ~
+                    d'16
+                    d'32
+                }
+
+            >>> logical_tie = abjad.inspect(staff[0]).logical_tie()
+            >>> abjad.mutate(logical_tie).fuse()
+            Selection([Note("d'8..")])
+
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    d'8..
+                    d'32
+                }
+
+            >>> abjad.inspect(staff[0]).has_indicator(abjad.TieIndicator)
+            False
+
         Returns selection.
         """
         if isinstance(self.client, Component):
@@ -666,9 +704,7 @@ class Mutation(object):
             {
                 c'2
                 ~
-                ~
                 c'8
-                ~
                 c'2
             }
 
@@ -2307,7 +2343,6 @@ class Mutation(object):
             for component in self.client:
                 component._scale(multiplier)
 
-    # TODO: fix bug that unintentionally fractures ties.
     # TODO: add tests of tupletted notes and rests.
     # TODO: add examples that show indicator handling.
     # TODO: add example showing grace and after grace handling.
@@ -2823,9 +2858,40 @@ class Mutation(object):
                     \laissezVibrer
                 }
 
+        ..  container:: example
+
+            REGRESSION. Preserves tie:
+
+            >>> staff = abjad.Staff("d'2 ~ d'")
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    d'2
+                    ~
+                    d'2
+                }
+
+            >>> result = abjad.mutate(staff[0]).split([(1, 32)])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    d'32
+                    ~
+                    d'4...
+                    ~
+                    d'2
+                }
+
         Returns list of selections.
         """
-        # check input
         components = self.client
         single_component_input = False
         if isinstance(components, Component):
@@ -2835,16 +2901,13 @@ class Mutation(object):
         if not isinstance(components, Selection):
             components = select(components)
         durations = [Duration(_) for _ in durations]
-        # return if no split to be done
         if not durations:
             if single_component_input:
                 return components
             else:
                 return [], components
-        # calculate total component duration
         total_component_duration = inspect(components).duration()
         total_split_duration = sum(durations)
-        # calculate durations
         if cyclic:
             durations = sequence(durations)
             durations = durations.repeat_to_weight(total_component_duration)
@@ -2858,10 +2921,8 @@ class Mutation(object):
             durations = list(durations)
         # keep copy of durations to partition result components
         durations_copy = durations[:]
-        # calculate total split duration
         total_split_duration = sum(durations)
         assert total_split_duration == total_component_duration
-        # initialize loop variables
         result, shard = [], []
         offset_index = 0
         current_shard_duration = Duration(0)

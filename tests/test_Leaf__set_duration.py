@@ -32,8 +32,8 @@ def test_Leaf__set_duration_01():
             c'8
             [
             d'8
-            ~
             ]
+            ~
             d'32
             ]
             e'8
@@ -51,7 +51,7 @@ def test_Leaf__set_duration_02():
     """
 
     voice = abjad.Voice("c'8 c'8 c'8 c'8")
-    abjad.attach(abjad.Tie(), voice[:2])
+    abjad.tie(voice[:2])
     abjad.beam(voice[:2])
 
     assert format(voice) == abjad.String.normalize(
@@ -76,11 +76,11 @@ def test_Leaf__set_duration_02():
         \new Voice
         {
             c'8
-            ~
             [
-            c'8
             ~
+            c'8
             ]
+            ~
             c'32
             ]
             c'8
@@ -168,8 +168,8 @@ def test_Leaf__set_duration_04():
             \tweak edge-height #'(0.7 . 0)
             \times 2/3 {
                 d'8
-                ~
                 ]
+                ~
                 d'32
                 ]
             }

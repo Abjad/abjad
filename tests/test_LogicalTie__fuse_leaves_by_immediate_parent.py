@@ -23,7 +23,6 @@ def test_LogicalTie__fuse_leaves_by_immediate_parent_01():
             }
             {
                 c'4
-                ~
             }
         }
         """
@@ -64,7 +63,6 @@ def test_LogicalTie__fuse_leaves_by_immediate_parent_02():
         \new Staff
         {
             c'2
-            ~
         }
         """
         ), print(format(staff))

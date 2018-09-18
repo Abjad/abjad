@@ -7,6 +7,8 @@ from abjad import enums
 from abjad import exceptions
 from abjad import mathtools
 from abjad import typings
+from abjad.indicators.TieIndicator import TieIndicator
+from abjad.indicators.RepeatTie import RepeatTie
 from abjad.mathtools.Ratio import Ratio
 from abjad.pitch.PitchSet import PitchSet
 from abjad.system.FormatSpecification import FormatSpecification
@@ -16,6 +18,7 @@ from abjad.top.detach import detach
 from abjad.top.inspect import inspect as abjad_inspect
 from abjad.top.iterate import iterate
 from abjad.top.mutate import mutate
+from abjad.top.select import select
 from abjad.top.new import new
 from abjad.utilities.CyclicTuple import CyclicTuple
 from abjad.utilities.Duration import Duration
@@ -526,7 +529,7 @@ class Selection(collections.Sequence):
     ### PRIVATE METHODS ###
 
     def _attach_tie_to_leaves(self, repeat_ties=False):
-        from abjad.spanners.Tie import Tie
+        from abjad.spanners.Spanner import tie as spanner_tie
         leaves = []
         for leaf in self:
             assert isinstance(leaf, Leaf), repr(leaf)
@@ -535,10 +538,9 @@ class Selection(collections.Sequence):
                     leaves.append(leaf_)
         leaves = Selection(leaves)
         for leaf in leaves:
-            detach(Tie, leaf)
-        tie = Tie(repeat=repeat_ties)
-        tie._contiguity_constraint = None
-        attach(tie, leaves)
+            detach(TieIndicator, leaf)
+            detach(RepeatTie, leaf)
+        spanner_tie(leaves, repeat=repeat_ties)
 
     @staticmethod
     def _check(items):
@@ -639,13 +641,18 @@ class Selection(collections.Sequence):
         leaves = self
         if len(leaves) <= 1:
             return leaves
+        originally_tied = abjad_inspect(self[-1]).has_indicator(TieIndicator)
         total_preprolated = leaves._get_preprolated_duration()
         for leaf in leaves[1:]:
             parent = leaf._parent
             if parent:
                 index = parent.index(leaf)
                 del(parent[index])
-        return leaves[0]._set_duration(total_preprolated)
+        result = leaves[0]._set_duration(total_preprolated)
+        if not originally_tied:
+            last_leaf = select(result).leaf(-1)
+            detach(TieIndicator, last_leaf)
+        return result
 
     def _fuse_tuplets(self):
         from .Container import Container
@@ -8934,8 +8941,8 @@ class Selection(collections.Sequence):
                     \abjad-color-music #'blue
                     \abjad-color-music #'red
                     e'8
-                    ~
                     \sustainOff
+                    ~
                     \sustainOn
                     \abjad-color-music #'red
                     e'8

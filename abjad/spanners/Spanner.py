@@ -57,6 +57,7 @@ from abjad.top.select import select
 from abjad.top.setting import setting
 from abjad.top.tweak import tweak
 from abjad.utilities.Duration import Duration
+from abjad.utilities.DurationInequality import DurationInequality
 from abjad.utilities.Expression import Expression
 from abjad.utilities.Sequence import Sequence
 abjad_tags = Tags()
@@ -2171,8 +2172,14 @@ def tie(
     argument: typing.Union[Component, Selection],
     *,
     direction: enums.VerticalAlignment = None,
-    selector: typings.Selector = 'abjad.select().leaves()',
-    tie: TieIndicator = None,
+    repeat: typing.Union[
+        bool,
+        typings.IntegerPair,
+        DurationInequality,
+        ] = None,
+    selector: typings.Selector =
+        'abjad.select().leaves(do_not_iterate_grace_containers=True)',
+    #tie: TieIndicator = None,
     tag: str = None,
     ) -> None:
     r"""
@@ -2196,6 +2203,28 @@ def tie(
                 c'4
                 ~
                 c'4
+            }
+
+    ..  container:: example
+
+        With repeat ties:
+
+        >>> staff = abjad.Staff("c'4 c' c' c'")
+        >>> abjad.tie(staff[:], repeat=True)
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                c'4
+                c'4
+                \repeatTie
+                c'4
+                \repeatTie
+                c'4
+                \repeatTie
             }
 
     ..  container:: example
@@ -2263,26 +2292,105 @@ def tie(
                 dff'4
             }
 
+    ..  container:: example
+
+        Repeat tie threshold works like this:
+
+        >>> staff = abjad.Staff("d'4. d'2 d'4. d'2")
+        >>> abjad.tie(staff[:], repeat=(4, 8))
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                d'4.
+                ~
+                d'2
+                d'4.
+                \repeatTie
+                ~
+                d'2
+            }
+
+    ..  container:: example
+
+        Detaches ties before attach:
+
+        >>> staff = abjad.Staff("d'2 ~ d'8 ~ d'8 ~ d'8 ~ d'8")
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                d'2
+                ~
+                d'8
+                ~
+                d'8
+                ~
+                d'8
+                ~
+                d'8
+            }
+
+        >>> abjad.tie(staff[:], repeat=(4, 8))
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                d'2
+                d'8
+                \repeatTie
+                ~
+                d'8
+                ~
+                d'8
+                ~
+                d'8
+            }
+
     """
     # import allows eval statement
     import abjad
-    from .Tie import Tie
-    tie = tie or TieIndicator()
+    if repeat in (None, False):
+        inequality = DurationInequality('<', 0)
+    elif repeat is True:
+        inequality = DurationInequality('>=', 0)
+    elif isinstance(repeat, DurationInequality):
+        inequality = repeat
+    else:
+        assert isinstance(repeat, tuple) and len(repeat) == 2, repr(repeat)
+        inequality = DurationInequality('>=', repeat)
+    assert isinstance(inequality, DurationInequality), repr(inequality)
     if isinstance(selector, str):
         selector = eval(selector)
     assert isinstance(selector, Expression)
     argument = selector(argument)
-    leaves = select(argument).leaves()
+    leaves = select(argument).leaves(do_not_iterate_grace_containers=True)
     if len(leaves) < 2:
         raise Exception('must be two or more notes (not {leaves!r}).')
     for leaf in leaves:
         if not isinstance(leaf, (Note, Chord)):
             raise Exception(r'tie note or chord (not {leaf!r}).')
-    for leaf in leaves[:-1]:
-        detach(TieIndicator, leaf)
-        detach(Tie, leaf)
-        tie = new(tie, direction=direction)
-        attach(tie, leaf, tag=tag)
+    for current_leaf, next_leaf in Sequence(leaves).nwise():
+        duration = inspect(current_leaf).duration()
+        if inequality(duration):
+            detach(TieIndicator, current_leaf)
+            detach(RepeatTie, next_leaf)
+            repeat_tie = RepeatTie(direction=direction)
+            attach(repeat_tie, next_leaf, tag=tag)
+        else:
+            detach(TieIndicator, current_leaf)
+            detach(RepeatTie, next_leaf)
+            tie = TieIndicator(direction=direction)
+            attach(tie, current_leaf, tag=tag)
 
 def trill_spanner(
     argument: typing.Union[Component, Selection],
