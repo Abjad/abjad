@@ -387,154 +387,9 @@ class LilyPondParser(Parser):
                 input_string,
                 lexer=self._lexer,
                 )
-##        if isinstance(result, core.Container):
-##            self._apply_spanners(result)
-##        elif isinstance(result, abjad_lilypondfile.LilyPondFile):
-#        if isinstance(result, abjad_lilypondfile.LilyPondFile):
-#            for x in result.items:
-##                if isinstance(x, core.Container):
-##                    self._apply_spanners(x)
-##                elif isinstance(x, abjad_lilypondfile.Block) and \
-##                    x.name == 'score':
-#                if (isinstance(x, abjad_lilypondfile.Block) and
-#                    x.name == 'score'):
-#                    for y in x.items:
-#                        self._apply_spanners(y)
         return result
 
     ### PRIVATE METHODS ###
-
-#    def _apply_spanners(self, music):
-#        # get local reference to methods
-#        _get_span_events = self._get_span_events
-#        _span_event_name_to_spanner_class = \
-#            self._span_event_name_to_spanner_class
-#
-#        # dictionary of spanner classes and instances
-#        all_spanners = {}
-#
-#        # traverse all leaves
-#        leaves = select(music).leaves()
-#        first_leaf = None
-#        if leaves:
-#            first_leaf = leaves[0]
-#        pairs = sequence(leaves).nwise(wrapped=True)
-#        for leaf, next_leaf in pairs:
-#
-#            span_events = _get_span_events(leaf)
-#            directed_events = {}
-#
-#            # sort span events into directed and undirected groups
-#            for span_event in span_events:
-#                spanner_class = _span_event_name_to_spanner_class(
-#                    span_event.name)
-#
-#                # group directed span events by their Abjad spanner class
-#                if hasattr(span_event, 'span_direction'):
-#                    if spanner_class not in directed_events:
-#                        directed_events[spanner_class] = [span_event]
-#                    else:
-#                        directed_events[spanner_class].append(span_event)
-#                    if spanner_class not in all_spanners:
-#                        all_spanners[spanner_class] = []
-#
-#                # or apply undirected event immediately (i.e. ties, glisses)
-#                # so long as we are not wrapping yet
-#                elif next_leaf is not first_leaf:
-#                    previous_spanners = [
-#                        x for x in leaf._get_spanners()
-#                        if isinstance(x, spanner_class)
-#                        ]
-#                    if previous_spanners:
-#                        previous_spanners[0]._append(next_leaf)
-#                    else:
-#                        if (hasattr(span_event, 'direction') and
-#                            hasattr(spanner_class, 'direction')):
-#                            direction = span_event.direction
-#                            spanner = spanner_class(direction=direction)
-#                            selection = select([leaf, next_leaf]).leaves()
-#                            attach(spanner, selection)
-#                        else:
-#                            spanner = spanner_class()
-#                            selection = select([leaf, next_leaf]).leaves()
-#                            attach(spanner, selection)
-#
-#                # otherwise throw an error
-#                else:
-#                    message = 'unterminated {} at {}.'
-#                    message = message.format(spanner_class.__name__, leaf)
-#                    raise Exception(message)
-#
-#            # loop through directed events, handling each as necessary for spanner_class, events in directed_events.items():
-#            for spanner_class, events in directed_events.items():
-#                starting_events, stopping_events = [], []
-#                for x in events:
-#                    if x.span_direction == 'start':
-#                        starting_events.append(x)
-#                    else:
-#                        stopping_events.append(x)
-#
-#                if spanner_class in [
-#                    #abjad_spanners.TrillSpanner,
-#                    ]:
-#                    # these engravers process stop events before start events,
-#                    # they must contain more than one leaf, however,
-#                    # yhey can stop on a leaf and start on the same leaf.
-#                    for _ in stopping_events:
-#                        if all_spanners[spanner_class]:
-#                            all_spanners[spanner_class][0]._append(leaf)
-#                            all_spanners[spanner_class].pop()
-#                        else:
-#                            message = 'can not end {}.'
-#                            message = message.format(spanner_class.__name__)
-#                            raise Exception(message)
-#                    for event in starting_events:
-#                        if not all_spanners[spanner_class]:
-#                            if hasattr(event, 'direction') and \
-#                                hasattr(spanner_class, 'direction'):
-#                                all_spanners[spanner_class].append(
-#                                    spanner_class(direction=event.direction))
-#                            else:
-#                                all_spanners[spanner_class].append(
-#                                    spanner_class())
-#                        else:
-#                            message = 'already have {}.'
-#                            message = message.format(spanner_class.__name__)
-#                            raise Exception(message)
-#
-#                elif spanner_class is abjad_spanners.HorizontalBracket:
-#                    # Brackets can nest, meaning
-#                    # multiple brackets can begin or end on a leaf
-#                    # but can not both begin and end on the same leaf
-#                    # and therefore a bracket can not cover a single leaf
-#                    has_starting_events = bool(len(starting_events))
-#                    for _ in starting_events:
-#                        all_spanners[spanner_class].append(spanner_class())
-#                    if stopping_events:
-#                        if not has_starting_events:
-#                            for _ in stopping_events:
-#                                if all_spanners[spanner_class]:
-#                                    all_spanners[spanner_class][-1]._append(
-#                                        leaf)
-#                                    all_spanners[spanner_class].pop()
-#                                else:
-#                                    message = 'do not have that many brackets.'
-#                                    raise Exception(message)
-#                        else:
-#                            message = 'conflicting note group events.'
-#                            raise Exception(message)
-#
-#            # append leaf to all tracked spanners,
-#            for spanner_class, instances in all_spanners.items():
-#                for instance in instances:
-#                    instance._append(leaf)
-#
-#        # check for unterminated spanners
-#        for spanner_class, instances in all_spanners.items():
-#            if instances:
-#                message = 'unterminated {}.'
-#                message = message.format(spanner_class.__name__)
-#                raise Exception(message)
 
     def _assign_variable(self, identifier, value):
         self._scope_stack[-1][identifier] = value
@@ -717,13 +572,6 @@ class LilyPondParser(Parser):
             'symbol?': lambda x: True,
             }
 
-    def _get_span_events(self, leaf):
-        annotation = inspect(leaf).annotation('spanners', [])
-        detach(annotation, leaf)
-        assert isinstance(annotation, list), repr(annotation)
-        assert inspect(leaf).annotation('spanners') is None
-        return annotation
-
     def _pop_variable_scope(self):
         if self._scope_stack:
             self._scope_stack.pop()
@@ -756,13 +604,6 @@ class LilyPondParser(Parser):
         for post_event in post_events:
             if isinstance(post_event, nonspanner_post_event_types):
                 attach(post_event, leaf)
-            else:
-                raise Exception('ASDF')
-#                annotation = inspect(leaf).annotation('spanners')
-#                if annotation is None:
-#                    annotation = []
-#                    annotate(leaf, 'spanners', annotation)
-#                annotation.append(post_event)
 
     def _push_extra_token(self, token):
         self._parser.lookaheadstack.append(token)
@@ -883,23 +724,6 @@ class LilyPondParser(Parser):
             if identifier in scope:
                 return scope[identifier]
         return None
-
-#    def _span_event_name_to_spanner_class(self, name):
-#        spanners = {
-#            #'BeamEvent': abjad_spanners.Beam,
-#            #'CrescendoEvent': abjad_spanners.Hairpin,
-#            #'DecrescendoEvent': abjad_spanners.Hairpin,
-#            #'GlissandoEvent': abjad_spanners.Glissando,
-#            #'NoteGroupingEvent': abjad_spanners.HorizontalBracket,
-#            #'SlurEvent': abjad_spanners.Slur,
-#            #'TieEvent': abjad_spanners.Tie,
-#            #'TrillSpanEvent': abjad_spanners.TrillSpanner,
-#            }
-#        if name in spanners:
-#            return spanners[name]
-#        message = 'can not associate a spanner class with {}.'
-#        message = message.format(name)
-#        raise Exception(message)
 
     def _test_scheme_predicate(self, predicate, value):
         predicates = self._get_scheme_predicates()

@@ -292,17 +292,11 @@ class Container(Component):
             >>> abjad.inspect(tuplet_1).wellformed()
             True
 
-        Withdraws component(s) from crossing spanners.
-
-        Preserves spanners that component(s) cover(s).
-
         Returns none.
         """
         components = self[i]
         if not isinstance(components, Selection):
             components = select([components])
-        if not self.is_simultaneous:
-            components._withdraw_from_crossing_spanners()
         components._set_parents(None)
 
     def __getitem__(self, argument) -> typing.Union[Component, Selection]:
@@ -331,7 +325,7 @@ class Container(Component):
         """
         return [], self.identifier, self.is_simultaneous, self.name, self.tag
 
-    def __graph__(self, spanner=None, **keywords):
+    def __graph__(self, **keywords):
         """
         Graphviz graph representation of container.
 
@@ -368,7 +362,6 @@ class Container(Component):
             else:
                 leaf_cluster.append(component_node)
             return component_node, node_order
-
         node_order = []
         node_mapping = {}
         graph = uqbar.graphs.Graph(
@@ -390,32 +383,6 @@ class Container(Component):
         elif len(leaf_cluster):
             graph.append(leaf_cluster)
         graph._node_order = node_order
-
-        if spanner:
-            pairs = Sequence(spanner.leaves).nwise()
-            for component_one, component_two in pairs:
-                node_one = node_mapping[component_one]
-                node_two = node_mapping[component_two]
-                edge = uqbar.graphs.Edge(
-                    attributes={
-                        'constraint': False,
-                        'penwidth': 5,
-                        },
-                    )
-                edge.attach(node_one, node_two)
-            for component in spanner.leaves:
-                node = node_mapping[component]
-                table = node[0]
-                table.attributes['border'] = 4
-                table.attributes['bgcolor'] = 'grey80'
-                if isinstance(component, Container):
-                    for child in iterate(component).components():
-                        if child is component:
-                            continue
-                        node = node_mapping[child]
-                        table = node[0]
-                        table.attributes['bgcolor'] = 'grey80'
-
         return graph
 
     def __iter__(self):
@@ -455,10 +422,6 @@ class Container(Component):
     def __setitem__(self, i, argument) -> None:
         """
         Sets container ``i`` equal to ``argument``.
-        Finds spanners that dominate self[i] and children of self[i].
-        Replaces contents at self[i] with 'argument'.
-        Reattaches spanners to new contents.
-        Always leaves score tree in tact.
         """
         if isinstance(argument, str):
             argument = self._parse_string(argument)
@@ -477,16 +440,6 @@ class Container(Component):
             if not inspect(component).parentage().orphan:
                 return False
         return True
-
-    def _append_without_withdrawing_from_crossing_spanners(self, component):
-        """
-        Not composer-safe.
-        """
-        self._set_item(
-            slice(len(self), len(self)),
-            [component],
-            withdraw_components_from_crossing_spanners=False,
-            )
 
     def _as_graphviz_node(self):
         node = Component._as_graphviz_node(self)
@@ -730,66 +683,6 @@ class Container(Component):
     def _get_repr_kwargs_names(self):
         return ['is_simultaneous', 'name']
 
-    def _get_spanners_that_dominate_component_pair(self, left, right):
-        """
-        Returns spanners that dominant component pair.
-        Returns set (spanner, index) pairs.
-        ``left`` must be an Abjad component or None.
-        ``right`` must be an Abjad component or None.
-
-        If both ``left`` and ``right`` are components,
-        then ``left`` and ``right`` must be logical-voice-contiguous.
-
-        This is a version of Selection._get_dominant_spanners().
-        This version is useful for finding spanners that dominant
-        a zero-length slice between components, as in staff[2:2].
-        """
-        if left is None or right is None:
-            return []
-        left_descendants = inspect(left).descendants()
-        left_contained = inspect(left_descendants).spanners()
-        right_descendants = inspect(right).descendants()
-        right_contained = inspect(right_descendants).spanners()
-        dominant_spanners = set(left_contained) & set(right_contained)
-        dominant_spanners = list(dominant_spanners)
-        right_start_offset = inspect(right).timespan().start_offset
-        components_after_gap = []
-        for component in inspect(right).lineage():
-            if inspect(component).timespan().start_offset == right_start_offset:
-                components_after_gap.append(component)
-        receipt = []
-        for spanner in dominant_spanners:
-            for component in components_after_gap:
-                if component in spanner:
-                    index = spanner._index(component)
-                    receipt.append((spanner, index))
-                    continue
-        return receipt
-
-    def _get_spanners_that_dominate_slice(self, start, stop):
-        if start == stop:
-            if start == 0:
-                left = None
-            else:
-                left = self[start - 1]
-            if len(self) <= stop:
-                right = None
-            else:
-                right = self[stop]
-            if left is None:
-                left = self._sibling(-1)
-            if right is None:
-                right = self._sibling(1)
-            spanners_receipt = self._get_spanners_that_dominate_component_pair(
-                left,
-                right,
-                )
-        else:
-            selection = self[start:stop]
-            spanners_receipt = selection._get_dominant_spanners()
-        assert isinstance(spanners_receipt, list), repr(spanners_receipt)
-        return spanners_receipt
-
     def _initialize_components(self, components):
         if (isinstance(components, collections.Iterable) and
             not isinstance(components, str)):
@@ -859,15 +752,6 @@ class Container(Component):
                 assert isinstance(component, Container)
                 yield component
 
-    def _move_spanners_to_children(self):
-        for spanner in inspect(self).spanners():
-            i = spanner._index(self)
-            spanner._components.__setitem__(slice(i, i + 1), self[:])
-            for component in self:
-                component._append_spanner(spanner)
-            self._remove_spanner(spanner)
-        return self
-
     def _parse_string(self, string):
         from abjad.parser.ReducedLyParser import ReducedLyParser
         from abjad.lilypondfile.LilyPondFile import LilyPondFile
@@ -910,21 +794,7 @@ class Container(Component):
         for item in list(self._iterate_topmost()):
             item._scale(multiplier)
 
-    def _set_item(
-        self,
-        i,
-        argument,
-        withdraw_components_from_crossing_spanners=True,
-        ):
-        """
-        This method exists because __setitem__ can not accept keywords.
-
-        Note that setting
-        withdraw_components_from_crossing_spanners=False constitutes a
-        composer-unsafe use of this method.
-
-        Only private methods should set this keyword.
-        """
+    def _set_item(self, i, argument):
         from .GraceContainer import GraceContainer
         argument_indicators = []
         for component in iterate(argument).components():
@@ -957,28 +827,10 @@ class Container(Component):
         else:
             start, stop, stride = i.indices(len(self))
         old_components = self[start:stop]
-        spanners_receipt = self._get_spanners_that_dominate_slice(start, stop)
-        for component in old_components:
-            for child in iterate([component]).components():
-                for spanner in inspect(child).spanners():
-                    spanner._remove(child)
         del(self[start:stop])
-        # must withdraw before setting in self!
-        # otherwise circular withdraw ensues!
-        if withdraw_components_from_crossing_spanners:
-            selection = select(argument)
-            if selection.are_contiguous_logical_voice():
-                selection._withdraw_from_crossing_spanners()
         self._components.__setitem__(slice(start, start), argument)
         for component in argument:
             component._set_parent(self)
-        for spanner, index in spanners_receipt:
-            for component in reversed(argument):
-                # attach spanners only to leaves
-                leaves = select(component).leaves()
-                for leaf in reversed(leaves):
-                    spanner._insert(index, leaf)
-                    leaf._append_spanner(spanner)
         for indicator in argument_indicators:
             if hasattr(indicator, '_update_effective_context'):
                 indicator._update_effective_context()
@@ -1014,8 +866,6 @@ class Container(Component):
         # save left and right containers together for iteration
         halves = (left, right)
         nonempty_halves = [half for half in halves if len(half)]
-        # give my attached spanners to my children
-        self._move_spanners_to_children()
         # incorporate left and right parents in score if possible
         selection = select(self)
         parent, start, stop = selection._get_parent_and_start_stop_indices()
@@ -1501,7 +1351,7 @@ class Container(Component):
 
         ..  container:: example
 
-            Inserts note. Does not fracture spanners:
+            Inserts note.
 
             >>> container = abjad.Container([])
             >>> container.extend("fs16 cs' e' a'")

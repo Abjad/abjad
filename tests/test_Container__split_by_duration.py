@@ -70,7 +70,7 @@ def test_Container__split_by_duration_01():
 def test_Container__split_by_duration_02():
     """
     Split one container in score.
-    Do not fracture spanners. But do add tie after split.
+    Adds tie after split.
     """
 
     staff = abjad.Staff()
@@ -139,8 +139,8 @@ def test_Container__split_by_duration_02():
 
 def test_Container__split_by_duration_03():
     """
-    Split in-score at split offset with non-power-of-two denominator. Do not
-    fracture spanners and do not tie leaves after split.
+    Split in-score at split offset with non-power-of-two denominator.
+    Does not tie leaves after split.
     """
 
     staff = abjad.Staff()
@@ -211,7 +211,7 @@ def test_Container__split_by_duration_03():
 def test_Container__split_by_duration_04():
     """
     Split in-score container at split offset with non-power-of-two denominator.
-    Do fracture spanners and do tie leaves after split.
+    Does not tie leaves after split.
     """
 
     staff = abjad.Staff()

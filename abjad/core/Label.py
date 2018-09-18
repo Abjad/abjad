@@ -289,7 +289,7 @@ class Label(object):
         """
         Gets client of label.
 
-        Returns component, selection, spanner or none.
+        Returns component, selection or none.
         """
         return self._client
 

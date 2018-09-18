@@ -6,7 +6,7 @@ def test_Leaf__split_by_durations_01():
     """
     Splits note into assignable notes.
 
-    Does not fracture spanners. Does not tie split notes.
+    Does not tie split notes.
     """
 
     staff = abjad.Staff("c'8 [ d'8 e'8 ]")
@@ -50,7 +50,7 @@ def test_Leaf__split_by_durations_02():
     """
     Splits note into assignable notes.
 
-    Does not fracture spanners. Does tie split notes.
+    Does tie split notes.
     """
 
     staff = abjad.Staff("c'8 [ d'8 e'8 ]")
@@ -95,7 +95,7 @@ def test_Leaf__split_by_durations_03():
     """
     Adds tuplet.
 
-    Does not fracture spanners. Does not tie split notes.
+    Does not tie split notes.
     """
 
     staff = abjad.Staff("c'8 [ d'8 e'8 ]")
@@ -130,7 +130,7 @@ def test_Leaf__split_by_durations_04():
     
     Splits note into tuplet monads and then fuses monads.
 
-    Does not fracture spanners. Ties split notes.
+    Ties split notes.
 
     This test comes from #272 in GitHub.
     """
@@ -164,8 +164,6 @@ def test_Leaf__split_by_durations_04():
 def test_Leaf__split_by_durations_05():
     """
     Assignable duration produces two notes.
-
-    This test comes from a container-crossing spanner bug.
     """
 
     voice = abjad.Voice(r"c'8 \times 2/3 { d'8 e'8 f'8 }")
@@ -283,9 +281,6 @@ def test_Leaf__split_by_durations_10():
 
 
 def test_Leaf__split_by_durations_11():
-    """
-    Leaves spanners unchanged.
-    """
 
     staff = abjad.Staff("c'8 c'8 c'8 c'8")
     abjad.beam(staff[:])
@@ -485,7 +480,7 @@ def test_Leaf__split_by_durations_16():
 def test_Leaf__split_by_durations_17():
     """
     Split one leaf in score.
-    Do not fracture spanners. But do tie after split.
+    Ties after split.
     """
 
     staff = abjad.Staff()

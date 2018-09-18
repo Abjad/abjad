@@ -5,8 +5,6 @@ def test_Container_pop_01():
     """
     Containers pop leaves correctly.
     Popped leaves abjad.detach from parent.
-    Popped leaves withdraw from crossing spanners.
-    Popped leaves carry covered spanners forward.
     """
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
@@ -55,7 +53,6 @@ def test_Container_pop_01():
 def test_Container_pop_02():
     """
     Containers pop nested containers correctly.
-    Popped containers abjad.detach from both parent and spanners.
     """
 
     staff = abjad.Staff("{ c'8 d'8 } { e'8 f'8 }")

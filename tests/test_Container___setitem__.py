@@ -853,13 +853,8 @@ def test_Container___setitem___19():
 
 
 def test_Container___setitem___20():
-    r"""You can use setitem to empty the contents of a container.
-    When you do this, emptied components withdraw
-    from absolutely all spanners.
-
-    On the other hand, if you want to empty a container and
-    allow the emptied components to remain embedded within spanners,
-    use del(container) instead.
+    r"""
+    You can use setitem to empty the contents of a container.
     """
 
     staff = abjad.Staff("c'8 d'8 [ e'8 ] f'8")

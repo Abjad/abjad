@@ -29,7 +29,7 @@ def test_LilyPondParser__spanners__Beam_01():
     assert format(target) == format(result) and target is not result
 
 
-def test_LilyPondParser__spanners__Beam_03():
+def test_LilyPondParser__spanners__Beam_02():
 
     maker = abjad.NoteMaker()
     target = abjad.Container(maker([0] * 4, [(1, 8)]))
@@ -54,7 +54,7 @@ def test_LilyPondParser__spanners__Beam_03():
     assert pytest.raises(Exception, "LilyPondParser()(format(target))")
 
 
-def test_LilyPondParser__spanners__Beam_04():
+def test_LilyPondParser__spanners__Beam_03():
 
     maker = abjad.NoteMaker()
     target = abjad.Container(maker([0] * 4, [(1, 8)]))
@@ -79,20 +79,13 @@ def test_LilyPondParser__spanners__Beam_04():
     assert pytest.raises(Exception, "LilyPondParser()(format(target))")
 
 
-def test_LilyPondParser__spanners__Beam_05():
+def test_LilyPondParser__spanners__Beam_04():
 
     string = "{ c'8 [ c'8 c'8 c'8 }"
     assert pytest.raises(Exception, "LilyPondParser()(string)")
 
 
-def test_LilyPondParser__spanners__Beam_06():
-
-    string = "{ c'8 c'8 c'8 c'8 ] }"
-    result = abjad.parser.LilyPondParser()(string)
-    assert not abjad.inspect(result[-1]).spanners()
-
-
-def test_LilyPondParser__spanners__Beam_07():
+def test_LilyPondParser__spanners__Beam_05():
     """
     With direction.
     """

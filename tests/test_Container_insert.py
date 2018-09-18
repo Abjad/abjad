@@ -7,8 +7,6 @@ def test_Container_insert_01():
     Insert component into container at index i.
     """
 
-    "Insert works just before a spanner."
-
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
     abjad.beam(voice[:])
     voice.insert(0, abjad.Rest((1, 8)))
@@ -31,9 +29,6 @@ def test_Container_insert_01():
 
 
 def test_Container_insert_02():
-    """
-    Insert works inside a spanner.
-    """
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
     abjad.beam(voice[:])
@@ -57,9 +52,6 @@ def test_Container_insert_02():
 
 
 def test_Container_insert_03():
-    """
-    Insert works just after a spanner.
-    """
 
     staff = abjad.Staff([abjad.Note(n, (1, 8)) for n in range(4)])
     abjad.beam(staff[:])

@@ -4,8 +4,6 @@ import abjad
 def test_Mutation_copy_01():
     """
     Deep copies components.
-    Deep copies spanners that abjad.attach to client.
-    Fractures spanners that abjad.attach to components not in client.
     Returns Python list of copied components.
     """
 
@@ -63,7 +61,7 @@ def test_Mutation_copy_01():
 
 def test_Mutation_copy_02():
     """
-    Copy one measure and fracture spanners.
+    Copy one measure.
     """
 
     staff = abjad.Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")

@@ -5,8 +5,6 @@ import pytest
 def test_Mutation_split_01():
     """
     Cyclically splits note in score.
-    
-    Doesn't fracture spanners.
     """
 
     staff = abjad.Staff()
@@ -78,8 +76,6 @@ def test_Mutation_split_01():
 def test_Mutation_split_02():
     """
     Cyclically splits consecutive notes in score.
-
-    Doesn't fracture spanners.
     """
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -156,8 +152,6 @@ def test_Mutation_split_02():
 def test_Mutation_split_03():
     """
     Cyclically splits containers in score.
-    
-    Doesn't fracture spanners.
     """
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -233,8 +227,6 @@ def test_Mutation_split_03():
 def test_Mutation_split_04():
     """
     Cyclically splits consecutive measures in score.
-
-    Doesn't fracture spanners.
     """
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -318,8 +310,6 @@ def test_Mutation_split_04():
 def test_Mutation_split_05():
     """
     Cyclically splits orphan measures.
-
-    Doesn't fracture spanners.
     """
 
     measures = [
@@ -380,8 +370,6 @@ def test_Mutation_split_05():
 def test_Mutation_split_06():
     """
     Cyclically splits note in score.
-
-    Doesn't fracture spanners.
     """
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -458,8 +446,6 @@ def test_Mutation_split_06():
 def test_Mutation_split_07():
     """
     Cyclically splits consecutive notes in score.
-
-    Doesn't fracture spanners.
     """
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -537,8 +523,6 @@ def test_Mutation_split_07():
 def test_Mutation_split_08():
     """
     Cyclically splits measure in score.
-
-    Doesn't fracture spanners.
     """
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -619,8 +603,6 @@ def test_Mutation_split_08():
 def test_Mutation_split_09():
     """
     Cyclically splits consecutive measures in score.
-
-    Doesn't fracture spanners.
     """
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -709,8 +691,6 @@ def test_Mutation_split_09():
 def test_Mutation_split_10():
     """
     Force-splits measure in score.
-
-    Does not fracture spanners.
     """
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -786,8 +766,6 @@ def test_Mutation_split_10():
 def test_Mutation_split_11():
     """
     Force-splits consecutive measures in score.
-
-    Does not fracture spanners.
     """
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -866,8 +844,6 @@ def test_Mutation_split_11():
 def test_Mutation_split_12():
     """
     Splits tuplet in score
-    
-    Does not fracture spanners.
     """
 
     voice = abjad.Voice()
@@ -911,8 +887,6 @@ def test_Mutation_split_12():
 def test_Mutation_split_13():
     """
     Splits in-score measure with power-of-two denominator.
-
-    Does not fracture spanners.
     """
 
     voice = abjad.Voice()
@@ -1059,8 +1033,6 @@ def test_Mutation_split_15():
 def test_Mutation_split_16():
     """
     Splits container in score.
-    
-    Does not fracture spanners.
     """
 
     staff = abjad.Staff([abjad.Container("c'8 d'8 e'8 f'8")])
@@ -1144,8 +1116,6 @@ def test_Mutation_split_16():
 def test_Mutation_split_17():
     """
     Splits tuplet in score.
-    
-    Does not fracture spanners.
     """
 
     tuplet = abjad.Tuplet((4, 5), "c'8 c'8 c'8 c'8 c'8")
@@ -1241,8 +1211,6 @@ def test_Mutation_split_17():
 def test_Mutation_split_18():
     """
     Splits cyclically.
-
-    Leave spanner untouched.
     """
 
     voice = abjad.Voice([abjad.Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")])

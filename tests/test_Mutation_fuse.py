@@ -292,9 +292,6 @@ def test_Mutation_fuse_09():
 
 
 def test_Mutation_fuse_10():
-    """
-    Dominant spanners on contents are preserved.
-    """
 
     tuplet_1 = abjad.Tuplet((2, 3), "c'8")
     tuplet_2 = abjad.Tuplet((2, 3), "c'4")
