@@ -128,7 +128,7 @@ def test_Mutation_scale_04():
             }
         }
         """
-        )
+        ), print(format(voice))
 
     assert abjad.inspect(voice).wellformed()
 

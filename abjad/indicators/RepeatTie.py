@@ -1,7 +1,15 @@
 import typing
+from abjad import enums
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
+from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.StorageFormatManager import StorageFormatManager
+from abjad.system.Tags import Tags
+from abjad.top.inspect import inspect
+from abjad.utilities.Duration import Duration
+from abjad.utilities.String import String
+from .Clef import Clef
+abjad_tags = Tags()
 
 
 class RepeatTie(object):
@@ -42,6 +50,7 @@ class RepeatTie(object):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_direction',
         '_left_broken',
         '_tweaks',
         )
@@ -57,9 +66,12 @@ class RepeatTie(object):
     def __init__(
         self,
         *,
+        direction: enums.VerticalAlignment = None,
         left_broken: bool = None,
         tweaks: LilyPondTweakManager = None,
         ) -> None:
+        direction_ = String.to_tridirectional_lilypond_symbol(direction)
+        self._direction = direction_
         if left_broken is not None:
             left_broken = bool(left_broken)
         self._left_broken = left_broken
@@ -98,12 +110,46 @@ class RepeatTie(object):
     def _get_lilypond_format_bundle(self, component=None):
         bundle = LilyPondFormatBundle()
         if self.tweaks:
-            tweaks = self.tweaks._list_format_contributions()
-            bundle.after.spanners.extend(tweaks)
+            strings = self.tweaks._list_format_contributions()
+            if self.left_broken:
+                strings = self._tag_show(strings)
+            bundle.after.spanners.extend(strings)
         strings = []
+        if self._should_force_repeat_tie_up(component):
+            string = r'- \tweak direction #up'
+            strings.append(string)
         strings.append(r'\repeatTie')
+        if self.left_broken:
+            strings = self._tag_show(strings)
         bundle.after.spanners.extend(strings)
         return bundle
+
+    @staticmethod
+    def _should_force_repeat_tie_up(leaf):
+        from abjad.core.Chord import Chord
+        from abjad.core.Note import Note
+        if not isinstance(leaf, (Note, Chord)):
+            return False
+        if leaf.written_duration < Duration(1):
+            return False
+        clef = inspect(leaf).effective(Clef, default=Clef('treble'))
+        if isinstance(leaf, Note):
+            written_pitches = [leaf.written_pitch]
+        else:
+            written_pitches = leaf.written_pitches
+        for written_pitch in written_pitches:
+            staff_position = written_pitch.to_staff_position(clef=clef)
+            if staff_position.number == 0:
+                return True
+        return False
+
+    @staticmethod
+    def _tag_show(strings):
+        return LilyPondFormatManager.tag(
+            strings,
+            deactivate=True,
+            tag=abjad_tags.SHOW_TO_JOIN_BROKEN_SPANNERS,
+            )
 
     ### PUBLIC PROPERTIES ###
 
@@ -122,6 +168,62 @@ class RepeatTie(object):
         Override with ``abjad.attach(..., context='...')``.
         """
         return self._context
+
+    @property
+    def direction(self) -> typing.Optional[str]:
+        r"""
+        Gets direction.
+
+        ..  container:: example
+
+            >>> staff = abjad.Staff("c'4 c' d' d'")
+            >>> tie = abjad.RepeatTie(direction=abjad.Up)
+            >>> abjad.tweak(tie).color = 'blue'
+            >>> abjad.attach(tie, staff[0])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    c'4
+                    - \tweak color #blue
+                    \repeatTie
+                    c'4
+                    d'4
+                    d'4
+                }
+
+        """
+        return self._direction
+
+    @property
+    def left_broken(self) -> typing.Optional[bool]:
+        r"""
+        Is true when tie is left-broken.
+
+        ..  container:: example
+
+            >>> staff = abjad.Staff("c'4 c' d' d'")
+            >>> repeat_tie = abjad.RepeatTie(left_broken=True)
+            >>> abjad.tweak(repeat_tie).color = 'blue'
+            >>> abjad.attach(repeat_tie, staff[1])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            >>> abjad.f(staff, strict=29)
+            \new Staff
+            {
+                c'4
+                c'4
+            %@% - \tweak color #blue     %! SHOW_TO_JOIN_BROKEN_SPANNERS
+            %@% \repeatTie               %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                d'4
+                d'4
+            }
+
+        """
+        return self._left_broken
 
     @property
     def persistent(self) -> bool:

@@ -1022,7 +1022,9 @@ class Inspection(object):
         """
         # TODO: extend to any non-none client
         if not isinstance(self.client, Component):
-            raise Exception('can only get indicators on component.')
+            message = 'can only get indicators on component'
+            message += f' (not {self.client!r}).'
+            raise Exception(message)
         if attributes is not None:
             assert isinstance(attributes, dict), repr(attributes)
         result = self.client._get_indicators(

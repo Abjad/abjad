@@ -1073,8 +1073,8 @@ class Iteration(object):
                     \new Voice
                     {
                         c'8
-                        ~
                         [
+                        ~
                         c'8
                         ~
                         c'8

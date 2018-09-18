@@ -146,8 +146,8 @@ def test_Leaf__split_by_durations_04():
             \times 2/3 {
                 \times 4/5 {
                     c'16.
-                    ~
                     [
+                    ~
                     c'16
                 }
                 d'8
@@ -531,9 +531,9 @@ def test_Leaf__split_by_durations_17():
         {
             {
                 c'32
-                ~
                 [
                 (
+                ~
                 c'16.
                 d'8
                 ]

@@ -19,10 +19,12 @@ from abjad.core.Rest import Rest
 from abjad.core.Selection import Selection
 from abjad.core.Skip import Skip
 from abjad.core.Tuplet import Tuplet
-from abjad.spanners.Tie import Tie
+from abjad.indicators.RepeatTie import RepeatTie
+from abjad.indicators.TieIndicator import TieIndicator
 from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.top.inspect import inspect
 from abjad.top.mutate import mutate
+from abjad.top.select import select
 from abjad.timespans.Timespan import Timespan
 from abjad.timespans.TimespanList import TimespanList
 from abjad.timespans.TimespanList import TimespanList
@@ -791,10 +793,22 @@ class Meter(object):
                     split_offset -= logical_tie_start_offset
                     #print('\tREL:', split_offset)
                     #print()
+
+#                    print('LT796', logical_tie)
+#                    for leaf in logical_tie:
+#                        print(leaf, inspect(leaf).indicators(), 'III')
+
                     shards = mutate(logical_tie[:]).split(
                         [split_offset],
                         repeat_ties=repeat_ties,
                         )
+
+#                    for shard in shards:
+#                        print('SH', shard)
+#                        for leaf in select(shards).leaves():
+#                            print(leaf, inspect(leaf).indicators(), 'PPP')
+#                    print()
+
                     logical_ties = [LogicalTie(_) for _ in shards]
                     for logical_tie in logical_ties:
                         recurse(
@@ -831,6 +845,7 @@ class Meter(object):
                 split_offset -= logical_tie_start_offset
                 #print('\tREL:', split_offset)
                 #print()
+                #print('LT836', logical_tie)
                 shards = mutate(logical_tie[:]).split(
                     [split_offset],
                     repeat_ties=repeat_ties,

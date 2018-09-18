@@ -2,6 +2,7 @@ import inspect
 from abjad import enums
 from abjad.system.Signature import Signature
 from abjad.top.new import new
+from abjad.utilities.Duration import Duration
 from .Segment import Segment
 
 
@@ -1801,16 +1802,18 @@ class PitchClassSegment(Segment):
         """
         import abjad
         n = n or len(self)
-        written_duration = written_duration or abjad.Duration(1, 8)
+        written_duration = written_duration or Duration(1, 8)
         maker = abjad.NoteMaker()
-        result = maker([0] * n, [written_duration])
-        logical_ties = abjad.iterate(result).logical_ties()
+        notes = maker([0] * n, [written_duration])
+        voice = abjad.Voice(notes)
+        logical_ties = abjad.iterate(voice).logical_ties()
         for i, logical_tie in enumerate(logical_ties):
             pitch_class = abjad.NamedPitchClass(self[i % len(self)])
             pitch = abjad.NamedPitch((pitch_class.name, 4))
             for note in logical_tie:
                 note.written_pitch = pitch
-        return result
+        voice[:] = []
+        return notes
 
     @Signature(
         is_operator=True,

@@ -114,9 +114,9 @@ def test_Container__split_by_duration_02():
         {
             {
                 c'32
-                ~
                 [
                 (
+                ~
             }
             {
                 c'16.

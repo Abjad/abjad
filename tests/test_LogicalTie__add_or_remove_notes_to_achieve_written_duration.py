@@ -16,15 +16,15 @@ def test_LogicalTie__add_or_remove_notes_to_achieve_written_duration_01():
         \new Staff
         {
             c'8
-            ~
             [
             ]
+            ~
             c'32
             [
             ]
         }
         """
-        )
+        ), print(format(staff))
 
 
 def test_LogicalTie__add_or_remove_notes_to_achieve_written_duration_02():
@@ -45,4 +45,4 @@ def test_LogicalTie__add_or_remove_notes_to_achieve_written_duration_02():
             [
         }
         """
-        )
+        ), print(format(staff))

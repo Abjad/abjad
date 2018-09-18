@@ -1,5 +1,7 @@
 import itertools
 from abjad import exceptions
+from abjad.indicators.RepeatTie import RepeatTie
+from abjad.indicators.TieIndicator import TieIndicator
 from abjad.mathtools.Ratio import Ratio
 from abjad.top.attach import attach
 from abjad.top.detach import detach
@@ -45,16 +47,19 @@ class LogicalTie(Selection):
 
     def _add_or_remove_notes_to_achieve_written_duration(
         self, new_written_duration):
-        from abjad.spanners.Tie import Tie
+        from abjad.spanners.Spanner import tie as spanner_tie
         from .NoteMaker import NoteMaker
         from .Tuplet import Tuplet
         new_written_duration = Duration(new_written_duration)
         maker = NoteMaker()
         if new_written_duration.is_assignable:
+            #raise Exception('aaa')
             self[0].written_duration = new_written_duration
             for leaf in self[1:]:
                 mutate(leaf).extract()
-            detach(Tie, self[0])
+            #detach(Tie, self[0])
+            detach(TieIndicator, self[0])
+            detach(RepeatTie, self[0])
         elif new_written_duration.has_power_of_two_denominator:
             durations = maker(0, [new_written_duration])
             for leaf, token in zip(self, durations):
@@ -65,11 +70,15 @@ class LogicalTie(Selection):
                 for leaf in self[len(durations):]:
                     mutate(leaf).extract()
             elif len(self) < len(durations):
-                detach(Tie, self[0])
+                #detach(Tie, self[0])
+                detach(TieIndicator, self[0])
+                detach(RepeatTie, self[0])
                 difference = len(durations) - len(self)
                 extra_leaves = self[0] * difference
                 for extra_leaf in extra_leaves:
-                    detach(Tie, extra_leaf)
+                    #detach(Tie, extra_leaf)
+                    detach(TieIndicator, extra_leaf)
+                    detach(RepeatTie, extra_leaf)
                 extra_tokens = durations[len(self):]
                 for leaf, token in zip(extra_leaves, extra_tokens):
                     leaf.written_duration = token.written_duration
@@ -78,17 +87,21 @@ class LogicalTie(Selection):
                 next_ = index + 1
                 parent[next_:next_] = extra_leaves
                 leaves = self.leaves + extra_leaves
-                attach(Tie(), leaves)
+                #attach(Tie(), leaves)
+                spanner_tie(leaves)
         else:
-            durations = maker(0, new_written_duration)
-            assert isinstance(durations[0], Tuplet)
-            tuplet = durations[0]
+            components = maker(0, new_written_duration)
+            assert isinstance(components[0], Tuplet)
+            tuplet = components[0]
             logical_tie = tuplet[0]._get_logical_tie()
             duration = logical_tie._get_preprolated_duration()
-            self._add_or_remove_notes_to_achieve_written_duration(duration)
+            leaves_ = self._add_or_remove_notes_to_achieve_written_duration(
+                duration)
             multiplier = tuplet.multiplier
             tuplet = Tuplet(multiplier, [])
-            mutate(self.leaves).wrap(tuplet)
+            #mutate(self.leaves).wrap(tuplet)
+            mutate(leaves_).wrap(tuplet)
+
         return self[0]._get_logical_tie()
 
     def _fuse_leaves_by_immediate_parent(self):
@@ -150,16 +163,7 @@ class LogicalTie(Selection):
 
         Returns selection.
         """
-        from abjad.spanners.Tie import Tie
-        from .Selection import Selection
-        try:
-            tie = self[0]._get_spanner(Tie)
-        except exceptions.MissingSpannerError:
-            assert self.is_trivial
-            return Selection(self[0])
-        selection = tie.leaves
-        assert isinstance(selection, Selection)
-        return selection
+        return Selection(self)
 
     @property
     def tail(self):
@@ -170,16 +174,6 @@ class LogicalTie(Selection):
         """
         if self.items:
             return self.items[-1]
-
-    @property
-    def tie(self):
-        """
-        Gets tie spanner governing logical tie.
-
-        Returns tie spanner.
-        """
-        from abjad.spanners.Tie import Tie
-        return inspect(self[0]).spanner(Tie)
 
     @property
     def written_duration(self):
@@ -287,7 +281,6 @@ class LogicalTie(Selection):
 
         Returns tuplet.
         """
-        from abjad.spanners.Tie import Tie
         from .Note import Note
         from .Note import Note
         from .NoteMaker import NoteMaker
@@ -312,7 +305,9 @@ class LogicalTie(Selection):
             notes = maker(0, note_durations)
         tuplet = Tuplet.from_duration(target_duration, notes)
         for leaf in self:
-            for spanner in leaf._get_spanners(Tie):
-                spanner._sever_all_leaves()
+            #for spanner in leaf._get_spanners(Tie):
+            #    spanner._sever_all_leaves()
+            detach(TieIndicator, leaf)
+            detach(RepeatTie, leaf)
         mutate(self).replace(tuplet)
         return tuplet

@@ -583,7 +583,7 @@ class ReducedLyParser(Parser):
         tie : TILDE
         """
         import abjad
-        p[0] = (abjad.Tie, Left)
+        p[0] = (abjad.TieIndicator, Left)
 
     def p_tuplet__FRACTION__container(self, p):
         """
@@ -610,6 +610,11 @@ class ReducedLyParser(Parser):
                     continue
 
                 if current_class in (abjad.StartBeam, abjad.StopBeam):
+                    indicator = current_class()
+                    abjad.attach(indicator, leaf)
+                    continue
+
+                if current_class is abjad.TieIndicator:
                     indicator = current_class()
                     abjad.attach(indicator, leaf)
                     continue
