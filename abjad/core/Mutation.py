@@ -3100,7 +3100,7 @@ class Mutation(object):
         assert isinstance(container, Container)
         assert not container, repr(container)
         donors._give_components_to_empty_container(container)
-        donors._give_dominant_spanners([container])
+        #donors._give_dominant_spanners([container])
         donors._give_position_in_parent_to_container(container)
 
     def transpose(self, argument):

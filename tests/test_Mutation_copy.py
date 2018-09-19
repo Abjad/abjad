@@ -226,8 +226,6 @@ def test_Mutation_copy_04():
     selection = abjad.select(staff)
     new_selection = abjad.mutate(selection).copy()
     new_staff = new_selection[0]
-    for component in abjad.iterate(new_staff).components():
-        abjad.detach(abjad.Spanner, component)
 
     assert format(new_staff) == abjad.String.normalize(
         r"""
@@ -306,8 +304,6 @@ def test_Mutation_copy_05():
 
     result = abjad.mutate(staff[1:]).copy()
     new_staff = abjad.Staff(result)
-    for component in abjad.iterate(new_staff).components():
-        abjad.detach(abjad.Spanner, component)
 
     assert format(new_staff) == abjad.String.normalize(
         r"""
@@ -380,8 +376,6 @@ def test_Mutation_copy_06():
 
     result = abjad.mutate(leaves[:6]).copy()
     new_staff = abjad.Staff(result)
-    for component in abjad.iterate(new_staff).components():
-        abjad.detach(abjad.Spanner, component)
 
     assert format(new_staff) == abjad.String.normalize(
         r"""
@@ -448,8 +442,6 @@ def test_Mutation_copy_07():
 
     result = abjad.mutate(staff[-2:]).copy()
     new_staff = abjad.Staff(result)
-    for component in abjad.iterate(new_staff).components():
-        abjad.detach(abjad.Spanner, component)
 
     assert format(new_staff) == abjad.String.normalize(
         r"""

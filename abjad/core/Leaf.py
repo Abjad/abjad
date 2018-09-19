@@ -39,7 +39,6 @@ class Leaf(Component):
         '_grace_container',
         '_leaf_index',
         '_multiplier',
-        '_spanners',
         '_written_duration',
         )
 
@@ -53,12 +52,10 @@ class Leaf(Component):
         multiplier = None,
         tag: str = None,
         ) -> None:
-        from abjad.spanners.Spanner import Spanner
         Component.__init__(self, tag=tag)
         self._after_grace_container = None
         self._grace_container = None
         self._leaf_index = None
-        self._spanners: typing.List[Spanner] = []
         self.multiplier = multiplier
         self.written_duration = written_duration
 
@@ -337,32 +334,29 @@ class Leaf(Component):
             raise exception.ExtraSpannerError(message)
 
     def _get_spanners(self, prototype=None):
-        from abjad.spanners.Spanner import Spanner
-        prototype = prototype or (Spanner,)
-        if not isinstance(prototype, tuple):
-            prototype = (prototype, )
-        spanner_items = prototype[:]
-        prototype, spanner_objects = [], []
-        for spanner_item in spanner_items:
-            if isinstance(spanner_item, type):
-                prototype.append(spanner_item)
-            elif isinstance(spanner_item, Spanner):
-                spanner_objects.append(spanner_item)
-            else:
-                message = 'must be spanner class or spanner object'
-                message += f' (not {spanner_item!r})'
-                raise Exception(message)
-        prototype = tuple(prototype)
-        spanner_objects = tuple(spanner_objects)
-        matching_spanners = []
-        for spanner in self._spanners:
-            if isinstance(spanner, prototype):
-                if id(spanner) not in [id(_) for _ in matching_spanners]:
-                    matching_spanners.append(spanner)
-            elif any(spanner == x for x in spanner_objects):
-                if id(spanner) not in [id(_) for _ in matching_spanners]:
-                    matching_spanners.append(spanner)
-        return matching_spanners
+        return []
+#        if not isinstance(prototype, tuple):
+#            prototype = (prototype, )
+#        spanner_items = prototype[:]
+#        prototype, spanner_objects = [], []
+#        for spanner_item in spanner_items:
+#            if isinstance(spanner_item, type):
+#                prototype.append(spanner_item)
+#            else:
+#                message = 'must be spanner class or spanner object'
+#                message += f' (not {spanner_item!r})'
+#                raise Exception(message)
+#        prototype = tuple(prototype)
+#        spanner_objects = tuple(spanner_objects)
+#        matching_spanners = []
+#        for spanner in self._spanners:
+#            if isinstance(spanner, prototype):
+#                if id(spanner) not in [id(_) for _ in matching_spanners]:
+#                    matching_spanners.append(spanner)
+#            elif any(spanner == x for x in spanner_objects):
+#                if id(spanner) not in [id(_) for _ in matching_spanners]:
+#                    matching_spanners.append(spanner)
+#        return matching_spanners
 
     def _has_spanner(self, prototype=None):
         spanners = self._get_spanners(prototype=prototype)
@@ -447,7 +441,7 @@ class Leaf(Component):
         from .Note import Note
         from .NoteMaker import NoteMaker
         from .Tuplet import Tuplet
-        from abjad.spanners.Spanner import tie as spanner_tie
+        from abjad.spanners import tie as abjad_tie
         new_duration = Duration(new_duration)
         if self.multiplier is not None:
             multiplier = new_duration.__div__(self.written_duration)
@@ -479,7 +473,7 @@ class Leaf(Component):
         next_ = index + 1
         logical_tie_leaves[next_:next_] = following_leaves
         if 1 < len(logical_tie_leaves) and isinstance(self, (Note, Chord)):
-            spanner_tie(logical_tie_leaves)
+            abjad_tie(logical_tie_leaves)
         if isinstance(components[0], Leaf):
             return select(all_leaves)
         else:

@@ -1340,7 +1340,6 @@ class Iteration(object):
 
         Returns generator.
         """
-        from abjad.spanners.Spanner import Spanner
         from .Chord import Chord
         if isinstance(self.client, Pitch):
             pitch = NamedPitch(self.client)
@@ -1352,16 +1351,6 @@ class Iteration(object):
             pass
         if isinstance(self.client, Chord):
             result.extend(self.client.written_pitches)
-        elif isinstance(self.client, Spanner):
-            for leaf in self.client.leaves:
-                try:
-                    result.append(leaf.written_pitch)
-                except AttributeError:
-                    pass
-                try:
-                    result.extedn(leaf.written_pitches)
-                except AttributeError:
-                    pass
         elif isinstance(self.client, PitchSet):
             result.extend(sorted(list(self.client)))
         elif isinstance(self.client, (list, tuple, set)):
@@ -1380,29 +1369,6 @@ class Iteration(object):
                     pass
         for pitch in result:
             yield pitch
-
-    def spanners(self, prototype=None, reverse=False):
-        r"""
-        Iterates spanners.
-
-        Returns generator.
-        """
-        visited_spanners = set()
-        for component in self.components(reverse=reverse):
-            spanners = inspect(component).spanners(
-                prototype=prototype,
-                )
-            spanners = sorted(spanners,
-                key=lambda x: (
-                    type(x).__name__,
-                    inspect(x).timespan(),
-                    ),
-                )
-            for spanner in spanners:
-                if spanner in visited_spanners:
-                    continue
-                visited_spanners.add(spanner)
-                yield spanner
 
     def timeline(
         self,

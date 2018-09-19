@@ -655,7 +655,7 @@ class LeafMaker(object):
         tie_parts=True,
         repeat_ties=False,
         ):
-        from abjad.spanners.Spanner import tie as spanner_tie
+        from abjad.spanners import tie as abjad_tie
         duration = Duration(duration)
         if forbidden_duration is not None:
             assert forbidden_duration.is_assignable
@@ -710,7 +710,7 @@ class LeafMaker(object):
         # tie if required
         if tie_parts and 1 < len(result):
             if not issubclass(class_, (Rest, Skip)):
-                spanner_tie(result, repeat=repeat_ties)
+                abjad_tie(result, repeat=repeat_ties)
         return result
 
     @staticmethod

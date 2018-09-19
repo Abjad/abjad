@@ -529,7 +529,7 @@ class Selection(collections.Sequence):
     ### PRIVATE METHODS ###
 
     def _attach_tie_to_leaves(self, repeat_ties=False):
-        from abjad.spanners.Spanner import tie as spanner_tie
+        from abjad.spanners import tie as abjad_tie
         leaves = []
         for leaf in self:
             assert isinstance(leaf, Leaf), repr(leaf)
@@ -540,7 +540,7 @@ class Selection(collections.Sequence):
         for leaf in leaves:
             detach(TieIndicator, leaf)
             detach(RepeatTie, leaf)
-        spanner_tie(leaves, repeat=repeat_ties)
+        abjad_tie(leaves, repeat=repeat_ties)
 
     @staticmethod
     def _check(items):
@@ -791,30 +791,6 @@ class Selection(collections.Sequence):
     def _get_preprolated_duration(self):
         return sum(component._get_preprolated_duration() for component in self)
 
-    def _get_spanner(self, prototype=None):
-        spanners = self._get_spanners(prototype=prototype)
-        if not spanners:
-            raise exceptions.MissingSpannerError
-        elif len(spanners) == 1:
-            return spanners.pop()
-        else:
-            raise exceptions.ExtraSpannerError
-
-    def _get_spanners(self, prototype=None):
-        from abjad.spanners.Spanner import Spanner
-        prototype = prototype or (Spanner,)
-        if not isinstance(prototype, tuple):
-            prototype = (prototype, )
-        assert isinstance(prototype, tuple)
-        result, ids = [], []
-        for leaf in self:
-            spanners = leaf._get_spanners(prototype)
-            for spanner in spanners:
-                if id(spanner) not in ids:
-                    result.append(spanner)
-                ids.append(id(spanner))
-        return result
-
     @staticmethod
     def _get_template(frame, selector):
         try:
@@ -848,6 +824,7 @@ class Selection(collections.Sequence):
         Returns none.
         Not composer-safe.
         """
+        raise Exception('ASDF')
         assert self.are_contiguous_logical_voice()
         assert Selection(recipients).are_contiguous_logical_voice()
         receipt = self._get_dominant_spanners()
