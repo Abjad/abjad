@@ -3,7 +3,7 @@ import abjad
 
 def test_Mutation_replace_01():
     """
-    Moves parentage and spanners from two old notes to five new notes.
+    Moves parentage from two old notes to five new notes.
 
     Equivalent to staff[1:3] = new_notes.
     """
@@ -59,7 +59,7 @@ def test_Mutation_replace_01():
 
 def test_Mutation_replace_02():
     """
-    Moves parentage and spanners from one old note to five new notes.
+    Moves parentage from one old note to five new notes.
 
     Equivalent to staff[:1] = new_notes.
     """
@@ -112,7 +112,7 @@ def test_Mutation_replace_02():
 
 def test_Mutation_replace_03():
     """
-    Moves parentage and spanners from two old notes to five new notes.
+    Moves parentage from two old notes to five new notes.
 
     Equivalent to staff[:2] = new_notes.
     """
@@ -163,7 +163,7 @@ def test_Mutation_replace_03():
 
 def test_Mutation_replace_04():
     """
-    Moves parentage and spanners from three old notes to five new notes.
+    Moves parentage from three old notes to five new notes.
 
     "Equivalent to staff[:3] = new_notes."
     """
@@ -212,7 +212,7 @@ def test_Mutation_replace_04():
 
 def test_Mutation_replace_05():
     """
-    Moves parentage and spanners from four old notes to five new notes.
+    Moves parentage from four old notes to five new notes.
 
     Equivalent to staff[:] = new_notes.
     """
@@ -259,7 +259,7 @@ def test_Mutation_replace_05():
 
 def test_Mutation_replace_06():
     """
-    Moves parentage and spanners from container to children of container.
+    Moves parentage from container to children of container.
 
     Replaces container with contents of container.
 

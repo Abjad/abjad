@@ -4,8 +4,7 @@ import pytest
 
 def test_Mutation_swap_01():
     """
-    Moves parentage, children and spanners from multiple containers to empty
-    tuplet.
+    Moves parentage, children from multiple containers to empty tuplet.
     """
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
@@ -63,7 +62,7 @@ def test_Mutation_swap_01():
 
 def test_Mutation_swap_02():
     """
-    Moves parentage, children and spanners from container to empty voice.
+    Moves parentage, children from container to empty voice.
     """
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
@@ -125,7 +124,7 @@ def test_Mutation_swap_02():
 
 def test_Mutation_swap_03():
     """
-    Moves parentage, children and spanners from container to empty tuplet.
+    Moves parentage, children from container to empty tuplet.
     """
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
@@ -186,8 +185,7 @@ def test_Mutation_swap_03():
 
 def test_Mutation_swap_04():
     """
-    Trying to move parentage, children and spanners to noncontainer raises
-    exception.
+    Trying to move parentage, children to noncontainer raises exception.
     """
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 }")
@@ -200,8 +198,8 @@ def test_Mutation_swap_04():
 
 def test_Mutation_swap_05():
     """
-    Trying to move parentage, children and spanners from nonempty container to
-    nonempty container raises exception.
+    Trying to move parentage, children from nonempty container to nonempty
+    container raises exception.
     """
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 }")
@@ -214,8 +212,8 @@ def test_Mutation_swap_05():
 
 def test_Mutation_swap_06():
     """
-    Trying to move parentage, children and spanners from components that are
-    not parent-contiguous raises exception.
+    Trying to move parentage, children from components that are not
+    parent-contiguous raises exception.
     """
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
@@ -251,7 +249,7 @@ def test_Mutation_swap_06():
 
 def test_Mutation_swap_07():
     """
-    Moves parentage, children and spanners from one container to another.
+    Moves parentage, children from one container to another.
     """
 
     measure = abjad.Container("c'8 d'8 e'8 f'8")

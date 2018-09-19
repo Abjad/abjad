@@ -939,17 +939,6 @@ class Inspection(object):
             attributes=attributes,
             )
 
-    def has_spanner(
-        self,
-        prototype: typings.Prototype = None,
-        ) -> bool:
-        """
-        Is true when client has one or more spanners.
-        """
-        if not isinstance(self.client, Leaf):
-            raise Exception('can only get spanner on leaf.')
-        return self.client._has_spanner(prototype=prototype)
-
     def indicator(
         self,
         prototype: typings.Prototype = None,
@@ -1395,37 +1384,10 @@ class Inspection(object):
         result = self.client._get_sounding_pitches()
         return list(result)
 
-    def spanner(
-        self,
-        prototype: typings.Prototype = None,
-        *,
-        default: typing.Any = None,
-        ) -> typing.Any:
-        """
-        Gets spanner.
-
-        Raises exception when more than one spanner of ``prototype`` attaches
-        to client.
-
-        Returns ``default`` when no spanner of ``prototype`` attaches to
-        client.
-        """
-        return None
-
-    def spanners(
-        self,
-        prototype: typings.Prototype = None,
-        ) -> typing.List:
-        r"""
-        Gets spanners.
-        """
-        return []
-
     def tabulate_wellformedness(
         self,
         allow_percussion_clef: bool = None,
         check_beamed_long_notes: bool = True,
-        check_discontiguous_spanners: bool = True,
         check_duplicate_ids: bool = True,
         check_empty_containers: bool = True,
         check_misdurated_measures: bool = True,
@@ -1693,7 +1655,6 @@ class Inspection(object):
         self,
         allow_percussion_clef: bool = None,
         check_beamed_long_notes: bool = True,
-        check_discontiguous_spanners: bool = True,
         check_duplicate_ids: bool = True,
         check_empty_containers: bool = True,
         check_misdurated_measures: bool = True,

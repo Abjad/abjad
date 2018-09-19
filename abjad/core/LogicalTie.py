@@ -53,11 +53,9 @@ class LogicalTie(Selection):
         new_written_duration = Duration(new_written_duration)
         maker = NoteMaker()
         if new_written_duration.is_assignable:
-            #raise Exception('aaa')
             self[0].written_duration = new_written_duration
             for leaf in self[1:]:
                 mutate(leaf).extract()
-            #detach(Tie, self[0])
             detach(TieIndicator, self[0])
             detach(RepeatTie, self[0])
         elif new_written_duration.has_power_of_two_denominator:
@@ -305,8 +303,6 @@ class LogicalTie(Selection):
             notes = maker(0, note_durations)
         tuplet = Tuplet.from_duration(target_duration, notes)
         for leaf in self:
-            #for spanner in leaf._get_spanners(Tie):
-            #    spanner._sever_all_leaves()
             detach(TieIndicator, leaf)
             detach(RepeatTie, leaf)
         mutate(self).replace(tuplet)

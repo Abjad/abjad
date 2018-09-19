@@ -96,8 +96,6 @@ class Context(Container):
 
         Copies indicators.
 
-        Does not copy spanners.
-
         Does not copy children.
 
         Returns new component.

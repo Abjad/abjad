@@ -2,9 +2,6 @@ def detach(argument, target=None, by_id=False):
     r"""
     Detaches indicators-equal-to-``argument`` from ``target``.
         
-    When ``target`` is none ``argument`` must be a spanner; spanner will then
-    detach from all leaves to which spanner attaches.
-
     Set ``by_id`` to true to detach exact ``argument`` from ``target`` (rather
     than detaching all indicators-equal-to-``argument``).
 
@@ -219,7 +216,6 @@ def detach(argument, target=None, by_id=False):
     assert target is not None
     after_grace_container = None
     grace_container = None
-    spanners = []
     inspector = abjad.inspect(target)
     if isinstance(argument, type):
         if issubclass(argument, abjad.AfterGraceContainer):
@@ -259,7 +255,6 @@ def detach(argument, target=None, by_id=False):
             result = tuple(result)
             return result
     items = []
-    items.extend(spanners)
     if after_grace_container is not None:
         items.append(after_grace_container)
     if grace_container is not None:

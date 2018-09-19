@@ -63,27 +63,6 @@ class Wellformedness(object):
         """
         return StorageFormatManager(self).get_repr_format()
 
-    ### PRIVATE METHODS ###
-
-    def _check_overlapping_spanners(self, argument, prototype=None):
-        violators, spanners = set(), set()
-        for leaf in iterate(argument).leaves():
-            spanners_ = list(inspect(leaf).spanners(prototype))
-            spanners.update(spanners_)
-            if 1 < len(spanners_):
-                if len(spanners_) == 2:
-                    common_leaves = set(spanners_[0].leaves)
-                    common_leaves &= set(spanners_[1].leaves)
-                    if len(common_leaves) == 1:
-                        leaf = list(common_leaves)[0]
-                        if ((spanners_[0].leaves[0] is leaf and
-                            spanners_[1].leaves[-1] is leaf) or
-                            (spanners_[1].leaves[0] is leaf and
-                            spanners_[0].leaves[-1] is leaf)):
-                            break
-                violators.update(spanners_)
-        return violators, len(spanners)
-
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -96,27 +75,6 @@ class Wellformedness(object):
         return self._allow_percussion_clef
 
     ### PUBLIC METHODS ###
-
-    def check_discontiguous_spanners(self, argument=None):
-        """
-        Checks discontiguous spanners.
-
-        There are now two different types of spanner. Most spanners demand that
-        spanner components be logical-voice-contiguous. But a few special
-        spanners (like MetronomeMark) do not make such a demand. The check here
-        consults the experimental `_contiguity_constraint`.
-
-        Returns list of discontiguous spanners and nonnegative integer count of
-        all spanners in ``argument``.
-        """
-        violators = []
-        descendants = inspect(argument).descendants()
-        spanners = inspect(descendants).spanners()
-        for spanner in spanners:
-            if spanner._contiguity_constraint == 'logical voice':
-                if not spanner[:].are_contiguous_logical_voice():
-                    violators.append(spanner)
-        return violators, len(spanners)
 
     def check_duplicate_ids(self, argument=None):
         """
@@ -237,7 +195,6 @@ class Wellformedness(object):
 
             >>> agent = abjad.inspect(staff)
             >>> print(agent.tabulate_wellformedness())
-            0 /	0 discontiguous spanners
             0 /	5 duplicate ids
             0 /	1 empty containers
             0 /	4 misrepresented flags
@@ -273,7 +230,6 @@ class Wellformedness(object):
 
             >>> agent = abjad.inspect(staff)
             >>> print(agent.tabulate_wellformedness(allow_percussion_clef=True))
-            0 /	0 discontiguous spanners
             0 /	5 duplicate ids
             0 /	1 empty containers
             0 /	4 misrepresented flags
@@ -290,7 +246,6 @@ class Wellformedness(object):
 
             >>> agent = abjad.inspect(staff)
             >>> print(agent.tabulate_wellformedness(allow_percussion_clef=False))
-            0 /	0 discontiguous spanners
             0 /	5 duplicate ids
             0 /	1 empty containers
             0 /	4 misrepresented flags
@@ -345,7 +300,6 @@ class Wellformedness(object):
 
             >>> agent = abjad.inspect(staff)
             >>> print(agent.tabulate_wellformedness())
-            0 /	0 discontiguous spanners
             0 /	5 duplicate ids
             0 /	1 empty containers
             0 /	4 misrepresented flags
@@ -393,7 +347,6 @@ class Wellformedness(object):
 
             >>> agent = abjad.inspect(voice)
             >>> print(agent.tabulate_wellformedness())
-            0 /	0 discontiguous spanners
             0 /	5 duplicate ids
             0 /	1 empty containers
             0 /	4 misrepresented flags
@@ -479,7 +432,6 @@ class Wellformedness(object):
 
             >>> agent = abjad.inspect(voice)
             >>> print(agent.tabulate_wellformedness())
-            0 /	0 discontiguous spanners
             0 /	5 duplicate ids
             0 /	1 empty containers
             0 /	4 misrepresented flags
@@ -510,7 +462,6 @@ class Wellformedness(object):
 
             >>> agent = abjad.inspect(voice)
             >>> print(agent.tabulate_wellformedness())
-            0 /	0 discontiguous spanners
             0 /	5 duplicate ids
             0 /	1 empty containers
             0 /	4 misrepresented flags
@@ -589,7 +540,6 @@ class Wellformedness(object):
 
             >>> agent = abjad.inspect(voice)
             >>> print(agent.tabulate_wellformedness())
-            0 /	0 discontiguous spanners
             0 /	5 duplicate ids
             0 /	1 empty containers
             0 /	4 misrepresented flags

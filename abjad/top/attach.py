@@ -12,11 +12,9 @@ def attach(
     
     First form attaches indicator ``attachable`` to single leaf ``target``.
     
-    Second form attaches spanner ``attachable`` to leaf selection ``target``.
+    Second for attaches grace container ``attachable`` to leaf ``target``.
 
-    Third for attaches grace container ``attachable`` to leaf ``target``.
-
-    Fourth form attaches wrapper ``attachable`` to unknown (?) ``target``.
+    Third form attaches wrapper ``attachable`` to unknown (?) ``target``.
 
     ..  container:: example
 

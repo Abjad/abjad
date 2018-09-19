@@ -6,8 +6,6 @@ def test_Container_remove_01():
     """
     Containers remove leaves correctly.
     Leaf abjad.detaches from parentage.
-    Leaf withdraws from crossing spanners.
-    Leaf carries covered spanners forward.
     Leaf returns after removal.
     """
 
@@ -59,8 +57,6 @@ def test_Container_remove_02():
     """
     Containers remove nested containers correctly.
     abjad.Container abjad.detaches from parentage.
-    abjad.Container withdraws from crossing spanners.
-    abjad.Container carries covered spanners forward.
     abjad.Container returns after removal.
     """
 

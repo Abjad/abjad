@@ -99,7 +99,7 @@ def test_Voice_lilypond_voice_resolution_02():
     """
 
 
-def test_Voice_lilypond_voice_resolution_04():
+def test_Voice_lilypond_voice_resolution_03():
     """
     Container containing a run of leaves.
     Two like-structured simultaneouss in the middle of the run.

@@ -593,36 +593,6 @@ class Selection(collections.Sequence):
                 new_component = component.__copy__()
             new_components.append(new_component)
         new_components = type(self)(new_components)
-        # find spanners
-        spanner_to_pairs = OrderedDict()
-        for i, component in enumerate(iterate(self).components()):
-            for spanner in abjad_inspect(component).spanners():
-                pairs = spanner_to_pairs.setdefault(spanner, [])
-                wrappers = []
-                if wrappers:
-                    for wrapper in wrappers:
-                        pairs.append((i, wrapper))
-                else:
-                    pairs.append((i, None))
-        # copy spanners
-        new_spanner_to_pairs = OrderedDict()
-        for spanner, pairs in spanner_to_pairs.items():
-            new_spanner = copy.copy(spanner)
-            new_spanner_to_pairs[new_spanner] = pairs
-        # make reversed map
-        index_to_pairs = OrderedDict()
-        for new_spanner, pairs in new_spanner_to_pairs.items():
-            for (i, wrapper) in pairs:
-                pairs = index_to_pairs.setdefault(i, [])
-                pair = (new_spanner, wrapper)
-                pairs.append(pair)
-        # add new components to new spanners
-        new_components_ = iterate(new_components).components()
-        for i, new_component in enumerate(new_components_):
-            for pair in index_to_pairs.get(i, []):
-                new_spanner, wrapper = pair
-                if new_component not in new_spanner:
-                    new_spanner._append(new_component)
         return new_components
 
     def _fuse(self):
@@ -700,65 +670,6 @@ class Selection(collections.Sequence):
                 if i == abs(n) - 1:
                     return x
 
-    def _get_crossing_spanners(self):
-        """
-        Assert logical-voice-contiguous components.
-        Collect spanners that attach to any component in selection.
-        Returns unordered set of crossing spanners.
-        A spanner P crosses a list of logical-voice-contiguous components C
-        when P and C share at least one component and when it is the
-        case that NOT ALL of the components in P are also in C.
-        In other words, there is some intersection -- but not total
-        intersection -- between the components of P and C.
-        """
-        assert self.are_contiguous_logical_voice()
-        all_components = set(iterate(self).components())
-        contained_spanners = []
-        for leaf in iterate(self).leaves():
-            spanners = leaf._get_spanners()
-            contained_spanners.extend(spanners)
-        ids = []
-        contained_spanners_ = []
-        for spanner in contained_spanners:
-            if id(spanner) not in ids:
-                contained_spanners_.append(spanner)
-            ids.append(id(spanner))
-        contained_spanners = contained_spanners_
-        crossing_spanners = []
-        for contained_spanner in contained_spanners:
-            spanner_components = set(contained_spanner[:])
-            if not spanner_components.issubset(all_components):
-                crossing_spanners.append(contained_spanner)
-        return crossing_spanners
-
-    def _get_dominant_spanners(self):
-        """
-        Returns spanners that dominate components in selection.
-        Returns set of (spanner, index) pairs.
-        Each (spanner, index) pair gives a spanner which dominates
-        all components in selection together with the start index
-        at which spanner first encounters selection.
-        Use this helper to lift spanners temporarily from components
-        in selection and perform some action to the underlying
-        score tree before reattaching spanners.
-        score components.
-        """
-        assert self.are_contiguous_logical_voice()
-        receipt = []
-        if len(self) == 0:
-            return receipt
-        first, last = self[0], self[-1]
-        start_components = first._get_descendants_starting_with()
-        stop_components = last._get_descendants_stopping_with()
-        stop_components = set(stop_components)
-        for component in start_components:
-            if isinstance(component, Leaf):
-                for spanner in component._get_spanners():
-                    if set(spanner[:]) & stop_components != set():
-                        index = spanner._index(component)
-                        receipt.append((spanner, index))
-        return receipt
-
     def _get_format_specification(self):
         values = []
         if self.items:
@@ -815,24 +726,6 @@ class Selection(collections.Sequence):
             components.extend(getattr(component, 'components', ()))
         container._components.extend(components)
         container[:]._set_parents(container)
-
-    def _give_dominant_spanners(self, recipients):
-        """
-        Find all spanners dominating components.
-        Insert each component in recipients into each dominant spanner.
-        Remove components from each dominating spanner.
-        Returns none.
-        Not composer-safe.
-        """
-        raise Exception('ASDF')
-        assert self.are_contiguous_logical_voice()
-        assert Selection(recipients).are_contiguous_logical_voice()
-        receipt = self._get_dominant_spanners()
-        for spanner, index in receipt:
-            for recipient in reversed(recipients):
-                spanner._insert(index, recipient)
-            for component in self:
-                spanner._remove(component)
 
     def _give_position_in_parent_to_container(self, container):
         """
@@ -991,20 +884,6 @@ class Selection(collections.Sequence):
         if template is None:
             template = self._get_template(frame, self._expression)
         return new(expression, template=template)
-
-    def _withdraw_from_crossing_spanners(self):
-        """
-        Not composer-safe.
-        """
-        assert self.are_contiguous_logical_voice()
-        crossing_spanners = self._get_crossing_spanners()
-        components_including_children = Selection(self).components()
-        for crossing_spanner in list(crossing_spanners):
-            spanner_components = crossing_spanner.leaves[:]
-            for component in components_including_children:
-                if component in spanner_components:
-                    crossing_spanner._leaves.remove(component)
-                    component._remove_spanner(crossing_spanner)
 
     ### PUBLIC PROPERTIES ###
 

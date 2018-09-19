@@ -98,11 +98,6 @@ class Leaf(Component):
 
     ### PRIVATE METHODS ###
 
-    def _append_spanner(self, spanner):
-        if id(spanner) in [id(_) for _ in self._spanners]:
-            return
-        self._spanners.append(spanner)
-
     def _as_graphviz_node(self):
         lilypond_format = self._get_compact_representation()
         lilypond_format = lilypond_format.replace('<', '&lt;')
@@ -145,12 +140,6 @@ class Leaf(Component):
     def _detach_grace_container(self):
         if self._grace_container is not None:
             return detach(self._grace_container, self)
-
-    def _detach_spanners(self, prototype=None):
-        spanners = self._get_spanners(prototype=prototype)
-        for spanner in spanners:
-            spanner._sever_all_leaves()
-        return spanners
 
     def _format_after_grace_body(self):
         result = []
@@ -323,45 +312,6 @@ class Leaf(Component):
     def _get_preprolated_duration(self):
         return self._get_multiplied_duration()
 
-    def _get_spanner(self, prototype=None):
-        spanners = self._get_spanners(prototype=prototype)
-        if not spanners:
-            raise exceptions.MissingSpannerError('no spanner found.')
-        elif len(spanners) == 1:
-            return spanners.pop()
-        else:
-            message = f'multiple spanners found: {spanners!r}'
-            raise exception.ExtraSpannerError(message)
-
-    def _get_spanners(self, prototype=None):
-        return []
-#        if not isinstance(prototype, tuple):
-#            prototype = (prototype, )
-#        spanner_items = prototype[:]
-#        prototype, spanner_objects = [], []
-#        for spanner_item in spanner_items:
-#            if isinstance(spanner_item, type):
-#                prototype.append(spanner_item)
-#            else:
-#                message = 'must be spanner class or spanner object'
-#                message += f' (not {spanner_item!r})'
-#                raise Exception(message)
-#        prototype = tuple(prototype)
-#        spanner_objects = tuple(spanner_objects)
-#        matching_spanners = []
-#        for spanner in self._spanners:
-#            if isinstance(spanner, prototype):
-#                if id(spanner) not in [id(_) for _ in matching_spanners]:
-#                    matching_spanners.append(spanner)
-#            elif any(spanner == x for x in spanner_objects):
-#                if id(spanner) not in [id(_) for _ in matching_spanners]:
-#                    matching_spanners.append(spanner)
-#        return matching_spanners
-
-    def _has_spanner(self, prototype=None):
-        spanners = self._get_spanners(prototype=prototype)
-        return bool(spanners)
-
     def _leaf(self, n):
         assert n in (-1, 0, 1), repr(n)
         if n == 0:
@@ -394,12 +344,6 @@ class Leaf(Component):
                     contribution = (indent * 2) + contribution + '\n'
                     result += contribution
         return result
-
-    def _remove_spanner(self, spanner):
-        if id(spanner) not in [id(_) for _ in self._spanners]:
-            raise Exception(f'{self!s} has no {spanner}.')
-        spanners = [_ for _ in self._spanners if id(_) != id(spanner)]
-        self._spanners = spanners
 
     def _report_format_contributions(self):
         manager = LilyPondFormatManager
