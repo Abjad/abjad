@@ -36,6 +36,7 @@ from abjad.indicators.StopPianoPedal import StopPianoPedal
 from abjad.indicators.StopTextSpan import StopTextSpan
 from abjad.indicators.StopTrillSpan import StopTrillSpan
 from abjad.indicators.TieIndicator import TieIndicator
+from abjad.lilypondnames.LilyPondTweakManager import IndexedTweakManager
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.scheme import SchemeSymbol
 from abjad.system.Tag import Tag
@@ -55,6 +56,26 @@ from abjad.utilities.Expression import Expression
 from abjad.utilities.Sequence import Sequence
 abjad_tags = Tags()
 
+
+
+def _apply_tweaks(argument, tweaks, i=None, total=None):
+    if not tweaks:
+        return
+    manager = tweak(argument)
+    for item in tweaks:
+        if isinstance(item, tuple):
+            assert len(item) == 2
+            manager_, i_ = item
+            if 0 <= i_ and i_ != i:
+                continue
+            if i_ < 0 and i_ != -(total - i):
+                continue
+        else:
+            manager_ = item
+        assert isinstance(manager_, LilyPondTweakManager)
+        tuples = manager_._get_attribute_tuples()
+        for attribute, value in tuples:
+            setattr(manager, attribute, value)
 
 def beam(
     argument: typing.Union[Component, Selection],
@@ -295,6 +316,8 @@ def beam(
 
 def bow_contact_spanner(
     argument,
+    *,
+    omit_bow_changes: bool = None,
     tag: str = None,
     ) -> None:
     r"""
@@ -418,8 +441,123 @@ def bow_contact_spanner(
 
     ..  container:: example
 
-        Use ``BowContactPoint(None)`` to indicate un-bowed actions, such as
-        pizzicato.
+        Set ``omit_bow_changes`` to true to suppress up-bow and down-bown
+        indicators:
+
+        >>> staff = abjad.Staff()
+        >>> staff.extend(r"c'4. c'8 \times 2/3 { c'4 c'4 c'4 }")
+
+        >>> leaves = abjad.select(staff).leaves()
+        >>> abjad.attach(abjad.BowMotionTechnique('jete'), leaves[0])
+        >>> abjad.attach(abjad.BowContactPoint((1, 4)), leaves[0])
+        >>> abjad.attach(abjad.BowContactPoint((3, 4)), leaves[1])
+        >>> abjad.attach(abjad.BowContactPoint((1, 2)), leaves[2])
+        >>> abjad.attach(abjad.BowMotionTechnique('circular'), leaves[3])
+        >>> abjad.attach(abjad.BowContactPoint((1, 1)), leaves[3])
+        >>> abjad.attach(abjad.BowContactPoint((0, 1)), leaves[4])
+
+        >>> abjad.attach(abjad.Clef('percussion'), leaves[0])
+        >>> abjad.override(staff).bar_line.transparent = True
+        >>> abjad.override(staff).dots.staff_position = -8
+        >>> abjad.override(staff).flag.Y_offset = -8.5
+        >>> abjad.override(staff).glissando.bound_details__left__padding = 1.5
+        >>> abjad.override(staff).glissando.bound_details__right__padding = 1.5
+        >>> abjad.override(staff).glissando.thickness = 2
+        >>> abjad.override(staff).script.staff_padding = 3
+        >>> abjad.override(staff).staff_symbol.transparent = True
+        >>> abjad.override(staff).stem.direction = abjad.Down
+        >>> abjad.override(staff).stem.length = 8
+        >>> abjad.override(staff).stem.stem_begin_position = -9
+        >>> abjad.override(staff).time_signature.stencil = False
+
+        >>> abjad.bow_contact_spanner(leaves, omit_bow_changes=True)
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            \with
+            {
+                \override BarLine.transparent = ##t
+                \override Dots.staff-position = #-8
+                \override Flag.Y-offset = #-8.5
+                \override Glissando.bound-details.left.padding = #1.5
+                \override Glissando.bound-details.right.padding = #1.5
+                \override Glissando.thickness = #2
+                \override Script.staff-padding = #3
+                \override StaffSymbol.transparent = ##t
+                \override Stem.direction = #down
+                \override Stem.length = #8
+                \override Stem.stem-begin-position = #-9
+                \override TimeSignature.stencil = ##f
+            }
+            {
+                \clef "percussion"
+                \tweak Y-offset #-1.0
+                \tweak stencil #ly:text-interface::print
+                \tweak text \markup {
+                    \center-align
+                        \vcenter
+                            \fraction
+                                1
+                                4
+                    }
+                c'4.
+                - \tweak style #'dotted-line
+                \glissando
+                \tweak Y-offset #1.0
+                \tweak stencil #ly:text-interface::print
+                \tweak text \markup {
+                    \center-align
+                        \vcenter
+                            \fraction
+                                3
+                                4
+                    }
+                c'8
+                \glissando
+                \times 2/3 {
+                    \tweak Y-offset #0.0
+                    \tweak stencil #ly:text-interface::print
+                    \tweak text \markup {
+                        \center-align
+                            \vcenter
+                                \fraction
+                                    1
+                                    2
+                        }
+                    c'4
+                    \glissando
+                    \tweak Y-offset #2.0
+                    \tweak stencil #ly:text-interface::print
+                    \tweak text \markup {
+                        \center-align
+                            \vcenter
+                                \fraction
+                                    1
+                                    1
+                        }
+                    c'4
+                    - \tweak style #'zigzag
+                    \glissando
+                    \tweak Y-offset #-2.0
+                    \tweak stencil #ly:text-interface::print
+                    \tweak text \markup {
+                        \center-align
+                            \vcenter
+                                \fraction
+                                    0
+                                    1
+                        }
+                    c'4
+                }
+            }
+
+    ..  container:: example
+
+        Use ``BowContactPoint(None)`` to indicate unbowed actions, such as
+        pizzicato:
 
         >>> staff = abjad.Staff(r"c'4 c'4 c'4 c'4")
 
@@ -495,7 +633,6 @@ def bow_contact_spanner(
                 c'4
             }
 
-
     """
 
     def _get_indicators(leaf):
@@ -521,7 +658,7 @@ def bow_contact_spanner(
         y_offset = float((4 * bow_contact_point.contact_point) - 2)
         tweak(leaf.note_head).Y_offset = y_offset
 
-    def _make_bow_direction_change_contributions(leaf, leaves, bow_contact_point):
+    def _make_bow_change_contributions(leaf, leaves, bow_contact_point):
         cautionary_change = False
         direction_change = None
         next_leaf = inspect(leaf).leaf(1)
@@ -608,7 +745,8 @@ def bow_contact_spanner(
             style = SchemeSymbol(bow_motion_technique.glissando_style)
             tweak(glissando).style = style
         attach(glissando, leaf, tag=tag)
-        _make_bow_direction_change_contributions(leaf, leaves, bow_contact_point)
+        if not omit_bow_changes:
+            _make_bow_change_contributions(leaf, leaves, bow_contact_point)
 
     leaves = select(argument).leaves()
     for leaf in leaves:
@@ -616,7 +754,7 @@ def bow_contact_spanner(
 
 def glissando(
     argument,
-    *tweaks: LilyPondTweakManager,
+    *tweaks: IndexedTweakManager,
     allow_repeats: bool = None,
     allow_ties: bool = None,
     parenthesize_repeats: bool = None,
@@ -981,6 +1119,47 @@ def glissando(
                 f'8.
             }
 
+    ..  container:: example
+
+        With indexed tweaks:
+
+        >>> staff = abjad.Staff("d'4 d' d' d'")
+        >>> abjad.glissando(
+        ...     staff[:],
+        ...     (abjad.tweak('red').color, 0),
+        ...     (abjad.tweak('red').color, -1),
+        ...     allow_repeats=True,
+        ...     zero_padding=True,
+        ...     )
+        >>> for note in staff[1:-1]:
+        ...     abjad.override(note).note_head.transparent = True
+        ...     abjad.override(note).note_head.X_extent = (0, 0)
+        ...
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                d'4
+                - \abjad-zero-padding-glissando
+                - \tweak color #red
+                \glissando
+                \once \override NoteHead.X-extent = #'(0 . 0)
+                \once \override NoteHead.transparent = ##t
+                d'4
+                - \abjad-zero-padding-glissando
+                \glissando
+                \once \override NoteHead.X-extent = #'(0 . 0)
+                \once \override NoteHead.transparent = ##t
+                d'4
+                - \abjad-zero-padding-glissando
+                - \tweak color #red
+                \glissando
+                d'4
+            }
+
     """
 
     def _is_last_in_tie_chain(leaf):
@@ -1019,7 +1198,8 @@ def glissando(
         return True
 
     leaves = select(argument).leaves()
-    for leaf in leaves:
+    total = len(leaves) - 1
+    for i, leaf in enumerate(leaves):
         if leaf is not leaves[0]:
             if parenthesize_repeats:
                 if not _previous_leaf_changes_current_pitch(leaf):
@@ -1089,8 +1269,9 @@ def glissando(
             glissando = GlissandoIndicator(
                 zero_padding=zero_padding,
                 )
-            for tweak in tweaks or []:
-                tweak.set_tweaks(glissando, tweak)
+            #for tweak in tweaks or []:
+            #    tweak.set_tweaks(glissando, tweak)
+            _apply_tweaks(glissando, tweaks, i=i, total=total)
             attach(
                 glissando,
                 leaf,
