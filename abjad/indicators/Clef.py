@@ -165,6 +165,7 @@ class Clef(object):
     _clef_name_to_middle_c_position = {
         'treble': -6,
         'alto': 0,
+        'varC': 0,
         'tenor': 2,
         'bass': 6,
         'french': -8,
@@ -187,6 +188,7 @@ class Clef(object):
 
     _to_width = {
         'alto': 2.75,
+        'varC': 2.75,
         'bass': 2.75,
         'percussion': 2.5,
         'tenor': 2.75,
@@ -295,6 +297,7 @@ class Clef(object):
         return {
             'treble': NamedPitch('B4'),
             'alto': NamedPitch('C4'),
+            'varC': NamedPitch('C4'),
             'tenor': NamedPitch('A3'),
             'bass': NamedPitch('D3'),
             'french': NamedPitch('D5'),
@@ -394,8 +397,8 @@ class Clef(object):
         ..  container:: example
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> abjad.attach(abjad.Clef('treble'), staff[0]) 
-            >>> abjad.attach(abjad.Clef('alto', hide=True), staff[2]) 
+            >>> abjad.attach(abjad.Clef('treble'), staff[0])
+            >>> abjad.attach(abjad.Clef('alto', hide=True), staff[2])
             >>> abjad.show(staff) # doctest: +SKIP
 
             >>> abjad.f(staff)
@@ -476,7 +479,7 @@ class Clef(object):
         Class constant.
         """
         return self._persistent
-        
+
     @property
     def redraw(self) -> bool:
         """
@@ -495,7 +498,7 @@ class Clef(object):
     def tweaks(self) -> None:
         r"""
         Are not implemented on clef.
-        
+
         The LilyPond ``\clef`` command refuses tweaks.
 
         Override the LilyPond ``Clef`` grob instead.
