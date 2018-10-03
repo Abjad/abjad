@@ -16,7 +16,6 @@ from .ColorFingering import ColorFingering
 from .Dynamic import Dynamic
 from .Fermata import Fermata
 from .GlissandoIndicator import GlissandoIndicator
-from .HairpinIndicator import HairpinIndicator
 from .KeyCluster import KeyCluster
 from .KeySignature import KeySignature
 from .LaissezVibrer import LaissezVibrer
@@ -33,12 +32,13 @@ from .RepeatTie import RepeatTie
 from .Staccatissimo import Staccatissimo
 from .Staccato import Staccato
 from .StaffChange import StaffChange
-from .StartMarkup import StartMarkup
 from .StartBeam import StartBeam
 from .StartGroup import StartGroup
-from .StartSlur import StartSlur
+from .StartHairpin import StartHairpin
+from .StartMarkup import StartMarkup
 from .StartPhrasingSlur import StartPhrasingSlur
 from .StartPianoPedal import StartPianoPedal
+from .StartSlur import StartSlur
 from .StartTextSpan import StartTextSpan
 from .StartTrillSpan import StartTrillSpan
 from .StemTremolo import StemTremolo
@@ -46,8 +46,8 @@ from .StopBeam import StopBeam
 from .StopGroup import StopGroup
 from .StopHairpin import StopHairpin
 from .StopPhrasingSlur import StopPhrasingSlur
-from .StopSlur import StopSlur
 from .StopPianoPedal import StopPianoPedal
+from .StopSlur import StopSlur
 from .StopTextSpan import StopTextSpan
 from .StopTrillSpan import StopTrillSpan
 from .StringContactPoint import StringContactPoint

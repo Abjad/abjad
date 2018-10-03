@@ -16,7 +16,7 @@ from abjad.indicators.BowContactPoint import BowContactPoint
 from abjad.indicators.BowMotionTechnique import BowMotionTechnique
 from abjad.indicators.Dynamic import Dynamic
 from abjad.indicators.GlissandoIndicator import GlissandoIndicator
-from abjad.indicators.HairpinIndicator import HairpinIndicator
+from abjad.indicators.StartHairpin import StartHairpin
 from abjad.indicators.LilyPondLiteral import LilyPondLiteral
 from abjad.indicators.Ottava import Ottava
 from abjad.indicators.RepeatTie import RepeatTie
@@ -1341,11 +1341,11 @@ def hairpin(
         With dynamic objects:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> start = abjad.Dynamic('niente', command=r'\!')
-        >>> hairpin = abjad.HairpinIndicator('o<|')
-        >>> abjad.tweak(hairpin).color = 'blue'
-        >>> stop = abjad.Dynamic('"f"')
-        >>> abjad.hairpin([start, hairpin, stop], staff[:])
+        >>> start_dynamic = abjad.Dynamic('niente', command=r'\!')
+        >>> start_hairpin = abjad.StartHairpin('o<|')
+        >>> abjad.tweak(start_hairpin).color = 'blue'
+        >>> stop_dynamic = abjad.Dynamic('"f"')
+        >>> abjad.hairpin([start_dynamic, start_hairpin, stop_dynamic], staff[:])
         >>> abjad.override(staff[0]).dynamic_line_spanner.staff_padding = 4
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1383,13 +1383,13 @@ def hairpin(
 
     indicators: typing.List = []
     start_dynamic: typing.Optional[Dynamic]
-    hairpin: typing.Optional[HairpinIndicator]
+    hairpin: typing.Optional[StartHairpin]
     stop_dynamic: typing.Optional[Dynamic]
-    known_shapes = HairpinIndicator('<').known_shapes
+    known_shapes = StartHairpin('<').known_shapes
     if isinstance(descriptor, str):
         for string in descriptor.split():
             if string in known_shapes:
-                hairpin = HairpinIndicator(string)
+                hairpin = StartHairpin(string)
                 indicators.append(hairpin)
             elif string == '!':
                 stop_hairpin = StopHairpin()

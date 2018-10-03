@@ -25,7 +25,7 @@ class SegmentMaker(abjad.SegmentMaker):
 
         Returns LilyPond file.
         """
-        self.metadata = metadata
+        self._metadata = metadata
         self.midi = midi
         self.previous_metadata = previous_metadata
         score = self.score_template()

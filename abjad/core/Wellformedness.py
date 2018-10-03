@@ -1,5 +1,5 @@
 from abjad.indicators.Clef import Clef
-from abjad.indicators.HairpinIndicator import HairpinIndicator
+from abjad.indicators.StartHairpin import StartHairpin
 from abjad.indicators.StartTextSpan import StartTextSpan
 from abjad.indicators.StopTextSpan import StopTextSpan
 from abjad.instruments import Instrument
@@ -418,8 +418,8 @@ class Wellformedness(object):
             Unterminated crescendo is not wellformed:
 
             >>> voice = abjad.Voice("c'4 c'4 c'4 c'4")
-            >>> hairpin = abjad.HairpinIndicator('<')
-            >>> abjad.attach(hairpin, voice[0])
+            >>> start_hairpin = abjad.StartHairpin('<')
+            >>> abjad.attach(start_hairpin, voice[0])
             >>> abjad.f(voice)
             \new Voice
             {
@@ -447,8 +447,8 @@ class Wellformedness(object):
             >>> voice = abjad.Voice("c'4 c'4 c'4 c'4")
             >>> dynamic = abjad.Dynamic('f')
             >>> abjad.attach(dynamic, voice[0])
-            >>> hairpin = abjad.HairpinIndicator('<')
-            >>> abjad.attach(hairpin, voice[0])
+            >>> start_hairpin = abjad.StartHairpin('<')
+            >>> abjad.attach(start_hairpin, voice[0])
             >>> abjad.f(voice)
             \new Voice
             {
@@ -475,8 +475,8 @@ class Wellformedness(object):
             Terminated crescendo is wellformed:
 
             >>> voice = abjad.Voice("c'4 c'4 c'4 c'4")
-            >>> hairpin = abjad.HairpinIndicator('<')
-            >>> abjad.attach(hairpin, voice[0])
+            >>> start_hairpin = abjad.StartHairpin('<')
+            >>> abjad.attach(start_hairpin, voice[0])
             >>> dynamic = abjad.Dynamic('f')
             >>> abjad.attach(dynamic, voice[-1])
             >>> abjad.show(voice) # doctest: +SKIP
@@ -510,9 +510,9 @@ class Wellformedness(object):
                 if parameter == 'DYNAMIC':
                     last_dynamic = wrapper.indicator
                     last_tag = wrapper.tag
-                    if isinstance(wrapper.indicator, HairpinIndicator):
+                    if isinstance(wrapper.indicator, StartHairpin):
                         total += 1
-            if (isinstance(last_dynamic, HairpinIndicator) and
+            if (isinstance(last_dynamic, StartHairpin) and
                 'right_broken' not in str(last_tag)):
                 violators.append(wrapper.component)
         return violators, total
