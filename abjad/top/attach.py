@@ -209,7 +209,8 @@ def attach(
     import abjad
 
     if isinstance(attachable, abjad.Multiplier):
-        raise Exception(attachable, 'AAA')
+        message = 'use the Leaf.multiplier property to multiply leaf duration.'
+        raise Exception(message)
 
     assert attachable is not None, repr(attachable)
     assert target is not None, repr(target)

@@ -129,12 +129,12 @@ class GlissandoIndicator(object):
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = LilyPondFormatBundle()
-        if self.tweaks:
-            tweaks = self.tweaks._list_format_contributions()
-            bundle.after.spanner_starts.extend(tweaks)
         strings = []
         if self.zero_padding:
             strings.append(r'- \abjad-zero-padding-glissando')
+        if self.tweaks:
+            tweaks = self.tweaks._list_format_contributions()
+            strings.extend(tweaks)
         strings.append(r'\glissando')
         bundle.after.spanner_starts.extend(strings)
         return bundle
