@@ -3232,7 +3232,7 @@ class Selection(collections.Sequence):
 
         ..  container:: example
 
-            Groups leaves by logical measure:
+            Groups leaves by measure:
 
             ..  container:: example
 
@@ -3301,8 +3301,7 @@ class Selection(collections.Sequence):
 
         ..  container:: example
 
-            Groups leaves by logical measure and joins pairs of consecutive
-            groups:
+            Groups leaves by measure and joins pairs of consecutive groups:
 
             ..  container:: example
 
@@ -3371,7 +3370,7 @@ class Selection(collections.Sequence):
 
         ..  container:: example
 
-            Groups leaves by logical measure; then gets item 0 in each group:
+            Groups leaves by measure; then gets item 0 in each group:
 
             ..  container:: example
 
@@ -3437,7 +3436,7 @@ class Selection(collections.Sequence):
 
         ..  container:: example
 
-            Groups leaves by logical measure; then gets item -1 in each group:
+            Groups leaves by measure; then gets item -1 in each group:
 
             ..  container:: example
 
@@ -3564,16 +3563,83 @@ class Selection(collections.Sequence):
                     c''4
                 }
 
+        ..  container:: example
+
+            Groups logical ties by measure:
+
+            ..  container:: example
+
+                >>> staff = abjad.Staff("c'8 d' ~ d' e' ~ e' f' g' ~ g'")
+                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.attach(abjad.TimeSignature((2, 8)), staff[0])
+                >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[4])
+                >>> abjad.attach(abjad.TimeSignature((1, 8)), staff[7])
+                >>> abjad.show(staff) # doctest: +SKIP
+
+                >>> result = abjad.select(staff).logical_ties()
+                >>> result = result.group_by_measure()
+
+                >>> for item in result:
+                ...     item
+                ...
+                Selection([LogicalTie([Note("c'8")]), LogicalTie([Note("d'8"), Note("d'8")])])
+                Selection([LogicalTie([Note("e'8"), Note("e'8")])])
+                Selection([LogicalTie([Note("f'8")]), LogicalTie([Note("g'8"), Note("g'8")])])
+
+            ..  container:: example expression
+
+                >>> selector = abjad.select().logical_ties()
+                >>> selector = selector.group_by_measure()
+                >>> result = selector(staff)
+
+                >>> selector.print(result)
+                Selection([LogicalTie([Note("c'8")]), LogicalTie([Note("d'8"), Note("d'8")])])
+                Selection([LogicalTie([Note("e'8"), Note("e'8")])])
+                Selection([LogicalTie([Note("f'8")]), LogicalTie([Note("g'8"), Note("g'8")])])
+
+                >>> selector.color(result)
+                >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff, strict=89)
+                \new Staff
+                \with
+                {
+                    autoBeaming = ##f
+                }
+                {
+                    \time 2/8
+                    \abjad-color-music #'red
+                    c'8
+                    \abjad-color-music #'red
+                    d'8
+                    ~
+                    \abjad-color-music #'red
+                    d'8
+                    \abjad-color-music #'blue
+                    e'8
+                    ~
+                    \time 3/8
+                    \abjad-color-music #'blue
+                    e'8
+                    \abjad-color-music #'red
+                    f'8
+                    \abjad-color-music #'red
+                    g'8
+                    ~
+                    \time 1/8
+                    \abjad-color-music #'red
+                    g'8
+                }
+
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
         def _get_first_component(argument):
-            if isinstance(argument, Component):
-                return argument
-            else:
-                component = argument[0]
-                assert isinstance(component, Component)
-                return component
+            component = Selection(argument).components()[0]
+            assert isinstance(component, Component)
+            return component
         def _get_measure_number(argument):
             first_component = _get_first_component(argument)
             assert first_component._measure_number is not None

@@ -88,9 +88,9 @@ class StopHairpin(object):
             Without leak:
 
             >>> staff = abjad.Staff("c'4 d' e' r")
-            >>> hairpin = abjad.HairpinIndicator('<')
-            >>> abjad.tweak(hairpin).color = 'blue'
-            >>> abjad.attach(hairpin, staff[0])
+            >>> start_hairpin = abjad.StartHairpin('<')
+            >>> abjad.tweak(start_hairpin).color = 'blue'
+            >>> abjad.attach(start_hairpin, staff[0])
             >>> stop_hairpin = abjad.StopHairpin()
             >>> abjad.attach(stop_hairpin, staff[-2])
             >>> abjad.show(staff) # doctest: +SKIP
@@ -112,9 +112,9 @@ class StopHairpin(object):
             With leak:
 
             >>> staff = abjad.Staff("c'4 d' e' r")
-            >>> hairpin = abjad.HairpinIndicator('<')
-            >>> abjad.tweak(hairpin).color = 'blue'
-            >>> abjad.attach(hairpin, staff[0])
+            >>> start_hairpin = abjad.StartHairpin('<')
+            >>> abjad.tweak(start_hairpin).color = 'blue'
+            >>> abjad.attach(start_hairpin, staff[0])
             >>> stop_hairpin = abjad.StopHairpin(leak=True)
             >>> abjad.attach(stop_hairpin, staff[-2])
             >>> abjad.show(staff) # doctest: +SKIP

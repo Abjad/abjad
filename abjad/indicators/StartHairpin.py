@@ -10,7 +10,7 @@ from abjad.utilities.String import String
 abjad_tags = Tags()
 
 
-class HairpinIndicator(object):
+class StartHairpin(object):
     r"""
     Hairpin indicator.
 
@@ -18,7 +18,7 @@ class HairpinIndicator(object):
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> abjad.attach(abjad.Dynamic('p'), staff[0])
-        >>> abjad.attach(abjad.HairpinIndicator('<'), staff[0])
+        >>> abjad.attach(abjad.StartHairpin('<'), staff[0])
         >>> abjad.attach(abjad.Dynamic('f'), staff[-1])
         >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4.5
         >>> abjad.show(staff) # doctest: +SKIP
@@ -216,14 +216,14 @@ class HairpinIndicator(object):
 
         ..  container:: example
 
-            >>> abjad.HairpinIndicator('<').context
+            >>> abjad.StartHairpin('<').context
             'Voice'
 
         ..  container:: example
 
             >>> voice = abjad.Voice("c'4 d' e' f'")
             >>> abjad.attach(abjad.Dynamic('p'), voice[0])
-            >>> abjad.attach(abjad.HairpinIndicator('<'), voice[0])
+            >>> abjad.attach(abjad.StartHairpin('<'), voice[0])
             >>> abjad.attach(abjad.Dynamic('f'), voice[-1])
             >>> abjad.show(voice) # doctest: +SKIP
 
@@ -243,11 +243,11 @@ class HairpinIndicator(object):
 
 
             >>> for leaf in voice:
-            ...     print(leaf, abjad.inspect(leaf).effective(abjad.HairpinIndicator))
-            c'4 HairpinIndicator(shape='<')
-            d'4 HairpinIndicator(shape='<')
-            e'4 HairpinIndicator(shape='<')
-            f'4 HairpinIndicator(shape='<')
+            ...     print(leaf, abjad.inspect(leaf).effective(abjad.StartHairpin))
+            c'4 StartHairpin(shape='<')
+            d'4 StartHairpin(shape='<')
+            e'4 StartHairpin(shape='<')
+            f'4 StartHairpin(shape='<')
 
         Class constant.
 
@@ -270,7 +270,7 @@ class HairpinIndicator(object):
 
         ..  container:: example
 
-            >>> for shape in abjad.HairpinIndicator().known_shapes:
+            >>> for shape in abjad.StartHairpin().known_shapes:
             ...     shape
             '<'
             'o<'
@@ -293,10 +293,10 @@ class HairpinIndicator(object):
         ..  container:: example
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> hairpin = abjad.HairpinIndicator('<', left_broken=True)
-            >>> stop = abjad.Dynamic('f')
-            >>> abjad.attach(hairpin, staff[0])
-            >>> abjad.attach(stop, staff[-1])
+            >>> start_hairpin = abjad.StartHairpin('<', left_broken=True)
+            >>> dynamic = abjad.Dynamic('f')
+            >>> abjad.attach(start_hairpin, staff[0])
+            >>> abjad.attach(dynamic, staff[-1])
             >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4.5
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -325,7 +325,7 @@ class HairpinIndicator(object):
 
         ..  container:: example
 
-            >>> abjad.HairpinIndicator('<').parameter
+            >>> abjad.StartHairpin('<').parameter
             'DYNAMIC'
 
         """
@@ -338,7 +338,7 @@ class HairpinIndicator(object):
 
         ..  container:: example
 
-            >>> abjad.HairpinIndicator('<').persistent
+            >>> abjad.StartHairpin('<').persistent
             True
 
         """
@@ -355,7 +355,7 @@ class HairpinIndicator(object):
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> abjad.attach(abjad.Dynamic('p'), staff[0])
-            >>> abjad.attach(abjad.HairpinIndicator('<'), staff[0])
+            >>> abjad.attach(abjad.StartHairpin('<'), staff[0])
             >>> abjad.attach(abjad.Dynamic('f'), staff[-1])
             >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4.5
             >>> abjad.show(staff) # doctest: +SKIP
@@ -382,7 +382,7 @@ class HairpinIndicator(object):
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> abjad.attach(abjad.Dynamic('niente', hide=True), staff[0])
-            >>> abjad.attach(abjad.HairpinIndicator('o<'), staff[0])
+            >>> abjad.attach(abjad.StartHairpin('o<'), staff[0])
             >>> abjad.attach(abjad.Dynamic('f'), staff[-1])
             >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4.5
             >>> abjad.show(staff) # doctest: +SKIP
@@ -409,7 +409,7 @@ class HairpinIndicator(object):
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> abjad.attach(abjad.Dynamic('p'), staff[0])
-            >>> abjad.attach(abjad.HairpinIndicator('<|'), staff[0])
+            >>> abjad.attach(abjad.StartHairpin('<|'), staff[0])
             >>> abjad.attach(abjad.Dynamic('f'), staff[-1])
             >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4.5
             >>> abjad.show(staff) # doctest: +SKIP
@@ -437,7 +437,7 @@ class HairpinIndicator(object):
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> abjad.attach(abjad.Dynamic('niente', hide=True), staff[0])
-            >>> abjad.attach(abjad.HairpinIndicator('o<|'), staff[0])
+            >>> abjad.attach(abjad.StartHairpin('o<|'), staff[0])
             >>> abjad.attach(abjad.Dynamic('f'), staff[-1])
             >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4.5
             >>> abjad.show(staff) # doctest: +SKIP
@@ -467,7 +467,7 @@ class HairpinIndicator(object):
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> abjad.attach(abjad.Dynamic('f'), staff[0])
-            >>> abjad.attach(abjad.HairpinIndicator('>'), staff[0])
+            >>> abjad.attach(abjad.StartHairpin('>'), staff[0])
             >>> abjad.attach(abjad.Dynamic('p'), staff[-1])
             >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4.5
             >>> abjad.show(staff) # doctest: +SKIP
@@ -494,7 +494,7 @@ class HairpinIndicator(object):
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> abjad.attach(abjad.Dynamic('f'), staff[0])
-            >>> abjad.attach(abjad.HairpinIndicator('>o'), staff[0])
+            >>> abjad.attach(abjad.StartHairpin('>o'), staff[0])
             >>> abjad.attach(abjad.Dynamic('niente', command=r'\!'), staff[-1])
             >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4.5
             >>> abjad.show(staff) # doctest: +SKIP
@@ -522,7 +522,7 @@ class HairpinIndicator(object):
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> abjad.attach(abjad.Dynamic('f'), staff[0])
-            >>> abjad.attach(abjad.HairpinIndicator('|>'), staff[0])
+            >>> abjad.attach(abjad.StartHairpin('|>'), staff[0])
             >>> abjad.attach(abjad.Dynamic('p'), staff[-1])
             >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4.5
             >>> abjad.show(staff) # doctest: +SKIP
@@ -550,7 +550,7 @@ class HairpinIndicator(object):
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> abjad.attach(abjad.Dynamic('f'), staff[0])
-            >>> abjad.attach(abjad.HairpinIndicator('|>o'), staff[0])
+            >>> abjad.attach(abjad.StartHairpin('|>o'), staff[0])
             >>> abjad.attach(abjad.Dynamic('niente', command=r'\!'), staff[-1])
             >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4.5
             >>> abjad.show(staff) # doctest: +SKIP
@@ -581,7 +581,7 @@ class HairpinIndicator(object):
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> abjad.attach(abjad.Dynamic('p'), staff[0])
-            >>> abjad.attach(abjad.HairpinIndicator('--'), staff[0])
+            >>> abjad.attach(abjad.StartHairpin('--'), staff[0])
             >>> abjad.attach(abjad.Dynamic('f'), staff[-1])
             >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4.5
             >>> abjad.show(staff) # doctest: +SKIP
@@ -615,7 +615,7 @@ class HairpinIndicator(object):
 
         ..  container:: example
 
-            >>> abjad.HairpinIndicator('<').spanner_start
+            >>> abjad.StartHairpin('<').spanner_start
             True
 
         """
@@ -628,7 +628,7 @@ class HairpinIndicator(object):
 
         ..  container:: example
 
-            >>> abjad.HairpinIndicator('<').trend
+            >>> abjad.StartHairpin('<').trend
             True
 
         Class constant.
@@ -644,9 +644,9 @@ class HairpinIndicator(object):
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> abjad.attach(abjad.Dynamic('p'), staff[0])
-            >>> start = abjad.HairpinIndicator('<')
-            >>> abjad.tweak(start).color = 'blue'
-            >>> abjad.attach(start, staff[0])
+            >>> start_hairpin = abjad.StartHairpin('<')
+            >>> abjad.tweak(start_hairpin).color = 'blue'
+            >>> abjad.attach(start_hairpin, staff[0])
             >>> abjad.attach(abjad.Dynamic('f'), staff[-1])
             >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4.5
             >>> abjad.show(staff) # doctest: +SKIP

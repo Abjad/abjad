@@ -69,6 +69,7 @@ if __name__ == '__main__':
         time_signatures = buildspace_directory.get_time_signature_metadata()
         if breaks.partial_score is not None:
             time_signatures = time_signatures[:breaks.partial_score]
+        phantom = buildspace_directory.get_metadatum('phantom')
     except:
         traceback.print_exc()
         sys.exit(1)
@@ -80,6 +81,7 @@ if __name__ == '__main__':
             do_not_include_layout_ly=True,
             final_bar_line=False,
             first_measure_number=first_measure_number,
+            phantom=phantom,
             score_template=baca.SingleStaffScoreTemplate(),
             spacing=spacing,
             time_signatures=time_signatures,

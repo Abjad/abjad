@@ -4,6 +4,7 @@ from abjad.instruments import Instrument
 from abjad.lilypondnames.LilyPondContext import LilyPondContext
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.Wrapper import Wrapper
+from abjad.top.inspect import inspect
 from .Container import Container
 
 
@@ -237,7 +238,7 @@ class Context(Container):
         self._update_now(indicators=True)
         return self._format_component()
 
-    def _get_persistent_wrappers(self):
+    def _get_persistent_wrappers(self, *, omit_annotation=None):
         self._update_now(indicators=True)
         wrappers = {}
         for wrapper in self._dependent_wrappers:
@@ -247,6 +248,15 @@ class Context(Container):
             if not getattr(indicator, 'persistent', False):
                 continue
             assert isinstance(indicator.persistent, bool)
+            is_phantom = False
+            if omit_annotation is not None:
+                parentage = inspect(wrapper.component).parentage()
+                for component in parentage:
+                    if inspect(component).annotation(omit_annotation) is True:
+                        is_phantom = True
+                        continue
+            if is_phantom:
+                continue
             if hasattr(indicator, 'parameter'):
                 key = indicator.parameter
             elif isinstance(indicator, Instrument):

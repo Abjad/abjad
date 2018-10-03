@@ -582,7 +582,7 @@ class LilyPondParser(Parser):
             abjad_indicators.BarLine,
             abjad_indicators.Dynamic,
             abjad_indicators.GlissandoIndicator,
-            abjad_indicators.HairpinIndicator,
+            abjad_indicators.StartHairpin,
             abjad_indicators.LilyPondLiteral,
             abjad_indicators.StartBeam,
             abjad_indicators.StartGroup,
@@ -670,12 +670,12 @@ class LilyPondParser(Parser):
                 return abjad_indicators.StopBeam()
         elif name == 'CrescendoEvent':
             if lookup['span-direction'] == -1:
-                return abjad_indicators.HairpinIndicator('<')
+                return abjad_indicators.StartHairpin('<')
             else:
                 return abjad_indicators.StopHairpin()
         elif name == 'DecrescendoEvent':
             if lookup['span-direction'] == -1:
-                return abjad_indicators.HairpinIndicator('>')
+                return abjad_indicators.StartHairpin('>')
             else:
                 return abjad_indicators.StopHairpin()
         elif name == 'GlissandoEvent':

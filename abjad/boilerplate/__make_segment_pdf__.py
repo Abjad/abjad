@@ -25,7 +25,8 @@ if __name__ == '__main__':
             segment_directory,
             scores=scores_directory,
             )
-        assert segment_directory.is_score_package_path(), repr(segment_directory)
+        assert segment_directory.is_score_package_path(), repr(
+            segment_directory)
         illustration_ly = segment_directory / 'illustration.ly'
         print(' Running segment-maker ...')
         with abjad.Timer() as timer:
@@ -66,6 +67,8 @@ if __name__ == '__main__':
                 time_signature = abjad.inspect(skip).effective(prototype)
                 assert isinstance(time_signature, prototype), repr(time_signature)
                 time_signatures.append(str(time_signature))
+            if getattr(maker, 'phantom', None) is True:
+                time_signatures.pop()
         else:
             measure_count = None
             time_signatures = None
