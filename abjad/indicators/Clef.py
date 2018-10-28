@@ -165,8 +165,9 @@ class Clef(object):
     _clef_name_to_middle_c_position = {
         'treble': -6,
         'alto': 0,
-        'tenor': 2,
         'varC': 0,
+        'tenor': 2,
+        'tenorvarC': 2,
         'bass': 6,
         'french': -8,
         'soprano': -4,
@@ -192,6 +193,7 @@ class Clef(object):
         'bass': 2.75,
         'percussion': 2.5,
         'tenor': 2.75,
+        'tenorvarC': 2.75,
         'treble': 2.5,
         }
 
@@ -299,6 +301,7 @@ class Clef(object):
             'alto': NamedPitch('C4'),
             'varC': NamedPitch('C4'),
             'tenor': NamedPitch('A3'),
+            'tenorvarC': NamedPitch('A3'),
             'bass': NamedPitch('D3'),
             'french': NamedPitch('D5'),
             'soprano': NamedPitch('G4'),
