@@ -19,17 +19,15 @@ class SegmentMaker(abjad.SegmentMaker):
         metadata=None,
         midi=None,
         previous_metadata=None,
-        ):
+        ) -> abjad.LilyPondFile:
         """
         Runs segment-maker.
-
-        Returns LilyPond file.
         """
         self._metadata = metadata
         self.midi = midi
         self.previous_metadata = previous_metadata
         score = self.score_template()
-        score['Example Voice'].extend("c'4 ( d'4 e'4 f'4 )")
+        score['Example_Voice'].extend("c'4 ( d'4 e'4 f'4 )")
         lilypond_file = abjad.LilyPondFile.new(
             score,
             includes=['../../stylesheets/stylesheet.ily'],
