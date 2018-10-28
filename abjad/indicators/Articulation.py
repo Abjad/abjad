@@ -79,24 +79,26 @@ class Articulation(object):
         'staccatissimo',
         'espressivo'
         'staccato',
-        'tenuto'
-        'portato'
+        'tenuto',
+        'portato',
         'upbow',
-        'downbow'
-        'flageolet'
+        'downbow',
+        'flageolet',
         'thumb',
-        'lheel'
-        'rheel'
+        'lheel',
+        'rheel',
         'ltoe',
-        'rtoe'
-        'open'
+        'rtoe',
+        'open',
+        'halfopen',
+        'snappizzicato',
         'stopped',
-        'turn'
-        'reverseturn'
+        'turn',
+        'reverseturn',
         'trill',
-        'prall'
-        'mordent'
-        'prallprall'
+        'prall',
+        'mordent',
+        'prallprall',
         'prallmordent',
         'upprall',
         'downprall',
