@@ -556,7 +556,7 @@ class Mutation(object):
             >>> notes = maker("c' d' e' f' c' d' e' f'", (1, 16))
             >>> abjad.mutate([tuplet_1]).replace(notes)
             >>> abjad.attach(abjad.Dynamic('p'), staff[0])
-            >>> abjad.attach(abjad.HairpinIndicator('<'), staff[0])
+            >>> abjad.attach(abjad.StartHairpin('<'), staff[0])
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::

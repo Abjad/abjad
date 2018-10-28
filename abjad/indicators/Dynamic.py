@@ -108,6 +108,15 @@ class Dynamic(object):
         (Note("a'8"), Dynamic('f'))
         (Note("c'2"), Dynamic('mf'))
 
+    ..  container:: example exception
+
+        Errors on nondynamic input:
+
+        >>> abjad.Dynamic('text')
+        Traceback (most recent call last):
+            ...
+        Exception: the letter 't' (in 'text') is not a dynamic.
+
     """
 
     ### CLASS VARIABLES ###
@@ -250,7 +259,10 @@ class Dynamic(object):
             name_is_textual = True
         if not name_is_textual:
             for letter in name_.strip('"'):
-                assert letter in self._lilypond_dynamic_alphabet, repr(name_)
+                if letter not in self._lilypond_dynamic_alphabet:
+                    message = f'the letter {letter!r} (in {name!r})'
+                    message += ' is not a dynamic.' 
+                    raise Exception(message)
         self._name = name_
         if command is not None:
             assert isinstance(command, str), repr(command)
@@ -732,12 +744,12 @@ class Dynamic(object):
             Without leaked stop dynamic:
 
             >>> staff = abjad.Staff("c'4 d' e' r")
-            >>> start = abjad.Dynamic('mf')
-            >>> hairpin = abjad.HairpinIndicator('>')
-            >>> stop = abjad.Dynamic('pp')
-            >>> abjad.attach(start, staff[0])
-            >>> abjad.attach(hairpin, staff[0])
-            >>> abjad.attach(stop, staff[-2])
+            >>> start_dynamic = abjad.Dynamic('mf')
+            >>> start_hairpin = abjad.StartHairpin('>')
+            >>> stop_dynamic = abjad.Dynamic('pp')
+            >>> abjad.attach(start_dynamic, staff[0])
+            >>> abjad.attach(start_hairpin, staff[0])
+            >>> abjad.attach(stop_dynamic, staff[-2])
             >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -762,12 +774,12 @@ class Dynamic(object):
             With leaked stop dynamic:
 
             >>> staff = abjad.Staff("c'4 d' e' r")
-            >>> start = abjad.Dynamic('mf')
-            >>> hairpin = abjad.HairpinIndicator('>')
-            >>> stop = abjad.Dynamic('pp', leak=True)
-            >>> abjad.attach(start, staff[0])
-            >>> abjad.attach(hairpin, staff[0])
-            >>> abjad.attach(stop, staff[-2])
+            >>> start_dynamic = abjad.Dynamic('mf')
+            >>> start_hairpin = abjad.StartHairpin('>')
+            >>> stop_dynamic = abjad.Dynamic('pp', leak=True)
+            >>> abjad.attach(start_dynamic, staff[0])
+            >>> abjad.attach(start_hairpin, staff[0])
+            >>> abjad.attach(stop_dynamic, staff[-2])
             >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -794,12 +806,12 @@ class Dynamic(object):
             Leaks format after spanners:
 
             >>> staff = abjad.Staff("c'8 [ d' e' ] f'")
-            >>> start = abjad.Dynamic('mf')
-            >>> hairpin = abjad.HairpinIndicator('>')
-            >>> stop = abjad.Dynamic('pp', leak=True)
-            >>> abjad.attach(start, staff[0])
-            >>> abjad.attach(hairpin, staff[0])
-            >>> abjad.attach(stop, staff[-2])
+            >>> start_dynamic = abjad.Dynamic('mf')
+            >>> start_hairpin = abjad.StartHairpin('>')
+            >>> stop_dynamic = abjad.Dynamic('pp', leak=True)
+            >>> abjad.attach(start_dynamic, staff[0])
+            >>> abjad.attach(start_hairpin, staff[0])
+            >>> abjad.attach(stop_dynamic, staff[-2])
             >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4
             >>> abjad.show(staff) # doctest: +SKIP
 

@@ -1417,7 +1417,8 @@ class Path(pathlib.PosixPath):
             result = self.name
         return String(result)
 
-    def get_measure_profile_metadata(self) -> typing.Tuple[int, int, list]:
+    def get_measure_profile_metadata(self) -> typing.Tuple[
+        int, int, list, bool]:
         """
         Gets measure profile metadata.
 
@@ -1425,8 +1426,8 @@ class Path(pathlib.PosixPath):
 
         Reads score metadata when path is not segment.
 
-        Returns triple of three metadata: first measure number; measure count;
-        list of fermata measure numbers.
+        Returns tuple of four metadata: first measure number; measure count;
+        list of fermata measure numbers; phantom.
         """
         if self.parent.is_segment():
             string = 'first_measure_number'
@@ -1438,6 +1439,7 @@ class Path(pathlib.PosixPath):
                 measure_count = 0
             string = 'fermata_measure_numbers'
             fermata_measure_numbers = self.parent.get_metadatum(string)
+            phantom = self.parent.get_metadatum('phantom')
         else:
             first_measure_number = 1
             dictionary = self.contents.get_metadatum('time_signatures')
@@ -1451,7 +1453,13 @@ class Path(pathlib.PosixPath):
             fermata_measure_numbers = []
             for segment, fermata_measure_numbers_ in dictionary.items():
                 fermata_measure_numbers.extend(fermata_measure_numbers_)
-        return first_measure_number, measure_count, fermata_measure_numbers
+            phantom = dictionary.get_metadatum('phantom')
+        return (
+            first_measure_number,
+            measure_count,
+            fermata_measure_numbers,
+            phantom,
+            )
 
     def get_metadata(self) -> OrderedDict:
         """

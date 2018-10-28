@@ -500,7 +500,12 @@ class Job(object):
             return abjad_tags.SHIFTED_CLEF in tags
         deactivate: typing.Optional[typing.Callable]
         # then deactivate shifted clefs at BOL:
-        bol_measure_numbers = path.get_metadatum('bol_measure_numbers')
+        if path.is__segments():
+            metadata_source = path.parent
+        else:
+            metadata_source = path
+        string = 'bol_measure_numbers'
+        bol_measure_numbers = metadata_source.get_metadatum(string)
         if bol_measure_numbers:
             bol_measure_numbers = [f'MEASURE_{_}' for _ in bol_measure_numbers]
             def deactivate(tags):
@@ -714,4 +719,26 @@ class Job(object):
                 activate=(match, name),
                 path=path,
                 title=f'showing {name} ...',
+                )
+
+    @staticmethod
+    def show_tag(path, tag, undo=False) -> 'Job':
+        """
+        Shows tag.
+        """
+        name = tag
+        def match(tags) -> bool:
+            tags_ = [tag]
+            return bool(set(tags) & set(tags_))
+        if undo:
+            return Job(
+                deactivate=(match, name),
+                path=path,
+                title=f'hiding {name} tags ...',
+                )
+        else:
+            return Job(
+                activate=(match, name),
+                path=path,
+                title=f'showing {name} tags ...',
                 )

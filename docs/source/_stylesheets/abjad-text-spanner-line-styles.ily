@@ -46,7 +46,7 @@ abjad-dashed-line-with-hook = #(
     - \tweak bound-details.left.stencil-align-dir-y #center
     - \tweak bound-details.left-broken.text ##f
     % right padding to avoid last leaf in spanner:
-    - \tweak bound-details.right.padding 1.25
+    %%%- \tweak bound-details.right.padding 1.25
     - \tweak bound-details.right.stencil-align-dir-y #up
     - \tweak bound-details.right.text \markup { \draw-line #'(0 . -1) }
     - \tweak bound-details.right-broken.arrow ##f
