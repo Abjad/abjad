@@ -3,7 +3,7 @@
 
 #(ly:set-option 'relative-includes #t)
 \include "../../stylesheets/stylesheet.ily"
-\include "../../stylesheets/parts.ily"
+\include "stylesheet.ily"
 
 #(set-default-paper-size "{paper_size}" '{orientation})
 #(set-global-staff-size {global_staff_size})
