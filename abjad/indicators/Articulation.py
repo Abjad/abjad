@@ -87,7 +87,7 @@ class Articulation(object):
         'thumb',
         'lheel',
         'rheel',
-        'ltoe',,
+        'ltoe',
         'rtoe',
         'open',
         'halfopen',
