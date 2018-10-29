@@ -4,6 +4,7 @@ import baca
 import ide
 import os
 import pathlib
+import pprint
 import sys
 import traceback
 
@@ -70,6 +71,9 @@ if __name__ == '__main__':
         if breaks.partial_score is not None:
             time_signatures = time_signatures[:breaks.partial_score]
         phantom = buildspace_directory.get_metadatum('phantom')
+        if not buildspace_directory.is_segment():
+            last_segment = buildspace_directory.segments.get_previous_package()
+            phantom = last_segment.get_metadatum('phantom')
     except:
         traceback.print_exc()
         sys.exit(1)
@@ -88,6 +92,7 @@ if __name__ == '__main__':
             )
         lilypond_file = maker.run(
             do_not_print_timing=True,
+            environment='layout',
             remove=abjad.tags.layout_removal_tags(),
             )
         context = lilypond_file['Global_Skips']
@@ -106,21 +111,46 @@ if __name__ == '__main__':
         score = lilypond_file['Score']
         text = format(score, 'lilypond')
         text = text.replace('Global_Skips', 'Page_Layout')
-        text = abjad.LilyPondFormatManager.left_shift_tags(text, realign=89)
-        time_signatures = [str(_) for _ in time_signatures]
-        line_1 = f'% time_signatures = {{time_signatures}}\n'
-        measure_count = len(time_signatures)
-        line_2 = f'% measure_count = {{measure_count}}\n'
-        if breaks.partial_score is not None:
-            line_3 = f'% partial_score = True'
-            text = line_1 + line_2 + line_3 + '\n\n' + text
-        else:
-            text = line_1 + line_2 + '\n\n' + text
+        text = abjad.LilyPondFormatManager.left_shift_tags(text, realign=79)
         layout_ly = layout_module_name.replace('_', '-') + '.ly'
         layout_ly = buildspace_directory / layout_ly
-        layout_ly.write_text(text)
+        lines = []
+        if breaks.partial_score is not None:
+            lines.append(f'% partial_score = True')
+        if buildspace_directory.is_segment():
+            first_segment = buildspace_directory.segments.get_next_package()
+            if buildspace_directory.name != first_segment.name:
+                previous_segment = buildspace_directory.get_previous_package()
+                previous_layout_ly = previous_segment / 'layout.ly'
+                result = previous_layout_ly.get_preamble_page_count_overview()
+                if result is not None:
+                    _, _, final_page_number = result
+                    first_page_number = final_page_number + 1
+                    line = f'% first_page_number = {{first_page_number}}'
+                    lines.append(line)
+        page_count = breaks.page_count
+        lines.append(f'% page_count = {{page_count}}')
+        time_signatures = [str(_) for _ in time_signatures]
+        measure_count = len(time_signatures)
+        if phantom is True:
+            lines.append(f'% measure_count = {{measure_count}} + 1')
+        else:
+            lines.append(f'% measure_count = {{measure_count}}')
+        string = pprint.pformat(time_signatures, compact=True, width=80 - 3)
+        lines_ = string.split('\n')
+        lines_ = [_.strip('[').strip(']') for _ in lines_]
+        lines_ = ['% ' + _ for _ in lines_]
+        lines_.insert(0, '% time_signatures = [')
+        lines_.append('%  ]')
+        lines.extend(lines_)
+        header = '\n'.join(lines) + '\n\n'
+        layout_ly.write_text(header + text)
+        if phantom is True:
+            phantom_tag = '+ 1 '
+        else:
+            phantom_tag = ''
         counter = abjad.String('measure').pluralize(measure_count)
-        message = f' Writing {{measure_count}} {{counter}}'
+        message = f' Writing {{measure_count}} {{phantom_tag}}{{counter}}'
         message += f' to {{layout_ly.trim()}} ...'
         print(message)
     except:
@@ -146,14 +176,12 @@ if __name__ == '__main__':
                 f' Writing BOL measure {{numbers}} {{items}} to metadata ...')
         else:
             print(f' Writing BOL measure {{numbers}} to metadata ...')
-            parts = abjad.sequence(bols).partition_by_counts(
-                [12],
-                cyclic=True,
-                overhang=True,
-                )
-            for part in parts:
-                items = ', '.join(str(_) for _ in part)
-                print(f'  {{items}} ...')
+            string = pprint.pformat(bols, compact=True, width=80 - 3)
+            lines = string.split('\n')
+            lines = ['  ' + _.strip('[').strip(']').strip() for _ in lines]
+            lines[-1] = lines[-1] + ' ...'
+            for line in lines:
+                print(line)
         buildspace_directory.add_buildspace_metadatum(
             'bol_measure_numbers',
             bol_measure_numbers,

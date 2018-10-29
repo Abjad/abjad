@@ -42,6 +42,20 @@ if __name__ == '__main__':
         print(message)
         segment_maker_runtime = (count, counter)
         segment_directory.write_metadata_py(maker.metadata)
+        first_segment = segment_directory.segments.get_next_package()
+        if segment_directory.name != first_segment.name:
+            layout_ly = segment_directory / 'layout.ly'
+            result = layout_ly.get_preamble_page_count_overview()
+            if result is not None:
+                first_page_number, _, _ = result
+                line = r'\paper {{ first-page-number = #'
+                line += str(first_page_number)
+                line += ' }}'
+                line = abjad.LilyPondFormatManager.tag(
+                    [line],
+                    tag='__make_segment_pdf__',
+                    )[0]
+                lilypond_file.items.insert(0, line)
         result = abjad.persist(lilypond_file).as_ly(illustration_ly, strict=79)
         abjad_format_time = int(result[1])
         count = abjad_format_time

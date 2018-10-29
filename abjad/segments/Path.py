@@ -788,11 +788,14 @@ class Path(pathlib.PosixPath):
     def activate(
         self,
         tag: typing.Union[str, typing.Callable],
+        *,
         indent: int = 0,
         message_zero: bool = False,
         name: str = None,
+        prepend_empty_chord: bool = None,
+        skip_file_name: str = None,
         undo: bool = False,
-        ) -> typing.Tuple[int, int, typing.List[String]]:
+        ) -> typing.Optional[typing.Tuple[int, int, typing.List[String]]]:
         """
         Activates ``tag`` in path.
 
@@ -814,6 +817,8 @@ class Path(pathlib.PosixPath):
         Third item in pair is list of canonical string messages that explain
         what happened.
         """
+        if self.name == skip_file_name:
+            return None
         assert isinstance(indent, int), repr(indent)
         if self.is_file():
             if self.suffix not in ('.ily', '.ly'):
@@ -821,7 +826,12 @@ class Path(pathlib.PosixPath):
             else:
                 text = self.read_text()
                 if undo:
-                    text, count, skipped = deactivate(text, tag, skipped=True)
+                    text, count, skipped = deactivate(
+                        text,
+                        tag,
+                        prepend_empty_chord=prepend_empty_chord,
+                        skipped=True,
+                        )
                 else:
                     text, count, skipped = activate(text, tag, skipped=True)
                 self.write_text(text)
@@ -836,7 +846,15 @@ class Path(pathlib.PosixPath):
                     path.name.startswith('layout') or
                     path.name.startswith('segment')):
                     continue
-                count_, skipped_, _ = path.activate(tag, undo=undo)
+                if path.name == skip_file_name:
+                    continue
+                result = path.activate(
+                    tag,
+                    prepend_empty_chord=prepend_empty_chord,
+                    undo=undo,
+                    )
+                assert result is not None
+                count_, skipped_, _ = result
                 count += count_
                 skipped += skipped_
         if name is None:
@@ -1128,10 +1146,13 @@ class Path(pathlib.PosixPath):
     def deactivate(
         self,
         tag: typing.Union[str, typing.Callable],
+        *,
         indent: int = 0,
         message_zero: bool = False,
         name: str = None,
-        ) -> typing.Tuple[int, int, typing.List[String]]:
+        prepend_empty_chord: bool = None,
+        skip_file_name: str = None,
+        ) -> typing.Optional[typing.Tuple[int, int, typing.List[String]]]:
         """
         Deactivates ``tag`` in path.
         """
@@ -1140,6 +1161,8 @@ class Path(pathlib.PosixPath):
             name=name,
             indent=indent,
             message_zero=message_zero,
+            prepend_empty_chord=prepend_empty_chord,
+            skip_file_name=skip_file_name,
             undo=True,
             )
 
@@ -1224,7 +1247,12 @@ class Path(pathlib.PosixPath):
             [foo],
             tag='extern',
             )[0]
-        preamble_lines.append(foo + '\n')
+        if preamble_lines[-1].startswith(r'\paper'):
+            preamble_lines.insert(-2, foo + '\n')
+        else:
+            preamble_lines.append(foo + '\n')
+        if preamble_lines[-2] == '\n':
+            del(preamble_lines[-2])
         preamble_lines.append('\n')
         preamble_lines.append('\n')
         lines.extend(preamble_lines)
@@ -1453,7 +1481,7 @@ class Path(pathlib.PosixPath):
             fermata_measure_numbers = []
             for segment, fermata_measure_numbers_ in dictionary.items():
                 fermata_measure_numbers.extend(fermata_measure_numbers_)
-            phantom = dictionary.get_metadatum('phantom')
+            phantom = self.contents.get_metadatum('phantom')
         return (
             first_measure_number,
             measure_count,
@@ -1689,6 +1717,27 @@ class Path(pathlib.PosixPath):
                 return part_identifier
         return None
 
+    def get_preamble_page_count_overview(
+        self,
+        ) -> typing.Optional[typing.Tuple[int, int, int]]:
+        """
+        Gets preamble page count overview.
+        """
+        assert self.is_file(), repr(self)
+        first_page_number, page_count = 1, None
+        with open(self) as pointer:
+            for line in pointer.readlines():
+                if line.startswith('% first_page_number = '):
+                    line = line.strip('% first_page_number = ')
+                    first_page_number = eval(line)
+                if line.startswith('% page_count = '):
+                    line = line.strip('% page_count = ')
+                    page_count = eval(line)
+        if isinstance(page_count, int):
+            final_page_number = first_page_number + page_count - 1
+            return first_page_number, page_count, final_page_number
+        return None
+
     def get_preamble_partial_score(
         self,
         ) -> bool:
@@ -1712,13 +1761,24 @@ class Path(pathlib.PosixPath):
         Gets preamble time signatures.
         """
         assert self.is_file(), repr(self)
-        prefix = '% time_signatures ='
+        start_line = '% time_signatures = ['
+        stop_line = '%  ]'
+        lines = []
         with open(self) as pointer:
             for line in pointer.readlines():
-                if line.startswith(prefix):
-                    line = line[len(prefix):]
-                    time_signatures = eval(line)
-                    return time_signatures
+                if line.startswith(stop_line):
+                    lines.append(']')
+                    break
+                if lines:
+                    lines.append(line.strip('%').strip('\n'))
+                elif line.startswith(start_line):
+                    lines.append('[')
+            string = ''.join(lines)
+            try:
+                time_signatures = eval(string)
+            except:
+                return []
+            return time_signatures
         return None
 
     def get_previous_package(

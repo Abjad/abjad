@@ -23,6 +23,8 @@ class Job(object):
         '_deactivate_first',
         '_message_zero',
         '_path',
+        '_prepend_empty_chord',
+        '_skip_file_name',
         '_title',
         )
 
@@ -30,11 +32,14 @@ class Job(object):
 
     def __init__(
         self,
+        *,
         activate: activation_type = None,
         deactivate: activation_type = None,
         deactivate_first: bool = None,
         message_zero: bool = None,
         path: Path = None,
+        prepend_empty_chord: bool = None,
+        skip_file_name: str = None,
         title: str = None,
         ) -> None:
         self._activate = activate
@@ -42,6 +47,8 @@ class Job(object):
         self._deactivate_first = deactivate_first
         self._message_zero = message_zero
         self._path = path
+        self._prepend_empty_chord = prepend_empty_chord
+        self._skip_file_name = skip_file_name
         self._title = title
 
     ### SPECIAL METHODS ###
@@ -62,32 +69,43 @@ class Job(object):
                 match, name = self.deactivate
                 if match is not None:
                     if isinstance(self.path, Path):
-                        count, skipped, messages_ = self.path.deactivate(
+                        result = self.path.deactivate(
                             match,
                             indent=1,
                             message_zero=True,
                             name=name,
+                            prepend_empty_chord=self.prepend_empty_chord,
+                            skip_file_name=self.skip_file_name,
                             )
+                        assert result is not None
+                        count, skipped, messages_ = result
                         messages.extend(messages_)
                         total_count += count
                     else:
                         assert isinstance(self.path, str)
-                        text, count, skipped = deactivate(
+                        result = deactivate(
                             text,
                             match,
+                            prepend_empty_chord=self.prepend_empty_chord,
+                            skip_file_name=self.skip_file_name,
                             skipped=True,
                             )
+                        assert result is not None
+                        text, count, skipped = result
         if self.activate is not None:
             assert isinstance(self.activate, tuple)
             match, name = self.activate
             if match is not None:
                 if isinstance(self.path, Path):
-                    count, skipped, messages_ = self.path.activate(
+                    result = self.path.activate(
                         match,
                         indent=1,
                         message_zero=True,
                         name=name,
+                        skip_file_name=self.skip_file_name,
                         )
+                    assert result is not None
+                    count, skipped, messages_ = result
                     messages.extend(messages_)
                     total_count += count
                 else:
@@ -95,6 +113,7 @@ class Job(object):
                     text, count, skipped = activate(
                         text,
                         match,
+                        skip_file_name=self.skip_file_name,
                         skipped=True,
                         )
         if self.deactivate_first is not True:
@@ -103,12 +122,16 @@ class Job(object):
                 match, name = self.deactivate
                 if match is not None:
                     if isinstance(self.path, Path):
-                        count, skipped, messages_ = self.path.deactivate(
+                        result = self.path.deactivate(
                             match,
                             indent=1,
                             message_zero=True,
                             name=name,
+                            prepend_empty_chord=self.prepend_empty_chord,
+                            skip_file_name=self.skip_file_name,
                             )
+                        assert result is not None
+                        count, skipped, messages_ = result
                         messages.extend(messages_)
                         total_count += count
                     else:
@@ -116,6 +139,8 @@ class Job(object):
                         text, count, skipped = deactivate(
                             text,
                             match,
+                            prepend_empty_chord=self.prepend_empty_chord,
+                            skip_file_name=self.skip_file_name,
                             skipped=True,
                             )
         if total_count == 0 and not self.message_zero:
@@ -168,6 +193,20 @@ class Job(object):
         Gets path.
         """
         return self._path
+
+    @property
+    def prepend_empty_chord(self) -> typing.Optional[bool]:
+        """
+        Is true when deactivate prepends LilyPond empty chord ``<>`` command.
+        """
+        return self._prepend_empty_chord
+
+    @property
+    def skip_file_name(self) -> typing.Optional[str]:
+        """
+        Gets skip file name.
+        """
+        return self._skip_file_name
 
     @property
     def title(self) -> typing.Optional[str]:
@@ -462,8 +501,10 @@ class Job(object):
     @staticmethod
     def handle_fermata_bar_lines(path) -> 'Job':
         """
-        Handles EOL fermata bar lines.
+        Handles fermata bar lines.
         """
+        if path.is__segments():
+            path = path.parent
         def activate(tags):
             return bool(set(tags) & set([abjad_tags.EOL_FERMATA]))
         deactivate: typing.Optional[callable_type]
@@ -471,9 +512,9 @@ class Job(object):
         bol_measure_numbers = path.get_metadatum('bol_measure_numbers')
         if bol_measure_numbers:
             eol_measure_numbers = [_ - 1 for _ in bol_measure_numbers[1:]]
-            last_measure_number = path.get_metadatum('last_measure_number')
-            if last_measure_number is not None:
-                eol_measure_numbers.append(last_measure_number)
+            final_measure_number = path.get_metadatum('final_measure_number')
+            if final_measure_number is not None:
+                eol_measure_numbers.append(final_measure_number)
             eol_measure_numbers = [f'MEASURE_{_}' for _ in eol_measure_numbers]
             tag = abjad_tags.EOL_FERMATA
             tags_ = eol_measure_numbers
@@ -722,7 +763,14 @@ class Job(object):
                 )
 
     @staticmethod
-    def show_tag(path, tag, undo=False) -> 'Job':
+    def show_tag(
+        path,
+        tag,
+        *,
+        prepend_empty_chord=None,
+        skip_file_name=None,
+        undo=False,
+        ) -> 'Job':
         """
         Shows tag.
         """
@@ -734,11 +782,14 @@ class Job(object):
             return Job(
                 deactivate=(match, name),
                 path=path,
+                prepend_empty_chord=prepend_empty_chord,
+                skip_file_name=skip_file_name,
                 title=f'hiding {name} tags ...',
                 )
         else:
             return Job(
                 activate=(match, name),
                 path=path,
+                skip_file_name=skip_file_name,
                 title=f'showing {name} tags ...',
                 )

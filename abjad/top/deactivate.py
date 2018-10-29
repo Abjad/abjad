@@ -1,4 +1,4 @@
-def deactivate(text, tag, skipped=False):
+def deactivate(text, tag, prepend_empty_chord=False, skipped=False):
     r"""
     Deactivates ``tag`` in ``text``.
 
@@ -122,9 +122,14 @@ def deactivate(text, tag, skipped=False):
                 line = line.replace(' %@%', '')
             else:
                 prefix = '%%% '
+            if prepend_empty_chord:
+                prefix += '<> '
+            prefix_length = len(prefix)
+            #target = line[last_index-prefix_length:last_index]
             target = line[last_index-4:last_index]
             assert target == '    ', repr((line, target, index, tag))
             characters = list(line)
+            #characters[last_index-prefix_length:last_index] = list(prefix)
             characters[last_index-4:last_index] = list(prefix)
             line = ''.join(characters)
             if not treated_last_line:
