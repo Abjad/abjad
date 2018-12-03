@@ -296,6 +296,10 @@ class WoodwindFingering(object):
             'bass-clarinet',
             'low-bass-clarinet',
             'saxophone',
+            'soprano-saxophone',
+            'alto-saxophone',
+            'tenor-saxophone',
+            'baritone-saxophone',
             'bassoon',
             'contrabassoon',
             )
