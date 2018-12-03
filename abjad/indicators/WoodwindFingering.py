@@ -287,11 +287,14 @@ class WoodwindFingering(object):
     @property
     def _valid_names(self):
         return (
+            'tin-whistle',
             'piccolo',
             'flute',
+            'flute-b-extension',
             'oboe',
             'clarinet',
             'bass-clarinet',
+            'low-bass-clarinet',
             'saxophone',
             'bassoon',
             'contrabassoon',
