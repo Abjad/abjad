@@ -4,6 +4,7 @@ from abjad import enums
 def tweak(
     argument,
     deactivate=None,
+    expression=None,
     tag=None,
     ):
     r"""
@@ -241,7 +242,9 @@ def tweak(
     import abjad
     constants = (enums.Down, enums.Left, enums.Right, enums.Up)
     prototype = (bool, int, float, str, tuple, abjad.Scheme)
-    if argument in constants or isinstance(argument, prototype):
+    if (expression is True or
+        argument in constants or
+        isinstance(argument, prototype)):
         manager = abjad.LilyPondTweakManager(deactivate=deactivate, tag=tag)
         manager._pending_value = argument
         return manager

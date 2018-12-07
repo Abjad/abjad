@@ -757,9 +757,12 @@ def glissando(
     *tweaks: IndexedTweakManager,
     allow_repeats: bool = None,
     allow_ties: bool = None,
+    hide_middle_note_heads: bool = None,
+    hide_middle_stems: bool = None,
+    left_broken: bool = None,
     parenthesize_repeats: bool = None,
     right_broken: bool = None,
-    stems: bool = None,
+    right_broken_show_next: bool = None,
     style: str = None,
     tag: str = None,
     zero_padding: bool = None,
@@ -841,8 +844,6 @@ def glissando(
                 ~
                 d'8
             }
-
-        This is default behavior.
 
     ..  container:: example
 
@@ -991,12 +992,12 @@ def glissando(
 
     ..  container:: example
 
-        With stems set to true:
+        With ``hide_middle_note_heads`` set to true:
 
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
         >>> abjad.glissando(
         ...     staff[:],
-        ...     stems=True,
+        ...     hide_middle_note_heads=True,
         ...     )
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1012,9 +1013,7 @@ def glissando(
                 \override NoteColumn.glissando-skip = ##t
                 \override NoteHead.no-ledgers = ##t
                 d'8
-                \glissando
                 e'8
-                \glissando
                 \revert Accidental.stencil
                 \revert NoteColumn.glissando-skip
                 \revert NoteHead.no-ledgers
@@ -1023,6 +1022,181 @@ def glissando(
             }
 
     ..  container:: example
+
+        With ``hide_middle_note_heads`` and ``hide_middle_stems`` both set to
+        true:
+
+        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+        >>> abjad.glissando(
+        ...     staff[:],
+        ...     hide_middle_note_heads=True,
+        ...     hide_middle_stems=True,
+        ...     )
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                c'8
+                \glissando
+                \hide NoteHead
+                \override Accidental.stencil = ##f
+                \override NoteColumn.glissando-skip = ##t
+                \override NoteHead.no-ledgers = ##t
+                \override Dots.transparent = ##t
+                \override Stem.transparent = ##t
+                d'8
+                e'8
+                \revert Accidental.stencil
+                \revert NoteColumn.glissando-skip
+                \revert NoteHead.no-ledgers
+                \undo \hide NoteHead
+                \revert Dots.transparent
+                \revert Stem.transparent
+                f'8
+            }
+
+        ..  note:: Respects ``hide_middle_stems`` only when
+            ``hide_middle_note_heads`` is set to true.
+
+    ..  container:: example
+
+        With right-broken set to true:
+
+        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+        >>> abjad.glissando(
+        ...     staff[:],
+        ...     right_broken=True,
+        ...     )
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        LilyPond output looks like this:
+
+        >>> abjad.f(staff, strict=50)
+        \new Staff
+        {
+            c'8
+            \glissando
+            d'8
+            \glissando
+            e'8
+            \glissando
+            f'8
+        %@% \glissando                                    %! SHOW_TO_JOIN_BROKEN_SPANNERS
+        }
+
+    ..  container:: example
+
+        With right-broken set to true and ``hide_middle_note_heads`` set to
+        true:
+
+        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+        >>> abjad.glissando(
+        ...     staff[:],
+        ...     right_broken=True,
+        ...     hide_middle_note_heads=True,
+        ...     )
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        LilyPond output looks like this:
+
+        >>> abjad.f(staff, strict=50)
+        \new Staff
+        {
+            c'8
+            \glissando
+            \hide NoteHead
+            \override Accidental.stencil = ##f
+            \override NoteColumn.glissando-skip = ##t
+            \override NoteHead.no-ledgers = ##t
+            d'8
+            e'8
+            \revert Accidental.stencil                    %! HIDE_TO_JOIN_BROKEN_SPANNERS
+            \revert NoteColumn.glissando-skip             %! HIDE_TO_JOIN_BROKEN_SPANNERS
+            \revert NoteHead.no-ledgers                   %! HIDE_TO_JOIN_BROKEN_SPANNERS
+            \undo \hide NoteHead                          %! HIDE_TO_JOIN_BROKEN_SPANNERS
+            f'8
+        }
+
+    ..  container:: example
+
+        With ``right_broken``, ``hide_middle_note_heads`` and
+        ``right_broken_show_next`` all set to true:
+
+        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+        >>> abjad.glissando(
+        ...     staff[:],
+        ...     hide_middle_note_heads=True,
+        ...     right_broken=True,
+        ...     right_broken_show_next=True,
+        ...     )
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        LilyPond output looks like this:
+
+        >>> abjad.f(staff, strict=50)
+        \new Staff
+        {
+            c'8
+            \glissando
+            \hide NoteHead
+            \override Accidental.stencil = ##f
+            \override NoteColumn.glissando-skip = ##t
+            \override NoteHead.no-ledgers = ##t
+            d'8
+            e'8
+            \revert Accidental.stencil                    %! HIDE_TO_JOIN_BROKEN_SPANNERS
+            \revert NoteColumn.glissando-skip             %! HIDE_TO_JOIN_BROKEN_SPANNERS
+            \revert NoteHead.no-ledgers                   %! HIDE_TO_JOIN_BROKEN_SPANNERS
+            \undo \hide NoteHead                          %! HIDE_TO_JOIN_BROKEN_SPANNERS
+            f'8
+        %@% \revert Accidental.stencil                    %! SHOW_TO_JOIN_BROKEN_SPANNERS
+        %@% \revert NoteColumn.glissando-skip             %! SHOW_TO_JOIN_BROKEN_SPANNERS
+        %@% \revert NoteHead.no-ledgers                   %! SHOW_TO_JOIN_BROKEN_SPANNERS
+        %@% \undo \hide NoteHead                          %! SHOW_TO_JOIN_BROKEN_SPANNERS
+        }
+
+    ..  container:: example
+
+        With left-broken set to true (and ``hide_middle_note_heads`` set to
+        true):
+
+        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+        >>> abjad.glissando(
+        ...     staff[:],
+        ...     left_broken=True,
+        ...     hide_middle_note_heads=True,
+        ...     )
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        LilyPond output looks like this:
+
+        >>> abjad.f(staff, strict=50)
+        \new Staff
+        {
+            \hide NoteHead                                %! HIDE_TO_JOIN_BROKEN_SPANNERS
+            \override Accidental.stencil = ##f            %! HIDE_TO_JOIN_BROKEN_SPANNERS
+            \override NoteHead.no-ledgers = ##t           %! HIDE_TO_JOIN_BROKEN_SPANNERS
+            c'8
+            \glissando
+            \override NoteColumn.glissando-skip = ##t     %! HIDE_TO_JOIN_BROKEN_SPANNERS
+            d'8
+            e'8
+            \revert Accidental.stencil
+            \revert NoteColumn.glissando-skip
+            \revert NoteHead.no-ledgers
+            \undo \hide NoteHead
+            f'8
+        }
+
+        ..  note:: Respects left-broken only with ``hide_middle_note_heads``
+            set to true.
+
+    ..  container:: example
+
+        With tweaks applied to every glissando command:
 
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
         >>> abjad.glissando(
@@ -1049,6 +1223,8 @@ def glissando(
             }
 
     ..  container:: example
+
+        With zero padding on fixed pitch:
 
         >>> staff = abjad.Staff("d'8 d'4. d'4. d'8")
         >>> abjad.glissando(
@@ -1086,6 +1262,8 @@ def glissando(
             }
 
     ..  container:: example
+
+        With zero padding on moving pitch:
 
         >>> staff = abjad.Staff("c'8. d'8. e'8. f'8.")
         >>> abjad.glissando(
@@ -1162,6 +1340,15 @@ def glissando(
 
     """
 
+    if right_broken_show_next and not right_broken:
+        message = 'set right_broken_show_next only when right_broken is true.'
+        raise Exception(message)
+
+    if hide_middle_stems and not hide_middle_note_heads:
+        message = 'set hide_middle_stems only when'
+        message += ' hide_middle_note_heads is true.'
+        raise Exception(message)
+
     def _is_last_in_tie_chain(leaf):
         logical_tie = inspect(leaf).logical_tie()
         return leaf is logical_tie[-1]
@@ -1211,7 +1398,7 @@ def glissando(
         elif leaf is leaves[-1]:
             if right_broken is True:
                 should_attach_glissando = True
-                tag_ = True
+                deactivate_glissando = True
         elif not isinstance(leaf, (Chord, Note)):
             pass
         elif allow_repeats and allow_ties:
@@ -1225,16 +1412,48 @@ def glissando(
             if _next_leaf_changes_current_pitch(leaf):
                 if _is_last_in_tie_chain(leaf):
                     should_attach_glissando = True
-        if stems:
-            if leaf is leaves[1]:
+        if hide_middle_note_heads:
+            if leaf is not leaves[0]:
+                should_attach_glissando = False
+            if not left_broken and leaf is leaves[1]:
                 strings = [
                     r'\hide NoteHead',
                     r'\override Accidental.stencil = ##f',
                     r'\override NoteColumn.glissando-skip = ##t',
                     r'\override NoteHead.no-ledgers = ##t',
                     ]
+                if hide_middle_stems:
+                    strings.extend([
+                        r'\override Dots.transparent = ##t',
+                        r'\override Stem.transparent = ##t',
+                        ])
                 literal = LilyPondLiteral(strings)
                 attach(literal, leaf, tag=tag)
+            elif left_broken and leaf is leaves[0]:
+                strings = [
+                    r'\hide NoteHead',
+                    r'\override Accidental.stencil = ##f',
+                    r'\override NoteHead.no-ledgers = ##t',
+                    ]
+                if hide_middle_stems:
+                    strings.extend([
+                        r'\override Dots.transparent = ##t',
+                        r'\override Stem.transparent = ##t',
+                        ])
+                literal = LilyPondLiteral(strings)
+                attach(
+                    literal,
+                    leaf,
+                    tag=abjad_tags.HIDE_TO_JOIN_BROKEN_SPANNERS,
+                    )
+            elif left_broken and leaf is leaves[1]:
+                string = r'\override NoteColumn.glissando-skip = ##t'
+                literal = LilyPondLiteral(string)
+                attach(
+                    literal,
+                    leaf,
+                    tag=abjad_tags.HIDE_TO_JOIN_BROKEN_SPANNERS,
+                    )
             if leaf is leaves[-1]:
                 strings = [
                     r'\revert Accidental.stencil',
@@ -1242,15 +1461,13 @@ def glissando(
                     r'\revert NoteHead.no-ledgers',
                     r'\undo \hide NoteHead',
                     ]
+                if hide_middle_stems:
+                    strings.extend([
+                        r'\revert Dots.transparent',
+                        r'\revert Stem.transparent',
+                        ])
                 if right_broken:
                     deactivate_glissando = True
-                    literal = LilyPondLiteral(strings, 'after')
-                    attach(
-                        literal,
-                        leaf,
-                        deactivate=True,
-                        tag=abjad_tags.SHOW_TO_JOIN_BROKEN_SPANNERS,
-                        )
                     literal = LilyPondLiteral(strings)
                     attach(
                         literal,
@@ -1258,6 +1475,17 @@ def glissando(
                         deactivate=False,
                         tag=abjad_tags.HIDE_TO_JOIN_BROKEN_SPANNERS,
                         )
+                    if right_broken_show_next:
+                        literal = LilyPondLiteral(
+                            strings,
+                            format_slot='after',
+                            )
+                        attach(
+                            literal,
+                            leaf,
+                            deactivate=True,
+                            tag=abjad_tags.SHOW_TO_JOIN_BROKEN_SPANNERS,
+                            )
                 else:
                     literal = LilyPondLiteral(strings)
                     attach(
@@ -1269,14 +1497,15 @@ def glissando(
             glissando = GlissandoIndicator(
                 zero_padding=zero_padding,
                 )
-            #for tweak in tweaks or []:
-            #    tweak.set_tweaks(glissando, tweak)
             _apply_tweaks(glissando, tweaks, i=i, total=total)
+            tag_ = tag
+            if deactivate_glissando:
+                tag_ = abjad_tags.SHOW_TO_JOIN_BROKEN_SPANNERS
             attach(
                 glissando,
                 leaf,
                 deactivate=deactivate_glissando,
-                tag=tag,
+                tag=tag_,
                 )
 
 def hairpin(
