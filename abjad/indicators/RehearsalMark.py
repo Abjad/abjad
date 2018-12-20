@@ -57,8 +57,8 @@ class RehearsalMark(object):
     def __init__(
         self,
         *,
+        markup: typing.Union[Markup, str] = None,
         number: int = None,
-        markup: Markup = None,
         tweaks: LilyPondTweakManager = None,
         ) -> None:
         self._tweaks = None
@@ -210,7 +210,7 @@ class RehearsalMark(object):
         return self._context
 
     @property
-    def markup(self) -> typing.Optional[Markup]:
+    def markup(self) -> typing.Union[Markup, str, None]:
         r"""
         Gets rehearsal mark markup.
 

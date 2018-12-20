@@ -40,7 +40,7 @@ class BarLine(object):
         '_abbreviation',
         )
 
-    _context = 'Staff'
+    _context = 'Score'
 
     _format_slot = 'closing'
 
@@ -100,9 +100,7 @@ class BarLine(object):
 
             >>> bar_line = abjad.BarLine('|.')
             >>> bar_line.context
-            'Staff'
-
-        ..  todo:: Should return ``'Score'``.
+            'Score'
 
         Override with ``abjad.attach(..., context='...')``.
         """

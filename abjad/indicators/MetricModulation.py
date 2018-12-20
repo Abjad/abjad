@@ -1,6 +1,7 @@
 import collections
 import typing
 from abjad import enums
+from abjad import typings
 from abjad.markups import Markup
 from abjad.mathtools.Ratio import Ratio
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
@@ -20,7 +21,7 @@ class MetricModulation(object):
         With notes:
 
         >>> metric_modulation = abjad.MetricModulation(
-        ...     left_rhythm=abjad.Note("c'4"),
+        ...     left_rhythm=abjad.Note("c'8."),
         ...     right_rhythm=abjad.Note("c'4."),
         ...     )
 
@@ -29,81 +30,7 @@ class MetricModulation(object):
         ..  docs::
 
             >>> print(format(metric_modulation, 'lilypond'))
-            \markup {
-                \score
-                    {
-                        \new Score
-                        \with
-                        {
-                            \override SpacingSpanner.spacing-increment = #0.5
-                            proportionalNotationDuration = ##f
-                        }
-                        <<
-                            \new RhythmicStaff
-                            \with
-                            {
-                                \remove Time_signature_engraver
-                                \remove Staff_symbol_engraver
-                                \override Stem.direction = #up
-                                \override Stem.length = #5
-                                \override TupletBracket.bracket-visibility = ##t
-                                \override TupletBracket.direction = #up
-                                \override TupletBracket.minimum-length = #4
-                                \override TupletBracket.padding = #1.25
-                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
-                                \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
-                                \override TupletNumber.font-size = #0
-                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
-                                tupletFullLength = ##t
-                            }
-                            {
-                                c'4
-                            }
-                        >>
-                        \layout {
-                            indent = #0
-                            ragged-right = ##t
-                        }
-                    }
-                =
-                \hspace
-                    #-0.5
-                \score
-                    {
-                        \new Score
-                        \with
-                        {
-                            \override SpacingSpanner.spacing-increment = #0.5
-                            proportionalNotationDuration = ##f
-                        }
-                        <<
-                            \new RhythmicStaff
-                            \with
-                            {
-                                \remove Time_signature_engraver
-                                \remove Staff_symbol_engraver
-                                \override Stem.direction = #up
-                                \override Stem.length = #5
-                                \override TupletBracket.bracket-visibility = ##t
-                                \override TupletBracket.direction = #up
-                                \override TupletBracket.minimum-length = #4
-                                \override TupletBracket.padding = #1.25
-                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
-                                \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
-                                \override TupletNumber.font-size = #0
-                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
-                                tupletFullLength = ##t
-                            }
-                            {
-                                c'4.
-                            }
-                        >>
-                        \layout {
-                            indent = #0
-                            ragged-right = ##t
-                        }
-                    }
-                }
+            \markup \abjad-metric-modulation #3 #1 #2 #1 #'(1 . 1)
 
     ..  container:: example
 
@@ -119,84 +46,7 @@ class MetricModulation(object):
         ..  docs::
 
             >>> print(format(metric_modulation, 'lilypond'))
-            \markup {
-                \score
-                    {
-                        \new Score
-                        \with
-                        {
-                            \override SpacingSpanner.spacing-increment = #0.5
-                            proportionalNotationDuration = ##f
-                        }
-                        <<
-                            \new RhythmicStaff
-                            \with
-                            {
-                                \remove Time_signature_engraver
-                                \remove Staff_symbol_engraver
-                                \override Stem.direction = #up
-                                \override Stem.length = #5
-                                \override TupletBracket.bracket-visibility = ##t
-                                \override TupletBracket.direction = #up
-                                \override TupletBracket.minimum-length = #4
-                                \override TupletBracket.padding = #1.25
-                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
-                                \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
-                                \override TupletNumber.font-size = #0
-                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
-                                tupletFullLength = ##t
-                            }
-                            {
-                                \tweak edge-height #'(0.7 . 0)
-                                \times 4/5 {
-                                    c'4
-                                }
-                            }
-                        >>
-                        \layout {
-                            indent = #0
-                            ragged-right = ##t
-                        }
-                    }
-                =
-                \hspace
-                    #-0.5
-                \score
-                    {
-                        \new Score
-                        \with
-                        {
-                            \override SpacingSpanner.spacing-increment = #0.5
-                            proportionalNotationDuration = ##f
-                        }
-                        <<
-                            \new RhythmicStaff
-                            \with
-                            {
-                                \remove Time_signature_engraver
-                                \remove Staff_symbol_engraver
-                                \override Stem.direction = #up
-                                \override Stem.length = #5
-                                \override TupletBracket.bracket-visibility = ##t
-                                \override TupletBracket.direction = #up
-                                \override TupletBracket.minimum-length = #4
-                                \override TupletBracket.padding = #1.25
-                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
-                                \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
-                                \override TupletNumber.font-size = #0
-                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
-                                tupletFullLength = ##t
-                            }
-                            {
-                                c'4
-                            }
-                        >>
-                        \layout {
-                            indent = #0
-                            ragged-right = ##t
-                        }
-                    }
-                }
+            \markup \abjad-metric-modulation-tuplet-lhs #2 #0 #4 #5 #2 #0 #'(1 . 1)
 
         >>> metric_modulation = abjad.MetricModulation(
         ...     left_rhythm=abjad.Note("c'4"),
@@ -208,84 +58,7 @@ class MetricModulation(object):
         ..  docs::
 
             >>> print(format(metric_modulation, 'lilypond'))
-            \markup {
-                \score
-                    {
-                        \new Score
-                        \with
-                        {
-                            \override SpacingSpanner.spacing-increment = #0.5
-                            proportionalNotationDuration = ##f
-                        }
-                        <<
-                            \new RhythmicStaff
-                            \with
-                            {
-                                \remove Time_signature_engraver
-                                \remove Staff_symbol_engraver
-                                \override Stem.direction = #up
-                                \override Stem.length = #5
-                                \override TupletBracket.bracket-visibility = ##t
-                                \override TupletBracket.direction = #up
-                                \override TupletBracket.minimum-length = #4
-                                \override TupletBracket.padding = #1.25
-                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
-                                \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
-                                \override TupletNumber.font-size = #0
-                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
-                                tupletFullLength = ##t
-                            }
-                            {
-                                c'4
-                            }
-                        >>
-                        \layout {
-                            indent = #0
-                            ragged-right = ##t
-                        }
-                    }
-                =
-                \hspace
-                    #-0.5
-                \score
-                    {
-                        \new Score
-                        \with
-                        {
-                            \override SpacingSpanner.spacing-increment = #0.5
-                            proportionalNotationDuration = ##f
-                        }
-                        <<
-                            \new RhythmicStaff
-                            \with
-                            {
-                                \remove Time_signature_engraver
-                                \remove Staff_symbol_engraver
-                                \override Stem.direction = #up
-                                \override Stem.length = #5
-                                \override TupletBracket.bracket-visibility = ##t
-                                \override TupletBracket.direction = #up
-                                \override TupletBracket.minimum-length = #4
-                                \override TupletBracket.padding = #1.25
-                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
-                                \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
-                                \override TupletNumber.font-size = #0
-                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
-                                tupletFullLength = ##t
-                            }
-                            {
-                                \tweak edge-height #'(0.7 . 0)
-                                \times 4/5 {
-                                    c'4
-                                }
-                            }
-                        >>
-                        \layout {
-                            indent = #0
-                            ragged-right = ##t
-                        }
-                    }
-                }
+            \markup \abjad-metric-modulation-tuplet-rhs #2 #0 #2 #0 #4 #5 #'(1 . 1)
 
     ..  container:: example
 
@@ -301,84 +74,7 @@ class MetricModulation(object):
         ..  docs::
 
             >>> print(format(metric_modulation, 'lilypond'))
-            \markup {
-                \score
-                    {
-                        \new Score
-                        \with
-                        {
-                            \override SpacingSpanner.spacing-increment = #0.5
-                            proportionalNotationDuration = ##f
-                        }
-                        <<
-                            \new RhythmicStaff
-                            \with
-                            {
-                                \remove Time_signature_engraver
-                                \remove Staff_symbol_engraver
-                                \override Stem.direction = #up
-                                \override Stem.length = #5
-                                \override TupletBracket.bracket-visibility = ##t
-                                \override TupletBracket.direction = #up
-                                \override TupletBracket.minimum-length = #4
-                                \override TupletBracket.padding = #1.25
-                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
-                                \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
-                                \override TupletNumber.font-size = #0
-                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
-                                tupletFullLength = ##t
-                            }
-                            {
-                                c16.
-                            }
-                        >>
-                        \layout {
-                            indent = #0
-                            ragged-right = ##t
-                        }
-                    }
-                =
-                \hspace
-                    #-0.5
-                \score
-                    {
-                        \new Score
-                        \with
-                        {
-                            \override SpacingSpanner.spacing-increment = #0.5
-                            proportionalNotationDuration = ##f
-                        }
-                        <<
-                            \new RhythmicStaff
-                            \with
-                            {
-                                \remove Time_signature_engraver
-                                \remove Staff_symbol_engraver
-                                \override Stem.direction = #up
-                                \override Stem.length = #5
-                                \override TupletBracket.bracket-visibility = ##t
-                                \override TupletBracket.direction = #up
-                                \override TupletBracket.minimum-length = #4
-                                \override TupletBracket.padding = #1.25
-                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
-                                \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
-                                \override TupletNumber.font-size = #0
-                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
-                                tupletFullLength = ##t
-                            }
-                            {
-                                \tweak edge-height #'(0.7 . 0)
-                                \times 2/3 {
-                                    c8
-                                }
-                            }
-                        >>
-                        \layout {
-                            indent = #0
-                            ragged-right = ##t
-                        }
-                    }
-                }
+            \markup \abjad-metric-modulation-tuplet-rhs #4 #1 #3 #0 #2 #3 #'(1 . 1)
 
     ..  container:: example
 
@@ -606,81 +302,7 @@ class MetricModulation(object):
                     d'4
                     e'4
                     f'4
-                    ^ \markup {
-                        \score
-                            {
-                                \new Score
-                                \with
-                                {
-                                    \override SpacingSpanner.spacing-increment = #0.5
-                                    proportionalNotationDuration = ##f
-                                }
-                                <<
-                                    \new RhythmicStaff
-                                    \with
-                                    {
-                                        \remove Time_signature_engraver
-                                        \remove Staff_symbol_engraver
-                                        \override Stem.direction = #up
-                                        \override Stem.length = #5
-                                        \override TupletBracket.bracket-visibility = ##t
-                                        \override TupletBracket.direction = #up
-                                        \override TupletBracket.minimum-length = #4
-                                        \override TupletBracket.padding = #1.25
-                                        \override TupletBracket.shorten-pair = #'(-1 . -1.5)
-                                        \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
-                                        \override TupletNumber.font-size = #0
-                                        \override TupletNumber.text = #tuplet-number::calc-fraction-text
-                                        tupletFullLength = ##t
-                                    }
-                                    {
-                                        c4
-                                    }
-                                >>
-                                \layout {
-                                    indent = #0
-                                    ragged-right = ##t
-                                }
-                            }
-                        =
-                        \hspace
-                            #-0.5
-                        \score
-                            {
-                                \new Score
-                                \with
-                                {
-                                    \override SpacingSpanner.spacing-increment = #0.5
-                                    proportionalNotationDuration = ##f
-                                }
-                                <<
-                                    \new RhythmicStaff
-                                    \with
-                                    {
-                                        \remove Time_signature_engraver
-                                        \remove Staff_symbol_engraver
-                                        \override Stem.direction = #up
-                                        \override Stem.length = #5
-                                        \override TupletBracket.bracket-visibility = ##t
-                                        \override TupletBracket.direction = #up
-                                        \override TupletBracket.minimum-length = #4
-                                        \override TupletBracket.padding = #1.25
-                                        \override TupletBracket.shorten-pair = #'(-1 . -1.5)
-                                        \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
-                                        \override TupletNumber.font-size = #0
-                                        \override TupletNumber.text = #tuplet-number::calc-fraction-text
-                                        tupletFullLength = ##t
-                                    }
-                                    {
-                                        c8.
-                                    }
-                                >>
-                                \layout {
-                                    indent = #0
-                                    ragged-right = ##t
-                                }
-                            }
-                        }
+                    ^ \markup \abjad-metric-modulation #2 #0 #3 #1 #'(1 . 1)
                     e'4
                     d'4
                 }
@@ -696,6 +318,7 @@ class MetricModulation(object):
         '_left_rhythm',
         '_right_markup',
         '_right_rhythm',
+        '_scale',
         )
 
     _publish_storage_format = True
@@ -710,6 +333,7 @@ class MetricModulation(object):
         hide: bool = None,
         left_markup: Markup = None,
         right_markup: Markup = None,
+        scale: typing.Tuple[typings.Number, typings.Number] = (1, 1),
         ) -> None:
         from abjad.core.Note import Note
         if hide is not None:
@@ -728,6 +352,8 @@ class MetricModulation(object):
         if right_markup is not None:
             assert isinstance(right_markup, Markup)
         self._right_markup = right_markup
+        assert isinstance(scale, tuple), repr(scale)
+        self._scale = scale
 
     ### SPECIAL METHODS ###
 
@@ -811,6 +437,7 @@ class MetricModulation(object):
                         abjad.Note("c'4."),
                         ]
                     ),
+                scale=(1, 1),
                 )
 
         """
@@ -848,84 +475,7 @@ class MetricModulation(object):
                 >>> lilypond_file = metric_modulation.__illustrate__()
                 >>> metric_modulation = lilypond_file.items[-1]
                 >>> print(format(metric_modulation))
-                \markup {
-                    \score
-                        {
-                            \new Score
-                            \with
-                            {
-                                \override SpacingSpanner.spacing-increment = #0.5
-                                proportionalNotationDuration = ##f
-                            }
-                            <<
-                                \new RhythmicStaff
-                                \with
-                                {
-                                    \remove Time_signature_engraver
-                                    \remove Staff_symbol_engraver
-                                    \override Stem.direction = #up
-                                    \override Stem.length = #5
-                                    \override TupletBracket.bracket-visibility = ##t
-                                    \override TupletBracket.direction = #up
-                                    \override TupletBracket.minimum-length = #4
-                                    \override TupletBracket.padding = #1.25
-                                    \override TupletBracket.shorten-pair = #'(-1 . -1.5)
-                                    \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
-                                    \override TupletNumber.font-size = #0
-                                    \override TupletNumber.text = #tuplet-number::calc-fraction-text
-                                    tupletFullLength = ##t
-                                }
-                                {
-                                    \tweak edge-height #'(0.7 . 0)
-                                    \times 2/3 {
-                                        c'4
-                                    }
-                                }
-                            >>
-                            \layout {
-                                indent = #0
-                                ragged-right = ##t
-                            }
-                        }
-                    =
-                    \hspace
-                        #-0.5
-                    \score
-                        {
-                            \new Score
-                            \with
-                            {
-                                \override SpacingSpanner.spacing-increment = #0.5
-                                proportionalNotationDuration = ##f
-                            }
-                            <<
-                                \new RhythmicStaff
-                                \with
-                                {
-                                    \remove Time_signature_engraver
-                                    \remove Staff_symbol_engraver
-                                    \override Stem.direction = #up
-                                    \override Stem.length = #5
-                                    \override TupletBracket.bracket-visibility = ##t
-                                    \override TupletBracket.direction = #up
-                                    \override TupletBracket.minimum-length = #4
-                                    \override TupletBracket.padding = #1.25
-                                    \override TupletBracket.shorten-pair = #'(-1 . -1.5)
-                                    \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
-                                    \override TupletNumber.font-size = #0
-                                    \override TupletNumber.text = #tuplet-number::calc-fraction-text
-                                    tupletFullLength = ##t
-                                }
-                                {
-                                    c'4.
-                                }
-                            >>
-                            \layout {
-                                indent = #0
-                                ragged-right = ##t
-                            }
-                        }
-                    }
+                \markup \abjad-metric-modulation-tuplet-lhs #2 #0 #2 #3 #2 #1 #'(1 . 1)
 
         Returns LilyPond file.
         """
@@ -952,89 +502,41 @@ class MetricModulation(object):
             ...     )
 
             >>> print(str(metric_modulation))
-            \markup {
-                \score
-                    {
-                        \new Score
-                        \with
-                        {
-                            \override SpacingSpanner.spacing-increment = #0.5
-                            proportionalNotationDuration = ##f
-                        }
-                        <<
-                            \new RhythmicStaff
-                            \with
-                            {
-                                \remove Time_signature_engraver
-                                \remove Staff_symbol_engraver
-                                \override Stem.direction = #up
-                                \override Stem.length = #5
-                                \override TupletBracket.bracket-visibility = ##t
-                                \override TupletBracket.direction = #up
-                                \override TupletBracket.minimum-length = #4
-                                \override TupletBracket.padding = #1.25
-                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
-                                \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
-                                \override TupletNumber.font-size = #0
-                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
-                                tupletFullLength = ##t
-                            }
-                            {
-                                \tweak edge-height #'(0.7 . 0)
-                                \times 2/3 {
-                                    c'4
-                                }
-                            }
-                        >>
-                        \layout {
-                            indent = #0
-                            ragged-right = ##t
-                        }
-                    }
-                =
-                \hspace
-                    #-0.5
-                \score
-                    {
-                        \new Score
-                        \with
-                        {
-                            \override SpacingSpanner.spacing-increment = #0.5
-                            proportionalNotationDuration = ##f
-                        }
-                        <<
-                            \new RhythmicStaff
-                            \with
-                            {
-                                \remove Time_signature_engraver
-                                \remove Staff_symbol_engraver
-                                \override Stem.direction = #up
-                                \override Stem.length = #5
-                                \override TupletBracket.bracket-visibility = ##t
-                                \override TupletBracket.direction = #up
-                                \override TupletBracket.minimum-length = #4
-                                \override TupletBracket.padding = #1.25
-                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
-                                \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
-                                \override TupletNumber.font-size = #0
-                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
-                                tupletFullLength = ##t
-                            }
-                            {
-                                c'4
-                            }
-                        >>
-                        \layout {
-                            indent = #0
-                            ragged-right = ##t
-                        }
-                    }
-                }
+            \markup \abjad-metric-modulation-tuplet-lhs #2 #0 #2 #3 #2 #0 #'(1 . 1)
 
         """
         return str(self._get_markup())
 
     ### PRIVATE METHODS ###
+
+    def _get_compact_output(self):
+        import abjad
+        if self._note_to_note():
+            arguments = self._get_markup_arguments()
+            left_exponent, left_dots, right_exponent, right_dots = arguments
+            string = r'\abjad-metric-modulation'
+            string += f' #{left_exponent} #{left_dots}'
+            string += f' #{right_exponent} #{right_dots}'
+        elif self._rhs_tuplet():
+            arguments = self._get_markup_arguments()
+            note_exponent, note_dots = arguments[:2]
+            tuplet_exponent, tuplet_dots, tuplet_n, tuplet_d = arguments[2:]
+            string = r'\abjad-metric-modulation-tuplet-rhs'
+            string += f' #{note_exponent} #{note_dots}'
+            string += f' #{tuplet_exponent} #{tuplet_dots}'
+            string += f' #{tuplet_n} #{tuplet_d}'
+        elif self._lhs_tuplet():
+            arguments = self._get_markup_arguments()
+            tuplet_exponent, tuplet_dots, tuplet_n, tuplet_d = arguments[:4]
+            note_exponent, note_dots = arguments[4:]
+            string = r'\abjad-metric-modulation-tuplet-lhs'
+            string += f' #{tuplet_exponent} #{tuplet_dots}'
+            string += f' #{tuplet_n} #{tuplet_d}'
+            string += f' #{note_exponent} #{note_dots}'
+        else:
+            return None
+        string += f" #'({self.scale[0]} . {self.scale[1]})"
+        return string
 
     def _get_left_markup(self):
         if self.left_markup is not None:
@@ -1055,12 +557,53 @@ class MetricModulation(object):
         return bundle
 
     def _get_markup(self):
-        left_markup = self._get_left_markup()
-        equal = Markup('=')
-        right_space = Markup.hspace(-0.5)
-        right_markup = self._get_right_markup()
-        markup = left_markup + equal + right_space + right_markup
+        result = self._get_compact_output()
+        if result is None:
+            left_markup = self._get_left_markup()
+            equal = Markup('=')
+            right_space = Markup.hspace(-0.5)
+            right_markup = self._get_right_markup()
+            markup = left_markup + equal + right_space + right_markup
+        else:
+            markup = Markup.from_literal(
+                f'\markup {result}',
+                literal=True,
+                )
         return markup
+
+    def _get_markup_arguments(self):
+        if self._note_to_note():
+            left_exponent = self.left_rhythm[0].written_duration.exponent
+            left_dots = self.left_rhythm[0].written_duration.dot_count
+            right_exponent = self.right_rhythm[0].written_duration.exponent
+            right_dots = self.right_rhythm[0].written_duration.dot_count
+            return (
+                left_exponent, left_dots, right_exponent, right_dots,
+                )
+        elif self._lhs_tuplet():
+            tuplet_exponent = self.left_rhythm[0][0].written_duration.exponent
+            tuplet_dots = self.left_rhythm[0][0].written_duration.dot_count
+            tuplet_n = self.left_rhythm[0].multiplier.numerator
+            tuplet_d = self.left_rhythm[0].multiplier.denominator
+            note_exponent = self.right_rhythm[0].written_duration.exponent
+            note_dots = self.right_rhythm[0].written_duration.dot_count
+            return (
+                tuplet_exponent, tuplet_dots, tuplet_n, tuplet_d,
+                note_exponent, note_dots,
+                )
+        elif self._rhs_tuplet():
+            note_exponent = self.left_rhythm[0].written_duration.exponent
+            note_dots = self.left_rhythm[0].written_duration.dot_count
+            tuplet_exponent = self.right_rhythm[0][0].written_duration.exponent
+            tuplet_dots = self.right_rhythm[0][0].written_duration.dot_count
+            tuplet_n = self.right_rhythm[0].multiplier.numerator
+            tuplet_d = self.right_rhythm[0].multiplier.denominator
+            return (
+                note_exponent, note_dots,
+                tuplet_exponent, tuplet_dots, tuplet_n, tuplet_d,
+                )
+        else:
+            raise Exception('implement tied note values.')
 
     def _get_right_markup(self):
         if self.right_markup is not None:
@@ -1080,6 +623,33 @@ class MetricModulation(object):
             raise TypeError(message)
         assert isinstance(selection, abjad.Selection)
         return selection
+
+    def _lhs_tuplet(self):
+        import abjad
+        if (isinstance(self.left_rhythm[0], abjad.Tuplet) and
+            len(self.left_rhythm[0]) == 1 and
+            isinstance(self.right_rhythm[0], abjad.Note) and
+            len(self.right_rhythm) == 1):
+            return True
+        return False
+
+    def _note_to_note(self):
+        import abjad
+        if (isinstance(self.left_rhythm[0], abjad.Note) and
+            len(self.left_rhythm) == 1 and
+            isinstance(self.right_rhythm[0], abjad.Note) and
+            len(self.right_rhythm) == 1):
+            return True
+        return False
+
+    def _rhs_tuplet(self):
+        import abjad
+        if (isinstance(self.left_rhythm[0], abjad.Note) and
+            len(self.left_rhythm) == 1 and
+            isinstance(self.right_rhythm[0], abjad.Tuplet) and
+            len(self.right_rhythm[0]) == 1):
+            return True
+        return False
 
     ### PUBLIC PROPERTIES ###
 
@@ -1176,6 +746,52 @@ class MetricModulation(object):
 
         """
         return self._right_rhythm
+
+    @property
+    def scale(self) -> typing.Tuple[typings.Number, typings.Number]:
+        r"""
+        Gets scale of output markup.
+
+        ..  container:: example
+
+            >>> staff = abjad.Staff("c'4 d'4 e'4 f'4 e'4 d'4")
+            >>> abjad.attach(abjad.TimeSignature((3, 4)), staff[0])
+            >>> score = abjad.Score([staff])
+
+            >>> metric_modulation = abjad.MetricModulation(
+            ...     left_rhythm=abjad.Note("c4"),
+            ...     right_rhythm=abjad.Note("c8."),
+            ...     scale=(0.5, 0.5),
+            ...     )
+            >>> abjad.attach(metric_modulation, staff[3])
+            >>> abjad.override(staff).text_script.staff_padding = 2.5
+
+            >>> abjad.show(score) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(score)
+                \new Score
+                <<
+                    \new Staff
+                    \with
+                    {
+                        \override TextScript.staff-padding = #2.5
+                    }
+                    {
+                        \time 3/4
+                        c'4
+                        d'4
+                        e'4
+                        f'4
+                        ^ \markup \abjad-metric-modulation #2 #0 #3 #1 #'(0.5 . 0.5)
+                        e'4
+                        d'4
+                    }
+                >>
+
+        """
+        return self._scale
 
     @property
     def tweaks(self) -> None:
