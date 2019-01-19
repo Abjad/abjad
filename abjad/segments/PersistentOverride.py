@@ -176,27 +176,71 @@ class PersistentOverride(object):
         if self.hide:
             return bundle
         strings = self._get_lilypond_format()
-        bundle.before.commands.extend(strings)
+        if self.after:
+            bundle.after.commands.extend(strings)
+        else:
+            bundle.before.commands.extend(strings)
         return bundle
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def after(self) -> typing.Optional[bool]:
-        """
+        r"""
         Is true when override formats after leaf.
 
         ..  container:: example
 
+            Formats override before leaf:
+
             >>> override = abjad.PersistentOverride(
-            ...     attribute='bar_extent',
-            ...     context='Staff',
-            ...     grob='bar_line',
-            ...     value=(-2, 0),
+            ...     attribute='color',
+            ...     grob='note_head',
+            ...     value='red',
             ...     )
 
-            >>> override.after is None
-            True
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> abjad.attach(override, staff[0])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    \override NoteHead.color = #red
+                    c'4
+                    d'4
+                    e'4
+                    f'4
+                }
+
+        ..  container:: example
+
+            Formats override after leaf:
+
+            >>> override = abjad.PersistentOverride(
+            ...     after=True,
+            ...     attribute='color',
+            ...     grob='note_head',
+            ...     value='red',
+            ...     )
+
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> abjad.attach(override, staff[0])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    c'4
+                    \override NoteHead.color = #red
+                    d'4
+                    e'4
+                    f'4
+                }
 
         """
         return self._after

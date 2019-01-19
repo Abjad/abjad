@@ -3,6 +3,7 @@ from abjad import enums
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.StorageFormatManager import StorageFormatManager
+from abjad.system.Tags import Tags
 
 
 class StopTrillSpan(object):
@@ -72,8 +73,7 @@ class StopTrillSpan(object):
 
     @staticmethod
     def _tag_hide(strings):
-        import abjad
-        abjad_tags = abjad.Tags()
+        abjad_tags = Tags()
         return LilyPondFormatManager.tag(
             strings,
             deactivate=False,

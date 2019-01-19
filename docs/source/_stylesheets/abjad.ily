@@ -1,4 +1,5 @@
 #(ly:set-option 'relative-includes #t)
+\include "abjad-metric-modulations.ily"
 \include "abjad-text-spanner-line-styles.ily"
 \include "naselnik-text-spanner-id.ily"
 \include "solomon-flared-hairpin.ily"

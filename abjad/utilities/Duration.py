@@ -604,7 +604,7 @@ class Duration(Fraction):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def dot_count(self):
+    def dot_count(self) -> int:
         r"""
         Gets dot count.
 
@@ -643,8 +643,6 @@ class Duration(Fraction):
         Dot count defined equal to number of dots required to notate duration.
 
         Raises assignability error when duration is not assignable.
-
-        Returns positive integer.
         """
         if not self.is_assignable:
             raise exceptions.AssignabilityError
@@ -654,7 +652,7 @@ class Duration(Fraction):
         return dot_count
 
     @property
-    def equal_or_greater_assignable(self):
+    def equal_or_greater_assignable(self) -> 'Duration':
         r"""
         Gets assignable duration equal to or just greater than this
         duration.
@@ -686,7 +684,6 @@ class Duration(Fraction):
             15/16   15/16
             16/16   1
 
-        Returns new duration.
         """
         good_denominator = mathtools.greatest_power_of_two_less_equal(
             self.denominator)
@@ -698,7 +695,7 @@ class Duration(Fraction):
         return candidate
 
     @property
-    def equal_or_greater_power_of_two(self):
+    def equal_or_greater_power_of_two(self) -> 'Duration':
         r"""
         Gets duration equal or just greater power of two.
 
@@ -729,13 +726,12 @@ class Duration(Fraction):
             15/16   1
             16/16   1
 
-        Returns new duration.
         """
         denominator_exponent = -int(math.ceil(math.log(self, 2)))
         return type(self)(1, 2) ** denominator_exponent
 
     @property
-    def equal_or_lesser_assignable(self):
+    def equal_or_lesser_assignable(self) -> 'Duration':
         r"""
         Gets assignable duration equal or just less than this duration.
 
@@ -766,7 +762,6 @@ class Duration(Fraction):
             15/16   15/16
             16/16   1
 
-        Returns new duration.
         """
         good_denominator = self._least_power_of_two_greater_equal(
             self.denominator)
@@ -778,7 +773,7 @@ class Duration(Fraction):
         return candidate
 
     @property
-    def equal_or_lesser_power_of_two(self):
+    def equal_or_lesser_power_of_two(self) -> 'Duration':
         r"""
         Gets duration of the form ``d**2`` equal to or just less than this
         duration.
@@ -810,13 +805,46 @@ class Duration(Fraction):
             15/16   1/2
             16/16   1
 
-        Returns new duration.
         """
-        denominator_exponent = -int(math.floor(math.log(self, 2)))
-        return type(self)(1, 2) ** denominator_exponent
+        return type(self)(1, 2) ** self.exponent
 
     @property
-    def flag_count(self):
+    def exponent(self) -> int:
+        r"""
+        Gets base-2 exponent.
+
+        ..  container:: example
+
+            Gets equal-or-greater power-of-two:
+
+            >>> for numerator in range(1, 16 + 1):
+            ...     duration = abjad.Duration(numerator, 16)
+            ...     exponent = duration.exponent
+            ...     sixteenths = duration.with_denominator(16)
+            ...     print(f'{sixteenths!s}\t{duration.exponent!s}')
+            ...
+            1/16	4
+            2/16	3
+            3/16	3
+            4/16	2
+            5/16	2
+            6/16	2
+            7/16	2
+            8/16	1
+            9/16	1
+            10/16	1
+            11/16	1
+            12/16	1
+            13/16	1
+            14/16	1
+            15/16	1
+            16/16	0
+
+        """
+        return -int(math.floor(math.log(self, 2)))
+
+    @property
+    def flag_count(self) -> int:
         r"""
         Gets flag count.
 
@@ -848,15 +876,13 @@ class Duration(Fraction):
 
         Flag count defined equal to number of flags required to notate
         duration.
-
-        Returns nonnegative integer.
         """
         log = math.log(float(self.numerator) / self.denominator, 2)
         count = -int(math.floor(log)) - 2
         return max(count, 0)
 
     @property
-    def has_power_of_two_denominator(self):
+    def has_power_of_two_denominator(self) -> bool:
         r"""
         Is true when duration is an integer power of two.
 
@@ -886,7 +912,6 @@ class Duration(Fraction):
             1/15    False
             1/16    True
 
-        Returns true or false.
         """
         exponent = math.log(self.denominator, 2)
         return int(exponent) == exponent
@@ -930,7 +955,7 @@ class Duration(Fraction):
         return abjad.Multiplier(numerator, self.denominator)
 
     @property
-    def is_assignable(self):
+    def is_assignable(self) -> bool:
         r"""
         Is true when duration is assignable.
 
@@ -961,7 +986,6 @@ class Duration(Fraction):
             15/16   True
             16/16   True
 
-        Returns true or false.
         """
         if 0 < self < 16:
             if mathtools.is_nonnegative_integer_power_of_two(
@@ -971,7 +995,7 @@ class Duration(Fraction):
         return False
 
     @property
-    def lilypond_duration_string(self):
+    def lilypond_duration_string(self) -> str:
         """
         Gets LilyPond duration string.
 
@@ -983,8 +1007,6 @@ class Duration(Fraction):
                 '8.'
 
         Raises assignability error when duration is not assignable.
-
-        Returns string.
         """
         if not self.is_assignable:
             raise exceptions.AssignabilityError(self)
@@ -1007,7 +1029,7 @@ class Duration(Fraction):
         return dotted_duration_string
 
     @property
-    def pair(self):
+    def pair(self) -> typing.Tuple[int, int]:
         """
         Gets numerator and denominator.
 
@@ -1018,12 +1040,11 @@ class Duration(Fraction):
             >>> abjad.Duration(3, 16).pair
             (3, 16)
 
-        Returns integer pair.
         """
         return self.numerator, self.denominator
 
     @property
-    def prolation_string(self):
+    def prolation_string(self) -> str:
         """
         Gets prolation string.
 
@@ -1034,12 +1055,11 @@ class Duration(Fraction):
             >>> abjad.Duration(3, 16).prolation_string
             '16:3'
 
-        Returns string.
         """
         return f'{self.denominator}:{self.numerator}'
 
     @property
-    def reciprocal(self):
+    def reciprocal(self) -> 'Duration':
         """
         Gets reciprocal.
 
@@ -1050,7 +1070,6 @@ class Duration(Fraction):
             >>> abjad.Duration(3, 7).reciprocal
             Duration(7, 3)
 
-        Returns new duration.
         """
         return type(self)(self.denominator, self.numerator)
 
@@ -1088,7 +1107,9 @@ class Duration(Fraction):
         return nonreduced_fractions
 
     @staticmethod
-    def from_lilypond_duration_string(lilypond_duration_string):
+    def from_lilypond_duration_string(
+        lilypond_duration_string,
+        ) -> 'Duration':
         r"""
         Initializes duration from LilyPond duration string.
 
@@ -1099,14 +1120,13 @@ class Duration(Fraction):
             >>> abjad.Duration.from_lilypond_duration_string('8.')
             Duration(3, 16)
 
-        Returns duration.
         """
         fraction = Duration._initialize_from_lilypond_duration_string(
             lilypond_duration_string)
         return Duration(fraction)
 
     @staticmethod
-    def is_token(argument):
+    def is_token(argument) -> bool:
         """
         Is true when ``argument`` correctly initializes a duration.
 
@@ -1117,7 +1137,6 @@ class Duration(Fraction):
             >>> abjad.Duration.is_token('8.')
             True
 
-        Returns true or false.
         """
         try:
             Duration.__new__(Duration, argument)
@@ -1125,7 +1144,7 @@ class Duration(Fraction):
         except:
             return False
 
-    def to_clock_string(self):
+    def to_clock_string(self) -> str:
         r"""
         Changes duration to clock string.
 
@@ -1151,8 +1170,6 @@ class Duration(Fraction):
                 ^ \markup { 1'57'' }
 
         Rounds down to nearest second.
-
-        Returns string.
         """
         minutes = int(self / 60)
         seconds = str(int(self - minutes * 60)).zfill(2)
@@ -1342,7 +1359,7 @@ class Duration(Fraction):
         markup = self._to_score_markup(notes)
         return markup
 
-    def with_denominator(self, denominator):
+    def with_denominator(self, denominator) -> mathtools.NonreducedFraction:
         """
         Changes duration to nonreduced fraction with ``denominator``.
 
@@ -1359,7 +1376,6 @@ class Duration(Fraction):
             4/16
             8/32
 
-        Returns new duration.
         """
         nonreduced_fraction = mathtools.NonreducedFraction(self)
         return nonreduced_fraction.with_denominator(denominator)

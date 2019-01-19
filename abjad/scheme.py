@@ -439,6 +439,8 @@ class Scheme(object):
             value = value.replace('"', r'\"')
             if value.startswith('#'):
                 pass
+            elif value.startswith('\\'):
+                pass
             elif force_quotes or ' ' in value or '#' in value:
                 return f'"{value}"'
             return value

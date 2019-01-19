@@ -1757,6 +1757,8 @@ class Selection(collections.Sequence):
         self,
         operator,
         duration: typings.DurationTyping,
+        *,
+        preprolated: bool = None,
         ) -> typing.Union['Selection', Expression]:
         r"""
         Filters selection by ``operator`` and ``duration``.
@@ -1869,7 +1871,12 @@ class Selection(collections.Sequence):
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        return self.filter(DurationInequality(operator, duration))
+        inequality = DurationInequality(
+            operator,
+            duration,
+            preprolated=preprolated,
+            )
+        return self.filter(inequality)
 
     def filter_length(
         self,

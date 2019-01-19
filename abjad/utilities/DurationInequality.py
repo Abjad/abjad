@@ -1,3 +1,7 @@
+import typing
+from abjad.mathtools.Infinity import Infinity
+from abjad.mathtools.NegativeInfinity import NegativeInfinity
+from .Duration import Duration
 from .Inequality import Inequality
 
 
@@ -40,20 +44,23 @@ class DurationInequality(Inequality):
 
     def __init__(
         self,
-        operator_string='<',
+        operator_string: str = '<',
         duration=None,
-        preprolated=None,
-        ):
-        import abjad
-        Inequality.__init__(self, operator_string=operator_string)
+        *,
+        preprolated: bool = None,
+        ) -> None:
+        Inequality.__init__(
+            self,
+            operator_string=operator_string,
+            )
         if duration is None:
-            duration = abjad.mathtools.Infinity()
+            duration = Infinity()
         infinities = (
-            abjad.mathtools.Infinity(),
-            abjad.mathtools.NegativeInfinity(),
+            Infinity(),
+            NegativeInfinity(),
             )
         if duration not in infinities:
-            duration = abjad.Duration(duration)
+            duration = Duration(duration)
             assert 0 <= duration
         self._duration = duration
         self._preprolated = preprolated
@@ -84,19 +91,15 @@ class DurationInequality(Inequality):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def duration(self):
+    def duration(self) -> Duration:
         """
         Gets duration.
-
-        Returns duration.
         """
         return self._duration
 
     @property
-    def preprolated(self):
+    def preprolated(self) -> typing.Optional[bool]:
         """
         Is true when inequality evaluates preprolated duration.
-
-        Returns true, false or none.
         """
         return self._preprolated
