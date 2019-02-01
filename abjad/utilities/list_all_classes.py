@@ -1,15 +1,14 @@
 def list_all_classes(modules=None, ignored_classes=None):
-    r'''Lists all public classes defined in `path`.
+    """
+    Lists all public classes defined in `path`.
 
     ..  container:: example
 
-        ::
+        >>> all_classes = abjad.utilities.list_all_classes(
+        ...     modules='abjad',
+        ...     )
 
-            >>> all_classes = abjad.utilities.list_all_classes(
-            ...     modules='abjad',
-            ...     )
-
-    '''
+    """
     from abjad import utilities
     all_classes = set()
     for module in utilities.yield_all_modules(modules):

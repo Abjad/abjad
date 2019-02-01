@@ -1107,10 +1107,40 @@ class Duration(Fraction):
         return nonreduced_fractions
 
     @staticmethod
+    def from_clock_string(clock_string) -> 'Duration':
+        """
+        Initializes duration (in seconds) from clock string.
+
+        ..  container:: example
+
+            >>> abjad.Duration.from_clock_string("0'00''")
+            Duration(0, 1)
+
+            >>> abjad.Duration.from_clock_string("0'59''")
+            Duration(59, 1)
+
+            >>> abjad.Duration.from_clock_string("1'00''")
+            Duration(60, 1)
+
+            >>> abjad.Duration.from_clock_string("1'17''")
+            Duration(77, 1)
+
+        """
+        minutes = 0
+        if "'" in clock_string:
+            tick_index = clock_string.find("'")
+            minutes = clock_string[:tick_index]
+            minutes = int(minutes)
+        seconds = clock_string[-4:-2]
+        seconds = int(seconds)
+        seconds = 60 * minutes + seconds
+        return Duration(seconds)
+
+    @staticmethod
     def from_lilypond_duration_string(
         lilypond_duration_string,
         ) -> 'Duration':
-        r"""
+        """
         Initializes duration from LilyPond duration string.
 
         ..  container:: example

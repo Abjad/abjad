@@ -59,7 +59,6 @@ class IOManager(object):
         composer_full_name=None,
         composer_last_name=None,
         composer_github_username=None,
-        composer_library=None,
         score_title=None,
         year=None,
         ):
@@ -101,7 +100,6 @@ class IOManager(object):
                         composer_full_name=composer_full_name,
                         composer_github_username=composer_github_username,
                         composer_last_name=composer_last_name,
-                        composer_library=composer_library,
                         score_package_name=score_package_name,
                         score_title=score_title,
                         year=year,
@@ -115,7 +113,6 @@ class IOManager(object):
                                 composer_full_name=composer_full_name,
                                 composer_github_username=composer_github_username,
                                 composer_last_name=composer_last_name,
-                                composer_library=composer_library,
                                 score_package_name=score_package_name,
                                 score_title=score_title,
                                 year=year,
@@ -288,11 +285,6 @@ class IOManager(object):
 
         Similar to Unix ``which`` command.
 
-        ..  container:: example
-
-            >>> abjad.IOManager.find_executable('python3.6') # doctest: +SKIP
-            ['/usr/bin/python3.6']
-
         Returns list of zero or more full paths to ``name``.
         """
         result = []
@@ -321,11 +313,6 @@ class IOManager(object):
         ) -> typing.Optional[str]:
         """
         Gets last output file name in ``output_directory``.
-
-        ..  container:: example
-
-            >>> abjad.IOManager.get_last_output_file_name() # doctest: +SKIP
-            '6222.ly'
 
         Gets last output file name in Abjad output directory when
         ``output_directory`` is none.
@@ -360,11 +347,6 @@ class IOManager(object):
         """
         Gets next output file name with ``file_extension`` in
         ``output_directory``.
-
-        ..  container:: example
-
-            >>> abjad.IOManager.get_next_output_file_name() # doctest: +SKIP
-            '6223.ly'
 
         Gets next output file name with ``file_extension`` in Abjad output
         directory when ``output_directory`` is none.
@@ -594,7 +576,7 @@ class IOManager(object):
         Profiles ``argument``.
 
         ..  container:: example
-
+            
             ::
 
                 >>> argument = 'abjad.Staff("c8 c8 c8 c8 c8 c8 c8 c8")'

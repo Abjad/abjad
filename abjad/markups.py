@@ -200,24 +200,26 @@ class Markup(object):
         tweaks: LilyPondTweakManager = None,
         ) -> None:
         from abjad.top.parse import parse
-        from abjad.markups import MarkupCommand
         self._annotation = None
         new_contents: typing.Tuple[typing.Union[str, MarkupCommand], ...]
         if contents is None:
             new_contents = ('',)
-        elif isinstance(contents, str):
+        elif isinstance(contents, str) and not literal:
             to_parse = rf'\markup {{ {contents} }}'
             parsed = parse(to_parse)
             if all(isinstance(_, str) for _ in parsed.contents):
                 new_contents = (' '.join(parsed.contents),)
             else:
                 new_contents = tuple(parsed.contents)
+        elif isinstance(contents, str) and literal is True:
+            new_contents = (contents,)
         elif isinstance(contents, MarkupCommand):
             new_contents = (contents,)
         elif isinstance(contents, type(self)):
             direction = direction or contents.direction
             if direction is not None:
                 assert isinstance(direction, (str, enums.VerticalAlignment)), repr(direction)
+            literal = literal or contents.literal
             new_contents = tuple(contents.contents)
         elif isinstance(contents, collections.Sequence) and 0 < len(contents):
             new_contents_ = []
@@ -705,7 +707,7 @@ class Markup(object):
 
     @property
     def literal(self) -> typing.Optional[bool]:
-        """
+        r"""
         Is true when markup formats contents literally.
 
         ..  container:: example
@@ -713,7 +715,14 @@ class Markup(object):
             Adds neither quotes nor braces:
 
             >>> string = r'\custom-function #1 #4'
-            >>> markup = abjad.Markup.from_literal(string, literal=True)
+            >>> markup = abjad.Markup(string, literal=True)
+            >>> abjad.f(markup)
+            \custom-function #1 #4
+
+            Works with normal initializer, too:
+
+            >>> string = r'\custom-function #1 #4'
+            >>> markup = abjad.Markup(string, literal=True)
             >>> abjad.f(markup)
             \custom-function #1 #4
 
@@ -722,13 +731,47 @@ class Markup(object):
             Works with direction:
 
             >>> string = r'\custom-function #1 #4'
-            >>> markup = abjad.Markup.from_literal(
+            >>> markup = abjad.Markup(
             ...     string,
             ...     direction=abjad.Up,
             ...     literal=True,
             ...     )
             >>> abjad.f(markup)
             ^ \custom-function #1 #4
+
+            Works with normal initialier, too:
+
+            >>> string = r'\custom-function #1 #4'
+            >>> markup = abjad.Markup(
+            ...     string,
+            ...     direction=abjad.Up,
+            ...     literal=True,
+            ...     )
+            >>> abjad.f(markup)
+            ^ \custom-function #1 #4
+
+        ..  container:: example
+
+            REGRESSION. Input string accepts LilyPond \markup command:
+
+            >>> string = r'\markup { \note #"4" #1 }'
+            >>> markup = abjad.Markup(
+            ...     string,
+            ...     direction=abjad.Up,
+            ...     literal=True,
+            ...     )
+            >>> abjad.f(markup)
+            ^ \markup { \note #"4" #1 }
+
+            >>> note = abjad.Note("c'4")
+            >>> abjad.attach(markup, note)
+            >>> abjad.show(note) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(note)
+                c'4
+                ^ \markup { \note #"4" #1 }
 
         """
         return self._literal
@@ -1311,40 +1354,6 @@ class Markup(object):
         """
         command = MarkupCommand('fraction', str(numerator), str(denominator))
         return class_(contents=command, direction=direction)
-
-    @classmethod
-    def from_literal(class_, string, direction=None, literal=None):
-        r"""
-        Makes markup from literal ``string`` and bypasses parser.
-
-        ..  container:: example
-
-            >>> markup = abjad.Markup.from_literal('F#4')
-            >>> abjad.f(markup)
-            \markup { "F#4" }
-
-            >>> abjad.show(markup) # doctest: +SKIP
-
-        ..  container:: example
-
-            With ``literal`` set to true:
-
-            >>> string = r'\markup { "F#4" }'
-            >>> markup = abjad.Markup.from_literal(string, literal=True)
-            >>> abjad.f(markup)
-            \markup { "F#4" }
-
-            >>> abjad.show(markup) # doctest: +SKIP
-
-        Returns new markup.
-        """
-        markup = class_(
-            contents='',
-            direction=direction,
-            literal=literal,
-            )
-        markup._contents = (string,)
-        return markup
 
     def general_align(self, axis, direction):
         r"""

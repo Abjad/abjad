@@ -1,5 +1,6 @@
 import typing
 from .Path import Path
+from abjad import const
 from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.system.Tags import Tags
 from abjad.utilities.String import String
@@ -390,7 +391,7 @@ class Job(object):
         """
         name = 'stage number markup'
         def match(tags) -> bool:
-            tags_ = [abjad_tags.STAGE_NUMBER_MARKUP]
+            tags_ = [const.STAGE_NUMBER]
             return bool(set(tags) & set(tags_))
         if undo:
             return Job(
@@ -615,7 +616,7 @@ class Job(object):
         """
         name = 'clock time markup'
         def match(tags) -> bool:
-            tags_ = [abjad_tags.CLOCK_TIME_MARKUP]
+            tags_ = [const.CLOCK_TIME]
             return bool(set(tags) & set(tags_))
         if undo:
             return Job(
@@ -637,29 +638,7 @@ class Job(object):
         """
         name = 'figure name markup'
         def match(tags) -> bool:
-            tags_ = [abjad_tags.FIGURE_NAME_MARKUP]
-            return bool(set(tags) & set(tags_))
-        if undo:
-            return Job(
-                deactivate=(match, name),
-                path=path,
-                title=f'hiding {name} ...',
-                )
-        else:
-            return Job(
-                activate=(match, name),
-                path=path,
-                title=f'showing {name} ...',
-                )
-
-    @staticmethod
-    def show_local_measure_index_markup(path, undo=False) -> 'Job':
-        """
-        Shows local measure index markup.
-        """
-        name = 'local measure index markup'
-        def match(tags) -> bool:
-            tags_ = [abjad_tags.LOCAL_MEASURE_INDEX_MARKUP]
+            tags_ = [const.FIGURE_NAME]
             return bool(set(tags) & set(tags_))
         if undo:
             return Job(
@@ -681,7 +660,7 @@ class Job(object):
         """
         name = 'local measure number markup'
         def match(tags) -> bool:
-            tags_ = [abjad_tags.LOCAL_MEASURE_NUMBER_MARKUP]
+            tags_ = [const.LOCAL_MEASURE_NUMBER]
             return bool(set(tags) & set(tags_))
         if undo:
             return Job(
@@ -703,7 +682,7 @@ class Job(object):
         """
         name = 'measure number markup'
         def match(tags) -> bool:
-            tags_ = [abjad_tags.MEASURE_NUMBER_MARKUP]
+            tags_ = [const.MEASURE_NUMBER]
             return bool(set(tags) & set(tags_))
         if undo:
             return Job(

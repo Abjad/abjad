@@ -265,8 +265,8 @@ class MetronomeMark(object):
     def __init__(
         self,
         reference_duration: typings.DurationTyping = None,
-        units_per_minute: typings.Number = None,
-        textual_indication: Markup = None,
+        units_per_minute: typing.Union[int, Fraction] = None,
+        textual_indication: str = None,
         *,
         custom_markup: Markup = None,
         hide: bool = None,
@@ -541,7 +541,10 @@ class MetronomeMark(object):
         assert isinstance(argument_quarters_per_minute, (int, float, Fraction))
         return self_quarters_per_minute < argument_quarters_per_minute
 
-    def __mul__(self, multiplier) -> typing.Optional['MetronomeMark']:
+    def __mul__(
+        self,
+        multiplier: typing.Union[int, Fraction],
+        ) -> typing.Optional['MetronomeMark']:
         """
         Multiplies metronome mark by ``multiplier``.
 
@@ -562,11 +565,11 @@ class MetronomeMark(object):
             MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=252)
 
         """
-        if not isinstance(multiplier, (int, float, Duration)):
+        if not isinstance(multiplier, (int, Fraction)):
             return None
         if self.is_imprecise:
             raise exceptions.ImpreciseMetronomeMarkError
-        assert isinstance(self.units_per_minute, (int, float, Fraction))
+        assert isinstance(self.units_per_minute, (int, Fraction))
         new_units_per_minute = multiplier * self.units_per_minute
         new_reference_duration = Duration(self.reference_duration)
         metronome_mark = type(self)(
@@ -633,7 +636,10 @@ class MetronomeMark(object):
         """
         return StorageFormatManager(self).get_repr_format()
 
-    def __rmul__(self, multiplier) -> typing.Optional['MetronomeMark']:
+    def __rmul__(
+        self,
+        multiplier: typing.Union[int, Fraction],
+        ) -> typing.Optional['MetronomeMark']:
         """
         Multiplies ``multiplier`` by metronome mark.
 
@@ -654,11 +660,11 @@ class MetronomeMark(object):
             MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=252)
 
         """
-        if not isinstance(multiplier, (int, float, Duration)):
+        if not isinstance(multiplier, (int, Fraction)):
             return None
         if self.is_imprecise:
             raise exceptions.ImpreciseMetronomeMarkError
-        assert isinstance(self.units_per_minute, (int, float, Fraction))
+        assert isinstance(self.units_per_minute, (int, Fraction))
         new_units_per_minute = multiplier * self.units_per_minute
         new_reference_duration = Duration(self.reference_duration)
         metronome_mark = type(self)(

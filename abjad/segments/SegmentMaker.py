@@ -23,14 +23,16 @@ class SegmentMaker(object):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Segment-makers'
+    __documentation_section__: typing.Optional[str] = 'Segment-makers'
 
     __slots__ = (
         '_container_to_part_assignment',
         '_environment',
         '_lilypond_file',
         '_metadata',
+        '_persist',
         '_previous_metadata',
+        '_previous_persist',
         '_score',
         '_segment_directory',
         )
@@ -41,8 +43,10 @@ class SegmentMaker(object):
         self._container_to_part_assignment: typing.Optional[OrderedDict] = None
         self._environment: typing.Optional[str] = None
         self._lilypond_file: typing.Optional[LilyPondFile] = None
-        self._metadata: typing.Optional[OrderedDict] = None
+        self._metadata = OrderedDict()
+        self._persist = OrderedDict()
         self._previous_metadata: typing.Optional[OrderedDict] = None
+        self._previous_persist: typing.Optional[OrderedDict] = None
         self._score: typing.Optional[Score] = None
         self._segment_directory: typing.Optional[Path] = None
 
@@ -195,11 +199,18 @@ class SegmentMaker(object):
         return self._environment
 
     @property
-    def metadata(self) -> typing.Optional[OrderedDict]:
+    def metadata(self) -> OrderedDict:
         """
         Gets segment metadata after run.
         """
         return self._metadata
+
+    @property
+    def persist(self) -> OrderedDict:
+        """
+        Gets segment persist after run.
+        """
+        return self._persist
 
     @property
     def score(self) -> typing.Optional[Score]:
@@ -263,7 +274,9 @@ class SegmentMaker(object):
         environment: str = None,
         metadata: OrderedDict = None,
         midi: bool = None,
+        persist: OrderedDict = None,
         previous_metadata: OrderedDict = None,
+        previous_persist: OrderedDict = None,
         remove: typing.List[str] = None,
         segment_directory: Path = None,
         ) -> LilyPondFile:
@@ -271,7 +284,9 @@ class SegmentMaker(object):
         Runs segment-maker.
         """
         self._metadata = OrderedDict(metadata)
+        self._persist = OrderedDict(persist)
         self._previous_metadata = OrderedDict(previous_metadata)
+        self._previous_persist = OrderedDict(previous_persist)
         lilypond_file = self._make_lilypond_file(midi=midi)
         self._lilypond_file = lilypond_file
         assert isinstance(self._lilypond_file, LilyPondFile)

@@ -1,5 +1,6 @@
 import abc
 import typing
+from abjad import const
 from abjad import instruments
 from abjad.indicators.Clef import Clef
 from abjad.indicators.MarginMarkup import MarginMarkup
@@ -34,7 +35,7 @@ class ScoreTemplate(object):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Score templates'
+    __documentation_section__: typing.Optional[str] = 'Score templates'
 
     __slots__ = (
         '_voice_abbreviations',
@@ -71,7 +72,7 @@ class ScoreTemplate(object):
         """
         score: Score = self()
         for voice in iterate(score).components(Voice):
-            skip = Skip(1, tag='ScoreTemplate.__illustrate__')
+            skip = Skip(1, tag='abjad.ScoreTemplate.__illustrate__')
             voice.append(skip)
         self.attach_defaults(score)
         lilypond_file: LilyPondFile = score.__illustrate__()
@@ -95,19 +96,19 @@ class ScoreTemplate(object):
         global_rests = Context(
             lilypond_type='GlobalRests',
             name='Global_Rests',
-            tag='_make_global_context',
+            tag='abjad.ScoreTemplate._make_global_context',
             )
         global_skips = Context(
             lilypond_type='GlobalSkips',
             name='Global_Skips',
-            tag='_make_global_context',
+            tag='abjad.ScoreTemplate._make_global_context',
             )
         global_context = Context(
             [global_rests, global_skips],
             lilypond_type='GlobalContext',
             is_simultaneous=True,
             name='Global_Context',
-            tag='_make_global_context',
+            tag='abjad.ScoreTemplate._make_global_context',
             )
         return global_context
 
@@ -177,7 +178,7 @@ class ScoreTemplate(object):
         """
         assert isinstance(argument, (Score, Staff, StaffGroup)), repr(argument)
         wrappers: typing.List[Wrapper] = []
-        tag = Tags().REMOVE_ALL_EMPTY_STAVES
+        tag = const.REMOVE_ALL_EMPTY_STAVES
         empty_prototype = (MultimeasureRest, Skip)
         prototype = (Staff, StaffGroup)
         if isinstance(argument, Score):
@@ -193,9 +194,12 @@ class ScoreTemplate(object):
         for staff__group in staff__groups:
             leaf = None
             voices = select(staff__group).components(Voice)
-            # find first leaf in first nonempty voice
+            # find leaf 0 in first nonempty voice
             for voice in voices:
-                leaves = select(voice).leaves()
+                leaves = []
+                for leaf_ in select(voice).leaves():
+                    if inspect(leaf_).annotation(const.HIDDEN) is not True:
+                        leaves.append(leaf_)
                 if not all(isinstance(_, empty_prototype) for _ in leaves):
                     leaf = inspect(voice).leaf(0)
                     break
@@ -223,7 +227,8 @@ class ScoreTemplate(object):
                     wrapper = attach(
                         instrument,
                         leaf,
-                        tag='attach_defaults',
+                        context=staff__group.lilypond_type,
+                        tag='abjad.ScoreTemplate.attach_defaults',
                         wrapper=True,
                         )
                     wrappers.append(wrapper)
@@ -235,7 +240,8 @@ class ScoreTemplate(object):
                     wrapper = attach(
                         margin_markup,
                         leaf,
-                        tag=Tag('-PARTS').prepend('attach_defaults'),
+                        tag=Tag('-PARTS').prepend(
+                            'abjad.ScoreTemplate.attach_defaults'),
                         wrapper=True,
                         )
                     wrappers.append(wrapper)
@@ -249,7 +255,7 @@ class ScoreTemplate(object):
                 wrapper = attach(
                     clef,
                     leaf,
-                    tag='attach_defaults',
+                    tag='abjad.ScoreTemplate.attach_defaults',
                     wrapper=True,
                     )
                 wrappers.append(wrapper)

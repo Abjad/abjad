@@ -141,7 +141,6 @@ class LilyPondFile(object):
         self._default_paper_size = default_paper_size
         self._global_staff_size = global_staff_size
         includes = list(includes or [])
-        includes = [str(_) for _ in includes]
         self._includes = includes
         self._items = list(items or [])
         self._lilypond_language_token = None
@@ -247,17 +246,17 @@ class LilyPondFile(object):
             >>> lilypond_file._lilypond_version_token = None
 
             >>> abjad.f(lilypond_file)
-            \language "english" %! LilyPondFile
+            \language "english" %! abjad.LilyPondFile
             <BLANKLINE>
-            \header { %! LilyPondFile
+            \header { %! abjad.LilyPondFile
                 tagline = ##f
-            } %! LilyPondFile
+            } %! abjad.LilyPondFile
             <BLANKLINE>
             \layout {}
             <BLANKLINE>
             \paper {}
             <BLANKLINE>
-            \score { %! LilyPondFile
+            \score { %! abjad.LilyPondFile
                 {
                     \new Score
                     <<
@@ -272,7 +271,7 @@ class LilyPondFile(object):
                         }
                     >>
                 }
-            } %! LilyPondFile
+            } %! abjad.LilyPondFile
 
         Returns string.
         """
@@ -383,7 +382,7 @@ class LilyPondFile(object):
                 >>> del(lilypond_file.items[:3])
 
                 >>> abjad.f(lilypond_file)
-                \score { %! LilyPondFile
+                \score { %! abjad.LilyPondFile
                     <<
                         {
                             \include "layout.ly"
@@ -396,7 +395,7 @@ class LilyPondFile(object):
                             f'4
                         }
                     >>
-                } %! LilyPondFile
+                } %! abjad.LilyPondFile
 
                 >>> lilypond_file[abjad.Staff]
                 Staff("c'4 d'4 e'4 f'4", name='Custom_Staff')
@@ -548,6 +547,9 @@ class LilyPondFile(object):
                 result.append(string)
             elif isinstance(include, pathlib.Path):
                 string = rf'\include "{include!s}"'
+                result.append(string)
+            elif isinstance(include, LilyPondLiteral):
+                string = str(include.argument)
                 result.append(string)
             else:
                 result.append(format(include))
@@ -775,7 +777,7 @@ class LilyPondFile(object):
             >>> abjad.f(lilypond_file)
             \customCommand
             <BLANKLINE>
-            \score { %! LilyPondFile
+            \score { %! abjad.LilyPondFile
                 \new Staff
                 {
                     c'4
@@ -783,7 +785,7 @@ class LilyPondFile(object):
                     e'4
                     f'4
                 }
-            } %! LilyPondFile
+            } %! abjad.LilyPondFile
 
         ..  container:: example
 
@@ -908,13 +910,13 @@ class LilyPondFile(object):
             >>> lilypond_file = abjad.LilyPondFile.new(tag=string)
 
             >>> lilypond_file.tag
-            'make_lilypond_file:LilyPondFile'
+            'make_lilypond_file:abjad.LilyPondFile'
 
         """
         if self._tag is not None:
-            return f'{self._tag}:LilyPondFile'
+            return f'{self._tag}:abjad.LilyPondFile'
         else:
-            return 'LilyPondFile'
+            return 'abjad.LilyPondFile'
 
     @property
     def use_relative_includes(self):

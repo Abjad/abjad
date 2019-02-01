@@ -11,7 +11,6 @@ before_install:
 install:
     - pip install --allow-external abjad --allow-unverified abjad -e git://github.com/Abjad/abjad.git#egg=abjad
     - pip install --allow-external ide --allow-unverified ide -e git://github.com/Abjad/ide.git#egg=ide
-    #- pip install --allow-external {composer_library} --allow-unverified {composer_library} -e git://github.com/{composer_github_username}/{composer_library}.git#egg={composer_library}
     - pip install -e .
 
 script:

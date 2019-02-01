@@ -2,17 +2,16 @@ import types
 
 
 def list_all_functions(modules=None):
-    r'''Lists all public functions defined in `modules`.
+    """
+    Lists all public functions defined in `modules`.
 
     ..  container:: example
 
-        ::
+        >>> all_functions = abjad.utilities.list_all_functions(
+        ...     modules='abjad',
+        ...     )
 
-            >>> all_functions = abjad.utilities.list_all_functions(
-            ...     modules='abjad',
-            ...     )
-
-    '''
+    """
     from abjad import utilities
     all_functions = set()
     for module in utilities.yield_all_modules(modules):

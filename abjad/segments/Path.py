@@ -70,10 +70,12 @@ class Path(pathlib.PosixPath):
 
     _secondary_names = (
         '.gitignore',
+        '.log',
         '__init__.py',
         '__make_pdf__.py',
         '__make_midi__.py',
         '__metadata__.py',
+        '__persist__.py',
         '_assets',
         '_segments',
         'stylesheet.ily',
@@ -916,12 +918,18 @@ class Path(pathlib.PosixPath):
         else:
             self.add_metadatum(name, value)
 
-    def add_metadatum(self, name, value) -> None:
+    def add_metadatum(
+        self,
+        name,
+        value,
+        *,
+        file_name = '__metadata__.py',
+        ) -> None:
         """
         Adds metadatum.
         """
         assert ' ' not in name, repr(name)
-        metadata = self.get_metadata()
+        metadata = self.get_metadata(file_name=file_name)
         metadata[name] = value
         self.write_metadata_py(metadata)
 
@@ -1183,6 +1191,7 @@ class Path(pathlib.PosixPath):
         Writes include file to path with ``.ily`` suffix when ``include_path``
         is none.
         """
+        tag = 'abjad.Path.extern'
         if not self.suffix == '.ly':
             raise Exception(f'must be lilypond file: {self}.')
         if include_path is None:
@@ -1220,7 +1229,7 @@ class Path(pathlib.PosixPath):
                         dereference = indent + fr'\{name}'
                         strings = LilyPondFormatManager.tag(
                             [dereference],
-                            tag='extern',
+                            tag=tag,
                             )
                         dereference = strings[0]
                         dereference = dereference + '\n'
@@ -1245,7 +1254,7 @@ class Path(pathlib.PosixPath):
         foo = f'\\include "{include_name}"'
         foo = LilyPondFormatManager.tag(
             [foo],
-            tag='extern',
+            tag=tag,
             )[0]
         if preamble_lines[-1].startswith(r'\paper'):
             preamble_lines.insert(-2, foo + '\n')
@@ -1277,7 +1286,7 @@ class Path(pathlib.PosixPath):
             first_line = ' '.join(words[:site])
             first_line = LilyPondFormatManager.tag(
                 [first_line],
-                tag='extern',
+                tag=tag,
                 )[0]
             first_line += '\n'
             lines.append(first_line)
@@ -1294,7 +1303,7 @@ class Path(pathlib.PosixPath):
             last_line = ' '.join(words[:site])
             last_line = LilyPondFormatManager.tag(
                 [last_line],
-                tag='extern',
+                tag=tag,
                 )[0]
             last_line += '\n'
             lines[-1] = last_line
@@ -1445,8 +1454,7 @@ class Path(pathlib.PosixPath):
             result = self.name
         return String(result)
 
-    def get_measure_profile_metadata(self) -> typing.Tuple[
-        int, int, list, bool]:
+    def get_measure_profile_metadata(self) -> typing.Tuple[int, int, list]:
         """
         Gets measure profile metadata.
 
@@ -1454,8 +1462,8 @@ class Path(pathlib.PosixPath):
 
         Reads score metadata when path is not segment.
 
-        Returns tuple of four metadata: first measure number; measure count;
-        list of fermata measure numbers; phantom.
+        Returns tuple of three metadata: first measure number; measure count;
+        list of fermata measure numbers.
         """
         if self.parent.is_segment():
             string = 'first_measure_number'
@@ -1467,7 +1475,6 @@ class Path(pathlib.PosixPath):
                 measure_count = 0
             string = 'fermata_measure_numbers'
             fermata_measure_numbers = self.parent.get_metadatum(string)
-            phantom = self.parent.get_metadatum('phantom')
         else:
             first_measure_number = 1
             dictionary = self.contents.get_metadatum('time_signatures')
@@ -1481,19 +1488,17 @@ class Path(pathlib.PosixPath):
             fermata_measure_numbers = []
             for segment, fermata_measure_numbers_ in dictionary.items():
                 fermata_measure_numbers.extend(fermata_measure_numbers_)
-            phantom = self.contents.get_metadatum('phantom')
         return (
             first_measure_number,
             measure_count,
             fermata_measure_numbers,
-            phantom,
             )
 
-    def get_metadata(self) -> OrderedDict:
+    def get_metadata(self, file_name='__metadata__.py') -> OrderedDict:
         """
         Gets __metadata__.py file in path.
         """
-        metadata_py_path = self/ '__metadata__.py'
+        metadata_py_path = self / file_name
         metadata = None
         if metadata_py_path.is_file():
             file_contents_string = metadata_py_path.read_text()
@@ -1514,6 +1519,8 @@ class Path(pathlib.PosixPath):
         self,
         metadatum_name: str,
         default: typing.Any = None,
+        *,
+        file_name: str = '__metadata__.py',
         ) -> typing.Any:
         """
         Gets metadatum.
@@ -1529,7 +1536,7 @@ class Path(pathlib.PosixPath):
             True
 
         """
-        metadata = self.get_metadata()
+        metadata = self.get_metadata(file_name=file_name)
         metadatum = metadata.get(metadatum_name)
         if not metadatum:
             metadatum = default
@@ -1993,7 +2000,11 @@ class Path(pathlib.PosixPath):
         else:
             paths = []
         for segment in paths:
-            dictionary = segment.get_metadatum('alive_during_segment', [])
+            dictionary = segment.get_metadatum(
+                'alive_during_segment',
+                [],
+                file_name='__persist__.py',
+                )
             alive_during_segment[segment.name] = dictionary
         staves_in_score: typing.List[String] = []
         for segment_name, contexts in alive_during_segment.items():
@@ -2261,16 +2272,6 @@ class Path(pathlib.PosixPath):
             return False
         if String(self.name).is_introduction_segment_name():
             return True
-        return False
-
-    def is_library(self) -> bool:
-        """
-        Is true when path is composer library tools directory.
-        """
-        import abjad
-        configuration = abjad.abjad_configuration
-        if configuration.composer_library_tools:
-            return str(self) == configuration.composer_library_tools
         return False
 
     def is_material(self) -> bool:
@@ -2896,17 +2897,22 @@ class Path(pathlib.PosixPath):
         text = ''.join(lines)
         self.write_text(text)
 
-    def remove_metadatum(self, name) -> None:
+    def remove_metadatum(
+        self,
+        name,
+        *,
+        file_name = '__metadata__.py',
+        ) -> None:
         """
         Removes metadatum.
         """
         assert ' ' not in name, repr(name)
-        metadata = self.get_metadata()
+        metadata = self.get_metadata(file_name=file_name)
         try:
             metadata.pop(name)
         except KeyError:
             pass
-        self.write_metadata_py(metadata)
+        self.write_metadata_py(metadata, file_name=file_name)
 
     def score_skeleton(self) -> typing.Optional[Score]:
         """
@@ -3122,11 +3128,17 @@ class Path(pathlib.PosixPath):
             path /= part
         return path
 
-    def write_metadata_py(self, metadata) -> None:
+    def write_metadata_py(
+        self,
+        metadata,
+        *,
+        file_name = '__metadata__.py',
+        variable_name = 'metadata',
+        ) -> None:
         """
-        Writes ``metadata`` to ``__metadata__.py`` in current directory.
+        Writes ``metadata`` to metadata file in current directory.
         """
-        metadata_py_path = self / '__metadata__.py'
+        metadata_py_path = self / file_name
         lines = []
         lines.append('import abjad')
         lines.append('')
@@ -3137,10 +3149,10 @@ class Path(pathlib.PosixPath):
         dictionary = OrderedDict(items)
         if dictionary:
             line = format(dictionary, 'storage')
-            line = f'metadata = {line}'
+            line = f'{variable_name} = {line}'
             lines.append(line)
         else:
-            lines.append('metadata = abjad.OrderedDict()')
+            lines.append(f'{variable_name} = abjad.OrderedDict()')
         lines.append('')
         text = '\n'.join(lines)
         metadata_py_path.write_text(text)

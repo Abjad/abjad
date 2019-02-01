@@ -70,10 +70,6 @@ if __name__ == '__main__':
         time_signatures = buildspace_directory.get_time_signature_metadata()
         if breaks.partial_score is not None:
             time_signatures = time_signatures[:breaks.partial_score]
-        phantom = buildspace_directory.get_metadatum('phantom')
-        if not buildspace_directory.is_segment():
-            last_segment = buildspace_directory.segments.get_previous_package()
-            phantom = last_segment.get_metadatum('phantom')
     except:
         traceback.print_exc()
         sys.exit(1)
@@ -85,7 +81,6 @@ if __name__ == '__main__':
             do_not_include_layout_ly=True,
             final_bar_line=False,
             first_measure_number=first_measure_number,
-            phantom=phantom,
             score_template=baca.SingleStaffScoreTemplate(),
             spacing=spacing,
             time_signatures=time_signatures,
@@ -132,10 +127,7 @@ if __name__ == '__main__':
         lines.append(f'% page_count = {{page_count}}')
         time_signatures = [str(_) for _ in time_signatures]
         measure_count = len(time_signatures)
-        if phantom is True:
-            lines.append(f'% measure_count = {{measure_count}} + 1')
-        else:
-            lines.append(f'% measure_count = {{measure_count}}')
+        lines.append(f'% measure_count = {{measure_count}} + 1')
         string = pprint.pformat(time_signatures, compact=True, width=80 - 3)
         lines_ = string.split('\n')
         lines_ = [_.strip('[').strip(']') for _ in lines_]
@@ -145,12 +137,8 @@ if __name__ == '__main__':
         lines.extend(lines_)
         header = '\n'.join(lines) + '\n\n'
         layout_ly.write_text(header + text)
-        if phantom is True:
-            phantom_tag = '+ 1 '
-        else:
-            phantom_tag = ''
         counter = abjad.String('measure').pluralize(measure_count)
-        message = f' Writing {{measure_count}} {{phantom_tag}}{{counter}}'
+        message = f' Writing {{measure_count}} + 1 {{counter}}'
         message += f' to {{layout_ly.trim()}} ...'
         print(message)
     except:

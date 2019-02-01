@@ -18,79 +18,79 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
         ..  docs::
 
             >>> abjad.f(template_1.__illustrate__()[abjad.Score], strict=60)
-            \context Score = "Grouped_Rhythmic_Staves_Score"            %! GroupedRhythmicStavesScoreTemplate
-            <<                                                          %! GroupedRhythmicStavesScoreTemplate
-                \context StaffGroup = "Grouped_Rhythmic_Staves_Staff_Group" %! GroupedRhythmicStavesScoreTemplate
-                <<                                                      %! GroupedRhythmicStavesScoreTemplate
-                    \context RhythmicStaff = "Staff_1"                  %! GroupedRhythmicStavesScoreTemplate
-                    {                                                   %! GroupedRhythmicStavesScoreTemplate
-                        \context Voice = "Voice_1"                      %! GroupedRhythmicStavesScoreTemplate
-                        {                                               %! GroupedRhythmicStavesScoreTemplate
-                            \clef "percussion"                          %! attach_defaults
-                            s1                                          %! ScoreTemplate.__illustrate__
-                        }                                               %! GroupedRhythmicStavesScoreTemplate
-                    }                                                   %! GroupedRhythmicStavesScoreTemplate
-                    \context RhythmicStaff = "Staff_2"                  %! GroupedRhythmicStavesScoreTemplate
-                    {                                                   %! GroupedRhythmicStavesScoreTemplate
-                        \context Voice = "Voice_2"                      %! GroupedRhythmicStavesScoreTemplate
-                        {                                               %! GroupedRhythmicStavesScoreTemplate
-                            \clef "percussion"                          %! attach_defaults
-                            s1                                          %! ScoreTemplate.__illustrate__
-                        }                                               %! GroupedRhythmicStavesScoreTemplate
-                    }                                                   %! GroupedRhythmicStavesScoreTemplate
-                    \context RhythmicStaff = "Staff_3"                  %! GroupedRhythmicStavesScoreTemplate
-                    {                                                   %! GroupedRhythmicStavesScoreTemplate
-                        \context Voice = "Voice_3"                      %! GroupedRhythmicStavesScoreTemplate
-                        {                                               %! GroupedRhythmicStavesScoreTemplate
-                            \clef "percussion"                          %! attach_defaults
-                            s1                                          %! ScoreTemplate.__illustrate__
-                        }                                               %! GroupedRhythmicStavesScoreTemplate
-                    }                                                   %! GroupedRhythmicStavesScoreTemplate
-                    \context RhythmicStaff = "Staff_4"                  %! GroupedRhythmicStavesScoreTemplate
-                    {                                                   %! GroupedRhythmicStavesScoreTemplate
-                        \context Voice = "Voice_4"                      %! GroupedRhythmicStavesScoreTemplate
-                        {                                               %! GroupedRhythmicStavesScoreTemplate
-                            \clef "percussion"                          %! attach_defaults
-                            s1                                          %! ScoreTemplate.__illustrate__
-                        }                                               %! GroupedRhythmicStavesScoreTemplate
-                    }                                                   %! GroupedRhythmicStavesScoreTemplate
-                >>                                                      %! GroupedRhythmicStavesScoreTemplate
-            >>                                                          %! GroupedRhythmicStavesScoreTemplate
+            \context Score = "Grouped_Rhythmic_Staves_Score"            %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+            <<                                                          %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                \context StaffGroup = "Grouped_Rhythmic_Staves_Staff_Group" %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                <<                                                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                    \context RhythmicStaff = "Staff_1"                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                    {                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                        \context Voice = "Voice_1"                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                        {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                            \clef "percussion"                          %! abjad.ScoreTemplate.attach_defaults
+                            s1                                          %! abjad.ScoreTemplate.__illustrate__
+                        }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                    }                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                    \context RhythmicStaff = "Staff_2"                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                    {                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                        \context Voice = "Voice_2"                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                        {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                            \clef "percussion"                          %! abjad.ScoreTemplate.attach_defaults
+                            s1                                          %! abjad.ScoreTemplate.__illustrate__
+                        }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                    }                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                    \context RhythmicStaff = "Staff_3"                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                    {                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                        \context Voice = "Voice_3"                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                        {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                            \clef "percussion"                          %! abjad.ScoreTemplate.attach_defaults
+                            s1                                          %! abjad.ScoreTemplate.__illustrate__
+                        }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                    }                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                    \context RhythmicStaff = "Staff_4"                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                    {                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                        \context Voice = "Voice_4"                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                        {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                            \clef "percussion"                          %! abjad.ScoreTemplate.attach_defaults
+                            s1                                          %! abjad.ScoreTemplate.__illustrate__
+                        }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                    }                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                >>                                                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+            >>                                                          %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
 
         >>> score = template_1()
         >>> abjad.show(score) # doctest: +SKIP
 
         >>> abjad.f(score, strict=60)
-        \context Score = "Grouped_Rhythmic_Staves_Score"            %! GroupedRhythmicStavesScoreTemplate
-        <<                                                          %! GroupedRhythmicStavesScoreTemplate
-            \context StaffGroup = "Grouped_Rhythmic_Staves_Staff_Group" %! GroupedRhythmicStavesScoreTemplate
-            <<                                                      %! GroupedRhythmicStavesScoreTemplate
-                \context RhythmicStaff = "Staff_1"                  %! GroupedRhythmicStavesScoreTemplate
-                {                                                   %! GroupedRhythmicStavesScoreTemplate
-                    \context Voice = "Voice_1"                      %! GroupedRhythmicStavesScoreTemplate
-                    {                                               %! GroupedRhythmicStavesScoreTemplate
-                    }                                               %! GroupedRhythmicStavesScoreTemplate
-                }                                                   %! GroupedRhythmicStavesScoreTemplate
-                \context RhythmicStaff = "Staff_2"                  %! GroupedRhythmicStavesScoreTemplate
-                {                                                   %! GroupedRhythmicStavesScoreTemplate
-                    \context Voice = "Voice_2"                      %! GroupedRhythmicStavesScoreTemplate
-                    {                                               %! GroupedRhythmicStavesScoreTemplate
-                    }                                               %! GroupedRhythmicStavesScoreTemplate
-                }                                                   %! GroupedRhythmicStavesScoreTemplate
-                \context RhythmicStaff = "Staff_3"                  %! GroupedRhythmicStavesScoreTemplate
-                {                                                   %! GroupedRhythmicStavesScoreTemplate
-                    \context Voice = "Voice_3"                      %! GroupedRhythmicStavesScoreTemplate
-                    {                                               %! GroupedRhythmicStavesScoreTemplate
-                    }                                               %! GroupedRhythmicStavesScoreTemplate
-                }                                                   %! GroupedRhythmicStavesScoreTemplate
-                \context RhythmicStaff = "Staff_4"                  %! GroupedRhythmicStavesScoreTemplate
-                {                                                   %! GroupedRhythmicStavesScoreTemplate
-                    \context Voice = "Voice_4"                      %! GroupedRhythmicStavesScoreTemplate
-                    {                                               %! GroupedRhythmicStavesScoreTemplate
-                    }                                               %! GroupedRhythmicStavesScoreTemplate
-                }                                                   %! GroupedRhythmicStavesScoreTemplate
-            >>                                                      %! GroupedRhythmicStavesScoreTemplate
-        >>                                                          %! GroupedRhythmicStavesScoreTemplate
+        \context Score = "Grouped_Rhythmic_Staves_Score"            %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+        <<                                                          %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+            \context StaffGroup = "Grouped_Rhythmic_Staves_Staff_Group" %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+            <<                                                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                \context RhythmicStaff = "Staff_1"                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                {                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                    \context Voice = "Voice_1"                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                    {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                    }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                }                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                \context RhythmicStaff = "Staff_2"                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                {                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                    \context Voice = "Voice_2"                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                    {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                    }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                }                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                \context RhythmicStaff = "Staff_3"                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                {                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                    \context Voice = "Voice_3"                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                    {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                    }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                }                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                \context RhythmicStaff = "Staff_4"                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                {                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                    \context Voice = "Voice_4"                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                    {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                    }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                }                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+            >>                                                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+        >>                                                          %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
 
     ..  container:: example
 
@@ -102,76 +102,76 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
         ..  docs::
 
             >>> abjad.f(template_2.__illustrate__()[abjad.Score], strict=60)
-            \context Score = "Grouped_Rhythmic_Staves_Score"            %! GroupedRhythmicStavesScoreTemplate
-            <<                                                          %! GroupedRhythmicStavesScoreTemplate
-                \context StaffGroup = "Grouped_Rhythmic_Staves_Staff_Group" %! GroupedRhythmicStavesScoreTemplate
-                <<                                                      %! GroupedRhythmicStavesScoreTemplate
-                    \context RhythmicStaff = "Staff_1"                  %! GroupedRhythmicStavesScoreTemplate
-                    <<                                                  %! GroupedRhythmicStavesScoreTemplate
-                        \context Voice = "Voice_1_1"                    %! GroupedRhythmicStavesScoreTemplate
-                        {                                               %! GroupedRhythmicStavesScoreTemplate
-                            s1                                          %! ScoreTemplate.__illustrate__
-                        }                                               %! GroupedRhythmicStavesScoreTemplate
-                        \context Voice = "Voice_1_2"                    %! GroupedRhythmicStavesScoreTemplate
-                        {                                               %! GroupedRhythmicStavesScoreTemplate
-                            s1                                          %! ScoreTemplate.__illustrate__
-                        }                                               %! GroupedRhythmicStavesScoreTemplate
-                    >>                                                  %! GroupedRhythmicStavesScoreTemplate
-                    \context RhythmicStaff = "Staff_2"                  %! GroupedRhythmicStavesScoreTemplate
-                    {                                                   %! GroupedRhythmicStavesScoreTemplate
-                        \context Voice = "Voice_2"                      %! GroupedRhythmicStavesScoreTemplate
-                        {                                               %! GroupedRhythmicStavesScoreTemplate
-                            s1                                          %! ScoreTemplate.__illustrate__
-                        }                                               %! GroupedRhythmicStavesScoreTemplate
-                    }                                                   %! GroupedRhythmicStavesScoreTemplate
-                    \context RhythmicStaff = "Staff_3"                  %! GroupedRhythmicStavesScoreTemplate
-                    <<                                                  %! GroupedRhythmicStavesScoreTemplate
-                        \context Voice = "Voice_3_1"                    %! GroupedRhythmicStavesScoreTemplate
-                        {                                               %! GroupedRhythmicStavesScoreTemplate
-                            s1                                          %! ScoreTemplate.__illustrate__
-                        }                                               %! GroupedRhythmicStavesScoreTemplate
-                        \context Voice = "Voice_3_2"                    %! GroupedRhythmicStavesScoreTemplate
-                        {                                               %! GroupedRhythmicStavesScoreTemplate
-                            s1                                          %! ScoreTemplate.__illustrate__
-                        }                                               %! GroupedRhythmicStavesScoreTemplate
-                    >>                                                  %! GroupedRhythmicStavesScoreTemplate
-                >>                                                      %! GroupedRhythmicStavesScoreTemplate
-            >>                                                          %! GroupedRhythmicStavesScoreTemplate
+            \context Score = "Grouped_Rhythmic_Staves_Score"            %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+            <<                                                          %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                \context StaffGroup = "Grouped_Rhythmic_Staves_Staff_Group" %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                <<                                                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                    \context RhythmicStaff = "Staff_1"                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                    <<                                                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                        \context Voice = "Voice_1_1"                    %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                        {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                            s1                                          %! abjad.ScoreTemplate.__illustrate__
+                        }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                        \context Voice = "Voice_1_2"                    %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                        {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                            s1                                          %! abjad.ScoreTemplate.__illustrate__
+                        }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                    >>                                                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                    \context RhythmicStaff = "Staff_2"                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                    {                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                        \context Voice = "Voice_2"                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                        {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                            s1                                          %! abjad.ScoreTemplate.__illustrate__
+                        }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                    }                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                    \context RhythmicStaff = "Staff_3"                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                    <<                                                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                        \context Voice = "Voice_3_1"                    %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                        {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                            s1                                          %! abjad.ScoreTemplate.__illustrate__
+                        }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                        \context Voice = "Voice_3_2"                    %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                        {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                            s1                                          %! abjad.ScoreTemplate.__illustrate__
+                        }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                    >>                                                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                >>                                                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+            >>                                                          %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
 
         >>> score = template_2()
         >>> abjad.show(score) # doctest: +SKIP
 
         >>> abjad.f(score, strict=60)
-        \context Score = "Grouped_Rhythmic_Staves_Score"            %! GroupedRhythmicStavesScoreTemplate
-        <<                                                          %! GroupedRhythmicStavesScoreTemplate
-            \context StaffGroup = "Grouped_Rhythmic_Staves_Staff_Group" %! GroupedRhythmicStavesScoreTemplate
-            <<                                                      %! GroupedRhythmicStavesScoreTemplate
-                \context RhythmicStaff = "Staff_1"                  %! GroupedRhythmicStavesScoreTemplate
-                <<                                                  %! GroupedRhythmicStavesScoreTemplate
-                    \context Voice = "Voice_1_1"                    %! GroupedRhythmicStavesScoreTemplate
-                    {                                               %! GroupedRhythmicStavesScoreTemplate
-                    }                                               %! GroupedRhythmicStavesScoreTemplate
-                    \context Voice = "Voice_1_2"                    %! GroupedRhythmicStavesScoreTemplate
-                    {                                               %! GroupedRhythmicStavesScoreTemplate
-                    }                                               %! GroupedRhythmicStavesScoreTemplate
-                >>                                                  %! GroupedRhythmicStavesScoreTemplate
-                \context RhythmicStaff = "Staff_2"                  %! GroupedRhythmicStavesScoreTemplate
-                {                                                   %! GroupedRhythmicStavesScoreTemplate
-                    \context Voice = "Voice_2"                      %! GroupedRhythmicStavesScoreTemplate
-                    {                                               %! GroupedRhythmicStavesScoreTemplate
-                    }                                               %! GroupedRhythmicStavesScoreTemplate
-                }                                                   %! GroupedRhythmicStavesScoreTemplate
-                \context RhythmicStaff = "Staff_3"                  %! GroupedRhythmicStavesScoreTemplate
-                <<                                                  %! GroupedRhythmicStavesScoreTemplate
-                    \context Voice = "Voice_3_1"                    %! GroupedRhythmicStavesScoreTemplate
-                    {                                               %! GroupedRhythmicStavesScoreTemplate
-                    }                                               %! GroupedRhythmicStavesScoreTemplate
-                    \context Voice = "Voice_3_2"                    %! GroupedRhythmicStavesScoreTemplate
-                    {                                               %! GroupedRhythmicStavesScoreTemplate
-                    }                                               %! GroupedRhythmicStavesScoreTemplate
-                >>                                                  %! GroupedRhythmicStavesScoreTemplate
-            >>                                                      %! GroupedRhythmicStavesScoreTemplate
-        >>                                                          %! GroupedRhythmicStavesScoreTemplate
+        \context Score = "Grouped_Rhythmic_Staves_Score"            %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+        <<                                                          %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+            \context StaffGroup = "Grouped_Rhythmic_Staves_Staff_Group" %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+            <<                                                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                \context RhythmicStaff = "Staff_1"                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                <<                                                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                    \context Voice = "Voice_1_1"                    %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                    {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                    }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                    \context Voice = "Voice_1_2"                    %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                    {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                    }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                >>                                                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                \context RhythmicStaff = "Staff_2"                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                {                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                    \context Voice = "Voice_2"                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                    {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                    }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                }                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                \context RhythmicStaff = "Staff_3"                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                <<                                                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                    \context Voice = "Voice_3_1"                    %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                    {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                    }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                    \context Voice = "Voice_3_2"                    %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                    {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                    }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+                >>                                                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+            >>                                                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
+        >>                                                          %! abjad.GroupedRhythmicStavesScoreTemplate.__call__
 
     """
 
@@ -200,7 +200,7 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
         """
         import abjad
         staves = []
-        tag = 'GroupedRhythmicStavesScoreTemplate'
+        tag = 'abjad.GroupedRhythmicStavesScoreTemplate.__call__'
         if isinstance(self.staff_count, int):
             for index in range(self.staff_count):
                 number = index + 1

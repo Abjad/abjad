@@ -7,9 +7,9 @@ class Line(object):
 
     ..  container:: example
 
-        >>> string = r'    %@%  \with-color %! MEASURE_NUMBER_MARKUP:SM31'
+        >>> string = r'    %@%  \with-color %! MEASURE_NUMBER:SM31'
         >>> abjad.Line(string)
-        Line(string='    %@%  \\with-color %! MEASURE_NUMBER_MARKUP:SM31')
+        Line(string='    %@%  \\with-color %! MEASURE_NUMBER:SM31')
 
     """
 
@@ -41,9 +41,9 @@ class Line(object):
 
         ..  container:: example
 
-            >>> string = r'    %@%  \with-color %! MEASURE_NUMBER_MARKUP:SM31'
+            >>> string = r'    %@%  \with-color %! MEASURE_NUMBER:SM31'
             >>> str(abjad.Line(string))
-            '    %@%  \\with-color %! MEASURE_NUMBER_MARKUP:SM31'
+            '    %@%  \\with-color %! MEASURE_NUMBER:SM31'
 
         Returns string.
         """
@@ -58,9 +58,9 @@ class Line(object):
 
         ..  container:: example
 
-            >>> string = r'    %@%  \with-color %! MEASURE_NUMBER_MARKUP:SM31'
+            >>> string = r'    %@%  \with-color %! MEASURE_NUMBER:SM31'
             >>> abjad.Line(string).string
-            '    %@%  \\with-color %! MEASURE_NUMBER_MARKUP:SM31'
+            '    %@%  \\with-color %! MEASURE_NUMBER:SM31'
 
         Returns string.
         """
@@ -74,9 +74,9 @@ class Line(object):
 
         ..  container:: example
 
-            >>> string = r'    %@%  \with-color %! MEASURE_NUMBER_MARKUP:SM31'
+            >>> string = r'    %@%  \with-color %! MEASURE_NUMBER:SM31'
             >>> abjad.Line(string).get_tags()
-            ['MEASURE_NUMBER_MARKUP', 'SM31']
+            ['MEASURE_NUMBER', 'SM31']
 
         ..  container:: example
 
@@ -151,20 +151,20 @@ class Line(object):
 
         ..  container:: example
 
-            >>> string = r'    %@%  \with-color %! MEASURE_NUMBER_MARKUP:SM31'
+            >>> string = r'    %@%  \with-color %! MEASURE_NUMBER:SM31'
             >>> line = abjad.Line(string)
 
         ..  container:: example
 
             Strings:
 
-            >>> line.match('MEASURE_NUMBER_MARKUP')
+            >>> line.match('MEASURE_NUMBER')
             True
 
             >>> line.match('SM31')
             True
 
-            >>> line.match(['MEASURE_NUMBER_MARKUP', 'SM31'])
+            >>> line.match(['MEASURE_NUMBER', 'SM31'])
             False
 
             >>> line.match('%@%')
@@ -194,7 +194,7 @@ class Line(object):
             Functions:
 
             >>> def predicate(tags):
-            ...     if 'SM31' in tags and 'MEASURE_NUMBER_MARKUP' in tags:
+            ...     if 'SM31' in tags and 'MEASURE_NUMBER' in tags:
             ...         return True
             ...     else:
             ...         return False
@@ -203,7 +203,7 @@ class Line(object):
             True
 
             >>> def predicate(tags):
-            ...     if 'SM31' in tags and 'MEASURE_NUMBER_MARKUP' not in tags:
+            ...     if 'SM31' in tags and 'MEASURE_NUMBER' not in tags:
             ...         return True
             ...     else:
             ...         return False
