@@ -312,11 +312,11 @@ class NumberedPitchClass(PitchClass):
 
     def _from_number(self, number):
         self._arrow = None
-        self._number = self._to_nearest_quarter_tone(number)
+        self._number = self._to_nearest_twelfth_tone(number)
 
     def _from_pitch_or_pitch_class(self, pitch_or_pitch_class):
         self._arrow = pitch_or_pitch_class.arrow
-        self._number = self._to_nearest_quarter_tone(float(pitch_or_pitch_class))
+        self._number = self._to_nearest_twelfth_tone(pitch_or_pitch_class.number)
 
     def _get_alteration(self):
         dpc_number = self._get_diatonic_pc_number()

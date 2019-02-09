@@ -6,6 +6,10 @@ from abjad import mathtools
 from abjad.system.AbjadValueObject import AbjadValueObject
 from abjad.system.StorageFormatManager import StorageFormatManager
 from . import constants
+try:
+    from quicktions import Fraction
+except ImportError:
+    from fractions import Fraction
 
 
 @functools.total_ordering
@@ -151,6 +155,13 @@ class Pitch(AbjadValueObject):
         elif mod == 0.5:
             div += 0.5
         return mathtools.integer_equivalent_number_to_integer(div)
+
+    @staticmethod
+    def _to_nearest_twelfth_tone(number):
+        semitones = Fraction(int(round(12 * number)), 12)
+        if semitones.denominator == 12:
+            semitones = Fraction(int(round(6 * number)), 6)
+        return mathtools.integer_equivalent_number_to_integer(semitones)
 
     @staticmethod
     def _to_pitch_class_item_class(item_class):

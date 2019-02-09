@@ -410,10 +410,9 @@ class NumberedInterval(Interval):
         Returns numbered interval.
         """
         import abjad.pitch
-        pitch_1 = abjad.pitch.NamedPitch(pitch_carrier_1)
-        pitch_2 = abjad.pitch.NamedPitch(pitch_carrier_2)
-        number = abjad.pitch.NumberedPitch(pitch_2).number - \
-            abjad.pitch.NumberedPitch(pitch_1).number
+        pitch_1 = abjad.pitch.NumberedPitch(pitch_carrier_1)
+        pitch_2 = abjad.pitch.NumberedPitch(pitch_carrier_2)
+        number = pitch_2.number - pitch_1.number
         number = mathtools.integer_equivalent_number_to_integer(number)
         return class_(number)
 
