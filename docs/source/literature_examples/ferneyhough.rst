@@ -39,7 +39,7 @@ The transforms
 --------------
 
 Now we'll show how to divide a quarter note into various ratios, and then
-divithe final `logical tie` of the resulting tuplet into yet another ratio:
+divide the final `logical tie` of the resulting tuplet into yet another ratio:
 
 ..  abjad::
 
