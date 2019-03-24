@@ -1,17 +1,17 @@
-import importlib
-import pathlib
+import abjad
 import sphinx_rtd_theme
-import sys
-from abjad import abjad_configuration
 from pygments.formatters.latex import LatexFormatter
 from sphinx.highlighting import PygmentsBridge
+
 
 class CustomLatexFormatter(LatexFormatter):
     def __init__(self, **options):
         super(CustomLatexFormatter, self).__init__(**options)
         self.verboptions = r'''formatcom=\footnotesize'''
 
+
 PygmentsBridge.latex_formatter = CustomLatexFormatter
+
 
 ### CORE ###
 
@@ -36,10 +36,10 @@ extensions = [
 master_doc = 'index'
 project = 'Abjad'
 pygments_style = 'sphinx'
-release = abjad_configuration.get_abjad_version_string()
+release = abjad.__version__
 source_suffix = '.rst'
 templates_path = ['_templates']
-version = abjad_configuration.get_abjad_version_string()
+version = abjad.__version__
 
 ### HTML ###
 
@@ -91,8 +91,8 @@ latex_documents = [
         ),
     ]
 
-#latex_use_parts = True
-latex_toplevel_sectioning = 'chapter' # just guessing?
+# latex_use_parts = True
+latex_toplevel_sectioning = 'chapter'  # just guessing?
 
 ### MAN ###
 

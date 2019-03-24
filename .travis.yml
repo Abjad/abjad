@@ -1,5 +1,5 @@
 language: python
-
+dist: xenial
 sudo: false
 
 env:
@@ -13,7 +13,9 @@ matrix:
     env: ACCELERATED=false
   - python: "3.6"
     env: ACCELERATED=true
-  - python: "3.7-dev"
+  - python: "3.7"
+    env: ACCELERATED=true
+  - python: "3.8-dev"
     env: ACCELERATED=true
 
 before_install:
@@ -32,29 +34,27 @@ before_install:
 install:
 # install without development dependencies.
 - pip install -e .
-# make a non-accessible ~/.abjad/ when testing for read-only filesystems.
-- if [[ $TRAVIS_READ_ONLY == 'true' ]]; then mkdir ~/.abjad; chmod 000 ~/.abjad; fi
 # echo the configuration file path to debug read-only-filesystem handling
 - python -c "import abjad; print(abjad.abjad_configuration.configuration_file_path)"
-# remove the read-only .abjad folder, prime the parser
-- rm -Rif ~/.abjad
+# prime the parser
 - scr/devel/prime-parser-tables
-# then install development and ipython dependencies.
-- pip install -e .[test]
+# install development dependencies.
+- pip install -U -e .[test]
 # install accelerated dependencies if requested
 - if [[ $ACCELERATED == true ]]; then pip install -e .[accelerated]; fi
-- mypy --version
-- pip install --upgrade mypy
-- mypy --version
 
 script:
-#- pip install --quiet -e .[tonality]
-- mypy --ignore-missing-imports abjad/
-- coverage run -a `which pytest`
+- make mypy
+- make pytest
 # TODO: book has updated code; needs to be incorporated in dependency:
+# - pip install --quiet -e .[book]
+- pip install --quiet -e .[cli]
+- pip install --quiet -e .[ipython]
 # TODO: nauert has updated code; needs to be incorporated in dependency:
-#- pip install --quiet -e .[book,cli,ipython,nauert]
-- pip install --quiet -e .[cli,ipython]
+# - pip install --quiet -e .[nauert]
+# TODO: rmakers has updated code; needs to be incorporated in dependency:
+# - pip install --quiet -e .[rmakers]
+# Make sure that ajv runs properly
 - ajv --help
 
 after_success:
