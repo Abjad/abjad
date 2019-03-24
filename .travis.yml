@@ -49,7 +49,7 @@ install:
 
 script:
 #- pip install --quiet -e .[tonality]
-- mypy abjad
+- mypy --ignore-missing-imports abjad/
 - coverage run -a `which pytest`
 # TODO: book has updated code; needs to be incorporated in dependency:
 # TODO: nauert has updated code; needs to be incorporated in dependency:
