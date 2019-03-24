@@ -57,10 +57,13 @@ extras_require = {
     'rmakers': ['abjad-ext-rmakers >= 3.0.0, < 3.1.0'],
     'tonality': ['abjad-ext-tonality >= 3.0.0, < 3.1.0'],
     'test': [
-        'mypy',
-        'pytest>=3.5.0',
-        'pytest-cov',
-        'pytest-helpers-namespace',
+        'black',
+        'flake8',
+        'isort',
+        'mypy >= 0.660',
+        'pytest >= 4.1.0',
+        'pytest-cov >= 2.6.0',
+        'pytest-helpers-namespace >= 2019.1.8',
         ],
     }
 
@@ -75,7 +78,7 @@ keywords = ', '.join(keywords)
 install_requires = [
     'ply',
     'roman',
-    'uqbar>=0.2.15',
+    'uqbar >= 0.2.17',
     ]
 
 if __name__ == '__main__':
