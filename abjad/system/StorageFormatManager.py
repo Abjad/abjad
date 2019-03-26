@@ -412,7 +412,7 @@ class StorageFormatManager(object):
 #            for key, value in subject.items():
 #                result.update(agent._get_types(key))
 #                result.update(agent._get_types(value))
-#        elif isinstance(subject, collections.Iterable):
+#        elif isinstance(subject, collections.abc.Iterable):
 #            for value in subject:
 #                result.update(agent._get_types(value))
 #        arguments.append(subject)

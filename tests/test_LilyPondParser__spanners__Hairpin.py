@@ -99,7 +99,8 @@ def test_LilyPondParser__spanners__Hairpin_04():
     """
 
     string = r'{ c \< c c c }'
-    assert pytest.raises(Exception, 'LilyPondParser()(string)')
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(string)
 
 
 def test_LilyPondParser__spanners__Hairpin_05():
@@ -117,7 +118,8 @@ def test_LilyPondParser__spanners__Hairpin_06():
     """
 
     string = r'{ c \< \> c c c \! }'
-    assert pytest.raises(Exception, 'LilyPondParser()(string)')
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(string)
 
 
 def test_LilyPondParser__spanners__Hairpin_07():

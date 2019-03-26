@@ -57,7 +57,7 @@ class PitchInequality(object):
         assert operator_string in self._set_theoretic_operator_strings
         self._operator_string = operator_string
         # only intersection is currently implemented
-        if not isinstance(pitches, collections.Iterable):
+        if not isinstance(pitches, collections.abc.Iterable):
             pitches = [pitches]
         pitches = abjad.PitchSet(
             items=pitches,

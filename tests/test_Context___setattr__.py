@@ -9,4 +9,5 @@ def test_Context___setattr___01():
 
     context = abjad.Context([])
 
-    assert pytest.raises(AttributeError, "context.foo = 'bar'")
+    with pytest.raises(AttributeError):
+        context.foo = 'bar'

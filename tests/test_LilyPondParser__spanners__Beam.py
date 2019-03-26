@@ -51,7 +51,8 @@ def test_LilyPondParser__spanners__Beam_02():
         """
         )
 
-    assert pytest.raises(Exception, "LilyPondParser()(format(target))")
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(format(target))
 
 
 def test_LilyPondParser__spanners__Beam_03():
@@ -76,13 +77,15 @@ def test_LilyPondParser__spanners__Beam_03():
         """
         )
 
-    assert pytest.raises(Exception, "LilyPondParser()(format(target))")
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(format(target))
 
 
 def test_LilyPondParser__spanners__Beam_04():
 
     string = "{ c'8 [ c'8 c'8 c'8 }"
-    assert pytest.raises(Exception, "LilyPondParser()(string)")
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(string)
 
 
 def test_LilyPondParser__spanners__Beam_05():

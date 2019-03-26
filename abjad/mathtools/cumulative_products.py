@@ -17,7 +17,7 @@ def cumulative_products(argument):
 
     Returns new object of ``argument`` type.
     """
-    if not isinstance(argument, collections.Iterable):
+    if not isinstance(argument, collections.abc.Iterable):
         raise TypeError(argument)
     if len(argument) == 0:
         return type(argument)([])

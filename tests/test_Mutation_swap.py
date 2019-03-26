@@ -193,7 +193,8 @@ def test_Mutation_swap_04():
     abjad.beam(leaves)
 
     note = abjad.Note("c'4")
-    assert pytest.raises(Exception, 'abjad.mutate(voice[1:2]).swap(note)')
+    with pytest.raises(Exception):
+        abjad.mutate(voice[1:2]).swap(note)
 
 
 def test_Mutation_swap_05():
@@ -207,7 +208,8 @@ def test_Mutation_swap_05():
     abjad.beam(leaves)
 
     tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
-    assert pytest.raises(Exception, 'abjad.mutate(voice[1:2]).swap(tuplet)')
+    with pytest.raises(Exception):
+        abjad.mutate(voice[1:2]).swap(tuplet)
 
 
 def test_Mutation_swap_06():
@@ -243,8 +245,8 @@ def test_Mutation_swap_06():
         )
 
     tuplet = abjad.Tuplet((2, 3), [])
-    statement = 'abjad.mutate([voice[0], voice[2]]).swap(tuplet)'
-    assert pytest.raises(Exception, statement)
+    with pytest.raises(Exception):
+        abjad.mutate([voice[0], voice[2]]).swap(tuplet)
 
 
 def test_Mutation_swap_07():

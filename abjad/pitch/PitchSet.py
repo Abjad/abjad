@@ -452,7 +452,7 @@ class PitchSet(Set):
         Returns list of zero or more numbered pitches.
         """
         import abjad
-        if isinstance(pitch_classes, collections.Iterable):
+        if isinstance(pitch_classes, collections.abc.Iterable):
             result = [
                 [_ for _ in self if _.number % 12 == pc]
                 for pc in [x % 12 for x in pitch_classes]

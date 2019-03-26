@@ -10,4 +10,5 @@ def test_MetronomeMark_attach_01():
     mark_2 = abjad.MetronomeMark((1, 8), 73)
     abjad.attach(mark_1, score[0][0])
 
-    assert pytest.raises(Exception, 'abjad.attach(mark_2, score[1][0])')
+    with pytest.raises(Exception):
+        abjad.attach(mark_2, score[1][0])

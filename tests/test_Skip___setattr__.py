@@ -9,4 +9,5 @@ def test_Skip___setattr___01():
 
     skip = abjad.Skip((1, 4))
 
-    assert pytest.raises(AttributeError, "skip.foo = 'bar'")
+    with pytest.raises(AttributeError):
+        skip.foo = 'bar'

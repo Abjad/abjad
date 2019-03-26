@@ -27,7 +27,8 @@ def test_Note___init___03():
     Initializes note with non-assignable duration.
     """
 
-    pytest.raises(abjad.AssignabilityError, 'abjad.Note(0, (5, 8))')
+    with pytest.raises(abjad.AssignabilityError):
+        abjad.Note(0, (5, 8))
 
 
 def test_Note___init___04():

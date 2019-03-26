@@ -18,5 +18,7 @@ def test_RhythmTreeContainer_index_01():
     assert container.index(subcontainer) == 1
     assert container.index(leaf_d) == 2
 
-    pytest.raises(ValueError, 'container.index(leaf_b)')
-    pytest.raises(ValueError, 'container.index(leaf_c)')
+    with pytest.raises(ValueError):
+        container.index(leaf_b)
+    with pytest.raises(ValueError):
+        container.index(leaf_c)

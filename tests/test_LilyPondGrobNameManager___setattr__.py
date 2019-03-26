@@ -1264,12 +1264,3 @@ def test_LilyPondGrobNameManager___setattr___49():
         }
         """
         )
-
-
-def test_LilyPondGrobNameManager___setattr___50():
-    """
-    InputSetExpression attribute on erroneous grob name raises exception.
-    """
-
-    note = abjad.Note("c'8")
-    assert pytest.raises(Exception, 'override(note).foo = True')

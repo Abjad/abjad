@@ -43,7 +43,7 @@ class CompoundOperator(object):
 
     def __init__(self, operators=None, *, show_identity_operators=None):
         if operators is not None:
-            if not isinstance(operators, collections.Sequence):
+            if not isinstance(operators, collections.abc.Sequence):
                 operators = (operators,)
             assert len(operators)
             operators = tuple(operators)

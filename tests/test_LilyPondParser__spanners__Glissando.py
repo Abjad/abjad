@@ -14,10 +14,12 @@ def test_LilyPondParser__spanners__Glissando_01():
 def test_LilyPondParser__spanners__Glissando_02():
 
     string = r'{ c \glissando }'
-    assert pytest.raises(Exception, 'LilyPondParser()(string)')
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(string)
 
 
 def test_LilyPondParser__spanners__Glissando_03():
 
     string = r'{ \glissando c }'
-    assert pytest.raises(Exception, 'LilyPondParser()(string)')
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(string)

@@ -116,8 +116,10 @@ def test_Container_extend_05():
     voice = abjad.Voice("c'8 d'8")
     abjad.beam(voice[:])
 
-    assert pytest.raises(Exception, 'voice.extend(7)')
-    assert pytest.raises(Exception, "voice.extend('foo')")
+    with pytest.raises(Exception):
+        voice.extend(7)
+    with pytest.raises(Exception):
+        voice.extend('foo')
 
 
 def test_Container_extend_06():
@@ -128,11 +130,11 @@ def test_Container_extend_06():
     voice = abjad.Voice("c'8 d'8")
     abjad.beam(voice[:])
 
-    statement = 'voice.extend(abjad.Note(4, (1, 4)))'
-    assert pytest.raises(AttributeError, statement)
+    with pytest.raises(AttributeError):
+        voice.extend(abjad.Note(4, (1, 4)))
 
-    statement = 'voice.extend(abjad.Chord([2, 3, 5], (1, 4)))'
-    assert pytest.raises(AttributeError, statement)
+    with pytest.raises(AttributeError):
+        voice.extend(abjad.Chord([2, 3, 5], (1, 4)))
 
 
 def test_Container_extend_07():

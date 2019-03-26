@@ -12,8 +12,10 @@ def test_Chord_written_pitches_01():
 
     assert isinstance(pitches, abjad.PitchSegment)
     assert len(pitches) == 3
-    assert pytest.raises(Exception, 'pitches.pop()')
-    assert pytest.raises(Exception, 'pitches.remove(pitches[0])')
+    with pytest.raises(Exception):
+        pitches.pop()
+    with pytest.raises(Exception):
+        pitches.remove(pitches[0])
 
 
 def test_Chord_written_pitches_02():

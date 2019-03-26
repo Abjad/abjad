@@ -38,7 +38,7 @@ from .Rest import Rest
 from .Skip import Skip
 
 
-class Selection(collections.Sequence):
+class Selection(collections.abc.Sequence):
     r"""
     Selection of items (components / or other selections).
 
@@ -193,7 +193,7 @@ class Selection(collections.Sequence):
                 }
 
         """
-        assert isinstance(argument, collections.Iterable)
+        assert isinstance(argument, collections.abc.Iterable)
         items = self.items + tuple(argument)
         return type(self)(items=items)
 
@@ -210,7 +210,7 @@ class Selection(collections.Sequence):
         """
         if isinstance(argument, type(self)):
             return self.items == argument.items
-        elif isinstance(argument, collections.Sequence):
+        elif isinstance(argument, collections.abc.Sequence):
             return self.items == tuple(argument)
         return False
 
@@ -509,7 +509,7 @@ class Selection(collections.Sequence):
         if self._expression:
             raise Exception('BBB')
             return self._update_expression(inspect.currentframe())
-        assert isinstance(argument, collections.Iterable)
+        assert isinstance(argument, collections.abc.Iterable)
         items = tuple(argument) + self.items
         return type(self)(items=items)
 
@@ -923,7 +923,7 @@ class Selection(collections.Sequence):
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        if not isinstance(self, collections.Iterable):
+        if not isinstance(self, collections.abc.Iterable):
             return False
         prototype = prototype or (Component,)
         if not isinstance(prototype, tuple):

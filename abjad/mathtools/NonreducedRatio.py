@@ -3,7 +3,7 @@ import fractions
 from abjad.system.StorageFormatManager import StorageFormatManager
 
 
-class NonreducedRatio(collections.Sequence):
+class NonreducedRatio(collections.abc.Sequence):
     """
     Nonreduced ratio.
 

@@ -57,7 +57,8 @@ def test_Container___getitem___04():
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
 
-    assert pytest.raises(IndexError, 'voice[99]')
+    with pytest.raises(IndexError):
+        voice[99]
 
 
 def test_Container___getitem___05():
@@ -80,7 +81,8 @@ def test_Container___getitem___06():
     template = abjad.StringQuartetScoreTemplate()
     score = template()
 
-    assert pytest.raises(Exception, "score['Foo']")
+    with pytest.raises(Exception):
+        score['Foo']
 
 
 def test_Container___getitem___07():
@@ -95,7 +97,8 @@ def test_Container___getitem___07():
 
     score['Cello_Staff'].append(abjad.Voice(name='First_Violin_Voice'))
 
-    assert pytest.raises(Exception, "score['First_Violin_Voice']")
+    with pytest.raises(Exception):
+        score['First_Violin_Voice']
 
     extra_first_violin_voice = score['Cello_Staff'].pop()
 

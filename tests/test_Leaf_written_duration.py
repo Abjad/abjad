@@ -26,4 +26,6 @@ def test_Leaf_written_duration_01():
     assert format(note) == "cs'\\maxima.."
     note.written_duration = abjad.Duration(15)
     assert format(note) == "cs'\\maxima..."
-    assert pytest.raises(abjad.AssignabilityError, 'abjad.Note(1, 16)')
+
+    with pytest.raises(abjad.AssignabilityError):
+        abjad.Note(1, 16)

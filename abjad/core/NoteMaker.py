@@ -215,7 +215,7 @@ class NoteMaker(object):
         from .Tuplet import Tuplet
         if isinstance(pitches, str):
             pitches = pitches.split()
-        if not isinstance(pitches, collections.Iterable):
+        if not isinstance(pitches, collections.abc.Iterable):
             pitches = [pitches]
         if isinstance(durations, (numbers.Number, tuple)):
             durations = [durations]

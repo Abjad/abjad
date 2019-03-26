@@ -38,7 +38,8 @@ def test_LilyPondParser__spanners__HorizontalBracket_02():
     """
 
     string = r"""{ c \startGroup \stopGroup c c c }"""
-    assert pytest.raises(Exception, 'LilyPondParser()(string)')
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(string)
 
 
 def test_LilyPondParser__spanners__HorizontalBracket_03():
@@ -47,7 +48,8 @@ def test_LilyPondParser__spanners__HorizontalBracket_03():
     """
 
     string = r"""{ c \startGroup c \stopGroup \startGroup c c \stopGroup }"""
-    assert pytest.raises(Exception, 'LilyPondParser()(string)')
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(string)
 
 
 def test_LilyPondParser__spanners__HorizontalBracket_04():
@@ -56,7 +58,8 @@ def test_LilyPondParser__spanners__HorizontalBracket_04():
     """
 
     string = r"""{ c \startGroup c c c }"""
-    assert pytest.raises(Exception, 'LilyPondParser()(string)')
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(string)
 
 
 def test_LilyPondParser__spanners__HorizontalBracket_05():
@@ -65,4 +68,5 @@ def test_LilyPondParser__spanners__HorizontalBracket_05():
     """
 
     string = r"""{ c c c c \stopGroup }"""
-    assert pytest.raises(Exception, 'LilyPondParser()(string)')
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(string)

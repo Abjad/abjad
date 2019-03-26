@@ -239,7 +239,7 @@ class Label(object):
     def __init__(self, client=None, deactivate=None, tag=None):
         prototype = (
             Component,
-            collections.Iterable,
+            collections.abc.Iterable,
             type(None),
             )
         if not isinstance(client, prototype):

@@ -311,7 +311,7 @@ class Iteration(object):
                     reverse=reverse,
                     ):
                     yield component_
-            if isinstance(argument, collections.Iterable):
+            if isinstance(argument, collections.abc.Iterable):
                 for item in argument:
                     for component in Iteration(item).components(
                         prototype,
@@ -352,7 +352,7 @@ class Iteration(object):
                     reverse=reverse,
                     ):
                     yield component_
-            if isinstance(argument, collections.Iterable):
+            if isinstance(argument, collections.abc.Iterable):
                 for item in reversed(argument):
                     for component in Iteration(item).components(
                         prototype,

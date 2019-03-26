@@ -1343,7 +1343,7 @@ class LilyPondParser(Parser):
             return
         assert isinstance(name, str)
         assert all(not x.isspace() for x in name)
-        assert isinstance(signature, collections.Iterable)
+        assert isinstance(signature, collections.abc.Iterable)
         for predicate in signature:
             assert isinstance(predicate, str)
             assert all(not x.isspace() for x in predicate)

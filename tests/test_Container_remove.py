@@ -121,4 +121,5 @@ def test_Container_remove_03():
     note = abjad.Note("c'4")
     container = abjad.Container([abjad.Note("c'4")])
 
-    assert pytest.raises(Exception, 'container.remove(note)')
+    with pytest.raises(Exception):
+        container.remove(note)

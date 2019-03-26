@@ -140,7 +140,7 @@ class Transposition(object):
         """
         if hasattr(argument, 'transpose'):
             result = argument.transpose(self.n)
-        elif isinstance(argument, collections.Iterable):
+        elif isinstance(argument, collections.abc.Iterable):
             items = []
             for item in argument:
                 item = item.transpose(self.n)

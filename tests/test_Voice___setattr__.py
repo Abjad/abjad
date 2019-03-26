@@ -9,4 +9,5 @@ def test_Voice___setattr___01():
 
     voice = abjad.Voice([])
 
-    assert pytest.raises(AttributeError, "voice.foo = 'bar'")
+    with pytest.raises(AttributeError):
+        voice.foo = 'bar'
