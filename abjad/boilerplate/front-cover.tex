@@ -1,14 +1,11 @@
 \documentclass[11pt]{{report}}
 \usepackage[T1]{{fontenc}}
 \usepackage[papersize={paper_size}, margin=1in]{{geometry}}
-\usepackage{{graphicx}}
-\usepackage{{tikz}}
-\usepackage{{xltxtra,fontspec,xunicode}}
+\usepackage{{fontspec,graphicx,nopageno,tikz,xltxtra,xunicode}}
 \usetikzlibrary{{calc}}
-\setmainfont{{Palatino}}
+%\setmainfont{{Palatino}}
 \defaultfontfeatures{{Scale=MatchLowercase}}
 \newlength{{\drop}}
-\pagenumbering{{gobble}}
 \parindent=0pt
 
 \begin{{document}}
@@ -31,7 +28,7 @@
 
         {{\fontsize{{2.75cm}}{{1em}}\selectfont {score_title}}}
 
-        \vspace*{{12\baselineskip}}
+        \vfill
 
         {{\fontsize{{0.85cm}}{{1em}}\selectfont \itshape {forces_tagline}}}
         

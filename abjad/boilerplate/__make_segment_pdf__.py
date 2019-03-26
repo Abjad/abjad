@@ -20,6 +20,28 @@ if __name__ == '__main__':
 
     try:
         segment_directory = ide.Path(os.path.realpath(__file__)).parent
+    except:
+        traceback.print_exc()
+        sys.exit(1)
+
+    try:
+        from __persist__ import persist as persist
+    except ModuleNotFoundError:
+        segment_directory.write_metadata_py(
+            None,
+            file_name='__persist__.py',
+            variable_name='persist',
+            )
+        persist = None
+
+    try:
+        {previous_segment_persist_import_statement}
+    except ModuleNotFoundError:
+        traceback.print_exc()
+        sys.exit(1)
+
+    try:
+        segment_directory = ide.Path(os.path.realpath(__file__)).parent
         scores_directory = segment_directory.parent.parent.parent.parent
         segment_directory = ide.Path(
             segment_directory,
@@ -32,7 +54,9 @@ if __name__ == '__main__':
         with abjad.Timer() as timer:
             lilypond_file = maker.run(
                 metadata=metadata,
+                persist=persist,
                 previous_metadata=previous_metadata,
+                previous_persist=previous_persist,
                 segment_directory=segment_directory,
                 )
         segment_maker_runtime = int(timer.elapsed_time)
@@ -42,9 +66,17 @@ if __name__ == '__main__':
         print(message)
         segment_maker_runtime = (count, counter)
         segment_directory.write_metadata_py(maker.metadata)
+        segment_directory.write_metadata_py(
+            maker.persist,
+            file_name='__persist__.py',
+            variable_name='persist',
+            )
         first_segment = segment_directory.segments.get_next_package()
         if segment_directory.name != first_segment.name:
             layout_ly = segment_directory / 'layout.ly'
+            if not layout_ly.is_file():
+                message = f'{{layout_ly.trim()}} does not exit.'
+                raise Exception(message)
             result = layout_ly.get_preamble_page_count_overview()
             if result is not None:
                 first_page_number, _, _ = result
@@ -81,7 +113,8 @@ if __name__ == '__main__':
                 time_signature = abjad.inspect(skip).effective(prototype)
                 assert isinstance(time_signature, prototype), repr(time_signature)
                 time_signatures.append(str(time_signature))
-            if getattr(maker, 'phantom', None) is True:
+            # for phantom measure at end
+            if 0 < len(time_signatures):
                 time_signatures.pop()
         else:
             measure_count = None
@@ -96,7 +129,6 @@ if __name__ == '__main__':
         illustration_ly.write_text(text)
         for job in [
             abjad.Job.handle_edition_tags(illustration_ly),
-            #abjad.Job.show_music_annotations(illustration_ly, undo=True),
             abjad.Job.handle_fermata_bar_lines(segment_directory),
             abjad.Job.handle_shifted_clefs(segment_directory),
             ]:

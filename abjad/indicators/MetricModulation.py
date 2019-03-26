@@ -565,7 +565,7 @@ class MetricModulation(object):
             right_markup = self._get_right_markup()
             markup = left_markup + equal + right_space + right_markup
         else:
-            markup = Markup.from_literal(
+            markup = Markup(
                 f'\markup {result}',
                 literal=True,
                 )

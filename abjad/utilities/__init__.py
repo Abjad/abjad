@@ -32,6 +32,4 @@ from .TypedList import TypedList
 from .compare_images import compare_images
 from .list_all_classes import list_all_classes
 from .list_all_functions import list_all_functions
-from .list_all_ide_classes import list_all_ide_classes
-from .list_all_ide_functions import list_all_ide_functions
 from .yield_all_modules import yield_all_modules

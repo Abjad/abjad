@@ -13,6 +13,8 @@ class AbjadConfiguration(Configuration):
     ..  container:: example
 
         >>> abjad_configuration = abjad.AbjadConfiguration()
+        >>> abjad_configuration
+        AbjadConfiguration()
 
     ..  container:: example
 
@@ -42,7 +44,6 @@ class AbjadConfiguration(Configuration):
     __documentation_section__ = 'System configuration'
 
     __slots__ = (
-        '_composer_library_tools',
         )
 
     _configuration_directory_name = '.abjad'
@@ -61,7 +62,6 @@ class AbjadConfiguration(Configuration):
                 os.makedirs(self.abjad_output_directory)
             except (IOError, OSError):
                 traceback.print_exc()
-        self._composer_library_tools = None
 
     ### PRIVATE METHODS ###
 
@@ -105,11 +105,6 @@ class AbjadConfiguration(Configuration):
             'composer_last_name': {
                 'comment': ['Your last name.'],
                 'default': 'Name',
-                'validator': str,
-                },
-            'composer_library': {
-                'comment': ['Your library.'],
-                'default': 'my_library',
                 'validator': str,
                 },
             'composer_scores_directory': {
@@ -250,37 +245,6 @@ class AbjadConfiguration(Configuration):
         return self._settings['composer_last_name']
 
     @property
-    def composer_library(self):
-        """
-        Gets composer library package name.
-
-        Returns string.
-        """
-        return self._settings['composer_library']
-
-    @property
-    def composer_library_tools(self):
-        """
-        Gets composer library tools directory.
-
-        Returns string.
-        """
-        if self._composer_library_tools is None:
-            name = self.composer_library
-            if not name:
-                return
-            try:
-                path = importlib.import_module(name)
-            except ImportError:
-                path = None
-            if not path:
-                return
-            #path = os.path.join(path.__path__[0], 'tools')
-            path = path.__path__[0]
-            self._composer_library_tools = path
-        return self._composer_library_tools
-
-    @property
     def composer_scores_directory(self):
         """
         Gets composer scores directory.
@@ -296,11 +260,6 @@ class AbjadConfiguration(Configuration):
         """
         Gets composer uppercase name.
 
-        ..  container:: example
-
-            >>> configuration.composer_uppercase_name # doctest: +SKIP
-            'TREVOR BAČA'
-
         Returns string.
         """
         return self._settings['composer_uppercase_name']
@@ -309,11 +268,6 @@ class AbjadConfiguration(Configuration):
     def composer_website(self):
         """
         Gets composer website.
-
-        ..  container:: example
-
-            >>> configuration.composer_website  # doctest: +SKIP
-            'www.trevobaca.com'
 
         Returns string.
         """
@@ -392,8 +346,8 @@ class AbjadConfiguration(Configuration):
         ..  container:: example
 
             >>> abjad_configuration = abjad.AbjadConfiguration()
-            >>> abjad_configuration.get_lilypond_version_string() # doctest: +SKIP
-            '2.19.82'
+            >>> abjad_configuration.get_lilypond_version_string()
+            '2.19...'
 
         Returns string.
         """

@@ -7,8 +7,8 @@ class LilyPondVersionToken(object):
 
     ..  container:: example
 
-        >>> abjad.LilyPondVersionToken() # doctest: +SKIP
-        LilyPondVersionToken('2.19.0')
+        >>> abjad.LilyPondVersionToken()
+        LilyPondVersionToken('2.19...')
 
     """
 

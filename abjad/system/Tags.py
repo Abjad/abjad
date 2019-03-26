@@ -1,4 +1,5 @@
 import typing
+from abjad import const
 from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.utilities.String import String
 
@@ -70,20 +71,7 @@ class Tags(object):
         'EOL_FERMATA',
         'FERMATA_MEASURE',
         'SHIFTED_CLEF',
-        'SPACING',
-        'SPACING_OVERRIDE',
         'TWO_VOICE',
-
-        ### DOCUMENT MARKUP ###
-
-        'CLOCK_TIME_MARKUP',
-        'FIGURE_NAME_MARKUP',
-        'LOCAL_MEASURE_NUMBER_MARKUP',
-        'LOCAL_MEASURE_INDEX_MARKUP',
-        'MEASURE_NUMBER_MARKUP',
-        'SPACING_MARKUP',
-        'SPACING_OVERRIDE_MARKUP',
-        'STAGE_NUMBER_MARKUP',
 
         ### DOCUMENT TYPES ###
 
@@ -224,19 +212,6 @@ class Tags(object):
         'REDUNDANT_TIME_SIGNATURE',
         'REDUNDANT_TIME_SIGNATURE_COLOR',
 
-        ### ZZZ: OTHER ###
-
-        'LEFT_BROKEN_REPEAT_TIE_TO',
-        'PITCH',
-        'REMOVE_ALL_EMPTY_STAVES',
-        'REPEAT_TIE',
-        'RHYTHM',
-        'RIGHT_BROKEN_TIE_FROM',
-        'SOUNDS_DURING_SEGMENT',
-        'TEMPORARY_CONTAINER',
-        'TIE_FROM',
-        'TIE_TO',
-
     )
 
     ### SPECIAL METHODS ###
@@ -353,23 +328,21 @@ class Tags(object):
             >>> for tag in abjad.tags.documentation_removal_tags():
             ...     tag
             ...
-            'CLOCK_TIME_MARKUP'
-            'FIGURE_NAME_MARKUP'
-            'LOCAL_MEASURE_NUMBER_MARKUP'
-            'LOCAL_MEASURE_INDEX_MARKUP'
-            'MEASURE_NUMBER_MARKUP'
-            'SPACING_MARKUP'
-            'STAGE_NUMBER_MARKUP'
+            'CLOCK_TIME'
+            'FIGURE_NAME'
+            'LOCAL_MEASURE_NUMBER'
+            'MEASURE_NUMBER'
+            'SPACING'
+            'STAGE_NUMBER'
 
         """
         return [
-            self.CLOCK_TIME_MARKUP,
-            self.FIGURE_NAME_MARKUP,
-            self.LOCAL_MEASURE_NUMBER_MARKUP,
-            self.LOCAL_MEASURE_INDEX_MARKUP,
-            self.MEASURE_NUMBER_MARKUP,
-            self.SPACING_MARKUP,
-            self.STAGE_NUMBER_MARKUP,
+            const.CLOCK_TIME,
+            const.FIGURE_NAME,
+            const.LOCAL_MEASURE_NUMBER,
+            const.MEASURE_NUMBER,
+            const.SPACING,
+            const.STAGE_NUMBER,
             ]
 
     def dynamic_color_tags(self, path=None) -> typing.List[str]:
@@ -445,21 +418,19 @@ class Tags(object):
             ...
             'EMPTY_START_BAR'
             'EXPLICIT_TIME_SIGNATURE_COLOR'
-            'LOCAL_MEASURE_NUMBER_MARKUP'
-            'LOCAL_MEASURE_INDEX_MARKUP'
-            'MEASURE_NUMBER_MARKUP'
+            'LOCAL_MEASURE_NUMBER'
+            'MEASURE_NUMBER'
             'REDUNDANT_TIME_SIGNATURE_COLOR'
-            'STAGE_NUMBER_MARKUP'
+            'STAGE_NUMBER'
 
         """
         return [
             self.EMPTY_START_BAR,
             self.EXPLICIT_TIME_SIGNATURE_COLOR,
-            self.LOCAL_MEASURE_NUMBER_MARKUP,
-            self.LOCAL_MEASURE_INDEX_MARKUP,
-            self.MEASURE_NUMBER_MARKUP,
+            const.LOCAL_MEASURE_NUMBER,
+            const.MEASURE_NUMBER,
             self.REDUNDANT_TIME_SIGNATURE_COLOR,
-            self.STAGE_NUMBER_MARKUP,
+            const.STAGE_NUMBER,
             ]
 
     def margin_markup_color_tags(self, path=None) -> typing.List[str]:
@@ -548,25 +519,21 @@ class Tags(object):
 
             >>> for tag in abjad.tags.music_annotation_tags():
             ...     tag
-            'CLOCK_TIME_MARKUP'
-            'FIGURE_NAME_MARKUP'
-            'LOCAL_MEASURE_INDEX_MARKUP'
-            'LOCAL_MEASURE_NUMBER_MARKUP'
-            'MEASURE_NUMBER_MARKUP'
-            'SPACING_MARKUP'
-            'SPACING_OVERRIDE_MARKUP'
-            'STAGE_NUMBER_MARKUP'
+            'CLOCK_TIME'
+            'FIGURE_NAME'
+            'LOCAL_MEASURE_NUMBER'
+            'SPACING'
+            'SPACING_OVERRIDE'
+            'STAGE_NUMBER'
 
         """
         return [
-            self.CLOCK_TIME_MARKUP,
-            self.FIGURE_NAME_MARKUP,
-            self.LOCAL_MEASURE_INDEX_MARKUP,
-            self.LOCAL_MEASURE_NUMBER_MARKUP,
-            self.MEASURE_NUMBER_MARKUP,
-            self.SPACING_MARKUP,
-            self.SPACING_OVERRIDE_MARKUP,
-            self.STAGE_NUMBER_MARKUP,
+            const.CLOCK_TIME,
+            const.FIGURE_NAME,
+            const.LOCAL_MEASURE_NUMBER,
+            const.SPACING,
+            const.SPACING_OVERRIDE,
+            const.STAGE_NUMBER,
             ]
 
     def persistent_indicator_color_expression_tags(
@@ -939,13 +906,13 @@ class Tags(object):
             >>> for tag in abjad.tags.spacing_markup_tags():
             ...     tag
             ...
-            'SPACING_MARKUP'
-            'SPACING_OVERRIDE_MARKUP'
+            'SPACING'
+            'SPACING_OVERRIDE'
 
         """
         return [
-            self.SPACING_MARKUP,
-            self.SPACING_OVERRIDE_MARKUP,
+            const.SPACING,
+            const.SPACING_OVERRIDE,
             ]
 
     def spacing_tags(self) -> typing.List[str]:
@@ -957,17 +924,17 @@ class Tags(object):
             >>> for tag in abjad.tags.spacing_tags():
             ...     tag
             ...
+            'SPACING_COMMAND'
             'SPACING'
-            'SPACING_MARKUP'
+            'SPACING_OVERRIDE_COMMAND'
             'SPACING_OVERRIDE'
-            'SPACING_OVERRIDE_MARKUP'
 
         """
         return [
-            self.SPACING,
-            self.SPACING_MARKUP,
-            self.SPACING_OVERRIDE,
-            self.SPACING_OVERRIDE_MARKUP,
+            const.SPACING_COMMAND,
+            const.SPACING,
+            const.SPACING_OVERRIDE_COMMAND,
+            const.SPACING_OVERRIDE,
             ]
 
     def staff_lines_color_tags(self, path=None) -> typing.List[str]:

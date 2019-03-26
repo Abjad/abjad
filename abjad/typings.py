@@ -9,7 +9,7 @@ from abjad.utilities.Expression import Expression
 
 IntegerPair = typing.Tuple[int, int]
 
-DurationTyping = typing.Union[IntegerPair, Duration]
+DurationTyping = typing.Union[Duration, IntegerPair]
 
 Number = typing.Union[int, float]
 

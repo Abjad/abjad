@@ -1,3 +1,10 @@
+from abjad.core.Score import Score
+from abjad.core.Staff import Staff
+from abjad.core.StaffGroup import StaffGroup
+from abjad.core.Voice import Voice
+from abjad.indicators.Clef import Clef
+from abjad.instruments import Piano
+from abjad.top.annotate import annotate
 from abjad.utilities.OrderedDict import OrderedDict
 from .ScoreTemplate import ScoreTemplate
 
@@ -12,36 +19,36 @@ class TwoStaffPianoScoreTemplate(ScoreTemplate):
         >>> abjad.show(template) # doctest: +SKIP
 
         >>> abjad.f(template.__illustrate__()[abjad.Score], strict=60)
-        \context Score = "Two_Staff_Piano_Score"                    %! TwoStaffPianoScoreTemplate
-        <<                                                          %! TwoStaffPianoScoreTemplate
-            \context GlobalContext = "Global_Context"               %! _make_global_context
-            <<                                                      %! _make_global_context
-                \context GlobalRests = "Global_Rests"               %! _make_global_context
-                {                                                   %! _make_global_context
-                }                                                   %! _make_global_context
-                \context GlobalSkips = "Global_Skips"               %! _make_global_context
-                {                                                   %! _make_global_context
-                }                                                   %! _make_global_context
-            >>                                                      %! _make_global_context
-            \context PianoStaff = "Piano_Staff"                     %! TwoStaffPianoScoreTemplate
-            <<                                                      %! TwoStaffPianoScoreTemplate
-                \context Staff = "RH_Staff"                         %! TwoStaffPianoScoreTemplate
-                {                                                   %! TwoStaffPianoScoreTemplate
-                    \context Voice = "RH_Voice"                     %! TwoStaffPianoScoreTemplate
-                    {                                               %! TwoStaffPianoScoreTemplate
-                        s1                                          %! ScoreTemplate.__illustrate__
-                    }                                               %! TwoStaffPianoScoreTemplate
-                }                                                   %! TwoStaffPianoScoreTemplate
-                \context Staff = "LH_Staff"                         %! TwoStaffPianoScoreTemplate
-                {                                                   %! TwoStaffPianoScoreTemplate
-                    \context Voice = "LH_Voice"                     %! TwoStaffPianoScoreTemplate
-                    {                                               %! TwoStaffPianoScoreTemplate
-                        \clef "bass"                                %! attach_defaults
-                        s1                                          %! ScoreTemplate.__illustrate__
-                    }                                               %! TwoStaffPianoScoreTemplate
-                }                                                   %! TwoStaffPianoScoreTemplate
-            >>                                                      %! TwoStaffPianoScoreTemplate
-        >>                                                          %! TwoStaffPianoScoreTemplate
+        \context Score = "Two_Staff_Piano_Score"                    %! abjad.TwoStaffPianoScoreTemplate.__call__
+        <<                                                          %! abjad.TwoStaffPianoScoreTemplate.__call__
+            \context GlobalContext = "Global_Context"               %! abjad.ScoreTemplate._make_global_context
+            <<                                                      %! abjad.ScoreTemplate._make_global_context
+                \context GlobalRests = "Global_Rests"               %! abjad.ScoreTemplate._make_global_context
+                {                                                   %! abjad.ScoreTemplate._make_global_context
+                }                                                   %! abjad.ScoreTemplate._make_global_context
+                \context GlobalSkips = "Global_Skips"               %! abjad.ScoreTemplate._make_global_context
+                {                                                   %! abjad.ScoreTemplate._make_global_context
+                }                                                   %! abjad.ScoreTemplate._make_global_context
+            >>                                                      %! abjad.ScoreTemplate._make_global_context
+            \context PianoStaff = "Piano_Staff"                     %! abjad.TwoStaffPianoScoreTemplate.__call__
+            <<                                                      %! abjad.TwoStaffPianoScoreTemplate.__call__
+                \context Staff = "RH_Staff"                         %! abjad.TwoStaffPianoScoreTemplate.__call__
+                {                                                   %! abjad.TwoStaffPianoScoreTemplate.__call__
+                    \context Voice = "RH_Voice"                     %! abjad.TwoStaffPianoScoreTemplate.__call__
+                    {                                               %! abjad.TwoStaffPianoScoreTemplate.__call__
+                        s1                                          %! abjad.ScoreTemplate.__illustrate__
+                    }                                               %! abjad.TwoStaffPianoScoreTemplate.__call__
+                }                                                   %! abjad.TwoStaffPianoScoreTemplate.__call__
+                \context Staff = "LH_Staff"                         %! abjad.TwoStaffPianoScoreTemplate.__call__
+                {                                                   %! abjad.TwoStaffPianoScoreTemplate.__call__
+                    \context Voice = "LH_Voice"                     %! abjad.TwoStaffPianoScoreTemplate.__call__
+                    {                                               %! abjad.TwoStaffPianoScoreTemplate.__call__
+                        \clef "bass"                                %! abjad.ScoreTemplate.attach_defaults
+                        s1                                          %! abjad.ScoreTemplate.__illustrate__
+                    }                                               %! abjad.TwoStaffPianoScoreTemplate.__call__
+                }                                                   %! abjad.TwoStaffPianoScoreTemplate.__call__
+            >>                                                      %! abjad.TwoStaffPianoScoreTemplate.__call__
+        >>                                                          %! abjad.TwoStaffPianoScoreTemplate.__call__
 
     Returns score template.
     """
@@ -62,59 +69,111 @@ class TwoStaffPianoScoreTemplate(ScoreTemplate):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self):
+    def __call__(self) -> Score:
         """
         Calls two-staff piano score template.
 
-        Returns score.
+        ..  container:: example
+
+            REGRESSION. Attaches piano to piano group (rather than just staff):
+
+            >>> template = abjad.TwoStaffPianoScoreTemplate()
+            >>> score = template()
+            >>> piano_staff = score['Piano_Staff']
+            >>> rh_voice = score['RH_Voice']
+            >>> lh_voice = score['LH_Voice']
+
+            >>> rh_voice.append("g'4")
+            >>> lh_voice.append("c4")
+            >>> wrappers = template.attach_defaults(score)
+
+            >>> abjad.show(score) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(score, strict=60)
+                \context Score = "Two_Staff_Piano_Score"                    %! abjad.TwoStaffPianoScoreTemplate.__call__
+                <<                                                          %! abjad.TwoStaffPianoScoreTemplate.__call__
+                    \context GlobalContext = "Global_Context"               %! abjad.ScoreTemplate._make_global_context
+                    <<                                                      %! abjad.ScoreTemplate._make_global_context
+                        \context GlobalRests = "Global_Rests"               %! abjad.ScoreTemplate._make_global_context
+                        {                                                   %! abjad.ScoreTemplate._make_global_context
+                        }                                                   %! abjad.ScoreTemplate._make_global_context
+                        \context GlobalSkips = "Global_Skips"               %! abjad.ScoreTemplate._make_global_context
+                        {                                                   %! abjad.ScoreTemplate._make_global_context
+                        }                                                   %! abjad.ScoreTemplate._make_global_context
+                    >>                                                      %! abjad.ScoreTemplate._make_global_context
+                    \context PianoStaff = "Piano_Staff"                     %! abjad.TwoStaffPianoScoreTemplate.__call__
+                    <<                                                      %! abjad.TwoStaffPianoScoreTemplate.__call__
+                        \context Staff = "RH_Staff"                         %! abjad.TwoStaffPianoScoreTemplate.__call__
+                        {                                                   %! abjad.TwoStaffPianoScoreTemplate.__call__
+                            \context Voice = "RH_Voice"                     %! abjad.TwoStaffPianoScoreTemplate.__call__
+                            {                                               %! abjad.TwoStaffPianoScoreTemplate.__call__
+                                g'4
+                            }                                               %! abjad.TwoStaffPianoScoreTemplate.__call__
+                        }                                                   %! abjad.TwoStaffPianoScoreTemplate.__call__
+                        \context Staff = "LH_Staff"                         %! abjad.TwoStaffPianoScoreTemplate.__call__
+                        {                                                   %! abjad.TwoStaffPianoScoreTemplate.__call__
+                            \context Voice = "LH_Voice"                     %! abjad.TwoStaffPianoScoreTemplate.__call__
+                            {                                               %! abjad.TwoStaffPianoScoreTemplate.__call__
+                                \clef "bass"                                %! abjad.ScoreTemplate.attach_defaults
+                                c4
+                            }                                               %! abjad.TwoStaffPianoScoreTemplate.__call__
+                        }                                                   %! abjad.TwoStaffPianoScoreTemplate.__call__
+                    >>                                                      %! abjad.TwoStaffPianoScoreTemplate.__call__
+                >>                                                          %! abjad.TwoStaffPianoScoreTemplate.__call__
+
+            >>> wrapper = abjad.inspect(rh_voice[0]).wrapper(abjad.Instrument)
+            >>> wrapper.context
+            'PianoStaff'
+
         """
-        import abjad
-        tag = 'TwoStaffPianoScoreTemplate'
+        tag = 'abjad.TwoStaffPianoScoreTemplate.__call__'
         # GLOBAL CONTEXT
         global_context = self._make_global_context()
 
         # RH STAFF
-        rh_voice = abjad.Voice(
+        rh_voice = Voice(
             name='RH_Voice',
             tag=tag,
             )
-        rh_staff = abjad.Staff(
+        rh_staff = Staff(
             [rh_voice],
             name='RH_Staff',
             tag=tag,
             )
 
         # LH STAFF
-        lh_voice = abjad.Voice(
+        lh_voice = Voice(
             name='LH_Voice',
             tag=tag,
             )
-        lh_staff = abjad.Staff(
+        lh_staff = Staff(
             [lh_voice],
             name='LH_Staff',
             tag=tag,
             )
-        abjad.annotate(
+        annotate(
             lh_staff,
             'default_clef',
-            abjad.Clef('bass'),
+            Clef('bass'),
             )
 
         # PIANO STAFF
-        staff_group = abjad.StaffGroup(
+        staff_group = StaffGroup(
             [rh_staff, lh_staff],
             lilypond_type='PianoStaff',
             name='Piano_Staff',
             tag=tag,
             )
-        abjad.annotate(
+        annotate(
             staff_group,
             'default_instrument',
-            abjad.Piano(),
+            Piano(),
             )
 
         # SCORE
-        score = abjad.Score(
+        score = Score(
             [global_context, staff_group],
             name='Two_Staff_Piano_Score',
             tag=tag,

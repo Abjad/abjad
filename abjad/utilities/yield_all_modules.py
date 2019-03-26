@@ -5,11 +5,11 @@ import uqbar.apis
 
 
 def yield_all_modules(paths=None):
-    '''
+    """
     Yields all modules encountered in `path`.
 
     Returns generator.
-    '''
+    """
     import abjad
     _paths = []
     if not paths:

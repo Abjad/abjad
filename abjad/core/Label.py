@@ -3513,19 +3513,26 @@ class Label(object):
             label = None
             if prototype is NamedPitch:
                 if isinstance(leaf, Note):
-                    label = leaf.written_pitch.get_name(locale=locale)
-                    label = Markup.from_literal(
-                        label,
+                    string = leaf.written_pitch.get_name(locale=locale)
+                    if '#' in string:
+                        string = '"' + string + '"'
+                    label = Markup(
+                        rf'\markup {{ {string} }}',
                         direction=direction,
+                        literal=True,
                         )
                 elif isinstance(leaf, Chord):
                     pitches = leaf.written_pitches
                     pitches = reversed(pitches)
-                    pitches = [
-                        Markup.from_literal(_.get_name(locale=locale))
-                        for _ in pitches
-                        ]
-                    label = Markup.column(pitches, direction=direction)
+                    markups = []
+                    for pitch in pitches:
+                        string = pitch.get_name(locale=locale)
+                        markup = Markup(
+                            string,
+                            literal=True,
+                            )
+                        markups.append(markup)
+                    label = Markup.column(markups, direction=direction)
             elif prototype is NumberedPitch:
                 if isinstance(leaf, Note):
                     pitch = leaf.written_pitch.number
@@ -4200,7 +4207,7 @@ class Label(object):
                     string = '[' + string + ']'
             if markup_command is not None:
                 string = f'{markup_command} {string}'
-                label = Markup.from_literal(
+                label = Markup(
                     string,
                     direction=direction,
                     literal=True

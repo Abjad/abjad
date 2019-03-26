@@ -1,3 +1,5 @@
+import typing
+from abjad import const
 from abjad.indicators.Clef import Clef
 from abjad.indicators.StartHairpin import StartHairpin
 from abjad.indicators.StartTextSpan import StartTextSpan
@@ -11,6 +13,7 @@ from abjad.top.setting import setting
 from abjad.utilities.Sequence import Sequence
 from .Container import Container
 from .Context import Context
+from .Leaf import Leaf
 
 
 class Wellformedness(object):
@@ -67,21 +70,20 @@ class Wellformedness(object):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def allow_percussion_clef(self):
+    def allow_percussion_clef(self) -> typing.Optional[bool]:
         """
         Is true when wellformedness allows percussion clef.
-
-        Returns true, false or none.
         """
         return self._allow_percussion_clef
 
     ### PUBLIC METHODS ###
 
-    def check_duplicate_ids(self, argument=None):
+    def check_duplicate_ids(
+        self,
+        argument=None,
+        ) -> typing.Tuple[typing.List, int]:
         """
         Checks duplicate IDs.
-
-        Returns violators and total.
         """
         violators = []
         components = iterate(argument).components()
@@ -94,7 +96,10 @@ class Wellformedness(object):
                         if id(_) == current_id])
         return violators, len(total_ids)
 
-    def check_empty_containers(self, argument=None):
+    def check_empty_containers(
+        self,
+        argument=None,
+        ) -> typing.Tuple[typing.List, int]:
         r"""
         Checks empty containers.
 
@@ -119,8 +124,6 @@ class Wellformedness(object):
             >>> violators
             [Container()]
 
-        Returns list of empty containers and count of all containers in
-        ``argument``.
         """
         violators, containers = [], set()
         for container in iterate(argument).components(Container):
@@ -129,13 +132,15 @@ class Wellformedness(object):
                 violators.append(container)
         return violators, len(containers)
 
-    def check_misrepresented_flags(self, argument=None):
+    def check_misrepresented_flags(
+        self,
+        argument=None,
+        ) -> typing.Tuple[typing.List, int]:
         """
         Checks misrepresented flags.
-
-        Returns violators and total.
         """
-        violators, total = [], set()
+        violators: typing.List[Leaf] = []
+        total = set()
         for leaf in iterate(argument).leaves():
             total.add(leaf)
             flags = leaf.written_duration.flag_count
@@ -153,11 +158,12 @@ class Wellformedness(object):
                         violators.append(leaf)
         return violators, len(total)
 
-    def check_missing_parents(self, argument=None):
+    def check_missing_parents(
+        self,
+        argument=None,
+        ) -> typing.Tuple[typing.List, int]:
         """
         Checks missing parents.
-
-        Returns violators and total.
         """
         violators, total = [], set()
         components = iterate(argument).components()
@@ -169,7 +175,10 @@ class Wellformedness(object):
                     violators.append(component)
         return violators, len(total)
 
-    def check_notes_on_wrong_clef(self, argument=None):
+    def check_notes_on_wrong_clef(
+        self,
+        argument=None,
+        ) -> typing.Tuple[typing.List, int]:
         r"""
         Checks notes and chords on wrong clef.
 
@@ -260,7 +269,6 @@ class Wellformedness(object):
             0 /	0 unterminated hairpins
             0 /	0 unterminated text spanners
 
-        Returns true or false.
         """
         violators, total = [], set()
         for leaf in iterate(argument).leaves():
@@ -278,7 +286,10 @@ class Wellformedness(object):
                 violators.append(leaf)
         return violators, len(total)
 
-    def check_out_of_range_pitches(self, argument=None):
+    def check_out_of_range_pitches(
+        self,
+        argument=None,
+        ) -> typing.Tuple[typing.List, int]:
         r"""
         Checks out-of-range notes.
 
@@ -315,12 +326,48 @@ class Wellformedness(object):
             0 /	0 unterminated hairpins
             0 /	0 unterminated text spanners
 
-        Returns true or false.
+        ..  container:: example
+
+            Allows out-of-range pitches:
+
+            >>> staff = abjad.Staff("c'8 r8 <d fs>8 r8")
+            >>> violin = abjad.Violin()
+            >>> abjad.attach(violin, staff[0])
+            >>> abjad.attach(abjad.const.ALLOW_OUT_OF_RANGE, staff[2])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    c'8
+                    r8
+                    <d fs>8
+                    r8
+                }
+
+            >>> agent = abjad.inspect(staff)
+            >>> print(agent.tabulate_wellformedness())
+            0 /	5 duplicate ids
+            0 /	1 empty containers
+            0 /	4 misrepresented flags
+            0 /	5 missing parents
+            0 /	4 notes on wrong clef
+            0 /	2 out of range pitches
+            0 /	0 overlapping text spanners
+            0 /	0 unmatched stop text spans
+            0 /	0 unterminated hairpins
+            0 /	0 unterminated text spanners
+
         """
         violators, total = [], set()
         for leaf in iterate(argument).leaves(pitched=True):
             total.add(leaf)
-            if inspect(leaf).annotation('HIDDEN') is True:
+            if inspect(leaf).has_indicator(const.ALLOW_OUT_OF_RANGE):
+                continue
+            # TODO: change to has_indicator(const.HIDDEN):
+            if inspect(leaf).annotation(const.HIDDEN) is True:
                 continue
             instrument = inspect(leaf).effective(Instrument)
             if instrument is None:
@@ -329,7 +376,10 @@ class Wellformedness(object):
                 violators.append(leaf)
         return violators, len(total)
 
-    def check_overlapping_text_spanners(self, argument=None):
+    def check_overlapping_text_spanners(
+        self,
+        argument=None,
+        ) -> typing.Tuple[typing.List, int]:
         r"""
         Checks overlapping text spanners.
 
@@ -437,7 +487,6 @@ class Wellformedness(object):
             0 /	0 unterminated hairpins
             0 /	2 unterminated text spanners
 
-        Returns violators and total.
         """
         violators, total = [], 0
         def key(wrapper):
@@ -449,7 +498,7 @@ class Wellformedness(object):
         for context in iterate(argument).components(Context):
             wrappers = context._dependent_wrappers[:]
             wrappers.sort(key=key)
-            open_spanners = {}
+            open_spanners: typing.Dict = {}
             for wrapper in wrappers:
                 if isinstance(wrapper.indicator, StartTextSpan):
                     #print(wrapper.indicator)
@@ -473,7 +522,10 @@ class Wellformedness(object):
                         open_spanners[command].pop()
         return violators, total
 
-    def check_unmatched_stop_text_spans(self, argument=None):
+    def check_unmatched_stop_text_spans(
+        self,
+        argument=None,
+        ) -> typing.Tuple[typing.List, int]:
         r"""
         Checks unmatched stop text spans.
 
@@ -532,13 +584,12 @@ class Wellformedness(object):
             >>> abjad.inspect(voice).wellformed()
             True
 
-        Returns violators and total.
         """
         violators, total = [], 0
         for context in iterate(argument).components(Context):
             wrappers = context._dependent_wrappers[:]
             wrappers.sort(key=lambda _: _.start_offset)
-            open_spanners = {}
+            open_spanners: typing.Dict = {}
             for wrapper in wrappers:
                 if isinstance(wrapper.indicator, StartTextSpan):
                     total += 1
@@ -559,7 +610,10 @@ class Wellformedness(object):
                         open_spanners[command].pop()
         return violators, total
 
-    def check_unterminated_hairpins(self, argument=None):
+    def check_unterminated_hairpins(
+        self,
+        argument=None,
+        ) -> typing.Tuple[typing.List, int]:
         r"""
         Checks unterminated hairpins.
 
@@ -676,7 +730,6 @@ class Wellformedness(object):
             >>> abjad.inspect(voice).wellformed()
             True
 
-        Returns violators and total.
         """
         violators, total = [], 0
         for context in iterate(argument).components(Context):
@@ -697,7 +750,10 @@ class Wellformedness(object):
                 violators.append(wrapper.component)
         return violators, total
 
-    def check_unterminated_text_spanners(self, argument=None):
+    def check_unterminated_text_spanners(
+        self,
+        argument=None,
+        ) -> typing.Tuple[typing.List, int]:
         r"""
         Checks unterminated text spanners.
 
@@ -756,13 +812,12 @@ class Wellformedness(object):
             >>> abjad.inspect(voice).wellformed()
             True
 
-        Returns violators and total.
         """
         violators, total = [], 0
         for context in iterate(argument).components(Context):
             wrappers = context._dependent_wrappers[:]
             wrappers.sort(key=lambda _: _.start_offset)
-            open_spanners = {}
+            open_spanners: typing.Dict = {}
             for wrapper in wrappers:
                 if isinstance(wrapper.indicator, StartTextSpan):
                     total += 1
