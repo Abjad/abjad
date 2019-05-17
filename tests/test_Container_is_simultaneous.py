@@ -76,4 +76,5 @@ def test_Container_is_simultaneous_05():
 
     # not allowed
     container = abjad.Container("c'8 c'8 c'8 c'8")
-    pytest.raises(Exception, 'container.is_simultaneous = True')
+    with pytest.raises(Exception):
+        container.is_simultaneous = True

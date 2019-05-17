@@ -69,8 +69,9 @@ def test_LilyPondParser__spanners__PhrasingSlur_03():
     Single leaf.
     """
 
-    string = '{ c \( \) c c c }'
-    assert pytest.raises(Exception, 'LilyPondParser()(string)')
+    string = r'{ c \( \) c c c }'
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(string)
 
 
 def test_LilyPondParser__spanners__PhrasingSlur_04():
@@ -78,8 +79,9 @@ def test_LilyPondParser__spanners__PhrasingSlur_04():
     Unterminated.
     """
 
-    string = '{ c \( c c c }'
-    assert pytest.raises(Exception, 'LilyPondParser()(string)')
+    string = r'{ c \( c c c }'
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(string)
 
 
 def test_LilyPondParser__spanners__PhrasingSlur_05():
@@ -87,8 +89,9 @@ def test_LilyPondParser__spanners__PhrasingSlur_05():
     Unstarted.
     """
 
-    string = '{ c c c c \) }'
-    assert pytest.raises(Exception, 'LilyPondParser()(string)')
+    string = r'{ c c c c \) }'
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(string)
 
 
 def test_LilyPondParser__spanners__PhrasingSlur_06():
@@ -96,5 +99,6 @@ def test_LilyPondParser__spanners__PhrasingSlur_06():
     Nested.
     """
 
-    string = '{ c \( c \( c \) c \) }'
-    assert pytest.raises(Exception, 'LilyPondParser()(string)')
+    string = r'{ c \( c \( c \) c \) }'
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(string)

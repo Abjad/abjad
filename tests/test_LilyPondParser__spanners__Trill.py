@@ -72,7 +72,8 @@ def test_LilyPondParser__spanners__Trill_03():
     """
 
     string = r'{ c \startTrillSpan \stopTrillSpan c c c }'
-    assert pytest.raises(Exception, 'LilyPondParser()(string)')
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(string)
 
 
 def test_LilyPondParser__spanners__Trill_04():
@@ -81,7 +82,8 @@ def test_LilyPondParser__spanners__Trill_04():
     """
 
     string = r'{ c \startTrillSpan c c c }'
-    assert pytest.raises(Exception, 'LilyPondParser()(string)')
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(string)
 
 
 def test_LilyPondParser__spanners__Trill_05():
@@ -90,7 +92,8 @@ def test_LilyPondParser__spanners__Trill_05():
     """
 
     string = r'{ c c c c \stopTrillSpan }'
-    assert pytest.raises(Exception, 'LilyPondParser()(string)')
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(string)
 
 
 def test_LilyPondParser__spanners__Trill_06():
@@ -99,4 +102,5 @@ def test_LilyPondParser__spanners__Trill_06():
     """
 
     string = r'{ c \startTrillSpan c \startTrillSpan c \stopTrillSpan c \stopTrillSpan }'
-    assert pytest.raises(Exception, 'LilyPondParser()(string)')
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(string)

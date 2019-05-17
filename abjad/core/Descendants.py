@@ -2,7 +2,7 @@ import collections
 from abjad.system.StorageFormatManager import StorageFormatManager
 
 
-class Descendants(collections.Sequence):
+class Descendants(collections.abc.Sequence):
     r'''
     Descendants of a component.
 

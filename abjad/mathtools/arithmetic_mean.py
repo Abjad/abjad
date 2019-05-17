@@ -21,7 +21,7 @@ def arithmetic_mean(argument):
 
     Returns number.
     """
-    if not isinstance(argument, collections.Iterable):
+    if not isinstance(argument, collections.abc.Iterable):
         raise TypeError(argument)
     total = sum(argument)
     length = len(argument)

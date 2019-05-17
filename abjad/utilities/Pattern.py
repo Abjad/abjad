@@ -1367,7 +1367,7 @@ class Pattern(object):
 
         Returns new sequence.
         """
-        assert isinstance(sequence, collections.Iterable), repr(sequence)
+        assert isinstance(sequence, collections.abc.Iterable), repr(sequence)
         length = len(sequence)
         items = []
         for i in range(length):

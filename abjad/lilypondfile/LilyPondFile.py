@@ -1424,7 +1424,7 @@ class LilyPondFile(object):
             message += f' {selections!r}.'
             raise TypeError(message)
         score.append(staff)
-        assert isinstance(divisions, collections.Sequence), repr(divisions)
+        assert isinstance(divisions, collections.abc.Sequence), repr(divisions)
         time_signatures = time_signatures or divisions
         context = Context(lilypond_type='GlobalContext')
         skips = []

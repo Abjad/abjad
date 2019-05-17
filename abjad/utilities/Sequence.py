@@ -16,7 +16,7 @@ from .CyclicTuple import CyclicTuple
 from .Expression import Expression
 
 
-class Sequence(collections.Sequence):
+class Sequence(collections.abc.Sequence):
     """
     Sequence.
 
@@ -88,7 +88,7 @@ class Sequence(collections.Sequence):
         self._equivalence_markup = None
         self._expression = None
         items = items or ()
-        if not isinstance(items, collections.Iterable):
+        if not isinstance(items, collections.abc.Iterable):
             items = [items]
         self._items = tuple(items)
 
@@ -1388,7 +1388,7 @@ class Sequence(collections.Sequence):
         if self._expression:
             return self._update_expression(inspect.currentframe())
         if classes is None:
-            classes = (collections.Sequence, Selection)
+            classes = (collections.abc.Sequence, Selection)
         if Sequence not in classes:
             classes = tuple(list(classes) + [Sequence])
         if indices is None:
@@ -4398,16 +4398,16 @@ class Sequence(collections.Sequence):
             Sequence(['A', 1, 'B', 3, 4, 5, 'A', 7, 'B', 9, 10, 11, 'A', 13, 'B', 15])
 
         """
-        assert isinstance(indices, collections.Sequence)
+        assert isinstance(indices, collections.abc.Sequence)
         assert len(indices) == 2
         index_values, index_period = indices
-        assert isinstance(index_values, collections.Sequence)
+        assert isinstance(index_values, collections.abc.Sequence)
         index_values = list(index_values)
         assert isinstance(index_period, (int, type(None)))
-        assert isinstance(new_material, collections.Sequence)
+        assert isinstance(new_material, collections.abc.Sequence)
         assert len(new_material) == 2
         material_values, material_period = new_material
-        assert isinstance(material_values, collections.Sequence)
+        assert isinstance(material_values, collections.abc.Sequence)
         material_values = list(material_values)
         assert isinstance(material_period, (int, type(None)))
         maxsize = sys.maxsize
@@ -4661,7 +4661,7 @@ class Sequence(collections.Sequence):
             return type(self)(items=reversed(self))
 
         def _reverse_helper(item):
-            if isinstance(item, collections.Iterable):
+            if isinstance(item, collections.abc.Iterable):
                 subitems_ = [_reverse_helper(_) for _ in reversed(item)]
                 return type(item)(subitems_)
             else:
@@ -5321,7 +5321,7 @@ class Sequence(collections.Sequence):
         for item in self:
             if hasattr(item, 'weight'):
                 weights.append(item.weight())
-            elif isinstance(item, collections.Iterable):
+            elif isinstance(item, collections.abc.Iterable):
                 item = Sequence(item)
                 weights.append(item.weight())
             else:
@@ -5387,7 +5387,7 @@ class Sequence(collections.Sequence):
         Returns nested sequence.
         """
         for item in self:
-            if not isinstance(item, collections.Iterable):
+            if not isinstance(item, collections.abc.Iterable):
                 raise Exception(f'must by iterable: {item!r}.')
         items: typing.List[typing.Any] = []
         if cyclic:

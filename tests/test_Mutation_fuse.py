@@ -288,7 +288,8 @@ def test_Mutation_fuse_09():
     tuplet_2 = abjad.Tuplet ((4, 5), "c'8 d'8 e'8 f'8 g'8")
     tuplets = abjad.select([tuplet_1, tuplet_2])
 
-    assert pytest.raises(Exception, 'abjad.mutate(tuplets).fuse()')
+    with pytest.raises(Exception):
+        abjad.mutate(tuplets).fuse()
 
 
 def test_Mutation_fuse_10():

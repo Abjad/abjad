@@ -4,8 +4,8 @@ import pytest
 
 def test_Duration__group_by_implied_prolation_01():
 
-    string = 'Duation._group_by_implied_prolation([])'
-    assert pytest.raises(Exception, string)
+    with pytest.raises(Exception):
+        Duation._group_by_implied_prolation([])
 
 
 def test_Duration__group_by_implied_prolation_02():

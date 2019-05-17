@@ -2,7 +2,7 @@ import collections
 from .TypedCollection import TypedCollection
 
 
-class TypedTuple(TypedCollection, collections.Sequence):
+class TypedTuple(TypedCollection, collections.abc.Sequence):
     """
     Typed tuple.
     """

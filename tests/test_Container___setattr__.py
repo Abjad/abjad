@@ -9,4 +9,5 @@ def test_Container___setattr___01():
 
     container = abjad.Container([])
 
-    assert pytest.raises(AttributeError, "container.foo = 'bar'")
+    with pytest.raises(AttributeError):
+        container.foo = 'bar'

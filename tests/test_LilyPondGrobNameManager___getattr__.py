@@ -8,4 +8,5 @@ def test_LilyPondGrobNameManager___getattr___01():
     """
 
     note = abjad.Note("c'8")
-    assert pytest.raises(Exception, 'override(note).foo')
+    with pytest.raises(Exception):
+        abjad.override(note).foo

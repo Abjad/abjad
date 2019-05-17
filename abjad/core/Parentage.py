@@ -5,7 +5,7 @@ from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.utilities.Multiplier import Multiplier
 
 
-class Parentage(collections.Sequence):
+class Parentage(collections.abc.Sequence):
     r'''
     Parentage of a component.
 

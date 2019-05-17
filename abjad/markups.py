@@ -221,7 +221,7 @@ class Markup(object):
                 assert isinstance(direction, (str, enums.VerticalAlignment)), repr(direction)
             literal = literal or contents.literal
             new_contents = tuple(contents.contents)
-        elif isinstance(contents, collections.Sequence) and 0 < len(contents):
+        elif isinstance(contents, collections.abc.Sequence) and 0 < len(contents):
             new_contents_ = []
             for argument in contents:
                 if isinstance(argument, (str, MarkupCommand)):
@@ -4426,7 +4426,7 @@ class Postscript(object):
             if argument.startswith('/'):
                 return argument
             return '({})'.format(argument)
-        elif isinstance(argument, collections.Sequence):
+        elif isinstance(argument, collections.abc.Sequence):
             if not argument:
                 return '[ ]'
             contents = ' '.join(

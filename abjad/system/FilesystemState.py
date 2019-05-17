@@ -23,11 +23,11 @@ class FilesystemState(ContextManager):
 
     def __init__(self, keep=None, remove=None):
         keep = keep or []
-        assert isinstance(keep, collections.Iterable), repr(keep)
+        assert isinstance(keep, collections.abc.Iterable), repr(keep)
         keep = tuple([str(_) for _ in keep])
         self._keep = keep
         remove = remove or []
-        assert isinstance(remove, collections.Iterable), repr(remove)
+        assert isinstance(remove, collections.abc.Iterable), repr(remove)
         remove = tuple([str(_) for _ in remove])
         self._remove = remove
 

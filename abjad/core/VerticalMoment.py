@@ -1,4 +1,3 @@
-import collections
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.top.inspect import inspect

@@ -6,4 +6,5 @@ def test_MultimeasureRest___setattr___01():
 
     rest = abjad.MultimeasureRest((1, 4))
 
-    assert pytest.raises(AttributeError, "rest.foo = 'bar'")
+    with pytest.raises(AttributeError):
+        rest.foo = 'bar'

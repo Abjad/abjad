@@ -97,8 +97,8 @@ def test_Staff___setitem___05():
 
     staff = abjad.Staff(4 * abjad.Note("c'4"))
 
-    statement = 'staff[0] = [abjad.Note(2, (1, 4)), abjad.Note(2, (1, 4))]'
-    assert pytest.raises(AssertionError, statement)
+    with pytest.raises(AssertionError):
+        staff[0] = [abjad.Note(2, (1, 4)), abjad.Note(2, (1, 4))]
 
 
 def test_Staff___setitem___06():
@@ -108,7 +108,8 @@ def test_Staff___setitem___06():
 
     staff = abjad.Staff(4 * abjad.Note("c'4"))
 
-    assert pytest.raises(Exception, 'staff[0:2] = abjad.Note(2, (1, 4))')
+    with pytest.raises(Exception):
+        staff[0:2] = abjad.Note(2, (1, 4))
 
 
 def test_Staff___setitem___07():

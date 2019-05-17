@@ -3320,9 +3320,10 @@ class Mutation(object):
             >>> import pytest
             >>> staff = abjad.Staff("c'8 [ ( d' e' ] ) c' [ ( d' e' ] )")
             >>> tuplet = abjad.Tuplet((2, 3), "g'8 a' fs'")
-            >>> statement = 'abjad.mutate(staff[-3:]).wrap(tuplet)'
-            >>> pytest.raises(Exception, statement)
-            <ExceptionInfo Exception tblen=...>
+            >>> abjad.mutate(staff[-3:]).wrap(tuplet)
+            Traceback (most recent call last):
+                ...
+            Exception: must be empty container: Tuplet(Multiplier(2, 3), "g'8 a'8 fs'8").
 
         ..  container:: example
 

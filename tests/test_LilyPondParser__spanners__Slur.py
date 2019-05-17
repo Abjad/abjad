@@ -70,7 +70,8 @@ def test_LilyPondParser__spanners__Slur_03():
     """
 
     string = '{ c () c c c }'
-    assert pytest.raises(Exception, 'LilyPondParser()(string)')
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(string)
 
 
 def test_LilyPondParser__spanners__Slur_04():
@@ -79,7 +80,8 @@ def test_LilyPondParser__spanners__Slur_04():
     """
 
     string = '{ c ( c c c }'
-    assert pytest.raises(Exception, 'LilyPondParser()(string)')
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(string)
 
 
 def test_LilyPondParser__spanners__Slur_05():
@@ -88,7 +90,8 @@ def test_LilyPondParser__spanners__Slur_05():
     """
 
     string = '{ c c c c ) }'
-    assert pytest.raises(Exception, 'LilyPondParser()(string)')
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(string)
 
 
 def test_LilyPondParser__spanners__Slur_06():
@@ -97,7 +100,8 @@ def test_LilyPondParser__spanners__Slur_06():
     """
 
     string = '{ c ( c ( c ) c ) }'
-    assert pytest.raises(Exception, 'LilyPondParser()(string)')
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(string)
 
 
 def test_LilyPondParser__spanners__Slur_07():

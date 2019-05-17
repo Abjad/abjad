@@ -312,8 +312,8 @@ def test_Inspection_timespan_25():
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
 
-    statement = 'inspect(staff[0]).timespan(in_seconds=True).start_offset'
-    assert pytest.raises(Exception, statement)
+    with pytest.raises(Exception):
+        abjad.inspect(staff[0]).timespan(in_seconds=True).start_offset
 
 
 def test_Inspection_timespan_26():

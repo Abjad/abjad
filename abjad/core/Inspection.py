@@ -62,7 +62,7 @@ class Inspection(object):
         client: typing.Union[Component, typing.Iterable[Component]] = None,
         ) -> None:
         assert not isinstance(client, str), repr(client)
-        prototype = (Component, collections.Iterable, type(None))
+        prototype = (Component, collections.abc.Iterable, type(None))
         if not isinstance(client, prototype):
             message = 'must be component, nonstring iterable or none:'
             message += f' (not {client!r}).'
@@ -468,7 +468,7 @@ class Inspection(object):
         """
         if isinstance(self.client, Component):
             return self.client._get_duration(in_seconds=in_seconds)
-        assert isinstance(self.client, collections.Iterable), repr(self.client)
+        assert isinstance(self.client, collections.abc.Iterable), repr(self.client)
         durations = [
             Inspection(_).duration(in_seconds=in_seconds)
             for _ in self.client
@@ -1557,7 +1557,7 @@ class Inspection(object):
         """
         if isinstance(self.client, Component):
             return self.client._get_timespan(in_seconds=in_seconds)
-        assert isinstance(self.client, collections.Iterable), repr(self.client)
+        assert isinstance(self.client, collections.abc.Iterable), repr(self.client)
         remaining_items = []
         for i, item in enumerate(self.client):
             if i == 0:

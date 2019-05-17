@@ -39,7 +39,7 @@ class Duplication(object):
         period=None,
         ):
         if counts is not None:
-            if isinstance(counts, collections.Sequence):
+            if isinstance(counts, collections.abc.Sequence):
                 assert len(counts)
                 counts = tuple(int(_) for _ in counts)
                 assert all(0 <= _ for _ in counts)
@@ -157,7 +157,7 @@ class Duplication(object):
         """
         import abjad
 
-        if not isinstance(argument, collections.Sequence):
+        if not isinstance(argument, collections.abc.Sequence):
             argument = (argument,)
 
         counts = self.counts

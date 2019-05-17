@@ -9,4 +9,5 @@ def test_Rest___setattr___01():
 
     rest = abjad.Rest((1, 4))
 
-    assert pytest.raises(AttributeError, "rest.foo = 'bar'")
+    with pytest.raises(AttributeError):
+        rest.foo = 'bar'

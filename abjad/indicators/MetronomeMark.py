@@ -286,11 +286,11 @@ class MetronomeMark(object):
         prototype = (
             int,
             Fraction,
-            collections.Sequence,
+            collections.abc.Sequence,
             type(None),
             )
         assert isinstance(units_per_minute, prototype)
-        if isinstance(units_per_minute, collections.Sequence):
+        if isinstance(units_per_minute, collections.abc.Sequence):
             assert len(units_per_minute) == 2
             item_prototype = (int, Duration)
             assert units_per_minute is not None

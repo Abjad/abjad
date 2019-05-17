@@ -9,4 +9,5 @@ def test_Staff___setattr___01():
 
     staff = abjad.Staff([])
 
-    assert pytest.raises(AttributeError, "staff.foo = 'bar'")
+    with pytest.raises(AttributeError):
+        staff.foo = 'bar'

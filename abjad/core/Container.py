@@ -126,7 +126,7 @@ class Container(Component):
 
         >>> import collections
         >>> container = abjad.Container("c'4 e'4 d'4 e'8 f'8")
-        >>> isinstance(container, collections.Iterable)
+        >>> isinstance(container, collections.abc.Iterable)
         True
 
     ..  container:: example
@@ -135,7 +135,7 @@ class Container(Component):
         reverse:
 
         >>> container = abjad.Container("c'4 e'4 d'4 e'8 f'8")
-        >>> isinstance(container, collections.Sequence)
+        >>> isinstance(container, collections.abc.Sequence)
         False
 
     ..  container:: example
@@ -395,7 +395,7 @@ class Container(Component):
 
             >>> import collections
             >>> container = abjad.Container()
-            >>> isinstance(container, collections.Iterable)
+            >>> isinstance(container, collections.abc.Iterable)
             True
 
         ..  container:: example
@@ -404,7 +404,7 @@ class Container(Component):
 
             >>> import collections
             >>> container = abjad.Container()
-            >>> isinstance(container, collections.Sequence)
+            >>> isinstance(container, collections.abc.Sequence)
             False
 
         Yields container elements.
@@ -684,7 +684,7 @@ class Container(Component):
         return ['is_simultaneous', 'name']
 
     def _initialize_components(self, components):
-        if (isinstance(components, collections.Iterable) and
+        if (isinstance(components, collections.abc.Iterable) and
             not isinstance(components, str)):
             components_ = []
             for item in components:
@@ -1297,7 +1297,7 @@ class Container(Component):
         """
         if isinstance(argument, str):
             argument = self._parse_string(argument)
-        elif isinstance(argument, collections.Iterable):
+        elif isinstance(argument, collections.abc.Iterable):
             argument_ = []
             for item in argument:
                 if isinstance(item, str):

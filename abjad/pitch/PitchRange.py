@@ -767,7 +767,7 @@ class PitchRange(object):
         Returns a list of `pitch_carrier` objects.
         """
         import abjad
-        if isinstance(pitch_carrier, collections.Iterable):
+        if isinstance(pitch_carrier, collections.abc.Iterable):
             if all(isinstance(x, (int, float)) for x in pitch_carrier):
                 return self._list_numeric_octave_transpositions(pitch_carrier)
         prototype = (abjad.Chord, abjad.PitchSet)

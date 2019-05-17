@@ -2,7 +2,7 @@ import collections
 from abjad.system.StorageFormatManager import StorageFormatManager
 
 
-class Lineage(collections.Sequence):
+class Lineage(collections.abc.Sequence):
     r'''
     Lineage of a component.
 
