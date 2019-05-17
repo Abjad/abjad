@@ -16,7 +16,7 @@ class DrumNoteHead(NoteHead):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Note-heads'
+    __documentation_section__ = "Note-heads"
 
     __slots__ = ()
 
@@ -24,14 +24,15 @@ class DrumNoteHead(NoteHead):
 
     def __init__(
         self,
-        written_pitch: str = 'snare',
+        written_pitch: str = "snare",
         client=None,
         is_cautionary: bool = None,
         is_forced: bool = None,
         is_parenthesized: bool = None,
         tweaks: LilyPondTweakManager = None,
-        ) -> None:
+    ) -> None:
         from abjad.ly import drums
+
         NoteHead.__init__(
             self,
             written_pitch=None,
@@ -40,7 +41,7 @@ class DrumNoteHead(NoteHead):
             is_forced=is_forced,
             is_parenthesized=is_parenthesized,
             tweaks=tweaks,
-            )
+        )
         assert str(written_pitch) in drums
         drum_pitch = drums[str(written_pitch)]
         self._written_pitch = drum_pitch

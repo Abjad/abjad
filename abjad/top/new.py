@@ -71,14 +71,15 @@ def new(argument, **keywords):
     Returns new object with type equal to that of ``argument``.
     """
     import abjad
+
     if argument is None:
         return argument
     manager = abjad.StorageFormatManager(argument)
     template_dict = manager.get_template_dict()
     recursive_arguments = {}
     for key, value in keywords.items():
-        if '__' in key:
-            key, divider, subkey = key.partition('__')
+        if "__" in key:
+            key, divider, subkey = key.partition("__")
             if key not in recursive_arguments:
                 recursive_arguments[key] = []
             pair = (subkey, value)
@@ -94,7 +95,7 @@ def new(argument, **keywords):
                 manager_ = abjad.StorageFormatManager(argument)
                 template_dict.update(manager_.get_template_dict())
         else:
-            message = f'{type(argument)} has no key {key!r}.'
+            message = f"{type(argument)} has no key {key!r}."
             raise KeyError(message)
     for key, pairs in recursive_arguments.items():
         recursed_object = getattr(argument, key)
@@ -109,7 +110,7 @@ def new(argument, **keywords):
         if name in template_dict:
             positional_values.append(template_dict.pop(name))
     result = type(argument)(*positional_values, **template_dict)
-    for name in getattr(argument, '_private_attributes_to_copy', []):
+    for name in getattr(argument, "_private_attributes_to_copy", []):
         value = getattr(argument, name, None)
         setattr(result, name, value)
     return result

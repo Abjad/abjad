@@ -6,7 +6,7 @@ def test_Rest___init___01():
     Initialize rest from LilyPond input string.
     """
 
-    rest = abjad.Rest('r8.')
+    rest = abjad.Rest("r8.")
 
     assert rest.written_duration == abjad.Duration(3, 16)
 
@@ -16,8 +16,8 @@ def test_Rest___init___02():
     Initialize rest from other rest.
     """
 
-    rest_1 = abjad.Rest('r4', multiplier=(1, 2))
-    abjad.override(rest_1).staff.note_head.color = 'red'
+    rest_1 = abjad.Rest("r4", multiplier=(1, 2))
+    abjad.override(rest_1).staff.note_head.color = "red"
     rest_2 = abjad.Rest(rest_1)
 
     assert isinstance(rest_1, abjad.Rest)
@@ -52,8 +52,8 @@ def test_Rest___init___04():
     assert format(rest) == abjad.String.normalize(
         r"""
         r4
-        """,
-        )
+        """
+    )
 
     assert abjad.inspect(rest).wellformed()
 
@@ -72,8 +72,8 @@ def test_Rest___init___05():
         r"""
         r8
         [
-        """,
-        )
+        """
+    )
 
     assert abjad.inspect(rest).wellformed()
 
@@ -83,14 +83,14 @@ def test_Rest___init___06():
     Initialize rest from skip.
     """
 
-    skip = abjad.Skip('s4')
+    skip = abjad.Skip("s4")
     rest = abjad.Rest(skip)
 
     assert format(rest) == abjad.String.normalize(
         r"""
         r4
-        """,
-        )
+        """
+    )
 
     assert abjad.inspect(rest).wellformed()
 
@@ -100,15 +100,15 @@ def test_Rest___init___07():
     Initialize rest from tupletted skip.
     """
 
-    skip = abjad.Skip('s4')
+    skip = abjad.Skip("s4")
     tuplet = abjad.Tuplet((2, 3), 3 * skip)
     rest = abjad.Rest(tuplet[0])
 
     assert format(rest) == abjad.String.normalize(
         r"""
         r4
-        """,
-        )
+        """
+    )
 
     assert abjad.inspect(rest).wellformed()
 
@@ -118,7 +118,7 @@ def test_Rest___init___08():
     Initialize rest from beamed skip.
     """
 
-    skip = abjad.Skip('s8')
+    skip = abjad.Skip("s8")
     staff = abjad.Staff("c'8 [ s4 c'd ]")
     rest = abjad.Rest(staff[1])
 
@@ -126,7 +126,7 @@ def test_Rest___init___08():
         r"""
         r4
         """
-        )
+    )
 
     assert abjad.inspect(rest).wellformed()
 
@@ -143,7 +143,7 @@ def test_Rest___init___09():
         r"""
         r4
         """
-        )
+    )
 
     assert abjad.inspect(rest).wellformed()
 
@@ -160,7 +160,7 @@ def test_Rest___init___10():
         r"""
         r4
         """
-        )
+    )
 
     assert abjad.inspect(rest).wellformed()
 
@@ -178,7 +178,7 @@ def test_Rest___init___11():
         r8
         [
         """
-        )
+    )
 
     assert abjad.inspect(rest).wellformed()
 
@@ -205,7 +205,7 @@ def test_Rest___init___12():
             )
         }
         """
-        )
+    )
 
     assert abjad.inspect(voice).wellformed()
 
@@ -221,6 +221,6 @@ def test_Rest___init___13():
         r"""
         r4
         """
-        )
+    )
 
     assert abjad.inspect(rest).wellformed()

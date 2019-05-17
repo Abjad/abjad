@@ -15,10 +15,7 @@ class Interval(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_interval_class',
-        '_octaves',
-        )
+    __slots__ = ("_interval_class", "_octaves")
 
     _is_abstract = True
 
@@ -27,6 +24,7 @@ class Interval(object):
     @abc.abstractmethod
     def __init__(self, argument):
         import abjad
+
         if isinstance(argument, str):
             match = constants._interval_name_abbreviation_regex.match(argument)
             if match is None:
@@ -35,24 +33,24 @@ class Interval(object):
                     self._from_number(argument)
                     return
                 except ValueError:
-                    message = 'can not initialize {} from {!r}.'
+                    message = "can not initialize {} from {!r}."
                     message = message.format(type(self).__name__, argument)
                     raise ValueError(message)
-                message = 'can not initialize {} from {!r}.'
+                message = "can not initialize {} from {!r}."
                 message = message.format(type(self).__name__, argument)
                 raise ValueError(message)
             group_dict = match.groupdict()
-            direction = group_dict['direction']
-            if direction == '-':
+            direction = group_dict["direction"]
+            if direction == "-":
                 direction = -1
             else:
                 direction = 1
-            quality = group_dict['quality']
-            diatonic_number = int(group_dict['number'])
+            quality = group_dict["quality"]
+            diatonic_number = int(group_dict["number"])
             quality = self._validate_quality_and_diatonic_number(
-                quality, diatonic_number,
+                quality, diatonic_number
             )
-            quartertone = group_dict['quartertone']
+            quartertone = group_dict["quartertone"]
             quality += quartertone
             self._from_named_parts(direction, quality, diatonic_number)
         elif isinstance(argument, tuple) and len(argument) == 2:
@@ -60,7 +58,7 @@ class Interval(object):
             direction = mathtools.sign(number)
             diatonic_number = abs(number)
             quality = self._validate_quality_and_diatonic_number(
-                quality, diatonic_number,
+                quality, diatonic_number
             )
             self._from_named_parts(direction, quality, diatonic_number)
         elif isinstance(argument, numbers.Number):
@@ -68,7 +66,7 @@ class Interval(object):
         elif isinstance(argument, (Interval, abjad.IntervalClass)):
             self._from_interval_or_interval_class(argument)
         else:
-            message = 'can not initialize {} from {!r}.'
+            message = "can not initialize {} from {!r}."
             message = message.format(type(self).__name__, argument)
             raise ValueError(message)
 
@@ -106,7 +104,7 @@ class Interval(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     @abc.abstractmethod
@@ -163,8 +161,8 @@ class Interval(object):
             diatonic_pc_number -= 7
             octave_number += 1
 
-        quartertone = ''
-        if quality.endswith(('+', '~')):
+        quartertone = ""
+        if quality.endswith(("+", "~")):
             quality, quartertone = quality[:-1], quality[-1]
 
         base_quality = quality
@@ -172,15 +170,16 @@ class Interval(object):
             base_quality = quality[0]
 
         semitones = constants._diatonic_number_and_quality_to_semitones[
-            diatonic_pc_number][base_quality]
-        if base_quality == 'd':
-            semitones -= (len(quality) - 1)
-        elif base_quality == 'A':
-            semitones += (len(quality) - 1)
+            diatonic_pc_number
+        ][base_quality]
+        if base_quality == "d":
+            semitones -= len(quality) - 1
+        elif base_quality == "A":
+            semitones += len(quality) - 1
 
-        if quartertone == '+':
+        if quartertone == "+":
             semitones += 0.5
-        elif quartertone == '~':
+        elif quartertone == "~":
             semitones -= 0.5
 
         if abs(diatonic_number) == 1:
@@ -195,11 +194,13 @@ class Interval(object):
         number = cls._to_nearest_quarter_tone(float(number))
         direction = mathtools.sign(number)
         octaves, semitones = divmod(abs(number), 12)
-        quartertone = ''
+        quartertone = ""
         if semitones % 1:
             semitones -= 0.5
-            quartertone = '+'
-        quality, diatonic_number = constants._semitones_to_quality_and_diatonic_number[semitones]
+            quartertone = "+"
+        quality, diatonic_number = constants._semitones_to_quality_and_diatonic_number[
+            semitones
+        ]
         quality += quartertone
         diatonic_number += octaves * 7
         diatonic_number = cls._to_nearest_quarter_tone(diatonic_number)
@@ -218,19 +219,25 @@ class Interval(object):
     @classmethod
     def _validate_quality_and_diatonic_number(cls, quality, diatonic_number):
         if quality in constants._quality_string_to_quality_abbreviation:
-            quality = constants._quality_string_to_quality_abbreviation[quality]
-        if quality == 'aug':
-            quality = 'A'
-        if quality == 'dim':
-            quality = 'd'
+            quality = constants._quality_string_to_quality_abbreviation[
+                quality
+            ]
+        if quality == "aug":
+            quality = "A"
+        if quality == "dim":
+            quality = "d"
         octaves = 0
         diatonic_pc_number = diatonic_number
         while diatonic_pc_number > 7:
             diatonic_pc_number -= 7
             octaves += 1
-        if constants._diatonic_number_and_quality_to_semitones.get(
-            diatonic_pc_number, {}).get(quality[0]) is None:
-            message = 'can not initialize {} from {!r} and {!r}.'
+        if (
+            constants._diatonic_number_and_quality_to_semitones.get(
+                diatonic_pc_number, {}
+            ).get(quality[0])
+            is None
+        ):
+            message = "can not initialize {} from {!r} and {!r}."
             message = message.format(cls.__name__, quality, diatonic_number)
             raise ValueError(message)
         return quality
@@ -300,6 +307,7 @@ class Interval(object):
         Returns new pitch carrier.
         """
         import abjad
+
         if isinstance(pitch_carrier, (abjad.Pitch, abjad.PitchClass)):
             return pitch_carrier.transpose(self)
         elif isinstance(pitch_carrier, abjad.Note):

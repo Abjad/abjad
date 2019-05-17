@@ -9,10 +9,7 @@ class LilyPondDuration(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        'duration',
-        'multiplier',
-        )
+    __slots__ = ("duration", "multiplier")
 
     ### INITIALIZER ###
 

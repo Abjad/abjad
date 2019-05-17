@@ -27,6 +27,6 @@ def is_nonnegative_integer_power_of_two(argument) -> bool:
     elif isinstance(argument, Fraction):
         return is_nonnegative_integer_power_of_two(
             argument.numerator * argument.denominator
-            )
+        )
     else:
         return False

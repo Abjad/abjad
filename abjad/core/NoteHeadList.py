@@ -34,45 +34,37 @@ class NoteHeadList(TypedList):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Note-heads'
+    __documentation_section__ = "Note-heads"
 
-    __slots__ = (
-        '_client',
-        )
+    __slots__ = ("_client",)
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        items=None,
-        client=None,
-        ):
+    def __init__(self, items=None, client=None):
         import abjad
+
         self._client = client
         TypedList.__init__(
-            self,
-            item_class=abjad.NoteHead,
-            keep_sorted=True,
-            items=items,
-            )
+            self, item_class=abjad.NoteHead, keep_sorted=True, items=items
+        )
 
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
         agent = StorageFormatManager(self)
         names = list(agent.signature_keyword_names)
-        if 'client' in names:
-            names.remove('client')
-        if 'items' in names:
-            names.remove('items')
-        if 'keep_sorted' in names:
-            names.remove('keep_sorted')
+        if "client" in names:
+            names.remove("client")
+        if "items" in names:
+            names.remove("items")
+        if "keep_sorted" in names:
+            names.remove("keep_sorted")
         return FormatSpecification(
             self,
             repr_is_indented=False,
             storage_format_args_values=[self._collection],
             storage_format_kwargs_names=names,
-            )
+        )
 
     def _on_insertion(self, item):
         item._client = self.client
@@ -89,7 +81,9 @@ class NoteHeadList(TypedList):
                 token = abjad.NoteHead(written_pitch=token)
                 token._client = self.client
             return token
+
         import abjad
+
         return coerce_
 
     ### PUBLIC METHODS ###
@@ -188,6 +182,7 @@ class NoteHeadList(TypedList):
         Returns note-head.
         """
         import abjad
+
         result = []
         pitch = abjad.NamedPitch(pitch)
         for note_head in self:
@@ -195,13 +190,13 @@ class NoteHeadList(TypedList):
                 result.append(note_head)
         count = len(result)
         if count == 0:
-            message = 'missing note-head.'
+            message = "missing note-head."
             raise ValueError(message)
         elif count == 1:
             note_head = result[0]
             return note_head
         else:
-            message = 'extra note-head.'
+            message = "extra note-head."
             raise ValueError(message)
 
     def pop(self, i=-1):

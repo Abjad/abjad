@@ -17,7 +17,7 @@ def make_desordre_pitches():
         [[4, 5, 7, 9, 11], [2, 4, 5]],
         [[-5, 4, 5, 7, 9, 11, 12]],
         [[2, 9, 11], [2, 9, 11, 12, 14]],
-        ]
+    ]
 
     left_hand = [
         [[-9, -4, -2], [-9, -4, -2, 1, 3]],
@@ -29,7 +29,7 @@ def make_desordre_pitches():
         [[-14, -11, -9, -6, -4], [-14, -11, -9]],
         [[-11, -2, 1, -6, -4, -2, 1, 3]],
         [[-6, 1, 3], [-6, -4, -2, 1, 3]],
-        ]
+    ]
 
     return [right_hand, left_hand]
 
@@ -43,25 +43,25 @@ def make_desordre_cell(pitches):
     notes = abjad.Selection(notes)
     abjad.beam(notes)
     abjad.slur(notes)
-    clef = abjad.Dynamic('f')
+    clef = abjad.Dynamic("f")
     abjad.attach(clef, notes[0])
-    dynamic = abjad.Dynamic('p')
+    dynamic = abjad.Dynamic("p")
     abjad.attach(dynamic, notes[1])
 
     # make the lower voice
     lower_voice = abjad.Voice(notes)
-    lower_voice.name = 'RH Lower Voice'
-    command = abjad.LilyPondLiteral(r'\voiceTwo')
+    lower_voice.name = "RH Lower Voice"
+    command = abjad.LilyPondLiteral(r"\voiceTwo")
     abjad.attach(command, lower_voice)
-    n = int(math.ceil(len(pitches) / 2.))
+    n = int(math.ceil(len(pitches) / 2.0))
     chord = abjad.Chord([pitches[0], pitches[0] + 12], (n, 8))
-    articulation = abjad.Articulation('>')
+    articulation = abjad.Articulation(">")
     abjad.attach(articulation, chord)
 
     # make the upper voice
     upper_voice = abjad.Voice([chord])
-    upper_voice.name = 'RH Upper Voice'
-    command = abjad.LilyPondLiteral(r'\voiceOne')
+    upper_voice.name = "RH Upper Voice"
+    command = abjad.LilyPondLiteral(r"\voiceOne")
     abjad.attach(command, upper_voice)
 
     # combine them together
@@ -71,7 +71,7 @@ def make_desordre_cell(pitches):
     # make all 1/8 beats breakable
     leaves = abjad.select(lower_voice).leaves()
     for leaf in leaves[:-1]:
-        bar_line = abjad.BarLine('')
+        bar_line = abjad.BarLine("")
         abjad.attach(bar_line, leaf)
 
     return container
@@ -111,7 +111,7 @@ def make_desordre_score(pitches):
 
     assert len(pitches) == 2
     staff_group = abjad.StaffGroup()
-    staff_group.lilypond_type = 'PianoStaff'
+    staff_group.lilypond_type = "PianoStaff"
 
     # build the music
     for hand in pitches:
@@ -120,9 +120,9 @@ def make_desordre_score(pitches):
 
     # set clef and key signature to left hand staff
     leaf = abjad.inspect(staff_group[1]).leaf(0)
-    clef = abjad.Clef('bass')
+    clef = abjad.Clef("bass")
     abjad.attach(clef, leaf)
-    key_signature = abjad.KeySignature('b', 'major')
+    key_signature = abjad.KeySignature("b", "major")
     abjad.attach(key_signature, leaf)
 
     # wrap the piano staff in a score
@@ -136,23 +136,19 @@ def make_desordre_lilypond_file(score):
     Makes Désordre LilyPond file.
     """
     lilypond_file = abjad.LilyPondFile.new(
-        music=score,
-        default_paper_size=('a4', 'letter'),
-        global_staff_size=14,
-        )
+        music=score, default_paper_size=("a4", "letter"), global_staff_size=14
+    )
 
     lilypond_file.layout_block.indent = 0
     lilypond_file.layout_block.ragged_right = True
     lilypond_file.layout_block.merge_differently_dotted = True
     lilypond_file.layout_block.merge_differently_headed = True
 
-    context_block = abjad.ContextBlock(
-        source_lilypond_type='Score',
-        )
+    context_block = abjad.ContextBlock(source_lilypond_type="Score")
     lilypond_file.layout_block.items.append(context_block)
-    context_block.remove_commands.append('Bar_number_engraver')
-    context_block.remove_commands.append('Default_bar_line_engraver')
-    context_block.remove_commands.append('Timing_translator')
+    context_block.remove_commands.append("Bar_number_engraver")
+    context_block.remove_commands.append("Default_bar_line_engraver")
+    context_block.remove_commands.append("Timing_translator")
     abjad.override(context_block).beam.breakable = True
     abjad.override(context_block).glissando.breakable = True
     abjad.override(context_block).note_column.ignore_collision = True
@@ -162,49 +158,47 @@ def make_desordre_lilypond_file(score):
     abjad.override(context_block).tuplet_bracket.bracket_visibility = True
     abjad.override(context_block).tuplet_bracket.minimum_length = 3
     abjad.override(context_block).tuplet_bracket.padding = 2
-    scheme = abjad.Scheme('ly:spanner::set-spacing-rods')
+    scheme = abjad.Scheme("ly:spanner::set-spacing-rods")
     abjad.override(context_block).tuplet_bracket.springs_and_rods = scheme
-    scheme = abjad.Scheme('tuplet-number::calc-fraction-text')
+    scheme = abjad.Scheme("tuplet-number::calc-fraction-text")
     abjad.override(context_block).tuplet_number.text = scheme
     abjad.setting(context_block).autoBeaming = False
     moment = abjad.SchemeMoment((1, 12))
     abjad.setting(context_block).proportionalNotationDuration = moment
     abjad.setting(context_block).tupletFullLength = True
 
-    context_block = abjad.ContextBlock(
-        source_lilypond_type='Staff',
-        )
+    context_block = abjad.ContextBlock(source_lilypond_type="Staff")
     lilypond_file.layout_block.items.append(context_block)
     # LilyPond CAUTION: Timing_translator must appear
     #                   before Default_bar_line_engraver!
-    context_block.consists_commands.append('Timing_translator')
-    context_block.consists_commands.append('Default_bar_line_engraver')
+    context_block.consists_commands.append("Timing_translator")
+    context_block.consists_commands.append("Default_bar_line_engraver")
     scheme = abjad.Scheme("'numbered")
     abjad.override(context_block).time_signature.style = scheme
 
-    context_block = abjad.ContextBlock(
-        source_lilypond_type='RhythmicStaff',
-        )
+    context_block = abjad.ContextBlock(source_lilypond_type="RhythmicStaff")
     lilypond_file.layout_block.items.append(context_block)
     # LilyPond CAUTION: Timing_translator must appear
     #                   before Default_bar_line_engraver!
-    context_block.consists_commands.append('Timing_translator')
-    context_block.consists_commands.append('Default_bar_line_engraver')
+    context_block.consists_commands.append("Timing_translator")
+    context_block.consists_commands.append("Default_bar_line_engraver")
     scheme = abjad.Scheme("'numbered")
     abjad.override(context_block).time_signature.style = scheme
-    abjad.override(context_block).vertical_axis_group.minimum_Y_extent = (-2, 4)
+    abjad.override(context_block).vertical_axis_group.minimum_Y_extent = (
+        -2,
+        4,
+    )
 
-    context_block = abjad.ContextBlock(
-        source_lilypond_type='Voice',
-        )
+    context_block = abjad.ContextBlock(source_lilypond_type="Voice")
     lilypond_file.layout_block.items.append(context_block)
-    context_block.remove_commands.append('Forbid_line_break_engraver')
+    context_block.remove_commands.append("Forbid_line_break_engraver")
 
     return lilypond_file
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     from abjad import show
+
     pitches = make_desordre_pitches()
     score = make_desordre_score(pitches)
     lilypond_file = make_desordre_lilypond_file(score)

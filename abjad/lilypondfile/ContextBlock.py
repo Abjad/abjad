@@ -50,13 +50,9 @@ class ContextBlock(Block):
     ### INITIALIZER ###
 
     def __init__(
-        self,
-        source_lilypond_type=None,
-        name=None,
-        type_=None,
-        alias=None,
-        ):
-        Block.__init__(self, name='context')
+        self, source_lilypond_type=None, name=None, type_=None, alias=None
+    ):
+        Block.__init__(self, name="context")
         self._source_lilypond_type = source_lilypond_type
         self._name = name
         self._type_ = type_
@@ -70,60 +66,60 @@ class ContextBlock(Block):
     def _get_format_pieces(self, tag=None):
         indent = LilyPondFormatManager.indent
         result = []
-        string = f'{self._escaped_name} {{'
+        string = f"{self._escaped_name} {{"
         result.append(string)
         manager = LilyPondFormatManager
         # CAUTION: source context name must come before type_ to allow
         # context redefinition.
         if self.source_lilypond_type is not None:
-            string = indent + rf'\{self.source_lilypond_type}'
+            string = indent + rf"\{self.source_lilypond_type}"
             result.append(string)
         if self.name is not None:
-            string = indent + rf'\name {self.name}'
+            string = indent + rf"\name {self.name}"
             result.append(string)
         if self.type_ is not None:
-            string = indent + rf'\type {self.type_}'
+            string = indent + rf"\type {self.type_}"
             result.append(string)
         if self.alias is not None:
-            string = indent + rf'\alias {self.alias}'
+            string = indent + rf"\alias {self.alias}"
             result.append(string)
         for statement in self.remove_commands:
-            string = indent + rf'\remove {statement}'
+            string = indent + rf"\remove {statement}"
             result.append(string)
         # CAUTION: LilyPond \consists statements are order-significant!
         for statement in self.consists_commands:
-            string = indent + rf'\consists {statement}'
+            string = indent + rf"\consists {statement}"
             result.append(string)
         for statement in self.accepts_commands:
-            string = indent + rf'\accepts {statement}'
+            string = indent + rf"\accepts {statement}"
             result.append(string)
-        overrides = override(self)._list_format_contributions('override')
+        overrides = override(self)._list_format_contributions("override")
         for statement in overrides:
             string = indent + statement
             result.append(string)
         setting_contributions = []
         for key, value in setting(self)._get_attribute_tuples():
-            setting_contribution = \
-                manager.format_lilypond_context_setting_in_with_block(
-                    key, value)
+            setting_contribution = manager.format_lilypond_context_setting_in_with_block(
+                key, value
+            )
             setting_contributions.append(setting_contribution)
         for setting_contribution in sorted(setting_contributions):
             string = indent + setting_contribution
             result.append(string)
         for item in self.items:
             if isinstance(item, str):
-                string = indent + f'{item}'
+                string = indent + f"{item}"
                 result.append(string)
-            elif '_get_format_pieces' in dir(item):
+            elif "_get_format_pieces" in dir(item):
                 for piece in item._get_format_pieces():
                     if piece.isspace():
-                        piece = ''
+                        piece = ""
                     else:
                         piece = indent + piece
                     result.append(piece)
             else:
                 pass
-        result.append('}')
+        result.append("}")
         return result
 
     ### PUBLIC PROPERTIES ###

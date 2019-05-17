@@ -11,7 +11,7 @@ def test_Mutation_replace_01():
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     abjad.beam(staff[:2])
     abjad.beam(staff[2:])
-    abjad.hairpin('< !', staff[:])
+    abjad.hairpin("< !", staff[:])
 
     assert format(staff) == abjad.String.normalize(
         r"""
@@ -29,7 +29,7 @@ def test_Mutation_replace_01():
             ]
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     old_notes = staff[1:3]
     new_notes = 5 * abjad.Note("c''16")
@@ -52,7 +52,7 @@ def test_Mutation_replace_01():
             ]
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     assert abjad.inspect(staff).wellformed()
 
@@ -82,7 +82,7 @@ def test_Mutation_replace_02():
             ]
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     old_notes = staff[:1]
     new_notes = 5 * abjad.Note("c''16")
@@ -105,7 +105,7 @@ def test_Mutation_replace_02():
             ]
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     assert abjad.inspect(staff).wellformed()
 
@@ -135,7 +135,7 @@ def test_Mutation_replace_03():
             ]
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     old_notes = staff[:2]
     new_notes = 5 * abjad.Note("c''16")
@@ -156,7 +156,7 @@ def test_Mutation_replace_03():
             ]
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     assert abjad.inspect(staff).wellformed()
 
@@ -186,7 +186,7 @@ def test_Mutation_replace_04():
             ]
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     old_notes = staff[:3]
     new_notes = 5 * abjad.Note("c''16")
@@ -205,7 +205,7 @@ def test_Mutation_replace_04():
             ]
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     assert abjad.inspect(staff).wellformed()
 
@@ -235,7 +235,7 @@ def test_Mutation_replace_05():
             ]
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     old_notes = staff[:]
     new_notes = 5 * abjad.Note("c''16")
@@ -252,7 +252,7 @@ def test_Mutation_replace_05():
             c''16
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     assert abjad.inspect(staff).wellformed()
 
@@ -286,7 +286,7 @@ def test_Mutation_replace_06():
             }
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     voice_selection = staff[:1]
     voice = voice_selection[0]
@@ -304,7 +304,7 @@ def test_Mutation_replace_06():
             ]
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     assert not voice
     assert abjad.inspect(staff).wellformed()

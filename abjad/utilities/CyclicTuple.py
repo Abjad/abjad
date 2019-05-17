@@ -36,16 +36,11 @@ class CyclicTuple(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_items',
-        )
+    __slots__ = ("_items",)
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        items: typing.Sequence = None,
-        ) -> None:
+    def __init__(self, items: typing.Sequence = None) -> None:
         items = items or ()
         items = tuple(items)
         self._items: typing.Tuple = items
@@ -69,7 +64,7 @@ class CyclicTuple(object):
             return self._items == argument._items
         return False
 
-    def __format__(self, format_specification='') -> str:
+    def __format__(self, format_specification="") -> str:
         """
         Formats object.
         """
@@ -100,13 +95,14 @@ class CyclicTuple(object):
         Raises index error when ``argument`` can not be found in cyclic tuple.
         """
         if isinstance(argument, slice):
-            if ((argument.stop is not None and argument.stop < 0) or
-                (argument.start is not None and argument.start < 0)):
+            if (argument.stop is not None and argument.stop < 0) or (
+                argument.start is not None and argument.start < 0
+            ):
                 return self._items.__getitem__(argument)
             else:
                 return self._get_slice(argument.start, argument.stop)
         if not self:
-            raise IndexError(f'cyclic tuple is empty: {self!r}.')
+            raise IndexError(f"cyclic tuple is empty: {self!r}.")
         argument = argument % len(self)
         return self._items.__getitem__(argument)
 
@@ -162,20 +158,21 @@ class CyclicTuple(object):
         """
         if self:
             contents = [str(item) for item in self._items]
-            string = ', '.join(contents)
-            string = f'({string})'
+            string = ", ".join(contents)
+            string = f"({string})"
             return string
-        return '()'
+        return "()"
 
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
         import abjad
+
         return abjad.FormatSpecification(
             client=self,
             repr_is_indented=False,
             storage_format_args_values=[list(self._items)],
-            )
+        )
 
     def _get_slice(self, start_index, stop_index):
         if stop_index is not None and 1000000 < stop_index:

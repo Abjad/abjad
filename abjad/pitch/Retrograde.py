@@ -16,9 +16,7 @@ class Retrograde(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_period',
-        )
+    __slots__ = ("_period",)
 
     ### INITIALIZER ###
 
@@ -111,6 +109,7 @@ class Retrograde(object):
 
         """
         import abjad
+
         return abjad.CompoundOperator._compose_operators(self, operator)
 
     def __call__(self, argument):
@@ -149,20 +148,19 @@ class Retrograde(object):
         Returns new object with type equal to that of `argument`.
         """
         import abjad
+
         if isinstance(argument, (abjad.Pitch, abjad.PitchClass)):
             return argument
-        if not isinstance(argument, (
-            abjad.PitchSegment, abjad.PitchClassSegment,
-            )):
+        if not isinstance(
+            argument, (abjad.PitchSegment, abjad.PitchClassSegment)
+        ):
             argument = abjad.PitchSegment(argument)
         if not self.period:
             return type(argument)(reversed(argument))
         result = abjad.new(argument, items=())
         for shard in abjad.sequence(argument).partition_by_counts(
-            [self.period],
-            cyclic=True,
-            overhang=True,
-            ):
+            [self.period], cyclic=True, overhang=True
+        ):
             shard = type(argument)(shard)
             shard = type(argument)(reversed(shard))
             result = result + shard
@@ -183,7 +181,7 @@ class Retrograde(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     def __radd__(self, operator):
@@ -199,7 +197,7 @@ class Retrograde(object):
 
         Raises not implemented error.
         """
-        message = 'right-addition not defined on {}.'
+        message = "right-addition not defined on {}."
         message = message.format(type(self).__name__)
         raise NotImplementedError(message)
 
@@ -219,12 +217,12 @@ class Retrograde(object):
             'R'
 
         """
-        return 'R'
+        return "R"
 
     ### PRIVATE METHODS ###
 
     def _get_markup(self, direction=None):
-        return markups.Markup('R', direction=direction)
+        return markups.Markup("R", direction=direction)
 
     def _is_identity_operator(self):
         return False

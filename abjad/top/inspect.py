@@ -36,4 +36,5 @@ def inspect(client):
 
     """
     import abjad
+
     return abjad.Inspection(client=client)

@@ -15,8 +15,8 @@ def test_NoteHead___init___02():
     Initialize note-head by LilyPond-style pitch string.
     """
 
-    notehead = abjad.NoteHead('cs,,,')
-    assert notehead.written_pitch == abjad.NamedPitch('cs,,,')
+    notehead = abjad.NoteHead("cs,,,")
+    assert notehead.written_pitch == abjad.NamedPitch("cs,,,")
 
 
 def test_NoteHead___init___03():
@@ -37,6 +37,6 @@ def test_NoteHead___init___04():
     Initialize note-head with tweak manager.
     """
 
-    note_head = abjad.NoteHead("cs''", tweaks=abjad.tweak('red').color)
+    note_head = abjad.NoteHead("cs''", tweaks=abjad.tweak("red").color)
 
     assert format(note_head) == "\\tweak color #red\ncs''"

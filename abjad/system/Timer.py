@@ -38,18 +38,18 @@ class Timer(ContextManager):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Context managers'
+    __documentation_section__ = "Context managers"
 
     __slots__ = (
-        '_enter_message',
-        '_exit_message',
-        '_print_continuously_from_background',
-        '_process',
-        '_start_time',
-        '_stop_time',
-        '_timer_process',
-        '_verbose',
-        )
+        "_enter_message",
+        "_exit_message",
+        "_print_continuously_from_background",
+        "_process",
+        "_start_time",
+        "_stop_time",
+        "_timer_process",
+        "_verbose",
+    )
 
     ### INITIALIZER ###
 
@@ -59,15 +59,16 @@ class Timer(ContextManager):
         enter_message=None,
         print_continuously_from_background=False,
         verbose=True,
-        ):
+    ):
         if enter_message is not None:
             enter_message = str(enter_message)
         self._enter_message = enter_message
         if exit_message is not None:
             exit_message = str(exit_message)
         self._exit_message = exit_message
-        self._print_continuously_from_background = \
+        self._print_continuously_from_background = (
             print_continuously_from_background
+        )
         self._process = None
         self._timer_process = None
         self._start_time = None
@@ -88,11 +89,10 @@ class Timer(ContextManager):
         self._start_time = time.time()
         if self.print_continuously_from_background:
             from abjad import abjad_configuration
+
             path = os.path.join(
-                abjad_configuration.abjad_directory,
-                'scr',
-                'timer.py',
-                )
+                abjad_configuration.abjad_directory, "scr", "timer.py"
+            )
             interval = str(int(self.print_continuously_from_background))
             process = subprocess.Popen([path, interval], shell=False)
             self._process = process
@@ -180,8 +180,9 @@ class Timer(ContextManager):
         Returns string.
         """
         import abjad
-        identifier = abjad.String('second').pluralize(int(self.elapsed_time))
-        message = 'total time {} {} ...'
+
+        identifier = abjad.String("second").pluralize(int(self.elapsed_time))
+        message = "total time {} {} ..."
         message = message.format(int(self.elapsed_time), identifier)
         return message
 

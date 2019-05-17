@@ -4,7 +4,7 @@ import abjad
 def test_LilyPondParser__indicators__Clef_01():
 
     target = abjad.Staff([abjad.Note(0, 1)])
-    clef = abjad.Clef('bass')
+    clef = abjad.Clef("bass")
     abjad.attach(clef, target[0])
 
     assert format(target) == abjad.String.normalize(
@@ -15,7 +15,7 @@ def test_LilyPondParser__indicators__Clef_01():
             c'1
         }
         """
-        )
+    )
 
     parser = abjad.parser.LilyPondParser()
     result = parser(format(target))

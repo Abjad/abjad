@@ -64,29 +64,29 @@ class Expression(object):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_argument_values',
-        '_callbacks',
-        '_evaluation_template',
-        '_force_return',
-        '_has_parentheses',
-        '_is_composite',
-        '_is_initializer',
-        '_is_postfix',
-        '_keywords',
-        '_lone',
-        '_map_operand',
-        '_markup_maker_callback',
-        '_module_names',
-        '_name',
-        '_next_name',
-        '_precedence',
-        '_proxy_class',
-        '_qualified_method_name',
-        '_string_template',
-        '_subclass_hook',
-        '_subexpressions',
-        '_template',
-        )
+        "_argument_values",
+        "_callbacks",
+        "_evaluation_template",
+        "_force_return",
+        "_has_parentheses",
+        "_is_composite",
+        "_is_initializer",
+        "_is_postfix",
+        "_keywords",
+        "_lone",
+        "_map_operand",
+        "_markup_maker_callback",
+        "_module_names",
+        "_name",
+        "_next_name",
+        "_precedence",
+        "_proxy_class",
+        "_qualified_method_name",
+        "_string_template",
+        "_subclass_hook",
+        "_subexpressions",
+        "_template",
+    )
 
     _private_attributes_to_copy: typing.List[str] = []
 
@@ -118,7 +118,7 @@ class Expression(object):
         subclass_hook=None,
         subexpressions=None,
         template=None,
-        ):
+    ):
         if argument_values is not None:
             assert isinstance(argument_values, dict)
             argument_values = argument_values or None
@@ -127,7 +127,7 @@ class Expression(object):
             callbacks = tuple(callbacks)
         self._callbacks = callbacks
         if not isinstance(evaluation_template, (str, type(None))):
-            message = 'must be string or none: {!r}.'
+            message = "must be string or none: {!r}."
             message = message.format(evaluation_template)
             raise TypeError(message)
         self._evaluation_template = evaluation_template
@@ -140,7 +140,7 @@ class Expression(object):
         self._is_composite = is_composite
         self._is_initializer = is_initializer
         if not isinstance(keywords, (dict, type(None))):
-            message = 'keywords must be dictionary or none: {!r}.'
+            message = "keywords must be dictionary or none: {!r}."
             message = message.format(keywords)
             raise TypeError(message)
         if is_postfix is not None:
@@ -148,7 +148,7 @@ class Expression(object):
         self._is_postfix = is_postfix
         self._keywords = keywords
         if not isinstance(map_operand, (Expression, list, type(None))):
-            message = 'must be expression, expression list or none: {!r}.'
+            message = "must be expression, expression list or none: {!r}."
             message = message.format(map_operand)
             raise TypeError(message)
         self._lone = lone
@@ -158,19 +158,19 @@ class Expression(object):
         self._markup_maker_callback = markup_maker_callback
         self._module_names = module_names
         if not isinstance(name, (str, type(None))):
-            message = 'name must be string or none: {!r}.'
+            message = "name must be string or none: {!r}."
             message = message.format(name)
             raise TypeError(name)
         self._name = name
         if not isinstance(next_name, (str, type(None))):
-            message = 'next name must be string or none: {!r}.'
+            message = "next name must be string or none: {!r}."
             message = message.format(next_name)
             raise TypeError(next_name)
         self._next_name = next_name
         self._precedence = precedence
         self._proxy_class = proxy_class
         if not isinstance(string_template, (str, type(None))):
-            message = 'must be string or none: {!r}.'
+            message = "must be string or none: {!r}."
             message = message.format(string_template)
             raise TypeError(message)
         if qualified_method_name is not None:
@@ -178,7 +178,7 @@ class Expression(object):
         self._qualified_method_name = qualified_method_name
         self._string_template = string_template
         if not isinstance(subclass_hook, (str, type(None))):
-            message = 'must be string or none: {!r}.'
+            message = "must be string or none: {!r}."
             message = message.format(subclass_hook)
             raise TypeError(message)
         self._subclass_hook = subclass_hook
@@ -189,9 +189,7 @@ class Expression(object):
 
     ### SPECIAL METHODS ###
 
-    @Signature(
-        markup_maker_callback='_make_expression_add_markup',
-        )
+    @Signature(markup_maker_callback="_make_expression_add_markup")
     def __add__(self, i):
         """
         Gets proxy method or adds expressions.
@@ -228,10 +226,10 @@ class Expression(object):
 
         """
         if not isinstance(i, Expression):
-            proxy_method = self.__getattr__('__add__')
+            proxy_method = self.__getattr__("__add__")
             return proxy_method(i)
-        evaluation_template = '{}.__add__({})'
-        template = '{} + {}'
+        evaluation_template = "{}.__add__({})"
+        template = "{} + {}"
         lhs_module_names = self.module_names or []
         rhs_module_names = i.module_names or []
         module_names = lhs_module_names + rhs_module_names
@@ -241,13 +239,13 @@ class Expression(object):
         return type(self)(
             evaluation_template=evaluation_template,
             is_composite=True,
-            markup_maker_callback='_make_add_expression_markup',
+            markup_maker_callback="_make_add_expression_markup",
             module_names=module_names,
             proxy_class=self.proxy_class,
-            qualified_method_name='abjad.Expression.__add__',
+            qualified_method_name="abjad.Expression.__add__",
             string_template=template,
             subexpressions=[self, i],
-            )
+        )
 
     def __call__(self, *arguments, **keywords):
         """
@@ -333,7 +331,7 @@ class Expression(object):
         """
         return StorageFormatManager.compare_objects(self, argument)
 
-    def __format__(self, format_specification='') -> str:
+    def __format__(self, format_specification="") -> str:
         """
         Formats expression.
 
@@ -347,7 +345,7 @@ class Expression(object):
             abjad.Expression()
 
         """
-        if format_specification in ('', 'storage'):
+        if format_specification in ("", "storage"):
             return StorageFormatManager(self).get_storage_format()
         return str(self)
 
@@ -359,25 +357,25 @@ class Expression(object):
 
         Returns normally when proxy class is not set.
         """
-        if self.__getattribute__('_proxy_class') is not None:
+        if self.__getattribute__("_proxy_class") is not None:
             if hasattr(self._proxy_class, name):
                 proxy_object = self._proxy_class()
                 if not hasattr(proxy_object, name):
-                    message = 'proxy object {!r} has no attribute {!r}.'
+                    message = "proxy object {!r} has no attribute {!r}."
                     message = message.format(proxy_object, name)
                     raise Exception(message)
-                if not hasattr(proxy_object, '_expression'):
+                if not hasattr(proxy_object, "_expression"):
                     class_name = proxy_object.__name__
-                    message = 'does not implement expression protocol: {}.'
+                    message = "does not implement expression protocol: {}."
                     message = message.format(class_name)
                     raise Exception(message)
                 proxy_object._expression = self
                 callable_ = getattr(proxy_object, name)
                 assert callable(callable_), repr(callable_)
                 if inspect.isfunction(callable_):
-                    callable_.__dict__['frozen_expression'] = self
+                    callable_.__dict__["frozen_expression"] = self
                 return callable_
-        message = '{} object has no attribute {!r}.'
+        message = "{} object has no attribute {!r}."
         message = message.format(type(self).__name__, name)
         raise AttributeError(message)
 
@@ -385,7 +383,7 @@ class Expression(object):
         """
         Gets proxy method.
         """
-        proxy_method = self.__getattr__('__getitem__')
+        proxy_method = self.__getattr__("__getitem__")
         return proxy_method(argument)
 
     def __hash__(self) -> int:
@@ -398,14 +396,14 @@ class Expression(object):
         """
         Gets proxy method.
         """
-        proxy_method = self.__getattr__('__iadd__')
+        proxy_method = self.__getattr__("__iadd__")
         return proxy_method(i)
 
     def __radd__(self, i):
         """
         Gets proxy method.
         """
-        proxy_method = self.__getattr__('__radd__')
+        proxy_method = self.__getattr__("__radd__")
         return proxy_method(i)
 
     def __repr__(self) -> str:
@@ -428,7 +426,7 @@ class Expression(object):
         """
         Gets proxy method.
         """
-        proxy_method = self.__getattr__('__setitem__')
+        proxy_method = self.__getattr__("__setitem__")
         return proxy_method(i, argument)
 
     def __str__(self) -> str:
@@ -450,13 +448,11 @@ class Expression(object):
     ### PRIVATE METHODS ###
 
     def _apply_callback_markup(
-        self,
-        name,
-        direction=None,
-        previous_callback=None,
-        ):
+        self, name, direction=None, previous_callback=None
+    ):
         from abjad.markups import Markup
         from abjad.markups import MarkupList
+
         if previous_callback and previous_callback.next_name:
             name = previous_callback.next_name
         markup = name
@@ -465,10 +461,12 @@ class Expression(object):
         if not self.callbacks:
             return markup
         callback = self.callbacks[0]
-        if (previous_callback and
-            previous_callback.is_composite and
-            not callback.is_composite):
-            markup = MarkupList(['(', markup, ')']).concat()
+        if (
+            previous_callback
+            and previous_callback.is_composite
+            and not callback.is_composite
+        ):
+            markup = MarkupList(["(", markup, ")"]).concat()
         markup = callback._make_method_markup(markup)
         previous_precedence = callback.precedence or 0
         previous_callback = callback
@@ -479,15 +477,17 @@ class Expression(object):
                     markup = Markup(markup).bold()
             current_precedence = callback.precedence or 0
             parenthesize_argument = False
-            if (previous_precedence < current_precedence and
-                not previous_callback.is_initializer):
+            if (
+                previous_precedence < current_precedence
+                and not previous_callback.is_initializer
+            ):
                 parenthesize_argument = True
             elif previous_callback.is_composite:
                 parenthesize_argument = True
             if previous_callback and previous_callback.next_name:
                 parenthesize_argument = False
             if parenthesize_argument:
-                markup = MarkupList(['(', markup, ')']).concat()
+                markup = MarkupList(["(", markup, ")"]).concat()
             markup = callback._make_method_markup(markup)
             previous_callback = callback
         markup = new(markup, direction=direction)
@@ -501,14 +501,14 @@ class Expression(object):
                 string = previous_callback.next_name
             template = callback.string_template
             if template is None:
-                message = 'callback {!r} has no string template.'
+                message = "callback {!r} has no string template."
                 message = message.format(callback)
                 raise ValueError(message)
             try:
                 string = template.format(string)
             except Exception as e:
-                message = 'callback {!r} with template {!r}'
-                message += ' and name {!r} raises {!r}.'
+                message = "callback {!r} with template {!r}"
+                message += " and name {!r} raises {!r}."
                 message = message.format(callback, template, string, e)
                 raise Exception(message)
             previous_callback = callback
@@ -516,9 +516,9 @@ class Expression(object):
 
     def _evaluate(self, *arguments, **keywords):
         assert self.evaluation_template
-        if self.evaluation_template == 'map':
+        if self.evaluation_template == "map":
             return self._evaluate_map(*arguments)
-        if self.evaluation_template == 'group_by':
+        if self.evaluation_template == "group_by":
             return self._evaluate_group_by(*arguments)
         if self.subclass_hook:
             assert isinstance(self.subclass_hook, str)
@@ -531,7 +531,7 @@ class Expression(object):
             for i, argument in enumerate(arguments):
                 if argument is None:
                     continue
-                string = '__argument_{i}'
+                string = "__argument_{i}"
                 string = string.format(i=i)
                 globals_[string] = argument
                 strings.append(string)
@@ -539,36 +539,35 @@ class Expression(object):
             keywords_.update(keywords)
             for key, value in keywords_.items():
                 value = self._to_evaluable_string(value)
-                string = '{key}={value}'
+                string = "{key}={value}"
                 string = string.format(key=key, value=value)
                 strings.append(string)
-            strings = ', '.join(strings)
-            statement = '{class_name}({strings})'
+            strings = ", ".join(strings)
+            statement = "{class_name}({strings})"
             class_name = self.evaluation_template
             statement = statement.format(
-                class_name=class_name,
-                strings=strings,
-                )
+                class_name=class_name, strings=strings
+            )
         else:
             if not arguments:
-                statement = statement.replace('{}', '')
+                statement = statement.replace("{}", "")
             else:
                 strings = []
                 __argument_0 = arguments[0]
                 for i, argument in enumerate(arguments):
-                    string = '__argument_' + str(i)
+                    string = "__argument_" + str(i)
                     globals_[string] = argument
                     strings.append(string)
                 try:
                     statement = statement.format(*strings)
                 except Exception as exception:
-                    message = 'statement {!r} raises {!r}.'
+                    message = "statement {!r} raises {!r}."
                     message = message.format(statement, exception.args[0])
                     raise type(exception)(message)
         try:
             result = eval(statement, globals_)
         except Exception as exception:
-            message = 'evaluable statement {!r} raises {!r}.'
+            message = "evaluable statement {!r} raises {!r}."
             message = message.format(statement, exception.args[0])
             raise type(exception)(message)
         if self.force_return:
@@ -578,22 +577,24 @@ class Expression(object):
     def _evaluate_group_by(self, *arguments):
         assert len(arguments) == 1, repr(arguments)
         globals_ = self._make_globals()
-        assert '__argument_0' not in globals_
+        assert "__argument_0" not in globals_
         __argument_0 = arguments[0]
         class_ = type(__argument_0)
         map_operand = self.map_operand
         if map_operand is None:
+
             def map_operand(argument):
                 return True
-        globals_['__argument_0'] = __argument_0
-        globals_['class_'] = class_
-        globals_['map_operand'] = map_operand
-        globals_['itertools'] = itertools
-        statement = 'itertools.groupby(__argument_0, map_operand)'
+
+        globals_["__argument_0"] = __argument_0
+        globals_["class_"] = class_
+        globals_["map_operand"] = map_operand
+        globals_["itertools"] = itertools
+        statement = "itertools.groupby(__argument_0, map_operand)"
         try:
             pairs = eval(statement, globals_)
         except (NameError, SyntaxError, TypeError) as e:
-            message = '{!r} raises {!r}.'
+            message = "{!r} raises {!r}."
             message = message.format(statement, e)
             raise Exception(message)
         items = []
@@ -613,18 +614,18 @@ class Expression(object):
         assert len(arguments) == 1, repr(arguments)
         assert self.map_operand is not None
         globals_ = self._make_globals()
-        assert '__argument_0' not in globals_
+        assert "__argument_0" not in globals_
         __argument_0 = arguments[0]
         class_ = type(__argument_0)
         map_operand = self.map_operand
-        globals_['__argument_0'] = __argument_0
-        globals_['class_'] = class_
-        globals_['map_operand'] = map_operand
-        statement = '[map_operand(_) for _ in __argument_0]'
+        globals_["__argument_0"] = __argument_0
+        globals_["class_"] = class_
+        globals_["map_operand"] = map_operand
+        statement = "[map_operand(_) for _ in __argument_0]"
         try:
             result = eval(statement, globals_)
         except (NameError, SyntaxError, TypeError) as e:
-            message = '{!r} raises {!r}.'
+            message = "{!r} raises {!r}."
             message = message.format(statement, e)
             raise Exception(message)
         try:
@@ -648,13 +649,13 @@ class Expression(object):
         precedence=None,
         string_template=None,
         subclass_hook=None,
-        ):
+    ):
         if evaluation_template is None:
             evaluation_template = class_._get_evaluation_template(frame)
         result = class_._read_signature_decorator(frame)
-        argument_values = result['argument_values']
-        qualified_method_name = result['qualified_method_name']
-        string_template = result['string_template'] or string_template
+        argument_values = result["argument_values"]
+        qualified_method_name = result["qualified_method_name"]
+        string_template = result["string_template"] or string_template
         return class_(
             argument_values=argument_values,
             evaluation_template=evaluation_template,
@@ -669,7 +670,7 @@ class Expression(object):
             qualified_method_name=qualified_method_name,
             string_template=string_template,
             subclass_hook=subclass_hook,
-            )
+        )
 
     @staticmethod
     def _get_callback(callback_name, function, function_self):
@@ -681,7 +682,7 @@ class Expression(object):
             if callback is None:
                 callback = getattr(Expression, callback_name, None)
             if callback is None:
-                message = 'can not find callback {!r}.'
+                message = "can not find callback {!r}."
                 message = message.format(callback_name)
                 raise ValueError(message)
         return callback
@@ -692,14 +693,12 @@ class Expression(object):
             frame_info = inspect.getframeinfo(frame)
             function_name = frame_info.function
             arguments = Expression._wrap_arguments(
-                frame,
-                static_class=static_class,
-                )
-            template = '{{}}.{function_name}({arguments})'
+                frame, static_class=static_class
+            )
+            template = "{{}}.{function_name}({arguments})"
             template = template.format(
-                function_name=function_name,
-                arguments=arguments,
-                )
+                function_name=function_name, arguments=arguments
+            )
         finally:
             del frame
         return template
@@ -714,22 +713,17 @@ class Expression(object):
             storage_format_args_values=[self.template],
             storage_format_forced_override=self.template,
             storage_format_kwargs_names=(),
-            )
+        )
 
     @staticmethod
     def _get_method_name(
-        function_name,
-        function,
-        function_self,
-        argument_values,
-        ):
-        if getattr(function, 'method_name', None) is not None:
-            return getattr(function, 'method_name')
+        function_name, function, function_self, argument_values
+    ):
+        if getattr(function, "method_name", None) is not None:
+            return getattr(function, "method_name")
         method_name_callback = Expression._get_callback(
-            'method_name_callback',
-            function,
-            function_self,
-            )
+            "method_name_callback", function, function_self
+        )
         if method_name_callback:
             return method_name_callback(**argument_values)
         return function_name
@@ -738,40 +732,44 @@ class Expression(object):
         if not self.callbacks:
             return False
         callback = self.callbacks[-1]
-        if getattr(callback, '_lone', None):
+        if getattr(callback, "_lone", None):
             return True
-        if (callback.evaluation_template == 'group_by' and
-            callback.map_operand is None):
+        if (
+            callback.evaluation_template == "group_by"
+            and callback.map_operand is None
+        ):
             return True
-        if not callback.qualified_method_name.endswith('__getitem__'):
+        if not callback.qualified_method_name.endswith("__getitem__"):
             return False
         template = callback.evaluation_template
-        if 'slice' in template:
+        if "slice" in template:
             return False
-        if 'Pattern' in template:
+        if "Pattern" in template:
             return False
-        if 'abjad.index' in template:
+        if "abjad.index" in template:
             return False
         return True
 
     @staticmethod
     def _make___add___markup(markup, argument):
         from abjad.markups import MarkupList
+
         markup_list = MarkupList()
         markup_list.append(markup)
-        markup_list.append('+')
+        markup_list.append("+")
         markup_list.append(str(argument))
         markup = markup_list.line()
         return markup
 
     @staticmethod
     def _make___add___string_template(argument):
-        return '{} + ' + str(argument)
+        return "{} + " + str(argument)
 
     @staticmethod
     def _make___getitem___markup(markup, argument):
         from abjad.markups import Markup
         from abjad.markups import MarkupList
+
         markup_list = MarkupList()
         markup_list.append(markup)
         string = Expression._make_subscript_string(argument, markup=True)
@@ -783,30 +781,32 @@ class Expression(object):
     @staticmethod
     def _make___getitem___string_template(argument):
         string = Expression._make_subscript_string(argument, markup=False)
-        return '{}' + string
+        return "{}" + string
 
     @staticmethod
     def _make___radd___markup(markup, argument):
         from abjad.markups import MarkupList
+
         markup_list = MarkupList()
         markup_list.append(str(argument))
-        markup_list.append('+')
+        markup_list.append("+")
         markup_list.append(markup)
         markup = markup_list.line()
         return markup
 
     @staticmethod
     def _make___radd___string_template(argument):
-        return str(argument) + ' + {}'
+        return str(argument) + " + {}"
 
     @staticmethod
     def _make_establish_equivalence_markup(lhs, rhs):
         from abjad.markups import Markup
         from abjad.markups import MarkupList
+
         markup_list = MarkupList()
         lhs = Markup(lhs).bold()
         markup_list.append(lhs)
-        markup_list.append('=')
+        markup_list.append("=")
         assert isinstance(rhs, Markup)
         markup_list.append(rhs)
         markup = markup_list.line()
@@ -823,64 +823,60 @@ class Expression(object):
     @staticmethod
     def _make_expression_add_markup(markups):
         from abjad.markups import MarkupList
+
         assert len(markups) == 2
         markup_list = MarkupList()
         markup_list.append(markups[0])
-        markup_list.append('+')
+        markup_list.append("+")
         markup_list.append(markups[1])
         markup = markup_list.line()
         return markup
 
     @staticmethod
     def _make_function_markup(
-        markup,
-        method_name,
-        argument_list_callback,
-        method,
-        argument_values,
-        ):
+        markup, method_name, argument_list_callback, method, argument_values
+    ):
         from abjad.markups import MarkupList
+
         if argument_list_callback:
             arguments = argument_list_callback(**argument_values)
         else:
             arguments = Expression._wrap_arguments_new(method, argument_values)
         markup_list = MarkupList()
-        markup_list.append(method_name + '(')
+        markup_list.append(method_name + "(")
         markup_list.append(markup)
         if arguments:
-            markup_list.append(', ' + arguments + ')')
+            markup_list.append(", " + arguments + ")")
         else:
-            markup_list.append(')')
+            markup_list.append(")")
         markup = markup_list.concat()
         return markup
 
     # TODO: eventually do not pass frame
     @staticmethod
     def _make_function_string_template(
-        frame,
-        method_name,
-        argument_values,
-        argument_list_callback,
-        ):
+        frame, method_name, argument_values, argument_list_callback
+    ):
         if argument_list_callback:
             arguments = argument_list_callback(**argument_values)
         else:
             arguments = Expression._wrap_arguments(frame)
         if arguments:
-            template = '{}({{}}, {})'
+            template = "{}({{}}, {})"
             template = template.format(method_name, arguments)
         else:
-            template = method_name + '({})'
+            template = method_name + "({})"
         return template
 
     def _make_globals(self):
         # import for evaluation context:
         import abjad
-        globals_ = {'abjad': abjad}
+
+        globals_ = {"abjad": abjad}
         globals_.update(abjad.__dict__.copy())
         module_names = self.module_names or []
         if self.qualified_method_name is not None:
-            parts = self.qualified_method_name.split('.')
+            parts = self.qualified_method_name.split(".")
             root_package_name = parts[0]
             module_names.append(root_package_name)
         for module_name in module_names:
@@ -889,23 +885,19 @@ class Expression(object):
         return globals_
 
     def _make_initializer_callback(
-        self,
-        class_,
-        module_names=None,
-        string_template=None,
-        **keywords
-        ):
+        self, class_, module_names=None, string_template=None, **keywords
+    ):
         assert isinstance(class_, type), repr(class_)
-        if not hasattr(class_, '_expression'):
-            message = 'class does not implement expression protocol: {!r}.'
+        if not hasattr(class_, "_expression"):
+            message = "class does not implement expression protocol: {!r}."
             message = message.format(class_)
             raise TypeError(message)
-        parts = class_.__module__.split('.')
+        parts = class_.__module__.split(".")
         if parts[-1] != class_.__name__:
             parts.append(class_.__name__)
-        if 'abjad' in parts:
-            parts = [_ for _ in parts if 'tools' not in _]
-        evaluation_template = '.'.join(parts)
+        if "abjad" in parts:
+            parts = [_ for _ in parts if "tools" not in _]
+        evaluation_template = ".".join(parts)
         keywords = self._make_evaluable_keywords(keywords)
         keywords = keywords or None
         return type(self)(
@@ -914,34 +906,34 @@ class Expression(object):
             keywords=keywords,
             module_names=module_names,
             string_template=string_template,
-            )
+        )
 
     def _make_method_markup(self, markup):
         from abjad.markups import Markup
+
         if self.is_initializer:
             assert self.qualified_method_name is None
             return Markup(markup)
         qualified_method_name = self.qualified_method_name
         assert isinstance(qualified_method_name, str), repr(self)
-        if qualified_method_name == 'abjad.Expression.establish_equivalence':
+        if qualified_method_name == "abjad.Expression.establish_equivalence":
             markup = self._make_establish_equivalence_markup(
-                self.next_name,
-                markup,
-                )
+                self.next_name, markup
+            )
             return markup
-        assert '.' in qualified_method_name, repr(self)
+        assert "." in qualified_method_name, repr(self)
         globals_ = self._make_globals()
         method = eval(qualified_method_name, globals_)
-        if not getattr(method, 'has_signature_decorator', False):
-            message = '{} has no signature decorator.'
+        if not getattr(method, "has_signature_decorator", False):
+            message = "{} has no signature decorator."
             message = message.format(method)
             raise Exception(message)
-        callback_name = getattr(method, 'markup_maker_callback', None)
+        callback_name = getattr(method, "markup_maker_callback", None)
         if callback_name is not None:
-            parts = qualified_method_name.split('.')
+            parts = qualified_method_name.split(".")
             parts.pop(-1)
             parts.append(callback_name)
-            qualified_callback_name = '.'.join(parts)
+            qualified_callback_name = ".".join(parts)
             try:
                 callback = eval(qualified_callback_name, globals_)
             except AttributeError:
@@ -949,24 +941,24 @@ class Expression(object):
             argument_values = self.argument_values or {}
             markup = callback(markup, **argument_values)
             return markup
-        callback_name = getattr(method, 'method_name_callback', None)
+        callback_name = getattr(method, "method_name_callback", None)
         if callback_name is not None:
-            parts = qualified_method_name.split('.')
+            parts = qualified_method_name.split(".")
             parts.pop(-1)
             parts.append(callback_name)
-            callback_name = '.'.join(parts)
+            callback_name = ".".join(parts)
             callback = eval(callback_name, globals_)
             method_name = callback(**self.argument_values)
-        elif getattr(method, 'method_name', None) is not None:
+        elif getattr(method, "method_name", None) is not None:
             method_name = method.method_name
         else:
             method_name = method.__name__
         assert isinstance(method_name, str), repr((self, method))
-        if getattr(method, 'is_operator', None):
-            subscript = getattr(method, 'subscript', None)
+        if getattr(method, "is_operator", None):
+            subscript = getattr(method, "subscript", None)
             if subscript is not None:
                 subscript = self.argument_values[subscript]
-            superscript = getattr(method, 'superscript', None)
+            superscript = getattr(method, "superscript", None)
             if superscript is not None:
                 superscript = self.argument_values[superscript]
             markup = Expression._make_operator_markup(
@@ -974,36 +966,33 @@ class Expression(object):
                 method_name=method_name,
                 subscript=subscript,
                 superscript=superscript,
-                )
+            )
         else:
-            argument_list_callback = getattr(method, 'argument_list_callback')
+            argument_list_callback = getattr(method, "argument_list_callback")
             if argument_list_callback is not None:
-                parts = qualified_method_name.split('.')
+                parts = qualified_method_name.split(".")
                 parts.pop(-1)
                 parts.append(argument_list_callback)
-                qualified_callback_name = '.'.join(parts)
+                qualified_callback_name = ".".join(parts)
                 argument_list_callback = eval(
-                    qualified_callback_name,
-                    globals_,
-                    )
+                    qualified_callback_name, globals_
+                )
             markup = Expression._make_function_markup(
                 markup,
                 method_name,
                 argument_list_callback,
                 method,
                 self.argument_values,
-                )
+            )
         return markup
 
     @staticmethod
     def _make_operator_markup(
-        markup,
-        method_name=None,
-        subscript=None,
-        superscript=None,
-        ):
+        markup, method_name=None, subscript=None, superscript=None
+    ):
         from abjad.markups import Markup
         from abjad.markups import MarkupList
+
         markup_list = MarkupList([method_name, markup])
         if superscript is not None:
             superscript = Markup(str(superscript))
@@ -1018,51 +1007,47 @@ class Expression(object):
 
     @staticmethod
     def _make_operator_string_template(
-        method_name=None,
-        subscript=None,
-        superscript=None,
-        ):
+        method_name=None, subscript=None, superscript=None
+    ):
         template = method_name
         if superscript is not None:
             template += str(superscript)
         if subscript is not None:
             template += str(subscript)
-        template += '({})'
+        template += "({})"
         return template
 
     @staticmethod
     def _make_subscript_string(i, markup=False):
         from .Pattern import Pattern
+
         if isinstance(i, (int, Pattern)):
             if markup:
-                subscript_string = '{i}'
+                subscript_string = "{i}"
             else:
-                subscript_string = '[{i}]'
+                subscript_string = "[{i}]"
             start = stop = step = None
         elif isinstance(i, slice):
             if i.step is not None:
                 raise NotImplementedError
             if i.start is None and i.stop is None:
-                subscript_string = '[:]'
+                subscript_string = "[:]"
             elif i.start is None:
-                subscript_string = '[:{stop}]'
+                subscript_string = "[:{stop}]"
             elif i.stop is None:
-                subscript_string = '[{start}:]'
+                subscript_string = "[{start}:]"
             else:
-                subscript_string = '[{start}:{stop}]'
+                subscript_string = "[{start}:{stop}]"
             start = i.start
             stop = i.stop
             step = i.step
         else:
-            message = 'must be integer or slice: {!r}.'
+            message = "must be integer or slice: {!r}."
             message = message.format(i)
             raise TypeError(message)
         subscript_string = subscript_string.format(
-            i=i,
-            start=start,
-            stop=stop,
-            step=step,
-            )
+            i=i, start=start, stop=stop, step=step
+        )
         return subscript_string
 
     @staticmethod
@@ -1070,80 +1055,67 @@ class Expression(object):
         try:
             function_name = inspect.getframeinfo(frame).function
             argument_info = inspect.getargvalues(frame)
-            assert argument_info.args[0] == 'self'
-            function_self = argument_info.locals['self']
+            assert argument_info.args[0] == "self"
+            function_self = argument_info.locals["self"]
             function = getattr(function_self, function_name)
             class_ = function_self.__class__
-            parts = class_.__module__.split('.')
+            parts = class_.__module__.split(".")
             if parts[-1] != class_.__name__:
                 parts.append(class_.__name__)
-            if 'abjad' in parts:
-                parts = [_ for _ in parts if 'tools' not in _]
+            if "abjad" in parts:
+                parts = [_ for _ in parts if "tools" not in _]
             parts.append(function_name)
-            qualified_method_name = '.'.join(parts)
-            assert '.' in qualified_method_name
+            qualified_method_name = ".".join(parts)
+            assert "." in qualified_method_name
             argument_values = {}
-            if not getattr(function, 'has_signature_decorator', False):
+            if not getattr(function, "has_signature_decorator", False):
                 return {
-                    'argument_values': argument_values,
-                    'qualified_method_name': qualified_method_name,
-                    'string_template': None,
-                    }
+                    "argument_values": argument_values,
+                    "qualified_method_name": qualified_method_name,
+                    "string_template": None,
+                }
             argument_names = argument_info.args[1:]
             for argument_name in argument_names:
                 argument_value = argument_info.locals[argument_name]
                 argument_values[argument_name] = argument_value
             string_template_callback = Expression._get_callback(
-                'string_template_callback',
-                function,
-                function_self,
-                )
+                "string_template_callback", function, function_self
+            )
             if string_template_callback is not None:
                 string_template = string_template_callback(**argument_values)
-            elif getattr(function, 'is_operator', None):
+            elif getattr(function, "is_operator", None):
                 method_name = Expression._get_method_name(
-                    function_name,
-                    function,
-                    function_self,
-                    argument_values,
-                    )
-                subscript = getattr(function, 'subscript', None)
+                    function_name, function, function_self, argument_values
+                )
+                subscript = getattr(function, "subscript", None)
                 if subscript is not None:
                     subscript = argument_info.locals[subscript]
-                superscript = getattr(function, 'superscript', None)
+                superscript = getattr(function, "superscript", None)
                 if superscript is not None:
                     superscript = argument_info.locals[superscript]
                 string_template = Expression._make_operator_string_template(
                     method_name=method_name,
                     subscript=subscript,
                     superscript=superscript,
-                    )
+                )
             else:
                 method_name = Expression._get_method_name(
-                    function_name,
-                    function,
-                    function_self,
-                    argument_values,
-                    )
+                    function_name, function, function_self, argument_values
+                )
                 argument_list_callback = Expression._get_callback(
-                    'argument_list_callback',
-                    function,
-                    function_self,
-                    )
+                    "argument_list_callback", function, function_self
+                )
                 # TODO: eventually do not pass frame
                 string_template = Expression._make_function_string_template(
-                    frame,
-                    method_name,
-                    argument_values,
-                    argument_list_callback,
-                    )
+                    frame, method_name, argument_values, argument_list_callback
+                )
         finally:
             del frame
         return {
-            'argument_values': argument_values,
-            'qualified_method_name': qualified_method_name,
-            'string_template': string_template,
-            }
+            "argument_values": argument_values,
+            "qualified_method_name": qualified_method_name,
+            "string_template": string_template,
+        }
 
     @staticmethod
     def _to_evaluable_string(argument):
@@ -1159,35 +1131,35 @@ class Expression(object):
             for item in argument:
                 item_string = Expression._to_evaluable_string(item)
                 item_strings.append(item_string)
-            items = ', '.join(item_strings)
+            items = ", ".join(item_strings)
             if isinstance(argument, list):
-                argument = f'[{items}]'
+                argument = f"[{items}]"
             elif isinstance(argument, tuple):
                 if item_count == 1:
-                    items += ','
-                argument = f'({items})'
+                    items += ","
+                argument = f"({items})"
             else:
                 raise Exception(repr(argument))
         elif isinstance(argument, slice):
             argument = repr(argument)
         elif isinstance(argument, uqbar.enums.StrictEnumeration):
-            argument = f'abjad.{repr(argument)}'
+            argument = f"abjad.{repr(argument)}"
         # abjad object
         elif not inspect.isclass(argument):
             try:
-                argument = format(argument, 'storage')
+                argument = format(argument, "storage")
             except (TypeError, ValueError):
-                raise Exception(f'can not make storage format: {argument!r}.')
+                raise Exception(f"can not make storage format: {argument!r}.")
         # abjad class
-        elif inspect.isclass(argument) and 'abjad' in argument.__module__:
-            argument = argument.__module__.split('.')
+        elif inspect.isclass(argument) and "abjad" in argument.__module__:
+            argument = argument.__module__.split(".")
             argument = argument[-2:]
-            argument = '.'.join(argument)
+            argument = ".".join(argument)
         # builtin class like tuple in classes=(tuple,)
-        elif inspect.isclass(argument) and 'abjad' not in argument.__module__:
+        elif inspect.isclass(argument) and "abjad" not in argument.__module__:
             argument = argument.__name__
         else:
-            raise Exception(f'can not make evaluable string: {argument!r}.')
+            raise Exception(f"can not make evaluable string: {argument!r}.")
         return argument
 
     @staticmethod
@@ -1202,8 +1174,8 @@ class Expression(object):
                 signature = inspect.signature(static_method)
                 argument_names = argument_info.args[:]
             else:
-                assert argument_info.args[0] == 'self'
-                self = argument_info.locals['self']
+                assert argument_info.args[0] == "self"
+                self = argument_info.locals["self"]
                 function = getattr(self, function_name)
                 signature = inspect.signature(function)
                 argument_names = argument_info.args[1:]
@@ -1215,20 +1187,21 @@ class Expression(object):
                 if parameter.default == inspect.Parameter.empty:
                     argument_value = Expression._to_evaluable_string(
                         argument_value
-                        )
+                    )
                     argument_string = argument_value
                     argument_strings.append(argument_string)
                 # keyword argument
                 elif argument_value != parameter.default:
-                    argument_string = '{argument_name}={argument_value}'
+                    argument_string = "{argument_name}={argument_value}"
                     argument_value = Expression._to_evaluable_string(
-                        argument_value)
+                        argument_value
+                    )
                     argument_string = argument_string.format(
                         argument_name=argument_name,
                         argument_value=argument_value,
-                        )
+                    )
                     argument_strings.append(argument_string)
-            arguments = ', '.join(argument_strings)
+            arguments = ", ".join(argument_strings)
         finally:
             del frame
         return arguments
@@ -1242,15 +1215,15 @@ class Expression(object):
             argument_value = argument_values[argument_name]
             parameter = signature.parameters[argument_name]
             if argument_value != parameter.default:
-                argument_string = '{argument_name}={argument_value}'
+                argument_string = "{argument_name}={argument_value}"
                 argument_value = Expression._to_evaluable_string(
-                    argument_value)
+                    argument_value
+                )
                 argument_string = argument_string.format(
-                    argument_name=argument_name,
-                    argument_value=argument_value,
-                    )
+                    argument_name=argument_name, argument_value=argument_value
+                )
                 argument_strings.append(argument_string)
-        arguments = ', '.join(argument_strings)
+        arguments = ", ".join(argument_strings)
         return arguments
 
     ### PUBLIC PROPERTIES ###
@@ -1340,7 +1313,7 @@ class Expression(object):
         """
         if self.callbacks:
             first_callback = self.callbacks[0]
-            if '.Selection' in first_callback.evaluation_template:
+            if ".Selection" in first_callback.evaluation_template:
                 return True
         return False
 
@@ -1359,7 +1332,7 @@ class Expression(object):
         return self._lone
 
     @property
-    def map_operand(self) -> typing.Optional['Expression']:
+    def map_operand(self) -> typing.Optional["Expression"]:
         """
         Gets expression to map.
         """
@@ -1452,7 +1425,7 @@ class Expression(object):
         return self._subclass_hook
 
     @property
-    def subexpressions(self) -> typing.Optional[typing.List['Expression']]:
+    def subexpressions(self) -> typing.Optional[typing.List["Expression"]]:
         """
         Gets subexpressions.
         """
@@ -1467,7 +1440,7 @@ class Expression(object):
 
     ### PUBLIC METHODS ###
 
-    def append_callback(self, callback) -> 'Expression':
+    def append_callback(self, callback) -> "Expression":
         """
         Appends callback to expression.
 
@@ -1500,18 +1473,19 @@ class Expression(object):
         Colors ``argument``.
         """
         from .CyclicTuple import CyclicTuple
+
         if self._is_singular_get_item():
-            colors = colors or ['green']
+            colors = colors or ["green"]
             color = colors[0]
             label(argument).color_leaves(color=color)
         else:
-            colors = colors or ['red', 'blue']
+            colors = colors or ["red", "blue"]
             colors = CyclicTuple(colors)
             for i, item in enumerate(argument):
                 color = colors[i]
                 label(item).color_leaves(color=color)
 
-    def establish_equivalence(self, name) -> 'Expression':
+    def establish_equivalence(self, name) -> "Expression":
         r"""
         Makes new expression with ``name``.
 
@@ -1559,15 +1533,15 @@ class Expression(object):
                     }
 
         """
-        template = '{name} = {{}}'
+        template = "{name} = {{}}"
         template = template.format(name=name)
         callback = self.make_callback(
-            evaluation_template='{}',
+            evaluation_template="{}",
             is_composite=True,
             next_name=name,
-            qualified_method_name='abjad.Expression.establish_equivalence',
+            qualified_method_name="abjad.Expression.establish_equivalence",
             string_template=template,
-            )
+        )
         return self.append_callback(callback)
 
     def get_markup(self, direction=None, name=None):
@@ -1586,9 +1560,8 @@ class Expression(object):
                 markups.append(markup)
             markup = self._make_method_markup(markups)
             markup = self._apply_callback_markup(
-                markup,
-                previous_callback=self,
-                )
+                markup, previous_callback=self
+            )
         else:
             if name is None:
                 name = self.name
@@ -1598,7 +1571,7 @@ class Expression(object):
                         name = callback.name
                         break
             if name is None:
-                message = 'expression name not found: {!r}.'
+                message = "expression name not found: {!r}."
                 message = message.format(self)
                 raise ValueError(message)
             markup = self._apply_callback_markup(name)
@@ -1695,13 +1668,13 @@ class Expression(object):
                 strings.append(string)
             template = self.string_template
             if template is None:
-                message = 'expression has no string template: {!r}.'
+                message = "expression has no string template: {!r}."
                 message = message.format(self)
                 raise ValueError(message)
             try:
                 string = template.format(*strings)
             except Exception as e:
-                message = '{!r} with template {!r} raises {!r}.'
+                message = "{!r} with template {!r} raises {!r}."
                 message = message.format(self, template, e)
                 raise Exception(message)
             return self._compile_callback_strings(string)
@@ -1714,12 +1687,12 @@ class Expression(object):
                         name = callback.name
                         break
             if name is None:
-                message = 'expression name not found: {!r}.'
+                message = "expression name not found: {!r}."
                 message = message.format(self)
                 raise ValueError(message)
             return self._compile_callback_strings(name)
 
-    def label(self, **keywords) -> 'Expression':
+    def label(self, **keywords) -> "Expression":
         r"""
         Makes label expression.
 
@@ -1777,6 +1750,7 @@ class Expression(object):
 
         """
         from abjad.core.Label import Label
+
         class_ = Label
         callback = self._make_initializer_callback(class_, **keywords)
         expression = self.append_callback(callback)
@@ -1797,7 +1771,7 @@ class Expression(object):
         precedence=None,
         qualified_method_name=None,
         string_template=None,
-        ) -> 'Expression':
+    ) -> "Expression":
         """
         Makes callback.
         """
@@ -1815,9 +1789,9 @@ class Expression(object):
             precedence=precedence,
             qualified_method_name=qualified_method_name,
             string_template=string_template,
-            )
+        )
 
-    def pitch_class_segment(self, **keywords) -> 'Expression':
+    def pitch_class_segment(self, **keywords) -> "Expression":
         r"""
         Makes pitch-class segment expression.
 
@@ -1875,27 +1849,25 @@ class Expression(object):
 
         """
         from abjad.pitch.PitchClassSegment import PitchClassSegment
+
         class_ = PitchClassSegment
         callback = self._make_initializer_callback(
-            class_,
-            string_template='{}',
-            **keywords
-            )
+            class_, string_template="{}", **keywords
+        )
         expression = self.append_callback(callback)
         return new(expression, proxy_class=class_)
 
     # TODO: add examples
-    def pitch_set(self, **keywords) -> 'Expression':
+    def pitch_set(self, **keywords) -> "Expression":
         """
         Makes pitch set expression.
         """
         from abjad.pitch.PitchSet import PitchSet
+
         class_ = PitchSet
         callback = self._make_initializer_callback(
-            class_,
-            string_template='{}',
-            **keywords
-            )
+            class_, string_template="{}", **keywords
+        )
         expression = self.append_callback(callback)
         return new(expression, proxy_class=class_)
 
@@ -1909,7 +1881,7 @@ class Expression(object):
             for item in argument:
                 print(repr(item))
 
-    def select(self, **keywords) -> 'Expression':
+    def select(self, **keywords) -> "Expression":
         r"""
         Makes select expression.
 
@@ -1958,16 +1930,13 @@ class Expression(object):
 
         """
         from abjad.core.Selection import Selection
+
         class_ = Selection
         callback = self._make_initializer_callback(class_, **keywords)
         expression = self.append_callback(callback)
-        return new(
-            expression,
-            proxy_class=class_,
-            template='abjad.select()',
-            )
+        return new(expression, proxy_class=class_, template="abjad.select()")
 
-    def sequence(self, **keywords) -> 'Expression':
+    def sequence(self, **keywords) -> "Expression":
         """
         Makes sequence expression.
 
@@ -1984,16 +1953,15 @@ class Expression(object):
 
         """
         from .Sequence import Sequence
+
         class_ = Sequence
         callback = self._make_initializer_callback(
-            class_,
-            string_template='{}',
-            **keywords
-            )
+            class_, string_template="{}", **keywords
+        )
         expression = self.append_callback(callback)
         return new(expression, proxy_class=class_)
 
-    def wrap_in_list(self) -> 'Expression':
+    def wrap_in_list(self) -> "Expression":
         """
         Makes expression to wrap argument in list.
 
@@ -2015,5 +1983,5 @@ class Expression(object):
                 )
 
         """
-        callback = self.make_callback(evaluation_template='[{}]')
+        callback = self.make_callback(evaluation_template="[{}]")
         return self.append_callback(callback)

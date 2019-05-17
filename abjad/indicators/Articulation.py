@@ -66,73 +66,67 @@ class Articulation(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_direction',
-        '_format_slot',
-        '_name',
-        '_tweaks',
-        )
+    __slots__ = ("_direction", "_format_slot", "_name", "_tweaks")
 
     _articulations_supported = (
-        'accent',
-        'marcato',
-        'staccatissimo',
-        'espressivo'
-        'staccato',
-        'tenuto',
-        'portato',
-        'upbow',
-        'downbow',
-        'flageolet',
-        'thumb',
-        'lheel',
-        'rheel',
-        'ltoe',
-        'rtoe',
-        'open',
-        'halfopen',
-        'snappizzicato',
-        'stopped',
-        'turn',
-        'reverseturn',
-        'trill',
-        'prall',
-        'mordent',
-        'prallprall',
-        'prallmordent',
-        'upprall',
-        'downprall',
-        'upmordent',
-        'downmordent',
-        'pralldown',
-        'prallup',
-        'lineprall',
-        'signumcongruentiae',
-        'shortfermata',
-        'fermata',
-        'longfermata',
-        'verylongfermata',
-        'segno',
-        'coda',
-        'varcoda',
-        '^',
-        '+',
-        '-',
-        '|',
-        '>',
-        '.',
-        '_',
-        )
+        "accent",
+        "marcato",
+        "staccatissimo",
+        "espressivo" "staccato",
+        "tenuto",
+        "portato",
+        "upbow",
+        "downbow",
+        "flageolet",
+        "thumb",
+        "lheel",
+        "rheel",
+        "ltoe",
+        "rtoe",
+        "open",
+        "halfopen",
+        "snappizzicato",
+        "stopped",
+        "turn",
+        "reverseturn",
+        "trill",
+        "prall",
+        "mordent",
+        "prallprall",
+        "prallmordent",
+        "upprall",
+        "downprall",
+        "upmordent",
+        "downmordent",
+        "pralldown",
+        "prallup",
+        "lineprall",
+        "signumcongruentiae",
+        "shortfermata",
+        "fermata",
+        "longfermata",
+        "verylongfermata",
+        "segno",
+        "coda",
+        "varcoda",
+        "^",
+        "+",
+        "-",
+        "|",
+        ">",
+        ".",
+        "_",
+    )
 
     _shortcut_to_word = {
-        '^': 'marcato',
-        '+': 'stopped',
-        '-': 'tenuto',
-        '|': 'staccatissimo',
-        '>': 'accent',
-        '.': 'staccato',
-        '_': 'portato',
-        }
+        "^": "marcato",
+        "+": "stopped",
+        "-": "tenuto",
+        "|": "staccatissimo",
+        ">": "accent",
+        ".": "staccato",
+        "_": "portato",
+    }
 
     ### INITIALIZER ###
 
@@ -142,24 +136,28 @@ class Articulation(object):
         *,
         direction: typing.Union[str, enums.VerticalAlignment] = None,
         tweaks: LilyPondTweakManager = None,
-        ) -> None:
+    ) -> None:
         if isinstance(name, type(self)):
             argument = name
             name = argument.name
             direction = direction or argument.direction
         name = str(name)
-        if '\\' in name:
-            raise Exception('DEPRECATED?')
-            direction, name = name.split('\\')
+        if "\\" in name:
+            raise Exception("DEPRECATED?")
+            direction, name = name.split("\\")
             direction = direction.strip()
             name = name.strip()
         self._name = name
         direction_ = String.to_tridirectional_ordinal_constant(direction)
         if direction_ is not None:
-            assert isinstance(direction_, enums.VerticalAlignment), repr(direction_)
-            assert direction_ in (enums.Up, enums.Down, enums.Center), repr(direction_)
+            assert isinstance(direction_, enums.VerticalAlignment), repr(
+                direction_
+            )
+            assert direction_ in (enums.Up, enums.Down, enums.Center), repr(
+                direction_
+            )
         self._direction = direction_
-        self._format_slot = 'after'
+        self._format_slot = "after"
         if tweaks is not None:
             assert isinstance(tweaks, LilyPondTweakManager), repr(tweaks)
         self._tweaks = LilyPondTweakManager.set_tweaks(self, tweaks)
@@ -172,17 +170,17 @@ class Articulation(object):
         """
         return StorageFormatManager.compare_objects(self, argument)
 
-    def __format__(self, format_specification='') -> str:
+    def __format__(self, format_specification="") -> str:
         """
         Formats articulation.
 
         Set ``format_specification`` to `''`, `'lilypond`' or `'storage'`.
         Interprets `''` equal to `'storage'`.
         """
-        if format_specification in ('', 'storage'):
+        if format_specification in ("", "storage"):
             return StorageFormatManager(self).get_storage_format()
         else:
-            assert format_specification == 'lilypond'
+            assert format_specification == "lilypond"
             return self._get_lilypond_format()
 
     def __hash__(self):
@@ -218,15 +216,16 @@ class Articulation(object):
             if not string:
                 string = self.name
             if self.direction is None:
-                direction = String('-')
+                direction = String("-")
             else:
                 direction_ = String.to_tridirectional_lilypond_symbol(
-                    self.direction)
+                    self.direction
+                )
                 assert isinstance(direction_, String), repr(direction)
                 direction = direction_
-            return fr'{direction} \{string}'
+            return fr"{direction} \{string}"
         else:
-            return ''
+            return ""
 
     ### PRIVATE METHODS ###
 
@@ -238,7 +237,7 @@ class Articulation(object):
             client=self,
             storage_format_args_values=values,
             storage_format_is_indented=False,
-            )
+        )
 
     def _get_lilypond_format(self):
         return str(self)

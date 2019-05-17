@@ -24,12 +24,9 @@ class Timespan(object):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Timespans'
+    __documentation_section__ = "Timespans"
 
-    __slots__ = (
-        '_start_offset',
-        '_stop_offset',
-        )
+    __slots__ = ("_start_offset", "_stop_offset")
 
     _publish_storage_format = True
 
@@ -80,16 +77,15 @@ class Timespan(object):
         Returns timespan list.
         """
         import abjad
+
         argument = self._get_timespan(argument)
         if not self.intersects_timespan(argument):
             return abjad.TimespanList()
         new_start_offset = max(self._start_offset, argument.start_offset)
         new_stop_offset = min(self._stop_offset, argument.stop_offset)
         timespan = abjad.new(
-            self,
-            start_offset=new_start_offset,
-            stop_offset=new_stop_offset,
-            )
+            self, start_offset=new_start_offset, stop_offset=new_stop_offset
+        )
         return abjad.TimespanList([timespan])
 
     def __eq__(self, argument):
@@ -108,7 +104,7 @@ class Timespan(object):
         """
         return StorageFormatManager.compare_objects(self, argument)
 
-    def __format__(self, format_specification=''):
+    def __format__(self, format_specification=""):
         """
         Formats timespan.
 
@@ -124,7 +120,8 @@ class Timespan(object):
         Returns string.
         """
         import abjad
-        if format_specification in ('', 'storage'):
+
+        if format_specification in ("", "storage"):
             return abjad.StorageFormatManager(self).get_storage_format()
         return str(self)
 
@@ -147,13 +144,16 @@ class Timespan(object):
 
         Returns true or false.
         """
-        expr_start_offset, expr_stop_offset = \
-            self._get_start_offset_and_maybe_stop_offset(argument)
+        expr_start_offset, expr_stop_offset = self._get_start_offset_and_maybe_stop_offset(
+            argument
+        )
         if expr_stop_offset is not None:
             if self._start_offset >= expr_start_offset:
                 return True
-            elif (self._start_offset == expr_start_offset and
-                self._stop_offset >= expr_stop_offset):
+            elif (
+                self._start_offset == expr_start_offset
+                and self._stop_offset >= expr_stop_offset
+            ):
                 return True
             return False
         return self._start_offset >= expr_start_offset
@@ -177,13 +177,16 @@ class Timespan(object):
 
         Returns true or false.
         """
-        expr_start_offset, expr_stop_offset = \
-            self._get_start_offset_and_maybe_stop_offset(argument)
+        expr_start_offset, expr_stop_offset = self._get_start_offset_and_maybe_stop_offset(
+            argument
+        )
         if expr_stop_offset is not None:
             if self._start_offset > expr_start_offset:
                 return True
-            elif (self._start_offset == expr_start_offset and
-                self._stop_offset > expr_stop_offset):
+            elif (
+                self._start_offset == expr_start_offset
+                and self._stop_offset > expr_stop_offset
+            ):
                 return True
             return False
         return self._start_offset > expr_start_offset
@@ -205,11 +208,9 @@ class Timespan(object):
         Returns LilyPond file.
         """
         import abjad
+
         timespans = abjad.TimespanList([self])
-        return timespans.__illustrate__(
-            range_=range_,
-            scale=scale,
-            )
+        return timespans.__illustrate__(range_=range_, scale=scale)
 
     def __le__(self, argument):
         """
@@ -230,13 +231,16 @@ class Timespan(object):
 
         Returns true or false.
         """
-        expr_start_offset, expr_stop_offset = \
-            self._get_start_offset_and_maybe_stop_offset(argument)
+        expr_start_offset, expr_stop_offset = self._get_start_offset_and_maybe_stop_offset(
+            argument
+        )
         if expr_stop_offset is not None:
             if self._start_offset <= expr_start_offset:
                 return True
-            elif (self._start_offset == expr_start_offset and
-                self._stop_offset <= expr_stop_offset):
+            elif (
+                self._start_offset == expr_start_offset
+                and self._stop_offset <= expr_stop_offset
+            ):
                 return True
             return False
         return self._start_offset <= expr_start_offset
@@ -275,13 +279,16 @@ class Timespan(object):
 
         Returns true or false.
         """
-        expr_start_offset, expr_stop_offset = \
-            self._get_start_offset_and_maybe_stop_offset(argument)
+        expr_start_offset, expr_stop_offset = self._get_start_offset_and_maybe_stop_offset(
+            argument
+        )
         if expr_stop_offset is not None:
             if self._start_offset < expr_start_offset:
                 return True
-            elif (self._start_offset == expr_start_offset and
-                self._stop_offset < expr_stop_offset):
+            elif (
+                self._start_offset == expr_start_offset
+                and self._stop_offset < expr_stop_offset
+            ):
                 return True
             return False
         return self._start_offset < expr_start_offset
@@ -374,19 +381,19 @@ class Timespan(object):
         Returns timespan list.
         """
         import abjad
+
         argument = self._get_timespan(argument)
-        if (not self.intersects_timespan(argument) and
-            not self.is_tangent_to_timespan(argument)):
+        if not self.intersects_timespan(
+            argument
+        ) and not self.is_tangent_to_timespan(argument):
             result = abjad.TimespanList([self, argument])
             result.sort()
             return result
         new_start_offset = min(self._start_offset, argument.start_offset)
         new_stop_offset = max(self._stop_offset, argument.stop_offset)
         timespan = abjad.new(
-            self,
-            start_offset=new_start_offset,
-            stop_offset=new_stop_offset,
-            )
+            self, start_offset=new_start_offset, stop_offset=new_stop_offset
+        )
         return abjad.TimespanList([timespan])
 
     def __repr__(self) -> str:
@@ -457,6 +464,7 @@ class Timespan(object):
         Returns timespan list.
         """
         import abjad
+
         argument = self._get_timespan(argument)
         timespans = abjad.TimespanList()
         if not self.intersects_timespan(argument):
@@ -468,7 +476,7 @@ class Timespan(object):
                 self,
                 start_offset=new_start_offset,
                 stop_offset=new_stop_offset,
-                )
+            )
             timespans.append(timespan)
             new_start_offset = argument.stop_offset
             new_stop_offset = self._stop_offset
@@ -476,7 +484,7 @@ class Timespan(object):
                 self,
                 start_offset=new_start_offset,
                 stop_offset=new_stop_offset,
-                )
+            )
             timespans.append(timespan)
         elif argument.contains_timespan_improperly(self):
             pass
@@ -487,7 +495,7 @@ class Timespan(object):
                 self,
                 start_offset=new_start_offset,
                 stop_offset=new_stop_offset,
-                )
+            )
             timespans.append(timespan)
         elif argument.overlaps_only_stop_of_timespan(self):
             new_start_offset = self._start_offset
@@ -496,27 +504,29 @@ class Timespan(object):
                 self,
                 start_offset=new_start_offset,
                 stop_offset=new_stop_offset,
-                )
+            )
             timespans.append(timespan)
-        elif (argument.starts_when_timespan_starts(self) and
-            argument.stops_before_timespan_stops(self)):
+        elif argument.starts_when_timespan_starts(
+            self
+        ) and argument.stops_before_timespan_stops(self):
             new_start_offset = argument.stop_offset
             new_stop_offset = self._stop_offset
             timespan = abjad.new(
                 self,
                 start_offset=new_start_offset,
                 stop_offset=new_stop_offset,
-                )
+            )
             timespans.append(timespan)
-        elif (argument.stops_when_timespan_stops(self) and
-            argument.starts_after_timespan_starts(self)):
+        elif argument.stops_when_timespan_stops(
+            self
+        ) and argument.starts_after_timespan_starts(self):
             new_start_offset = self._start_offset
             new_stop_offset = argument.start_offset
             timespan = abjad.new(
                 self,
                 start_offset=new_start_offset,
                 stop_offset=new_stop_offset,
-                )
+            )
             timespans.append(timespan)
         else:
             raise ValueError(self, argument)
@@ -626,9 +636,11 @@ class Timespan(object):
         Returns timespan list.
         """
         import abjad
+
         argument = self._get_timespan(argument)
-        if (not self.intersects_timespan(argument) or
-            self.is_tangent_to_timespan(argument)):
+        if not self.intersects_timespan(
+            argument
+        ) or self.is_tangent_to_timespan(argument):
             result = abjad.TimespanList()
             result.append(copy.deepcopy(self))
             result.append(copy.deepcopy(argument))
@@ -640,15 +652,11 @@ class Timespan(object):
         start_offsets.sort()
         stop_offsets.sort()
         timespan_1 = abjad.new(
-            self,
-            start_offset=start_offsets[0],
-            stop_offset=start_offsets[1],
-            )
+            self, start_offset=start_offsets[0], stop_offset=start_offsets[1]
+        )
         timespan_2 = abjad.new(
-            self,
-            start_offset=stop_offsets[0],
-            stop_offset=stop_offsets[1],
-            )
+            self, start_offset=stop_offsets[0], stop_offset=stop_offsets[1]
+        )
         if timespan_1.wellformed:
             result.append(timespan_1)
         if timespan_2.wellformed:
@@ -659,15 +667,13 @@ class Timespan(object):
     ### PRIVATE METHODS ###
 
     def _as_postscript(
-        self,
-        postscript_x_offset,
-        postscript_y_offset,
-        postscript_scale,
-        ):
+        self, postscript_x_offset, postscript_y_offset, postscript_scale
+    ):
         import abjad
-        start = (float(self._start_offset) * postscript_scale)
+
+        start = float(self._start_offset) * postscript_scale
         start -= postscript_x_offset
-        stop = (float(self._stop_offset) * postscript_scale)
+        stop = float(self._stop_offset) * postscript_scale
         stop -= postscript_x_offset
         ps = abjad.Postscript()
         ps = ps.moveto(start, postscript_y_offset)
@@ -683,8 +689,9 @@ class Timespan(object):
 
     def _can_fuse(self, argument):
         if isinstance(argument, type(self)):
-            return self.intersects_timespan(argument) or \
-                self.stops_when_timespan_starts(argument)
+            return self.intersects_timespan(
+                argument
+            ) or self.stops_when_timespan_starts(argument)
         return False
 
     def _get_format_specification(self):
@@ -694,9 +701,9 @@ class Timespan(object):
     def _get_offsets(argument):
         if isinstance(argument, Timespan):
             pass
-        elif hasattr(argument, 'timespan'):
+        elif hasattr(argument, "timespan"):
             argument = argument.timespan
-        elif hasattr(argument, '_get_timespan'):
+        elif hasattr(argument, "_get_timespan"):
             argument = argument._get_timespan()
         else:
             raise ValueError(argument)
@@ -706,53 +713,53 @@ class Timespan(object):
     def _get_start_offset_and_maybe_stop_offset(argument):
         if isinstance(argument, Timespan):
             pass
-        elif hasattr(argument, 'timespan'):
+        elif hasattr(argument, "timespan"):
             argument = argument.timespan
-        elif hasattr(argument, '_get_timespan'):
+        elif hasattr(argument, "_get_timespan"):
             argument = argument._get_timespan()
-        start_offset = getattr(argument, 'start_offset', None)
+        start_offset = getattr(argument, "start_offset", None)
         if start_offset is None:
             raise ValueError(argument)
-        stop_offset = getattr(argument, 'stop_offset', None)
+        stop_offset = getattr(argument, "stop_offset", None)
         return start_offset, stop_offset
 
     def _get_timespan(self, argument):
         import abjad
+
         if isinstance(argument, Timespan):
             start_offset, stop_offset = argument.offsets
-        elif hasattr(argument, 'timespan'):
+        elif hasattr(argument, "timespan"):
             start_offset, stop_offset = argument.timespan.offsets
-        elif hasattr(argument, '_get_timespan'):
+        elif hasattr(argument, "_get_timespan"):
             start_offset, stop_offset = argument._get_timespan().offsets
         # TODO: remove this branch in favor of the _get_timespan above
-        #elif hasattr(argument, 'timespan'):
+        # elif hasattr(argument, 'timespan'):
         #    start_offset, stop_offset = argument.timespan().offsets
         else:
             raise ValueError(argument)
         return abjad.new(
-            self,
-            start_offset=start_offset,
-            stop_offset=stop_offset,
-            )
+            self, start_offset=start_offset, stop_offset=stop_offset
+        )
 
     @staticmethod
     def _implements_timespan_interface(timespan):
         if (
-            getattr(timespan, 'start_offset', 'foo') != 'foo' and
-            getattr(timespan, 'stop_offset', 'foo') != 'foo'
-            ):
+            getattr(timespan, "start_offset", "foo") != "foo"
+            and getattr(timespan, "stop_offset", "foo") != "foo"
+        ):
             return True
-        if hasattr(timespan, '_get_timespan'):
+        if hasattr(timespan, "_get_timespan"):
             return True
         # TODO: remove this branch in favor of the _get_timespan above
-        if hasattr(timespan, 'timespan'):
+        if hasattr(timespan, "timespan"):
             return True
-        if getattr(timespan, 'timespan', 'foo') != 'foo':
+        if getattr(timespan, "timespan", "foo") != "foo":
             return True
         return False
 
     def _initialize_offset(self, offset):
         import abjad
+
         if offset in (NegativeInfinity, Infinity):
             return offset
         return abjad.Offset(offset)
@@ -782,9 +789,9 @@ class Timespan(object):
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return (
-            self_start_offset <= expr_start_offset and
-            expr_stop_offset <= self_stop_offset
-            )
+            self_start_offset <= expr_start_offset
+            and expr_stop_offset <= self_stop_offset
+        )
 
     def curtails_timespan(self, timespan):
         """
@@ -809,10 +816,10 @@ class Timespan(object):
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return (
-            expr_start_offset < self_start_offset and
-            self_start_offset <= expr_stop_offset and
-            expr_stop_offset <= self_stop_offset
-            )
+            expr_start_offset < self_start_offset
+            and self_start_offset <= expr_stop_offset
+            and expr_stop_offset <= self_stop_offset
+        )
 
     def delays_timespan(self, timespan):
         """
@@ -834,9 +841,9 @@ class Timespan(object):
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return (
-            self_start_offset <= expr_start_offset and
-            expr_start_offset < self_stop_offset
-            )
+            self_start_offset <= expr_start_offset
+            and expr_start_offset < self_stop_offset
+        )
 
     def divide_by_ratio(self, ratio):
         """
@@ -855,17 +862,17 @@ class Timespan(object):
         Returns tuple of newly constructed timespans.
         """
         import abjad
+
         if isinstance(ratio, int):
-            ratio = ratio * (1, )
+            ratio = ratio * (1,)
         ratio = abjad.Ratio(ratio)
         unit_duration = self.duration / sum(ratio.numbers)
         part_durations = [
             numerator * unit_duration for numerator in ratio.numbers
-            ]
+        ]
         start_offsets = abjad.mathtools.cumulative_sums(
-            [self._start_offset] + part_durations,
-            start=None,
-            )
+            [self._start_offset] + part_durations, start=None
+        )
         offset_pairs = abjad.sequence(start_offsets).nwise()
         result = [type(self)(*offset_pair) for offset_pair in offset_pairs]
         return tuple(result)
@@ -914,10 +921,9 @@ class Timespan(object):
         Returns duration.
         """
         import abjad
+
         if self._implements_timespan_interface(timespan):
-            result = abjad.Duration(
-                sum(x.duration for x in self & timespan)
-                )
+            result = abjad.Duration(sum(x.duration for x in self & timespan))
             return result
 
     def happens_during_timespan(self, timespan):
@@ -943,9 +949,9 @@ class Timespan(object):
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return (
-            expr_start_offset <= self_start_offset and
-            self_stop_offset <= expr_stop_offset
-            )
+            expr_start_offset <= self_start_offset
+            and self_stop_offset <= expr_stop_offset
+        )
 
     def intersects_timespan(self, timespan):
         """
@@ -969,14 +975,12 @@ class Timespan(object):
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return (
-            (
-                expr_start_offset <= self_start_offset and
-                self_start_offset < expr_stop_offset
-            ) or (
-                self_start_offset <= expr_start_offset and
-                expr_start_offset < self_stop_offset
-                )
-            )
+            expr_start_offset <= self_start_offset
+            and self_start_offset < expr_stop_offset
+        ) or (
+            self_start_offset <= expr_start_offset
+            and expr_start_offset < self_stop_offset
+        )
 
     def is_congruent_to_timespan(self, timespan):
         """
@@ -1001,9 +1005,9 @@ class Timespan(object):
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return (
-            expr_start_offset == self_start_offset and
-            expr_stop_offset == self_stop_offset
-            )
+            expr_start_offset == self_start_offset
+            and expr_stop_offset == self_stop_offset
+        )
 
     def is_tangent_to_timespan(self, timespan):
         """
@@ -1028,9 +1032,9 @@ class Timespan(object):
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return (
-            self_stop_offset == expr_start_offset or
-            expr_stop_offset == self_start_offset
-            )
+            self_stop_offset == expr_start_offset
+            or expr_stop_offset == self_start_offset
+        )
 
     def overlaps_all_of_timespan(self, timespan):
         """
@@ -1054,9 +1058,9 @@ class Timespan(object):
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return (
-            self_start_offset < expr_start_offset and
-            expr_stop_offset < self_stop_offset
-            )
+            self_start_offset < expr_start_offset
+            and expr_stop_offset < self_stop_offset
+        )
 
     def overlaps_only_start_of_timespan(self, timespan):
         """
@@ -1083,10 +1087,10 @@ class Timespan(object):
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return (
-            self_start_offset < expr_start_offset and
-            expr_start_offset < self_stop_offset and
-            self_stop_offset <= expr_stop_offset
-            )
+            self_start_offset < expr_start_offset
+            and expr_start_offset < self_stop_offset
+            and self_stop_offset <= expr_stop_offset
+        )
 
     def overlaps_only_stop_of_timespan(self, timespan):
         """
@@ -1113,10 +1117,10 @@ class Timespan(object):
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return (
-            expr_start_offset <= self_start_offset and
-            self_start_offset < expr_stop_offset and
-            expr_stop_offset < self_stop_offset
-            )
+            expr_start_offset <= self_start_offset
+            and self_start_offset < expr_stop_offset
+            and expr_stop_offset < self_stop_offset
+        )
 
     def overlaps_start_of_timespan(self, timespan):
         """
@@ -1143,9 +1147,9 @@ class Timespan(object):
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return (
-            self_start_offset < expr_start_offset and
-            expr_start_offset < self_stop_offset
-            )
+            self_start_offset < expr_start_offset
+            and expr_start_offset < self_stop_offset
+        )
 
     def overlaps_stop_of_timespan(self, timespan):
         """
@@ -1172,9 +1176,9 @@ class Timespan(object):
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return (
-            self_start_offset < expr_stop_offset and
-            expr_stop_offset < self_stop_offset
-            )
+            self_start_offset < expr_stop_offset
+            and expr_stop_offset < self_stop_offset
+        )
 
     def reflect(self, axis=None):
         """
@@ -1204,7 +1208,9 @@ class Timespan(object):
         new_stop_offset = axis - start_distance
         return self.set_offsets(new_start_offset, new_stop_offset)
 
-    def round_offsets(self, multiplier, anchor=enums.Left, must_be_wellformed=True):
+    def round_offsets(
+        self, multiplier, anchor=enums.Left, must_be_wellformed=True
+    ):
         """
         Rounds timespan offsets to multiple of ``multiplier``.
 
@@ -1234,22 +1240,23 @@ class Timespan(object):
         Returns new timespan.
         """
         import abjad
+
         multiplier = abs(abjad.Multiplier(multiplier))
         assert 0 < multiplier
         new_start_offset = abjad.Offset(
-            int(round(self._start_offset / multiplier)) * multiplier)
+            int(round(self._start_offset / multiplier)) * multiplier
+        )
         new_stop_offset = abjad.Offset(
-            int(round(self._stop_offset / multiplier)) * multiplier)
+            int(round(self._stop_offset / multiplier)) * multiplier
+        )
         if (new_start_offset == new_stop_offset) and must_be_wellformed:
             if anchor is enums.Left:
                 new_stop_offset = new_stop_offset + multiplier
             else:
                 new_start_offset = new_start_offset - multiplier
         result = abjad.new(
-            self,
-            start_offset=new_start_offset,
-            stop_offset=new_stop_offset,
-            )
+            self, start_offset=new_start_offset, stop_offset=new_stop_offset
+        )
         return result
 
     def scale(self, multiplier, anchor=enums.Left):
@@ -1275,6 +1282,7 @@ class Timespan(object):
         Returns new timespan.
         """
         import abjad
+
         multiplier = abjad.Multiplier(multiplier)
         assert 0 < multiplier
         new_duration = multiplier * self.duration
@@ -1285,14 +1293,12 @@ class Timespan(object):
             new_stop_offset = self._stop_offset
             new_start_offset = self._stop_offset - new_duration
         else:
-            message = 'unknown anchor direction: {!r}.'
+            message = "unknown anchor direction: {!r}."
             message = message.format(anchor)
             raise ValueError(message)
         result = abjad.new(
-            self,
-            start_offset=new_start_offset,
-            stop_offset=new_stop_offset,
-            )
+            self, start_offset=new_start_offset, stop_offset=new_stop_offset
+        )
         return result
 
     def set_duration(self, duration):
@@ -1309,12 +1315,10 @@ class Timespan(object):
         Returns new timespan.
         """
         import abjad
+
         duration = abjad.Duration(duration)
         new_stop_offset = self._start_offset + duration
-        return abjad.new(
-            self,
-            stop_offset=new_stop_offset,
-            )
+        return abjad.new(self, stop_offset=new_stop_offset)
 
     def set_offsets(self, start_offset=None, stop_offset=None):
         """
@@ -1341,6 +1345,7 @@ class Timespan(object):
         Returns new timespan.
         """
         import abjad
+
         if start_offset is not None:
             start_offset = abjad.Offset(start_offset)
 
@@ -1349,22 +1354,18 @@ class Timespan(object):
         if start_offset is not None and 0 <= start_offset:
             new_start_offset = start_offset
         elif start_offset is not None and start_offset < 0:
-            new_start_offset = \
-                self._stop_offset + abjad.Offset(start_offset)
+            new_start_offset = self._stop_offset + abjad.Offset(start_offset)
         else:
             new_start_offset = self._start_offset
         if stop_offset is not None and 0 <= stop_offset:
             new_stop_offset = stop_offset
         elif stop_offset is not None and stop_offset < 0:
-            new_stop_offset = \
-                self._stop_offset + abjad.Offset(stop_offset)
+            new_stop_offset = self._stop_offset + abjad.Offset(stop_offset)
         else:
             new_stop_offset = self._stop_offset
         result = abjad.new(
-            self,
-            start_offset=new_start_offset,
-            stop_offset=new_stop_offset,
-            )
+            self, start_offset=new_start_offset, stop_offset=new_stop_offset
+        )
         return result
 
     # TODO: extend to self.split_at_offsets()
@@ -1392,19 +1393,16 @@ class Timespan(object):
         Returns one or two newly constructed timespans.
         """
         import abjad
+
         offset = abjad.Offset(offset)
         result = abjad.TimespanList()
         if self._start_offset < offset < self._stop_offset:
             left = abjad.new(
-                self,
-                start_offset=self._start_offset,
-                stop_offset=offset,
-                )
+                self, start_offset=self._start_offset, stop_offset=offset
+            )
             right = abjad.new(
-                self,
-                start_offset=offset,
-                stop_offset=self._stop_offset,
-                )
+                self, start_offset=offset, stop_offset=self._stop_offset
+            )
             result.append(left)
             result.append(right)
         else:
@@ -1459,9 +1457,13 @@ class Timespan(object):
         Returns one or more newly constructed timespans.
         """
         import abjad
+
         offsets = [abjad.Offset(offset) for offset in offsets]
-        offsets = [offset for offset in offsets
-            if self._start_offset < offset < self._stop_offset]
+        offsets = [
+            offset
+            for offset in offsets
+            if self._start_offset < offset < self._stop_offset
+        ]
         offsets = sorted(set(offsets))
         result = abjad.TimespanList()
         right = abjad.new(self)
@@ -1489,6 +1491,7 @@ class Timespan(object):
         Returns true or false.
         """
         import abjad
+
         offset = abjad.Offset(offset)
         return offset < self._start_offset
 
@@ -1560,6 +1563,7 @@ class Timespan(object):
         Returns true or false.
         """
         import abjad
+
         offset = abjad.Offset(offset)
         return self._start_offset == offset
 
@@ -1581,6 +1585,7 @@ class Timespan(object):
         Returns true or false.
         """
         import abjad
+
         offset = abjad.Offset(offset)
         return offset <= self._start_offset
 
@@ -1602,6 +1607,7 @@ class Timespan(object):
         Returns true or false.
         """
         import abjad
+
         offset = abjad.Offset(offset)
         return self._start_offset < offset
 
@@ -1623,6 +1629,7 @@ class Timespan(object):
         Returns true or false.
         """
         import abjad
+
         offset = abjad.Offset(offset)
         return self._start_offset <= offset
 
@@ -1697,9 +1704,9 @@ class Timespan(object):
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return (
-            expr_start_offset <= self_start_offset and
-            self_start_offset < expr_stop_offset
-            )
+            expr_start_offset <= self_start_offset
+            and self_start_offset < expr_stop_offset
+        )
 
     def starts_when_timespan_starts(self, timespan):
         """
@@ -1767,6 +1774,7 @@ class Timespan(object):
         Returns true or false.
         """
         import abjad
+
         offset = abjad.Offset(offset)
         return offset < self._stop_offset
 
@@ -1836,6 +1844,7 @@ class Timespan(object):
         Returns true or false.
         """
         import abjad
+
         offset = abjad.Offset(offset)
         return self._stop_offset == offset
 
@@ -1857,6 +1866,7 @@ class Timespan(object):
         Returns true or false.
         """
         import abjad
+
         offset = abjad.Offset(offset)
         return offset <= self._stop_offset
 
@@ -1878,6 +1888,7 @@ class Timespan(object):
         Returns true or false.
         """
         import abjad
+
         offset = abjad.Offset(offset)
         return self._stop_offset < offset
 
@@ -1899,6 +1910,7 @@ class Timespan(object):
         Returns true or false.
         """
         import abjad
+
         offset = abjad.Offset(offset)
         return self._stop_offset <= offset
 
@@ -1973,9 +1985,9 @@ class Timespan(object):
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return (
-            expr_start_offset < self_stop_offset and
-            self_stop_offset <= expr_stop_offset
-            )
+            expr_start_offset < self_stop_offset
+            and self_stop_offset <= expr_stop_offset
+        )
 
     def stops_when_timespan_starts(self, timespan):
         """
@@ -2079,17 +2091,18 @@ class Timespan(object):
         Returns newly emitted timespan.
         """
         import abjad
+
         multiplier = abjad.Multiplier(multiplier)
         assert 0 < multiplier
         if anchor is None:
             anchor = self._start_offset
-        new_start_offset = (multiplier * (self._start_offset - anchor)) + anchor
+        new_start_offset = (
+            multiplier * (self._start_offset - anchor)
+        ) + anchor
         new_stop_offset = (multiplier * (self._stop_offset - anchor)) + anchor
         result = abjad.new(
-            self,
-            start_offset=new_start_offset,
-            stop_offset=new_stop_offset,
-            )
+            self, start_offset=new_start_offset, stop_offset=new_stop_offset
+        )
         return result
 
     def translate(self, translation=None):
@@ -2108,10 +2121,8 @@ class Timespan(object):
         return self.translate_offsets(translation, translation)
 
     def translate_offsets(
-        self,
-        start_offset_translation=None,
-        stop_offset_translation=None,
-        ):
+        self, start_offset_translation=None, stop_offset_translation=None
+    ):
         """
         Translates timespan start offset by ``start_offset_translation`` and
         stop offset by ``stop_offset_translation``.
@@ -2126,6 +2137,7 @@ class Timespan(object):
         Returns new timespan.
         """
         import abjad
+
         start_offset_translation = start_offset_translation or 0
         stop_offset_translation = stop_offset_translation or 0
         start_offset_translation = abjad.Duration(start_offset_translation)
@@ -2133,10 +2145,8 @@ class Timespan(object):
         new_start_offset = self._start_offset + start_offset_translation
         new_stop_offset = self._stop_offset + stop_offset_translation
         return abjad.new(
-            self,
-            start_offset=new_start_offset,
-            stop_offset=new_stop_offset,
-            )
+            self, start_offset=new_start_offset, stop_offset=new_stop_offset
+        )
 
     def trisects_timespan(self, timespan):
         """
@@ -2161,9 +2171,9 @@ class Timespan(object):
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return (
-            expr_start_offset < self_start_offset and
-            self_stop_offset < expr_stop_offset
-            )
+            expr_start_offset < self_start_offset
+            and self_stop_offset < expr_stop_offset
+        )
 
     ### PUBLIC PROPERTIES ###
 

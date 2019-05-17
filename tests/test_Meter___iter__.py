@@ -11,5 +11,5 @@ def test_Meter___iter___01():
         (abjad.Offset(0, 1), abjad.Offset(1, 8)),
         (abjad.Offset(1, 8), abjad.Offset(1, 4)),
         (abjad.Offset(1, 4), abjad.Offset(3, 8)),
-        (abjad.Offset(0, 1), abjad.Offset(3, 8))
+        (abjad.Offset(0, 1), abjad.Offset(3, 8)),
     ]

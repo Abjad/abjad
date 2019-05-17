@@ -17,15 +17,13 @@ class LilyPondGrob(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_name',
-        )
+    __slots__ = ("_name",)
 
-    _identity_map: typing.Dict[str, 'LilyPondGrob'] = {}
+    _identity_map: typing.Dict[str, "LilyPondGrob"] = {}
 
     ### CONSTRUCTOR ###
 
-    def __new__(class_, name='NoteHead'):
+    def __new__(class_, name="NoteHead"):
         if name in class_._identity_map:
             obj = class_._identity_map[name]
         else:
@@ -35,8 +33,9 @@ class LilyPondGrob(object):
 
     ### INITIALIZER ###
 
-    def __init__(self, name='NoteHead') -> None:
+    def __init__(self, name="NoteHead") -> None:
         from abjad.ly import grob_interfaces
+
         assert name in grob_interfaces
         self._name = name
 
@@ -68,10 +67,11 @@ class LilyPondGrob(object):
 
         """
         from abjad.ly import grob_interfaces
+
         return tuple(
             LilyPondGrobInterface(_)
             for _ in sorted(grob_interfaces[self.name])
-            )
+        )
 
     @property
     def name(self) -> str:
@@ -170,7 +170,7 @@ class LilyPondGrob(object):
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def list_all_grobs() -> typing.Tuple['LilyPondGrob', ...]:
+    def list_all_grobs() -> typing.Tuple["LilyPondGrob", ...]:
         """
         Lists all grobs.
 
@@ -321,4 +321,5 @@ class LilyPondGrob(object):
 
         """
         from abjad.ly import grob_interfaces
+
         return tuple(LilyPondGrob(name) for name in sorted(grob_interfaces))

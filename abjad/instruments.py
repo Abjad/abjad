@@ -76,21 +76,21 @@ class Instrument(object):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_allowable_clefs',
-        '_context',
-        '_middle_c_sounding_pitch',
-        '_name',
-        '_name_markup',
-        '_primary',
-        '_middle_c_sounding_pitch',
-        '_performer_names',
-        '_pitch_range',
-        '_short_name',
-        '_short_name_markup',
-        '_starting_clefs',
-        )
+        "_allowable_clefs",
+        "_context",
+        "_middle_c_sounding_pitch",
+        "_name",
+        "_name_markup",
+        "_primary",
+        "_middle_c_sounding_pitch",
+        "_performer_names",
+        "_pitch_range",
+        "_short_name",
+        "_short_name_markup",
+        "_starting_clefs",
+    )
 
-    _format_slot = 'opening'
+    _format_slot = "opening"
 
     _latent = True
 
@@ -114,9 +114,10 @@ class Instrument(object):
         primary=None,
         short_name=None,
         short_markup=None,
-        ):
+    ):
         import abjad
-        self._context = context or 'Staff'
+
+        self._context = context or "Staff"
         if name is not None:
             name = str(name)
         self._name = name
@@ -129,7 +130,7 @@ class Instrument(object):
         if short_markup is not None:
             short_markup = abjad.Markup(short_markup)
         self._short_name_markup = short_markup
-        allowable_clefs = allowable_clefs or ('treble',)
+        allowable_clefs = allowable_clefs or ("treble",)
         self._allowable_clefs = allowable_clefs
         if isinstance(pitch_range, str):
             pitch_range = abjad.PitchRange(pitch_range)
@@ -140,15 +141,15 @@ class Instrument(object):
         else:
             raise TypeError(pitch_range)
         self._pitch_range = pitch_range
-        middle_c_sounding_pitch = (middle_c_sounding_pitch or
-            abjad.NamedPitch("c'"))
-        middle_c_sounding_pitch = abjad.NamedPitch(
-            middle_c_sounding_pitch)
+        middle_c_sounding_pitch = middle_c_sounding_pitch or abjad.NamedPitch(
+            "c'"
+        )
+        middle_c_sounding_pitch = abjad.NamedPitch(middle_c_sounding_pitch)
         self._middle_c_sounding_pitch = middle_c_sounding_pitch
         if primary is not None:
             primary = bool(primary)
         self._primary = primary
-        self._performer_names = ['instrumentalist']
+        self._performer_names = ["instrumentalist"]
         self._starting_clefs = copy.copy(allowable_clefs)
 
     ### SPECIAL METHODS ###
@@ -160,14 +161,14 @@ class Instrument(object):
         """
         return StorageFormatManager.compare_objects(self, argument)
 
-    def __format__(self, format_specification='') -> str:
+    def __format__(self, format_specification="") -> str:
         """
         Formats Abjad object.
 
         Set ``format_specification`` to ``''`` or ``'storage'``.
         Interprets ``''`` equal to ``'storage'``.
         """
-        if format_specification in ('', 'storage'):
+        if format_specification in ("", "storage"):
             return StorageFormatManager(self).get_storage_format()
         return str(self)
 
@@ -179,7 +180,7 @@ class Instrument(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     def __repr__(self) -> str:
@@ -203,25 +204,28 @@ class Instrument(object):
 
     def _attachment_test_all(self, component_expression):
         import abjad
+
         if abjad.inspect(component_expression).has_indicator(Instrument):
             return False
         return True
 
     def _get_format_specification(self):
         import abjad
+
         keywords = []
         return abjad.FormatSpecification(
             self,
             repr_args_values=[],
             repr_is_indented=False,
             repr_kwargs_names=keywords,
-            )
+        )
 
     def _get_lilypond_format(self, context=None):
         return []
 
     def _initialize_default_name_markups(self):
         import abjad
+
         if self._name_markup is None:
             if self.name:
                 string = self.name
@@ -249,7 +253,7 @@ class Instrument(object):
         Returns clef list.
         """
         if self._allowable_clefs is None:
-            self._allowable_clefs = ('treble',)
+            self._allowable_clefs = ("treble",)
         return self._allowable_clefs
 
     @property
@@ -284,12 +288,13 @@ class Instrument(object):
         Returns markup.
         """
         import abjad
+
         if self._name_markup is None:
             self._initialize_default_name_markups()
         if not isinstance(self._name_markup, abjad.Markup):
             markup = abjad.Markup(contents=self._name_markup)
             self._name_markup = markup
-        if self._name_markup.contents != ('',):
+        if self._name_markup.contents != ("",):
             return self._name_markup
 
     @property
@@ -327,7 +332,7 @@ class Instrument(object):
         Returns pitch range.
         """
         return self._pitch_range
-        
+
     @property
     def primary(self):
         """
@@ -355,13 +360,13 @@ class Instrument(object):
         Returns markup.
         """
         import abjad
+
         if self._short_name_markup is None:
             self._initialize_default_name_markups()
-        if not isinstance(
-            self._short_name_markup, abjad.Markup):
+        if not isinstance(self._short_name_markup, abjad.Markup):
             markup = abjad.Markup(contents=self._short_name_markup)
             self._short_name_markup = markup
-        if self._short_name_markup.contents != ('',):
+        if self._short_name_markup.contents != ("",):
             return self._short_name_markup
 
     @property
@@ -416,12 +421,13 @@ class Instrument(object):
         Returns none.
         """
         import abjad
+
         for leaf in abjad.iterate(argument).leaves(pitched=True):
             instrument = abjad.inspect(leaf).effective(abjad.Instrument)
             if not instrument:
                 continue
             sounding_pitch = instrument.middle_c_sounding_pitch
-            interval = abjad.NamedPitch('C4') - sounding_pitch
+            interval = abjad.NamedPitch("C4") - sounding_pitch
             interval *= -1
             if isinstance(leaf, abjad.Note):
                 pitch = leaf.written_pitch
@@ -429,9 +435,8 @@ class Instrument(object):
                 leaf.written_pitch = pitch
             elif isinstance(leaf, abjad.Chord):
                 pitches = [
-                    interval.transpose(pitch)
-                    for pitch in leaf.written_pitches
-                    ]
+                    interval.transpose(pitch) for pitch in leaf.written_pitches
+                ]
                 leaf.written_pitches = pitches
 
     @staticmethod
@@ -475,21 +480,21 @@ class Instrument(object):
         Returns none.
         """
         import abjad
+
         for leaf in abjad.iterate(argument).leaves(pitched=True):
             instrument = abjad.inspect(leaf).effective(abjad.Instrument)
             if not instrument:
                 continue
             sounding_pitch = instrument.middle_c_sounding_pitch
-            interval = abjad.NamedPitch('C4') - sounding_pitch
+            interval = abjad.NamedPitch("C4") - sounding_pitch
             if isinstance(leaf, abjad.Note):
                 written_pitch = leaf.written_pitch
                 written_pitch = interval.transpose(written_pitch)
                 leaf.written_pitch = written_pitch
             elif isinstance(leaf, abjad.Chord):
                 pitches = [
-                    interval.transpose(pitch)
-                    for pitch in leaf.written_pitches
-                    ]
+                    interval.transpose(pitch) for pitch in leaf.written_pitches
+                ]
                 leaf.written_pitches = pitches
 
 
@@ -521,18 +526,15 @@ class StringNumber(object):
 
     ### CLASS VARIABLES
 
-    __slots__ = (
-        '_numbers',
-        )
+    __slots__ = ("_numbers",)
 
     _publish_storage_format = True
 
     ### INITIALIZER ###
 
     def __init__(
-        self,
-        numbers: typing.Union[int, typing.Iterable[int]] = None,
-        ) -> None:
+        self, numbers: typing.Union[int, typing.Iterable[int]] = None
+    ) -> None:
         if numbers is None:
             numbers_: typing.Tuple[int, ...] = ()
         elif isinstance(numbers, int):
@@ -561,7 +563,7 @@ class StringNumber(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     ### PUBLIC PROPERTIES ###
@@ -608,7 +610,7 @@ class StringNumber(object):
             ('ii', 'iii')
 
         """
-        numerals = ('i', 'ii', 'iii', 'iv', 'v', 'vi')
+        numerals = ("i", "ii", "iii", "iv", "v", "vi")
         result = []
         for number in self.numbers:
             numeral = numerals[number - 1]
@@ -649,25 +651,19 @@ class Tuning(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_pitches',
-        )
+    __slots__ = ("_pitches",)
 
     _publish_storage_format = True
 
     ### INITIALIZER ###
 
     def __init__(
-        self,
-        pitches: typing.Union['Tuning', typing.Iterable] = None,
-        ) -> None:
+        self, pitches: typing.Union["Tuning", typing.Iterable] = None
+    ) -> None:
         if pitches is not None:
             if isinstance(pitches, type(self)):
                 pitches = pitches.pitches
-            pitches = PitchSegment(
-                items=pitches,
-                item_class=NamedPitch,
-                )
+            pitches = PitchSegment(items=pitches, item_class=NamedPitch)
         self._pitches: typing.Optional[PitchSegment] = pitches
 
     ### SPECIAL METHODS ###
@@ -679,14 +675,14 @@ class Tuning(object):
         """
         return StorageFormatManager.compare_objects(self, argument)
 
-    def __format__(self, format_specification='') -> str:
+    def __format__(self, format_specification="") -> str:
         """
         Formats Abjad object.
 
         Set ``format_specification`` to ``''`` or ``'storage'``.
         Interprets ``''`` equal to ``'storage'``.
         """
-        if format_specification in ('', 'storage'):
+        if format_specification in ("", "storage"):
             return StorageFormatManager(self).get_storage_format()
         return str(self)
 
@@ -698,7 +694,7 @@ class Tuning(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     def __repr__(self) -> str:
@@ -769,9 +765,8 @@ class Tuning(object):
     ### PUBLIC METHODS ###
 
     def get_pitch_ranges_by_string_number(
-        self,
-        string_number: StringNumber,
-        ) -> typing.Tuple[PitchRange, ...]:
+        self, string_number: StringNumber
+    ) -> typing.Tuple[PitchRange, ...]:
         """
         Gets tuning pitch ranges by string number.
 
@@ -797,9 +792,8 @@ class Tuning(object):
         return tuple(result)
 
     def get_pitches_by_string_number(
-        self,
-        string_number: StringNumber,
-        ) -> typing.Tuple[NamedPitch, ...]:
+        self, string_number: StringNumber
+    ) -> typing.Tuple[NamedPitch, ...]:
         """
         Gets tuning pitches by string number.
 
@@ -825,10 +819,8 @@ class Tuning(object):
         return tuple(result)
 
     def voice_pitch_classes(
-        self,
-        pitch_classes,
-        allow_open_strings: bool = True,
-        ):
+        self, pitch_classes, allow_open_strings: bool = True
+    ):
         r"""
         Voices ``pitch_classes``.
 
@@ -915,7 +907,7 @@ class Tuning(object):
         pitch_ranges = self.pitch_ranges
         result: typing.List[
             typing.Tuple[typing.Union[NamedPitch, None], ...]
-            ] = []
+        ] = []
         for permutation in permutations:
             sequences = []
             for pitch_range, pitch_class in zip(pitch_ranges, permutation):
@@ -925,9 +917,10 @@ class Tuning(object):
                 pitches = pitch_range.voice_pitch_class(pitch_class)
                 if not allow_open_strings:
                     pitches = [
-                        pitch for pitch in pitches
+                        pitch
+                        for pitch in pitches
                         if pitch != pitch_range.start_pitch
-                        ]
+                    ]
                 if not pitches:
                     pitches = [None]
                 sequences.append(pitches)
@@ -984,16 +977,16 @@ class Accordion(Instrument):
     def __init__(
         self,
         *,
-        allowable_clefs=('treble', 'bass'),
-        context='StaffGroup',
-        name='accordion',
+        allowable_clefs=("treble", "bass"),
+        context="StaffGroup",
+        name="accordion",
         markup=None,
         middle_c_sounding_pitch=None,
-        pitch_range='[E1, C8]',
+        pitch_range="[E1, C8]",
         primary=True,
         short_markup=None,
-        short_name='acc.',
-        ):
+        short_name="acc.",
+    ):
         Instrument.__init__(
             self,
             allowable_clefs=allowable_clefs,
@@ -1004,7 +997,7 @@ class Accordion(Instrument):
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             short_name=short_name,
-            )
+        )
 
 
 class AltoFlute(Instrument):
@@ -1040,15 +1033,15 @@ class AltoFlute(Instrument):
     def __init__(
         self,
         *,
-        name='alto flute',
-        short_name='alt. fl.',
+        name="alto flute",
+        short_name="alt. fl.",
         markup=None,
         short_markup=None,
         allowable_clefs=None,
         context=None,
-        middle_c_sounding_pitch='G3',
-        pitch_range='[G3, G6]',
-        ):
+        middle_c_sounding_pitch="G3",
+        pitch_range="[G3, G6]",
+    ):
         Instrument.__init__(
             self,
             name=name,
@@ -1059,7 +1052,7 @@ class AltoFlute(Instrument):
             context=context,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
-            )
+        )
 
 
 class AltoSaxophone(Instrument):
@@ -1095,16 +1088,16 @@ class AltoSaxophone(Instrument):
     def __init__(
         self,
         *,
-        name='alto saxophone',
-        short_name='alt. sax.',
+        name="alto saxophone",
+        short_name="alt. sax.",
         markup=None,
         short_markup=None,
         allowable_clefs=None,
         context=None,
-        middle_c_sounding_pitch='Eb3',
-        pitch_range='[Db3, A5]',
+        middle_c_sounding_pitch="Eb3",
+        pitch_range="[Db3, A5]",
         primary=True,
-        ):
+    ):
         Instrument.__init__(
             self,
             name=name,
@@ -1116,7 +1109,7 @@ class AltoSaxophone(Instrument):
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             primary=primary,
-            )
+        )
 
 
 class AltoTrombone(Instrument):
@@ -1155,15 +1148,15 @@ class AltoTrombone(Instrument):
     def __init__(
         self,
         *,
-        name='alto trombone',
-        short_name='alt. trb.',
+        name="alto trombone",
+        short_name="alt. trb.",
         markup=None,
         short_markup=None,
-        allowable_clefs=('bass', 'tenor'),
+        allowable_clefs=("bass", "tenor"),
         context=None,
         middle_c_sounding_pitch=None,
-        pitch_range='[A2, Bb5]',
-        ):
+        pitch_range="[A2, Bb5]",
+    ):
         Instrument.__init__(
             self,
             name=name,
@@ -1174,7 +1167,7 @@ class AltoTrombone(Instrument):
             context=context,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
-            )
+        )
 
 
 class AltoVoice(Instrument):
@@ -1205,22 +1198,22 @@ class AltoVoice(Instrument):
 
     __slots__ = ()
 
-    performer_abbreviation = 'alto'
+    performer_abbreviation = "alto"
 
     ### INITIALIZER ###
 
     def __init__(
         self,
         *,
-        name='alto',
-        short_name='alto',
+        name="alto",
+        short_name="alto",
         markup=None,
         short_markup=None,
         allowable_clefs=None,
         context=None,
         middle_c_sounding_pitch=None,
-        pitch_range='[F3, G5]',
-        ):
+        pitch_range="[F3, G5]",
+    ):
         Instrument.__init__(
             self,
             name=name,
@@ -1231,7 +1224,7 @@ class AltoVoice(Instrument):
             context=context,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
-            )
+        )
 
 
 class BaritoneSaxophone(Instrument):
@@ -1267,15 +1260,15 @@ class BaritoneSaxophone(Instrument):
     def __init__(
         self,
         *,
-        name='baritone saxophone',
-        short_name='bar. sax.',
+        name="baritone saxophone",
+        short_name="bar. sax.",
         markup=None,
         short_markup=None,
         allowable_clefs=None,
         context=None,
-        middle_c_sounding_pitch='Eb2',
-        pitch_range='[C2, Ab4]',
-        ):
+        middle_c_sounding_pitch="Eb2",
+        pitch_range="[C2, Ab4]",
+    ):
         Instrument.__init__(
             self,
             name=name,
@@ -1286,7 +1279,7 @@ class BaritoneSaxophone(Instrument):
             context=context,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
-            )
+        )
 
 
 class BaritoneVoice(Instrument):
@@ -1320,22 +1313,22 @@ class BaritoneVoice(Instrument):
 
     __slots__ = ()
 
-    performer_abbreviation = 'bar.'
+    performer_abbreviation = "bar."
 
     ### INITIALIZER ###
 
     def __init__(
         self,
         *,
-        name='baritone',
-        short_name='bar.',
+        name="baritone",
+        short_name="bar.",
         markup=None,
         short_markup=None,
-        allowable_clefs=('bass',),
+        allowable_clefs=("bass",),
         context=None,
         middle_c_sounding_pitch=None,
-        pitch_range='[A2, A4]',
-        ):
+        pitch_range="[A2, A4]",
+    ):
         Instrument.__init__(
             self,
             name=name,
@@ -1346,7 +1339,7 @@ class BaritoneVoice(Instrument):
             context=context,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
-            )
+        )
 
 
 class BassClarinet(Instrument):
@@ -1382,15 +1375,15 @@ class BassClarinet(Instrument):
     def __init__(
         self,
         *,
-        name='bass clarinet',
-        short_name='bass cl.',
+        name="bass clarinet",
+        short_name="bass cl.",
         markup=None,
         short_markup=None,
-        allowable_clefs=('treble', 'bass'),
+        allowable_clefs=("treble", "bass"),
         context=None,
-        middle_c_sounding_pitch='Bb2',
-        pitch_range='[Bb1, G5]',
-        ):
+        middle_c_sounding_pitch="Bb2",
+        pitch_range="[Bb1, G5]",
+    ):
         Instrument.__init__(
             self,
             name=name,
@@ -1401,7 +1394,7 @@ class BassClarinet(Instrument):
             context=context,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
-            )
+        )
 
 
 class BassFlute(Instrument):
@@ -1437,15 +1430,15 @@ class BassFlute(Instrument):
     def __init__(
         self,
         *,
-        name='bass flute',
-        short_name='bass fl.',
+        name="bass flute",
+        short_name="bass fl.",
         markup=None,
         short_markup=None,
         allowable_clefs=None,
         context=None,
-        middle_c_sounding_pitch='C3',
-        pitch_range='[C3, C6]',
-        ):
+        middle_c_sounding_pitch="C3",
+        pitch_range="[C3, C6]",
+    ):
         Instrument.__init__(
             self,
             name=name,
@@ -1456,7 +1449,7 @@ class BassFlute(Instrument):
             context=context,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
-            )
+        )
 
 
 class BassSaxophone(Instrument):
@@ -1492,15 +1485,15 @@ class BassSaxophone(Instrument):
     def __init__(
         self,
         *,
-        name='bass saxophone',
-        short_name='bass sax.',
+        name="bass saxophone",
+        short_name="bass sax.",
         markup=None,
         short_markup=None,
         allowable_clefs=None,
         context=None,
-        middle_c_sounding_pitch='Bb1',
-        pitch_range='[Ab2, E4]',
-        ):
+        middle_c_sounding_pitch="Bb1",
+        pitch_range="[Ab2, E4]",
+    ):
         Instrument.__init__(
             self,
             name=name,
@@ -1511,7 +1504,7 @@ class BassSaxophone(Instrument):
             context=context,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
-            )
+        )
 
 
 class BassTrombone(Instrument):
@@ -1550,15 +1543,15 @@ class BassTrombone(Instrument):
     def __init__(
         self,
         *,
-        name='bass trombone',
-        short_name='bass trb.',
+        name="bass trombone",
+        short_name="bass trb.",
         markup=None,
         short_markup=None,
-        allowable_clefs=('bass',),
+        allowable_clefs=("bass",),
         context=None,
         middle_c_sounding_pitch=None,
-        pitch_range='[C2, F4]',
-        ):
+        pitch_range="[C2, F4]",
+    ):
         Instrument.__init__(
             self,
             name=name,
@@ -1569,7 +1562,7 @@ class BassTrombone(Instrument):
             context=context,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
-            )
+        )
 
 
 class BassVoice(Instrument):
@@ -1608,16 +1601,16 @@ class BassVoice(Instrument):
     def __init__(
         self,
         *,
-        name='bass',
-        short_name='bass',
+        name="bass",
+        short_name="bass",
         markup=None,
         short_markup=None,
-        allowable_clefs=('bass',),
+        allowable_clefs=("bass",),
         context=None,
         middle_c_sounding_pitch=None,
-        pitch_range='[E2, F4]',
+        pitch_range="[E2, F4]",
         primary=True,
-        ):
+    ):
         Instrument.__init__(
             self,
             name=name,
@@ -1629,7 +1622,7 @@ class BassVoice(Instrument):
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             primary=primary,
-            )
+        )
 
 
 class Bassoon(Instrument):
@@ -1668,16 +1661,16 @@ class Bassoon(Instrument):
     def __init__(
         self,
         *,
-        name='bassoon',
-        short_name='bsn.',
+        name="bassoon",
+        short_name="bsn.",
         markup=None,
         short_markup=None,
-        allowable_clefs=('bass', 'tenor'),
+        allowable_clefs=("bass", "tenor"),
         context=None,
         middle_c_sounding_pitch=None,
-        pitch_range='[Bb1, Eb5]',
-        primary=True
-        ):
+        pitch_range="[Bb1, Eb5]",
+        primary=True,
+    ):
         Instrument.__init__(
             self,
             name=name,
@@ -1689,7 +1682,7 @@ class Bassoon(Instrument):
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             primary=primary,
-            )
+        )
 
 
 class Cello(Instrument):
@@ -1721,26 +1714,24 @@ class Cello(Instrument):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_default_tuning',
-        )
+    __slots__ = ("_default_tuning",)
 
     ### INITIALIZER ###
 
     def __init__(
         self,
         *,
-        name='cello',
-        short_name='vc.',
+        name="cello",
+        short_name="vc.",
         markup=None,
         short_markup=None,
-        allowable_clefs=('bass', 'tenor', 'treble'),
+        allowable_clefs=("bass", "tenor", "treble"),
         context=None,
-        default_tuning=('C2', 'G2', 'D3', 'A3'),
+        default_tuning=("C2", "G2", "D3", "A3"),
         middle_c_sounding_pitch=None,
-        pitch_range='[C2, G5]',
+        pitch_range="[C2, G5]",
         primary=True,
-        ):
+    ):
         Instrument.__init__(
             self,
             name=name,
@@ -1752,7 +1743,7 @@ class Cello(Instrument):
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             primary=primary,
-            )
+        )
         self._default_tuning = Tuning(default_tuning)
 
     ### PUBLIC PROPERTIES ###
@@ -1806,15 +1797,15 @@ class ClarinetInA(Instrument):
     def __init__(
         self,
         *,
-        name='clarinet in A',
-        short_name=r'cl. A \natural',
+        name="clarinet in A",
+        short_name=r"cl. A \natural",
         markup=None,
         short_markup=None,
         allowable_clefs=None,
         context=None,
-        middle_c_sounding_pitch='A3',
-        pitch_range='[Db3, A6]',
-        ):
+        middle_c_sounding_pitch="A3",
+        pitch_range="[Db3, A6]",
+    ):
         Instrument.__init__(
             self,
             name=name,
@@ -1825,7 +1816,7 @@ class ClarinetInA(Instrument):
             context=context,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
-            )
+        )
 
 
 class ClarinetInBFlat(Instrument):
@@ -1856,23 +1847,23 @@ class ClarinetInBFlat(Instrument):
 
     __slots__ = ()
 
-    performer_abbreviation = 'cl.'
+    performer_abbreviation = "cl."
 
     ### INITIALIZER ###
 
     def __init__(
         self,
         *,
-        name='clarinet in B-flat',
-        short_name='cl. in B-flat',
+        name="clarinet in B-flat",
+        short_name="cl. in B-flat",
         markup=None,
         short_markup=None,
         allowable_clefs=None,
         context=None,
-        middle_c_sounding_pitch='Bb3',
-        pitch_range='[D3, Bb6]',
+        middle_c_sounding_pitch="Bb3",
+        pitch_range="[D3, Bb6]",
         primary=True,
-        ):
+    ):
         Instrument.__init__(
             self,
             name=name,
@@ -1884,8 +1875,8 @@ class ClarinetInBFlat(Instrument):
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             primary=primary,
-            )
-            
+        )
+
 
 class ClarinetInEFlat(Instrument):
     r"""
@@ -1920,15 +1911,15 @@ class ClarinetInEFlat(Instrument):
     def __init__(
         self,
         *,
-        name='clarinet in E-flat',
-        short_name='cl. E-flat',
+        name="clarinet in E-flat",
+        short_name="cl. E-flat",
         markup=None,
         short_markup=None,
         allowable_clefs=None,
         context=None,
-        middle_c_sounding_pitch='Eb4',
-        pitch_range='[F3, C7]',
-        ):
+        middle_c_sounding_pitch="Eb4",
+        pitch_range="[F3, C7]",
+    ):
         Instrument.__init__(
             self,
             name=name,
@@ -1939,7 +1930,7 @@ class ClarinetInEFlat(Instrument):
             context=context,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
-            )
+        )
 
 
 class Contrabass(Instrument):
@@ -1971,26 +1962,24 @@ class Contrabass(Instrument):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_default_tuning',
-        )
+    __slots__ = ("_default_tuning",)
 
     ### INITIALIZER ###
 
     def __init__(
         self,
         *,
-        name='contrabass',
-        short_name='cb.',
+        name="contrabass",
+        short_name="cb.",
         markup=None,
         short_markup=None,
-        allowable_clefs=('bass', 'treble'),
+        allowable_clefs=("bass", "treble"),
         context=None,
-        default_tuning=('C1', 'A1', 'D2', 'G2'),
-        middle_c_sounding_pitch='C3',
-        pitch_range='[C1, G4]',
+        default_tuning=("C1", "A1", "D2", "G2"),
+        middle_c_sounding_pitch="C3",
+        pitch_range="[C1, G4]",
         primary=True,
-        ):
+    ):
         Instrument.__init__(
             self,
             name=name,
@@ -2002,7 +1991,7 @@ class Contrabass(Instrument):
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             primary=primary,
-            )
+        )
         self._default_tuning = Tuning(default_tuning)
 
     ### PUBLIC PROPERTIES ###
@@ -2056,15 +2045,15 @@ class ContrabassClarinet(Instrument):
     def __init__(
         self,
         *,
-        name='contrabass clarinet',
-        short_name='cbass. cl.',
+        name="contrabass clarinet",
+        short_name="cbass. cl.",
         markup=None,
         short_markup=None,
-        allowable_clefs=('treble', 'bass'),
+        allowable_clefs=("treble", "bass"),
         context=None,
-        middle_c_sounding_pitch='Bb1',
-        pitch_range='[Bb0, G4]',
-        ):
+        middle_c_sounding_pitch="Bb1",
+        pitch_range="[Bb0, G4]",
+    ):
         Instrument.__init__(
             self,
             name=name,
@@ -2075,7 +2064,7 @@ class ContrabassClarinet(Instrument):
             context=context,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
-            )
+        )
 
 
 class ContrabassFlute(Instrument):
@@ -2111,15 +2100,15 @@ class ContrabassFlute(Instrument):
     def __init__(
         self,
         *,
-        name='contrabass flute',
-        short_name='cbass. fl.',
+        name="contrabass flute",
+        short_name="cbass. fl.",
         markup=None,
         short_markup=None,
         allowable_clefs=None,
         context=None,
-        middle_c_sounding_pitch='G2',
-        pitch_range='[G2, G5]',
-        ):
+        middle_c_sounding_pitch="G2",
+        pitch_range="[G2, G5]",
+    ):
         Instrument.__init__(
             self,
             name=name,
@@ -2130,7 +2119,7 @@ class ContrabassFlute(Instrument):
             context=context,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
-            )
+        )
 
 
 class ContrabassSaxophone(Instrument):
@@ -2166,15 +2155,15 @@ class ContrabassSaxophone(Instrument):
     def __init__(
         self,
         *,
-        name='contrabass saxophone',
-        short_name='cbass. sax.',
+        name="contrabass saxophone",
+        short_name="cbass. sax.",
         markup=None,
         short_markup=None,
         allowable_clefs=None,
         context=None,
-        middle_c_sounding_pitch='Eb1',
-        pitch_range='[C1, Ab3]',
-        ):
+        middle_c_sounding_pitch="Eb1",
+        pitch_range="[C1, Ab3]",
+    ):
         Instrument.__init__(
             self,
             name=name,
@@ -2185,7 +2174,7 @@ class ContrabassSaxophone(Instrument):
             context=context,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
-            )
+        )
 
 
 class Contrabassoon(Instrument):
@@ -2224,15 +2213,15 @@ class Contrabassoon(Instrument):
     def __init__(
         self,
         *,
-        name='contrabassoon',
-        short_name='contrabsn.',
+        name="contrabassoon",
+        short_name="contrabsn.",
         markup=None,
         short_markup=None,
-        allowable_clefs=('bass',),
+        allowable_clefs=("bass",),
         context=None,
-        middle_c_sounding_pitch='C3',
-        pitch_range='[Bb0, Bb4]',
-        ):
+        middle_c_sounding_pitch="C3",
+        pitch_range="[Bb0, Bb4]",
+    ):
         Instrument.__init__(
             self,
             name=name,
@@ -2243,7 +2232,7 @@ class Contrabassoon(Instrument):
             context=context,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
-            )
+        )
 
 
 class EnglishHorn(Instrument):
@@ -2279,15 +2268,15 @@ class EnglishHorn(Instrument):
     def __init__(
         self,
         *,
-        name='English horn',
-        short_name='Eng. hn.',
+        name="English horn",
+        short_name="Eng. hn.",
         markup=None,
         short_markup=None,
         allowable_clefs=None,
         context=None,
-        middle_c_sounding_pitch='F3',
-        pitch_range='[E3, C6]',
-        ):
+        middle_c_sounding_pitch="F3",
+        pitch_range="[E3, C6]",
+    ):
         Instrument.__init__(
             self,
             name=name,
@@ -2298,7 +2287,7 @@ class EnglishHorn(Instrument):
             context=context,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
-            )
+        )
 
 
 class Flute(Instrument):
@@ -2360,16 +2349,16 @@ class Flute(Instrument):
     def __init__(
         self,
         *,
-        name='flute',
-        short_name='fl.',
+        name="flute",
+        short_name="fl.",
         markup=None,
         short_markup=None,
         allowable_clefs=None,
         context=None,
         middle_c_sounding_pitch=None,
-        pitch_range='[C4, D7]',
+        pitch_range="[C4, D7]",
         primary=True,
-        ):
+    ):
         Instrument.__init__(
             self,
             name=name,
@@ -2381,7 +2370,7 @@ class Flute(Instrument):
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             primary=primary,
-            )
+        )
 
 
 class FrenchHorn(Instrument):
@@ -2417,16 +2406,16 @@ class FrenchHorn(Instrument):
     def __init__(
         self,
         *,
-        name='horn',
-        short_name='hn.',
+        name="horn",
+        short_name="hn.",
         markup=None,
         short_markup=None,
-        allowable_clefs=('bass', 'treble'),
+        allowable_clefs=("bass", "treble"),
         context=None,
-        middle_c_sounding_pitch='F3',
-        pitch_range='[B1, F5]',
+        middle_c_sounding_pitch="F3",
+        pitch_range="[B1, F5]",
         primary=True,
-        ):
+    ):
         Instrument.__init__(
             self,
             name=name,
@@ -2438,7 +2427,7 @@ class FrenchHorn(Instrument):
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             primary=primary,
-            )
+        )
 
 
 class Glockenspiel(Instrument):
@@ -2474,15 +2463,15 @@ class Glockenspiel(Instrument):
     def __init__(
         self,
         *,
-        name='glockenspiel',
-        short_name='gkspl.',
+        name="glockenspiel",
+        short_name="gkspl.",
         markup=None,
         short_markup=None,
         allowable_clefs=None,
         context=None,
-        middle_c_sounding_pitch='C6',
-        pitch_range='[G5, C8]',
-        ):
+        middle_c_sounding_pitch="C6",
+        pitch_range="[G5, C8]",
+    ):
         Instrument.__init__(
             self,
             name=name,
@@ -2493,7 +2482,7 @@ class Glockenspiel(Instrument):
             context=context,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
-            )
+        )
 
 
 class Guitar(Instrument):
@@ -2522,26 +2511,24 @@ class Guitar(Instrument):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_default_tuning',
-        )
+    __slots__ = ("_default_tuning",)
 
     ### INITIALIZER ###
 
     def __init__(
         self,
         *,
-        name='guitar',
-        short_name='gt.',
+        name="guitar",
+        short_name="gt.",
         markup=None,
         short_markup=None,
         allowable_clefs=None,
         context=None,
-        default_tuning=('E2', 'A2', 'D3', 'G3', 'B3', 'E4'),
-        middle_c_sounding_pitch='C3',
-        pitch_range='[E2, E5]',
+        default_tuning=("E2", "A2", "D3", "G3", "B3", "E4"),
+        middle_c_sounding_pitch="C3",
+        pitch_range="[E2, E5]",
         primary=True,
-        ):
+    ):
         Instrument.__init__(
             self,
             name=name,
@@ -2553,7 +2540,7 @@ class Guitar(Instrument):
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             primary=primary,
-            )
+        )
         self._default_tuning = Tuning(default_tuning)
 
     ### PUBLIC PROPERTIES ###
@@ -2620,16 +2607,16 @@ class Harp(Instrument):
     def __init__(
         self,
         *,
-        name='harp',
-        short_name='hp.',
+        name="harp",
+        short_name="hp.",
         markup=None,
         short_markup=None,
-        allowable_clefs=('treble', 'bass'),
-        context='StaffGroup',
+        allowable_clefs=("treble", "bass"),
+        context="StaffGroup",
         middle_c_sounding_pitch=None,
-        pitch_range='[B0, G#7]',
+        pitch_range="[B0, G#7]",
         primary=True,
-        ):
+    ):
         Instrument.__init__(
             self,
             name=name,
@@ -2641,7 +2628,7 @@ class Harp(Instrument):
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             primary=primary,
-            )
+        )
 
 
 class Harpsichord(Instrument):
@@ -2693,16 +2680,16 @@ class Harpsichord(Instrument):
     def __init__(
         self,
         *,
-        name='harpsichord',
-        short_name='hpschd.',
+        name="harpsichord",
+        short_name="hpschd.",
         markup=None,
         short_markup=None,
-        allowable_clefs=('treble', 'bass'),
-        context='StaffGroup',
+        allowable_clefs=("treble", "bass"),
+        context="StaffGroup",
         middle_c_sounding_pitch=None,
-        pitch_range='[C2, C7]',
+        pitch_range="[C2, C7]",
         primary=True,
-        ):
+    ):
         Instrument.__init__(
             self,
             name=name,
@@ -2714,7 +2701,7 @@ class Harpsichord(Instrument):
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             primary=primary,
-            )
+        )
 
 
 class Marimba(Instrument):
@@ -2750,15 +2737,15 @@ class Marimba(Instrument):
     def __init__(
         self,
         *,
-        name='marimba',
-        short_name='mb.',
+        name="marimba",
+        short_name="mb.",
         markup=None,
         short_markup=None,
-        allowable_clefs=('treble', 'bass'),
+        allowable_clefs=("treble", "bass"),
         context=None,
         middle_c_sounding_pitch=None,
-        pitch_range='[F2, C7]',
-        ):
+        pitch_range="[F2, C7]",
+    ):
         Instrument.__init__(
             self,
             name=name,
@@ -2769,7 +2756,7 @@ class Marimba(Instrument):
             context=context,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
-            )
+        )
 
 
 class MezzoSopranoVoice(Instrument):
@@ -2801,23 +2788,23 @@ class MezzoSopranoVoice(Instrument):
 
     __slots__ = ()
 
-    performer_abbreviation = 'ms.'
+    performer_abbreviation = "ms."
 
     ### INITIALIZER ###
 
     def __init__(
         self,
         *,
-        name='mezzo-soprano',
-        short_name='mezz.',
+        name="mezzo-soprano",
+        short_name="mezz.",
         markup=None,
         short_markup=None,
         allowable_clefs=None,
         context=None,
         middle_c_sounding_pitch=None,
-        pitch_range='[A3, C6]',
+        pitch_range="[A3, C6]",
         primary=True,
-        ):
+    ):
         Instrument.__init__(
             self,
             name=name,
@@ -2828,7 +2815,7 @@ class MezzoSopranoVoice(Instrument):
             context=context,
             pitch_range=pitch_range,
             primary=primary,
-            )
+        )
 
 
 class Oboe(Instrument):
@@ -2864,16 +2851,16 @@ class Oboe(Instrument):
     def __init__(
         self,
         *,
-        name='oboe',
-        short_name='ob.',
+        name="oboe",
+        short_name="ob.",
         markup=None,
         short_markup=None,
         allowable_clefs=None,
         context=None,
         middle_c_sounding_pitch=None,
-        pitch_range='[Bb3, A6]',
+        pitch_range="[Bb3, A6]",
         primary=True,
-        ):
+    ):
         Instrument.__init__(
             self,
             name=name,
@@ -2885,7 +2872,7 @@ class Oboe(Instrument):
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             primary=primary,
-            )
+        )
 
 
 class Percussion(Instrument):
@@ -2916,70 +2903,76 @@ class Percussion(Instrument):
 
     __slots__ = ()
 
-    known_percussion = list(sorted(set([
-        'agogô',
-        'anvil',
-        'bass drum',
-        'bongo drums',
-        'cabasa',
-        'cajón',
-        'castanets',
-        'caxixi',
-        'claves',
-        'conga drums',
-        'cowbell',
-        'crotales',
-        'cuíca',
-        'djembe',
-        'finger cymbals',
-        'flexatone',
-        'frame drum',
-        'gong',
-        'güiro',
-        'hand-held stones',
-        'jawbone',
-        'maracas',
-        'ratchet',
-        'rattle',
-        'sand blocks',
-        'scraped slate',
-        'siren',
-        'slapstick',
-        'slide whistle',
-        'snare drum',
-        'sponges',
-        'suspended cymbal',
-        'steel drums',
-        'tam-tam',
-        'tambourine',
-        'temple blocks',
-        'thunder machine',
-        'thundersheet',
-        'toms',
-        'tubular bells',
-        'triangle',
-        'vibraslap',
-        'whistle',
-        'wind chime',
-        'wind machine',
-        'wood blocks',
-        'wood planks',
-        ])))
+    known_percussion = list(
+        sorted(
+            set(
+                [
+                    "agogô",
+                    "anvil",
+                    "bass drum",
+                    "bongo drums",
+                    "cabasa",
+                    "cajón",
+                    "castanets",
+                    "caxixi",
+                    "claves",
+                    "conga drums",
+                    "cowbell",
+                    "crotales",
+                    "cuíca",
+                    "djembe",
+                    "finger cymbals",
+                    "flexatone",
+                    "frame drum",
+                    "gong",
+                    "güiro",
+                    "hand-held stones",
+                    "jawbone",
+                    "maracas",
+                    "ratchet",
+                    "rattle",
+                    "sand blocks",
+                    "scraped slate",
+                    "siren",
+                    "slapstick",
+                    "slide whistle",
+                    "snare drum",
+                    "sponges",
+                    "suspended cymbal",
+                    "steel drums",
+                    "tam-tam",
+                    "tambourine",
+                    "temple blocks",
+                    "thunder machine",
+                    "thundersheet",
+                    "toms",
+                    "tubular bells",
+                    "triangle",
+                    "vibraslap",
+                    "whistle",
+                    "wind chime",
+                    "wind machine",
+                    "wood blocks",
+                    "wood planks",
+                ]
+            )
+        )
+    )
 
     ### INITIALIZER ###
 
     def __init__(
         self,
         *,
-        name='percussion',
-        short_name='perc.',
+        name="percussion",
+        short_name="perc.",
         markup=None,
         short_markup=None,
-        allowable_clefs=('percussion',),
+        allowable_clefs=("percussion",),
         context=None,
         middle_c_sounding_pitch=None,
         pitch_range=None,
-        ):
+    ):
         Instrument.__init__(
             self,
             name=name,
@@ -2990,7 +2983,7 @@ class Percussion(Instrument):
             context=context,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
-            )
+        )
 
 
 class Piano(Instrument):
@@ -3039,16 +3032,16 @@ class Piano(Instrument):
     def __init__(
         self,
         *,
-        name='piano',
-        short_name='pf.',
+        name="piano",
+        short_name="pf.",
         markup=None,
         short_markup=None,
-        allowable_clefs=('treble', 'bass'),
-        context='StaffGroup',
+        allowable_clefs=("treble", "bass"),
+        context="StaffGroup",
         middle_c_sounding_pitch=None,
-        pitch_range='[A0, C8]',
+        pitch_range="[A0, C8]",
         primary=True,
-        ):
+    ):
         Instrument.__init__(
             self,
             name=name,
@@ -3060,7 +3053,7 @@ class Piano(Instrument):
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             primary=primary,
-            )
+        )
 
 
 class Piccolo(Instrument):
@@ -3096,15 +3089,15 @@ class Piccolo(Instrument):
     def __init__(
         self,
         *,
-        name='piccolo',
-        short_name='picc.',
+        name="piccolo",
+        short_name="picc.",
         markup=None,
         short_markup=None,
         allowable_clefs=None,
         context=None,
-        middle_c_sounding_pitch='C5',
-        pitch_range='[D5, C8]',
-        ):
+        middle_c_sounding_pitch="C5",
+        pitch_range="[D5, C8]",
+    ):
         Instrument.__init__(
             self,
             name=name,
@@ -3115,7 +3108,7 @@ class Piccolo(Instrument):
             context=context,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
-            )
+        )
 
 
 class SopraninoSaxophone(Instrument):
@@ -3151,15 +3144,15 @@ class SopraninoSaxophone(Instrument):
     def __init__(
         self,
         *,
-        name='sopranino saxophone',
-        short_name='sopranino sax.',
+        name="sopranino saxophone",
+        short_name="sopranino sax.",
         markup=None,
         short_markup=None,
         allowable_clefs=None,
         context=None,
-        middle_c_sounding_pitch='Eb4',
-        pitch_range='[Db4, F#6]',
-        ):
+        middle_c_sounding_pitch="Eb4",
+        pitch_range="[Db4, F#6]",
+    ):
         Instrument.__init__(
             self,
             name=name,
@@ -3170,7 +3163,7 @@ class SopraninoSaxophone(Instrument):
             context=context,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
-            )
+        )
 
 
 class SopranoSaxophone(Instrument):
@@ -3206,15 +3199,15 @@ class SopranoSaxophone(Instrument):
     def __init__(
         self,
         *,
-        name='soprano saxophone',
-        short_name='sop. sax.',
+        name="soprano saxophone",
+        short_name="sop. sax.",
         markup=None,
         short_markup=None,
         allowable_clefs=None,
         context=None,
-        middle_c_sounding_pitch='Bb3',
-        pitch_range='[Ab3, E6]',
-        ):
+        middle_c_sounding_pitch="Bb3",
+        pitch_range="[Ab3, E6]",
+    ):
         Instrument.__init__(
             self,
             name=name,
@@ -3225,7 +3218,7 @@ class SopranoSaxophone(Instrument):
             context=context,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
-            )
+        )
 
 
 class SopranoVoice(Instrument):
@@ -3256,23 +3249,23 @@ class SopranoVoice(Instrument):
 
     __slots__ = ()
 
-    performer_abbreviation = 'sop.'
+    performer_abbreviation = "sop."
 
     ### INITIALIZER ###
 
     def __init__(
         self,
         *,
-        name='soprano',
-        short_name='sop.',
+        name="soprano",
+        short_name="sop.",
         markup=None,
         short_markup=None,
         allowable_clefs=None,
         context=None,
         middle_c_sounding_pitch=None,
-        pitch_range='[C4, E6]',
+        pitch_range="[C4, E6]",
         primary=True,
-        ):
+    ):
         Instrument.__init__(
             self,
             name=name,
@@ -3284,7 +3277,7 @@ class SopranoVoice(Instrument):
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             primary=primary,
-            )
+        )
 
 
 class TenorSaxophone(Instrument):
@@ -3320,15 +3313,15 @@ class TenorSaxophone(Instrument):
     def __init__(
         self,
         *,
-        name='tenor saxophone',
-        short_name='ten. sax.',
+        name="tenor saxophone",
+        short_name="ten. sax.",
         markup=None,
         short_markup=None,
         allowable_clefs=None,
         context=None,
-        middle_c_sounding_pitch='Bb2',
-        pitch_range='[Ab2, E5]',
-        ):
+        middle_c_sounding_pitch="Bb2",
+        pitch_range="[Ab2, E5]",
+    ):
         Instrument.__init__(
             self,
             name=name,
@@ -3339,7 +3332,7 @@ class TenorSaxophone(Instrument):
             context=context,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
-            )
+        )
 
 
 class TenorTrombone(Instrument):
@@ -3378,16 +3371,16 @@ class TenorTrombone(Instrument):
     def __init__(
         self,
         *,
-        name='tenor trombone',
-        short_name='ten. trb.',
+        name="tenor trombone",
+        short_name="ten. trb.",
         markup=None,
         short_markup=None,
-        allowable_clefs=('tenor', 'bass'),
+        allowable_clefs=("tenor", "bass"),
         context=None,
         middle_c_sounding_pitch=None,
-        pitch_range='[E2, Eb5]',
+        pitch_range="[E2, Eb5]",
         primary=True,
-        ):
+    ):
         Instrument.__init__(
             self,
             name=name,
@@ -3398,7 +3391,7 @@ class TenorTrombone(Instrument):
             context=context,
             pitch_range=pitch_range,
             primary=primary,
-            )
+        )
 
 
 class TenorVoice(Instrument):
@@ -3429,23 +3422,23 @@ class TenorVoice(Instrument):
 
     __slots__ = ()
 
-    performer_abbreviation = 'ten.'
+    performer_abbreviation = "ten."
 
     ### INITIALIZER ###
 
     def __init__(
         self,
         *,
-        name='tenor',
-        short_name='ten.',
+        name="tenor",
+        short_name="ten.",
         markup=None,
         short_markup=None,
         allowable_clefs=None,
         context=None,
         middle_c_sounding_pitch=None,
-        pitch_range='[C3, D5]',
+        pitch_range="[C3, D5]",
         primary=True,
-        ):
+    ):
         Instrument.__init__(
             self,
             name=name,
@@ -3457,7 +3450,7 @@ class TenorVoice(Instrument):
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             primary=primary,
-            )
+        )
 
 
 class Trumpet(Instrument):
@@ -3493,16 +3486,16 @@ class Trumpet(Instrument):
     def __init__(
         self,
         *,
-        name='trumpet',
-        short_name='tp.',
+        name="trumpet",
+        short_name="tp.",
         markup=None,
         short_markup=None,
         allowable_clefs=None,
         context=None,
         middle_c_sounding_pitch=None,
-        pitch_range='[F#3, D6]',
+        pitch_range="[F#3, D6]",
         primary=True,
-        ):
+    ):
         Instrument.__init__(
             self,
             name=name,
@@ -3514,7 +3507,7 @@ class Trumpet(Instrument):
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             primary=primary,
-            )
+        )
 
 
 class Tuba(Instrument):
@@ -3553,16 +3546,16 @@ class Tuba(Instrument):
     def __init__(
         self,
         *,
-        name='tuba',
-        short_name='tb.',
+        name="tuba",
+        short_name="tb.",
         markup=None,
         short_markup=None,
-        allowable_clefs=('bass',),
+        allowable_clefs=("bass",),
         context=None,
         middle_c_sounding_pitch=None,
-        pitch_range='[D1, F4]',
+        pitch_range="[D1, F4]",
         primary=True,
-        ):
+    ):
         Instrument.__init__(
             self,
             name=name,
@@ -3574,7 +3567,7 @@ class Tuba(Instrument):
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             primary=primary,
-            )
+        )
 
 
 class Vibraphone(Instrument):
@@ -3610,15 +3603,15 @@ class Vibraphone(Instrument):
     def __init__(
         self,
         *,
-        name='vibraphone',
-        short_name='vibr.',
+        name="vibraphone",
+        short_name="vibr.",
         markup=None,
         short_markup=None,
         allowable_clefs=None,
         context=None,
         middle_c_sounding_pitch=None,
-        pitch_range='[F3, F6]',
-        ):
+        pitch_range="[F3, F6]",
+    ):
         Instrument.__init__(
             self,
             name=name,
@@ -3629,7 +3622,7 @@ class Vibraphone(Instrument):
             context=context,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
-            )
+        )
 
 
 class Viola(Instrument):
@@ -3661,26 +3654,24 @@ class Viola(Instrument):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_default_tuning',
-        )
+    __slots__ = ("_default_tuning",)
 
     ### INITIALIZER ###
 
     def __init__(
         self,
         *,
-        name='viola',
-        short_name='va.',
+        name="viola",
+        short_name="va.",
         markup=None,
         short_markup=None,
-        allowable_clefs=('alto', 'treble'),
+        allowable_clefs=("alto", "treble"),
         context=None,
-        default_tuning=('C3', 'G3', 'D4', 'A4'),
+        default_tuning=("C3", "G3", "D4", "A4"),
         middle_c_sounding_pitch=None,
-        pitch_range='[C3, D6]',
+        pitch_range="[C3, D6]",
         primary=True,
-        ):
+    ):
         Instrument.__init__(
             self,
             name=name,
@@ -3692,7 +3683,7 @@ class Viola(Instrument):
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             primary=primary,
-            )
+        )
         self._default_tuning = Tuning(default_tuning)
 
     ### PUBLIC PROPERTIES ###
@@ -3739,26 +3730,24 @@ class Violin(Instrument):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_default_tuning',
-        )
+    __slots__ = ("_default_tuning",)
 
     ### INITIALIZER ###
 
     def __init__(
         self,
         *,
-        name='violin',
-        short_name='vn.',
+        name="violin",
+        short_name="vn.",
         markup=None,
         short_markup=None,
         allowable_clefs=None,
         context=None,
-        default_tuning=('G3', 'D4', 'A4', 'E5'),
+        default_tuning=("G3", "D4", "A4", "E5"),
         middle_c_sounding_pitch=None,
-        pitch_range='[G3, G7]',
+        pitch_range="[G3, G7]",
         primary=True,
-        ):
+    ):
         Instrument.__init__(
             self,
             name=name,
@@ -3770,7 +3759,7 @@ class Violin(Instrument):
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             primary=primary,
-            )
+        )
         self._default_tuning = Tuning(default_tuning)
 
     ### PUBLIC PROPERTIES ###
@@ -3824,15 +3813,15 @@ class Xylophone(Instrument):
     def __init__(
         self,
         *,
-        name='xylophone',
-        short_name='xyl.',
+        name="xylophone",
+        short_name="xyl.",
         markup=None,
         short_markup=None,
         allowable_clefs=None,
         context=None,
-        middle_c_sounding_pitch='C5',
-        pitch_range='[C4, C7]',
-        ):
+        middle_c_sounding_pitch="C5",
+        pitch_range="[C4, C7]",
+    ):
         Instrument.__init__(
             self,
             name=name,
@@ -3843,4 +3832,4 @@ class Xylophone(Instrument):
             context=context,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
-            )
+        )

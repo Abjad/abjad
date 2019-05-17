@@ -27,7 +27,7 @@ def test_Container_remove_01():
             )
         }
         """
-        )
+    )
 
     note = voice[1]
     voice.remove(note)
@@ -43,7 +43,7 @@ def test_Container_remove_01():
             )
         }
         """
-        )
+    )
 
     "Note is now d'8 [ ]"
 
@@ -81,7 +81,7 @@ def test_Container_remove_02():
             }
         }
         """
-        )
+    )
 
     staff.remove(sequential)
 
@@ -96,7 +96,7 @@ def test_Container_remove_02():
             }
         }
         """
-        )
+    )
 
     assert abjad.inspect(staff).wellformed()
 
@@ -108,7 +108,7 @@ def test_Container_remove_02():
             d'8
         }
         """
-        )
+    )
 
     assert abjad.inspect(sequential).wellformed()
 

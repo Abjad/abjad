@@ -480,13 +480,13 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_cello_count',
-        '_contrabass_count',
-        '_split_hands',
-        '_use_percussion_clefs',
-        '_viola_count',
-        '_violin_count',
-        )
+        "_cello_count",
+        "_contrabass_count",
+        "_split_hands",
+        "_use_percussion_clefs",
+        "_viola_count",
+        "_violin_count",
+    )
 
     ### INITIALIZER ###
 
@@ -498,7 +498,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
         contrabass_count=2,
         split_hands=True,
         use_percussion_clefs=False,
-        ):
+    ):
         assert 0 <= violin_count
         assert 0 <= viola_count
         assert 0 <= cello_count
@@ -521,7 +521,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
         """
         import abjad
 
-        tag = 'abjad.StringOrchestraScoreTemplate.__call__'
+        tag = "abjad.StringOrchestraScoreTemplate.__call__"
 
         ### TAGS ###
 
@@ -529,95 +529,82 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
 
         ### SCORE ###
 
-        staff_group = abjad.StaffGroup(
-            name='Outer_Staff_Group',
-            tag=tag,
-            )
+        staff_group = abjad.StaffGroup(name="Outer_Staff_Group", tag=tag)
 
-        score = abjad.Score(
-            [staff_group],
-            name='Score',
-            tag=tag,
-            )
+        score = abjad.Score([staff_group], name="Score", tag=tag)
 
         ### VIOLINS ###
 
         if self.violin_count:
-            clef_name = 'treble'
+            clef_name = "treble"
             if self.use_percussion_clefs:
-                clef_name = 'percussion'
+                clef_name = "percussion"
             instrument = abjad.Violin()
             instrument_count = self.violin_count
-            instrument_staff_group, instrument_tag_names = \
-                self._make_instrument_staff_group(
-                    clef_name=clef_name,
-                    count=instrument_count,
-                    instrument=instrument,
-                    )
+            instrument_staff_group, instrument_tag_names = self._make_instrument_staff_group(
+                clef_name=clef_name,
+                count=instrument_count,
+                instrument=instrument,
+            )
             staff_group.append(instrument_staff_group)
             tag_names.extend(instrument_tag_names)
 
         ### VIOLAS ###
 
         if self.viola_count:
-            clef_name = 'alto'
+            clef_name = "alto"
             if self.use_percussion_clefs:
-                clef_name = 'percussion'
+                clef_name = "percussion"
             instrument = abjad.Viola()
             instrument_count = self.viola_count
-            instrument_staff_group, instrument_tag_names = \
-                self._make_instrument_staff_group(
-                    clef_name=clef_name,
-                    count=instrument_count,
-                    instrument=instrument,
-                    )
+            instrument_staff_group, instrument_tag_names = self._make_instrument_staff_group(
+                clef_name=clef_name,
+                count=instrument_count,
+                instrument=instrument,
+            )
             staff_group.append(instrument_staff_group)
             tag_names.extend(instrument_tag_names)
 
         ### CELLOS ###
 
         if self.cello_count:
-            clef_name = 'bass'
+            clef_name = "bass"
             if self.use_percussion_clefs:
-                clef_name = 'percussion'
+                clef_name = "percussion"
             instrument = abjad.Cello()
             instrument_count = self.cello_count
-            instrument_staff_group, instrument_tag_names = \
-                self._make_instrument_staff_group(
-                    clef_name=clef_name,
-                    count=instrument_count,
-                    instrument=instrument,
-                    )
+            instrument_staff_group, instrument_tag_names = self._make_instrument_staff_group(
+                clef_name=clef_name,
+                count=instrument_count,
+                instrument=instrument,
+            )
             staff_group.append(instrument_staff_group)
             tag_names.extend(instrument_tag_names)
 
         ### BASSES ###
 
         if self.contrabass_count:
-            clef_name = 'bass_8'
+            clef_name = "bass_8"
             if self.use_percussion_clefs:
-                clef_name = 'percussion'
+                clef_name = "percussion"
             instrument = abjad.Contrabass()
             instrument_count = self.contrabass_count
-            instrument_staff_group, instrument_tag_names = \
-                self._make_instrument_staff_group(
-                    clef_name=clef_name,
-                    count=instrument_count,
-                    instrument=instrument,
-                    )
+            instrument_staff_group, instrument_tag_names = self._make_instrument_staff_group(
+                clef_name=clef_name,
+                count=instrument_count,
+                instrument=instrument,
+            )
             staff_group.append(instrument_staff_group)
             tag_names.extend(instrument_tag_names)
 
         ### TIME SIGNATURE CONTEXT ###
 
         global_context = abjad.Context(
-            lilypond_type='GlobalContext',
-            name='Global_Context',
-            tag=tag,
-            )
-        instrument_tags = ' '.join(tag_names)
+            lilypond_type="GlobalContext", name="Global_Context", tag=tag
+        )
+        instrument_tags = " ".join(tag_names)
         tag_string = r"\tag #'({})".format(instrument_tags)
-        literal = abjad.LilyPondLiteral(tag_string, 'before')
+        literal = abjad.LilyPondLiteral(tag_string, "before")
         abjad.attach(literal, global_context, tag=tag)
         score.insert(0, global_context)
         return score
@@ -625,122 +612,103 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
     ### PRIVATE METHODS ###
 
     def _make_instrument_staff_group(
-        self,
-        clef_name=None,
-        count=None,
-        instrument=None,
-        ):
+        self, clef_name=None, count=None, instrument=None
+    ):
         import abjad
-        tag = 'abjad.StringOrchestraScoreTemplate._make_instrument_staff_group'
+
+        tag = "abjad.StringOrchestraScoreTemplate._make_instrument_staff_group"
         name = instrument.name.title()
         instrument_staff_group = abjad.StaffGroup(
-            lilypond_type='{}StaffGroup'.format(name),
-            name='{}_Staff_Group'.format(name),
+            lilypond_type="{}StaffGroup".format(name),
+            name="{}_Staff_Group".format(name),
             tag=tag,
-            )
+        )
         tag_names = []
         if count == 1:
-            performer_staff_group, tag_name = \
-                self._make_performer_staff_group(
-                    clef_name=clef_name,
-                    instrument=instrument,
-                    number=None,
-                    )
+            performer_staff_group, tag_name = self._make_performer_staff_group(
+                clef_name=clef_name, instrument=instrument, number=None
+            )
             instrument_staff_group.append(performer_staff_group)
             tag_names.append(tag_name)
         else:
             for i in range(1, count + 1):
-                performer_staff_group, tag_name = \
-                    self._make_performer_staff_group(
-                        clef_name=clef_name,
-                        instrument=instrument,
-                        number=i,
-                        )
+                performer_staff_group, tag_name = self._make_performer_staff_group(
+                    clef_name=clef_name, instrument=instrument, number=i
+                )
                 instrument_staff_group.append(performer_staff_group)
                 tag_names.append(tag_name)
         return instrument_staff_group, tag_names
 
     def _make_performer_staff_group(
-        self,
-        clef_name=None,
-        instrument=None,
-        number=None,
-        ):
+        self, clef_name=None, instrument=None, number=None
+    ):
         import abjad
-        tag = 'StringOrchestraScoreTemplate._make_performer_staff_group'
+
+        tag = "StringOrchestraScoreTemplate._make_performer_staff_group"
         if number is not None:
-            name = '{}_{}'.format(
-                instrument.name.title(),
-                number,
-                )
+            name = "{}_{}".format(instrument.name.title(), number)
         else:
             name = instrument.name.title()
         pitch_range = instrument.pitch_range
         staff_group = abjad.StaffGroup(
-            lilypond_type='StringPerformerStaffGroup',
-            name='{}_Staff_Group'.format(name),
+            lilypond_type="StringPerformerStaffGroup",
+            name="{}_Staff_Group".format(name),
             tag=tag,
-            )
-        tag_name = name.replace(' ', '')
+        )
+        tag_name = name.replace(" ", "")
         tag_string = r"\tag #'{}".format(tag_name)
-        tag_command = abjad.LilyPondLiteral(tag_string, 'before')
+        tag_command = abjad.LilyPondLiteral(tag_string, "before")
         abjad.attach(tag_command, staff_group, tag=tag)
         if self.split_hands:
             lh_voice = abjad.Voice(
                 [],
-                lilypond_type='FingeringVoice',
-                name='{}_Fingering_Voice'.format(name),
+                lilypond_type="FingeringVoice",
+                name="{}_Fingering_Voice".format(name),
                 tag=tag,
-                )
-            abbreviation = lh_voice.name.lower().replace(' ', '_')
+            )
+            abbreviation = lh_voice.name.lower().replace(" ", "_")
             self.voice_abbreviations[abbreviation] = lh_voice.name
             lh_staff = abjad.Staff(
-                [
-                    lh_voice
-                    ],
-                lilypond_type='FingeringStaff',
-                name='{}_Fingering_Staff'.format(name),
+                [lh_voice],
+                lilypond_type="FingeringStaff",
+                name="{}_Fingering_Staff".format(name),
                 tag=tag,
-                )
+            )
             lh_staff.is_simultaneous = True
-            abjad.annotate(lh_staff, 'pitch_range', pitch_range)
-            abjad.annotate(lh_staff, 'default_clef', abjad.Clef(clef_name))
+            abjad.annotate(lh_staff, "pitch_range", pitch_range)
+            abjad.annotate(lh_staff, "default_clef", abjad.Clef(clef_name))
             rh_voice = abjad.Voice(
                 [],
-                lilypond_type='BowingVoice',
-                name='{}_Bowing_Voice'.format(name),
+                lilypond_type="BowingVoice",
+                name="{}_Bowing_Voice".format(name),
                 tag=tag,
-                )
-            abbreviation = rh_voice.name.lower().replace(' ', '_')
+            )
+            abbreviation = rh_voice.name.lower().replace(" ", "_")
             self.voice_abbreviations[abbreviation] = rh_voice.name
             rh_staff = abjad.Staff(
-                [
-                    rh_voice
-                    ],
-                lilypond_type='BowingStaff',
-                name='{}_Bowing_Staff'.format(name),
+                [rh_voice],
+                lilypond_type="BowingStaff",
+                name="{}_Bowing_Staff".format(name),
                 tag=tag,
-                )
+            )
             rh_staff.is_simultaneous = True
             staff_group.extend([rh_staff, lh_staff])
         else:
             lh_voice = abjad.Voice(
                 [],
-                lilypond_type='FingeringVoice',
-                name='{}_Voice'.format(name),
+                lilypond_type="FingeringVoice",
+                name="{}_Voice".format(name),
                 tag=tag,
-                )
+            )
             lh_staff = abjad.Staff(
-                [
-                    lh_voice
-                    ],
-                lilypond_type='FingeringStaff',
-                name='{}_Staff'.format(name),
+                [lh_voice],
+                lilypond_type="FingeringStaff",
+                name="{}_Staff".format(name),
                 tag=tag,
-                )
+            )
             lh_staff.is_simultaneous = True
-            abjad.annotate(lh_staff, 'pitch_range', pitch_range)
-            abjad.annotate(lh_staff, 'default_clef', abjad.Clef(clef_name))
+            abjad.annotate(lh_staff, "pitch_range", pitch_range)
+            abjad.annotate(lh_staff, "default_clef", abjad.Clef(clef_name))
             staff_group.append(lh_staff)
         return staff_group, tag_name
 

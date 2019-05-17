@@ -30,27 +30,17 @@ class BowMotionTechnique(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_technique_name',
-        )
+    __slots__ = ("_technique_name",)
 
     _persistent = True
 
     _publish_storage_format = True
 
-    _valid_technique_names = (
-        'circular',
-        'jete',
-        'ordinario',
-        None,
-        )
+    _valid_technique_names = ("circular", "jete", "ordinario", None)
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        technique_name: str = None,
-        ) -> None:
+    def __init__(self, technique_name: str = None) -> None:
         assert technique_name in self._valid_technique_names
         self._technique_name = technique_name
 
@@ -67,11 +57,11 @@ class BowMotionTechnique(object):
             'dotted-line'
 
         """
-        if self.technique_name == 'circular':
-            return 'zigzag'
-        elif self.technique_name == 'jete':
-            return 'dotted-line'
-        return 'line'
+        if self.technique_name == "circular":
+            return "zigzag"
+        elif self.technique_name == "jete":
+            return "dotted-line"
+        return "line"
 
     @property
     def persistent(self) -> bool:

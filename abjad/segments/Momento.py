@@ -11,24 +11,18 @@ class Momento(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_context',
-        '_edition',
-        '_manifest',
-        '_prototype',
-        '_value',
-        )
+    __slots__ = ("_context", "_edition", "_manifest", "_prototype", "_value")
 
     ### INITIALIZER ###
 
     def __init__(
-        self, 
+        self,
         context: str = None,
         edition: typing.Union[str, Tag] = None,
         manifest: str = None,
         prototype: str = None,
         value: typing.Any = None,
-        ) -> None:
+    ) -> None:
         if context is not None:
             assert isinstance(context, str), repr(context)
         self._context = context
@@ -46,12 +40,14 @@ class Momento(object):
         self._prototype = prototype
         if value is not None:
             if not isinstance(value, (int, str, dict)):
-                assert type(value).__name__ == 'PersistentOverride', repr(value)
+                assert type(value).__name__ == "PersistentOverride", repr(
+                    value
+                )
         self._value = value
 
     ### SPECIAL METHODS ###
 
-    def __format__(self, format_specification='') -> str:
+    def __format__(self, format_specification="") -> str:
         """
         Formats object.
         """

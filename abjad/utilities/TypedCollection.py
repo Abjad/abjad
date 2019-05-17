@@ -9,10 +9,7 @@ class TypedCollection(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_collection',
-        '_item_class',
-        )
+    __slots__ = ("_collection", "_item_class")
 
     _is_abstract = True
 
@@ -21,11 +18,7 @@ class TypedCollection(object):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(
-        self,
-        items=None,
-        item_class=None,
-        ):
+    def __init__(self, items=None, item_class=None):
         assert isinstance(item_class, (type(None), type))
         self._item_class = item_class
 
@@ -56,7 +49,7 @@ class TypedCollection(object):
             return self._collection == argument
         return False
 
-    def __format__(self, format_specification='') -> str:
+    def __format__(self, format_specification="") -> str:
         """
         Formats object.
         """
@@ -100,6 +93,7 @@ class TypedCollection(object):
             if isinstance(x, self._item_class):
                 return x
             return self._item_class(x)
+
         if self._item_class is None:
             return lambda x: x
         return coerce_
@@ -108,16 +102,17 @@ class TypedCollection(object):
 
     def _get_format_specification(self):
         import abjad
+
         agent = abjad.StorageFormatManager(self)
         names = list(agent.signature_keyword_names)
-        if 'items' in names:
-            names.remove('items')
+        if "items" in names:
+            names.remove("items")
         return abjad.FormatSpecification(
             self,
             repr_is_indented=False,
             storage_format_args_values=[self._collection],
             storage_format_kwargs_names=names,
-            )
+        )
 
     def _on_insertion(self, item):
         """

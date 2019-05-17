@@ -3,7 +3,7 @@ import typing
 _lilypond_parsers_by_language: typing.Dict = {}
 
 
-def parse(string, language='english'):
+def parse(string, language="english"):
     r"""
     Parses LilyPond ``string``.
 
@@ -28,9 +28,10 @@ def parse(string, language='english'):
     """
     import abjad.parser
     import abjad.rhythmtrees
-    if string.startswith('abj:'):
+
+    if string.startswith("abj:"):
         return abjad.parser.parse_reduced_ly_syntax(string[4:])
-    elif string.startswith('rtm:'):
+    elif string.startswith("rtm:"):
         return abjad.rhythmtrees.parse_rtm_syntax(string[4:])
     if language not in _lilypond_parsers_by_language:
         parser = abjad.parser.LilyPondParser(default_language=language)

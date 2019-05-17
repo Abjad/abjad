@@ -59,68 +59,72 @@ def get_build_start_date():
 
 def get_md5_hash():
     command = 'git log -n 1 --pretty=format:"%H"'
-    result = subprocess.check_output(command, shell=True).decode('utf-8')
+    result = subprocess.check_output(command, shell=True).decode("utf-8")
     return result.splitlines()[0]
 
 
 def get_kernel_version():
-    command = 'uname -v'
-    result = subprocess.check_output(command, shell=True).decode('utf-8')
+    command = "uname -v"
+    result = subprocess.check_output(command, shell=True).decode("utf-8")
     result = result.splitlines()[0]
-    return result.partition(':')[0]
+    return result.partition(":")[0]
 
 
 def get_git_version():
-    command = 'git --version'
-    result = subprocess.check_output(command, shell=True).decode('utf-8')
+    command = "git --version"
+    result = subprocess.check_output(command, shell=True).decode("utf-8")
     return result.splitlines()[0]
 
 
 def get_python_version():
-    command = 'python --version'
-    pipe = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    command = "python --version"
+    pipe = subprocess.Popen(
+        command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+    )
     stdout, stderr = pipe.communicate()
-    return stdout.decode('utf-8').splitlines()[0]
+    return stdout.decode("utf-8").splitlines()[0]
 
 
 def get_pip_version():
-    command = 'pip -V'
-    result = subprocess.check_output(command, shell=True).decode('utf-8')
-    return result.partition(' from ')[0]
+    command = "pip -V"
+    result = subprocess.check_output(command, shell=True).decode("utf-8")
+    return result.partition(" from ")[0]
 
 
 def get_pytest_version():
-    command = 'py.test --version'
-    pipe = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    command = "py.test --version"
+    pipe = subprocess.Popen(
+        command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+    )
     _, stderr = pipe.communicate()
-    return stderr.decode('utf-8').splitlines()[0].partition(',')[0]
+    return stderr.decode("utf-8").splitlines()[0].partition(",")[0]
 
 
 def get_sphinx_build_version():
-    command = 'sphinx-build --version'
-    result = subprocess.check_output(command, shell=True).decode('utf-8')
+    command = "sphinx-build --version"
+    result = subprocess.check_output(command, shell=True).decode("utf-8")
     return result.splitlines()[0]
 
 
 def get_lilypond_version():
-    command = 'lilypond --version'
-    result = subprocess.check_output(command, shell=True).decode('utf-8')
+    command = "lilypond --version"
+    result = subprocess.check_output(command, shell=True).decode("utf-8")
     return result.splitlines()[0]
 
 
 def get_imagemagick_version():
-    command = 'convert --version'
-    result = subprocess.check_output(command, shell=True).decode('utf-8')
+    command = "convert --version"
+    result = subprocess.check_output(command, shell=True).decode("utf-8")
     result = result.splitlines()[0]
-    return result.partition('Version: ')[-1]
+    return result.partition("Version: ")[-1]
 
 
 def get_graphviz_version():
-    command = 'dot -V'
+    command = "dot -V"
     pipe = subprocess.Popen(command, shell=True, stderr=subprocess.PIPE)
     _, stderr = pipe.communicate()
-    result = stderr.decode('utf-8').splitlines()[0]
-    return result.partition('dot - ')[-1]
+    result = stderr.decode("utf-8").splitlines()[0]
+    return result.partition("dot - ")[-1]
 
 
 abjad_version = get_abjad_version()
@@ -150,6 +154,6 @@ string = template.format(
     lilypond_version=lilypond_version,
     imagemagick_version=imagemagick_version,
     graphviz_version=graphviz_version,
-    )
+)
 
 print(string)

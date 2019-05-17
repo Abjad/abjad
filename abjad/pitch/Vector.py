@@ -35,8 +35,9 @@ class Vector(TypedCounter):
         if item_class is None:
             item_class = self._named_item_class
             if items is not None:
-                if (isinstance(items, TypedCollection) and
-                    issubclass(items.item_class, self._parent_item_class)):
+                if isinstance(items, TypedCollection) and issubclass(
+                    items.item_class, self._parent_item_class
+                ):
                     item_class = items.item_class
                 elif len(items):
                     if isinstance(items, collections.Set):
@@ -50,11 +51,7 @@ class Vector(TypedCounter):
                     elif isinstance(items[0], self._parent_item_class):
                         item_class = type(items[0])
         assert issubclass(item_class, self._parent_item_class)
-        TypedCounter.__init__(
-            self,
-            items=items,
-            item_class=item_class,
-            )
+        TypedCounter.__init__(self, items=items, item_class=item_class)
 
     ### SPECIAL METHODS ###
 
@@ -64,9 +61,8 @@ class Vector(TypedCounter):
 
         Returns string.
         """
-        parts = ['{}: {}'.format(key, value)
-            for key, value in self.items()]
-        return '<{}>'.format(', '.join(parts))
+        parts = ["{}: {}".format(key, value) for key, value in self.items()]
+        return "<{}>".format(", ".join(parts))
 
     ### PRIVATE PROPERTIES ###
 
@@ -106,29 +102,26 @@ class Vector(TypedCounter):
         return items
 
     def _get_format_specification(self):
-        if self.item_class.__name__.startswith('Named'):
+        if self.item_class.__name__.startswith("Named"):
             repr_items = {str(k): v for k, v in self.items()}
         else:
             repr_items = {
                 mathtools.integer_equivalent_number_to_integer(
-                    float(k.number)): v
+                    float(k.number)
+                ): v
                 for k, v in self.items()
-                }
+            }
         return FormatSpecification(
             client=self,
             repr_is_indented=False,
             repr_args_values=[repr_items],
             storage_format_args_values=[self._collection],
-            )
+        )
 
     ### PUBLIC METHODS ###
 
     @abc.abstractmethod
-    def from_selection(
-        class_,
-        selection,
-        item_class=None,
-        ):
+    def from_selection(class_, selection, item_class=None):
         """
         Makes vector from `selection`.
 

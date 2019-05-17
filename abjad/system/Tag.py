@@ -51,19 +51,16 @@ class Tag(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_string',
-        '_words',
-        )
+    __slots__ = ("_string", "_words")
 
     ### INITIALIZER ###
 
-    def __init__(self, string: typing.Union[str, 'Tag'] = None) -> None:
+    def __init__(self, string: typing.Union[str, "Tag"] = None) -> None:
         if isinstance(string, Tag):
             string = str(string)
         if string is not None:
-            assert not string.startswith(':'), repr(string)
-            words = string.split(':')
+            assert not string.startswith(":"), repr(string)
+            words = string.split(":")
         else:
             words = []
         assert isinstance(words, list), repr(words)
@@ -73,21 +70,21 @@ class Tag(object):
                 words_.append(word)
         only_edition_tags, not_edition_tags = [], []
         for word_ in words_:
-            if word_.startswith('+'):
+            if word_.startswith("+"):
                 only_edition_tags.append(word_)
-            if word_.startswith('-'):
+            if word_.startswith("-"):
                 not_edition_tags.append(word_)
         if 1 < len(only_edition_tags):
-            message = f'at most one only-edition tag: {only_edition_tags!r}.'
+            message = f"at most one only-edition tag: {only_edition_tags!r}."
             raise Exception(message)
         if only_edition_tags and not_edition_tags:
-            message = 'only-edition and not-edition forbidden in same tag:\n\n'
-            message += f'  {only_edition_tags} / {not_edition_tags}'
+            message = "only-edition and not-edition forbidden in same tag:\n\n"
+            message += f"  {only_edition_tags} / {not_edition_tags}"
             raise Exception(message)
         self._words = words_
         if bool(string):
-            string = ':'.join(words_)
-            assert not string.startswith(':'), repr(string)
+            string = ":".join(words_)
+            assert not string.startswith(":"), repr(string)
         else:
             string = None
         self._string = string
@@ -208,7 +205,7 @@ class Tag(object):
             '-PARTS:-SCORE:DEFAULT_CLEF'
 
         """
-        return self.string or ''
+        return self.string or ""
 
     ### PRIVATE METHODS ###
 
@@ -221,7 +218,7 @@ class Tag(object):
             repr_is_indented=False,
             storage_format_args_values=values,
             storage_format_is_indented=False,
-            )
+        )
 
     ### PUBLIC PROPERTIES ###
 
@@ -256,7 +253,7 @@ class Tag(object):
 
     ### PUBLIC METHODS ###
 
-    def append(self, word: str) -> 'Tag':
+    def append(self, word: str) -> "Tag":
         """
         Appends ``word`` to tag.
         
@@ -271,12 +268,12 @@ class Tag(object):
         if isinstance(word, Tag):
             word = str(word)
         assert isinstance(word, str), repr(word)
-        assert word != '', repr(word)
+        assert word != "", repr(word)
         words_ = self.words
         words_.append(word)
         return Tag.from_words(words_)
 
-    def editions(self) -> typing.List['Tag']:
+    def editions(self) -> typing.List["Tag"]:
         """
         Gets edition tags in tag.
 
@@ -303,11 +300,11 @@ class Tag(object):
         """
         result = []
         for word in self:
-            if word.startswith('+') or word.startswith('-'):
+            if word.startswith("+") or word.startswith("-"):
                 result.append(Tag(word))
         return result
 
-    def extend(self, words: typing.List[str]) -> 'Tag':
+    def extend(self, words: typing.List[str]) -> "Tag":
         """
         Extends tag with ``words``.
 
@@ -325,7 +322,7 @@ class Tag(object):
         return tag
 
     @staticmethod
-    def from_words(words: typing.List[str]) -> 'Tag':
+    def from_words(words: typing.List[str]) -> "Tag":
         """
         Makes tag from ``words``.
         """
@@ -336,7 +333,7 @@ class Tag(object):
                 continue
             word = str(word)
             words_.append(word)
-        string = ':'.join(words_)
+        string = ":".join(words_)
         return Tag(string)
 
     def has_persistence_tag(self) -> bool:
@@ -356,13 +353,14 @@ class Tag(object):
 
         """
         from abjad.system.Tags import Tags
+
         tags = Tags().persistent_indicator_tags()
         for word in self:
             if word in tags:
                 return True
         return False
 
-    def invert_edition_tags(self) -> 'Tag':
+    def invert_edition_tags(self) -> "Tag":
         """
         Inverts edition tags in tag.
 
@@ -380,17 +378,17 @@ class Tag(object):
         """
         words = []
         for word in self.words:
-            if word.startswith('+'):
-                word_ = '-' + word[1:]
-            elif word.startswith('-'):
-                word_ = '+' + word[1:]
+            if word.startswith("+"):
+                word_ = "-" + word[1:]
+            elif word.startswith("-"):
+                word_ = "+" + word[1:]
             else:
                 word_ = word
             words.append(word_)
         tag = Tag.from_words(words)
         return tag
 
-    def not_editions(self) -> typing.List['Tag']:
+    def not_editions(self) -> typing.List["Tag"]:
         """
         Gets not-edition tags in tag.
 
@@ -411,11 +409,11 @@ class Tag(object):
         """
         result = []
         for word in self:
-            if word.startswith('-'):
+            if word.startswith("-"):
                 result.append(Tag(word))
         return result
 
-    def only_edition(self) -> typing.Optional['Tag']:
+    def only_edition(self) -> typing.Optional["Tag"]:
         """
         Gets only-edition tag in tag.
 
@@ -432,12 +430,12 @@ class Tag(object):
 
         """
         for word in self:
-            if word.startswith('+'):
+            if word.startswith("+"):
                 return Tag(word)
         else:
             return None
 
-    def prepend(self, word: str) -> 'Tag':
+    def prepend(self, word: str) -> "Tag":
         """
         Prepends ``word`` to tag.
         
@@ -452,7 +450,7 @@ class Tag(object):
         if isinstance(word, Tag):
             word = str(word)
         assert isinstance(word, str), repr(word)
-        assert word != '', repr(word)
+        assert word != "", repr(word)
         words_ = self.words
         words_.insert(0, word)
         return Tag.from_words(words_)

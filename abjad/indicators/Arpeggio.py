@@ -43,10 +43,7 @@ class Arpeggio(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_direction',
-        '_tweaks',
-        )
+    __slots__ = ("_direction", "_tweaks")
 
     ### INITIALIZER ###
 
@@ -55,7 +52,7 @@ class Arpeggio(object):
         *,
         direction: enums.VerticalAlignment = None,
         tweaks: LilyPondTweakManager = None,
-        ) -> None:
+    ) -> None:
         if direction is not None:
             assert direction in (enums.Up, enums.Down, enums.Center)
         self._direction = direction
@@ -66,19 +63,19 @@ class Arpeggio(object):
     ### PRIVATE METHODS ###
 
     def _get_lilypond_format(self):
-        return r'\arpeggio'
+        return r"\arpeggio"
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = LilyPondFormatBundle()
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions()
             bundle.after.articulations.extend(tweaks)
-        bundle.after.articulations.append(r'\arpeggio')
+        bundle.after.articulations.append(r"\arpeggio")
         if self.direction in (enums.Up, enums.Down):
             if self.direction is enums.Up:
-                command = r'\arpeggioArrowUp'
+                command = r"\arpeggioArrowUp"
             else:
-                command = r'\arpeggioArrowDown'
+                command = r"\arpeggioArrowDown"
             bundle.before.commands.append(command)
         return bundle
 

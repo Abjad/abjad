@@ -19,15 +19,12 @@ class NamedIntervalClass(IntervalClass):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_number',
-        '_quality',
-        )
+    __slots__ = ("_number", "_quality")
 
     ### INITIALIZER ###
 
-    def __init__(self, name='P1'):
-        super().__init__(name or 'P1')
+    def __init__(self, name="P1"):
+        super().__init__(name or "P1")
 
     ### SPECIAL METHODS ###
 
@@ -42,10 +39,7 @@ class NamedIntervalClass(IntervalClass):
 
         Returns new named interval-class.
         """
-        return type(self)((
-            self.quality,
-            abs(self.number),
-            ))
+        return type(self)((self.quality, abs(self.number)))
 
     def __add__(self, argument):
         """
@@ -54,6 +48,7 @@ class NamedIntervalClass(IntervalClass):
         Returns new named interval-class.
         """
         import abjad
+
         try:
             argument = type(self)(argument)
         except Exception:
@@ -61,9 +56,8 @@ class NamedIntervalClass(IntervalClass):
         dummy_pitch = abjad.NamedPitch(0)
         new_pitch = dummy_pitch + self + argument
         interval = abjad.NamedInterval.from_pitch_carriers(
-            dummy_pitch,
-            new_pitch,
-            )
+            dummy_pitch, new_pitch
+        )
         return type(self)(interval)
 
     def __eq__(self, argument):
@@ -109,11 +103,11 @@ class NamedIntervalClass(IntervalClass):
 
         Returns float.
         """
-        return float(self._named_to_numbered(
-            self.direction_number,
-            self._quality,
-            abs(self._number),
-            ))
+        return float(
+            self._named_to_numbered(
+                self.direction_number, self._quality, abs(self._number)
+            )
+        )
 
     def __hash__(self):
         """
@@ -158,6 +152,7 @@ class NamedIntervalClass(IntervalClass):
         Returns true or false.
         """
         import abjad
+
         try:
             argument = type(self)(argument)
         except Exception:
@@ -200,6 +195,7 @@ class NamedIntervalClass(IntervalClass):
         Returns new named interval-class.
         """
         import abjad
+
         try:
             argument = type(self)(argument)
         except Exception:
@@ -207,9 +203,8 @@ class NamedIntervalClass(IntervalClass):
         dummy_pitch = abjad.NamedPitch(0)
         new_pitch = dummy_pitch + self - argument
         interval = abjad.NamedInterval.from_pitch_carriers(
-            dummy_pitch,
-            new_pitch,
-            )
+            dummy_pitch, new_pitch
+        )
         return type(self)(interval)
 
     ### PRIVATE PROPERTIES ###
@@ -220,11 +215,11 @@ class NamedIntervalClass(IntervalClass):
         while diatonic_pc_number > 7:
             diatonic_pc_number -= 7
         if diatonic_pc_number == 1 and diatonic_number >= 8:
-            if quality == 'P':
+            if quality == "P":
                 diatonic_pc_number = 8
-            elif quality.startswith('d') or quality == 'P~':
+            elif quality.startswith("d") or quality == "P~":
                 direction *= -1
-        if not (diatonic_number == 1 and quality == 'P'):
+        if not (diatonic_number == 1 and quality == "P"):
             diatonic_pc_number *= direction
         self._number = diatonic_pc_number
 
@@ -238,7 +233,9 @@ class NamedIntervalClass(IntervalClass):
             diatonic_number = abs(argument.number)
             direction = mathtools.sign(argument.number)
         except AttributeError:
-            direction, quality, diatonic_number = self._numbered_to_named(argument)
+            direction, quality, diatonic_number = self._numbered_to_named(
+                argument
+            )
         self._from_named_parts(direction, quality, diatonic_number)
 
     ### PRIVATE METHODS ###
@@ -251,7 +248,7 @@ class NamedIntervalClass(IntervalClass):
             repr_is_indented=False,
             storage_format_is_indented=False,
             storage_format_args_values=values,
-            )
+        )
 
     ### PUBLIC PROPERTIES ###
 
@@ -273,7 +270,7 @@ class NamedIntervalClass(IntervalClass):
 
         Returns -1, 0 or 1.
         """
-        if self.quality == 'P' and abs(self.number) == 1:
+        if self.quality == "P" and abs(self.number) == 1:
             return 0
         return mathtools.sign(self.number)
 
@@ -289,12 +286,13 @@ class NamedIntervalClass(IntervalClass):
 
         Returns string.
         """
-        return '{}{}{}'.format(
+        return "{}{}{}".format(
             constants._direction_number_to_direction_symbol[
-                self.direction_number],
+                self.direction_number
+            ],
             self._quality,
             abs(self.number),
-            )
+        )
 
     @property
     def quality(self):
@@ -356,8 +354,8 @@ class NamedIntervalClass(IntervalClass):
         Returns newly constructed named interval-class.
         """
         import abjad
+
         named_interval = abjad.NamedInterval.from_pitch_carriers(
-            pitch_carrier_1,
-            pitch_carrier_2,
-            )
+            pitch_carrier_1, pitch_carrier_2
+        )
         return class_(named_interval)

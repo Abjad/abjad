@@ -38,6 +38,7 @@ def select(items=None):
 
     """
     import abjad
+
     if items is None:
         return abjad.Expression().select()
     return abjad.Selection(items=items)

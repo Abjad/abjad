@@ -35,7 +35,8 @@ def setting(argument):
 
     """
     import abjad
-    if getattr(argument, '_lilypond_setting_name_manager', None) is None:
+
+    if getattr(argument, "_lilypond_setting_name_manager", None) is None:
         manager = abjad.lilypondnames.LilyPondSettingNameManager()
         argument._lilypond_setting_name_manager = manager
     return argument._lilypond_setting_name_manager

@@ -1,15 +1,10 @@
 import abjad
 import os
 import pytest
+
 configuration = abjad.AbjadConfiguration()
-ly_path = os.path.join(
-    configuration.abjad_directory,
-    'test.ly',
-    )
-pdf_path = os.path.join(
-    configuration.abjad_directory,
-    'test.pdf',
-    )
+ly_path = os.path.join(configuration.abjad_directory, "test.ly")
+pdf_path = os.path.join(configuration.abjad_directory, "test.pdf")
 paths = [ly_path, pdf_path]
 
 

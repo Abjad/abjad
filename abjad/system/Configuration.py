@@ -15,12 +15,9 @@ class Configuration(object):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'System configuration'
+    __documentation_section__ = "System configuration"
 
-    __slots__ = (
-        '_cached_configuration_directory',
-        '_settings',
-        )
+    __slots__ = ("_cached_configuration_directory", "_settings")
 
     _is_abstract = True
 
@@ -33,20 +30,22 @@ class Configuration(object):
                 os.makedirs(str(self.configuration_directory))
             except (IOError, OSError):
                 traceback.print_exc()
-        old_contents = ''
+        old_contents = ""
         if self.configuration_file_path.exists():
             try:
                 old_contents = self.configuration_file_path.read_text()
             except AttributeError:
-                with self.configuration_file_path.open(mode='r') as f:
+                with self.configuration_file_path.open(mode="r") as f:
                     old_contents = f.read()
         configuration = self._configuration_from_string(old_contents)
         configuration = self._validate_configuration(configuration)
         new_contents = self._configuration_to_string(configuration)
         if not self._compare_configurations(old_contents, new_contents):
             try:
-                #self.configuration_file_path.write_text(new_contents)
-                with open(str(self.configuration_file_path), 'w') as file_pointer:
+                # self.configuration_file_path.write_text(new_contents)
+                with open(
+                    str(self.configuration_file_path), "w"
+                ) as file_pointer:
                     file_pointer.write(new_contents)
             except (IOError, OSError):
                 traceback.print_exc()
@@ -60,7 +59,7 @@ class Configuration(object):
 
         Returns none.
         """
-        del(self._settings[i])
+        del self._settings[i]
 
     def __getitem__(self, argument):
         """
@@ -104,22 +103,22 @@ class Configuration(object):
     ### PRIVATE METHODS ###
 
     def _compare_configurations(self, old, new):
-        old = '\n'.join(old.splitlines()[3:])
-        new = '\n'.join(new.splitlines()[3:])
+        old = "\n".join(old.splitlines()[3:])
+        new = "\n".join(new.splitlines()[3:])
         return old == new
 
     def _configuration_from_string(self, string):
-        if '[main]' not in string:
-            string = '[main]\n' + string
+        if "[main]" not in string:
+            string = "[main]\n" + string
         config_parser = six.moves.configparser.ConfigParser()
         try:
             if six.PY3:
                 config_parser.read_string(string)
-                configuration = dict(config_parser['main'].items())
+                configuration = dict(config_parser["main"].items())
             else:
                 string_io = six.moves.StringIO(string)
                 config_parser.readfp(string_io)
-                configuration = dict(config_parser.items('main'))
+                configuration = dict(config_parser.items("main"))
         except six.moves.configparser.ParsingError:
             configuration = {}
         return configuration
@@ -135,37 +134,39 @@ class Configuration(object):
         result = []
         for line in self._get_initial_comment():
             if line:
-                result.append('# {}'.format(line))
+                result.append("# {}".format(line))
             else:
-                result.append('')
+                result.append("")
         for key, value in known_items:
-            result.append('')
+            result.append("")
             if key in option_definitions:
-                for line in option_definitions[key]['comment']:
+                for line in option_definitions[key]["comment"]:
                     if line:
-                        result.append('# {}'.format(line))
+                        result.append("# {}".format(line))
                     else:
-                        result.append('')
-            if value not in ('', None):
-                result.append('{!s} = {!s}'.format(key, value))
+                        result.append("")
+            if value not in ("", None):
+                result.append("{!s} = {!s}".format(key, value))
             else:
-                result.append('{!s} ='.format(key))
+                result.append("{!s} =".format(key))
         if unknown_items:
-            result.append('')
-            result.append('# User-specified keys:')
+            result.append("")
+            result.append("# User-specified keys:")
             for key, value in unknown_items:
-                result.append('')
-                if value not in ('', None):
-                    result.append('{!s} = {!s}'.format(key, value))
+                result.append("")
+                if value not in ("", None):
+                    result.append("{!s} = {!s}".format(key, value))
                 else:
-                    result.append('{!s} ='.format(key))
-        string = '\n'.join(result)
+                    result.append("{!s} =".format(key))
+        string = "\n".join(result)
         return string
 
     def _get_config_specification(self):
         specs = self._get_option_specification()
-        return ['{} = {}'.format(key, value)
-            for key, value in sorted(specs.items())]
+        return [
+            "{} = {}".format(key, value)
+            for key, value in sorted(specs.items())
+        ]
 
     def _get_current_time(self):
         return time.strftime("%d %B %Y %H:%M:%S")
@@ -176,7 +177,7 @@ class Configuration(object):
 
     def _get_option_comments(self):
         options = self._get_option_definitions()
-        comments = [(key, options[key]['comment']) for key in options]
+        comments = [(key, options[key]["comment"]) for key in options]
         return dict(comments)
 
     @abc.abstractmethod
@@ -185,23 +186,23 @@ class Configuration(object):
 
     def _get_option_specification(self):
         options = self._get_option_definitions()
-        specs = [(key, options[key]['spec']) for key in options]
+        specs = [(key, options[key]["spec"]) for key in options]
         return dict(specs)
 
     def _validate_configuration(self, configuration):
         option_definitions = self._get_option_definitions()
         for key in option_definitions:
             if key not in configuration:
-                configuration[key] = option_definitions[key]['default']
-            validator = option_definitions[key]['validator']
+                configuration[key] = option_definitions[key]["default"]
+            validator = option_definitions[key]["validator"]
             if isinstance(validator, type):
                 if not isinstance(configuration[key], validator):
-                    configuration[key] = option_definitions[key]['default']
+                    configuration[key] = option_definitions[key]["default"]
             else:
                 if not validator(configuration[key]):
-                    configuration[key] = option_definitions[key]['default']
+                    configuration[key] = option_definitions[key]["default"]
         for key in configuration:
-            if configuration[key] in ('', 'None'):
+            if configuration[key] in ("", "None"):
                 configuration[key] = None
         return configuration
 
@@ -234,7 +235,8 @@ class Configuration(object):
             if os.access(home_directory, flags):
                 path = self.home_directory / directory_name
                 if not path.exists() or (
-                    path.exists() and os.access(str(path), flags)):
+                    path.exists() and os.access(str(path), flags)
+                ):
                     self._cached_configuration_directory = path
                     return self._cached_configuration_directory
             temp_directory = self.temp_directory
@@ -256,9 +258,8 @@ class Configuration(object):
         Returns path object.
         """
         return pathlib.Path(
-            self.configuration_directory,
-            self._configuration_file_name,
-            )
+            self.configuration_directory, self._configuration_file_name
+        )
 
     @property
     def home_directory(self):
@@ -274,11 +275,11 @@ class Configuration(object):
         Returns path object.
         """
         path = (
-            os.environ.get('HOME') or
-            os.environ.get('HOMEPATH') or
-            os.environ.get('APPDATA') or
-            tempfile.gettempdir()
-            )
+            os.environ.get("HOME")
+            or os.environ.get("HOMEPATH")
+            or os.environ.get("APPDATA")
+            or tempfile.gettempdir()
+        )
         return pathlib.Path(path).absolute()
 
     @property

@@ -31,7 +31,7 @@ class Skip(Leaf):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Leaves'
+    __documentation_section__ = "Leaves"
 
     __slots__ = ()
 
@@ -42,11 +42,11 @@ class Skip(Leaf):
         *arguments,
         multiplier: typings.DurationTyping = None,
         tag: str = None,
-        ) -> None:
+    ) -> None:
         input_leaf = None
         written_duration = None
         if len(arguments) == 1 and isinstance(arguments[0], str):
-            string = f'{{ {arguments[0]} }}'
+            string = f"{{ {arguments[0]} }}"
             parsed = parse(string)
             assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
             input_leaf = parsed[0]
@@ -59,14 +59,9 @@ class Skip(Leaf):
         elif len(arguments) == 0:
             written_duration = Duration(1, 4)
         else:
-            message = f'can not initialize skip from {arguments!r}.'
+            message = f"can not initialize skip from {arguments!r}."
             raise ValueError(message)
-        Leaf.__init__(
-            self,
-            written_duration,
-            multiplier=multiplier,
-            tag=tag,
-            )
+        Leaf.__init__(self, written_duration, multiplier=multiplier, tag=tag)
         if input_leaf is not None:
             self._copy_override_and_set_from_leaf(input_leaf)
 
@@ -74,8 +69,8 @@ class Skip(Leaf):
 
     def _get_body(self):
         result = []
-        result.append(f's{self._get_formatted_duration()}')
+        result.append(f"s{self._get_formatted_duration()}")
         return result
 
     def _get_compact_representation(self):
-        return f's{self._get_formatted_duration()}'
+        return f"s{self._get_formatted_duration()}"

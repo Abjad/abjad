@@ -106,12 +106,9 @@ class Selection(collections.abc.Sequence):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Selections'
+    __documentation_section__ = "Selections"
 
-    __slots__ = (
-        '_expression',
-        '_items',
-        )
+    __slots__ = ("_expression", "_items")
 
     ### INITIALIZER ###
 
@@ -127,7 +124,7 @@ class Selection(collections.abc.Sequence):
 
     ### SPECIAL METHODS ###
 
-    def __add__(self, argument) -> typing.Union['Selection', Expression]:
+    def __add__(self, argument) -> typing.Union["Selection", Expression]:
         r"""
         Cocatenates ``argument`` to selection.
 
@@ -214,18 +211,15 @@ class Selection(collections.abc.Sequence):
             return self.items == tuple(argument)
         return False
 
-    def __format__(self, format_specification='') -> str:
+    def __format__(self, format_specification="") -> str:
         """
         Formats selection.
         """
-        if format_specification in ('', 'storage'):
+        if format_specification in ("", "storage"):
             return StorageFormatManager(self).get_storage_format()
         raise ValueError(repr(format_specification))
 
-    def __getitem__(
-        self,
-        argument,
-        ):
+    def __getitem__(self, argument):
         r"""
         Gets item, slice or pattern ``argument`` in selection.
 
@@ -424,9 +418,8 @@ class Selection(collections.abc.Sequence):
             template = method(argument)
             template = template.format(self._expression.template)
             return self._update_expression(
-                inspect.currentframe(),
-                template=template,
-                )
+                inspect.currentframe(), template=template
+            )
         if isinstance(argument, Pattern):
             items = Sequence(self.items).retain_pattern(argument)
             result = type(self)(items)
@@ -440,12 +433,12 @@ class Selection(collections.abc.Sequence):
         """
         Gets state of selection.
         """
-        if hasattr(self, '__dict__'):
+        if hasattr(self, "__dict__"):
             state = vars(self).copy()
         else:
             state = {}
         for class_ in type(self).__mro__:
-            for slot in getattr(class_, '__slots__', ()):
+            for slot in getattr(class_, "__slots__", ()):
                 try:
                     state[slot] = getattr(self, slot)
                 except AttributeError:
@@ -462,7 +455,7 @@ class Selection(collections.abc.Sequence):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     def __illustrate__(self):
@@ -483,6 +476,7 @@ class Selection(collections.abc.Sequence):
         Returns LilyPond file.
         """
         import abjad
+
         components = mutate(self).copy()
         staff = abjad.Staff(components)
         found_different_pitch = False
@@ -491,7 +485,7 @@ class Selection(collections.abc.Sequence):
                 found_different_pitch = True
                 break
         if not found_different_pitch:
-            staff.lilypond_type = 'RhythmicStaff'
+            staff.lilypond_type = "RhythmicStaff"
         score = abjad.Score([staff])
         lilypond_file = abjad.LilyPondFile.new(score)
         return lilypond_file
@@ -502,12 +496,12 @@ class Selection(collections.abc.Sequence):
         """
         return len(self.items)
 
-    def __radd__(self, argument) -> typing.Union['Selection', Expression]:
+    def __radd__(self, argument) -> typing.Union["Selection", Expression]:
         """
         Concatenates selection to ``argument``.
         """
         if self._expression:
-            raise Exception('BBB')
+            raise Exception("BBB")
             return self._update_expression(inspect.currentframe())
         assert isinstance(argument, collections.abc.Iterable)
         items = tuple(argument) + self.items
@@ -530,6 +524,7 @@ class Selection(collections.abc.Sequence):
 
     def _attach_tie_to_leaves(self, repeat_ties=False):
         from abjad.spanners import tie as abjad_tie
+
         leaves = []
         for leaf in self:
             assert isinstance(leaf, Leaf), repr(leaf)
@@ -546,7 +541,7 @@ class Selection(collections.abc.Sequence):
     def _check(items):
         for item in items:
             if not isinstance(item, (Component, Selection)):
-                raise TypeError(f'components / selections only: {items!r}.')
+                raise TypeError(f"components / selections only: {items!r}.")
 
     @classmethod
     def _components(
@@ -560,7 +555,7 @@ class Selection(collections.abc.Sequence):
         head=None,
         tail=None,
         trim=None,
-        ):
+    ):
         prototype = prototype or Component
         if not isinstance(prototype, tuple):
             prototype = (prototype,)
@@ -570,7 +565,7 @@ class Selection(collections.abc.Sequence):
             do_not_iterate_grace_containers=do_not_iterate_grace_containers,
             exclude=exclude,
             grace_notes=grace_notes,
-            )
+        )
         components = list(generator)
         if components:
             if trim in (True, enums.Left):
@@ -584,6 +579,7 @@ class Selection(collections.abc.Sequence):
 
     def _copy(self):
         from .Container import Container
+
         assert self.are_contiguous_logical_voice()
         new_components = []
         for component in self:
@@ -597,13 +593,14 @@ class Selection(collections.abc.Sequence):
 
     def _fuse(self):
         from .Tuplet import Tuplet
+
         assert self.are_contiguous_logical_voice()
         if self.are_leaves():
             return self._fuse_leaves()
         elif all(isinstance(_, Tuplet) for _ in self):
             return self._fuse_tuplets()
         else:
-            raise Exception('can only fuse leaves and tuplets (not {self}).')
+            raise Exception("can only fuse leaves and tuplets (not {self}).")
 
     def _fuse_leaves(self):
         assert self.are_leaves()
@@ -617,7 +614,7 @@ class Selection(collections.abc.Sequence):
             parent = leaf._parent
             if parent:
                 index = parent.index(leaf)
-                del(parent[index])
+                del parent[index]
         result = leaves[0]._set_duration(total_preprolated)
         if not originally_tied:
             last_leaf = select(result).leaf(-1)
@@ -627,6 +624,7 @@ class Selection(collections.abc.Sequence):
     def _fuse_tuplets(self):
         from .Container import Container
         from .Tuplet import Tuplet
+
         assert self.are_contiguous_same_parent(prototype=Tuplet)
         if len(self) == 0:
             return None
@@ -635,17 +633,19 @@ class Selection(collections.abc.Sequence):
         first_type = type(first)
         for tuplet in self[1:]:
             if tuplet.multiplier != first_multiplier:
-                raise ValueError('tuplets must carry same multiplier.')
+                raise ValueError("tuplets must carry same multiplier.")
         assert isinstance(first, Tuplet)
         new_tuplet = Tuplet(first_multiplier, [])
         wrapped = False
-        if (abjad_inspect(self[0]).parentage().root is not
-            abjad_inspect(self[-1]).parentage().root):
+        if (
+            abjad_inspect(self[0]).parentage().root
+            is not abjad_inspect(self[-1]).parentage().root
+        ):
             dummy_container = Container(self)
             wrapped = True
         mutate(self).swap(new_tuplet)
         if wrapped:
-            del(dummy_container[:])
+            del dummy_container[:]
         return new_tuplet
 
     def _get_component(self, prototype=None, n=0, recurse=True):
@@ -662,8 +662,7 @@ class Selection(collections.abc.Sequence):
                     return x
         else:
             if recurse:
-                components = iterate(self).components(
-                    prototype, reverse=True)
+                components = iterate(self).components(prototype, reverse=True)
             else:
                 components = reversed(self.items)
             for i, x in enumerate(components):
@@ -675,17 +674,18 @@ class Selection(collections.abc.Sequence):
         if self.items:
             values = [list(self.items)]
         return FormatSpecification(
-            client=self,
-            storage_format_args_values=values,
-            )
+            client=self, storage_format_args_values=values
+        )
 
     def _get_offset_lists(self):
         start_offsets, stop_offsets = [], []
         for component in self:
             start_offsets.append(
-                abjad_inspect(component).timespan().start_offset)
+                abjad_inspect(component).timespan().start_offset
+            )
             stop_offsets.append(
-                abjad_inspect(component).timespan().stop_offset)
+                abjad_inspect(component).timespan().stop_offset
+            )
         return start_offsets, stop_offsets
 
     def _get_parent_and_start_stop_indices(self):
@@ -710,7 +710,7 @@ class Selection(collections.abc.Sequence):
             arguments = Expression._wrap_arguments(frame)
         finally:
             del frame
-        template = f'.{function_name}({arguments})'
+        template = f".{function_name}({arguments})"
         return selector.template + template
 
     def _give_components_to_empty_container(self, container):
@@ -718,12 +718,13 @@ class Selection(collections.abc.Sequence):
         Not composer-safe.
         """
         from .Container import Container
+
         assert self.are_contiguous_same_parent()
         assert isinstance(container, Container)
         assert not container
         components = []
         for component in self:
-            components.extend(getattr(component, 'components', ()))
+            components.extend(getattr(component, "components", ()))
         container._components.extend(components)
         container[:]._set_parents(container)
 
@@ -732,6 +733,7 @@ class Selection(collections.abc.Sequence):
         Not composer-safe.
         """
         from .Container import Container
+
         assert self.are_contiguous_same_parent()
         assert isinstance(container, Container)
         parent, start, stop = self._get_parent_and_start_stop_indices()
@@ -873,12 +875,12 @@ class Selection(collections.abc.Sequence):
         lone=None,
         map_operand=None,
         template=None,
-        ):
+    ):
         callback = Expression._frame_to_callback(
             frame,
             evaluation_template=evaluation_template,
             map_operand=map_operand,
-            )
+        )
         callback = new(callback, lone=lone)
         expression = self._expression.append_callback(callback)
         if template is None:
@@ -903,9 +905,8 @@ class Selection(collections.abc.Sequence):
     ### PUBLIC METHODS ###
 
     def are_contiguous_logical_voice(
-        self,
-        prototype=None,
-        ) -> typing.Union[bool, Expression]:
+        self, prototype=None
+    ) -> typing.Union[bool, Expression]:
         """
         Is true when items in selection are contiguous components in the
         same logical voice.
@@ -927,14 +928,14 @@ class Selection(collections.abc.Sequence):
             return False
         prototype = prototype or (Component,)
         if not isinstance(prototype, tuple):
-            prototype = (prototype, )
+            prototype = (prototype,)
         assert isinstance(prototype, tuple)
         if len(self) == 0:
             return True
         if all(
             isinstance(_, prototype) and abjad_inspect(_).parentage().orphan
             for _ in self
-            ):
+        ):
             return True
         first = self[0]
         if not isinstance(first, prototype):
@@ -946,7 +947,7 @@ class Selection(collections.abc.Sequence):
         for current in self[1:]:
             current_parentage = abjad_inspect(current).parentage(
                 grace_notes=True
-                )
+            )
             current_logical_voice = current_parentage.logical_voice()
             # false if wrong type of component found
             if not isinstance(current, prototype):
@@ -976,9 +977,8 @@ class Selection(collections.abc.Sequence):
         return all(isinstance(_, Leaf) for _ in self)
 
     def are_logical_voice(
-        self,
-        prototype=None,
-        ) -> typing.Union[bool, Expression]:
+        self, prototype=None
+    ) -> typing.Union[bool, Expression]:
         """
         Is true when items in selection are all components in the same
         logical voice.
@@ -998,14 +998,14 @@ class Selection(collections.abc.Sequence):
             return self._update_expression(inspect.currentframe())
         prototype = prototype or (Component,)
         if not isinstance(prototype, tuple):
-            prototype = (prototype, )
+            prototype = (prototype,)
         assert isinstance(prototype, tuple)
         if len(self) == 0:
             return True
         if all(
             isinstance(_, prototype) and abjad_inspect(_).parentage().orphan
             for _ in self
-            ):
+        ):
             return True
         first = self[0]
         if not isinstance(first, prototype):
@@ -1022,9 +1022,8 @@ class Selection(collections.abc.Sequence):
         return True
 
     def are_contiguous_same_parent(
-        self,
-        prototype=None,
-        ) -> typing.Union[bool, Expression]:
+        self, prototype=None
+    ) -> typing.Union[bool, Expression]:
         """
         Is true when items in selection are all contiguous components in
         the same parent.
@@ -1042,16 +1041,16 @@ class Selection(collections.abc.Sequence):
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        prototype = prototype or (Component, )
+        prototype = prototype or (Component,)
         if not isinstance(prototype, tuple):
-            prototype = (prototype, )
+            prototype = (prototype,)
         assert isinstance(prototype, tuple)
         if len(self) == 0:
             return True
         if all(
             isinstance(_, prototype) and abjad_inspect(_).parentage().orphan
             for _ in self
-            ):
+        ):
             return True
         first = self[0]
         if not isinstance(first, prototype):
@@ -1067,18 +1066,16 @@ class Selection(collections.abc.Sequence):
                 same_parent = False
             if not previous._immediately_precedes(current):
                 strictly_contiguous = False
-            if (not abjad_inspect(current).parentage().orphan and
-                (not same_parent or not strictly_contiguous)):
+            if not abjad_inspect(current).parentage().orphan and (
+                not same_parent or not strictly_contiguous
+            ):
                 return False
             previous = current
         return True
 
     def chord(
-        self,
-        n: int,
-        *,
-        exclude: typings.Strings = None,
-        ) -> typing.Union[Chord, Expression]:
+        self, n: int, *, exclude: typings.Strings = None
+    ) -> typing.Union[Chord, Expression]:
         r"""
         Selects chord ``n``.
 
@@ -1176,10 +1173,8 @@ class Selection(collections.abc.Sequence):
         return self.chords(exclude=exclude)[n]
 
     def chords(
-        self,
-        *,
-        exclude: typings.Strings = None,
-        ) -> typing.Union['Selection', Expression]:
+        self, *, exclude: typings.Strings = None
+    ) -> typing.Union["Selection", Expression]:
         r"""
         Selects chords.
 
@@ -1304,12 +1299,12 @@ class Selection(collections.abc.Sequence):
 
     def components(
         self,
-        prototype = None,
+        prototype=None,
         *,
         exclude: typings.Strings = None,
         grace_notes: bool = None,
         reverse: bool = None,
-        ) -> typing.Union['Selection', Expression]:
+    ) -> typing.Union["Selection", Expression]:
         r"""
         Selects components.
 
@@ -1686,13 +1681,10 @@ class Selection(collections.abc.Sequence):
             exclude=exclude,
             grace_notes=grace_notes,
             reverse=reverse,
-            )
+        )
         return type(self)(generator)
 
-    def filter(
-        self,
-        predicate=None,
-        ) -> typing.Union['Selection', Expression]:
+    def filter(self, predicate=None) -> typing.Union["Selection", Expression]:
         r"""
         Filters selection by ``predicate``.
 
@@ -1759,7 +1751,7 @@ class Selection(collections.abc.Sequence):
         duration: typings.DurationTyping,
         *,
         preprolated: bool = None,
-        ) -> typing.Union['Selection', Expression]:
+    ) -> typing.Union["Selection", Expression]:
         r"""
         Filters selection by ``operator`` and ``duration``.
 
@@ -1872,17 +1864,13 @@ class Selection(collections.abc.Sequence):
         if self._expression:
             return self._update_expression(inspect.currentframe())
         inequality = DurationInequality(
-            operator,
-            duration,
-            preprolated=preprolated,
-            )
+            operator, duration, preprolated=preprolated
+        )
         return self.filter(inequality)
 
     def filter_length(
-        self,
-        operator,
-        length: int,
-        ) -> typing.Union['Selection', Expression]:
+        self, operator, length: int
+    ) -> typing.Union["Selection", Expression]:
         r"""
         Filters selection by ``operator`` and ``length``.
 
@@ -1998,10 +1986,8 @@ class Selection(collections.abc.Sequence):
         return self.filter(LengthInequality(operator, length))
 
     def filter_pitches(
-        self,
-        operator,
-        pitches,
-        ) -> typing.Union['Selection', Expression]:
+        self, operator, pitches
+    ) -> typing.Union["Selection", Expression]:
         r"""
         Filters selection by ``operator`` and ``pitches``.
 
@@ -2186,10 +2172,8 @@ class Selection(collections.abc.Sequence):
         return self.filter(PitchInequality(operator, pitches))
 
     def filter_preprolated(
-        self,
-        operator,
-        duration: typings.DurationTyping,
-        ) -> typing.Union['Selection', Expression]:
+        self, operator, duration: typings.DurationTyping
+    ) -> typing.Union["Selection", Expression]:
         r"""
         Filters selection by ``operator`` and preprolated ``duration``.
 
@@ -2302,17 +2286,10 @@ class Selection(collections.abc.Sequence):
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        inequality = DurationInequality(
-            operator,
-            duration,
-            preprolated=True,
-            )
+        inequality = DurationInequality(operator, duration, preprolated=True)
         return self.filter(inequality)
 
-    def flatten(
-        self,
-        depth: int = 1,
-        ) -> typing.Union['Selection', Expression]:
+    def flatten(self, depth: int = 1) -> typing.Union["Selection", Expression]:
         r"""
         Flattens selection to ``depth``.
 
@@ -2526,7 +2503,7 @@ class Selection(collections.abc.Sequence):
             return self._update_expression(inspect.currentframe())
         return type(self)(Sequence(self).flatten(depth=depth))
 
-    def group(self) -> typing.Union['Selection', Expression]:
+    def group(self) -> typing.Union["Selection", Expression]:
         r"""
         Groups selection.
 
@@ -2600,9 +2577,8 @@ class Selection(collections.abc.Sequence):
         return self.group_by()
 
     def group_by(
-        self,
-        predicate=None,
-        ) -> typing.Union['Selection', Expression]:
+        self, predicate=None
+    ) -> typing.Union["Selection", Expression]:
         r'''
         Groups items in selection by ``predicate``.
 
@@ -2677,20 +2653,22 @@ class Selection(collections.abc.Sequence):
         if self._expression:
             return self._update_expression(
                 inspect.currentframe(),
-                evaluation_template='group_by',
+                evaluation_template="group_by",
                 map_operand=predicate,
-                )
+            )
         items = []
         if predicate is None:
+
             def predicate(argument):
                 return True
+
         pairs = itertools.groupby(self, predicate)
         for count, group in pairs:
             item = type(self)(group)
             items.append(item)
         return type(self)(items)
 
-    def group_by_contiguity(self) -> typing.Union['Selection', Expression]:
+    def group_by_contiguity(self) -> typing.Union["Selection", Expression]:
         r'''
         Groups items in selection by contiguity.
 
@@ -3064,7 +3042,7 @@ class Selection(collections.abc.Sequence):
             result.append(type(self)(selection))
         return type(self)(result)
 
-    def group_by_duration(self) -> typing.Union['Selection', Expression]:
+    def group_by_duration(self) -> typing.Union["Selection", Expression]:
         r"""
         Groups items in selection by duration.
 
@@ -3146,11 +3124,13 @@ class Selection(collections.abc.Sequence):
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
+
         def predicate(argument):
             return abjad_inspect(argument).duration()
+
         return self.group_by(predicate)
 
-    def group_by_length(self) -> typing.Union['Selection', Expression]:
+    def group_by_length(self) -> typing.Union["Selection", Expression]:
         r"""
         Groups items in selection by length.
 
@@ -3227,13 +3207,15 @@ class Selection(collections.abc.Sequence):
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
+
         def predicate(argument):
             if isinstance(argument, Leaf):
                 return 1
             return len(argument)
+
         return self.group_by(predicate)
 
-    def group_by_measure(self) -> typing.Union['Selection', Expression]:
+    def group_by_measure(self) -> typing.Union["Selection", Expression]:
         r"""
         Groups items in selection by measure.
 
@@ -3643,14 +3625,17 @@ class Selection(collections.abc.Sequence):
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
+
         def _get_first_component(argument):
             component = Selection(argument).components()[0]
             assert isinstance(component, Component)
             return component
+
         def _get_measure_number(argument):
             first_component = _get_first_component(argument)
             assert first_component._measure_number is not None
             return first_component._measure_number
+
         selections = []
         first_component = _get_first_component(self)
         first_component._update_measure_numbers()
@@ -3660,7 +3645,7 @@ class Selection(collections.abc.Sequence):
             selections.append(selection)
         return type(self)(selections)
 
-    def group_by_pitch(self) -> typing.Union['Selection', Expression]:
+    def group_by_pitch(self) -> typing.Union["Selection", Expression]:
         r"""
         Groups items in selection by pitches.
 
@@ -3737,8 +3722,10 @@ class Selection(collections.abc.Sequence):
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
+
         def predicate(argument):
             return PitchSet.from_selection(argument)
+
         return self.group_by(predicate)
 
     def leaf(self, n: int) -> typing.Union[Leaf, Expression]:
@@ -3840,7 +3827,7 @@ class Selection(collections.abc.Sequence):
 
     def leaves(
         self,
-        prototype = None,
+        prototype=None,
         *,
         do_not_iterate_grace_containers: bool = None,
         exclude: typings.Strings = None,
@@ -3850,7 +3837,7 @@ class Selection(collections.abc.Sequence):
         reverse: bool = False,
         tail: bool = None,
         trim: typing.Union[bool, enums.HorizontalAlignment] = None,
-        ) -> typing.Union['Selection', Expression]:
+    ) -> typing.Union["Selection", Expression]:
         r'''
         Selects leaves (without grace notes).
 
@@ -4997,7 +4984,7 @@ class Selection(collections.abc.Sequence):
             head=head,
             tail=tail,
             trim=trim,
-            )
+        )
 
     def logical_ties(
         self,
@@ -5007,7 +4994,7 @@ class Selection(collections.abc.Sequence):
         nontrivial: bool = None,
         pitched: bool = None,
         reverse: bool = None,
-        ) -> typing.Union['Selection', Expression]:
+    ) -> typing.Union["Selection", Expression]:
         r'''
         Selects logical ties (without grace notes).
 
@@ -5655,13 +5642,10 @@ class Selection(collections.abc.Sequence):
             nontrivial=nontrivial,
             pitched=pitched,
             reverse=reverse,
-            )
+        )
         return type(self)(generator)
 
-    def map(
-        self,
-        expression=None,
-        ) -> typing.Union['Selection', Expression]:
+    def map(self, expression=None) -> typing.Union["Selection", Expression]:
         r'''
         Maps ``expression`` to items in selection.
 
@@ -5871,19 +5855,16 @@ class Selection(collections.abc.Sequence):
         if self._expression:
             return self._update_expression(
                 inspect.currentframe(),
-                evaluation_template='map',
+                evaluation_template="map",
                 map_operand=expression,
-                )
+            )
         if expression is None:
             return type(self)(self)
         return type(self)([expression(_) for _ in self])
 
     def note(
-        self,
-        n: int,
-        *,
-        exclude: typings.Strings = None,
-        ) -> typing.Union[Note, Expression]:
+        self, n: int, *, exclude: typings.Strings = None
+    ) -> typing.Union[Note, Expression]:
         r"""
         Selects note ``n``.
 
@@ -5981,10 +5962,8 @@ class Selection(collections.abc.Sequence):
         return self.notes(exclude=exclude)[n]
 
     def notes(
-        self,
-        *,
-        exclude: typings.Strings = None,
-        ) -> typing.Union['Selection', Expression]:
+        self, *, exclude: typings.Strings = None
+    ) -> typing.Union["Selection", Expression]:
         r"""
         Selects notes.
 
@@ -6098,7 +6077,7 @@ class Selection(collections.abc.Sequence):
             return self._update_expression(inspect.currentframe())
         return self.components(Note, exclude=exclude)
 
-    def nontrivial(self) -> typing.Union['Selection', Expression]:
+    def nontrivial(self) -> typing.Union["Selection", Expression]:
         r"""
         Filters selection by length greater than 1.
 
@@ -6159,7 +6138,7 @@ class Selection(collections.abc.Sequence):
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        return self.filter_length('>', 1)
+        return self.filter_length(">", 1)
 
     def partition_by_counts(
         self,
@@ -6170,7 +6149,7 @@ class Selection(collections.abc.Sequence):
         fuse_overhang=False,
         nonempty=False,
         overhang=False,
-        ) -> typing.Union['Selection', Expression]:
+    ) -> typing.Union["Selection", Expression]:
         r"""
         Partitions selection by ``counts``.
 
@@ -6731,7 +6710,7 @@ class Selection(collections.abc.Sequence):
             cyclic=cyclic,
             enchain=enchain,
             overhang=overhang,
-            )
+        )
         groups = list(groups)
         total = len(groups)
         if overhang and fuse_overhang and 1 < len(groups):
@@ -6768,7 +6747,7 @@ class Selection(collections.abc.Sequence):
         fill=None,
         in_seconds=False,
         overhang=False,
-        ) -> typing.Union['Selection', Expression]:
+    ) -> typing.Union["Selection", Expression]:
         r"""
         Partitions selection by ``durations``.
 
@@ -7696,7 +7675,8 @@ class Selection(collections.abc.Sequence):
             component_duration = component._get_duration()
             if in_seconds:
                 component_duration = abjad_inspect(component).duration(
-                    in_seconds=True)
+                    in_seconds=True
+                )
             candidate_duration = cumulative_duration + component_duration
             if candidate_duration < target_duration:
                 part.append(component)
@@ -7713,20 +7693,20 @@ class Selection(collections.abc.Sequence):
                     break
             elif target_duration < candidate_duration:
                 if fill is enums.Exact:
-                    raise Exception('must partition exactly.')
+                    raise Exception("must partition exactly.")
                 elif fill is enums.Less:
                     result.append(part)
                     part = [component]
                     if in_seconds:
-                        sum_ = sum([
-                            abjad_inspect(_).duration(in_seconds=True)
-                            for _ in part
-                            ])
+                        sum_ = sum(
+                            [
+                                abjad_inspect(_).duration(in_seconds=True)
+                                for _ in part
+                            ]
+                        )
                         cumulative_duration = Duration(sum_)
                     else:
-                        sum_ = sum([
-                            abjad_inspect(_).duration() for _ in part
-                            ])
+                        sum_ = sum([abjad_inspect(_).duration() for _ in part])
                         cumulative_duration = Duration(sum_)
                     current_duration_index += 1
                     try:
@@ -7734,9 +7714,9 @@ class Selection(collections.abc.Sequence):
                     except IndexError:
                         break
                     if target_duration < cumulative_duration:
-                        message = f'target duration {target_duration} is less'
-                        message += ' than cumulative duration'
-                        message += f' {cumulative_duration}.'
+                        message = f"target duration {target_duration} is less"
+                        message += " than cumulative duration"
+                        message += f" {cumulative_duration}."
                         raise Exception(message)
                 elif fill is enums.More:
                     part.append(component)
@@ -7758,9 +7738,8 @@ class Selection(collections.abc.Sequence):
         return type(self)(selections)
 
     def partition_by_ratio(
-        self,
-        ratio,
-        ) -> typing.Union['Selection', Expression]:
+        self, ratio
+    ) -> typing.Union["Selection", Expression]:
         r"""
         Partitions selection by ``ratio``.
 
@@ -7904,11 +7883,8 @@ class Selection(collections.abc.Sequence):
         return type(self)(selections)
 
     def rest(
-        self,
-        n: int,
-        *,
-        exclude: typings.Strings = None,
-        ) -> typing.Union[Rest, Expression]:
+        self, n: int, *, exclude: typings.Strings = None
+    ) -> typing.Union[Rest, Expression]:
         r"""
         Selects rest ``n``.
 
@@ -8003,13 +7979,11 @@ class Selection(collections.abc.Sequence):
         """
         if self._expression:
             return self._update_expression(inspect.currentframe(), lone=True)
-        return  self.rests()[n]
+        return self.rests()[n]
 
     def rests(
-        self,
-        *,
-        exclude: typings.Strings = None,
-        ) -> typing.Union['Selection', Expression]:
+        self, *, exclude: typings.Strings = None
+    ) -> typing.Union["Selection", Expression]:
         r"""
         Selects rests.
 
@@ -8115,11 +8089,8 @@ class Selection(collections.abc.Sequence):
         return self.components((MultimeasureRest, Rest), exclude=exclude)
 
     def run(
-        self,
-        n: int,
-        *,
-        exclude: typings.Strings = None,
-        ) -> typing.Union['Selection', Expression]:
+        self, n: int, *, exclude: typings.Strings = None
+    ) -> typing.Union["Selection", Expression]:
         r"""
         Selects run ``n``.
 
@@ -8221,10 +8192,8 @@ class Selection(collections.abc.Sequence):
         return self.runs(exclude=exclude)[n]
 
     def runs(
-        self,
-        *,
-        exclude: typings.Strings = None,
-        ) -> typing.Union['Selection', Expression]:
+        self, *, exclude: typings.Strings = None
+    ) -> typing.Union["Selection", Expression]:
         r"""
         Selects runs.
 
@@ -8344,10 +8313,8 @@ class Selection(collections.abc.Sequence):
         return result
 
     def top(
-        self,
-        *,
-        exclude: typings.Strings = None,
-        ) -> typing.Union['Selection', Expression]:
+        self, *, exclude: typings.Strings = None
+    ) -> typing.Union["Selection", Expression]:
         r"""
         Selects top components.
 
@@ -8425,23 +8392,23 @@ class Selection(collections.abc.Sequence):
 
         """
         from .Context import Context
+
         if self._expression:
             return self._update_expression(inspect.currentframe())
         result: typing.List[typing.Union[Component, Selection]] = []
         for component in iterate(self).components(exclude=exclude):
-            for component_ in  abjad_inspect(component).parentage():
+            for component_ in abjad_inspect(component).parentage():
                 parentage_ = abjad_inspect(component_).parentage()
-                if (parentage_.outermost_voice_content() and
-                    component_ not in result):
+                if (
+                    parentage_.outermost_voice_content()
+                    and component_ not in result
+                ):
                     result.append(component_)
         return type(self)(result)
 
     def tuplet(
-        self,
-        n: int,
-        *,
-        exclude: typings.Strings = None,
-        ) -> typing.Union[Component, Expression]:
+        self, n: int, *, exclude: typings.Strings = None
+    ) -> typing.Union[Component, Expression]:
         r"""
         Selects tuplet ``n``.
 
@@ -8544,10 +8511,8 @@ class Selection(collections.abc.Sequence):
         return self.tuplets(exclude=exclude)[n]
 
     def tuplets(
-        self,
-        *,
-        exclude: typings.Strings = None,
-        ) -> typing.Union['Selection', Expression]:
+        self, *, exclude: typings.Strings = None
+    ) -> typing.Union["Selection", Expression]:
         r"""
         Selects tuplets.
 
@@ -8664,11 +8629,12 @@ class Selection(collections.abc.Sequence):
 
         """
         from .Tuplet import Tuplet
+
         if self._expression:
             return self._update_expression(inspect.currentframe())
         return self.components(Tuplet, exclude=exclude)
 
-    def with_next_leaf(self) -> typing.Union['Selection', Expression]:
+    def with_next_leaf(self) -> typing.Union["Selection", Expression]:
         r"""
         Extends selection with next leaf.
 
@@ -8894,7 +8860,7 @@ class Selection(collections.abc.Sequence):
             leaves.append(next_leaf)
         return type(self)(leaves)
 
-    def with_previous_leaf(self) -> typing.Union['Selection', Expression]:
+    def with_previous_leaf(self) -> typing.Union["Selection", Expression]:
         r"""
         Extends selection with previous leaf.
 

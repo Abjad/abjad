@@ -4,7 +4,11 @@ import pytest
 
 def test_GraceContainer_01():
 
-    notes = [abjad.Note(0, (1, 16)), abjad.Note(2, (1, 16)), abjad.Note(4, (1, 16))]
+    notes = [
+        abjad.Note(0, (1, 16)),
+        abjad.Note(2, (1, 16)),
+        abjad.Note(4, (1, 16)),
+    ]
     grace_container = abjad.GraceContainer(notes)
 
     assert format(grace_container) == abjad.String.normalize(
@@ -15,11 +19,10 @@ def test_GraceContainer_01():
             e'16
         }
         """
-        )
+    )
 
     assert isinstance(grace_container, abjad.Container)
     assert len(grace_container) == 3
-
 
 
 def test_GraceContainer_02():
@@ -33,7 +36,7 @@ def test_GraceContainer_02():
             c'8
         }
         """
-        )
+    )
 
 
 def test_GraceContainer_03():
@@ -47,7 +50,7 @@ def test_GraceContainer_03():
             c'8
         }
         """
-        )
+    )
 
 
 def test_GraceContainer_04():
@@ -61,7 +64,7 @@ def test_GraceContainer_04():
             c'8
         }
         """
-        )
+    )
 
 
 def test_GraceContainer_05():
@@ -75,7 +78,7 @@ def test_GraceContainer_05():
             c'8
         }
         """
-        )
+    )
 
 
 def test_GraceContainer_06():

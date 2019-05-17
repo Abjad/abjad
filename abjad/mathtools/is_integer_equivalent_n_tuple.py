@@ -15,8 +15,9 @@ def is_integer_equivalent_n_tuple(argument, n):
     Returns true or false.
     """
     from abjad import mathtools
+
     return (
-        isinstance(argument, tuple) and
-        len(argument) == n and
-        all(mathtools.is_integer_equivalent(_) for _ in argument)
-        )
+        isinstance(argument, tuple)
+        and len(argument) == n
+        and all(mathtools.is_integer_equivalent(_) for _ in argument)
+    )

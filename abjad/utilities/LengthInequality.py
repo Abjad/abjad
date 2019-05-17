@@ -27,22 +27,17 @@ class LengthInequality(Inequality):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Inequalities'
+    __documentation_section__ = "Inequalities"
 
-    __slots__ = (
-        '_length',
-        )
+    __slots__ = ("_length",)
 
     _publish_storage_format = True
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        operator_string='<',
-        length=None,
-        ):
+    def __init__(self, operator_string="<", length=None):
         import abjad
+
         Inequality.__init__(self, operator_string=operator_string)
         if length is None:
             length = abjad.mathtools.Infinity()
@@ -50,7 +45,7 @@ class LengthInequality(Inequality):
         infinities = (
             abjad.mathtools.Infinity(),
             abjad.mathtools.NegativeInfinity(),
-            )
+        )
         if length not in infinities:
             length = int(length)
         self._length = length

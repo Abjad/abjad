@@ -36,17 +36,15 @@ class BarLine(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_abbreviation',
-        )
+    __slots__ = ("_abbreviation",)
 
-    _context = 'Score'
+    _context = "Score"
 
-    _format_slot = 'closing'
+    _format_slot = "closing"
 
     ### INITIALIZER ##
 
-    def __init__(self, abbreviation: str = '|') -> None:
+    def __init__(self, abbreviation: str = "|") -> None:
         assert isinstance(abbreviation, str), repr(abbreviation)
         self._abbreviation = abbreviation
 
@@ -65,7 +63,7 @@ class BarLine(object):
             client=self,
             storage_format_is_indented=False,
             storage_format_args_values=[self.abbreviation],
-            )
+        )
 
     def _get_lilypond_format(self):
         return rf'\bar "{self.abbreviation}"'

@@ -2,7 +2,7 @@ import abjad
 
 
 def test_setting_01():
-    """
+    r"""
     Works with score metronome mark interface.
 
     Does not include LilyPond \set command.
@@ -29,11 +29,11 @@ def test_setting_01():
             }
         >>
         """
-        )
+    )
 
 
 def test_setting_02():
-    """
+    r"""
     Works with leaf metronome mark interface.
 
     Includes LilyPond \set command.
@@ -59,4 +59,4 @@ def test_setting_02():
             }
         >>
         """
-        )
+    )

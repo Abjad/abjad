@@ -10,4 +10,4 @@ def test_Container___setattr___01():
     container = abjad.Container([])
 
     with pytest.raises(AttributeError):
-        container.foo = 'bar'
+        container.foo = "bar"

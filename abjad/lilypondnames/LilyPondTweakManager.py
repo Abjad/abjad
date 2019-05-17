@@ -43,11 +43,7 @@ class LilyPondTweakManager(LilyPondNameManager):
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        deactivate: bool = None,
-        tag: str = None,
-        ) -> None:
+    def __init__(self, deactivate: bool = None, tag: str = None) -> None:
         if deactivate is not None:
             self._currently_deactivated = deactivate
         if tag is not None:
@@ -55,9 +51,9 @@ class LilyPondTweakManager(LilyPondNameManager):
 
     ### SPECIAL METHODS ###
 
-    def __getattr__(self, name) -> typing.Union[
-        LilyPondNameManager, typing.Any,
-        ]:
+    def __getattr__(
+        self, name
+    ) -> typing.Union[LilyPondNameManager, typing.Any]:
         r"""
         Gets LilyPondNameManager (or LilyPondGrobNameManager) keyed to 
         ``name``.
@@ -160,22 +156,23 @@ class LilyPondTweakManager(LilyPondNameManager):
         """
         from abjad.ly import contexts
         from abjad.ly import grob_interfaces
-        if name == '_currently_deactivated':
-            return vars(self).get('_currently_deactivated')
-        if name == '_currently_tagging':
-            return vars(self).get('_currently_tagging')
-        if '_pending_value' in vars(self):
+
+        if name == "_currently_deactivated":
+            return vars(self).get("_currently_deactivated")
+        if name == "_currently_tagging":
+            return vars(self).get("_currently_tagging")
+        if "_pending_value" in vars(self):
             _pending_value = self._pending_value
             self.__setattr__(name, _pending_value)
-            delattr(self, '_pending_value')
+            delattr(self, "_pending_value")
             return self
         camel_name = String(name).to_upper_camel_case()
-        if name.startswith('_'):
+        if name.startswith("_"):
             try:
                 return vars(self)[name]
             except KeyError:
                 type_name = type(self).__name__
-                message = f'{type_name} object has no attribute {name!r}.'
+                message = f"{type_name} object has no attribute {name!r}."
                 raise AttributeError(message)
         elif camel_name in grob_interfaces:
             try:
@@ -188,7 +185,7 @@ class LilyPondTweakManager(LilyPondNameManager):
                 return vars(self)[name]
             except KeyError:
                 type_name = type(self).__name__
-                message = f'{type_name} object has no attribute {name!r}.'
+                message = f"{type_name} object has no attribute {name!r}."
                 raise AttributeError(message)
 
     def __setattr__(self, name, value):
@@ -215,30 +212,31 @@ class LilyPondTweakManager(LilyPondNameManager):
 
         """
         from abjad.ly.colors import colors
-        if name == 'color':
-            if 'x11-color' in value:
+
+        if name == "color":
+            if "x11-color" in value:
                 _, color = value.split()
-                color = color.strip("'").strip(')')
+                color = color.strip("'").strip(")")
             else:
                 color = value
             if color not in colors:
-                raise Exception(f'{repr(value)} is not a LilyPond color.')
-        tag = getattr(self, '_currently_tagging', None)
-        deactivate = getattr(self, '_currently_deactivated', None)
+                raise Exception(f"{repr(value)} is not a LilyPond color.")
+        tag = getattr(self, "_currently_tagging", None)
+        deactivate = getattr(self, "_currently_deactivated", None)
         if tag is not None:
             if deactivate is True:
-                value = ('TAGGED', value, tag, True)
+                value = ("TAGGED", value, tag, True)
             else:
-                value = ('TAGGED', value, tag)
+                value = ("TAGGED", value, tag)
         object.__setattr__(self, name, value)
-        if name in ('_currently_deactivated', '_currently_tagging'):
+        if name in ("_currently_deactivated", "_currently_tagging"):
             return
         try:
-            delattr(self, '_currently_deactivated')
+            delattr(self, "_currently_deactivated")
         except AttributeError:
             pass
         try:
-            delattr(self, '_currently_tagging')
+            delattr(self, "_currently_tagging")
         except AttributeError:
             pass
 
@@ -247,7 +245,7 @@ class LilyPondTweakManager(LilyPondNameManager):
     def _get_attribute_tuples(self) -> typing.List[typing.Tuple]:
         result: typing.List[typing.Tuple] = []
         for name, value in vars(self).items():
-            if name == '_currently_tagging':
+            if name == "_currently_tagging":
                 continue
             if type(value) is LilyPondNameManager:
                 grob_name = name
@@ -275,10 +273,10 @@ class LilyPondTweakManager(LilyPondNameManager):
                 attribute = attribute_tuple[1]
                 value = attribute_tuple[2]
             else:
-                message = f'invalid attribute tuple: {attribute_tuple!r}.'
+                message = f"invalid attribute tuple: {attribute_tuple!r}."
                 raise ValueError(message)
             deactivate = False
-            if isinstance(value, tuple) and value[0] == 'TAGGED':
+            if isinstance(value, tuple) and value[0] == "TAGGED":
                 if len(value) == 4:
                     deactivate = value[3]
                 tag = value[2]
@@ -286,18 +284,13 @@ class LilyPondTweakManager(LilyPondNameManager):
             else:
                 tag = None
             string = LilyPondFormatManager.make_lilypond_tweak_string(
-                attribute,
-                value,
-                directed=directed,
-                grob=grob,
-                )
+                attribute, value, directed=directed, grob=grob
+            )
             if tag is not None:
                 strings = [string]
                 strings = LilyPondFormatManager.tag(
-                    strings,
-                    deactivate=deactivate,
-                    tag=tag,
-                    )
+                    strings, deactivate=deactivate, tag=tag
+                )
                 string = strings[0]
             result.append(string)
         result.sort()
@@ -307,9 +300,8 @@ class LilyPondTweakManager(LilyPondNameManager):
 
     @staticmethod
     def set_tweaks(
-        argument,
-        manager: typing.Optional['LilyPondTweakManager'],
-        ) -> typing.Optional['LilyPondTweakManager']:
+        argument, manager: typing.Optional["LilyPondTweakManager"]
+    ) -> typing.Optional["LilyPondTweakManager"]:
         r"""
         Sets tweaks on ``argument``.
 
@@ -327,17 +319,17 @@ class LilyPondTweakManager(LilyPondNameManager):
             LilyPondTweakManager(('color', 'blue'))
 
         """
-        if not hasattr(argument, '_tweaks'):
-            try: 
+        if not hasattr(argument, "_tweaks"):
+            try:
                 argument._tweaks = None
             except AttributeError:
                 name = type(argument).__name__
-                message = f'{name} does not implement tweaks.'
+                message = f"{name} does not implement tweaks."
                 raise NotImplementedError(message)
         if manager is None:
             return None
         if not isinstance(manager, LilyPondTweakManager):
-            raise Exception(f'must be tweak manager (not {manager!r}).')
+            raise Exception(f"must be tweak manager (not {manager!r}).")
         if argument._tweaks is None:
             argument._tweaks = LilyPondTweakManager()
         existing_manager = argument._tweaks
@@ -352,14 +344,14 @@ class LilyPondTweakManager(LilyPondNameManager):
                 grob = getattr(existing_manager, grob)
                 setattr(grob, attribute, value)
             else:
-                message = 'tweak tuple must have length 2 or 3'
-                message += f' (not {tuple_!r}).'
+                message = "tweak tuple must have length 2 or 3"
+                message += f" (not {tuple_!r})."
                 raise ValueError(message)
         return existing_manager
 
+
 IndexedTweakManager = typing.Union[
-    LilyPondTweakManager,
-    typing.Tuple[LilyPondTweakManager, int],
-    ]
+    LilyPondTweakManager, typing.Tuple[LilyPondTweakManager, int]
+]
 
 IndexedTweakManagers = typing.Tuple[IndexedTweakManager, ...]

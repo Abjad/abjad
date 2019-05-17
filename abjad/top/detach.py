@@ -213,6 +213,7 @@ def detach(argument, target=None, by_id=False):
     Returns tuple of zero or more detached items.
     """
     import abjad
+
     assert target is not None
     after_grace_container = None
     grace_container = None
@@ -223,7 +224,7 @@ def detach(argument, target=None, by_id=False):
         elif issubclass(argument, abjad.GraceContainer):
             grace_container = inspector.grace_container()
         else:
-            assert hasattr(target, '_wrappers')
+            assert hasattr(target, "_wrappers")
             result = []
             for wrapper in target._wrappers[:]:
                 if isinstance(wrapper, argument):
@@ -240,7 +241,7 @@ def detach(argument, target=None, by_id=False):
         elif isinstance(argument, abjad.GraceContainer):
             grace_container = inspector.grace_container()
         else:
-            assert hasattr(target, '_wrappers')
+            assert hasattr(target, "_wrappers")
             result = []
             for wrapper in target._wrappers[:]:
                 if wrapper is argument:

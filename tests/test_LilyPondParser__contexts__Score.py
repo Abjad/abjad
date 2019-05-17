@@ -11,7 +11,7 @@ def test_LilyPondParser__contexts__Score_01():
         <<
         >>
         """
-        )
+    )
 
     parser = abjad.parser.LilyPondParser()
     result = parser(format(target))

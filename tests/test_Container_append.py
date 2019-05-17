@@ -25,7 +25,7 @@ def test_Container_append_01():
             }
         }
         """
-        ), print(format(voice))
+    ), print(format(voice))
 
     assert abjad.inspect(voice).wellformed()
 
@@ -50,7 +50,7 @@ def test_Container_append_02():
             f'16
         }
         """
-        ), print(format(tuplet))
+    ), print(format(tuplet))
 
     assert abjad.inspect(tuplet).wellformed()
 
@@ -64,7 +64,7 @@ def test_Container_append_03():
     abjad.beam(voice[:])
 
     with pytest.raises(Exception):
-        voice.append('foo')
+        voice.append("foo")
     with pytest.raises(Exception):
         voice.append(99)
     with pytest.raises(Exception):
@@ -92,7 +92,7 @@ def test_Container_append_04():
             ]
         }
         """
-        ), print(format(voice_1))
+    ), print(format(voice_1))
 
     voice_2 = abjad.Voice("c'8 d'8 e'8 f'8")
     abjad.beam(voice_2[:])
@@ -109,7 +109,7 @@ def test_Container_append_04():
             ]
         }
         """
-        ), print(format(voice_2))
+    ), print(format(voice_2))
 
     voice_1.append(voice_2[-1])
 
@@ -126,7 +126,7 @@ def test_Container_append_04():
             ]
         }
         """
-        ), print(format(voice_1))
+    ), print(format(voice_1))
 
     assert abjad.inspect(voice_1).wellformed()
 
@@ -140,7 +140,7 @@ def test_Container_append_04():
             e'8
         }
         """
-        ), print(format(voice_2))
+    ), print(format(voice_2))
 
     assert abjad.inspect(voice_2).wellformed()
 
@@ -166,7 +166,7 @@ def test_Container_append_05():
             ]
         }
         """
-        ), print(format(voice))
+    ), print(format(voice))
 
     voice.append(voice[1])
 
@@ -182,7 +182,7 @@ def test_Container_append_05():
             d'8
         }
         """
-        ), print(format(voice))
+    ), print(format(voice))
 
     assert abjad.inspect(voice).wellformed()
 

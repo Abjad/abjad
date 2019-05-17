@@ -20,17 +20,17 @@ def compare_images(image_one, image_two):
 
     result = False
 
-    if abjad.IOManager.find_executable('compare'):
+    if abjad.IOManager.find_executable("compare"):
 
         tempdir = tempfile.mkdtemp()
-        comparison = os.path.join(tempdir, 'comparison.png')
+        comparison = os.path.join(tempdir, "comparison.png")
 
-        command = 'compare -metric ae {} {} {}'.format(
-            image_one, image_two, comparison)
-        process = subprocess.Popen(command.split(),
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE
-            )
+        command = "compare -metric ae {} {} {}".format(
+            image_one, image_two, comparison
+        )
+        process = subprocess.Popen(
+            command.split(), stdout=subprocess.PIPE, stderr=subprocess.PIPE
+        )
 
         stderr = process.stderr.read()
         stdout = process.stdout.read()

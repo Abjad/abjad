@@ -97,29 +97,23 @@ class Fermata(object):
     ### CLASS VARIABLES ###
 
     _allowable_commands = (
-        'fermata',
-        'longfermata',
-        'shortfermata',
-        'verylongfermata',
-        )
+        "fermata",
+        "longfermata",
+        "shortfermata",
+        "verylongfermata",
+    )
 
-    __slots__ = (
-        '_command',
-        '_tweaks',
-        )
+    __slots__ = ("_command", "_tweaks")
 
-    _context = 'Score'
+    _context = "Score"
 
-    _format_slot = 'after'
+    _format_slot = "after"
 
     ### INITIALIZER ###
 
     def __init__(
-        self,
-        command: str = 'fermata',
-        *,
-        tweaks: LilyPondTweakManager = None,
-        ) -> None:
+        self, command: str = "fermata", *, tweaks: LilyPondTweakManager = None
+    ) -> None:
         assert command in self._allowable_commands, repr(command)
         self._command = command
         if tweaks is not None:
@@ -143,7 +137,7 @@ class Fermata(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     def __repr__(self) -> str:
@@ -172,7 +166,7 @@ class Fermata(object):
 
         Returns string.
         """
-        return rf'\{self.command}'
+        return rf"\{self.command}"
 
     ### PRIVATE METHODS ###
 

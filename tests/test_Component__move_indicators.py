@@ -17,7 +17,7 @@ def test_Component__move_indicators_01():
             f4
         }
         """
-        )
+    )
 
     assert len(abjad.inspect(staff[0]).indicators()) == 2
     assert len(abjad.inspect(staff[1]).indicators()) == 0
@@ -38,7 +38,7 @@ def test_Component__move_indicators_01():
             f4
         }
         """
-        )
+    )
 
     assert len(abjad.inspect(staff[0]).indicators()) == 0
     assert len(abjad.inspect(staff[1]).indicators()) == 0

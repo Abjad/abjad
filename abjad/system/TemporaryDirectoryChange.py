@@ -11,13 +11,9 @@ class TemporaryDirectoryChange(ContextManager):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Context managers'
+    __documentation_section__ = "Context managers"
 
-    __slots__ = (
-        '_directory',
-        '_original_directory',
-        '_verbose',
-        )
+    __slots__ = ("_directory", "_original_directory", "_verbose")
 
     ### INITIALIZER ###
 
@@ -46,7 +42,7 @@ class TemporaryDirectoryChange(ContextManager):
         if self._directory is not None:
             os.chdir(self.directory)
             if self.verbose:
-                message = 'Changing directory to {} ...'
+                message = "Changing directory to {} ..."
                 message = message.format(self.directory)
                 print(message)
         return self
@@ -58,7 +54,7 @@ class TemporaryDirectoryChange(ContextManager):
         if self._directory is not None:
             os.chdir(self._original_directory)
             if self.verbose:
-                message = 'Returning to {} ...'
+                message = "Returning to {} ..."
                 message = message.format(self.original_directory)
                 print(message)
         self._original_directory = None
@@ -69,7 +65,7 @@ class TemporaryDirectoryChange(ContextManager):
 
         Returns string.
         """
-        return '<{}()>'.format(type(self).__name__)
+        return "<{}()>".format(type(self).__name__)
 
     ### PUBLIC PROPERTIES ###
 

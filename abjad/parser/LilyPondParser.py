@@ -325,25 +325,25 @@ class LilyPondParser(Parser):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_chord_pitch_orders',
-        '_current_module',
-        '_default_duration',
-        '_default_language',
-        '_guile',
-        '_language_pitch_names',
-        '_last_chord',
-        '_lexdef',
-        '_markup_functions',
-        '_markup_list_functions',
-        '_pitch_names',
-        '_repeated_chords',
-        '_scope_stack',
-        '_syndef',
-        )
+        "_chord_pitch_orders",
+        "_current_module",
+        "_default_duration",
+        "_default_language",
+        "_guile",
+        "_language_pitch_names",
+        "_last_chord",
+        "_lexdef",
+        "_markup_functions",
+        "_markup_list_functions",
+        "_pitch_names",
+        "_repeated_chords",
+        "_scope_stack",
+        "_syndef",
+    )
 
     ### INITIALIZER ###
 
-    def __init__(self, default_language='english', debug=False):
+    def __init__(self, default_language="english", debug=False):
         from abjad import parser as abjad_parser
         from abjad.ly.current_module import current_module
         from abjad.ly.language_pitch_names import language_pitch_names
@@ -378,15 +378,12 @@ class LilyPondParser(Parser):
         self._reset_parser_variables()
         if self._debug:
             result = self._parser._lilypond_patch_parse_debug(
-                input_string,
-                lexer=self._lexer,
-                debug=self._logger,
-                )
+                input_string, lexer=self._lexer, debug=self._logger
+            )
         else:
             result = self._parser._lilypond_patch_parse(
-                input_string,
-                lexer=self._lexer,
-                )
+                input_string, lexer=self._lexer
+            )
         return result
 
     ### PRIVATE METHODS ###
@@ -396,15 +393,15 @@ class LilyPondParser(Parser):
 
     def _backup_token(self, token_type, token_value):
         if self._debug:
-            self._logger.info('Extra  : Backing up')
+            self._logger.info("Extra  : Backing up")
 
         # push the current lookahead back onto the lookaheadstack
         self._push_extra_token(self._parser.lookahead)
 
         # create the backup token, set as new lookahead
         backup = ply.lex.LexToken()
-        backup.type = 'BACKUP'
-        backup.value = '(backed-up?)'
+        backup.type = "BACKUP"
+        backup.value = "(backed-up?)"
         backup.lexpos = 0
         backup.lineno = 0
         self._parser.lookahead = backup
@@ -418,29 +415,25 @@ class LilyPondParser(Parser):
             self._push_extra_token(token)
 
     def _construct_context_specced_music(
-        self,
-        context,
-        optional_id,
-        optional_context_mod,
-        music,
-        ):
+        self, context, optional_id, optional_context_mod, music
+    ):
         known_contexts = {
-            'ChoirStaff': core.StaffGroup,
-            'GrandStaff': core.StaffGroup,
-            'PianoStaff': core.StaffGroup,
-            'Score': core.Score,
-            'Staff': core.Staff,
-            'StaffGroup': core.StaffGroup,
-            'Voice': core.Voice,
-            }
+            "ChoirStaff": core.StaffGroup,
+            "GrandStaff": core.StaffGroup,
+            "PianoStaff": core.StaffGroup,
+            "Score": core.Score,
+            "Staff": core.Staff,
+            "StaffGroup": core.StaffGroup,
+            "Voice": core.Voice,
+        }
         lilypond_type = context
         if context in known_contexts:
             context = known_contexts[context]([])
         else:
-            message = 'context type {!r} not supported.'
+            message = "context type {!r} not supported."
             message = message.format(context)
             raise Exception(message)
-        if lilypond_type in ('GrandStaff', 'PianoStaff'):
+        if lilypond_type in ("GrandStaff", "PianoStaff"):
             context.lilypond_type = lilypond_type
         if optional_id is not None:
             context.name = optional_id
@@ -469,8 +462,9 @@ class LilyPondParser(Parser):
         # sort events into forward or backwards attaching
         # and attach them to the proper leaf
         for x in music:
-            if isinstance(x, core.Component) \
-                and not isinstance(x, core.GraceContainer):
+            if isinstance(x, core.Component) and not isinstance(
+                x, core.GraceContainer
+            ):
                 for indicator in apply_forward:
                     attach(indicator, x)
                 if previous_leaf:
@@ -484,14 +478,11 @@ class LilyPondParser(Parser):
                 previous_leaf = x
                 container.append(x)
             else:
-                if isinstance(x, (
-                    abjad_indicators.BarLine,
-                    )):
+                if isinstance(x, (abjad_indicators.BarLine,)):
                     apply_backward.append(x)
-                elif (
-                    isinstance(x, abjad_indicators.LilyPondLiteral) and
-                    x.name in (r'\break', r'\breathe', r'\pageBreak')
-                    ):
+                elif isinstance(
+                    x, abjad_indicators.LilyPondLiteral
+                ) and x.name in (r"\break", r"\breathe", r"\pageBreak"):
                     apply_backward.append(x)
                 else:
                     apply_forward.append(x)
@@ -511,11 +502,13 @@ class LilyPondParser(Parser):
 
     def _construct_simultaneous_music(self, music):
         from abjad import parser as abjad_parser
+
         def is_separator(x):
             if isinstance(x, abjad_parser.LilyPondEvent):
-                if x.name == 'VoiceSeparator':
+                if x.name == "VoiceSeparator":
                     return True
             return False
+
         container = core.Container()
         container.is_simultaneous = True
         # check for voice separators
@@ -525,52 +518,58 @@ class LilyPondParser(Parser):
                 groups.append(list(group))
         # without voice separators
         if 1 == len(groups):
-            #assert all(isinstance(x, core.Context) for x in groups[0])
+            # assert all(isinstance(x, core.Context) for x in groups[0])
             container.extend(groups[0])
         # with voice separators
         else:
             for group in groups:
                 container.append(
-                    core.Voice(self._construct_sequential_music(group)[:]))
+                    core.Voice(self._construct_sequential_music(group)[:])
+                )
         return container
 
     @classmethod
     def _get_scheme_predicates(class_):
         from abjad import parser as abjad_parser
+
         return {
-            'boolean?': lambda x: isinstance(x, bool),
-            'cheap-list?': lambda x: isinstance(x, (list, tuple)),
-            'cheap-markup?': lambda x: isinstance(x,
-                abjad_markups.MarkupCommand),
-            'fraction?': lambda x: isinstance(x, abjad_parser.LilyPondFraction),
-            'integer?': lambda x: isinstance(x, int),
-            'list?': lambda x: isinstance(x, (list, tuple)),
-            'ly:duration?': lambda x: isinstance(x,
-                abjad_parser.LilyPondDuration),
-            'ly:music?': lambda x: isinstance(x, core.Component),
-            'ly:pitch?': lambda x: isinstance(x, abjad_pitch.NamedPitch),
-            'markup?': lambda x: isinstance(x, abjad_markups.MarkupCommand),
-            'number-list?': lambda x: isinstance(x, (list, tuple)) and
-                all(isinstance(y, (int, float)) for y in x),
-            'number?': lambda x: isinstance(x, (int, float)),
-            'real?': lambda x: isinstance(x, (int, float)),
-            'string?': lambda x: isinstance(x, str),
-            'void?': lambda x: isinstance(x, type(None)),
+            "boolean?": lambda x: isinstance(x, bool),
+            "cheap-list?": lambda x: isinstance(x, (list, tuple)),
+            "cheap-markup?": lambda x: isinstance(
+                x, abjad_markups.MarkupCommand
+            ),
+            "fraction?": lambda x: isinstance(
+                x, abjad_parser.LilyPondFraction
+            ),
+            "integer?": lambda x: isinstance(x, int),
+            "list?": lambda x: isinstance(x, (list, tuple)),
+            "ly:duration?": lambda x: isinstance(
+                x, abjad_parser.LilyPondDuration
+            ),
+            "ly:music?": lambda x: isinstance(x, core.Component),
+            "ly:pitch?": lambda x: isinstance(x, abjad_pitch.NamedPitch),
+            "markup?": lambda x: isinstance(x, abjad_markups.MarkupCommand),
+            "number-list?": lambda x: isinstance(x, (list, tuple))
+            and all(isinstance(y, (int, float)) for y in x),
+            "number?": lambda x: isinstance(x, (int, float)),
+            "real?": lambda x: isinstance(x, (int, float)),
+            "string?": lambda x: isinstance(x, str),
+            "void?": lambda x: isinstance(x, type(None)),
             # the following predicates have not yet been implemented in Abjad
-            'hash-table?': lambda x: True,
-            'list-or-symbol?': lambda x: True,
-            'ly:dir?': lambda x: True,
-            'ly:moment?': lambda x: True,
-            'number-or-string?': lambda x: True,
-            'number-pair?': lambda x: True,
-            'optional?': lambda x: True,
-            'pair?': lambda x: True,
-            'procedure?': lambda x: True,
-            'scheme?': lambda x: True,
-            'string-or-pair?': lambda x: True,
-            'symbol-or-boolean?': lambda x: True,
-            'symbol?': lambda x: True,
-            }
+            "hash-table?": lambda x: True,
+            "list-or-symbol?": lambda x: True,
+            "ly:dir?": lambda x: True,
+            "ly:moment?": lambda x: True,
+            "number-or-string?": lambda x: True,
+            "number-pair?": lambda x: True,
+            "optional?": lambda x: True,
+            "pair?": lambda x: True,
+            "procedure?": lambda x: True,
+            "scheme?": lambda x: True,
+            "string-or-pair?": lambda x: True,
+            "symbol-or-boolean?": lambda x: True,
+            "symbol?": lambda x: True,
+        }
 
     def _pop_variable_scope(self):
         if self._scope_stack:
@@ -600,7 +599,7 @@ class LilyPondParser(Parser):
             abjad_indicators.StemTremolo,
             abjad_indicators.TieIndicator,
             abjad_markups.Markup,
-            )
+        )
         for post_event in post_events:
             if isinstance(post_event, nonspanner_post_event_types):
                 attach(post_event, leaf)
@@ -612,14 +611,14 @@ class LilyPondParser(Parser):
         self._scope_stack.append({})
 
     def _relex_lookahead(self):
-        if not str(self._parser.lookahead) == '$end':
+        if not str(self._parser.lookahead) == "$end":
             difference = self._parser.lookahead.lexpos - self._lexer.lexpos
             self._lexer.skip(difference)
             self._parser.lookahead = None
 
     def _reparse_token(self, predicate, token_type, token_value):
         if self._debug:
-            self._logger.info('Extra  : Reparsing')
+            self._logger.info("Extra  : Reparsing")
 
         # push the current lookahead back onto the lookaheadstack
         self._push_extra_token(self._parser.lookahead)
@@ -632,7 +631,7 @@ class LilyPondParser(Parser):
         self._push_extra_token(token)
 
         reparse = ply.lex.LexToken()
-        reparse.type = 'REPARSE'
+        reparse.type = "REPARSE"
         reparse.value = predicate
         reparse.lineno = 0
         reparse.lexpos = 0
@@ -640,13 +639,14 @@ class LilyPondParser(Parser):
 
     def _reset_parser_variables(self):
         from abjad import parser as abjad_parser
+
         try:
             self._parser.restart()
         except:
             pass
         self._scope_stack = [{}]
         self._chord_pitch_orders = {}
-        self._lexer.push_state('notes')
+        self._lexer.push_state("notes")
         self._default_duration = abjad_parser.LilyPondDuration((1, 4), None)
         self._last_chord = None
         # LilyPond's default!
@@ -656,67 +656,68 @@ class LilyPondParser(Parser):
 
     def _resolve_event_identifier(self, identifier):
         from abjad import parser as abjad_parser
+
         # without leading slash
         lookup = self._current_module[identifier]
-        name = lookup['name']
-        if name == 'ArticulationEvent':
-            return abjad_indicators.Articulation(lookup['articulation-type'])
-        elif name == 'AbsoluteDynamicEvent':
-            return abjad_indicators.Dynamic(lookup['text'])
-        elif name == 'BeamEvent':
-            if lookup['span-direction'] == -1:
+        name = lookup["name"]
+        if name == "ArticulationEvent":
+            return abjad_indicators.Articulation(lookup["articulation-type"])
+        elif name == "AbsoluteDynamicEvent":
+            return abjad_indicators.Dynamic(lookup["text"])
+        elif name == "BeamEvent":
+            if lookup["span-direction"] == -1:
                 return abjad_indicators.StartBeam()
             else:
                 return abjad_indicators.StopBeam()
-        elif name == 'CrescendoEvent':
-            if lookup['span-direction'] == -1:
-                return abjad_indicators.StartHairpin('<')
+        elif name == "CrescendoEvent":
+            if lookup["span-direction"] == -1:
+                return abjad_indicators.StartHairpin("<")
             else:
                 return abjad_indicators.StopHairpin()
-        elif name == 'DecrescendoEvent':
-            if lookup['span-direction'] == -1:
-                return abjad_indicators.StartHairpin('>')
+        elif name == "DecrescendoEvent":
+            if lookup["span-direction"] == -1:
+                return abjad_indicators.StartHairpin(">")
             else:
                 return abjad_indicators.StopHairpin()
-        elif name == 'GlissandoEvent':
+        elif name == "GlissandoEvent":
             return abjad_indicators.GlissandoIndicator()
-        elif name == 'LaissezVibrerEvent':
-            return abjad_indicators.LilyPondLiteral(r'\laissezVibrer', 'after')
-        elif name == 'LineBreakEvent':
-            return abjad_indicators.LilyPondLiteral(r'\break')
-        elif name == 'NoteGroupingEvent':
-            if lookup['span-direction'] == -1:
+        elif name == "LaissezVibrerEvent":
+            return abjad_indicators.LilyPondLiteral(r"\laissezVibrer", "after")
+        elif name == "LineBreakEvent":
+            return abjad_indicators.LilyPondLiteral(r"\break")
+        elif name == "NoteGroupingEvent":
+            if lookup["span-direction"] == -1:
                 return abjad_indicators.StartGroup()
             else:
                 return abjad_indicators.StopGroup()
-        elif name == 'PhrasingSlurEvent':
-            if lookup['span-direction'] == -1:
+        elif name == "PhrasingSlurEvent":
+            if lookup["span-direction"] == -1:
                 return abjad_indicators.StartPhrasingSlur()
             else:
                 return abjad_indicators.StopPhrasingSlur()
-        elif name == 'SlurEvent':
-            if lookup['span-direction'] == -1:
+        elif name == "SlurEvent":
+            if lookup["span-direction"] == -1:
                 return abjad_indicators.StartSlur()
             else:
                 return abjad_indicators.StopSlur()
-        elif name == 'TextSpanEvent':
-            if lookup['span-direction'] == -1:
+        elif name == "TextSpanEvent":
+            if lookup["span-direction"] == -1:
                 return abjad_indicators.StartTextSpan()
             else:
                 return abjad_indicators.StopTextSpan()
-        elif name == 'TieEvent':
+        elif name == "TieEvent":
             return abjad_indicators.TieIndicator()
-        elif name == 'TrillSpanEvent':
-            if lookup['span-direction'] == -1:
+        elif name == "TrillSpanEvent":
+            if lookup["span-direction"] == -1:
                 return abjad_indicators.StartTrillSpan()
             else:
                 return abjad_indicators.StopTrillSpan()
         event = abjad_parser.LilyPondEvent(name)
-        if 'span-direction' in lookup:
-            if lookup['span-direction'] == -1:
-                event.span_direction = 'start'
+        if "span-direction" in lookup:
+            if lookup["span-direction"] == -1:
+                event.span_direction = "start"
             else:
-                event.span_direction = 'stop'
+                event.span_direction = "stop"
         return event
 
     def _resolve_identifier(self, identifier):
@@ -741,12 +742,13 @@ class LilyPondParser(Parser):
 
         Returns named pitch.
         """
+
         def normalize_alteration(step, alteration):
-            while 2. < alteration:
+            while 2.0 < alteration:
                 alteration -= step_size(step)
-                step += 1.
-            while alteration < -2.:
-                step -= 1.
+                step += 1.0
+            while alteration < -2.0:
+                step -= 1.0
                 alteration += step_size(step)
             return step, alteration
 
@@ -758,7 +760,7 @@ class LilyPondParser(Parser):
         def step_size(step):
             normalized_step = step % len(scale)
             if normalized_step == 6:
-                return 1.  # b to c
+                return 1.0  # b to c
             return scale[normalized_step + 1] - scale[normalized_step]
 
         if not isinstance(pitch_a, abjad_pitch.NamedPitch):
@@ -767,15 +769,28 @@ class LilyPondParser(Parser):
             pitch_b = abjad_pitch.NamedPitch(pitch_b)
         if not isinstance(pitch_c, abjad_pitch.NamedPitch):
             pitch_c = abjad_pitch.NamedPitch(pitch_c)
-        scale = [0., 2., 4., 5., 7., 9., 11.]
-        a_oct, a_step, a_alt = pitch_a.octave.number, \
-            pitch_a._get_diatonic_pc_number(), pitch_a.accidental.semitones
-        b_oct, b_step, b_alt = pitch_b.octave.number, \
-            pitch_b._get_diatonic_pc_number(), pitch_b.accidental.semitones
-        c_oct, c_step, c_alt = pitch_c.octave.number, \
-            pitch_c._get_diatonic_pc_number(), pitch_c.accidental.semitones
-        d_oct, d_step, d_alt, d_tones = b_oct - a_oct, b_step - a_step, \
-            b_alt - a_alt, float(pitch_b.number) - float(pitch_a.number)
+        scale = [0.0, 2.0, 4.0, 5.0, 7.0, 9.0, 11.0]
+        a_oct, a_step, a_alt = (
+            pitch_a.octave.number,
+            pitch_a._get_diatonic_pc_number(),
+            pitch_a.accidental.semitones,
+        )
+        b_oct, b_step, b_alt = (
+            pitch_b.octave.number,
+            pitch_b._get_diatonic_pc_number(),
+            pitch_b.accidental.semitones,
+        )
+        c_oct, c_step, c_alt = (
+            pitch_c.octave.number,
+            pitch_c._get_diatonic_pc_number(),
+            pitch_c.accidental.semitones,
+        )
+        d_oct, d_step, d_alt, d_tones = (
+            b_oct - a_oct,
+            b_step - a_step,
+            b_alt - a_alt,
+            float(pitch_b.number) - float(pitch_a.number),
+        )
         tmp_alt = float(pitch_c.number) + d_tones
         # print 'TMP_ALT: %f' % tmp_alt
         new_oct = c_oct + d_oct
@@ -786,14 +801,15 @@ class LilyPondParser(Parser):
         new_oct, new_step = normalize_octave(new_oct, new_step)
         # print 'NEW(norm):', new_oct, new_step, new_alt
         octave_ticks = str(abjad_pitch.Octave(new_oct))
-        pitch_class_name = \
-            abjad_pitch.constants._diatonic_pc_number_to_diatonic_pc_name[
-                new_step % 7]
-        #pitch_class_name = str(abjad_pitch.NamedDiatonicPitchClass(
+        pitch_class_name = abjad_pitch.constants._diatonic_pc_number_to_diatonic_pc_name[
+            new_step % 7
+        ]
+        # pitch_class_name = str(abjad_pitch.NamedDiatonicPitchClass(
         #    int(new_step)))
         accidental = str(abjad_pitch.Accidental(new_alt))
         tmp_pitch = abjad_pitch.NamedPitch(
-            pitch_class_name + accidental + octave_ticks)
+            pitch_class_name + accidental + octave_ticks
+        )
         # print 'TMP(pitch): %r' % tmp_pitch
         new_alt += tmp_alt - float(tmp_pitch.number)
         # print 'NEW(alt): %f' % new_alt
@@ -801,14 +817,15 @@ class LilyPondParser(Parser):
         new_oct, new_step = normalize_octave(new_oct, new_step)
         # print 'NEW(norm):', new_oct, new_step, new_alt
         octave_ticks = str(abjad_pitch.Octave(new_oct))
-        #pitch_class_name = str(abjad_pitch.NamedDiatonicPitchClass(
+        # pitch_class_name = str(abjad_pitch.NamedDiatonicPitchClass(
         #    int(new_step)))
-        pitch_class_name = \
-            abjad_pitch.constants._diatonic_pc_number_to_diatonic_pc_name[
-                new_step % 7]
+        pitch_class_name = abjad_pitch.constants._diatonic_pc_number_to_diatonic_pc_name[
+            new_step % 7
+        ]
         accidental = str(abjad_pitch.Accidental(new_alt))
         return abjad_pitch.NamedPitch(
-            pitch_class_name + accidental + octave_ticks)
+            pitch_class_name + accidental + octave_ticks
+        )
 
     ### PUBLIC METHODS ###
 
@@ -858,6 +875,7 @@ class LilyPondParser(Parser):
 
         """
         from abjad.ly import contexts
+
         return sorted(contexts.keys())
 
     @staticmethod
@@ -895,11 +913,12 @@ class LilyPondParser(Parser):
 
         """
         from abjad.ly import current_module
+
         result = []
         for key, value in current_module.items():
             if not isinstance(value, dict):
                 continue
-            if 'dynamic-event' in value.get('types', ()):
+            if "dynamic-event" in value.get("types", ()):
                 result.append(key)
         result.sort()
         return tuple(result)
@@ -1057,6 +1076,7 @@ class LilyPondParser(Parser):
 
         """
         from abjad.ly import grob_interfaces
+
         return sorted(grob_interfaces.keys())
 
     @staticmethod
@@ -1086,6 +1106,7 @@ class LilyPondParser(Parser):
 
         """
         from abjad.ly import language_pitch_names
+
         return sorted(language_pitch_names.keys())
 
     @staticmethod
@@ -1257,7 +1278,10 @@ class LilyPondParser(Parser):
         """
         from abjad.ly import markup_functions
         from abjad.ly import markup_list_functions
-        return sorted(list(markup_functions.keys()) + list(markup_list_functions.keys()))
+
+        return sorted(
+            list(markup_functions.keys()) + list(markup_list_functions.keys())
+        )
 
     @staticmethod
     def list_known_music_functions() -> typing.List[str]:
@@ -1289,15 +1313,16 @@ class LilyPondParser(Parser):
         """
         from abjad import parser as abjad_parser
         from abjad.ly import current_module
+
         music_functions = []
         for name in current_module:
             dictionary = current_module[name]
             if not isinstance(dictionary, dict):
                 continue
             assert isinstance(dictionary, dict)
-            if 'type' not in dictionary:
+            if "type" not in dictionary:
                 continue
-            if not dictionary['type'] == 'ly:music-function?':
+            if not dictionary["type"] == "ly:music-function?":
                 continue
             if not hasattr(abjad_parser.GuileProxy, name):
                 continue
@@ -1338,8 +1363,9 @@ class LilyPondParser(Parser):
 
         """
         from abjad.ly.markup_functions import markup_functions
+
         if undo is True:
-            del(markup_functions[name])
+            del markup_functions[name]
             return
         assert isinstance(name, str)
         assert all(not x.isspace() for x in name)
@@ -1347,7 +1373,7 @@ class LilyPondParser(Parser):
         for predicate in signature:
             assert isinstance(predicate, str)
             assert all(not x.isspace() for x in predicate)
-            assert predicate.endswith('?')
+            assert predicate.endswith("?")
         markup_functions[name] = tuple(signature)
 
     ### PUBLIC PROPERTIES ###

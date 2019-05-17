@@ -26,7 +26,7 @@ def test_LilyPondParser__spanners__Trill_01():
             \stopTrillSpan
         }
         """
-        )
+    )
 
     parser = abjad.parser.LilyPondParser()
     result = parser(format(target))
@@ -57,7 +57,7 @@ def test_LilyPondParser__spanners__Trill_02():
             \stopTrillSpan
         }
         """
-        )
+    )
 
     string = r"\relative c' { c \startTrillSpan c c \startTrillSpan \stopTrillSpan c \stopTrillSpan }"
 
@@ -71,7 +71,7 @@ def test_LilyPondParser__spanners__Trill_03():
     Single leaf.
     """
 
-    string = r'{ c \startTrillSpan \stopTrillSpan c c c }'
+    string = r"{ c \startTrillSpan \stopTrillSpan c c c }"
     with pytest.raises(Exception):
         abjad.LilyPondParser()(string)
 
@@ -81,7 +81,7 @@ def test_LilyPondParser__spanners__Trill_04():
     Unterminated.
     """
 
-    string = r'{ c \startTrillSpan c c c }'
+    string = r"{ c \startTrillSpan c c c }"
     with pytest.raises(Exception):
         abjad.LilyPondParser()(string)
 
@@ -91,7 +91,7 @@ def test_LilyPondParser__spanners__Trill_05():
     Unstarted.
     """
 
-    string = r'{ c c c c \stopTrillSpan }'
+    string = r"{ c c c c \stopTrillSpan }"
     with pytest.raises(Exception):
         abjad.LilyPondParser()(string)
 
@@ -101,6 +101,6 @@ def test_LilyPondParser__spanners__Trill_06():
     Nested.
     """
 
-    string = r'{ c \startTrillSpan c \startTrillSpan c \stopTrillSpan c \stopTrillSpan }'
+    string = r"{ c \startTrillSpan c \startTrillSpan c \stopTrillSpan c \stopTrillSpan }"
     with pytest.raises(Exception):
         abjad.LilyPondParser()(string)

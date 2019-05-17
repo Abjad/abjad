@@ -36,11 +36,11 @@ def divisors(n):
     Returns list of positive integers.
     """
     if not isinstance(n, int):
-        message = 'must be integer: {!r}.'
+        message = "must be integer: {!r}."
         message = message.format(n)
         raise TypeError(message)
     if n == 0:
-        message = 'all numbers divide zero evenly.'
+        message = "all numbers divide zero evenly."
         raise NotImplementedError(message)
     n = abs(n)
     divisors = [1]

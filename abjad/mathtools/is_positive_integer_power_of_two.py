@@ -21,7 +21,7 @@ def is_positive_integer_power_of_two(argument):
     Returns true or false.
     """
     from abjad import mathtools
-    return (
-        0 < argument and
-        mathtools.is_nonnegative_integer_power_of_two(argument)
-        )
+
+    return 0 < argument and mathtools.is_nonnegative_integer_power_of_two(
+        argument
+    )

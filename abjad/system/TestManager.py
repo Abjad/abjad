@@ -11,13 +11,12 @@ class TestManager(object):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Managers'
+    __documentation_section__ = "Managers"
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### SPECIAL METHODS ###
-    
+
     def __repr__(self) -> str:
         """
         Gets interpreter representation.
@@ -32,12 +31,12 @@ class TestManager(object):
             paths = [path]
         elif isinstance(path, pathlib.Path):
             paths = [str(path)]
-        elif (isinstance(path, (tuple, list))):
+        elif isinstance(path, (tuple, list)):
             paths = [str(_) for _ in path]
         else:
             raise TypeError(path)
         for path in paths:
-            backup_path = path + '.backup'
+            backup_path = path + ".backup"
             if not TestManager.compare_files(path, backup_path):
                 return False
         return True
@@ -75,16 +74,16 @@ class TestManager(object):
         Returns true or false.
         """
         file_1_lines, file_2_lines = [], []
-        with open(path_1, 'r') as file_pointer:
+        with open(path_1, "r") as file_pointer:
             for line in file_pointer.readlines():
                 line = line.strip()
-                if line == '':
+                if line == "":
                     continue
                 file_1_lines.append(line)
-        with open(path_2, 'r') as file_pointer:
+        with open(path_2, "r") as file_pointer:
             for line in file_pointer.readlines():
                 line = line.strip()
-                if line == '':
+                if line == "":
                     continue
                 file_2_lines.append(line)
         return file_1_lines == file_2_lines
@@ -92,14 +91,14 @@ class TestManager(object):
     @staticmethod
     def _normalize_ly(path):
         lines = []
-        with open(path, 'r') as file_pointer:
+        with open(path, "r") as file_pointer:
             for line in file_pointer.readlines():
                 line = line.strip()
-                if line == '':
+                if line == "":
                     continue
-                if line.startswith(r'\version'):
+                if line.startswith(r"\version"):
                     continue
-                elif line.startswith('%'):
+                elif line.startswith("%"):
                     continue
                 lines.append(line)
         return lines
@@ -117,7 +116,7 @@ class TestManager(object):
         """
         if not isinstance(string_1, str):
             string_1 = format(string_1)
-        split_lines = string_2.split('\n')
+        split_lines = string_2.split("\n")
         if not split_lines[0] or split_lines[0].isspace():
             split_lines.pop(0)
         if not split_lines[-1] or split_lines[-1].isspace():
@@ -125,14 +124,14 @@ class TestManager(object):
         indent_width = 0
         if split_lines:
             for indent_width, character in enumerate(split_lines[0]):
-                if character != ' ':
+                if character != " ":
                     break
         massaged_lines = []
         for split_line in split_lines:
             massaged_line = split_line[indent_width:]
             massaged_lines.append(massaged_line)
-        massaged_string = '\n'.join(massaged_lines)
-        return string_1.replace('\t', '    ') == massaged_string
+        massaged_string = "\n".join(massaged_lines)
+        return string_1.replace("\t", "    ") == massaged_string
 
     @staticmethod
     def compare_files(path_1, path_2):
@@ -160,14 +159,14 @@ class TestManager(object):
             return False
         elif not os.path.exists(path_1) and not os.path.exists(path_2):
             return True
-        if path_1.endswith('.backup'):
-            path_1 = path_1.strip('.backup')
-        if path_2.endswith('.backup'):
-            path_2 = path_2.strip('.backup')
+        if path_1.endswith(".backup"):
+            path_1 = path_1.strip(".backup")
+        if path_2.endswith(".backup"):
+            path_2 = path_2.strip(".backup")
         base_1, extension_1 = os.path.splitext(path_1)
         base_2, extension_2 = os.path.splitext(path_2)
         assert extension_1 == extension_2
-        if extension_1 == '.ly':
+        if extension_1 == ".ly":
             return TestManager._compare_lys(path_1, path_2)
         else:
             return TestManager._compare_text_files(path_1, path_2)
@@ -221,16 +220,16 @@ class TestManager(object):
         Returns string.
         """
         try:
-            a_format = format(object_a, 'storage')
+            a_format = format(object_a, "storage")
         except ValueError:
             a_format = format(object_a)
         try:
-            b_format = format(object_b, 'storage')
+            b_format = format(object_b, "storage")
         except ValueError:
             b_format = format(object_b)
         a_format = a_format.splitlines(True)
         b_format = b_format.splitlines(True)
-        diff = ''.join(difflib.ndiff(a_format, b_format))
+        diff = "".join(difflib.ndiff(a_format, b_format))
         if title is not None:
-            diff = title + '\n' + diff
+            diff = title + "\n" + diff
         return diff

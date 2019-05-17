@@ -30,33 +30,31 @@ class StringContactPoint(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_contact_point',
-        )
+    __slots__ = ("_contact_point",)
 
     _contact_point_abbreviations = {
-        'dietro ponticello': 'd.p.',
-        'molto sul ponticello': 'm.s.p',
-        'molto sul tasto': 'm.s.t.',
-        'ordinario': 'ord.',
-        'pizzicato': 'pizz.',
-        'ponticello': 'p.',
-        'sul ponticello': 's.p.',
-        'sul tasto': 's.t.',
-        }
+        "dietro ponticello": "d.p.",
+        "molto sul ponticello": "m.s.p",
+        "molto sul tasto": "m.s.t.",
+        "ordinario": "ord.",
+        "pizzicato": "pizz.",
+        "ponticello": "p.",
+        "sul ponticello": "s.p.",
+        "sul tasto": "s.t.",
+    }
 
     _contact_points = (
-        'dietro ponticello',
-        'molto sul ponticello',
-        'molto sul tasto',
-        'ordinario',
-        'pizzicato',
-        'ponticello',
-        'sul ponticello',
-        'sul tasto',
-        )
+        "dietro ponticello",
+        "molto sul ponticello",
+        "molto sul tasto",
+        "ordinario",
+        "pizzicato",
+        "ponticello",
+        "sul ponticello",
+        "sul tasto",
+    )
 
-    _parameter = 'SCP'
+    _parameter = "SCP"
 
     _persistent = True
 
@@ -64,10 +62,7 @@ class StringContactPoint(object):
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        contact_point: str = 'ordinario',
-        ) -> None:
+    def __init__(self, contact_point: str = "ordinario") -> None:
         contact_point = str(contact_point)
         assert contact_point in self._contact_points
         self._contact_point = contact_point
@@ -89,7 +84,7 @@ class StringContactPoint(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     def __repr__(self) -> str:

@@ -53,13 +53,9 @@ class VerticalMoment(object):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Selections'
+    __documentation_section__ = "Selections"
 
-    __slots__ = (
-        '_components',
-        '_governors',
-        '_offset',
-        )
+    __slots__ = ("_components", "_governors", "_offset")
 
     ### INITIALIZER ###
 
@@ -195,9 +191,9 @@ class VerticalMoment(object):
         Returns string.
         """
         if not self.components:
-            return f'{type(self).__name__}()'
+            return f"{type(self).__name__}()"
         length = len(self.leaves)
-        result = f'{type(self).__name__}({str(self.offset)}, <<{length}>>)'
+        result = f"{type(self).__name__}({str(self.offset)}, <<{length}>>)"
         return result
 
     ### PUBLIC PROPERTIES ###
@@ -282,6 +278,7 @@ class VerticalMoment(object):
         """
         from .Chord import Chord
         from .Note import Note
+
         leaves = []
         for leaf in self.start_leaves:
             if isinstance(leaf, (Note, Chord)):
@@ -384,6 +381,7 @@ class VerticalMoment(object):
         """
         from .Leaf import Leaf
         from .Selection import Selection
+
         result = []
         for component in self.components:
             if isinstance(component, Leaf):
@@ -397,6 +395,7 @@ class VerticalMoment(object):
         Tuple of zero or more notes at vertical moment.
         """
         from .Note import Note
+
         result = []
         for component in self.components:
             if isinstance(component, Note):
@@ -411,6 +410,7 @@ class VerticalMoment(object):
         """
         from .Chord import Chord
         from .Note import Note
+
         result = []
         prototype = (Chord, Note)
         for component in self.components:
@@ -446,8 +446,8 @@ class VerticalMoment(object):
         ordered by score index.
         """
         from .Leaf import Leaf
-        result = [x for x in self.overlap_components
-            if isinstance(x, Leaf)]
+
+        result = [x for x in self.overlap_components if isinstance(x, Leaf)]
         result = tuple(result)
         return result
 
@@ -458,6 +458,7 @@ class VerticalMoment(object):
         ordered by score index.
         """
         from .Note import Note
+
         result = self.overlap_components
         result = [_ for _ in result if isinstance(_, Note)]
         result = tuple(result)
@@ -471,8 +472,7 @@ class VerticalMoment(object):
         """
         result = []
         for component in self.components:
-            if inspect(
-                component).timespan().start_offset == self.offset:
+            if inspect(component).timespan().start_offset == self.offset:
                 result.append(component)
         result = tuple(result)
         return result
@@ -484,8 +484,8 @@ class VerticalMoment(object):
         ordered by score index.
         """
         from .Leaf import Leaf
-        result = [x for x in self.start_components
-            if isinstance(x, Leaf)]
+
+        result = [x for x in self.start_components if isinstance(x, Leaf)]
         result = tuple(result)
         return result
 
@@ -496,7 +496,7 @@ class VerticalMoment(object):
         ordered by score index.
         """
         from .Note import Note
-        result = [x for x in self.start_components
-            if isinstance(x, Note)]
+
+        result = [x for x in self.start_components if isinstance(x, Note)]
         result = tuple(result)
         return result

@@ -53,7 +53,7 @@ def test_Mutation_fuse_04():
             c'16
         }
         """
-        ), print(format(voice))
+    ), print(format(voice))
 
     assert abjad.inspect(voice).wellformed()
 
@@ -75,7 +75,7 @@ def test_Mutation_fuse_05():
             s1 * 5/16
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     assert abjad.inspect(staff).duration() == abjad.Duration(3, 8)
 
@@ -88,7 +88,7 @@ def test_Mutation_fuse_05():
             s1 * 3/8
         }
         """
-        )
+    )
 
     assert abjad.inspect(staff).duration() == abjad.Duration(3, 8)
     assert abjad.inspect(staff).wellformed()
@@ -114,7 +114,7 @@ def test_Mutation_fuse_06():
             ]
         }
         """
-        ), print(format(tuplet_1))
+    ), print(format(tuplet_1))
 
     assert format(tuplet_2) == abjad.String.normalize(
         r"""
@@ -126,7 +126,7 @@ def test_Mutation_fuse_06():
             )
         }
         """
-        ), print(format(tuplet_2))
+    ), print(format(tuplet_2))
 
     tuplets = abjad.select([tuplet_1, tuplet_2])
     new = abjad.mutate(tuplets).fuse()
@@ -146,7 +146,7 @@ def test_Mutation_fuse_06():
             )
         }
         """
-        ), print(format(new))
+    ), print(format(new))
 
     assert len(tuplet_1) == 0
     assert len(tuplet_2) == 0
@@ -185,8 +185,7 @@ def test_Mutation_fuse_07():
             }
         }
         """
-        ), print(format(voice))
-
+    ), print(format(voice))
 
     tuplets = voice[:]
     abjad.mutate(tuplets).fuse()
@@ -209,7 +208,7 @@ def test_Mutation_fuse_07():
             }
         }
         """
-        ), print(format(voice))
+    ), print(format(voice))
 
     assert abjad.inspect(voice).wellformed()
 
@@ -248,7 +247,7 @@ def test_Mutation_fuse_08():
             }
         }
         """
-        ), print(format(voice))
+    ), print(format(voice))
 
     tuplets = voice[:]
     abjad.mutate(tuplets).fuse()
@@ -274,7 +273,7 @@ def test_Mutation_fuse_08():
             }
         }
         """
-        ), print(format(voice))
+    ), print(format(voice))
 
     assert abjad.inspect(voice).wellformed()
 
@@ -285,7 +284,7 @@ def test_Mutation_fuse_09():
     """
 
     tuplet_1 = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
-    tuplet_2 = abjad.Tuplet ((4, 5), "c'8 d'8 e'8 f'8 g'8")
+    tuplet_2 = abjad.Tuplet((4, 5), "c'8 d'8 e'8 f'8 g'8")
     tuplets = abjad.select([tuplet_1, tuplet_2])
 
     with pytest.raises(Exception):
@@ -317,7 +316,7 @@ def test_Mutation_fuse_10():
             )
         }
         """
-        ), print(format(voice))
+    ), print(format(voice))
 
     tuplets = voice[:2]
     abjad.mutate(tuplets).fuse()
@@ -335,7 +334,7 @@ def test_Mutation_fuse_10():
             )
         }
         """
-        ), print(format(voice))
+    ), print(format(voice))
 
     assert abjad.inspect(voice).wellformed()
 

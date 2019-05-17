@@ -20,4 +20,4 @@ def test_Container_grob_override_01():
             \revert Glissando.thickness
         }
         """
-        )
+    )

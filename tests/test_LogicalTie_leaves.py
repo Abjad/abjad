@@ -12,4 +12,4 @@ def test_LogicalTie_leaves_02():
 
     staff = abjad.Staff("c'")
 
-    assert abjad.inspect(staff[0]).logical_tie().leaves == (staff[0], )
+    assert abjad.inspect(staff[0]).logical_tie().leaves == (staff[0],)

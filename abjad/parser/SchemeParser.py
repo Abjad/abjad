@@ -20,12 +20,12 @@ class SchemeParser(Parser):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        'cursor',
-        'cursor_end',
-        'expression_depth',
-        'result',
-        'string_accumulator',
-        )
+        "cursor",
+        "cursor_end",
+        "expression_depth",
+        "result",
+        "string_accumulator",
+    )
 
     ### INITIALIZER ###
 
@@ -45,69 +45,67 @@ class SchemeParser(Parser):
 
     ### LEX SETUP ###
 
-    A = r'[A-Za-z]'
-    N = r'[0-9]'
-    DIGIT = r'{}'.format(N)
-    UNSIGNED = r'{}+'.format(N)
-    HEX = r'(X|x)[A-Fa-f0-9]+'
-    INT = r'(-?{})'.format(UNSIGNED)
-    REAL = r'(({}\.{}*)|(-?\.{}+))'.format(INT, N, N)
-    INITIAL = r'({}|!|\$|%|&|\*|/|<|>|\?|~|_|\^|:|=)'.format(A)
-    SUBSEQUENT = r'({}|{}|\.|\+|-)'.format(INITIAL, N)
-    #IDENTIFIER = r'({}{}*|\+|-|\.\.\.)'.format(INITIAL, SUBSEQUENT)
+    A = r"[A-Za-z]"
+    N = r"[0-9]"
+    DIGIT = r"{}".format(N)
+    UNSIGNED = r"{}+".format(N)
+    HEX = r"(X|x)[A-Fa-f0-9]+"
+    INT = r"(-?{})".format(UNSIGNED)
+    REAL = r"(({}\.{}*)|(-?\.{}+))".format(INT, N, N)
+    INITIAL = r"({}|!|\$|%|&|\*|/|<|>|\?|~|_|\^|:|=)".format(A)
+    SUBSEQUENT = r"({}|{}|\.|\+|-)".format(INITIAL, N)
+    # IDENTIFIER = r'({}{}*|\+|-|\.\.\.)'.format(INITIAL, SUBSEQUENT)
 
     # this has been rewritten to prevent Sphinx from complaining that it looks like bad ReST
-    IDENTIFIER = r'([A-Za-z!\$%&\*/<>\?~_\^:=][A-Za-z0-9!\$%&\*/<>\?~_\^:=\.\+-]*|[\+-]|\.\.\.)'
+    IDENTIFIER = r"([A-Za-z!\$%&\*/<>\?~_\^:=][A-Za-z0-9!\$%&\*/<>\?~_\^:=\.\+-]*|[\+-]|\.\.\.)"
 
-    states = (
-        ('quote', 'exclusive'),
-    )
+    states = (("quote", "exclusive"),)
 
     tokens = (
-        'AMPERSAND',
-        'ASTERISK',
-        'BOOLEAN',
-        'CARAT',
-        'COLON',
-        'DECIMAL',
-        'DOLLAR',
-        'EQUALS',
-        'EXCLAMATION',
-        'HASH',
-        'HEXADECIMAL',
-        'IDENTIFIER',
-        'INTEGER',
-        'L_CARAT',
-        'L_PAREN',
-        'MINUS',
-        'PERCENT',
-        'PERIOD',
-        'PLUS',
-        'QUESTION',
-        'QUOTE',
-        'R_CARAT',
-        'R_PAREN',
-        'SLASH',
-        'STRING',
-        'TILDE',
-        'UNDERSCORE',
+        "AMPERSAND",
+        "ASTERISK",
+        "BOOLEAN",
+        "CARAT",
+        "COLON",
+        "DECIMAL",
+        "DOLLAR",
+        "EQUALS",
+        "EXCLAMATION",
+        "HASH",
+        "HEXADECIMAL",
+        "IDENTIFIER",
+        "INTEGER",
+        "L_CARAT",
+        "L_PAREN",
+        "MINUS",
+        "PERCENT",
+        "PERIOD",
+        "PLUS",
+        "QUESTION",
+        "QUOTE",
+        "R_CARAT",
+        "R_PAREN",
+        "SLASH",
+        "STRING",
+        "TILDE",
+        "UNDERSCORE",
     )
 
     ### LEX METHODS ###
 
-    t_ignore = ''
+    t_ignore = ""
 
     def t_whitespace(self, t):
-        r'[ \t\r]+'
+        r"[ \t\r]+"
         self.cursor += len(t.value)
         t.cursor_end = self.cursor
         pass
 
     def t_BOOLEAN(self, t):
-        r'\#(T|F|t|f)'
+        r"\#(T|F|t|f)"
         self.cursor += len(t.value)
         t.cursor_end = self.cursor
-        if t.value[-1].lower() == 't':
+        if t.value[-1].lower() == "t":
             t.value = True
         else:
             t.value = False
@@ -128,7 +126,7 @@ class SchemeParser(Parser):
         return t
 
     def t_HASH(self, t):
-        r'\#'
+        r"\#"
         self.cursor += len(t.value)
         t.cursor_end = self.cursor
         return t
@@ -141,29 +139,29 @@ class SchemeParser(Parser):
         return t
 
     def t_L_PAREN(self, t):
-        r'\('
+        r"\("
         self.cursor += len(t.value)
         t.cursor_end = self.cursor
         self.expression_depth += 1
         return t
 
     def t_R_PAREN(self, t):
-        r'\)'
+        r"\)"
         self.cursor += len(t.value)
         t.cursor_end = self.cursor
         return t
 
     def t_quote(self, t):
-        r'\"'
+        r"\""
         self.cursor += len(t.value)
         t.cursor_end = self.cursor
-        t.lexer.push_state('quote')
-        self.string_accumulator = ''
+        t.lexer.push_state("quote")
+        self.string_accumulator = ""
         pass
 
     def t_quote_440(self, t):
-        r'''\\[nt\\'"]
-        '''
+        r"""\\[nt\\'"]
+        """
         self.cursor += len(t.value)
         t.cursor_end = self.cursor
         self.string_accumulator += t.value
@@ -177,17 +175,17 @@ class SchemeParser(Parser):
         pass
 
     def t_quote_446(self, t):
-        r'\"'
+        r"\""
         self.cursor += len(t.value)
         t.cursor_end = self.cursor
         t.lexer.pop_state()
-        t.type = 'STRING'
+        t.type = "STRING"
         t.value = self.string_accumulator
-        self.string_accumulator = ''
+        self.string_accumulator = ""
         return t
 
     def t_quote_456(self, t):
-        r'.'
+        r"."
         self.cursor += len(t.value)
         t.cursor_end = self.cursor
         self.string_accumulator += t.value
@@ -200,57 +198,62 @@ class SchemeParser(Parser):
         return t
 
     def t_newline(self, t):
-        r'\n+'
+        r"\n+"
         self.cursor += len(t.value)
         t.cursor_end = self.cursor
-        t.lexer.lineno += t.value.count('\n')
+        t.lexer.lineno += t.value.count("\n")
 
     def t_anything(self, t):
-        r'.'
+        r"."
         self.cursor += len(t.value)
         t.cursor_end = self.cursor
         types = {
-            '&': 'AMPERSAND',
-            '*': 'ASTERISK',
-            '^': 'CARAT',
-            ':': 'COLON',
-            '$': 'DOLLAR',
-            '=': 'EQUALS',
-            '!': 'EXCLAMATION',
-            '<': 'L_CARAT',
-            '-': 'MINUS',
-            '%': 'PERCENT',
-            '.': 'PERIOD',
-            '+': 'PLUS',
-            '?': 'QUESTION',
-            "'": 'QUOTE',
-            '>': 'R_CARAT',
-            ')': 'R_PAREN',
-            '/': 'SLASH',
-            '~': 'TILDE',
-            '_': 'UNDERSCORE',
+            "&": "AMPERSAND",
+            "*": "ASTERISK",
+            "^": "CARAT",
+            ":": "COLON",
+            "$": "DOLLAR",
+            "=": "EQUALS",
+            "!": "EXCLAMATION",
+            "<": "L_CARAT",
+            "-": "MINUS",
+            "%": "PERCENT",
+            ".": "PERIOD",
+            "+": "PLUS",
+            "?": "QUESTION",
+            "'": "QUOTE",
+            ">": "R_CARAT",
+            ")": "R_PAREN",
+            "/": "SLASH",
+            "~": "TILDE",
+            "_": "UNDERSCORE",
         }
         if t.value in types:
             t.type = types[t.value]
             return t
         else:
-            #t.lexer.skip(1)
+            # t.lexer.skip(1)
             pass
 
     def t_error(self, t):
         self.cursor += len(t.value)
         t.cursor_end = self.cursor
         if self.debug:
-            print(("SchemeParser-{}: Illegal character {!r}".format(
-                id(self), t.value[0])))
-        #t.lexer.skip(1)
+            print(
+                (
+                    "SchemeParser-{}: Illegal character {!r}".format(
+                        id(self), t.value[0]
+                    )
+                )
+            )
+        # t.lexer.skip(1)
 
     t_quote_error = t_error
     t_quote_ignore = t_ignore
 
     ### YACC SETUP ###
 
-    start = 'program'
+    start = "program"
 
     ### YACC METHODS ###
 
@@ -288,70 +291,70 @@ class SchemeParser(Parser):
         """
         form : expression
         """
-        #print 'form : expression'
-        #print p[1]
+        # print 'form : expression'
+        # print p[1]
         p.slice[0].cursor_end = p.slice[-1].cursor_end
         p[0] = p[1]
         self.result = p[0]
         self.cursor_end = p.slice[0].cursor_end
         if self.debug:
-            print('PARSED {!r}'.format(self.lexer.lexdata[:self.cursor_end]))
+            print("PARSED {!r}".format(self.lexer.lexdata[: self.cursor_end]))
         raise exceptions.SchemeParserFinishedError
 
     ### definition ###
 
-    '''<definition> : <variable definition>
+    """<definition> : <variable definition>
     |   <syntax definition>
     |   (begin <definition>*)
     |   (let-syntax (<syntax binding>*) <definition>*)
     |   (letrec-syntax (<syntax binding>*) <definition>*)
     |   <derived definition>
-    '''
+    """
 
     ### variable definition ###
 
-    '''<variable definition> : (define <variable> <expression>)
+    """<variable definition> : (define <variable> <expression>)
     |   (define (<variable> <variable>*) <body>)
     |   (define (<variable> <variable>* . <variable>) <body>)
-    '''
+    """
 
     ### variable ###
 
-    '''<variable> : <identifier>
-    '''
+    """<variable> : <identifier>
+    """
 
     def p_variable__IDENTIFIER(self, p):
         """
         variable : IDENTIFIER
         """
-        #print 'variable : IDENTIFIER'
-        #print p[1]
+        # print 'variable : IDENTIFIER'
+        # print p[1]
         p.slice[0].cursor_end = p.slice[-1].cursor_end
         p[0] = abjad_scheme.Scheme(p[1])
 
     ### body ###
 
-    '''<body> : <definition>* <expression>+
-    '''
+    """<body> : <definition>* <expression>+
+    """
 
     ### syntax definition ###
 
-    '''<syntax definition> : (define-syntax <keyword> <transformer expression>)
-    '''
+    """<syntax definition> : (define-syntax <keyword> <transformer expression>)
+    """
 
     ### keyword ###
 
-    '''<keyword> : <identifier>
-    '''
+    """<keyword> : <identifier>
+    """
 
     ### syntax binding ###
 
-    '''<syntax binding> : (<keyword> <transformer expression>)
-    '''
+    """<syntax binding> : (<keyword> <transformer expression>)
+    """
 
     ### expression ###
 
-    '''<expression> : <constant>
+    """<expression> : <constant>
     |   <variable>
     |   (quote <datum>) | ' <datum>
     |   (lambda <formals> <body>)
@@ -361,14 +364,14 @@ class SchemeParser(Parser):
     |   (let-syntax (<syntax binding>*) <expression>+)
     |   (letrec-syntax (<syntax binding>*) <expression>+)
     |   <derived expression>
-    '''
+    """
 
     def p_expression__variable(self, p):
         """
         expression : variable
         """
-        #print 'expression : variable'
-        #print p[1]
+        # print 'expression : variable'
+        # print p[1]
         p.slice[0].cursor_end = p.slice[-1].cursor_end
         p[0] = p[1]
 
@@ -376,8 +379,8 @@ class SchemeParser(Parser):
         """
         expression : QUOTE datum
         """
-        #print 'expression : QUOTE datum'
-        #print p[2]
+        # print 'expression : QUOTE datum'
+        # print p[2]
         p.slice[0].cursor_end = p.slice[-1].cursor_end
         datum = p[2]
         if isinstance(datum, abjad_scheme.Scheme):
@@ -398,8 +401,8 @@ class SchemeParser(Parser):
 
     ### constant ###
 
-    '''<constant> : <boolean> | <number> | <character> | <string>
-    '''
+    """<constant> : <boolean> | <number> | <character> | <string>
+    """
 
     def p_constant__boolean(self, p):
         """
@@ -408,8 +411,8 @@ class SchemeParser(Parser):
         p.slice[0].cursor_end = p.slice[-1].cursor_end
         p[0] = p[1]
         if self.expression_depth < 1:
-            #print 'constant : boolean'
-            #print p[1]
+            # print 'constant : boolean'
+            # print p[1]
             self.result = p[0]
             self.cursor_end = p.slice[0].cursor_end
             raise exceptions.SchemeParserFinishedError
@@ -421,8 +424,8 @@ class SchemeParser(Parser):
         p.slice[0].cursor_end = p.slice[-1].cursor_end
         p[0] = p[1]
         if self.expression_depth < 1:
-            #print 'constant : number'
-            #print p[1]
+            # print 'constant : number'
+            # print p[1]
             self.result = p[0]
             self.cursor_end = p.slice[0].cursor_end
             raise exceptions.SchemeParserFinishedError
@@ -434,51 +437,51 @@ class SchemeParser(Parser):
         p.slice[0].cursor_end = p.slice[-1].cursor_end
         p[0] = p[1]
         if self.expression_depth < 1:
-            #print 'constant : string'
-            #print p[1]
+            # print 'constant : string'
+            # print p[1]
             self.result = p[0]
             self.cursor_end = p.slice[0].cursor_end
             raise exceptions.SchemeParserFinishedError
 
     ### formals ###
 
-    '''<formals> : <variable> | (<variable>*) | (<variable>+ . <variable>)
-    '''
+    """<formals> : <variable> | (<variable>*) | (<variable>+ . <variable>)
+    """
 
     ### application ###
 
-    '''<application> : (<expression> <expression>*)
-    '''
+    """<application> : (<expression> <expression>*)
+    """
 
     ### identifier ###
 
-    '''<identifier> : <initial> <subsequent>* | + | - | ...
-    '''
+    """<identifier> : <initial> <subsequent>* | + | - | ...
+    """
 
     ### initial ###
 
-    '''<initial> : <letter> | ! | $ | % | & | * | / | : | < | = | > | ? | ~ | _ | ^
-    '''
+    """<initial> : <letter> | ! | $ | % | & | * | / | : | < | = | > | ? | ~ | _ | ^
+    """
 
     ### subsequent ###
 
-    '''<subsequent> : <initial> | <digit> | . | + | -
-    '''
+    """<subsequent> : <initial> | <digit> | . | + | -
+    """
 
     ### letter ###
 
-    '''<letter> : a | b | ... | z
-    '''
+    """<letter> : a | b | ... | z
+    """
 
     ### digit ###
 
-    '''<digit> : 0 | 1 | ... | 9
-    '''
+    """<digit> : 0 | 1 | ... | 9
+    """
 
     ### datum ###
 
-    '''<datum> : <boolean> | <number> | <character> | <string> | <symbol> | <list> | <vector>
-    '''
+    """<datum> : <boolean> | <number> | <character> | <string> | <symbol> | <list> | <vector>
+    """
 
     def p_datum__constant(self, p):
         """
@@ -494,15 +497,15 @@ class SchemeParser(Parser):
         p.slice[0].cursor_end = p.slice[-1].cursor_end
         p[0] = p[1]
 
-    #def p_datum__boolean(self, p):
+    # def p_datum__boolean(self, p):
     #    """datum : boolean"""
     #    p[0] = p[1]
 
-    #def p_datum__number(self, p):
+    # def p_datum__number(self, p):
     #    """datum : number"""
     #    p[0] = p[1]
 
-    #def p_datum__string(self, p):
+    # def p_datum__string(self, p):
     #    """datum : string"""
     #    p[0] = p[1]
 
@@ -535,8 +538,8 @@ class SchemeParser(Parser):
 
     ### boolean ###
 
-    '''<boolean> : #t | #f
-    '''
+    """<boolean> : #t | #f
+    """
 
     def p_boolean__BOOLEAN(self, p):
         """
@@ -547,8 +550,8 @@ class SchemeParser(Parser):
 
     ### number ###
 
-    '''<number> : <num 2> | <num 8> | <num 10> | <num 16>
-    '''
+    """<number> : <num 2> | <num 8> | <num 10> | <num 16>
+    """
 
     def p_number__DECIMAL(self, p):
         """
@@ -573,13 +576,13 @@ class SchemeParser(Parser):
 
     ### character ###
 
-    '''<character> : #\ <any character> | #\newline | #\space
-    '''
+    r"""<character> : #\ <any character> | #\newline | #\space
+    """
 
     ### string ###
 
-    '''<string> : " <string character>* "
-    '''
+    """<string> : " <string character>* "
+    """
 
     def p_string__STRING(self, p):
         """
@@ -590,27 +593,27 @@ class SchemeParser(Parser):
 
     ### string character ###
 
-    '''<string character> : \" | \\ | <any character other than " or \>
-    '''
+    r"""<string character> : \" | \\ | <any character other than " or \>
+    """
 
     ### symbol ###
 
-    '''<symbol> : <identifier>
-    '''
+    """<symbol> : <identifier>
+    """
 
     def p_symbol__IDENTIFIER(self, p):
         """
         symbol : IDENTIFIER
         """
-        #print 'symbol : IDENTIFIER'
-        #print p[1]
+        # print 'symbol : IDENTIFIER'
+        # print p[1]
         p.slice[0].cursor_end = p.slice[-1].cursor_end
         p[0] = p[1]
 
     ### vector ###
 
-    '''<vector> : #(<datum>*)
-    '''
+    """<vector> : #(<datum>*)
+    """
 
     def p_vector__HASH__L_PAREN__data__R_PAREN(self, p):
         """
@@ -622,8 +625,8 @@ class SchemeParser(Parser):
 
     ### list ###
 
-    '''<list> : (<datum>*) | (<datum>+ . <datum>) | <abbreviation>
-    '''
+    """<list> : (<datum>*) | (<datum>+ . <datum>) | <abbreviation>
+    """
 
     def p_list__L_PAREN__data__R_PAREN(self, p):
         """
@@ -647,20 +650,27 @@ class SchemeParser(Parser):
 
     ### abbreviation ###
 
-    '''<abbreviation> : ' <datum> | ` <datum> | , <datum> | ,@ <datum>
-    '''
+    """<abbreviation> : ' <datum> | ` <datum> | , <datum> | ,@ <datum>
+    """
 
     ### error ###
 
     def p_error(self, p):
         if p:
             if self.debug:
-                print(("SchemeParser-{}: Syntax error at {!r}".format(
-                    id(self), p.value)))
+                print(
+                    (
+                        "SchemeParser-{}: Syntax error at {!r}".format(
+                            id(self), p.value
+                        )
+                    )
+                )
             self._parser.errok()
         else:
             if self.debug:
-                print(("SchemeParser-{}: Syntax error at EOF".format(id(self))))
+                print(
+                    ("SchemeParser-{}: Syntax error at EOF".format(id(self)))
+                )
 
     ### PUBLIC PROPERTIES ###
 

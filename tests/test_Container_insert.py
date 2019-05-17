@@ -25,7 +25,7 @@ def test_Container_insert_01():
             ]
         }
         """
-        )
+    )
 
 
 def test_Container_insert_02():
@@ -48,7 +48,7 @@ def test_Container_insert_02():
             ]
         }
         """
-        )
+    )
 
 
 def test_Container_insert_03():
@@ -71,7 +71,7 @@ def test_Container_insert_03():
             r4
         }
         """
-        )
+    )
 
 
 def test_Container_insert_04():
@@ -97,7 +97,7 @@ def test_Container_insert_04():
             r4
         }
         """
-        )
+    )
 
 
 def test_Container_insert_05():
@@ -123,7 +123,7 @@ def test_Container_insert_05():
             ]
         }
         """
-        )
+    )
 
 
 def test_Container_insert_06():
@@ -149,7 +149,7 @@ def test_Container_insert_06():
             ]
         }
         """
-        )
+    )
 
 
 def test_Container_insert_07():
@@ -189,4 +189,4 @@ def test_Container_insert_08():
             ]
         }
         """
-        )
+    )

@@ -22,10 +22,10 @@ def all_are_nonnegative_integer_powers_of_two(argument):
     Returns true or false.
     """
     from abjad import mathtools
+
     try:
         return all(
-            mathtools.is_nonnegative_integer_power_of_two(_)
-            for _ in argument
-            )
+            mathtools.is_nonnegative_integer_power_of_two(_) for _ in argument
+        )
     except TypeError:
         return False

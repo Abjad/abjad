@@ -4,7 +4,7 @@ import abjad
 def test_LilyPondGrobNameManager___delattr___01():
 
     note = abjad.Note("c'4")
-    abjad.override(note).accidental.color = 'red'
+    abjad.override(note).accidental.color = "red"
     abjad.override(note).beam.positions = (-6, -6)
     abjad.override(note).dots.thicknes = 2
 
@@ -15,17 +15,17 @@ def test_LilyPondGrobNameManager___delattr___01():
         \once \override Dots.thicknes = #2
         c'4
         """
-        )
+    )
 
-    del(abjad.override(note).accidental)
-    del(abjad.override(note).beam)
+    del abjad.override(note).accidental
+    del abjad.override(note).beam
 
     assert format(note) == abjad.String.normalize(
         r"""
         \once \override Dots.thicknes = #2
         c'4
         """
-        )
+    )
 
 
 def test_LilyPondGrobNameManager___delattr___02():
@@ -35,7 +35,7 @@ def test_LilyPondGrobNameManager___delattr___02():
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     abjad.override(staff).rest.transparent = True
-    del(abjad.override(staff).rest)
+    del abjad.override(staff).rest
 
     assert format(staff) == abjad.String.normalize(
         r"""
@@ -47,7 +47,7 @@ def test_LilyPondGrobNameManager___delattr___02():
             f'8
         }
         """
-        )
+    )
 
 
 def test_LilyPondGrobNameManager___delattr___03():
@@ -56,8 +56,8 @@ def test_LilyPondGrobNameManager___delattr___03():
     """
 
     note = abjad.Note("c'4")
-    abjad.override(note).time_signature.color = 'red'
+    abjad.override(note).time_signature.color = "red"
     abjad.override(note).time_signature.transparent = True
-    del(abjad.override(note).time_signature)
+    del abjad.override(note).time_signature
 
     assert format(note) == "c'4"

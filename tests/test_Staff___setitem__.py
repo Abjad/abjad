@@ -4,13 +4,15 @@ import pytest
 
 def test_Staff___setitem___01():
 
-    staff = abjad.Staff([
-        abjad.Note("c'4"),
-        abjad.Rest((1, 4)),
-        abjad.Chord([2, 3, 4], (1, 4)),
-        abjad.Skip((1, 4)),
-        abjad.Tuplet((4, 5), 4 * abjad.Note(0, (1, 16))),
-        ])
+    staff = abjad.Staff(
+        [
+            abjad.Note("c'4"),
+            abjad.Rest((1, 4)),
+            abjad.Chord([2, 3, 4], (1, 4)),
+            abjad.Skip((1, 4)),
+            abjad.Tuplet((4, 5), 4 * abjad.Note(0, (1, 16))),
+        ]
+    )
 
     assert len(staff) == 5
     assert abjad.inspect(staff).wellformed()

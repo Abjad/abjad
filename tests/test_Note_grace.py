@@ -17,7 +17,7 @@ def test_Note_grace_01():
         }
         c'4
         """
-        )
+    )
 
 
 def test_Note_grace_02():
@@ -26,7 +26,11 @@ def test_Note_grace_02():
     """
 
     note = abjad.Note("c'4")
-    grace_notes = [abjad.Note(0, (1, 16)), abjad.Note(2, (1, 16)), abjad.Note(4, (1, 16))]
+    grace_notes = [
+        abjad.Note(0, (1, 16)),
+        abjad.Note(2, (1, 16)),
+        abjad.Note(4, (1, 16)),
+    ]
     grace_container = abjad.GraceContainer(grace_notes)
     abjad.attach(grace_container, note)
 
@@ -39,7 +43,7 @@ def test_Note_grace_02():
         }
         c'4
         """
-        )
+    )
 
 
 def test_Note_grace_03():
@@ -58,7 +62,7 @@ def test_Note_grace_03():
         }
         c'4
         """
-        )
+    )
 
 
 def test_Note_grace_04():
@@ -77,7 +81,7 @@ def test_Note_grace_04():
         }
         c'4
         """
-        )
+    )
 
 
 def test_Note_grace_05():
@@ -97,7 +101,7 @@ def test_Note_grace_05():
             d'16
         }
         """
-        )
+    )
 
 
 def test_Note_grace_06():
@@ -106,7 +110,11 @@ def test_Note_grace_06():
     """
 
     note = abjad.Note("c'4")
-    grace_notes = [abjad.Note(0, (1, 16)), abjad.Note(2, (1, 16)), abjad.Note(4, (1, 16))]
+    grace_notes = [
+        abjad.Note(0, (1, 16)),
+        abjad.Note(2, (1, 16)),
+        abjad.Note(4, (1, 16)),
+    ]
     grace = abjad.AfterGraceContainer(grace_notes)
     abjad.attach(grace, note)
 
@@ -120,4 +128,4 @@ def test_Note_grace_06():
             e'16
         }
         """
-        )
+    )

@@ -30,7 +30,7 @@ def test_LilyPondParser__lilypondfile__HeaderBlock_01():
                 }
         }
         """
-        )
+    )
     assert format(result.items[1]) == abjad.String.normalize(
         r"""
         \score {
@@ -41,7 +41,7 @@ def test_LilyPondParser__lilypondfile__HeaderBlock_01():
             }
         }
         """
-        )
+    )
 
 
 def test_LilyPondParser__lilypondfile__HeaderBlock_02():
@@ -78,10 +78,12 @@ def test_LilyPondParser__lilypondfile__HeaderBlock_02():
                 }
             tagline = \markup {}
         }
-        """)
+        """
+    )
     assert format(result.items[1]) == abjad.String.normalize(
         r"""
         {
             c'1
         }
-        """)
+        """
+    )

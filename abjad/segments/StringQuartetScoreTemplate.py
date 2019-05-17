@@ -64,24 +64,25 @@ class StringQuartetScoreTemplate(ScoreTemplate):
 
     __slots__ = ()
 
-
     _part_manifest = PartManifest(
-        Part(section='FirstViolin', section_abbreviation='VN-1'),
-        Part(section='SecondViolin', section_abbreviation='VN-2'),
-        Part(section='Viola', section_abbreviation='VA'),
-        Part(section='Cello', section_abbreviation='VC'),
-        )
+        Part(section="FirstViolin", section_abbreviation="VN-1"),
+        Part(section="SecondViolin", section_abbreviation="VN-2"),
+        Part(section="Viola", section_abbreviation="VA"),
+        Part(section="Cello", section_abbreviation="VC"),
+    )
 
     ### INITIALIZER ###
 
     def __init__(self):
         super().__init__()
-        self.voice_abbreviations.update({
-            'vn1': 'First Violin Voice',
-            'vn2': 'Second Violin Voice',
-            'va': 'Viola Voice',
-            'vc': 'Cello Voice',
-            })
+        self.voice_abbreviations.update(
+            {
+                "vn1": "First Violin Voice",
+                "vn2": "Second Violin Voice",
+                "va": "Viola Voice",
+                "vc": "Cello Voice",
+            }
+        )
 
     ### SPECIAL METHODS ###
 
@@ -93,97 +94,78 @@ class StringQuartetScoreTemplate(ScoreTemplate):
         """
         import abjad
 
-        class_name = 'abjad.StringQuartetScoreTemplate'
+        class_name = "abjad.StringQuartetScoreTemplate"
 
         # make first violin voice and staff
         first_violin_voice = abjad.Voice(
-            [],
-            name='First_Violin_Voice',
-            tag=class_name,
-            )
+            [], name="First_Violin_Voice", tag=class_name
+        )
         first_violin_staff = abjad.Staff(
-            [first_violin_voice],
-            name='First_Violin_Staff',
-            tag=class_name,
-            )
-        clef = abjad.Clef('treble')
-        abjad.annotate(first_violin_staff, 'default_clef', clef)
+            [first_violin_voice], name="First_Violin_Staff", tag=class_name
+        )
+        clef = abjad.Clef("treble")
+        abjad.annotate(first_violin_staff, "default_clef", clef)
         violin = abjad.Violin()
-        abjad.annotate(first_violin_staff, 'default_instrument', violin)
-        tag = abjad.LilyPondLiteral(r"\tag #'first-violin", 'before')
+        abjad.annotate(first_violin_staff, "default_instrument", violin)
+        tag = abjad.LilyPondLiteral(r"\tag #'first-violin", "before")
         abjad.attach(tag, first_violin_staff)
 
         # make second violin voice and staff
         second_violin_voice = abjad.Voice(
-            [],
-            name='Second_Violin_Voice',
-            tag=class_name,
-            )
+            [], name="Second_Violin_Voice", tag=class_name
+        )
         second_violin_staff = abjad.Staff(
-            [second_violin_voice],
-            name='Second_Violin_Staff',
-            tag=class_name,
-            )
-        clef = abjad.Clef('treble')
-        abjad.annotate(second_violin_staff, 'default_clef', clef)
+            [second_violin_voice], name="Second_Violin_Staff", tag=class_name
+        )
+        clef = abjad.Clef("treble")
+        abjad.annotate(second_violin_staff, "default_clef", clef)
         violin = abjad.Violin()
-        abjad.annotate(second_violin_staff, 'default_instrument', violin)
-        tag = abjad.LilyPondLiteral(r"\tag #'second-violin", 'before')
+        abjad.annotate(second_violin_staff, "default_instrument", violin)
+        tag = abjad.LilyPondLiteral(r"\tag #'second-violin", "before")
         abjad.attach(tag, second_violin_staff)
 
         # make viola voice and staff
-        viola_voice = abjad.Voice(
-            [],
-            name='Viola_Voice',
-            tag=class_name,
-            )
+        viola_voice = abjad.Voice([], name="Viola_Voice", tag=class_name)
         viola_staff = abjad.Staff(
-            [viola_voice],
-            name='Viola_Staff',
-            tag=class_name,
-            )
-        clef = abjad.Clef('alto')
-        abjad.annotate(viola_staff, 'default_clef', clef)
+            [viola_voice], name="Viola_Staff", tag=class_name
+        )
+        clef = abjad.Clef("alto")
+        abjad.annotate(viola_staff, "default_clef", clef)
         viola = abjad.Viola()
-        abjad.annotate(viola_staff, 'default_instrument', viola)
-        tag = abjad.LilyPondLiteral(r"\tag #'viola", 'before')
+        abjad.annotate(viola_staff, "default_instrument", viola)
+        tag = abjad.LilyPondLiteral(r"\tag #'viola", "before")
         abjad.attach(tag, viola_staff)
 
         # make cello voice and staff
-        cello_voice = abjad.Voice(
-            [],
-            name='Cello_Voice',
-            tag=class_name,
-            )
+        cello_voice = abjad.Voice([], name="Cello_Voice", tag=class_name)
         cello_staff = abjad.Staff(
-            [cello_voice],
-            name='Cello_Staff',
-            tag=class_name,
-            )
-        clef = abjad.Clef('bass')
-        abjad.annotate(cello_staff, 'default_clef', clef)
+            [cello_voice], name="Cello_Staff", tag=class_name
+        )
+        clef = abjad.Clef("bass")
+        abjad.annotate(cello_staff, "default_clef", clef)
         cello = abjad.Cello()
-        abjad.annotate(cello_staff, 'default_instrument', cello)
-        tag = abjad.LilyPondLiteral(r"\tag #'cello", 'before')
+        abjad.annotate(cello_staff, "default_instrument", cello)
+        tag = abjad.LilyPondLiteral(r"\tag #'cello", "before")
         abjad.attach(tag, cello_staff)
 
         # make string quartet staff group
-        string_quartet_staff_group = abjad.StaffGroup([
-            first_violin_staff,
-            second_violin_staff,
-            viola_staff,
-            cello_staff,
+        string_quartet_staff_group = abjad.StaffGroup(
+            [
+                first_violin_staff,
+                second_violin_staff,
+                viola_staff,
+                cello_staff,
             ],
-            name='String_Quartet_Staff_Group',
+            name="String_Quartet_Staff_Group",
             tag=class_name,
-            )
+        )
 
         # make string quartet score
         string_quartet_score = abjad.Score(
             [string_quartet_staff_group],
-            name='String_Quartet_Score',
+            name="String_Quartet_Score",
             tag=class_name,
-            )
+        )
 
         # return string quartet score
         return string_quartet_score

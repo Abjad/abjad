@@ -5,14 +5,14 @@ def test_LilyPondParser__contexts__with_blocks_01():
 
     target = abjad.Staff([])
 
-    r'''
+    r"""
     \new Staff {
     }
-    '''
+    """
 
-    string = r'''\new Staff \with { } {
+    string = r"""\new Staff \with { } {
     }
-    '''
+    """
 
     parser = abjad.parser.LilyPondParser()
     result = parser(string)

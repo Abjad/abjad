@@ -319,22 +319,22 @@ class Voice(Context):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Contexts'
+    __documentation_section__ = "Contexts"
 
     __slots__ = ()
 
-    _default_lilypond_type = 'Voice'
+    _default_lilypond_type = "Voice"
 
     ### INITIALIZER ###
 
     def __init__(
         self,
         components=None,
-        lilypond_type: str = 'Voice',
+        lilypond_type: str = "Voice",
         is_simultaneous: bool = None,
         name: str = None,
         tag: str = None,
-        ) -> None:
+    ) -> None:
         Context.__init__(
             self,
             components=components,
@@ -342,7 +342,7 @@ class Voice(Context):
             is_simultaneous=is_simultaneous,
             name=name,
             tag=tag,
-            )
+        )
 
     ### PUBLIC PROPERTIES ###
 

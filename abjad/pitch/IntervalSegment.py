@@ -34,32 +34,32 @@ class IntervalSegment(Segment):
 
     def __init__(self, items=None, item_class=None):
         import abjad
+
         if isinstance(items, abjad.PitchSegment):
             intervals = []
             for one, two in abjad.sequence(items).nwise():
                 intervals.append(one - two)
             items = intervals
-        Segment.__init__(
-            self,
-            items=items,
-            item_class=item_class,
-            )
+        Segment.__init__(self, items=items, item_class=item_class)
 
     ### PRIVATE PROPERTIES ###
 
     @property
     def _named_item_class(self):
         import abjad
+
         return abjad.NamedInterval
 
     @property
     def _numbered_item_class(self):
         import abjad
+
         return abjad.NumberedInterval
 
     @property
     def _parent_item_class(self):
         import abjad
+
         return abjad.Interval
 
     ### PUBLIC PROPERTIES ###
@@ -101,6 +101,7 @@ class IntervalSegment(Segment):
         Returns numbered interval.
         """
         import abjad
+
         current = maximum = minimum = 0
         for x in self:
             current += float(x.number)
@@ -113,11 +114,7 @@ class IntervalSegment(Segment):
     ### PUBLIC METHODS ###
 
     @classmethod
-    def from_selection(
-        class_,
-        selection,
-        item_class=None,
-        ):
+    def from_selection(class_, selection, item_class=None):
         """
         Makes interval segment from component `selection`.
 
@@ -133,13 +130,11 @@ class IntervalSegment(Segment):
         Returns interval segment.
         """
         import abjad
+
         pitch_segment = abjad.PitchSegment.from_selection(selection)
         pitches = [_ for _ in pitch_segment]
         intervals = (-x for x in mathtools.difference_series(pitches))
-        return class_(
-            items=intervals,
-            item_class=item_class,
-            )
+        return class_(items=intervals, item_class=item_class)
 
     def has_duplicates(self):
         """
@@ -160,6 +155,7 @@ class IntervalSegment(Segment):
         Returns true or false.
         """
         import abjad
+
         return len(abjad.IntervalSet(self)) < len(self)
 
     def rotate(self, n=0):

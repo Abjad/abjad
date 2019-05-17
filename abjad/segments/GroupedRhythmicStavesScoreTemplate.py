@@ -177,9 +177,7 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_staff_count',
-        )
+    __slots__ = ("_staff_count",)
 
     ### INITIALIZER ###
 
@@ -199,51 +197,51 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
         Returns score.
         """
         import abjad
+
         staves = []
-        tag = 'abjad.GroupedRhythmicStavesScoreTemplate.__call__'
+        tag = "abjad.GroupedRhythmicStavesScoreTemplate.__call__"
         if isinstance(self.staff_count, int):
             for index in range(self.staff_count):
                 number = index + 1
-                name = 'Voice_{}'.format(number)
+                name = "Voice_{}".format(number)
                 voice = abjad.Voice([], name=name, tag=tag)
-                name = 'Staff_{}'.format(number)
+                name = "Staff_{}".format(number)
                 staff = abjad.Staff([voice], name=name, tag=tag)
-                staff.lilypond_type = 'RhythmicStaff'
-                abjad.annotate(staff, 'default_clef', abjad.Clef('percussion'))
+                staff.lilypond_type = "RhythmicStaff"
+                abjad.annotate(staff, "default_clef", abjad.Clef("percussion"))
                 staves.append(staff)
-                key = 'v{}'.format(number)
+                key = "v{}".format(number)
                 self.voice_abbreviations[key] = voice.name
         elif isinstance(self.staff_count, list):
             for staff_index, voice_count in enumerate(self.staff_count):
                 staff_number = staff_index + 1
-                name = 'Staff_{}'.format(staff_number)
+                name = "Staff_{}".format(staff_number)
                 staff = abjad.Staff(name=name, tag=tag)
-                staff.lilypond_type = 'RhythmicStaff'
+                staff.lilypond_type = "RhythmicStaff"
                 assert 1 <= voice_count
                 for voice_index in range(voice_count):
                     voice_number = voice_index + 1
                     if voice_count == 1:
                         voice_identifier = str(staff_number)
                     else:
-                        voice_identifier = '{}_{}'.format(
-                            staff_number, voice_number)
+                        voice_identifier = "{}_{}".format(
+                            staff_number, voice_number
+                        )
                         staff.is_simultaneous = True
-                    name = 'Voice_{}'.format(voice_identifier)
+                    name = "Voice_{}".format(voice_identifier)
                     voice = abjad.Voice([], name=name, tag=tag)
                     staff.append(voice)
-                    key = 'v{}'.format(voice_identifier)
+                    key = "v{}".format(voice_identifier)
                     self.voice_abbreviations[key] = voice.name
                 staves.append(staff)
         grouped_rhythmic_staves_staff_group = abjad.StaffGroup(
-            staves,
-            name='Grouped_Rhythmic_Staves_Staff_Group',
-            tag=tag,
-            )
+            staves, name="Grouped_Rhythmic_Staves_Staff_Group", tag=tag
+        )
         grouped_rhythmic_staves_score = abjad.Score(
             [grouped_rhythmic_staves_staff_group],
-            name='Grouped_Rhythmic_Staves_Score',
+            name="Grouped_Rhythmic_Staves_Score",
             tag=tag,
-            )
+        )
         return grouped_rhythmic_staves_score
 
     ### PUBLIC PROPERTIES ###
@@ -278,6 +276,5 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
 
         """
         return super(
-            GroupedRhythmicStavesScoreTemplate,
-            self,
-            ).voice_abbreviations
+            GroupedRhythmicStavesScoreTemplate, self
+        ).voice_abbreviations

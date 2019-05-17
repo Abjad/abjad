@@ -41,17 +41,9 @@ class LilyPondComment(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_string',
-        '_format_slot',
-        )
+    __slots__ = ("_string", "_format_slot")
 
-    _allowable_format_slots = (
-        'after',
-        'before',
-        'closing',
-        'opening',
-        )
+    _allowable_format_slots = ("after", "before", "closing", "opening")
 
     _can_attach_to_containers = True
 
@@ -60,10 +52,8 @@ class LilyPondComment(object):
     ### INITIALIZER ###
 
     def __init__(
-        self,
-        string: str = None,
-        format_slot: str = 'before',
-        ) -> None:
+        self, string: str = None, format_slot: str = "before"
+    ) -> None:
         if isinstance(string, type(self)):
             argument = string
             string = argument.string
@@ -91,7 +81,7 @@ class LilyPondComment(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     def __repr__(self) -> str:
@@ -121,7 +111,7 @@ class LilyPondComment(object):
             '% yet another comment'
 
         """
-        return rf'% {self.string}'
+        return rf"% {self.string}"
 
     ### PRIVATE METHODS ###
 

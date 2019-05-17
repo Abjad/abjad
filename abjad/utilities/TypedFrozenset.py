@@ -2,7 +2,7 @@ import collections
 from .TypedCollection import TypedCollection
 
 
-class TypedFrozenset(TypedCollection, collections.Set):
+class TypedFrozenset(TypedCollection, collections.abc.Set):
     """
     Typed fozen set.
     """
@@ -14,11 +14,7 @@ class TypedFrozenset(TypedCollection, collections.Set):
     ### INITIALIZER ###
 
     def __init__(self, items=None, item_class=None):
-        TypedCollection.__init__(
-            self,
-            item_class=item_class,
-            items=items,
-            )
+        TypedCollection.__init__(self, item_class=item_class, items=items)
         items = items or []
         items = [self._item_coercer(_) for _ in items]
         self._collection = frozenset(items)
@@ -61,11 +57,12 @@ class TypedFrozenset(TypedCollection, collections.Set):
         Returns integer.
         """
         import abjad
+
         hash_values = abjad.StorageFormatManager(self).get_hash_values()
         try:
             result = hash(hash_values)
         except TypeError:
-            message = 'unhashable type: {}'.format(self)
+            message = "unhashable type: {}".format(self)
             raise TypeError(message)
         return result
 

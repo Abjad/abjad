@@ -17,7 +17,7 @@ class BenchmarkScoreMaker(object):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Benchmarking'
+    __documentation_section__ = "Benchmarking"
 
     __slots__ = ()
 
@@ -44,6 +44,7 @@ class BenchmarkScoreMaker(object):
 
         """
         import abjad
+
         voice = abjad.Voice(200 * abjad.Note("c'16"))
         return voice
 
@@ -61,12 +62,12 @@ class BenchmarkScoreMaker(object):
 
         """
         import abjad
+
         staff = abjad.Staff(200 * abjad.Note("c'16"))
         for part in abjad.sequence(staff[:]).partition_by_counts(
-            [20],
-            cyclic=True,
-            ):
-            dynamic = abjad.Dynamic('f')
+            [20], cyclic=True
+        ):
+            dynamic = abjad.Dynamic("f")
             abjad.attach(dynamic, part[0])
         return staff
 
@@ -84,12 +85,12 @@ class BenchmarkScoreMaker(object):
 
         """
         import abjad
+
         staff = abjad.Staff(200 * abjad.Note("c'16"))
         for part in abjad.sequence(staff[:]).partition_by_counts(
-            [4],
-            cyclic=True,
-            ):
-            dynamic = abjad.Dynamic('f')
+            [4], cyclic=True
+        ):
+            dynamic = abjad.Dynamic("f")
             abjad.attach(dynamic, part[0])
         return staff
 
@@ -107,9 +108,10 @@ class BenchmarkScoreMaker(object):
 
         """
         import abjad
+
         staff = abjad.Staff(200 * abjad.Note("c'16"))
         selector = abjad.select().leaves()
         for note in selector(staff):
-            dynamic = abjad.Dynamic('f')
+            dynamic = abjad.Dynamic("f")
             abjad.attach(dynamic, note)
         return staff

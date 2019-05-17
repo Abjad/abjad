@@ -32,17 +32,8 @@ class TypedCounter(TypedCollection, collections.MutableMapping):
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        items=None,
-        item_class=None,
-        **keywords
-        ):
-        TypedCollection.__init__(
-            self,
-            item_class=item_class,
-            items=items,
-            )
+    def __init__(self, items=None, item_class=None, **keywords):
+        TypedCollection.__init__(self, item_class=item_class, items=items)
         self._collection = collections.Counter()
         self.update(items, **keywords)
 
@@ -54,8 +45,10 @@ class TypedCounter(TypedCollection, collections.MutableMapping):
 
         Returns new typed counter.
         """
-        if (not isinstance(argument, type(self)) or
-            not self.item_class == argument.item_class):
+        if (
+            not isinstance(argument, type(self))
+            or not self.item_class == argument.item_class
+        ):
             return NotImplemented
         result = type(self)()
         result._collection = self._collection + argument._collection
@@ -67,8 +60,10 @@ class TypedCounter(TypedCollection, collections.MutableMapping):
 
         Returns new typed counter.
         """
-        if (not isinstance(argument, type(self)) or
-            not self.item_class == argument.item_class):
+        if (
+            not isinstance(argument, type(self))
+            or not self.item_class == argument.item_class
+        ):
             return NotImplemented
         result = type(self)()
         result._collection = self._collection & argument._collection
@@ -99,8 +94,10 @@ class TypedCounter(TypedCollection, collections.MutableMapping):
 
         Returns new typed counter.
         """
-        if (not isinstance(argument, type(self)) or
-            not self.item_class == argument.item_class):
+        if (
+            not isinstance(argument, type(self))
+            or not self.item_class == argument.item_class
+        ):
             return NotImplemented
         result = type(self)()
         result._collection = self._collection | argument._collection
@@ -112,8 +109,10 @@ class TypedCounter(TypedCollection, collections.MutableMapping):
 
         Returns new typed counter.
         """
-        if (not isinstance(argument, type(self)) or
-            not self.item_class == argument.item_class):
+        if (
+            not isinstance(argument, type(self))
+            or not self.item_class == argument.item_class
+        ):
             return NotImplemented
         result = type(self)()
         result._collection = argument._collection + self._collection
@@ -142,8 +141,10 @@ class TypedCounter(TypedCollection, collections.MutableMapping):
 
         Returns new typed counter.
         """
-        if (not isinstance(argument, type(self)) or
-            not self.item_class == argument.item_class):
+        if (
+            not isinstance(argument, type(self))
+            or not self.item_class == argument.item_class
+        ):
             return NotImplemented
         result = type(self)()
         result._collection = self._collection - argument._collection
@@ -160,6 +161,7 @@ class TypedCounter(TypedCollection, collections.MutableMapping):
                     the_items[item] = 0
                 the_items[item] += count
             return the_items
+
         the_items = []
         if items is not None:
             if isinstance(items, collections.Mapping):
@@ -173,17 +175,18 @@ class TypedCounter(TypedCollection, collections.MutableMapping):
 
     def _get_format_specification(self):
         import abjad
+
         agent = abjad.StorageFormatManager(self)
         names = list(agent.signature_keyword_names)
-        if 'items' in names:
-            names.remove('items')
+        if "items" in names:
+            names.remove("items")
         return abjad.FormatSpecification(
             self,
             repr_is_indented=False,
             storage_format_args_values=[self._collection],
             storage_format_kwargs_names=names,
             template_names=names,
-            )
+        )
 
     ### PUBLIC METHODS ###
 
@@ -218,7 +221,7 @@ class TypedCounter(TypedCollection, collections.MutableMapping):
 
         Will return new typed counter.
         """
-        message = '{}.fromkeys() is undefined. Use {}(iterable) instead.'
+        message = "{}.fromkeys() is undefined. Use {}(iterable) instead."
         message = message.format(class_.__name__, class_.__name__)
         raise NotImplementedError(message)
 

@@ -19,7 +19,8 @@ def test_NoteHead_is_parenthesized_02():
         r"""
         \parenthesize
         c'
-        """)
+        """
+    )
 
 
 def test_NoteHead_is_parenthesized_03():
@@ -30,7 +31,8 @@ def test_NoteHead_is_parenthesized_03():
         r"""
         \parenthesize
         c'4
-        """)
+        """
+    )
 
 
 def test_NoteHead_is_parenthesized_04():
@@ -45,4 +47,5 @@ def test_NoteHead_is_parenthesized_04():
             e'
             g'
         >4
-        """)
+        """
+    )

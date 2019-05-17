@@ -15,10 +15,8 @@ def all_are_integer_equivalent(argument):
     Returns true or false.
     """
     from abjad import mathtools
+
     try:
-        return all(
-            mathtools.is_integer_equivalent(_)
-            for _ in argument
-            )
+        return all(mathtools.is_integer_equivalent(_) for _ in argument)
     except TypeError:
         return False

@@ -15,7 +15,7 @@ def test_LilyPondParser__containers__Tuplet_01():
             e'8
         }
         """
-        )
+    )
 
     parser = abjad.parser.LilyPondParser()
     result = parser(format(target))

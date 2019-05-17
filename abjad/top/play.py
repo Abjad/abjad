@@ -21,8 +21,9 @@ def play(argument: typing.Any, test: bool = None) -> None:
     """
     from abjad import abjad_configuration
     from abjad.system.IOManager import IOManager
-    assert hasattr(argument, '__illustrate__')
+
+    assert hasattr(argument, "__illustrate__")
     result = persist(argument).as_midi()
     midi_file_path = result[0]
-    midi_player = abjad_configuration['midi_player']
+    midi_player = abjad_configuration["midi_player"]
     IOManager.open_file(midi_file_path, application=midi_player, test=test)

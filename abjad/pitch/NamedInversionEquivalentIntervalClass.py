@@ -53,12 +53,11 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
 
     ### INITIALIZER ###
 
-    def __init__(self, name='P1'):
-        super().__init__(name or 'P1')
+    def __init__(self, name="P1"):
+        super().__init__(name or "P1")
         self._quality, self._number = self._process_quality_and_number(
-            self._quality,
-            self._number,
-            )
+            self._quality, self._number
+        )
 
     ### SPECIAL METHODS ###
 
@@ -98,7 +97,7 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
 
         Returns true or false.
         """
-        return super().__eq__( argument)
+        return super().__eq__(argument)
 
     def __hash__(self):
         """
@@ -112,12 +111,12 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
 
     @classmethod
     def _invert_quality_string(class_, quality):
-        inversions = {'M': 'm', 'm': 'M', 'P': 'P'}
+        inversions = {"M": "m", "m": "M", "P": "P"}
         if quality in inversions:
             return inversions[quality]
-        if quality[0] == 'A':
-            return 'd' * len(quality)
-        return 'A' * len(quality)
+        if quality[0] == "A":
+            return "d" * len(quality)
+        return "A" * len(quality)
 
     @classmethod
     def _is_representative_number(class_, argument):
@@ -129,7 +128,7 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
     @classmethod
     def _process_quality_and_number(class_, quality, number):
         if number == 0:
-            message = 'named interval can not equal zero.'
+            message = "named interval can not equal zero."
             raise ValueError(message)
         elif abs(number) == 1:
             number = 1
@@ -167,9 +166,9 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
         Returns new named inversion-equivalent interval-class.
         """
         import abjad
+
         named_interval = abjad.NamedInterval.from_pitch_carriers(
-            pitch_carrier_1,
-            pitch_carrier_2,
-            )
+            pitch_carrier_1, pitch_carrier_2
+        )
         string = str(named_interval)
         return class_(string)

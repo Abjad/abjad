@@ -44,12 +44,9 @@ class BendAfter(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_bend_amount',
-        '_tweaks',
-        )
+    __slots__ = ("_bend_amount", "_tweaks")
 
-    _format_slot = 'after'
+    _format_slot = "after"
 
     _time_orientation: enums.HorizontalAlignment = enums.Right
 
@@ -60,7 +57,7 @@ class BendAfter(object):
         bend_amount: typings.Number = -4,
         *,
         tweaks: LilyPondTweakManager = None,
-        ) -> None:
+    ) -> None:
         assert isinstance(bend_amount, (int, float)), repr(bend_amount)
         self._bend_amount = bend_amount
         if tweaks is not None:

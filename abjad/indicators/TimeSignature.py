@@ -107,18 +107,18 @@ class TimeSignature(object):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_denominator',
-        '_has_non_power_of_two_denominator',
-        '_hide',
-        '_multiplier',
-        '_numerator',
-        '_partial',
-        '_partial_repr_string',
-        )
+        "_denominator",
+        "_has_non_power_of_two_denominator",
+        "_hide",
+        "_multiplier",
+        "_numerator",
+        "_partial",
+        "_partial_repr_string",
+    )
 
-    _context = 'Staff'
+    _context = "Staff"
 
-    _format_slot = 'opening'
+    _format_slot = "opening"
 
     _persistent = True
 
@@ -130,9 +130,10 @@ class TimeSignature(object):
         *,
         partial: Duration = None,
         hide: bool = None,
-        ) -> None:
+    ) -> None:
         import abjad
-        pair_ = getattr(pair, 'pair', pair)
+
+        pair_ = getattr(pair, "pair", pair)
         assert isinstance(pair_, tuple), repr(pair_)
         assert len(pair_) == 2, repr(pair_)
         numerator, denominator = pair_
@@ -144,20 +145,22 @@ class TimeSignature(object):
             partial = Duration(partial)
         self._partial: typing.Optional[Duration] = partial
         if partial is not None:
-            self._partial_repr_string = ', partial=%r' % self._partial
+            self._partial_repr_string = ", partial=%r" % self._partial
         else:
-            self._partial_repr_string = ''
+            self._partial_repr_string = ""
         if hide is not None:
             hide = bool(hide)
         self._hide: typing.Optional[bool] = hide
         self._multiplier = self.implied_prolation
-        result = mathtools.is_nonnegative_integer_power_of_two(self.denominator)
+        result = mathtools.is_nonnegative_integer_power_of_two(
+            self.denominator
+        )
         assert isinstance(result, bool)
-        self._has_non_power_of_two_denominator: bool = not(result)
+        self._has_non_power_of_two_denominator: bool = not (result)
 
     ### SPECIAL METHODS ###
 
-    def __add__(self, argument) -> 'TimeSignature':
+    def __add__(self, argument) -> "TimeSignature":
         """
         Adds time signature to ``argument``.
 
@@ -179,29 +182,21 @@ class TimeSignature(object):
 
         """
         if not isinstance(argument, type(self)):
-            raise Exception('must be time signature: {argument!r}.')
-        nonreduced_1 = NonreducedFraction(
-            self.numerator,
-            self.denominator,
-            )
+            raise Exception("must be time signature: {argument!r}.")
+        nonreduced_1 = NonreducedFraction(self.numerator, self.denominator)
         nonreduced_2 = NonreducedFraction(
-            argument.numerator,
-            argument.denominator,
-            )
+            argument.numerator, argument.denominator
+        )
         result = nonreduced_1 + nonreduced_2
-        result = type(self)((
-            result.numerator,
-            result.denominator,
-            ))
+        result = type(self)((result.numerator, result.denominator))
         return result
 
-    def __copy__(self, *arguments) -> 'TimeSignature':
+    def __copy__(self, *arguments) -> "TimeSignature":
         """Copies time signature.
         """
         return type(self)(
-            (self.numerator, self.denominator),
-            partial=self.partial,
-            )
+            (self.numerator, self.denominator), partial=self.partial
+        )
 
     def __eq__(self, argument) -> bool:
         """
@@ -211,14 +206,19 @@ class TimeSignature(object):
         denominator of this time signature.
         """
         if isinstance(argument, type(self)):
-            return (self.numerator == argument.numerator and
-                self.denominator == argument.denominator)
+            return (
+                self.numerator == argument.numerator
+                and self.denominator == argument.denominator
+            )
         elif isinstance(argument, tuple):
-            return self.numerator == argument[0] and self.denominator == argument[1]
+            return (
+                self.numerator == argument[0]
+                and self.denominator == argument[1]
+            )
         else:
             return False
 
-    def __format__(self, format_specification='') -> str:
+    def __format__(self, format_specification="") -> str:
         """
         Formats time signature.
 
@@ -228,9 +228,9 @@ class TimeSignature(object):
             abjad.TimeSignature((3, 8))
 
         """
-        if format_specification in ('', 'storage'):
+        if format_specification in ("", "storage"):
             return StorageFormatManager(self).get_storage_format()
-        assert format_specification == 'lilypond'
+        assert format_specification == "lilypond"
         return self._get_lilypond_format()
 
     def __ge__(self, argument) -> bool:
@@ -262,7 +262,7 @@ class TimeSignature(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     def __le__(self, argument) -> bool:
@@ -285,7 +285,7 @@ class TimeSignature(object):
         else:
             raise TypeError(argument)
 
-    def __radd__(self, argument) -> 'TimeSignature':
+    def __radd__(self, argument) -> "TimeSignature":
         """
         Adds ``argument`` to time signature.
 
@@ -313,7 +313,7 @@ class TimeSignature(object):
             '3/8'
 
         """
-        return f'{self.numerator}/{self.denominator}'
+        return f"{self.numerator}/{self.denominator}"
 
     ### PRIVATE METHODS ###
 
@@ -325,9 +325,9 @@ class TimeSignature(object):
             client=self,
             repr_is_indented=False,
             storage_format_args_values=[self.pair],
-            storage_format_kwargs_names=['partial', 'hide'],
+            storage_format_kwargs_names=["partial", "hide"],
             storage_format_is_indented=storage_format_is_indented,
-            )
+        )
 
     def _get_lilypond_format(self):
         result = []
@@ -337,12 +337,12 @@ class TimeSignature(object):
             string = '#(ly:expect-warning "strange time signature found")'
             result.append(string)
         if self.partial is None:
-            result.append(rf'\time {self.numerator}/{self.denominator}')
+            result.append(rf"\time {self.numerator}/{self.denominator}")
         else:
             duration_string = self.partial.lilypond_duration_string
-            partial_directive = rf'\partial {duration_string}'
+            partial_directive = rf"\partial {duration_string}"
             result.append(partial_directive)
-            string = rf'\time {self.numerator}/{self.denominator}'
+            string = rf"\time {self.numerator}/{self.denominator}"
             result.append(string)
         return result
 
@@ -565,7 +565,7 @@ class TimeSignature(object):
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def from_string(string) -> 'TimeSignature':
+    def from_string(string) -> "TimeSignature":
         """
         Makes new time signature from fraction ``string``.
 
@@ -576,16 +576,15 @@ class TimeSignature(object):
 
         """
         assert isinstance(string, str), repr(string)
-        parts = string.split('/')
+        parts = string.split("/")
         assert len(parts) == 2, repr(parts)
         numbers = [int(_) for _ in parts]
         numerator, denominator = numbers
         return TimeSignature((numerator, denominator))
 
     def with_power_of_two_denominator(
-        self,
-        contents_multiplier=1,
-        ) -> 'TimeSignature':
+        self, contents_multiplier=1
+    ) -> "TimeSignature":
         """
         Makes new time signature equivalent to current time signature with
         power-of-two denominator.
@@ -603,15 +602,16 @@ class TimeSignature(object):
         contents_multiplier = Multiplier(contents_multiplier)
         non_power_of_two_denominator = self.denominator
         if contents_multiplier == Multiplier(1):
-            power_of_two_denominator = \
-                mathtools.greatest_power_of_two_less_equal(
-                    non_power_of_two_denominator)
+            power_of_two_denominator = mathtools.greatest_power_of_two_less_equal(
+                non_power_of_two_denominator
+            )
         else:
-            power_of_two_denominator = \
-                mathtools.greatest_power_of_two_less_equal(
-                    non_power_of_two_denominator, 1)
+            power_of_two_denominator = mathtools.greatest_power_of_two_less_equal(
+                non_power_of_two_denominator, 1
+            )
         non_power_of_two_pair = NonreducedFraction(self.pair)
         power_of_two_fraction = non_power_of_two_pair.with_denominator(
-            power_of_two_denominator)
+            power_of_two_denominator
+        )
         power_of_two_pair = power_of_two_fraction.pair
         return type(self)(power_of_two_pair)

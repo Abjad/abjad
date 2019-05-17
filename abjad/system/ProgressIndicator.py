@@ -9,28 +9,16 @@ class ProgressIndicator(ContextManager):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Context managers'
+    __documentation_section__ = "Context managers"
 
-    __slots__ = (
-        '_is_warning',
-        '_message',
-        '_progress',
-        '_total',
-        '_verbose',
-        )
+    __slots__ = ("_is_warning", "_message", "_progress", "_total", "_verbose")
 
-    RED = '\033[91m'
-    END = '\033[0m'
+    RED = "\033[91m"
+    END = "\033[0m"
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        message='',
-        total=None,
-        verbose=True,
-        is_warning=None,
-        ):
+    def __init__(self, message="", total=None, verbose=True, is_warning=None):
         self._message = message
         self._progress = 0
         self._total = total
@@ -65,28 +53,21 @@ class ProgressIndicator(ContextManager):
 
         Returns string.
         """
-        return '<{}()>'.format(type(self).__name__)
+        return "<{}()>".format(type(self).__name__)
 
     ### PRIVATE METHODS ###
 
     def _print(self):
         if not self.verbose:
             return
-        message = self.message or 'Progress'
+        message = self.message or "Progress"
         if self.total is not None:
-            message = '{}: {} / {}'.format(
-                message,
-                self.progress,
-                self.total,
-                )
+            message = "{}: {} / {}".format(message, self.progress, self.total)
         else:
-            message = '{}: {}'.format(
-                message,
-                self.progress,
-                )
+            message = "{}: {}".format(message, self.progress)
         if self.is_warning and self.progress:
             message = self.RED + message + self.END
-        print(message, end='')
+        print(message, end="")
 
     ### PUBLIC METHODS ###
 
@@ -99,7 +80,7 @@ class ProgressIndicator(ContextManager):
         self._progress += 1
         if self.verbose:
             sys.stdout.flush()
-            print('\r', end='')
+            print("\r", end="")
         self._print()
 
     ### PUBLIC PROPERTIES ###

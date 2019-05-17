@@ -23,19 +23,19 @@ class SegmentMaker(object):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__: typing.Optional[str] = 'Segment-makers'
+    __documentation_section__: typing.Optional[str] = "Segment-makers"
 
     __slots__ = (
-        '_container_to_part_assignment',
-        '_environment',
-        '_lilypond_file',
-        '_metadata',
-        '_persist',
-        '_previous_metadata',
-        '_previous_persist',
-        '_score',
-        '_segment_directory',
-        )
+        "_container_to_part_assignment",
+        "_environment",
+        "_lilypond_file",
+        "_metadata",
+        "_persist",
+        "_previous_metadata",
+        "_previous_persist",
+        "_score",
+        "_segment_directory",
+    )
 
     ### INITIALIZER ###
 
@@ -58,7 +58,7 @@ class SegmentMaker(object):
         """
         return StorageFormatManager.compare_objects(self, expr)
 
-    def __format__(self, format_specification='') -> str:
+    def __format__(self, format_specification="") -> str:
         """
         Formats object.
         """
@@ -87,58 +87,61 @@ class SegmentMaker(object):
     ### PRIVATE METHODS ###
 
     def _add_container_identifiers(self):
-        if (self.environment == 'docs' and
-            not getattr(self, 'test_container_identifiers', False)):
+        if self.environment == "docs" and not getattr(
+            self, "test_container_identifiers", False
+        ):
             return
-        segment_name = self.segment_name or ''
+        segment_name = self.segment_name or ""
         segment_name = String(segment_name).to_segment_lilypond_identifier()
         contexts = []
         try:
-            context = self.score['Global_Skips']
+            context = self.score["Global_Skips"]
             contexts.append(context)
         except ValueError:
             pass
         try:
-            context = self.score['Global_Rests']
+            context = self.score["Global_Rests"]
             contexts.append(context)
         except ValueError:
             pass
         for voice in iterate(self.score).components(Voice):
-            if inspect(voice).annotation('INTERMITTENT') is True:
+            if inspect(voice).annotation("INTERMITTENT") is True:
                 continue
             contexts.append(voice)
         container_to_part_assignment = OrderedDict()
         for context in contexts:
             if segment_name:
-                context_identifier = f'{segment_name}_{context.name}'
+                context_identifier = f"{segment_name}_{context.name}"
             else:
                 context_identifier = context.name
-            context.identifier = f'%*% {context_identifier}'
+            context.identifier = f"%*% {context_identifier}"
             part_container_count = 0
             for container in iterate(context).components(Container):
                 if not container.identifier:
                     continue
-                if container.identifier.startswith('%*% Part'):
+                if container.identifier.startswith("%*% Part"):
                     part_container_count += 1
                     globals_ = globals()
-                    part = container.identifier.strip('%*% ')
+                    part = container.identifier.strip("%*% ")
                     part = eval(part, globals_)
                     suffix = String().base_26(part_container_count).lower()
-                    container_identifier = f'{context_identifier}_{suffix}'
+                    container_identifier = f"{context_identifier}_{suffix}"
                     container_identifier = String(container_identifier)
                     assert container_identifier.is_lilypond_identifier()
-                    assert container_identifier not in \
-                        container_to_part_assignment
+                    assert (
+                        container_identifier
+                        not in container_to_part_assignment
+                    )
                     timespan = inspect(container).timespan()
                     pair = (part, timespan)
                     container_to_part_assignment[container_identifier] = pair
-                    container.identifier = f'%*% {container_identifier}'
+                    container.identifier = f"%*% {container_identifier}"
         for staff in iterate(self.score).components(Staff):
             if segment_name:
-                context_identifier = f'{segment_name}_{staff.name}'
+                context_identifier = f"{segment_name}_{staff.name}"
             else:
                 context_identifier = staff.name
-            staff.identifier = f'%*% {context_identifier}'
+            staff.identifier = f"%*% {context_identifier}"
         self._container_to_part_assignment = container_to_part_assignment
 
     def _check_duplicate_part_assignments(self):
@@ -162,28 +165,26 @@ class SegmentMaker(object):
                 continue
             timespan_list = TimespanList(timespans)
             if timespan_list.compute_logical_and():
-                message = f'  Part {part_name!r} is assigned'
-                message += ' to overlapping containers ...'
+                message = f"  Part {part_name!r} is assigned"
+                message += " to overlapping containers ..."
                 messages.append(message)
         if messages:
-            message = '\n' + '\n'.join(messages)
+            message = "\n" + "\n".join(messages)
             raise Exception(message)
 
     def _make_global_context(self):
         global_rests = Context(
-            lilypond_type='GlobalRests',
-            name='Global_Rests',
-            )
+            lilypond_type="GlobalRests", name="Global_Rests"
+        )
         global_skips = Context(
-            lilypond_type='GlobalSkips',
-            name='Global_Skips',
-            )
+            lilypond_type="GlobalSkips", name="Global_Skips"
+        )
         global_context = Context(
             [global_rests, global_skips],
-            lilypond_type='GlobalContext',
+            lilypond_type="GlobalContext",
             is_simultaneous=True,
-            name='Global_Context',
-            )
+            name="Global_Context",
+        )
         return global_context
 
     def _make_lilypond_file(self, midi=False):
@@ -243,6 +244,7 @@ class SegmentMaker(object):
         Comments measure numbers in ``score``.
         """
         import abjad
+
         offset_to_measure_number = {}
         for context in abjad.iterate(score).components(abjad.Context):
             if not context.is_simultaneous:
@@ -260,11 +262,13 @@ class SegmentMaker(object):
                 continue
             context = abjad.inspect(leaf).parentage().get(abjad.Context)
             if context.name is None:
-                string = f'% [{context.lilypond_type} measure {measure_number}]'
+                string = (
+                    f"% [{context.lilypond_type} measure {measure_number}]"
+                )
             else:
-                string = f'% [{context.name} measure {measure_number}]'
-            literal = abjad.LilyPondLiteral(string, 'absolute_before')
-            abjad.attach(literal, leaf, tag='COMMENT_MEASURE_NUMBERS')
+                string = f"% [{context.name} measure {measure_number}]"
+            literal = abjad.LilyPondLiteral(string, "absolute_before")
+            abjad.attach(literal, leaf, tag="COMMENT_MEASURE_NUMBERS")
 
     def run(
         self,
@@ -279,7 +283,7 @@ class SegmentMaker(object):
         previous_persist: OrderedDict = None,
         remove: typing.List[str] = None,
         segment_directory: Path = None,
-        ) -> LilyPondFile:
+    ) -> LilyPondFile:
         """
         Runs segment-maker.
         """

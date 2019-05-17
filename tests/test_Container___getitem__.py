@@ -8,8 +8,11 @@ def test_Container___getitem___01():
     """
 
     notes = [
-        abjad.Note("c'8"), abjad.Note("d'8"),
-        abjad.Note("e'8"), abjad.Note("f'8")]
+        abjad.Note("c'8"),
+        abjad.Note("d'8"),
+        abjad.Note("e'8"),
+        abjad.Note("f'8"),
+    ]
     voice = abjad.Voice(notes)
 
     assert voice[0] is notes[0]
@@ -24,8 +27,11 @@ def test_Container___getitem___02():
     """
 
     notes = [
-        abjad.Note("c'8"), abjad.Note("d'8"),
-        abjad.Note("e'8"), abjad.Note("f'8")]
+        abjad.Note("c'8"),
+        abjad.Note("d'8"),
+        abjad.Note("e'8"),
+        abjad.Note("f'8"),
+    ]
     voice = abjad.Voice(notes)
 
     assert voice[-1] is notes[3]
@@ -40,8 +46,11 @@ def test_Container___getitem___03():
     """
 
     notes = [
-        abjad.Note("c'8"), abjad.Note("d'8"),
-        abjad.Note("e'8"), abjad.Note("f'8")]
+        abjad.Note("c'8"),
+        abjad.Note("d'8"),
+        abjad.Note("e'8"),
+        abjad.Note("f'8"),
+    ]
     voice = abjad.Voice(notes)
 
     assert voice[:1] == notes[:1]
@@ -69,8 +78,8 @@ def test_Container___getitem___05():
     template = abjad.StringQuartetScoreTemplate()
     score = template()
 
-    assert score['First_Violin_Staff'].name == 'First_Violin_Staff'
-    assert score['First_Violin_Voice'].name == 'First_Violin_Voice'
+    assert score["First_Violin_Staff"].name == "First_Violin_Staff"
+    assert score["First_Violin_Voice"].name == "First_Violin_Voice"
 
 
 def test_Container___getitem___06():
@@ -82,7 +91,7 @@ def test_Container___getitem___06():
     score = template()
 
     with pytest.raises(Exception):
-        score['Foo']
+        score["Foo"]
 
 
 def test_Container___getitem___07():
@@ -93,14 +102,14 @@ def test_Container___getitem___07():
     template = abjad.StringQuartetScoreTemplate()
     score = template()
 
-    assert score['First_Violin_Voice'].name == 'First_Violin_Voice'
+    assert score["First_Violin_Voice"].name == "First_Violin_Voice"
 
-    score['Cello_Staff'].append(abjad.Voice(name='First_Violin_Voice'))
+    score["Cello_Staff"].append(abjad.Voice(name="First_Violin_Voice"))
 
     with pytest.raises(Exception):
-        score['First_Violin_Voice']
+        score["First_Violin_Voice"]
 
-    extra_first_violin_voice = score['Cello_Staff'].pop()
+    extra_first_violin_voice = score["Cello_Staff"].pop()
 
-    assert score['First_Violin_Voice'].name == 'First_Violin_Voice'
-    assert score['First_Violin_Voice'] is not extra_first_violin_voice
+    assert score["First_Violin_Voice"].name == "First_Violin_Voice"
+    assert score["First_Violin_Voice"] is not extra_first_violin_voice

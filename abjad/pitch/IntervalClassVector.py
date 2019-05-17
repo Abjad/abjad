@@ -39,12 +39,13 @@ class IntervalClassVector(Vector):
 
     def __init__(self, items=None, item_class=None):
         import abjad
+
         prototype = (
             abjad.PitchSegment,
             abjad.PitchSet,
             abjad.PitchClassSegment,
             abjad.PitchClassSet,
-            )
+        )
         if isinstance(items, prototype):
             intervals = []
             items = tuple(items)
@@ -53,11 +54,7 @@ class IntervalClassVector(Vector):
             for first, second in pairs:
                 intervals.append(second - first)
             items = intervals
-        Vector.__init__(
-            self,
-            items=items,
-            item_class=item_class,
-            )
+        Vector.__init__(self, items=items, item_class=item_class)
 
     ### SPECIAL METHODS ###
 
@@ -99,39 +96,38 @@ class IntervalClassVector(Vector):
         counts = []
         for i in range(7):
             counts.append(self[i])
-        counts = ''.join([str(x) for x in counts])
+        counts = "".join([str(x) for x in counts])
         if len(self) == 13:
             quartertones = []
             for i in range(6):
                 quartertones.append(self[i + 0.5])
-            quartertones = ''.join([str(x) for x in quartertones])
+            quartertones = "".join([str(x) for x in quartertones])
             return r'\tiny \column { "%s" "%s" }' % (counts, quartertones)
         else:
-            return r'\tiny %s' % counts
+            return r"\tiny %s" % counts
 
     @property
     def _named_item_class(self):
         import abjad
+
         return abjad.NamedIntervalClass
 
     @property
     def _numbered_item_class(self):
         import abjad
+
         return abjad.NumberedIntervalClass
 
     @property
     def _parent_item_class(self):
         import abjad
+
         return abjad.IntervalClass
 
     ### PUBLIC METHODS ###
 
     @classmethod
-    def from_selection(
-        class_,
-        selection,
-        item_class=None,
-        ):
+    def from_selection(class_, selection, item_class=None):
         """
         Makes interval-class vector from `selection`.
 
@@ -178,8 +174,6 @@ class IntervalClassVector(Vector):
         Returns new interval-class vector.
         """
         import abjad
+
         pitch_segment = abjad.PitchSegment.from_selection(selection)
-        return class_(
-            pitch_segment,
-            item_class=item_class,
-            )
+        return class_(pitch_segment, item_class=item_class)

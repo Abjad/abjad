@@ -22,7 +22,7 @@ def test_Inspection_bar_line_crossing_01():
             f'8
         }
         """
-        )
+    )
 
     assert not abjad.inspect(staff[0]).bar_line_crossing()
     assert not abjad.inspect(staff[1]).bar_line_crossing()

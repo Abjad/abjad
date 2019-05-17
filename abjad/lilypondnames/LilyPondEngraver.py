@@ -17,15 +17,13 @@ class LilyPondEngraver(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_name',
-        )
+    __slots__ = ("_name",)
 
-    _identity_map: typing.Dict[str, 'LilyPondEngraver'] = {}
+    _identity_map: typing.Dict[str, "LilyPondEngraver"] = {}
 
     ### CONSTRUCTOR ###
 
-    def __new__(class_, name='Note_heads_engraver'):
+    def __new__(class_, name="Note_heads_engraver"):
         if name in class_._identity_map:
             obj = class_._identity_map[name]
         else:
@@ -35,8 +33,9 @@ class LilyPondEngraver(object):
 
     ### INITIALIZER ###
 
-    def __init__(self, name: str = 'Note_heads_engraver') -> None:
+    def __init__(self, name: str = "Note_heads_engraver") -> None:
         from abjad.ly import engravers
+
         assert name in engravers
         self._name = name
 
@@ -49,7 +48,7 @@ class LilyPondEngraver(object):
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def list_all_engravers() -> typing.Tuple['LilyPondEngraver', ...]:
+    def list_all_engravers() -> typing.Tuple["LilyPondEngraver", ...]:
         """
         Lists all engravers.
 
@@ -197,6 +196,7 @@ class LilyPondEngraver(object):
 
         """
         from abjad.ly import engravers
+
         return tuple(LilyPondEngraver(name=name) for name in sorted(engravers))
 
     ### PUBLIC PROPERTIES ###
@@ -216,12 +216,12 @@ class LilyPondEngraver(object):
 
         """
         from abjad.ly import engravers
+
         dictionary = engravers[self.name]
         assert isinstance(dictionary, dict), repr(dictionary)
         return tuple(
-            LilyPondGrob(name=name)
-            for name in dictionary['grobs_created']
-            )
+            LilyPondGrob(name=name) for name in dictionary["grobs_created"]
+        )
 
     @property
     def name(self) -> str:
@@ -257,9 +257,10 @@ class LilyPondEngraver(object):
 
         """
         from abjad.ly import engravers
+
         dictionary = engravers[self.name]
         assert isinstance(dictionary, dict), repr(dictionary)
         property_names: typing.Set[str] = set()
-        property_names.update(dictionary['properties_read'])
-        property_names.update(dictionary['properties_written'])
+        property_names.update(dictionary["properties_read"])
+        property_names.update(dictionary["properties_written"])
         return tuple(sorted(property_names))

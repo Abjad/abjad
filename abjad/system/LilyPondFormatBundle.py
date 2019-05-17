@@ -11,24 +11,25 @@ class LilyPondFormatBundle(object):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'LilyPond formatting'
+    __documentation_section__ = "LilyPond formatting"
 
     __slots__ = (
-        '_absolute_after',
-        '_absolute_before',
-        '_after',
-        '_before',
-        '_closing',
-        '_context_settings',
-        '_grob_overrides',
-        '_grob_reverts',
-        '_opening',
-        )
+        "_absolute_after",
+        "_absolute_before",
+        "_after",
+        "_before",
+        "_closing",
+        "_context_settings",
+        "_grob_overrides",
+        "_grob_reverts",
+        "_opening",
+    )
 
     ### INITIALIZER ###
 
     def __init__(self):
         import abjad
+
         self._absolute_after = abjad.SlotContributions()
         self._absolute_before = abjad.SlotContributions()
         self._before = abjad.SlotContributions()
@@ -41,7 +42,7 @@ class LilyPondFormatBundle(object):
 
     ### SPECIAL METHODS ###
 
-    def __format__(self, format_specification='') -> str:
+    def __format__(self, format_specification="") -> str:
         """
         Formats object.
         """
@@ -57,27 +58,29 @@ class LilyPondFormatBundle(object):
 
     def _get_format_specification(self):
         import abjad
+
         slot_contribution_names = (
-            'absolute_before',
-            'absolute_after',
-            'before',
-            'after',
-            'opening',
-            'closing',
-            )
+            "absolute_before",
+            "absolute_after",
+            "before",
+            "after",
+            "opening",
+            "closing",
+        )
         grob_contribution_names = (
-            'context_settings',
-            'grob_overrides',
-            'grob_reverts',
-            )
-        names = [_ for _ in slot_contribution_names
-            if getattr(self, _).has_contributions]
-        names.extend(_ for _ in grob_contribution_names
-            if getattr(self, _))
+            "context_settings",
+            "grob_overrides",
+            "grob_reverts",
+        )
+        names = [
+            _
+            for _ in slot_contribution_names
+            if getattr(self, _).has_contributions
+        ]
+        names.extend(_ for _ in grob_contribution_names if getattr(self, _))
         return abjad.FormatSpecification(
-            client=self,
-            storage_format_kwargs_names=names,
-            )
+            client=self, storage_format_kwargs_names=names
+        )
 
     ### PUBLIC METHODS ###
 
@@ -106,6 +109,7 @@ class LilyPondFormatBundle(object):
         Returns none.
         """
         import abjad
+
         self.absolute_before.tag(tag, deactivate)
         self.absolute_after.tag(tag, deactivate)
         self.before.tag(tag, deactivate)
@@ -113,20 +117,14 @@ class LilyPondFormatBundle(object):
         self.opening.tag(tag, deactivate)
         self.closing.tag(tag, deactivate)
         self._context_settings = abjad.LilyPondFormatManager.tag(
-            self.context_settings,
-            tag,
-            deactivate,
-            )
+            self.context_settings, tag, deactivate
+        )
         self._grob_overrides = abjad.LilyPondFormatManager.tag(
-            self.grob_overrides,
-            tag,
-            deactivate,
-            )
+            self.grob_overrides, tag, deactivate
+        )
         self._grob_reverts = abjad.LilyPondFormatManager.tag(
-            self.grob_reverts,
-            tag,
-            deactivate,
-            )
+            self.grob_reverts, tag, deactivate
+        )
 
     def update(self, format_bundle):
         """
@@ -135,7 +133,7 @@ class LilyPondFormatBundle(object):
 
         Returns none.
         """
-        if hasattr(format_bundle, '_get_lilypond_format_bundle'):
+        if hasattr(format_bundle, "_get_lilypond_format_bundle"):
             format_bundle = format_bundle._get_lilypond_format_bundle()
         assert isinstance(format_bundle, type(self))
         self.absolute_before.update(format_bundle.absolute_before)
@@ -230,6 +228,7 @@ class LilyPondFormatBundle(object):
         Returns slot contributions object.
         """
         return self._opening
+
 
 #    @property
 #    def right(self):

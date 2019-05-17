@@ -24,7 +24,7 @@ def test_Chord___init___03():
     Initialize chord with pitch tokens.
     """
 
-    chord = abjad.Chord([('ds', 4), ('ef', 4)], (1, 4))
+    chord = abjad.Chord([("ds", 4), ("ef", 4)], (1, 4))
     assert format(chord) == "<ds' ef'>4"
 
 
@@ -34,8 +34,8 @@ def test_Chord___init___04():
     """
 
     pitches = []
-    pitches.append(abjad.NamedPitch('D#4'))
-    pitches.append(abjad.NamedPitch('Eb4'))
+    pitches.append(abjad.NamedPitch("D#4"))
+    pitches.append(abjad.NamedPitch("Eb4"))
     chord = abjad.Chord(pitches, (1, 4))
     assert format(chord) == "<ds' ef'>4"
 
@@ -45,7 +45,7 @@ def test_Chord___init___05():
     Initialize chord with pitches and pitch numbers together.
     """
 
-    pitches = [2, ('ef', 4), abjad.NamedPitch(4)]
+    pitches = [2, ("ef", 4), abjad.NamedPitch(4)]
     chord = abjad.Chord(pitches, (1, 4))
     assert format(chord) == "<d' ef' e'>4"
 
@@ -74,11 +74,11 @@ def test_Chord___init___08():
     Initialize chord from skip.
     """
 
-    skip = abjad.Skip('s8')
+    skip = abjad.Skip("s8")
     chord = abjad.Chord(skip)
 
-    assert format(skip) == 's8'
-    assert format(chord) == '<>8'
+    assert format(skip) == "s8"
+    assert format(chord) == "<>8"
 
     assert abjad.inspect(skip).wellformed()
     assert abjad.inspect(chord).wellformed()
@@ -89,10 +89,10 @@ def test_Chord___init___09():
     Initialize chord from tupletized skip.
     """
 
-    tuplet = abjad.Tuplet((2, 3), 's8 s8 s8')
+    tuplet = abjad.Tuplet((2, 3), "s8 s8 s8")
     chord = abjad.Chord(tuplet[0])
 
-    assert format(chord) == '<>8'
+    assert format(chord) == "<>8"
     assert abjad.inspect(chord).parentage().parent is None
     assert abjad.inspect(chord).wellformed()
 
@@ -102,13 +102,12 @@ def test_Chord___init___10():
     Initialize chord from containerized skip.
     """
 
-    tuplet = abjad.Voice('s8 s8 s8')
+    tuplet = abjad.Voice("s8 s8 s8")
     chord = abjad.Chord(tuplet[0])
 
-    assert format(chord) == '<>8'
+    assert format(chord) == "<>8"
     assert abjad.inspect(chord).parentage().parent is None
     assert abjad.inspect(chord).wellformed()
-
 
 
 def test_Chord___init___11():
@@ -119,7 +118,7 @@ def test_Chord___init___11():
     staff = abjad.Staff("c'8 [ s8 c'8 ]")
     chord = abjad.Chord(staff[1])
 
-    assert format(chord) == '<>8'
+    assert format(chord) == "<>8"
     assert abjad.inspect(chord).parentage().parent is None
     assert abjad.inspect(chord).wellformed()
 
@@ -129,11 +128,11 @@ def test_Chord___init___12():
     Initialize chord from rest.
     """
 
-    rest = abjad.Rest('r8')
+    rest = abjad.Rest("r8")
     chord = abjad.Chord(rest)
 
-    assert format(rest) == 'r8'
-    assert format(chord) == '<>8'
+    assert format(rest) == "r8"
+    assert format(chord) == "<>8"
     assert abjad.inspect(rest).wellformed()
     assert abjad.inspect(chord).wellformed()
 
@@ -143,10 +142,10 @@ def test_Chord___init___13():
     Initialize chord from tupletized rest.
     """
 
-    tuplet = abjad.Tuplet((2, 3), 'r8 r8 r8')
+    tuplet = abjad.Tuplet((2, 3), "r8 r8 r8")
     chord = abjad.Chord(tuplet[1])
 
-    assert format(chord) == '<>8'
+    assert format(chord) == "<>8"
     assert abjad.inspect(chord).wellformed()
     assert abjad.inspect(chord).parentage().parent is None
 
@@ -196,9 +195,9 @@ def test_Chord___init___17():
     Initialize empty chord from LilyPond input string.
     """
 
-    chord = abjad.Chord('<>8.')
+    chord = abjad.Chord("<>8.")
 
-    assert format(chord) == '<>8.'
+    assert format(chord) == "<>8."
     assert not len(chord.note_heads)
 
 
@@ -208,9 +207,9 @@ def test_Chord___init___18():
     accidentals.
     """
 
-    chord = abjad.Chord('<c!? e? g! b>4')
+    chord = abjad.Chord("<c!? e? g! b>4")
 
-    assert format(chord) == '<c!? e? g! b>4'
+    assert format(chord) == "<c!? e? g! b>4"
 
 
 def test_Chord___init___19():
@@ -242,4 +241,4 @@ def test_Chord___init___21():
 
     chord = abjad.Chord("<sn? bd! tamb>4")
 
-    assert format(chord) == '<bassdrum! snare? tambourine>4'
+    assert format(chord) == "<bassdrum! snare? tambourine>4"

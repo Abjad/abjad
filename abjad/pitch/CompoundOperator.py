@@ -32,10 +32,7 @@ class CompoundOperator(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_operators',
-        '_show_identity_operators',
-        )
+    __slots__ = ("_operators", "_show_identity_operators")
 
     _publish_storage_format = True
 
@@ -149,7 +146,7 @@ class CompoundOperator(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     def __radd__(self, operator):
@@ -225,7 +222,7 @@ class CompoundOperator(object):
                     result.append(str(operator))
             else:
                 result.append(str(operator))
-        result = ''.join(result)
+        result = "".join(result)
         return result
 
     ### PRIVATE METHODS ###
@@ -247,8 +244,10 @@ class CompoundOperator(object):
         operators = self.operators or []
         for operator in operators:
             markup = operator._get_markup(direction=direction)
-            if (self.show_identity_operators or
-                not operator._is_identity_operator()):
+            if (
+                self.show_identity_operators
+                or not operator._is_identity_operator()
+            ):
                 markups.append(markup)
         if len(markups) == 0:
             return
@@ -262,9 +261,8 @@ class CompoundOperator(object):
         operators = self.operators or []
         operators = operators + [operator]
         return type(self)(
-            operators,
-            show_identity_operators=self.show_identity_operators,
-            )
+            operators, show_identity_operators=self.show_identity_operators
+        )
 
     ### PUBLIC PROPERTIES ###
 
@@ -350,11 +348,7 @@ class CompoundOperator(object):
 
         Returns new compound operator.
         """
-        operator = Duplication(
-            counts=counts,
-            indices=indices,
-            period=period,
-            )
+        operator = Duplication(counts=counts, indices=indices, period=period)
         return self._with_operator(operator)
 
     def invert(self, axis=None):
@@ -434,11 +428,7 @@ class CompoundOperator(object):
 
         Returns new compound operator.
         """
-        operator = Rotation(
-            n=n,
-            period=period,
-            stravinsky=stravinsky,
-            )
+        operator = Rotation(n=n, period=period, stravinsky=stravinsky)
         return self._with_operator(operator)
 
     def transpose(self, n=0):

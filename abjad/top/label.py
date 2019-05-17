@@ -98,12 +98,9 @@ def label(client=None, deactivate=None, tag=None):
     Returns label expression when ``client`` is none.
     """
     import abjad
+
     if client is not None:
-        return abjad.Label(
-            client=client,
-            deactivate=deactivate,
-            tag=tag,
-            )
+        return abjad.Label(client=client, deactivate=deactivate, tag=tag)
     expression = abjad.Expression()
     expression = expression.label(tag=tag)
     return expression

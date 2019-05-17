@@ -1,8 +1,6 @@
 def offset_happens_after_timespan_stops(
-    timespan=None,
-    offset=None,
-    hold=False,
-    ):
+    timespan=None, offset=None, hold=False
+):
     """
     Makes time relation indicating that ``offset`` happens after ``timespan``
     stops.
@@ -24,15 +22,11 @@ def offset_happens_after_timespan_stops(
     """
     from abjad import timespans
 
-    inequality = timespans.CompoundInequality([
-        'timespan.stop < offset',
-        ])
+    inequality = timespans.CompoundInequality(["timespan.stop < offset"])
 
     time_relation = timespans.OffsetTimespanTimeRelation(
-        inequality,
-        timespan=timespan,
-        offset=offset,
-        )
+        inequality, timespan=timespan, offset=offset
+    )
 
     if time_relation.is_fully_loaded and not hold:
         return time_relation()

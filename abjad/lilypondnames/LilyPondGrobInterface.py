@@ -16,15 +16,13 @@ class LilyPondGrobInterface(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_name',
-        )
+    __slots__ = ("_name",)
 
-    _identity_map: typing.Dict[str, 'LilyPondGrobInterface'] = {}
+    _identity_map: typing.Dict[str, "LilyPondGrobInterface"] = {}
 
     ### CONSTRUCTOR ###
 
-    def __new__(class_, name='grob-interface'):
+    def __new__(class_, name="grob-interface"):
         if name in class_._identity_map:
             obj = class_._identity_map[name]
         else:
@@ -34,18 +32,19 @@ class LilyPondGrobInterface(object):
 
     ### INITIALIZER ###
 
-    def __init__(self, name: str = 'grob-interface') -> None:
+    def __init__(self, name: str = "grob-interface") -> None:
         from abjad.ly import interface_properties
+
         assert name in interface_properties
         self._name = name
 
     ### SPECIAL METHODS ###
 
-    def __format__(self, format_specification='') -> str:
+    def __format__(self, format_specification="") -> str:
         """
         Formats object.
         """
-        if format_specification in ('', 'storage'):
+        if format_specification in ("", "storage"):
             return StorageFormatManager(self).get_storage_format()
         return str(self)
 
@@ -58,7 +57,7 @@ class LilyPondGrobInterface(object):
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def list_all_interfaces() -> typing.Tuple['LilyPondGrobInterface', ...]:
+    def list_all_interfaces() -> typing.Tuple["LilyPondGrobInterface", ...]:
         """
         Lists all interfaces.
 
@@ -206,10 +205,10 @@ class LilyPondGrobInterface(object):
 
         """
         from abjad.ly import interface_properties
+
         return tuple(
-            LilyPondGrobInterface(_)
-            for _ in sorted(interface_properties)
-            )
+            LilyPondGrobInterface(_) for _ in sorted(interface_properties)
+        )
 
     ### PUBLIC PROPERTIES ###
 
@@ -264,6 +263,7 @@ class LilyPondGrobInterface(object):
 
         """
         from abjad.ly import interface_properties
+
         names = interface_properties[self.name]
         assert isinstance(names, list), repr(names)
         assert all(isinstance(_, str) for _ in names), repr(names)

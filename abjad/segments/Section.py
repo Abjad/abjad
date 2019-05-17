@@ -52,13 +52,7 @@ class Section(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_abbreviation',
-        '_count',
-        '_instrument',
-        '_name',
-        '_parts',
-        )
+    __slots__ = ("_abbreviation", "_count", "_instrument", "_name", "_parts")
 
     ### INITIALIZER ###
 
@@ -68,14 +62,14 @@ class Section(object):
         count: int = 1,
         instrument: str = None,
         name: str = None,
-        ) -> None:
+    ) -> None:
         if abbreviation is not None:
             assert isinstance(abbreviation, str), repr(abbreviation)
         self._abbreviation = abbreviation
         if not isinstance(count, int):
-            raise Exception(f'Count must be integer (not {count!r}).')
+            raise Exception(f"Count must be integer (not {count!r}).")
         if not 1 <= count:
-            raise Exception(f'Count must be positive (not {count!r}).')
+            raise Exception(f"Count must be positive (not {count!r}).")
         self._count = count
         if instrument is not None:
             assert isinstance(instrument, str), repr(instrument)
@@ -101,7 +95,7 @@ class Section(object):
                     section=self.name,
                     section_abbreviation=self.abbreviation,
                     zfill=zfill,
-                    )
+                )
                 parts.append(part)
         self._parts = parts
 
@@ -155,10 +149,12 @@ class Section(object):
             True
 
         """
-        if (isinstance(argument, type(self)) and
-            argument.name == self.name and
-            argument.abbreviation == self.abbreviation and
-            argument.count == self.count):
+        if (
+            isinstance(argument, type(self))
+            and argument.name == self.name
+            and argument.abbreviation == self.abbreviation
+            and argument.count == self.count
+        ):
             return True
         return False
 

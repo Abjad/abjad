@@ -36,11 +36,7 @@ class Ottava(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_format_slot',
-        '_n',
-        '_right_broken',
-        )
+    __slots__ = ("_format_slot", "_n", "_right_broken")
 
     _persistent = True
 
@@ -54,12 +50,12 @@ class Ottava(object):
         *,
         format_slot: str = None,
         right_broken: bool = None,
-        ) -> None:
+    ) -> None:
         if n is not None:
             assert isinstance(n, int), repr(n)
         self._n = n
         if format_slot is not None:
-            assert format_slot in ('before', 'after'), repr(format_slot)
+            assert format_slot in ("before", "after"), repr(format_slot)
         self._format_slot = format_slot
         if right_broken is not None:
             right_broken = bool(right_broken)
@@ -82,9 +78,9 @@ class Ottava(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
-    
+
     def __repr__(self) -> str:
         """
         Gets interpreter representation.
@@ -96,14 +92,14 @@ class Ottava(object):
     def _get_lilypond_format_bundle(self, component=None):
         bundle = LilyPondFormatBundle()
         n = self.n or 0
-        string = rf'\ottava {n}'
+        string = rf"\ottava {n}"
         if self.right_broken:
             string = self._tag_hide([string])[0]
 
-        if self.format_slot in ('before', None):
+        if self.format_slot in ("before", None):
             bundle.before.commands.append(string)
         else:
-            assert self.format_slot == 'after'
+            assert self.format_slot == "after"
             bundle.after.commands.append(string)
         return bundle
 
@@ -114,7 +110,7 @@ class Ottava(object):
             strings,
             deactivate=False,
             tag=abjad_tags.HIDE_TO_JOIN_BROKEN_SPANNERS,
-            )
+        )
 
     ### PUBLIC PROPERTIES ###
 
@@ -224,4 +220,3 @@ class Ottava(object):
 
         """
         return self._right_broken
-

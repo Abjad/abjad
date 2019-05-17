@@ -14,7 +14,7 @@ def test_Container___init___01():
         {
         }
         """
-        )
+    )
 
 
 def test_Container___init___02():
@@ -33,7 +33,7 @@ def test_Container___init___02():
             e'8
         }
         """
-        )
+    )
 
 
 def test_Container___init___03():
@@ -41,7 +41,7 @@ def test_Container___init___03():
     Initialize container with RTM-syntax string.
     """
 
-    container = abjad.Container('rtm: (1 (1 1 1)) (2 (2 (1 (1 1 1)) 2))')
+    container = abjad.Container("rtm: (1 (1 1 1)) (2 (2 (1 (1 1 1)) 2))")
 
     assert isinstance(container, abjad.Container)
     assert format(container) == abjad.String.normalize(
@@ -63,14 +63,15 @@ def test_Container___init___03():
             }
         }
         """
-        )
+    )
+
 
 def test_Container___init___04():
     """
     Initialize container with "reduced ly" syntax string.
     """
 
-    container = abjad.Container('abj: 2/3 { 8 8 8 }')
+    container = abjad.Container("abj: 2/3 { 8 8 8 }")
 
     assert isinstance(container, abjad.Container)
     assert format(container) == abjad.String.normalize(
@@ -83,4 +84,4 @@ def test_Container___init___04():
             }
         }
         """
-        )
+    )

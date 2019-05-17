@@ -14,11 +14,11 @@ class LilyPondFormatManager(object):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'LilyPond formatting'
+    __documentation_section__ = "LilyPond formatting"
 
     __slots__ = ()
 
-    indent = 4 * ' '
+    indent = 4 * " "
 
     ### SPECIAL METHODS ###
 
@@ -33,6 +33,7 @@ class LilyPondFormatManager(object):
     @staticmethod
     def _collect_indicators(component):
         import abjad
+
         wrappers = []
         for parent in abjad.inspect(component).parentage():
             wrappers_ = abjad.inspect(parent).wrappers()
@@ -46,17 +47,19 @@ class LilyPondFormatManager(object):
         for wrapper in wrappers:
             # skip nonprinting indicators like annotation
             indicator = wrapper.indicator
-            if (not hasattr(indicator, '_get_lilypond_format') and
-                not hasattr(indicator, '_get_lilypond_format_bundle')
-                ):
+            if not hasattr(indicator, "_get_lilypond_format") and not hasattr(
+                indicator, "_get_lilypond_format_bundle"
+            ):
                 continue
             elif wrapper.annotation is not None:
                 continue
             # skip comments and commands unless attached directly to us
-            elif (wrapper.context is None and
-                hasattr(wrapper.indicator, '_format_leaf_children') and
-                not getattr(wrapper.indicator, '_format_leaf_children') and
-                wrapper.component is not component):
+            elif (
+                wrapper.context is None
+                and hasattr(wrapper.indicator, "_format_leaf_children")
+                and not getattr(wrapper.indicator, "_format_leaf_children")
+                and wrapper.component is not component
+            ):
                 continue
             # store markup wrappers
             elif isinstance(wrapper.indicator, abjad.Markup):
@@ -68,8 +71,10 @@ class LilyPondFormatManager(object):
                     neutral_markup_wrappers.append(wrapper)
             # store context wrappers
             elif wrapper.context is not None:
-                if (wrapper.annotation is None and
-                    wrapper.component is component):
+                if (
+                    wrapper.annotation is None
+                    and wrapper.component is component
+                ):
                     context_wrappers.append(wrapper)
             # store noncontext wrappers
             else:
@@ -80,46 +85,47 @@ class LilyPondFormatManager(object):
             neutral_markup_wrappers,
             context_wrappers,
             noncontext_wrappers,
-            )
+        )
         return indicators
 
     @staticmethod
     def _populate_context_setting_format_contributions(component, bundle):
         import abjad
+
         result = []
         manager = LilyPondFormatManager
         if isinstance(component, abjad.Context):
             for name, value in vars(abjad.setting(component)).items():
                 string = manager.format_lilypond_context_setting_in_with_block(
-                    name, value)
+                    name, value
+                )
                 result.append(string)
         else:
             contextualizer = abjad.setting(component)
             variables = vars(contextualizer)
             for name, value in variables.items():
                 # if we've found a leaf context namespace
-                if name.startswith('_'):
+                if name.startswith("_"):
                     for x, y in vars(value).items():
-                        if not x.startswith('_'):
-                            string = \
-                                manager.format_lilypond_context_setting_inline(
-                                    x, y, name)
+                        if not x.startswith("_"):
+                            string = manager.format_lilypond_context_setting_inline(
+                                x, y, name
+                            )
                             result.append(string)
                 # otherwise we've found a default leaf context setting
                 else:
                     # parse default context setting
                     string = manager.format_lilypond_context_setting_inline(
-                        name, value)
+                        name, value
+                    )
                     result.append(string)
         result.sort()
         bundle.context_settings.extend(result)
 
     @staticmethod
     def _populate_context_wrapper_format_contributions(
-        component,
-        bundle,
-        context_wrappers,
-        ):
+        component, bundle, context_wrappers
+    ):
         for wrapper in context_wrappers:
             format_pieces = wrapper._get_format_pieces()
             if isinstance(format_pieces, type(bundle)):
@@ -131,15 +137,13 @@ class LilyPondFormatManager(object):
     @staticmethod
     def _populate_grob_override_format_contributions(component, bundle):
         import abjad
+
         result = []
         once = isinstance(component, abjad.Leaf)
         grob = abjad.override(component)
-        contributions = grob._list_format_contributions(
-            'override',
-            once=once,
-            )
+        contributions = grob._list_format_contributions("override", once=once)
         for string in result[:]:
-            if 'NoteHead' in string and 'pitch' in string:
+            if "NoteHead" in string and "pitch" in string:
                 contributions.remove(string)
         try:
             written_pitch = component.written_pitch
@@ -154,9 +158,10 @@ class LilyPondFormatManager(object):
     @staticmethod
     def _populate_grob_revert_format_contributions(component, bundle):
         import abjad
+
         if not isinstance(component, abjad.Leaf):
             manager = abjad.override(component)
-            contributions = manager._list_format_contributions('revert')
+            contributions = manager._list_format_contributions("revert")
             bundle.grob_reverts.extend(contributions)
 
     @staticmethod
@@ -168,24 +173,20 @@ class LilyPondFormatManager(object):
             neutral_markup_wrappers,
             context_wrappers,
             noncontext_wrappers,
-            ) = LilyPondFormatManager._collect_indicators(component)
+        ) = LilyPondFormatManager._collect_indicators(component)
         manager._populate_markup_format_contributions(
             component,
             bundle,
             up_markup_wrappers,
             down_markup_wrappers,
             neutral_markup_wrappers,
-            )
+        )
         manager._populate_context_wrapper_format_contributions(
-            component,
-            bundle,
-            context_wrappers,
-            )
+            component, bundle, context_wrappers
+        )
         manager._populate_noncontext_wrapper_format_contributions(
-            component,
-            bundle,
-            noncontext_wrappers,
-            )
+            component, bundle, noncontext_wrappers
+        )
 
     @staticmethod
     def _populate_markup_format_contributions(
@@ -194,56 +195,52 @@ class LilyPondFormatManager(object):
         up_markup_wrappers,
         down_markup_wrappers,
         neutral_markup_wrappers,
-        ):
+    ):
         import abjad
+
         for wrappers in (
             up_markup_wrappers,
             down_markup_wrappers,
             neutral_markup_wrappers,
-            ):
+        ):
             for wrapper in wrappers:
                 if wrapper.indicator.direction is None:
-                    markup = abjad.Markup(wrapper.indicator, direction='-')
+                    markup = abjad.Markup(wrapper.indicator, direction="-")
                 else:
                     markup = wrapper.indicator
                 format_pieces = markup._get_format_pieces()
                 format_pieces = LilyPondFormatManager.tag(
-                    format_pieces,
-                    wrapper.tag,
-                    deactivate=wrapper.deactivate,
-                    )
+                    format_pieces, wrapper.tag, deactivate=wrapper.deactivate
+                )
                 bundle.after.markup.extend(format_pieces)
 
     @staticmethod
     def _populate_noncontext_wrapper_format_contributions(
-        component,
-        bundle,
-        noncontext_wrappers,
-        ):
+        component, bundle, noncontext_wrappers
+    ):
         for wrapper in noncontext_wrappers:
             indicator = wrapper.indicator
-            if hasattr(indicator, '_get_lilypond_format_bundle'):
+            if hasattr(indicator, "_get_lilypond_format_bundle"):
                 bundle_ = indicator._get_lilypond_format_bundle()
                 if wrapper.tag:
                     bundle_.tag_format_contributions(
-                        wrapper.tag,
-                        deactivate=wrapper.deactivate,
-                        )
+                        wrapper.tag, deactivate=wrapper.deactivate
+                    )
                 if bundle_ is not None:
                     bundle.update(bundle_)
 
     @staticmethod
     def _populate_spanner_format_contributions(component, bundle):
         import abjad
-        if not hasattr(component, '_spanners'):
+
+        if not hasattr(component, "_spanners"):
             return
         pairs = []
         for spanner in abjad.inspect(component).spanners():
             spanner_bundle = spanner._get_lilypond_format_bundle(component)
             spanner_bundle.tag_format_contributions(
-                spanner._tag,
-                deactivate=spanner._deactivate,
-                )
+                spanner._tag, deactivate=spanner._deactivate
+            )
             pair = (spanner, spanner_bundle)
             pairs.append(pair)
         pairs.sort(key=lambda _: type(_[0]).__name__)
@@ -259,19 +256,19 @@ class LilyPondFormatManager(object):
         """
         assert isinstance(n, int), repr(n)
         lines = []
-        for line in string.split('\n'):
-            if '%!' not in line:
+        for line in string.split("\n"):
+            if "%!" not in line:
                 lines.append(line)
                 continue
-            location = line.find('%!')
+            location = line.find("%!")
             left = line[:location].rstrip()
             right = line[location:]
             pad = n - len(left)
             if pad < 1:
                 pad = 1
-            line = left + pad * ' ' + right
+            line = left + pad * " " + right
             lines.append(line)
-        string = '\n'.join(lines)
+        string = "\n".join(lines)
         return string
 
     @staticmethod
@@ -284,7 +281,8 @@ class LilyPondFormatManager(object):
         manager._populate_indicator_format_contributions(component, bundle)
         manager._populate_spanner_format_contributions(component, bundle)
         manager._populate_context_setting_format_contributions(
-            component, bundle)
+            component, bundle
+        )
         manager._populate_grob_override_format_contributions(component, bundle)
         manager._populate_grob_revert_format_contributions(component, bundle)
         bundle.sort_overrides()
@@ -296,8 +294,8 @@ class LilyPondFormatManager(object):
         Formats LilyPond attribute according to Scheme formatting conventions.
         """
         assert isinstance(attribute, str), repr(attribute)
-        attribute = attribute.replace('__', ".")
-        result = attribute.replace('_', '-')
+        attribute = attribute.replace("__", ".")
+        result = attribute.replace("_", "-")
         return result
 
     @staticmethod
@@ -307,46 +305,44 @@ class LilyPondFormatManager(object):
         with-block.
         """
         assert isinstance(name, str), repr(name)
-        name = name.split('_')
+        name = name.split("_")
         first = name[0:1]
         rest = name[1:]
         rest = [x.title() for x in rest]
         name = first + rest
-        name = ''.join(name)
+        name = "".join(name)
         value = LilyPondFormatManager.format_lilypond_value(value)
-        value_parts = value.split('\n')
-        result = rf'{name!s} = {value_parts[0]!s}'
+        value_parts = value.split("\n")
+        result = rf"{name!s} = {value_parts[0]!s}"
         pieces = [result]
         for part in value_parts[1:]:
             pieces.append(LilyPondFormatManager.indent + part)
-        return '\n'.join(pieces)
+        return "\n".join(pieces)
 
     @staticmethod
     def format_lilypond_context_setting_inline(
-        name,
-        value,
-        context=None,
-        ) -> str:
+        name, value, context=None
+    ) -> str:
         """
         Formats LilyPond context setting ``name`` with ``value`` in
         ``context``.
         """
-        name = name.split('_')
+        name = name.split("_")
         first = name[0:1]
         rest = name[1:]
         rest = [x.title() for x in rest]
         name = first + rest
-        name = ''.join(name)
+        name = "".join(name)
         value = LilyPondFormatManager.format_lilypond_value(value)
         if context is not None:
             context_string = context[1:]
-            context_string = context_string.split('_')
+            context_string = context_string.split("_")
             context_string = [x.title() for x in context_string]
-            context_string = ''.join(context_string)
-            context_string += '.'
+            context_string = "".join(context_string)
+            context_string += "."
         else:
-            context_string = ''
-        result = rf'\set {context_string}{name} = {value}'
+            context_string = ""
+        result = rf"\set {context_string}{name} = {value}"
         return result
 
     @staticmethod
@@ -355,65 +351,68 @@ class LilyPondFormatManager(object):
         Formats LilyPond ``argument`` according to Scheme formatting
         conventions.
         """
-        if ('_get_lilypond_format' in dir(argument) and 
-            not isinstance(argument, str)):
+        if "_get_lilypond_format" in dir(argument) and not isinstance(
+            argument, str
+        ):
             pass
         elif argument in (True, False):
             argument = Scheme(argument)
-        elif argument in (enums.Up, enums.Down, enums.Left, enums.Right, enums.Center):
+        elif argument in (
+            enums.Up,
+            enums.Down,
+            enums.Left,
+            enums.Right,
+            enums.Center,
+        ):
             argument = Scheme(repr(argument).lower())
         elif isinstance(argument, int) or isinstance(argument, float):
             argument = Scheme(argument)
         elif argument in Scheme.lilypond_color_constants:
             argument = Scheme(argument)
-        elif isinstance(argument, str) and argument.startswith('#'):
-            #argument = Scheme(argument)
+        elif isinstance(argument, str) and argument.startswith("#"):
+            # argument = Scheme(argument)
             return argument
-        elif isinstance(argument, str) and '::' in argument:
+        elif isinstance(argument, str) and "::" in argument:
             argument = Scheme(argument)
         elif isinstance(argument, tuple) and len(argument) == 2:
             argument = SchemePair(argument)
-        elif isinstance(argument, str) and ' ' not in argument:
+        elif isinstance(argument, str) and " " not in argument:
             argument = Scheme(argument, quoting="'")
-        elif isinstance(argument, str) and ' ' in argument:
+        elif isinstance(argument, str) and " " in argument:
             argument = Scheme(argument)
         else:
             argument = Scheme(argument, quoting="'")
-        return format(argument, 'lilypond')
+        return format(argument, "lilypond")
 
     @staticmethod
     def left_shift_tags(text, realign=None) -> str:
         """
         Left shifts tags in ``strings`` and realigns to column ``realign``.
         """
-        strings = text.split('\n')
-        strings_ = [] 
+        strings = text.split("\n")
+        strings_ = []
         for string in strings:
-            if '%@% ' not in string or '%!' not in string:
+            if "%@% " not in string or "%!" not in string:
                 strings_.append(string)
                 continue
-            if not string.startswith(4 * ' '):
+            if not string.startswith(4 * " "):
                 strings_.append(string)
                 continue
             string_ = string[4:]
-            tag_start = string_.find('%!')
+            tag_start = string_.find("%!")
             string_ = list(string_)
-            string_[tag_start:tag_start] = 4 * ' '
-            string_ = ''.join(string_)
+            string_[tag_start:tag_start] = 4 * " "
+            string_ = "".join(string_)
             strings_.append(string_)
-        text = '\n'.join(strings_)
+        text = "\n".join(strings_)
         if realign is not None:
             text = LilyPondFormatManager.align_tags(text, n=realign)
         return text
 
     @staticmethod
     def make_lilypond_override_string(
-        grob,
-        attribute,
-        value,
-        context=None,
-        once=False,
-        ) -> str:
+        grob, attribute, value, context=None, once=False
+    ) -> str:
         """
         Makes Lilypond override string.
         """
@@ -421,14 +420,14 @@ class LilyPondFormatManager(object):
         attribute = LilyPondFormatManager.format_lilypond_attribute(attribute)
         value = LilyPondFormatManager.format_lilypond_value(value)
         if context is not None:
-            context = String(context).capitalize_start() + '.'
+            context = String(context).capitalize_start() + "."
         else:
-            context = ''
+            context = ""
         if once is True:
-            once = r'\once '
+            once = r"\once "
         else:
-            once = ''
-        result = rf'{once}\override {context}{grob}.{attribute} = {value}'
+            once = ""
+        result = rf"{once}\override {context}{grob}.{attribute} = {value}"
         return result
 
     @staticmethod
@@ -449,19 +448,16 @@ class LilyPondFormatManager(object):
         dotted = LilyPondFormatManager.format_lilypond_attribute(attribute)
         if context is not None:
             context = String(context).to_upper_camel_case()
-            context += '.'
+            context += "."
         else:
-            context = ''
-        result = rf'\revert {context}{grob}.{dotted}'
+            context = ""
+        result = rf"\revert {context}{grob}.{dotted}"
         return result
 
     @staticmethod
     def make_lilypond_tweak_string(
-        attribute,
-        value,
-        directed=True,
-        grob=None,
-        ) -> str:
+        attribute, value, directed=True, grob=None
+    ) -> str:
         r"""
         Makes Lilypond \tweak string.
 
@@ -469,14 +465,14 @@ class LilyPondFormatManager(object):
         """
         if grob is not None:
             grob = String(grob).to_upper_camel_case()
-            grob += '.'
+            grob += "."
         else:
-            grob = ''
+            grob = ""
         attribute = LilyPondFormatManager.format_lilypond_attribute(attribute)
         value = LilyPondFormatManager.format_lilypond_value(value)
-        string = rf'\tweak {grob}{attribute} {value}'
+        string = rf"\tweak {grob}{attribute} {value}"
         if directed:
-            string = '- ' + string
+            string = "- " + string
         return string
 
     @staticmethod
@@ -493,16 +489,16 @@ class LilyPondFormatManager(object):
         length = max([len(_) for _ in strings])
         strings_ = []
         for string in strings:
-            if '%!' in string and r'\tweak' in string:
+            if "%!" in string and r"\tweak" in string:
                 strings_.append(string)
                 continue
-            if '%!' not in string:
+            if "%!" not in string:
                 pad = length - len(string)
             else:
                 pad = 0
-            tag_ = pad * ' ' + ' ' + '%!' + ' ' + str(tag)
+            tag_ = pad * " " + " " + "%!" + " " + str(tag)
             string = string + tag_
             strings_.append(string)
         if deactivate is True:
-            strings_ = ['%@% ' + _ for _ in strings_]
+            strings_ = ["%@% " + _ for _ in strings_]
         return strings_

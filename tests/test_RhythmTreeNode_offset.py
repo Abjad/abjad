@@ -4,14 +4,20 @@ import abjad.rhythmtrees
 
 def test_RhythmTreeNode_offset_01():
 
-    tree = abjad.rhythmtrees.RhythmTreeContainer(preprolated_duration=1, children=[
-        abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=1),
-        abjad.rhythmtrees.RhythmTreeContainer(preprolated_duration=2, children=[
-            abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=3),
-            abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=2)
-        ]),
-        abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=2)
-    ])
+    tree = abjad.rhythmtrees.RhythmTreeContainer(
+        preprolated_duration=1,
+        children=[
+            abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=1),
+            abjad.rhythmtrees.RhythmTreeContainer(
+                preprolated_duration=2,
+                children=[
+                    abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=3),
+                    abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=2),
+                ],
+            ),
+            abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=2),
+        ],
+    )
 
     assert tree.start_offset == abjad.Offset(0)
     assert tree[0].start_offset == abjad.Offset(0)

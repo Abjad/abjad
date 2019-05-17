@@ -8,15 +8,15 @@ class Signature(object):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_argument_list_callback',
-        '_is_operator',
-        '_markup_maker_callback',
-        '_method_name',
-        '_method_name_callback',
-        '_string_template_callback',
-        '_subscript',
-        '_superscript',
-        )
+        "_argument_list_callback",
+        "_is_operator",
+        "_markup_maker_callback",
+        "_method_name",
+        "_method_name_callback",
+        "_string_template_callback",
+        "_subscript",
+        "_superscript",
+    )
 
     ### INITIALIZER ###
 
@@ -30,7 +30,7 @@ class Signature(object):
         string_template_callback=None,
         subscript=None,
         superscript=None,
-        ):
+    ):
         self._argument_list_callback = argument_list_callback
         self._is_operator = is_operator
         self._markup_maker_callback = markup_maker_callback

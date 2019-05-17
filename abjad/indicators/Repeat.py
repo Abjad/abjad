@@ -66,31 +66,25 @@ class Repeat(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_repeat_count',
-        '_repeat_type',
-        )
+    __slots__ = ("_repeat_count", "_repeat_type")
 
     _can_attach_to_containers = True
 
-    _context = 'Score'
+    _context = "Score"
 
     _format_leaf_children = False
 
-    _format_slot = 'before'
+    _format_slot = "before"
 
     ### INITIALIZER ###
 
     def __init__(
-        self,
-        *,
-        repeat_count: int = 2,
-        repeat_type: str = 'volta',
-        ) -> None:
+        self, *, repeat_count: int = 2, repeat_type: str = "volta"
+    ) -> None:
         repeat_count = int(repeat_count)
         assert 1 < repeat_count
         self._repeat_count = repeat_count
-        assert repeat_type in ('volta', 'unfold')
+        assert repeat_type in ("volta", "unfold")
         self._repeat_type = repeat_type
 
     ### SPECIAL METHODS ###
@@ -110,7 +104,7 @@ class Repeat(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     def __repr__(self) -> str:
@@ -138,7 +132,7 @@ class Repeat(object):
             '\\repeat unfold 2'
 
         """
-        return rf'\repeat {self.repeat_type} {self.repeat_count}'
+        return rf"\repeat {self.repeat_type} {self.repeat_count}"
 
     ### PRIVATE METHODS ###
 

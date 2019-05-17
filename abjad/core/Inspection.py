@@ -49,23 +49,21 @@ class Inspection(object):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Collaborators'
+    __documentation_section__ = "Collaborators"
 
-    __slots__ = (
-        '_client',
-        )
+    __slots__ = ("_client",)
 
     ### INITIALIZER ###
 
     def __init__(
         self,
         client: typing.Union[Component, typing.Iterable[Component]] = None,
-        ) -> None:
+    ) -> None:
         assert not isinstance(client, str), repr(client)
         prototype = (Component, collections.abc.Iterable, type(None))
         if not isinstance(client, prototype):
-            message = 'must be component, nonstring iterable or none:'
-            message += f' (not {client!r}).'
+            message = "must be component, nonstring iterable or none:"
+            message += f" (not {client!r})."
             raise TypeError(message)
         self._client = client
 
@@ -80,9 +78,9 @@ class Inspection(object):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def client(self) -> typing.Union[
-        Component, typing.Iterable[Component], None
-        ]:
+    def client(
+        self
+    ) -> typing.Union[Component, typing.Iterable[Component], None]:
         r"""
         Gets client of inspection.
 
@@ -122,8 +120,7 @@ class Inspection(object):
 
     ### PUBLIC METHODS ###
 
-    def after_grace_container(self) -> typing.Optional[
-        AfterGraceContainer]:
+    def after_grace_container(self) -> typing.Optional[AfterGraceContainer]:
         r"""
         Gets after grace containers attached to leaf.
 
@@ -156,14 +153,14 @@ class Inspection(object):
             AfterGraceContainer("ds'16")
 
         """
-        return getattr(self.client, '_after_grace_container', None)
+        return getattr(self.client, "_after_grace_container", None)
 
     def annotation(
         self,
         annotation: typing.Any,
         default: typing.Any = None,
         unwrap: bool = True,
-        ) -> typing.Any:
+    ) -> typing.Any:
         r"""
         Gets annotation.
 
@@ -292,7 +289,7 @@ class Inspection(object):
 
         """
         result = []
-        for wrapper in getattr(self.client, '_wrappers', []):
+        for wrapper in getattr(self.client, "_wrappers", []):
             if wrapper.annotation:
                 result.append(wrapper)
         return result
@@ -339,13 +336,13 @@ class Inspection(object):
 
         """
         if not isinstance(self.client, Component):
-            raise Exception('can only get indicator on component.')
+            raise Exception("can only get indicator on component.")
         time_signature = self.client._get_effective(TimeSignature)
         if time_signature is None:
             time_signature_duration = Duration(4, 4)
         else:
             time_signature_duration = time_signature.duration
-        partial = getattr(time_signature, 'partial', 0)
+        partial = getattr(time_signature, "partial", 0)
         partial = partial or 0
         start_offset = Inspection(self.client).timespan().start_offset
         shifted_start = start_offset - partial
@@ -355,9 +352,7 @@ class Inspection(object):
             return True
         return False
 
-    def contents(
-        self,
-        ) -> typing.Optional[Selection]:
+    def contents(self,) -> typing.Optional[Selection]:
         r"""
         Gets contents.
 
@@ -388,12 +383,10 @@ class Inspection(object):
 
         """
         if not isinstance(self.client, Component):
-            raise Exception('can only get contents of component.')
+            raise Exception("can only get contents of component.")
         return self.client._get_contents()
 
-    def descendants(
-        self,
-        ) -> typing.Union[Descendants, Selection]:
+    def descendants(self,) -> typing.Union[Descendants, Selection]:
         r"""
         Gets descendants.
 
@@ -438,10 +431,7 @@ class Inspection(object):
         result = Selection(descendants)
         return result
 
-    def duration(
-        self,
-        in_seconds: bool = False,
-        ) -> Duration:
+    def duration(self, in_seconds: bool = False) -> Duration:
         r"""
         Gets duration.
 
@@ -468,11 +458,12 @@ class Inspection(object):
         """
         if isinstance(self.client, Component):
             return self.client._get_duration(in_seconds=in_seconds)
-        assert isinstance(self.client, collections.abc.Iterable), repr(self.client)
+        assert isinstance(self.client, collections.abc.Iterable), repr(
+            self.client
+        )
         durations = [
-            Inspection(_).duration(in_seconds=in_seconds)
-            for _ in self.client
-            ]
+            Inspection(_).duration(in_seconds=in_seconds) for _ in self.client
+        ]
         return Duration(sum(durations))
 
     def effective(
@@ -483,7 +474,7 @@ class Inspection(object):
         default: bool = None,
         n: int = 0,
         unwrap: bool = True,
-        ) -> typing.Any:
+    ) -> typing.Any:
         r"""
         Gets effective indicator.
 
@@ -737,15 +728,12 @@ class Inspection(object):
 
         """
         if not isinstance(self.client, Component):
-            raise Exception('can only get effective on components.')
+            raise Exception("can only get effective on components.")
         if attributes is not None:
             assert isinstance(attributes, dict), repr(attributes)
         result = self.client._get_effective(
-            prototype,
-            attributes=attributes,
-            n=n,
-            unwrap=unwrap,
-            )
+            prototype, attributes=attributes, n=n, unwrap=unwrap
+        )
         if result is None:
             result = default
         return result
@@ -755,7 +743,7 @@ class Inspection(object):
         Gets effective staff.
         """
         if not isinstance(self.client, Component):
-            raise Exception('can only get effective staff on components.')
+            raise Exception("can only get effective staff on components.")
         return self.client._get_effective_staff()
 
     def effective_wrapper(
@@ -764,7 +752,7 @@ class Inspection(object):
         *,
         attributes: typing.Dict = None,
         n: int = 0,
-        ) -> typing.Optional[Wrapper]:
+    ) -> typing.Optional[Wrapper]:
         r"""
         Gets effective wrapper.
 
@@ -809,11 +797,8 @@ class Inspection(object):
         if attributes is not None:
             assert isinstance(attributes, dict), repr(attributes)
         return self.effective(
-            prototype,
-            attributes=attributes,
-            n=n,
-            unwrap=False,
-            )
+            prototype, attributes=attributes, n=n, unwrap=False
+        )
 
     def grace_container(self) -> typing.Optional[GraceContainer]:
         r"""
@@ -848,7 +833,7 @@ class Inspection(object):
 
         """
         if not isinstance(self.client, Leaf):
-            raise Exception('can only get grace container on leaf.')
+            raise Exception("can only get grace container on leaf.")
         return self.client._grace_container
 
     def grace_note(self) -> bool:
@@ -868,25 +853,24 @@ class Inspection(object):
         prototype: typings.Prototype = None,
         *,
         attributes: typing.Dict = None,
-        ) -> bool:
+    ) -> bool:
         """
         Is true when client has effective indicator.
         """
         if not isinstance(self.client, Component):
-            raise Exception('can only get effective indicator on component.')
+            raise Exception("can only get effective indicator on component.")
         if attributes is not None:
             assert isinstance(attributes, dict), repr(attributes)
         return self.client._has_effective_indicator(
-            prototype=prototype,
-            attributes=attributes,
-            )
+            prototype=prototype, attributes=attributes
+        )
 
     def has_indicator(
         self,
         prototype: typings.Prototype = None,
         *,
         attributes: typing.Dict = None,
-        ) -> bool:
+    ) -> bool:
         r"""
         Is true when client has one or more indicators.
 
@@ -931,13 +915,12 @@ class Inspection(object):
 
         """
         if not isinstance(self.client, Component):
-            raise Exception('can only get indicator on component.')
+            raise Exception("can only get indicator on component.")
         if attributes is not None:
             assert isinstance(attributes, dict), repr(attributes)
         return self.client._has_indicator(
-            prototype=prototype,
-            attributes=attributes,
-            )
+            prototype=prototype, attributes=attributes
+        )
 
     def indicator(
         self,
@@ -945,7 +928,7 @@ class Inspection(object):
         *,
         default: typing.Any = None,
         unwrap: bool = True,
-        ) -> typing.Any:
+    ) -> typing.Any:
         """
         Gets indicator.
 
@@ -955,17 +938,16 @@ class Inspection(object):
         Returns default when no indicator of ``prototype`` attaches to client.
         """
         if not isinstance(self.client, Component):
-            raise Exception('can only get indicator on component.')
+            raise Exception("can only get indicator on component.")
         indicators = self.client._get_indicators(
-            prototype=prototype,
-            unwrap=unwrap,
-            )
+            prototype=prototype, unwrap=unwrap
+        )
         if not indicators:
             return default
         elif len(indicators) == 1:
             return list(indicators)[0]
         else:
-            raise Exception('multiple indicators attached to client.')
+            raise Exception("multiple indicators attached to client.")
 
     def indicators(
         self,
@@ -973,7 +955,7 @@ class Inspection(object):
         *,
         attributes: typing.Dict = None,
         unwrap: bool = True,
-        ) -> typing.List:
+    ) -> typing.List:
         r"""
         Get indicators.
 
@@ -1010,16 +992,14 @@ class Inspection(object):
         """
         # TODO: extend to any non-none client
         if not isinstance(self.client, Component):
-            message = 'can only get indicators on component'
-            message += f' (not {self.client!r}).'
+            message = "can only get indicators on component"
+            message += f" (not {self.client!r})."
             raise Exception(message)
         if attributes is not None:
             assert isinstance(attributes, dict), repr(attributes)
         result = self.client._get_indicators(
-            prototype=prototype,
-            attributes=attributes,
-            unwrap=unwrap,
-            )
+            prototype=prototype, attributes=attributes, unwrap=unwrap
+        )
         return list(result)
 
     def leaf(self, n: int = 0) -> typing.Optional[Leaf]:
@@ -1110,7 +1090,7 @@ class Inspection(object):
         Gets lineage.
         """
         if not isinstance(self.client, Component):
-            raise Exception('can only get lineage on component.')
+            raise Exception("can only get lineage on component.")
         return Lineage(self.client)
 
     def logical_tie(self) -> LogicalTie:
@@ -1118,28 +1098,22 @@ class Inspection(object):
         Gets logical tie.
         """
         if not isinstance(self.client, Leaf):
-            raise Exception('can only get logical tie on leaf.')
+            raise Exception("can only get logical tie on leaf.")
         return self.client._get_logical_tie()
 
     def markup(
-        self,
-        *,
-        direction: enums.VerticalAlignment = None,
-        ) -> typing.List[Markup]:
+        self, *, direction: enums.VerticalAlignment = None
+    ) -> typing.List[Markup]:
         """
         Gets markup.
         """
         # TODO: extend to any non-none client
         if not isinstance(self.client, Component):
-            raise Exception('can only get markup on component.')
+            raise Exception("can only get markup on component.")
         result = self.client._get_markup(direction=direction)
         return list(result)
 
-    def parentage(
-        self,
-        *,
-        grace_notes: bool = False,
-        ) -> Parentage:
+    def parentage(self, *, grace_notes: bool = False) -> Parentage:
         r"""
         Gets parentage.
 
@@ -1206,8 +1180,8 @@ class Inspection(object):
 
         """
         if not isinstance(self.client, Component):
-            message = 'can only get parentage on component'
-            message += f' (not {self.client}).'
+            message = "can only get parentage on component"
+            message += f" (not {self.client})."
             raise Exception(message)
         return Parentage(self.client, grace_notes=grace_notes)
 
@@ -1301,27 +1275,25 @@ class Inspection(object):
         if isinstance(self.client, Container):
             bundle = LilyPondFormatManager.bundle_format_contributions(
                 self.client
-                )
+            )
             result: typing.List[str] = []
-            for slot in ('before', 'open brackets', 'opening'):
+            for slot in ("before", "open brackets", "opening"):
                 lines = self.client._get_format_contributions_for_slot(
-                    slot,
-                    bundle,
-                    )
+                    slot, bundle
+                )
                 result.extend(lines)
-            line = f'    %%% {len(self.client)} components omitted %%%'
+            line = f"    %%% {len(self.client)} components omitted %%%"
             result.append(line)
-            for slot in ('closing', 'close brackets', 'after'):
+            for slot in ("closing", "close brackets", "after"):
                 lines = self.client._get_format_contributions_for_slot(
-                    slot,
-                    bundle,
-                    )
+                    slot, bundle
+                )
                 result.extend(lines)
-            return '\n'.join(result)
+            return "\n".join(result)
         elif isinstance(self.client, Leaf):
             return self.client._report_format_contributions()
         else:
-            return f'only defined for components: {self.client}.'
+            return f"only defined for components: {self.client}."
 
     def sounding_pitch(self) -> NamedPitch:
         r"""
@@ -1348,7 +1320,7 @@ class Inspection(object):
 
         """
         if not isinstance(self.client, Note):
-            raise Exception('can only get sounding pitch of note.')
+            raise Exception("can only get sounding pitch of note.")
         return self.client._get_sounding_pitch()
 
     # TODO: return PitchSet instead of list
@@ -1380,7 +1352,7 @@ class Inspection(object):
         """
         # TODO: extend to any non-none client
         if not isinstance(self.client, Chord):
-            raise Exception('can only get sounding pitches of chord.')
+            raise Exception("can only get sounding pitches of chord.")
         result = self.client._get_sounding_pitches()
         return list(result)
 
@@ -1402,24 +1374,22 @@ class Inspection(object):
         check_unmatched_stop_text_spans: bool = True,
         check_unterminated_hairpins: bool = True,
         check_unterminated_text_spanners: bool = True,
-        ) -> str:
+    ) -> str:
         r"""
         Tabulates wellformedness.
         """
-        manager = Wellformedness(
-            allow_percussion_clef=allow_percussion_clef,
-            )
+        manager = Wellformedness(allow_percussion_clef=allow_percussion_clef)
         triples = manager(self.client)
         strings = []
         for violators, total, check_name in triples:
             if eval(check_name) is not True:
                 continue
             violator_count = len(violators)
-            check_name = check_name.replace('check_', '')
-            check_name = check_name.replace('_', ' ')
-            string = f'{violator_count} /\t{total} {check_name}'
+            check_name = check_name.replace("check_", "")
+            check_name = check_name.replace("_", " ")
+            string = f"{violator_count} /\t{total} {check_name}"
             strings.append(string)
-        return '\n'.join(strings)
+        return "\n".join(strings)
 
     def timespan(self, in_seconds: bool = False) -> Timespan:
         r"""
@@ -1557,7 +1527,9 @@ class Inspection(object):
         """
         if isinstance(self.client, Component):
             return self.client._get_timespan(in_seconds=in_seconds)
-        assert isinstance(self.client, collections.abc.Iterable), repr(self.client)
+        assert isinstance(self.client, collections.abc.Iterable), repr(
+            self.client
+        )
         remaining_items = []
         for i, item in enumerate(self.client):
             if i == 0:
@@ -1666,13 +1638,11 @@ class Inspection(object):
         check_unmatched_stop_text_spans: bool = True,
         check_unterminated_hairpins: bool = True,
         check_unterminated_text_spanners: bool = True,
-        ) -> bool:
+    ) -> bool:
         """
         Is true when client is wellformed.
         """
-        manager = Wellformedness(
-            allow_percussion_clef=allow_percussion_clef,
-            )
+        manager = Wellformedness(allow_percussion_clef=allow_percussion_clef)
         for violators, total, check_name in manager(self.client):
             if eval(check_name) is not True:
                 continue
@@ -1685,7 +1655,7 @@ class Inspection(object):
         prototype: typings.Prototype = None,
         *,
         attributes: typing.Dict = None,
-        ) -> typing.Optional[Wrapper]:
+    ) -> typing.Optional[Wrapper]:
         r"""
         Gets wrapper.
 
@@ -1731,8 +1701,7 @@ class Inspection(object):
         prototype: typings.Prototype = None,
         *,
         attributes: typing.Dict = None,
-        ) -> typing.Optional[typing.List[Wrapper]
-        ]:
+    ) -> typing.Optional[typing.List[Wrapper]]:
         r"""
         Gets wrappers.
 

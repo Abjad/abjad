@@ -19,14 +19,11 @@ class StopTrillSpan(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_leak',
-        '_right_broken',
-        )
+    __slots__ = ("_leak", "_right_broken")
 
-    _context = 'Voice'
+    _context = "Voice"
 
-    _parameter = 'TRILL'
+    _parameter = "TRILL"
 
     _persistent = True
 
@@ -37,11 +34,8 @@ class StopTrillSpan(object):
     ### INITIALIZER ###
 
     def __init__(
-        self,
-        *,
-        leak: bool = None,
-        right_broken: bool = None,
-        ) -> None:
+        self, *, leak: bool = None, right_broken: bool = None
+    ) -> None:
         if leak is not None:
             leak = bool(leak)
         self._leak = leak
@@ -61,11 +55,11 @@ class StopTrillSpan(object):
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = LilyPondFormatBundle()
-        string = r'\stopTrillSpan'
+        string = r"\stopTrillSpan"
         if self.right_broken:
             string = self._tag_hide([string])[0]
         if self.leak:
-            string = f'<> {string}'
+            string = f"<> {string}"
             bundle.after.leaks.append(string)
         else:
             bundle.after.spanner_stops.append(string)
@@ -78,7 +72,7 @@ class StopTrillSpan(object):
             strings,
             deactivate=False,
             tag=abjad_tags.HIDE_TO_JOIN_BROKEN_SPANNERS,
-            )
+        )
 
     ### PUBLIC PROPERTIES ###
 

@@ -17,20 +17,13 @@ class BeamCount(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_left',
-        '_right',
-        )
+    __slots__ = ("_left", "_right")
 
     _publish_storage_format = True
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        left: int = 0,
-        right: int = 0,
-        ) -> None:
+    def __init__(self, left: int = 0, right: int = 0) -> None:
         assert isinstance(left, int), repr(left)
         self._left = left
         assert isinstance(right, int), repr(right)
@@ -48,9 +41,9 @@ class BeamCount(object):
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = LilyPondFormatBundle()
-        string = rf'\set stemLeftBeamCount = {self.left}'
+        string = rf"\set stemLeftBeamCount = {self.left}"
         bundle.before.commands.append(string)
-        string = rf'\set stemRightBeamCount = {self.right}'
+        string = rf"\set stemRightBeamCount = {self.right}"
         bundle.before.commands.append(string)
         return bundle
 

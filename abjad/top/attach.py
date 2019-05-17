@@ -6,7 +6,7 @@ def attach(
     synthetic_offset=None,
     tag=None,
     wrapper=None,
-    ):
+):
     r"""
     Attaches ``attachable`` to ``target``.
     
@@ -209,41 +209,38 @@ def attach(
     import abjad
 
     if isinstance(attachable, abjad.Multiplier):
-        message = 'use the Leaf.multiplier property to multiply leaf duration.'
+        message = "use the Leaf.multiplier property to multiply leaf duration."
         raise Exception(message)
 
     assert attachable is not None, repr(attachable)
     assert target is not None, repr(target)
 
-    nonindicator_prototype = (
-        abjad.AfterGraceContainer,
-        abjad.GraceContainer,
-        )
+    nonindicator_prototype = (abjad.AfterGraceContainer, abjad.GraceContainer)
 
     if context is not None and isinstance(attachable, nonindicator_prototype):
-        message = f'set context only for indicators, not {attachable!r}.'
+        message = f"set context only for indicators, not {attachable!r}."
         raise Exception(message)
 
     if deactivate is True and tag is None:
-        raise Exception(f'tag must exist when deactivate is true.')
+        raise Exception(f"tag must exist when deactivate is true.")
 
-    if hasattr(attachable, '_before_attach'):
+    if hasattr(attachable, "_before_attach"):
         attachable._before_attach(target)
 
-    if hasattr(attachable, '_attachment_test_all'):
+    if hasattr(attachable, "_attachment_test_all"):
         result = attachable._attachment_test_all(target)
         if result is not True:
             assert isinstance(result, list), repr(result)
-            result = ['  ' + _ for _ in result]
-            message = f'{attachable!r}._attachment_test_all():'
+            result = ["  " + _ for _ in result]
+            message = f"{attachable!r}._attachment_test_all():"
             result.insert(0, message)
-            message = '\n'.join(result)
+            message = "\n".join(result)
             raise Exception(message)
 
     grace_container = (abjad.AfterGraceContainer, abjad.GraceContainer)
     if isinstance(attachable, grace_container):
         if not isinstance(target, abjad.Leaf):
-            raise Exception('grace containers attach to single leaf only.')
+            raise Exception("grace containers attach to single leaf only.")
         attachable._attach(target)
         return
 
@@ -253,14 +250,14 @@ def attach(
         acceptable = False
         if isinstance(attachable, (dict, str, abjad.Wrapper)):
             acceptable = True
-        if getattr(attachable, '_can_attach_to_containers', False):
+        if getattr(attachable, "_can_attach_to_containers", False):
             acceptable = True
         if not acceptable:
-            message = 'can not attach {!r} to containers: {!r}'
+            message = "can not attach {!r} to containers: {!r}"
             message = message.format(attachable, target)
             raise Exception(message)
     elif not isinstance(target, abjad.Leaf):
-        message = 'indicator {!r} must attach to leaf instead, not {!r}.'
+        message = "indicator {!r} must attach to leaf instead, not {!r}."
         message = message.format(attachable, target)
         raise Exception(message)
 
@@ -277,7 +274,7 @@ def attach(
         attachable._detach()
         attachable = attachable.indicator
 
-    if hasattr(attachable, 'context'):
+    if hasattr(attachable, "context"):
         context = context or attachable.context
 
     wrapper_ = abjad.Wrapper(
@@ -288,7 +285,7 @@ def attach(
         indicator=attachable,
         synthetic_offset=synthetic_offset,
         tag=tag,
-        )
+    )
 
     if wrapper is True:
         return wrapper_

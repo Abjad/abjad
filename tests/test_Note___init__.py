@@ -19,7 +19,7 @@ def test_Note___init___02():
 
     note = abjad.Note(-37, (1, 4))
 
-    assert format(note) == 'b,,,4'
+    assert format(note) == "b,,,4"
 
 
 def test_Note___init___03():
@@ -36,9 +36,9 @@ def test_Note___init___04():
     Initializes note with LilyPond-style pitch string.
     """
 
-    note = abjad.Note('c,,', (1, 4))
+    note = abjad.Note("c,,", (1, 4))
 
-    assert format(note) == 'c,,4'
+    assert format(note) == "c,,4"
 
 
 def test_Note___init___05():
@@ -46,9 +46,9 @@ def test_Note___init___05():
     Initializes note with complete LilyPond-style note string.
     """
 
-    note = abjad.Note('cs8.')
+    note = abjad.Note("cs8.")
 
-    assert format(note) == 'cs8.'
+    assert format(note) == "cs8."
 
 
 def test_Note___init___06():
@@ -63,7 +63,7 @@ def test_Note___init___06():
         r"""
         d'4
         """
-        )
+    )
 
     assert abjad.inspect(note).wellformed()
 
@@ -81,7 +81,7 @@ def test_Note___init___07():
         r"""
         d'4
         """
-        )
+    )
 
     assert abjad.inspect(note).wellformed()
 
@@ -101,7 +101,7 @@ def test_Note___init___08():
         d'8
         [
         """
-        ), print(format(note))
+    ), print(format(note))
 
     assert abjad.inspect(note).wellformed()
 
@@ -111,14 +111,14 @@ def test_Note___init___09():
     Initializes note from rest.
     """
 
-    rest = abjad.Rest('r8')
+    rest = abjad.Rest("r8")
     note = abjad.Note(rest)
 
     assert format(note) == abjad.String.normalize(
         r"""
         8
         """
-        )
+    )
 
     assert abjad.inspect(note).wellformed()
 
@@ -144,7 +144,9 @@ def test_Note___init___11():
     Initializes note from beamed rest.
     """
 
-    staff = abjad.Staff([abjad.Note(0, (1, 8)), abjad.Rest((1, 8)), abjad.Note(0, (1, 8))])
+    staff = abjad.Staff(
+        [abjad.Note(0, (1, 8)), abjad.Rest((1, 8)), abjad.Note(0, (1, 8))]
+    )
     abjad.beam(staff[:])
     note = abjad.Note(staff[1])
 
@@ -191,7 +193,9 @@ def test_Note___init___14():
     Initializes note from beamed skip.
     """
 
-    staff = abjad.Staff([abjad.Note(0, (1, 8)), abjad.Skip((1, 8)), abjad.Note(0, (1, 8))])
+    staff = abjad.Staff(
+        [abjad.Note(0, (1, 8)), abjad.Skip((1, 8)), abjad.Note(0, (1, 8))]
+    )
     abjad.beam(staff[:])
     note = abjad.Note(staff[1])
 
@@ -247,6 +251,6 @@ def test_Note___init___19():
     Initialize note with drum pitch.
     """
 
-    note = abjad.Note('sn4')
+    note = abjad.Note("sn4")
 
-    assert format(note) == 'snare4'
+    assert format(note) == "snare4"

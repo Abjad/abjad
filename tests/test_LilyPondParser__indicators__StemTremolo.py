@@ -15,7 +15,7 @@ def test_LilyPondParser__indicators__StemTremolo_01():
             :4
         }
         """
-        )
+    )
 
     parser = abjad.parser.LilyPondParser()
     result = parser(format(target))

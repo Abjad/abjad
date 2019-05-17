@@ -13,7 +13,7 @@ def test_Cluster___init___01():
         \makeClusters {
         }
         """
-        )
+    )
 
 
 def test_Cluster___init___02():
@@ -30,4 +30,4 @@ def test_Cluster___init___02():
             cs'4
         }
         """
-        )
+    )

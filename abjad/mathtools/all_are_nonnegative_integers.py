@@ -14,6 +14,7 @@ def all_are_nonnegative_integers(argument):
     Returns true or false.
     """
     from abjad import mathtools
+
     try:
         return all(mathtools.is_nonnegative_integer(_) for _ in argument)
     except TypeError:

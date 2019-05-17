@@ -22,7 +22,7 @@ class UpdateManager(object):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Managers'
+    __documentation_section__ = "Managers"
 
     __slots__ = ()
 
@@ -55,7 +55,7 @@ class UpdateManager(object):
             offsets_are_current,
             indicators_are_current,
             offsets_in_seconds_are_current,
-            )
+        )
 
     @staticmethod
     def _iterate_entire_score(score_root):
@@ -76,7 +76,7 @@ class UpdateManager(object):
                     pairs.append(pair)
             if component._stop_offset is not None:
                 all_stop_offsets.add(component._stop_offset)
-        pairs.sort(key=lambda _:_[0])
+        pairs.sort(key=lambda _: _[0])
         if not pairs:
             return
         if pairs[0][0] != 0:
@@ -100,7 +100,7 @@ class UpdateManager(object):
                 start_offset=start_offset,
                 stop_offset=stop_offset,
                 annotation=(clocktime_start_offset, clocktime_duration),
-                )
+            )
             timespans.append(timespan)
             clocktime_start_offset += clocktime_duration
         return timespans
@@ -126,6 +126,7 @@ class UpdateManager(object):
         No separate state flags exist for leaf indices or measure numbers.
         """
         from abjad.core.Context import Context
+
         if isinstance(score_root, Context):
             contexts = iterate(score_root).components(Context)
             for context in contexts:
@@ -156,8 +157,11 @@ class UpdateManager(object):
         if not timespans:
             return
         for timespan in timespans:
-            if (timespan.start_offset <= component._start_offset <
-                timespan.stop_offset):
+            if (
+                timespan.start_offset
+                <= component._start_offset
+                < timespan.stop_offset
+            ):
                 pair = timespan.annotation
                 clocktime_start_offset, clocktime_duration = pair
                 local_offset = component._start_offset - timespan.start_offset
@@ -165,8 +169,11 @@ class UpdateManager(object):
                 duration = multiplier * clocktime_duration
                 offset = clocktime_start_offset + duration
                 component._start_offset_in_seconds = Offset(offset)
-            if (timespan.start_offset <= component._stop_offset <
-                timespan.stop_offset):
+            if (
+                timespan.start_offset
+                <= component._stop_offset
+                < timespan.stop_offset
+            ):
                 pair = timespan.annotation
                 clocktime_start_offset, clocktime_duration = pair
                 local_offset = component._stop_offset - timespan.start_offset
@@ -181,12 +188,13 @@ class UpdateManager(object):
             offset = clocktime_start_offset + clocktime_duration
             component._stop_offset_in_seconds = Offset(offset)
             return
-        raise Exception(f'can not find {stop_offset} in {timespans}.')
+        raise Exception(f"can not find {stop_offset} in {timespans}.")
 
     @classmethod
     def _update_component_offsets(class_, component):
         from abjad.core.AfterGraceContainer import AfterGraceContainer
         from abjad.core.GraceContainer import GraceContainer
+
         if isinstance(component._parent, GraceContainer):
             pair = class_._get_grace_note_offsets(component)
             start_offset, stop_offset = pair
@@ -211,7 +219,7 @@ class UpdateManager(object):
         offsets=False,
         offsets_in_seconds=False,
         indicators=False,
-        ):
+    ):
         assert offsets or offsets_in_seconds or indicators
         if component._is_forbidden_to_update:
             return
@@ -223,7 +231,7 @@ class UpdateManager(object):
                 offsets_are_current,
                 indicators_are_current,
                 offsets_in_seconds_are_current,
-                ) = self._get_score_tree_state_flags(parentage)
+            ) = self._get_score_tree_state_flags(parentage)
         score_root = parentage.root
         if offsets and not offsets_are_current:
             self._update_all_offsets(score_root)
@@ -238,6 +246,7 @@ class UpdateManager(object):
     @staticmethod
     def _get_after_grace_note_offsets(grace_note):
         from abjad.core.AfterGraceContainer import AfterGraceContainer
+
         after_grace_container = grace_note._parent
         assert isinstance(after_grace_container, AfterGraceContainer)
         main_leaf = after_grace_container._main_leaf
@@ -248,14 +257,12 @@ class UpdateManager(object):
             grace_displacement -= sibling.written_duration
             sibling = sibling._sibling(1)
         start_offset = Offset(
-            main_leaf_stop_offset,
-            grace_displacement=grace_displacement,
-            )
+            main_leaf_stop_offset, grace_displacement=grace_displacement
+        )
         grace_displacement += grace_note.written_duration
         stop_offset = Offset(
-            main_leaf_stop_offset,
-            grace_displacement=grace_displacement,
-            )
+            main_leaf_stop_offset, grace_displacement=grace_displacement
+        )
         return start_offset, stop_offset
 
     @staticmethod
@@ -270,14 +277,12 @@ class UpdateManager(object):
             grace_displacement -= sibling.written_duration
             sibling = sibling._sibling(1)
         start_offset = Offset(
-            main_leaf_start_offset,
-            grace_displacement=grace_displacement,
-            )
+            main_leaf_start_offset, grace_displacement=grace_displacement
+        )
         grace_displacement += grace_note.written_duration
         stop_offset = Offset(
-            main_leaf_start_offset,
-            grace_displacement=grace_displacement,
-            )
+            main_leaf_start_offset, grace_displacement=grace_displacement
+        )
         return start_offset, stop_offset
 
     def _get_measure_start_offsets(self, component):
@@ -319,11 +324,7 @@ class UpdateManager(object):
         return measure_start_offsets
 
     # TODO: reimplement with some type of bisection
-    def _to_measure_number(
-        self,
-        component,
-        measure_number_start_offsets,
-        ):
+    def _to_measure_number(self, component, measure_number_start_offsets):
         inspector = inspect(component)
         component_start_offset = inspector.timespan().start_offset
         measure_number_start_offsets = measure_number_start_offsets[:]
@@ -334,7 +335,7 @@ class UpdateManager(object):
             if pair[0] <= component_start_offset < pair[-1]:
                 measure_number = measure_index + 1
                 return measure_number
-        message = 'can not find measure number: {!r}, {!r}.'
+        message = "can not find measure number: {!r}, {!r}."
         message = message.format(component, measure_number_start_offsets)
         raise ValueError(message)
 
@@ -344,7 +345,6 @@ class UpdateManager(object):
         score_root = inspect(component).parentage().root
         for component in self._iterate_entire_score(score_root):
             measure_number = self._to_measure_number(
-                component,
-                measure_start_offsets,
-                )
+                component, measure_start_offsets
+            )
             component._measure_number = measure_number

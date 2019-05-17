@@ -28,20 +28,17 @@ class Mode(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_named_interval_segment',
-        '_mode_name',
-        )
+    __slots__ = ("_named_interval_segment", "_mode_name")
 
     ### INITIALIZER ###
 
-    def __init__(self, mode_name='dorian'):
+    def __init__(self, mode_name="dorian"):
         if isinstance(mode_name, str):
             mode_name = mode_name
         elif isinstance(mode_name, Mode):
             mode_name = mode_name.mode_name
         else:
-            message = 'must be mode or mode name: {!r}.'
+            message = "must be mode or mode name: {!r}."
             message = message.format(mode_name)
             raise TypeError(message)
         mdi_segment = self._initialize_with_mode_name(mode_name)
@@ -98,7 +95,7 @@ class Mode(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     def __len__(self):
@@ -142,40 +139,37 @@ class Mode(object):
             repr_is_indented=False,
             storage_format_is_indented=False,
             storage_format_args_values=values,
-            )
+        )
 
     def _initialize_with_mode_name(self, mode_name):
         mdi_segment = []
-        m2 = NamedInterval('m2')
-        M2 = NamedInterval('M2')
-        A2 = NamedInterval('aug2')
+        m2 = NamedInterval("m2")
+        M2 = NamedInterval("M2")
+        A2 = NamedInterval("aug2")
         dorian = [M2, m2, M2, M2, M2, m2, M2]
-        if mode_name == 'dorian':
+        if mode_name == "dorian":
             mdi_segment.extend(sequence(dorian).rotate(n=0))
-        elif mode_name == 'phrygian':
+        elif mode_name == "phrygian":
             mdi_segment.extend(sequence(dorian).rotate(n=-1))
-        elif mode_name == 'lydian':
+        elif mode_name == "lydian":
             mdi_segment.extend(sequence(dorian).rotate(n=-2))
-        elif mode_name == 'mixolydian':
+        elif mode_name == "mixolydian":
             mdi_segment.extend(sequence(dorian).rotate(n=-3))
-        elif mode_name in ('aeolian', 'minor', 'natural minor'):
+        elif mode_name in ("aeolian", "minor", "natural minor"):
             mdi_segment.extend(sequence(dorian).rotate(n=-4))
-        elif mode_name == 'locrian':
+        elif mode_name == "locrian":
             mdi_segment.extend(sequence(dorian).rotate(n=-5))
-        elif mode_name in ('ionian', 'major'):
+        elif mode_name in ("ionian", "major"):
             mdi_segment.extend(sequence(dorian).rotate(n=-6))
-        elif mode_name == 'melodic minor':
+        elif mode_name == "melodic minor":
             mdi_segment.extend([M2, m2, M2, M2, M2, M2, m2])
-        elif mode_name == 'harmonic minor':
+        elif mode_name == "harmonic minor":
             mdi_segment.extend([M2, m2, M2, M2, m2, A2, m2])
         else:
-            message = 'unknown mode name: {!r}.'
+            message = "unknown mode name: {!r}."
             message = message.format(mode_name)
             raise ValueError(message)
-        return IntervalSegment(
-            items=mdi_segment,
-            item_class=NamedInterval,
-            )
+        return IntervalSegment(items=mdi_segment, item_class=NamedInterval)
 
     ### PUBLIC PROPERTIES ###
 

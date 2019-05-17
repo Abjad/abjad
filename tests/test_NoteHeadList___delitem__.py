@@ -7,6 +7,6 @@ def test_NoteHeadList___delitem___01():
     """
 
     chord = abjad.Chord("<ef' cs'' f''>4")
-    del(chord.note_heads[1])
+    del chord.note_heads[1]
 
     assert format(chord) == "<ef' f''>4"

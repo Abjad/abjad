@@ -30,10 +30,10 @@ def test_Container___delitem___01():
             }
         }
         """
-        )
+    )
 
     container = voice[0]
-    del(voice[0])
+    del voice[0]
 
     # container no longer appears in score
     assert format(voice) == abjad.String.normalize(
@@ -49,7 +49,7 @@ def test_Container___delitem___01():
             }
         }
         """
-        ), print(format(voice))
+    ), print(format(voice))
 
     assert abjad.inspect(voice).wellformed()
 
@@ -64,7 +64,7 @@ def test_Container___delitem___01():
             )
         }
         """
-        ), print(format(container))
+    ), print(format(container))
 
     assert abjad.inspect(container).wellformed()
 
@@ -75,7 +75,7 @@ def test_Container___delitem___02():
     """
 
     voice = abjad.Voice("c'8 [ d'8 e'8 f'8 ]")
-    del(voice[1])
+    del voice[1]
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -88,7 +88,7 @@ def test_Container___delitem___02():
             ]
         }
         """
-        )
+    )
 
     assert abjad.inspect(voice).wellformed()
 
@@ -99,7 +99,7 @@ def test_Container___delitem___03():
     """
 
     voice = abjad.Voice("c'8 [ d'8 e'8 f'8 ]")
-    del(voice[1:3])
+    del voice[1:3]
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -111,7 +111,7 @@ def test_Container___delitem___03():
             ]
         }
         """
-        )
+    )
 
     assert abjad.inspect(voice).wellformed()
 
@@ -122,7 +122,7 @@ def test_Container___delitem___04():
     """
 
     voice = abjad.Voice("c'8 [ d'8 e'8 f'8 ]")
-    del(voice[:2])
+    del voice[:2]
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -133,7 +133,7 @@ def test_Container___delitem___04():
             ]
         }
         """
-        )
+    )
 
     assert abjad.inspect(voice).wellformed()
 
@@ -144,7 +144,7 @@ def test_Container___delitem___05():
     """
 
     voice = abjad.Voice("c'8 [ d'8 e'8 f'8 ]")
-    del(voice[2:])
+    del voice[2:]
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -155,7 +155,7 @@ def test_Container___delitem___05():
             d'8
         }
         """
-        )
+    )
 
     assert abjad.inspect(voice).wellformed()
 
@@ -166,7 +166,7 @@ def test_Container___delitem___06():
     """
 
     voice = abjad.Voice("c'8 [ d'8 e'8 f'8 ]")
-    del(voice[:])
+    del voice[:]
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -174,7 +174,7 @@ def test_Container___delitem___06():
         {
         }
         """
-        )
+    )
 
     assert not len(voice)
 
@@ -185,7 +185,7 @@ def test_Container___delitem___07():
     """
 
     tuplet = abjad.Tuplet(abjad.Multiplier((2, 3)), "c'8 [ d'8 e'8 ]")
-    del(tuplet[1])
+    del tuplet[1]
 
     assert format(tuplet) == abjad.String.normalize(
         r"""
@@ -197,7 +197,7 @@ def test_Container___delitem___07():
             ]
         }
         """
-        )
+    )
 
     assert abjad.inspect(tuplet).wellformed()
 
@@ -228,10 +228,10 @@ def test_Container___delitem___08():
             ]
         }
         """
-        )
+    )
 
     leaf = leaves[1]
-    del(voice[1][0])
+    del voice[1][0]
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -248,7 +248,7 @@ def test_Container___delitem___08():
             ]
         }
         """
-        )
+    )
 
     assert abjad.inspect(voice).wellformed()
     assert abjad.inspect(leaf).wellformed()

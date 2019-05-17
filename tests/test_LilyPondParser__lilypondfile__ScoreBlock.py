@@ -4,7 +4,7 @@ import pytest
 
 def test_LilyPondParser__lilypondfile__ScoreBlock_01():
 
-    target = abjad.Block(name='score')
+    target = abjad.Block(name="score")
     target.items.append(abjad.Score())
     parser = abjad.parser.LilyPondParser()
     result = parser(format(target))

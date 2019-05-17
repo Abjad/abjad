@@ -10,4 +10,4 @@ def test_Rest___setattr___01():
     rest = abjad.Rest((1, 4))
 
     with pytest.raises(AttributeError):
-        rest.foo = 'bar'
+        rest.foo = "bar"

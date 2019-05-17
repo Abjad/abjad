@@ -27,17 +27,17 @@ class NoteHead(object):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Note-heads'
+    __documentation_section__ = "Note-heads"
 
     __slots__ = (
-        '_alternative',
-        '_client',
-        '_is_cautionary',
-        '_is_forced',
-        '_is_parenthesized',
-        '_tweaks',
-        '_written_pitch',
-        )
+        "_alternative",
+        "_client",
+        "_is_cautionary",
+        "_is_forced",
+        "_is_parenthesized",
+        "_tweaks",
+        "_written_pitch",
+    )
 
     ### INITIALIZER ###
 
@@ -49,8 +49,9 @@ class NoteHead(object):
         is_forced=None,
         is_parenthesized=None,
         tweaks=None,
-        ):
+    ):
         import abjad
+
         self._alternative = None
         if client is not None:
             assert isinstance(client, abjad.Leaf)
@@ -73,7 +74,7 @@ class NoteHead(object):
 
     ### SPECIAL METHODS ###
 
-    def __copy__(self, *arguments) -> 'NoteHead':
+    def __copy__(self, *arguments) -> "NoteHead":
         """
         Copies note-head.
 
@@ -100,7 +101,7 @@ class NoteHead(object):
             self.is_forced,
             self.is_parenthesized,
             self.tweaks,
-            )
+        )
         return type(self)(*arguments)
 
     def __eq__(self, argument) -> bool:
@@ -112,13 +113,13 @@ class NoteHead(object):
             return self.written_pitch == argument.written_pitch
         return self.written_pitch == argument
 
-    def __format__(self, format_specification='') -> str:
+    def __format__(self, format_specification="") -> str:
         """
         Formats note-head.
         """
-        if format_specification in ('', 'lilypond'):
+        if format_specification in ("", "lilypond"):
             return self._get_lilypond_format()
-        elif format_specification == 'storage':
+        elif format_specification == "storage":
             return StorageFormatManager(self).get_storage_format()
         return str(self)
 
@@ -167,13 +168,13 @@ class NoteHead(object):
             "cs''"
 
         """
-        result = ''
+        result = ""
         if self.written_pitch:
             result = str(self.written_pitch)
             if self.is_forced:
-                result += '!'
+                result += "!"
             if self.is_cautionary:
-                result += '?'
+                result += "?"
         return result
 
     ### PRIVATE PROPERTIES ###
@@ -182,10 +183,10 @@ class NoteHead(object):
     def _keyword_argument_names(self):
         agent = StorageFormatManager(self)
         keyword_argument_names = list(agent.signature_keyword_names)
-        if 'client' in keyword_argument_names:
-            keyword_argument_names.remove('client')
-        if 'tweaks' in keyword_argument_names:
-            keyword_argument_names.remove('tweaks')
+        if "client" in keyword_argument_names:
+            keyword_argument_names.remove("client")
+        if "tweaks" in keyword_argument_names:
+            keyword_argument_names.remove("tweaks")
         keyword_argument_names = tuple(keyword_argument_names)
         return keyword_argument_names
 
@@ -195,25 +196,23 @@ class NoteHead(object):
         arguments = [repr(str(self))]
         if self.tweaks:
             arguments.extend(self.tweaks._get_attribute_pairs())
-        arguments = ', '.join([str(_) for _ in arguments])
-        repr_text = f'{type(self).__name__}({arguments})'
+        arguments = ", ".join([str(_) for _ in arguments])
+        repr_text = f"{type(self).__name__}({arguments})"
         agent = StorageFormatManager(self)
         names = list(agent.signature_keyword_names)
-        if 'client' in names:
-            names.remove('client')
-        if 'tweaks' in names:
-            names.remove('tweaks')
+        if "client" in names:
+            names.remove("client")
+        if "tweaks" in names:
+            names.remove("tweaks")
         return FormatSpecification(
-            self,
-            repr_text=repr_text,
-            storage_format_kwargs_names=names,
-            )
+            self, repr_text=repr_text, storage_format_kwargs_names=names
+        )
 
     def _get_format_pieces(self):
         assert self.written_pitch
         result = []
         if self.is_parenthesized:
-            result.append(r'\parenthesize')
+            result.append(r"\parenthesize")
         if self.tweaks:
             strings = self.tweaks._list_format_contributions(directed=False)
             result.extend(strings)
@@ -222,9 +221,9 @@ class NoteHead(object):
             written_pitch = written_pitch.simplify()
         kernel = format(written_pitch)
         if self.is_forced:
-            kernel += '!'
+            kernel += "!"
         if self.is_cautionary:
-            kernel += '?'
+            kernel += "?"
         result.append(kernel)
         return result
 
@@ -233,26 +232,21 @@ class NoteHead(object):
         if formatted_duration is not None:
             pieces[-1] = pieces[-1] + formatted_duration
         if self.alternative:
-            pieces = LilyPondFormatManager.tag(
-                pieces,
-                tag=self.alternative[2],
-                )
+            pieces = LilyPondFormatManager.tag(pieces, tag=self.alternative[2])
             pieces_ = self.alternative[0]._get_format_pieces()
             if formatted_duration is not None:
                 pieces_[-1] = pieces_[-1] + formatted_duration
             pieces_ = LilyPondFormatManager.tag(
-                pieces_,
-                deactivate=True,
-                tag=self.alternative[1],
-                )
+                pieces_, deactivate=True, tag=self.alternative[1]
+            )
             pieces.extend(pieces_)
-        result = '\n'.join(pieces)
+        result = "\n".join(pieces)
         return result
 
     ### PUBLIC PROPERTIES ###
 
     @property
-    def alternative(self) -> typing.Tuple['NoteHead', str, str]:
+    def alternative(self) -> typing.Tuple["NoteHead", str, str]:
         """
         Gets and sets note-head alternative.
 

@@ -8,7 +8,7 @@ class NullContextManager(ContextManager):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Context managers'
+    __documentation_section__ = "Context managers"
 
     __slots__ = ()
 

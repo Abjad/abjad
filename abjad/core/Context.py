@@ -9,7 +9,7 @@ from .Container import Container
 
 
 class Context(Container):
-    """
+    r"""
     LilyPond context.
 
     ..  container:: example
@@ -33,50 +33,50 @@ class Context(Container):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Contexts'
+    __documentation_section__ = "Contexts"
 
     __slots__ = (
-        '_lilypond_type',
-        '_consists_commands',
-        '_dependent_wrappers',
-        '_remove_commands',
-        )
+        "_lilypond_type",
+        "_consists_commands",
+        "_dependent_wrappers",
+        "_remove_commands",
+    )
 
-    _default_lilypond_type = 'Voice'
+    _default_lilypond_type = "Voice"
 
     lilypond_types = (
-        'Score',
-        'StaffGroup',
-        'ChoirStaff',
-        'GrandStaff',
-        'PianoStaff',
-        'Staff',
-        'RhythmicStaff',
-        'TabStaff',
-        'DrumStaff',
-        'VaticanaStaff',
-        'MensuralStaff',
-        'Voice',
-        'VaticanaVoice',
-        'MensuralVoice',
-        'Lyrics',
-        'DrumVoice',
-        'FiguredBass',
-        'TabVoice',
-        'CueVoice',
-        'ChordNames',
-        )
+        "Score",
+        "StaffGroup",
+        "ChoirStaff",
+        "GrandStaff",
+        "PianoStaff",
+        "Staff",
+        "RhythmicStaff",
+        "TabStaff",
+        "DrumStaff",
+        "VaticanaStaff",
+        "MensuralStaff",
+        "Voice",
+        "VaticanaVoice",
+        "MensuralVoice",
+        "Lyrics",
+        "DrumVoice",
+        "FiguredBass",
+        "TabVoice",
+        "CueVoice",
+        "ChordNames",
+    )
 
     ### INITIALIZER ###
 
     def __init__(
         self,
         components=None,
-        lilypond_type: str = 'Context',
+        lilypond_type: str = "Context",
         is_simultaneous: bool = None,
-        name: str  = None,
+        name: str = None,
         tag: str = None,
-        ) -> None:
+    ) -> None:
         self._consists_commands: typing.List[str] = []
         self._dependent_wrappers: typing.List[Wrapper] = []
         self._remove_commands: typing.List[str] = []
@@ -87,7 +87,7 @@ class Context(Container):
             components=components,
             name=name,
             tag=tag,
-            )
+        )
 
     ### SPECIAL METHODS ###
 
@@ -137,15 +137,15 @@ class Context(Container):
 
     def _format_closing_slot(self, bundle):
         result = []
-        result.append(('indicators', bundle.closing.indicators))
-        result.append(('commands', bundle.closing.commands))
-        result.append(('comments', bundle.closing.comments))
+        result.append(("indicators", bundle.closing.indicators))
+        result.append(("commands", bundle.closing.commands))
+        result.append(("comments", bundle.closing.comments))
         return self._format_slot_contributions_with_indent(result)
 
     def _format_consists_commands(self):
         result = []
         for engraver in self.consists_commands:
-            string = rf'\consists {engraver}'
+            string = rf"\consists {engraver}"
             result.append(string)
         return result
 
@@ -153,7 +153,7 @@ class Context(Container):
         if self.name is not None:
             string = rf'\context {self.lilypond_type} = "{self.name}"'
         else:
-            string = rf'\new {self.lilypond_type}'
+            string = rf"\new {self.lilypond_type}"
         return string
 
     def _format_open_brackets_slot(self, bundle):
@@ -161,73 +161,73 @@ class Context(Container):
         result = []
         if self.is_simultaneous:
             if self.identifier:
-                open_bracket = f'<<  {self.identifier}'
+                open_bracket = f"<<  {self.identifier}"
             else:
-                open_bracket = '<<'
+                open_bracket = "<<"
         else:
             if self.identifier:
-                open_bracket = f'{{   {self.identifier}'
+                open_bracket = f"{{   {self.identifier}"
             else:
-                open_bracket = '{'
+                open_bracket = "{"
         brackets_open = [open_bracket]
         remove_commands = self._format_remove_commands()
         consists_commands = self._format_consists_commands()
         overrides = bundle.grob_overrides
         settings = bundle.context_settings
         if remove_commands or consists_commands or overrides or settings:
-            contributions = [self._format_invocation(), r'\with', '{']
+            contributions = [self._format_invocation(), r"\with", "{"]
             contributions = self._tag_strings(contributions)
             contributions = tuple(contributions)
-            identifier_pair = ('context_brackets', 'open')
+            identifier_pair = ("context_brackets", "open")
             result.append((identifier_pair, contributions))
             contributions = [indent + _ for _ in remove_commands]
             contributions = self._tag_strings(contributions)
             contributions = tuple(contributions)
-            identifier_pair = ('engraver removals', 'remove_commands')
+            identifier_pair = ("engraver removals", "remove_commands")
             result.append((identifier_pair, contributions))
             contributions = [indent + _ for _ in consists_commands]
             contributions = self._tag_strings(contributions)
             contributions = tuple(contributions)
-            identifier_pair = ('engraver consists', 'consists_commands')
+            identifier_pair = ("engraver consists", "consists_commands")
             result.append((identifier_pair, contributions))
             contributions = [indent + _ for _ in overrides]
             contributions = self._tag_strings(contributions)
             contributions = tuple(contributions)
-            identifier_pair = ('overrides', 'overrides')
+            identifier_pair = ("overrides", "overrides")
             result.append((identifier_pair, contributions))
             contributions = [indent + _ for _ in settings]
             contributions = self._tag_strings(contributions)
             contributions = tuple(contributions)
-            identifier_pair = ('settings', 'settings')
+            identifier_pair = ("settings", "settings")
             result.append((identifier_pair, contributions))
-            contributions = [f'}} {brackets_open[0]}']
-            contributions = ['}', open_bracket]
+            contributions = [f"}} {brackets_open[0]}"]
+            contributions = ["}", open_bracket]
             contributions = self._tag_strings(contributions)
             contributions = tuple(contributions)
-            identifier_pair = ('context_brackets', 'open')
+            identifier_pair = ("context_brackets", "open")
             result.append((identifier_pair, contributions))
         else:
             contribution = self._format_invocation()
-            contribution += f' {brackets_open[0]}'
+            contribution += f" {brackets_open[0]}"
             contributions = [contribution]
             contributions = [self._format_invocation(), open_bracket]
             contributions = self._tag_strings(contributions)
             contributions = tuple(contributions)
-            identifier_pair = ('context_brackets', 'open')
+            identifier_pair = ("context_brackets", "open")
             result.append((identifier_pair, contributions))
         return tuple(result)
 
     def _format_opening_slot(self, bundle):
         result = []
-        result.append(('comments', bundle.opening.comments))
-        result.append(('indicators', bundle.opening.indicators))
-        result.append(('commands', bundle.opening.commands))
+        result.append(("comments", bundle.opening.comments))
+        result.append(("indicators", bundle.opening.indicators))
+        result.append(("commands", bundle.opening.commands))
         return self._format_slot_contributions_with_indent(result)
 
     def _format_remove_commands(self):
         result = []
         for engraver in self.remove_commands:
-            string = rf'\remove {engraver}'
+            string = rf"\remove {engraver}"
             result.append(string)
         return result
 
@@ -245,7 +245,7 @@ class Context(Container):
             if wrapper.annotation:
                 continue
             indicator = wrapper.indicator
-            if not getattr(indicator, 'persistent', False):
+            if not getattr(indicator, "persistent", False):
                 continue
             assert isinstance(indicator.persistent, bool)
             is_phantom = False
@@ -257,22 +257,24 @@ class Context(Container):
                         continue
             if is_phantom:
                 continue
-            if hasattr(indicator, 'parameter'):
+            if hasattr(indicator, "parameter"):
                 key = indicator.parameter
             elif isinstance(indicator, Instrument):
-                key = 'Instrument'
+                key = "Instrument"
             else:
                 key = str(type(indicator))
-            if (key not in wrappers or
-                wrappers[key].start_offset <= wrapper.start_offset):
+            if (
+                key not in wrappers
+                or wrappers[key].start_offset <= wrapper.start_offset
+            ):
                 wrappers[key] = wrapper
         return wrappers
 
     def _get_repr_kwargs_names(self):
         if self.lilypond_type == type(self).__name__:
-            return ['is_simultaneous', 'name']
+            return ["is_simultaneous", "name"]
         else:
-            return ['is_simultaneous', 'lilypond_type', 'name']
+            return ["is_simultaneous", "lilypond_type", "name"]
 
     ### PUBLIC PROPERTIES ###
 
@@ -339,8 +341,8 @@ class Context(Container):
             lilypond_context = LilyPondContext(name=self.lilypond_type)
         except AssertionError:
             lilypond_context = LilyPondContext(
-                name=self._default_lilypond_type,
-                )
+                name=self._default_lilypond_type
+            )
         return lilypond_context
 
     @property

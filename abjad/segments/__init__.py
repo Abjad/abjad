@@ -3,8 +3,9 @@ Tools for high-level score modeling.
 """
 
 from .ScoreTemplate import ScoreTemplate
-from .GroupedRhythmicStavesScoreTemplate import \
-    GroupedRhythmicStavesScoreTemplate
+from .GroupedRhythmicStavesScoreTemplate import (
+    GroupedRhythmicStavesScoreTemplate,
+)
 from .GroupedStavesScoreTemplate import GroupedStavesScoreTemplate
 from .Job import Job
 from .Line import Line

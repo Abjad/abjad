@@ -46,10 +46,12 @@ class LogicalTie(Selection):
     ### PRIVATE METHODS ###
 
     def _add_or_remove_notes_to_achieve_written_duration(
-        self, new_written_duration):
+        self, new_written_duration
+    ):
         from abjad.spanners import tie as abjad_tie
         from .NoteMaker import NoteMaker
         from .Tuplet import Tuplet
+
         new_written_duration = Duration(new_written_duration)
         maker = NoteMaker()
         if new_written_duration.is_assignable:
@@ -65,19 +67,19 @@ class LogicalTie(Selection):
             if len(self) == len(durations):
                 pass
             elif len(durations) < len(self):
-                for leaf in self[len(durations):]:
+                for leaf in self[len(durations) :]:
                     mutate(leaf).extract()
             elif len(self) < len(durations):
-                #detach(Tie, self[0])
+                # detach(Tie, self[0])
                 detach(TieIndicator, self[0])
                 detach(RepeatTie, self[0])
                 difference = len(durations) - len(self)
                 extra_leaves = self[0] * difference
                 for extra_leaf in extra_leaves:
-                    #detach(Tie, extra_leaf)
+                    # detach(Tie, extra_leaf)
                     detach(TieIndicator, extra_leaf)
                     detach(RepeatTie, extra_leaf)
-                extra_tokens = durations[len(self):]
+                extra_tokens = durations[len(self) :]
                 for leaf, token in zip(extra_leaves, extra_tokens):
                     leaf.written_duration = token.written_duration
                 parent = inspect(self[-1]).parentage().parent
@@ -85,7 +87,7 @@ class LogicalTie(Selection):
                 next_ = index + 1
                 parent[next_:next_] = extra_leaves
                 leaves = self.leaves + extra_leaves
-                #attach(Tie(), leaves)
+                # attach(Tie(), leaves)
                 abjad_tie(leaves)
         else:
             components = maker(0, new_written_duration)
@@ -94,10 +96,11 @@ class LogicalTie(Selection):
             logical_tie = tuplet[0]._get_logical_tie()
             duration = logical_tie._get_preprolated_duration()
             leaves_ = self._add_or_remove_notes_to_achieve_written_duration(
-                duration)
+                duration
+            )
             multiplier = tuplet.multiplier
             tuplet = Tuplet(multiplier, [])
-            #mutate(self.leaves).wrap(tuplet)
+            # mutate(self.leaves).wrap(tuplet)
             mutate(leaves_).wrap(tuplet)
 
         return self[0]._get_logical_tie()
@@ -120,7 +123,8 @@ class LogicalTie(Selection):
     def _scale(self, multiplier):
         new_duration = multiplier * self.written_duration
         return self._add_or_remove_notes_to_achieve_written_duration(
-            new_duration)
+            new_duration
+        )
 
     ### PUBLIC PROPERTIES ###
 
@@ -143,6 +147,7 @@ class LogicalTie(Selection):
         """
         from .Chord import Chord
         from .Note import Note
+
         return isinstance(self.head, (Chord, Note))
 
     @property
@@ -283,23 +288,24 @@ class LogicalTie(Selection):
         from .Note import Note
         from .NoteMaker import NoteMaker
         from .Tuplet import Tuplet
+
         proportions = Ratio(proportions)
         target_duration = self._get_preprolated_duration()
         prolated_duration = target_duration / sum(proportions.numbers)
-        basic_written_duration = \
+        basic_written_duration = (
             prolated_duration.equal_or_greater_power_of_two
+        )
         written_durations = [
             _ * basic_written_duration for _ in proportions.numbers
-            ]
+        ]
         maker = NoteMaker()
         try:
             notes = [Note(0, _) for _ in written_durations]
         except exceptions.AssignabilityError:
             denominator = target_duration._denominator
             note_durations = [
-                Duration(_, denominator)
-                for _ in proportions.numbers
-                ]
+                Duration(_, denominator) for _ in proportions.numbers
+            ]
             notes = maker(0, note_durations)
         tuplet = Tuplet.from_duration(target_duration, notes)
         for leaf in self:

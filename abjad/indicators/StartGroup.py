@@ -46,9 +46,7 @@ class StartGroup(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_tweaks',
-        )
+    __slots__ = ("_tweaks",)
 
     _persistent = True
 
@@ -56,11 +54,7 @@ class StartGroup(object):
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        *,
-        tweaks: LilyPondTweakManager = None,
-        ) -> None:
+    def __init__(self, *, tweaks: LilyPondTweakManager = None) -> None:
         if tweaks is not None:
             assert isinstance(tweaks, LilyPondTweakManager), repr(tweaks)
         self._tweaks = LilyPondTweakManager.set_tweaks(self, tweaks)
@@ -82,9 +76,9 @@ class StartGroup(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
-    
+
     def __repr__(self) -> str:
         """
         Gets interpreter representation.
@@ -98,7 +92,7 @@ class StartGroup(object):
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions()
             bundle.after.spanner_starts.extend(tweaks)
-        string = r'\startGroup'
+        string = r"\startGroup"
         bundle.after.spanner_starts.append(string)
         return bundle
 

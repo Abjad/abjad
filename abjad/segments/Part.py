@@ -29,14 +29,14 @@ class Part(object):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_section_abbreviation',
-        '_instrument',
-        '_member',
-        '_name',
-        '_number',
-        '_section',
-        '_zfill',
-        )
+        "_section_abbreviation",
+        "_instrument",
+        "_member",
+        "_name",
+        "_number",
+        "_section",
+        "_zfill",
+    )
 
     _publish_storage_format = True
 
@@ -50,18 +50,18 @@ class Part(object):
         section: str = None,
         section_abbreviation: str = None,
         zfill: int = None,
-        ) -> None:
+    ) -> None:
         instrument = instrument or section
         if instrument is not None:
             if not isinstance(instrument, str):
-                message = 'instrument must be string'
-                message += f' (not {instrument!r}).'
+                message = "instrument must be string"
+                message += f" (not {instrument!r})."
                 raise Exception(message)
         self._instrument = instrument
         if member is not None:
             if not isinstance(member, int):
-                message = 'member must be integer'
-                message += f' (not {member!r}).'
+                message = "member must be integer"
+                message += f" (not {member!r})."
                 raise Exception(message)
         self._member = member
         if number is not None:
@@ -70,12 +70,12 @@ class Part(object):
         self._number = number
         if section is not None:
             if not isinstance(section, str):
-                raise Exception(f'section must be string (not {section!r}).')
+                raise Exception(f"section must be string (not {section!r}).")
         self._section = section
         if section_abbreviation is not None:
             if not isinstance(section_abbreviation, str):
-                message = 'section_abbreviation must be string'
-                message += f' (not {section_abbreviation!r}).'
+                message = "section_abbreviation must be string"
+                message += f" (not {section_abbreviation!r})."
                 raise Exception(message)
         self._section_abbreviation = section_abbreviation
         if zfill is not None:
@@ -86,7 +86,7 @@ class Part(object):
             member_ = str(member)
             if self.zfill is not None:
                 member_ = member_.zfill(self.zfill)
-            name: typing.Optional[str] = f'{section}{member_}'
+            name: typing.Optional[str] = f"{section}{member_}"
         else:
             name = section
         self._name = name
@@ -180,7 +180,7 @@ class Part(object):
             return self.section_abbreviation
         else:
             assert isinstance(self.member, int)
-            return f'{self.section_abbreviation}-{self.member}'
+            return f"{self.section_abbreviation}-{self.member}"
 
     @property
     def instrument(self) -> typing.Optional[str]:

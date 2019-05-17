@@ -21,11 +21,7 @@ class Rotation(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_n',
-        '_period',
-        '_stravinsky',
-        )
+    __slots__ = ("_n", "_period", "_stravinsky")
 
     ### INITIALIZER ###
 
@@ -121,6 +117,7 @@ class Rotation(object):
 
         """
         import abjad
+
         return abjad.CompoundOperator._compose_operators(self, operator)
 
     def __call__(self, argument):
@@ -184,21 +181,19 @@ class Rotation(object):
         Returns new object with type equal to that of `argument`.
         """
         import abjad
+
         if isinstance(argument, (abjad.Pitch, abjad.PitchClass)):
             return argument
-        if not isinstance(argument, (
-            abjad.PitchSegment,
-            abjad.PitchClassSegment,
-            )):
+        if not isinstance(
+            argument, (abjad.PitchSegment, abjad.PitchClassSegment)
+        ):
             argument = abjad.PitchSegment(argument)
         if not self.period:
             return argument.rotate(self.n, stravinsky=self.stravinsky)
         result = abjad.new(argument, items=())
         for shard in abjad.sequence(argument).partition_by_counts(
-            [self.period],
-            cyclic=True,
-            overhang=True,
-            ):
+            [self.period], cyclic=True, overhang=True
+        ):
             shard = type(argument)(shard)
             shard = shard.rotate(self.n, stravinsky=self.stravinsky)
             result = result + shard
@@ -219,7 +214,7 @@ class Rotation(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     def __radd__(self, operator):
@@ -235,7 +230,7 @@ class Rotation(object):
 
         Raises not implemented error.
         """
-        message = 'right-addition not defined on {}.'
+        message = "right-addition not defined on {}."
         message = message.format(type(self).__name__)
         raise NotImplementedError(message)
 
@@ -270,16 +265,16 @@ class Rotation(object):
             'rs1'
 
         """
-        string = 'r{}'
+        string = "r{}"
         if self.stravinsky:
-            string = 'rs{}'
+            string = "rs{}"
         string = string.format(self.n)
         return string
 
     ### PRIVATE METHODS ###
 
     def _get_markup(self, direction=None):
-        operator = markups.Markup('r', direction=direction)
+        operator = markups.Markup("r", direction=direction)
         subscript = markups.Markup(self.n).sub()
         hspace = markups.Markup.hspace(-0.25)
         markup = markups.Markup.concat([operator, hspace, subscript])

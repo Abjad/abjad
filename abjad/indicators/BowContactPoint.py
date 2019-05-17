@@ -37,18 +37,13 @@ class BowContactPoint(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_contact_point',
-        )
+    __slots__ = ("_contact_point",)
 
     _publish_storage_format = True
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        contact_point: typings.IntegerPair = None,
-        ) -> None:
+    def __init__(self, contact_point: typings.IntegerPair = None) -> None:
         contact_point_ = None
         if contact_point is not None:
             contact_point_ = Multiplier(contact_point)
@@ -94,7 +89,7 @@ class BowContactPoint(object):
             self_contact_point = self.contact_point or 0
             argument_contact_point = argument.contact_point or 0
             return self_contact_point < argument_contact_point
-        raise TypeError('unorderable types')
+        raise TypeError("unorderable types")
 
     def __repr__(self):
         """
@@ -169,9 +164,8 @@ class BowContactPoint(object):
         else:
             contact_point = self.contact_point
         markup = Markup.fraction(
-            contact_point.numerator,
-            contact_point.denominator,
-            )
+            contact_point.numerator, contact_point.denominator
+        )
         markup = markup.vcenter()
         markup = markup.center_align()
         return markup

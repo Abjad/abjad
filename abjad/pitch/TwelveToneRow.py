@@ -38,12 +38,11 @@ class TwelveToneRow(PitchClassSegment):
 
     def __init__(self, items=(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)):
         import abjad
+
         assert items is not None
         PitchClassSegment.__init__(
-            self,
-            items=items,
-            item_class=abjad.NumberedPitchClass,
-            )
+            self, items=items, item_class=abjad.NumberedPitchClass
+        )
         self._validate_pitch_classes(self)
 
     ### SPECIAL METHODS ###
@@ -268,6 +267,7 @@ class TwelveToneRow(PitchClassSegment):
         Returns permuted pitch-classes in object of type `pitch_classes`.
         """
         import abjad
+
         new_pitch_classes = []
         for pitch_class in pitch_classes:
             pitch_class = abjad.NumberedPitchClass(pitch_class)
@@ -343,12 +343,12 @@ class TwelveToneRow(PitchClassSegment):
 
         """
         import abjad
+
         item = self._collection.__getitem__(argument)
         try:
             return PitchClassSegment(
-                items=item,
-                item_class=abjad.NumberedPitchClass,
-                )
+                items=item, item_class=abjad.NumberedPitchClass
+            )
         except TypeError:
             return item
 
@@ -638,7 +638,7 @@ class TwelveToneRow(PitchClassSegment):
 
     @property
     def _contents_string(self):
-        return ', '.join([str(abs(pc)) for pc in self])
+        return ", ".join([str(abs(pc)) for pc in self])
 
     ### PRIVATE METHODS ###
 
@@ -647,7 +647,7 @@ class TwelveToneRow(PitchClassSegment):
         numbers = [pc.number for pc in pitch_classes]
         numbers.sort()
         if not numbers == list(range(12)):
-            message = 'must contain all twelve pitch-classes: {!r}.'
+            message = "must contain all twelve pitch-classes: {!r}."
             message = message.format(pitch_classes)
             raise ValueError(message)
 
@@ -798,11 +798,7 @@ class TwelveToneRow(PitchClassSegment):
         return super().count(item)
 
     @classmethod
-    def from_selection(
-        class_,
-        selection,
-        item_class=None,
-        ):
+    def from_selection(class_, selection, item_class=None):
         """
         Makes row from `selection`.
 

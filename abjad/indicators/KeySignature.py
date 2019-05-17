@@ -53,29 +53,25 @@ class KeySignature(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_mode',
-        '_tonic',
-        '_tweaks',
-        )
+    __slots__ = ("_mode", "_tonic", "_tweaks")
 
-    _context = 'Staff'
+    _context = "Staff"
 
-    _format_slot = 'opening'
+    _format_slot = "opening"
 
     _persistent = True
-    
+
     _redraw = True
 
     ### INITIALIZER ###
 
     def __init__(
         self,
-        tonic: str = 'c',
-        mode: str = 'major',
+        tonic: str = "c",
+        mode: str = "major",
         *,
         tweaks: LilyPondTweakManager = None,
-        ) -> None:
+    ) -> None:
         self._tonic = NamedPitchClass(tonic)
         self._mode = Mode(mode)
         if tweaks is not None:
@@ -99,7 +95,7 @@ class KeySignature(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     def __repr__(self) -> str:
@@ -127,7 +123,7 @@ class KeySignature(object):
             'e-minor'
 
         """
-        return f'{self.tonic!s}-{self.mode!s}'
+        return f"{self.tonic!s}-{self.mode!s}"
 
     ### PRIVATE METHODS ###
 
@@ -138,10 +134,10 @@ class KeySignature(object):
             repr_is_indented=False,
             storage_format_is_indented=False,
             storage_format_args_values=values,
-            )
+        )
 
     def _get_lilypond_format(self):
-        return rf'\key {self.tonic!s} \{self.mode!s}'
+        return rf"\key {self.tonic!s} \{self.mode!s}"
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = LilyPondFormatBundle()
@@ -225,11 +221,11 @@ class KeySignature(object):
             'e minor'
 
         """
-        if self.mode.mode_name == 'major':
+        if self.mode.mode_name == "major":
             tonic = str(self.tonic).upper()
         else:
             tonic = str(self.tonic)
-        return f'{tonic!s} {self.mode.mode_name!s}'
+        return f"{tonic!s} {self.mode.mode_name!s}"
 
     @property
     def persistent(self) -> bool:

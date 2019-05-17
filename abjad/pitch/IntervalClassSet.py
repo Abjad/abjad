@@ -14,38 +14,38 @@ class IntervalClassSet(Set):
 
     def __init__(self, items=None, item_class=None):
         import abjad
+
         prototype = (
             abjad.PitchClassSegment,
             abjad.PitchClassSet,
             abjad.PitchSegment,
             abjad.PitchSet,
-            )
+        )
         if isinstance(items, prototype):
             items = list(items)
             enumerator = abjad.utilities.Enumerator(items)
             pairs = enumerator.yield_pairs()
             items = [second - first for first, second in pairs]
-        Set.__init__(
-            self,
-            items=items,
-            item_class=item_class,
-            )
+        Set.__init__(self, items=items, item_class=item_class)
 
     ### PRIVATE PROPERTIES ###
 
     @property
     def _named_item_class(self):
         import abjad
+
         return abjad.NamedIntervalClass
 
     @property
     def _numbered_item_class(self):
         import abjad
+
         return abjad.NumberedIntervalClass
 
     @property
     def _parent_item_class(self):
         import abjad
+
         return abjad.IntervalClass
 
     ### PUBLIC METHODS ###
@@ -111,8 +111,6 @@ class IntervalClassSet(Set):
         Returns interval set.
         """
         import abjad
+
         interval_set = abjad.IntervalSet.from_selection(selection)
-        return class_(
-            items=interval_set,
-            item_class=item_class,
-            )
+        return class_(items=interval_set, item_class=item_class)

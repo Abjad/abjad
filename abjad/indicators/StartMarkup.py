@@ -51,11 +51,7 @@ class StartMarkup(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_context',
-        '_format_slot',
-        '_markup',
-        )
+    __slots__ = ("_context", "_format_slot", "_markup")
 
     _publish_storage_format = True
 
@@ -63,11 +59,11 @@ class StartMarkup(object):
 
     def __init__(
         self,
-        markup: typing.Union[str, Markup] = 'instrument name',
+        markup: typing.Union[str, Markup] = "instrument name",
         *,
-        context: str = 'Staff',
-        format_slot: str = 'before',
-        ) -> None:
+        context: str = "Staff",
+        format_slot: str = "before",
+    ) -> None:
         assert isinstance(context, str), repr(context)
         self._context = context
         assert isinstance(format_slot, str), repr(format_slot)
@@ -147,7 +143,7 @@ class StartMarkup(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     def __repr__(self) -> str:
@@ -180,16 +176,13 @@ class StartMarkup(object):
         if isinstance(self.markup, Markup):
             markup = self.markup
             if markup.direction is not None:
-                markup = new(
-                    markup,
-                    direction=None,
-                    )
+                markup = new(markup, direction=None)
             pieces = markup._get_format_pieces()
-            result.append(rf'\set {context!s}.instrumentName =')
+            result.append(rf"\set {context!s}.instrumentName =")
             result.extend(pieces)
         else:
             assert isinstance(self.markup, str)
-            string = rf'\set {context!s}.instrumentName = {self.markup}'
+            string = rf"\set {context!s}.instrumentName = {self.markup}"
             result.append(string)
         return result
 

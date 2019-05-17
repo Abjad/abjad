@@ -31,12 +31,9 @@ class DurationInequality(Inequality):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Inequalities'
+    __documentation_section__ = "Inequalities"
 
-    __slots__ = (
-        '_duration',
-        '_preprolated',
-        )
+    __slots__ = ("_duration", "_preprolated")
 
     _publish_storage_format = True
 
@@ -44,21 +41,15 @@ class DurationInequality(Inequality):
 
     def __init__(
         self,
-        operator_string: str = '<',
+        operator_string: str = "<",
         duration=None,
         *,
         preprolated: bool = None,
-        ) -> None:
-        Inequality.__init__(
-            self,
-            operator_string=operator_string,
-            )
+    ) -> None:
+        Inequality.__init__(self, operator_string=operator_string)
         if duration is None:
             duration = Infinity()
-        infinities = (
-            Infinity(),
-            NegativeInfinity(),
-            )
+        infinities = (Infinity(), NegativeInfinity())
         if duration not in infinities:
             duration = Duration(duration)
             assert 0 <= duration
@@ -74,6 +65,7 @@ class DurationInequality(Inequality):
         Returns true or false.
         """
         import abjad
+
         if isinstance(argument, abjad.Component):
             if self.preprolated:
                 duration = argument._get_preprolated_duration()

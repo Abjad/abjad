@@ -25,7 +25,7 @@ def test_Staff_time_signature_01():
             c'4
         }
         """
-        )
+    )
 
 
 def test_Staff_time_signature_02():
@@ -37,8 +37,9 @@ def test_Staff_time_signature_02():
     time_signature = abjad.TimeSignature((2, 4))
     abjad.attach(time_signature, staff[0])
     for x in staff:
-        assert abjad.inspect(x).effective(abjad.TimeSignature) \
-            == abjad.TimeSignature((2, 4))
+        assert abjad.inspect(x).effective(
+            abjad.TimeSignature
+        ) == abjad.TimeSignature((2, 4))
 
 
 def test_Staff_time_signature_03():
@@ -51,5 +52,4 @@ def test_Staff_time_signature_03():
     abjad.attach(time_signature, staff[0])
     abjad.detach(time_signature, staff[0])
     for leaf in staff:
-        assert abjad.inspect(leaf).effective(
-            abjad.TimeSignature) is None
+        assert abjad.inspect(leaf).effective(abjad.TimeSignature) is None

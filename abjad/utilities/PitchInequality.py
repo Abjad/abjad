@@ -31,38 +31,25 @@ class PitchInequality(object):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Inequalities'
+    __documentation_section__ = "Inequalities"
 
-    __slots__ = (
-        '_operator_string',
-        '_pitches',
-        )
+    __slots__ = ("_operator_string", "_pitches")
 
-    _set_theoretic_operator_strings = (
-        '&',
-        '|',
-        '^',
-        )
+    _set_theoretic_operator_strings = ("&", "|", "^")
 
     _publish_storage_format = True
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        operator_string='&',
-        pitches=None,
-        ):
+    def __init__(self, operator_string="&", pitches=None):
         import abjad
+
         assert operator_string in self._set_theoretic_operator_strings
         self._operator_string = operator_string
         # only intersection is currently implemented
         if not isinstance(pitches, collections.abc.Iterable):
             pitches = [pitches]
-        pitches = abjad.PitchSet(
-            items=pitches,
-            item_class=abjad.NumberedPitch,
-            )
+        pitches = abjad.PitchSet(items=pitches, item_class=abjad.NumberedPitch)
         self._pitches = pitches
 
     ### SPECIAL METHODS ###
@@ -74,16 +61,16 @@ class PitchInequality(object):
         Returns true or false.
         """
         import abjad
+
         if not self.pitches:
             return False
         pitch_set = abjad.PitchSet.from_selection(
-            argument,
-            item_class=abjad.NumberedPitch,
-            )
-        if self.operator_string == '&':
+            argument, item_class=abjad.NumberedPitch
+        )
+        if self.operator_string == "&":
             return bool(self.pitches.intersection(pitch_set))
         else:
-            message = 'implement {!r}.'
+            message = "implement {!r}."
             message = message.format(self.operator_string)
             raise NotImplementedError(message)
 

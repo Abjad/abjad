@@ -76,11 +76,7 @@ class Sequence(collections.abc.Sequence):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_equivalence_markup',
-        '_expression',
-        '_items',
-        )
+    __slots__ = ("_equivalence_markup", "_expression", "_items")
 
     ### INITIALIZER ###
 
@@ -95,10 +91,10 @@ class Sequence(collections.abc.Sequence):
     ### SPECIAL METHODS ###
 
     @Signature(
-        markup_maker_callback='_make___add___markup',
-        string_template_callback='_make___add___string_template',
-        )
-    def __add__(self, argument) -> 'Sequence':
+        markup_maker_callback="_make___add___markup",
+        string_template_callback="_make___add___string_template",
+    )
+    def __add__(self, argument) -> "Sequence":
         r"""
         Adds ``argument`` to sequence.
 
@@ -291,7 +287,7 @@ class Sequence(collections.abc.Sequence):
         """
         return StorageFormatManager.compare_objects(self, argument)
 
-    def __format__(self, format_specification='') -> str:
+    def __format__(self, format_specification="") -> str:
         """
         Formats sequence.
 
@@ -322,14 +318,14 @@ class Sequence(collections.abc.Sequence):
                 )
 
         """
-        if format_specification in ('', 'storage'):
+        if format_specification in ("", "storage"):
             return StorageFormatManager(self).get_storage_format()
         return str(self)
 
     @Signature(
-        markup_maker_callback='_make___getitem___markup',
-        string_template_callback='_make___getitem___string_template',
-        )
+        markup_maker_callback="_make___getitem___markup",
+        string_template_callback="_make___getitem___string_template",
+    )
     def __getitem__(self, argument) -> typing.Any:
         r"""
         Gets item or slice identified by ``argument``.
@@ -557,7 +553,7 @@ class Sequence(collections.abc.Sequence):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     def __len__(self) -> int:
@@ -582,10 +578,10 @@ class Sequence(collections.abc.Sequence):
         return len(self._items)
 
     @Signature(
-        markup_maker_callback='_make___radd___markup',
-        string_template_callback='_make___radd___string_template',
-        )
-    def __radd__(self, argument) -> 'Sequence':
+        markup_maker_callback="_make___radd___markup",
+        string_template_callback="_make___radd___string_template",
+    )
+    def __radd__(self, argument) -> "Sequence":
         r"""
         Adds sequence to ``argument``.
 
@@ -726,10 +722,10 @@ class Sequence(collections.abc.Sequence):
             Sequence([1, 2, 3, 4, 5, 6])
 
         """
-        items = ', '.join([repr(_) for _ in self.items])
-        string = f'{type(self).__name__}([{items}])'
+        items = ", ".join([repr(_) for _ in self.items])
+        string = f"{type(self).__name__}([{items}])"
         if self._expression:
-            string = '*' + string
+            string = "*" + string
         return string
 
     ### PRIVATE METHODS ###
@@ -748,10 +744,8 @@ class Sequence(collections.abc.Sequence):
             if i in indices:
                 try:
                     flattened = Sequence._flatten_helper(
-                        item,
-                        classes=classes,
-                        depth=depth,
-                        )
+                        item, classes=classes, depth=depth
+                    )
                     result.extend(flattened)
                 except:
                     result.append(item)
@@ -782,10 +776,11 @@ class Sequence(collections.abc.Sequence):
     @staticmethod
     def _make_map_markup(markup, operand):
         from abjad import markups
+
         markup_list = markups.MarkupList()
-        operand_markup = operand.get_markup(name='X')
+        operand_markup = operand.get_markup(name="X")
         markup_list.append(operand_markup)
-        markup_list.append('/@')
+        markup_list.append("/@")
         markup_list.append(markup)
         markup = markup_list.line()
         return markup
@@ -793,35 +788,31 @@ class Sequence(collections.abc.Sequence):
     @staticmethod
     def _make_map_string_template(operand):
         try:
-            string_template = '{operand} /@ {{}}'
-            operand = operand.get_string(name='X')
+            string_template = "{operand} /@ {{}}"
+            operand = operand.get_string(name="X")
             string_template = string_template.format(operand=operand)
             return string_template
         except ValueError:
-            return 'unknown string template'
+            return "unknown string template"
 
     @staticmethod
     def _make_partition_indicator(
-        counts,
-        cyclic,
-        enchain,
-        overhang,
-        reversed_,
-        ):
+        counts, cyclic, enchain, overhang, reversed_
+    ):
         indicator = [str(_) for _ in counts]
-        indicator = ', '.join(indicator)
+        indicator = ", ".join(indicator)
         if cyclic:
-            indicator = f'<{indicator}>'
+            indicator = f"<{indicator}>"
         else:
-            indicator = f'[{indicator}]'
+            indicator = f"[{indicator}]"
         if enchain:
-            indicator = 'E' + indicator
+            indicator = "E" + indicator
         if reversed_:
-            indicator = 'R' + indicator
+            indicator = "R" + indicator
         if overhang is True:
-            indicator += '+'
+            indicator += "+"
         elif overhang is enums.Exact:
-            indicator += '!'
+            indicator += "!"
         return indicator
 
     @staticmethod
@@ -831,28 +822,25 @@ class Sequence(collections.abc.Sequence):
     @staticmethod
     def _make_reverse_method_name(recurse=False):
         if recurse:
-            return 'R*'
-        return 'R'
+            return "R*"
+        return "R"
 
     @staticmethod
     def _make_split_indicator(weights, cyclic, overhang):
         indicator = [str(_) for _ in weights]
-        indicator = ', '.join(indicator)
+        indicator = ", ".join(indicator)
         if cyclic:
-            indicator = f'<{indicator}>'
+            indicator = f"<{indicator}>"
         else:
-            indicator = f'[{indicator}]'
+            indicator = f"[{indicator}]"
         if overhang:
-            indicator += '+'
+            indicator += "+"
         return indicator
 
     @classmethod
     def _partition_sequence_cyclically_by_weights_at_least(
-        class_,
-        sequence,
-        weights,
-        overhang=False,
-        ):
+        class_, sequence, weights, overhang=False
+    ):
         l_copy = list(sequence)
         result = []
         current_part = []
@@ -870,17 +858,14 @@ class Sequence(collections.abc.Sequence):
         if current_part:
             if overhang:
                 result.append(current_part)
-        #return result
+        # return result
         result = [class_(_) for _ in result]
         return class_(items=result)
 
     @classmethod
     def _partition_sequence_cyclically_by_weights_at_most(
-        class_,
-        sequence,
-        weights,
-        overhang=False,
-        ):
+        class_, sequence, weights, overhang=False
+    ):
         result = []
         current_part = []
         current_target_weight_index = 0
@@ -888,10 +873,13 @@ class Sequence(collections.abc.Sequence):
         l_copy = list(sequence)
         while l_copy:
             current_target_weight = weights[
-                current_target_weight_index % len(weights)]
+                current_target_weight_index % len(weights)
+            ]
             item = l_copy.pop(0)
             current_part_weight = mathtools.weight(current_part)
-            candidate_part_weight = current_part_weight + mathtools.weight([item])
+            candidate_part_weight = current_part_weight + mathtools.weight(
+                [item]
+            )
             if candidate_part_weight < current_target_weight:
                 current_part.append(item)
             elif candidate_part_weight == current_target_weight:
@@ -906,25 +894,22 @@ class Sequence(collections.abc.Sequence):
                     current_part = []
                     current_target_weight_index += 1
                 else:
-                    message = 'elements in sequence too big.'
+                    message = "elements in sequence too big."
                     raise Exception(message)
             else:
-                message = 'candidate and target rates must compare.'
+                message = "candidate and target rates must compare."
                 raise ValueError(message)
         if current_part:
             if overhang:
                 result.append(current_part)
-        #return result
+        # return result
         result = [class_(_) for _ in result]
         return class_(items=result)
 
     @classmethod
     def _partition_sequence_once_by_weights_at_least(
-        class_,
-        sequence,
-        weights,
-        overhang=False,
-        ):
+        class_, sequence, weights, overhang=False
+    ):
         result = []
         current_part = []
         l_copy = list(sequence)
@@ -937,7 +922,7 @@ class Sequence(collections.abc.Sequence):
                         if current_part:
                             result.append(current_part)
                             break
-                    message = 'too few elements in sequence.'
+                    message = "too few elements in sequence."
                     raise Exception(message)
                 current_part.append(item)
                 if target_weight <= mathtools.weight(current_part):
@@ -952,11 +937,8 @@ class Sequence(collections.abc.Sequence):
 
     @classmethod
     def _partition_sequence_once_by_weights_at_most(
-        class_,
-        sequence,
-        weights,
-        overhang=False,
-        ):
+        class_, sequence, weights, overhang=False
+    ):
         l_copy = list(sequence)
         result = []
         current_part = []
@@ -965,7 +947,7 @@ class Sequence(collections.abc.Sequence):
                 try:
                     item = l_copy.pop(0)
                 except IndexError:
-                    message = 'too few elements in sequence.'
+                    message = "too few elements in sequence."
                     raise Exception(message)
                 current_weight = mathtools.weight(current_part)
                 candidate_weight = current_weight + mathtools.weight([item])
@@ -983,10 +965,10 @@ class Sequence(collections.abc.Sequence):
                         l_copy.insert(0, item)
                         break
                     else:
-                        message = 'elements in sequence too big.'
+                        message = "elements in sequence too big."
                         raise Exception(message)
                 else:
-                    message = 'candidate and target weights must compare.'
+                    message = "candidate and target weights must compare."
                     raise ValueError(message)
         if overhang:
             left_over = current_part + l_copy
@@ -996,16 +978,13 @@ class Sequence(collections.abc.Sequence):
         return class_(items=result)
 
     def _update_expression(
-        self,
-        frame,
-        evaluation_template=None,
-        map_operand=None,
-        ):
+        self, frame, evaluation_template=None, map_operand=None
+    ):
         callback = Expression._frame_to_callback(
             frame,
             evaluation_template=evaluation_template,
             map_operand=map_operand,
-            )
+        )
         return self._expression.append_callback(callback)
 
     ### PUBLIC PROPERTIES ###
@@ -1049,10 +1028,7 @@ class Sequence(collections.abc.Sequence):
     ### PUBLIC METHODS ###
 
     @Signature()
-    def filter(
-        self,
-        predicate=None,
-        ) -> 'Sequence':
+    def filter(self, predicate=None) -> "Sequence":
         """
         Filters sequence by ``predicate``.
 
@@ -1133,12 +1109,7 @@ class Sequence(collections.abc.Sequence):
 
     # TODO: remove indices=None parameter
     @Signature()
-    def flatten(
-        self,
-        classes=None,
-        depth=1,
-        indices=None,
-        ) -> 'Sequence':
+    def flatten(self, classes=None, depth=1, indices=None) -> "Sequence":
         r"""
         Flattens sequence.
 
@@ -1385,6 +1356,7 @@ class Sequence(collections.abc.Sequence):
 
         """
         from abjad.core.Selection import Selection
+
         if self._expression:
             return self._update_expression(inspect.currentframe())
         if classes is None:
@@ -1397,12 +1369,9 @@ class Sequence(collections.abc.Sequence):
         else:
             return type(self)(
                 self._flatten_at_indices_helper(self, indices, classes, depth)
-                )
+            )
 
-    def group_by(
-        self,
-        predicate=None,
-        ) -> 'Sequence':
+    def group_by(self, predicate=None) -> "Sequence":
         """
         Groups sequence items by value of items.
 
@@ -1451,9 +1420,9 @@ class Sequence(collections.abc.Sequence):
         if self._expression:
             return self._update_expression(
                 inspect.currentframe(),
-                evaluation_template='group_by',
+                evaluation_template="group_by",
                 map_operand=predicate,
-                )
+            )
         items = []
         if predicate is None:
             pairs = itertools.groupby(self, lambda _: _)
@@ -1643,7 +1612,7 @@ class Sequence(collections.abc.Sequence):
             return False
 
     @Signature()
-    def join(self) -> 'Sequence':
+    def join(self) -> "Sequence":
         r"""
         Join subsequences in ``sequence``.
 
@@ -1698,10 +1667,10 @@ class Sequence(collections.abc.Sequence):
         return type(self)([cumulative_sum])
 
     @Signature(
-        markup_maker_callback='_make_map_markup',
-        string_template_callback='_make_map_string_template',
-        )
-    def map(self, operand=None) -> 'Sequence':
+        markup_maker_callback="_make_map_markup",
+        string_template_callback="_make_map_string_template",
+    )
+    def map(self, operand=None) -> "Sequence":
         r"""
         Maps ``operand`` to sequence items.
 
@@ -1776,21 +1745,16 @@ class Sequence(collections.abc.Sequence):
         if self._expression:
             return self._update_expression(
                 inspect.currentframe(),
-                evaluation_template='map',
+                evaluation_template="map",
                 map_operand=operand,
-                )
+            )
         if operand is not None:
             items = [operand(_) for _ in self]
         else:
             items = list(self.items[:])
         return type(self)(items)
 
-    def nwise(
-        self,
-        n=2,
-        cyclic=False,
-        wrapped=False,
-        ) -> typing.Generator:
+    def nwise(self, n=2, cyclic=False, wrapped=False) -> typing.Generator:
         """
         Iterates sequence ``n`` at a time.
 
@@ -1986,9 +1950,9 @@ class Sequence(collections.abc.Sequence):
                     item_buffer.pop(0)
 
     @Signature(
-        argument_list_callback='_make_partition_indicator',
-        method_name='partition',
-        )
+        argument_list_callback="_make_partition_indicator",
+        method_name="partition",
+    )
     def partition_by_counts(
         self,
         counts,
@@ -1996,7 +1960,7 @@ class Sequence(collections.abc.Sequence):
         enchain=False,
         overhang=False,
         reversed_=False,
-        ) -> 'Sequence':
+    ) -> "Sequence":
         r"""
         Partitions sequence by ``counts``.
 
@@ -3296,7 +3260,7 @@ class Sequence(collections.abc.Sequence):
         if self._expression:
             return self._update_expression(inspect.currentframe())
         if not all(isinstance(_, int) and 0 <= _ for _ in counts):
-            message = f'must be nonnegative integers: {counts!r}.'
+            message = f"must be nonnegative integers: {counts!r}."
             raise Exception(counts)
         sequence = self
         if reversed_:
@@ -3329,7 +3293,7 @@ class Sequence(collections.abc.Sequence):
             elif overhang is enums.Exact and len(part) == count:
                 result.append(part)
             elif overhang is enums.Exact and len(part) != count:
-                message = 'sequence does not partition exactly.'
+                message = "sequence does not partition exactly."
                 raise Exception(message)
         if reversed_:
             result_ = []
@@ -3342,13 +3306,10 @@ class Sequence(collections.abc.Sequence):
         return type(self)(result)
 
     @Signature(
-        argument_list_callback='_make_partition_ratio_indicator',
-        method_name='partition',
-        )
-    def partition_by_ratio_of_lengths(
-        self,
-        ratio,
-        ) -> 'Sequence':
+        argument_list_callback="_make_partition_ratio_indicator",
+        method_name="partition",
+    )
+    def partition_by_ratio_of_lengths(self, ratio) -> "Sequence":
         r"""
         Partitions sequence by ``ratio`` of lengths.
 
@@ -3454,16 +3415,11 @@ class Sequence(collections.abc.Sequence):
         length = len(self)
         counts = mathtools.partition_integer_by_ratio(length, ratio)
         parts = self.partition_by_counts(
-            counts,
-            cyclic=False,
-            overhang=enums.Exact,
-            )
+            counts, cyclic=False, overhang=enums.Exact
+        )
         return type(self)(parts)
 
-    def partition_by_ratio_of_weights(
-        self,
-        weights,
-        ) -> 'Sequence':
+    def partition_by_ratio_of_weights(self, weights) -> "Sequence":
         """
         Partitions sequence by ratio of ``weights``.
 
@@ -3597,23 +3553,22 @@ class Sequence(collections.abc.Sequence):
         """
         list_weight = mathtools.weight(self)
         weights_parts = mathtools.partition_integer_by_ratio(
-            list_weight,
-            weights,
-            )
+            list_weight, weights
+        )
         cumulative_weights = mathtools.cumulative_sums(
-            weights_parts,
-            start=None,
-            )
+            weights_parts, start=None
+        )
         items = []
         sublist: typing.List[typing.Any] = []
         items.append(sublist)
         current_cumulative_weight = cumulative_weights.pop(0)
         for item in self:
             if not isinstance(item, (int, float, fractions.Fraction)):
-                raise TypeError(f'must be number: {item!r}.')
+                raise TypeError(f"must be number: {item!r}.")
             sublist.append(item)
             while current_cumulative_weight <= mathtools.weight(
-                type(self)(items).flatten(depth=-1)):
+                type(self)(items).flatten(depth=-1)
+            ):
                 try:
                     current_cumulative_weight = cumulative_weights.pop(0)
                     sublist = []
@@ -3630,7 +3585,7 @@ class Sequence(collections.abc.Sequence):
         cyclic=False,
         overhang=False,
         allow_part_weights=enums.Exact,
-        ) -> 'Sequence':
+    ) -> "Sequence":
         r"""
         Partitions sequence by ``weights`` exactly.
 
@@ -3846,52 +3801,39 @@ class Sequence(collections.abc.Sequence):
         if allow_part_weights is enums.Exact:
             candidate = type(self)(self)
             candidate = candidate.split(
-                weights,
-                cyclic=cyclic,
-                overhang=overhang,
-                )
+                weights, cyclic=cyclic, overhang=overhang
+            )
             flattened_candidate = candidate.flatten(depth=-1)
-            if flattened_candidate == self[:len(flattened_candidate)]:
+            if flattened_candidate == self[: len(flattened_candidate)]:
                 return candidate
             else:
-                message = 'can not partition exactly.'
+                message = "can not partition exactly."
                 raise Exception(message)
         elif allow_part_weights is enums.More:
             if not cyclic:
                 return Sequence._partition_sequence_once_by_weights_at_least(
-                    self,
-                    weights,
-                    overhang=overhang,
-                    )
+                    self, weights, overhang=overhang
+                )
             else:
                 return Sequence._partition_sequence_cyclically_by_weights_at_least(
-                    self,
-                    weights,
-                    overhang=overhang,
-                    )
+                    self, weights, overhang=overhang
+                )
         elif allow_part_weights is enums.Less:
             if not cyclic:
                 return Sequence._partition_sequence_once_by_weights_at_most(
-                    self,
-                    weights,
-                    overhang=overhang,
-                    )
+                    self, weights, overhang=overhang
+                )
             else:
                 return Sequence._partition_sequence_cyclically_by_weights_at_most(
-                    self,
-                    weights,
-                    overhang=overhang,
-                    )
+                    self, weights, overhang=overhang
+                )
         else:
-            message = 'allow_part_weights must be ordinal constant: {!r}.'
+            message = "allow_part_weights must be ordinal constant: {!r}."
             message = message.format(allow_part_weights)
             raise ValueError(message)
 
     @Signature()
-    def permute(
-        self,
-        permutation,
-        ) -> 'Sequence':
+    def permute(self, permutation) -> "Sequence":
         r"""
         Permutes sequence by ``permutation``.
 
@@ -3950,9 +3892,9 @@ class Sequence(collections.abc.Sequence):
             return self._update_expression(inspect.currentframe())
         permutation = type(self)(permutation)
         if not permutation.is_permutation():
-            raise ValueError(f'must be permutation: {permutation!r}.')
+            raise ValueError(f"must be permutation: {permutation!r}.")
         if len(permutation) != len(self):
-            message = 'permutation {!r} must match length of sequence {!r}.'
+            message = "permutation {!r} must match length of sequence {!r}."
             message = message.format(permutation, self)
             raise ValueError(message)
         result = []
@@ -3963,11 +3905,7 @@ class Sequence(collections.abc.Sequence):
         return type(self)(result)
 
     # TODO: change input to pattern
-    def remove(
-        self,
-        indices=None,
-        period=None,
-        ) -> 'Sequence':
+    def remove(self, indices=None, period=None) -> "Sequence":
         """
         Removes items at ``indices``.
 
@@ -4040,7 +3978,7 @@ class Sequence(collections.abc.Sequence):
                 items.append(item)
         return type(self)(items)
 
-    def remove_repeats(self) -> 'Sequence':
+    def remove_repeats(self) -> "Sequence":
         """
         Removes repeats from ``sequence``.
 
@@ -4059,10 +3997,7 @@ class Sequence(collections.abc.Sequence):
         return type(self)(items)
 
     @Signature()
-    def repeat(
-        self,
-        n=1,
-        ) -> 'Sequence':
+    def repeat(self, n=1) -> "Sequence":
         r"""
         Repeats sequence.
 
@@ -4180,11 +4115,7 @@ class Sequence(collections.abc.Sequence):
             items.append(self[:])
         return type(self)(items)
 
-    def repeat_to_length(
-        self,
-        length=None,
-        start=0,
-        ) -> 'Sequence':
+    def repeat_to_length(self, length=None, start=0) -> "Sequence":
         """
         Repeats sequence to ``length``.
 
@@ -4228,11 +4159,7 @@ class Sequence(collections.abc.Sequence):
                 items.append(item)
         return type(self)(items[start:stop_index])
 
-    def repeat_to_weight(
-        self,
-        weight,
-        allow_total=enums.Exact,
-        ) -> 'Sequence':
+    def repeat_to_weight(self, weight, allow_total=enums.Exact) -> "Sequence":
         """
         Repeats sequence to ``weight``.
 
@@ -4277,7 +4204,7 @@ class Sequence(collections.abc.Sequence):
             sequence_weight = mathtools.weight(self)
             complete_repetitions = int(
                 math.ceil(float(weight) / float(sequence_weight))
-                )
+            )
             items = list(self)
             items = complete_repetitions * items
             overage = complete_repetitions * sequence_weight - weight
@@ -4315,15 +4242,11 @@ class Sequence(collections.abc.Sequence):
                 i += 1
             return type(self)(items)
         else:
-            message = f'is not an ordinal value constant: {allow_total!r}.'
+            message = f"is not an ordinal value constant: {allow_total!r}."
             raise ValueError(message)
         return type(self)(items=items)
 
-    def replace(
-        self,
-        old,
-        new,
-        ) -> 'Sequence':
+    def replace(self, old, new) -> "Sequence":
         """
         Replaces ``old`` with ``new``.
 
@@ -4343,11 +4266,7 @@ class Sequence(collections.abc.Sequence):
                 items.append(item)
         return type(self)(items=items)
 
-    def replace_at(
-        self,
-        indices,
-        new_material,
-        ) -> 'Sequence':
+    def replace_at(self, indices, new_material) -> "Sequence":
         """
         Replaces items at ``indices`` with ``new_material``.
 
@@ -4431,11 +4350,7 @@ class Sequence(collections.abc.Sequence):
         return type(self)(items=items)
 
     # TODO: remove in favor of self.retain_pattern()
-    def retain(
-        self,
-        indices=None,
-        period=None,
-        ) -> 'Sequence':
+    def retain(self, indices=None, period=None) -> "Sequence":
         """
         Retains items at ``indices``.
 
@@ -4503,10 +4418,7 @@ class Sequence(collections.abc.Sequence):
                 items.append(item)
         return type(self)(items=items)
 
-    def retain_pattern(
-        self,
-        pattern,
-        ) -> 'Sequence':
+    def retain_pattern(self, pattern) -> "Sequence":
         """
         Retains items at indices matching ``pattern``.
 
@@ -4557,13 +4469,9 @@ class Sequence(collections.abc.Sequence):
         return type(self)(items=items)
 
     @Signature(
-        is_operator=True,
-        method_name_callback='_make_reverse_method_name',
-        )
-    def reverse(
-        self,
-        recurse=False,
-        ) -> 'Sequence':
+        is_operator=True, method_name_callback="_make_reverse_method_name"
+    )
+    def reverse(self, recurse=False) -> "Sequence":
         r"""
         Reverses sequence.
 
@@ -4666,18 +4574,12 @@ class Sequence(collections.abc.Sequence):
                 return type(item)(subitems_)
             else:
                 return item
+
         items = _reverse_helper(self.items)
         return type(self)(items=items)
 
-    @Signature(
-        is_operator=True,
-        method_name='r',
-        subscript='n',
-        )
-    def rotate(
-        self,
-        n=0,
-        ) -> 'Sequence':
+    @Signature(is_operator=True, method_name="r", subscript="n")
+    def rotate(self, n=0) -> "Sequence":
         r"""
         Rotates sequence by index ``n``.
 
@@ -4808,7 +4710,7 @@ class Sequence(collections.abc.Sequence):
         items = []
         if len(self):
             n = n % len(self)
-            for item in self[-n:len(self)] + self[:-n]:
+            for item in self[-n : len(self)] + self[:-n]:
                 items.append(item)
         return type(self)(items=items)
 
@@ -4819,15 +4721,12 @@ class Sequence(collections.abc.Sequence):
         Returns selection.
         """
         import abjad
+
         if self._expression:
             return self._update_expression(inspect.currentframe())
         return abjad.select(self)
 
-    def sort(
-        self,
-        key=None,
-        reverse=False,
-        ) -> 'Sequence':
+    def sort(self, key=None, reverse=False) -> "Sequence":
         """
         Sorts sequence.
 
@@ -4845,15 +4744,8 @@ class Sequence(collections.abc.Sequence):
         items.sort(key=key, reverse=reverse)
         return type(self)(items=items)
 
-    @Signature(
-        argument_list_callback='_make_split_indicator',
-        )
-    def split(
-        self,
-        weights,
-        cyclic=False,
-        overhang=False,
-        ) -> 'Sequence':
+    @Signature(argument_list_callback="_make_split_indicator")
+    def split(self, weights, cyclic=False, overhang=False) -> "Sequence":
         r"""
         Splits sequence by ``weights``.
 
@@ -4957,9 +4849,8 @@ class Sequence(collections.abc.Sequence):
         current_piece: typing.List[typing.Any] = []
         if cyclic:
             weights = Sequence(weights).repeat_to_weight(
-                mathtools.weight(self),
-                allow_total=enums.Less,
-                )
+                mathtools.weight(self), allow_total=enums.Less
+            )
         for weight in weights:
             current_piece_weight = mathtools.weight(current_piece)
             while current_piece_weight < weight:
@@ -5123,10 +5014,7 @@ class Sequence(collections.abc.Sequence):
             result += item
         return result
 
-    def sum_by_sign(
-        self,
-        sign=(-1, 0, 1),
-        ) -> 'Sequence':
+    def sum_by_sign(self, sign=(-1, 0, 1)) -> "Sequence":
         """
         Sums consecutive sequence items by ``sign``.
 
@@ -5189,11 +5077,7 @@ class Sequence(collections.abc.Sequence):
                     items.append(item)
         return type(self)(items=items)
 
-    def truncate(
-        self,
-        sum_=None,
-        weight=None,
-        ) -> 'Sequence':
+    def truncate(self, sum_=None, weight=None) -> "Sequence":
         """
         Truncates sequence.
 
@@ -5319,7 +5203,7 @@ class Sequence(collections.abc.Sequence):
             return self._update_expression(inspect.currentframe())
         weights = []
         for item in self:
-            if hasattr(item, 'weight'):
+            if hasattr(item, "weight"):
                 weights.append(item.weight())
             elif isinstance(item, collections.abc.Iterable):
                 item = Sequence(item)
@@ -5328,11 +5212,7 @@ class Sequence(collections.abc.Sequence):
                 weights.append(abs(item))
         return sum(weights)
 
-    def zip(
-        self,
-        cyclic=False,
-        truncate=True,
-        ) -> 'Sequence':
+    def zip(self, cyclic=False, truncate=True) -> "Sequence":
         """
         Zips sequences in sequence.
 
@@ -5388,7 +5268,7 @@ class Sequence(collections.abc.Sequence):
         """
         for item in self:
             if not isinstance(item, collections.abc.Iterable):
-                raise Exception(f'must by iterable: {item!r}.')
+                raise Exception(f"must by iterable: {item!r}.")
         items: typing.List[typing.Any] = []
         if cyclic:
             if not min(len(_) for _ in self):

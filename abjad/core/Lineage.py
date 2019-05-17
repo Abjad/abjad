@@ -65,24 +65,22 @@ class Lineage(collections.abc.Sequence):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Selections'
+    __documentation_section__ = "Selections"
 
-    __slots__ = (
-        '_component',
-        '_components',
-        )
+    __slots__ = ("_component", "_components")
 
     ### INITIALIZER ###
 
     def __init__(self, component=None):
         import abjad
+
         assert isinstance(component, (abjad.Component, type(None)))
         self._component = component
         components = []
         if component is not None:
             components.extend(
                 reversed(abjad.inspect(component).parentage()[1:])
-                )
+            )
             components.append(component)
             components.extend(abjad.inspect(component).descendants()[1:])
         self._components = components

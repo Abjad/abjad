@@ -100,12 +100,13 @@ def activate(text, tag, skipped=False):
     Count gives number of activated tags.
     """
     import abjad
+
     assert isinstance(tag, str) or callable(tag), repr(tag)
     lines, count, skipped_count = [], 0, 0
     treated_last_line = False
     found_already_active_on_last_line = False
-    text_lines = text.split('\n')
-    text_lines = [_ + '\n' for _ in text_lines[:-1]] + text_lines[-1:]
+    text_lines = text.split("\n")
+    text_lines = [_ + "\n" for _ in text_lines[:-1]] + text_lines[-1:]
     lines = []
     for line in text_lines:
         first_nonwhitespace_index = len(line) - len(line.lstrip())
@@ -115,16 +116,16 @@ def activate(text, tag, skipped=False):
             treated_last_line = False
             found_already_active_on_last_line = False
             continue
-        if line[index:index+4] in ('%%% ', '%@% '):
-            if '%@% ' in line:
-                line = line.replace('%@%', '   ')
-                suffix = ' %@%'
+        if line[index : index + 4] in ("%%% ", "%@% "):
+            if "%@% " in line:
+                line = line.replace("%@%", "   ")
+                suffix = " %@%"
             else:
-                line = line.replace('%%%', '   ')
+                line = line.replace("%%%", "   ")
                 suffix = None
-            assert line.endswith('\n'), repr(line)
+            assert line.endswith("\n"), repr(line)
             if suffix:
-                line = line.strip('\n') + suffix + '\n'
+                line = line.strip("\n") + suffix + "\n"
             if not treated_last_line:
                 count += 1
             treated_last_line = True
@@ -135,7 +136,7 @@ def activate(text, tag, skipped=False):
             found_already_active_on_last_line = True
             treated_last_line = False
         lines.append(line)
-    text = ''.join(lines)
+    text = "".join(lines)
     if skipped is True:
         return text, count, skipped_count
     else:

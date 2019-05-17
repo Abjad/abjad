@@ -17,9 +17,7 @@ class StopGroup(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_leak',
-        )
+    __slots__ = ("_leak",)
 
     _persistent = True
 
@@ -29,11 +27,7 @@ class StopGroup(object):
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        *,
-        leak: bool = None,
-        ) -> None:
+    def __init__(self, *, leak: bool = None) -> None:
         if leak is not None:
             leak = bool(leak)
         self._leak = leak
@@ -50,9 +44,9 @@ class StopGroup(object):
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = LilyPondFormatBundle()
-        string = r'\stopGroup'
+        string = r"\stopGroup"
         if self.leak:
-            string = f'<> {string}'
+            string = f"<> {string}"
             bundle.after.leaks.append(string)
         else:
             bundle.after.spanner_stops.append(string)

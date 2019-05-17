@@ -4,7 +4,7 @@ import abjad.rhythmtrees
 
 def test_RhythmTreeContainer___call___01():
 
-    rtm = '(1 (1 (2 (1 1 1)) 2))'
+    rtm = "(1 (1 (2 (1 1 1)) 2))"
     tree = abjad.rhythmtrees.RhythmTreeParser()(rtm)[0]
     result = tree((1, 4))
 
@@ -23,15 +23,22 @@ def test_RhythmTreeContainer___call___01():
             c'8
         }
         """
-        )
+    )
 
 
 def test_RhythmTreeContainer___call___02():
 
-    rtm = '(1 (1 (2 (1 1 1 1)) 1))'
+    rtm = "(1 (1 (2 (1 1 1 1)) 1))"
     tree = abjad.rhythmtrees.RhythmTreeParser()(rtm)[0]
     result = tree((1, 4))
 
     assert isinstance(result, abjad.Selection)
     assert len(result) == 6
-    assert [format(x) for x in result] == ["c'16", "c'32", "c'32", "c'32", "c'32", "c'16"]
+    assert [format(x) for x in result] == [
+        "c'16",
+        "c'32",
+        "c'32",
+        "c'32",
+        "c'32",
+        "c'16",
+    ]

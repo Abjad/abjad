@@ -14,14 +14,13 @@ class LilyPondVersionToken(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_version_string',
-        )
+    __slots__ = ("_version_string",)
 
     ### INITIALIZER ###
 
     def __init__(self, version_string=None):
         from abjad import abjad_configuration
+
         assert isinstance(version_string, (str, type(None)))
         if version_string is None:
             version_string = abjad_configuration.get_lilypond_version_string()
@@ -29,7 +28,7 @@ class LilyPondVersionToken(object):
 
     ### SPECIAL METHODS ###
 
-    def __format__(self, format_specification=''):
+    def __format__(self, format_specification=""):
         r"""
         Formats LilyPond version token.
 
@@ -41,9 +40,9 @@ class LilyPondVersionToken(object):
 
         Return string.
         """
-        if format_specification in ('', 'lilypond'):
+        if format_specification in ("", "lilypond"):
             return self._get_lilypond_format()
-        elif format_specification == 'storage':
+        elif format_specification == "storage":
             return StorageFormatManager(self).get_storage_format()
         return str(self)
 
@@ -59,7 +58,7 @@ class LilyPondVersionToken(object):
 
         Returns string.
         """
-        return f'{type(self).__name__}({self.version_string!r})'
+        return f"{type(self).__name__}({self.version_string!r})"
 
     ### PRIVATE METHODS ###
 

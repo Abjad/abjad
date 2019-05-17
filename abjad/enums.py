@@ -9,6 +9,7 @@ class Comparison(uqbar.enums.StrictEnumeration):
     """
     Enumeration of amount comparisons.
     """
+
     Less = -1
     Exact = 0
     More = 1
@@ -27,6 +28,7 @@ class HorizontalAlignment(uqbar.enums.StrictEnumeration):
     """
     Enumeration of horizontal alignments.
     """
+
     Left = -1
     Both = 0
     Right = 1
@@ -42,6 +44,7 @@ class VerticalAlignment(uqbar.enums.StrictEnumeration):
     """
     Enumeration of vertical alignments.
     """
+
     Down = -1
     Center = 0
     Up = 1
@@ -50,12 +53,8 @@ class VerticalAlignment(uqbar.enums.StrictEnumeration):
         """
         Formats vertical alignment as ``storage`` or ``lilypond``.
         """
-        if format_spec == 'lilypond':
-            return {
-                self.Down: '_',
-                self.Up: '^',
-                self.Center: '-',
-            }[self]
+        if format_spec == "lilypond":
+            return {self.Down: "_", self.Up: "^", self.Center: "-"}[self]
         return repr(self)
 
     def __repr__(self):
@@ -66,11 +65,7 @@ class VerticalAlignment(uqbar.enums.StrictEnumeration):
 
     @classmethod
     def from_expr(cls, expr):
-        lilypond_symbols = {
-            '^': cls.Up,
-            '-': cls.Center,
-            '_': cls.Down,
-        }
+        lilypond_symbols = {"^": cls.Up, "-": cls.Center, "_": cls.Down}
         result = lilypond_symbols.get(expr)
         if result is not None:
             return result
@@ -89,16 +84,16 @@ Up = VerticalAlignment.Up
 
 
 __all__ = [
-    'Both',
-    'Center',
-    'Comparison',
-    'Down',
-    'Exact',
-    'HorizontalAlignment',
-    'Left',
-    'Less',
-    'More',
-    'Right',
-    'Up',
-    'VerticalAlignment',
-    ]
+    "Both",
+    "Center",
+    "Comparison",
+    "Down",
+    "Exact",
+    "HorizontalAlignment",
+    "Left",
+    "Less",
+    "More",
+    "Right",
+    "Up",
+    "VerticalAlignment",
+]

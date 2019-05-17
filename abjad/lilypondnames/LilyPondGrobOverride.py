@@ -35,13 +35,13 @@ class LilyPondGrobOverride(object):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_grob_name',
-        '_is_revert',
-        '_lilypond_type',
-        '_once',
-        '_property_path',
-        '_value',
-        )
+        "_grob_name",
+        "_is_revert",
+        "_lilypond_type",
+        "_once",
+        "_property_path",
+        "_value",
+    )
 
     _format_leaf_children = False
 
@@ -50,12 +50,12 @@ class LilyPondGrobOverride(object):
     def __init__(
         self,
         lilypond_type: str = None,
-        grob_name: str = 'NoteHead',
+        grob_name: str = "NoteHead",
         once: bool = None,
         is_revert: bool = None,
-        property_path: typing.Union[str, typing.Iterable[str]] = 'color',
-        value: typing.Any = 'red',
-        ) -> None:
+        property_path: typing.Union[str, typing.Iterable[str]] = "color",
+        value: typing.Any = "red",
+    ) -> None:
         if lilypond_type is not None:
             lilypond_type = str(lilypond_type)
         self._lilypond_type = lilypond_type
@@ -73,7 +73,7 @@ class LilyPondGrobOverride(object):
             property_path_ = tuple(property_path)
         assert isinstance(property_path_, tuple), repr(property_path_)
         assert all(isinstance(_, str) for _ in property_path_)
-        assert all(_ != '' for _ in property_path_)
+        assert all(_ != "" for _ in property_path_)
         self._property_path = property_path_
         self._value = value
 
@@ -99,10 +99,10 @@ class LilyPondGrobOverride(object):
     def _get_lilypond_format_bundle(self, component=None):
         bundle = LilyPondFormatBundle()
         if not self.once:
-            revert_format = '\n'.join(self.revert_format_pieces)
+            revert_format = "\n".join(self.revert_format_pieces)
             bundle.grob_reverts.append(revert_format)
         if not self.is_revert:
-            override_format = '\n'.join(self.override_format_pieces)
+            override_format = "\n".join(self.override_format_pieces)
             bundle.grob_overrides.append(override_format)
         return bundle
 
@@ -112,7 +112,7 @@ class LilyPondGrobOverride(object):
             parts.append(self.lilypond_type)
         parts.append(self.grob_name)
         parts.extend(self.property_path)
-        path = '.'.join(parts)
+        path = ".".join(parts)
         return path
 
     def _revert_property_path_string(self):
@@ -121,7 +121,7 @@ class LilyPondGrobOverride(object):
             parts.append(self.lilypond_type)
         parts.append(self.grob_name)
         parts.append(self.property_path[0])
-        path = '.'.join(parts)
+        path = ".".join(parts)
         return path
 
     ### PUBLIC PROPERTIES ###
@@ -266,14 +266,14 @@ class LilyPondGrobOverride(object):
         """
         result = []
         if self.once:
-            result.append(r'\once')
-        result.append(r'\override')
+            result.append(r"\once")
+        result.append(r"\override")
         result.append(self._override_property_path_string())
-        result.append('=')
+        result.append("=")
         string = Scheme.format_embedded_scheme_value(self.value)
-        value_pieces = string.split('\n')
+        value_pieces = string.split("\n")
         result.append(value_pieces[0])
-        result[:] = [' '.join(result)]
+        result[:] = [" ".join(result)]
         result.extend(value_pieces[1:])
         return tuple(result)
 
@@ -293,7 +293,7 @@ class LilyPondGrobOverride(object):
             "\\override Glissando.style = #'zigzag"
 
         """
-        return '\n'.join(self.override_format_pieces)
+        return "\n".join(self.override_format_pieces)
 
     @property
     def property_path(self) -> typing.Tuple[str, ...]:
@@ -335,7 +335,7 @@ class LilyPondGrobOverride(object):
             ('\\revert Glissando.style',)
 
         """
-        result = rf'\revert {self._revert_property_path_string()}'
+        result = rf"\revert {self._revert_property_path_string()}"
         return (result,)
 
     @property
@@ -354,7 +354,7 @@ class LilyPondGrobOverride(object):
             '\\revert Glissando.style'
 
         """
-        return '\n'.join(self.revert_format_pieces)
+        return "\n".join(self.revert_format_pieces)
 
     @property
     def value(self) -> typing.Any:
@@ -420,15 +420,16 @@ class LilyPondGrobOverride(object):
 
         """
         from abjad.indicators.LilyPondLiteral import LilyPondLiteral
+
         if directed:
-            result = [r'- \tweak']
+            result = [r"- \tweak"]
         else:
-            result = [r'\tweak']
+            result = [r"\tweak"]
         if grob:
             property_path = (self.grob_name,) + self.property_path
         else:
             property_path = self.property_path
-        string = '.'.join(property_path)
+        string = ".".join(property_path)
         result.append(string)
         if isinstance(self.value, LilyPondLiteral):
             assert isinstance(self.value.argument, str)
@@ -436,4 +437,4 @@ class LilyPondGrobOverride(object):
         else:
             string = Scheme.format_embedded_scheme_value(self.value)
         result.append(string)
-        return ' '.join(result)
+        return " ".join(result)

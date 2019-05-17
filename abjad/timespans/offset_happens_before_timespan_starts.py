@@ -1,8 +1,6 @@
 def offset_happens_before_timespan_starts(
-    timespan=None,
-    offset=None,
-    hold=False,
-    ):
+    timespan=None, offset=None, hold=False
+):
     """
     Makes time relation indicating that ``offset`` happens before ``timespan``
     starts.
@@ -110,14 +108,11 @@ def offset_happens_before_timespan_starts(
     """
     from abjad import timespans
 
-    inequality = timespans.CompoundInequality([
-        'offset < timespan.start',
-        ])
+    inequality = timespans.CompoundInequality(["offset < timespan.start"])
 
     time_relation = timespans.OffsetTimespanTimeRelation(
-        inequality,
-        timespan=timespan,
-        offset=offset)
+        inequality, timespan=timespan, offset=offset
+    )
 
     if time_relation.is_fully_loaded and not hold:
         return time_relation()

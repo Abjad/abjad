@@ -12,21 +12,21 @@ _allowed_to_be_empty_string = (
     abjad.SchemeColor,
     abjad.String,
     abjad.Tag,
-    )
+)
 
 ignored_classes = (
     abjad.FormatSpecification,
     abjad.Path,
     abjad.StorageFormatManager,
     abjad.Tags,
-    )
+)
 
 classes = pytest.helpers.list_all_abjad_classes(
-    ignored_classes=ignored_classes,
-    )
+    ignored_classes=ignored_classes
+)
 
 
-@pytest.mark.parametrize('class_', classes)
+@pytest.mark.parametrize("class_", classes)
 def test_abjad___str___01(class_):
     """
     All concrete classes have a string representation.
@@ -36,7 +36,7 @@ def test_abjad___str___01(class_):
     """
     if inspect.isabstract(class_):
         return
-    if getattr(class_, '_is_abstract', None) is True:
+    if getattr(class_, "_is_abstract", None) is True:
         return
     if issubclass(class_, Exception):
         return
@@ -44,4 +44,4 @@ def test_abjad___str___01(class_):
     string = str(instance)
     assert string is not None
     if class_ not in _allowed_to_be_empty_string:
-        assert string != ''
+        assert string != ""

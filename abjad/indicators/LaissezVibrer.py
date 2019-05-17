@@ -26,21 +26,15 @@ class LaissezVibrer(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_tweaks',
-        )
+    __slots__ = ("_tweaks",)
 
-    _format_slot = 'after'
+    _format_slot = "after"
 
     _time_orientation: enums.HorizontalAlignment = enums.Right
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        *,
-        tweaks: LilyPondTweakManager = None,
-        ) -> None:
+    def __init__(self, *, tweaks: LilyPondTweakManager = None) -> None:
         if tweaks is not None:
             assert isinstance(tweaks, LilyPondTweakManager), repr(tweaks)
         self._tweaks = LilyPondTweakManager.set_tweaks(self, tweaks)
@@ -62,7 +56,7 @@ class LaissezVibrer(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     def __repr__(self) -> str:
@@ -83,7 +77,7 @@ class LaissezVibrer(object):
             '\\laissezVibrer'
 
         """
-        return r'\laissezVibrer'
+        return r"\laissezVibrer"
 
     ### PRIVATE METHODS ###
 

@@ -108,11 +108,7 @@ class PitchSegment(Segment):
     def __init__(self, items=None, item_class=None):
         if not items and not item_class:
             item_class = self._named_item_class
-        Segment.__init__(
-            self,
-            items=items,
-            item_class=item_class,
-            )
+        Segment.__init__(self, items=items, item_class=item_class)
 
     ### SPECIAL METHODS ###
 
@@ -183,6 +179,7 @@ class PitchSegment(Segment):
         Returns LilyPond file.
         """
         import abjad
+
         named_pitches = [abjad.NamedPitch(x) for x in self]
         maker = abjad.NoteMaker()
         notes = maker(named_pitches, [1])
@@ -201,13 +198,14 @@ class PitchSegment(Segment):
         Returns string.
         """
         import abjad
+
         if self.item_class is abjad.NamedPitch:
-            contents = ' '.join([str(_) for _ in self])
+            contents = " ".join([str(_) for _ in self])
             contents = '"' + contents + '"'
         else:
-            contents = ', '.join([str(_) for _ in self])
-            contents = '[' + contents + ']'
-        return '{}({})'.format(type(self).__name__, contents)
+            contents = ", ".join([str(_) for _ in self])
+            contents = "[" + contents + "]"
+        return "{}({})".format(type(self).__name__, contents)
 
     def __str__(self):
         """
@@ -230,41 +228,45 @@ class PitchSegment(Segment):
         Returns string.
         """
         import abjad
+
         items = [str(_) for _ in self]
-        separator = ' '
+        separator = " "
         if self.item_class is abjad.NumberedPitch:
-            separator = ', '
-        return '<{}>'.format(separator.join(items))
+            separator = ", "
+        return "<{}>".format(separator.join(items))
 
     ### PRIVATE PROPERTIES ###
 
     @property
     def _named_item_class(self):
         import abjad
+
         return abjad.NamedPitch
 
     @property
     def _numbered_item_class(self):
         import abjad
+
         return abjad.NumberedPitch
 
     @property
     def _parent_item_class(self):
         import abjad
+
         return abjad.Pitch
 
     ### PRIVATE METHODS ###
 
     def _is_equivalent_under_transposition(self, argument):
         import abjad
+
         if not isinstance(argument, type(self)):
             return False
         if not len(self) == len(argument):
             return False
         difference = -(
-            abjad.NamedPitch(argument[0], 4) -
-            abjad.NamedPitch(self[0], 4)
-            )
+            abjad.NamedPitch(argument[0], 4) - abjad.NamedPitch(self[0], 4)
+        )
         new_pitches = (x + difference for x in self)
         new_pitches = abjad.new(self, items=new_pitches)
         return argument == new_pitches
@@ -439,11 +441,7 @@ class PitchSegment(Segment):
     ### PUBLIC METHODS ###
 
     @classmethod
-    def from_selection(
-        class_,
-        selection,
-        item_class=None,
-        ):
+    def from_selection(class_, selection, item_class=None):
         r"""
         Makes pitch segment from `selection`.
 
@@ -492,6 +490,7 @@ class PitchSegment(Segment):
         Returns pitch segment.
         """
         import abjad
+
         if not isinstance(selection, abjad.Selection):
             selection = abjad.select(selection)
         named_pitches = []
@@ -505,10 +504,7 @@ class PitchSegment(Segment):
                 named_pitches.append(component.written_pitch)
             except AttributeError:
                 pass
-        return class_(
-            items=named_pitches,
-            item_class=item_class,
-            )
+        return class_(items=named_pitches, item_class=item_class)
 
     def has_duplicates(self):
         """
@@ -529,6 +525,7 @@ class PitchSegment(Segment):
         Returns true or false.
         """
         import abjad
+
         return len(abjad.PitchSet(self)) < len(self)
 
     def invert(self, axis=None):
@@ -607,6 +604,7 @@ class PitchSegment(Segment):
         Returns new pitch segment.
         """
         import abjad
+
         items = [_.invert(axis=axis) for _ in self]
         return abjad.new(self, items=items)
 
@@ -674,6 +672,7 @@ class PitchSegment(Segment):
         Returns list of notes.
         """
         import abjad
+
         n = n or len(self)
         written_duration = written_duration or abjad.Duration(1, 8)
         maker = abjad.NoteMaker()
@@ -763,6 +762,7 @@ class PitchSegment(Segment):
         Returns new pitch segment.
         """
         import abjad
+
         items = [_.multiply(n=n) for _ in self]
         return abjad.new(self, items=items)
 
@@ -842,6 +842,7 @@ class PitchSegment(Segment):
         Returns new pitch segment.
         """
         import abjad
+
         return abjad.new(self, items=reversed(self))
 
     def rotate(self, n=0, stravinsky=False):
@@ -920,6 +921,7 @@ class PitchSegment(Segment):
         Returns new pitch segment.
         """
         import abjad
+
         rotated_pitches = abjad.sequence(self._collection).rotate(n=n)
         new_segment = abjad.new(self, items=rotated_pitches)
         if stravinsky:
@@ -1053,6 +1055,7 @@ class PitchSegment(Segment):
         Returns new segment.
         """
         import abjad
+
         class_ = abjad.Pitch
         item_class = class_._to_pitch_class_item_class(self.item_class)
         return abjad.PitchClassSegment(items=self.items, item_class=item_class)
@@ -1206,6 +1209,7 @@ class PitchSegment(Segment):
         Returns new segment.
         """
         import abjad
+
         return abjad.new(self)
 
     def transpose(self, n=0):
@@ -1284,5 +1288,6 @@ class PitchSegment(Segment):
         Returns new pitch segment.
         """
         import abjad
+
         items = [_.transpose(n=n) for _ in self]
         return abjad.new(self, items=items)

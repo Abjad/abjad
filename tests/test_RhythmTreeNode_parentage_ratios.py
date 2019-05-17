@@ -4,7 +4,7 @@ import abjad.rhythmtrees
 
 def test_RhythmTreeNode_parentage_ratios_01():
 
-    string = '(1 (1 (2 (3 4)) 2))'
+    string = "(1 (1 (2 (3 4)) 2))"
     tree = abjad.rhythmtrees.RhythmTreeParser()(string)[0]
 
     assert tree.parentage_ratios == (1,)

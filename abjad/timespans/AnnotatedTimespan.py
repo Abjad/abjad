@@ -37,11 +37,9 @@ class AnnotatedTimespan(Timespan):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Timespans'
+    __documentation_section__ = "Timespans"
 
-    __slots__ = (
-        '_annotation',
-        )
+    __slots__ = ("_annotation",)
 
     ### INITIALIZER ###
 
@@ -50,12 +48,10 @@ class AnnotatedTimespan(Timespan):
         start_offset=NegativeInfinity,
         stop_offset=Infinity,
         annotation=None,
-        ):
+    ):
         Timespan.__init__(
-            self,
-            start_offset=start_offset,
-            stop_offset=stop_offset,
-            )
+            self, start_offset=start_offset, stop_offset=stop_offset
+        )
         self._annotation = annotation
 
     ### PUBLIC PROPERTIES ###

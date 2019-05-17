@@ -5,24 +5,24 @@ class FormatSpecification(object):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Storage formatting'
+    __documentation_section__ = "Storage formatting"
 
     __slots__ = (
-        '_client',
-        '_coerce_for_equality',
-        '_repr_args_values',
-        '_repr_is_bracketed',
-        '_repr_is_indented',
-        '_repr_kwargs_names',
-        '_repr_text',
-        '_storage_format_args_values',
-        '_storage_format_forced_override',
-        '_storage_format_is_bracketed',
-        '_storage_format_is_indented',
-        '_storage_format_kwargs_names',
-        '_storage_format_text',
-        '_template_names',
-        )
+        "_client",
+        "_coerce_for_equality",
+        "_repr_args_values",
+        "_repr_is_bracketed",
+        "_repr_is_indented",
+        "_repr_kwargs_names",
+        "_repr_text",
+        "_storage_format_args_values",
+        "_storage_format_forced_override",
+        "_storage_format_is_bracketed",
+        "_storage_format_is_indented",
+        "_storage_format_kwargs_names",
+        "_storage_format_text",
+        "_template_names",
+    )
 
     ### INITIALIZER ###
 
@@ -42,7 +42,7 @@ class FormatSpecification(object):
         storage_format_kwargs_names=None,
         storage_format_text=None,
         template_names=None,
-        ):
+    ):
         self._client = client
         self._coerce_for_equality = self._coerce_boolean(coerce_for_equality)
         self._repr_args_values = self._coerce_tuple(repr_args_values)
@@ -51,14 +51,18 @@ class FormatSpecification(object):
         self._repr_kwargs_names = self._coerce_tuple(repr_kwargs_names)
         self._repr_text = self._coerce_string(repr_text)
         self._storage_format_args_values = self._coerce_tuple(
-            storage_format_args_values)
+            storage_format_args_values
+        )
         self._storage_format_forced_override = storage_format_forced_override
         self._storage_format_is_bracketed = self._coerce_boolean(
-            storage_format_is_bracketed)
+            storage_format_is_bracketed
+        )
         self._storage_format_is_indented = self._coerce_boolean(
-            storage_format_is_indented)
+            storage_format_is_indented
+        )
         self._storage_format_kwargs_names = self._coerce_tuple(
-            storage_format_kwargs_names)
+            storage_format_kwargs_names
+        )
         self._storage_format_text = self._coerce_string(storage_format_text)
         self._template_names = self._coerce_tuple(template_names)
 

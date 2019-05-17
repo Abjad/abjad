@@ -11,11 +11,11 @@ class ContextSpeccedMusic(Music):
 
     __slots__ = (
         #'context',
-        'lilypond_type',
-        'music',
-        'optional_id',
-        'optional_context_mod',
-        )
+        "lilypond_type",
+        "music",
+        "optional_id",
+        "optional_context_mod",
+    )
 
     ### INITIALIZER ###
 
@@ -25,9 +25,10 @@ class ContextSpeccedMusic(Music):
         optional_id=None,
         optional_context_mod=None,
         music=None,
-        ):
+    ):
         from abjad import parser as abjad_parser
-        lilypond_type = lilypond_type or ''
+
+        lilypond_type = lilypond_type or ""
         music = music or abjad_parser.SequentialMusic()
         assert utilities.String.is_string(lilypond_type)
         assert isinstance(music, Music)
@@ -47,7 +48,7 @@ class ContextSpeccedMusic(Music):
         if self.lilypond_type in self.known_contexts:
             context = known_contexts[self.lilypond_type]([])
         else:
-            message = 'context type not supported: {}.'
+            message = "context type not supported: {}."
             message = message.format(self.lilypond_type)
             raise Exception(message)
 
@@ -76,12 +77,13 @@ class ContextSpeccedMusic(Music):
         Returns dictionary.
         """
         from abjad import core
+
         return {
-            'ChoirStaff': core.StaffGroup,
-            'GrandStaff': core.StaffGroup,
-            'PianoStaff': core.StaffGroup,
-            'Score': core.Score,
-            'Staff': core.Staff,
-            'StaffGroup': core.StaffGroup,
-            'Voice': core.Voice,
+            "ChoirStaff": core.StaffGroup,
+            "GrandStaff": core.StaffGroup,
+            "PianoStaff": core.StaffGroup,
+            "Score": core.Score,
+            "Staff": core.Staff,
+            "StaffGroup": core.StaffGroup,
+            "Voice": core.Voice,
         }

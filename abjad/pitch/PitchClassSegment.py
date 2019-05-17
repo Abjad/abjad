@@ -122,18 +122,14 @@ class PitchClassSegment(Segment):
     def __init__(self, items=None, item_class=None):
         if not items and not item_class:
             item_class = self._named_item_class
-        Segment.__init__(
-            self,
-            items=items,
-            item_class=item_class,
-            )
+        Segment.__init__(self, items=items, item_class=item_class)
 
     ### SPECIAL METHODS ###
 
     @Signature(
-        markup_maker_callback='_make___add___markup',
-        string_template_callback='_make___add___string_template',
-        )
+        markup_maker_callback="_make___add___markup",
+        string_template_callback="_make___add___string_template",
+    )
     def __add__(self, argument):
         r"""
         Adds `argument` to segment.
@@ -668,7 +664,7 @@ class PitchClassSegment(Segment):
         """
         return super().__contains__(argument)
 
-    def __format__(self, format_specification=''):
+    def __format__(self, format_specification=""):
         r"""
         Formats segment.
 
@@ -752,9 +748,9 @@ class PitchClassSegment(Segment):
         return super().__format__(format_specification=format_specification)
 
     @Signature(
-        markup_maker_callback='_make___getitem___markup',
-        string_template_callback='_make___getitem___string_template',
-        )
+        markup_maker_callback="_make___getitem___markup",
+        string_template_callback="_make___getitem___string_template",
+    )
     def __getitem__(self, argument):
         r"""
         Gets `argument` from segment.
@@ -1070,9 +1066,8 @@ class PitchClassSegment(Segment):
         """
         if self._expression:
             return self._update_expression(
-                inspect.currentframe(),
-                precedence=100,
-                )
+                inspect.currentframe(), precedence=100
+            )
         return super().__getitem__(argument)
 
     def __illustrate__(self, expression_markup_direction=enums.Up, **keywords):
@@ -1138,9 +1133,8 @@ class PitchClassSegment(Segment):
 
         """
         return super().__illustrate__(
-            expression_markup_direction=expression_markup_direction,
-            **keywords
-            )
+            expression_markup_direction=expression_markup_direction, **keywords
+        )
 
     def __mul__(self, n):
         r"""
@@ -1171,13 +1165,14 @@ class PitchClassSegment(Segment):
         Returns string.
         """
         import abjad
+
         if self.item_class is abjad.NamedPitchClass:
-            contents = ' '.join([str(_) for _ in self])
+            contents = " ".join([str(_) for _ in self])
             contents = '"' + contents + '"'
         else:
-            contents = ', '.join([str(_) for _ in self])
-            contents = '[' + contents + ']'
-        return '{}({})'.format(type(self).__name__, contents)
+            contents = ", ".join([str(_) for _ in self])
+            contents = "[" + contents + "]"
+        return "{}({})".format(type(self).__name__, contents)
 
     def __rmul__(self, n):
         r"""
@@ -1219,45 +1214,50 @@ class PitchClassSegment(Segment):
         Returns string.
         """
         import abjad
+
         items = [str(_) for _ in self]
-        separator = ' '
+        separator = " "
         if self.item_class is abjad.NumberedPitchClass:
-            separator = ', '
-        return 'PC<{}>'.format(separator.join(items))
+            separator = ", "
+        return "PC<{}>".format(separator.join(items))
 
     ### PRIVATE PROPERTIES ###
 
     @property
     def _named_item_class(self):
         import abjad
+
         return abjad.NamedPitchClass
 
     @property
     def _numbered_item_class(self):
         import abjad
+
         return abjad.NumberedPitchClass
 
     @property
     def _parent_item_class(self):
         import abjad
+
         return abjad.PitchClass
 
     ### PRIVATE METHODS ###
 
     def _get_padded_string(self, width=2):
         string = super()._get_padded_string(width=width)
-        return 'PC<' + string[1:-1] + '>'
+        return "PC<" + string[1:-1] + ">"
 
     def _is_equivalent_under_transposition(self, argument):
         import abjad
+
         if not isinstance(argument, type(self)):
             return False
         if not len(self) == len(argument):
             return False
         difference = -(
-            abjad.NamedPitch((argument[0].name, 4)) -
-            abjad.NamedPitch((self[0].name, 4))
-            )
+            abjad.NamedPitch((argument[0].name, 4))
+            - abjad.NamedPitch((self[0].name, 4))
+        )
         new_pitch_classes = (x + difference for x in self)
         new_pitch_classes = new(self, items=new_pitch_classes)
         return argument == new_pitch_classes
@@ -1265,8 +1265,8 @@ class PitchClassSegment(Segment):
     @staticmethod
     def _make_rotate_method_name(n=0, stravinsky=False):
         if stravinsky:
-            return 'rs'
-        return 'r'
+            return "rs"
+        return "r"
 
     def _transpose_to_zero(self):
         numbers = [_.number for _ in self]
@@ -1277,10 +1277,10 @@ class PitchClassSegment(Segment):
 
     def _update_expression(self, frame, precedence=None):
         import abjad
+
         callback = abjad.Expression._frame_to_callback(
-            frame,
-            precedence=precedence,
-            )
+            frame, precedence=precedence
+        )
         return self._expression.append_callback(callback)
 
     ### PUBLIC PROPERTIES ###
@@ -1471,11 +1471,9 @@ class PitchClassSegment(Segment):
 
         """
         import abjad
+
         pitch_segment = abjad.PitchSegment.from_selection(selection)
-        return class_(
-            items=pitch_segment,
-            item_class=item_class,
-            )
+        return class_(items=pitch_segment, item_class=item_class)
 
     def has_duplicates(self):
         """
@@ -1506,6 +1504,7 @@ class PitchClassSegment(Segment):
         Returns true or false.
         """
         import abjad
+
         return len(abjad.PitchClassSet(self)) < len(self)
 
     def index(self, item):
@@ -1544,11 +1543,7 @@ class PitchClassSegment(Segment):
         """
         return super().index(item)
 
-    @Signature(
-        is_operator=True,
-        method_name='I',
-        subscript='axis',
-        )
+    @Signature(is_operator=True, method_name="I", subscript="axis")
     def invert(self, axis=None):
         r"""
         Inverts segment.
@@ -1801,6 +1796,7 @@ class PitchClassSegment(Segment):
 
         """
         import abjad
+
         n = n or len(self)
         written_duration = written_duration or Duration(1, 8)
         maker = abjad.NoteMaker()
@@ -1815,11 +1811,7 @@ class PitchClassSegment(Segment):
         voice[:] = []
         return notes
 
-    @Signature(
-        is_operator=True,
-        method_name='M',
-        subscript='n',
-        )
+    @Signature(is_operator=True, method_name="M", subscript="n")
     def multiply(self, n=1):
         r"""
         Multiplies pitch-classes in segment by `n`.
@@ -2132,6 +2124,7 @@ class PitchClassSegment(Segment):
 
         """
         import abjad
+
         if self._expression:
             return self._update_expression(inspect.currentframe())
         items = [abjad.NumberedPitchClass(_) for _ in self]
@@ -2236,13 +2229,14 @@ class PitchClassSegment(Segment):
         Returns new segment.
         """
         import abjad
+
         if self._expression:
             return self._update_expression(inspect.currentframe())
         row = abjad.TwelveToneRow(items=row)
         items = row(self)
         return type(self)(items=items)
 
-    @Signature(is_operator=True, method_name='R')
+    @Signature(is_operator=True, method_name="R")
     def retrograde(self):
         r"""
         Gets retrograde of segment.
@@ -2423,9 +2417,9 @@ class PitchClassSegment(Segment):
 
     @Signature(
         is_operator=True,
-        method_name_callback='_make_rotate_method_name',
-        subscript='n',
-        )
+        method_name_callback="_make_rotate_method_name",
+        subscript="n",
+    )
     def rotate(self, n=0, stravinsky=False):
         r"""
         Rotates segment by index `n`.
@@ -2745,6 +2739,7 @@ class PitchClassSegment(Segment):
 
         """
         import abjad
+
         if self._expression:
             return self._update_expression(inspect.currentframe())
         items = abjad.sequence(self._collection).rotate(n=n)
@@ -2996,15 +2991,12 @@ class PitchClassSegment(Segment):
         Returns new segment.
         """
         import abjad
+
         class_ = abjad.Pitch
         item_class = class_._to_pitch_item_class(self.item_class)
         return abjad.PitchSegment(items=self.items, item_class=item_class)
 
-    @Signature(
-        is_operator=True,
-        method_name='T',
-        subscript='n',
-        )
+    @Signature(is_operator=True, method_name="T", subscript="n")
     def transpose(self, n=0):
         r"""
         Transposes segment by index `n`.
@@ -3329,6 +3321,7 @@ class PitchClassSegment(Segment):
 
         """
         import abjad
+
         initial_octave = abjad.Octave(initial_octave)
         pitches = []
         if self:
@@ -3350,10 +3343,7 @@ class PitchClassSegment(Segment):
             item_class = abjad.NamedPitch
         else:
             item_class = abjad.NumberedPitch
-        return abjad.PitchSegment(
-            items=pitches,
-            item_class=item_class,
-            )
+        return abjad.PitchSegment(items=pitches, item_class=item_class)
 
     def voice_vertically(self, initial_octave=4):
         r"""
@@ -3422,6 +3412,7 @@ class PitchClassSegment(Segment):
 
         """
         import abjad
+
         initial_octave = abjad.Octave(initial_octave)
         pitches = []
         if self:
@@ -3438,7 +3429,4 @@ class PitchClassSegment(Segment):
             item_class = abjad.NamedPitch
         else:
             item_class = abjad.NumberedPitch
-        return abjad.PitchSegment(
-            items=pitches,
-            item_class=item_class,
-            )
+        return abjad.PitchSegment(items=pitches, item_class=item_class)

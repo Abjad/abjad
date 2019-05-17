@@ -28,7 +28,7 @@ class Rest(Leaf):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Leaves'
+    __documentation_section__ = "Leaves"
 
     __slots__ = ()
 
@@ -40,12 +40,12 @@ class Rest(Leaf):
         *,
         multiplier: typings.DurationTyping = None,
         tag: str = None,
-        ) -> None:
+    ) -> None:
         original_input = written_duration
         if isinstance(written_duration, Leaf):
             multiplier = written_duration.multiplier
         if isinstance(written_duration, str):
-            string = f'{{ {written_duration} }}'
+            string = f"{{ {written_duration} }}"
             parsed = parse(string)
             assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
             written_duration = parsed[0]
@@ -55,12 +55,7 @@ class Rest(Leaf):
             written_duration = Duration(1, 4)
         else:
             written_duration = Duration(written_duration)
-        Leaf.__init__(
-            self,
-            written_duration,
-            multiplier=multiplier,
-            tag=tag,
-            )
+        Leaf.__init__(self, written_duration, multiplier=multiplier, tag=tag)
         if isinstance(original_input, Leaf):
             self._copy_override_and_set_from_leaf(original_input)
 
@@ -70,4 +65,4 @@ class Rest(Leaf):
         return [self._get_compact_representation()]
 
     def _get_compact_representation(self):
-        return f'r{self._get_formatted_duration()}'
+        return f"r{self._get_formatted_duration()}"

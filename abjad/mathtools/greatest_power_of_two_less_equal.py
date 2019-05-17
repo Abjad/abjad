@@ -42,11 +42,11 @@ def greatest_power_of_two_less_equal(n, i=0):
     Returns positive integer.
     """
     if not isinstance(n, numbers.Number):
-        message = 'must be number: {!r}.'
+        message = "must be number: {!r}."
         message = message.format(n)
         raise TypeError(message)
     if n <= 0:
-        message = 'must be positive: {!r}.'
+        message = "must be positive: {!r}."
         message = message.format(n)
         raise ValueError(message)
     return 2 ** (int(math.log(n, 2)) - i)

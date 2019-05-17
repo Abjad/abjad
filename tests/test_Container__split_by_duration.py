@@ -32,12 +32,11 @@ def test_Container__split_by_duration_01():
             }
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     halves = staff[0]._split_by_duration(
-        abjad.Duration(1, 32),
-        tie_split_notes=False,
-        )
+        abjad.Duration(1, 32), tie_split_notes=False
+    )
 
     assert format(staff) == abjad.String.normalize(
         r"""
@@ -62,7 +61,7 @@ def test_Container__split_by_duration_01():
             }
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     assert abjad.inspect(staff).wellformed()
 
@@ -101,12 +100,11 @@ def test_Container__split_by_duration_02():
             }
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     halves = staff[0]._split_by_duration(
-        abjad.Duration(1, 32),
-        tie_split_notes=True,
-        )
+        abjad.Duration(1, 32), tie_split_notes=True
+    )
 
     assert format(staff) == abjad.String.normalize(
         r"""
@@ -132,7 +130,7 @@ def test_Container__split_by_duration_02():
             }
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     assert abjad.inspect(staff).wellformed()
 
@@ -171,12 +169,11 @@ def test_Container__split_by_duration_03():
             }
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     halves = staff[0]._split_by_duration(
-        abjad.Duration(1, 5),
-        tie_split_notes=False,
-        )
+        abjad.Duration(1, 5), tie_split_notes=False
+    )
 
     assert format(staff) == abjad.String.normalize(
         r"""
@@ -203,7 +200,7 @@ def test_Container__split_by_duration_03():
             }
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     assert abjad.inspect(staff).wellformed()
 
@@ -242,12 +239,11 @@ def test_Container__split_by_duration_04():
             }
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     halves = staff[0]._split_by_duration(
-        abjad.Duration(1, 5),
-        tie_split_notes=True,
-        )
+        abjad.Duration(1, 5), tie_split_notes=True
+    )
 
     assert format(staff) == abjad.String.normalize(
         r"""
@@ -275,6 +271,6 @@ def test_Container__split_by_duration_04():
             }
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     assert abjad.inspect(staff).wellformed()

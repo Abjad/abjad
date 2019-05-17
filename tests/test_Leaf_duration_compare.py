@@ -27,4 +27,4 @@ def test_Leaf_duration_compare_03():
     note = abjad.Note("c'4")
     assert note.written_duration == abjad.Duration(1, 4)
     assert note.written_duration != (1, 4)
-    assert note.written_duration != 'foo'
+    assert note.written_duration != "foo"

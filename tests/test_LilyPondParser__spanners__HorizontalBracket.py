@@ -25,7 +25,7 @@ def test_LilyPondParser__spanners__HorizontalBracket_01():
             \stopGroup
         }
         """
-        )
+    )
 
     parser = abjad.parser.LilyPondParser()
     result = parser(format(target))

@@ -1,7 +1,7 @@
 try:
-    import quicktions as fractions # type: ignore
+    import quicktions as fractions  # type: ignore
 except ImportError:
-    import fractions # type: ignore
+    import fractions  # type: ignore
 import typing
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.StorageFormatManager import StorageFormatManager
@@ -59,15 +59,13 @@ class NonreducedFraction(fractions.Fraction):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_numerator',
-        '_denominator',
-        )
+    __slots__ = ("_numerator", "_denominator")
 
     ### CONSTRUCTOR ###
 
     def __new__(class_, *arguments):
         import abjad
+
         is_fraction_like = False
         if len(arguments) == 1:
             try:
@@ -81,29 +79,35 @@ class NonreducedFraction(fractions.Fraction):
         elif len(arguments) == 1 and isinstance(arguments[0], int):
             numerator = arguments[0]
             denominator = 1
-        elif (len(arguments) == 1 and
-            isinstance(arguments[0], tuple) and
-            len(arguments[0]) == 1):
+        elif (
+            len(arguments) == 1
+            and isinstance(arguments[0], tuple)
+            and len(arguments[0]) == 1
+        ):
             numerator = arguments[0][0]
             denominator = 1
-        elif (len(arguments) == 1 and
-            isinstance(arguments[0], tuple) and
-            isinstance(arguments[0][0], int) and
-            isinstance(arguments[0][1], int)):
+        elif (
+            len(arguments) == 1
+            and isinstance(arguments[0], tuple)
+            and isinstance(arguments[0][0], int)
+            and isinstance(arguments[0][1], int)
+        ):
             numerator, denominator = arguments[0]
         elif len(arguments) == 1 and isinstance(arguments[0], str):
             numerator, denominator = class_._parse_input_string(arguments[0])
-        elif (isinstance(arguments, tuple) and
-            len(arguments) == 2 and
-            isinstance(arguments[0], int) and
-            isinstance(arguments[1], int)):
+        elif (
+            isinstance(arguments, tuple)
+            and len(arguments) == 2
+            and isinstance(arguments[0], int)
+            and isinstance(arguments[1], int)
+        ):
             numerator = arguments[0]
             denominator = arguments[1]
         elif len(arguments) == 0:
             numerator = 0
             denominator = 1
         else:
-            message = 'can not initialize {}: {!r}.'
+            message = "can not initialize {}: {!r}."
             message = message.format(class_.__name__, arguments)
             raise ValueError(message)
         numerator *= abjad.mathtools.sign(denominator)
@@ -150,11 +154,12 @@ class NonreducedFraction(fractions.Fraction):
         Returns nonreduced fraction.
         """
         import abjad
+
         if isinstance(argument, int):
             numerator = self.numerator + argument * self.denominator
             pair = (numerator, self.denominator)
             return self._from_pair(pair)
-        if getattr(argument, 'denominator', 'foo') == 'foo':
+        if getattr(argument, "denominator", "foo") == "foo":
             raise ValueError(argument)
         if self.denominator == argument.denominator:
             numerator = self.numerator + argument.numerator
@@ -201,7 +206,7 @@ class NonreducedFraction(fractions.Fraction):
         """
         return self.reduce() == argument
 
-    def __format__(self, format_specification=''):
+    def __format__(self, format_specification=""):
         """
         Formats nonreduced fraction.
 
@@ -213,7 +218,7 @@ class NonreducedFraction(fractions.Fraction):
 
         Returns string.
         """
-        if format_specification in ('', 'storage'):
+        if format_specification in ("", "storage"):
             return StorageFormatManager(self).get_storage_format()
         return str(self)
 
@@ -413,7 +418,7 @@ class NonreducedFraction(fractions.Fraction):
 
         Returns string.
         """
-        return '{}/{}'.format(self.numerator, self.denominator)
+        return "{}/{}".format(self.numerator, self.denominator)
 
     def __sub__(self, argument):
         """
@@ -451,6 +456,7 @@ class NonreducedFraction(fractions.Fraction):
 
     def _fraction_with_denominator(self, fraction, denominator):
         import abjad
+
         denominators = [denominator, fraction.denominator]
         denominator = abjad.mathtools.least_common_multiple(*denominators)
         result = self._from_pair(fraction)
@@ -467,18 +473,15 @@ class NonreducedFraction(fractions.Fraction):
         return FormatSpecification(
             client=self,
             repr_is_indented=False,
-            storage_format_args_values=[
-                self.numerator,
-                self.denominator,
-                ],
+            storage_format_args_values=[self.numerator, self.denominator],
             storage_format_is_indented=False,
             storage_format_kwargs_names=[],
-            )
+        )
 
     @staticmethod
     def _parse_input_string(string):
-        if '/' in string:
-            numerator, denominator = string.split('/')
+        if "/" in string:
+            numerator, denominator = string.split("/")
             numerator = int(numerator)
             denominator = int(denominator)
         else:
@@ -514,6 +517,7 @@ class NonreducedFraction(fractions.Fraction):
         Returns nonreduced fraction.
         """
         import abjad
+
         if preserve_numerator:
             multiplier = abjad.Multiplier(multiplier)
             self_denominator = self.denominator
@@ -557,25 +561,30 @@ class NonreducedFraction(fractions.Fraction):
         Returns nonreduced fraction.
         """
         import abjad
+
         multiplier = abjad.Multiplier(multiplier)
         self_numerator_factors = abjad.mathtools.factors(self.numerator)
         multiplier_denominator_factors = abjad.mathtools.factors(
-            multiplier.denominator)
+            multiplier.denominator
+        )
         for factor in multiplier_denominator_factors[:]:
             if factor in self_numerator_factors:
                 self_numerator_factors.remove(factor)
                 multiplier_denominator_factors.remove(factor)
         self_denominator_factors = abjad.mathtools.factors(self.denominator)
         multiplier_numerator_factors = abjad.mathtools.factors(
-            multiplier.numerator)
+            multiplier.numerator
+        )
         for factor in multiplier_numerator_factors[:]:
             if factor in self_denominator_factors:
                 self_denominator_factors.remove(factor)
                 multiplier_numerator_factors.remove(factor)
-        result_numerator_factors = self_numerator_factors + \
-            multiplier_numerator_factors
-        result_denominator_factors = self_denominator_factors + \
-            multiplier_denominator_factors
+        result_numerator_factors = (
+            self_numerator_factors + multiplier_numerator_factors
+        )
+        result_denominator_factors = (
+            self_denominator_factors + multiplier_denominator_factors
+        )
         result_numerator = 1
         for factor in result_numerator_factors:
             result_numerator *= factor
@@ -692,12 +701,12 @@ class NonreducedFraction(fractions.Fraction):
         Returns nonreduced fraction.
         """
         import abjad
+
         current_numerator, current_denominator = self.pair
         multiplier = abjad.Multiplier(denominator, current_denominator)
         new_numerator = multiplier * current_numerator
         new_denominator = multiplier * current_denominator
-        if (new_numerator.denominator == 1 and
-            new_denominator.denominator == 1):
+        if new_numerator.denominator == 1 and new_denominator.denominator == 1:
             pair = (new_numerator.numerator, new_denominator.numerator)
         else:
             pair = (current_numerator, current_denominator)

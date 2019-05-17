@@ -41,27 +41,13 @@ class PartAssignment(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_members',
-        '_parts',
-        '_section',
-        '_token',
-        )
+    __slots__ = ("_members", "_parts", "_section", "_token")
 
     ### INITIALIZER ###
 
-    token_type = typing.Union[
-        None,
-        int,
-        typings.IntegerPair,
-        typing.List[int],
-        ]
+    token_type = typing.Union[None, int, typings.IntegerPair, typing.List[int]]
 
-    def __init__(
-        self,
-        section: str = None,
-        token: token_type = None,
-        ) -> None:
+    def __init__(self, section: str = None, token: token_type = None) -> None:
         self._section = section
         if token is not None:
             assert self._is_token(token), repr(token)
@@ -144,11 +130,14 @@ class PartAssignment(object):
 
         """
         if not isinstance(part, Part):
-            raise TypeError(f'must be part (not {part!r}).')
+            raise TypeError(f"must be part (not {part!r}).")
         if part.section == self.section:
-            if (part.member is None or
-                self.members is None or
-                part.member in self.members or []):
+            if (
+                part.member is None
+                or self.members is None
+                or part.member in self.members
+                or []
+            ):
                 return True
             return False
         return False
@@ -191,11 +180,11 @@ class PartAssignment(object):
                 return argument.members == self.members
         return False
 
-    def __format__(self, format_specification='') -> str:
+    def __format__(self, format_specification="") -> str:
         """
         Formats object.
         """
-        if format_specification in ('', 'storage'):
+        if format_specification in ("", "storage"):
             return StorageFormatManager(self).get_storage_format()
         return str(self)
 
@@ -269,16 +258,18 @@ class PartAssignment(object):
             storage_format_args_values=repr_args_values,
             storage_format_is_indented=repr_is_indented,
             storage_format_kwargs_names=repr_kwargs_names,
-            )
+        )
 
     @staticmethod
     def _is_token(argument):
         if isinstance(argument, int) and 1 <= argument:
             return True
-        if (isinstance(argument, tuple) and
-            len(argument) == 2 and
-            isinstance(argument[0], int) and
-            isinstance(argument[1], int)):
+        if (
+            isinstance(argument, tuple)
+            and len(argument) == 2
+            and isinstance(argument[0], int)
+            and isinstance(argument[1], int)
+        ):
             return True
         if isinstance(argument, list):
             for item in argument:

@@ -53,23 +53,23 @@ class IntervalVector(Vector):
 
     def __init__(self, items=None, item_class=None):
         import abjad
-        if isinstance(items, (
-            abjad.PitchSegment,
-            abjad.PitchSet,
-            abjad.PitchClassSegment,
-            abjad.PitchClassSet,
-            )):
+
+        if isinstance(
+            items,
+            (
+                abjad.PitchSegment,
+                abjad.PitchSet,
+                abjad.PitchClassSegment,
+                abjad.PitchClassSet,
+            ),
+        ):
             intervals = []
             enumerator = Enumerator(items)
             pairs = enumerator.yield_pairs()
             for first, second in pairs:
                 intervals.append(second - first)
             items = intervals
-        Vector.__init__(
-            self,
-            items=items,
-            item_class=item_class,
-            )
+        Vector.__init__(self, items=items, item_class=item_class)
 
     ### SPECIAL METHODS ###
 
@@ -108,34 +108,31 @@ class IntervalVector(Vector):
     @property
     def _named_item_class(self):
         import abjad
+
         return abjad.NamedInterval
 
     @property
     def _numbered_item_class(self):
         import abjad
+
         return abjad.NumberedInterval
 
     @property
     def _parent_item_class(self):
         import abjad
+
         return abjad.Interval
 
     ### PUBLIC METHODS ###
 
     @classmethod
-    def from_selection(
-        class_,
-        selection,
-        item_class=None,
-        ):
+    def from_selection(class_, selection, item_class=None):
         """
         Makes interval vector from `selection`.
 
         Returns interval vector.
         """
         import abjad
+
         pitch_segment = abjad.PitchSegment.from_selection(selection)
-        return class_(
-            pitch_segment,
-            item_class=item_class,
-            )
+        return class_(pitch_segment, item_class=item_class)

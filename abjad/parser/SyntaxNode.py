@@ -9,10 +9,7 @@ class SyntaxNode(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        'type',
-        'value',
-        )
+    __slots__ = ("type", "value")
 
     ### INTIAILIZER ###
 
@@ -30,7 +27,7 @@ class SyntaxNode(object):
         """
         if isinstance(self.value, (list, tuple)):
             return self.value.__getitem__(argument)
-        message = 'can not get: {!r}.'
+        message = "can not get: {!r}."
         message = message.format(argument)
         raise Exception(message)
 
@@ -42,7 +39,7 @@ class SyntaxNode(object):
         """
         if isinstance(self.value, (list, tuple)):
             return len(self.value)
-        message = 'value must be list or tuple.'
+        message = "value must be list or tuple."
         raise Exception(message)
 
     def __repr__(self):
@@ -51,11 +48,9 @@ class SyntaxNode(object):
 
         Returns string.
         """
-        return '{}({}, {})'.format(
-            type(self).__name__,
-            self.type,
-            type(self.value),
-            )
+        return "{}({}, {})".format(
+            type(self).__name__, self.type, type(self.value)
+        )
 
     def __str__(self):
         """
@@ -63,30 +58,30 @@ class SyntaxNode(object):
 
         Returns string.
         """
-        return '\n'.join(self._format(self))
+        return "\n".join(self._format(self))
 
     ### PRIVATE METHODS ###
 
     def _format(self, obj, indent=0):
-        space = '.  ' * indent
+        space = ".  " * indent
         result = []
 
         if isinstance(obj, type(self)):
             if isinstance(obj.value, (list, tuple)):
-                result.append('%s<%s>: [' % (space, obj.type))
+                result.append("%s<%s>: [" % (space, obj.type))
                 for x in obj.value:
                     result.extend(self._format(x, indent + 1))
-                result[-1] += ' ]'
+                result[-1] += " ]"
             else:
-                result.append('%s<%s>: %r' % (space, obj.type, obj.value))
+                result.append("%s<%s>: %r" % (space, obj.type, obj.value))
 
         elif isinstance(obj, (list, tuple)):
-            result.append('%s[' % space)
+            result.append("%s[" % space)
             for x in obj:
                 result.extend(self._format(x, indent + 1))
-            result[-1] += ' ]'
+            result[-1] += " ]"
 
         else:
-            result.append('%s%r' % (space, obj))
+            result.append("%s%r" % (space, obj))
 
         return result

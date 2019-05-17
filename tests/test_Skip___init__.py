@@ -6,7 +6,7 @@ def test_Skip___init___01():
     Initialize skip from LilyPond input string.
     """
 
-    skip = abjad.Skip('s8.')
+    skip = abjad.Skip("s8.")
     assert isinstance(skip, abjad.Skip)
 
 
@@ -64,7 +64,7 @@ def test_Skip___init___05():
     # check that attributes have not been removed or added.
     assert dir(note) == dir(abjad.Note("c'4"))
     assert dir(skip) == dir(abjad.Skip((1, 4)))
-    assert format(skip) == 's8'
+    assert format(skip) == "s8"
     assert skip._parent is None
     assert skip.written_duration == duration
 
@@ -129,7 +129,9 @@ def test_Skip___init___10():
     Initialize skip from spanned rest.
     """
 
-    staff = abjad.Staff([abjad.Note(0, (1, 8)), abjad.Rest((1, 8)), abjad.Note(0, (1, 8))])
+    staff = abjad.Staff(
+        [abjad.Note(0, (1, 8)), abjad.Rest((1, 8)), abjad.Note(0, (1, 8))]
+    )
     abjad.beam(staff[:])
     skip = abjad.Skip(staff[1])
     assert isinstance(skip, abjad.Skip)

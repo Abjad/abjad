@@ -13,7 +13,6 @@ from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.utilities.String import String
 
 
-
 class Scheme(object):
     r"""
     Abjad model of Scheme code.
@@ -193,37 +192,32 @@ class Scheme(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_force_quotes',
-        '_quoting',
-        '_value',
-        '_verbatim',
-        )
+    __slots__ = ("_force_quotes", "_quoting", "_value", "_verbatim")
 
     _publish_storage_format = True
 
     lilypond_color_constants = (
-        'black',
-        'blue',
-        'center',
-        'cyan',
-        'darkblue',
-        'darkcyan',
-        'darkgreen',
-        'darkmagenta',
-        'darkred',
-        'darkyellow',
-        'down',
-        'green',
-        'grey',
-        'left',
-        'magenta',
-        'red',
-        'right',
-        'up',
-        'white',
-        'yellow',
-        )
+        "black",
+        "blue",
+        "center",
+        "cyan",
+        "darkblue",
+        "darkcyan",
+        "darkgreen",
+        "darkmagenta",
+        "darkred",
+        "darkyellow",
+        "down",
+        "green",
+        "grey",
+        "left",
+        "magenta",
+        "red",
+        "right",
+        "up",
+        "white",
+        "yellow",
+    )
 
     ### INITIALIZER ###
 
@@ -233,7 +227,7 @@ class Scheme(object):
         force_quotes: bool = None,
         quoting: str = None,
         verbatim: bool = None,
-        ) -> None:
+    ) -> None:
         self._value = value
         if force_quotes is not None:
             force_quotes = bool(force_quotes)
@@ -257,7 +251,7 @@ class Scheme(object):
         """
         return StorageFormatManager.compare_objects(self, argument)
 
-    def __format__(self, format_specification='') -> str:
+    def __format__(self, format_specification="") -> str:
         """
         Formats scheme.
 
@@ -279,9 +273,9 @@ class Scheme(object):
                 )
 
         """
-        if format_specification in ('', 'lilypond'):
+        if format_specification in ("", "lilypond"):
             return self._get_lilypond_format()
-        assert format_specification == 'storage'
+        assert format_specification == "storage"
         return StorageFormatManager(self).get_storage_format()
 
     def __repr__(self) -> str:
@@ -304,23 +298,20 @@ class Scheme(object):
     def _get_format_specification(self):
         values = [self.value]
         return FormatSpecification(
-            client=self,
-            storage_format_args_values=values,
-            )
+            client=self, storage_format_args_values=values
+        )
 
     def _get_formatted_value(self):
         return Scheme.format_scheme_value(
-            self.value,
-            force_quotes=self.force_quotes,
-            verbatim=self.verbatim,
-            )
+            self.value, force_quotes=self.force_quotes, verbatim=self.verbatim
+        )
 
     def _get_lilypond_format(self):
         string = self._get_formatted_value()
         if self.quoting is not None:
             string = self.quoting + string
-        if string in ('#t', '#f') or not string.startswith('#'):
-            string = '#' + string
+        if string in ("#t", "#f") or not string.startswith("#"):
+            string = "#" + string
         return string
 
     ### PUBLIC PROPERTIES ###
@@ -358,31 +349,30 @@ class Scheme(object):
 
     @staticmethod
     def format_embedded_scheme_value(
-        value: typing.Any,
-        force_quotes: bool = False,
-        ) -> str:
+        value: typing.Any, force_quotes: bool = False
+    ) -> str:
         """
         Formats embedded Scheme ``value``.
         """
-        if isinstance(value, (enums.HorizontalAlignment, enums.VerticalAlignment)):
-            return '#' + repr(value).lower()
+        if isinstance(
+            value, (enums.HorizontalAlignment, enums.VerticalAlignment)
+        ):
+            return "#" + repr(value).lower()
         result = Scheme.format_scheme_value(value, force_quotes=force_quotes)
         if isinstance(value, bool):
-            result = '#' + result
-        elif isinstance(value, str) and value.startswith('#'):
+            result = "#" + result
+        elif isinstance(value, str) and value.startswith("#"):
             pass
         elif isinstance(value, str) and not force_quotes:
-            result = '#' + result
+            result = "#" + result
         elif isinstance(value, Scheme):
-            result = '#' + result
+            result = "#" + result
         return result
 
     @staticmethod
     def format_scheme_value(
-        value: typing.Any,
-        force_quotes: bool = False,
-        verbatim: bool = False,
-        ) -> str:
+        value: typing.Any, force_quotes: bool = False, verbatim: bool = False
+    ) -> str:
         r"""
         Formats ``value`` as Scheme would.
 
@@ -436,25 +426,25 @@ class Scheme(object):
         if isinstance(value, str) and verbatim:
             return value
         elif isinstance(value, str) and not verbatim:
-            value = value.replace('"', r'\"')
-            if value.startswith('#'):
+            value = value.replace('"', r"\"")
+            if value.startswith("#"):
                 pass
-            elif value.startswith('\\'):
+            elif value.startswith("\\"):
                 pass
-            elif force_quotes or ' ' in value or '#' in value:
+            elif force_quotes or " " in value or "#" in value:
                 return f'"{value}"'
             return value
         elif value is True:
-            return '#t'
+            return "#t"
         elif value is False:
-            return '#f'
+            return "#f"
         elif isinstance(value, (list, tuple)):
-            string = ' '.join(Scheme.format_scheme_value(_) for _ in value)
-            return f'({string})'
+            string = " ".join(Scheme.format_scheme_value(_) for _ in value)
+            return f"({string})"
         elif isinstance(value, Scheme):
             return str(value)
         elif value is None:
-            return '#f'
+            return "#f"
         return str(value)
 
 
@@ -488,10 +478,7 @@ class SchemeAssociativeList(Scheme):
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        value: typing.List = None,
-        ) -> None:
+    def __init__(self, value: typing.List = None) -> None:
         value = value or []
         pairs = []
         for item in value:
@@ -500,7 +487,7 @@ class SchemeAssociativeList(Scheme):
             elif isinstance(item, SchemePair):
                 pair = item
             else:
-                message = f'must be Python pair or Scheme pair: {item!r}.'
+                message = f"must be Python pair or Scheme pair: {item!r}."
                 raise TypeError(message)
             pairs.append(pair)
         Scheme.__init__(self, value=pairs, quoting="'")
@@ -564,10 +551,7 @@ class SchemeMoment(Scheme):
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        duration: typings.IntegerPair = (0, 1),
-        ) -> None:
+    def __init__(self, duration: typings.IntegerPair = (0, 1)) -> None:
         pair = NonreducedFraction(duration).pair
         Scheme.__init__(self, pair)
 
@@ -632,11 +616,11 @@ class SchemeMoment(Scheme):
             client=self,
             storage_format_args_values=values,
             storage_format_kwargs_names=[],
-            )
+        )
 
     def _get_formatted_value(self):
         pair = self.duration.pair
-        string = f'(ly:make-moment {pair[0]} {pair[1]})'
+        string = f"(ly:make-moment {pair[0]} {pair[1]})"
         return string
 
     ### PUBLIC PROPERTIES ###
@@ -686,23 +670,18 @@ class SchemePair(Scheme):
 
     ### CLASS VARIABLES ##
 
-    __slots__ = (
-        '_value',
-        )
+    __slots__ = ("_value",)
 
     ### INITIALIZER ##
 
-    def __init__(
-        self,
-        value = (None, None),
-        ) -> None:
+    def __init__(self, value=(None, None)) -> None:
         assert isinstance(value, tuple), repr(value)
         assert len(value) == 2, repr(value)
         Scheme.__init__(self, value=value)
 
     ### SPECIAL METHODS ###
 
-    def __format__(self, format_specification='') -> str:
+    def __format__(self, format_specification="") -> str:
         """
         Formats Scheme pair.
 
@@ -728,18 +707,15 @@ class SchemePair(Scheme):
             repr_is_indented=False,
             storage_format_is_indented=False,
             storage_format_args_values=values,
-            )
+        )
 
     def _get_formatted_value(self):
         assert len(self._value) == 2
         lhs = Scheme.format_scheme_value(self._value[0])
         # need to force quotes around pairs like
         # \override #'(font-name . "Times")
-        rhs = Scheme.format_scheme_value(
-            self._value[-1],
-            force_quotes=True,
-            )
-        return f'({lhs} . {rhs})'
+        rhs = Scheme.format_scheme_value(self._value[-1], force_quotes=True)
+        return f"({lhs} . {rhs})"
 
     def _get_lilypond_format(self):
         string = self._get_formatted_value()
@@ -787,10 +763,7 @@ class SchemeSymbol(Scheme):
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        symbol: str = 'cross',
-        ) -> None:
+    def __init__(self, symbol: str = "cross") -> None:
         symbol = str(symbol)
         Scheme.__init__(self, value=symbol, quoting="'")
 
@@ -802,7 +775,7 @@ class SchemeSymbol(Scheme):
             client=self,
             storage_format_args_values=values,
             storage_format_kwargs_names=[],
-            )
+        )
 
     ### PUBLIC PROPERTIES ###
 
@@ -849,10 +822,7 @@ class SchemeVector(Scheme):
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        value: typing.List = [],
-        ) -> None:
+    def __init__(self, value: typing.List = []) -> None:
         Scheme.__init__(self, value, quoting="'")
 
     ### PRIVATE METHODS ###
@@ -865,7 +835,7 @@ class SchemeVector(Scheme):
             client=self,
             storage_format_args_values=values,
             storage_format_kwargs_names=[],
-            )
+        )
 
 
 class SchemeVectorConstant(Scheme):
@@ -892,10 +862,7 @@ class SchemeVectorConstant(Scheme):
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        value: typing.List = [],
-        ) -> None:
+    def __init__(self, value: typing.List = []) -> None:
         Scheme.__init__(self, value, quoting="'#")
 
     ### PRIVATE METHODS ###
@@ -908,7 +875,7 @@ class SchemeVectorConstant(Scheme):
             client=self,
             storage_format_args_values=values,
             storage_format_kwargs_names=[],
-            )
+        )
 
 
 class SpacingVector(SchemeVector):
@@ -955,11 +922,11 @@ class SpacingVector(SchemeVector):
         minimum_distance: typings.Number = 0,
         padding: typings.Number = 12,
         stretchability: typings.Number = 0,
-        ) -> None:
+    ) -> None:
         pairs = [
-            SchemePair(('basic-distance', basic_distance)),
-            SchemePair(('minimum-distance', minimum_distance)),
-            SchemePair(('padding', padding)),
-            SchemePair(('stretchability', stretchability)),
-            ]
+            SchemePair(("basic-distance", basic_distance)),
+            SchemePair(("minimum-distance", minimum_distance)),
+            SchemePair(("padding", padding)),
+            SchemePair(("stretchability", stretchability)),
+        ]
         return SchemeVector.__init__(self, pairs)

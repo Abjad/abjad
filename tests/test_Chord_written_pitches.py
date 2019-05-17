@@ -52,7 +52,7 @@ def test_Chord_written_pitches_04():
         abjad.NamedPitch(4),
         abjad.NamedPitch(3),
         abjad.NamedPitch(2),
-        ]
+    ]
 
     assert format(chord) == "<d' ef' e'>4"
 
@@ -63,10 +63,6 @@ def test_Chord_written_pitches_05():
     """
 
     chord = abjad.Chord([], (1, 4))
-    chord.written_pitches = [
-        4,
-        abjad.NamedPitch(3),
-        abjad.NamedPitch(2),
-        ]
+    chord.written_pitches = [4, abjad.NamedPitch(3), abjad.NamedPitch(2)]
 
     assert format(chord) == "<d' ef' e'>4"

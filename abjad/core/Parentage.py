@@ -58,22 +58,15 @@ class Parentage(collections.abc.Sequence):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Selections'
+    __documentation_section__ = "Selections"
 
-    __slots__ = (
-        '_component',
-        '_components',
-        '_root',
-        )
+    __slots__ = ("_component", "_components", "_root")
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        component=None,
-        grace_notes=False,
-        ):
+    def __init__(self, component=None, grace_notes=False):
         import abjad
+
         assert isinstance(component, (abjad.Component, type(None)))
         self._component = component
         if component is None:
@@ -118,14 +111,14 @@ class Parentage(collections.abc.Sequence):
     @staticmethod
     def _id_string(component):
         lhs = component.__class__.__name__
-        rhs = getattr(component, 'name', None) or id(component)
-        return f'{lhs}-{rhs!r}'
+        rhs = getattr(component, "name", None) or id(component)
+        return f"{lhs}-{rhs!r}"
 
     def _prolations(self):
         prolations = []
         default = Multiplier(1)
         for parent in self:
-            prolation = getattr(parent, 'implied_prolation', default)
+            prolation = getattr(parent, "implied_prolation", default)
             prolations.append(prolation)
         return prolations
 
@@ -297,6 +290,7 @@ class Parentage(collections.abc.Sequence):
 
         """
         from .Component import Component
+
         n = 0
         if prototype is None:
             prototype = Component
@@ -467,6 +461,7 @@ class Parentage(collections.abc.Sequence):
         Returns component or none.
         """
         import abjad
+
         if prototype is None:
             prototype = (abjad.Component,)
         if not isinstance(prototype, tuple):
@@ -582,26 +577,27 @@ class Parentage(collections.abc.Sequence):
         Returns ordered dictionary.
         """
         import abjad
-        keys = ('score', 'staff group', 'staff', 'voice')
-        logical_voice = collections.OrderedDict.fromkeys(keys, '')
+
+        keys = ("score", "staff group", "staff", "voice")
+        logical_voice = collections.OrderedDict.fromkeys(keys, "")
         for component in self:
             if isinstance(component, abjad.Voice):
-                if not logical_voice['voice']:
-                    logical_voice['voice'] = self._id_string(component)
+                if not logical_voice["voice"]:
+                    logical_voice["voice"] = self._id_string(component)
             elif isinstance(component, abjad.Staff):
-                if not logical_voice['staff']:
-                    logical_voice['staff'] = self._id_string(component)
+                if not logical_voice["staff"]:
+                    logical_voice["staff"] = self._id_string(component)
                     # explicit staff demands a nested voice:
                     # if no explicit voice has been found,
                     # create implicit voice here with random integer
-                    if not logical_voice['voice']:
-                        logical_voice['voice'] = id(component)
+                    if not logical_voice["voice"]:
+                        logical_voice["voice"] = id(component)
             elif isinstance(component, abjad.StaffGroup):
-                if not logical_voice['staff group']:
-                    logical_voice['staff group'] = self._id_string(component)
+                if not logical_voice["staff group"]:
+                    logical_voice["staff group"] = self._id_string(component)
             elif isinstance(component, abjad.Score):
-                if not logical_voice['score']:
-                    logical_voice['score'] = self._id_string(component)
+                if not logical_voice["score"]:
+                    logical_voice["score"] = self._id_string(component)
         logical_voice = abjad.OrderedDict(logical_voice)
         return logical_voice
 
@@ -733,6 +729,7 @@ class Parentage(collections.abc.Sequence):
         """
         from .Context import Context
         from .Voice import Voice
+
         context = self.get(Voice, -1) or self.get(Context)
         if context is not None:
             return self.component._parent is context

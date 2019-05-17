@@ -42,11 +42,11 @@ class KeyCluster(object):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_hide',
-        '_include_black_keys',
-        '_include_white_keys',
-        '_markup_direction',
-        )
+        "_hide",
+        "_include_black_keys",
+        "_include_white_keys",
+        "_markup_direction",
+    )
 
     ### INITIALIZER ###
 
@@ -57,7 +57,7 @@ class KeyCluster(object):
         include_white_keys: bool = True,
         hide: bool = False,
         markup_direction: enums.VerticalAlignment = enums.Up,
-        ) -> None:
+    ) -> None:
         assert include_black_keys or include_white_keys
         self._include_black_keys = bool(include_black_keys)
         self._include_white_keys = bool(include_white_keys)
@@ -82,7 +82,7 @@ class KeyCluster(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     def __repr__(self) -> str:
@@ -96,25 +96,22 @@ class KeyCluster(object):
     def _get_lilypond_format_bundle(self, component=None):
         bundle = LilyPondFormatBundle()
         bundle.grob_overrides.append(
-            '\\once \\override Accidental.stencil = ##f\n'
-            '\\once \\override AccidentalCautionary.stencil = ##f\n'
-            '\\once \\override Arpeggio.X-offset = #-2\n'
-            '\\once \\override NoteHead.stencil = #ly:text-interface::print\n'
-            '\\once \\override NoteHead.text = \markup {\n'
+            "\\once \\override Accidental.stencil = ##f\n"
+            "\\once \\override AccidentalCautionary.stencil = ##f\n"
+            "\\once \\override Arpeggio.X-offset = #-2\n"
+            "\\once \\override NoteHead.stencil = #ly:text-interface::print\n"
+            r"\once \override NoteHead.text = \markup {" + "\n"
             "\t\\filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25\n"
-            '}'
-            )
+            "}"
+        )
         if not self.hide:
             if self.include_black_keys and self.include_white_keys:
-                string = r'\center-align \concat { \natural \flat }'
+                string = r"\center-align \concat { \natural \flat }"
             elif self.include_black_keys:
-                string = r'\center-align \flat'
+                string = r"\center-align \flat"
             else:
-                string = r'\center-align \natural'
-            markup = Markup(
-                string,
-                direction=self.markup_direction,
-                )
+                string = r"\center-align \natural"
+            markup = Markup(string, direction=self.markup_direction)
             markup_format_pieces = markup._get_format_pieces()
             bundle.after.markup.extend(markup_format_pieces)
         return bundle

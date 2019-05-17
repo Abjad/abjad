@@ -32,16 +32,16 @@ class PersistentOverride(object):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_after',
-        '_attribute',
-        '_context',
-        '_grob',
-        '_hide',
-        '_value',
-        )
+        "_after",
+        "_attribute",
+        "_context",
+        "_grob",
+        "_hide",
+        "_value",
+    )
 
     _persistent = True
-    
+
     _publish_storage_format = True
 
     ### INITIALIZER ###
@@ -54,7 +54,7 @@ class PersistentOverride(object):
         grob: str = None,
         hide: bool = None,
         value: typing.Any = None,
-        ) -> None:
+    ) -> None:
         if after is not None:
             after = bool(after)
         self._after = after
@@ -124,14 +124,16 @@ class PersistentOverride(object):
         """
         if not isinstance(argument, type(self)):
             return False
-        if (self.attribute == argument.attribute and
-            self.context == argument.context and
-            self.grob == argument.grob and
-            self.value == argument.value):
+        if (
+            self.attribute == argument.attribute
+            and self.context == argument.context
+            and self.grob == argument.grob
+            and self.value == argument.value
+        ):
             return True
         return False
 
-    def __format__(self, format_specification='') -> str:
+    def __format__(self, format_specification="") -> str:
         """
         Formats object.
         """
@@ -167,7 +169,7 @@ class PersistentOverride(object):
             self.value,
             context=lilypond_type,
             once=False,
-            )
+        )
         strings.append(string)
         return strings
 

@@ -16,9 +16,11 @@ def test_Voice_lilypond_voice_resolution_01():
     """
 
     voice = abjad.Voice("c'8 d'8 b'8 c''8")
-    voice.insert(2, abjad.Container([abjad.Voice("e'8 f'8"), abjad.Voice("g'8 a'8")]))
+    voice.insert(
+        2, abjad.Container([abjad.Voice("e'8 f'8"), abjad.Voice("g'8 a'8")])
+    )
     voice[2].is_simultaneous = True
-    abjad.override(voice).note_head.color = 'red'
+    abjad.override(voice).note_head.color = "red"
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -46,8 +48,7 @@ def test_Voice_lilypond_voice_resolution_01():
             c''8
         }
         """
-        )
-
+    )
 
 
 def test_Voice_lilypond_voice_resolution_02():
@@ -59,11 +60,13 @@ def test_Voice_lilypond_voice_resolution_02():
     """
 
     voice = abjad.Voice("c'8 d'8 b'8 c''8")
-    voice.name = 'foo'
-    voice.insert(2, abjad.Container([abjad.Voice("e'8 f'8"), abjad.Voice("g'8 a'8")]))
+    voice.name = "foo"
+    voice.insert(
+        2, abjad.Container([abjad.Voice("e'8 f'8"), abjad.Voice("g'8 a'8")])
+    )
     voice[2].is_simultaneous = True
-    voice[2][0].name = 'foo'
-    abjad.override(voice).note_head.color = 'red'
+    voice[2][0].name = "foo"
+    abjad.override(voice).note_head.color = "red"
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -90,8 +93,8 @@ def test_Voice_lilypond_voice_resolution_02():
             b'8
             c''8
         }
-        """,
-        )
+        """
+    )
 
     """
     LilyPond colors six notes red and two notes black.
@@ -133,10 +136,10 @@ def test_Voice_lilypond_voice_resolution_03():
         >>
         e''8
         """
-        )
+    )
 
-    abjad.override(container[1][1]).note_head.color = 'red'
-    abjad.override(container[2][1]).note_head.color = 'red'
+    abjad.override(container[1][1]).note_head.color = "red"
+    abjad.override(container[2][1]).note_head.color = "red"
 
     assert format(container) == abjad.String.normalize(
         r"""
@@ -176,5 +179,5 @@ def test_Voice_lilypond_voice_resolution_03():
             >>
             e''8
         }
-        """,
-        )
+        """
+    )

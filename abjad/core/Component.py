@@ -36,33 +36,29 @@ class Component(object):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_indicators_are_current',
-        '_is_forbidden_to_update',
-        '_overrides',
-        '_lilypond_setting_name_manager',
-        '_measure_number',
-        '_offsets_are_current',
-        '_offsets_in_seconds_are_current',
-        '_parent',
-        '_start_offset',
-        '_start_offset_in_seconds',
-        '_stop_offset',
-        '_stop_offset_in_seconds',
-        '_tag',
-        '_timespan',
-        '_wrappers',
-        )
+        "_indicators_are_current",
+        "_is_forbidden_to_update",
+        "_overrides",
+        "_lilypond_setting_name_manager",
+        "_measure_number",
+        "_offsets_are_current",
+        "_offsets_in_seconds_are_current",
+        "_parent",
+        "_start_offset",
+        "_start_offset_in_seconds",
+        "_stop_offset",
+        "_stop_offset_in_seconds",
+        "_tag",
+        "_timespan",
+        "_wrappers",
+    )
 
     _is_abstract = True
 
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(
-        self,
-        name: str = None,
-        tag: str = None,
-        ) -> None:
+    def __init__(self, name: str = None, tag: str = None) -> None:
         self._indicators_are_current = False
         self._is_forbidden_to_update = False
         self._measure_number = None
@@ -96,10 +92,10 @@ class Component(object):
         Returns new component.
         """
         new_component = type(self)(*self.__getnewargs__())
-        if getattr(self, '_overrides', None) is not None:
+        if getattr(self, "_overrides", None) is not None:
             manager = copy.copy(override(self))
             new_component._overrides = manager
-        if getattr(self, '_lilypond_setting_name_manager', None) is not None:
+        if getattr(self, "_lilypond_setting_name_manager", None) is not None:
             manager = copy.copy(setting(self))
             new_component._lilypond_setting_name_manager = manager
         for wrapper in inspect(self).annotation_wrappers():
@@ -110,21 +106,21 @@ class Component(object):
             attach(new_wrapper, new_component)
         return new_component
 
-    def __format__(self, format_specification='') -> str:
+    def __format__(self, format_specification="") -> str:
         """
         Formats component.
         """
-        if format_specification in ('', 'lilypond'):
+        if format_specification in ("", "lilypond"):
             string = self._get_lilypond_format()
         else:
-            assert format_specification == 'storage'
+            assert format_specification == "storage"
             string = StorageFormatManager(self).get_storage_format()
         lines = []
-        for line in string.split('\n'):
+        for line in string.split("\n"):
             if line.isspace():
-                line = ''
+                line = ""
             lines.append(line)
-        string = '\n'.join(lines)
+        string = "\n".join(lines)
         return string
 
     def __getnewargs__(self):
@@ -142,6 +138,7 @@ class Component(object):
         Returns LilyPond file.
         """
         from abjad.lilypondfile.LilyPondFile import LilyPondFile
+
         lilypond_file = LilyPondFile.new(self)
         return lilypond_file
 
@@ -176,34 +173,25 @@ class Component(object):
 
     def _as_graphviz_node(self):
         score_index = inspect(self).parentage().score_index()
-        score_index = '_'.join(str(_) for _ in score_index)
+        score_index = "_".join(str(_) for _ in score_index)
         class_name = type(self).__name__
         if score_index:
-            name = f'{class_name}_{score_index}'
+            name = f"{class_name}_{score_index}"
         else:
             name = class_name
         node = uqbar.graphs.Node(
-            name=name,
-            attributes={
-                'margin': 0.05,
-                'style': 'rounded',
-                },
-            )
-        table = uqbar.graphs.Table(
-            attributes={
-                'border': 2,
-                'cellpadding': 5,
-                },
-            )
+            name=name, attributes={"margin": 0.05, "style": "rounded"}
+        )
+        table = uqbar.graphs.Table(attributes={"border": 2, "cellpadding": 5})
         node.append(table)
         return node
 
     def _cache_named_children(self):
         name_dictionary = {}
-        if hasattr(self, '_named_children'):
+        if hasattr(self, "_named_children"):
             for name, children in self._named_children.items():
                 name_dictionary[name] = copy.copy(children)
-        name = getattr(self, 'name', None)
+        name = getattr(self, "name", None)
         if name is not None:
             if self.name not in name_dictionary:
                 name_dictionary[self.name] = []
@@ -222,18 +210,18 @@ class Component(object):
             self._scale_contents(self.multiplier)
         selection = select([self])
         parent, start, stop = selection._get_parent_and_start_stop_indices()
-        components = list(getattr(self, 'components', ()))
+        components = list(getattr(self, "components", ()))
         parent.__setitem__(slice(start, stop + 1), components)
         return self
 
     def _format_absolute_after_slot(self, bundle):
         result = []
-        result.append(('literals', bundle.absolute_after.commands))
+        result.append(("literals", bundle.absolute_after.commands))
         return result
 
     def _format_absolute_before_slot(self, bundle):
         result = []
-        result.append(('literals', bundle.absolute_before.commands))
+        result.append(("literals", bundle.absolute_before.commands))
         return result
 
     def _format_after_slot(self, bundle):
@@ -266,7 +254,7 @@ class Component(object):
         if pieces:
             return contributions
         else:
-            return '\n'.join(contributions)
+            return "\n".join(contributions)
 
     def _format_contents_slot(self, bundle):
         pass
@@ -280,12 +268,13 @@ class Component(object):
     def _get_contents(self):
         result = []
         result.append(self)
-        result.extend(getattr(self, 'components', []))
+        result.extend(getattr(self, "components", []))
         result = select(result)
         return result
 
     def _get_descendants_starting_with(self):
         from .Container import Container
+
         result = []
         result.append(self)
         if isinstance(self, Container):
@@ -298,6 +287,7 @@ class Component(object):
 
     def _get_descendants_stopping_with(self):
         from .Container import Container
+
         result = []
         result.append(self)
         if isinstance(self, Container):
@@ -318,26 +308,21 @@ class Component(object):
             return parentage.prolation * self._get_preprolated_duration()
 
     def _get_effective(
-        self,
-        prototype,
-        *,
-        attributes=None,
-        command=None,
-        n=0,
-        unwrap=True,
-        ):
+        self, prototype, *, attributes=None, command=None, n=0, unwrap=True
+    ):
         from .Context import Context
         from .Voice import Voice
+
         self._update_now(indicators=True)
         candidate_wrappers = {}
-        parentage = inspect(self).parentage(
-            grace_notes=True,
-            )
+        parentage = inspect(self).parentage(grace_notes=True)
         enclosing_voice_name = None
         for component in parentage:
             if isinstance(component, Voice):
-                if (enclosing_voice_name is not None and
-                    component.name != enclosing_voice_name):
+                if (
+                    enclosing_voice_name is not None
+                    and component.name != enclosing_voice_name
+                ):
                     continue
                 else:
                     enclosing_voice_name = component.name or id(component)
@@ -347,8 +332,10 @@ class Component(object):
                     continue
                 if isinstance(wrapper.indicator, prototype):
                     append_wrapper = True
-                    if (command is not None and
-                        wrapper.indicator.command != command):
+                    if (
+                        command is not None
+                        and wrapper.indicator.command != command
+                    ):
                         continue
                     if attributes is not None:
                         for name, value in attributes.items():
@@ -358,11 +345,12 @@ class Component(object):
                         continue
                     local_wrappers.append(wrapper)
             # active indicator takes precendence over inactive indicator
-            if (any(_.deactivate is True for _ in local_wrappers) and
-                not all(_.deactivate is True for _ in local_wrappers)):
+            if any(_.deactivate is True for _ in local_wrappers) and not all(
+                _.deactivate is True for _ in local_wrappers
+            ):
                 local_wrappers = [
                     _ for _ in local_wrappers if _.deactivate is not True
-                    ]
+                ]
             for wrapper in local_wrappers:
                 offset = wrapper.start_offset
                 candidate_wrappers.setdefault(offset, []).append(wrapper)
@@ -373,8 +361,10 @@ class Component(object):
                     continue
                 if isinstance(wrapper.indicator, prototype):
                     append_wrapper = True
-                    if (command is not None and
-                        wrapper.indicator.command != command):
+                    if (
+                        command is not None
+                        and wrapper.indicator.command != command
+                    ):
                         continue
                     if attributes is not None:
                         for name, value in attributes.items():
@@ -400,6 +390,7 @@ class Component(object):
 
     def _get_effective_staff(self):
         from .Staff import Staff
+
         staff_change = self._get_effective(StaffChange)
         if staff_change is not None:
             effective_staff = staff_change.staff
@@ -413,22 +404,22 @@ class Component(object):
             manager = LilyPondFormatManager
             bundle = manager.bundle_format_contributions(self)
         slot_names = (
-            'before',
-            'open_brackets',
-            'opening',
-            'contents',
-            'closing',
-            'close_brackets',
-            'after',
-            )
+            "before",
+            "open_brackets",
+            "opening",
+            "contents",
+            "closing",
+            "close_brackets",
+            "after",
+        )
         if isinstance(slot_identifier, int):
             assert slot_identifier in range(1, 7 + 1)
             slot_index = slot_identifier - 1
             slot_name = slot_names[slot_index]
         elif isinstance(slot_identifier, str):
-            slot_name = slot_identifier.replace(' ', '_')
+            slot_name = slot_identifier.replace(" ", "_")
             assert slot_name in slot_names
-        method_name = f'_format_{slot_name}_slot'
+        method_name = f"_format_{slot_name}_slot"
         method = getattr(self, method_name)
         for source, contributions in method(bundle):
             result.extend(contributions)
@@ -445,38 +436,24 @@ class Component(object):
         return FormatSpecification(
             client=self,
             repr_args_values=values,
-            storage_format_kwargs_names=[]
-            )
+            storage_format_kwargs_names=[],
+        )
 
-    def _get_indicator(
-        self,
-        prototype=None,
-        *,
-        attributes=None,
-        unwrap=True,
-        ):
+    def _get_indicator(self, prototype=None, *, attributes=None, unwrap=True):
         indicators = self._get_indicators(
-            prototype=prototype,
-            attributes=attributes,
-            unwrap=unwrap,
-            )
+            prototype=prototype, attributes=attributes, unwrap=unwrap
+        )
         if not indicators:
             raise ValueError(
-                f'no attached indicators found matching {prototype!r}.'
-                )
+                f"no attached indicators found matching {prototype!r}."
+            )
         if 1 < len(indicators):
             raise ValueError(
-                f'multiple attached indicators found matching {prototype!r}.'
-                )
+                f"multiple attached indicators found matching {prototype!r}."
+            )
         return indicators[0]
 
-    def _get_indicators(
-        self,
-        prototype=None,
-        *,
-        attributes=None,
-        unwrap=True,
-        ):
+    def _get_indicators(self, prototype=None, *, attributes=None, unwrap=True):
         prototype = prototype or (object,)
         if not isinstance(prototype, tuple):
             prototype = (prototype,)
@@ -535,35 +512,23 @@ class Component(object):
             return Timespan(
                 start_offset=self._start_offset_in_seconds,
                 stop_offset=self._stop_offset_in_seconds,
-                )
+            )
         else:
             self._update_now(offsets=True)
             return self._timespan
 
     def _has_effective_indicator(
-        self,
-        prototype,
-        *,
-        attributes=None,
-        command=None,
-        ):
+        self, prototype, *, attributes=None, command=None
+    ):
         indicator = self._get_effective(
-            prototype,
-            attributes=attributes,
-            command=command,
-            )
+            prototype, attributes=attributes, command=command
+        )
         return indicator is not None
 
-    def _has_indicator(
-        self,
-        prototype=None,
-        *,
-        attributes=None,
-        ):
+    def _has_indicator(self, prototype=None, *, attributes=None):
         indicators = self._get_indicators(
-            prototype=prototype,
-            attributes=attributes,
-            )
+            prototype=prototype, attributes=attributes
+        )
         return bool(indicators)
 
     def _immediately_precedes(self, component):
@@ -571,7 +536,7 @@ class Component(object):
         current = self
         while current is not None:
             sibling = current.__sibling_with_graces(1)
-            #sibling = current._sibling(1)
+            # sibling = current._sibling(1)
             if sibling is None:
                 current = current._parent
             else:
@@ -587,6 +552,7 @@ class Component(object):
 
     def _remove_from_parent(self):
         from .Context import Context
+
         self._update_later(offsets=True)
         for component in inspect(self).parentage()[1:]:
             if not isinstance(component, Context):
@@ -652,56 +618,59 @@ class Component(object):
             return None
         if self._parent.is_simultaneous:
             return None
-        if (n == 1 and
-            getattr(self._parent, '_main_leaf', None) and
-            self._parent._main_leaf._grace_container is self._parent and
-            self is self._parent[-1]):
+        if (
+            n == 1
+            and getattr(self._parent, "_main_leaf", None)
+            and self._parent._main_leaf._grace_container is self._parent
+            and self is self._parent[-1]
+        ):
             return self._parent._main_leaf
-        if (n == 1 and
-            getattr(self._parent, '_main_leaf', None) and
-            self._parent._main_leaf._after_grace_container is self._parent and
-            self is self._parent[-1]):
+        if (
+            n == 1
+            and getattr(self._parent, "_main_leaf", None)
+            and self._parent._main_leaf._after_grace_container is self._parent
+            and self is self._parent[-1]
+        ):
             main_leaf = self._parent._main_leaf
             if main_leaf is main_leaf._parent[-1]:
                 return None
             index = main_leaf._parent.index(main_leaf)
             return main_leaf._parent[index + 1]
-        if (n == 1 and
-            getattr(self, '_after_grace_container', None)):
+        if n == 1 and getattr(self, "_after_grace_container", None):
             return self._after_grace_container[0]
-        if (n == -1 and
-            getattr(self._parent, '_main_leaf', None) and
-            self._parent._main_leaf._after_grace_container is self._parent and
-            self is self._parent[0]):
+        if (
+            n == -1
+            and getattr(self._parent, "_main_leaf", None)
+            and self._parent._main_leaf._after_grace_container is self._parent
+            and self is self._parent[0]
+        ):
             return self._parent._main_leaf
-        if (n == -1 and
-            getattr(self._parent, '_main_leaf', None) and
-            self._parent._main_leaf._grace_container is self._parent and
-            self is self._parent[0]):
+        if (
+            n == -1
+            and getattr(self._parent, "_main_leaf", None)
+            and self._parent._main_leaf._grace_container is self._parent
+            and self is self._parent[0]
+        ):
             main_leaf = self._parent._main_leaf
             if main_leaf is main_leaf._parent[0]:
                 return None
             index = main_leaf._parent.index(main_leaf)
             return main_leaf._parent[index - 1]
-        if (n == -1 and
-            getattr(self, '_grace_container', None)):
+        if n == -1 and getattr(self, "_grace_container", None):
             return self._grace_container[-1]
         index = self._parent.index(self) + n
         result = None
-        if not(0 <= index < len(self._parent)):
+        if not (0 <= index < len(self._parent)):
             return None
         candidate = self._parent[index]
-        if n == 1 and getattr(candidate, '_grace_container', None):
+        if n == 1 and getattr(candidate, "_grace_container", None):
             return candidate._grace_container[0]
-        if n == -1 and getattr(candidate, '_after_grace_container', None):
+        if n == -1 and getattr(candidate, "_after_grace_container", None):
             return candidate._after_grace_container[-1]
         return candidate
 
     def _tag_strings(self, strings):
-        return LilyPondFormatManager.tag(
-            strings,
-            tag=self.tag,
-            )
+        return LilyPondFormatManager.tag(strings, tag=self.tag)
 
     def _update_later(self, offsets=False, offsets_in_seconds=False):
         assert offsets or offsets_in_seconds
@@ -716,18 +685,15 @@ class Component(object):
         update_manager._update_measure_numbers(self)
 
     def _update_now(
-        self,
-        offsets=False,
-        offsets_in_seconds=False,
-        indicators=False,
-        ):
+        self, offsets=False, offsets_in_seconds=False, indicators=False
+    ):
         update_manager = UpdateManager()
         return update_manager._update_now(
             self,
             offsets=offsets,
             offsets_in_seconds=offsets_in_seconds,
             indicators=indicators,
-            )
+        )
 
     ### PUBLIC PROPERTIES ###
 

@@ -15,9 +15,7 @@ class DateTimeToken(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_date_string',
-        )
+    __slots__ = ("_date_string",)
 
     ### INITIALIZER ###
 
@@ -27,7 +25,7 @@ class DateTimeToken(object):
 
     ### SPECIAL METHODS ###
 
-    def __format__(self, format_specification=''):
+    def __format__(self, format_specification=""):
         """
         Formats date / time token.
 
@@ -39,7 +37,7 @@ class DateTimeToken(object):
 
         Returns string.
         """
-        if format_specification in ('', 'lilypond'):
+        if format_specification in ("", "lilypond"):
             return self._get_lilypond_format()
         return StorageFormatManager(self).get_storage_format()
 
@@ -54,8 +52,8 @@ class DateTimeToken(object):
 
         Returns string.
         """
-        date_string = self._date_string or ''
-        return f'{type(self).__name__}({date_string})'
+        date_string = self._date_string or ""
+        return f"{type(self).__name__}({date_string})"
 
     ### PRIVATE METHODS ###
 
@@ -77,5 +75,5 @@ class DateTimeToken(object):
 
         Returns string.
         """
-        date_string = self._date_string or time.strftime('%Y-%m-%d %H:%M')
+        date_string = self._date_string or time.strftime("%Y-%m-%d %H:%M")
         return date_string

@@ -10,38 +10,25 @@ class Inequality(object):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Inequalities'
+    __documentation_section__ = "Inequalities"
 
-    __slots__ = (
-        '_operator_string',
-        '_operator_function',
-        )
+    __slots__ = ("_operator_string", "_operator_function")
 
-    _operator_strings = (
-        '!=',
-        '<',
-        '<=',
-        '==',
-        '>',
-        '>=',
-        )
+    _operator_strings = ("!=", "<", "<=", "==", ">", ">=")
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        operator_string='<',
-        ):
+    def __init__(self, operator_string="<"):
         assert operator_string in self._operator_strings
         self._operator_string = operator_string
         self._operator_function = {
-            '!=': operator.ne,
-            '<': operator.lt,
-            '<=': operator.le,
-            '==': operator.eq,
-            '>': operator.gt,
-            '>=': operator.ge,
-            }[self._operator_string]
+            "!=": operator.ne,
+            "<": operator.lt,
+            "<=": operator.le,
+            "==": operator.eq,
+            ">": operator.gt,
+            ">=": operator.ge,
+        }[self._operator_string]
 
     ### SPECIAL METHODS ###
 
@@ -60,11 +47,11 @@ class Inequality(object):
         """
         return StorageFormatManager.compare_objects(self, argument)
 
-    def __format__(self, format_specification='') -> str:
+    def __format__(self, format_specification="") -> str:
         """
         Formats inequality.
         """
-        if format_specification in ('', 'storage'):
+        if format_specification in ("", "storage"):
             return StorageFormatManager(self).get_storage_format()
         return str(self)
 
@@ -76,7 +63,7 @@ class Inequality(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     ### PUBLIC PROPERTIES ###
