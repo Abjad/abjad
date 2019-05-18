@@ -35,6 +35,8 @@ typographic details of the symbols on the page.
 ..  image:: https://img.shields.io/pypi/dm/abjad.svg?style=flat-square
     :target: https://pypi.python.org/pypi/abjad
 
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
+
 Installation
 ============
 

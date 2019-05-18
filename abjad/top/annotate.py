@@ -33,9 +33,8 @@ def annotate(component, annotation, indicator) -> None:
     Returns none.
     """
     from abjad.system.Wrapper import Wrapper
+
     assert isinstance(annotation, str), repr(annotation)
     wrapper = Wrapper(
-        annotation=annotation,
-        component=component,
-        indicator=indicator,
-        )
+        annotation=annotation, component=component, indicator=indicator
+    )

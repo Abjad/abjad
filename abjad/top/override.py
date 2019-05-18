@@ -55,7 +55,8 @@ def override(argument):
 
     """
     import abjad
-    if getattr(argument, '_overrides', None) is None:
+
+    if getattr(argument, "_overrides", None) is None:
         manager = abjad.lilypondnames.LilyPondGrobNameManager()
         argument._overrides = manager
     return argument._overrides

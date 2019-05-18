@@ -12,15 +12,11 @@ class StopPianoPedal(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_kind',
-        '_leak',
-        '_tweaks',
-        )
+    __slots__ = ("_kind", "_leak", "_tweaks")
 
-    _context = 'StaffGroup'
+    _context = "StaffGroup"
 
-    _parameter = 'PEDAL'
+    _parameter = "PEDAL"
 
     _persistent = True
 
@@ -36,9 +32,9 @@ class StopPianoPedal(object):
         *,
         leak: bool = None,
         tweaks: LilyPondTweakManager = None,
-        ) -> None:
+    ) -> None:
         if kind is not None:
-            assert kind in ('sustain', 'sostenuto', 'corda')
+            assert kind in ("sustain", "sostenuto", "corda")
         self._kind = kind
         if leak is not None:
             leak = bool(leak)
@@ -63,17 +59,17 @@ class StopPianoPedal(object):
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions()
             strings.extend(tweaks)
-            #bundle.after.spanner_stops.extend(tweaks)
-        if self.kind == 'corda':
-            string = r'\treCorde'
-        elif self.kind == 'sostenuto':
-            string = r'\sostenutoOff'
+            # bundle.after.spanner_stops.extend(tweaks)
+        if self.kind == "corda":
+            string = r"\treCorde"
+        elif self.kind == "sostenuto":
+            string = r"\sostenutoOff"
         else:
-            assert self.kind in ('sustain', None)
-            string = r'\sustainOff'
+            assert self.kind in ("sustain", None)
+            string = r"\sustainOff"
         strings.append(string)
         if self.leak:
-            strings.insert(0, '<>')
+            strings.insert(0, "<>")
             bundle.after.leaks.extend(strings)
         else:
             bundle.after.spanner_stops.extend(strings)

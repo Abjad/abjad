@@ -24,11 +24,9 @@ class BowPressure(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_pressure',
-        )
+    __slots__ = ("_pressure",)
 
-    _parameter = 'BOW_PRESSURE'
+    _parameter = "BOW_PRESSURE"
 
     _persistent = True
 
@@ -56,7 +54,7 @@ class BowPressure(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     def __repr__(self) -> str:

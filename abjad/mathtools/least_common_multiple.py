@@ -35,23 +35,25 @@ def least_common_multiple(*integers):
     """
     if len(integers) == 1:
         if not isinstance(integers[0], int):
-            message = 'must be integer: {!r}.'
+            message = "must be integer: {!r}."
             message = message.format(integers[0])
             raise TypeError(message)
         if not 0 < integers[0]:
-            message = 'must be positive: {!r}.'
+            message = "must be positive: {!r}."
             message = message.format(integers[0])
             raise ValueError(message)
         return integers[0]
     current_lcm = _least_common_multiple_helper(*integers[:2])
     for remaining_positive_integer in integers[2:]:
         current_lcm = _least_common_multiple_helper(
-            current_lcm, remaining_positive_integer)
+            current_lcm, remaining_positive_integer
+        )
     return current_lcm
 
 
 def _least_common_multiple_helper(m, n):
     from abjad import mathtools
+
     assert isinstance(m, int), repr(m)
     assert isinstance(n, int), repr(n)
     factors_m = mathtools.factors(m)

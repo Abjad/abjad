@@ -29,8 +29,9 @@ def is_assignable_integer(argument):
     Returns true or false.
     """
     from abjad import mathtools
+
     if isinstance(argument, int):
         if 0 < argument:
-            if '01' not in mathtools.integer_to_binary_string(argument):
+            if "01" not in mathtools.integer_to_binary_string(argument):
                 return True
     return False

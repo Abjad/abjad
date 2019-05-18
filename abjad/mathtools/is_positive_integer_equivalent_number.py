@@ -12,10 +12,10 @@ def is_positive_integer_equivalent_number(argument):
     Returns true or false.
     """
     from abjad import mathtools
+
     try:
-        return (
-            0 < argument and
-            mathtools.is_integer_equivalent_number(argument)
-            )
+        return 0 < argument and mathtools.is_integer_equivalent_number(
+            argument
+        )
     except TypeError:  # Python 3 comparisons with non-numbers
         return False

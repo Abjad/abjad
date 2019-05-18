@@ -7,4 +7,4 @@ def test_IOManager_get_next_output_file_name_01():
 
     assert isinstance(next_output_file_name, str)
     assert len(next_output_file_name) == 7
-    assert next_output_file_name.endswith('.ly')
+    assert next_output_file_name.endswith(".ly")

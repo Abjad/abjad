@@ -54,8 +54,8 @@ from abjad.utilities.Duration import Duration
 from abjad.utilities.DurationInequality import DurationInequality
 from abjad.utilities.Expression import Expression
 from abjad.utilities.Sequence import Sequence
-abjad_tags = Tags()
 
+abjad_tags = Tags()
 
 
 def _apply_tweaks(argument, tweaks, i=None, total=None):
@@ -77,21 +77,21 @@ def _apply_tweaks(argument, tweaks, i=None, total=None):
         for attribute, value in tuples:
             setattr(manager, attribute, value)
 
+
 def beam(
     argument: typing.Union[Component, Selection],
     *,
     beam_lone_notes: bool = None,
-    #beam_rests: bool = None,
+    # beam_rests: bool = None,
     beam_rests: typing.Optional[bool] = True,
     durations: typing.Sequence[Duration] = None,
-    selector: typings.Selector = 
-        'abjad.select().leaves(do_not_iterate_grace_containers=True)',
+    selector: typings.Selector = "abjad.select().leaves(do_not_iterate_grace_containers=True)",
     span_beam_count: int = None,
     start_beam: StartBeam = None,
     stemlet_length: typings.Number = None,
     stop_beam: StopBeam = None,
     tag: str = None,
-    ) -> None:
+) -> None:
     r"""
     Attaches beam indicators.
 
@@ -117,13 +117,14 @@ def beam(
     """
     # import allows eval statement
     import abjad
+
     if isinstance(selector, str):
         selector = eval(selector)
     assert isinstance(selector, Expression)
     argument = selector(argument)
     original_leaves = iterate(argument).leaves(
         do_not_iterate_grace_containers=True
-        )
+    )
     original_leaves = list(original_leaves)
 
     silent_prototype = (MultimeasureRest, Rest, Skip)
@@ -135,20 +136,20 @@ def beam(
         if beam_rests and isinstance(argument, silent_prototype):
             return True
         return False
-    
+
     leaves = []
     for leaf in original_leaves:
         if not _is_beamable(leaf, beam_rests=beam_rests):
             continue
         leaves.append(leaf)
-    #print(leaves, 'LLL')
+    # print(leaves, 'LLL')
     runs = []
     run = []
     run.extend(leaves[:1])
     for leaf in leaves[1:]:
         this_index = original_leaves.index(run[-1])
         that_index = original_leaves.index(leaf)
-        if this_index +1 == that_index:
+        if this_index + 1 == that_index:
             run.append(leaf)
         else:
             selection = select(run)
@@ -158,12 +159,12 @@ def beam(
         selection = select(run)
         runs.append(selection)
     runs_ = select(runs)
-    #print(runs, 'RRR', len(runs))
-    #print()
+    # print(runs, 'RRR', len(runs))
+    # print()
     if not beam_lone_notes:
         runs_ = runs_.nontrivial()
     for run in runs_:
-        #print(run, 'RRR')
+        # print(run, 'RRR')
         if all(isinstance(_, silent_prototype) for _ in run):
             continue
         start_leaf = run[0]
@@ -175,14 +176,14 @@ def beam(
         detach(StopBeam, stop_leaf)
         attach(stop_beam_, stop_leaf, tag=tag)
 
-        #for leaf in run:
+        # for leaf in run:
         #    print(leaf, inspect(leaf).indicators())
 
         if stemlet_length is None:
             continue
         staff = inspect(start_leaf).parentage().get(Staff)
-        lilypond_type = getattr(staff, 'lilypond_type', 'Staff')
-        string = r'\override {}.Stem.stemlet-length = {}'
+        lilypond_type = getattr(staff, "lilypond_type", "Staff")
+        string = r"\override {}.Stem.stemlet-length = {}"
         string = string.format(lilypond_type, stemlet_length)
         literal = LilyPondLiteral(string)
         for indicator in inspect(start_leaf).indicators():
@@ -191,8 +192,8 @@ def beam(
         else:
             attach(literal, start_leaf, tag=tag)
         staff = inspect(stop_leaf).parentage().get(Staff)
-        lilypond_type = getattr(staff, 'lilypond_type', 'Staff')
-        string = rf'\revert {lilypond_type}.Stem.stemlet-length'
+        lilypond_type = getattr(staff, "lilypond_type", "Staff")
+        string = rf"\revert {lilypond_type}.Stem.stemlet-length"
         literal = LilyPondLiteral(string)
         for indicator in inspect(stop_leaf).indicators():
             if indicator == literal:
@@ -209,7 +210,7 @@ def beam(
     def _leaf_neighbors(leaf, original_leaves):
         assert leaf is not original_leaves[0]
         assert leaf is not original_leaves[-1]
-        this_index = original_leaves.index(leaf) 
+        this_index = original_leaves.index(leaf)
         previous_leaf = original_leaves[this_index - 1]
         previous = 0
         if _is_beamable(previous_leaf, beam_rests=beam_rests):
@@ -224,15 +225,10 @@ def beam(
     durations = [Duration(_) for _ in durations]
     leaf_durations = [inspect(_).duration() for _ in original_leaves]
     leaf_durations_ = Sequence(leaf_durations)
-    parts = leaf_durations_.partition_by_weights(
-        durations,
-        overhang=True,
-        )
+    parts = leaf_durations_.partition_by_weights(durations, overhang=True)
     part_counts = [len(_) for _ in parts]
     original_leaves = Sequence(original_leaves)
-    parts = original_leaves.partition_by_counts(
-        part_counts,
-        )
+    parts = original_leaves.partition_by_counts(part_counts)
     total_parts = len(parts)
     for i, part in enumerate(parts):
         is_first_part = False
@@ -314,12 +310,10 @@ def beam(
             beam_count = BeamCount(left, right)
             attach(beam_count, middle_leaf, tag=tag)
 
+
 def bow_contact_spanner(
-    argument,
-    *,
-    omit_bow_changes: bool = None,
-    tag: str = None,
-    ) -> None:
+    argument, *, omit_bow_changes: bool = None, tag: str = None
+) -> None:
     r"""
     Attaches bow contact format indicators.
 
@@ -645,15 +639,12 @@ def bow_contact_spanner(
         prototype = BowMotionTechnique
         if inspector.has_indicator(prototype):
             bow_motion_technique = inspector.indicator(prototype)
-        return (
-            bow_contact_point,
-            bow_motion_technique,
-            )
+        return (bow_contact_point, bow_motion_technique)
 
     def _make_bow_contact_point_tweaks(leaf, bow_contact_point):
         if bow_contact_point is None:
             return
-        tweak(leaf.note_head).stencil = 'ly:text-interface::print'
+        tweak(leaf.note_head).stencil = "ly:text-interface::print"
         tweak(leaf.note_head).text = bow_contact_point.markup
         y_offset = float((4 * bow_contact_point.contact_point) - 2)
         tweak(leaf.note_head).Y_offset = y_offset
@@ -671,14 +662,16 @@ def bow_contact_spanner(
         previous_leaf = inspect(leaf).leaf(-1)
         previous_contact_point = None
         if previous_leaf is not None:
-            previous_contact_points = inspect(previous_leaf
-                ).indicators(BowContactPoint)
+            previous_contact_points = inspect(previous_leaf).indicators(
+                BowContactPoint
+            )
             if previous_contact_points:
                 previous_contact_point = previous_contact_points[0]
-        if (leaf is leaves[0] or
-            previous_contact_point is None or
-            previous_contact_point.contact_point is None
-            ):
+        if (
+            leaf is leaves[0]
+            or previous_contact_point is None
+            or previous_contact_point.contact_point is None
+        ):
             if this_contact_point < next_contact_point:
                 direction_change = enums.Down
             elif next_contact_point < this_contact_point:
@@ -686,14 +679,19 @@ def bow_contact_spanner(
         else:
             previous_leaf = inspect(leaf).leaf(-1)
             previous_contact_point = inspect(previous_leaf).indicator(
-                BowContactPoint)
-            if (previous_contact_point < this_contact_point and
-                next_contact_point < this_contact_point):
+                BowContactPoint
+            )
+            if (
+                previous_contact_point < this_contact_point
+                and next_contact_point < this_contact_point
+            ):
                 direction_change = enums.Up
-            elif (this_contact_point < previous_contact_point and
-                this_contact_point < next_contact_point):
+            elif (
+                this_contact_point < previous_contact_point
+                and this_contact_point < next_contact_point
+            ):
                 direction_change = enums.Down
-            elif (this_contact_point == previous_contact_point):
+            elif this_contact_point == previous_contact_point:
                 if this_contact_point < next_contact_point:
                     cautionary_change = True
                     direction_change = enums.Down
@@ -703,13 +701,13 @@ def bow_contact_spanner(
         if direction_change is None:
             return
         if direction_change == enums.Up:
-            string = r'\upbow'
+            string = r"\upbow"
         else:
-            string = r'\downbow'
+            string = r"\downbow"
         if cautionary_change:
-            string = rf'\parenthesize {string}'
-        string = '^ ' + string
-        literal = LilyPondLiteral(string, 'after')
+            string = rf"\parenthesize {string}"
+        string = "^ " + string
+        literal = LilyPondLiteral(string, "after")
         attach(literal, leaf)
 
     def _next_leaf_is_bowed(leaf, leaves):
@@ -733,7 +731,7 @@ def bow_contact_spanner(
         if bow_contact_point is None:
             return
         if bow_contact_point.contact_point is None:
-            tweak(leaf.note_head).style = 'cross'
+            tweak(leaf.note_head).style = "cross"
             return
         if len(leaves) == 1:
             return
@@ -752,6 +750,7 @@ def bow_contact_spanner(
     for leaf in leaves:
         _format_leaf(leaf, leaves)
 
+
 def glissando(
     argument,
     *tweaks: IndexedTweakManager,
@@ -766,7 +765,7 @@ def glissando(
     style: str = None,
     tag: str = None,
     zero_padding: bool = None,
-    ):
+):
     r"""
     Attaches glissando indicators.
 
@@ -1341,12 +1340,12 @@ def glissando(
     """
 
     if right_broken_show_next and not right_broken:
-        message = 'set right_broken_show_next only when right_broken is true.'
+        message = "set right_broken_show_next only when right_broken is true."
         raise Exception(message)
 
     if hide_middle_stems and not hide_middle_note_heads:
-        message = 'set hide_middle_stems only when'
-        message += ' hide_middle_note_heads is true.'
+        message = "set hide_middle_stems only when"
+        message += " hide_middle_note_heads is true."
         raise Exception(message)
 
     def _is_last_in_tie_chain(leaf):
@@ -1355,13 +1354,17 @@ def glissando(
 
     def _next_leaf_changes_current_pitch(leaf):
         next_leaf = inspect(leaf).leaf(n=1)
-        if (isinstance(leaf, Note) and
-            isinstance(next_leaf, Note) and
-            leaf.written_pitch == next_leaf.written_pitch):
+        if (
+            isinstance(leaf, Note)
+            and isinstance(next_leaf, Note)
+            and leaf.written_pitch == next_leaf.written_pitch
+        ):
             return False
-        elif (isinstance(leaf, Chord) and
-            isinstance(next_leaf, Chord) and
-            leaf.written_pitches == next_leaf.written_pitches):
+        elif (
+            isinstance(leaf, Chord)
+            and isinstance(next_leaf, Chord)
+            and leaf.written_pitches == next_leaf.written_pitches
+        ):
             return False
         return True
 
@@ -1374,13 +1377,17 @@ def glissando(
 
     def _previous_leaf_changes_current_pitch(leaf):
         previous_leaf = inspect(leaf).leaf(n=-1)
-        if (isinstance(leaf, Note) and
-            isinstance(previous_leaf, Note) and
-            leaf.written_pitch == previous_leaf.written_pitch):
+        if (
+            isinstance(leaf, Note)
+            and isinstance(previous_leaf, Note)
+            and leaf.written_pitch == previous_leaf.written_pitch
+        ):
             return False
-        elif (isinstance(leaf, Chord) and
-            isinstance(previous_leaf, Chord) and
-            leaf.written_pitches == previous_leaf.written_pitches):
+        elif (
+            isinstance(leaf, Chord)
+            and isinstance(previous_leaf, Chord)
+            and leaf.written_pitches == previous_leaf.written_pitches
+        ):
             return False
         return True
 
@@ -1408,7 +1415,7 @@ def glissando(
         elif not allow_repeats and allow_ties:
             if _next_leaf_changes_current_pitch(leaf):
                 should_attach_glissando = True
-        elif (not allow_repeats and not allow_ties):
+        elif not allow_repeats and not allow_ties:
             if _next_leaf_changes_current_pitch(leaf):
                 if _is_last_in_tie_chain(leaf):
                     should_attach_glissando = True
@@ -1417,55 +1424,57 @@ def glissando(
                 should_attach_glissando = False
             if not left_broken and leaf is leaves[1]:
                 strings = [
-                    r'\hide NoteHead',
-                    r'\override Accidental.stencil = ##f',
-                    r'\override NoteColumn.glissando-skip = ##t',
-                    r'\override NoteHead.no-ledgers = ##t',
-                    ]
+                    r"\hide NoteHead",
+                    r"\override Accidental.stencil = ##f",
+                    r"\override NoteColumn.glissando-skip = ##t",
+                    r"\override NoteHead.no-ledgers = ##t",
+                ]
                 if hide_middle_stems:
-                    strings.extend([
-                        r'\override Dots.transparent = ##t',
-                        r'\override Stem.transparent = ##t',
-                        ])
+                    strings.extend(
+                        [
+                            r"\override Dots.transparent = ##t",
+                            r"\override Stem.transparent = ##t",
+                        ]
+                    )
                 literal = LilyPondLiteral(strings)
                 attach(literal, leaf, tag=tag)
             elif left_broken and leaf is leaves[0]:
                 strings = [
-                    r'\hide NoteHead',
-                    r'\override Accidental.stencil = ##f',
-                    r'\override NoteHead.no-ledgers = ##t',
-                    ]
+                    r"\hide NoteHead",
+                    r"\override Accidental.stencil = ##f",
+                    r"\override NoteHead.no-ledgers = ##t",
+                ]
                 if hide_middle_stems:
-                    strings.extend([
-                        r'\override Dots.transparent = ##t',
-                        r'\override Stem.transparent = ##t',
-                        ])
+                    strings.extend(
+                        [
+                            r"\override Dots.transparent = ##t",
+                            r"\override Stem.transparent = ##t",
+                        ]
+                    )
                 literal = LilyPondLiteral(strings)
                 attach(
-                    literal,
-                    leaf,
-                    tag=abjad_tags.HIDE_TO_JOIN_BROKEN_SPANNERS,
-                    )
+                    literal, leaf, tag=abjad_tags.HIDE_TO_JOIN_BROKEN_SPANNERS
+                )
             elif left_broken and leaf is leaves[1]:
-                string = r'\override NoteColumn.glissando-skip = ##t'
+                string = r"\override NoteColumn.glissando-skip = ##t"
                 literal = LilyPondLiteral(string)
                 attach(
-                    literal,
-                    leaf,
-                    tag=abjad_tags.HIDE_TO_JOIN_BROKEN_SPANNERS,
-                    )
+                    literal, leaf, tag=abjad_tags.HIDE_TO_JOIN_BROKEN_SPANNERS
+                )
             if leaf is leaves[-1]:
                 strings = [
-                    r'\revert Accidental.stencil',
-                    r'\revert NoteColumn.glissando-skip',
-                    r'\revert NoteHead.no-ledgers',
-                    r'\undo \hide NoteHead',
-                    ]
+                    r"\revert Accidental.stencil",
+                    r"\revert NoteColumn.glissando-skip",
+                    r"\revert NoteHead.no-ledgers",
+                    r"\undo \hide NoteHead",
+                ]
                 if hide_middle_stems:
-                    strings.extend([
-                        r'\revert Dots.transparent',
-                        r'\revert Stem.transparent',
-                        ])
+                    strings.extend(
+                        [
+                            r"\revert Dots.transparent",
+                            r"\revert Stem.transparent",
+                        ]
+                    )
                 if right_broken:
                     deactivate_glissando = True
                     literal = LilyPondLiteral(strings)
@@ -1474,47 +1483,34 @@ def glissando(
                         leaf,
                         deactivate=False,
                         tag=abjad_tags.HIDE_TO_JOIN_BROKEN_SPANNERS,
-                        )
+                    )
                     if right_broken_show_next:
-                        literal = LilyPondLiteral(
-                            strings,
-                            format_slot='after',
-                            )
+                        literal = LilyPondLiteral(strings, format_slot="after")
                         attach(
                             literal,
                             leaf,
                             deactivate=True,
                             tag=abjad_tags.SHOW_TO_JOIN_BROKEN_SPANNERS,
-                            )
+                        )
                 else:
                     literal = LilyPondLiteral(strings)
-                    attach(
-                        literal,
-                        leaf,
-                        tag=tag,
-                        )
+                    attach(literal, leaf, tag=tag)
         if should_attach_glissando:
-            glissando = GlissandoIndicator(
-                zero_padding=zero_padding,
-                )
+            glissando = GlissandoIndicator(zero_padding=zero_padding)
             _apply_tweaks(glissando, tweaks, i=i, total=total)
             tag_ = tag
             if deactivate_glissando:
                 tag_ = abjad_tags.SHOW_TO_JOIN_BROKEN_SPANNERS
-            attach(
-                glissando,
-                leaf,
-                deactivate=deactivate_glissando,
-                tag=tag_,
-                )
+            attach(glissando, leaf, deactivate=deactivate_glissando, tag=tag_)
+
 
 def hairpin(
     descriptor: str,
     argument: typing.Union[Component, Selection],
     *,
-    selector: typings.Selector = 'abjad.select().leaves()',
+    selector: typings.Selector = "abjad.select().leaves()",
     tag: str = None,
-    ) -> None:
+) -> None:
     r"""
     Attaches hairpin indicators.
 
@@ -1614,13 +1610,13 @@ def hairpin(
     start_dynamic: typing.Optional[Dynamic]
     hairpin: typing.Optional[StartHairpin]
     stop_dynamic: typing.Optional[Dynamic]
-    known_shapes = StartHairpin('<').known_shapes
+    known_shapes = StartHairpin("<").known_shapes
     if isinstance(descriptor, str):
         for string in descriptor.split():
             if string in known_shapes:
                 hairpin = StartHairpin(string)
                 indicators.append(hairpin)
-            elif string == '!':
+            elif string == "!":
                 stop_hairpin = StopHairpin()
                 indicators.append(stop_hairpin)
             else:
@@ -1666,14 +1662,15 @@ def hairpin(
     if stop_dynamic is not None:
         attach(stop_dynamic, stop_leaf, tag=tag)
 
+
 def horizontal_bracket(
     argument: typing.Union[Component, Selection],
     *,
-    selector: typings.Selector = 'abjad.select().leaves()',
+    selector: typings.Selector = "abjad.select().leaves()",
     start_group: StartGroup = None,
     stop_group: StopGroup = None,
     tag: str = None,
-    ) -> None:
+) -> None:
     r"""
     Attaches group indicators.
 
@@ -1699,6 +1696,7 @@ def horizontal_bracket(
     """
     # import allows eval statement
     import abjad
+
     start_group = start_group or StartGroup()
     stop_group = stop_group or StopGroup()
     if isinstance(selector, str):
@@ -1711,14 +1709,15 @@ def horizontal_bracket(
     attach(start_group, start_leaf, tag=tag)
     attach(stop_group, stop_leaf, tag=tag)
 
+
 def ottava(
     argument: typing.Union[Component, Selection],
     *,
-    selector: typings.Selector = 'abjad.select().leaves()',
+    selector: typings.Selector = "abjad.select().leaves()",
     start_ottava: Ottava = Ottava(n=1),
-    stop_ottava: Ottava = Ottava(n=0, format_slot='after'),
+    stop_ottava: Ottava = Ottava(n=0, format_slot="after"),
     tag: str = None,
-    ) -> None:
+) -> None:
     r"""
     Attaches ottava indicators.
 
@@ -1744,6 +1743,7 @@ def ottava(
     """
     # import allows eval statement
     import abjad
+
     assert isinstance(start_ottava, Ottava), repr(start_ottava)
     assert isinstance(stop_ottava, Ottava), repr(stop_ottava)
     if isinstance(selector, str):
@@ -1756,14 +1756,15 @@ def ottava(
     attach(start_ottava, start_leaf, tag=tag)
     attach(stop_ottava, stop_leaf, tag=tag)
 
+
 def phrasing_slur(
     argument: typing.Union[Component, Selection],
     *,
-    selector: typings.Selector = 'abjad.select().leaves()',
+    selector: typings.Selector = "abjad.select().leaves()",
     start_phrasing_slur: StartPhrasingSlur = None,
     stop_phrasing_slur: StopPhrasingSlur = None,
     tag: str = None,
-    ) -> None:
+) -> None:
     r"""
     Attaches phrasing slur indicators.
 
@@ -1790,6 +1791,7 @@ def phrasing_slur(
     """
     # import allows eval statement
     import abjad
+
     start_phrasing_slur = StartPhrasingSlur()
     stop_phrasing_slur = StopPhrasingSlur()
     if isinstance(selector, str):
@@ -1804,14 +1806,15 @@ def phrasing_slur(
     attach(start_phrasing_slur, start_leaf, tag=tag)
     attach(stop_phrasing_slur, stop_leaf, tag=tag)
 
+
 def piano_pedal(
     argument: typing.Union[Component, Selection],
     *,
-    selector: typings.Selector = 'abjad.select().leaves()',
+    selector: typings.Selector = "abjad.select().leaves()",
     start_piano_pedal: StartPianoPedal = None,
     stop_piano_pedal: StopPianoPedal = None,
     tag: str = None,
-    ) -> None:
+) -> None:
     r"""
     Attaches piano pedal indicators.
 
@@ -1844,6 +1847,7 @@ def piano_pedal(
     """
     # import allows eval statement
     import abjad
+
     start_piano_pedal = start_piano_pedal or StartPianoPedal()
     stop_piano_pedal = stop_piano_pedal or StopPianoPedal()
     if isinstance(selector, str):
@@ -1856,14 +1860,15 @@ def piano_pedal(
     attach(start_piano_pedal, start_leaf, tag=tag)
     attach(stop_piano_pedal, stop_leaf, tag=tag)
 
+
 def slur(
     argument: typing.Union[Component, Selection],
     *,
-    selector: typings.Selector = 'abjad.select().leaves()',
+    selector: typings.Selector = "abjad.select().leaves()",
     start_slur: StartSlur = None,
     stop_slur: StopSlur = None,
     tag: str = None,
-    ) -> None:
+) -> None:
     r"""
     Attaches slur indicators.
 
@@ -1890,6 +1895,7 @@ def slur(
     """
     # import allows eval statement
     import abjad
+
     start_slur = start_slur or StartSlur()
     stop_slur = stop_slur or StopSlur()
     if isinstance(selector, str):
@@ -1902,14 +1908,15 @@ def slur(
     attach(start_slur, start_leaf, tag=tag)
     attach(stop_slur, stop_leaf, tag=tag)
 
+
 def text_spanner(
     argument: typing.Union[Component, Selection],
     *,
-    selector: typings.Selector = 'abjad.select().leaves()',
+    selector: typings.Selector = "abjad.select().leaves()",
     start_text_span: StartTextSpan = None,
     stop_text_span: StopTextSpan = None,
     tag: str = None,
-    ) -> None:
+) -> None:
     r"""
     Attaches text span indicators.
 
@@ -2074,6 +2081,7 @@ def text_spanner(
 
     """
     import abjad
+
     start_text_span = start_text_span or StartTextSpan()
     stop_text_span = stop_text_span or StopTextSpan()
     if isinstance(selector, str):
@@ -2086,20 +2094,16 @@ def text_spanner(
     attach(start_text_span, start_leaf, tag=tag)
     attach(stop_text_span, stop_leaf, tag=tag)
 
+
 def tie(
     argument: typing.Union[Component, Selection],
     *,
     direction: enums.VerticalAlignment = None,
-    repeat: typing.Union[
-        bool,
-        typings.IntegerPair,
-        DurationInequality,
-        ] = None,
-    selector: typings.Selector =
-        'abjad.select().leaves(do_not_iterate_grace_containers=True)',
-    #tie: TieIndicator = None,
+    repeat: typing.Union[bool, typings.IntegerPair, DurationInequality] = None,
+    selector: typings.Selector = "abjad.select().leaves(do_not_iterate_grace_containers=True)",
+    # tie: TieIndicator = None,
     tag: str = None,
-    ) -> None:
+) -> None:
     r"""
     Attaches tie indicators.
 
@@ -2277,15 +2281,16 @@ def tie(
     """
     # import allows eval statement
     import abjad
+
     if repeat in (None, False):
-        inequality = DurationInequality('<', 0)
+        inequality = DurationInequality("<", 0)
     elif repeat is True:
-        inequality = DurationInequality('>=', 0)
+        inequality = DurationInequality(">=", 0)
     elif isinstance(repeat, DurationInequality):
         inequality = repeat
     else:
         assert isinstance(repeat, tuple) and len(repeat) == 2, repr(repeat)
-        inequality = DurationInequality('>=', repeat)
+        inequality = DurationInequality(">=", repeat)
     assert isinstance(inequality, DurationInequality), repr(inequality)
     if isinstance(selector, str):
         selector = eval(selector)
@@ -2293,10 +2298,10 @@ def tie(
     argument = selector(argument)
     leaves = select(argument).leaves(do_not_iterate_grace_containers=True)
     if len(leaves) < 2:
-        raise Exception('must be two or more notes (not {leaves!r}).')
+        raise Exception("must be two or more notes (not {leaves!r}).")
     for leaf in leaves:
         if not isinstance(leaf, (Note, Chord)):
-            raise Exception(r'tie note or chord (not {leaf!r}).')
+            raise Exception(r"tie note or chord (not {leaf!r}).")
     for current_leaf, next_leaf in Sequence(leaves).nwise():
         duration = inspect(current_leaf).duration()
         if inequality(duration):
@@ -2310,14 +2315,15 @@ def tie(
             tie = TieIndicator(direction=direction)
             attach(tie, current_leaf, tag=tag)
 
+
 def trill_spanner(
     argument: typing.Union[Component, Selection],
     *,
-    selector: typings.Selector = 'abjad.select().leaves()',
+    selector: typings.Selector = "abjad.select().leaves()",
     start_trill_span: StartTrillSpan = None,
     stop_trill_span: StopTrillSpan = None,
     tag: str = None,
-    ) -> None:
+) -> None:
     r"""
     Attaches trill spanner indicators.
 
@@ -2343,6 +2349,7 @@ def trill_spanner(
     """
     # import allows eval statement
     import abjad
+
     start_trill_span = start_trill_span or StartTrillSpan()
     stop_trill_span = stop_trill_span or StopTrillSpan()
     if isinstance(selector, str):

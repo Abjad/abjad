@@ -11,4 +11,5 @@ def is_nonnegative_integer_equivalent_number(argument):
     Returns true or false.
     """
     from abjad import mathtools
+
     return mathtools.is_integer_equivalent_number(argument) and 0 <= argument

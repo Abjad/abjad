@@ -5,17 +5,17 @@ import abjad
 def test_LilyPondParser__indicators__Dynamic_01():
 
     target = abjad.Staff(abjad.Note(-12, (1, 2)) * 6)
-    dynamic = abjad.Dynamic('ppp')
+    dynamic = abjad.Dynamic("ppp")
     abjad.attach(dynamic, target[0])
-    dynamic = abjad.Dynamic('mp')
+    dynamic = abjad.Dynamic("mp")
     abjad.attach(dynamic, target[1])
-    dynamic = abjad.Dynamic('rfz')
+    dynamic = abjad.Dynamic("rfz")
     abjad.attach(dynamic, target[2])
-    dynamic = abjad.Dynamic('mf')
+    dynamic = abjad.Dynamic("mf")
     abjad.attach(dynamic, target[3])
-    dynamic = abjad.Dynamic('spp')
+    dynamic = abjad.Dynamic("spp")
     abjad.attach(dynamic, target[4])
-    dynamic = abjad.Dynamic('ff')
+    dynamic = abjad.Dynamic("ff")
     abjad.attach(dynamic, target[5])
 
     string = r"""\new Staff { c2\ppp c\mp c2\rfz c\mf c2\spp c\ff }"""

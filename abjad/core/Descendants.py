@@ -65,17 +65,15 @@ class Descendants(collections.abc.Sequence):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Selections'
+    __documentation_section__ = "Selections"
 
-    __slots__ = (
-        '_component',
-        '_components',
-        )
+    __slots__ = ("_component", "_components")
 
     ### INITIALIZER ###
 
     def __init__(self, component=None, cross_offset=None):
         import abjad
+
         assert isinstance(component, (abjad.Component, type(None)))
         self._component = component
         if component is None:
@@ -88,8 +86,12 @@ class Descendants(collections.abc.Sequence):
         else:
             for component in components:
                 append_x = True
-                if not (abjad.inspect(component).timespan().start_offset < cross_offset and
-                    cross_offset < abjad.inspect(component).timespan().stop_offset):
+                if not (
+                    abjad.inspect(component).timespan().start_offset
+                    < cross_offset
+                    and cross_offset
+                    < abjad.inspect(component).timespan().stop_offset
+                ):
                     append_x = False
                 if append_x:
                     result.append(component)

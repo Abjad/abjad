@@ -8,10 +8,10 @@ def test_Inspection_effective_staff_01():
 
     staves = 2 * abjad.Staff("c'8 d'8 e'8 f'8")
     staff_group = abjad.StaffGroup(staves)
-    staff_group.lilypond_type = 'PianoStaff'
+    staff_group.lilypond_type = "PianoStaff"
     staff_group.is_simultaneous = True
-    staff_group[0].name = 'RH'
-    staff_group[1].name = 'LH'
+    staff_group[0].name = "RH"
+    staff_group[1].name = "LH"
     staff_change = abjad.StaffChange(staff_group[1])
     abjad.attach(staff_change, staff_group[0][0])
 
@@ -36,7 +36,7 @@ def test_Inspection_effective_staff_01():
             }
         >>
         """
-        )
+    )
 
     assert abjad.inspect(staff_group).wellformed()
     assert abjad.inspect(staff_group[0][0]).effective_staff() is staff_group[1]
@@ -56,10 +56,10 @@ def test_Inspection_effective_staff_02():
 
     staves = 2 * abjad.Staff("c'8 d'8 e'8 f'8")
     staff_group = abjad.StaffGroup(staves)
-    staff_group.lilypond_type = 'PianoStaff'
+    staff_group.lilypond_type = "PianoStaff"
     staff_group.is_simultaneous = True
-    staff_group[0].name = 'RH'
-    staff_group[1].name = 'LH'
+    staff_group[0].name = "RH"
+    staff_group[1].name = "LH"
     staff_change = abjad.StaffChange(staff_group[1])
     abjad.attach(staff_change, staff_group[0][0])
     staff_change = abjad.StaffChange(staff_group[0])
@@ -87,7 +87,7 @@ def test_Inspection_effective_staff_02():
             }
         >>
         """
-        )
+    )
 
     assert abjad.inspect(staff_group).wellformed()
     assert abjad.inspect(staff_group[0][0]).effective_staff() is staff_group[1]
@@ -107,10 +107,10 @@ def test_Inspection_effective_staff_03():
 
     staves = 2 * abjad.Staff("c'8 d'8 e'8 f'8")
     staff_group = abjad.StaffGroup(staves)
-    staff_group.lilypond_type = 'PianoStaff'
+    staff_group.lilypond_type = "PianoStaff"
     staff_group.is_simultaneous = True
-    staff_group[0].name = 'RH'
-    staff_group[1].name = 'LH'
+    staff_group[0].name = "RH"
+    staff_group[1].name = "LH"
     staff_change = abjad.StaffChange(staff_group[1])
     abjad.attach(staff_change, staff_group[0][-1])
 
@@ -135,7 +135,7 @@ def test_Inspection_effective_staff_03():
             }
         >>
         """
-        )
+    )
 
     assert abjad.inspect(staff_group).wellformed()
 
@@ -147,10 +147,10 @@ def test_Inspection_effective_staff_04():
 
     staves = 2 * abjad.Staff("c'8 d'8 e'8 f'8")
     staff_group = abjad.StaffGroup(staves)
-    staff_group.lilypond_type = 'PianoStaff'
+    staff_group.lilypond_type = "PianoStaff"
     staff_group.is_simultaneous = True
-    staff_group[0].name = 'RH'
-    staff_group[1].name = 'LH'
+    staff_group[0].name = "RH"
+    staff_group[1].name = "LH"
     staff_change = abjad.StaffChange(staff_group[1])
     abjad.attach(staff_change, staff_group[0][0])
     staff_change = abjad.StaffChange(staff_group[1])
@@ -178,7 +178,7 @@ def test_Inspection_effective_staff_04():
             }
         >>
         """
-        )
+    )
 
     assert abjad.inspect(staff_group).wellformed()
     assert abjad.inspect(staff_group[0][0]).effective_staff() is staff_group[1]

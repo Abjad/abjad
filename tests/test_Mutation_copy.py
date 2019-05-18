@@ -40,7 +40,7 @@ def test_Mutation_copy_01():
             }
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     result = abjad.mutate(leaves[2:4]).copy()
     new = abjad.Staff(result)
@@ -53,8 +53,9 @@ def test_Mutation_copy_01():
             e'8
             f'8
         }
-        """, print(format(new))
-        )
+        """,
+        print(format(new)),
+    )
     assert abjad.inspect(staff).wellformed()
     assert abjad.inspect(new).wellformed()
 
@@ -97,7 +98,7 @@ def test_Mutation_copy_02():
             }
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     result = abjad.mutate(staff[1:2]).copy()
     new = abjad.Staff(result)
@@ -113,7 +114,7 @@ def test_Mutation_copy_02():
             }
         }
         """
-        ), print(format(new))
+    ), print(format(new))
 
     assert abjad.inspect(staff).wellformed()
     assert abjad.inspect(new).wellformed()
@@ -157,7 +158,7 @@ def test_Mutation_copy_03():
             }
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     result = abjad.mutate(leaves[-3:]).copy()
     new = abjad.Staff(result)
@@ -175,7 +176,7 @@ def test_Mutation_copy_03():
             ]
         }
         """
-        ), print(format(new))
+    ), print(format(new))
 
     assert abjad.inspect(staff).wellformed()
     assert abjad.inspect(new).wellformed()
@@ -183,8 +184,9 @@ def test_Mutation_copy_03():
 
 def test_Mutation_copy_04():
 
-    staff = abjad.Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
-        "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
+    staff = abjad.Staff(
+        "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |" "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
+    )
     leaves = abjad.select(staff).leaves()
     abjad.beam(leaves)
     abjad.slur(leaves)
@@ -219,7 +221,7 @@ def test_Mutation_copy_04():
             }
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     selection = abjad.select(staff)
     new_selection = abjad.mutate(selection).copy()
@@ -255,15 +257,16 @@ def test_Mutation_copy_04():
             }
         }
         """
-        ), print(format(new_staff))
+    ), print(format(new_staff))
 
     assert abjad.inspect(new_staff).wellformed()
 
 
 def test_Mutation_copy_05():
 
-    staff = abjad.Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
-        "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
+    staff = abjad.Staff(
+        "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |" "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
+    )
     leaves = abjad.select(staff).leaves()
     abjad.beam(leaves)
     abjad.slur(leaves)
@@ -298,7 +301,7 @@ def test_Mutation_copy_05():
             }
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     result = abjad.mutate(staff[1:]).copy()
     new_staff = abjad.Staff(result)
@@ -326,7 +329,7 @@ def test_Mutation_copy_05():
             }
         }
         """
-        ), print(format(new_staff))
+    ), print(format(new_staff))
 
     assert abjad.inspect(staff).wellformed()
     assert abjad.inspect(new_staff).wellformed()
@@ -334,8 +337,9 @@ def test_Mutation_copy_05():
 
 def test_Mutation_copy_06():
 
-    staff = abjad.Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
-        "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
+    staff = abjad.Staff(
+        "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |" "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
+    )
     leaves = abjad.select(staff).leaves()
     abjad.beam(leaves)
     abjad.slur(leaves)
@@ -370,7 +374,7 @@ def test_Mutation_copy_06():
             }
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     result = abjad.mutate(leaves[:6]).copy()
     new_staff = abjad.Staff(result)
@@ -392,7 +396,7 @@ def test_Mutation_copy_06():
             a'8
         }
         """
-        ), print(format(new_staff))
+    ), print(format(new_staff))
 
     assert abjad.inspect(staff).wellformed()
     assert abjad.inspect(new_staff).wellformed()
@@ -400,8 +404,9 @@ def test_Mutation_copy_06():
 
 def test_Mutation_copy_07():
 
-    staff = abjad.Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
-        "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
+    staff = abjad.Staff(
+        "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |" "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
+    )
     leaves = abjad.select(staff).leaves()
     abjad.beam(leaves)
     abjad.slur(leaves)
@@ -436,7 +441,7 @@ def test_Mutation_copy_07():
             }
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     result = abjad.mutate(staff[-2:]).copy()
     new_staff = abjad.Staff(result)
@@ -459,7 +464,7 @@ def test_Mutation_copy_07():
             }
         }
         """
-        ), print(format(new_staff))
+    ), print(format(new_staff))
 
     assert abjad.inspect(staff).wellformed()
     assert abjad.inspect(new_staff).wellformed()
@@ -471,7 +476,7 @@ def test_Mutation_copy_08():
     """
 
     staff = abjad.Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
-    abjad.hairpin('< !', staff[:4])
+    abjad.hairpin("< !", staff[:4])
 
     assert format(staff) == abjad.String.normalize(
         r"""
@@ -489,7 +494,7 @@ def test_Mutation_copy_08():
             g'8
         }
         """
-        )
+    )
 
     new_notes = abjad.mutate(staff[:4]).copy()
     staff.extend(new_notes)
@@ -516,5 +521,5 @@ def test_Mutation_copy_08():
             \!
         }
         """
-        )
+    )
     assert abjad.inspect(staff).wellformed()

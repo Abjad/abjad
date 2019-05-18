@@ -58,7 +58,7 @@ def test_Component__immediately_precedes_05():
             }
         }
         """
-        )
+    )
 
     assert voice[0]._immediately_precedes(voice[1])
     assert voice[0]._immediately_precedes(voice[1][0])
@@ -68,7 +68,9 @@ def test_Component__immediately_precedes_05():
 
 def test_Component__immediately_precedes_06():
 
-    voice = abjad.Voice(r"\times 2/3 { c'8 d'8 e'8 } \times 2/3 { f'8 e'8 d'8 }")
+    voice = abjad.Voice(
+        r"\times 2/3 { c'8 d'8 e'8 } \times 2/3 { f'8 e'8 d'8 }"
+    )
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -86,7 +88,7 @@ def test_Component__immediately_precedes_06():
             }
         }
         """
-        )
+    )
 
     assert voice[0]._immediately_precedes(voice[1])
     assert voice[0]._immediately_precedes(voice[1][0])
@@ -94,10 +96,11 @@ def test_Component__immediately_precedes_06():
     assert voice[0][-1]._immediately_precedes(voice[1][0])
 
 
-
 def test_Component__immediately_precedes_07():
 
-    staff = abjad.Staff([abjad.Voice("c'8 d'8 e'8 f'8"), abjad.Voice("g'8 a'8 b'8 c''8")])
+    staff = abjad.Staff(
+        [abjad.Voice("c'8 d'8 e'8 f'8"), abjad.Voice("g'8 a'8 b'8 c''8")]
+    )
 
     assert format(staff) == abjad.String.normalize(
         r"""
@@ -119,7 +122,7 @@ def test_Component__immediately_precedes_07():
             }
         }
         """
-        )
+    )
 
     assert staff[0]._immediately_precedes(staff[1])
     assert staff[0]._immediately_precedes(staff[1][0])
@@ -129,9 +132,11 @@ def test_Component__immediately_precedes_07():
 
 def test_Component__immediately_precedes_08():
 
-    staff = abjad.Staff([abjad.Voice("c'8 d'8 e'8 f'8"), abjad.Voice("g'8 a'8 b'8 c''8")])
-    staff[0].name = 'foo'
-    staff[1].name = 'foo'
+    staff = abjad.Staff(
+        [abjad.Voice("c'8 d'8 e'8 f'8"), abjad.Voice("g'8 a'8 b'8 c''8")]
+    )
+    staff[0].name = "foo"
+    staff[1].name = "foo"
 
     assert format(staff) == abjad.String.normalize(
         r"""
@@ -153,19 +158,20 @@ def test_Component__immediately_precedes_08():
             }
         }
         """
-        )
+    )
 
     assert staff[0]._immediately_precedes(staff[1])
     assert staff[0]._immediately_precedes(staff[1][0])
     assert staff[0][-1]._immediately_precedes(staff[1])
 
 
-
 def test_Component__immediately_precedes_09():
 
-    staff = abjad.Staff([abjad.Voice("c'8 d'8 e'8 f'8"), abjad.Voice("g'8 a'8 b'8 c''8")])
-    staff[0].name = 'foo'
-    staff[1].name = 'bar'
+    staff = abjad.Staff(
+        [abjad.Voice("c'8 d'8 e'8 f'8"), abjad.Voice("g'8 a'8 b'8 c''8")]
+    )
+    staff[0].name = "foo"
+    staff[1].name = "bar"
 
     assert format(staff) == abjad.String.normalize(
         r"""
@@ -187,7 +193,7 @@ def test_Component__immediately_precedes_09():
             }
         }
         """
-        )
+    )
 
     assert staff[0]._immediately_precedes(staff[1])
     assert staff[0]._immediately_precedes(staff[1][0])
@@ -225,7 +231,7 @@ def test_Component__immediately_precedes_10():
             }
         }
         """
-        )
+    )
 
     assert staff_1._immediately_precedes(staff_2)
     assert staff_1._immediately_precedes(staff_2[0])
@@ -291,7 +297,7 @@ def test_Component__immediately_precedes_11():
             >>
         }
         """
-        )
+    )
 
     assert staff_1._immediately_precedes(staff_2)
     assert staff_1._immediately_precedes(staff_2[0])
@@ -350,7 +356,7 @@ def test_Component__immediately_precedes_12():
             }
         }
         """
-        )
+    )
 
     assert voice[0]._immediately_precedes(voice[1])
     assert voice[0]._immediately_precedes(voice[1][0])

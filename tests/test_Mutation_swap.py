@@ -31,7 +31,7 @@ def test_Mutation_swap_01():
             }
         }
         """
-        )
+    )
 
     tuplet = abjad.Tuplet((3, 4), [])
     abjad.mutate(voice[:2]).swap(tuplet)
@@ -55,7 +55,7 @@ def test_Mutation_swap_01():
             }
         }
         """
-        )
+    )
 
     assert abjad.inspect(voice).wellformed()
 
@@ -67,7 +67,7 @@ def test_Mutation_swap_02():
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     leaves = abjad.select(voice).leaves()
-    voice.name = 'foo'
+    voice.name = "foo"
     abjad.beam(leaves)
 
     assert format(voice) == abjad.String.normalize(
@@ -90,10 +90,10 @@ def test_Mutation_swap_02():
             }
         }
         """
-        )
+    )
 
     new_voice = abjad.Voice()
-    new_voice.name = 'foo'
+    new_voice.name = "foo"
     abjad.mutate(voice[1:2]).swap(new_voice)
 
     assert format(voice) == abjad.String.normalize(
@@ -117,7 +117,7 @@ def test_Mutation_swap_02():
             }
         }
         """
-        )
+    )
 
     assert abjad.inspect(voice).wellformed()
 
@@ -151,11 +151,10 @@ def test_Mutation_swap_03():
             }
         }
         """
-        )
+    )
 
     tuplet = abjad.Tuplet((3, 4), [])
     abjad.mutate(voice[1:2]).swap(tuplet)
-
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -178,7 +177,7 @@ def test_Mutation_swap_03():
             }
         }
         """
-        )
+    )
 
     assert abjad.inspect(voice).wellformed()
 
@@ -242,7 +241,7 @@ def test_Mutation_swap_06():
             }
         }
         """
-        )
+    )
 
     tuplet = abjad.Tuplet((2, 3), [])
     with pytest.raises(Exception):
@@ -265,7 +264,7 @@ def test_Mutation_swap_07():
             f'8
         }
         """
-        )
+    )
 
     new_measure = abjad.Container()
     abjad.mutate(measure).swap(new_measure)
@@ -279,6 +278,6 @@ def test_Mutation_swap_07():
             f'8
         }
         """
-        )
+    )
 
     assert abjad.inspect(new_measure).wellformed()

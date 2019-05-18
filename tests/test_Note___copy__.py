@@ -36,8 +36,8 @@ def test_Note___copy___03():
     """
 
     note_1 = abjad.Note(12, (1, 4))
-    abjad.override(note_1).staff.note_head.color = 'red'
-    abjad.override(note_1).accidental.color = 'red'
+    abjad.override(note_1).staff.note_head.color = "red"
+    abjad.override(note_1).accidental.color = "red"
     abjad.setting(note_1).tuplet_full_length = True
     note_2 = copy.copy(note_1)
 
@@ -64,7 +64,7 @@ def test_Note___copy___04():
             d'32
         }
         """
-        )
+    )
 
     note_2 = copy.copy(note_1)
     grace_container_2 = abjad.inspect(note_2).after_grace_container()
@@ -77,12 +77,11 @@ def test_Note___copy___04():
             d'32
         }
         """
-        )
+    )
 
     assert note_1 is not note_2
     assert grace_container_1 is not grace_container_2
     assert isinstance(grace_container_1, abjad.AfterGraceContainer)
-
 
 
 def test_Note___copy___05():
@@ -91,11 +90,11 @@ def test_Note___copy___05():
     """
 
     note = abjad.Note("c'4")
-    articulation = abjad.Articulation('staccato')
+    articulation = abjad.Articulation("staccato")
     abjad.attach(articulation, note)
     grace = abjad.GraceContainer("d'16")
     abjad.attach(grace, note)
-    abjad.override(note).note_head.color = 'red'
+    abjad.override(note).note_head.color = "red"
 
     assert format(note) == abjad.String.normalize(
         r"""
@@ -106,7 +105,7 @@ def test_Note___copy___05():
         c'4
         - \staccato
         """
-        )
+    )
 
     new_note = copy.deepcopy(note)
 
@@ -121,11 +120,11 @@ def test_Note___copy___06():
 
     staff = abjad.Staff("c'8 [ c'8 e'8 f'8 ]")
     note = staff[0]
-    articulation = abjad.Articulation('staccato')
+    articulation = abjad.Articulation("staccato")
     abjad.attach(articulation, note)
     grace = abjad.GraceContainer("d'16")
     abjad.attach(grace, note)
-    abjad.override(note).note_head.color = 'red'
+    abjad.override(note).note_head.color = "red"
 
     assert format(staff) == abjad.String.normalize(
         r"""
@@ -144,7 +143,7 @@ def test_Note___copy___06():
             ]
         }
         """
-        )
+    )
 
     new_note = copy.deepcopy(note)
 
@@ -153,5 +152,6 @@ def test_Note___copy___06():
     assert abjad.inspect(new_note).parentage().parent is not staff
     assert isinstance(abjad.inspect(new_note).parentage().parent, abjad.Staff)
     assert format(new_note) == format(note)
-    assert format(abjad.inspect(note).parentage().parent) == \
-        format(abjad.inspect(new_note).parentage().parent)
+    assert format(abjad.inspect(note).parentage().parent) == format(
+        abjad.inspect(new_note).parentage().parent
+    )

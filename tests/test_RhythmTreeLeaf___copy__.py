@@ -15,7 +15,9 @@ def test_RhythmTreeLeaf___copy___01():
 
 def test_RhythmTreeLeaf___copy___02():
 
-    leaf = abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=2, is_pitched=True)
+    leaf = abjad.rhythmtrees.RhythmTreeLeaf(
+        preprolated_duration=2, is_pitched=True
+    )
 
     copied = copy.copy(leaf)
 

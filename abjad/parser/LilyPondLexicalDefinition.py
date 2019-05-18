@@ -28,199 +28,212 @@ class LilyPondLexicalDefinition(object):
         # ('incl', 'exclusive'),
         # ('lyrics', 'exclusive'),
         # ('lyric_quote ', 'exclusive'),
-        ('longcomment', 'exclusive'),
-        ('markup', 'exclusive'),
-        ('notes', 'exclusive'),
-        ('quote', 'exclusive'),
+        ("longcomment", "exclusive"),
+        ("markup", "exclusive"),
+        ("notes", "exclusive"),
+        ("quote", "exclusive"),
         # ('sourcefileline', 'exclusive'),
         # ('sourcefilename', 'exclusive'),
-        ('version', 'exclusive'),
-        ('scheme', 'exclusive'),
+        ("version", "exclusive"),
+        ("scheme", "exclusive"),
     )
 
     # lexer.ll:129
-    A               = r'[a-zA-Z\200-\377]'
-    AA              = r'(%s|_)' % A
-    N               = r'[0-9]'
-    AN              = r'(%s|%s)' % (AA, N)
-    ANY_CHAR        = r'(.|\n)'
-    PUNCT           = r"[?!:'`]"
-    ACCENT          = r'''\\[`'"^]'''
-    NATIONAL        = r'[\001-\006\021-\027\031\036]'
-    TEX             = r'%s|-|%s|%s|%s' % (AA, PUNCT, ACCENT, NATIONAL)
-    WORD            = r'%s%s*' % (A, AN)
-    DASHED_WORD     = r'%s(%s|-)*' % (A, AN)
-    DASHED_KEY_WORD = r'\\%s' % DASHED_WORD
+    A = r"[a-zA-Z\200-\377]"
+    AA = r"(%s|_)" % A
+    N = r"[0-9]"
+    AN = r"(%s|%s)" % (AA, N)
+    ANY_CHAR = r"(.|\n)"
+    PUNCT = r"[?!:'`]"
+    ACCENT = r"""\\[`'"^]"""
+    NATIONAL = r"[\001-\006\021-\027\031\036]"
+    TEX = r"%s|-|%s|%s|%s" % (AA, PUNCT, ACCENT, NATIONAL)
+    WORD = r"%s%s*" % (A, AN)
+    DASHED_WORD = r"%s(%s|-)*" % (A, AN)
+    DASHED_KEY_WORD = r"\\%s" % DASHED_WORD
 
     # lexer.ll:144
-    ALPHAWORD       = r'%s+' % A
-    DIGIT           = r'%s' % N
-    UNSIGNED        = r'%s+' % N
-    INT             = r'(-?%s)' % UNSIGNED
-    REAL            = r'((%s\.%s*)|(-?\.%s+))' % (INT, N, N)
-    E_UNSIGNED      = r'\\%s+' % N
-    FRACTION        = r'%s+\/%s+' % (N, N)
-    KEYWORD         = r'\\%s' % WORD
-    WHITE           = r'[ \n\t\f\r]' # only whitespace
-    HORIZONTALWHITE = r'[ \t]' # only non-line-breaking whitespace
-    BLACK           = r'[^ \n\t\f\r]' # only non-whitespace
-    RESTNAME        = r'[rs]'
-    NOTECOMMAND     = r'\\%s+' % A
-    MARKUPCOMMAND   = r'\\(%s|[-_])+' % A
-    LYRICS          = r'(%s|%s)[^0-9 \t\n\r\f]*' % (AA, TEX)
-    ESCAPED         = r'''[nt\\'"]'''
-    EXTENDER        = r'__'
-    HYPHEN          = r'--'
-    BOM_UTF8        = r'\357\273\277'
+    ALPHAWORD = r"%s+" % A
+    DIGIT = r"%s" % N
+    UNSIGNED = r"%s+" % N
+    INT = r"(-?%s)" % UNSIGNED
+    REAL = r"((%s\.%s*)|(-?\.%s+))" % (INT, N, N)
+    E_UNSIGNED = r"\\%s+" % N
+    FRACTION = r"%s+\/%s+" % (N, N)
+    KEYWORD = r"\\%s" % WORD
+    WHITE = r"[ \n\t\f\r]"  # only whitespace
+    HORIZONTALWHITE = r"[ \t]"  # only non-line-breaking whitespace
+    BLACK = r"[^ \n\t\f\r]"  # only non-whitespace
+    RESTNAME = r"[rs]"
+    NOTECOMMAND = r"\\%s+" % A
+    MARKUPCOMMAND = r"\\(%s|[-_])+" % A
+    LYRICS = r"(%s|%s)[^0-9 \t\n\r\f]*" % (AA, TEX)
+    ESCAPED = r"""[nt\\'"]"""
+    EXTENDER = r"__"
+    HYPHEN = r"--"
+    BOM_UTF8 = r"\357\273\277"
 
     keywords = {
         # parser.yy:182, lily-lexer.cc:39
-#        '\\accepts': 'ACCEPTS',
-#        '\\addlyrics': 'ADDLYRICS',
-#        '\\alias': 'ALIAS',
-#        '\\alternative': 'ALTERNATIVE',
-#        '\\book': 'BOOK',
-#        '\\bookpart': 'BOOKPART',
-        '\\change': 'CHANGE',
-#        '\\chordmode': 'CHORDMODE',
-#        '\\chords': 'CHORDS',
-#        '\\consists': 'CONSISTS',
-        '\\context': 'CONTEXT',
-        '\\default': 'DEFAULT',
-#        '\\defaultchild': 'DEFAULTCHILD',
-#        '\\denies': 'DENIES',
-#        '\\description': 'DESCRIPTION',
-#        '\\drummode': 'DRUMMODE',
-#        '\\drums': 'DRUMS',
-#        '\\figuremode': 'FIGUREMODE',
-#        '\\figures': 'FIGURES',
-        '\\header': 'HEADER',
-#        '\\version-error': 'INVALID',
-        '\\layout': 'LAYOUT',
-#        '\\lyricmode': 'LYRICMODE',
-#        '\\lyrics': 'LYRICS',
-#        '\\lyricsto': 'LYRICSTO',
-        '\\markup': 'MARKUP',
-        '\\markuplist': 'MARKUPLIST',
-        '\\midi': 'MIDI',
-#        '\\name': 'NAME',
-#        '\\notemode': 'NOTEMODE',
-        '\\override': 'OVERRIDE',
-        '\\paper': 'PAPER',
-#        '\\remove': 'REMOVE',
-#        '\\repeat': 'REPEAT',
-        '\\rest': 'REST',
-        '\\revert': 'REVERT',
-        '\\score': 'SCORE',
-        '\\sequential': 'SEQUENTIAL',
-        '\\set': 'SET',
-        '\\simultaneous': 'SIMULTANEOUS',
-        '\\tempo': 'TEMPO',
-#        '\\type': 'TYPE',
-        '\\unset': 'UNSET',
-        '\\with': 'WITH',
-
+        #        '\\accepts': 'ACCEPTS',
+        #        '\\addlyrics': 'ADDLYRICS',
+        #        '\\alias': 'ALIAS',
+        #        '\\alternative': 'ALTERNATIVE',
+        #        '\\book': 'BOOK',
+        #        '\\bookpart': 'BOOKPART',
+        "\\change": "CHANGE",
+        #        '\\chordmode': 'CHORDMODE',
+        #        '\\chords': 'CHORDS',
+        #        '\\consists': 'CONSISTS',
+        "\\context": "CONTEXT",
+        "\\default": "DEFAULT",
+        #        '\\defaultchild': 'DEFAULTCHILD',
+        #        '\\denies': 'DENIES',
+        #        '\\description': 'DESCRIPTION',
+        #        '\\drummode': 'DRUMMODE',
+        #        '\\drums': 'DRUMS',
+        #        '\\figuremode': 'FIGUREMODE',
+        #        '\\figures': 'FIGURES',
+        "\\header": "HEADER",
+        #        '\\version-error': 'INVALID',
+        "\\layout": "LAYOUT",
+        #        '\\lyricmode': 'LYRICMODE',
+        #        '\\lyrics': 'LYRICS',
+        #        '\\lyricsto': 'LYRICSTO',
+        "\\markup": "MARKUP",
+        "\\markuplist": "MARKUPLIST",
+        "\\midi": "MIDI",
+        #        '\\name': 'NAME',
+        #        '\\notemode': 'NOTEMODE',
+        "\\override": "OVERRIDE",
+        "\\paper": "PAPER",
+        #        '\\remove': 'REMOVE',
+        #        '\\repeat': 'REPEAT',
+        "\\rest": "REST",
+        "\\revert": "REVERT",
+        "\\score": "SCORE",
+        "\\sequential": "SEQUENTIAL",
+        "\\set": "SET",
+        "\\simultaneous": "SIMULTANEOUS",
+        "\\tempo": "TEMPO",
+        #        '\\type': 'TYPE',
+        "\\unset": "UNSET",
+        "\\with": "WITH",
         # parser.yy:233
-        '\\new': 'NEWCONTEXT',
-
+        "\\new": "NEWCONTEXT",
         # ???
-#        '\\objectid': 'OBJECTID',
+        #        '\\objectid': 'OBJECTID',
     }
 
     tokens = [
-#        'CHORD_BASS', # "/+"
-#        'CHORD_CARET', # "^"
-#        'CHORD_COLON', # ":"
-#        'CHORD_MINUS', # "-"
-#        'CHORD_SLASH', # "/"
-        'ANGLE_OPEN', # "<"
-        'ANGLE_CLOSE', # ">"
-        'DOUBLE_ANGLE_OPEN', # "<<"
-        'DOUBLE_ANGLE_CLOSE', # ">>"
-        'E_BACKSLASH', # "\\"
-        'E_ANGLE_CLOSE', # "\\>"
-#        'E_CHAR', # "\\C[haracter]"
-        'E_CLOSE', # "\\)"
-        'E_EXCLAMATION', # "\\!"
-#        'E_BRACKET_OPEN', # "\\["
-        'E_OPEN', # "\\("
-#        'E_BRACKET_CLOSE', # "\\]"
-        'E_ANGLE_OPEN', # "\\<"
-#        'E_PLUS', # "\\+"
-#        'E_TILDE', # "\\~"
-        'EXTENDER', # "__"
-
-#        'FIGURE_CLOSE', # "\\>"
-#        'FIGURE_OPEN', # "\\<"
-#        'FIGURE_SPACE', # "_"
-        'HYPHEN', # "--"
-
-#        'LYRIC_MARKUP',
-        'MULTI_MEASURE_REST',
-
-        'E_UNSIGNED',
-        'UNSIGNED',
-
-        'EXPECT_MARKUP', # "markup?"
-        'EXPECT_PITCH', # "ly:pitch?"
-        'EXPECT_DURATION', # "ly:duration?"
-        'EXPECT_SCM', # "scheme?"
-        'BACKUP', # "(backed-up?)"
-        'REPARSE', # "(reparsed?)"
-        'EXPECT_MARKUP_LIST', # "markup-list?"
-        'EXPECT_OPTIONAL', # "optional?"
-        'EXPECT_NO_MORE_ARGS', #
-
-#        'EMBEDDED_LILY', # "#{"
-
-#        'BOOK_IDENTIFIER',
-#        'CHORD_MODIFIER',
-        'CHORD_REPETITION',
-        'CONTEXT_DEF_IDENTIFIER',
-        'CONTEXT_MOD_IDENTIFIER',
-#        'DRUM_PITCH',
-        'PITCH_IDENTIFIER',
-        'DURATION_IDENTIFIER',
-        'EVENT_IDENTIFIER',
-        'EVENT_FUNCTION',
-        'FRACTION',
-#        'LYRICS_STRING',
-#        'LYRIC_ELEMENT',
-#        'LYRIC_MARKUP_IDENTIFIER',
-        'MARKUP_FUNCTION',
-        'MARKUP_LIST_FUNCTION',
-        'MARKUP_IDENTIFIER',
-        'MARKUPLIST_IDENTIFIER',
-        'MUSIC_FUNCTION',
-        'MUSIC_IDENTIFIER',
-        'NOTENAME_PITCH',
-        'NUMBER_IDENTIFIER',
-        'OUTPUT_DEF_IDENTIFIER',
-        'REAL',
-        'RESTNAME',
-        'SCM_FUNCTION',
-        'SCM_IDENTIFIER',
-        'SCM_TOKEN',
-        'SCORE_IDENTIFIER',
-        'STRING',
-        'STRING_IDENTIFIER',
-        'TONICNAME_PITCH',
+        #        'CHORD_BASS', # "/+"
+        #        'CHORD_CARET', # "^"
+        #        'CHORD_COLON', # ":"
+        #        'CHORD_MINUS', # "-"
+        #        'CHORD_SLASH', # "/"
+        "ANGLE_OPEN",  # "<"
+        "ANGLE_CLOSE",  # ">"
+        "DOUBLE_ANGLE_OPEN",  # "<<"
+        "DOUBLE_ANGLE_CLOSE",  # ">>"
+        "E_BACKSLASH",  # "\\"
+        "E_ANGLE_CLOSE",  # "\\>"
+        #        'E_CHAR', # "\\C[haracter]"
+        "E_CLOSE",  # "\\)"
+        "E_EXCLAMATION",  # "\\!"
+        #        'E_BRACKET_OPEN', # "\\["
+        "E_OPEN",  # "\\("
+        #        'E_BRACKET_CLOSE', # "\\]"
+        "E_ANGLE_OPEN",  # "\\<"
+        #        'E_PLUS', # "\\+"
+        #        'E_TILDE', # "\\~"
+        "EXTENDER",  # "__"
+        #        'FIGURE_CLOSE', # "\\>"
+        #        'FIGURE_OPEN', # "\\<"
+        #        'FIGURE_SPACE', # "_"
+        "HYPHEN",  # "--"
+        #        'LYRIC_MARKUP',
+        "MULTI_MEASURE_REST",
+        "E_UNSIGNED",
+        "UNSIGNED",
+        "EXPECT_MARKUP",  # "markup?"
+        "EXPECT_PITCH",  # "ly:pitch?"
+        "EXPECT_DURATION",  # "ly:duration?"
+        "EXPECT_SCM",  # "scheme?"
+        "BACKUP",  # "(backed-up?)"
+        "REPARSE",  # "(reparsed?)"
+        "EXPECT_MARKUP_LIST",  # "markup-list?"
+        "EXPECT_OPTIONAL",  # "optional?"
+        "EXPECT_NO_MORE_ARGS",  #
+        #        'EMBEDDED_LILY', # "#{"
+        #        'BOOK_IDENTIFIER',
+        #        'CHORD_MODIFIER',
+        "CHORD_REPETITION",
+        "CONTEXT_DEF_IDENTIFIER",
+        "CONTEXT_MOD_IDENTIFIER",
+        #        'DRUM_PITCH',
+        "PITCH_IDENTIFIER",
+        "DURATION_IDENTIFIER",
+        "EVENT_IDENTIFIER",
+        "EVENT_FUNCTION",
+        "FRACTION",
+        #        'LYRICS_STRING',
+        #        'LYRIC_ELEMENT',
+        #        'LYRIC_MARKUP_IDENTIFIER',
+        "MARKUP_FUNCTION",
+        "MARKUP_LIST_FUNCTION",
+        "MARKUP_IDENTIFIER",
+        "MARKUPLIST_IDENTIFIER",
+        "MUSIC_FUNCTION",
+        "MUSIC_IDENTIFIER",
+        "NOTENAME_PITCH",
+        "NUMBER_IDENTIFIER",
+        "OUTPUT_DEF_IDENTIFIER",
+        "REAL",
+        "RESTNAME",
+        "SCM_FUNCTION",
+        "SCM_IDENTIFIER",
+        "SCM_TOKEN",
+        "SCORE_IDENTIFIER",
+        "STRING",
+        "STRING_IDENTIFIER",
+        "TONICNAME_PITCH",
     ] + list(keywords.values())
 
     literals = (
-        '!', "'", '(', ')', '*', '+', ',', '-',
-        '.', '/', ':', '<', '=', '>', '?', '[',
-        '\\', '^', '_', '{', '|', '}', '~', ']',
+        "!",
+        "'",
+        "(",
+        ")",
+        "*",
+        "+",
+        ",",
+        "-",
+        ".",
+        "/",
+        ":",
+        "<",
+        "=",
+        ">",
+        "?",
+        "[",
+        "\\",
+        "^",
+        "_",
+        "{",
+        "|",
+        "}",
+        "~",
+        "]",
     )
 
-    string_accumulator = ''
+    string_accumulator = ""
 
     ### LEXICAL RULES ###
 
     # lexer.ll:165
     # <*>\r
     def t_ANY_165(self, t):
-        r'\r'
+        r"\r"
         pass
 
     # lexer.ll:169
@@ -235,57 +248,57 @@ class LilyPondLexicalDefinition(object):
     # lexer.ll:210
     # <INITIAL,chords,figures,incl,lyrics,markup,notes>"%{"
     def t_INITIAL_markup_notes_210(self, t):
-        r'%{'
-        t.lexer.push_state('longcomment')
+        r"%{"
+        t.lexer.push_state("longcomment")
         pass
 
     # lexer.ll:214
     # <INITIAL,chords,figures,incl,lyrics,markup,notes>%[^{\n\r][^\n\r]*[\n\r]
     def t_INITIAL_markup_notes_214(self, t):
-        r'%[^{\n\r][^\n\r]*[\n\r]'
+        r"%[^{\n\r][^\n\r]*[\n\r]"
         pass
 
     def t_INITIAL_markup_notes_214_EOF(self, t):
-        r'%[^{\n\r][^\n\r]*$'
+        r"%[^{\n\r][^\n\r]*$"
         pass
 
-    #lexer.ll:216
+    # lexer.ll:216
     # <INITIAL,chords,figures,incl,lyrics,markup,notes>%[^{\n\r]
     def t_INITIAL_markup_notes_216(self, t):
-        r'%[^{\n\r]'
+        r"%[^{\n\r]"
         pass
 
-    #lexer.ll:218
+    # lexer.ll:218
     # <INITIAL,chords,figures,incl,lyrics,markup,notes>%[\n\r]
     def t_INITIAL_markup_notes_218(self, t):
-        r'%[\n\r]'
+        r"%[\n\r]"
         pass
 
     # lexer.ll:220
     # <INITIAL,chords,figures,incl,lyrics,markup,notes>%[^{\n\r][^\n\r]*
     def t_INITIAL_markup_notes_220(self, t):
-        r'%[^{\n\r][^\n\r]*'
+        r"%[^{\n\r][^\n\r]*"
         pass
 
     # lexer.ll:222
     # <INITIAL,chords,figures,incl,lyrics,markup,notes>{WHITE}+
     def t_INITIAL_markup_notes_222(self, t):
-        '[ \n\t\f\r]'
+        "[ \n\t\f\r]"
         pass
 
     # lexer.ll:227
     # <INITIAL,notes,figures,chords,markup>\"
     def t_INITIAL_markup_notes_227(self, t):
-        r'\"'
-        t.lexer.push_state('quote')
-        self.string_accumulator = ''
+        r"\""
+        t.lexer.push_state("quote")
+        self.string_accumulator = ""
         pass
 
     # lexer.ll:233
     # <INITIAL,chords,lyrics,notes,figures>\\version{WHITE}*
     def t_INITIAL_notes_233(self, t):
-        r'\\version[ \n\t\f\r]*'
-        t.lexer.push_state('version')
+        r"\\version[ \n\t\f\r]*"
+        t.lexer.push_state("version")
         pass
 
     # lexer.ll:236
@@ -323,20 +336,20 @@ class LilyPondLexicalDefinition(object):
     # lexer.ll:296
     # <longcomment>"%"+"}"
     def t_longcomment_296(self, t):
-        r'%}'
+        r"%}"
         t.lexer.pop_state()
         pass
 
     # lexer.ll:291
     # <longcomment>[^\%]*
     def t_longcomment_291(self, t):
-        r'[^%]+'
+        r"[^%]+"
         pass
 
     # lexer.ll:293
     # <longcomment>\%*[^}%]*
     def t_longcomment_293(self, t):
-        r'%+[^}%]*'
+        r"%+[^}%]*"
         pass
 
     # lexer.ll:302
@@ -355,25 +368,25 @@ class LilyPondLexicalDefinition(object):
     # <incl,version,sourcefilename>\"[^"]*
     def t_version_341(self, t):
         r'"[^"]*'
-        message = 'end quote missing: {!r}.'
+        message = "end quote missing: {!r}."
         message = message.format(t)
         raise Exception(message)
 
     # lexer.ll:345
     # <chords,notes,figures>{RESTNAME}
-#    @lex.token.TOKEN(RESTNAME)
-#    def t_notes_345(self, t):
-#        t.type = 'RESTNAME'
-#        return t
+    #    @lex.token.TOKEN(RESTNAME)
+    #    def t_notes_345(self, t):
+    #        t.type = 'RESTNAME'
+    #        return t
 
     # lexer.ll:350
     # <chords,notes,figures>R
-#    def t_notes_350(self, t):
-#        'R'
-#        t.type = 'MULTI_MEASURE_REST'
-#        return t
+    #    def t_notes_350(self, t):
+    #        'R'
+    #        t.type = 'MULTI_MEASURE_REST'
+    #        return t
 
-    #def t_INITIAL_markup_notes_353_boolean(self, t):
+    # def t_INITIAL_markup_notes_353_boolean(self, t):
     #    '\#\#(t|f)'
     #    t.type = 'SCM_TOKEN'
     #    if t.value[2] == 't':
@@ -382,8 +395,8 @@ class LilyPondLexicalDefinition(object):
     #        t.value = False
     #    return t
 
-    #@lex.TOKEN("\#'%s" % DASHED_WORD)
-    #def t_INITIAL_markup_notes_353_identifier(self, t):
+    # @lex.TOKEN("\#'%s" % DASHED_WORD)
+    # def t_INITIAL_markup_notes_353_identifier(self, t):
     #    t.type = 'SCM_IDENTIFIER'
     #    t.value = t.value[2:]
     #    return t
@@ -391,26 +404,27 @@ class LilyPondLexicalDefinition(object):
     # lexer.ll:353
     # <INITIAL,chords,figures,lyrics,markup,notes>#
     def t_INITIAL_markup_notes_353(self, t):
-        '\#'
+        r"\#"
         from abjad import parser as abjad_parser
-        #t.type = 'SCHEME_START'
-        #t.lexer.push_state('INITIAL')
+
+        # t.type = 'SCHEME_START'
+        # t.lexer.push_state('INITIAL')
         scheme_parser = abjad_parser.SchemeParser(debug=False)
-        input_string = t.lexer.lexdata[t.lexpos+1:]
-        #print 'PREPARSE'
+        input_string = t.lexer.lexdata[t.lexpos + 1 :]
+        # print 'PREPARSE'
         try:
             scheme_parser(input_string)
         except exceptions.SchemeParserFinishedError:
             result = scheme_parser.result
             cursor_end = scheme_parser.cursor_end
-            #print 'PARSED: {!r}'.format(input_string[:cursor_end])
+            # print 'PARSED: {!r}'.format(input_string[:cursor_end])
             t.value = result
-            t.type = 'SCM_TOKEN'
-            #if isinstance(result, str):
+            t.type = "SCM_TOKEN"
+            # if isinstance(result, str):
             #    t.type = 'STRING'
             #    if t.value.find(' ') != -1:
             #        t.value = '"{}"'.format(t.value)
-            #else:
+            # else:
             #    t.type = 'SCM_TOKEN'
             t.lexer.skip(scheme_parser.cursor_end + 1)
         return t
@@ -418,29 +432,29 @@ class LilyPondLexicalDefinition(object):
     # lexer.ll:387
     # <INITIAL,notes,lyrics>\<\<
     def t_INITIAL_notes_387(self, t):
-        r'\<\<'
-        t.type = 'DOUBLE_ANGLE_OPEN'
+        r"\<\<"
+        t.type = "DOUBLE_ANGLE_OPEN"
         return t
 
     # lexer.ll:390
     # <INITIAL,notes,lyrics>\>\>
     def t_INITIAL_notes_390(self, t):
-        r'\>\>'
-        t.type = 'DOUBLE_ANGLE_CLOSE'
+        r"\>\>"
+        t.type = "DOUBLE_ANGLE_CLOSE"
         return t
 
     # lexer.ll:396
     # <INITIAL,notes>\<
     def t_INITIAL_notes_396(self, t):
-        r'\<'
-        t.type = 'ANGLE_OPEN'
+        r"\<"
+        t.type = "ANGLE_OPEN"
         return t
 
     # lexer.ll:399
     # <INITIAL,notes>\>
     def t_INITIAL_notes_399(self, t):
-        r'\>'
-        t.type = 'ANGLE_CLOSE'
+        r"\>"
+        t.type = "ANGLE_CLOSE"
         return t
 
     # lexer.ll:405
@@ -457,24 +471,25 @@ class LilyPondLexicalDefinition(object):
     @lex.TOKEN(ALPHAWORD)
     def t_notes_417(self, t):
         from abjad.ly import drums
+
         pitch_names = self.client._pitch_names
         value = t.value
         if value in pitch_names:
-            t.type = 'NOTENAME_PITCH'
+            t.type = "NOTENAME_PITCH"
             t.value = pitch_names[t.value]
         elif value in drums:
-            t.type = 'NOTENAME_PITCH'
+            t.type = "NOTENAME_PITCH"
             t.value = drums[value]
-        elif value in ['r', 's']:
-            t.type = 'RESTNAME'
-        elif value == 'R':
-            t.type = 'MULTI_MEASURE_REST'
-        elif value == 'q':
+        elif value in ["r", "s"]:
+            t.type = "RESTNAME"
+        elif value == "R":
+            t.type = "MULTI_MEASURE_REST"
+        elif value == "q":
             if self.client._last_chord is None:
-                self.client._last_chord = core.Chord(['c', 'g', "c'"], (1, 4))
-            t.type = 'CHORD_REPETITION'
+                self.client._last_chord = core.Chord(["c", "g", "c'"], (1, 4))
+            t.type = "CHORD_REPETITION"
         else:
-            t.type = 'STRING'
+            t.type = "STRING"
         return t
 
     # lexer.ll:421
@@ -489,23 +504,24 @@ class LilyPondLexicalDefinition(object):
     @lex.TOKEN(FRACTION)
     def t_notes_424(self, t):
         from abjad import parser as abjad_parser
-        t.type = 'FRACTION'
-        parts = t.value.split('/')
+
+        t.type = "FRACTION"
+        parts = t.value.split("/")
         t.value = abjad_parser.LilyPondFraction(int(parts[0]), int(parts[1]))
         return t
 
     # lexer.ll:428
     # <notes,figures>{UNSIGNED}/\/|{UNSIGNED}
-    #@lex.TOKEN('%s/\/|%s' % (UNSIGNED, UNSIGNED))
-    @lex.TOKEN('%s/\/' % UNSIGNED)
+    # @lex.TOKEN('%s/\/|%s' % (UNSIGNED, UNSIGNED))
+    @lex.TOKEN(r"%s/\/" % UNSIGNED)
     def t_notes_428(self, t):
-        t.type = 'UNSIGNED'
+        t.type = "UNSIGNED"
         t.value = int(t.value)
         return t
 
     @lex.TOKEN(UNSIGNED)
     def t_notes_428b(self, t):
-        t.type = 'UNSIGNED'
+        t.type = "UNSIGNED"
         t.value = int(t.value)
         return t
 
@@ -513,13 +529,13 @@ class LilyPondLexicalDefinition(object):
     # <notes,figures>{E_UNSIGNED}
     @lex.TOKEN(E_UNSIGNED)
     def t_notes_433(self, t):
-        t.type = 'E_UNSIGNED'
+        t.type = "E_UNSIGNED"
         t.value = int(t.value[1:])
         return t
 
     # lexer.ll:440
     # <quote,lyric_quote>\\{ESCAPED}
-    @lex.TOKEN('\\%s' % ESCAPED)
+    @lex.TOKEN("\\%s" % ESCAPED)
     def t_quote_440(self, t):
         self.string_accumulator += t.value
         pass
@@ -539,16 +555,16 @@ class LilyPondLexicalDefinition(object):
     # lexer.ll:446
     # <quote,lyric_quote>\"
     def t_quote_446(self, t):
-        r'\"'
+        r"\""
         t.lexer.pop_state()
-        t.type = 'STRING'
+        t.type = "STRING"
         t.value = self.string_accumulator
         return t
 
     # lexer.ll:456
     # <quote,lyric_quote>.
     def t_quote_456(self, t):
-        r'.'
+        r"."
         self.string_accumulator += t.value
         pass
 
@@ -609,8 +625,8 @@ class LilyPondLexicalDefinition(object):
     # lexer.ll:545
     # <markup>\\score
     def t_markup_545(self, t):
-        r'\\score'
-        t.type = 'SCORE'
+        r"\\score"
+        t.type = "SCORE"
         return t
 
     # lexer.ll:548
@@ -618,15 +634,17 @@ class LilyPondLexicalDefinition(object):
     @lex.TOKEN(MARKUPCOMMAND)
     def t_markup_548(self, t):
         value = t.value[1:]
-        if value in self.client._markup_functions or \
-            value in self.client._markup_list_functions:
+        if (
+            value in self.client._markup_functions
+            or value in self.client._markup_list_functions
+        ):
             if value in self.client._markup_functions:
-                t.type = 'MARKUP_FUNCTION'
+                t.type = "MARKUP_FUNCTION"
                 signature = self.client._markup_functions[value]
             else:
-                t.type = 'MARKUP_LIST_FUNCTION'
+                t.type = "MARKUP_LIST_FUNCTION"
                 signature = self.client._markup_list_functions[value]
-            #print t.type, value, signature
+            # print t.type, value, signature
             self.push_signature(signature, t)
         else:
             t.type = self.scan_escaped_word(t)
@@ -634,16 +652,16 @@ class LilyPondLexicalDefinition(object):
 
     # lexer.ll:598
     # <markup>[{}]
-#    def t_markup_598(self, t):
-#        r'[{}]'
-#        t.type = t.value
-#        return t
+    #    def t_markup_598(self, t):
+    #        r'[{}]'
+    #        t.type = t.value
+    #        return t
 
     # lexer.ll:601
     # <markup>[^#{}\"\\ \t\n\r\f]+
     def t_markup_601(self, t):
-        r'[^#{}\"\\ \t\n\r\f]+'
-        t.type = 'STRING'
+        r"[^#{}\"\\ \t\n\r\f]+"
+        t.type = "STRING"
         return t
 
     # lexer.ll:614
@@ -673,21 +691,21 @@ class LilyPondLexicalDefinition(object):
     # -{UNSIGNED}|{REAL}
     @lex.TOKEN(REAL)
     def t_651_a(self, t):
-        t.type = 'REAL'
+        t.type = "REAL"
         t.value = float(t.value)
         return t
 
-    @lex.TOKEN('-%s' % UNSIGNED)
+    @lex.TOKEN("-%s" % UNSIGNED)
     def t_651_b(self, t):
-        t.type = 'REAL'
+        t.type = "REAL"
         t.value = float(t.value)
         return t
 
     # lexer.ll:661
     # -\.
     def t_661(self, t):
-        '-\.'
-        t.type = 'REAL'
+        r"-\."
+        t.type = "REAL"
         t.value = 0.0
         return t
 
@@ -695,7 +713,7 @@ class LilyPondLexicalDefinition(object):
     # {UNSIGNED}
     @lex.TOKEN(UNSIGNED)
     def t_666(self, t):
-        t.type = 'UNSIGNED'
+        t.type = "UNSIGNED"
         t.value = float(t.value)
         return t
 
@@ -711,40 +729,40 @@ class LilyPondLexicalDefinition(object):
     # lexer.ll:686
     # <INITIAL,lyrics,notes,figures>\\.
     def t_INITIAL_notes_686(self, t):
-        r'\\.'
-        if t.value[1] == '>':
-            t.type = 'E_ANGLE_CLOSE'
-        elif t.value[1] == '<':
-            t.type = 'E_ANGLE_OPEN'
-        elif t.value[1] == '!':
-            t.type = 'E_EXCLAMATION'
-        elif t.value[1] == '(':
-            t.type = 'E_OPEN'
-        elif t.value[1] == ')':
-            t.type = 'E_CLOSE'
-        elif t.value[1] == '[':
-            t.type = 'E_BRACKET_OPEN'
-        elif t.value[1] == '+':
-            t.type = 'E_PLUS'
-        elif t.value[1] == ']':
-            t.type = 'E_BRACKET_CLOSE'
-        elif t.value[1] == '~':
-            t.type = 'E_TILDE'
-        elif t.value[1] == '\\':
-            t.type = 'E_BACKSLASH'
+        r"\\."
+        if t.value[1] == ">":
+            t.type = "E_ANGLE_CLOSE"
+        elif t.value[1] == "<":
+            t.type = "E_ANGLE_OPEN"
+        elif t.value[1] == "!":
+            t.type = "E_EXCLAMATION"
+        elif t.value[1] == "(":
+            t.type = "E_OPEN"
+        elif t.value[1] == ")":
+            t.type = "E_CLOSE"
+        elif t.value[1] == "[":
+            t.type = "E_BRACKET_OPEN"
+        elif t.value[1] == "+":
+            t.type = "E_PLUS"
+        elif t.value[1] == "]":
+            t.type = "E_BRACKET_CLOSE"
+        elif t.value[1] == "~":
+            t.type = "E_TILDE"
+        elif t.value[1] == "\\":
+            t.type = "E_BACKSLASH"
         else:
-            t.type = 'E_CHAR'
+            t.type = "E_CHAR"
         return t
 
     # lexer.ll:
     # <*>.716
-#    def t_ANY_716(self, t):
-#        r'.'
-#        raise Exception
+    #    def t_ANY_716(self, t):
+    #        r'.'
+    #        raise Exception
 
     ### DEFAULT RULES ###
 
-    t_ignore = '' # let the grammar handle ignoring things
+    t_ignore = ""  # let the grammar handle ignoring things
 
     #    t_extratoken_ignore = t_ignore
     #    t_chords_ignore = t_ignore
@@ -763,7 +781,7 @@ class LilyPondLexicalDefinition(object):
     t_scheme_ignore = t_ignore
 
     def t_newline(self, t):
-        r'\n+'
+        r"\n+"
         t.lexer.lineno += t.value.count("\n")
 
     def t_error(self, t):
@@ -786,44 +804,45 @@ class LilyPondLexicalDefinition(object):
     t_scheme_error = t_error
 
     def scan_bare_word(self, t):
-        if t.lexer.current_state() in ('notes',):
+        if t.lexer.current_state() in ("notes",):
             pitch_names = self.client._pitch_names
             if t.value in pitch_names:
-                t.type = 'NOTENAME_PITCH'
-            elif t.value == 'q' and self.client._last_chord:
-                t.type = 'CHORD_REPETITION'
-        return 'STRING'
+                t.type = "NOTENAME_PITCH"
+            elif t.value == "q" and self.client._last_chord:
+                t.type = "CHORD_REPETITION"
+        return "STRING"
 
     def scan_escaped_word(self, t):
         from abjad import parser as abjad_parser
+
         # first, check for it in the keyword list
         if t.value in self.keywords:
             value = self.keywords[t.value]
-            if value == 'MARKUP':
-                t.lexer.push_state('markup')
-                if t.lexer.current_state() == 'lyrics':
-                    return 'LYRIC_MARKUP'
-            elif value == 'WITH':
-                t.lexer.push_state('INITIAL')
+            if value == "MARKUP":
+                t.lexer.push_state("markup")
+                if t.lexer.current_state() == "lyrics":
+                    return "LYRIC_MARKUP"
+            elif value == "WITH":
+                t.lexer.push_state("INITIAL")
             return value
         identifier = t.value[1:]
         # check for the identifier in the scope stack
         lookup = self.client._resolve_identifier(identifier)
         if lookup is not None:
             identifier_lookup = {
-                'book_block': 'BOOK_IDENTIFIER',
-                'bookpart_block': 'BOOK_IDENTIFIER',
-                'context_def_spec_block': 'CONTEXT_DEF_IDENTIFIER',
-                'context_modification': 'CONTEXT_MOD_IDENTIFIER',
-                'post_event_nofinger': 'EVENT_IDENTIFIER',
-                'full_markup': 'MARKUP_IDENTIFIER',
-                'full_markup_list': 'MARKUPLINES_IDENTIFIER',
-                'music': 'MUSIC_IDENTIFIER',
-                'number_expression': 'NUMBER_IDENTIFIER',
-                'output_def': 'output_DEF_IDENTIFIER',
-                'embedded_scm': 'SCM_IDENTIFIER',
-                'score_block': 'SCORE_IDENTIFIER',
-                'string': 'STRING_IDENTIFIER',
+                "book_block": "BOOK_IDENTIFIER",
+                "bookpart_block": "BOOK_IDENTIFIER",
+                "context_def_spec_block": "CONTEXT_DEF_IDENTIFIER",
+                "context_modification": "CONTEXT_MOD_IDENTIFIER",
+                "post_event_nofinger": "EVENT_IDENTIFIER",
+                "full_markup": "MARKUP_IDENTIFIER",
+                "full_markup_list": "MARKUPLINES_IDENTIFIER",
+                "music": "MUSIC_IDENTIFIER",
+                "number_expression": "NUMBER_IDENTIFIER",
+                "output_def": "output_DEF_IDENTIFIER",
+                "embedded_scm": "SCM_IDENTIFIER",
+                "score_block": "SCORE_IDENTIFIER",
+                "string": "STRING_IDENTIFIER",
                 # 'PITCH_IDENTIFIER' ?
                 # 'DURATION_IDENTIFIER' ?
                 # 'LYRIC_MARKUP_IDENTIFIER' ?
@@ -833,44 +852,43 @@ class LilyPondLexicalDefinition(object):
         # then, check for it in the "current_module" dictionary
         # which we've dumped out of LilyPond
         if identifier not in self.client._current_module:
-            message = 'unknown escaped word: {!r}.'
+            message = "unknown escaped word: {!r}."
             message = message.format(t.value)
             raise Exception(message)
         lookup = self.client._current_module[identifier]
         # if the lookup resolves to a function definition,
         # we have to push artificial tokens onto the token stack.
         # the tokens are pushed in reverse order (LIFO).
-        if isinstance(lookup, dict) and 'type' in lookup:
-            if lookup['type'] == 'ly:music-function?':
-                signature = lookup['signature']
-                funtype = 'SCM_FUNCTION'
-                if signature[0] == 'ly:music?':
-                    funtype = 'MUSIC_FUNCTION'
-                elif signature[0] == 'ly:event?':
-                    funtype = 'EVENT_FUNCTION'
+        if isinstance(lookup, dict) and "type" in lookup:
+            if lookup["type"] == "ly:music-function?":
+                signature = lookup["signature"]
+                funtype = "SCM_FUNCTION"
+                if signature[0] == "ly:music?":
+                    funtype = "MUSIC_FUNCTION"
+                elif signature[0] == "ly:event?":
+                    funtype = "EVENT_FUNCTION"
                 self.push_signature(signature[1:], t)
                 return funtype
-            elif lookup['type'] == 'ly:prob?':
-                if 'event' in lookup['types']:
-                    return 'EVENT_IDENTIFIER'
-                elif (
-                    'context-specification' in lookup['types'] and
-                    hasattr(self.client._guile, identifier)
-                    ):
+            elif lookup["type"] == "ly:prob?":
+                if "event" in lookup["types"]:
+                    return "EVENT_IDENTIFIER"
+                elif "context-specification" in lookup["types"] and hasattr(
+                    self.client._guile, identifier
+                ):
                     t.value = getattr(self.client._guile, identifier)()
-                    return 'MUSIC_IDENTIFIER'
+                    return "MUSIC_IDENTIFIER"
         # we also check for other types, to handle \longa, \breve etc.
         elif isinstance(lookup, abjad_parser.LilyPondDuration):
             t.value = copy.copy(lookup)
-            return 'DURATION_IDENTIFIER'
+            return "DURATION_IDENTIFIER"
         # else...
         t.value = copy.copy(lookup)
-        return 'SCM_IDENTIFIER'
+        return "SCM_IDENTIFIER"
 
     def push_signature(self, signature, t):
 
         token = lex.LexToken()
-        token.type = 'EXPECT_NO_MORE_ARGS'
+        token.type = "EXPECT_NO_MORE_ARGS"
         token.value = None
         token.lineno = t.lineno
         token.lexpos = t.lexpos
@@ -879,7 +897,7 @@ class LilyPondLexicalDefinition(object):
         optional = False
         for predicate in signature:
 
-            if predicate == 'optional?':
+            if predicate == "optional?":
                 optional = True
                 continue
 
@@ -888,26 +906,26 @@ class LilyPondLexicalDefinition(object):
             token.lineno = t.lineno
             token.lexpos = t.lexpos
 
-            if predicate == 'ly:music?':
-                token.type = 'EXPECT_SCM' # ?!?!
-            elif predicate == 'ly:pitch?':
-                token.type = 'EXPECT_PITCH'
-            elif predicate == 'ly:duration?':
-                token.type = 'EXPECT_DURATION'
-            elif predicate in ['markup?', 'cheap-markup?']:
-                token.type = 'EXPECT_MARKUP'
-            elif predicate == 'markup-list?':
-                token.type = 'EXPECT_MARKUP_LIST'
+            if predicate == "ly:music?":
+                token.type = "EXPECT_SCM"  # ?!?!
+            elif predicate == "ly:pitch?":
+                token.type = "EXPECT_PITCH"
+            elif predicate == "ly:duration?":
+                token.type = "EXPECT_DURATION"
+            elif predicate in ["markup?", "cheap-markup?"]:
+                token.type = "EXPECT_MARKUP"
+            elif predicate == "markup-list?":
+                token.type = "EXPECT_MARKUP_LIST"
             else:
-                token.type = 'EXPECT_SCM'
+                token.type = "EXPECT_SCM"
 
             self.client._push_extra_token(token)
 
             if optional:
                 optional_token = lex.LexToken()
-                optional_token.value = 'optional?'
+                optional_token.value = "optional?"
                 optional_token.lineno = t.lineno
                 optional_token.lexpos = t.lexpos
-                optional_token.type = 'EXPECT_OPTIONAL'
+                optional_token.type = "EXPECT_OPTIONAL"
                 self.client._push_extra_token(optional_token)
                 optional = False

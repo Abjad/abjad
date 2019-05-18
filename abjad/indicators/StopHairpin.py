@@ -16,25 +16,19 @@ class StopHairpin(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_leak',
-        )
+    __slots__ = ("_leak",)
 
-    _context = 'Voice'
+    _context = "Voice"
 
-    #_parameter = 'DYNAMIC'
+    # _parameter = 'DYNAMIC'
 
-    #_persistent = True
+    # _persistent = True
 
     _publish_storage_format = True
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        *,
-        leak: bool = None,
-        ) -> None:
+    def __init__(self, *, leak: bool = None) -> None:
         if leak is not None:
             leak = bool(leak)
         self._leak = leak
@@ -51,12 +45,12 @@ class StopHairpin(object):
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = LilyPondFormatBundle()
-        string = r'\!'
+        string = r"\!"
         if self.leak:
-            string = f'<> {string}'
+            string = f"<> {string}"
             bundle.after.leaks.append(string)
         else:
-            #bundle.after.spanner_stops.append(string)
+            # bundle.after.spanner_stops.append(string)
             bundle.after.articulations.append(string)
         return bundle
 
@@ -136,33 +130,33 @@ class StopHairpin(object):
         """
         return self._leak
 
-#    @property
-#    def parameter(self) -> str:
-#        """
-#        Returns ``'DYNAMIC'``.
-#
-#        ..  container:: example
-#
-#            >>> abjad.StopHairpin().parameter
-#            'DYNAMIC'
-#
-#        Class constant.
-#        """
-#        return self._parameter
+    #    @property
+    #    def parameter(self) -> str:
+    #        """
+    #        Returns ``'DYNAMIC'``.
+    #
+    #        ..  container:: example
+    #
+    #            >>> abjad.StopHairpin().parameter
+    #            'DYNAMIC'
+    #
+    #        Class constant.
+    #        """
+    #        return self._parameter
 
-#    @property
-#    def persistent(self) -> bool:
-#        """
-#        Is true.
-#
-#        ..  container:: example
-#
-#            >>> abjad.StopHairpin().persistent
-#            True
-#
-#        Class constant.
-#        """
-#        return self._persistent
+    #    @property
+    #    def persistent(self) -> bool:
+    #        """
+    #        Is true.
+    #
+    #        ..  container:: example
+    #
+    #            >>> abjad.StopHairpin().persistent
+    #            True
+    #
+    #        Class constant.
+    #        """
+    #        return self._persistent
 
     @property
     def spanner_stop(self) -> bool:

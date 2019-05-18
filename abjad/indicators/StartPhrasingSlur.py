@@ -46,14 +46,11 @@ class StartPhrasingSlur(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_direction',
-        '_tweaks',
-        )
+    __slots__ = ("_direction", "_tweaks")
 
-    _context = 'Voice'
+    _context = "Voice"
 
-    _parameter = 'PHRASING_SLUR'
+    _parameter = "PHRASING_SLUR"
 
     _persistent = True
 
@@ -66,7 +63,7 @@ class StartPhrasingSlur(object):
         *,
         direction: enums.VerticalAlignment = None,
         tweaks: LilyPondTweakManager = None,
-        ) -> None:
+    ) -> None:
         self._direction = direction
         if tweaks is not None:
             assert isinstance(tweaks, LilyPondTweakManager), repr(tweaks)
@@ -89,7 +86,7 @@ class StartPhrasingSlur(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     def __repr__(self) -> str:
@@ -101,8 +98,8 @@ class StartPhrasingSlur(object):
     ### PRIVATE METHODS ###
 
     def _add_direction(self, string):
-        if getattr(self, 'direction', False):
-            string = f'{self.direction} {string}'
+        if getattr(self, "direction", False):
+            string = f"{self.direction} {string}"
         return string
 
     def _get_lilypond_format_bundle(self, component=None):
@@ -110,7 +107,7 @@ class StartPhrasingSlur(object):
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions()
             bundle.after.spanner_starts.extend(tweaks)
-        string = self._add_direction('\(')
+        string = self._add_direction(r"\(")
         bundle.after.spanner_starts.append(string)
         return bundle
 

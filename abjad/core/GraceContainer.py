@@ -140,11 +140,9 @@ class GraceContainer(Container):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Containers'
+    __documentation_section__ = "Containers"
 
-    __slots__ = (
-        '_main_leaf',
-        )
+    __slots__ = ("_main_leaf",)
 
     ### INITIALIZER ###
 
@@ -166,8 +164,9 @@ class GraceContainer(Container):
 
     def _attach(self, leaf):
         import abjad
+
         if not isinstance(leaf, abjad.Leaf):
-            raise TypeError(f'must attach to leaf {leaf!r}.')
+            raise TypeError(f"must attach to leaf {leaf!r}.")
         leaf._grace_container = self
         self._main_leaf = leaf
 
@@ -180,7 +179,7 @@ class GraceContainer(Container):
 
     def _format_open_brackets_slot(self, bundle):
         result = []
-        result.append([('grace_brackets', 'open'), [r'\grace {']])
+        result.append([("grace_brackets", "open"), [r"\grace {"]])
         return tuple(result)
 
     def _get_lilypond_format(self):

@@ -8,9 +8,9 @@ i = 0
 while True:
     time.sleep(interval)
     i += interval
-    unit = 'seconds'
+    unit = "seconds"
     if i == 1:
-        unit = 'second'
-    message = '\n[{} {}]'
+        unit = "second"
+    message = "\n[{} {}]"
     message = message.format(i, unit)
     print(message)

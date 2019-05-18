@@ -38,4 +38,4 @@ class NegativeInfinity(Infinity):
     ### INITIALIZER ###
 
     def __init__(self):
-        self._value = float('-infinity')
+        self._value = float("-infinity")

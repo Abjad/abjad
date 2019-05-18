@@ -18,7 +18,7 @@ def test_Tuplet_timespan_01():
             }
         }
         """
-        )
+    )
 
     assert abjad.inspect(staff).timespan() == abjad.Timespan(0, 1)
     assert abjad.inspect(staff[0]).timespan() == abjad.Timespan(0, (1, 4))

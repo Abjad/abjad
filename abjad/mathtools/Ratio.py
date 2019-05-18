@@ -29,6 +29,7 @@ class Ratio(NonreducedRatio):
 
     def __init__(self, numbers=(1, 1)):
         import abjad
+
         if isinstance(numbers, type(self)):
             numbers = numbers.numbers
         numbers = [int(_) for _ in numbers]
@@ -139,7 +140,7 @@ class Ratio(NonreducedRatio):
         Returns string.
         """
         numbers = (str(x) for x in self.numbers)
-        return ':'.join(numbers)
+        return ":".join(numbers)
 
     ### PUBLIC PROPERTIES ###
 
@@ -167,11 +168,9 @@ class Ratio(NonreducedRatio):
         Returns tuple of multipliers.
         """
         import abjad
+
         weight = sum(self.numbers)
-        multipliers = [
-            abjad.Multiplier((_, weight))
-            for _ in self.numbers
-            ]
+        multipliers = [abjad.Multiplier((_, weight)) for _ in self.numbers]
         multipliers = tuple(multipliers)
         return multipliers
 

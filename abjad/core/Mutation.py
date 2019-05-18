@@ -36,11 +36,9 @@ class Mutation(object):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Collaborators'
+    __documentation_section__ = "Collaborators"
 
-    __slots__ = (
-        '_client',
-        )
+    __slots__ = ("_client",)
 
     ### INITIALIZER ###
 
@@ -506,9 +504,9 @@ class Mutation(object):
             selection = select(self.client)
             return selection._fuse()
         elif (
-            isinstance(self.client, Selection) and
-            self.client.are_contiguous_logical_voice()
-            ):
+            isinstance(self.client, Selection)
+            and self.client.are_contiguous_logical_voice()
+        ):
             selection = select(self.client)
             return selection._fuse()
 
@@ -722,11 +720,12 @@ class Mutation(object):
             return
         if wrappers is True:
             if 1 < len(donors) or not isinstance(donors[0], Leaf):
-                message = f'set wrappers only with single leaf: {donors!r}.'
+                message = f"set wrappers only with single leaf: {donors!r}."
                 raise Exception(message)
-            if (1 < len(recipients) or
-                not isinstance(recipients[0], Leaf)):
-                message = f'set wrappers only with single leaf: {recipients!r}.'
+            if 1 < len(recipients) or not isinstance(recipients[0], Leaf):
+                message = (
+                    f"set wrappers only with single leaf: {recipients!r}."
+                )
                 raise Exception(message)
             donor = donors[0]
             wrappers = inspect(donor).wrappers()
@@ -757,7 +756,7 @@ class Mutation(object):
         maximum_dot_count=None,
         rewrite_tuplets=True,
         repeat_ties=False,
-        ):
+    ):
         r"""
         Rewrites the contents of logical ties in an expression to match
         ``meter``.
@@ -1876,7 +1875,7 @@ class Mutation(object):
         if isinstance(meter, TimeSignature):
             meter = Meter(meter)
         if not isinstance(meter, Meter):
-            raise Exception(f'must be meter or time signature (not {meter}).')
+            raise Exception(f"must be meter or time signature (not {meter}).")
         result = Meter._rewrite_meter(
             selection,
             meter,
@@ -1885,7 +1884,7 @@ class Mutation(object):
             maximum_dot_count=maximum_dot_count,
             rewrite_tuplets=rewrite_tuplets,
             repeat_ties=repeat_ties,
-            )
+        )
         return result
 
     def scale(self, multiplier):
@@ -2336,7 +2335,7 @@ class Mutation(object):
 
         Returns none.
         """
-        if hasattr(self.client, '_scale'):
+        if hasattr(self.client, "_scale"):
             self.client._scale(multiplier)
         else:
             assert isinstance(self.client, Selection)
@@ -2347,12 +2346,8 @@ class Mutation(object):
     # TODO: add examples that show indicator handling.
     # TODO: add example showing grace and after grace handling.
     def split(
-        self,
-        durations,
-        cyclic=False,
-        tie_split_notes=True,
-        repeat_ties=False,
-        ):
+        self, durations, cyclic=False, tie_split_notes=True, repeat_ties=False
+    ):
         r"""
         Splits mutation client by ``durations``.
 
@@ -2968,7 +2963,7 @@ class Mutation(object):
                         [additional_required_duration],
                         cyclic=False,
                         overhang=True,
-                        )
+                    )
                     split_durations = [list(_) for _ in split_durations]
                     additional_durations = split_durations[0]
                     leaf_split_durations.extend(additional_durations)
@@ -2978,7 +2973,7 @@ class Mutation(object):
                         cyclic=False,
                         tie_split_notes=tie_split_notes,
                         repeat_ties=repeat_ties,
-                        )
+                    )
                     shard.extend(leaf_shards)
                     result.append(shard)
                     offset_index += len(additional_durations)
@@ -2988,7 +2983,7 @@ class Mutation(object):
                         local_split_duration,
                         tie_split_notes=tie_split_notes,
                         repeat_ties=repeat_ties,
-                        )
+                    )
                     left_list, right_list = pair
                     shard.extend(left_list)
                     result.append(shard)
@@ -3003,7 +2998,7 @@ class Mutation(object):
                 current_shard_duration += duration_
                 advance_to_next_offset = False
             else:
-                message = 'can not process candidate duration: {!r}.'
+                message = "can not process candidate duration: {!r}."
                 message = message.format(candidate_shard_duration)
                 raise ValueError(message)
         # append any stub shard
@@ -3015,9 +3010,8 @@ class Mutation(object):
         # partition split components according to input durations
         result = sequence(result).flatten(depth=-1)
         result = select(result).partition_by_durations(
-            durations_copy,
-            fill=enums.Exact,
-            )
+            durations_copy, fill=enums.Exact
+        )
         # return list of shards
         assert all(isinstance(_, Selection) for _ in result)
         return result
@@ -3100,7 +3094,7 @@ class Mutation(object):
         assert isinstance(container, Container)
         assert not container, repr(container)
         donors._give_components_to_empty_container(container)
-        #donors._give_dominant_spanners([container])
+        # donors._give_dominant_spanners([container])
         donors._give_position_in_parent_to_container(container)
 
     def transpose(self, argument):
@@ -3167,7 +3161,8 @@ class Mutation(object):
                 for note_head in x.note_heads:
                     old_written_pitch = note_head.written_pitch
                     new_written_pitch = old_written_pitch.transpose(
-                        named_interval)
+                        named_interval
+                    )
                     note_head.written_pitch = new_written_pitch
 
     def wrap(self, container):
@@ -3366,10 +3361,8 @@ class Mutation(object):
 
         Returns none.
         """
-        if (
-            not isinstance(container, Container) or
-            0 < len(container)):
-            message = f'must be empty container: {container!r}.'
+        if not isinstance(container, Container) or 0 < len(container):
+            message = f"must be empty container: {container!r}."
             raise Exception(message)
         if isinstance(self.client, Component):
             selection = select(self.client)
@@ -3378,8 +3371,8 @@ class Mutation(object):
         assert isinstance(selection, Selection), repr(selection)
         parent, start, stop = selection._get_parent_and_start_stop_indices()
         if not selection.are_contiguous_logical_voice():
-            message = 'must be contiguous components in same logical voice:'
-            message += f' {selection!r}.'
+            message = "must be contiguous components in same logical voice:"
+            message += f" {selection!r}."
             raise Exception(message)
         container._components = list(selection)
         container[:]._set_parents(container)

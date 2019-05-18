@@ -38,12 +38,9 @@ class OffsetTimespanTimeRelation(TimeRelation):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Time relations'
+    __documentation_section__ = "Time relations"
 
-    __slots__ = (
-        '_offset',
-        '_timespan',
-        )
+    __slots__ = ("_offset", "_timespan")
 
     _publish_storage_format = True
 
@@ -76,16 +73,18 @@ class OffsetTimespanTimeRelation(TimeRelation):
         Otherwise returns boolean.
         """
         import abjad
+
         timespan = timespan or self.timespan
         offset = offset or self.offset
         if timespan is None or offset is None:
-            message = 'time relation is not fully loaded.'
+            message = "time relation is not fully loaded."
             raise ValueError(message)
         if not isinstance(timespan, abjad.Timespan):
             timespan = abjad.Timespan()._get_timespan(timespan)
         offset = abjad.Offset(offset)
         truth_value = self.inequality.evaluate_offset_inequality(
-            timespan.start_offset, timespan.stop_offset, offset)
+            timespan.start_offset, timespan.stop_offset, offset
+        )
         return truth_value
 
     def __eq__(self, argument):
@@ -111,7 +110,7 @@ class OffsetTimespanTimeRelation(TimeRelation):
         """
         return super().__eq__(argument)
 
-    def __format__(self, format_specification=''):
+    def __format__(self, format_specification=""):
         """
         Formats time relation.
 

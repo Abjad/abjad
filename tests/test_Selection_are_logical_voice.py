@@ -10,7 +10,10 @@ def test_Selection_are_logical_voice_01():
 
     notes = [
         abjad.Note("c'8"),
-        abjad.Note("d'8"), abjad.Note("e'8"), abjad.Note("f'8")]
+        abjad.Note("d'8"),
+        abjad.Note("e'8"),
+        abjad.Note("f'8"),
+    ]
     assert abjad.select(notes).are_logical_voice()
 
 
@@ -109,7 +112,7 @@ def test_Selection_are_logical_voice_06():
             c''8
         }
         """
-        )
+    )
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -129,7 +132,7 @@ def test_Selection_are_logical_voice_06():
             }
         }
         """
-        )
+    )
 
     assert abjad.select(voice).components().are_logical_voice()
 
@@ -152,7 +155,7 @@ def test_Selection_are_logical_voice_07():
             a'8
         }
         """
-        )
+    )
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -170,7 +173,7 @@ def test_Selection_are_logical_voice_07():
             }
         }
         """
-        )
+    )
 
     assert abjad.select(voice).components().are_logical_voice()
 
@@ -195,7 +198,7 @@ def test_Selection_are_logical_voice_08():
             c''8
         }
         """
-        )
+    )
 
     assert format(staff) == abjad.String.normalize(
         r"""
@@ -217,7 +220,7 @@ def test_Selection_are_logical_voice_08():
             }
         }
         """
-        )
+    )
 
     leaves = abjad.select(staff).leaves()
     assert leaves[:4].are_logical_voice()
@@ -246,7 +249,7 @@ def test_Selection_are_logical_voice_09():
             c''8
         }
         """
-        )
+    )
 
     assert format(staff) == abjad.String.normalize(
         r"""
@@ -268,7 +271,7 @@ def test_Selection_are_logical_voice_09():
             }
         }
         """
-        )
+    )
 
     leaves = abjad.select(staff).leaves()
     assert leaves.are_logical_voice()
@@ -290,7 +293,7 @@ def test_Selection_are_logical_voice_10():
             f'8
         }
         """
-        )
+    )
 
     assert format(staff) == abjad.String.normalize(
         r"""
@@ -308,7 +311,7 @@ def test_Selection_are_logical_voice_10():
             }
         }
         """
-        )
+    )
 
     leaves = abjad.select(staff).leaves()
     assert not leaves.are_logical_voice()
@@ -335,7 +338,7 @@ def test_Selection_are_logical_voice_11():
             }
         }
         """
-        )
+    )
 
     assert format(container) == abjad.String.normalize(
         r"""
@@ -358,7 +361,7 @@ def test_Selection_are_logical_voice_11():
             }
         }
         """
-        )
+    )
 
     leaves = abjad.select(container).leaves()
     assert not leaves.are_logical_voice()
@@ -393,7 +396,7 @@ def test_Selection_are_logical_voice_12():
             }
         >>
         """
-        )
+    )
 
     assert format(container) == abjad.String.normalize(
         r"""
@@ -426,7 +429,7 @@ def test_Selection_are_logical_voice_12():
             >>
         }
         """
-        )
+    )
 
     leaves = abjad.select(container).leaves()
     assert not leaves[:4].are_logical_voice()
@@ -448,7 +451,7 @@ def test_Selection_are_logical_voice_13():
             f'8
         }
         """
-        )
+    )
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -464,7 +467,7 @@ def test_Selection_are_logical_voice_13():
             }
         }
         """
-        )
+    )
 
     leaves = abjad.select(voice).leaves()
     assert leaves.are_logical_voice()
@@ -491,7 +494,7 @@ def test_Selection_are_logical_voice_14():
             g'8
         }
         """
-        )
+    )
 
     assert format(container) == abjad.String.normalize(
         r"""
@@ -512,7 +515,7 @@ def test_Selection_are_logical_voice_14():
             }
         }
         """
-        )
+    )
 
     leaves = abjad.select(container).leaves()
     assert leaves[:4].are_logical_voice()
@@ -539,7 +542,7 @@ def test_Selection_are_logical_voice_15():
             c''8
         }
         """
-        )
+    )
 
     assert format(container) == abjad.String.normalize(
         r"""
@@ -559,7 +562,7 @@ def test_Selection_are_logical_voice_15():
             }
         }
         """
-        )
+    )
 
     leaves = abjad.select(container).leaves()
     assert leaves[:4].are_logical_voice()
@@ -587,7 +590,7 @@ def test_Selection_are_logical_voice_16():
             c''8
         }
         """
-        )
+    )
 
     assert format(container) == abjad.String.normalize(
         r"""
@@ -607,7 +610,7 @@ def test_Selection_are_logical_voice_16():
             }
         }
         """
-        )
+    )
 
     leaves = abjad.select(container).leaves()
     assert leaves[:4].are_logical_voice()
@@ -635,7 +638,7 @@ def test_Selection_are_logical_voice_17():
             c''8
         }
         """
-        )
+    )
 
     leaves = abjad.select(container).leaves()
     assert leaves[:4].are_logical_voice()
@@ -663,7 +666,7 @@ def test_Selection_are_logical_voice_18():
             c''8
         }
         """
-        )
+    )
 
     assert format(container) == abjad.String.normalize(
         r"""
@@ -683,7 +686,7 @@ def test_Selection_are_logical_voice_18():
             }
         }
         """
-        )
+    )
 
     leaves = abjad.select(container).leaves()
     assert leaves[:4].are_logical_voice()
@@ -711,7 +714,7 @@ def test_Selection_are_logical_voice_19():
             c''8
         }
         """
-        )
+    )
 
     assert format(container) == abjad.String.normalize(
         r"""
@@ -731,7 +734,7 @@ def test_Selection_are_logical_voice_19():
             }
         }
         """
-        )
+    )
 
     leaves = abjad.select(container).leaves()
     assert leaves[:4].are_logical_voice()
@@ -759,7 +762,7 @@ def test_Selection_are_logical_voice_20():
             g'8
         }
         """
-        )
+    )
 
     assert format(container) == abjad.String.normalize(
         r"""
@@ -779,7 +782,7 @@ def test_Selection_are_logical_voice_20():
             }
         }
         """
-        )
+    )
 
     leaves = abjad.select(container).leaves()
     assert leaves[:4].are_logical_voice()
@@ -805,7 +808,7 @@ def test_Selection_are_logical_voice_21():
             g'8
         }
         """
-        )
+    )
 
     assert format(container) == abjad.String.normalize(
         r"""
@@ -823,7 +826,7 @@ def test_Selection_are_logical_voice_21():
             }
         }
         """
-        )
+    )
 
     leaves = abjad.select(container).leaves()
     assert leaves[:4].are_logical_voice()
@@ -849,7 +852,7 @@ def test_Selection_are_logical_voice_22():
         fs'8
         g'8
         """
-        )
+    )
 
     assert format(container) == abjad.String.normalize(
         r"""
@@ -867,7 +870,7 @@ def test_Selection_are_logical_voice_22():
             g'8
         }
         """
-        )
+    )
 
     leaves = abjad.select(container).leaves()
     assert leaves[:4].are_logical_voice()
@@ -893,7 +896,7 @@ def test_Selection_are_logical_voice_23():
             g'8
         }
         """
-        )
+    )
 
     assert format(container) == abjad.String.normalize(
         r"""
@@ -911,7 +914,7 @@ def test_Selection_are_logical_voice_23():
             }
         }
         """
-        )
+    )
 
     leaves = abjad.select(container).leaves()
     assert leaves[:4].are_logical_voice()
@@ -940,7 +943,7 @@ def test_Selection_are_logical_voice_24():
         fs'8
         g'8
         """
-        )
+    )
 
     assert format(container) == abjad.String.normalize(
         r"""
@@ -958,7 +961,7 @@ def test_Selection_are_logical_voice_24():
             g'8
         }
         """
-        )
+    )
 
     leaves = abjad.select(container).leaves()
     assert leaves[:4].are_logical_voice()
@@ -984,7 +987,7 @@ def test_Selection_are_logical_voice_25():
             g'8
         }
         """
-        )
+    )
 
     assert format(container) == abjad.String.normalize(
         r"""
@@ -1002,7 +1005,7 @@ def test_Selection_are_logical_voice_25():
             }
         }
         """
-        )
+    )
 
     leaves = abjad.select(container).leaves()
     assert leaves[:4].are_logical_voice()
@@ -1028,7 +1031,7 @@ def test_Selection_are_logical_voice_26():
         b'8
         c''8
         """
-        )
+    )
 
     assert format(container) == abjad.String.normalize(
         r"""
@@ -1046,7 +1049,7 @@ def test_Selection_are_logical_voice_26():
             c''8
         }
         """
-        )
+    )
 
     leaves = abjad.select(container).leaves()
     assert leaves[:4].are_logical_voice()
@@ -1082,7 +1085,7 @@ def test_Selection_are_logical_voice_27():
             g'8
         }
         """
-        )
+    )
 
     leaves = abjad.select(container).leaves()
     assert leaves[:4].are_logical_voice()
@@ -1096,7 +1099,7 @@ def test_Selection_are_logical_voice_28():
     """
 
     voice = abjad.Voice([abjad.Note(n, (1, 8)) for n in range(4)])
-    voice.name = 'foo'
+    voice.name = "foo"
     container = abjad.Container([voice])
     notes = [abjad.Note(n, (1, 8)) for n in range(4, 8)]
     container = abjad.Container([container] + notes)
@@ -1130,9 +1133,9 @@ def test_Selection_are_logical_voice_29():
     """
 
     voice_1 = abjad.Voice([abjad.Note(n, (1, 8)) for n in range(4)])
-    voice_1.name = 'foo'
+    voice_1.name = "foo"
     voice_2 = abjad.Voice([voice_1])
-    voice_2.name = 'bar'
+    voice_2.name = "bar"
     notes = [abjad.Note(n, (1, 8)) for n in range(4, 8)]
     container = abjad.Container([voice_2] + notes)
 
@@ -1155,7 +1158,7 @@ def test_Selection_are_logical_voice_29():
             g'8
         }
         """
-        )
+    )
 
     leaves = abjad.select(container).leaves()
     assert leaves[:4].are_logical_voice()
@@ -1192,7 +1195,7 @@ def test_Selection_are_logical_voice_30():
             g'8
         }
         """
-        )
+    )
 
     leaves = abjad.select(container).leaves()
     assert leaves[:4].are_logical_voice()
@@ -1237,7 +1240,7 @@ def test_Selection_are_logical_voice_31():
             >>
         }
         """
-        )
+    )
 
     leaves = abjad.select(container).leaves()
     assert not leaves[:8].are_logical_voice()
@@ -1270,7 +1273,7 @@ def test_Selection_are_logical_voice_32():
         bf'8
         b'8
         """
-        )
+    )
 
     assert format(container) == abjad.String.normalize(
         r"""
@@ -1297,7 +1300,7 @@ def test_Selection_are_logical_voice_32():
             b'8
         }
         """
-        )
+    )
 
     leaves = abjad.select(container).leaves()
     assert not leaves[:8].are_logical_voice()
@@ -1329,7 +1332,7 @@ def test_Selection_are_logical_voice_33():
         bf'8
         b'8
         """
-        )
+    )
 
     outer = (0, 1, 10, 11)
     middle = (2, 3, 8, 9)
@@ -1358,7 +1361,7 @@ def test_Selection_are_logical_voice_33():
             b'8
         }
         """
-        )
+    )
 
     leaves = abjad.select(container).leaves()
     assert abjad.select([leaves[i] for i in outer]).are_logical_voice()
@@ -1392,7 +1395,7 @@ def test_Selection_are_logical_voice_34():
         bf'8
         b'8
         """
-        )
+    )
 
     outer = (0, 1, 10, 11)
     middle = (2, 3, 8, 9)
@@ -1422,7 +1425,7 @@ def test_Selection_are_logical_voice_34():
             b'8
         }
         """
-        )
+    )
 
     leaves = abjad.select(staff).leaves()
     assert abjad.select([leaves[i] for i in outer]).are_logical_voice()
@@ -1455,7 +1458,7 @@ def test_Selection_are_logical_voice_35():
         bf'8
         b'8
         """
-        )
+    )
 
     assert format(container) == abjad.String.normalize(
         r"""
@@ -1478,7 +1481,7 @@ def test_Selection_are_logical_voice_35():
             b'8
         }
         """
-        )
+    )
 
     assert abjad.select(container).components().are_logical_voice()
 
@@ -1505,7 +1508,7 @@ def test_Selection_are_logical_voice_36():
         fs'8
         g'8
         """
-        )
+    )
 
     assert format(container) == abjad.String.normalize(
         r"""
@@ -1527,7 +1530,7 @@ def test_Selection_are_logical_voice_36():
             g'8
         }
         """
-        )
+    )
 
     outer = (0, 1, 6, 7)
     inner = (2, 3, 4, 5)
@@ -1560,7 +1563,7 @@ def test_Selection_are_logical_voice_37():
         fs'8
         g'8
         """
-        )
+    )
 
     assert format(container) == abjad.String.normalize(
         r"""
@@ -1582,7 +1585,7 @@ def test_Selection_are_logical_voice_37():
             g'8
         }
         """
-        )
+    )
 
     leaves = abjad.select(container).leaves()
     assert leaves[:4].are_logical_voice()
@@ -1614,7 +1617,7 @@ def test_Selection_are_logical_voice_38():
             }
         }
         """
-        )
+    )
 
     assert format(container) == abjad.String.normalize(
         r"""
@@ -1639,7 +1642,7 @@ def test_Selection_are_logical_voice_38():
             }
         }
         """
-        )
+    )
 
     outer = (0, 1, 6, 7)
     inner = (2, 3, 4, 5)
@@ -1680,9 +1683,9 @@ def test_Selection_are_logical_voice_39():
         d''8
         ef''8
         """
-        )
+    )
 
-    voice.name = 'foo'
+    voice.name = "foo"
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -1713,7 +1716,7 @@ def test_Selection_are_logical_voice_39():
             ef''8
         }
         """
-        )
+    )
 
     outer = (0, 1, 2, 3, 4, 5, 10, 11, 12, 13, 14, 15)
     inner = (6, 7, 8, 9)
@@ -1748,7 +1751,7 @@ def test_Selection_are_logical_voice_40():
         bf'8
         b'8
         """
-        )
+    )
 
     assert format(container) == abjad.String.normalize(
         r"""
@@ -1773,7 +1776,7 @@ def test_Selection_are_logical_voice_40():
             b'8
         }
         """
-        )
+    )
 
     leaves = abjad.select(container).leaves()
     assert leaves[:4].are_logical_voice()
@@ -1810,7 +1813,7 @@ def test_Selection_are_logical_voice_41():
         bf'8
         b'8
         """
-        )
+    )
 
     assert format(container) == abjad.String.normalize(
         r"""
@@ -1837,7 +1840,7 @@ def test_Selection_are_logical_voice_41():
             b'8
         }
         """
-        )
+    )
 
     outer = (0, 1, 10, 11)
 

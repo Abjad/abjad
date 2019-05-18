@@ -10,6 +10,7 @@ from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.system.Tags import Tags
 from abjad.utilities.String import String
+
 abjad_tags = Tags()
 
 
@@ -122,120 +123,114 @@ class Dynamic(object):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_command',
-        '_direction',
-        '_format_hairpin_stop',
-        '_hide',
-        '_leak',
-        '_name',
-        '_name_is_textual',
-        '_ordinal',
-        '_sforzando',
-        '_tweaks',
-        )
+        "_command",
+        "_direction",
+        "_format_hairpin_stop",
+        "_hide",
+        "_leak",
+        "_name",
+        "_name_is_textual",
+        "_ordinal",
+        "_sforzando",
+        "_tweaks",
+    )
 
     _composite_dynamic_name_to_steady_state_dynamic_name = {
-        'fp': 'p',
-        'sf': 'f',
-        'sff': 'ff',
-        'sfp': 'p',
-        'sfpp': 'pp',
-        'sffp': 'p',
-        'sffpp': 'pp',
-        'sfz': 'f',
-        'sp': 'p',
-        'spp': 'pp',
-        'rfz': 'f',
-        }
+        "fp": "p",
+        "sf": "f",
+        "sff": "ff",
+        "sfp": "p",
+        "sfpp": "pp",
+        "sffp": "p",
+        "sffpp": "pp",
+        "sfz": "f",
+        "sp": "p",
+        "spp": "pp",
+        "rfz": "f",
+    }
 
-    _context = 'Voice'
+    _context = "Voice"
 
     _dynamic_name_to_dynamic_ordinal = {
-        'ppppp': -6,
-        'pppp': -5,
-        'ppp': -4,
-        'pp': -3,
-        'p': -2,
-        'niente': mathtools.NegativeInfinity(),
-        'mp': -1,
-        'mf': 1,
-        'f': 2,
-        'ff': 3,
-        'fff': 4,
-        'ffff': 5,
-        'fffff': 6,
-        }
+        "ppppp": -6,
+        "pppp": -5,
+        "ppp": -4,
+        "pp": -3,
+        "p": -2,
+        "niente": mathtools.NegativeInfinity(),
+        "mp": -1,
+        "mf": 1,
+        "f": 2,
+        "ff": 3,
+        "fff": 4,
+        "ffff": 5,
+        "fffff": 6,
+    }
 
     _dynamic_names = (
-        'ppppp',
-        'pppp',
-        'ppp',
-        'pp',
-        'p',
-        'mp',
-        'mf',
-        'f',
-        'ff',
-        'fff',
-        'ffff',
-        'fffff',
-        'fp',
-        'sf',
-        'sff',
-        'sp',
-        'spp',
-        'sfz',
-        'sffz',
-        'sfffz',
-        'sffp',
-        'sffpp',
-        'sfp',
-        'sfpp',
-        'rfz',
-        'niente',
-        )
+        "ppppp",
+        "pppp",
+        "ppp",
+        "pp",
+        "p",
+        "mp",
+        "mf",
+        "f",
+        "ff",
+        "fff",
+        "ffff",
+        "fffff",
+        "fp",
+        "sf",
+        "sff",
+        "sp",
+        "spp",
+        "sfz",
+        "sffz",
+        "sfffz",
+        "sffp",
+        "sffpp",
+        "sfp",
+        "sfpp",
+        "rfz",
+        "niente",
+    )
 
     _dynamic_ordinal_to_dynamic_name = {
-        -6: 'ppppp',
-        -5: 'pppp',
-        -4: 'ppp',
-        -3: 'pp',
-        -2: 'p',
-        -1: 'mp',
-        mathtools.NegativeInfinity(): 'niente',
-        1: 'mf',
-        2: 'f',
-        3: 'ff',
-        4: 'fff',
-        5: 'ffff',
-        6: 'fffff',
-        }
+        -6: "ppppp",
+        -5: "pppp",
+        -4: "ppp",
+        -3: "pp",
+        -2: "p",
+        -1: "mp",
+        mathtools.NegativeInfinity(): "niente",
+        1: "mf",
+        2: "f",
+        3: "ff",
+        4: "fff",
+        5: "ffff",
+        6: "fffff",
+    }
 
-    _format_slot = 'after'
+    _format_slot = "after"
 
     _lilypond_dynamic_commands = [
-        _ for _ in _dynamic_names if not _ == 'niente'
-        ]
+        _ for _ in _dynamic_names if not _ == "niente"
+    ]
 
-    _lilypond_dynamic_alphabet = 'fmprsz'
+    _lilypond_dynamic_alphabet = "fmprsz"
 
-    _parameter = 'DYNAMIC'
+    _parameter = "DYNAMIC"
 
     _persistent = True
 
-    _to_width = {
-        '"f"': 2,
-        '"mf"': 3.5,
-        '"mp"': 3.5,
-        '"p"': 2,
-        'sfz': 2.5,
-        }
+    _to_width = {'"f"': 2, '"mf"': 3.5, '"mp"': 3.5, '"p"': 2, "sfz": 2.5}
 
     ### INITIALIZER ###
 
     def __init__(
         self,
-        name: typing.Union[str, 'Dynamic'] = 'f',
+        name: typing.Union[str, "Dynamic"] = "f",
         *,
         command: str = None,
         direction: enums.VerticalAlignment = None,
@@ -246,27 +241,27 @@ class Dynamic(object):
         ordinal: typing.Union[int, Infinity, NegativeInfinity] = None,
         sforzando: bool = None,
         tweaks: LilyPondTweakManager = None,
-        ) -> None:
+    ) -> None:
         if name is not None:
             assert isinstance(name, (str, type(self))), repr(name)
         if isinstance(name, type(self)):
             name_ = name.name
         elif isinstance(name, str):
             name_ = name
-        if name_ == 'niente':
+        if name_ == "niente":
             if name_is_textual not in (None, True):
-                raise Exception('niente dynamic name is always textual.')
+                raise Exception("niente dynamic name is always textual.")
             name_is_textual = True
         if not name_is_textual:
             for letter in name_.strip('"'):
                 if letter not in self._lilypond_dynamic_alphabet:
-                    message = f'the letter {letter!r} (in {name!r})'
-                    message += ' is not a dynamic.' 
+                    message = f"the letter {letter!r} (in {name!r})"
+                    message += " is not a dynamic."
                     raise Exception(message)
         self._name = name_
         if command is not None:
             assert isinstance(command, str), repr(command)
-            assert command.startswith('\\'), repr(command)
+            assert command.startswith("\\"), repr(command)
         self._command = command
         if direction is not None:
             assert direction in (enums.Down, enums.Up), repr(direction)
@@ -343,7 +338,7 @@ class Dynamic(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     def __repr__(self):
@@ -356,6 +351,7 @@ class Dynamic(object):
 
     def _attachment_test_all(self, component_expression):
         import abjad
+
         if not isinstance(component_expression, abjad.Leaf):
             return False
         return True
@@ -363,49 +359,36 @@ class Dynamic(object):
     def _format_effort_dynamic(self):
         name = self.name.strip('"')
         before = {
-            'f': -0.4,
-            'm': -0.1,
-            'p': -0.1,
-            'r': -0.1,
-            's': -0.3,
-            'z': -0.2,
-            }[name[0]]
-        after = {
-            'f': -0.2,
-            'm': -0.1,
-            'p': -0.25,
-            'r': 0,
-            's': 0,
-            'z': -0.2,
-            }[name[-1]]
+            "f": -0.4,
+            "m": -0.1,
+            "p": -0.1,
+            "r": -0.1,
+            "s": -0.3,
+            "z": -0.2,
+        }[name[0]]
+        after = {"f": -0.2, "m": -0.1, "p": -0.25, "r": 0, "s": 0, "z": -0.2}[
+            name[-1]
+        ]
         direction = self.direction
         direction = String.to_tridirectional_lilypond_symbol(direction)
         strings = []
+        strings.append(f"{direction} #(make-dynamic-script")
+        strings.append("    (markup")
+        strings.append("        #:whiteout")
+        strings.append("        #:line (")
         strings.append(
-            f'{direction} #(make-dynamic-script')
+            '            #:general-align Y -2 #:normal-text #:larger "“"'
+        )
+        strings.append(f"            #:hspace {before}")
+        strings.append(f'            #:dynamic "{name}"')
+        strings.append(f"            #:hspace {after}")
         strings.append(
-            '    (markup')
-        strings.append(
-            '        #:whiteout')
-        strings.append(
-            '        #:line (')
-        strings.append(
-            '            #:general-align Y -2 #:normal-text #:larger "“"')
-        strings.append(
-            f'            #:hspace {before}')
-        strings.append(
-            f'            #:dynamic "{name}"')
-        strings.append(
-            f'            #:hspace {after}')
-        strings.append(
-            '            #:general-align Y -2 #:normal-text #:larger "”"')
-        strings.append(
-            '            )')
-        strings.append(
-            '        )')
-        strings.append(
-            '    )')
-        string = '\n'.join(strings)
+            '            #:general-align Y -2 #:normal-text #:larger "”"'
+        )
+        strings.append("            )")
+        strings.append("        )")
+        strings.append("    )")
+        string = "\n".join(strings)
         return string
 
     @staticmethod
@@ -415,23 +398,23 @@ class Dynamic(object):
         direction = String.to_tridirectional_lilypond_symbol(direction)
         assert isinstance(string, str), repr(string)
         string = f'(markup #:whiteout #:normal-text #:italic "{string}")'
-        string = f'{direction} #(make-dynamic-script {string})'
+        string = f"{direction} #(make-dynamic-script {string})"
         return string
 
     def _get_format_specification(self):
-        keywords = ['command', 'direction', 'hide', 'leak']
+        keywords = ["command", "direction", "hide", "leak"]
         if self._ordinal is not None:
-            keywords.append('ordinal')
-        keywords.append('name_is_textual')
+            keywords.append("ordinal")
+        keywords.append("name_is_textual")
         if self._sforzando is not None:
-            keywords.append('sforzando')
+            keywords.append("sforzando")
         return FormatSpecification(
             self,
             repr_is_indented=False,
             storage_format_args_values=[self.name],
             storage_format_is_indented=False,
             storage_format_kwargs_names=keywords,
-            )
+        )
 
     def _get_lilypond_format(self):
         if self.command:
@@ -441,13 +424,13 @@ class Dynamic(object):
         elif self.name_is_textual:
             string = self._format_textual(self.direction, self.name)
         else:
-            string = rf'\{self.name}'
+            string = rf"\{self.name}"
         return string
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = LilyPondFormatBundle()
         if self.leak:
-            bundle.after.leaks.append('<>')
+            bundle.after.leaks.append("<>")
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions()
             if self.leak:
@@ -468,7 +451,7 @@ class Dynamic(object):
             strings,
             deactivate=False,
             tag=abjad_tags.HIDE_TO_JOIN_BROKEN_SPANNERS,
-            )
+        )
 
     ### PUBLIC PROPERTIES ###
 
@@ -526,7 +509,7 @@ class Dynamic(object):
         """
         if self._direction is not None:
             return self._direction
-        elif self.name == 'niente' or self.effort:
+        elif self.name == "niente" or self.effort:
             return enums.Down
         else:
             return None
@@ -1037,7 +1020,7 @@ class Dynamic(object):
         return self._name_is_textual
 
     @property
-    #def ordinal(self) -> typing.Union[int, Infinity, NegativeInfinity]:
+    # def ordinal(self) -> typing.Union[int, Infinity, NegativeInfinity]:
     def ordinal(self):
         """
         Gets ordinal.
@@ -1099,7 +1082,8 @@ class Dynamic(object):
             name = self.name.strip('"')
         if name in self._composite_dynamic_name_to_steady_state_dynamic_name:
             name = self._composite_dynamic_name_to_steady_state_dynamic_name[
-                name]
+                name
+            ]
         ordinal = self._dynamic_name_to_dynamic_ordinal.get(name)
         return ordinal
 
@@ -1157,9 +1141,7 @@ class Dynamic(object):
         """
         if self._sforzando is not None:
             return self._sforzando
-        if (self.name and
-            self.name.startswith('s') and 
-            self.name.endswith('z')):
+        if self.name and self.name.startswith("s") and self.name.endswith("z"):
             return True
         return False
 
@@ -1219,10 +1201,11 @@ class Dynamic(object):
 
         """
         return Dynamic._composite_dynamic_name_to_steady_state_dynamic_name[
-            name]
+            name
+        ]
 
     @staticmethod
-    #def dynamic_name_to_dynamic_ordinal(name) -> typing.Union[
+    # def dynamic_name_to_dynamic_ordinal(name) -> typing.Union[
     #    int, Infinity, NegativeInfinity,
     #    ]:
     def dynamic_name_to_dynamic_ordinal(name):
@@ -1242,7 +1225,8 @@ class Dynamic(object):
             return Dynamic._dynamic_name_to_dynamic_ordinal[name]
         except KeyError:
             name = Dynamic.composite_dynamic_name_to_steady_state_dynamic_name(
-                name)
+                name
+            )
             return Dynamic._dynamic_name_to_dynamic_ordinal[name]
 
     @staticmethod
@@ -1261,7 +1245,7 @@ class Dynamic(object):
 
         """
         if dynamic_ordinal == NegativeInfinity():
-            return 'niente'
+            return "niente"
         else:
             return Dynamic._dynamic_ordinal_to_dynamic_name[dynamic_ordinal]
 

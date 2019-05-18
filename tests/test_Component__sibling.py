@@ -37,7 +37,7 @@ def test_Component__sibling_03():
             g'2
         }
         """
-        )
+    )
 
     leaves = abjad.select(staff).leaves()
     tuplet = staff[1]

@@ -36,23 +36,17 @@ class ForbidUpdate(ContextManager):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Context managers'
+    __documentation_section__ = "Context managers"
 
-    __slots__ = (
-        '_component',
-        '_update_on_enter',
-        '_update_on_exit',
-        )
+    __slots__ = ("_component", "_update_on_enter", "_update_on_exit")
 
     ### INITIALIZER ###
 
     def __init__(
-        self,
-        component=None,
-        update_on_enter=True,
-        update_on_exit=None,
-        ):
+        self, component=None, update_on_enter=True, update_on_exit=None
+    ):
         import abjad
+
         prototype = (abjad.Component, type(None))
         assert isinstance(component, prototype)
         self._component = component

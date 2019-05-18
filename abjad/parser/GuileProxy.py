@@ -38,7 +38,7 @@ class GuileProxy(object):
             function_name = function_name[1:]
             result = getattr(self, function_name)(*arguments)
             return result
-        message = 'LilyPondParser can not emulate music function: {}.'
+        message = "LilyPondParser can not emulate music function: {}."
         message = message.format(function_name)
         raise Exception(message)
 
@@ -70,7 +70,7 @@ class GuileProxy(object):
         r"""
         Handles LilyPond ``\breathe`` command.
         """
-        return abjad_indicators.LilyPondLiteral(r'\breathe', 'after')
+        return abjad_indicators.LilyPondLiteral(r"\breathe", "after")
 
     def clef(self, string):
         r"""
@@ -92,7 +92,7 @@ class GuileProxy(object):
         Handles LilyPond ``\key`` command.
         """
         if number_list is None:
-            number_list = 'major'
+            number_list = "major"
         return abjad_indicators.KeySignature(notename_pitch, number_list)
 
     def language(self, string):
@@ -100,13 +100,14 @@ class GuileProxy(object):
         Handles LilyPond ``\language`` command.
         """
         if string in self.client._language_pitch_names:
-            self.client._pitch_names = \
-                self.client._language_pitch_names[string]
+            self.client._pitch_names = self.client._language_pitch_names[
+                string
+            ]
         # try reparsing the next note name, if a note name immediately follows
         lookahead = self.client._parser.lookahead
-        if lookahead.type == 'STRING':
+        if lookahead.type == "STRING":
             if lookahead.value in self.client._pitch_names:
-                lookahead.type = 'NOTENAME_PITCH'
+                lookahead.type = "NOTENAME_PITCH"
                 lookahead.value = self.client._pitch_names[lookahead.value]
 
     def makeClusters(self, music):
@@ -120,14 +121,14 @@ class GuileProxy(object):
         Handles LilyPond ``\mark`` command.
         """
         if label is None:
-            label = '\default'
-        return abjad_indicators.LilyPondLiteral(r'\mark %s' % label)
+            label = r"\default"
+        return abjad_indicators.LilyPondLiteral(r"\mark %s" % label)
 
     def oneVoice(self):
         r"""
         Handles LilyPond ``\oneVoice`` command.
         """
-        return abjad_indicators.LilyPondLiteral(r'\oneVoice')
+        return abjad_indicators.LilyPondLiteral(r"\oneVoice")
 
     # pitchedTrill
 
@@ -160,10 +161,12 @@ class GuileProxy(object):
             elif isinstance(component, (core.Chord, core.Note)):
                 pitch = self._make_relative_leaf(component, pitch)
                 if component in self.client._repeated_chords:
-                    for repeated_chord in \
-                        self.client._repeated_chords[component]:
-                        repeated_chord.written_pitches = \
+                    for repeated_chord in self.client._repeated_chords[
+                        component
+                    ]:
+                        repeated_chord.written_pitches = (
                             component.written_pitches
+                        )
             elif isinstance(component, core.Container):
                 for child in component:
                     pitch = recurse(child, pitch)
@@ -203,9 +206,9 @@ class GuileProxy(object):
         Handles LilyPond ``\times`` command.
         """
         n, d = fraction.numerator, fraction.denominator
-        if (not isinstance(music, core.Context) and
-            not isinstance(music, core.Leaf)
-            ):
+        if not isinstance(music, core.Context) and not isinstance(
+            music, core.Leaf
+        ):
             assert isinstance(music, core.Container), repr(music)
             leaves = music[:]
             music[:] = []
@@ -217,26 +220,31 @@ class GuileProxy(object):
         Handles LilyPond ``\transpose`` command.
         """
         from abjad import parser as abjad_parser
+
         def recurse(music):
-            key_signatures = music._get_indicators(abjad_indicators.KeySignature)
+            key_signatures = music._get_indicators(
+                abjad_indicators.KeySignature
+            )
             if key_signatures:
                 for x in key_signatures:
                     tonic = abjad_pitch.NamedPitch((x.tonic.name, 4))
                     # TODO: cheating to assign to a read-only property
                     x._tonic = abjad_parser.LilyPondParser._transpose_enharmonically(
-                        from_pitch, to_pitch, tonic).pitch_class
+                        from_pitch, to_pitch, tonic
+                    ).pitch_class
             if isinstance(music, core.Note):
-                music.written_pitch = \
-                    abjad_parser.LilyPondParser._transpose_enharmonically(
-                        from_pitch, to_pitch, music.written_pitch)
+                music.written_pitch = abjad_parser.LilyPondParser._transpose_enharmonically(
+                    from_pitch, to_pitch, music.written_pitch
+                )
             elif isinstance(music, core.Chord):
                 for note_head in music.note_heads:
-                    note_head.written_pitch = \
-                        abjad_parser.LilyPondParser._transpose_enharmonically(
-                            from_pitch, to_pitch, note_head.written_pitch)
+                    note_head.written_pitch = abjad_parser.LilyPondParser._transpose_enharmonically(
+                        from_pitch, to_pitch, note_head.written_pitch
+                    )
             elif isinstance(music, core.Container):
                 for x in music:
                     recurse(x)
+
         self._make_unrelativable(music)
         recurse(music)
         return music
@@ -249,32 +257,32 @@ class GuileProxy(object):
         r"""
         Handles LilyPond ``\voiceFour`` command.
         """
-        return abjad_indicators.LilyPondLiteral(r'\voiceFour')
+        return abjad_indicators.LilyPondLiteral(r"\voiceFour")
 
     def voiceOne(self):
         r"""
         Handles LilyPond ``\voiceOnce`` command.
         """
-        return abjad_indicators.LilyPondLiteral(r'\voiceOne')
+        return abjad_indicators.LilyPondLiteral(r"\voiceOne")
 
     def voiceThree(self):
         r"""
         Handles LilyPond ``\voiceThree`` command.
         """
-        return abjad_indicators.LilyPondLiteral(r'\voiceThree')
+        return abjad_indicators.LilyPondLiteral(r"\voiceThree")
 
     def voiceTwo(self):
         r"""
         Handles LilyPond ``\voiceTwo`` command.
         """
-        return abjad_indicators.LilyPondLiteral(r'\voiceTwo')
+        return abjad_indicators.LilyPondLiteral(r"\voiceTwo")
 
     ### HELPER FUNCTIONS ###
 
     def _is_unrelativable(self, music):
         annotations = music._get_indicators(dict)
         keys = [list(_.keys())[0] for _ in annotations]
-        if 'UnrelativableMusic' in keys:
+        if "UnrelativableMusic" in keys:
             return True
         return False
 
@@ -297,7 +305,7 @@ class GuileProxy(object):
 
     def _make_unrelativable(self, music):
         if not self._is_unrelativable(music):
-            annotation = {'UnrelativableMusic': True}
+            annotation = {"UnrelativableMusic": True}
             attach(annotation, music)
 
     def _to_relative_octave(self, pitch, reference):
@@ -316,20 +324,21 @@ class GuileProxy(object):
             up_octave = up_pitch.octave.number
             down_octave = down_pitch.octave.number
         if abs(
-                float(up_pitch._get_diatonic_pitch_number()) -
-                float(reference._get_diatonic_pitch_number())) < \
-            abs(
-                float(down_pitch._get_diatonic_pitch_number()) -
-                float(reference._get_diatonic_pitch_number())):
+            float(up_pitch._get_diatonic_pitch_number())
+            - float(reference._get_diatonic_pitch_number())
+        ) < abs(
+            float(down_pitch._get_diatonic_pitch_number())
+            - float(reference._get_diatonic_pitch_number())
+        ):
             pair = (
                 up_pitch.pitch_class.name,
                 up_octave + pitch.octave.number - 3,
-                )
+            )
             pitch = abjad_pitch.NamedPitch(pair)
         else:
             pair = (
                 down_pitch.pitch_class.name,
                 down_octave + pitch.octave.number - 3,
-                )
+            )
             pitch = abjad_pitch.NamedPitch(pair)
         return pitch

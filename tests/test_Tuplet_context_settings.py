@@ -20,4 +20,4 @@ def test_Tuplet_context_settings_01():
             f'8
         }
         """
-        )
+    )

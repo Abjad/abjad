@@ -113,7 +113,7 @@ class Multiplier(Duration):
     ### PUBLIC PROPERTIES ###
 
     @staticmethod
-    def from_dot_count(dot_count: int) -> 'Multiplier':
+    def from_dot_count(dot_count: int) -> "Multiplier":
         """
         Makes multiplier from ``dot_count``.
 

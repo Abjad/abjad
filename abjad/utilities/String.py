@@ -16,88 +16,91 @@ class String(str):
 
     ### CLASS VARIABLES ###
 
-    hyphen_delimited_lowercase_regex_body = '(([a-z,0-9]+[-]+)*[a-z,0-9]+)?'
+    hyphen_delimited_lowercase_regex_body = "(([a-z,0-9]+[-]+)*[a-z,0-9]+)?"
     hyphen_delimited_lowercase_regex = re.compile(
-        '^{}$'.format(hyphen_delimited_lowercase_regex_body),
-        re.VERBOSE,
-        )
+        "^{}$".format(hyphen_delimited_lowercase_regex_body), re.VERBOSE
+    )
 
-    hyphen_delimited_lowercase_file_name_regex_body = """
+    hyphen_delimited_lowercase_file_name_regex_body = r"""
         {}
         (\.[a-z,0-9]+)?
-        """.format(hyphen_delimited_lowercase_regex_body)
+        """.format(
+        hyphen_delimited_lowercase_regex_body
+    )
 
     hyphen_delimited_lowercase_file_name_regex = re.compile(
-        '^{}$'.format(hyphen_delimited_lowercase_file_name_regex_body),
+        "^{}$".format(hyphen_delimited_lowercase_file_name_regex_body),
         re.VERBOSE,
-        )
+    )
 
     lowercamelcase_regex = re.compile(
-        '^([a-z,0-9]+([A-Z,0-9]+[a-z,0-9]*)*)?$',
-        re.VERBOSE,
-        )
+        "^([a-z,0-9]+([A-Z,0-9]+[a-z,0-9]*)*)?$", re.VERBOSE
+    )
 
     space_delimited_lowercase_regex = re.compile(
-        '^(([a-z,0-9]+[ ]+)*[a-z,0-9]+)?$',
-        re.VERBOSE,
-        )
+        "^(([a-z,0-9]+[ ]+)*[a-z,0-9]+)?$", re.VERBOSE
+    )
 
-    underscore_delimited_lowercase_regex_body = '(([a-z,0-9]+[_]+)*[a-z,0-9]+)?'
+    underscore_delimited_lowercase_regex_body = (
+        "(([a-z,0-9]+[_]+)*[a-z,0-9]+)?"
+    )
     underscore_delimited_lowercase_regex = re.compile(
-        '^{}$'.format(underscore_delimited_lowercase_regex_body),
-        re.VERBOSE,
-        )
+        "^{}$".format(underscore_delimited_lowercase_regex_body), re.VERBOSE
+    )
 
-    underscore_delimited_lowercase_file_name_regex_body = """
+    underscore_delimited_lowercase_file_name_regex_body = r"""
         {}
         (\.[a-z,0-9]+)?
-        """.format(underscore_delimited_lowercase_regex_body)
+        """.format(
+        underscore_delimited_lowercase_regex_body
+    )
 
     underscore_delimited_lowercase_file_name_regex = re.compile(
-        '^{}$'.format(underscore_delimited_lowercase_file_name_regex_body),
+        "^{}$".format(underscore_delimited_lowercase_file_name_regex_body),
         re.VERBOSE,
-        )
+    )
 
-    underscore_delimited_lowercase_file_name_with_extension_regex_body = """
+    underscore_delimited_lowercase_file_name_with_extension_regex_body = r"""
         {}
         \.
         [a-z,0-9]+
-        """.format(underscore_delimited_lowercase_regex_body)
+        """.format(
+        underscore_delimited_lowercase_regex_body
+    )
 
     underscore_delimited_lowercase_file_name_with_extension_regex = re.compile(
-        '^{}$'.format(underscore_delimited_lowercase_file_name_with_extension_regex_body),
+        "^{}$".format(
+            underscore_delimited_lowercase_file_name_with_extension_regex_body
+        ),
         re.VERBOSE,
-        )
+    )
 
-    underscore_delimited_lowercase_package_regex_body = """
+    underscore_delimited_lowercase_package_regex_body = r"""
         ({}\.)*
         {}
         """.format(
-            underscore_delimited_lowercase_regex_body,
-            underscore_delimited_lowercase_regex_body,
-            )
+        underscore_delimited_lowercase_regex_body,
+        underscore_delimited_lowercase_regex_body,
+    )
 
     underscore_delimited_lowercase_package_regex = re.compile(
-        '^{}$'.format(underscore_delimited_lowercase_package_regex_body),
+        "^{}$".format(underscore_delimited_lowercase_package_regex_body),
         re.VERBOSE,
-        )
+    )
 
-    uppercamelcase_regex = re.compile(
-        '^([A-Z,0-9]+[a-z,0-9]*)*$',
-        re.VERBOSE,
-        )
+    uppercamelcase_regex = re.compile("^([A-Z,0-9]+[a-z,0-9]*)*$", re.VERBOSE)
 
     ### PRIVATE METHODS ###
 
     def _is_wrapper_directory_name(self):
-        if self in ('.git', '.DS_Store'):
+        if self in (".git", ".DS_Store"):
             return False
         return True
 
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def base_26(n: int) -> 'String':
+    def base_26(n: int) -> "String":
         """
         Gets base-26 representation of nonnegative integer ``n``.
 
@@ -136,21 +139,21 @@ class String(str):
         """
         assert 0 < n, repr(n)
         if 1 <= n <= 26:
-            result = chr(ord('A') + n - 1)
+            result = chr(ord("A") + n - 1)
         elif 26 < n < 676:
             left = int(n / 26)
             right = n - (26 * left)
             if right == 0:
                 left -= 1
                 right = 26
-            left_ = chr(ord('A') + left - 1)
-            right_ = chr(ord('A') + right - 1)
+            left_ = chr(ord("A") + left - 1)
+            right_ = chr(ord("A") + right - 1)
             result = left_ + right_
         else:
             raise NotImplementedError(n)
         return String(result)
 
-    def capitalize_start(self) -> 'String':
+    def capitalize_start(self) -> "String":
         """
         Capitalizes start of string.
 
@@ -171,10 +174,10 @@ class String(str):
 
         """
         if not self:
-            return type(self)('')
+            return type(self)("")
         return type(self)(self[0].upper() + self[1:])
 
-    def delimit_words(self, separate_caps=False) -> typing.List['String']:
+    def delimit_words(self, separate_caps=False) -> typing.List["String"]:
         """
         Delimits words in string.
 
@@ -231,16 +234,18 @@ class String(str):
             ['M', 'Rh', 'M']
 
         """
-        wordlike_characters = ('<', '>', '!')
+        wordlike_characters = ("<", ">", "!")
         words = []
-        current_word = ''
+        current_word = ""
         for character in self:
-            if (not character.isalpha() and
-                not character.isdigit() and
-                character not in wordlike_characters):
+            if (
+                not character.isalpha()
+                and not character.isdigit()
+                and character not in wordlike_characters
+            ):
                 if current_word:
                     words.append(current_word)
-                    current_word = ''
+                    current_word = ""
             elif not current_word:
                 current_word = current_word + character
             elif character.isupper():
@@ -320,7 +325,7 @@ class String(str):
         """
         if not self == self.lower():
             return False
-        if ' ' in self:
+        if " " in self:
             return False
         if not self[0].isalpha():
             return False
@@ -346,7 +351,7 @@ class String(str):
         path = pathlib.Path(self)
         if not type(self)(path.stem).is_upper_camel_case():
             return False
-        if not path.suffix == '.py':
+        if not path.suffix == ".py":
             return False
         return True
 
@@ -379,11 +384,11 @@ class String(str):
             False
 
         """
-        if self == '':
+        if self == "":
             return True
         return bool(
             String.hyphen_delimited_lowercase_file_name_regex.match(self)
-            )
+        )
 
     def is_introduction_segment_name(self) -> bool:
         """
@@ -413,7 +418,7 @@ class String(str):
         """
         if not self:
             return False
-        if self[0] != '_':
+        if self[0] != "_":
             return False
         if bool(self[1:]) and not self[1:].isdigit():
             return False
@@ -454,10 +459,10 @@ class String(str):
             False
 
         """
-        if self and self[0] == '_':
+        if self and self[0] == "_":
             return False
         for character in self:
-            if not (character.isalpha() or character == '_'):
+            if not (character.isalpha() or character == "_"):
                 return False
         return True
 
@@ -507,8 +512,10 @@ class String(str):
         if not self == self.lower():
             return False
         path = pathlib.Path(self)
-        if not (type(self)(path.stem).is_snake_case() or
-            type(self)(path.stem).is_dash_case()):
+        if not (
+            type(self)(path.stem).is_snake_case()
+            or type(self)(path.stem).is_dash_case()
+        ):
             return False
         return True
 
@@ -537,7 +544,7 @@ class String(str):
             return False
         if not type(self)(path.stem).is_snake_case():
             return False
-        if not path.suffix == '.py':
+        if not path.suffix == ".py":
             return False
         return True
 
@@ -590,10 +597,10 @@ class String(str):
         path = pathlib.Path(self)
         if path.stem and not path.stem[0].isalpha():
             return False
-        if not path.suffix == '.py':
+        if not path.suffix == ".py":
             return False
         for character in path.stem[1:]:
-            if not character.isalpha() and character != '_':
+            if not character.isalpha() and character != "_":
                 return False
         return True
 
@@ -645,7 +652,7 @@ class String(str):
             return False
         if not self.isupper():
             return False
-        if forbid_i is True and 'I' in self:
+        if forbid_i is True and "I" in self:
             return False
         return True
 
@@ -782,11 +789,11 @@ class String(str):
             False
 
         """
-        if self == '':
+        if self == "":
             return True
         return bool(
             String.underscore_delimited_lowercase_file_name_regex.match(self)
-            )
+        )
 
     def is_snake_case_file_name_with_extension(self) -> bool:
         """
@@ -804,11 +811,13 @@ class String(str):
             False
 
         """
-        if self == '':
+        if self == "":
             return True
         return bool(
             String.underscore_delimited_lowercase_file_name_with_extension_regex.match(
-                self))
+                self
+            )
+        )
 
     def is_snake_case_package_name(self) -> bool:
         """
@@ -827,7 +836,7 @@ class String(str):
         """
         return bool(
             String.underscore_delimited_lowercase_package_regex.match(self)
-            )
+        )
 
     def is_space_delimited_lowercase(self) -> bool:
         """
@@ -886,7 +895,7 @@ class String(str):
             return False
         if not type(self)(path.stem).is_dash_case():
             return False
-        if not path.suffix == '.ily':
+        if not path.suffix == ".ily":
             return False
         return True
 
@@ -1006,7 +1015,7 @@ class String(str):
         """
         if not pattern:
             return []
-        if not pattern[0].isalpha() and not pattern[0] in list('_-.'):
+        if not pattern[0].isalpha() and not pattern[0] in list("_-."):
             return []
         pattern = String(pattern)
         indices = []
@@ -1030,8 +1039,9 @@ class String(str):
             pattern_words = pattern.delimit_words(separate_caps=True)
             if pattern_words:
                 for i, string in enumerate(strings):
-                    if (string.startswith(pattern_words[0]) and
-                        string.match_word_starts(pattern_words)):
+                    if string.startswith(
+                        pattern_words[0]
+                    ) and string.match_word_starts(pattern_words):
                         if i not in indices:
                             indices.append(i)
                 for i, string in enumerate(strings):
@@ -1042,8 +1052,9 @@ class String(str):
             pattern_characters = list(pattern)
             if pattern_characters:
                 for i, string in enumerate(strings):
-                    if (string.startswith(pattern_characters[0]) and
-                        string.match_word_starts(pattern_characters)):
+                    if string.startswith(
+                        pattern_characters[0]
+                    ) and string.match_word_starts(pattern_characters):
                         if i not in indices:
                             indices.append(i)
                 for i, string in enumerate(strings):
@@ -1121,7 +1132,7 @@ class String(str):
         return indices == sorted(indices)
 
     @staticmethod
-    def normalize(argument, indent=None) -> 'String':
+    def normalize(argument, indent=None) -> "String":
         """
         Normalizes string.
 
@@ -1150,27 +1161,27 @@ class String(str):
             *     bar
 
         """
-        string = argument.replace('\t', '    ')
-        lines = string.split('\n')
+        string = argument.replace("\t", "    ")
+        lines = string.split("\n")
         while lines and (not lines[0] or lines[0].isspace()):
             lines.pop(0)
         while lines and (not lines[-1] or lines[-1].isspace()):
             lines.pop()
         for i, line in enumerate(lines):
             lines[i] = line.rstrip()
-        string = '\n'.join(lines)
+        string = "\n".join(lines)
         string = textwrap.dedent(string)
         if indent:
             if not isinstance(indent, six.string_types):
-                indent = ' ' * abs(int(indent))
-            lines = string.split('\n')
+                indent = " " * abs(int(indent))
+            lines = string.split("\n")
             for i, line in enumerate(lines):
                 if line:
-                    lines[i] = f'{indent}{line}'
-            string = '\n'.join(lines)
+                    lines[i] = f"{indent}{line}"
+            string = "\n".join(lines)
         return String(string)
 
-    def pluralize(self, count=None) -> 'String':
+    def pluralize(self, count=None) -> "String":
         """
         Pluralizes English string.
 
@@ -1201,15 +1212,15 @@ class String(str):
         """
         if count == 1:
             return self
-        elif self.endswith('y'):
-            result = self[:-1] + 'ies'
-        elif self.endswith(('s', 'sh', 'x', 'z')):
-            result = self + 'es'
+        elif self.endswith("y"):
+            result = self[:-1] + "ies"
+        elif self.endswith(("s", "sh", "x", "z")):
+            result = self + "es"
         else:
-            result = self + 's'
+            result = self + "s"
         return type(self)(result)
 
-    def remove_zfill(self) -> 'String':
+    def remove_zfill(self) -> "String":
         """
         Removes zfill from numbers in string.
 
@@ -1232,7 +1243,7 @@ class String(str):
                 words.append(str(number))
             except ValueError:
                 words.append(word)
-        result = ''.join(words)
+        result = "".join(words)
         return type(self)(result)
 
     def segment_letter(self):
@@ -1264,7 +1275,7 @@ class String(str):
 
         """
         if not self.is_segment_name():
-            raise ValueError(f'must be segment name (not {self!r}).')
+            raise ValueError(f"must be segment name (not {self!r}).")
         if len(self) == 1:
             return self
         elif len(self) == 2:
@@ -1309,19 +1320,19 @@ class String(str):
 
         """
         if not self.is_segment_name():
-            raise ValueError(f'must be segment name (not {self!r}).')
-        prefix = 'segment_'
+            raise ValueError(f"must be segment name (not {self!r}).")
+        prefix = "segment_"
         if self.startswith(prefix):
-            index = int(self[len(prefix):])
+            index = int(self[len(prefix) :])
             return index
         letter = self.segment_letter()
         if letter == self:
             return 0
-        index = int(self[len(letter):])
+        index = int(self[len(letter) :])
         return index
 
     @staticmethod
-    def sort_roman(strings) -> typing.List['String']:
+    def sort_roman(strings) -> typing.List["String"]:
         """
         Sorts strings containing Roman numerals.
         
@@ -1352,7 +1363,7 @@ class String(str):
         return strings_
 
     @staticmethod
-    def sort_segment_names(strings) -> typing.List['String']:
+    def sort_segment_names(strings) -> typing.List["String"]:
         """
         Sorts segment name ``strings``.
         
@@ -1367,8 +1378,9 @@ class String(str):
         for string in strings:
             name = String(string)
             if not name.is_segment_name():
-                raise ValueError(f'must be segment name (not {string!r}).')
+                raise ValueError(f"must be segment name (not {string!r}).")
             names.append(name)
+
         def _compare(name_1, name_2):
             letter_1 = name_1.segment_letter()
             letter_2 = name_2.segment_letter()
@@ -1381,9 +1393,9 @@ class String(str):
                     return 0
                 if rank_1 > rank_2:
                     return 1
-            if letter_1 == '_':
+            if letter_1 == "_":
                 return -1
-            if letter_2 == '_':
+            if letter_2 == "_":
                 return 1
             if len(letter_1) == len(letter_2):
                 if letter_1 < letter_2:
@@ -1394,11 +1406,12 @@ class String(str):
                 return -1
             assert len(letter_2) < len(letter_1)
             return 1
+
         names_ = TypedList(names)
         names_.sort(cmp=_compare)
         return list(names_)
 
-    def strip_diacritics(self) -> 'String':
+    def strip_diacritics(self) -> "String":
         """
         Strips diacritics from string.
 
@@ -1412,11 +1425,11 @@ class String(str):
             'Dvorak'
 
         """
-        normalized_unicode_string = unicodedata.normalize('NFKD', self)
-        ascii_string = normalized_unicode_string.encode('ascii', 'ignore')
-        return type(self)(ascii_string.decode('utf-8'))
+        normalized_unicode_string = unicodedata.normalize("NFKD", self)
+        ascii_string = normalized_unicode_string.encode("ascii", "ignore")
+        return type(self)(ascii_string.decode("utf-8"))
 
-    def strip_roman(self) -> 'String':
+    def strip_roman(self) -> "String":
         """
         Strips roman numerals from right of string.
 
@@ -1444,9 +1457,9 @@ class String(str):
             words = words[:-1]
         except roman.InvalidRomanNumeralError:
             pass
-        return String(''.join(words))
+        return String("".join(words))
 
-    def to_accent_free_snake_case(self) -> 'String':
+    def to_accent_free_snake_case(self) -> "String":
         """
         Changes string to accent-free snake case.
 
@@ -1457,13 +1470,13 @@ class String(str):
 
         """
         string = self.strip_diacritics()
-        string_ = string.replace(' ', '_')
-        string_ = string_.replace("'", '_')
+        string_ = string.replace(" ", "_")
+        string_ = string_.replace("'", "_")
         string_ = string_.lower()
         return type(self)(string_)
 
     @staticmethod
-    def to_bidirectional_direction_string(argument) -> 'String':
+    def to_bidirectional_direction_string(argument) -> "String":
         """
         Changes ``argument`` to bidirectional direction string.
 
@@ -1491,7 +1504,7 @@ class String(str):
         return String(alignment)
 
     @staticmethod
-    def to_bidirectional_lilypond_symbol(argument) -> 'String':
+    def to_bidirectional_lilypond_symbol(argument) -> "String":
         """
         Changes ``argument`` to bidirectional LilyPond symbol.
 
@@ -1516,9 +1529,9 @@ class String(str):
             raise ValueError(repr(argument))
         if alignment is enums.Center:
             raise ValueError(repr(argument))
-        return String(format(alignment, 'lilypond'))
+        return String(format(alignment, "lilypond"))
 
-    def to_dash_case(self) -> 'String':
+    def to_dash_case(self) -> "String":
         """
         Changes string to dash case.
 
@@ -1539,11 +1552,11 @@ class String(str):
         """
         words = self.delimit_words()
         words_ = [_.lower() for _ in words]
-        string = '-'.join(words_)
+        string = "-".join(words_)
         return type(self)(string)
 
     @staticmethod
-    def to_indicator_stem(indicator) -> 'String':
+    def to_indicator_stem(indicator) -> "String":
         """
         Changes ``indicator`` to stem.
 
@@ -1581,18 +1594,19 @@ class String(str):
 
         """
         from abjad.instruments import Instrument
-        assert getattr(indicator, 'persistent', False), repr(indicator)
+
+        assert getattr(indicator, "persistent", False), repr(indicator)
         if isinstance(indicator, Instrument):
-            stem = 'INSTRUMENT'
-        elif getattr(indicator, 'parameter', None) == 'TEMPO':
-            stem = 'METRONOME_MARK'
-        elif hasattr(indicator, 'parameter'):
+            stem = "INSTRUMENT"
+        elif getattr(indicator, "parameter", None) == "TEMPO":
+            stem = "METRONOME_MARK"
+        elif hasattr(indicator, "parameter"):
             stem = indicator.parameter
         else:
             stem = type(indicator).__name__
         return String(stem).to_shout_case()
 
-    def to_lower_camel_case(self) -> 'String':
+    def to_lower_camel_case(self) -> "String":
         """
         Changes string to lower camel case.
 
@@ -1612,13 +1626,13 @@ class String(str):
 
         """
         string = self.to_upper_camel_case()
-        if string == '':
+        if string == "":
             pass
         else:
             string = type(self)(string[0].lower() + string[1:])
         return string
 
-    def to_segment_lilypond_identifier(self) -> 'String':
+    def to_segment_lilypond_identifier(self) -> "String":
         """
         Changes string to segment LilyPond identifier.
 
@@ -1653,7 +1667,7 @@ class String(str):
             'AA_b'
 
         """
-        name = self.replace('_', 'i')
+        name = self.replace("_", "i")
         words = []
         for word in String(name).delimit_words():
             if word.isdigit():
@@ -1661,10 +1675,10 @@ class String(str):
                 words.append(word_)
             else:
                 words.append(word)
-        identifier = '_'.join(words)
+        identifier = "_".join(words)
         return String(identifier)
 
-    def to_shout_case(self) -> 'String':
+    def to_shout_case(self) -> "String":
         """
         Changes string to shout case.
 
@@ -1685,10 +1699,10 @@ class String(str):
         """
         words = self.delimit_words()
         words_ = [_.upper() for _ in words]
-        string = '_'.join(words_)
+        string = "_".join(words_)
         return type(self)(string)
 
-    def to_snake_case(self) -> 'String':
+    def to_snake_case(self) -> "String":
         """
         Changes string to snake case.
 
@@ -1709,10 +1723,10 @@ class String(str):
         """
         words = self.delimit_words()
         words_ = [_.lower() for _ in words]
-        string = '_'.join(words_)
+        string = "_".join(words_)
         return type(self)(string)
 
-    def to_space_delimited_lowercase(self) -> 'String':
+    def to_space_delimited_lowercase(self) -> "String":
         """
         Changes string to space-delimited lowercase.
 
@@ -1745,14 +1759,15 @@ class String(str):
                 else:
                     current_word = current_word + letter
             words.append(current_word)
-            string = ' '.join(words)
+            string = " ".join(words)
         else:
-            string = self.replace('_', ' ')
+            string = self.replace("_", " ")
         return type(self)(string)
 
     @staticmethod
-    def to_tridirectional_direction_string(argument) -> typing.Optional[
-        'String']:
+    def to_tridirectional_direction_string(
+        argument
+    ) -> typing.Optional["String"]:
         """
         Changes ``argument`` to tridirectional direction string.
 
@@ -1795,7 +1810,7 @@ class String(str):
     @staticmethod
     def to_tridirectional_lilypond_symbol(
         argument: typing.Any,
-        ) -> typing.Optional['String']:
+    ) -> typing.Optional["String"]:
         """
         Changes ``argument`` to tridirectional LilyPond symbol.
 
@@ -1842,12 +1857,12 @@ class String(str):
             alignment = enums.VerticalAlignment.from_expr(argument)
         except Exception:
             raise ValueError(repr(argument))
-        return String(format(alignment, 'lilypond'))
+        return String(format(alignment, "lilypond"))
 
     @staticmethod
     def to_tridirectional_ordinal_constant(
         argument,
-        ) -> typing.Union[None, enums.VerticalAlignment, 'String']:
+    ) -> typing.Union[None, enums.VerticalAlignment, "String"]:
         """
         Changes ``argument`` to tridirectional ordinal constant.
 
@@ -1884,7 +1899,7 @@ class String(str):
             return None
         return enums.VerticalAlignment.from_expr(argument)
 
-    def to_upper_camel_case(self) -> 'String':
+    def to_upper_camel_case(self) -> "String":
         """
         Changes string to upper camel case.
 
@@ -1905,5 +1920,5 @@ class String(str):
         """
         words = self.delimit_words()
         words_ = [_.capitalize() for _ in words]
-        string = ''.join(words_)
+        string = "".join(words_)
         return type(self)(string)

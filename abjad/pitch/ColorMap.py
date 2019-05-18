@@ -34,11 +34,7 @@ class ColorMap(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_color_dictionary',
-        '_colors',
-        '_pitch_iterables',
-        )
+    __slots__ = ("_color_dictionary", "_colors", "_pitch_iterables")
 
     _publish_storage_format = True
 
@@ -62,7 +58,7 @@ class ColorMap(object):
         """
         return StorageFormatManager.compare_objects(self, argument)
 
-    def __format__(self, format_specification=''):
+    def __format__(self, format_specification=""):
         """
         Formats color map.
 
@@ -89,7 +85,7 @@ class ColorMap(object):
 
         Returns string.
         """
-        if format_specification in ('', 'storage'):
+        if format_specification in ("", "storage"):
             return StorageFormatManager(self).get_storage_format()
         return str(self)
 
@@ -124,7 +120,7 @@ class ColorMap(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     def __repr__(self) -> str:
@@ -142,7 +138,7 @@ class ColorMap(object):
                 keys = self._color_dictionary.keys()
                 if pc.number in list(keys):
                     print(pc, list(self._color_dictionary.keys()))
-                    message = 'duplicated pitch-class in color map: {!r}.'
+                    message = "duplicated pitch-class in color map: {!r}."
                     message = message.format(pc)
                     raise KeyError(message)
                 self._color_dictionary[pc.number] = color

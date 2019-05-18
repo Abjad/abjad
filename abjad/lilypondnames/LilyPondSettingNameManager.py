@@ -17,7 +17,7 @@ class LilyPondSettingNameManager(LilyPondNameManager):
 
     ### SPECIAL METHODS ###
 
-    def __getattr__(self, name:str) -> typing.Any:
+    def __getattr__(self, name: str) -> typing.Any:
         r"""
         Gets arbitrary object keyed to ``name``.
 
@@ -51,27 +51,28 @@ class LilyPondSettingNameManager(LilyPondNameManager):
 
         """
         from abjad.ly import contexts
+
         camel_name = String(name).to_upper_camel_case()
-        if name.startswith('_'):
+        if name.startswith("_"):
             try:
                 return vars(self)[name]
             except KeyError:
                 type_name = type(self).__name__
-                message = '{type_name!r} object has no attribute: {name!r}.'
+                message = "{type_name!r} object has no attribute: {name!r}."
                 raise AttributeError(message)
         elif camel_name in contexts:
             try:
-                return vars(self)['_' + name]
+                return vars(self)["_" + name]
             except KeyError:
                 context = LilyPondNameManager()
-                vars(self)['_' + name] = context
+                vars(self)["_" + name] = context
                 return context
         else:
             try:
                 return vars(self)[name]
             except KeyError:
                 type_name = type(self).__name__
-                message = '{type_name!r} object has no attribute: {name!r}.'
+                message = "{type_name!r} object has no attribute: {name!r}."
                 raise AttributeError(message)
 
     ### PRIVATE METHODS ###
@@ -81,7 +82,7 @@ class LilyPondSettingNameManager(LilyPondNameManager):
         for name, value in vars(self).items():
             if type(value) is LilyPondNameManager:
                 prefixed_context_name = name
-                lilypond_type = prefixed_context_name.strip('_')
+                lilypond_type = prefixed_context_name.strip("_")
                 context_proxy = value
                 attribute_pairs = context_proxy._get_attribute_pairs()
                 for attribute_name, attribute_value in attribute_pairs:

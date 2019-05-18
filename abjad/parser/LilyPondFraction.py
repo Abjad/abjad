@@ -9,10 +9,7 @@ class LilyPondFraction(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        'numerator',
-        'denominator',
-        )
+    __slots__ = ("numerator", "denominator")
 
     ### INITIALIZER ###
 

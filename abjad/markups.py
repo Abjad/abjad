@@ -178,16 +178,14 @@ class Markup(object):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_annotation',
-        '_contents',
-        '_direction',
-        '_literal',
-        '_tweaks',
-        )
+        "_annotation",
+        "_contents",
+        "_direction",
+        "_literal",
+        "_tweaks",
+    )
 
-    _private_attributes_to_copy = (
-        '_tweaks',
-        )
+    _private_attributes_to_copy = ("_tweaks",)
 
     ### INITIALIZER ###
 
@@ -198,17 +196,18 @@ class Markup(object):
         direction: enums.VerticalAlignment = None,
         literal: bool = None,
         tweaks: LilyPondTweakManager = None,
-        ) -> None:
+    ) -> None:
         from abjad.top.parse import parse
+
         self._annotation = None
         new_contents: typing.Tuple[typing.Union[str, MarkupCommand], ...]
         if contents is None:
-            new_contents = ('',)
+            new_contents = ("",)
         elif isinstance(contents, str) and not literal:
-            to_parse = rf'\markup {{ {contents} }}'
+            to_parse = rf"\markup {{ {contents} }}"
             parsed = parse(to_parse)
             if all(isinstance(_, str) for _ in parsed.contents):
-                new_contents = (' '.join(parsed.contents),)
+                new_contents = (" ".join(parsed.contents),)
             else:
                 new_contents = tuple(parsed.contents)
         elif isinstance(contents, str) and literal is True:
@@ -218,10 +217,14 @@ class Markup(object):
         elif isinstance(contents, type(self)):
             direction = direction or contents.direction
             if direction is not None:
-                assert isinstance(direction, (str, enums.VerticalAlignment)), repr(direction)
+                assert isinstance(
+                    direction, (str, enums.VerticalAlignment)
+                ), repr(direction)
             literal = literal or contents.literal
             new_contents = tuple(contents.contents)
-        elif isinstance(contents, collections.abc.Sequence) and 0 < len(contents):
+        elif isinstance(contents, collections.abc.Sequence) and 0 < len(
+            contents
+        ):
             new_contents_ = []
             for argument in contents:
                 if isinstance(argument, (str, MarkupCommand)):
@@ -234,11 +237,15 @@ class Markup(object):
         else:
             new_contents = (str(contents),)
         assert isinstance(new_contents, tuple), repr(new_contents)
-        assert all(isinstance(_, (str, MarkupCommand)) for _ in new_contents), repr(new_contents)
+        assert all(
+            isinstance(_, (str, MarkupCommand)) for _ in new_contents
+        ), repr(new_contents)
         self._contents = new_contents
         direction_ = String.to_tridirectional_ordinal_constant(direction)
         if direction_ is not None:
-            assert isinstance(direction_, enums.VerticalAlignment), repr(direction_)
+            assert isinstance(direction_, enums.VerticalAlignment), repr(
+                direction_
+            )
         self._direction = direction_
         if literal is not None:
             literal = bool(literal)
@@ -290,7 +297,7 @@ class Markup(object):
         elif isinstance(argument, MarkupCommand):
             commands.append(argument)
         else:
-            message = 'must be markup or markup command: {!r}.'
+            message = "must be markup or markup command: {!r}."
             message = message.format(argument)
             raise TypeError(message)
         markup = type(self)(contents=commands, direction=self.direction)
@@ -374,7 +381,7 @@ class Markup(object):
         """
         return StorageFormatManager.compare_objects(self, argument)
 
-    def __format__(self, format_specification=''):
+    def __format__(self, format_specification=""):
         r"""
         Formats markup.
 
@@ -395,9 +402,9 @@ class Markup(object):
 
         Returns string.
         """
-        if format_specification in ('', 'lilypond'):
+        if format_specification in ("", "lilypond"):
             return self._get_lilypond_format()
-        elif format_specification == 'storage':
+        elif format_specification == "storage":
             return StorageFormatManager(self).get_storage_format()
         return str(self)
 
@@ -453,7 +460,7 @@ class Markup(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     def __illustrate__(self):
@@ -490,6 +497,7 @@ class Markup(object):
         Returns LilyPond file.
         """
         import abjad
+
         lilypond_file = abjad.LilyPondFile.new()
         markup = new(self, direction=None)
         lilypond_file.items.append(markup)
@@ -514,7 +522,7 @@ class Markup(object):
         Returns true or false.
         """
         if not isinstance(argument, type(self)):
-            message = 'can only compare markup to markup: {!r}.'
+            message = "can only compare markup to markup: {!r}."
             message = message.format(argument)
             raise TypeError(message)
         return self.contents < argument.contents
@@ -560,7 +568,7 @@ class Markup(object):
         elif isinstance(argument, MarkupCommand):
             commands.append(argument)
         else:
-            message = 'must be markup or markup command: {!r}.'
+            message = "must be markup or markup command: {!r}."
             message = message.format(argument)
             raise TypeError(message)
         commands.extend(self.contents)
@@ -600,40 +608,42 @@ class Markup(object):
 
     def _get_format_pieces(self):
         import abjad
+
         tweaks = []
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions()
         indent = abjad.LilyPondFormatManager.indent
-        direction = ''
+        direction = ""
         if self.direction is not None:
             direction = String.to_tridirectional_lilypond_symbol(
-                self.direction)
+                self.direction
+            )
         if len(self.contents) == 1 and isinstance(self.contents[0], str):
             content = self.contents[0]
             if not self.literal:
                 content = Scheme.format_scheme_value(content)
                 if content:
-                    content= f'\markup {{ {content} }}'
+                    content = rf"\markup {{ {content} }}"
                 else:
-                    content = '\markup {}'
+                    content = r"\markup {}"
             if direction:
-                string = rf'{direction} {content}'
+                string = rf"{direction} {content}"
             else:
                 string = content
             return tweaks + [string]
         if direction:
-            string = rf'{direction} \markup {{'
+            string = rf"{direction} \markup {{"
             pieces = [string]
         else:
-            pieces = [r'\markup {']
+            pieces = [r"\markup {"]
         for content in self.contents:
             if isinstance(content, str):
                 content = Scheme.format_scheme_value(content)
-                pieces.append(f'{indent}{content}')
+                pieces.append(f"{indent}{content}")
             else:
                 pieces_ = content._get_format_pieces()
-                pieces.extend([f'{indent}{_}' for _ in pieces_])
-        pieces.append(f'{indent}}}')
+                pieces.extend([f"{indent}{_}" for _ in pieces_])
+        pieces.append(f"{indent}}}")
         return tweaks + pieces
 
     def _get_format_specification(self):
@@ -643,10 +653,10 @@ class Markup(object):
             client=self,
             repr_is_indented=False,
             storage_format_kwargs_names=names,
-            )
+        )
 
     def _get_lilypond_format(self):
-        return '\n'.join(self._get_format_pieces())
+        return "\n".join(self._get_format_pieces())
 
     @staticmethod
     def _parse_markup_command_argument(argument):
@@ -658,7 +668,7 @@ class Markup(object):
         elif isinstance(argument, (str, MarkupCommand)):
             contents = argument
         else:
-            message = 'must be markup, markup command or string: {!r}.'
+            message = "must be markup, markup command or string: {!r}."
             message = message.format(argument)
             raise TypeError(argument)
         return contents
@@ -666,7 +676,7 @@ class Markup(object):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def contents(self) -> typing.List[typing.Union[str, 'MarkupCommand']]:
+    def contents(self) -> typing.List[typing.Union[str, "MarkupCommand"]]:
         r"""
         Gets contents of markup.
 
@@ -818,7 +828,7 @@ class Markup(object):
         stem_height,
         units_per_minute,
         direction=None,
-        ):
+    ):
         r"""
         Abjad ``\abjad-metronome-mark-markup`` command.
 
@@ -836,10 +846,10 @@ class Markup(object):
 
         Returns new markup
         """
-        string = 'abjad-metronome-mark-markup'
-        string += f' #{duration_log}'
-        string += f' #{dot_count}'
-        string += f' #{stem_height}'
+        string = "abjad-metronome-mark-markup"
+        string += f" #{duration_log}"
+        string += f" #{dot_count}"
+        string += f" #{stem_height}"
         string += f' #"{units_per_minute}"'
         command = MarkupCommand(string)
         return class_(contents=command, direction=direction)
@@ -863,10 +873,7 @@ class Markup(object):
         Returns new markup.
         """
         contents = self._parse_markup_command_argument(self)
-        command = MarkupCommand(
-            'bold',
-            contents,
-            )
+        command = MarkupCommand("bold", contents)
         return new(self, contents=command)
 
     def box(self):
@@ -907,7 +914,7 @@ class Markup(object):
         Returns new markup.
         """
         contents = self._parse_markup_command_argument(self)
-        command = MarkupCommand('box', contents)
+        command = MarkupCommand("box", contents)
         return new(self, contents=command)
 
     def bracket(self):
@@ -931,7 +938,7 @@ class Markup(object):
         Returns new markup.
         """
         contents = self._parse_markup_command_argument(self)
-        command = MarkupCommand('bracket', contents)
+        command = MarkupCommand("bracket", contents)
         return new(self, contents=command)
 
     def caps(self):
@@ -953,7 +960,7 @@ class Markup(object):
         Returns new markup.
         """
         contents = self._parse_markup_command_argument(self)
-        command = MarkupCommand('caps', contents)
+        command = MarkupCommand("caps", contents)
         return new(self, contents=command)
 
     def center_align(self):
@@ -982,7 +989,7 @@ class Markup(object):
         Returns new markup
         """
         contents = self._parse_markup_command_argument(self)
-        command = MarkupCommand('center-align', contents)
+        command = MarkupCommand("center-align", contents)
         return new(self, contents=command)
 
     @classmethod
@@ -1029,7 +1036,7 @@ class Markup(object):
         contents = []
         for markup in markup_list:
             contents.append(Markup._parse_markup_command_argument(markup))
-        command = MarkupCommand('center-column', contents)
+        command = MarkupCommand("center-column", contents)
         return class_(contents=command, direction=direction)
 
     def circle(self):
@@ -1056,7 +1063,7 @@ class Markup(object):
         Returns new markup
         """
         contents = self._parse_markup_command_argument(self)
-        command = MarkupCommand('circle', contents)
+        command = MarkupCommand("circle", contents)
         return new(self, contents=command)
 
     @classmethod
@@ -1085,7 +1092,7 @@ class Markup(object):
         contents = []
         for markup in markup_list:
             contents.extend(markup.contents)
-        command = MarkupCommand('column', contents)
+        command = MarkupCommand("column", contents)
         return class_(contents=command, direction=direction)
 
     @classmethod
@@ -1112,13 +1119,13 @@ class Markup(object):
         Returns new markup.
         """
         if not len(markup_list) == 2:
-            message = 'markup list must be length 2: {!r}.'
+            message = "markup list must be length 2: {!r}."
             message = message.format(markup_list)
             raise Exception(message)
         markup_1, markup_2 = markup_list
         contents_1 = class_._parse_markup_command_argument(markup_1)
         contents_2 = class_._parse_markup_command_argument(markup_2)
-        command = MarkupCommand('combine', contents_1, contents_2)
+        command = MarkupCommand("combine", contents_1, contents_2)
         return class_(contents=command, direction=direction)
 
     @classmethod
@@ -1154,7 +1161,7 @@ class Markup(object):
         for markup in markup_list:
             contents = Markup._parse_markup_command_argument(markup)
             result.append(contents)
-        command = MarkupCommand('concat', result)
+        command = MarkupCommand("concat", result)
         return class_(contents=command, direction=direction)
 
     @classmethod
@@ -1177,7 +1184,7 @@ class Markup(object):
 
         Returns new markup
         """
-        command = MarkupCommand('draw-circle', radius, thickness, filled)
+        command = MarkupCommand("draw-circle", radius, thickness, filled)
         return class_(contents=command, direction=direction)
 
     @classmethod
@@ -1199,7 +1206,7 @@ class Markup(object):
         Returns new markup
         """
         pair = SchemePair((x, y))
-        command = MarkupCommand('draw-line', pair)
+        command = MarkupCommand("draw-line", pair)
         return class_(contents=command, direction=direction)
 
     def dynamic(self):
@@ -1221,7 +1228,7 @@ class Markup(object):
         Returns new markup.
         """
         contents = self._parse_markup_command_argument(self)
-        command = MarkupCommand('dynamic', contents)
+        command = MarkupCommand("dynamic", contents)
         return new(self, contents=command)
 
     @classmethod
@@ -1247,7 +1254,7 @@ class Markup(object):
         x_extent = SchemePair(x_extent)
         y_extent = SchemePair(y_extent)
         blot = float(blot)
-        command = MarkupCommand('filled-box', x_extent, y_extent, blot)
+        command = MarkupCommand("filled-box", x_extent, y_extent, blot)
         return class_(command, direction=direction)
 
     def finger(self):
@@ -1269,7 +1276,7 @@ class Markup(object):
         Returns new markup
         """
         contents = self._parse_markup_command_argument(self)
-        command = MarkupCommand('finger', contents)
+        command = MarkupCommand("finger", contents)
         return new(self, contents=command)
 
     @classmethod
@@ -1289,7 +1296,7 @@ class Markup(object):
 
         Returns new markup.
         """
-        command = MarkupCommand('flat')
+        command = MarkupCommand("flat")
         return class_(contents=command, direction=direction)
 
     def fontsize(self, fontsize):
@@ -1314,7 +1321,7 @@ class Markup(object):
         fontsize = float(fontsize)
         fontsize = mathtools.integer_equivalent_number_to_integer(fontsize)
         contents = self._parse_markup_command_argument(self)
-        command = MarkupCommand('fontsize', fontsize, contents)
+        command = MarkupCommand("fontsize", fontsize, contents)
         return new(self, contents=command)
 
     @classmethod
@@ -1352,7 +1359,7 @@ class Markup(object):
 
         Returns new markup
         """
-        command = MarkupCommand('fraction', str(numerator), str(denominator))
+        command = MarkupCommand("fraction", str(numerator), str(denominator))
         return class_(contents=command, direction=direction)
 
     def general_align(self, axis, direction):
@@ -1394,22 +1401,23 @@ class Markup(object):
         Returns new markup.
         """
         import abjad
+
         contents = self._parse_markup_command_argument(self)
         axis = Scheme(axis)
         # TODO: make Scheme(Up) work
         if direction is enums.Up:
-            direction = Scheme('UP')
+            direction = Scheme("UP")
         elif direction is enums.Down:
-            direction = Scheme('DOWN')
+            direction = Scheme("DOWN")
         elif direction is enums.Center:
-            direction = Scheme('CENTER')
+            direction = Scheme("CENTER")
         elif isinstance(direction, numbers.Number):
             direction = Scheme(str(direction))
         else:
-            message = 'unknown direction: {!r}.'
+            message = "unknown direction: {!r}."
             message = message.format(direction)
             raise ValueError(message)
-        command = MarkupCommand('general-align', axis, direction, contents)
+        command = MarkupCommand("general-align", axis, direction, contents)
         return new(self, contents=command)
 
     def halign(self, direction):
@@ -1432,7 +1440,7 @@ class Markup(object):
         Returns new markup.
         """
         contents = self._parse_markup_command_argument(self)
-        command = MarkupCommand('halign', direction, contents)
+        command = MarkupCommand("halign", direction, contents)
         return new(self, contents=command)
 
     def hcenter_in(self, length):
@@ -1455,7 +1463,7 @@ class Markup(object):
         Returns new markup.
         """
         contents = self._parse_markup_command_argument(self)
-        command = MarkupCommand('hcenter-in', length, contents)
+        command = MarkupCommand("hcenter-in", length, contents)
         return new(self, contents=command)
 
     @classmethod
@@ -1476,7 +1484,7 @@ class Markup(object):
 
         Returns new markup.
         """
-        command = MarkupCommand('hspace', amount)
+        command = MarkupCommand("hspace", amount)
         return class_(contents=command, direction=direction)
 
     def huge(self):
@@ -1498,7 +1506,7 @@ class Markup(object):
         Returns new markup.
         """
         contents = self._parse_markup_command_argument(self)
-        command = MarkupCommand('huge', contents)
+        command = MarkupCommand("huge", contents)
         return new(self, contents=command)
 
     def italic(self):
@@ -1520,7 +1528,7 @@ class Markup(object):
         Returns new markup.
         """
         contents = self._parse_markup_command_argument(self)
-        command = MarkupCommand('italic', contents)
+        command = MarkupCommand("italic", contents)
         return new(self, contents=command)
 
     def larger(self):
@@ -1542,7 +1550,7 @@ class Markup(object):
         Returns new markup.
         """
         contents = self._parse_markup_command_argument(self)
-        command = MarkupCommand('larger', contents)
+        command = MarkupCommand("larger", contents)
         return new(self, contents=command)
 
     @classmethod
@@ -1571,17 +1579,11 @@ class Markup(object):
         contents = []
         for markup in markup_list:
             contents.append(Markup._parse_markup_command_argument(markup))
-        command = MarkupCommand('left-column', contents)
+        command = MarkupCommand("left-column", contents)
         return class_(contents=command, direction=direction)
 
     @classmethod
-    def line(
-        class_,
-        markup_list,
-        direction=None,
-        deactivate=None,
-        tag=None,
-        ):
+    def line(class_, markup_list, direction=None, deactivate=None, tag=None):
         r"""
         LilyPond ``\line`` markup command.
 
@@ -1607,7 +1609,7 @@ class Markup(object):
         contents = []
         for markup in markup_list:
             contents.extend(markup.contents)
-        command = MarkupCommand('line', contents)
+        command = MarkupCommand("line", contents)
         command.deactivate = deactivate
         command.tag = tag
         return class_(contents=command, direction=direction)
@@ -1659,10 +1661,7 @@ class Markup(object):
         integer_markup = Markup(integer_part, direction=direction)
         numerator = fraction_part.numerator
         denominator = fraction_part.denominator
-        fraction_markup = Markup.fraction(
-            numerator,
-            denominator,
-            )
+        fraction_markup = Markup.fraction(numerator, denominator)
         fraction_markup = fraction_markup.tiny()
         markup = integer_markup + fraction_markup
         return markup
@@ -1689,11 +1688,12 @@ class Markup(object):
         Returns new markup.
         """
         from abjad.ly import music_glyphs
-        glyph_name = glyph_name or 'accidentals.sharp'
-        message = 'not a valid LilyPond glyph name.'
+
+        glyph_name = glyph_name or "accidentals.sharp"
+        message = "not a valid LilyPond glyph name."
         assert glyph_name in music_glyphs, message
         glyph_scheme = Scheme(glyph_name, force_quotes=True)
-        command = MarkupCommand('musicglyph', glyph_scheme)
+        command = MarkupCommand("musicglyph", glyph_scheme)
         return class_(contents=command, direction=direction)
 
     @classmethod
@@ -1713,7 +1713,7 @@ class Markup(object):
 
         Returns new markup.
         """
-        command = MarkupCommand('natural')
+        command = MarkupCommand("natural")
         return class_(contents=command, direction=direction)
 
     def normal_text(self):
@@ -1735,10 +1735,7 @@ class Markup(object):
         Returns new markup.
         """
         contents = self._parse_markup_command_argument(self)
-        command = MarkupCommand(
-            'normal-text',
-            contents,
-            )
+        command = MarkupCommand("normal-text", contents)
         return new(self, contents=command)
 
     @classmethod
@@ -1762,11 +1759,8 @@ class Markup(object):
         Returns new markup.
         """
         command = MarkupCommand(
-            'note-by-number',
-            log,
-            dot_count,
-            stem_direction,
-            )
+            "note-by-number", log, dot_count, stem_direction
+        )
         return class_(contents=command, direction=direction)
 
     @classmethod
@@ -1786,7 +1780,7 @@ class Markup(object):
 
         Returns new markup.
         """
-        command = MarkupCommand('null')
+        command = MarkupCommand("null")
         return class_(contents=command, direction=direction)
 
     @classmethod
@@ -1815,7 +1809,7 @@ class Markup(object):
         contents = []
         for markup in markup_list:
             contents.append(Markup._parse_markup_command_argument(markup))
-        command = MarkupCommand('overlay', contents)
+        command = MarkupCommand("overlay", contents)
         return class_(contents=command, direction=direction)
 
     def override(self, pair):
@@ -1841,7 +1835,7 @@ class Markup(object):
         """
         contents = self._parse_markup_command_argument(self)
         pair = SchemePair(pair)
-        command = MarkupCommand('override', pair, contents)
+        command = MarkupCommand("override", pair, contents)
         return new(self, contents=command)
 
     def pad_around(self, padding):
@@ -1866,7 +1860,7 @@ class Markup(object):
         Returns new markup.
         """
         contents = self._parse_markup_command_argument(self)
-        command = MarkupCommand('pad-around', padding, contents)
+        command = MarkupCommand("pad-around", padding, contents)
         return new(self, contents=command)
 
     def pad_markup(self, padding):
@@ -1891,7 +1885,7 @@ class Markup(object):
         Returns new markup.
         """
         contents = self._parse_markup_command_argument(self)
-        command = MarkupCommand('pad-markup', padding, contents)
+        command = MarkupCommand("pad-markup", padding, contents)
         return new(self, contents=command)
 
     def pad_to_box(self, x_extent, y_extent):
@@ -2028,7 +2022,7 @@ class Markup(object):
         contents = self._parse_markup_command_argument(self)
         x_extent = SchemePair(x_extent)
         y_extent = SchemePair(y_extent)
-        command = MarkupCommand('pad-to-box', x_extent, y_extent, contents)
+        command = MarkupCommand("pad-to-box", x_extent, y_extent, contents)
         return new(self, contents=command)
 
     def parenthesize(self):
@@ -2050,7 +2044,7 @@ class Markup(object):
         Returns new markup.
         """
         contents = self._parse_markup_command_argument(self)
-        command = MarkupCommand('parenthesize', contents)
+        command = MarkupCommand("parenthesize", contents)
         return new(self, contents=command)
 
     @classmethod
@@ -2086,7 +2080,7 @@ class Markup(object):
         if isinstance(postscript, Postscript):
             postscript = str(postscript)
         assert isinstance(postscript, str)
-        command = MarkupCommand('postscript', postscript)
+        command = MarkupCommand("postscript", postscript)
         return class_(contents=command, direction=direction)
 
     def raise_(self, amount):
@@ -2109,7 +2103,7 @@ class Markup(object):
         Returns new markup.
         """
         contents = self._parse_markup_command_argument(self)
-        command = MarkupCommand('raise', amount, contents)
+        command = MarkupCommand("raise", amount, contents)
         return new(self, contents=command)
 
     @classmethod
@@ -2141,7 +2135,7 @@ class Markup(object):
         contents = []
         for markup in markup_list:
             contents.append(Markup._parse_markup_command_argument(markup))
-        command = MarkupCommand('right-column', contents)
+        command = MarkupCommand("right-column", contents)
         return class_(contents=command, direction=direction)
 
     def rotate(self, angle):
@@ -2164,7 +2158,7 @@ class Markup(object):
         Returns new markup.
         """
         contents = self._parse_markup_command_argument(self)
-        command = MarkupCommand('rotate', angle, contents)
+        command = MarkupCommand("rotate", angle, contents)
         return new(self, contents=command)
 
     def sans(self):
@@ -2186,7 +2180,7 @@ class Markup(object):
         Returns new markup.
         """
         contents = self._parse_markup_command_argument(self)
-        command = MarkupCommand('sans', contents)
+        command = MarkupCommand("sans", contents)
         return new(self, contents=command)
 
     def scale(self, factor_pair):
@@ -2210,7 +2204,7 @@ class Markup(object):
         """
         contents = self._parse_markup_command_argument(self)
         factor_pair = SchemePair(factor_pair)
-        command = MarkupCommand('scale', factor_pair, contents)
+        command = MarkupCommand("scale", factor_pair, contents)
         return new(self, contents=command)
 
     @classmethod
@@ -2230,7 +2224,7 @@ class Markup(object):
 
         Returns new markup.
         """
-        command = MarkupCommand('sharp')
+        command = MarkupCommand("sharp")
         return class_(contents=command, direction=direction)
 
     def small(self):
@@ -2252,7 +2246,7 @@ class Markup(object):
         Returns new markup.
         """
         contents = self._parse_markup_command_argument(self)
-        command = MarkupCommand('small', contents)
+        command = MarkupCommand("small", contents)
         return new(self, contents=command)
 
     def smaller(self):
@@ -2274,7 +2268,7 @@ class Markup(object):
         Returns new markup.
         """
         contents = self._parse_markup_command_argument(self)
-        command = MarkupCommand('smaller', contents)
+        command = MarkupCommand("smaller", contents)
         return new(self, contents=command)
 
     def sub(self):
@@ -2303,7 +2297,7 @@ class Markup(object):
         Returns new markup.
         """
         contents = self._parse_markup_command_argument(self)
-        command = MarkupCommand('sub', contents)
+        command = MarkupCommand("sub", contents)
         return new(self, contents=command)
 
     def super(self):
@@ -2333,7 +2327,7 @@ class Markup(object):
         Returns new markup.
         """
         contents = self._parse_markup_command_argument(self)
-        command = MarkupCommand('super', contents)
+        command = MarkupCommand("super", contents)
         return new(self, contents=command)
 
     def tiny(self):
@@ -2355,7 +2349,7 @@ class Markup(object):
         Returns new markup.
         """
         contents = self._parse_markup_command_argument(self)
-        command = MarkupCommand('tiny', contents)
+        command = MarkupCommand("tiny", contents)
         return new(self, contents=command)
 
     def translate(self, offset_pair):
@@ -2379,7 +2373,7 @@ class Markup(object):
         """
         contents = self._parse_markup_command_argument(self)
         offset_pair = SchemePair(offset_pair)
-        command = MarkupCommand('translate', offset_pair, contents)
+        command = MarkupCommand("translate", offset_pair, contents)
         return new(self, contents=command)
 
     @classmethod
@@ -2400,7 +2394,7 @@ class Markup(object):
 
         Returns new markup
         """
-        command = MarkupCommand('triangle', bool(is_filled))
+        command = MarkupCommand("triangle", bool(is_filled))
         return class_(contents=command, direction=direction)
 
     def upright(self):
@@ -2422,7 +2416,7 @@ class Markup(object):
         Returns new markup.
         """
         contents = self._parse_markup_command_argument(self)
-        command = MarkupCommand('upright', contents)
+        command = MarkupCommand("upright", contents)
         return new(self, contents=command)
 
     def vcenter(self):
@@ -2444,7 +2438,7 @@ class Markup(object):
         Returns new markup.
         """
         contents = self._parse_markup_command_argument(self)
-        command = MarkupCommand('vcenter', contents)
+        command = MarkupCommand("vcenter", contents)
         return new(self, contents=command)
 
     @classmethod
@@ -2465,7 +2459,7 @@ class Markup(object):
 
         Returns new markup.
         """
-        command = MarkupCommand('vspace', amount)
+        command = MarkupCommand("vspace", amount)
         return class_(contents=command, direction=direction)
 
     def whiteout(self):
@@ -2487,7 +2481,7 @@ class Markup(object):
         Returns new markup.
         """
         contents = self._parse_markup_command_argument(self)
-        command = MarkupCommand('whiteout', contents)
+        command = MarkupCommand("whiteout", contents)
         return new(self, contents=command)
 
     def with_color(self, color):
@@ -2535,19 +2529,20 @@ class Markup(object):
         Returns new markup.
         """
         from abjad.ly.colors import colors
+
         contents = self._parse_markup_command_argument(self)
         if isinstance(color, str):
             if color not in colors:
-                raise Exception(f'{repr(color)} is not a LilyPond color.')
+                raise Exception(f"{repr(color)} is not a LilyPond color.")
             color = Scheme(color)
         elif isinstance(color, SchemeColor):
             _, string = str(color).split()
-            string = string.strip("'").strip(')')
+            string = string.strip("'").strip(")")
             if string not in colors:
-                raise Exception(f'{repr(string)} is not a LilyPond color.')
+                raise Exception(f"{repr(string)} is not a LilyPond color.")
         else:
             raise TypeError(color)
-        command = MarkupCommand('with-color', color, contents)
+        command = MarkupCommand("with-color", color, contents)
         return new(self, contents=command)
 
     def with_dimensions(self, x_extent, y_extent):
@@ -2737,11 +2732,8 @@ class Markup(object):
         x_extent = SchemePair(x_extent)
         y_extent = SchemePair(y_extent)
         command = MarkupCommand(
-            'with-dimensions',
-            x_extent,
-            y_extent,
-            contents,
-            )
+            "with-dimensions", x_extent, y_extent, contents
+        )
         return new(self, contents=command)
 
     def with_dimensions_from(self, command):
@@ -2782,7 +2774,7 @@ class Markup(object):
 
         """
         contents = self._parse_markup_command_argument(self)
-        command = MarkupCommand('with-dimensions-from', command, contents)
+        command = MarkupCommand("with-dimensions-from", command, contents)
         return new(self, contents=command)
 
     def with_literal(self, string):
@@ -2814,12 +2806,9 @@ class Markup(object):
         Returns new markup.
         """
         contents = self._parse_markup_command_argument(self)
-        if string.startswith('\\'):
+        if string.startswith("\\"):
             string = string[1:]
-        command = MarkupCommand(
-            string,
-            contents,
-            )
+        command = MarkupCommand(string, contents)
         return new(self, contents=command)
 
 
@@ -2957,20 +2946,14 @@ class MarkupCommand(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_arguments',
-        '_deactivate',
-        '_force_quotes',
-        '_name',
-        '_tag',
-        )
+    __slots__ = ("_arguments", "_deactivate", "_force_quotes", "_name", "_tag")
 
     ### INITIALIZER ###
 
     def __init__(self, name=None, *arguments):
         if name is None:
             # TODO: Generalize these arbitrary default arguments away.
-            name = 'draw-circle'
+            name = "draw-circle"
             assert len(arguments) == 0
         self._arguments = tuple(arguments)
         self._deactivate = None
@@ -3020,7 +3003,7 @@ class MarkupCommand(object):
                     return True
         return False
 
-    def __format__(self, format_specification=''):
+    def __format__(self, format_specification=""):
         r"""
         Formats markup command.
 
@@ -3089,9 +3072,9 @@ class MarkupCommand(object):
 
         Returns string.
         """
-        if format_specification in ('', 'storage'):
+        if format_specification in ("", "storage"):
             return StorageFormatManager(self).get_storage_format()
-        elif format_specification == 'lilypond':
+        elif format_specification == "lilypond":
             return self._get_lilypond_format()
         return str(self)
 
@@ -3105,7 +3088,7 @@ class MarkupCommand(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     def __repr__(self):
@@ -3162,39 +3145,38 @@ class MarkupCommand(object):
 
     def _get_format_pieces(self):
         import abjad
+
         def recurse(iterable):
             result = []
             for item in iterable:
                 if isinstance(item, (list, tuple)):
-                    result.append('{')
+                    result.append("{")
                     result.extend(recurse(item))
-                    result.append('}')
+                    result.append("}")
                 elif isinstance(item, abjad.Scheme):
                     result.append(format(item))
-                elif hasattr(item, '_get_format_pieces'):
+                elif hasattr(item, "_get_format_pieces"):
                     result.extend(item._get_format_pieces())
-                elif isinstance(item, str) and '\n' in item:
+                elif isinstance(item, str) and "\n" in item:
                     result.append('#"')
                     result.extend(item.splitlines())
                     result.append('"')
                 else:
                     formatted = abjad.Scheme.format_scheme_value(
-                        item,
-                        force_quotes=self.force_quotes,
-                        )
+                        item, force_quotes=self.force_quotes
+                    )
                     if isinstance(item, str):
                         result.append(formatted)
                     else:
-                        result.append('#{}'.format(formatted))
-            return ['{}{}'.format(indent, item) for item in result]
+                        result.append("#{}".format(formatted))
+            return ["{}{}".format(indent, item) for item in result]
+
         indent = abjad.LilyPondFormatManager.indent
-        parts = [r'\{}'.format(self.name)]
+        parts = [r"\{}".format(self.name)]
         parts.extend(recurse(self.arguments))
         parts = abjad.LilyPondFormatManager.tag(
-            parts,
-            self.tag,
-            deactivate=self.deactivate,
-            )
+            parts, self.tag, deactivate=self.deactivate
+        )
         return parts
 
     def _get_format_specification(self):
@@ -3203,10 +3185,10 @@ class MarkupCommand(object):
             repr_is_indented=False,
             storage_format_args_values=(self.name,) + self.arguments,
             storage_format_kwargs_names=[],
-            )
+        )
 
     def _get_lilypond_format(self):
-        return '\n'.join(self._get_format_pieces())
+        return "\n".join(self._get_format_pieces())
 
     ### PUBLIC PROPERTIES ###
 
@@ -3328,6 +3310,7 @@ class MarkupCommand(object):
     @tag.setter
     def tag(self, argument):
         import abjad
+
         if argument is not None:
             tag = abjad.Tag(argument)
         else:
@@ -3378,19 +3361,18 @@ class MarkupCommand(object):
         """
         assert len(commands)
         assert all(
-            isinstance(command, (MarkupCommand, str))
-            for command in commands
-            )
+            isinstance(command, (MarkupCommand, str)) for command in commands
+        )
         if 1 == len(commands):
             return commands[0]
-        combined = MarkupCommand('combine', commands[0], commands[1])
+        combined = MarkupCommand("combine", commands[0], commands[1])
         for command in commands[2:]:
-            combined = MarkupCommand('combine', combined, command)
+            combined = MarkupCommand("combine", combined, command)
         return combined
 
 
 class MarkupList(TypedList):
-    """
+    r"""
     Markup list.
 
     ..  container:: example
@@ -3430,26 +3412,16 @@ class MarkupList(TypedList):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_expression',
-        )
+    __slots__ = ("_expression",)
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        items=None,
-        item_class=None,
-        keep_sorted=None,
-        ):
+    def __init__(self, items=None, item_class=None, keep_sorted=None):
         self._expression = None
         item_class = item_class or Markup
         TypedList.__init__(
-            self,
-            item_class=item_class,
-            items=items,
-            keep_sorted=keep_sorted,
-            )
+            self, item_class=item_class, items=items, keep_sorted=keep_sorted
+        )
 
     ### SPECIAL METHODS ###
 
@@ -3471,7 +3443,7 @@ class MarkupList(TypedList):
         """
         return super().__contains__(item)
 
-    def __format__(self, format_specification=''):
+    def __format__(self, format_specification=""):
         """
         Formats markup list.
 
@@ -3590,8 +3562,9 @@ class MarkupList(TypedList):
         Returns LilyPond file.
         """
         import abjad
+
         lilypond_file = abjad.LilyPondFile.new()
-        for name in ('layout', 'paper', 'score'):
+        for name in ("layout", "paper", "score"):
             block = lilypond_file[name]
             lilypond_file.items.remove(block)
         markup = Markup.column(list(self))
@@ -3644,18 +3617,17 @@ class MarkupList(TypedList):
         agent = StorageFormatManager(self)
         names = list(agent.signature_keyword_names)
         if self.item_class is Markup:
-            names.remove('item_class')
+            names.remove("item_class")
         return FormatSpecification(
-            client=self,
-            storage_format_kwargs_names=names,
-            )
+            client=self, storage_format_kwargs_names=names
+        )
 
     def _update_expression(self, frame, force_return=None):
         import abjad
+
         callback = abjad.Expression._frame_to_callback(
-            frame,
-            force_return=force_return,
-            )
+            frame, force_return=force_return
+        )
         return self._expression.append_callback(callback)
 
     ### PUBLIC PROPERTIES ###
@@ -3826,7 +3798,7 @@ class MarkupList(TypedList):
         for markup in self:
             string = Markup._parse_markup_command_argument(markup)
             contents.append(string)
-        command = MarkupCommand('center-column', contents)
+        command = MarkupCommand("center-column", contents)
         return Markup(contents=command, direction=direction)
 
     def column(self, direction=None):
@@ -3857,7 +3829,7 @@ class MarkupList(TypedList):
         contents = []
         for markup in self:
             contents.extend(markup.contents)
-        command = MarkupCommand('column', contents)
+        command = MarkupCommand("column", contents)
         return Markup(contents=command, direction=direction)
 
     def combine(self, direction=None):
@@ -3886,13 +3858,13 @@ class MarkupList(TypedList):
         Returns new markup.
         """
         if not len(self) == 2:
-            message = 'markup list must be length 2: {!r}.'
+            message = "markup list must be length 2: {!r}."
             message = message.format(self)
             raise Exception(message)
         markup_1, markup_2 = self.items
         contents_1 = Markup._parse_markup_command_argument(markup_1)
         contents_2 = Markup._parse_markup_command_argument(markup_2)
-        command = MarkupCommand('combine', contents_1, contents_2)
+        command = MarkupCommand("combine", contents_1, contents_2)
         return Markup(contents=command, direction=direction)
 
     def concat(self, direction=None):
@@ -3930,7 +3902,7 @@ class MarkupList(TypedList):
         for markup in self:
             contents = Markup._parse_markup_command_argument(markup)
             result.append(contents)
-        command = MarkupCommand('concat', result)
+        command = MarkupCommand("concat", result)
         return Markup(contents=command, direction=direction)
 
     def count(self, item):
@@ -4092,7 +4064,7 @@ class MarkupList(TypedList):
         contents = []
         for markup in self:
             contents.append(Markup._parse_markup_command_argument(markup))
-        command = MarkupCommand('left-column', contents)
+        command = MarkupCommand("left-column", contents)
         return Markup(contents=command, direction=direction)
 
     def line(self, direction=None):
@@ -4123,7 +4095,7 @@ class MarkupList(TypedList):
         contents = []
         for markup in self:
             contents.extend(markup.contents)
-        command = MarkupCommand('line', contents)
+        command = MarkupCommand("line", contents)
         return Markup(contents=command, direction=direction)
 
     def overlay(self, direction=None):
@@ -4154,7 +4126,7 @@ class MarkupList(TypedList):
         contents = []
         for markup in self:
             contents.append(Markup._parse_markup_command_argument(markup))
-        command = MarkupCommand('overlay', contents)
+        command = MarkupCommand("overlay", contents)
         return Markup(contents=command, direction=direction)
 
     def pop(self, i=-1):
@@ -4249,7 +4221,7 @@ class MarkupList(TypedList):
         contents = []
         for markup in self:
             contents.append(Markup._parse_markup_command_argument(markup))
-        command = MarkupCommand('right-column', contents)
+        command = MarkupCommand("right-column", contents)
         return Markup(contents=command, direction=direction)
 
 
@@ -4323,9 +4295,7 @@ class Postscript(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_operators',
-        )
+    __slots__ = ("_operators",)
 
     ### INITIALIZER ###
 
@@ -4358,14 +4328,14 @@ class Postscript(object):
         """
         return StorageFormatManager.compare_objects(self, argument)
 
-    def __format__(self, format_specification='') -> str:
+    def __format__(self, format_specification="") -> str:
         """
         Formats Abjad object.
 
         Set ``format_specification`` to ``''`` or ``'storage'``.
         Interprets ``''`` equal to ``'storage'``.
         """
-        if format_specification in ('', 'storage'):
+        if format_specification in ("", "storage"):
             return StorageFormatManager(self).get_storage_format()
         return str(self)
 
@@ -4377,7 +4347,7 @@ class Postscript(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     def __illustrate__(self):
@@ -4415,24 +4385,24 @@ class Postscript(object):
         Return string.
         """
         if not self.operators:
-            return ''
-        return '\n'.join(str(_) for _ in self.operators)
+            return ""
+        return "\n".join(str(_) for _ in self.operators)
 
     ### PRIVATE METHODS ###
 
     @staticmethod
     def _format_argument(argument):
         if isinstance(argument, str):
-            if argument.startswith('/'):
+            if argument.startswith("/"):
                 return argument
-            return '({})'.format(argument)
+            return "({})".format(argument)
         elif isinstance(argument, collections.abc.Sequence):
             if not argument:
-                return '[ ]'
-            contents = ' '.join(
+                return "[ ]"
+            contents = " ".join(
                 Postscript._format_argument(_) for _ in argument
-                )
-            return '[ {} ]'.format(contents)
+            )
+            return "[ {} ]".format(contents)
         elif isinstance(argument, bool):
             return str(argument).lower()
         elif isinstance(argument, (int, float)):
@@ -4528,11 +4498,7 @@ class Postscript(object):
         """
         text = str(text)
         modify_font = bool(modify_font)
-        operator = PostscriptOperator(
-            'charpath',
-            text,
-            modify_font,
-            )
+        operator = PostscriptOperator("charpath", text, modify_font)
         return self._with_operator(operator)
 
     def closepath(self):
@@ -4570,7 +4536,7 @@ class Postscript(object):
 
         Returns new Postscript.
         """
-        operator = PostscriptOperator('closepath')
+        operator = PostscriptOperator("closepath")
         return self._with_operator(operator)
 
     def curveto(self, x1, y1, x2, y2, x3, y3):
@@ -4592,12 +4558,7 @@ class Postscript(object):
         y1 = float(y1)
         y2 = float(y2)
         y3 = float(y3)
-        operator = PostscriptOperator(
-            'curveto',
-            x1, y1,
-            x2, y2,
-            x3, y3,
-            )
+        operator = PostscriptOperator("curveto", x1, y1, x2, y2, x3, y3)
         return self._with_operator(operator)
 
     def fill(self):
@@ -4635,7 +4596,7 @@ class Postscript(object):
 
         Returns new Postscript.
         """
-        operator = PostscriptOperator('fill')
+        operator = PostscriptOperator("fill")
         return self._with_operator(operator)
 
     def findfont(self, font_name):
@@ -4662,9 +4623,9 @@ class Postscript(object):
         Returns new Postscript.
         """
         font_name = str(font_name)
-        font_name = font_name.replace(' ', '-')
-        font_name = '/{}'.format(font_name)
-        operator = PostscriptOperator('findfont', font_name)
+        font_name = font_name.replace(" ", "-")
+        font_name = "/{}".format(font_name)
+        operator = PostscriptOperator("findfont", font_name)
         return self._with_operator(operator)
 
     def grestore(self):
@@ -4702,7 +4663,7 @@ class Postscript(object):
 
         Returns new Postscript.
         """
-        operator = PostscriptOperator('grestore')
+        operator = PostscriptOperator("grestore")
         return self._with_operator(operator)
 
     def gsave(self):
@@ -4740,7 +4701,7 @@ class Postscript(object):
 
         Returns new Postscript.
         """
-        operator = PostscriptOperator('gsave')
+        operator = PostscriptOperator("gsave")
         return self._with_operator(operator)
 
     def lineto(self, x, y):
@@ -4762,7 +4723,7 @@ class Postscript(object):
         """
         x = float(x)
         y = float(y)
-        operator = PostscriptOperator('lineto', x, y)
+        operator = PostscriptOperator("lineto", x, y)
         return self._with_operator(operator)
 
     def moveto(self, x, y):
@@ -4793,7 +4754,7 @@ class Postscript(object):
         """
         x = float(x)
         y = float(y)
-        operator = PostscriptOperator('moveto', x, y)
+        operator = PostscriptOperator("moveto", x, y)
         return self._with_operator(operator)
 
     def newpath(self):
@@ -4831,7 +4792,7 @@ class Postscript(object):
 
         Returns new Postscript.
         """
-        operator = PostscriptOperator('newpath')
+        operator = PostscriptOperator("newpath")
         return self._with_operator(operator)
 
     def rcurveto(self, dx1, dy1, dx2, dy2, dx3, dy3):
@@ -4853,12 +4814,7 @@ class Postscript(object):
         dy1 = float(dy1)
         dy2 = float(dy2)
         dy3 = float(dy3)
-        operator = PostscriptOperator(
-            'rcurveto',
-            dx1, dy1,
-            dx2, dy2,
-            dx3, dy3,
-            )
+        operator = PostscriptOperator("rcurveto", dx1, dy1, dx2, dy2, dx3, dy3)
         return self._with_operator(operator)
 
     def rlineto(self, dx, dy):
@@ -4889,7 +4845,7 @@ class Postscript(object):
         """
         dx = float(dx)
         dy = float(dy)
-        operator = PostscriptOperator('rlineto', dx, dy)
+        operator = PostscriptOperator("rlineto", dx, dy)
         return self._with_operator(operator)
 
     def rmoveto(self, dx, dy):
@@ -4920,7 +4876,7 @@ class Postscript(object):
         """
         dx = float(dx)
         dy = float(dy)
-        operator = PostscriptOperator('rmoveto', dx, dy)
+        operator = PostscriptOperator("rmoveto", dx, dy)
         return self._with_operator(operator)
 
     def rotate(self, degrees):
@@ -4959,7 +4915,7 @@ class Postscript(object):
         Returns new Postscript.
         """
         degrees = float(degrees)
-        operator = PostscriptOperator('rotate', degrees)
+        operator = PostscriptOperator("rotate", degrees)
         return self._with_operator(operator)
 
     def scale(self, dx, dy):
@@ -4999,7 +4955,7 @@ class Postscript(object):
         """
         dx = float(dx)
         dy = float(dy)
-        operator = PostscriptOperator('scale', dx, dy)
+        operator = PostscriptOperator("scale", dx, dy)
         return self._with_operator(operator)
 
     def scalefont(self, font_size):
@@ -5026,7 +4982,7 @@ class Postscript(object):
         Returns new Postscript.
         """
         font_size = float(font_size)
-        operator = PostscriptOperator('scalefont', font_size)
+        operator = PostscriptOperator("scalefont", font_size)
         return self._with_operator(operator)
 
     def setdash(self, array=None, offset=0):
@@ -5066,7 +5022,7 @@ class Postscript(object):
         else:
             array = tuple(float(_) for _ in array)
         offset = float(offset)
-        operator = PostscriptOperator('setdash', array, offset)
+        operator = PostscriptOperator("setdash", array, offset)
         return self._with_operator(operator)
 
     def setfont(self):
@@ -5092,7 +5048,7 @@ class Postscript(object):
 
         Returns new Postscript.
         """
-        operator = PostscriptOperator('setfont')
+        operator = PostscriptOperator("setfont")
         return self._with_operator(operator)
 
     def setgray(self, gray_value):
@@ -5132,7 +5088,7 @@ class Postscript(object):
         """
         gray_value = float(gray_value)
         assert 0 <= gray_value <= 1
-        operator = PostscriptOperator('setgray', gray_value)
+        operator = PostscriptOperator("setgray", gray_value)
         return self._with_operator(operator)
 
     def setlinewidth(self, width):
@@ -5165,7 +5121,7 @@ class Postscript(object):
         Returns new Postscript.
         """
         width = float(width)
-        operator = PostscriptOperator('setlinewidth', width)
+        operator = PostscriptOperator("setlinewidth", width)
         return self._with_operator(operator)
 
     def setrgbcolor(self, red, green, blue):
@@ -5214,12 +5170,7 @@ class Postscript(object):
         assert 0 <= red <= 1
         assert 0 <= green <= 1
         assert 0 <= blue <= 1
-        operator = PostscriptOperator(
-            'setrgbcolor',
-            red,
-            green,
-            blue,
-            )
+        operator = PostscriptOperator("setrgbcolor", red, green, blue)
         return self._with_operator(operator)
 
     def show(self, text):
@@ -5246,7 +5197,7 @@ class Postscript(object):
         Returns new Postscript.
         """
         text = str(text)
-        operator = PostscriptOperator('show', text)
+        operator = PostscriptOperator("show", text)
         return self._with_operator(operator)
 
     def stroke(self):
@@ -5272,7 +5223,7 @@ class Postscript(object):
 
         Returns new Postscript.
         """
-        operator = PostscriptOperator('stroke')
+        operator = PostscriptOperator("stroke")
         return self._with_operator(operator)
 
     def translate(self, dx, dy):
@@ -5312,7 +5263,7 @@ class Postscript(object):
         """
         dx = float(dx)
         dy = float(dy)
-        operator = PostscriptOperator('translate', dx, dy)
+        operator = PostscriptOperator("translate", dx, dy)
         return self._with_operator(operator)
 
     ### PUBLIC PROPERTIES ###
@@ -5341,14 +5292,11 @@ class PostscriptOperator(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_name',
-        '_arguments',
-        )
+    __slots__ = ("_name", "_arguments")
 
     ### INITIALIZER ###
 
-    def __init__(self, name='stroke', *arguments):
+    def __init__(self, name="stroke", *arguments):
         name = str(name)
         self._name = name
         if arguments:
@@ -5365,14 +5313,14 @@ class PostscriptOperator(object):
         """
         return StorageFormatManager.compare_objects(self, argument)
 
-    def __format__(self, format_specification='') -> str:
+    def __format__(self, format_specification="") -> str:
         """
         Formats Abjad object.
 
         Set ``format_specification`` to ``''`` or ``'storage'``.
         Interprets ``''`` equal to ``'storage'``.
         """
-        if format_specification in ('', 'storage'):
+        if format_specification in ("", "storage"):
             return StorageFormatManager(self).get_storage_format()
         return str(self)
 
@@ -5384,7 +5332,7 @@ class PostscriptOperator(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     def __repr__(self) -> str:
@@ -5410,7 +5358,7 @@ class PostscriptOperator(object):
             for argument in self.arguments:
                 parts.append(Postscript._format_argument(argument))
         parts.append(self.name)
-        string = ' '.join(parts)
+        string = " ".join(parts)
         return string
 
     ### PRIVATE METHODS ###
@@ -5422,7 +5370,7 @@ class PostscriptOperator(object):
             storage_format_args_values=values,
             storage_format_is_indented=False,
             storage_format_kwargs_names=[],
-            )
+        )
 
     ### PUBLIC PROPERTIES ###
 

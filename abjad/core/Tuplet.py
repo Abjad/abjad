@@ -108,15 +108,15 @@ class Tuplet(Container):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Containers'
+    __documentation_section__ = "Containers"
 
     __slots__ = (
-        '_denominator',
-        '_force_fraction',
-        '_hide',
-        '_multiplier',
-        '_tweaks',
-        )
+        "_denominator",
+        "_force_fraction",
+        "_hide",
+        "_multiplier",
+        "_tweaks",
+    )
 
     ### INITIALIZER ###
 
@@ -130,7 +130,7 @@ class Tuplet(Container):
         hide: bool = None,
         tag: str = None,
         tweaks: LilyPondTweakManager = None,
-        ) -> None:
+    ) -> None:
         Container.__init__(self, components, tag=tag)
         multiplier = Multiplier(multiplier)
         self.multiplier = multiplier
@@ -153,112 +153,115 @@ class Tuplet(Container):
 
     def _as_graphviz_node(self):
         node = Container._as_graphviz_node(self)
-        node[0].extend([
-            uqbar.graphs.TableRow([
-                uqbar.graphs.TableCell(
-                    label=type(self).__name__,
-                    attributes={'border': 0},
-                    ),
-                ]),
-            uqbar.graphs.HRule(),
-            uqbar.graphs.TableRow([
-                uqbar.graphs.TableCell(
-                    label=f'* {self.multiplier!s}',
-                    attributes={'border': 0},
-                    ),
-                ]),
-            ])
+        node[0].extend(
+            [
+                uqbar.graphs.TableRow(
+                    [
+                        uqbar.graphs.TableCell(
+                            label=type(self).__name__, attributes={"border": 0}
+                        )
+                    ]
+                ),
+                uqbar.graphs.HRule(),
+                uqbar.graphs.TableRow(
+                    [
+                        uqbar.graphs.TableCell(
+                            label=f"* {self.multiplier!s}",
+                            attributes={"border": 0},
+                        )
+                    ]
+                ),
+            ]
+        )
         return node
 
     def _format_after_slot(self, bundle):
         result = []
-        result.append(('grob reverts', bundle.grob_reverts))
-        result.append(('commands', bundle.after.commands))
-        result.append(('comments', bundle.after.comments))
+        result.append(("grob reverts", bundle.grob_reverts))
+        result.append(("commands", bundle.after.commands))
+        result.append(("comments", bundle.after.comments))
         return tuple(result)
 
     def _format_before_slot(self, bundle):
         result = []
-        result.append(('comments', bundle.before.comments))
-        result.append(('commands', bundle.before.commands))
-        result.append(('grob overrides', bundle.grob_overrides))
-        result.append(('context settings', bundle.context_settings))
+        result.append(("comments", bundle.before.comments))
+        result.append(("commands", bundle.before.commands))
+        result.append(("grob overrides", bundle.grob_overrides))
+        result.append(("context settings", bundle.context_settings))
         return tuple(result)
 
     def _format_close_brackets_slot(self, bundle):
         result = []
         if self.multiplier:
-            strings = ['}']
+            strings = ["}"]
             if self.tag is not None:
-                strings = LilyPondFormatManager.tag(
-                    strings,
-                    tag=self.tag,
-                    )
-            result.append([('self_brackets', 'close'), strings])
+                strings = LilyPondFormatManager.tag(strings, tag=self.tag)
+            result.append([("self_brackets", "close"), strings])
         return tuple(result)
 
     def _format_closing_slot(self, bundle):
         result = []
-        result.append(('commands', bundle.closing.commands))
-        result.append(('comments', bundle.closing.comments))
+        result.append(("commands", bundle.closing.commands))
+        result.append(("comments", bundle.closing.comments))
         return self._format_slot_contributions_with_indent(result)
 
     def _format_lilypond_fraction_command_string(self):
         if self.hide:
-            return ''
-        if 'text' in vars(override(self).tuplet_number):
-            return ''
-        if (self.augmentation() or
-            not self._get_power_of_two_denominator() or
-            self.multiplier.denominator == 1 or
-            self.force_fraction
-            ):
+            return ""
+        if "text" in vars(override(self).tuplet_number):
+            return ""
+        if (
+            self.augmentation()
+            or not self._get_power_of_two_denominator()
+            or self.multiplier.denominator == 1
+            or self.force_fraction
+        ):
             return r"\tweak text #tuplet-number::calc-fraction-text"
-        return ''
+        return ""
 
     def _format_open_brackets_slot(self, bundle):
         result = []
         if self.multiplier:
             if self.hide:
-                contributor = (self, 'hide')
-                scale_durations_command_string = \
+                contributor = (self, "hide")
+                scale_durations_command_string = (
                     self._get_scale_durations_command_string()
+                )
                 contributions = [scale_durations_command_string]
             else:
-                contributor = ('self_brackets', 'open')
+                contributor = ("self_brackets", "open")
                 contributions = []
-                fraction_command_string = \
+                fraction_command_string = (
                     self._format_lilypond_fraction_command_string()
+                )
                 if fraction_command_string:
                     contributions.append(fraction_command_string)
-                edge_height_tweak_string = \
-                    self._get_edge_height_tweak_string()
+                edge_height_tweak_string = self._get_edge_height_tweak_string()
                 if edge_height_tweak_string:
                     contributions.append(edge_height_tweak_string)
                 strings = tweak(self)._list_format_contributions(
-                    directed=False,
-                    )
+                    directed=False
+                )
                 contributions.extend(strings)
                 times_command_string = self._get_times_command_string()
                 contributions.append(times_command_string)
             if self.tag is not None:
                 contributions = LilyPondFormatManager.tag(
-                    contributions,
-                    tag=self.tag,
-                    )
+                    contributions, tag=self.tag
+                )
             result.append([contributor, contributions])
         return tuple(result)
 
     def _format_opening_slot(self, bundle):
         result = []
-        result.append(('comments', bundle.opening.comments))
-        result.append(('commands', bundle.opening.commands))
+        result.append(("comments", bundle.opening.comments))
+        result.append(("commands", bundle.opening.commands))
         return self._format_slot_contributions_with_indent(result)
 
     def _get_compact_representation(self):
         if not self:
-            return f'{{ {self.multiplier!s} }}'
-        return f'{{ {self.multiplier!s} {self._get_contents_summary()} }}'
+            return f"{{ {self.multiplier!s} }}"
+        return f"{{ {self.multiplier!s} {self._get_contents_summary()} }}"
 
     def _get_edge_height_tweak_string(self):
         duration = self._get_preprolated_duration()
@@ -272,7 +275,7 @@ class Tuplet(Container):
             repr_args_values=[self.multiplier, self._get_contents_summary()],
             storage_format_args_values=[self.multiplier, self[:]],
             storage_format_kwargs_names=[],
-            )
+        )
 
     def _get_lilypond_format(self):
         self._update_now(indicators=True)
@@ -281,15 +284,17 @@ class Tuplet(Container):
     def _get_multiplier_fraction_string(self):
         if self.denominator is not None:
             inverse_multiplier = Multiplier(
-                self.multiplier.denominator, self.multiplier.numerator)
+                self.multiplier.denominator, self.multiplier.numerator
+            )
             nonreduced_fraction = NonreducedFraction(inverse_multiplier)
             nonreduced_fraction = nonreduced_fraction.with_denominator(
-                self.denominator)
+                self.denominator
+            )
             denominator, numerator = nonreduced_fraction.pair
         else:
             numerator = self.multiplier.numerator
             denominator = self.multiplier.denominator
-        return f'{numerator}/{denominator}'
+        return f"{numerator}/{denominator}"
 
     def _get_power_of_two_denominator(self):
         if self.multiplier:
@@ -306,7 +311,7 @@ class Tuplet(Container):
         if multiplier is not None:
             numerator = multiplier.numerator
             denominator = multiplier.denominator
-            ratio_string = f'{denominator}:{numerator}'
+            ratio_string = f"{denominator}:{numerator}"
             return ratio_string
         else:
             return None
@@ -320,12 +325,12 @@ class Tuplet(Container):
 
     def _get_summary(self):
         if 0 < len(self):
-            return ', '.join([str(x) for x in self.components])
+            return ", ".join([str(x) for x in self.components])
         else:
-            return ''
+            return ""
 
     def _get_times_command_string(self):
-        string = rf'\times {self._get_multiplier_fraction_string()} {{'
+        string = rf"\times {self._get_multiplier_fraction_string()} {{"
         return string
 
     def _scale(self, multiplier):
@@ -584,7 +589,7 @@ class Tuplet(Container):
         if isinstance(argument, (bool, type(None))):
             self._force_fraction = argument
         else:
-            message = f'force fraction must be boolean (not {argument!r}).'
+            message = f"force fraction must be boolean (not {argument!r})."
             raise TypeError(message)
 
     @property
@@ -739,12 +744,12 @@ class Tuplet(Container):
         elif isinstance(argument, tuple):
             rational = Multiplier(argument)
         else:
-            message = f'can not set tuplet multiplier: {argument!r}.'
+            message = f"can not set tuplet multiplier: {argument!r}."
             raise ValueError(message)
         if 0 < rational:
             self._multiplier = rational
         else:
-            message = f'tuplet multiplier must be positive: {argument!r}.'
+            message = f"tuplet multiplier must be positive: {argument!r}."
             raise ValueError(message)
 
     @property
@@ -1084,11 +1089,8 @@ class Tuplet(Container):
 
     @staticmethod
     def from_duration(
-        duration: typings.DurationTyping,
-        components,
-        *,
-        tag: str = None,
-        ) -> 'Tuplet':
+        duration: typings.DurationTyping, components, *, tag: str = None
+    ) -> "Tuplet":
         r"""
         Makes tuplet from ``duration`` and ``components``.
 
@@ -1110,7 +1112,7 @@ class Tuplet(Container):
 
         """
         if not len(components):
-            raise Exception(f'components must be nonempty: {components!r}.')
+            raise Exception(f"components must be nonempty: {components!r}.")
         target_duration = Duration(duration)
         tuplet = Tuplet(1, components, tag=tag)
         contents_duration = inspect(tuplet).duration()
@@ -1120,12 +1122,8 @@ class Tuplet(Container):
 
     @staticmethod
     def from_duration_and_ratio(
-        duration,
-        ratio,
-        *,
-        increase_monotonic: bool = None,
-        tag: str = None,
-        ) -> 'Tuplet':
+        duration, ratio, *, increase_monotonic: bool = None, tag: str = None
+    ) -> "Tuplet":
         r"""
         Makes tuplet from ``duration`` and ``ratio``.
 
@@ -1404,32 +1402,26 @@ class Tuplet(Container):
         duration = Duration(duration)
         ratio = Ratio(ratio)
         basic_prolated_duration = duration / mathtools.weight(ratio.numbers)
-        basic_written_duration = \
+        basic_written_duration = (
             basic_prolated_duration.equal_or_greater_assignable
+        )
         written_durations = [x * basic_written_duration for x in ratio.numbers]
-        leaf_maker = LeafMaker(
-            increase_monotonic=increase_monotonic,
-            tag=tag,
-            )
+        leaf_maker = LeafMaker(increase_monotonic=increase_monotonic, tag=tag)
         try:
             notes = [
                 Note(0, x, tag=tag) if 0 < x else Rest(abs(x), tag=tag)
                 for x in written_durations
-                ]
+            ]
         except exceptions.AssignabilityError:
             denominator = duration.denominator
-            note_durations = [
-                Duration(x, denominator)
-                for x in ratio.numbers
-                ]
+            note_durations = [Duration(x, denominator) for x in ratio.numbers]
             pitches = [
                 None if note_duration < 0 else 0
                 for note_duration in note_durations
-                ]
+            ]
             leaf_durations = [
-                abs(note_duration)
-                for note_duration in note_durations
-                ]
+                abs(note_duration) for note_duration in note_durations
+            ]
             notes = list(leaf_maker(pitches, leaf_durations))
         tuplet = Tuplet.from_duration(duration, notes, tag=tag)
         tuplet.normalize_multiplier()
@@ -1437,9 +1429,8 @@ class Tuplet(Container):
 
     @staticmethod
     def from_leaf_and_ratio(
-        leaf: Leaf,
-        ratio: typing.Union[typing.List, Ratio],
-        ) -> 'Tuplet':
+        leaf: Leaf, ratio: typing.Union[typing.List, Ratio]
+    ) -> "Tuplet":
         r"""
         Makes tuplet from ``leaf`` and ``ratio``.
 
@@ -1740,20 +1731,20 @@ class Tuplet(Container):
         proportions = Ratio(ratio)
         target_duration = leaf.written_duration
         basic_prolated_duration = target_duration / sum(proportions.numbers)
-        basic_written_duration = \
+        basic_written_duration = (
             basic_prolated_duration.equal_or_greater_assignable
+        )
         written_durations = [
             _ * basic_written_duration for _ in proportions.numbers
-            ]
+        ]
         maker = NoteMaker()
         try:
             notes = [Note(0, x) for x in written_durations]
         except exceptions.AssignabilityError:
             denominator = target_duration.denominator
             note_durations = [
-                Duration(_, denominator)
-                for _ in proportions.numbers
-                ]
+                Duration(_, denominator) for _ in proportions.numbers
+            ]
             notes = list(maker(0, note_durations))
         contents_duration = inspect(notes).duration()
         multiplier = target_duration / contents_duration
@@ -1767,7 +1758,7 @@ class Tuplet(Container):
         fraction: typing.Union[typing.Tuple, NonreducedFraction],
         *,
         tag: str = None,
-        ) -> 'Tuplet':
+    ) -> "Tuplet":
         r"""
         Makes tuplet from nonreduced ``ratio`` and nonreduced ``fraction``.
 
@@ -1938,18 +1929,17 @@ class Tuplet(Container):
                     duration = inspect(rests).duration()
                     return Tuplet.from_duration(duration, rests, tag=tag)
             else:
-                raise ValueError('no divide zero values.')
+                raise ValueError("no divide zero values.")
         else:
             exponent = int(
-                math.log(
-                    mathtools.weight(ratio.numbers), 2) -
-                    math.log(numerator, 2)
-                    )
+                math.log(mathtools.weight(ratio.numbers), 2)
+                - math.log(numerator, 2)
+            )
             denominator = int(denominator * 2 ** exponent)
             components: typing.List[typing.Union[Note, Rest]] = []
             for x in ratio.numbers:
                 if not x:
-                    raise ValueError('no divide zero values.')
+                    raise ValueError("no divide zero values.")
                 if 0 < x:
                     try:
                         note = Note(0, (x, denominator), tag=tag)
@@ -2266,9 +2256,10 @@ class Tuplet(Container):
             self._get_contents_duration(),
             self._get_preprolated_duration(),
             Duration(1, denominator),
-            ]
+        ]
         nonreduced_fractions = Duration.durations_to_nonreduced_fractions(
-            durations)
+            durations
+        )
         self.denominator = nonreduced_fractions[1].numerator
 
     def toggle_prolation(self) -> None:

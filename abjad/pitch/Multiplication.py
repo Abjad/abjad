@@ -21,9 +21,7 @@ class Multiplication(object):
 
     ### CLASS VARIABLES ##
 
-    __slots__ = (
-        '_n',
-        )
+    __slots__ = ("_n",)
 
     ### INITIALIZER ###
 
@@ -103,6 +101,7 @@ class Multiplication(object):
         Returns compound operator.
         """
         import abjad
+
         return abjad.CompoundOperator._compose_operators(self, operator)
 
     def __call__(self, argument):
@@ -129,10 +128,10 @@ class Multiplication(object):
 
         Returns new object with type equal to that of `argument`.
         """
-        if hasattr(argument, 'multiply'):
+        if hasattr(argument, "multiply"):
             result = argument.multiply(self.n)
         else:
-            message = 'do not know how to multiply: {!r}.'
+            message = "do not know how to multiply: {!r}."
             message = message.format(argument)
             raise TypeError(message)
         return result
@@ -152,7 +151,7 @@ class Multiplication(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     def __radd__(self, operator):
@@ -168,7 +167,7 @@ class Multiplication(object):
 
         Raises not implemented error.
         """
-        message = 'right-addition not defined on {}.'
+        message = "right-addition not defined on {}."
         message = message.format(type(self).__name__)
         raise NotImplementedError(message)
 
@@ -193,14 +192,14 @@ class Multiplication(object):
             'M5'
 
         """
-        string = 'M{}'
+        string = "M{}"
         string = string.format(self.n)
         return string
 
     ### PRIVATE METHODS ###
 
     def _get_markup(self, direction=None):
-        operator = markups.Markup('M', direction=direction)
+        operator = markups.Markup("M", direction=direction)
         subscript = markups.Markup(self.n).sub()
         markup = markups.Markup.concat([operator, subscript])
         return markup

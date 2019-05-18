@@ -93,25 +93,15 @@ class AfterGraceContainer(Container):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Containers'
+    __documentation_section__ = "Containers"
 
-    __slots__ = (
-        '_main_leaf',
-        )
+    __slots__ = ("_main_leaf",)
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        components=None,
-        tag: str = None,
-        ) -> None:
+    def __init__(self, components=None, tag: str = None) -> None:
         self._main_leaf = None
-        Container.__init__(
-            self,
-            components,
-            tag=tag,
-            )
+        Container.__init__(self, components, tag=tag)
 
     ### SPECIAL METHODS ###
 
@@ -127,8 +117,9 @@ class AfterGraceContainer(Container):
 
     def _attach(self, leaf):
         import abjad
+
         if not isinstance(leaf, abjad.Leaf):
-            raise TypeError(f'must attach to leaf (not {leaf!r}).')
+            raise TypeError(f"must attach to leaf (not {leaf!r}).")
         leaf._after_grace_container = self
         self._main_leaf = leaf
 
@@ -141,5 +132,5 @@ class AfterGraceContainer(Container):
 
     def _format_open_brackets_slot(self, bundle):
         result = []
-        result.append([('grace_brackets', 'open'), ['{']])
+        result.append([("grace_brackets", "open"), ["{"]])
         return tuple(result)

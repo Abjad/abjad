@@ -26,7 +26,7 @@ def test_LogicalTie__fuse_leaves_by_immediate_parent_01():
             }
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     assert len(result) == 2
     assert abjad.inspect(staff).wellformed()
@@ -53,7 +53,7 @@ def test_LogicalTie__fuse_leaves_by_immediate_parent_02():
             c'8
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     logical_tie = abjad.inspect(staff[1]).logical_tie()
     result = logical_tie._fuse_leaves_by_immediate_parent()
@@ -65,7 +65,7 @@ def test_LogicalTie__fuse_leaves_by_immediate_parent_02():
             c'2
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     assert abjad.inspect(staff).wellformed()
     assert len(result) == 1

@@ -267,12 +267,12 @@ class Meter(object):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_increase_monotonic',
-        '_denominator',
-        '_numerator',
-        '_preferred_boundary_depth',
-        '_root_node',
-        )
+        "_increase_monotonic",
+        "_denominator",
+        "_numerator",
+        "_preferred_boundary_depth",
+        "_root_node",
+    )
 
     ### INITIALIZER ###
 
@@ -281,38 +281,35 @@ class Meter(object):
         argument=None,
         increase_monotonic=None,
         preferred_boundary_depth=None,
-        ):
+    ):
         argument = argument or (4, 4)
         assert isinstance(preferred_boundary_depth, (int, type(None)))
         self._preferred_boundary_depth = preferred_boundary_depth
-        def recurse(
-            node,
-            factors,
-            denominator,
-            increase_monotonic,
-            ):
+
+        def recurse(node, factors, denominator, increase_monotonic):
             if factors:
                 factor, factors = factors[0], factors[1:]
-                preprolated_duration = \
-                    node.preprolated_duration.__div__(factor)
-                #if factor in (2, 3, 4, 5):
+                preprolated_duration = node.preprolated_duration.__div__(
+                    factor
+                )
+                # if factor in (2, 3, 4, 5):
                 if factor in (2, 3, 4):
                     if factors:
                         for _ in range(factor):
                             child = rhythmtrees.RhythmTreeContainer(
-                                preprolated_duration=preprolated_duration)
+                                preprolated_duration=preprolated_duration
+                            )
                             node.append(child)
                             recurse(
-                                child,
-                                factors,
-                                denominator,
-                                increase_monotonic,
-                                )
+                                child, factors, denominator, increase_monotonic
+                            )
                     else:
                         for _ in range(factor):
                             node.append(
                                 rhythmtrees.RhythmTreeLeaf(
-                                    preprolated_duration=(1, denominator)))
+                                    preprolated_duration=(1, denominator)
+                                )
+                            )
                 else:
                     parts = [3]
                     total = 3
@@ -324,28 +321,38 @@ class Meter(object):
                         total += 2
                     for part in parts:
                         grouping = rhythmtrees.RhythmTreeContainer(
-                            preprolated_duration=part * preprolated_duration)
+                            preprolated_duration=part * preprolated_duration
+                        )
                         if factors:
                             for _ in range(part):
                                 child = rhythmtrees.RhythmTreeContainer(
-                                    preprolated_duration=preprolated_duration)
+                                    preprolated_duration=preprolated_duration
+                                )
                                 grouping.append(child)
                                 recurse(
                                     child,
                                     factors,
                                     denominator,
                                     increase_monotonic,
-                                    )
+                                )
                         else:
                             for _ in range(part):
                                 grouping.append(
                                     rhythmtrees.RhythmTreeLeaf(
-                                        preprolated_duration=(1, denominator)))
+                                        preprolated_duration=(1, denominator)
+                                    )
+                                )
                         node.append(grouping)
             else:
-                node.extend([rhythmtrees.RhythmTreeLeaf(
-                    preprolated_duration=(1, denominator))
-                    for _ in range(node.preprolated_duration.numerator)])
+                node.extend(
+                    [
+                        rhythmtrees.RhythmTreeLeaf(
+                            preprolated_duration=(1, denominator)
+                        )
+                        for _ in range(node.preprolated_duration.numerator)
+                    ]
+                )
+
         increase_monotonic = bool(increase_monotonic)
         try:
             numerator = argument.numerator
@@ -368,30 +375,25 @@ class Meter(object):
                 assert node.prolation == 1
             numerator = root.preprolated_duration.numerator
             denominator = root.preprolated_duration.denominator
-        elif (is_fraction_like or isinstance(argument, tuple)):
+        elif is_fraction_like or isinstance(argument, tuple):
             if isinstance(argument, tuple):
                 fraction = mathtools.NonreducedFraction(argument)
             else:
                 fraction = mathtools.NonreducedFraction(
-                    argument.numerator,
-                    argument.denominator,
-                    )
+                    argument.numerator, argument.denominator
+                )
             numerator, denominator = fraction.numerator, fraction.denominator
             factors = mathtools.factors(numerator)
             # group two nested levels of 2s into a 4
             if 1 < len(factors) and factors[0] == factors[1] == 2:
                 factors[0:2] = [4]
             root = rhythmtrees.RhythmTreeContainer(
-                preprolated_duration=fraction)
-            recurse(
-                root,
-                factors,
-                denominator,
-                increase_monotonic,
-                )
+                preprolated_duration=fraction
+            )
+            recurse(root, factors, denominator, increase_monotonic)
         else:
             name = type(self).__name__
-            raise ValueError(f'can not initialize {name}: {argument!r}.')
+            raise ValueError(f"can not initialize {name}: {argument!r}.")
 
         self._root_node = root
         self._numerator = numerator
@@ -409,7 +411,7 @@ class Meter(object):
         """
         return StorageFormatManager.compare_objects(self, argument)
 
-    def __format__(self, format_specification=''):
+    def __format__(self, format_specification=""):
         """
         Formats meter.
 
@@ -425,7 +427,7 @@ class Meter(object):
 
         Returns string.
         """
-        if format_specification in ('', 'storage'):
+        if format_specification in ("", "storage"):
             return system.StorageFormatManager(self).get_storage_format()
         return str(self)
 
@@ -557,94 +559,80 @@ class Meter(object):
 
         Returns Graphviz graph.
         """
+
         def make_offset_node(
-            offset,
-            leaf_one=None,
-            leaf_two=None,
-            is_last=False,
+            offset, leaf_one=None, leaf_two=None, is_last=False
         ):
             if not is_last:
                 offset_node = uqbar.graphs.Node(
                     attributes={
-                        'shape': 'Mrecord',
-                        'style': 'filled',
-                        'color': 'white',
-                        'fontname': 'Arial bold',
-                        'fontcolor': 'white',
-                        'fillcolor': 'black',
-                        },
-                    )
+                        "shape": "Mrecord",
+                        "style": "filled",
+                        "color": "white",
+                        "fontname": "Arial bold",
+                        "fontcolor": "white",
+                        "fillcolor": "black",
+                    }
+                )
             else:
                 offset_node = uqbar.graphs.Node(
-                    attributes={
-                        'shape': 'Mrecord',
-                        },
-                    )
-            offset_field = uqbar.graphs.RecordField(
-                label=str(offset),
+                    attributes={"shape": "Mrecord"}
                 )
+            offset_field = uqbar.graphs.RecordField(label=str(offset))
             weight_field = uqbar.graphs.RecordField(
-                label='+' * offsets[offset],
-                )
+                label="+" * offsets[offset]
+            )
             group = uqbar.graphs.RecordGroup()
             group.extend([offset_field, weight_field])
             offset_node.append(group)
             offset_subgraph.append(offset_node)
             leaf_one_node = node_mapping[leaf_one]
-            edge = uqbar.graphs.Edge(
-                attributes={'style': 'dotted'},
-                )
+            edge = uqbar.graphs.Edge(attributes={"style": "dotted"})
             edge.attach(leaf_one_node, offset_node)
             if leaf_two:
                 leaf_two_node = node_mapping[leaf_two]
-                edge = uqbar.graphs.Edge(
-                    attributes={'style': 'dotted'},
-                    )
+                edge = uqbar.graphs.Edge(attributes={"style": "dotted"})
                 edge.attach(leaf_two_node, offset_node)
+
         offsets = MetricAccentKernel.count_offsets(
-            Sequence(self.depthwise_offset_inventory).flatten(depth=-1))
+            Sequence(self.depthwise_offset_inventory).flatten(depth=-1)
+        )
         graph = uqbar.graphs.Graph(
-            name='G',
+            name="G",
             attributes={
-                'bgcolor': 'transparent',
-                'fontname': 'Arial',
-                'penwidth': 2,
-                'truecolor': True,
-                },
-            edge_attributes={
-                'penwidth': 2,
-                },
+                "bgcolor": "transparent",
+                "fontname": "Arial",
+                "penwidth": 2,
+                "truecolor": True,
+            },
+            edge_attributes={"penwidth": 2},
             node_attributes={
-                'fontname': 'Arial',
-                'fontsize': 12,
-                'penwidth': 2,
-                },
-            )
+                "fontname": "Arial",
+                "fontsize": 12,
+                "penwidth": 2,
+            },
+        )
         node_mapping = {}
         root = self._root_node
         nodes = [root] + list(root.depth_first())
-        leaves = [_ for _ in nodes if not hasattr(_, 'children')]
+        leaves = [_ for _ in nodes if not hasattr(_, "children")]
         for node in nodes:
             graphviz_node = uqbar.graphs.Node()
-            graphviz_node.attributes['label'] = str(node.preprolated_duration)
+            graphviz_node.attributes["label"] = str(node.preprolated_duration)
             if isinstance(node, rhythmtrees.RhythmTreeContainer):
-                graphviz_node.attributes['shape'] = 'triangle'
+                graphviz_node.attributes["shape"] = "triangle"
             else:
-                graphviz_node.attributes['shape'] = 'box'
+                graphviz_node.attributes["shape"] = "box"
             graph.append(graphviz_node)
             node_mapping[node] = graphviz_node
             if node.parent is not None:
                 uqbar.graphs.Edge().attach(
-                    node_mapping[node.parent],
-                    node_mapping[node],
-                    )
+                    node_mapping[node.parent], node_mapping[node]
+                )
         offset = leaves[0].start_offset
         offset_subgraph = uqbar.graphs.Graph(
-            name='cluster_offsets',
-            attributes={
-                'style': 'rounded',
-                },
-            )
+            name="cluster_offsets", attributes={"style": "rounded"}
+        )
         graph.append(offset_subgraph)
         make_offset_node(offset, leaves[0])
         for one, two in Sequence(leaves).nwise():
@@ -686,6 +674,7 @@ class Meter(object):
 
         Yields pairs.
         """
+
         def recurse(node):
             result = []
             for child in node:
@@ -695,6 +684,7 @@ class Meter(object):
                     result.extend(recurse(child))
             result.append(node)
             return result
+
         result = recurse(self.root_node)
         for node in result:
             start_offset = mathtools.NonreducedFraction(node.start_offset)
@@ -730,7 +720,7 @@ class Meter(object):
             8/8
 
         """
-        return f'{self.numerator}/{self.denominator}'
+        return f"{self.numerator}/{self.denominator}"
 
     ### PRIVATE METHODS ###
 
@@ -740,7 +730,7 @@ class Meter(object):
             repr_is_indented=False,
             storage_format_args_values=[self.rtm_format],
             storage_format_kwargs_names=[],
-            )
+        )
 
     @staticmethod
     def _rewrite_meter(
@@ -751,18 +741,17 @@ class Meter(object):
         maximum_dot_count=None,
         rewrite_tuplets=True,
         repeat_ties=False,
-        ):
+    ):
         def recurse(
             boundary_depth=None,
             boundary_offsets=None,
             depth=0,
             logical_tie=None,
-            ):
+        ):
             offsets = _MeterManager.get_offsets_at_depth(
-                depth,
-                offset_inventory,
-                )
-            #print('DEPTH:', depth)
+                depth, offset_inventory
+            )
+            # print('DEPTH:', depth)
             logical_tie_duration = logical_tie._get_preprolated_duration()
             logical_tie_timespan = inspect(logical_tie).timespan()
             logical_tie_start_offset = logical_tie_timespan.start_offset
@@ -774,40 +763,42 @@ class Meter(object):
                 logical_tie_starts_in_offsets=logical_tie_starts_in_offsets,
                 logical_tie_stops_in_offsets=logical_tie_stops_in_offsets,
                 maximum_dot_count=maximum_dot_count,
-                ):
-                #print('UNACCEPTABLE:', logical_tie, logical_tie_start_offset, logical_tie_stop_offset)
+            ):
+                # print('UNACCEPTABLE:', logical_tie, logical_tie_start_offset, logical_tie_stop_offset)
                 split_offset = None
                 offsets = _MeterManager.get_offsets_at_depth(
-                    depth,
-                    offset_inventory,
-                    )
+                    depth, offset_inventory
+                )
                 # If the logical tie's start aligns, take the latest possible offset.
                 if logical_tie_starts_in_offsets:
                     offsets = reversed(offsets)
                 for offset in offsets:
-                    if logical_tie_start_offset < offset < logical_tie_stop_offset:
+                    if (
+                        logical_tie_start_offset
+                        < offset
+                        < logical_tie_stop_offset
+                    ):
                         split_offset = offset
                         break
-                #print('\tABS:', split_offset)
+                # print('\tABS:', split_offset)
                 if split_offset is not None:
                     split_offset -= logical_tie_start_offset
-                    #print('\tREL:', split_offset)
-                    #print()
+                    # print('\tREL:', split_offset)
+                    # print()
 
-#                    print('LT796', logical_tie)
-#                    for leaf in logical_tie:
-#                        print(leaf, inspect(leaf).indicators(), 'III')
+                    #                    print('LT796', logical_tie)
+                    #                    for leaf in logical_tie:
+                    #                        print(leaf, inspect(leaf).indicators(), 'III')
 
                     shards = mutate(logical_tie[:]).split(
-                        [split_offset],
-                        repeat_ties=repeat_ties,
-                        )
+                        [split_offset], repeat_ties=repeat_ties
+                    )
 
-#                    for shard in shards:
-#                        print('SH', shard)
-#                        for leaf in select(shards).leaves():
-#                            print(leaf, inspect(leaf).indicators(), 'PPP')
-#                    print()
+                    #                    for shard in shards:
+                    #                        print('SH', shard)
+                    #                        for leaf in select(shards).leaves():
+                    #                            print(leaf, inspect(leaf).indicators(), 'PPP')
+                    #                    print()
 
                     logical_ties = [LogicalTie(_) for _ in shards]
                     for logical_tie in logical_ties:
@@ -816,40 +807,43 @@ class Meter(object):
                             boundary_offsets=boundary_offsets,
                             depth=depth,
                             logical_tie=logical_tie,
-                            )
+                        )
                 else:
-                    #print()
+                    # print()
                     recurse(
                         boundary_depth=boundary_depth,
                         boundary_offsets=boundary_offsets,
                         depth=depth + 1,
                         logical_tie=logical_tie,
-                        )
+                    )
             elif _MeterManager.is_boundary_crossing_logical_tie(
                 boundary_depth=boundary_depth,
                 boundary_offsets=boundary_offsets,
                 logical_tie_start_offset=logical_tie_start_offset,
                 logical_tie_stop_offset=logical_tie_stop_offset,
-                ):
-                #print('BOUNDARY CROSSING', logical_tie, logical_tie_start_offset, logical_tie_stop_offset)
+            ):
+                # print('BOUNDARY CROSSING', logical_tie, logical_tie_start_offset, logical_tie_stop_offset)
                 offsets = boundary_offsets
                 if logical_tie_start_offset in boundary_offsets:
                     offsets = reversed(boundary_offsets)
                 split_offset = None
                 for offset in offsets:
-                    if logical_tie_start_offset < offset < logical_tie_stop_offset:
+                    if (
+                        logical_tie_start_offset
+                        < offset
+                        < logical_tie_stop_offset
+                    ):
                         split_offset = offset
                         break
                 assert split_offset is not None
-                #print('\tABS:', split_offset)
+                # print('\tABS:', split_offset)
                 split_offset -= logical_tie_start_offset
-                #print('\tREL:', split_offset)
-                #print()
-                #print('LT836', logical_tie)
+                # print('\tREL:', split_offset)
+                # print()
+                # print('LT836', logical_tie)
                 shards = mutate(logical_tie[:]).split(
-                    [split_offset],
-                    repeat_ties=repeat_ties,
-                    )
+                    [split_offset], repeat_ties=repeat_ties
+                )
                 logical_ties = [LogicalTie(shard) for shard in shards]
                 for logical_tie in logical_ties:
                     recurse(
@@ -857,11 +851,12 @@ class Meter(object):
                         boundary_offsets=boundary_offsets,
                         depth=depth,
                         logical_tie=logical_tie,
-                        )
+                    )
             else:
-                #print('ACCEPTABLE:', logical_tie, logical_tie_start_offset, logical_tie_stop_offset)
-                #print()
+                # print('ACCEPTABLE:', logical_tie, logical_tie_start_offset, logical_tie_stop_offset)
+                # print()
                 logical_tie[:]._fuse()
+
         assert isinstance(components, Selection), repr(components)
         if not isinstance(meter, Meter):
             meter = Meter(meter)
@@ -904,25 +899,27 @@ class Meter(object):
         items = tuple(iterator)
         for item in items:
             if isinstance(item, LogicalTie):
-                #print('RECURSING:', item)
+                # print('RECURSING:', item)
                 recurse(
                     boundary_depth=boundary_depth,
                     boundary_offsets=boundary_offsets,
                     depth=0,
                     logical_tie=item,
-                    )
+                )
             elif isinstance(item, Tuplet) and not rewrite_tuplets:
                 pass
             else:
-                #print('DESCENDING:', item)
+                # print('DESCENDING:', item)
                 preprolated_duration = sum(
                     [_._get_preprolated_duration() for _ in item]
-                    )
+                )
                 if preprolated_duration.numerator == 1:
                     preprolated_duration = mathtools.NonreducedFraction(
-                        preprolated_duration)
+                        preprolated_duration
+                    )
                     preprolated_duration = preprolated_duration.with_denominator(
-                        preprolated_duration.denominator * 4)
+                        preprolated_duration.denominator * 4
+                    )
                 sub_metrical_hierarchy = Meter(preprolated_duration)
                 sub_boundary_depth = 1
                 if boundary_depth is None:
@@ -932,7 +929,7 @@ class Meter(object):
                     sub_metrical_hierarchy,
                     boundary_depth=sub_boundary_depth,
                     maximum_dot_count=maximum_dot_count,
-                    )
+                )
 
     ### PUBLIC METHODS ###
 
@@ -944,7 +941,7 @@ class Meter(object):
         discard_final_orphan_downbeat=True,
         maximum_run_length=None,
         starting_offset=None,
-        ):
+    ):
         """
         Finds the best-matching sequence of meters for the offsets
         contained in ``argument``.
@@ -993,15 +990,13 @@ class Meter(object):
             maximum_run_length=maximum_run_length,
             meters=meters,
             offset_counter=argument,
-            )
+        )
         meters = session()
         return meters
 
     def generate_offset_kernel_to_denominator(
-        self,
-        denominator,
-        normalize=True,
-        ):
+        self, denominator, normalize=True
+    ):
         r"""
         Generates a dictionary of all offsets in a meter up
         to ``denominator``.
@@ -1032,7 +1027,8 @@ class Meter(object):
         Returns dictionary.
         """
         assert mathtools.is_positive_integer_power_of_two(
-            denominator // self.denominator)
+            denominator // self.denominator
+        )
         inventory = list(self.depthwise_offset_inventory)
         old_flag_count = Duration(1, self.denominator).flag_count
         new_flag_count = Duration(1, denominator).flag_count
@@ -1157,7 +1153,9 @@ class Meter(object):
         inventory = []
         all_offsets = set()
         all_offsets.add(Offset(self.numerator, self.denominator))
-        for depth, nodes in sorted(self.root_node._depthwise_inventory.items()):
+        for depth, nodes in sorted(
+            self.root_node._depthwise_inventory.items()
+        ):
             for node in nodes:
                 all_offsets.add(Offset(node.start_offset))
             inventory.append(tuple(sorted(all_offsets)))
@@ -1192,7 +1190,7 @@ class Meter(object):
         """
         return abjad_indicators.TimeSignature(
             self.root_node.preprolated_duration
-            )
+        )
 
     @property
     def is_compound(self):
@@ -1717,10 +1715,7 @@ class MeterList(TypedList):
         offsets = mathtools.cumulative_sums(durations, start=0)
         timespans = TimespanList()
         for one, two in Sequence(offsets).nwise():
-            timespan = Timespan(
-                start_offset=one,
-                stop_offset=two,
-                )
+            timespan = Timespan(start_offset=one, stop_offset=two)
             timespans.append(timespan)
         if range_ is not None:
             minimum, maximum = range_
@@ -1729,9 +1724,9 @@ class MeterList(TypedList):
         minimum = float(Offset(minimum))
         maximum = float(Offset(maximum))
         if scale is None:
-            scale = 1.
+            scale = 1.0
         assert 0 < scale
-        postscript_scale = 125. / (maximum - minimum)
+        postscript_scale = 125.0 / (maximum - minimum)
         postscript_scale *= float(scale)
         postscript_x_offset = (minimum * postscript_scale) - 1
         timespan_markup = timespans._make_timespan_list_markup(
@@ -1739,7 +1734,7 @@ class MeterList(TypedList):
             postscript_x_offset,
             postscript_scale,
             draw_offsets=False,
-            )
+        )
         ps = markups.Postscript()
         rational_x_offset = Offset(0)
         for meter in self:
@@ -1762,7 +1757,7 @@ class MeterList(TypedList):
             numerator, denominator = meter.numerator, meter.denominator
             fraction = markups.Markup.fraction(numerator, denominator)
             fraction = fraction.center_align().fontsize(-3).sans()
-            x_translation = (float(offset) * postscript_scale)
+            x_translation = float(offset) * postscript_scale
             x_translation -= postscript_x_offset
             fraction = fraction.translate((x_translation, 1))
             fraction_markups.append(fraction)
@@ -1816,10 +1811,7 @@ class MetricAccentKernel(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_kernel',
-        '_offsets',
-        )
+    __slots__ = ("_kernel", "_offsets")
 
     ### INITIALIZER ###
 
@@ -1835,7 +1827,7 @@ class MetricAccentKernel(object):
     ### SPECIAL METHODS ###
 
     def __call__(self, argument):
-        """
+        r"""
         Calls metrical accent kernal on ``argument``.
 
         >>> upper_staff = abjad.Staff("c'8 d'4. e'8 f'4.")
@@ -1866,11 +1858,11 @@ class MetricAccentKernel(object):
         """
         return super().__eq__(argument)
 
-    def __format__(self, format_specification='') -> str:
+    def __format__(self, format_specification="") -> str:
         """
         Formats object.
         """
-        if format_specification in ('', 'storage'):
+        if format_specification in ("", "storage"):
             return StorageFormatManager(self).get_storage_format()
         return str(self)
 
@@ -1898,7 +1890,7 @@ class MetricAccentKernel(object):
             repr_is_indented=True,
             storage_format_args_values=[self.kernel],
             storage_format_kwargs_names=[],
-            )
+        )
 
     ### PUBLIC METHODS ###
 
@@ -1968,6 +1960,7 @@ class MetricAccentKernel(object):
         Returns counter.
         """
         from abjad import meter
+
         return meter.OffsetCounter(argument)
 
     @staticmethod
@@ -1980,9 +1973,8 @@ class MetricAccentKernel(object):
         if not isinstance(meter, Meter):
             meter = Meter(meter)
         return meter.generate_offset_kernel_to_denominator(
-            denominator=denominator,
-            normalize=normalize,
-            )
+            denominator=denominator, normalize=normalize
+        )
 
     ### PUBLIC PROPERTIES ###
 
@@ -2049,7 +2041,7 @@ class OffsetCounter(TypedCounter):
                     self[item.start_offset] += 1
                     self[item.stop_offset] += 1
                 except Exception:
-                    if hasattr(item, '_get_timespan'):
+                    if hasattr(item, "_get_timespan"):
                         self[inspect(item).timespan().start_offset] += 1
                         self[inspect(item).timespan().stop_offset] += 1
                     else:
@@ -2087,16 +2079,16 @@ class OffsetCounter(TypedCounter):
         minimum = float(Offset(minimum))
         maximum = float(Offset(maximum))
         if scale is None:
-            scale = 1.
+            scale = 1.0
         assert 0 < scale
-        postscript_scale = 150. / (maximum - minimum)
+        postscript_scale = 150.0 / (maximum - minimum)
         postscript_scale *= float(scale)
         postscript_x_offset = (minimum * postscript_scale) - 1
         ps = markups.Postscript()
         ps = ps.setlinewidth(0.2)
         ps = ps.setdash([2, 1])
         for offset, count in sorted(self.items()):
-            offset = (float(offset) * postscript_scale)
+            offset = float(offset) * postscript_scale
             offset -= postscript_x_offset
             ps = ps.moveto(offset, -1)
             ps = ps.rlineto(0, (float(count) * -3) + 1)
@@ -2108,7 +2100,7 @@ class OffsetCounter(TypedCounter):
             numerator, denominator = offset.numerator, offset.denominator
             fraction = markups.Markup.fraction(numerator, denominator)
             fraction = fraction.center_align().fontsize(-3).sans()
-            x_translation = (float(offset) * postscript_scale)
+            x_translation = float(offset) * postscript_scale
             x_translation -= postscript_x_offset
             fraction = fraction.translate((x_translation, 1))
             pieces.append(fraction)
@@ -2132,20 +2124,17 @@ class _MeterFittingSession(object):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_cached_offset_counters',
-        '_kernel_denominator',
-        '_kernels',
-        '_longest_kernel',
-        '_maximum_run_length',
-        '_meters',
-        '_offset_counter',
-        '_ordered_offsets',
-        )
+        "_cached_offset_counters",
+        "_kernel_denominator",
+        "_kernels",
+        "_longest_kernel",
+        "_maximum_run_length",
+        "_meters",
+        "_offset_counter",
+        "_ordered_offsets",
+    )
 
-    KernelScore = collections.namedtuple(
-        'KernelScore',
-        ('kernel', 'score'),
-        )
+    KernelScore = collections.namedtuple("KernelScore", ("kernel", "score"))
 
     ### INITIALIZER ###
 
@@ -2155,7 +2144,7 @@ class _MeterFittingSession(object):
         maximum_run_length=None,
         meters=None,
         offset_counter=None,
-        ):
+    ):
         self._cached_offset_counters = {}
         if maximum_run_length is not None:
             maximum_run_length = int(maximum_run_length)
@@ -2163,7 +2152,8 @@ class _MeterFittingSession(object):
         self._maximum_run_length = maximum_run_length
         if offset_counter:
             self._offset_counter = MetricAccentKernel.count_offsets(
-                offset_counter)
+                offset_counter
+            )
         else:
             self._offset_counter = {}
         self._ordered_offsets = tuple(sorted(self.offset_counter))
@@ -2173,13 +2163,13 @@ class _MeterFittingSession(object):
         self._kernels = {}
         for meter in self._meters:
             kernel = meter.generate_offset_kernel_to_denominator(
-                self._kernel_denominator)
+                self._kernel_denominator
+            )
             self._kernels[kernel] = meter
         if self.kernels:
             self._longest_kernel = sorted(
-                self._kernels,
-                key=lambda _: _.duration,
-                )[-1]
+                self._kernels, key=lambda _: _.duration
+            )[-1]
         else:
             self._longest_kernel = None
 
@@ -2204,25 +2194,22 @@ class _MeterFittingSession(object):
             else:
                 for kernel in kernels:
                     if (
-                        self.maximum_run_length and
-                        1 < len(kernels) and
-                        self.maximum_run_length <= len(selected_kernels)
+                        self.maximum_run_length
+                        and 1 < len(kernels)
+                        and self.maximum_run_length <= len(selected_kernels)
                     ):
-                        last_n_kernels = selected_kernels[-self.maximum_run_length:]
+                        last_n_kernels = selected_kernels[
+                            -self.maximum_run_length :
+                        ]
                         if len(set(last_n_kernels)) == 1:
                             if kernel == last_n_kernels[-1]:
                                 continue
                     initial_score = kernel(offset_counter)
                     lookahead_score = self._get_lookahead_score(
-                        current_offset,
-                        kernel,
-                        kernels,
-                        )
+                        current_offset, kernel, kernels
+                    )
                     score = initial_score + lookahead_score
-                    kernel_score = self.KernelScore(
-                        kernel=kernel,
-                        score=score,
-                        )
+                    kernel_score = self.KernelScore(kernel=kernel, score=score)
                     kernel_scores.append(kernel_score)
                 kernel_scores.sort(key=lambda kernel_score: kernel_score.score)
                 winning_kernel = kernel_scores[-1].kernel
@@ -2241,11 +2228,10 @@ class _MeterFittingSession(object):
         lookahead_scores = []
         lookahead_offset = current_offset + kernel.duration
         lookahead_offset_counter = self._get_offset_counter_at(
-            lookahead_offset)
+            lookahead_offset
+        )
         for lookahead_kernel in kernels:
-            lookahead_scores.append(
-                lookahead_kernel(lookahead_offset_counter)
-                )
+            lookahead_scores.append(lookahead_kernel(lookahead_offset_counter))
         lookahead_score = sum(lookahead_scores)  # / len(lookahead_scores)
         return lookahead_score
 
@@ -2390,17 +2376,17 @@ class _MeterManager(object):
         """
         Is true if logical tie is acceptable.
         """
-        #print '\tTESTING ACCEPTABILITY'
+        # print '\tTESTING ACCEPTABILITY'
         if not logical_tie_duration.is_assignable:
             return False
         if (
-            maximum_dot_count is not None and
-            maximum_dot_count < logical_tie_duration.dot_count
+            maximum_dot_count is not None
+            and maximum_dot_count < logical_tie_duration.dot_count
         ):
             return False
         if (
-            not logical_tie_starts_in_offsets and
-            not logical_tie_stops_in_offsets
+            not logical_tie_starts_in_offsets
+            and not logical_tie_stops_in_offsets
         ):
             return False
         return True
@@ -2411,22 +2397,22 @@ class _MeterManager(object):
         boundary_offsets=None,
         logical_tie_start_offset=None,
         logical_tie_stop_offset=None,
-        ):
+    ):
         """
         Is true if logical tie crosses meter boundaries.
         """
-        #print '\tTESTING BOUNDARY CROSSINGS'
+        # print '\tTESTING BOUNDARY CROSSINGS'
         if boundary_depth is None:
             return False
         if not any(
             logical_tie_start_offset < _ < logical_tie_stop_offset
             for _ in boundary_offsets
-            ):
+        ):
             return False
         if (
-            logical_tie_start_offset in boundary_offsets and
-            logical_tie_stop_offset in boundary_offsets
-            ):
+            logical_tie_start_offset in boundary_offsets
+            and logical_tie_stop_offset in boundary_offsets
+        ):
             return False
         return True
 
@@ -2531,10 +2517,10 @@ class _MeterManager(object):
                 if current_leaf_group is None:
                     current_leaf_group = []
                 elif (
-                    current_leaf_group_is_silent or
-                    this_tie is None or
-                    last_tie != this_tie
-                    ):
+                    current_leaf_group_is_silent
+                    or this_tie is None
+                    or last_tie != this_tie
+                ):
                     yield LogicalTie(current_leaf_group)
                     current_leaf_group = []
                 current_leaf_group_is_silent = False
@@ -2556,6 +2542,6 @@ class _MeterManager(object):
                     last_tie = None
                 yield component
             else:
-                raise Exception(f'unhandled component: {component!r}.')
+                raise Exception(f"unhandled component: {component!r}.")
         if current_leaf_group is not None:
             yield LogicalTie(current_leaf_group)

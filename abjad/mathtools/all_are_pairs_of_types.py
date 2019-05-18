@@ -25,10 +25,12 @@ def all_are_pairs_of_types(argument, first_type, second_type):
     """
     try:
         return all(
-            (len(_) == 2 and
-            isinstance(_[0], first_type) and
-            isinstance(_[1], second_type))
-            for _ in argument
+            (
+                len(_) == 2
+                and isinstance(_[0], first_type)
+                and isinstance(_[1], second_type)
             )
+            for _ in argument
+        )
     except (KeyError, TypeError):
         return False

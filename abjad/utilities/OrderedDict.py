@@ -2,7 +2,7 @@ import collections
 from .TypedCollection import TypedCollection
 
 
-class OrderedDict(TypedCollection, collections.MutableMapping):
+class OrderedDict(TypedCollection, collections.abc.MutableMapping):
     r"""
     Ordered dictionary.
 
@@ -104,13 +104,10 @@ class OrderedDict(TypedCollection, collections.MutableMapping):
     ### INITIALIZER ###
 
     def __init__(self, items=None, item_class=None):
-        TypedCollection.__init__(
-            self,
-            item_class=item_class,
-            )
+        TypedCollection.__init__(self, item_class=item_class)
         if isinstance(items, dict):
             items = sorted(items.items())
-        elif isinstance(items, collections.Mapping):
+        elif isinstance(items, collections.abc.Mapping):
             items = list(items.items())
         items = items or []
         the_items = []
@@ -148,7 +145,7 @@ class OrderedDict(TypedCollection, collections.MutableMapping):
 
         Returns none.
         """
-        del(self._collection[i])
+        del self._collection[i]
 
     def __ge__(self, argument):
         """
@@ -217,17 +214,18 @@ class OrderedDict(TypedCollection, collections.MutableMapping):
 
     def _get_format_specification(self):
         import abjad
+
         agent = abjad.StorageFormatManager(self)
         names = list(agent.signature_keyword_names)
-        if 'items' in names:
-            names.remove('items')
+        if "items" in names:
+            names.remove("items")
         values = [list(self._collection.items())]
         return abjad.FormatSpecification(
             self,
             repr_is_indented=False,
             storage_format_args_values=values,
             storage_format_kwargs_names=names,
-            )
+        )
 
     ### PUBLIC METHODS ###
 
@@ -247,10 +245,7 @@ class OrderedDict(TypedCollection, collections.MutableMapping):
         """
         ordered_dictionary = self._collection.copy()
         items = list(ordered_dictionary.items())
-        return type(self)(
-            item_class=self.item_class,
-            items=items,
-            )
+        return type(self)(item_class=self.item_class, items=items)
 
     def get(self, i, default=None):
         """

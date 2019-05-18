@@ -68,10 +68,7 @@ class NumberedPitchClass(PitchClass):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_arrow',
-        '_number',
-        )
+    __slots__ = ("_arrow", "_number")
 
     ### INITIALIZER ###
 
@@ -108,6 +105,7 @@ class NumberedPitchClass(PitchClass):
         Returns new numbered pitch-class.
         """
         import abjad
+
         interval = abjad.NumberedInterval(argument)
         return type(self)(self.number + interval.number % 12)
 
@@ -162,7 +160,7 @@ class NumberedPitchClass(PitchClass):
         """
         return super().__eq__(argument)
 
-    def __format__(self, format_specification=''):
+    def __format__(self, format_specification=""):
         """
         Formats numbered pitch-class.
 
@@ -209,7 +207,7 @@ class NumberedPitchClass(PitchClass):
         Raises type error when `argument` is not a numbered pitch-class.
         """
         if not isinstance(argument, type(self)):
-            message = 'can not compare numbered pitch-class to {!r}.'
+            message = "can not compare numbered pitch-class to {!r}."
             message = message.format(argument)
             raise TypeError(message)
         return self.number < argument.number
@@ -241,7 +239,7 @@ class NumberedPitchClass(PitchClass):
 
         Raises not implemented error.
         """
-        message = 'right-addition not defined on {}.'
+        message = "right-addition not defined on {}."
         message = message.format(type(self).__name__)
         raise NotImplementedError(message)
 
@@ -285,28 +283,32 @@ class NumberedPitchClass(PitchClass):
         Returns numbered inversion-equivalent interval-class.
         """
         import abjad
+
         if isinstance(argument, type(self)):
-            interval_class_number = abs(
-                self.number - argument.number
-                )
+            interval_class_number = abs(self.number - argument.number)
             if 6 < interval_class_number:
                 interval_class_number = 12 - interval_class_number
             return abjad.NumberedInversionEquivalentIntervalClass(
-                interval_class_number)
+                interval_class_number
+            )
         interval_class = abjad.NumberedInversionEquivalentIntervalClass(
-            argument)
+            argument
+        )
         return type(self)(self.number - interval_class.number % 12)
 
     ### PRIVATE METHODS ###
 
     def _apply_accidental(self, accidental=None):
         import abjad
+
         accidental = abjad.Accidental(accidental)
         semitones = self.number + accidental.semitones
         return type(self)(semitones)
 
     def _from_named_parts(self, dpc_number, alteration):
-        number = constants._diatonic_pc_number_to_pitch_class_number[dpc_number]
+        number = constants._diatonic_pc_number_to_pitch_class_number[
+            dpc_number
+        ]
         number += alteration
         self._from_number(number)
 
@@ -316,11 +318,15 @@ class NumberedPitchClass(PitchClass):
 
     def _from_pitch_or_pitch_class(self, pitch_or_pitch_class):
         self._arrow = pitch_or_pitch_class.arrow
-        self._number = self._to_nearest_quarter_tone(float(pitch_or_pitch_class))
+        self._number = self._to_nearest_quarter_tone(
+            float(pitch_or_pitch_class)
+        )
 
     def _get_alteration(self):
         dpc_number = self._get_diatonic_pc_number()
-        pc_number = constants._diatonic_pc_number_to_pitch_class_number[dpc_number]
+        pc_number = constants._diatonic_pc_number_to_pitch_class_number[
+            dpc_number
+        ]
         return float(self) - pc_number
 
     def _get_diatonic_pc_name(self):
@@ -328,7 +334,8 @@ class NumberedPitchClass(PitchClass):
 
     def _get_diatonic_pc_number(self):
         return constants._diatonic_pc_name_to_diatonic_pc_number[
-            self._get_diatonic_pc_name()]
+            self._get_diatonic_pc_name()
+        ]
 
     def _get_format_specification(self):
         values = [self.number]
@@ -338,11 +345,12 @@ class NumberedPitchClass(PitchClass):
             storage_format_is_indented=False,
             storage_format_args_values=values,
             storage_format_kwargs_names=[],
-            )
+        )
 
     def _get_lilypond_format(self):
         import abjad
-        return format(abjad.NamedPitchClass(self), 'lilypond')
+
+        return format(abjad.NamedPitchClass(self), "lilypond")
 
     ### PUBLIC PROPERTIES ###
 
@@ -359,6 +367,7 @@ class NumberedPitchClass(PitchClass):
         Returns accidental.
         """
         import abjad
+
         return abjad.NamedPitch(self.number).accidental
 
     @property
@@ -414,10 +423,9 @@ class NumberedPitchClass(PitchClass):
 
         Returns string.
         """
-        return '{}{}'.format(
-            self._get_diatonic_pc_name().upper(),
-            self.accidental.symbol,
-            )
+        return "{}{}".format(
+            self._get_diatonic_pc_name().upper(), self.accidental.symbol
+        )
 
     ### PUBLIC METHODS ###
 
@@ -449,7 +457,8 @@ class NumberedPitchClass(PitchClass):
         Returns new numbered pitch-class.
         """
         import abjad
-        axis = axis or abjad.NumberedPitch('c')
+
+        axis = axis or abjad.NumberedPitch("c")
         axis = abjad.NumberedPitch(axis)
         this = abjad.NumberedPitch(self)
         interval = this - axis

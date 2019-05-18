@@ -8,18 +8,18 @@ class StorageFormatSpecification(object):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Storage formatting'
+    __documentation_section__ = "Storage formatting"
 
     __slots__ = (
-        '_repr_text',
-        '_include_abjad_namespace',
-        '_instance',
-        '_is_bracketed',
-        '_is_indented',
-        '_keyword_argument_names',
-        '_positional_argument_values',
-        '_storage_format_text',
-        )
+        "_repr_text",
+        "_include_abjad_namespace",
+        "_instance",
+        "_is_bracketed",
+        "_is_indented",
+        "_keyword_argument_names",
+        "_positional_argument_values",
+        "_storage_format_text",
+    )
 
     ### INITIALIZER ###
 
@@ -33,7 +33,7 @@ class StorageFormatSpecification(object):
         keyword_argument_names=None,
         positional_argument_values=None,
         storage_format_text=None,
-        ):
+    ):
         self._instance = instance
 
         if repr_text is not None:

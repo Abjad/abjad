@@ -22,12 +22,11 @@ def test_Leaf__split_by_durations_01():
             ]
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     new_leaves = staff[1]._split_by_durations(
-        [abjad.Duration(1, 32)],
-        tie_split_notes=False,
-        )
+        [abjad.Duration(1, 32)], tie_split_notes=False
+    )
 
     assert format(staff) == abjad.String.normalize(
         r"""
@@ -41,7 +40,7 @@ def test_Leaf__split_by_durations_01():
             ]
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     assert abjad.inspect(staff).wellformed()
 
@@ -66,12 +65,11 @@ def test_Leaf__split_by_durations_02():
             ]
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     new_leaves = staff[1]._split_by_durations(
-        [abjad.Duration(1, 32)],
-        tie_split_notes=True,
-        )
+        [abjad.Duration(1, 32)], tie_split_notes=True
+    )
 
     assert format(staff) == abjad.String.normalize(
         r"""
@@ -86,7 +84,7 @@ def test_Leaf__split_by_durations_02():
             ]
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     assert abjad.inspect(staff).wellformed()
 
@@ -101,9 +99,8 @@ def test_Leaf__split_by_durations_03():
     staff = abjad.Staff("c'8 [ d'8 e'8 ]")
 
     new_leaves = staff[1]._split_by_durations(
-        [abjad.Duration(1, 24)],
-        tie_split_notes=False,
-        )
+        [abjad.Duration(1, 24)], tie_split_notes=False
+    )
 
     assert format(staff) == abjad.String.normalize(
         r"""
@@ -119,7 +116,7 @@ def test_Leaf__split_by_durations_03():
             ]
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     assert abjad.inspect(staff).wellformed()
 
@@ -156,7 +153,7 @@ def test_Leaf__split_by_durations_04():
             }
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     assert abjad.inspect(staff).wellformed()
 
@@ -184,12 +181,11 @@ def test_Leaf__split_by_durations_05():
             }
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     new_leaves = leaves[1]._split_by_durations(
-        [abjad.Duration(1, 24)],
-        tie_split_notes=False,
-        )
+        [abjad.Duration(1, 24)], tie_split_notes=False
+    )
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -206,7 +202,7 @@ def test_Leaf__split_by_durations_05():
             }
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     assert abjad.inspect(voice).wellformed()
 
@@ -232,9 +228,8 @@ def test_Leaf__split_by_durations_07():
     note = abjad.Note("c'4")
 
     new_leaves = note._split_by_durations(
-        [abjad.Duration(1, 8)],
-        tie_split_notes=False,
-        )
+        [abjad.Duration(1, 8)], tie_split_notes=False
+    )
 
     assert isinstance(new_leaves, abjad.Selection)
     assert all(isinstance(_, abjad.Note) for _ in new_leaves)
@@ -260,9 +255,8 @@ def test_Leaf__split_by_durations_09():
     note = abjad.Note("c'4")
 
     new_leaves = note._split_by_durations(
-        [abjad.Duration(5, 32)],
-        tie_split_notes=False,
-        )
+        [abjad.Duration(5, 32)], tie_split_notes=False
+    )
 
     assert isinstance(new_leaves, abjad.Selection)
     assert all(isinstance(_, abjad.Note) for _ in new_leaves)
@@ -286,9 +280,8 @@ def test_Leaf__split_by_durations_11():
     abjad.beam(staff[:])
 
     new_leaves = staff[0]._split_by_durations(
-        [abjad.Duration(1, 16)],
-        tie_split_notes=False,
-        )
+        [abjad.Duration(1, 16)], tie_split_notes=False
+    )
 
     assert len(staff) == 5
     assert abjad.inspect(staff).wellformed()
@@ -316,7 +309,7 @@ def test_Leaf__split_by_durations_12():
             c'16.
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     assert abjad.inspect(staff).wellformed()
 
@@ -346,7 +339,7 @@ def test_Leaf__split_by_durations_13():
             }
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     assert abjad.inspect(new_leaves[0]).after_grace_container() is None
     assert len(abjad.inspect(new_leaves[1]).after_grace_container()) == 1
@@ -380,7 +373,7 @@ def test_Leaf__split_by_durations_14():
             }
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     abjad.inspect(staff).wellformed()
 
@@ -409,7 +402,7 @@ def test_Leaf__split_by_durations_15():
             c'8.
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     abjad.inspect(staff).wellformed()
 
@@ -444,12 +437,11 @@ def test_Leaf__split_by_durations_16():
             }
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     new_leaves = leaves[0]._split_by_durations(
-        [abjad.Duration(1, 32)],
-        tie_split_notes=False,
-        )
+        [abjad.Duration(1, 32)], tie_split_notes=False
+    )
 
     assert format(staff) == abjad.String.normalize(
         r"""
@@ -472,7 +464,7 @@ def test_Leaf__split_by_durations_16():
             }
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     assert abjad.inspect(staff).wellformed()
 
@@ -511,12 +503,11 @@ def test_Leaf__split_by_durations_17():
             }
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     new_leaves = leaves[0]._split_by_durations(
-        [abjad.Duration(1, 32)],
-        tie_split_notes=True,
-        )
+        [abjad.Duration(1, 32)], tie_split_notes=True
+    )
 
     assert format(staff) == abjad.String.normalize(
         r"""
@@ -540,6 +531,6 @@ def test_Leaf__split_by_durations_17():
             }
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     assert abjad.inspect(staff).wellformed()

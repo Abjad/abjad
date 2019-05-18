@@ -21,9 +21,9 @@ class LilyPondGrobNameManager(LilyPondNameManager):
 
     ### SPECIAL METHODS ###
 
-    def __getattr__(self, name) -> typing.Union[
-        LilyPondNameManager, 'LilyPondGrobNameManager'
-        ]:
+    def __getattr__(
+        self, name
+    ) -> typing.Union[LilyPondNameManager, "LilyPondGrobNameManager"]:
         r"""
         Gets LilyPondNameManager (or LilyPondGrobNameManager) keyed to 
         ``name``.
@@ -55,20 +55,21 @@ class LilyPondGrobNameManager(LilyPondNameManager):
         """
         from abjad.ly import contexts
         from abjad.ly import grob_interfaces
+
         camel_name = String(name).to_upper_camel_case()
-        if name.startswith('_'):
+        if name.startswith("_"):
             try:
                 return vars(self)[name]
             except KeyError:
                 type_name = type(self).__name__
-                message = '{type_name!r} object has no attribute: {name!r}.'
+                message = "{type_name!r} object has no attribute: {name!r}."
                 raise AttributeError(message)
         elif camel_name in contexts:
             try:
-                return vars(self)['_' + name]
+                return vars(self)["_" + name]
             except KeyError:
                 context = LilyPondGrobNameManager()
-                vars(self)['_' + name] = context
+                vars(self)["_" + name] = context
                 return context
         elif camel_name in grob_interfaces:
             try:
@@ -81,7 +82,7 @@ class LilyPondGrobNameManager(LilyPondNameManager):
                 return vars(self)[name]
             except KeyError:
                 type_name = type(self).__name__
-                message = f'{type_name!r} object has no attribute: {name!r}.'
+                message = f"{type_name!r} object has no attribute: {name!r}."
                 raise AttributeError(message)
 
     def __setattr__(self, attribute, value) -> None:
@@ -103,22 +104,17 @@ class LilyPondGrobNameManager(LilyPondNameManager):
                     triple = (grob, attribute, value)
                     result.append(triple)
             else:
-                context, context_proxy = name.strip('_'), value
+                context, context_proxy = name.strip("_"), value
                 for grob, grob_proxy in vars(context_proxy).items():
                     pairs = iter(vars(grob_proxy).items())
                     for attribute, value in pairs:
-                        quadruple = (
-                            context,
-                            grob,
-                            attribute,
-                            value,
-                            )
+                        quadruple = (context, grob, attribute, value)
                         result.append(quadruple)
         return tuple(result)
 
     def _list_format_contributions(self, contribution_type, once=False):
         manager = LilyPondFormatManager
-        assert contribution_type in ('override', 'revert')
+        assert contribution_type in ("override", "revert")
         result = []
         for attribute_tuple in self._get_attribute_tuples():
             if len(attribute_tuple) == 3:
@@ -132,23 +128,17 @@ class LilyPondGrobNameManager(LilyPondNameManager):
                 attribute = attribute_tuple[2]
                 value = attribute_tuple[3]
             else:
-                message = 'invalid attribute tuple: {attribute_tuple!r}.'
+                message = "invalid attribute tuple: {attribute_tuple!r}."
                 raise ValueError(message)
-            if contribution_type == 'override':
+            if contribution_type == "override":
                 override_string = manager.make_lilypond_override_string(
-                    grob,
-                    attribute,
-                    value,
-                    context=context,
-                    once=once,
-                    )
+                    grob, attribute, value, context=context, once=once
+                )
                 result.append(override_string)
             else:
                 revert_string = manager.make_lilypond_revert_string(
-                    grob,
-                    attribute,
-                    context=context,
-                    )
+                    grob, attribute, context=context
+                )
                 result.append(revert_string)
         result.sort()
         return result

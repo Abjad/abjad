@@ -10,7 +10,7 @@ from .ScoreTemplate import ScoreTemplate
 
 
 class TwoStaffPianoScoreTemplate(ScoreTemplate):
-    """
+    r"""
     Two-staff piano score template.
 
     ..  container:: example
@@ -55,22 +55,18 @@ class TwoStaffPianoScoreTemplate(ScoreTemplate):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 
     def __init__(self):
         super().__init__()
-        self.voice_abbreviations.update({
-            'rh': 'RHVoice',
-            'lh': 'LHVoice',
-            })
+        self.voice_abbreviations.update({"rh": "RHVoice", "lh": "LHVoice"})
 
     ### SPECIAL METHODS ###
 
     def __call__(self) -> Score:
-        """
+        r"""
         Calls two-staff piano score template.
 
         ..  container:: example
@@ -128,54 +124,32 @@ class TwoStaffPianoScoreTemplate(ScoreTemplate):
             'PianoStaff'
 
         """
-        tag = 'abjad.TwoStaffPianoScoreTemplate.__call__'
+        tag = "abjad.TwoStaffPianoScoreTemplate.__call__"
         # GLOBAL CONTEXT
         global_context = self._make_global_context()
 
         # RH STAFF
-        rh_voice = Voice(
-            name='RH_Voice',
-            tag=tag,
-            )
-        rh_staff = Staff(
-            [rh_voice],
-            name='RH_Staff',
-            tag=tag,
-            )
+        rh_voice = Voice(name="RH_Voice", tag=tag)
+        rh_staff = Staff([rh_voice], name="RH_Staff", tag=tag)
 
         # LH STAFF
-        lh_voice = Voice(
-            name='LH_Voice',
-            tag=tag,
-            )
-        lh_staff = Staff(
-            [lh_voice],
-            name='LH_Staff',
-            tag=tag,
-            )
-        annotate(
-            lh_staff,
-            'default_clef',
-            Clef('bass'),
-            )
+        lh_voice = Voice(name="LH_Voice", tag=tag)
+        lh_staff = Staff([lh_voice], name="LH_Staff", tag=tag)
+        annotate(lh_staff, "default_clef", Clef("bass"))
 
         # PIANO STAFF
         staff_group = StaffGroup(
             [rh_staff, lh_staff],
-            lilypond_type='PianoStaff',
-            name='Piano_Staff',
+            lilypond_type="PianoStaff",
+            name="Piano_Staff",
             tag=tag,
-            )
-        annotate(
-            staff_group,
-            'default_instrument',
-            Piano(),
-            )
+        )
+        annotate(staff_group, "default_instrument", Piano())
 
         # SCORE
         score = Score(
             [global_context, staff_group],
-            name='Two_Staff_Piano_Score',
+            name="Two_Staff_Piano_Score",
             tag=tag,
-            )
+        )
         return score

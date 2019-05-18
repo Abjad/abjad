@@ -39,11 +39,11 @@ class LilyPondNameManager(object):
         """
         Gets interpreter representation of LilyPond name manager.
         """
-        body_string = ''
+        body_string = ""
         pairs = self._get_attribute_pairs()
         pairs = [str(_) for _ in pairs]
-        body_string = ', '.join(pairs)
-        return f'{type(self).__name__}({body_string})'
+        body_string = ", ".join(pairs)
+        return f"{type(self).__name__}({body_string})"
 
     def __setstate__(self, state) -> None:
         """

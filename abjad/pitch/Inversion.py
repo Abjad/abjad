@@ -21,14 +21,13 @@ class Inversion(object):
 
     ### CLASS VARIABLES ##
 
-    __slots__ = (
-        '_axis',
-        )
+    __slots__ = ("_axis",)
 
     ### INITIALIZER ###
 
     def __init__(self, *, axis=None):
         import abjad
+
         if axis is not None:
             axis = abjad.NamedPitch(axis)
         self._axis = axis
@@ -116,6 +115,7 @@ class Inversion(object):
 
         """
         import abjad
+
         return abjad.CompoundOperator._compose_operators(self, operator)
 
     def __call__(self, argument):
@@ -187,10 +187,10 @@ class Inversion(object):
 
         Returns new object with type equal to that of `argument`.
         """
-        if hasattr(argument, 'invert'):
+        if hasattr(argument, "invert"):
             result = argument.invert(axis=self.axis)
         else:
-            message = 'do not know how to invert: {!r}.'
+            message = "do not know how to invert: {!r}."
             message = message.format(argument)
             raise TypeError(message)
         return result
@@ -210,7 +210,7 @@ class Inversion(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     def __radd__(self, operator):
@@ -226,7 +226,7 @@ class Inversion(object):
 
         Raises not implemented error.
         """
-        message = 'right-addition not defined on {}.'
+        message = "right-addition not defined on {}."
         message = message.format(type(self).__name__)
         raise NotImplementedError(message)
 
@@ -252,17 +252,17 @@ class Inversion(object):
 
         """
         if self.axis is None:
-            return 'I'
-        string = 'I({})'
-        string = string.format(self.axis.get_name(locale='us'))
+            return "I"
+        string = "I({})"
+        string = string.format(self.axis.get_name(locale="us"))
         return string
 
     ### PRIVATE METHODS ###
 
     def _get_markup(self, direction=None):
-        markup = markups.Markup('I', direction=direction)
+        markup = markups.Markup("I", direction=direction)
         if self.axis is not None:
-            axis = self.axis.get_name(locale='us')
+            axis = self.axis.get_name(locale="us")
             subscript = markups.Markup(axis).sub()
             markup = markups.Markup.concat([markup, subscript])
         return markup

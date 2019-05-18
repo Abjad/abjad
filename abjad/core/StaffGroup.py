@@ -37,22 +37,22 @@ class StaffGroup(Context):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Contexts'
+    __documentation_section__ = "Contexts"
 
     __slots__ = ()
 
-    _default_lilypond_type = 'StaffGroup'
+    _default_lilypond_type = "StaffGroup"
 
     ### INITIALIZER ###
 
     def __init__(
         self,
         components=None,
-        lilypond_type: str = 'StaffGroup',
+        lilypond_type: str = "StaffGroup",
         is_simultaneous: bool = True,
         name: str = None,
         tag: str = None,
-        ) -> None:
+    ) -> None:
         Context.__init__(
             self,
             components=components,
@@ -60,4 +60,4 @@ class StaffGroup(Context):
             is_simultaneous=is_simultaneous,
             name=name,
             tag=tag,
-            )
+        )

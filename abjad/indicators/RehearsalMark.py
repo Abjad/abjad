@@ -44,13 +44,9 @@ class RehearsalMark(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_markup',
-        '_number',
-        '_tweaks',
-        )
+    __slots__ = ("_markup", "_number", "_tweaks")
 
-    _context = 'Score'
+    _context = "Score"
 
     ### INITIALIZER ###
 
@@ -60,7 +56,7 @@ class RehearsalMark(object):
         markup: typing.Union[Markup, str] = None,
         number: int = None,
         tweaks: LilyPondTweakManager = None,
-        ) -> None:
+    ) -> None:
         self._tweaks = None
         self._markup = markup
         self._number = number
@@ -137,7 +133,7 @@ class RehearsalMark(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     def __repr__(self) -> str:
@@ -179,11 +175,11 @@ class RehearsalMark(object):
 
     def _get_lilypond_format(self):
         if self.markup is not None:
-            result = rf'\mark {self.markup}'
+            result = rf"\mark {self.markup}"
         elif self.number is not None:
-            result = rf'\mark #{self.number}'
+            result = rf"\mark #{self.number}"
         else:
-            result = r'\mark \default'
+            result = r"\mark \default"
         return result
 
     def _get_lilypond_format_bundle(self, component=None):
@@ -284,7 +280,7 @@ class RehearsalMark(object):
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def from_string(string) -> 'RehearsalMark':
+    def from_string(string) -> "RehearsalMark":
         """
         Makes rehearsal mark from ``string``.
 
@@ -316,8 +312,8 @@ class RehearsalMark(object):
         """
         number = 0
         for place, letter in enumerate(reversed(string)):
-            integer = ord(letter) - ord('A') + 1
-            multiplier = 26 ** place 
+            integer = ord(letter) - ord("A") + 1
+            multiplier = 26 ** place
             integer *= multiplier
             number += integer
         return RehearsalMark(number=number)

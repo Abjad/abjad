@@ -438,18 +438,18 @@ class LeafMaker(object):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Makers'
+    __documentation_section__ = "Makers"
 
     __slots__ = (
-        '_increase_monotonic',
-        '_forbidden_note_duration',
-        '_forbidden_rest_duration',
-        '_metrical_hierarchy',
-        '_skips_instead_of_rests',
-        '_repeat_ties',
-        '_tag',
-        '_use_multimeasure_rests',
-        )
+        "_increase_monotonic",
+        "_forbidden_note_duration",
+        "_forbidden_rest_duration",
+        "_metrical_hierarchy",
+        "_skips_instead_of_rests",
+        "_repeat_ties",
+        "_tag",
+        "_use_multimeasure_rests",
+    )
 
     _publish_storage_format = True
 
@@ -466,7 +466,7 @@ class LeafMaker(object):
         repeat_ties: bool = None,
         tag: str = None,
         use_multimeasure_rests: bool = None,
-        ) -> None:
+    ) -> None:
         if increase_monotonic is not None:
             increase_monotonic = bool(increase_monotonic)
         self._increase_monotonic = increase_monotonic
@@ -503,6 +503,7 @@ class LeafMaker(object):
         Returns selection.
         """
         from .Tuplet import Tuplet
+
         if isinstance(pitches, str):
             pitches = pitches.split()
         if not isinstance(pitches, collections.abc.Iterable):
@@ -511,13 +512,13 @@ class LeafMaker(object):
             durations = [durations]
         nonreduced_fractions = Sequence(
             [NonreducedFraction(_) for _ in durations]
-            )
+        )
         size = max(len(nonreduced_fractions), len(pitches))
         nonreduced_fractions = nonreduced_fractions.repeat_to_length(size)
         pitches = Sequence(pitches).repeat_to_length(size)
         duration_groups = Duration._group_by_implied_prolation(
             nonreduced_fractions
-            )
+        )
         result: typing.List[typing.Union[Tuplet, Leaf]] = []
         for duration_group in duration_groups:
             # get factors in denominator of duration group other than 1, 2.
@@ -525,8 +526,8 @@ class LeafMaker(object):
             factors = set(factors)
             factors.discard(1)
             factors.discard(2)
-            current_pitches = pitches[0:len(duration_group)]
-            pitches = pitches[len(duration_group):]
+            current_pitches = pitches[0 : len(duration_group)]
+            pitches = pitches[len(duration_group) :]
             if len(factors) == 0:
                 for pitch, duration in zip(current_pitches, duration_group):
                     leaves = self._make_leaf_on_pitch(
@@ -539,19 +540,19 @@ class LeafMaker(object):
                         skips_instead_of_rests=self.skips_instead_of_rests,
                         tag=self.tag,
                         use_multimeasure_rests=self.use_multimeasure_rests,
-                        )
+                    )
                     result.extend(leaves)
             else:
                 # compute tuplet prolation
                 denominator = duration_group[0].denominator
                 numerator = mathtools.greatest_power_of_two_less_equal(
-                    denominator)
+                    denominator
+                )
                 multiplier = (numerator, denominator)
                 ratio = 1 / Duration(*multiplier)
                 duration_group = [
-                    ratio * Duration(duration)
-                    for duration in duration_group
-                    ]
+                    ratio * Duration(duration) for duration in duration_group
+                ]
                 # make tuplet leaves
                 tuplet_leaves: typing.List[Leaf] = []
                 for pitch, duration in zip(current_pitches, duration_group):
@@ -563,7 +564,7 @@ class LeafMaker(object):
                         skips_instead_of_rests=self.skips_instead_of_rests,
                         tag=self.tag,
                         use_multimeasure_rests=self.use_multimeasure_rests,
-                        )
+                    )
                     tuplet_leaves.extend(leaves)
                 tuplet = Tuplet(multiplier, tuplet_leaves)
                 result.append(tuplet)
@@ -583,14 +584,14 @@ class LeafMaker(object):
         repeat_ties=None,
         tag=None,
         use_multimeasure_rests=None,
-        ):
+    ):
         note_prototype = (
             numbers.Number,
             str,
             abjad_pitch.NamedPitch,
             abjad_pitch.NumberedPitch,
             abjad_pitch.PitchClass,
-            )
+        )
         chord_prototype = (tuple, list)
         rest_prototype = (type(None),)
         if isinstance(pitch, note_prototype):
@@ -602,7 +603,7 @@ class LeafMaker(object):
                 pitches=pitch,
                 repeat_ties=repeat_ties,
                 tag=tag,
-                )
+            )
         elif isinstance(pitch, chord_prototype):
             leaves = LeafMaker._make_tied_leaf(
                 Chord,
@@ -612,7 +613,7 @@ class LeafMaker(object):
                 pitches=pitch,
                 repeat_ties=repeat_ties,
                 tag=tag,
-                )
+            )
         elif isinstance(pitch, rest_prototype) and skips_instead_of_rests:
             leaves = LeafMaker._make_tied_leaf(
                 Skip,
@@ -622,7 +623,7 @@ class LeafMaker(object):
                 pitches=None,
                 repeat_ties=repeat_ties,
                 tag=tag,
-                )
+            )
         elif isinstance(pitch, rest_prototype) and not use_multimeasure_rests:
             leaves = LeafMaker._make_tied_leaf(
                 Rest,
@@ -632,15 +633,13 @@ class LeafMaker(object):
                 pitches=None,
                 repeat_ties=repeat_ties,
                 tag=tag,
-                )
+            )
         elif isinstance(pitch, rest_prototype) and use_multimeasure_rests:
             multimeasure_rest = MultimeasureRest((1), tag=tag)
             multimeasure_rest.multiplier = duration
-            leaves = (
-                multimeasure_rest,
-                )
+            leaves = (multimeasure_rest,)
         else:
-            raise ValueError(f'unknown pitch: {pitch!r}.')
+            raise ValueError(f"unknown pitch: {pitch!r}.")
         return leaves
 
     @staticmethod
@@ -654,22 +653,24 @@ class LeafMaker(object):
         tag=None,
         tie_parts=True,
         repeat_ties=False,
-        ):
+    ):
         from abjad.spanners import tie as abjad_tie
+
         duration = Duration(duration)
         if forbidden_duration is not None:
             assert forbidden_duration.is_assignable
             assert forbidden_duration.numerator == 1
         # find preferred numerator of written durations if necessary
-        if (forbidden_duration is not None and forbidden_duration <= duration):
+        if forbidden_duration is not None and forbidden_duration <= duration:
             denominators = [
                 2 * forbidden_duration.denominator,
                 duration.denominator,
-                ]
+            ]
             denominator = mathtools.least_common_multiple(*denominators)
             forbidden_duration = NonreducedFraction(forbidden_duration)
             forbidden_duration = forbidden_duration.with_denominator(
-                denominator)
+                denominator
+            )
             duration = NonreducedFraction(duration)
             duration = duration.with_denominator(denominator)
             forbidden_numerator = forbidden_duration.numerator
@@ -678,14 +679,14 @@ class LeafMaker(object):
         # make written duration numerators
         numerators = []
         parts = mathtools.partition_integer_into_canonic_parts(
-            duration.numerator)
-        if (forbidden_duration is not None and forbidden_duration <= duration):
+            duration.numerator
+        )
+        if forbidden_duration is not None and forbidden_duration <= duration:
             for part in parts:
                 if forbidden_numerator <= part:
                     better_parts = LeafMaker._partition_less_than_double(
-                        part,
-                        preferred_numerator,
-                        )
+                        part, preferred_numerator
+                    )
                     numerators.extend(better_parts)
                 else:
                     numerators.append(part)
@@ -697,14 +698,11 @@ class LeafMaker(object):
         # make one leaf per written duration
         result = []
         for numerator in numerators:
-            written_duration = Duration(
-                numerator,
-                duration.denominator,
-                )
+            written_duration = Duration(numerator, duration.denominator)
             if pitches is not None:
                 arguments = (pitches, written_duration)
             else:
-                arguments = (written_duration, )
+                arguments = (written_duration,)
             result.append(class_(*arguments, multiplier=multiplier, tag=tag))
         result = Selection(result)
         # tie if required

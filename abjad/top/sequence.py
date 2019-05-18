@@ -55,6 +55,7 @@ def sequence(items=None, **keywords):
     Returns sequence expression when ``items`` is none.
     """
     import abjad
+
     if items is not None:
         return abjad.Sequence(items=items, **keywords)
     else:

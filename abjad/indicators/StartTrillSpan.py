@@ -43,16 +43,11 @@ class StartTrillSpan(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_interval',
-        '_left_broken',
-        '_pitch',
-        '_tweaks',
-        )
+    __slots__ = ("_interval", "_left_broken", "_pitch", "_tweaks")
 
-    _context = 'Voice'
+    _context = "Voice"
 
-    _parameter = 'TRILL'
+    _parameter = "TRILL"
 
     _persistent = True
 
@@ -66,7 +61,7 @@ class StartTrillSpan(object):
         interval: typing.Union[str, NamedInterval] = None,
         pitch: typing.Union[str, NamedPitch] = None,
         tweaks: LilyPondTweakManager = None,
-        ) -> None:
+    ) -> None:
         if interval is not None:
             interval = NamedInterval(interval)
         self._interval = interval
@@ -94,9 +89,9 @@ class StartTrillSpan(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
-    
+
     def __repr__(self) -> str:
         """
         Gets interpreter representation.
@@ -110,14 +105,14 @@ class StartTrillSpan(object):
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions()
             bundle.after.spanner_starts.extend(tweaks)
-        string = r'\startTrillSpan'
+        string = r"\startTrillSpan"
         if self.interval or self.pitch:
-            bundle.opening.spanners.append(r'\pitchedTrill')
+            bundle.opening.spanners.append(r"\pitchedTrill")
             if self.pitch:
                 pitch = self.pitch
             else:
                 pitch = component.written_pitch + self.interval
-            string = string + f' {pitch!s}'
+            string = string + f" {pitch!s}"
         bundle.after.spanner_starts.append(string)
         return bundle
 

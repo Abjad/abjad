@@ -113,12 +113,9 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Time relations'
+    __documentation_section__ = "Time relations"
 
-    __slots__ = (
-        '_timespan_1',
-        '_timespan_2',
-        )
+    __slots__ = ("_timespan_1", "_timespan_2")
 
     _publish_storage_format = True
 
@@ -210,18 +207,22 @@ class TimespanTimespanTimeRelation(TimeRelation):
         Otherwise return boolean.
         """
         import abjad
+
         timespan_1 = timespan_1 or self.timespan_1
         timespan_2 = timespan_2 or self.timespan_2
         if timespan_1 is None or timespan_2 is None:
-            message = 'time relation is not fully loaded: {!r}.'
+            message = "time relation is not fully loaded: {!r}."
             raise ValueError(message.format(self))
         if not isinstance(timespan_1, abjad.Timespan):
             timespan_1 = abjad.Timespan()._get_timespan(timespan_1)
         if not isinstance(timespan_2, abjad.Timespan):
             timespan_2 = abjad.Timespan()._get_timespan(timespan_2)
         truth_value = self.inequality.evaluate(
-            timespan_1.start_offset, timespan_1.stop_offset,
-            timespan_2.start_offset, timespan_2.stop_offset)
+            timespan_1.start_offset,
+            timespan_1.stop_offset,
+            timespan_2.start_offset,
+            timespan_2.stop_offset,
+        )
         return truth_value
 
     def __eq__(self, argument):
@@ -295,9 +296,11 @@ class TimespanTimespanTimeRelation(TimeRelation):
         Returns selection.
         """
         import abjad
+
         # check input
-        assert isinstance(counttime_components, (
-            list, abjad.Selection)), repr(counttime_components)
+        assert isinstance(counttime_components, (list, abjad.Selection)), repr(
+            counttime_components
+        )
         assert self.timespan_1 is not None
         # iterate counttime components
         result = []
@@ -308,10 +311,8 @@ class TimespanTimespanTimeRelation(TimeRelation):
         return abjad.select(result)
 
     def get_offset_indices(
-        self,
-        timespan_2_start_offsets,
-        timespan_2_stop_offsets,
-        ):
+        self, timespan_2_start_offsets, timespan_2_stop_offsets
+    ):
         """
         Get offset indices that satisfy time relation:
 
@@ -353,10 +354,8 @@ class TimespanTimespanTimeRelation(TimeRelation):
         Returns nonnegative integer pair.
         """
         result = self.inequality.get_offset_indices(
-            self.timespan_1,
-            timespan_2_start_offsets,
-            timespan_2_stop_offsets,
-            )
+            self.timespan_1, timespan_2_start_offsets, timespan_2_stop_offsets
+        )
         if not result:
             return []
         elif len(result) == 1:
@@ -365,7 +364,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
             stop_index = int(timespan.stop_offset)
             return start_index, stop_index
         elif 0 < len(result):
-            message = 'inequality evaluates to disjunct range: {!r}.'
+            message = "inequality evaluates to disjunct range: {!r}."
             message = message.format(result)
             raise Exception(message)
 

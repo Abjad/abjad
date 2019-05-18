@@ -38,6 +38,7 @@ def yield_all_compositions_of_integer(n):
     Returns integer tuple generator.
     """
     from abjad import mathtools
+
     compositions = []
     integer = 0
     string_length = n

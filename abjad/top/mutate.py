@@ -43,4 +43,5 @@ def mutate(client):
 
     """
     import abjad
+
     return abjad.Mutation(client=client)

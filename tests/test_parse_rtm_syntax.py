@@ -4,7 +4,7 @@ import abjad.rhythmtrees
 
 def test_parse_rtm_syntax_01():
 
-    rtm = '(3 (1 (3 (1 (3 (1 (3 (1 1 1 1))))))))'
+    rtm = "(3 (1 (3 (1 (3 (1 (3 (1 1 1 1))))))))"
     result = abjad.rhythmtrees.parse_rtm_syntax(rtm)
 
     assert format(result) == abjad.String.normalize(
@@ -29,4 +29,4 @@ def test_parse_rtm_syntax_01():
             }
         }
         """
-        )
+    )

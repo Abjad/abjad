@@ -35,16 +35,19 @@ class IntervalClassSegment(Segment):
     @property
     def _named_item_class(self):
         import abjad
+
         return abjad.NamedIntervalClass
 
     @property
     def _numbered_item_class(self):
         import abjad
+
         return abjad.NumberedIntervalClass
 
     @property
     def _parent_item_class(self):
         import abjad
+
         return abjad.IntervalClass
 
     ### PUBLIC PROPERTIES ###
@@ -66,10 +69,10 @@ class IntervalClassSegment(Segment):
         Returns true or false.
         """
         import abjad
+
         inversion_equivalent_interval_class_segment = new(
-            self,
-            item_class=abjad.NamedInversionEquivalentIntervalClass,
-            )
+            self, item_class=abjad.NamedInversionEquivalentIntervalClass
+        )
         for interval in inversion_equivalent_interval_class_segment:
             if not interval.number == 3:
                 return False
@@ -93,13 +96,11 @@ class IntervalClassSegment(Segment):
         Returns interval-class segment.
         """
         import abjad
+
         pitch_segment = abjad.PitchSegment.from_selection(selection)
         pitches = [_ for _ in pitch_segment]
         intervals = mathtools.difference_series(pitches)
-        return class_(
-            items=intervals,
-            item_class=item_class,
-            )
+        return class_(items=intervals, item_class=item_class)
 
     def has_duplicates(self):
         """
@@ -120,5 +121,7 @@ class IntervalClassSegment(Segment):
         Returns true or false.
         """
         import abjad
-        return len(abjad.IntervalClassSet(
-            self, item_class=self.item_class)) < len(self)
+
+        return len(
+            abjad.IntervalClassSet(self, item_class=self.item_class)
+        ) < len(self)

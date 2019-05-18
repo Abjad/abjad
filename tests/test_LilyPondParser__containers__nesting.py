@@ -3,12 +3,9 @@ import abjad
 
 def test_LilyPondParser__containers__nesting_01():
 
-    target = abjad.Container([
-        abjad.Container([]),
-        abjad.Container([
-            abjad.Container([])
-        ])
-    ])
+    target = abjad.Container(
+        [abjad.Container([]), abjad.Container([abjad.Container([])])]
+    )
 
     assert format(target) == abjad.String.normalize(
         r"""
@@ -21,7 +18,7 @@ def test_LilyPondParser__containers__nesting_01():
             }
         }
         """
-        )
+    )
 
     parser = abjad.parser.LilyPondParser()
     result = parser(format(target))

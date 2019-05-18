@@ -47,21 +47,15 @@ class Tremolo(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_beam_count',
-        '_is_slurred',
-        )
+    __slots__ = ("_beam_count", "_is_slurred")
 
     _format_slot = None
 
     ### INITIALIZER ###
 
     def __init__(
-        self,
-        beam_count: int = 3,
-        *,
-        is_slurred: bool = None,
-        ) -> None:
+        self, beam_count: int = 3, *, is_slurred: bool = None
+    ) -> None:
         assert isinstance(beam_count, int), repr(beam_count)
         assert 0 < beam_count, repr(beam_count)
         self._beam_count = beam_count
@@ -78,7 +72,7 @@ class Tremolo(object):
         """
         return StorageFormatManager.compare_objects(self, argument)
 
-    def __format__(self, format_specification='') -> str:
+    def __format__(self, format_specification="") -> str:
         """
         Formats stem tremolo.
 
@@ -103,10 +97,10 @@ class Tremolo(object):
                 )
 
         """
-        if format_specification in ('', 'storage'):
+        if format_specification in ("", "storage"):
             return StorageFormatManager(self).get_storage_format()
-        assert format_specification == 'lilypond'
-        raise Exception('no LilyPond format available.')
+        assert format_specification == "lilypond"
+        raise Exception("no LilyPond format available.")
 
     def __hash__(self) -> int:
         """
@@ -116,7 +110,7 @@ class Tremolo(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     def __repr__(self) -> str:

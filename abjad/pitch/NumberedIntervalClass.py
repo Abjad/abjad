@@ -38,9 +38,7 @@ class NumberedIntervalClass(IntervalClass):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_number',
-        )
+    __slots__ = ("_number",)
 
     ### INITIALIZER ###
 
@@ -190,7 +188,7 @@ class NumberedIntervalClass(IntervalClass):
         """
         string = super().__str__()
         if 0 < self.number:
-            string = '+' + string
+            string = "+" + string
         return string
 
     def __sub__(self, argument):
@@ -209,10 +207,8 @@ class NumberedIntervalClass(IntervalClass):
 
     def _from_named_parts(self, direction, quality, diatonic_number):
         self._number = self._named_to_numbered(
-            direction,
-            quality,
-            diatonic_number,
-            )
+            direction, quality, diatonic_number
+        )
 
     def _from_number(self, argument):
         direction = mathtools.sign(argument)
@@ -232,7 +228,7 @@ class NumberedIntervalClass(IntervalClass):
             repr_is_indented=False,
             storage_format_is_indented=False,
             storage_format_args_values=[self.number],
-            )
+        )
 
     ### PUBLIC PROPERTIES ###
 
@@ -304,8 +300,8 @@ class NumberedIntervalClass(IntervalClass):
         Returns numbered interval-class.
         """
         import abjad
+
         interval = abjad.NumberedInterval.from_pitch_carriers(
-            pitch_carrier_1,
-            pitch_carrier_2,
-            )
+            pitch_carrier_1, pitch_carrier_2
+        )
         return class_(interval)

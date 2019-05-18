@@ -177,13 +177,9 @@ class NoteMaker(object):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Makers'
+    __documentation_section__ = "Makers"
 
-    __slots__ = (
-        '_increase_monotonic',
-        '_repeat_ties',
-        '_tag',
-        )
+    __slots__ = ("_increase_monotonic", "_repeat_ties", "_tag")
 
     _publish_storage_format = True
 
@@ -195,7 +191,7 @@ class NoteMaker(object):
         increase_monotonic: bool = None,
         repeat_ties: bool = None,
         tag: str = None,
-        ) -> None:
+    ) -> None:
         if increase_monotonic is not None:
             increase_monotonic = bool(increase_monotonic)
         self._increase_monotonic = increase_monotonic
@@ -213,6 +209,7 @@ class NoteMaker(object):
         Calls note-maker on ``pitches`` and ``durations``.
         """
         from .Tuplet import Tuplet
+
         if isinstance(pitches, str):
             pitches = pitches.split()
         if not isinstance(pitches, collections.abc.Iterable):
@@ -221,7 +218,7 @@ class NoteMaker(object):
             durations = [durations]
         nonreduced_fractions = Sequence(
             [NonreducedFraction(_) for _ in durations]
-            )
+        )
         size = max(len(nonreduced_fractions), len(pitches))
         nonreduced_fractions = nonreduced_fractions.repeat_to_length(size)
         pitches = Sequence(pitches).repeat_to_length(size)
@@ -232,8 +229,8 @@ class NoteMaker(object):
             factors = set(mathtools.factors(duration[0].denominator))
             factors.discard(1)
             factors.discard(2)
-            ps = pitches[0:len(duration)]
-            pitches = pitches[len(duration):]
+            ps = pitches[0 : len(duration)]
+            pitches = pitches[len(duration) :]
             if len(factors) == 0:
                 result.extend(
                     self._make_unprolated_notes(
@@ -242,13 +239,14 @@ class NoteMaker(object):
                         increase_monotonic=self.increase_monotonic,
                         repeat_ties=self.repeat_ties,
                         tag=self.tag,
-                        )
                     )
+                )
             else:
                 # compute prolation
                 denominator = duration[0].denominator
                 numerator = mathtools.greatest_power_of_two_less_equal(
-                    denominator)
+                    denominator
+                )
                 multiplier = Multiplier(numerator, denominator)
                 ratio = multiplier.reciprocal
                 duration = [ratio * Duration(d) for d in duration]
@@ -258,7 +256,7 @@ class NoteMaker(object):
                     increase_monotonic=self.increase_monotonic,
                     repeat_ties=self.repeat_ties,
                     tag=self.tag,
-                    )
+                )
                 tuplet = Tuplet(multiplier, ns)
                 result.append(tuplet)
         return Selection(result)
@@ -272,7 +270,7 @@ class NoteMaker(object):
         increase_monotonic=None,
         repeat_ties=False,
         tag=None,
-        ):
+    ):
         assert len(pitches) == len(durations)
         result = []
         for pitch, duration in zip(pitches, durations):
@@ -284,8 +282,8 @@ class NoteMaker(object):
                     increase_monotonic=increase_monotonic,
                     repeat_ties=repeat_ties,
                     tag=tag,
-                    )
                 )
+            )
         return result
 
     ### PUBLIC PROPERTIES ###

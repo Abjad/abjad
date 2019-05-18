@@ -28,8 +28,9 @@ def factors(n):
     Returns list of positive integers.
     """
     from abjad import mathtools
+
     if not mathtools.is_positive_integer(n):
-        message = 'must be positive integer: {!r}.'
+        message = "must be positive integer: {!r}."
         message = message.format(n)
         raise TypeError(message)
     factor = 2

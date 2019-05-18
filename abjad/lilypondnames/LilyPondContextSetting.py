@@ -22,12 +22,7 @@ class LilyPondContextSetting(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_context_property',
-        '_lilypond_type',
-        '_is_unset',
-        '_value',
-        )
+    __slots__ = ("_context_property", "_lilypond_type", "_is_unset", "_value")
 
     _format_leaf_children = False
 
@@ -36,10 +31,10 @@ class LilyPondContextSetting(object):
     def __init__(
         self,
         lilypond_type: str = None,
-        context_property: str = 'autoBeaming',
+        context_property: str = "autoBeaming",
         is_unset: bool = False,
         value: typing.Any = False,
-        ) -> None:
+    ) -> None:
         if lilypond_type is not None:
             lilypond_type = str(lilypond_type)
         self._lilypond_type = lilypond_type
@@ -71,7 +66,7 @@ class LilyPondContextSetting(object):
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = LilyPondFormatBundle()
-        string = '\n'.join(self.format_pieces)
+        string = "\n".join(self.format_pieces)
         bundle.context_settings.append(string)
         return bundle
 
@@ -98,19 +93,19 @@ class LilyPondContextSetting(object):
         """
         result = []
         if not self.is_unset:
-            result.append(r'\set')
+            result.append(r"\set")
         else:
-            result.append(r'\unset')
+            result.append(r"\unset")
         if self.lilypond_type is not None:
-            string = f'{self.lilypond_type}.{self.context_property}'
+            string = f"{self.lilypond_type}.{self.context_property}"
             result.append(string)
         else:
             result.append(self.context_property)
-        result.append('=')
+        result.append("=")
         string = Scheme.format_embedded_scheme_value(self.value)
-        value_pieces = string.split('\n')
+        value_pieces = string.split("\n")
         result.append(value_pieces[0])
-        result[:] = [' '.join(result)]
+        result[:] = [" ".join(result)]
         result.extend(value_pieces[1:])
         return tuple(result)
 

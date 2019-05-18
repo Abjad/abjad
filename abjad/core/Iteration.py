@@ -50,11 +50,9 @@ class Iteration(object):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Collaborators'
+    __documentation_section__ = "Collaborators"
 
-    __slots__ = (
-        '_client',
-        )
+    __slots__ = ("_client",)
 
     ### INITIALIZER ###
 
@@ -118,7 +116,7 @@ class Iteration(object):
         do_not_iterate_grace_containers=None,
         grace_notes=None,
         reverse=None,
-        ):
+    ):
         r"""
         Iterates components.
 
@@ -272,6 +270,7 @@ class Iteration(object):
         """
         from .Component import Component
         from .Leaf import Leaf
+
         argument = self.client
         prototype = prototype or Component
         grace_container, after_grace_container = None, None
@@ -282,34 +281,41 @@ class Iteration(object):
             grace_container = inspection.grace_container()
             after_grace_container = inspection.after_grace_container()
         if not reverse:
-            if (not do_not_iterate_grace_containers and
-                grace_notes is not False and
-                grace_container):
+            if (
+                not do_not_iterate_grace_containers
+                and grace_notes is not False
+                and grace_container
+            ):
                 for component_ in Iteration(grace_container).components(
                     prototype,
                     do_not_iterate_grace_containers=do_not_iterate_grace_containers,
                     grace_notes=grace_notes,
                     reverse=reverse,
-                    ):
+                ):
                     yield component_
             if isinstance(argument, prototype):
-                if (grace_notes is None or
-                    (grace_notes is True and
-                    inspect(argument).grace_note()) or
-                    (grace_notes is False and
-                    not inspect(argument).grace_note())):
+                if (
+                    grace_notes is None
+                    or (grace_notes is True and inspect(argument).grace_note())
+                    or (
+                        grace_notes is False
+                        and not inspect(argument).grace_note()
+                    )
+                ):
                     if not self._should_exclude(argument, exclude):
                         yield argument
-            if (not do_not_iterate_grace_containers and
-                grace_notes is not False and
-                after_grace_container):
+            if (
+                not do_not_iterate_grace_containers
+                and grace_notes is not False
+                and after_grace_container
+            ):
                 for component_ in Iteration(after_grace_container).components(
                     prototype,
                     exclude=exclude,
                     do_not_iterate_grace_containers=do_not_iterate_grace_containers,
                     grace_notes=grace_notes,
                     reverse=reverse,
-                    ):
+                ):
                     yield component_
             if isinstance(argument, collections.abc.Iterable):
                 for item in argument:
@@ -319,38 +325,45 @@ class Iteration(object):
                         do_not_iterate_grace_containers=do_not_iterate_grace_containers,
                         grace_notes=grace_notes,
                         reverse=reverse,
-                        ):
+                    ):
                         yield component
         else:
-            if (not do_not_iterate_grace_containers and
-                grace_notes is not False and
-                after_grace_container):
+            if (
+                not do_not_iterate_grace_containers
+                and grace_notes is not False
+                and after_grace_container
+            ):
                 for component_ in Iteration(after_grace_container).components(
                     prototype,
                     exclude=exclude,
                     do_not_iterate_grace_containers=do_not_iterate_grace_containers,
                     grace_notes=grace_notes,
                     reverse=reverse,
-                    ):
+                ):
                     yield component_
             if isinstance(argument, prototype):
-                if (grace_notes is None or
-                    (grace_notes is True and
-                    inspect(argument).grace_note()) or
-                    (grace_notes is False and
-                    not inspect(argument).grace_note())):
+                if (
+                    grace_notes is None
+                    or (grace_notes is True and inspect(argument).grace_note())
+                    or (
+                        grace_notes is False
+                        and not inspect(argument).grace_note()
+                    )
+                ):
                     if not self._should_exclude(argument, exclude):
                         yield argument
-            if (not do_not_iterate_grace_containers and
-                grace_notes is not False and
-                grace_container):
+            if (
+                not do_not_iterate_grace_containers
+                and grace_notes is not False
+                and grace_container
+            ):
                 for component_ in Iteration(grace_container).components(
                     prototype,
                     exclude=exclude,
                     do_not_iterate_grace_containers=do_not_iterate_grace_containers,
                     grace_notes=grace_notes,
                     reverse=reverse,
-                    ):
+                ):
                     yield component_
             if isinstance(argument, collections.abc.Iterable):
                 for item in reversed(argument):
@@ -360,7 +373,7 @@ class Iteration(object):
                         do_not_iterate_grace_containers=do_not_iterate_grace_containers,
                         grace_notes=grace_notes,
                         reverse=reverse,
-                        ):
+                    ):
                         yield component
 
     def leaf_pairs(self):
@@ -426,6 +439,7 @@ class Iteration(object):
         Returns generator.
         """
         from .Selection import Selection
+
         vertical_moments = self.vertical_moments()
         for moment_1, moment_2 in Sequence(vertical_moments).nwise():
             enumerator = Enumerator(moment_1.start_leaves)
@@ -449,7 +463,7 @@ class Iteration(object):
         grace_notes=None,
         pitched=None,
         reverse=False,
-        ):
+    ):
         r"""
         Iterates leaves.
 
@@ -793,6 +807,7 @@ class Iteration(object):
         from .Note import Note
         from .Rest import Rest
         from .Skip import Skip
+
         prototype = prototype or Leaf
         if pitched is True:
             prototype = (Chord, Note)
@@ -804,7 +819,7 @@ class Iteration(object):
             do_not_iterate_grace_containers=do_not_iterate_grace_containers,
             grace_notes=grace_notes,
             reverse=reverse,
-            )
+        )
 
     def logical_ties(
         self,
@@ -814,7 +829,7 @@ class Iteration(object):
         nontrivial=None,
         pitched=None,
         reverse=False,
-        ):
+    ):
         r"""
         Iterates logical ties.
 
@@ -1098,13 +1113,15 @@ class Iteration(object):
             grace_notes=grace_notes,
             pitched=pitched,
             reverse=reverse,
-            ):
+        ):
             logical_tie = inspect(leaf).logical_tie()
             if leaf is not logical_tie.head:
                 continue
-            if (nontrivial is None or
-                (nontrivial is True and not logical_tie.is_trivial) or
-                (nontrivial is False and logical_tie.is_trivial)):
+            if (
+                nontrivial is None
+                or (nontrivial is True and not logical_tie.is_trivial)
+                or (nontrivial is False and logical_tie.is_trivial)
+            ):
                 if logical_tie not in yielded_logical_ties:
                     yielded_logical_ties.add(logical_tie)
                     yield logical_tie
@@ -1141,7 +1158,7 @@ class Iteration(object):
         for leaf in self.leaves(pitched=True):
             instrument = inspect(leaf).effective(Instrument)
             if instrument is None:
-                raise ValueError('no instrument found.')
+                raise ValueError("no instrument found.")
             if leaf not in instrument.pitch_range:
                 yield leaf
 
@@ -1341,6 +1358,7 @@ class Iteration(object):
         Returns generator.
         """
         from .Chord import Chord
+
         if isinstance(self.client, Pitch):
             pitch = NamedPitch(self.client)
             yield pitch
@@ -1370,13 +1388,7 @@ class Iteration(object):
         for pitch in result:
             yield pitch
 
-    def timeline(
-        self,
-        prototype=None,
-        *,
-        exclude=None,
-        reverse=False,
-        ):
+    def timeline(self, prototype=None, *, exclude=None, reverse=False):
         r"""
         Iterates timeline.
 
@@ -1500,10 +1512,7 @@ class Iteration(object):
 
         Iterates leaves when ``prototype`` is none.
         """
-        components = self.leaves(
-            prototype=prototype,
-            exclude=exclude,
-            )
+        components = self.leaves(prototype=prototype, exclude=exclude)
         components = list(components)
         components.sort(key=lambda _: inspect(_).timespan().start_offset)
         offset_to_components = OrderedDict()
@@ -1671,6 +1680,7 @@ class Iteration(object):
         '''
         from .Selection import Selection
         from .VerticalMoment import VerticalMoment
+
         moments = []
         components = list(self.components())
         components.sort(key=lambda _: inspect(_).timespan().start_offset)
@@ -1684,8 +1694,10 @@ class Iteration(object):
             inserted = False
             timespan = inspect(component).timespan()
             for offset, list_ in offset_to_components.items():
-                if (timespan.start_offset <= offset < timespan.stop_offset and
-                    component not in list_):
+                if (
+                    timespan.start_offset <= offset < timespan.stop_offset
+                    and component not in list_
+                ):
                     list_.append(component)
                     inserted = True
                 elif inserted is True:
@@ -1693,10 +1705,7 @@ class Iteration(object):
         moments = []
         for offset, list_ in offset_to_components.items():
             list_.sort(key=lambda _: inspect(_).parentage().score_index())
-            moment = VerticalMoment(
-                components=list_,
-                offset=offset,
-                )
+            moment = VerticalMoment(components=list_, offset=offset)
             moments.append(moment)
         if reverse is True:
             moments.reverse()

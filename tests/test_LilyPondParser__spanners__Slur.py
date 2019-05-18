@@ -25,7 +25,7 @@ def test_LilyPondParser__spanners__Slur_01():
             )
         }
         """
-        )
+    )
 
     parser = abjad.parser.LilyPondParser()
     result = parser(format(target))
@@ -55,7 +55,7 @@ def test_LilyPondParser__spanners__Slur_02():
             )
         }
         """
-        )
+    )
 
     string = r"\relative c' { c ( c c () c ) }"
 
@@ -69,7 +69,7 @@ def test_LilyPondParser__spanners__Slur_03():
     Single leaf.
     """
 
-    string = '{ c () c c c }'
+    string = "{ c () c c c }"
     with pytest.raises(Exception):
         abjad.LilyPondParser()(string)
 
@@ -79,7 +79,7 @@ def test_LilyPondParser__spanners__Slur_04():
     Unterminated.
     """
 
-    string = '{ c ( c c c }'
+    string = "{ c ( c c c }"
     with pytest.raises(Exception):
         abjad.LilyPondParser()(string)
 
@@ -89,7 +89,7 @@ def test_LilyPondParser__spanners__Slur_05():
     Unstarted.
     """
 
-    string = '{ c c c c ) }'
+    string = "{ c c c c ) }"
     with pytest.raises(Exception):
         abjad.LilyPondParser()(string)
 
@@ -99,7 +99,7 @@ def test_LilyPondParser__spanners__Slur_06():
     Nested.
     """
 
-    string = '{ c ( c ( c ) c ) }'
+    string = "{ c ( c ( c ) c ) }"
     with pytest.raises(Exception):
         abjad.LilyPondParser()(string)
 
@@ -129,7 +129,7 @@ def test_LilyPondParser__spanners__Slur_07():
             )
         }
         """
-        )
+    )
 
     parser = abjad.parser.LilyPondParser()
     result = parser(format(target))

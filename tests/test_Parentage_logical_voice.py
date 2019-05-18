@@ -12,7 +12,9 @@ def test_Parentage_logical_voice_01():
 
     containment = abjad.inspect(staff).parentage().logical_voice()
     for component in abjad.iterate(staff).components():
-        assert abjad.inspect(component).parentage().logical_voice() == containment
+        assert (
+            abjad.inspect(component).parentage().logical_voice() == containment
+        )
 
 
 def test_Parentage_logical_voice_02():
@@ -21,11 +23,14 @@ def test_Parentage_logical_voice_02():
     """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    staff.name = 'foo'
+    staff.name = "foo"
 
     containment = abjad.inspect(staff).parentage().logical_voice()
     for component in abjad.iterate(staff).components():
-        assert abjad.inspect(component).parentage().logical_voice() == containment
+        assert (
+            abjad.inspect(component).parentage().logical_voice() == containment
+        )
+
 
 def test_Parentage_logical_voice_03():
     """
@@ -34,8 +39,8 @@ def test_Parentage_logical_voice_03():
     """
 
     staff = abjad.Staff(abjad.Voice("c'8 d'8 e'8 f'8") * 2)
-    staff[0].name = 'foo'
-    staff[1].name = 'foo'
+    staff[0].name = "foo"
+    staff[1].name = "foo"
 
     containment = abjad.inspect(staff[0][0]).parentage().logical_voice()
     for leaf in abjad.iterate(staff).leaves():
@@ -65,9 +70,9 @@ def test_Parentage_logical_voice_04():
         b'8
         c''8
         """
-        )
+    )
 
-    abjad.override(voice).note_head.color = 'red'
+    abjad.override(voice).note_head.color = "red"
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -95,10 +100,12 @@ def test_Parentage_logical_voice_04():
             c''8
         }
         """
-        )
+    )
 
-    signatures = [abjad.inspect(leaf).parentage().logical_voice()
-        for leaf in abjad.iterate(voice).leaves()]
+    signatures = [
+        abjad.inspect(leaf).parentage().logical_voice()
+        for leaf in abjad.iterate(voice).leaves()
+    ]
 
     assert signatures[0] == signatures[1]
     assert signatures[0] != signatures[2]
@@ -132,10 +139,10 @@ def test_Parentage_logical_voice_05():
         b'8
         c''8
         """
-        )
+    )
 
-    abjad.override(voice).note_head.color = 'red'
-    voice.name = 'foo'
+    abjad.override(voice).note_head.color = "red"
+    voice.name = "foo"
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -163,12 +170,12 @@ def test_Parentage_logical_voice_05():
             c''8
         }
         """
-        )
+    )
 
     signatures = [
         abjad.inspect(leaf).parentage().logical_voice()
         for leaf in abjad.iterate(voice).leaves()
-        ]
+    ]
 
     signatures[0] == signatures[1]
     signatures[0] == signatures[2]
@@ -192,14 +199,16 @@ def test_Parentage_logical_voice_06():
     parentage of component.
     """
 
-    container = abjad.Container([
-        abjad.Staff([abjad.Voice("c'8 d'8")]),
-        abjad.Staff([abjad.Voice("e'8 f'8")]),
-        ])
-    container[0].name = 'staff1'
-    container[1].name = 'staff2'
-    container[0][0].name = 'voicefoo'
-    container[1][0].name = 'voicefoo'
+    container = abjad.Container(
+        [
+            abjad.Staff([abjad.Voice("c'8 d'8")]),
+            abjad.Staff([abjad.Voice("e'8 f'8")]),
+        ]
+    )
+    container[0].name = "staff1"
+    container[1].name = "staff2"
+    container[0][0].name = "voicefoo"
+    container[1][0].name = "voicefoo"
     leaves = abjad.select(container).leaves()
     abjad.beam(leaves[:2])
     abjad.beam(leaves[2:])
@@ -229,10 +238,11 @@ def test_Parentage_logical_voice_06():
             }
         }
         """
-        )
+    )
 
-    signatures = [abjad.inspect(leaf).parentage().logical_voice()
-        for leaf in leaves]
+    signatures = [
+        abjad.inspect(leaf).parentage().logical_voice() for leaf in leaves
+    ]
 
     signatures[0] == signatures[1]
     signatures[0] != signatures[2]
@@ -268,10 +278,10 @@ def test_Parentage_logical_voice_07():
         }
         a'8
         """
-        )
+    )
 
-    abjad.override(container[1][1]).note_head.color = 'red'
-    abjad.override(container[2][1]).note_head.color = 'red'
+    abjad.override(container[1][1]).note_head.color = "red"
+    abjad.override(container[2][1]).note_head.color = "red"
 
     assert format(container) == abjad.String.normalize(
         r"""
@@ -308,12 +318,12 @@ def test_Parentage_logical_voice_07():
             a'8
         }
         """
-        )
+    )
 
     signatures = [
         abjad.inspect(leaf).parentage().logical_voice()
         for leaf in abjad.iterate(container).leaves()
-        ]
+    ]
 
     signatures[0] != signatures[1]
     signatures[0] != signatures[2]
@@ -353,17 +363,19 @@ def test_Parentage_logical_voice_09():
     """
 
     staff_1 = abjad.Staff([abjad.Voice([abjad.Note(0, (1, 8))])])
-    staff_1.name = 'staff'
-    staff_1[0].name = 'voice'
+    staff_1.name = "staff"
+    staff_1[0].name = "voice"
 
     staff_2 = abjad.Staff([abjad.Voice([abjad.Note(0, (1, 8))])])
-    staff_2.name = 'staff'
-    staff_2[0].name = 'voice'
+    staff_2.name = "staff"
+    staff_2[0].name = "voice"
 
-    staff_1_leaf_signature = abjad.inspect(
-        staff_1[0][0]).parentage().logical_voice()
-    staff_2_leaf_signature = abjad.inspect(
-        staff_2[0][0]).parentage().logical_voice()
+    staff_1_leaf_signature = (
+        abjad.inspect(staff_1[0][0]).parentage().logical_voice()
+    )
+    staff_2_leaf_signature = (
+        abjad.inspect(staff_2[0][0]).parentage().logical_voice()
+    )
     assert staff_1_leaf_signature == staff_2_leaf_signature
 
 
@@ -382,7 +394,7 @@ def test_Parentage_logical_voice_10():
         e'8
         f'8
         """
-        )
+    )
 
     assert format(staff) == abjad.String.normalize(
         r"""
@@ -397,14 +409,20 @@ def test_Parentage_logical_voice_10():
             f'8
         }
         """
-        )
+    )
 
-    assert abjad.inspect(staff[0]).parentage().logical_voice() == \
-        abjad.inspect(staff[-1]).parentage().logical_voice()
-    assert abjad.inspect(staff[0]).parentage().logical_voice() == \
+    assert (
+        abjad.inspect(staff[0]).parentage().logical_voice()
+        == abjad.inspect(staff[-1]).parentage().logical_voice()
+    )
+    assert (
+        abjad.inspect(staff[0]).parentage().logical_voice()
+        == abjad.inspect(staff[0][0]).parentage().logical_voice()
+    )
+    assert (
         abjad.inspect(staff[0][0]).parentage().logical_voice()
-    assert abjad.inspect(staff[0][0]).parentage().logical_voice() == \
-        abjad.inspect(staff[-1]).parentage().logical_voice()
+        == abjad.inspect(staff[-1]).parentage().logical_voice()
+    )
 
 
 def test_Parentage_logical_voice_11():
@@ -414,7 +432,7 @@ def test_Parentage_logical_voice_11():
     """
 
     container = abjad.Container(2 * abjad.Staff("c'8 c'8"))
-    container[0].name = container[1].name = 'staff'
+    container[0].name = container[1].name = "staff"
 
     assert format(container) == abjad.String.normalize(
         r"""
@@ -431,14 +449,22 @@ def test_Parentage_logical_voice_11():
             }
         }
         """
-        )
+    )
 
     leaves = abjad.select(container).leaves()
-    assert abjad.inspect(leaves[0]).parentage().logical_voice() == \
-        abjad.inspect(leaves[1]).parentage().logical_voice()
-    assert abjad.inspect(leaves[0]).parentage().logical_voice() != \
-        abjad.inspect(leaves[2]).parentage().logical_voice()
-    assert abjad.inspect(leaves[2]).parentage().logical_voice() == \
-        abjad.inspect(leaves[3]).parentage().logical_voice()
-    assert abjad.inspect(leaves[2]).parentage().logical_voice() != \
+    assert (
         abjad.inspect(leaves[0]).parentage().logical_voice()
+        == abjad.inspect(leaves[1]).parentage().logical_voice()
+    )
+    assert (
+        abjad.inspect(leaves[0]).parentage().logical_voice()
+        != abjad.inspect(leaves[2]).parentage().logical_voice()
+    )
+    assert (
+        abjad.inspect(leaves[2]).parentage().logical_voice()
+        == abjad.inspect(leaves[3]).parentage().logical_voice()
+    )
+    assert (
+        abjad.inspect(leaves[2]).parentage().logical_voice()
+        != abjad.inspect(leaves[0]).parentage().logical_voice()
+    )

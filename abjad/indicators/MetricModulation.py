@@ -313,13 +313,13 @@ class MetricModulation(object):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_hide',
-        '_left_markup',
-        '_left_rhythm',
-        '_right_markup',
-        '_right_rhythm',
-        '_scale',
-        )
+        "_hide",
+        "_left_markup",
+        "_left_rhythm",
+        "_right_markup",
+        "_right_rhythm",
+        "_scale",
+    )
 
     _publish_storage_format = True
 
@@ -334,13 +334,14 @@ class MetricModulation(object):
         left_markup: Markup = None,
         right_markup: Markup = None,
         scale: typing.Tuple[typings.Number, typings.Number] = (1, 1),
-        ) -> None:
+    ) -> None:
         from abjad.core.Note import Note
+
         if hide is not None:
             hide = bool(hide)
         self._hide = hide
-        left_rhythm = left_rhythm or Note('c4')
-        right_rhythm = right_rhythm or Note('c4')
+        left_rhythm = left_rhythm or Note("c4")
+        right_rhythm = right_rhythm or Note("c4")
         left_rhythm = self._initialize_rhythm(left_rhythm)
         self._left_rhythm = left_rhythm
         right_rhythm = self._initialize_rhythm(right_rhythm)
@@ -414,7 +415,7 @@ class MetricModulation(object):
                 return True
         return False
 
-    def __format__(self, format_specification='') -> str:
+    def __format__(self, format_specification="") -> str:
         """
         Formats metric modulation.
 
@@ -441,7 +442,7 @@ class MetricModulation(object):
                 )
 
         """
-        if format_specification in ('', 'storage'):
+        if format_specification in ("", "storage"):
             return StorageFormatManager(self).get_storage_format()
         return str(self)
 
@@ -455,7 +456,7 @@ class MetricModulation(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     def __illustrate__(self):
@@ -480,6 +481,7 @@ class MetricModulation(object):
         Returns LilyPond file.
         """
         import abjad
+
         lilypond_file = abjad.LilyPondFile.new()
         lilypond_file.items.append(self._get_markup())
         return lilypond_file
@@ -511,28 +513,29 @@ class MetricModulation(object):
 
     def _get_compact_output(self):
         import abjad
+
         if self._note_to_note():
             arguments = self._get_markup_arguments()
             left_exponent, left_dots, right_exponent, right_dots = arguments
-            string = r'\abjad-metric-modulation'
-            string += f' #{left_exponent} #{left_dots}'
-            string += f' #{right_exponent} #{right_dots}'
+            string = r"\abjad-metric-modulation"
+            string += f" #{left_exponent} #{left_dots}"
+            string += f" #{right_exponent} #{right_dots}"
         elif self._rhs_tuplet():
             arguments = self._get_markup_arguments()
             note_exponent, note_dots = arguments[:2]
             tuplet_exponent, tuplet_dots, tuplet_n, tuplet_d = arguments[2:]
-            string = r'\abjad-metric-modulation-tuplet-rhs'
-            string += f' #{note_exponent} #{note_dots}'
-            string += f' #{tuplet_exponent} #{tuplet_dots}'
-            string += f' #{tuplet_n} #{tuplet_d}'
+            string = r"\abjad-metric-modulation-tuplet-rhs"
+            string += f" #{note_exponent} #{note_dots}"
+            string += f" #{tuplet_exponent} #{tuplet_dots}"
+            string += f" #{tuplet_n} #{tuplet_d}"
         elif self._lhs_tuplet():
             arguments = self._get_markup_arguments()
             tuplet_exponent, tuplet_dots, tuplet_n, tuplet_d = arguments[:4]
             note_exponent, note_dots = arguments[4:]
-            string = r'\abjad-metric-modulation-tuplet-lhs'
-            string += f' #{tuplet_exponent} #{tuplet_dots}'
-            string += f' #{tuplet_n} #{tuplet_d}'
-            string += f' #{note_exponent} #{note_dots}'
+            string = r"\abjad-metric-modulation-tuplet-lhs"
+            string += f" #{tuplet_exponent} #{tuplet_dots}"
+            string += f" #{tuplet_n} #{tuplet_d}"
+            string += f" #{note_exponent} #{note_dots}"
         else:
             return None
         string += f" #'({self.scale[0]} . {self.scale[1]})"
@@ -560,15 +563,12 @@ class MetricModulation(object):
         result = self._get_compact_output()
         if result is None:
             left_markup = self._get_left_markup()
-            equal = Markup('=')
+            equal = Markup("=")
             right_space = Markup.hspace(-0.5)
             right_markup = self._get_right_markup()
             markup = left_markup + equal + right_space + right_markup
         else:
-            markup = Markup(
-                f'\markup {result}',
-                literal=True,
-                )
+            markup = Markup(rf"\markup {result}", literal=True)
         return markup
 
     def _get_markup_arguments(self):
@@ -577,9 +577,7 @@ class MetricModulation(object):
             left_dots = self.left_rhythm[0].written_duration.dot_count
             right_exponent = self.right_rhythm[0].written_duration.exponent
             right_dots = self.right_rhythm[0].written_duration.dot_count
-            return (
-                left_exponent, left_dots, right_exponent, right_dots,
-                )
+            return (left_exponent, left_dots, right_exponent, right_dots)
         elif self._lhs_tuplet():
             tuplet_exponent = self.left_rhythm[0][0].written_duration.exponent
             tuplet_dots = self.left_rhythm[0][0].written_duration.dot_count
@@ -588,9 +586,13 @@ class MetricModulation(object):
             note_exponent = self.right_rhythm[0].written_duration.exponent
             note_dots = self.right_rhythm[0].written_duration.dot_count
             return (
-                tuplet_exponent, tuplet_dots, tuplet_n, tuplet_d,
-                note_exponent, note_dots,
-                )
+                tuplet_exponent,
+                tuplet_dots,
+                tuplet_n,
+                tuplet_d,
+                note_exponent,
+                note_dots,
+            )
         elif self._rhs_tuplet():
             note_exponent = self.left_rhythm[0].written_duration.exponent
             note_dots = self.left_rhythm[0].written_duration.dot_count
@@ -599,11 +601,15 @@ class MetricModulation(object):
             tuplet_n = self.right_rhythm[0].multiplier.numerator
             tuplet_d = self.right_rhythm[0].multiplier.denominator
             return (
-                note_exponent, note_dots,
-                tuplet_exponent, tuplet_dots, tuplet_n, tuplet_d,
-                )
+                note_exponent,
+                note_dots,
+                tuplet_exponent,
+                tuplet_dots,
+                tuplet_n,
+                tuplet_d,
+            )
         else:
-            raise Exception('implement tied note values.')
+            raise Exception("implement tied note values.")
 
     def _get_right_markup(self):
         if self.right_markup is not None:
@@ -613,12 +619,13 @@ class MetricModulation(object):
 
     def _initialize_rhythm(self, rhythm):
         import abjad
+
         if isinstance(rhythm, abjad.Component):
             selection = select([rhythm])
         elif isinstance(rhythm, abjad.Selection):
             selection = rhythm
         else:
-            message = 'rhythm must be duration, component or selection: {!r}.'
+            message = "rhythm must be duration, component or selection: {!r}."
             message = message.format(rhythm)
             raise TypeError(message)
         assert isinstance(selection, abjad.Selection)
@@ -626,28 +633,37 @@ class MetricModulation(object):
 
     def _lhs_tuplet(self):
         import abjad
-        if (isinstance(self.left_rhythm[0], abjad.Tuplet) and
-            len(self.left_rhythm[0]) == 1 and
-            isinstance(self.right_rhythm[0], abjad.Note) and
-            len(self.right_rhythm) == 1):
+
+        if (
+            isinstance(self.left_rhythm[0], abjad.Tuplet)
+            and len(self.left_rhythm[0]) == 1
+            and isinstance(self.right_rhythm[0], abjad.Note)
+            and len(self.right_rhythm) == 1
+        ):
             return True
         return False
 
     def _note_to_note(self):
         import abjad
-        if (isinstance(self.left_rhythm[0], abjad.Note) and
-            len(self.left_rhythm) == 1 and
-            isinstance(self.right_rhythm[0], abjad.Note) and
-            len(self.right_rhythm) == 1):
+
+        if (
+            isinstance(self.left_rhythm[0], abjad.Note)
+            and len(self.left_rhythm) == 1
+            and isinstance(self.right_rhythm[0], abjad.Note)
+            and len(self.right_rhythm) == 1
+        ):
             return True
         return False
 
     def _rhs_tuplet(self):
         import abjad
-        if (isinstance(self.left_rhythm[0], abjad.Note) and
-            len(self.left_rhythm) == 1 and
-            isinstance(self.right_rhythm[0], abjad.Tuplet) and
-            len(self.right_rhythm[0]) == 1):
+
+        if (
+            isinstance(self.left_rhythm[0], abjad.Note)
+            and len(self.left_rhythm) == 1
+            and isinstance(self.right_rhythm[0], abjad.Tuplet)
+            and len(self.right_rhythm[0]) == 1
+        ):
             return True
         return False
 

@@ -10,4 +10,4 @@ def test_Score___setattr___01():
     score = abjad.Score([])
 
     with pytest.raises(AttributeError):
-        score.foo = 'bar'
+        score.foo = "bar"

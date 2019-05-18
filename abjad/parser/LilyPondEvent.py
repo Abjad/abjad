@@ -12,7 +12,7 @@ class LilyPondEvent(object):
     def __init__(self, name=None, **keywords):
         self.name = name
         for k, v in keywords.items():
-            if k != 'name':
+            if k != "name":
                 setattr(self, k, v)
 
     ### SPECIAL METHODS ###
@@ -25,9 +25,9 @@ class LilyPondEvent(object):
         """
         result = repr(self.name)
         for key in self.__dict__:
-            if key == 'name':
+            if key == "name":
                 continue
-            result += f', {key} = {getattr(self, key)!r}'
+            result += f", {key} = {getattr(self, key)!r}"
         return result
 
     def __repr__(self):
@@ -37,4 +37,4 @@ class LilyPondEvent(object):
         Returns string.
         """
         name = type(self).__name__
-        return f'{name}({str(self)})'
+        return f"{name}({str(self)})"

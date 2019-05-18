@@ -14,6 +14,7 @@ def greatest_common_divisor(*integers):
     Returns positive integer.
     """
     from abjad import mathtools
+
     common_divisors = None
     for positive_integer in integers:
         all_divisors = set(mathtools.divisors(positive_integer))

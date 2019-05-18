@@ -19,6 +19,7 @@ def is_integer_equivalent(argument):
     Returns true or false.
     """
     from abjad import mathtools
+
     if isinstance(argument, numbers.Number):
         return mathtools.is_integer_equivalent_number(argument)
     try:

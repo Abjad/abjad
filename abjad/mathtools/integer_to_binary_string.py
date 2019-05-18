@@ -27,8 +27,8 @@ def integer_to_binary_string(n):
     Returns string.
     """
     if n == 0:
-        return '0'
-    result = bin(abs(n)).lstrip('-0b')
+        return "0"
+    result = bin(abs(n)).lstrip("-0b")
     if n < 0:
-        result = '-' + result
+        result = "-" + result
     return result

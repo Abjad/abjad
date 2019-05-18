@@ -235,14 +235,14 @@ And ties connecting the last two notes in each staff:
 
 ..  abjad::
 
-    abjad.attach(abjad.Tie(), upper_leaves[-2:])
+    abjad.tie(upper_leaves[-2:])
 
 ..  abjad::
 
     note_1 = lower_staff[-2]['upper voice'][0]
     note_2 = lower_staff[-1]['upper voice'][0]
     notes = abjad.select([note_1, note_2])
-    abjad.attach(abjad.Tie(), notes)
+    abjad.tie(notes)
 
 The final result:
 

@@ -15,7 +15,8 @@ def test_RhythmTreeContainer___init___01():
 def test_RhythmTreeContainer___init___02():
 
     container = abjad.rhythmtrees.RhythmTreeContainer(
-        preprolated_duration=2, children=[])
+        preprolated_duration=2, children=[]
+    )
 
     assert container.children == ()
     assert container.preprolated_duration == 2
@@ -39,7 +40,8 @@ def test_RhythmTreeContainer___init___03():
     assert leaf_c.parent is None
 
     container = abjad.rhythmtrees.RhythmTreeContainer(
-        preprolated_duration=4, children=[leaf_a, leaf_b, leaf_c])
+        preprolated_duration=4, children=[leaf_a, leaf_b, leaf_c]
+    )
 
     assert container.children == (leaf_a, leaf_b, leaf_c)
     assert container.preprolated_duration == 4

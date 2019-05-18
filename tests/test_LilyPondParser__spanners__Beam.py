@@ -22,7 +22,7 @@ def test_LilyPondParser__spanners__Beam_01():
             ]
         }
         """
-        )
+    )
 
     parser = abjad.parser.LilyPondParser()
     result = parser(format(target))
@@ -49,7 +49,7 @@ def test_LilyPondParser__spanners__Beam_02():
             ]
         }
         """
-        )
+    )
 
     with pytest.raises(Exception):
         abjad.LilyPondParser()(format(target))
@@ -75,7 +75,7 @@ def test_LilyPondParser__spanners__Beam_03():
             ]
         }
         """
-        )
+    )
 
     with pytest.raises(Exception):
         abjad.LilyPondParser()(format(target))
@@ -113,7 +113,7 @@ def test_LilyPondParser__spanners__Beam_05():
             ]
         }
         """
-        )
+    )
 
     parser = abjad.parser.LilyPondParser()
     result = parser(format(target))

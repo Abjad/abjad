@@ -20,14 +20,11 @@ def offset_happens_when_timespan_stops(timespan=None, offset=None, hold=False):
     """
     from abjad import timespans
 
-    inequality = timespans.CompoundInequality([
-        'offset == timespan.stop',
-        ])
+    inequality = timespans.CompoundInequality(["offset == timespan.stop"])
 
     time_relation = timespans.OffsetTimespanTimeRelation(
-        inequality,
-        timespan=timespan,
-        offset=offset)
+        inequality, timespan=timespan, offset=offset
+    )
 
     if time_relation.is_fully_loaded and not hold:
         return time_relation()

@@ -31,187 +31,136 @@ class Tags(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     _known_tags: tuple = (
-
         ### BROKEN SPANNERS ###
-
-        'HIDE_TO_JOIN_BROKEN_SPANNERS',
-        'SHOW_TO_JOIN_BROKEN_SPANNERS',
-        'RIGHT_BROKEN_BEAM', # used in figure-maker
-
+        "HIDE_TO_JOIN_BROKEN_SPANNERS",
+        "SHOW_TO_JOIN_BROKEN_SPANNERS",
+        "RIGHT_BROKEN_BEAM",  # used in figure-maker
         ### CLEFS ###
-
-        'DEFAULT_CLEF',
-        'DEFAULT_CLEF_COLOR',
-        'DEFAULT_CLEF_COLOR_CANCELLATION',
-        'DEFAULT_CLEF_REDRAW_COLOR',
-
-        'EXPLICIT_CLEF',
-        'EXPLICIT_CLEF_COLOR',
-        'EXPLICIT_CLEF_COLOR_CANCELLATION',
-        'EXPLICIT_CLEF_REDRAW_COLOR',
-
-        'REAPPLIED_CLEF',
-        'REAPPLIED_CLEF_COLOR',
-        'REAPPLIED_CLEF_COLOR_CANCELLATION',
-        'REAPPLIED_CLEF_REDRAW_COLOR',
-
-        'REDUNDANT_CLEF',
-        'REDUNDANT_CLEF_COLOR',
-        'REDUNDANT_CLEF_COLOR_CANCELLATION',
-        'REDUNDANT_CLEF_REDRAW_COLOR',
-
+        "DEFAULT_CLEF",
+        "DEFAULT_CLEF_COLOR",
+        "DEFAULT_CLEF_COLOR_CANCELLATION",
+        "DEFAULT_CLEF_REDRAW_COLOR",
+        "EXPLICIT_CLEF",
+        "EXPLICIT_CLEF_COLOR",
+        "EXPLICIT_CLEF_COLOR_CANCELLATION",
+        "EXPLICIT_CLEF_REDRAW_COLOR",
+        "REAPPLIED_CLEF",
+        "REAPPLIED_CLEF_COLOR",
+        "REAPPLIED_CLEF_COLOR_CANCELLATION",
+        "REAPPLIED_CLEF_REDRAW_COLOR",
+        "REDUNDANT_CLEF",
+        "REDUNDANT_CLEF_COLOR",
+        "REDUNDANT_CLEF_COLOR_CANCELLATION",
+        "REDUNDANT_CLEF_REDRAW_COLOR",
         ### DOCUMENT COMMANDS ###
-
-        'BREAK',
-        'EMPTY_START_BAR',
-        'EOL_FERMATA',
-        'FERMATA_MEASURE',
-        'SHIFTED_CLEF',
-        'TWO_VOICE',
-
+        "BREAK",
+        "EMPTY_START_BAR",
+        "EOL_FERMATA",
+        "FERMATA_MEASURE",
+        "SHIFTED_CLEF",
+        "TWO_VOICE",
         ### DOCUMENT TYPES ###
-
-        'BUILD',
-        'FIRST_SEGMENT_DEFAULT',
-        'PARTS',
-        'SCORE',
-        'SEGMENT',
-
+        "BUILD",
+        "FIRST_SEGMENT_DEFAULT",
+        "PARTS",
+        "SCORE",
+        "SEGMENT",
         ### DYNAMICS ###
-
-        'EXPLICIT_DYNAMIC',
-        'EXPLICIT_DYNAMIC_COLOR',
-
-        'REAPPLIED_DYNAMIC',
-        'REAPPLIED_DYNAMIC_COLOR',
-
-        'REDUNDANT_DYNAMIC',
-        'REDUNDANT_DYNAMIC_COLOR',
-
+        "EXPLICIT_DYNAMIC",
+        "EXPLICIT_DYNAMIC_COLOR",
+        "REAPPLIED_DYNAMIC",
+        "REAPPLIED_DYNAMIC_COLOR",
+        "REDUNDANT_DYNAMIC",
+        "REDUNDANT_DYNAMIC_COLOR",
         ### FIGURES ###
-
-        'FORESHADOW',
-        'INCOMPLETE',
-        'RECOLLECTION',
-
+        "FORESHADOW",
+        "INCOMPLETE",
+        "RECOLLECTION",
         ### INSTRUMENTS ###
-
-        'DEFAULT_INSTRUMENT',
-        'DEFAULT_INSTRUMENT_ALERT',
-        'DEFAULT_INSTRUMENT_COLOR',
-        'REDRAWN_DEFAULT_INSTRUMENT',
-        'REDRAWN_DEFAULT_INSTRUMENT_COLOR',
-
-        'EXPLICIT_INSTRUMENT',
-        'EXPLICIT_INSTRUMENT_ALERT',
-        'EXPLICIT_INSTRUMENT_COLOR',
-        'REDRAWN_EXPLICIT_INSTRUMENT',
-        'REDRAWN_EXPLICIT_INSTRUMENT_COLOR',
-
-        'REAPPLIED_INSTRUMENT',
-        'REAPPLIED_INSTRUMENT_ALERT',
-        'REAPPLIED_INSTRUMENT_COLOR',
-        'REDRAWN_REAPPLIED_INSTRUMENT',
-        'REDRAWN_REAPPLIED_INSTRUMENT_COLOR',
-
-        'REDUNDANT_INSTRUMENT',
-        'REDUNDANT_INSTRUMENT_ALERT',
-        'REDUNDANT_INSTRUMENT_COLOR',
-        'REDRAWN_REDUNDANT_INSTRUMENT',
-        'REDRAWN_REDUNDANT_INSTRUMENT_COLOR',
-
+        "DEFAULT_INSTRUMENT",
+        "DEFAULT_INSTRUMENT_ALERT",
+        "DEFAULT_INSTRUMENT_COLOR",
+        "REDRAWN_DEFAULT_INSTRUMENT",
+        "REDRAWN_DEFAULT_INSTRUMENT_COLOR",
+        "EXPLICIT_INSTRUMENT",
+        "EXPLICIT_INSTRUMENT_ALERT",
+        "EXPLICIT_INSTRUMENT_COLOR",
+        "REDRAWN_EXPLICIT_INSTRUMENT",
+        "REDRAWN_EXPLICIT_INSTRUMENT_COLOR",
+        "REAPPLIED_INSTRUMENT",
+        "REAPPLIED_INSTRUMENT_ALERT",
+        "REAPPLIED_INSTRUMENT_COLOR",
+        "REDRAWN_REAPPLIED_INSTRUMENT",
+        "REDRAWN_REAPPLIED_INSTRUMENT_COLOR",
+        "REDUNDANT_INSTRUMENT",
+        "REDUNDANT_INSTRUMENT_ALERT",
+        "REDUNDANT_INSTRUMENT_COLOR",
+        "REDRAWN_REDUNDANT_INSTRUMENT",
+        "REDRAWN_REDUNDANT_INSTRUMENT_COLOR",
         ### MARGIN MARKUP ###
-
-        'DEFAULT_MARGIN_MARKUP',
-        'DEFAULT_MARGIN_MARKUP_ALERT',
-        'DEFAULT_MARGIN_MARKUP_COLOR',
-        'REDRAWN_DEFAULT_MARGIN_MARKUP',
-        'REDRAWN_DEFAULT_MARGIN_MARKUP_COLOR',
-
-        'EXPLICIT_MARGIN_MARKUP',
-        'EXPLICIT_MARGIN_MARKUP_ALERT',
-        'EXPLICIT_MARGIN_MARKUP_COLOR',
-        'REDRAWN_EXPLICIT_MARGIN_MARKUP',
-        'REDRAWN_EXPLICIT_MARGIN_MARKUP_COLOR',
-
-        'REAPPLIED_MARGIN_MARKUP',
-        'REAPPLIED_MARGIN_MARKUP_ALERT',
-        'REAPPLIED_MARGIN_MARKUP_COLOR',
-        'REDRAWN_REAPPLIED_MARGIN_MARKUP',
-        'REDRAWN_REAPPLIED_MARGIN_MARKUP_COLOR',
-
-        'REDUNDANT_MARGIN_MARKUP',
-        'REDUNDANT_MARGIN_MARKUP_ALERT',
-        'REDUNDANT_MARGIN_MARKUP_COLOR',
-        'REDRAWN_REDUNDANT_MARGIN_MARKUP',
-        'REDRAWN_REDUNDANT_MARGIN_MARKUP_COLOR',
-
+        "DEFAULT_MARGIN_MARKUP",
+        "DEFAULT_MARGIN_MARKUP_ALERT",
+        "DEFAULT_MARGIN_MARKUP_COLOR",
+        "REDRAWN_DEFAULT_MARGIN_MARKUP",
+        "REDRAWN_DEFAULT_MARGIN_MARKUP_COLOR",
+        "EXPLICIT_MARGIN_MARKUP",
+        "EXPLICIT_MARGIN_MARKUP_ALERT",
+        "EXPLICIT_MARGIN_MARKUP_COLOR",
+        "REDRAWN_EXPLICIT_MARGIN_MARKUP",
+        "REDRAWN_EXPLICIT_MARGIN_MARKUP_COLOR",
+        "REAPPLIED_MARGIN_MARKUP",
+        "REAPPLIED_MARGIN_MARKUP_ALERT",
+        "REAPPLIED_MARGIN_MARKUP_COLOR",
+        "REDRAWN_REAPPLIED_MARGIN_MARKUP",
+        "REDRAWN_REAPPLIED_MARGIN_MARKUP_COLOR",
+        "REDUNDANT_MARGIN_MARKUP",
+        "REDUNDANT_MARGIN_MARKUP_ALERT",
+        "REDUNDANT_MARGIN_MARKUP_COLOR",
+        "REDRAWN_REDUNDANT_MARGIN_MARKUP",
+        "REDRAWN_REDUNDANT_MARGIN_MARKUP_COLOR",
         ### METRONOME MARKS ###
-
-        'EXPLICIT_METRONOME_MARK',
-        'EXPLICIT_METRONOME_MARK_WITH_COLOR',
-
-        'REAPPLIED_METRONOME_MARK',
-        'REAPPLIED_METRONOME_MARK_WITH_COLOR',
-
-        'REDUNDANT_METRONOME_MARK',
-        'REDUNDANT_METRONOME_MARK_WITH_COLOR',
-
+        "EXPLICIT_METRONOME_MARK",
+        "EXPLICIT_METRONOME_MARK_WITH_COLOR",
+        "REAPPLIED_METRONOME_MARK",
+        "REAPPLIED_METRONOME_MARK_WITH_COLOR",
+        "REDUNDANT_METRONOME_MARK",
+        "REDUNDANT_METRONOME_MARK_WITH_COLOR",
         ### PERSISTENT OVERRIDES ###
-
-        'EXPLICIT_PERSISTENT_OVERRIDE',
-
-        'REAPPLIED_PERSISTENT_OVERRIDE',
-
-        'REDUNDANT_PERSISTENT_OVERRIDE',
-
+        "EXPLICIT_PERSISTENT_OVERRIDE",
+        "REAPPLIED_PERSISTENT_OVERRIDE",
+        "REDUNDANT_PERSISTENT_OVERRIDE",
         ### PITCH HANDLING ###
-
-        'ALLOW_OCTAVE',
-        'ALLOW_OUT_OF_RANGE',
-        'ALLOW_REPEAT_PITCH',
-        'DO_NOT_TRANSPOSE',
-        'NOT_YET_PITCHED',
-        'NOT_YET_REGISTERED',
-        'STAFF_POSITION',
-
+        "ALLOW_OCTAVE",
+        "ALLOW_OUT_OF_RANGE",
+        "ALLOW_REPEAT_PITCH",
+        "DO_NOT_TRANSPOSE",
+        "NOT_YET_PITCHED",
+        "NOT_YET_REGISTERED",
+        "STAFF_POSITION",
         ### SPACING SECTION ###
-
-        'EXPLICIT_SPACING_SECTION',
-        'EXPLICIT_SPACING_SECTION_COLOR',
-
-        'REAPPLIED_SPACING_SECTION',
-        'REAPPLIED_SPACING_SECTION_COLOR',
-
-        'REDUNDANT_SPACING_SECTION',
-        'REDUNDANT_SPACING_SECTION_COLOR',
-
+        "EXPLICIT_SPACING_SECTION",
+        "EXPLICIT_SPACING_SECTION_COLOR",
+        "REAPPLIED_SPACING_SECTION",
+        "REAPPLIED_SPACING_SECTION_COLOR",
+        "REDUNDANT_SPACING_SECTION",
+        "REDUNDANT_SPACING_SECTION_COLOR",
         ### STAFF LINES ###
-
-        'EXPLICIT_STAFF_LINES',
-        'EXPLICIT_STAFF_LINES_COLOR',
-
-        'REAPPLIED_STAFF_LINES',
-        'REAPPLIED_STAFF_LINES_COLOR',
-
-        'REDUNDANT_STAFF_LINES',
-        'REDUNDANT_STAFF_LINES_COLOR',
-
+        "EXPLICIT_STAFF_LINES",
+        "EXPLICIT_STAFF_LINES_COLOR",
+        "REAPPLIED_STAFF_LINES",
+        "REAPPLIED_STAFF_LINES_COLOR",
+        "REDUNDANT_STAFF_LINES",
+        "REDUNDANT_STAFF_LINES_COLOR",
         ### TIME SIGNATURES ###
-
-        'EXPLICIT_TIME_SIGNATURE',
-        'EXPLICIT_TIME_SIGNATURE_COLOR',
-
-        'REAPPLIED_TIME_SIGNATURE',
-        'REAPPLIED_TIME_SIGNATURE_COLOR',
-
-        'REDUNDANT_TIME_SIGNATURE',
-        'REDUNDANT_TIME_SIGNATURE_COLOR',
-
+        "EXPLICIT_TIME_SIGNATURE",
+        "EXPLICIT_TIME_SIGNATURE_COLOR",
+        "REAPPLIED_TIME_SIGNATURE",
+        "REAPPLIED_TIME_SIGNATURE_COLOR",
+        "REDUNDANT_TIME_SIGNATURE",
+        "REDUNDANT_TIME_SIGNATURE_COLOR",
     )
 
     ### SPECIAL METHODS ###
@@ -223,7 +172,7 @@ class Tags(object):
         Raises attribute error when ``tag`` is unknown.
         """
         if tag not in self._known_tags:
-            raise AttributeError('unknown tag {!r}.'.format(tag))
+            raise AttributeError("unknown tag {!r}.".format(tag))
         return tag
 
     def __repr__(self) -> str:
@@ -314,7 +263,7 @@ class Tags(object):
             self.REAPPLIED_CLEF_REDRAW_COLOR,
             self.REDUNDANT_CLEF_COLOR,
             self.REDUNDANT_CLEF_REDRAW_COLOR,
-            ]
+        ]
         if path and not path.is_segment() and not path.is_segments():
             tags.append(self.REAPPLIED_CLEF)
         return tags
@@ -343,7 +292,7 @@ class Tags(object):
             const.MEASURE_NUMBER,
             const.SPACING,
             const.STAGE_NUMBER,
-            ]
+        ]
 
     def dynamic_color_tags(self, path=None) -> typing.List[str]:
         """
@@ -366,7 +315,7 @@ class Tags(object):
             self.REAPPLIED_DYNAMIC,
             self.REAPPLIED_DYNAMIC_COLOR,
             self.REDUNDANT_DYNAMIC_COLOR,
-            ]
+        ]
 
     def instrument_color_tags(self, path=None) -> typing.List[str]:
         """
@@ -405,7 +354,7 @@ class Tags(object):
             self.REDUNDANT_INSTRUMENT_ALERT,
             self.REDUNDANT_INSTRUMENT_COLOR,
             self.REDRAWN_REDUNDANT_INSTRUMENT_COLOR,
-            ]
+        ]
 
     def layout_removal_tags(self):
         """
@@ -431,7 +380,7 @@ class Tags(object):
             const.MEASURE_NUMBER,
             self.REDUNDANT_TIME_SIGNATURE_COLOR,
             const.STAGE_NUMBER,
-            ]
+        ]
 
     def margin_markup_color_tags(self, path=None) -> typing.List[str]:
         """
@@ -470,9 +419,11 @@ class Tags(object):
             self.REDUNDANT_MARGIN_MARKUP_ALERT,
             self.REDUNDANT_MARGIN_MARKUP_COLOR,
             self.REDRAWN_REDUNDANT_MARGIN_MARKUP_COLOR,
-            ]
+        ]
 
-    def metronome_mark_color_expression_tags(self, path=None) -> typing.List[str]:
+    def metronome_mark_color_expression_tags(
+        self, path=None
+    ) -> typing.List[str]:
         """
         Gets metronome mark color expression tags.
 
@@ -490,9 +441,11 @@ class Tags(object):
             self.EXPLICIT_METRONOME_MARK_WITH_COLOR,
             self.REAPPLIED_METRONOME_MARK_WITH_COLOR,
             self.REDUNDANT_METRONOME_MARK_WITH_COLOR,
-            ]
+        ]
 
-    def metronome_mark_color_suppression_tags(self, path=None) -> typing.List[str]:
+    def metronome_mark_color_suppression_tags(
+        self, path=None
+    ) -> typing.List[str]:
         """
         Gets metronome mark color suppression tags.
 
@@ -506,10 +459,7 @@ class Tags(object):
 
         Ignores ``path``.
         """
-        return [
-            self.EXPLICIT_METRONOME_MARK,
-            self.REDUNDANT_METRONOME_MARK,
-            ]
+        return [self.EXPLICIT_METRONOME_MARK, self.REDUNDANT_METRONOME_MARK]
 
     def music_annotation_tags(self) -> typing.List[str]:
         """
@@ -534,12 +484,11 @@ class Tags(object):
             const.SPACING,
             const.SPACING_OVERRIDE,
             const.STAGE_NUMBER,
-            ]
+        ]
 
     def persistent_indicator_color_expression_tags(
-        self,
-        path=None,
-        ) -> typing.List[str]:
+        self, path=None
+    ) -> typing.List[str]:
         """
         Gets persistent indicator color expression tags.
 
@@ -777,9 +726,8 @@ class Tags(object):
         return tags
 
     def persistent_indicator_color_suppression_tags(
-        self,
-        path=None,
-        ) -> typing.List[str]:
+        self, path=None
+    ) -> typing.List[str]:
         """
         Gets persistent indicator color suppression tags.
 
@@ -895,7 +843,7 @@ class Tags(object):
             self.REAPPLIED_TIME_SIGNATURE,
             self.REDUNDANT_TIME_SIGNATURE,
             #
-            ]
+        ]
 
     def spacing_markup_tags(self) -> typing.List[str]:
         """
@@ -910,10 +858,7 @@ class Tags(object):
             'SPACING_OVERRIDE'
 
         """
-        return [
-            const.SPACING,
-            const.SPACING_OVERRIDE,
-            ]
+        return [const.SPACING, const.SPACING_OVERRIDE]
 
     def spacing_tags(self) -> typing.List[str]:
         """
@@ -935,7 +880,7 @@ class Tags(object):
             const.SPACING,
             const.SPACING_OVERRIDE_COMMAND,
             const.SPACING_OVERRIDE,
-            ]
+        ]
 
     def staff_lines_color_tags(self, path=None) -> typing.List[str]:
         """
@@ -980,7 +925,7 @@ class Tags(object):
             self.EXPLICIT_STAFF_LINES_COLOR,
             self.REAPPLIED_STAFF_LINES_COLOR,
             self.REDUNDANT_STAFF_LINES_COLOR,
-            ]
+        ]
         if path and not path.is_segment():
             tags.append(self.REAPPLIED_STAFF_LINES)
         return tags
@@ -1027,7 +972,7 @@ class Tags(object):
             self.EXPLICIT_TIME_SIGNATURE_COLOR,
             self.REAPPLIED_TIME_SIGNATURE_COLOR,
             self.REDUNDANT_TIME_SIGNATURE_COLOR,
-            ]
+        ]
         if path and not path.is_segment():
             tags.append(self.REAPPLIED_TIME_SIGNATURE)
         return tags

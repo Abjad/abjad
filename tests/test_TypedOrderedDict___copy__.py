@@ -4,9 +4,7 @@ import copy
 
 def test_TypedOrderedDict___copy___01():
 
-    dictionary_1 = abjad.OrderedDict([
-        ('flavor', 'cherry'), ('count', 2),
-        ])
+    dictionary_1 = abjad.OrderedDict([("flavor", "cherry"), ("count", 2)])
     dictionary_2 = copy.copy(dictionary_1)
 
     assert dictionary_1 == dictionary_2

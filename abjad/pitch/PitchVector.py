@@ -66,34 +66,31 @@ class PitchVector(Vector):
     @property
     def _named_item_class(self):
         import abjad
+
         return abjad.NamedPitch
 
     @property
     def _numbered_item_class(self):
         import abjad
+
         return abjad.NumberedPitch
 
     @property
     def _parent_item_class(self):
         import abjad
+
         return abjad.Pitch
 
     ### PUBLIC METHODS ###
 
     @classmethod
-    def from_selection(
-        class_,
-        selection,
-        item_class=None,
-        ):
+    def from_selection(class_, selection, item_class=None):
         """
         Makes pitch vector from `selection`.
 
         Returns pitch vector.
         """
         import abjad
+
         pitch_segment = abjad.PitchSegment.from_selection(selection)
-        return class_(
-            pitch_segment,
-            item_class=item_class,
-            )
+        return class_(pitch_segment, item_class=item_class)

@@ -7,21 +7,21 @@ class SlotContributions(object):
     Slot contributions.
     """
 
-    __documentation_section__ = 'LilyPond formatting'
+    __documentation_section__ = "LilyPond formatting"
 
     __slots__ = (
-        '_articulations',
-        '_commands',
-        '_comments',
-        '_indicators',
-        '_leaks',
-        '_markup',
-        '_spanners',
-        '_spanner_starts',
-        '_spanner_stops',
-        '_stem_tremolos',
-        '_trill_spanner_starts',
-        )
+        "_articulations",
+        "_commands",
+        "_comments",
+        "_indicators",
+        "_leaks",
+        "_markup",
+        "_spanners",
+        "_spanner_starts",
+        "_spanner_stops",
+        "_stem_tremolos",
+        "_trill_spanner_starts",
+    )
 
     ### INITIALIZER ###
 
@@ -39,7 +39,7 @@ class SlotContributions(object):
         self._trill_spanner_starts: typing.List[str] = []
 
     ### SPECIAL METHODS ###
-    
+
     def __repr__(self) -> str:
         """
         Gets interpreter representation.
@@ -50,23 +50,23 @@ class SlotContributions(object):
 
     def _get_format_specification(self):
         import abjad
+
         names = [
-            'articulations',
-            'commands',
-            'comments',
-            'indicators',
-            'markup',
-            'spanners',
-            'spanner_starts',
-            'spanner_stops',
-            'stem_tremolos',
-            'trill_spanner_starts',
-            ]
+            "articulations",
+            "commands",
+            "comments",
+            "indicators",
+            "markup",
+            "spanners",
+            "spanner_starts",
+            "spanner_stops",
+            "stem_tremolos",
+            "trill_spanner_starts",
+        ]
         names = [_ for _ in names if getattr(self, _)]
         return abjad.FormatSpecification(
-            client=self,
-            storage_format_kwargs_names=names,
-            )
+            client=self, storage_format_kwargs_names=names
+        )
 
     ### PUBLIC PROPERTIES ###
 
@@ -97,20 +97,22 @@ class SlotContributions(object):
         Is true when has contributions.
         """
         contribution_categories = (
-            'articulations',
-            'commands',
-            'comments',
-            'indicators',
-            'leaks',
-            'markup',
-            'spanners',
-            'spanner_starts',
-            'spanner_stops',
-            'stem_tremolos',
-            'trill_spanner_starts',
-            )
-        return any(getattr(self, contribution_category)
-            for contribution_category in contribution_categories)
+            "articulations",
+            "commands",
+            "comments",
+            "indicators",
+            "leaks",
+            "markup",
+            "spanners",
+            "spanner_starts",
+            "spanner_stops",
+            "stem_tremolos",
+            "trill_spanner_starts",
+        )
+        return any(
+            getattr(self, contribution_category)
+            for contribution_category in contribution_categories
+        )
 
     @property
     def indicators(self) -> typing.List[str]:
@@ -181,60 +183,41 @@ class SlotContributions(object):
         Tags contributions.
         """
         import abjad
+
         self._articulations = abjad.LilyPondFormatManager.tag(
-            self.articulations,
-            tag,
-            deactivate,
-            )
+            self.articulations, tag, deactivate
+        )
         self._commands = abjad.LilyPondFormatManager.tag(
-            self.commands,
-            tag,
-            deactivate,
-            )
+            self.commands, tag, deactivate
+        )
         self._comments = abjad.LilyPondFormatManager.tag(
-            self.comments,
-            tag,
-            deactivate,
-            )
+            self.comments, tag, deactivate
+        )
         self._indicators = abjad.LilyPondFormatManager.tag(
-            self.indicators,
-            tag,
-            deactivate,
-            )
+            self.indicators, tag, deactivate
+        )
         self._leaks = abjad.LilyPondFormatManager.tag(
-            self.leaks,
-            tag,
-            deactivate,
-            )
+            self.leaks, tag, deactivate
+        )
         self._markup = abjad.LilyPondFormatManager.tag(
-            self.markup,
-            tag,
-            deactivate,
-            )
+            self.markup, tag, deactivate
+        )
         self._spanners = abjad.LilyPondFormatManager.tag(
-            self.spanners,
-            tag,
-            deactivate,
-            )
+            self.spanners, tag, deactivate
+        )
         strings = []
         # make sure each line of multiline markup is tagged
         for string in self.spanner_starts:
-            strings.extend(string.split('\n'))
+            strings.extend(string.split("\n"))
         self._spanner_starts = abjad.LilyPondFormatManager.tag(
-            strings,
-            tag,
-            deactivate,
-            )
+            strings, tag, deactivate
+        )
         self._spanner_stops = abjad.LilyPondFormatManager.tag(
-            self.spanner_stops,
-            tag,
-            deactivate,
-            )
+            self.spanner_stops, tag, deactivate
+        )
         self._stem_tremolos = abjad.LilyPondFormatManager.tag(
-            self.stem_tremolos,
-            tag,
-            deactivate,
-            )
+            self.stem_tremolos, tag, deactivate
+        )
 
     def update(self, slot_contributions):
         """
@@ -253,4 +236,4 @@ class SlotContributions(object):
         self.stem_tremolos.extend(slot_contributions.stem_tremolos)
         self.trill_spanner_starts.extend(
             slot_contributions.trill_spanner_starts
-            )
+        )

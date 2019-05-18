@@ -11,6 +11,7 @@ def yield_all_modules(paths=None):
     Returns generator.
     """
     import abjad
+
     _paths = []
     if not paths:
         _paths = abjad.__path__

@@ -64,23 +64,17 @@ class ColorFingering(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_number',
-        '_tweaks',
-        )
+    __slots__ = ("_number", "_tweaks")
 
-    _format_slot = 'after'
+    _format_slot = "after"
 
     _publish_storage_format = True
 
     ### INITIALIZER ###
 
     def __init__(
-        self,
-        number: int = None,
-        *,
-        tweaks: LilyPondTweakManager = None,
-        ) -> None:
+        self, number: int = None, *, tweaks: LilyPondTweakManager = None
+    ) -> None:
         if number is not None:
             assert mathtools.is_positive_integer(number)
         self._number = number
@@ -97,7 +91,7 @@ class ColorFingering(object):
         """
         return StorageFormatManager.compare_objects(self, argument)
 
-    def __format__(self, format_specification='') -> str:
+    def __format__(self, format_specification="") -> str:
         r"""
         Formats color fingering.
 
@@ -113,9 +107,9 @@ class ColorFingering(object):
                 )
 
         """
-        if format_specification == 'lilypond':
+        if format_specification == "lilypond":
             return self._get_lilypond_format()
-        if format_specification in ('', 'storage'):
+        if format_specification in ("", "storage"):
             return StorageFormatManager(self).get_storage_format()
         return str(self)
 
@@ -127,7 +121,7 @@ class ColorFingering(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     def __lt__(self, argument) -> bool:
@@ -165,7 +159,7 @@ class ColorFingering(object):
         """
         if isinstance(argument, type(self)):
             return (self.number or 0) < (argument.number or 0)
-        raise TypeError('unorderable types')
+        raise TypeError("unorderable types")
 
     def __repr__(self) -> str:
         """
@@ -176,7 +170,7 @@ class ColorFingering(object):
     ### PRIVATE METHODS ###
 
     def _get_lilypond_format(self):
-        return format(self.markup, 'lilypond')
+        return format(self.markup, "lilypond")
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = LilyPondFormatBundle()
@@ -232,7 +226,7 @@ class ColorFingering(object):
         markup = Markup(str(self.number))
         markup = markup.finger()
         markup = markup.circle()
-        markup = markup.override(('circle-padding', 0.25))
+        markup = markup.override(("circle-padding", 0.25))
         return markup
 
     @property

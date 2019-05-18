@@ -3,13 +3,15 @@ import abjad
 
 def test_Staff___getitem___01():
 
-    staff = abjad.Staff([
-        abjad.Note("c'4"),
-        abjad.Rest((1, 4)),
-        abjad.Chord([2, 3, 4], (1, 4)),
-        abjad.Skip((1, 4)),
-        abjad.Tuplet((4, 5), 4 * abjad.Note(0, (1, 16))),
-        ])
+    staff = abjad.Staff(
+        [
+            abjad.Note("c'4"),
+            abjad.Rest((1, 4)),
+            abjad.Chord([2, 3, 4], (1, 4)),
+            abjad.Skip((1, 4)),
+            abjad.Tuplet((4, 5), 4 * abjad.Note(0, (1, 16))),
+        ]
+    )
 
     assert len(staff) == 5
     assert abjad.inspect(staff).wellformed()
@@ -27,13 +29,15 @@ def test_Staff___getitem___01():
 
 def test_Staff___getitem___02():
 
-    staff = abjad.Staff([
-        abjad.Note("c'4"),
-        abjad.Rest((1, 4)),
-        abjad.Chord([2, 3, 4], (1, 4)),
-        abjad.Skip((1, 4)),
-        abjad.Tuplet((4, 5), 4 * abjad.Note(0, (1, 16))),
-        ])
+    staff = abjad.Staff(
+        [
+            abjad.Note("c'4"),
+            abjad.Rest((1, 4)),
+            abjad.Chord([2, 3, 4], (1, 4)),
+            abjad.Skip((1, 4)),
+            abjad.Tuplet((4, 5), 4 * abjad.Note(0, (1, 16))),
+        ]
+    )
 
     assert len(staff) == 5
     assert abjad.inspect(staff).wellformed()
@@ -44,13 +48,15 @@ def test_Staff___getitem___02():
 
 def test_Staff___getitem___03():
 
-    staff = abjad.Staff([
-        abjad.Note("c'4"),
-        abjad.Rest((1, 4)),
-        abjad.Chord([2, 3, 4], (1, 4)),
-        abjad.Skip((1, 4)),
-        abjad.Tuplet((4, 5), 4 * abjad.Note(0, (1, 16))),
-        ])
+    staff = abjad.Staff(
+        [
+            abjad.Note("c'4"),
+            abjad.Rest((1, 4)),
+            abjad.Chord([2, 3, 4], (1, 4)),
+            abjad.Skip((1, 4)),
+            abjad.Tuplet((4, 5), 4 * abjad.Note(0, (1, 16))),
+        ]
+    )
 
     assert len(staff) == 5
     assert abjad.inspect(staff).wellformed()
@@ -64,12 +70,15 @@ def test_Staff___getitem___03():
 
 def test_Staff___getitem___04():
 
-    staff = abjad.Staff([abjad.Note("c'4"),
+    staff = abjad.Staff(
+        [
+            abjad.Note("c'4"),
             abjad.Rest((1, 4)),
             abjad.Chord([2, 3, 4], (1, 4)),
             abjad.Skip((1, 4)),
             abjad.Tuplet((4, 5), 4 * abjad.Note(0, (1, 16))),
-            ])
+        ]
+    )
 
     assert len(staff) == 5
     assert abjad.inspect(staff).wellformed()
@@ -83,13 +92,15 @@ def test_Staff___getitem___04():
 
 def test_Staff___getitem___05():
 
-    staff = abjad.Staff([
-        abjad.Note("c'4"),
-        abjad.Rest((1, 4)),
-        abjad.Chord([2, 3, 4], (1, 4)),
-        abjad.Skip((1, 4)),
-        abjad.Tuplet((4, 5), 4 * abjad.Note(0, (1, 16))),
-        ])
+    staff = abjad.Staff(
+        [
+            abjad.Note("c'4"),
+            abjad.Rest((1, 4)),
+            abjad.Chord([2, 3, 4], (1, 4)),
+            abjad.Skip((1, 4)),
+            abjad.Tuplet((4, 5), 4 * abjad.Note(0, (1, 16))),
+        ]
+    )
 
     assert len(staff) == 5
     assert abjad.inspect(staff).wellformed()
@@ -105,12 +116,15 @@ def test_Staff___getitem___05():
 
 def test_Staff___getitem___06():
 
-    staff = abjad.Staff([abjad.Note("c'4"),
+    staff = abjad.Staff(
+        [
+            abjad.Note("c'4"),
             abjad.Rest((1, 4)),
             abjad.Chord([2, 3, 4], (1, 4)),
             abjad.Skip((1, 4)),
             abjad.Tuplet((4, 5), 4 * abjad.Note(0, (1, 16))),
-            ])
+        ]
+    )
 
     assert len(staff) == 5
     assert abjad.inspect(staff).wellformed()
@@ -126,13 +140,15 @@ def test_Staff___getitem___06():
 
 def test_Staff___getitem___07():
 
-    staff = abjad.Staff([
-        abjad.Note("c'4"),
-        abjad.Rest((1, 4)),
-        abjad.Chord([2, 3, 4], (1, 4)),
-        abjad.Skip((1, 4)),
-        abjad.Tuplet((4, 5), 4 * abjad.Note(0, (1, 16))),
-        ])
+    staff = abjad.Staff(
+        [
+            abjad.Note("c'4"),
+            abjad.Rest((1, 4)),
+            abjad.Chord([2, 3, 4], (1, 4)),
+            abjad.Skip((1, 4)),
+            abjad.Tuplet((4, 5), 4 * abjad.Note(0, (1, 16))),
+        ]
+    )
 
     assert len(staff) == 5
     assert abjad.inspect(staff).wellformed()
@@ -148,13 +164,15 @@ def test_Staff___getitem___07():
 
 def test_Staff___getitem___08():
 
-    staff = abjad.Staff([
-        abjad.Note("c'4"),
-        abjad.Rest((1, 4)),
-        abjad.Chord([2, 3, 4], (1, 4)),
-        abjad.Skip((1, 4)),
-        abjad.Tuplet((4, 5), 4 * abjad.Note(0, (1, 16))),
-        ])
+    staff = abjad.Staff(
+        [
+            abjad.Note("c'4"),
+            abjad.Rest((1, 4)),
+            abjad.Chord([2, 3, 4], (1, 4)),
+            abjad.Skip((1, 4)),
+            abjad.Tuplet((4, 5), 4 * abjad.Note(0, (1, 16))),
+        ]
+    )
 
     assert len(staff) == 5
     assert abjad.inspect(staff).wellformed()

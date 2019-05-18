@@ -65,40 +65,40 @@ class StartTextSpan(object):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_command',
-        '_concat_hspace_left',
-        '_concat_hspace_right',
-        '_direction',
-        '_left_broken_text',
-        '_left_text',
-        '_right_padding',
-        '_right_text',
-        '_style',
-        '_tweaks',
-        )
+        "_command",
+        "_concat_hspace_left",
+        "_concat_hspace_right",
+        "_direction",
+        "_left_broken_text",
+        "_left_text",
+        "_right_padding",
+        "_right_text",
+        "_style",
+        "_tweaks",
+    )
 
-    _context = 'Voice'
+    _context = "Voice"
 
-    _parameter = 'TEXT_SPANNER'
+    _parameter = "TEXT_SPANNER"
 
     _persistent = True
 
     _publish_storage_format = True
 
     _styles = (
-        'dashed-line-with-arrow',
-        'dashed-line-with-hook',
-        'invisible-line',
-        'solid-line-with-arrow',
-        'solid-line-with-hook',
-        )
+        "dashed-line-with-arrow",
+        "dashed-line-with-hook",
+        "invisible-line",
+        "solid-line-with-arrow",
+        "solid-line-with-hook",
+    )
 
     ### INITIALIZER ###
 
     def __init__(
         self,
         *,
-        command: str = r'\startTextSpan',
+        command: str = r"\startTextSpan",
         concat_hspace_left: typings.Number = 0.5,
         concat_hspace_right: typings.Number = None,
         direction: enums.VerticalAlignment = None,
@@ -108,9 +108,9 @@ class StartTextSpan(object):
         right_text: typing.Union[str, markups.Markup] = None,
         style: str = None,
         tweaks: LilyPondTweakManager = None,
-        ) -> None:
+    ) -> None:
         assert isinstance(command, str), repr(command)
-        assert command.startswith('\\'), repr(command)
+        assert command.startswith("\\"), repr(command)
         self._command = command
         if concat_hspace_left is not None:
             assert isinstance(concat_hspace_left, (int, float))
@@ -158,7 +158,7 @@ class StartTextSpan(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     def __repr__(self) -> str:
@@ -170,20 +170,16 @@ class StartTextSpan(object):
     ### PRIVATE METHODS ###
 
     def _add_direction(self, string):
-        if getattr(self, 'direction', False):
-            string = f'{self.direction} {string}'
+        if getattr(self, "direction", False):
+            string = f"{self.direction} {string}"
         return string
 
     def _get_left_broken_text_tweak(self):
         override = LilyPondGrobOverride(
-            grob_name='TextSpanner',
-            property_path=(
-                'bound-details',
-                'left-broken',
-                'text',
-                ),
+            grob_name="TextSpanner",
+            property_path=("bound-details", "left-broken", "text"),
             value=self.left_broken_text,
-            )
+        )
         string = override.tweak_string(self)
         return string
 
@@ -191,25 +187,22 @@ class StartTextSpan(object):
         if isinstance(self.left_text, str):
             return self.left_text
         concat_hspace_left_markup = markups.Markup.hspace(
-            self.concat_hspace_left)
+            self.concat_hspace_left
+        )
         markup_list = [self.left_text, concat_hspace_left_markup]
         markup = markups.Markup.concat(markup_list)
         override = LilyPondGrobOverride(
-            grob_name='TextSpanner',
-            property_path=(
-                'bound-details',
-                'left',
-                'text',
-                ),
+            grob_name="TextSpanner",
+            property_path=("bound-details", "left", "text"),
             value=markup,
-            )
+        )
         string = override.tweak_string()
         return string
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = LilyPondFormatBundle()
         if self.style is not None:
-            string = rf'- \abjad-{self.style}'
+            string = rf"- \abjad-{self.style}"
             bundle.after.spanner_starts.append(string)
         if self.left_text:
             string = self._get_left_text_directive()
@@ -232,14 +225,10 @@ class StartTextSpan(object):
 
     def _get_right_padding_tweak(self):
         override = LilyPondGrobOverride(
-            grob_name='TextSpanner',
-            property_path=(
-                'bound-details',
-                'right',
-                'padding',
-                ),
+            grob_name="TextSpanner",
+            property_path=("bound-details", "right", "padding"),
             value=self.right_padding,
-            )
+        )
         string = override.tweak_string()
         return string
 
@@ -254,20 +243,16 @@ class StartTextSpan(object):
         else:
             markup = self.right_text
         override = LilyPondGrobOverride(
-            grob_name='TextSpanner',
-            property_path=(
-                'bound-details',
-                'right',
-                'text',
-                ),
+            grob_name="TextSpanner",
+            property_path=("bound-details", "right", "text"),
             value=markup,
-            )
+        )
         string = override.tweak_string()
         return string
 
     def _get_start_command(self):
         string = self._get_parameter_name()
-        return rf'\start{string}'
+        return rf"\start{string}"
 
     ### PUBLIC PROPERTIES ###
 

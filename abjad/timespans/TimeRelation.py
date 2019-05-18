@@ -10,22 +10,22 @@ class TimeRelation(object):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Time relations'
+    __documentation_section__ = "Time relations"
 
-    __slots__ = (
-        '_inequality',
-        )
+    __slots__ = ("_inequality",)
 
     ### INITIALIZER ###
 
     def __init__(self, inequality=None):
         from abjad import timespans
+
         if not inequality:
-            inequality = timespans.CompoundInequality([
-                'timespan_1.start_offset < timespan_2.start_offset',
-                ])
-        assert isinstance(
-            inequality, timespans.CompoundInequality), repr(inequality)
+            inequality = timespans.CompoundInequality(
+                ["timespan_1.start_offset < timespan_2.start_offset"]
+            )
+        assert isinstance(inequality, timespans.CompoundInequality), repr(
+            inequality
+        )
         self._inequality = inequality
 
     ### SPECIAL METHODS ###
@@ -39,14 +39,15 @@ class TimeRelation(object):
         """
         pass
 
-    def __format__(self, format_specification=''):
+    def __format__(self, format_specification=""):
         """
         Formats time relation.
 
         Returns string.
         """
         import abjad
-        if format_specification in ('', 'storage'):
+
+        if format_specification in ("", "storage"):
             return abjad.StorageFormatManager(self).get_storage_format()
         return str(self)
 

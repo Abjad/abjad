@@ -33,8 +33,8 @@ def test_Chord___copy___03():
     """
 
     chord_1 = abjad.Chord("<ef' cs'' f''>4")
-    abjad.override(chord_1).staff.note_head.color = 'red'
-    abjad.override(chord_1).accidental.color = 'red'
+    abjad.override(chord_1).staff.note_head.color = "red"
+    abjad.override(chord_1).accidental.color = "red"
     abjad.setting(chord_1).tuplet_full_length = True
     chord_2 = copy.copy(chord_1)
 
@@ -50,7 +50,7 @@ def test_Chord___copy___04():
     """
 
     chord_1 = abjad.Chord("<c' e' g'>4")
-    abjad.tweak(chord_1.note_heads[0]).color = 'red'
+    abjad.tweak(chord_1.note_heads[0]).color = "red"
     chord_2 = copy.copy(chord_1)
 
     assert format(chord_1) == abjad.String.normalize(
@@ -62,7 +62,7 @@ def test_Chord___copy___04():
             g'
         >4
         """
-        )
+    )
 
     assert format(chord_2) == abjad.String.normalize(
         r"""
@@ -73,7 +73,7 @@ def test_Chord___copy___04():
             g'
         >4
         """
-        )
+    )
 
     assert chord_2.note_heads[0]._client is chord_2
     assert chord_2.note_heads[1]._client is chord_2
@@ -97,9 +97,9 @@ def test_Chord___copy___05():
     """
 
     chord_1 = abjad.Chord("<ef' cs'' f''>4")
-    articulation_1 = abjad.Articulation('staccato')
+    articulation_1 = abjad.Articulation("staccato")
     abjad.attach(articulation_1, chord_1)
-    markup_1 = abjad.Markup('foo', direction=abjad.Up)
+    markup_1 = abjad.Markup("foo", direction=abjad.Up)
     abjad.attach(markup_1, chord_1)
 
     chord_2 = copy.copy(chord_1)

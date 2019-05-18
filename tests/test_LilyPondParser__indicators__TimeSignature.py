@@ -18,7 +18,7 @@ def test_LilyPondParser__indicators__TimeSignature_01():
             }
         >>
         """
-        )
+    )
 
     parser = abjad.parser.LilyPondParser()
     result = parser(format(target))

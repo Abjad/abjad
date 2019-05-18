@@ -27,6 +27,7 @@ def are_relatively_prime(argument):
     Returns true or false.
     """
     from abjad import mathtools
+
     if not isinstance(argument, collections.abc.Iterable):
         return False
     if not all(isinstance(_, numbers.Number) for _ in argument):

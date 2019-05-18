@@ -18,7 +18,7 @@ class LilyPondLanguageToken(object):
 
     ### SPECIAL METHODS ###
 
-    def __format__(self, format_specification=''):
+    def __format__(self, format_specification=""):
         r"""
         Formats LilyPond language token.
 
@@ -30,7 +30,7 @@ class LilyPondLanguageToken(object):
 
         Returns string.
         """
-        if format_specification in ('', 'lilypond'):
+        if format_specification in ("", "lilypond"):
             return self._get_lilypond_format()
         return StorageFormatManager(self).get_storage_format()
 
@@ -46,7 +46,7 @@ class LilyPondLanguageToken(object):
 
         Returns string.
         """
-        return f'{type(self).__name__}()'
+        return f"{type(self).__name__}()"
 
     ### PRIVATE METHODS ###
 

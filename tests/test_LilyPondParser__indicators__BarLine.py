@@ -6,7 +6,7 @@ def test_LilyPondParser__indicators__BarLine_01():
 
     maker = abjad.NoteMaker()
     target = abjad.Staff(maker(["e'", "d'", "c'"], [(1, 4), (1, 4), (1, 2)]))
-    bar_line = abjad.BarLine('|.')
+    bar_line = abjad.BarLine("|.")
     abjad.attach(bar_line, target[-1])
 
     assert format(target) == abjad.String.normalize(
@@ -19,7 +19,7 @@ def test_LilyPondParser__indicators__BarLine_01():
             \bar "|."
         }
         """
-        )
+    )
 
     parser = abjad.parser.LilyPondParser()
     result = parser(format(target))

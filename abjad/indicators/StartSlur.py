@@ -46,14 +46,11 @@ class StartSlur(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_direction',
-        '_tweaks',
-        )
+    __slots__ = ("_direction", "_tweaks")
 
-    _context = 'Voice'
+    _context = "Voice"
 
-    _parameter = 'SLUR'
+    _parameter = "SLUR"
 
     _persistent = True
 
@@ -66,7 +63,7 @@ class StartSlur(object):
         *,
         direction: enums.VerticalAlignment = None,
         tweaks: LilyPondTweakManager = None,
-        ) -> None:
+    ) -> None:
         direction_ = String.to_tridirectional_lilypond_symbol(direction)
         self._direction = direction_
         if tweaks is not None:
@@ -90,9 +87,9 @@ class StartSlur(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
-    
+
     def __repr__(self) -> str:
         """
         Gets interpreter representation.
@@ -102,8 +99,8 @@ class StartSlur(object):
     ### PRIVATE METHODS ###
 
     def _add_direction(self, string):
-        if getattr(self, 'direction', None) is not None:
-            string = f'{self.direction} {string}'
+        if getattr(self, "direction", None) is not None:
+            string = f"{self.direction} {string}"
         return string
 
     def _get_lilypond_format_bundle(self, component=None):
@@ -111,7 +108,7 @@ class StartSlur(object):
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions()
             bundle.after.spanner_starts.extend(tweaks)
-        string = self._add_direction('(')
+        string = self._add_direction("(")
         bundle.after.spanner_starts.append(string)
         return bundle
 

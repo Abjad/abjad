@@ -23,7 +23,7 @@ def test_LilyPondSettingNameManager___setattr___01():
             f'8
         }
         """
-        )
+    )
 
     assert abjad.inspect(staff).wellformed()
 
@@ -35,7 +35,7 @@ def test_LilyPondSettingNameManager___setattr___02():
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     abjad.setting(staff).auto_beaming = True
-    del(abjad.setting(staff).auto_beaming)
+    del abjad.setting(staff).auto_beaming
 
     assert format(staff) == abjad.String.normalize(
         r"""
@@ -47,7 +47,7 @@ def test_LilyPondSettingNameManager___setattr___02():
             f'8
         }
         """
-        )
+    )
 
     assert abjad.inspect(staff).wellformed()
 
@@ -71,7 +71,7 @@ def test_LilyPondSettingNameManager___setattr___03():
             f'8
         }
         """
-        )
+    )
 
     assert abjad.inspect(staff).wellformed()
 
@@ -101,7 +101,7 @@ def test_LilyPondSettingNameManager___setattr___04():
             }
         }
         """
-        )
+    )
 
     assert abjad.inspect(staff).wellformed()
 
@@ -128,7 +128,7 @@ def test_LilyPondSettingNameManager___setattr___05():
             f'8
         }
         """
-        )
+    )
 
     assert abjad.inspect(staff).wellformed()
 
@@ -139,7 +139,7 @@ def test_LilyPondSettingNameManager___setattr___06():
     """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    abjad.setting(staff).instrument_name = 'Violini I'
+    abjad.setting(staff).instrument_name = "Violini I"
 
     assert format(staff) == abjad.String.normalize(
         r"""
@@ -155,7 +155,7 @@ def test_LilyPondSettingNameManager___setattr___06():
             f'8
         }
         """
-        )
+    )
 
     assert abjad.inspect(staff).wellformed()
 
@@ -166,7 +166,7 @@ def test_LilyPondSettingNameManager___setattr___07():
     """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    abjad.setting(staff).instrument_name = abjad.Markup(r'\circle { V }')
+    abjad.setting(staff).instrument_name = abjad.Markup(r"\circle { V }")
 
     assert format(staff) == abjad.String.normalize(
         r"""
@@ -187,7 +187,7 @@ def test_LilyPondSettingNameManager___setattr___07():
             f'8
         }
         """
-        )
+    )
 
     assert abjad.inspect(staff).wellformed()
 
@@ -218,7 +218,7 @@ def test_LilyPondSettingNameManager___setattr___08():
             }
         >>
         """
-        )
+    )
 
     assert abjad.inspect(score).wellformed()
 
@@ -229,7 +229,7 @@ def test_LilyPondSettingNameManager___setattr___09():
     """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    abjad.setting(staff).short_instrument_name = 'Vni. I'
+    abjad.setting(staff).short_instrument_name = "Vni. I"
 
     assert format(staff) == abjad.String.normalize(
         r"""
@@ -245,7 +245,7 @@ def test_LilyPondSettingNameManager___setattr___09():
             f'8
         }
         """
-        )
+    )
 
     assert abjad.inspect(staff).wellformed()
 
@@ -256,7 +256,7 @@ def test_LilyPondSettingNameManager___setattr___10():
     """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    abjad.setting(staff).short_instrument_name = abjad.Markup(r'\circle { V }')
+    abjad.setting(staff).short_instrument_name = abjad.Markup(r"\circle { V }")
 
     assert format(staff) == abjad.String.normalize(
         r"""
@@ -277,7 +277,7 @@ def test_LilyPondSettingNameManager___setattr___10():
             f'8
         }
         """
-        )
+    )
 
     assert abjad.inspect(staff).wellformed()
 
@@ -304,7 +304,7 @@ def test_LilyPondSettingNameManager___setattr___11():
             f'8
         }
         """
-        )
+    )
 
     assert abjad.inspect(staff).wellformed()
 
@@ -328,7 +328,7 @@ def test_LilyPondSettingNameManager___setattr___12():
             f'8
         }
         """
-        )
+    )
 
     assert abjad.inspect(staff).wellformed()
 
@@ -351,7 +351,7 @@ def test_LilyPondSettingNameManager___setattr___13():
         {
         }
         """
-        )
+    )
 
     assert not len(staff)
 
@@ -367,11 +367,11 @@ def test_LilyPondSettingNameManager___setattr___13():
         {
         }
         """
-        )
+    )
 
     assert not len(staff)
 
-    del(abjad.setting(staff).tuplet_full_length)
+    del abjad.setting(staff).tuplet_full_length
 
     assert format(staff) == abjad.String.normalize(
         r"""
@@ -379,6 +379,6 @@ def test_LilyPondSettingNameManager___setattr___13():
         {
         }
         """
-        )
+    )
 
     assert not len(staff)

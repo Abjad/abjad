@@ -22,9 +22,7 @@ class PackageGitCommitToken(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_package_name',
-        )
+    __slots__ = ("_package_name",)
 
     ### INITIALIZER ###
 
@@ -33,7 +31,7 @@ class PackageGitCommitToken(object):
 
     ### SPECIAL METHODS ###
 
-    def __format__(self, format_specification=''):
+    def __format__(self, format_specification=""):
         """
         Formats package git commit token.
 
@@ -46,10 +44,10 @@ class PackageGitCommitToken(object):
         Return string.
         """
         if not self.package_name:
-            return ''
-        if format_specification in ('', 'lilypond'):
+            return ""
+        if format_specification in ("", "lilypond"):
             return self._get_lilypond_format()
-        elif format_specification == 'storage':
+        elif format_specification == "storage":
             return StorageFormatManager(self).get_storage_format()
         return str(self)
 
@@ -62,15 +60,15 @@ class PackageGitCommitToken(object):
     ### PRIVATE METHODS ###
 
     def _get_commit_timestamp(self, commit_hash):
-        command = f'git show -s --format=%ci {commit_hash}'
+        command = f"git show -s --format=%ci {commit_hash}"
         return self._run_command(command)
 
     def _get_git_branch(self):
-        command = 'git rev-parse --abbrev-ref HEAD'
+        command = "git rev-parse --abbrev-ref HEAD"
         return self._run_command(command)
 
     def _get_git_hash(self):
-        command = 'git rev-parse HEAD'
+        command = "git rev-parse HEAD"
         return self._run_command(command)
 
     def _get_lilypond_format(self):
@@ -81,12 +79,8 @@ class PackageGitCommitToken(object):
             timestamp = self._get_commit_timestamp(git_hash)
         date, time, _ = timestamp.split()
         return 'package "{}" @ {} [{}] ({} {})'.format(
-            self._package_name,
-            git_hash[:7],
-            git_branch,
-            date,
-            time,
-            )
+            self._package_name, git_hash[:7], git_branch, date, time
+        )
 
     def _get_package_path(self):
         module = importlib.import_module(self._package_name)
@@ -98,16 +92,13 @@ class PackageGitCommitToken(object):
 
     def _run_command(self, command):
         process = subprocess.Popen(
-            command,
-            shell=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            )
+            command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+        )
         process.wait()
         if process.returncode:
             return None
         result = process.stdout.read().splitlines()[0]
-        result = result.decode('utf-8')
+        result = result.decode("utf-8")
         return result
 
     ### PUBLIC PROPERTIES ###

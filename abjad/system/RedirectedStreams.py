@@ -23,14 +23,9 @@ class RedirectedStreams(ContextManager):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Context managers'
+    __documentation_section__ = "Context managers"
 
-    __slots__ = (
-        '_stdout',
-        '_stderr',
-        '_old_stderr',
-        '_old_stdout',
-        )
+    __slots__ = ("_stdout", "_stderr", "_old_stderr", "_old_stdout")
 
     ### INITIALIZER ###
 
@@ -84,6 +79,7 @@ class RedirectedStreams(ContextManager):
 
     def _get_format_specification(self):
         from abjad import system
+
         return system.FormatSpecification(
             self,
             repr_is_bracketed=True,
@@ -92,7 +88,7 @@ class RedirectedStreams(ContextManager):
             storage_format_is_indented=False,
             storage_format_args_values=[],
             storage_format_kwargs_names=[],
-            )
+        )
 
     ### PUBLIC PROPERTIES ###
 

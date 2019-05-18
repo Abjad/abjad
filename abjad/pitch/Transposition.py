@@ -22,9 +22,7 @@ class Transposition(object):
 
     ### CLASS VARIABLES ##
 
-    __slots__ = (
-        '_n',
-        )
+    __slots__ = ("_n",)
 
     ### INITIALIZER ###
 
@@ -103,6 +101,7 @@ class Transposition(object):
         Returns compound operator.
         """
         import abjad
+
         return abjad.CompoundOperator._compose_operators(self, operator)
 
     def __call__(self, argument):
@@ -138,7 +137,7 @@ class Transposition(object):
 
         Returns new object with type equal to that of `argument`.
         """
-        if hasattr(argument, 'transpose'):
+        if hasattr(argument, "transpose"):
             result = argument.transpose(self.n)
         elif isinstance(argument, collections.abc.Iterable):
             items = []
@@ -147,7 +146,7 @@ class Transposition(object):
                 items.append(item)
             result = type(argument)(items)
         else:
-            message = 'do not know how to transpose: {!r}.'
+            message = "do not know how to transpose: {!r}."
             message = message.format(argument)
             raise TypeError(message)
         return result
@@ -167,7 +166,7 @@ class Transposition(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     def __radd__(self, operator):
@@ -183,7 +182,7 @@ class Transposition(object):
 
         Raises not implemented error.
         """
-        message = 'right-addition not defined on {}.'
+        message = "right-addition not defined on {}."
         message = message.format(type(self).__name__)
         raise NotImplementedError(message)
 
@@ -208,14 +207,14 @@ class Transposition(object):
             'T2'
 
         """
-        string = 'T{}'
+        string = "T{}"
         string = string.format(self.n)
         return string
 
     ### PRIVATE METHODS ###
 
     def _get_markup(self, direction=None):
-        operator = markups.Markup('T', direction=None)
+        operator = markups.Markup("T", direction=None)
         subscript = markups.Markup(self.n).sub()
         markup = markups.Markup.concat([operator, subscript])
         return markup

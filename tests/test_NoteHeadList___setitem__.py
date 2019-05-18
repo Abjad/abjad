@@ -30,7 +30,7 @@ def test_NoteHeadList___setitem___03():
 
     chord = abjad.Chord("<c' cs'' f''>4")
     note_head = abjad.NoteHead(3)
-    abjad.tweak(note_head).color = 'red'
+    abjad.tweak(note_head).color = "red"
     chord.note_heads[0] = note_head
 
     assert format(chord) == abjad.String.normalize(
@@ -42,6 +42,6 @@ def test_NoteHeadList___setitem___03():
             f''
         >4
         """
-        )
+    )
 
     assert abjad.inspect(chord).wellformed()

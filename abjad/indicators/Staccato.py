@@ -61,10 +61,7 @@ class Staccato(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_direction',
-        '_tweaks',
-        )
+    __slots__ = ("_direction", "_tweaks")
 
     _format_slot: enums.HorizontalAlignment = enums.Right
 
@@ -77,10 +74,12 @@ class Staccato(object):
         *,
         direction: enums.VerticalAlignment = None,
         tweaks: LilyPondTweakManager = None,
-        ) -> None:
+    ) -> None:
         direction_ = String.to_tridirectional_ordinal_constant(direction)
         if direction_ is not None:
-            assert isinstance(direction_, enums.VerticalAlignment), repr(direction_)
+            assert isinstance(direction_, enums.VerticalAlignment), repr(
+                direction_
+            )
             directions = (enums.Up, enums.Down, enums.Center, None)
             assert direction_ in directions, repr(direction_)
         self._direction = direction_
@@ -105,7 +104,7 @@ class Staccato(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     def __repr__(self) -> str:
@@ -124,7 +123,7 @@ class Staccato(object):
             '\\staccato'
 
         """
-        return r'\staccato'
+        return r"\staccato"
 
     ### PRIVATE METHODS ###
 

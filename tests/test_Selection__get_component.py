@@ -84,7 +84,7 @@ def test_Selection__get_component_03():
         f'4
         r4
         """
-        )
+    )
 
     notes = [staff[0], staff[2], staff[4], staff[6]]
     rests = [staff[1], staff[3], staff[5], staff[7]]
@@ -118,7 +118,7 @@ def test_Selection__get_component_04():
         f'4
         r4
         """
-        )
+    )
 
     notes = [staff[0], staff[2], staff[4], staff[6]]
     rests = [staff[1], staff[3], staff[5], staff[7]]

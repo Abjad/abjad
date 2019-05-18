@@ -9,6 +9,7 @@ from abjad.top.inspect import inspect
 from abjad.utilities.Duration import Duration
 from abjad.utilities.String import String
 from .Clef import Clef
+
 abjad_tags = Tags()
 
 
@@ -49,13 +50,9 @@ class RepeatTie(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_direction',
-        '_left_broken',
-        '_tweaks',
-        )
+    __slots__ = ("_direction", "_left_broken", "_tweaks")
 
-    _context = 'Voice'
+    _context = "Voice"
 
     _persistent = True
 
@@ -69,7 +66,7 @@ class RepeatTie(object):
         direction: enums.VerticalAlignment = None,
         left_broken: bool = None,
         tweaks: LilyPondTweakManager = None,
-        ) -> None:
+    ) -> None:
         direction_ = String.to_tridirectional_lilypond_symbol(direction)
         self._direction = direction_
         if left_broken is not None:
@@ -96,9 +93,9 @@ class RepeatTie(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
-    
+
     def __repr__(self) -> str:
         """
         Gets interpreter representation.
@@ -116,9 +113,9 @@ class RepeatTie(object):
             bundle.after.spanners.extend(strings)
         strings = []
         if self._should_force_repeat_tie_up(component):
-            string = r'- \tweak direction #up'
+            string = r"- \tweak direction #up"
             strings.append(string)
-        strings.append(r'\repeatTie')
+        strings.append(r"\repeatTie")
         if self.left_broken:
             strings = self._tag_show(strings)
         bundle.after.spanners.extend(strings)
@@ -128,11 +125,12 @@ class RepeatTie(object):
     def _should_force_repeat_tie_up(leaf):
         from abjad.core.Chord import Chord
         from abjad.core.Note import Note
+
         if not isinstance(leaf, (Note, Chord)):
             return False
         if leaf.written_duration < Duration(1):
             return False
-        clef = inspect(leaf).effective(Clef, default=Clef('treble'))
+        clef = inspect(leaf).effective(Clef, default=Clef("treble"))
         if isinstance(leaf, Note):
             written_pitches = [leaf.written_pitch]
         else:
@@ -149,7 +147,7 @@ class RepeatTie(object):
             strings,
             deactivate=True,
             tag=abjad_tags.SHOW_TO_JOIN_BROKEN_SPANNERS,
-            )
+        )
 
     ### PUBLIC PROPERTIES ###
 

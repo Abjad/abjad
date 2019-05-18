@@ -10,12 +10,9 @@ class TemporaryDirectory(ContextManager):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Context managers'
+    __documentation_section__ = "Context managers"
 
-    __slots__ = (
-        '_parent_directory',
-        '_temporary_directory',
-        )
+    __slots__ = ("_parent_directory", "_temporary_directory")
 
     ### INITIALIZER ###
 
@@ -31,9 +28,7 @@ class TemporaryDirectory(ContextManager):
 
         Creates and returns path to a temporary directory.
         """
-        self._temporary_directory = tempfile.mkdtemp(
-            dir=self.parent_directory,
-            )
+        self._temporary_directory = tempfile.mkdtemp(dir=self.parent_directory)
         return self._temporary_directory
 
     def __exit__(self, exc_type, exc_value, traceback):

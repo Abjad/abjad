@@ -114,18 +114,18 @@ class Wrapper(object):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Internals'
+    __documentation_section__ = "Internals"
 
     __slots__ = (
-        '_annotation',
-        '_component',
-        '_context',
-        '_deactivate',
-        '_effective_context',
-        '_indicator',
-        '_synthetic_offset',
-        '_tag',
-        )
+        "_annotation",
+        "_component",
+        "_context",
+        "_deactivate",
+        "_effective_context",
+        "_indicator",
+        "_synthetic_offset",
+        "_tag",
+    )
 
     _publish_storage_format = True
 
@@ -134,15 +134,16 @@ class Wrapper(object):
     def __init__(
         self,
         annotation: str = None,
-        component = None,
+        component=None,
         context: str = None,
         deactivate: bool = None,
         indicator: typing.Any = None,
         synthetic_offset: int = None,
         tag: typing.Union[str, Tag] = None,
-        ) -> None:
+    ) -> None:
         from abjad.core.Component import Component
         from abjad.utilities.Offset import Offset
+
         assert not isinstance(indicator, type(self)), repr(indicator)
         if annotation is not None:
             assert isinstance(annotation, str), repr(annotation)
@@ -172,7 +173,7 @@ class Wrapper(object):
 
     ### SPECIAL METHODS ###
 
-    def __copy__(self, *arguments) -> 'Wrapper':
+    def __copy__(self, *arguments) -> "Wrapper":
         r"""
         Copies wrapper.
 
@@ -313,7 +314,7 @@ class Wrapper(object):
             indicator=copy.copy(self.indicator),
             synthetic_offset=self.synthetic_offset,
             tag=self.tag,
-            )
+        )
         return new
 
     def __eq__(self, argument) -> bool:
@@ -323,14 +324,14 @@ class Wrapper(object):
         """
         return StorageFormatManager.compare_objects(self, argument)
 
-    def __format__(self, format_specification='') -> str:
+    def __format__(self, format_specification="") -> str:
         """
         Formats Abjad object.
 
         Set ``format_specification`` to ``''`` or ``'storage'``.
         Interprets ``''`` equal to ``'storage'``.
         """
-        if format_specification in ('', 'storage'):
+        if format_specification in ("", "storage"):
             return StorageFormatManager(self).get_storage_format()
         return str(self)
 
@@ -342,7 +343,7 @@ class Wrapper(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     def __repr__(self) -> str:
@@ -354,12 +355,12 @@ class Wrapper(object):
     ### PRIVATE METHODS ###
 
     def _bind_component(self, component):
-        if getattr(self.indicator, 'context', None) is not None:
+        if getattr(self.indicator, "context", None) is not None:
             self._warn_duplicate_indicator(component)
             self._unbind_component()
             self._component = component
             self._update_effective_context()
-            if getattr(self.indicator, '_mutates_offsets_in_seconds', False):
+            if getattr(self.indicator, "_mutates_offsets_in_seconds", False):
                 self._component._update_later(offsets_in_seconds=True)
         component._wrappers.append(self)
 
@@ -369,7 +370,7 @@ class Wrapper(object):
             correct_effective_context._dependent_wrappers.append(self)
         self._effective_context = correct_effective_context
         self._update_effective_context()
-        if getattr(self.indicator, '_mutates_offsets_in_seconds', False):
+        if getattr(self.indicator, "_mutates_offsets_in_seconds", False):
             correct_effective_context._update_later(offsets_in_seconds=True)
 
     def _detach(self):
@@ -379,6 +380,7 @@ class Wrapper(object):
 
     def _find_correct_effective_context(self):
         import abjad
+
         if self.context is None:
             return None
         context = getattr(abjad, self.context, self.context)
@@ -395,12 +397,14 @@ class Wrapper(object):
             for component in parentage:
                 if not isinstance(component, abjad.Context):
                     continue
-                if (component.name == context or
-                    component.lilypond_type == context):
+                if (
+                    component.name == context
+                    or component.lilypond_type == context
+                ):
                     candidate = component
                     break
         else:
-            raise TypeError('must be context or string: {context!r}.')
+            raise TypeError("must be context or string: {context!r}.")
         if isinstance(candidate, abjad.Voice):
             for component in reversed(parentage):
                 if not isinstance(component, abjad.Voice):
@@ -419,48 +423,45 @@ class Wrapper(object):
         result = []
         if self.annotation:
             return result
-        if hasattr(self.indicator, '_get_lilypond_format_bundle'):
+        if hasattr(self.indicator, "_get_lilypond_format_bundle"):
             bundle = self.indicator._get_lilypond_format_bundle(self.component)
             bundle.tag_format_contributions(
-                self.tag,
-                deactivate=self.deactivate,
-                )
+                self.tag, deactivate=self.deactivate
+            )
             return bundle
         try:
             context = self._get_effective_context()
             lilypond_format = self.indicator._get_lilypond_format(
-                context=context,
-                )
+                context=context
+            )
         except TypeError:
             lilypond_format = self.indicator._get_lilypond_format()
         if isinstance(lilypond_format, str):
             lilypond_format = [lilypond_format]
         assert isinstance(lilypond_format, (tuple, list))
         lilypond_format = LilyPondFormatManager.tag(
-            lilypond_format,
-            self.tag,
-            deactivate=self.deactivate,
-            )
+            lilypond_format, self.tag, deactivate=self.deactivate
+        )
         result.extend(lilypond_format)
         if self._get_effective_context() is not None:
             return result
-        result = [rf'%%% {_} %%%' for _ in result]
+        result = [rf"%%% {_} %%%" for _ in result]
         return result
 
     def _get_format_specification(self):
         keywords = [
-            'annotation',
-            'context',
-            'deactivate',
-            'indicator',
-            'synthetic_offset',
-            'tag',
-            ]
+            "annotation",
+            "context",
+            "deactivate",
+            "indicator",
+            "synthetic_offset",
+            "tag",
+        ]
         return FormatSpecification(
             client=self,
             storage_format_args_values=None,
             storage_format_kwargs_names=keywords,
-            )
+        )
 
     def _unbind_component(self):
         if self._component is not None and self in self._component._wrappers:
@@ -468,52 +469,58 @@ class Wrapper(object):
         self._component = None
 
     def _unbind_effective_context(self):
-        if (self._effective_context is not None and
-            self in self._effective_context._dependent_wrappers):
+        if (
+            self._effective_context is not None
+            and self in self._effective_context._dependent_wrappers
+        ):
             self._effective_context._dependent_wrappers.remove(self)
         self._effective_context = None
 
     def _update_effective_context(self):
         correct_effective_context = self._find_correct_effective_context()
-        #print(correct_effective_context)
+        # print(correct_effective_context)
         if self._effective_context is not correct_effective_context:
             self._bind_effective_context(correct_effective_context)
 
     def _warn_duplicate_indicator(self, component):
         import abjad
+
         if self.deactivate is True:
             return
         prototype = type(self.indicator)
-        command = getattr(self.indicator, 'command', None)
+        command = getattr(self.indicator, "command", None)
         wrapper = abjad.inspect(component).effective_wrapper(
-            prototype,
-            attributes={'command': command},
-            )
-        if (wrapper is None or
-            wrapper.context is None or
-            wrapper.deactivate is True or
-            wrapper.start_offset != self.start_offset):
+            prototype, attributes={"command": command}
+        )
+        if (
+            wrapper is None
+            or wrapper.context is None
+            or wrapper.deactivate is True
+            or wrapper.start_offset != self.start_offset
+        ):
             return
-        my_leak = getattr(self.indicator, 'leak', None)
-        if getattr(wrapper.indicator, 'leak', None) != my_leak:
+        my_leak = getattr(self.indicator, "leak", None)
+        if getattr(wrapper.indicator, "leak", None) != my_leak:
             return
         context = abjad.inspect(component).parentage().get(abjad.Context)
         parentage = abjad.inspect(wrapper.component).parentage()
         wrapper_context = parentage.get(abjad.Context)
-        if (wrapper.indicator == self.indicator and
-            context is not wrapper_context):
+        if (
+            wrapper.indicator == self.indicator
+            and context is not wrapper_context
+        ):
             return
-        message = f'\n\nCan not attach ...\n\n{self}\n\n...'
-        message += f' to {repr(component)}'
+        message = f"\n\nCan not attach ...\n\n{self}\n\n..."
+        message += f" to {repr(component)}"
         message += f" in {getattr(context, 'name', None)} because ..."
-        message += f'\n\n{format(wrapper)}\n\n'
-        message += '... is already attached'
+        message += f"\n\n{format(wrapper)}\n\n"
+        message += "... is already attached"
         if component is wrapper.component:
-            message += ' to the same leaf.'
+            message += " to the same leaf."
         else:
-            message += f' to {repr(wrapper.component)}'
-            message += f' in {wrapper_context.name}.'
-        message += '\n'
+            message += f" to {repr(wrapper.component)}"
+            message += f" in {wrapper_context.name}."
+        message += "\n"
         raise abjad.PersistentIndicatorError(message)
 
     ### PUBLIC PROPERTIES ###
@@ -590,6 +597,7 @@ class Wrapper(object):
         Returns offset.
         """
         from abjad.top.inspect import inspect
+
         if self._synthetic_offset is not None:
             return self._synthetic_offset
         return inspect(self._component).timespan().start_offset
@@ -614,6 +622,6 @@ class Wrapper(object):
     @tag.setter
     def tag(self, argument):
         if not isinstance(argument, (str, Tag)):
-            raise Exception(f'string or tag: {argument!r}.')
+            raise Exception(f"string or tag: {argument!r}.")
         tag = Tag(argument)
         self._tag = tag

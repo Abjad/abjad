@@ -1,7 +1,8 @@
 import collections
 from fractions import Fraction
+
 try:
-    from quicktions import Fraction # type: ignore
+    from quicktions import Fraction  # type: ignore
 except ImportError:
     pass
 import functools
@@ -243,20 +244,20 @@ class MetronomeMark(object):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_custom_markup',
-        '_hide',
-        '_reference_duration',
-        '_textual_indication',
-        '_units_per_minute',
-        )
+        "_custom_markup",
+        "_hide",
+        "_reference_duration",
+        "_textual_indication",
+        "_units_per_minute",
+    )
 
-    _context = 'Score'
+    _context = "Score"
 
-    _format_slot = 'opening'
+    _format_slot = "opening"
 
     _mutates_offsets_in_seconds = True
 
-    _parameter = 'METRONOME_MARK'
+    _parameter = "METRONOME_MARK"
 
     _persistent = True
 
@@ -270,7 +271,7 @@ class MetronomeMark(object):
         *,
         custom_markup: Markup = None,
         hide: bool = None,
-        ) -> None:
+    ) -> None:
         assert isinstance(textual_indication, (str, type(None)))
         arguments = (reference_duration, units_per_minute, textual_indication)
         if all(_ is None for _ in arguments):
@@ -280,15 +281,10 @@ class MetronomeMark(object):
             reference_duration = Duration(reference_duration)
         if isinstance(units_per_minute, float):
             raise Exception(
-                f'do not set units-per-minute to float ({units_per_minute});'
-                ' use fraction with textual indication instead.'
-                )
-        prototype = (
-            int,
-            Fraction,
-            collections.abc.Sequence,
-            type(None),
+                f"do not set units-per-minute to float ({units_per_minute});"
+                " use fraction with textual indication instead."
             )
+        prototype = (int, Fraction, collections.abc.Sequence, type(None))
         assert isinstance(units_per_minute, prototype)
         if isinstance(units_per_minute, collections.abc.Sequence):
             assert len(units_per_minute) == 2
@@ -308,7 +304,7 @@ class MetronomeMark(object):
 
     ### SPECIAL METHODS ###
 
-    def __add__(self, argument) -> typing.Optional['MetronomeMark']:
+    def __add__(self, argument) -> typing.Optional["MetronomeMark"]:
         """
         Adds metronome mark to ``argument``.
 
@@ -364,28 +360,31 @@ class MetronomeMark(object):
         assert isinstance(argument.quarters_per_minute, Fraction)
         assert isinstance(self.reference_duration, Duration)
         assert isinstance(argument.reference_duration, Duration)
-        new_quarters_per_minute = \
+        new_quarters_per_minute = (
             self.quarters_per_minute + argument.quarters_per_minute
-        minimum_denominator = min((
-            self.reference_duration.denominator,
-            argument.reference_duration.denominator,
-            ))
+        )
+        minimum_denominator = min(
+            (
+                self.reference_duration.denominator,
+                argument.reference_duration.denominator,
+            )
+        )
         nonreduced_fraction = NonreducedFraction(new_quarters_per_minute / 4)
         nonreduced_fraction = nonreduced_fraction.with_denominator(
-            minimum_denominator)
-        new_units_per_minute, new_reference_duration_denominator = \
+            minimum_denominator
+        )
+        new_units_per_minute, new_reference_duration_denominator = (
             nonreduced_fraction.pair
+        )
         new_reference_duration = Duration(
-            1,
-            new_reference_duration_denominator
-            )
+            1, new_reference_duration_denominator
+        )
         metronome_mark = type(self)(
-            new_reference_duration,
-            new_units_per_minute,
-            )
+            new_reference_duration, new_units_per_minute
+        )
         return metronome_mark
 
-    def __div__(self, argument) -> 'MetronomeMark':
+    def __div__(self, argument) -> "MetronomeMark":
         """
         Divides metronome mark by ``argument``.
 
@@ -406,7 +405,7 @@ class MetronomeMark(object):
         """
         if self.is_imprecise:
             raise exceptions.ImpreciseMetronomeMarkError
-        if getattr(argument, 'is_imprecise', False):
+        if getattr(argument, "is_imprecise", False):
             raise exceptions.ImpreciseMetronomeMarkError
         assert isinstance(self.quarters_per_minute, Fraction)
         if isinstance(argument, type(self)):
@@ -423,7 +422,7 @@ class MetronomeMark(object):
             result = new(self, units_per_minute=units_per_minute)
             return result
         else:
-            raise TypeError(f'must be number or metronome mark: {argument!r}.')
+            raise TypeError(f"must be number or metronome mark: {argument!r}.")
 
     def __eq__(self, argument) -> bool:
         """
@@ -467,14 +466,16 @@ class MetronomeMark(object):
         if not isinstance(argument, type(self)):
             return False
         # 'hide' is excluded from equality testing:
-        if (self.reference_duration == argument.reference_duration and
-            self.units_per_minute == argument.units_per_minute and
-            self.textual_indication == argument.textual_indication and
-            self.custom_markup == argument.custom_markup):
+        if (
+            self.reference_duration == argument.reference_duration
+            and self.units_per_minute == argument.units_per_minute
+            and self.textual_indication == argument.textual_indication
+            and self.custom_markup == argument.custom_markup
+        ):
             return True
         return False
 
-    def __format__(self, format_specification='') -> str:
+    def __format__(self, format_specification="") -> str:
         r"""
         Formats metronome mark.
 
@@ -511,9 +512,9 @@ class MetronomeMark(object):
                 )
 
         """
-        if format_specification in ('', 'storage'):
+        if format_specification in ("", "storage"):
             return StorageFormatManager(self).get_storage_format()
-        assert format_specification == 'lilypond'
+        assert format_specification == "lilypond"
         return self._get_lilypond_format()
 
     def __hash__(self) -> int:
@@ -526,7 +527,7 @@ class MetronomeMark(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     def __lt__(self, argument) -> bool:
@@ -542,9 +543,8 @@ class MetronomeMark(object):
         return self_quarters_per_minute < argument_quarters_per_minute
 
     def __mul__(
-        self,
-        multiplier: typing.Union[int, Fraction],
-        ) -> typing.Optional['MetronomeMark']:
+        self, multiplier: typing.Union[int, Fraction]
+    ) -> typing.Optional["MetronomeMark"]:
         """
         Multiplies metronome mark by ``multiplier``.
 
@@ -575,10 +575,10 @@ class MetronomeMark(object):
         metronome_mark = type(self)(
             reference_duration=new_reference_duration,
             units_per_minute=new_units_per_minute,
-            )
+        )
         return metronome_mark
 
-    def __radd__(self, argument) -> typing.Optional['MetronomeMark']:
+    def __radd__(self, argument) -> typing.Optional["MetronomeMark"]:
         """
         Adds ``argument`` to metronome mark.
 
@@ -637,9 +637,8 @@ class MetronomeMark(object):
         return StorageFormatManager(self).get_repr_format()
 
     def __rmul__(
-        self,
-        multiplier: typing.Union[int, Fraction],
-        ) -> typing.Optional['MetronomeMark']:
+        self, multiplier: typing.Union[int, Fraction]
+    ) -> typing.Optional["MetronomeMark"]:
         """
         Multiplies ``multiplier`` by metronome mark.
 
@@ -670,7 +669,7 @@ class MetronomeMark(object):
         metronome_mark = type(self)(
             reference_duration=new_reference_duration,
             units_per_minute=new_units_per_minute,
-            )
+        )
         return metronome_mark
 
     def __str__(self) -> str:
@@ -697,30 +696,34 @@ class MetronomeMark(object):
         if self.textual_indication is not None:
             string = self.textual_indication
         elif isinstance(self.units_per_minute, (int, float)):
-            string = f'{self._dotted}={self.units_per_minute}'
-        elif (isinstance(self.units_per_minute, Fraction) and
-            not mathtools.is_integer_equivalent_number(self.units_per_minute)):
+            string = f"{self._dotted}={self.units_per_minute}"
+        elif isinstance(
+            self.units_per_minute, Fraction
+        ) and not mathtools.is_integer_equivalent_number(
+            self.units_per_minute
+        ):
             integer_part = int(float(self.units_per_minute))
             remainder = self.units_per_minute - integer_part
             remainder = Fraction(remainder)
-            string = f'{self._dotted}={integer_part}+{remainder}'
-        elif (isinstance(self.units_per_minute, Fraction) and
-            mathtools.is_integer_equivalent_number(self.units_per_minute)):
-            string = '{}={}'
+            string = f"{self._dotted}={integer_part}+{remainder}"
+        elif isinstance(
+            self.units_per_minute, Fraction
+        ) and mathtools.is_integer_equivalent_number(self.units_per_minute):
+            string = "{}={}"
             integer = int(float(self.units_per_minute))
             string = string.format(self._dotted, integer)
         elif isinstance(self.units_per_minute, tuple):
-            string = '{}={}-{}'
+            string = "{}={}-{}"
             string = string.format(
                 self._dotted,
                 self.units_per_minute[0],
                 self.units_per_minute[1],
-                )
+            )
         else:
-            raise TypeError(f'unknown: {self.units_per_minute!r}.')
+            raise TypeError(f"unknown: {self.units_per_minute!r}.")
         return string
 
-    def __sub__(self, argument) -> 'MetronomeMark':
+    def __sub__(self, argument) -> "MetronomeMark":
         """
         Subtracts ``argument`` from metronome mark.
 
@@ -755,35 +758,39 @@ class MetronomeMark(object):
 
         """
         if not isinstance(argument, type(self)):
-            raise Exception('must be metronome mark: {argument!r}.')
+            raise Exception("must be metronome mark: {argument!r}.")
         if self.is_imprecise or argument.is_imprecise:
             raise exceptions.ImpreciseMetronomeMarkError
         assert isinstance(self.quarters_per_minute, (int, float, Fraction))
         assert isinstance(argument.quarters_per_minute, (int, float, Fraction))
         assert isinstance(self.reference_duration, Duration)
         assert isinstance(argument.reference_duration, Duration)
-        new_quarters_per_minute = self.quarters_per_minute - \
-            argument.quarters_per_minute
-        minimum_denominator = min((
-            self.reference_duration.denominator,
-            argument.reference_duration.denominator,
-            ))
+        new_quarters_per_minute = (
+            self.quarters_per_minute - argument.quarters_per_minute
+        )
+        minimum_denominator = min(
+            (
+                self.reference_duration.denominator,
+                argument.reference_duration.denominator,
+            )
+        )
         nonreduced_fraction = NonreducedFraction(new_quarters_per_minute / 4)
         nonreduced_fraction = nonreduced_fraction.with_denominator(
-            minimum_denominator)
-        new_units_per_minute, new_reference_duration_denominator = \
+            minimum_denominator
+        )
+        new_units_per_minute, new_reference_duration_denominator = (
             nonreduced_fraction.pair
+        )
         new_reference_duration = Duration(
-            1,
-            new_reference_duration_denominator,
-            )
+            1, new_reference_duration_denominator
+        )
         metronome_mark = type(self)(
             reference_duration=new_reference_duration,
             units_per_minute=new_units_per_minute,
-            )
+        )
         return metronome_mark
 
-    def __truediv__(self, argument) -> 'MetronomeMark':
+    def __truediv__(self, argument) -> "MetronomeMark":
         """
         Divides metronome mark by ``argument``.
 
@@ -819,21 +826,20 @@ class MetronomeMark(object):
         if self.reference_duration is None:
             return
         if isinstance(self.units_per_minute, tuple):
-            string = '{}={}-{}'
+            string = "{}={}-{}"
             string = string.format(
                 self._dotted,
                 self.units_per_minute[0],
                 self.units_per_minute[1],
-                )
+            )
             return string
         elif isinstance(self.units_per_minute, (float, Fraction)):
             markup = MetronomeMark.make_tempo_equation_markup(
-                self.reference_duration,
-                self.units_per_minute,
-                )
+                self.reference_duration, self.units_per_minute
+            )
             string = str(markup)
             return string
-        string = f'{self._dotted}={self.units_per_minute}'
+        string = f"{self._dotted}={self.units_per_minute}"
         return string
 
     def _get_format_specification(self):
@@ -846,19 +852,21 @@ class MetronomeMark(object):
         if self.textual_indication is not None:
             text = self.textual_indication
             text = Scheme.format_scheme_value(text)
-        if (self.reference_duration is not None and
-            self.units_per_minute is not None):
+        if (
+            self.reference_duration is not None
+            and self.units_per_minute is not None
+        ):
             equation = self._equation
         if self.custom_markup is not None:
-            return rf'\tempo {self.custom_markup}'
+            return rf"\tempo {self.custom_markup}"
         elif text and equation:
-            return rf'\tempo {text} {equation}'
+            return rf"\tempo {text} {equation}"
         elif equation:
-            return rf'\tempo {equation}'
+            return rf"\tempo {equation}"
         elif text:
-            return rf'\tempo {text}'
+            return rf"\tempo {text}"
         else:
-            return r'\tempo \default'
+            return r"\tempo \default"
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = LilyPondFormatBundle()
@@ -868,6 +876,7 @@ class MetronomeMark(object):
 
     def _make_lhs_score_markup(self, reference_duration=None):
         import abjad
+
         reference_duration = reference_duration or self.reference_duration
         maker = abjad.NoteMaker()
         selection = maker([0], [reference_duration])
@@ -884,7 +893,7 @@ class MetronomeMark(object):
             self.reference_duration.dot_count,
             stem_height,
             self.units_per_minute,
-            )
+        )
         return markup
 
     def _get_markup_arguments(self):
@@ -893,12 +902,7 @@ class MetronomeMark(object):
         dot_count = self.reference_duration.dot_count
         stem_height = 1
         units_per_minute = self.units_per_minute
-        return (
-            duration_log,
-            dot_count,
-            stem_height,
-            units_per_minute,
-            )
+        return (duration_log, dot_count, stem_height, units_per_minute)
 
     ### PUBLIC PROPERTIES ###
 
@@ -1159,13 +1163,20 @@ class MetronomeMark(object):
         if self.is_imprecise:
             return None
         if isinstance(self.units_per_minute, tuple):
-            low = Duration(1, 4) / self.reference_duration * \
-                self.units_per_minute[0]
-            high = Duration(1, 4) / self.reference_duration * \
-                self.units_per_minute[1]
+            low = (
+                Duration(1, 4)
+                / self.reference_duration
+                * self.units_per_minute[0]
+            )
+            high = (
+                Duration(1, 4)
+                / self.reference_duration
+                * self.units_per_minute[1]
+            )
             return (low, high)
-        result = Duration(1, 4) / self.reference_duration * \
-            self.units_per_minute
+        result = (
+            Duration(1, 4) / self.reference_duration * self.units_per_minute
+        )
         return Fraction(result)
 
     @property
@@ -1288,7 +1299,7 @@ class MetronomeMark(object):
         maximum_numerator=None,
         maximum_denominator=None,
         integer_tempos_only=False,
-        ):
+    ):
         r"""
         Lists related tempos.
 
@@ -1360,21 +1371,24 @@ class MetronomeMark(object):
         pairs = enumerator.yield_outer_product()
         multipliers = [Multiplier(_) for _ in pairs]
         multipliers = [
-            _ for _ in multipliers
-            if Fraction(1, 2) <= _ <= Fraction(2)
-            ]
+            _ for _ in multipliers if Fraction(1, 2) <= _ <= Fraction(2)
+        ]
         multipliers.sort()
         multipliers = sequence(multipliers).remove_repeats()
         pairs = []
         for multiplier in multipliers:
             new_units_per_minute = multiplier * self.units_per_minute
-            if (integer_tempos_only and not
-                mathtools.is_integer_equivalent_number(new_units_per_minute)):
+            if (
+                integer_tempos_only
+                and not mathtools.is_integer_equivalent_number(
+                    new_units_per_minute
+                )
+            ):
                 continue
             metronome_mark = type(self)(
                 reference_duration=self.reference_duration,
                 units_per_minute=new_units_per_minute,
-                )
+            )
             ratio = Ratio(multiplier.pair)
             pair = (metronome_mark, ratio)
             pairs.append(pair)
@@ -1753,6 +1767,7 @@ class MetronomeMark(object):
         Returns markup.
         """
         import abjad
+
         if isinstance(reference_duration, abjad.Selection):
             selection = reference_duration
         else:
@@ -1760,15 +1775,19 @@ class MetronomeMark(object):
             selection = maker([0], [reference_duration])
         lhs_score_markup = Duration._to_score_markup(selection)
         lhs_score_markup = lhs_score_markup.scale((0.75, 0.75))
-        equal_markup = abjad.Markup('=')
-        if (isinstance(units_per_minute, abjad.Fraction) and
-            not abjad.mathtools.is_integer_equivalent_number(units_per_minute)):
+        equal_markup = abjad.Markup("=")
+        if isinstance(
+            units_per_minute, abjad.Fraction
+        ) and not abjad.mathtools.is_integer_equivalent_number(
+            units_per_minute
+        ):
             rhs_markup = abjad.Markup.make_improper_fraction_markup(
-                units_per_minute)
+                units_per_minute
+            )
             rhs_markup = rhs_markup.raise_(-0.5)
         else:
             rhs_markup = abjad.Markup(units_per_minute)
-            rhs_markup = rhs_markup.general_align('Y', -0.5)
+            rhs_markup = rhs_markup.general_align("Y", -0.5)
         markup = lhs_score_markup + equal_markup + rhs_markup
         return markup
 
@@ -1813,6 +1832,7 @@ class MetronomeMark(object):
         Returns duration.
         """
         import abjad
+
         duration = Duration(duration)
         tempo_ratio = metronome_mark / self
         new_duration = tempo_ratio * duration

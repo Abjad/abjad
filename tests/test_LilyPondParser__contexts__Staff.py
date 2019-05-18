@@ -11,7 +11,7 @@ def test_LilyPondParser__contexts__Staff_01():
         {
         }
         """
-        )
+    )
 
     parser = abjad.parser.LilyPondParser()
     result = parser(format(target))
@@ -54,7 +54,7 @@ def test_LilyPondParser__contexts__Staff_02():
             }
         >>
         """
-        )
+    )
 
     parser = abjad.parser.LilyPondParser()
     result = parser(format(target))

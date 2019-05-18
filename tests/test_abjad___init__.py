@@ -9,21 +9,21 @@ ignored_classes = (
     abjad.Path,
     abjad.StorageFormatManager,
     abjad.Tags,
-    )
+)
 
 classes = pytest.helpers.list_all_abjad_classes(
-    ignored_classes=ignored_classes,
-    )
+    ignored_classes=ignored_classes
+)
 
 
-@pytest.mark.parametrize('class_', classes)
+@pytest.mark.parametrize("class_", classes)
 def test_abjad___init___01(class_):
     """
     All concrete classes initialize from empty input.
     """
     if inspect.isabstract(class_):
         return
-    if getattr(class_, '_is_abstract', None) is True:
+    if getattr(class_, "_is_abstract", None) is True:
         return
     instance = class_()
     assert instance is not None
@@ -40,11 +40,11 @@ valid_types = (
     str,
     tuple,
     type(None),
-    )
+)
 
 # TODO: port inspect.getargspec() to inspect.getfullargspec() for annotations
-#@pytest.mark.parametrize('class_', classes)
-#def test_abjad___init___02(class_):
+# @pytest.mark.parametrize('class_', classes)
+# def test_abjad___init___02(class_):
 #    r'''Make sure class initializer keyword argument values are immutable.
 #    '''
 #    if inspect.isabstract(class_):
@@ -70,8 +70,8 @@ valid_types = (
 #            assert all(isinstance(_, valid_types) for _ in value)
 #
 #
-#functions = pytest.helpers.list_all_abjad_functions()
-#if functions:
+# functions = pytest.helpers.list_all_abjad_functions()
+# if functions:
 #    @pytest.mark.parametrize('function', functions)
 #    def test_abjad___init___03(function):
 #        r'''Function keyword argments are immutable.

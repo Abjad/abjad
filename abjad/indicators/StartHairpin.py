@@ -7,6 +7,7 @@ from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.system.Tags import Tags
 from abjad.utilities.String import String
+
 abjad_tags = Tags()
 
 
@@ -45,28 +46,19 @@ class StartHairpin(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_direction',
-        '_left_broken',
-        '_shape',
-        '_tweaks',
-        )
+    __slots__ = ("_direction", "_left_broken", "_shape", "_tweaks")
 
-    _context = 'Voice'
+    _context = "Voice"
 
-    _crescendo_start = r'\<'
+    _crescendo_start = r"\<"
 
-    _decrescendo_start = r'\>'
+    _decrescendo_start = r"\>"
 
-    _format_slot = 'after'
+    _format_slot = "after"
 
-    _known_shapes = (
-        '<', 'o<', '<|', 'o<|',
-        '>', '>o', '|>', '|>o',
-        '--',
-        )
+    _known_shapes = ("<", "o<", "<|", "o<|", ">", ">o", "|>", "|>o", "--")
 
-    _parameter = 'DYNAMIC'
+    _parameter = "DYNAMIC"
 
     _persistent = True
 
@@ -77,12 +69,12 @@ class StartHairpin(object):
 
     def __init__(
         self,
-        shape='<',
+        shape="<",
         *,
         direction: enums.VerticalAlignment = None,
         left_broken: bool = None,
         tweaks: LilyPondTweakManager = None,
-        ) -> None:
+    ) -> None:
         direction_ = String.to_tridirectional_lilypond_symbol(direction)
         self._direction = direction_
         if left_broken is not None:
@@ -111,7 +103,7 @@ class StartHairpin(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     def __repr__(self) -> str:
@@ -123,56 +115,56 @@ class StartHairpin(object):
     ### PRIVATE METHODS ###
 
     def _add_direction(self, string):
-        if getattr(self, 'direction', False):
-            string = f'{self.direction} {string}'
+        if getattr(self, "direction", False):
+            string = f"{self.direction} {string}"
         return string
 
     @staticmethod
     def _constante_hairpin():
         return LilyPondGrobOverride(
-            grob_name='Hairpin',
+            grob_name="Hairpin",
             once=True,
-            property_path='stencil',
-            value='#constante-hairpin',
-            )
+            property_path="stencil",
+            value="#constante-hairpin",
+        )
 
     @staticmethod
     def _circled_tip():
         return LilyPondGrobOverride(
-            grob_name='Hairpin',
+            grob_name="Hairpin",
             once=True,
-            property_path='circled-tip',
+            property_path="circled-tip",
             value=True,
-            )
+        )
 
     @staticmethod
     def _flared_hairpin():
         return LilyPondGrobOverride(
-            grob_name='Hairpin',
+            grob_name="Hairpin",
             once=True,
-            property_path='stencil',
-            value='#abjad-flared-hairpin',
-            )
+            property_path="stencil",
+            value="#abjad-flared-hairpin",
+        )
 
     def _get_lilypond_format(self):
         strings = []
-        if '--' in self.shape:
+        if "--" in self.shape:
             override = self._constante_hairpin()
             string = override.tweak_string()
             strings.append(string)
-        if 'o' in self.shape:
+        if "o" in self.shape:
             override = self._circled_tip()
             string = override.tweak_string()
             strings.append(string)
-        if '|' in self.shape:
+        if "|" in self.shape:
             override = self._flared_hairpin()
             string = override.tweak_string()
             strings.append(string)
-        if '<' in self.shape or '--' in self.shape:
+        if "<" in self.shape or "--" in self.shape:
             string = self._crescendo_start
             string = self._add_direction(string)
             strings.append(string)
-        elif '>' in self.shape:
+        elif ">" in self.shape:
             string = self._decrescendo_start
             string = self._add_direction(string)
             strings.append(string)
@@ -183,7 +175,7 @@ class StartHairpin(object):
         return strings
 
     def _get_lilypond_format_bundle(self, component=None):
-        """
+        r"""
         hairpin contributes formatting to the 'spanners' slot
         (rather than the 'commands' slot). The reason for this is that
         the LilyPond \startTrillSpan [pitch] command must appear after
@@ -200,12 +192,13 @@ class StartHairpin(object):
     @staticmethod
     def _tag_hide(strings):
         import abjad
+
         abjad_tags = abjad.Tags()
         return LilyPondFormatManager.tag(
             strings,
             deactivate=False,
             tag=abjad_tags.HIDE_TO_JOIN_BROKEN_SPANNERS,
-            )
+        )
 
     ### PUBLIC PROPERTIES ###
 

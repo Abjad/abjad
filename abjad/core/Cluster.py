@@ -2,7 +2,7 @@ from .Container import Container
 
 
 class Cluster(Container):
-    """
+    r"""
     Cluster.
 
     ..  container:: example
@@ -26,7 +26,7 @@ class Cluster(Container):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Containers'
+    __documentation_section__ = "Containers"
 
     __slots__ = ()
 
@@ -34,12 +34,12 @@ class Cluster(Container):
 
     def _format_open_brackets_slot(self, bundle):
         result = []
-        contributor = ('self_brackets', 'open')
+        contributor = ("self_brackets", "open")
         if self.is_simultaneous:
-            brackets_open = ['<<']
+            brackets_open = ["<<"]
         else:
-            brackets_open = ['{']
-        contributions = [rf'\makeClusters {brackets_open[0]}']
+            brackets_open = ["{"]
+        contributions = [rf"\makeClusters {brackets_open[0]}"]
         result.append([contributor, contributions])
         return tuple(result)
 

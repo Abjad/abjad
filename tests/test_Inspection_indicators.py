@@ -5,9 +5,9 @@ def test_Inspection_indicators_01():
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     abjad.slur(staff[:])
-    command_1 = abjad.LilyPondLiteral(r'\slurDotted')
+    command_1 = abjad.LilyPondLiteral(r"\slurDotted")
     abjad.attach(command_1, staff[0])
-    command_2 = abjad.LilyPondLiteral(r'\slurUp')
+    command_2 = abjad.LilyPondLiteral(r"\slurUp")
     abjad.attach(command_2, staff[0])
 
     assert format(staff) == abjad.String.normalize(
@@ -24,7 +24,7 @@ def test_Inspection_indicators_01():
             )
         }
         """
-        ), format(staff)
+    ), format(staff)
 
     indicators = abjad.inspect(staff[0]).indicators(abjad.LilyPondLiteral)
     assert command_1 in indicators
@@ -36,9 +36,9 @@ def test_Inspection_indicators_02():
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     abjad.slur(staff[:])
-    comment = abjad.LilyPondComment('beginning of note content')
+    comment = abjad.LilyPondComment("beginning of note content")
     abjad.attach(comment, staff[0])
-    command = abjad.LilyPondLiteral(r'\slurDotted')
+    command = abjad.LilyPondLiteral(r"\slurDotted")
     abjad.attach(command, staff[0])
 
     assert format(staff) == abjad.String.normalize(
@@ -55,7 +55,7 @@ def test_Inspection_indicators_02():
             )
         }
         """
-        ), format(staff)
+    ), format(staff)
 
     items = abjad.inspect(staff[0]).indicators()
     assert comment in items
@@ -66,9 +66,9 @@ def test_Inspection_indicators_02():
 def test_Inspection_indicators_03():
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    clef = abjad.Clef('treble')
+    clef = abjad.Clef("treble")
     abjad.attach(clef, staff[0])
-    dynamic = abjad.Dynamic('p')
+    dynamic = abjad.Dynamic("p")
     abjad.attach(dynamic, staff[0])
 
     assert format(staff) == abjad.String.normalize(
@@ -83,7 +83,7 @@ def test_Inspection_indicators_03():
             f'8
         }
         """
-        ), format(staff)
+    ), format(staff)
 
     indicators = abjad.inspect(staff[0]).indicators()
     assert len(indicators) == 2
@@ -92,9 +92,9 @@ def test_Inspection_indicators_03():
 def test_Inspection_indicators_04():
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    comment_1 = abjad.LilyPondComment('comment 1')
+    comment_1 = abjad.LilyPondComment("comment 1")
     abjad.attach(comment_1, staff[0])
-    comment_2 = abjad.LilyPondComment('comment 2')
+    comment_2 = abjad.LilyPondComment("comment 2")
     abjad.attach(comment_2, staff[0])
 
     assert format(staff) == abjad.String.normalize(
@@ -109,7 +109,7 @@ def test_Inspection_indicators_04():
             f'8
         }
         """
-        ), format(staff)
+    ), format(staff)
 
     indicators = abjad.inspect(staff[0]).indicators(abjad.LilyPondComment)
     assert comment_1 in indicators

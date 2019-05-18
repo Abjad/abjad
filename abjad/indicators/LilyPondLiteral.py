@@ -145,21 +145,16 @@ class LilyPondLiteral(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_argument',
-        '_directed',
-        '_format_slot',
-        '_tweaks',
-        )
+    __slots__ = ("_argument", "_directed", "_format_slot", "_tweaks")
 
     _allowable_format_slots = (
-        'absolute_after',
-        'absolute_before',
-        'after',
-        'before',
-        'closing',
-        'opening',
-        )
+        "absolute_after",
+        "absolute_before",
+        "after",
+        "before",
+        "closing",
+        "opening",
+    )
 
     _can_attach_to_containers = True
 
@@ -169,12 +164,12 @@ class LilyPondLiteral(object):
 
     def __init__(
         self,
-        argument: typing.Union[str, typing.List[str]] = '',
-        format_slot: str = 'opening',
+        argument: typing.Union[str, typing.List[str]] = "",
+        format_slot: str = "opening",
         *,
         directed: bool = None,
         tweaks: LilyPondTweakManager = None,
-        ) -> None:
+    ) -> None:
         self._argument = argument
         assert format_slot in self._allowable_format_slots, repr(format_slot)
         self._format_slot = format_slot
@@ -194,13 +189,13 @@ class LilyPondLiteral(object):
         """
         return StorageFormatManager.compare_objects(self, argument)
 
-    def __format__(self, format_specification='') -> str:
+    def __format__(self, format_specification="") -> str:
         """
         Formats LilyPond literal.
         """
-        if format_specification in ('', 'storage'):
+        if format_specification in ("", "storage"):
             return StorageFormatManager(self).get_storage_format()
-        assert format_specification == 'lilypond'
+        assert format_specification == "lilypond"
         return str(self.argument)
 
     def __hash__(self) -> int:
@@ -211,7 +206,7 @@ class LilyPondLiteral(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     def __repr__(self) -> str:
@@ -230,22 +225,22 @@ class LilyPondLiteral(object):
 
     def _get_format_specification(self):
         names = []
-        if not self.format_slot == 'opening':
-            names.append('format_slot')
+        if not self.format_slot == "opening":
+            names.append("format_slot")
         return FormatSpecification(
             client=self,
             storage_format_args_values=[self.argument],
             storage_format_kwargs_names=names,
             storage_format_is_indented=False,
-            )
+        )
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = LilyPondFormatBundle()
         format_slot = bundle.get(self.format_slot)
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions(
-                directed=self.directed,
-                )
+                directed=self.directed
+            )
             format_slot.commands.extend(tweaks)
         pieces = self._get_format_pieces()
         format_slot.commands.extend(pieces)
@@ -334,7 +329,7 @@ class LilyPondLiteral(object):
 
     @property
     def format_slot(self) -> str:
-        """
+        r"""
         Gets format slot of LilyPond literal.
 
         ..  container:: example

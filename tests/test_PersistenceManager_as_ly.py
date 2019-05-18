@@ -1,10 +1,8 @@
 import abjad
 import os
+
 configuration = abjad.AbjadConfiguration()
-ly_path = os.path.join(
-    configuration.abjad_directory, 
-    'test.ly',
-    )
+ly_path = os.path.join(configuration.abjad_directory, "test.ly")
 
 
 def test_PersistenceManager_as_ly_01():
@@ -18,7 +16,7 @@ def test_PersistenceManager_as_ly_01():
         assert os.path.isfile(ly_path)
         assert isinstance(result, tuple)
 
-        
+
 def test_PersistenceManager_as_ly_02():
     """
     Agent abjad.persists LilyPond file when LilyPond file already exists.

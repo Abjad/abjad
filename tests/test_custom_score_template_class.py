@@ -17,9 +17,9 @@ def test_custom_score_template_class_01():
         ### SPECIAL METHODS ###
 
         def __call__(self):
-            voice = abjad.Voice(name='Blue_Voice')
-            staff = abjad.Staff(name='Red_Staff')
-            score = abjad.Score(name='Green_Score')
+            voice = abjad.Voice(name="Blue_Voice")
+            staff = abjad.Staff(name="Red_Staff")
+            score = abjad.Score(name="Green_Score")
             staff.append(voice)
             score.append(staff)
             return score
@@ -39,7 +39,7 @@ def test_custom_score_template_class_01():
             }
         >>
         """
-        )
+    )
 
 
 def test_custom_score_template_class_02():
@@ -59,8 +59,8 @@ def test_custom_score_template_class_02():
         ### SPECIAL METHODS ###
 
         def __call__(self):
-            custom_voice = abjad.Voice(lilypond_type='CustomVoice')
-            custom_staff = abjad.Staff(lilypond_type='CustomStaff')
+            custom_voice = abjad.Voice(lilypond_type="CustomVoice")
+            custom_staff = abjad.Staff(lilypond_type="CustomStaff")
             score = abjad.Score()
             custom_staff.append(custom_voice)
             score.append(custom_staff)
@@ -81,7 +81,7 @@ def test_custom_score_template_class_02():
             }
         >>
         """
-        )
+    )
 
     # here's how to properly override with externalized layout
 
@@ -90,30 +90,28 @@ def test_custom_score_template_class_02():
     lilypond_file = abjad.LilyPondFile.new(score)
 
     context_block = abjad.ContextBlock(
-        source_lilypond_type='Voice',
-        type_='Engraver_group',
-        name='CustomVoice',
-        alias='Voice',
-        )
+        source_lilypond_type="Voice",
+        type_="Engraver_group",
+        name="CustomVoice",
+        alias="Voice",
+    )
     lilypond_file.layout_block.items.append(context_block)
-    abjad.override(context_block).note_head.color = 'green'
-    abjad.override(context_block).stem.color = 'green'
+    abjad.override(context_block).note_head.color = "green"
+    abjad.override(context_block).stem.color = "green"
 
     context_block = abjad.ContextBlock(
-        source_lilypond_type='Staff',
-        type_='Engraver_group',
-        name='CustomStaff',
-        alias='Staff',
-        )
+        source_lilypond_type="Staff",
+        type_="Engraver_group",
+        name="CustomStaff",
+        alias="Staff",
+    )
     lilypond_file.layout_block.items.append(context_block)
-    context_block.accepts_commands.append('CustomVoice')
-    abjad.override(context_block).staff_symbol.color = 'red'
+    context_block.accepts_commands.append("CustomVoice")
+    abjad.override(context_block).staff_symbol.color = "red"
 
-    context_block = abjad.ContextBlock(
-        source_lilypond_type='Score',
-        )
+    context_block = abjad.ContextBlock(source_lilypond_type="Score")
     lilypond_file.layout_block.items.append(context_block)
-    context_block.accepts_commands.append('CustomStaff')
+    context_block.accepts_commands.append("CustomStaff")
 
     assert format(lilypond_file.layout_block) == abjad.String.normalize(
         r"""
@@ -140,7 +138,7 @@ def test_custom_score_template_class_02():
             }
         }
         """
-        )
+    )
 
     assert format(lilypond_file.score_block) == abjad.String.normalize(
         r"""
@@ -162,4 +160,4 @@ def test_custom_score_template_class_02():
             >>
         }
         """
-        )
+    )

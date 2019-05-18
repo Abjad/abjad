@@ -17,13 +17,11 @@ class StopBeam(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_leak',
-        )
+    __slots__ = ("_leak",)
 
-    _context = 'Voice'
+    _context = "Voice"
 
-    _parameter = 'BEAM'
+    _parameter = "BEAM"
 
     _persistent = True
 
@@ -33,11 +31,7 @@ class StopBeam(object):
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        *,
-        leak: bool = None,
-        ) -> None:
+    def __init__(self, *, leak: bool = None) -> None:
         if leak is not None:
             leak = bool(leak)
         self._leak = leak
@@ -54,12 +48,12 @@ class StopBeam(object):
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = LilyPondFormatBundle()
-        string = ']'
+        string = "]"
         if self.leak:
-            string = f'<> {string}'
+            string = f"<> {string}"
             bundle.after.leaks.append(string)
         else:
-            #bundle.after.spanner_stops.append(string)
+            # bundle.after.spanner_stops.append(string)
             # starts (instead of stops) so [ ] is possible on single leaf:
             bundle.after.spanner_starts.append(string)
         return bundle

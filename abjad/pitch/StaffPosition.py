@@ -43,9 +43,7 @@ class StaffPosition(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_number',
-        )
+    __slots__ = ("_number",)
 
     ### INITIALIZER ###
 
@@ -103,7 +101,7 @@ class StaffPosition(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     def __lt__(self, argument):
@@ -162,7 +160,7 @@ class StaffPosition(object):
 
         Returns string.
         """
-        return '{}({})'.format(type(self).__name__, self.number)
+        return "{}({})".format(type(self).__name__, self.number)
 
     ### PRIVATE METHODS ###
 
@@ -173,7 +171,7 @@ class StaffPosition(object):
             storage_format_is_indented=False,
             storage_format_args_values=[self.number],
             storage_format_kwargs_names=[],
-            )
+        )
 
     ### PUBLIC PROPERTIES ###
 
@@ -193,7 +191,7 @@ class StaffPosition(object):
 
     ### PUBLIC METHODS ###
 
-    def to_pitch(self, clef='treble'):
+    def to_pitch(self, clef="treble"):
         """
         Makes named pitch from staff position and `clef`.
 
@@ -296,6 +294,7 @@ class StaffPosition(object):
         Returns new named pitch.
         """
         import abjad
+
         clef = abjad.Clef(clef)
         offset_staff_position_number = self.number
         offset_staff_position_number -= clef.middle_c_position.number
@@ -303,7 +302,8 @@ class StaffPosition(object):
         octave_number = offset_staff_position.number // 7 + 4
         diatonic_pc_number = offset_staff_position.number % 7
         pitch_class_number = constants._diatonic_pc_number_to_pitch_class_number[
-            diatonic_pc_number]
+            diatonic_pc_number
+        ]
         pitch_number = 12 * (octave_number - 4)
         pitch_number += pitch_class_number
         named_pitch = abjad.NamedPitch(pitch_number)

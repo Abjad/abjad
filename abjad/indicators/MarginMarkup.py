@@ -57,11 +57,7 @@ class MarginMarkup(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_context',
-        '_format_slot',
-        '_markup',
-        )
+    __slots__ = ("_context", "_format_slot", "_markup")
 
     _latent = True
 
@@ -76,10 +72,10 @@ class MarginMarkup(object):
     def __init__(
         self,
         *,
-        context: str = 'Staff',
-        format_slot: str = 'before',
+        context: str = "Staff",
+        format_slot: str = "before",
         markup: typing.Union[str, Markup] = None,
-        ) -> None:
+    ) -> None:
         if context is not None:
             assert isinstance(context, str), repr(context)
         self._context = context
@@ -162,7 +158,7 @@ class MarginMarkup(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     def __repr__(self) -> str:
@@ -195,16 +191,13 @@ class MarginMarkup(object):
         if isinstance(self.markup, Markup):
             markup = self.markup
             if markup.direction is not None:
-                markup = new(
-                    markup,
-                    direction=None,
-                    )
+                markup = new(markup, direction=None)
             pieces = markup._get_format_pieces()
-            result.append(rf'\set {context!s}.shortInstrumentName =')
+            result.append(rf"\set {context!s}.shortInstrumentName =")
             result.extend(pieces)
         else:
             assert isinstance(self.markup, str)
-            string = rf'\set {context!s}.shortInstrumentName = {self.markup}'
+            string = rf"\set {context!s}.shortInstrumentName = {self.markup}"
             result.append(string)
         return result
 
@@ -301,7 +294,7 @@ class MarginMarkup(object):
 
     @property
     def tweaks(self) -> None:
-        """
+        r"""
         Are not implemented on margin markup.
         
         The LilyPond ``\shortInstrumentName`` command refuses tweaks.

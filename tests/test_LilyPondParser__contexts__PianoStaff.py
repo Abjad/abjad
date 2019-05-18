@@ -4,11 +4,13 @@ import abjad
 def test_LilyPondParser__contexts__PianoStaff_01():
 
     maker = abjad.NoteMaker()
-    target = abjad.StaffGroup([
-        abjad.Staff(maker([0, 2, 4, 5, 7], (1, 8))),
-        abjad.Staff(maker([0, 2, 4, 5, 7], (1, 8)))
-    ])
-    target.lilypond_type = 'PianoStaff'
+    target = abjad.StaffGroup(
+        [
+            abjad.Staff(maker([0, 2, 4, 5, 7], (1, 8))),
+            abjad.Staff(maker([0, 2, 4, 5, 7], (1, 8))),
+        ]
+    )
+    target.lilypond_type = "PianoStaff"
 
     assert format(target) == abjad.String.normalize(
         r"""
@@ -32,7 +34,7 @@ def test_LilyPondParser__contexts__PianoStaff_01():
             }
         >>
         """
-        )
+    )
 
     parser = abjad.parser.LilyPondParser()
     result = parser(format(target))

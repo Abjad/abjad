@@ -6,6 +6,7 @@ from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.system.Tags import Tags
 from abjad.utilities.String import String
+
 abjad_tags = Tags()
 
 
@@ -46,13 +47,9 @@ class TieIndicator(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_direction',
-        '_right_broken',
-        '_tweaks',
-        )
+    __slots__ = ("_direction", "_right_broken", "_tweaks")
 
-    _context = 'Voice'
+    _context = "Voice"
 
     _persistent = True
 
@@ -66,7 +63,7 @@ class TieIndicator(object):
         direction: enums.VerticalAlignment = None,
         right_broken: bool = None,
         tweaks: LilyPondTweakManager = None,
-        ) -> None:
+    ) -> None:
         direction_ = String.to_tridirectional_lilypond_symbol(direction)
         self._direction = direction_
         if right_broken is not None:
@@ -93,9 +90,9 @@ class TieIndicator(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
-    
+
     def __repr__(self) -> str:
         """
         Gets interpreter representation.
@@ -105,13 +102,14 @@ class TieIndicator(object):
     ### PRIVATE METHODS ###
 
     def _add_direction(self, string):
-        if getattr(self, 'direction', None) is not None:
-            string = f'{self.direction} {string}'
+        if getattr(self, "direction", None) is not None:
+            string = f"{self.direction} {string}"
         return string
 
     def _attachment_test_all(self, argument):
         from abjad.core.Chord import Chord
         from abjad.core.Note import Note
+
         if not isinstance(argument, (Chord, Note)):
             return False
         return True
@@ -123,7 +121,7 @@ class TieIndicator(object):
             if self.right_broken:
                 strings = self._tag_show(strings)
             bundle.after.spanner_starts.extend(strings)
-        string = self._add_direction('~')
+        string = self._add_direction("~")
         strings = [string]
         if self.right_broken:
             strings = self._tag_show(strings)
@@ -136,7 +134,7 @@ class TieIndicator(object):
             strings,
             deactivate=True,
             tag=abjad_tags.SHOW_TO_JOIN_BROKEN_SPANNERS,
-            )
+        )
 
     ### PUBLIC PROPERTIES ###
 

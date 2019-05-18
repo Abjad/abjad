@@ -3,22 +3,30 @@ import abjad
 
 def test_LilyPondParser__misc__variables_01():
 
-    target = abjad.Staff([
-        abjad.Container([
-            abjad.Container([
-                abjad.Container([
-                    abjad.Container([abjad.Note(0, (1, 8))]),
-                    abjad.Note(2, (1, 8)),
-                    abjad.Note(4, (1, 4))
-                ]),
-                abjad.Note(5, (1, 4)),
-                abjad.Note(7, (1, 2))
-            ]),
-            abjad.Note(9, (1, 2)),
-            abjad.Note(11, 1)
-        ]),
-        abjad.Note(12, 1)
-    ])
+    target = abjad.Staff(
+        [
+            abjad.Container(
+                [
+                    abjad.Container(
+                        [
+                            abjad.Container(
+                                [
+                                    abjad.Container([abjad.Note(0, (1, 8))]),
+                                    abjad.Note(2, (1, 8)),
+                                    abjad.Note(4, (1, 4)),
+                                ]
+                            ),
+                            abjad.Note(5, (1, 4)),
+                            abjad.Note(7, (1, 2)),
+                        ]
+                    ),
+                    abjad.Note(9, (1, 2)),
+                    abjad.Note(11, 1),
+                ]
+            ),
+            abjad.Note(12, 1),
+        ]
+    )
 
     assert format(target) == abjad.String.normalize(
         r"""
@@ -42,7 +50,7 @@ def test_LilyPondParser__misc__variables_01():
             c''1
         }
         """
-        )
+    )
 
     string = r"""
         foo = { c'8 }

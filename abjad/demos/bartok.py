@@ -2,7 +2,7 @@
 import abjad
 import copy
 
-__documentation_section__ = 'demos'
+__documentation_section__ = "demos"
 
 
 def make_bartok_score():
@@ -12,7 +12,7 @@ def make_bartok_score():
 
     # make score skeleton
     score = abjad.Score()
-    piano_staff = abjad.StaffGroup(lilypond_type='PianoStaff')
+    piano_staff = abjad.StaffGroup(lilypond_type="PianoStaff")
     upper_staff = abjad.Staff([])
     lower_staff = abjad.Staff([])
     piano_staff.append(upper_staff)
@@ -46,38 +46,38 @@ def make_bartok_score():
     lower_measures[2].extend("a8 g8 fs8 g16 a16")
 
     # make parallel music for measure 4
-    upper_voice = abjad.Voice("b2", name='upper voice')
-    command = abjad.LilyPondLiteral(r'\voiceOne')
+    upper_voice = abjad.Voice("b2", name="upper voice")
+    command = abjad.LilyPondLiteral(r"\voiceOne")
     abjad.attach(command, upper_voice)
-    lower_voice = abjad.Voice("b4 a4", name='lower voice')
-    command = abjad.LilyPondLiteral(r'\voiceTwo')
+    lower_voice = abjad.Voice("b4 a4", name="lower voice")
+    command = abjad.LilyPondLiteral(r"\voiceTwo")
     abjad.attach(command, lower_voice)
     lower_measures[3].extend([upper_voice, lower_voice])
     lower_measures[3].is_simultaneous = True
 
     # make parallel music for measure 5
-    upper_voice = abjad.Voice("b2", name='upper voice')
-    command = abjad.LilyPondLiteral(r'\voiceOne')
+    upper_voice = abjad.Voice("b2", name="upper voice")
+    command = abjad.LilyPondLiteral(r"\voiceOne")
     abjad.attach(command, upper_voice)
-    lower_voice = abjad.Voice("g2", name='lower voice')
-    command = abjad.LilyPondLiteral(r'\voiceTwo')
+    lower_voice = abjad.Voice("g2", name="lower voice")
+    command = abjad.LilyPondLiteral(r"\voiceTwo")
     abjad.attach(command, lower_voice)
     lower_measures[4].extend([upper_voice, lower_voice])
     lower_measures[4].is_simultaneous = True
 
     # add bass clef
-    clef = abjad.Clef('bass')
+    clef = abjad.Clef("bass")
     leaf = abjad.inspect(lower_staff).leaf(0)
     abjad.attach(clef, leaf)
 
     # add dynamics
-    dynamic = abjad.Dynamic('pp')
+    dynamic = abjad.Dynamic("pp")
     abjad.attach(dynamic, upper_measures[0][0])
-    dynamic = abjad.Dynamic('mp')
+    dynamic = abjad.Dynamic("mp")
     abjad.attach(dynamic, upper_measures[1][1])
-    dynamic = abjad.Dynamic('pp')
+    dynamic = abjad.Dynamic("pp")
     abjad.attach(dynamic, lower_measures[0][1])
-    dynamic = abjad.Dynamic('mp')
+    dynamic = abjad.Dynamic("mp")
     abjad.attach(dynamic, lower_measures[1][3])
 
     # add final bar line
@@ -98,19 +98,19 @@ def make_bartok_score():
     abjad.slur(lower_leaves[1:6])
 
     # attach hairpins
-    abjad.hairpin('<', upper_leaves[-7:-2])
-    abjad.hairpin('>', upper_leaves[-2:])
+    abjad.hairpin("<", upper_leaves[-7:-2])
+    abjad.hairpin(">", upper_leaves[-2:])
 
     # attach a ritardando with markup
-    start_text_span = abjad.StartTextSpan(left_text=abjad.Markup('ritard.'))
+    start_text_span = abjad.StartTextSpan(left_text=abjad.Markup("ritard."))
     abjad.text_spanner(upper_leaves[-7:], start_text_span=start_text_span)
 
     # tie notes
     abjad.tie(upper_leaves[-2:])
 
     # tie more notes
-    note_1 = lower_staff[-2]['upper voice'][0]
-    note_2 = lower_staff[-1]['upper voice'][0]
+    note_1 = lower_staff[-2]["upper voice"][0]
+    note_2 = lower_staff[-1]["upper voice"][0]
     notes = abjad.select([note_1, note_2])
     abjad.tie(notes)
 
@@ -118,7 +118,7 @@ def make_bartok_score():
     return score
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # for mypy
     from abjad import show
 

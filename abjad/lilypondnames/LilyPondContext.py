@@ -68,17 +68,15 @@ class LilyPondContext(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_name',
-        )
+    __slots__ = ("_name",)
 
-    _identity_map: typing.Dict[str, 'LilyPondContext'] = {}
+    _identity_map: typing.Dict[str, "LilyPondContext"] = {}
 
     _publish_storage_format = True
 
     ### CONSTRUCTOR ###
 
-    def __new__(class_, name='Voice'):
+    def __new__(class_, name="Voice"):
         if isinstance(name, class_):
             name = name.name
         if name in class_._identity_map:
@@ -90,8 +88,9 @@ class LilyPondContext(object):
 
     ### INITIALIZER ###
 
-    def __init__(self, name='Voice') -> None:
+    def __init__(self, name="Voice") -> None:
         from abjad.ly import contexts
+
         assert name in contexts
         self._name = name
 
@@ -104,7 +103,7 @@ class LilyPondContext(object):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def accepted_by(self) -> typing.Tuple['LilyPondContext', ...]:
+    def accepted_by(self) -> typing.Tuple["LilyPondContext", ...]:
         r"""
         Gets contexts accepting LilyPond context.
 
@@ -243,16 +242,17 @@ class LilyPondContext(object):
 
         """
         from abjad.ly import contexts
+
         accepting_contexts = set()
         for lilypond_type, context_info in contexts.items():
             assert isinstance(context_info, dict), repr(context_info)
-            if self.name in context_info['accepts']:
+            if self.name in context_info["accepts"]:
                 accepting_context = LilyPondContext(lilypond_type)
                 accepting_contexts.add(accepting_context)
         return tuple(sorted(accepting_contexts, key=lambda x: x.name))
 
     @property
-    def accepts(self) -> typing.Tuple['LilyPondContext', ...]:
+    def accepts(self) -> typing.Tuple["LilyPondContext", ...]:
         r"""
         Gets contexts accepted by LilyPond context.
 
@@ -268,15 +268,16 @@ class LilyPondContext(object):
 
         """
         from abjad.ly import contexts
+
         dictionary = contexts[self.name]
         assert isinstance(dictionary, dict), repr(dictionary)
         accepts = (
-            LilyPondContext(name=name) for name in dictionary['accepts']
-            )
+            LilyPondContext(name=name) for name in dictionary["accepts"]
+        )
         return tuple(sorted(accepts, key=lambda x: x.name))
 
     @property
-    def alias(self) -> typing.Optional['LilyPondContext']:
+    def alias(self) -> typing.Optional["LilyPondContext"]:
         r"""
         Gets alias of LilyPond context.
 
@@ -288,9 +289,10 @@ class LilyPondContext(object):
 
         """
         from abjad.ly import contexts
+
         dictionary = contexts[self.name]
         assert isinstance(dictionary, dict)
-        aliases = dictionary['aliases']
+        aliases = dictionary["aliases"]
         if aliases:
             alias = tuple(aliases)[0]
             if alias not in contexts:
@@ -299,7 +301,7 @@ class LilyPondContext(object):
         return None
 
     @property
-    def default_child(self) -> typing.Optional['LilyPondContext']:
+    def default_child(self) -> typing.Optional["LilyPondContext"]:
         r"""
         Gets default child of LilyPond context.
 
@@ -365,11 +367,12 @@ class LilyPondContext(object):
 
         """
         from abjad.ly import contexts
+
         if self.is_bottom_context:
             return None
         dictionary = contexts[self.name]
         assert isinstance(dictionary, dict), repr(dictionary)
-        default_child_name = dictionary.get('default_child', None)
+        default_child_name = dictionary.get("default_child", None)
         if default_child_name is None:
             alias = self.alias
             if alias is not None:
@@ -419,10 +422,11 @@ class LilyPondContext(object):
 
         """
         from abjad.ly import contexts
+
         engravers = set()
         dictionary = contexts[self.name]
         assert isinstance(dictionary, dict), repr(dictionary)
-        for engraver_name in dictionary['consists']:
+        for engraver_name in dictionary["consists"]:
             engraver = LilyPondEngraver(name=engraver_name)
             engravers.add(engraver)
         engravers_ = tuple(sorted(engravers, key=lambda x: x.name))
@@ -545,9 +549,10 @@ class LilyPondContext(object):
 
         """
         from abjad.ly import contexts
+
         dictionary = contexts[self.name]
         assert isinstance(dictionary, dict), repr(dictionary)
-        return bool(dictionary.get('is_custom', False))
+        return bool(dictionary.get("is_custom", False))
 
     @property
     def is_global_context(self) -> bool:
@@ -596,9 +601,9 @@ class LilyPondContext(object):
         """
         if not self.accepts:
             return False
-        elif self is type(self)('Global'):
+        elif self is type(self)("Global"):
             return True
-        elif self.alias is type(self)('Global'):
+        elif self.alias is type(self)("Global"):
             return True
         return False
 
@@ -649,9 +654,9 @@ class LilyPondContext(object):
         """
         if not self.accepts:
             return False
-        elif self is type(self)('Score'):
+        elif self is type(self)("Score"):
             return True
-        elif self.alias is type(self)('Score'):
+        elif self.alias is type(self)("Score"):
             return True
         return False
 
@@ -702,9 +707,9 @@ class LilyPondContext(object):
         """
         if not self.accepts:
             return False
-        elif self is type(self)('Staff'):
+        elif self is type(self)("Staff"):
             return True
-        elif self.alias is type(self)('Staff'):
+        elif self.alias is type(self)("Staff"):
             return True
         return False
 
@@ -753,12 +758,14 @@ class LilyPondContext(object):
             [ ] Voice
 
         """
-        return not any([
-            self.is_global_context,
-            self.is_score_context,
-            self.is_staff_context,
-            self.is_bottom_context,
-            ])
+        return not any(
+            [
+                self.is_global_context,
+                self.is_score_context,
+                self.is_staff_context,
+                self.is_bottom_context,
+            ]
+        )
 
     @property
     def name(self) -> str:
@@ -854,7 +861,7 @@ class LilyPondContext(object):
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def list_all_contexts() -> typing.Tuple['LilyPondContext', ...]:
+    def list_all_contexts() -> typing.Tuple["LilyPondContext", ...]:
         r"""
         Lists all contexts.
 
@@ -898,6 +905,7 @@ class LilyPondContext(object):
 
         """
         from abjad.ly import contexts
+
         return tuple(LilyPondContext(name=name) for name in sorted(contexts))
 
     @classmethod
@@ -905,13 +913,13 @@ class LilyPondContext(object):
         class_,
         accepted_by: typing.List[str] = None,
         accepts=None,
-        alias: typing.Union[str, 'LilyPondContext'] = None,
+        alias: typing.Union[str, "LilyPondContext"] = None,
         consists=None,
         default_child=None,
         denies=None,
         name: str = None,
         removes: typing.List[str] = None,
-        ) -> 'LilyPondContext':
+    ) -> "LilyPondContext":
         r"""
         Registers a new context.
 
@@ -967,51 +975,52 @@ class LilyPondContext(object):
 
         """
         from abjad.ly import contexts
+
         assert name not in contexts
         context_entry: typing.Dict = {}
-        context_entry['accepts'] = set()
-        context_entry['consists'] = set()
-        context_entry['is_custom'] = True
+        context_entry["accepts"] = set()
+        context_entry["consists"] = set()
+        context_entry["is_custom"] = True
         if alias is not None:
             if not isinstance(alias, class_):
                 alias_ = class_(name=alias)
             else:
                 alias_ = alias
             assert isinstance(alias_, class_)
-            context_entry['accepts'].update(_.name for _ in alias_.accepts)
-            context_entry['consists'].update(_.name for _ in alias_.engravers)
-            context_entry['aliases'] = set([alias_.name])
+            context_entry["accepts"].update(_.name for _ in alias_.accepts)
+            context_entry["consists"].update(_.name for _ in alias_.engravers)
+            context_entry["aliases"] = set([alias_.name])
         if accepts:
             for x in accepts:
                 if not isinstance(x, class_):
                     x = class_(name=x)
                 assert isinstance(x, class_)
-                context_entry['accepts'].add(x.name)
+                context_entry["accepts"].add(x.name)
         if denies:
             for x in denies:
                 if not isinstance(x, class_):
                     x = class_(name=x)
                 assert isinstance(x, class_)
-                if x.name in context_entry['accepts']:
-                    context_entry['accepts'].remove(x.name)
+                if x.name in context_entry["accepts"]:
+                    context_entry["accepts"].remove(x.name)
         if consists:
             for x in consists:
                 if not isinstance(x, LilyPondEngraver):
                     x = LilyPondEngraver(name=x)
                 assert isinstance(x, LilyPondEngraver)
-                context_entry['consists'].add(x.name)
+                context_entry["consists"].add(x.name)
         if removes:
             for x in removes:
                 if not isinstance(x, LilyPondEngraver):
                     x = LilyPondEngraver(name=x)
                 assert isinstance(x, LilyPondEngraver)
-                if x.name in context_entry['consists']:
-                    context_entry['consists'].remove(x.name)
+                if x.name in context_entry["consists"]:
+                    context_entry["consists"].remove(x.name)
         if default_child is not None:
             if not isinstance(default_child, class_):
                 default_child = class_(name=default_child)
             assert isinstance(default_child, class_)
-            context_entry['default_child'] = default_child.name
+            context_entry["default_child"] = default_child.name
         accepting_contexts = set()
         if accepted_by:
             for x in accepted_by:
@@ -1024,14 +1033,11 @@ class LilyPondContext(object):
         for accepting_context in accepting_contexts:
             dictionary = contexts[accepting_context]
             assert isinstance(dictionary, dict)
-            dictionary['accepts'].add(name)
+            dictionary["accepts"].add(name)
         custom_context = class_(name=name)
         return custom_context
 
-    def unregister(
-        self,
-        context=None,
-        ) -> None:
+    def unregister(self, context=None) -> None:
         r"""
         Unregisters custom context.
 
@@ -1096,12 +1102,13 @@ class LilyPondContext(object):
 
         """
         from abjad.ly import contexts
+
         assert self.is_custom
-        del(contexts[self.name])
-        del(self._identity_map[self.name])
+        del contexts[self.name]
+        del self._identity_map[self.name]
         for lilypond_type, context_info in contexts.items():
             assert isinstance(context_info, dict), repr(context_info)
-            set_ = context_info['accepts']
+            set_ = context_info["accepts"]
             assert isinstance(set_, set), repr(set_)
             if self.name in set_:
                 set_.remove(self.name)

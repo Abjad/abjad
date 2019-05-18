@@ -15,10 +15,7 @@ class Pitch(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_pitch_class',
-        '_octave',
-        )
+    __slots__ = ("_pitch_class", "_octave")
 
     _is_abstract = True
 
@@ -27,19 +24,28 @@ class Pitch(object):
     @abc.abstractmethod
     def __init__(self, argument, accidental=None, arrow=None, octave=None):
         import abjad
+
         if isinstance(argument, str):
             match = constants._comprehensive_pitch_name_regex.match(argument)
             if not match:
-                match = constants._comprehensive_pitch_class_name_regex.match(argument)
+                match = constants._comprehensive_pitch_class_name_regex.match(
+                    argument
+                )
             if not match:
-                message = 'can not instantiate {} from {!r}.'
+                message = "can not instantiate {} from {!r}."
                 message = message.format(type(self).__name__, argument)
                 raise ValueError(message)
             group_dict = match.groupdict()
-            _dpc_name = group_dict['diatonic_pc_name'].lower()
-            _dpc_number = constants._diatonic_pc_name_to_diatonic_pc_number[_dpc_name]
-            _alteration = abjad.Accidental(group_dict['comprehensive_accidental']).semitones
-            _octave = abjad.Octave(group_dict.get('comprehensive_octave', '')).number
+            _dpc_name = group_dict["diatonic_pc_name"].lower()
+            _dpc_number = constants._diatonic_pc_name_to_diatonic_pc_number[
+                _dpc_name
+            ]
+            _alteration = abjad.Accidental(
+                group_dict["comprehensive_accidental"]
+            ).semitones
+            _octave = abjad.Octave(
+                group_dict.get("comprehensive_octave", "")
+            ).number
             self._from_named_parts(_dpc_number, _alteration, _octave)
         elif isinstance(argument, numbers.Number):
             self._from_number(argument)
@@ -53,25 +59,23 @@ class Pitch(object):
                 _pitch_class._get_alteration(),
                 _octave.number,
             )
-        elif hasattr(argument, 'written_pitch'):
+        elif hasattr(argument, "written_pitch"):
             self._from_pitch_or_pitch_class(argument.written_pitch)
         elif isinstance(argument, abjad.Chord) and len(argument.note_heads):
             self._from_pitch_or_pitch_class(argument.note_heads[0])
         else:
-            message = 'can not instantiate {} from {!r}.'
+            message = "can not instantiate {} from {!r}."
             message = message.format(type(self).__name__, argument)
             raise ValueError(message)
         if accidental is not None:
             accidental = abjad.Accidental(accidental)
             self._pitch_class = type(self._pitch_class)(
-                self._pitch_class,
-                accidental=accidental,
-                )
+                self._pitch_class, accidental=accidental
+            )
         if arrow is not None:
             self._pitch_class = type(self._pitch_class)(
-                self._pitch_class,
-                arrow=arrow,
-                )
+                self._pitch_class, arrow=arrow
+            )
         if octave is not None:
             octave = abjad.Octave(octave)
             self._octave = octave
@@ -93,7 +97,7 @@ class Pitch(object):
         """
         return float(self.number)
 
-    def __format__(self, format_specification=''):
+    def __format__(self, format_specification=""):
         """
         Formats pitch.
 
@@ -101,9 +105,9 @@ class Pitch(object):
 
         Returns string.
         """
-        if format_specification in ('', 'lilypond'):
+        if format_specification in ("", "lilypond"):
             return self._get_lilypond_format()
-        elif format_specification == 'storage':
+        elif format_specification == "storage":
             return StorageFormatManager(self).get_storage_format()
         return str(self)
 
@@ -115,7 +119,7 @@ class Pitch(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     def __illustrate__(self):
@@ -125,6 +129,7 @@ class Pitch(object):
         Returns LilyPond file.
         """
         import abjad
+
         pitch = abjad.NamedPitch(self)
         note = abjad.Note(pitch, 1, multiplier=(1, 4))
         clef = abjad.Clef.from_selection([pitch])
@@ -179,6 +184,7 @@ class Pitch(object):
     @staticmethod
     def _to_pitch_class_item_class(item_class):
         import abjad
+
         item_class = item_class or abjad.NumberedPitch
         if item_class in (abjad.NamedPitchClass, abjad.NumberedPitchClass):
             return item_class
@@ -192,6 +198,7 @@ class Pitch(object):
     @staticmethod
     def _to_pitch_item_class(item_class):
         import abjad
+
         item_class = item_class or abjad.NumberedPitch
         if item_class in (abjad.NamedPitch, abjad.NumberedPitch):
             return item_class
@@ -218,7 +225,7 @@ class Pitch(object):
 
         Returns float.
         """
-        hertz = pow(2., (float(self.number) - 9.) / 12.) * 440.
+        hertz = pow(2.0, (float(self.number) - 9.0) / 12.0) * 440.0
         return hertz
 
     @abc.abstractproperty
@@ -267,7 +274,7 @@ class Pitch(object):
 
         Returns new pitch.
         """
-        midi = 9. + (12. * math.log(float(hertz) / 440., 2))
+        midi = 9.0 + (12.0 * math.log(float(hertz) / 440.0, 2))
         pitch = class_(midi)
         return pitch
 
@@ -290,6 +297,7 @@ class Pitch(object):
         Returns new pitch.
         """
         import abjad
+
         axis = axis or abjad.NamedPitch("c'")
         axis = type(self)(axis)
         interval = self - axis

@@ -1,8 +1,6 @@
 def timespan_2_starts_after_timespan_1_starts(
-    timespan_1=None,
-    timespan_2=None,
-    hold=False,
-    ):
+    timespan_1=None, timespan_2=None, hold=False
+):
     """
     Makes time relation indicating that ``timespan_2`` happens during
     ``timespan_1``.
@@ -24,15 +22,13 @@ def timespan_2_starts_after_timespan_1_starts(
     """
     from abjad import timespans
 
-    inequality = timespans.CompoundInequality([
-        'timespan_1.start_offset < timespan_2.start_offset',
-        ])
+    inequality = timespans.CompoundInequality(
+        ["timespan_1.start_offset < timespan_2.start_offset"]
+    )
 
     time_relation = timespans.TimespanTimespanTimeRelation(
-        inequality,
-        timespan_1=timespan_1,
-        timespan_2=timespan_2,
-        )
+        inequality, timespan_1=timespan_1, timespan_2=timespan_2
+    )
 
     if time_relation.is_fully_loaded and not hold:
         return time_relation()

@@ -2,7 +2,7 @@ import collections
 from .TypedCollection import TypedCollection
 
 
-class TypedList(TypedCollection, collections.MutableSequence):
+class TypedList(TypedCollection, collections.abc.MutableSequence):
     """
     Typed list.
 
@@ -58,23 +58,12 @@ class TypedList(TypedCollection, collections.MutableSequence):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_keep_sorted',
-        )
+    __slots__ = ("_keep_sorted",)
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        items=None,
-        item_class=None,
-        keep_sorted=False,
-        ):
-        TypedCollection.__init__(
-            self,
-            item_class=item_class,
-            items=items,
-            )
+    def __init__(self, items=None, item_class=None, keep_sorted=False):
+        TypedCollection.__init__(self, item_class=item_class, items=items)
         self._collection = []
         if keep_sorted is not None:
             assert isinstance(keep_sorted, bool), repr(keep_sorted)
@@ -94,7 +83,7 @@ class TypedList(TypedCollection, collections.MutableSequence):
         Returns none.
         """
         self._on_removal(self._collection[i])
-        del(self._collection[i])
+        del self._collection[i]
 
     def __getitem__(self, argument):
         """
@@ -210,18 +199,19 @@ class TypedList(TypedCollection, collections.MutableSequence):
 
     def _get_format_specification(self):
         import abjad
+
         agent = abjad.StorageFormatManager(self)
         names = list(agent.signature_keyword_names)
-        if 'items' in names:
-            names.remove('items')
-        if 'keep_sorted' in names:
-            names.remove('keep_sorted')
+        if "items" in names:
+            names.remove("items")
+        if "keep_sorted" in names:
+            names.remove("keep_sorted")
         return abjad.FormatSpecification(
             self,
             repr_is_indented=False,
             storage_format_args_values=[self._collection],
             storage_format_kwargs_names=names,
-            )
+        )
 
     ### PUBLIC METHODS ###
 
@@ -373,7 +363,7 @@ class TypedList(TypedCollection, collections.MutableSequence):
         index = self._collection.index(item)
         item = self._collection[index]
         self._on_removal(item)
-        del(self._collection[index])
+        del self._collection[index]
         if self.keep_sorted:
             self.sort()
 
@@ -388,13 +378,14 @@ class TypedList(TypedCollection, collections.MutableSequence):
         Sorts items in typed list.
         """
         if cmp is not None:
+
             def cmp_to_key(comparator):
                 """
                 Convert a ``cmp`` function into a ``key`` function for use
                 with ``sort()``.
                 """
-                class CmpToKey(object):
 
+                class CmpToKey(object):
                     def __init__(self, argument):
                         self.argument = argument
 
@@ -417,6 +408,7 @@ class TypedList(TypedCollection, collections.MutableSequence):
                         return comparator(self.argument, other.argument) != 0
 
                 return CmpToKey
+
             key = cmp_to_key(cmp)
         self._collection.sort(key=key, reverse=reverse)
 

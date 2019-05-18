@@ -10,8 +10,9 @@ from abjad.pitch.IntervalClassVector import IntervalClassVector
 from abjad.pitch.NamedInterval import NamedInterval
 from abjad.pitch.NamedIntervalClass import NamedIntervalClass
 from abjad.pitch.NamedPitch import NamedPitch
-from abjad.pitch.NumberedInversionEquivalentIntervalClass import \
-    NumberedInversionEquivalentIntervalClass
+from abjad.pitch.NumberedInversionEquivalentIntervalClass import (
+    NumberedInversionEquivalentIntervalClass,
+)
 from abjad.pitch.NumberedInterval import NumberedInterval
 from abjad.pitch.NumberedIntervalClass import NumberedIntervalClass
 from abjad.pitch.NumberedPitch import NumberedPitch
@@ -209,41 +210,32 @@ class Label(object):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Collaborators'
+    __documentation_section__ = "Collaborators"
 
-    __slots__ = (
-        '_client',
-        '_deactivate',
-        '_expression',
-        '_tag',
-        )
+    __slots__ = ("_client", "_deactivate", "_expression", "_tag")
 
     _pc_number_to_color = {
-        0: SchemeColor('red'),
-        1: SchemeColor('MediumBlue'),
-        2: SchemeColor('orange'),
-        3: SchemeColor('LightSlateBlue'),
-        4: SchemeColor('ForestGreen'),
-        5: SchemeColor('MediumOrchid'),
-        6: SchemeColor('firebrick'),
-        7: SchemeColor('DeepPink'),
-        8: SchemeColor('DarkOrange'),
-        9: SchemeColor('IndianRed'),
-        10: SchemeColor('CadetBlue'),
-        11: SchemeColor('SeaGreen'),
-        12: SchemeColor('LimeGreen'),
-        }
+        0: SchemeColor("red"),
+        1: SchemeColor("MediumBlue"),
+        2: SchemeColor("orange"),
+        3: SchemeColor("LightSlateBlue"),
+        4: SchemeColor("ForestGreen"),
+        5: SchemeColor("MediumOrchid"),
+        6: SchemeColor("firebrick"),
+        7: SchemeColor("DeepPink"),
+        8: SchemeColor("DarkOrange"),
+        9: SchemeColor("IndianRed"),
+        10: SchemeColor("CadetBlue"),
+        11: SchemeColor("SeaGreen"),
+        12: SchemeColor("LimeGreen"),
+    }
 
     ### INITIALIZER ###
 
     def __init__(self, client=None, deactivate=None, tag=None):
-        prototype = (
-            Component,
-            collections.abc.Iterable,
-            type(None),
-            )
+        prototype = (Component, collections.abc.Iterable, type(None))
         if not isinstance(client, prototype):
-            message = f'must be component, iterable or none: {client!r}.'
+            message = f"must be component, iterable or none: {client!r}."
             raise TypeError(message)
         self._client = client
         self._deactivate = deactivate
@@ -261,12 +253,7 @@ class Label(object):
     ### PRIVATE METHODS ###
 
     def _attach(self, label, leaf):
-        attach(
-            label,
-            leaf,
-            deactivate=self.deactivate,
-            tag=self.tag,
-            )
+        attach(label, leaf, deactivate=self.deactivate, tag=self.tag)
 
     def _color_leaf(self, leaf, color):
         if isinstance(leaf, Skip):
@@ -317,7 +304,7 @@ class Label(object):
 
     ### PUBLIC METHODS ###
 
-    def color_container(self, color='red'):
+    def color_container(self, color="red"):
         r"""
         Colors contents of ``container``.
 
@@ -395,7 +382,7 @@ class Label(object):
         override(self.client).tuplet_bracket.color = color
         override(self.client).tuplet_number.color = color
 
-    def color_leaves(self, color='red'):
+    def color_leaves(self, color="red"):
         r"""
         Colors leaves.
 
@@ -456,7 +443,9 @@ class Label(object):
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        for leaf in iterate(self.client).leaves(do_not_iterate_grace_containers=True):
+        for leaf in iterate(self.client).leaves(
+            do_not_iterate_grace_containers=True
+        ):
             self._color_leaf(leaf, color)
 
     def color_note_heads(self, color_map=None):
@@ -1863,9 +1852,8 @@ class Label(object):
                 named_intervals = []
                 for upper_note in upper_notes:
                     named_interval = NamedInterval.from_pitch_carriers(
-                        bass_note.written_pitch,
-                        upper_note.written_pitch,
-                        )
+                        bass_note.written_pitch, upper_note.written_pitch
+                    )
                     named_intervals.append(named_interval)
                 numbers = [x.number for x in named_intervals]
                 markup = [Markup(_) for _ in numbers]
@@ -1882,9 +1870,8 @@ class Label(object):
                 numbers = []
                 for upper_note in upper_notes:
                     interval = NamedInterval.from_pitch_carriers(
-                        bass_note.written_pitch,
-                        upper_note.written_pitch,
-                        )
+                        bass_note.written_pitch, upper_note.written_pitch
+                    )
                     interval_class = NumberedIntervalClass(interval)
                     number = interval_class.number
                     numbers.append(number)
@@ -1898,11 +1885,10 @@ class Label(object):
                 interval_class_vector = IntervalClassVector(
                     pitches,
                     item_class=NumberedInversionEquivalentIntervalClass,
-                    )
+                )
                 markup = interval_class_vector._label
                 label = Markup(markup, direction=direction)
-            elif (prototype is SetClass or
-                isinstance(prototype, SetClass)):
+            elif prototype is SetClass or isinstance(prototype, SetClass):
                 if prototype is SetClass:
                     prototype = prototype()
                 assert isinstance(prototype, SetClass)
@@ -1914,12 +1900,12 @@ class Label(object):
                     pitch_class_set,
                     lex_rank=prototype.lex_rank,
                     transposition_only=prototype.transposition_only,
-                    )
+                )
                 string = str(set_class)
-                command = MarkupCommand('line', [string])
+                command = MarkupCommand("line", [string])
                 label = Markup(command, direction=direction)
             else:
-                raise TypeError(f'unknown prototype {prototype!r}.')
+                raise TypeError(f"unknown prototype {prototype!r}.")
             if label is not None:
                 label = label.tiny()
                 if direction is enums.Up:
@@ -2916,14 +2902,11 @@ class Label(object):
         if self._expression:
             return self._update_expression(inspect.currentframe())
         prototype = prototype or NamedInterval
-        for note in  iterate(self.client).leaves(Note):
+        for note in iterate(self.client).leaves(Note):
             label = None
             next_leaf = abjad_inspect(note).leaf(1)
             if isinstance(next_leaf, Note):
-                interval = NamedInterval.from_pitch_carriers(
-                    note,
-                    next_leaf,
-                    )
+                interval = NamedInterval.from_pitch_carriers(note, next_leaf)
                 if prototype is NamedInterval:
                     label = Markup(interval, direction=direction)
                 elif prototype is NamedIntervalClass:
@@ -3514,23 +3497,20 @@ class Label(object):
             if prototype is NamedPitch:
                 if isinstance(leaf, Note):
                     string = leaf.written_pitch.get_name(locale=locale)
-                    if '#' in string:
+                    if "#" in string:
                         string = '"' + string + '"'
                     label = Markup(
-                        rf'\markup {{ {string} }}',
+                        rf"\markup {{ {string} }}",
                         direction=direction,
                         literal=True,
-                        )
+                    )
                 elif isinstance(leaf, Chord):
                     pitches = leaf.written_pitches
                     pitches = reversed(pitches)
                     markups = []
                     for pitch in pitches:
                         string = pitch.get_name(locale=locale)
-                        markup = Markup(
-                            string,
-                            literal=True,
-                            )
+                        markup = Markup(string, literal=True)
                         markups.append(markup)
                     label = Markup.column(markups, direction=direction)
             elif prototype is NumberedPitch:
@@ -3924,9 +3904,9 @@ class Label(object):
                 pitch_class_set,
                 lex_rank=prototype.lex_rank,
                 transposition_only=prototype.transposition_only,
-                )
+            )
             string = str(set_class)
-            command = MarkupCommand('line', [string])
+            command = MarkupCommand("line", [string])
             label = Markup(command, direction=direction)
             if label is not None:
                 label = label.tiny()
@@ -3940,7 +3920,7 @@ class Label(object):
         direction=None,
         global_offset=None,
         markup_command=None,
-        ):
+    ):
         r"""
         Labels logical ties with start offsets.
 
@@ -4204,14 +4184,10 @@ class Label(object):
                     start_offset += global_offset
                 string = str(start_offset)
                 if brackets:
-                    string = '[' + string + ']'
+                    string = "[" + string + "]"
             if markup_command is not None:
-                string = f'{markup_command} {string}'
-                label = Markup(
-                    string,
-                    direction=direction,
-                    literal=True
-                    )
+                string = f"{markup_command} {string}"
+                label = Markup(string, direction=direction, literal=True)
             else:
                 label = Markup(string, direction=direction)
             self._attach(label, logical_tie.head)

@@ -25,7 +25,7 @@ def test_Mutation_extract_01():
             ]
         }
         """
-        ), print(format(voice))
+    ), print(format(voice))
 
     note = voice[1]
     abjad.mutate(note).extract()
@@ -43,7 +43,7 @@ def test_Mutation_extract_01():
             ]
         }
         """
-        ), print(format(voice))
+    ), print(format(voice))
 
     assert abjad.inspect(note).wellformed()
     assert abjad.inspect(voice).wellformed()
@@ -73,7 +73,7 @@ def test_Mutation_extract_02():
             ]
         }
         """
-        ), print(format(voice))
+    ), print(format(voice))
 
     notes = voice[:2]
     for note in notes:
@@ -89,7 +89,7 @@ def test_Mutation_extract_02():
             ]
         }
         """
-        ), print(format(voice))
+    ), print(format(voice))
 
     for note in notes:
         assert abjad.inspect(note).wellformed()
@@ -124,7 +124,7 @@ def test_Mutation_extract_03():
             }
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     container = staff[0]
     abjad.mutate(container).extract()
@@ -143,7 +143,7 @@ def test_Mutation_extract_03():
             }
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     assert not container
     assert abjad.inspect(staff).wellformed()
@@ -187,7 +187,7 @@ def test_Mutation_extract_04():
             }
         }
         """
-        ), print(format(voice))
+    ), print(format(voice))
 
     containers = voice[:2]
     for container in containers:
@@ -214,7 +214,7 @@ def test_Mutation_extract_04():
             }
         }
         """
-        ), print(format(voice))
+    ), print(format(voice))
 
     for container in containers:
         assert not container

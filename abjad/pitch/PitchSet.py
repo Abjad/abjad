@@ -5,7 +5,6 @@ from abjad.utilities.Duration import Duration
 from .Set import Set
 
 
-
 class PitchSet(Set):
     r"""
     Pitch set.
@@ -46,8 +45,7 @@ class PitchSet(Set):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### SPECIAL METHODS ###
 
@@ -182,6 +180,7 @@ class PitchSet(Set):
         Returns LilyPond file.
         """
         import abjad
+
         upper, lower = [], []
         for pitch in self:
             if pitch < 0:
@@ -201,9 +200,8 @@ class PitchSet(Set):
         lower_voice = abjad.Voice([lower])
         lower_staff = abjad.Staff([lower_voice])
         staff_group = abjad.StaffGroup(
-            [upper_staff, lower_staff],
-            lilypond_type='PianoStaff',
-            )
+            [upper_staff, lower_staff], lilypond_type="PianoStaff"
+        )
         score = abjad.Score([staff_group])
         lilypond_file = abjad.LilyPondFile.new(score)
         return lilypond_file
@@ -213,16 +211,19 @@ class PitchSet(Set):
     @property
     def _named_item_class(self):
         import abjad
+
         return abjad.NamedPitch
 
     @property
     def _numbered_item_class(self):
         import abjad
+
         return abjad.NumberedPitch
 
     @property
     def _parent_item_class(self):
         import abjad
+
         return abjad.Pitch
 
     ### PRIVATE METHODS ###
@@ -234,20 +235,21 @@ class PitchSet(Set):
         Returns true or false.
         """
         import abjad
+
         if not isinstance(argument, type(self)):
             return False
         if not len(self) == len(argument):
             return False
         difference = -(
-            abjad.NamedPitch(argument[0], 4) -
-            abjad.NamedPitch(self[0], 4)
-            )
+            abjad.NamedPitch(argument[0], 4) - abjad.NamedPitch(self[0], 4)
+        )
         new_pitches = (x + difference for x in self)
         new_pitches = new(self, items=new_pitches)
         return argument == new_pitches
 
     def _sort_self(self):
         import abjad
+
         return sorted(abjad.PitchSegment(tuple(self)))
 
     ### PUBLIC PROPERTIES ###
@@ -276,6 +278,7 @@ class PitchSet(Set):
         Returns pitch-class set.
         """
         import abjad
+
         pitch_classes = []
         duplicate_pitch_classes = []
         for pitch in self:
@@ -284,9 +287,8 @@ class PitchSet(Set):
                 duplicate_pitch_classes.append(pitch_class)
             pitch_classes.append(pitch_class)
         return abjad.PitchClassSet(
-            duplicate_pitch_classes,
-            item_class=abjad.NumberedPitchClass,
-            )
+            duplicate_pitch_classes, item_class=abjad.NumberedPitchClass
+        )
 
     @property
     def hertz(self):
@@ -331,18 +333,16 @@ class PitchSet(Set):
         Returns true or false.
         """
         import abjad
+
         numbered_pitch_class_set = abjad.PitchClassSet(
-            self, item_class=abjad.NumberedPitchClass)
+            self, item_class=abjad.NumberedPitchClass
+        )
         return len(self) == len(numbered_pitch_class_set)
 
     ### PUBLIC METHODS ###
 
     @classmethod
-    def from_selection(
-        class_,
-        selection,
-        item_class=None,
-        ):
+    def from_selection(class_, selection, item_class=None):
         """
         Makes pitch set from `selection`.
 
@@ -357,11 +357,9 @@ class PitchSet(Set):
         Returns pitch set.
         """
         import abjad
+
         pitch_segment = abjad.PitchSegment.from_selection(selection)
-        return class_(
-            items=pitch_segment,
-            item_class=item_class,
-            )
+        return class_(items=pitch_segment, item_class=item_class)
 
     def invert(self, axis):
         """
@@ -452,16 +450,17 @@ class PitchSet(Set):
         Returns list of zero or more numbered pitches.
         """
         import abjad
+
         if isinstance(pitch_classes, collections.abc.Iterable):
             result = [
                 [_ for _ in self if _.number % 12 == pc]
                 for pc in [x % 12 for x in pitch_classes]
-                ]
+            ]
             result = abjad.sequence(result).flatten(depth=-1)
         elif isinstance(pitch_classes, int):
             result = [p for p in pitch_classes if p % 12 == pitch_classes][0]
         else:
-            message = 'must be pitch-class or list of pitch-classes.'
+            message = "must be pitch-class or list of pitch-classes."
             raise TypeError(message)
         return result
 

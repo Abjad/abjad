@@ -51,8 +51,8 @@ class NamedInterval(Interval):
 
     ### INITIALIZER ###
 
-    def __init__(self, name='P1'):
-        super().__init__(name or 'P1')
+    def __init__(self, name="P1"):
+        super().__init__(name or "P1")
 
     ### SPECIAL METHODS ###
 
@@ -70,10 +70,7 @@ class NamedInterval(Interval):
 
         Returns named interval.
         """
-        return type(self)((
-            self.quality,
-            abs(self.number),
-            ))
+        return type(self)((self.quality, abs(self.number)))
 
     def __add__(self, argument):
         """
@@ -87,6 +84,7 @@ class NamedInterval(Interval):
         Returns new named interval.
         """
         import abjad
+
         try:
             argument = type(self)(argument)
         except Exception:
@@ -108,10 +106,7 @@ class NamedInterval(Interval):
 
         Returns new named interval.
         """
-        return type(self)((
-            self.quality,
-            self.number,
-            ))
+        return type(self)((self.quality, self.number))
 
     def __eq__(self, argument):
         """
@@ -209,17 +204,17 @@ class NamedInterval(Interval):
         Returns new named interval.
         """
         import abjad
+
         if not isinstance(argument, int):
-            message = 'must be integer: {!r}.'
+            message = "must be integer: {!r}."
             message = message.format(argument)
             raise TypeError(message)
         dummy_pitch = abjad.NamedPitch(0)
         for i in range(abs(argument)):
             dummy_pitch += self
         result = NamedInterval.from_pitch_carriers(
-            abjad.NamedPitch(0),
-            dummy_pitch,
-            )
+            abjad.NamedPitch(0), dummy_pitch
+        )
         if argument < 0:
             return -result
         return result
@@ -240,10 +235,7 @@ class NamedInterval(Interval):
 
         Returns new named interval.
         """
-        return type(self)((
-            self.quality,
-            -self.number,
-            ))
+        return type(self)((self.quality, -self.number))
 
     def __radd__(self, argument):
         """
@@ -303,6 +295,7 @@ class NamedInterval(Interval):
         Returns new named interval.
         """
         import abjad
+
         try:
             argument = type(self)(argument)
         except Exception:
@@ -315,21 +308,21 @@ class NamedInterval(Interval):
 
     def _from_named_parts(self, direction, quality, diatonic_number):
         import abjad
+
         octaves = 0
         diatonic_pc_number = abs(diatonic_number)
         while diatonic_pc_number > 7:
             octaves += 1
             diatonic_pc_number -= 7
-        if diatonic_pc_number == 1 and quality == 'P' and diatonic_number >= 8:
+        if diatonic_pc_number == 1 and quality == "P" and diatonic_number >= 8:
             octaves -= 1
             diatonic_pc_number = 8
         self._octaves = octaves
         if direction:
             diatonic_pc_number *= direction
-        self._interval_class = abjad.NamedIntervalClass((
-            quality,
-            diatonic_pc_number,
-            ))
+        self._interval_class = abjad.NamedIntervalClass(
+            (quality, diatonic_pc_number)
+        )
 
     def _from_number(self, argument):
         direction, quality, diatonic_number = self._numbered_to_named(argument)
@@ -341,7 +334,9 @@ class NamedInterval(Interval):
             diatonic_number = abs(argument.number)
             direction = mathtools.sign(argument.number)
         except AttributeError:
-            direction, quality, diatonic_number = self._numbered_to_named(argument)
+            direction, quality, diatonic_number = self._numbered_to_named(
+                argument
+            )
         self._from_named_parts(direction, quality, diatonic_number)
 
     ### PRIVATE METHODS ###
@@ -354,7 +349,7 @@ class NamedInterval(Interval):
             repr_is_indented=False,
             storage_format_is_indented=False,
             storage_format_args_values=values,
-            )
+        )
 
     ### PUBLIC PROPERTIES ###
 
@@ -382,7 +377,7 @@ class NamedInterval(Interval):
 
         Returns ``-1``, ``0`` or ``1``.
         """
-        if self.quality == 'P' and abs(self.number) == 1:
+        if self.quality == "P" and abs(self.number) == 1:
             return 0
         return mathtools.sign(self.number)
 
@@ -422,12 +417,11 @@ class NamedInterval(Interval):
         Returns string.
         """
         direction_symbol = constants._direction_number_to_direction_symbol[
-            self.direction_number]
-        return '{}{}{}'.format(
-            direction_symbol,
-            self._interval_class.quality,
-            abs(self.number),
-            )
+            self.direction_number
+        ]
+        return "{}{}{}".format(
+            direction_symbol, self._interval_class.quality, abs(self.number)
+        )
 
     @property
     def number(self):
@@ -491,7 +485,7 @@ class NamedInterval(Interval):
         direction = self.direction_number
         diatonic_number = abs(self._interval_class._number)
         quality = self._validate_quality_and_diatonic_number(
-            self.quality, diatonic_number,
+            self.quality, diatonic_number
         )
         diatonic_number += 7 * self._octaves
         return self._named_to_numbered(direction, quality, diatonic_number)
@@ -575,13 +569,13 @@ class NamedInterval(Interval):
         named_sign = mathtools.sign(degree_1 - degree_2)
         named_i_number = abs(degree_1 - degree_2) + 1
         numbered_sign = mathtools.sign(
-            float(abjad.NumberedPitch(pitch_1)) -
-            float(abjad.NumberedPitch(pitch_2))
-            )
+            float(abjad.NumberedPitch(pitch_1))
+            - float(abjad.NumberedPitch(pitch_2))
+        )
         numbered_i_number = abs(
-            float(abjad.NumberedPitch(pitch_1)) -
-            float(abjad.NumberedPitch(pitch_2))
-            )
+            float(abjad.NumberedPitch(pitch_1))
+            - float(abjad.NumberedPitch(pitch_2))
+        )
         named_ic_number = named_i_number
         numbered_ic_number = numbered_i_number
 
@@ -593,27 +587,27 @@ class NamedInterval(Interval):
         if named_sign and (named_sign == -numbered_sign):
             numbered_ic_number *= -1
 
-        quartertone = ''
+        quartertone = ""
         if numbered_ic_number % 1:
-            quartertone = '+'
+            quartertone = "+"
             numbered_ic_number -= 0.5
 
         mapping = {
             value: key
-            for key, value in
-            constants._diatonic_number_and_quality_to_semitones[
-                named_ic_number].items()
-            }
+            for key, value in constants._diatonic_number_and_quality_to_semitones[
+                named_ic_number
+            ].items()
+        }
 
-        quality = ''
+        quality = ""
 
         while numbered_ic_number > max(mapping):
             numbered_ic_number -= 1
-            quality += 'A'
+            quality += "A"
 
         while numbered_ic_number < min(mapping):
             numbered_ic_number += 1
-            quality += 'd'
+            quality += "d"
 
         quality += mapping[numbered_ic_number]
         quality += quartertone

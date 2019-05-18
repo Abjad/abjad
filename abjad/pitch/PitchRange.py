@@ -32,16 +32,13 @@ class PitchRange(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_start',
-        '_stop',
-        )
+    __slots__ = ("_start", "_stop")
 
     _publish_storage_format = True
 
     ### INITIALIZER ###
 
-    def __init__(self, range_string='[A0, C8]'):
+    def __init__(self, range_string="[A0, C8]"):
         if isinstance(range_string, type(self)):
             range_string = range_string.range_string
         start, stop = self._parse_range_string(range_string)
@@ -225,10 +222,10 @@ class PitchRange(object):
         Returns true or false.
         """
         import abjad
-        if (
-            hasattr(argument, '_has_effective_indicator') and
-            'unpitched' in abjad.inspect(argument).indicators(str)
-            ):
+
+        if hasattr(
+            argument, "_has_effective_indicator"
+        ) and "unpitched" in abjad.inspect(argument).indicators(str):
             return True
         elif isinstance(argument, (int, float)):
             pitch = abjad.NamedPitch(argument)
@@ -292,7 +289,7 @@ class PitchRange(object):
         """
         return StorageFormatManager.compare_objects(self, argument)
 
-    def __format__(self, format_specification=''):
+    def __format__(self, format_specification=""):
         """
         Formats pitch range.
 
@@ -301,7 +298,7 @@ class PitchRange(object):
 
         Returns string.
         """
-        if format_specification in ('', 'storage'):
+        if format_specification in ("", "storage"):
             return StorageFormatManager(self).get_storage_format()
         return str(self)
 
@@ -317,7 +314,7 @@ class PitchRange(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     def __illustrate__(self):
@@ -364,21 +361,22 @@ class PitchRange(object):
         Returns LilyPond file.
         """
         import abjad
+
         start_pitch_clef = abjad.Clef.from_selection(self.start_pitch)
         stop_pitch_clef = abjad.Clef.from_selection(self.stop_pitch)
         start_note = abjad.Note(self.start_pitch, 1)
         stop_note = abjad.Note(self.stop_pitch, 1)
         if start_pitch_clef == stop_pitch_clef:
-            if start_pitch_clef == abjad.Clef('bass'):
+            if start_pitch_clef == abjad.Clef("bass"):
                 bass_staff = abjad.Staff()
-                abjad.attach(abjad.Clef('bass'), bass_staff)
+                abjad.attach(abjad.Clef("bass"), bass_staff)
                 bass_staff.extend([start_note, stop_note])
                 bass_leaves = abjad.select(bass_staff).leaves()
                 abjad.glissando(bass_leaves)
                 score = abjad.Score([bass_staff])
             else:
                 treble_staff = abjad.Staff()
-                abjad.attach(abjad.Clef('treble'), treble_staff)
+                abjad.attach(abjad.Clef("treble"), treble_staff)
                 treble_staff.extend([start_note, stop_note])
                 treble_leaves = abjad.select(treble_staff).leaves()
                 abjad.glissando(treble_leaves)
@@ -391,8 +389,8 @@ class PitchRange(object):
             bass_leaves = abjad.select(bass_staff).leaves()
             abjad.glissando(bass_leaves)
             abjad.attach(abjad.StaffChange(treble_staff), bass_staff[1])
-            abjad.attach(abjad.Clef('treble'), treble_staff[0])
-            abjad.attach(abjad.Clef('bass'), bass_staff[0])
+            abjad.attach(abjad.Clef("treble"), treble_staff[0])
+            abjad.attach(abjad.Clef("bass"), bass_staff[0])
         for leaf in abjad.iterate(score).leaves():
             leaf.multiplier = (1, 4)
         abjad.override(score).bar_line.stencil = False
@@ -455,21 +453,22 @@ class PitchRange(object):
     @property
     def _close_bracket_string(self):
         if self.stop_pitch_is_included_in_range:
-            return ']'
+            return "]"
         else:
-            return ')'
+            return ")"
 
     @property
     def _open_bracket_string(self):
         if self.start_pitch_is_included_in_range:
-            return '['
+            return "["
         else:
-            return '('
+            return "("
 
     ### PRIVATE METHODS ###
 
     def _contains_pitch(self, pitch):
         import abjad
+
         if isinstance(pitch, numbers.Number):
             pitch = abjad.NamedPitch(pitch)
         elif isinstance(pitch, str):
@@ -505,32 +504,32 @@ class PitchRange(object):
             repr_is_indented=False,
             storage_format_args_values=[self.range_string],
             storage_format_is_indented=False,
-            )
+        )
 
     def _get_named_range_string(self):
         result = []
         result.append(self._open_bracket_string)
         if self.start_pitch:
-            result.append(self.start_pitch.get_name(locale='us'))
+            result.append(self.start_pitch.get_name(locale="us"))
         else:
-            result.append('-inf')
-        result.append(', ')
+            result.append("-inf")
+        result.append(", ")
         if self.stop_pitch:
-            result.append(self.stop_pitch.get_name(locale='us'))
+            result.append(self.stop_pitch.get_name(locale="us"))
         else:
-            result.append('+inf')
+            result.append("+inf")
         result.append(self._close_bracket_string)
-        result = ''.join(result)
+        result = "".join(result)
         return result
 
     def _get_numbered_range_string(self):
         result = []
         result.append(self._open_bracket_string)
         result.append(str(self.start_pitch.number))
-        result.append(', ')
+        result.append(", ")
         result.append(str(self.stop_pitch.number))
         result.append(self._close_bracket_string)
-        result = ''.join(result)
+        result = "".join(result)
         return result
 
     def _list_numeric_octave_transpositions(self, pitch_number_list):
@@ -555,31 +554,34 @@ class PitchRange(object):
 
     def _parse_range_string(self, range_string):
         import abjad
+
         assert isinstance(range_string, str), repr(range_string)
-        range_string = range_string.replace('-inf', '-1000')
-        range_string = range_string.replace('+inf', '1000')
+        range_string = range_string.replace("-inf", "-1000")
+        range_string = range_string.replace("+inf", "1000")
         match = constants._range_string_regex.match(range_string)
         if match is None:
-            message = 'can not instantiate pitch range: {!r}'
+            message = "can not instantiate pitch range: {!r}"
             message = message.format(range_string)
             raise ValueError(message)
         group_dict = match.groupdict()
-        start_punctuation = group_dict['open_bracket']
-        start_pitch_string = group_dict['start_pitch']
-        stop_pitch_string = group_dict['stop_pitch']
-        stop_punctuation = group_dict['close_bracket']
-        start_inclusivity_string = \
-            constants._start_punctuation_to_inclusivity_string[start_punctuation]
-        stop_inclusivity_string = \
-            constants._stop_punctuation_to_inclusivity_string[stop_punctuation]
-        if start_pitch_string == '-1000':
+        start_punctuation = group_dict["open_bracket"]
+        start_pitch_string = group_dict["start_pitch"]
+        stop_pitch_string = group_dict["stop_pitch"]
+        stop_punctuation = group_dict["close_bracket"]
+        start_inclusivity_string = constants._start_punctuation_to_inclusivity_string[
+            start_punctuation
+        ]
+        stop_inclusivity_string = constants._stop_punctuation_to_inclusivity_string[
+            stop_punctuation
+        ]
+        if start_pitch_string == "-1000":
             start_pitch = None
         else:
             try:
                 start_pitch = abjad.NamedPitch(start_pitch_string)
             except (TypeError, ValueError):
                 start_pitch = abjad.NumberedPitch(int(start_pitch_string))
-        if stop_pitch_string == '1000':
+        if stop_pitch_string == "1000":
             stop_pitch = None
         else:
             try:
@@ -635,7 +637,7 @@ class PitchRange(object):
         """
         if self._start is None:
             return True
-        return self._start[1] == 'inclusive'
+        return self._start[1] == "inclusive"
 
     @property
     def stop_pitch(self):
@@ -665,7 +667,7 @@ class PitchRange(object):
         """
         if self._stop is None:
             return True
-        return self._stop[1] == 'inclusive'
+        return self._stop[1] == "inclusive"
 
     ### PUBLIC METHODS ###
 
@@ -675,7 +677,7 @@ class PitchRange(object):
         stop_pitch,
         start_pitch_is_included_in_range=True,
         stop_pitch_is_included_in_range=True,
-        ):
+    ):
         """
         Initializes pitch range from numbers.
 
@@ -687,27 +689,28 @@ class PitchRange(object):
         Returns pitch range.
         """
         import abjad
+
         if start_pitch is None:
-            start_pitch_string = '-inf'
+            start_pitch_string = "-inf"
         else:
             start_pitch_string = str(abjad.NamedPitch(start_pitch))
         if stop_pitch is None:
-            stop_pitch_string = '+inf'
+            stop_pitch_string = "+inf"
         else:
             stop_pitch_string = str(abjad.NamedPitch(stop_pitch))
-        start_containment = '['
+        start_containment = "["
         if not start_pitch_is_included_in_range:
-            start_containment = '('
-        stop_containment = ']'
+            start_containment = "("
+        stop_containment = "]"
         if not stop_pitch_is_included_in_range:
-            stop_containment = ')'
-        string = '{}{}, {}{}'
+            stop_containment = ")"
+        string = "{}{}, {}{}"
         string = string.format(
             start_containment,
             start_pitch_string,
             stop_pitch_string,
             stop_containment,
-            )
+        )
         pitch_range = PitchRange(string)
         return pitch_range
 
@@ -767,12 +770,13 @@ class PitchRange(object):
         Returns a list of `pitch_carrier` objects.
         """
         import abjad
+
         if isinstance(pitch_carrier, collections.abc.Iterable):
             if all(isinstance(x, (int, float)) for x in pitch_carrier):
                 return self._list_numeric_octave_transpositions(pitch_carrier)
         prototype = (abjad.Chord, abjad.PitchSet)
         if not isinstance(pitch_carrier, prototype):
-            message = 'must be chord or pitch-set: {!r}'
+            message = "must be chord or pitch-set: {!r}"
             message = message.format(pitch_carrier)
             raise TypeError(message)
         result = []
@@ -828,6 +832,7 @@ class PitchRange(object):
         Returns tuple of zero or more named pitches.
         """
         import abjad
+
         named_pitch_class = abjad.NamedPitchClass(pitch_class)
         pair = (named_pitch_class.name, self.start_pitch.octave.number)
         named_pitch = abjad.NamedPitch(pair)

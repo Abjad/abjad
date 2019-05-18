@@ -10,7 +10,8 @@ def test_RhythmTreeContainer___getitem___01():
     leaf_c = abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=1)
 
     container = abjad.rhythmtrees.RhythmTreeContainer(
-        preprolated_duration=1, children=[leaf_a, leaf_b, leaf_c])
+        preprolated_duration=1, children=[leaf_a, leaf_b, leaf_c]
+    )
 
     assert container[0] is leaf_a
     assert container[1] is leaf_b

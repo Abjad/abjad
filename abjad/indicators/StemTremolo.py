@@ -42,11 +42,9 @@ class StemTremolo(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_tremolo_flags',
-        )
+    __slots__ = ("_tremolo_flags",)
 
-    _format_slot = 'after'
+    _format_slot = "after"
 
     ### INITIALIZER ###
 
@@ -55,7 +53,7 @@ class StemTremolo(object):
             tremolo_flags = tremolo_flags.tremolo_flags
         tremolo_flags = int(tremolo_flags)
         if not mathtools.is_nonnegative_integer_power_of_two(tremolo_flags):
-            message = 'nonnegative integer power of 2: {tremolo_flags!r}.'
+            message = "nonnegative integer power of 2: {tremolo_flags!r}."
             raise ValueError(message)
         self._tremolo_flags = tremolo_flags
 
@@ -68,7 +66,7 @@ class StemTremolo(object):
         """
         return StorageFormatManager.compare_objects(self, argument)
 
-    def __format__(self, format_specification='') -> str:
+    def __format__(self, format_specification="") -> str:
         """
         Formats stem tremolo.
 
@@ -89,9 +87,9 @@ class StemTremolo(object):
             :32
 
         """
-        if format_specification in ('', 'lilypond'):
+        if format_specification in ("", "lilypond"):
             return self._get_lilypond_format()
-        assert format_specification == 'storage'
+        assert format_specification == "storage"
         return StorageFormatManager(self).get_storage_format()
 
     def __hash__(self) -> int:
@@ -102,7 +100,7 @@ class StemTremolo(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     def __repr__(self) -> str:
@@ -132,15 +130,14 @@ class StemTremolo(object):
             :32
 
         """
-        return f':{self.tremolo_flags!s}'
+        return f":{self.tremolo_flags!s}"
 
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
         return FormatSpecification(
-            client=self,
-            storage_format_is_indented=False,
-            )
+            client=self, storage_format_is_indented=False
+        )
 
     def _get_lilypond_format(self):
         return str(self)

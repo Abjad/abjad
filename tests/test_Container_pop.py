@@ -25,7 +25,7 @@ def test_Container_pop_01():
             )
         }
         """
-        ), print(format(voice))
+    ), print(format(voice))
 
     result = voice.pop(1)
 
@@ -40,7 +40,7 @@ def test_Container_pop_01():
             )
         }
         """
-        ), print(format(voice))
+    ), print(format(voice))
 
     assert abjad.inspect(voice).wellformed()
 
@@ -75,7 +75,7 @@ def test_Container_pop_02():
             }
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     sequential = staff.pop()
 
@@ -90,7 +90,7 @@ def test_Container_pop_02():
             }
         }
         """
-        ), print(format(staff))
+    ), print(format(staff))
 
     assert abjad.inspect(staff).wellformed()
 
@@ -102,6 +102,6 @@ def test_Container_pop_02():
             ]
         }
         """
-        ), print(format(sequential))
+    ), print(format(sequential))
 
     assert abjad.inspect(sequential).wellformed()

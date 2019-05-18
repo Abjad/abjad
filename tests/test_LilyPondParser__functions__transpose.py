@@ -6,7 +6,7 @@ def test_LilyPondParser__functions__transpose_01():
     pitches = ["e'", "gs'", "b'", "e''"]
     maker = abjad.NoteMaker()
     target = abjad.Staff(maker(pitches, (1, 4)))
-    key_signature = abjad.KeySignature('e', 'major')
+    key_signature = abjad.KeySignature("e", "major")
     abjad.attach(key_signature, target[0])
 
     assert format(target) == abjad.String.normalize(
@@ -20,9 +20,11 @@ def test_LilyPondParser__functions__transpose_01():
             e''4
         }
         """
-        )
+    )
 
-    string = r"\transpose d e \relative c' \new Staff { \key d \major d4 fs a d }"
+    string = (
+        r"\transpose d e \relative c' \new Staff { \key d \major d4 fs a d }"
+    )
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
     assert format(target) == format(result) and target is not result
@@ -33,7 +35,7 @@ def test_LilyPondParser__functions__transpose_02():
     pitches = ["ef'", "f'", "g'", "bf'"]
     maker = abjad.NoteMaker()
     target = abjad.Staff(maker(pitches, (1, 4)))
-    key_signature = abjad.KeySignature('ef', 'major')
+    key_signature = abjad.KeySignature("ef", "major")
     abjad.attach(key_signature, target[0])
 
     assert format(target) == abjad.String.normalize(
@@ -47,9 +49,11 @@ def test_LilyPondParser__functions__transpose_02():
             bf'4
         }
         """
-        )
+    )
 
-    string = r"\transpose a c' \relative c' \new Staff { \key c \major c4 d e g }"
+    string = (
+        r"\transpose a c' \relative c' \new Staff { \key c \major c4 d e g }"
+    )
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
     assert format(target) == format(result) and target is not result
@@ -58,10 +62,12 @@ def test_LilyPondParser__functions__transpose_02():
 def test_LilyPondParser__functions__transpose_03():
 
     maker = abjad.NoteMaker()
-    target = abjad.Staff([
-        abjad.Container(maker(["cs'", "ds'", "es'", "fs'"], (1, 4))),
-        abjad.Container(maker(["df'", "ef'", "f'", "gf'"], (1, 4)))
-    ])
+    target = abjad.Staff(
+        [
+            abjad.Container(maker(["cs'", "ds'", "es'", "fs'"], (1, 4))),
+            abjad.Container(maker(["df'", "ef'", "f'", "gf'"], (1, 4))),
+        ]
+    )
 
     assert format(target) == abjad.String.normalize(
         r"""
@@ -81,7 +87,7 @@ def test_LilyPondParser__functions__transpose_03():
             }
         }
         """
-        )
+    )
 
     string = r"""music = \relative c' { c d e f }
     \new Staff {

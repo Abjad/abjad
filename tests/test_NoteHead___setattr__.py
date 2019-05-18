@@ -10,4 +10,4 @@ def test_NoteHead___setattr___01():
     note_head = abjad.NoteHead("cs''")
 
     with pytest.raises(AttributeError):
-        note_head.foo = 'bar'
+        note_head.foo = "bar"

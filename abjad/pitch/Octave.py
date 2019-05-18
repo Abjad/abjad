@@ -44,14 +44,13 @@ class Octave(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_number',
-        )
+    __slots__ = ("_number",)
 
     ### INITIALIZER ###
 
     def __init__(self, number=4):
         import abjad
+
         if number is None:
             number = 4
         elif isinstance(number, str):
@@ -61,22 +60,22 @@ class Octave(object):
                     pitch = abjad.NamedPitch(number)
                     number = pitch.octave.number
                 except Exception:
-                    message = 'can not instantiate {}: {!r}.'
+                    message = "can not instantiate {}: {!r}."
                     message = message.format(type(self), number)
                     raise ValueError(message)
             else:
                 group_dict = match.groupdict()
                 number = 3
-                if group_dict['octave_number']:
-                    number = int(group_dict['octave_number'])
-                elif group_dict['octave_tick']:
-                    if group_dict['octave_tick'].startswith("'"):
-                        number += group_dict['octave_tick'].count("'")
+                if group_dict["octave_number"]:
+                    number = int(group_dict["octave_number"])
+                elif group_dict["octave_tick"]:
+                    if group_dict["octave_tick"].startswith("'"):
+                        number += group_dict["octave_tick"].count("'")
                     else:
-                        number -= group_dict['octave_tick'].count(',')
+                        number -= group_dict["octave_tick"].count(",")
         elif isinstance(number, numbers.Number):
             number = int(number)
-        elif hasattr(number, 'octave'):
+        elif hasattr(number, "octave"):
             number = number.octave.number
         elif isinstance(number, type(self)):
             number = number.number
@@ -85,7 +84,7 @@ class Octave(object):
                 pitch = abjad.NamedPitch(number)
                 number = pitch.octave.number
             except Exception:
-                message = 'can not instantiate {}: {!r}.'
+                message = "can not instantiate {}: {!r}."
                 message = message.format(type(self), number)
                 raise ValueError(message)
         self._number = number
@@ -145,7 +144,7 @@ class Octave(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     def __int__(self):
@@ -231,7 +230,7 @@ class Octave(object):
             storage_format_is_indented=False,
             storage_format_args_values=[self.number],
             storage_format_kwargs_names=[],
-            )
+        )
 
     @classmethod
     def _is_tick_string(class_, argument):
@@ -288,11 +287,10 @@ class Octave(object):
         Returns pitch range.
         """
         import abjad
+
         return abjad.PitchRange(
-            '[C{}, C{})'.format(
-                self.number,
-                self.number + 1,
-                ))
+            "[C{}, C{})".format(self.number, self.number + 1)
+        )
 
     @property
     def ticks(self):
@@ -319,8 +317,8 @@ class Octave(object):
         if 3 < self.number:
             return "'" * (self.number - 3)
         elif self.number < 3:
-            return ',' * abs(3 - self.number)
-        return ''
+            return "," * abs(3 - self.number)
+        return ""
 
     ### PUBLIC METHODS ###
 
@@ -345,6 +343,7 @@ class Octave(object):
         Returns integer.
         """
         import abjad
+
         if isinstance(pitch, numbers.Number):
             number = int(math.floor(pitch / 12)) + 4
             return class_(number)
@@ -354,7 +353,7 @@ class Octave(object):
             name = pitch
         else:
             raise TypeError(pitch)
-        match = re.match('^([a-z]+)(\,*|\'*)$', name)
+        match = re.match(r"^([a-z]+)(\,*|'*)$", name)
         assert match is not None, repr(match)
         name, ticks = match.groups()
         return class_(ticks)

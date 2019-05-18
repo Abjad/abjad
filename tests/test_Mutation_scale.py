@@ -19,7 +19,7 @@ def test_Mutation_scale_01():
             f'8.
         }
         """
-        )
+    )
 
     assert abjad.inspect(voice).wellformed()
 
@@ -50,7 +50,7 @@ def test_Mutation_scale_02():
             f'32
         }
         """
-        )
+    )
 
     assert abjad.inspect(voice).wellformed()
 
@@ -85,7 +85,7 @@ def test_Mutation_scale_03():
             }
         }
         """
-        )
+    )
 
     assert abjad.inspect(voice).wellformed()
 
@@ -128,7 +128,7 @@ def test_Mutation_scale_04():
             }
         }
         """
-        ), print(format(voice))
+    ), print(format(voice))
 
     assert abjad.inspect(voice).wellformed()
 
@@ -159,7 +159,7 @@ def test_Mutation_scale_05():
             f'32
         }
         """
-        )
+    )
 
     abjad.mutate(voice).scale(abjad.Multiplier(4, 5))
 
@@ -173,6 +173,6 @@ def test_Mutation_scale_05():
             f'8
         }
         """
-        )
+    )
 
     assert abjad.inspect(voice).wellformed()

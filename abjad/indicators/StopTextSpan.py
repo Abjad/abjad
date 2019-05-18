@@ -16,14 +16,11 @@ class StopTextSpan(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_command',
-        '_leak',
-        )
+    __slots__ = ("_command", "_leak")
 
-    _context = 'Voice'
+    _context = "Voice"
 
-    _parameter = 'TEXT_SPANNER'
+    _parameter = "TEXT_SPANNER"
 
     _persistent = True
 
@@ -32,13 +29,10 @@ class StopTextSpan(object):
     ### INITIALIZER ###
 
     def __init__(
-        self,
-        command: str = r'\stopTextSpan',
-        *,
-        leak: bool = None,
-        ) -> None:
+        self, command: str = r"\stopTextSpan", *, leak: bool = None
+    ) -> None:
         assert isinstance(command, str), repr(command)
-        assert command.startswith('\\'), repr(command)
+        assert command.startswith("\\"), repr(command)
         self._command = command
         if leak is not None:
             leak = bool(leak)
@@ -58,7 +52,7 @@ class StopTextSpan(object):
         bundle = LilyPondFormatBundle()
         string = self.command
         if self.leak:
-            string = f'<> {string}'
+            string = f"<> {string}"
             bundle.after.leaks.append(string)
         else:
             bundle.after.spanner_stops.append(string)

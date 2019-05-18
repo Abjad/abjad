@@ -138,20 +138,20 @@ class Pattern(object):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_indices',
-        '_inverted',
-        '_operator',
-        '_patterns',
-        '_payload',
-        '_period',
-        '_template',
-        )
+        "_indices",
+        "_inverted",
+        "_operator",
+        "_patterns",
+        "_payload",
+        "_period",
+        "_template",
+    )
 
     _name_to_operator = {
-        'and': operator.and_,
-        'or': operator.or_,
-        'xor': operator.xor,
-        }
+        "and": operator.and_,
+        "or": operator.or_,
+        "xor": operator.xor,
+    }
 
     _publish_storage_format = True
 
@@ -167,7 +167,7 @@ class Pattern(object):
         payload=None,
         period=None,
         template=None,
-        ):
+    ):
         if indices is not None:
             assert all(isinstance(_, int) for _ in indices), repr(indices)
             indices = tuple(indices)
@@ -278,22 +278,22 @@ class Pattern(object):
 
         Returns new pattern.
         """
-        if self._can_append_to_self(pattern, 'and'):
+        if self._can_append_to_self(pattern, "and"):
             if self.patterns is None:
                 self_patterns = [self]
             else:
                 self_patterns = list(self.patterns)
             patterns = self_patterns + [pattern]
-            result = type(self)(operator='and', patterns=patterns)
+            result = type(self)(operator="and", patterns=patterns)
         else:
-            result = type(self)(operator='and', patterns=[self, pattern])
+            result = type(self)(operator="and", patterns=[self, pattern])
         return result
 
-    def __format__(self, format_specification='') -> str:
+    def __format__(self, format_specification="") -> str:
         """
         Formats object.
         """
-        if format_specification in ('', 'storage'):
+        if format_specification in ("", "storage"):
             return StorageFormatManager(self).get_storage_format()
         return str(self)
 
@@ -518,15 +518,15 @@ class Pattern(object):
 
         Returns new pattern.
         """
-        if self._can_append_to_self(pattern, 'or'):
+        if self._can_append_to_self(pattern, "or"):
             if self.patterns is None:
                 self_patterns = [self]
             else:
                 self_patterns = list(self.patterns)
             patterns = self_patterns + [pattern]
-            result = type(self)(operator='or', patterns=patterns)
+            result = type(self)(operator="or", patterns=patterns)
         else:
-            result = type(self)(operator='or', patterns=[self, pattern])
+            result = type(self)(operator="or", patterns=[self, pattern])
         return result
 
     def __repr__(self) -> str:
@@ -621,15 +621,15 @@ class Pattern(object):
 
         Returns new pattern.
         """
-        if self._can_append_to_self(pattern, 'xor'):
+        if self._can_append_to_self(pattern, "xor"):
             if self.patterns is None:
                 self_patterns = [self]
             else:
                 self_patterns = list(self.patterns)
             patterns = self_patterns + [pattern]
-            result = type(self)(operator='xor', patterns=patterns)
+            result = type(self)(operator="xor", patterns=patterns)
         else:
-            result = type(self)(operator='xor', patterns=[self, pattern])
+            result = type(self)(operator="xor", patterns=[self, pattern])
         return result
 
     ### PRIVATE METHODS ###
@@ -639,15 +639,15 @@ class Pattern(object):
             return False
         if self.operator is None:
             return True
-        if (self.operator == operator_ and
-            (pattern.operator is None or
-            (pattern.operator == self.operator))):
+        if self.operator == operator_ and (
+            pattern.operator is None or (pattern.operator == self.operator)
+        ):
             return True
         return False
 
     def _get_format_specification(self):
         if self.template is None:
-            #return super()._get_format_specification()
+            # return super()._get_format_specification()
             return FormatSpecification(client=self)
         return FormatSpecification(
             client=self,
@@ -656,18 +656,15 @@ class Pattern(object):
             storage_format_args_values=[self.template],
             storage_format_forced_override=self.template,
             storage_format_kwargs_names=(),
-            )
+        )
 
     @staticmethod
     def _get_template(frame):
         try:
             frame_info = inspect.getframeinfo(frame)
             function_name = frame_info.function
-            arguments = Expression._wrap_arguments(
-                frame,
-                static_class=Pattern,
-                )
-            template = 'abjad.{}({})'.format(function_name, arguments)
+            arguments = Expression._wrap_arguments(frame, static_class=Pattern)
+            template = "abjad.{}({})".format(function_name, arguments)
         finally:
             del frame
         return template
@@ -1141,10 +1138,7 @@ class Pattern(object):
         vector = [bool(_) for _ in vector]
         period = len(vector)
         indices = [i for i, x in enumerate(vector) if x]
-        return class_(
-            period=period,
-            indices=indices,
-            )
+        return class_(period=period, indices=indices)
 
     def get_boolean_vector(self, total_length=None):
         """
@@ -1409,7 +1403,7 @@ class Pattern(object):
             inverted=inverted,
             period=period,
             template=template,
-            )
+        )
 
     @staticmethod
     def index_all(inverted=None):
@@ -1429,11 +1423,8 @@ class Pattern(object):
         """
         template = Pattern._get_template(inspect.currentframe())
         return Pattern(
-            indices=[0],
-            inverted=inverted,
-            period=1,
-            template=template,
-            )
+            indices=[0], inverted=inverted, period=1, template=template
+        )
 
     @staticmethod
     def index_first(n, inverted=None):
@@ -1475,11 +1466,7 @@ class Pattern(object):
         else:
             indices = None
         template = Pattern._get_template(inspect.currentframe())
-        return Pattern(
-            indices=indices,
-            inverted=inverted,
-            template=template,
-            )
+        return Pattern(indices=indices, inverted=inverted, template=template)
 
     @staticmethod
     def index_last(n, inverted=None):
@@ -1515,11 +1502,7 @@ class Pattern(object):
         else:
             indices = None
         template = Pattern._get_template(inspect.currentframe())
-        return Pattern(
-            indices=indices,
-            inverted=inverted,
-            template=template,
-            )
+        return Pattern(indices=indices, inverted=inverted, template=template)
 
     def matches_index(self, index, total_length, rotation=None):
         """
@@ -2304,34 +2287,29 @@ class Pattern(object):
                         index = index % self.period
                     if index == nonnegative_index and index < total_length:
                         return True ^ inverted
-                    if ((index % self.period) == nonnegative_index and
-                        (index % self.period < total_length)):
+                    if (index % self.period) == nonnegative_index and (
+                        index % self.period < total_length
+                    ):
                         return True ^ inverted
             return False ^ inverted
         elif len(self.patterns) == 1:
             pattern = self.patterns[0]
             result = pattern.matches_index(
-                index,
-                total_length,
-                rotation=rotation,
-                )
+                index, total_length, rotation=rotation
+            )
         else:
             operator_ = self._name_to_operator[self.operator]
             pattern = self.patterns[0]
             result = pattern.matches_index(
-                index,
-                total_length,
-                rotation=rotation,
-                )
+                index, total_length, rotation=rotation
+            )
             for pattern in self.patterns[1:]:
                 result_ = pattern.matches_index(
-                    index,
-                    total_length,
-                    rotation=rotation,
-                    )
+                    index, total_length, rotation=rotation
+                )
                 result = operator_(result, result_)
         if self.inverted:
-            result = not(result)
+            result = not (result)
         return result
 
     def reverse(self):

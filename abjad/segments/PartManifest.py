@@ -61,10 +61,7 @@ class PartManifest(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_parts',
-        '_sections',
-        )
+    __slots__ = ("_parts", "_sections")
 
     ### INITIALIZER ###
 
@@ -77,7 +74,7 @@ class PartManifest(object):
                 sections.append(argument)
                 parts.extend(argument.parts)
             else:
-                raise TypeError(f'must be part or section (not {argument}).')
+                raise TypeError(f"must be part or section (not {argument}).")
         for i, part in enumerate(parts):
             number = i + 1
             part._number = number

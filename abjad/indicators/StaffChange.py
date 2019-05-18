@@ -44,15 +44,13 @@ class StaffChange(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_staff',
-        )
+    __slots__ = ("_staff",)
 
-    _context = 'Staff'
+    _context = "Staff"
 
     _format_leaf_children = False
 
-    _format_slot = 'opening'
+    _format_slot = "opening"
 
     _time_orientation: enums.HorizontalAlignment = enums.Right
 
@@ -60,9 +58,10 @@ class StaffChange(object):
 
     def __init__(self, staff=None):
         from abjad.core.Staff import Staff
+
         if staff is not None:
             if not isinstance(staff, Staff):
-                raise TypeError(f'must be staff: {staff!r}.')
+                raise TypeError(f"must be staff: {staff!r}.")
         self._staff = staff
 
     ### SPECIAL METHODS ###
@@ -82,7 +81,7 @@ class StaffChange(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     def __repr__(self) -> str:
@@ -114,9 +113,9 @@ class StaffChange(object):
 
         """
         if self.staff is None:
-            return r'\change Staff = ##f'
+            return r"\change Staff = ##f"
         value = Scheme.format_scheme_value(self.staff.name)
-        return rf'\change Staff = {value}'
+        return rf"\change Staff = {value}"
 
     ### PRIVATE METHODS ###
 

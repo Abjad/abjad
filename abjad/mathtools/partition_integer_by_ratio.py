@@ -54,23 +54,20 @@ def partition_integer_by_ratio(n, ratio):
     Returns list of integers.
     """
     from abjad import mathtools
+
     if not mathtools.is_integer_equivalent_number(n):
-        message = 'is not integer-equivalent number: {!r}.'
+        message = "is not integer-equivalent number: {!r}."
         message = message.format(n)
         raise TypeError(message)
     ratio = mathtools.Ratio(ratio).numbers
-    if not all(
-        mathtools.is_integer_equivalent_number(part)
-        for part in ratio
-        ):
-        message = 'some parts in {!r} not integer-equivalent numbers.'
+    if not all(mathtools.is_integer_equivalent_number(part) for part in ratio):
+        message = "some parts in {!r} not integer-equivalent numbers."
         message = message.format(ratio)
         raise TypeError(message)
     result = [0]
     divisions = [
-        float(abs(n)) * abs(part) / mathtools.weight(ratio)
-        for part in ratio
-        ]
+        float(abs(n)) * abs(part) / mathtools.weight(ratio) for part in ratio
+    ]
     cumulative_divisions = mathtools.cumulative_sums(divisions, start=None)
     for division in cumulative_divisions:
         rounded_division = int(round(division)) - sum(result)

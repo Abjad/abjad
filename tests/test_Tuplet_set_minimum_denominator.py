@@ -17,7 +17,7 @@ def test_Tuplet_set_minimum_denominator_01():
             g'2
         }
         """
-        )
+    )
 
     assert abjad.inspect(tuplet).wellformed()
 
@@ -38,7 +38,7 @@ def test_Tuplet_set_minimum_denominator_02():
             g'2
         }
         """
-        )
+    )
 
     assert abjad.inspect(tuplet).wellformed()
 
@@ -59,6 +59,6 @@ def test_Tuplet_set_minimum_denominator_03():
             g'2
         }
         """
-        )
+    )
 
     assert abjad.inspect(tuplet).wellformed()

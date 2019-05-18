@@ -35,7 +35,7 @@ class PitchClassVector(Vector):
 
     ### SPECIAL METHODS ###
 
-    def __format__(self, format_specification=''):
+    def __format__(self, format_specification=""):
         """
         Gets format of pitch-class vector.
 
@@ -99,34 +99,31 @@ class PitchClassVector(Vector):
     @property
     def _named_item_class(self):
         import abjad
+
         return abjad.NamedPitchClass
 
     @property
     def _numbered_item_class(self):
         import abjad
+
         return abjad.NumberedPitchClass
 
     @property
     def _parent_item_class(self):
         import abjad
+
         return abjad.PitchClass
 
     ### PUBLIC METHODS ###
 
     @classmethod
-    def from_selection(
-        class_,
-        selection,
-        item_class=None,
-        ):
+    def from_selection(class_, selection, item_class=None):
         """
         Makes pitch-class vector from `selection`.
 
         Returns pitch-class vector.
         """
         import abjad
+
         pitch_segment = abjad.PitchSegment.from_selection(selection)
-        return class_(
-            pitch_segment,
-            item_class=item_class,
-            )
+        return class_(pitch_segment, item_class=item_class)

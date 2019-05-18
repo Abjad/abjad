@@ -1,4 +1,5 @@
 from fractions import Fraction  # noqa
+
 try:
     from quicktions import Fraction  # type: ignore
 except ImportError:
@@ -10,6 +11,7 @@ from abjad.exceptions import *
 # ensure that the ~/.abjad directory and friends are setup
 # and instantiate Abjad's configuration singleton
 from abjad.system.AbjadConfiguration import AbjadConfiguration
+
 abjad_configuration = AbjadConfiguration()
 del AbjadConfiguration
 
@@ -54,6 +56,7 @@ from abjad.timespans.TimespanList import TimespanList
 
 # import version information
 from ._version import __version_info__, __version__
+
 try:
     del _version
 except NameError:

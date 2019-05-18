@@ -69,29 +69,23 @@ class StartPianoPedal(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_kind',
-        '_tweaks',
-        )
+    __slots__ = ("_kind", "_tweaks")
 
-    _context = 'StaffGroup'
+    _context = "StaffGroup"
 
     _persistent = True
 
-    _parameter = 'PEDAL'
+    _parameter = "PEDAL"
 
     _publish_storage_format = True
 
     ### INITIALIZER ###
 
     def __init__(
-        self,
-        kind: str = None,
-        *,
-        tweaks: LilyPondTweakManager = None,
-        ) -> None:
+        self, kind: str = None, *, tweaks: LilyPondTweakManager = None
+    ) -> None:
         if kind is not None:
-            assert kind in ('sustain', 'sostenuto', 'corda')
+            assert kind in ("sustain", "sostenuto", "corda")
         self._kind = kind
         if tweaks is not None:
             assert isinstance(tweaks, LilyPondTweakManager), repr(tweaks)
@@ -114,9 +108,9 @@ class StartPianoPedal(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
-    
+
     def __repr__(self) -> str:
         """
         Gets interpreter representation.
@@ -130,13 +124,13 @@ class StartPianoPedal(object):
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions()
             bundle.after.spanner_starts.extend(tweaks)
-        if self.kind == 'corda':
-            string = r'\unaCorda'
-        elif self.kind == 'sostenuto':
-            string = r'\sostenutoOn'
+        if self.kind == "corda":
+            string = r"\unaCorda"
+        elif self.kind == "sostenuto":
+            string = r"\sostenutoOn"
         else:
-            assert self.kind in ('sustain', None)
-            string = r'\sustainOn'
+            assert self.kind in ("sustain", None)
+            string = r"\sustainOn"
         bundle.after.spanner_starts.append(string)
         return bundle
 

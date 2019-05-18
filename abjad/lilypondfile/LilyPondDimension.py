@@ -16,22 +16,19 @@ class LilyPondDimension(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_unit',
-        '_value',
-        )
+    __slots__ = ("_unit", "_value")
 
     ### INITIALIZER ###
 
-    def __init__(self, value=0, unit='cm'):
+    def __init__(self, value=0, unit="cm"):
         assert isinstance(value, numbers.Number) and 0 <= value
-        assert unit in ('cm', 'in', 'mm', 'pt')
+        assert unit in ("cm", "in", "mm", "pt")
         self._value = value
         self._unit = unit
 
     ### SPECIAL METHODS ###
 
-    def __format__(self, format_specification=''):
+    def __format__(self, format_specification=""):
         r"""
         Formats LilyPond dimension.
 
@@ -43,7 +40,7 @@ class LilyPondDimension(object):
 
         Returns string.
         """
-        if format_specification in ('', 'lilypond'):
+        if format_specification in ("", "lilypond"):
             return self._get_lilypond_format()
         return StorageFormatManager(self).get_storage_format()
 
@@ -56,10 +53,10 @@ class LilyPondDimension(object):
     ### PRIVATE METHODS ###
 
     def _get_format_pieces(self, tag=None):
-        return [rf'{self.value}\{self.unit}']
+        return [rf"{self.value}\{self.unit}"]
 
     def _get_lilypond_format(self):
-        return '\n'.join(self._get_format_pieces())
+        return "\n".join(self._get_format_pieces())
 
     ### PUBLIC PROPERTIES ###
 

@@ -5,9 +5,8 @@ import pytest
 def test_Tuplet_from_ratio_and_pair_01():
 
     tuplet = abjad.Tuplet.from_ratio_and_pair(
-        abjad.NonreducedRatio((1, 2, 4)),
-        abjad.NonreducedFraction(6, 16),
-        )
+        abjad.NonreducedRatio((1, 2, 4)), abjad.NonreducedFraction(6, 16)
+    )
 
     assert format(tuplet) == abjad.String.normalize(
         r"""
@@ -18,15 +17,14 @@ def test_Tuplet_from_ratio_and_pair_01():
             c'4
         }
         """
-        )
+    )
 
 
 def test_Tuplet_from_ratio_and_pair_02():
 
     tuplet = abjad.Tuplet.from_ratio_and_pair(
-        abjad.NonreducedRatio((1, 1, 2, 4)),
-        abjad.NonreducedFraction(6, 16),
-        )
+        abjad.NonreducedRatio((1, 1, 2, 4)), abjad.NonreducedFraction(6, 16)
+    )
 
     assert format(tuplet) == abjad.String.normalize(
         r"""
@@ -38,15 +36,14 @@ def test_Tuplet_from_ratio_and_pair_02():
             c'4
         }
         """
-        )
+    )
 
 
 def test_Tuplet_from_ratio_and_pair_03():
 
     tuplet = abjad.Tuplet.from_ratio_and_pair(
-        abjad.NonreducedRatio((-2, 3, 7)),
-        abjad.NonreducedFraction(7, 16),
-        )
+        abjad.NonreducedRatio((-2, 3, 7)), abjad.NonreducedFraction(7, 16)
+    )
 
     assert format(tuplet) == abjad.String.normalize(
         r"""
@@ -57,14 +54,14 @@ def test_Tuplet_from_ratio_and_pair_03():
             c'4..
         }
         """
-        )
+    )
+
 
 def test_Tuplet_from_ratio_and_pair_04():
 
     tuplet = abjad.Tuplet.from_ratio_and_pair(
-        abjad.NonreducedRatio((7, 7, -4, -1)),
-        abjad.NonreducedFraction(1, 4),
-        )
+        abjad.NonreducedRatio((7, 7, -4, -1)), abjad.NonreducedFraction(1, 4)
+    )
 
     assert format(tuplet) == abjad.String.normalize(
         r"""
@@ -75,15 +72,14 @@ def test_Tuplet_from_ratio_and_pair_04():
             r64
         }
         """
-        )
+    )
 
 
 def test_Tuplet_from_ratio_and_pair_05():
 
     tuplet = abjad.Tuplet.from_ratio_and_pair(
-        abjad.NonreducedRatio((1, 2, 2)),
-        abjad.NonreducedFraction(12, 16),
-        )
+        abjad.NonreducedRatio((1, 2, 2)), abjad.NonreducedFraction(12, 16)
+    )
 
     assert format(tuplet) == abjad.String.normalize(
         r"""
@@ -94,15 +90,14 @@ def test_Tuplet_from_ratio_and_pair_05():
             c'4
         }
         """
-        )
+    )
 
 
 def test_Tuplet_from_ratio_and_pair_06():
 
     tuplet = abjad.Tuplet.from_ratio_and_pair(
-        abjad.NonreducedRatio((2, 4, 4)),
-        abjad.NonreducedFraction(12, 16),
-        )
+        abjad.NonreducedRatio((2, 4, 4)), abjad.NonreducedFraction(12, 16)
+    )
 
     assert format(tuplet) == abjad.String.normalize(
         r"""
@@ -113,15 +108,14 @@ def test_Tuplet_from_ratio_and_pair_06():
             c'4
         }
         """
-        )
+    )
 
 
 def test_Tuplet_from_ratio_and_pair_07():
 
     tuplet = abjad.Tuplet.from_ratio_and_pair(
-        abjad.NonreducedRatio((4, 8, 8)),
-        abjad.NonreducedFraction(12, 16),
-        )
+        abjad.NonreducedRatio((4, 8, 8)), abjad.NonreducedFraction(12, 16)
+    )
 
     assert format(tuplet) == abjad.String.normalize(
         r"""
@@ -132,15 +126,14 @@ def test_Tuplet_from_ratio_and_pair_07():
             c'2
         }
         """
-        )
+    )
 
 
 def test_Tuplet_from_ratio_and_pair_08():
 
     tuplet = abjad.Tuplet.from_ratio_and_pair(
-        abjad.NonreducedRatio((8, 16, 16)),
-        abjad.NonreducedFraction(12, 16),
-        )
+        abjad.NonreducedRatio((8, 16, 16)), abjad.NonreducedFraction(12, 16)
+    )
 
     assert format(tuplet) == abjad.String.normalize(
         r"""
@@ -151,15 +144,14 @@ def test_Tuplet_from_ratio_and_pair_08():
             c'2
         }
         """
-        )
+    )
 
 
 def test_Tuplet_from_ratio_and_pair_09():
 
     tuplet = abjad.Tuplet.from_ratio_and_pair(
-        abjad.NonreducedRatio((2, 4, 4)),
-        abjad.NonreducedFraction(3, 16),
-        )
+        abjad.NonreducedRatio((2, 4, 4)), abjad.NonreducedFraction(3, 16)
+    )
 
     assert format(tuplet) == abjad.String.normalize(
         r"""
@@ -170,15 +162,14 @@ def test_Tuplet_from_ratio_and_pair_09():
             c'8
         }
         """
-        )
+    )
 
 
 def test_Tuplet_from_ratio_and_pair_10():
 
     tuplet = abjad.Tuplet.from_ratio_and_pair(
-        abjad.NonreducedRatio((2, 4, 4)),
-        abjad.NonreducedFraction(6, 16),
-        )
+        abjad.NonreducedRatio((2, 4, 4)), abjad.NonreducedFraction(6, 16)
+    )
 
     assert format(tuplet) == abjad.String.normalize(
         r"""
@@ -189,15 +180,14 @@ def test_Tuplet_from_ratio_and_pair_10():
             c'4
         }
         """
-        )
+    )
 
 
 def test_Tuplet_from_ratio_and_pair_11():
 
     tuplet = abjad.Tuplet.from_ratio_and_pair(
-        abjad.NonreducedRatio((2, 4, 4)),
-        abjad.NonreducedFraction(12, 16),
-        )
+        abjad.NonreducedRatio((2, 4, 4)), abjad.NonreducedFraction(12, 16)
+    )
 
     assert format(tuplet) == abjad.String.normalize(
         r"""
@@ -208,15 +198,14 @@ def test_Tuplet_from_ratio_and_pair_11():
             c'4
         }
         """
-        )
+    )
 
 
 def test_Tuplet_from_ratio_and_pair_12():
 
     tuplet = abjad.Tuplet.from_ratio_and_pair(
-        abjad.NonreducedRatio((2, 4, 4)),
-        abjad.NonreducedFraction(24, 16),
-        )
+        abjad.NonreducedRatio((2, 4, 4)), abjad.NonreducedFraction(24, 16)
+    )
 
     assert format(tuplet) == abjad.String.normalize(
         r"""
@@ -227,15 +216,14 @@ def test_Tuplet_from_ratio_and_pair_12():
             c'2
         }
         """
-        )
+    )
 
 
 def test_Tuplet_from_ratio_and_pair_13():
 
     tuplet = abjad.Tuplet.from_ratio_and_pair(
-        abjad.NonreducedRatio((1, 2, 2)),
-        abjad.NonreducedFraction(6, 2),
-        )
+        abjad.NonreducedRatio((1, 2, 2)), abjad.NonreducedFraction(6, 2)
+    )
 
     assert format(tuplet) == abjad.String.normalize(
         r"""
@@ -246,15 +234,14 @@ def test_Tuplet_from_ratio_and_pair_13():
             c'1
         }
         """
-        )
+    )
 
 
 def test_Tuplet_from_ratio_and_pair_14():
 
     tuplet = abjad.Tuplet.from_ratio_and_pair(
-        abjad.NonreducedRatio((1, 2, 2)),
-        abjad.NonreducedFraction(6, 4),
-        )
+        abjad.NonreducedRatio((1, 2, 2)), abjad.NonreducedFraction(6, 4)
+    )
 
     assert format(tuplet) == abjad.String.normalize(
         r"""
@@ -265,15 +252,14 @@ def test_Tuplet_from_ratio_and_pair_14():
             c'2
         }
         """
-        )
+    )
 
 
 def test_Tuplet_from_ratio_and_pair_15():
 
     tuplet = abjad.Tuplet.from_ratio_and_pair(
-        abjad.NonreducedRatio((1, 2, 2)),
-        abjad.NonreducedFraction(6, 8),
-        )
+        abjad.NonreducedRatio((1, 2, 2)), abjad.NonreducedFraction(6, 8)
+    )
 
     assert format(tuplet) == abjad.String.normalize(
         r"""
@@ -284,15 +270,14 @@ def test_Tuplet_from_ratio_and_pair_15():
             c'4
         }
         """
-        )
+    )
 
 
 def test_Tuplet_from_ratio_and_pair_16():
 
     tuplet = abjad.Tuplet.from_ratio_and_pair(
-        abjad.NonreducedRatio((1, 2, 2)),
-        abjad.NonreducedFraction(6, 16),
-        )
+        abjad.NonreducedRatio((1, 2, 2)), abjad.NonreducedFraction(6, 16)
+    )
 
     assert format(tuplet) == abjad.String.normalize(
         r"""
@@ -303,15 +288,14 @@ def test_Tuplet_from_ratio_and_pair_16():
             c'8
         }
         """
-        )
+    )
 
 
 def test_Tuplet_from_ratio_and_pair_17():
 
     tuplet = abjad.Tuplet.from_ratio_and_pair(
-        abjad.NonreducedRatio((1, -1, -1)),
-        abjad.NonreducedFraction(3, 16),
-        )
+        abjad.NonreducedRatio((1, -1, -1)), abjad.NonreducedFraction(3, 16)
+    )
 
     assert format(tuplet) == abjad.String.normalize(
         r"""
@@ -322,15 +306,14 @@ def test_Tuplet_from_ratio_and_pair_17():
             r16
         }
         """
-        )
+    )
 
 
 def test_Tuplet_from_ratio_and_pair_18():
 
     tuplet = abjad.Tuplet.from_ratio_and_pair(
-        abjad.NonreducedRatio((1, 1, -1, -1)),
-        abjad.NonreducedFraction(4, 16),
-        )
+        abjad.NonreducedRatio((1, 1, -1, -1)), abjad.NonreducedFraction(4, 16)
+    )
 
     assert format(tuplet) == abjad.String.normalize(
         r"""
@@ -342,7 +325,7 @@ def test_Tuplet_from_ratio_and_pair_18():
             r16
         }
         """
-        )
+    )
 
 
 def test_Tuplet_from_ratio_and_pair_19():
@@ -350,7 +333,7 @@ def test_Tuplet_from_ratio_and_pair_19():
     tuplet = abjad.Tuplet.from_ratio_and_pair(
         abjad.NonreducedRatio((1, 1, 1, -1, -1)),
         abjad.NonreducedFraction(5, 16),
-        )
+    )
 
     assert format(tuplet) == abjad.String.normalize(
         r"""
@@ -363,7 +346,7 @@ def test_Tuplet_from_ratio_and_pair_19():
             r16
         }
         """
-        )
+    )
 
 
 def test_Tuplet_from_ratio_and_pair_20():
@@ -371,7 +354,7 @@ def test_Tuplet_from_ratio_and_pair_20():
     tuplet = abjad.Tuplet.from_ratio_and_pair(
         abjad.NonreducedRatio((1, 1, 1, 1, -1, -1)),
         abjad.NonreducedFraction(6, 16),
-        )
+    )
 
     assert format(tuplet) == abjad.String.normalize(
         r"""
@@ -385,4 +368,4 @@ def test_Tuplet_from_ratio_and_pair_20():
             r16
         }
         """
-        )
+    )

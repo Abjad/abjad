@@ -31,4 +31,5 @@ def persist(client):
 
     """
     import abjad
+
     return abjad.PersistenceManager(client)

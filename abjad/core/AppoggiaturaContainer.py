@@ -44,7 +44,7 @@ class AppoggiaturaContainer(GraceContainer):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Containers'
+    __documentation_section__ = "Containers"
 
     __slots__ = ()
 
@@ -52,5 +52,5 @@ class AppoggiaturaContainer(GraceContainer):
 
     def _format_open_brackets_slot(self, bundle):
         result = []
-        result.append([('grace_brackets', 'open'), [r'\appoggiatura {']])
+        result.append([("grace_brackets", "open"), [r"\appoggiatura {"]])
         return tuple(result)

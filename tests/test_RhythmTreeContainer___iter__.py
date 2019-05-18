@@ -9,6 +9,7 @@ def test_RhythmTreeContainer___iter___01():
     leaf_c = abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=1)
 
     container = abjad.rhythmtrees.RhythmTreeContainer(
-        preprolated_duration=1, children=[leaf_a, leaf_b, leaf_c])
+        preprolated_duration=1, children=[leaf_a, leaf_b, leaf_c]
+    )
 
     assert [x for x in container] == [leaf_a, leaf_b, leaf_c]

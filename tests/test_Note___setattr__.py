@@ -10,4 +10,4 @@ def test_Note___setattr___01():
     note = abjad.Note("c'4")
 
     with pytest.raises(AttributeError):
-        note.foo = 'bar'
+        note.foo = "bar"

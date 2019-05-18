@@ -24,7 +24,7 @@ class MultimeasureRest(Leaf):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Leaves'
+    __documentation_section__ = "Leaves"
 
     __slots__ = ()
 
@@ -35,16 +35,13 @@ class MultimeasureRest(Leaf):
         *arguments,
         multiplier: typings.DurationTyping = None,
         tag: str = None,
-        ) -> None:
+    ) -> None:
         if len(arguments) == 0:
             arguments = ((1, 4),)
         rest = Rest(*arguments)
         Leaf.__init__(
-            self,
-            rest.written_duration,
-            multiplier=multiplier,
-            tag=tag,
-            )
+            self, rest.written_duration, multiplier=multiplier, tag=tag
+        )
 
     ### PRIVATE METHODS ###
 
@@ -53,11 +50,11 @@ class MultimeasureRest(Leaf):
         Gets list of string representation of body of rest.
         Picked up as format contribution at format-time.
         """
-        result = 'R' + str(self._get_formatted_duration())
+        result = "R" + str(self._get_formatted_duration())
         return [result]
 
     def _get_compact_representation(self):
-        return f'R{self._get_formatted_duration()}'
+        return f"R{self._get_formatted_duration()}"
 
     ### PUBLIC PROPERTIES ###
 

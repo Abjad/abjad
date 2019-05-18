@@ -36,14 +36,12 @@ class Infinity(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_value',
-        )
+    __slots__ = ("_value",)
 
     ### INTIALIZER ###
 
     def __init__(self):
-        self._value = float('infinity')
+        self._value = float("infinity")
 
     ### SPECIAL METHODS ###
 
@@ -87,7 +85,7 @@ class Infinity(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     def __le__(self, argument):
@@ -126,8 +124,9 @@ class Infinity(object):
 
     def _get_format_specification(self):
         from abjad import system
+
         return system.FormatSpecification(
             client=self,
             repr_text=type(self).__name__,
             storage_format_text=type(self).__name__,
-            )
+        )

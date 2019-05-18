@@ -22,7 +22,7 @@ def test_Selection_are_contiguous_logical_voice_01():
             a'8
         }
         """
-        )
+    )
 
     selection = abjad.select([voice, voice[0]])
     assert not selection.are_contiguous_logical_voice()
@@ -45,7 +45,10 @@ def test_Selection_are_contiguous_logical_voice_03():
 
     notes = [
         abjad.Note("c'8"),
-        abjad.Note("d'8"), abjad.Note("e'8"), abjad.Note("f'8")]
+        abjad.Note("d'8"),
+        abjad.Note("e'8"),
+        abjad.Note("f'8"),
+    ]
     assert abjad.select(notes).are_contiguous_logical_voice()
 
 
@@ -97,7 +100,7 @@ def test_Selection_are_contiguous_logical_voice_07():
             ]
         }
         """
-        )
+    )
 
     selection = voice[:2] + voice[-2:]
     assert not selection.are_contiguous_logical_voice()
@@ -125,7 +128,7 @@ def test_Selection_are_contiguous_logical_voice_08():
             ]
         }
         """
-        )
+    )
 
     selection = voice[:1] + voice[-1:]
     assert not selection.are_contiguous_logical_voice()

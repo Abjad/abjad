@@ -8,7 +8,7 @@ def test_Chord___deepcopy___01():
     """
 
     chord_1 = abjad.Chord("<c' e' g'>4")
-    abjad.tweak(chord_1.note_heads[0]).color = 'red'
+    abjad.tweak(chord_1.note_heads[0]).color = "red"
     chord_2 = copy.deepcopy(chord_1)
 
     assert format(chord_1) == abjad.String.normalize(
@@ -20,7 +20,7 @@ def test_Chord___deepcopy___01():
             g'
         >4
         """
-        )
+    )
 
     assert format(chord_2) == abjad.String.normalize(
         r"""
@@ -31,7 +31,7 @@ def test_Chord___deepcopy___01():
             g'
         >4
         """
-        )
+    )
 
     assert chord_2.note_heads[0]._client is chord_2
     assert chord_2.note_heads[1]._client is chord_2

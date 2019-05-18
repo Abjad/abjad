@@ -35,23 +35,19 @@ class Leaf(Component):
     ### CLASS VARIABLES ##
 
     __slots__ = (
-        '_after_grace_container',
-        '_grace_container',
-        '_leaf_index',
-        '_multiplier',
-        '_written_duration',
-        )
+        "_after_grace_container",
+        "_grace_container",
+        "_leaf_index",
+        "_multiplier",
+        "_written_duration",
+    )
 
     ### INITIALIZER ###
 
     @abc.abstractmethod
     def __init__(
-        self,
-        written_duration,
-        *,
-        multiplier = None,
-        tag: str = None,
-        ) -> None:
+        self, written_duration, *, multiplier=None, tag: str = None
+    ) -> None:
         Component.__init__(self, tag=tag)
         self._after_grace_container = None
         self._grace_container = None
@@ -75,8 +71,9 @@ class Leaf(Component):
             attach(new_grace_container, new)
         after_grace_container = self._after_grace_container
         if after_grace_container is not None:
-            new_after_grace_container = \
+            new_after_grace_container = (
                 after_grace_container._copy_with_children()
+            )
             attach(new_after_grace_container, new)
         return new
 
@@ -100,32 +97,35 @@ class Leaf(Component):
 
     def _as_graphviz_node(self):
         lilypond_format = self._get_compact_representation()
-        lilypond_format = lilypond_format.replace('<', '&lt;')
-        lilypond_format = lilypond_format.replace('>', '&gt;')
+        lilypond_format = lilypond_format.replace("<", "&lt;")
+        lilypond_format = lilypond_format.replace(">", "&gt;")
         node = Component._as_graphviz_node(self)
-        node[0].extend([
-            uqbar.graphs.TableRow([
-                uqbar.graphs.TableCell(
-                    type(self).__name__,
-                    attributes={'border': 0},
-                    ),
-                ]),
-            uqbar.graphs.HRule(),
-            uqbar.graphs.TableRow([
-                uqbar.graphs.TableCell(
-                    lilypond_format,
-                    attributes={'border': 0},
-                    ),
-                ]),
-            ])
+        node[0].extend(
+            [
+                uqbar.graphs.TableRow(
+                    [
+                        uqbar.graphs.TableCell(
+                            type(self).__name__, attributes={"border": 0}
+                        )
+                    ]
+                ),
+                uqbar.graphs.HRule(),
+                uqbar.graphs.TableRow(
+                    [
+                        uqbar.graphs.TableCell(
+                            lilypond_format, attributes={"border": 0}
+                        )
+                    ]
+                ),
+            ]
+        )
         return node
 
     def _copy_override_and_set_from_leaf(self, leaf):
-        if getattr(leaf, '_overrides', None) is not None:
+        if getattr(leaf, "_overrides", None) is not None:
             self._overrides = copy.copy(override(leaf))
-        if getattr(leaf, '_lilypond_setting_name_manager', None) is not None:
-            self._lilypond_setting_name_manager = copy.copy(
-                setting(leaf))
+        if getattr(leaf, "_lilypond_setting_name_manager", None) is not None:
+            self._lilypond_setting_name_manager = copy.copy(setting(leaf))
         new_wrappers = []
         for wrapper in leaf._wrappers:
             new_wrapper = copy.copy(wrapper)
@@ -147,46 +147,48 @@ class Leaf(Component):
             after_grace = self._after_grace_container
             if len(after_grace):
                 result.append(format(after_grace))
-        return ['after grace body', result]
+        return ["after grace body", result]
 
     def _format_after_grace_opening(self):
         result = []
         if self._after_grace_container is not None:
             if len(self._after_grace_container):
-                result.append(r'\afterGrace')
-        return ['after grace opening', result]
+                result.append(r"\afterGrace")
+        return ["after grace opening", result]
 
     def _format_after_slot(self, bundle):
         result = []
-        result.append(('stem_tremolos', bundle.after.stem_tremolos))
-        result.append(('articulations', bundle.after.articulations))
-        result.append(('markup', bundle.after.markup))
-        result.append(('spanners', bundle.after.spanners))
-        result.append(('spanner_stops', bundle.after.spanner_stops))
-        result.append(('spanner_starts', bundle.after.spanner_starts))
+        result.append(("stem_tremolos", bundle.after.stem_tremolos))
+        result.append(("articulations", bundle.after.articulations))
+        result.append(("markup", bundle.after.markup))
+        result.append(("spanners", bundle.after.spanners))
+        result.append(("spanner_stops", bundle.after.spanner_stops))
+        result.append(("spanner_starts", bundle.after.spanner_starts))
         # NOTE: LilyPond demands \startTrillSpan appear after almost all
         #       other format contributions; pitched trills dangerously
         #       suppress markup and the starts of other spanners when
         #       \startTrillSpan appears lexically prior to those commands;
         #       but \startTrillSpan must appear before calls to \set.
-        result.append(('trill_spanner_starts', bundle.after.trill_spanner_starts))
-        result.append(('commands', bundle.after.commands))
-        result.append(('commands', bundle.after.leaks))
+        result.append(
+            ("trill_spanner_starts", bundle.after.trill_spanner_starts)
+        )
+        result.append(("commands", bundle.after.commands))
+        result.append(("commands", bundle.after.leaks))
         result.append(self._format_after_grace_body())
-        result.append(('comments', bundle.after.comments))
+        result.append(("comments", bundle.after.comments))
         return result
 
     def _format_before_slot(self, bundle):
         result = []
         result.append(self._format_grace_body())
-        result.append(('comments', bundle.before.comments))
+        result.append(("comments", bundle.before.comments))
         result.append(self._format_after_grace_opening())
-        result.append(('commands', bundle.before.commands))
-        result.append(('indicators', bundle.before.indicators))
-        result.append(('grob reverts', bundle.grob_reverts))
-        result.append(('grob overrides', bundle.grob_overrides))
-        result.append(('context settings', bundle.context_settings))
-        result.append(('spanners', bundle.before.spanners))
+        result.append(("commands", bundle.before.commands))
+        result.append(("indicators", bundle.before.indicators))
+        result.append(("grob reverts", bundle.grob_reverts))
+        result.append(("grob overrides", bundle.grob_overrides))
+        result.append(("context settings", bundle.context_settings))
+        result.append(("spanners", bundle.before.spanners))
         return result
 
     def _format_close_brackets_slot(self, bundle):
@@ -194,10 +196,10 @@ class Leaf(Component):
 
     def _format_closing_slot(self, bundle):
         result = []
-        result.append(('spanners', bundle.closing.spanners))
-        result.append(('commands', bundle.closing.commands))
-        result.append(('indicators', bundle.closing.indicators))
-        result.append(('comments', bundle.closing.comments))
+        result.append(("spanners", bundle.closing.spanners))
+        result.append(("commands", bundle.closing.commands))
+        result.append(("indicators", bundle.closing.indicators))
+        result.append(("comments", bundle.closing.comments))
         return result
 
     def _format_contents_slot(self, bundle):
@@ -211,49 +213,47 @@ class Leaf(Component):
             grace = self._grace_container
             if len(grace):
                 result.append(format(grace))
-        return ['grace body', result]
+        return ["grace body", result]
 
     def _format_leaf_body(self, bundle):
         result = self._format_leaf_nucleus()[1]
-        return ['self body', result]
+        return ["self body", result]
 
     def _format_leaf_nucleus(self):
         strings = self._get_body()
         if self.tag:
             tag = Tag(self.tag)
-            strings = LilyPondFormatManager.tag(
-                strings,
-                tag=tag,
-                )
-        return ['nucleus', strings]
+            strings = LilyPondFormatManager.tag(strings, tag=tag)
+        return ["nucleus", strings]
 
     def _format_open_brackets_slot(self, bundle):
         return []
 
     def _format_opening_slot(self, bundle):
         result = []
-        result.append(('comments', bundle.opening.comments))
-        result.append(('indicators', bundle.opening.indicators))
-        result.append(('commands', bundle.opening.commands))
-        result.append(('spanners', bundle.opening.spanners))
+        result.append(("comments", bundle.opening.comments))
+        result.append(("indicators", bundle.opening.indicators))
+        result.append(("commands", bundle.opening.commands))
+        result.append(("spanners", bundle.opening.spanners))
         return result
 
     def _get_compact_representation(self):
-        return f'({self._get_formatted_duration()})'
+        return f"({self._get_formatted_duration()})"
 
     def _get_duration_in_seconds(self):
         mark = self._get_effective(MetronomeMark)
         if mark is not None and not mark.is_imprecise:
             result = (
-                self._get_duration() /
-                mark.reference_duration /
-                mark.units_per_minute * 60
-                )
+                self._get_duration()
+                / mark.reference_duration
+                / mark.units_per_minute
+                * 60
+            )
             return Duration(result)
         raise exceptions.MissingMetronomeMarkError
 
     def _get_format_pieces(self):
-        return self._get_lilypond_format().split('\n')
+        return self._get_lilypond_format().split("\n")
 
     def _get_format_specification(self):
         summary = self._get_compact_representation()
@@ -261,29 +261,31 @@ class Leaf(Component):
             client=self,
             repr_is_indented=False,
             repr_args_values=[summary],
-            storage_format_args_values=[format(self, 'lilypond')],
+            storage_format_args_values=[format(self, "lilypond")],
             storage_format_is_indented=False,
             storage_format_kwargs_names=[],
-            )
+        )
 
     def _get_formatted_duration(self):
         duration_string = self.written_duration.lilypond_duration_string
         if self.multiplier is not None:
-            result = f'{duration_string} * {self.multiplier!s}'
+            result = f"{duration_string} * {self.multiplier!s}"
         else:
             result = duration_string
         return result
 
     def _get_logical_tie(self):
         from .LogicalTie import LogicalTie
+
         leaves_before, leaves_after = [], []
         current_leaf = self
         while True:
             previous_leaf = inspect(current_leaf).leaf(-1)
             if previous_leaf is None:
                 break
-            if (inspect(current_leaf).has_indicator(RepeatTie) or
-                inspect(previous_leaf).has_indicator(TieIndicator)):
+            if inspect(current_leaf).has_indicator(RepeatTie) or inspect(
+                previous_leaf
+            ).has_indicator(TieIndicator):
                 leaves_before.insert(0, previous_leaf)
             else:
                 break
@@ -293,8 +295,9 @@ class Leaf(Component):
             next_leaf = inspect(current_leaf).leaf(1)
             if next_leaf is None:
                 break
-            if (inspect(current_leaf).has_indicator(TieIndicator) or
-                inspect(next_leaf).has_indicator(RepeatTie)):
+            if inspect(current_leaf).has_indicator(TieIndicator) or inspect(
+                next_leaf
+            ).has_indicator(RepeatTie):
                 leaves_after.append(next_leaf)
             else:
                 break
@@ -332,16 +335,16 @@ class Leaf(Component):
     def _process_contribution_packet(self, contribution_packet):
         manager = LilyPondFormatManager
         indent = manager.indent
-        result = ''
+        result = ""
         for contributor, contributions in contribution_packet:
             if contributions:
                 if isinstance(contributor, tuple):
-                    contributor = indent + contributor[0] + ':\n'
+                    contributor = indent + contributor[0] + ":\n"
                 else:
-                    contributor = indent + contributor + ':\n'
+                    contributor = indent + contributor + ":\n"
                 result += contributor
                 for contribution in contributions:
-                    contribution = (indent * 2) + contribution + '\n'
+                    contribution = (indent * 2) + contribution + "\n"
                     result += contribution
         return result
 
@@ -349,30 +352,30 @@ class Leaf(Component):
         manager = LilyPondFormatManager
         indent = manager.indent
         bundle = manager.bundle_format_contributions(self)
-        report = ''
-        report += 'slot absolute before:\n'
+        report = ""
+        report += "slot absolute before:\n"
         packet = self._format_absolute_before_slot(bundle)
         report += self._process_contribution_packet(packet)
-        report += 'slot 1:\n'
+        report += "slot 1:\n"
         packet = self._format_before_slot(bundle)
         report += self._process_contribution_packet(packet)
-        report += 'slot 3:\n'
+        report += "slot 3:\n"
         packet = self._format_opening_slot(bundle)
         report += self._process_contribution_packet(packet)
-        report += 'slot 4:\n'
-        report += indent + 'leaf body:\n'
+        report += "slot 4:\n"
+        report += indent + "leaf body:\n"
         string = self._format_contents_slot(bundle)[0][1][0]
-        report += (2 * indent) + string + '\n'
-        report += 'slot 5:\n'
+        report += (2 * indent) + string + "\n"
+        report += "slot 5:\n"
         packet = self._format_closing_slot(bundle)
         report += self._process_contribution_packet(packet)
-        report += 'slot 7:\n'
+        report += "slot 7:\n"
         packet = self._format_after_slot(bundle)
         report += self._process_contribution_packet(packet)
-        report += 'slot absolute after:\n'
+        report += "slot absolute after:\n"
         packet = self._format_absolute_after_slot(bundle)
         report += self._process_contribution_packet(packet)
-        while report[-1] == '\n':
+        while report[-1] == "\n":
             report = report[:-1]
         return report
 
@@ -386,6 +389,7 @@ class Leaf(Component):
         from .NoteMaker import NoteMaker
         from .Tuplet import Tuplet
         from abjad.spanners import tie as abjad_tie
+
         new_duration = Duration(new_duration)
         if self.multiplier is not None:
             multiplier = new_duration.__div__(self.written_duration)
@@ -430,18 +434,15 @@ class Leaf(Component):
             return select(tuplet)
 
     def _split_by_durations(
-        self,
-        durations,
-        cyclic=False,
-        tie_split_notes=True,
-        repeat_ties=False,
-        ):
+        self, durations, cyclic=False, tie_split_notes=True, repeat_ties=False
+    ):
         from .AfterGraceContainer import AfterGraceContainer
         from .Chord import Chord
         from .GraceContainer import GraceContainer
         from .Note import Note
         from .Selection import Selection
         from .Tuplet import Tuplet
+
         durations = [Duration(_) for _ in durations]
         durations = Sequence(durations)
         leaf_duration = inspect(self).duration()
@@ -463,9 +464,8 @@ class Leaf(Component):
             new_leaf = copy.copy(self)
             preprolated_duration = duration / leaf_prolation
             selection = new_leaf._set_duration(
-                preprolated_duration,
-                repeat_ties=repeat_ties,
-                )
+                preprolated_duration, repeat_ties=repeat_ties
+            )
             result_selections.append(selection)
         result_components = Sequence(result_selections).flatten(depth=-1)
         result_components = select(result_components)
@@ -473,8 +473,8 @@ class Leaf(Component):
         assert all(isinstance(_, Selection) for _ in result_selections)
         assert all(isinstance(_, Component) for _ in result_components)
         assert result_leaves.are_leaves()
-#        for leaf in result_leaves:
-#            detach(Tie, leaf)
+        #        for leaf in result_leaves:
+        #            detach(Tie, leaf)
         # strip result leaves of all indicators
         for leaf in result_leaves:
             detach(object, leaf)
@@ -486,7 +486,7 @@ class Leaf(Component):
         last_result_leaf = result_leaves[-1]
         for indicator in inspect(self).indicators():
             detach(indicator, self)
-            direction = getattr(indicator, '_time_orientation', enums.Left)
+            direction = getattr(indicator, "_time_orientation", enums.Left)
             if direction is enums.Left:
                 attach(indicator, first_result_leaf)
             elif direction == enums.Right:
@@ -506,13 +506,15 @@ class Leaf(Component):
         if isinstance(result_components[0], Tuplet):
             mutate(result_components).fuse()
         # tie split notes
-        if (tie_split_notes and
-            isinstance(self, (Note, Chord)) and
-            1 < len(result_leaves)):
+        if (
+            tie_split_notes
+            and isinstance(self, (Note, Chord))
+            and 1 < len(result_leaves)
+        ):
             result_leaves._attach_tie_to_leaves(repeat_ties=repeat_ties)
-        #assert not inspect(result_leaves[0]).has_indicator(RepeatTie)
+        # assert not inspect(result_leaves[0]).has_indicator(RepeatTie)
         detach(RepeatTie, result_leaves[0])
-        #assert not inspect(result_leaves[-1]).has_indicator(TieIndicator)
+        # assert not inspect(result_leaves[-1]).has_indicator(TieIndicator)
         detach(TieIndicator, result_leaves[-1])
         if originally_repeat_tied:
             tie = RepeatTie()
@@ -552,6 +554,6 @@ class Leaf(Component):
     def written_duration(self, argument):
         duration = Duration(argument)
         if not duration.is_assignable:
-            message = f'not assignable duration: {duration!r}.'
+            message = f"not assignable duration: {duration!r}."
             raise exceptions.AssignabilityError(message)
         self._written_duration = duration

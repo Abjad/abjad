@@ -719,10 +719,8 @@ class FerneyhoughDemo:
         Returns LilyPond file.
         """
         lilypond_file = self.make_lilypond_file(
-            tuplet_duration,
-            row_count,
-            column_count,
-            )
+            tuplet_duration, row_count, column_count
+        )
         return lilypond_file
 
     ### PUBLIC METHODS ###
@@ -731,7 +729,7 @@ class FerneyhoughDemo:
         """
         Configures LilyPond file.
         """
-        lilypond_file._default_paper_size = '11x17', 'portrait'
+        lilypond_file._default_paper_size = "11x17", "portrait"
         lilypond_file._global_staff_size = 12
         lilypond_file.layout_block.indent = 0
         lilypond_file.layout_block.ragged_right = True
@@ -753,18 +751,14 @@ class FerneyhoughDemo:
         abjad.override(score).time_signature.stencil = False
         abjad.override(score).tuplet_bracket.padding = 2
         abjad.override(score).tuplet_bracket.staff_padding = 4
-        scheme = abjad.Scheme('tuplet-number::calc-fraction-text')
+        scheme = abjad.Scheme("tuplet-number::calc-fraction-text")
         abjad.override(score).tuplet_number.text = scheme
 
     def make_lilypond_file(self, tuplet_duration, row_count, column_count):
         """
         Makes LilyPond file.
         """
-        score = self.make_score(
-            tuplet_duration,
-            row_count,
-            column_count,
-            )
+        score = self.make_score(tuplet_duration, row_count, column_count)
         self.configure_score(score)
         lilypond_file = abjad.LilyPondFile.new(score)
         self.configure_lilypond_file(lilypond_file)
@@ -775,14 +769,13 @@ class FerneyhoughDemo:
         tuplet_duration,
         outer_tuplet_proportions,
         inner_tuplet_subdivision_count,
-        ):
+    ):
         """
         Makes nested tuplet.
         """
         outer_tuplet = abjad.Tuplet.from_duration_and_ratio(
-            tuplet_duration,
-            outer_tuplet_proportions,
-            )
+            tuplet_duration, outer_tuplet_proportions
+        )
         inner_tuplet_proportions = inner_tuplet_subdivision_count * [1]
         selector = abjad.select().leaves()
         last_leaf = selector(outer_tuplet)[-1]
@@ -791,10 +784,7 @@ class FerneyhoughDemo:
         return outer_tuplet
 
     def make_row_of_nested_tuplets(
-        self,
-        tuplet_duration,
-        outer_tuplet_proportions,
-        column_count,
+        self, tuplet_duration, outer_tuplet_proportions, column_count
     ):
         """
         Makes row of nested tuplets.
@@ -807,15 +797,12 @@ class FerneyhoughDemo:
                 tuplet_duration,
                 outer_tuplet_proportions,
                 inner_tuplet_subdivision_count,
-                )
+            )
             row_of_nested_tuplets.append(nested_tuplet)
         return row_of_nested_tuplets
 
     def make_rows_of_nested_tuplets(
-        self,
-        tuplet_duration,
-        row_count,
-        column_count,
+        self, tuplet_duration, row_count, column_count
     ):
         """
         Makes rows of nested tuplets.
@@ -825,10 +812,8 @@ class FerneyhoughDemo:
         for n in range(row_count):
             outer_tuplet_proportions = (1, n + 1)
             row_of_nested_tuplets = self.make_row_of_nested_tuplets(
-                tuplet_duration,
-                outer_tuplet_proportions,
-                column_count,
-                )
+                tuplet_duration, outer_tuplet_proportions, column_count
+            )
             rows_of_nested_tuplets.append(row_of_nested_tuplets)
         return rows_of_nested_tuplets
 
@@ -838,13 +823,11 @@ class FerneyhoughDemo:
         """
         score = abjad.Score()
         rows_of_nested_tuplets = self.make_rows_of_nested_tuplets(
-            tuplet_duration,
-            row_count,
-            column_count,
-            )
+            tuplet_duration, row_count, column_count
+        )
         for row_of_nested_tuplets in rows_of_nested_tuplets:
             staff = abjad.Staff(row_of_nested_tuplets)
-            staff.lilypond_type = 'RhythmicStaff'
+            staff.lilypond_type = "RhythmicStaff"
             time_signature = abjad.TimeSignature((1, 4))
             leaf = abjad.inspect(staff).leaf(0)
             abjad.attach(time_signature, leaf)
@@ -852,13 +835,13 @@ class FerneyhoughDemo:
         return score
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     from abjad import show
 
     arguments = sys.argv[1:]
     if len(arguments) != 3:
-        print('USAGE: tuplet_duration row_count column_count')
-        print(' e.g.: python main.py 1/4 11 6')
+        print("USAGE: tuplet_duration row_count column_count")
+        print(" e.g.: python main.py 1/4 11 6")
         sys.exit(0)
 
     tuplet_duration = abjad.Duration(arguments[0])
@@ -874,5 +857,5 @@ if __name__ == '__main__':
         tuplet_duration=tuplet_duration,
         row_count=row_count,
         column_count=column_count,
-        )
+    )
     show(lilypond_file)

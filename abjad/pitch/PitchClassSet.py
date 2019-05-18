@@ -126,6 +126,7 @@ class PitchClassSet(Set):
 
         """
         import abjad
+
         chord = abjad.Chord(self, abjad.Duration(1))
         voice = abjad.Voice([chord])
         staff = abjad.Staff([voice])
@@ -156,27 +157,31 @@ class PitchClassSet(Set):
         Returns string.
         """
         import abjad
+
         items = [str(_) for _ in sorted(self)]
-        separator = ' '
+        separator = " "
         if self.item_class is abjad.NumberedPitchClass:
-            separator = ', '
-        return 'PC{{{}}}'.format(separator.join(items))
+            separator = ", "
+        return "PC{{{}}}".format(separator.join(items))
 
     ### PRIVATE PROPERTIES ###
 
     @property
     def _named_item_class(self):
         import abjad
+
         return abjad.NamedPitchClass
 
     @property
     def _numbered_item_class(self):
         import abjad
+
         return abjad.NumberedPitchClass
 
     @property
     def _parent_item_class(self):
         import abjad
+
         return abjad.PitchClass
 
     ### PRIVATE METHODS ###
@@ -184,6 +189,7 @@ class PitchClassSet(Set):
     @staticmethod
     def _get_most_compact_ordering(candidates):
         import abjad
+
         widths = []
         for candidate in candidates:
             if candidate[0] < candidate[-1]:
@@ -201,9 +207,8 @@ class PitchClassSet(Set):
         if len(candidates) == 1:
             segment = candidates[0]
             segment = abjad.PitchClassSegment(
-                items=segment,
-                item_class=abjad.NumberedPitchClass,
-                )
+                items=segment, item_class=abjad.NumberedPitchClass
+            )
             return segment
         for i in range(len(candidates[0]) - 1):
             widths = []
@@ -223,26 +228,20 @@ class PitchClassSet(Set):
             if len(candidates) == 1:
                 segment = candidates[0]
                 segment = abjad.PitchClassSegment(
-                    items=segment,
-                    item_class=abjad.NumberedPitchClass,
-                    )
+                    items=segment, item_class=abjad.NumberedPitchClass
+                )
                 return segment
         candidates.sort(key=lambda x: x[0])
         segment = candidates[0]
         segment = abjad.PitchClassSegment(
-            items=segment,
-            item_class=abjad.NumberedPitchClass,
-            )
+            items=segment, item_class=abjad.NumberedPitchClass
+        )
         return segment
 
     ### PUBLIC METHODS ###
 
     @classmethod
-    def from_selection(
-        class_,
-        selection,
-        item_class=None,
-        ):
+    def from_selection(class_, selection, item_class=None):
         """
         Makes pitch-class set from `selection`.
 
@@ -257,11 +256,9 @@ class PitchClassSet(Set):
         Returns pitch-class set.
         """
         import abjad
+
         pitch_segment = abjad.PitchSegment.from_selection(selection)
-        return class_(
-            items=pitch_segment,
-            item_class=item_class,
-            )
+        return class_(items=pitch_segment, item_class=item_class)
 
     def get_normal_order(self):
         """
@@ -312,11 +309,11 @@ class PitchClassSet(Set):
         Returns pitch-class segment.
         """
         import abjad
+
         if not len(self):
             return abjad.PitchClassSegment(
-                items=None,
-                item_class=abjad.NumberedPitchClass,
-                )
+                items=None, item_class=abjad.NumberedPitchClass
+            )
         pitch_classes = list(self)
         pitch_classes.sort()
         candidates = []
@@ -433,6 +430,7 @@ class PitchClassSet(Set):
         Returns new pitch-class set.
         """
         import abjad
+
         if not len(self):
             return copy.copy(self)
         normal_order = self.get_normal_order()
@@ -455,10 +453,7 @@ class PitchClassSet(Set):
         pcs = [_.number for _ in normal_order]
         first_pc = pcs[0]
         pcs = [pc - first_pc for pc in pcs]
-        prime_form = type(self)(
-            items=pcs,
-            item_class=abjad.NumberedPitchClass,
-            )
+        prime_form = type(self)(items=pcs, item_class=abjad.NumberedPitchClass)
         return prime_form
 
     def invert(self, axis=None):
@@ -536,6 +531,7 @@ class PitchClassSet(Set):
         Returns new pitch-class set.
         """
         import abjad
+
         items = (pitch_class.multiply(n) for pitch_class in self)
         return abjad.new(self, items=items)
 
@@ -553,15 +549,16 @@ class PitchClassSet(Set):
         Returns pitch-class segment.
         """
         import abjad
+
         if not len(self) == len(segment):
-            message = 'set and segment must be on equal length.'
+            message = "set and segment must be on equal length."
             raise ValueError(message)
         enumerator = Enumerator(self)
         for pitch_classes in enumerator.yield_permutations():
             candidate = abjad.PitchClassSegment(pitch_classes)
             if candidate._is_equivalent_under_transposition(segment):
                 return candidate
-        message = '{!s} can not order by {!s}.'
+        message = "{!s} can not order by {!s}."
         message = message.format(self, segment)
         raise ValueError(message)
 
@@ -595,5 +592,6 @@ class PitchClassSet(Set):
         Returns new pitch-class set.
         """
         import abjad
+
         items = (pitch_class + n for pitch_class in self)
         return abjad.new(self, items=items)

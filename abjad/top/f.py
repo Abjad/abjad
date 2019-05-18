@@ -33,18 +33,18 @@ def f(argument, strict=None):
 
     """
     import abjad
+
     if strict is not None:
         assert isinstance(strict, int), repr(strict)
-    if hasattr(argument, '_publish_storage_format'):
+    if hasattr(argument, "_publish_storage_format"):
         string = abjad.StorageFormatManager(argument).get_storage_format()
     else:
-        string = format(argument, 'lilypond')
+        string = format(argument, "lilypond")
     realign = None
     if isinstance(strict, int):
         string = abjad.LilyPondFormatManager.align_tags(string, strict)
         realign = strict
     string = abjad.LilyPondFormatManager.left_shift_tags(
-        string,
-        realign=realign,
-        )
+        string, realign=realign
+    )
     print(string)

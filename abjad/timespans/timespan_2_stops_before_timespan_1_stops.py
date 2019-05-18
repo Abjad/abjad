@@ -1,8 +1,6 @@
 def timespan_2_stops_before_timespan_1_stops(
-    timespan_1=None,
-    timespan_2=None,
-    hold=False,
-    ):
+    timespan_1=None, timespan_2=None, hold=False
+):
     """
     Makes time relation indicating that ``timespan_2``
     happens during ``timespan_1``.
@@ -25,11 +23,12 @@ def timespan_2_stops_before_timespan_1_stops(
     from abjad import timespans
 
     time_relation = timespans.TimespanTimespanTimeRelation(
-        timespans.CompoundInequality([
-            'timespan_2.stop_offset < timespan_1.stop_offset',
-            ]),
+        timespans.CompoundInequality(
+            ["timespan_2.stop_offset < timespan_1.stop_offset"]
+        ),
         timespan_1=timespan_1,
-        timespan_2=timespan_2)
+        timespan_2=timespan_2,
+    )
 
     if time_relation.is_fully_loaded and not hold:
         return time_relation()

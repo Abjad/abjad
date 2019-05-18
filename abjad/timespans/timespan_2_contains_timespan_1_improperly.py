@@ -1,8 +1,6 @@
 def timespan_2_contains_timespan_1_improperly(
-    timespan_1=None,
-    timespan_2=None,
-    hold=False,
-    ):
+    timespan_1=None, timespan_2=None, hold=False
+):
     r"""
     Makes time relation indicating that ``timespan_2`` contains
     ``timespan_1`` improperly.
@@ -43,16 +41,16 @@ def timespan_2_contains_timespan_1_improperly(
     """
     from abjad import timespans
 
-    inequality = timespans.CompoundInequality([
-        'timespan_2.start_offset <= timespan_1.start_offset',
-        'timespan_1.stop_offset <= timespan_2.stop_offset',
-        ])
+    inequality = timespans.CompoundInequality(
+        [
+            "timespan_2.start_offset <= timespan_1.start_offset",
+            "timespan_1.stop_offset <= timespan_2.stop_offset",
+        ]
+    )
 
     time_relation = timespans.TimespanTimespanTimeRelation(
-        inequality,
-        timespan_1=timespan_1,
-        timespan_2=timespan_2,
-        )
+        inequality, timespan_1=timespan_1, timespan_2=timespan_2
+    )
 
     if time_relation.is_fully_loaded and not hold:
         return time_relation()

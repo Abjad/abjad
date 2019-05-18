@@ -156,61 +156,51 @@ class Clef(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_hide',
-        '_middle_c_position',
-        '_name',
-        )
+    __slots__ = ("_hide", "_middle_c_position", "_name")
 
     _clef_name_to_middle_c_position = {
-        'treble': -6,
-        'alto': 0,
-        'varC': 0,
-        'tenor': 2,
-        'tenorvarC': 2,
-        'bass': 6,
-        'french': -8,
-        'soprano': -4,
-        'mezzosoprano': -2,
-        'baritone': 4,
-        'varbaritone': 4,
-        'percussion': 0,
-        'tab': 0,
-        }
+        "treble": -6,
+        "alto": 0,
+        "varC": 0,
+        "tenor": 2,
+        "tenorvarC": 2,
+        "bass": 6,
+        "french": -8,
+        "soprano": -4,
+        "mezzosoprano": -2,
+        "baritone": 4,
+        "varbaritone": 4,
+        "percussion": 0,
+        "tab": 0,
+    }
 
+    _context = "Staff"
 
-    _context = 'Staff'
-
-    _format_slot = 'opening'
+    _format_slot = "opening"
 
     _persistent = True
 
     _redraw = True
 
     _to_width = {
-        'alto': 2.75,
-        'varC': 2.75,
-        'bass': 2.75,
-        'percussion': 2.5,
-        'tenor': 2.75,
-        'tenorvarC': 2.75,
-        'treble': 2.5,
-        }
+        "alto": 2.75,
+        "varC": 2.75,
+        "bass": 2.75,
+        "percussion": 2.5,
+        "tenor": 2.75,
+        "tenorvarC": 2.75,
+        "treble": 2.5,
+    }
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        name: str = 'treble',
-        *,
-        hide: bool = None,
-        ) -> None:
+    def __init__(self, name: str = "treble", *, hide: bool = None) -> None:
         if isinstance(name, str):
             self._name = name
         elif isinstance(name, type(self)):
             self._name = name.name
         else:
-            raise TypeError('can not initialize clef: {name!r}.')
+            raise TypeError("can not initialize clef: {name!r}.")
         if hide is not None:
             hide = bool(hide)
         self._hide = hide
@@ -227,7 +217,7 @@ class Clef(object):
         """
         return StorageFormatManager.compare_objects(self, argument)
 
-    def __format__(self, format_specification='') -> str:
+    def __format__(self, format_specification="") -> str:
         r"""
         Formats clef.
 
@@ -244,9 +234,9 @@ class Clef(object):
             \clef "treble"
 
         """
-        if format_specification == 'lilypond':
+        if format_specification == "lilypond":
             return self._get_lilypond_format()
-        if format_specification in ('', 'storage'):
+        if format_specification in ("", "storage"):
             return StorageFormatManager(self).get_storage_format()
         return str(self)
 
@@ -258,7 +248,7 @@ class Clef(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     def __repr__(self) -> str:
@@ -271,21 +261,21 @@ class Clef(object):
 
     def _calculate_middle_c_position(self, clef_name):
         alteration = 0
-        if '_' in self._name:
-            base_name, part, suffix = clef_name.partition('_')
-            if suffix == '8':
+        if "_" in self._name:
+            base_name, part, suffix = clef_name.partition("_")
+            if suffix == "8":
                 alteration = 7
-            elif suffix == '15':
+            elif suffix == "15":
                 alteration = 13
             else:
-                message = 'bad clef alteration suffix: {!r}.'
+                message = "bad clef alteration suffix: {!r}."
                 message = message.format(suffix)
                 raise Exception(message)
-        elif '^' in self._name:
-            base_name, part, suffix = clef_name.partition('^')
-            if suffix == '8':
+        elif "^" in self._name:
+            base_name, part, suffix = clef_name.partition("^")
+            if suffix == "8":
                 alteration = -7
-            elif suffix == '15':
+            elif suffix == "15":
                 alteration = -13
             else:
                 message = "bad clef alteration suffix: {!r}."
@@ -297,20 +287,20 @@ class Clef(object):
 
     def _clef_name_to_staff_position_zero(self, clef_name):
         return {
-            'treble': NamedPitch('B4'),
-            'alto': NamedPitch('C4'),
-            'varC': NamedPitch('C4'),
-            'tenor': NamedPitch('A3'),
-            'tenorvarC': NamedPitch('A3'),
-            'bass': NamedPitch('D3'),
-            'french': NamedPitch('D5'),
-            'soprano': NamedPitch('G4'),
-            'mezzosoprano': NamedPitch('E4'),
-            'baritone': NamedPitch('F3'),
-            'varbaritone': NamedPitch('F3'),
-            'percussion': None,
-            'tab': None,
-            }[clef_name]
+            "treble": NamedPitch("B4"),
+            "alto": NamedPitch("C4"),
+            "varC": NamedPitch("C4"),
+            "tenor": NamedPitch("A3"),
+            "tenorvarC": NamedPitch("A3"),
+            "bass": NamedPitch("D3"),
+            "french": NamedPitch("D5"),
+            "soprano": NamedPitch("G4"),
+            "mezzosoprano": NamedPitch("E4"),
+            "baritone": NamedPitch("F3"),
+            "varbaritone": NamedPitch("F3"),
+            "percussion": None,
+            "tab": None,
+        }[clef_name]
 
     def _get_format_specification(self):
         return FormatSpecification(
@@ -318,7 +308,7 @@ class Clef(object):
             repr_is_indented=False,
             storage_format_args_values=[self.name],
             storage_format_is_indented=False,
-            )
+        )
 
     def _get_lilypond_format(self):
         return rf'\clef "{self.name}"'
@@ -336,7 +326,7 @@ class Clef(object):
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def from_selection(selection) -> 'Clef':
+    def from_selection(selection) -> "Clef":
         """
         Makes clef from ``selection``.
 
@@ -355,24 +345,28 @@ class Clef(object):
         pitches = iterate(selection).pitches()
         diatonic_pitch_numbers = [
             pitch._get_diatonic_pitch_number() for pitch in pitches
-            ]
+        ]
         max_diatonic_pitch_number = max(diatonic_pitch_numbers)
         min_diatonic_pitch_number = min(diatonic_pitch_numbers)
-        lowest_treble_line_pitch = NamedPitch('E4')
-        lowest_treble_line_diatonic_pitch_number = \
+        lowest_treble_line_pitch = NamedPitch("E4")
+        lowest_treble_line_diatonic_pitch_number = (
             lowest_treble_line_pitch._get_diatonic_pitch_number()
-        candidate_steps_below_treble = \
-            lowest_treble_line_diatonic_pitch_number - \
-            min_diatonic_pitch_number
-        highest_bass_line_pitch = NamedPitch('A3')
-        highest_bass_line_diatonic_pitch_number = \
+        )
+        candidate_steps_below_treble = (
+            lowest_treble_line_diatonic_pitch_number
+            - min_diatonic_pitch_number
+        )
+        highest_bass_line_pitch = NamedPitch("A3")
+        highest_bass_line_diatonic_pitch_number = (
             highest_bass_line_pitch._get_diatonic_pitch_number()
-        candidate_steps_above_bass = \
+        )
+        candidate_steps_above_bass = (
             max_diatonic_pitch_number - highest_bass_line_diatonic_pitch_number
+        )
         if candidate_steps_above_bass < candidate_steps_below_treble:
-            return Clef('bass')
+            return Clef("bass")
         else:
-            return Clef('treble')
+            return Clef("treble")
 
     ### PUBLIC PROPERTIES ###
 

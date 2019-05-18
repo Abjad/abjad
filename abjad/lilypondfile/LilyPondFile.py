@@ -105,17 +105,17 @@ class LilyPondFile(object):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_comments',
-        '_date_time_token',
-        '_default_paper_size',
-        '_global_staff_size',
-        '_includes',
-        '_items',
-        '_lilypond_language_token',
-        '_lilypond_version_token',
-        '_tag',
-        '_use_relative_includes',
-        )
+        "_comments",
+        "_date_time_token",
+        "_default_paper_size",
+        "_global_staff_size",
+        "_includes",
+        "_items",
+        "_lilypond_language_token",
+        "_lilypond_version_token",
+        "_tag",
+        "_use_relative_includes",
+    )
 
     ### INITIALIZER ###
 
@@ -131,7 +131,7 @@ class LilyPondFile(object):
         lilypond_version_token=None,
         tag: str = None,
         use_relative_includes=None,
-        ) -> None:
+    ) -> None:
         comments = comments or ()
         comments = tuple(comments)
         self._comments = comments
@@ -185,8 +185,8 @@ class LilyPondFile(object):
             return True
         except (AssertionError, KeyError, ValueError, TypeError):
             return False
-        
-    def __format__(self, format_specification=''):
+
+    def __format__(self, format_specification=""):
         r"""
         Formats LilyPond file.
 
@@ -275,10 +275,10 @@ class LilyPondFile(object):
 
         Returns string.
         """
-        if format_specification in ('', 'lilypond'):
+        if format_specification in ("", "lilypond"):
             return self._get_lilypond_format()
         else:
-            assert format_specification == 'storage'
+            assert format_specification == "storage"
             return StorageFormatManager(self).get_storage_format()
 
     def __getitem__(self, name):
@@ -421,14 +421,14 @@ class LilyPondFile(object):
                     break
         if isinstance(name, str):
             for item in self.items:
-                if getattr(item, 'name', None) == name:
+                if getattr(item, "name", None) == name:
                     return item
             if score is not None:
                 if score.name == name:
                     return score
                 context = score[name]
                 return context
-            raise KeyError(f'can not find item with name {name!r}.')
+            raise KeyError(f"can not find item with name {name!r}.")
         elif isinstance(name, Component):
             for item in self.items:
                 if item is name:
@@ -440,7 +440,7 @@ class LilyPondFile(object):
                 for context in iterate(score).components(prototype):
                     if context is name:
                         return context
-            raise KeyError(f'can not find {name}.')
+            raise KeyError(f"can not find {name}.")
         elif inspect.isclass(name) and issubclass(name, Component):
             for item in self.items:
                 if isinstance(item, name):
@@ -452,7 +452,7 @@ class LilyPondFile(object):
                 for context in iterate(score).components(prototype):
                     if isinstance(context, name):
                         return context
-            raise KeyError(f'can not find item of class {name}.')
+            raise KeyError(f"can not find item of class {name}.")
         else:
             raise TypeError(name)
 
@@ -475,22 +475,19 @@ class LilyPondFile(object):
     def _get_format_pieces(self, tag=None):
         result = []
         if self.date_time_token is not None:
-            string = f'% {self.date_time_token}'
+            string = f"% {self.date_time_token}"
             result.append(string)
         result.extend(self._get_formatted_comments())
         includes = []
         if self.lilypond_version_token is not None:
-            string = f'{self.lilypond_version_token}'
+            string = f"{self.lilypond_version_token}"
             includes.append(string)
         if self.lilypond_language_token is not None:
-            string = f'{self.lilypond_language_token}'
+            string = f"{self.lilypond_language_token}"
             includes.append(string)
         if self.tag is not None:
-            includes = LilyPondFormatManager.tag(
-                includes,
-                tag=self.tag,
-                )
-        includes = '\n'.join(includes)
+            includes = LilyPondFormatManager.tag(includes, tag=self.tag)
+        includes = "\n".join(includes)
         if includes:
             result.append(includes)
         postincludes = []
@@ -511,8 +508,9 @@ class LilyPondFile(object):
     def _get_formatted_blocks(self):
         result = []
         for item in self.items:
-            if ('_get_lilypond_format' in dir(item) and
-                not isinstance(item, str)):
+            if "_get_lilypond_format" in dir(item) and not isinstance(
+                item, str
+            ):
                 try:
                     string = item._get_lilypond_format(tag=self.tag)
                 except TypeError:
@@ -526,17 +524,18 @@ class LilyPondFile(object):
     def _get_formatted_comments(self):
         result = []
         for comment in self.comments:
-            if ('_get_lilypond_format' in dir(comment) and
-                not isinstance(comment, str)):
+            if "_get_lilypond_format" in dir(comment) and not isinstance(
+                comment, str
+            ):
                 lilypond_format = format(comment)
                 if lilypond_format:
-                    string = f'% {comment}'
+                    string = f"% {comment}"
                     result.append(string)
             else:
-                string = f'% {comment!s}'
+                string = f"% {comment!s}"
                 result.append(string)
         if result:
-            result = ['\n'.join(result)]
+            result = ["\n".join(result)]
         return result
 
     def _get_formatted_includes(self):
@@ -554,11 +553,8 @@ class LilyPondFile(object):
             else:
                 result.append(format(include))
         if result:
-            result = LilyPondFormatManager.tag(
-                result,
-                tag=self.tag,
-                )
-            result = ['\n'.join(result)]
+            result = LilyPondFormatManager.tag(result, tag=self.tag)
+            result = ["\n".join(result)]
         return result
 
     def _get_formatted_scheme_settings(self):
@@ -566,55 +562,40 @@ class LilyPondFile(object):
         default_paper_size = self.default_paper_size
         if default_paper_size is not None:
             dimension, orientation = default_paper_size
-            string = f"#(set-default-paper-size \"{dimension}\" '{orientation})"
+            string = f'#(set-default-paper-size "{dimension}" \'{orientation})'
             result.append(string)
         global_staff_size = self.global_staff_size
         if global_staff_size is not None:
-            string = f'#(set-global-staff-size {global_staff_size})'
+            string = f"#(set-global-staff-size {global_staff_size})"
             result.append(string)
         if result:
-            result = LilyPondFormatManager.tag(
-                result,
-                tag=self.tag,
-                )
-            result = ['\n'.join(result)]
+            result = LilyPondFormatManager.tag(result, tag=self.tag)
+            result = ["\n".join(result)]
         return result
 
     def _get_lilypond_format(self):
-        return '\n\n'.join(self._get_format_pieces())
+        return "\n\n".join(self._get_format_pieces())
 
     @staticmethod
     def _make_global_context_block(
-        font_size=3,
-        minimum_distance=10,
-        padding=4,
-        ):
+        font_size=3, minimum_distance=10, padding=4
+    ):
         assert isinstance(font_size, (int, float))
         assert isinstance(padding, (int, float))
-        block = ContextBlock(
-            name='Global_Context',
-            type_='Engraver_group',
-            )
-        block.consists_commands.append('Axis_group_engraver')
-        block.consists_commands.append('Time_signature_engraver')
+        block = ContextBlock(name="Global_Context", type_="Engraver_group")
+        block.consists_commands.append("Axis_group_engraver")
+        block.consists_commands.append("Time_signature_engraver")
         time_signature_grob = override(block).time_signature
         time_signature_grob.X_extent = (0, 0)
         time_signature_grob.X_offset = Scheme(
-            'ly:self-alignment-interface::x-aligned-on-self'
-            )
+            "ly:self-alignment-interface::x-aligned-on-self"
+        )
         time_signature_grob.Y_extent = (0, 0)
         time_signature_grob.break_align_symbol = False
-        time_signature_grob.break_visibility = Scheme(
-            'end-of-line-invisible',
-            )
+        time_signature_grob.break_visibility = Scheme("end-of-line-invisible")
         time_signature_grob.font_size = font_size
-        time_signature_grob.self_alignment_X = Scheme('center')
-        spacing_vector = SpacingVector(
-            0,
-            minimum_distance,
-            padding,
-            0,
-            )
+        time_signature_grob.self_alignment_X = Scheme("center")
+        spacing_vector = SpacingVector(0, minimum_distance, padding, 0)
         grob = override(block).vertical_axis_group
         grob.default_staff_staff_spacing = spacing_vector
         return block
@@ -719,7 +700,7 @@ class LilyPondFile(object):
         """
         for item in self.items:
             if isinstance(item, Block):
-                if item.name == 'header':
+                if item.name == "header":
                     return item
 
     @property
@@ -816,7 +797,7 @@ class LilyPondFile(object):
         """
         for item in self.items:
             if isinstance(item, Block):
-                if item.name == 'layout':
+                if item.name == "layout":
                     return item
 
     @property
@@ -873,7 +854,7 @@ class LilyPondFile(object):
         """
         for item in self.items:
             if isinstance(item, Block):
-                if item.name == 'paper':
+                if item.name == "paper":
                     return item
 
     @property
@@ -894,7 +875,7 @@ class LilyPondFile(object):
         """
         for item in self.items:
             if isinstance(item, Block):
-                if item.name == 'score':
+                if item.name == "score":
                     return item
 
     @property
@@ -914,9 +895,9 @@ class LilyPondFile(object):
 
         """
         if self._tag is not None:
-            return f'{self._tag}:abjad.LilyPondFile'
+            return f"{self._tag}:abjad.LilyPondFile"
         else:
-            return 'abjad.LilyPondFile'
+            return "abjad.LilyPondFile"
 
     @property
     def use_relative_includes(self):
@@ -953,7 +934,7 @@ class LilyPondFile(object):
         lilypond_version_token=None,
         tag: str = None,
         use_relative_includes=None,
-        ):
+    ):
         r"""
         Makes basic LilyPond file.
 
@@ -1014,17 +995,17 @@ class LilyPondFile(object):
             comments=comments,
             includes=includes,
             items=[
-                Block(name='header'),
-                Block(name='layout'),
-                Block(name='paper'),
-                Block(name='score'),
-                ],
+                Block(name="header"),
+                Block(name="layout"),
+                Block(name="paper"),
+                Block(name="score"),
+            ],
             global_staff_size=global_staff_size,
             lilypond_language_token=lilypond_language_token,
             lilypond_version_token=lilypond_version_token,
             tag=tag,
             use_relative_includes=use_relative_includes,
-            )
+        )
         lilypond_file.header_block.tagline = False
         if music is not None:
             lilypond_file.score_block.items.append(music)
@@ -1040,7 +1021,7 @@ class LilyPondFile(object):
         pitched_staff=None,
         simultaneous_selections=None,
         time_signatures=None,
-        ):
+    ):
         r"""
         Makes rhythm-styled LilyPond file.
 
@@ -1360,18 +1341,17 @@ class LilyPondFile(object):
         if isinstance(selections, list):
             for selection in selections:
                 if not isinstance(selection, Selection):
-                    raise TypeError(f'must be selection: {selection!r}.')
+                    raise TypeError(f"must be selection: {selection!r}.")
         elif isinstance(selections, dict):
             for selection in selections.values():
                 if not isinstance(selection, Selection):
-                    raise TypeError(f'must be selection: {selection!r}.')
+                    raise TypeError(f"must be selection: {selection!r}.")
         else:
-            raise TypeError(f'must be list or dictionary: {selections!r}.')
+            raise TypeError(f"must be list or dictionary: {selections!r}.")
         score = Score()
         lilypond_file = LilyPondFile.new(
-            score,
-            includes=['default.ily', 'rhythm-maker-docs.ily'],
-            )
+            score, includes=["default.ily", "rhythm-maker-docs.ily"]
+        )
         if pitched_staff is None:
             if isinstance(selections, list):
                 selections_ = selections
@@ -1392,7 +1372,7 @@ class LilyPondFile(object):
             if pitched_staff:
                 staff = Staff()
             else:
-                staff = Staff(lilypond_type='RhythmicStaff')
+                staff = Staff(lilypond_type="RhythmicStaff")
             staff.extend(selections)
         elif isinstance(selections, dict):
             voices = []
@@ -1403,16 +1383,16 @@ class LilyPondFile(object):
                 voice = Voice(selections_, name=voice_name)
                 if attach_lilypond_voice_commands:
                     voice_name_to_command_string = {
-                        'Voice_1': 'voiceOne',
-                        'Voice_2': 'voiceTwo',
-                        'Voice_3': 'voiceThree',
-                        'Voice_4': 'voiceFour',
-                        }
+                        "Voice_1": "voiceOne",
+                        "Voice_2": "voiceTwo",
+                        "Voice_3": "voiceThree",
+                        "Voice_4": "voiceFour",
+                    }
                     command_string = voice_name_to_command_string.get(
-                        voice_name,
-                        )
+                        voice_name
+                    )
                     if command_string:
-                        command = LilyPondLiteral('\\' + command_string)
+                        command = LilyPondLiteral("\\" + command_string)
                         attach(command, voice)
                 voices.append(voice)
             staff = Staff(voices, is_simultaneous=True)
@@ -1420,18 +1400,18 @@ class LilyPondFile(object):
                 duration = abjad_inspect(staff).duration()
                 divisions = [duration]
         else:
-            message = 'must be list or dictionary of selections:'
-            message += f' {selections!r}.'
+            message = "must be list or dictionary of selections:"
+            message += f" {selections!r}."
             raise TypeError(message)
         score.append(staff)
         assert isinstance(divisions, collections.abc.Sequence), repr(divisions)
         time_signatures = time_signatures or divisions
-        context = Context(lilypond_type='GlobalContext')
+        context = Context(lilypond_type="GlobalContext")
         skips = []
         for time_signature in time_signatures:
             skip = Skip(1)
             skip.multiplier = time_signature
-            attach(time_signature, skip, context='Score')
+            attach(time_signature, skip, context="Score")
             skips.append(skip)
         context.extend(skips)
         score.insert(0, context)

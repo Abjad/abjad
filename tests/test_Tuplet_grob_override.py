@@ -21,4 +21,4 @@ def test_Tuplet_grob_override_01():
         }
         \revert Glissando.thickness
         """
-        )
+    )

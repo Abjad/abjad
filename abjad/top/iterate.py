@@ -30,6 +30,7 @@ def iterate(client=None):
 
     """
     import abjad
+
     if client is not None:
         return abjad.Iteration(client=client)
     expression = abjad.Expression()

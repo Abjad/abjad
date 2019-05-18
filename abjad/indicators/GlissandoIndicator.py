@@ -44,17 +44,17 @@ class GlissandoIndicator(object):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_allow_repeats',
-        '_allow_ties',
-        '_parenthesize_repeats',
-        '_right_broken',
-        '_stems',
-        '_style',
-        '_zero_padding',
-        '_tweaks',
-        )
+        "_allow_repeats",
+        "_allow_ties",
+        "_parenthesize_repeats",
+        "_right_broken",
+        "_stems",
+        "_style",
+        "_zero_padding",
+        "_tweaks",
+    )
 
-    _context = 'Voice'
+    _context = "Voice"
 
     _persistent = True
 
@@ -73,7 +73,7 @@ class GlissandoIndicator(object):
         style: str = None,
         tweaks: LilyPondTweakManager = None,
         zero_padding: bool = None,
-        ) -> None:
+    ) -> None:
         if allow_repeats is not None:
             allow_repeats = bool(allow_repeats)
         self._allow_repeats = allow_repeats
@@ -116,9 +116,9 @@ class GlissandoIndicator(object):
         try:
             result = hash(hash_values)
         except TypeError:
-            raise TypeError(f'unhashable type: {self}')
+            raise TypeError(f"unhashable type: {self}")
         return result
-    
+
     def __repr__(self) -> str:
         """
         Gets interpreter representation.
@@ -131,11 +131,11 @@ class GlissandoIndicator(object):
         bundle = LilyPondFormatBundle()
         strings = []
         if self.zero_padding:
-            strings.append(r'- \abjad-zero-padding-glissando')
+            strings.append(r"- \abjad-zero-padding-glissando")
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions()
             strings.extend(tweaks)
-        strings.append(r'\glissando')
+        strings.append(r"\glissando")
         bundle.after.spanner_starts.extend(strings)
         return bundle
 

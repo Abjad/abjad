@@ -71,8 +71,7 @@ class PatternTuple(TypedTuple):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### PUBLIC METHODS ###
 
@@ -203,9 +202,10 @@ class PatternTuple(TypedTuple):
         Returns pattern or none.
         """
         for pattern in reversed(self):
-            if hasattr(pattern, 'pattern'):
+            if hasattr(pattern, "pattern"):
                 if pattern.pattern.matches_index(
-                    index, total_length, rotation=rotation):
+                    index, total_length, rotation=rotation
+                ):
                     return pattern
             elif pattern.matches_index(index, total_length, rotation=rotation):
                 return pattern
@@ -271,7 +271,9 @@ class PatternTuple(TypedTuple):
             14 tenuto
 
         """
-        pattern = self.get_matching_pattern(index, total_length, rotation=rotation)
+        pattern = self.get_matching_pattern(
+            index, total_length, rotation=rotation
+        )
         payload = None
         if pattern:
             payload = pattern.payload
@@ -284,9 +286,10 @@ class PatternTuple(TypedTuple):
         import abjad
 
         def coerce_(argument):
-            if hasattr(argument, 'pattern'):
+            if hasattr(argument, "pattern"):
                 pass
             elif not isinstance(argument, abjad.Pattern):
                 argument = abjad.Pattern(*argument)
             return argument
+
         return coerce_
