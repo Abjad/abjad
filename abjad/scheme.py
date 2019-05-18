@@ -6,7 +6,7 @@ import functools
 import typing
 from abjad import enums
 from abjad import typings
-from abjad.mathtools.NonreducedFraction import NonreducedFraction
+from abjad.mathtools import NonreducedFraction
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.StorageFormatManager import StorageFormatManager

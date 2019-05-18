@@ -3,8 +3,8 @@ import fractions
 import numbers
 import typing
 from abjad import mathtools
-from abjad.mathtools.NonreducedFraction import NonreducedFraction
-from abjad.mathtools.Ratio import Ratio
+from abjad.mathtools import NonreducedFraction
+from abjad.mathtools import Ratio
 from abjad.utilities.Duration import Duration
 from abjad.utilities.Multiplier import Multiplier
 from abjad.utilities.Sequence import Sequence

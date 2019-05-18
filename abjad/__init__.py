@@ -44,15 +44,15 @@ from abjad.spanners import *
 from abjad.top import *
 
 # import all the way down to module to satisfy mypy:
-from abjad.mathtools.NonreducedFraction import NonreducedFraction
-from abjad.mathtools.NonreducedRatio import NonreducedRatio
-from abjad.mathtools.Ratio import Ratio
+from abjad.mathtools import NonreducedFraction
+from abjad.mathtools import NonreducedRatio
+from abjad.mathtools import Ratio
 
-# timespan classes (but not functions):
-from abjad.timespans.AnnotatedTimespan import AnnotatedTimespan
-from abjad.timespans.Timespan import Timespan
-from abjad.timespans.TimespanInequality import TimespanInequality
-from abjad.timespans.TimespanList import TimespanList
+# timespan classes and expression factory
+from abjad.timespans import AnnotatedTimespan
+from abjad.timespans import Timespan
+from abjad.timespans import timespan
+from abjad.timespans import TimespanList
 
 # import version information
 from ._version import __version_info__, __version__

@@ -5,9 +5,9 @@ from abjad import exceptions
 from abjad import mathtools
 from abjad import typings
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
-from abjad.mathtools.NonreducedFraction import NonreducedFraction
-from abjad.mathtools.NonreducedRatio import NonreducedRatio
-from abjad.mathtools.Ratio import Ratio
+from abjad.mathtools import NonreducedFraction
+from abjad.mathtools import NonreducedRatio
+from abjad.mathtools import Ratio
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.top.inspect import inspect

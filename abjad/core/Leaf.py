@@ -7,8 +7,8 @@ from abjad import exceptions
 from abjad.indicators.MetronomeMark import MetronomeMark
 from abjad.indicators.RepeatTie import RepeatTie
 from abjad.indicators.TieIndicator import TieIndicator
-from abjad.mathtools.NonreducedFraction import NonreducedFraction
-from abjad.mathtools.Ratio import Ratio
+from abjad.mathtools import NonreducedFraction
+from abjad.mathtools import Ratio
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.Tag import Tag
@@ -33,6 +33,13 @@ class Leaf(Component):
     """
 
     ### CLASS VARIABLES ##
+
+    _allowable_format_slots = (
+        "absolute_before",
+        "before",
+        "after",
+        "absolute_after",
+    )
 
     __slots__ = (
         "_after_grace_container",
@@ -151,9 +158,10 @@ class Leaf(Component):
 
     def _format_after_grace_opening(self):
         result = []
-        if self._after_grace_container is not None:
-            if len(self._after_grace_container):
-                result.append(r"\afterGrace")
+        if self._after_grace_container is not None and len(
+            self._after_grace_container
+        ):
+            result.append(r"\afterGrace")
         return ["after grace opening", result]
 
     def _format_after_slot(self, bundle):
@@ -182,13 +190,13 @@ class Leaf(Component):
         result = []
         result.append(self._format_grace_body())
         result.append(("comments", bundle.before.comments))
-        result.append(self._format_after_grace_opening())
         result.append(("commands", bundle.before.commands))
         result.append(("indicators", bundle.before.indicators))
         result.append(("grob reverts", bundle.grob_reverts))
         result.append(("grob overrides", bundle.grob_overrides))
         result.append(("context settings", bundle.context_settings))
         result.append(("spanners", bundle.before.spanners))
+        result.append(self._format_after_grace_opening())
         return result
 
     def _format_close_brackets_slot(self, bundle):

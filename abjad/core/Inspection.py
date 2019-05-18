@@ -10,7 +10,7 @@ from abjad.pitch.PitchSet import PitchSet
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.system.Wrapper import Wrapper
-from abjad.timespans.Timespan import Timespan
+from abjad.timespans import Timespan
 from abjad.top.inspect import inspect
 from abjad.top.iterate import iterate
 from abjad.utilities.Duration import Duration

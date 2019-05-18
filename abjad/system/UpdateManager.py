@@ -3,8 +3,8 @@ from abjad import exceptions
 from abjad import mathtools
 from abjad.indicators.MetronomeMark import MetronomeMark
 from abjad.indicators.TimeSignature import TimeSignature
-from abjad.timespans.AnnotatedTimespan import AnnotatedTimespan
-from abjad.timespans.TimespanList import TimespanList
+from abjad.timespans import AnnotatedTimespan
+from abjad.timespans import TimespanList
 from abjad.top.inspect import inspect
 from abjad.top.iterate import iterate
 from abjad.utilities.Multiplier import Multiplier

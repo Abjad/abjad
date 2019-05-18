@@ -14,8 +14,8 @@ from abjad import mathtools
 from abjad import typings
 from abjad.markups import Markup
 from abjad.markups import MarkupCommand
-from abjad.mathtools.NonreducedFraction import NonreducedFraction
-from abjad.mathtools.Ratio import Ratio
+from abjad.mathtools import NonreducedFraction
+from abjad.mathtools import Ratio
 from abjad.scheme import Scheme
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
@@ -37,7 +37,7 @@ class MetronomeMark(object):
 
         Initializes integer-valued metronome mark:
 
-        >>> score = abjad.Score([])
+        >>> score = abjad.Score()
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
         >>> score.append(staff)
         >>> mark = abjad.MetronomeMark((1, 4), 90)
@@ -63,10 +63,10 @@ class MetronomeMark(object):
 
         Initializes rational-valued metronome mark:
 
-        >>> score = abjad.Score([])
+        >>> score = abjad.Score()
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
         >>> score.append(staff)
-        >>> mark = abjad.MetronomeMark((1, 4), abjad.Fraction(181, 2))
+        >>> mark = abjad.MetronomeMark((1, 4), abjad.Fraction(272, 3))
         >>> abjad.attach(mark, staff[0])
         >>> abjad.show(score) # doctest: +SKIP
 
@@ -77,55 +77,63 @@ class MetronomeMark(object):
             <<
                 \new Staff
                 {
-                    \tempo \markup {
-                        \scale
-                            #'(0.75 . 0.75)
-                            \score
-                                {
-                                    \new Score
-                                    \with
-                                    {
-                                        \override SpacingSpanner.spacing-increment = #0.5
-                                        proportionalNotationDuration = ##f
-                                    }
-                                    <<
-                                        \new RhythmicStaff
-                                        \with
-                                        {
-                                            \remove Time_signature_engraver
-                                            \remove Staff_symbol_engraver
-                                            \override Stem.direction = #up
-                                            \override Stem.length = #5
-                                            \override TupletBracket.bracket-visibility = ##t
-                                            \override TupletBracket.direction = #up
-                                            \override TupletBracket.minimum-length = #4
-                                            \override TupletBracket.padding = #1.25
-                                            \override TupletBracket.shorten-pair = #'(-1 . -1.5)
-                                            \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
-                                            \override TupletNumber.font-size = #0
-                                            \override TupletNumber.text = #tuplet-number::calc-fraction-text
-                                            tupletFullLength = ##t
-                                        }
-                                        {
-                                            c'4
-                                        }
-                                    >>
-                                    \layout {
-                                        indent = #0
-                                        ragged-right = ##t
-                                    }
-                                }
-                        =
-                        \raise
-                            #-0.5
-                            {
-                                90
-                                \tiny
-                                    \fraction
-                                        1
-                                        2
-                            }
-                        }
+                    \tempo \markup \abjad-metronome-mark-mixed-number-markup #2 #0 #1 #"90" #"2" #"3"
+                    c'8
+                    d'8
+                    e'8
+                    f'8
+                }
+            >>
+
+        Overrides rational-valued metronome mark with decimal string:
+
+        >>> score = abjad.Score()
+        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+        >>> score.append(staff)
+        >>> mark = abjad.MetronomeMark(
+        ...     (1, 4),
+        ...     abjad.Fraction(272, 3),
+        ...     decimal="90.66",
+        ... )
+        >>> abjad.attach(mark, staff[0])
+        >>> abjad.show(score) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(score)
+            \new Score
+            <<
+                \new Staff
+                {
+                    \tempo \markup \abjad-metronome-mark-markup #2 #0 #1 #"90.66"
+                    c'8
+                    d'8
+                    e'8
+                    f'8
+                }
+            >>
+
+        Overrides rational-valued metronome mark with exact decimal:
+
+        >>> score = abjad.Score()
+        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+        >>> score.append(staff)
+        >>> mark = abjad.MetronomeMark(
+        ...     (1, 4),
+        ...     abjad.Fraction(901, 10),
+        ...     decimal=True,
+        ... )
+        >>> abjad.attach(mark, staff[0])
+        >>> abjad.show(score) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(score)
+            \new Score
+            <<
+                \new Staff
+                {
+                    \tempo \markup \abjad-metronome-mark-markup #2 #0 #1 #"90.1"
                     c'8
                     d'8
                     e'8
@@ -137,7 +145,7 @@ class MetronomeMark(object):
 
         Initializes from text, duration and range:
 
-        >>> score = abjad.Score([])
+        >>> score = abjad.Score()
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
         >>> score.append(staff)
         >>> mark = abjad.MetronomeMark((1, 4), (120, 133), 'Quick')
@@ -159,92 +167,13 @@ class MetronomeMark(object):
                 }
             >>
 
-    ..  container:: example
-
-        Use rational-value units-per-minute together with custom markup for
-        float-valued metornome marks:
-
-        >>> score = abjad.Score([])
-        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-        >>> score.append(staff)
-        >>> markup = abjad.MetronomeMark.make_tempo_equation_markup(
-        ...     abjad.Duration(1, 4),
-        ...     90.1,
-        ...     )
-        >>> mark = abjad.MetronomeMark(
-        ...     (1, 4),
-        ...     Fraction(900, 10),
-        ...     custom_markup=markup,
-        ...     )
-        >>> abjad.attach(mark, staff[0])
-        >>> abjad.show(score) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> abjad.f(score)
-            \new Score
-            <<
-                \new Staff
-                {
-                    \tempo \markup {
-                        \scale
-                            #'(0.75 . 0.75)
-                            \score
-                                {
-                                    \new Score
-                                    \with
-                                    {
-                                        \override SpacingSpanner.spacing-increment = #0.5
-                                        proportionalNotationDuration = ##f
-                                    }
-                                    <<
-                                        \new RhythmicStaff
-                                        \with
-                                        {
-                                            \remove Time_signature_engraver
-                                            \remove Staff_symbol_engraver
-                                            \override Stem.direction = #up
-                                            \override Stem.length = #5
-                                            \override TupletBracket.bracket-visibility = ##t
-                                            \override TupletBracket.direction = #up
-                                            \override TupletBracket.minimum-length = #4
-                                            \override TupletBracket.padding = #1.25
-                                            \override TupletBracket.shorten-pair = #'(-1 . -1.5)
-                                            \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
-                                            \override TupletNumber.font-size = #0
-                                            \override TupletNumber.text = #tuplet-number::calc-fraction-text
-                                            tupletFullLength = ##t
-                                        }
-                                        {
-                                            c'4
-                                        }
-                                    >>
-                                    \layout {
-                                        indent = #0
-                                        ragged-right = ##t
-                                    }
-                                }
-                        =
-                        \general-align
-                            #Y
-                            #-0.5
-                            90.1
-                        }
-                    c'8
-                    d'8
-                    e'8
-                    f'8
-                }
-            >>
-
-        (Abjad models all timekeeping with rationals.)
-
     """
 
     ### CLASS VARIABLES ###
 
     __slots__ = (
         "_custom_markup",
+        "_decimal",
         "_hide",
         "_reference_duration",
         "_textual_indication",
@@ -270,6 +199,7 @@ class MetronomeMark(object):
         textual_indication: str = None,
         *,
         custom_markup: Markup = None,
+        decimal: typing.Union[bool, str] = None,
         hide: bool = None,
     ) -> None:
         assert isinstance(textual_indication, (str, type(None)))
@@ -282,7 +212,7 @@ class MetronomeMark(object):
         if isinstance(units_per_minute, float):
             raise Exception(
                 f"do not set units-per-minute to float ({units_per_minute});"
-                " use fraction with textual indication instead."
+                " use fraction with decimal override instead."
             )
         prototype = (int, Fraction, collections.abc.Sequence, type(None))
         assert isinstance(units_per_minute, prototype)
@@ -298,6 +228,9 @@ class MetronomeMark(object):
         if custom_markup is not None:
             assert isinstance(custom_markup, Markup), repr(custom_markup)
         self._custom_markup = custom_markup
+        if decimal is not None:
+            assert isinstance(decimal, (bool, str)), repr(decimal)
+        self._decimal = decimal
         if hide is not None:
             hide = bool(hide)
         self._hide = hide
@@ -320,7 +253,7 @@ class MetronomeMark(object):
             >>> mark_2 + mark_1
             MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=150)
 
-        ..  container:: example
+        ..  container:: example exception
 
             Raises imprecise metronome mark error with textual indication:
 
@@ -331,7 +264,7 @@ class MetronomeMark(object):
                 ...
             abjad.exceptions.ImpreciseMetronomeMarkError
 
-        ..  container:: example
+        ..  container:: example exception
 
             Raises imprecise metronome mark error with range:
 
@@ -342,7 +275,7 @@ class MetronomeMark(object):
                 ...
             abjad.exceptions.ImpreciseMetronomeMarkError
 
-        ..  container:: example
+        ..  container:: example exception
 
             Raises type error when ``argument`` is not a metronome mark:
 
@@ -594,7 +527,7 @@ class MetronomeMark(object):
             >>> mark_2 + mark_1
             MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=150)
 
-        ..  container:: example
+        ..  container:: example exception
 
             Raises imprecise metronome mark error with textual indication:
 
@@ -605,7 +538,7 @@ class MetronomeMark(object):
                 ...
             abjad.exceptions.ImpreciseMetronomeMarkError
 
-        ..  container:: example
+        ..  container:: example exception
 
             Raises imprecise metronome mark error with range:
 
@@ -616,7 +549,7 @@ class MetronomeMark(object):
                 ...
             abjad.exceptions.ImpreciseMetronomeMarkError
 
-        ..  container:: example
+        ..  container:: example exception
 
             Raises type error when ``argument`` is not a metronome mark:
 
@@ -688,9 +621,9 @@ class MetronomeMark(object):
 
             Rational-valued metronome mark:
 
-            >>> mark = abjad.MetronomeMark((1, 4), (90, 96))
+            >>> mark = abjad.MetronomeMark((1, 4), (272, 3))
             >>> str(mark)
-            '4=90-96'
+            '4=3-272'
 
         """
         if self.textual_indication is not None:
@@ -745,7 +678,7 @@ class MetronomeMark(object):
             >>> mark_1 - mark_2
             MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=45)
 
-        ..  container:: example
+        ..  container:: example exception
 
             Raises imprecise metronome mark error with textual indication:
 
@@ -823,6 +756,8 @@ class MetronomeMark(object):
 
     @property
     def _equation(self):
+        # TODO: remove this assert after running all tests:
+        assert not isinstance(self.units_per_minute, float)
         if self.reference_duration is None:
             return
         if isinstance(self.units_per_minute, tuple):
@@ -833,9 +768,11 @@ class MetronomeMark(object):
                 self.units_per_minute[1],
             )
             return string
-        elif isinstance(self.units_per_minute, (float, Fraction)):
+        elif isinstance(self.units_per_minute, Fraction):
             markup = MetronomeMark.make_tempo_equation_markup(
-                self.reference_duration, self.units_per_minute
+                self.reference_duration,
+                self.units_per_minute,
+                decimal=self.decimal,
             )
             string = str(markup)
             return string
@@ -896,13 +833,28 @@ class MetronomeMark(object):
         )
         return markup
 
+    # TODO: refactor to return dict
     def _get_markup_arguments(self):
         assert self.custom_markup is None
         duration_log = int(math.log(self.reference_duration.denominator, 2))
         dot_count = self.reference_duration.dot_count
         stem_height = 1
-        units_per_minute = self.units_per_minute
-        return (duration_log, dot_count, stem_height, units_per_minute)
+        if not self.decimal:
+            return (
+                duration_log,
+                dot_count,
+                stem_height,
+                self.units_per_minute,
+            )
+        if isinstance(self.decimal, str):
+            return (duration_log, dot_count, stem_height, self.decimal)
+        assert self.decimal is True, repr(self.decimal)
+        # TODO: add abjad.NonreducedFraction.mixed_number property
+        fraction = NonreducedFraction(self.units_per_minute)
+        n, d = fraction.pair
+        base = n // d
+        n = n % d
+        return (duration_log, dot_count, stem_height, base, n, d)
 
     ### PUBLIC PROPERTIES ###
 
@@ -918,13 +870,13 @@ class MetronomeMark(object):
             >>> markup = abjad.MetronomeMark.make_tempo_equation_markup(
             ...     abjad.Duration(1, 4),
             ...     67.5,
-            ...     )
+            ...  )
             >>> markup = markup.with_color('red')
             >>> mark = abjad.MetronomeMark(
             ...     reference_duration=(1, 4),
-            ...     units_per_minute=Fraction(135, 2),
+            ...     units_per_minute=abjad.Fraction(135, 2),
             ...     custom_markup=markup,
-            ...     )
+            ...  )
             >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
             >>> score = abjad.Score([staff])
             >>> abjad.attach(mark, staff[0])
@@ -940,50 +892,7 @@ class MetronomeMark(object):
                         \tempo \markup {
                             \with-color
                                 #red
-                                {
-                                    \scale
-                                        #'(0.75 . 0.75)
-                                        \score
-                                            {
-                                                \new Score
-                                                \with
-                                                {
-                                                    \override SpacingSpanner.spacing-increment = #0.5
-                                                    proportionalNotationDuration = ##f
-                                                }
-                                                <<
-                                                    \new RhythmicStaff
-                                                    \with
-                                                    {
-                                                        \remove Time_signature_engraver
-                                                        \remove Staff_symbol_engraver
-                                                        \override Stem.direction = #up
-                                                        \override Stem.length = #5
-                                                        \override TupletBracket.bracket-visibility = ##t
-                                                        \override TupletBracket.direction = #up
-                                                        \override TupletBracket.minimum-length = #4
-                                                        \override TupletBracket.padding = #1.25
-                                                        \override TupletBracket.shorten-pair = #'(-1 . -1.5)
-                                                        \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
-                                                        \override TupletNumber.font-size = #0
-                                                        \override TupletNumber.text = #tuplet-number::calc-fraction-text
-                                                        tupletFullLength = ##t
-                                                    }
-                                                    {
-                                                        c'4
-                                                    }
-                                                >>
-                                                \layout {
-                                                    indent = #0
-                                                    ragged-right = ##t
-                                                }
-                                            }
-                                    =
-                                    \general-align
-                                        #Y
-                                        #-0.5
-                                        67.5
-                                }
+                                \markup \abjad-metronome-mark-markup #2 #0 #1 #\"67.5\"
                             }
                         c'4
                         d'4
@@ -1002,23 +911,46 @@ class MetronomeMark(object):
 
         ..  container:: example
 
-            Fifty-two eighth notes per minute:
-
             >>> mark = abjad.MetronomeMark((1, 8), 52)
-            >>> mark.context
-            'Score'
-
-        ..  container:: example
-
-            Ninety quarter notes per minute:
-
-            >>> mark = abjad.MetronomeMark((1, 4), 90)
             >>> mark.context
             'Score'
 
         Override with ``abjad.attach(..., context='...')``.
         """
         return self._context
+
+    @property
+    def decimal(self) -> typing.Union[bool, str, None]:
+        """
+        Gets decimal override.
+
+        ..  container:: example
+
+            >>> mark = abjad.MetronomeMark(
+            ...     (1, 4),
+            ...     abjad.Fraction(272, 3),
+            ... )
+            >>> mark.decimal is None
+            True
+
+            >>> mark = abjad.MetronomeMark(
+            ...     (1, 4),
+            ...     abjad.Fraction(272, 3),
+            ...     decimal="90.66",
+            ... )
+            >>> mark.decimal
+            '90.66'
+
+            >>> mark = abjad.MetronomeMark(
+            ...     (1, 4),
+            ...     abjad.Fraction(901, 10),
+            ...     decimal=True,
+            ... )
+            >>> mark.decimal
+            True
+
+        """
+        return self._decimal
 
     @property
     def hide(self) -> typing.Optional[bool]:
@@ -1034,7 +966,7 @@ class MetronomeMark(object):
             >>> metronome_mark_2 = abjad.MetronomeMark(
             ...     textual_indication='Allegro',
             ...     hide=True,
-            ...     )
+            ... )
             >>> abjad.attach(metronome_mark_2, staff[2]) 
             >>> score = abjad.Score([staff])
             >>> abjad.show(score) # doctest: +SKIP
@@ -1132,33 +1064,15 @@ class MetronomeMark(object):
 
         ..  container:: example
 
-            Fifty-two eighth notes per minute:
-
             >>> mark = abjad.MetronomeMark((1, 8), 52)
             >>> mark.quarters_per_minute
             Fraction(104, 1)
 
-        ..  container:: example
+        Gives tuple when metronome mark ``units_per_minute`` is a range.
 
-            Ninety quarter notes per minute:
+        Gives none when metronome mark is imprecise.
 
-            >>> mark = abjad.MetronomeMark((1, 4), 90)
-            >>> mark.quarters_per_minute
-            Fraction(90, 1)
-
-        ..  container:: example
-
-            140 quarters per minute:
-
-            >>> mark = abjad.MetronomeMark((3, 32), Fraction(105, 2))
-            >>> mark.quarters_per_minute
-            Fraction(140, 1)
-
-        Returns tuple when metronome mark ``units_per_minute`` is a range.
-
-        Returns none when metronome mark is imprecise.
-
-        Returns fraction otherwise.
+        Gives fraction otherwise.
         """
         if self.is_imprecise:
             return None
@@ -1186,19 +1100,9 @@ class MetronomeMark(object):
 
         ..  container:: example
 
-            Fifty-two eighth notes per minute:
-
             >>> mark = abjad.MetronomeMark((1, 8), 52)
             >>> mark.reference_duration
             Duration(1, 8)
-
-        ..  container:: example
-
-            Ninety quarter notes per minute:
-
-            >>> mark = abjad.MetronomeMark((1, 4), 90)
-            >>> mark.reference_duration
-            Duration(1, 4)
 
         """
         return self._reference_duration
@@ -1210,17 +1114,7 @@ class MetronomeMark(object):
 
         ..  container:: example
 
-            Fifty-two eighth notes per minute:
-
             >>> mark = abjad.MetronomeMark((1, 8), 52)
-            >>> mark.textual_indication is None
-            True
-
-        ..  container:: example
-
-            Ninety quarter notes per minute:
-
-            >>> mark = abjad.MetronomeMark((1, 4), 90)
             >>> mark.textual_indication is None
             True
 
@@ -1255,9 +1149,9 @@ class MetronomeMark(object):
 
             Rational-valued metronome mark:
 
-            >>> mark = abjad.MetronomeMark((1, 4), abjad.Fraction(181, 2))
+            >>> mark = abjad.MetronomeMark((1, 4), abjad.Fraction(272, 3))
             >>> mark.units_per_minute
-            Fraction(181, 2)
+            Fraction(272, 3)
 
         """
         return self._units_per_minute
@@ -1267,14 +1161,6 @@ class MetronomeMark(object):
     def duration_to_milliseconds(self, duration) -> Duration:
         """
         Gets millisecond value of ``duration`` under a given metronome mark.
-
-        ..  container:: example
-
-            One quarter lasts 1000 msec at quarter equals 60:
-
-            >>> mark = abjad.MetronomeMark((1, 4), 60)
-            >>> mark.duration_to_milliseconds((1, 4))
-            Duration(1000, 1)
 
         ..  container:: example
 
@@ -1299,7 +1185,7 @@ class MetronomeMark(object):
         maximum_numerator=None,
         maximum_denominator=None,
         integer_tempos_only=False,
-    ):
+    ) -> typing.List[typing.Tuple["MetronomeMark", "Ratio"]]:
         r"""
         Lists related tempos.
 
@@ -1312,7 +1198,7 @@ class MetronomeMark(object):
             >>> pairs = mark.list_related_tempos(
             ...     maximum_numerator=8,
             ...     maximum_denominator=8,
-            ...     )
+            ...  )
 
             >>> for tempo, ratio in pairs:
             ...     string = f'{tempo!s}\t{ratio!s}'
@@ -1350,7 +1236,7 @@ class MetronomeMark(object):
             ...     maximum_numerator=16,
             ...     maximum_denominator=16,
             ...     integer_tempos_only=True,
-            ...     )
+            ...  )
 
             >>> for tempo, ratio in pairs:
             ...     string = f'{tempo!s}\t{ratio!s}'
@@ -1361,8 +1247,6 @@ class MetronomeMark(object):
             4=116	2:1
 
         Constrains ratios such that ``1:2 <= n:d <= 2:1``.
-
-        Returns list of tempo / ratio pairs.
         """
         allowable_numerators = range(1, maximum_numerator + 1)
         allowable_denominators = range(1, maximum_denominator + 1)
@@ -1395,7 +1279,9 @@ class MetronomeMark(object):
         return pairs
 
     @staticmethod
-    def make_tempo_equation_markup(reference_duration, units_per_minute):
+    def make_tempo_equation_markup(
+        reference_duration, units_per_minute, *, decimal=None
+    ) -> Markup:
         r"""
         Makes tempo equation markup.
 
@@ -1406,56 +1292,13 @@ class MetronomeMark(object):
             >>> markup = abjad.MetronomeMark.make_tempo_equation_markup(
             ...     (1, 4),
             ...     90,
-            ...     )
+            ...  )
             >>> abjad.show(markup) # doctest: +SKIP
 
             ..  docs::
 
                 >>> print(format(markup))
-                \markup {
-                    \scale
-                        #'(0.75 . 0.75)
-                        \score
-                            {
-                                \new Score
-                                \with
-                                {
-                                    \override SpacingSpanner.spacing-increment = #0.5
-                                    proportionalNotationDuration = ##f
-                                }
-                                <<
-                                    \new RhythmicStaff
-                                    \with
-                                    {
-                                        \remove Time_signature_engraver
-                                        \remove Staff_symbol_engraver
-                                        \override Stem.direction = #up
-                                        \override Stem.length = #5
-                                        \override TupletBracket.bracket-visibility = ##t
-                                        \override TupletBracket.direction = #up
-                                        \override TupletBracket.minimum-length = #4
-                                        \override TupletBracket.padding = #1.25
-                                        \override TupletBracket.shorten-pair = #'(-1 . -1.5)
-                                        \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
-                                        \override TupletNumber.font-size = #0
-                                        \override TupletNumber.text = #tuplet-number::calc-fraction-text
-                                        tupletFullLength = ##t
-                                    }
-                                    {
-                                        c'4
-                                    }
-                                >>
-                                \layout {
-                                    indent = #0
-                                    ragged-right = ##t
-                                }
-                            }
-                    =
-                    \general-align
-                        #Y
-                        #-0.5
-                        90
-                    }
+                \markup \abjad-metronome-mark-markup #2 #0 #1 #"90"
 
         ..  container:: example
 
@@ -1464,56 +1307,13 @@ class MetronomeMark(object):
             >>> markup = abjad.MetronomeMark.make_tempo_equation_markup(
             ...     (1, 4),
             ...     90.1,
-            ...     )
+            ... )
             >>> abjad.show(markup) # doctest: +SKIP
 
             ..  docs::
 
                 >>> print(format(markup))
-                \markup {
-                    \scale
-                        #'(0.75 . 0.75)
-                        \score
-                            {
-                                \new Score
-                                \with
-                                {
-                                    \override SpacingSpanner.spacing-increment = #0.5
-                                    proportionalNotationDuration = ##f
-                                }
-                                <<
-                                    \new RhythmicStaff
-                                    \with
-                                    {
-                                        \remove Time_signature_engraver
-                                        \remove Staff_symbol_engraver
-                                        \override Stem.direction = #up
-                                        \override Stem.length = #5
-                                        \override TupletBracket.bracket-visibility = ##t
-                                        \override TupletBracket.direction = #up
-                                        \override TupletBracket.minimum-length = #4
-                                        \override TupletBracket.padding = #1.25
-                                        \override TupletBracket.shorten-pair = #'(-1 . -1.5)
-                                        \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
-                                        \override TupletNumber.font-size = #0
-                                        \override TupletNumber.text = #tuplet-number::calc-fraction-text
-                                        tupletFullLength = ##t
-                                    }
-                                    {
-                                        c'4
-                                    }
-                                >>
-                                \layout {
-                                    indent = #0
-                                    ragged-right = ##t
-                                }
-                            }
-                    =
-                    \general-align
-                        #Y
-                        #-0.5
-                        90.1
-                    }
+                \markup \abjad-metronome-mark-markup #2 #0 #1 #"90.1"
 
         ..  container:: example
 
@@ -1521,277 +1321,55 @@ class MetronomeMark(object):
 
             >>> markup = abjad.MetronomeMark.make_tempo_equation_markup(
             ...     abjad.Duration(1, 4),
-            ...     abjad.Fraction(181, 2),
-            ...     )
+            ...     abjad.Fraction(272, 3),
+            ... )
             >>> abjad.show(markup) # doctest: +SKIP
 
             ..  docs::
 
                 >>> print(format(markup))
-                \markup {
-                    \scale
-                        #'(0.75 . 0.75)
-                        \score
-                            {
-                                \new Score
-                                \with
-                                {
-                                    \override SpacingSpanner.spacing-increment = #0.5
-                                    proportionalNotationDuration = ##f
-                                }
-                                <<
-                                    \new RhythmicStaff
-                                    \with
-                                    {
-                                        \remove Time_signature_engraver
-                                        \remove Staff_symbol_engraver
-                                        \override Stem.direction = #up
-                                        \override Stem.length = #5
-                                        \override TupletBracket.bracket-visibility = ##t
-                                        \override TupletBracket.direction = #up
-                                        \override TupletBracket.minimum-length = #4
-                                        \override TupletBracket.padding = #1.25
-                                        \override TupletBracket.shorten-pair = #'(-1 . -1.5)
-                                        \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
-                                        \override TupletNumber.font-size = #0
-                                        \override TupletNumber.text = #tuplet-number::calc-fraction-text
-                                        tupletFullLength = ##t
-                                    }
-                                    {
-                                        c'4
-                                    }
-                                >>
-                                \layout {
-                                    indent = #0
-                                    ragged-right = ##t
-                                }
-                            }
-                    =
-                    \raise
-                        #-0.5
-                        {
-                            90
-                            \tiny
-                                \fraction
-                                    1
-                                    2
-                        }
-                    }
+                \markup \abjad-metronome-mark-mixed-number-markup #2 #0 #1 #"90" #"2" #"3"
 
-        ..  container:: example
-
-            Reference duration expressed with ties:
-
-            >>> markup = abjad.MetronomeMark.make_tempo_equation_markup(
-            ...     (5, 16),
-            ...     90,
-            ...     )
-            >>> abjad.show(markup) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> print(format(markup))
-                \markup {
-                    \scale
-                        #'(0.75 . 0.75)
-                        \score
-                            {
-                                \new Score
-                                \with
-                                {
-                                    \override SpacingSpanner.spacing-increment = #0.5
-                                    proportionalNotationDuration = ##f
-                                }
-                                <<
-                                    \new RhythmicStaff
-                                    \with
-                                    {
-                                        \remove Time_signature_engraver
-                                        \remove Staff_symbol_engraver
-                                        \override Stem.direction = #up
-                                        \override Stem.length = #5
-                                        \override TupletBracket.bracket-visibility = ##t
-                                        \override TupletBracket.direction = #up
-                                        \override TupletBracket.minimum-length = #4
-                                        \override TupletBracket.padding = #1.25
-                                        \override TupletBracket.shorten-pair = #'(-1 . -1.5)
-                                        \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
-                                        \override TupletNumber.font-size = #0
-                                        \override TupletNumber.text = #tuplet-number::calc-fraction-text
-                                        tupletFullLength = ##t
-                                    }
-                                    {
-                                        c'4
-                                        ~
-                                        c'16
-                                    }
-                                >>
-                                \layout {
-                                    indent = #0
-                                    ragged-right = ##t
-                                }
-                            }
-                    =
-                    \general-align
-                        #Y
-                        #-0.5
-                        90
-                    }
-
-        ..  container:: example
-
-            Reference duration expressed as a tuplet:
-
-            >>> markup = abjad.MetronomeMark.make_tempo_equation_markup((1, 6), 90)
-            >>> abjad.show(markup) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> print(format(markup))
-                \markup {
-                    \scale
-                        #'(0.75 . 0.75)
-                        \score
-                            {
-                                \new Score
-                                \with
-                                {
-                                    \override SpacingSpanner.spacing-increment = #0.5
-                                    proportionalNotationDuration = ##f
-                                }
-                                <<
-                                    \new RhythmicStaff
-                                    \with
-                                    {
-                                        \remove Time_signature_engraver
-                                        \remove Staff_symbol_engraver
-                                        \override Stem.direction = #up
-                                        \override Stem.length = #5
-                                        \override TupletBracket.bracket-visibility = ##t
-                                        \override TupletBracket.direction = #up
-                                        \override TupletBracket.minimum-length = #4
-                                        \override TupletBracket.padding = #1.25
-                                        \override TupletBracket.shorten-pair = #'(-1 . -1.5)
-                                        \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
-                                        \override TupletNumber.font-size = #0
-                                        \override TupletNumber.text = #tuplet-number::calc-fraction-text
-                                        tupletFullLength = ##t
-                                    }
-                                    {
-                                        \tweak edge-height #'(0.7 . 0)
-                                        \times 2/3 {
-                                            c'4
-                                        }
-                                    }
-                                >>
-                                \layout {
-                                    indent = #0
-                                    ragged-right = ##t
-                                }
-                            }
-                    =
-                    \general-align
-                        #Y
-                        #-0.5
-                        90
-                    }
-
-        ..  container:: example
-
-            Reference duration passed in as explicit rhythm:
-
-            >>> maker = abjad.NoteMaker()
-            >>> durations = [(1, 16), (3, 16), (1, 16)]
-            >>> selection = maker([0], durations)
-            >>> abjad.tie(selection)
-            >>> abjad.beam(selection)
-            >>> markup = abjad.MetronomeMark.make_tempo_equation_markup(selection, 90)
-            >>> abjad.show(markup) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> print(format(markup))
-                \markup {
-                    \scale
-                        #'(0.75 . 0.75)
-                        \score
-                            {
-                                \new Score
-                                \with
-                                {
-                                    \override SpacingSpanner.spacing-increment = #0.5
-                                    proportionalNotationDuration = ##f
-                                }
-                                <<
-                                    \new RhythmicStaff
-                                    \with
-                                    {
-                                        \remove Time_signature_engraver
-                                        \remove Staff_symbol_engraver
-                                        \override Stem.direction = #up
-                                        \override Stem.length = #5
-                                        \override TupletBracket.bracket-visibility = ##t
-                                        \override TupletBracket.direction = #up
-                                        \override TupletBracket.minimum-length = #4
-                                        \override TupletBracket.padding = #1.25
-                                        \override TupletBracket.shorten-pair = #'(-1 . -1.5)
-                                        \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
-                                        \override TupletNumber.font-size = #0
-                                        \override TupletNumber.text = #tuplet-number::calc-fraction-text
-                                        tupletFullLength = ##t
-                                    }
-                                    {
-                                        c'16
-                                        ~
-                                        [
-                                        c'8.
-                                        ~
-                                        c'16
-                                        ]
-                                    }
-                                >>
-                                \layout {
-                                    indent = #0
-                                    ragged-right = ##t
-                                }
-                            }
-                    =
-                    \general-align
-                        #Y
-                        #-0.5
-                        90
-                    }
-
-            Pass rhythms like this as Abjad selections.
-
-        Returns markup.
         """
-        import abjad
-
-        if isinstance(reference_duration, abjad.Selection):
-            selection = reference_duration
-        else:
-            maker = abjad.NoteMaker()
-            selection = maker([0], [reference_duration])
-        lhs_score_markup = Duration._to_score_markup(selection)
-        lhs_score_markup = lhs_score_markup.scale((0.75, 0.75))
-        equal_markup = abjad.Markup("=")
+        reference_duration_ = Duration(reference_duration)
+        log = reference_duration_.exponent
+        dots = reference_duration_.dot_count
+        stem = 1
         if isinstance(
-            units_per_minute, abjad.Fraction
-        ) and not abjad.mathtools.is_integer_equivalent_number(
-            units_per_minute
-        ):
-            rhs_markup = abjad.Markup.make_improper_fraction_markup(
-                units_per_minute
-            )
-            rhs_markup = rhs_markup.raise_(-0.5)
+            units_per_minute, Fraction
+        ) and not mathtools.is_integer_equivalent_number(units_per_minute):
+            if decimal:
+                decimal_: typing.Union[float, str]
+                if decimal is True:
+                    decimal_ = float(units_per_minute)
+                else:
+                    assert isinstance(decimal, str), repr(decimal)
+                    decimal_ = decimal
+                markup = Markup(
+                    r"\markup \abjad-metronome-mark-markup"
+                    f' #{log} #{dots} #{stem} #"{decimal_}"',
+                    literal=True,
+                )
+            else:
+                nonreduced = NonreducedFraction(units_per_minute)
+                base = int(nonreduced)
+                remainder = nonreduced - base
+                n, d = remainder.pair
+                markup = Markup(
+                    r"\markup \abjad-metronome-mark-mixed-number-markup"
+                    f" #{log} #{dots} #{stem}"
+                    f' #"{base}" #"{n}" #"{d}"',
+                    literal=True,
+                )
         else:
-            rhs_markup = abjad.Markup(units_per_minute)
-            rhs_markup = rhs_markup.general_align("Y", -0.5)
-        markup = lhs_score_markup + equal_markup + rhs_markup
+            markup = Markup(
+                r"\markup \abjad-metronome-mark-markup"
+                f' #{log} #{dots} #{stem} #"{units_per_minute}"',
+                literal=True,
+            )
         return markup
 
-    def rewrite_duration(self, duration, metronome_mark):
+    def rewrite_duration(self, duration, metronome_mark) -> Duration:
         r"""
         Rewrites ``duration`` under ``metronome_mark``.
 
@@ -1828,11 +1406,7 @@ class MetronomeMark(object):
 
         Ensures that ``duration`` and new duration consume the same amount of
         time in seconds.
-
-        Returns duration.
         """
-        import abjad
-
         duration = Duration(duration)
         tempo_ratio = metronome_mark / self
         new_duration = tempo_ratio * duration

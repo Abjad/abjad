@@ -1580,7 +1580,7 @@ class Path(pathlib.PosixPath):
         elif self.is_distribution():
             return String.is_dash_case_file_name
         elif self.is_etc():
-            return String.is_dash_case_file_name
+            return None
         elif self.is_material():
             return String.is_lowercase_file_name
         elif self.is_materials():

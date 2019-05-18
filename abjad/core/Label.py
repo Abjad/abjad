@@ -5,7 +5,7 @@ from abjad.indicators.LilyPondComment import LilyPondComment
 from abjad.indicators.LilyPondLiteral import LilyPondLiteral
 from abjad.markups import Markup
 from abjad.markups import MarkupCommand
-from abjad.mathtools.NonreducedFraction import NonreducedFraction
+from abjad.mathtools import NonreducedFraction
 from abjad.pitch.IntervalClassVector import IntervalClassVector
 from abjad.pitch.NamedInterval import NamedInterval
 from abjad.pitch.NamedIntervalClass import NamedIntervalClass

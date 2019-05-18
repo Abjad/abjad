@@ -1,6 +1,6 @@
 import typing
-from abjad.mathtools.Infinity import Infinity
-from abjad.mathtools.NegativeInfinity import NegativeInfinity
+from abjad.mathtools import Infinity
+from abjad.mathtools import NegativeInfinity
 from .Duration import Duration
 from .Inequality import Inequality
 

@@ -6,7 +6,7 @@ import sys
 import traceback
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 
     try:
         from definition import maker
@@ -28,7 +28,7 @@ if __name__ == '__main__':
 
     try:
         segment_directory = pathlib.Path(os.path.realpath(__file__)).parent
-        builds_directory = segment_directory.parent.parent / 'builds'
+        builds_directory = segment_directory.parent.parent / "builds"
         builds_directory = ide.Path(builds_directory)
     except:
         traceback.print_exc()
@@ -37,13 +37,12 @@ if __name__ == '__main__':
     try:
         with abjad.Timer() as timer:
             lilypond_file = maker.run(
-                metadata=metadata,
-                previous_metadata=previous_metadata,
-                )
+                metadata=metadata, previous_metadata=previous_metadata
+            )
         segment_maker_runtime = int(timer.elapsed_time)
         count = segment_maker_runtime
-        counter = abjad.String('second').pluralize(count)
-        message = f'Segment-maker runtime {{count}} {{counter}} ...'
+        counter = abjad.String("second").pluralize(count)
+        message = f"Segment-maker runtime {{count}} {{counter}} ..."
         print(message)
         segment_maker_runtime = (count, counter)
     except:
@@ -58,12 +57,12 @@ if __name__ == '__main__':
         sys.exit(1)
 
     try:
-        illustration_ly = segment / 'illustration.ly'
+        illustration_ly = segment / "illustration.ly"
         result = abjad.persist(lilypond_file).as_ly(illustration_ly, strict=89)
         abjad_format_time = int(result[1])
         count = abjad_format_time
-        counter = abjad.String('second').pluralize(count)
-        message = f'Abjad format time {{count}} {{counter}} ...'
+        counter = abjad.String("second").pluralize(count)
+        message = f"Abjad format time {{count}} {{counter}} ..."
         print(message)
     except:
         traceback.print_exc()

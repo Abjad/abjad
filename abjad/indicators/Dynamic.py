@@ -2,8 +2,8 @@ import typing
 from abjad import enums
 from abjad import mathtools
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
-from abjad.mathtools.Infinity import Infinity
-from abjad.mathtools.NegativeInfinity import NegativeInfinity
+from abjad.mathtools import Infinity
+from abjad.mathtools import NegativeInfinity
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
@@ -66,10 +66,12 @@ class Dynamic(object):
 
         >>> voice_1 = abjad.Voice("e'8 g'8 f'8 a'8")
         >>> abjad.attach(abjad.Dynamic('f'), voice_1[0], context='Voice')
-        >>> abjad.attach(abjad.LilyPondLiteral(r'\voiceOne'), voice_1)
+        >>> literal = abjad.LilyPondLiteral(r"\voiceOne", "opening")
+        >>> abjad.attach(literal, voice_1)
         >>> abjad.override(voice_1).dynamic_line_spanner.direction = abjad.Up
         >>> voice_2 = abjad.Voice("c'2")
-        >>> abjad.attach(abjad.LilyPondLiteral(r'\voiceTwo'), voice_2)
+        >>> literal = abjad.LilyPondLiteral(r"\voiceTwo", "opening")
+        >>> abjad.attach(literal, voice_2)
         >>> abjad.attach(abjad.Dynamic('mf'), voice_2[0], context='Voice')
         >>> staff = abjad.Staff([voice_1, voice_2], is_simultaneous=True)
         >>> abjad.show(staff) # doctest: +SKIP

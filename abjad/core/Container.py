@@ -6,7 +6,7 @@ from abjad import exceptions
 from abjad import mathtools
 from abjad import rhythmtrees
 from abjad.indicators.TimeSignature import TimeSignature
-from abjad.mathtools.NonreducedFraction import NonreducedFraction
+from abjad.mathtools import NonreducedFraction
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.top.inspect import inspect
@@ -163,6 +163,14 @@ class Container(Component):
     """
 
     ### CLASS VARIABLES ###
+
+    _allowable_format_slots = (
+        "absolute_before",
+        "before",
+        "opening",
+        "closing",
+        "after",
+    )
 
     __documentation_section__ = "Containers"
 

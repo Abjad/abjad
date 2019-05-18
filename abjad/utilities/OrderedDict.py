@@ -215,8 +215,8 @@ class OrderedDict(TypedCollection, collections.abc.MutableMapping):
     def _get_format_specification(self):
         import abjad
 
-        agent = abjad.StorageFormatManager(self)
-        names = list(agent.signature_keyword_names)
+        manager = abjad.StorageFormatManager(self)
+        names = list(manager.signature_keyword_names)
         if "items" in names:
             names.remove("items")
         values = [list(self._collection.items())]

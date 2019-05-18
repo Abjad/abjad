@@ -647,8 +647,8 @@ class Markup(object):
         return tweaks + pieces
 
     def _get_format_specification(self):
-        agent = StorageFormatManager(self)
-        names = list(agent.signature_keyword_names)
+        manager = StorageFormatManager(self)
+        names = list(manager.signature_keyword_names)
         return FormatSpecification(
             client=self,
             repr_is_indented=False,
@@ -3614,8 +3614,8 @@ class MarkupList(TypedList):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        agent = StorageFormatManager(self)
-        names = list(agent.signature_keyword_names)
+        manager = StorageFormatManager(self)
+        names = list(manager.signature_keyword_names)
         if self.item_class is Markup:
             names.remove("item_class")
         return FormatSpecification(

@@ -181,8 +181,8 @@ class NoteHead(object):
 
     @property
     def _keyword_argument_names(self):
-        agent = StorageFormatManager(self)
-        keyword_argument_names = list(agent.signature_keyword_names)
+        manager = StorageFormatManager(self)
+        keyword_argument_names = list(manager.signature_keyword_names)
         if "client" in keyword_argument_names:
             keyword_argument_names.remove("client")
         if "tweaks" in keyword_argument_names:
@@ -198,8 +198,8 @@ class NoteHead(object):
             arguments.extend(self.tweaks._get_attribute_pairs())
         arguments = ", ".join([str(_) for _ in arguments])
         repr_text = f"{type(self).__name__}({arguments})"
-        agent = StorageFormatManager(self)
-        names = list(agent.signature_keyword_names)
+        manager = StorageFormatManager(self)
+        names = list(manager.signature_keyword_names)
         if "client" in names:
             names.remove("client")
         if "tweaks" in names:

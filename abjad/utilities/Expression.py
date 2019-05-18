@@ -74,6 +74,7 @@ class Expression(object):
         "_is_postfix",
         "_keywords",
         "_lone",
+        "_map_index",
         "_map_operand",
         "_markup_maker_callback",
         "_module_names",
@@ -106,6 +107,7 @@ class Expression(object):
         is_postfix=None,
         keywords=None,
         lone=None,
+        map_index=None,
         map_operand=None,
         markup_maker_callback=None,
         module_names=None,
@@ -152,6 +154,9 @@ class Expression(object):
             message = message.format(map_operand)
             raise TypeError(message)
         self._lone = lone
+        if map_index is not None:
+            assert isinstance(map_index, int), repr(map_index)
+        self._map_index = map_index
         self._map_operand = map_operand
         if markup_maker_callback is not None:
             assert isinstance(markup_maker_callback, str)
@@ -280,6 +285,8 @@ class Expression(object):
             result = arguments
             thread_arguments = True
         for expression in self.callbacks or []:
+            assert isinstance(expression, Expression)
+            expression._set_map_index(self._map_index)
             if expression.evaluation_template:
                 if thread_arguments:
                     result = expression._evaluate(*result, **keywords)
@@ -564,6 +571,10 @@ class Expression(object):
                     message = "statement {!r} raises {!r}."
                     message = message.format(statement, exception.args[0])
                     raise type(exception)(message)
+        old_phrase = "_map_index=None"
+        if old_phrase in statement:
+            new_phrase = f"_map_index={self._map_index}"
+            statement = statement.replace(old_phrase, new_phrase)
         try:
             result = eval(statement, globals_)
         except Exception as exception:
@@ -621,7 +632,18 @@ class Expression(object):
         globals_["__argument_0"] = __argument_0
         globals_["class_"] = class_
         globals_["map_operand"] = map_operand
-        statement = "[map_operand(_) for _ in __argument_0]"
+
+        def make_items(map_operand, ___argument_0):
+            items = []
+            for i, item in enumerate(__argument_0):
+                if hasattr(map_operand, "_set_map_index"):
+                    map_operand._set_map_index(i)
+                item_ = map_operand(item)
+                items.append(item_)
+            return items
+
+        globals_["make_items"] = make_items
+        statement = "make_items(map_operand, __argument_0)"
         try:
             result = eval(statement, globals_)
         except (NameError, SyntaxError, TypeError) as e:
@@ -1117,6 +1139,11 @@ class Expression(object):
             "string_template": string_template,
         }
 
+    def _set_map_index(self, i):
+        if i is not None:
+            assert isinstance(i, int), repr(i)
+        self._map_index = i
+
     @staticmethod
     def _to_evaluable_string(argument):
         if argument is None:
@@ -1189,6 +1216,9 @@ class Expression(object):
                         argument_value
                     )
                     argument_string = argument_value
+                    argument_strings.append(argument_string)
+                elif argument_name == "_map_index":
+                    argument_string = "_map_index=None"
                     argument_strings.append(argument_string)
                 # keyword argument
                 elif argument_value != parameter.default:
@@ -1955,6 +1985,27 @@ class Expression(object):
         from .Sequence import Sequence
 
         class_ = Sequence
+        callback = self._make_initializer_callback(
+            class_, string_template="{}", **keywords
+        )
+        expression = self.append_callback(callback)
+        return new(expression, proxy_class=class_)
+
+    def timespan(self, **keywords) -> "Expression":
+        """
+        Makes timespan expression.
+
+        ..  container:: example expression
+
+            >>> expression = abjad.timespan()
+
+            >>> expression(start_offset=0, stop_offset=(1, 4))
+            Timespan(start_offset=Offset(0, 1), stop_offset=Offset(1, 4))
+
+        """
+        from abjad.timespans import Timespan
+
+        class_ = Timespan
         callback = self._make_initializer_callback(
             class_, string_template="{}", **keywords
         )

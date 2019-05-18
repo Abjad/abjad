@@ -85,7 +85,7 @@ def beam(
     # beam_rests: bool = None,
     beam_rests: typing.Optional[bool] = True,
     durations: typing.Sequence[Duration] = None,
-    selector: typings.Selector = "abjad.select().leaves(do_not_iterate_grace_containers=True)",
+    selector: typings.SelectorTyping = "abjad.select().leaves(do_not_iterate_grace_containers=True)",
     span_beam_count: int = None,
     start_beam: StartBeam = None,
     stemlet_length: typings.Number = None,
@@ -1508,7 +1508,7 @@ def hairpin(
     descriptor: str,
     argument: typing.Union[Component, Selection],
     *,
-    selector: typings.Selector = "abjad.select().leaves()",
+    selector: typings.SelectorTyping = "abjad.select().leaves()",
     tag: str = None,
 ) -> None:
     r"""
@@ -1666,7 +1666,7 @@ def hairpin(
 def horizontal_bracket(
     argument: typing.Union[Component, Selection],
     *,
-    selector: typings.Selector = "abjad.select().leaves()",
+    selector: typings.SelectorTyping = "abjad.select().leaves()",
     start_group: StartGroup = None,
     stop_group: StopGroup = None,
     tag: str = None,
@@ -1713,7 +1713,7 @@ def horizontal_bracket(
 def ottava(
     argument: typing.Union[Component, Selection],
     *,
-    selector: typings.Selector = "abjad.select().leaves()",
+    selector: typings.SelectorTyping = "abjad.select().leaves()",
     start_ottava: Ottava = Ottava(n=1),
     stop_ottava: Ottava = Ottava(n=0, format_slot="after"),
     tag: str = None,
@@ -1760,7 +1760,7 @@ def ottava(
 def phrasing_slur(
     argument: typing.Union[Component, Selection],
     *,
-    selector: typings.Selector = "abjad.select().leaves()",
+    selector: typings.SelectorTyping = "abjad.select().leaves()",
     start_phrasing_slur: StartPhrasingSlur = None,
     stop_phrasing_slur: StopPhrasingSlur = None,
     tag: str = None,
@@ -1810,7 +1810,7 @@ def phrasing_slur(
 def piano_pedal(
     argument: typing.Union[Component, Selection],
     *,
-    selector: typings.Selector = "abjad.select().leaves()",
+    selector: typings.SelectorTyping = "abjad.select().leaves()",
     start_piano_pedal: StartPianoPedal = None,
     stop_piano_pedal: StopPianoPedal = None,
     tag: str = None,
@@ -1864,7 +1864,7 @@ def piano_pedal(
 def slur(
     argument: typing.Union[Component, Selection],
     *,
-    selector: typings.Selector = "abjad.select().leaves()",
+    selector: typings.SelectorTyping = "abjad.select().leaves()",
     start_slur: StartSlur = None,
     stop_slur: StopSlur = None,
     tag: str = None,
@@ -1912,7 +1912,7 @@ def slur(
 def text_spanner(
     argument: typing.Union[Component, Selection],
     *,
-    selector: typings.Selector = "abjad.select().leaves()",
+    selector: typings.SelectorTyping = "abjad.select().leaves()",
     start_text_span: StartTextSpan = None,
     stop_text_span: StopTextSpan = None,
     tag: str = None,
@@ -2100,7 +2100,7 @@ def tie(
     *,
     direction: enums.VerticalAlignment = None,
     repeat: typing.Union[bool, typings.IntegerPair, DurationInequality] = None,
-    selector: typings.Selector = "abjad.select().leaves(do_not_iterate_grace_containers=True)",
+    selector: typings.SelectorTyping = "abjad.select().leaves(do_not_iterate_grace_containers=True)",
     # tie: TieIndicator = None,
     tag: str = None,
 ) -> None:
@@ -2319,7 +2319,7 @@ def tie(
 def trill_spanner(
     argument: typing.Union[Component, Selection],
     *,
-    selector: typings.Selector = "abjad.select().leaves()",
+    selector: typings.SelectorTyping = "abjad.select().leaves()",
     start_trill_span: StartTrillSpan = None,
     stop_trill_span: StopTrillSpan = None,
     tag: str = None,

@@ -25,9 +25,9 @@ from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.top.inspect import inspect
 from abjad.top.mutate import mutate
 from abjad.top.select import select
-from abjad.timespans.Timespan import Timespan
-from abjad.timespans.TimespanList import TimespanList
-from abjad.timespans.TimespanList import TimespanList
+from abjad.timespans import Timespan
+from abjad.timespans import TimespanList
+from abjad.timespans import TimespanList
 from abjad.utilities.Duration import Duration
 from abjad.utilities.Multiplier import Multiplier
 from abjad.utilities.Offset import Offset

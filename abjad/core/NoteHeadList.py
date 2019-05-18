@@ -51,8 +51,8 @@ class NoteHeadList(TypedList):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        agent = StorageFormatManager(self)
-        names = list(agent.signature_keyword_names)
+        manager = StorageFormatManager(self)
+        names = list(manager.signature_keyword_names)
         if "client" in names:
             names.remove("client")
         if "items" in names:

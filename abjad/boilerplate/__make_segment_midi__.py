@@ -7,7 +7,7 @@ import sys
 import traceback
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 
     try:
         from definition import maker
@@ -29,7 +29,7 @@ if __name__ == '__main__':
 
     try:
         segment_directory = pathlib.Path(os.path.realpath(__file__)).parent
-        builds_directory = segment_directory.parent.parent / 'builds'
+        builds_directory = segment_directory.parent.parent / "builds"
         builds_directory = ide.Path(builds_directory)
     except:
         traceback.print_exc()
@@ -41,10 +41,10 @@ if __name__ == '__main__':
                 metadata=metadata,
                 midi=True,
                 previous_metadata=previous_metadata,
-                )
+            )
         count = int(timer.elapsed_time)
-        counter = abjad.String('second').pluralize(count)
-        message = f'Abjad runtime {{count}} {{counter}} ...'
+        counter = abjad.String("second").pluralize(count)
+        message = f"Abjad runtime {{count}} {{counter}} ..."
         print(message)
     except:
         traceback.print_exc()
@@ -59,12 +59,12 @@ if __name__ == '__main__':
 
     try:
         segment = ide.Path(__file__).parent
-        midi = segment / 'segment.midi'
+        midi = segment / "segment.midi"
         with abjad.Timer() as timer:
             abjad.persist(lilypond_file).as_midi(midi, remove_ly=True)
         count = int(timer.elapsed_time)
-        counter = abjad.String('second').pluralize(count)
-        message = f'LilyPond runtime {{count}} {{counter}} ...'
+        counter = abjad.String("second").pluralize(count)
+        message = f"LilyPond runtime {{count}} {{counter}} ..."
         print(message)
     except:
         traceback.print_exc()

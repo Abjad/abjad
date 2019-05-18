@@ -34,6 +34,7 @@ from .Score import Score
 from .Skip import Skip
 from .Staff import Staff
 from .StaffGroup import StaffGroup
+from .TremoloContainer import TremoloContainer
 from .Tuplet import Tuplet
 from .VerticalMoment import VerticalMoment
 from .Voice import Voice

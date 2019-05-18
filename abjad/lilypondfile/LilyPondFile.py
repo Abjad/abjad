@@ -299,9 +299,11 @@ class LilyPondFile(object):
             Searches score:
 
             >>> voice_1 = abjad.Voice("c''4 b' a' g'", name='Custom_Voice_1')
-            >>> abjad.attach(abjad.LilyPondLiteral(r'\voiceOne'), voice_1)
+            >>> literal = abjad.LilyPondLiteral(r'\voiceOne', "opening")
+            >>> abjad.attach(literal, voice_1)
             >>> voice_2 = abjad.Voice("c'4 d' e' f'", name='Custom_Voice_2')
-            >>> abjad.attach(abjad.LilyPondLiteral(r'\voiceTwo'), voice_2)
+            >>> literal = abjad.LilyPondLiteral(r'\voiceTwo', "opening")
+            >>> abjad.attach(literal, voice_2)
             >>> staff = abjad.Staff(
             ...     [voice_1, voice_2],
             ...     is_simultaneous=True,
@@ -1247,9 +1249,11 @@ class LilyPondFile(object):
             ...     divisions,
             ...     )
             >>> voice_1 = lilypond_file['Voice_1']
-            >>> abjad.attach(abjad.LilyPondLiteral(r'\voiceOne'), voice_1)
+            >>> literal = abjad.LilyPondLiteral(r'\voiceOne', "opening")
+            >>> abjad.attach(literal, voice_1)
             >>> voice_2 = lilypond_file['Voice_2']
-            >>> abjad.attach(abjad.LilyPondLiteral(r'\voiceTwo'), voice_2)
+            >>> literal = abjad.LilyPondLiteral(r'\voiceTwo', "opening")
+            >>> abjad.attach(literal, voice_2)
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::

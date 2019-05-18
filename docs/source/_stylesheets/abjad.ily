@@ -42,25 +42,3 @@ abjad-revert-continuous-glissando = #(
     $music
     #}
     )
-
-%%% METRONOME MARK FUNCTIONS %%%
-
-#(define-markup-command
-    (abjad-metronome-mark-markup layout props
-    duration-log dot-count stem-height units-per-minute)
-    (number? number? number? markup?)
-    (interpret-markup layout props
-    #{
-    \markup {
-        \fontsize #-6
-        \general-align #Y #DOWN
-        \note-by-number #duration-log #dot-count #stem-height
-        \upright =
-        \hspace #-0.15
-        \upright
-        #units-per-minute
-        \hspace #1
-        }
-    #}
-    )
-    )

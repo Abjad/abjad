@@ -189,18 +189,6 @@ class Articulation(object):
         """
         return super().__hash__()
 
-    def __illustrate__(self):
-        """
-        Illustrates articulation.
-
-        Returns LilyPond file.
-        """
-        note = abjad.Note("c'4")
-        articulation = copy.copy(self)
-        attach(articulation, note)
-        lilypond_file = abjad.LilyPondFile.new(note)
-        return lilypond_file
-
     def __repr__(self):
         """
         Gets interpreter representation.

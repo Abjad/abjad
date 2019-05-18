@@ -23,7 +23,7 @@ from abjad.top.mutate import mutate
 from abjad.top.override import override
 from abjad.top.select import select
 from abjad.top.setting import setting
-from abjad.timespans.Timespan import Timespan
+from abjad.timespans import Timespan
 from abjad.utilities.Duration import Duration
 from .VerticalMoment import VerticalMoment
 
@@ -210,8 +210,9 @@ class Component(object):
             self._scale_contents(self.multiplier)
         selection = select([self])
         parent, start, stop = selection._get_parent_and_start_stop_indices()
-        components = list(getattr(self, "components", ()))
-        parent.__setitem__(slice(start, stop + 1), components)
+        if parent is not None:
+            components = list(getattr(self, "components", ()))
+            parent.__setitem__(slice(start, stop + 1), components)
         return self
 
     def _format_absolute_after_slot(self, bundle):

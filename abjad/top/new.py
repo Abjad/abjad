@@ -1,9 +1,9 @@
 import types
 
 
-def new(argument, **keywords):
+def new(argument, *arguments, **keywords):
     r"""
-    Makes new ``argument`` with ``keywords``.
+    Makes new ``argument`` with positional ``arguments`` and ``keywords``.
 
     ..  container:: example
 
@@ -109,6 +109,15 @@ def new(argument, **keywords):
     for name in manager.signature_positional_names:
         if name in template_dict:
             positional_values.append(template_dict.pop(name))
+    positional_name = getattr(argument, "_positional_arguments_name", None)
+    if positional_name is not None:
+        assert isinstance(positional_name, str), repr(positional_name)
+        positional_values_ = getattr(argument, positional_name)
+        positional_values.extend(positional_values_)
+    if arguments == (None,):
+        positional_values = []
+    elif arguments is not ():
+        positional_values = list(arguments)
     result = type(argument)(*positional_values, **template_dict)
     for name in getattr(argument, "_private_attributes_to_copy", []):
         value = getattr(argument, name, None)

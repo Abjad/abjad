@@ -164,7 +164,6 @@ class Fermata(object):
             >>> str(abjad.Fermata('longfermata'))
             '\\longfermata'
 
-        Returns string.
         """
         return rf"\{self.command}"
 
