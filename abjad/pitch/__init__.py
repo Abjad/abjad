@@ -27,6 +27,7 @@ from .NamedInversionEquivalentIntervalClass import (
 from .Octave import Octave
 from .PitchClass import PitchClass
 from .Pitch import Pitch
+from .Pitch import PitchTyping
 from .NamedPitch import NamedPitch
 from .NamedPitchClass import NamedPitchClass
 from .NumberedInterval import NumberedInterval

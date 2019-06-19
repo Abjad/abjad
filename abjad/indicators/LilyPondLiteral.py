@@ -165,6 +165,7 @@ class LilyPondLiteral(object):
     def __init__(
         self,
         argument: typing.Union[str, typing.List[str]] = "",
+        # TODO: probaby change default to "before"
         format_slot: str = "opening",
         *,
         directed: bool = None,
@@ -217,6 +218,13 @@ class LilyPondLiteral(object):
 
     ### PRIVATE METHODS ###
 
+    # TODO: activate this:
+    #    def _before_attach(self, component):
+    #        if self.format_slot not in component._allowable_format_slots:
+    #            message = f"{type(component).__name__} does not accept"
+    #            message += f" format slot {repr(self.format_slot)}."
+    #            raise Exception(message)
+
     def _get_format_pieces(self):
         if isinstance(self.argument, str):
             return [self.argument]
@@ -224,13 +232,9 @@ class LilyPondLiteral(object):
         return self.argument[:]
 
     def _get_format_specification(self):
-        names = []
-        if not self.format_slot == "opening":
-            names.append("format_slot")
         return FormatSpecification(
             client=self,
             storage_format_args_values=[self.argument],
-            storage_format_kwargs_names=names,
             storage_format_is_indented=False,
         )
 

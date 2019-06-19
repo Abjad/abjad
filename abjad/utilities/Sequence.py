@@ -72,6 +72,13 @@ class Sequence(collections.abc.Sequence):
             >>> expression([1, 2, 3, [4, 5, [6]]])
             Sequence([4, 5, 6, 3, 2, 1])
 
+    ..  container:: example
+
+        REGRESSION:
+
+        >>> abjad.Sequence(0)
+        Sequence([0])
+
     """
 
     ### CLASS VARIABLES ###
@@ -83,7 +90,8 @@ class Sequence(collections.abc.Sequence):
     def __init__(self, items=None):
         self._equivalence_markup = None
         self._expression = None
-        items = items or ()
+        if items is None:
+            items = ()
         if not isinstance(items, collections.abc.Iterable):
             items = [items]
         self._items = tuple(items)
@@ -1663,8 +1671,12 @@ class Sequence(collections.abc.Sequence):
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        cumulative_sum = mathtools.cumulative_sums(self, start=None)[-1]
-        return type(self)([cumulative_sum])
+        if not self:
+            return type(self)()
+        item = self[0]
+        for item_ in self[1:]:
+            item += item_
+        return type(self)([item])
 
     @Signature(
         markup_maker_callback="_make_map_markup",
@@ -1749,7 +1761,13 @@ class Sequence(collections.abc.Sequence):
                 map_operand=operand,
             )
         if operand is not None:
-            items = [operand(_) for _ in self]
+            is_expression = hasattr(operand, "_set_map_index")
+            items = []
+            for i, item_ in enumerate(self):
+                if is_expression:
+                    operand._set_map_index(i)
+                item_ = operand(item_)
+                items.append(item_)
         else:
             items = list(self.items[:])
         return type(self)(items)
@@ -5211,6 +5229,24 @@ class Sequence(collections.abc.Sequence):
             else:
                 weights.append(abs(item))
         return sum(weights)
+
+    @Signature()
+    def zebra(self, n, _map_index=None) -> "Sequence":
+        """
+        Test function for mapped index.
+        """
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
+        if _map_index is None:
+            addendum = n
+        else:
+            assert isinstance(_map_index, int), repr(_map_index)
+            addendum = n + _map_index
+        items = []
+        for item in self:
+            item = item + addendum
+            items.append(item)
+        return type(self)(items)
 
     def zip(self, cyclic=False, truncate=True) -> "Sequence":
         """

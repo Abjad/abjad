@@ -2,7 +2,7 @@ import itertools
 from abjad import exceptions
 from abjad.indicators.RepeatTie import RepeatTie
 from abjad.indicators.TieIndicator import TieIndicator
-from abjad.mathtools.Ratio import Ratio
+from abjad.mathtools import Ratio
 from abjad.top.attach import attach
 from abjad.top.detach import detach
 from abjad.top.inspect import inspect

@@ -10,7 +10,7 @@ class ScoreTemplate(abjad.ScoreTemplate):
         """
         Calls score template.
         """
-        voice = abjad.Voice(name='Example_Voice')
-        staff = abjad.Staff([voice], name='Example_Staff')
-        score = abjad.Score([staff], name='Example_Score')
+        voice = abjad.Voice(name="Example_Voice")
+        staff = abjad.Staff([voice], name="Example_Staff")
+        score = abjad.Score([staff], name="Example_Score")
         return score

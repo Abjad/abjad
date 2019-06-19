@@ -2,6 +2,7 @@ import abc
 import functools
 import math
 import numbers
+import typing
 from abjad import mathtools
 from abjad.system.StorageFormatManager import StorageFormatManager
 from . import constants
@@ -321,3 +322,8 @@ class Pitch(object):
         Returns new pitch.
         """
         raise NotImplementedError
+
+
+### TYPINGS ###
+
+PitchTyping = typing.Union[int, str, Pitch]

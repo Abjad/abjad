@@ -3,7 +3,7 @@ import typing
 from abjad import enums
 from abjad import typings
 from abjad.markups import Markup
-from abjad.mathtools.Ratio import Ratio
+from abjad.mathtools import Ratio
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.top.inspect import inspect

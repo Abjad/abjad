@@ -1,4 +1,6 @@
 from abjad.system.StorageFormatManager import StorageFormatManager
+from .FormatSpecification import FormatSpecification
+from .SlotContributions import SlotContributions
 
 
 class LilyPondFormatBundle(object):
@@ -28,14 +30,12 @@ class LilyPondFormatBundle(object):
     ### INITIALIZER ###
 
     def __init__(self):
-        import abjad
-
-        self._absolute_after = abjad.SlotContributions()
-        self._absolute_before = abjad.SlotContributions()
-        self._before = abjad.SlotContributions()
-        self._after = abjad.SlotContributions()
-        self._opening = abjad.SlotContributions()
-        self._closing = abjad.SlotContributions()
+        self._absolute_after = SlotContributions()
+        self._absolute_before = SlotContributions()
+        self._before = SlotContributions()
+        self._after = SlotContributions()
+        self._opening = SlotContributions()
+        self._closing = SlotContributions()
         self._context_settings = []
         self._grob_overrides = []
         self._grob_reverts = []
@@ -57,8 +57,6 @@ class LilyPondFormatBundle(object):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        import abjad
-
         slot_contribution_names = (
             "absolute_before",
             "absolute_after",
@@ -78,7 +76,7 @@ class LilyPondFormatBundle(object):
             if getattr(self, _).has_contributions
         ]
         names.extend(_ for _ in grob_contribution_names if getattr(self, _))
-        return abjad.FormatSpecification(
+        return FormatSpecification(
             client=self, storage_format_kwargs_names=names
         )
 

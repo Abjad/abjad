@@ -175,7 +175,7 @@ class KeySignature(object):
         return self._context
 
     @property
-    def mode(self):
+    def mode(self) -> Mode:
         """
         Gets mode of key signature.
 
@@ -195,7 +195,6 @@ class KeySignature(object):
             >>> key_signature.mode
             Mode('minor')
 
-        Returns mode.
         """
         return self._mode
 

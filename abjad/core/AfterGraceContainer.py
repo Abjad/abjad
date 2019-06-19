@@ -39,15 +39,17 @@ class AfterGraceContainer(Container):
         after the note they follow. The resulting spacing is usually too
         loose.
 
-        Customize aftterGraceFraction as shown above.
+        Customize ``afterGraceFraction`` as shown above.
 
-    After grace notes are played at the very end of the note they follow.
+    After grace notes are played in the last moments of duration of the note
+    they follow.
 
     Use after grace notes when you need to end a piece of music with grace
     notes.
 
-    After grace notes do not subclass grace notes; but acciacatura containers
-    and appoggiatura containers do subclass grace notes.
+    ``AfterGracecontainer`` does not subclass ``GraceContainer``; but
+    ``AcciaccaturaContainer`` and ``AppoggiaturaContainer`` do subclass
+    ``GraceContainer``.
 
     Fill grace containers with notes, rests or chords.
 
@@ -81,6 +83,39 @@ class AfterGraceContainer(Container):
                 d'4
                 ^ \markup { Allegro }
                 \staccato
+                {
+                    c'16
+                    d'16
+                }
+                e'4
+                f'4
+            }
+
+    ..  container:: example
+
+        REGRESSION #1074. After grace containers format correctly with chords
+        and overrides. It is important here that the ``\afterGrace`` command
+        appear lexically after the ``\override`` command:
+
+        >>> voice = abjad.Voice("c'4 <d' f'>4 e'4 f'4")
+        >>> string = '#(define afterGraceFraction (cons 15 16))'
+        >>> literal = abjad.LilyPondLiteral(string)
+        >>> abjad.attach(literal, voice[0])
+        >>> after_grace_container = abjad.AfterGraceContainer("c'16 d'16")
+        >>> abjad.attach(after_grace_container, voice[1])
+        >>> abjad.override(voice[1]).note_head.color = "red"
+        >>> abjad.show(voice) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(voice)
+            \new Voice
+            {
+                #(define afterGraceFraction (cons 15 16))
+                c'4
+                \once \override NoteHead.color = #red
+                \afterGrace
+                <d' f'>4
                 {
                     c'16
                     d'16

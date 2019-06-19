@@ -53,5 +53,4 @@ from .StopTrillSpan import StopTrillSpan
 from .StringContactPoint import StringContactPoint
 from .TieIndicator import TieIndicator
 from .TimeSignature import TimeSignature
-from .Tremolo import Tremolo
 from .WoodwindFingering import WoodwindFingering

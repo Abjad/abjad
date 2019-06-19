@@ -8,7 +8,7 @@ version_file_path = os.path.join(
 )
 with open(version_file_path, "r") as file_pointer:
     file_contents_string = file_pointer.read()
-local_dict = {}
+local_dict: dict = {}
 exec(file_contents_string, None, local_dict)
 __version__ = local_dict["__version__"]
 
@@ -18,14 +18,12 @@ with open("README.rst", "r") as file_pointer:
     long_description = file_pointer.read()
 
 author = ["Trevor Bača", "Josiah Wolf Oberholtzer", "Víctor Adán"]
-author = ", ".join(author)
 
 author_email = [
     "trevor.baca@gmail.com",
     "josiah.oberholtzer@gmail.com",
     "contact@victoradan.net",
 ]
-author_email = ", ".join(author_email)
 
 classifiers = [
     "Development Status :: 5 - Production/Stable",
@@ -63,21 +61,20 @@ keywords = [
     "formalized score control",
     "lilypond",
 ]
-keywords = ", ".join(keywords)
 
 install_requires = ["ply", "roman", "uqbar >= 0.2.17"]
 
 if __name__ == "__main__":
     setuptools.setup(
-        author=author,
-        author_email=author_email,
+        author=", ".join(author),
+        author_email=", ".join(author_email),
         classifiers=classifiers,
         description=description,
         entry_points=entry_points,
         extras_require=extras_require,
         include_package_data=True,
         install_requires=install_requires,
-        keywords=keywords,
+        keywords=", ".join(keywords),
         license="MIT",
         long_description=long_description,
         name="Abjad",

@@ -4,7 +4,7 @@ import typing
 from abjad import mathtools
 from abjad import pitch as abjad_pitch
 from abjad import typings
-from abjad.mathtools.NonreducedFraction import NonreducedFraction
+from abjad.mathtools import NonreducedFraction
 from abjad.top.attach import attach
 from abjad.utilities.Duration import Duration
 from abjad.utilities.Multiplier import Multiplier
@@ -522,8 +522,8 @@ class LeafMaker(object):
         result: typing.List[typing.Union[Tuplet, Leaf]] = []
         for duration_group in duration_groups:
             # get factors in denominator of duration group other than 1, 2.
-            factors = mathtools.factors(duration_group[0].denominator)
-            factors = set(factors)
+            factors_ = mathtools.factors(duration_group[0].denominator)
+            factors = set(factors_)
             factors.discard(1)
             factors.discard(2)
             current_pitches = pitches[0 : len(duration_group)]

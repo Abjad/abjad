@@ -1,6 +1,4 @@
 import abjad
 
 
-aliases = abjad.OrderedDict([
-    ('todo', 'etc/to-do.md'),
-    ])
+aliases = abjad.OrderedDict([("todo", "etc/to-do.md")])

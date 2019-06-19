@@ -9,7 +9,7 @@ from abjad import mathtools
 from abjad import typings
 from abjad.indicators.TieIndicator import TieIndicator
 from abjad.indicators.RepeatTie import RepeatTie
-from abjad.mathtools.Ratio import Ratio
+from abjad.mathtools import Ratio
 from abjad.pitch.PitchSet import PitchSet
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.StorageFormatManager import StorageFormatManager

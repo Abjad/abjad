@@ -364,6 +364,37 @@ class Mutation(object):
                     \f
                 }
 
+        ..  container:: example
+
+            Extracting out-of-score component does nothing and returns
+            component:
+
+            >>> tuplet = abjad.Tuplet((3, 2), "c'4 e'4")
+            >>> abjad.show(tuplet) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(tuplet)
+                \tweak text #tuplet-number::calc-fraction-text
+                \times 3/2 {
+                    c'4
+                    e'4
+                }
+
+            >>> abjad.mutate(tuplet).extract()
+            Tuplet(Multiplier(3, 2), "c'4 e'4")
+
+            >>> abjad.show(tuplet) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(tuplet)
+                \tweak text #tuplet-number::calc-fraction-text
+                \times 3/2 {
+                    c'4
+                    e'4
+                }
+
         Returns mutation client.
         """
         return self.client._extract(scale_contents=scale_contents)
