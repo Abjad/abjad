@@ -108,11 +108,11 @@ class Selection(collections.abc.Sequence):
 
     __documentation_section__ = "Selections"
 
-    __slots__ = ("_expression", "_items")
+    __slots__ = ("_expression", "_items", "_previous")
 
     ### INITIALIZER ###
 
-    def __init__(self, items=None):
+    def __init__(self, items=None, previous=None):
         if items is None:
             items = []
         if isinstance(items, Component):
@@ -121,6 +121,7 @@ class Selection(collections.abc.Sequence):
         self._check(items)
         self._items = tuple(items)
         self._expression = None
+        self._previous = previous
 
     ### SPECIAL METHODS ###
 
@@ -421,12 +422,14 @@ class Selection(collections.abc.Sequence):
                 inspect.currentframe(), template=template
             )
         if isinstance(argument, Pattern):
+            argument = argument.advance(self._previous)
+            self._previous = None
             items = Sequence(self.items).retain_pattern(argument)
-            result = type(self)(items)
+            result = type(self)(items, previous=self._previous)
         else:
             result = self.items.__getitem__(argument)
             if isinstance(result, tuple):
-                result = type(self)(result)
+                result = type(self)(result, previous=self._previous)
         return result
 
     def __getstate__(self) -> dict:
@@ -1682,7 +1685,7 @@ class Selection(collections.abc.Sequence):
             grace_notes=grace_notes,
             reverse=reverse,
         )
-        return type(self)(generator)
+        return type(self)(generator, previous=self._previous)
 
     def filter(self, predicate=None) -> typing.Union["Selection", Expression]:
         r"""
@@ -5643,7 +5646,7 @@ class Selection(collections.abc.Sequence):
             pitched=pitched,
             reverse=reverse,
         )
-        return type(self)(generator)
+        return type(self)(generator, previous=self._previous)
 
     def map(self, expression=None) -> typing.Union["Selection", Expression]:
         r'''
