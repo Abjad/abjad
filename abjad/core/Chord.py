@@ -65,6 +65,7 @@ class Chord(Leaf):
         tag: str = None,
     ) -> None:
         from abjad.ly import drums
+        from .Note import Note
 
         assert len(arguments) in (0, 1, 2)
         self._note_heads = NoteHeadList(client=self)
@@ -82,12 +83,13 @@ class Chord(Leaf):
             written_duration = leaf.written_duration
             if multiplier is None:
                 multiplier = leaf.multiplier
-            if "written_pitch" in dir(leaf):
+            # TODO: move to dedicated from_note() constructor:
+            if isinstance(leaf, Note) and leaf.note_head is not None:
                 written_pitches.append(leaf.note_head.written_pitch)
                 are_cautionary = [leaf.note_head.is_cautionary]
                 are_forced = [leaf.note_head.is_forced]
                 are_parenthesized = [leaf.note_head.is_parenthesized]
-            elif "written_pitches" in dir(leaf):
+            elif isinstance(leaf, Chord):
                 written_pitches.extend(
                     x.written_pitch for x in leaf.note_heads
                 )
@@ -96,6 +98,7 @@ class Chord(Leaf):
                 are_parenthesized = [
                     x.is_parenthesized for x in leaf.note_heads
                 ]
+        # TODO: move to dedicated constructor:
         elif len(arguments) == 2:
             written_pitches, written_duration = arguments
             if isinstance(written_pitches, str):
@@ -103,7 +106,7 @@ class Chord(Leaf):
             elif isinstance(written_pitches, type(self)):
                 written_pitches = written_pitches.written_pitches
         elif len(arguments) == 0:
-            written_pitches = [0, 4, 7]
+            written_pitches = [abjad_pitch.NamedPitch(_) for _ in [0, 4, 7]]
             written_duration = Duration(1, 4)
         else:
             raise ValueError(f"can not initialize chord from {arguments!r}.")
@@ -131,6 +134,7 @@ class Chord(Leaf):
                     is_parenthesized=is_parenthesized,
                 )
             else:
+                assert isinstance(written_pitch, str), repr(written_pitch)
                 note_head = DrumNoteHead(
                     written_pitch=written_pitch,
                     is_cautionary=is_cautionary,
@@ -143,11 +147,9 @@ class Chord(Leaf):
 
     ### SPECIAL METHODS ###
 
-    def __copy__(self, *arguments):
+    def __copy__(self, *arguments) -> "Chord":
         """
-        Shallow copies chord.
-
-        Returns new chord.
+        Copies chord.
         """
         new_chord = Leaf.__copy__(self, *arguments)
         new_chord.note_heads[:] = []
@@ -156,9 +158,16 @@ class Chord(Leaf):
             new_chord.note_heads.append(note_head)
         return new_chord
 
-    def __getnewargs__(self):
+    def __getnewargs__(
+        self
+    ) -> typing.Tuple[abjad_pitch.PitchSegment, Duration]:
         """
         Gets new chord arguments.
+
+        ..  container:: example
+
+            >>> abjad.Chord("<c' d'>4").__getnewargs__()
+            (PitchSegment("c' d'"), Duration(1, 4))
 
         Returns pair.
         """
@@ -303,9 +312,9 @@ class Chord(Leaf):
         self.note_heads.extend(note_heads)
 
     @property
-    def written_duration(self):
+    def written_duration(self) -> Duration:
         """
-        Gets written duration of chord.
+        Gets and sets written duration of chord.
 
         ..  container:: example
 
@@ -327,18 +336,15 @@ class Chord(Leaf):
             >>> chord.written_duration = abjad.Duration(1, 16)
             >>> abjad.show(chord) # doctest: +SKIP
 
-        Set duration.
-
-        Returns duration.
         """
-        return Leaf.written_duration.fget(self)
+        return super().written_duration
 
     @written_duration.setter
     def written_duration(self, argument):
         Leaf.written_duration.fset(self, argument)
 
     @property
-    def written_pitches(self):
+    def written_pitches(self) -> abjad_pitch.PitchSegment:
         """
         Written pitches in chord.
 
@@ -371,8 +377,6 @@ class Chord(Leaf):
             PitchSegment("f' b' d''")
 
         Set written pitches with any iterable.
-
-        Returns tuple.
         """
         return abjad_pitch.PitchSegment(
             items=(note_head.written_pitch for note_head in self.note_heads),

@@ -62,6 +62,7 @@ class Note(Leaf):
         tag: str = None,
     ) -> None:
         from abjad.ly import drums
+        from .Chord import Chord
 
         assert len(arguments) in (0, 1, 2)
         if len(arguments) == 1 and isinstance(arguments[0], str):
@@ -69,6 +70,7 @@ class Note(Leaf):
             parsed = parse(string)
             assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
             arguments = tuple([parsed[0]])
+        written_pitch = None
         is_cautionary = False
         is_forced = False
         is_parenthesized = False
@@ -78,12 +80,13 @@ class Note(Leaf):
             written_duration = leaf.written_duration
             if multiplier is None:
                 multiplier = leaf.multiplier
-            if "written_pitch" in dir(leaf):
+            if isinstance(leaf, Note) and leaf.note_head is not None:
                 written_pitch = leaf.note_head.written_pitch
                 is_cautionary = leaf.note_head.is_cautionary
                 is_forced = leaf.note_head.is_forced
                 is_parenthesized = leaf.note_head.is_parenthesized
-            elif "written_pitches" in dir(leaf):
+            # TODO: move into separate from_chord() constructor:
+            elif isinstance(leaf, Chord):
                 written_pitches = [x.written_pitch for x in leaf.note_heads]
                 if written_pitches:
                     written_pitch = written_pitches[0]
@@ -93,7 +96,7 @@ class Note(Leaf):
         elif len(arguments) == 2:
             written_pitch, written_duration = arguments
         elif len(arguments) == 0:
-            written_pitch = "C4"
+            written_pitch = NamedPitch("C4")
             written_duration = Duration(1, 4)
         else:
             raise ValueError("can not initialize note from {arguments!r}.")
@@ -107,6 +110,7 @@ class Note(Leaf):
                     is_parenthesized=is_parenthesized,
                 )
             else:
+                assert isinstance(written_pitch, str), repr(written_pitch)
                 self.note_head = DrumNoteHead(
                     written_pitch=written_pitch,
                     is_cautionary=is_cautionary,
@@ -235,7 +239,7 @@ class Note(Leaf):
                 cs''16
 
         """
-        return Leaf.written_duration.fget(self)
+        return super().written_duration
 
     @written_duration.setter
     def written_duration(self, argument):
