@@ -4859,6 +4859,79 @@ class Sequence(collections.abc.Sequence):
             Sequence([7, -8])
             Sequence([-2, 1])
 
+        ..  container:: example
+
+            REGRESSION. Splits sequence of nonreduced fractions cyclically by
+            weights with overhang:
+
+            ..  container:: example
+
+                >>> sequence = abjad.sequence([
+                ...     abjad.NonreducedFraction(20, 2),
+                ...     abjad.NonreducedFraction(-20, 2),
+                ...     abjad.NonreducedFraction(20, 2),
+                ...     abjad.NonreducedFraction(-20, 2),
+                ... ])
+
+                >>> for part in sequence.split(
+                ...     (3, 15, 3),
+                ...     cyclic=True,
+                ...     overhang=True,
+                ...     ):
+                ...     part
+                ...
+                Sequence([NonreducedFraction(6, 2)])
+                Sequence([NonreducedFraction(14, 2), NonreducedFraction(-16, 2)])
+                Sequence([NonreducedFraction(-4, 2), NonreducedFraction(2, 2)])
+                Sequence([NonreducedFraction(6, 2)])
+                Sequence([NonreducedFraction(12, 2), NonreducedFraction(-18, 2)])
+                Sequence([NonreducedFraction(-2, 2)])
+
+            ..  container:: example expression
+
+                >>> expression = abjad.Expression(name='J')
+                >>> expression = expression.sequence()
+                >>> expression = expression.split(
+                ...     (3, 15, 3),
+                ...     cyclic=True,
+                ...     overhang=True,
+                ...     )
+
+                >>> for part in expression([
+                ...     abjad.NonreducedFraction(20, 2),
+                ...     abjad.NonreducedFraction(-20, 2),
+                ...     abjad.NonreducedFraction(20, 2),
+                ...     abjad.NonreducedFraction(-20, 2),
+                ... ]):
+                ...     part
+                ...
+                Sequence([NonreducedFraction(6, 2)])
+                Sequence([NonreducedFraction(14, 2), NonreducedFraction(-16, 2)])
+                Sequence([NonreducedFraction(-4, 2), NonreducedFraction(2, 2)])
+                Sequence([NonreducedFraction(6, 2)])
+                Sequence([NonreducedFraction(12, 2), NonreducedFraction(-18, 2)])
+                Sequence([NonreducedFraction(-2, 2)])
+
+                >>> expression.get_string()
+                'split(J, <3, 15, 3>+)'
+
+                >>> markup = expression.get_markup()
+                >>> abjad.show(markup) # doctest: +SKIP
+
+                ..  docs::
+
+                    >>> abjad.f(markup)
+                    \markup {
+                        \concat
+                            {
+                                split(
+                                \bold
+                                    J
+                                ", <3, 15, 3>+)"
+                            }
+                        }
+
+
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())

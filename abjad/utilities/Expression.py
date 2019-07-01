@@ -1,3 +1,4 @@
+import fractions
 import inspect
 import itertools
 import numbers
@@ -1150,6 +1151,8 @@ class Expression(object):
             pass
         elif isinstance(argument, str):
             argument = repr(argument)
+        elif isinstance(argument, fractions.Fraction):
+            argument = f"abjad.{argument.__repr__()}"
         elif isinstance(argument, numbers.Number):
             argument = str(argument)
         elif isinstance(argument, (list, tuple)):

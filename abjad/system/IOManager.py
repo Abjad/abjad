@@ -720,7 +720,7 @@ class IOManager(object):
             abjad_output_directory, last_output_file_name
         )
         with open(file_path, "w") as new:
-            with open(last_pdf_full_name, "r") as old:
+            with open(last_pdf_full_name, "r", encoding="ISO-8859-1") as old:
                 new.write("".join(old.readlines()))
 
     @staticmethod

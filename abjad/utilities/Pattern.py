@@ -1070,6 +1070,56 @@ class Pattern(object):
 
     ### PUBLIC METHODS ###
 
+    def advance(self, count: int = None) -> "Pattern":
+        """
+        Advances pattern.
+
+        ..  container:: example
+
+            >>> pattern = abjad.Pattern([0, 2, 12])
+
+            >>> pattern = pattern.advance(8)
+            >>> pattern
+            Pattern(indices=[4])
+
+            >>> pattern = pattern.advance(8)
+            >>> pattern
+            Pattern(indices=())
+
+        ..  container:: example
+
+            Returns copy of pattern when count is none:
+
+            >>> pattern = abjad.Pattern([0, 2, 12])
+            >>> pattern.advance()
+            Pattern(indices=[0, 2, 12])
+
+        ..  container:: example exception
+
+            Raises exception on attempt to advance negative pattern:
+
+            >>> pattern = abjad.Pattern([-2, -1])
+            >>> pattern.advance(8)
+            Traceback (most recent call last):
+                ...
+            Exception: can not advance pattern with negative indices (Pattern(indices=[-2, -1])).
+
+        """
+        if not count:
+            return new(self)
+        assert 0 < count, repr(count)
+        for index in self.indices:
+            if index < 0:
+                message = "can not advance pattern"
+                message += f" with negative indices ({repr(self)})."
+                raise Exception(message)
+        new_indices = []
+        for index in self.indices:
+            new_index = index - count
+            if 0 <= new_index:
+                new_indices.append(new_index)
+        return new(self, indices=new_indices)
+
     @classmethod
     def from_vector(class_, vector):
         """
