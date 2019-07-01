@@ -2376,140 +2376,9 @@ class Mutation(object):
     # TODO: add tests of tupletted notes and rests.
     # TODO: add examples that show indicator handling.
     # TODO: add example showing grace and after grace handling.
-    def split(
-        self, durations, cyclic=False, tie_split_notes=True, repeat_ties=False
-    ):
+    def split(self, durations, cyclic=False, repeat_ties=False):
         r"""
         Splits mutation client by ``durations``.
-
-        ..  container:: example
-
-            Splits leaves:
-
-            >>> staff = abjad.Staff("c'8 e' d' f' c' e' d' f'")
-            >>> leaves = staff[:]
-            >>> abjad.hairpin('p < f', leaves)
-            >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 3
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                \with
-                {
-                    \override DynamicLineSpanner.staff-padding = #3
-                }
-                {
-                    c'8
-                    \p
-                    \<
-                    e'8
-                    d'8
-                    f'8
-                    c'8
-                    e'8
-                    d'8
-                    f'8
-                    \f
-                }
-
-            >>> durations = [(3, 16), (7, 32)]
-            >>> result = abjad.mutate(leaves).split(
-            ...     durations,
-            ...     tie_split_notes=False,
-            ...     )
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                \with
-                {
-                    \override DynamicLineSpanner.staff-padding = #3
-                }
-                {
-                    c'8
-                    \p
-                    \<
-                    e'16
-                    e'16
-                    d'8
-                    f'32
-                    f'16.
-                    c'8
-                    e'8
-                    d'8
-                    f'8
-                    \f
-                }
-
-        ..  container:: example
-
-            Splits leaves cyclically:
-
-            >>> staff = abjad.Staff("c'8 e' d' f' c' e' d' f'")
-            >>> leaves = staff[:]
-            >>> abjad.hairpin('p < f', leaves)
-            >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 3
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                \with
-                {
-                    \override DynamicLineSpanner.staff-padding = #3
-                }
-                {
-                    c'8
-                    \p
-                    \<
-                    e'8
-                    d'8
-                    f'8
-                    c'8
-                    e'8
-                    d'8
-                    f'8
-                    \f
-                }
-
-            >>> durations = [(3, 16), (7, 32)]
-            >>> result = abjad.mutate(leaves).split(
-            ...     durations,
-            ...     cyclic=True,
-            ...     tie_split_notes=False,
-            ...     )
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                \with
-                {
-                    \override DynamicLineSpanner.staff-padding = #3
-                }
-                {
-                    c'8
-                    \p
-                    \<
-                    e'16
-                    e'16
-                    d'8
-                    f'32
-                    f'16.
-                    c'16.
-                    c'32
-                    e'8
-                    d'16
-                    d'16
-                    f'8
-                    \f
-                }
 
         ..  container:: example
 
@@ -2540,7 +2409,6 @@ class Mutation(object):
             >>> result = abjad.mutate(staff[:]).split(
             ...     durations,
             ...     cyclic=True,
-            ...     tie_split_notes=True,
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -2574,7 +2442,6 @@ class Mutation(object):
             >>> result = abjad.mutate(staff[:]).split(
             ...     durations,
             ...     cyclic=True,
-            ...     tie_split_notes=True,
             ...     repeat_ties=True,
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
@@ -2638,7 +2505,6 @@ class Mutation(object):
             >>> result = abjad.mutate(staff[:]).split(
             ...     durations,
             ...     cyclic=True,
-            ...     tie_split_notes=True,
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -2767,7 +2633,6 @@ class Mutation(object):
             >>> result = abjad.mutate(container).split(
             ...     durations,
             ...     cyclic=False,
-            ...     tie_split_notes=True,
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -2857,7 +2722,6 @@ class Mutation(object):
             >>> result = abjad.mutate(staff[:]).split(
             ...     durations,
             ...     cyclic=True,
-            ...     tie_split_notes=True,
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -2914,6 +2778,41 @@ class Mutation(object):
                     d'4...
                     ~
                     d'2
+                }
+
+        ..  container:: example
+
+            REGRESSION #1092. Preserves conventional tie when creating repeat
+            ties:
+
+            >>> staff = abjad.Staff("d'1 ~ d'")
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    d'1
+                    ~
+                    d'1
+                }
+
+            >>> result = abjad.mutate(staff[1]).split(
+            ...     [(1, 2)], repeat_ties=True
+            ... )
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    d'1
+                    ~
+                    d'2
+                    d'2
+                    \repeatTie
                 }
 
         Returns list of selections.
@@ -3002,7 +2901,6 @@ class Mutation(object):
                     leaf_shards = current_component._split_by_durations(
                         leaf_split_durations,
                         cyclic=False,
-                        tie_split_notes=tie_split_notes,
                         repeat_ties=repeat_ties,
                     )
                     shard.extend(leaf_shards)
@@ -3011,9 +2909,7 @@ class Mutation(object):
                 else:
                     assert isinstance(current_component, Container)
                     pair = current_component._split_by_duration(
-                        local_split_duration,
-                        tie_split_notes=tie_split_notes,
-                        repeat_ties=repeat_ties,
+                        local_split_duration, repeat_ties=repeat_ties
                     )
                     left_list, right_list = pair
                     shard.extend(left_list)

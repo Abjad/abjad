@@ -3,6 +3,7 @@ def attach(
     target,
     context=None,
     deactivate=None,
+    do_not_test=None,
     synthetic_offset=None,
     tag=None,
     wrapper=None,
@@ -227,7 +228,7 @@ def attach(
     if hasattr(attachable, "_before_attach"):
         attachable._before_attach(target)
 
-    if hasattr(attachable, "_attachment_test_all"):
+    if hasattr(attachable, "_attachment_test_all") and not do_not_test:
         result = attachable._attachment_test_all(target)
         if result is not True:
             assert isinstance(result, list), repr(result)

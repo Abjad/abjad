@@ -881,14 +881,10 @@ class Container(Component):
         # return new left and right containers
         return halves
 
-    def _split_by_duration(
-        self, duration, tie_split_notes=True, repeat_ties=False
-    ):
+    def _split_by_duration(self, duration, repeat_ties=False):
         if self.is_simultaneous:
             return self._split_simultaneous_by_duration(
-                duration=duration,
-                tie_split_notes=tie_split_notes,
-                repeat_ties=repeat_ties,
+                duration=duration, repeat_ties=repeat_ties
             )
         duration = Duration(duration)
         assert 0 <= duration, repr(duration)
@@ -917,9 +913,7 @@ class Container(Component):
             start_offset = timespan.start_offset
             split_point_in_bottom = global_split_point - start_offset
             new_leaves = bottom._split_by_durations(
-                [split_point_in_bottom],
-                tie_split_notes=tie_split_notes,
-                repeat_ties=repeat_ties,
+                [split_point_in_bottom], repeat_ties=repeat_ties
             )
             for leaf in new_leaves:
                 timespan = inspect(leaf).timespan()
@@ -963,7 +957,7 @@ class Container(Component):
             previous = right
         # reapply tie here if crawl above killed tie applied to leaves
         if did_split_leaf:
-            if tie_split_notes and isinstance(leaf_left_of_split, Note):
+            if isinstance(leaf_left_of_split, Note):
                 if (
                     inspect(leaf_left_of_split).parentage().root
                     is inspect(leaf_right_of_split).parentage().root
@@ -977,16 +971,12 @@ class Container(Component):
         # return list-wrapped halves of container
         return [left], [right]
 
-    def _split_simultaneous_by_duration(
-        self, duration, tie_split_notes=True, repeat_ties=False
-    ):
+    def _split_simultaneous_by_duration(self, duration, repeat_ties=False):
         assert self.is_simultaneous
         left_components, right_components = [], []
         for component in self[:]:
             halves = component._split_by_duration(
-                duration=duration,
-                tie_split_notes=tie_split_notes,
-                repeat_ties=repeat_ties,
+                duration=duration, repeat_ties=repeat_ties
             )
             left_components_, right_components_ = halves
             left_components.extend(left_components_)

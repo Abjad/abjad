@@ -355,7 +355,8 @@ class Dynamic(object):
         import abjad
 
         if not isinstance(component_expression, abjad.Leaf):
-            return False
+            strings = ["Must be leaf (not {component_expression})."]
+            return strings
         return True
 
     def _format_effort_dynamic(self):

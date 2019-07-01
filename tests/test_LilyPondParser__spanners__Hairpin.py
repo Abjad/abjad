@@ -62,7 +62,7 @@ def test_LilyPondParser__spanners__Hairpin_01():
 #    assert format(target) == format(result) and target is not result
 
 
-def test_LilyPondParser__spanners__Hairpin_03():
+def test_LilyPondParser__spanners__Hairpin_02():
     """
     Dynamics can terminate hairpins.
     """
@@ -93,7 +93,7 @@ def test_LilyPondParser__spanners__Hairpin_03():
     assert format(target) == format(result) and target is not result
 
 
-def test_LilyPondParser__spanners__Hairpin_04():
+def test_LilyPondParser__spanners__Hairpin_03():
     """
     Unterminated.
     """
@@ -103,7 +103,7 @@ def test_LilyPondParser__spanners__Hairpin_04():
         abjad.LilyPondParser()(string)
 
 
-def test_LilyPondParser__spanners__Hairpin_05():
+def test_LilyPondParser__spanners__Hairpin_04():
     """
     Unbegun is okay.
     """
@@ -112,7 +112,7 @@ def test_LilyPondParser__spanners__Hairpin_05():
     result = abjad.parser.LilyPondParser()(string)
 
 
-def test_LilyPondParser__spanners__Hairpin_06():
+def test_LilyPondParser__spanners__Hairpin_05():
     """
     No double dynamic spans permitted.
     """
@@ -122,7 +122,7 @@ def test_LilyPondParser__spanners__Hairpin_06():
         abjad.LilyPondParser()(string)
 
 
-def test_LilyPondParser__spanners__Hairpin_07():
+def test_LilyPondParser__spanners__Hairpin_06():
     """
     With direction.
     """
@@ -160,7 +160,7 @@ def test_LilyPondParser__spanners__Hairpin_07():
     assert format(target) == format(result) and target is not result
 
 
-def test_LilyPondParser__spanners__Hairpin_08():
+def test_LilyPondParser__spanners__Hairpin_07():
 
     string = r"\new Staff { c'4 ( \p \< d'4 e'4 f'4 ) \! }"
     parser = abjad.parser.LilyPondParser()
