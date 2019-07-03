@@ -206,7 +206,8 @@ class Instrument(object):
         import abjad
 
         if abjad.inspect(component_expression).has_indicator(Instrument):
-            return False
+            string = f"Already has instrument: {component_expression}."
+            return string
         return True
 
     def _get_format_specification(self):

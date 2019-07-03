@@ -441,9 +441,7 @@ class Leaf(Component):
             mutate(all_leaves).wrap(tuplet)
             return select(tuplet)
 
-    def _split_by_durations(
-        self, durations, cyclic=False, tie_split_notes=True, repeat_ties=False
-    ):
+    def _split_by_durations(self, durations, cyclic=False, repeat_ties=False):
         from .AfterGraceContainer import AfterGraceContainer
         from .Chord import Chord
         from .GraceContainer import GraceContainer
@@ -481,13 +479,11 @@ class Leaf(Component):
         assert all(isinstance(_, Selection) for _ in result_selections)
         assert all(isinstance(_, Component) for _ in result_components)
         assert result_leaves.are_leaves()
-        #        for leaf in result_leaves:
-        #            detach(Tie, leaf)
         # strip result leaves of all indicators
         for leaf in result_leaves:
             detach(object, leaf)
         # replace leaf with flattened result
-        if self._parent is not None:
+        if inspect(self).parentage().parent is not None:
             mutate(self).replace(result_components)
         # move indicators
         first_result_leaf = result_leaves[0]
@@ -514,22 +510,16 @@ class Leaf(Component):
         if isinstance(result_components[0], Tuplet):
             mutate(result_components).fuse()
         # tie split notes
-        if (
-            tie_split_notes
-            and isinstance(self, (Note, Chord))
-            and 1 < len(result_leaves)
-        ):
+        if isinstance(self, (Note, Chord)) and 1 < len(result_leaves):
             result_leaves._attach_tie_to_leaves(repeat_ties=repeat_ties)
-        # assert not inspect(result_leaves[0]).has_indicator(RepeatTie)
-        detach(RepeatTie, result_leaves[0])
-        # assert not inspect(result_leaves[-1]).has_indicator(TieIndicator)
-        detach(TieIndicator, result_leaves[-1])
-        if originally_repeat_tied:
-            tie = RepeatTie()
-            attach(tie, result_leaves[0])
-        if originally_tied:
-            tie = TieIndicator()
-            attach(tie, result_leaves[-1])
+        if originally_repeat_tied and not inspect(
+            result_leaves[0]
+        ).has_indicator(RepeatTie):
+            attach(RepeatTie(), result_leaves[0])
+        if originally_tied and not inspect(result_leaves[-1]).has_indicator(
+            TieIndicator
+        ):
+            attach(TieIndicator(), result_leaves[-1])
         assert isinstance(result_leaves, Selection)
         assert all(isinstance(_, Leaf) for _ in result_leaves)
         return result_leaves

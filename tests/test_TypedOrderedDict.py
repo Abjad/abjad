@@ -307,7 +307,7 @@ def test_TypedOrderedDict_15():
 #    assert dictionary_1 == dictionary_2
 
 
-def test_TypedOrderedDict_17():
+def test_TypedOrderedDict_16():
     """
     Implements update().
     """

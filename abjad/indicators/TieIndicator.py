@@ -5,6 +5,7 @@ from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.system.Tags import Tags
+from abjad.top.inspect import inspect
 from abjad.utilities.String import String
 
 abjad_tags = Tags()
@@ -111,7 +112,13 @@ class TieIndicator(object):
         from abjad.core.Note import Note
 
         if not isinstance(argument, (Chord, Note)):
-            return False
+            string = f"Must be note or chord (not {argument})."
+            return [string]
+        next_leaf = inspect(argument).leaf(1)
+        if not isinstance(next_leaf, (Chord, Note, type(None))):
+            string = f"Can not attach tie to {argument}"
+            string += f" when next leaf is {next_leaf}."
+            return [string]
         return True
 
     def _get_lilypond_format_bundle(self, component=None):

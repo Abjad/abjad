@@ -104,6 +104,20 @@ class RepeatTie(object):
 
     ### PRIVATE METHODS ###
 
+    def _attachment_test_all(self, argument):
+        from abjad.core.Chord import Chord
+        from abjad.core.Note import Note
+
+        if not isinstance(argument, (Chord, Note)):
+            string = f"Must be note or chord (not {argument})."
+            return [string]
+        previous_leaf = inspect(argument).leaf(-1)
+        if not isinstance(previous_leaf, (Chord, Note, type(None))):
+            string = f"Can not attach repeat-tie to {argument}"
+            string += f" when previous leaf is {previous_leaf}."
+            return [string]
+        return True
+
     def _get_lilypond_format_bundle(self, component=None):
         bundle = LilyPondFormatBundle()
         if self.tweaks:

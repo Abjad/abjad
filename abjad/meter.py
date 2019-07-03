@@ -751,7 +751,6 @@ class Meter(object):
             offsets = _MeterManager.get_offsets_at_depth(
                 depth, offset_inventory
             )
-            # print('DEPTH:', depth)
             logical_tie_duration = logical_tie._get_preprolated_duration()
             logical_tie_timespan = inspect(logical_tie).timespan()
             logical_tie_start_offset = logical_tie_timespan.start_offset
@@ -764,12 +763,12 @@ class Meter(object):
                 logical_tie_stops_in_offsets=logical_tie_stops_in_offsets,
                 maximum_dot_count=maximum_dot_count,
             ):
-                # print('UNACCEPTABLE:', logical_tie, logical_tie_start_offset, logical_tie_stop_offset)
                 split_offset = None
                 offsets = _MeterManager.get_offsets_at_depth(
                     depth, offset_inventory
                 )
-                # If the logical tie's start aligns, take the latest possible offset.
+                # If the logical tie's start aligns,
+                # take the latest possible offset.
                 if logical_tie_starts_in_offsets:
                     offsets = reversed(offsets)
                 for offset in offsets:
@@ -780,26 +779,11 @@ class Meter(object):
                     ):
                         split_offset = offset
                         break
-                # print('\tABS:', split_offset)
                 if split_offset is not None:
                     split_offset -= logical_tie_start_offset
-                    # print('\tREL:', split_offset)
-                    # print()
-
-                    #                    print('LT796', logical_tie)
-                    #                    for leaf in logical_tie:
-                    #                        print(leaf, inspect(leaf).indicators(), 'III')
-
                     shards = mutate(logical_tie[:]).split(
                         [split_offset], repeat_ties=repeat_ties
                     )
-
-                    #                    for shard in shards:
-                    #                        print('SH', shard)
-                    #                        for leaf in select(shards).leaves():
-                    #                            print(leaf, inspect(leaf).indicators(), 'PPP')
-                    #                    print()
-
                     logical_ties = [LogicalTie(_) for _ in shards]
                     for logical_tie in logical_ties:
                         recurse(
@@ -809,7 +793,6 @@ class Meter(object):
                             logical_tie=logical_tie,
                         )
                 else:
-                    # print()
                     recurse(
                         boundary_depth=boundary_depth,
                         boundary_offsets=boundary_offsets,
@@ -822,7 +805,6 @@ class Meter(object):
                 logical_tie_start_offset=logical_tie_start_offset,
                 logical_tie_stop_offset=logical_tie_stop_offset,
             ):
-                # print('BOUNDARY CROSSING', logical_tie, logical_tie_start_offset, logical_tie_stop_offset)
                 offsets = boundary_offsets
                 if logical_tie_start_offset in boundary_offsets:
                     offsets = reversed(boundary_offsets)
@@ -836,11 +818,7 @@ class Meter(object):
                         split_offset = offset
                         break
                 assert split_offset is not None
-                # print('\tABS:', split_offset)
                 split_offset -= logical_tie_start_offset
-                # print('\tREL:', split_offset)
-                # print()
-                # print('LT836', logical_tie)
                 shards = mutate(logical_tie[:]).split(
                     [split_offset], repeat_ties=repeat_ties
                 )
@@ -853,8 +831,6 @@ class Meter(object):
                         logical_tie=logical_tie,
                     )
             else:
-                # print('ACCEPTABLE:', logical_tie, logical_tie_start_offset, logical_tie_stop_offset)
-                # print()
                 logical_tie[:]._fuse()
 
         assert isinstance(components, Selection), repr(components)
@@ -894,12 +870,12 @@ class Meter(object):
             boundary_offsets = offset_inventory[boundary_depth]
         else:
             boundary_offsets = None
-        # Cache results of iterator, as we'll be mutating the underlying collection
+        # Cache results of iterator;
+        # we'll be mutating the underlying collection
         iterator = _MeterManager.iterate_rewrite_inputs(components)
         items = tuple(iterator)
         for item in items:
             if isinstance(item, LogicalTie):
-                # print('RECURSING:', item)
                 recurse(
                     boundary_depth=boundary_depth,
                     boundary_offsets=boundary_offsets,
@@ -909,7 +885,6 @@ class Meter(object):
             elif isinstance(item, Tuplet) and not rewrite_tuplets:
                 pass
             else:
-                # print('DESCENDING:', item)
                 preprolated_duration = sum(
                     [_._get_preprolated_duration() for _ in item]
                 )

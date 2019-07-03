@@ -7,8 +7,8 @@ from abjad import enums
 from abjad import exceptions
 from abjad import mathtools
 from abjad import typings
-from abjad.indicators.TieIndicator import TieIndicator
 from abjad.indicators.RepeatTie import RepeatTie
+from abjad.indicators.TieIndicator import TieIndicator
 from abjad.mathtools import Ratio
 from abjad.pitch.PitchSet import PitchSet
 from abjad.system.FormatSpecification import FormatSpecification
@@ -526,19 +526,14 @@ class Selection(collections.abc.Sequence):
     ### PRIVATE METHODS ###
 
     def _attach_tie_to_leaves(self, repeat_ties=False):
-        from abjad.spanners import tie as abjad_tie
-
-        leaves = []
-        for leaf in self:
-            assert isinstance(leaf, Leaf), repr(leaf)
-            for leaf_ in abjad_inspect(leaf).logical_tie().leaves:
-                if leaf_ not in leaves:
-                    leaves.append(leaf_)
-        leaves = Selection(leaves)
-        for leaf in leaves:
-            detach(TieIndicator, leaf)
-            detach(RepeatTie, leaf)
-        abjad_tie(leaves, repeat=repeat_ties)
+        if not repeat_ties:
+            for leaf in self[:-1]:
+                detach(TieIndicator, leaf)
+                attach(TieIndicator(), leaf)
+        else:
+            for leaf in self[1:]:
+                detach(RepeatTie, leaf)
+                attach(RepeatTie(), leaf)
 
     @staticmethod
     def _check(items):
