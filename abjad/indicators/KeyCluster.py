@@ -56,7 +56,7 @@ class KeyCluster(object):
         include_black_keys: bool = True,
         include_white_keys: bool = True,
         hide: bool = False,
-        markup_direction: enums.VerticalAlignment = enums.Up,
+        markup_direction: int = enums.Up,
     ) -> None:
         assert include_black_keys or include_white_keys
         self._include_black_keys = bool(include_black_keys)
@@ -321,7 +321,7 @@ class KeyCluster(object):
         return self._include_white_keys
 
     @property
-    def markup_direction(self) -> enums.VerticalAlignment:
+    def markup_direction(self) -> int:
         r"""
         Gets markup direction.
 

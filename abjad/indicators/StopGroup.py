@@ -23,7 +23,7 @@ class StopGroup(object):
 
     _publish_storage_format = True
 
-    _time_orientation: enums.HorizontalAlignment = enums.Right
+    _time_orientation = enums.Right
 
     ### INITIALIZER ###
 

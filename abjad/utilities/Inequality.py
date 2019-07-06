@@ -66,6 +66,12 @@ class Inequality(object):
             raise TypeError(f"unhashable type: {self}")
         return result
 
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
+
     ### PUBLIC PROPERTIES ###
 
     @property

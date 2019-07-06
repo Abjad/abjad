@@ -63,7 +63,7 @@ class RepeatTie(object):
     def __init__(
         self,
         *,
-        direction: enums.VerticalAlignment = None,
+        direction: int = None,
         left_broken: bool = None,
         tweaks: LilyPondTweakManager = None,
     ) -> None:
@@ -182,7 +182,7 @@ class RepeatTie(object):
         return self._context
 
     @property
-    def direction(self) -> typing.Optional[str]:
+    def direction(self) -> typing.Optional[String]:
         r"""
         Gets direction.
 

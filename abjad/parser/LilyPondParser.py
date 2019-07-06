@@ -7,7 +7,7 @@ from abjad import lilypondfile as abjad_lilypondfile
 from abjad import markups as abjad_markups
 from abjad import pitch as abjad_pitch
 from abjad import core
-from abjad.system import Parser
+from abjad.system.Parser import Parser
 from ._parse import _parse
 from ._parse_debug import _parse_debug
 from abjad.top.annotate import annotate

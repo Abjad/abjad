@@ -48,10 +48,7 @@ class Arpeggio(object):
     ### INITIALIZER ###
 
     def __init__(
-        self,
-        *,
-        direction: enums.VerticalAlignment = None,
-        tweaks: LilyPondTweakManager = None,
+        self, *, direction: int = None, tweaks: LilyPondTweakManager = None
     ) -> None:
         if direction is not None:
             assert direction in (enums.Up, enums.Down, enums.Center)
@@ -82,7 +79,7 @@ class Arpeggio(object):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def direction(self) -> typing.Optional[enums.VerticalAlignment]:
+    def direction(self) -> typing.Optional[int]:
         """
         Gets direction of arpeggio.
 

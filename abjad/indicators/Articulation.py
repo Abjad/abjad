@@ -241,7 +241,7 @@ class Articulation(object):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def direction(self) -> typing.Optional[enums.VerticalAlignment]:
+    def direction(self) -> typing.Optional[int]:
         """
         Gets direction of articulation.
 

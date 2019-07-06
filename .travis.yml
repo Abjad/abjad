@@ -22,8 +22,9 @@ before_install:
 - wget -q ${LILYPOND_URL}lilypond-${LILYPOND_VERSION}-1.linux-64.sh
 - sh lilypond-${LILYPOND_VERSION}-1.linux-64.sh --batch
 - pip install -U pip coverage
-- pip install --target /tmp/typehints --no-deps uqbar>=0.2.13
-- export MYPYPATH=/tmp/typehints
+# no longer needed because make calls mypy --ignore-missing-paths?
+###- pip install --target /tmp/typehints --no-deps uqbar>=0.2.13
+###- export MYPYPATH=/tmp/typehints
 - export PATH=/home/travis/bin:$PATH
 
 install:

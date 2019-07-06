@@ -63,9 +63,9 @@ class Staccatissimo(object):
 
     __slots__ = ("_direction", "_tweaks")
 
-    _format_slot: enums.HorizontalAlignment = enums.Right
+    _format_slot = enums.Right
 
-    _time_orientation: enums.HorizontalAlignment = enums.Right
+    _time_orientation = enums.Right
 
     ### INITIALIZER ###
 
@@ -140,7 +140,7 @@ class Staccatissimo(object):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def direction(self) -> typing.Optional[enums.VerticalAlignment]:
+    def direction(self) -> typing.Optional[int]:
         """
         Gets direction of articulation.
 

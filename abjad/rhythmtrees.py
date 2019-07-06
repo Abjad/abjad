@@ -425,9 +425,7 @@ class RhythmTreeLeaf(RhythmTreeMixin, uqbar.containers.UniqueTreeNode):
         self._is_pitched = bool(argument)
 
 
-class RhythmTreeContainer(
-    RhythmTreeMixin, uqbar.containers.UniqueTreeList
-):
+class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
     r"""
     Rhythm-tree container.
 

@@ -57,11 +57,6 @@ from abjad.timespans import TimespanList
 # import version information
 from ._version import __version_info__, __version__
 
-try:
-    del _version
-except NameError:
-    pass
-
 from abjad import cli
 from abjad import demos
 from abjad import ly

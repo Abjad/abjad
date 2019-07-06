@@ -27,6 +27,13 @@ class DurationInequality(Inequality):
         >>> inequality(abjad.Container("c'1 d'1"))
         False
 
+    ..  container:: example
+
+        Has clean interpreter representation:
+
+        >>> abjad.DurationInequality('<', (3, 4))
+        DurationInequality(operator_string='<', duration=Duration(3, 4))
+
     """
 
     ### CLASS VARIABLES ###

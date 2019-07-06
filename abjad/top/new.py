@@ -109,6 +109,7 @@ def new(argument, *arguments, **keywords):
     for name in manager.signature_positional_names:
         if name in template_dict:
             positional_values.append(template_dict.pop(name))
+    # _positional_arguments_name used, for example, in rhythm-makers
     positional_name = getattr(argument, "_positional_arguments_name", None)
     if positional_name is not None:
         assert isinstance(positional_name, str), repr(positional_name)

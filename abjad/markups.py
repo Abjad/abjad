@@ -193,7 +193,7 @@ class Markup(object):
         self,
         contents=None,
         *,
-        direction: enums.VerticalAlignment = None,
+        direction: int = None,
         literal: bool = None,
         tweaks: LilyPondTweakManager = None,
     ) -> None:
@@ -696,7 +696,7 @@ class Markup(object):
         return list(self._contents)
 
     @property
-    def direction(self) -> typing.Optional[enums.VerticalAlignment]:
+    def direction(self) -> typing.Optional[int]:
         r"""
         Gets direction of markup.
 
