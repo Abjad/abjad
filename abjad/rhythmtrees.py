@@ -426,7 +426,7 @@ class RhythmTreeLeaf(RhythmTreeMixin, uqbar.containers.UniqueTreeNode):
 
 
 class RhythmTreeContainer(
-    RhythmTreeMixin, uqbar.containers.UniqueTreeContainer
+    RhythmTreeMixin, uqbar.containers.UniqueTreeList
 ):
     r"""
     Rhythm-tree container.
@@ -530,7 +530,7 @@ class RhythmTreeContainer(
     ### INITIALIZER ###
 
     def __init__(self, children=None, preprolated_duration=1, name=None):
-        uqbar.containers.UniqueTreeContainer.__init__(self, name=name)
+        uqbar.containers.UniqueTreeList.__init__(self, name=name)
         RhythmTreeMixin.__init__(
             self, preprolated_duration=preprolated_duration
         )
