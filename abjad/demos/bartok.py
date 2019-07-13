@@ -53,7 +53,7 @@ def make_bartok_score():
     command = abjad.LilyPondLiteral(r"\voiceTwo")
     abjad.attach(command, lower_voice)
     lower_measures[3].extend([upper_voice, lower_voice])
-    lower_measures[3].is_simultaneous = True
+    lower_measures[3].simultaneous = True
 
     # make parallel music for measure 5
     upper_voice = abjad.Voice("b2", name="upper voice")
@@ -63,7 +63,7 @@ def make_bartok_score():
     command = abjad.LilyPondLiteral(r"\voiceTwo")
     abjad.attach(command, lower_voice)
     lower_measures[4].extend([upper_voice, lower_voice])
-    lower_measures[4].is_simultaneous = True
+    lower_measures[4].simultaneous = True
 
     # add bass clef
     clef = abjad.Clef("bass")

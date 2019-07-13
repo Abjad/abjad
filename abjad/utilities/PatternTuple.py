@@ -1,3 +1,4 @@
+from .Pattern import Pattern
 from .TypedTuple import TypedTuple
 
 
@@ -283,13 +284,11 @@ class PatternTuple(TypedTuple):
 
     @property
     def _item_coercer(self):
-        import abjad
-
         def coerce_(argument):
             if hasattr(argument, "pattern"):
                 pass
-            elif not isinstance(argument, abjad.Pattern):
-                argument = abjad.Pattern(*argument)
+            elif not isinstance(argument, Pattern):
+                argument = Pattern(*argument)
             return argument
 
         return coerce_

@@ -283,13 +283,13 @@ class RhythmTreeMixin(object):
         >>> tree = abjad.rhythmtrees.RhythmTreeParser()(rtm)[0]
 
         >>> tree.start_offset
-        Offset(0, 1)
+        Offset((0, 1))
 
         >>> tree[1].start_offset
-        Offset(1, 2)
+        Offset((1, 2))
 
         >>> tree[0][1].start_offset
-        Offset(1, 4)
+        Offset((1, 4))
 
         Returns Offset instance.
         """

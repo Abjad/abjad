@@ -48,7 +48,7 @@ class GuileProxy(object):
         r"""
         Handles LilyPond ``\acciaccatura`` command.
         """
-        grace = core.AcciaccaturaContainer(music[:])
+        grace = core.GraceContainer(music[:], command=r"\acciaccatura")
         return grace
 
     # afterGrace?
@@ -57,7 +57,7 @@ class GuileProxy(object):
         r"""
         Handles LilyPond ``\appoggiatura`` command.
         """
-        grace = core.AppoggiaturaContainer(music[:])
+        grace = core.GraceContainer(music[:], command=r"\appoggiatura")
         return grace
 
     def bar(self, string):

@@ -35,7 +35,7 @@ class Cluster(Container):
     def _format_open_brackets_slot(self, bundle):
         result = []
         contributor = ("self_brackets", "open")
-        if self.is_simultaneous:
+        if self.simultaneous:
             brackets_open = ["<<"]
         else:
             brackets_open = ["{"]

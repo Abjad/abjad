@@ -25,6 +25,7 @@ from abjad.top.inspect import inspect as abjad_inspect
 from abjad.top.iterate import iterate
 from abjad.top.mutate import mutate
 from abjad.top.override import override
+from abjad.top.select import select
 from abjad.top.sequence import sequence
 from abjad.utilities.Multiplier import Multiplier
 from .Block import Block
@@ -306,7 +307,7 @@ class LilyPondFile(object):
             >>> abjad.attach(literal, voice_2)
             >>> staff = abjad.Staff(
             ...     [voice_1, voice_2],
-            ...     is_simultaneous=True,
+            ...     simultaneous=True,
             ...     name='Custom_Staff',
             ...     )
             >>> score = abjad.Score([staff], name='Custom_Score')
@@ -374,7 +375,7 @@ class LilyPondFile(object):
                 >>> staff = abjad.Staff("c'4 d' e' f'", name='Custom_Staff')
                 >>> container = abjad.Container(
                 ...     [include_container, staff],
-                ...     is_simultaneous=True,
+                ...     simultaneous=True,
                 ...     )
                 >>> lilypond_file = abjad.LilyPondFile.new(
                 ...     container,
@@ -1365,10 +1366,13 @@ class LilyPondFile(object):
                 selections_ = selections.values()
             else:
                 raise TypeError(selections)
-            for note in iterate(selections_).leaves(Note):
+            for note in select(selections_).notes():
                 if note.written_pitch != NamedPitch("c'"):
                     pitched_staff = True
                     break
+            chords = select(selections_).chords()
+            if chords:
+                pitched_staff = True
         if isinstance(selections, (list, Selection)):
             if divisions is None:
                 duration = abjad_inspect(selections).duration()
@@ -1401,7 +1405,7 @@ class LilyPondFile(object):
                         command = LilyPondLiteral("\\" + command_string)
                         attach(command, voice)
                 voices.append(voice)
-            staff = Staff(voices, is_simultaneous=True)
+            staff = Staff(voices, simultaneous=True)
             if divisions is None:
                 duration = abjad_inspect(staff).duration()
                 divisions = [duration]

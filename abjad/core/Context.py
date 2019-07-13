@@ -73,7 +73,7 @@ class Context(Container):
         self,
         components=None,
         lilypond_type: str = "Context",
-        is_simultaneous: bool = None,
+        simultaneous: bool = None,
         name: str = None,
         tag: str = None,
     ) -> None:
@@ -83,7 +83,7 @@ class Context(Container):
         self.lilypond_type = lilypond_type
         Container.__init__(
             self,
-            is_simultaneous=is_simultaneous,
+            simultaneous=simultaneous,
             components=components,
             name=name,
             tag=tag,
@@ -112,7 +112,7 @@ class Context(Container):
 
         Returns tuple.
         """
-        return [], self.lilypond_type, self.is_simultaneous, self.name
+        return [], self.lilypond_type, self.simultaneous, self.name
 
     def __repr__(self):
         """
@@ -159,7 +159,7 @@ class Context(Container):
     def _format_open_brackets_slot(self, bundle):
         indent = LilyPondFormatManager.indent
         result = []
-        if self.is_simultaneous:
+        if self.simultaneous:
             if self.identifier:
                 open_bracket = f"<<  {self.identifier}"
             else:
@@ -272,9 +272,9 @@ class Context(Container):
 
     def _get_repr_kwargs_names(self):
         if self.lilypond_type == type(self).__name__:
-            return ["is_simultaneous", "name"]
+            return ["simultaneous", "name"]
         else:
-            return ["is_simultaneous", "lilypond_type", "name"]
+            return ["simultaneous", "lilypond_type", "name"]
 
     ### PUBLIC PROPERTIES ###
 

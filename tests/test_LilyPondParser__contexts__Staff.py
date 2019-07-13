@@ -21,7 +21,7 @@ def test_LilyPondParser__contexts__Staff_01():
 def test_LilyPondParser__contexts__Staff_02():
 
     target = abjad.Staff([])
-    target.is_simultaneous = True
+    target.simultaneous = True
     maker = abjad.NoteMaker()
     target.append(abjad.Voice(maker([0, 2, 4, 5, 7, 9, 11, 12], (1, 8))))
     target.append(abjad.Voice(maker([0, 2, 4, 5, 7, 9, 11, 12], (1, 8))))

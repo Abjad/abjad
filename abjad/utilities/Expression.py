@@ -2003,7 +2003,7 @@ class Expression(object):
             >>> expression = abjad.timespan()
 
             >>> expression(start_offset=0, stop_offset=(1, 4))
-            Timespan(start_offset=Offset(0, 1), stop_offset=Offset(1, 4))
+            Timespan(Offset((0, 1)), Offset((1, 4)))
 
         """
         from abjad.timespans import Timespan

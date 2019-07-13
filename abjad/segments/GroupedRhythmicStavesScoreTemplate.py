@@ -227,7 +227,7 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
                         voice_identifier = "{}_{}".format(
                             staff_number, voice_number
                         )
-                        staff.is_simultaneous = True
+                        staff.simultaneous = True
                     name = "Voice_{}".format(voice_identifier)
                     voice = abjad.Voice([], name=name, tag=tag)
                     staff.append(voice)

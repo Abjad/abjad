@@ -128,25 +128,6 @@ class NoteMaker(object):
 
     ..  container:: example
 
-        Uses repeat ties:
-
-        >>> maker = abjad.NoteMaker(repeat_ties=True)
-        >>> notes = maker([0], [(13, 16)])
-        >>> staff = abjad.Staff(notes)
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> abjad.f(staff)
-            \new Staff
-            {
-                c'2.
-                c'16
-                \repeatTie
-            }
-
-    ..  container:: example
-
         Works with pitch segments:
 
         >>> maker = abjad.NoteMaker()
@@ -179,25 +160,18 @@ class NoteMaker(object):
 
     __documentation_section__ = "Makers"
 
-    __slots__ = ("_increase_monotonic", "_repeat_ties", "_tag")
+    __slots__ = ("_increase_monotonic", "_tag")
 
     _publish_storage_format = True
 
     ### INITIALIZER ###
 
     def __init__(
-        self,
-        *,
-        increase_monotonic: bool = None,
-        repeat_ties: bool = None,
-        tag: str = None,
+        self, *, increase_monotonic: bool = None, tag: str = None
     ) -> None:
         if increase_monotonic is not None:
             increase_monotonic = bool(increase_monotonic)
         self._increase_monotonic = increase_monotonic
-        if repeat_ties is not None:
-            repeat_ties = bool(repeat_ties)
-        self._repeat_ties = repeat_ties
         if tag is not None:
             assert isinstance(tag, str), repr(tag)
         self._tag = tag
@@ -237,7 +211,6 @@ class NoteMaker(object):
                         ps,
                         duration,
                         increase_monotonic=self.increase_monotonic,
-                        repeat_ties=self.repeat_ties,
                         tag=self.tag,
                     )
                 )
@@ -254,7 +227,6 @@ class NoteMaker(object):
                     ps,
                     duration,
                     increase_monotonic=self.increase_monotonic,
-                    repeat_ties=self.repeat_ties,
                     tag=self.tag,
                 )
                 tuplet = Tuplet(multiplier, ns)
@@ -265,11 +237,7 @@ class NoteMaker(object):
 
     @staticmethod
     def _make_unprolated_notes(
-        pitches,
-        durations,
-        increase_monotonic=None,
-        repeat_ties=False,
-        tag=None,
+        pitches, durations, increase_monotonic=None, tag=None
     ):
         assert len(pitches) == len(durations)
         result = []
@@ -280,7 +248,6 @@ class NoteMaker(object):
                     duration,
                     pitches=pitch,
                     increase_monotonic=increase_monotonic,
-                    repeat_ties=repeat_ties,
                     tag=tag,
                 )
             )
@@ -294,13 +261,6 @@ class NoteMaker(object):
         Is true when durations increase monotonically.
         """
         return self._increase_monotonic
-
-    @property
-    def repeat_ties(self) -> typing.Optional[bool]:
-        """
-        Is true when ties are repeat ties.
-        """
-        return self._repeat_ties
 
     @property
     def tag(self) -> typing.Optional[str]:

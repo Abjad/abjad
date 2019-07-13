@@ -4,6 +4,7 @@ import re
 import typing
 from abjad import exceptions
 from abjad import mathtools
+from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.StorageFormatManager import StorageFormatManager
 
 try:
@@ -261,10 +262,8 @@ class Duration(Fraction):
 
         Returns string.
         """
-        import abjad
-
         if format_specification in ("", "storage"):
-            return abjad.StorageFormatManager(self).get_storage_format()
+            return StorageFormatManager(self).get_storage_format()
         return str(self)
 
     def __ge__(self, argument):
@@ -482,9 +481,7 @@ class Duration(Fraction):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        import abjad
-
-        return abjad.FormatSpecification(
+        return FormatSpecification(
             client=self,
             storage_format_args_values=[self.numerator, self.denominator],
             storage_format_is_indented=False,

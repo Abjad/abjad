@@ -442,7 +442,7 @@ class LilyPondParser(Parser):
                 print(x)
             # TODO: impelement context mods on contexts
             pass
-        context.is_simultaneous = music.is_simultaneous
+        context.simultaneous = music.simultaneous
         # add children
         while len(music):
             component = music.pop(0)
@@ -510,7 +510,7 @@ class LilyPondParser(Parser):
             return False
 
         container = core.Container()
-        container.is_simultaneous = True
+        container.simultaneous = True
         # check for voice separators
         groups = []
         for value, group in itertools.groupby(music, is_separator):
@@ -597,7 +597,7 @@ class LilyPondParser(Parser):
             abjad_indicators.StopTextSpan,
             abjad_indicators.StopTrillSpan,
             abjad_indicators.StemTremolo,
-            abjad_indicators.TieIndicator,
+            abjad_indicators.Tie,
             abjad_markups.Markup,
         )
         for post_event in post_events:
@@ -706,7 +706,7 @@ class LilyPondParser(Parser):
             else:
                 return abjad_indicators.StopTextSpan()
         elif name == "TieEvent":
-            return abjad_indicators.TieIndicator()
+            return abjad_indicators.Tie()
         elif name == "TrillSpanEvent":
             if lookup["span-direction"] == -1:
                 return abjad_indicators.StartTrillSpan()

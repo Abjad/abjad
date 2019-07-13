@@ -62,7 +62,7 @@ class ContextSpeccedMusic(Music):
             pass
 
         if isinstance(self.music, abjad_parser.SimultaneousMusic):
-            context.is_simultaneous = True
+            context.simultaneous = True
         context.extend(music.construct())
 
         return context

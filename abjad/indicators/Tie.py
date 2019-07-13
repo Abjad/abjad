@@ -11,14 +11,14 @@ from abjad.utilities.String import String
 abjad_tags = Tags()
 
 
-class TieIndicator(object):
+class Tie(object):
     r"""
     LilyPond ``~`` command.
 
     ..  container:: example
 
         >>> staff = abjad.Staff("c'4 c' d' d'")
-        >>> tie = abjad.TieIndicator()
+        >>> tie = abjad.Tie()
         >>> abjad.tweak(tie).color = 'blue'
         >>> abjad.attach(tie, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
@@ -152,7 +152,7 @@ class TieIndicator(object):
 
         ..  container:: example
 
-            >>> abjad.TieIndicator().context
+            >>> abjad.Tie().context
             'Voice'
 
         Class constant.
@@ -169,7 +169,7 @@ class TieIndicator(object):
         ..  container:: example
 
             >>> staff = abjad.Staff("c'4 c' d' d'")
-            >>> tie = abjad.TieIndicator(direction=abjad.Up)
+            >>> tie = abjad.Tie(direction=abjad.Up)
             >>> abjad.tweak(tie).color = 'blue'
             >>> abjad.attach(tie, staff[0])
             >>> abjad.show(staff) # doctest: +SKIP
@@ -197,7 +197,7 @@ class TieIndicator(object):
 
         ..  container:: example
 
-            >>> abjad.TieIndicator().persistent
+            >>> abjad.Tie().persistent
             True
 
         Class constant.
@@ -212,7 +212,7 @@ class TieIndicator(object):
         ..  container:: example
 
             >>> staff = abjad.Staff("c'4 c' d' d'")
-            >>> tie = abjad.TieIndicator(right_broken=True)
+            >>> tie = abjad.Tie(right_broken=True)
             >>> abjad.tweak(tie).color = 'blue'
             >>> abjad.attach(tie, staff[0])
             >>> abjad.show(staff) # doctest: +SKIP
@@ -239,7 +239,7 @@ class TieIndicator(object):
         ..  container:: example
 
             >>> staff = abjad.Staff("c'4 c' d' d'")
-            >>> tie = abjad.TieIndicator()
+            >>> tie = abjad.Tie()
             >>> abjad.tweak(tie).color = 'blue'
             >>> abjad.attach(tie, staff[0])
             >>> abjad.show(staff) # doctest: +SKIP

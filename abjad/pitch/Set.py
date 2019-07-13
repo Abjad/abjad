@@ -20,7 +20,9 @@ class Set(TypedFrozenset):
     def __init__(self, items=None, item_class=None):
         if isinstance(items, str):
             items = items.split()
-        elif isinstance(items, (collections.Iterator, types.GeneratorType)):
+        elif isinstance(
+            items, (collections.abc.Iterator, types.GeneratorType)
+        ):
             items = [item for item in items]
         if item_class is None:
             item_class = self._named_item_class
@@ -30,7 +32,7 @@ class Set(TypedFrozenset):
                 ):
                     item_class = items.item_class
                 elif len(items):
-                    if isinstance(items, collections.Set):
+                    if isinstance(items, collections.abc.Set):
                         items = tuple(items)
                     if isinstance(items[0], str):
                         item_class = self._named_item_class

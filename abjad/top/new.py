@@ -76,6 +76,10 @@ def new(argument, *arguments, **keywords):
         return argument
     manager = abjad.StorageFormatManager(argument)
     template_dict = manager.get_template_dict()
+    if not (template_dict):
+        message = "low-level class not equipped for new():\n"
+        message += f"   {repr(argument)}"
+        raise Exception(message)
     recursive_arguments = {}
     for key, value in keywords.items():
         if "__" in key:

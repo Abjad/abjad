@@ -62,6 +62,7 @@ class Tags(object):
         "FERMATA_MEASURE",
         "SHIFTED_CLEF",
         "TWO_VOICE",
+        "THREE_VOICE",
         ### DOCUMENT TYPES ###
         "BUILD",
         "FIRST_SEGMENT_DEFAULT",

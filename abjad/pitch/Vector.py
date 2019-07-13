@@ -19,7 +19,7 @@ class Vector(TypedCounter):
     ### INITIALIZER ###
 
     def __init__(self, items=None, item_class=None):
-        prototype_1 = (collections.Iterator, types.GeneratorType)
+        prototype_1 = (collections.abc.Iterator, types.GeneratorType)
         prototype_2 = (TypedCounter, collections.Counter)
         if isinstance(items, str):
             items = items.split()
@@ -40,7 +40,7 @@ class Vector(TypedCounter):
                 ):
                     item_class = items.item_class
                 elif len(items):
-                    if isinstance(items, collections.Set):
+                    if isinstance(items, collections.abc.Set):
                         items = tuple(items)
                     if isinstance(items, dict):
                         item_class = self._dictionary_to_item_class(items)

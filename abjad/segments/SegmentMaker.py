@@ -182,7 +182,7 @@ class SegmentMaker(object):
         global_context = Context(
             [global_rests, global_skips],
             lilypond_type="GlobalContext",
-            is_simultaneous=True,
+            simultaneous=True,
             name="Global_Context",
         )
         return global_context
@@ -247,7 +247,7 @@ class SegmentMaker(object):
 
         offset_to_measure_number = {}
         for context in abjad.iterate(score).components(abjad.Context):
-            if not context.is_simultaneous:
+            if not context.simultaneous:
                 break
         measures = abjad.select(context).leaves().group_by_measure()
         for i, measure in enumerate(measures):

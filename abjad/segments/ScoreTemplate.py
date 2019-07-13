@@ -101,7 +101,7 @@ class ScoreTemplate(object):
         global_context = Context(
             [global_rests, global_skips],
             lilypond_type="GlobalContext",
-            is_simultaneous=True,
+            simultaneous=True,
             name="Global_Context",
             tag="abjad.ScoreTemplate._make_global_context",
         )

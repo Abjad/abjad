@@ -189,7 +189,7 @@ class Container(Component):
         self,
         components=None,
         identifier: str = None,
-        is_simultaneous: bool = None,
+        simultaneous: bool = None,
         name: str = None,
         tag: str = None,
     ) -> None:
@@ -201,7 +201,7 @@ class Container(Component):
         self._name = name
         self._initialize_components(components)
         self.identifier = identifier
-        self.is_simultaneous = is_simultaneous
+        self.simultaneous = simultaneous
         # sets name permanently after _initalize_components:
         self.name = name
 
@@ -315,9 +315,9 @@ class Container(Component):
         """
         if isinstance(argument, int):
             return self.components.__getitem__(argument)
-        elif isinstance(argument, slice) and not self.is_simultaneous:
+        elif isinstance(argument, slice) and not self.simultaneous:
             return select(self.components.__getitem__(argument))
-        elif isinstance(argument, slice) and self.is_simultaneous:
+        elif isinstance(argument, slice) and self.simultaneous:
             return select(self.components.__getitem__(argument))
         elif isinstance(argument, str):
             if argument not in self._named_children:
@@ -331,7 +331,7 @@ class Container(Component):
         """
         Gets new container arguments.
         """
-        return [], self.identifier, self.is_simultaneous, self.name, self.tag
+        return [], self.identifier, self.simultaneous, self.name, self.tag
 
     def __graph__(self, **keywords):
         """
@@ -490,7 +490,7 @@ class Container(Component):
 
     def _format_close_brackets_slot(self, bundle):
         result = []
-        if self.is_simultaneous:
+        if self.simultaneous:
             if self.identifier:
                 brackets_close = [f">>  {self.identifier}"]
             else:
@@ -536,7 +536,7 @@ class Container(Component):
 
     def _format_open_brackets_slot(self, bundle):
         result = []
-        if self.is_simultaneous:
+        if self.simultaneous:
             if self.identifier:
                 brackets_open = [f"<<  {self.identifier}"]
             else:
@@ -561,27 +561,12 @@ class Container(Component):
         result.append(("context settings", bundle.context_settings))
         return self._format_slot_contributions_with_indent(result)
 
-    def _format_slot_contributions_with_indent(self, slot):
-        indent = LilyPondFormatManager.indent
-        result = []
-        for contributor, contributions in slot:
-            strings = []
-            for string in contributions:
-                if string.isspace():
-                    string = ""
-                else:
-                    string = indent + string
-                strings.append(string)
-            pair = (contributor, strings)
-            result.append(pair)
-        return tuple(result)
-
     def _get_abbreviated_string_format(self):
         if 0 < len(self):
             summary = str(len(self))
         else:
             summary = ""
-        if self.is_simultaneous:
+        if self.simultaneous:
             open_bracket_string, close_bracket_string = "<<", ">>"
         else:
             open_bracket_string, close_bracket_string = "{", "}"
@@ -612,7 +597,7 @@ class Container(Component):
         return f"{{ {self._get_contents_summary()} }}"
 
     def _get_contents_duration(self):
-        if self.is_simultaneous:
+        if self.simultaneous:
             return max(
                 [Duration(0)] + [x._get_preprolated_duration() for x in self]
             )
@@ -637,7 +622,7 @@ class Container(Component):
             return ""
 
     def _get_duration_in_seconds(self):
-        if self.is_simultaneous:
+        if self.simultaneous:
             return max(
                 [Duration(0)]
                 + [x._get_duration(in_seconds=True) for x in self]
@@ -674,7 +659,7 @@ class Container(Component):
         return self._get_contents_duration()
 
     def _get_repr_kwargs_names(self):
-        return ["is_simultaneous", "name"]
+        return ["simultaneous", "name"]
 
     def _initialize_components(self, components):
         if isinstance(components, collections.abc.Iterable) and not isinstance(
@@ -700,9 +685,9 @@ class Container(Component):
         elif isinstance(components, str):
             parsed = self._parse_string(components)
             self._components = []
-            self.is_simultaneous = parsed.is_simultaneous
+            self.simultaneous = parsed.simultaneous
             if (
-                parsed.is_simultaneous
+                parsed.simultaneous
                 or not select(parsed[:]).are_contiguous_logical_voice()
             ):
                 while len(parsed):
@@ -741,7 +726,7 @@ class Container(Component):
     def _iterate_topmost(self):
         for component in self:
             if isinstance(component, Leaf):
-                logical_tie = inspect(component).logical_tie()
+                logical_tie = component._get_logical_tie()
                 if logical_tie.is_trivial or logical_tie[-1] is component:
                     yield logical_tie
             else:
@@ -881,11 +866,9 @@ class Container(Component):
         # return new left and right containers
         return halves
 
-    def _split_by_duration(self, duration, repeat_ties=False):
-        if self.is_simultaneous:
-            return self._split_simultaneous_by_duration(
-                duration=duration, repeat_ties=repeat_ties
-            )
+    def _split_by_duration(self, duration):
+        if self.simultaneous:
+            return self._split_simultaneous_by_duration(duration=duration)
         duration = Duration(duration)
         assert 0 <= duration, repr(duration)
         if duration == 0:
@@ -912,9 +895,7 @@ class Container(Component):
             timespan = inspect(bottom).timespan()
             start_offset = timespan.start_offset
             split_point_in_bottom = global_split_point - start_offset
-            new_leaves = bottom._split_by_durations(
-                [split_point_in_bottom], repeat_ties=repeat_ties
-            )
+            new_leaves = bottom._split_by_durations([split_point_in_bottom])
             for leaf in new_leaves:
                 timespan = inspect(leaf).timespan()
                 if timespan.stop_offset == global_split_point:
@@ -967,17 +948,15 @@ class Container(Component):
                         leaf_right_of_split,
                     )
                     selection = select(leaves_around_split)
-                    selection._attach_tie_to_leaves(repeat_ties=repeat_ties)
+                    selection._attach_tie_to_leaves()
         # return list-wrapped halves of container
         return [left], [right]
 
-    def _split_simultaneous_by_duration(self, duration, repeat_ties=False):
-        assert self.is_simultaneous
+    def _split_simultaneous_by_duration(self, duration):
+        assert self.simultaneous
         left_components, right_components = [], []
         for component in self[:]:
-            halves = component._split_by_duration(
-                duration=duration, repeat_ties=repeat_ties
-            )
+            halves = component._split_by_duration(duration=duration)
             left_components_, right_components_ = halves
             left_components.extend(left_components_)
             right_components.extend(right_components_)
@@ -1032,7 +1011,7 @@ class Container(Component):
         self._identifier: typing.Optional[str] = argument
 
     @property
-    def is_simultaneous(self) -> typing.Optional[bool]:
+    def simultaneous(self) -> typing.Optional[bool]:
         r"""
         Is true when container is simultaneous.
 
@@ -1061,7 +1040,7 @@ class Container(Component):
                     }
                 }
 
-            >>> container.is_simultaneous is None
+            >>> container.simultaneous is None
             True
 
         ..  container:: example
@@ -1089,7 +1068,7 @@ class Container(Component):
                     }
                 }
 
-            >>> container.is_simultaneous = True
+            >>> container.simultaneous = True
             >>> abjad.show(container) # doctest: +SKIP
 
             ..  docs::
@@ -1111,8 +1090,8 @@ class Container(Component):
         """
         return self._is_simultaneous
 
-    @is_simultaneous.setter
-    def is_simultaneous(self, argument):
+    @simultaneous.setter
+    def simultaneous(self, argument):
         if argument is None:
             return
         assert isinstance(argument, bool), repr(argument)

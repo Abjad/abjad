@@ -224,7 +224,7 @@ Making parallel voices in a staff
 ---------------------------------
 
 You can make a staff treat its contents as simultaneous with
-``is_simultaneous``:
+``simultaneous``:
 
 ..  abjad::
 
@@ -233,5 +233,5 @@ You can make a staff treat its contents as simultaneous with
     override(soprano_voice).stem.direction = Up
     override(alto_voice).stem.direction = Down
     staff = Staff([soprano_voice, alto_voice])
-    staff.is_simultaneous = True
+    staff.simultaneous = True
     show(staff)

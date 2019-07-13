@@ -214,7 +214,7 @@ expressions that are to be played at the same time::
     voice_1 = abjad.Voice(r"e''4 f''4 g''4 g''4 f''4 e''4 d''4 d''4 \fermata")
     voice_2 = abjad.Voice(r"c''4 c''4 b'4 c''4 c''8 b'8 c''4 b'4 b'4 \fermata")
     staff = abjad.Staff([voice_1, voice_2])
-    staff.is_simultaneous = True
+    staff.simultaneous = True
     literal = abjad.LilyPondLiteral(r'\voiceOne')
     abjad.attach(literal, voice_1)
     literal = abjad.LilyPondLiteral(r'\voiceTwo')
@@ -234,33 +234,33 @@ Understanding sequential and simultaneous containers
 ----------------------------------------------------
 
 Abjad implements LilyPond ``{ }`` and ``<< >>`` in the container 
-``is_simultaneous`` attribute.
+``simultaneous`` attribute.
 
-Some containers set ``is_simultaneous`` to false at initialization:
+Some containers set ``simultaneous`` to false at initialization:
 
 ..  abjad::
 
     staff = abjad.Staff()
-    staff.is_simultaneous
+    staff.simultaneous
 
-Other containers set ``is_simultaneous`` to true:
+Other containers set ``simultaneous`` to true:
 
 ..  abjad::
 
     score = abjad.Score()
-    score.is_simultaneous
+    score.simultaneous
 
 
 Changing sequential and simultaneous containers
 -----------------------------------------------
 
-Set ``is_simultaneous`` by hand as necessary:
+Set ``simultaneous`` by hand as necessary:
 
 ..  abjad::
 
     voice_1 = abjad.Voice(r"e''4 f''4 g''4 g''4 f''4 e''4 d''4 d''4 \fermata")
     voice_2 = abjad.Voice(r"c''4 c''4 b'4 c''4 c''8 b'8 c''4 b'4 b'4 \fermata")
-    staff = Staff([voice_1, voice_2], is_simultaneous=True)
+    staff = Staff([voice_1, voice_2], simultaneous=True)
     literal = abjad.LilyPondLiteral(r'\voiceOne')
     abjad.attach(literal, voice_1)
     literal = abjad.LilyPondLiteral(r'\voiceTwo')

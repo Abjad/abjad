@@ -177,7 +177,7 @@ class Chord(Leaf):
 
     def _format_before_slot(self, bundle):
         result = []
-        result.append(self._format_grace_body())
+        result.append(("grace body", self._format_grace_body()))
         result.append(("comments", bundle.before.comments))
         commands = bundle.before.commands
         result.append(("commands", commands))
@@ -185,7 +185,9 @@ class Chord(Leaf):
         result.append(("grob overrides", bundle.grob_overrides))
         result.append(("context settings", bundle.context_settings))
         result.append(("spanners", bundle.before.spanners))
-        result.append(self._format_after_grace_opening())
+        result.append(
+            ("after grace command", self._format_after_grace_command())
+        )
         return result
 
     def _format_leaf_nucleus(self):
@@ -204,12 +206,11 @@ class Chord(Leaf):
             result += str(self._get_formatted_duration())
         else:
             result.extend([format(_) for _ in note_heads])
-            result = "<%s>%s" % (
-                " ".join(result),
-                self._get_formatted_duration(),
-            )
+            pitches = " ".join(result)
+            duration = self._get_formatted_duration()
+            result = f"<{pitches}>{duration}"
         # single string, but wrapped in list bc contribution
-        return ["nucleus", [result]]
+        return [result]
 
     def _get_compact_representation(self):
         return f"<{self._get_summary()}>{self._get_formatted_duration()}"

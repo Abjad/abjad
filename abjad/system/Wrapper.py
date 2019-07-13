@@ -30,7 +30,7 @@ class Wrapper(object):
         >>> voice_1 = abjad.Voice("c''4 d'' e'' f''", name='VoiceI')
         >>> voice_2 = abjad.Voice("c'4 d' e' f'", name='VoiceII')
         >>> abjad.attach(abjad.Clef('alto'), voice_2[0])
-        >>> staff = abjad.Staff([voice_1, voice_2], is_simultaneous=True)
+        >>> staff = abjad.Staff([voice_1, voice_2], simultaneous=True)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::

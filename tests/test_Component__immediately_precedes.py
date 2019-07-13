@@ -254,8 +254,8 @@ def test_Component__immediately_precedes_11():
     lower_voice_2 = abjad.Voice("g'8 a'8 b'8 c''8")
     staff_1 = abjad.Staff([upper_voice_1, lower_voice_1])
     staff_2 = abjad.Staff([upper_voice_2, lower_voice_2])
-    staff_1.is_simultaneous = True
-    staff_2.is_simultaneous = True
+    staff_1.simultaneous = True
+    staff_2.simultaneous = True
     container = abjad.Container([staff_1, staff_2])
 
     assert format(container) == abjad.String.normalize(

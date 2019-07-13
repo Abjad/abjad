@@ -35,7 +35,7 @@ from abjad.indicators.StopPhrasingSlur import StopPhrasingSlur
 from abjad.indicators.StopPianoPedal import StopPianoPedal
 from abjad.indicators.StopTextSpan import StopTextSpan
 from abjad.indicators.StopTrillSpan import StopTrillSpan
-from abjad.indicators.TieIndicator import TieIndicator
+from abjad.indicators.Tie import Tie
 from abjad.lilypondnames.LilyPondTweakManager import IndexedTweakManager
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.scheme import SchemeSymbol
@@ -85,7 +85,7 @@ def beam(
     # beam_rests: bool = None,
     beam_rests: typing.Optional[bool] = True,
     durations: typing.Sequence[Duration] = None,
-    selector: typings.SelectorTyping = "abjad.select().leaves(do_not_iterate_grace_containers=True)",
+    selector: typings.SelectorTyping = "abjad.select().leaves()",
     span_beam_count: int = None,
     start_beam: StartBeam = None,
     stemlet_length: typings.Number = None,
@@ -122,9 +122,7 @@ def beam(
         selector = eval(selector)
     assert isinstance(selector, Expression)
     argument = selector(argument)
-    original_leaves = iterate(argument).leaves(
-        do_not_iterate_grace_containers=True
-    )
+    original_leaves = iterate(argument).leaves()
     original_leaves = list(original_leaves)
 
     silent_prototype = (MultimeasureRest, Rest, Skip)
@@ -1349,7 +1347,7 @@ def glissando(
         raise Exception(message)
 
     def _is_last_in_tie_chain(leaf):
-        logical_tie = inspect(leaf).logical_tie()
+        logical_tie = leaf._get_logical_tie()
         return leaf is logical_tie[-1]
 
     def _next_leaf_changes_current_pitch(leaf):
@@ -2100,8 +2098,8 @@ def tie(
     *,
     direction: enums.VerticalAlignment = None,
     repeat: typing.Union[bool, typings.IntegerPair, DurationInequality] = None,
-    selector: typings.SelectorTyping = "abjad.select().leaves(do_not_iterate_grace_containers=True)",
-    # tie: TieIndicator = None,
+    selector: typings.SelectorTyping = "abjad.select().leaves()",
+    # tie: Tie = None,
     tag: str = None,
 ) -> None:
     r"""
@@ -2296,7 +2294,7 @@ def tie(
         selector = eval(selector)
     assert isinstance(selector, Expression)
     argument = selector(argument)
-    leaves = select(argument).leaves(do_not_iterate_grace_containers=True)
+    leaves = select(argument).leaves()
     if len(leaves) < 2:
         raise Exception("must be two or more notes (not {leaves!r}).")
     for leaf in leaves:
@@ -2305,14 +2303,14 @@ def tie(
     for current_leaf, next_leaf in Sequence(leaves).nwise():
         duration = inspect(current_leaf).duration()
         if inequality(duration):
-            detach(TieIndicator, current_leaf)
+            detach(Tie, current_leaf)
             detach(RepeatTie, next_leaf)
             repeat_tie = RepeatTie(direction=direction)
             attach(repeat_tie, next_leaf, tag=tag)
         else:
-            detach(TieIndicator, current_leaf)
+            detach(Tie, current_leaf)
             detach(RepeatTie, next_leaf)
-            tie = TieIndicator(direction=direction)
+            tie = Tie(direction=direction)
             attach(tie, current_leaf, tag=tag)
 
 
