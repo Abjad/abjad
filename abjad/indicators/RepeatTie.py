@@ -63,7 +63,7 @@ class RepeatTie(object):
     def __init__(
         self,
         *,
-        direction: int = None,
+        direction: enums.VerticalAlignment = None,
         left_broken: bool = None,
         tweaks: LilyPondTweakManager = None,
     ) -> None:

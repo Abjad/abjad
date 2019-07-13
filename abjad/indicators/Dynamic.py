@@ -493,7 +493,7 @@ class Dynamic(object):
         return self._context
 
     @property
-    def direction(self) -> typing.Optional[int]:
+    def direction(self) -> typing.Optional[enums.VerticalAlignment]:
         """
         Gets direction for effort dynamics only.
 
@@ -513,7 +513,9 @@ class Dynamic(object):
         if self._direction is not None:
             return self._direction
         elif self.name == "niente" or self.effort:
-            return enums.Down
+            result = enums.Down
+            assert isinstance(result, enums.VerticalAlignment)
+            return result
         else:
             return None
 
