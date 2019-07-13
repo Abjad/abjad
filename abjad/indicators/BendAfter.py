@@ -48,7 +48,7 @@ class BendAfter(object):
 
     _format_slot = "after"
 
-    _time_orientation: enums.HorizontalAlignment = enums.Right
+    _time_orientation = enums.Right
 
     ### INITIALIZER ###
 

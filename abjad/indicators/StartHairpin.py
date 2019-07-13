@@ -63,7 +63,7 @@ class StartHairpin(object):
     _persistent = True
 
     # TODO: remove?
-    _time_orientation: enums.HorizontalAlignment = enums.Right
+    _time_orientation = enums.Right
 
     ### INITIALIZER ###
 

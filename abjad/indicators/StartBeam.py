@@ -59,10 +59,7 @@ class StartBeam(object):
     ### INITIALIZER ###
 
     def __init__(
-        self,
-        *,
-        direction: enums.VerticalAlignment = None,
-        tweaks: LilyPondTweakManager = None,
+        self, *, direction: int = None, tweaks: LilyPondTweakManager = None
     ) -> None:
         direction_ = String.to_tridirectional_lilypond_symbol(direction)
         self._direction = direction_

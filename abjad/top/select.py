@@ -1,4 +1,4 @@
-def select(items=None):
+def select(items=None, previous=None):
     r"""
     Selects ``items`` or makes select expression.
 
@@ -40,5 +40,5 @@ def select(items=None):
     import abjad
 
     if items is None:
-        return abjad.Expression().select()
-    return abjad.Selection(items=items)
+        return abjad.Expression().select(previous=previous)
+    return abjad.Selection(items=items, previous=previous)

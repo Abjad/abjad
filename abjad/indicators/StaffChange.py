@@ -52,7 +52,7 @@ class StaffChange(object):
 
     _format_slot = "opening"
 
-    _time_orientation: enums.HorizontalAlignment = enums.Right
+    _time_orientation = enums.Right
 
     ### INITIALIZER ###
 

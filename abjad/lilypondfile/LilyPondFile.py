@@ -1342,7 +1342,9 @@ class LilyPondFile(object):
 
         Returns LilyPond file.
         """
-        if isinstance(selections, list):
+        if isinstance(selections, Selection):
+            pass
+        elif isinstance(selections, list):
             for selection in selections:
                 if not isinstance(selection, Selection):
                     raise TypeError(f"must be selection: {selection!r}.")
@@ -1357,7 +1359,7 @@ class LilyPondFile(object):
             score, includes=["default.ily", "rhythm-maker-docs.ily"]
         )
         if pitched_staff is None:
-            if isinstance(selections, list):
+            if isinstance(selections, (list, Selection)):
                 selections_ = selections
             elif isinstance(selections, dict):
                 selections_ = selections.values()
@@ -1367,7 +1369,7 @@ class LilyPondFile(object):
                 if note.written_pitch != NamedPitch("c'"):
                     pitched_staff = True
                     break
-        if isinstance(selections, list):
+        if isinstance(selections, (list, Selection)):
             if divisions is None:
                 duration = abjad_inspect(selections).duration()
                 divisions = [duration]
