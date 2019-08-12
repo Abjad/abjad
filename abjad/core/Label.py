@@ -443,9 +443,7 @@ class Label(object):
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        for leaf in iterate(self.client).leaves(
-            do_not_iterate_grace_containers=True
-        ):
+        for leaf in iterate(self.client).leaves():
             self._color_leaf(leaf, color)
 
     def color_note_heads(self, color_map=None):

@@ -16,7 +16,7 @@ PygmentsBridge.latex_formatter = CustomLatexFormatter
 ### CORE ###
 
 add_function_parentheses = True
-copyright = "2008-2018, Trevor Bača & Josiah Wolf Oberholtzer"
+copyright = "2008-2019, Trevor Bača & Josiah Wolf Oberholtzer"
 exclude_patterns = []
 
 extensions = [
@@ -101,7 +101,7 @@ man_pages = [
         "index",
         "abjad",
         "Abjad Documentation",
-        ["2008-2018, Trevor Bača & Josiah Wolf Oberholtzer"],
+        ["2008-2019, Trevor Bača & Josiah Wolf Oberholtzer"],
         1,
     )
 ]
@@ -113,7 +113,7 @@ texinfo_documents = [
         "index",
         "Abjad",
         "Abjad Documentation",
-        "2008-2018, Trevor Bača & Josiah Wolf Oberholtzer",
+        "2008-2019, Trevor Bača & Josiah Wolf Oberholtzer",
         "Abjad",
         "One line description of project.",
         "Miscellaneous",

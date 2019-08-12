@@ -1,4 +1,5 @@
 import collections
+from abjad.system.StorageFormatManager import StorageFormatManager
 from .TypedCollection import TypedCollection
 
 
@@ -56,9 +57,7 @@ class TypedFrozenset(TypedCollection, collections.abc.Set):
 
         Returns integer.
         """
-        import abjad
-
-        hash_values = abjad.StorageFormatManager(self).get_hash_values()
+        hash_values = StorageFormatManager(self).get_hash_values()
         try:
             result = hash(hash_values)
         except TypeError:

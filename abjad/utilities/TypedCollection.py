@@ -1,4 +1,5 @@
 import abc
+from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.StorageFormatManager import StorageFormatManager
 
 
@@ -101,13 +102,11 @@ class TypedCollection(object):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        import abjad
-
-        manager = abjad.StorageFormatManager(self)
+        manager = StorageFormatManager(self)
         names = list(manager.signature_keyword_names)
         if "items" in names:
             names.remove("items")
-        return abjad.FormatSpecification(
+        return FormatSpecification(
             self,
             repr_is_indented=False,
             storage_format_args_values=[self._collection],

@@ -33,7 +33,7 @@ class Instrument(object):
         >>> abjad.attach(viola, voice_2[0], context='Voice')
         >>> viola_markup = abjad.Markup('(viola)', direction=abjad.Down)
         >>> abjad.attach(viola_markup, voice_2[0])
-        >>> staff = abjad.Staff([voice_1, voice_2], is_simultaneous=True)
+        >>> staff = abjad.Staff([voice_1, voice_2], simultaneous=True)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::

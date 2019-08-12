@@ -1212,7 +1212,7 @@ def test_Selection_are_logical_voice_31():
     voice_1 = abjad.Voice(abjad.Note(12, (1, 8)) * 4)
     voice_2 = abjad.Voice(abjad.Note(0, (1, 8)) * 4)
     container = abjad.Container([voice_1, voice_2])
-    container.is_simultaneous = True
+    container.simultaneous = True
     container = abjad.Container(notes + [container])
 
     assert format(container) == abjad.String.normalize(

@@ -226,16 +226,16 @@ class Component(object):
         return result
 
     def _format_after_slot(self, bundle):
-        pass
+        return []
 
     def _format_before_slot(self, bundle):
-        pass
+        return []
 
     def _format_close_brackets_slot(self, bundle):
-        pass
+        return []
 
     def _format_closing_slot(self, bundle):
-        pass
+        return []
 
     def _format_component(self, pieces=False):
         result = []
@@ -258,13 +258,28 @@ class Component(object):
             return "\n".join(contributions)
 
     def _format_contents_slot(self, bundle):
-        pass
+        return []
 
     def _format_open_brackets_slot(self, bundle):
-        pass
+        return []
 
     def _format_opening_slot(self, bundle):
-        pass
+        return []
+
+    @staticmethod
+    def _format_slot_contributions_with_indent(slot):
+        result = []
+        for contributor, contributions in slot:
+            strings = []
+            for string in contributions:
+                if string.isspace():
+                    string = ""
+                else:
+                    string = LilyPondFormatManager.indent + string
+                strings.append(string)
+            pair = (contributor, strings)
+            result.append(pair)
+        return result
 
     def _get_contents(self):
         result = []
@@ -279,7 +294,7 @@ class Component(object):
         result = []
         result.append(self)
         if isinstance(self, Container):
-            if self.is_simultaneous:
+            if self.simultaneous:
                 for x in self:
                     result.extend(x._get_descendants_starting_with())
             elif self:
@@ -292,7 +307,7 @@ class Component(object):
         result = []
         result.append(self)
         if isinstance(self, Container):
-            if self.is_simultaneous:
+            if self.simultaneous:
                 for x in self:
                     result.extend(x._get_descendants_stopping_with())
             elif self:
@@ -316,7 +331,7 @@ class Component(object):
 
         self._update_now(indicators=True)
         candidate_wrappers = {}
-        parentage = inspect(self).parentage(grace_notes=True)
+        parentage = inspect(self).parentage()
         enclosing_voice_name = None
         for component in parentage:
             if isinstance(component, Voice):
@@ -505,6 +520,101 @@ class Component(object):
             return tuple(x for x in markup if x.direction is enums.Down)
         return markup
 
+    def _get_sibling(self, n):
+        assert n in (-1, 0, 1), repr(self, n)
+        if n == 0:
+            return self
+        if self._parent is None:
+            return None
+        if self._parent.simultaneous:
+            return None
+        index = self._parent.index(self) + n
+        if 0 <= index < len(self._parent):
+            return self._parent[index]
+
+    def _get_sibling_with_graces(self, n):
+        assert n in (-1, 0, 1), repr(self, n)
+        if n == 0:
+            return self
+        if self._parent is None:
+            return None
+        if self._parent.simultaneous:
+            return None
+        if (
+            n == 1
+            and getattr(self._parent, "_main_leaf", None)
+            and self._parent._main_leaf._grace_container is self._parent
+            and self is self._parent[-1]
+        ):
+            return self._parent._main_leaf
+        if (
+            n == 1
+            and getattr(self._parent, "_main_leaf", None)
+            and self._parent._main_leaf._on_beat_grace_container
+            is self._parent
+            and self is self._parent[-1]
+        ):
+            return self._parent._main_leaf
+        if (
+            n == 1
+            and getattr(self._parent, "_main_leaf", None)
+            and self._parent._main_leaf._after_grace_container is self._parent
+            and self is self._parent[-1]
+        ):
+            main_leaf = self._parent._main_leaf
+            if main_leaf is main_leaf._parent[-1]:
+                return None
+            index = main_leaf._parent.index(main_leaf)
+            return main_leaf._parent[index + 1]
+        if n == 1 and getattr(self, "_after_grace_container", None):
+            return self._after_grace_container[0]
+        if (
+            n == -1
+            and getattr(self._parent, "_main_leaf", None)
+            and self._parent._main_leaf._after_grace_container is self._parent
+            and self is self._parent[0]
+        ):
+            return self._parent._main_leaf
+        if (
+            n == -1
+            and getattr(self._parent, "_main_leaf", None)
+            and self._parent._main_leaf._grace_container is self._parent
+            and self is self._parent[0]
+        ):
+            main_leaf = self._parent._main_leaf
+            if main_leaf is main_leaf._parent[0]:
+                return None
+            index = main_leaf._parent.index(main_leaf)
+            return main_leaf._parent[index - 1]
+        if (
+            n == -1
+            and getattr(self._parent, "_main_leaf", None)
+            and self._parent._main_leaf._on_beat_grace_container
+            is self._parent
+            and self is self._parent[0]
+        ):
+            main_leaf = self._parent._main_leaf
+            if main_leaf is main_leaf._parent[0]:
+                return None
+            index = main_leaf._parent.index(main_leaf)
+            return main_leaf._parent[index - 1]
+        if n == -1 and getattr(self, "_on_beat_grace_container", None):
+            return self._on_beat_grace_container[-1]
+        if n == -1 and getattr(self, "_grace_container", None):
+            return self._grace_container[-1]
+        index = self._parent.index(self) + n
+        result = None
+        if not (0 <= index < len(self._parent)):
+            return None
+        candidate = self._parent[index]
+        if n == 1 and getattr(candidate, "_grace_container", None):
+            return candidate._grace_container[0]
+        if n == 1 and getattr(candidate, "_on_beat_grace_container", None):
+            return candidate._on_beat_grace_container[0]
+        if n == -1 and getattr(candidate, "_after_grace_container", None):
+            return candidate._after_grace_container[-1]
+        return candidate
+
     def _get_timespan(self, in_seconds=False):
         if in_seconds:
             self._update_now(offsets_in_seconds=True)
@@ -536,8 +646,7 @@ class Component(object):
         successors = []
         current = self
         while current is not None:
-            sibling = current.__sibling_with_graces(1)
-            # sibling = current._sibling(1)
+            sibling = current._get_sibling_with_graces(1)
             if sibling is None:
                 current = current._parent
             else:
@@ -599,76 +708,9 @@ class Component(object):
     def _sibling(self, n):
         assert n in (-1, 1), repr(n)
         for parent in inspect(self).parentage():
-            sibling = parent.__sibling(mathtools.sign(n))
+            sibling = parent._get_sibling(mathtools.sign(n))
             if sibling is not None:
                 return sibling
-
-    def __sibling(self, n):
-        assert n in (-1, 1), repr(self, n)
-        if self._parent is None:
-            return None
-        if self._parent.is_simultaneous:
-            return None
-        index = self._parent.index(self) + n
-        if 0 <= index < len(self._parent):
-            return self._parent[index]
-
-    def __sibling_with_graces(self, n):
-        assert n in (-1, 1), repr(self, n)
-        if self._parent is None:
-            return None
-        if self._parent.is_simultaneous:
-            return None
-        if (
-            n == 1
-            and getattr(self._parent, "_main_leaf", None)
-            and self._parent._main_leaf._grace_container is self._parent
-            and self is self._parent[-1]
-        ):
-            return self._parent._main_leaf
-        if (
-            n == 1
-            and getattr(self._parent, "_main_leaf", None)
-            and self._parent._main_leaf._after_grace_container is self._parent
-            and self is self._parent[-1]
-        ):
-            main_leaf = self._parent._main_leaf
-            if main_leaf is main_leaf._parent[-1]:
-                return None
-            index = main_leaf._parent.index(main_leaf)
-            return main_leaf._parent[index + 1]
-        if n == 1 and getattr(self, "_after_grace_container", None):
-            return self._after_grace_container[0]
-        if (
-            n == -1
-            and getattr(self._parent, "_main_leaf", None)
-            and self._parent._main_leaf._after_grace_container is self._parent
-            and self is self._parent[0]
-        ):
-            return self._parent._main_leaf
-        if (
-            n == -1
-            and getattr(self._parent, "_main_leaf", None)
-            and self._parent._main_leaf._grace_container is self._parent
-            and self is self._parent[0]
-        ):
-            main_leaf = self._parent._main_leaf
-            if main_leaf is main_leaf._parent[0]:
-                return None
-            index = main_leaf._parent.index(main_leaf)
-            return main_leaf._parent[index - 1]
-        if n == -1 and getattr(self, "_grace_container", None):
-            return self._grace_container[-1]
-        index = self._parent.index(self) + n
-        result = None
-        if not (0 <= index < len(self._parent)):
-            return None
-        candidate = self._parent[index]
-        if n == 1 and getattr(candidate, "_grace_container", None):
-            return candidate._grace_container[0]
-        if n == -1 and getattr(candidate, "_after_grace_container", None):
-            return candidate._after_grace_container[-1]
-        return candidate
 
     def _tag_strings(self, strings):
         return LilyPondFormatManager.tag(strings, tag=self.tag)

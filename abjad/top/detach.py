@@ -217,12 +217,15 @@ def detach(argument, target=None, by_id=False):
     assert target is not None
     after_grace_container = None
     grace_container = None
+    on_beat_grace_container = None
     inspector = abjad.inspect(target)
     if isinstance(argument, type):
-        if issubclass(argument, abjad.AfterGraceContainer):
+        if argument == abjad.AfterGraceContainer:
             after_grace_container = inspector.after_grace_container()
-        elif issubclass(argument, abjad.GraceContainer):
+        elif argument == abjad.GraceContainer:
             grace_container = inspector.grace_container()
+        elif argument == abjad.OnBeatGraceContainer:
+            on_beat_grace_container = inspector.on_beat_grace_container()
         else:
             assert hasattr(target, "_wrappers")
             result = []
@@ -240,6 +243,8 @@ def detach(argument, target=None, by_id=False):
             after_grace_container = inspector.after_grace_container()
         elif isinstance(argument, abjad.GraceContainer):
             grace_container = inspector.grace_container()
+        elif isinstance(argument, abjad.OnBeatGraceContainer):
+            on_beat_grace_container = inspector.on_beat_grace_container()
         else:
             assert hasattr(target, "_wrappers")
             result = []
@@ -260,6 +265,8 @@ def detach(argument, target=None, by_id=False):
         items.append(after_grace_container)
     if grace_container is not None:
         items.append(grace_container)
+    if on_beat_grace_container is not None:
+        items.append(on_beat_grace_container)
     if by_id is True:
         items = [_ for _ in items if id(item) == id(argument)]
     for item in items:

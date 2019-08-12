@@ -8,13 +8,13 @@ def test_Container_is_simultaneous_01():
     otherwise False.
     """
 
-    assert not abjad.Container().is_simultaneous
-    assert not abjad.Tuplet().is_simultaneous
-    assert abjad.Score().is_simultaneous
-    assert not abjad.Container().is_simultaneous
-    assert not abjad.Staff().is_simultaneous
-    assert abjad.StaffGroup().is_simultaneous
-    assert not abjad.Voice().is_simultaneous
+    assert not abjad.Container().simultaneous
+    assert not abjad.Tuplet().simultaneous
+    assert abjad.Score().simultaneous
+    assert not abjad.Container().simultaneous
+    assert not abjad.Staff().simultaneous
+    assert abjad.StaffGroup().simultaneous
+    assert not abjad.Voice().simultaneous
 
 
 def test_Container_is_simultaneous_02():
@@ -24,8 +24,8 @@ def test_Container_is_simultaneous_02():
     """
 
     container = abjad.Container([])
-    container.is_simultaneous = True
-    assert container.is_simultaneous
+    container.simultaneous = True
+    assert container.simultaneous
 
 
 def test_Container_is_simultaneous_03():
@@ -34,10 +34,10 @@ def test_Container_is_simultaneous_03():
     """
 
     container = abjad.Container([])
-    assert not container.is_simultaneous
+    assert not container.simultaneous
 
-    container.is_simultaneous = True
-    assert container.is_simultaneous
+    container.simultaneous = True
+    assert container.simultaneous
 
 
 def test_Container_is_simultaneous_04():
@@ -48,7 +48,7 @@ def test_Container_is_simultaneous_04():
     container = abjad.Container(
         [abjad.Voice("c'8 cs'8"), abjad.Voice("d'8 ef'8")]
     )
-    container.is_simultaneous = True
+    container.simultaneous = True
 
     assert format(container) == abjad.String.normalize(
         r"""
@@ -79,4 +79,4 @@ def test_Container_is_simultaneous_05():
     # not allowed
     container = abjad.Container("c'8 c'8 c'8 c'8")
     with pytest.raises(Exception):
-        container.is_simultaneous = True
+        container.simultaneous = True

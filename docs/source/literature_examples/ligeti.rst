@@ -109,7 +109,7 @@ Finally we combine the two voices in a simultaneous container:
 ..  abjad::
 
     container = abjad.Container([voice_lower, voice_higher])
-    container.is_simultaneous = True
+    container.simultaneous = True
 
 This results in the complete *Désordre* *cell*:
 

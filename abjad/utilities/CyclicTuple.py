@@ -1,4 +1,5 @@
 import typing
+from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.StorageFormatManager import StorageFormatManager
 
 
@@ -166,9 +167,7 @@ class CyclicTuple(object):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        import abjad
-
-        return abjad.FormatSpecification(
+        return FormatSpecification(
             client=self,
             repr_is_indented=False,
             storage_format_args_values=[list(self._items)],

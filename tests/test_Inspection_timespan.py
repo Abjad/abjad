@@ -114,7 +114,7 @@ def test_Inspection_timespan_10():
     voice_1 = abjad.Voice("c'8 d'8 e'8 f'8")
     voice_2 = abjad.Voice("c'8 d'8 e'8 f'8")
     staff = abjad.Staff([voice_1, voice_2])
-    staff.is_simultaneous = True
+    staff.simultaneous = True
     for i, leaf in enumerate(voice_1):
         start_offset = abjad.inspect(leaf).timespan().start_offset
         assert start_offset == i * abjad.Offset(1, 8)
@@ -164,7 +164,7 @@ def test_Inspection_timespan_13():
     voice_1 = abjad.Voice("c'8 d'8 e'8 f'8")
     voice_2 = abjad.Voice("c'8 d'8 e'8 f'8")
     staff = abjad.Staff([voice_1, voice_2])
-    staff.is_simultaneous = True
+    staff.simultaneous = True
     for i, leaf in enumerate(voice_1):
         start_offset = abjad.inspect(leaf).timespan().start_offset
         assert start_offset == i * abjad.Offset(1, 8)
@@ -182,7 +182,7 @@ def test_Inspection_timespan_14():
     voice_2 = abjad.Voice("c'8 d'8 e'8 f'8")
     voice_3 = abjad.Voice("c'8 d'8 e'8 f'8")
     staff = abjad.Staff([abjad.Container([voice_1, voice_2]), voice_3])
-    staff[0].is_simultaneous = True
+    staff[0].simultaneous = True
     for i, leaf in enumerate(voice_3):
         start_offset = abjad.inspect(leaf).timespan().start_offset
         assert start_offset == i * abjad.Offset(1, 8) + abjad.Offset(1, 2)
@@ -197,7 +197,7 @@ def test_Inspection_timespan_15():
     voice_2 = abjad.Voice("c'8 d'8 e'8 f'8")
     voice_3 = abjad.Voice("c'8 d'8 e'8 f'8")
     staff = abjad.Staff([voice_3, abjad.Container([voice_1, voice_2])])
-    staff[1].is_simultaneous = True
+    staff[1].simultaneous = True
     for i, leaf in enumerate(voice_1):
         start_offset = abjad.inspect(leaf).timespan().start_offset
         assert start_offset == i * abjad.Offset(1, 8) + abjad.Offset(1, 2)
@@ -331,7 +331,7 @@ def test_Inspection_timespan_23():
     voice_1 = abjad.Voice("c'8 d'8 e'8 f'8")
     voice_2 = abjad.Voice("c'8 d'8 e'8 f'8")
     staff = abjad.Staff([voice_1, voice_2])
-    staff.is_simultaneous = True
+    staff.simultaneous = True
     assert abjad.inspect(staff[0]).timespan().start_offset == 0
     assert abjad.inspect(staff[1]).timespan().start_offset == 0
 

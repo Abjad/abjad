@@ -420,10 +420,10 @@ def test_Inspection_leaf_12():
 
     staff_1 = abjad.Staff([higher_voice_1, lower_voice_1])
     staff_1.name = "mystaff"
-    staff_1.is_simultaneous = True
+    staff_1.simultaneous = True
     staff_2 = abjad.Staff([lower_voice_2, higher_voice_2])
     staff_2.name = "mystaff"
-    staff_2.is_simultaneous = True
+    staff_2.simultaneous = True
 
     container = abjad.Container([staff_1, staff_2])
 

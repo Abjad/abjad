@@ -33,7 +33,7 @@ class Voice(Context):
         >>> inner_blue_voice = abjad.Voice("e'4 f' e'8", name='Blue_Voice')
         >>> container = abjad.Container(
         ...     [inner_red_voice, inner_blue_voice],
-        ...     is_simultaneous=True,
+        ...     simultaneous=True,
         ...     )
         >>> outer_red_voice.append(container)
         >>> outer_red_voice.extend("d''8")
@@ -105,7 +105,7 @@ class Voice(Context):
         >>> inner_blue_voice = abjad.Voice("e'4 f' e'8", name='Blue_Voice')
         >>> container = abjad.Container(
         ...     [inner_red_voice, inner_blue_voice],
-        ...     is_simultaneous=True,
+        ...     simultaneous=True,
         ...     )
         >>> outer_red_voice.append(container)
         >>> outer_red_voice.extend("d''8")
@@ -177,7 +177,7 @@ class Voice(Context):
         >>> inner_blue_voice = abjad.Voice("e'4 f' e'8", name='Blue_Voice')
         >>> container = abjad.Container(
         ...     [inner_red_voice, inner_blue_voice],
-        ...     is_simultaneous=True,
+        ...     simultaneous=True,
         ...     )
         >>> outer_red_voice.append(container)
         >>> outer_red_voice.extend("d''8")
@@ -249,7 +249,7 @@ class Voice(Context):
         >>> inner_blue_voice = abjad.Voice("e'4 f' e'8", name='Blue_Voice')
         >>> container = abjad.Container(
         ...     [inner_red_voice, inner_blue_voice],
-        ...     is_simultaneous=True,
+        ...     simultaneous=True,
         ...     )
         >>> outer_red_voice.append(container)
         >>> outer_red_voice.extend("d''8")
@@ -331,7 +331,7 @@ class Voice(Context):
         self,
         components=None,
         lilypond_type: str = "Voice",
-        is_simultaneous: bool = None,
+        simultaneous: bool = None,
         name: str = None,
         tag: str = None,
     ) -> None:
@@ -339,7 +339,7 @@ class Voice(Context):
             self,
             components=components,
             lilypond_type=lilypond_type,
-            is_simultaneous=is_simultaneous,
+            simultaneous=simultaneous,
             name=name,
             tag=tag,
         )

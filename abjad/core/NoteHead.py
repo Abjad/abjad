@@ -226,15 +226,15 @@ class NoteHead(object):
         result.append(kernel)
         return result
 
-    def _get_lilypond_format(self, formatted_duration=None):
+    def _get_lilypond_format(self, duration=None):
         pieces = self._get_format_pieces()
-        if formatted_duration is not None:
-            pieces[-1] = pieces[-1] + formatted_duration
+        if duration is not None:
+            pieces[-1] = pieces[-1] + duration
         if self.alternative:
             pieces = LilyPondFormatManager.tag(pieces, tag=self.alternative[2])
             pieces_ = self.alternative[0]._get_format_pieces()
-            if formatted_duration is not None:
-                pieces_[-1] = pieces_[-1] + formatted_duration
+            if duration is not None:
+                pieces_[-1] = pieces_[-1] + duration
             pieces_ = LilyPondFormatManager.tag(
                 pieces_, deactivate=True, tag=self.alternative[1]
             )

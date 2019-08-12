@@ -576,7 +576,7 @@ class ReducedLyParser(Parser):
         """
         tie : TILDE
         """
-        p[0] = (indicators.TieIndicator, Left)
+        p[0] = (indicators.Tie, Left)
 
     def p_tuplet__FRACTION__container(self, p):
         """
@@ -607,7 +607,7 @@ class ReducedLyParser(Parser):
                     indicator = current_class()
                     attach(indicator, leaf)
                     continue
-                if current_class is indicators.TieIndicator:
+                if current_class is indicators.Tie:
                     indicator = current_class()
                     attach(indicator, leaf)
                     continue

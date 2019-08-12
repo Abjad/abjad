@@ -383,27 +383,6 @@ class LeafMaker(object):
 
     ..  container:: example
 
-        Uses repeat ties:
-
-        >>> maker = abjad.LeafMaker(repeat_ties=True)
-        >>> pitches = [0]
-        >>> durations = [abjad.Duration(13, 16)]
-        >>> leaves = maker(pitches, durations)
-        >>> staff = abjad.Staff(leaves)
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> abjad.f(staff)
-            \new Staff
-            {
-                c'2.
-                c'16
-                \repeatTie
-            }
-
-    ..  container:: example
-
         Works with numbered pitch-class:
 
         >>> maker = abjad.LeafMaker()
@@ -444,9 +423,7 @@ class LeafMaker(object):
         "_increase_monotonic",
         "_forbidden_note_duration",
         "_forbidden_rest_duration",
-        "_metrical_hierarchy",
         "_skips_instead_of_rests",
-        "_repeat_ties",
         "_tag",
         "_use_multimeasure_rests",
     )
@@ -461,9 +438,7 @@ class LeafMaker(object):
         increase_monotonic: bool = None,
         forbidden_note_duration: typings.DurationTyping = None,
         forbidden_rest_duration: typings.DurationTyping = None,
-        metrical_hierarchy=None,
         skips_instead_of_rests: bool = None,
-        repeat_ties: bool = None,
         tag: str = None,
         use_multimeasure_rests: bool = None,
     ) -> None:
@@ -480,13 +455,9 @@ class LeafMaker(object):
         else:
             forbidden_rest_duration_ = Duration(forbidden_rest_duration)
         self._forbidden_rest_duration = forbidden_rest_duration_
-        self._metrical_hierarchy = metrical_hierarchy
         if skips_instead_of_rests is not None:
             skips_instead_of_rests = bool(skips_instead_of_rests)
         self._skips_instead_of_rests = skips_instead_of_rests
-        if repeat_ties is not None:
-            repeat_ties = bool(repeat_ties)
-        self._repeat_ties = repeat_ties
         if tag is not None:
             assert isinstance(tag, str), repr(tag)
         self._tag = tag
@@ -536,7 +507,6 @@ class LeafMaker(object):
                         increase_monotonic=self.increase_monotonic,
                         forbidden_note_duration=self.forbidden_note_duration,
                         forbidden_rest_duration=self.forbidden_rest_duration,
-                        repeat_ties=self.repeat_ties,
                         skips_instead_of_rests=self.skips_instead_of_rests,
                         tag=self.tag,
                         use_multimeasure_rests=self.use_multimeasure_rests,
@@ -560,7 +530,6 @@ class LeafMaker(object):
                         pitch,
                         duration,
                         increase_monotonic=self.increase_monotonic,
-                        repeat_ties=self.repeat_ties,
                         skips_instead_of_rests=self.skips_instead_of_rests,
                         tag=self.tag,
                         use_multimeasure_rests=self.use_multimeasure_rests,
@@ -581,7 +550,6 @@ class LeafMaker(object):
         forbidden_note_duration=None,
         forbidden_rest_duration=None,
         skips_instead_of_rests=None,
-        repeat_ties=None,
         tag=None,
         use_multimeasure_rests=None,
     ):
@@ -601,7 +569,6 @@ class LeafMaker(object):
                 increase_monotonic=increase_monotonic,
                 forbidden_duration=forbidden_note_duration,
                 pitches=pitch,
-                repeat_ties=repeat_ties,
                 tag=tag,
             )
         elif isinstance(pitch, chord_prototype):
@@ -611,7 +578,6 @@ class LeafMaker(object):
                 increase_monotonic=increase_monotonic,
                 forbidden_duration=forbidden_note_duration,
                 pitches=pitch,
-                repeat_ties=repeat_ties,
                 tag=tag,
             )
         elif isinstance(pitch, rest_prototype) and skips_instead_of_rests:
@@ -621,7 +587,6 @@ class LeafMaker(object):
                 increase_monotonic=increase_monotonic,
                 forbidden_duration=forbidden_rest_duration,
                 pitches=None,
-                repeat_ties=repeat_ties,
                 tag=tag,
             )
         elif isinstance(pitch, rest_prototype) and not use_multimeasure_rests:
@@ -631,7 +596,6 @@ class LeafMaker(object):
                 increase_monotonic=increase_monotonic,
                 forbidden_duration=forbidden_rest_duration,
                 pitches=None,
-                repeat_ties=repeat_ties,
                 tag=tag,
             )
         elif isinstance(pitch, rest_prototype) and use_multimeasure_rests:
@@ -652,7 +616,6 @@ class LeafMaker(object):
         pitches=None,
         tag=None,
         tie_parts=True,
-        repeat_ties=False,
     ):
         from abjad.spanners import tie as abjad_tie
 
@@ -708,7 +671,7 @@ class LeafMaker(object):
         # tie if required
         if tie_parts and 1 < len(result):
             if not issubclass(class_, (Rest, Skip)):
-                abjad_tie(result, repeat=repeat_ties)
+                abjad_tie(result)
         return result
 
     @staticmethod
@@ -749,27 +712,11 @@ class LeafMaker(object):
         return self._increase_monotonic
 
     @property
-    def metrical_hierarchy(self):
-        """
-        Gets metrical hierarchy.
-
-        Returns metrical hierarchy or none.
-        """
-        return self._metrical_hierarchy
-
-    @property
     def skips_instead_of_rests(self) -> typing.Optional[bool]:
         """
         Is true when skips appear in place of rests.
         """
         return self._skips_instead_of_rests
-
-    @property
-    def repeat_ties(self) -> typing.Optional[bool]:
-        """
-        Is true when ties are repeat ties.
-        """
-        return self._repeat_ties
 
     @property
     def tag(self) -> typing.Optional[str]:

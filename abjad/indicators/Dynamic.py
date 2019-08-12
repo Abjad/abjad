@@ -73,7 +73,7 @@ class Dynamic(object):
         >>> literal = abjad.LilyPondLiteral(r"\voiceTwo", "opening")
         >>> abjad.attach(literal, voice_2)
         >>> abjad.attach(abjad.Dynamic('mf'), voice_2[0], context='Voice')
-        >>> staff = abjad.Staff([voice_1, voice_2], is_simultaneous=True)
+        >>> staff = abjad.Staff([voice_1, voice_2], simultaneous=True)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::

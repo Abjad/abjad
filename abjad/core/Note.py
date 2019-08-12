@@ -133,13 +133,33 @@ class Note(Leaf):
     ### PRIVATE METHODS ###
 
     def _get_body(self):
-        formatted_duration = self._get_formatted_duration()
-        if self.note_head is not None:
-            string = self.note_head._get_lilypond_format(
-                formatted_duration=formatted_duration
-            )
+        from .OnBeatGraceContainer import OnBeatGraceContainer
+
+        duration = self._get_formatted_duration()
+        if (
+            isinstance(self._parent, OnBeatGraceContainer)
+            and self is self._parent[0]
+        ):
+            strings = []
+            string = format(self.note_head)
+            strings.append(string)
+            main_leaf = self._parent._main_leaf
+            tweak = r"\tweak Accidental.stencil ##f"
+            if hasattr(main_leaf, "note_head"):
+                string = format(main_leaf.note_head)
+                string = f"{tweak} {string}"
+                strings.append(string)
+            elif hasattr(main_leaf, "note_heads"):
+                # how to determine which note head to act as anchor?
+                string = format(main_leaf.note_heads[-1])
+                string = f"{tweak} {string}"
+                strings.append(string)
+            pitches = " ".join(strings)
+            string = f"<{pitches}>{duration}"
+        elif self.note_head is not None:
+            string = self.note_head._get_lilypond_format(duration=duration)
         else:
-            string = formatted_duration
+            string = duration
         return [string]
 
     def _get_compact_representation(self):

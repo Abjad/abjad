@@ -1,7 +1,7 @@
 import itertools
 from abjad import exceptions
 from abjad.indicators.RepeatTie import RepeatTie
-from abjad.indicators.TieIndicator import TieIndicator
+from abjad.indicators.Tie import Tie
 from abjad.mathtools import Ratio
 from abjad.top.attach import attach
 from abjad.top.detach import detach
@@ -21,7 +21,7 @@ class LogicalTie(Selection):
         >>> staff = abjad.Staff("c' d' e' ~ e'")
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> abjad.inspect(staff[2]).logical_tie()
+        >>> abjad.select(staff[2]).logical_tie()
         LogicalTie([Note("e'4"), Note("e'4")])
 
     """
@@ -58,7 +58,7 @@ class LogicalTie(Selection):
             self[0].written_duration = new_written_duration
             for leaf in self[1:]:
                 mutate(leaf).extract()
-            detach(TieIndicator, self[0])
+            detach(Tie, self[0])
             detach(RepeatTie, self[0])
         elif new_written_duration.has_power_of_two_denominator:
             durations = maker(0, [new_written_duration])
@@ -71,13 +71,13 @@ class LogicalTie(Selection):
                     mutate(leaf).extract()
             elif len(self) < len(durations):
                 # detach(Tie, self[0])
-                detach(TieIndicator, self[0])
+                detach(Tie, self[0])
                 detach(RepeatTie, self[0])
                 difference = len(durations) - len(self)
                 extra_leaves = self[0] * difference
                 for extra_leaf in extra_leaves:
                     # detach(Tie, extra_leaf)
-                    detach(TieIndicator, extra_leaf)
+                    detach(Tie, extra_leaf)
                     detach(RepeatTie, extra_leaf)
                 extra_tokens = durations[len(self) :]
                 for leaf, token in zip(extra_leaves, extra_tokens):
@@ -224,7 +224,7 @@ class LogicalTie(Selection):
                     \f
                 }
 
-            >>> logical_tie = abjad.inspect(staff[1]).logical_tie()
+            >>> logical_tie = abjad.select(staff[1]).logical_tie()
             >>> logical_tie.to_tuplet([2, 1, 1, 1])
             Tuplet(Multiplier(3, 5), "c'8 c'16 c'16 c'16")
 
@@ -309,7 +309,7 @@ class LogicalTie(Selection):
             notes = maker(0, note_durations)
         tuplet = Tuplet.from_duration(target_duration, notes)
         for leaf in self:
-            detach(TieIndicator, leaf)
+            detach(Tie, leaf)
             detach(RepeatTie, leaf)
         mutate(self).replace(tuplet)
         return tuplet

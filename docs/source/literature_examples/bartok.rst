@@ -106,7 +106,7 @@ to true for each of the last two measures:
     literal = abjad.LilyPondLiteral(r'\voiceTwo')
     abjad.attach(literal, lower_voice)
     lower_measures[3].extend([upper_voice, lower_voice])
-    lower_measures[3].is_simultaneous = True
+    lower_measures[3].simultaneous = True
 
 ..  abjad::
 
@@ -117,7 +117,7 @@ to true for each of the last two measures:
     literal = abjad.LilyPondLiteral(r'\voiceTwo')
     abjad.attach(literal, lower_voice)
     lower_measures[4].extend([upper_voice, lower_voice])
-    lower_measures[4].is_simultaneous = True
+    lower_measures[4].simultaneous = True
 
 Here's our work so far:
 

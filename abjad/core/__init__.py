@@ -6,9 +6,7 @@ containers and contexts.
 from .Component import Component
 from .Container import Container
 from .GraceContainer import GraceContainer
-from .AcciaccaturaContainer import AcciaccaturaContainer
 from .AfterGraceContainer import AfterGraceContainer
-from .AppoggiaturaContainer import AppoggiaturaContainer
 from .Leaf import Leaf
 from .Chord import Chord
 from .Cluster import Cluster
@@ -28,6 +26,7 @@ from .Mutation import Mutation
 from .Note import Note
 from .NoteHeadList import NoteHeadList
 from .NoteMaker import NoteMaker
+from .OnBeatGraceContainer import OnBeatGraceContainer
 from .Parentage import Parentage
 from .Rest import Rest
 from .Score import Score

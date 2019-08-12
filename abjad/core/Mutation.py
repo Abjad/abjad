@@ -511,7 +511,7 @@ class Mutation(object):
                     d'32
                 }
 
-            >>> logical_tie = abjad.inspect(staff[0]).logical_tie()
+            >>> logical_tie = abjad.select(staff[0]).logical_tie()
             >>> abjad.mutate(logical_tie).fuse()
             Selection([Note("d'8..")])
 
@@ -526,7 +526,7 @@ class Mutation(object):
                     d'32
                 }
 
-            >>> abjad.inspect(staff[0]).has_indicator(abjad.TieIndicator)
+            >>> abjad.inspect(staff[0]).has_indicator(abjad.Tie)
             False
 
         Returns selection.
@@ -786,7 +786,6 @@ class Mutation(object):
         initial_offset=None,
         maximum_dot_count=None,
         rewrite_tuplets=True,
-        repeat_ties=False,
     ):
         r"""
         Rewrites the contents of logical ties in an expression to match
@@ -1719,48 +1718,6 @@ class Mutation(object):
 
         ..  container:: example
 
-            Uses repeat ties:
-
-            >>> staff = abjad.Staff("c'4. c'4. c'4")
-            >>> abjad.attach(abjad.TimeSignature((4, 4)), staff[0])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    \time 4/4
-                    c'4.
-                    c'4.
-                    c'4
-                }
-
-            >>> meter = abjad.Meter((4, 4))
-            >>> abjad.mutate(staff[:]).rewrite_meter(
-            ...     meter,
-            ...     boundary_depth=1,
-            ...     repeat_ties=True,
-            ...     )
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    \time 4/4
-                    c'4
-                    c'8
-                    \repeatTie
-                    c'8
-                    c'4
-                    \repeatTie
-                    c'4
-                }
-
-        ..  container:: example
-
             Rewrites notes and tuplets:
 
             >>> string = r"c'8 ~ c'8 ~ c'8 \times 6/7 { c'4. r16 }"
@@ -1914,7 +1871,6 @@ class Mutation(object):
             initial_offset=initial_offset,
             maximum_dot_count=maximum_dot_count,
             rewrite_tuplets=rewrite_tuplets,
-            repeat_ties=repeat_ties,
         )
         return result
 
@@ -1967,7 +1923,7 @@ class Mutation(object):
                     d'8
                 }
 
-            >>> logical_tie = abjad.inspect(staff[0]).logical_tie()
+            >>> logical_tie = abjad.select(staff[0]).logical_tie()
             >>> agent = abjad.mutate(logical_tie)
             >>> logical_tie = agent.scale(abjad.Multiplier(3, 2))
             >>> abjad.show(staff) # doctest: +SKIP
@@ -2064,7 +2020,7 @@ class Mutation(object):
                     d'16
                 }
 
-            >>> logical_tie = abjad.inspect(staff[0]).logical_tie()
+            >>> logical_tie = abjad.select(staff[0]).logical_tie()
             >>> agent = abjad.mutate(logical_tie)
             >>> logical_tie = agent.scale(abjad.Multiplier(5, 4))
             >>> abjad.show(staff) # doctest: +SKIP
@@ -2162,7 +2118,7 @@ class Mutation(object):
                     - \accent
                 }
 
-            >>> logical_tie = abjad.inspect(staff[0]).logical_tie()
+            >>> logical_tie = abjad.select(staff[0]).logical_tie()
             >>> agent = abjad.mutate(logical_tie)
             >>> logical_tie = agent.scale(abjad.Multiplier(4, 3))
             >>> abjad.show(staff) # doctest: +SKIP
@@ -2376,7 +2332,7 @@ class Mutation(object):
     # TODO: add tests of tupletted notes and rests.
     # TODO: add examples that show indicator handling.
     # TODO: add example showing grace and after grace handling.
-    def split(self, durations, cyclic=False, repeat_ties=False):
+    def split(self, durations, cyclic=False):
         r"""
         Splits mutation client by ``durations``.
 
@@ -2430,40 +2386,6 @@ class Mutation(object):
                     \f
                     ~
                     d'2
-                }
-
-            As above but with repeat ties:
-
-            >>> staff = abjad.Staff("c'1 d'1")
-            >>> abjad.hairpin('p < f', staff[:])
-            >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 3
-
-            >>> durations = [(3, 4)]
-            >>> result = abjad.mutate(staff[:]).split(
-            ...     durations,
-            ...     cyclic=True,
-            ...     repeat_ties=True,
-            ...     )
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                \with
-                {
-                    \override DynamicLineSpanner.staff-padding = #3
-                }
-                {
-                    c'2.
-                    \p
-                    c'4
-                    \<
-                    \repeatTie
-                    d'2
-                    \f
-                    d'2
-                    \repeatTie
                 }
 
         ..  container:: example
@@ -2586,7 +2508,7 @@ class Mutation(object):
             >>> abjad.override(voice_1).slur.direction = abjad.Up
             >>> container = abjad.Container(
             ...     [voice_1, voice_2],
-            ...     is_simultaneous=True,
+            ...     simultaneous=True,
             ...     )
             >>> abjad.override(voice_2).stem.direction = abjad.Down
             >>> staff = abjad.Staff([container])
@@ -2780,41 +2702,6 @@ class Mutation(object):
                     d'2
                 }
 
-        ..  container:: example
-
-            REGRESSION #1092. Preserves conventional tie when creating repeat
-            ties:
-
-            >>> staff = abjad.Staff("d'1 ~ d'")
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    d'1
-                    ~
-                    d'1
-                }
-
-            >>> result = abjad.mutate(staff[1]).split(
-            ...     [(1, 2)], repeat_ties=True
-            ... )
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    d'1
-                    ~
-                    d'2
-                    d'2
-                    \repeatTie
-                }
-
         Returns list of selections.
         """
         components = self.client
@@ -2899,9 +2786,7 @@ class Mutation(object):
                     leaf_split_durations.extend(additional_durations)
                     durations = split_durations[-1]
                     leaf_shards = current_component._split_by_durations(
-                        leaf_split_durations,
-                        cyclic=False,
-                        repeat_ties=repeat_ties,
+                        leaf_split_durations, cyclic=False
                     )
                     shard.extend(leaf_shards)
                     result.append(shard)
@@ -2909,7 +2794,7 @@ class Mutation(object):
                 else:
                     assert isinstance(current_component, Container)
                     pair = current_component._split_by_duration(
-                        local_split_duration, repeat_ties=repeat_ties
+                        local_split_duration
                     )
                     left_list, right_list = pair
                     shard.extend(left_list)

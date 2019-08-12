@@ -193,7 +193,7 @@ class Markup(object):
         self,
         contents=None,
         *,
-        direction: enums.VerticalAlignment = None,
+        direction: typing.Union[int, enums.VerticalAlignment] = None,
         literal: bool = None,
         tweaks: LilyPondTweakManager = None,
     ) -> None:

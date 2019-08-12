@@ -167,7 +167,7 @@ class Wellformedness(object):
         for i, component in enumerate(components):
             total.add(component)
             if 0 < i:
-                parentage = inspect(component).parentage(grace_notes=True)
+                parentage = inspect(component).parentage()
                 if parentage.parent is None:
                     violators.append(component)
         return violators, len(total)

@@ -1,4 +1,5 @@
 import collections
+from abjad.system.StorageFormatManager import StorageFormatManager
 from .TypedCollection import TypedCollection
 
 
@@ -68,9 +69,7 @@ class TypedTuple(TypedCollection, collections.abc.Sequence):
 
         Returns integer.
         """
-        import abjad
-
-        hash_values = abjad.StorageFormatManager(self).get_hash_values()
+        hash_values = StorageFormatManager(self).get_hash_values()
         try:
             result = hash(hash_values)
         except TypeError:

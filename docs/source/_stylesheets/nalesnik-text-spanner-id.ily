@@ -1,4 +1,4 @@
-% FROM DAVID NASELNIK:
+% FROM DAVID NALESNIK:
 %
 % https://lists.gnu.org/archive/html/lilypond-user/2015-10/msg00545.html
 % Implements commands for (up to four) simultaneous text spanners:

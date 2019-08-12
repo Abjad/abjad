@@ -22,7 +22,7 @@ class Segment(TypedTuple):
     def __init__(self, items=None, item_class=None):
         import abjad
 
-        prototype = (collections.Iterator, types.GeneratorType)
+        prototype = (collections.abc.Iterator, types.GeneratorType)
         if isinstance(items, str):
             items = items.split()
         elif isinstance(items, prototype):
@@ -35,7 +35,7 @@ class Segment(TypedTuple):
                 ):
                     item_class = items.item_class
                 elif len(items):
-                    if isinstance(items, collections.Set):
+                    if isinstance(items, collections.abc.Set):
                         items = tuple(items)
                     if isinstance(items[0], str):
                         item_class = self._named_item_class

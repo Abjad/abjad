@@ -47,10 +47,6 @@ class AfterGraceContainer(Container):
     Use after grace notes when you need to end a piece of music with grace
     notes.
 
-    ``AfterGracecontainer`` does not subclass ``GraceContainer``; but
-    ``AcciaccaturaContainer`` and ``AppoggiaturaContainer`` do subclass
-    ``GraceContainer``.
-
     Fill grace containers with notes, rests or chords.
 
     Attach after grace containers to notes, rests or chords.
@@ -66,7 +62,7 @@ class AfterGraceContainer(Container):
         >>> abjad.attach(literal, voice[0])
         >>> after_grace_container = abjad.AfterGraceContainer("c'16 d'16")
         >>> abjad.attach(after_grace_container, voice[1])
-        >>> leaves = abjad.select(voice).leaves(grace_notes=None)
+        >>> leaves = abjad.select(voice).leaves(grace=None)
         >>> markup = abjad.Markup('Allegro', direction=abjad.Up)
         >>> abjad.attach(markup, leaves[1])
         >>> abjad.attach(abjad.Staccato(), leaves[1])
@@ -130,11 +126,12 @@ class AfterGraceContainer(Container):
 
     __documentation_section__ = "Containers"
 
-    __slots__ = ("_main_leaf",)
+    __slots__ = "_main_leaf"
 
     ### INITIALIZER ###
 
     def __init__(self, components=None, tag: str = None) -> None:
+        # _main_leaf slot must be initialized before container initialization
         self._main_leaf = None
         Container.__init__(self, components, tag=tag)
 

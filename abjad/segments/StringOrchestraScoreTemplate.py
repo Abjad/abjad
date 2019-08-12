@@ -674,7 +674,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                 name="{}_Fingering_Staff".format(name),
                 tag=tag,
             )
-            lh_staff.is_simultaneous = True
+            lh_staff.simultaneous = True
             abjad.annotate(lh_staff, "pitch_range", pitch_range)
             abjad.annotate(lh_staff, "default_clef", abjad.Clef(clef_name))
             rh_voice = abjad.Voice(
@@ -691,7 +691,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                 name="{}_Bowing_Staff".format(name),
                 tag=tag,
             )
-            rh_staff.is_simultaneous = True
+            rh_staff.simultaneous = True
             staff_group.extend([rh_staff, lh_staff])
         else:
             lh_voice = abjad.Voice(
@@ -706,7 +706,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                 name="{}_Staff".format(name),
                 tag=tag,
             )
-            lh_staff.is_simultaneous = True
+            lh_staff.simultaneous = True
             abjad.annotate(lh_staff, "pitch_range", pitch_range)
             abjad.annotate(lh_staff, "default_clef", abjad.Clef(clef_name))
             staff_group.append(lh_staff)

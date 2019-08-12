@@ -20,7 +20,7 @@ from abjad.core.Selection import Selection
 from abjad.core.Skip import Skip
 from abjad.core.Tuplet import Tuplet
 from abjad.indicators.RepeatTie import RepeatTie
-from abjad.indicators.TieIndicator import TieIndicator
+from abjad.indicators.Tie import Tie
 from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.top.inspect import inspect
 from abjad.top.mutate import mutate
@@ -740,7 +740,6 @@ class Meter(object):
         initial_offset=None,
         maximum_dot_count=None,
         rewrite_tuplets=True,
-        repeat_ties=False,
     ):
         def recurse(
             boundary_depth=None,
@@ -781,9 +780,7 @@ class Meter(object):
                         break
                 if split_offset is not None:
                     split_offset -= logical_tie_start_offset
-                    shards = mutate(logical_tie[:]).split(
-                        [split_offset], repeat_ties=repeat_ties
-                    )
+                    shards = mutate(logical_tie[:]).split([split_offset])
                     logical_ties = [LogicalTie(_) for _ in shards]
                     for logical_tie in logical_ties:
                         recurse(
@@ -819,9 +816,7 @@ class Meter(object):
                         break
                 assert split_offset is not None
                 split_offset -= logical_tie_start_offset
-                shards = mutate(logical_tie[:]).split(
-                    [split_offset], repeat_ties=repeat_ties
-                )
+                shards = mutate(logical_tie[:]).split([split_offset])
                 logical_ties = [LogicalTie(shard) for shard in shards]
                 for logical_tie in logical_ties:
                     recurse(
@@ -1119,9 +1114,9 @@ class Meter(object):
             >>> for depth, offsets in enumerate(
             ...     meter.depthwise_offset_inventory):
             ...     print(depth, offsets)
-            0 (Offset(0, 1), Offset(7, 4))
-            1 (Offset(0, 1), Offset(3, 4), Offset(5, 4), Offset(7, 4))
-            2 (Offset(0, 1), Offset(1, 4), Offset(1, 2), Offset(3, 4), Offset(1, 1), Offset(5, 4), Offset(3, 2), Offset(7, 4))
+            0 (Offset((0, 1)), Offset((7, 4)))
+            1 (Offset((0, 1)), Offset((3, 4)), Offset((5, 4)), Offset((7, 4)))
+            2 (Offset((0, 1)), Offset((1, 4)), Offset((1, 2)), Offset((3, 4)), Offset((1, 1)), Offset((5, 4)), Offset((3, 2)), Offset((7, 4)))
 
         Returns dictionary.
         """
@@ -1762,14 +1757,14 @@ class MetricAccentKernel(object):
         >>> kernel
         MetricAccentKernel(
             {
-                Offset(0, 1): Multiplier(3, 14),
-                Offset(1, 8): Multiplier(1, 14),
-                Offset(1, 4): Multiplier(1, 14),
-                Offset(3, 8): Multiplier(1, 7),
-                Offset(1, 2): Multiplier(1, 14),
-                Offset(5, 8): Multiplier(1, 7),
-                Offset(3, 4): Multiplier(1, 14),
-                Offset(7, 8): Multiplier(3, 14),
+                Offset((0, 1)): Multiplier(3, 14),
+                Offset((1, 8)): Multiplier(1, 14),
+                Offset((1, 4)): Multiplier(1, 14),
+                Offset((3, 8)): Multiplier(1, 7),
+                Offset((1, 2)): Multiplier(1, 14),
+                Offset((5, 8)): Multiplier(1, 7),
+                Offset((3, 4)): Multiplier(1, 14),
+                Offset((7, 8)): Multiplier(3, 14),
                 }
             )
 
@@ -1908,13 +1903,12 @@ class MetricAccentKernel(object):
             >>> counter = abjad.MetricAccentKernel.count_offsets(leaves)
             >>> for offset, count in sorted(counter.items()):
             ...     offset, count
-            ...
-            (Offset(0, 1), 2)
-            (Offset(1, 8), 2)
-            (Offset(1, 4), 2)
-            (Offset(1, 2), 4)
-            (Offset(5, 8), 2)
-            (Offset(1, 1), 2)
+            (Offset((0, 1)), 2)
+            (Offset((1, 8)), 2)
+            (Offset((1, 4)), 2)
+            (Offset((1, 2)), 4)
+            (Offset((5, 8)), 2)
+            (Offset((1, 1)), 2)
 
         ..  container:: example
 
@@ -1925,12 +1919,11 @@ class MetricAccentKernel(object):
             >>> counter = MetricAccentKernel.count_offsets((a, b, c))
             >>> for offset, count in sorted(counter.items()):
             ...     offset, count
-            ...
-            (Offset(0, 1), 1)
-            (Offset(5, 1), 1)
-            (Offset(10, 1), 1)
-            (Offset(15, 1), 2)
-            (Offset(20, 1), 1)
+            (Offset((0, 1)), 1)
+            (Offset((5, 1)), 1)
+            (Offset((10, 1)), 1)
+            (Offset((15, 1)), 2)
+            (Offset((20, 1)), 1)
 
         Returns counter.
         """
@@ -1988,13 +1981,13 @@ class OffsetCounter(TypedCounter):
         >>> abjad.f(offset_counter)
         abjad.OffsetCounter(
             {
-                abjad.Offset(-2, 1): 1,
-                abjad.Offset(0, 1): 1,
-                abjad.Offset(5, 1): 1,
-                abjad.Offset(6, 1): 3,
-                abjad.Offset(10, 1): 2,
-                abjad.Offset(12, 1): 1,
-                abjad.Offset(16, 1): 1,
+                abjad.Offset((-2, 1)): 1,
+                abjad.Offset((0, 1)): 1,
+                abjad.Offset((5, 1)): 1,
+                abjad.Offset((6, 1)): 3,
+                abjad.Offset((10, 1)): 2,
+                abjad.Offset((12, 1)): 1,
+                abjad.Offset((16, 1)): 1,
                 }
             )
 

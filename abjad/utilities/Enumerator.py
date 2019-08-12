@@ -1,5 +1,7 @@
 import functools
 import itertools
+from abjad import mathtools
+from .Sequence import Sequence
 
 
 class Enumerator(object):
@@ -16,8 +18,6 @@ class Enumerator(object):
     ### INITIALIZER ###
 
     def __init__(self, sequence=None):
-        from .Sequence import Sequence
-
         if sequence is not None:
             sequence = Sequence(items=sequence)
         self._sequence = sequence
@@ -86,9 +86,7 @@ class Enumerator(object):
 
         Returns list of lists.
         """
-        import abjad
-
-        rgf = abjad.sequence(items=rgf)
+        rgf = Sequence(items=rgf)
         if not Enumerator._is_restricted_growth_function(rgf):
             message = "must be restricted growth function: {!r}."
             message = message.format(rgf)
@@ -104,8 +102,8 @@ class Enumerator(object):
             part_index = part_number - 1
             part = partition[part_index]
             part.append(n)
-        partition = [abjad.sequence(_) for _ in partition]
-        return abjad.sequence(items=partition)
+        partition = [Sequence(_) for _ in partition]
+        return Sequence(items=partition)
 
     @staticmethod
     def _yield_restricted_growth_functions(length):
@@ -138,9 +136,7 @@ class Enumerator(object):
 
         Returns generator of tuples.
         """
-        import abjad
-
-        assert abjad.mathtools.is_positive_integer(length), repr(length)
+        assert mathtools.is_positive_integer(length), repr(length)
         last_rgf = list(range(1, length + 1))
         rgf = length * [1]
         yield tuple(rgf)
@@ -271,11 +267,9 @@ class Enumerator(object):
 
         Returns sequence generator.
         """
-        import abjad
-
         length = len(self.sequence)
         for i in range(2 ** length):
-            binary_string = abjad.mathtools.integer_to_binary_string(i)
+            binary_string = mathtools.integer_to_binary_string(i)
             binary_string = binary_string.zfill(length)
             sublist = []
             for j, digit in enumerate(reversed(binary_string)):
@@ -292,7 +286,7 @@ class Enumerator(object):
                 if isinstance(self.sequence, str):
                     yield "".join(sublist)
                 else:
-                    yield abjad.sequence(items=sublist)
+                    yield Sequence(items=sublist)
 
     def yield_outer_product(self):
         """
@@ -368,13 +362,11 @@ class Enumerator(object):
                     result.extend([item_1 + [item_2]])
             return result
 
-        import abjad
-
-        sequences = [abjad.sequence(_) for _ in self.sequence]
+        sequences = [Sequence(_) for _ in self.sequence]
         sequences[0] = [[_] for _ in sequences[0]]
         result = functools.reduce(_helper, sequences)
         for element in result:
-            yield abjad.sequence(items=element)
+            yield Sequence(items=element)
 
     def yield_pairs(self):
         """
@@ -427,13 +419,11 @@ class Enumerator(object):
 
         Returns generator of length-2 sequences.
         """
-        import abjad
-
         for i, item in enumerate(self.sequence):
             start = i + 1
             for item_ in self.sequence[start:]:
                 pair = [item, item_]
-                yield abjad.sequence(items=pair)
+                yield Sequence(items=pair)
 
     def yield_partitions(self):
         """
@@ -467,11 +457,9 @@ class Enumerator(object):
 
         Returns generator of nested sequences.
         """
-        import abjad
-
         length = len(self.sequence) - 1
         for i in range(2 ** length):
-            binary_string = abjad.mathtools.integer_to_binary_string(i)
+            binary_string = mathtools.integer_to_binary_string(i)
             binary_string = binary_string.zfill(length)
             part = list(self.sequence[0:1])
             partition = [part]
@@ -481,8 +469,8 @@ class Enumerator(object):
                 else:
                     part = [n]
                     partition.append(part)
-            parts = [abjad.sequence(items=_) for _ in partition]
-            partition = abjad.sequence(items=parts)
+            parts = [Sequence(items=_) for _ in partition]
+            partition = Sequence(items=parts)
             yield partition
 
     def yield_permutations(self):
@@ -504,11 +492,9 @@ class Enumerator(object):
 
         Returns sequence generator.
         """
-        import abjad
-
         length = len(self.sequence)
         for permutation in itertools.permutations(tuple(range(length))):
-            permutation = abjad.sequence(items=permutation)
+            permutation = Sequence(items=permutation)
             yield self.sequence.permute(permutation)
 
     def yield_set_partitions(self):

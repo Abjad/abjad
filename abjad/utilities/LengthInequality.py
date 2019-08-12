@@ -1,3 +1,4 @@
+from abjad import mathtools
 from .Inequality import Inequality
 
 
@@ -36,16 +37,11 @@ class LengthInequality(Inequality):
     ### INITIALIZER ###
 
     def __init__(self, operator_string="<", length=None):
-        import abjad
-
         Inequality.__init__(self, operator_string=operator_string)
         if length is None:
-            length = abjad.mathtools.Infinity()
+            length = mathtools.Infinity()
         assert 0 <= length
-        infinities = (
-            abjad.mathtools.Infinity(),
-            abjad.mathtools.NegativeInfinity(),
-        )
+        infinities = (mathtools.Infinity(), mathtools.NegativeInfinity())
         if length not in infinities:
             length = int(length)
         self._length = length

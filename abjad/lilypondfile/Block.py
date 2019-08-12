@@ -99,7 +99,7 @@ class Block(object):
             >>> block.items.append(score)
 
             >>> block['Red_Example_Score']
-            Score(is_simultaneous=True, name='Red_Example_Score')
+            Score(simultaneous=True, name='Red_Example_Score')
 
         Returns item.
 

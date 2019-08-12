@@ -86,7 +86,7 @@ class Staff(Context):
         self,
         components=None,
         lilypond_type: str = "Staff",
-        is_simultaneous: bool = None,
+        simultaneous: bool = None,
         name: str = None,
         tag: str = None,
     ) -> None:
@@ -94,7 +94,7 @@ class Staff(Context):
             self,
             components=components,
             lilypond_type=lilypond_type,
-            is_simultaneous=is_simultaneous,
+            simultaneous=simultaneous,
             name=name,
             tag=tag,
         )

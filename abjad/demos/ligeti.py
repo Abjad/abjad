@@ -66,7 +66,7 @@ def make_desordre_cell(pitches):
 
     # combine them together
     container = abjad.Container([lower_voice, upper_voice])
-    container.is_simultaneous = True
+    container.simultaneous = True
 
     # make all 1/8 beats breakable
     leaves = abjad.select(lower_voice).leaves()

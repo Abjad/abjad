@@ -1,9 +1,12 @@
-import collections
+"""
+This is a module-level docstring.
+"""
 
 try:
     import quicktions as fractions  # type: ignore
 except ImportError:
     import fractions  # type: ignore
+import collections
 import itertools
 import math
 import numbers

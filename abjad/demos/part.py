@@ -310,7 +310,7 @@ def edit_cello_voice(score, durated_reservoir):
     """
     voice = score["Cello Voice"]
     descents = durated_reservoir["Cello"]
-    logical_tie = abjad.inspect(voice[-1]).logical_tie()
+    logical_tie = abjad.select(voice[-1]).logical_tie()
     for leaf in logical_tie.leaves:
         parent = abjad.inspect(leaf).parentage().parent
         index = parent.index(leaf)

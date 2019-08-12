@@ -51,6 +51,6 @@ from .StopSlur import StopSlur
 from .StopTextSpan import StopTextSpan
 from .StopTrillSpan import StopTrillSpan
 from .StringContactPoint import StringContactPoint
-from .TieIndicator import TieIndicator
+from .Tie import Tie
 from .TimeSignature import TimeSignature
 from .WoodwindFingering import WoodwindFingering

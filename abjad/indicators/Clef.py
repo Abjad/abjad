@@ -90,7 +90,7 @@ class Clef(object):
         >>> literal = abjad.LilyPondLiteral(r"\voiceTwo", "opening")
         >>> abjad.attach(literal, voice_2)
         >>> voice_2.consists_commands.append('Clef_engraver')
-        >>> staff = abjad.Staff([voice_1, voice_2], is_simultaneous=True)
+        >>> staff = abjad.Staff([voice_1, voice_2], simultaneous=True)
         >>> staff.remove_commands.append('Clef_engraver')
         >>> abjad.show(staff) # doctest: +SKIP
 
