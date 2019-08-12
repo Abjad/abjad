@@ -1,120 +1,130 @@
 #! /usr/bin/env python
 import abjad
-import copy
 
 __documentation_section__ = "demos"
 
 
 def make_bartok_score():
     """
-    make the Bartok example score.
+    Makes Bartók score.
     """
 
-    # make score skeleton
+    # makes empty score
     score = abjad.Score()
     piano_staff = abjad.StaffGroup(lilypond_type="PianoStaff")
-    upper_staff = abjad.Staff([])
-    lower_staff = abjad.Staff([])
+    upper_staff = abjad.Staff(name="Upper_Staff")
+    upper_staff_voice = abjad.Voice(name="Upper_Staff_Voice")
+    upper_staff.append(upper_staff_voice)
+    lower_staff = abjad.Staff(name="Lower_Staff")
+    lower_staff_voice_2 = abjad.Voice(name="Lower_Staff_Voice_II")
+    lower_staff.append(lower_staff_voice_2)
     piano_staff.append(upper_staff)
     piano_staff.append(lower_staff)
     score.append(piano_staff)
 
-    # make upper measures
-    upper_measures = []
-    upper_measures.append(abjad.Container())
-    upper_measures.append(abjad.Container())
-    upper_measures.append(abjad.Container())
-    upper_measures.append(abjad.Container())
-    upper_measures.append(abjad.Container())
-    lower_measures = copy.deepcopy(upper_measures)
-    upper_staff.extend(upper_measures)
-    lower_staff.extend(lower_measures)
+    # populates upper measures
+    upper_staff_voice.append(r"{ \time 2/4 a'8 g'8 f'8 e'8 }")
+    upper_staff_voice.append(r"{ \time 3/4 d'4 g'8 f'8 e'8 d'8 }")
+    upper_staff_voice.append(r"{ \time 2/4 c'8 d'16 e'16 f'8 e'8 }")
+    upper_staff_voice.append("{ d'2 }")
+    upper_staff_voice.append("{ d'2 }")
 
-    # add leaves to upper measures
-    upper_measures[0].extend("a'8 g'8 f'8 e'8")
-    abjad.attach(abjad.TimeSignature((2, 4)), upper_measures[0][0])
-    upper_measures[1].extend("d'4 g'8 f'8 e'8 d'8")
-    abjad.attach(abjad.TimeSignature((3, 4)), upper_measures[1][0])
-    upper_measures[2].extend("c'8 d'16 e'16 f'8 e'8")
-    abjad.attach(abjad.TimeSignature((2, 4)), upper_measures[2][0])
-    upper_measures[3].append("d'2")
-    upper_measures[4].append("d'2")
+    # populates lower measures
+    lower_staff_voice_2.append("{ b4 d'8 c'8 }")
+    lower_staff_voice_2.append("{ b8 a8 af4 c'8 bf8 }")
+    lower_staff_voice_2.append("{ a8 g8 fs8 g16 a16 }")
 
-    # add leaves to lower measures
-    lower_measures[0].extend("b4 d'8 c'8")
-    lower_measures[1].extend("b8 a8 af4 c'8 bf8")
-    lower_measures[2].extend("a8 g8 fs8 g16 a16")
+    # makes simultaneous music for measure 4
+    container = abjad.Container(
+        [
+            abjad.Voice(name="Lower_Staff_Voice_I"),
+            abjad.Voice(name="Lower_Staff_Voice_II"),
+        ],
+        simultaneous=True,
+    )
+    literal = abjad.LilyPondLiteral(r"\voiceOne")
+    abjad.attach(literal, container["Lower_Staff_Voice_I"])
+    container["Lower_Staff_Voice_I"].append("b2")
+    literal = abjad.LilyPondLiteral(r"\voiceTwo")
+    abjad.attach(literal, container["Lower_Staff_Voice_II"])
+    container["Lower_Staff_Voice_II"].extend("b4 a4")
+    lower_staff.append(container)
 
-    # make parallel music for measure 4
-    upper_voice = abjad.Voice("b2", name="upper voice")
-    command = abjad.LilyPondLiteral(r"\voiceOne")
-    abjad.attach(command, upper_voice)
-    lower_voice = abjad.Voice("b4 a4", name="lower voice")
-    command = abjad.LilyPondLiteral(r"\voiceTwo")
-    abjad.attach(command, lower_voice)
-    lower_measures[3].extend([upper_voice, lower_voice])
-    lower_measures[3].simultaneous = True
+    # measure 5
+    container = abjad.Container(
+        [
+            abjad.Voice(name="Lower_Staff_Voice_I"),
+            abjad.Voice(name="Lower_Staff_Voice_II"),
+        ],
+        simultaneous=True,
+    )
+    literal = abjad.LilyPondLiteral(r"\voiceOne")
+    abjad.attach(literal, container["Lower_Staff_Voice_I"])
+    container["Lower_Staff_Voice_I"].append("b2")
+    literal = abjad.LilyPondLiteral(r"\voiceTwo")
+    abjad.attach(literal, container["Lower_Staff_Voice_II"])
+    container["Lower_Staff_Voice_II"].append("g2")
+    lower_staff.append(container)
 
-    # make parallel music for measure 5
-    upper_voice = abjad.Voice("b2", name="upper voice")
-    command = abjad.LilyPondLiteral(r"\voiceOne")
-    abjad.attach(command, upper_voice)
-    lower_voice = abjad.Voice("g2", name="lower voice")
-    command = abjad.LilyPondLiteral(r"\voiceTwo")
-    abjad.attach(command, lower_voice)
-    lower_measures[4].extend([upper_voice, lower_voice])
-    lower_measures[4].simultaneous = True
+    # get leaves
+    upper_staff_leaves = abjad.select(upper_staff).leaves()
+    lower_staff_voice_1_leaves = []
+    for leaf in abjad.select(lower_staff).leaves():
+        voice = abjad.inspect(leaf).parentage().get(abjad.Voice)
+        if voice.name == "Lower_Staff_Voice_I":
+            lower_staff_voice_1_leaves.append(leaf)
+    lower_staff_voice_2_leaves = []
+    for leaf in abjad.select(lower_staff).leaves():
+        voice = abjad.inspect(leaf).parentage().get(abjad.Voice)
+        if voice.name == "Lower_Staff_Voice_II":
+            lower_staff_voice_2_leaves.append(leaf)
 
-    # add bass clef
+    # adds bass clef and final bar line
     clef = abjad.Clef("bass")
-    leaf = abjad.inspect(lower_staff).leaf(0)
+    leaf = lower_staff_voice_2_leaves[0]
     abjad.attach(clef, leaf)
+    bar_line = score.add_final_bar_line()
 
-    # add dynamics
-    dynamic = abjad.Dynamic("pp")
-    abjad.attach(dynamic, upper_measures[0][0])
-    dynamic = abjad.Dynamic("mp")
-    abjad.attach(dynamic, upper_measures[1][1])
-    dynamic = abjad.Dynamic("pp")
-    abjad.attach(dynamic, lower_measures[0][1])
-    dynamic = abjad.Dynamic("mp")
-    abjad.attach(dynamic, lower_measures[1][3])
+    # adds dynamics
+    abjad.attach(abjad.Dynamic("pp"), upper_staff_leaves[0])
+    abjad.attach(abjad.Dynamic("mp"), upper_staff_leaves[5])
+    abjad.attach(abjad.Dynamic("pp"), lower_staff_voice_2_leaves[1])
+    abjad.attach(abjad.Dynamic("mp"), lower_staff_voice_2_leaves[6])
+    abjad.override(upper_staff).dynamic_line_spanner.staff_padding = 2
+    abjad.override(lower_staff).dynamic_line_spanner.staff_padding = 3
 
-    # add final bar line
-    score.add_final_bar_line()
+    # attaches beams
+    abjad.beam(upper_staff_leaves[:4])
+    abjad.beam(lower_staff_voice_2_leaves[1:5])
+    abjad.beam(lower_staff_voice_2_leaves[6:10])
 
-    # select leaves for attaching spanners to
-    upper_leaves = abjad.select(upper_staff).leaves()
-    lower_leaves = abjad.select(lower_staff).leaves()
+    # attaches slurs
+    abjad.slur(upper_staff_leaves[:5])
+    abjad.slur(upper_staff_leaves[5:])
+    abjad.slur(lower_staff_voice_2_leaves[1:6])
+    abjad.slur(lower_staff_voice_2_leaves[-10:])
+    leaf = lower_staff_voice_2_leaves[-10]
+    abjad.override(leaf).slur.direction = abjad.Down
 
-    # attach beams
-    abjad.beam(upper_leaves[:4])
-    abjad.beam(lower_leaves[1:5])
-    abjad.beam(lower_leaves[6:10])
+    # attaches hairpins
+    abjad.hairpin("< !", upper_staff_leaves[-7:-2])
+    abjad.hairpin("> !", upper_staff_leaves[-2:])
+    leaf = upper_staff_leaves[-2]
+    abjad.override(leaf).hairpin.to_barline = False
 
-    # attach slurs
-    abjad.slur(upper_leaves[:5])
-    abjad.slur(upper_leaves[5:])
-    abjad.slur(lower_leaves[1:6])
+    # attaches text spanner with ritardando markup
+    markup = abjad.Markup("ritard.")
+    start_text_span = abjad.StartTextSpan(left_text=markup)
+    abjad.text_spanner(
+        upper_staff_leaves[-7:], start_text_span=start_text_span
+    )
+    abjad.override(upper_staff_leaves[-7]).text_spanner.staff_padding = 2
 
-    # attach hairpins
-    abjad.hairpin("<", upper_leaves[-7:-2])
-    abjad.hairpin(">", upper_leaves[-2:])
+    # ties notes
+    abjad.tie(upper_staff_leaves[-2:])
+    abjad.tie(lower_staff_voice_1_leaves)
 
-    # attach a ritardando with markup
-    start_text_span = abjad.StartTextSpan(left_text=abjad.Markup("ritard."))
-    abjad.text_spanner(upper_leaves[-7:], start_text_span=start_text_span)
-
-    # tie notes
-    abjad.tie(upper_leaves[-2:])
-
-    # tie more notes
-    note_1 = lower_staff[-2]["upper voice"][0]
-    note_2 = lower_staff[-1]["upper voice"][0]
-    notes = abjad.select([note_1, note_2])
-    abjad.tie(notes)
-
-    # return the score
+    # returns score
     return score
 
 

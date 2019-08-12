@@ -7,9 +7,13 @@ Bartók: *Mikrokosmos*
 
 This example reconstructs the last five measures of Bartók's "Wandering" from
 *Mikrokosmos*, volume III. The end result is just a few measures long but
-covers the basic features you'll use most often in Abjad. 
+covers basic features you'll use in Abjad. 
 
-Here is what we want to end up with:
+Here is the finished excerpt:
+
+..  import:: abjad.demos:bartok
+    :hide:
+
 
 ..  import:: abjad.demos.bartok:make_bartok_score
     :hide:
@@ -18,7 +22,7 @@ Here is what we want to end up with:
     :hide:
     :stylesheet: literature-examples.ily
 
-    abjad.show(make_bartok_score())
+    abjad.show(bartok.make_bartok_score())
 
 The score
 ---------
@@ -27,149 +31,159 @@ We'll construct the fragment top-down from containers to notes. We could have
 done it the other way around but it will be easier to keep the big picture in
 mind this way. Later, you can rebuild the example bottom-up as an exercise.
 
-First let's create an empty score with a pair of staves connected by a brace:
+First let's create an empty score. We can see our work after we add some notes:
 
 ..  abjad::
 
     score = abjad.Score()
-    piano_staff = abjad.StaffGroup([], lilypond_type='PianoStaff')
-    upper_staff = abjad.Staff()
-    lower_staff = abjad.Staff()
-
-..  abjad::
-
+    piano_staff = abjad.StaffGroup(lilypond_type="PianoStaff")
+    upper_staff = abjad.Staff(name="Upper_Staff")
+    upper_staff_voice = abjad.Voice(name="Upper_Staff_Voice")
+    upper_staff.append(upper_staff_voice)
+    lower_staff = abjad.Staff(name="Lower_Staff")
+    lower_staff_voice_2 = abjad.Voice(name="Lower_Staff_Voice_II")
+    lower_staff.append(lower_staff_voice_2)
     piano_staff.append(upper_staff)
     piano_staff.append(lower_staff)
     score.append(piano_staff)
 
-
-The measures
-------------
-
-Now let's add some empty measures:
-
-..  abjad::
-
-    upper_measures = []
-    upper_measures.append(abjad.Container())
-    upper_measures.append(abjad.Container())
-    upper_measures.append(abjad.Container())
-    upper_measures.append(abjad.Container())
-    upper_measures.append(abjad.Container())
-
-..  abjad::
-
-    import copy
-    lower_measures = copy.deepcopy(upper_measures)
-
-..  abjad::
-
-    upper_staff.extend(upper_measures)
-    lower_staff.extend(lower_measures)
-
-
 The notes
 ---------
 
-Now let's add some notes.
-
-We begin with the upper staff:
-
-..  abjad::
-
-    upper_measures[0].extend(r"\time 2/4 a'8 g'8 f'8 e'8")
-    upper_measures[1].extend(r"\time 3/4 d'4 g'8 f'8 e'8 d'8")
-    upper_measures[2].extend(r"\time 2/4 c'8 d'16 e'16 f'8 e'8")
-    upper_measures[3].append("d'2")
-    upper_measures[4].append("d'2")
-
-The first three measures of the lower staff contain only one voice:
-
-..  abjad::
-
-    lower_measures[0].extend("b4 d'8 c'8")
-    lower_measures[1].extend("b8 a8 af4 c'8 bf8")
-    lower_measures[2].extend("a8 g8 fs8 g16 a16")
-
-The last two measures of the lower staff contain two voices each.
-
-We use LilyPond ``\voiceOne`` and ``\voiceTwo`` literals to set
-the direction of stems in different voices. And we set ``is_simltaneous``
-to true for each of the last two measures:
-
-..  abjad::
-
-    upper_voice = abjad.Voice("b2", name='upper voice')
-    literal = abjad.LilyPondLiteral(r'\voiceOne')
-    abjad.attach(literal, upper_voice)
-    lower_voice = abjad.Voice("b4 a4", name='lower voice')
-    literal = abjad.LilyPondLiteral(r'\voiceTwo')
-    abjad.attach(literal, lower_voice)
-    lower_measures[3].extend([upper_voice, lower_voice])
-    lower_measures[3].simultaneous = True
-
-..  abjad::
-
-    upper_voice = abjad.Voice("b2", name='upper voice')
-    literal = abjad.LilyPondLiteral(r'\voiceOne')
-    abjad.attach(literal, upper_voice)
-    lower_voice = abjad.Voice("g2", name='lower voice')
-    literal = abjad.LilyPondLiteral(r'\voiceTwo')
-    abjad.attach(literal, lower_voice)
-    lower_measures[4].extend([upper_voice, lower_voice])
-    lower_measures[4].simultaneous = True
-
-Here's our work so far:
+Now let's add notes to the upper staff:
 
 ..  abjad::
     :stylesheet: literature-examples.ily
 
+    upper_staff_voice.append(r"{ \time 2/4 a'8 g'8 f'8 e'8 }")
+    upper_staff_voice.append(r"{ \time 3/4 d'4 g'8 f'8 e'8 d'8 }")
+    upper_staff_voice.append(r"{ \time 2/4 c'8 d'16 e'16 f'8 e'8 }")
+    upper_staff_voice.append("{ d'2 }")
+    upper_staff_voice.append("{ d'2 }")
     abjad.show(score)
 
+Then to the monophonic part of the lower staff:
+
+..  abjad::
+    :stylesheet: literature-examples.ily
+
+    lower_staff_voice_2.append("{ b4 d'8 c'8 }")
+    lower_staff_voice_2.append("{ b8 a8 af4 c'8 bf8 }")
+    lower_staff_voice_2.append("{ a8 g8 fs8 g16 a16 }")
+    abjad.show(score)
+
+The simultaneous voices in measure four are more complicated:
+
+..  abjad::
+    :stylesheet: literature-examples.ily
+
+    container = abjad.Container(
+        [
+            abjad.Voice(name="Lower_Staff_Voice_I"),
+            abjad.Voice(name="Lower_Staff_Voice_II"),
+        ],
+        simultaneous=True
+    )
+    literal = abjad.LilyPondLiteral(r"\voiceOne")
+    abjad.attach(literal, container["Lower_Staff_Voice_I"])
+    container["Lower_Staff_Voice_I"].append("b2")
+    literal = abjad.LilyPondLiteral(r"\voiceTwo")
+    abjad.attach(literal, container["Lower_Staff_Voice_II"])
+    container["Lower_Staff_Voice_II"].extend("b4 a4")
+    lower_staff.append(container)
+    abjad.show(score)
+
+Measure five follows the same pattern:
+
+..  abjad::
+    :stylesheet: literature-examples.ily
+
+    container = abjad.Container(
+        [
+            abjad.Voice(name="Lower_Staff_Voice_I"),
+            abjad.Voice(name="Lower_Staff_Voice_II"),
+        ],
+        simultaneous=True
+    )
+    literal = abjad.LilyPondLiteral(r"\voiceOne")
+    abjad.attach(literal, container["Lower_Staff_Voice_I"])
+    container["Lower_Staff_Voice_I"].append("b2")
+    literal = abjad.LilyPondLiteral(r"\voiceTwo")
+    abjad.attach(literal, container["Lower_Staff_Voice_II"])
+    container["Lower_Staff_Voice_II"].append("g2")
+    lower_staff.append(container)
+    abjad.show(score)
+
+Caching leaves
+--------------
+
+It will help to store the contents of each voice is a list before adding
+details to the score. This effectively flattens out the polyphonic structure of
+the excerpt and makes our score easier to work with:
+
+..  abjad::
+
+    upper_staff_leaves = abjad.select(upper_staff).leaves()
+
+..  abjad::
+
+    len(upper_staff_leaves)
+
+..  abjad::
+
+    lower_staff_voice_2_leaves = []
+    for leaf in abjad.select(lower_staff).leaves():
+        voice = abjad.inspect(leaf).parentage().get(abjad.Voice)
+        if voice.name == "Lower_Staff_Voice_II":
+            lower_staff_voice_2_leaves.append(leaf)
+
+..  abjad::
+
+    len(lower_staff_voice_2_leaves)
+
+..  abjad::
+
+    lower_staff_voice_1_leaves = []
+    for leaf in abjad.select(lower_staff).leaves():
+        voice = abjad.inspect(leaf).parentage().get(abjad.Voice)
+        if voice.name == "Lower_Staff_Voice_I":
+            lower_staff_voice_1_leaves.append(leaf)
+
+..  abjad::
+
+    len(lower_staff_voice_1_leaves)
+
+Notice that the only voice in the upper staff runs the full length of the
+excerpt. So does voice 2 in the lower staff. But voice 1 in the lower staff is
+only two measures long.
 
 The details
 -----------
 
-Ok, let's add the details. First, notice that the bottom staff has a treble
-clef just like the top staff. Let's change that:
-
-..  abjad::
-
-    leaf = abjad.inspect(lower_staff).leaf(0)
-    abjad.attach(abjad.Clef('bass'), leaf)
-
-Now let's add dynamics. For the top staff, we'll add them to the first
-note of the first measure and the second note of the second measure. For the
-bottom staff, we'll add dynamicings to the second note of the first
-measure and the fourth note of the second measure:
-
-..  abjad::
-
-    abjad.attach(abjad.Dynamic('pp'), upper_measures[0][0])
-
-..  abjad::
-
-    abjad.attach(abjad.Dynamic('mp'), upper_measures[1][1])
-
-..  abjad::
-
-    abjad.attach(abjad.Dynamic('pp'), lower_measures[0][1])
-
-..  abjad::
-
-    abjad.attach(abjad.Dynamic('mp'), lower_measures[1][3])
-
-Let's add a double bar to the end of the piece:
-
-..  abjad::
-
-    score.add_final_bar_line()
-
-And see how things are coming out:
+The bottom staff has a treble clef just like the top staff. Let's change that,
+and add a double bar to the end of the score:
 
 ..  abjad::
     :stylesheet: literature-examples.ily
 
+    clef = abjad.Clef("bass")
+    leaf = lower_staff_voice_2_leaves[0]
+    abjad.attach(clef, leaf)
+    bar_line = score.add_final_bar_line()
+    abjad.show(score)
+
+Now let's add dynamics. We override LilyPond's DynamicLineSpanner grob to
+control the distance of dynamics from each staff:
+
+..  abjad::
+    :stylesheet: literature-examples.ily
+
+    abjad.attach(abjad.Dynamic("pp"), upper_staff_leaves[0])
+    abjad.attach(abjad.Dynamic("mp"), upper_staff_leaves[5])
+    abjad.attach(abjad.Dynamic("pp"), lower_staff_voice_2_leaves[1])
+    abjad.attach(abjad.Dynamic("mp"), lower_staff_voice_2_leaves[6])
+    abjad.override(upper_staff).dynamic_line_spanner.staff_padding = 2
+    abjad.override(lower_staff).dynamic_line_spanner.staff_padding = 3
     abjad.show(score)
 
 Notice that the beams of the eighth and sixteenth notes appear as you would
@@ -178,75 +192,56 @@ default beaming algorithm. But this is not the way Bartók notated the beams.
 Let's set the beams as Bartók did with some crossing the bar lines:
 
 ..  abjad::
-
-    upper_leaves = abjad.select(upper_staff).leaves()
-    lower_leaves = abjad.select(lower_staff).leaves()
-
-..  abjad::
-
-    abjad.beam(upper_leaves[:4])
-
-..  abjad::
-
-    abjad.beam(lower_leaves[1:5])
-
-..  abjad::
-
-    abjad.beam(lower_leaves[6:10])
-
-..  abjad::
     :stylesheet: literature-examples.ily
 
+    abjad.beam(upper_staff_leaves[:4])
+    abjad.beam(lower_staff_voice_2_leaves[1:5])
+    abjad.beam(lower_staff_voice_2_leaves[6:10])
     abjad.show(score)
 
-Now some slurs:
-
-..  abjad::
-
-    abjad.slur(upper_leaves[:5])
-
-..  abjad::
-
-    abjad.slur(upper_leaves[5:])
-
-..  abjad::
-
-    abjad.slur(lower_leaves[1:6])
-
-Hairpins:
-
-..  abjad::
-
-    abjad.hairpin('<', upper_leaves[-7:-2])
-
-..  abjad::
-
-    abjad.hairpin('>', upper_leaves[-2:])
-
-A ritardando marking above the last seven notes of the upper staff:
-
-..  abjad::
-
-    markup = abjad.Markup('ritard.')
-    start_text_span = abjad.StartTextSpan(left_text=abjad.Markup('ritard.'))
-    abjad.text_spanner(upper_leaves[-7:], start_text_span=start_text_span)
-
-And ties connecting the last two notes in each staff:
-
-..  abjad::
-
-    abjad.tie(upper_leaves[-2:])
-
-..  abjad::
-
-    note_1 = lower_staff[-2]['upper voice'][0]
-    note_2 = lower_staff[-1]['upper voice'][0]
-    notes = abjad.select([note_1, note_2])
-    abjad.tie(notes)
-
-The final result:
+Now we add slurs:
 
 ..  abjad::
     :stylesheet: literature-examples.ily
 
+    abjad.slur(upper_staff_leaves[:5])
+    abjad.slur(upper_staff_leaves[5:])
+    abjad.slur(lower_staff_voice_2_leaves[1:6])
+    abjad.slur(lower_staff_voice_2_leaves[-10:])
+    leaf = lower_staff_voice_2_leaves[-10]
+    abjad.override(leaf).slur.direction = abjad.Down
+    abjad.show(score)
+
+And hairpins:
+
+..  abjad::
+    :stylesheet: literature-examples.ily
+
+    abjad.hairpin("< !", upper_staff_leaves[-7:-2])
+    abjad.hairpin("> !", upper_staff_leaves[-2:])
+    leaf = upper_staff_leaves[-2]
+    abjad.override(leaf).hairpin.to_barline = False
+    abjad.show(score)
+
+And a text spanner with LilyPond markup:
+
+..  abjad::
+    :stylesheet: literature-examples.ily
+
+    markup = abjad.Markup("ritard.")
+    start_text_span = abjad.StartTextSpan(left_text=markup)
+    abjad.text_spanner(
+        upper_staff_leaves[-7:],
+        start_text_span=start_text_span
+    )
+    abjad.override(upper_staff_leaves[-7]).text_spanner.staff_padding = 2
+    abjad.show(score)
+
+Finally, we tie the last two notes in each staff:
+
+..  abjad::
+    :stylesheet: literature-examples.ily
+
+    abjad.tie(upper_staff_leaves[-2:])
+    abjad.tie(lower_staff_voice_1_leaves)
     abjad.show(score)
