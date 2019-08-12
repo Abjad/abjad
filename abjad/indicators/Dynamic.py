@@ -355,7 +355,7 @@ class Dynamic(object):
         import abjad
 
         if not isinstance(component_expression, abjad.Leaf):
-            strings = ["Must be leaf (not {component_expression})."]
+            strings = [f"Must be leaf (not {component_expression})."]
             return strings
         return True
 
