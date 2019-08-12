@@ -1010,7 +1010,7 @@ class LilyPondSyntacticalDefinition(object):
         rest = core.MultimeasureRest(p[2].duration)
         if p[2].multiplier is not None:
             multiplier = utilities.Multiplier(p[2].multiplier)
-            result.multiplier = multiplier
+            rest.multiplier = multiplier
         self.client._process_post_events(rest, p[3])
         p[0] = rest
 

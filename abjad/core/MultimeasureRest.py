@@ -6,7 +6,7 @@ from .Rest import Rest
 
 
 class MultimeasureRest(Leaf):
-    """
+    r"""
     Multimeasure rest.
 
     ..  container:: example
@@ -16,9 +16,27 @@ class MultimeasureRest(Leaf):
 
     ..  container:: example
 
+        Multimeasure rests may be tagged:
+
         >>> rest = abjad.MultimeasureRest('R1', tag='GLOBAL_MULTIMEASURE_REST')
         >>> abjad.f(rest)
         R1 %! GLOBAL_MULTIMEASURE_REST
+
+    ..  container:: example
+
+        REGRESSION #1049. Parser reads multimeasure rest multipliers:
+
+        >>> staff = abjad.Staff(r"\time 3/8 R1 * 3/8")
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                \time 3/8
+                R1 * 3/8
+            }
 
     """
 
