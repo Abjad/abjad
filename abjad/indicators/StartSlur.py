@@ -132,8 +132,95 @@ class StartSlur(object):
 
     @property
     def direction(self) -> typing.Optional[str]:
-        """
+        r"""
         Gets direction.
+
+        ..  container:: example
+
+            With ``direction`` unset:
+
+            >>> staff = abjad.Staff("c'8 d' e' f' c'' d'' e'' f''")
+            >>> abjad.attach(abjad.StartSlur(), staff[0])
+            >>> abjad.attach(abjad.StopSlur(), staff[3])
+            >>> abjad.attach(abjad.StartSlur(), staff[4])
+            >>> abjad.attach(abjad.StopSlur(), staff[7])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    c'8
+                    (
+                    d'8
+                    e'8
+                    f'8
+                    )
+                    c''8
+                    (
+                    d''8
+                    e''8
+                    f''8
+                    )
+                }
+
+            With ``direction=abjad.Up``:
+
+            >>> staff = abjad.Staff("c'8 d' e' f' c'' d'' e'' f''")
+            >>> abjad.attach(abjad.StartSlur(direction=abjad.Up), staff[0])
+            >>> abjad.attach(abjad.StopSlur(), staff[3])
+            >>> abjad.attach(abjad.StartSlur(direction=abjad.Up), staff[4])
+            >>> abjad.attach(abjad.StopSlur(), staff[7])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    c'8
+                    ^ (
+                    d'8
+                    e'8
+                    f'8
+                    )
+                    c''8
+                    ^ (
+                    d''8
+                    e''8
+                    f''8
+                    )
+                }
+
+            With ``direction=abjad.Down``:
+
+            >>> staff = abjad.Staff("c'8 d' e' f' c'' d'' e'' f''")
+            >>> abjad.attach(abjad.StartSlur(direction=abjad.Down), staff[0])
+            >>> abjad.attach(abjad.StopSlur(), staff[3])
+            >>> abjad.attach(abjad.StartSlur(direction=abjad.Down), staff[4])
+            >>> abjad.attach(abjad.StopSlur(), staff[7])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    c'8
+                    _ (
+                    d'8
+                    e'8
+                    f'8
+                    )
+                    c''8
+                    _ (
+                    d''8
+                    e''8
+                    f''8
+                    )
+                }
+
         """
         return self._direction
 

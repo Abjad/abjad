@@ -168,10 +168,11 @@ class Tie(object):
 
         ..  container:: example
 
-            >>> staff = abjad.Staff("c'4 c' d' d'")
-            >>> tie = abjad.Tie(direction=abjad.Up)
-            >>> abjad.tweak(tie).color = 'blue'
-            >>> abjad.attach(tie, staff[0])
+            With ``direction`` unset:
+
+            >>> staff = abjad.Staff("c'4 c' c'' c''")
+            >>> abjad.attach(abjad.Tie(), staff[0])
+            >>> abjad.attach(abjad.Tie(), staff[2])
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -180,11 +181,51 @@ class Tie(object):
                 \new Staff
                 {
                     c'4
-                    - \tweak color #blue
+                    ~
+                    c'4
+                    c''4
+                    ~
+                    c''4
+                }
+
+            With ``direction=abjad.Up``:
+
+            >>> staff = abjad.Staff("c'4 c' c'' c''")
+            >>> abjad.attach(abjad.Tie(direction=abjad.Up), staff[0])
+            >>> abjad.attach(abjad.Tie(direction=abjad.Up), staff[2])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    c'4
                     ^ ~
                     c'4
-                    d'4
-                    d'4
+                    c''4
+                    ^ ~
+                    c''4
+                }
+
+            With ``direction=abjad.Down``:
+
+            >>> staff = abjad.Staff("c'4 c' c'' c''")
+            >>> abjad.attach(abjad.Tie(direction=abjad.Down), staff[0])
+            >>> abjad.attach(abjad.Tie(direction=abjad.Down), staff[2])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    c'4
+                    _ ~
+                    c'4
+                    c''4
+                    _ ~
+                    c''4
                 }
 
         """

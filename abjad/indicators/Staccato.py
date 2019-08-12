@@ -12,28 +12,8 @@ class Staccato(object):
 
     ..  container:: example
 
-        Attached to a single note:
-
-        >>> note = abjad.Note("c'4")
-        >>> staccato = abjad.Staccato()
-        >>> abjad.attach(staccato, note)
-        >>> abjad.show(note) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> abjad.f(note)
-            c'4
-            \staccato
-
-    ..  container:: example
-
-        Attached to notes in a staff:
-
-        >>> staff = abjad.Staff("c'8 d' e' f' g' a' b' c''")
-        >>> abjad.beam(staff[:4])
-        >>> abjad.beam(staff[4:])
-        >>> abjad.attach(abjad.Staccato(), staff[3])
-        >>> abjad.attach(abjad.Staccato(), staff[7])
+        >>> staff = abjad.Staff("c'4")
+        >>> abjad.attach(abjad.Staccato(), staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -41,19 +21,7 @@ class Staccato(object):
             >>> abjad.f(staff)
             \new Staff
             {
-                c'8
-                [
-                d'8
-                e'8
-                f'8
-                ]
-                \staccato
-                g'8
-                [
-                a'8
-                b'8
-                c''8
-                ]
+                c'4
                 \staccato
             }
 
@@ -123,7 +91,12 @@ class Staccato(object):
             '\\staccato'
 
         """
-        return r"\staccato"
+        string = r"\staccato"
+        if self.direction is None:
+            return string
+        direction = String.to_tridirectional_lilypond_symbol(self.direction)
+        assert isinstance(direction, String), repr(direction)
+        return fr"{direction} {string}"
 
     ### PRIVATE METHODS ###
 
@@ -142,18 +115,64 @@ class Staccato(object):
 
     @property
     def direction(self) -> typing.Optional[enums.VerticalAlignment]:
-        """
-        Gets direction of articulation.
+        r"""
+        Gets direction of staccato.
 
         ..  container:: example
 
-            Without direction:
+            With ``direction`` unset:
 
-            >>> abjad.Staccato().direction is None
-            True
+            >>> staff = abjad.Staff("c'4 c''4")
+            >>> abjad.attach(abjad.Staccato(), staff[0])
+            >>> abjad.attach(abjad.Staccato(), staff[1])
+            >>> abjad.show(staff) # doctest: +SKIP
+            
+            ..  docs::
 
-            >>> abjad.Staccato(direction=abjad.Up).direction
-            Up
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    c'4
+                    \staccato
+                    c''4
+                    \staccato
+                }
+
+            With ``direction=abjad.Up``:
+
+            >>> staff = abjad.Staff("c'4 c''4")
+            >>> abjad.attach(abjad.Staccato(direction=abjad.Up), staff[0])
+            >>> abjad.attach(abjad.Staccato(direction=abjad.Up), staff[1])
+            >>> abjad.show(staff) # doctest: +SKIP
+            
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    c'4
+                    ^ \staccato
+                    c''4
+                    ^ \staccato
+                }
+
+            With ``direction=abjad.Down``:
+
+            >>> staff = abjad.Staff("c'4 c''4")
+            >>> abjad.attach(abjad.Staccato(direction=abjad.Down), staff[0])
+            >>> abjad.attach(abjad.Staccato(direction=abjad.Down), staff[1])
+            >>> abjad.show(staff) # doctest: +SKIP
+            
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    c'4
+                    _ \staccato
+                    c''4
+                    _ \staccato
+                }
 
         """
         return self._direction
