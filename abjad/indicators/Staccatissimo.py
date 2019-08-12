@@ -12,28 +12,8 @@ class Staccatissimo(object):
 
     ..  container:: example
 
-        Attached to a single note:
-
-        >>> note = abjad.Note("c'4")
-        >>> staccatissimo = abjad.Staccatissimo()
-        >>> abjad.attach(staccatissimo, note)
-        >>> abjad.show(note) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> abjad.f(note)
-            c'4
-            \staccatissimo
-
-    ..  container:: example
-
-        Attached to notes in a staff:
-
-        >>> staff = abjad.Staff("c'8 d' e' f' g' a' b' c''")
-        >>> abjad.beam(staff[:4])
-        >>> abjad.beam(staff[4:])
-        >>> abjad.attach(abjad.Staccatissimo(), staff[3])
-        >>> abjad.attach(abjad.Staccatissimo(), staff[7])
+        >>> staff = abjad.Staff("c'4")
+        >>> abjad.attach(abjad.Staccatissimo(), staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -41,19 +21,7 @@ class Staccatissimo(object):
             >>> abjad.f(staff)
             \new Staff
             {
-                c'8
-                [
-                d'8
-                e'8
-                f'8
-                ]
-                \staccatissimo
-                g'8
-                [
-                a'8
-                b'8
-                c''8
-                ]
+                c'4
                 \staccatissimo
             }
 
@@ -91,14 +59,13 @@ class Staccatissimo(object):
 
     def __eq__(self, argument) -> bool:
         """
-        Is true when all initialization values of Abjad value object equal
-        the initialization values of ``argument``.
+        Delegates to storage format manager.
         """
         return StorageFormatManager.compare_objects(self, argument)
 
     def __hash__(self) -> int:
         """
-        Hashes Abjad value object.
+        Delegates to storage format manager.
         """
         hash_values = StorageFormatManager(self).get_hash_values()
         try:
@@ -109,12 +76,13 @@ class Staccatissimo(object):
 
     def __repr__(self) -> str:
         """
-        Gets interpreter representation.
+        Delegates to storage format manager.
         """
         return StorageFormatManager(self).get_repr_format()
 
     def __str__(self) -> str:
-        r"""Gets string representation of staccatissimo.
+        r"""
+        Gets string representation of staccatissimo.
 
         ..  container:: example
 
@@ -122,7 +90,12 @@ class Staccatissimo(object):
             '\\staccatissimo'
 
         """
-        return r"\staccatissimo"
+        string = r"\staccatissimo"
+        if self.direction is None:
+            return string
+        direction = String.to_tridirectional_lilypond_symbol(self.direction)
+        assert isinstance(direction, String), repr(direction)
+        return fr"{direction} {string}"
 
     ### PRIVATE METHODS ###
 
@@ -141,18 +114,64 @@ class Staccatissimo(object):
 
     @property
     def direction(self) -> typing.Optional[enums.VerticalAlignment]:
-        """
-        Gets direction of articulation.
+        r"""
+        Gets direction of staccatissimo.
 
         ..  container:: example
 
-            Without direction:
+            With ``direction`` unset:
 
-            >>> abjad.Staccatissimo().direction is None
-            True
+            >>> staff = abjad.Staff("c'4 c''4")
+            >>> abjad.attach(abjad.Staccatissimo(), staff[0])
+            >>> abjad.attach(abjad.Staccatissimo(), staff[1])
+            >>> abjad.show(staff) # doctest: +SKIP
+            
+            ..  docs::
 
-            >>> abjad.Staccatissimo(direction=abjad.Up).direction
-            Up
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    c'4
+                    \staccatissimo
+                    c''4
+                    \staccatissimo
+                }
+
+            With ``direction=abjad.Up``:
+
+            >>> staff = abjad.Staff("c'4 c''4")
+            >>> abjad.attach(abjad.Staccatissimo(direction=abjad.Up), staff[0])
+            >>> abjad.attach(abjad.Staccatissimo(direction=abjad.Up), staff[1])
+            >>> abjad.show(staff) # doctest: +SKIP
+            
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    c'4
+                    ^ \staccatissimo
+                    c''4
+                    ^ \staccatissimo
+                }
+
+            With ``direction=abjad.Down``:
+
+            >>> staff = abjad.Staff("c'4 c''4")
+            >>> abjad.attach(abjad.Staccatissimo(direction=abjad.Down), staff[0])
+            >>> abjad.attach(abjad.Staccatissimo(direction=abjad.Down), staff[1])
+            >>> abjad.show(staff) # doctest: +SKIP
+            
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    c'4
+                    _ \staccatissimo
+                    c''4
+                    _ \staccatissimo
+                }
 
         """
         return self._direction

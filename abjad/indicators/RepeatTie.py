@@ -119,6 +119,8 @@ class RepeatTie(object):
         return True
 
     def _get_lilypond_format_bundle(self, component=None):
+        import abjad
+
         bundle = LilyPondFormatBundle()
         if self.tweaks:
             strings = self.tweaks._list_format_contributions()
@@ -126,7 +128,10 @@ class RepeatTie(object):
                 strings = self._tag_show(strings)
             bundle.after.spanners.extend(strings)
         strings = []
-        if self._should_force_repeat_tie_up(component):
+        if self.direction is not None:
+            assert isinstance(self.direction, str)
+            strings.append(self.direction)
+        elif self._should_force_repeat_tie_up(component):
             string = r"- \tweak direction #up"
             strings.append(string)
         strings.append(r"\repeatTie")
@@ -188,10 +193,15 @@ class RepeatTie(object):
 
         ..  container:: example
 
-            >>> staff = abjad.Staff("c'4 c' d' d'")
-            >>> tie = abjad.RepeatTie(direction=abjad.Up)
+            With ``direction`` unset:
+
+            >>> staff = abjad.Staff("c'4 c'4 c''4 c''4")
+            >>> tie = abjad.RepeatTie()
             >>> abjad.tweak(tie).color = 'blue'
-            >>> abjad.attach(tie, staff[0])
+            >>> abjad.attach(tie, staff[1])
+            >>> tie = abjad.RepeatTie()
+            >>> abjad.tweak(tie).color = 'blue'
+            >>> abjad.attach(tie, staff[3])
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -200,11 +210,69 @@ class RepeatTie(object):
                 \new Staff
                 {
                     c'4
+                    c'4
                     - \tweak color #blue
                     \repeatTie
+                    c''4
+                    c''4
+                    - \tweak color #blue
+                    \repeatTie
+                }
+
+            With ``direction=abjad.Up``:
+
+            >>> staff = abjad.Staff("c'4 c'4 c''4 c''4")
+            >>> tie = abjad.RepeatTie(direction=abjad.Up)
+            >>> abjad.tweak(tie).color = 'blue'
+            >>> abjad.attach(tie, staff[1])
+            >>> tie = abjad.RepeatTie(direction=abjad.Up)
+            >>> abjad.tweak(tie).color = 'blue'
+            >>> abjad.attach(tie, staff[3])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
                     c'4
-                    d'4
-                    d'4
+                    c'4
+                    - \tweak color #blue
+                    ^
+                    \repeatTie
+                    c''4
+                    c''4
+                    - \tweak color #blue
+                    ^
+                    \repeatTie
+                }
+
+            With ``direction=abjad.Down``:
+
+            >>> staff = abjad.Staff("c'4 c'4 c''4 c''4")
+            >>> tie = abjad.RepeatTie(direction=abjad.Down)
+            >>> abjad.tweak(tie).color = 'blue'
+            >>> abjad.attach(tie, staff[1])
+            >>> tie = abjad.RepeatTie(direction=abjad.Down)
+            >>> abjad.tweak(tie).color = 'blue'
+            >>> abjad.attach(tie, staff[3])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    c'4
+                    c'4
+                    - \tweak color #blue
+                    _
+                    \repeatTie
+                    c''4
+                    c''4
+                    - \tweak color #blue
+                    _
+                    \repeatTie
                 }
 
         """

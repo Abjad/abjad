@@ -428,6 +428,12 @@ class Dynamic(object):
             string = self._format_textual(self.direction, self.name)
         else:
             string = rf"\{self.name}"
+            if self.direction is not None:
+                direction_ = self.direction
+                direction = String.to_tridirectional_lilypond_symbol(
+                    direction_
+                )
+                string = f"{direction} {string}"
         return string
 
     def _get_lilypond_format_bundle(self, component=None):
@@ -494,20 +500,146 @@ class Dynamic(object):
 
     @property
     def direction(self) -> typing.Optional[enums.VerticalAlignment]:
-        """
+        r"""
         Gets direction for effort dynamics only.
 
         ..  container:: example
 
-            Effort dynamics default to down:
+            With ``direction`` unset:
 
-            >>> abjad.Dynamic('"f"').direction
-            Down
+            >>> staff = abjad.Staff("c'2 c''2")
+            >>> abjad.attach(abjad.Dynamic("p"), staff[0])
+            >>> abjad.attach(abjad.Dynamic("f"), staff[1])
+            >>> abjad.show(staff) # doctest: +SKIP
+            
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    c'2
+                    \p
+                    c''2
+                    \f
+                }
+
+            With ``direction=abjad.Up``:
+
+            >>> staff = abjad.Staff("c'2 c''2")
+            >>> abjad.attach(abjad.Dynamic("p", direction=abjad.Up), staff[0])
+            >>> abjad.attach(abjad.Dynamic("f", direction=abjad.Up), staff[1])
+            >>> abjad.show(staff) # doctest: +SKIP
+            
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    c'2
+                    ^ \p
+                    c''2
+                    ^ \f
+                }
+
+            With ``direction=abjad.Down``:
+
+            >>> staff = abjad.Staff("c'2 c''2")
+            >>> abjad.attach(abjad.Dynamic("p", direction=abjad.Down), staff[0])
+            >>> abjad.attach(abjad.Dynamic("f", direction=abjad.Down), staff[1])
+            >>> abjad.show(staff) # doctest: +SKIP
+            
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    c'2
+                    _ \p
+                    c''2
+                    _ \f
+                }
+
+        ..  container:: example
+
+            REGRESSION. Effort dynamics default to down:
+
+            >>> staff = abjad.Staff("c'2 c''2")
+            >>> abjad.attach(abjad.Dynamic('"p"'), staff[0])
+            >>> abjad.attach(abjad.Dynamic('"f"'), staff[1])
+            >>> abjad.show(staff) # doctest: +SKIP
+            
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    c'2
+                    _ #(make-dynamic-script
+                        (markup
+                            #:whiteout
+                            #:line (
+                                #:general-align Y -2 #:normal-text #:larger "“"
+                                #:hspace -0.1
+                                #:dynamic "p"
+                                #:hspace -0.25
+                                #:general-align Y -2 #:normal-text #:larger "”"
+                                )
+                            )
+                        )
+                    c''2
+                    _ #(make-dynamic-script
+                        (markup
+                            #:whiteout
+                            #:line (
+                                #:general-align Y -2 #:normal-text #:larger "“"
+                                #:hspace -0.4
+                                #:dynamic "f"
+                                #:hspace -0.2
+                                #:general-align Y -2 #:normal-text #:larger "”"
+                                )
+                            )
+                        )
+                }
 
             And may be overriden:
 
-            >>> abjad.Dynamic('"f"', direction=abjad.Up).direction
-            Up
+            >>> staff = abjad.Staff("c'2 c''2")
+            >>> abjad.attach(abjad.Dynamic('"p"', direction=abjad.Up), staff[0])
+            >>> abjad.attach(abjad.Dynamic('"f"', direction=abjad.Up), staff[1])
+            >>> abjad.show(staff) # doctest: +SKIP
+            
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    c'2
+                    ^ #(make-dynamic-script
+                        (markup
+                            #:whiteout
+                            #:line (
+                                #:general-align Y -2 #:normal-text #:larger "“"
+                                #:hspace -0.1
+                                #:dynamic "p"
+                                #:hspace -0.25
+                                #:general-align Y -2 #:normal-text #:larger "”"
+                                )
+                            )
+                        )
+                    c''2
+                    ^ #(make-dynamic-script
+                        (markup
+                            #:whiteout
+                            #:line (
+                                #:general-align Y -2 #:normal-text #:larger "“"
+                                #:hspace -0.4
+                                #:dynamic "f"
+                                #:hspace -0.2
+                                #:general-align Y -2 #:normal-text #:larger "”"
+                                )
+                            )
+                        )
+                }
 
         """
         if self._direction is not None:
