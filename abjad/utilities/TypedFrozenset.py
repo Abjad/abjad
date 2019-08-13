@@ -17,7 +17,7 @@ class TypedFrozenset(TypedCollection, collections.abc.Set):
     def __init__(self, items=None, item_class=None):
         TypedCollection.__init__(self, item_class=item_class, items=items)
         items = items or []
-        items = [self._item_coercer(_) for _ in items]
+        items = [self._coerce_item(_) for _ in items]
         self._collection = frozenset(items)
 
     ### SPECIAL METHODS ###

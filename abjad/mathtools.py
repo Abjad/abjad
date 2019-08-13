@@ -2389,12 +2389,6 @@ class NonreducedRatio(collections.abc.Sequence):
             storage_format_kwargs_names=[],
         )
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _number_coercer(self):
-        return int
-
     ### PUBLIC PROPERTIES ###
 
     @property

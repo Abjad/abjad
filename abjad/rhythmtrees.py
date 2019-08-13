@@ -57,8 +57,25 @@ class RhythmTreeMixin(object):
 
     ### PRIVATE METHODS ###
 
+    def _depthwise_inventory(self):
+        def recurse(node):
+            if node.depth not in inventory:
+                inventory[node.depth] = []
+            inventory[node.depth].append(node)
+            if getattr(node, "children", None) is not None:
+                for child in node.children:
+                    recurse(child)
+
+        inventory = {}
+        recurse(self)
+        return inventory
+
     def _get_format_specification(self):
         return FormatSpecification(client=self)
+
+    @abc.abstractmethod
+    def _pretty_rtm_format_pieces(self):
+        raise NotImplementedError
 
     def _update_offsets_of_entire_tree(self):
         def recurse(container, current_offset):
@@ -88,26 +105,6 @@ class RhythmTreeMixin(object):
     def _update_offsets_of_entire_tree_if_necessary(self):
         if not self._get_node_state_flags()["_offsets_are_current"]:
             self._update_offsets_of_entire_tree()
-
-    ### PRIVATE PROPERTIES ###
-
-    @abc.abstractproperty
-    def _pretty_rtm_format_pieces(self):
-        raise NotImplementedError
-
-    @property
-    def _depthwise_inventory(self):
-        def recurse(node):
-            if node.depth not in inventory:
-                inventory[node.depth] = []
-            inventory[node.depth].append(node)
-            if getattr(node, "children", None) is not None:
-                for child in node.children:
-                    recurse(child)
-
-        inventory = {}
-        recurse(self)
-        return inventory
 
     ### PUBLIC PROPERTIES ###
 
@@ -229,7 +226,7 @@ class RhythmTreeMixin(object):
 
         Returns string.
         """
-        return "\n".join(self._pretty_rtm_format_pieces)
+        return "\n".join(self._pretty_rtm_format_pieces())
 
     @property
     def prolation(self):
@@ -377,9 +374,8 @@ class RhythmTreeLeaf(RhythmTreeMixin, uqbar.containers.UniqueTreeNode):
         graph.append(node)
         return graph
 
-    ### PRIVATE PROPERTIES ###
+    ### PRIVATE METHODS ###
 
-    @property
     def _pretty_rtm_format_pieces(self):
         return [str(self.preprolated_duration)]
 
@@ -754,26 +750,6 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
 
     ### PRIVATE METHODS ###
 
-    def _prepare_setitem_single(self, expr):
-        if isinstance(expr, str):
-            expr = RhythmTreeParser()(expr)[0]
-            assert len(expr) == 1
-            expr = expr[0]
-        return expr
-
-    def _prepare_setitem_multiple(self, expr):
-        if isinstance(expr, str):
-            expr = RhythmTreeParser()(expr)
-        elif (
-            isinstance(expr, list)
-            and len(expr) == 1
-            and isinstance(expr[0], str)
-        ):
-            expr = RhythmTreeParser()(expr[0])
-        return expr
-
-    ### PRIVATE PROPERTIES ###
-
     def _get_contents_duration(self):
         """
         The total preprolated_duration of the children
@@ -792,24 +768,41 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
         """
         return sum([x.preprolated_duration for x in self])
 
-    @property
-    def _leaf_class(self):
-        return RhythmTreeLeaf
+    def _prepare_setitem_single(self, expr):
+        if isinstance(expr, str):
+            expr = RhythmTreeParser()(expr)[0]
+            assert len(expr) == 1
+            expr = expr[0]
+        return expr
 
-    @property
-    def _node_class(self):
-        return RhythmTreeMixin
+    def _prepare_setitem_multiple(self, expr):
+        if isinstance(expr, str):
+            expr = RhythmTreeParser()(expr)
+        elif (
+            isinstance(expr, list)
+            and len(expr) == 1
+            and isinstance(expr[0], str)
+        ):
+            expr = RhythmTreeParser()(expr[0])
+        return expr
 
-    @property
     def _pretty_rtm_format_pieces(self):
         result = []
         result.append("({!s} (".format(self.preprolated_duration))
         for child in self:
             result.extend(
-                ["    " + x for x in child._pretty_rtm_format_pieces]
+                ["    " + x for x in child._pretty_rtm_format_pieces()]
             )
         result[-1] = result[-1] + "))"
         return result
+
+    #    @property
+    #    def _leaf_class(self):
+    #        return RhythmTreeLeaf
+
+    #    @property
+    #    def _node_class(self):
+    #        return RhythmTreeMixin
 
     ### PUBLIC PROPERTIES ###
 

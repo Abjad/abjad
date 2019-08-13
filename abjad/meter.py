@@ -1124,7 +1124,7 @@ class Meter(object):
         all_offsets = set()
         all_offsets.add(Offset(self.numerator, self.denominator))
         for depth, nodes in sorted(
-            self.root_node._depthwise_inventory.items()
+            self.root_node._depthwise_inventory().items()
         ):
             for node in nodes:
                 all_offsets.add(Offset(node.start_offset))
@@ -1739,11 +1739,10 @@ class MeterList(TypedList):
         markup = markups.Markup.column([fraction_markup, lines_markup])
         return markup.__illustrate__()
 
-    ### PRIVATE PROPERTIES ###
+    ### PRIVATE METHODS ###
 
-    @property
-    def _item_coercer(self):
-        return Meter
+    def _coerce_item(self, item):
+        return Meter(item)
 
 
 class MetricAccentKernel(object):
@@ -2075,11 +2074,10 @@ class OffsetCounter(TypedCounter):
         markup = markups.Markup.overlay(pieces)
         return markup.__illustrate__()
 
-    ### PRIVATE PROPERTIES ###
+    ### PRIVATE METHODS ###
 
-    @property
-    def _item_coercer(self):
-        return Offset
+    def _coerce_item(self, item):
+        return Offset(item)
 
 
 class _MeterFittingSession(object):

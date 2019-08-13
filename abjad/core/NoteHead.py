@@ -176,19 +176,6 @@ class NoteHead(object):
                 result += "?"
         return result
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _keyword_argument_names(self):
-        manager = StorageFormatManager(self)
-        keyword_argument_names = list(manager.signature_keyword_names)
-        if "client" in keyword_argument_names:
-            keyword_argument_names.remove("client")
-        if "tweaks" in keyword_argument_names:
-            keyword_argument_names.remove("tweaks")
-        keyword_argument_names = tuple(keyword_argument_names)
-        return keyword_argument_names
-
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
