@@ -131,10 +131,6 @@ class Segment(TypedTuple):
 
     ### PRIVATE PROPERTIES ###
 
-    @property
-    def _item_coercer(self):
-        return self._item_class
-
     @abc.abstractproperty
     def _named_item_class(self):
         raise NotImplementedError
@@ -148,6 +144,9 @@ class Segment(TypedTuple):
         raise NotImplementedError
 
     ### PRIVATE METHODS ###
+
+    def _coerce_item(self, item):
+        return self._item_class(item)
 
     def _get_format_specification(self):
         items = []

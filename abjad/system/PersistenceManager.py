@@ -38,6 +38,17 @@ class PersistenceManager(object):
         """
         return StorageFormatManager(self).get_repr_format()
 
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def client(self):
+        """
+        Client of persistence manager.
+
+        Returns component or selection.
+        """
+        return self._client
+
     ### PUBLIC METHODS ###
 
     def as_ly(
@@ -315,14 +326,3 @@ class PersistenceManager(object):
             lilypond_rendering_time,
             success,
         )
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def client(self):
-        """
-        Client of persistence manager.
-
-        Returns component or selection.
-        """
-        return self._client

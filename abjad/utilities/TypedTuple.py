@@ -17,7 +17,7 @@ class TypedTuple(TypedCollection, collections.abc.Sequence):
     def __init__(self, items=None, item_class=None):
         TypedCollection.__init__(self, item_class=item_class, items=items)
         items = items or []
-        self._collection = tuple(self._item_coercer(item) for item in items)
+        self._collection = tuple(self._coerce_item(item) for item in items)
 
     ### SPECIAL METHODS ###
 
@@ -46,7 +46,7 @@ class TypedTuple(TypedCollection, collections.abc.Sequence):
         Returns none.
         """
         try:
-            item = self._item_coercer(item)
+            item = self._coerce_item(item)
         except ValueError:
             return False
         return self._collection.__contains__(item)
@@ -114,7 +114,7 @@ class TypedTuple(TypedCollection, collections.abc.Sequence):
         Returns nonnegative integer.
         """
         try:
-            item = self._item_coercer(item)
+            item = self._coerce_item(item)
         except (ValueError, TypeError):
             return 0
         return self._collection.count(item)
@@ -127,5 +127,5 @@ class TypedTuple(TypedCollection, collections.abc.Sequence):
 
         Returns nonnegative integer.
         """
-        item = self._item_coercer(item)
+        item = self._coerce_item(item)
         return self._collection.index(item)

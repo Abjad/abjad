@@ -77,7 +77,7 @@ class TypedCounter(TypedCollection, collections.MutableMapping):
 
         Returns none.
         """
-        item = self._item_coercer(item)
+        item = self._coerce_item(item)
         if item in self._collection:
             dict.__delitem__(self._collection, item)
 
@@ -87,7 +87,7 @@ class TypedCounter(TypedCollection, collections.MutableMapping):
 
         Returns item or slice.
         """
-        argument = self._item_coercer(argument)
+        argument = self._coerce_item(argument)
         return self._collection.__getitem__(argument)
 
     def __or__(self, argument):
@@ -134,7 +134,7 @@ class TypedCounter(TypedCollection, collections.MutableMapping):
 
         Returns none.
         """
-        item = self._item_coercer(item)
+        item = self._coerce_item(item)
         self._collection.__setitem__(item, value)
 
     def __sub__(self, argument):
@@ -158,7 +158,7 @@ class TypedCounter(TypedCollection, collections.MutableMapping):
         def _coerce_mapping(items):
             the_items = {}
             for item, count in items.items():
-                item = self._item_coercer(item)
+                item = self._coerce_item(item)
                 if item not in the_items:
                     the_items[item] = 0
                 the_items[item] += count
@@ -171,7 +171,7 @@ class TypedCounter(TypedCollection, collections.MutableMapping):
             else:
                 the_items = []
                 for item in items:
-                    the_items.append(self._item_coercer(item))
+                    the_items.append(self._coerce_item(item))
         itemdict = _coerce_mapping(keywords)
         return the_items, itemdict
 

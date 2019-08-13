@@ -140,21 +140,6 @@ class Block(object):
         for key, value in state.items():
             setattr(self, key, value)
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _formatted_context_blocks(self):
-        from .ContextBlock import ContextBlock
-
-        result = []
-        context_blocks = []
-        for item in self.items:
-            if isinstance(item, ContextBlock):
-                context_blocks.append(item)
-        for context_block in context_blocks:
-            result.extend(context_block._get_format_pieces())
-        return result
-
     ### PRIVATE METHODS ###
 
     def _format_item(self, item, depth=1):
@@ -184,6 +169,18 @@ class Block(object):
                 else:
                     piece = indent + piece
                 result.append(piece)
+        return result
+
+    def _formatted_context_blocks(self):
+        from .ContextBlock import ContextBlock
+
+        result = []
+        context_blocks = []
+        for item in self.items:
+            if isinstance(item, ContextBlock):
+                context_blocks.append(item)
+        for context_block in context_blocks:
+            result.extend(context_block._get_format_pieces())
         return result
 
     def _get_format_pieces(self, tag=None):
@@ -218,9 +215,7 @@ class Block(object):
         formatted_attributes = self._get_formatted_user_attributes()
         formatted_attributes = [indent + _ for _ in formatted_attributes]
         result.extend(formatted_attributes)
-        formatted_context_blocks = getattr(
-            self, "_formatted_context_blocks", []
-        )
+        formatted_context_blocks = self._formatted_context_blocks()
         formatted_context_blocks = [
             indent + _ for _ in formatted_context_blocks
         ]

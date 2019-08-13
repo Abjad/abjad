@@ -116,7 +116,7 @@ class OrderedDict(TypedCollection, collections.abc.MutableMapping):
         for item in items:
             assert len(item) == 2, repr(item)
             key = item[0]
-            value = self._item_coercer(item[1])
+            value = self._coerce_item(item[1])
             the_item = (key, value)
             the_items.append(the_item)
         self._collection = collections.OrderedDict(the_items)
@@ -209,7 +209,7 @@ class OrderedDict(TypedCollection, collections.abc.MutableMapping):
 
         Returns none.
         """
-        new_item = self._item_coercer(argument)
+        new_item = self._coerce_item(argument)
         self._collection[i] = new_item
 
     ### PRIVATE METHODS ###

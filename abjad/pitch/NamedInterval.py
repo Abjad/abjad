@@ -304,7 +304,7 @@ class NamedInterval(Interval):
         new_pitch = dummy_pitch + self - argument
         return NamedInterval.from_pitch_carriers(dummy_pitch, new_pitch)
 
-    ### PRIVATE PROPERTIES ###
+    ### PRIVATE METHODS ###
 
     def _from_named_parts(self, direction, quality, diatonic_number):
         import abjad
@@ -338,8 +338,6 @@ class NamedInterval(Interval):
                 argument
             )
         self._from_named_parts(direction, quality, diatonic_number)
-
-    ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
         values = [self.name]

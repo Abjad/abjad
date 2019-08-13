@@ -3508,10 +3508,9 @@ class TimespanList(TypedList):
         self[:] = sorted(new_timespans)
         return self
 
-    ### PRIVATE PROPERTIES ###
+    ### PRIVATE METHODS ###
 
-    @property
-    def _item_coercer(self):
+    def _coerce_item(self, item):
         def _coerce(argument):
             if timespans.Timespan._implements_timespan_interface(argument):
                 return argument
@@ -3524,9 +3523,7 @@ class TimespanList(TypedList):
 
         from abjad import timespans
 
-        return _coerce
-
-    ### PRIVATE METHODS ###
+        return _coerce(item)
 
     def _get_offsets(self, argument):
         try:

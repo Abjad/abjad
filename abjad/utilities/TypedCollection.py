@@ -32,7 +32,7 @@ class TypedCollection(object):
         Returns true or false.
         """
         try:
-            item = self._item_coercer(item)
+            item = self._coerce_item(item)
         except ValueError:
             return False
         return self._collection.__contains__(item)
@@ -86,20 +86,17 @@ class TypedCollection(object):
         """
         return StorageFormatManager(self).get_repr_format()
 
-    ### PRIVATE PROPERTIES ###
+    ### PRIVATE METHODS ###
 
-    @property
-    def _item_coercer(self):
+    def _coerce_item(self, item):
         def coerce_(x):
             if isinstance(x, self._item_class):
                 return x
             return self._item_class(x)
 
         if self._item_class is None:
-            return lambda x: x
-        return coerce_
-
-    ### PRIVATE METHODS ###
+            return item
+        return coerce_(item)
 
     def _get_format_specification(self):
         manager = StorageFormatManager(self)

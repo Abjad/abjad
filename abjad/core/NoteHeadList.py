@@ -50,6 +50,17 @@ class NoteHeadList(TypedList):
 
     ### PRIVATE METHODS ###
 
+    def _coerce_item(self, item):
+        def coerce_(token):
+            if not isinstance(token, abjad.NoteHead):
+                token = abjad.NoteHead(written_pitch=token)
+                token._client = self.client
+            return token
+
+        import abjad
+
+        return coerce_(item)
+
     def _get_format_specification(self):
         manager = StorageFormatManager(self)
         names = list(manager.signature_keyword_names)
@@ -71,20 +82,6 @@ class NoteHeadList(TypedList):
 
     def _on_removal(self, item):
         item._client = None
-
-    ### PRIVATE PROPERTIES ##
-
-    @property
-    def _item_coercer(self):
-        def coerce_(token):
-            if not isinstance(token, abjad.NoteHead):
-                token = abjad.NoteHead(written_pitch=token)
-                token._client = self.client
-            return token
-
-        import abjad
-
-        return coerce_
 
     ### PUBLIC METHODS ###
 

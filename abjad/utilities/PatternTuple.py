@@ -279,16 +279,3 @@ class PatternTuple(TypedTuple):
         if pattern:
             payload = pattern.payload
         return payload
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _item_coercer(self):
-        def coerce_(argument):
-            if hasattr(argument, "pattern"):
-                pass
-            elif not isinstance(argument, Pattern):
-                argument = Pattern(*argument)
-            return argument
-
-        return coerce_
