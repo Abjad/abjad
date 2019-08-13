@@ -43,30 +43,27 @@ def make_desordre_cell(pitches):
     notes = abjad.Selection(notes)
     abjad.beam(notes)
     abjad.slur(notes)
-    clef = abjad.Dynamic("f")
-    abjad.attach(clef, notes[0])
-    dynamic = abjad.Dynamic("p")
-    abjad.attach(dynamic, notes[1])
+    abjad.attach(abjad.Dynamic("f"), notes[0])
+    abjad.attach(abjad.Dynamic("p"), notes[1])
 
     # make the lower voice
     lower_voice = abjad.Voice(notes)
-    lower_voice.name = "RH Lower Voice"
+    lower_voice.name = "RH_Lower_Voice"
     command = abjad.LilyPondLiteral(r"\voiceTwo")
     abjad.attach(command, lower_voice)
     n = int(math.ceil(len(pitches) / 2.0))
     chord = abjad.Chord([pitches[0], pitches[0] + 12], (n, 8))
-    articulation = abjad.Articulation(">")
-    abjad.attach(articulation, chord)
+    abjad.attach(abjad.Articulation(">"), chord)
 
     # make the upper voice
     upper_voice = abjad.Voice([chord])
-    upper_voice.name = "RH Upper Voice"
+    upper_voice.name = "RH_Upper_Voice"
     command = abjad.LilyPondLiteral(r"\voiceOne")
     abjad.attach(command, upper_voice)
 
     # combine them together
-    container = abjad.Container([lower_voice, upper_voice])
-    container.simultaneous = True
+    voices = [lower_voice, upper_voice]
+    container = abjad.Container(voices, simultaneous=True)
 
     # make all 1/8 beats breakable
     leaves = abjad.select(lower_voice).leaves()
@@ -79,9 +76,9 @@ def make_desordre_cell(pitches):
 
 def make_desordre_measure(pitches) -> abjad.Container:
     """
-    Makes a measure composed of *Désordre cells*.
+    Makes a measure composed of Désordre cells.
 
-    ``pitches`` is a list of lists of number (e.g., [[1, 2, 3], [2, 3, 4]])
+    ``pitches`` is a nested list of integers, like [[1, 2, 3], [2, 3, 4]].
     """
     for sequence in pitches:
         container = make_desordre_cell(sequence)
@@ -110,8 +107,7 @@ def make_desordre_score(pitches):
     """
 
     assert len(pitches) == 2
-    staff_group = abjad.StaffGroup()
-    staff_group.lilypond_type = "PianoStaff"
+    staff_group = abjad.StaffGroup(lilypond_type="PianoStaff")
 
     # build the music
     for hand in pitches:
@@ -120,8 +116,7 @@ def make_desordre_score(pitches):
 
     # set clef and key signature to left hand staff
     leaf = abjad.inspect(staff_group[1]).leaf(0)
-    clef = abjad.Clef("bass")
-    abjad.attach(clef, leaf)
+    abjad.attach(abjad.Clef("bass"), leaf)
     key_signature = abjad.KeySignature("b", "major")
     abjad.attach(key_signature, leaf)
 
@@ -184,11 +179,8 @@ def make_desordre_lilypond_file(score):
     context_block.consists_commands.append("Default_bar_line_engraver")
     scheme = abjad.Scheme("'numbered")
     abjad.override(context_block).time_signature.style = scheme
-    abjad.override(context_block).vertical_axis_group.minimum_Y_extent = (
-        -2,
-        4,
-    )
-
+    pair = (-2, 4)
+    abjad.override(context_block).vertical_axis_group.minimum_Y_extent = pair
     context_block = abjad.ContextBlock(source_lilypond_type="Voice")
     lilypond_file.layout_block.items.append(context_block)
     context_block.remove_commands.append("Forbid_line_break_engraver")
