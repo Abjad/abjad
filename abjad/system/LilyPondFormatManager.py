@@ -205,7 +205,7 @@ class LilyPondFormatManager(object):
         ):
             for wrapper in wrappers:
                 if wrapper.indicator.direction is None:
-                    markup = abjad.Markup(wrapper.indicator, direction="-")
+                    markup = abjad.new(wrapper.indicator, direction="-")
                 else:
                     markup = wrapper.indicator
                 format_pieces = markup._get_format_pieces()
