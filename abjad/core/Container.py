@@ -655,6 +655,23 @@ class Container(Component):
             storage_format_args_values=storage_format_args_values,
         )
 
+    def _get_on_beat_anchor_voice(self):
+        from .OnBeatGraceContainer import OnBeatGraceContainer
+
+        container = self._parent
+        if container is None:
+            return None
+        if not container.simultaneous:
+            return None
+        if not len(container) == 2:
+            return None
+        index = container.index(self)
+        if index == 0 and isinstance(container[1], OnBeatGraceContainer):
+            return container[1]
+        if index == 1 and isinstance(container[0], OnBeatGraceContainer):
+            return container[0]
+        return None
+
     def _get_preprolated_duration(self):
         return self._get_contents_duration()
 
@@ -696,6 +713,34 @@ class Container(Component):
                 self[:] = parsed[:]
         else:
             raise TypeError(f"can't initialize container from {components!r}.")
+
+    def _is_on_beat_anchor_voice(self):
+        from .Voice import Voice
+
+        wrapper = self._parent
+        if wrapper is None:
+            return False
+        if not isinstance(self, Voice):
+            return False
+        return wrapper._is_on_beat_wrapper()
+
+    def _is_on_beat_wrapper(self):
+        from .OnBeatGraceContainer import OnBeatGraceContainer
+        from .Voice import Voice
+
+        if not self.simultaneous:
+            return False
+        if len(self) != 2:
+            return False
+        if isinstance(self[0], OnBeatGraceContainer) and isinstance(
+            self[1], Voice
+        ):
+            return True
+        if isinstance(self[0], Voice) and isinstance(
+            self[1], OnBeatGraceContainer
+        ):
+            return True
+        return False
 
     def _is_one_of_my_first_leaves(self, leaf):
         return leaf in self._get_descendants_starting_with()
@@ -776,7 +821,7 @@ class Container(Component):
             item._scale(multiplier)
 
     def _set_item(self, i, argument):
-        from .GraceContainer import GraceContainer
+        from .BeforeGraceContainer import BeforeGraceContainer
 
         argument_indicators = []
         for component in iterate(argument).components():
@@ -797,7 +842,7 @@ class Container(Component):
                 new_argument.append(item)
         argument = new_argument
         assert all(isinstance(_, Component) for _ in argument)
-        if any(isinstance(_, GraceContainer) for _ in argument):
+        if any(isinstance(_, BeforeGraceContainer) for _ in argument):
             raise Exception("must attach grace container to note or chord.")
         if self._check_for_cycles(argument):
             raise exceptions.ParentageError("attempted to induce cycles.")

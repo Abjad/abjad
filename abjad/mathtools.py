@@ -2224,17 +2224,23 @@ class NonreducedRatio(collections.abc.Sequence):
 
     ..  container:: example
 
-        Nonreduced ratio of two numbers:
+        Initializes from numbers:
 
         >>> abjad.NonreducedRatio((2, 4))
         NonreducedRatio((2, 4))
 
+        >>> abjad.NonreducedRatio((2, 4, 2))
+        NonreducedRatio((2, 4, 2))
+
     ..  container:: example
 
-        Nonreduced ratio of three numbers:
+        Initializes from string:
 
-            >>> abjad.NonreducedRatio((2, 4, 2))
-            NonreducedRatio((2, 4, 2))
+        >>> abjad.NonreducedRatio("2:4")
+        NonreducedRatio((2, 4))
+
+        >>> abjad.NonreducedRatio("2:4:2")
+        NonreducedRatio((2, 4, 2))
 
     """
 
@@ -2247,6 +2253,9 @@ class NonreducedRatio(collections.abc.Sequence):
     def __init__(self, numbers=(1, 1)):
         if isinstance(numbers, type(self)):
             numbers = numbers.numbers
+        elif isinstance(numbers, str):
+            strings = numbers.split(":")
+            numbers = [int(_) for _ in strings]
         numbers = tuple(numbers)
         self._numbers = numbers
 
@@ -2473,16 +2482,22 @@ class Ratio(NonreducedRatio):
 
     ..  container:: example
 
-        Ratio of two numbers:
+        Initializes from numbers:
 
         >>> abjad.Ratio((2, 4))
         Ratio((1, 2))
 
+        >>> abjad.Ratio((2, 4, 2))
+        Ratio((1, 2, 1))
+
     ..  container:: example
 
-        Ratio of three numbers:
+        Initializes from string:
 
-        >>> abjad.Ratio((2, 4, 2))
+        >>> abjad.Ratio("2:4")
+        Ratio((1, 2))
+
+        >>> abjad.Ratio("2:4:2")
         Ratio((1, 2, 1))
 
     """
@@ -2496,6 +2511,9 @@ class Ratio(NonreducedRatio):
     def __init__(self, numbers=(1, 1)):
         if isinstance(numbers, type(self)):
             numbers = numbers.numbers
+        elif isinstance(numbers, str):
+            strings = numbers.split(":")
+            numbers = [int(_) for _ in strings]
         numbers = [int(_) for _ in numbers]
         gcd = greatest_common_divisor(*numbers)
         numbers = [_ // gcd for _ in numbers]

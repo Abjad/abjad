@@ -126,7 +126,7 @@ class AfterGraceContainer(Container):
 
     __documentation_section__ = "Containers"
 
-    __slots__ = "_main_leaf"
+    __slots__ = ("_main_leaf",)
 
     ### INITIALIZER ###
 

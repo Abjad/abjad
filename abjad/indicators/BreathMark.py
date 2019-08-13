@@ -56,6 +56,25 @@ class BreathMark(object):
                 \breathe
             }
 
+    ..  container:: example
+
+        REGRESSION. Abjad parses LilyPond's ``\breathe`` command correctly:
+
+        >>> staff = abjad.Staff(r"c'4 d' e' f' \breathe")
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                c'4
+                d'4
+                e'4
+                f'4
+                \breathe
+            }
+
     """
 
     ### CLASS VARIABLES ###

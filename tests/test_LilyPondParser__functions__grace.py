@@ -7,7 +7,9 @@ def test_LilyPondParser__functions__grace_01():
         [abjad.Note("c'4"), abjad.Note("d'4"), abjad.Note("e'2")]
     )
 
-    grace = abjad.GraceContainer([abjad.Note("g''16"), abjad.Note("fs''16")])
+    grace = abjad.BeforeGraceContainer(
+        [abjad.Note("g''16"), abjad.Note("fs''16")]
+    )
 
     abjad.attach(grace, target[2])
 

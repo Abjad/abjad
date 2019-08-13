@@ -1,5 +1,14 @@
 import typing
+from abjad import typings
+from abjad.indicators.LilyPondLiteral import LilyPondLiteral
+from abjad.system.LilyPondFormatManager import LilyPondFormatManager
+from abjad.top.attach import attach
 from abjad.top.inspect import inspect as abjad_inspect
+from abjad.top.mutate import mutate
+from abjad.top.override import override
+from abjad.top.tweak import tweak
+from abjad.top.select import select
+from abjad.utilities.Duration import Duration
 from .Container import Container
 
 
@@ -7,191 +16,90 @@ class OnBeatGraceContainer(Container):
     r"""
     On-beat grace container.
 
+    ..  note:: On-beat grace containers must be included in a named voice.
+
     ..  container:: example
 
         On-beat grace containers implement custom formatting not available in
         LilyPond:
 
-        >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
-        >>> container = abjad.OnBeatGraceContainer("a'8 as' b' c'' cs''")
-        >>> abjad.slur(container[:])
+        >>> music_voice = abjad.Voice("c'4 d'4 e'4 f'4", name="Music_Voice")
+        >>> string = "<d' g'>8 a' b' c'' d'' c'' b' a' b' c'' d''"
+        >>> container = abjad.on_beat_grace_container(
+        ...     string, music_voice[1:3], leaf_duration=(1, 24)
+        ... )
         >>> abjad.attach(abjad.Articulation(">"), container[0])
-        >>> abjad.attach(container, voice[1])
-        >>> abjad.show(voice) # doctest: +SKIP
+        >>> staff = abjad.Staff([music_voice])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> abjad.f(voice)
-            \new Voice
+            >>> abjad.f(staff)
+            \new Staff
             {
-                c'4
-                <<
-                    {
-                        \set fontSize = #-2
-                        \once \override NoteColumn.force-hshift = 0.2
-                        \slash
-                        <a' \tweak Accidental.stencil ##f d'>8 * 2/5
-                        - \accent
-                        (
-                        as'8 * 2/5
-                        b'8 * 2/5
-                        c''8 * 2/5
-                        cs''8 * 2/5
-                        )
-                    }
-                \\
-                    d'4
-                >>
-                e'4
-                f'4
-            }
-
-        Custom formatting engraves music at a reduced size.
-
-        Custom formatting positions on-beat grace music starting at the same
-        horizontal location as a "main note" which follows.
-
-    ..  container:: example
-
-        Detach on-beat grace containers like this:
-
-        >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
-        >>> container = abjad.OnBeatGraceContainer("a'8 as' b' c'' cs''")
-        >>> abjad.slur(container[:])
-        >>> abjad.attach(abjad.Articulation(">"), container[0])
-        >>> abjad.attach(container, voice[1])
-        >>> abjad.show(voice) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> abjad.f(voice)
-            \new Voice
-            {
-                c'4
-                <<
-                    {
-                        \set fontSize = #-2
-                        \once \override NoteColumn.force-hshift = 0.2
-                        \slash
-                        <a' \tweak Accidental.stencil ##f d'>8 * 2/5
-                        - \accent
-                        (
-                        as'8 * 2/5
-                        b'8 * 2/5
-                        c''8 * 2/5
-                        cs''8 * 2/5
-                        )
-                    }
-                \\
-                    d'4
-                >>
-                e'4
-                f'4
-            }
-
-        >>> abjad.detach(abjad.OnBeatGraceContainer, voice[1])
-        (OnBeatGraceContainer("<a'>8 as'8 b'8 c''8 cs''8"),)
-
-        >>> abjad.detach(abjad.OnBeatGraceContainer, voice[1])
-        ()
-
-        >>> abjad.show(voice) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> abjad.f(voice)
-            \new Voice
-            {
-                c'4
-                d'4
-                e'4
-                f'4
-            }
-
-    ..  container:: example
-
-        Move on-beat grace containers like this:
-
-        >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
-        >>> container = abjad.OnBeatGraceContainer("a'8 as' b' c'' cs''")
-        >>> abjad.slur(container[:])
-        >>> abjad.attach(abjad.Articulation(">"), container[0])
-        >>> abjad.attach(container, voice[1])
-        >>> abjad.show(voice) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> abjad.f(voice)
-            \new Voice
-            {
-                c'4
-                <<
-                    {
-                        \set fontSize = #-2
-                        \once \override NoteColumn.force-hshift = 0.2
-                        \slash
-                        <a' \tweak Accidental.stencil ##f d'>8 * 2/5
-                        - \accent
-                        (
-                        as'8 * 2/5
-                        b'8 * 2/5
-                        c''8 * 2/5
-                        cs''8 * 2/5
-                        )
-                    }
-                \\
-                    d'4
-                >>
-                e'4
-                f'4
-            }
-
-        >>> result = abjad.detach(abjad.OnBeatGraceContainer, voice[1])
-        >>> container = result[0]
-        >>> abjad.attach(container, voice[3])
-        >>> abjad.show(voice) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> abjad.f(voice)
-            \new Voice
-            {
-                c'4
-                d'4
-                e'4
-                <<
-                    {
-                        \set fontSize = #-2
-                        \once \override NoteColumn.force-hshift = 0.2
-                        \slash
-                        <a' \tweak Accidental.stencil ##f f'>8 * 2/5
-                        - \accent
-                        (
-                        as'8 * 2/5
-                        b'8 * 2/5
-                        c''8 * 2/5
-                        cs''8 * 2/5
-                        )
-                    }
-                \\
+                \context Voice = "Music_Voice"
+                {
+                    c'4
+                    <<
+                        \context Voice = "On_Beat_Grace_Container"
+                        {
+                            \set fontSize = #-3
+                            \slash
+                            \voiceOne
+                            <
+                                \tweak font-size #0
+                                \tweak transparent ##t
+                                d'
+                                g'
+                            >8 * 1/3
+                            - \accent
+                            [
+                            (
+                            a'8 * 1/3
+                            b'8 * 1/3
+                            c''8 * 1/3
+                            d''8 * 1/3
+                            c''8 * 1/3
+                            b'8 * 1/3
+                            a'8 * 1/3
+                            b'8 * 1/3
+                            c''8 * 1/3
+                            d''8 * 1/3
+                            )
+                            ]
+                        }
+                        \context Voice = "Music_Voice"
+                        {
+                            \voiceTwo
+                            d'4
+                            e'4
+                        }
+                    >>
+                    \oneVoice
                     f'4
-                >>
+                }
             }
 
     """
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = "Containers"
-
-    __slots__ = "_main_leaf"
+    __slots__ = ("_leaf_duration",)
 
     ### INITIALIZER ###
 
-    def __init__(self, components=None, tag: str = None) -> None:
-        # _main_leaf slot must be initialized before container initialization
-        self._main_leaf = None
-        Container.__init__(self, components, tag=tag)
+    def __init__(
+        self,
+        components=None,
+        identifier: str = None,
+        leaf_duration: typings.DurationTyping = None,
+        name: str = None,
+        tag: str = None,
+    ) -> None:
+        super().__init__(components, identifier=identifier, name=name, tag=tag)
+        if leaf_duration is not None:
+            leaf_duration = Duration(leaf_duration)
+        self._leaf_duration = leaf_duration
 
     ### SPECIAL METHODS ###
 
@@ -205,37 +113,706 @@ class OnBeatGraceContainer(Container):
 
     ### PRIVATE METHODS ###
 
-    def _attach(self, leaf):
-        import abjad
+    def _format_invocation(self):
+        return r'\context Voice = "On_Beat_Grace_Container"'
 
-        if not isinstance(leaf, abjad.Leaf):
-            raise TypeError(f"must attach to leaf (not {leaf!r}).")
-        leaf._on_beat_grace_container = self
-        self._main_leaf = leaf
-
-    def _detach(self):
-        if self._main_leaf is not None:
-            main_leaf = self._main_leaf
-            main_leaf._on_beat_grace_container = None
-            self._main_leaf = None
-        return self
-
-    def _format_opening_slot(self, bundle):
+    def _format_open_brackets_slot(self, bundle):
+        indent = LilyPondFormatManager.indent
         result = []
-        result.append(("comments", bundle.opening.comments))
-        result.append(("commands", bundle.opening.commands))
-        strings = [
-            r"\set fontSize = #-2",
-            r"\once \override NoteColumn.force-hshift = 0.2",
-            r"\slash",
-        ]
-        result.append(("custom", strings))
-        return self._format_slot_contributions_with_indent(result)
+        if self.identifier:
+            open_bracket = f"{{   {self.identifier}"
+        else:
+            open_bracket = "{"
+        brackets_open = [open_bracket]
+        overrides = bundle.grob_overrides
+        settings = bundle.context_settings
+        if overrides or settings:
+            contributions = [self._format_invocation(), r"\with", "{"]
+            contributions = self._tag_strings(contributions)
+            contributions = tuple(contributions)
+            identifier_pair = ("context_brackets", "open")
+            result.append((identifier_pair, contributions))
+            contributions = [indent + _ for _ in overrides]
+            contributions = self._tag_strings(contributions)
+            contributions = tuple(contributions)
+            identifier_pair = ("overrides", "overrides")
+            result.append((identifier_pair, contributions))
+            contributions = [indent + _ for _ in settings]
+            contributions = self._tag_strings(contributions)
+            contributions = tuple(contributions)
+            identifier_pair = ("settings", "settings")
+            result.append((identifier_pair, contributions))
+            contributions = [f"}} {brackets_open[0]}"]
+            contributions = ["}", open_bracket]
+            contributions = self._tag_strings(contributions)
+            contributions = tuple(contributions)
+            identifier_pair = ("context_brackets", "open")
+            result.append((identifier_pair, contributions))
+        else:
+            contribution = self._format_invocation()
+            contribution += f" {brackets_open[0]}"
+            contributions = [contribution]
+            contributions = [self._format_invocation(), open_bracket]
+            contributions = self._tag_strings(contributions)
+            contributions = tuple(contributions)
+            identifier_pair = ("context_brackets", "open")
+            result.append((identifier_pair, contributions))
+        return tuple(result)
 
-    def _leaf_multiplier(self):
-        if self._main_leaf is None:
+    def _get_on_beat_anchor_leaf(self):
+        container = self._parent
+        if container is None:
             return None
-        main_duration = self._main_leaf.written_duration
-        my_duration = abjad_inspect(self).duration()
-        multiplier = main_duration / my_duration
-        return multiplier
+        if len(container) != 2:
+            message = "Combine on-beat grace container with one other voice."
+            raise Exception(message)
+        if container.index(self) == 0:
+            anchor_voice = container[-1]
+        else:
+            assert container.index(self) == 1
+            anchor_voice = container[0]
+        anchor_leaf = select(anchor_voice).leaf(0, grace=False)
+        return anchor_leaf
+
+    def _match_anchor_leaf(self):
+        from .Chord import Chord
+        from .Note import Note
+
+        first_grace = abjad_inspect(self).leaf(0)
+        if not isinstance(first_grace, (Note, Chord)):
+            message = f"must start with note or chord:\n"
+            message += f"    {repr(self)}"
+            raise Exception(message)
+        anchor_leaf = self._get_on_beat_anchor_leaf()
+        if isinstance(anchor_leaf, (Note, Chord)) and isinstance(
+            first_grace, (Note, Chord)
+        ):
+            if isinstance(first_grace, Note):
+                chord = Chord(first_grace)
+                mutate(first_grace).replace(chord)
+                first_grace = chord
+            anchor_pitches = abjad_inspect(anchor_leaf).pitches()
+            highest_pitch = list(sorted(anchor_pitches))[-1]
+            if highest_pitch not in first_grace.note_heads:
+                first_grace.note_heads.append(highest_pitch)
+            grace_mate_head = first_grace.note_heads.get(highest_pitch)
+            tweak(grace_mate_head).font_size = 0
+            tweak(grace_mate_head).transparent = True
+
+    def _set_leaf_durations(self):
+        if self.leaf_duration is None:
+            return
+        for leaf in select(self).leaves():
+            duration = abjad_inspect(leaf).duration()
+            if duration != self.leaf_duration:
+                multiplier = self.leaf_duration / duration
+                leaf.multiplier = multiplier
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def leaf_duration(self) -> typing.Optional[Duration]:
+        """
+       Gets leaf duration.
+       """
+        return self._leaf_duration
+
+
+### FACTORY FUNCTIONS ###
+
+
+def on_beat_grace_container(
+    contents,
+    anchor_voice_selection,
+    *,
+    anchor_voice_number=2,
+    do_not_beam=None,
+    do_not_slash=None,
+    do_not_slur=None,
+    do_not_stop_polyphony=None,
+    font_size=-3,
+    grace_voice_number=1,
+    leaf_duration=None,
+):
+    r"""
+    Makes on-beat grace container and wraps around ``selection``.
+
+    ..  container:: example
+
+        GRACE NOTES ABOVE.
+
+        Note-to-note anchor:
+
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+        >>> string = "g'8 a' b' c'' d'' c'' b' a' b' c'' d''"
+        >>> result = abjad.on_beat_grace_container(
+        ...     string, music_voice[1:3], leaf_duration=(1, 30)
+        ... )
+        >>> staff = abjad.Staff([music_voice])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                \context Voice = "Music_Voice"
+                {
+                    c'4
+                    <<
+                        \context Voice = "On_Beat_Grace_Container"
+                        {
+                            \set fontSize = #-3
+                            \slash
+                            \voiceOne
+                            <
+                                \tweak font-size #0
+                                \tweak transparent ##t
+                                d'
+                                g'
+                            >8 * 4/15
+                            [
+                            (
+                            a'8 * 4/15
+                            b'8 * 4/15
+                            c''8 * 4/15
+                            d''8 * 4/15
+                            c''8 * 4/15
+                            b'8 * 4/15
+                            a'8 * 4/15
+                            b'8 * 4/15
+                            c''8 * 4/15
+                            d''8 * 4/15
+                            )
+                            ]
+                        }
+                        \context Voice = "Music_Voice"
+                        {
+                            \voiceTwo
+                            d'4
+                            e'4
+                        }
+                    >>
+                    \oneVoice
+                    f'4
+                }
+            }
+
+        Note-to-chord anchor:
+
+        >>> music_voice = abjad.Voice(
+        ...     "<a c'>4 <b d'> <c' e'> <d' f'>", name="Music_Voice"
+        ... )
+        >>> string = "g'8 a' b' c'' d'' c'' b' a' b' c'' d''"
+        >>> result = abjad.on_beat_grace_container(
+        ...     string, music_voice[1:3], leaf_duration=(1, 30)
+        ... )
+        >>> staff = abjad.Staff([music_voice])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                \context Voice = "Music_Voice"
+                {
+                    <a c'>4
+                    <<
+                        \context Voice = "On_Beat_Grace_Container"
+                        {
+                            \set fontSize = #-3
+                            \slash
+                            \voiceOne
+                            <
+                                \tweak font-size #0
+                                \tweak transparent ##t
+                                d'
+                                g'
+                            >8 * 4/15
+                            [
+                            (
+                            a'8 * 4/15
+                            b'8 * 4/15
+                            c''8 * 4/15
+                            d''8 * 4/15
+                            c''8 * 4/15
+                            b'8 * 4/15
+                            a'8 * 4/15
+                            b'8 * 4/15
+                            c''8 * 4/15
+                            d''8 * 4/15
+                            )
+                            ]
+                        }
+                        \context Voice = "Music_Voice"
+                        {
+                            \voiceTwo
+                            <b d'>4
+                            <c' e'>4
+                        }
+                    >>
+                    \oneVoice
+                    <d' f'>4
+                }
+            }
+
+        Chord-to-note anchor:
+
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+        >>> string = "<g' b'>8 a' b' c'' d'' c'' b' a' b' c'' d''"
+        >>> result = abjad.on_beat_grace_container(
+        ...     string, music_voice[1:3], leaf_duration=(1, 30)
+        ... )
+        >>> staff = abjad.Staff([music_voice])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                \context Voice = "Music_Voice"
+                {
+                    c'4
+                    <<
+                        \context Voice = "On_Beat_Grace_Container"
+                        {
+                            \set fontSize = #-3
+                            \slash
+                            \voiceOne
+                            <
+                                \tweak font-size #0
+                                \tweak transparent ##t
+                                d'
+                                g'
+                                b'
+                            >8 * 4/15
+                            [
+                            (
+                            a'8 * 4/15
+                            b'8 * 4/15
+                            c''8 * 4/15
+                            d''8 * 4/15
+                            c''8 * 4/15
+                            b'8 * 4/15
+                            a'8 * 4/15
+                            b'8 * 4/15
+                            c''8 * 4/15
+                            d''8 * 4/15
+                            )
+                            ]
+                        }
+                        \context Voice = "Music_Voice"
+                        {
+                            \voiceTwo
+                            d'4
+                            e'4
+                        }
+                    >>
+                    \oneVoice
+                    f'4
+                }
+            }
+
+        Chord-to-chord anchor:
+
+        >>> music_voice = abjad.Voice(
+        ...     "<a c'>4 <b d'> <c' e'> <d' f'>", name="Music_Voice"
+        ... )
+        >>> string = "<g' b'>8 a' b' c'' d'' c'' b' a' b' c'' d''"
+        >>> result = abjad.on_beat_grace_container(
+        ...     string, music_voice[1:3], leaf_duration=(1, 30)
+        ... )
+        >>> staff = abjad.Staff([music_voice])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                \context Voice = "Music_Voice"
+                {
+                    <a c'>4
+                    <<
+                        \context Voice = "On_Beat_Grace_Container"
+                        {
+                            \set fontSize = #-3
+                            \slash
+                            \voiceOne
+                            <
+                                \tweak font-size #0
+                                \tweak transparent ##t
+                                d'
+                                g'
+                                b'
+                            >8 * 4/15
+                            [
+                            (
+                            a'8 * 4/15
+                            b'8 * 4/15
+                            c''8 * 4/15
+                            d''8 * 4/15
+                            c''8 * 4/15
+                            b'8 * 4/15
+                            a'8 * 4/15
+                            b'8 * 4/15
+                            c''8 * 4/15
+                            d''8 * 4/15
+                            )
+                            ]
+                        }
+                        \context Voice = "Music_Voice"
+                        {
+                            \voiceTwo
+                            <b d'>4
+                            <c' e'>4
+                        }
+                    >>
+                    \oneVoice
+                    <d' f'>4
+                }
+            }
+
+    ..  container:: example
+
+        GRACE NOTES BELOW.
+        
+        Note-to-note anchor:
+
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+        >>> string = "g8 a b c' d' c' b a b c' d'"
+        >>> result = abjad.on_beat_grace_container(
+        ...     string,
+        ...     music_voice[1:3],
+        ...     anchor_voice_number=1,
+        ...     grace_voice_number=2,
+        ...     leaf_duration=(1, 30),
+        ... )
+        >>> staff = abjad.Staff([music_voice])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                \context Voice = "Music_Voice"
+                {
+                    c'4
+                    <<
+                        \context Voice = "On_Beat_Grace_Container"
+                        {
+                            \set fontSize = #-3
+                            \slash
+                            \voiceTwo
+                            <
+                                g
+                                \tweak font-size #0
+                                \tweak transparent ##t
+                                d'
+                            >8 * 4/15
+                            [
+                            (
+                            a8 * 4/15
+                            b8 * 4/15
+                            c'8 * 4/15
+                            d'8 * 4/15
+                            c'8 * 4/15
+                            b8 * 4/15
+                            a8 * 4/15
+                            b8 * 4/15
+                            c'8 * 4/15
+                            d'8 * 4/15
+                            )
+                            ]
+                        }
+                        \context Voice = "Music_Voice"
+                        {
+                            \voiceOne
+                            d'4
+                            e'4
+                        }
+                    >>
+                    \oneVoice
+                    f'4
+                }
+            }
+
+        Note-to-chord anchor:
+
+        >>> music_voice = abjad.Voice(
+        ...     "<c' e'>4 <d' f'> <e' g'> <f' a'>", name="Music_Voice"
+        ... )
+        >>> string = "g8 a b c' d' c' b a b c' d'"
+        >>> result = abjad.on_beat_grace_container(
+        ...     string,
+        ...     music_voice[1:3],
+        ...     anchor_voice_number=1,
+        ...     grace_voice_number=2,
+        ...     leaf_duration=(1, 30),
+        ... )
+        >>> staff = abjad.Staff([music_voice])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                \context Voice = "Music_Voice"
+                {
+                    <c' e'>4
+                    <<
+                        \context Voice = "On_Beat_Grace_Container"
+                        {
+                            \set fontSize = #-3
+                            \slash
+                            \voiceTwo
+                            <
+                                g
+                                \tweak font-size #0
+                                \tweak transparent ##t
+                                f'
+                            >8 * 4/15
+                            [
+                            (
+                            a8 * 4/15
+                            b8 * 4/15
+                            c'8 * 4/15
+                            d'8 * 4/15
+                            c'8 * 4/15
+                            b8 * 4/15
+                            a8 * 4/15
+                            b8 * 4/15
+                            c'8 * 4/15
+                            d'8 * 4/15
+                            )
+                            ]
+                        }
+                        \context Voice = "Music_Voice"
+                        {
+                            \voiceOne
+                            <d' f'>4
+                            <e' g'>4
+                        }
+                    >>
+                    \oneVoice
+                    <f' a'>4
+                }
+            }
+
+        Chord-to-note anchor:
+
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+        >>> string = "<e g>8 a b c' d' c' b a b c' d'"
+        >>> result = abjad.on_beat_grace_container(
+        ...     string,
+        ...     music_voice[1:3],
+        ...     anchor_voice_number=1,
+        ...     grace_voice_number=2,
+        ...     leaf_duration=(1, 30),
+        ... )
+        >>> staff = abjad.Staff([music_voice])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                \context Voice = "Music_Voice"
+                {
+                    c'4
+                    <<
+                        \context Voice = "On_Beat_Grace_Container"
+                        {
+                            \set fontSize = #-3
+                            \slash
+                            \voiceTwo
+                            <
+                                e
+                                g
+                                \tweak font-size #0
+                                \tweak transparent ##t
+                                d'
+                            >8 * 4/15
+                            [
+                            (
+                            a8 * 4/15
+                            b8 * 4/15
+                            c'8 * 4/15
+                            d'8 * 4/15
+                            c'8 * 4/15
+                            b8 * 4/15
+                            a8 * 4/15
+                            b8 * 4/15
+                            c'8 * 4/15
+                            d'8 * 4/15
+                            )
+                            ]
+                        }
+                        \context Voice = "Music_Voice"
+                        {
+                            \voiceOne
+                            d'4
+                            e'4
+                        }
+                    >>
+                    \oneVoice
+                    f'4
+                }
+            }
+
+        Chord-to-chord anchor:
+
+        >>> music_voice = abjad.Voice(
+        ...     "<c' e'>4 <d' f'> <e' g'> <f' a'>", name="Music_Voice"
+        ... )
+        >>> string = "<e g>8 a b c' d' c' b a b c' d'"
+        >>> result = abjad.on_beat_grace_container(
+        ...     string,
+        ...     music_voice[1:3],
+        ...     anchor_voice_number=1,
+        ...     grace_voice_number=2,
+        ...     leaf_duration=(1, 30),
+        ... )
+        >>> staff = abjad.Staff([music_voice])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                \context Voice = "Music_Voice"
+                {
+                    <c' e'>4
+                    <<
+                        \context Voice = "On_Beat_Grace_Container"
+                        {
+                            \set fontSize = #-3
+                            \slash
+                            \voiceTwo
+                            <
+                                e
+                                g
+                                \tweak font-size #0
+                                \tweak transparent ##t
+                                f'
+                            >8 * 4/15
+                            [
+                            (
+                            a8 * 4/15
+                            b8 * 4/15
+                            c'8 * 4/15
+                            d'8 * 4/15
+                            c'8 * 4/15
+                            b8 * 4/15
+                            a8 * 4/15
+                            b8 * 4/15
+                            c'8 * 4/15
+                            d'8 * 4/15
+                            )
+                            ]
+                        }
+                        \context Voice = "Music_Voice"
+                        {
+                            \voiceOne
+                            <d' f'>4
+                            <e' g'>4
+                        }
+                    >>
+                    \oneVoice
+                    <f' a'>4
+                }
+            }
+
+    ..  container:: example
+
+        Raises exception when duration of on-beat grace container exceeds
+        duration of anchor container:
+
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+        >>> string = "g'8 a' b' c'' d'' c'' b' a' b' c'' d''"
+        >>> result = abjad.on_beat_grace_container(
+        ...     string, music_voice[1:2], leaf_duration=(1, 8)
+        ... )
+        Traceback (most recent call last):
+            ...
+        Exception: graces Duration(11, 8) exceed anchor Duration(1, 4).
+
+    """
+    from .Chord import Chord
+    from .Container import Container
+    from .Note import Note
+    from .Selection import Selection
+    from .Voice import Voice
+    from abjad.spanners import beam
+    from abjad.spanners import slur
+
+    assert isinstance(anchor_voice_selection, Selection)
+    if not anchor_voice_selection.are_contiguous_same_parent(
+        ignore_before_after_grace=True
+    ):
+        message = "selection must be contiguous in same parent:\n"
+        message += f"   {repr(anchor_voice_selection)}"
+        raise Exception(message)
+    on_beat_grace_container = OnBeatGraceContainer(
+        contents, leaf_duration=leaf_duration
+    )
+    if not isinstance(anchor_voice_selection, Selection):
+        raise Exception(f"must be selection:\n {repr(anchor_voice_selection)}")
+    anchor_leaf = abjad_inspect(anchor_voice_selection).leaf(0)
+    anchor_voice = abjad_inspect(anchor_leaf).parentage().get(Voice)
+    if anchor_voice.name is None:
+        raise Exception(
+            f"anchor voice must be named:\n   {repr(anchor_voice)}"
+        )
+    anchor_voice_insert = Voice(name=anchor_voice.name)
+    mutate(anchor_voice_selection).wrap(anchor_voice_insert)
+    container = Container(simultaneous=True)
+    mutate(anchor_voice_insert).wrap(container)
+    container.insert(0, on_beat_grace_container)
+    on_beat_grace_container._match_anchor_leaf()
+    on_beat_grace_container._set_leaf_durations()
+    insert_duration = abjad_inspect(anchor_voice_insert).duration()
+    grace_container_duration = abjad_inspect(
+        on_beat_grace_container
+    ).duration()
+    if insert_duration < grace_container_duration:
+        message = f"graces {repr(grace_container_duration)}"
+        message += f" exceed anchor {repr(insert_duration)}."
+        raise Exception(message)
+    if font_size is not None:
+        string = rf"\set fontSize = #{font_size}"
+        literal = LilyPondLiteral(string)
+        attach(literal, on_beat_grace_container)
+    if not do_not_beam:
+        beam(on_beat_grace_container[:])
+    if not do_not_slash:
+        literal = LilyPondLiteral(r"\slash")
+        attach(literal, on_beat_grace_container[0])
+    if not do_not_slur:
+        slur(on_beat_grace_container[:])
+    voice_number_to_string = {
+        1: r"\voiceOne",
+        2: r"\voiceTwo",
+        3: r"\voiceThree",
+        4: r"\voiceFour",
+    }
+    first_grace = abjad_inspect(on_beat_grace_container).leaf(0)
+    string = voice_number_to_string.get(grace_voice_number, None)
+    if string is not None:
+        attach(LilyPondLiteral(string), first_grace)
+    string = voice_number_to_string.get(anchor_voice_number, None)
+    if string is not None:
+        attach(LilyPondLiteral(string), anchor_leaf)
+    if not do_not_stop_polyphony:
+        last_anchor_leaf = abjad_inspect(anchor_voice_selection).leaf(-1)
+        next_in_voice = abjad_inspect(last_anchor_leaf).leaf(1)
+        if next_in_voice is not None:
+            literal = LilyPondLiteral(r"\oneVoice")
+            attach(literal, next_in_voice)
+    return on_beat_grace_container

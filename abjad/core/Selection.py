@@ -44,63 +44,19 @@ class Selection(collections.abc.Sequence):
 
     ..  container:: example
 
-        Selects runs:
+        >>> string = r"c'4 \times 2/3 { d'8 r8 e'8 } r16 f'16 g'8 a'4"
+        >>> staff = abjad.Staff(string)
+        >>> abjad.setting(staff).auto_beaming = False
+        >>> abjad.show(staff) # doctest: +SKIP
 
-        ..  container:: example
+        >>> result = abjad.select(staff).runs()
 
-            >>> string = r"c'4 \times 2/3 { d'8 r8 e'8 } r16 f'16 g'8 a'4"
-            >>> staff = abjad.Staff(string)
-            >>> abjad.setting(staff).auto_beaming = False
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            >>> result = abjad.select(staff).runs()
-
-            >>> for item in result:
-            ...     item
-            ...
-            Selection([Note("c'4"), Note("d'8")])
-            Selection([Note("e'8")])
-            Selection([Note("f'16"), Note("g'8"), Note("a'4")])
-
-        ..  container:: example expression
-
-            >>> selector = abjad.select().runs()
-            >>> result = selector(staff)
-
-            >>> selector.print(result)
-            Selection([Note("c'4"), Note("d'8")])
-            Selection([Note("e'8")])
-            Selection([Note("f'16"), Note("g'8"), Note("a'4")])
-
-            >>> selector.color(result)
-            >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> abjad.f(staff, strict=89)
-            \new Staff
-            \with
-            {
-                autoBeaming = ##f
-            }
-            {
-                \abjad-color-music #'red
-                c'4
-                \times 2/3 {
-                    \abjad-color-music #'red
-                    d'8
-                    r8
-                    \abjad-color-music #'blue
-                    e'8
-                }
-                r16
-                \abjad-color-music #'red
-                f'16
-                \abjad-color-music #'red
-                g'8
-                \abjad-color-music #'red
-                a'4
-            }
+        >>> for item in result:
+        ...     item
+        ...
+        Selection([Note("c'4"), Note("d'8")])
+        Selection([Note("e'8")])
+        Selection([Note("f'16"), Note("g'8"), Note("a'4")])
 
     """
 
@@ -499,8 +455,12 @@ class Selection(collections.abc.Sequence):
             )
         return start_offsets, stop_offsets
 
-    def _get_parent_and_start_stop_indices(self):
-        assert self.are_contiguous_same_parent()
+    def _get_parent_and_start_stop_indices(
+        self, ignore_before_after_grace=None
+    ):
+        assert self.are_contiguous_same_parent(
+            ignore_before_after_grace=ignore_before_after_grace
+        )
         if self:
             first, last = self[0], self[-1]
             parent = first._parent
@@ -727,9 +687,9 @@ class Selection(collections.abc.Sequence):
     ### PUBLIC METHODS ###
 
     def are_contiguous_logical_voice(
-        self, prototype=None
+        self, prototype=None, *, ignore_before_after_grace=None
     ) -> typing.Union[bool, Expression]:
-        """
+        r"""
         Is true when items in selection are contiguous components in the
         same logical voice.
 
@@ -742,6 +702,73 @@ class Selection(collections.abc.Sequence):
             >>> selection = staff[:1] + staff[-1:]
             >>> selection.are_contiguous_logical_voice()
             False
+
+        ..  container:: example
+
+            REGRESSION. Before-grace music may be ignored:
+
+            >>> voice = abjad.Voice("c'4 d' e' f'")
+            >>> container = abjad.BeforeGraceContainer("cs'16")
+            >>> abjad.attach(container, voice[1])
+            >>> abjad.show(voice) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(voice)
+                \new Voice
+                {
+                    c'4
+                    \grace {
+                        cs'16
+                    }
+                    d'4
+                    e'4
+                    f'4
+                }
+
+            >>> voice[:]
+            Selection([Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")])
+
+            >>> voice[:].are_contiguous_logical_voice()
+            False
+
+            >>> voice[:].are_contiguous_logical_voice(
+            ...     ignore_before_after_grace=True
+            ... )
+            True
+
+            After-grace music may be ignored, too:
+
+            >>> voice = abjad.Voice("c'4 d' e' f'")
+            >>> container = abjad.AfterGraceContainer("cs'16")
+            >>> abjad.attach(container, voice[0])
+            >>> abjad.show(voice) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(voice)
+                \new Voice
+                {
+                    \afterGrace
+                    c'4
+                    {
+                        cs'16
+                    }
+                    d'4
+                    e'4
+                    f'4
+                }
+
+            >>> voice[:]
+            Selection([Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")])
+
+            >>> voice[:].are_contiguous_logical_voice()
+            False
+
+            >>> voice[:].are_contiguous_logical_voice(
+            ...     ignore_before_after_grace=True
+            ... )
+            True
 
         """
         if self._expression:
@@ -777,7 +804,10 @@ class Selection(collections.abc.Sequence):
                 return False
             # false if components are in same score and are discontiguous
             if current_parentage.root == first_root:
-                if not previous._immediately_precedes(current):
+                if not previous._immediately_precedes(
+                    current,
+                    ignore_before_after_grace=ignore_before_after_grace,
+                ):
                     return False
             previous = current
         return True
@@ -842,9 +872,9 @@ class Selection(collections.abc.Sequence):
         return True
 
     def are_contiguous_same_parent(
-        self, prototype=None
+        self, prototype=None, *, ignore_before_after_grace=None
     ) -> typing.Union[bool, Expression]:
-        """
+        r"""
         Is true when items in selection are all contiguous components in
         the same parent.
 
@@ -858,7 +888,77 @@ class Selection(collections.abc.Sequence):
             >>> selection.are_contiguous_same_parent()
             False
 
+        ..  container:: example
+
+            REGRESSION. Before-grace music music may be ignored:
+
+            >>> voice = abjad.Voice("c'4 d' e' f'")
+            >>> container = abjad.BeforeGraceContainer("cs'16")
+            >>> abjad.attach(container, voice[1])
+            >>> abjad.show(voice) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(voice)
+                \new Voice
+                {
+                    c'4
+                    \grace {
+                        cs'16
+                    }
+                    d'4
+                    e'4
+                    f'4
+                }
+
+            >>> voice[:]
+            Selection([Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")])
+
+            >>> voice[:].are_contiguous_same_parent()
+            False
+
+            >>> voice[:].are_contiguous_same_parent(
+            ...     ignore_before_after_grace=True
+            ... )
+            True
+
+            After-grace music may be ignored, too:
+
+            >>> voice = abjad.Voice("c'4 d' e' f'")
+            >>> container = abjad.AfterGraceContainer("cs'16")
+            >>> abjad.attach(container, voice[0])
+            >>> abjad.show(voice) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(voice)
+                \new Voice
+                {
+                    \afterGrace
+                    c'4
+                    {
+                        cs'16
+                    }
+                    d'4
+                    e'4
+                    f'4
+                }
+
+            >>> voice[:]
+            Selection([Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")])
+
+            >>> voice[:].are_contiguous_same_parent()
+            False
+
+            >>> voice[:].are_contiguous_same_parent(
+            ...     ignore_before_after_grace=True
+            ... )
+            True
+
         """
+        from .AfterGraceContainer import AfterGraceContainer
+        from .BeforeGraceContainer import BeforeGraceContainer
+
         if self._expression:
             return self._update_expression(inspect.currentframe())
         prototype = prototype or (Component,)
@@ -884,7 +984,9 @@ class Selection(collections.abc.Sequence):
                 return False
             if current._parent is not first_parent:
                 same_parent = False
-            if not previous._immediately_precedes(current):
+            if not previous._immediately_precedes(
+                current, ignore_before_after_grace=ignore_before_after_grace
+            ):
                 strictly_contiguous = False
             if not abjad_inspect(current).parentage().orphan and (
                 not same_parent or not strictly_contiguous
@@ -1199,7 +1301,7 @@ class Selection(collections.abc.Sequence):
             ..  container:: example
 
                 >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-                >>> container = abjad.GraceContainer("cf''16 bf'16")
+                >>> container = abjad.BeforeGraceContainer("cf''16 bf'16")
                 >>> abjad.attach(container, staff[1])
                 >>> container = abjad.AfterGraceContainer("af'16 gf'16")
                 >>> abjad.attach(container, staff[1])
@@ -1285,8 +1387,8 @@ class Selection(collections.abc.Sequence):
                         \abjad-color-music #'red
                         bf'16
                     }
-                    \afterGrace
                     \abjad-color-music #'blue
+                    \afterGrace
                     d'8
                     {
                         \abjad-color-music #'red
@@ -1307,7 +1409,7 @@ class Selection(collections.abc.Sequence):
             ..  container:: example
 
                 >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-                >>> container = abjad.GraceContainer("cf''16 bf'16")
+                >>> container = abjad.BeforeGraceContainer("cf''16 bf'16")
                 >>> abjad.attach(container, staff[1])
                 >>> container = abjad.AfterGraceContainer("af'16 gf'16")
                 >>> abjad.attach(container, staff[1])
@@ -1383,8 +1485,8 @@ class Selection(collections.abc.Sequence):
                         cf''16
                         bf'16
                     }
-                    \afterGrace
                     \abjad-color-music #'blue
+                    \afterGrace
                     d'8
                     {
                         af'16
@@ -1403,7 +1505,7 @@ class Selection(collections.abc.Sequence):
             ..  container:: example
 
                 >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-                >>> container = abjad.GraceContainer("cf''16 bf'16")
+                >>> container = abjad.BeforeGraceContainer("cf''16 bf'16")
                 >>> abjad.attach(container, staff[1])
                 >>> container = abjad.AfterGraceContainer("af'16 gf'16")
                 >>> abjad.attach(container, staff[1])
@@ -2294,7 +2396,6 @@ class Selection(collections.abc.Sequence):
                     a'8
                 }
 
-        Returns new selection (or expression).
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -4923,7 +5024,7 @@ class Selection(collections.abc.Sequence):
             ..  container:: example
 
                 >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-                >>> container = abjad.GraceContainer("cf''16 bf'16")
+                >>> container = abjad.BeforeGraceContainer("cf''16 bf'16")
                 >>> abjad.attach(container, staff[1])
                 >>> container = abjad.AfterGraceContainer("af'16 gf'16")
                 >>> abjad.attach(container, staff[1])
@@ -5003,8 +5104,8 @@ class Selection(collections.abc.Sequence):
                         \abjad-color-music #'red
                         bf'16
                     }
-                    \afterGrace
                     \abjad-color-music #'blue
+                    \afterGrace
                     d'8
                     {
                         \abjad-color-music #'red
@@ -5025,7 +5126,7 @@ class Selection(collections.abc.Sequence):
             ..  container:: example
 
                 >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-                >>> container = abjad.GraceContainer("cf''16 bf'16")
+                >>> container = abjad.BeforeGraceContainer("cf''16 bf'16")
                 >>> abjad.attach(container, staff[1])
                 >>> container = abjad.AfterGraceContainer("af'16 gf'16")
                 >>> abjad.attach(container, staff[1])
@@ -5095,8 +5196,8 @@ class Selection(collections.abc.Sequence):
                         cf''16
                         bf'16
                     }
-                    \afterGrace
                     \abjad-color-music #'blue
+                    \afterGrace
                     d'8
                     {
                         af'16
@@ -5115,7 +5216,7 @@ class Selection(collections.abc.Sequence):
             ..  container:: example
 
                 >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-                >>> container = abjad.GraceContainer("cf''16 bf'16")
+                >>> container = abjad.BeforeGraceContainer("cf''16 bf'16")
                 >>> abjad.attach(container, staff[1])
                 >>> container = abjad.AfterGraceContainer("af'16 gf'16")
                 >>> abjad.attach(container, staff[1])
@@ -5617,7 +5718,7 @@ class Selection(collections.abc.Sequence):
             ..  container:: example
 
                 >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-                >>> container = abjad.GraceContainer("cf''16 bf'16")
+                >>> container = abjad.BeforeGraceContainer("cf''16 bf'16")
                 >>> abjad.attach(container, staff[1])
                 >>> container = abjad.AfterGraceContainer("af'16 gf'16")
                 >>> abjad.attach(container, staff[1])
@@ -5697,8 +5798,8 @@ class Selection(collections.abc.Sequence):
                         \abjad-color-music #'red
                         bf'16
                     }
-                    \afterGrace
                     \abjad-color-music #'blue
+                    \afterGrace
                     d'8
                     {
                         \abjad-color-music #'red
@@ -5719,7 +5820,7 @@ class Selection(collections.abc.Sequence):
             ..  container:: example
 
                 >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-                >>> container = abjad.GraceContainer("cf''16 bf'16")
+                >>> container = abjad.BeforeGraceContainer("cf''16 bf'16")
                 >>> abjad.attach(container, staff[1])
                 >>> container = abjad.AfterGraceContainer("af'16 gf'16")
                 >>> abjad.attach(container, staff[1])
@@ -5789,8 +5890,8 @@ class Selection(collections.abc.Sequence):
                         cf''16
                         bf'16
                     }
-                    \afterGrace
                     \abjad-color-music #'blue
+                    \afterGrace
                     d'8
                     {
                         af'16
@@ -5809,7 +5910,7 @@ class Selection(collections.abc.Sequence):
             ..  container:: example
 
                 >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-                >>> container = abjad.GraceContainer("cf''16 bf'16")
+                >>> container = abjad.BeforeGraceContainer("cf''16 bf'16")
                 >>> abjad.attach(container, staff[1])
                 >>> container = abjad.AfterGraceContainer("af'16 gf'16")
                 >>> abjad.attach(container, staff[1])
@@ -6235,7 +6336,6 @@ class Selection(collections.abc.Sequence):
                     a'4
                 }
 
-        Returns new selection (or expression).
         '''
         if self._expression:
             return self._update_expression(
@@ -9385,12 +9485,164 @@ class Selection(collections.abc.Sequence):
                     \sustainOn
                 }
 
-        Returns new selection (or expression).
+        ..  container:: example
+
+            REGRESSION. Works with grace note (and containers):
+
+            >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+            >>> container = abjad.BeforeGraceContainer("cs'16")
+            >>> abjad.attach(container, music_voice[1])
+            >>> container = abjad.on_beat_grace_container(
+            ...     "g'16 gs' a' as'", music_voice[2:3]
+            ... )
+            >>> abjad.attach(abjad.Articulation(">"), container[0])
+            >>> container = abjad.AfterGraceContainer("fs'16")
+            >>> abjad.attach(container, music_voice[3])
+            >>> staff = abjad.Staff([music_voice])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    \context Voice = "Music_Voice"
+                    {
+                        c'4
+                        \grace {
+                            cs'16
+                        }
+                        d'4
+                        <<
+                            \context Voice = "On_Beat_Grace_Container"
+                            {
+                                \set fontSize = #-3
+                                \slash
+                                \voiceOne
+                                <
+                                    \tweak font-size #0
+                                    \tweak transparent ##t
+                                    e'
+                                    g'
+                                >16
+                                - \accent
+                                [
+                                (
+                                gs'16
+                                a'16
+                                as'16
+                                )
+                                ]
+                            }
+                            \context Voice = "Music_Voice"
+                            {
+                                \voiceTwo
+                                e'4
+                            }
+                        >>
+                        \oneVoice
+                        \afterGrace
+                        f'4
+                        {
+                            fs'16
+                        }
+                    }
+                }
+
+            ..  container:: example
+
+                >>> prototype = (
+                ...     abjad.BeforeGraceContainer,
+                ...     abjad.OnBeatGraceContainer,
+                ...     abjad.AfterGraceContainer,
+                ... )
+                >>> containers = abjad.select(staff).components(prototype)
+                >>> selector = abjad.select().leaves().with_next_leaf()
+                >>> result = containers.map(selector)
+
+                >>> for item in result:
+                ...     item
+                ...
+                Selection([Note("cs'16"), Note("d'4")])
+                Selection([Chord("<e' g'>16"), Note("gs'16"), Note("a'16"), Note("as'16"), Note("e'4")])
+                Selection([Note("fs'16")])
+
+            ..  container:: example expression
+
+                >>> containers = abjad.select().components(prototype)
+                >>> selector = abjad.select().leaves().with_next_leaf()
+                >>> selector = containers.map(selector)
+                >>> result = selector(staff)
+
+                >>> selector.print(result)
+                Selection([Note("cs'16"), Note("d'4")])
+                Selection([Chord("<e' g'>16"), Note("gs'16"), Note("a'16"), Note("as'16"), Note("e'4")])
+                Selection([Note("fs'16")])
+
+                >>> selector.color(result)
+                >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff, strict=89)
+                \new Staff
+                {
+                    \context Voice = "Music_Voice"
+                    {
+                        c'4
+                        \grace {
+                            \abjad-color-music #'red
+                            cs'16
+                        }
+                        \abjad-color-music #'red
+                        d'4
+                        <<
+                            \context Voice = "On_Beat_Grace_Container"
+                            {
+                                \set fontSize = #-3
+                                \slash
+                                \voiceOne
+                                \abjad-color-music #'blue
+                                <
+                                    \tweak font-size #0
+                                    \tweak transparent ##t
+                                    e'
+                                    g'
+                                >16
+                                - \accent
+                                [
+                                (
+                                \abjad-color-music #'blue
+                                gs'16
+                                \abjad-color-music #'blue
+                                a'16
+                                \abjad-color-music #'blue
+                                as'16
+                                )
+                                ]
+                            }
+                            \context Voice = "Music_Voice"
+                            {
+                                \voiceTwo
+                                \abjad-color-music #'blue
+                                e'4
+                            }
+                        >>
+                        \oneVoice
+                        \afterGrace
+                        f'4
+                        {
+                            \abjad-color-music #'red
+                            fs'16
+                        }
+                    }
+                }
+
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
         leaves = list(self.leaves())
-        next_leaf = leaves[-1]._leaf(1)
+        next_leaf = abjad_inspect(leaves[-1]).leaf(1)
         if next_leaf is not None:
             leaves.append(next_leaf)
         return type(self)(leaves)
@@ -9524,11 +9776,166 @@ class Selection(collections.abc.Sequence):
                     f'8
                 }
 
+        ..  container:: example
+
+            REGRESSION. Works with grace note (and containers):
+
+            >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+            >>> container = abjad.BeforeGraceContainer("cs'16")
+            >>> abjad.attach(container, music_voice[1])
+            >>> container = abjad.on_beat_grace_container(
+            ...     "g'16 gs' a' as'", music_voice[2:3]
+            ... )
+            >>> abjad.attach(abjad.Articulation(">"), container[0])
+            >>> container = abjad.AfterGraceContainer("fs'16")
+            >>> abjad.attach(container, music_voice[3])
+            >>> staff = abjad.Staff([music_voice])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    \context Voice = "Music_Voice"
+                    {
+                        c'4
+                        \grace {
+                            cs'16
+                        }
+                        d'4
+                        <<
+                            \context Voice = "On_Beat_Grace_Container"
+                            {
+                                \set fontSize = #-3
+                                \slash
+                                \voiceOne
+                                <
+                                    \tweak font-size #0
+                                    \tweak transparent ##t
+                                    e'
+                                    g'
+                                >16
+                                - \accent
+                                [
+                                (
+                                gs'16
+                                a'16
+                                as'16
+                                )
+                                ]
+                            }
+                            \context Voice = "Music_Voice"
+                            {
+                                \voiceTwo
+                                e'4
+                            }
+                        >>
+                        \oneVoice
+                        \afterGrace
+                        f'4
+                        {
+                            fs'16
+                        }
+                    }
+                }
+
+
+            ..  container:: example
+
+                >>> prototype = (
+                ...     abjad.BeforeGraceContainer,
+                ...     abjad.OnBeatGraceContainer,
+                ...     abjad.AfterGraceContainer,
+                ... )
+                >>> containers = abjad.select(staff).components(prototype)
+                >>> selector = abjad.select().leaves().with_previous_leaf()
+                >>> result = containers.map(selector)
+
+                >>> for item in result:
+                ...     item
+                ...
+                Selection([Note("c'4"), Note("cs'16")])
+                Selection([Note("d'4"), Chord("<e' g'>16"), Note("gs'16"), Note("a'16"), Note("as'16")])
+                Selection([Note("f'4"), Note("fs'16")])
+
+            ..  container:: example expression
+
+                >>> containers = abjad.select().components(prototype)
+                >>> selector = abjad.select().leaves().with_previous_leaf()
+                >>> selector = containers.map(selector)
+                >>> result = selector(staff)
+
+                >>> selector.print(result)
+                Selection([Note("c'4"), Note("cs'16")])
+                Selection([Note("d'4"), Chord("<e' g'>16"), Note("gs'16"), Note("a'16"), Note("as'16")])
+                Selection([Note("f'4"), Note("fs'16")])
+
+                >>> selector.color(result)
+                >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff, strict=89)
+                \new Staff
+                {
+                    \context Voice = "Music_Voice"
+                    {
+                        \abjad-color-music #'red
+                        c'4
+                        \grace {
+                            \abjad-color-music #'red
+                            cs'16
+                        }
+                        \abjad-color-music #'blue
+                        d'4
+                        <<
+                            \context Voice = "On_Beat_Grace_Container"
+                            {
+                                \set fontSize = #-3
+                                \slash
+                                \voiceOne
+                                \abjad-color-music #'blue
+                                <
+                                    \tweak font-size #0
+                                    \tweak transparent ##t
+                                    e'
+                                    g'
+                                >16
+                                - \accent
+                                [
+                                (
+                                \abjad-color-music #'blue
+                                gs'16
+                                \abjad-color-music #'blue
+                                a'16
+                                \abjad-color-music #'blue
+                                as'16
+                                )
+                                ]
+                            }
+                            \context Voice = "Music_Voice"
+                            {
+                                \voiceTwo
+                                e'4
+                            }
+                        >>
+                        \oneVoice
+                        \abjad-color-music #'red
+                        \afterGrace
+                        f'4
+                        {
+                            \abjad-color-music #'red
+                            fs'16
+                        }
+                    }
+                }
+
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
         leaves = list(self.leaves())
-        previous_leaf = leaves[0]._leaf(-1)
+        previous_leaf = abjad_inspect(leaves[0]).leaf(-1)
         if previous_leaf is not None:
             leaves.insert(0, previous_leaf)
         return type(self)(leaves)

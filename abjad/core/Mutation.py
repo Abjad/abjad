@@ -3181,10 +3181,14 @@ class Mutation(object):
         else:
             selection = self.client
         assert isinstance(selection, Selection), repr(selection)
-        parent, start, stop = selection._get_parent_and_start_stop_indices()
-        if not selection.are_contiguous_logical_voice():
-            message = "must be contiguous components in same logical voice:"
-            message += f" {selection!r}."
+        parent, start, stop = selection._get_parent_and_start_stop_indices(
+            ignore_before_after_grace=True
+        )
+        if not selection.are_contiguous_logical_voice(
+            ignore_before_after_grace=True
+        ):
+            message = "must be contiguous components in same logical voice:\n"
+            message += f"   {selection!r}."
             raise Exception(message)
         container._components = list(selection)
         container[:]._set_parents(container)

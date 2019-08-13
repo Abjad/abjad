@@ -5,7 +5,7 @@ from abjad.indicators.MetronomeMark import MetronomeMark
 from abjad.indicators.TimeSignature import TimeSignature
 from abjad.timespans import AnnotatedTimespan
 from abjad.timespans import TimespanList
-from abjad.top.inspect import inspect
+from abjad.top.inspect import inspect as abjad_inspect
 from abjad.top.iterate import iterate
 from abjad.top.new import new
 from abjad.utilities.Duration import Duration
@@ -47,72 +47,61 @@ class UpdateManager(object):
     ### PRIVATE METHODS ###
 
     @staticmethod
-    def _get_after_grace_note_offsets(leaf):
+    def _get_after_grace_leaf_offsets(leaf):
         container = leaf._parent
         main_leaf = container._main_leaf
         main_leaf_stop_offset = main_leaf._stop_offset
         assert main_leaf_stop_offset is not None
-        displacement = -leaf.written_duration
+        displacement = -abjad_inspect(leaf).duration()
         sibling = leaf._sibling(1)
         while sibling is not None and sibling._parent is container:
-            displacement -= sibling.written_duration
+            displacement -= abjad_inspect(sibling).duration()
             sibling = sibling._sibling(1)
+        if leaf._parent is not None and leaf._parent._main_leaf is not None:
+            main_leaf = leaf._parent._main_leaf
+            sibling = main_leaf._sibling(1)
+            if (
+                sibling is not None
+                and hasattr(sibling, "_before_grace_container")
+                and sibling._before_grace_container is not None
+            ):
+                before_grace_container = sibling._before_grace_container
+                duration = abjad_inspect(before_grace_container).duration()
+                displacement -= duration
         start_offset = Offset(main_leaf_stop_offset, displacement=displacement)
-        displacement += leaf.written_duration
+        displacement += abjad_inspect(leaf).duration()
         stop_offset = Offset(main_leaf_stop_offset, displacement=displacement)
         return start_offset, stop_offset
 
     @staticmethod
-    def _get_grace_note_offsets(leaf):
+    def _get_before_grace_leaf_offsets(leaf):
         container = leaf._parent
         main_leaf = container._main_leaf
         main_leaf_start_offset = main_leaf._start_offset
         assert main_leaf_start_offset is not None
-        displacement = -leaf.written_duration
+        displacement = -abjad_inspect(leaf).duration()
         sibling = leaf._sibling(1)
         while sibling is not None and sibling._parent is container:
-            displacement -= sibling.written_duration
+            displacement -= abjad_inspect(sibling).duration()
             sibling = sibling._sibling(1)
         start_offset = Offset(
             main_leaf_start_offset, displacement=displacement
         )
-        displacement += leaf.written_duration
+        displacement += abjad_inspect(leaf).duration()
         stop_offset = Offset(main_leaf_start_offset, displacement=displacement)
-        return start_offset, stop_offset
-
-    @staticmethod
-    def _get_on_beat_grace_note_offsets(leaf):
-        container = leaf._parent
-        main_leaf = container._main_leaf
-        main_leaf_start_offset = main_leaf._start_offset
-        assert main_leaf_start_offset is not None
-        start_displacement = Duration(0)
-        sibling = leaf._sibling(-1)
-        while sibling is not None and sibling._parent is container:
-            start_displacement += sibling.written_duration
-            sibling = sibling._sibling(-1)
-        stop_displacement = start_displacement + leaf.written_duration
-        if start_displacement == 0:
-            start_displacement = None
-        start_offset = Offset(
-            main_leaf_start_offset, displacement=start_displacement
-        )
-        stop_offset = Offset(
-            main_leaf_start_offset, displacement=stop_displacement
-        )
         return start_offset, stop_offset
 
     def _get_measure_start_offsets(self, component):
         wrappers = []
         prototype = TimeSignature
-        root = inspect(component).parentage().root
+        root = abjad_inspect(component).parentage().root
         for component_ in self._iterate_entire_score(root):
-            wrappers_ = inspect(component_).wrappers(prototype)
+            wrappers_ = abjad_inspect(component_).wrappers(prototype)
             wrappers.extend(wrappers_)
         pairs = []
         for wrapper in wrappers:
             component = wrapper.component
-            start_offset = inspect(component).timespan().start_offset
+            start_offset = abjad_inspect(component).timespan().start_offset
             time_signature = wrapper.indicator
             pair = start_offset, time_signature
             pairs.append(pair)
@@ -124,7 +113,7 @@ class UpdateManager(object):
         elif not pairs:
             pairs = [default_pair]
         pairs.sort(key=lambda x: x[0])
-        score_stop_offset = inspect(root).timespan().stop_offset
+        score_stop_offset = abjad_inspect(root).timespan().stop_offset
         dummy_last_pair = (score_stop_offset, None)
         pairs.append(dummy_last_pair)
         measure_start_offsets = []
@@ -136,6 +125,29 @@ class UpdateManager(object):
                 measure_start_offsets.append(measure_start_offset)
                 measure_start_offset += current_time_signature.duration
         return measure_start_offsets
+
+    @staticmethod
+    def _get_on_beat_grace_leaf_offsets(leaf):
+        container = leaf._parent
+        anchor_leaf = container._get_on_beat_anchor_leaf()
+        anchor_leaf_start_offset = anchor_leaf._start_offset
+        assert anchor_leaf_start_offset is not None
+        anchor_leaf_start_offset = Offset(anchor_leaf_start_offset.pair)
+        start_displacement = Duration(0)
+        sibling = leaf._sibling(-1)
+        while sibling is not None and sibling._parent is container:
+            start_displacement += abjad_inspect(sibling).duration()
+            sibling = sibling._sibling(-1)
+        stop_displacement = start_displacement + abjad_inspect(leaf).duration()
+        if start_displacement == 0:
+            start_displacement = None
+        start_offset = Offset(
+            anchor_leaf_start_offset.pair, displacement=start_displacement
+        )
+        stop_offset = Offset(
+            anchor_leaf_start_offset.pair, displacement=stop_displacement
+        )
+        return start_offset, stop_offset
 
     @staticmethod
     def _get_score_tree_state_flags(parentage):
@@ -211,7 +223,9 @@ class UpdateManager(object):
 
     # TODO: reimplement with some type of bisection
     def _to_measure_number(self, component, measure_start_offsets):
-        component_start_offset = inspect(component).timespan().start_offset
+        component_start_offset = (
+            abjad_inspect(component).timespan().start_offset
+        )
         displacement = component_start_offset.displacement
         if displacement is not None:
             component_start_offset = Offset(
@@ -242,7 +256,7 @@ class UpdateManager(object):
         """
         components = self._iterate_entire_score(root)
         for component in components:
-            for wrapper in inspect(component).wrappers():
+            for wrapper in abjad_inspect(component).wrappers():
                 if wrapper.context is not None:
                     wrapper._update_effective_context()
             component._indicators_are_current = True
@@ -315,32 +329,32 @@ class UpdateManager(object):
     @classmethod
     def _update_component_offsets(class_, component):
         from abjad.core.AfterGraceContainer import AfterGraceContainer
-        from abjad.core.GraceContainer import GraceContainer
+        from abjad.core.BeforeGraceContainer import BeforeGraceContainer
         from abjad.core.OnBeatGraceContainer import OnBeatGraceContainer
 
-        if isinstance(component, GraceContainer):
-            pair = class_._get_grace_note_offsets(component[0])
+        if isinstance(component, BeforeGraceContainer):
+            pair = class_._get_before_grace_leaf_offsets(component[0])
             start_offset = pair[0]
-            pair = class_._get_grace_note_offsets(component[-1])
+            pair = class_._get_before_grace_leaf_offsets(component[-1])
             stop_offset = pair[-1]
-        elif isinstance(component._parent, GraceContainer):
-            pair = class_._get_grace_note_offsets(component)
+        elif isinstance(component._parent, BeforeGraceContainer):
+            pair = class_._get_before_grace_leaf_offsets(component)
             start_offset, stop_offset = pair
         elif isinstance(component, OnBeatGraceContainer):
-            pair = class_._get_on_beat_grace_note_offsets(component[0])
+            pair = class_._get_on_beat_grace_leaf_offsets(component[0])
             start_offset = pair[0]
-            pair = class_._get_on_beat_grace_note_offsets(component[-1])
+            pair = class_._get_on_beat_grace_leaf_offsets(component[-1])
             stop_offset = pair[-1]
         elif isinstance(component._parent, OnBeatGraceContainer):
-            pair = class_._get_on_beat_grace_note_offsets(component)
+            pair = class_._get_on_beat_grace_leaf_offsets(component)
             start_offset, stop_offset = pair
         elif isinstance(component, AfterGraceContainer):
-            pair = class_._get_after_grace_note_offsets(component[0])
+            pair = class_._get_after_grace_leaf_offsets(component[0])
             start_offset = pair[0]
-            pair = class_._get_after_grace_note_offsets(component[-1])
+            pair = class_._get_after_grace_leaf_offsets(component[-1])
             stop_offset = pair[-1]
         elif isinstance(component._parent, AfterGraceContainer):
-            pair = class_._get_after_grace_note_offsets(component)
+            pair = class_._get_after_grace_leaf_offsets(component)
             start_offset, stop_offset = pair
         else:
             previous = component._sibling(-1)
@@ -348,13 +362,31 @@ class UpdateManager(object):
                 start_offset = previous._stop_offset
             else:
                 start_offset = Offset(0)
-            container = getattr(component, "_on_beat_grace_container", None)
-            if container is not None:
-                durations = [_.written_duration for _ in container]
-                start_displacement = sum(durations)
-                start_offset = Offset(
-                    start_offset, displacement=start_displacement
-                )
+            # on-beat anchor leaf:
+            if (
+                component._parent is not None
+                and component._parent._is_on_beat_anchor_voice()
+                and component is component._parent[0]
+            ):
+                anchor_voice = component._parent
+                assert anchor_voice._is_on_beat_anchor_voice()
+                on_beat_grace_container = None
+                on_beat_wrapper = anchor_voice._parent
+                assert on_beat_wrapper._is_on_beat_wrapper()
+                index = on_beat_wrapper.index(anchor_voice)
+                if index == 0:
+                    on_beat_grace_container = on_beat_wrapper[1]
+                else:
+                    on_beat_grace_container = on_beat_wrapper[0]
+                if on_beat_grace_container is not None:
+                    durations = [
+                        abjad_inspect(_).duration()
+                        for _ in on_beat_grace_container
+                    ]
+                    start_displacement = sum(durations)
+                    start_offset = Offset(
+                        start_offset, displacement=start_displacement
+                    )
             stop_offset = start_offset + component._get_duration()
         component._start_offset = start_offset
         component._stop_offset = stop_offset
@@ -363,7 +395,7 @@ class UpdateManager(object):
 
     def _update_measure_numbers(self, component):
         measure_start_offsets = self._get_measure_start_offsets(component)
-        root = inspect(component).parentage().root
+        root = abjad_inspect(component).parentage().root
         for component in self._iterate_entire_score(root):
             measure_number = self._to_measure_number(
                 component, measure_start_offsets
@@ -380,7 +412,7 @@ class UpdateManager(object):
         assert offsets or offsets_in_seconds or indicators
         if component._is_forbidden_to_update:
             return
-        parentage = inspect(component).parentage()
+        parentage = abjad_inspect(component).parentage()
         for parent in parentage:
             if parent._is_forbidden_to_update:
                 return

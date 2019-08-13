@@ -48,7 +48,7 @@ class GuileProxy(object):
         r"""
         Handles LilyPond ``\acciaccatura`` command.
         """
-        grace = core.GraceContainer(music[:], command=r"\acciaccatura")
+        grace = core.BeforeGraceContainer(music[:], command=r"\acciaccatura")
         return grace
 
     # afterGrace?
@@ -57,7 +57,7 @@ class GuileProxy(object):
         r"""
         Handles LilyPond ``\appoggiatura`` command.
         """
-        grace = core.GraceContainer(music[:], command=r"\appoggiatura")
+        grace = core.BeforeGraceContainer(music[:], command=r"\appoggiatura")
         return grace
 
     def bar(self, string):
@@ -85,7 +85,7 @@ class GuileProxy(object):
         assert isinstance(music, core.Container)
         leaves = music[:]
         music[:] = []
-        return core.GraceContainer(leaves)
+        return core.BeforeGraceContainer(leaves)
 
     def key(self, notename_pitch, number_list):
         r"""
@@ -191,7 +191,7 @@ class GuileProxy(object):
         r"""
         Handles LilyPond ``\slahsedGrace`` command.
         """
-        grace = core.GraceContainer(music[:])
+        grace = core.BeforeGraceContainer(music[:])
         return grace
 
     def time(self, number_list, fraction):

@@ -533,6 +533,8 @@ class Component(object):
             return self._parent[index]
 
     def _get_sibling_with_graces(self, n):
+        from .OnBeatGraceContainer import OnBeatGraceContainer
+
         assert n in (-1, 0, 1), repr(self, n)
         if n == 0:
             return self
@@ -543,18 +545,17 @@ class Component(object):
         if (
             n == 1
             and getattr(self._parent, "_main_leaf", None)
-            and self._parent._main_leaf._grace_container is self._parent
+            and self._parent._main_leaf._before_grace_container is self._parent
             and self is self._parent[-1]
         ):
             return self._parent._main_leaf
+        # last leaf in on-beat grace redo
         if (
             n == 1
-            and getattr(self._parent, "_main_leaf", None)
-            and self._parent._main_leaf._on_beat_grace_container
-            is self._parent
             and self is self._parent[-1]
+            and isinstance(self._parent, OnBeatGraceContainer)
         ):
-            return self._parent._main_leaf
+            return self._parent._get_on_beat_anchor_leaf()
         if (
             n == 1
             and getattr(self._parent, "_main_leaf", None)
@@ -578,7 +579,7 @@ class Component(object):
         if (
             n == -1
             and getattr(self._parent, "_main_leaf", None)
-            and self._parent._main_leaf._grace_container is self._parent
+            and self._parent._main_leaf._before_grace_container is self._parent
             and self is self._parent[0]
         ):
             main_leaf = self._parent._main_leaf
@@ -586,31 +587,28 @@ class Component(object):
                 return None
             index = main_leaf._parent.index(main_leaf)
             return main_leaf._parent[index - 1]
+        # self is main leaf in main voice (simultaneous with on-beat graces)
         if (
             n == -1
-            and getattr(self._parent, "_main_leaf", None)
-            and self._parent._main_leaf._on_beat_grace_container
-            is self._parent
             and self is self._parent[0]
+            and self._parent._get_on_beat_anchor_voice() is not None
         ):
-            main_leaf = self._parent._main_leaf
-            if main_leaf is main_leaf._parent[0]:
-                return None
-            index = main_leaf._parent.index(main_leaf)
-            return main_leaf._parent[index - 1]
-        if n == -1 and getattr(self, "_on_beat_grace_container", None):
-            return self._on_beat_grace_container[-1]
-        if n == -1 and getattr(self, "_grace_container", None):
-            return self._grace_container[-1]
+            on_beat = self._parent._get_on_beat_anchor_voice()
+            return on_beat[-1]
+        if n == -1 and hasattr(self, "_get_on_beat_anchor_voice"):
+            raise Exception(repr(self))
+            on_beat = self._get_on_beat_anchor_voice()
+            if on_beat is not None:
+                return on_beat[-1]
+        if n == -1 and getattr(self, "_before_grace_container", None):
+            return self._before_grace_container[-1]
         index = self._parent.index(self) + n
         result = None
         if not (0 <= index < len(self._parent)):
             return None
         candidate = self._parent[index]
-        if n == 1 and getattr(candidate, "_grace_container", None):
-            return candidate._grace_container[0]
-        if n == 1 and getattr(candidate, "_on_beat_grace_container", None):
-            return candidate._on_beat_grace_container[0]
+        if n == 1 and getattr(candidate, "_before_grace_container", None):
+            return candidate._before_grace_container[0]
         if n == -1 and getattr(candidate, "_after_grace_container", None):
             return candidate._after_grace_container[-1]
         return candidate
@@ -642,11 +640,23 @@ class Component(object):
         )
         return bool(indicators)
 
-    def _immediately_precedes(self, component):
+    def _immediately_precedes(self, component, ignore_before_after_grace=None):
+        from .AfterGraceContainer import AfterGraceContainer
+        from .BeforeGraceContainer import BeforeGraceContainer
+
         successors = []
         current = self
+        # do not include OnBeatGraceContainer here because
+        # OnBeatGraceContainer is a proper container
+        grace_prototype = (AfterGraceContainer, BeforeGraceContainer)
         while current is not None:
             sibling = current._get_sibling_with_graces(1)
+            while (
+                ignore_before_after_grace
+                and sibling is not None
+                and isinstance(sibling._parent, grace_prototype)
+            ):
+                sibling = sibling._get_sibling_with_graces(1)
             if sibling is None:
                 current = current._parent
             else:
@@ -706,7 +716,9 @@ class Component(object):
         self._update_later(offsets=True)
 
     def _sibling(self, n):
-        assert n in (-1, 1), repr(n)
+        assert n in (-1, 0, 1), repr(n)
+        if n == 0:
+            return self
         for parent in inspect(self).parentage():
             sibling = parent._get_sibling(mathtools.sign(n))
             if sibling is not None:

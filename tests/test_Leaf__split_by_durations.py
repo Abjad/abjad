@@ -215,7 +215,7 @@ def test_Leaf__split_by_durations_09():
     """
 
     note = abjad.Note("c'4")
-    grace = abjad.GraceContainer([abjad.Note(0, (1, 32))])
+    grace = abjad.BeforeGraceContainer([abjad.Note(0, (1, 32))])
     abjad.attach(grace, note)
 
     new_leaves = note._split_by_durations([abjad.Duration(1, 16)])

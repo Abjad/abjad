@@ -9,23 +9,38 @@ class TremoloContainer(Container):
 
     ..  container:: example
 
-        >>> tremolo_container = abjad.TremoloContainer(2, "<c' d'>16 e'16")
-        >>> abjad.show(tremolo_container) # doctest: +SKIP
+        >>> staff = abjad.Staff()
+        >>> staff.append(abjad.TremoloContainer(2, "c'16 e'"))
+        >>> staff.append("cs'4")
+        >>> staff.append(abjad.TremoloContainer(2, "d'16 f'"))
+        >>> staff.append("ds'4")
+        >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> abjad.f(tremolo_container)
-        \repeat tremolo 2 {
-            <c' d'>16
-            e'16
-        }
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                \repeat tremolo 2 {
+                    c'16
+                    e'16
+                }
+                cs'4
+                \repeat tremolo 2 {
+                    d'16
+                    f'16
+                }
+                ds'4
+            }
 
         Duration of container equal to contents duration multiplied by count:
 
-        >>> abjad.inspect(tremolo_container).duration()
+        >>> abjad.inspect(staff[0]).duration()
         Duration(1, 4)
 
-        Duration of leaves equal to written duration multiplied by count:
+        Duration of each leaf equal to written duration multiplied by count:
 
-        >>> abjad.inspect(tremolo_container[0]).duration()
+        >>> abjad.inspect(staff[0][0]).duration()
         Duration(1, 8)
 
     """

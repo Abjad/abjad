@@ -33,7 +33,7 @@ class Tuplet(Container):
 
         A tuplet:
 
-        >>> tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
+        >>> tuplet = abjad.Tuplet("3:2", "c'8 d'8 e'8")
         >>> abjad.show(tuplet) # doctest: +SKIP
 
         ..  docs::
@@ -49,7 +49,7 @@ class Tuplet(Container):
 
         A nested tuplet:
 
-        >>> second_tuplet = abjad.Tuplet((4, 7), "g'4. ( a'16 )")
+        >>> second_tuplet = abjad.Tuplet("7:4", "g'4. ( a'16 )")
         >>> tuplet.insert(1, second_tuplet)
         >>> abjad.show(tuplet) # doctest: +SKIP
 
@@ -74,7 +74,7 @@ class Tuplet(Container):
 
         A doubly nested tuplet:
 
-            >>> third_tuplet = abjad.Tuplet((4, 5), [])
+            >>> third_tuplet = abjad.Tuplet("5:4", [])
             >>> third_tuplet.extend("e''32 [ ef''32 d''32 cs''32 cqs''32 ]")
             >>> second_tuplet.insert(1, third_tuplet)
             >>> abjad.show(tuplet) # doctest: +SKIP
@@ -133,7 +133,12 @@ class Tuplet(Container):
         tweaks: LilyPondTweakManager = None,
     ) -> None:
         Container.__init__(self, components, tag=tag)
-        multiplier = Multiplier(multiplier)
+        if isinstance(multiplier, str) and ":" in multiplier:
+            strings = multiplier.split(":")
+            numbers = [int(_) for _ in strings]
+            multiplier = Multiplier(numbers[1], numbers[0])
+        else:
+            multiplier = Multiplier(multiplier)
         self.multiplier = multiplier
         self.denominator = denominator
         self.force_fraction = force_fraction
@@ -353,7 +358,7 @@ class Tuplet(Container):
 
             Gets preferred denominator of tuplet:
 
-            >>> tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
+            >>> tuplet = abjad.Tuplet("3:2", "c'8 d'8 e'8")
             >>> tuplet.denominator is None
             True
             >>> abjad.show(tuplet) # doctest: +SKIP
@@ -371,7 +376,7 @@ class Tuplet(Container):
 
             Sets preferred denominator of tuplet:
 
-            >>> tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
+            >>> tuplet = abjad.Tuplet("3:2", "c'8 d'8 e'8")
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             ..  docs::

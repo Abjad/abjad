@@ -92,7 +92,7 @@ def test_Note___copy___05():
     note = abjad.Note("c'4")
     articulation = abjad.Articulation("staccato")
     abjad.attach(articulation, note)
-    grace = abjad.GraceContainer("d'16")
+    grace = abjad.BeforeGraceContainer("d'16")
     abjad.attach(grace, note)
     abjad.override(note).note_head.color = "red"
 
@@ -122,7 +122,7 @@ def test_Note___copy___06():
     note = staff[0]
     articulation = abjad.Articulation("staccato")
     abjad.attach(articulation, note)
-    grace = abjad.GraceContainer("d'16")
+    grace = abjad.BeforeGraceContainer("d'16")
     abjad.attach(grace, note)
     abjad.override(note).note_head.color = "red"
 

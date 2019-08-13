@@ -5,7 +5,7 @@ contexts.
 
 from .Component import Component
 from .Container import Container
-from .GraceContainer import GraceContainer
+from .BeforeGraceContainer import BeforeGraceContainer
 from .AfterGraceContainer import AfterGraceContainer
 from .Leaf import Leaf
 from .Chord import Chord
@@ -27,6 +27,7 @@ from .Note import Note
 from .NoteHeadList import NoteHeadList
 from .NoteMaker import NoteMaker
 from .OnBeatGraceContainer import OnBeatGraceContainer
+from .OnBeatGraceContainer import on_beat_grace_container
 from .Parentage import Parentage
 from .Rest import Rest
 from .Score import Score
