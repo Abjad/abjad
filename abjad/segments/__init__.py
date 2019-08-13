@@ -1,5 +1,5 @@
 """
-Tools for high-level score modeling.
+Tools for modeling score package directory layout.
 """
 
 from .ScoreTemplate import ScoreTemplate

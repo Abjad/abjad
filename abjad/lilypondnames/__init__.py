@@ -1,5 +1,5 @@
 """
-Tools for modeling LilyPond's "grobs", "context", "engravers", etc.
+Tools for modeling LilyPond's grobs, contexts, engravers, etc.
 """
 
 from .LilyPondContext import LilyPondContext
