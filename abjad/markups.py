@@ -702,15 +702,62 @@ class Markup(object):
 
         ..  container:: example
 
-            Initializes without direction:
+            With ``direction`` unset:
 
-            >>> abjad.Markup('Allegro')
-            Markup(contents=['Allegro'])
+            >>> markup = abjad.Markup("Allegro")
+            >>> note = abjad.Note("c'4")
+            >>> abjad.attach(markup, note)
+            >>> abjad.show(note) # doctest: +SKIP
 
-            Initializes with direction:
+            ..  docs::
 
-            >>> abjad.Markup('Allegro', direction=abjad.Up)
-            Markup(contents=['Allegro'], direction=Up)
+                >>> abjad.f(note)
+                c'4
+                - \markup { Allegro }
+
+            With ``direction=abjad.Up``:
+
+            >>> markup = abjad.Markup("Allegro", direction=abjad.Up)
+            >>> note = abjad.Note("c'4")
+            >>> abjad.attach(markup, note)
+            >>> abjad.show(note) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(note)
+                c'4
+                ^ \markup { Allegro }
+
+
+            With ``direction=abjad.Down``:
+
+            >>> markup = abjad.Markup("Allegro", direction=abjad.Down)
+            >>> note = abjad.Note("c'4")
+            >>> abjad.attach(markup, note)
+            >>> abjad.show(note) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(note)
+                c'4
+                _ \markup { Allegro }
+
+        ..  container:: example
+
+            REGRESSSION #806. Markup preserves tweaks when ``direction=None``:
+
+            >>> markup = abjad.Markup("Allegro")
+            >>> abjad.tweak(markup).color = "red"
+            >>> note = abjad.Note("c'4")
+            >>> abjad.attach(markup, note)
+            >>> abjad.show(note) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(note)
+                c'4
+                - \tweak color #red
+                - \markup { Allegro }
 
         """
         return self._direction
