@@ -1,3 +1,6 @@
+"""
+Classes and functions for modeling spanners: beams, hairpins, slurs, etc.
+"""
 import typing
 from abjad import enums
 from abjad import typings

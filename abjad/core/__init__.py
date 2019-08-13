@@ -1,6 +1,6 @@
 """
-Abjad's core component classes: notes, rests, chords, tuplets, measures,
-containers and contexts.
+Abjad's core component classes: notes, rests, chords, tuplets, containers and
+contexts.
 """
 
 from .Component import Component

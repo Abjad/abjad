@@ -1,3 +1,6 @@
+"""
+Tools for modeling and manipulating timespans.
+"""
 import copy
 import collections
 import inspect

@@ -1,5 +1,5 @@
 """
-This is a module-level docstring.
+Abjad's math library.
 """
 
 try:

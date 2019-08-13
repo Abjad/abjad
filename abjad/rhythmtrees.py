@@ -1,5 +1,5 @@
 """
-Tools for modeling "rhythm-trees".
+Tools for modeling IRCAM-style rhythm trees.
 """
 
 import abc
