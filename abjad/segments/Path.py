@@ -112,17 +112,6 @@ class Path(pathlib.PosixPath):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, *names) -> "Path":
-        """
-        Calls path on ``names``.
-        """
-        raise Exception("Deprecated: use / instead.")
-
-    #        path = self
-    #        for name in names:
-    #            path /= name
-    #        return path
-
     def __repr__(self) -> str:
         """
         Gets interpreter representation of path.
@@ -1180,12 +1169,15 @@ class Path(pathlib.PosixPath):
         """
         Externalizes LilyPond file parsable chunks.
 
-        Produces skeleton score file and include file.
+        Produces skeleton ``.ly`` together with ``.ily``.
 
-        Overwrites path with skeleton score when ``score_path`` is none.
+        Writes skeleton ``.ly`` to ``score_path`` when ``score_path`` is set.
+        Overwrites this path with skeleton ``.ly`` when ``score_path`` is
+        unset.
 
-        Writes include file to path with ``.ily`` suffix when ``include_path``
-        is none.
+        Writes ``.ily`` to ``include_path`` when ``include_path`` is set.
+        Writes ``.ily`` to this path with ``.ily` suffix when ``include_path``
+        is not set.
         """
         tag = "abjad.Path.extern"
         if not self.suffix == ".ly":
@@ -1262,7 +1254,10 @@ class Path(pathlib.PosixPath):
         lines.extend(score_lines)
         lines_ = []
         for line in lines:
-            line_ = LilyPondFormatManager.align_tags(line, n=realign)
+            if realign is not None:
+                line_ = LilyPondFormatManager.align_tags(line, n=realign)
+            else:
+                line_ = line
             lines_.append(line_)
         text = "".join(lines_)
         score_path.write_text(text)
@@ -1541,8 +1536,8 @@ class Path(pathlib.PosixPath):
             >>> path.builds.get_name_predicate()
             <function String.is_build_directory_name at ...>
 
-            >>> path.contents.get_name_predicate()
-            <function String.is_package_name at ...>
+            >>> path.contents.get_name_predicate() is None
+            True
 
             >>> path.materials.get_name_predicate()
             <function String.is_package_name at ...>
@@ -1576,7 +1571,7 @@ class Path(pathlib.PosixPath):
         elif self.is_builds():
             return String.is_build_directory_name
         elif self.is_contents():
-            return String.is_package_name
+            return None
         elif self.is_distribution():
             return String.is_dash_case_file_name
         elif self.is_etc():

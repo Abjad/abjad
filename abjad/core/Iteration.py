@@ -83,42 +83,27 @@ class Iteration(object):
     ):
         from .AfterGraceContainer import AfterGraceContainer
         from .Component import Component
-        from .GraceContainer import GraceContainer
-        from .OnBeatGraceContainer import OnBeatGraceContainer
+        from .BeforeGraceContainer import BeforeGraceContainer
         from .Leaf import Leaf
 
         argument = client
         prototype = prototype or Component
-        grace_container = None
-        on_beat_grace_container = None
+        before_grace_container = None
         after_grace_container = None
         exclude = Iteration._coerce_exclude(exclude)
         assert isinstance(exclude, tuple), repr(exclude)
         if grace is not False and isinstance(argument, Leaf):
             inspection = inspect(argument)
-            grace_container = inspection.grace_container()
-            on_beat_grace_container = inspection.on_beat_grace_container()
+            before_grace_container = inspection.before_grace_container()
             after_grace_container = inspection.after_grace_container()
         if not reverse:
             if (
                 not do_not_iterate_grace_containers
                 and grace is not False
-                and grace_container
+                and before_grace_container
             ):
                 yield from Iteration._iterate_components(
-                    grace_container,
-                    prototype,
-                    do_not_iterate_grace_containers=do_not_iterate_grace_containers,
-                    grace=grace,
-                    reverse=reverse,
-                )
-            if (
-                not do_not_iterate_grace_containers
-                and grace is not False
-                and on_beat_grace_container
-            ):
-                yield from Iteration._iterate_components(
-                    on_beat_grace_container,
+                    before_grace_container,
                     prototype,
                     do_not_iterate_grace_containers=do_not_iterate_grace_containers,
                     grace=grace,
@@ -180,23 +165,10 @@ class Iteration(object):
             if (
                 not do_not_iterate_grace_containers
                 and grace is not False
-                and on_beat_grace_container
+                and before_grace_container
             ):
                 yield from Iteration._iterate_components(
-                    on_beat_grace_container,
-                    prototype,
-                    exclude=exclude,
-                    do_not_iterate_grace_containers=do_not_iterate_grace_containers,
-                    grace=grace,
-                    reverse=reverse,
-                )
-            if (
-                not do_not_iterate_grace_containers
-                and grace is not False
-                and grace_container
-            ):
-                yield from Iteration._iterate_components(
-                    grace_container,
+                    before_grace_container,
                     prototype,
                     exclude=exclude,
                     do_not_iterate_grace_containers=do_not_iterate_grace_containers,
@@ -251,15 +223,16 @@ class Iteration(object):
 
             Grace iteration is controlled by a ternary flag.
 
-            >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> container = abjad.GraceContainer("cs'16")
-            >>> abjad.attach(container, staff[1])
-            >>> container = abjad.OnBeatGraceContainer("g'16 gs' a' as'")
-            >>> abjad.slur(container[:])
+            >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+            >>> container = abjad.BeforeGraceContainer("cs'16")
+            >>> abjad.attach(container, music_voice[1])
+            >>> container = abjad.on_beat_grace_container(
+            ...     "g'16 gs' a' as'", music_voice[2:3]
+            ... )
             >>> abjad.attach(abjad.Articulation(">"), container[0])
-            >>> abjad.attach(container, staff[2])
             >>> container = abjad.AfterGraceContainer("fs'16")
-            >>> abjad.attach(container, staff[3])
+            >>> abjad.attach(container, music_voice[3])
+            >>> staff = abjad.Staff([music_voice])
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -267,31 +240,46 @@ class Iteration(object):
                 >>> abjad.f(staff)
                 \new Staff
                 {
-                    c'4
-                    \grace {
-                        cs'16
-                    }
-                    d'4
-                    <<
-                        {
-                            \set fontSize = #-2
-                            \once \override NoteColumn.force-hshift = 0.2
-                            \slash
-                            <g' \tweak Accidental.stencil ##f e'>16 * 1
-                            - \accent
-                            (
-                            gs'16 * 1
-                            a'16 * 1
-                            as'16 * 1
-                            )
-                        }
-                    \\
-                        e'4
-                    >>
-                    \afterGrace
-                    f'4
+                    \context Voice = "Music_Voice"
                     {
-                        fs'16
+                        c'4
+                        \grace {
+                            cs'16
+                        }
+                        d'4
+                        <<
+                            \context Voice = "On_Beat_Grace_Container"
+                            {
+                                \set fontSize = #-3
+                                \slash
+                                \voiceOne
+                                <
+                                    \tweak font-size #0
+                                    \tweak transparent ##t
+                                    e'
+                                    g'
+                                >16
+                                - \accent
+                                [
+                                (
+                                gs'16
+                                a'16
+                                as'16
+                                )
+                                ]
+                            }
+                            \context Voice = "Music_Voice"
+                            {
+                                \voiceTwo
+                                e'4
+                            }
+                        >>
+                        \oneVoice
+                        \afterGrace
+                        f'4
+                        {
+                            fs'16
+                        }
                     }
                 }
 
@@ -300,16 +288,19 @@ class Iteration(object):
 
             >>> for component in abjad.iterate(staff).components():
             ...     component
-            Staff("c'4 d'4 e'4 f'4")
+            <Staff{1}>
+            <Voice-"Music_Voice"{4}>
             Note("c'4")
-            GraceContainer("cs'16")
+            BeforeGraceContainer("cs'16")
             Note("cs'16")
             Note("d'4")
-            OnBeatGraceContainer("<g' \\tweak Accidental.stencil ##f e'>16 * 1 gs'16 * 1 a'16 * 1 as'16 * 1")
-            Note("<g' \\tweak Accidental.stencil ##f e'>16 * 1")
-            Note("gs'16 * 1")
-            Note("a'16 * 1")
-            Note("as'16 * 1")
+            <<<2>>>
+            OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
+            Chord("<e' g'>16")
+            Note("gs'16")
+            Note("a'16")
+            Note("as'16")
+            Voice("e'4", name='Music_Voice')
             Note("e'4")
             Note("f'4")
             AfterGraceContainer("fs'16")
@@ -317,18 +308,21 @@ class Iteration(object):
 
             >>> for component in abjad.iterate(staff).components(reverse=True):
             ...     component
-            Staff("c'4 d'4 e'4 f'4")
+            <Staff{1}>
+            <Voice-"Music_Voice"{4}>
             AfterGraceContainer("fs'16")
             Note("fs'16")
             Note("f'4")
+            <<<2>>>
+            Voice("e'4", name='Music_Voice')
             Note("e'4")
-            OnBeatGraceContainer("<g' \\tweak Accidental.stencil ##f e'>16 * 1 gs'16 * 1 a'16 * 1 as'16 * 1")
-            Note("as'16 * 1")
-            Note("a'16 * 1")
-            Note("gs'16 * 1")
-            Note("<g' \\tweak Accidental.stencil ##f e'>16 * 1")
+            OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
+            Note("as'16")
+            Note("a'16")
+            Note("gs'16")
+            Chord("<e' g'>16")
             Note("d'4")
-            GraceContainer("cs'16")
+            BeforeGraceContainer("cs'16")
             Note("cs'16")
             Note("c'4")
 
@@ -336,13 +330,13 @@ class Iteration(object):
 
             >>> for component in abjad.iterate(staff).components(grace=True):
             ...     component
-            GraceContainer("cs'16")
+            BeforeGraceContainer("cs'16")
             Note("cs'16")
-            OnBeatGraceContainer("<g' \\tweak Accidental.stencil ##f e'>16 * 1 gs'16 * 1 a'16 * 1 as'16 * 1")
-            Note("<g' \\tweak Accidental.stencil ##f e'>16 * 1")
-            Note("gs'16 * 1")
-            Note("a'16 * 1")
-            Note("as'16 * 1")
+            OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
+            Chord("<e' g'>16")
+            Note("gs'16")
+            Note("a'16")
+            Note("as'16")
             AfterGraceContainer("fs'16")
             Note("fs'16")
 
@@ -352,21 +346,24 @@ class Iteration(object):
             ...     component
             AfterGraceContainer("fs'16")
             Note("fs'16")
-            OnBeatGraceContainer("<g' \\tweak Accidental.stencil ##f e'>16 * 1 gs'16 * 1 a'16 * 1 as'16 * 1")
-            Note("as'16 * 1")
-            Note("a'16 * 1")
-            Note("gs'16 * 1")
-            Note("<g' \\tweak Accidental.stencil ##f e'>16 * 1")
-            GraceContainer("cs'16")
+            OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
+            Note("as'16")
+            Note("a'16")
+            Note("gs'16")
+            Chord("<e' g'>16")
+            BeforeGraceContainer("cs'16")
             Note("cs'16")
 
             Set ``grace=False`` to iterate only nongrace components:
 
             >>> for component in abjad.iterate(staff).components(grace=False):
             ...     component
-            Staff("c'4 d'4 e'4 f'4")
+            <Staff{1}>
+            <Voice-"Music_Voice"{4}>
             Note("c'4")
             Note("d'4")
+            <<<2>>>
+            Voice("e'4", name='Music_Voice')
             Note("e'4")
             Note("f'4")
 
@@ -374,8 +371,11 @@ class Iteration(object):
             ...     grace=False, reverse=True
             ...     ):
             ...     component
-            Staff("c'4 d'4 e'4 f'4")
+            <Staff{1}>
+            <Voice-"Music_Voice"{4}>
             Note("f'4")
+            <<<2>>>
+            Voice("e'4", name='Music_Voice')
             Note("e'4")
             Note("d'4")
             Note("c'4")
@@ -555,15 +555,16 @@ class Iteration(object):
 
             Grace iteration is controlled by a ternary flag.
 
-            >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> container = abjad.GraceContainer("cs'16")
-            >>> abjad.attach(container, staff[1])
-            >>> container = abjad.OnBeatGraceContainer("g'16 gs' a' as'")
-            >>> abjad.slur(container[:])
+            >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+            >>> container = abjad.BeforeGraceContainer("cs'16")
+            >>> abjad.attach(container, music_voice[1])
+            >>> container = abjad.on_beat_grace_container(
+            ...     "g'16 gs' a' as'", music_voice[2:3]
+            ... )
             >>> abjad.attach(abjad.Articulation(">"), container[0])
-            >>> abjad.attach(container, staff[2])
             >>> container = abjad.AfterGraceContainer("fs'16")
-            >>> abjad.attach(container, staff[3])
+            >>> abjad.attach(container, music_voice[3])
+            >>> staff = abjad.Staff([music_voice])
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -571,31 +572,46 @@ class Iteration(object):
                 >>> abjad.f(staff)
                 \new Staff
                 {
-                    c'4
-                    \grace {
-                        cs'16
-                    }
-                    d'4
-                    <<
-                        {
-                            \set fontSize = #-2
-                            \once \override NoteColumn.force-hshift = 0.2
-                            \slash
-                            <g' \tweak Accidental.stencil ##f e'>16 * 1
-                            - \accent
-                            (
-                            gs'16 * 1
-                            a'16 * 1
-                            as'16 * 1
-                            )
-                        }
-                    \\
-                        e'4
-                    >>
-                    \afterGrace
-                    f'4
+                    \context Voice = "Music_Voice"
                     {
-                        fs'16
+                        c'4
+                        \grace {
+                            cs'16
+                        }
+                        d'4
+                        <<
+                            \context Voice = "On_Beat_Grace_Container"
+                            {
+                                \set fontSize = #-3
+                                \slash
+                                \voiceOne
+                                <
+                                    \tweak font-size #0
+                                    \tweak transparent ##t
+                                    e'
+                                    g'
+                                >16
+                                - \accent
+                                [
+                                (
+                                gs'16
+                                a'16
+                                as'16
+                                )
+                                ]
+                            }
+                            \context Voice = "Music_Voice"
+                            {
+                                \voiceTwo
+                                e'4
+                            }
+                        >>
+                        \oneVoice
+                        \afterGrace
+                        f'4
+                        {
+                            fs'16
+                        }
                     }
                 }
 
@@ -607,10 +623,10 @@ class Iteration(object):
             Note("c'4")
             Note("cs'16")
             Note("d'4")
-            Note("<g' \\tweak Accidental.stencil ##f e'>16 * 1")
-            Note("gs'16 * 1")
-            Note("a'16 * 1")
-            Note("as'16 * 1")
+            Chord("<e' g'>16")
+            Note("gs'16")
+            Note("a'16")
+            Note("as'16")
             Note("e'4")
             Note("f'4")
             Note("fs'16")
@@ -620,10 +636,10 @@ class Iteration(object):
             >>> for leaf in abjad.iterate(staff).leaves(grace=True):
             ...     leaf
             Note("cs'16")
-            Note("<g' \\tweak Accidental.stencil ##f e'>16 * 1")
-            Note("gs'16 * 1")
-            Note("a'16 * 1")
-            Note("as'16 * 1")
+            Chord("<e' g'>16")
+            Note("gs'16")
+            Note("a'16")
+            Note("as'16")
             Note("fs'16")
 
             Set ``grace=False`` to iterate only nongrace leaves:
@@ -745,13 +761,6 @@ class Iteration(object):
         r"""
         Iterates logical ties.
 
-
-
-
-
-
-
-
         ..  container:: example
 
             Iterates logical ties:
@@ -789,15 +798,16 @@ class Iteration(object):
 
             Grace iteration is controlled by a ternary flag.
 
-            >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> container = abjad.GraceContainer("cs'16")
-            >>> abjad.attach(container, staff[1])
-            >>> container = abjad.OnBeatGraceContainer("g'16 gs' a' as'")
-            >>> abjad.slur(container[:])
+            >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+            >>> container = abjad.BeforeGraceContainer("cs'16")
+            >>> abjad.attach(container, music_voice[1])
+            >>> container = abjad.on_beat_grace_container(
+            ...     "g'16 gs' a' as'", music_voice[2:3]
+            ... )
             >>> abjad.attach(abjad.Articulation(">"), container[0])
-            >>> abjad.attach(container, staff[2])
             >>> container = abjad.AfterGraceContainer("fs'16")
-            >>> abjad.attach(container, staff[3])
+            >>> abjad.attach(container, music_voice[3])
+            >>> staff = abjad.Staff([music_voice])
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -805,31 +815,46 @@ class Iteration(object):
                 >>> abjad.f(staff)
                 \new Staff
                 {
-                    c'4
-                    \grace {
-                        cs'16
-                    }
-                    d'4
-                    <<
-                        {
-                            \set fontSize = #-2
-                            \once \override NoteColumn.force-hshift = 0.2
-                            \slash
-                            <g' \tweak Accidental.stencil ##f e'>16 * 1
-                            - \accent
-                            (
-                            gs'16 * 1
-                            a'16 * 1
-                            as'16 * 1
-                            )
-                        }
-                    \\
-                        e'4
-                    >>
-                    \afterGrace
-                    f'4
+                    \context Voice = "Music_Voice"
                     {
-                        fs'16
+                        c'4
+                        \grace {
+                            cs'16
+                        }
+                        d'4
+                        <<
+                            \context Voice = "On_Beat_Grace_Container"
+                            {
+                                \set fontSize = #-3
+                                \slash
+                                \voiceOne
+                                <
+                                    \tweak font-size #0
+                                    \tweak transparent ##t
+                                    e'
+                                    g'
+                                >16
+                                - \accent
+                                [
+                                (
+                                gs'16
+                                a'16
+                                as'16
+                                )
+                                ]
+                            }
+                            \context Voice = "Music_Voice"
+                            {
+                                \voiceTwo
+                                e'4
+                            }
+                        >>
+                        \oneVoice
+                        \afterGrace
+                        f'4
+                        {
+                            fs'16
+                        }
                     }
                 }
 
@@ -841,10 +866,10 @@ class Iteration(object):
             LogicalTie([Note("c'4")])
             LogicalTie([Note("cs'16")])
             LogicalTie([Note("d'4")])
-            LogicalTie([Note("<g' \\tweak Accidental.stencil ##f e'>16 * 1")])
-            LogicalTie([Note("gs'16 * 1")])
-            LogicalTie([Note("a'16 * 1")])
-            LogicalTie([Note("as'16 * 1")])
+            LogicalTie([Chord("<e' g'>16")])
+            LogicalTie([Note("gs'16")])
+            LogicalTie([Note("a'16")])
+            LogicalTie([Note("as'16")])
             LogicalTie([Note("e'4")])
             LogicalTie([Note("f'4")])
             LogicalTie([Note("fs'16")])
@@ -854,10 +879,10 @@ class Iteration(object):
             LogicalTie([Note("fs'16")])
             LogicalTie([Note("f'4")])
             LogicalTie([Note("e'4")])
-            LogicalTie([Note("as'16 * 1")])
-            LogicalTie([Note("a'16 * 1")])
-            LogicalTie([Note("gs'16 * 1")])
-            LogicalTie([Note("<g' \\tweak Accidental.stencil ##f e'>16 * 1")])
+            LogicalTie([Note("as'16")])
+            LogicalTie([Note("a'16")])
+            LogicalTie([Note("gs'16")])
+            LogicalTie([Chord("<e' g'>16")])
             LogicalTie([Note("d'4")])
             LogicalTie([Note("cs'16")])
             LogicalTie([Note("c'4")])
@@ -867,10 +892,10 @@ class Iteration(object):
             >>> for lt in abjad.iterate(staff).logical_ties(grace=True):
             ...     lt
             LogicalTie([Note("cs'16")])
-            LogicalTie([Note("<g' \\tweak Accidental.stencil ##f e'>16 * 1")])
-            LogicalTie([Note("gs'16 * 1")])
-            LogicalTie([Note("a'16 * 1")])
-            LogicalTie([Note("as'16 * 1")])
+            LogicalTie([Chord("<e' g'>16")])
+            LogicalTie([Note("gs'16")])
+            LogicalTie([Note("a'16")])
+            LogicalTie([Note("as'16")])
             LogicalTie([Note("fs'16")])
 
             >>> for lt in abjad.iterate(staff).logical_ties(
@@ -878,10 +903,10 @@ class Iteration(object):
             ...     ):
             ...     lt
             LogicalTie([Note("fs'16")])
-            LogicalTie([Note("as'16 * 1")])
-            LogicalTie([Note("a'16 * 1")])
-            LogicalTie([Note("gs'16 * 1")])
-            LogicalTie([Note("<g' \\tweak Accidental.stencil ##f e'>16 * 1")])
+            LogicalTie([Note("as'16")])
+            LogicalTie([Note("a'16")])
+            LogicalTie([Note("gs'16")])
+            LogicalTie([Chord("<e' g'>16")])
             LogicalTie([Note("cs'16")])
 
             Set ``grace=False`` to iterate nongrace logical ties only:
@@ -1400,15 +1425,16 @@ class Iteration(object):
 
             REGRESSION. Works with grace note (and containers):
 
-            >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> container = abjad.GraceContainer("cs'16")
-            >>> abjad.attach(container, staff[1])
-            >>> container = abjad.OnBeatGraceContainer("g'16 gs' a' as'")
-            >>> abjad.slur(container[:])
+            >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+            >>> container = abjad.BeforeGraceContainer("cs'16")
+            >>> abjad.attach(container, music_voice[1])
+            >>> container = abjad.on_beat_grace_container(
+            ...     "g'16 gs' a' as'", music_voice[2:3]
+            ... )
             >>> abjad.attach(abjad.Articulation(">"), container[0])
-            >>> abjad.attach(container, staff[2])
             >>> container = abjad.AfterGraceContainer("fs'16")
-            >>> abjad.attach(container, staff[3])
+            >>> abjad.attach(container, music_voice[3])
+            >>> staff = abjad.Staff([music_voice])
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1416,31 +1442,46 @@ class Iteration(object):
                 >>> abjad.f(staff)
                 \new Staff
                 {
-                    c'4
-                    \grace {
-                        cs'16
-                    }
-                    d'4
-                    <<
-                        {
-                            \set fontSize = #-2
-                            \once \override NoteColumn.force-hshift = 0.2
-                            \slash
-                            <g' \tweak Accidental.stencil ##f e'>16 * 1
-                            - \accent
-                            (
-                            gs'16 * 1
-                            a'16 * 1
-                            as'16 * 1
-                            )
-                        }
-                    \\
-                        e'4
-                    >>
-                    \afterGrace
-                    f'4
+                    \context Voice = "Music_Voice"
                     {
-                        fs'16
+                        c'4
+                        \grace {
+                            cs'16
+                        }
+                        d'4
+                        <<
+                            \context Voice = "On_Beat_Grace_Container"
+                            {
+                                \set fontSize = #-3
+                                \slash
+                                \voiceOne
+                                <
+                                    \tweak font-size #0
+                                    \tweak transparent ##t
+                                    e'
+                                    g'
+                                >16
+                                - \accent
+                                [
+                                (
+                                gs'16
+                                a'16
+                                as'16
+                                )
+                                ]
+                            }
+                            \context Voice = "Music_Voice"
+                            {
+                                \voiceTwo
+                                e'4
+                            }
+                        >>
+                        \oneVoice
+                        \afterGrace
+                        f'4
+                        {
+                            fs'16
+                        }
                     }
                 }
 
@@ -1449,10 +1490,10 @@ class Iteration(object):
             Note("c'4")
             Note("cs'16")
             Note("d'4")
-            Note("<g' \\tweak Accidental.stencil ##f e'>16 * 1")
-            Note("gs'16 * 1")
-            Note("a'16 * 1")
-            Note("as'16 * 1")
+            Chord("<e' g'>16")
+            Note("gs'16")
+            Note("a'16")
+            Note("as'16")
             Note("e'4")
             Note("f'4")
             Note("fs'16")
@@ -1462,10 +1503,10 @@ class Iteration(object):
             Note("fs'16")
             Note("f'4")
             Note("e'4")
-            Note("as'16 * 1")
-            Note("a'16 * 1")
-            Note("gs'16 * 1")
-            Note("<g' \\tweak Accidental.stencil ##f e'>16 * 1")
+            Note("as'16")
+            Note("a'16")
+            Note("gs'16")
+            Chord("<e' g'>16")
             Note("d'4")
             Note("cs'16")
             Note("c'4")

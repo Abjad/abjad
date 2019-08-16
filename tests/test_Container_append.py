@@ -193,7 +193,7 @@ def test_Container_append_06():
     """
 
     staff = abjad.Staff("c' d' e'")
-    grace_container = abjad.GraceContainer("f'16 g'")
+    grace_container = abjad.BeforeGraceContainer("f'16 g'")
 
     with pytest.raises(Exception):
         staff.append(grace_container)

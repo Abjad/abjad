@@ -250,11 +250,12 @@ class LilyPondFormatManager(object):
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def align_tags(string, n) -> str:
+    def align_tags(string: str, n: int) -> str:
         """
         Line-breaks ``string`` and aligns tags starting a column ``n``.
         """
-        assert isinstance(n, int), repr(n)
+        if not isinstance(n, int):
+            raise Exception(f"must be integer:\n    {repr(n)}")
         lines = []
         for line in string.split("\n"):
             if "%!" not in line:

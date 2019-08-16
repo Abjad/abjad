@@ -2,7 +2,7 @@ import typing
 from .Container import Container
 
 
-class GraceContainer(Container):
+class BeforeGraceContainer(Container):
     r"""
     Grace container.
 
@@ -12,7 +12,7 @@ class GraceContainer(Container):
         grace music:
 
         >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
-        >>> container = abjad.GraceContainer("cs'16 ds'")
+        >>> container = abjad.BeforeGraceContainer("cs'16 ds'")
         >>> abjad.attach(container, voice[1])
         >>> abjad.show(voice) # doctest: +SKIP
 
@@ -41,7 +41,7 @@ class GraceContainer(Container):
         Fill grace containers with notes, rests or chords:
 
         >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
-        >>> container = abjad.GraceContainer("<cs' ds'>16 e'")
+        >>> container = abjad.BeforeGraceContainer("<cs' ds'>16 e'")
         >>> abjad.attach(container, voice[1])
         >>> abjad.show(voice) # doctest: +SKIP
 
@@ -65,7 +65,7 @@ class GraceContainer(Container):
         Detach grace containers like this:
 
         >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
-        >>> container = abjad.GraceContainer("<cs' ds'>16 e'")
+        >>> container = abjad.BeforeGraceContainer("<cs' ds'>16 e'")
         >>> abjad.attach(container, voice[1])
         >>> abjad.show(voice) # doctest: +SKIP
 
@@ -84,10 +84,10 @@ class GraceContainer(Container):
                 f'4
             }
 
-        >>> abjad.detach(abjad.GraceContainer, voice[1])
-        (GraceContainer("<cs' ds'>16 e'16"),)
+        >>> abjad.detach(abjad.BeforeGraceContainer, voice[1])
+        (BeforeGraceContainer("<cs' ds'>16 e'16"),)
 
-        >>> abjad.detach(abjad.GraceContainer, voice[1])
+        >>> abjad.detach(abjad.BeforeGraceContainer, voice[1])
         ()
 
         >>> abjad.show(voice) # doctest: +SKIP
@@ -108,7 +108,7 @@ class GraceContainer(Container):
         Move grace containers like this:
 
         >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
-        >>> container = abjad.GraceContainer("<cs' ds'>16 e'")
+        >>> container = abjad.BeforeGraceContainer("<cs' ds'>16 e'")
         >>> abjad.attach(container, voice[1])
         >>> abjad.show(voice) # doctest: +SKIP
 
@@ -127,7 +127,7 @@ class GraceContainer(Container):
                 f'4
             }
 
-        >>> result = abjad.detach(abjad.GraceContainer, voice[1])
+        >>> result = abjad.detach(abjad.BeforeGraceContainer, voice[1])
         >>> container = result[0]
         >>> abjad.attach(container, voice[3])
         >>> abjad.show(voice) # doctest: +SKIP
@@ -149,7 +149,7 @@ class GraceContainer(Container):
 
     LilyPond provides four types of left-positioned grace music: acciaccaturas,
     appoggiaturas, grace notes and slashed grace notes; see
-    ``abjad.GraceContainer.command`` to choose between these. LilyPond's
+    ``abjad.BeforeGraceContainer.command`` to choose between these. LilyPond's
     left-positioned grace music contrasts with "right-positioned" after-grace
     music; see ``abjad.AfterGraceContainer``.
 
@@ -203,13 +203,13 @@ class GraceContainer(Container):
 
         if not isinstance(leaf, abjad.Leaf):
             raise TypeError(f"must attach to leaf {leaf!r}.")
-        leaf._grace_container = self
+        leaf._before_grace_container = self
         self._main_leaf = leaf
 
     def _detach(self):
         if self._main_leaf is not None:
             main_leaf = self._main_leaf
-            main_leaf._grace_container = None
+            main_leaf._before_grace_container = None
             self._main_leaf = None
         return self
 
@@ -237,7 +237,7 @@ class GraceContainer(Container):
             neither a slash nor a slur:
 
             >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
-            >>> container = abjad.GraceContainer("cs'16")
+            >>> container = abjad.BeforeGraceContainer("cs'16")
             >>> abjad.attach(container, voice[1])
             >>> abjad.show(voice) # doctest: +SKIP
 
@@ -259,7 +259,7 @@ class GraceContainer(Container):
             nor a slur:
 
             >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
-            >>> container = abjad.GraceContainer("cs'16 ds'")
+            >>> container = abjad.BeforeGraceContainer("cs'16 ds'")
             >>> abjad.attach(container, voice[1])
             >>> abjad.show(voice) # doctest: +SKIP
 
@@ -284,7 +284,7 @@ class GraceContainer(Container):
             both a slash and a slur:
 
             >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
-            >>> container = abjad.GraceContainer(
+            >>> container = abjad.BeforeGraceContainer(
             ...     "cs'16", command=r"\acciaccatura"
             ... )
             >>> abjad.attach(container, voice[1])
@@ -310,7 +310,7 @@ class GraceContainer(Container):
                 behavior is a longstanding LilyPond bug:
 
                 >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
-                >>> container = abjad.GraceContainer(
+                >>> container = abjad.BeforeGraceContainer(
                 ...     "cs'16 ds'", command=r"\acciaccatura"
                 ... )
                 >>> abjad.attach(container, voice[1])
@@ -339,7 +339,7 @@ class GraceContainer(Container):
             only a slur; no slash is included:
 
             >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
-            >>> container = abjad.GraceContainer(
+            >>> container = abjad.BeforeGraceContainer(
             ...     "cs'16", command=r"\appoggiatura"
             ... )
             >>> abjad.attach(container, voice[1])
@@ -362,7 +362,7 @@ class GraceContainer(Container):
             LilyPond likewise formats runs of appoggiaturas with only a slur:
 
             >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
-            >>> container = abjad.GraceContainer(
+            >>> container = abjad.BeforeGraceContainer(
             ...     "cs'16 ds'", command=r"\appoggiatura"
             ... )
             >>> abjad.attach(container, voice[1])
@@ -389,7 +389,7 @@ class GraceContainer(Container):
             notes with only a slash; no slur is included:
 
             >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
-            >>> container = abjad.GraceContainer(
+            >>> container = abjad.BeforeGraceContainer(
             ...     "cs'16", command=r"\slashedGrace"
             ... )
             >>> abjad.attach(container, voice[1])
@@ -415,7 +415,7 @@ class GraceContainer(Container):
                 is a longstanding LilyPond bug:
 
                 >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
-                >>> container = abjad.GraceContainer(
+                >>> container = abjad.BeforeGraceContainer(
                 ...     "cs'16 ds'", command=r"\slashedGrace"
                 ... )
                 >>> abjad.attach(container, voice[1])
@@ -448,7 +448,7 @@ class GraceContainer(Container):
                 **Grace notes with slur may be used instead of appoggiatura:**
 
                 >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
-                >>> container = abjad.GraceContainer("cs'16")
+                >>> container = abjad.BeforeGraceContainer("cs'16")
                 >>> abjad.attach(container, voice[1])
                 >>> leaves = abjad.select(voice).leaves()[1:3]
                 >>> abjad.slur(leaves)
@@ -476,7 +476,7 @@ class GraceContainer(Container):
                 acciaccatura:**
 
                 >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
-                >>> container = abjad.GraceContainer(
+                >>> container = abjad.BeforeGraceContainer(
                 ...     "cs'16", command=r"\slashedGrace"
                 ... )
                 >>> abjad.attach(container, voice[1])

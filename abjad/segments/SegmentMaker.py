@@ -10,6 +10,7 @@ from abjad.core.Score import Score
 from abjad.core.Staff import Staff
 from abjad.core.Voice import Voice
 from abjad.system.StorageFormatManager import StorageFormatManager
+from abjad.utilities.String import String
 from abjad.top.inspect import inspect
 from abjad.top.iterate import iterate
 from .PartAssignment import PartAssignment
@@ -109,11 +110,23 @@ class SegmentMaker(object):
                 continue
             contexts.append(voice)
         container_to_part_assignment = OrderedDict()
+        context_name_counts = {}
         for context in contexts:
-            if segment_name:
-                context_identifier = f"{segment_name}_{context.name}"
+            if context.name is None:
+                message = "all contexts must be named:\n"
+                message += f"    {repr(context)}"
+                raise Exception(message)
+            count = context_name_counts.get(context.name, 0)
+            if count == 0:
+                suffixed_context_name = context.name
             else:
-                context_identifier = context.name
+                suffix = String.base_26(count)
+                suffixed_context_name = f"{context.name}_{suffix}"
+            context_name_counts[context.name] = count + 1
+            if segment_name:
+                context_identifier = f"{segment_name}_{suffixed_context_name}"
+            else:
+                context_identifier = suffixed_context_name
             context.identifier = f"%*% {context_identifier}"
             part_container_count = 0
             for container in iterate(context).components(Container):

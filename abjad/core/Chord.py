@@ -185,9 +185,6 @@ class Chord(Leaf):
         result.append(("grob overrides", bundle.grob_overrides))
         result.append(("context settings", bundle.context_settings))
         result.append(("spanners", bundle.before.spanners))
-        result.append(
-            ("after grace command", self._format_after_grace_command())
-        )
         return result
 
     def _format_leaf_nucleus(self):

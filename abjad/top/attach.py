@@ -216,13 +216,9 @@ def attach(
     assert attachable is not None, repr(attachable)
     assert target is not None, repr(target)
 
-    grace_container = (
-        abjad.AfterGraceContainer,
-        abjad.GraceContainer,
-        abjad.OnBeatGraceContainer,
-    )
+    grace_prototype = (abjad.AfterGraceContainer, abjad.BeforeGraceContainer)
 
-    if context is not None and isinstance(attachable, grace_container):
+    if context is not None and isinstance(attachable, grace_prototype):
         message = f"set context only for indicators, not {attachable!r}."
         raise Exception(message)
 
@@ -242,7 +238,7 @@ def attach(
             message = "\n".join(result)
             raise Exception(message)
 
-    if isinstance(attachable, grace_container):
+    if isinstance(attachable, grace_prototype):
         if not isinstance(target, abjad.Leaf):
             raise Exception("grace containers attach to single leaf only.")
         attachable._attach(target)

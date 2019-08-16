@@ -287,7 +287,7 @@ class String(str):
             >>> abjad.String('ix').from_roman()
             9
 
-        ..  container:: example
+        ..  container:: example exception
 
             Raises Roman numeral error when string is not Roman numeral:
 

@@ -463,7 +463,7 @@ class LilyPondParser(Parser):
         # and attach them to the proper leaf
         for x in music:
             if isinstance(x, core.Component) and not isinstance(
-                x, core.GraceContainer
+                x, core.BeforeGraceContainer
             ):
                 for indicator in apply_forward:
                     attach(indicator, x)
@@ -482,7 +482,7 @@ class LilyPondParser(Parser):
                     apply_backward.append(x)
                 elif isinstance(
                     x, abjad_indicators.LilyPondLiteral
-                ) and x.name in (r"\break", r"\breathe", r"\pageBreak"):
+                ) and x.argument in (r"\break", r"\breathe", r"\pageBreak"):
                     apply_backward.append(x)
                 else:
                     apply_forward.append(x)

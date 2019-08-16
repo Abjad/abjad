@@ -43,8 +43,7 @@ class Leaf(Component):
 
     __slots__ = (
         "_after_grace_container",
-        "_grace_container",
-        "_on_beat_grace_container",
+        "_before_grace_container",
         "_multiplier",
         "_written_duration",
     )
@@ -57,8 +56,7 @@ class Leaf(Component):
     ) -> None:
         Component.__init__(self, tag=tag)
         self._after_grace_container = None
-        self._grace_container = None
-        self._on_beat_grace_container = None
+        self._before_grace_container = None
         self.multiplier = multiplier
         self.written_duration = written_duration
 
@@ -70,9 +68,9 @@ class Leaf(Component):
         """
         new = Component.__copy__(self, *arguments)
         new.multiplier = self.multiplier
-        grace_container = self._grace_container
-        if grace_container is not None:
-            new_grace_container = grace_container._copy_with_children()
+        before_grace_container = self._before_grace_container
+        if before_grace_container is not None:
+            new_grace_container = before_grace_container._copy_with_children()
             attach(new_grace_container, new)
         after_grace_container = self._after_grace_container
         if after_grace_container is not None:
@@ -169,9 +167,6 @@ class Leaf(Component):
         result.append(("commands", bundle.after.leaks))
         result.append(("after grace body", self._format_after_grace_body()))
         result.append(("comments", bundle.after.comments))
-        result = self._indent_result_on_beat(result)
-        strings = self._format_on_beat_grace_close()
-        result.append(("on-beat grace close", strings))
         return result
 
     def _format_before_slot(self, bundle):
@@ -184,12 +179,6 @@ class Leaf(Component):
         result.append(("grob overrides", bundle.grob_overrides))
         result.append(("context settings", bundle.context_settings))
         result.append(("spanners", bundle.before.spanners))
-        result.append(
-            ("after grace command", self._format_after_grace_command())
-        )
-        result = self._indent_result_on_beat(result)
-        strings = self._format_on_beat_grace_body()
-        result.insert(0, ("on-beat grace body", strings))
         return result
 
     def _format_closing_slot(self, bundle):
@@ -198,18 +187,16 @@ class Leaf(Component):
         result.append(("commands", bundle.closing.commands))
         result.append(("indicators", bundle.closing.indicators))
         result.append(("comments", bundle.closing.comments))
-        result = self._indent_result_on_beat(result)
         return result
 
     def _format_contents_slot(self, bundle):
         result = []
         result.append(("leaf body", self._format_leaf_body(bundle)))
-        result = self._indent_result_on_beat(result)
         return result
 
     def _format_grace_body(self):
         result = []
-        container = self._grace_container
+        container = self._before_grace_container
         if container is not None:
             result.append(format(container))
         return result
@@ -225,32 +212,16 @@ class Leaf(Component):
             strings = LilyPondFormatManager.tag(strings, tag=tag)
         return strings
 
-    def _format_on_beat_grace_body(self):
-        result = []
-        container = self._on_beat_grace_container
-        if container is not None:
-            result.append("<<")
-            string = format(container)
-            pieces = string.split("\n")
-            pieces = [LilyPondFormatManager.indent + _ for _ in pieces]
-            result.extend(pieces)
-            result.append("\\\\")
-        return result
-
-    def _format_on_beat_grace_close(self):
-        result = []
-        container = self._on_beat_grace_container
-        if container is not None:
-            result.append(">>")
-        return result
-
     def _format_opening_slot(self, bundle):
         result = []
         result.append(("comments", bundle.opening.comments))
         result.append(("indicators", bundle.opening.indicators))
         result.append(("commands", bundle.opening.commands))
         result.append(("spanners", bundle.opening.spanners))
-        result = self._indent_result_on_beat(result)
+        # IMPORTANT: LilyPond \afterGrace must appear IMMEDIATELY before leaf!
+        result.append(
+            ("after grace command", self._format_after_grace_command())
+        )
         return result
 
     def _get_compact_representation(self):
@@ -335,12 +306,10 @@ class Leaf(Component):
     def _get_preprolated_duration(self):
         return self._get_multiplied_duration()
 
-    def _indent_result_on_beat(self, result):
-        if self._on_beat_grace_container is None:
-            return result
-        return self._format_slot_contributions_with_indent(result)
-
     def _leaf(self, n):
+        from .Container import Container
+        from .OnBeatGraceContainer import OnBeatGraceContainer
+
         assert n in (-1, 0, 1), repr(n)
         if n == 0:
             return self
@@ -350,6 +319,17 @@ class Leaf(Component):
         if n == 1:
             components = sibling._get_descendants_starting_with()
         else:
+            assert n == -1
+            if (
+                isinstance(sibling, Container)
+                and len(sibling) == 2
+                and any(isinstance(_, OnBeatGraceContainer) for _ in sibling)
+            ):
+                if isinstance(sibling[0], OnBeatGraceContainer):
+                    main_voice = sibling[1]
+                else:
+                    main_voice = sibling[0]
+                return main_voice[-1]
             components = sibling._get_descendants_stopping_with()
         for component in components:
             if not isinstance(component, Leaf):
@@ -378,26 +358,26 @@ class Leaf(Component):
         indent = manager.indent
         bundle = manager.bundle_format_contributions(self)
         report = ""
-        report += "slot absolute before:\n"
+        report += 'slot "absolute before":\n'
         packet = self._format_absolute_before_slot(bundle)
         report += self._process_contribution_packet(packet)
-        report += "slot 1:\n"
+        report += 'slot "before":\n'
         packet = self._format_before_slot(bundle)
         report += self._process_contribution_packet(packet)
-        report += "slot 3:\n"
+        report += 'slot "opening":\n'
         packet = self._format_opening_slot(bundle)
         report += self._process_contribution_packet(packet)
-        report += "slot 4:\n"
+        report += 'slot "contents slot":\n'
         report += indent + "leaf body:\n"
         string = self._format_contents_slot(bundle)[0][1][0]
         report += (2 * indent) + string + "\n"
-        report += "slot 5:\n"
+        report += 'slot "closing":\n'
         packet = self._format_closing_slot(bundle)
         report += self._process_contribution_packet(packet)
-        report += "slot 7:\n"
+        report += 'slot "after":\n'
         packet = self._format_after_slot(bundle)
         report += self._process_contribution_packet(packet)
-        report += "slot absolute after:\n"
+        report += 'slot "absolute after":\n'
         packet = self._format_absolute_after_slot(bundle)
         report += self._process_contribution_packet(packet)
         while report[-1] == "\n":
@@ -479,12 +459,9 @@ class Leaf(Component):
         originally_repeat_tied = inspect(self).has_indicator(RepeatTie)
         result_selections = []
         # detach grace containers
-        grace_container = self._grace_container
-        if grace_container is not None:
-            detach(grace_container, self)
-        on_beat_grace_container = self._on_beat_grace_container
-        if on_beat_grace_container is not None:
-            detach(on_beat_grace_container, self)
+        before_grace_container = self._before_grace_container
+        if before_grace_container is not None:
+            detach(before_grace_container, self)
         after_grace_container = self._after_grace_container
         if after_grace_container is not None:
             detach(after_grace_container, self)
@@ -520,10 +497,8 @@ class Leaf(Component):
             else:
                 raise ValueError(direction)
         # reattach grace containers
-        if grace_container is not None:
-            attach(grace_container, first_result_leaf)
-        if on_beat_grace_container is not None:
-            attach(on_beat_grace_container, first_result_leaf)
+        if before_grace_container is not None:
+            attach(before_grace_container, first_result_leaf)
         if after_grace_container is not None:
             attach(after_grace_container, last_result_leaf)
         # fuse tuplets
