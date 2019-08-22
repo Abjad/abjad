@@ -673,11 +673,11 @@ class IOManager(object):
             stderr=subprocess.STDOUT,
         )
         subprocess_output, _ = process.communicate()
-        subprocess_output = subprocess_output.decode(errors="ignore")
+        subprocess_output_string = subprocess_output.decode(errors="ignore")
         exit_code = process.returncode
         with open(log_file_path, "w") as file_pointer:
             file_pointer.write(date + "\n")
-            file_pointer.write(subprocess_output)
+            file_pointer.write(subprocess_output_string)
         postscript_path = ly_path.replace(".ly", ".ps")
         try:
             os.remove(postscript_path)

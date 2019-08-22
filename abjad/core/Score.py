@@ -1,5 +1,6 @@
 import copy
 import typing
+from abjad.system.Tag import Tag
 from .Context import Context
 
 
@@ -53,7 +54,7 @@ class Score(Context):
         lilypond_type: str = "Score",
         simultaneous: bool = True,
         name: str = None,
-        tag: str = None,
+        tag: Tag = None,
     ) -> None:
         Context.__init__(
             self,
@@ -67,15 +68,15 @@ class Score(Context):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def tag(self) -> typing.Optional[str]:
+    def tag(self) -> typing.Optional[Tag]:
         r"""
         Gets tag.
 
         ..  container:: example
 
-            >>> voice = abjad.Voice("c'4 d' e' f'", tag='RED')
-            >>> staff = abjad.Staff([voice], tag='BLUE')
-            >>> score = abjad.Score([staff], tag='GREEN')
+            >>> voice = abjad.Voice("c'4 d' e' f'", tag=abjad.Tag('RED'))
+            >>> staff = abjad.Staff([voice], tag=abjad.Tag('BLUE'))
+            >>> score = abjad.Score([staff], tag=abjad.Tag('GREEN'))
             >>> abjad.show(score) # doctest: +SKIP
 
             >>> abjad.f(score, strict=20)
@@ -149,11 +150,11 @@ class Score(Context):
         bar_line = abjad.BarLine(abbreviation)
         if not to_each_voice:
             last_leaf = abjad.inspect(self).leaf(-1)
-            abjad.attach(bar_line, last_leaf, tag="SCORE_1")
+            abjad.attach(bar_line, last_leaf, tag=Tag("SCORE_1"))
         else:
             for voice in abjad.iterate(self).components(abjad.Voice):
                 last_leaf = abjad.inspect(voice).leaf(-1)
-                abjad.attach(bar_line, last_leaf, tag="SCORE_1")
+                abjad.attach(bar_line, last_leaf, tag=Tag("SCORE_1"))
         return bar_line
 
     def add_final_markup(self, markup, extra_offset=None):
@@ -253,7 +254,7 @@ class Score(Context):
         selection = abjad.select(self)
         last_leaf = selection._get_component(abjad.Leaf, -1)
         markup = copy.copy(markup)
-        abjad.attach(markup, last_leaf, tag="SCORE_2")
+        abjad.attach(markup, last_leaf, tag=Tag("SCORE_2"))
         if extra_offset is not None:
             if isinstance(last_leaf, abjad.MultimeasureRest):
                 grob_proxy = abjad.override(last_leaf).multi_measure_rest_text

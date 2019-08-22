@@ -189,13 +189,13 @@ class StartBeam(object):
             >>> abjad.tweak(start_beam).color = 'blue'
             >>> abjad.f(start_beam)
             abjad.StartBeam(
-                tweaks=LilyPondTweakManager(('color', 'blue')),
+                tweaks=LilyPondTweakManager(('_literal', None), ('color', 'blue')),
                 )
 
             >>> start_beam_2 = copy.copy(start_beam)
             >>> abjad.f(start_beam_2)
             abjad.StartBeam(
-                tweaks=LilyPondTweakManager(('color', 'blue')),
+                tweaks=LilyPondTweakManager(('_literal', None), ('color', 'blue')),
                 )
 
         """

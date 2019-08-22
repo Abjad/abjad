@@ -1,6 +1,7 @@
 import typing
 from abjad import typings
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
+from abjad.system.Tag import Tag
 from .Leaf import Leaf
 from .Rest import Rest
 
@@ -18,7 +19,9 @@ class MultimeasureRest(Leaf):
 
         Multimeasure rests may be tagged:
 
-        >>> rest = abjad.MultimeasureRest('R1', tag='GLOBAL_MULTIMEASURE_REST')
+        >>> rest = abjad.MultimeasureRest(
+        ...     'R1', tag=abjad.Tag('GLOBAL_MULTIMEASURE_REST')
+        ... )
         >>> abjad.f(rest)
         R1 %! GLOBAL_MULTIMEASURE_REST
 
@@ -52,7 +55,7 @@ class MultimeasureRest(Leaf):
         self,
         *arguments,
         multiplier: typings.DurationTyping = None,
-        tag: str = None,
+        tag: Tag = None,
     ) -> None:
         if len(arguments) == 0:
             arguments = ((1, 4),)
@@ -77,13 +80,15 @@ class MultimeasureRest(Leaf):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def tag(self) -> typing.Optional[str]:
+    def tag(self) -> typing.Optional[Tag]:
         r"""
         Gets tag.
 
         ..  container:: example
 
-            >>> rest = abjad.MultimeasureRest(1, tag='MULTIMEASURE_REST')
+            >>> rest = abjad.MultimeasureRest(
+            ...     1, tag=abjad.Tag('MULTIMEASURE_REST')
+            ... )
             >>> rest.multiplier = (3, 8)
 
             >>> abjad.f(rest)

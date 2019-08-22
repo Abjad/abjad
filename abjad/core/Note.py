@@ -5,6 +5,7 @@ from abjad import typings
 from abjad.pitch.NamedPitch import NamedPitch
 from abjad.top.inspect import inspect
 from abjad.top.parse import parse
+from abjad.system.Tag import Tag
 from abjad.utilities.Duration import Duration
 from .DrumNoteHead import DrumNoteHead
 from .Leaf import Leaf
@@ -59,7 +60,7 @@ class Note(Leaf):
         self,
         *arguments,
         multiplier: typings.DurationTyping = None,
-        tag: str = None,
+        tag: Tag = None,
     ) -> None:
         from abjad.ly import drums
         from .Chord import Chord

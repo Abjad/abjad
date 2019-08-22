@@ -129,6 +129,7 @@ if __name__ == "__main__":
             abjad.Job.handle_edition_tags(illustration_ly),
             abjad.Job.handle_fermata_bar_lines(segment_directory),
             abjad.Job.handle_shifted_clefs(segment_directory),
+            abjad.Job.handle_mol_tags(segment_directory),
         ]:
             for message in job():
                 print(" " + message)

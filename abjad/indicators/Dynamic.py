@@ -1406,6 +1406,22 @@ class Dynamic(object):
         return argument in Dynamic._dynamic_names
 
     @property
+    def spanner_stop(self) -> bool:
+        """
+        Is true
+
+        ..  container:: example
+
+            >>> abjad.Dynamic("p").spanner_stop
+            True
+
+            >>> abjad.Dynamic("niente").spanner_stop
+            True
+
+        """
+        return True
+
+    @property
     def tweaks(self) -> typing.Optional[LilyPondTweakManager]:
         r"""
         Gets tweaks

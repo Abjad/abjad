@@ -1,4 +1,5 @@
 import typing
+from abjad.system.Tag import Tag
 from .Context import Context
 
 
@@ -333,7 +334,7 @@ class Voice(Context):
         lilypond_type: str = "Voice",
         simultaneous: bool = None,
         name: str = None,
-        tag: str = None,
+        tag: Tag = None,
     ) -> None:
         Context.__init__(
             self,
@@ -347,13 +348,13 @@ class Voice(Context):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def tag(self) -> typing.Optional[str]:
+    def tag(self) -> typing.Optional[Tag]:
         r"""
         Gets tag.
 
         ..  container:: example
 
-            >>> voice = abjad.Voice("c'4 d' e' f'", tag='RED')
+            >>> voice = abjad.Voice("c'4 d' e' f'", tag=abjad.Tag('RED'))
             >>> abjad.show(voice) # doctest: +SKIP
 
             >>> abjad.f(voice, strict=20)

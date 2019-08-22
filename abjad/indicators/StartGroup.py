@@ -139,13 +139,13 @@ class StartGroup(object):
             >>> abjad.tweak(start_group).color = 'blue'
             >>> abjad.f(start_group)
             abjad.StartGroup(
-                tweaks=LilyPondTweakManager(('color', 'blue')),
+                tweaks=LilyPondTweakManager(('_literal', None), ('color', 'blue')),
                 )
 
             >>> start_group_2 = copy.copy(start_group)
             >>> abjad.f(start_group_2)
             abjad.StartGroup(
-                tweaks=LilyPondTweakManager(('color', 'blue')),
+                tweaks=LilyPondTweakManager(('_literal', None), ('color', 'blue')),
                 )
 
         """

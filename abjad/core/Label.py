@@ -1,5 +1,6 @@
 import collections
 import inspect
+import typing
 from abjad import enums
 from abjad.indicators.LilyPondComment import LilyPondComment
 from abjad.indicators.LilyPondLiteral import LilyPondLiteral
@@ -22,6 +23,7 @@ from abjad.pitch.PitchSegment import PitchSegment
 from abjad.pitch.SetClass import SetClass
 from abjad.scheme import SchemeColor
 from abjad.system.StorageFormatManager import StorageFormatManager
+from abjad.system.Tag import Tag
 from abjad.top.attach import attach
 from abjad.top.detach import detach
 from abjad.top.inspect import inspect as abjad_inspect
@@ -294,11 +296,9 @@ class Label(object):
         return self._deactivate
 
     @property
-    def tag(self):
+    def tag(self) -> typing.Optional[Tag]:
         """
         Gets tag.
-
-        Returns string or none.
         """
         return self._tag
 

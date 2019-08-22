@@ -15,6 +15,7 @@ from abjad.indicators.MarginMarkup import MarginMarkup
 from abjad.indicators.TimeSignature import TimeSignature
 from abjad.system.IOManager import IOManager
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
+from abjad.system.Tag import Tag
 from abjad.system.Tags import Tags
 from abjad.top.activate import activate
 from abjad.top.attach import attach
@@ -783,7 +784,7 @@ class Path(pathlib.PosixPath):
 
     def activate(
         self,
-        tag: typing.Union[str, typing.Callable],
+        tag: typing.Union[Tag, typing.Callable],
         *,
         indent: int = 0,
         message_zero: bool = False,
@@ -813,6 +814,8 @@ class Path(pathlib.PosixPath):
         Third item in pair is list of canonical string messages that explain
         what happened.
         """
+        if isinstance(tag, str):
+            raise Exception(f"must be tag or callable: {tag!r}")
         if self.name == skip_file_name:
             return None
         assert isinstance(indent, int), repr(indent)
@@ -1138,7 +1141,7 @@ class Path(pathlib.PosixPath):
 
     def deactivate(
         self,
-        tag: typing.Union[str, typing.Callable],
+        tag: typing.Union[Tag, typing.Callable],
         *,
         indent: int = 0,
         message_zero: bool = False,
@@ -1149,6 +1152,8 @@ class Path(pathlib.PosixPath):
         """
         Deactivates ``tag`` in path.
         """
+        if isinstance(tag, str):
+            raise Exception(f"must be tag or callable: {tag!r}")
         return self.activate(
             tag,
             name=name,
@@ -1179,7 +1184,7 @@ class Path(pathlib.PosixPath):
         Writes ``.ily`` to this path with ``.ily` suffix when ``include_path``
         is not set.
         """
-        tag = "abjad.Path.extern"
+        tag = "abjad.Path.extern()"
         if not self.suffix == ".ly":
             raise Exception(f"must be lilypond file: {self}.")
         if include_path is None:

@@ -1,7 +1,7 @@
 import typing
 from .Path import Path
-from abjad import const
 from abjad.system.StorageFormatManager import StorageFormatManager
+from abjad.system.Tag import Tag
 from abjad.system.Tags import Tags
 from abjad.utilities.String import String
 from abjad.top.activate import activate
@@ -162,14 +162,14 @@ class Job(object):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def activate(self) -> typing.Optional[activation_type]:
+    def activate(self):
         """
         Gets activate match / message pair.
         """
         return self._activate
 
     @property
-    def deactivate(self) -> typing.Optional[activation_type]:
+    def deactivate(self):
         """
         Gets deactivate match / message pair.
         """
@@ -409,7 +409,7 @@ class Job(object):
         name = "stage number markup"
 
         def match(tags) -> bool:
-            tags_ = [const.STAGE_NUMBER]
+            tags_ = [abjad_tags.STAGE_NUMBER]
             return bool(set(tags) & set(tags_))
 
         if undo:
@@ -483,14 +483,14 @@ class Job(object):
             my_name = "PARTS"
         else:
             raise Exception(path)
-        this_edition = f"+{String(my_name).to_shout_case()}"
-        not_this_edition = f"-{String(my_name).to_shout_case()}"
+        this_edition = Tag(f"+{String(my_name).to_shout_case()}")
+        not_this_edition = Tag(f"-{String(my_name).to_shout_case()}")
         if path.is_dir():
             directory_name = path.name
         else:
             directory_name = path.parent.name
-        this_directory = f"+{String(directory_name).to_shout_case()}"
-        not_this_directory = f"-{String(directory_name).to_shout_case()}"
+        this_directory = Tag(f"+{String(directory_name).to_shout_case()}")
+        not_this_directory = Tag(f"-{String(directory_name).to_shout_case()}")
 
         def deactivate(tags) -> bool:
             if not_this_edition in tags:
@@ -498,7 +498,7 @@ class Job(object):
             if not_this_directory in tags:
                 return True
             for tag in tags:
-                if tag.startswith("+"):
+                if str(tag).startswith("+"):
                     return True
             return False
 
@@ -507,7 +507,7 @@ class Job(object):
                 if tag in [not_this_edition, not_this_directory]:
                     return False
             for tag in tags:
-                if tag.startswith("-"):
+                if str(tag).startswith("-"):
                     return True
             return bool(set(tags) & set([this_edition, this_directory]))
 
@@ -528,7 +528,7 @@ class Job(object):
             path = path.parent
 
         def activate(tags):
-            return bool(set(tags) & set([abjad_tags.EOL_FERMATA]))
+            return bool(set(tags) & set([abjad_tags.FERMATA_MEASURE]))
 
         deactivate: typing.Optional[callable_type]
         # then deactivate non-EOL tags:
@@ -538,12 +538,12 @@ class Job(object):
             final_measure_number = path.get_metadatum("final_measure_number")
             if final_measure_number is not None:
                 eol_measure_numbers.append(final_measure_number)
-            eol_measure_numbers = [f"MEASURE_{_}" for _ in eol_measure_numbers]
-            tag = abjad_tags.EOL_FERMATA
-            tags_ = eol_measure_numbers
+            eol_measure_numbers = [
+                Tag(f"MEASURE_{_}") for _ in eol_measure_numbers
+            ]
 
             def deactivate(tags):
-                if abjad_tags.EOL_FERMATA in tags:
+                if abjad_tags.FERMATA_MEASURE in tags:
                     if not bool(set(tags) & set(eol_measure_numbers)):
                         return True
                 return False
@@ -555,6 +555,49 @@ class Job(object):
             deactivate=(deactivate, "EOL fermata bar line"),
             path=path,
             title="handling fermata bar lines ...",
+        )
+
+    @staticmethod
+    def handle_mol_tags(path) -> "Job":
+        """
+        Handles MOL (middle-of-line) tags.
+        """
+        if path.is__segments():
+            path = path.parent
+
+        # activate all middle-of-line tags
+        def activate(tags):
+            tags_ = set([abjad_tags.NOT_MOL, abjad_tags.ONLY_MOL])
+            return bool(set(tags) & tags_)
+
+        deactivate: typing.Optional[callable_type]
+        # then deactivate conflicting middle-of-line tags
+        bol_measure_numbers = path.get_metadatum("bol_measure_numbers")
+        if bol_measure_numbers:
+            nonmol_measure_numbers = bol_measure_numbers[:]
+            final_measure_number = path.get_metadatum("final_measure_number")
+            if final_measure_number is not None:
+                nonmol_measure_numbers.append(final_measure_number + 1)
+            nonmol_measure_numbers = [
+                Tag(f"MEASURE_{_}") for _ in nonmol_measure_numbers
+            ]
+
+            def deactivate(tags):
+                if abjad_tags.NOT_MOL in tags:
+                    if not bool(set(tags) & set(nonmol_measure_numbers)):
+                        return True
+                if abjad_tags.ONLY_MOL in tags:
+                    if bool(set(tags) & set(nonmol_measure_numbers)):
+                        return True
+                return False
+
+        else:
+            deactivate = None
+        return Job(
+            activate=(activate, "MOL"),
+            deactivate=(deactivate, "conflicting MOL"),
+            path=path,
+            title="handling MOL tags ...",
         )
 
     @staticmethod
@@ -575,7 +618,9 @@ class Job(object):
         string = "bol_measure_numbers"
         bol_measure_numbers = metadata_source.get_metadatum(string)
         if bol_measure_numbers:
-            bol_measure_numbers = [f"MEASURE_{_}" for _ in bol_measure_numbers]
+            bol_measure_numbers = [
+                Tag(f"MEASURE_{_}") for _ in bol_measure_numbers
+            ]
 
             def deactivate(tags):
                 if abjad_tags.SHIFTED_CLEF not in tags:
@@ -646,7 +691,7 @@ class Job(object):
         name = "clock time markup"
 
         def match(tags) -> bool:
-            tags_ = [const.CLOCK_TIME]
+            tags_ = [abjad_tags.CLOCK_TIME]
             return bool(set(tags) & set(tags_))
 
         if undo:
@@ -666,7 +711,7 @@ class Job(object):
         name = "figure name markup"
 
         def match(tags) -> bool:
-            tags_ = [const.FIGURE_NAME]
+            tags_ = [abjad_tags.FIGURE_NAME]
             return bool(set(tags) & set(tags_))
 
         if undo:
@@ -686,7 +731,7 @@ class Job(object):
         name = "local measure number markup"
 
         def match(tags) -> bool:
-            tags_ = [const.LOCAL_MEASURE_NUMBER]
+            tags_ = [abjad_tags.LOCAL_MEASURE_NUMBER]
             return bool(set(tags) & set(tags_))
 
         if undo:
@@ -706,7 +751,7 @@ class Job(object):
         name = "measure number markup"
 
         def match(tags) -> bool:
-            tags_ = [const.MEASURE_NUMBER]
+            tags_ = [abjad_tags.MEASURE_NUMBER]
             return bool(set(tags) & set(tags_))
 
         if undo:
@@ -729,15 +774,23 @@ class Job(object):
             tags_ = abjad_tags.music_annotation_tags()
             return bool(set(tags) & set(tags_))
 
+        def match_2(tags) -> bool:
+            tags_ = [abjad_tags.INVISIBLE_MUSIC_COMMAND]
+            return bool(set(tags) & set(tags_))
+
         if undo:
             return Job(
+                activate=(match_2, name),
                 deactivate=(match, name),
                 path=path,
                 title=f"hiding {name}s ...",
             )
         else:
             return Job(
-                activate=(match, name), path=path, title=f"showing {name}s ..."
+                activate=(match, name),
+                deactivate=(match_2, name),
+                path=path,
+                title=f"showing {name}s ...",
             )
 
     @staticmethod
@@ -762,16 +815,25 @@ class Job(object):
 
     @staticmethod
     def show_tag(
-        path, tag, *, prepend_empty_chord=None, skip_file_name=None, undo=False
+        path,
+        tag,
+        *,
+        match=None,
+        prepend_empty_chord=None,
+        skip_file_name=None,
+        undo=False,
     ) -> "Job":
         """
         Shows tag.
         """
-        name = tag
+        assert isinstance(tag, Tag), repr(tag)
+        name = str(tag)
 
-        def match(tags) -> bool:
-            tags_ = [tag]
-            return bool(set(tags) & set(tags_))
+        if match is None:
+
+            def match(tags) -> bool:
+                tags_ = [tag]
+                return bool(set(tags) & set(tags_))
 
         if undo:
             return Job(

@@ -10,6 +10,7 @@ from abjad.mathtools import NonreducedRatio
 from abjad.mathtools import Ratio
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
+from abjad.system.Tag import Tag
 from abjad.top.inspect import inspect
 from abjad.top.iterate import iterate
 from abjad.top.override import override
@@ -129,7 +130,7 @@ class Tuplet(Container):
         denominator: int = None,
         force_fraction: bool = None,
         hide: bool = None,
-        tag: str = None,
+        tag: Tag = None,
         tweaks: LilyPondTweakManager = None,
     ) -> None:
         Container.__init__(self, components, tag=tag)
@@ -759,13 +760,15 @@ class Tuplet(Container):
             raise ValueError(message)
 
     @property
-    def tag(self) -> typing.Optional[str]:
+    def tag(self) -> typing.Optional[Tag]:
         r"""
         Gets tag.
 
         ..  container:: example
 
-            >>> tuplet = abjad.Tuplet((2, 3), "c'4 d' e'", tag='RED')
+            >>> tuplet = abjad.Tuplet(
+            ...     (2, 3), "c'4 d' e'", tag=abjad.Tag('RED')
+            ... )
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             >>> abjad.f(tuplet, strict=20)
@@ -1095,7 +1098,7 @@ class Tuplet(Container):
 
     @staticmethod
     def from_duration(
-        duration: typings.DurationTyping, components, *, tag: str = None
+        duration: typings.DurationTyping, components, *, tag: Tag = None
     ) -> "Tuplet":
         r"""
         Makes tuplet from ``duration`` and ``components``.
@@ -1128,7 +1131,7 @@ class Tuplet(Container):
 
     @staticmethod
     def from_duration_and_ratio(
-        duration, ratio, *, increase_monotonic: bool = None, tag: str = None
+        duration, ratio, *, increase_monotonic: bool = None, tag: Tag = None
     ) -> "Tuplet":
         r"""
         Makes tuplet from ``duration`` and ``ratio``.
@@ -1763,7 +1766,7 @@ class Tuplet(Container):
         ratio: typing.Union[typing.Tuple, NonreducedRatio],
         fraction: typing.Union[typing.Tuple, NonreducedFraction],
         *,
-        tag: str = None,
+        tag: Tag = None,
     ) -> "Tuplet":
         r"""
         Makes tuplet from nonreduced ``ratio`` and nonreduced ``fraction``.

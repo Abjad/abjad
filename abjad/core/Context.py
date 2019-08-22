@@ -3,6 +3,7 @@ import typing
 from abjad.instruments import Instrument
 from abjad.lilypondnames.LilyPondContext import LilyPondContext
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
+from abjad.system.Tag import Tag
 from abjad.system.Wrapper import Wrapper
 from abjad.top.inspect import inspect
 from .Container import Container
@@ -75,7 +76,7 @@ class Context(Container):
         lilypond_type: str = "Context",
         simultaneous: bool = None,
         name: str = None,
-        tag: str = None,
+        tag: Tag = None,
     ) -> None:
         self._consists_commands: typing.List[str] = []
         self._dependent_wrappers: typing.List[Wrapper] = []
@@ -238,7 +239,7 @@ class Context(Container):
         self._update_now(indicators=True)
         return self._format_component()
 
-    def _get_persistent_wrappers(self, *, omit_annotation=None):
+    def _get_persistent_wrappers(self, *, omit_with_indicator=None):
         self._update_now(indicators=True)
         wrappers = {}
         for wrapper in self._dependent_wrappers:
@@ -249,10 +250,10 @@ class Context(Container):
                 continue
             assert isinstance(indicator.persistent, bool)
             is_phantom = False
-            if omit_annotation is not None:
+            if omit_with_indicator is not None:
                 parentage = inspect(wrapper.component).parentage()
                 for component in parentage:
-                    if inspect(component).annotation(omit_annotation) is True:
+                    if inspect(component).has_indicator(omit_with_indicator):
                         is_phantom = True
                         continue
             if is_phantom:
@@ -369,7 +370,7 @@ class Context(Container):
         return self._remove_commands
 
     @property
-    def tag(self) -> typing.Optional[str]:
+    def tag(self) -> typing.Optional[Tag]:
         r"""
         Gets tag.
 
@@ -378,7 +379,7 @@ class Context(Container):
             >>> context = abjad.Context(
             ...     "c'4 d' e' f'",
             ...     lilypond_type='CustomContext',
-            ...     tag='RED',
+            ...     tag=abjad.Tag('RED'),
             ...     )
             >>> abjad.show(context) # doctest: +SKIP
 

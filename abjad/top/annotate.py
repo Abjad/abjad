@@ -33,6 +33,12 @@ def annotate(component, annotation, indicator) -> None:
     Returns none.
     """
     from abjad.system.Wrapper import Wrapper
+    import abjad
+
+    if isinstance(annotation, abjad.Tag):
+        message = "use the tag=None keyword instead of annotate():\n"
+        message += f"   {repr(annotation)}"
+        raise Exception(message)
 
     assert isinstance(annotation, str), repr(annotation)
     wrapper = Wrapper(

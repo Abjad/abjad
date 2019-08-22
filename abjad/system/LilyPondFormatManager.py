@@ -457,12 +457,10 @@ class LilyPondFormatManager(object):
 
     @staticmethod
     def make_lilypond_tweak_string(
-        attribute, value, directed=True, grob=None
+        attribute, value, *, directed=True, grob=None, literal=None
     ) -> str:
         r"""
         Makes Lilypond \tweak string.
-
-        Returns string.
         """
         if grob is not None:
             grob = String(grob).to_upper_camel_case()
@@ -470,7 +468,8 @@ class LilyPondFormatManager(object):
         else:
             grob = ""
         attribute = LilyPondFormatManager.format_lilypond_attribute(attribute)
-        value = LilyPondFormatManager.format_lilypond_value(value)
+        if not literal:
+            value = LilyPondFormatManager.format_lilypond_value(value)
         string = rf"\tweak {grob}{attribute} {value}"
         if directed:
             string = "- " + string

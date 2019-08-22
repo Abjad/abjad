@@ -5,6 +5,7 @@ import typing
 from abjad import mathtools
 from abjad.mathtools import NonreducedFraction
 from abjad.mathtools import Ratio
+from abjad.system.Tag import Tag
 from abjad.utilities.Duration import Duration
 from abjad.utilities.Multiplier import Multiplier
 from abjad.utilities.Sequence import Sequence
@@ -167,13 +168,13 @@ class NoteMaker(object):
     ### INITIALIZER ###
 
     def __init__(
-        self, *, increase_monotonic: bool = None, tag: str = None
+        self, *, increase_monotonic: bool = None, tag: Tag = None
     ) -> None:
         if increase_monotonic is not None:
             increase_monotonic = bool(increase_monotonic)
         self._increase_monotonic = increase_monotonic
         if tag is not None:
-            assert isinstance(tag, str), repr(tag)
+            assert isinstance(tag, Tag), repr(tag)
         self._tag = tag
 
     ### SPECIAL METHODS ###
@@ -263,13 +264,13 @@ class NoteMaker(object):
         return self._increase_monotonic
 
     @property
-    def tag(self) -> typing.Optional[str]:
+    def tag(self) -> typing.Optional[Tag]:
         r"""
         Gets tag.
 
         ..  container:: example
 
-            >>> maker = abjad.NoteMaker(tag='note_maker')
+            >>> maker = abjad.NoteMaker(tag=abjad.Tag('note_maker'))
             >>> notes = maker([0], [(1, 16), (1, 8), (1, 8)])
             >>> staff = abjad.Staff(notes)
             >>> abjad.show(staff) # doctest: +SKIP

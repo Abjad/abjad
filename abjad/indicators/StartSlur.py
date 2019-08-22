@@ -279,13 +279,13 @@ class StartSlur(object):
             >>> abjad.tweak(start_slur).color = 'blue'
             >>> abjad.f(start_slur)
             abjad.StartSlur(
-                tweaks=LilyPondTweakManager(('color', 'blue')),
+                tweaks=LilyPondTweakManager(('_literal', None), ('color', 'blue')),
                 )
 
             >>> start_slur_2 = copy.copy(start_slur)
             >>> abjad.f(start_slur_2)
             abjad.StartSlur(
-                tweaks=LilyPondTweakManager(('color', 'blue')),
+                tweaks=LilyPondTweakManager(('_literal', None), ('color', 'blue')),
                 )
 
         """

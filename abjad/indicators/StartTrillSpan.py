@@ -255,13 +255,13 @@ class StartTrillSpan(object):
             >>> abjad.tweak(start_trill_span).color = 'blue'
             >>> abjad.f(start_trill_span)
             abjad.StartTrillSpan(
-                tweaks=LilyPondTweakManager(('color', 'blue')),
+                tweaks=LilyPondTweakManager(('_literal', None), ('color', 'blue')),
                 )
 
             >>> start_trill_span_2 = copy.copy(start_trill_span)
             >>> abjad.f(start_trill_span_2)
             abjad.StartTrillSpan(
-                tweaks=LilyPondTweakManager(('color', 'blue')),
+                tweaks=LilyPondTweakManager(('_literal', None), ('color', 'blue')),
                 )
 
         """

@@ -58,7 +58,7 @@ class Component(object):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, name: str = None, tag: str = None) -> None:
+    def __init__(self, name: str = None, tag: Tag = None) -> None:
         self._indicators_are_current = False
         self._is_forbidden_to_update = False
         self._measure_number = None
@@ -72,7 +72,7 @@ class Component(object):
         self._stop_offset = None
         self._stop_offset_in_seconds = None
         if tag is not None:
-            assert isinstance(tag, str), repr(tag)
+            assert isinstance(tag, Tag), repr(tag)
         self._tag = tag
         self._timespan = Timespan()
         self._wrappers: typing.List[Wrapper] = []
@@ -753,7 +753,7 @@ class Component(object):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def tag(self):
+    def tag(self) -> typing.Optional[Tag]:
         """
         Gets component tag.
         """

@@ -93,7 +93,7 @@ def beam(
     start_beam: StartBeam = None,
     stemlet_length: typings.Number = None,
     stop_beam: StopBeam = None,
-    tag: str = None,
+    tag: Tag = None,
 ) -> None:
     r"""
     Attaches beam indicators.
@@ -313,7 +313,7 @@ def beam(
 
 
 def bow_contact_spanner(
-    argument, *, omit_bow_changes: bool = None, tag: str = None
+    argument, *, omit_bow_changes: bool = None, tag: Tag = None
 ) -> None:
     r"""
     Attaches bow contact format indicators.
@@ -764,7 +764,7 @@ def glissando(
     right_broken: bool = None,
     right_broken_show_next: bool = None,
     style: str = None,
-    tag: str = None,
+    tag: Tag = None,
     zero_padding: bool = None,
 ):
     r"""
@@ -1510,7 +1510,7 @@ def hairpin(
     argument: typing.Union[Component, Selection],
     *,
     selector: typings.SelectorTyping = "abjad.select().leaves()",
-    tag: str = None,
+    tag: Tag = None,
 ) -> None:
     r"""
     Attaches hairpin indicators.
@@ -1670,7 +1670,7 @@ def horizontal_bracket(
     selector: typings.SelectorTyping = "abjad.select().leaves()",
     start_group: StartGroup = None,
     stop_group: StopGroup = None,
-    tag: str = None,
+    tag: Tag = None,
 ) -> None:
     r"""
     Attaches group indicators.
@@ -1717,7 +1717,7 @@ def ottava(
     selector: typings.SelectorTyping = "abjad.select().leaves()",
     start_ottava: Ottava = Ottava(n=1),
     stop_ottava: Ottava = Ottava(n=0, format_slot="after"),
-    tag: str = None,
+    tag: Tag = None,
 ) -> None:
     r"""
     Attaches ottava indicators.
@@ -1764,7 +1764,7 @@ def phrasing_slur(
     selector: typings.SelectorTyping = "abjad.select().leaves()",
     start_phrasing_slur: StartPhrasingSlur = None,
     stop_phrasing_slur: StopPhrasingSlur = None,
-    tag: str = None,
+    tag: Tag = None,
 ) -> None:
     r"""
     Attaches phrasing slur indicators.
@@ -1814,7 +1814,7 @@ def piano_pedal(
     selector: typings.SelectorTyping = "abjad.select().leaves()",
     start_piano_pedal: StartPianoPedal = None,
     stop_piano_pedal: StopPianoPedal = None,
-    tag: str = None,
+    tag: Tag = None,
 ) -> None:
     r"""
     Attaches piano pedal indicators.
@@ -1868,7 +1868,7 @@ def slur(
     selector: typings.SelectorTyping = "abjad.select().leaves()",
     start_slur: StartSlur = None,
     stop_slur: StopSlur = None,
-    tag: str = None,
+    tag: Tag = None,
 ) -> None:
     r"""
     Attaches slur indicators.
@@ -1916,7 +1916,7 @@ def text_spanner(
     selector: typings.SelectorTyping = "abjad.select().leaves()",
     start_text_span: StartTextSpan = None,
     stop_text_span: StopTextSpan = None,
-    tag: str = None,
+    tag: Tag = None,
 ) -> None:
     r"""
     Attaches text span indicators.
@@ -2103,7 +2103,7 @@ def tie(
     repeat: typing.Union[bool, typings.IntegerPair, DurationInequality] = None,
     selector: typings.SelectorTyping = "abjad.select().leaves()",
     # tie: Tie = None,
-    tag: str = None,
+    tag: Tag = None,
 ) -> None:
     r"""
     Attaches tie indicators.
@@ -2323,7 +2323,7 @@ def trill_spanner(
     selector: typings.SelectorTyping = "abjad.select().leaves()",
     start_trill_span: StartTrillSpan = None,
     stop_trill_span: StopTrillSpan = None,
-    tag: str = None,
+    tag: Tag = None,
 ) -> None:
     r"""
     Attaches trill spanner indicators.

@@ -1,3 +1,4 @@
+from abjad.system.Tag import Tag
 from abjad.utilities.OrderedDict import OrderedDict
 from .ScoreTemplate import ScoreTemplate
 
@@ -15,73 +16,73 @@ class GroupedStavesScoreTemplate(ScoreTemplate):
         ..  docs::
 
             >>> abjad.f(template.__illustrate__()[abjad.Score], strict=60)
-            \context Score = "Grouped_Staves_Score"                     %! abjad.GroupedStavesScoreTemplate.__call__
-            <<                                                          %! abjad.GroupedStavesScoreTemplate.__call__
-                \context StaffGroup = "Grouped_Staves_Staff_Group"      %! abjad.GroupedStavesScoreTemplate.__call__
-                <<                                                      %! abjad.GroupedStavesScoreTemplate.__call__
-                    \context Staff = "Staff_1"                          %! abjad.GroupedStavesScoreTemplate.__call__
-                    {                                                   %! abjad.GroupedStavesScoreTemplate.__call__
-                        \context Voice = "Voice_1"                      %! abjad.GroupedStavesScoreTemplate.__call__
-                        {                                               %! abjad.GroupedStavesScoreTemplate.__call__
-                            s1                                          %! abjad.ScoreTemplate.__illustrate__
-                        }                                               %! abjad.GroupedStavesScoreTemplate.__call__
-                    }                                                   %! abjad.GroupedStavesScoreTemplate.__call__
-                    \context Staff = "Staff_2"                          %! abjad.GroupedStavesScoreTemplate.__call__
-                    {                                                   %! abjad.GroupedStavesScoreTemplate.__call__
-                        \context Voice = "Voice_2"                      %! abjad.GroupedStavesScoreTemplate.__call__
-                        {                                               %! abjad.GroupedStavesScoreTemplate.__call__
-                            s1                                          %! abjad.ScoreTemplate.__illustrate__
-                        }                                               %! abjad.GroupedStavesScoreTemplate.__call__
-                    }                                                   %! abjad.GroupedStavesScoreTemplate.__call__
-                    \context Staff = "Staff_3"                          %! abjad.GroupedStavesScoreTemplate.__call__
-                    {                                                   %! abjad.GroupedStavesScoreTemplate.__call__
-                        \context Voice = "Voice_3"                      %! abjad.GroupedStavesScoreTemplate.__call__
-                        {                                               %! abjad.GroupedStavesScoreTemplate.__call__
-                            s1                                          %! abjad.ScoreTemplate.__illustrate__
-                        }                                               %! abjad.GroupedStavesScoreTemplate.__call__
-                    }                                                   %! abjad.GroupedStavesScoreTemplate.__call__
-                    \context Staff = "Staff_4"                          %! abjad.GroupedStavesScoreTemplate.__call__
-                    {                                                   %! abjad.GroupedStavesScoreTemplate.__call__
-                        \context Voice = "Voice_4"                      %! abjad.GroupedStavesScoreTemplate.__call__
-                        {                                               %! abjad.GroupedStavesScoreTemplate.__call__
-                            s1                                          %! abjad.ScoreTemplate.__illustrate__
-                        }                                               %! abjad.GroupedStavesScoreTemplate.__call__
-                    }                                                   %! abjad.GroupedStavesScoreTemplate.__call__
-                >>                                                      %! abjad.GroupedStavesScoreTemplate.__call__
-            >>                                                          %! abjad.GroupedStavesScoreTemplate.__call__
+            \context Score = "Grouped_Staves_Score"                     %! abjad.GroupedStavesScoreTemplate.__call__()
+            <<                                                          %! abjad.GroupedStavesScoreTemplate.__call__()
+                \context StaffGroup = "Grouped_Staves_Staff_Group"      %! abjad.GroupedStavesScoreTemplate.__call__()
+                <<                                                      %! abjad.GroupedStavesScoreTemplate.__call__()
+                    \context Staff = "Staff_1"                          %! abjad.GroupedStavesScoreTemplate.__call__()
+                    {                                                   %! abjad.GroupedStavesScoreTemplate.__call__()
+                        \context Voice = "Voice_1"                      %! abjad.GroupedStavesScoreTemplate.__call__()
+                        {                                               %! abjad.GroupedStavesScoreTemplate.__call__()
+                            s1                                          %! abjad.ScoreTemplate.__illustrate__()
+                        }                                               %! abjad.GroupedStavesScoreTemplate.__call__()
+                    }                                                   %! abjad.GroupedStavesScoreTemplate.__call__()
+                    \context Staff = "Staff_2"                          %! abjad.GroupedStavesScoreTemplate.__call__()
+                    {                                                   %! abjad.GroupedStavesScoreTemplate.__call__()
+                        \context Voice = "Voice_2"                      %! abjad.GroupedStavesScoreTemplate.__call__()
+                        {                                               %! abjad.GroupedStavesScoreTemplate.__call__()
+                            s1                                          %! abjad.ScoreTemplate.__illustrate__()
+                        }                                               %! abjad.GroupedStavesScoreTemplate.__call__()
+                    }                                                   %! abjad.GroupedStavesScoreTemplate.__call__()
+                    \context Staff = "Staff_3"                          %! abjad.GroupedStavesScoreTemplate.__call__()
+                    {                                                   %! abjad.GroupedStavesScoreTemplate.__call__()
+                        \context Voice = "Voice_3"                      %! abjad.GroupedStavesScoreTemplate.__call__()
+                        {                                               %! abjad.GroupedStavesScoreTemplate.__call__()
+                            s1                                          %! abjad.ScoreTemplate.__illustrate__()
+                        }                                               %! abjad.GroupedStavesScoreTemplate.__call__()
+                    }                                                   %! abjad.GroupedStavesScoreTemplate.__call__()
+                    \context Staff = "Staff_4"                          %! abjad.GroupedStavesScoreTemplate.__call__()
+                    {                                                   %! abjad.GroupedStavesScoreTemplate.__call__()
+                        \context Voice = "Voice_4"                      %! abjad.GroupedStavesScoreTemplate.__call__()
+                        {                                               %! abjad.GroupedStavesScoreTemplate.__call__()
+                            s1                                          %! abjad.ScoreTemplate.__illustrate__()
+                        }                                               %! abjad.GroupedStavesScoreTemplate.__call__()
+                    }                                                   %! abjad.GroupedStavesScoreTemplate.__call__()
+                >>                                                      %! abjad.GroupedStavesScoreTemplate.__call__()
+            >>                                                          %! abjad.GroupedStavesScoreTemplate.__call__()
 
         >>> score = template()
         >>> abjad.f(score, strict=60)
-        \context Score = "Grouped_Staves_Score"                     %! abjad.GroupedStavesScoreTemplate.__call__
-        <<                                                          %! abjad.GroupedStavesScoreTemplate.__call__
-            \context StaffGroup = "Grouped_Staves_Staff_Group"      %! abjad.GroupedStavesScoreTemplate.__call__
-            <<                                                      %! abjad.GroupedStavesScoreTemplate.__call__
-                \context Staff = "Staff_1"                          %! abjad.GroupedStavesScoreTemplate.__call__
-                {                                                   %! abjad.GroupedStavesScoreTemplate.__call__
-                    \context Voice = "Voice_1"                      %! abjad.GroupedStavesScoreTemplate.__call__
-                    {                                               %! abjad.GroupedStavesScoreTemplate.__call__
-                    }                                               %! abjad.GroupedStavesScoreTemplate.__call__
-                }                                                   %! abjad.GroupedStavesScoreTemplate.__call__
-                \context Staff = "Staff_2"                          %! abjad.GroupedStavesScoreTemplate.__call__
-                {                                                   %! abjad.GroupedStavesScoreTemplate.__call__
-                    \context Voice = "Voice_2"                      %! abjad.GroupedStavesScoreTemplate.__call__
-                    {                                               %! abjad.GroupedStavesScoreTemplate.__call__
-                    }                                               %! abjad.GroupedStavesScoreTemplate.__call__
-                }                                                   %! abjad.GroupedStavesScoreTemplate.__call__
-                \context Staff = "Staff_3"                          %! abjad.GroupedStavesScoreTemplate.__call__
-                {                                                   %! abjad.GroupedStavesScoreTemplate.__call__
-                    \context Voice = "Voice_3"                      %! abjad.GroupedStavesScoreTemplate.__call__
-                    {                                               %! abjad.GroupedStavesScoreTemplate.__call__
-                    }                                               %! abjad.GroupedStavesScoreTemplate.__call__
-                }                                                   %! abjad.GroupedStavesScoreTemplate.__call__
-                \context Staff = "Staff_4"                          %! abjad.GroupedStavesScoreTemplate.__call__
-                {                                                   %! abjad.GroupedStavesScoreTemplate.__call__
-                    \context Voice = "Voice_4"                      %! abjad.GroupedStavesScoreTemplate.__call__
-                    {                                               %! abjad.GroupedStavesScoreTemplate.__call__
-                    }                                               %! abjad.GroupedStavesScoreTemplate.__call__
-                }                                                   %! abjad.GroupedStavesScoreTemplate.__call__
-            >>                                                      %! abjad.GroupedStavesScoreTemplate.__call__
-        >>                                                          %! abjad.GroupedStavesScoreTemplate.__call__
+        \context Score = "Grouped_Staves_Score"                     %! abjad.GroupedStavesScoreTemplate.__call__()
+        <<                                                          %! abjad.GroupedStavesScoreTemplate.__call__()
+            \context StaffGroup = "Grouped_Staves_Staff_Group"      %! abjad.GroupedStavesScoreTemplate.__call__()
+            <<                                                      %! abjad.GroupedStavesScoreTemplate.__call__()
+                \context Staff = "Staff_1"                          %! abjad.GroupedStavesScoreTemplate.__call__()
+                {                                                   %! abjad.GroupedStavesScoreTemplate.__call__()
+                    \context Voice = "Voice_1"                      %! abjad.GroupedStavesScoreTemplate.__call__()
+                    {                                               %! abjad.GroupedStavesScoreTemplate.__call__()
+                    }                                               %! abjad.GroupedStavesScoreTemplate.__call__()
+                }                                                   %! abjad.GroupedStavesScoreTemplate.__call__()
+                \context Staff = "Staff_2"                          %! abjad.GroupedStavesScoreTemplate.__call__()
+                {                                                   %! abjad.GroupedStavesScoreTemplate.__call__()
+                    \context Voice = "Voice_2"                      %! abjad.GroupedStavesScoreTemplate.__call__()
+                    {                                               %! abjad.GroupedStavesScoreTemplate.__call__()
+                    }                                               %! abjad.GroupedStavesScoreTemplate.__call__()
+                }                                                   %! abjad.GroupedStavesScoreTemplate.__call__()
+                \context Staff = "Staff_3"                          %! abjad.GroupedStavesScoreTemplate.__call__()
+                {                                                   %! abjad.GroupedStavesScoreTemplate.__call__()
+                    \context Voice = "Voice_3"                      %! abjad.GroupedStavesScoreTemplate.__call__()
+                    {                                               %! abjad.GroupedStavesScoreTemplate.__call__()
+                    }                                               %! abjad.GroupedStavesScoreTemplate.__call__()
+                }                                                   %! abjad.GroupedStavesScoreTemplate.__call__()
+                \context Staff = "Staff_4"                          %! abjad.GroupedStavesScoreTemplate.__call__()
+                {                                                   %! abjad.GroupedStavesScoreTemplate.__call__()
+                    \context Voice = "Voice_4"                      %! abjad.GroupedStavesScoreTemplate.__call__()
+                    {                                               %! abjad.GroupedStavesScoreTemplate.__call__()
+                    }                                               %! abjad.GroupedStavesScoreTemplate.__call__()
+                }                                                   %! abjad.GroupedStavesScoreTemplate.__call__()
+            >>                                                      %! abjad.GroupedStavesScoreTemplate.__call__()
+        >>                                                          %! abjad.GroupedStavesScoreTemplate.__call__()
 
     """
 
@@ -106,7 +107,8 @@ class GroupedStavesScoreTemplate(ScoreTemplate):
         import abjad
 
         staves = []
-        tag = "abjad.GroupedStavesScoreTemplate.__call__"
+        site = "abjad.GroupedStavesScoreTemplate.__call__()"
+        tag = Tag(site)
         for index in range(self.staff_count):
             number = index + 1
             voice = abjad.Voice([], name="Voice_{}".format(number), tag=tag)

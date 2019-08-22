@@ -83,7 +83,12 @@ class TimeSignature(object):
 
         >>> staff = abjad.Staff("c'8 d'8 e'8 c'8 d'8 e'8")
         >>> time_signature = abjad.TimeSignature((3, 8))
-        >>> abjad.attach(time_signature, staff[0], context='Score', tag='RED')
+        >>> abjad.attach(
+        ...     time_signature,
+        ...     staff[0],
+        ...     context='Score',
+        ...     tag=abjad.tags.ONLY_PARTS,
+        ... )
         >>> score = abjad.Score([staff])
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -92,7 +97,7 @@ class TimeSignature(object):
         <<
             \new Staff
             {
-                \time 3/8 %! RED
+                \time 3/8 %! +PARTS
                 c'8
                 d'8
                 e'8

@@ -52,7 +52,7 @@ class Leaf(Component):
 
     @abc.abstractmethod
     def __init__(
-        self, written_duration, *, multiplier=None, tag: str = None
+        self, written_duration, *, multiplier=None, tag: Tag = None
     ) -> None:
         Component.__init__(self, tag=tag)
         self._after_grace_container = None

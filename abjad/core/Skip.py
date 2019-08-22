@@ -1,4 +1,5 @@
 from abjad import typings
+from abjad.system.Tag import Tag
 from abjad.top.parse import parse
 from abjad.utilities.Duration import Duration
 from .Leaf import Leaf
@@ -23,7 +24,7 @@ class Skip(Leaf):
 
         Skips can be tagged:
 
-        >>> skip = abjad.Skip('s8.', tag='GLOBAL_SKIP')
+        >>> skip = abjad.Skip('s8.', tag=abjad.Tag('GLOBAL_SKIP'))
         >>> abjad.f(skip)
         s8. %! GLOBAL_SKIP
 
@@ -41,7 +42,7 @@ class Skip(Leaf):
         self,
         *arguments,
         multiplier: typings.DurationTyping = None,
-        tag: str = None,
+        tag: Tag = None,
     ) -> None:
         input_leaf = None
         written_duration = None
