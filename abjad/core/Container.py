@@ -695,7 +695,7 @@ class Container(Component):
             for component in components:
                 if not isinstance(component, Component):
                     message = f"must be component: {component!r}."
-                    raise Exception(component)
+                    raise Exception(message)
         if self._all_are_orphan_components(components):
             self._components = list(components)
             self[:]._set_parents(self)
