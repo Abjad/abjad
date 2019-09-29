@@ -36,7 +36,7 @@ class Ottava(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ("_format_slot", "_n", "_right_broken")
+    __slots__ = ("_format_slot", "_n")
 
     _persistent = True
 
@@ -44,22 +44,13 @@ class Ottava(object):
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        n: int = None,
-        *,
-        format_slot: str = None,
-        right_broken: bool = None,
-    ) -> None:
+    def __init__(self, n: int = None, *, format_slot: str = None) -> None:
         if n is not None:
             assert isinstance(n, int), repr(n)
         self._n = n
         if format_slot is not None:
             assert format_slot in ("before", "after"), repr(format_slot)
         self._format_slot = format_slot
-        if right_broken is not None:
-            right_broken = bool(right_broken)
-        self._right_broken = right_broken
 
     ### SPECIAL METHODS ###
 
@@ -83,7 +74,7 @@ class Ottava(object):
 
     def __repr__(self) -> str:
         """
-        Gets interpreter representation.
+        Delegates to storage format manager.
         """
         return StorageFormatManager(self).get_repr_format()
 
@@ -93,24 +84,12 @@ class Ottava(object):
         bundle = LilyPondFormatBundle()
         n = self.n or 0
         string = rf"\ottava {n}"
-        if self.right_broken:
-            string = self._tag_hide([string])[0]
-
         if self.format_slot in ("before", None):
             bundle.before.commands.append(string)
         else:
             assert self.format_slot == "after"
             bundle.after.commands.append(string)
         return bundle
-
-    @staticmethod
-    def _tag_hide(strings):
-        abjad_tags = Tags()
-        return LilyPondFormatManager.tag(
-            strings,
-            deactivate=False,
-            tag=abjad_tags.HIDE_TO_JOIN_BROKEN_SPANNERS,
-        )
 
     ### PUBLIC PROPERTIES ###
 
@@ -188,35 +167,3 @@ class Ottava(object):
         Class constant.
         """
         return self._persistent
-
-    @property
-    def right_broken(self) -> typing.Optional[bool]:
-        r"""
-        Is true when ottava is right-broken.
-
-        ..  container:: example
-
-            >>> staff = abjad.Staff("c'4 d' e' r")
-            >>> start_ottava = abjad.Ottava(n=1)
-            >>> abjad.attach(start_ottava, staff[0])
-            >>> stop_ottava = abjad.Ottava(
-            ...     n=0,
-            ...     format_slot='after',
-            ...     right_broken=True,
-            ...     )
-            >>> abjad.attach(stop_ottava, staff[-1])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            >>> abjad.f(staff)
-            \new Staff
-            {
-                \ottava 1
-                c'4
-                d'4
-                e'4
-                r4
-                \ottava 0 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-            }
-
-        """
-        return self._right_broken

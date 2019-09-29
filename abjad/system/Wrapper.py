@@ -594,6 +594,61 @@ class Wrapper(object):
         return self._indicator
 
     @property
+    def leaked_start_offset(self):
+        r"""
+        Gets start offset and checks to see whether indicator leaks to the
+        right.
+
+        This is either the wrapper's synthetic offset (if set); or the START
+        offset of the wrapper's component (if indicator DOES NOT leak); or else
+        the STOP offset of the wrapper's component (if indicator DOES leak).
+
+        ..  container:: example
+
+            Start- and stop-text-spans attach to the same leaf. But
+            stop-text-span leaks to the right:
+
+            >>> voice = abjad.Voice("c'2 d'2")
+            >>> start_text_span = abjad.StartTextSpan()
+            >>> abjad.attach(start_text_span, voice[0])
+            >>> stop_text_span = abjad.StopTextSpan(leak=True)
+            >>> abjad.attach(stop_text_span, voice[0])
+            >>> abjad.show(voice) # doctest: +SKIP
+
+            >>> abjad.f(voice)
+            \new Voice
+            {
+                c'2
+                \startTextSpan
+                <> \stopTextSpan
+                d'2
+            }
+
+            Start offset and leaked start offset are the same for
+            start-text-span:
+
+            >>> wrapper = abjad.inspect(voice[0]).wrapper(abjad.StartTextSpan)
+            >>> wrapper.start_offset, wrapper.leaked_start_offset
+            (Offset((0, 1)), Offset((0, 1)))
+
+            Start offset and leaked start offset differ for stop-text-span:
+
+            >>> wrapper = abjad.inspect(voice[0]).wrapper(abjad.StopTextSpan)
+            >>> wrapper.start_offset, wrapper.leaked_start_offset
+            (Offset((0, 1)), Offset((1, 2)))
+
+        Returns offset.
+        """
+        from abjad.top.inspect import inspect
+
+        if self._synthetic_offset is not None:
+            return self._synthetic_offset
+        if not getattr(self.indicator, "leak", False):
+            return inspect(self._component).timespan().start_offset
+        else:
+            return inspect(self._component).timespan().stop_offset
+
+    @property
     def start_offset(self):
         """
         Gets start offset.

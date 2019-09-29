@@ -50,7 +50,7 @@ class RepeatTie(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ("_direction", "_left_broken", "_tweaks")
+    __slots__ = ("_direction", "_tweaks")
 
     _context = "Voice"
 
@@ -64,14 +64,10 @@ class RepeatTie(object):
         self,
         *,
         direction: enums.VerticalAlignment = None,
-        left_broken: bool = None,
         tweaks: LilyPondTweakManager = None,
     ) -> None:
         direction_ = String.to_tridirectional_lilypond_symbol(direction)
         self._direction = direction_
-        if left_broken is not None:
-            left_broken = bool(left_broken)
-        self._left_broken = left_broken
         if tweaks is not None:
             assert isinstance(tweaks, LilyPondTweakManager), repr(tweaks)
         self._tweaks = LilyPondTweakManager.set_tweaks(self, tweaks)
@@ -124,8 +120,6 @@ class RepeatTie(object):
         bundle = LilyPondFormatBundle()
         if self.tweaks:
             strings = self.tweaks._list_format_contributions()
-            if self.left_broken:
-                strings = self._tag_show(strings)
             bundle.after.spanners.extend(strings)
         strings = []
         if self.direction is not None:
@@ -135,8 +129,6 @@ class RepeatTie(object):
             string = r"- \tweak direction #up"
             strings.append(string)
         strings.append(r"\repeatTie")
-        if self.left_broken:
-            strings = self._tag_show(strings)
         bundle.after.spanners.extend(strings)
         return bundle
 
@@ -159,14 +151,6 @@ class RepeatTie(object):
             if staff_position.number == 0:
                 return True
         return False
-
-    @staticmethod
-    def _tag_show(strings):
-        return LilyPondFormatManager.tag(
-            strings,
-            deactivate=True,
-            tag=abjad_tags.SHOW_TO_JOIN_BROKEN_SPANNERS,
-        )
 
     ### PUBLIC PROPERTIES ###
 
@@ -277,33 +261,6 @@ class RepeatTie(object):
 
         """
         return self._direction
-
-    @property
-    def left_broken(self) -> typing.Optional[bool]:
-        r"""
-        Is true when tie is left-broken.
-
-        ..  container:: example
-
-            >>> staff = abjad.Staff("c'4 c' d' d'")
-            >>> repeat_tie = abjad.RepeatTie(left_broken=True)
-            >>> abjad.tweak(repeat_tie).color = 'blue'
-            >>> abjad.attach(repeat_tie, staff[1])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            >>> abjad.f(staff, strict=29)
-            \new Staff
-            {
-                c'4
-                c'4
-            %@% - \tweak color #blue     %! SHOW_TO_JOIN_BROKEN_SPANNERS
-            %@% \repeatTie               %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                d'4
-                d'4
-            }
-
-        """
-        return self._left_broken
 
     @property
     def persistent(self) -> bool:

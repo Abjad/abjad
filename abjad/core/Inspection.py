@@ -399,6 +399,98 @@ class Inspection(object):
             return True
         return False
 
+    def before_grace_container(self) -> typing.Optional[BeforeGraceContainer]:
+        r"""
+        Gets before-grace container attached to leaf.
+
+        ..  container:: example
+
+            REGRESSION. Works with grace notes (and containers):
+
+            >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+            >>> container = abjad.BeforeGraceContainer("cs'16")
+            >>> abjad.attach(container, music_voice[1])
+            >>> container = abjad.on_beat_grace_container(
+            ...     "g'16 gs' a' as'", music_voice[2:3]
+            ... )
+            >>> abjad.attach(abjad.Articulation(">"), container[0])
+            >>> container = abjad.AfterGraceContainer("fs'16")
+            >>> abjad.attach(container, music_voice[3])
+            >>> staff = abjad.Staff([music_voice])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    \context Voice = "Music_Voice"
+                    {
+                        c'4
+                        \grace {
+                            cs'16
+                        }
+                        d'4
+                        <<
+                            \context Voice = "On_Beat_Grace_Container"
+                            {
+                                \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
+                                \slash %! abjad.on_beat_grace_container(2)
+                                \voiceOne %! abjad.on_beat_grace_container(3)
+                                <
+                                    \tweak font-size #0
+                                    \tweak transparent ##t
+                                    e'
+                                    g'
+                                >16
+                                - \accent
+                                [
+                                (
+                                gs'16
+                                a'16
+                                as'16
+                                )
+                                ]
+                            }
+                            \context Voice = "Music_Voice"
+                            {
+                                \voiceTwo %! abjad.on_beat_grace_container(4)
+                                e'4
+                            }
+                        >>
+                        \oneVoice %! abjad.on_beat_grace_container(5)
+                        \afterGrace
+                        f'4
+                        {
+                            fs'16
+                        }
+                    }
+                }
+
+            >>> for component in abjad.select(staff).components():
+            ...     container = abjad.inspect(component).before_grace_container()
+            ...     print(f"{repr(component):30} {repr(container)}")
+            <Staff{1}>                     None
+            <Voice-"Music_Voice"{4}>       None
+            Note("c'4")                    None
+            BeforeGraceContainer("cs'16")        None
+            Note("cs'16")                  None
+            Note("d'4")                    BeforeGraceContainer("cs'16")
+            <<<2>>>                        None
+            OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") None
+            Chord("<e' g'>16")             None
+            Note("gs'16")                  None
+            Note("a'16")                   None
+            Note("as'16")                  None
+            Voice("e'4", name='Music_Voice') None
+            Note("e'4")                    None
+            Note("f'4")                    None
+            AfterGraceContainer("fs'16")   None
+            Note("fs'16")                  None
+
+        """
+        return getattr(self.client, "_before_grace_container", None)
+
     def contents(self,) -> typing.Optional[Selection]:
         r"""
         Gets contents.
@@ -1331,6 +1423,76 @@ class Inspection(object):
             (Note("e'4"), StopTextSpan(command='\\stopTextSpan'))
             (Note("f'4"), StopTextSpan(command='\\stopTextSpan'))
 
+        ..  container:: example
+
+            REGRESSION. Matching start-beam and stop-beam indicators work
+            correctly:
+
+            >>> voice = abjad.Voice("c'8 d'8 e'8 f'8 g'4 a'4")
+            >>> abjad.attach(abjad.StartBeam(), voice[0])
+            >>> abjad.attach(abjad.StopBeam(), voice[3])
+            >>> abjad.show(voice) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(voice)
+                \new Voice
+                {
+                    c'8
+                    [
+                    d'8
+                    e'8
+                    f'8
+                    ]
+                    g'4
+                    a'4
+                }
+
+            >>> for leaf in abjad.select(voice).leaves():
+            ...     start_beam = abjad.inspect(leaf).effective(abjad.StartBeam)
+            ...     stop_beam = abjad.inspect(leaf).effective(abjad.StopBeam)
+            ...     leaf, start_beam, stop_beam
+            (Note("c'8"), StartBeam(), None)
+            (Note("d'8"), StartBeam(), None)
+            (Note("e'8"), StartBeam(), None)
+            (Note("f'8"), StartBeam(), StopBeam())
+            (Note("g'4"), StartBeam(), StopBeam())
+            (Note("a'4"), StartBeam(), StopBeam())
+
+            # TODO: make this work.
+
+        ..  container:: example
+
+            REGRESSION. Bar lines work like this:
+
+            >>> voice = abjad.Voice("c'2 d'2 e'2 f'2")
+            >>> score = abjad.Score([voice])
+            >>> abjad.attach(abjad.BarLine("||"), voice[1])
+            >>> abjad.show(score) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(score)
+                \new Score
+                <<
+                    \new Voice
+                    {
+                        c'2
+                        d'2
+                        \bar "||"
+                        e'2
+                        f'2
+                    }
+                >>
+
+            >>> for leaf in abjad.select(score).leaves():
+            ...     bar_line = abjad.inspect(leaf).effective(abjad.BarLine)
+            ...     leaf, bar_line
+            (Note("c'2"), None)
+            (Note("d'2"), BarLine('||', format_slot='after'))
+            (Note("e'2"), BarLine('||', format_slot='after'))
+            (Note("f'2"), BarLine('||', format_slot='after'))
+
         """
         if not isinstance(self.client, Component):
             raise Exception("can only get effective on components.")
@@ -1665,98 +1827,6 @@ class Inspection(object):
             if isinstance(component, prototype):
                 return True
         return False
-
-    def before_grace_container(self) -> typing.Optional[BeforeGraceContainer]:
-        r"""
-        Gets before-grace container attached to leaf.
-
-        ..  container:: example
-
-            REGRESSION. Works with grace notes (and containers):
-
-            >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
-            >>> container = abjad.BeforeGraceContainer("cs'16")
-            >>> abjad.attach(container, music_voice[1])
-            >>> container = abjad.on_beat_grace_container(
-            ...     "g'16 gs' a' as'", music_voice[2:3]
-            ... )
-            >>> abjad.attach(abjad.Articulation(">"), container[0])
-            >>> container = abjad.AfterGraceContainer("fs'16")
-            >>> abjad.attach(container, music_voice[3])
-            >>> staff = abjad.Staff([music_voice])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    \context Voice = "Music_Voice"
-                    {
-                        c'4
-                        \grace {
-                            cs'16
-                        }
-                        d'4
-                        <<
-                            \context Voice = "On_Beat_Grace_Container"
-                            {
-                                \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
-                                \slash %! abjad.on_beat_grace_container(2)
-                                \voiceOne %! abjad.on_beat_grace_container(3)
-                                <
-                                    \tweak font-size #0
-                                    \tweak transparent ##t
-                                    e'
-                                    g'
-                                >16
-                                - \accent
-                                [
-                                (
-                                gs'16
-                                a'16
-                                as'16
-                                )
-                                ]
-                            }
-                            \context Voice = "Music_Voice"
-                            {
-                                \voiceTwo %! abjad.on_beat_grace_container(4)
-                                e'4
-                            }
-                        >>
-                        \oneVoice %! abjad.on_beat_grace_container(5)
-                        \afterGrace
-                        f'4
-                        {
-                            fs'16
-                        }
-                    }
-                }
-
-            >>> for component in abjad.select(staff).components():
-            ...     container = abjad.inspect(component).before_grace_container()
-            ...     print(f"{repr(component):30} {repr(container)}")
-            <Staff{1}>                     None
-            <Voice-"Music_Voice"{4}>       None
-            Note("c'4")                    None
-            BeforeGraceContainer("cs'16")        None
-            Note("cs'16")                  None
-            Note("d'4")                    BeforeGraceContainer("cs'16")
-            <<<2>>>                        None
-            OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") None
-            Chord("<e' g'>16")             None
-            Note("gs'16")                  None
-            Note("a'16")                   None
-            Note("as'16")                  None
-            Voice("e'4", name='Music_Voice') None
-            Note("e'4")                    None
-            Note("f'4")                    None
-            AfterGraceContainer("fs'16")   None
-            Note("fs'16")                  None
-
-        """
-        return getattr(self.client, "_before_grace_container", None)
 
     def has_effective_indicator(
         self,
@@ -3681,16 +3751,10 @@ class Inspection(object):
 
     def tabulate_wellformedness(
         self,
-        allow_percussion_clef: bool = None,
         check_beamed_long_notes: bool = True,
         check_duplicate_ids: bool = True,
         check_empty_containers: bool = True,
-        check_misdurated_measures: bool = True,
-        check_misfilled_measures: bool = True,
-        check_mispitched_ties: bool = True,
-        check_misrepresented_flags: bool = True,
         check_missing_parents: bool = True,
-        check_nested_measures: bool = True,
         check_notes_on_wrong_clef: bool = True,
         check_out_of_range_pitches: bool = True,
         check_overlapping_text_spanners: bool = True,
@@ -3701,7 +3765,7 @@ class Inspection(object):
         r"""
         Tabulates wellformedness.
         """
-        manager = Wellformedness(allow_percussion_clef=allow_percussion_clef)
+        manager = Wellformedness()
         triples = manager(self.client)
         strings = []
         for violators, total, check_name in triples:
@@ -3890,17 +3954,10 @@ class Inspection(object):
 
     def wellformed(
         self,
-        allow_percussion_clef: bool = None,
         check_beamed_long_notes: bool = True,
         check_duplicate_ids: bool = True,
         check_empty_containers: bool = True,
-        check_misdurated_measures: bool = True,
-        check_misfilled_measures: bool = True,
-        check_mismatched_enchained_hairpins: bool = True,
-        check_mispitched_ties: bool = True,
-        check_misrepresented_flags: bool = True,
         check_missing_parents: bool = True,
-        check_nested_measures: bool = True,
         check_notes_on_wrong_clef: bool = True,
         check_out_of_range_pitches: bool = True,
         check_overlapping_text_spanners: bool = True,
@@ -3911,7 +3968,7 @@ class Inspection(object):
         """
         Is true when client is wellformed.
         """
-        manager = Wellformedness(allow_percussion_clef=allow_percussion_clef)
+        manager = Wellformedness()
         for violators, total, check_name in manager(self.client):
             if eval(check_name) is not True:
                 continue

@@ -19,7 +19,7 @@ class StopTrillSpan(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ("_leak", "_right_broken")
+    __slots__ = ("_leak",)
 
     _context = "Voice"
 
@@ -33,21 +33,16 @@ class StopTrillSpan(object):
 
     ### INITIALIZER ###
 
-    def __init__(
-        self, *, leak: bool = None, right_broken: bool = None
-    ) -> None:
+    def __init__(self, *, leak: bool = None) -> None:
         if leak is not None:
             leak = bool(leak)
         self._leak = leak
-        if right_broken is not None:
-            right_broken = bool(right_broken)
-        self._right_broken = right_broken
 
     ### SPECIAL METHODS ###
 
     def __repr__(self) -> str:
         """
-        Gets interpreter representation.
+        Delegates to storage format manager.
         """
         return StorageFormatManager(self).get_repr_format()
 
@@ -56,23 +51,12 @@ class StopTrillSpan(object):
     def _get_lilypond_format_bundle(self, component=None):
         bundle = LilyPondFormatBundle()
         string = r"\stopTrillSpan"
-        if self.right_broken:
-            string = self._tag_hide([string])[0]
         if self.leak:
             string = f"<> {string}"
             bundle.after.leaks.append(string)
         else:
             bundle.after.spanner_stops.append(string)
         return bundle
-
-    @staticmethod
-    def _tag_hide(strings):
-        abjad_tags = Tags()
-        return LilyPondFormatManager.tag(
-            strings,
-            deactivate=False,
-            tag=abjad_tags.HIDE_TO_JOIN_BROKEN_SPANNERS,
-        )
 
     ### PUBLIC PROPERTIES ###
 
@@ -177,34 +161,6 @@ class StopTrillSpan(object):
         Class constant.
         """
         return self._persistent
-
-    @property
-    def right_broken(self) -> typing.Optional[bool]:
-        r"""
-        Is true when stop trill spanner is right-broken.
-
-        ..  container:: example
-
-            >>> staff = abjad.Staff("c'4 d' e' r")
-            >>> start_trill_span = abjad.StartTrillSpan()
-            >>> abjad.attach(start_trill_span, staff[0])
-            >>> stop_trill_span = abjad.StopTrillSpan(right_broken=True)
-            >>> abjad.attach(stop_trill_span, staff[-2])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            >>> abjad.f(staff)
-            \new Staff
-            {
-                c'4
-                \startTrillSpan
-                d'4
-                e'4
-                \stopTrillSpan %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                r4
-            }
-
-        """
-        return self._right_broken
 
     @property
     def spanner_stop(self) -> bool:

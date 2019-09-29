@@ -239,24 +239,26 @@ class Context(Container):
         self._update_now(indicators=True)
         return self._format_component()
 
-    def _get_persistent_wrappers(self, *, omit_with_indicator=None):
-        self._update_now(indicators=True)
+    @staticmethod
+    def _get_persistent_wrappers(
+        *, dependent_wrappers=None, omit_with_indicator=None
+    ):
         wrappers = {}
-        for wrapper in self._dependent_wrappers:
+        for wrapper in dependent_wrappers:
             if wrapper.annotation:
                 continue
             indicator = wrapper.indicator
             if not getattr(indicator, "persistent", False):
                 continue
             assert isinstance(indicator.persistent, bool)
-            is_phantom = False
+            should_omit = False
             if omit_with_indicator is not None:
                 parentage = inspect(wrapper.component).parentage()
                 for component in parentage:
                     if inspect(component).has_indicator(omit_with_indicator):
-                        is_phantom = True
+                        should_omit = True
                         continue
-            if is_phantom:
+            if should_omit:
                 continue
             if hasattr(indicator, "parameter"):
                 key = indicator.parameter
