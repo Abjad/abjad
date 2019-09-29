@@ -113,13 +113,13 @@ def attach(
         ...     abjad.Clef('alto'),
         ...     staff[0],
         ...     deactivate=True,
-        ...     tag='+PARTS_1',
+        ...     tag=abjad.tags.ONLY_PARTS,
         ...     )
         >>> abjad.attach(
         ...     abjad.Clef('tenor'),
         ...     staff[0],
         ...     deactivate=True,
-        ...     tag='+PARTS_2',
+        ...     tag=abjad.tags.ONLY_PARTS,
         ...     )
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -129,8 +129,8 @@ def attach(
             \new Staff
             {
                 \clef "treble"
-            %@% \clef "alto" %! +PARTS_1
-            %@% \clef "tenor" %! +PARTS_2
+            %@% \clef "alto" %! +PARTS
+            %@% \clef "tenor" %! +PARTS
                 c'4
                 d'4
                 e'4
@@ -157,7 +157,7 @@ def attach(
         ...     abjad.Clef('alto'),
         ...     staff[0],
         ...     deactivate=True,
-        ...     tag='+PARTS',
+        ...     tag=abjad.tags.ONLY_PARTS,
         ...     )
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -209,6 +209,14 @@ def attach(
     """
     import abjad
 
+    if isinstance(attachable, abjad.Tag):
+        message = "use the tag=None keyword instead of attach():\n"
+        message += f"   {repr(attachable)}"
+        raise Exception(message)
+
+    if tag is not None and not isinstance(tag, abjad.Tag):
+        raise Exception(f"must be be tag: {repr(tag)}")
+
     if isinstance(attachable, abjad.Multiplier):
         message = "use the Leaf.multiplier property to multiply leaf duration."
         raise Exception(message)
@@ -248,7 +256,7 @@ def attach(
 
     if isinstance(target, abjad.Container):
         acceptable = False
-        if isinstance(attachable, (dict, str, abjad.Wrapper)):
+        if isinstance(attachable, (dict, str, abjad.Tag, abjad.Wrapper)):
             acceptable = True
         if getattr(attachable, "_can_attach_to_containers", False):
             acceptable = True

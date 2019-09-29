@@ -214,13 +214,13 @@ class StartPianoPedal(object):
             >>> abjad.tweak(start_piano_pedal).color = 'blue'
             >>> abjad.f(start_piano_pedal)
             abjad.StartPianoPedal(
-                tweaks=LilyPondTweakManager(('color', 'blue')),
+                tweaks=LilyPondTweakManager(('_literal', None), ('color', 'blue')),
                 )
 
             >>> start_piano_pedal_2 = copy.copy(start_piano_pedal)
             >>> abjad.f(start_piano_pedal_2)
             abjad.StartPianoPedal(
-                tweaks=LilyPondTweakManager(('color', 'blue')),
+                tweaks=LilyPondTweakManager(('_literal', None), ('color', 'blue')),
                 )
 
         """

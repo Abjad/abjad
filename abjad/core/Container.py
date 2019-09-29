@@ -14,6 +14,7 @@ from abjad.top.iterate import iterate
 from abjad.top.mutate import mutate
 from abjad.top.parse import parse
 from abjad.top.select import select
+from abjad.system.Tag import Tag
 from abjad.utilities.Duration import Duration
 from abjad.utilities.Sequence import Sequence
 from .Component import Component
@@ -191,7 +192,7 @@ class Container(Component):
         identifier: str = None,
         simultaneous: bool = None,
         name: str = None,
-        tag: str = None,
+        tag: Tag = None,
     ) -> None:
         components = components or []
         Component.__init__(self, tag=tag)

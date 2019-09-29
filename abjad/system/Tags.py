@@ -1,6 +1,6 @@
 import typing
-from abjad import const
 from abjad.system.StorageFormatManager import StorageFormatManager
+from abjad.system.Tag import Tag
 from abjad.utilities.String import String
 
 
@@ -25,7 +25,7 @@ class Tags(object):
     ..  container:: example
 
         >>> abjad.tags.SHOW_TO_JOIN_BROKEN_SPANNERS
-        'SHOW_TO_JOIN_BROKEN_SPANNERS'
+        Tag('SHOW_TO_JOIN_BROKEN_SPANNERS')
 
     """
 
@@ -34,11 +34,11 @@ class Tags(object):
     __slots__ = ()
 
     _known_tags: tuple = (
-        ### BROKEN SPANNERS ###
-        "HIDE_TO_JOIN_BROKEN_SPANNERS",
-        "SHOW_TO_JOIN_BROKEN_SPANNERS",
-        "RIGHT_BROKEN_BEAM",  # used in figure-maker
-        ### CLEFS ###
+        ### BAR EXTENT ###
+        "EXPLICIT_BAR_EXTENT",
+        "REAPPLIED_BAR_EXTENT",
+        "REDUNDANT_BAR_EXTENT",
+        ### CLEF ###
         "DEFAULT_CLEF",
         "DEFAULT_CLEF_COLOR",
         "DEFAULT_CLEF_COLOR_CANCELLATION",
@@ -55,21 +55,37 @@ class Tags(object):
         "REDUNDANT_CLEF_COLOR",
         "REDUNDANT_CLEF_COLOR_CANCELLATION",
         "REDUNDANT_CLEF_REDRAW_COLOR",
-        ### DOCUMENT COMMANDS ###
+        ### DOCUMENT ANNOTATIONS ###
         "BREAK",
+        "CLOCK_TIME",
         "EMPTY_START_BAR",
-        "EOL_FERMATA",
         "FERMATA_MEASURE",
+        "FIGURE_NAME",
+        "HIDDEN",
+        "INVISIBLE_MUSIC_COLORING",
+        "INVISIBLE_MUSIC_COMMAND",
+        "LOCAL_MEASURE_NUMBER",
+        "MEASURE_NUMBER",
+        "MULTIMEASURE_REST",
+        "NOT_MOL",
+        "NOTE",
+        "ONLY_MOL",
+        "PHANTOM",
+        "REST_VOICE",
         "SHIFTED_CLEF",
-        "TWO_VOICE",
-        "THREE_VOICE",
+        "SKIP",
+        "SPACING",
+        "SPACING_OVERRIDE",
+        "SPACING_COMMAND",
+        "SPACING_OVERRIDE_COMMAND",
+        "STAGE_NUMBER",
         ### DOCUMENT TYPES ###
         "BUILD",
         "FIRST_SEGMENT_DEFAULT",
         "PARTS",
         "SCORE",
         "SEGMENT",
-        ### DYNAMICS ###
+        ### DYNAMIC ###
         "EXPLICIT_DYNAMIC",
         "EXPLICIT_DYNAMIC_COLOR",
         "REAPPLIED_DYNAMIC",
@@ -80,7 +96,7 @@ class Tags(object):
         "FORESHADOW",
         "INCOMPLETE",
         "RECOLLECTION",
-        ### INSTRUMENTS ###
+        ### INSTRUMENT ###
         "DEFAULT_INSTRUMENT",
         "DEFAULT_INSTRUMENT_ALERT",
         "DEFAULT_INSTRUMENT_COLOR",
@@ -122,25 +138,29 @@ class Tags(object):
         "REDUNDANT_MARGIN_MARKUP_COLOR",
         "REDRAWN_REDUNDANT_MARGIN_MARKUP",
         "REDRAWN_REDUNDANT_MARGIN_MARKUP_COLOR",
-        ### METRONOME MARKS ###
+        ### METRONOME MARK ###
         "EXPLICIT_METRONOME_MARK",
         "EXPLICIT_METRONOME_MARK_WITH_COLOR",
         "REAPPLIED_METRONOME_MARK",
         "REAPPLIED_METRONOME_MARK_WITH_COLOR",
         "REDUNDANT_METRONOME_MARK",
         "REDUNDANT_METRONOME_MARK_WITH_COLOR",
-        ### PERSISTENT OVERRIDES ###
+        ### MM SPANNER ###
+        "EOS_STOP_MM_SPANNER",
+        ### PERSISTENT OVERRIDE ###
         "EXPLICIT_PERSISTENT_OVERRIDE",
         "REAPPLIED_PERSISTENT_OVERRIDE",
         "REDUNDANT_PERSISTENT_OVERRIDE",
-        ### PITCH HANDLING ###
-        "ALLOW_OCTAVE",
-        "ALLOW_OUT_OF_RANGE",
-        "ALLOW_REPEAT_PITCH",
-        "DO_NOT_TRANSPOSE",
-        "NOT_YET_PITCHED",
-        "NOT_YET_REGISTERED",
-        "STAFF_POSITION",
+        ### PITCH COLORINGS ###
+        "MOCK_COLORING",
+        "NOT_YET_PITCHED_COLORING",
+        "NOT_YET_REGISTERED_COLORING",
+        "OCTAVE_COLORING",
+        "OUT_OF_RANGE_COLORING",
+        "REPEAT_PITCH_CLASS_COLORING",
+        "TACET_COLORING",
+        ### RHYTHM ###
+        "DURATION_MULTIPLIER",
         ### SPACING SECTION ###
         "EXPLICIT_SPACING_SECTION",
         "EXPLICIT_SPACING_SECTION_COLOR",
@@ -148,6 +168,12 @@ class Tags(object):
         "REAPPLIED_SPACING_SECTION_COLOR",
         "REDUNDANT_SPACING_SECTION",
         "REDUNDANT_SPACING_SECTION_COLOR",
+        ### SPANNERS, BROKEN ###
+        "HIDE_TO_JOIN_BROKEN_SPANNERS",
+        "SHOW_TO_JOIN_BROKEN_SPANNERS",
+        "RIGHT_BROKEN_BEAM",  # used in figure-maker
+        ### SPANNERS, OTHER ###
+        "SPANNER_STOP",
         ### STAFF LINES ###
         "EXPLICIT_STAFF_LINES",
         "EXPLICIT_STAFF_LINES_COLOR",
@@ -155,7 +181,7 @@ class Tags(object):
         "REAPPLIED_STAFF_LINES_COLOR",
         "REDUNDANT_STAFF_LINES",
         "REDUNDANT_STAFF_LINES_COLOR",
-        ### TIME SIGNATURES ###
+        ### TIME SIGNATURE ###
         "EXPLICIT_TIME_SIGNATURE",
         "EXPLICIT_TIME_SIGNATURE_COLOR",
         "REAPPLIED_TIME_SIGNATURE",
@@ -166,25 +192,69 @@ class Tags(object):
 
     ### SPECIAL METHODS ###
 
-    def __getattr__(self, tag: str) -> str:
+    def __getattr__(self, name: str) -> Tag:
         """
-        Gets ``tag``.
+        Gets tag with ``name``.
 
-        Raises attribute error when ``tag`` is unknown.
+        Raises attribute error when ``name`` is unknown.
         """
-        if tag not in self._known_tags:
-            raise AttributeError("unknown tag {!r}.".format(tag))
-        return tag
+        if name not in self._known_tags:
+            raise AttributeError(f"unknown tag {name!r}.")
+        return Tag(name)
 
     def __repr__(self) -> str:
         """
-        Gets interpreter representation.
+        Delegates to storage format manager.
         """
         return StorageFormatManager(self).get_repr_format()
 
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def NOT_PARTS(self):
+        """
+        Not parts.
+        """
+        return Tag("-PARTS")
+
+    @property
+    def NOT_SCORE(self):
+        """
+        Not score.
+        """
+        return Tag("-SCORE")
+
+    @property
+    def NOT_SEGMENT(self):
+        """
+        Not segment.
+        """
+        return Tag("-SEGMENT")
+
+    @property
+    def ONLY_PARTS(self):
+        """
+        Only parts.
+        """
+        return Tag("+PARTS")
+
+    @property
+    def ONLY_SCORE(self):
+        """
+        Only score.
+        """
+        return Tag("+SCORE")
+
+    @property
+    def ONLY_SEGMENT(self):
+        """
+        Only segment.
+        """
+        return Tag("+SEGMENT")
+
     ### PUBLIC METHODS ###
 
-    def clef_color_tags(self, path=None) -> typing.List[str]:
+    def clef_color_tags(self, path=None) -> typing.List[Tag]:
         """
         Gets clef color tags.
 
@@ -193,14 +263,14 @@ class Tags(object):
             >>> for tag in abjad.tags.clef_color_tags():
             ...     tag
             ...
-            'DEFAULT_CLEF_COLOR'
-            'DEFAULT_CLEF_REDRAW_COLOR'
-            'EXPLICIT_CLEF_COLOR'
-            'EXPLICIT_CLEF_REDRAW_COLOR'
-            'REAPPLIED_CLEF_COLOR'
-            'REAPPLIED_CLEF_REDRAW_COLOR'
-            'REDUNDANT_CLEF_COLOR'
-            'REDUNDANT_CLEF_REDRAW_COLOR'
+            Tag('DEFAULT_CLEF_COLOR')
+            Tag('DEFAULT_CLEF_REDRAW_COLOR')
+            Tag('EXPLICIT_CLEF_COLOR')
+            Tag('EXPLICIT_CLEF_REDRAW_COLOR')
+            Tag('REAPPLIED_CLEF_COLOR')
+            Tag('REAPPLIED_CLEF_REDRAW_COLOR')
+            Tag('REDUNDANT_CLEF_COLOR')
+            Tag('REDUNDANT_CLEF_REDRAW_COLOR')
 
         ..  container:: example
 
@@ -210,14 +280,14 @@ class Tags(object):
             >>> for tag in abjad.tags.clef_color_tags(path=path):
             ...     tag
             ...
-            'DEFAULT_CLEF_COLOR'
-            'DEFAULT_CLEF_REDRAW_COLOR'
-            'EXPLICIT_CLEF_COLOR'
-            'EXPLICIT_CLEF_REDRAW_COLOR'
-            'REAPPLIED_CLEF_COLOR'
-            'REAPPLIED_CLEF_REDRAW_COLOR'
-            'REDUNDANT_CLEF_COLOR'
-            'REDUNDANT_CLEF_REDRAW_COLOR'
+            Tag('DEFAULT_CLEF_COLOR')
+            Tag('DEFAULT_CLEF_REDRAW_COLOR')
+            Tag('EXPLICIT_CLEF_COLOR')
+            Tag('EXPLICIT_CLEF_REDRAW_COLOR')
+            Tag('REAPPLIED_CLEF_COLOR')
+            Tag('REAPPLIED_CLEF_REDRAW_COLOR')
+            Tag('REDUNDANT_CLEF_COLOR')
+            Tag('REDUNDANT_CLEF_REDRAW_COLOR')
 
         ..  container:: example
 
@@ -227,14 +297,14 @@ class Tags(object):
             >>> for tag in abjad.tags.clef_color_tags(path=path):
             ...     tag
             ...
-            'DEFAULT_CLEF_COLOR'
-            'DEFAULT_CLEF_REDRAW_COLOR'
-            'EXPLICIT_CLEF_COLOR'
-            'EXPLICIT_CLEF_REDRAW_COLOR'
-            'REAPPLIED_CLEF_COLOR'
-            'REAPPLIED_CLEF_REDRAW_COLOR'
-            'REDUNDANT_CLEF_COLOR'
-            'REDUNDANT_CLEF_REDRAW_COLOR'
+            Tag('DEFAULT_CLEF_COLOR')
+            Tag('DEFAULT_CLEF_REDRAW_COLOR')
+            Tag('EXPLICIT_CLEF_COLOR')
+            Tag('EXPLICIT_CLEF_REDRAW_COLOR')
+            Tag('REAPPLIED_CLEF_COLOR')
+            Tag('REAPPLIED_CLEF_REDRAW_COLOR')
+            Tag('REDUNDANT_CLEF_COLOR')
+            Tag('REDUNDANT_CLEF_REDRAW_COLOR')
 
         ..  container:: example
 
@@ -244,15 +314,15 @@ class Tags(object):
             >>> for tag in abjad.tags.clef_color_tags(path=path):
             ...     tag
             ...
-            'DEFAULT_CLEF_COLOR'
-            'DEFAULT_CLEF_REDRAW_COLOR'
-            'EXPLICIT_CLEF_COLOR'
-            'EXPLICIT_CLEF_REDRAW_COLOR'
-            'REAPPLIED_CLEF_COLOR'
-            'REAPPLIED_CLEF_REDRAW_COLOR'
-            'REDUNDANT_CLEF_COLOR'
-            'REDUNDANT_CLEF_REDRAW_COLOR'
-            'REAPPLIED_CLEF'
+            Tag('DEFAULT_CLEF_COLOR')
+            Tag('DEFAULT_CLEF_REDRAW_COLOR')
+            Tag('EXPLICIT_CLEF_COLOR')
+            Tag('EXPLICIT_CLEF_REDRAW_COLOR')
+            Tag('REAPPLIED_CLEF_COLOR')
+            Tag('REAPPLIED_CLEF_REDRAW_COLOR')
+            Tag('REDUNDANT_CLEF_COLOR')
+            Tag('REDUNDANT_CLEF_REDRAW_COLOR')
+            Tag('REAPPLIED_CLEF')
 
         """
         tags = [
@@ -269,7 +339,7 @@ class Tags(object):
             tags.append(self.REAPPLIED_CLEF)
         return tags
 
-    def documentation_removal_tags(self):
+    def documentation_removal_tags(self) -> typing.List[Tag]:
         """
         Gets documentation removal tags.
 
@@ -278,24 +348,24 @@ class Tags(object):
             >>> for tag in abjad.tags.documentation_removal_tags():
             ...     tag
             ...
-            'CLOCK_TIME'
-            'FIGURE_NAME'
-            'LOCAL_MEASURE_NUMBER'
-            'MEASURE_NUMBER'
-            'SPACING'
-            'STAGE_NUMBER'
+            Tag('CLOCK_TIME')
+            Tag('FIGURE_NAME')
+            Tag('LOCAL_MEASURE_NUMBER')
+            Tag('MEASURE_NUMBER')
+            Tag('SPACING')
+            Tag('STAGE_NUMBER')
 
         """
         return [
-            const.CLOCK_TIME,
-            const.FIGURE_NAME,
-            const.LOCAL_MEASURE_NUMBER,
-            const.MEASURE_NUMBER,
-            const.SPACING,
-            const.STAGE_NUMBER,
+            self.CLOCK_TIME,
+            self.FIGURE_NAME,
+            self.LOCAL_MEASURE_NUMBER,
+            self.MEASURE_NUMBER,
+            self.SPACING,
+            self.STAGE_NUMBER,
         ]
 
-    def dynamic_color_tags(self, path=None) -> typing.List[str]:
+    def dynamic_color_tags(self, path=None) -> typing.List[Tag]:
         """
         Gets dynamic color tags.
 
@@ -304,10 +374,10 @@ class Tags(object):
             >>> for tag in abjad.tags.dynamic_color_tags():
             ...     tag
             ...
-            'EXPLICIT_DYNAMIC_COLOR'
-            'REAPPLIED_DYNAMIC'
-            'REAPPLIED_DYNAMIC_COLOR'
-            'REDUNDANT_DYNAMIC_COLOR'
+            Tag('EXPLICIT_DYNAMIC_COLOR')
+            Tag('REAPPLIED_DYNAMIC')
+            Tag('REAPPLIED_DYNAMIC_COLOR')
+            Tag('REDUNDANT_DYNAMIC_COLOR')
 
         Ignores ``path``.
         """
@@ -318,7 +388,7 @@ class Tags(object):
             self.REDUNDANT_DYNAMIC_COLOR,
         ]
 
-    def instrument_color_tags(self, path=None) -> typing.List[str]:
+    def instrument_color_tags(self, path=None) -> typing.List[Tag]:
         """
         Gets instrument color tags.
 
@@ -327,18 +397,18 @@ class Tags(object):
             >>> for tag in abjad.tags.instrument_color_tags():
             ...     tag
             ...
-            'DEFAULT_INSTRUMENT_ALERT'
-            'DEFAULT_INSTRUMENT_COLOR'
-            'REDRAWN_DEFAULT_INSTRUMENT_COLOR'
-            'EXPLICIT_INSTRUMENT_ALERT'
-            'EXPLICIT_INSTRUMENT_COLOR'
-            'REAPPLIED_INSTRUMENT_COLOR'
-            'REAPPLIED_INSTRUMENT_ALERT'
-            'REDRAWN_EXPLICIT_INSTRUMENT_COLOR'
-            'REDRAWN_REAPPLIED_INSTRUMENT_COLOR'
-            'REDUNDANT_INSTRUMENT_ALERT'
-            'REDUNDANT_INSTRUMENT_COLOR'
-            'REDRAWN_REDUNDANT_INSTRUMENT_COLOR'
+            Tag('DEFAULT_INSTRUMENT_ALERT')
+            Tag('DEFAULT_INSTRUMENT_COLOR')
+            Tag('REDRAWN_DEFAULT_INSTRUMENT_COLOR')
+            Tag('EXPLICIT_INSTRUMENT_ALERT')
+            Tag('EXPLICIT_INSTRUMENT_COLOR')
+            Tag('REAPPLIED_INSTRUMENT_COLOR')
+            Tag('REAPPLIED_INSTRUMENT_ALERT')
+            Tag('REDRAWN_EXPLICIT_INSTRUMENT_COLOR')
+            Tag('REDRAWN_REAPPLIED_INSTRUMENT_COLOR')
+            Tag('REDUNDANT_INSTRUMENT_ALERT')
+            Tag('REDUNDANT_INSTRUMENT_COLOR')
+            Tag('REDRAWN_REDUNDANT_INSTRUMENT_COLOR')
 
         Ignores ``path``.
         """
@@ -357,7 +427,7 @@ class Tags(object):
             self.REDRAWN_REDUNDANT_INSTRUMENT_COLOR,
         ]
 
-    def layout_removal_tags(self):
+    def layout_removal_tags(self) -> typing.List[Tag]:
         """
         Gets layout removal tags.
 
@@ -366,24 +436,24 @@ class Tags(object):
             >>> for tag in abjad.tags.layout_removal_tags():
             ...     tag
             ...
-            'EMPTY_START_BAR'
-            'EXPLICIT_TIME_SIGNATURE_COLOR'
-            'LOCAL_MEASURE_NUMBER'
-            'MEASURE_NUMBER'
-            'REDUNDANT_TIME_SIGNATURE_COLOR'
-            'STAGE_NUMBER'
+            Tag('EMPTY_START_BAR')
+            Tag('EXPLICIT_TIME_SIGNATURE_COLOR')
+            Tag('LOCAL_MEASURE_NUMBER')
+            Tag('MEASURE_NUMBER')
+            Tag('REDUNDANT_TIME_SIGNATURE_COLOR')
+            Tag('STAGE_NUMBER')
 
         """
         return [
             self.EMPTY_START_BAR,
             self.EXPLICIT_TIME_SIGNATURE_COLOR,
-            const.LOCAL_MEASURE_NUMBER,
-            const.MEASURE_NUMBER,
+            self.LOCAL_MEASURE_NUMBER,
+            self.MEASURE_NUMBER,
             self.REDUNDANT_TIME_SIGNATURE_COLOR,
-            const.STAGE_NUMBER,
+            self.STAGE_NUMBER,
         ]
 
-    def margin_markup_color_tags(self, path=None) -> typing.List[str]:
+    def margin_markup_color_tags(self, path=None) -> typing.List[Tag]:
         """
         Gets margin markup color tags.
 
@@ -392,18 +462,18 @@ class Tags(object):
             >>> for tag in abjad.tags.margin_markup_color_tags():
             ...     tag
             ...
-            'DEFAULT_MARGIN_MARKUP_ALERT'
-            'DEFAULT_MARGIN_MARKUP_COLOR'
-            'REDRAWN_DEFAULT_MARGIN_MARKUP_COLOR'
-            'EXPLICIT_MARGIN_MARKUP_ALERT'
-            'EXPLICIT_MARGIN_MARKUP_COLOR'
-            'REAPPLIED_MARGIN_MARKUP_ALERT'
-            'REAPPLIED_MARGIN_MARKUP_COLOR'
-            'REDRAWN_EXPLICIT_MARGIN_MARKUP_COLOR'
-            'REDRAWN_REAPPLIED_MARGIN_MARKUP_COLOR'
-            'REDUNDANT_MARGIN_MARKUP_ALERT'
-            'REDUNDANT_MARGIN_MARKUP_COLOR'
-            'REDRAWN_REDUNDANT_MARGIN_MARKUP_COLOR'
+            Tag('DEFAULT_MARGIN_MARKUP_ALERT')
+            Tag('DEFAULT_MARGIN_MARKUP_COLOR')
+            Tag('REDRAWN_DEFAULT_MARGIN_MARKUP_COLOR')
+            Tag('EXPLICIT_MARGIN_MARKUP_ALERT')
+            Tag('EXPLICIT_MARGIN_MARKUP_COLOR')
+            Tag('REAPPLIED_MARGIN_MARKUP_ALERT')
+            Tag('REAPPLIED_MARGIN_MARKUP_COLOR')
+            Tag('REDRAWN_EXPLICIT_MARGIN_MARKUP_COLOR')
+            Tag('REDRAWN_REAPPLIED_MARGIN_MARKUP_COLOR')
+            Tag('REDUNDANT_MARGIN_MARKUP_ALERT')
+            Tag('REDUNDANT_MARGIN_MARKUP_COLOR')
+            Tag('REDRAWN_REDUNDANT_MARGIN_MARKUP_COLOR')
 
         Ignores ``path``.
         """
@@ -424,7 +494,7 @@ class Tags(object):
 
     def metronome_mark_color_expression_tags(
         self, path=None
-    ) -> typing.List[str]:
+    ) -> typing.List[Tag]:
         """
         Gets metronome mark color expression tags.
 
@@ -433,9 +503,9 @@ class Tags(object):
             >>> for tag in abjad.tags.metronome_mark_color_expression_tags():
             ...     tag
             ...
-            'EXPLICIT_METRONOME_MARK_WITH_COLOR'
-            'REAPPLIED_METRONOME_MARK_WITH_COLOR'
-            'REDUNDANT_METRONOME_MARK_WITH_COLOR'
+            Tag('EXPLICIT_METRONOME_MARK_WITH_COLOR')
+            Tag('REAPPLIED_METRONOME_MARK_WITH_COLOR')
+            Tag('REDUNDANT_METRONOME_MARK_WITH_COLOR')
 
         """
         return [
@@ -446,7 +516,7 @@ class Tags(object):
 
     def metronome_mark_color_suppression_tags(
         self, path=None
-    ) -> typing.List[str]:
+    ) -> typing.List[Tag]:
         """
         Gets metronome mark color suppression tags.
 
@@ -455,14 +525,14 @@ class Tags(object):
             >>> for tag in abjad.tags.metronome_mark_color_suppression_tags():
             ...     tag
             ...
-            'EXPLICIT_METRONOME_MARK'
-            'REDUNDANT_METRONOME_MARK'
+            Tag('EXPLICIT_METRONOME_MARK')
+            Tag('REDUNDANT_METRONOME_MARK')
 
         Ignores ``path``.
         """
         return [self.EXPLICIT_METRONOME_MARK, self.REDUNDANT_METRONOME_MARK]
 
-    def music_annotation_tags(self) -> typing.List[str]:
+    def music_annotation_tags(self) -> typing.List[Tag]:
         """
         Gets music annotation tags.
 
@@ -470,26 +540,32 @@ class Tags(object):
 
             >>> for tag in abjad.tags.music_annotation_tags():
             ...     tag
-            'CLOCK_TIME'
-            'FIGURE_NAME'
-            'LOCAL_MEASURE_NUMBER'
-            'SPACING'
-            'SPACING_OVERRIDE'
-            'STAGE_NUMBER'
+            Tag('CLOCK_TIME')
+            Tag('FIGURE_NAME')
+            Tag('INVISIBLE_MUSIC_COLORING')
+            Tag('LOCAL_MEASURE_NUMBER')
+            Tag('MOCK_COLORING')
+            Tag('NOT_YET_PITCHED_COLORING')
+            Tag('SPACING')
+            Tag('SPACING_OVERRIDE')
+            Tag('STAGE_NUMBER')
 
         """
         return [
-            const.CLOCK_TIME,
-            const.FIGURE_NAME,
-            const.LOCAL_MEASURE_NUMBER,
-            const.SPACING,
-            const.SPACING_OVERRIDE,
-            const.STAGE_NUMBER,
+            self.CLOCK_TIME,
+            self.FIGURE_NAME,
+            self.INVISIBLE_MUSIC_COLORING,
+            self.LOCAL_MEASURE_NUMBER,
+            self.MOCK_COLORING,
+            self.NOT_YET_PITCHED_COLORING,
+            self.SPACING,
+            self.SPACING_OVERRIDE,
+            self.STAGE_NUMBER,
         ]
 
     def persistent_indicator_color_expression_tags(
         self, path=None
-    ) -> typing.List[str]:
+    ) -> typing.List[Tag]:
         """
         Gets persistent indicator color expression tags.
 
@@ -499,51 +575,51 @@ class Tags(object):
             >>> for tag in tags:
             ...     tag
             ...
-            'DEFAULT_CLEF_COLOR'
-            'DEFAULT_CLEF_REDRAW_COLOR'
-            'EXPLICIT_CLEF_COLOR'
-            'EXPLICIT_CLEF_REDRAW_COLOR'
-            'REAPPLIED_CLEF_COLOR'
-            'REAPPLIED_CLEF_REDRAW_COLOR'
-            'REDUNDANT_CLEF_COLOR'
-            'REDUNDANT_CLEF_REDRAW_COLOR'
-            'EXPLICIT_DYNAMIC_COLOR'
-            'REAPPLIED_DYNAMIC'
-            'REAPPLIED_DYNAMIC_COLOR'
-            'REDUNDANT_DYNAMIC_COLOR'
-            'DEFAULT_INSTRUMENT_ALERT'
-            'DEFAULT_INSTRUMENT_COLOR'
-            'REDRAWN_DEFAULT_INSTRUMENT_COLOR'
-            'EXPLICIT_INSTRUMENT_ALERT'
-            'EXPLICIT_INSTRUMENT_COLOR'
-            'REAPPLIED_INSTRUMENT_COLOR'
-            'REAPPLIED_INSTRUMENT_ALERT'
-            'REDRAWN_EXPLICIT_INSTRUMENT_COLOR'
-            'REDRAWN_REAPPLIED_INSTRUMENT_COLOR'
-            'REDUNDANT_INSTRUMENT_ALERT'
-            'REDUNDANT_INSTRUMENT_COLOR'
-            'REDRAWN_REDUNDANT_INSTRUMENT_COLOR'
-            'DEFAULT_MARGIN_MARKUP_ALERT'
-            'DEFAULT_MARGIN_MARKUP_COLOR'
-            'REDRAWN_DEFAULT_MARGIN_MARKUP_COLOR'
-            'EXPLICIT_MARGIN_MARKUP_ALERT'
-            'EXPLICIT_MARGIN_MARKUP_COLOR'
-            'REAPPLIED_MARGIN_MARKUP_ALERT'
-            'REAPPLIED_MARGIN_MARKUP_COLOR'
-            'REDRAWN_EXPLICIT_MARGIN_MARKUP_COLOR'
-            'REDRAWN_REAPPLIED_MARGIN_MARKUP_COLOR'
-            'REDUNDANT_MARGIN_MARKUP_ALERT'
-            'REDUNDANT_MARGIN_MARKUP_COLOR'
-            'REDRAWN_REDUNDANT_MARGIN_MARKUP_COLOR'
-            'EXPLICIT_METRONOME_MARK_WITH_COLOR'
-            'REAPPLIED_METRONOME_MARK_WITH_COLOR'
-            'REDUNDANT_METRONOME_MARK_WITH_COLOR'
-            'EXPLICIT_STAFF_LINES_COLOR'
-            'REAPPLIED_STAFF_LINES_COLOR'
-            'REDUNDANT_STAFF_LINES_COLOR'
-            'EXPLICIT_TIME_SIGNATURE_COLOR'
-            'REAPPLIED_TIME_SIGNATURE_COLOR'
-            'REDUNDANT_TIME_SIGNATURE_COLOR'
+            Tag('DEFAULT_CLEF_COLOR')
+            Tag('DEFAULT_CLEF_REDRAW_COLOR')
+            Tag('EXPLICIT_CLEF_COLOR')
+            Tag('EXPLICIT_CLEF_REDRAW_COLOR')
+            Tag('REAPPLIED_CLEF_COLOR')
+            Tag('REAPPLIED_CLEF_REDRAW_COLOR')
+            Tag('REDUNDANT_CLEF_COLOR')
+            Tag('REDUNDANT_CLEF_REDRAW_COLOR')
+            Tag('EXPLICIT_DYNAMIC_COLOR')
+            Tag('REAPPLIED_DYNAMIC')
+            Tag('REAPPLIED_DYNAMIC_COLOR')
+            Tag('REDUNDANT_DYNAMIC_COLOR')
+            Tag('DEFAULT_INSTRUMENT_ALERT')
+            Tag('DEFAULT_INSTRUMENT_COLOR')
+            Tag('REDRAWN_DEFAULT_INSTRUMENT_COLOR')
+            Tag('EXPLICIT_INSTRUMENT_ALERT')
+            Tag('EXPLICIT_INSTRUMENT_COLOR')
+            Tag('REAPPLIED_INSTRUMENT_COLOR')
+            Tag('REAPPLIED_INSTRUMENT_ALERT')
+            Tag('REDRAWN_EXPLICIT_INSTRUMENT_COLOR')
+            Tag('REDRAWN_REAPPLIED_INSTRUMENT_COLOR')
+            Tag('REDUNDANT_INSTRUMENT_ALERT')
+            Tag('REDUNDANT_INSTRUMENT_COLOR')
+            Tag('REDRAWN_REDUNDANT_INSTRUMENT_COLOR')
+            Tag('DEFAULT_MARGIN_MARKUP_ALERT')
+            Tag('DEFAULT_MARGIN_MARKUP_COLOR')
+            Tag('REDRAWN_DEFAULT_MARGIN_MARKUP_COLOR')
+            Tag('EXPLICIT_MARGIN_MARKUP_ALERT')
+            Tag('EXPLICIT_MARGIN_MARKUP_COLOR')
+            Tag('REAPPLIED_MARGIN_MARKUP_ALERT')
+            Tag('REAPPLIED_MARGIN_MARKUP_COLOR')
+            Tag('REDRAWN_EXPLICIT_MARGIN_MARKUP_COLOR')
+            Tag('REDRAWN_REAPPLIED_MARGIN_MARKUP_COLOR')
+            Tag('REDUNDANT_MARGIN_MARKUP_ALERT')
+            Tag('REDUNDANT_MARGIN_MARKUP_COLOR')
+            Tag('REDRAWN_REDUNDANT_MARGIN_MARKUP_COLOR')
+            Tag('EXPLICIT_METRONOME_MARK_WITH_COLOR')
+            Tag('REAPPLIED_METRONOME_MARK_WITH_COLOR')
+            Tag('REDUNDANT_METRONOME_MARK_WITH_COLOR')
+            Tag('EXPLICIT_STAFF_LINES_COLOR')
+            Tag('REAPPLIED_STAFF_LINES_COLOR')
+            Tag('REDUNDANT_STAFF_LINES_COLOR')
+            Tag('EXPLICIT_TIME_SIGNATURE_COLOR')
+            Tag('REAPPLIED_TIME_SIGNATURE_COLOR')
+            Tag('REDUNDANT_TIME_SIGNATURE_COLOR')
 
         ..  container:: example
 
@@ -554,51 +630,51 @@ class Tags(object):
             >>> for tag in tags:
             ...     tag
             ...
-            'DEFAULT_CLEF_COLOR'
-            'DEFAULT_CLEF_REDRAW_COLOR'
-            'EXPLICIT_CLEF_COLOR'
-            'EXPLICIT_CLEF_REDRAW_COLOR'
-            'REAPPLIED_CLEF_COLOR'
-            'REAPPLIED_CLEF_REDRAW_COLOR'
-            'REDUNDANT_CLEF_COLOR'
-            'REDUNDANT_CLEF_REDRAW_COLOR'
-            'EXPLICIT_DYNAMIC_COLOR'
-            'REAPPLIED_DYNAMIC'
-            'REAPPLIED_DYNAMIC_COLOR'
-            'REDUNDANT_DYNAMIC_COLOR'
-            'DEFAULT_INSTRUMENT_ALERT'
-            'DEFAULT_INSTRUMENT_COLOR'
-            'REDRAWN_DEFAULT_INSTRUMENT_COLOR'
-            'EXPLICIT_INSTRUMENT_ALERT'
-            'EXPLICIT_INSTRUMENT_COLOR'
-            'REAPPLIED_INSTRUMENT_COLOR'
-            'REAPPLIED_INSTRUMENT_ALERT'
-            'REDRAWN_EXPLICIT_INSTRUMENT_COLOR'
-            'REDRAWN_REAPPLIED_INSTRUMENT_COLOR'
-            'REDUNDANT_INSTRUMENT_ALERT'
-            'REDUNDANT_INSTRUMENT_COLOR'
-            'REDRAWN_REDUNDANT_INSTRUMENT_COLOR'
-            'DEFAULT_MARGIN_MARKUP_ALERT'
-            'DEFAULT_MARGIN_MARKUP_COLOR'
-            'REDRAWN_DEFAULT_MARGIN_MARKUP_COLOR'
-            'EXPLICIT_MARGIN_MARKUP_ALERT'
-            'EXPLICIT_MARGIN_MARKUP_COLOR'
-            'REAPPLIED_MARGIN_MARKUP_ALERT'
-            'REAPPLIED_MARGIN_MARKUP_COLOR'
-            'REDRAWN_EXPLICIT_MARGIN_MARKUP_COLOR'
-            'REDRAWN_REAPPLIED_MARGIN_MARKUP_COLOR'
-            'REDUNDANT_MARGIN_MARKUP_ALERT'
-            'REDUNDANT_MARGIN_MARKUP_COLOR'
-            'REDRAWN_REDUNDANT_MARGIN_MARKUP_COLOR'
-            'EXPLICIT_METRONOME_MARK_WITH_COLOR'
-            'REAPPLIED_METRONOME_MARK_WITH_COLOR'
-            'REDUNDANT_METRONOME_MARK_WITH_COLOR'
-            'EXPLICIT_STAFF_LINES_COLOR'
-            'REAPPLIED_STAFF_LINES_COLOR'
-            'REDUNDANT_STAFF_LINES_COLOR'
-            'EXPLICIT_TIME_SIGNATURE_COLOR'
-            'REAPPLIED_TIME_SIGNATURE_COLOR'
-            'REDUNDANT_TIME_SIGNATURE_COLOR'
+            Tag('DEFAULT_CLEF_COLOR')
+            Tag('DEFAULT_CLEF_REDRAW_COLOR')
+            Tag('EXPLICIT_CLEF_COLOR')
+            Tag('EXPLICIT_CLEF_REDRAW_COLOR')
+            Tag('REAPPLIED_CLEF_COLOR')
+            Tag('REAPPLIED_CLEF_REDRAW_COLOR')
+            Tag('REDUNDANT_CLEF_COLOR')
+            Tag('REDUNDANT_CLEF_REDRAW_COLOR')
+            Tag('EXPLICIT_DYNAMIC_COLOR')
+            Tag('REAPPLIED_DYNAMIC')
+            Tag('REAPPLIED_DYNAMIC_COLOR')
+            Tag('REDUNDANT_DYNAMIC_COLOR')
+            Tag('DEFAULT_INSTRUMENT_ALERT')
+            Tag('DEFAULT_INSTRUMENT_COLOR')
+            Tag('REDRAWN_DEFAULT_INSTRUMENT_COLOR')
+            Tag('EXPLICIT_INSTRUMENT_ALERT')
+            Tag('EXPLICIT_INSTRUMENT_COLOR')
+            Tag('REAPPLIED_INSTRUMENT_COLOR')
+            Tag('REAPPLIED_INSTRUMENT_ALERT')
+            Tag('REDRAWN_EXPLICIT_INSTRUMENT_COLOR')
+            Tag('REDRAWN_REAPPLIED_INSTRUMENT_COLOR')
+            Tag('REDUNDANT_INSTRUMENT_ALERT')
+            Tag('REDUNDANT_INSTRUMENT_COLOR')
+            Tag('REDRAWN_REDUNDANT_INSTRUMENT_COLOR')
+            Tag('DEFAULT_MARGIN_MARKUP_ALERT')
+            Tag('DEFAULT_MARGIN_MARKUP_COLOR')
+            Tag('REDRAWN_DEFAULT_MARGIN_MARKUP_COLOR')
+            Tag('EXPLICIT_MARGIN_MARKUP_ALERT')
+            Tag('EXPLICIT_MARGIN_MARKUP_COLOR')
+            Tag('REAPPLIED_MARGIN_MARKUP_ALERT')
+            Tag('REAPPLIED_MARGIN_MARKUP_COLOR')
+            Tag('REDRAWN_EXPLICIT_MARGIN_MARKUP_COLOR')
+            Tag('REDRAWN_REAPPLIED_MARGIN_MARKUP_COLOR')
+            Tag('REDUNDANT_MARGIN_MARKUP_ALERT')
+            Tag('REDUNDANT_MARGIN_MARKUP_COLOR')
+            Tag('REDRAWN_REDUNDANT_MARGIN_MARKUP_COLOR')
+            Tag('EXPLICIT_METRONOME_MARK_WITH_COLOR')
+            Tag('REAPPLIED_METRONOME_MARK_WITH_COLOR')
+            Tag('REDUNDANT_METRONOME_MARK_WITH_COLOR')
+            Tag('EXPLICIT_STAFF_LINES_COLOR')
+            Tag('REAPPLIED_STAFF_LINES_COLOR')
+            Tag('REDUNDANT_STAFF_LINES_COLOR')
+            Tag('EXPLICIT_TIME_SIGNATURE_COLOR')
+            Tag('REAPPLIED_TIME_SIGNATURE_COLOR')
+            Tag('REDUNDANT_TIME_SIGNATURE_COLOR')
 
         ..  container:: example
 
@@ -609,53 +685,53 @@ class Tags(object):
             >>> for tag in tags:
             ...     tag
             ...
-            'DEFAULT_CLEF_COLOR'
-            'DEFAULT_CLEF_REDRAW_COLOR'
-            'EXPLICIT_CLEF_COLOR'
-            'EXPLICIT_CLEF_REDRAW_COLOR'
-            'REAPPLIED_CLEF_COLOR'
-            'REAPPLIED_CLEF_REDRAW_COLOR'
-            'REDUNDANT_CLEF_COLOR'
-            'REDUNDANT_CLEF_REDRAW_COLOR'
-            'EXPLICIT_DYNAMIC_COLOR'
-            'REAPPLIED_DYNAMIC'
-            'REAPPLIED_DYNAMIC_COLOR'
-            'REDUNDANT_DYNAMIC_COLOR'
-            'DEFAULT_INSTRUMENT_ALERT'
-            'DEFAULT_INSTRUMENT_COLOR'
-            'REDRAWN_DEFAULT_INSTRUMENT_COLOR'
-            'EXPLICIT_INSTRUMENT_ALERT'
-            'EXPLICIT_INSTRUMENT_COLOR'
-            'REAPPLIED_INSTRUMENT_COLOR'
-            'REAPPLIED_INSTRUMENT_ALERT'
-            'REDRAWN_EXPLICIT_INSTRUMENT_COLOR'
-            'REDRAWN_REAPPLIED_INSTRUMENT_COLOR'
-            'REDUNDANT_INSTRUMENT_ALERT'
-            'REDUNDANT_INSTRUMENT_COLOR'
-            'REDRAWN_REDUNDANT_INSTRUMENT_COLOR'
-            'DEFAULT_MARGIN_MARKUP_ALERT'
-            'DEFAULT_MARGIN_MARKUP_COLOR'
-            'REDRAWN_DEFAULT_MARGIN_MARKUP_COLOR'
-            'EXPLICIT_MARGIN_MARKUP_ALERT'
-            'EXPLICIT_MARGIN_MARKUP_COLOR'
-            'REAPPLIED_MARGIN_MARKUP_ALERT'
-            'REAPPLIED_MARGIN_MARKUP_COLOR'
-            'REDRAWN_EXPLICIT_MARGIN_MARKUP_COLOR'
-            'REDRAWN_REAPPLIED_MARGIN_MARKUP_COLOR'
-            'REDUNDANT_MARGIN_MARKUP_ALERT'
-            'REDUNDANT_MARGIN_MARKUP_COLOR'
-            'REDRAWN_REDUNDANT_MARGIN_MARKUP_COLOR'
-            'EXPLICIT_METRONOME_MARK_WITH_COLOR'
-            'REAPPLIED_METRONOME_MARK_WITH_COLOR'
-            'REDUNDANT_METRONOME_MARK_WITH_COLOR'
-            'EXPLICIT_STAFF_LINES_COLOR'
-            'REAPPLIED_STAFF_LINES_COLOR'
-            'REDUNDANT_STAFF_LINES_COLOR'
-            'REAPPLIED_STAFF_LINES'
-            'EXPLICIT_TIME_SIGNATURE_COLOR'
-            'REAPPLIED_TIME_SIGNATURE_COLOR'
-            'REDUNDANT_TIME_SIGNATURE_COLOR'
-            'REAPPLIED_TIME_SIGNATURE'
+            Tag('DEFAULT_CLEF_COLOR')
+            Tag('DEFAULT_CLEF_REDRAW_COLOR')
+            Tag('EXPLICIT_CLEF_COLOR')
+            Tag('EXPLICIT_CLEF_REDRAW_COLOR')
+            Tag('REAPPLIED_CLEF_COLOR')
+            Tag('REAPPLIED_CLEF_REDRAW_COLOR')
+            Tag('REDUNDANT_CLEF_COLOR')
+            Tag('REDUNDANT_CLEF_REDRAW_COLOR')
+            Tag('EXPLICIT_DYNAMIC_COLOR')
+            Tag('REAPPLIED_DYNAMIC')
+            Tag('REAPPLIED_DYNAMIC_COLOR')
+            Tag('REDUNDANT_DYNAMIC_COLOR')
+            Tag('DEFAULT_INSTRUMENT_ALERT')
+            Tag('DEFAULT_INSTRUMENT_COLOR')
+            Tag('REDRAWN_DEFAULT_INSTRUMENT_COLOR')
+            Tag('EXPLICIT_INSTRUMENT_ALERT')
+            Tag('EXPLICIT_INSTRUMENT_COLOR')
+            Tag('REAPPLIED_INSTRUMENT_COLOR')
+            Tag('REAPPLIED_INSTRUMENT_ALERT')
+            Tag('REDRAWN_EXPLICIT_INSTRUMENT_COLOR')
+            Tag('REDRAWN_REAPPLIED_INSTRUMENT_COLOR')
+            Tag('REDUNDANT_INSTRUMENT_ALERT')
+            Tag('REDUNDANT_INSTRUMENT_COLOR')
+            Tag('REDRAWN_REDUNDANT_INSTRUMENT_COLOR')
+            Tag('DEFAULT_MARGIN_MARKUP_ALERT')
+            Tag('DEFAULT_MARGIN_MARKUP_COLOR')
+            Tag('REDRAWN_DEFAULT_MARGIN_MARKUP_COLOR')
+            Tag('EXPLICIT_MARGIN_MARKUP_ALERT')
+            Tag('EXPLICIT_MARGIN_MARKUP_COLOR')
+            Tag('REAPPLIED_MARGIN_MARKUP_ALERT')
+            Tag('REAPPLIED_MARGIN_MARKUP_COLOR')
+            Tag('REDRAWN_EXPLICIT_MARGIN_MARKUP_COLOR')
+            Tag('REDRAWN_REAPPLIED_MARGIN_MARKUP_COLOR')
+            Tag('REDUNDANT_MARGIN_MARKUP_ALERT')
+            Tag('REDUNDANT_MARGIN_MARKUP_COLOR')
+            Tag('REDRAWN_REDUNDANT_MARGIN_MARKUP_COLOR')
+            Tag('EXPLICIT_METRONOME_MARK_WITH_COLOR')
+            Tag('REAPPLIED_METRONOME_MARK_WITH_COLOR')
+            Tag('REDUNDANT_METRONOME_MARK_WITH_COLOR')
+            Tag('EXPLICIT_STAFF_LINES_COLOR')
+            Tag('REAPPLIED_STAFF_LINES_COLOR')
+            Tag('REDUNDANT_STAFF_LINES_COLOR')
+            Tag('REAPPLIED_STAFF_LINES')
+            Tag('EXPLICIT_TIME_SIGNATURE_COLOR')
+            Tag('REAPPLIED_TIME_SIGNATURE_COLOR')
+            Tag('REDUNDANT_TIME_SIGNATURE_COLOR')
+            Tag('REAPPLIED_TIME_SIGNATURE')
 
         ..  container:: example
 
@@ -666,57 +742,57 @@ class Tags(object):
             >>> for tag in tags:
             ...     tag
             ...
-            'DEFAULT_CLEF_COLOR'
-            'DEFAULT_CLEF_REDRAW_COLOR'
-            'EXPLICIT_CLEF_COLOR'
-            'EXPLICIT_CLEF_REDRAW_COLOR'
-            'REAPPLIED_CLEF_COLOR'
-            'REAPPLIED_CLEF_REDRAW_COLOR'
-            'REDUNDANT_CLEF_COLOR'
-            'REDUNDANT_CLEF_REDRAW_COLOR'
-            'REAPPLIED_CLEF'
-            'EXPLICIT_DYNAMIC_COLOR'
-            'REAPPLIED_DYNAMIC'
-            'REAPPLIED_DYNAMIC_COLOR'
-            'REDUNDANT_DYNAMIC_COLOR'
-            'DEFAULT_INSTRUMENT_ALERT'
-            'DEFAULT_INSTRUMENT_COLOR'
-            'REDRAWN_DEFAULT_INSTRUMENT_COLOR'
-            'EXPLICIT_INSTRUMENT_ALERT'
-            'EXPLICIT_INSTRUMENT_COLOR'
-            'REAPPLIED_INSTRUMENT_COLOR'
-            'REAPPLIED_INSTRUMENT_ALERT'
-            'REDRAWN_EXPLICIT_INSTRUMENT_COLOR'
-            'REDRAWN_REAPPLIED_INSTRUMENT_COLOR'
-            'REDUNDANT_INSTRUMENT_ALERT'
-            'REDUNDANT_INSTRUMENT_COLOR'
-            'REDRAWN_REDUNDANT_INSTRUMENT_COLOR'
-            'DEFAULT_MARGIN_MARKUP_ALERT'
-            'DEFAULT_MARGIN_MARKUP_COLOR'
-            'REDRAWN_DEFAULT_MARGIN_MARKUP_COLOR'
-            'EXPLICIT_MARGIN_MARKUP_ALERT'
-            'EXPLICIT_MARGIN_MARKUP_COLOR'
-            'REAPPLIED_MARGIN_MARKUP_ALERT'
-            'REAPPLIED_MARGIN_MARKUP_COLOR'
-            'REDRAWN_EXPLICIT_MARGIN_MARKUP_COLOR'
-            'REDRAWN_REAPPLIED_MARGIN_MARKUP_COLOR'
-            'REDUNDANT_MARGIN_MARKUP_ALERT'
-            'REDUNDANT_MARGIN_MARKUP_COLOR'
-            'REDRAWN_REDUNDANT_MARGIN_MARKUP_COLOR'
-            'EXPLICIT_METRONOME_MARK_WITH_COLOR'
-            'REAPPLIED_METRONOME_MARK_WITH_COLOR'
-            'REDUNDANT_METRONOME_MARK_WITH_COLOR'
-            'EXPLICIT_STAFF_LINES_COLOR'
-            'REAPPLIED_STAFF_LINES_COLOR'
-            'REDUNDANT_STAFF_LINES_COLOR'
-            'REAPPLIED_STAFF_LINES'
-            'EXPLICIT_TIME_SIGNATURE_COLOR'
-            'REAPPLIED_TIME_SIGNATURE_COLOR'
-            'REDUNDANT_TIME_SIGNATURE_COLOR'
-            'REAPPLIED_TIME_SIGNATURE'
+            Tag('DEFAULT_CLEF_COLOR')
+            Tag('DEFAULT_CLEF_REDRAW_COLOR')
+            Tag('EXPLICIT_CLEF_COLOR')
+            Tag('EXPLICIT_CLEF_REDRAW_COLOR')
+            Tag('REAPPLIED_CLEF_COLOR')
+            Tag('REAPPLIED_CLEF_REDRAW_COLOR')
+            Tag('REDUNDANT_CLEF_COLOR')
+            Tag('REDUNDANT_CLEF_REDRAW_COLOR')
+            Tag('REAPPLIED_CLEF')
+            Tag('EXPLICIT_DYNAMIC_COLOR')
+            Tag('REAPPLIED_DYNAMIC')
+            Tag('REAPPLIED_DYNAMIC_COLOR')
+            Tag('REDUNDANT_DYNAMIC_COLOR')
+            Tag('DEFAULT_INSTRUMENT_ALERT')
+            Tag('DEFAULT_INSTRUMENT_COLOR')
+            Tag('REDRAWN_DEFAULT_INSTRUMENT_COLOR')
+            Tag('EXPLICIT_INSTRUMENT_ALERT')
+            Tag('EXPLICIT_INSTRUMENT_COLOR')
+            Tag('REAPPLIED_INSTRUMENT_COLOR')
+            Tag('REAPPLIED_INSTRUMENT_ALERT')
+            Tag('REDRAWN_EXPLICIT_INSTRUMENT_COLOR')
+            Tag('REDRAWN_REAPPLIED_INSTRUMENT_COLOR')
+            Tag('REDUNDANT_INSTRUMENT_ALERT')
+            Tag('REDUNDANT_INSTRUMENT_COLOR')
+            Tag('REDRAWN_REDUNDANT_INSTRUMENT_COLOR')
+            Tag('DEFAULT_MARGIN_MARKUP_ALERT')
+            Tag('DEFAULT_MARGIN_MARKUP_COLOR')
+            Tag('REDRAWN_DEFAULT_MARGIN_MARKUP_COLOR')
+            Tag('EXPLICIT_MARGIN_MARKUP_ALERT')
+            Tag('EXPLICIT_MARGIN_MARKUP_COLOR')
+            Tag('REAPPLIED_MARGIN_MARKUP_ALERT')
+            Tag('REAPPLIED_MARGIN_MARKUP_COLOR')
+            Tag('REDRAWN_EXPLICIT_MARGIN_MARKUP_COLOR')
+            Tag('REDRAWN_REAPPLIED_MARGIN_MARKUP_COLOR')
+            Tag('REDUNDANT_MARGIN_MARKUP_ALERT')
+            Tag('REDUNDANT_MARGIN_MARKUP_COLOR')
+            Tag('REDRAWN_REDUNDANT_MARGIN_MARKUP_COLOR')
+            Tag('EXPLICIT_METRONOME_MARK_WITH_COLOR')
+            Tag('REAPPLIED_METRONOME_MARK_WITH_COLOR')
+            Tag('REDUNDANT_METRONOME_MARK_WITH_COLOR')
+            Tag('EXPLICIT_STAFF_LINES_COLOR')
+            Tag('REAPPLIED_STAFF_LINES_COLOR')
+            Tag('REDUNDANT_STAFF_LINES_COLOR')
+            Tag('REAPPLIED_STAFF_LINES')
+            Tag('EXPLICIT_TIME_SIGNATURE_COLOR')
+            Tag('REAPPLIED_TIME_SIGNATURE_COLOR')
+            Tag('REDUNDANT_TIME_SIGNATURE_COLOR')
+            Tag('REAPPLIED_TIME_SIGNATURE')
 
         """
-        tags: typing.List[str] = []
+        tags: typing.List[Tag] = []
         tags.extend(self.clef_color_tags(path))
         tags.extend(self.dynamic_color_tags(path))
         tags.extend(self.instrument_color_tags(path))
@@ -728,7 +804,7 @@ class Tags(object):
 
     def persistent_indicator_color_suppression_tags(
         self, path=None
-    ) -> typing.List[str]:
+    ) -> typing.List[Tag]:
         """
         Gets persistent indicator color suppression tags.
 
@@ -738,8 +814,8 @@ class Tags(object):
             >>> for tag in tags:
             ...     tag
             ...
-            'EXPLICIT_METRONOME_MARK'
-            'REDUNDANT_METRONOME_MARK'
+            Tag('EXPLICIT_METRONOME_MARK')
+            Tag('REDUNDANT_METRONOME_MARK')
 
         ..  container:: example
 
@@ -750,8 +826,8 @@ class Tags(object):
             >>> for tag in tags:
             ...     tag
             ...
-            'EXPLICIT_METRONOME_MARK'
-            'REDUNDANT_METRONOME_MARK'
+            Tag('EXPLICIT_METRONOME_MARK')
+            Tag('REDUNDANT_METRONOME_MARK')
 
         ..  container:: example
 
@@ -762,50 +838,50 @@ class Tags(object):
             >>> for tag in tags:
             ...     tag
             ...
-            'EXPLICIT_METRONOME_MARK'
-            'REDUNDANT_METRONOME_MARK'
+            Tag('EXPLICIT_METRONOME_MARK')
+            Tag('REDUNDANT_METRONOME_MARK')
 
         """
-        tags: typing.List[str] = []
+        tags: typing.List[Tag] = []
         tags.extend(self.metronome_mark_color_suppression_tags())
         return tags
 
-    def persistent_indicator_tags(self) -> typing.List[str]:
+    def persistent_indicator_tags(self) -> typing.List[Tag]:
         """
         Gets persistence tags.
 
         ..  container:: example
 
-            >>> for string in abjad.tags.persistent_indicator_tags():
-            ...     string
+            >>> for tag in abjad.tags.persistent_indicator_tags():
+            ...     tag
             ...
-            'DEFAULT_CLEF'
-            'EXPLICIT_CLEF'
-            'REAPPLIED_CLEF'
-            'REDUNDANT_CLEF'
-            'EXPLICIT_DYNAMIC'
-            'REAPPLIED_DYNAMIC'
-            'REDUNDANT_DYNAMIC'
-            'DEFAULT_INSTRUMENT'
-            'EXPLICIT_INSTRUMENT'
-            'REAPPLIED_INSTRUMENT'
-            'REDUNDANT_INSTRUMENT'
-            'DEFAULT_MARGIN_MARKUP'
-            'EXPLICIT_MARGIN_MARKUP'
-            'REAPPLIED_MARGIN_MARKUP'
-            'REDUNDANT_MARGIN_MARKUP'
-            'EXPLICIT_METRONOME_MARK'
-            'REAPPLIED_METRONOME_MARK'
-            'REDUNDANT_METRONOME_MARK'
-            'EXPLICIT_PERSISTENT_OVERRIDE'
-            'REAPPLIED_PERSISTENT_OVERRIDE'
-            'REDUNDANT_PERSISTENT_OVERRIDE'
-            'EXPLICIT_STAFF_LINES'
-            'REAPPLIED_STAFF_LINES'
-            'REDUNDANT_STAFF_LINES'
-            'EXPLICIT_TIME_SIGNATURE'
-            'REAPPLIED_TIME_SIGNATURE'
-            'REDUNDANT_TIME_SIGNATURE'
+            Tag('DEFAULT_CLEF')
+            Tag('EXPLICIT_CLEF')
+            Tag('REAPPLIED_CLEF')
+            Tag('REDUNDANT_CLEF')
+            Tag('EXPLICIT_DYNAMIC')
+            Tag('REAPPLIED_DYNAMIC')
+            Tag('REDUNDANT_DYNAMIC')
+            Tag('DEFAULT_INSTRUMENT')
+            Tag('EXPLICIT_INSTRUMENT')
+            Tag('REAPPLIED_INSTRUMENT')
+            Tag('REDUNDANT_INSTRUMENT')
+            Tag('DEFAULT_MARGIN_MARKUP')
+            Tag('EXPLICIT_MARGIN_MARKUP')
+            Tag('REAPPLIED_MARGIN_MARKUP')
+            Tag('REDUNDANT_MARGIN_MARKUP')
+            Tag('EXPLICIT_METRONOME_MARK')
+            Tag('REAPPLIED_METRONOME_MARK')
+            Tag('REDUNDANT_METRONOME_MARK')
+            Tag('EXPLICIT_PERSISTENT_OVERRIDE')
+            Tag('REAPPLIED_PERSISTENT_OVERRIDE')
+            Tag('REDUNDANT_PERSISTENT_OVERRIDE')
+            Tag('EXPLICIT_STAFF_LINES')
+            Tag('REAPPLIED_STAFF_LINES')
+            Tag('REDUNDANT_STAFF_LINES')
+            Tag('EXPLICIT_TIME_SIGNATURE')
+            Tag('REAPPLIED_TIME_SIGNATURE')
+            Tag('REDUNDANT_TIME_SIGNATURE')
 
         """
         return [
@@ -846,7 +922,7 @@ class Tags(object):
             #
         ]
 
-    def spacing_markup_tags(self) -> typing.List[str]:
+    def spacing_markup_tags(self) -> typing.List[Tag]:
         """
         Gets markup spacing tags.
 
@@ -855,13 +931,13 @@ class Tags(object):
             >>> for tag in abjad.tags.spacing_markup_tags():
             ...     tag
             ...
-            'SPACING'
-            'SPACING_OVERRIDE'
+            Tag('SPACING')
+            Tag('SPACING_OVERRIDE')
 
         """
-        return [const.SPACING, const.SPACING_OVERRIDE]
+        return [self.SPACING, self.SPACING_OVERRIDE]
 
-    def spacing_tags(self) -> typing.List[str]:
+    def spacing_tags(self) -> typing.List[Tag]:
         """
         Gets spacing tags.
 
@@ -870,20 +946,20 @@ class Tags(object):
             >>> for tag in abjad.tags.spacing_tags():
             ...     tag
             ...
-            'SPACING_COMMAND'
-            'SPACING'
-            'SPACING_OVERRIDE_COMMAND'
-            'SPACING_OVERRIDE'
+            Tag('SPACING_COMMAND')
+            Tag('SPACING')
+            Tag('SPACING_OVERRIDE_COMMAND')
+            Tag('SPACING_OVERRIDE')
 
         """
         return [
-            const.SPACING_COMMAND,
-            const.SPACING,
-            const.SPACING_OVERRIDE_COMMAND,
-            const.SPACING_OVERRIDE,
+            self.SPACING_COMMAND,
+            self.SPACING,
+            self.SPACING_OVERRIDE_COMMAND,
+            self.SPACING_OVERRIDE,
         ]
 
-    def staff_lines_color_tags(self, path=None) -> typing.List[str]:
+    def staff_lines_color_tags(self, path=None) -> typing.List[Tag]:
         """
         Gets staff lines color tags.
 
@@ -892,9 +968,9 @@ class Tags(object):
             >>> for tag in abjad.tags.staff_lines_color_tags():
             ...     tag
             ...
-            'EXPLICIT_STAFF_LINES_COLOR'
-            'REAPPLIED_STAFF_LINES_COLOR'
-            'REDUNDANT_STAFF_LINES_COLOR'
+            Tag('EXPLICIT_STAFF_LINES_COLOR')
+            Tag('REAPPLIED_STAFF_LINES_COLOR')
+            Tag('REDUNDANT_STAFF_LINES_COLOR')
 
         ..  container:: example
 
@@ -904,9 +980,9 @@ class Tags(object):
             >>> for tag in abjad.tags.staff_lines_color_tags(path):
             ...     tag
             ...
-            'EXPLICIT_STAFF_LINES_COLOR'
-            'REAPPLIED_STAFF_LINES_COLOR'
-            'REDUNDANT_STAFF_LINES_COLOR'
+            Tag('EXPLICIT_STAFF_LINES_COLOR')
+            Tag('REAPPLIED_STAFF_LINES_COLOR')
+            Tag('REDUNDANT_STAFF_LINES_COLOR')
 
         ..  container:: example
 
@@ -916,10 +992,10 @@ class Tags(object):
             >>> for tag in abjad.tags.staff_lines_color_tags(path):
             ...     tag
             ...
-            'EXPLICIT_STAFF_LINES_COLOR'
-            'REAPPLIED_STAFF_LINES_COLOR'
-            'REDUNDANT_STAFF_LINES_COLOR'
-            'REAPPLIED_STAFF_LINES'
+            Tag('EXPLICIT_STAFF_LINES_COLOR')
+            Tag('REAPPLIED_STAFF_LINES_COLOR')
+            Tag('REDUNDANT_STAFF_LINES_COLOR')
+            Tag('REAPPLIED_STAFF_LINES')
 
         """
         tags = [
@@ -931,7 +1007,7 @@ class Tags(object):
             tags.append(self.REAPPLIED_STAFF_LINES)
         return tags
 
-    def time_signature_color_tags(self, path=None) -> typing.List[str]:
+    def time_signature_color_tags(self, path=None) -> typing.List[Tag]:
         """
         Gets time signature color tags.
 
@@ -940,9 +1016,9 @@ class Tags(object):
             >>> for tag in abjad.tags.time_signature_color_tags():
             ...     tag
             ...
-            'EXPLICIT_TIME_SIGNATURE_COLOR'
-            'REAPPLIED_TIME_SIGNATURE_COLOR'
-            'REDUNDANT_TIME_SIGNATURE_COLOR'
+            Tag('EXPLICIT_TIME_SIGNATURE_COLOR')
+            Tag('REAPPLIED_TIME_SIGNATURE_COLOR')
+            Tag('REDUNDANT_TIME_SIGNATURE_COLOR')
 
         ..  container:: example
 
@@ -952,9 +1028,9 @@ class Tags(object):
             >>> for tag in abjad.tags.time_signature_color_tags():
             ...     tag
             ...
-            'EXPLICIT_TIME_SIGNATURE_COLOR'
-            'REAPPLIED_TIME_SIGNATURE_COLOR'
-            'REDUNDANT_TIME_SIGNATURE_COLOR'
+            Tag('EXPLICIT_TIME_SIGNATURE_COLOR')
+            Tag('REAPPLIED_TIME_SIGNATURE_COLOR')
+            Tag('REDUNDANT_TIME_SIGNATURE_COLOR')
 
         ..  container:: example
 
@@ -964,9 +1040,9 @@ class Tags(object):
             >>> for tag in abjad.tags.time_signature_color_tags():
             ...     tag
             ...
-            'EXPLICIT_TIME_SIGNATURE_COLOR'
-            'REAPPLIED_TIME_SIGNATURE_COLOR'
-            'REDUNDANT_TIME_SIGNATURE_COLOR'
+            Tag('EXPLICIT_TIME_SIGNATURE_COLOR')
+            Tag('REAPPLIED_TIME_SIGNATURE_COLOR')
+            Tag('REDUNDANT_TIME_SIGNATURE_COLOR')
 
         """
         tags = [

@@ -15,6 +15,7 @@ abjad-color-music = #(
     \once \override Beam.color = #(x11-color #'color)
     \once \override Dots.color = #(x11-color #'color)
     \once \override Flag.color = #(x11-color #'color)
+    \once \override MultiMeasureRest.color = #(x11-color #'color)
     \once \override NoteHead.color = #(x11-color #'color)
     \once \override Rest.color = #(x11-color #'color)
     \once \override Stem.color = #(x11-color #'color)

@@ -1,5 +1,6 @@
 import typing
 from abjad.timespans import TimespanList
+from abjad import const
 from abjad import mathtools
 from abjad.utilities.OrderedDict import OrderedDict
 from abjad.utilities.String import String
@@ -10,6 +11,7 @@ from abjad.core.Score import Score
 from abjad.core.Staff import Staff
 from abjad.core.Voice import Voice
 from abjad.system.StorageFormatManager import StorageFormatManager
+from abjad.system.Tag import Tag
 from abjad.utilities.String import String
 from abjad.top.inspect import inspect
 from abjad.top.iterate import iterate
@@ -106,7 +108,7 @@ class SegmentMaker(object):
         except ValueError:
             pass
         for voice in iterate(self.score).components(Voice):
-            if inspect(voice).annotation("INTERMITTENT") is True:
+            if inspect(voice).has_indicator(const.INTERMITTENT):
                 continue
             contexts.append(voice)
         container_to_part_assignment = OrderedDict()
@@ -262,6 +264,7 @@ class SegmentMaker(object):
         for context in abjad.iterate(score).components(abjad.Context):
             if not context.simultaneous:
                 break
+        site = "abjad.SegmentMaker.comment_measure_numbers()"
         measures = abjad.select(context).leaves().group_by_measure()
         for i, measure in enumerate(measures):
             measure_number = i + 1
@@ -281,12 +284,13 @@ class SegmentMaker(object):
             else:
                 string = f"% [{context.name} measure {measure_number}]"
             literal = abjad.LilyPondLiteral(string, "absolute_before")
-            abjad.attach(literal, leaf, tag="COMMENT_MEASURE_NUMBERS")
+            tag = abjad.Tag("COMMENT_MEASURE_NUMBERS").append(site)
+            abjad.attach(literal, leaf, tag=tag)
 
     def run(
         self,
-        activate: typing.List[str] = None,
-        deactivate: typing.List[str] = None,
+        activate: typing.List[Tag] = None,
+        deactivate: typing.List[Tag] = None,
         do_not_print_timing: bool = None,
         environment: str = None,
         metadata: OrderedDict = None,
@@ -294,7 +298,7 @@ class SegmentMaker(object):
         persist: OrderedDict = None,
         previous_metadata: OrderedDict = None,
         previous_persist: OrderedDict = None,
-        remove: typing.List[str] = None,
+        remove: typing.List[Tag] = None,
         segment_directory: Path = None,
     ) -> LilyPondFile:
         """

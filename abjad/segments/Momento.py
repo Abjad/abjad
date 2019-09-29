@@ -2,6 +2,7 @@ import typing
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.system.Tag import Tag
+from abjad.utilities.Offset import Offset
 
 
 class Momento(object):
@@ -11,7 +12,14 @@ class Momento(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ("_context", "_edition", "_manifest", "_prototype", "_value")
+    __slots__ = (
+        "_context",
+        "_edition",
+        "_manifest",
+        "_prototype",
+        "_synthetic_offset",
+        "_value",
+    )
 
     ### INITIALIZER ###
 
@@ -21,6 +29,7 @@ class Momento(object):
         edition: typing.Union[str, Tag] = None,
         manifest: str = None,
         prototype: str = None,
+        synthetic_offset: Offset = None,
         value: typing.Any = None,
     ) -> None:
         if context is not None:
@@ -38,6 +47,9 @@ class Momento(object):
             assert isinstance(prototype, str), repr(prototype)
             assert manifest is None
         self._prototype = prototype
+        if synthetic_offset is not None:
+            assert isinstance(synthetic_offset, Offset), repr(synthetic_offset)
+        self._synthetic_offset = synthetic_offset
         if value is not None:
             if not isinstance(value, (int, str, dict)):
                 assert type(value).__name__ == "PersistentOverride", repr(
@@ -93,6 +105,13 @@ class Momento(object):
         Gets prototype.
         """
         return self._prototype
+
+    @property
+    def synthetic_offset(self) -> typing.Optional[Offset]:
+        """
+        Gets synthetic offset.
+        """
+        return self._synthetic_offset
 
     @property
     def value(self) -> typing.Union[int, str]:

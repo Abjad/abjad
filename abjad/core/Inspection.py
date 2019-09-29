@@ -9,6 +9,7 @@ from abjad.pitch.NamedPitch import NamedPitch
 from abjad.pitch.PitchSet import PitchSet
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.StorageFormatManager import StorageFormatManager
+from abjad.system.Tag import Tag
 from abjad.system.Wrapper import Wrapper
 from abjad.timespans import Timespan
 from abjad.top.inspect import inspect
@@ -144,9 +145,9 @@ class Inspection(object):
                         <<
                             \context Voice = "On_Beat_Grace_Container"
                             {
-                                \set fontSize = #-3
-                                \slash
-                                \voiceOne
+                                \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
+                                \slash %! abjad.on_beat_grace_container(2)
+                                \voiceOne %! abjad.on_beat_grace_container(3)
                                 <
                                     \tweak font-size #0
                                     \tweak transparent ##t
@@ -164,11 +165,11 @@ class Inspection(object):
                             }
                             \context Voice = "Music_Voice"
                             {
-                                \voiceTwo
+                                \voiceTwo %! abjad.on_beat_grace_container(4)
                                 e'4
                             }
                         >>
-                        \oneVoice
+                        \oneVoice %! abjad.on_beat_grace_container(5)
                         \afterGrace
                         f'4
                         {
@@ -433,9 +434,9 @@ class Inspection(object):
                         <<
                             \context Voice = "On_Beat_Grace_Container"
                             {
-                                \set fontSize = #-3
-                                \slash
-                                \voiceOne
+                                \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
+                                \slash %! abjad.on_beat_grace_container(2)
+                                \voiceOne %! abjad.on_beat_grace_container(3)
                                 <
                                     \tweak font-size #0
                                     \tweak transparent ##t
@@ -453,11 +454,11 @@ class Inspection(object):
                             }
                             \context Voice = "Music_Voice"
                             {
-                                \voiceTwo
+                                \voiceTwo %! abjad.on_beat_grace_container(4)
                                 e'4
                             }
                         >>
-                        \oneVoice
+                        \oneVoice %! abjad.on_beat_grace_container(5)
                         \afterGrace
                         f'4
                         {
@@ -620,9 +621,9 @@ class Inspection(object):
                         <<
                             \context Voice = "On_Beat_Grace_Container"
                             {
-                                \set fontSize = #-3
-                                \slash
-                                \voiceOne
+                                \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
+                                \slash %! abjad.on_beat_grace_container(2)
+                                \voiceOne %! abjad.on_beat_grace_container(3)
                                 <
                                     \tweak font-size #0
                                     \tweak transparent ##t
@@ -640,11 +641,11 @@ class Inspection(object):
                             }
                             \context Voice = "Music_Voice"
                             {
-                                \voiceTwo
+                                \voiceTwo %! abjad.on_beat_grace_container(4)
                                 e'4
                             }
                         >>
-                        \oneVoice
+                        \oneVoice %! abjad.on_beat_grace_container(5)
                         \afterGrace
                         f'4
                         {
@@ -786,9 +787,9 @@ class Inspection(object):
                         <<
                             \context Voice = "On_Beat_Grace_Container"
                             {
-                                \set fontSize = #-3
-                                \slash
-                                \voiceOne
+                                \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
+                                \slash %! abjad.on_beat_grace_container(2)
+                                \voiceOne %! abjad.on_beat_grace_container(3)
                                 <
                                     \tweak font-size #0
                                     \tweak transparent ##t
@@ -806,11 +807,11 @@ class Inspection(object):
                             }
                             \context Voice = "Music_Voice"
                             {
-                                \voiceTwo
+                                \voiceTwo %! abjad.on_beat_grace_container(4)
                                 e'4
                             }
                         >>
-                        \oneVoice
+                        \oneVoice %! abjad.on_beat_grace_container(5)
                         \afterGrace
                         f'4
                         {
@@ -958,10 +959,10 @@ class Inspection(object):
                         <<
                             \context Voice = "On_Beat_Grace_Container"
                             {
-                                \set fontSize = #-3
+                                \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
                                 \clef "alto"
-                                \slash
-                                \voiceOne
+                                \slash %! abjad.on_beat_grace_container(2)
+                                \voiceOne %! abjad.on_beat_grace_container(3)
                                 <
                                     \tweak font-size #0
                                     \tweak transparent ##t
@@ -979,11 +980,11 @@ class Inspection(object):
                             }
                             \context Voice = "Music_Voice"
                             {
-                                \voiceTwo
+                                \voiceTwo %! abjad.on_beat_grace_container(4)
                                 e'4
                             }
                         >>
-                        \oneVoice
+                        \oneVoice %! abjad.on_beat_grace_container(5)
                         \afterGrace
                         f'4
                         {
@@ -1149,16 +1150,16 @@ class Inspection(object):
 
         ..  container:: example
 
-            Synthetic offsets works this way:
+            Use synthetic offsets to hide a clef before the start of a staff
+            like this:
 
-            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+            >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
             >>> abjad.attach(
-            ...     'red',
-            ...     staff[-1],
-            ...     context='Staff',
+            ...     abjad.Clef("treble", hide=True),
+            ...     staff[0],
             ...     synthetic_offset=-1,
             ...     )
-            >>> abjad.attach('blue', staff[0], context='Staff')
+            >>> abjad.attach(abjad.Clef("alto"), staff[0])
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1166,21 +1167,79 @@ class Inspection(object):
                 >>> abjad.f(staff)
                 \new Staff
                 {
-                    c'8
-                    d'8
-                    e'8
-                    f'8
+                    \clef "alto"
+                    c'4
+                    d'4
+                    e'4
+                    f'4
                 }
 
-            Entire staff is effectively blue:
+            >>> for leaf in staff:
+            ...     clef = abjad.inspect(leaf).effective(abjad.Clef)
+            ...     (leaf, clef)
+            ...
+            (Note("c'4"), Clef('alto'))
+            (Note("d'4"), Clef('alto'))
+            (Note("e'4"), Clef('alto'))
+            (Note("f'4"), Clef('alto'))
 
-            >>> abjad.inspect(staff).effective(str)
-            'blue'
+            >>> abjad.inspect(staff[0]).effective(abjad.Clef)
+            Clef('alto')
 
-            The (synthetic) offset just prior to (start of) staff is red:
+            >>> abjad.inspect(staff[0]).effective(abjad.Clef, n=-1)
+            Clef('treble', hide=True)
 
-            >>> abjad.inspect(staff).effective(str, n=-1)
-            'red'
+            >>> abjad.inspect(staff[0]).effective(abjad.Clef, n=-2) is None
+            True
+
+            Note that ``hide=True`` is set on the offset clef to prevent
+            duplicate clef commands in LilyPond output.
+
+            Note also that the order of attachment (offset versus non-offset)
+            makes no difference.
+
+        ..  container:: example
+
+            Here's how to hide a clef after the end of a staff:
+
+            >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+            >>> abjad.attach(abjad.Clef("treble"), staff[0])
+            >>> abjad.attach(
+            ...     abjad.Clef("alto", hide=True),
+            ...     staff[-1],
+            ...     synthetic_offset=1,
+            ...     )
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    \clef "treble"
+                    c'4
+                    d'4
+                    e'4
+                    f'4
+                }
+
+            >>> for leaf in staff:
+            ...     clef = abjad.inspect(leaf).effective(abjad.Clef)
+            ...     (leaf, clef)
+            ...
+            (Note("c'4"), Clef('treble'))
+            (Note("d'4"), Clef('treble'))
+            (Note("e'4"), Clef('treble'))
+            (Note("f'4"), Clef('treble'))
+
+            >>> abjad.inspect(staff[-1]).effective(abjad.Clef)
+            Clef('treble')
+
+            >>> abjad.inspect(staff[-1]).effective(abjad.Clef, n=1)
+            Clef('alto', hide=True)
+
+            >>> abjad.inspect(staff[-1]).effective(abjad.Clef, n=2) is None
+            True
 
         ..  container:: example
 
@@ -1319,9 +1378,9 @@ class Inspection(object):
                         <<
                             \context Voice = "On_Beat_Grace_Container"
                             {
-                                \set fontSize = #-3
-                                \slash
-                                \voiceOne
+                                \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
+                                \slash %! abjad.on_beat_grace_container(2)
+                                \voiceOne %! abjad.on_beat_grace_container(3)
                                 <
                                     \tweak font-size #0
                                     \tweak transparent ##t
@@ -1339,11 +1398,11 @@ class Inspection(object):
                             }
                             \context Voice = "Music_Voice"
                             {
-                                \voiceTwo
+                                \voiceTwo %! abjad.on_beat_grace_container(4)
                                 e'4
                             }
                         >>
-                        \oneVoice
+                        \oneVoice %! abjad.on_beat_grace_container(5)
                         \afterGrace
                         f'4
                         {
@@ -1420,10 +1479,10 @@ class Inspection(object):
                         <<
                             \context Voice = "On_Beat_Grace_Container"
                             {
-                                \set fontSize = #-3
+                                \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
                                 \clef "alto"
-                                \slash
-                                \voiceOne
+                                \slash %! abjad.on_beat_grace_container(2)
+                                \voiceOne %! abjad.on_beat_grace_container(3)
                                 <
                                     \tweak font-size #0
                                     \tweak transparent ##t
@@ -1441,11 +1500,11 @@ class Inspection(object):
                             }
                             \context Voice = "Music_Voice"
                             {
-                                \voiceTwo
+                                \voiceTwo %! abjad.on_beat_grace_container(4)
                                 e'4
                             }
                         >>
-                        \oneVoice
+                        \oneVoice %! abjad.on_beat_grace_container(5)
                         \afterGrace
                         f'4
                         {
@@ -1539,9 +1598,9 @@ class Inspection(object):
                         <<
                             \context Voice = "On_Beat_Grace_Container"
                             {
-                                \set fontSize = #-3
-                                \slash
-                                \voiceOne
+                                \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
+                                \slash %! abjad.on_beat_grace_container(2)
+                                \voiceOne %! abjad.on_beat_grace_container(3)
                                 <
                                     \tweak font-size #0
                                     \tweak transparent ##t
@@ -1559,11 +1618,11 @@ class Inspection(object):
                             }
                             \context Voice = "Music_Voice"
                             {
-                                \voiceTwo
+                                \voiceTwo %! abjad.on_beat_grace_container(4)
                                 e'4
                             }
                         >>
-                        \oneVoice
+                        \oneVoice %! abjad.on_beat_grace_container(5)
                         \afterGrace
                         f'4
                         {
@@ -1642,9 +1701,9 @@ class Inspection(object):
                         <<
                             \context Voice = "On_Beat_Grace_Container"
                             {
-                                \set fontSize = #-3
-                                \slash
-                                \voiceOne
+                                \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
+                                \slash %! abjad.on_beat_grace_container(2)
+                                \voiceOne %! abjad.on_beat_grace_container(3)
                                 <
                                     \tweak font-size #0
                                     \tweak transparent ##t
@@ -1662,11 +1721,11 @@ class Inspection(object):
                             }
                             \context Voice = "Music_Voice"
                             {
-                                \voiceTwo
+                                \voiceTwo %! abjad.on_beat_grace_container(4)
                                 e'4
                             }
                         >>
-                        \oneVoice
+                        \oneVoice %! abjad.on_beat_grace_container(5)
                         \afterGrace
                         f'4
                         {
@@ -1740,10 +1799,10 @@ class Inspection(object):
                         <<
                             \context Voice = "On_Beat_Grace_Container"
                             {
-                                \set fontSize = #-3
+                                \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
                                 \clef "alto"
-                                \slash
-                                \voiceOne
+                                \slash %! abjad.on_beat_grace_container(2)
+                                \voiceOne %! abjad.on_beat_grace_container(3)
                                 <
                                     \tweak font-size #0
                                     \tweak transparent ##t
@@ -1761,11 +1820,11 @@ class Inspection(object):
                             }
                             \context Voice = "Music_Voice"
                             {
-                                \voiceTwo
+                                \voiceTwo %! abjad.on_beat_grace_container(4)
                                 e'4
                             }
                         >>
-                        \oneVoice
+                        \oneVoice %! abjad.on_beat_grace_container(5)
                         \afterGrace
                         f'4
                         {
@@ -1890,10 +1949,10 @@ class Inspection(object):
                         <<
                             \context Voice = "On_Beat_Grace_Container"
                             {
-                                \set fontSize = #-3
+                                \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
                                 \clef "alto"
-                                \slash
-                                \voiceOne
+                                \slash %! abjad.on_beat_grace_container(2)
+                                \voiceOne %! abjad.on_beat_grace_container(3)
                                 <
                                     \tweak font-size #0
                                     \tweak transparent ##t
@@ -1911,11 +1970,11 @@ class Inspection(object):
                             }
                             \context Voice = "Music_Voice"
                             {
-                                \voiceTwo
+                                \voiceTwo %! abjad.on_beat_grace_container(4)
                                 e'4
                             }
                         >>
-                        \oneVoice
+                        \oneVoice %! abjad.on_beat_grace_container(5)
                         \afterGrace
                         f'4
                         {
@@ -2033,6 +2092,8 @@ class Inspection(object):
 
 
         """
+        if isinstance(prototype, Tag):
+            raise Exception("do not attach tags; use tag=None keyword.")
         if not isinstance(self.client, Component):
             raise Exception("can only get indicator on component.")
         if attributes is not None:
@@ -2083,10 +2144,10 @@ class Inspection(object):
                         <<
                             \context Voice = "On_Beat_Grace_Container"
                             {
-                                \set fontSize = #-3
+                                \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
                                 \clef "alto"
-                                \slash
-                                \voiceOne
+                                \slash %! abjad.on_beat_grace_container(2)
+                                \voiceOne %! abjad.on_beat_grace_container(3)
                                 <
                                     \tweak font-size #0
                                     \tweak transparent ##t
@@ -2104,11 +2165,11 @@ class Inspection(object):
                             }
                             \context Voice = "Music_Voice"
                             {
-                                \voiceTwo
+                                \voiceTwo %! abjad.on_beat_grace_container(4)
                                 e'4
                             }
                         >>
-                        \oneVoice
+                        \oneVoice %! abjad.on_beat_grace_container(5)
                         \afterGrace
                         f'4
                         {
@@ -2246,10 +2307,10 @@ class Inspection(object):
                         <<
                             \context Voice = "On_Beat_Grace_Container"
                             {
-                                \set fontSize = #-3
+                                \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
                                 \clef "alto"
-                                \slash
-                                \voiceOne
+                                \slash %! abjad.on_beat_grace_container(2)
+                                \voiceOne %! abjad.on_beat_grace_container(3)
                                 <
                                     \tweak font-size #0
                                     \tweak transparent ##t
@@ -2270,12 +2331,12 @@ class Inspection(object):
                             }
                             \context Voice = "Music_Voice"
                             {
-                                \voiceTwo
+                                \voiceTwo %! abjad.on_beat_grace_container(4)
                                 e'4
                                 \staccato
                             }
                         >>
-                        \oneVoice
+                        \oneVoice %! abjad.on_beat_grace_container(5)
                         \afterGrace
                         f'4
                         \staccato
@@ -2292,7 +2353,7 @@ class Inspection(object):
             <Staff{1}>                     []
             <Voice-"Music_Voice"{4}>       []
             Note("c'4")                    [Staccato()]
-            BeforeGraceContainer("cs'16")        []
+            BeforeGraceContainer("cs'16")  []
             Note("cs'16")                  [Staccato()]
             Note("d'4")                    [Staccato()]
             <<<2>>>                        []
@@ -2468,10 +2529,10 @@ class Inspection(object):
                         <<
                             \context Voice = "On_Beat_Grace_Container"
                             {
-                                \set fontSize = #-3
+                                \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
                                 \clef "alto"
-                                \slash
-                                \voiceOne
+                                \slash %! abjad.on_beat_grace_container(2)
+                                \voiceOne %! abjad.on_beat_grace_container(3)
                                 <
                                     \tweak font-size #0
                                     \tweak transparent ##t
@@ -2489,11 +2550,11 @@ class Inspection(object):
                             }
                             \context Voice = "Music_Voice"
                             {
-                                \voiceTwo
+                                \voiceTwo %! abjad.on_beat_grace_container(4)
                                 e'4
                             }
                         >>
-                        \oneVoice
+                        \oneVoice %! abjad.on_beat_grace_container(5)
                         \afterGrace
                         f'4
                         {
@@ -2666,9 +2727,9 @@ class Inspection(object):
                         <<
                             \context Voice = "On_Beat_Grace_Container"
                             {
-                                \set fontSize = #-3
-                                \slash
-                                \voiceOne
+                                \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
+                                \slash %! abjad.on_beat_grace_container(2)
+                                \voiceOne %! abjad.on_beat_grace_container(3)
                                 <
                                     \tweak font-size #0
                                     \tweak transparent ##t
@@ -2686,11 +2747,11 @@ class Inspection(object):
                             }
                             \context Voice = "Music_Voice"
                             {
-                                \voiceTwo
+                                \voiceTwo %! abjad.on_beat_grace_container(4)
                                 e'4
                             }
                         >>
-                        \oneVoice
+                        \oneVoice %! abjad.on_beat_grace_container(5)
                         \afterGrace
                         f'4
                         {
@@ -2869,9 +2930,9 @@ class Inspection(object):
                         <<
                             \context Voice = "On_Beat_Grace_Container"
                             {
-                                \set fontSize = #-3
-                                \slash
-                                \voiceOne
+                                \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
+                                \slash %! abjad.on_beat_grace_container(2)
+                                \voiceOne %! abjad.on_beat_grace_container(3)
                                 <
                                     \tweak font-size #0
                                     \tweak transparent ##t
@@ -2889,11 +2950,11 @@ class Inspection(object):
                             }
                             \context Voice = "Music_Voice"
                             {
-                                \voiceTwo
+                                \voiceTwo %! abjad.on_beat_grace_container(4)
                                 e'4
                             }
                         >>
-                        \oneVoice
+                        \oneVoice %! abjad.on_beat_grace_container(5)
                         \afterGrace
                         f'4
                         {
@@ -3006,9 +3067,9 @@ class Inspection(object):
                         <<
                             \context Voice = "On_Beat_Grace_Container"
                             {
-                                \set fontSize = #-3
-                                \slash
-                                \voiceOne
+                                \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
+                                \slash %! abjad.on_beat_grace_container(2)
+                                \voiceOne %! abjad.on_beat_grace_container(3)
                                 <
                                     \tweak font-size #0
                                     \tweak transparent ##t
@@ -3026,11 +3087,11 @@ class Inspection(object):
                             }
                             \context Voice = "Music_Voice"
                             {
-                                \voiceTwo
+                                \voiceTwo %! abjad.on_beat_grace_container(4)
                                 e'4
                             }
                         >>
-                        \oneVoice
+                        \oneVoice %! abjad.on_beat_grace_container(5)
                         \afterGrace
                         f'4
                         {
@@ -3176,9 +3237,9 @@ class Inspection(object):
                         <<
                             \context Voice = "On_Beat_Grace_Container"
                             {
-                                \set fontSize = #-3
-                                \slash
-                                \voiceOne
+                                \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
+                                \slash %! abjad.on_beat_grace_container(2)
+                                \voiceOne %! abjad.on_beat_grace_container(3)
                                 <
                                     \tweak font-size #0
                                     \tweak transparent ##t
@@ -3196,11 +3257,11 @@ class Inspection(object):
                             }
                             \context Voice = "Music_Voice"
                             {
-                                \voiceTwo
+                                \voiceTwo %! abjad.on_beat_grace_container(4)
                                 e'4
                             }
                         >>
-                        \oneVoice
+                        \oneVoice %! abjad.on_beat_grace_container(5)
                         \afterGrace
                         f'4
                         {
@@ -3387,9 +3448,9 @@ class Inspection(object):
                         <<
                             \context Voice = "On_Beat_Grace_Container"
                             {
-                                \set fontSize = #-3
-                                \slash
-                                \voiceOne
+                                \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
+                                \slash %! abjad.on_beat_grace_container(2)
+                                \voiceOne %! abjad.on_beat_grace_container(3)
                                 <
                                     \tweak font-size #0
                                     \tweak transparent ##t
@@ -3407,11 +3468,11 @@ class Inspection(object):
                             }
                             \context Voice = "Music_Voice"
                             {
-                                \voiceTwo
+                                \voiceTwo %! abjad.on_beat_grace_container(4)
                                 e'4
                             }
                         >>
-                        \oneVoice
+                        \oneVoice %! abjad.on_beat_grace_container(5)
                         \afterGrace
                         f'4
                         {
@@ -3688,9 +3749,9 @@ class Inspection(object):
                         <<
                             \context Voice = "On_Beat_Grace_Container"
                             {
-                                \set fontSize = #-3
-                                \slash
-                                \voiceOne
+                                \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
+                                \slash %! abjad.on_beat_grace_container(2)
+                                \voiceOne %! abjad.on_beat_grace_container(3)
                                 <
                                     \tweak font-size #0
                                     \tweak transparent ##t
@@ -3708,11 +3769,11 @@ class Inspection(object):
                             }
                             \context Voice = "Music_Voice"
                             {
-                                \voiceTwo
+                                \voiceTwo %! abjad.on_beat_grace_container(4)
                                 e'4
                             }
                         >>
-                        \oneVoice
+                        \oneVoice %! abjad.on_beat_grace_container(5)
                         \afterGrace
                         f'4
                         {
@@ -3903,10 +3964,10 @@ class Inspection(object):
                         <<
                             \context Voice = "On_Beat_Grace_Container"
                             {
-                                \set fontSize = #-3
+                                \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
                                 \clef "alto"
-                                \slash
-                                \voiceOne
+                                \slash %! abjad.on_beat_grace_container(2)
+                                \voiceOne %! abjad.on_beat_grace_container(3)
                                 <
                                     \tweak font-size #0
                                     \tweak transparent ##t
@@ -3927,12 +3988,12 @@ class Inspection(object):
                             }
                             \context Voice = "Music_Voice"
                             {
-                                \voiceTwo
+                                \voiceTwo %! abjad.on_beat_grace_container(4)
                                 e'4
                                 \staccato
                             }
                         >>
-                        \oneVoice
+                        \oneVoice %! abjad.on_beat_grace_container(5)
                         \afterGrace
                         f'4
                         \staccato
@@ -4020,10 +4081,10 @@ class Inspection(object):
                         <<
                             \context Voice = "On_Beat_Grace_Container"
                             {
-                                \set fontSize = #-3
+                                \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
                                 \clef "alto"
-                                \slash
-                                \voiceOne
+                                \slash %! abjad.on_beat_grace_container(2)
+                                \voiceOne %! abjad.on_beat_grace_container(3)
                                 <
                                     \tweak font-size #0
                                     \tweak transparent ##t
@@ -4044,12 +4105,12 @@ class Inspection(object):
                             }
                             \context Voice = "Music_Voice"
                             {
-                                \voiceTwo
+                                \voiceTwo %! abjad.on_beat_grace_container(4)
                                 e'4
                                 \staccato
                             }
                         >>
-                        \oneVoice
+                        \oneVoice %! abjad.on_beat_grace_container(5)
                         \afterGrace
                         f'4
                         \staccato

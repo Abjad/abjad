@@ -1,7 +1,9 @@
 from abjad import enums
 
 
-def tweak(argument, deactivate=None, expression=None, tag=None):
+def tweak(
+    argument, *, deactivate=None, expression=None, literal=None, tag=None
+):
     r"""
     Makes LilyPond tweak manager.
 
@@ -175,8 +177,8 @@ def tweak(argument, deactivate=None, expression=None, tag=None):
         Tweaks can be tagged:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> dynamic = abjad.Dynamic('f')
-        >>> abjad.tweak(dynamic, tag='RED').color = 'red'
+        >>> dynamic = abjad.Dynamic("f")
+        >>> abjad.tweak(dynamic, tag=abjad.Tag("RED")).color = "red"
         >>> abjad.attach(dynamic, staff[0])
 
         >>> abjad.f(staff)
@@ -196,8 +198,8 @@ def tweak(argument, deactivate=None, expression=None, tag=None):
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> dynamic = abjad.Dynamic('f')
-        >>> abjad.tweak(dynamic, tag='RED').color = 'red'
-        >>> abjad.tweak(dynamic, tag='BLUE').color = 'blue'
+        >>> abjad.tweak(dynamic, tag=abjad.Tag("RED")).color = "red"
+        >>> abjad.tweak(dynamic, tag=abjad.Tag("BLUE")).color = "blue"
         >>> abjad.attach(dynamic, staff[0])
 
         >>> abjad.f(staff)
@@ -218,23 +220,26 @@ def tweak(argument, deactivate=None, expression=None, tag=None):
         Returns LilyPond tweak manager:
 
         >>> abjad.tweak(markup_1)
-        LilyPondTweakManager(('color', 'red'))
+        LilyPondTweakManager(('_literal', None), ('color', 'red'))
 
     ..  container:: example
 
         Tweak expressions work like this:
 
         >>> abjad.tweak('red').color
-        LilyPondTweakManager(('color', 'red'))
+        LilyPondTweakManager(('_literal', None), ('color', 'red'))
 
         >>> abjad.tweak(6).Y_offset
-        LilyPondTweakManager(('Y_offset', 6))
+        LilyPondTweakManager(('Y_offset', 6), ('_literal', None))
 
         >>> abjad.tweak(False).bound_details__left_broken__text
-        LilyPondTweakManager(('bound_details__left_broken__text', False))
+        LilyPondTweakManager(('_literal', None), ('bound_details__left_broken__text', False))
 
     """
     import abjad
+
+    if tag is not None and not isinstance(tag, abjad.Tag):
+        raise Exception(f"must be be tag: {repr(tag)}")
 
     constants = (enums.Down, enums.Left, enums.Right, enums.Up)
     prototype = (bool, int, float, str, tuple, abjad.Scheme)
@@ -243,16 +248,20 @@ def tweak(argument, deactivate=None, expression=None, tag=None):
         or argument in constants
         or isinstance(argument, prototype)
     ):
-        manager = abjad.LilyPondTweakManager(deactivate=deactivate, tag=tag)
+        manager = abjad.LilyPondTweakManager(
+            deactivate=deactivate, literal=literal, tag=tag
+        )
         manager._pending_value = argument
         return manager
     if not hasattr(argument, "_tweaks"):
         name = type(argument).__name__
         raise NotImplementedError(f"{name} does not allow tweaks (yet).")
     if argument._tweaks is None:
-        manager = abjad.LilyPondTweakManager(deactivate=deactivate, tag=tag)
+        manager = abjad.LilyPondTweakManager(
+            deactivate=deactivate, literal=literal, tag=tag
+        )
         argument._tweaks = manager
     else:
         manager = argument._tweaks
-        manager.__init__(deactivate=deactivate, tag=tag)
+        manager.__init__(deactivate=deactivate, literal=literal, tag=tag)
     return manager

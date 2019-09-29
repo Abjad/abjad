@@ -1,4 +1,5 @@
 from abjad.system.StorageFormatManager import StorageFormatManager
+from abjad.system.Tag import Tag
 
 
 class Line(object):
@@ -74,7 +75,7 @@ class Line(object):
 
             >>> string = r'    %@%  \with-color %! MEASURE_NUMBER:SM31'
             >>> abjad.Line(string).get_tags()
-            ['MEASURE_NUMBER', 'SM31']
+            [Tag('MEASURE_NUMBER'), Tag('SM31')]
 
         ..  container:: example
 
@@ -83,7 +84,7 @@ class Line(object):
             >>> string = r'    %@%  \with-color %! SM31 %! SM32'
             >>> line = abjad.Line(string)
             >>> line.get_tags()
-            ['SM31', 'SM32']
+            [Tag('SM31'), Tag('SM32')]
 
         Returns list of zero or more strings.
         """
@@ -91,7 +92,9 @@ class Line(object):
         if " %! " in self.string:
             for chunk in self.string.split(" %! ")[1:]:
                 parts = chunk.split()
-                tags.extend(parts[0].split(":"))
+                parts = parts[0].split(":")
+                tags_ = [Tag(_) for _ in parts]
+                tags.extend(tags_)
         return tags
 
     def is_active(self):
@@ -154,37 +157,34 @@ class Line(object):
 
         ..  container:: example
 
-            Strings:
+            Tags:
 
-            >>> line.match('MEASURE_NUMBER')
+            >>> line.match(abjad.Tag('MEASURE_NUMBER'))
             True
 
-            >>> line.match('SM31')
+            >>> line.match(abjad.Tag('SM31'))
             True
 
-            >>> line.match(['MEASURE_NUMBER', 'SM31'])
+            >>> line.match(abjad.Tag('%@%'))
             False
 
-            >>> line.match('%@%')
+            >>> line.match(abjad.Tag('with-color'))
             False
 
-            >>> line.match('with-color')
-            False
-
-            >>> line.match('%!')
+            >>> line.match(abjad.Tag('%!'))
             False
 
         ..  container:: example
 
             Lambdas:
 
-            >>> line.match(lambda x: any(_ for _ in x if _.startswith('M')))
+            >>> line.match(lambda x: any(_ for _ in x if str(_).startswith('M')))
             True
 
-            >>> line.match(lambda x: any(_ for _ in x if _.startswith('S')))
+            >>> line.match(lambda x: any(_ for _ in x if str(_).startswith('S')))
             True
 
-            >>> line.match(lambda x: any(_ for _ in x if _[0] in 'SM'))
+            >>> line.match(lambda x: any(_ for _ in x if str(_)[0] in 'SM'))
             True
 
         ..  container:: example
@@ -192,7 +192,7 @@ class Line(object):
             Functions:
 
             >>> def predicate(tags):
-            ...     if 'SM31' in tags and 'MEASURE_NUMBER' in tags:
+            ...     if abjad.Tag('SM31') in tags and abjad.Tag('MEASURE_NUMBER') in tags:
             ...         return True
             ...     else:
             ...         return False
@@ -201,7 +201,7 @@ class Line(object):
             True
 
             >>> def predicate(tags):
-            ...     if 'SM31' in tags and 'MEASURE_NUMBER' not in tags:
+            ...     if abjad.Tag('SM31') in tags and abjad.Tag('MEASURE_NUMBER') not in tags:
             ...         return True
             ...     else:
             ...         return False
@@ -216,14 +216,17 @@ class Line(object):
             >>> string = r'    %@%  \with-color %! SM31 %! SM32'
             >>> line = abjad.Line(string)
 
-            >>> line.match('SM31')
+            >>> line.match(abjad.Tag('SM31'))
             True
 
-            >>> line.match('SM32')
+            >>> line.match(abjad.Tag('SM32'))
             True
 
         Returns true or false.
         """
+        if not callable(predicate) and not isinstance(predicate, Tag):
+            message = f"must be callable or tag: {predicate!r}"
+            raise Exception(message)
         tags = self.get_tags()
         if not tags:
             return False

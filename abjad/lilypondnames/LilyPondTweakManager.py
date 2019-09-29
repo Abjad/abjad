@@ -1,6 +1,7 @@
 import copy
 import typing
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
+from abjad.system.Tag import Tag
 from abjad.utilities.String import String
 from .LilyPondNameManager import LilyPondNameManager
 
@@ -15,7 +16,7 @@ class LilyPondTweakManager(LilyPondNameManager):
 
         >>> markup = abjad.Markup('Allegro', direction=abjad.Up)
         >>> abjad.tweak(markup)
-        LilyPondTweakManager()
+        LilyPondTweakManager(('_literal', None))
 
         Set an attribute like this:
 
@@ -24,7 +25,7 @@ class LilyPondTweakManager(LilyPondNameManager):
         The state of the tweak manager has changed:
 
         >>> abjad.tweak(markup)
-        LilyPondTweakManager(('color', 'red'))
+        LilyPondTweakManager(('_literal', None), ('color', 'red'))
 
         And the value of the attribute just set is available like this:
 
@@ -43,9 +44,14 @@ class LilyPondTweakManager(LilyPondNameManager):
 
     ### INITIALIZER ###
 
-    def __init__(self, deactivate: bool = None, tag: str = None) -> None:
+    def __init__(
+        self, *, deactivate: bool = None, literal: bool = None, tag: Tag = None
+    ) -> None:
         if deactivate is not None:
             self._currently_deactivated = deactivate
+        if literal is not None:
+            literal = bool(literal)
+        self._literal = literal
         if tag is not None:
             self._currently_tagging = tag
 
@@ -64,7 +70,7 @@ class LilyPondTweakManager(LilyPondNameManager):
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> markup = abjad.Markup('Allegro', direction=abjad.Up).italic()
-            >>> abjad.tweak(markup, tag='+PARTS').color = 'red'
+            >>> abjad.tweak(markup, tag=abjad.tags.ONLY_PARTS).color = 'red'
             >>> abjad.attach(markup, staff[0])
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -86,7 +92,9 @@ class LilyPondTweakManager(LilyPondNameManager):
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> markup = abjad.Markup('Allegro', direction=abjad.Up).italic()
-            >>> abjad.tweak(markup, deactivate=True, tag='+PARTS').color = 'red'
+            >>> abjad.tweak(
+            ...     markup, deactivate=True, tag=abjad.tags.ONLY_PARTS
+            ... ).color = 'red'
             >>> abjad.attach(markup, staff[0])
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -94,7 +102,7 @@ class LilyPondTweakManager(LilyPondNameManager):
             \new Staff
             {
                 c'4
-            %@% - \tweak color #red     %! +PARTS
+                - \tweak color #red %! +PARTS
                 ^ \markup {
                     \italic
                         Allegro
@@ -107,9 +115,9 @@ class LilyPondTweakManager(LilyPondNameManager):
             Tweak tags and indicator tags may be set together:
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> markup = abjad.Markup('Allegro', direction=abjad.Up).italic()
-            >>> abjad.tweak(markup, tag='+PARTS').color = 'red'
-            >>> abjad.attach(markup, staff[0], tag='RED:M1')
+            >>> markup = abjad.Markup("Allegro", direction=abjad.Up).italic()
+            >>> abjad.tweak(markup, tag=abjad.tags.ONLY_PARTS).color = "red"
+            >>> abjad.attach(markup, staff[0], tag=abjad.Tag("RED:M1"))
             >>> abjad.show(staff) # doctest: +SKIP
 
             >>> abjad.f(staff, strict=40)
@@ -134,24 +142,24 @@ class LilyPondTweakManager(LilyPondNameManager):
             >>> tweaks.color = 'red'
             >>> tweaks.Y_offset = 6
             >>> tweaks
-            LilyPondTweakManager(('Y_offset', 6), ('color', 'red'))
+            LilyPondTweakManager(('Y_offset', 6), ('_literal', None), ('color', 'red'))
 
             Use the ``abjad.tweak()`` factory function for a shortcut:
 
             >>> tweaks = abjad.tweak('red').color
             >>> tweaks
-            LilyPondTweakManager(('color', 'red'))
+            LilyPondTweakManager(('_literal', None), ('color', 'red'))
 
             >>> tweaks.Y_offset = 6
             >>> tweaks
-            LilyPondTweakManager(('Y_offset', 6), ('color', 'red'))
+            LilyPondTweakManager(('Y_offset', 6), ('_literal', None), ('color', 'red'))
 
         ..  container:: example
 
             Set long LilyPond grob chains like this:
 
             >>> abjad.tweak(False).bound_details__left_broken__text
-            LilyPondTweakManager(('bound_details__left_broken__text', False))
+            LilyPondTweakManager(('_literal', None), ('bound_details__left_broken__text', False))
 
         """
         from abjad.ly import contexts
@@ -161,6 +169,8 @@ class LilyPondTweakManager(LilyPondNameManager):
             return vars(self).get("_currently_deactivated")
         if name == "_currently_tagging":
             return vars(self).get("_currently_tagging")
+        if name == "_literal":
+            return vars(self).get("_literal")
         if "_pending_value" in vars(self):
             _pending_value = self._pending_value
             self.__setattr__(name, _pending_value)
@@ -197,11 +207,11 @@ class LilyPondTweakManager(LilyPondNameManager):
             Allows LilyPond colors:
 
             >>> abjad.tweak('ForestGreen').color
-            LilyPondTweakManager(('color', 'ForestGreen'))
+            LilyPondTweakManager(('_literal', None), ('color', 'ForestGreen'))
 
             >>> string = "#(x11-color 'blue)"
             >>> abjad.tweak(string).color
-            LilyPondTweakManager(('color', "#(x11-color 'blue)"))
+            LilyPondTweakManager(('_literal', None), ('color', "#(x11-color 'blue)"))
 
             Raises exception on unknown color:
 
@@ -247,6 +257,8 @@ class LilyPondTweakManager(LilyPondNameManager):
         for name, value in vars(self).items():
             if name == "_currently_tagging":
                 continue
+            if name == "_literal":
+                continue
             if type(value) is LilyPondNameManager:
                 grob_name = name
                 grob_proxy = value
@@ -284,7 +296,11 @@ class LilyPondTweakManager(LilyPondNameManager):
             else:
                 tag = None
             string = LilyPondFormatManager.make_lilypond_tweak_string(
-                attribute, value, directed=directed, grob=grob
+                attribute,
+                value,
+                directed=directed,
+                grob=grob,
+                literal=self._literal,
             )
             if tag is not None:
                 strings = [string]
@@ -313,10 +329,10 @@ class LilyPondTweakManager(LilyPondNameManager):
 
             >>> tweaks = abjad.tweak('blue').color
             >>> abjad.LilyPondTweakManager.set_tweaks(glissando, tweaks)
-            LilyPondTweakManager(('color', 'blue'))
+            LilyPondTweakManager(('_literal', None), ('color', 'blue'))
 
             >>> abjad.tweak(glissando)
-            LilyPondTweakManager(('color', 'blue'))
+            LilyPondTweakManager(('_literal', None), ('color', 'blue'))
 
         """
         if not hasattr(argument, "_tweaks"):
@@ -331,7 +347,7 @@ class LilyPondTweakManager(LilyPondNameManager):
         if not isinstance(manager, LilyPondTweakManager):
             raise Exception(f"must be tweak manager (not {manager!r}).")
         if argument._tweaks is None:
-            argument._tweaks = LilyPondTweakManager()
+            argument._tweaks = LilyPondTweakManager(literal=manager._literal)
         existing_manager = argument._tweaks
         for tuple_ in manager._get_attribute_tuples():
             if len(tuple_) == 2:

@@ -13,7 +13,7 @@ def activate(text, tag, skipped=False):
         ...     markup,
         ...     staff[0],
         ...     deactivate=True,
-        ...     tag='RED_MARKUP',
+        ...     tag=abjad.Tag('RED_MARKUP'),
         ...     )
 
         >>> text = format(staff, 'lilypond')
@@ -35,7 +35,7 @@ def activate(text, tag, skipped=False):
 
         Activates tag:
 
-        >>> text, count = abjad.activate(text, 'RED_MARKUP')
+        >>> text, count = abjad.activate(text, abjad.Tag('RED_MARKUP'))
         >>> print(text)
         \new Staff {
             c'4
@@ -55,7 +55,7 @@ def activate(text, tag, skipped=False):
 
         Deactivates tag again:
 
-        >>> text, count = abjad.deactivate(text, 'RED_MARKUP')
+        >>> text, count = abjad.deactivate(text, abjad.Tag('RED_MARKUP'))
         >>> print(text)
         \new Staff {
             c'4
@@ -75,7 +75,7 @@ def activate(text, tag, skipped=False):
 
         Activates tag again:
 
-        >>> text, count = abjad.activate(text, 'RED_MARKUP')
+        >>> text, count = abjad.activate(text, abjad.Tag('RED_MARKUP'))
         >>> print(text)
         \new Staff {
             c'4
@@ -101,7 +101,7 @@ def activate(text, tag, skipped=False):
     """
     import abjad
 
-    assert isinstance(tag, str) or callable(tag), repr(tag)
+    assert isinstance(tag, abjad.Tag) or callable(tag), repr(tag)
     lines, count, skipped_count = [], 0, 0
     treated_last_line = False
     found_already_active_on_last_line = False

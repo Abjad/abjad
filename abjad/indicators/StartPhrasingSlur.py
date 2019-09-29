@@ -191,13 +191,13 @@ class StartPhrasingSlur(object):
             >>> abjad.tweak(start_phrasing_slur).color = 'blue'
             >>> abjad.f(start_phrasing_slur)
             abjad.StartPhrasingSlur(
-                tweaks=LilyPondTweakManager(('color', 'blue')),
+                tweaks=LilyPondTweakManager(('_literal', None), ('color', 'blue')),
                 )
 
             >>> start_phrasing_slur_2 = copy.copy(start_phrasing_slur)
             >>> abjad.f(start_phrasing_slur_2)
             abjad.StartPhrasingSlur(
-                tweaks=LilyPondTweakManager(('color', 'blue')),
+                tweaks=LilyPondTweakManager(('_literal', None), ('color', 'blue')),
                 )
 
         """

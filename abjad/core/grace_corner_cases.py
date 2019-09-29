@@ -27,9 +27,9 @@ r"""
                 <<
                     \context Voice = "On_Beat_Grace_Container"
                     {
-                        \set fontSize = #-3
-                        \slash
-                        \voiceOne
+                        \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
+                        \slash %! abjad.on_beat_grace_container(2)
+                        \voiceOne %! abjad.on_beat_grace_container(3)
                         <
                             \tweak font-size #0
                             \tweak transparent ##t
@@ -50,12 +50,12 @@ r"""
                         \grace {
                             gs'16
                         }
-                        \voiceTwo
+                        \voiceTwo %! abjad.on_beat_grace_container(4)
                         d'4
                         e'4
                     }
                 >>
-                \oneVoice
+                \oneVoice %! abjad.on_beat_grace_container(5)
                 f'4
             }
         }
@@ -84,9 +84,9 @@ r"""
                 <<
                     \context Voice = "On_Beat_Grace_Container"
                     {
-                        \set fontSize = #-3
-                        \slash
-                        \voiceOne
+                        \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
+                        \slash %! abjad.on_beat_grace_container(2)
+                        \voiceOne %! abjad.on_beat_grace_container(3)
                         <
                             \tweak font-size #0
                             \tweak transparent ##t
@@ -107,12 +107,12 @@ r"""
                         \grace {
                             gs'16
                         }
-                        \voiceTwo
+                        \voiceTwo %! abjad.on_beat_grace_container(4)
                         d'4
                         e'4
                     }
                 >>
-                \oneVoice
+                \oneVoice %! abjad.on_beat_grace_container(5)
                 f'4
             }
         }
@@ -142,9 +142,9 @@ r"""
                 <<
                     \context Voice = "On_Beat_Grace_Container"
                     {
-                        \set fontSize = #-3
-                        \slash
-                        \voiceOne
+                        \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
+                        \slash %! abjad.on_beat_grace_container(2)
+                        \voiceOne %! abjad.on_beat_grace_container(3)
                         <
                             \tweak font-size #0
                             \tweak transparent ##t
@@ -162,7 +162,7 @@ r"""
                     }
                     \context Voice = "Music_Voice"
                     {
-                        \voiceTwo
+                        \voiceTwo %! abjad.on_beat_grace_container(4)
                         \afterGrace
                         d'4
                         {
@@ -171,7 +171,7 @@ r"""
                         e'4
                     }
                 >>
-                \oneVoice
+                \oneVoice %! abjad.on_beat_grace_container(5)
                 f'4
             }
         }
@@ -252,9 +252,9 @@ r"""
                 <<
                     \context Voice = "On_Beat_Grace_Container"
                     {
-                        \set fontSize = #-3
-                        \slash
-                        \voiceOne
+                        \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
+                        \slash %! abjad.on_beat_grace_container(2)
+                        \voiceOne %! abjad.on_beat_grace_container(3)
                         <
                             \tweak font-size #0
                             \tweak transparent ##t
@@ -272,12 +272,12 @@ r"""
                     }
                     \context Voice = "Music_Voice"
                     {
-                        \voiceTwo
+                        \voiceTwo %! abjad.on_beat_grace_container(4)
                         d'4
                         e'4
                     }
                 >>
-                \oneVoice
+                \oneVoice %! abjad.on_beat_grace_container(5)
                 f'4
             }
         }

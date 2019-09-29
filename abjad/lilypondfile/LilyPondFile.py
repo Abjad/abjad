@@ -20,6 +20,7 @@ from abjad.scheme import SpacingVector
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.StorageFormatManager import StorageFormatManager
+from abjad.system.Tag import Tag
 from abjad.top.attach import attach
 from abjad.top.inspect import inspect as abjad_inspect
 from abjad.top.iterate import iterate
@@ -130,7 +131,7 @@ class LilyPondFile(object):
         items=None,
         lilypond_language_token=None,
         lilypond_version_token=None,
-        tag: str = None,
+        tag: Tag = None,
         use_relative_includes=None,
     ) -> None:
         comments = comments or ()
@@ -153,7 +154,7 @@ class LilyPondFile(object):
             version = LilyPondVersionToken()
             self._lilypond_version_token = version
         if tag is not None:
-            assert isinstance(tag, str), repr(tag)
+            assert isinstance(tag, Tag), repr(tag)
         self._tag = tag
         self._use_relative_includes = use_relative_includes
 
@@ -247,17 +248,17 @@ class LilyPondFile(object):
             >>> lilypond_file._lilypond_version_token = None
 
             >>> abjad.f(lilypond_file)
-            \language "english" %! abjad.LilyPondFile
+            \language "english" %! abjad.LilyPondFile._get_format_pieces()
             <BLANKLINE>
-            \header { %! abjad.LilyPondFile
+            \header { %! abjad.LilyPondFile._get_formatted_blocks()
                 tagline = ##f
-            } %! abjad.LilyPondFile
+            } %! abjad.LilyPondFile._get_formatted_blocks()
             <BLANKLINE>
             \layout {}
             <BLANKLINE>
             \paper {}
             <BLANKLINE>
-            \score { %! abjad.LilyPondFile
+            \score { %! abjad.LilyPondFile._get_formatted_blocks()
                 {
                     \new Score
                     <<
@@ -272,7 +273,7 @@ class LilyPondFile(object):
                         }
                     >>
                 }
-            } %! abjad.LilyPondFile
+            } %! abjad.LilyPondFile._get_formatted_blocks()
 
         Returns string.
         """
@@ -385,7 +386,7 @@ class LilyPondFile(object):
                 >>> del(lilypond_file.items[:3])
 
                 >>> abjad.f(lilypond_file)
-                \score { %! abjad.LilyPondFile
+                \score { %! abjad.LilyPondFile._get_formatted_blocks()
                     <<
                         {
                             \include "layout.ly"
@@ -398,7 +399,7 @@ class LilyPondFile(object):
                             f'4
                         }
                     >>
-                } %! abjad.LilyPondFile
+                } %! abjad.LilyPondFile._get_formatted_blocks()
 
                 >>> lilypond_file[abjad.Staff]
                 Staff("c'4 d'4 e'4 f'4", name='Custom_Staff')
@@ -488,8 +489,8 @@ class LilyPondFile(object):
         if self.lilypond_language_token is not None:
             string = f"{self.lilypond_language_token}"
             includes.append(string)
-        if self.tag is not None:
-            includes = LilyPondFormatManager.tag(includes, tag=self.tag)
+        tag = Tag("abjad.LilyPondFile._get_format_pieces()")
+        includes = LilyPondFormatManager.tag(includes, tag=self.get_tag(tag))
         includes = "\n".join(includes)
         if includes:
             result.append(includes)
@@ -510,12 +511,14 @@ class LilyPondFile(object):
 
     def _get_formatted_blocks(self):
         result = []
+        tag = Tag("abjad.LilyPondFile._get_formatted_blocks()")
+        tag = self.get_tag(tag)
         for item in self.items:
             if "_get_lilypond_format" in dir(item) and not isinstance(
                 item, str
             ):
                 try:
-                    string = item._get_lilypond_format(tag=self.tag)
+                    string = item._get_lilypond_format(tag=tag)
                 except TypeError:
                     string = item._get_lilypond_format()
                 if string:
@@ -543,6 +546,8 @@ class LilyPondFile(object):
 
     def _get_formatted_includes(self):
         result = []
+        tag = Tag("abjad.LilyPondFile._get_formatted_includes()")
+        tag = self.get_tag(tag)
         for include in self.includes:
             if isinstance(include, str):
                 string = rf'\include "{include}"'
@@ -556,12 +561,14 @@ class LilyPondFile(object):
             else:
                 result.append(format(include))
         if result:
-            result = LilyPondFormatManager.tag(result, tag=self.tag)
+            result = LilyPondFormatManager.tag(result, tag=tag)
             result = ["\n".join(result)]
         return result
 
     def _get_formatted_scheme_settings(self):
         result = []
+        tag = Tag("abjad.LilyPondFile._get_formatted_scheme_settings()")
+        tag = self.get_tag(tag)
         default_paper_size = self.default_paper_size
         if default_paper_size is not None:
             dimension, orientation = default_paper_size
@@ -572,7 +579,7 @@ class LilyPondFile(object):
             string = f"#(set-global-staff-size {global_staff_size})"
             result.append(string)
         if result:
-            result = LilyPondFormatManager.tag(result, tag=self.tag)
+            result = LilyPondFormatManager.tag(result, tag=tag)
             result = ["\n".join(result)]
         return result
 
@@ -761,7 +768,7 @@ class LilyPondFile(object):
             >>> abjad.f(lilypond_file)
             \customCommand
             <BLANKLINE>
-            \score { %! abjad.LilyPondFile
+            \score { %! abjad.LilyPondFile._get_formatted_blocks()
                 \new Staff
                 {
                     c'4
@@ -769,7 +776,7 @@ class LilyPondFile(object):
                     e'4
                     f'4
                 }
-            } %! abjad.LilyPondFile
+            } %! abjad.LilyPondFile._get_formatted_blocks()
 
         ..  container:: example
 
@@ -882,27 +889,6 @@ class LilyPondFile(object):
                     return item
 
     @property
-    def tag(self) -> str:
-        """
-        Gets tag.
-
-        ..  container:: example
-
-            Gets score block:
-
-            >>> string = 'make_lilypond_file'
-            >>> lilypond_file = abjad.LilyPondFile.new(tag=string)
-
-            >>> lilypond_file.tag
-            'make_lilypond_file:abjad.LilyPondFile'
-
-        """
-        if self._tag is not None:
-            return f"{self._tag}:abjad.LilyPondFile"
-        else:
-            return "abjad.LilyPondFile"
-
-    @property
     def use_relative_includes(self):
         """
         Is true when LilyPond file should use relative includes.
@@ -924,6 +910,14 @@ class LilyPondFile(object):
 
     ### PUBLIC METHODS ###
 
+    def get_tag(self, site=None):
+        """
+        Gets tag.
+        """
+        tag = Tag(self._tag)
+        tag = tag.append(site)
+        return tag
+
     @classmethod
     def new(
         class_,
@@ -935,7 +929,7 @@ class LilyPondFile(object):
         global_staff_size=None,
         lilypond_language_token=None,
         lilypond_version_token=None,
-        tag: str = None,
+        tag: Tag = None,
         use_relative_includes=None,
     ):
         r"""

@@ -205,7 +205,7 @@ class Wrapper(object):
             }
 
             >>> leaf = new_staff[0]
-            >>> abjad.inspect(leaf).annotation('bow_direction')
+            >>> abjad.inspect(leaf).annotation("bow_direction")
             Down
 
         ..  container:: example
@@ -213,8 +213,8 @@ class Wrapper(object):
             Preserves tag:
 
             >>> old_staff = abjad.Staff("c'4 d'4 e'4 f'4")
-            >>> clef = abjad.Clef('alto')
-            >>> abjad.attach(clef, old_staff[0], tag='RED:M1')
+            >>> clef = abjad.Clef("alto")
+            >>> abjad.attach(clef, old_staff[0], tag=abjad.Tag("RED:M1"))
             >>> abjad.f(old_staff)
             \new Staff {
                 \clef "alto" %! RED:M1
@@ -261,7 +261,7 @@ class Wrapper(object):
             ...     abjad.Clef('alto'),
             ...     old_staff[0],
             ...     deactivate=True,
-            ...     tag='RED:M1',
+            ...     tag=abjad.Tag("RED:M1"),
             ...     )
             >>> abjad.f(old_staff)
             \new Staff {
@@ -492,11 +492,18 @@ class Wrapper(object):
         wrapper = abjad.inspect(component).effective_wrapper(
             prototype, attributes={"command": command}
         )
+        wrapper_format_slot = None
+        if wrapper is not None:
+            wrapper_format_slot = getattr(
+                wrapper.indicator, "format_slot", None
+            )
+        my_format_slot = getattr(self.indicator, "format_slot", None)
         if (
             wrapper is None
             or wrapper.context is None
             or wrapper.deactivate is True
             or wrapper.start_offset != self.start_offset
+            or wrapper_format_slot != my_format_slot
         ):
             return
         my_leak = getattr(self.indicator, "leak", None)

@@ -361,8 +361,7 @@ class Wellformedness(object):
             total.add(leaf)
             if inspect(leaf).has_indicator(const.ALLOW_OUT_OF_RANGE):
                 continue
-            # TODO: change to has_indicator(const.HIDDEN):
-            if inspect(leaf).annotation(const.HIDDEN) is True:
+            if inspect(leaf).has_indicator(const.HIDDEN):
                 continue
             instrument = inspect(leaf).effective(Instrument)
             if instrument is None:

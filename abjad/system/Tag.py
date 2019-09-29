@@ -125,7 +125,7 @@ class Tag(object):
             True
 
         """
-        return argument in self.words
+        return str(argument) in self.words
 
     def __eq__(self, argument):
         """
@@ -166,8 +166,18 @@ class Tag(object):
     def __hash__(self):
         """
         Hashes tag.
+
+        ..  container:: example
+
+            REGRESSION. Tags compare equal when strings compare equal:
+
+            >>> tag_1 = abjad.Tag("MEASURE_1")
+            >>> tag_2 = abjad.Tag("MEASURE_1")
+            >>> hash(tag_1) == hash(tag_2)
+            True
+
         """
-        return super().__hash__()
+        return hash(str(self))
 
     def __iter__(self):
         """
@@ -253,7 +263,7 @@ class Tag(object):
 
     ### PUBLIC METHODS ###
 
-    def append(self, word: str) -> "Tag":
+    def append(self, word: typing.Optional["Tag"]) -> "Tag":
         """
         Appends ``word`` to tag.
         
@@ -265,13 +275,13 @@ class Tag(object):
         """
         if not bool(word):
             return Tag(self)
-        if isinstance(word, Tag):
-            word = str(word)
-        assert isinstance(word, str), repr(word)
-        assert word != "", repr(word)
-        words_ = self.words
-        words_.append(word)
-        return Tag.from_words(words_)
+        assert isinstance(word, Tag), repr(word)
+        words = []
+        if str(self) != "":
+            words.append(str(self))
+        words.append(str(word))
+        string = ":".join(words)
+        return Tag(string)
 
     def editions(self) -> typing.List["Tag"]:
         """
@@ -304,38 +314,6 @@ class Tag(object):
                 result.append(Tag(word))
         return result
 
-    def extend(self, words: typing.List[str]) -> "Tag":
-        """
-        Extends tag with ``words``.
-
-        ..  container:: example
-
-            >>> tag = abjad.Tag('-PARTS')
-            >>> tag.extend(['-SCORE', abjad.tags.DEFAULT_CLEF])
-            Tag('-PARTS:-SCORE:DEFAULT_CLEF')
-
-        """
-        assert isinstance(words, list), repr(words)
-        tag = self
-        for word in words:
-            tag = tag.append(word)
-        return tag
-
-    @staticmethod
-    def from_words(words: typing.List[str]) -> "Tag":
-        """
-        Makes tag from ``words``.
-        """
-        assert isinstance(words, list), repr(words)
-        words_ = []
-        for word in words:
-            if not bool(word):
-                continue
-            word = str(word)
-            words_.append(word)
-        string = ":".join(words_)
-        return Tag(string)
-
     def has_persistence_tag(self) -> bool:
         """
         Is true when tag has persistence tag.
@@ -356,7 +334,7 @@ class Tag(object):
 
         tags = Tags().persistent_indicator_tags()
         for word in self:
-            if word in tags:
+            if type(self)(word) in tags:
                 return True
         return False
 
@@ -385,7 +363,8 @@ class Tag(object):
             else:
                 word_ = word
             words.append(word_)
-        tag = Tag.from_words(words)
+        string = ":".join(words)
+        tag = Tag(string)
         return tag
 
     def not_editions(self) -> typing.List["Tag"]:
@@ -434,23 +413,3 @@ class Tag(object):
                 return Tag(word)
         else:
             return None
-
-    def prepend(self, word: str) -> "Tag":
-        """
-        Prepends ``word`` to tag.
-        
-        ..  container:: example
-
-            >>> abjad.Tag('-PARTS').prepend(abjad.tags.DEFAULT_CLEF)
-            Tag('DEFAULT_CLEF:-PARTS')
-
-        """
-        if not bool(word):
-            return Tag(self)
-        if isinstance(word, Tag):
-            word = str(word)
-        assert isinstance(word, str), repr(word)
-        assert word != "", repr(word)
-        words_ = self.words
-        words_.insert(0, word)
-        return Tag.from_words(words_)

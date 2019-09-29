@@ -190,7 +190,7 @@ class Iteration(object):
     def _should_exclude(argument, exclude):
         assert isinstance(exclude, tuple)
         for string in exclude:
-            if inspect(argument).annotation(string) is True:
+            if inspect(argument).has_indicator(string):
                 return True
         return False
 
@@ -250,9 +250,9 @@ class Iteration(object):
                         <<
                             \context Voice = "On_Beat_Grace_Container"
                             {
-                                \set fontSize = #-3
-                                \slash
-                                \voiceOne
+                                \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
+                                \slash %! abjad.on_beat_grace_container(2)
+                                \voiceOne %! abjad.on_beat_grace_container(3)
                                 <
                                     \tweak font-size #0
                                     \tweak transparent ##t
@@ -270,11 +270,11 @@ class Iteration(object):
                             }
                             \context Voice = "Music_Voice"
                             {
-                                \voiceTwo
+                                \voiceTwo %! abjad.on_beat_grace_container(4)
                                 e'4
                             }
                         >>
-                        \oneVoice
+                        \oneVoice %! abjad.on_beat_grace_container(5)
                         \afterGrace
                         f'4
                         {
@@ -518,12 +518,12 @@ class Iteration(object):
             >>> staff.extend("af'8 r8")
             >>> staff.extend("r8 gf'8")
             >>> abjad.attach(abjad.TimeSignature((2, 8)), staff[0])
-            >>> abjad.annotate(staff[0], 'RED', True)
-            >>> abjad.annotate(staff[1], 'BLUE', True)
-            >>> abjad.annotate(staff[2], 'GREEN', True)
-            >>> abjad.annotate(staff[3], 'RED', True)
-            >>> abjad.annotate(staff[4], 'BLUE', True)
-            >>> abjad.annotate(staff[5], 'GREEN', True)
+            >>> abjad.attach("RED", staff[0])
+            >>> abjad.attach("BLUE", staff[1])
+            >>> abjad.attach("GREEN", staff[2])
+            >>> abjad.attach("RED", staff[3])
+            >>> abjad.attach("BLUE", staff[4])
+            >>> abjad.attach("GREEN", staff[5])
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -548,8 +548,7 @@ class Iteration(object):
             Note("af'8")
             Note("gf'8")
 
-            Iteration excludes leaves annotated with ``'RED'`` or ``'BLUE'`` in
-            the example above.
+            Iteration excludes leaves ``'RED'`` or ``'BLUE'`` attached.
 
         ..  container:: example
 
@@ -582,9 +581,9 @@ class Iteration(object):
                         <<
                             \context Voice = "On_Beat_Grace_Container"
                             {
-                                \set fontSize = #-3
-                                \slash
-                                \voiceOne
+                                \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
+                                \slash %! abjad.on_beat_grace_container(2)
+                                \voiceOne %! abjad.on_beat_grace_container(3)
                                 <
                                     \tweak font-size #0
                                     \tweak transparent ##t
@@ -602,11 +601,11 @@ class Iteration(object):
                             }
                             \context Voice = "Music_Voice"
                             {
-                                \voiceTwo
+                                \voiceTwo %! abjad.on_beat_grace_container(4)
                                 e'4
                             }
                         >>
-                        \oneVoice
+                        \oneVoice %! abjad.on_beat_grace_container(5)
                         \afterGrace
                         f'4
                         {
@@ -825,9 +824,9 @@ class Iteration(object):
                         <<
                             \context Voice = "On_Beat_Grace_Container"
                             {
-                                \set fontSize = #-3
-                                \slash
-                                \voiceOne
+                                \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
+                                \slash %! abjad.on_beat_grace_container(2)
+                                \voiceOne %! abjad.on_beat_grace_container(3)
                                 <
                                     \tweak font-size #0
                                     \tweak transparent ##t
@@ -845,11 +844,11 @@ class Iteration(object):
                             }
                             \context Voice = "Music_Voice"
                             {
-                                \voiceTwo
+                                \voiceTwo %! abjad.on_beat_grace_container(4)
                                 e'4
                             }
                         >>
-                        \oneVoice
+                        \oneVoice %! abjad.on_beat_grace_container(5)
                         \afterGrace
                         f'4
                         {
@@ -1452,9 +1451,9 @@ class Iteration(object):
                         <<
                             \context Voice = "On_Beat_Grace_Container"
                             {
-                                \set fontSize = #-3
-                                \slash
-                                \voiceOne
+                                \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
+                                \slash %! abjad.on_beat_grace_container(2)
+                                \voiceOne %! abjad.on_beat_grace_container(3)
                                 <
                                     \tweak font-size #0
                                     \tweak transparent ##t
@@ -1472,11 +1471,11 @@ class Iteration(object):
                             }
                             \context Voice = "Music_Voice"
                             {
-                                \voiceTwo
+                                \voiceTwo %! abjad.on_beat_grace_container(4)
                                 e'4
                             }
                         >>
-                        \oneVoice
+                        \oneVoice %! abjad.on_beat_grace_container(5)
                         \afterGrace
                         f'4
                         {

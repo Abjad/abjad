@@ -11,7 +11,7 @@ def deactivate(text, tag, prepend_empty_chord=False, skipped=False):
         >>> abjad.attach(
         ...     markup,
         ...     staff[0],
-        ...     tag='RED_MARKUP',
+        ...     tag=abjad.Tag('RED_MARKUP'),
         ...     )
 
         >>> text = format(staff, 'lilypond')
@@ -34,7 +34,7 @@ def deactivate(text, tag, prepend_empty_chord=False, skipped=False):
         Deactivates tag:
 
         >>> text = format(staff, 'lilypond')
-        >>> text, count = abjad.deactivate(text, 'RED_MARKUP')
+        >>> text, count = abjad.deactivate(text, abjad.Tag('RED_MARKUP'))
         >>> print(text)
         \new Staff {
             c'4
@@ -54,7 +54,7 @@ def deactivate(text, tag, prepend_empty_chord=False, skipped=False):
 
         Activates tag again:
 
-        >>> text, count = abjad.activate(text, 'RED_MARKUP')
+        >>> text, count = abjad.activate(text, abjad.Tag('RED_MARKUP'))
         >>> print(text)
         \new Staff {
             c'4
@@ -74,7 +74,7 @@ def deactivate(text, tag, prepend_empty_chord=False, skipped=False):
 
         Deactivates tag again:
 
-        >>> text, count = abjad.deactivate(text, 'RED_MARKUP')
+        >>> text, count = abjad.deactivate(text, abjad.Tag('RED_MARKUP'))
         >>> print(text)
         \new Staff {
             c'4
@@ -100,13 +100,14 @@ def deactivate(text, tag, prepend_empty_chord=False, skipped=False):
     """
     import abjad
 
-    assert isinstance(tag, str) or callable(tag), repr(tag)
+    assert isinstance(tag, abjad.Tag) or callable(tag), repr(tag)
     lines, count, skipped_count = [], 0, 0
     treated_last_line, last_index = False, None
     found_already_deactivated_on_last_line = False
     text_lines = text.split("\n")
     text_lines = [_ + "\n" for _ in text_lines[:-1]] + text_lines[-1:]
     lines = []
+    previous_line_was_tweak = False
     for line in text_lines:
         first_nonwhitespace_index = len(line) - len(line.lstrip())
         index = first_nonwhitespace_index
@@ -123,14 +124,12 @@ def deactivate(text, tag, prepend_empty_chord=False, skipped=False):
                 line = line.replace(" %@%", "")
             else:
                 prefix = "%%% "
-            if prepend_empty_chord:
+            if prepend_empty_chord and not previous_line_was_tweak:
                 prefix += "<> "
             prefix_length = len(prefix)
-            # target = line[last_index-prefix_length:last_index]
             target = line[last_index - 4 : last_index]
             assert target == "    ", repr((line, target, index, tag))
             characters = list(line)
-            # characters[last_index-prefix_length:last_index] = list(prefix)
             characters[last_index - 4 : last_index] = list(prefix)
             line = "".join(characters)
             if not treated_last_line:
@@ -143,6 +142,7 @@ def deactivate(text, tag, prepend_empty_chord=False, skipped=False):
             found_already_deactivated_on_last_line = True
             treated_last_line = False
         lines.append(line)
+        previous_line_was_tweak = "tweak" in line
     text = "".join(lines)
     if skipped is True:
         return text, count, skipped_count

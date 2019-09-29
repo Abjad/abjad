@@ -1,4 +1,5 @@
 from abjad import mathtools
+from abjad.system.Tag import Tag
 from abjad.utilities.Multiplier import Multiplier
 from .Container import Container
 
@@ -54,7 +55,7 @@ class TremoloContainer(Container):
     ### INITIALIZER ###
 
     def __init__(
-        self, count: int = 2, components=None, *, tag: str = None
+        self, count: int = 2, components=None, *, tag: Tag = None
     ) -> None:
         assert mathtools.is_assignable_integer(count), repr(count)
         self._count = count

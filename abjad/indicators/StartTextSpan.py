@@ -748,7 +748,7 @@ class StartTextSpan(object):
                 command='\\startTextSpan',
                 concat_hspace_left=0.5,
                 style='dashed-line-with-arrow',
-                tweaks=LilyPondTweakManager(('color', 'blue'), ('staff_padding', 2.5)),
+                tweaks=LilyPondTweakManager(('_literal', None), ('color', 'blue'), ('staff_padding', 2.5)),
                 )
 
             >>> start_text_span_2 = copy.copy(start_text_span)
@@ -757,7 +757,7 @@ class StartTextSpan(object):
                 command='\\startTextSpan',
                 concat_hspace_left=0.5,
                 style='dashed-line-with-arrow',
-                tweaks=LilyPondTweakManager(('color', 'blue'), ('staff_padding', 2.5)),
+                tweaks=LilyPondTweakManager(('_literal', None), ('color', 'blue'), ('staff_padding', 2.5)),
                 )
 
         """

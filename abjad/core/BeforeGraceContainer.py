@@ -1,4 +1,5 @@
 import typing
+from abjad.system.Tag import Tag
 from .Container import Container
 
 
@@ -176,7 +177,7 @@ class BeforeGraceContainer(Container):
     ### INITIALIZER ###
 
     def __init__(
-        self, components=None, *, command: str = r"\grace", tag: str = None
+        self, components=None, *, command: str = r"\grace", tag: Tag = None
     ) -> None:
         if command not in self._commands:
             message = f"unknown command: {repr(command)}.\n"

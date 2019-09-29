@@ -100,8 +100,8 @@ class Markup(object):
         Markup can be tagged:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> markup = abjad.Markup('Allegro', direction=abjad.Up).italic()
-        >>> abjad.attach(markup, staff[0], tag='RED:M1')
+        >>> markup = abjad.Markup("Allegro", direction=abjad.Up).italic()
+        >>> abjad.attach(markup, staff[0], tag=abjad.Tag("RED:M1"))
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> abjad.f(staff)
@@ -122,12 +122,12 @@ class Markup(object):
         Markup can be deactively tagged:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> markup = abjad.Markup('Allegro', direction=abjad.Up).italic()
+        >>> markup = abjad.Markup("Allegro", direction=abjad.Up).italic()
         >>> abjad.attach(
         ...     markup,
         ...     staff[0],
         ...     deactivate=True,
-        ...     tag='RED:M1',
+        ...     tag=abjad.Tag("RED:M1"),
         ...     )
         >>> abjad.show(staff) # doctest: +SKIP
 

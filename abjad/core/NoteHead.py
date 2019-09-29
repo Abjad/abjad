@@ -460,7 +460,7 @@ class NoteHead(object):
 
             >>> abjad.tweak(note_head).color = 'red'
             >>> note_head.tweaks
-            LilyPondTweakManager(('color', 'red'))
+            LilyPondTweakManager(('_literal', None), ('color', 'red'))
 
             >>> abjad.f(note_head)
             \tweak color #red

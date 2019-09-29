@@ -1,3 +1,4 @@
+from abjad.system.Tag import Tag
 from .Container import Container
 
 
@@ -130,7 +131,7 @@ class AfterGraceContainer(Container):
 
     ### INITIALIZER ###
 
-    def __init__(self, components=None, tag: str = None) -> None:
+    def __init__(self, components=None, tag: Tag = None) -> None:
         # _main_leaf slot must be initialized before container initialization
         self._main_leaf = None
         Container.__init__(self, components, tag=tag)

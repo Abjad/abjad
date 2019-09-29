@@ -26,6 +26,7 @@ from abjad.utilities.OrderedDict import OrderedDict
 from abjad.utilities.String import String
 from .PartAssignment import PartAssignment
 from .PartManifest import PartManifest
+abjad_tags = Tags()
 
 
 class ScoreTemplate(object):
@@ -66,8 +67,10 @@ class ScoreTemplate(object):
         Illustrates score template.
         """
         score: Score = self()
+        site = "abjad.ScoreTemplate.__illustrate__()"
+        tag = Tag(site)
         for voice in iterate(score).components(Voice):
-            skip = Skip(1, tag="abjad.ScoreTemplate.__illustrate__")
+            skip = Skip(1, tag=tag)
             voice.append(skip)
         self.attach_defaults(score)
         lilypond_file: LilyPondFile = score.__illustrate__()
@@ -88,22 +91,24 @@ class ScoreTemplate(object):
     ### PRIVATE METHODS ###
 
     def _make_global_context(self):
+        site = "abjad.ScoreTemplate._make_global_context()"
+        tag = Tag(site)
         global_rests = Context(
             lilypond_type="GlobalRests",
             name="Global_Rests",
-            tag="abjad.ScoreTemplate._make_global_context",
+            tag=tag,
         )
         global_skips = Context(
             lilypond_type="GlobalSkips",
             name="Global_Skips",
-            tag="abjad.ScoreTemplate._make_global_context",
+            tag=tag,
         )
         global_context = Context(
             [global_rests, global_skips],
             lilypond_type="GlobalContext",
             simultaneous=True,
             name="Global_Context",
-            tag="abjad.ScoreTemplate._make_global_context",
+            tag=tag,
         )
         return global_context
 
@@ -189,7 +194,7 @@ class ScoreTemplate(object):
             for voice in voices:
                 leaves = []
                 for leaf_ in select(voice).leaves():
-                    if inspect(leaf_).annotation(const.HIDDEN) is not True:
+                    if inspect(leaf_).has_indicator(const.HIDDEN):
                         leaves.append(leaf_)
                 if not all(isinstance(_, empty_prototype) for _ in leaves):
                     leaf = inspect(voice).leaf(0)
@@ -219,7 +224,7 @@ class ScoreTemplate(object):
                         instrument,
                         leaf,
                         context=staff__group.lilypond_type,
-                        tag="abjad.ScoreTemplate.attach_defaults",
+                        tag=Tag("abjad.ScoreTemplate.attach_defaults(1)"),
                         wrapper=True,
                     )
                     wrappers.append(wrapper)
@@ -231,8 +236,8 @@ class ScoreTemplate(object):
                     wrapper = attach(
                         margin_markup,
                         leaf,
-                        tag=Tag("-PARTS").prepend(
-                            "abjad.ScoreTemplate.attach_defaults"
+                        tag=abjad_tags.NOT_PARTS.append(
+                            Tag("abjad.ScoreTemplate.attach_defaults(2)")
                         ),
                         wrapper=True,
                     )
@@ -247,7 +252,7 @@ class ScoreTemplate(object):
                 wrapper = attach(
                     clef,
                     leaf,
-                    tag="abjad.ScoreTemplate.attach_defaults",
+                    tag=Tag("abjad.ScoreTemplate.attach_defaults(3)"),
                     wrapper=True,
                 )
                 wrappers.append(wrapper)
