@@ -306,9 +306,10 @@ class MetronomeMark(object):
         nonreduced_fraction = nonreduced_fraction.with_denominator(
             minimum_denominator
         )
-        new_units_per_minute, new_reference_duration_denominator = (
-            nonreduced_fraction.pair
-        )
+        (
+            new_units_per_minute,
+            new_reference_duration_denominator,
+        ) = nonreduced_fraction.pair
         new_reference_duration = Duration(
             1, new_reference_duration_denominator
         )
@@ -711,9 +712,10 @@ class MetronomeMark(object):
         nonreduced_fraction = nonreduced_fraction.with_denominator(
             minimum_denominator
         )
-        new_units_per_minute, new_reference_duration_denominator = (
-            nonreduced_fraction.pair
-        )
+        (
+            new_units_per_minute,
+            new_reference_duration_denominator,
+        ) = nonreduced_fraction.pair
         new_reference_duration = Duration(
             1, new_reference_duration_denominator
         )

@@ -206,6 +206,13 @@ if __name__ == "__main__":
             illustration_ly.extern(realign=79)
             illustration_ily = illustration_ly.with_suffix(".ily")
             assert illustration_ily.is_file()
+            not_topmost = abjad.Job(
+                deactivate=(abjad.Tag("NOT_TOPMOST"), "not topmost"),
+                path=segment_directory,
+                title="deactivating NOT_TOPMOST ...",
+            )
+            for message in not_topmost():
+                print(" " + message)
         lilypond_log_file_path = illustration_ily.parent / ".log"
         with abjad.Timer() as timer:
             print(" Running LilyPond ...")

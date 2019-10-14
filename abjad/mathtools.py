@@ -500,7 +500,7 @@ def factors(n) -> typing.List[int]:
 
 
 def fraction_to_proper_fraction(
-    rational
+    rational,
 ) -> typing.Tuple[int, fractions.Fraction]:
     """
     Changes ``rational`` to proper fraction.

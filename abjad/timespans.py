@@ -210,9 +210,10 @@ class Timespan(object):
             False
 
         """
-        expr_start_offset, expr_stop_offset = self._get_start_offset_and_maybe_stop_offset(
-            argument
-        )
+        (
+            expr_start_offset,
+            expr_stop_offset,
+        ) = self._get_start_offset_and_maybe_stop_offset(argument)
         if expr_stop_offset is not None:
             if self._start_offset >= expr_start_offset:
                 return True
@@ -242,9 +243,10 @@ class Timespan(object):
             False
 
         """
-        expr_start_offset, expr_stop_offset = self._get_start_offset_and_maybe_stop_offset(
-            argument
-        )
+        (
+            expr_start_offset,
+            expr_stop_offset,
+        ) = self._get_start_offset_and_maybe_stop_offset(argument)
         if expr_stop_offset is not None:
             if self._start_offset > expr_start_offset:
                 return True
@@ -291,9 +293,10 @@ class Timespan(object):
             True
 
         """
-        expr_start_offset, expr_stop_offset = self._get_start_offset_and_maybe_stop_offset(
-            argument
-        )
+        (
+            expr_start_offset,
+            expr_stop_offset,
+        ) = self._get_start_offset_and_maybe_stop_offset(argument)
         if expr_stop_offset is not None:
             if self._start_offset <= expr_start_offset:
                 return True
@@ -337,9 +340,10 @@ class Timespan(object):
             False
 
         """
-        expr_start_offset, expr_stop_offset = self._get_start_offset_and_maybe_stop_offset(
-            argument
-        )
+        (
+            expr_start_offset,
+            expr_stop_offset,
+        ) = self._get_start_offset_and_maybe_stop_offset(argument)
         if expr_stop_offset is not None:
             if self._start_offset < expr_start_offset:
                 return True

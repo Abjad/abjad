@@ -9435,7 +9435,10 @@ class Selection(collections.abc.Sequence):
                     result.append(tuplet)
         return type(self)(result)
 
-    def with_next_leaf(self) -> typing.Union["Selection", Expression]:
+    # TODO: write grace examples
+    def with_next_leaf(
+        self, *, grace: bool = None
+    ) -> typing.Union["Selection", Expression]:
         r"""
         Extends selection with next leaf.
 
@@ -9808,9 +9811,19 @@ class Selection(collections.abc.Sequence):
         if self._expression:
             return self._update_expression(inspect.currentframe())
         leaves = list(self.leaves())
-        next_leaf = abjad_inspect(leaves[-1]).leaf(1)
-        if next_leaf is not None:
-            leaves.append(next_leaf)
+        previous_leaf = leaves[-1]
+        while True:
+            next_leaf = abjad_inspect(previous_leaf).leaf(1)
+            if next_leaf is None:
+                break
+            if (
+                grace is None
+                or (grace is True and abjad_inspect(next_leaf).grace())
+                or (grace is False and not abjad_inspect(next_leaf).grace())
+            ):
+                leaves.append(next_leaf)
+                break
+            previous_leaf = next_leaf
         return type(self)(leaves)
 
     def with_previous_leaf(self) -> typing.Union["Selection", Expression]:

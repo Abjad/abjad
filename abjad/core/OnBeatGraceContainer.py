@@ -5,6 +5,7 @@ from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.Tag import Tag
 from abjad.system.Tags import Tags
 from abjad.top.attach import attach
+from abjad.top.detach import detach
 from abjad.top.inspect import inspect as abjad_inspect
 from abjad.top.mutate import mutate
 from abjad.top.override import override
@@ -117,6 +118,20 @@ class OnBeatGraceContainer(Container):
 
     ### PRIVATE METHODS ###
 
+    # NOTE: format="absolute_before" for \oneVoice so that this works:
+    #
+    #           \oneVoice                                                                  %! abjad.on_beat_grace_container(5)
+    #           \override Stem.direction = #down                                           %! baca.stem_down():baca.OverrideCommand._call(1)
+    #
+    # ... because this ...
+    #
+    #           \override Stem.direction = #down                                           %! baca.stem_down():baca.OverrideCommand._call(1)
+    #           \oneVoice                                                                  %! abjad.on_beat_grace_container(5)
+    #
+    # ... doesn't work.
+    #
+    # This is hackish, and some sort of longer term solution should
+    # happen later.
     def _attach_lilypond_one_voice(self):
         from .Voice import Voice
 
@@ -124,8 +139,12 @@ class OnBeatGraceContainer(Container):
         anchor_voice = abjad_inspect(anchor_leaf).parentage().get(Voice)
         final_anchor_leaf = abjad_inspect(anchor_voice).leaf(-1)
         next_leaf = abjad_inspect(final_anchor_leaf).leaf(1)
-        literal = LilyPondLiteral(r"\oneVoice")
+        literal = LilyPondLiteral(r"\oneVoice", format_slot="absolute_before")
         if abjad_inspect(next_leaf).has_indicator(literal):
+            return
+        if isinstance(next_leaf._parent, OnBeatGraceContainer):
+            return
+        if next_leaf._parent._is_on_beat_anchor_voice():
             return
         site = "abjad.OnBeatGraceContainer._attach_lilypond_one_voice()"
         tag = Tag(site)
@@ -825,16 +844,24 @@ def on_beat_grace_container(
         4: r"\voiceFour",
     }
     first_grace = abjad_inspect(on_beat_grace_container).leaf(0)
+    one_voice_literal = LilyPondLiteral(
+        r"\oneVoice", format_slot="absolute_before"
+    )
     string = voice_number_to_string.get(grace_voice_number, None)
     if string is not None:
+        literal
+        detach(one_voice_literal, anchor_leaf)
         attach(LilyPondLiteral(string), first_grace, tag=_site(3))
     string = voice_number_to_string.get(anchor_voice_number, None)
     if string is not None:
+        detach(one_voice_literal, anchor_leaf)
         attach(LilyPondLiteral(string), anchor_leaf, tag=_site(4))
     if not do_not_stop_polyphony:
         last_anchor_leaf = abjad_inspect(anchor_voice_selection).leaf(-1)
         next_leaf = abjad_inspect(last_anchor_leaf).leaf(1)
         if next_leaf is not None:
-            literal = LilyPondLiteral(r"\oneVoice")
+            literal = LilyPondLiteral(
+                r"\oneVoice", format_slot="absolute_before"
+            )
             attach(literal, next_leaf, tag=_site(5))
     return on_beat_grace_container

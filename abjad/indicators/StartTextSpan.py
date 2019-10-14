@@ -88,9 +88,11 @@ class StartTextSpan(object):
     _styles = (
         "dashed-line-with-arrow",
         "dashed-line-with-hook",
+        "dashed-line-with-up-hook",
         "invisible-line",
         "solid-line-with-arrow",
         "solid-line-with-hook",
+        "solid-line-with-up-hook",
     )
 
     ### INITIALIZER ###

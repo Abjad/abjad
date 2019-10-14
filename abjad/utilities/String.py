@@ -1766,7 +1766,7 @@ class String(str):
 
     @staticmethod
     def to_tridirectional_direction_string(
-        argument
+        argument,
     ) -> typing.Optional["String"]:
         """
         Changes ``argument`` to tridirectional direction string.
