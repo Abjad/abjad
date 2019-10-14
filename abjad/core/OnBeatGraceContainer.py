@@ -3,6 +3,7 @@ from abjad import typings
 from abjad.indicators.LilyPondLiteral import LilyPondLiteral
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.Tag import Tag
+from abjad.system.Tags import Tags
 from abjad.top.attach import attach
 from abjad.top.inspect import inspect as abjad_inspect
 from abjad.top.mutate import mutate
@@ -11,6 +12,8 @@ from abjad.top.tweak import tweak
 from abjad.top.select import select
 from abjad.utilities.Duration import Duration
 from .Container import Container
+
+abjad_tags = Tags()
 
 
 class OnBeatGraceContainer(Container):
@@ -126,6 +129,7 @@ class OnBeatGraceContainer(Container):
             return
         site = "abjad.OnBeatGraceContainer._attach_lilypond_one_voice()"
         tag = Tag(site)
+        tag = tag.append(abjad_tags.ONE_VOICE_COMMAND)
         attach(literal, next_leaf, tag=tag)
 
     def _format_invocation(self):

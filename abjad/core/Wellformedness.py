@@ -1,19 +1,25 @@
 import typing
 from abjad import const
 from abjad.indicators.Clef import Clef
+from abjad.indicators.StartBeam import StartBeam
+from abjad.indicators.StopBeam import StopBeam
 from abjad.indicators.StartHairpin import StartHairpin
 from abjad.indicators.StartTextSpan import StartTextSpan
 from abjad.indicators.StopHairpin import StopHairpin
 from abjad.indicators.StopTextSpan import StopTextSpan
 from abjad.instruments import Instrument
 from abjad.system.StorageFormatManager import StorageFormatManager
+from abjad.system.Tags import Tags
 from abjad.top.inspect import inspect
 from abjad.top.iterate import iterate
 from abjad.top.setting import setting
+from abjad.utilities.Duration import Duration
 from abjad.utilities.Sequence import Sequence
 from .Container import Container
 from .Context import Context
 from .Leaf import Leaf
+
+abjad_tags = Tags()
 
 
 class Wellformedness(object):
@@ -31,14 +37,7 @@ class Wellformedness(object):
 
     __documentation_section__ = "Collaborators"
 
-    __slots__ = ("_allow_percussion_clef",)
-
     _publish_storage_format = True
-
-    ### INITIALIZER ###
-
-    def __init__(self, allow_percussion_clef=None):
-        self._allow_percussion_clef = allow_percussion_clef
 
     ### SPECIAL METHODS ###
 
@@ -61,20 +60,163 @@ class Wellformedness(object):
 
     def __repr__(self) -> str:
         """
-        Gets interpreter representation.
+        Delegates to storage format manager.
         """
         return StorageFormatManager(self).get_repr_format()
 
-    ### PUBLIC PROPERTIES ###
+    ### PRIVATE METHODS ###
 
-    @property
-    def allow_percussion_clef(self) -> typing.Optional[bool]:
+    def _aggregate_context_wrappers(self, argument):
         """
-        Is true when wellformedness allows percussion clef.
+        Special_Voice may contain other instances of Special_Voice.
+        This currently happens with OnBeatGraceContainer.
+        This method aggregates all Special_Voice wrappers for checks.
         """
-        return self._allow_percussion_clef
+        name_to_wrappers: typing.Dict = {}
+        for context in iterate(argument).components(Context):
+            if context.name not in name_to_wrappers:
+                name_to_wrappers[context.name] = []
+            wrappers = context._dependent_wrappers[:]
+            name_to_wrappers[context.name].extend(wrappers)
+        return name_to_wrappers
 
     ### PUBLIC METHODS ###
+
+    def check_beamed_long_notes(
+        self, argument=None
+    ) -> typing.Tuple[typing.List, int]:
+        r"""
+        Checks beamed long notes.
+
+        ..  container:: example
+
+            Beamed quarter notes are not wellformed:
+
+            >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
+            >>> abjad.attach(abjad.StartBeam(), voice[0])
+            >>> abjad.attach(abjad.StopBeam(), voice[1])
+            >>> abjad.show(voice) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(voice)
+                \new Voice
+                {
+                    c'4
+                    [
+                    d'4
+                    ]
+                    e'4
+                    f'4
+                }
+
+            >>> agent = abjad.inspect(voice)
+            >>> print(agent.tabulate_wellformedness())
+            2 /	4 beamed long notes
+            0 /	5 duplicate ids
+            0 /	1 empty containers
+            0 /	5 missing parents
+            0 /	4 notes on wrong clef
+            0 /	4 out of range pitches
+            0 /	0 overlapping text spanners
+            0 /	0 unmatched stop text spans
+            0 /	0 unterminated hairpins
+            0 /	0 unterminated text spanners
+
+            Beamed eighth notes are wellformed:
+
+            >>> voice = abjad.Voice("c'8 d'8 e'8 f'8")
+            >>> abjad.attach(abjad.StartBeam(), voice[0])
+            >>> abjad.attach(abjad.StopBeam(), voice[1])
+            >>> abjad.show(voice) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(voice)
+                \new Voice
+                {
+                    c'8
+                    [
+                    d'8
+                    ]
+                    e'8
+                    f'8
+                }
+
+            >>> agent = abjad.inspect(voice)
+            >>> print(agent.tabulate_wellformedness())
+            0 /	4 beamed long notes
+            0 /	5 duplicate ids
+            0 /	1 empty containers
+            0 /	5 missing parents
+            0 /	4 notes on wrong clef
+            0 /	4 out of range pitches
+            0 /	0 overlapping text spanners
+            0 /	0 unmatched stop text spans
+            0 /	0 unterminated hairpins
+            0 /	0 unterminated text spanners
+
+        ..  container:: example
+
+            REGRESSION. Matching start- and stop-beam indicators work
+            correctly:
+
+            >>> voice = abjad.Voice("c'8 d'8 e'4 f'2")
+            >>> abjad.attach(abjad.StartBeam(), voice[0])
+            >>> abjad.attach(abjad.StopBeam(), voice[1])
+            >>> abjad.show(voice) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(voice)
+                \new Voice
+                {
+                    c'8
+                    [
+                    d'8
+                    ]
+                    e'4
+                    f'2
+                }
+
+            >>> agent = abjad.inspect(voice)
+            >>> print(agent.tabulate_wellformedness())
+            0 /	4 beamed long notes
+            0 /	5 duplicate ids
+            0 /	1 empty containers
+            0 /	5 missing parents
+            0 /	4 notes on wrong clef
+            0 /	4 out of range pitches
+            0 /	0 overlapping text spanners
+            0 /	0 unmatched stop text spans
+            0 /	0 unterminated hairpins
+            0 /	0 unterminated text spanners
+
+        The examples above feature Abjad voice containers because beams are
+        voice-persistent.
+        """
+        violators, total = [], 0
+        for leaf in iterate(argument).leaves():
+            total += 1
+            if leaf.written_duration < Duration((1, 4)):
+                continue
+            start_wrapper = inspect(leaf).effective_wrapper(StartBeam)
+            if start_wrapper is None:
+                continue
+            stop_wrapper = inspect(leaf).effective_wrapper(StopBeam)
+            if stop_wrapper is None:
+                violators.append(leaf)
+                continue
+            if (
+                stop_wrapper.leaked_start_offset
+                < start_wrapper.leaked_start_offset
+            ):
+                violators.append(leaf)
+                continue
+            leaf_start_offset = inspect(leaf).timespan().start_offset
+            if stop_wrapper.leaked_start_offset == leaf_start_offset:
+                violators.append(leaf)
+        return violators, total
 
     def check_duplicate_ids(
         self, argument=None
@@ -129,33 +271,6 @@ class Wellformedness(object):
                 violators.append(container)
         return violators, len(containers)
 
-    def check_misrepresented_flags(
-        self, argument=None
-    ) -> typing.Tuple[typing.List, int]:
-        """
-        Checks misrepresented flags.
-        """
-        violators: typing.List[Leaf] = []
-        total = set()
-        for leaf in iterate(argument).leaves():
-            total.add(leaf)
-            flags = leaf.written_duration.flag_count
-            left = getattr(setting(leaf), "stem_left_beam_count", None)
-            right = getattr(setting(leaf), "stem_right_beam_count", None)
-            if left is not None:
-                if flags < left or (
-                    left < flags and right not in (flags, None)
-                ):
-                    if leaf not in violators:
-                        violators.append(leaf)
-            if right is not None:
-                if flags < right or (
-                    right < flags and left not in (flags, None)
-                ):
-                    if leaf not in violators:
-                        violators.append(leaf)
-        return violators, len(total)
-
     def check_missing_parents(
         self, argument=None
     ) -> typing.Tuple[typing.List, int]:
@@ -201,9 +316,9 @@ class Wellformedness(object):
 
             >>> agent = abjad.inspect(staff)
             >>> print(agent.tabulate_wellformedness())
+            0 /	4 beamed long notes
             0 /	5 duplicate ids
             0 /	1 empty containers
-            0 /	4 misrepresented flags
             0 /	5 missing parents
             4 /	4 notes on wrong clef
             0 /	4 out of range pitches
@@ -214,7 +329,7 @@ class Wellformedness(object):
 
         ..  container:: example
 
-            Allows percussion clef:
+            Always allows percussion clef:
 
             >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
             >>> clef = abjad.Clef('percussion')
@@ -236,29 +351,12 @@ class Wellformedness(object):
                 }
 
             >>> agent = abjad.inspect(staff)
-            >>> print(agent.tabulate_wellformedness(allow_percussion_clef=True))
+            >>> print(agent.tabulate_wellformedness())
+            0 /	4 beamed long notes
             0 /	5 duplicate ids
             0 /	1 empty containers
-            0 /	4 misrepresented flags
             0 /	5 missing parents
             0 /	4 notes on wrong clef
-            0 /	4 out of range pitches
-            0 /	0 overlapping text spanners
-            0 /	0 unmatched stop text spans
-            0 /	0 unterminated hairpins
-            0 /	0 unterminated text spanners
-
-        ..  container:: example
-
-            Forbids percussion clef:
-
-            >>> agent = abjad.inspect(staff)
-            >>> print(agent.tabulate_wellformedness(allow_percussion_clef=False))
-            0 /	5 duplicate ids
-            0 /	1 empty containers
-            0 /	4 misrepresented flags
-            0 /	5 missing parents
-            4 /	4 notes on wrong clef
             0 /	4 out of range pitches
             0 /	0 overlapping text spanners
             0 /	0 unmatched stop text spans
@@ -276,8 +374,7 @@ class Wellformedness(object):
             if clef is None:
                 continue
             allowable_clefs = [Clef(_) for _ in instrument.allowable_clefs]
-            if self.allow_percussion_clef:
-                allowable_clefs.append(Clef("percussion"))
+            allowable_clefs.append(Clef("percussion"))
             if clef not in allowable_clefs:
                 violators.append(leaf)
         return violators, len(total)
@@ -310,9 +407,9 @@ class Wellformedness(object):
 
             >>> agent = abjad.inspect(staff)
             >>> print(agent.tabulate_wellformedness())
+            0 /	4 beamed long notes
             0 /	5 duplicate ids
             0 /	1 empty containers
-            0 /	4 misrepresented flags
             0 /	5 missing parents
             0 /	4 notes on wrong clef
             1 /	2 out of range pitches
@@ -344,9 +441,9 @@ class Wellformedness(object):
 
             >>> agent = abjad.inspect(staff)
             >>> print(agent.tabulate_wellformedness())
+            0 /	4 beamed long notes
             0 /	5 duplicate ids
             0 /	1 empty containers
-            0 /	4 misrepresented flags
             0 /	5 missing parents
             0 /	4 notes on wrong clef
             0 /	2 out of range pitches
@@ -398,9 +495,9 @@ class Wellformedness(object):
 
             >>> agent = abjad.inspect(voice)
             >>> print(agent.tabulate_wellformedness())
+            0 /	4 beamed long notes
             0 /	5 duplicate ids
             0 /	1 empty containers
-            0 /	4 misrepresented flags
             0 /	5 missing parents
             0 /	4 notes on wrong clef
             0 /	4 out of range pitches
@@ -436,9 +533,9 @@ class Wellformedness(object):
 
             >>> agent = abjad.inspect(voice)
             >>> print(agent.tabulate_wellformedness())
+            0 /	4 beamed long notes
             0 /	5 duplicate ids
             0 /	1 empty containers
-            0 /	4 misrepresented flags
             0 /	5 missing parents
             0 /	4 notes on wrong clef
             0 /	4 out of range pitches
@@ -449,7 +546,7 @@ class Wellformedness(object):
 
         ..  container:: example
 
-            Enchained text spanners are wellformed:
+            Enchained text spanners do not overlap (and are wellformed):
 
             >>> voice = abjad.Voice("c'4 c'4 c'4 c'4")
             >>> abjad.text_spanner(voice[:3])
@@ -469,9 +566,50 @@ class Wellformedness(object):
 
             >>> agent = abjad.inspect(voice)
             >>> print(agent.tabulate_wellformedness())
+            0 /	4 beamed long notes
             0 /	5 duplicate ids
             0 /	1 empty containers
-            0 /	4 misrepresented flags
+            0 /	5 missing parents
+            0 /	4 notes on wrong clef
+            0 /	4 out of range pitches
+            0 /	2 overlapping text spanners
+            0 /	2 unmatched stop text spans
+            0 /	0 unterminated hairpins
+            0 /	2 unterminated text spanners
+
+        ..  container:: example
+
+            REGRESSION. Matching start- and stop-text-spans on a single leaf do
+            not overlap (and are wellformed) iff stop-text-span leaks to the
+            right:
+
+            >>> voice = abjad.Voice("c'2 d'2 e'2 f'2")
+            >>> abjad.attach(abjad.StartTextSpan(), voice[0])
+            >>> stop_text_span = abjad.StopTextSpan(leak=True)
+            >>> abjad.attach(stop_text_span, voice[0])
+            >>> abjad.attach(abjad.StartTextSpan(), voice[2])
+            >>> stop_text_span = abjad.StopTextSpan()
+            >>> abjad.attach(stop_text_span, voice[3])
+            >>> abjad.show(voice) # doctest: +SKIP
+
+            >>> abjad.f(voice)
+            \new Voice
+            {
+                c'2
+                \startTextSpan
+                <> \stopTextSpan
+                d'2
+                e'2
+                \startTextSpan
+                f'2
+                \stopTextSpan
+            }
+
+            >>> agent = abjad.inspect(voice)
+            >>> print(agent.tabulate_wellformedness())
+            0 /	4 beamed long notes
+            0 /	5 duplicate ids
+            0 /	1 empty containers
             0 /	5 missing parents
             0 /	4 notes on wrong clef
             0 /	4 out of range pitches
@@ -488,31 +626,27 @@ class Wellformedness(object):
                 priority = 1
             else:
                 priority = 0
-            return (wrapper.start_offset, priority)
+            return (wrapper.leaked_start_offset, priority)
 
-        for context in iterate(argument).components(Context):
-            wrappers = context._dependent_wrappers[:]
+        name_to_wrappers = self._aggregate_context_wrappers(argument)
+        for name, wrappers in name_to_wrappers.items():
             wrappers.sort(key=key)
             open_spanners: typing.Dict = {}
             for wrapper in wrappers:
                 if isinstance(wrapper.indicator, StartTextSpan):
-                    # print(wrapper.indicator)
                     total += 1
                     command = wrapper.indicator.command
                     command = command.replace("start", "")
                     command = command.replace("Start", "")
-                    # print(command, 'START', wrapper.start_offset)
                     if command not in open_spanners:
                         open_spanners[command] = []
                     if open_spanners[command]:
                         violators.append(wrapper.component)
                     open_spanners[command].append(wrapper.component)
                 elif isinstance(wrapper.indicator, StopTextSpan):
-                    # print(wrapper.indicator)
                     command = wrapper.indicator.command
                     command = command.replace("stop", "")
                     command = command.replace("Stop", "")
-                    # print(command, 'STOP', wrapper.start_offset)
                     if command in open_spanners and open_spanners[command]:
                         open_spanners[command].pop()
         return violators, total
@@ -542,9 +676,9 @@ class Wellformedness(object):
 
             >>> agent = abjad.inspect(voice)
             >>> print(agent.tabulate_wellformedness())
+            0 /	4 beamed long notes
             0 /	5 duplicate ids
             0 /	1 empty containers
-            0 /	4 misrepresented flags
             0 /	5 missing parents
             0 /	4 notes on wrong clef
             0 /	4 out of range pitches
@@ -580,9 +714,9 @@ class Wellformedness(object):
 
         """
         violators, total = [], 0
-        for context in iterate(argument).components(Context):
-            wrappers = context._dependent_wrappers[:]
-            wrappers.sort(key=lambda _: _.start_offset)
+        name_to_wrappers = self._aggregate_context_wrappers(argument)
+        for name, wrappers in name_to_wrappers.items():
+            wrappers.sort(key=lambda _: _.leaked_start_offset)
             open_spanners: typing.Dict = {}
             for wrapper in wrappers:
                 if isinstance(wrapper.indicator, StartTextSpan):
@@ -631,9 +765,9 @@ class Wellformedness(object):
 
             >>> agent = abjad.inspect(voice)
             >>> print(agent.tabulate_wellformedness())
+            0 /	4 beamed long notes
             0 /	5 duplicate ids
             0 /	1 empty containers
-            0 /	4 misrepresented flags
             0 /	5 missing parents
             0 /	4 notes on wrong clef
             0 /	4 out of range pitches
@@ -662,9 +796,9 @@ class Wellformedness(object):
 
             >>> agent = abjad.inspect(voice)
             >>> print(agent.tabulate_wellformedness())
+            0 /	4 beamed long notes
             0 /	5 duplicate ids
             0 /	1 empty containers
-            0 /	4 misrepresented flags
             0 /	5 missing parents
             0 /	4 notes on wrong clef
             0 /	4 out of range pitches
@@ -727,11 +861,11 @@ class Wellformedness(object):
 
         """
         violators, total = [], 0
-        for context in iterate(argument).components(Context):
+        name_to_wrappers = self._aggregate_context_wrappers(argument)
+        for name, wrappers in name_to_wrappers.items():
             last_dynamic = None
             last_tag = None
-            wrappers = context._dependent_wrappers[:]
-            wrappers.sort(key=lambda _: _.start_offset)
+            wrappers.sort(key=lambda _: _.leaked_start_offset)
             for wrapper in wrappers:
                 parameter = getattr(wrapper.indicator, "parameter", None)
                 if parameter == "DYNAMIC" or isinstance(
@@ -741,9 +875,9 @@ class Wellformedness(object):
                     last_tag = wrapper.tag
                     if isinstance(wrapper.indicator, StartHairpin):
                         total += 1
-            if isinstance(
-                last_dynamic, StartHairpin
-            ) and "right_broken" not in str(last_tag):
+            if isinstance(last_dynamic, StartHairpin) and str(
+                abjad_tags.RIGHT_BROKEN
+            ) not in str(last_tag):
                 violators.append(wrapper.component)
         return violators, total
 
@@ -772,9 +906,9 @@ class Wellformedness(object):
 
             >>> agent = abjad.inspect(voice)
             >>> print(agent.tabulate_wellformedness())
+            0 /	4 beamed long notes
             0 /	5 duplicate ids
             0 /	1 empty containers
-            0 /	4 misrepresented flags
             0 /	5 missing parents
             0 /	4 notes on wrong clef
             0 /	4 out of range pitches
@@ -810,9 +944,9 @@ class Wellformedness(object):
 
         """
         violators, total = [], 0
-        for context in iterate(argument).components(Context):
-            wrappers = context._dependent_wrappers[:]
-            wrappers.sort(key=lambda _: _.start_offset)
+        name_to_wrappers = self._aggregate_context_wrappers(argument)
+        for name, wrappers in name_to_wrappers.items():
+            wrappers.sort(key=lambda _: _.leaked_start_offset)
             open_spanners: typing.Dict = {}
             for wrapper in wrappers:
                 if isinstance(wrapper.indicator, StartTextSpan):

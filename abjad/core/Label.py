@@ -1912,8 +1912,11 @@ class Label(object):
                     leaf = vertical_moment.start_leaves[-1]
                 self._attach(label, leaf)
 
-    def with_durations(self, direction=enums.Up, denominator=None):
-        r"""Labels logical ties with durations.
+    def with_durations(
+        self, *, denominator=None, direction=enums.Up, in_seconds: bool = None
+    ):
+        r"""
+        Labels logical ties with durations.
 
         ..  container:: example
 
@@ -1939,8 +1942,8 @@ class Label(object):
                         d'8
                         ^ \markup {
                             \fraction
-                                1
-                                2
+                                4
+                                8
                             }
                         ~
                         d'4.
@@ -1981,8 +1984,8 @@ class Label(object):
                         d'8
                         ^ \markup {
                             \fraction
-                                1
-                                2
+                                4
+                                8
                             }
                         ~
                         d'4.
@@ -2094,12 +2097,17 @@ class Label(object):
         if self._expression:
             return self._update_expression(inspect.currentframe())
         for logical_tie in iterate(self.client).logical_ties():
-            duration = abjad_inspect(logical_tie).duration()
+            duration = abjad_inspect(logical_tie).duration(
+                in_seconds=in_seconds
+            )
             if denominator is not None:
                 duration = NonreducedFraction(duration)
                 duration = duration.with_denominator(denominator)
             pair = duration.pair
-            label = Markup.fraction(*pair, direction=direction)
+            numerator, denominator = pair
+            label = Markup.fraction(
+                numerator, denominator, direction=direction
+            )
             self._attach(label, logical_tie.head)
 
     def with_indices(self, direction=enums.Up, prototype=None):

@@ -217,18 +217,18 @@ def test_Container___delitem___08():
         {
             c'8
             [
-            \glissando
+            \glissando %! abjad.glissando(7)
             {
                 d'8
-                \glissando
+                \glissando %! abjad.glissando(7)
                 e'8
-                \glissando
+                \glissando %! abjad.glissando(7)
             }
             f'8
             ]
         }
         """
-    )
+    ), abjad.f(voice)
 
     leaf = leaves[1]
     del voice[1][0]
@@ -239,16 +239,16 @@ def test_Container___delitem___08():
         {
             c'8
             [
-            \glissando
+            \glissando %! abjad.glissando(7)
             {
                 e'8
-                \glissando
+                \glissando %! abjad.glissando(7)
             }
             f'8
             ]
         }
         """
-    )
+    ), abjad.f(voice)
 
     assert abjad.inspect(voice).wellformed()
     assert abjad.inspect(leaf).wellformed()

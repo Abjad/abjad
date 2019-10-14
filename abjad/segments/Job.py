@@ -826,7 +826,10 @@ class Job(object):
         """
         Shows tag.
         """
-        assert isinstance(tag, Tag), repr(tag)
+        if isinstance(tag, str):
+            assert match is not None, repr(match)
+        else:
+            assert isinstance(tag, Tag), repr(tag)
         name = str(tag)
 
         if match is None:

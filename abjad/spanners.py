@@ -85,10 +85,9 @@ def beam(
     argument: typing.Union[Component, Selection],
     *,
     beam_lone_notes: bool = None,
-    # beam_rests: bool = None,
     beam_rests: typing.Optional[bool] = True,
     durations: typing.Sequence[Duration] = None,
-    selector: typings.SelectorTyping = "abjad.select().leaves()",
+    selector: typings.SelectorTyping = Expression().select().leaves(),
     span_beam_count: int = None,
     start_beam: StartBeam = None,
     stemlet_length: typings.Number = None,
@@ -759,6 +758,7 @@ def glissando(
     allow_ties: bool = None,
     hide_middle_note_heads: bool = None,
     hide_middle_stems: bool = None,
+    hide_stem_selector: Expression = None,
     left_broken: bool = None,
     parenthesize_repeats: bool = None,
     right_broken: bool = None,
@@ -782,11 +782,11 @@ def glissando(
             \new Staff
             {
                 c'8
-                \glissando
+                \glissando %! abjad.glissando(7)
                 d'8
-                \glissando
+                \glissando %! abjad.glissando(7)
                 e'8
-                \glissando
+                \glissando %! abjad.glissando(7)
                 f'8
             }
 
@@ -806,11 +806,11 @@ def glissando(
             \new Staff
             {
                 c'8
-                \glissando
+                \glissando %! abjad.glissando(7)
                 d'8
                 - \bendAfter #'-4
                 e'8
-                \glissando
+                \glissando %! abjad.glissando(7)
                 f'8
             }
 
@@ -832,14 +832,14 @@ def glissando(
             {
                 a8
                 a8
-                \glissando
+                \glissando %! abjad.glissando(7)
                 b8
                 ~
                 b8
-                \glissando
+                \glissando %! abjad.glissando(7)
                 c'8
                 c'8
-                \glissando
+                \glissando %! abjad.glissando(7)
                 d'8
                 ~
                 d'8
@@ -862,17 +862,17 @@ def glissando(
             \new Staff
             {
                 a8
-                \glissando
+                \glissando %! abjad.glissando(7)
                 a8
-                \glissando
+                \glissando %! abjad.glissando(7)
                 b8
                 ~
                 b8
-                \glissando
+                \glissando %! abjad.glissando(7)
                 c'8
-                \glissando
+                \glissando %! abjad.glissando(7)
                 c'8
-                \glissando
+                \glissando %! abjad.glissando(7)
                 d'8
                 ~
                 d'8
@@ -896,21 +896,21 @@ def glissando(
             \new Staff
             {
                 a8
-                \glissando
+                \glissando %! abjad.glissando(7)
                 a8
-                \glissando
+                \glissando %! abjad.glissando(7)
                 b8
                 ~
-                \glissando
+                \glissando %! abjad.glissando(7)
                 b8
-                \glissando
+                \glissando %! abjad.glissando(7)
                 c'8
-                \glissando
+                \glissando %! abjad.glissando(7)
                 c'8
-                \glissando
+                \glissando %! abjad.glissando(7)
                 d'8
                 ~
-                \glissando
+                \glissando %! abjad.glissando(7)
                 d'8
             }
 
@@ -935,20 +935,20 @@ def glissando(
             \new Staff
             {
                 a8
-                \glissando
+                \glissando %! abjad.glissando(7)
                 \parenthesize
                 a8
-                \glissando
+                \glissando %! abjad.glissando(7)
                 b8
                 ~
                 \parenthesize
                 b8
-                \glissando
+                \glissando %! abjad.glissando(7)
                 c'8
-                \glissando
+                \glissando %! abjad.glissando(7)
                 \parenthesize
                 c'8
-                \glissando
+                \glissando %! abjad.glissando(7)
                 d'8
                 ~
                 \parenthesize
@@ -974,16 +974,16 @@ def glissando(
                 a8
                 \parenthesize
                 a8
-                \glissando
+                \glissando %! abjad.glissando(7)
                 b8
                 ~
                 \parenthesize
                 b8
-                \glissando
+                \glissando %! abjad.glissando(7)
                 c'8
                 \parenthesize
                 c'8
-                \glissando
+                \glissando %! abjad.glissando(7)
                 d'8
                 ~
                 \parenthesize
@@ -1007,17 +1007,17 @@ def glissando(
             \new Staff
             {
                 c'8
-                \glissando
-                \hide NoteHead
-                \override Accidental.stencil = ##f
-                \override NoteColumn.glissando-skip = ##t
-                \override NoteHead.no-ledgers = ##t
+                \glissando %! abjad.glissando(7)
+                \hide NoteHead                            %! abjad.glissando(1)
+                \override Accidental.stencil = ##f        %! abjad.glissando(1)
+                \override NoteColumn.glissando-skip = ##t %! abjad.glissando(1)
+                \override NoteHead.no-ledgers = ##t       %! abjad.glissando(1)
                 d'8
                 e'8
-                \revert Accidental.stencil
-                \revert NoteColumn.glissando-skip
-                \revert NoteHead.no-ledgers
-                \undo \hide NoteHead
+                \revert Accidental.stencil        %! abjad.glissando(6)
+                \revert NoteColumn.glissando-skip %! abjad.glissando(6)
+                \revert NoteHead.no-ledgers       %! abjad.glissando(6)
+                \undo \hide NoteHead              %! abjad.glissando(6)
                 f'8
             }
 
@@ -1040,21 +1040,21 @@ def glissando(
             \new Staff
             {
                 c'8
-                \glissando
-                \hide NoteHead
-                \override Accidental.stencil = ##f
-                \override NoteColumn.glissando-skip = ##t
-                \override NoteHead.no-ledgers = ##t
-                \override Dots.transparent = ##t
-                \override Stem.transparent = ##t
+                \glissando %! abjad.glissando(7)
+                \hide NoteHead                            %! abjad.glissando(1)
+                \override Accidental.stencil = ##f        %! abjad.glissando(1)
+                \override NoteColumn.glissando-skip = ##t %! abjad.glissando(1)
+                \override NoteHead.no-ledgers = ##t       %! abjad.glissando(1)
+                \override Dots.transparent = ##t          %! abjad.glissando(1)
+                \override Stem.transparent = ##t          %! abjad.glissando(1)
                 d'8
                 e'8
-                \revert Accidental.stencil
-                \revert NoteColumn.glissando-skip
-                \revert NoteHead.no-ledgers
-                \undo \hide NoteHead
-                \revert Dots.transparent
-                \revert Stem.transparent
+                \revert Accidental.stencil        %! abjad.glissando(6)
+                \revert NoteColumn.glissando-skip %! abjad.glissando(6)
+                \revert NoteHead.no-ledgers       %! abjad.glissando(6)
+                \undo \hide NoteHead              %! abjad.glissando(6)
+                \revert Dots.transparent          %! abjad.glissando(6)
+                \revert Stem.transparent          %! abjad.glissando(6)
                 f'8
             }
 
@@ -1078,13 +1078,13 @@ def glissando(
         \new Staff
         {
             c'8
-            \glissando
+            \glissando                                    %! abjad.glissando(7)
             d'8
-            \glissando
+            \glissando                                    %! abjad.glissando(7)
             e'8
-            \glissando
+            \glissando                                    %! abjad.glissando(7)
             f'8
-        %@% \glissando                                    %! SHOW_TO_JOIN_BROKEN_SPANNERS
+        %@% \glissando                                    %! abjad.glissando(7):SHOW_TO_JOIN_BROKEN_SPANNERS
         }
 
     ..  container:: example
@@ -1106,17 +1106,17 @@ def glissando(
         \new Staff
         {
             c'8
-            \glissando
-            \hide NoteHead
-            \override Accidental.stencil = ##f
-            \override NoteColumn.glissando-skip = ##t
-            \override NoteHead.no-ledgers = ##t
+            \glissando                                    %! abjad.glissando(7)
+            \hide NoteHead                                %! abjad.glissando(0):SHOW_TO_JOIN_BROKEN_SPANNERS:RIGHT_BROKEN
+            \override Accidental.stencil = ##f            %! abjad.glissando(0):SHOW_TO_JOIN_BROKEN_SPANNERS:RIGHT_BROKEN
+            \override NoteColumn.glissando-skip = ##t     %! abjad.glissando(0):SHOW_TO_JOIN_BROKEN_SPANNERS:RIGHT_BROKEN
+            \override NoteHead.no-ledgers = ##t           %! abjad.glissando(0):SHOW_TO_JOIN_BROKEN_SPANNERS:RIGHT_BROKEN
             d'8
             e'8
-            \revert Accidental.stencil                    %! HIDE_TO_JOIN_BROKEN_SPANNERS
-            \revert NoteColumn.glissando-skip             %! HIDE_TO_JOIN_BROKEN_SPANNERS
-            \revert NoteHead.no-ledgers                   %! HIDE_TO_JOIN_BROKEN_SPANNERS
-            \undo \hide NoteHead                          %! HIDE_TO_JOIN_BROKEN_SPANNERS
+            \revert Accidental.stencil                    %! abjad.glissando(4):HIDE_TO_JOIN_BROKEN_SPANNERS:RIGHT_BROKEN
+            \revert NoteColumn.glissando-skip             %! abjad.glissando(4):HIDE_TO_JOIN_BROKEN_SPANNERS:RIGHT_BROKEN
+            \revert NoteHead.no-ledgers                   %! abjad.glissando(4):HIDE_TO_JOIN_BROKEN_SPANNERS:RIGHT_BROKEN
+            \undo \hide NoteHead                          %! abjad.glissando(4):HIDE_TO_JOIN_BROKEN_SPANNERS:RIGHT_BROKEN
             f'8
         }
 
@@ -1140,22 +1140,22 @@ def glissando(
         \new Staff
         {
             c'8
-            \glissando
-            \hide NoteHead
-            \override Accidental.stencil = ##f
-            \override NoteColumn.glissando-skip = ##t
-            \override NoteHead.no-ledgers = ##t
+            \glissando                                    %! abjad.glissando(7)
+            \hide NoteHead                                %! abjad.glissando(0):SHOW_TO_JOIN_BROKEN_SPANNERS:RIGHT_BROKEN
+            \override Accidental.stencil = ##f            %! abjad.glissando(0):SHOW_TO_JOIN_BROKEN_SPANNERS:RIGHT_BROKEN
+            \override NoteColumn.glissando-skip = ##t     %! abjad.glissando(0):SHOW_TO_JOIN_BROKEN_SPANNERS:RIGHT_BROKEN
+            \override NoteHead.no-ledgers = ##t           %! abjad.glissando(0):SHOW_TO_JOIN_BROKEN_SPANNERS:RIGHT_BROKEN
             d'8
             e'8
-            \revert Accidental.stencil                    %! HIDE_TO_JOIN_BROKEN_SPANNERS
-            \revert NoteColumn.glissando-skip             %! HIDE_TO_JOIN_BROKEN_SPANNERS
-            \revert NoteHead.no-ledgers                   %! HIDE_TO_JOIN_BROKEN_SPANNERS
-            \undo \hide NoteHead                          %! HIDE_TO_JOIN_BROKEN_SPANNERS
+            \revert Accidental.stencil                    %! abjad.glissando(4):HIDE_TO_JOIN_BROKEN_SPANNERS:RIGHT_BROKEN
+            \revert NoteColumn.glissando-skip             %! abjad.glissando(4):HIDE_TO_JOIN_BROKEN_SPANNERS:RIGHT_BROKEN
+            \revert NoteHead.no-ledgers                   %! abjad.glissando(4):HIDE_TO_JOIN_BROKEN_SPANNERS:RIGHT_BROKEN
+            \undo \hide NoteHead                          %! abjad.glissando(4):HIDE_TO_JOIN_BROKEN_SPANNERS:RIGHT_BROKEN
             f'8
-        %@% \revert Accidental.stencil                    %! SHOW_TO_JOIN_BROKEN_SPANNERS
-        %@% \revert NoteColumn.glissando-skip             %! SHOW_TO_JOIN_BROKEN_SPANNERS
-        %@% \revert NoteHead.no-ledgers                   %! SHOW_TO_JOIN_BROKEN_SPANNERS
-        %@% \undo \hide NoteHead                          %! SHOW_TO_JOIN_BROKEN_SPANNERS
+        %@% \revert Accidental.stencil                    %! abjad.glissando(5):SHOW_TO_JOIN_BROKEN_SPANNERS:RIGHT_BROKEN_SHOW_NEXT
+        %@% \revert NoteColumn.glissando-skip             %! abjad.glissando(5):SHOW_TO_JOIN_BROKEN_SPANNERS:RIGHT_BROKEN_SHOW_NEXT
+        %@% \revert NoteHead.no-ledgers                   %! abjad.glissando(5):SHOW_TO_JOIN_BROKEN_SPANNERS:RIGHT_BROKEN_SHOW_NEXT
+        %@% \undo \hide NoteHead                          %! abjad.glissando(5):SHOW_TO_JOIN_BROKEN_SPANNERS:RIGHT_BROKEN_SHOW_NEXT
         }
 
     ..  container:: example
@@ -1176,18 +1176,18 @@ def glissando(
         >>> abjad.f(staff, strict=50)
         \new Staff
         {
-            \hide NoteHead                                %! HIDE_TO_JOIN_BROKEN_SPANNERS
-            \override Accidental.stencil = ##f            %! HIDE_TO_JOIN_BROKEN_SPANNERS
-            \override NoteHead.no-ledgers = ##t           %! HIDE_TO_JOIN_BROKEN_SPANNERS
+            \hide NoteHead                                %! abjad.glissando(2):HIDE_TO_JOIN_BROKEN_SPANNERS:LEFT_BROKEN
+            \override Accidental.stencil = ##f            %! abjad.glissando(2):HIDE_TO_JOIN_BROKEN_SPANNERS:LEFT_BROKEN
+            \override NoteHead.no-ledgers = ##t           %! abjad.glissando(2):HIDE_TO_JOIN_BROKEN_SPANNERS:LEFT_BROKEN
             c'8
-            \glissando
-            \override NoteColumn.glissando-skip = ##t     %! HIDE_TO_JOIN_BROKEN_SPANNERS
+            \glissando                                    %! abjad.glissando(7)
+            \override NoteColumn.glissando-skip = ##t     %! abjad.glissando(3):HIDE_TO_JOIN_BROKEN_SPANNERS:LEFT_BROKEN
             d'8
             e'8
-            \revert Accidental.stencil
-            \revert NoteColumn.glissando-skip
-            \revert NoteHead.no-ledgers
-            \undo \hide NoteHead
+            \revert Accidental.stencil                    %! abjad.glissando(6)
+            \revert NoteColumn.glissando-skip             %! abjad.glissando(6)
+            \revert NoteHead.no-ledgers                   %! abjad.glissando(6)
+            \undo \hide NoteHead                          %! abjad.glissando(6)
             f'8
         }
 
@@ -1211,14 +1211,14 @@ def glissando(
             \new Staff
             {
                 c'8
-                - \tweak style #'trill
-                \glissando
+                - \tweak style #'trill %! abjad.glissando(7)
+                \glissando             %! abjad.glissando(7)
                 d'8
-                - \tweak style #'trill
-                \glissando
+                - \tweak style #'trill %! abjad.glissando(7)
+                \glissando             %! abjad.glissando(7)
                 e'8
-                - \tweak style #'trill
-                \glissando
+                - \tweak style #'trill %! abjad.glissando(7)
+                \glissando             %! abjad.glissando(7)
                 f'8
             }
 
@@ -1244,18 +1244,18 @@ def glissando(
             \new Staff
             {
                 d'8
-                - \abjad-zero-padding-glissando
-                \glissando
+                - \abjad-zero-padding-glissando %! abjad.glissando(7)
+                \glissando                      %! abjad.glissando(7)
                 \once \override NoteHead.X-extent = #'(0 . 0)
                 \once \override NoteHead.transparent = ##t
                 d'4.
-                - \abjad-zero-padding-glissando
-                \glissando
+                - \abjad-zero-padding-glissando %! abjad.glissando(7)
+                \glissando                      %! abjad.glissando(7)
                 \once \override NoteHead.X-extent = #'(0 . 0)
                 \once \override NoteHead.transparent = ##t
                 d'4.
-                - \abjad-zero-padding-glissando
-                \glissando
+                - \abjad-zero-padding-glissando %! abjad.glissando(7)
+                \glissando                      %! abjad.glissando(7)
                 \once \override NoteHead.X-extent = #'(0 . 0)
                 \once \override NoteHead.transparent = ##t
                 d'8
@@ -1282,18 +1282,18 @@ def glissando(
             \new Staff
             {
                 c'8.
-                - \abjad-zero-padding-glissando
-                \glissando
+                - \abjad-zero-padding-glissando %! abjad.glissando(7)
+                \glissando                      %! abjad.glissando(7)
                 \once \override NoteHead.X-extent = #'(0 . 0)
                 \once \override NoteHead.transparent = ##t
                 d'8.
-                - \abjad-zero-padding-glissando
-                \glissando
+                - \abjad-zero-padding-glissando %! abjad.glissando(7)
+                \glissando                      %! abjad.glissando(7)
                 \once \override NoteHead.X-extent = #'(0 . 0)
                 \once \override NoteHead.transparent = ##t
                 e'8.
-                - \abjad-zero-padding-glissando
-                \glissando
+                - \abjad-zero-padding-glissando %! abjad.glissando(7)
+                \glissando                      %! abjad.glissando(7)
                 f'8.
             }
 
@@ -1321,24 +1321,25 @@ def glissando(
             \new Staff
             {
                 d'4
-                - \abjad-zero-padding-glissando
-                - \tweak color #red
-                \glissando
+                - \abjad-zero-padding-glissando %! abjad.glissando(7)
+                - \tweak color #red             %! abjad.glissando(7)
+                \glissando                      %! abjad.glissando(7)
                 \once \override NoteHead.X-extent = #'(0 . 0)
                 \once \override NoteHead.transparent = ##t
                 d'4
-                - \abjad-zero-padding-glissando
-                \glissando
+                - \abjad-zero-padding-glissando %! abjad.glissando(7)
+                \glissando                      %! abjad.glissando(7)
                 \once \override NoteHead.X-extent = #'(0 . 0)
                 \once \override NoteHead.transparent = ##t
                 d'4
-                - \abjad-zero-padding-glissando
-                - \tweak color #red
-                \glissando
+                - \abjad-zero-padding-glissando %! abjad.glissando(7)
+                - \tweak color #red             %! abjad.glissando(7)
+                \glissando                      %! abjad.glissando(7)
                 d'4
             }
 
     """
+    tag = tag or Tag()
 
     if right_broken_show_next and not right_broken:
         message = "set right_broken_show_next only when right_broken is true."
@@ -1392,6 +1393,10 @@ def glissando(
             return False
         return True
 
+    should_hide_stem = Selection()
+    if hide_stem_selector is not None:
+        should_hide_stem = hide_stem_selector(argument)
+
     leaves = select(argument).leaves()
     total = len(leaves) - 1
     for i, leaf in enumerate(leaves):
@@ -1420,6 +1425,13 @@ def glissando(
             if _next_leaf_changes_current_pitch(leaf):
                 if _is_last_in_tie_chain(leaf):
                     should_attach_glissando = True
+        if leaf in should_hide_stem:
+            strings = [
+                r"\once \override Dots.transparent = ##t",
+                r"\once \override Stem.transparent = ##t",
+            ]
+            literal = LilyPondLiteral(strings)
+            attach(literal, leaf, tag=tag.append(Tag("abjad.glissando(-1)")))
         if hide_middle_note_heads:
             if leaf is not leaves[0]:
                 should_attach_glissando = False
@@ -1438,7 +1450,20 @@ def glissando(
                         ]
                     )
                 literal = LilyPondLiteral(strings)
-                attach(literal, leaf, tag=tag)
+                if right_broken is True:
+                    attach(
+                        literal,
+                        leaf,
+                        tag=tag.append(Tag("abjad.glissando(0)"))
+                        .append(abjad_tags.SHOW_TO_JOIN_BROKEN_SPANNERS)
+                        .append(abjad_tags.RIGHT_BROKEN),
+                    )
+                else:
+                    attach(
+                        literal,
+                        leaf,
+                        tag=tag.append(Tag("abjad.glissando(1)")),
+                    )
             elif left_broken and leaf is leaves[0]:
                 strings = [
                     r"\hide NoteHead",
@@ -1454,13 +1479,21 @@ def glissando(
                     )
                 literal = LilyPondLiteral(strings)
                 attach(
-                    literal, leaf, tag=abjad_tags.HIDE_TO_JOIN_BROKEN_SPANNERS
+                    literal,
+                    leaf,
+                    tag=tag.append(Tag("abjad.glissando(2)"))
+                    .append(abjad_tags.HIDE_TO_JOIN_BROKEN_SPANNERS)
+                    .append(abjad_tags.LEFT_BROKEN),
                 )
             elif left_broken and leaf is leaves[1]:
                 string = r"\override NoteColumn.glissando-skip = ##t"
                 literal = LilyPondLiteral(string)
                 attach(
-                    literal, leaf, tag=abjad_tags.HIDE_TO_JOIN_BROKEN_SPANNERS
+                    literal,
+                    leaf,
+                    tag=tag.append(Tag("abjad.glissando(3)"))
+                    .append(abjad_tags.HIDE_TO_JOIN_BROKEN_SPANNERS)
+                    .append(abjad_tags.LEFT_BROKEN),
                 )
             if leaf is leaves[-1]:
                 strings = [
@@ -1483,7 +1516,9 @@ def glissando(
                         literal,
                         leaf,
                         deactivate=False,
-                        tag=abjad_tags.HIDE_TO_JOIN_BROKEN_SPANNERS,
+                        tag=tag.append(Tag("abjad.glissando(4)"))
+                        .append(abjad_tags.HIDE_TO_JOIN_BROKEN_SPANNERS)
+                        .append(abjad_tags.RIGHT_BROKEN),
                     )
                     if right_broken_show_next:
                         literal = LilyPondLiteral(strings, format_slot="after")
@@ -1491,17 +1526,23 @@ def glissando(
                             literal,
                             leaf,
                             deactivate=True,
-                            tag=abjad_tags.SHOW_TO_JOIN_BROKEN_SPANNERS,
+                            tag=tag.append(Tag("abjad.glissando(5)"))
+                            .append(abjad_tags.SHOW_TO_JOIN_BROKEN_SPANNERS)
+                            .append(abjad_tags.RIGHT_BROKEN_SHOW_NEXT),
                         )
                 else:
                     literal = LilyPondLiteral(strings)
-                    attach(literal, leaf, tag=tag)
+                    attach(
+                        literal,
+                        leaf,
+                        tag=tag.append(Tag("abjad.glissando(6)")),
+                    )
         if should_attach_glissando:
             glissando = GlissandoIndicator(zero_padding=zero_padding)
             _apply_tweaks(glissando, tweaks, i=i, total=total)
-            tag_ = tag
+            tag_ = tag.append(Tag("abjad.glissando(7)"))
             if deactivate_glissando:
-                tag_ = abjad_tags.SHOW_TO_JOIN_BROKEN_SPANNERS
+                tag_ = tag_.append(abjad_tags.SHOW_TO_JOIN_BROKEN_SPANNERS)
             attach(glissando, leaf, deactivate=deactivate_glissando, tag=tag_)
 
 
@@ -1509,7 +1550,7 @@ def hairpin(
     descriptor: str,
     argument: typing.Union[Component, Selection],
     *,
-    selector: typings.SelectorTyping = "abjad.select().leaves()",
+    selector: typings.SelectorTyping = Expression().select().leaves(),
     tag: Tag = None,
 ) -> None:
     r"""
@@ -1667,7 +1708,7 @@ def hairpin(
 def horizontal_bracket(
     argument: typing.Union[Component, Selection],
     *,
-    selector: typings.SelectorTyping = "abjad.select().leaves()",
+    selector: typings.SelectorTyping = Expression().select().leaves(),
     start_group: StartGroup = None,
     stop_group: StopGroup = None,
     tag: Tag = None,
@@ -1714,7 +1755,7 @@ def horizontal_bracket(
 def ottava(
     argument: typing.Union[Component, Selection],
     *,
-    selector: typings.SelectorTyping = "abjad.select().leaves()",
+    selector: typings.SelectorTyping = Expression().select().leaves(),
     start_ottava: Ottava = Ottava(n=1),
     stop_ottava: Ottava = Ottava(n=0, format_slot="after"),
     tag: Tag = None,
@@ -1761,7 +1802,7 @@ def ottava(
 def phrasing_slur(
     argument: typing.Union[Component, Selection],
     *,
-    selector: typings.SelectorTyping = "abjad.select().leaves()",
+    selector: typings.SelectorTyping = Expression().select().leaves(),
     start_phrasing_slur: StartPhrasingSlur = None,
     stop_phrasing_slur: StopPhrasingSlur = None,
     tag: Tag = None,
@@ -1811,7 +1852,7 @@ def phrasing_slur(
 def piano_pedal(
     argument: typing.Union[Component, Selection],
     *,
-    selector: typings.SelectorTyping = "abjad.select().leaves()",
+    selector: typings.SelectorTyping = Expression().select().leaves(),
     start_piano_pedal: StartPianoPedal = None,
     stop_piano_pedal: StopPianoPedal = None,
     tag: Tag = None,
@@ -1865,7 +1906,7 @@ def piano_pedal(
 def slur(
     argument: typing.Union[Component, Selection],
     *,
-    selector: typings.SelectorTyping = "abjad.select().leaves()",
+    selector: typings.SelectorTyping = Expression().select().leaves(),
     start_slur: StartSlur = None,
     stop_slur: StopSlur = None,
     tag: Tag = None,
@@ -1913,7 +1954,7 @@ def slur(
 def text_spanner(
     argument: typing.Union[Component, Selection],
     *,
-    selector: typings.SelectorTyping = "abjad.select().leaves()",
+    selector: typings.SelectorTyping = Expression().select().leaves(),
     start_text_span: StartTextSpan = None,
     stop_text_span: StopTextSpan = None,
     tag: Tag = None,
@@ -2101,8 +2142,7 @@ def tie(
     *,
     direction: enums.VerticalAlignment = None,
     repeat: typing.Union[bool, typings.IntegerPair, DurationInequality] = None,
-    selector: typings.SelectorTyping = "abjad.select().leaves()",
-    # tie: Tie = None,
+    selector: typings.SelectorTyping = Expression().select().leaves(),
     tag: Tag = None,
 ) -> None:
     r"""
@@ -2320,7 +2360,7 @@ def tie(
 def trill_spanner(
     argument: typing.Union[Component, Selection],
     *,
-    selector: typings.SelectorTyping = "abjad.select().leaves()",
+    selector: typings.SelectorTyping = Expression().select().leaves(),
     start_trill_span: StartTrillSpan = None,
     stop_trill_span: StopTrillSpan = None,
     tag: Tag = None,

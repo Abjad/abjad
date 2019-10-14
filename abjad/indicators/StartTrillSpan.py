@@ -43,7 +43,7 @@ class StartTrillSpan(object):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ("_interval", "_left_broken", "_pitch", "_tweaks")
+    __slots__ = ("_interval", "_pitch", "_tweaks")
 
     _context = "Voice"
 

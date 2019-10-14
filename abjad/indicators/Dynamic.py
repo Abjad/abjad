@@ -454,14 +454,6 @@ class Dynamic(object):
                 bundle.after.articulations.append(string)
         return bundle
 
-    @staticmethod
-    def _tag_hide(strings):
-        return LilyPondFormatManager.tag(
-            strings,
-            deactivate=False,
-            tag=abjad_tags.HIDE_TO_JOIN_BROKEN_SPANNERS,
-        )
-
     ### PUBLIC PROPERTIES ###
 
     @property

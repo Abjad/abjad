@@ -100,7 +100,7 @@ class Tag(object):
             >>> bool(abjad.Tag())
             False
 
-            >>> bool(abjad.Tag('+PARTS'))
+            >>> bool(abjad.tags.ONLY_PARTS)
             True
 
         """
@@ -112,7 +112,7 @@ class Tag(object):
 
         ..  container:: example
 
-            >>> tag = abjad.Tag('-PARTS')
+            >>> tag = abjad.tags.NOT_PARTS
             >>> tag = tag.append(abjad.tags.DEFAULT_CLEF)
 
             >>> 'PARTS' in tag

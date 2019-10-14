@@ -40,7 +40,7 @@ class StopBeam(object):
 
     def __repr__(self) -> str:
         """
-        Gets interpreter representation.
+        Delegates to storage format manager.
         """
         return StorageFormatManager(self).get_repr_format()
 

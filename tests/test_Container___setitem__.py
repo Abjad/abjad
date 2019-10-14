@@ -234,7 +234,6 @@ def test_Container___setitem___06():
     voice = abjad.Voice(2 * abjad.Container("c'8 c'8 c'8 c'8"))
     voice = abjad.Voice("{ c'8 d'8 e'8 f'8 } { g'8 a'8 b'8 c''8 }")
     leaves = abjad.select(voice).leaves()
-    abjad.beam(leaves[0:6])
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -242,7 +241,6 @@ def test_Container___setitem___06():
         {
             {
                 c'8
-                [
                 d'8
                 e'8
                 f'8
@@ -250,7 +248,6 @@ def test_Container___setitem___06():
             {
                 g'8
                 a'8
-                ]
                 b'8
                 c''8
             }
@@ -266,7 +263,6 @@ def test_Container___setitem___06():
         {
             {
                 c'8
-                [
                 d'8
                 e'8
                 f'8

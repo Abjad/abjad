@@ -55,6 +55,8 @@ class Tags(object):
         "REDUNDANT_CLEF_COLOR",
         "REDUNDANT_CLEF_COLOR_CANCELLATION",
         "REDUNDANT_CLEF_REDRAW_COLOR",
+        ### COMMANDS, IMPORTANT ###
+        "ONE_VOICE_COMMAND",
         ### DOCUMENT ANNOTATIONS ###
         "BREAK",
         "CLOCK_TIME",
@@ -145,8 +147,6 @@ class Tags(object):
         "REAPPLIED_METRONOME_MARK_WITH_COLOR",
         "REDUNDANT_METRONOME_MARK",
         "REDUNDANT_METRONOME_MARK_WITH_COLOR",
-        ### MM SPANNER ###
-        "EOS_STOP_MM_SPANNER",
         ### PERSISTENT OVERRIDE ###
         "EXPLICIT_PERSISTENT_OVERRIDE",
         "REAPPLIED_PERSISTENT_OVERRIDE",
@@ -169,10 +169,32 @@ class Tags(object):
         "REDUNDANT_SPACING_SECTION",
         "REDUNDANT_SPACING_SECTION_COLOR",
         ### SPANNERS, BROKEN ###
+        "AUTODETECT",
         "HIDE_TO_JOIN_BROKEN_SPANNERS",
-        "SHOW_TO_JOIN_BROKEN_SPANNERS",
+        "LEFT_BROKEN",
+        "RIGHT_BROKEN",
         "RIGHT_BROKEN_BEAM",  # used in figure-maker
+        "RIGHT_BROKEN_SHOW_NEXT",
+        "SHOW_TO_JOIN_BROKEN_SPANNERS",
+        ### SPANNERS, CUSTOM ###
+        "BOW_SPEED_SPANNER",
+        "CIRCLE_BOW_SPANNER",
+        "CLB_SPANNER",
+        "COVERED_SPANNER",
+        "DAMP_SPANNER",
+        "EOS_STOP_MM_SPANNER",
+        "HALF_CLT_SPANNER",
+        "MATERIAL_ANNOTATION_SPANNER",
+        "METRIC_MODULATION_SPANNER",
+        "PITCH_ANNOTATION_SPANNER",
+        "RHYTHM_ANNOTATION_SPANNER",
+        "SCP_SPANNER",
+        "SPAZZOLATO_SPANNER",
+        "STRING_NUMBER_SPANNER",
+        "TASTO_SPANNER",
+        "VIBRATO_SPANNER",
         ### SPANNERS, OTHER ###
+        "SPANNER_START",
         "SPANNER_STOP",
         ### STAFF LINES ###
         "EXPLICIT_STAFF_LINES",
@@ -253,6 +275,25 @@ class Tags(object):
         return Tag("+SEGMENT")
 
     ### PUBLIC METHODS ###
+
+    def annotation_spanner_tags(self) -> typing.List[Tag]:
+        """
+        Gets annotation spanner tags.
+
+        ..  container:: example
+
+            >>> for tag in abjad.tags.annotation_spanner_tags():
+            ...     tag
+            Tag('MATERIAL_ANNOTATION_SPANNER')
+            Tag('PITCH_ANNOTATION_SPANNER')
+            Tag('RHYTHM_ANNOTATION_SPANNER')
+
+        """
+        return [
+            self.MATERIAL_ANNOTATION_SPANNER,
+            self.PITCH_ANNOTATION_SPANNER,
+            self.RHYTHM_ANNOTATION_SPANNER,
+        ]
 
     def clef_color_tags(self, path=None) -> typing.List[Tag]:
         """
@@ -544,11 +585,17 @@ class Tags(object):
             Tag('FIGURE_NAME')
             Tag('INVISIBLE_MUSIC_COLORING')
             Tag('LOCAL_MEASURE_NUMBER')
+            Tag('MATERIAL_ANNOTATION_SPANNER')
             Tag('MOCK_COLORING')
             Tag('NOT_YET_PITCHED_COLORING')
+            Tag('OCTAVE_COLORING')
+            Tag('PITCH_ANNOTATION_SPANNER')
+            Tag('REPEAT_PITCH_CLASS_COLORING')
+            Tag('RHYTHM_ANNOTATION_SPANNER')
             Tag('SPACING')
             Tag('SPACING_OVERRIDE')
             Tag('STAGE_NUMBER')
+            Tag('TACET_COLORING')
 
         """
         return [
@@ -556,11 +603,17 @@ class Tags(object):
             self.FIGURE_NAME,
             self.INVISIBLE_MUSIC_COLORING,
             self.LOCAL_MEASURE_NUMBER,
+            self.MATERIAL_ANNOTATION_SPANNER,
             self.MOCK_COLORING,
             self.NOT_YET_PITCHED_COLORING,
+            self.OCTAVE_COLORING,
+            self.PITCH_ANNOTATION_SPANNER,
+            self.REPEAT_PITCH_CLASS_COLORING,
+            self.RHYTHM_ANNOTATION_SPANNER,
             self.SPACING,
             self.SPACING_OVERRIDE,
             self.STAGE_NUMBER,
+            self.TACET_COLORING,
         ]
 
     def persistent_indicator_color_expression_tags(
