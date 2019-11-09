@@ -160,7 +160,7 @@ class Chord(Leaf):
         return new_chord
 
     def __getnewargs__(
-        self
+        self,
     ) -> typing.Tuple[abjad_pitch.PitchSegment, Duration]:
         """
         Gets new chord arguments.

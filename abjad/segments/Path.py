@@ -1184,7 +1184,7 @@ class Path(pathlib.PosixPath):
         Writes ``.ily`` to this path with ``.ily` suffix when ``include_path``
         is not set.
         """
-        tag = "abjad.Path.extern()"
+        tag = Tag("abjad.Path.extern()")
         if not self.suffix == ".ly":
             raise Exception(f"must be lilypond file: {self}.")
         if include_path is None:
@@ -1222,8 +1222,13 @@ class Path(pathlib.PosixPath):
                         count = len(line) - len(line.lstrip())
                         indent = count * " "
                         dereference = indent + fr"\{name}"
+                        first_line = finished_variables[name][0]
+                        if "NOT_TOPMOST" in first_line:
+                            tag_ = tag.append(Tag("NOT_TOPMOST"))
+                        else:
+                            tag_ = tag
                         strings = LilyPondFormatManager.tag(
-                            [dereference], tag=tag
+                            [dereference], tag=tag_
                         )
                         dereference = strings[0]
                         dereference = dereference + "\n"

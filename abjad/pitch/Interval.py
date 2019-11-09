@@ -198,9 +198,10 @@ class Interval(object):
         if semitones % 1:
             semitones -= 0.5
             quartertone = "+"
-        quality, diatonic_number = constants._semitones_to_quality_and_diatonic_number[
-            semitones
-        ]
+        (
+            quality,
+            diatonic_number,
+        ) = constants._semitones_to_quality_and_diatonic_number[semitones]
         quality += quartertone
         diatonic_number += octaves * 7
         diatonic_number = cls._to_nearest_quarter_tone(diatonic_number)

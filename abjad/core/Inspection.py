@@ -81,7 +81,7 @@ class Inspection(object):
 
     @property
     def client(
-        self
+        self,
     ) -> typing.Union[Component, typing.Iterable[Component], None]:
         r"""
         Gets client.
@@ -2434,7 +2434,7 @@ class Inspection(object):
             Note("as'16")                  [StopBeam(), StopSlur(), Staccato()]
             Voice("e'4", name='Music_Voice') []
             Note("e'4")                    [LilyPondLiteral('\\voiceTwo', format_slot='opening'), Staccato()]
-            Note("f'4")                    [LilyPondLiteral('\\oneVoice', format_slot='opening'), Staccato()]
+            Note("f'4")                    [LilyPondLiteral('\\oneVoice', format_slot='absolute_before'), Staccato()]
             AfterGraceContainer("fs'16")   []
             Note("fs'16")                  [Staccato()]
 
