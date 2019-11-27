@@ -1,11 +1,9 @@
 #! /usr/bin/env python
 import os
+
 import setuptools
 
-
-version_file_path = os.path.join(
-    os.path.dirname(__file__), "abjad", "_version.py"
-)
+version_file_path = os.path.join(os.path.dirname(__file__), "abjad", "_version.py")
 with open(version_file_path, "r") as file_pointer:
     file_contents_string = file_pointer.read()
 local_dict: dict = {}
@@ -30,6 +28,7 @@ classifiers = [
     "License :: OSI Approved :: GNU General Public License (GPL)",
     "Programming Language :: Python :: 3.6",
     "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: Implementation :: CPython",
     "Topic :: Artistic Software",
 ]
@@ -62,7 +61,7 @@ keywords = [
     "lilypond",
 ]
 
-install_requires = ["ply", "roman", "uqbar >= 0.4.0"]
+install_requires = ["ply", "roman", "uqbar >= 0.4.2"]
 
 if __name__ == "__main__":
     setuptools.setup(

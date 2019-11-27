@@ -1,34 +1,36 @@
 .PHONY: docs build
 
-codePath = abjad
+project = abjad
 errors = E123,E203,E265,E266,E501,W503
 origin := $(shell git config --get remote.origin.url)
-paths = ${codePath}/ tests/ *.py
+formatPaths = ${project}/ tests/ *.py
+testPaths = ${project}/ tests/
 
 black-check:
-	black --target-version py36 --exclude '.*boilerplate.*' --check --diff ${paths}
+	black --target-version py36 --exclude '.*boilerplate.*' --check --diff ${formatPaths}
 
 black-reformat:
-	black --target-version py36 --exclude '.*boilerplate.*' ${paths}
+	black --target-version py36 --exclude '.*boilerplate.*' ${formatPaths}
 
 build:
 	python setup.py sdist
 
 clean:
 	find . -name '*.pyc' | xargs rm
+	rm -Rif *.egg-info/
 	rm -Rif .cache/
 	rm -Rif .tox/
 	rm -Rif __pycache__
 	rm -Rif build/
 	rm -Rif dist/
+	rm -Rif htmlcov/
 	rm -Rif prof/
-	rm -Rif *.egg-info/
 
 docs:
 	make -C docs/ html
 
 flake8:
-	flake8 --max-line-length=90 --isolated --ignore=${errors} ${paths}
+	flake8 --max-line-length=90 --isolated --ignore=${errors} ${formatPaths}
 
 gh-pages:
 	rm -Rf gh-pages/
@@ -45,15 +47,16 @@ gh-pages:
 
 isort:
 	isort \
-		--multi-line 1 \
+		--case-sensitive \
+		--multi-line 3 \
 		--recursive \
 		--skip-glob '*boilerplate*' \
 		--trailing-comma \
 		--use-parentheses -y \
-		${paths}
+		${formatPaths}
 
 mypy:
-	mypy --ignore-missing-imports ${codePath}/
+	mypy --ignore-missing-imports ${project}/
 
 pytest:
 	rm -Rf htmlcov/
@@ -61,8 +64,9 @@ pytest:
 		--cov-config=.coveragerc \
 		--cov-report=html \
 		--cov-report=term \
-		--cov=${codePath}/ \
-		--cov=tests/
+		--cov=${project}/ \
+		--durations=20 \
+		${testPaths}
 
 pytest-x:
 	rm -Rf htmlcov/
@@ -71,8 +75,9 @@ pytest-x:
 		--cov-config=.coveragerc \
 		--cov-report=html \
 		--cov-report=term \
-		--cov=${codePath}/ \
-		--cov=tests/
+		--cov=${project}/ \
+		--durations=20 \
+		${testPaths}
 
 reformat:
 	make isort
