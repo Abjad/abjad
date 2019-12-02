@@ -7,8 +7,14 @@ call pathogen#helptags()
 filetype off
 filetype plugin on
 syntax on
-let mapleader = ","
+"""let mapleader = ","
 
+" 0.5 LilyPond syntax highlighting
+" ================================
+filetype off
+set runtimepath+=/Applications/LilyPond.app/Contents/Resources/share/lilypond/current/vim/
+filetype on
+syntax on
 
 " 1. autocommands
 " ===============
