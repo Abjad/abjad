@@ -7,6 +7,7 @@ import typing
 
 import uqbar.containers
 import uqbar.graphs
+
 from abjad import Fraction, core, mathtools
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.Parser import Parser

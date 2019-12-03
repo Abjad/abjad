@@ -4,9 +4,9 @@ import textwrap
 import typing
 import unicodedata
 
+import roman  # type: ignore
 import six
 
-import roman  # type: ignore
 from abjad import enums
 
 from .TypedList import TypedList

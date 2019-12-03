@@ -3,6 +3,7 @@ import itertools
 import typing
 
 import ply  # type: ignore
+
 from abjad import core
 from abjad import indicators as abjad_indicators
 from abjad import lilypondfile as abjad_lilypondfile

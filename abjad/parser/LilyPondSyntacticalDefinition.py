@@ -1,3 +1,5 @@
+from ply import lex  # type: ignore
+
 from abjad import Fraction, core, exceptions
 from abjad import indicators as abjad_indicators
 from abjad import lilypondfile as abjad_lilypondfile
@@ -6,7 +8,6 @@ from abjad import pitch as abjad_pitch
 from abjad import scheme as abjad_scheme
 from abjad import utilities
 from abjad.top import attach
-from ply import lex  # type: ignore
 
 
 class LilyPondSyntacticalDefinition(object):

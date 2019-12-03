@@ -3,6 +3,7 @@ import copy
 import typing
 
 import uqbar.graphs
+
 from abjad import enums, exceptions
 from abjad.indicators.MetronomeMark import MetronomeMark
 from abjad.indicators.RepeatTie import RepeatTie

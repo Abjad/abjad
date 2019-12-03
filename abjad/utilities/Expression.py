@@ -5,6 +5,7 @@ import numbers
 import typing
 
 import uqbar.enums
+
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.Signature import Signature
 from abjad.system.StorageFormatManager import StorageFormatManager

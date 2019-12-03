@@ -4,6 +4,7 @@ import copy
 import typing
 
 import uqbar.graphs
+
 from abjad import enums, exceptions, mathtools
 from abjad.indicators.StaffChange import StaffChange
 from abjad.indicators.TimeSignature import TimeSignature

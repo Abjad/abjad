@@ -1,7 +1,8 @@
+from ply import lex  # type: ignore
+
 from abjad import exceptions
 from abjad import scheme as abjad_scheme
 from abjad.system.Parser import Parser
-from ply import lex  # type: ignore
 
 
 class SchemeParser(Parser):

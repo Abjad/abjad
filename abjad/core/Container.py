@@ -2,6 +2,7 @@ import collections
 import typing
 
 import uqbar.graphs
+
 from abjad import enums, exceptions, mathtools, rhythmtrees
 from abjad.indicators.TimeSignature import TimeSignature
 from abjad.mathtools import NonreducedFraction

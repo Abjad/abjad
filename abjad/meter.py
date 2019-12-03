@@ -7,6 +7,7 @@ import collections
 import typing
 
 import uqbar.graphs
+
 from abjad import indicators as abjad_indicators
 from abjad import markups, mathtools, rhythmtrees, system
 from abjad.core.Chord import Chord
