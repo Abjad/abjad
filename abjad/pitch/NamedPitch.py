@@ -1,7 +1,9 @@
 import math
+
 from abjad import mathtools
-from . import constants
 from abjad.system.FormatSpecification import FormatSpecification
+
+from . import constants
 from .Pitch import Pitch
 
 
@@ -413,9 +415,7 @@ class NamedPitch(Pitch):
     def _from_named_parts(self, dpc_number, alteration, octave):
         import abjad
 
-        dpc_name = constants._diatonic_pc_number_to_diatonic_pc_name[
-            dpc_number
-        ]
+        dpc_name = constants._diatonic_pc_number_to_diatonic_pc_name[dpc_number]
         accidental = abjad.Accidental(alteration)
         octave = abjad.Octave(octave)
         self._octave = octave
@@ -440,9 +440,7 @@ class NamedPitch(Pitch):
         if not isinstance(pitch_or_pitch_class, Pitch):
             name += "'"
         if isinstance(pitch_or_pitch_class, Pitch):
-            self._pitch_class = abjad.NamedPitchClass(
-                pitch_or_pitch_class.pitch_class
-            )
+            self._pitch_class = abjad.NamedPitchClass(pitch_or_pitch_class.pitch_class)
             self._octave = pitch_or_pitch_class.octave
         else:
             self._pitch_class = abjad.NamedPitchClass(pitch_or_pitch_class)
@@ -1067,9 +1065,7 @@ class NamedPitch(Pitch):
         diatonic_pc_name = constants._diatonic_pc_number_to_diatonic_pc_name[
             diatonic_pc_number
         ]
-        pc = constants._diatonic_pc_name_to_pitch_class_number[
-            diatonic_pc_name
-        ]
+        pc = constants._diatonic_pc_name_to_pitch_class_number[diatonic_pc_name]
         nearest_neighbor = self._to_nearest_octave(pitch_number, pc)
         semitones = pitch_number - nearest_neighbor
         accidental = abjad.Accidental(semitones)

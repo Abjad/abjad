@@ -1,5 +1,6 @@
-import abjad
 import pytest
+
+import abjad
 
 
 def test_Container___getitem___01():

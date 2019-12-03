@@ -1,5 +1,6 @@
 import copy
 import typing
+
 from .FormatSpecification import FormatSpecification
 from .LilyPondFormatManager import LilyPondFormatManager
 from .StorageFormatManager import StorageFormatManager
@@ -397,10 +398,7 @@ class Wrapper(object):
             for component in parentage:
                 if not isinstance(component, abjad.Context):
                     continue
-                if (
-                    component.name == context
-                    or component.lilypond_type == context
-                ):
+                if component.name == context or component.lilypond_type == context:
                     candidate = component
                     break
         else:
@@ -425,15 +423,11 @@ class Wrapper(object):
             return result
         if hasattr(self.indicator, "_get_lilypond_format_bundle"):
             bundle = self.indicator._get_lilypond_format_bundle(self.component)
-            bundle.tag_format_contributions(
-                self.tag, deactivate=self.deactivate
-            )
+            bundle.tag_format_contributions(self.tag, deactivate=self.deactivate)
             return bundle
         try:
             context = self._get_effective_context()
-            lilypond_format = self.indicator._get_lilypond_format(
-                context=context
-            )
+            lilypond_format = self.indicator._get_lilypond_format(context=context)
         except TypeError:
             lilypond_format = self.indicator._get_lilypond_format()
         if isinstance(lilypond_format, str):
@@ -494,9 +488,7 @@ class Wrapper(object):
         )
         wrapper_format_slot = None
         if wrapper is not None:
-            wrapper_format_slot = getattr(
-                wrapper.indicator, "format_slot", None
-            )
+            wrapper_format_slot = getattr(wrapper.indicator, "format_slot", None)
         my_format_slot = getattr(self.indicator, "format_slot", None)
         if (
             wrapper is None
@@ -512,10 +504,7 @@ class Wrapper(object):
         context = abjad.inspect(component).parentage().get(abjad.Context)
         parentage = abjad.inspect(wrapper.component).parentage()
         wrapper_context = parentage.get(abjad.Context)
-        if (
-            wrapper.indicator == self.indicator
-            and context is not wrapper_context
-        ):
+        if wrapper.indicator == self.indicator and context is not wrapper_context:
             return
         message = f"\n\nCan not attach ...\n\n{self}\n\n..."
         message += f" to {repr(component)}"

@@ -7,16 +7,10 @@ from ply.yacc import (  # type: ignore
 )
 
 
-def _parse_debug(
-    self, input=None, lexer=None, debug=None, tracking=0, tokenfunc=None
-):
+def _parse_debug(self, input=None, lexer=None, debug=None, tracking=0, tokenfunc=None):
     self.lookahead = None  # Current lookahead symbol
-    actions = (
-        self.action
-    )  # Local reference to action table (to avoid lookup on self.)
-    goto = (
-        self.goto
-    )  # Local reference to goto table (to avoid lookup on self.)
+    actions = self.action  # Local reference to action table (to avoid lookup on self.)
+    goto = self.goto  # Local reference to goto table (to avoid lookup on self.)
     prod = (
         self.productions
     )  # Local reference to production list (to avoid lookup on self.)
@@ -84,10 +78,7 @@ def _parse_debug(
             "Stack  : %s",
             (
                 "%s . %s"
-                % (
-                    " ".join([xx.type for xx in symstack][1:]),
-                    str(self.lookahead),
-                )
+                % (" ".join([xx.type for xx in symstack][1:]), str(self.lookahead),)
             ).lstrip(),
         )
         # --! DEBUG
@@ -138,10 +129,7 @@ def _parse_debug(
                         p.str,
                         "["
                         + ",".join(
-                            [
-                                format_stack_entry(_v.value)
-                                for _v in symstack[-plen:]
-                            ]
+                            [format_stack_entry(_v.value) for _v in symstack[-plen:]]
                         )
                         + "]",
                         -t,
@@ -256,10 +244,7 @@ def _parse_debug(
                 "Error  : %s",
                 (
                     "%s . %s"
-                    % (
-                        " ".join([xx.type for xx in symstack][1:]),
-                        str(self.lookahead),
-                    )
+                    % (" ".join([xx.type for xx in symstack][1:]), str(self.lookahead),)
                 ).lstrip(),
             )
             # --! DEBUG

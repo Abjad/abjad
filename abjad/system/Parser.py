@@ -2,10 +2,11 @@ import abc
 import logging
 import os
 import pickle
-import ply  # type: ignore
 import sys
-from ply import yacc  # type: ignore
 import traceback
+
+import ply  # type: ignore
+from ply import yacc  # type: ignore
 
 
 class Parser(object):
@@ -44,9 +45,7 @@ class Parser(object):
             self._logger = yacc.NullLogger()
 
         self._lexer = ply.lex.lex(
-            debug=self.debug,
-            debuglog=self.logger,
-            object=self.lexer_rules_object,
+            debug=self.debug, debuglog=self.logger, object=self.lexer_rules_object,
         )
 
         if self.pickle_path and not os.path.exists(self.pickle_path):

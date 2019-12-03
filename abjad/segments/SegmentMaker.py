@@ -1,20 +1,20 @@
 import typing
-from abjad.timespans import TimespanList
-from abjad import const
-from abjad import mathtools
-from abjad.utilities.OrderedDict import OrderedDict
-from abjad.utilities.String import String
-from abjad.lilypondfile.LilyPondFile import LilyPondFile
+
+from abjad import const, mathtools
 from abjad.core.Container import Container
 from abjad.core.Context import Context
 from abjad.core.Score import Score
 from abjad.core.Staff import Staff
 from abjad.core.Voice import Voice
+from abjad.lilypondfile.LilyPondFile import LilyPondFile
 from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.system.Tag import Tag
-from abjad.utilities.String import String
+from abjad.timespans import TimespanList
 from abjad.top.inspect import inspect
 from abjad.top.iterate import iterate
+from abjad.utilities.OrderedDict import OrderedDict
+from abjad.utilities.String import String
+
 from .PartAssignment import PartAssignment
 from .Path import Path
 
@@ -143,10 +143,7 @@ class SegmentMaker(object):
                     container_identifier = f"{context_identifier}_{suffix}"
                     container_identifier = String(container_identifier)
                     assert container_identifier.is_lilypond_identifier()
-                    assert (
-                        container_identifier
-                        not in container_to_part_assignment
-                    )
+                    assert container_identifier not in container_to_part_assignment
                     timespan = inspect(container).timespan()
                     pair = (part, timespan)
                     container_to_part_assignment[container_identifier] = pair
@@ -188,12 +185,8 @@ class SegmentMaker(object):
             raise Exception(message)
 
     def _make_global_context(self):
-        global_rests = Context(
-            lilypond_type="GlobalRests", name="Global_Rests"
-        )
-        global_skips = Context(
-            lilypond_type="GlobalSkips", name="Global_Skips"
-        )
+        global_rests = Context(lilypond_type="GlobalRests", name="Global_Rests")
+        global_skips = Context(lilypond_type="GlobalSkips", name="Global_Skips")
         global_context = Context(
             [global_rests, global_skips],
             lilypond_type="GlobalContext",
@@ -278,9 +271,7 @@ class SegmentMaker(object):
                 continue
             context = abjad.inspect(leaf).parentage().get(abjad.Context)
             if context.name is None:
-                string = (
-                    f"% [{context.lilypond_type} measure {measure_number}]"
-                )
+                string = f"% [{context.lilypond_type} measure {measure_number}]"
             else:
                 string = f"% [{context.name} measure {measure_number}]"
             literal = abjad.LilyPondLiteral(string, "absolute_before")

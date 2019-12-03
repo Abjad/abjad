@@ -1,5 +1,6 @@
-import abjad
 import copy
+
+import abjad
 
 
 def test_Skip___copy___01():

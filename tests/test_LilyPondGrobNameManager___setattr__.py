@@ -1,5 +1,6 @@
-import abjad
 import pytest
+
+import abjad
 
 
 def test_LilyPondGrobNameManager___setattr___01():
@@ -386,12 +387,8 @@ def test_LilyPondGrobNameManager___setattr___15():
     """
 
     score = abjad.Score([abjad.Staff("c'8 d'8 e'8 f'8")])
-    abjad.override(
-        score
-    ).non_musical_paper_column.line_break_permission = False
-    abjad.override(
-        score
-    ).non_musical_paper_column.page_break_permission = False
+    abjad.override(score).non_musical_paper_column.line_break_permission = False
+    abjad.override(score).non_musical_paper_column.page_break_permission = False
 
     assert format(score) == abjad.String.normalize(
         r"""
@@ -874,9 +871,7 @@ def test_LilyPondGrobNameManager___setattr___34():
     """
 
     note = abjad.Note(0, (1, 16))
-    abjad.override(note).stem.stroke_style = abjad.Scheme(
-        "grace", force_quotes=True
-    )
+    abjad.override(note).stem.stroke_style = abjad.Scheme("grace", force_quotes=True)
 
     assert format(note) == abjad.String.normalize(
         r"""

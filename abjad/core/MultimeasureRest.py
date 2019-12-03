@@ -1,7 +1,9 @@
 import typing
+
 from abjad import typings
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.Tag import Tag
+
 from .Leaf import Leaf
 from .Rest import Rest
 
@@ -52,17 +54,12 @@ class MultimeasureRest(Leaf):
     ### INITIALIZER ###
 
     def __init__(
-        self,
-        *arguments,
-        multiplier: typings.DurationTyping = None,
-        tag: Tag = None,
+        self, *arguments, multiplier: typings.DurationTyping = None, tag: Tag = None,
     ) -> None:
         if len(arguments) == 0:
             arguments = ((1, 4),)
         rest = Rest(*arguments)
-        Leaf.__init__(
-            self, rest.written_duration, multiplier=multiplier, tag=tag
-        )
+        Leaf.__init__(self, rest.written_duration, multiplier=multiplier, tag=tag)
 
     ### PRIVATE METHODS ###
 

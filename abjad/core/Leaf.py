@@ -1,27 +1,28 @@
 import abc
 import copy
 import typing
+
 import uqbar.graphs
-from abjad import enums
-from abjad import exceptions
+
+from abjad import enums, exceptions
 from abjad.indicators.MetronomeMark import MetronomeMark
 from abjad.indicators.RepeatTie import RepeatTie
 from abjad.indicators.Tie import Tie
-from abjad.mathtools import NonreducedFraction
-from abjad.mathtools import Ratio
+from abjad.mathtools import NonreducedFraction, Ratio
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.Tag import Tag
 from abjad.top.attach import attach
 from abjad.top.detach import detach
 from abjad.top.inspect import inspect
-from abjad.top.override import override
 from abjad.top.mutate import mutate
+from abjad.top.override import override
 from abjad.top.select import select
 from abjad.top.setting import setting
 from abjad.utilities.Duration import Duration
 from abjad.utilities.Multiplier import Multiplier
 from abjad.utilities.Sequence import Sequence
+
 from .Component import Component
 
 
@@ -51,9 +52,7 @@ class Leaf(Component):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(
-        self, written_duration, *, multiplier=None, tag: Tag = None
-    ) -> None:
+    def __init__(self, written_duration, *, multiplier=None, tag: Tag = None) -> None:
         Component.__init__(self, tag=tag)
         self._after_grace_container = None
         self._before_grace_container = None
@@ -74,9 +73,7 @@ class Leaf(Component):
             attach(new_grace_container, new)
         after_grace_container = self._after_grace_container
         if after_grace_container is not None:
-            new_after_grace_container = (
-                after_grace_container._copy_with_children()
-            )
+            new_after_grace_container = after_grace_container._copy_with_children()
             attach(new_after_grace_container, new)
         return new
 
@@ -112,11 +109,7 @@ class Leaf(Component):
                 ),
                 uqbar.graphs.HRule(),
                 uqbar.graphs.TableRow(
-                    [
-                        uqbar.graphs.TableCell(
-                            lilypond_format, attributes={"border": 0}
-                        )
-                    ]
+                    [uqbar.graphs.TableCell(lilypond_format, attributes={"border": 0})]
                 ),
             ]
         )
@@ -160,9 +153,7 @@ class Leaf(Component):
         #       suppress markup and the starts of other spanners when
         #       \startTrillSpan appears lexically prior to those commands;
         #       but \startTrillSpan must appear before calls to \set.
-        result.append(
-            ("trill_spanner_starts", bundle.after.trill_spanner_starts)
-        )
+        result.append(("trill_spanner_starts", bundle.after.trill_spanner_starts))
         result.append(("commands", bundle.after.commands))
         result.append(("commands", bundle.after.leaks))
         result.append(("after grace body", self._format_after_grace_body()))
@@ -219,9 +210,7 @@ class Leaf(Component):
         result.append(("commands", bundle.opening.commands))
         result.append(("spanners", bundle.opening.spanners))
         # IMPORTANT: LilyPond \afterGrace must appear IMMEDIATELY before leaf!
-        result.append(
-            ("after grace command", self._format_after_grace_command())
-        )
+        result.append(("after grace command", self._format_after_grace_command()))
         return result
 
     def _get_compact_representation(self):
@@ -507,13 +496,11 @@ class Leaf(Component):
         # tie split notes
         if isinstance(self, (Note, Chord)) and 1 < len(result_leaves):
             result_leaves._attach_tie_to_leaves()
-        if originally_repeat_tied and not inspect(
-            result_leaves[0]
-        ).has_indicator(RepeatTie):
-            attach(RepeatTie(), result_leaves[0])
-        if originally_tied and not inspect(result_leaves[-1]).has_indicator(
-            Tie
+        if originally_repeat_tied and not inspect(result_leaves[0]).has_indicator(
+            RepeatTie
         ):
+            attach(RepeatTie(), result_leaves[0])
+        if originally_tied and not inspect(result_leaves[-1]).has_indicator(Tie):
             attach(Tie(), result_leaves[-1])
         assert isinstance(result_leaves, Selection)
         assert all(isinstance(_, Leaf) for _ in result_leaves)

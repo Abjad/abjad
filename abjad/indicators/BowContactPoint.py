@@ -1,5 +1,6 @@
 import functools
 import typing
+
 from abjad import typings
 from abjad.markups import Markup
 from abjad.system.StorageFormatManager import StorageFormatManager
@@ -163,9 +164,7 @@ class BowContactPoint(object):
             contact_point = Multiplier(0, 1)
         else:
             contact_point = self.contact_point
-        markup = Markup.fraction(
-            contact_point.numerator, contact_point.denominator
-        )
+        markup = Markup.fraction(contact_point.numerator, contact_point.denominator)
         markup = markup.vcenter()
         markup = markup.center_align()
         return markup

@@ -31,8 +31,7 @@ class Aggregate(object):
 def test_new_01():
 
     old_aggregate = Aggregate(
-        pitch_segment=abjad.PitchSegment("c d e f"),
-        ratio=abjad.Ratio([1, 2, 3]),
+        pitch_segment=abjad.PitchSegment("c d e f"), ratio=abjad.Ratio([1, 2, 3]),
     )
 
     assert format(old_aggregate) == abjad.String.normalize(
@@ -93,8 +92,7 @@ def test_new_01():
 def test_new_02():
 
     old_aggregate = Aggregate(
-        pitch_segment=abjad.PitchSegment("c d e f"),
-        ratio=abjad.Ratio([1, 2, 3]),
+        pitch_segment=abjad.PitchSegment("c d e f"), ratio=abjad.Ratio([1, 2, 3]),
     )
 
     assert format(old_aggregate) == abjad.String.normalize(
@@ -172,9 +170,7 @@ def test_new_03():
         """
     )
 
-    new_aggregate = abjad.new(
-        old_aggregate, pitch_segment="af bf df", ratio=(5, 4)
-    )
+    new_aggregate = abjad.new(old_aggregate, pitch_segment="af bf df", ratio=(5, 4))
 
     assert new_aggregate is not old_aggregate
     assert new_aggregate != old_aggregate
@@ -230,9 +226,7 @@ def test_new_04():
         """
     )
 
-    new_aggregate = abjad.new(
-        old_aggregate, pitch_segment__rotate=2, ratio=[4, 5]
-    )
+    new_aggregate = abjad.new(old_aggregate, pitch_segment__rotate=2, ratio=[4, 5])
 
     assert new_aggregate is not old_aggregate
     assert new_aggregate != old_aggregate
@@ -289,9 +283,7 @@ def test_new_05():
         """
     )
 
-    new_aggregate = abjad.new(
-        old_aggregate, ratio=[4, 5], pitch_segment__rotate=2
-    )
+    new_aggregate = abjad.new(old_aggregate, ratio=[4, 5], pitch_segment__rotate=2)
 
     assert new_aggregate is not old_aggregate
     assert new_aggregate != old_aggregate

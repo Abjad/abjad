@@ -27,9 +27,7 @@ def test_RhythmTreeContainer___eq___02():
 def test_RhythmTreeContainer___eq___03():
 
     a = abjad.rhythmtrees.RhythmTreeContainer(children=[])
-    b = abjad.rhythmtrees.RhythmTreeContainer(
-        preprolated_duration=2, children=[]
-    )
+    b = abjad.rhythmtrees.RhythmTreeContainer(preprolated_duration=2, children=[])
     c = abjad.rhythmtrees.RhythmTreeContainer(
         preprolated_duration=1,
         children=[abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=1)],

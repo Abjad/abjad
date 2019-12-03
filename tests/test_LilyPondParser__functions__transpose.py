@@ -22,9 +22,7 @@ def test_LilyPondParser__functions__transpose_01():
         """
     )
 
-    string = (
-        r"\transpose d e \relative c' \new Staff { \key d \major d4 fs a d }"
-    )
+    string = r"\transpose d e \relative c' \new Staff { \key d \major d4 fs a d }"
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
     assert format(target) == format(result) and target is not result
@@ -51,9 +49,7 @@ def test_LilyPondParser__functions__transpose_02():
         """
     )
 
-    string = (
-        r"\transpose a c' \relative c' \new Staff { \key c \major c4 d e g }"
-    )
+    string = r"\transpose a c' \relative c' \new Staff { \key c \major c4 d e g }"
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
     assert format(target) == format(result) and target is not result

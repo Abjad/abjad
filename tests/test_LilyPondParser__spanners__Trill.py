@@ -1,5 +1,6 @@
-import abjad
 import pytest
+
+import abjad
 
 
 def test_LilyPondParser__spanners__Trill_01():
@@ -101,6 +102,8 @@ def test_LilyPondParser__spanners__Trill_06():
     Nested.
     """
 
-    string = r"{ c \startTrillSpan c \startTrillSpan c \stopTrillSpan c \stopTrillSpan }"
+    string = (
+        r"{ c \startTrillSpan c \startTrillSpan c \stopTrillSpan c \stopTrillSpan }"
+    )
     with pytest.raises(Exception):
         abjad.LilyPondParser()(string)

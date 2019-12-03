@@ -1,4 +1,5 @@
 from abjad.system.StorageFormatManager import StorageFormatManager
+
 from .FormatSpecification import FormatSpecification
 from .SlotContributions import SlotContributions
 
@@ -71,14 +72,10 @@ class LilyPondFormatBundle(object):
             "grob_reverts",
         )
         names = [
-            _
-            for _ in slot_contribution_names
-            if getattr(self, _).has_contributions
+            _ for _ in slot_contribution_names if getattr(self, _).has_contributions
         ]
         names.extend(_ for _ in grob_contribution_names if getattr(self, _))
-        return FormatSpecification(
-            client=self, storage_format_kwargs_names=names
-        )
+        return FormatSpecification(client=self, storage_format_kwargs_names=names)
 
     ### PUBLIC METHODS ###
 

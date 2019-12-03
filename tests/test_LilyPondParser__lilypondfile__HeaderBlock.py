@@ -1,5 +1,6 @@
-import abjad
 import pytest
+
+import abjad
 
 
 def test_LilyPondParser__lilypondfile__HeaderBlock_01():

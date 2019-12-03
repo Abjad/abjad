@@ -1,4 +1,5 @@
 import typing
+
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.system.StorageFormatManager import StorageFormatManager
 
@@ -28,9 +29,7 @@ class StopTextSpan(object):
 
     ### INITIALIZER ###
 
-    def __init__(
-        self, command: str = r"\stopTextSpan", *, leak: bool = None
-    ) -> None:
+    def __init__(self, command: str = r"\stopTextSpan", *, leak: bool = None) -> None:
         assert isinstance(command, str), repr(command)
         assert command.startswith("\\"), repr(command)
         self._command = command

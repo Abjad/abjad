@@ -5,18 +5,15 @@ Tools for modeling LilyPond's markup and postscript.
 import collections
 import numbers
 import typing
-from abjad import Fraction
-from abjad import enums
-from abjad import mathtools
+
+from abjad import Fraction, enums, mathtools
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
-from abjad.scheme import Scheme
-from abjad.scheme import SchemeColor
-from abjad.scheme import SchemePair
+from abjad.scheme import Scheme, SchemeColor, SchemePair
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.StorageFormatManager import StorageFormatManager
+from abjad.top import new
 from abjad.utilities.String import String
 from abjad.utilities.TypedList import TypedList
-from abjad.top import new
 
 
 class Markup(object):
@@ -217,14 +214,12 @@ class Markup(object):
         elif isinstance(contents, type(self)):
             direction = direction or contents.direction
             if direction is not None:
-                assert isinstance(
-                    direction, (str, enums.VerticalAlignment)
-                ), repr(direction)
+                assert isinstance(direction, (str, enums.VerticalAlignment)), repr(
+                    direction
+                )
             literal = literal or contents.literal
             new_contents = tuple(contents.contents)
-        elif isinstance(contents, collections.abc.Sequence) and 0 < len(
-            contents
-        ):
+        elif isinstance(contents, collections.abc.Sequence) and 0 < len(contents):
             new_contents_ = []
             for argument in contents:
                 if isinstance(argument, (str, MarkupCommand)):
@@ -237,15 +232,13 @@ class Markup(object):
         else:
             new_contents = (str(contents),)
         assert isinstance(new_contents, tuple), repr(new_contents)
-        assert all(
-            isinstance(_, (str, MarkupCommand)) for _ in new_contents
-        ), repr(new_contents)
+        assert all(isinstance(_, (str, MarkupCommand)) for _ in new_contents), repr(
+            new_contents
+        )
         self._contents = new_contents
         direction_ = String.to_tridirectional_ordinal_constant(direction)
         if direction_ is not None:
-            assert isinstance(direction_, enums.VerticalAlignment), repr(
-                direction_
-            )
+            assert isinstance(direction_, enums.VerticalAlignment), repr(direction_)
         self._direction = direction_
         if literal is not None:
             literal = bool(literal)
@@ -615,9 +608,7 @@ class Markup(object):
         indent = abjad.LilyPondFormatManager.indent
         direction = ""
         if self.direction is not None:
-            direction = String.to_tridirectional_lilypond_symbol(
-                self.direction
-            )
+            direction = String.to_tridirectional_lilypond_symbol(self.direction)
         if len(self.contents) == 1 and isinstance(self.contents[0], str):
             content = self.contents[0]
             if not self.literal:
@@ -650,9 +641,7 @@ class Markup(object):
         manager = StorageFormatManager(self)
         names = list(manager.signature_keyword_names)
         return FormatSpecification(
-            client=self,
-            repr_is_indented=False,
-            storage_format_kwargs_names=names,
+            client=self, repr_is_indented=False, storage_format_kwargs_names=names,
         )
 
     def _get_lilypond_format(self):
@@ -869,12 +858,7 @@ class Markup(object):
 
     @classmethod
     def abjad_metronome_mark(
-        class_,
-        duration_log,
-        dot_count,
-        stem_height,
-        units_per_minute,
-        direction=None,
+        class_, duration_log, dot_count, stem_height, units_per_minute, direction=None,
     ):
         r"""
         Abjad ``\abjad-metronome-mark-markup`` command.
@@ -1805,9 +1789,7 @@ class Markup(object):
 
         Returns new markup.
         """
-        command = MarkupCommand(
-            "note-by-number", log, dot_count, stem_direction
-        )
+        command = MarkupCommand("note-by-number", log, dot_count, stem_direction)
         return class_(contents=command, direction=direction)
 
     @classmethod
@@ -2778,9 +2760,7 @@ class Markup(object):
         contents = self._parse_markup_command_argument(self)
         x_extent = SchemePair(x_extent)
         y_extent = SchemePair(y_extent)
-        command = MarkupCommand(
-            "with-dimensions", x_extent, y_extent, contents
-        )
+        command = MarkupCommand("with-dimensions", x_extent, y_extent, contents)
         return new(self, contents=command)
 
     def with_dimensions_from(self, command):
@@ -3407,9 +3387,7 @@ class MarkupCommand(object):
         argument.
         """
         assert len(commands)
-        assert all(
-            isinstance(command, (MarkupCommand, str)) for command in commands
-        )
+        assert all(isinstance(command, (MarkupCommand, str)) for command in commands)
         if 1 == len(commands):
             return commands[0]
         combined = MarkupCommand("combine", commands[0], commands[1])
@@ -3665,16 +3643,12 @@ class MarkupList(TypedList):
         names = list(manager.signature_keyword_names)
         if self.item_class is Markup:
             names.remove("item_class")
-        return FormatSpecification(
-            client=self, storage_format_kwargs_names=names
-        )
+        return FormatSpecification(client=self, storage_format_kwargs_names=names)
 
     def _update_expression(self, frame, force_return=None):
         import abjad
 
-        callback = abjad.Expression._frame_to_callback(
-            frame, force_return=force_return
-        )
+        callback = abjad.Expression._frame_to_callback(frame, force_return=force_return)
         return self._expression.append_callback(callback)
 
     ### PUBLIC PROPERTIES ###
@@ -4446,9 +4420,7 @@ class Postscript(object):
         elif isinstance(argument, collections.abc.Sequence):
             if not argument:
                 return "[ ]"
-            contents = " ".join(
-                Postscript._format_argument(_) for _ in argument
-            )
+            contents = " ".join(Postscript._format_argument(_) for _ in argument)
             return "[ {} ]".format(contents)
         elif isinstance(argument, bool):
             return str(argument).lower()

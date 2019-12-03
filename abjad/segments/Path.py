@@ -3,9 +3,10 @@ import os
 import pathlib
 import shutil
 import typing
+
 from abjad import typings
-from abjad.core.MultimeasureRest import MultimeasureRest
 from abjad.core.Container import Container
+from abjad.core.MultimeasureRest import MultimeasureRest
 from abjad.core.Score import Score
 from abjad.core.Staff import Staff
 from abjad.core.StaffGroup import StaffGroup
@@ -24,6 +25,7 @@ from abjad.top.iterate import iterate
 from abjad.utilities.CyclicTuple import CyclicTuple
 from abjad.utilities.OrderedDict import OrderedDict
 from abjad.utilities.String import String
+
 from .Line import Line
 from .Part import Part
 from .PartManifest import PartManifest
@@ -885,14 +887,11 @@ class Path(pathlib.PosixPath):
                 messages.append(message)
         whitespace = indent * " "
         messages_ = [
-            String(whitespace + String(_).capitalize_start() + " ...")
-            for _ in messages
+            String(whitespace + String(_).capitalize_start() + " ...") for _ in messages
         ]
         return count, skipped, messages_
 
-    def add_buildspace_metadatum(
-        self, name, value, document_name: str = None
-    ) -> None:
+    def add_buildspace_metadatum(self, name, value, document_name: str = None) -> None:
         """
         Adds metadatum with ``name`` and ``value`` into buildspace metadata
         with optional ``document_name``.
@@ -900,9 +899,7 @@ class Path(pathlib.PosixPath):
         assert self.is_buildspace(), repr(self)
         if self.is_parts():
             if document_name is not None:
-                part_dictionary = self.get_metadatum(
-                    document_name, OrderedDict()
-                )
+                part_dictionary = self.get_metadatum(document_name, OrderedDict())
             else:
                 part_dictionary = OrderedDict()
             part_dictionary[name] = value
@@ -911,9 +908,7 @@ class Path(pathlib.PosixPath):
         else:
             self.add_metadatum(name, value)
 
-    def add_metadatum(
-        self, name, value, *, file_name="__metadata__.py"
-    ) -> None:
+    def add_metadatum(self, name, value, *, file_name="__metadata__.py") -> None:
         """
         Adds metadatum.
         """
@@ -1227,9 +1222,7 @@ class Path(pathlib.PosixPath):
                             tag_ = tag.append(Tag("NOT_TOPMOST"))
                         else:
                             tag_ = tag
-                        strings = LilyPondFormatManager.tag(
-                            [dereference], tag=tag_
-                        )
+                        strings = LilyPondFormatManager.tag([dereference], tag=tag_)
                         dereference = strings[0]
                         dereference = dereference + "\n"
                         if bool(stack):
@@ -1607,9 +1600,7 @@ class Path(pathlib.PosixPath):
         else:
             return None
 
-    def get_next_package(
-        self, cyclic: bool = False
-    ) -> typing.Optional["Path"]:
+    def get_next_package(self, cyclic: bool = False) -> typing.Optional["Path"]:
         """
         Gets next package.
 
@@ -1745,9 +1736,7 @@ class Path(pathlib.PosixPath):
                     return partial_score
         return False
 
-    def get_preamble_time_signatures(
-        self,
-    ) -> typing.Optional[typing.List[str]]:
+    def get_preamble_time_signatures(self,) -> typing.Optional[typing.List[str]]:
         """
         Gets preamble time signatures.
         """
@@ -1772,9 +1761,7 @@ class Path(pathlib.PosixPath):
             return time_signatures
         return None
 
-    def get_previous_package(
-        self, cyclic: bool = False
-    ) -> typing.Optional["Path"]:
+    def get_previous_package(self, cyclic: bool = False) -> typing.Optional["Path"]:
         """
         Gets previous package.
 
@@ -1823,9 +1810,7 @@ class Path(pathlib.PosixPath):
             raise ValueError(self)
         return path
 
-    def get_previous_score(
-        self, cyclic: bool = False
-    ) -> typing.Optional["Path"]:
+    def get_previous_score(self, cyclic: bool = False) -> typing.Optional["Path"]:
         """
         Gets previous score.
 
@@ -1868,9 +1853,7 @@ class Path(pathlib.PosixPath):
         """
         if self.is_segment():
             time_signatures = self.get_metadatum("time_signatures", [])
-            time_signatures = [
-                TimeSignature.from_string(_) for _ in time_signatures
-            ]
+            time_signatures = [TimeSignature.from_string(_) for _ in time_signatures]
             return time_signatures
         time_signatures = self.contents.get_metadatum("time_signatures")
         if time_signatures is None:
@@ -2558,10 +2541,7 @@ class Path(pathlib.PosixPath):
         """
         if self.name[0] == ".":
             return False
-        return (
-            self.parent.name == "segments"
-            and self.parent.parent.name != "abjad"
-        )
+        return self.parent.name == "segments" and self.parent.parent.name != "abjad"
 
     @staticmethod
     def is_segment_name(string) -> bool:
@@ -3107,11 +3087,7 @@ class Path(pathlib.PosixPath):
         return path
 
     def write_metadata_py(
-        self,
-        metadata,
-        *,
-        file_name="__metadata__.py",
-        variable_name="metadata",
+        self, metadata, *, file_name="__metadata__.py", variable_name="metadata",
     ) -> None:
         """
         Writes ``metadata`` to metadata file in current directory.

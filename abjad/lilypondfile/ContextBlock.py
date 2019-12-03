@@ -1,6 +1,7 @@
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.top.override import override
 from abjad.top.setting import setting
+
 from .Block import Block
 
 
@@ -49,9 +50,7 @@ class ContextBlock(Block):
 
     ### INITIALIZER ###
 
-    def __init__(
-        self, source_lilypond_type=None, name=None, type_=None, alias=None
-    ):
+    def __init__(self, source_lilypond_type=None, name=None, type_=None, alias=None):
         Block.__init__(self, name="context")
         self._source_lilypond_type = source_lilypond_type
         self._name = name

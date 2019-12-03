@@ -1,7 +1,8 @@
-import abjad
 import inspect
+
 import pytest
 
+import abjad
 
 _allowed_to_be_empty_string = (
     abjad.Accidental,
@@ -21,9 +22,7 @@ ignored_classes = (
     abjad.Tags,
 )
 
-classes = pytest.helpers.list_all_abjad_classes(
-    ignored_classes=ignored_classes
-)
+classes = pytest.helpers.list_all_abjad_classes(ignored_classes=ignored_classes)
 
 
 @pytest.mark.parametrize("class_", classes)

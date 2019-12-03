@@ -3,10 +3,8 @@ import copy
 import inspect
 import itertools
 import typing
-from abjad import enums
-from abjad import exceptions
-from abjad import mathtools
-from abjad import typings
+
+from abjad import enums, exceptions, mathtools, typings
 from abjad.indicators.RepeatTie import RepeatTie
 from abjad.indicators.Tie import Tie
 from abjad.mathtools import Ratio
@@ -18,18 +16,19 @@ from abjad.top.detach import detach
 from abjad.top.inspect import inspect as abjad_inspect
 from abjad.top.iterate import iterate
 from abjad.top.mutate import mutate
-from abjad.top.select import select
 from abjad.top.new import new
+from abjad.top.select import select
 from abjad.utilities.CyclicTuple import CyclicTuple
 from abjad.utilities.Duration import Duration
 from abjad.utilities.DurationInequality import DurationInequality
+from abjad.utilities.Expression import Expression
 from abjad.utilities.LengthInequality import LengthInequality
 from abjad.utilities.Offset import Offset
 from abjad.utilities.OrderedDict import OrderedDict
 from abjad.utilities.Pattern import Pattern
 from abjad.utilities.PitchInequality import PitchInequality
 from abjad.utilities.Sequence import Sequence
-from abjad.utilities.Expression import Expression
+
 from .Chord import Chord
 from .Component import Component
 from .Leaf import Leaf
@@ -194,9 +193,7 @@ class Selection(collections.abc.Sequence):
             method = Expression._make___getitem___string_template
             template = method(argument)
             template = template.format(self._expression.template)
-            return self._update_expression(
-                inspect.currentframe(), template=template
-            )
+            return self._update_expression(inspect.currentframe(), template=template)
         if isinstance(argument, Pattern):
             raise Exception("use abjad.Selection.get() instead.")
             argument = argument.advance(self._previous)
@@ -441,24 +438,16 @@ class Selection(collections.abc.Sequence):
         values = []
         if self.items:
             values = [list(self.items)]
-        return FormatSpecification(
-            client=self, storage_format_args_values=values
-        )
+        return FormatSpecification(client=self, storage_format_args_values=values)
 
     def _get_offset_lists(self):
         start_offsets, stop_offsets = [], []
         for component in self:
-            start_offsets.append(
-                abjad_inspect(component).timespan().start_offset
-            )
-            stop_offsets.append(
-                abjad_inspect(component).timespan().stop_offset
-            )
+            start_offsets.append(abjad_inspect(component).timespan().start_offset)
+            stop_offsets.append(abjad_inspect(component).timespan().stop_offset)
         return start_offsets, stop_offsets
 
-    def _get_parent_and_start_stop_indices(
-        self, ignore_before_after_grace=None
-    ):
+    def _get_parent_and_start_stop_indices(self, ignore_before_after_grace=None):
         assert self.are_contiguous_same_parent(
             ignore_before_after_grace=ignore_before_after_grace
         )
@@ -660,9 +649,7 @@ class Selection(collections.abc.Sequence):
         template=None,
     ):
         callback = Expression._frame_to_callback(
-            frame,
-            evaluation_template=evaluation_template,
-            map_operand=map_operand,
+            frame, evaluation_template=evaluation_template, map_operand=map_operand,
         )
         callback = new(callback, lone=lone)
         expression = self._expression.append_callback(callback)
@@ -806,8 +793,7 @@ class Selection(collections.abc.Sequence):
             # false if components are in same score and are discontiguous
             if current_parentage.root == first_root:
                 if not previous._immediately_precedes(
-                    current,
-                    ignore_before_after_grace=ignore_before_after_grace,
+                    current, ignore_before_after_grace=ignore_before_after_grace,
                 ):
                     return False
             previous = current
@@ -827,9 +813,7 @@ class Selection(collections.abc.Sequence):
             return self._update_expression(inspect.currentframe())
         return all(isinstance(_, Leaf) for _ in self)
 
-    def are_logical_voice(
-        self, prototype=None
-    ) -> typing.Union[bool, Expression]:
+    def are_logical_voice(self, prototype=None) -> typing.Union[bool, Expression]:
         """
         Is true when items in selection are all components in the same
         logical voice.
@@ -1861,11 +1845,7 @@ class Selection(collections.abc.Sequence):
         return type(self)([_ for _ in self if predicate(_)])
 
     def filter_duration(
-        self,
-        operator,
-        duration: typings.DurationTyping,
-        *,
-        preprolated: bool = None,
+        self, operator, duration: typings.DurationTyping, *, preprolated: bool = None,
     ) -> typing.Union["Selection", Expression]:
         r"""
         Filters selection by ``operator`` and ``duration``.
@@ -1978,9 +1958,7 @@ class Selection(collections.abc.Sequence):
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        inequality = DurationInequality(
-            operator, duration, preprolated=preprolated
-        )
+        inequality = DurationInequality(operator, duration, preprolated=preprolated)
         return self.filter(inequality)
 
     def filter_length(
@@ -2618,9 +2596,7 @@ class Selection(collections.abc.Sequence):
         return type(self)(Sequence(self).flatten(depth=depth))
 
     def get(
-        self,
-        indices: typing.Union[typing.Sequence[int], Pattern],
-        period: int = None,
+        self, indices: typing.Union[typing.Sequence[int], Pattern], period: int = None,
     ) -> typing.Union["Selection", Expression]:
         r"""
         Gets patterned items.
@@ -2889,9 +2865,7 @@ class Selection(collections.abc.Sequence):
             return self._update_expression(inspect.currentframe(), lone=True)
         return self.group_by()
 
-    def group_by(
-        self, predicate=None
-    ) -> typing.Union["Selection", Expression]:
+    def group_by(self, predicate=None) -> typing.Union["Selection", Expression]:
         r'''
         Groups items in selection by ``predicate``.
 
@@ -7198,10 +7172,7 @@ class Selection(collections.abc.Sequence):
             return self._update_expression(inspect.currentframe())
         result = []
         groups = Sequence(self).partition_by_counts(
-            [abs(_) for _ in counts],
-            cyclic=cyclic,
-            enchain=enchain,
-            overhang=overhang,
+            [abs(_) for _ in counts], cyclic=cyclic, enchain=enchain, overhang=overhang,
         )
         groups = list(groups)
         total = len(groups)
@@ -7232,13 +7203,7 @@ class Selection(collections.abc.Sequence):
         return type(self)(result)
 
     def partition_by_durations(
-        self,
-        durations,
-        *,
-        cyclic=False,
-        fill=None,
-        in_seconds=False,
-        overhang=False,
+        self, durations, *, cyclic=False, fill=None, in_seconds=False, overhang=False,
     ) -> typing.Union["Selection", Expression]:
         r"""
         Partitions selection by ``durations``.
@@ -8166,9 +8131,7 @@ class Selection(collections.abc.Sequence):
                 break
             component_duration = component._get_duration()
             if in_seconds:
-                component_duration = abjad_inspect(component).duration(
-                    in_seconds=True
-                )
+                component_duration = abjad_inspect(component).duration(in_seconds=True)
             candidate_duration = cumulative_duration + component_duration
             if candidate_duration < target_duration:
                 part.append(component)
@@ -8191,10 +8154,7 @@ class Selection(collections.abc.Sequence):
                     part = [component]
                     if in_seconds:
                         sum_ = sum(
-                            [
-                                abjad_inspect(_).duration(in_seconds=True)
-                                for _ in part
-                            ]
+                            [abjad_inspect(_).duration(in_seconds=True) for _ in part]
                         )
                         cumulative_duration = Duration(sum_)
                     else:
@@ -8229,9 +8189,7 @@ class Selection(collections.abc.Sequence):
         selections = [type(self)(_) for _ in result]
         return type(self)(selections)
 
-    def partition_by_ratio(
-        self, ratio
-    ) -> typing.Union["Selection", Expression]:
+    def partition_by_ratio(self, ratio) -> typing.Union["Selection", Expression]:
         r"""
         Partitions selection by ``ratio``.
 
@@ -8578,9 +8536,7 @@ class Selection(collections.abc.Sequence):
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        return self.components(
-            (MultimeasureRest, Rest), exclude=exclude, grace=grace
-        )
+        return self.components((MultimeasureRest, Rest), exclude=exclude, grace=grace)
 
     def run(
         self, n: int, *, exclude: typings.Strings = None

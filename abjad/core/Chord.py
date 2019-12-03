@@ -1,7 +1,7 @@
 import copy
 import typing
-from abjad import instruments
-from abjad import mathtools
+
+from abjad import instruments, mathtools
 from abjad import pitch as abjad_pitch
 from abjad import typings
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
@@ -9,6 +9,7 @@ from abjad.system.Tag import Tag
 from abjad.top.inspect import inspect
 from abjad.top.parse import parse
 from abjad.utilities.Duration import Duration
+
 from .DrumNoteHead import DrumNoteHead
 from .Leaf import Leaf
 from .NoteHead import NoteHead
@@ -60,10 +61,7 @@ class Chord(Leaf):
     ### INITIALIZER ###
 
     def __init__(
-        self,
-        *arguments,
-        multiplier: typings.DurationTyping = None,
-        tag: Tag = None,
+        self, *arguments, multiplier: typings.DurationTyping = None, tag: Tag = None,
     ) -> None:
         from abjad.ly import drums
         from .Note import Note
@@ -91,14 +89,10 @@ class Chord(Leaf):
                 are_forced = [leaf.note_head.is_forced]
                 are_parenthesized = [leaf.note_head.is_parenthesized]
             elif isinstance(leaf, Chord):
-                written_pitches.extend(
-                    x.written_pitch for x in leaf.note_heads
-                )
+                written_pitches.extend(x.written_pitch for x in leaf.note_heads)
                 are_cautionary = [x.is_cautionary for x in leaf.note_heads]
                 are_forced = [x.is_forced for x in leaf.note_heads]
-                are_parenthesized = [
-                    x.is_parenthesized for x in leaf.note_heads
-                ]
+                are_parenthesized = [x.is_parenthesized for x in leaf.note_heads]
         # TODO: move to dedicated constructor:
         elif len(arguments) == 2:
             written_pitches, written_duration = arguments
@@ -159,9 +153,7 @@ class Chord(Leaf):
             new_chord.note_heads.append(note_head)
         return new_chord
 
-    def __getnewargs__(
-        self,
-    ) -> typing.Tuple[abjad_pitch.PitchSegment, Duration]:
+    def __getnewargs__(self,) -> typing.Tuple[abjad_pitch.PitchSegment, Duration]:
         """
         Gets new chord arguments.
 

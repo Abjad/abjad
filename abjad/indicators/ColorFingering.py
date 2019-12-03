@@ -1,7 +1,7 @@
 import functools
 import typing
-from abjad import enums
-from abjad import mathtools
+
+from abjad import enums, mathtools
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.markups import Markup
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle

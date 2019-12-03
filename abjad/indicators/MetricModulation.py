@@ -1,7 +1,7 @@
 import collections
 import typing
-from abjad import enums
-from abjad import typings
+
+from abjad import enums, typings
 from abjad.markups import Markup
 from abjad.mathtools import Ratio
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle

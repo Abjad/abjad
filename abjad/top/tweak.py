@@ -1,9 +1,7 @@
 from abjad import enums
 
 
-def tweak(
-    argument, *, deactivate=None, expression=None, literal=None, tag=None
-):
+def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None):
     r"""
     Makes LilyPond tweak manager.
 
@@ -243,11 +241,7 @@ def tweak(
 
     constants = (enums.Down, enums.Left, enums.Right, enums.Up)
     prototype = (bool, int, float, str, tuple, abjad.Scheme)
-    if (
-        expression is True
-        or argument in constants
-        or isinstance(argument, prototype)
-    ):
+    if expression is True or argument in constants or isinstance(argument, prototype):
         manager = abjad.LilyPondTweakManager(
             deactivate=deactivate, literal=literal, tag=tag
         )

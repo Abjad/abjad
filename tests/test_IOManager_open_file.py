@@ -1,5 +1,6 @@
-import abjad
 import pytest
+
+import abjad
 
 try:
     from unittest import mock
@@ -84,9 +85,7 @@ def test_IOManager_open_file_02(
 @pytest.mark.parametrize("configuration", abjad_configurations)
 @pytest.mark.parametrize("file_path", test_files)
 @pytest.mark.parametrize("application", applications)
-def test_IOManager_open_file_03(
-    startfile_mock, configuration, file_path, application
-):
+def test_IOManager_open_file_03(startfile_mock, configuration, file_path, application):
     with mock.patch(*configuration):
         abjad.IOManager.open_file(file_path=file_path, application=application)
         startfile_mock.assert_called_with(file_path)

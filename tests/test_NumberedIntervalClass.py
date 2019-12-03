@@ -1,4 +1,5 @@
 import pytest
+
 from abjad import mathtools
 from abjad.pitch import (
     NamedInterval,
@@ -7,12 +8,9 @@ from abjad.pitch import (
     NumberedIntervalClass,
 )
 
-
 values = []
 
-values.extend(
-    (x, ((abs(x) % 12) or 12) * mathtools.sign(x)) for x in range(-48, 49)
-)
+values.extend((x, ((abs(x) % 12) or 12) * mathtools.sign(x)) for x in range(-48, 49))
 
 values.extend(
     [

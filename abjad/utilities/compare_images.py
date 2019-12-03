@@ -25,9 +25,7 @@ def compare_images(image_one, image_two):
         tempdir = tempfile.mkdtemp()
         comparison = os.path.join(tempdir, "comparison.png")
 
-        command = "compare -metric ae {} {} {}".format(
-            image_one, image_two, comparison
-        )
+        command = "compare -metric ae {} {} {}".format(image_one, image_two, comparison)
         process = subprocess.Popen(
             command.split(), stdout=subprocess.PIPE, stderr=subprocess.PIPE
         )
@@ -38,11 +36,11 @@ def compare_images(image_one, image_two):
         if stderr:
             part = stderr.split()[0]
             if part.isdigit():
-                result = int(part) is 0
+                result = int(part) == 0
         elif stdout:
             part = stdout.split()[0]
             if part.isdigit():
-                result = int(part) is 0
+                result = int(part) == 0
 
         shutil.rmtree(tempdir)
 

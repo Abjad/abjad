@@ -1,5 +1,7 @@
 import typing
+
 from abjad.utilities.String import String
+
 from .LilyPondNameManager import LilyPondNameManager
 
 

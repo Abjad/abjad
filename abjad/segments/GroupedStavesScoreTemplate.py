@@ -1,5 +1,6 @@
 from abjad.system.Tag import Tag
 from abjad.utilities.OrderedDict import OrderedDict
+
 from .ScoreTemplate import ScoreTemplate
 
 
@@ -112,17 +113,13 @@ class GroupedStavesScoreTemplate(ScoreTemplate):
         for index in range(self.staff_count):
             number = index + 1
             voice = abjad.Voice([], name="Voice_{}".format(number), tag=tag)
-            staff = abjad.Staff(
-                [voice], name="Staff_{}".format(number), tag=tag
-            )
+            staff = abjad.Staff([voice], name="Staff_{}".format(number), tag=tag)
             staves.append(staff)
             self.voice_abbreviations["v{}".format(number)] = voice.name
         staff_group = abjad.StaffGroup(
             staves, name="Grouped_Staves_Staff_Group", tag=tag
         )
-        score = abjad.Score(
-            [staff_group], name="Grouped_Staves_Score", tag=tag
-        )
+        score = abjad.Score([staff_group], name="Grouped_Staves_Score", tag=tag)
         return score
 
     ### PUBLIC PROPERTIES ###

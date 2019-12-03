@@ -1,5 +1,6 @@
-import abjad
 import os
+
+import abjad
 
 configuration = abjad.AbjadConfiguration()
 ly_path = os.path.join(configuration.abjad_directory, "test.ly")

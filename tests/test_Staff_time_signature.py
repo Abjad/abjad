@@ -37,9 +37,9 @@ def test_Staff_time_signature_02():
     time_signature = abjad.TimeSignature((2, 4))
     abjad.attach(time_signature, staff[0])
     for x in staff:
-        assert abjad.inspect(x).effective(
-            abjad.TimeSignature
-        ) == abjad.TimeSignature((2, 4))
+        assert abjad.inspect(x).effective(abjad.TimeSignature) == abjad.TimeSignature(
+            (2, 4)
+        )
 
 
 def test_Staff_time_signature_03():

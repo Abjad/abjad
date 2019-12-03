@@ -1,8 +1,8 @@
 import abc
 import collections
 import types
-from abjad import enums
-from abjad import mathtools
+
+from abjad import enums, mathtools
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.utilities.Duration import Duration
 from abjad.utilities.TypedTuple import TypedTuple
@@ -56,9 +56,7 @@ class Segment(TypedTuple):
 
     ### SPECIAL METHODS ###
 
-    def __illustrate__(
-        self, markup_direction=enums.Up, figure_name=None, **keywords
-    ):
+    def __illustrate__(self, markup_direction=enums.Up, figure_name=None, **keywords):
         """
         Illustrates segment.
 

@@ -1,8 +1,10 @@
 import copy
 import typing
+
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.Tag import Tag
 from abjad.utilities.String import String
+
 from .LilyPondNameManager import LilyPondNameManager
 
 
@@ -57,9 +59,7 @@ class LilyPondTweakManager(LilyPondNameManager):
 
     ### SPECIAL METHODS ###
 
-    def __getattr__(
-        self, name
-    ) -> typing.Union[LilyPondNameManager, typing.Any]:
+    def __getattr__(self, name) -> typing.Union[LilyPondNameManager, typing.Any]:
         r"""
         Gets LilyPondNameManager (or LilyPondGrobNameManager) keyed to 
         ``name``.
@@ -296,11 +296,7 @@ class LilyPondTweakManager(LilyPondNameManager):
             else:
                 tag = None
             string = LilyPondFormatManager.make_lilypond_tweak_string(
-                attribute,
-                value,
-                directed=directed,
-                grob=grob,
-                literal=self._literal,
+                attribute, value, directed=directed, grob=grob, literal=self._literal,
             )
             if tag is not None:
                 strings = [string]

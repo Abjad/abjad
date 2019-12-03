@@ -1,5 +1,6 @@
 from abjad import mathtools
 from abjad.system.FormatSpecification import FormatSpecification
+
 from . import constants
 from .Interval import Interval
 
@@ -212,9 +213,7 @@ class NamedInterval(Interval):
         dummy_pitch = abjad.NamedPitch(0)
         for i in range(abs(argument)):
             dummy_pitch += self
-        result = NamedInterval.from_pitch_carriers(
-            abjad.NamedPitch(0), dummy_pitch
-        )
+        result = NamedInterval.from_pitch_carriers(abjad.NamedPitch(0), dummy_pitch)
         if argument < 0:
             return -result
         return result
@@ -320,9 +319,7 @@ class NamedInterval(Interval):
         self._octaves = octaves
         if direction:
             diatonic_pc_number *= direction
-        self._interval_class = abjad.NamedIntervalClass(
-            (quality, diatonic_pc_number)
-        )
+        self._interval_class = abjad.NamedIntervalClass((quality, diatonic_pc_number))
 
     def _from_number(self, argument):
         direction, quality, diatonic_number = self._numbered_to_named(argument)
@@ -334,9 +331,7 @@ class NamedInterval(Interval):
             diatonic_number = abs(argument.number)
             direction = mathtools.sign(argument.number)
         except AttributeError:
-            direction, quality, diatonic_number = self._numbered_to_named(
-                argument
-            )
+            direction, quality, diatonic_number = self._numbered_to_named(argument)
         self._from_named_parts(direction, quality, diatonic_number)
 
     def _get_format_specification(self):
@@ -567,12 +562,10 @@ class NamedInterval(Interval):
         named_sign = mathtools.sign(degree_1 - degree_2)
         named_i_number = abs(degree_1 - degree_2) + 1
         numbered_sign = mathtools.sign(
-            float(abjad.NumberedPitch(pitch_1))
-            - float(abjad.NumberedPitch(pitch_2))
+            float(abjad.NumberedPitch(pitch_1)) - float(abjad.NumberedPitch(pitch_2))
         )
         numbered_i_number = abs(
-            float(abjad.NumberedPitch(pitch_1))
-            - float(abjad.NumberedPitch(pitch_2))
+            float(abjad.NumberedPitch(pitch_1)) - float(abjad.NumberedPitch(pitch_2))
         )
         named_ic_number = named_i_number
         numbered_ic_number = numbered_i_number

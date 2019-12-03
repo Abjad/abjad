@@ -1,5 +1,7 @@
 import typing
+
 from abjad.system.StorageFormatManager import StorageFormatManager
+
 from .Part import Part
 from .PartAssignment import PartAssignment
 from .Section import Section

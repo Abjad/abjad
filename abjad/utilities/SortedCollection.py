@@ -358,22 +358,12 @@ if __name__ == "__main__":
             sc = SortedCollection(s)
             s.sort()
             for probe in pool:
-                assert repr(ve2no(sc.index, probe)) == repr(
-                    slow_index(s, probe)
-                )
+                assert repr(ve2no(sc.index, probe)) == repr(slow_index(s, probe))
                 assert repr(ve2no(sc.find, probe)) == repr(slow_find(s, probe))
-                assert repr(ve2no(sc.find_le, probe)) == repr(
-                    slow_find_le(s, probe)
-                )
-                assert repr(ve2no(sc.find_lt, probe)) == repr(
-                    slow_find_lt(s, probe)
-                )
-                assert repr(ve2no(sc.find_ge, probe)) == repr(
-                    slow_find_ge(s, probe)
-                )
-                assert repr(ve2no(sc.find_gt, probe)) == repr(
-                    slow_find_gt(s, probe)
-                )
+                assert repr(ve2no(sc.find_le, probe)) == repr(slow_find_le(s, probe))
+                assert repr(ve2no(sc.find_lt, probe)) == repr(slow_find_lt(s, probe))
+                assert repr(ve2no(sc.find_ge, probe)) == repr(slow_find_ge(s, probe))
+                assert repr(ve2no(sc.find_gt, probe)) == repr(slow_find_gt(s, probe))
             for i, item in enumerate(s):
                 assert repr(item) == repr(sc[i])  # test __getitem__
                 assert item in sc  # test __contains__ and __iter__

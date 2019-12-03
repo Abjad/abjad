@@ -1,4 +1,5 @@
 import pytest
+
 from abjad import mathtools
 from abjad.pitch import (
     NamedInterval,
@@ -6,7 +7,6 @@ from abjad.pitch import (
     NumberedInterval,
     NumberedIntervalClass,
 )
-
 
 values = []
 

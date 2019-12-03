@@ -10,8 +10,10 @@ import pathlib
 import re
 import shutil
 import types
-from abjad import utilities
+
 from uqbar.cli import CLI, CLIAggregator
+
+from abjad import utilities
 
 
 class AbjDevScript(CLIAggregator):
@@ -131,9 +133,7 @@ class CleanScript(CLI):
         if arguments.tmp:
             print("\ttmp* directories")
 
-        for root_directory, directory_names, file_names in os.walk(
-            arguments.path
-        ):
+        for root_directory, directory_names, file_names in os.walk(arguments.path):
             if ".svn" in directory_names:
                 directory_names.remove(".svn")
             extensions = ()
@@ -177,18 +177,12 @@ class CleanScript(CLI):
         parser.add_argument(
             "--cache", action="store_true", help="delete *.cache folders"
         )
-        parser.add_argument(
-            "--pyc", action="store_true", help="delete *.pyc files"
-        )
+        parser.add_argument("--pyc", action="store_true", help="delete *.pyc files")
         parser.add_argument(
             "--pycache", action="store_true", help="delete __pycache__ folders"
         )
-        parser.add_argument(
-            "--swp", action="store_true", help="delete Vim *.swp file"
-        )
-        parser.add_argument(
-            "--tmp", action="store_true", help="delete tmp* folders"
-        )
+        parser.add_argument("--swp", action="store_true", help="delete Vim *.swp file")
+        parser.add_argument("--tmp", action="store_true", help="delete tmp* folders")
 
 
 class ReplaceScript(CLI):
@@ -274,9 +268,7 @@ class ReplaceScript(CLI):
         skipped_dirs_patterns = self.skipped_directories
         skipped_dirs_patterns += arguments.without_dirs
         skipped_files_patterns = self.skipped_files + arguments.without_files
-        if arguments.regex or (
-            not arguments.regex and arguments.whole_words_only
-        ):
+        if arguments.regex or (not arguments.regex and arguments.whole_words_only):
             arguments.old = self._get_regex_search_callable(arguments)
             index, length = arguments.old("", 0)
             if 0 <= index:
@@ -313,9 +305,7 @@ class ReplaceScript(CLI):
                     changed_line_count += changed_lines
                     changed_item_count += changed_items
         print()
-        item_identifier = abjad.String("instance").pluralize(
-            changed_item_count
-        )
+        item_identifier = abjad.String("instance").pluralize(changed_item_count)
         line_identifier = abjad.String("line").pluralize(changed_line_count)
         file_identifier = abjad.String("file").pluralize(changed_file_count)
         message = "\tReplaced {} {} over {} {} in {} {}."

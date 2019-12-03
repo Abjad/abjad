@@ -1,4 +1,5 @@
 import typing
+
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.system.Tag import Tag
@@ -52,9 +53,7 @@ class Momento(object):
         self._synthetic_offset = synthetic_offset
         if value is not None:
             if not isinstance(value, (int, str, dict)):
-                assert type(value).__name__ == "PersistentOverride", repr(
-                    value
-                )
+                assert type(value).__name__ == "PersistentOverride", repr(value)
         self._value = value
 
     ### SPECIAL METHODS ###

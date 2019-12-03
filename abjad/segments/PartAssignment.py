@@ -1,8 +1,10 @@
 import typing
+
 from abjad import typings
-from abjad.utilities.String import String
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.StorageFormatManager import StorageFormatManager
+from abjad.utilities.String import String
+
 from .Part import Part
 
 

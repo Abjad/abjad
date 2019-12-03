@@ -1,5 +1,6 @@
-import abjad
 import pathlib
+
+import abjad
 
 
 def test_AbjadConfiguration___init___01():

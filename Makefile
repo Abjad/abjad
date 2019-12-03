@@ -50,6 +50,7 @@ isort:
 		--case-sensitive \
 		--multi-line 3 \
 		--recursive \
+		--skip ${project}/__init__.py \
 		--skip-glob '*boilerplate*' \
 		--trailing-comma \
 		--use-parentheses -y \

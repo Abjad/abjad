@@ -7,16 +7,10 @@ from ply.yacc import (  # type: ignore
 )
 
 
-def _parse(
-    self, input=None, lexer=None, debug=None, tracking=0, tokenfunc=None
-):
+def _parse(self, input=None, lexer=None, debug=None, tracking=0, tokenfunc=None):
     self.lookahead = None  # Current lookahead symbol
-    actions = (
-        self.action
-    )  # Local reference to action table (to avoid lookup on self.)
-    goto = (
-        self.goto
-    )  # Local reference to goto table (to avoid lookup on self.)
+    actions = self.action  # Local reference to action table (to avoid lookup on self.)
+    goto = self.goto  # Local reference to goto table (to avoid lookup on self.)
     prod = (
         self.productions
     )  # Local reference to production list (to avoid lookup on self.)

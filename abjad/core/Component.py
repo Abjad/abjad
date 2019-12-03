@@ -2,10 +2,10 @@ import abc
 import bisect
 import copy
 import typing
+
 import uqbar.graphs
-from abjad import enums
-from abjad import exceptions
-from abjad import mathtools
+
+from abjad import enums, exceptions, mathtools
 from abjad.indicators.StaffChange import StaffChange
 from abjad.indicators.TimeSignature import TimeSignature
 from abjad.markups import Markup
@@ -15,6 +15,7 @@ from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.system.Tag import Tag
 from abjad.system.UpdateManager import UpdateManager
 from abjad.system.Wrapper import Wrapper
+from abjad.timespans import Timespan
 from abjad.top.attach import attach
 from abjad.top.detach import detach
 from abjad.top.inspect import inspect
@@ -23,8 +24,8 @@ from abjad.top.mutate import mutate
 from abjad.top.override import override
 from abjad.top.select import select
 from abjad.top.setting import setting
-from abjad.timespans import Timespan
 from abjad.utilities.Duration import Duration
+
 from .VerticalMoment import VerticalMoment
 
 
@@ -348,10 +349,7 @@ class Component(object):
                     continue
                 if isinstance(wrapper.indicator, prototype):
                     append_wrapper = True
-                    if (
-                        command is not None
-                        and wrapper.indicator.command != command
-                    ):
+                    if command is not None and wrapper.indicator.command != command:
                         continue
                     if attributes is not None:
                         for name, value in attributes.items():
@@ -364,9 +362,7 @@ class Component(object):
             if any(_.deactivate is True for _ in local_wrappers) and not all(
                 _.deactivate is True for _ in local_wrappers
             ):
-                local_wrappers = [
-                    _ for _ in local_wrappers if _.deactivate is not True
-                ]
+                local_wrappers = [_ for _ in local_wrappers if _.deactivate is not True]
             for wrapper in local_wrappers:
                 offset = wrapper.start_offset
                 candidate_wrappers.setdefault(offset, []).append(wrapper)
@@ -377,10 +373,7 @@ class Component(object):
                     continue
                 if isinstance(wrapper.indicator, prototype):
                     append_wrapper = True
-                    if (
-                        command is not None
-                        and wrapper.indicator.command != command
-                    ):
+                    if command is not None and wrapper.indicator.command != command:
                         continue
                     if attributes is not None:
                         for name, value in attributes.items():
@@ -450,9 +443,7 @@ class Component(object):
         if summary:
             values.append(summary)
         return FormatSpecification(
-            client=self,
-            repr_args_values=values,
-            storage_format_kwargs_names=[],
+            client=self, repr_args_values=values, storage_format_kwargs_names=[],
         )
 
     def _get_indicator(self, prototype=None, *, attributes=None, unwrap=True):
@@ -460,9 +451,7 @@ class Component(object):
             prototype=prototype, attributes=attributes, unwrap=unwrap
         )
         if not indicators:
-            raise ValueError(
-                f"no attached indicators found matching {prototype!r}."
-            )
+            raise ValueError(f"no attached indicators found matching {prototype!r}.")
         if 1 < len(indicators):
             raise ValueError(
                 f"multiple attached indicators found matching {prototype!r}."
@@ -626,18 +615,14 @@ class Component(object):
             self._update_now(offsets=True)
             return self._timespan
 
-    def _has_effective_indicator(
-        self, prototype, *, attributes=None, command=None
-    ):
+    def _has_effective_indicator(self, prototype, *, attributes=None, command=None):
         indicator = self._get_effective(
             prototype, attributes=attributes, command=command
         )
         return indicator is not None
 
     def _has_indicator(self, prototype=None, *, attributes=None):
-        indicators = self._get_indicators(
-            prototype=prototype, attributes=attributes
-        )
+        indicators = self._get_indicators(prototype=prototype, attributes=attributes)
         return bool(indicators)
 
     def _immediately_precedes(self, component, ignore_before_after_grace=None):
@@ -739,9 +724,7 @@ class Component(object):
         update_manager = UpdateManager()
         update_manager._update_measure_numbers(self)
 
-    def _update_now(
-        self, offsets=False, offsets_in_seconds=False, indicators=False
-    ):
+    def _update_now(self, offsets=False, offsets_in_seconds=False, indicators=False):
         update_manager = UpdateManager()
         return update_manager._update_now(
             self,

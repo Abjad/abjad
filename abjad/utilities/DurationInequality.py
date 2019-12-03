@@ -1,6 +1,7 @@
 import typing
-from abjad.mathtools import Infinity
-from abjad.mathtools import NegativeInfinity
+
+from abjad.mathtools import Infinity, NegativeInfinity
+
 from .Duration import Duration
 from .Inequality import Inequality
 
@@ -47,11 +48,7 @@ class DurationInequality(Inequality):
     ### INITIALIZER ###
 
     def __init__(
-        self,
-        operator_string: str = "<",
-        duration=None,
-        *,
-        preprolated: bool = None,
+        self, operator_string: str = "<", duration=None, *, preprolated: bool = None,
     ) -> None:
         Inequality.__init__(self, operator_string=operator_string)
         if duration is None:

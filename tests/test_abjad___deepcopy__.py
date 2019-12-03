@@ -1,8 +1,9 @@
-import abjad
 import copy
 import inspect
+
 import pytest
 
+import abjad
 
 ignored_classes = (
     abjad.parser.LilyPondParser,
@@ -14,9 +15,7 @@ ignored_classes = (
     abjad.FormatSpecification,
 )
 
-classes = pytest.helpers.list_all_abjad_classes(
-    ignored_classes=ignored_classes
-)
+classes = pytest.helpers.list_all_abjad_classes(ignored_classes=ignored_classes)
 
 
 @pytest.mark.parametrize("class_", classes)

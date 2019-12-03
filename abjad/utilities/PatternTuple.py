@@ -272,9 +272,7 @@ class PatternTuple(TypedTuple):
             14 tenuto
 
         """
-        pattern = self.get_matching_pattern(
-            index, total_length, rotation=rotation
-        )
+        pattern = self.get_matching_pattern(index, total_length, rotation=rotation)
         payload = None
         if pattern:
             payload = pattern.payload

@@ -3,10 +3,10 @@ Utilities for typehinting.
 """
 
 import typing
+
 from abjad.mathtools import Ratio
 from abjad.utilities.Duration import Duration
 from abjad.utilities.Expression import Expression
-
 
 IntegerPair = typing.Tuple[int, int]
 

@@ -3,8 +3,10 @@ import functools
 import math
 import numbers
 import typing
+
 from abjad import mathtools
 from abjad.system.StorageFormatManager import StorageFormatManager
+
 from . import constants
 
 
@@ -29,24 +31,18 @@ class Pitch(object):
         if isinstance(argument, str):
             match = constants._comprehensive_pitch_name_regex.match(argument)
             if not match:
-                match = constants._comprehensive_pitch_class_name_regex.match(
-                    argument
-                )
+                match = constants._comprehensive_pitch_class_name_regex.match(argument)
             if not match:
                 message = "can not instantiate {} from {!r}."
                 message = message.format(type(self).__name__, argument)
                 raise ValueError(message)
             group_dict = match.groupdict()
             _dpc_name = group_dict["diatonic_pc_name"].lower()
-            _dpc_number = constants._diatonic_pc_name_to_diatonic_pc_number[
-                _dpc_name
-            ]
+            _dpc_number = constants._diatonic_pc_name_to_diatonic_pc_number[_dpc_name]
             _alteration = abjad.Accidental(
                 group_dict["comprehensive_accidental"]
             ).semitones
-            _octave = abjad.Octave(
-                group_dict.get("comprehensive_octave", "")
-            ).number
+            _octave = abjad.Octave(group_dict.get("comprehensive_octave", "")).number
             self._from_named_parts(_dpc_number, _alteration, _octave)
         elif isinstance(argument, numbers.Number):
             self._from_number(argument)
@@ -74,9 +70,7 @@ class Pitch(object):
                 self._pitch_class, accidental=accidental
             )
         if arrow is not None:
-            self._pitch_class = type(self._pitch_class)(
-                self._pitch_class, arrow=arrow
-            )
+            self._pitch_class = type(self._pitch_class)(self._pitch_class, arrow=arrow)
         if octave is not None:
             octave = abjad.Octave(octave)
             self._octave = octave

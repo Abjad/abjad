@@ -10,6 +10,7 @@ from abjad.top.iterate import iterate
 from abjad.top.select import select
 from abjad.top.sequence import sequence
 from abjad.utilities.Duration import Duration
+
 from .Chord import Chord
 from .Component import Component
 from .Container import Container
@@ -754,9 +755,7 @@ class Mutation(object):
                 message = f"set wrappers only with single leaf: {donors!r}."
                 raise Exception(message)
             if 1 < len(recipients) or not isinstance(recipients[0], Leaf):
-                message = (
-                    f"set wrappers only with single leaf: {recipients!r}."
-                )
+                message = f"set wrappers only with single leaf: {recipients!r}."
                 raise Exception(message)
             donor = donors[0]
             wrappers = inspect(donor).wrappers()
@@ -2777,9 +2776,7 @@ class Mutation(object):
                     additional_required_duration -= local_split_duration
                     split_durations = sequence(durations)
                     split_durations = split_durations.split(
-                        [additional_required_duration],
-                        cyclic=False,
-                        overhang=True,
+                        [additional_required_duration], cyclic=False, overhang=True,
                     )
                     split_durations = [list(_) for _ in split_durations]
                     additional_durations = split_durations[0]
@@ -2793,9 +2790,7 @@ class Mutation(object):
                     offset_index += len(additional_durations)
                 else:
                     assert isinstance(current_component, Container)
-                    pair = current_component._split_by_duration(
-                        local_split_duration
-                    )
+                    pair = current_component._split_by_duration(local_split_duration)
                     left_list, right_list = pair
                     shard.extend(left_list)
                     result.append(shard)
@@ -2821,9 +2816,7 @@ class Mutation(object):
             result.append(remaining_components)
         # partition split components according to input durations
         result = sequence(result).flatten(depth=-1)
-        result = select(result).partition_by_durations(
-            durations_copy, fill=enums.Exact
-        )
+        result = select(result).partition_by_durations(durations_copy, fill=enums.Exact)
         # return list of shards
         assert all(isinstance(_, Selection) for _ in result)
         return result
@@ -2972,9 +2965,7 @@ class Mutation(object):
             else:
                 for note_head in x.note_heads:
                     old_written_pitch = note_head.written_pitch
-                    new_written_pitch = old_written_pitch.transpose(
-                        named_interval
-                    )
+                    new_written_pitch = old_written_pitch.transpose(named_interval)
                     note_head.written_pitch = new_written_pitch
 
     def wrap(self, container):
@@ -3184,9 +3175,7 @@ class Mutation(object):
         parent, start, stop = selection._get_parent_and_start_stop_indices(
             ignore_before_after_grace=True
         )
-        if not selection.are_contiguous_logical_voice(
-            ignore_before_after_grace=True
-        ):
+        if not selection.are_contiguous_logical_voice(ignore_before_after_grace=True):
             message = "must be contiguous components in same logical voice:\n"
             message += f"   {selection!r}."
             raise Exception(message)

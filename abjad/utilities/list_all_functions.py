@@ -24,6 +24,4 @@ def list_all_functions(modules=None):
         obj = getattr(module, name)
         if isinstance(obj, types.FunctionType):
             all_functions.add(obj)
-    return list(
-        sorted(all_functions, key=lambda x: (x.__module__, x.__name__))
-    )
+    return list(sorted(all_functions, key=lambda x: (x.__module__, x.__name__)))

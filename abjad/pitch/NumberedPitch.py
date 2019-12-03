@@ -1,5 +1,6 @@
 from abjad import mathtools
 from abjad.system.FormatSpecification import FormatSpecification
+
 from . import constants
 from .Pitch import Pitch
 
@@ -218,14 +219,10 @@ class NumberedPitch(Pitch):
     def _from_named_parts(self, dpc_number, alteration, octave):
         import abjad
 
-        pc_number = constants._diatonic_pc_number_to_pitch_class_number[
-            dpc_number
-        ]
+        pc_number = constants._diatonic_pc_number_to_pitch_class_number[dpc_number]
         pc_number += alteration
         pc_number += (octave - 4) * 12
-        self._number = mathtools.integer_equivalent_number_to_integer(
-            pc_number
-        )
+        self._number = mathtools.integer_equivalent_number_to_integer(pc_number)
         octave_number, pc_number = divmod(self._number, 12)
         self._pitch_class = abjad.NumberedPitchClass(pc_number)
         self._octave = abjad.Octave(octave_number + 4)
@@ -241,9 +238,7 @@ class NumberedPitch(Pitch):
     def _from_pitch_or_pitch_class(self, pitch_or_pitch_class):
         import abjad
 
-        self._number = self._to_nearest_quarter_tone(
-            float(pitch_or_pitch_class)
-        )
+        self._number = self._to_nearest_quarter_tone(float(pitch_or_pitch_class))
         octave_number, pc_number = divmod(self._number, 12)
         self._octave = abjad.Octave(octave_number + 4)
         self._pitch_class = abjad.NumberedPitchClass(

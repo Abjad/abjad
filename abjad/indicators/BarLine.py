@@ -1,4 +1,5 @@
 import typing
+
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.system.StorageFormatManager import StorageFormatManager
@@ -94,15 +95,11 @@ class BarLine(object):
 
     ### INITIALIZER ##
 
-    def __init__(
-        self, abbreviation: str = "|", *, format_slot: str = "after"
-    ) -> None:
+    def __init__(self, abbreviation: str = "|", *, format_slot: str = "after") -> None:
         if abbreviation not in self._known_abbreviations:
             message = f"unknown bar line abbreviation: {repr(abbreviation)}\n"
             message += "Abbreviation must be one of these:\n"
-            string = "\n    ".join(
-                [repr(_) for _ in self._known_abbreviations]
-            )
+            string = "\n    ".join([repr(_) for _ in self._known_abbreviations])
             message += string
             raise Exception(message)
         self._abbreviation = abbreviation

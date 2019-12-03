@@ -1,13 +1,12 @@
 from ply import lex  # type: ignore
-from abjad import Fraction
-from abjad import utilities
+
+from abjad import Fraction, core, exceptions
 from abjad import indicators as abjad_indicators
 from abjad import lilypondfile as abjad_lilypondfile
 from abjad import markups as abjad_markups
-from abjad import core
-from abjad import exceptions
 from abjad import pitch as abjad_pitch
 from abjad import scheme as abjad_scheme
+from abjad import utilities
 from abjad.top import attach
 
 
@@ -345,15 +344,11 @@ class LilyPondSyntacticalDefinition(object):
 
         if p[1] not in drums:
             note_head = core.NoteHead(
-                written_pitch=p[1],
-                is_cautionary=bool(p[3]),
-                is_forced=bool(p[2]),
+                written_pitch=p[1], is_cautionary=bool(p[3]), is_forced=bool(p[2]),
             )
         else:
             note_head = core.DrumNoteHead(
-                written_pitch=p[1],
-                is_cautionary=bool(p[3]),
-                is_forced=bool(p[2]),
+                written_pitch=p[1], is_cautionary=bool(p[3]), is_forced=bool(p[2]),
             )
         p[0] = abjad_parser.SyntaxNode("chord_body_element", (note_head, p[5]))
 
@@ -363,9 +358,7 @@ class LilyPondSyntacticalDefinition(object):
         "chord_body_elements : "
         p[0] = []
 
-    def p_chord_body_elements__chord_body_elements__chord_body_element(
-        self, p
-    ):
+    def p_chord_body_elements__chord_body_elements__chord_body_element(self, p):
         "chord_body_elements : chord_body_elements chord_body_element"
         p[0] = p[1] + [p[2]]
 
@@ -507,9 +500,7 @@ class LilyPondSyntacticalDefinition(object):
         "complex_music_prefix : CONTEXT simple_string optional_id optional_context_mod"
         from abjad import parser as abjad_parser
 
-        p[0] = abjad_parser.SyntaxNode(
-            "complex_music_prefix", p.__getslice__(1, None)
-        )
+        p[0] = abjad_parser.SyntaxNode("complex_music_prefix", p.__getslice__(1, None))
 
     def p_complex_music_prefix__NEWCONTEXT__simple_string__optional_id__optional_context_mod(
         self, p
@@ -517,9 +508,7 @@ class LilyPondSyntacticalDefinition(object):
         "complex_music_prefix : NEWCONTEXT simple_string optional_id optional_context_mod"
         from abjad import parser as abjad_parser
 
-        p[0] = abjad_parser.SyntaxNode(
-            "complex_music_prefix", p.__getslice__(1, None)
-        )
+        p[0] = abjad_parser.SyntaxNode("complex_music_prefix", p.__getslice__(1, None))
 
     ### composite_music ###
 
@@ -537,9 +526,7 @@ class LilyPondSyntacticalDefinition(object):
         "context_change : CHANGE STRING '=' STRING"
         from abjad import parser as abjad_parser
 
-        p[0] = abjad_parser.SyntaxNode(
-            "context_change", p.__getslice__(1, None)
-        )
+        p[0] = abjad_parser.SyntaxNode("context_change", p.__getslice__(1, None))
 
     ### context_def_mod ###
 
@@ -606,43 +593,31 @@ class LilyPondSyntacticalDefinition(object):
         "context_def_spec_body : CONTEXT_DEF_IDENTIFIER"
         from abjad import parser as abjad_parser
 
-        p[0] = abjad_parser.SyntaxNode(
-            "context_def_spec_body", p.__getslice__(1, None)
-        )
+        p[0] = abjad_parser.SyntaxNode("context_def_spec_body", p.__getslice__(1, None))
 
     def p_context_def_spec_body__Empty(self, p):
         "context_def_spec_body : "
         from abjad import parser as abjad_parser
 
-        p[0] = abjad_parser.SyntaxNode(
-            "context_def_spec_body", p.__getslice__(1, None)
-        )
+        p[0] = abjad_parser.SyntaxNode("context_def_spec_body", p.__getslice__(1, None))
 
     def p_context_def_spec_body__context_def_spec_body__context_mod(self, p):
         "context_def_spec_body : context_def_spec_body context_mod"
         from abjad import parser as abjad_parser
 
-        p[0] = abjad_parser.SyntaxNode(
-            "context_def_spec_body", p.__getslice__(1, None)
-        )
+        p[0] = abjad_parser.SyntaxNode("context_def_spec_body", p.__getslice__(1, None))
 
-    def p_context_def_spec_body__context_def_spec_body__context_modification(
-        self, p
-    ):
+    def p_context_def_spec_body__context_def_spec_body__context_modification(self, p):
         "context_def_spec_body : context_def_spec_body context_modification"
         from abjad import parser as abjad_parser
 
-        p[0] = abjad_parser.SyntaxNode(
-            "context_def_spec_body", p.__getslice__(1, None)
-        )
+        p[0] = abjad_parser.SyntaxNode("context_def_spec_body", p.__getslice__(1, None))
 
     def p_context_def_spec_body__context_def_spec_body__embedded_scm(self, p):
         "context_def_spec_body : context_def_spec_body embedded_scm"
         from abjad import parser as abjad_parser
 
-        p[0] = abjad_parser.SyntaxNode(
-            "context_def_spec_body", p.__getslice__(1, None)
-        )
+        p[0] = abjad_parser.SyntaxNode("context_def_spec_body", p.__getslice__(1, None))
 
     ### context_mod ###
 
@@ -688,9 +663,7 @@ class LilyPondSyntacticalDefinition(object):
         "context_modification : WITH CONTEXT_MOD_IDENTIFIER"
         p[0] = [p[2]]
 
-    def p_context_modification__WITH__Chr123__context_mod_list__Chr125(
-        self, p
-    ):
+    def p_context_modification__WITH__Chr123__context_mod_list__Chr125(self, p):
         "context_modification : WITH '{' context_mod_list '}'"
         p[0] = p[3]
         self.client._lexer.pop_state()
@@ -706,17 +679,13 @@ class LilyPondSyntacticalDefinition(object):
         "context_prop_spec : simple_string"
         from abjad import parser as abjad_parser
 
-        p[0] = abjad_parser.SyntaxNode(
-            "context_prop_spec", p.__getslice__(1, None)
-        )
+        p[0] = abjad_parser.SyntaxNode("context_prop_spec", p.__getslice__(1, None))
 
     def p_context_prop_spec__simple_string__Chr46__simple_string(self, p):
         "context_prop_spec : simple_string '.' simple_string"
         from abjad import parser as abjad_parser
 
-        p[0] = abjad_parser.SyntaxNode(
-            "context_prop_spec", p.__getslice__(1, None)
-        )
+        p[0] = abjad_parser.SyntaxNode("context_prop_spec", p.__getslice__(1, None))
 
     ### direction_less_char ###
 
@@ -750,21 +719,15 @@ class LilyPondSyntacticalDefinition(object):
 
     def p_direction_less_char__E_CLOSE(self, p):
         "direction_less_char : E_CLOSE"
-        p[0] = self.client._resolve_event_identifier(
-            "escapedParenthesisCloseSymbol"
-        )
+        p[0] = self.client._resolve_event_identifier("escapedParenthesisCloseSymbol")
 
     def p_direction_less_char__E_EXCLAMATION(self, p):
         "direction_less_char : E_EXCLAMATION"
-        p[0] = self.client._resolve_event_identifier(
-            "escapedExclamationSymbol"
-        )
+        p[0] = self.client._resolve_event_identifier("escapedExclamationSymbol")
 
     def p_direction_less_char__E_OPEN(self, p):
         "direction_less_char : E_OPEN"
-        p[0] = self.client._resolve_event_identifier(
-            "escapedParenthesisOpenSymbol"
-        )
+        p[0] = self.client._resolve_event_identifier("escapedParenthesisOpenSymbol")
 
     ### direction_less_event ###
 
@@ -783,9 +746,7 @@ class LilyPondSyntacticalDefinition(object):
         "direction_less_event : event_function_event"
         from abjad import parser as abjad_parser
 
-        p[0] = abjad_parser.SyntaxNode(
-            "direction_less_event", p.__getslice__(1, None)
-        )
+        p[0] = abjad_parser.SyntaxNode("direction_less_event", p.__getslice__(1, None))
 
     def p_direction_less_event__tremolo_type(self, p):
         "direction_less_event : tremolo_type"
@@ -1030,9 +991,7 @@ class LilyPondSyntacticalDefinition(object):
 
     ### event_function_event ###
 
-    def p_event_function_event__EVENT_FUNCTION__function_arglist_closed(
-        self, p
-    ):
+    def p_event_function_event__EVENT_FUNCTION__function_arglist_closed(self, p):
         "event_function_event : EVENT_FUNCTION function_arglist_closed"
         from abjad import parser as abjad_parser
 
@@ -1299,9 +1258,7 @@ class LilyPondSyntacticalDefinition(object):
         "function_arglist_backup : function_arglist_backup REPARSE embedded_scm_arg_closed"
         p[0] = self.client._check_scheme_argument(p[1], p[3], p[2])
 
-    def p_function_arglist_backup__function_arglist_backup__REPARSE__fraction(
-        self, p
-    ):
+    def p_function_arglist_backup__function_arglist_backup__REPARSE__fraction(self, p):
         "function_arglist_backup : function_arglist_backup REPARSE fraction"
         p[0] = self.client._check_scheme_argument(p[1], p[3], p[2])
 
@@ -1409,9 +1366,7 @@ class LilyPondSyntacticalDefinition(object):
         "function_arglist_closed_keep : function_arglist_backup"
         p[0] = p[1]
 
-    def p_function_arglist_closed_keep__function_arglist_closed_common(
-        self, p
-    ):
+    def p_function_arglist_closed_keep__function_arglist_closed_common(self, p):
         "function_arglist_closed_keep : function_arglist_closed_common"
         p[0] = p[1]
 
@@ -1429,15 +1384,11 @@ class LilyPondSyntacticalDefinition(object):
         "function_arglist_closed_optional : EXPECT_OPTIONAL EXPECT_PITCH function_arglist_closed_optional"
         p[0] = p[3] + [p[1]]
 
-    def p_function_arglist_closed_optional__function_arglist_backup__BACKUP(
-        self, p
-    ):
+    def p_function_arglist_closed_optional__function_arglist_backup__BACKUP(self, p):
         "function_arglist_closed_optional : function_arglist_backup BACKUP"
         p[0] = p[1]
 
-    def p_function_arglist_closed_optional__function_arglist_closed_keep(
-        self, p
-    ):
+    def p_function_arglist_closed_optional__function_arglist_closed_keep(self, p):
         "function_arglist_closed_optional : function_arglist_closed_keep %prec FUNCTION_ARGLIST"
         p[0] = p[1]
 
@@ -1751,9 +1702,7 @@ class LilyPondSyntacticalDefinition(object):
 
     ### lilypond_header ###
 
-    def p_lilypond_header__HEADER__Chr123__lilypond_header_body__Chr125(
-        self, p
-    ):
+    def p_lilypond_header__HEADER__Chr123__lilypond_header_body__Chr125(self, p):
         "lilypond_header : HEADER '{' lilypond_header_body '}'"
         self.client._pop_variable_scope()
         p[0] = p[3]
@@ -1856,9 +1805,7 @@ class LilyPondSyntacticalDefinition(object):
         "markup_braced_list_body : markup_braced_list_body markup"
         p[0] = p[1] + [p[2]]
 
-    def p_markup_braced_list_body__markup_braced_list_body__markup_list(
-        self, p
-    ):
+    def p_markup_braced_list_body__markup_braced_list_body__markup_list(self, p):
         "markup_braced_list_body : markup_braced_list_body markup_list"
         p[0] = p[1] + [p[2]]
 
@@ -1896,17 +1843,13 @@ class LilyPondSyntacticalDefinition(object):
         "markup_command_list_arguments : EXPECT_MARKUP markup_command_list_arguments markup"
         p[0] = p[2] + [p[3]]
 
-    def p_markup_command_list_arguments__markup_command_basic_arguments(
-        self, p
-    ):
+    def p_markup_command_list_arguments__markup_command_basic_arguments(self, p):
         "markup_command_list_arguments : markup_command_basic_arguments"
         p[0] = p[1]
 
     ### markup_composed_list ###
 
-    def p_markup_composed_list__markup_head_1_list__markup_braced_list(
-        self, p
-    ):
+    def p_markup_composed_list__markup_head_1_list__markup_braced_list(self, p):
         "markup_composed_list : markup_head_1_list markup_braced_list"
         markup = p[2]
         for item in reversed(p[1]):
@@ -2064,24 +2007,18 @@ class LilyPondSyntacticalDefinition(object):
         from abjad import parser as abjad_parser
 
         if p[1].multiplier is not None:
-            p[0] = abjad_parser.LilyPondDuration(
-                p[1].duration, p[1].multiplier * p[3]
-            )
+            p[0] = abjad_parser.LilyPondDuration(p[1].duration, p[1].multiplier * p[3])
         else:
             p[0] = abjad_parser.LilyPondDuration(
                 p[1].duration, Fraction(p[3].numerator, p[3].denominator)
             )
 
-    def p_multiplied_duration__multiplied_duration__Chr42__bare_unsigned(
-        self, p
-    ):
+    def p_multiplied_duration__multiplied_duration__Chr42__bare_unsigned(self, p):
         "multiplied_duration : multiplied_duration '*' bare_unsigned"
         from abjad import parser as abjad_parser
 
         if p[1].multiplier is not None:
-            p[0] = abjad_parser.LilyPondDuration(
-                p[1].duration, p[1].multiplier * p[3]
-            )
+            p[0] = abjad_parser.LilyPondDuration(p[1].duration, p[1].multiplier * p[3])
         else:
             p[0] = abjad_parser.LilyPondDuration(p[1].duration, p[3])
 
@@ -2160,15 +2097,11 @@ class LilyPondSyntacticalDefinition(object):
 
     ### music_function_event ###
 
-    def p_music_function_event__MUSIC_FUNCTION__function_arglist_closed(
-        self, p
-    ):
+    def p_music_function_event__MUSIC_FUNCTION__function_arglist_closed(self, p):
         "music_function_event : MUSIC_FUNCTION function_arglist_closed"
         from abjad import parser as abjad_parser
 
-        p[0] = abjad_parser.SyntaxNode(
-            "music_function_event", p.__getslice__(1, None)
-        )
+        p[0] = abjad_parser.SyntaxNode("music_function_event", p.__getslice__(1, None))
 
     ### music_list ###
 
@@ -2194,9 +2127,7 @@ class LilyPondSyntacticalDefinition(object):
         "music_property_def : simple_music_property_def"
         from abjad import parser as abjad_parser
 
-        p[0] = abjad_parser.SyntaxNode(
-            "music_property_def", p.__getslice__(1, None)
-        )
+        p[0] = abjad_parser.SyntaxNode("music_property_def", p.__getslice__(1, None))
 
     ### new_chord ###
 
@@ -2565,9 +2496,7 @@ class LilyPondSyntacticalDefinition(object):
         "property_path_revved : embedded_scm_closed"
         p[0] = [p[1]]
 
-    def p_property_path_revved__property_path_revved__embedded_scm_closed(
-        self, p
-    ):
+    def p_property_path_revved__property_path_revved__embedded_scm_closed(self, p):
         "property_path_revved : property_path_revved embedded_scm_closed"
         p[0] = p[1] + [p[2]]
 
@@ -2641,9 +2570,7 @@ class LilyPondSyntacticalDefinition(object):
 
     ### scm_function_call_closed ###
 
-    def p_scm_function_call_closed__SCM_FUNCTION__function_arglist_closed(
-        self, p
-    ):
+    def p_scm_function_call_closed__SCM_FUNCTION__function_arglist_closed(self, p):
         "scm_function_call_closed : SCM_FUNCTION function_arglist_closed %prec FUNCTION_ARGLIST"
         p[0] = self.client._guile(p[1], p[2])
 
@@ -2796,9 +2723,7 @@ class LilyPondSyntacticalDefinition(object):
     #        from abjad import parser as abjad_parser
     #        p[0] = abjad_parser.SyntaxNode('simple_markup', p[1:])
 
-    def p_simple_markup__MARKUP_FUNCTION__markup_command_basic_arguments(
-        self, p
-    ):
+    def p_simple_markup__MARKUP_FUNCTION__markup_command_basic_arguments(self, p):
         "simple_markup : MARKUP_FUNCTION markup_command_basic_arguments"
         command = p[1][1:]
         arguments = p[2]
@@ -2812,9 +2737,7 @@ class LilyPondSyntacticalDefinition(object):
         "simple_markup : SCORE '{' score_body '}'"
         from abjad import parser as abjad_parser
 
-        p[0] = abjad_parser.SyntaxNode(
-            "simple_markup", p.__getslice__(1, None)
-        )
+        p[0] = abjad_parser.SyntaxNode("simple_markup", p.__getslice__(1, None))
 
     def p_simple_markup__STRING(self, p):
         "simple_markup : STRING"
@@ -2859,9 +2782,7 @@ class LilyPondSyntacticalDefinition(object):
             value=p[5],
         )
 
-    def p_simple_music_property_def__REVERT__context_prop_spec__embedded_scm(
-        self, p
-    ):
+    def p_simple_music_property_def__REVERT__context_prop_spec__embedded_scm(self, p):
         "simple_music_property_def : REVERT context_prop_spec embedded_scm"
         from abjad import parser as abjad_parser
 
@@ -2869,9 +2790,7 @@ class LilyPondSyntacticalDefinition(object):
             "simple_music_property_def", p.__getslice__(1, None)
         )
 
-    def p_simple_music_property_def__SET__context_prop_spec__Chr61__scalar(
-        self, p
-    ):
+    def p_simple_music_property_def__SET__context_prop_spec__Chr61__scalar(self, p):
         "simple_music_property_def : SET context_prop_spec '=' scalar"
         from abjad import parser as abjad_parser
 
@@ -2925,9 +2844,7 @@ class LilyPondSyntacticalDefinition(object):
         if dots:
             duration = duration.lilypond_duration_string
             duration += "." * dots
-            duration = utilities.Duration.from_lilypond_duration_string(
-                duration
-            )
+            duration = utilities.Duration.from_lilypond_duration_string(duration)
         p[0] = abjad_parser.LilyPondDuration(duration, multiplier)
 
     def p_steno_duration__bare_unsigned__dots(self, p):
@@ -2965,25 +2882,19 @@ class LilyPondSyntacticalDefinition(object):
         "steno_tonic_pitch : TONICNAME_PITCH"
         from abjad import parser as abjad_parser
 
-        p[0] = abjad_parser.SyntaxNode(
-            "steno_tonic_pitch", p.__getslice__(1, None)
-        )
+        p[0] = abjad_parser.SyntaxNode("steno_tonic_pitch", p.__getslice__(1, None))
 
     def p_steno_tonic_pitch__TONICNAME_PITCH__sub_quotes(self, p):
         "steno_tonic_pitch : TONICNAME_PITCH sub_quotes"
         from abjad import parser as abjad_parser
 
-        p[0] = abjad_parser.SyntaxNode(
-            "steno_tonic_pitch", p.__getslice__(1, None)
-        )
+        p[0] = abjad_parser.SyntaxNode("steno_tonic_pitch", p.__getslice__(1, None))
 
     def p_steno_tonic_pitch__TONICNAME_PITCH__sup_quotes(self, p):
         "steno_tonic_pitch : TONICNAME_PITCH sup_quotes"
         from abjad import parser as abjad_parser
 
-        p[0] = abjad_parser.SyntaxNode(
-            "steno_tonic_pitch", p.__getslice__(1, None)
-        )
+        p[0] = abjad_parser.SyntaxNode("steno_tonic_pitch", p.__getslice__(1, None))
 
     ### step_number ###
 

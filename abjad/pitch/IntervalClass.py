@@ -2,8 +2,10 @@ import abc
 import copy
 import functools
 import numbers
+
 from abjad import mathtools
 from abjad.system.StorageFormatManager import StorageFormatManager
+
 from . import constants
 
 
@@ -219,9 +221,7 @@ class IntervalClass(object):
     @classmethod
     def _validate_quality_and_diatonic_number(cls, quality, diatonic_number):
         if quality in constants._quality_string_to_quality_abbreviation:
-            quality = constants._quality_string_to_quality_abbreviation[
-                quality
-            ]
+            quality = constants._quality_string_to_quality_abbreviation[quality]
         if quality == "aug":
             quality = "A"
         if quality == "dim":

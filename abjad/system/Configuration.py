@@ -1,10 +1,12 @@
 import abc
 import os
 import pathlib
-import six
 import tempfile
 import time
 import traceback
+
+import six
+
 from .StorageFormatManager import StorageFormatManager
 
 
@@ -43,9 +45,7 @@ class Configuration(object):
         if not self._compare_configurations(old_contents, new_contents):
             try:
                 # self.configuration_file_path.write_text(new_contents)
-                with open(
-                    str(self.configuration_file_path), "w"
-                ) as file_pointer:
+                with open(str(self.configuration_file_path), "w") as file_pointer:
                     file_pointer.write(new_contents)
             except (IOError, OSError):
                 traceback.print_exc()
@@ -163,10 +163,7 @@ class Configuration(object):
 
     def _get_config_specification(self):
         specs = self._get_option_specification()
-        return [
-            "{} = {}".format(key, value)
-            for key, value in sorted(specs.items())
-        ]
+        return ["{} = {}".format(key, value) for key, value in sorted(specs.items())]
 
     def _get_current_time(self):
         return time.strftime("%d %B %Y %H:%M:%S")
@@ -234,9 +231,7 @@ class Configuration(object):
             flags = os.W_OK | os.X_OK
             if os.access(home_directory, flags):
                 path = self.home_directory / directory_name
-                if not path.exists() or (
-                    path.exists() and os.access(str(path), flags)
-                ):
+                if not path.exists() or (path.exists() and os.access(str(path), flags)):
                     self._cached_configuration_directory = path
                     return self._cached_configuration_directory
             temp_directory = self.temp_directory
@@ -257,9 +252,7 @@ class Configuration(object):
 
         Returns path object.
         """
-        return pathlib.Path(
-            self.configuration_directory, self._configuration_file_name
-        )
+        return pathlib.Path(self.configuration_directory, self._configuration_file_name)
 
     @property
     def home_directory(self):

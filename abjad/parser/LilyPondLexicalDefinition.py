@@ -1,7 +1,8 @@
 import copy
+
 from ply import lex  # type: ignore
-from abjad import core
-from abjad import exceptions
+
+from abjad import core, exceptions
 
 
 class LilyPondLexicalDefinition(object):

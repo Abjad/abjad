@@ -1,9 +1,10 @@
+import typing
+
 from abjad.core.Context import Context
+from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
-from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.StorageFormatManager import StorageFormatManager
-import typing
 
 
 class PersistentOverride(object):
@@ -164,11 +165,7 @@ class PersistentOverride(object):
             lilypond_type = self.context
         strings = []
         string = LilyPondFormatManager.make_lilypond_override_string(
-            self.grob,
-            self.attribute,
-            self.value,
-            context=lilypond_type,
-            once=False,
+            self.grob, self.attribute, self.value, context=lilypond_type, once=False,
         )
         strings.append(string)
         return strings

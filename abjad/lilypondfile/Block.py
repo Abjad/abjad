@@ -122,10 +122,7 @@ class Block(object):
 
         Returns none.
         """
-        if (
-            not name.startswith("_")
-            and name not in self._public_attribute_names
-        ):
+        if not name.startswith("_") and name not in self._public_attribute_names:
             self._public_attribute_names.append(name)
         object.__setattr__(self, name, value)
 
@@ -216,9 +213,7 @@ class Block(object):
         formatted_attributes = [indent + _ for _ in formatted_attributes]
         result.extend(formatted_attributes)
         formatted_context_blocks = self._formatted_context_blocks()
-        formatted_context_blocks = [
-            indent + _ for _ in formatted_context_blocks
-        ]
+        formatted_context_blocks = [indent + _ for _ in formatted_context_blocks]
         result.extend(formatted_context_blocks)
         string = "}"
         if tag is not None:

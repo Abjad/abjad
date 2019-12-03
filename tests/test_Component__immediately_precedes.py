@@ -68,9 +68,7 @@ def test_Component__immediately_precedes_05():
 
 def test_Component__immediately_precedes_06():
 
-    voice = abjad.Voice(
-        r"\times 2/3 { c'8 d'8 e'8 } \times 2/3 { f'8 e'8 d'8 }"
-    )
+    voice = abjad.Voice(r"\times 2/3 { c'8 d'8 e'8 } \times 2/3 { f'8 e'8 d'8 }")
 
     assert format(voice) == abjad.String.normalize(
         r"""

@@ -1,4 +1,5 @@
 import typing
+
 from abjad.system.StorageFormatManager import StorageFormatManager
 
 
@@ -64,9 +65,7 @@ class SlotContributions(object):
             "trill_spanner_starts",
         ]
         names = [_ for _ in names if getattr(self, _)]
-        return abjad.FormatSpecification(
-            client=self, storage_format_kwargs_names=names
-        )
+        return abjad.FormatSpecification(client=self, storage_format_kwargs_names=names)
 
     ### PUBLIC PROPERTIES ###
 
@@ -187,31 +186,19 @@ class SlotContributions(object):
         self._articulations = abjad.LilyPondFormatManager.tag(
             self.articulations, tag, deactivate
         )
-        self._commands = abjad.LilyPondFormatManager.tag(
-            self.commands, tag, deactivate
-        )
-        self._comments = abjad.LilyPondFormatManager.tag(
-            self.comments, tag, deactivate
-        )
+        self._commands = abjad.LilyPondFormatManager.tag(self.commands, tag, deactivate)
+        self._comments = abjad.LilyPondFormatManager.tag(self.comments, tag, deactivate)
         self._indicators = abjad.LilyPondFormatManager.tag(
             self.indicators, tag, deactivate
         )
-        self._leaks = abjad.LilyPondFormatManager.tag(
-            self.leaks, tag, deactivate
-        )
-        self._markup = abjad.LilyPondFormatManager.tag(
-            self.markup, tag, deactivate
-        )
-        self._spanners = abjad.LilyPondFormatManager.tag(
-            self.spanners, tag, deactivate
-        )
+        self._leaks = abjad.LilyPondFormatManager.tag(self.leaks, tag, deactivate)
+        self._markup = abjad.LilyPondFormatManager.tag(self.markup, tag, deactivate)
+        self._spanners = abjad.LilyPondFormatManager.tag(self.spanners, tag, deactivate)
         strings = []
         # make sure each line of multiline markup is tagged
         for string in self.spanner_starts:
             strings.extend(string.split("\n"))
-        self._spanner_starts = abjad.LilyPondFormatManager.tag(
-            strings, tag, deactivate
-        )
+        self._spanner_starts = abjad.LilyPondFormatManager.tag(strings, tag, deactivate)
         self._spanner_stops = abjad.LilyPondFormatManager.tag(
             self.spanner_stops, tag, deactivate
         )
@@ -234,6 +221,4 @@ class SlotContributions(object):
         self.spanner_starts.extend(slot_contributions.spanner_starts)
         self.spanner_stops.extend(slot_contributions.spanner_stops)
         self.stem_tremolos.extend(slot_contributions.stem_tremolos)
-        self.trill_spanner_starts.extend(
-            slot_contributions.trill_spanner_starts
-        )
+        self.trill_spanner_starts.extend(slot_contributions.trill_spanner_starts)

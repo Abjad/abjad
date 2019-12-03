@@ -1,16 +1,14 @@
 import collections
+
 from abjad import enums
 from abjad.instruments import Instrument
-from abjad.pitch import NamedPitch
-from abjad.pitch import Pitch
-from abjad.pitch import PitchSegment
-from abjad.pitch import PitchSet
+from abjad.pitch import NamedPitch, Pitch, PitchSegment, PitchSet
 from abjad.system.StorageFormatManager import StorageFormatManager
+from abjad.top.inspect import inspect
 from abjad.utilities.Enumerator import Enumerator
 from abjad.utilities.Offset import Offset
 from abjad.utilities.OrderedDict import OrderedDict
 from abjad.utilities.Sequence import Sequence
-from abjad.top.inspect import inspect
 
 
 class Iteration(object):
@@ -213,9 +211,7 @@ class Iteration(object):
 
     ### PUBLIC METHODS ###
 
-    def components(
-        self, prototype=None, *, exclude=None, grace=None, reverse=None
-    ):
+    def components(self, prototype=None, *, exclude=None, grace=None, reverse=None):
         r"""
         Iterates components.
 
@@ -399,19 +395,13 @@ class Iteration(object):
             if not reverse:
                 for item in self.client:
                     generator = Iteration(item).components(
-                        prototype,
-                        exclude=exclude,
-                        grace=grace,
-                        reverse=reverse,
+                        prototype, exclude=exclude, grace=grace, reverse=reverse,
                     )
                     yield from generator
             else:
                 for item in reversed(self.client):
                     generator = Iteration(item).components(
-                        prototype,
-                        exclude=exclude,
-                        grace=grace,
-                        reverse=reverse,
+                        prototype, exclude=exclude, grace=grace, reverse=reverse,
                     )
                     yield from generator
         else:
@@ -498,13 +488,7 @@ class Iteration(object):
                 yield Selection(pair)
 
     def leaves(
-        self,
-        prototype=None,
-        *,
-        exclude=None,
-        grace=None,
-        pitched=None,
-        reverse=None,
+        self, prototype=None, *, exclude=None, grace=None, pitched=None, reverse=None,
     ):
         r"""
         Iterates leaves.
@@ -749,13 +733,7 @@ class Iteration(object):
         )
 
     def logical_ties(
-        self,
-        *,
-        exclude=None,
-        grace=None,
-        nontrivial=None,
-        pitched=None,
-        reverse=None,
+        self, *, exclude=None, grace=None, nontrivial=None, pitched=None, reverse=None,
     ):
         r"""
         Iterates logical ties.

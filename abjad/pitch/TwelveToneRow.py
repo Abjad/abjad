@@ -1,4 +1,5 @@
 from abjad.top.new import new
+
 from .PitchClassSegment import PitchClassSegment
 
 
@@ -346,9 +347,7 @@ class TwelveToneRow(PitchClassSegment):
 
         item = self._collection.__getitem__(argument)
         try:
-            return PitchClassSegment(
-                items=item, item_class=abjad.NumberedPitchClass
-            )
+            return PitchClassSegment(items=item, item_class=abjad.NumberedPitchClass)
         except TypeError:
             return item
 

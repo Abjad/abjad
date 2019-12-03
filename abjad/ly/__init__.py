@@ -2,8 +2,7 @@
 Abjad's scrape of LilyPond's execution environment.
 """
 
-from abjad.ly.colors import colors
-from abjad.ly.colors import normal_colors
+from abjad.ly.colors import colors, normal_colors
 from abjad.ly.contexts import contexts
 from abjad.ly.current_module import current_module
 from abjad.ly.drums import drums

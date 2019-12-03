@@ -1,7 +1,7 @@
 import collections
 import typing
-from abjad import mathtools
-from abjad import typings
+
+from abjad import mathtools, typings
 from abjad.mathtools import NonreducedFraction
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.StorageFormatManager import StorageFormatManager
@@ -157,9 +157,7 @@ class TimeSignature(object):
             hide = bool(hide)
         self._hide: typing.Optional[bool] = hide
         self._multiplier = self.implied_prolation
-        result = mathtools.is_nonnegative_integer_power_of_two(
-            self.denominator
-        )
+        result = mathtools.is_nonnegative_integer_power_of_two(self.denominator)
         assert isinstance(result, bool)
         self._has_non_power_of_two_denominator: bool = not (result)
 
@@ -189,9 +187,7 @@ class TimeSignature(object):
         if not isinstance(argument, type(self)):
             raise Exception("must be time signature: {argument!r}.")
         nonreduced_1 = NonreducedFraction(self.numerator, self.denominator)
-        nonreduced_2 = NonreducedFraction(
-            argument.numerator, argument.denominator
-        )
+        nonreduced_2 = NonreducedFraction(argument.numerator, argument.denominator)
         result = nonreduced_1 + nonreduced_2
         result = type(self)((result.numerator, result.denominator))
         return result
@@ -199,9 +195,7 @@ class TimeSignature(object):
     def __copy__(self, *arguments) -> "TimeSignature":
         """Copies time signature.
         """
-        return type(self)(
-            (self.numerator, self.denominator), partial=self.partial
-        )
+        return type(self)((self.numerator, self.denominator), partial=self.partial)
 
     def __eq__(self, argument) -> bool:
         """
@@ -216,10 +210,7 @@ class TimeSignature(object):
                 and self.denominator == argument.denominator
             )
         elif isinstance(argument, tuple):
-            return (
-                self.numerator == argument[0]
-                and self.denominator == argument[1]
-            )
+            return self.numerator == argument[0] and self.denominator == argument[1]
         else:
             return False
 
@@ -587,9 +578,7 @@ class TimeSignature(object):
         numerator, denominator = numbers
         return TimeSignature((numerator, denominator))
 
-    def with_power_of_two_denominator(
-        self, contents_multiplier=1
-    ) -> "TimeSignature":
+    def with_power_of_two_denominator(self, contents_multiplier=1) -> "TimeSignature":
         """
         Makes new time signature equivalent to current time signature with
         power-of-two denominator.

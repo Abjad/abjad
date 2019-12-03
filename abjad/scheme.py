@@ -4,10 +4,9 @@ Tools for modeling Scheme datastructures used in LilyPond.
 
 import functools
 import typing
-from abjad import enums
-from abjad import typings
+
+from abjad import enums, typings
 from abjad.mathtools import NonreducedFraction
-from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.utilities.String import String
@@ -297,9 +296,7 @@ class Scheme(object):
 
     def _get_format_specification(self):
         values = [self.value]
-        return FormatSpecification(
-            client=self, storage_format_args_values=values
-        )
+        return FormatSpecification(client=self, storage_format_args_values=values)
 
     def _get_formatted_value(self):
         return Scheme.format_scheme_value(
@@ -354,9 +351,7 @@ class Scheme(object):
         """
         Formats embedded Scheme ``value``.
         """
-        if isinstance(
-            value, (enums.HorizontalAlignment, enums.VerticalAlignment)
-        ):
+        if isinstance(value, (enums.HorizontalAlignment, enums.VerticalAlignment)):
             return "#" + repr(value).lower()
         result = Scheme.format_scheme_value(value, force_quotes=force_quotes)
         if isinstance(value, bool):

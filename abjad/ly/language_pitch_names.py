@@ -1,6 +1,5 @@
 from abjad.pitch.NamedPitchClass import NamedPitchClass
 
-
 lilypond_version = "2.19.24"
 
 language_pitch_names = {

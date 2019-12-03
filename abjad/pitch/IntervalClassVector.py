@@ -1,4 +1,5 @@
 from abjad.utilities.Enumerator import Enumerator
+
 from .Vector import Vector
 
 

@@ -51,9 +51,7 @@ class LilyPondGrammarGenerator(object):
                 if right_hand[0] == "/*":  # /* empty */
                     productions[nonterminal].append([])
                 else:
-                    right_hand = filter(
-                        lambda x: not x.startswith("$"), right_hand
-                    )
+                    right_hand = filter(lambda x: not x.startswith("$"), right_hand)
                     productions[nonterminal].append(right_hand)
         return productions
 
@@ -85,10 +83,7 @@ class LilyPondGrammarGenerator(object):
         in_token_list = False
         for line in lines:
             text = line.strip()
-            if (
-                in_token_list
-                and text == "Nonterminals, with rules where they appear"
-            ):
+            if in_token_list and text == "Nonterminals, with rules where they appear":
                 break
             elif text == "Terminals, with rules where they appear":
                 in_token_list = True
@@ -172,9 +167,7 @@ class LilyPondGrammarGenerator(object):
                 f.write("    def {}(self, p):\n".format(funcname))
                 f.write("        {!r}\n".format(docstring))
                 f.write(
-                    "        p[0] = Node('{}', p[1:])\n\n\n".format(
-                        current_nonterminal
-                    )
+                    "        p[0] = Node('{}', p[1:])\n\n\n".format(current_nonterminal)
                 )
             for funcname, docstring in sorted(productions.items()):
                 nonterminal = funcname.split("__")[0][2:]
@@ -186,9 +179,7 @@ class LilyPondGrammarGenerator(object):
                 f.write("    def {}(self, p):\n".format(funcname))
                 f.write("        {!r}\n".format(docstring))
                 f.write(
-                    "        p[0] = Node('{}', p[1:])\n\n\n".format(
-                        current_nonterminal
-                    )
+                    "        p[0] = Node('{}', p[1:])\n\n\n".format(current_nonterminal)
                 )
             f.write("    def p_error(self, p):\n")
             f.write("        pass\n\n")

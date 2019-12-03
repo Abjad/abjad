@@ -1,10 +1,7 @@
 import abc
 import typing
-from abjad import const
-from abjad import instruments
-from abjad.indicators.Clef import Clef
-from abjad.indicators.MarginMarkup import MarginMarkup
-from abjad.lilypondfile.LilyPondFile import LilyPondFile
+
+from abjad import const, instruments
 from abjad.core.Context import Context
 from abjad.core.MultimeasureRest import MultimeasureRest
 from abjad.core.Rest import Rest
@@ -13,6 +10,9 @@ from abjad.core.Skip import Skip
 from abjad.core.Staff import Staff
 from abjad.core.StaffGroup import StaffGroup
 from abjad.core.Voice import Voice
+from abjad.indicators.Clef import Clef
+from abjad.indicators.MarginMarkup import MarginMarkup
+from abjad.lilypondfile.LilyPondFile import LilyPondFile
 from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.system.Tag import Tag
 from abjad.system.Tags import Tags
@@ -24,8 +24,10 @@ from abjad.top.new import new
 from abjad.top.select import select
 from abjad.utilities.OrderedDict import OrderedDict
 from abjad.utilities.String import String
+
 from .PartAssignment import PartAssignment
 from .PartManifest import PartManifest
+
 abjad_tags = Tags()
 
 
@@ -94,14 +96,10 @@ class ScoreTemplate(object):
         site = "abjad.ScoreTemplate._make_global_context()"
         tag = Tag(site)
         global_rests = Context(
-            lilypond_type="GlobalRests",
-            name="Global_Rests",
-            tag=tag,
+            lilypond_type="GlobalRests", name="Global_Rests", tag=tag,
         )
         global_skips = Context(
-            lilypond_type="GlobalSkips",
-            name="Global_Skips",
-            tag=tag,
+            lilypond_type="GlobalSkips", name="Global_Skips", tag=tag,
         )
         global_context = Context(
             [global_rests, global_skips],

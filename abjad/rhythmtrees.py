@@ -4,14 +4,14 @@ Tools for modeling IRCAM-style rhythm trees.
 
 import abc
 import typing
+
 import uqbar.containers
 import uqbar.graphs
-from abjad import Fraction
-from abjad import core
-from abjad import mathtools
+
+from abjad import Fraction, core, mathtools
 from abjad.system.FormatSpecification import FormatSpecification
-from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.system.Parser import Parser
+from abjad.system.StorageFormatManager import StorageFormatManager
 
 
 class RhythmTreeMixin(object):
@@ -171,10 +171,7 @@ class RhythmTreeMixin(object):
         node = self
         while node.parent is not None:
             result.append(
-                (
-                    node.preprolated_duration,
-                    node.parent._get_contents_duration(),
-                )
+                (node.preprolated_duration, node.parent._get_contents_duration(),)
             )
             node = node.parent
         result.append(node.preprolated_duration)
@@ -251,8 +248,7 @@ class RhythmTreeMixin(object):
         for child, parent in pairs:
             prolations.append(
                 abjad.Multiplier(
-                    parent.preprolated_duration,
-                    parent._get_contents_duration(),
+                    parent.preprolated_duration, parent._get_contents_duration(),
                 )
             )
         return tuple(prolations)
@@ -334,9 +330,7 @@ class RhythmTreeLeaf(RhythmTreeMixin, uqbar.containers.UniqueTreeNode):
 
     def __init__(self, preprolated_duration=1, is_pitched=True, name=None):
         uqbar.containers.UniqueTreeNode.__init__(self, name=name)
-        RhythmTreeMixin.__init__(
-            self, preprolated_duration=preprolated_duration
-        )
+        RhythmTreeMixin.__init__(self, preprolated_duration=preprolated_duration)
         self.is_pitched = is_pitched
 
     ### SPECIAL METHODS ###
@@ -366,10 +360,7 @@ class RhythmTreeLeaf(RhythmTreeMixin, uqbar.containers.UniqueTreeNode):
         """
         graph = uqbar.graphs.Graph(name="G")
         node = uqbar.graphs.Node(
-            attributes={
-                "label": str(self.preprolated_duration),
-                "shape": "box",
-            }
+            attributes={"label": str(self.preprolated_duration), "shape": "box",}
         )
         graph.append(node)
         return graph
@@ -525,9 +516,7 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
 
     def __init__(self, children=None, preprolated_duration=1, name=None):
         uqbar.containers.UniqueTreeList.__init__(self, name=name)
-        RhythmTreeMixin.__init__(
-            self, preprolated_duration=preprolated_duration
-        )
+        RhythmTreeMixin.__init__(self, preprolated_duration=preprolated_duration)
         if isinstance(children, (list, str, tuple)):
             self.extend(children)
         elif children is not None:
@@ -628,9 +617,7 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
         """
 
         def recurse(node, tuplet_duration):
-            basic_prolated_duration = (
-                tuplet_duration / node._get_contents_duration()
-            )
+            basic_prolated_duration = tuplet_duration / node._get_contents_duration()
             basic_written_duration = (
                 basic_prolated_duration.equal_or_greater_power_of_two
             )
@@ -639,9 +626,7 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
                 if isinstance(child, type(self)):
                     tuplet.extend(
                         recurse(
-                            child,
-                            child.preprolated_duration
-                            * basic_written_duration,
+                            child, child.preprolated_duration * basic_written_duration,
                         )
                     )
                 else:
@@ -743,9 +728,7 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
         Returns string.
         """
         return "{}(({}, {}))".format(
-            type(self).__name__,
-            self.duration.numerator,
-            self.duration.denominator,
+            type(self).__name__, self.duration.numerator, self.duration.denominator,
         )
 
     ### PRIVATE METHODS ###
@@ -778,11 +761,7 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
     def _prepare_setitem_multiple(self, expr):
         if isinstance(expr, str):
             expr = RhythmTreeParser()(expr)
-        elif (
-            isinstance(expr, list)
-            and len(expr) == 1
-            and isinstance(expr[0], str)
-        ):
+        elif isinstance(expr, list) and len(expr) == 1 and isinstance(expr[0], str):
             expr = RhythmTreeParser()(expr[0])
         return expr
 
@@ -790,9 +769,7 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
         result = []
         result.append("({!s} (".format(self.preprolated_duration))
         for child in self:
-            result.extend(
-                ["    " + x for x in child._pretty_rtm_format_pieces()]
-            )
+            result.extend(["    " + x for x in child._pretty_rtm_format_pieces()])
         result[-1] = result[-1] + "))"
         return result
 

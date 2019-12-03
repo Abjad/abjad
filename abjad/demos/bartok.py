@@ -115,9 +115,7 @@ def make_bartok_score():
     # attaches text spanner with ritardando markup
     markup = abjad.Markup("ritard.")
     start_text_span = abjad.StartTextSpan(left_text=markup)
-    abjad.text_spanner(
-        upper_staff_leaves[-7:], start_text_span=start_text_span
-    )
+    abjad.text_spanner(upper_staff_leaves[-7:], start_text_span=start_text_span)
     abjad.override(upper_staff_leaves[-7]).text_spanner.staff_padding = 2
 
     # ties notes

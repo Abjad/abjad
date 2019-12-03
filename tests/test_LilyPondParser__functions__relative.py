@@ -111,9 +111,7 @@ def test_LilyPondParser__functions__relative_04():
         """
     )
 
-    string = (
-        r"""\relative c'' { <a c e>1 <f a c> <a c e> <f' a c> <b, e b,> }"""
-    )
+    string = r"""\relative c'' { <a c e>1 <f a c> <a c e> <f' a c> <b, e b,> }"""
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
     assert format(target) == format(result) and target is not result
@@ -223,9 +221,7 @@ def test_LilyPondParser__functions__relative_07():
         """
     )
 
-    string = (
-        r"""\relative c' { d e \transpose f g { d e \relative c' { d e } } }"""
-    )
+    string = r"""\relative c' { d e \transpose f g { d e \relative c' { d e } } }"""
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
     assert format(target) == format(result) and target is not result

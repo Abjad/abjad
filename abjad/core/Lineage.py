@@ -1,4 +1,5 @@
 import collections
+
 from abjad.system.StorageFormatManager import StorageFormatManager
 
 
@@ -78,9 +79,7 @@ class Lineage(collections.abc.Sequence):
         self._component = component
         components = []
         if component is not None:
-            components.extend(
-                reversed(abjad.inspect(component).parentage()[1:])
-            )
+            components.extend(reversed(abjad.inspect(component).parentage()[1:]))
             components.append(component)
             components.extend(abjad.inspect(component).descendants()[1:])
         self._components = components

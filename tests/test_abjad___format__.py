@@ -1,7 +1,8 @@
-import abjad
 import inspect
+
 import pytest
 
+import abjad
 
 ignored_classes = (
     abjad.Path,
@@ -9,9 +10,7 @@ ignored_classes = (
     abjad.FormatSpecification,
 )
 
-classes = pytest.helpers.list_all_abjad_classes(
-    ignored_classes=ignored_classes
-)
+classes = pytest.helpers.list_all_abjad_classes(ignored_classes=ignored_classes)
 
 
 @pytest.mark.parametrize("class_", classes)
@@ -40,9 +39,7 @@ ignored_classes = (
     abjad.FormatSpecification,
 )
 
-classes = pytest.helpers.list_all_abjad_classes(
-    ignored_classes=ignored_classes
-)
+classes = pytest.helpers.list_all_abjad_classes(ignored_classes=ignored_classes)
 
 
 @pytest.mark.parametrize("class_", classes)
@@ -75,9 +72,7 @@ ignored_classes = (
     abjad.parser.SyntaxNode,
 )
 
-classes = pytest.helpers.list_all_abjad_classes(
-    ignored_classes=ignored_classes
-)
+classes = pytest.helpers.list_all_abjad_classes(ignored_classes=ignored_classes)
 
 
 @pytest.mark.parametrize("class_", classes)

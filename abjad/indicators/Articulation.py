@@ -1,5 +1,6 @@
 import copy
 import typing
+
 from abjad import enums
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.system.FormatSpecification import FormatSpecification
@@ -149,12 +150,8 @@ class Articulation(object):
         self._name = name
         direction_ = String.to_tridirectional_ordinal_constant(direction)
         if direction_ is not None:
-            assert isinstance(direction_, enums.VerticalAlignment), repr(
-                direction_
-            )
-            assert direction_ in (enums.Up, enums.Down, enums.Center), repr(
-                direction_
-            )
+            assert isinstance(direction_, enums.VerticalAlignment), repr(direction_)
+            assert direction_ in (enums.Up, enums.Down, enums.Center), repr(direction_)
         self._direction = direction_
         self._format_slot = "after"
         if tweaks is not None:
@@ -205,9 +202,7 @@ class Articulation(object):
             if self.direction is None:
                 direction = String("-")
             else:
-                direction_ = String.to_tridirectional_lilypond_symbol(
-                    self.direction
-                )
+                direction_ = String.to_tridirectional_lilypond_symbol(self.direction)
                 assert isinstance(direction_, String), repr(direction)
                 direction = direction_
             return fr"{direction} \{string}"

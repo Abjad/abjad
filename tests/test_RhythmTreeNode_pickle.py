@@ -1,5 +1,6 @@
-import abjad
 import pickle
+
+import abjad
 import abjad.rhythmtrees
 
 

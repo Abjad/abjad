@@ -1,4 +1,5 @@
 import typing
+
 from .persist import persist
 
 

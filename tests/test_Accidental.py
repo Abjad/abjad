@@ -1,6 +1,6 @@
 import pytest
-from abjad.pitch import Accidental
 
+from abjad.pitch import Accidental
 
 values = [
     ("bf,", -1, "f"),

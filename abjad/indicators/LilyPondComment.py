@@ -1,4 +1,5 @@
 import typing
+
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.system.StorageFormatManager import StorageFormatManager
 
@@ -51,9 +52,7 @@ class LilyPondComment(object):
 
     ### INITIALIZER ###
 
-    def __init__(
-        self, string: str = None, format_slot: str = "before"
-    ) -> None:
+    def __init__(self, string: str = None, format_slot: str = "before") -> None:
         if isinstance(string, type(self)):
             argument = string
             string = argument.string

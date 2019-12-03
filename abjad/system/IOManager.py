@@ -11,6 +11,7 @@ import subprocess
 import sys
 import traceback
 import typing
+
 from .AbjadConfiguration import AbjadConfiguration
 from .StorageFormatManager import StorageFormatManager
 
@@ -64,9 +65,7 @@ class IOManager(object):
         year=None,
     ):
         score_package_name = os.path.basename(score_package_path)
-        source_path = os.path.join(
-            _configuration.boilerplate_directory, "score"
-        )
+        source_path = os.path.join(_configuration.boilerplate_directory, "score")
         target_path = score_package_path
         if not os.path.exists(target_path):
             shutil.copytree(source_path, target_path)
@@ -271,9 +270,7 @@ class IOManager(object):
         return tuple(result)
 
     @staticmethod
-    def find_executable(
-        name: str, *, flags: int = os.X_OK
-    ) -> typing.List[str]:
+    def find_executable(name: str, *, flags: int = os.X_OK) -> typing.List[str]:
         """
         Finds executable ``name``.
 
@@ -282,9 +279,7 @@ class IOManager(object):
         Returns list of zero or more full paths to ``name``.
         """
         result = []
-        extensions = [
-            x for x in os.environ.get("PATHEXT", "").split(os.pathsep) if x
-        ]
+        extensions = [x for x in os.environ.get("PATHEXT", "").split(os.pathsep) if x]
         path = os.environ.get("PATH", None)
         if path is None:
             return []
@@ -318,9 +313,7 @@ class IOManager(object):
         all_file_names = os.listdir(output_directory)
         if extension:
             all_output = [
-                x
-                for x in all_file_names
-                if pattern.match(x) and x.endswith(extension)
+                x for x in all_file_names if pattern.match(x) and x.endswith(extension)
             ]
         else:
             all_output = [x for x in all_file_names if pattern.match(x)]
@@ -384,10 +377,7 @@ class IOManager(object):
         Redirects stderr to stdout.
         """
         return subprocess.Popen(
-            command,
-            shell=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
+            command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
         )
 
     @staticmethod
@@ -468,16 +458,12 @@ class IOManager(object):
                 last_number = last_number.replace(".mid", "")
                 target_number = int(last_number) + (target + 1)
                 target_str = "%04d" % target_number
-                target_ly = os.path.join(
-                    abjad_output_directory, target_str + ".ly"
-                )
+                target_ly = os.path.join(abjad_output_directory, target_str + ".ly")
             else:
                 print("Target LilyPond input file does not exist.")
         elif isinstance(target, int) and 0 <= target:
             target_str = "%04d" % target
-            target_ly = os.path.join(
-                abjad_output_directory, target_str + ".ly"
-            )
+            target_ly = os.path.join(abjad_output_directory, target_str + ".ly")
         elif isinstance(target, str):
             target_ly = os.path.join(abjad_output_directory, target)
         else:
@@ -510,17 +496,13 @@ class IOManager(object):
                 last_number = file_name_root
                 target_number = int(last_number) + (target + 1)
                 target_str = "%04d" % target_number
-                target_pdf = os.path.join(
-                    abjad_output_directory, target_str + ".pdf"
-                )
+                target_pdf = os.path.join(abjad_output_directory, target_str + ".pdf")
             else:
                 message = "Target PDF does not exist."
                 print(message)
         elif isinstance(target, int) and 0 <= target:
             target_str = "%04d" % target
-            target_pdf = os.path.join(
-                abjad_output_directory, target_str + ".pdf"
-            )
+            target_pdf = os.path.join(abjad_output_directory, target_str + ".pdf")
         elif isinstance(target, str):
             target_pdf = os.path.join(abjad_output_directory, target)
         else:
@@ -667,10 +649,7 @@ class IOManager(object):
             lilypond_path, flags, lilypond_base, ly_path
         )
         process = subprocess.Popen(
-            command,
-            shell=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
+            command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
         )
         subprocess_output, _ = process.communicate()
         subprocess_output_string = subprocess_output.decode(errors="ignore")
@@ -694,14 +673,10 @@ class IOManager(object):
         Saves last LilyPond file created by Abjad as ``file_path``.
         """
         abjad_output_directory = _configuration["abjad_output_directory"]
-        last_output_file_name = IOManager.get_last_output_file_name(
-            extension=".ly"
-        )
+        last_output_file_name = IOManager.get_last_output_file_name(extension=".ly")
         if last_output_file_name is None:
             return
-        last_ly_full_name = os.path.join(
-            abjad_output_directory, last_output_file_name
-        )
+        last_ly_full_name = os.path.join(abjad_output_directory, last_output_file_name)
         with open(file_path, "w") as new:
             with open(last_ly_full_name, "r") as old:
                 new.write("".join(old.readlines()))
@@ -712,13 +687,9 @@ class IOManager(object):
         Saves last PDF created by Abjad as ``file_path``.
         """
         abjad_output_directory = _configuration["abjad_output_directory"]
-        last_output_file_name = IOManager.get_last_output_file_name(
-            extension=".pdf"
-        )
+        last_output_file_name = IOManager.get_last_output_file_name(extension=".pdf")
         assert isinstance(last_output_file_name, str)
-        last_pdf_full_name = os.path.join(
-            abjad_output_directory, last_output_file_name
-        )
+        last_pdf_full_name = os.path.join(abjad_output_directory, last_output_file_name)
         with open(file_path, "w") as new:
             with open(last_pdf_full_name, "r", encoding="ISO-8859-1") as old:
                 new.write("".join(old.readlines()))

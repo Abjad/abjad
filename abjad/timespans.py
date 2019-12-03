@@ -1,21 +1,19 @@
 """
 Tools for modeling and manipulating timespans.
 """
-import copy
 import collections
+import copy
 import inspect
 import typing
-from abjad import enums
-from abjad.markups import Markup
-from abjad.markups import Postscript
-from abjad import mathtools
+
+from abjad import enums, mathtools
+from abjad.markups import Markup, Postscript
 from abjad.mathtools import Ratio
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.Signature import Signature
 from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.top.new import new
-from abjad.utilities import Infinity
-from abjad.utilities import NegativeInfinity
+from abjad.utilities import Infinity, NegativeInfinity
 from abjad.utilities.Duration import Duration
 from abjad.utilities.Expression import Expression
 from abjad.utilities.Multiplier import Multiplier
@@ -50,9 +48,7 @@ class Timespan(object):
 
     ### INITIALIZER ###
 
-    def __init__(
-        self, start_offset=NegativeInfinity, stop_offset=Infinity
-    ) -> None:
+    def __init__(self, start_offset=NegativeInfinity, stop_offset=Infinity) -> None:
         self._expression = None
         if isinstance(start_offset, type(self)):
             raise Exception(f"can not initialize from timespan.")
@@ -105,9 +101,7 @@ class Timespan(object):
             return TimespanList()
         new_start_offset = max(self._start_offset, argument.start_offset)
         new_stop_offset = min(self._stop_offset, argument.stop_offset)
-        timespan = new(
-            self, start_offset=new_start_offset, stop_offset=new_stop_offset
-        )
+        timespan = new(self, start_offset=new_start_offset, stop_offset=new_stop_offset)
         return TimespanList([timespan])
 
     def __contains__(self, argument) -> bool:
@@ -442,17 +436,15 @@ class Timespan(object):
 
         """
         argument = self._get_timespan(argument)
-        if not self.intersects_timespan(
+        if not self.intersects_timespan(argument) and not self.is_tangent_to_timespan(
             argument
-        ) and not self.is_tangent_to_timespan(argument):
+        ):
             result = TimespanList([self, argument])
             result.sort()
             return result
         new_start_offset = min(self._start_offset, argument.start_offset)
         new_stop_offset = max(self._stop_offset, argument.stop_offset)
-        timespan = new(
-            self, start_offset=new_start_offset, stop_offset=new_stop_offset
-        )
+        timespan = new(self, start_offset=new_start_offset, stop_offset=new_stop_offset)
         return TimespanList([timespan])
 
     def __repr__(self) -> str:
@@ -530,17 +522,13 @@ class Timespan(object):
             new_start_offset = self._start_offset
             new_stop_offset = argument.start_offset
             timespan = new(
-                self,
-                start_offset=new_start_offset,
-                stop_offset=new_stop_offset,
+                self, start_offset=new_start_offset, stop_offset=new_stop_offset,
             )
             timespans.append(timespan)
             new_start_offset = argument.stop_offset
             new_stop_offset = self._stop_offset
             timespan = new(
-                self,
-                start_offset=new_start_offset,
-                stop_offset=new_stop_offset,
+                self, start_offset=new_start_offset, stop_offset=new_stop_offset,
             )
             timespans.append(timespan)
         elif argument.contains_timespan_improperly(self):
@@ -549,18 +537,14 @@ class Timespan(object):
             new_start_offset = argument.stop_offset
             new_stop_offset = self._stop_offset
             timespan = new(
-                self,
-                start_offset=new_start_offset,
-                stop_offset=new_stop_offset,
+                self, start_offset=new_start_offset, stop_offset=new_stop_offset,
             )
             timespans.append(timespan)
         elif argument.overlaps_only_stop_of_timespan(self):
             new_start_offset = self._start_offset
             new_stop_offset = argument.start_offset
             timespan = new(
-                self,
-                start_offset=new_start_offset,
-                stop_offset=new_stop_offset,
+                self, start_offset=new_start_offset, stop_offset=new_stop_offset,
             )
             timespans.append(timespan)
         elif argument.starts_when_timespan_starts(
@@ -569,9 +553,7 @@ class Timespan(object):
             new_start_offset = argument.stop_offset
             new_stop_offset = self._stop_offset
             timespan = new(
-                self,
-                start_offset=new_start_offset,
-                stop_offset=new_stop_offset,
+                self, start_offset=new_start_offset, stop_offset=new_stop_offset,
             )
             timespans.append(timespan)
         elif argument.stops_when_timespan_stops(
@@ -580,9 +562,7 @@ class Timespan(object):
             new_start_offset = self._start_offset
             new_stop_offset = argument.start_offset
             timespan = new(
-                self,
-                start_offset=new_start_offset,
-                stop_offset=new_stop_offset,
+                self, start_offset=new_start_offset, stop_offset=new_stop_offset,
             )
             timespans.append(timespan)
         else:
@@ -692,9 +672,9 @@ class Timespan(object):
 
         """
         argument = self._get_timespan(argument)
-        if not self.intersects_timespan(
+        if not self.intersects_timespan(argument) or self.is_tangent_to_timespan(
             argument
-        ) or self.is_tangent_to_timespan(argument):
+        ):
             result = TimespanList()
             result.append(copy.deepcopy(self))
             result.append(copy.deepcopy(argument))
@@ -814,13 +794,9 @@ class Timespan(object):
             return offset
         return Offset(offset)
 
-    def _update_expression(
-        self, frame, evaluation_template=None, map_operand=None
-    ):
+    def _update_expression(self, frame, evaluation_template=None, map_operand=None):
         callback = Expression._frame_to_callback(
-            frame,
-            evaluation_template=evaluation_template,
-            map_operand=map_operand,
+            frame, evaluation_template=evaluation_template, map_operand=map_operand,
         )
         return self._expression.append_callback(callback)
 
@@ -1047,9 +1023,7 @@ class Timespan(object):
             ratio = ratio * (1,)
         ratio = Ratio(ratio)
         unit_duration = self.duration / sum(ratio.numbers)
-        part_durations = [
-            numerator * unit_duration for numerator in ratio.numbers
-        ]
+        part_durations = [numerator * unit_duration for numerator in ratio.numbers]
         start_offsets = mathtools.cumulative_sums(
             [self._start_offset] + part_durations, start=None
         )
@@ -1476,8 +1450,7 @@ class Timespan(object):
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return (
-            self_start_offset < expr_stop_offset
-            and expr_stop_offset < self_stop_offset
+            self_start_offset < expr_stop_offset and expr_stop_offset < self_stop_offset
         )
 
     def reflect(self, axis=None) -> "Timespan":
@@ -1545,9 +1518,7 @@ class Timespan(object):
                 new_stop_offset = new_stop_offset + multiplier
             else:
                 new_start_offset = new_start_offset - multiplier
-        result = new(
-            self, start_offset=new_start_offset, stop_offset=new_stop_offset
-        )
+        result = new(self, start_offset=new_start_offset, stop_offset=new_stop_offset)
         return result
 
     def scale(self, multiplier, anchor=enums.Left) -> "Timespan":
@@ -1584,9 +1555,7 @@ class Timespan(object):
             message = "unknown anchor direction: {!r}."
             message = message.format(anchor)
             raise ValueError(message)
-        result = new(
-            self, start_offset=new_start_offset, stop_offset=new_stop_offset
-        )
+        result = new(self, start_offset=new_start_offset, stop_offset=new_stop_offset)
         return result
 
     def set_duration(self, duration) -> "Timespan":
@@ -1645,9 +1614,7 @@ class Timespan(object):
             new_stop_offset = self._stop_offset + Offset(stop_offset)
         else:
             new_stop_offset = self._stop_offset
-        result = new(
-            self, start_offset=new_start_offset, stop_offset=new_stop_offset
-        )
+        result = new(self, start_offset=new_start_offset, stop_offset=new_stop_offset)
         return result
 
     # TODO: extend to self.split_at_offsets()
@@ -1676,12 +1643,8 @@ class Timespan(object):
         offset = Offset(offset)
         result = TimespanList()
         if self._start_offset < offset < self._stop_offset:
-            left = new(
-                self, start_offset=self._start_offset, stop_offset=offset
-            )
-            right = new(
-                self, start_offset=offset, stop_offset=self._stop_offset
-            )
+            left = new(self, start_offset=self._start_offset, stop_offset=offset)
+            right = new(self, start_offset=offset, stop_offset=self._stop_offset)
             result.append(left)
             result.append(right)
         else:
@@ -2596,13 +2559,9 @@ class Timespan(object):
         assert 0 < multiplier
         if anchor is None:
             anchor = self._start_offset
-        new_start_offset = (
-            multiplier * (self._start_offset - anchor)
-        ) + anchor
+        new_start_offset = (multiplier * (self._start_offset - anchor)) + anchor
         new_stop_offset = (multiplier * (self._stop_offset - anchor)) + anchor
-        result = new(
-            self, start_offset=new_start_offset, stop_offset=new_stop_offset
-        )
+        result = new(self, start_offset=new_start_offset, stop_offset=new_stop_offset)
         return result
 
     def translate(self, translation=None) -> "Timespan":
@@ -2640,9 +2599,7 @@ class Timespan(object):
         stop_offset_translation = Duration(stop_offset_translation)
         new_start_offset = self._start_offset + start_offset_translation
         new_stop_offset = self._stop_offset + stop_offset_translation
-        return new(
-            self, start_offset=new_start_offset, stop_offset=new_stop_offset
-        )
+        return new(self, start_offset=new_start_offset, stop_offset=new_stop_offset)
 
     @Signature()
     def trisects_timespan(self, timespan) -> bool:
@@ -2738,14 +2695,9 @@ class AnnotatedTimespan(Timespan):
     ### INITIALIZER ###
 
     def __init__(
-        self,
-        start_offset=NegativeInfinity,
-        stop_offset=Infinity,
-        annotation=None,
+        self, start_offset=NegativeInfinity, stop_offset=Infinity, annotation=None,
     ) -> None:
-        Timespan.__init__(
-            self, start_offset=start_offset, stop_offset=stop_offset
-        )
+        Timespan.__init__(self, start_offset=start_offset, stop_offset=stop_offset)
         self._annotation = annotation
 
     ### PUBLIC PROPERTIES ###
@@ -2946,12 +2898,7 @@ class TimespanList(TypedList):
         return self
 
     def __illustrate__(
-        self,
-        key=None,
-        range_=None,
-        sort_callable=None,
-        sortkey=None,
-        scale=None,
+        self, key=None, range_=None, sort_callable=None, sortkey=None, scale=None,
     ):
         r"""
         Illustrates timespans.
@@ -3401,10 +3348,7 @@ class TimespanList(TypedList):
                 vspace_markup = abjad.Markup.vspace(0.5)
                 markups.append(vspace_markup)
                 timespan_markup = self._make_timespan_list_markup(
-                    timespans,
-                    postscript_x_offset,
-                    postscript_scale,
-                    sortkey=sortkey,
+                    timespans, postscript_x_offset, postscript_scale, sortkey=sortkey,
                 )
                 markups.append(timespan_markup)
             markup = abjad.Markup.left_column(markups)
@@ -3766,9 +3710,7 @@ class TimespanList(TypedList):
 
         Is false when timespans are not all wellformed.
         """
-        return all(
-            self._get_timespan(argument).wellformed for argument in self
-        )
+        return all(self._get_timespan(argument).wellformed for argument in self)
 
     @property
     def axis(self) -> typing.Optional[Offset]:
@@ -3961,12 +3903,7 @@ class TimespanList(TypedList):
 
         """
         if self:
-            return min(
-                [
-                    self._get_timespan(argument).start_offset
-                    for argument in self
-                ]
-            )
+            return min([self._get_timespan(argument).start_offset for argument in self])
         else:
             return NegativeInfinity
 
@@ -4017,9 +3954,7 @@ class TimespanList(TypedList):
 
         """
         if self:
-            return max(
-                [self._get_timespan(argument).stop_offset for argument in self]
-            )
+            return max([self._get_timespan(argument).stop_offset for argument in self])
         else:
             return Infinity
 
@@ -4635,9 +4570,7 @@ class TimespanList(TypedList):
                         result = timespan_1_fragment - timespan_2
                         revised_timespan_1_fragments.extend(result)
                     else:
-                        revised_timespan_1_fragments.append(
-                            timespan_1_fragment
-                        )
+                        revised_timespan_1_fragments.append(timespan_1_fragment)
                 timespan_1_fragments = revised_timespan_1_fragments
             all_fragments.extend(timespan_1_fragments)
         self[:] = all_fragments
@@ -4899,9 +4832,7 @@ class TimespanList(TypedList):
 
         return OffsetCounter(self)
 
-    def explode(
-        self, inventory_count=None
-    ) -> typing.Tuple["TimespanList", ...]:
+    def explode(self, inventory_count=None) -> typing.Tuple["TimespanList", ...]:
         """
         Explodes timespans into timespan lists, avoiding overlap, and
         distributing density as evenly as possible.
@@ -5106,9 +5037,7 @@ class TimespanList(TypedList):
                 )
                 global_overlap_factor = global_overlap_factors[i]
                 if not local_overlap_factor:
-                    nonoverlapping_timespan_lists.append(
-                        (i, global_overlap_factor)
-                    )
+                    nonoverlapping_timespan_lists.append((i, global_overlap_factor))
                 else:
                     overlapping_timespan_lists.append(
                         (i, local_overlap_factor, global_overlap_factor)
@@ -5164,9 +5093,7 @@ class TimespanList(TypedList):
         Raises exception when timespan list contains more than one
         timespan that satisfies ``time_relation``.
         """
-        timespans = self.get_timespans_that_satisfy_time_relation(
-            time_relation
-        )
+        timespans = self.get_timespans_that_satisfy_time_relation(time_relation)
         if len(timespans) == 1:
             return timespans[0]
         elif 1 < len(timespans):
@@ -5176,9 +5103,7 @@ class TimespanList(TypedList):
             message = "missing timespan."
             raise Exception(message)
 
-    def get_timespans_that_satisfy_time_relation(
-        self, time_relation
-    ) -> "TimespanList":
+    def get_timespans_that_satisfy_time_relation(self, time_relation) -> "TimespanList":
         """
         Gets timespans that satisfy ``time_relation``.
 
@@ -5261,9 +5186,7 @@ class TimespanList(TypedList):
             False
 
         """
-        return bool(
-            self.get_timespans_that_satisfy_time_relation(time_relation)
-        )
+        return bool(self.get_timespans_that_satisfy_time_relation(time_relation))
 
     def partition(
         self, include_tangent_timespans=False
@@ -5876,9 +5799,7 @@ class TimespanList(TypedList):
         timespans = []
         for timespan in self:
             timespan = timespan.round_offsets(
-                multiplier,
-                anchor=anchor,
-                must_be_wellformed=must_be_wellformed,
+                multiplier, anchor=anchor, must_be_wellformed=must_be_wellformed,
             )
             timespans.append(timespan)
         self[:] = timespans
@@ -5961,9 +5882,7 @@ class TimespanList(TypedList):
         self[:] = timespans
         return self
 
-    def split_at_offset(
-        self, offset
-    ) -> typing.Tuple["TimespanList", "TimespanList"]:
+    def split_at_offset(self, offset) -> typing.Tuple["TimespanList", "TimespanList"]:
         """
         Splits timespans at ``offset``.
 
@@ -6139,13 +6058,9 @@ class TimespanList(TypedList):
         if not self:
             return timespan_lists
         offsets = sorted(set(Offset(x) for x in offsets))
-        offsets = [
-            x for x in offsets if self.start_offset < x < self.stop_offset
-        ]
+        offsets = [x for x in offsets if self.start_offset < x < self.stop_offset]
         for offset in offsets:
-            shards = [
-                x for x in timespan_lists[-1].split_at_offset(offset) if x
-            ]
+            shards = [x for x in timespan_lists[-1].split_at_offset(offset) if x]
             if shards:
                 timespan_lists[-1:] = shards
         return timespan_lists
