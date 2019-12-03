@@ -36,11 +36,11 @@ def compare_images(image_one, image_two):
         if stderr:
             part = stderr.split()[0]
             if part.isdigit():
-                result = int(part) is 0
+                result = int(part) == 0
         elif stdout:
             part = stdout.split()[0]
             if part.isdigit():
-                result = int(part) is 0
+                result = int(part) == 0
 
         shutil.rmtree(tempdir)
 
