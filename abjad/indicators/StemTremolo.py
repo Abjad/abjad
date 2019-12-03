@@ -135,9 +135,7 @@ class StemTremolo(object):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        return FormatSpecification(
-            client=self, storage_format_is_indented=False
-        )
+        return FormatSpecification(client=self, storage_format_is_indented=False)
 
     def _get_lilypond_format(self):
         return str(self)

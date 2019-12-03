@@ -44,7 +44,5 @@ def f(argument, strict=None):
     if isinstance(strict, int):
         string = abjad.LilyPondFormatManager.align_tags(string, strict)
         realign = strict
-    string = abjad.LilyPondFormatManager.left_shift_tags(
-        string, realign=realign
-    )
+    string = abjad.LilyPondFormatManager.left_shift_tags(string, realign=realign)
     print(string)

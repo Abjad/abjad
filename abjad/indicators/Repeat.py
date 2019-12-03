@@ -78,9 +78,7 @@ class Repeat(object):
 
     ### INITIALIZER ###
 
-    def __init__(
-        self, *, repeat_count: int = 2, repeat_type: str = "volta"
-    ) -> None:
+    def __init__(self, *, repeat_count: int = 2, repeat_type: str = "volta") -> None:
         repeat_count = int(repeat_count)
         assert 1 < repeat_count
         self._repeat_count = repeat_count

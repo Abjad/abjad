@@ -1,6 +1,7 @@
 #! /usr/bin/env python
-import abjad
 import copy
+
+import abjad
 
 
 class PartCantusScoreTemplate:
@@ -50,9 +51,7 @@ class PartCantusScoreTemplate:
             name="Strings Staff Group",
         )
         # make score
-        score = abjad.Score(
-            [bell_staff, strings_staff_group], name="Pärt Cantus Score"
-        )
+        score = abjad.Score([bell_staff, strings_staff_group], name="Pärt Cantus Score")
         # return Pärt Cantus score
         return score
 
@@ -189,12 +188,8 @@ def add_string_music_to_score(score):
     """
     # generate some pitch and rhythm information
     pitch_contour_reservoir = create_pitch_contour_reservoir()
-    shadowed_contour_reservoir = shadow_pitch_contour_reservoir(
-        pitch_contour_reservoir
-    )
-    durated_reservoir = durate_pitch_contour_reservoir(
-        shadowed_contour_reservoir
-    )
+    shadowed_contour_reservoir = shadow_pitch_contour_reservoir(pitch_contour_reservoir)
+    durated_reservoir = durate_pitch_contour_reservoir(shadowed_contour_reservoir)
     # add six dotted-whole notes and the durated contours to each string voice
     for name, descents in durated_reservoir.items():
         instrument_voice = score["%s Voice" % name]
@@ -210,9 +205,7 @@ def add_string_music_to_score(score):
     # chop all string parts into 6/4 measures
     strings_staff_group = score["Strings Staff Group"]
     with abjad.ForbidUpdate(score):
-        for voice in abjad.iterate(strings_staff_group).components(
-            abjad.Voice
-        ):
+        for voice in abjad.iterate(strings_staff_group).components(abjad.Voice):
             shards = abjad.mutate(voice[:]).split([(6, 4)], cyclic=True)
             for shard in shards:
                 container = abjad.Container()
@@ -320,9 +313,7 @@ def edit_cello_voice(score, durated_reservoir):
     voice.extend(unison_descent)
     for chord in unison_descent:
         index = abjad.inspect(chord).parentage().parent.index(chord)
-        parent[index] = abjad.Note(
-            chord.written_pitches[1], chord.written_duration
-        )
+        parent[index] = abjad.Note(chord.written_pitches[1], chord.written_duration)
         articulation = abjad.Articulation("accent")
         abjad.attach(articulation, parent[index])
         articulation = abjad.Articulation("tenuto")
@@ -350,9 +341,7 @@ def apply_bowing_marks(score):
     # apply alternating upbow and downbow for first two sounding bars
     # of the first violin
     for measure in score["First Violin Voice"][6:8]:
-        for i, chord in enumerate(
-            abjad.iterate(measure).components(abjad.Chord)
-        ):
+        for i, chord in enumerate(abjad.iterate(measure).components(abjad.Chord)):
             if i % 2 == 0:
                 articulation = abjad.Articulation("downbow")
                 abjad.attach(articulation, chord)
@@ -535,9 +524,7 @@ def apply_expressive_marks(score):
     abjad.attach(markup, voice[14][0])
     markup = abjad.Markup(r"\italic { espr. }", direction=abjad.Down)
     abjad.attach(markup, voice[86][0])
-    abjad.mutate(voice[88][:]).split(
-        [abjad.Duration(1, 1), abjad.Duration(1, 2)]
-    )
+    abjad.mutate(voice[88][:]).split([abjad.Duration(1, 1), abjad.Duration(1, 2)])
     markup = abjad.Markup(r"\italic { molto espr. }", direction=abjad.Down)
     abjad.attach(markup, voice[88][1])
     markup = abjad.Markup("uniti", direction=abjad.Up)
@@ -685,9 +672,7 @@ def configure_lilypond_file(lilypond_file):
     Configures LilyPond file.
     """
     lilypond_file._global_staff_size = 8
-    context_block = abjad.ContextBlock(
-        source_lilypond_type=r"Staff \RemoveEmptyStaves"
-    )
+    context_block = abjad.ContextBlock(source_lilypond_type=r"Staff \RemoveEmptyStaves")
     abjad.override(context_block).vertical_axis_group.remove_first = True
     lilypond_file.layout_block.items.append(context_block)
     lilypond_file.paper_block.system_separator_markup = "slashSeparator"

@@ -3,20 +3,20 @@ import copy
 import inspect
 import pathlib
 import typing
-from abjad.indicators.LilyPondLiteral import LilyPondLiteral
-from abjad.indicators.TimeSignature import TimeSignature
-from abjad.pitch.NamedPitch import NamedPitch
+
 from abjad.core.Component import Component
 from abjad.core.Container import Container
 from abjad.core.Context import Context
 from abjad.core.Note import Note
 from abjad.core.Score import Score
-from abjad.core.Skip import Skip
 from abjad.core.Selection import Selection
+from abjad.core.Skip import Skip
 from abjad.core.Staff import Staff
 from abjad.core.Voice import Voice
-from abjad.scheme import Scheme
-from abjad.scheme import SpacingVector
+from abjad.indicators.LilyPondLiteral import LilyPondLiteral
+from abjad.indicators.TimeSignature import TimeSignature
+from abjad.pitch.NamedPitch import NamedPitch
+from abjad.scheme import Scheme, SpacingVector
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.StorageFormatManager import StorageFormatManager
@@ -29,6 +29,7 @@ from abjad.top.override import override
 from abjad.top.select import select
 from abjad.top.sequence import sequence
 from abjad.utilities.Multiplier import Multiplier
+
 from .Block import Block
 from .ContextBlock import ContextBlock
 from .DateTimeToken import DateTimeToken
@@ -514,9 +515,7 @@ class LilyPondFile(object):
         tag = Tag("abjad.LilyPondFile._get_formatted_blocks()")
         tag = self.get_tag(tag)
         for item in self.items:
-            if "_get_lilypond_format" in dir(item) and not isinstance(
-                item, str
-            ):
+            if "_get_lilypond_format" in dir(item) and not isinstance(item, str):
                 try:
                     string = item._get_lilypond_format(tag=tag)
                 except TypeError:
@@ -530,9 +529,7 @@ class LilyPondFile(object):
     def _get_formatted_comments(self):
         result = []
         for comment in self.comments:
-            if "_get_lilypond_format" in dir(comment) and not isinstance(
-                comment, str
-            ):
+            if "_get_lilypond_format" in dir(comment) and not isinstance(comment, str):
                 lilypond_format = format(comment)
                 if lilypond_format:
                     string = f"% {comment}"
@@ -587,9 +584,7 @@ class LilyPondFile(object):
         return "\n\n".join(self._get_format_pieces())
 
     @staticmethod
-    def _make_global_context_block(
-        font_size=3, minimum_distance=10, padding=4
-    ):
+    def _make_global_context_block(font_size=3, minimum_distance=10, padding=4):
         assert isinstance(font_size, (int, float))
         assert isinstance(padding, (int, float))
         block = ContextBlock(name="Global_Context", type_="Engraver_group")
@@ -1392,9 +1387,7 @@ class LilyPondFile(object):
                         "Voice_3": "voiceThree",
                         "Voice_4": "voiceFour",
                     }
-                    command_string = voice_name_to_command_string.get(
-                        voice_name
-                    )
+                    command_string = voice_name_to_command_string.get(voice_name)
                     if command_string:
                         command = LilyPondLiteral("\\" + command_string)
                         attach(command, voice)

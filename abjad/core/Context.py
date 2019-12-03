@@ -1,11 +1,13 @@
 import copy
 import typing
+
 from abjad.instruments import Instrument
 from abjad.lilypondnames.LilyPondContext import LilyPondContext
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.Tag import Tag
 from abjad.system.Wrapper import Wrapper
 from abjad.top.inspect import inspect
+
 from .Container import Container
 
 
@@ -83,11 +85,7 @@ class Context(Container):
         self._remove_commands: typing.List[str] = []
         self.lilypond_type = lilypond_type
         Container.__init__(
-            self,
-            simultaneous=simultaneous,
-            components=components,
-            name=name,
-            tag=tag,
+            self, simultaneous=simultaneous, components=components, name=name, tag=tag,
         )
 
     ### SPECIAL METHODS ###
@@ -240,9 +238,7 @@ class Context(Container):
         return self._format_component()
 
     @staticmethod
-    def _get_persistent_wrappers(
-        *, dependent_wrappers=None, omit_with_indicator=None
-    ):
+    def _get_persistent_wrappers(*, dependent_wrappers=None, omit_with_indicator=None):
         wrappers = {}
         for wrapper in dependent_wrappers:
             if wrapper.annotation:
@@ -343,9 +339,7 @@ class Context(Container):
         try:
             lilypond_context = LilyPondContext(name=self.lilypond_type)
         except AssertionError:
-            lilypond_context = LilyPondContext(
-                name=self._default_lilypond_type
-            )
+            lilypond_context = LilyPondContext(name=self._default_lilypond_type)
         return lilypond_context
 
     @property

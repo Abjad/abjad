@@ -3,6 +3,7 @@ import inspect
 import itertools
 import numbers
 import typing
+
 import uqbar.enums
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.Signature import Signature
@@ -455,9 +456,7 @@ class Expression(object):
 
     ### PRIVATE METHODS ###
 
-    def _apply_callback_markup(
-        self, name, direction=None, previous_callback=None
-    ):
+    def _apply_callback_markup(self, name, direction=None, previous_callback=None):
         from abjad.markups import Markup
         from abjad.markups import MarkupList
 
@@ -553,9 +552,7 @@ class Expression(object):
             strings = ", ".join(strings)
             statement = "{class_name}({strings})"
             class_name = self.evaluation_template
-            statement = statement.format(
-                class_name=class_name, strings=strings
-            )
+            statement = statement.format(class_name=class_name, strings=strings)
         else:
             if not arguments:
                 statement = statement.replace("{}", "")
@@ -715,13 +712,9 @@ class Expression(object):
         try:
             frame_info = inspect.getframeinfo(frame)
             function_name = frame_info.function
-            arguments = Expression._wrap_arguments(
-                frame, static_class=static_class
-            )
+            arguments = Expression._wrap_arguments(frame, static_class=static_class)
             template = "{{}}.{function_name}({arguments})"
-            template = template.format(
-                function_name=function_name, arguments=arguments
-            )
+            template = template.format(function_name=function_name, arguments=arguments)
         finally:
             del frame
         return template
@@ -739,9 +732,7 @@ class Expression(object):
         )
 
     @staticmethod
-    def _get_method_name(
-        function_name, function, function_self, argument_values
-    ):
+    def _get_method_name(function_name, function, function_self, argument_values):
         if getattr(function, "method_name", None) is not None:
             return getattr(function, "method_name")
         method_name_callback = Expression._get_callback(
@@ -757,10 +748,7 @@ class Expression(object):
         callback = self.callbacks[-1]
         if getattr(callback, "_lone", None):
             return True
-        if (
-            callback.evaluation_template == "group_by"
-            and callback.map_operand is None
-        ):
+        if callback.evaluation_template == "group_by" and callback.map_operand is None:
             return True
         if not callback.qualified_method_name.endswith("__getitem__"):
             return False
@@ -940,9 +928,7 @@ class Expression(object):
         qualified_method_name = self.qualified_method_name
         assert isinstance(qualified_method_name, str), repr(self)
         if qualified_method_name == "abjad.Expression.establish_equivalence":
-            markup = self._make_establish_equivalence_markup(
-                self.next_name, markup
-            )
+            markup = self._make_establish_equivalence_markup(self.next_name, markup)
             return markup
         assert "." in qualified_method_name, repr(self)
         globals_ = self._make_globals()
@@ -997,9 +983,7 @@ class Expression(object):
                 parts.pop(-1)
                 parts.append(argument_list_callback)
                 qualified_callback_name = ".".join(parts)
-                argument_list_callback = eval(
-                    qualified_callback_name, globals_
-                )
+                argument_list_callback = eval(qualified_callback_name, globals_)
             markup = Expression._make_function_markup(
                 markup,
                 method_name,
@@ -1225,9 +1209,7 @@ class Expression(object):
                 parameter = signature.parameters[argument_name]
                 # positional argument
                 if parameter.default == inspect.Parameter.empty:
-                    argument_value = Expression._to_evaluable_string(
-                        argument_value
-                    )
+                    argument_value = Expression._to_evaluable_string(argument_value)
                     argument_string = argument_value
                     argument_strings.append(argument_string)
                 elif argument_name == "_map_index":
@@ -1236,12 +1218,9 @@ class Expression(object):
                 # keyword argument
                 elif argument_value != parameter.default:
                     argument_string = "{argument_name}={argument_value}"
-                    argument_value = Expression._to_evaluable_string(
-                        argument_value
-                    )
+                    argument_value = Expression._to_evaluable_string(argument_value)
                     argument_string = argument_string.format(
-                        argument_name=argument_name,
-                        argument_value=argument_value,
+                        argument_name=argument_name, argument_value=argument_value,
                     )
                     argument_strings.append(argument_string)
             arguments = ", ".join(argument_strings)
@@ -1259,9 +1238,7 @@ class Expression(object):
             parameter = signature.parameters[argument_name]
             if argument_value != parameter.default:
                 argument_string = "{argument_name}={argument_value}"
-                argument_value = Expression._to_evaluable_string(
-                    argument_value
-                )
+                argument_value = Expression._to_evaluable_string(argument_value)
                 argument_string = argument_string.format(
                     argument_name=argument_name, argument_value=argument_value
                 )
@@ -1602,9 +1579,7 @@ class Expression(object):
                 markup = subexpression.get_markup()
                 markups.append(markup)
             markup = self._make_method_markup(markups)
-            markup = self._apply_callback_markup(
-                markup, previous_callback=self
-            )
+            markup = self._apply_callback_markup(markup, previous_callback=self)
         else:
             if name is None:
                 name = self.name

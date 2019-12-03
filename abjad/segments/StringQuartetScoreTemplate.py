@@ -1,5 +1,6 @@
 from abjad.system.Tag import Tag
 from abjad.utilities.OrderedDict import OrderedDict
+
 from .Part import Part
 from .PartManifest import PartManifest
 from .ScoreTemplate import ScoreTemplate
@@ -99,9 +100,7 @@ class StringQuartetScoreTemplate(ScoreTemplate):
         tag = Tag(site)
 
         # make first violin voice and staff
-        first_violin_voice = abjad.Voice(
-            [], name="First_Violin_Voice", tag=tag
-        )
+        first_violin_voice = abjad.Voice([], name="First_Violin_Voice", tag=tag)
         first_violin_staff = abjad.Staff(
             [first_violin_voice], name="First_Violin_Staff", tag=tag
         )
@@ -113,9 +112,7 @@ class StringQuartetScoreTemplate(ScoreTemplate):
         abjad.attach(literal, first_violin_staff)
 
         # make second violin voice and staff
-        second_violin_voice = abjad.Voice(
-            [], name="Second_Violin_Voice", tag=tag
-        )
+        second_violin_voice = abjad.Voice([], name="Second_Violin_Voice", tag=tag)
         second_violin_staff = abjad.Staff(
             [second_violin_voice], name="Second_Violin_Staff", tag=tag
         )
@@ -128,9 +125,7 @@ class StringQuartetScoreTemplate(ScoreTemplate):
 
         # make viola voice and staff
         viola_voice = abjad.Voice([], name="Viola_Voice", tag=tag)
-        viola_staff = abjad.Staff(
-            [viola_voice], name="Viola_Staff", tag=tag
-        )
+        viola_staff = abjad.Staff([viola_voice], name="Viola_Staff", tag=tag)
         clef = abjad.Clef("alto")
         abjad.annotate(viola_staff, "default_clef", clef)
         viola = abjad.Viola()
@@ -140,9 +135,7 @@ class StringQuartetScoreTemplate(ScoreTemplate):
 
         # make cello voice and staff
         cello_voice = abjad.Voice([], name="Cello_Voice", tag=tag)
-        cello_staff = abjad.Staff(
-            [cello_voice], name="Cello_Staff", tag=tag
-        )
+        cello_staff = abjad.Staff([cello_voice], name="Cello_Staff", tag=tag)
         clef = abjad.Clef("bass")
         abjad.annotate(cello_staff, "default_clef", clef)
         cello = abjad.Cello()
@@ -152,21 +145,14 @@ class StringQuartetScoreTemplate(ScoreTemplate):
 
         # make string quartet staff group
         string_quartet_staff_group = abjad.StaffGroup(
-            [
-                first_violin_staff,
-                second_violin_staff,
-                viola_staff,
-                cello_staff,
-            ],
+            [first_violin_staff, second_violin_staff, viola_staff, cello_staff,],
             name="String_Quartet_Staff_Group",
             tag=tag,
         )
 
         # make string quartet score
         string_quartet_score = abjad.Score(
-            [string_quartet_staff_group],
-            name="String_Quartet_Score",
-            tag=tag,
+            [string_quartet_staff_group], name="String_Quartet_Score", tag=tag,
         )
 
         # return string quartet score

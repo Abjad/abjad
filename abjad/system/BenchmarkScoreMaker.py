@@ -64,9 +64,7 @@ class BenchmarkScoreMaker(object):
         import abjad
 
         staff = abjad.Staff(200 * abjad.Note("c'16"))
-        for part in abjad.sequence(staff[:]).partition_by_counts(
-            [20], cyclic=True
-        ):
+        for part in abjad.sequence(staff[:]).partition_by_counts([20], cyclic=True):
             dynamic = abjad.Dynamic("f")
             abjad.attach(dynamic, part[0])
         return staff
@@ -87,9 +85,7 @@ class BenchmarkScoreMaker(object):
         import abjad
 
         staff = abjad.Staff(200 * abjad.Note("c'16"))
-        for part in abjad.sequence(staff[:]).partition_by_counts(
-            [4], cyclic=True
-        ):
+        for part in abjad.sequence(staff[:]).partition_by_counts([4], cyclic=True):
             dynamic = abjad.Dynamic("f")
             abjad.attach(dynamic, part[0])
         return staff

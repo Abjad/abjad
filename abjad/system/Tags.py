@@ -1,4 +1,5 @@
 import typing
+
 from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.system.Tag import Tag
 from abjad.utilities.String import String
@@ -540,9 +541,7 @@ class Tags(object):
             self.REDRAWN_REDUNDANT_MARGIN_MARKUP_COLOR,
         ]
 
-    def metronome_mark_color_expression_tags(
-        self, path=None
-    ) -> typing.List[Tag]:
+    def metronome_mark_color_expression_tags(self, path=None) -> typing.List[Tag]:
         """
         Gets metronome mark color expression tags.
 
@@ -562,9 +561,7 @@ class Tags(object):
             self.REDUNDANT_METRONOME_MARK_WITH_COLOR,
         ]
 
-    def metronome_mark_color_suppression_tags(
-        self, path=None
-    ) -> typing.List[Tag]:
+    def metronome_mark_color_suppression_tags(self, path=None) -> typing.List[Tag]:
         """
         Gets metronome mark color suppression tags.
 
@@ -623,9 +620,7 @@ class Tags(object):
             self.TACET_COLORING,
         ]
 
-    def persistent_indicator_color_expression_tags(
-        self, path=None
-    ) -> typing.List[Tag]:
+    def persistent_indicator_color_expression_tags(self, path=None) -> typing.List[Tag]:
         """
         Gets persistent indicator color expression tags.
 

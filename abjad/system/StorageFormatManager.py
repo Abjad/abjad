@@ -2,6 +2,7 @@ import collections
 import importlib
 import inspect
 import types
+
 from .FormatSpecification import FormatSpecification
 
 # from abjad.utilities.OrderedDict import OrderedDict
@@ -66,16 +67,12 @@ class StorageFormatManager(object):
             hasattr(self._client, "_get_storage_format_specification")
             or hasattr(self._client, "_get_format_specification")
         ):
-            pieces = self._format_specced_object(
-                as_storage_format=as_storage_format
-            )
+            pieces = self._format_specced_object(as_storage_format=as_storage_format)
             return list(pieces)
         elif not as_storage_format and hasattr(
             self._client, "_get_format_specification"
         ):
-            pieces = self._format_specced_object(
-                as_storage_format=as_storage_format
-            )
+            pieces = self._format_specced_object(as_storage_format=as_storage_format)
             return list(pieces)
         elif isinstance(self._client, (list, tuple)):
             return self._format_sequence(as_storage_format, is_indented)
@@ -116,9 +113,7 @@ class StorageFormatManager(object):
             )
             for line in key_pieces[:-1]:
                 result.append(prefix + line)
-            result.append(
-                "{}{}: {}".format(prefix, key_pieces[-1], value_pieces[0])
-            )
+            result.append("{}{}: {}".format(prefix, key_pieces[-1], value_pieces[0]))
             for line in value_pieces[1:]:
                 result.append(prefix + line)
             result[-1] = result[-1] + suffix
@@ -201,8 +196,7 @@ class StorageFormatManager(object):
             for value in args_values:
                 agent = type(self)(value)
                 pieces = agent._dispatch_formatting(
-                    as_storage_format=as_storage_format,
-                    is_indented=is_indented,
+                    as_storage_format=as_storage_format, is_indented=is_indented,
                 )
                 for piece in pieces[:-1]:
                     positional_argument_pieces.append(prefix + piece)
@@ -214,8 +208,7 @@ class StorageFormatManager(object):
                     continue
                 agent = type(self)(value)
                 pieces = agent._dispatch_formatting(
-                    as_storage_format=as_storage_format,
-                    is_indented=is_indented,
+                    as_storage_format=as_storage_format, is_indented=is_indented,
                 )
                 pieces[0] = "{}={}".format(name, pieces[0])
                 for piece in pieces[:-1]:
@@ -297,9 +290,7 @@ class StorageFormatManager(object):
         if kwargs_names is None:
             kwargs_names = self.signature_keyword_names
         if args_values is None:
-            args_values = tuple(
-                self._get(_) for _ in self.signature_positional_names
-            )
+            args_values = tuple(self._get(_) for _ in self.signature_positional_names)
         if args_values:
             kwargs_names = list(kwargs_names)
             names = self.signature_positional_names
@@ -367,9 +358,7 @@ class StorageFormatManager(object):
             if not isinstance(self._client, type) and hasattr(
                 self._client, "_get_format_specification"
             ):
-                self._format_specification = (
-                    self._client._get_format_specification()
-                )
+                self._format_specification = self._client._get_format_specification()
             else:
                 self._format_specification = FormatSpecification(self._client)
         return self._format_specification
@@ -540,9 +529,7 @@ class StorageFormatManager(object):
             # TODO: This will be factored out when SFS/SFM are removed.
             if hasattr(self.client, "_get_storage_format_specification"):
                 specification = self.client._get_storage_format_specification()
-                template_names.extend(
-                    specification._keyword_argument_names or ()
-                )
+                template_names.extend(specification._keyword_argument_names or ())
             else:
                 template_names.extend(
                     self.format_specification.storage_format_kwargs_names or ()

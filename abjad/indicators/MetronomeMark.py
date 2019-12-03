@@ -1,21 +1,12 @@
 import collections
-from fractions import Fraction
-
-try:
-    from quicktions import Fraction  # type: ignore
-except ImportError:
-    pass
 import functools
 import math
 import typing
-from abjad import enums
-from abjad import exceptions
-from abjad import mathtools
-from abjad import typings
-from abjad.markups import Markup
-from abjad.markups import MarkupCommand
-from abjad.mathtools import NonreducedFraction
-from abjad.mathtools import Ratio
+from fractions import Fraction
+
+from abjad import enums, exceptions, mathtools, typings
+from abjad.markups import Markup, MarkupCommand
+from abjad.mathtools import NonreducedFraction, Ratio
 from abjad.scheme import Scheme
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
@@ -25,7 +16,13 @@ from abjad.top.sequence import sequence
 from abjad.utilities.Duration import Duration
 from abjad.utilities.Enumerator import Enumerator
 from abjad.utilities.Multiplier import Multiplier
+
 from .LilyPondLiteral import LilyPondLiteral
+
+try:
+    from quicktions import Fraction  # type: ignore
+except ImportError:
+    pass
 
 
 @functools.total_ordering
@@ -303,19 +300,13 @@ class MetronomeMark(object):
             )
         )
         nonreduced_fraction = NonreducedFraction(new_quarters_per_minute / 4)
-        nonreduced_fraction = nonreduced_fraction.with_denominator(
-            minimum_denominator
-        )
+        nonreduced_fraction = nonreduced_fraction.with_denominator(minimum_denominator)
         (
             new_units_per_minute,
             new_reference_duration_denominator,
         ) = nonreduced_fraction.pair
-        new_reference_duration = Duration(
-            1, new_reference_duration_denominator
-        )
-        metronome_mark = type(self)(
-            new_reference_duration, new_units_per_minute
-        )
+        new_reference_duration = Duration(1, new_reference_duration_denominator)
+        metronome_mark = type(self)(new_reference_duration, new_units_per_minute)
         return metronome_mark
 
     def __div__(self, argument) -> "MetronomeMark":
@@ -633,9 +624,7 @@ class MetronomeMark(object):
             string = f"{self._dotted}={self.units_per_minute}"
         elif isinstance(
             self.units_per_minute, Fraction
-        ) and not mathtools.is_integer_equivalent_number(
-            self.units_per_minute
-        ):
+        ) and not mathtools.is_integer_equivalent_number(self.units_per_minute):
             integer_part = int(float(self.units_per_minute))
             remainder = self.units_per_minute - integer_part
             remainder = Fraction(remainder)
@@ -649,9 +638,7 @@ class MetronomeMark(object):
         elif isinstance(self.units_per_minute, tuple):
             string = "{}={}-{}"
             string = string.format(
-                self._dotted,
-                self.units_per_minute[0],
-                self.units_per_minute[1],
+                self._dotted, self.units_per_minute[0], self.units_per_minute[1],
             )
         else:
             raise TypeError(f"unknown: {self.units_per_minute!r}.")
@@ -709,16 +696,12 @@ class MetronomeMark(object):
             )
         )
         nonreduced_fraction = NonreducedFraction(new_quarters_per_minute / 4)
-        nonreduced_fraction = nonreduced_fraction.with_denominator(
-            minimum_denominator
-        )
+        nonreduced_fraction = nonreduced_fraction.with_denominator(minimum_denominator)
         (
             new_units_per_minute,
             new_reference_duration_denominator,
         ) = nonreduced_fraction.pair
-        new_reference_duration = Duration(
-            1, new_reference_duration_denominator
-        )
+        new_reference_duration = Duration(1, new_reference_duration_denominator)
         metronome_mark = type(self)(
             reference_duration=new_reference_duration,
             units_per_minute=new_units_per_minute,
@@ -765,16 +748,12 @@ class MetronomeMark(object):
         if isinstance(self.units_per_minute, tuple):
             string = "{}={}-{}"
             string = string.format(
-                self._dotted,
-                self.units_per_minute[0],
-                self.units_per_minute[1],
+                self._dotted, self.units_per_minute[0], self.units_per_minute[1],
             )
             return string
         elif isinstance(self.units_per_minute, Fraction):
             markup = MetronomeMark.make_tempo_equation_markup(
-                self.reference_duration,
-                self.units_per_minute,
-                decimal=self.decimal,
+                self.reference_duration, self.units_per_minute, decimal=self.decimal,
             )
             string = str(markup)
             return string
@@ -791,10 +770,7 @@ class MetronomeMark(object):
         if self.textual_indication is not None:
             text = self.textual_indication
             text = Scheme.format_scheme_value(text)
-        if (
-            self.reference_duration is not None
-            and self.units_per_minute is not None
-        ):
+        if self.reference_duration is not None and self.units_per_minute is not None:
             equation = self._equation
         if self.custom_markup is not None:
             return rf"\tempo {self.custom_markup}"
@@ -1079,20 +1055,10 @@ class MetronomeMark(object):
         if self.is_imprecise:
             return None
         if isinstance(self.units_per_minute, tuple):
-            low = (
-                Duration(1, 4)
-                / self.reference_duration
-                * self.units_per_minute[0]
-            )
-            high = (
-                Duration(1, 4)
-                / self.reference_duration
-                * self.units_per_minute[1]
-            )
+            low = Duration(1, 4) / self.reference_duration * self.units_per_minute[0]
+            high = Duration(1, 4) / self.reference_duration * self.units_per_minute[1]
             return (low, high)
-        result = (
-            Duration(1, 4) / self.reference_duration * self.units_per_minute
-        )
+        result = Duration(1, 4) / self.reference_duration * self.units_per_minute
         return Fraction(result)
 
     @property
@@ -1256,19 +1222,14 @@ class MetronomeMark(object):
         enumerator = Enumerator(numbers)
         pairs = enumerator.yield_outer_product()
         multipliers = [Multiplier(_) for _ in pairs]
-        multipliers = [
-            _ for _ in multipliers if Fraction(1, 2) <= _ <= Fraction(2)
-        ]
+        multipliers = [_ for _ in multipliers if Fraction(1, 2) <= _ <= Fraction(2)]
         multipliers.sort()
         multipliers = sequence(multipliers).remove_repeats()
         pairs = []
         for multiplier in multipliers:
             new_units_per_minute = multiplier * self.units_per_minute
-            if (
-                integer_tempos_only
-                and not mathtools.is_integer_equivalent_number(
-                    new_units_per_minute
-                )
+            if integer_tempos_only and not mathtools.is_integer_equivalent_number(
+                new_units_per_minute
             ):
                 continue
             metronome_mark = type(self)(

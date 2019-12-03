@@ -1,5 +1,5 @@
-from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.markups import Markup
+from abjad.system.StorageFormatManager import StorageFormatManager
 
 
 class StringContactPoint(object):

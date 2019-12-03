@@ -1,4 +1,5 @@
 import typing
+
 from abjad import typings
 from abjad.indicators.LilyPondLiteral import LilyPondLiteral
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
@@ -9,9 +10,10 @@ from abjad.top.detach import detach
 from abjad.top.inspect import inspect as abjad_inspect
 from abjad.top.mutate import mutate
 from abjad.top.override import override
-from abjad.top.tweak import tweak
 from abjad.top.select import select
+from abjad.top.tweak import tweak
 from abjad.utilities.Duration import Duration
+
 from .Container import Container
 
 abjad_tags = Tags()
@@ -808,9 +810,7 @@ def on_beat_grace_container(
     anchor_leaf = abjad_inspect(anchor_voice_selection).leaf(0)
     anchor_voice = abjad_inspect(anchor_leaf).parentage().get(Voice)
     if anchor_voice.name is None:
-        raise Exception(
-            f"anchor voice must be named:\n   {repr(anchor_voice)}"
-        )
+        raise Exception(f"anchor voice must be named:\n   {repr(anchor_voice)}")
     anchor_voice_insert = Voice(name=anchor_voice.name)
     mutate(anchor_voice_selection).wrap(anchor_voice_insert)
     container = Container(simultaneous=True)
@@ -819,9 +819,7 @@ def on_beat_grace_container(
     on_beat_grace_container._match_anchor_leaf()
     on_beat_grace_container._set_leaf_durations()
     insert_duration = abjad_inspect(anchor_voice_insert).duration()
-    grace_container_duration = abjad_inspect(
-        on_beat_grace_container
-    ).duration()
+    grace_container_duration = abjad_inspect(on_beat_grace_container).duration()
     if insert_duration < grace_container_duration:
         message = f"grace {repr(grace_container_duration)}"
         message += f" exceeds anchor {repr(insert_duration)}."
@@ -844,9 +842,7 @@ def on_beat_grace_container(
         4: r"\voiceFour",
     }
     first_grace = abjad_inspect(on_beat_grace_container).leaf(0)
-    one_voice_literal = LilyPondLiteral(
-        r"\oneVoice", format_slot="absolute_before"
-    )
+    one_voice_literal = LilyPondLiteral(r"\oneVoice", format_slot="absolute_before")
     string = voice_number_to_string.get(grace_voice_number, None)
     if string is not None:
         literal
@@ -860,8 +856,6 @@ def on_beat_grace_container(
         last_anchor_leaf = abjad_inspect(anchor_voice_selection).leaf(-1)
         next_leaf = abjad_inspect(last_anchor_leaf).leaf(1)
         if next_leaf is not None:
-            literal = LilyPondLiteral(
-                r"\oneVoice", format_slot="absolute_before"
-            )
+            literal = LilyPondLiteral(r"\oneVoice", format_slot="absolute_before")
             attach(literal, next_leaf, tag=_site(5))
     return on_beat_grace_container

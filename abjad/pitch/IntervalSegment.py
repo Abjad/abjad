@@ -1,6 +1,7 @@
 from abjad import mathtools
 from abjad.top.new import new
 from abjad.utilities.Multiplier import Multiplier
+
 from .Segment import Segment
 
 

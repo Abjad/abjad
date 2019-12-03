@@ -977,9 +977,7 @@ class SetClass(object):
         assert isinstance(transposition_only, (type(None), type(True)))
         self._transposition_only = transposition_only
         prime_form = self._unrank(
-            self.cardinality,
-            self.rank,
-            transposition_only=self.transposition_only,
+            self.cardinality, self.rank, transposition_only=self.transposition_only,
         )
         self._prime_form = prime_form
 
@@ -1115,9 +1113,7 @@ class SetClass(object):
 
         pair = (cardinality, rank)
         if self.transposition_only:
-            prime_form = self._transposition_only_identifier_to_prime_form[
-                pair
-            ]
+            prime_form = self._transposition_only_identifier_to_prime_form[pair]
         elif self.lex_rank:
             prime_form = self._lex_identifier_to_prime_form[pair]
         else:
@@ -1140,9 +1136,7 @@ class SetClass(object):
             string = mathtools.integer_to_binary_string(i).zfill(12)
             subset = "".join(list(reversed(string)))
             subset = _helper(subset)
-            subset = abjad.PitchClassSet(
-                subset, item_class=abjad.NumberedPitchClass
-            )
+            subset = abjad.PitchClassSet(subset, item_class=abjad.NumberedPitchClass)
             yield subset
 
     ### PUBLIC PROPERTIES ###
@@ -1476,9 +1470,7 @@ class SetClass(object):
 
     # TODO: change to from_selection()
     @staticmethod
-    def from_pitch_class_set(
-        pitch_class_set, lex_rank=None, transposition_only=None
-    ):
+    def from_pitch_class_set(pitch_class_set, lex_rank=None, transposition_only=None):
         """
         Makes set-class from `pitch_class_set`.
 
@@ -1586,9 +1578,7 @@ class SetClass(object):
         )
         prime_form = tuple([_.number for _ in sorted(prime_form)])
         if transposition_only:
-            pair = SetClass._prime_form_to_transposition_only_identifier[
-                prime_form
-            ]
+            pair = SetClass._prime_form_to_transposition_only_identifier[prime_form]
         elif lex_rank:
             pair = SetClass._prime_form_to_lex_identifier[prime_form]
         else:
@@ -1603,9 +1593,7 @@ class SetClass(object):
         return set_class
 
     @staticmethod
-    def list_set_classes(
-        cardinality=None, lex_rank=None, transposition_only=None
-    ):
+    def list_set_classes(cardinality=None, lex_rank=None, transposition_only=None):
         """
         List set-classes.
 

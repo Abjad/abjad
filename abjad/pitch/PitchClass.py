@@ -1,8 +1,10 @@
 import abc
 import functools
 import numbers
+
 from abjad import mathtools
 from abjad.system.StorageFormatManager import StorageFormatManager
+
 from . import constants
 
 
@@ -27,18 +29,14 @@ class PitchClass(object):
         if isinstance(argument, str):
             match = constants._comprehensive_pitch_name_regex.match(argument)
             if not match:
-                match = constants._comprehensive_pitch_class_name_regex.match(
-                    argument
-                )
+                match = constants._comprehensive_pitch_class_name_regex.match(argument)
             if not match:
                 message = "can not instantiate {} from {!r}."
                 message = message.format(type(self).__name__, argument)
                 raise ValueError(message)
             group_dict = match.groupdict()
             dpc_name = group_dict["diatonic_pc_name"].lower()
-            dpc_number = constants._diatonic_pc_name_to_diatonic_pc_number[
-                dpc_name
-            ]
+            dpc_number = constants._diatonic_pc_name_to_diatonic_pc_number[dpc_name]
             alteration = abjad.Accidental(
                 group_dict["comprehensive_accidental"]
             ).semitones

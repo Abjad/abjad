@@ -1,13 +1,15 @@
 import collections
 import typing
+
 from abjad import mathtools
 from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.utilities.Multiplier import Multiplier
 from abjad.utilities.OrderedDict import OrderedDict
+
 from .AfterGraceContainer import AfterGraceContainer
+from .BeforeGraceContainer import BeforeGraceContainer
 from .Component import Component
 from .Context import Context
-from .BeforeGraceContainer import BeforeGraceContainer
 from .Score import Score
 from .Staff import Staff
 from .StaffGroup import StaffGroup

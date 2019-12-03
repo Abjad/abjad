@@ -1,4 +1,5 @@
 import typing
+
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
@@ -242,9 +243,7 @@ class LilyPondLiteral(object):
         bundle = LilyPondFormatBundle()
         format_slot = bundle.get(self.format_slot)
         if self.tweaks:
-            tweaks = self.tweaks._list_format_contributions(
-                directed=self.directed
-            )
+            tweaks = self.tweaks._list_format_contributions(directed=self.directed)
             format_slot.commands.extend(tweaks)
         pieces = self._get_format_pieces()
         format_slot.commands.extend(pieces)

@@ -1,5 +1,6 @@
 from abjad import mathtools
 from abjad.system.FormatSpecification import FormatSpecification
+
 from . import constants
 from .Interval import Interval
 
@@ -260,9 +261,7 @@ class NumberedInterval(Interval):
     ### PRIVATE METHODS ###
 
     def _from_named_parts(self, direction, quality, diatonic_number):
-        self._from_number(
-            self._named_to_numbered(direction, quality, diatonic_number)
-        )
+        self._from_number(self._named_to_numbered(direction, quality, diatonic_number))
 
     def _from_number(self, argument):
         import abjad
@@ -275,9 +274,7 @@ class NumberedInterval(Interval):
             pc_number -= 12
             octaves += 1
         self._octaves = octaves
-        self._interval_class = abjad.NumberedIntervalClass(
-            pc_number * direction
-        )
+        self._interval_class = abjad.NumberedIntervalClass(pc_number * direction)
 
     def _from_interval_or_interval_class(self, argument):
         self._from_number(float(argument))

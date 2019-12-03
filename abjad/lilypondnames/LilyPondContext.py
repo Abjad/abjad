@@ -1,7 +1,9 @@
 import typing
+
+from abjad.system.StorageFormatManager import StorageFormatManager
+
 from .LilyPondEngraver import LilyPondEngraver
 from .LilyPondGrob import LilyPondGrob
-from abjad.system.StorageFormatManager import StorageFormatManager
 
 
 class LilyPondContext(object):
@@ -271,9 +273,7 @@ class LilyPondContext(object):
 
         dictionary = contexts[self.name]
         assert isinstance(dictionary, dict), repr(dictionary)
-        accepts = (
-            LilyPondContext(name=name) for name in dictionary["accepts"]
-        )
+        accepts = (LilyPondContext(name=name) for name in dictionary["accepts"])
         return tuple(sorted(accepts, key=lambda x: x.name))
 
     @property

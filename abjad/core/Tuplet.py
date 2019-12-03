@@ -1,13 +1,9 @@
 import math
 import typing
-from abjad import Fraction
-from abjad import exceptions
-from abjad import mathtools
-from abjad import typings
+
+from abjad import Fraction, exceptions, mathtools, typings
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
-from abjad.mathtools import NonreducedFraction
-from abjad.mathtools import NonreducedRatio
-from abjad.mathtools import Ratio
+from abjad.mathtools import NonreducedFraction, NonreducedRatio, Ratio
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.Tag import Tag
@@ -18,6 +14,7 @@ from abjad.top.select import select
 from abjad.top.tweak import tweak
 from abjad.utilities.Duration import Duration
 from abjad.utilities.Multiplier import Multiplier
+
 from .Container import Container
 from .Leaf import Leaf
 from .LeafMaker import LeafMaker
@@ -173,8 +170,7 @@ class Tuplet(Container):
                 uqbar.graphs.TableRow(
                     [
                         uqbar.graphs.TableCell(
-                            label=f"* {self.multiplier!s}",
-                            attributes={"border": 0},
+                            label=f"* {self.multiplier!s}", attributes={"border": 0},
                         )
                     ]
                 ),
@@ -246,16 +242,12 @@ class Tuplet(Container):
                 edge_height_tweak_string = self._get_edge_height_tweak_string()
                 if edge_height_tweak_string:
                     contributions.append(edge_height_tweak_string)
-                strings = tweak(self)._list_format_contributions(
-                    directed=False
-                )
+                strings = tweak(self)._list_format_contributions(directed=False)
                 contributions.extend(strings)
                 times_command_string = self._get_times_command_string()
                 contributions.append(times_command_string)
             if self.tag is not None:
-                contributions = LilyPondFormatManager.tag(
-                    contributions, tag=self.tag
-                )
+                contributions = LilyPondFormatManager.tag(contributions, tag=self.tag)
             result.append([contributor, contributions])
         return tuple(result)
 
@@ -294,9 +286,7 @@ class Tuplet(Container):
                 self.multiplier.denominator, self.multiplier.numerator
             )
             nonreduced_fraction = NonreducedFraction(inverse_multiplier)
-            nonreduced_fraction = nonreduced_fraction.with_denominator(
-                self.denominator
-            )
+            nonreduced_fraction = nonreduced_fraction.with_denominator(self.denominator)
             denominator, numerator = nonreduced_fraction.pair
         else:
             numerator = self.multiplier.numerator
@@ -1411,9 +1401,7 @@ class Tuplet(Container):
         duration = Duration(duration)
         ratio = Ratio(ratio)
         basic_prolated_duration = duration / mathtools.weight(ratio.numbers)
-        basic_written_duration = (
-            basic_prolated_duration.equal_or_greater_assignable
-        )
+        basic_written_duration = basic_prolated_duration.equal_or_greater_assignable
         written_durations = [x * basic_written_duration for x in ratio.numbers]
         leaf_maker = LeafMaker(increase_monotonic=increase_monotonic, tag=tag)
         try:
@@ -1425,12 +1413,9 @@ class Tuplet(Container):
             denominator = duration.denominator
             note_durations = [Duration(x, denominator) for x in ratio.numbers]
             pitches = [
-                None if note_duration < 0 else 0
-                for note_duration in note_durations
+                None if note_duration < 0 else 0 for note_duration in note_durations
             ]
-            leaf_durations = [
-                abs(note_duration) for note_duration in note_durations
-            ]
+            leaf_durations = [abs(note_duration) for note_duration in note_durations]
             notes = list(leaf_maker(pitches, leaf_durations))
         tuplet = Tuplet.from_duration(duration, notes, tag=tag)
         tuplet.normalize_multiplier()
@@ -1740,20 +1725,14 @@ class Tuplet(Container):
         proportions = Ratio(ratio)
         target_duration = leaf.written_duration
         basic_prolated_duration = target_duration / sum(proportions.numbers)
-        basic_written_duration = (
-            basic_prolated_duration.equal_or_greater_assignable
-        )
-        written_durations = [
-            _ * basic_written_duration for _ in proportions.numbers
-        ]
+        basic_written_duration = basic_prolated_duration.equal_or_greater_assignable
+        written_durations = [_ * basic_written_duration for _ in proportions.numbers]
         maker = NoteMaker()
         try:
             notes = [Note(0, x) for x in written_durations]
         except exceptions.AssignabilityError:
             denominator = target_duration.denominator
-            note_durations = [
-                Duration(_, denominator) for _ in proportions.numbers
-            ]
+            note_durations = [Duration(_, denominator) for _ in proportions.numbers]
             notes = list(maker(0, note_durations))
         contents_duration = inspect(notes).duration()
         multiplier = target_duration / contents_duration
@@ -1941,8 +1920,7 @@ class Tuplet(Container):
                 raise ValueError("no divide zero values.")
         else:
             exponent = int(
-                math.log(mathtools.weight(ratio.numbers), 2)
-                - math.log(numerator, 2)
+                math.log(mathtools.weight(ratio.numbers), 2) - math.log(numerator, 2)
             )
             denominator = int(denominator * 2 ** exponent)
             components: typing.List[typing.Union[Note, Rest]] = []
@@ -2291,9 +2269,7 @@ class Tuplet(Container):
             self._get_preprolated_duration(),
             Duration(1, denominator),
         ]
-        nonreduced_fractions = Duration.durations_to_nonreduced_fractions(
-            durations
-        )
+        nonreduced_fractions = Duration.durations_to_nonreduced_fractions(durations)
         self.denominator = nonreduced_fractions[1].numerator
 
     def sustained(self) -> bool:

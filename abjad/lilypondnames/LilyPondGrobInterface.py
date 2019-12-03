@@ -1,4 +1,5 @@
 import typing
+
 from abjad.system.StorageFormatManager import StorageFormatManager
 
 
@@ -206,9 +207,7 @@ class LilyPondGrobInterface(object):
         """
         from abjad.ly import interface_properties
 
-        return tuple(
-            LilyPondGrobInterface(_) for _ in sorted(interface_properties)
-        )
+        return tuple(LilyPondGrobInterface(_) for _ in sorted(interface_properties))
 
     ### PUBLIC PROPERTIES ###
 

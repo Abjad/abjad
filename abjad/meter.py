@@ -5,12 +5,10 @@ Tools for modeling musical meter.
 import bisect
 import collections
 import typing
+
 import uqbar.graphs
 from abjad import indicators as abjad_indicators
-from abjad import mathtools
-from abjad import markups
-from abjad import rhythmtrees
-from abjad import system
+from abjad import markups, mathtools, rhythmtrees, system
 from abjad.core.Chord import Chord
 from abjad.core.Container import Container
 from abjad.core.LogicalTie import LogicalTie
@@ -22,12 +20,10 @@ from abjad.core.Tuplet import Tuplet
 from abjad.indicators.RepeatTie import RepeatTie
 from abjad.indicators.Tie import Tie
 from abjad.system.StorageFormatManager import StorageFormatManager
+from abjad.timespans import Timespan, TimespanList
 from abjad.top.inspect import inspect
 from abjad.top.mutate import mutate
 from abjad.top.select import select
-from abjad.timespans import Timespan
-from abjad.timespans import TimespanList
-from abjad.timespans import TimespanList
 from abjad.utilities.Duration import Duration
 from abjad.utilities.Multiplier import Multiplier
 from abjad.utilities.Offset import Offset
@@ -277,10 +273,7 @@ class Meter(object):
     ### INITIALIZER ###
 
     def __init__(
-        self,
-        argument=None,
-        increase_monotonic=None,
-        preferred_boundary_depth=None,
+        self, argument=None, increase_monotonic=None, preferred_boundary_depth=None,
     ):
         argument = argument or (4, 4)
         assert isinstance(preferred_boundary_depth, (int, type(None)))
@@ -289,9 +282,7 @@ class Meter(object):
         def recurse(node, factors, denominator, increase_monotonic):
             if factors:
                 factor, factors = factors[0], factors[1:]
-                preprolated_duration = node.preprolated_duration.__div__(
-                    factor
-                )
+                preprolated_duration = node.preprolated_duration.__div__(factor)
                 # if factor in (2, 3, 4, 5):
                 if factor in (2, 3, 4):
                     if factors:
@@ -300,9 +291,7 @@ class Meter(object):
                                 preprolated_duration=preprolated_duration
                             )
                             node.append(child)
-                            recurse(
-                                child, factors, denominator, increase_monotonic
-                            )
+                            recurse(child, factors, denominator, increase_monotonic)
                     else:
                         for _ in range(factor):
                             node.append(
@@ -330,10 +319,7 @@ class Meter(object):
                                 )
                                 grouping.append(child)
                                 recurse(
-                                    child,
-                                    factors,
-                                    denominator,
-                                    increase_monotonic,
+                                    child, factors, denominator, increase_monotonic,
                                 )
                         else:
                             for _ in range(part):
@@ -387,9 +373,7 @@ class Meter(object):
             # group two nested levels of 2s into a 4
             if 1 < len(factors) and factors[0] == factors[1] == 2:
                 factors[0:2] = [4]
-            root = rhythmtrees.RhythmTreeContainer(
-                preprolated_duration=fraction
-            )
+            root = rhythmtrees.RhythmTreeContainer(preprolated_duration=fraction)
             recurse(root, factors, denominator, increase_monotonic)
         else:
             name = type(self).__name__
@@ -560,9 +544,7 @@ class Meter(object):
         Returns Graphviz graph.
         """
 
-        def make_offset_node(
-            offset, leaf_one=None, leaf_two=None, is_last=False
-        ):
+        def make_offset_node(offset, leaf_one=None, leaf_two=None, is_last=False):
             if not is_last:
                 offset_node = uqbar.graphs.Node(
                     attributes={
@@ -575,13 +557,9 @@ class Meter(object):
                     }
                 )
             else:
-                offset_node = uqbar.graphs.Node(
-                    attributes={"shape": "Mrecord"}
-                )
+                offset_node = uqbar.graphs.Node(attributes={"shape": "Mrecord"})
             offset_field = uqbar.graphs.RecordField(label=str(offset))
-            weight_field = uqbar.graphs.RecordField(
-                label="+" * offsets[offset]
-            )
+            weight_field = uqbar.graphs.RecordField(label="+" * offsets[offset])
             group = uqbar.graphs.RecordGroup()
             group.extend([offset_field, weight_field])
             offset_node.append(group)
@@ -606,11 +584,7 @@ class Meter(object):
                 "truecolor": True,
             },
             edge_attributes={"penwidth": 2},
-            node_attributes={
-                "fontname": "Arial",
-                "fontsize": 12,
-                "penwidth": 2,
-            },
+            node_attributes={"fontname": "Arial", "fontsize": 12, "penwidth": 2,},
         )
         node_mapping = {}
         root = self._root_node
@@ -742,14 +716,9 @@ class Meter(object):
         rewrite_tuplets=True,
     ):
         def recurse(
-            boundary_depth=None,
-            boundary_offsets=None,
-            depth=0,
-            logical_tie=None,
+            boundary_depth=None, boundary_offsets=None, depth=0, logical_tie=None,
         ):
-            offsets = _MeterManager.get_offsets_at_depth(
-                depth, offset_inventory
-            )
+            offsets = _MeterManager.get_offsets_at_depth(depth, offset_inventory)
             logical_tie_duration = logical_tie._get_preprolated_duration()
             logical_tie_timespan = inspect(logical_tie).timespan()
             logical_tie_start_offset = logical_tie_timespan.start_offset
@@ -763,19 +732,13 @@ class Meter(object):
                 maximum_dot_count=maximum_dot_count,
             ):
                 split_offset = None
-                offsets = _MeterManager.get_offsets_at_depth(
-                    depth, offset_inventory
-                )
+                offsets = _MeterManager.get_offsets_at_depth(depth, offset_inventory)
                 # If the logical tie's start aligns,
                 # take the latest possible offset.
                 if logical_tie_starts_in_offsets:
                     offsets = reversed(offsets)
                 for offset in offsets:
-                    if (
-                        logical_tie_start_offset
-                        < offset
-                        < logical_tie_stop_offset
-                    ):
+                    if logical_tie_start_offset < offset < logical_tie_stop_offset:
                         split_offset = offset
                         break
                 if split_offset is not None:
@@ -807,11 +770,7 @@ class Meter(object):
                     offsets = reversed(boundary_offsets)
                 split_offset = None
                 for offset in offsets:
-                    if (
-                        logical_tie_start_offset
-                        < offset
-                        < logical_tie_stop_offset
-                    ):
+                    if logical_tie_start_offset < offset < logical_tie_stop_offset:
                         split_offset = offset
                         break
                 assert split_offset is not None
@@ -964,9 +923,7 @@ class Meter(object):
         meters = session()
         return meters
 
-    def generate_offset_kernel_to_denominator(
-        self, denominator, normalize=True
-    ):
+    def generate_offset_kernel_to_denominator(self, denominator, normalize=True):
         r"""
         Generates a dictionary of all offsets in a meter up
         to ``denominator``.
@@ -1123,9 +1080,7 @@ class Meter(object):
         inventory = []
         all_offsets = set()
         all_offsets.add(Offset(self.numerator, self.denominator))
-        for depth, nodes in sorted(
-            self.root_node._depthwise_inventory().items()
-        ):
+        for depth, nodes in sorted(self.root_node._depthwise_inventory().items()):
             for node in nodes:
                 all_offsets.add(Offset(node.start_offset))
             inventory.append(tuple(sorted(all_offsets)))
@@ -1158,9 +1113,7 @@ class Meter(object):
 
         Returns time signature.
         """
-        return abjad_indicators.TimeSignature(
-            self.root_node.preprolated_duration
-        )
+        return abjad_indicators.TimeSignature(self.root_node.preprolated_duration)
 
     @property
     def is_compound(self):
@@ -1700,10 +1653,7 @@ class MeterList(TypedList):
         postscript_scale *= float(scale)
         postscript_x_offset = (minimum * postscript_scale) - 1
         timespan_markup = timespans._make_timespan_list_markup(
-            timespans,
-            postscript_x_offset,
-            postscript_scale,
-            draw_offsets=False,
+            timespans, postscript_x_offset, postscript_scale, draw_offsets=False,
         )
         ps = markups.Postscript()
         rational_x_offset = Offset(0)
@@ -2117,9 +2067,7 @@ class _MeterFittingSession(object):
             assert 0 < maximum_run_length
         self._maximum_run_length = maximum_run_length
         if offset_counter:
-            self._offset_counter = MetricAccentKernel.count_offsets(
-                offset_counter
-            )
+            self._offset_counter = MetricAccentKernel.count_offsets(offset_counter)
         else:
             self._offset_counter = {}
         self._ordered_offsets = tuple(sorted(self.offset_counter))
@@ -2133,9 +2081,7 @@ class _MeterFittingSession(object):
             )
             self._kernels[kernel] = meter
         if self.kernels:
-            self._longest_kernel = sorted(
-                self._kernels, key=lambda _: _.duration
-            )[-1]
+            self._longest_kernel = sorted(self._kernels, key=lambda _: _.duration)[-1]
         else:
             self._longest_kernel = None
 
@@ -2164,9 +2110,7 @@ class _MeterFittingSession(object):
                         and 1 < len(kernels)
                         and self.maximum_run_length <= len(selected_kernels)
                     ):
-                        last_n_kernels = selected_kernels[
-                            -self.maximum_run_length :
-                        ]
+                        last_n_kernels = selected_kernels[-self.maximum_run_length :]
                         if len(set(last_n_kernels)) == 1:
                             if kernel == last_n_kernels[-1]:
                                 continue
@@ -2193,9 +2137,7 @@ class _MeterFittingSession(object):
     def _get_lookahead_score(self, current_offset, kernel, kernels):
         lookahead_scores = []
         lookahead_offset = current_offset + kernel.duration
-        lookahead_offset_counter = self._get_offset_counter_at(
-            lookahead_offset
-        )
+        lookahead_offset_counter = self._get_offset_counter_at(lookahead_offset)
         for lookahead_kernel in kernels:
             lookahead_scores.append(lookahead_kernel(lookahead_offset_counter))
         lookahead_score = sum(lookahead_scores)  # / len(lookahead_scores)
@@ -2350,10 +2292,7 @@ class _MeterManager(object):
             and maximum_dot_count < logical_tie_duration.dot_count
         ):
             return False
-        if (
-            not logical_tie_starts_in_offsets
-            and not logical_tie_stops_in_offsets
-        ):
+        if not logical_tie_starts_in_offsets and not logical_tie_stops_in_offsets:
             return False
         return True
 

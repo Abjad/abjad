@@ -1,6 +1,7 @@
 import difflib
 import os
 import pathlib
+
 from abjad.system.StorageFormatManager import StorageFormatManager
 
 

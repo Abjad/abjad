@@ -97,12 +97,7 @@ engravers = {
     "Beam_engraver": {
         "grobs_created": set(["Beam"]),
         "properties_read": set(
-            [
-                "baseMoment",
-                "beamMelismaBusy",
-                "beatStructure",
-                "subdivideBeams",
-            ]
+            ["baseMoment", "beamMelismaBusy", "beatStructure", "subdivideBeams",]
         ),
         "properties_written": set(["forbidBreak"]),
     },
@@ -117,9 +112,7 @@ engravers = {
         "properties_written": set([]),
     },
     "Break_align_engraver": {
-        "grobs_created": set(
-            ["BreakAlignGroup", "BreakAlignment", "LeftEdge"]
-        ),
+        "grobs_created": set(["BreakAlignGroup", "BreakAlignment", "LeftEdge"]),
         "properties_read": set([]),
         "properties_written": set([]),
     },
@@ -257,9 +250,7 @@ engravers = {
         "properties_written": set([]),
     },
     "Double_percent_repeat_engraver": {
-        "grobs_created": set(
-            ["DoublePercentRepeat", "DoublePercentRepeatCounter"]
-        ),
+        "grobs_created": set(["DoublePercentRepeat", "DoublePercentRepeatCounter"]),
         "properties_read": set(
             ["countPercentRepeats", "measureLength", "repeatCountVisibility"]
         ),
@@ -403,12 +394,7 @@ engravers = {
     "Grace_beam_engraver": {
         "grobs_created": set(["Beam"]),
         "properties_read": set(
-            [
-                "baseMoment",
-                "beamMelismaBusy",
-                "beatStructure",
-                "subdivideBeams",
-            ]
+            ["baseMoment", "beamMelismaBusy", "beatStructure", "subdivideBeams",]
         ),
         "properties_written": set([]),
     },
@@ -484,9 +470,7 @@ engravers = {
                 "printKeyCancellation",
             ]
         ),
-        "properties_written": set(
-            ["keyAlterations", "lastKeyAlterations", "tonic"]
-        ),
+        "properties_written": set(["keyAlterations", "lastKeyAlterations", "tonic"]),
     },
     "Key_performer": {
         "grobs_created": set([]),
@@ -527,20 +511,13 @@ engravers = {
     },
     "Mark_engraver": {
         "grobs_created": set(["RehearsalMark"]),
-        "properties_read": set(
-            ["markFormatter", "rehearsalMark", "stavesFound"]
-        ),
+        "properties_read": set(["markFormatter", "rehearsalMark", "stavesFound"]),
         "properties_written": set([]),
     },
     "Measure_grouping_engraver": {
         "grobs_created": set(["MeasureGrouping"]),
         "properties_read": set(
-            [
-                "baseMoment",
-                "beatStructure",
-                "currentMusicalColumn",
-                "measurePosition",
-            ]
+            ["baseMoment", "beatStructure", "currentMusicalColumn", "measurePosition",]
         ),
         "properties_written": set([]),
     },
@@ -582,11 +559,7 @@ engravers = {
     },
     "Multi_measure_rest_engraver": {
         "grobs_created": set(
-            [
-                "MultiMeasureRest",
-                "MultiMeasureRestNumber",
-                "MultiMeasureRestText",
-            ]
+            ["MultiMeasureRest", "MultiMeasureRestNumber", "MultiMeasureRestText",]
         ),
         "properties_read": set(
             [
@@ -599,9 +572,7 @@ engravers = {
         "properties_written": set([]),
     },
     "New_fingering_engraver": {
-        "grobs_created": set(
-            ["Fingering", "Script", "StringNumber", "StrokeFinger"]
-        ),
+        "grobs_created": set(["Fingering", "Script", "StringNumber", "StrokeFinger"]),
         "properties_read": set(
             [
                 "fingeringOrientations",
@@ -639,9 +610,7 @@ engravers = {
     },
     "Ottava_spanner_engraver": {
         "grobs_created": set(["OttavaBracket"]),
-        "properties_read": set(
-            ["currentMusicalColumn", "middleCOffset", "ottavation"]
-        ),
+        "properties_read": set(["currentMusicalColumn", "middleCOffset", "ottavation"]),
         "properties_written": set([]),
     },
     "Output_property_engraver": {
@@ -684,11 +653,7 @@ engravers = {
     "Percent_repeat_engraver": {
         "grobs_created": set(["PercentRepeat", "PercentRepeatCounter"]),
         "properties_read": set(
-            [
-                "countPercentRepeats",
-                "currentCommandColumn",
-                "repeatCountVisibility",
-            ]
+            ["countPercentRepeats", "currentCommandColumn", "repeatCountVisibility",]
         ),
         "properties_written": set([]),
     },
@@ -710,12 +675,7 @@ engravers = {
     },
     "Piano_pedal_engraver": {
         "grobs_created": set(
-            [
-                "PianoPedalBracket",
-                "SostenutoPedal",
-                "SustainPedal",
-                "UnaCordaPedal",
-            ]
+            ["PianoPedalBracket", "SostenutoPedal", "SustainPedal", "UnaCordaPedal",]
         ),
         "properties_read": set(
             [
@@ -887,9 +847,7 @@ engravers = {
     },
     "Stem_engraver": {
         "grobs_created": set(["Flag", "Stem", "StemStub", "StemTremolo"]),
-        "properties_read": set(
-            ["stemLeftBeamCount", "stemRightBeamCount", "whichBar"]
-        ),
+        "properties_read": set(["stemLeftBeamCount", "stemRightBeamCount", "whichBar"]),
         "properties_written": set([]),
     },
     "System_start_delimiter_engraver": {
@@ -966,11 +924,7 @@ engravers = {
     "Time_signature_engraver": {
         "grobs_created": set(["TimeSignature"]),
         "properties_read": set(
-            [
-                "initialTimeSignatureVisibility",
-                "partialBusy",
-                "timeSignatureFraction",
-            ]
+            ["initialTimeSignatureVisibility", "partialBusy", "timeSignatureFraction",]
         ),
         "properties_written": set([]),
     },
@@ -1009,9 +963,7 @@ engravers = {
     },
     "Trill_spanner_engraver": {
         "grobs_created": set(["TrillSpanner"]),
-        "properties_read": set(
-            ["currentCommandColumn", "currentMusicalColumn"]
-        ),
+        "properties_read": set(["currentCommandColumn", "currentMusicalColumn"]),
         "properties_written": set([]),
     },
     "Tuplet_engraver": {

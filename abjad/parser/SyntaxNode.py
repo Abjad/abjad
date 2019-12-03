@@ -48,9 +48,7 @@ class SyntaxNode(object):
 
         Returns string.
         """
-        return "{}({}, {})".format(
-            type(self).__name__, self.type, type(self.value)
-        )
+        return "{}({}, {})".format(type(self).__name__, self.type, type(self.value))
 
     def __str__(self):
         """

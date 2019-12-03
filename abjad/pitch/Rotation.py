@@ -184,9 +184,7 @@ class Rotation(object):
 
         if isinstance(argument, (abjad.Pitch, abjad.PitchClass)):
             return argument
-        if not isinstance(
-            argument, (abjad.PitchSegment, abjad.PitchClassSegment)
-        ):
+        if not isinstance(argument, (abjad.PitchSegment, abjad.PitchClassSegment)):
             argument = abjad.PitchSegment(argument)
         if not self.period:
             return argument.rotate(self.n, stravinsky=self.stravinsky)

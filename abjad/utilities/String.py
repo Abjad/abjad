@@ -1,11 +1,14 @@
 import pathlib
 import re
-import roman  # type: ignore
-import six
 import textwrap
 import typing
 import unicodedata
+
+import six
+
+import roman  # type: ignore
 from abjad import enums
+
 from .TypedList import TypedList
 
 
@@ -29,8 +32,7 @@ class String(str):
     )
 
     hyphen_delimited_lowercase_file_name_regex = re.compile(
-        "^{}$".format(hyphen_delimited_lowercase_file_name_regex_body),
-        re.VERBOSE,
+        "^{}$".format(hyphen_delimited_lowercase_file_name_regex_body), re.VERBOSE,
     )
 
     lowercamelcase_regex = re.compile(
@@ -41,9 +43,7 @@ class String(str):
         "^(([a-z,0-9]+[ ]+)*[a-z,0-9]+)?$", re.VERBOSE
     )
 
-    underscore_delimited_lowercase_regex_body = (
-        "(([a-z,0-9]+[_]+)*[a-z,0-9]+)?"
-    )
+    underscore_delimited_lowercase_regex_body = "(([a-z,0-9]+[_]+)*[a-z,0-9]+)?"
     underscore_delimited_lowercase_regex = re.compile(
         "^{}$".format(underscore_delimited_lowercase_regex_body), re.VERBOSE
     )
@@ -56,8 +56,7 @@ class String(str):
     )
 
     underscore_delimited_lowercase_file_name_regex = re.compile(
-        "^{}$".format(underscore_delimited_lowercase_file_name_regex_body),
-        re.VERBOSE,
+        "^{}$".format(underscore_delimited_lowercase_file_name_regex_body), re.VERBOSE,
     )
 
     underscore_delimited_lowercase_file_name_with_extension_regex_body = r"""
@@ -84,8 +83,7 @@ class String(str):
     )
 
     underscore_delimited_lowercase_package_regex = re.compile(
-        "^{}$".format(underscore_delimited_lowercase_package_regex_body),
-        re.VERBOSE,
+        "^{}$".format(underscore_delimited_lowercase_package_regex_body), re.VERBOSE,
     )
 
     uppercamelcase_regex = re.compile("^([A-Z,0-9]+[a-z,0-9]*)*$", re.VERBOSE)
@@ -386,9 +384,7 @@ class String(str):
         """
         if self == "":
             return True
-        return bool(
-            String.hyphen_delimited_lowercase_file_name_regex.match(self)
-        )
+        return bool(String.hyphen_delimited_lowercase_file_name_regex.match(self))
 
     def is_introduction_segment_name(self) -> bool:
         """
@@ -791,9 +787,7 @@ class String(str):
         """
         if self == "":
             return True
-        return bool(
-            String.underscore_delimited_lowercase_file_name_regex.match(self)
-        )
+        return bool(String.underscore_delimited_lowercase_file_name_regex.match(self))
 
     def is_snake_case_file_name_with_extension(self) -> bool:
         """
@@ -834,9 +828,7 @@ class String(str):
             False
 
         """
-        return bool(
-            String.underscore_delimited_lowercase_package_regex.match(self)
-        )
+        return bool(String.underscore_delimited_lowercase_package_regex.match(self))
 
     def is_space_delimited_lowercase(self) -> bool:
         """
@@ -1039,9 +1031,9 @@ class String(str):
             pattern_words = pattern.delimit_words(separate_caps=True)
             if pattern_words:
                 for i, string in enumerate(strings):
-                    if string.startswith(
-                        pattern_words[0]
-                    ) and string.match_word_starts(pattern_words):
+                    if string.startswith(pattern_words[0]) and string.match_word_starts(
+                        pattern_words
+                    ):
                         if i not in indices:
                             indices.append(i)
                 for i, string in enumerate(strings):
@@ -1765,9 +1757,7 @@ class String(str):
         return type(self)(string)
 
     @staticmethod
-    def to_tridirectional_direction_string(
-        argument,
-    ) -> typing.Optional["String"]:
+    def to_tridirectional_direction_string(argument,) -> typing.Optional["String"]:
         """
         Changes ``argument`` to tridirectional direction string.
 

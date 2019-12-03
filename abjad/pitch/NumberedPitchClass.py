@@ -1,5 +1,6 @@
 from abjad import enums
 from abjad.system.FormatSpecification import FormatSpecification
+
 from . import constants
 from .PitchClass import PitchClass
 
@@ -288,12 +289,8 @@ class NumberedPitchClass(PitchClass):
             interval_class_number = abs(self.number - argument.number)
             if 6 < interval_class_number:
                 interval_class_number = 12 - interval_class_number
-            return abjad.NumberedInversionEquivalentIntervalClass(
-                interval_class_number
-            )
-        interval_class = abjad.NumberedInversionEquivalentIntervalClass(
-            argument
-        )
+            return abjad.NumberedInversionEquivalentIntervalClass(interval_class_number)
+        interval_class = abjad.NumberedInversionEquivalentIntervalClass(argument)
         return type(self)(self.number - interval_class.number % 12)
 
     ### PRIVATE METHODS ###
@@ -306,9 +303,7 @@ class NumberedPitchClass(PitchClass):
         return type(self)(semitones)
 
     def _from_named_parts(self, dpc_number, alteration):
-        number = constants._diatonic_pc_number_to_pitch_class_number[
-            dpc_number
-        ]
+        number = constants._diatonic_pc_number_to_pitch_class_number[dpc_number]
         number += alteration
         self._from_number(number)
 
@@ -318,15 +313,11 @@ class NumberedPitchClass(PitchClass):
 
     def _from_pitch_or_pitch_class(self, pitch_or_pitch_class):
         self._arrow = pitch_or_pitch_class.arrow
-        self._number = self._to_nearest_quarter_tone(
-            float(pitch_or_pitch_class)
-        )
+        self._number = self._to_nearest_quarter_tone(float(pitch_or_pitch_class))
 
     def _get_alteration(self):
         dpc_number = self._get_diatonic_pc_number()
-        pc_number = constants._diatonic_pc_number_to_pitch_class_number[
-            dpc_number
-        ]
+        pc_number = constants._diatonic_pc_number_to_pitch_class_number[dpc_number]
         return float(self) - pc_number
 
     def _get_diatonic_pc_name(self):

@@ -1,5 +1,6 @@
-import abjad
 import os
+
+import abjad
 
 
 def test_IOManager_save_last_ly_as_01():

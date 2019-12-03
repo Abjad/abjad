@@ -1,4 +1,5 @@
 import typing
+
 from abjad import enums
 from abjad.lilypondnames.LilyPondGrobOverride import LilyPondGrobOverride
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
@@ -127,10 +128,7 @@ class StartHairpin(object):
     @staticmethod
     def _circled_tip():
         return LilyPondGrobOverride(
-            grob_name="Hairpin",
-            once=True,
-            property_path="circled-tip",
-            value=True,
+            grob_name="Hairpin", once=True, property_path="circled-tip", value=True,
         )
 
     @staticmethod

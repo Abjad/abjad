@@ -1,5 +1,6 @@
-import abjad
 import pytest
+
+import abjad
 
 
 def test_Parentage_logical_voice_01():
@@ -12,9 +13,7 @@ def test_Parentage_logical_voice_01():
 
     containment = abjad.inspect(staff).parentage().logical_voice()
     for component in abjad.iterate(staff).components():
-        assert (
-            abjad.inspect(component).parentage().logical_voice() == containment
-        )
+        assert abjad.inspect(component).parentage().logical_voice() == containment
 
 
 def test_Parentage_logical_voice_02():
@@ -27,9 +26,7 @@ def test_Parentage_logical_voice_02():
 
     containment = abjad.inspect(staff).parentage().logical_voice()
     for component in abjad.iterate(staff).components():
-        assert (
-            abjad.inspect(component).parentage().logical_voice() == containment
-        )
+        assert abjad.inspect(component).parentage().logical_voice() == containment
 
 
 def test_Parentage_logical_voice_03():
@@ -200,10 +197,7 @@ def test_Parentage_logical_voice_06():
     """
 
     container = abjad.Container(
-        [
-            abjad.Staff([abjad.Voice("c'8 d'8")]),
-            abjad.Staff([abjad.Voice("e'8 f'8")]),
-        ]
+        [abjad.Staff([abjad.Voice("c'8 d'8")]), abjad.Staff([abjad.Voice("e'8 f'8")]),]
     )
     container[0].name = "staff1"
     container[1].name = "staff2"
@@ -240,9 +234,7 @@ def test_Parentage_logical_voice_06():
         """
     )
 
-    signatures = [
-        abjad.inspect(leaf).parentage().logical_voice() for leaf in leaves
-    ]
+    signatures = [abjad.inspect(leaf).parentage().logical_voice() for leaf in leaves]
 
     signatures[0] == signatures[1]
     signatures[0] != signatures[2]
@@ -370,12 +362,8 @@ def test_Parentage_logical_voice_09():
     staff_2.name = "staff"
     staff_2[0].name = "voice"
 
-    staff_1_leaf_signature = (
-        abjad.inspect(staff_1[0][0]).parentage().logical_voice()
-    )
-    staff_2_leaf_signature = (
-        abjad.inspect(staff_2[0][0]).parentage().logical_voice()
-    )
+    staff_1_leaf_signature = abjad.inspect(staff_1[0][0]).parentage().logical_voice()
+    staff_2_leaf_signature = abjad.inspect(staff_2[0][0]).parentage().logical_voice()
     assert staff_1_leaf_signature == staff_2_leaf_signature
 
 

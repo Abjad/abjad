@@ -1,6 +1,6 @@
-import abjad
 import pytest
 
+import abjad
 
 pytest_plugins = ["helpers_namespace"]
 

@@ -2,13 +2,14 @@ import collections
 import fractions
 import numbers
 import typing
+
 from abjad import mathtools
-from abjad.mathtools import NonreducedFraction
-from abjad.mathtools import Ratio
+from abjad.mathtools import NonreducedFraction, Ratio
 from abjad.system.Tag import Tag
 from abjad.utilities.Duration import Duration
 from abjad.utilities.Multiplier import Multiplier
 from abjad.utilities.Sequence import Sequence
+
 from .LeafMaker import LeafMaker
 from .Note import Note
 from .Selection import Selection
@@ -167,9 +168,7 @@ class NoteMaker(object):
 
     ### INITIALIZER ###
 
-    def __init__(
-        self, *, increase_monotonic: bool = None, tag: Tag = None
-    ) -> None:
+    def __init__(self, *, increase_monotonic: bool = None, tag: Tag = None) -> None:
         if increase_monotonic is not None:
             increase_monotonic = bool(increase_monotonic)
         self._increase_monotonic = increase_monotonic
@@ -191,9 +190,7 @@ class NoteMaker(object):
             pitches = [pitches]
         if isinstance(durations, (numbers.Number, tuple)):
             durations = [durations]
-        nonreduced_fractions = Sequence(
-            [NonreducedFraction(_) for _ in durations]
-        )
+        nonreduced_fractions = Sequence([NonreducedFraction(_) for _ in durations])
         size = max(len(nonreduced_fractions), len(pitches))
         nonreduced_fractions = nonreduced_fractions.repeat_to_length(size)
         pitches = Sequence(pitches).repeat_to_length(size)
@@ -218,9 +215,7 @@ class NoteMaker(object):
             else:
                 # compute prolation
                 denominator = duration[0].denominator
-                numerator = mathtools.greatest_power_of_two_less_equal(
-                    denominator
-                )
+                numerator = mathtools.greatest_power_of_two_less_equal(denominator)
                 multiplier = Multiplier(numerator, denominator)
                 ratio = multiplier.reciprocal
                 duration = [ratio * Duration(d) for d in duration]
@@ -237,9 +232,7 @@ class NoteMaker(object):
     ### PRIVATE METHODS ###
 
     @staticmethod
-    def _make_unprolated_notes(
-        pitches, durations, increase_monotonic=None, tag=None
-    ):
+    def _make_unprolated_notes(pitches, durations, increase_monotonic=None, tag=None):
         assert len(pitches) == len(durations)
         result = []
         for pitch, duration in zip(pitches, durations):

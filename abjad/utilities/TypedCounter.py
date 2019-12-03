@@ -1,6 +1,8 @@
 import collections
+
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.StorageFormatManager import StorageFormatManager
+
 from .TypedCollection import TypedCollection
 
 

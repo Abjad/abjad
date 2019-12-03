@@ -2,8 +2,8 @@ import copy
 import math
 import re
 import typing
-from abjad import exceptions
-from abjad import mathtools
+
+from abjad import exceptions, mathtools
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.StorageFormatManager import StorageFormatManager
 
@@ -136,17 +136,13 @@ class Duration(Fraction):
                 and mathtools.is_integer_equivalent(argument[1])
                 and not argument[1] == 0
             ):
-                return Fraction.__new__(
-                    class_, int(argument[0]), int(argument[1])
-                )
+                return Fraction.__new__(class_, int(argument[0]), int(argument[1]))
             try:
                 return Fraction.__new__(class_, argument.duration)
             except AttributeError:
                 pass
             if isinstance(argument, str) and "/" not in argument:
-                result = Duration._initialize_from_lilypond_duration_string(
-                    argument
-                )
+                result = Duration._initialize_from_lilypond_duration_string(argument)
                 return Fraction.__new__(class_, result)
             if (
                 isinstance(argument, tuple)
@@ -226,9 +222,7 @@ class Duration(Fraction):
         if len(arguments) == 1 and isinstance(arguments[0], type(self)):
             fraction = Fraction.__truediv__(self, *arguments)
             result = abjad.Multiplier(fraction)
-        elif len(arguments) == 1 and isinstance(
-            arguments[0], abjad.NonreducedFraction
-        ):
+        elif len(arguments) == 1 and isinstance(arguments[0], abjad.NonreducedFraction):
             result = arguments[0].__rdiv__(self)
         else:
             result = type(self)(Fraction.__truediv__(self, *arguments))
@@ -490,9 +484,7 @@ class Duration(Fraction):
 
     @staticmethod
     def _group_by_implied_prolation(durations):
-        durations = [
-            mathtools.NonreducedFraction(duration) for duration in durations
-        ]
+        durations = [mathtools.NonreducedFraction(duration) for duration in durations]
         assert 0 < len(durations)
         group = [durations[0]]
         result = [group]
@@ -682,9 +674,7 @@ class Duration(Fraction):
             16/16   1
 
         """
-        good_denominator = mathtools.greatest_power_of_two_less_equal(
-            self.denominator
-        )
+        good_denominator = mathtools.greatest_power_of_two_less_equal(self.denominator)
         current_numerator = self.numerator
         candidate = type(self)(current_numerator, good_denominator)
         while not candidate.is_assignable:
@@ -761,9 +751,7 @@ class Duration(Fraction):
             16/16   1
 
         """
-        good_denominator = self._least_power_of_two_greater_equal(
-            self.denominator
-        )
+        good_denominator = self._least_power_of_two_greater_equal(self.denominator)
         current_numerator = self.numerator
         candidate = type(self)(current_numerator, good_denominator)
         while not candidate.is_assignable:
@@ -950,9 +938,7 @@ class Duration(Fraction):
         """
         import abjad
 
-        numerator = mathtools.greatest_power_of_two_less_equal(
-            self.denominator
-        )
+        numerator = mathtools.greatest_power_of_two_less_equal(self.denominator)
         return abjad.Multiplier(numerator, self.denominator)
 
     @property
@@ -1101,8 +1087,7 @@ class Duration(Fraction):
         denominators = [_.denominator for _ in durations_]
         lcd = mathtools.least_common_multiple(*denominators)
         nonreduced_fractions = [
-            mathtools.NonreducedFraction(_).with_denominator(lcd)
-            for _ in durations_
+            mathtools.NonreducedFraction(_).with_denominator(lcd) for _ in durations_
         ]
         return nonreduced_fractions
 

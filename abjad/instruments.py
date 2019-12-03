@@ -4,6 +4,7 @@ Instrument classes.
 
 import copy
 import typing
+
 from abjad.pitch.NamedPitch import NamedPitch
 from abjad.pitch.NamedPitchClass import NamedPitchClass
 from abjad.pitch.PitchRange import PitchRange
@@ -141,9 +142,7 @@ class Instrument(object):
         else:
             raise TypeError(pitch_range)
         self._pitch_range = pitch_range
-        middle_c_sounding_pitch = middle_c_sounding_pitch or abjad.NamedPitch(
-            "c'"
-        )
+        middle_c_sounding_pitch = middle_c_sounding_pitch or abjad.NamedPitch("c'")
         middle_c_sounding_pitch = abjad.NamedPitch(middle_c_sounding_pitch)
         self._middle_c_sounding_pitch = middle_c_sounding_pitch
         if primary is not None:
@@ -435,9 +434,7 @@ class Instrument(object):
                 pitch = interval.transpose(pitch)
                 leaf.written_pitch = pitch
             elif isinstance(leaf, abjad.Chord):
-                pitches = [
-                    interval.transpose(pitch) for pitch in leaf.written_pitches
-                ]
+                pitches = [interval.transpose(pitch) for pitch in leaf.written_pitches]
                 leaf.written_pitches = pitches
 
     @staticmethod
@@ -493,9 +490,7 @@ class Instrument(object):
                 written_pitch = interval.transpose(written_pitch)
                 leaf.written_pitch = written_pitch
             elif isinstance(leaf, abjad.Chord):
-                pitches = [
-                    interval.transpose(pitch) for pitch in leaf.written_pitches
-                ]
+                pitches = [interval.transpose(pitch) for pitch in leaf.written_pitches]
                 leaf.written_pitches = pitches
 
 
@@ -533,9 +528,7 @@ class StringNumber(object):
 
     ### INITIALIZER ###
 
-    def __init__(
-        self, numbers: typing.Union[int, typing.Iterable[int]] = None
-    ) -> None:
+    def __init__(self, numbers: typing.Union[int, typing.Iterable[int]] = None) -> None:
         if numbers is None:
             numbers_: typing.Tuple[int, ...] = ()
         elif isinstance(numbers, int):
@@ -658,9 +651,7 @@ class Tuning(object):
 
     ### INITIALIZER ###
 
-    def __init__(
-        self, pitches: typing.Union["Tuning", typing.Iterable] = None
-    ) -> None:
+    def __init__(self, pitches: typing.Union["Tuning", typing.Iterable] = None) -> None:
         if pitches is not None:
             if isinstance(pitches, type(self)):
                 pitches = pitches.pitches
@@ -819,9 +810,7 @@ class Tuning(object):
             result.append(pitch)
         return tuple(result)
 
-    def voice_pitch_classes(
-        self, pitch_classes, allow_open_strings: bool = True
-    ):
+    def voice_pitch_classes(self, pitch_classes, allow_open_strings: bool = True):
         r"""
         Voices ``pitch_classes``.
 
@@ -906,9 +895,7 @@ class Tuning(object):
         permutations = enumerator.yield_permutations()
         permutations = set([tuple(_) for _ in permutations])
         pitch_ranges = self.pitch_ranges
-        result: typing.List[
-            typing.Tuple[typing.Union[NamedPitch, None], ...]
-        ] = []
+        result: typing.List[typing.Tuple[typing.Union[NamedPitch, None], ...]] = []
         for permutation in permutations:
             sequences = []
             for pitch_range, pitch_class in zip(pitch_ranges, permutation):
@@ -918,9 +905,7 @@ class Tuning(object):
                 pitches = pitch_range.voice_pitch_class(pitch_class)
                 if not allow_open_strings:
                     pitches = [
-                        pitch
-                        for pitch in pitches
-                        if pitch != pitch_range.start_pitch
+                        pitch for pitch in pitches if pitch != pitch_range.start_pitch
                     ]
                 if not pitches:
                     pitches = [None]

@@ -2,8 +2,8 @@
 Classes and functions for modeling spanners: beams, hairpins, slurs, etc.
 """
 import typing
-from abjad import enums
-from abjad import typings
+
+from abjad import enums, typings
 from abjad.core.Chord import Chord
 from abjad.core.Component import Component
 from abjad.core.Leaf import Leaf
@@ -19,12 +19,12 @@ from abjad.indicators.BowContactPoint import BowContactPoint
 from abjad.indicators.BowMotionTechnique import BowMotionTechnique
 from abjad.indicators.Dynamic import Dynamic
 from abjad.indicators.GlissandoIndicator import GlissandoIndicator
-from abjad.indicators.StartHairpin import StartHairpin
 from abjad.indicators.LilyPondLiteral import LilyPondLiteral
 from abjad.indicators.Ottava import Ottava
 from abjad.indicators.RepeatTie import RepeatTie
 from abjad.indicators.StartBeam import StartBeam
 from abjad.indicators.StartGroup import StartGroup
+from abjad.indicators.StartHairpin import StartHairpin
 from abjad.indicators.StartPhrasingSlur import StartPhrasingSlur
 from abjad.indicators.StartPianoPedal import StartPianoPedal
 from abjad.indicators.StartSlur import StartSlur
@@ -33,14 +33,16 @@ from abjad.indicators.StartTrillSpan import StartTrillSpan
 from abjad.indicators.StopBeam import StopBeam
 from abjad.indicators.StopGroup import StopGroup
 from abjad.indicators.StopHairpin import StopHairpin
-from abjad.indicators.StopSlur import StopSlur
 from abjad.indicators.StopPhrasingSlur import StopPhrasingSlur
 from abjad.indicators.StopPianoPedal import StopPianoPedal
+from abjad.indicators.StopSlur import StopSlur
 from abjad.indicators.StopTextSpan import StopTextSpan
 from abjad.indicators.StopTrillSpan import StopTrillSpan
 from abjad.indicators.Tie import Tie
-from abjad.lilypondnames.LilyPondTweakManager import IndexedTweakManager
-from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
+from abjad.lilypondnames.LilyPondTweakManager import (
+    IndexedTweakManager,
+    LilyPondTweakManager,
+)
 from abjad.scheme import SchemeSymbol
 from abjad.system.Tag import Tag
 from abjad.system.Tags import Tags
@@ -662,9 +664,7 @@ def bow_contact_spanner(
         previous_leaf = inspect(leaf).leaf(-1)
         previous_contact_point = None
         if previous_leaf is not None:
-            previous_contact_points = inspect(previous_leaf).indicators(
-                BowContactPoint
-            )
+            previous_contact_points = inspect(previous_leaf).indicators(BowContactPoint)
             if previous_contact_points:
                 previous_contact_point = previous_contact_points[0]
         if (
@@ -678,9 +678,7 @@ def bow_contact_spanner(
                 direction_change = enums.Up
         else:
             previous_leaf = inspect(leaf).leaf(-1)
-            previous_contact_point = inspect(previous_leaf).indicator(
-                BowContactPoint
-            )
+            previous_contact_point = inspect(previous_leaf).indicator(BowContactPoint)
             if (
                 previous_contact_point < this_contact_point
                 and next_contact_point < this_contact_point
@@ -1460,9 +1458,7 @@ def glissando(
                     )
                 else:
                     attach(
-                        literal,
-                        leaf,
-                        tag=tag.append(Tag("abjad.glissando(1)")),
+                        literal, leaf, tag=tag.append(Tag("abjad.glissando(1)")),
                     )
             elif left_broken and leaf is leaves[0]:
                 strings = [
@@ -1504,10 +1500,7 @@ def glissando(
                 ]
                 if hide_middle_stems:
                     strings.extend(
-                        [
-                            r"\revert Dots.transparent",
-                            r"\revert Stem.transparent",
-                        ]
+                        [r"\revert Dots.transparent", r"\revert Stem.transparent",]
                     )
                 if right_broken:
                     deactivate_glissando = True
@@ -1533,9 +1526,7 @@ def glissando(
                 else:
                     literal = LilyPondLiteral(strings)
                     attach(
-                        literal,
-                        leaf,
-                        tag=tag.append(Tag("abjad.glissando(6)")),
+                        literal, leaf, tag=tag.append(Tag("abjad.glissando(6)")),
                     )
         if should_attach_glissando:
             glissando = GlissandoIndicator(zero_padding=zero_padding)

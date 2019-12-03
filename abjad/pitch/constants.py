@@ -304,9 +304,7 @@ _symbolic_accidental_regex_atom = (
     "(?P<symbolic_accidental>" "[#]+[+]?" "|[b]+[~]?" "|[+]" "|[~]" "|" ")"
 )
 
-_octave_number_regex_atom = "(?P<octave_number>{}|)".format(
-    _integer_regex_atom
-)
+_octave_number_regex_atom = "(?P<octave_number>{}|)".format(_integer_regex_atom)
 
 _octave_tick_regex_atom = "(?P<octave_tick>" ",+" "|'+" "|" ")"
 
@@ -314,9 +312,9 @@ _diatonic_pc_name_regex_atom = "(?P<diatonic_pc_name>" "[A-Ga-g]" ")"
 
 ### REGEX BODIES ###
 
-_comprehensive_accidental_regex_body = (
-    "(?P<comprehensive_accidental>{}|{})"
-).format(_alphabetic_accidental_regex_atom, _symbolic_accidental_regex_atom)
+_comprehensive_accidental_regex_body = ("(?P<comprehensive_accidental>{}|{})").format(
+    _alphabetic_accidental_regex_atom, _symbolic_accidental_regex_atom
+)
 
 _comprehensive_octave_regex_body = ("(?P<comprehensive_octave>{}|{})").format(
     _octave_number_regex_atom, _octave_tick_regex_atom
@@ -326,9 +324,7 @@ _comprehensive_pitch_class_name_regex_body = (
     "(?P<comprehensive_pitch_class_name>{}{})"
 ).format(_diatonic_pc_name_regex_atom, _comprehensive_accidental_regex_body)
 
-_comprehensive_pitch_name_regex_body = (
-    "(?P<comprehensive_pitch_name>{}{}{})"
-).format(
+_comprehensive_pitch_name_regex_body = ("(?P<comprehensive_pitch_name>{}{}{})").format(
     _diatonic_pc_name_regex_atom,
     _comprehensive_accidental_regex_body,
     _comprehensive_octave_regex_body,
@@ -403,13 +399,9 @@ _comprehensive_accidental_regex = re.compile(
     "^{}$".format(_comprehensive_accidental_regex_body), re.VERBOSE
 )
 
-_octave_tick_regex = re.compile(
-    "^{}$".format(_octave_tick_regex_atom), re.VERBOSE
-)
+_octave_tick_regex = re.compile("^{}$".format(_octave_tick_regex_atom), re.VERBOSE)
 
-_octave_number_regex = re.compile(
-    "^{}$".format(_octave_number_regex_atom), re.VERBOSE
-)
+_octave_number_regex = re.compile("^{}$".format(_octave_number_regex_atom), re.VERBOSE)
 
 _diatonic_pc_name_regex = re.compile(
     "^{}$".format(_diatonic_pc_name_regex_atom), re.VERBOSE
@@ -439,13 +431,9 @@ _pitch_class_octave_number_regex = re.compile(
     "^{}$".format(_pitch_class_octave_number_regex_body), re.VERBOSE
 )
 
-_pitch_name_regex = re.compile(
-    "^{}$".format(_pitch_name_regex_body), re.VERBOSE
-)
+_pitch_name_regex = re.compile("^{}$".format(_pitch_name_regex_body), re.VERBOSE)
 
-_range_string_regex = re.compile(
-    "^{}$".format(_range_string_regex_body), re.VERBOSE
-)
+_range_string_regex = re.compile("^{}$".format(_range_string_regex_body), re.VERBOSE)
 
 _interval_name_abbreviation_regex = re.compile(
     "^{}$".format(_interval_name_abbreviation_regex_body), re.VERBOSE

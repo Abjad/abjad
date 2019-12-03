@@ -1,5 +1,6 @@
-import abjad
 import copy
+
+import abjad
 
 
 def test_Note___copy___01():

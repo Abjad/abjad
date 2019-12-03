@@ -1,4 +1,5 @@
 import itertools
+
 from abjad import exceptions
 from abjad.indicators.RepeatTie import RepeatTie
 from abjad.indicators.Tie import Tie
@@ -9,6 +10,7 @@ from abjad.top.inspect import inspect
 from abjad.top.mutate import mutate
 from abjad.top.select import select
 from abjad.utilities.Duration import Duration
+
 from .Selection import Selection
 
 
@@ -45,9 +47,7 @@ class LogicalTie(Selection):
 
     ### PRIVATE METHODS ###
 
-    def _add_or_remove_notes_to_achieve_written_duration(
-        self, new_written_duration
-    ):
+    def _add_or_remove_notes_to_achieve_written_duration(self, new_written_duration):
         from abjad.spanners import tie as abjad_tie
         from .NoteMaker import NoteMaker
         from .Tuplet import Tuplet
@@ -95,9 +95,7 @@ class LogicalTie(Selection):
             tuplet = components[0]
             logical_tie = tuplet[0]._get_logical_tie()
             duration = logical_tie._get_preprolated_duration()
-            leaves_ = self._add_or_remove_notes_to_achieve_written_duration(
-                duration
-            )
+            leaves_ = self._add_or_remove_notes_to_achieve_written_duration(duration)
             multiplier = tuplet.multiplier
             tuplet = Tuplet(multiplier, [])
             # mutate(self.leaves).wrap(tuplet)
@@ -122,9 +120,7 @@ class LogicalTie(Selection):
 
     def _scale(self, multiplier):
         new_duration = multiplier * self.written_duration
-        return self._add_or_remove_notes_to_achieve_written_duration(
-            new_duration
-        )
+        return self._add_or_remove_notes_to_achieve_written_duration(new_duration)
 
     ### PUBLIC PROPERTIES ###
 
@@ -292,20 +288,14 @@ class LogicalTie(Selection):
         proportions = Ratio(proportions)
         target_duration = self._get_preprolated_duration()
         prolated_duration = target_duration / sum(proportions.numbers)
-        basic_written_duration = (
-            prolated_duration.equal_or_greater_power_of_two
-        )
-        written_durations = [
-            _ * basic_written_duration for _ in proportions.numbers
-        ]
+        basic_written_duration = prolated_duration.equal_or_greater_power_of_two
+        written_durations = [_ * basic_written_duration for _ in proportions.numbers]
         maker = NoteMaker()
         try:
             notes = [Note(0, _) for _ in written_durations]
         except exceptions.AssignabilityError:
             denominator = target_duration._denominator
-            note_durations = [
-                Duration(_, denominator) for _ in proportions.numbers
-            ]
+            note_durations = [Duration(_, denominator) for _ in proportions.numbers]
             notes = maker(0, note_durations)
         tuplet = Tuplet.from_duration(target_duration, notes)
         for leaf in self:

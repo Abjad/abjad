@@ -7,10 +7,12 @@ from .LilyPondContextSetting import LilyPondContextSetting
 from .LilyPondEngraver import LilyPondEngraver
 from .LilyPondGrob import LilyPondGrob
 from .LilyPondGrobInterface import LilyPondGrobInterface
-from .LilyPondNameManager import LilyPondNameManager
 from .LilyPondGrobNameManager import LilyPondGrobNameManager
 from .LilyPondGrobOverride import LilyPondGrobOverride
+from .LilyPondNameManager import LilyPondNameManager
 from .LilyPondSettingNameManager import LilyPondSettingNameManager
-from .LilyPondTweakManager import LilyPondTweakManager
-from .LilyPondTweakManager import IndexedTweakManager
-from .LilyPondTweakManager import IndexedTweakManagers
+from .LilyPondTweakManager import (
+    IndexedTweakManager,
+    IndexedTweakManagers,
+    LilyPondTweakManager,
+)

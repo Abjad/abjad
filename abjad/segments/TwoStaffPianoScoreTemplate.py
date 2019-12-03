@@ -7,6 +7,7 @@ from abjad.instruments import Piano
 from abjad.system.Tag import Tag
 from abjad.top.annotate import annotate
 from abjad.utilities.OrderedDict import OrderedDict
+
 from .ScoreTemplate import ScoreTemplate
 
 
@@ -150,8 +151,6 @@ class TwoStaffPianoScoreTemplate(ScoreTemplate):
 
         # SCORE
         score = Score(
-            [global_context, staff_group],
-            name="Two_Staff_Piano_Score",
-            tag=tag,
+            [global_context, staff_group], name="Two_Staff_Piano_Score", tag=tag,
         )
         return score

@@ -1,5 +1,6 @@
-import abjad
 import math
+
+import abjad
 
 
 def make_desordre_pitches():

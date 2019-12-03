@@ -7,11 +7,12 @@ import math
 import numbers
 import sys
 import typing
-from abjad import enums
-from abjad import mathtools
+
+from abjad import enums, mathtools
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.Signature import Signature
 from abjad.system.StorageFormatManager import StorageFormatManager
+
 from .CyclicTuple import CyclicTuple
 from .Expression import Expression
 
@@ -804,9 +805,7 @@ class Sequence(collections.abc.Sequence):
             return "unknown string template"
 
     @staticmethod
-    def _make_partition_indicator(
-        counts, cyclic, enchain, overhang, reversed_
-    ):
+    def _make_partition_indicator(counts, cyclic, enchain, overhang, reversed_):
         indicator = [str(_) for _ in counts]
         indicator = ", ".join(indicator)
         if cyclic:
@@ -880,14 +879,10 @@ class Sequence(collections.abc.Sequence):
         current_target_weight = weights[current_target_weight_index]
         l_copy = list(sequence)
         while l_copy:
-            current_target_weight = weights[
-                current_target_weight_index % len(weights)
-            ]
+            current_target_weight = weights[current_target_weight_index % len(weights)]
             item = l_copy.pop(0)
             current_part_weight = mathtools.weight(current_part)
-            candidate_part_weight = current_part_weight + mathtools.weight(
-                [item]
-            )
+            candidate_part_weight = current_part_weight + mathtools.weight([item])
             if candidate_part_weight < current_target_weight:
                 current_part.append(item)
             elif candidate_part_weight == current_target_weight:
@@ -985,13 +980,9 @@ class Sequence(collections.abc.Sequence):
         result = [class_(_) for _ in result]
         return class_(items=result)
 
-    def _update_expression(
-        self, frame, evaluation_template=None, map_operand=None
-    ):
+    def _update_expression(self, frame, evaluation_template=None, map_operand=None):
         callback = Expression._frame_to_callback(
-            frame,
-            evaluation_template=evaluation_template,
-            map_operand=map_operand,
+            frame, evaluation_template=evaluation_template, map_operand=map_operand,
         )
         return self._expression.append_callback(callback)
 
@@ -1756,9 +1747,7 @@ class Sequence(collections.abc.Sequence):
         """
         if self._expression:
             return self._update_expression(
-                inspect.currentframe(),
-                evaluation_template="map",
-                map_operand=operand,
+                inspect.currentframe(), evaluation_template="map", map_operand=operand,
             )
         if operand is not None:
             is_expression = hasattr(operand, "_set_map_index")
@@ -1968,16 +1957,10 @@ class Sequence(collections.abc.Sequence):
                     item_buffer.pop(0)
 
     @Signature(
-        argument_list_callback="_make_partition_indicator",
-        method_name="partition",
+        argument_list_callback="_make_partition_indicator", method_name="partition",
     )
     def partition_by_counts(
-        self,
-        counts,
-        cyclic=False,
-        enchain=False,
-        overhang=False,
-        reversed_=False,
+        self, counts, cyclic=False, enchain=False, overhang=False, reversed_=False,
     ) -> "Sequence":
         r"""
         Partitions sequence by ``counts``.
@@ -3432,9 +3415,7 @@ class Sequence(collections.abc.Sequence):
         ratio = mathtools.Ratio(ratio)
         length = len(self)
         counts = mathtools.partition_integer_by_ratio(length, ratio)
-        parts = self.partition_by_counts(
-            counts, cyclic=False, overhang=enums.Exact
-        )
+        parts = self.partition_by_counts(counts, cyclic=False, overhang=enums.Exact)
         return type(self)(parts)
 
     def partition_by_ratio_of_weights(self, weights) -> "Sequence":
@@ -3570,12 +3551,8 @@ class Sequence(collections.abc.Sequence):
         Returns nested sequence.
         """
         list_weight = mathtools.weight(self)
-        weights_parts = mathtools.partition_integer_by_ratio(
-            list_weight, weights
-        )
-        cumulative_weights = mathtools.cumulative_sums(
-            weights_parts, start=None
-        )
+        weights_parts = mathtools.partition_integer_by_ratio(list_weight, weights)
+        cumulative_weights = mathtools.cumulative_sums(weights_parts, start=None)
         items = []
         sublist: typing.List[typing.Any] = []
         items.append(sublist)
@@ -3818,9 +3795,7 @@ class Sequence(collections.abc.Sequence):
         """
         if allow_part_weights is enums.Exact:
             candidate = type(self)(self)
-            candidate = candidate.split(
-                weights, cyclic=cyclic, overhang=overhang
-            )
+            candidate = candidate.split(weights, cyclic=cyclic, overhang=overhang)
             flattened_candidate = candidate.flatten(depth=-1)
             if flattened_candidate == self[: len(flattened_candidate)]:
                 return candidate
@@ -4486,9 +4461,7 @@ class Sequence(collections.abc.Sequence):
                 items.append(item)
         return type(self)(items=items)
 
-    @Signature(
-        is_operator=True, method_name_callback="_make_reverse_method_name"
-    )
+    @Signature(is_operator=True, method_name_callback="_make_reverse_method_name")
     def reverse(self, recurse=False) -> "Sequence":
         r"""
         Reverses sequence.

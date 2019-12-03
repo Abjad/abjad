@@ -1,9 +1,10 @@
 import functools
 import numbers
-from abjad import enums
-from abjad import mathtools
+
+from abjad import enums, mathtools
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.StorageFormatManager import StorageFormatManager
+
 from . import constants
 
 
@@ -63,9 +64,7 @@ class Accidental(object):
         elif isinstance(name, str):
             if name in constants._accidental_name_to_abbreviation:
                 name = constants._accidental_name_to_abbreviation[name]
-                semitones = constants._accidental_abbreviation_to_semitones[
-                    name
-                ]
+                semitones = constants._accidental_abbreviation_to_semitones[name]
             else:
                 match = constants._comprehensive_accidental_regex.match(name)
                 if not match:
@@ -330,9 +329,7 @@ class Accidental(object):
         Returns string.
         """
         if self.semitones in constants._accidental_semitones_to_abbreviation:
-            return constants._accidental_semitones_to_abbreviation[
-                self.semitones
-            ]
+            return constants._accidental_semitones_to_abbreviation[self.semitones]
         character = "s"
         if self.semitones < 0:
             character = "f"
@@ -547,9 +544,7 @@ class Accidental(object):
 
         Returns string.
         """
-        abbreviation = constants._accidental_semitones_to_abbreviation[
-            self.semitones
-        ]
+        abbreviation = constants._accidental_semitones_to_abbreviation[self.semitones]
         symbol = constants._accidental_abbreviation_to_symbol[abbreviation]
         return symbol
 

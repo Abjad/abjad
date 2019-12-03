@@ -11,9 +11,9 @@ import itertools
 import math
 import numbers
 import typing
+
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.StorageFormatManager import StorageFormatManager
-
 
 ### FUNCTIONS ###
 
@@ -110,9 +110,7 @@ def all_are_nonnegative_integer_equivalent_numbers(argument) -> bool:
 
     """
     try:
-        return all(
-            is_nonnegative_integer_equivalent_number(_) for _ in argument
-        )
+        return all(is_nonnegative_integer_equivalent_number(_) for _ in argument)
     except TypeError:
         return False
 
@@ -499,9 +497,7 @@ def factors(n) -> typing.List[int]:
     return factors
 
 
-def fraction_to_proper_fraction(
-    rational,
-) -> typing.Tuple[int, fractions.Fraction]:
+def fraction_to_proper_fraction(rational,) -> typing.Tuple[int, fractions.Fraction]:
     """
     Changes ``rational`` to proper fraction.
 
@@ -1912,9 +1908,7 @@ class NonreducedFraction(fractions.Fraction):
 
     ### PUBLIC METHODS ###
 
-    def multiply(
-        self, multiplier, preserve_numerator=False
-    ) -> "NonreducedFraction":
+    def multiply(self, multiplier, preserve_numerator=False) -> "NonreducedFraction":
         """
         Multiplies nonreduced fraction by ``multiplier`` with numerator
         preservation where possible.
@@ -1954,9 +1948,7 @@ class NonreducedFraction(fractions.Fraction):
         else:
             return multiplier * self
 
-    def multiply_with_cross_cancelation(
-        self, multiplier
-    ) -> "NonreducedFraction":
+    def multiply_with_cross_cancelation(self, multiplier) -> "NonreducedFraction":
         """
         Multiplies nonreduced fraction by ``argument`` with cross-cancelation.
 
@@ -1994,9 +1986,7 @@ class NonreducedFraction(fractions.Fraction):
             if factor in self_denominator_factors:
                 self_denominator_factors.remove(factor)
                 multiplier_numerator_factors.remove(factor)
-        result_numerator_factors = (
-            self_numerator_factors + multiplier_numerator_factors
-        )
+        result_numerator_factors = self_numerator_factors + multiplier_numerator_factors
         result_denominator_factors = (
             self_denominator_factors + multiplier_denominator_factors
         )
@@ -2122,9 +2112,7 @@ class NonreducedFraction(fractions.Fraction):
             pair = (current_numerator, current_denominator)
         return self._from_pair(pair)
 
-    def with_multiple_of_denominator(
-        self, denominator
-    ) -> "NonreducedFraction":
+    def with_multiple_of_denominator(self, denominator) -> "NonreducedFraction":
         """
         Returns new nonreduced fraction with multiple of integer
         ``denominator``.

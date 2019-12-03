@@ -1,14 +1,8 @@
-from abjad import Left, Right
-from abjad import indicators
-from abjad import utilities
-from abjad import mathtools
+from abjad import Left, Right, core, indicators, mathtools
 from abjad import pitch as abjad_pitch
-from abjad import core
-from abjad.top import attach
-from abjad.top import detach
-from abjad.top import inspect
-from abjad.top import select
+from abjad import utilities
 from abjad.system import Parser
+from abjad.top import attach, detach, inspect, select
 
 
 class ReducedLyParser(Parser):
@@ -593,17 +587,11 @@ class ReducedLyParser(Parser):
         for leaf in leaves:
             span_events = self._get_span_events(leaf)
             for current_class, directions in span_events.items():
-                if current_class in (
-                    indicators.StartSlur,
-                    indicators.StopSlur,
-                ):
+                if current_class in (indicators.StartSlur, indicators.StopSlur,):
                     indicator = current_class()
                     attach(indicator, leaf)
                     continue
-                if current_class in (
-                    indicators.StartBeam,
-                    indicators.StopBeam,
-                ):
+                if current_class in (indicators.StartBeam, indicators.StopBeam,):
                     indicator = current_class()
                     attach(indicator, leaf)
                     continue

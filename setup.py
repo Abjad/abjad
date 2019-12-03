@@ -3,9 +3,7 @@ import os
 
 import setuptools
 
-version_file_path = os.path.join(
-    os.path.dirname(__file__), "abjad", "_version.py"
-)
+version_file_path = os.path.join(os.path.dirname(__file__), "abjad", "_version.py")
 with open(version_file_path, "r") as file_pointer:
     file_contents_string = file_pointer.read()
 local_dict: dict = {}

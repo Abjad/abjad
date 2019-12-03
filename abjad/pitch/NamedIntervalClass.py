@@ -1,6 +1,7 @@
 from abjad import mathtools
-from . import constants
 from abjad.system.FormatSpecification import FormatSpecification
+
+from . import constants
 from .IntervalClass import IntervalClass
 
 
@@ -55,9 +56,7 @@ class NamedIntervalClass(IntervalClass):
             return NotImplemented
         dummy_pitch = abjad.NamedPitch(0)
         new_pitch = dummy_pitch + self + argument
-        interval = abjad.NamedInterval.from_pitch_carriers(
-            dummy_pitch, new_pitch
-        )
+        interval = abjad.NamedInterval.from_pitch_carriers(dummy_pitch, new_pitch)
         return type(self)(interval)
 
     def __eq__(self, argument):
@@ -202,9 +201,7 @@ class NamedIntervalClass(IntervalClass):
             return NotImplemented
         dummy_pitch = abjad.NamedPitch(0)
         new_pitch = dummy_pitch + self - argument
-        interval = abjad.NamedInterval.from_pitch_carriers(
-            dummy_pitch, new_pitch
-        )
+        interval = abjad.NamedInterval.from_pitch_carriers(dummy_pitch, new_pitch)
         return type(self)(interval)
 
     ### PRIVATE PROPERTIES ###
@@ -233,9 +230,7 @@ class NamedIntervalClass(IntervalClass):
             diatonic_number = abs(argument.number)
             direction = mathtools.sign(argument.number)
         except AttributeError:
-            direction, quality, diatonic_number = self._numbered_to_named(
-                argument
-            )
+            direction, quality, diatonic_number = self._numbered_to_named(argument)
         self._from_named_parts(direction, quality, diatonic_number)
 
     ### PRIVATE METHODS ###
@@ -287,9 +282,7 @@ class NamedIntervalClass(IntervalClass):
         Returns string.
         """
         return "{}{}{}".format(
-            constants._direction_number_to_direction_symbol[
-                self.direction_number
-            ],
+            constants._direction_number_to_direction_symbol[self.direction_number],
             self._quality,
             abs(self.number),
         )

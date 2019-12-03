@@ -25,12 +25,7 @@ interface_properties = {
         "positioning-done",
         "stacking-dir",
     ],
-    "ambitus-interface": [
-        "gap",
-        "length-fraction",
-        "maximum-gap",
-        "thickness",
-    ],
+    "ambitus-interface": ["gap", "length-fraction", "maximum-gap", "thickness",],
     "arpeggio-interface": [
         "arpeggio-direction",
         "dash-definition",
@@ -49,12 +44,7 @@ interface_properties = {
         "staff-affinity",
         "staff-staff-spacing",
     ],
-    "balloon-interface": [
-        "annotation-balloon",
-        "annotation-line",
-        "padding",
-        "text",
-    ],
+    "balloon-interface": ["annotation-balloon", "annotation-line", "padding", "text",],
     "bar-line-interface": [
         "allow-span-bar",
         "bar-extent",
@@ -95,10 +85,7 @@ interface_properties = {
         "skip-quanting",
     ],
     "bend-after-interface": ["thickness"],
-    "break-alignable-interface": [
-        "break-align-symbols",
-        "non-break-align-symbols",
-    ],
+    "break-alignable-interface": ["break-align-symbols", "non-break-align-symbols",],
     "break-aligned-interface": [
         "break-align-anchor",
         "break-align-anchor-alignment",
@@ -108,21 +95,12 @@ interface_properties = {
     "break-alignment-interface": ["break-align-orders", "positioning-done"],
     "breathing-sign-interface": ["direction"],
     "chord-name-interface": [],
-    "clef-interface": [
-        "full-size-change",
-        "glyph",
-        "glyph-name",
-        "non-default",
-    ],
+    "clef-interface": ["full-size-change", "glyph", "glyph-name", "non-default",],
     "clef-modifier-interface": ["clef-alignments"],
     "cluster-beacon-interface": ["positions"],
     "cluster-interface": ["padding", "style"],
     "custos-interface": ["neutral-direction", "neutral-position", "style"],
-    "dot-column-interface": [
-        "chord-dots-limit",
-        "direction",
-        "positioning-done",
-    ],
+    "dot-column-interface": ["chord-dots-limit", "direction", "positioning-done",],
     "dots-interface": ["direction", "dot-count", "style"],
     "dynamic-interface": [],
     "dynamic-line-spanner-interface": ["avoid-slur"],
@@ -138,11 +116,7 @@ interface_properties = {
     "episema-interface": [],
     "figured-bass-continuation-interface": ["padding", "thickness"],
     "finger-interface": [],
-    "fingering-column-interface": [
-        "padding",
-        "positioning-done",
-        "snap-radius",
-    ],
+    "fingering-column-interface": ["padding", "positioning-done", "snap-radius",],
     "flag-interface": ["glyph-name", "stroke-style", "style"],
     "font-interface": [
         "font-encoding",
@@ -152,11 +126,7 @@ interface_properties = {
         "font-shape",
         "font-size",
     ],
-    "footnote-interface": [
-        "automatically-numbered",
-        "footnote",
-        "footnote-text",
-    ],
+    "footnote-interface": ["automatically-numbered", "footnote", "footnote-text",],
     "footnote-spanner-interface": ["footnote-text"],
     "fret-diagram-interface": [
         "align-dir",
@@ -269,12 +239,7 @@ interface_properties = {
         "thickness",
         "to-barline",
     ],
-    "lyric-extender-interface": [
-        "left-padding",
-        "next",
-        "right-padding",
-        "thickness",
-    ],
+    "lyric-extender-interface": ["left-padding", "next", "right-padding", "thickness",],
     "lyric-hyphen-interface": [
         "dash-period",
         "height",
@@ -311,11 +276,7 @@ interface_properties = {
         "positioning-done",
         "prefer-dotted-right",
     ],
-    "note-column-interface": [
-        "force-hshift",
-        "horizontal-shift",
-        "ignore-collision",
-    ],
+    "note-column-interface": ["force-hshift", "horizontal-shift", "ignore-collision",],
     "note-head-interface": [
         "duration-log",
         "glyph-name",
@@ -339,9 +300,7 @@ interface_properties = {
         "minimum-length",
         "shorten-pair",
     ],
-    "outside-staff-axis-group-interface": [
-        "outside-staff-placement-directive"
-    ],
+    "outside-staff-axis-group-interface": ["outside-staff-placement-directive"],
     "outside-staff-interface": [
         "outside-staff-horizontal-padding",
         "outside-staff-padding",
@@ -388,12 +347,7 @@ interface_properties = {
     "pitched-trill-interface": [],
     "pure-from-neighbor-interface": [],
     "rest-collision-interface": ["minimum-distance", "positioning-done"],
-    "rest-interface": [
-        "direction",
-        "minimum-distance",
-        "style",
-        "voiced-position",
-    ],
+    "rest-interface": ["direction", "minimum-distance", "style", "voiced-position",],
     "rhythmic-grob-interface": [],
     "rhythmic-head-interface": ["duration-log", "glissando-skip"],
     "script-column-interface": [],
@@ -464,10 +418,7 @@ interface_properties = {
         "measure-length",
     ],
     "spacing-interface": [],
-    "spacing-options-interface": [
-        "shortest-duration-space",
-        "spacing-increment",
-    ],
+    "spacing-options-interface": ["shortest-duration-space", "spacing-increment",],
     "spacing-spanner-interface": [
         "average-spacing-wishes",
         "base-shortest-duration",
@@ -487,10 +438,7 @@ interface_properties = {
         "spanner-id",
         "to-barline",
     ],
-    "staff-grouper-interface": [
-        "staff-staff-spacing",
-        "staffgroup-staff-spacing",
-    ],
+    "staff-grouper-interface": ["staff-staff-spacing", "staffgroup-staff-spacing",],
     "staff-spacing-interface": ["stem-spacing-correction"],
     "staff-symbol-interface": [
         "break-align-symbols",
@@ -538,11 +486,7 @@ interface_properties = {
     "string-number-interface": [],
     "stroke-finger-interface": ["digit-names"],
     "system-interface": ["labels"],
-    "system-start-delimiter-interface": [
-        "collapse-height",
-        "style",
-        "thickness",
-    ],
+    "system-start-delimiter-interface": ["collapse-height", "style", "thickness",],
     "system-start-text-interface": [
         "long-text",
         "self-alignment-X",

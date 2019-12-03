@@ -409,13 +409,9 @@ def test_Inspection_leaf_12():
     lower_voice_1.name = "low"
     lower_voice_2 = abjad.Voice([abjad.Note(i, (1, 8)) for i in range(4, 8)])
     lower_voice_2.name = "low"
-    higher_voice_1 = abjad.Voice(
-        [abjad.Note(i, (1, 8)) for i in range(12, 16)]
-    )
+    higher_voice_1 = abjad.Voice([abjad.Note(i, (1, 8)) for i in range(12, 16)])
     higher_voice_1.name = "high"
-    higher_voice_2 = abjad.Voice(
-        [abjad.Note(i, (1, 8)) for i in range(16, 20)]
-    )
+    higher_voice_2 = abjad.Voice([abjad.Note(i, (1, 8)) for i in range(16, 20)])
     higher_voice_2.name = "high"
 
     staff_1 = abjad.Staff([higher_voice_1, lower_voice_1])

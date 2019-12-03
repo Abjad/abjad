@@ -1,10 +1,11 @@
 import typing
+
 from abjad import const
 from abjad.indicators.Clef import Clef
 from abjad.indicators.StartBeam import StartBeam
-from abjad.indicators.StopBeam import StopBeam
 from abjad.indicators.StartHairpin import StartHairpin
 from abjad.indicators.StartTextSpan import StartTextSpan
+from abjad.indicators.StopBeam import StopBeam
 from abjad.indicators.StopHairpin import StopHairpin
 from abjad.indicators.StopTextSpan import StopTextSpan
 from abjad.instruments import Instrument
@@ -15,6 +16,7 @@ from abjad.top.iterate import iterate
 from abjad.top.setting import setting
 from abjad.utilities.Duration import Duration
 from abjad.utilities.Sequence import Sequence
+
 from .Container import Container
 from .Context import Context
 from .Leaf import Leaf
@@ -82,9 +84,7 @@ class Wellformedness(object):
 
     ### PUBLIC METHODS ###
 
-    def check_beamed_long_notes(
-        self, argument=None
-    ) -> typing.Tuple[typing.List, int]:
+    def check_beamed_long_notes(self, argument=None) -> typing.Tuple[typing.List, int]:
         r"""
         Checks beamed long notes.
 
@@ -207,10 +207,7 @@ class Wellformedness(object):
             if stop_wrapper is None:
                 violators.append(leaf)
                 continue
-            if (
-                stop_wrapper.leaked_start_offset
-                < start_wrapper.leaked_start_offset
-            ):
+            if stop_wrapper.leaked_start_offset < start_wrapper.leaked_start_offset:
                 violators.append(leaf)
                 continue
             leaf_start_offset = inspect(leaf).timespan().start_offset
@@ -218,9 +215,7 @@ class Wellformedness(object):
                 violators.append(leaf)
         return violators, total
 
-    def check_duplicate_ids(
-        self, argument=None
-    ) -> typing.Tuple[typing.List, int]:
+    def check_duplicate_ids(self, argument=None) -> typing.Tuple[typing.List, int]:
         """
         Checks duplicate IDs.
         """
@@ -231,14 +226,10 @@ class Wellformedness(object):
         if len(unique_ids) < len(total_ids):
             for current_id in unique_ids:
                 if 1 < total_ids.count(current_id):
-                    violators.extend(
-                        [_ for _ in components if id(_) == current_id]
-                    )
+                    violators.extend([_ for _ in components if id(_) == current_id])
         return violators, len(total_ids)
 
-    def check_empty_containers(
-        self, argument=None
-    ) -> typing.Tuple[typing.List, int]:
+    def check_empty_containers(self, argument=None) -> typing.Tuple[typing.List, int]:
         r"""
         Checks empty containers.
 
@@ -271,9 +262,7 @@ class Wellformedness(object):
                 violators.append(container)
         return violators, len(containers)
 
-    def check_missing_parents(
-        self, argument=None
-    ) -> typing.Tuple[typing.List, int]:
+    def check_missing_parents(self, argument=None) -> typing.Tuple[typing.List, int]:
         """
         Checks missing parents.
         """
@@ -731,10 +720,7 @@ class Wellformedness(object):
                     command = wrapper.indicator.command
                     command = command.replace("stop", "")
                     command = command.replace("Stop", "")
-                    if (
-                        command not in open_spanners
-                        or not open_spanners[command]
-                    ):
+                    if command not in open_spanners or not open_spanners[command]:
                         violators.append(wrapper.component)
                     else:
                         open_spanners[command].pop()
@@ -868,9 +854,7 @@ class Wellformedness(object):
             wrappers.sort(key=lambda _: _.leaked_start_offset)
             for wrapper in wrappers:
                 parameter = getattr(wrapper.indicator, "parameter", None)
-                if parameter == "DYNAMIC" or isinstance(
-                    wrapper.indicator, StopHairpin
-                ):
+                if parameter == "DYNAMIC" or isinstance(wrapper.indicator, StopHairpin):
                     last_dynamic = wrapper.indicator
                     last_tag = wrapper.tag
                     if isinstance(wrapper.indicator, StartHairpin):
@@ -961,10 +945,7 @@ class Wellformedness(object):
                     command = wrapper.indicator.command
                     command = command.replace("stop", "")
                     command = command.replace("Stop", "")
-                    if (
-                        command not in open_spanners
-                        or not open_spanners[command]
-                    ):
+                    if command not in open_spanners or not open_spanners[command]:
                         # unmatched stop text span
                         pass
                     else:

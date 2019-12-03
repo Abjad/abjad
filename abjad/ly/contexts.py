@@ -252,9 +252,7 @@ contexts = {
         "default_child": "Staff",
     },
     "GregorianTranscriptionStaff": {
-        "accepts": set(
-            ["CueVoice", "GregorianTranscriptionVoice", "NullVoice"]
-        ),
+        "accepts": set(["CueVoice", "GregorianTranscriptionVoice", "NullVoice"]),
         "aliases": set(["Staff"]),
         "consists": set(
             [

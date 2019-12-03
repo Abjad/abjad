@@ -1,4 +1,5 @@
 import typing
+
 from abjad.scheme import Scheme
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 

@@ -1,5 +1,6 @@
-import abjad
 import pytest
+
+import abjad
 import abjad.rhythmtrees
 
 

@@ -1,6 +1,6 @@
 import typing
-from abjad import enums
-from abjad import typings
+
+from abjad import enums, typings
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.system.StorageFormatManager import StorageFormatManager
@@ -53,10 +53,7 @@ class BendAfter(object):
     ### INITIALIZER ###
 
     def __init__(
-        self,
-        bend_amount: typings.Number = -4,
-        *,
-        tweaks: LilyPondTweakManager = None,
+        self, bend_amount: typings.Number = -4, *, tweaks: LilyPondTweakManager = None,
     ) -> None:
         assert isinstance(bend_amount, (int, float)), repr(bend_amount)
         self._bend_amount = bend_amount

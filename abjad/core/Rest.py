@@ -2,6 +2,7 @@ from abjad import typings
 from abjad.system.Tag import Tag
 from abjad.top.parse import parse
 from abjad.utilities.Duration import Duration
+
 from .Leaf import Leaf
 
 

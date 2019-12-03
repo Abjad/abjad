@@ -1,4 +1,5 @@
 import typing
+
 from .FormatSpecification import FormatSpecification
 from .StorageFormatManager import StorageFormatManager
 

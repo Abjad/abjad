@@ -1,7 +1,9 @@
 import collections
 import inspect
+
 from abjad.top.new import new
 from abjad.utilities.Duration import Duration
+
 from .Set import Set
 
 
@@ -240,9 +242,7 @@ class PitchSet(Set):
             return False
         if not len(self) == len(argument):
             return False
-        difference = -(
-            abjad.NamedPitch(argument[0], 4) - abjad.NamedPitch(self[0], 4)
-        )
+        difference = -(abjad.NamedPitch(argument[0], 4) - abjad.NamedPitch(self[0], 4))
         new_pitches = (x + difference for x in self)
         new_pitches = new(self, items=new_pitches)
         return argument == new_pitches

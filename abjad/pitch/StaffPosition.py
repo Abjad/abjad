@@ -1,8 +1,10 @@
 import functools
 import numbers
-from . import constants
+
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.StorageFormatManager import StorageFormatManager
+
+from . import constants
 
 
 @functools.total_ordering

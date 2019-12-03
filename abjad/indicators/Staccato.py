@@ -1,4 +1,5 @@
 import typing
+
 from abjad import enums
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
@@ -45,9 +46,7 @@ class Staccato(object):
     ) -> None:
         direction_ = String.to_tridirectional_ordinal_constant(direction)
         if direction_ is not None:
-            assert isinstance(direction_, enums.VerticalAlignment), repr(
-                direction_
-            )
+            assert isinstance(direction_, enums.VerticalAlignment), repr(direction_)
             directions = (enums.Up, enums.Down, enums.Center, None)
             assert direction_ in directions, repr(direction_)
         self._direction = direction_

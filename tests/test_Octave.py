@@ -1,12 +1,12 @@
 import pytest
+
 from abjad.pitch import (
     NamedPitch,
     NamedPitchClass,
-    Octave,
     NumberedPitch,
     NumberedPitchClass,
+    Octave,
 )
-
 
 values = [
     ("'", 4),
@@ -70,9 +70,7 @@ values = [
 
 @pytest.mark.parametrize("input_, expected_number", values)
 def test_init(input_, expected_number):
-    if isinstance(expected_number, type) and issubclass(
-        expected_number, Exception
-    ):
+    if isinstance(expected_number, type) and issubclass(expected_number, Exception):
         with pytest.raises(expected_number):
             Octave(input_)
         return

@@ -1,12 +1,13 @@
 import copy
 import typing
-from abjad import instruments
-from abjad import typings
+
+from abjad import instruments, typings
 from abjad.pitch.NamedPitch import NamedPitch
+from abjad.system.Tag import Tag
 from abjad.top.inspect import inspect
 from abjad.top.parse import parse
-from abjad.system.Tag import Tag
 from abjad.utilities.Duration import Duration
+
 from .DrumNoteHead import DrumNoteHead
 from .Leaf import Leaf
 from .NoteHead import NoteHead
@@ -57,10 +58,7 @@ class Note(Leaf):
     ### INITIALIZER ###
 
     def __init__(
-        self,
-        *arguments,
-        multiplier: typings.DurationTyping = None,
-        tag: Tag = None,
+        self, *arguments, multiplier: typings.DurationTyping = None, tag: Tag = None,
     ) -> None:
         from abjad.ly import drums
         from .Chord import Chord

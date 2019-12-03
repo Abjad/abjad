@@ -1,4 +1,5 @@
 import typing
+
 from abjad.pitch.NamedPitch import NamedPitch
 from abjad.pitch.StaffPosition import StaffPosition
 from abjad.system.FormatSpecification import FormatSpecification
@@ -357,8 +358,7 @@ class Clef(object):
             lowest_treble_line_pitch._get_diatonic_pitch_number()
         )
         candidate_steps_below_treble = (
-            lowest_treble_line_diatonic_pitch_number
-            - min_diatonic_pitch_number
+            lowest_treble_line_diatonic_pitch_number - min_diatonic_pitch_number
         )
         highest_bass_line_pitch = NamedPitch("A3")
         highest_bass_line_diatonic_pitch_number = (

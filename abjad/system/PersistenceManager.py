@@ -2,6 +2,7 @@ import os
 import re
 import shutil
 import tempfile
+
 from .StorageFormatManager import StorageFormatManager
 
 
@@ -52,11 +53,7 @@ class PersistenceManager(object):
     ### PUBLIC METHODS ###
 
     def as_ly(
-        self,
-        ly_file_path=None,
-        illustrate_function=None,
-        strict=None,
-        **keywords,
+        self, ly_file_path=None, illustrate_function=None, strict=None, **keywords,
     ):
         """
         Persists client as LilyPond file.
@@ -146,9 +143,7 @@ class PersistenceManager(object):
             extension = "mid"
         else:
             extension = "midi"
-        midi_file_path = "{}.{}".format(
-            os.path.splitext(ly_file_path)[0], extension
-        )
+        midi_file_path = "{}.{}".format(os.path.splitext(ly_file_path)[0], extension)
         if remove_ly:
             os.remove(ly_file_path)
         return (
@@ -297,9 +292,7 @@ class PersistenceManager(object):
 
         timer = abjad.Timer()
         with timer:
-            success = abjad.IOManager.run_lilypond(
-                temporary_ly_file_path, flags=flags
-            )
+            success = abjad.IOManager.run_lilypond(temporary_ly_file_path, flags=flags)
         lilypond_rendering_time = timer.elapsed_time
 
         png_file_paths = []

@@ -1,5 +1,6 @@
-import abjad
 import pytest
+
+import abjad
 
 
 def test_Voice_lilypond_voice_resolution_01():
@@ -16,9 +17,7 @@ def test_Voice_lilypond_voice_resolution_01():
     """
 
     voice = abjad.Voice("c'8 d'8 b'8 c''8")
-    voice.insert(
-        2, abjad.Container([abjad.Voice("e'8 f'8"), abjad.Voice("g'8 a'8")])
-    )
+    voice.insert(2, abjad.Container([abjad.Voice("e'8 f'8"), abjad.Voice("g'8 a'8")]))
     voice[2].simultaneous = True
     abjad.override(voice).note_head.color = "red"
 
@@ -61,9 +60,7 @@ def test_Voice_lilypond_voice_resolution_02():
 
     voice = abjad.Voice("c'8 d'8 b'8 c''8")
     voice.name = "foo"
-    voice.insert(
-        2, abjad.Container([abjad.Voice("e'8 f'8"), abjad.Voice("g'8 a'8")])
-    )
+    voice.insert(2, abjad.Container([abjad.Voice("e'8 f'8"), abjad.Voice("g'8 a'8")]))
     voice[2].simultaneous = True
     voice[2][0].name = "foo"
     abjad.override(voice).note_head.color = "red"

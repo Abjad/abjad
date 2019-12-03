@@ -42,9 +42,7 @@ class ForbidUpdate(ContextManager):
 
     ### INITIALIZER ###
 
-    def __init__(
-        self, component=None, update_on_enter=True, update_on_exit=None
-    ):
+    def __init__(self, component=None, update_on_enter=True, update_on_exit=None):
         import abjad
 
         prototype = (abjad.Component, type(None))
