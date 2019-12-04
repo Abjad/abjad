@@ -26,11 +26,12 @@ extensions = [
     "sphinx.ext.graphviz",
     "sphinx.ext.intersphinx",
     "sphinx.ext.todo",
+    "abjad.ext.sphinx",
     "sphinx_autodoc_typehints",
     "uqbar.sphinx.api",
+    "uqbar.sphinx.book",
     "uqbar.sphinx.inheritance",
     "uqbar.sphinx.style",
-    "abjadext.book.sphinx",
 ]
 
 master_doc = "index"
@@ -43,15 +44,20 @@ version = abjad.__version__
 
 ### HTML ###
 
-html_domain_indices = False
 html_favicon = "_static/favicon.ico"
 html_last_updated_fmt = "%b %d, %Y"
 html_logo = "_static/abjad-logo.png"
 html_show_sourcelink = True
 html_static_path = ["_static"]
 html_theme = "sphinx_rtd_theme"
+html_theme_options = {
+    "collapse_navigation": True,
+    "navigation_depth": -1,
+    "sticky_navigation": True,
+    "style_external_links": True,
+    "titles_only": True,
+}
 html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
-html_use_index = False
 
 ### HTML HELP ###
 
@@ -94,32 +100,6 @@ latex_documents = [
 # latex_use_parts = True
 latex_toplevel_sectioning = "chapter"  # just guessing?
 
-### MAN ###
-
-man_pages = [
-    (
-        "index",
-        "abjad",
-        "Abjad Documentation",
-        ["2008-2019, Trevor Bača & Josiah Wolf Oberholtzer"],
-        1,
-    )
-]
-
-### TEXINFO ###
-
-texinfo_documents = [
-    (
-        "index",
-        "Abjad",
-        "Abjad Documentation",
-        "2008-2019, Trevor Bača & Josiah Wolf Oberholtzer",
-        "Abjad",
-        "One line description of project.",
-        "Miscellaneous",
-    )
-]
-
 ### EXTENSIONS ###
 
 try:
@@ -153,3 +133,12 @@ uqbar_api_member_documenter_classes = [
     "uqbar.apis.FunctionDocumenter",
     "uqbar.apis.SummarizingClassDocumenter",
 ]
+
+uqbar_book_console_setup = ["import abjad"]
+uqbar_book_console_teardown = []
+uqbar_book_extensions = [
+    "uqbar.book.extensions.GraphExtension",
+]
+uqbar_book_strict = False
+uqbar_book_use_black = True
+uqbar_book_use_cache = True

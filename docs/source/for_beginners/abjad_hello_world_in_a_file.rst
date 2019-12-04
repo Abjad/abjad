@@ -17,6 +17,7 @@ Type the following lines of code into ``hello_world.py``:
 
     from abjad import *
 
+::
 
     note = Note("c'4")
     show(note)

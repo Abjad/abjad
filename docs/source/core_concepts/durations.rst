@@ -3,9 +3,9 @@
 Durations
 =========
 
-..  abjad::
+::
 
-    import abjad
+    >>> import abjad
 
 
 Breves, longas and other long durations
@@ -16,63 +16,66 @@ notes, rests and chords with and without dots.
 
 You can create breves with a LilyPond input string:
 
-..  abjad::
+::
 
-    note_1 = abjad.Note(r"c'\breve")
-    note_2 = abjad.Note(r"d'\breve.")
+    >>> note_1 = abjad.Note(r"c'\breve")
+    >>> note_2 = abjad.Note(r"d'\breve.")
 
 Or with an explicit duration:
 
-..  abjad::
+::
 
-    note_3 = Note("e'", abjad.Duration(2, 1))
-    note_4 = Note("f'", abjad.Duration(3, 1))
+    >>> note_3 = Note("e'", abjad.Duration(2, 1))
+    >>> note_4 = Note("f'", abjad.Duration(3, 1))
 
 The written duration of a breve always returns an Abjad duration object:
 
-..  abjad::
+::
 
-    notes = [note_1, note_2, note_3, note_4]
-    for note in notes:
-        note, note.written_duration
+    >>> notes = [note_1, note_2, note_3, note_4]
+    >>> for note in notes:
+    ...     note, note.written_duration
+    ...
 
 LilyPond renders breves like this:
 
-..  abjad::
+::
 
-    staff = abjad.Staff(notes)
-    show(staff)
+    >>> staff = abjad.Staff(notes)
+    >>> show(staff)
 
 Abjad also supports longas. A longa equals two breves:
 
-..  abjad::
+::
 
-    note_1 = abjad.Note(r"c'\longa")
-    note_2 = abjad.Note("d'", abjad.Duration(6, 1))
+    >>> note_1 = abjad.Note(r"c'\longa")
+    >>> note_2 = abjad.Note("d'", abjad.Duration(6, 1))
 
-..  abjad::
+    ::
 
-    notes = [note_1, note_2]
-    for note in notes:
-        note, note.written_duration
+    >>> notes = [note_1, note_2]
+    >>> for note in notes:
+    ...     note, note.written_duration
+    ...
 
-..  abjad::
+ ::
 
-    staff = abjad.Staff(notes)
-    show(staff)
+    >>> staff = abjad.Staff(notes)
+    >>> show(staff)
 
 A maxima is a duration equal to two longas:
 
-..  abjad::
+::
 
-    note_1 = abjad.Note(r"c'\maxima")
-    note_2 = abjad.Note("d'", abjad.Duration(12, 1))
+    >>> note_1 = abjad.Note(r"c'\maxima")
+    >>> note_2 = abjad.Note("d'", abjad.Duration(12, 1))
 
-..  abjad::
+    ::
 
-    notes = [note_1, note_2]
-    for note in notes:
-        note, note.written_duration
+    >>> notes = [note_1, note_2]
+    >>> for note in notes:
+    ...     note, note.written_duration
+    ...
 
 Abjad supports maximas and LilyPond supplies a ``\maxima`` command. But you can
 not use Abjad to render maxima-valued notes, rests and chords because LilyPond
@@ -95,38 +98,38 @@ calculations of duration.
 
 Abjad implements LilyPond multpliers as multiplier objects.
 
-..  abjad::
+::
 
-    note = abjad.Note("c'4", multiplier=(1, 2))
+    >>> note = abjad.Note("c'4", multiplier=(1, 2))
 
-..  abjad::
+::
 
-    f(note)
+    >>> f(note)
 
-..  abjad::
+::
 
-    note.written_duration
-    abjad.inspect(note).duration()
+    >>> note.written_duration
+    >>> abjad.inspect(note).duration()
 
-..  abjad::
+::
 
-    show(note)
+    >>> show(note)
 
 LilyPond multipliers scale the durations of the half notes below to that of
 quarter notes:
 
-..  abjad::
+::
 
-    quarter_notes = 4 * abjad.Note("c'4")
-    half_note = abjad.Note("c'2", multiplier=(1, 2))
-    half_notes = 4 * half_note
-    top_staff = abjad.Staff(quarter_notes, lilypond_type='RhythmicStaff')
-    bottom_staff = abjad.Staff(half_notes, lilypond_type='RhythmicStaff')
-    staff_group = abjad.StaffGroup([top_staff, bottom_staff])
+    >>> quarter_notes = 4 * abjad.Note("c'4")
+    >>> half_note = abjad.Note("c'2", multiplier=(1, 2))
+    >>> half_notes = 4 * half_note
+    >>> top_staff = abjad.Staff(quarter_notes, lilypond_type='RhythmicStaff')
+    >>> bottom_staff = abjad.Staff(half_notes, lilypond_type='RhythmicStaff')
+    >>> staff_group = abjad.StaffGroup([top_staff, bottom_staff])
 
-..  abjad::
+::
 
-    show(staff_group)
+    >>> show(staff_group)
 
 Note that the LilyPond multiplication `*` operator differs from the Abjad
 multiplication `*` operator. LilyPond multiplication scales duration of
@@ -144,41 +147,41 @@ names most frequently used when talking about note duration.
 
 Consider the measure below:
 
-..  abjad::
+::
 
-    staff = abjad.Staff(r"\time 5/15 c16 [ c c c c ]", lilypond_type='RhythmicStaff')
-    leaves = abjad.select(staff).leaves()
+    >>> staff = abjad.Staff(r"\time 5/15 c16 [ c c c c ]", lilypond_type='RhythmicStaff')
+    >>> leaves = abjad.select(staff).leaves()
 
-..  abjad::
+::
 
-    show(staff)
+    >>> show(staff)
 
 Every note in the measure equals one sixteenth of a whole note:
 
-..  abjad::
+::
 
-    note = staff[0]
-    abjad.inspect(note).duration()
+    >>> note = staff[0]
+    >>> abjad.inspect(note).duration()
 
 But now consider this measure:
 
-..  abjad::
+::
 
-    tuplet = abjad.Tuplet((4, 5), r"\time 4/16 c16 [ c c c c ]")
-    staff = abjad.Staff([tuplet], lilypond_type='RhythmicStaff')
-    leaves = abjad.select(staff).leaves()
+    >>> tuplet = abjad.Tuplet((4, 5), r"\time 4/16 c16 [ c c c c ]")
+    >>> staff = abjad.Staff([tuplet], lilypond_type='RhythmicStaff')
+    >>> leaves = abjad.select(staff).leaves()
 
-..  abjad::
+::
 
-    show(staff)
+    >>> show(staff)
 
 The notes in this measure are equal to only one twentieth of a whole note:
 Every note in this measures 
 
-..  abjad::
+::
 
-    note = tuplet[0]
-    abjad.inspect(note).duration()
+    >>> note = tuplet[0]
+    >>> abjad.inspect(note).duration()
 
 The notes in this measure are "sixteenth notes" with a duration equal to a
 value other than ``1/16``. Abjad formalizes this distinction in the difference
