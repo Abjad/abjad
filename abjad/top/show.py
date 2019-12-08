@@ -43,21 +43,6 @@ def show(argument, return_timing=False, **keywords):
     Returns pair of ``abjad_formatting_time`` and ``lilypond_rendering_time``
     when ``return_timing`` is true.
     """
-    import abjad
+    import abjad.io
 
-    if not hasattr(argument, "__illustrate__"):
-        message = "must have __illustrate__ method: {!r}."
-        message = message.format(argument)
-        raise Exception(message)
-    result = abjad.persist(argument).as_pdf(**keywords)
-    pdf_file_path = result[0]
-    abjad_formatting_time = result[1]
-    lilypond_rendering_time = result[2]
-    success = result[3]
-    if success:
-        abjad.IOManager.open_file(pdf_file_path)
-    else:
-        with open(abjad.abjad_configuration.lilypond_log_file_path, "r") as fp:
-            print(fp.read())
-    if return_timing:
-        return abjad_formatting_time, lilypond_rendering_time
+    return abjad.io.show(argument, return_timing=return_timing, **keywords)
