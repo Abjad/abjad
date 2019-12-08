@@ -109,7 +109,6 @@ try:
 except ImportError:
     abjadbook_console_module_names = ()
 
-abjadbook_ignored_documents = ()
 autodoc_member_order = "groupwise"
 graphviz_dot_args = ["-s32"]
 graphviz_output_format = "svg"
@@ -138,6 +137,7 @@ uqbar_book_console_setup = ["import abjad"]
 uqbar_book_console_teardown = []
 uqbar_book_extensions = [
     "uqbar.book.extensions.GraphExtension",
+    "abjad.io.LilyPondExtension",
 ]
 uqbar_book_strict = False
 uqbar_book_use_black = True
