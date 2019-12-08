@@ -3,10 +3,10 @@ import enum
 
 from docutils.nodes import FixedTextElement, General, SkipNode
 from docutils.parsers.rst import Directive
-from uqbar.book.extensions import Extension
 
 from abjad.io import Illustrator, Player
 from abjad.lilypondfile import Block
+from uqbar.book.extensions import Extension
 
 
 class HiddenDoctestDirective(Directive):
@@ -34,7 +34,6 @@ class HiddenDoctestDirective(Directive):
 
 
 class LilyPondExtension(Extension):
-
     class Kind(enum.Enum):
         IMAGE = 1
         AUDIO = 2
@@ -74,7 +73,7 @@ class LilyPondExtension(Extension):
         self.kind = kind
 
     def to_docutils(self):
-        illustration = self.illustrable.__illustrate__(**self.kwargs)
+        illustration = self.illustrable.__illustrate__(**self.keywords)
         if self.kind == self.Kind.AUDIO:
             block = Block(name="midi")
             illustration.score_block.items.append(block)

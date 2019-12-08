@@ -6,10 +6,9 @@ import subprocess
 import tempfile
 from typing import Sequence, Tuple
 
-from uqbar.graphs import Grapher
-
 from abjad.lilypondfile import Block
 from abjad.system import AbjadConfiguration, IOManager, Timer
+from uqbar.graphs import Grapher
 
 _configuration = AbjadConfiguration()
 
@@ -31,11 +30,8 @@ class LilyPondIO:
             string = self.get_string()
         format_time = format_timer.elapsed_time
         render_prefix = self.get_render_prefix(string)
-        output_directory_path = self.get_output_directory()
         render_directory_path = self.get_render_directory()
-        input_path = render_directory_path / pathlib.Path(render_prefix).with_suffix(
-            ".ly"
-        )
+        input_path = (render_directory_path / render_prefix).with_suffix(".ly")
         self.persist_string(string, input_path)
         lilypond_path = self.get_lilypond_path()
         render_command = self.get_render_command(input_path, lilypond_path)
@@ -43,7 +39,8 @@ class LilyPondIO:
             log, success = self.run_command(render_command)
         render_time = render_timer.elapsed_time
         self.persist_string(log, input_path.with_suffix(".log"))
-        output_paths = self.migrate_assets(render_directory_path, output_directory_path)
+        output_directory_path = self.get_output_directory()
+        output_paths = self.migrate_assets(render_prefix, render_directory_path, output_directory_path)
         openable_paths = []
         for output_path in self.get_openable_paths(output_paths):
             openable_paths.append(output_path)
@@ -80,7 +77,7 @@ class LilyPondIO:
 
     def get_render_prefix(self, string) -> str:
         timestamp = re.sub(r"[^\w]", "-", datetime.datetime.now().isoformat())
-        checksum = hashlib.md5(string.encode()).hexdigest()[:7]
+        checksum = hashlib.sha1(string.encode()).hexdigest()[:7]
         return f"{timestamp}-{checksum}"
 
     def get_string(self) -> str:
@@ -88,10 +85,12 @@ class LilyPondIO:
         return format(lilypond_file, "lilypond")
 
     def migrate_assets(
-        self, render_directory, output_directory
+        self, render_prefix, render_directory, output_directory
     ) -> Sequence[pathlib.Path]:
         migrated_assets = []
         for old_path in render_directory.iterdir():
+            if not old_path.name.startswith(render_prefix):
+                continue
             new_path = output_directory / old_path.name
             migrated_assets.append(old_path.rename(new_path))
         return migrated_assets
@@ -116,7 +115,31 @@ class LilyPondIO:
         return completed_process.stdout, completed_process.returncode == 0
 
 
+class AbjadGrapher(Grapher):
+
+    ### INTIALIZER ###
+
+    def __init__(self, graphable, format_="pdf", layout="dot"):
+        Grapher.__init__(
+            self,
+            graphable,
+            format_=format_,
+            layout=layout,
+        )
+
+    ### PUBLIC METHODS ###
+
+    def get_output_directory(self) -> pathlib.Path:
+        return pathlib.Path(_configuration["abjad_output_directory"])
+
+    def open_output_path(self, output_path):
+        IOManager.open_file(str(output_path))
+
+
 class Illustrator(LilyPondIO):
+
+    ### PUBLIC METHODS ###
+
     def get_openable_paths(self, output_paths) -> Sequence[pathlib.Path]:
         for path in output_paths:
             if path.suffix == ".pdf":
@@ -124,6 +147,9 @@ class Illustrator(LilyPondIO):
 
 
 class Player(LilyPondIO):
+
+    ### PUBLIC METHODS ###
+
     def get_openable_paths(self, output_paths) -> Sequence[pathlib.Path]:
         for path in output_paths:
             if path.suffix in (".mid", ".midi"):
@@ -137,19 +163,26 @@ class Player(LilyPondIO):
         return format(lilypond_file, "lilypond")
 
 
-def graph(graphable, format_="pdf", layout="dot", verbose=False):
-    return Grapher(
-        graphable,
-        format_=format_,
-        layout=layout,
-        output_directory=".",
-        verbose=verbose,
-    )()
+def graph(
+    graphable, format_="pdf", layout="dot", return_timing=False, **keywords,
+):
+    grapher = AbjadGrapher(graphable, format_=format_, layout=layout, **keywords)
+    result = grapher()
+    if not result:
+        return
+    _, format_time, render_time, success, log = result
+    if not success:
+        print(log)
+    if return_timing:
+        return format_time, render_time
 
 
 def play(illustrable, return_timing=False, **keywords):
     player = Player(illustrable, **keywords)
-    _, format_time, render_time, success, log = player()
+    result = player()
+    if not result:
+        return
+    _, format_time, render_time, success, log = result
     if not success:
         print(log)
     if return_timing:
@@ -158,7 +191,10 @@ def play(illustrable, return_timing=False, **keywords):
 
 def show(illustrable, return_timing=False, **keywords):
     illustrator = Illustrator(illustrable, **keywords)
-    _, format_time, render_time, success, log = illustrator()
+    result = illustrator()
+    if not result:
+        return
+    _, format_time, render_time, success, log = result
     if not success:
         print(log)
     if return_timing:

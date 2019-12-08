@@ -137,7 +137,7 @@ uqbar_book_console_setup = ["import abjad"]
 uqbar_book_console_teardown = []
 uqbar_book_extensions = [
     "uqbar.book.extensions.GraphExtension",
-    "abjad.io.LilyPondExtension",
+    "abjad.ext.sphinx.LilyPondExtension",
 ]
 uqbar_book_strict = False
 uqbar_book_use_black = True

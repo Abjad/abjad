@@ -1,18 +1,7 @@
-import copy
-import os
-import subprocess
-
-import uqbar.graphs
-
-
 def graph(
     argument,
-    image_format="pdf",
+    format_="pdf",
     layout="dot",
-    graph_attributes=None,
-    node_attributes=None,
-    edge_attributes=None,
-    **keywords,
 ) -> None:
     r"""
     Graphs ``argument``.
@@ -130,49 +119,10 @@ def graph(
 
     Opens image in default image viewer.
     """
-    from abjad import system
-    from abjad import abjad_configuration
+    import abjad.io
 
-    if isinstance(argument, str):
-        graphviz_format = argument
-    else:
-        if hasattr(argument, "__graph__"):
-            graphviz_graph = argument.__graph__(**keywords)
-        elif isinstance(argument, uqbar.graphs.Graph):
-            graphviz_graph = copy.deepcopy(argument)
-        else:
-            raise TypeError("Cannot graph {!r}".format(type(argument)))
-        if graph_attributes:
-            graphviz_graph.attributes.update(graph_attributes)
-        if node_attributes:
-            graphviz_graph.node_attributes.update(node_attributes)
-        if edge_attributes:
-            graphviz_graph.edge_attributes.update(edge_attributes)
-        graphviz_format = format(graphviz_graph, "graphviz")
-
-    assert image_format in ("pdf", "png")
-    valid_layouts = ("circo", "dot", "fdp", "neato", "osage", "sfdp", "twopi")
-    assert layout in valid_layouts
-
-    message = "cannot find `{}` command-line tool."
-    message = message.format(layout)
-    message += " Please download Graphviz from graphviz.org."
-    assert system.IOManager.find_executable(layout), message
-
-    ABJADOUTPUT = abjad_configuration["abjad_output_directory"]
-    system.IOManager._ensure_directory_existence(ABJADOUTPUT)
-    dot_path = os.path.join(
-        ABJADOUTPUT, system.IOManager.get_next_output_file_name(file_extension="dot"),
+    return abjad.io.graph(
+        argument,
+        format_=format_,
+        layout=layout,
     )
-    img_path = os.path.join(ABJADOUTPUT, dot_path.replace("dot", "pdf"))
-
-    with open(dot_path, "w") as f:
-        f.write(graphviz_format)
-
-    command = "{} -v -T{} {} -o {}"
-    command = command.format(layout, image_format, dot_path, img_path)
-    subprocess.call(command, shell=True)
-
-    pdf_viewer = abjad_configuration["pdf_viewer"]
-    ABJADOUTPUT = abjad_configuration["abjad_output_directory"]
-    system.IOManager.open_file(img_path, application=pdf_viewer)
