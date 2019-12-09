@@ -1,10 +1,12 @@
 import copy
 import enum
+import hashlib
+import pathlib
 
 from docutils.nodes import FixedTextElement, General, SkipNode
 from docutils.parsers.rst import Directive
 
-from abjad.io import Illustrator, Player
+from abjad.io import Illustrator, LilyPondIO, Player
 from abjad.lilypondfile import Block
 from uqbar.book.extensions import Extension
 
@@ -63,10 +65,6 @@ class LilyPondExtension(Extension):
             text=[cls.visit_block_text, cls.depart_block_text],
         )
 
-    @staticmethod
-    def visit_block_html(self, node):
-        raise SkipNode
-
     def __init__(self, illustrable, kind, **keywords):
         self.illustrable = copy.deepcopy(illustrable)
         self.keywords = keywords
@@ -81,6 +79,35 @@ class LilyPondExtension(Extension):
         node = self.lilypond_block(code, code)
         node["kind"] = self.kind.name.lower()
         return [node]
+
+    @staticmethod
+    def visit_block_html(self, node):
+        output_directory = pathlib.Path(self.builder.outdir) / "_images"
+        render_prefix = "lilypond-{}".format(hashlib.sha256(node[0].encode()).hexdigest())
+        if node["kind"] == "audio":
+            flags = []
+            glob = f"{render_prefix}.mid*"
+        else:
+            flags = ["-dcrop", "-dbackend=svg"]
+            glob = f"{render_prefix}.cropped.svg"
+        lilypond_io = LilyPondIO(
+            None,
+            flags=flags,
+            output_directory=output_directory,
+            render_prefix=render_prefix,
+            should_open=False,
+            should_persist_log=False,
+            string=node[0],
+        )
+        if not list(output_directory.glob(glob)):
+            lilypond_io()
+        for path in output_directory.glob(glob):
+            relative_path = (pathlib.Path(self.builder.imgpath) / path.name)
+            if path.suffix in (".mid", ".midi"):
+                pass
+            else:
+                self.body.append(f'<img src="{relative_path}" />')
+        raise SkipNode
 
 
 def setup(app):

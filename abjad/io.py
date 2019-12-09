@@ -17,34 +17,54 @@ class LilyPondIO:
 
     ### INITIALIZER ###
 
-    def __init__(self, illustrable, **keywords):
-        if not hasattr(illustrable, "__illustrate__"):
-            raise ValueError(r"Cannot illustrate {illustrable!r}")
+    def __init__(
+        self,
+        illustrable,
+        flags=None,
+        output_directory=None,
+        render_prefix=None,
+        should_open=True,
+        should_persist_log=True,
+        string=None,
+        **keywords,
+    ):
         self.illustrable = illustrable
         self.keywords = keywords
+        self.should_persist_log = should_persist_log
+        self.should_open = should_open
+        self.render_prefix = render_prefix
+        self.string = string
+        self.flags = flags or []
+        self.output_directory = output_directory
 
     ### SPECIAL METHODS ###
 
     def __call__(self):
         with Timer() as format_timer:
-            string = self.get_string()
+            string = self.string or self.get_string()
         format_time = format_timer.elapsed_time
-        render_prefix = self.get_render_prefix(string)
-        render_directory_path = self.get_render_directory()
-        input_path = (render_directory_path / render_prefix).with_suffix(".ly")
+        render_prefix = self.render_prefix or self.get_render_prefix(string)
+        render_directory = self.get_render_directory()
+        input_path = (render_directory / render_prefix).with_suffix(".ly")
         self.persist_string(string, input_path)
         lilypond_path = self.get_lilypond_path()
         render_command = self.get_render_command(input_path, lilypond_path)
         with Timer() as render_timer:
             log, success = self.run_command(render_command)
         render_time = render_timer.elapsed_time
-        self.persist_string(log, input_path.with_suffix(".log"))
-        output_directory_path = self.get_output_directory()
-        output_paths = self.migrate_assets(render_prefix, render_directory_path, output_directory_path)
+        if self.should_persist_log:
+            self.persist_log(log, input_path.with_suffix(".log"))
+        output_directory = pathlib.Path(
+            self.output_directory or self.get_output_directory()
+        )
+        output_paths = self.migrate_assets(
+            render_prefix, render_directory, output_directory
+        )
         openable_paths = []
         for output_path in self.get_openable_paths(output_paths):
             openable_paths.append(output_path)
-            self.open_output_path(output_path)
+            if self.should_open:
+                self.open_output_path(output_path)
         return openable_paths, format_time, render_time, success, log
 
     ### PUBLIC METHODS ###
@@ -59,12 +79,18 @@ class LilyPondIO:
                 lilypond_path = "lilypond"
         return lilypond_path
 
+    def get_openable_paths(self, output_paths) -> Sequence[pathlib.Path]:
+        for path in output_paths:
+            if path.suffix in (".pdf", ".mid", ".midi", ".svg", ".png"):
+                yield path
+
     def get_output_directory(self) -> pathlib.Path:
         return pathlib.Path(_configuration["abjad_output_directory"])
 
     def get_render_command(self, input_path, lilypond_path) -> str:
         parts = [
             str(lilypond_path),
+            *self.flags,
             "-dno-point-and-click",
             "-o",
             str(input_path.with_suffix("")),
@@ -178,6 +204,8 @@ def graph(
 
 
 def play(illustrable, return_timing=False, **keywords):
+    if not hasattr(illustrable, "__illustrate__"):
+        raise ValueError(r"Cannot illustrate {illustrable!r}")
     player = Player(illustrable, **keywords)
     result = player()
     if not result:
@@ -190,6 +218,8 @@ def play(illustrable, return_timing=False, **keywords):
 
 
 def show(illustrable, return_timing=False, **keywords):
+    if not hasattr(illustrable, "__illustrate__"):
+        raise ValueError(r"Cannot illustrate {illustrable!r}")
     illustrator = Illustrator(illustrable, **keywords)
     result = illustrator()
     if not result:
