@@ -1,14 +1,21 @@
+import os
 import copy
 import enum
 import hashlib
 import pathlib
+import subprocess
 
-from docutils.nodes import FixedTextElement, General, SkipNode
-from docutils.parsers.rst import Directive
+from docutils.nodes import Element, FixedTextElement, General, SkipNode, image, literal_block
+from docutils.parsers.rst import Directive, directives
+from sphinx.util import FilenameUniqDict
+from sphinx.util.nodes import set_source_info
+from uqbar.book.extensions import Extension
+from uqbar.strings import normalize
 
+from abjad import abjad_configuration
 from abjad.io import Illustrator, LilyPondIO, Player
 from abjad.lilypondfile import Block
-from uqbar.book.extensions import Extension
+from abjad.system import TemporaryDirectoryChange
 
 
 class HiddenDoctestDirective(Directive):
@@ -33,6 +40,121 @@ class HiddenDoctestDirective(Directive):
         """
         self.assert_has_content()
         return []
+
+
+class ShellDirective(Directive):
+    """
+    An shell directive.
+
+    Represents a shell session.
+
+    Generates a docutils ``literal_block`` node.
+    """
+
+    ### CLASS VARIABLES ###
+
+    has_content = True
+    required_arguments = 0
+    optional_arguments = 0
+    final_argument_whitespace = False
+    option_spec = {}
+
+    ### PUBLIC METHODS ###
+
+    def run(self):
+        self.assert_has_content()
+        result = []
+        with TemporaryDirectoryChange(abjad_configuration.abjad_directory):
+            cwd = pathlib.Path.cwd()
+            for line in self.content:
+                result.append(f"{cwd.name}$ {line}")
+                completed_process = subprocess.run(
+                    line, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True
+                )
+                result.append(completed_process.stdout)
+        code = "\n".join(result)
+        literal = literal_block(code, code)
+        literal["language"] = "console"
+        set_source_info(self, literal)
+        return [literal]
+
+
+class ThumbnailDirective(Directive):
+    """
+    A thumbnail directive.
+    """
+
+    ### CLASS VARIABLES ###
+
+    final_argument_whitespace = True
+    has_content = False
+    option_spec = {
+        "class": directives.class_option,
+        "group": directives.unchanged,
+        "title": directives.unchanged,
+    }
+    optional_arguments = 0
+    required_arguments = 1
+
+    ### PUBLIC METHODS ###
+
+    def run(self):
+        """Executes the directive.
+        """
+        node = thumbnail_block()
+        node["classes"] += self.options.get("class", "")
+        node["group"] = self.options.get("group", "")
+        node["title"] = self.options.get("title", "")
+        node["uri"] = self.arguments[0]
+        environment = self.state.document.settings.env
+        environment.images.add_file("", node["uri"])
+        return [node]
+
+
+class thumbnail_block(image, General, Element):
+    pass
+
+
+def visit_thumbnail_block_html(self, node):
+    template = normalize(
+        """
+        <a data-lightbox="{group}" href="{target_path}" title="{title}" data-title="{title}" class="{cls}">
+            <img src="{thumbnail_path}" alt="{alt}"/>
+        </a>
+        """
+    )
+    self.builder.thumbnails.add_file("", node["uri"])
+    title = node["title"]
+    classes = " ".join(node["classes"])
+    group = "group-{}".format(node["group"] if node["group"] else node["uri"])
+    if node["uri"] in self.builder.images:
+        node["uri"] = os.path.join(
+            self.builder.imgpath, self.builder.images[node["uri"]]
+        )
+    target_path = node["uri"]
+    prefix, suffix = os.path.splitext(target_path)
+    if suffix == ".svg":
+        thumbnail_path = target_path
+    else:
+        thumbnail_path = "{}-thumbnail{}".format(prefix, suffix)
+    output = template.format(
+        alt=title,
+        group=group,
+        target_path=target_path,
+        cls=classes,
+        thumbnail_path=thumbnail_path,
+        title=title,
+    )
+    self.body.append(output)
+    raise SkipNode
+
+
+def visit_thumbnail_block_latex(self, node):
+    raise SkipNode
+
+
+def on_builder_inited(app):
+    app.builder.thumbnails = FilenameUniqDict()
 
 
 class LilyPondExtension(Extension):
@@ -83,7 +205,9 @@ class LilyPondExtension(Extension):
     @staticmethod
     def visit_block_html(self, node):
         output_directory = pathlib.Path(self.builder.outdir) / "_images"
-        render_prefix = "lilypond-{}".format(hashlib.sha256(node[0].encode()).hexdigest())
+        render_prefix = "lilypond-{}".format(
+            hashlib.sha256(node[0].encode()).hexdigest()
+        )
         if node["kind"] == "audio":
             flags = []
             glob = f"{render_prefix}.mid*"
@@ -102,7 +226,7 @@ class LilyPondExtension(Extension):
         if not list(output_directory.glob(glob)):
             lilypond_io()
         for path in output_directory.glob(glob):
-            relative_path = (pathlib.Path(self.builder.imgpath) / path.name)
+            relative_path = pathlib.Path(self.builder.imgpath) / path.name
             if path.suffix in (".mid", ".midi"):
                 pass
             else:
@@ -111,4 +235,12 @@ class LilyPondExtension(Extension):
 
 
 def setup(app):
+    app.connect("builder-inited", on_builder_inited)
     app.add_directive("docs", HiddenDoctestDirective)
+    app.add_directive("shell", ShellDirective)
+    app.add_directive("thumbnail", ThumbnailDirective)
+    app.add_node(
+        thumbnail_block,
+        html=[visit_thumbnail_block_html, None],
+        latex=[visit_thumbnail_block_latex, None],
+    )

@@ -147,10 +147,7 @@ class AbjadGrapher(Grapher):
 
     def __init__(self, graphable, format_="pdf", layout="dot"):
         Grapher.__init__(
-            self,
-            graphable,
-            format_=format_,
-            layout=layout,
+            self, graphable, format_=format_, layout=layout,
         )
 
     ### PUBLIC METHODS ###
