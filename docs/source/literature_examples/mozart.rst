@@ -1,16 +1,19 @@
 Mozart: *Musikalisches Würfelspiel*
 ===================================
 
-..  abjad::
+..  book-defaults::
+    :lilypond/stylesheet: literature-examples.ily
 
-    import abjad
-    from abjad.demos import mozart
+::
 
-..  abjad::
+    >>> import abjad
+    >>> from abjad.demos import mozart
+
+..  book::
     :hide:
 
-    import random
-    random.seed(0)
+    >>> import random
+    >>> random.seed(0)
 
 Mozart's dice game is a method for aleatorically generating
 sixteen-measure-long minuets.  For each measure, two six-sided dice are rolled,
@@ -60,18 +63,17 @@ via :py:func:`p <abjad.tools.systemtools.p>`, which interprets a subset of LilyP
 syntax, and understands basic concepts like notes, chords, rests and skips, as
 well as beams, slurs, ties, and articulations.
 
-..  abjad::
+::
 
-    staff = abjad.Staff("""
-        c'4 ( d'4 <cs' e'>8 ) -. r8 
-        <g' b' d''>4 ^ \marcato ~ <g' b' d''>1
-        """)
-    abjad.f(staff)
+    >>> staff = abjad.Staff("""
+    ...     c'4 ( d'4 <cs' e'>8 ) -. r8 
+    ...     <g' b' d''>4 ^ \marcato ~ <g' b' d''>1
+    ... """)
+    >>> abjad.f(staff)
 
-..  abjad::
-    :stylesheet: literature-examples.ily
+::
 
-    abjad.show(staff)
+    >>> abjad.show(staff)
 
 So, instead of storing our musical information as Abjad components, we'll
 represent each fragment in the corpus as a pair of strings: one representing
@@ -84,9 +86,9 @@ list - they can simply label that data semantically.  In our musical
 dictionary, the treble voice will use the key 't' and the bass voice will use
 the key 'b'.
 
-..  abjad::
+::
 
-    fragment = {'t': "g''8 ( e''8 c''8 )", 'b': '<c e>4 r8'}
+    >>> fragment = {'t': "g''8 ( e''8 c''8 )", 'b': '<c e>4 r8'}
 
 Instead of relying on measure number tables to find our fragments - as in the
 original implementation, we'll package our fragment dictionaries into a list of
@@ -102,34 +104,34 @@ earlier to "build" the treble and bass components of a measure like this:
 
 Let's try with a measure-definition of our own:
 
-..  abjad::
+::
 
-    my_measure_dict = {'b': r'c4 ^\trill r8', 't': "e''8 ( c''8 g'8 )"}
-    treble, bass = mozart.make_mozart_measure(my_measure_dict)
+    >>> my_measure_dict = {'b': r'c4 ^\trill r8', 't': "e''8 ( c''8 g'8 )"}
+    >>> treble, bass = mozart.make_mozart_measure(my_measure_dict)
 
-..  abjad::
+::
 
-    print(format(treble))
+    >>> print(format(treble))
 
-..  abjad::
+::
 
-    print(format(bass))
+    >>> print(format(bass))
 
 Now with one from the Mozart measure collection defined earlier.
 We'll grab the very last choice for the very last measure:
 
-..  abjad::
+::
 
-    my_measure_dict = mozart.make_mozart_measure_corpus()[-1][-1]
-    treble, bass = mozart.make_mozart_measure(my_measure_dict)
+    >>> my_measure_dict = mozart.make_mozart_measure_corpus()[-1][-1]
+    >>> treble, bass = mozart.make_mozart_measure(my_measure_dict)
 
-..  abjad::
+::
 
-    print(format(treble))
+    >>> print(format(treble))
 
-..  abjad::
+::
 
-    print(format(bass))
+    >>> print(format(bass))
 
 The structure
 -------------
@@ -139,12 +141,12 @@ elements into a musical structure is relatively trivial.  We'll use the
 :py:func:`~random.choice` function from Python's `random` module.
 :py:func:`random.choice` randomly selects one element from an input list.
 
-..  abjad::
+::
 
-    import random
-    list_ = [1, 'b', 3]
-    result = [random.choice(list_) for i in range(20)]
-    result
+    >>> import random
+    >>> list_ = [1, 'b', 3]
+    >>> result = [random.choice(list_) for i in range(20)]
+    >>> result
 
 Our corpus is a list comprising sixteen sublists, one for each measure in the
 minuet.  To build our musical structure, we can simply iterate through the
@@ -164,11 +166,12 @@ because list indices count from *0* instead of *1*.
 
 The result will be a *seventeen*-item-long list of measure definitions:
 
-..  abjad::
+::
 
-    choices = mozart.choose_mozart_measures()
-    for i, measure in enumerate(choices):
-        print(i, measure)
+    >>> choices = mozart.choose_mozart_measures()
+    >>> for i, measure in enumerate(choices):
+    ...     print(i, measure)
+    ... 
 
 The score
 ---------
@@ -198,18 +201,18 @@ To create that structure in Abjad, we'll need to use the
 :py:class:`~abjad.indicators.LilyPondLiteral` class, which allows you to place
 LilyPond literals like "\break" relative to any score component:
 
-..  abjad::
+::
 
-    container = abjad.Container("c'4 d'4 e'4 f'4")
-    literal = abjad.LilyPondLiteral('before-the-container', 'before')
-    abjad.attach(literal, container)
-    literal = abjad.LilyPondLiteral('after-the-container', 'after')
-    abjad.attach(literal, container)
-    literal = abjad.LilyPondLiteral('opening-of-the-container', 'opening')
-    abjad.attach(literal, container)
-    literal = abjad.LilyPondLiteral('closing-of-the-container', 'closing')
-    abjad.attach(literal, container)
-    abjad.f(container)
+    >>> container = abjad.Container("c'4 d'4 e'4 f'4")
+    >>> literal = abjad.LilyPondLiteral('before-the-container', 'before')
+    >>> abjad.attach(literal, container)
+    >>> literal = abjad.LilyPondLiteral('after-the-container', 'after')
+    >>> abjad.attach(literal, container)
+    >>> literal = abjad.LilyPondLiteral('opening-of-the-container', 'opening')
+    >>> abjad.attach(literal, container)
+    >>> literal = abjad.LilyPondLiteral('closing-of-the-container', 'closing')
+    >>> abjad.attach(literal, container)
+    >>> abjad.f(container)
 
 Notice the second argument to each
 :py:class:`~abjad.indicators.LilyPondLiteral` above, like `before` and
@@ -222,11 +225,10 @@ container's opening curly brace.
 
 Now let's take a look at the code that puts our score together:
 
-..  abjad::
-    :stylesheet: literature-examples.ily
+::
 
-    score = mozart.make_mozart_score()
-    abjad.show(score)
+    >>> score = mozart.make_mozart_score()
+    >>> abjad.show(score)
 
 Our instrument name got cut off!  Looks like we need to do a little formatting.
 
@@ -246,41 +248,40 @@ We'll use :py:func:`abjad.lilypondfile.LilyPondFile.new` to wrap our
 access the other "blocks" of our document to add a title, a composer's name,
 change the global staff size, paper size, staff spacing and so forth.
 
-..  abjad::
+::
 
-    lilypond_file = mozart.make_mozart_lilypond_file()
-    print(lilypond_file)
+    >>> lilypond_file = mozart.make_mozart_lilypond_file()
+    >>> print(lilypond_file)
 
-..  abjad::
+::
 
-    print(format(lilypond_file.header_block))
+    >>> print(format(lilypond_file.header_block))
 
-..  abjad::
+::
 
-    print(format(lilypond_file.header_block))
+    >>> print(format(lilypond_file.header_block))
 
-..  abjad::
+::
 
-    print(format(lilypond_file.layout_block))
+    >>> print(format(lilypond_file.layout_block))
 
-..  abjad::
+::
 
-    print(format(lilypond_file.layout_block))
+    >>> print(format(lilypond_file.layout_block))
 
-..  abjad::
+::
 
-    print(format(lilypond_file.paper_block))
+    >>> print(format(lilypond_file.paper_block))
 
-..  abjad::
+::
 
-    print(format(lilypond_file.paper_block))
+    >>> print(format(lilypond_file.paper_block))
 
 And now the final result:
 
-..  abjad::
-    :stylesheet: literature-examples.ily
+::
 
-    abjad.show(lilypond_file)
+    >>> abjad.show(lilypond_file)
 
 Explore the ``abjad/demos/mozart/`` directory for the complete code to this
 example, or import it into your Python session directly with ``from

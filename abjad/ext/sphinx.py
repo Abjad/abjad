@@ -34,6 +34,8 @@ class HiddenDoctestDirective(Directive):
 
     ### CLASS VARIABLES ###
 
+    __documentation_ignore_inherited__ = True
+
     has_content = True
     required_arguments = 0
     optional_arguments = 0
@@ -59,6 +61,8 @@ class ShellDirective(Directive):
     """
 
     ### CLASS VARIABLES ###
+
+    __documentation_ignore_inherited__ = True
 
     has_content = True
     required_arguments = 0
@@ -97,6 +101,8 @@ class ThumbnailDirective(Directive):
 
     ### CLASS VARIABLES ###
 
+    __documentation_ignore_inherited__ = True
+
     final_argument_whitespace = True
     has_content = False
     option_spec = {
@@ -123,7 +129,7 @@ class ThumbnailDirective(Directive):
 
 
 class thumbnail_block(image, General, Element):
-    pass
+    __documentation_ignore_inherited__ = True
 
 
 def visit_thumbnail_block_html(self, node):
@@ -238,6 +244,7 @@ class LilyPondExtension(Extension):
 
     @staticmethod
     def visit_block_html(self, node):
+        img_template = '<a class="uqbar-book" href="{source_path}"><img src="{relative_path}"/></a>'
         output_directory = pathlib.Path(self.builder.outdir) / "_images"
         render_prefix = "lilypond-{}".format(
             hashlib.sha256(node[0].encode()).hexdigest()
@@ -259,12 +266,13 @@ class LilyPondExtension(Extension):
         )
         if not list(output_directory.glob(glob)):
             lilypond_io()
+        source_path = (pathlib.Path(self.builder.imgpath) / render_prefix).with_suffix(".ly")
         for path in output_directory.glob(glob):
             relative_path = pathlib.Path(self.builder.imgpath) / path.name
             if path.suffix in (".mid", ".midi"):
                 pass
             else:
-                self.body.append(f'<img src="{relative_path}" />')
+                self.body.append(img_template.format(relative_path=relative_path, source_path=source_path))
         raise SkipNode
 
 

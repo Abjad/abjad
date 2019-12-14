@@ -1,14 +1,13 @@
 Pärt: *Cantus in Memory of Benjamin Britten*
 ============================================
 
+Let's start with some imports:
 
-Let's make some imports:
+::
 
-..  abjad::
-
-    import abjad
-    import copy
-    from abjad.demos import part
+    >>> import abjad
+    >>> import copy
+    >>> from abjad.demos import part
 
 
 The string music
@@ -32,12 +31,13 @@ overall scale.
 
 Here's what the first 10 descents for the first violin look like:
 
-..  abjad::
+::
 
-    reservoir = part.create_pitch_contour_reservoir()
-    for i in range(10):
-        descent = reservoir['First Violin'][i]
-        print(' '.join(str(x) for x in descent))
+    >>> reservoir = part.create_pitch_contour_reservoir()
+    >>> for i in range(10):
+    ...     descent = reservoir['First Violin'][i]
+    ...     print(' '.join(str(x) for x in descent))
+    ...
 
 Next we add diads to all of the descents, except for the viola's.  We'll use a
 dictionary as a lookup table, to tell us what interval to add below a given
@@ -51,71 +51,74 @@ score.  Additionally, all the strings start with some rests, and use a
 Let's see what a few of those look like.  First, we'll build the entire
 reservoir from scratch, so you can see the process:
 
-..  abjad::
+::
 
-    pitch_contour_reservoir = part.create_pitch_contour_reservoir()
-    shadowed_contour_reservoir = part.shadow_pitch_contour_reservoir(pitch_contour_reservoir)
-    durated_reservoir = part.durate_pitch_contour_reservoir(shadowed_contour_reservoir)
+    >>> pitch_contour_reservoir = part.create_pitch_contour_reservoir()
+    >>> shadowed_contour_reservoir = part.shadow_pitch_contour_reservoir(pitch_contour_reservoir)
+    >>> durated_reservoir = part.durate_pitch_contour_reservoir(shadowed_contour_reservoir)
 
 Then we'll grab the sub-reservoir for the first violins, taking the first ten
 descents (which includes the silences we've been adding as well).  We'll label
 each descent with some markup, to distinguish them, throw them into a Staff and
 give them a 6/4 time signature, just so they line up properly.
 
-..  abjad::
+::
 
-    descents = durated_reservoir['First Violin'][:10]
-    for i, descent in enumerate(descents[1:], 1):
-        markup = abjad.Markup(r'\rounded-box \bold {}'.format(i), direction=abjad.Up)
-        abjad.attach(markup, descent[0])
+    >>> descents = durated_reservoir['First Violin'][:10]
+    >>> for i, descent in enumerate(descents[1:], 1):
+    ...     markup = abjad.Markup(r'\rounded-box \bold {}'.format(i), direction=abjad.Up)
+    ...     abjad.attach(markup, descent[0])
+    ...
 
-..  abjad::
+..  book::
     :stylesheet: literature-examples.ily
 
-    staff = abjad.Staff(sequence(descents).flatten())
-    time_signature = abjad.TimeSignature((6, 4))
-    leaf = abjad.inspect(staff).leaf(0)
-    abjad.attach(time_signature, leaf)
-    show(staff)
+    >>> staff = abjad.Staff(sequence(descents).flatten())
+    >>> time_signature = abjad.TimeSignature((6, 4))
+    >>> leaf = abjad.inspect(staff).leaf(0)
+    >>> abjad.attach(time_signature, leaf)
+    >>> show(staff)
 
 Let's look at the second violins too:
 
-..  abjad::
+::
 
-    descents = durated_reservoir['Second Violin'][:10]
-    for i, descent in enumerate(descents[1:], 1):
-        markup = abjad.Markup(r'\rounded-box \bold {}'.format(i), direction=abjad.Up)
-        abjad.attach(markup, descent[0])
+    >>> descents = durated_reservoir['Second Violin'][:10]
+    >>> for i, descent in enumerate(descents[1:], 1):
+    ...     markup = abjad.Markup(r'\rounded-box \bold {}'.format(i), direction=abjad.Up)
+    ...     abjad.attach(markup, descent[0])
+    ...
 
-..  abjad::
+..  book::
     :stylesheet: literature-examples.ily
 
-    staff = abjad.Staff(sequence(descents).flatten())
-    time_signature = abjad.TimeSignature((6, 4))
-    leaf = abjad.inspect(staff).leaf(0)
-    abjad.attach(time_signature, leaf)
-    show(staff)
+    >>> staff = abjad.Staff(sequence(descents).flatten())
+    >>> time_signature = abjad.TimeSignature((6, 4))
+    >>> leaf = abjad.inspect(staff).leaf(0)
+    >>> abjad.attach(time_signature, leaf)
+    >>> show(staff)
 
 And, last we'll take a peek at the violas.  They have some longer notes, so
 we'll split their music cyclically every 3 half notes, just so nothing crosses
 the bar lines accidentally:
 
-..  abjad::
+::
 
-    descents = durated_reservoir['Viola'][:10]
-    for i, descent in enumerate(descents[1:], 1):
-        markup = abjad.Markup(r'\rounded-box \bold {}'.format(i), direction=abjad.Up)
-        abjad.attach(markup, descent[0])
+    >>> descents = durated_reservoir['Viola'][:10]
+    >>> for i, descent in enumerate(descents[1:], 1):
+    ...     markup = abjad.Markup(r'\rounded-box \bold {}'.format(i), direction=abjad.Up)
+    ...     abjad.attach(markup, descent[0])
+    ...
 
-..  abjad::
+..  book::
     :stylesheet: literature-examples.ily
 
-    staff = abjad.Staff(abjad.sequence(descents).flatten())
-    shards = abjad.mutate(staff[:]).split([(3, 2)], cyclic=True)
-    time_signature = abjad.TimeSignature((6, 4))
-    leaf = abjad.inspect(staff).leaf(0)
-    abjad.attach(time_signature, leaf)
-    show(staff)
+    >>> staff = abjad.Staff(abjad.sequence(descents).flatten())
+    >>> shards = abjad.mutate(staff[:]).split([(3, 2)], cyclic=True)
+    >>> time_signature = abjad.TimeSignature((6, 4))
+    >>> leaf = abjad.inspect(staff).leaf(0)
+    >>> abjad.attach(time_signature, leaf)
+    >>> abjad.show(staff)
 
 You can see how each part is twice as slow as the previous, and starts a little
 bit later too. 
@@ -162,10 +165,10 @@ space for its staves and staff groups. You should consult LilyPond's vertical
 spacing documentation for a complete explanation of what this Scheme code
 means:
 
-..  abjad::
+::
 
-    spacing_vector = abjad.SpacingVector(0, 0, 8, 0)
-    print(format(spacing_vector))
+    >>> spacing_vector = abjad.SpacingVector(0, 0, 8, 0)
+    >>> print(format(spacing_vector))
 
 In our ``part.configure_lilypond_file()`` function, we need to construct a
 ContextBlock definition in order to tell LilyPond to hide empty staves, and
@@ -173,21 +176,20 @@ additionally to hide empty staves if they appear in the first system.
 
 Let's run our original toplevel function to build the complete score:
 
-..  abjad::
+::
 
-    lilypond_file = part.make_part_lilypond_file()
+    >>> lilypond_file = part.make_part_lilypond_file()
 
 And here we show it:
 
-..  abjad::
-    :no-resize:
+..  book::
     :no-stylesheet:
     :no-trim:
     :pages: 1-2
     :with-columns: 2
     :with-thumbnail:
 
-    show(lilypond_file)
+    abjad.show(lilypond_file)
 
 Note that we only show the first two pages as the *Cantus* is still under
 copyright. Please visit the Universal Editions website to purchase the complete

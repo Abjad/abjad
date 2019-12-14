@@ -102,11 +102,11 @@ If you're using MacOS X you can open ``hello_world.pdf`` like this:
 
     $ open hello_world.pdf
 
-..  abjad::
+..  book::
     :hide:
 
-    note = Note("c'4")
-    show(note)
+    >>> note = abjad.Note("c'4")
+    >>> show(note)
 
 Your operating system shows the score you created.
 

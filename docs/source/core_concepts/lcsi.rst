@@ -89,15 +89,14 @@ As a second example let's look at the last five measures of Bartók's
 *Wandering* from Mikrokosmos vol. III. As simple as it may seem, these five
 measures carry with them a lot of information pertaining to musical notation.
 
-..  import:: abjad.demos.bartok:make_bartok_score
+..  book-import:: abjad.demos.bartok:make_bartok_score
     :hide:
 
-..  abjad::
+..  book::
     :hide:
-    :stylesheet: literature-examples.ily
+    :lilypond/stylesheet: literature-examples.ily
 
-    score = make_bartok_score()
-    show(score)
+    >>> abjad.show(make_bartok_score())
 
 ..  note::
     

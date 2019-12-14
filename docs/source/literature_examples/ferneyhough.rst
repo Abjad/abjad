@@ -1,11 +1,11 @@
 Ferneyhough: *Unsichtbare Farben*
 =================================
 
-..  abjad::
+::
 
-    import abjad
-    from abjad.demos.ferneyhough import FerneyhoughDemo
-    ferneyhough = FerneyhoughDemo()
+    >>> import abjad
+    >>> from abjad.demos.ferneyhough import FerneyhoughDemo
+    >>> ferneyhough = FerneyhoughDemo()
 
 Mikhïal Malt analyzes the rhythmic materials of Ferneyhough's `Unsichtbare
 Farben` in `The OM Composer's Book 2`.
@@ -27,13 +27,13 @@ The proportions
 
 First we define proportions:
 
-..  abjad::
+::
 
-    proportions = [(1, n) for n in range(1, 11 + 1)]
+    >>> proportions = [(1, n) for n in range(1, 11 + 1)]
 
-..  abjad::
+::
 
-    proportions
+    >>> proportions
 
 The transforms
 --------------
@@ -41,23 +41,23 @@ The transforms
 Now we'll show how to divide a quarter note into various ratios, and then
 divide the final `logical tie` of the resulting tuplet into yet another ratio:
 
-..  abjad::
+::
 
-    tuplet = ferneyhough.make_nested_tuplet(abjad.Duration(1, 4), (1, 1), 5)
-    staff = abjad.Staff([tuplet], lilypond_type='RhythmicStaff')
-    show(staff)
+    >>> tuplet = ferneyhough.make_nested_tuplet(abjad.Duration(1, 4), (1, 1), 5)
+    >>> staff = abjad.Staff([tuplet], lilypond_type='RhythmicStaff')
+    >>> show(staff)
 
-..  abjad::
+::
 
-    tuplet = ferneyhough.make_nested_tuplet(abjad.Duration(1, 4), (2, 1), 5)
-    staff = abjad.Staff([tuplet], lilypond_type='RhythmicStaff')
-    show(staff)
+    >>> tuplet = ferneyhough.make_nested_tuplet(abjad.Duration(1, 4), (2, 1), 5)
+    >>> staff = abjad.Staff([tuplet], lilypond_type='RhythmicStaff')
+    >>> show(staff)
 
-..  abjad::
+::
 
-    tuplet = ferneyhough.make_nested_tuplet(abjad.Duration(1, 4), (3, 1), 5)
-    staff = abjad.Staff([tuplet], lilypond_type='RhythmicStaff')
-    show(staff)
+    >>> tuplet = ferneyhough.make_nested_tuplet(abjad.Duration(1, 4), (3, 1), 5)
+    >>> staff = abjad.Staff([tuplet], lilypond_type='RhythmicStaff')
+    >>> show(staff)
 
 A `logical tie` is a selection of notes or chords connected by ties. It lets us
 talk about a notated rhythm of ``5/16``, for example, which can not be expressed
@@ -66,17 +66,17 @@ with only a single leaf.
 Note how we can divide a tuplet whose outer proportions are ``3/5``, where
 the second `logical tie` requires two notes to express the ``5/16`` duration:
 
-..  abjad::
+::
 
-    normal_tuplet = abjad.Tuplet.from_duration_and_ratio(abjad.Duration(1, 4), (3, 5))
-    staff = abjad.Staff([normal_tuplet], lilypond_type='RhythmicStaff')
-    show(staff)
+    >>> normal_tuplet = abjad.Tuplet.from_duration_and_ratio(abjad.Duration(1, 4), (3, 5))
+    >>> staff = abjad.Staff([normal_tuplet], lilypond_type='RhythmicStaff')
+    >>> show(staff)
 
-..  abjad::
+::
 
-    subdivided_tuplet = ferneyhough.make_nested_tuplet(abjad.Duration(1, 4), (3, 5), 3)
-    staff = abjad.Staff([subdivided_tuplet], lilypond_type='RhythmicStaff')
-    show(staff)
+    >>> subdivided_tuplet = ferneyhough.make_nested_tuplet(abjad.Duration(1, 4), (3, 5), 3)
+    >>> staff = abjad.Staff([subdivided_tuplet], lilypond_type='RhythmicStaff')
+    >>> show(staff)
 
 The rhythms
 -----------
@@ -86,30 +86,30 @@ tuplets all at once.
 
 We'll set the duration of each tuplet equal to a quarter note:
 
-..  abjad::
+::
 
-    duration = abjad.Duration(1, 4)
+    >>> duration = abjad.Duration(1, 4)
 
 And then we make one row of rhythms, with the last `logical tie` increasingly
 subdivided:
 
-..  abjad::
+::
 
-    tuplets = ferneyhough.make_row_of_nested_tuplets(duration, (2, 1), 6)
-    staff = abjad.Staff(tuplets, lilypond_type='RhythmicStaff')
-    show(staff)
+    >>> tuplets = ferneyhough.make_row_of_nested_tuplets(duration, (2, 1), 6)
+    >>> staff = abjad.Staff(tuplets, lilypond_type='RhythmicStaff')
+    >>> show(staff)
 
 If we can make one single row of rhythms, we can make many rows of rhythms.
 Let's try:
 
-..  abjad::
+::
 
-    score = abjad.Score()
-    for tuplet_row in ferneyhough.make_rows_of_nested_tuplets(duration, 4, 6):
-        staff = abjad.Staff(tuplet_row, lilypond_type='RhythmicStaff')
-        score.append(staff)
-
-    show(score)
+    >>> score = abjad.Score()
+    >>> for tuplet_row in ferneyhough.make_rows_of_nested_tuplets(duration, 4, 6):
+    ...     staff = abjad.Staff(tuplet_row, lilypond_type='RhythmicStaff')
+    ...     score.append(staff)
+    ...
+    >>> show(score)
 
 That's getting close to what we want, but the typography isn't as good as it
 could be.
@@ -120,18 +120,18 @@ The score
 First we'll package up the logic for making the un-styled score into a single
 function:
 
-..  abjad::
+::
 
-    score = ferneyhough.make_score(abjad.Duration(1, 4), 4, 6)
-    show(score)
+    >>> score = ferneyhough.make_score(abjad.Duration(1, 4), 4, 6)
+    >>> show(score)
 
 Then we'll adjust the overall size of our output, and put everything together:
 
-..  abjad::
+::
 
-    ferneyhough.configure_score(score)
-    lilypond_file = ferneyhough.make_lilypond_file(abjad.Duration(1, 4), 11, 6)
-    show(lilypond_file)
+    >>> ferneyhough.configure_score(score)
+    >>> lilypond_file = ferneyhough.make_lilypond_file(abjad.Duration(1, 4), 11, 6)
+    >>> show(lilypond_file)
 
 Explore the ``abjad/demos/ferneyhough/`` directory for the complete code to
 this example, or import it into your Python session directly with ``from

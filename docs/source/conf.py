@@ -55,7 +55,6 @@ html_theme_options = {
     "navigation_depth": -1,
     "sticky_navigation": True,
     "style_external_links": True,
-    "titles_only": True,
 }
 html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
@@ -114,7 +113,7 @@ graphviz_dot_args = ["-s32"]
 graphviz_output_format = "svg"
 intersphinx_mapping = {
     "https://docs.python.org/3.6/": None,
-    "https://www.sphinx-doc.org/en/master/objects.inv": None,
+    "http://www.sphinx-doc.org/en/master/": None,
 }
 todo_include_todos = True
 

@@ -1,28 +1,28 @@
 Literature examples
 ===================
 
-..  abjad::
+::
 
-    import abjad
+    >>> import abjad
 
-..  abjad::
+..  book::
     :hide:
 
-    import random
-    random.seed(0)
+    >>> import random
+    >>> random.seed(0)
 
 ..  rubric:: Bartók: *Mikrokosmos*
 
 Build up a score fragment manually, piece-by-piece, in this implementation of a
 few measure from Bartók's *Mikrokosmos*. 
 
-..  abjad::
+..  book::
     :hide:
-    :stylesheet: literature-examples.ily
+    :lilypond/stylesheet: literature-examples.ily
 
-    from abjad.demos import bartok
-    score = bartok.make_bartok_score()
-    abjad.show(score)
+    >>> from abjad.demos import bartok
+    >>> score = bartok.make_bartok_score()
+    >>> abjad.show(score)
 
 ..  toctree::
 
@@ -33,13 +33,13 @@ few measure from Bartók's *Mikrokosmos*.
 Use functions to create an array of nested tuplets in this implementation of
 Ferneyhough's pre-compositional process.
 
-..  abjad::
+..  book::
     :hide:
 
-    from abjad.demos.ferneyhough import FerneyhoughDemo
-    ferneyhough = FerneyhoughDemo()
-    lilypond_file = ferneyhough.make_lilypond_file(abjad.Duration(1, 4), 6, 6)
-    abjad.show(lilypond_file)
+    >>> from abjad.demos.ferneyhough import FerneyhoughDemo
+    >>> ferneyhough = FerneyhoughDemo()
+    >>> lilypond_file = ferneyhough.make_lilypond_file(abjad.Duration(1, 4), 6, 6)
+    >>> abjad.show(lilypond_file)
 
 ..  toctree::
 
@@ -50,9 +50,9 @@ Ferneyhough's pre-compositional process.
 Create a polymetric score by aggregating musical cells in this implementation
 of Ligeti's *Désordre*.
 
-..  abjad::
+..  book::
     :hide:
-    :stylesheet: literature-examples.ily
+    :lilypond/stylesheet: literature-examples.ily
 
     from abjad.demos import ligeti
     upper = [
@@ -90,7 +90,7 @@ of Ligeti's *Désordre*.
 Create randomly-generated scores from a corpus of LilyPond syntax strings in
 this implementation of Mozart's dice game.
 
-..  abjad::
+..  book::
     :hide:
     :no-stylesheet:
     :no-trim:
@@ -109,7 +109,7 @@ this implementation of Mozart's dice game.
 Build up a full-fledged score in this implementation of Pärt's *Cantus in
 Memory of Benhamin Britten*.
 
-..  abjad::
+..  book::
     :hide:
     :no-stylesheet:
     :no-trim:

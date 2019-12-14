@@ -79,8 +79,7 @@ finally attach an accent to the first note of each split group:
 
     >>> shards = abjad.mutate(staff[:]).split(
     ...     durations=[abjad.Duration(5, 16)],
-    ...    cyclic=True,
-    ...    tie_split_notes=False,
+    ...     cyclic=True,
     ... )
     >>> for index, shard in enumerate(shards):
     ...     if index % 2:
