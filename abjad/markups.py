@@ -3130,9 +3130,6 @@ class MarkupCommand(object):
             >>> command
             MarkupCommand('hspace', 0)
 
-            >>> eval(repr(command))
-            MarkupCommand('hspace', 0)
-
         Returns string.
         """
         return StorageFormatManager(self).get_repr_format()
