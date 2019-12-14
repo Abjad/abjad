@@ -52,6 +52,7 @@ isort:
 		--recursive \
 		--skip ${project}/__init__.py \
 		--skip-glob '*boilerplate*' \
+		--thirdparty uqbar \
 		--trailing-comma \
 		--use-parentheses -y \
 		${formatPaths}

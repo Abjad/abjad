@@ -1,11 +1,18 @@
-import os
 import copy
 import enum
 import hashlib
+import os
 import pathlib
 import subprocess
 
-from docutils.nodes import Element, FixedTextElement, General, SkipNode, image, literal_block
+from docutils.nodes import (
+    Element,
+    FixedTextElement,
+    General,
+    SkipNode,
+    image,
+    literal_block,
+)
 from docutils.parsers.rst import Directive, directives
 from sphinx.util import FilenameUniqDict
 from sphinx.util.nodes import set_source_info
@@ -69,7 +76,11 @@ class ShellDirective(Directive):
             for line in self.content:
                 result.append(f"{cwd.name}$ {line}")
                 completed_process = subprocess.run(
-                    line, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True
+                    line,
+                    shell=True,
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.STDOUT,
+                    text=True,
                 )
                 result.append(completed_process.stdout)
         code = "\n".join(result)
@@ -170,12 +181,32 @@ class LilyPondExtension(Extension):
         monkeypatch.setattr(
             Illustrator,
             "__call__",
-            lambda self: console.push_proxy(cls(self.illustrable, cls.Kind.IMAGE)),
+            lambda self: console.push_proxy(
+                cls(
+                    self.illustrable,
+                    cls.Kind.IMAGE,
+                    **{
+                        key.replace("lilypond/", "").replace("-", "_"): value
+                        for key, value in console.proxy_options.items()
+                        if key.startswith("lilypond/")
+                    },
+                ),
+            ),
         )
         monkeypatch.setattr(
             Player,
             "__call__",
-            lambda self: console.push_proxy(cls(self.illustrable, cls.Kind.AUDIO)),
+            lambda self: console.push_proxy(
+                cls(
+                    self.illustrable,
+                    cls.Kind.AUDIO,
+                    **{
+                        key.replace("lilypond/", "").replace("-", "_"): value
+                        for key, value in console.proxy_options.items()
+                        if key.startswith("lilypond/")
+                    },
+                ),
+            ),
         )
 
     @classmethod
@@ -186,8 +217,11 @@ class LilyPondExtension(Extension):
             latex=[cls.visit_block_latex, None],
             text=[cls.visit_block_text, cls.depart_block_text],
         )
+        cls.add_option("lilypond/no-trim", directives.unchanged)
+        cls.add_option("lilypond/pages", directives.unchanged)
+        cls.add_option("lilypond/stylesheet", directives.unchanged)
 
-    def __init__(self, illustrable, kind, **keywords):
+    def __init__(self, illustrable, kind, pages=None, stylesheet=None, **keywords):
         self.illustrable = copy.deepcopy(illustrable)
         self.keywords = keywords
         self.kind = kind

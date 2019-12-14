@@ -6,9 +6,10 @@ import subprocess
 import tempfile
 from typing import Sequence, Tuple
 
+from uqbar.graphs import Grapher
+
 from abjad.lilypondfile import Block
 from abjad.system import AbjadConfiguration, IOManager, Timer
-from uqbar.graphs import Grapher
 
 _configuration = AbjadConfiguration()
 

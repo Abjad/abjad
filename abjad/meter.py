@@ -55,7 +55,7 @@ class Meter(object):
             1/4
             1/4))
 
-        >>> graph(meter) # doctest: +SKIP
+        >>> abjad.graph(meter) # doctest: +SKIP
 
         `2/4` comprises two beats.
 
@@ -70,7 +70,7 @@ class Meter(object):
             1/4
             1/4))
 
-        >>> graph(meter) # doctest: +SKIP
+        >>> abjad.graph(meter) # doctest: +SKIP
 
         `3/4` comprises three beats.
 
