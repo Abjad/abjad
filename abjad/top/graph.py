@@ -1,8 +1,4 @@
-def graph(
-    argument,
-    format_="pdf",
-    layout="dot",
-) -> None:
+def graph(argument, format_="pdf", layout="dot",) -> None:
     r"""
     Graphs ``argument``.
 
@@ -121,8 +117,4 @@ def graph(
     """
     import abjad.io
 
-    return abjad.io.graph(
-        argument,
-        format_=format_,
-        layout=layout,
-    )
+    return abjad.io.graph(argument, format_=format_, layout=layout,)
