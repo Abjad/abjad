@@ -7,10 +7,10 @@ Making a tuplet from a LilyPond input string
 
 You can create tuplets from a LilyPond input string:
 
-..  abjad::
+::
 
-    tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
-    abjad.show(tuplet)
+    >>> tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
+    >>> abjad.show(tuplet)
 
 
 Making a tuplet from a list of other components
@@ -18,11 +18,11 @@ Making a tuplet from a list of other components
 
 You can also make tuplets from a list of other components:
 
-..  abjad::
+::
 
-    leaves = [abjad.Note("fs'8"), abjad.Note("g'8"), abjad.Rest('r8')]
-    tuplet = abjad.Tuplet((2, 3), leaves)
-    abjad.show(tuplet)
+    >>> leaves = [abjad.Note("fs'8"), abjad.Note("g'8"), abjad.Rest('r8')]
+    >>> tuplet = abjad.Tuplet((2, 3), leaves)
+    >>> abjad.show(tuplet)
 
 
 Understanding the interpreter representation of a tuplet
@@ -30,9 +30,9 @@ Understanding the interpreter representation of a tuplet
 
 The interprer representation of an tuplet contains three parts:
 
-..  abjad::
+::
 
-    tuplet
+    >>> tuplet
 
 ``Tuplet`` tells you the tuplet's class.
 
@@ -46,9 +46,9 @@ Understanding the string representation of a tuplet
 
 The string representation of a tuplet contains four parts:
 
-..  abjad::
+::
 
-    print(tuplet)
+    >>> print(tuplet)
 
 Curly braces ``{`` and ``}`` indicate that the tuplet's music is interpreted
 sequentially instead of simultaneously.
@@ -65,9 +65,9 @@ Formatting tuplets
 
 Use ``format()`` to get the LilyPond format a tuplet:
 
-..  abjad::
+::
 
-    print(format(tuplet, 'lilypond'))
+    >>> print(format(tuplet, 'lilypond'))
 
 
 Selecting the music in a tuplet
@@ -75,9 +75,9 @@ Selecting the music in a tuplet
 
 Select the music in a tuplet like this:
 
-..  abjad::
+::
 
-    tuplet[:]
+    >>> tuplet[:]
 
 
 Selecting a tuplet's leaves
@@ -85,9 +85,9 @@ Selecting a tuplet's leaves
 
 Use ``select(...).leaves()`` to get the leaves in a tuplet:
 
-..  abjad::
+::
 
-    abjad.select(tuplet).leaves()
+    >>> abjad.select(tuplet).leaves()
 
 
 Getting the length of a tuplet
@@ -98,9 +98,9 @@ Use ``len()`` to get the length of a tuplet.
 The length of a tuplet is defined equal to the number of top-level components
 the tuplet contains:
 
-..  abjad::
+::
 
-    len(tuplet)
+    >>> len(tuplet)
 
 
 Inspecting tuplet duration
@@ -108,9 +108,9 @@ Inspecting tuplet duration
 
 Use the inspector to get the duration of a tuplet:
 
-..  abjad::
+::
 
-    abjad.inspect(tuplet).duration()
+    >>> abjad.inspect(tuplet).duration()
 
 
 Understanding rhythmic augmentation and diminution
@@ -119,20 +119,20 @@ Understanding rhythmic augmentation and diminution
 A tuplet with a multiplier less than ``1`` constitutes a type of rhythmic
 diminution:
 
-..  abjad::
+::
 
-    tuplet.multiplier
+    >>> tuplet.multiplier
 
-..  abjad::
+::
 
-    tuplet.diminution()
+    >>> tuplet.diminution()
 
 A tuplet with a multiplier greater than ``1`` is a type of rhythmic
 augmentation:
 
-..  abjad::
+::
 
-    tuplet.augmentation()
+    >>> tuplet.augmentation()
 
 
 Getting and setting the multiplier of a tuplet
@@ -140,16 +140,16 @@ Getting and setting the multiplier of a tuplet
 
 Get the multiplier of a tuplet like this:
 
-..  abjad::
+::
 
-    tuplet.multiplier
+    >>> tuplet.multiplier
 
 Set the multiplier of a tuplet like this:
 
-..  abjad::
+::
 
-    tuplet.multiplier = Multiplier(4, 5)
-    abjad.show(tuplet)
+    >>> tuplet.multiplier = Multiplier(4, 5)
+    >>> abjad.show(tuplet)
 
 
 Appending one component to the end of a tuplet
@@ -157,17 +157,17 @@ Appending one component to the end of a tuplet
 
 Use ``append()`` to append one component to the end of a tuplet:
 
-..  abjad::
+::
 
-    tuplet.append(Note("e'4."))
-    abjad.show(tuplet)
+    >>> tuplet.append(Note("e'4."))
+    >>> abjad.show(tuplet)
 
 You can also use a LilyPond input string:
 
-..  abjad::
+::
 
-    tuplet.append("bf8")
-    abjad.show(tuplet)
+    >>> tuplet.append("bf8")
+    >>> abjad.show(tuplet)
 
 
 Extending a tuplet with multiple components at once
@@ -175,18 +175,18 @@ Extending a tuplet with multiple components at once
 
 Use ``extend()`` to extend a tuplet with multiple components at once:
 
-..  abjad::
+::
 
-    notes = [Note("fs'32"), Note("e'32"), Note("d'32"), Rest((1, 32))]
-    tuplet.extend(notes)
-    abjad.show(tuplet)
+    >>> notes = [Note("fs'32"), Note("e'32"), Note("d'32"), Rest((1, 32))]
+    >>> tuplet.extend(notes)
+    >>> abjad.show(tuplet)
 
 You can also use a LilyPond input string:
 
-..  abjad::
+::
 
-    tuplet.extend("gs'8 a8") 
-    abjad.show(tuplet)
+    >>> tuplet.extend("gs'8 a8") 
+    >>> abjad.show(tuplet)
 
 
 Finding the index of a component in a tuplet
@@ -194,13 +194,13 @@ Finding the index of a component in a tuplet
 
 Use ``index()`` to find the index of any component in a tuplet:
 
-..  abjad::
+::
 
-    notes[1]
+    >>> notes[1]
 
-..  abjad::
+::
 
-    tuplet.index(notes[1])
+    >>> tuplet.index(notes[1])
 
 
 Popping a tuplet component by index
@@ -208,10 +208,10 @@ Popping a tuplet component by index
 
 Use ``pop()`` to remove the last component of a tuplet:
 
-..  abjad::
+::
 
-    tuplet.pop()
-    abjad.show(tuplet)
+    >>> tuplet.pop()
+    >>> abjad.show(tuplet)
 
 
 Removing a tuplet component by reference
@@ -219,10 +219,10 @@ Removing a tuplet component by reference
 
 Use ``remove()`` to remove any component from a tuplet by reference:
 
-..  abjad::
+::
 
-    tuplet.remove(tuplet[3])
-    abjad.show(tuplet)
+    >>> tuplet.remove(tuplet[3])
+    >>> abjad.show(tuplet)
 
 
 Overriding attributes of the LilyPond tuplet number grob
@@ -230,14 +230,14 @@ Overriding attributes of the LilyPond tuplet number grob
 
 Override attributes of the LilyPond tuplet number grob like this:
 
-..  abjad::
+::
 
-    string = 'tuplet-number::calc-fraction-text'
-    scheme = abjad.Scheme(string)
-    abjad.override(tuplet).tuplet_number.text = scheme
-    abjad.override(tuplet).tuplet_number.color = 'red'
-    staff = abjad.Staff([tuplet])
-    abjad.show(staff)
+    >>> string = 'tuplet-number::calc-fraction-text'
+    >>> scheme = abjad.Scheme(string)
+    >>> abjad.override(tuplet).tuplet_number.text = scheme
+    >>> abjad.override(tuplet).tuplet_number.color = 'red'
+    >>> staff = abjad.Staff([tuplet])
+    >>> abjad.show(staff)
 
 See LilyPond's documentation for lists of grob attributes available.
 
@@ -247,9 +247,9 @@ Overriding attributes of the LilyPond tuplet bracket grob
 
 Override attributes of the LilyPond tuplet bracket grob like this:
 
-..  abjad::
+::
 
-    abjad.override(tuplet).tuplet_bracket.color = 'red'
-    abjad.show(staff)
+    >>> abjad.override(tuplet).tuplet_bracket.color = 'red'
+    >>> abjad.show(staff)
 
 See LilyPond's documentation for lists of grob attributes available.

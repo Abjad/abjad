@@ -7,10 +7,10 @@ Making notes from a LilyPond input string
 
 You can make notes from a LilyPond input string:
 
-..  abjad::
+::
 
-    note = Note("c'4")
-    show(note)
+    >>> note = Note("c'4")
+    >>> show(note)
 
 
 Making notes from numbers
@@ -18,18 +18,18 @@ Making notes from numbers
 
 You can also make notes from numbers:
 
-..  abjad::
+::
 
-    note = Note(0, Duration(1, 4))
-    show(note)
+    >>> note = Note(0, Duration(1, 4))
+    >>> show(note)
 
 
 Understanding the interpreter representation of a note
 ------------------------------------------------------
 
-..  abjad::
+::
 
-    note
+    >>> note
 
 ``Note`` tells you the note's class.
 
@@ -43,30 +43,30 @@ Getting and setting the written pitch of notes
 
 Get the written pitch of notes like this:
 
-..  abjad::
+::
 
-    note.written_pitch
+    >>> note.written_pitch
 
 Set the written pitch of notes like this:
 
-..  abjad::
+::
 
-    note.written_pitch = NamedPitch("cs'")
-    show(note)
-
-Or this:
-
-..  abjad::
-
-    note.written_pitch = "d'"
-    show(note)
+    >>> note.written_pitch = NamedPitch("cs'")
+    >>> show(note)
 
 Or this:
 
-..  abjad::
+::
 
-    note.written_pitch = 3
-    show(note)
+    >>> note.written_pitch = "d'"
+    >>> show(note)
+
+Or this:
+
+::
+
+    >>> note.written_pitch = 3
+    >>> show(note)
 
 
 Getting and setting the written duration of notes
@@ -74,13 +74,13 @@ Getting and setting the written duration of notes
 
 Get the written duration of notes like this:
 
-..  abjad::
+::
 
-    note.written_duration
+    >>> note.written_duration
 
 Set the written duration of notes like this:
 
-..  abjad::
+::
 
-    note.written_duration = Duration(3, 16)
-    show(note)
+    >>> note.written_duration = Duration(3, 16)
+    >>> show(note)

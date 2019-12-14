@@ -114,7 +114,7 @@ graphviz_dot_args = ["-s32"]
 graphviz_output_format = "svg"
 intersphinx_mapping = {
     "https://docs.python.org/3.6/": None,
-    "http://www.sphinx-doc.org/en/stable/": None,
+    "https://www.sphinx-doc.org/en/master/objects.inv": None,
 }
 todo_include_todos = True
 
