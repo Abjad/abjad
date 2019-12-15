@@ -1,6 +1,8 @@
 language: python
 dist: xenial
 sudo: false
+cache:
+- pip
 
 env:
   global:
@@ -10,13 +12,13 @@ env:
 matrix:
   include:
   - python: "3.6"
-    env: ACCELERATED=false
-  - python: "3.6"
     env: ACCELERATED=true
   - python: "3.7"
     env: ACCELERATED=true
-  #- python: "3.8-dev"
-  #  env: ACCELERATED=true
+  - python: "3.8"
+    env: ACCELERATED=true
+  - python: "3.8"
+    env: ACCELERATED=false
 
 before_install:
 - wget -q ${LILYPOND_URL}lilypond-${LILYPOND_VERSION}-1.linux-64.sh
@@ -37,6 +39,8 @@ install:
 - if [[ $ACCELERATED == true ]]; then pip install -e .[accelerated]; fi
 
 script:
+- make black-check
+- make flake8
 - make mypy
 - make pytest
 # TODO: book has updated code; needs to be incorporated in dependency:
