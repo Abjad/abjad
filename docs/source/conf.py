@@ -101,13 +101,6 @@ latex_toplevel_sectioning = "chapter"  # just guessing?
 
 ### EXTENSIONS ###
 
-try:
-    import abjadext  # noqa
-
-    abjadbook_console_module_names = ("abjadext",)
-except ImportError:
-    abjadbook_console_module_names = ()
-
 autodoc_member_order = "groupwise"
 graphviz_dot_args = ["-s32"]
 graphviz_output_format = "svg"
@@ -120,12 +113,6 @@ todo_include_todos = True
 
 uqbar_api_title = "Abjad API"
 uqbar_api_source_paths = ["abjad"]
-try:
-    import abjadext  # noqa
-
-    uqbar_api_source_paths.append("abjadext")
-except ImportError:
-    pass
 uqbar_api_root_documenter_class = "uqbar.apis.SummarizingRootDocumenter"
 uqbar_api_module_documenter_class = "uqbar.apis.SummarizingModuleDocumenter"
 uqbar_api_member_documenter_classes = [
@@ -142,3 +129,11 @@ uqbar_book_extensions = [
 uqbar_book_strict = False
 uqbar_book_use_black = True
 uqbar_book_use_cache = True
+
+try:
+    import abjadext  # noqa
+
+    uqbar_api_source_paths.append("abjadext")
+    uqbar_book_console_setup.append("import abjadext")
+except ImportError:
+    pass

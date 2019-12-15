@@ -57,6 +57,9 @@ isort:
 		--use-parentheses -y \
 		${formatPaths}
 
+jupyter-test:
+	jupyter nbconvert --to=html --ExecutePreprocessor.enabled=True tests/test.ipynb
+
 mypy:
 	mypy --ignore-missing-imports ${project}/
 
