@@ -40,7 +40,7 @@ install:
 
 script:
 - make black-check
-- make flake8
+# - make flake8
 - make mypy
 - make pytest
 # TODO: book has updated code; needs to be incorporated in dependency:
