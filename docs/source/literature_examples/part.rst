@@ -1,6 +1,13 @@
 Pärt: *Cantus in Memory of Benjamin Britten*
 ============================================
 
+..  book-defaults::
+    :lilypond/stylesheet: literature-examples.ily
+
+..  note::
+
+    Make sure to install ``abjad-ext-tonality`` before running this demo.
+
 Let's start with some imports:
 
 ::
@@ -70,8 +77,7 @@ give them a 6/4 time signature, just so they line up properly.
     ...     abjad.attach(markup, descent[0])
     ...
 
-..  book::
-    :stylesheet: literature-examples.ily
+::
 
     >>> staff = abjad.Staff(sequence(descents).flatten())
     >>> time_signature = abjad.TimeSignature((6, 4))
@@ -89,8 +95,7 @@ Let's look at the second violins too:
     ...     abjad.attach(markup, descent[0])
     ...
 
-..  book::
-    :stylesheet: literature-examples.ily
+::
 
     >>> staff = abjad.Staff(sequence(descents).flatten())
     >>> time_signature = abjad.TimeSignature((6, 4))
@@ -110,8 +115,7 @@ the bar lines accidentally:
     ...     abjad.attach(markup, descent[0])
     ...
 
-..  book::
-    :stylesheet: literature-examples.ily
+::
 
     >>> staff = abjad.Staff(abjad.sequence(descents).flatten())
     >>> shards = abjad.mutate(staff[:]).split([(3, 2)], cyclic=True)
@@ -183,13 +187,13 @@ Let's run our original toplevel function to build the complete score:
 And here we show it:
 
 ..  book::
-    :no-stylesheet:
-    :no-trim:
-    :pages: 1-2
-    :with-columns: 2
-    :with-thumbnail:
+    :lilypond/no-stylesheet:
+    :lilypond/no-trim:
+    :lilypond/pages: 1-2
+    :lilypond/with-columns: 2
+    :lilypond/with-thumbnail:
 
-    abjad.show(lilypond_file)
+    >>> abjad.show(lilypond_file)
 
 Note that we only show the first two pages as the *Cantus* is still under
 copyright. Please visit the Universal Editions website to purchase the complete

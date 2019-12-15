@@ -2,12 +2,14 @@ import datetime
 import hashlib
 import pathlib
 import re
+import shutil
 import subprocess
 import tempfile
 from typing import Sequence, Tuple
 
 from uqbar.graphs import Grapher
 
+import abjad
 from abjad.lilypondfile import Block
 from abjad.system import AbjadConfiguration, IOManager, Timer
 
@@ -21,22 +23,25 @@ class LilyPondIO:
     def __init__(
         self,
         illustrable,
+        *,
         flags=None,
         output_directory=None,
         render_prefix=None,
+        should_copy_stylesheets=False,
         should_open=True,
         should_persist_log=True,
         string=None,
         **keywords,
     ):
+        self.flags = flags or []
         self.illustrable = illustrable
         self.keywords = keywords
-        self.should_persist_log = should_persist_log
-        self.should_open = should_open
-        self.render_prefix = render_prefix
-        self.string = string
-        self.flags = flags or []
         self.output_directory = output_directory
+        self.render_prefix = render_prefix
+        self.should_copy_stylesheets = bool(should_copy_stylesheets)
+        self.should_open = bool(should_open)
+        self.should_persist_log = bool(should_persist_log)
+        self.string = string
 
     ### SPECIAL METHODS ###
 
@@ -49,6 +54,8 @@ class LilyPondIO:
         input_path = (render_directory / render_prefix).with_suffix(".ly")
         self.persist_string(string, input_path)
         lilypond_path = self.get_lilypond_path()
+        if self.should_copy_stylesheets:
+            self.copy_stylesheets(render_directory)
         render_command = self.get_render_command(input_path, lilypond_path)
         with Timer() as render_timer:
             log, success = self.run_command(render_command)
@@ -69,6 +76,10 @@ class LilyPondIO:
         return openable_paths, format_time, render_time, success, log
 
     ### PUBLIC METHODS ###
+
+    def copy_stylesheets(self, render_directory):
+        for path in self.get_stylesheets_path().glob("*.*ly"):
+            shutil.copy(path, render_directory)
 
     def get_lilypond_path(self):
         lilypond_path = _configuration.get("lilypond_path")
@@ -110,6 +121,10 @@ class LilyPondIO:
     def get_string(self) -> str:
         lilypond_file = self.illustrable.__illustrate__(**self.keywords)
         return format(lilypond_file, "lilypond")
+
+    def get_stylesheets_path(self) -> pathlib.Path:
+        abjad_path = pathlib.Path(abjad.__path__[0])
+        return abjad_path / ".." / "docs" / "source" / "_stylesheets"
 
     def migrate_assets(
         self, render_prefix, render_directory, output_directory

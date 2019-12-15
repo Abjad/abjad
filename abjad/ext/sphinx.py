@@ -1,6 +1,7 @@
 import copy
 import enum
 import hashlib
+import logging
 import os
 import pathlib
 import subprocess
@@ -21,8 +22,11 @@ from uqbar.strings import normalize
 
 from abjad import abjad_configuration
 from abjad.io import Illustrator, LilyPondIO, Player
-from abjad.lilypondfile import Block
+from abjad.lilypondfile import Block, LilyPondVersionToken
 from abjad.system import TemporaryDirectoryChange
+
+
+logger = logging.getLogger(__name__)
 
 
 class HiddenDoctestDirective(Directive):
@@ -223,20 +227,55 @@ class LilyPondExtension(Extension):
             latex=[cls.visit_block_latex, None],
             text=[cls.visit_block_text, cls.depart_block_text],
         )
+        cls.add_option("lilypond/no-stylesheet", directives.unchanged)
         cls.add_option("lilypond/no-trim", directives.unchanged)
         cls.add_option("lilypond/pages", directives.unchanged)
         cls.add_option("lilypond/stylesheet", directives.unchanged)
+        cls.add_option("lilypond/with-columns", int)
+        cls.add_option("lilypond/with-thumbnail", directives.flag)
 
-    def __init__(self, illustrable, kind, pages=None, stylesheet=None, **keywords):
+    def __init__(
+        self,
+        illustrable,
+        kind,
+        no_stylesheet=None,
+        no_trim=None,
+        pages=None,
+        stylesheet=None,
+        **keywords,
+    ):
         self.illustrable = copy.deepcopy(illustrable)
         self.keywords = keywords
         self.kind = kind
+        self.no_stylesheet = no_stylesheet
+        self.no_trim = no_trim
+        self.pages = pages
+        self.stylesheet = stylesheet
 
     def to_docutils(self):
         illustration = self.illustrable.__illustrate__(**self.keywords)
         if self.kind == self.Kind.AUDIO:
             block = Block(name="midi")
             illustration.score_block.items.append(block)
+        if illustration.header_block:
+            if getattr(illustration.header_block, "tagline") is False:
+                # default.ily stylesheet already sets tagline = ##f
+                delattr(illustration.header_block, "tagline")
+            if illustration.header_block.empty():
+                illustration.items.remove(illustration.header_block)
+        if illustration.layout_block and illustration.layout_block.empty():
+            illustration.items.remove(illustration.layout_block)
+        if illustration.paper_block and illustration.paper_block.empty():
+            illustration.items.remove(illustration.paper_block)
+        token = LilyPondVersionToken("2.19.83")
+        illustration._lilypond_version_token = token
+        stylesheet = self.stylesheet or "default.ily"
+        if self.no_stylesheet:
+            stylesheet = None
+        if stylesheet and not illustration.includes:
+            illustration._use_relative_includes = True
+            includes = [stylesheet]
+            illustration._includes = tuple(includes)
         code = format(illustration, "lilypond")
         node = self.lilypond_block(code, code)
         node["kind"] = self.kind.name.lower()
@@ -244,7 +283,13 @@ class LilyPondExtension(Extension):
 
     @staticmethod
     def visit_block_html(self, node):
-        img_template = '<a class="uqbar-book" href="{source_path}"><img src="{relative_path}"/></a>'
+        img_template = (
+            '<div class="uqbar-book">'
+            '<a href="{source_path}">'
+            '<img src="{relative_path}"/>'
+            "</a>"
+            "</div>"
+        )
         output_directory = pathlib.Path(self.builder.outdir) / "_images"
         render_prefix = "lilypond-{}".format(
             hashlib.sha256(node[0].encode()).hexdigest()
@@ -260,19 +305,29 @@ class LilyPondExtension(Extension):
             flags=flags,
             output_directory=output_directory,
             render_prefix=render_prefix,
+            should_copy_stylesheets=True,
             should_open=False,
             should_persist_log=False,
             string=node[0],
         )
         if not list(output_directory.glob(glob)):
-            lilypond_io()
-        source_path = (pathlib.Path(self.builder.imgpath) / render_prefix).with_suffix(".ly")
+            _, _, _, success, log = lilypond_io()
+            if not success:
+                logger.warning("LilyPond render failed", location=node)
+                print(log)
+        source_path = (pathlib.Path(self.builder.imgpath) / render_prefix).with_suffix(
+            ".ly"
+        )
         for path in output_directory.glob(glob):
             relative_path = pathlib.Path(self.builder.imgpath) / path.name
             if path.suffix in (".mid", ".midi"):
                 pass
             else:
-                self.body.append(img_template.format(relative_path=relative_path, source_path=source_path))
+                self.body.append(
+                    img_template.format(
+                        relative_path=relative_path, source_path=source_path
+                    )
+                )
         raise SkipNode
 
 

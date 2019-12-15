@@ -182,8 +182,8 @@ from the Apple App Store. Alternatively, you can install via `Homebrew`_
 although this may take a significant amount of time.
 
 Additionally, a few non-`Python`_ tools need to be installed in order to
-develop Abjad or build its documentation: `TeXLive`_, `ImageMagick`_, and
-`Graphviz`_ (which was explained above).
+develop Abjad or build its documentation: `TeXLive`_ and `Graphviz`_ (which was 
+explained above).
 
 Install TeXLive
 ````````````````
@@ -200,36 +200,6 @@ To install `TeXLive`_ on Debian and Ubuntu:
     ~$ sudo apt-get install texlive-full
 
 On OSX, we recommend installing via the `MacTeX`_ distribution.
-
-Install ImageMagick
-```````````````````
-
-Building Abjad's documentation requires `ImageMagick`_, a collection of raster
-image processing tools.
-
-To install `ImageMagick`_ on Debian and Ubuntu:
-
-..  code-block:: bash
-
-    ~$ sudo apt-get install imagemagick
-
-To install `ImageMagick`_ on OSX, we recommend installing via `Homebrew`_:
-
-..  code-block:: bash
-
-    ~$ brew install imagemagick
-
-Once you have install `ImageMagick`_, test if `ImageMagick`_ is callable from
-your command-line by running the following command:
-
-..  code-block:: bash
-
-    ~$ convert --version
-    Version: ImageMagick 6.9.1-6 Q16 x86_64 2015-06-22 http://www.imagemagick.org
-    Copyright: Copyright (C) 1999-2015 ImageMagick Studio LLC
-    License: http://www.imagemagick.org/script/license.php
-    Features: Cipher DPC Modules 
-    Delegates (built-in): bzlib freetype jng jpeg ltdl lzma png tiff xml zlib
 
 Abjad and IPython
 -----------------
@@ -426,7 +396,6 @@ you might want to set your ``pdf_viewer`` to ``evince`` and your
 ..  _Homebrew: http://brew.sh/
 ..  _IPython notebook: http://ipython.org/notebook.html
 ..  _IPython: http://ipython.org/
-..  _ImageMagick: http://www.imagemagick.org/script/index.php
 ..  _LaTeX: https://tug.org/
 ..  _LilyPond: http://lilypond.org/
 ..  _MacTeX: https://tug.org/mactex/

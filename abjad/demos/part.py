@@ -3,6 +3,12 @@ import copy
 
 import abjad
 
+try:
+    import abjadext.tonality
+except ImportError:
+    print("NOTE: The Pärt demo requires abjad-ext-tonality")
+    pass
+
 
 class PartCantusScoreTemplate:
     """
@@ -60,8 +66,6 @@ def create_pitch_contour_reservoir():
     """
     Creates pitch contour reservoir.
     """
-    import abjadext.tonality
-
     scale = abjadext.tonality.Scale(("a", "minor"))
     pitch_ranges = {
         "First Violin": abjad.PitchRange("[C4, A6]"),
