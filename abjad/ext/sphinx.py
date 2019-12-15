@@ -24,7 +24,6 @@ from abjad.io import Illustrator, LilyPondIO, Player
 from abjad.lilypondfile import Block, LilyPondVersionToken
 from abjad.system import TemporaryDirectoryChange
 
-
 logger = logging.getLogger(__name__)
 
 
