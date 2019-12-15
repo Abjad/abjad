@@ -61,7 +61,7 @@ keywords = [
     "lilypond",
 ]
 
-install_requires = ["ply", "roman", "uqbar >= 0.4.2"]
+install_requires = ["ply", "roman", "uqbar >= 0.4.3"]
 
 if __name__ == "__main__":
     setuptools.setup(
