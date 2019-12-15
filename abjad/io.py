@@ -134,7 +134,8 @@ class LilyPondIO:
             if not old_path.name.startswith(render_prefix):
                 continue
             new_path = output_directory / old_path.name
-            migrated_assets.append(old_path.rename(new_path))
+            shutil.copy(old_path, new_path)
+            migrated_assets.append(new_path)
         return migrated_assets
 
     def open_output_path(self, output_path):

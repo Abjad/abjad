@@ -1,7 +1,6 @@
 import copy
 import enum
 import hashlib
-import logging
 import os
 import pathlib
 import subprocess
@@ -15,7 +14,7 @@ from docutils.nodes import (
     literal_block,
 )
 from docutils.parsers.rst import Directive, directives
-from sphinx.util import FilenameUniqDict
+from sphinx.util import FilenameUniqDict, logging
 from sphinx.util.nodes import set_source_info
 from uqbar.book.extensions import Extension
 from uqbar.strings import normalize
@@ -313,8 +312,7 @@ class LilyPondExtension(Extension):
         if not list(output_directory.glob(glob)):
             _, _, _, success, log = lilypond_io()
             if not success:
-                logger.warning("LilyPond render failed", location=node)
-                print(log)
+                logger.warning(f"LilyPond render failed\n{log}", location=node)
         source_path = (pathlib.Path(self.builder.imgpath) / render_prefix).with_suffix(
             ".ly"
         )
