@@ -17,8 +17,7 @@ first section of the piece:
 .. image :: images/desordre.jpg
 
 The redundancy is immediately evident in the repeating pattern found in both
-staves. The pattern is hierarchical. At the smallest level we have what we will
-here call a cell:
+staves. The pattern is hierarchical. At the smallest level we have a cell:
 
 ..  book::
     :hide:
@@ -45,7 +44,7 @@ Observe the following characteristic of the cell:
 bottom one which is a straight eighth note run.
 
 2. The total duration of the cell can vary, and is always the sum of the
-eight note funs.
+eight note runs.
 
 3. The eight note runs are always stem down while the octave "chord" is always
 stem up.
@@ -59,7 +58,7 @@ lower Voice will hold the eighth note run. First the eighth notes:
 
 ::
 
-    >>> pitches = [1,2,3]
+    >>> pitches = [1, 2, 3]
     >>> maker = abjad.NoteMaker()
     >>> notes = maker(pitches, [(1, 8)])
     >>> abjad.beam(notes)

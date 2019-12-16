@@ -155,6 +155,7 @@ class BarLine(object):
                 ...
             Exception: unknown bar line abbreviation: 'text'
             Abbreviation must be one of these:
+                ''
                 '|'
                 '.'
                 '||'

@@ -83,8 +83,9 @@ def make_desordre_measure(pitches) -> abjad.Container:
     """
     for sequence in pitches:
         container = make_desordre_cell(sequence)
-        time_signature = abjad.inspect(container).duration()
-        time_signature = abjad.NonreducedFraction(time_signature)
+        duration = abjad.inspect(container).duration()
+        duration = abjad.NonreducedFraction(duration)
+        time_signature = abjad.TimeSignature(duration)
         leaf = abjad.inspect(container).leaf(0)
         abjad.attach(time_signature, leaf)
     return container
@@ -151,6 +152,7 @@ def make_desordre_lilypond_file(score):
     abjad.override(context_block).spacing_spanner.uniform_stretching = True
     abjad.override(context_block).text_script.staff_padding = 4
     abjad.override(context_block).text_spanner.breakable = True
+    abjad.override(context_block).time_signature.stencil = False
     abjad.override(context_block).tuplet_bracket.bracket_visibility = True
     abjad.override(context_block).tuplet_bracket.minimum_length = 3
     abjad.override(context_block).tuplet_bracket.padding = 2
