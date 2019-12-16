@@ -789,7 +789,7 @@ class NamedPitch(Pitch):
             >>> abjad.NamedPitch("cfffqf'").simplify()
             NamedPitch('aqf')
 
-            >>> float(abjad.NamedPitch("cfffqf'").simplify()) == float(NamedPitch('aqf'))
+            >>> float(abjad.NamedPitch("cfffqf'").simplify()) == float(abjad.NamedPitch('aqf'))
             True
 
         ..  note:: LilyPond by default only supports accidentals from

@@ -33,18 +33,18 @@ setting it up, and installing any dependencies like `LilyPond`_:
 
 Start your Python interpreter and import Abjad:
 
-..  abjad::
+::
 
-    import abjad
+    >>> import abjad
 
 Then use Abjad to create and show notation:
 
-..  abjad::
+::
 
-    duration = abjad.Duration(1, 4)
-    notes = [abjad.Note(pitch, duration) for pitch in range(8)]
-    staff = abjad.Staff(notes)
-    abjad.show(staff)
+    >>> duration = abjad.Duration(1, 4)
+    >>> notes = [abjad.Note(pitch, duration) for pitch in range(8)]
+    >>> staff = abjad.Staff(notes)
+    >>> abjad.show(staff)
 
 Note that you can click on any music notation you find in Abjad's documentation
 to see its `LilyPond`_ source code.
@@ -75,34 +75,33 @@ other split group up by a major-seventh, then slur every split group and
 finally attach an accent to the first note of each split group:
 
 
-..  abjad::
+::
 
-    shards = abjad.mutate(staff[:]).split(
-        durations=[abjad.Duration(5, 16)],
-        cyclic=True,
-        tie_split_notes=False,
-        )
-    for index, shard in enumerate(shards):
-        if index % 2:
-            abjad.mutate(shard).transpose('M7')
-        if 1 < len(shard):
-            abjad.slur(shard)
-        abjad.attach(abjad.Articulation('accent'), shard[0])
-
-    abjad.show(staff)
+    >>> shards = abjad.mutate(staff[:]).split(
+    ...     durations=[abjad.Duration(5, 16)],
+    ...     cyclic=True,
+    ... )
+    >>> for index, shard in enumerate(shards):
+    ...     if index % 2:
+    ...         abjad.mutate(shard).transpose('M7')
+    ...     if 1 < len(shard):
+    ...         abjad.slur(shard)
+    ...     abjad.attach(abjad.Articulation('accent'), shard[0])
+    ...
+    >>> abjad.show(staff)
 
 Now let's create a second staff, copied from the first, invert all of the new
 staff's pitches around middle-G and finally group both staves into a staff
 group:
 
-..  abjad::
+::
 
-    copied_staff = abjad.mutate(staff).copy()
-    staff_group = abjad.StaffGroup([staff, copied_staff])
-    for note in abjad.iterate(copied_staff).leaves(pitched=True):
-        note.written_pitch = note.written_pitch.invert(axis='G4')
-
-    abjad.show(staff_group)
+    >>> copied_staff = abjad.mutate(staff).copy()
+    >>> staff_group = abjad.StaffGroup([staff, copied_staff])
+    >>> for note in abjad.iterate(copied_staff).leaves(pitched=True):
+    ...     note.written_pitch = note.written_pitch.invert(axis='G4')
+    ... 
+    >>> abjad.show(staff_group)
 
 Explore Abjad's documentation to find even more ways you can create and
 transform notation with `Python`_, `LilyPond`_ and Abjad.

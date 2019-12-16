@@ -1,9 +1,9 @@
 Logical voices
 ==============
 
-..  abjad::
+::
 
-    import abjad
+    >>> import abjad
 
 
 What is a logical voice?
@@ -25,24 +25,24 @@ Logical voices and explicit voices are different things. The staff below
 contains an explicit voice. You can slur these notes together because notes
 contained in an explicit voice always belong to the same logical voice:
 
-..  abjad::
+::
 
-    voice = abjad.Voice("c'8 d'8 e'8 f'8")
-    staff = abjad.Staff([voice])
-    notes = abjad.select(staff).leaves()
-    abjad.slur(notes)
-    abjad.show(staff)
+    >>> voice = abjad.Voice("c'8 d'8 e'8 f'8")
+    >>> staff = abjad.Staff([voice])
+    >>> notes = abjad.select(staff).leaves()
+    >>> abjad.slur(notes)
+    >>> abjad.show(staff)
 
 Here is a staff without an explicit voice. You can slur these notes together
 because both Abjad and LilyPond recognize that the notes belong to the same
 logical voice even though no explicit voice is present:
 
-..  abjad::
+::
 
-    staff = abjad.Staff("g'4 fs'8 e'8")
-    notes = abjad.select(staff).leaves()
-    abjad.slur(notes)
-    abjad.show(staff)
+    >>> staff = abjad.Staff("g'4 fs'8 e'8")
+    >>> notes = abjad.select(staff).leaves()
+    >>> abjad.slur(notes)
+    >>> abjad.show(staff)
 
 
 Different voice names determine different logical voices
@@ -54,35 +54,35 @@ voices as following one after the other on the same staff. But the example
 keeps things simple while we explore the way that the names of explicit voices
 impact Abjad's determination of logical voices:
 
-..  abjad::
+::
 
-    voice_1 = abjad.Voice("c'16 d'16 e'16 f'16", name='First Short Voice')
-    voice_2 = abjad.Voice("e'8 d'8", name='Second Short Voice')
-    staff = abjad.Staff([voice_1, voice_2])
-    abjad.show(staff)
+    >>> voice_1 = abjad.Voice("c'16 d'16 e'16 f'16", name='First Short Voice')
+    >>> voice_2 = abjad.Voice("e'8 d'8", name='Second Short Voice')
+    >>> staff = abjad.Staff([voice_1, voice_2])
+    >>> abjad.show(staff)
 
 You can't tell that the score above comprises two voices from the notation
 alone. But the LilyPond input makes this clear:
 
-..  abjad::
+::
 
-    abjad.f(staff)
+    >>> abjad.f(staff)
 
 You can slur together the notes in the first voice:
 
-..  abjad::
+::
 
-    notes = abjad.select(voice_1).leaves()
-    abjad.slur(notes)
-    abjad.show(staff)
+    >>> notes = abjad.select(voice_1).leaves()
+    >>> abjad.slur(notes)
+    >>> abjad.show(staff)
 
 And you can slur together the notes in the second voice:
 
-..  abjad::
+::
 
-    notes = abjad.select(voice_2).leaves()
-    abjad.slur(notes)
-    abjad.show(staff)
+    >>> notes = abjad.select(voice_2).leaves()
+    >>> abjad.slur(notes)
+    >>> abjad.show(staff)
 
 But you can not slur together all the notes in the staff.
 
@@ -101,30 +101,30 @@ Identical voice names determine a single logical voice
 
 Now let's consider an example in which both voices carry the same name:
 
-..  abjad::
+::
 
-    voice_1 = abjad.Voice("c''16 b'16 a'16 g'16", name='Unified Voice')
-    voice_2 = abjad.Voice("fs'8 g'8", name='Unified Voice')
-    staff = abjad.Staff([voice_1, voice_2])
-    abjad.show(staff)
+    >>> voice_1 = abjad.Voice("c''16 b'16 a'16 g'16", name='Unified Voice')
+    >>> voice_2 = abjad.Voice("fs'8 g'8", name='Unified Voice')
+    >>> staff = abjad.Staff([voice_1, voice_2])
+    >>> abjad.show(staff)
 
 All six notes in the staff now belong to the same logical voice. We can see
 that this is the case because it's now possible to slur all six notes together:
 
-..  abjad::
+::
 
-    voice_1_notes = abjad.select(voice_1).leaves()
-    voice_2_notes = abjad.select(voice_2).leaves()
-    all_notes = voice_1_notes + voice_2_notes
-    abjad.slur(all_notes)
-    abjad.show(staff)
+    >>> voice_1_notes = abjad.select(voice_1).leaves()
+    >>> voice_2_notes = abjad.select(voice_2).leaves()
+    >>> all_notes = voice_1_notes + voice_2_notes
+    >>> abjad.slur(all_notes)
+    >>> abjad.show(staff)
 
 We can say that this example comprises two explicit voices but only a single
 logical voice. The LilyPond input code also makes this clear:
 
-..  abjad::
+::
 
-    abjad.f(staff)
+    >>> abjad.f(staff)
 
 
 The importance of naming voices
@@ -135,12 +135,12 @@ clear that the staff below contains two explicit voices. But because the
 explicit voices are unnamed it isn't clear how many logical voices the staff
 defines.  Do the notes below belong to one logical voice or two?
 
-..  abjad::
+::
 
-    voice_1 = abjad.Voice("c'8 e'16 fs'16")
-    voice_2 = abjad.Voice("g'16 gs'16 a'16 as'16")
-    staff = abjad.Staff([voice_1, voice_2])
-    abjad.show(staff)
+    >>> voice_1 = abjad.Voice("c'8 e'16 fs'16")
+    >>> voice_2 = abjad.Voice("g'16 gs'16 a'16 as'16")
+    >>> staff = abjad.Staff([voice_1, voice_2])
+    >>> abjad.show(staff)
 
 Abjad defers to LilyPond in answering this question. LilyPond interprets
 successive unnamed voices as constituting different voices; Abjad follows this
@@ -148,13 +148,13 @@ convention. This means that you can slur together the notes in the first voice.
 And you can slur together the notes in the second voice. But you can't slur
 together all of the notes at once:
 
-..  abjad::
+::
 
-    voice_1_notes = abjad.select(voice_1).leaves()
-    voice_2_notes = abjad.select(voice_2).leaves()
-    abjad.slur(voice_1_notes)
-    abjad.slur(voice_2_notes)
-    abjad.show(staff)
+    >>> voice_1_notes = abjad.select(voice_1).leaves()
+    >>> voice_2_notes = abjad.select(voice_2).leaves()
+    >>> abjad.slur(voice_1_notes)
+    >>> abjad.slur(voice_2_notes)
+    >>> abjad.show(staff)
 
 This point can be something of a gotcha. If you start working with increasingly
 fancy ways of structuring your scores you can easily forget that notes in two

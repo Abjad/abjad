@@ -1382,7 +1382,7 @@ class Tuplet(Container):
             ...     [tuplet],
             ...     lilypond_type='RhythmicStaff',
             ...     )
-            >>> abjad.show(measure) # doctest: +SKIP
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 

@@ -1,9 +1,4 @@
-import typing
-
-from .persist import persist
-
-
-def play(argument: typing.Any, test: bool = None) -> None:
+def play(argument) -> None:
     """
     Plays ``argument``.
 
@@ -20,11 +15,6 @@ def play(argument: typing.Any, test: bool = None) -> None:
 
     Opens MIDI file.
     """
-    from abjad import abjad_configuration
-    from abjad.system.IOManager import IOManager
+    import abjad.io
 
-    assert hasattr(argument, "__illustrate__")
-    result = persist(argument).as_midi()
-    midi_file_path = result[0]
-    midi_player = abjad_configuration["midi_player"]
-    IOManager.open_file(midi_file_path, application=midi_player, test=test)
+    return abjad.io.play(argument)

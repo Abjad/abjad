@@ -63,7 +63,7 @@ class PersistenceManager(object):
         ..  container:: example
 
             >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
-            >>> for x in persist(staff).as_ly('~/example.ly'): # doctest: +SKIP
+            >>> for x in abjad.persist(staff).as_ly('~/example.ly'): # doctest: +SKIP
             ...     x
             ...
             '/Users/josiah/Desktop/example.ly'
@@ -110,7 +110,7 @@ class PersistenceManager(object):
         ..  container:: example
 
             >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
-            >>> for x in persist(staff).as_midi(): # doctest: +SKIP
+            >>> for x in abjad.persist(staff).as_midi(): # doctest: +SKIP
             ...     x
             ...
             '/Users/josiah/.abjad/output/1415.midi'
@@ -169,7 +169,7 @@ class PersistenceManager(object):
         ..  container:: example
 
             >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
-            >>> for x in persist(staff).as_pdf(): # doctest: +SKIP
+            >>> for x in abjad.persist(staff).as_pdf(): # doctest: +SKIP
             ...     x
             ...
             '/Users/josiah/.abjad/output/1416.pdf'
@@ -235,7 +235,7 @@ class PersistenceManager(object):
             >>> abjad.attach(command, container[-1])
             >>> staff.extend(200 * container)
 
-            >>> result = persist(staff).as_png() # doctest: +SKIP
+            >>> result = abjad.persist(staff).as_png() # doctest: +SKIP
             >>> for x in result[0]: # doctest: +SKIP
             ...     x
             ...

@@ -120,13 +120,13 @@ class Timespan(object):
             >>> 0 in timespan
             True
 
-            >>> Offset(1, 8) in timespan
+            >>> abjad.Offset(1, 8) in timespan
             True
 
-            >>> Offset(1, 4) in timespan
+            >>> abjad.Offset(1, 4) in timespan
             True
 
-            >>> Offset(1, 2) in timespan
+            >>> abjad.Offset(1, 2) in timespan
             False
 
         ..  container:: example
@@ -1014,6 +1014,7 @@ class Timespan(object):
 
             >>> for x in timespan.divide_by_ratio((1, 2, 1)):
             ...     x
+            ...
             Timespan(Offset((1, 2)), Offset((3, 4)))
             Timespan(Offset((3, 4)), Offset((5, 4)))
             Timespan(Offset((5, 4)), Offset((3, 2)))
@@ -4687,6 +4688,7 @@ class TimespanList(TypedList):
             >>> mapping = timespans.compute_overlap_factor_mapping()
             >>> for timespan, overlap_factor in mapping.items():
             ...     timespan.start_offset, timespan.stop_offset, overlap_factor
+            ...
             (Offset((0, 1)), Offset((5, 1)), Multiplier(1, 1))
             (Offset((5, 1)), Offset((10, 1)), Multiplier(2, 1))
             (Offset((10, 1)), Offset((15, 1)), Multiplier(1, 1))
@@ -4743,6 +4745,7 @@ class TimespanList(TypedList):
             >>> for offset, count in sorted(
             ...     timespans.count_offsets().items()):
             ...     offset, count
+            ...
             (Offset((0, 1)), 1)
             (Offset((3, 1)), 2)
             (Offset((6, 1)), 2)
@@ -4793,6 +4796,7 @@ class TimespanList(TypedList):
             >>> for offset, count in sorted(
             ...     timespans.count_offsets().items()):
             ...     offset, count
+            ...
             (Offset((-2, 1)), 1)
             (Offset((0, 1)), 1)
             (Offset((5, 1)), 1)
@@ -4821,6 +4825,7 @@ class TimespanList(TypedList):
             >>> for offset, count in sorted(
             ...     timespans.count_offsets().items()):
             ...     offset, count
+            ...
             (Offset((0, 1)), 3)
             (Offset((3, 1)), 1)
             (Offset((6, 1)), 1)
@@ -4864,6 +4869,7 @@ class TimespanList(TypedList):
 
             >>> for exploded_timespan_list in timespans.explode():
             ...     abjad.f(exploded_timespan_list)
+            ...
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -4933,6 +4939,7 @@ class TimespanList(TypedList):
             >>> for exploded_timespan_list in timespans.explode(
             ...     inventory_count=6):
             ...     abjad.f(exploded_timespan_list)
+            ...
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -5225,6 +5232,7 @@ class TimespanList(TypedList):
 
             >>> for timespan_list in timespans.partition():
             ...     abjad.f(timespan_list)
+            ...
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -5291,6 +5299,7 @@ class TimespanList(TypedList):
 
             >>> for timespan_list in timespans.partition():
             ...     abjad.f(timespan_list)
+            ...
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -5335,7 +5344,8 @@ class TimespanList(TypedList):
             >>> for timespan_list in timespans.partition(
             ...     include_tangent_timespans=True,
             ...     ):
-            ...     abjad.f(timespan_list) 
+            ...     abjad.f(timespan_list)
+            ...
             abjad.TimespanList(
                 [
                     abjad.Timespan(

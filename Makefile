@@ -49,12 +49,20 @@ isort:
 	isort \
 		--case-sensitive \
 		--multi-line 3 \
+		--project abjad \
+		--project abjadext \
 		--recursive \
 		--skip ${project}/__init__.py \
 		--skip-glob '*boilerplate*' \
+		--thirdparty ply \
+		--thirdparty roman \
+		--thirdparty uqbar \
 		--trailing-comma \
 		--use-parentheses -y \
 		${formatPaths}
+
+jupyter-test:
+	jupyter nbconvert --to=html --ExecutePreprocessor.enabled=True tests/test.ipynb
 
 mypy:
 	mypy --ignore-missing-imports ${project}/

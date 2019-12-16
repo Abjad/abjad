@@ -17,6 +17,7 @@ Type the following lines of code into ``hello_world.py``:
 
     from abjad import *
 
+::
 
     note = Note("c'4")
     show(note)
@@ -33,11 +34,11 @@ Call Python on ``hello_world.py``:
 
     $ python hello_world.py
 
-..  abjad::
+..  book::
     :hide:
 
-    note = Note("c'4")
-    show(note)
+    >>> note = abjad.Note("c'4")
+    >>> show(note)
 
 Python reads ``hello_world.py`` and shows the score you've created.
 

@@ -72,6 +72,7 @@ class BarLine(object):
     # scraped from LilyPond docs because LilyPond fails to error
     # on unrecognized string
     _known_abbreviations = (
+        "",
         "|",
         ".",
         "||",

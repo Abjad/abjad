@@ -10,10 +10,9 @@ And how to make a musical score?
 
 Use Python's ``dir()`` built-in to get a sense of the answer:
 
-..  abjad::
-    :text-width: 80
+..  book::
 
-    dir()
+    >>> dir()
 
 Calling ``from abjad import *`` causes Python to load hundreds or thousands of
 lines of Abjad's code into the global namespace for you to use. Abjad's code
@@ -27,10 +26,9 @@ Inspecting output
 
 Use ``dir()`` to take a look at the contents of the ``system`` package:
 
-..  abjad::
-    :text-width: 80
+..  book::
 
-    dir(system)
+    >>> dir(system)
 
 The ``abjad.IOManager`` class implements I/O functions that help you work with
 the files you create in Abjad.

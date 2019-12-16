@@ -55,7 +55,7 @@ class Meter(object):
             1/4
             1/4))
 
-        >>> graph(meter) # doctest: +SKIP
+        >>> abjad.graph(meter) # doctest: +SKIP
 
         `2/4` comprises two beats.
 
@@ -70,7 +70,7 @@ class Meter(object):
             1/4
             1/4))
 
-        >>> graph(meter) # doctest: +SKIP
+        >>> abjad.graph(meter) # doctest: +SKIP
 
         `3/4` comprises three beats.
 
@@ -88,7 +88,7 @@ class Meter(object):
             1/4
             1/4))
 
-        >>> graph(meter) # doctest: +SKIP
+        >>> abjad.graph(meter) # doctest: +SKIP
 
         `4/4` comprises four beats.
 
@@ -108,7 +108,7 @@ class Meter(object):
                 1/8
                 1/8))))
 
-        >>> graph(meter) # doctest: +SKIP
+        >>> abjad.graph(meter) # doctest: +SKIP
 
         `6/8` comprises two beats of three parts each.
 
@@ -136,7 +136,7 @@ class Meter(object):
                 1/8
                 1/8))))
 
-        >>> graph(meter) # doctest: +SKIP
+        >>> abjad.graph(meter) # doctest: +SKIP
 
         `12/8` comprises four beats of three parts each.
 
@@ -155,7 +155,7 @@ class Meter(object):
                 1/4
                 1/4))))
 
-        >>> graph(meter) # doctest: +SKIP
+        >>> abjad.graph(meter) # doctest: +SKIP
 
         `5/4` comprises two unequal beats. By default unequal beats
         are arranged from greatest to least.
@@ -178,7 +178,7 @@ class Meter(object):
                 1/4
                 1/4))))
 
-        >>> graph(meter) # doctest: +SKIP
+        >>> abjad.graph(meter) # doctest: +SKIP
 
         `7/4` comprises three unequal beats. Beats are arranged from
         greatest to least by default.
@@ -204,7 +204,7 @@ class Meter(object):
                 1/4
                 1/4))))
 
-        >>> graph(meter) # doctest: +SKIP
+        >>> abjad.graph(meter) # doctest: +SKIP
 
         `7/4` with beats arragned from least to greatest.
 
@@ -226,7 +226,7 @@ class Meter(object):
                 1/4
                 1/4))))
 
-        >>> graph(meter) # doctest: +SKIP
+        >>> abjad.graph(meter) # doctest: +SKIP
 
         Same meter customized to contain four compound beats:
 
@@ -253,7 +253,7 @@ class Meter(object):
                 1/8
                 1/8))))
 
-        >>> graph(meter) # doctest: +SKIP
+        >>> abjad.graph(meter) # doctest: +SKIP
 
     Prime divisions greater than ``3`` are converted to sequences of ``2``
     and ``3`` summing to that prime. Summands are arranged from greatest
@@ -426,7 +426,7 @@ class Meter(object):
 
             >>> meter = abjad.Meter((7, 4))
             >>> meter_graph = meter.__graph__()
-            >>> graph(meter_graph) # doctest: +SKIP
+            >>> abjad.graph(meter_graph) # doctest: +SKIP
 
             ..  docs::
 
