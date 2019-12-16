@@ -849,7 +849,6 @@ class MetronomeMark(object):
             ...     abjad.Duration(1, 4),
             ...     67.5,
             ...  )
-            >>> markup = markup.with_color('red')
             >>> mark = abjad.MetronomeMark(
             ...     reference_duration=(1, 4),
             ...     units_per_minute=abjad.Fraction(135, 2),
@@ -867,11 +866,7 @@ class MetronomeMark(object):
                 <<
                     \new Staff
                     {
-                        \tempo \markup {
-                            \with-color
-                                #red
-                                \markup \abjad-metronome-mark-markup #2 #0 #1 #\"67.5\"
-                            }
+                        \tempo \markup \abjad-metronome-mark-markup #2 #0 #1 #"67.5"
                         c'4
                         d'4
                         e'4

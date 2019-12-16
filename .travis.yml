@@ -39,10 +39,11 @@ install:
 - if [[ $ACCELERATED == true ]]; then pip install -e .[accelerated]; fi
 
 script:
+- black --version
 - make black-check
 # - make flake8
 - mypy --version
-- make mypy
+- if [[ $TRAVIS_PYTHON_VERSION != 3.6 ]]; then make mypy; fi
 - make pytest
 # TODO: book has updated code; needs to be incorporated in dependency:
 # - pip install --quiet -e .[book]
