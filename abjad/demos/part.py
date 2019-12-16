@@ -544,10 +544,9 @@ def apply_final_bar_lines(score):
     """
     Applies final bar lines to score.
     """
-    for voice in abjad.iterate(score).components(abjad.Voice):
-        bar_line = abjad.BarLine("|.")
-        leaf = abjad.inspect(voice).leaf(-1)
-        abjad.attach(bar_line, leaf)
+    last_leaf = abjad.inspect(score).leaf(-1)
+    bar_line = abjad.BarLine("|.")
+    abjad.attach(bar_line, last_leaf)
 
 
 def apply_page_breaks(score):
