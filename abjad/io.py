@@ -5,7 +5,7 @@ import re
 import shutil
 import subprocess
 import tempfile
-from typing import Sequence, Tuple
+from typing import Generator, Sequence, Tuple
 
 from uqbar.graphs import Grapher
 
@@ -91,7 +91,7 @@ class LilyPondIO:
                 lilypond_path = "lilypond"
         return lilypond_path
 
-    def get_openable_paths(self, output_paths) -> Sequence[pathlib.Path]:
+    def get_openable_paths(self, output_paths) -> Generator:
         for path in output_paths:
             if path.suffix in (".pdf", ".mid", ".midi", ".svg", ".png"):
                 yield path
@@ -123,7 +123,8 @@ class LilyPondIO:
         return format(lilypond_file, "lilypond")
 
     def get_stylesheets_path(self) -> pathlib.Path:
-        abjad_path = pathlib.Path(abjad.__path__[0])
+        path = getattr(abjad, "__path__")
+        abjad_path = pathlib.Path(path[0])
         return abjad_path / ".." / "docs" / "source" / "_stylesheets"
 
     def migrate_assets(
@@ -147,7 +148,7 @@ class LilyPondIO:
     def persist_string(self, string, input_path):
         input_path.write_text(string)
 
-    def run_command(self, command) -> Tuple[str, int]:
+    def run_command(self, command):
         completed_process = subprocess.run(
             command,
             shell=True,
@@ -180,7 +181,7 @@ class Illustrator(LilyPondIO):
 
     ### PUBLIC METHODS ###
 
-    def get_openable_paths(self, output_paths) -> Sequence[pathlib.Path]:
+    def get_openable_paths(self, output_paths) -> Generator:
         for path in output_paths:
             if path.suffix == ".pdf":
                 yield path
@@ -190,7 +191,7 @@ class Player(LilyPondIO):
 
     ### PUBLIC METHODS ###
 
-    def get_openable_paths(self, output_paths) -> Sequence[pathlib.Path]:
+    def get_openable_paths(self, output_paths) -> Generator:
         for path in output_paths:
             if path.suffix in (".mid", ".midi"):
                 yield path

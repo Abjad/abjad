@@ -4,6 +4,7 @@ import hashlib
 import os
 import pathlib
 import subprocess
+import typing
 
 from docutils.nodes import (
     Element,
@@ -42,7 +43,7 @@ class HiddenDoctestDirective(Directive):
     required_arguments = 0
     optional_arguments = 0
     final_argument_whitespace = True
-    option_spec = {}
+    option_spec: typing.Dict[str, str] = {}
 
     ### PUBLIC METHODS ###
 
@@ -70,7 +71,7 @@ class ShellDirective(Directive):
     required_arguments = 0
     optional_arguments = 0
     final_argument_whitespace = False
-    option_spec = {}
+    option_spec: typing.Dict[str, str] = {}
 
     ### PUBLIC METHODS ###
 
