@@ -135,6 +135,12 @@ try:
 
     uqbar_api_source_paths.append("abjadext")
     uqbar_book_console_setup.append("import abjadext")
+except ImportError:
+    pass
+
+try:
+    from abjadext import rmakers  # noqa
+
     uqbar_book_console_setup.append("from abjadext import rmakers")
 except ImportError:
     pass
