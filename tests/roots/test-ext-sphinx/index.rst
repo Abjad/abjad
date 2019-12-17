@@ -40,3 +40,11 @@ This will show pages 2, 3 and 1 of the 4-page staff:
     :lilypond/pages: 2-3,1
 
     >>> abjad.show(multipage_staff)
+
+This will show all four pages, in a 2x2 grid:
+
+..  book::
+    :lilypond/with-columns: 2
+    :lilypond/pages: 1-4
+
+    >>> abjad.show(multipage_staff)

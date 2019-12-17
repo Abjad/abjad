@@ -1,13 +1,10 @@
 Literature examples
 ===================
 
-::
-
-    >>> import abjad
-
 ..  book::
     :hide:
 
+    >>> import abjad
     >>> import random
     >>> random.seed(0)
 
@@ -93,7 +90,6 @@ this implementation of Mozart's dice game.
 ..  book::
     :hide:
     :lilypond/no-stylesheet:
-    :lilypond/no-trim:
 
     >>> from abjad.demos import mozart
     >>> lilypond_file = mozart.make_mozart_lilypond_file()
@@ -113,6 +109,7 @@ Memory of Benhamin Britten*.
     :lilypond/no-stylesheet:
     :lilypond/no-trim:
     :lilypond/pages: 1-2
+    :lilypond/with-columns: 2
 
     >>> from abjad.demos import part
     >>> lilypond_file = part.make_part_lilypond_file()

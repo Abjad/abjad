@@ -3,9 +3,11 @@ import enum
 import hashlib
 import os
 import pathlib
+import shutil
 import subprocess
 import typing
 
+import sphinx
 from docutils.nodes import (
     Element,
     FixedTextElement,
@@ -15,8 +17,10 @@ from docutils.nodes import (
     literal_block,
 )
 from docutils.parsers.rst import Directive, directives
-from sphinx.util import FilenameUniqDict, logging
+from sphinx.util import logging
+from sphinx.util.console import brown  # type: ignore
 from sphinx.util.nodes import set_source_info
+from sphinx.util.osutil import copyfile, ensuredir
 from uqbar.book.extensions import Extension
 from uqbar.strings import normalize
 
@@ -127,6 +131,9 @@ class ThumbnailDirective(Directive):
         node["title"] = self.options.get("title", "")
         node["uri"] = self.arguments[0]
         environment = self.state.document.settings.env
+        name, suffix = os.path.splitext(node["uri"])
+        thumbnail_uri = name + "-thumbnail" + suffix
+        environment.images.add_file("", thumbnail_uri)
         environment.images.add_file("", node["uri"])
         return [node]
 
@@ -143,7 +150,6 @@ def visit_thumbnail_block_html(self, node):
         </a>
         """
     )
-    self.builder.thumbnails.add_file("", node["uri"])
     title = node["title"]
     classes = " ".join(node["classes"])
     group = "group-{}".format(node["group"] if node["group"] else node["uri"])
@@ -174,7 +180,7 @@ def visit_thumbnail_block_latex(self, node):
 
 
 def on_builder_inited(app):
-    app.builder.thumbnails = FilenameUniqDict()
+    install_lightbox_static_files(app)
     (pathlib.Path(app.builder.outdir) / "_images").mkdir(exist_ok=True)
 
 
@@ -387,6 +393,39 @@ def embed_images(self, node, output_directory, render_prefix, source_path):
                     relative_path=relative_path, source_path=source_path
                 )
             )
+
+
+def install_lightbox_static_files(app):
+    source_static_path = os.path.join(app.builder.srcdir, "_static")
+    target_static_path = os.path.join(app.builder.outdir, "_static")
+    source_lightbox_path = os.path.join(source_static_path, "lightbox2")
+    target_lightbox_path = os.path.join(target_static_path, "lightbox2")
+    relative_file_paths = []
+    for root, _, file_names in os.walk(source_lightbox_path):
+        for file_name in file_names:
+            absolute_file_path = os.path.join(root, file_name)
+            relative_file_path = os.path.relpath(
+                absolute_file_path, source_static_path
+            )
+            relative_file_paths.append(relative_file_path)
+    if os.path.exists(target_lightbox_path):
+        shutil.rmtree(target_lightbox_path)
+    for relative_file_path in sphinx.util.status_iterator(
+        relative_file_paths,
+        "installing lightbox files... ",
+        brown,
+        len(relative_file_paths),
+    ):
+        source_path = os.path.join(source_static_path, relative_file_path)
+        target_path = os.path.join(target_static_path, relative_file_path)
+        target_directory = os.path.dirname(target_path)
+        if not os.path.exists(target_directory):
+            ensuredir(target_directory)
+        copyfile(source_path, target_path)
+        if relative_file_path.endswith(".js"):
+            app.add_javascript(relative_file_path)
+        elif relative_file_path.endswith(".css"):
+            app.add_stylesheet(relative_file_path)
 
 
 def setup(app):
