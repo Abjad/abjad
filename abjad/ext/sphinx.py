@@ -175,6 +175,7 @@ def visit_thumbnail_block_latex(self, node):
 
 def on_builder_inited(app):
     app.builder.thumbnails = FilenameUniqDict()
+    (pathlib.Path(app.builder.outdir) / "_images").mkdir(exist_ok=True)
 
 
 class LilyPondExtension(Extension):
@@ -226,12 +227,10 @@ class LilyPondExtension(Extension):
             latex=[cls.visit_block_latex, None],
             text=[cls.visit_block_text, cls.depart_block_text],
         )
-        cls.add_option("lilypond/no-stylesheet", directives.unchanged)
-        cls.add_option("lilypond/no-trim", directives.unchanged)
+        cls.add_option("lilypond/no-stylesheet", directives.flag)
+        cls.add_option("lilypond/no-trim", directives.flag)
         cls.add_option("lilypond/pages", directives.unchanged)
         cls.add_option("lilypond/stylesheet", directives.unchanged)
-        cls.add_option("lilypond/with-columns", int)
-        cls.add_option("lilypond/with-thumbnail", directives.flag)
 
     def __init__(
         self,
@@ -278,6 +277,9 @@ class LilyPondExtension(Extension):
         code = format(illustration, "lilypond")
         node = self.lilypond_block(code, code)
         node["kind"] = self.kind.name.lower()
+        node["no-stylesheet"] = self.no_stylesheet
+        node["no-trim"] = self.no_trim
+        node["pages"] = self.pages
         return [node]
 
     @staticmethod
@@ -298,7 +300,7 @@ class LilyPondExtension(Extension):
             glob = f"{render_prefix}.mid*"
         else:
             flags = ["-dcrop", "-dbackend=svg"]
-            glob = f"{render_prefix}.cropped.svg"
+            glob = f"{render_prefix}*.svg"
         lilypond_io = LilyPondIO(
             None,
             flags=flags,
@@ -316,11 +318,35 @@ class LilyPondExtension(Extension):
         source_path = (pathlib.Path(self.builder.imgpath) / render_prefix).with_suffix(
             ".ly"
         )
-        for path in output_directory.glob(glob):
-            relative_path = pathlib.Path(self.builder.imgpath) / path.name
-            if path.suffix in (".mid", ".midi"):
-                pass
+        if node["kind"] == "audio":
+            pass
+        else:
+            paths_to_embed = []
+            print("NODE?", node.attlist(), render_prefix)
+            if node.get("pages"):
+                for page_spec in node["pages"].split(","):
+                    page_spec = page_spec.strip()
+                    if "-" in page_spec:
+                        start_spec, _, stop_spec = page_spec.partition("-")
+                        start_page, stop_page = int(start_spec), int(stop_spec) + 1
+                    else:
+                        start_page, stop_page = int(page_spec), int(page_spec) + 1
+                    for page_number in range(start_page, stop_page):
+                        for path in output_directory.glob(f"{render_prefix}-{page_number}.svg"):
+                            paths_to_embed.append(path)
+            elif node.get("no-trim"):
+                for path in output_directory.glob(f"{render_prefix}.svg"):
+                    paths_to_embed.append(path)
+                if not paths_to_embed:
+                    page_count = len(list(output_directory.glob(f"{render_prefix}-*.svg")))
+                    for page_number in range(1, page_count + 1):
+                        for path in output_directory.glob(f"{render_prefix}-{page_number}.svg"):
+                            paths_to_embed.append(path)
             else:
+                for path in output_directory.glob(f"{render_prefix}.cropped.svg"):
+                    paths_to_embed.append(path)
+            for path in paths_to_embed:
+                relative_path = pathlib.Path(self.builder.imgpath) / path.name
                 self.body.append(
                     img_template.format(
                         relative_path=relative_path, source_path=source_path
