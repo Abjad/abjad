@@ -231,6 +231,7 @@ class LilyPondExtension(Extension):
         cls.add_option("lilypond/no-trim", directives.flag)
         cls.add_option("lilypond/pages", directives.unchanged)
         cls.add_option("lilypond/stylesheet", directives.unchanged)
+        cls.add_option("lilypond/with-columns", int)
 
     def __init__(
         self,
@@ -240,6 +241,7 @@ class LilyPondExtension(Extension):
         no_trim=None,
         pages=None,
         stylesheet=None,
+        with_columns=None,
         **keywords,
     ):
         self.illustrable = copy.deepcopy(illustrable)
@@ -249,6 +251,7 @@ class LilyPondExtension(Extension):
         self.no_trim = no_trim
         self.pages = pages
         self.stylesheet = stylesheet
+        self.with_columns = with_columns
 
     def to_docutils(self):
         illustration = self.illustrable.__illustrate__(**self.keywords)
@@ -280,17 +283,11 @@ class LilyPondExtension(Extension):
         node["no-stylesheet"] = self.no_stylesheet
         node["no-trim"] = self.no_trim
         node["pages"] = self.pages
+        node["with-columns"] = self.with_columns
         return [node]
 
     @staticmethod
     def visit_block_html(self, node):
-        img_template = (
-            '<div class="uqbar-book">'
-            '<a href="{source_path}">'
-            '<img src="{relative_path}"/>'
-            "</a>"
-            "</div>"
-        )
         output_directory = pathlib.Path(self.builder.outdir) / "_images"
         render_prefix = "lilypond-{}".format(
             hashlib.sha256(node[0].encode()).hexdigest()
@@ -321,38 +318,75 @@ class LilyPondExtension(Extension):
         if node["kind"] == "audio":
             pass
         else:
-            paths_to_embed = []
-            print("NODE?", node.attlist(), render_prefix)
-            if node.get("pages"):
-                for page_spec in node["pages"].split(","):
-                    page_spec = page_spec.strip()
-                    if "-" in page_spec:
-                        start_spec, _, stop_spec = page_spec.partition("-")
-                        start_page, stop_page = int(start_spec), int(stop_spec) + 1
-                    else:
-                        start_page, stop_page = int(page_spec), int(page_spec) + 1
-                    for page_number in range(start_page, stop_page):
-                        for path in output_directory.glob(f"{render_prefix}-{page_number}.svg"):
-                            paths_to_embed.append(path)
-            elif node.get("no-trim"):
-                for path in output_directory.glob(f"{render_prefix}.svg"):
-                    paths_to_embed.append(path)
-                if not paths_to_embed:
-                    page_count = len(list(output_directory.glob(f"{render_prefix}-*.svg")))
-                    for page_number in range(1, page_count + 1):
-                        for path in output_directory.glob(f"{render_prefix}-{page_number}.svg"):
-                            paths_to_embed.append(path)
-            else:
-                for path in output_directory.glob(f"{render_prefix}.cropped.svg"):
-                    paths_to_embed.append(path)
-            for path in paths_to_embed:
-                relative_path = pathlib.Path(self.builder.imgpath) / path.name
-                self.body.append(
-                    img_template.format(
-                        relative_path=relative_path, source_path=source_path
-                    )
-                )
+            embed_images(self, node, output_directory, render_prefix, source_path)
         raise SkipNode
+
+
+table_row_open_template = '<div class="table-row">'
+table_row_close_template = "</div>"
+basic_image_template = normalize(
+    """
+    <div class="uqbar-book">
+        <a href="{source_path}"><img src="{relative_path}"/></a>
+    </div>
+    """
+)
+thumbnail_template = normalize(
+    """
+    <a data-lightbox="{group}" href="{fullsize_path}" title="{title}" data-title="{title}" class="{cls}">
+        <img src="{thumbnail_path}" alt="{alt}"/>
+    </a>
+    """
+)
+
+
+def embed_images(self, node, output_directory, render_prefix, source_path):
+    paths_to_embed = []
+    if node.get("pages"):
+        for page_spec in node["pages"].split(","):
+            page_spec = page_spec.strip()
+            if "-" in page_spec:
+                start_spec, _, stop_spec = page_spec.partition("-")
+                start_page, stop_page = int(start_spec), int(stop_spec) + 1
+            else:
+                start_page, stop_page = int(page_spec), int(page_spec) + 1
+            for page_number in range(start_page, stop_page):
+                for path in output_directory.glob(f"{render_prefix}-{page_number}.svg"):
+                    paths_to_embed.append(path)
+    elif node.get("no-trim"):
+        for path in output_directory.glob(f"{render_prefix}.svg"):
+            paths_to_embed.append(path)
+        if not paths_to_embed:
+            page_count = len(list(output_directory.glob(f"{render_prefix}-*.svg")))
+            for page_number in range(1, page_count + 1):
+                for path in output_directory.glob(f"{render_prefix}-{page_number}.svg"):
+                    paths_to_embed.append(path)
+    else:
+        for path in output_directory.glob(f"{render_prefix}.cropped.svg"):
+            paths_to_embed.append(path)
+    with_columns = node.get("with-columns")
+    if with_columns:
+        for i in range(0, len(paths_to_embed), with_columns):
+            self.body.append(table_row_open_template)
+            for path in paths_to_embed[i:i + with_columns]:
+                relative_path = pathlib.Path(self.builder.imgpath) / path.name
+                self.body.append(thumbnail_template.format(
+                    alt="",
+                    cls="table-cell thumbnail",
+                    group=f"group-{render_prefix}",
+                    fullsize_path=relative_path,
+                    thumbnail_path=relative_path,
+                    title="",
+                ))
+            self.body.append(table_row_close_template)
+    else:
+        for path in paths_to_embed:
+            relative_path = pathlib.Path(self.builder.imgpath) / path.name
+            self.body.append(
+                basic_image_template.format(
+                    relative_path=relative_path, source_path=source_path
+                )
+            )
 
 
 def setup(app):
