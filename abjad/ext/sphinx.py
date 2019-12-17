@@ -21,7 +21,7 @@ from uqbar.book.extensions import Extension
 from uqbar.strings import normalize
 
 from abjad import abjad_configuration
-from abjad.io import Illustrator, LilyPondIO, Player
+from abjad.iox import Illustrator, LilyPondIO, Player
 from abjad.lilypondfile import Block, LilyPondVersionToken
 from abjad.system import TemporaryDirectoryChange
 
