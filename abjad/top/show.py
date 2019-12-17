@@ -43,6 +43,6 @@ def show(argument, return_timing=False, **keywords):
     Returns pair of ``abjad_formatting_time`` and ``lilypond_rendering_time``
     when ``return_timing`` is true.
     """
-    import abjad.io
+    import abjad.iox
 
-    return abjad.io.show(argument, return_timing=return_timing, **keywords)
+    return abjad.iox.show(argument, return_timing=return_timing, **keywords)

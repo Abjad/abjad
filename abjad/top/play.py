@@ -15,6 +15,6 @@ def play(argument) -> None:
 
     Opens MIDI file.
     """
-    import abjad.io
+    import abjad.iox
 
-    return abjad.io.play(argument)
+    return abjad.iox.play(argument)
