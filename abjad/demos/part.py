@@ -208,12 +208,12 @@ def add_string_music_to_score(score):
     edit_bass_voice(score, durated_reservoir)
     # chop all string parts into 6/4 measures
     strings_staff_group = score["Strings Staff Group"]
-    with abjad.ForbidUpdate(score):
-        for voice in abjad.iterate(strings_staff_group).components(abjad.Voice):
-            shards = abjad.mutate(voice[:]).split([(6, 4)], cyclic=True)
-            for shard in shards:
-                container = abjad.Container()
-                abjad.mutate(shard).wrap(container)
+    # NOTE: this takes a long time:
+    for voice in abjad.iterate(strings_staff_group).components(abjad.Voice):
+        shards = abjad.mutate(voice[:]).split([(6, 4)], cyclic=True)
+        for shard in shards:
+            container = abjad.Container()
+            abjad.mutate(shard).wrap(container)
 
 
 def edit_first_violin_voice(score, durated_reservoir):
