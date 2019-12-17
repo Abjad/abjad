@@ -190,8 +190,6 @@ And here we show it:
     :lilypond/no-stylesheet:
     :lilypond/no-trim:
     :lilypond/pages: 1-2
-    :lilypond/with-columns: 2
-    :lilypond/with-thumbnail:
 
     >>> abjad.show(lilypond_file)
 
