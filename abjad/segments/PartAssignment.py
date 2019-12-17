@@ -3,9 +3,10 @@ import typing
 from abjad import typings
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.StorageFormatManager import StorageFormatManager
-from abjad.utilities.String import String
 
 from .Part import Part
+
+token_type = typing.Union[None, int, typings.IntegerPair, typing.List[int]]
 
 
 class PartAssignment(object):
@@ -38,7 +39,7 @@ class PartAssignment(object):
 
         >>> print(format(part_assignment))
         abjad.PartAssignment('Horn', [1, 3])
-        
+
     """
 
     ### CLASS VARIABLES ###
@@ -46,8 +47,6 @@ class PartAssignment(object):
     __slots__ = ("_members", "_parts", "_section", "_token")
 
     ### INITIALIZER ###
-
-    token_type = typing.Union[None, int, typings.IntegerPair, typing.List[int]]
 
     def __init__(self, section: str = None, token: token_type = None) -> None:
         self._section = section
@@ -199,13 +198,13 @@ class PartAssignment(object):
     def __iter__(self):
         """
         Iterates parts in assignment.
-        
+
         ..  container:: example
 
             >>> part_assignment = abjad.PartAssignment('Horn', [1, 3])
             >>> for part in part_assignment:
             ...     part
-            ... 
+            ...
             Part(instrument='Horn', member=1, section='Horn')
             Part(instrument='Horn', member=3, section='Horn')
 

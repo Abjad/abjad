@@ -33,3 +33,32 @@ from .yield_all_modules import yield_all_modules
 Infinity = mathtools.Infinity()
 NegativeInfinity = mathtools.NegativeInfinity()
 del mathtools
+
+
+__all__ = [
+    "CyclicTuple",
+    "Duration",
+    "DurationInequality",
+    "Enumerator",
+    "Expression",
+    "Inequality",
+    "LengthInequality",
+    "Multiplier",
+    "Offset",
+    "OrderedDict",
+    "Pattern",
+    "PatternTuple",
+    "PitchInequality",
+    "Sequence",
+    "SortedCollection",
+    "String",
+    "TypedCollection",
+    "TypedCounter",
+    "TypedFrozenset",
+    "TypedList",
+    "TypedTuple",
+    "compare_images",
+    "list_all_classes",
+    "list_all_functions",
+    "yield_all_modules",
+]

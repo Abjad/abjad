@@ -11,7 +11,7 @@ class StopPhrasingSlur(object):
     ..  container:: example
 
         >>> abjad.StopPhrasingSlur()
-        StopPhrasingSlur() 
+        StopPhrasingSlur()
 
     """
 

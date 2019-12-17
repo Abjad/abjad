@@ -1,5 +1,3 @@
-import pytest
-
 import abjad
 
 
@@ -39,7 +37,7 @@ def test_Container__split_by_duration_01():
         """
     ), print(format(staff))
 
-    halves = staff[0]._split_by_duration(abjad.Duration(1, 32))
+    staff[0]._split_by_duration(abjad.Duration(1, 32))
 
     assert format(staff) == abjad.String.normalize(
         r"""
@@ -106,7 +104,7 @@ def test_Container__split_by_duration_02():
         """
     ), print(format(staff))
 
-    halves = staff[0]._split_by_duration(abjad.Duration(1, 5))
+    staff[0]._split_by_duration(abjad.Duration(1, 5))
 
     assert format(staff) == abjad.String.normalize(
         r"""

@@ -1,10 +1,8 @@
 import collections
-import fractions
 import numbers
 import typing
 
 from abjad import mathtools
-from abjad.mathtools import NonreducedFraction, Ratio
 from abjad.system.Tag import Tag
 from abjad.utilities.Duration import Duration
 from abjad.utilities.Multiplier import Multiplier
@@ -190,7 +188,9 @@ class NoteMaker(object):
             pitches = [pitches]
         if isinstance(durations, (numbers.Number, tuple)):
             durations = [durations]
-        nonreduced_fractions = Sequence([NonreducedFraction(_) for _ in durations])
+        nonreduced_fractions = Sequence(
+            [mathtools.NonreducedFraction(_) for _ in durations]
+        )
         size = max(len(nonreduced_fractions), len(pitches))
         nonreduced_fractions = nonreduced_fractions.repeat_to_length(size)
         pitches = Sequence(pitches).repeat_to_length(size)

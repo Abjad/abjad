@@ -1,7 +1,6 @@
 import typing
 
 from abjad import typings
-from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.Tag import Tag
 
 from .Leaf import Leaf

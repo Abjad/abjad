@@ -18,13 +18,10 @@ from abjad.core.Rest import Rest
 from abjad.core.Selection import Selection
 from abjad.core.Skip import Skip
 from abjad.core.Tuplet import Tuplet
-from abjad.indicators.RepeatTie import RepeatTie
-from abjad.indicators.Tie import Tie
 from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.timespans import Timespan, TimespanList
 from abjad.top.inspect import inspect
 from abjad.top.mutate import mutate
-from abjad.top.select import select
 from abjad.utilities.Duration import Duration
 from abjad.utilities.Multiplier import Multiplier
 from abjad.utilities.Offset import Offset
@@ -585,7 +582,7 @@ class Meter(object):
                 "truecolor": True,
             },
             edge_attributes={"penwidth": 2},
-            node_attributes={"fontname": "Arial", "fontsize": 12, "penwidth": 2,},
+            node_attributes={"fontname": "Arial", "fontsize": 12, "penwidth": 2},
         )
         node_mapping = {}
         root = self._root_node

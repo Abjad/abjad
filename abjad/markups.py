@@ -1431,8 +1431,6 @@ class Markup(object):
 
         Returns new markup.
         """
-        import abjad
-
         contents = self._parse_markup_command_argument(self)
         axis = Scheme(axis)
         # TODO: make Scheme(Up) work
@@ -2779,7 +2777,7 @@ class Markup(object):
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
-            
+
                 >>> abjad.f(staff)
                 \new Staff
                 {

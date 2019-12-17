@@ -1,10 +1,9 @@
-from abjad import enums, exceptions, mathtools
+from abjad import mathtools
 from abjad.indicators.MetronomeMark import MetronomeMark
 from abjad.indicators.TimeSignature import TimeSignature
 from abjad.timespans import AnnotatedTimespan, TimespanList
 from abjad.top.inspect import inspect as abjad_inspect
 from abjad.top.iterate import iterate
-from abjad.top.new import new
 from abjad.utilities.Duration import Duration
 from abjad.utilities.Multiplier import Multiplier
 from abjad.utilities.Offset import Offset
@@ -195,7 +194,6 @@ class UpdateManager(object):
             return
         score_stop_offset = max(all_stop_offsets)
         timespans = TimespanList()
-        clocktime_rate = MetronomeMark((1, 4), 60)
         clocktime_start_offset = Offset(0)
         for left, right in Sequence(pairs).nwise(wrapped=True):
             metronome_mark = left[-1]
@@ -308,7 +306,7 @@ class UpdateManager(object):
             offset = clocktime_start_offset + clocktime_duration
             component._stop_offset_in_seconds = Offset(offset)
             return
-        raise Exception(f"can not find {stop_offset} in {timespans}.")
+        raise Exception(f"can not find {offset} in {timespans}.")
 
     @classmethod
     def _update_component_offsets(class_, component):

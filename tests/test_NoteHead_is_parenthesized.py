@@ -6,9 +6,9 @@ def test_NoteHead_is_parenthesized_01():
     note_head = abjad.NoteHead(written_pitch="c'")
     assert note_head.is_parenthesized is None
     note_head.is_parenthesized = True
-    assert note_head.is_parenthesized == True
+    assert note_head.is_parenthesized is True
     note_head.is_parenthesized = False
-    assert note_head.is_parenthesized == False
+    assert note_head.is_parenthesized is False
 
 
 def test_NoteHead_is_parenthesized_02():

@@ -9,7 +9,6 @@ from abjad.utilities.OrderedDict import OrderedDict
 from .AfterGraceContainer import AfterGraceContainer
 from .BeforeGraceContainer import BeforeGraceContainer
 from .Component import Component
-from .Context import Context
 from .Score import Score
 from .Staff import Staff
 from .StaffGroup import StaffGroup
@@ -1090,7 +1089,7 @@ class Parentage(collections.abc.Sequence):
                 >>> parentage.get(abjad.Component, -1)
                 <Voice-"Red_Voice"{4}>
 
-                With other negative ``n``: 
+                With other negative ``n``:
 
                 >>> parentage.get(abjad.Component, -2)
                 <<<2>>>

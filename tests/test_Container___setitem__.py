@@ -1,5 +1,3 @@
-import pytest
-
 import abjad
 
 
@@ -9,7 +7,6 @@ def test_Container___setitem___01():
     """
 
     voice = abjad.Voice("c'8 [ d'8 ] e'8 f'8")
-    leaves = abjad.select(voice).leaves()
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -49,7 +46,6 @@ def test_Container___setitem___02():
     """
 
     voice = abjad.Voice("c'8 [ d'8 ] e'8 f'8")
-    leaves = abjad.select(voice).leaves()
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -93,7 +89,6 @@ def test_Container___setitem___03():
     """
 
     voice = abjad.Voice("{ c'8 [ d'8 } { e'8 f'8 ] }")
-    leaves = abjad.select(voice).leaves()
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -188,7 +183,6 @@ def test_Container___setitem___05():
     """
 
     voice = abjad.Voice("{ c'8 [ d'8 } { e'8 f'8 ] }")
-    leaves = abjad.select(voice).leaves()
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -234,7 +228,6 @@ def test_Container___setitem___06():
 
     voice = abjad.Voice(2 * abjad.Container("c'8 c'8 c'8 c'8"))
     voice = abjad.Voice("{ c'8 d'8 e'8 f'8 } { g'8 a'8 b'8 c''8 }")
-    leaves = abjad.select(voice).leaves()
 
     assert format(voice) == abjad.String.normalize(
         r"""

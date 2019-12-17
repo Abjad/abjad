@@ -1,5 +1,4 @@
 from abjad.system.Tag import Tag
-from abjad.utilities.OrderedDict import OrderedDict
 
 from .Part import Part
 from .PartManifest import PartManifest
@@ -145,7 +144,7 @@ class StringQuartetScoreTemplate(ScoreTemplate):
 
         # make string quartet staff group
         string_quartet_staff_group = abjad.StaffGroup(
-            [first_violin_staff, second_violin_staff, viola_staff, cello_staff,],
+            [first_violin_staff, second_violin_staff, viola_staff, cello_staff],
             name="String_Quartet_Staff_Group",
             tag=tag,
         )

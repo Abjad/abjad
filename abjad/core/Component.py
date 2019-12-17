@@ -7,7 +7,6 @@ import uqbar.graphs
 
 from abjad import enums, exceptions, mathtools
 from abjad.indicators.StaffChange import StaffChange
-from abjad.indicators.TimeSignature import TimeSignature
 from abjad.markups import Markup
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
@@ -19,14 +18,10 @@ from abjad.timespans import Timespan
 from abjad.top.attach import attach
 from abjad.top.detach import detach
 from abjad.top.inspect import inspect
-from abjad.top.iterate import iterate
 from abjad.top.mutate import mutate
 from abjad.top.override import override
 from abjad.top.select import select
 from abjad.top.setting import setting
-from abjad.utilities.Duration import Duration
-
-from .VerticalMoment import VerticalMoment
 
 
 class Component(object):
@@ -592,7 +587,6 @@ class Component(object):
         if n == -1 and getattr(self, "_before_grace_container", None):
             return self._before_grace_container[-1]
         index = self._parent.index(self) + n
-        result = None
         if not (0 <= index < len(self._parent)):
             return None
         candidate = self._parent[index]

@@ -83,7 +83,7 @@ def make_bartok_score():
     clef = abjad.Clef("bass")
     leaf = lower_staff_voice_2_leaves[0]
     abjad.attach(clef, leaf)
-    bar_line = score.add_final_bar_line()
+    score.add_final_bar_line()
 
     # adds dynamics
     abjad.attach(abjad.Dynamic("pp"), upper_staff_leaves[0])

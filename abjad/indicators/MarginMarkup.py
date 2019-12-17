@@ -297,7 +297,7 @@ class MarginMarkup(object):
     def tweaks(self) -> None:
         r"""
         Are not implemented on margin markup.
-        
+
         The LilyPond ``\shortInstrumentName`` command refuses tweaks.
 
         Craft explicit markup instead.

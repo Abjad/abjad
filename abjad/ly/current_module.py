@@ -63,7 +63,7 @@ current_module = {
         "type": "ly:prob?",
         "types": ("context-specification", "general-music", "music-wrapper-music",),
     },
-    "allowPageTurn": {"signature": ("ly:music?",), "type": "ly:music-function?",},
+    "allowPageTurn": {"signature": ("ly:music?",), "type": "ly:music-function?"},
     "allowVoltaHook": {
         "signature": ("void?", "string?"),
         "type": "ly:music-function?",
@@ -179,7 +179,7 @@ current_module = {
     "banjo-open-d-tuning": "banjo-open-d-tuning",
     "banjo-open-dm-tuning": "banjo-open-dm-tuning",
     "banjo-open-g-tuning": "banjo-open-g-tuning",
-    "bar": {"signature": ("ly:music?", "string?"), "type": "ly:music-function?",},
+    "bar": {"signature": ("ly:music?", "string?"), "type": "ly:music-function?"},
     "barNumberCheck": {
         "signature": ("ly:music?", "integer?"),
         "type": "ly:music-function?",
@@ -218,7 +218,7 @@ current_module = {
         "type": "ly:prob?",
         "types": ("context-specification", "general-music", "music-wrapper-music",),
     },
-    "bendAfter": {"signature": ("ly:event?", "real?"), "type": "ly:music-function?",},
+    "bendAfter": {"signature": ("ly:event?", "real?"), "type": "ly:music-function?"},
     "bigger": 1,
     "blackTriangleMarkup": "blackTriangleMarkup",
     "bongos-style": "bongos-style",
@@ -286,7 +286,7 @@ current_module = {
         "type": "ly:music-function?",
     },
     "chordmodifiers": "chordmodifiers",
-    "clef": {"signature": ("ly:music?", "string?"), "type": "ly:music-function?",},
+    "clef": {"signature": ("ly:music?", "string?"), "type": "ly:music-function?"},
     "coda": {
         "articulation-type": "coda",
         "name": "ArticulationEvent",
@@ -351,8 +351,8 @@ current_module = {
         "signature": ("ly:music?", "ly:music?"),
         "type": "ly:music-function?",
     },
-    "cueClef": {"signature": ("ly:music?", "string?"), "type": "ly:music-function?",},
-    "cueClefUnset": {"signature": ("ly:music?",), "type": "ly:music-function?",},
+    "cueClef": {"signature": ("ly:music?", "string?"), "type": "ly:music-function?"},
+    "cueClefUnset": {"signature": ("ly:music?",), "type": "ly:music-function?"},
     "cueDuring": {
         "signature": ("ly:music?", "string?", "ly:dir?", "ly:music?"),
         "type": "ly:music-function?",
@@ -409,7 +409,7 @@ current_module = {
         ),
     },
     "default-fret-table": "default-fret-table",
-    "defaultNoteHeads": {"signature": ("ly:music?",), "type": "ly:music-function?",},
+    "defaultNoteHeads": {"signature": ("ly:music?",), "type": "ly:music-function?"},
     "defaultStringTunings": "defaultStringTunings",
     "defaultTimeSignature": {
         "context-type": "Staff",
@@ -908,7 +908,7 @@ current_module = {
         "type": "ly:prob?",
         "types": ("general-music", "post-event", "glissando-event", "event"),
     },
-    "grace": {"signature": ("ly:music?", "ly:music?"), "type": "ly:music-function?",},
+    "grace": {"signature": ("ly:music?", "ly:music?"), "type": "ly:music-function?"},
     "grobdescriptions": {
         "signature": ("scheme?", "list?"),
         "type": "ly:music-function?",
@@ -999,7 +999,7 @@ current_module = {
         "type": "ly:prob?",
         "types": ("general-music", "sequential-music"),
     },
-    "inStaffSegno": {"signature": ("ly:music?",), "type": "ly:music-function?",},
+    "inStaffSegno": {"signature": ("ly:music?",), "type": "ly:music-function?"},
     "input-file-name": None,
     "instrument-definitions": "instrument-definitions",
     "instrumentSwitch": {
@@ -1038,13 +1038,13 @@ current_module = {
         "signature": ("ly:music?", "ly:music?"),
         "type": "ly:music-function?",
     },
-    "label": {"signature": ("ly:music?", "symbol?"), "type": "ly:music-function?",},
+    "label": {"signature": ("ly:music?", "symbol?"), "type": "ly:music-function?"},
     "laissezVibrer": {
         "name": "LaissezVibrerEvent",
         "type": "ly:prob?",
         "types": ("general-music", "post-event", "event", "laissez-vibrer-event",),
     },
-    "language": {"signature": ("void?", "string?"), "type": "ly:music-function?",},
+    "language": {"signature": ("void?", "string?"), "type": "ly:music-function?"},
     "languageRestore": {"signature": ("void?",), "type": "ly:music-function?"},
     "languageSaveAndChange": {
         "signature": ("void?", "string?"),
@@ -1264,7 +1264,7 @@ current_module = {
         "signature": ("ly:music?", "symbol-list-or-music?"),
         "type": "ly:music-function?",
     },
-    "once": {"signature": ("ly:music?", "ly:music?"), "type": "ly:music-function?",},
+    "once": {"signature": ("ly:music?", "ly:music?"), "type": "ly:music-function?"},
     "oneVoice": {
         "context-type": "Voice",
         "name": "ContextSpeccedMusic",
@@ -1283,7 +1283,7 @@ current_module = {
             "script-event",
         ),
     },
-    "ottava": {"signature": ("ly:music?", "integer?"), "type": "ly:music-function?",},
+    "ottava": {"signature": ("ly:music?", "integer?"), "type": "ly:music-function?"},
     "output-def-music-handler": "output-def-music-handler",
     "output-empty-score-list": "output-empty-score-list",
     "output-suffix": "output-suffix",
@@ -1490,7 +1490,7 @@ current_module = {
         "signature": ("ly:music?", "ly:music?", "ly:music?"),
         "type": "ly:music-function?",
     },
-    "pointAndClickOff": {"signature": ("void?",), "type": "ly:music-function?",},
+    "pointAndClickOff": {"signature": ("void?",), "type": "ly:music-function?"},
     "pointAndClickOn": {"signature": ("void?",), "type": "ly:music-function?"},
     "pointAndClickTypes": {
         "signature": ("void?", "symbol-list-or-symbol?"),
@@ -1886,7 +1886,7 @@ current_module = {
         "signature": ("ly:music?", "ly:music?", "ly:music?"),
         "type": "ly:music-function?",
     },
-    "skip": {"signature": ("ly:music?", "ly:duration?"), "type": "ly:music-function?",},
+    "skip": {"signature": ("ly:music?", "ly:duration?"), "type": "ly:music-function?"},
     "slashedGrace": {
         "signature": ("ly:music?", "ly:music?"),
         "type": "ly:music-function?",
@@ -2258,7 +2258,7 @@ current_module = {
         "signature": ("ly:music?", "optional?", "list?", "ly:music?"),
         "type": "ly:music-function?",
     },
-    "tabChordRepetition": {"signature": ("void?",), "type": "ly:music-function?",},
+    "tabChordRepetition": {"signature": ("void?",), "type": "ly:music-function?"},
     "tabFullNotation": {
         "name": "SequentialMusic",
         "type": "ly:prob?",
@@ -2511,7 +2511,7 @@ current_module = {
             "una-corda-event",
         ),
     },
-    "undo": {"signature": ("ly:music?", "ly:music?"), "type": "ly:music-function?",},
+    "undo": {"signature": ("ly:music?", "ly:music?"), "type": "ly:music-function?"},
     "unfoldRepeats": {
         "signature": ("ly:music?", "ly:music?"),
         "type": "ly:music-function?",
@@ -2647,7 +2647,7 @@ current_module = {
         "signature": ("ly:music?", "symbol?", "scheme?", "ly:music?"),
         "type": "ly:music-function?",
     },
-    "xNote": {"signature": ("ly:music?", "ly:music?"), "type": "ly:music-function?",},
+    "xNote": {"signature": ("ly:music?", "ly:music?"), "type": "ly:music-function?"},
     "xNotesOff": {
         "name": "SequentialMusic",
         "type": "ly:prob?",

@@ -1,4 +1,3 @@
-import copy
 import functools
 import typing
 
@@ -7,7 +6,6 @@ from abjad.pitch.NamedPitch import NamedPitch
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.StorageFormatManager import StorageFormatManager
-from abjad.top.tweak import tweak
 
 
 @functools.total_ordering

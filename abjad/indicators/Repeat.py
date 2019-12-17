@@ -221,7 +221,7 @@ class Repeat(object):
     def tweaks(self) -> None:
         r"""
         Are not implemented on repeat.
-        
+
         The LilyPond ``\repeat`` command refuses tweaks.
 
         Override the LilyPond ``BarLine`` grob instead.

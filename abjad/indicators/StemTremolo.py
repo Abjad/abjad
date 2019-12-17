@@ -176,7 +176,7 @@ class StemTremolo(object):
     def tweaks(self) -> None:
         r"""
         Are not implemented on stem tremolo.
-        
+
         The LilyPond ``:`` command refuses tweaks.
 
         Override the LilyPond ``StemTremolo`` grob instead.

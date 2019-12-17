@@ -1,7 +1,7 @@
 def detach(argument, target=None, by_id=False):
     r"""
     Detaches indicators-equal-to-``argument`` from ``target``.
-        
+
     Set ``by_id`` to true to detach exact ``argument`` from ``target`` (rather
     than detaching all indicators-equal-to-``argument``).
 
@@ -96,7 +96,7 @@ def detach(argument, target=None, by_id=False):
         (Markup(contents=['with the others'], direction=Up), Markup(contents=['with the others'], direction=Up))
 
         >>> abjad.show(staff) # doctest: +SKIP
-        
+
         >>> abjad.f(staff, strict=50)
         \new Staff
         {
@@ -145,7 +145,7 @@ def detach(argument, target=None, by_id=False):
         (Markup(contents=['with the others'], direction=Up),)
 
         >>> abjad.show(staff) # doctest: +SKIP
-        
+
         >>> abjad.f(staff, strict=50)
         \new Staff
         {
@@ -261,7 +261,7 @@ def detach(argument, target=None, by_id=False):
     if before_grace_container is not None:
         items.append(before_grace_container)
     if by_id is True:
-        items = [_ for _ in items if id(item) == id(argument)]
+        items = [_ for _ in items if id(_) == id(argument)]
     for item in items:
         item._detach()
     items = tuple(items)

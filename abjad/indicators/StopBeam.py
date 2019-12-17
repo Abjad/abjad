@@ -12,7 +12,7 @@ class StopBeam(object):
     ..  container:: example
 
         >>> abjad.StopBeam()
-        StopBeam() 
+        StopBeam()
 
     """
 

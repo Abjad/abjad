@@ -1,4 +1,3 @@
-import collections
 import typing
 
 from abjad import mathtools, typings
@@ -136,8 +135,6 @@ class TimeSignature(object):
         partial: Duration = None,
         hide: bool = None,
     ) -> None:
-        import abjad
-
         pair_ = getattr(pair, "pair", pair)
         assert isinstance(pair_, tuple), repr(pair_)
         assert len(pair_) == 2, repr(pair_)
@@ -444,9 +441,9 @@ class TimeSignature(object):
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> time_signature = abjad.TimeSignature((4, 4))
-            >>> abjad.attach(time_signature, staff[0]) 
+            >>> abjad.attach(time_signature, staff[0])
             >>> time_signature = abjad.TimeSignature((2, 4), hide=True)
-            >>> abjad.attach(time_signature, staff[2]) 
+            >>> abjad.attach(time_signature, staff[2])
             >>> abjad.show(staff) # doctest: +SKIP
 
             >>> abjad.f(staff)
@@ -460,7 +457,7 @@ class TimeSignature(object):
             }
 
             >>> for leaf in abjad.iterate(staff).leaves():
-            ...     prototype = abjad.TimeSignature 
+            ...     prototype = abjad.TimeSignature
             ...     leaf, abjad.inspect(leaf).effective(prototype)
             ...
             (Note("c'4"), TimeSignature((4, 4)))
@@ -551,7 +548,7 @@ class TimeSignature(object):
     def tweaks(self) -> None:
         r"""
         Are not implemented on time signature.
-        
+
         The LilyPond ``\time`` command refuses tweaks.
 
         Override the LilyPond ``TimeSignature`` grob instead.

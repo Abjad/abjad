@@ -1,7 +1,7 @@
 import collections
 import typing
 
-from abjad import enums, exceptions, typings
+from abjad import enums, typings
 from abjad.indicators.TimeSignature import TimeSignature
 from abjad.markups import Markup
 from abjad.pitch.NamedPitch import NamedPitch
@@ -11,10 +11,8 @@ from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.system.Tag import Tag
 from abjad.system.Wrapper import Wrapper
 from abjad.timespans import Timespan
-from abjad.top.inspect import inspect
 from abjad.top.iterate import iterate
 from abjad.utilities.Duration import Duration
-from abjad.utilities.Offset import Offset
 
 from .AfterGraceContainer import AfterGraceContainer
 from .BeforeGraceContainer import BeforeGraceContainer
@@ -30,8 +28,6 @@ from .OnBeatGraceContainer import OnBeatGraceContainer
 from .Parentage import Parentage
 from .Selection import Selection
 from .Staff import Staff
-from .Tuplet import Tuplet
-from .VerticalMoment import VerticalMoment
 from .Wellformedness import Wellformedness
 
 
@@ -1170,7 +1166,7 @@ class Inspection(object):
 
         ..  container:: example
 
-            Scans forwards or backwards when ``n`` is set: 
+            Scans forwards or backwards when ``n`` is set:
 
             >>> staff = abjad.Staff("c'8 d'8 e'8 f'8 g'8")
             >>> abjad.attach('red', staff[0], context='Staff')
@@ -1189,7 +1185,7 @@ class Inspection(object):
                     f'8
                     g'8
                 }
-                
+
             >>> for n in (-1, 0, 1):
             ...     color = abjad.inspect(staff[0]).effective(str, n=n)
             ...     print(n, repr(color))
@@ -1366,7 +1362,7 @@ class Inspection(object):
             >>> abjad.attach(start_text_span, voice[0])
             >>> stop_text_span = abjad.StopTextSpan()
             >>> abjad.attach(stop_text_span, voice[2])
-            >>> abjad.show(staff) # doctest: +SKIP 
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
@@ -2108,7 +2104,7 @@ class Inspection(object):
             >>> voice = abjad.Voice("c'4 c'4 c'4 c'4")
             >>> abjad.attach(abjad.Clef('treble'), voice[0])
             >>> abjad.attach(abjad.Clef('alto'), voice[2])
-            >>> abjad.show(voice) # doctest: +SKIP 
+            >>> abjad.show(voice) # doctest: +SKIP
 
             ..  docs::
 

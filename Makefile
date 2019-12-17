@@ -1,10 +1,12 @@
 .PHONY: docs build
 
 project = abjad
-errors = E123,E203,E265,E266,E501,W503
+#errors = E123,E203,E265,E266,E501,W503
+errors = E123,E203,E265,E266,E501,E722,F81,W503
 origin := $(shell git config --get remote.origin.url)
 formatPaths = ${project}/ tests/ *.py
 testPaths = ${project}/ tests/
+flakeOptions = --exclude=boilerplate,abjad/__init__.py,abjad/pitch/__init__.py --max-line-length=90 --isolated
 
 black-check:
 	black --target-version py36 --exclude '.*boilerplate.*' --check --diff ${formatPaths}
@@ -30,7 +32,7 @@ docs:
 	make -C docs/ html
 
 flake8:
-	flake8 --max-line-length=90 --isolated --ignore=${errors} ${formatPaths}
+	flake8 ${flakeOptions} --ignore=${errors} ${formatPaths}
 
 gh-pages:
 	rm -Rf gh-pages/

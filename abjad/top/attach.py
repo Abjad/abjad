@@ -1,3 +1,5 @@
+
+
 def attach(
     attachable,
     target,
@@ -10,9 +12,9 @@ def attach(
 ):
     r"""
     Attaches ``attachable`` to ``target``.
-    
+
     First form attaches indicator ``attachable`` to single leaf ``target``.
-    
+
     Second for attaches grace container ``attachable`` to leaf ``target``.
 
     Third form attaches wrapper ``attachable`` to unknown (?) ``target``.

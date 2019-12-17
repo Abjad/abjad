@@ -59,7 +59,7 @@ r"""
                 f'4
             }
         }
-    
+
     Before-grace-to-on-beat-grace works correctly when on-beat grace container
     is attached first:
 

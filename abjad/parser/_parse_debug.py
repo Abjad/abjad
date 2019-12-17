@@ -1,3 +1,6 @@
+import sys
+
+
 from ply.yacc import (  # type: ignore
     YaccProduction,
     YaccSymbol,
@@ -237,7 +240,7 @@ def _parse_debug(self, input=None, lexer=None, debug=None, tracking=0, tokenfunc
                 # --! DEBUG
                 return result
 
-        if t == None:
+        if t is None:
 
             # --! DEBUG
             debug.error(

@@ -46,8 +46,10 @@ class ContextSpeccedMusic(Music):
 
         Returns context.
         """
+        from abjad import parser as abjad_parser
+
         if self.lilypond_type in self.known_contexts:
-            context = known_contexts[self.lilypond_type]([])
+            context = self.known_contexts[self.lilypond_type]([])
         else:
             message = "context type not supported: {}."
             message = message.format(self.lilypond_type)
@@ -64,7 +66,8 @@ class ContextSpeccedMusic(Music):
 
         if isinstance(self.music, abjad_parser.SimultaneousMusic):
             context.simultaneous = True
-        context.extend(music.construct())
+        # context.extend(music.construct())
+        context.extend(self.music.construct())
 
         return context
 

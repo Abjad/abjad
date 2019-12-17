@@ -2,12 +2,10 @@ import collections
 import copy
 import inspect
 import pathlib
-import typing
 
 from abjad.core.Component import Component
 from abjad.core.Container import Container
 from abjad.core.Context import Context
-from abjad.core.Note import Note
 from abjad.core.Score import Score
 from abjad.core.Selection import Selection
 from abjad.core.Skip import Skip
@@ -24,11 +22,9 @@ from abjad.system.Tag import Tag
 from abjad.top.attach import attach
 from abjad.top.inspect import inspect as abjad_inspect
 from abjad.top.iterate import iterate
-from abjad.top.mutate import mutate
 from abjad.top.override import override
 from abjad.top.select import select
 from abjad.top.sequence import sequence
-from abjad.utilities.Multiplier import Multiplier
 
 from .Block import Block
 from .ContextBlock import ContextBlock
@@ -184,7 +180,7 @@ class LilyPondFile(object):
 
         """
         try:
-            item = self[argument]
+            self[argument]
             return True
         except (AssertionError, KeyError, ValueError, TypeError):
             return False
