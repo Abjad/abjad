@@ -102,7 +102,7 @@ this implementation of Mozart's dice game.
 ..  rubric:: Pärt: *Cantus in Memory of Benjamin Britten*
 
 Build up a full-fledged score in this implementation of Pärt's *Cantus in
-Memory of Benhamin Britten*.
+Memory of Benjamin Britten*.
 
 ..  book::
     :hide:
