@@ -1,7 +1,7 @@
 def f(argument, strict=None):
     r"""
     Formats ``argument`` and prints result.
-    
+
     ..  container:: example
 
         >>> staff = abjad.Staff("c'4 d' e' f'")

@@ -228,9 +228,9 @@ def test_TypedOrderedDict_12():
     dictionary["tenor"] = "tenor"
     dictionary["bass"] = "bass"
 
-    assert dictionary.has_key("soprano")
-    assert not dictionary.has_key("treble")
-    assert not dictionary.has_key("foo")
+    assert "soprano" in dictionary
+    assert "treble" not in dictionary
+    assert "foo" not in dictionary
 
 
 def test_TypedOrderedDict_13():

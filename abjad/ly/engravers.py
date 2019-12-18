@@ -97,7 +97,7 @@ engravers = {
     "Beam_engraver": {
         "grobs_created": set(["Beam"]),
         "properties_read": set(
-            ["baseMoment", "beamMelismaBusy", "beatStructure", "subdivideBeams",]
+            ["baseMoment", "beamMelismaBusy", "beatStructure", "subdivideBeams"]
         ),
         "properties_written": set(["forbidBreak"]),
     },
@@ -394,7 +394,7 @@ engravers = {
     "Grace_beam_engraver": {
         "grobs_created": set(["Beam"]),
         "properties_read": set(
-            ["baseMoment", "beamMelismaBusy", "beatStructure", "subdivideBeams",]
+            ["baseMoment", "beamMelismaBusy", "beatStructure", "subdivideBeams"]
         ),
         "properties_written": set([]),
     },
@@ -517,7 +517,7 @@ engravers = {
     "Measure_grouping_engraver": {
         "grobs_created": set(["MeasureGrouping"]),
         "properties_read": set(
-            ["baseMoment", "beatStructure", "currentMusicalColumn", "measurePosition",]
+            ["baseMoment", "beatStructure", "currentMusicalColumn", "measurePosition"]
         ),
         "properties_written": set([]),
     },
@@ -559,7 +559,7 @@ engravers = {
     },
     "Multi_measure_rest_engraver": {
         "grobs_created": set(
-            ["MultiMeasureRest", "MultiMeasureRestNumber", "MultiMeasureRestText",]
+            ["MultiMeasureRest", "MultiMeasureRestNumber", "MultiMeasureRestText"]
         ),
         "properties_read": set(
             [
@@ -653,7 +653,7 @@ engravers = {
     "Percent_repeat_engraver": {
         "grobs_created": set(["PercentRepeat", "PercentRepeatCounter"]),
         "properties_read": set(
-            ["countPercentRepeats", "currentCommandColumn", "repeatCountVisibility",]
+            ["countPercentRepeats", "currentCommandColumn", "repeatCountVisibility"]
         ),
         "properties_written": set([]),
     },
@@ -675,7 +675,7 @@ engravers = {
     },
     "Piano_pedal_engraver": {
         "grobs_created": set(
-            ["PianoPedalBracket", "SostenutoPedal", "SustainPedal", "UnaCordaPedal",]
+            ["PianoPedalBracket", "SostenutoPedal", "SustainPedal", "UnaCordaPedal"]
         ),
         "properties_read": set(
             [
@@ -924,7 +924,7 @@ engravers = {
     "Time_signature_engraver": {
         "grobs_created": set(["TimeSignature"]),
         "properties_read": set(
-            ["initialTimeSignatureVisibility", "partialBusy", "timeSignatureFraction",]
+            ["initialTimeSignatureVisibility", "partialBusy", "timeSignatureFraction"]
         ),
         "properties_written": set([]),
     },

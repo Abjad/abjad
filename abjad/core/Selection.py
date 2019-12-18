@@ -1,11 +1,9 @@
 import collections
-import copy
 import inspect
 import itertools
 import typing
 
-from abjad import enums, exceptions, mathtools, typings
-from abjad.indicators.RepeatTie import RepeatTie
+from abjad import enums, mathtools, typings
 from abjad.indicators.Tie import Tie
 from abjad.mathtools import Ratio
 from abjad.pitch.PitchSet import PitchSet
@@ -24,7 +22,6 @@ from abjad.utilities.DurationInequality import DurationInequality
 from abjad.utilities.Expression import Expression
 from abjad.utilities.LengthInequality import LengthInequality
 from abjad.utilities.Offset import Offset
-from abjad.utilities.OrderedDict import OrderedDict
 from abjad.utilities.Pattern import Pattern
 from abjad.utilities.PitchInequality import PitchInequality
 from abjad.utilities.Sequence import Sequence
@@ -395,7 +392,6 @@ class Selection(collections.abc.Sequence):
             return None
         first = self[0]
         first_multiplier = first.multiplier
-        first_type = type(first)
         for tuplet in self[1:]:
             if tuplet.multiplier != first_multiplier:
                 raise ValueError("tuplets must carry same multiplier.")
@@ -941,9 +937,6 @@ class Selection(collections.abc.Sequence):
             True
 
         """
-        from .AfterGraceContainer import AfterGraceContainer
-        from .BeforeGraceContainer import BeforeGraceContainer
-
         if self._expression:
             return self._update_expression(inspect.currentframe())
         prototype = prototype or (Component,)

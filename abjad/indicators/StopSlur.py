@@ -12,7 +12,7 @@ class StopSlur(object):
     ..  container:: example
 
         >>> abjad.StopSlur()
-        StopSlur() 
+        StopSlur()
 
     """
 

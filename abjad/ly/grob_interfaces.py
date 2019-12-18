@@ -141,7 +141,7 @@ grob_interfaces = {
         "staff-symbol-referencer-interface",
         "unbreakable-spanner-interface",
     ],
-    "BendAfter": ["bend-after-interface", "grob-interface", "spanner-interface",],
+    "BendAfter": ["bend-after-interface", "grob-interface", "spanner-interface"],
     "BreakAlignGroup": [
         "axis-group-interface",
         "break-aligned-interface",
@@ -191,7 +191,7 @@ grob_interfaces = {
         "side-position-interface",
         "text-interface",
     ],
-    "ClusterSpanner": ["cluster-interface", "grob-interface", "spanner-interface",],
+    "ClusterSpanner": ["cluster-interface", "grob-interface", "spanner-interface"],
     "ClusterSpannerBeacon": [
         "cluster-beacon-interface",
         "grob-interface",
@@ -330,7 +330,7 @@ grob_interfaces = {
         "grob-interface",
         "item-interface",
     ],
-    "Flag": ["flag-interface", "font-interface", "grob-interface", "item-interface",],
+    "Flag": ["flag-interface", "font-interface", "grob-interface", "item-interface"],
     "FootnoteItem": [
         "balloon-interface",
         "font-interface",
@@ -438,7 +438,7 @@ grob_interfaces = {
         "kievan-ligature-interface",
         "spanner-interface",
     ],
-    "LaissezVibrerTie": ["grob-interface", "item-interface", "semi-tie-interface",],
+    "LaissezVibrerTie": ["grob-interface", "item-interface", "semi-tie-interface"],
     "LaissezVibrerTieColumn": [
         "grob-interface",
         "item-interface",
@@ -449,7 +449,7 @@ grob_interfaces = {
         "ledger-line-spanner-interface",
         "spanner-interface",
     ],
-    "LeftEdge": ["break-aligned-interface", "grob-interface", "item-interface",],
+    "LeftEdge": ["break-aligned-interface", "grob-interface", "item-interface"],
     "LigatureBracket": [
         "grob-interface",
         "line-interface",
@@ -469,7 +469,7 @@ grob_interfaces = {
         "lyric-interface",
         "spanner-interface",
     ],
-    "LyricSpace": ["grob-interface", "lyric-hyphen-interface", "spanner-interface",],
+    "LyricSpace": ["grob-interface", "lyric-hyphen-interface", "spanner-interface"],
     "LyricText": [
         "font-interface",
         "grob-interface",
@@ -496,7 +496,7 @@ grob_interfaces = {
         "side-position-interface",
         "spanner-interface",
     ],
-    "MelodyItem": ["grob-interface", "item-interface", "melody-spanner-interface",],
+    "MelodyItem": ["grob-interface", "item-interface", "melody-spanner-interface"],
     "MensuralLigature": [
         "font-interface",
         "grob-interface",
@@ -682,7 +682,7 @@ grob_interfaces = {
         "rhythmic-head-interface",
         "staff-symbol-referencer-interface",
     ],
-    "RestCollision": ["grob-interface", "item-interface", "rest-collision-interface",],
+    "RestCollision": ["grob-interface", "item-interface", "rest-collision-interface"],
     "Script": [
         "font-interface",
         "grob-interface",
@@ -692,8 +692,8 @@ grob_interfaces = {
         "self-alignment-interface",
         "side-position-interface",
     ],
-    "ScriptColumn": ["grob-interface", "item-interface", "script-column-interface",],
-    "ScriptRow": ["grob-interface", "item-interface", "script-column-interface",],
+    "ScriptColumn": ["grob-interface", "item-interface", "script-column-interface"],
+    "ScriptRow": ["grob-interface", "item-interface", "script-column-interface"],
     "Slur": [
         "grob-interface",
         "outside-staff-interface",
@@ -734,14 +734,14 @@ grob_interfaces = {
         "item-interface",
         "pure-from-neighbor-interface",
     ],
-    "StaffGrouper": ["grob-interface", "spanner-interface", "staff-grouper-interface",],
+    "StaffGrouper": ["grob-interface", "spanner-interface", "staff-grouper-interface"],
     "StaffSpacing": [
         "grob-interface",
         "item-interface",
         "spacing-interface",
         "staff-spacing-interface",
     ],
-    "StaffSymbol": ["grob-interface", "spanner-interface", "staff-symbol-interface",],
+    "StaffSymbol": ["grob-interface", "spanner-interface", "staff-symbol-interface"],
     "StanzaNumber": [
         "font-interface",
         "grob-interface",
@@ -864,7 +864,7 @@ grob_interfaces = {
         "spanner-interface",
     ],
     "Tie": ["grob-interface", "spanner-interface", "tie-interface"],
-    "TieColumn": ["grob-interface", "spanner-interface", "tie-column-interface",],
+    "TieColumn": ["grob-interface", "spanner-interface", "tie-column-interface"],
     "TimeSignature": [
         "break-aligned-interface",
         "font-interface",

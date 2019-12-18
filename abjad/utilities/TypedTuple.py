@@ -1,6 +1,7 @@
 import collections
 
 from abjad.system.StorageFormatManager import StorageFormatManager
+from abjad.top.new import new
 
 from .TypedCollection import TypedCollection
 
@@ -29,14 +30,13 @@ class TypedTuple(TypedCollection, collections.abc.Sequence):
 
         Returns new typed tuple.
         """
-        import abjad
 
         if isinstance(argument, type(self)):
             items = argument._collection
-            return abjad.new(self, items=self._collection[:] + items)
+            return new(self, items=self._collection[:] + items)
         elif isinstance(argument, type(self._collection)):
             items = argument[:]
-            return abjad.new(self, items=self._collection[:] + items)
+            return new(self, items=self._collection[:] + items)
         raise NotImplementedError
 
     def __contains__(self, item):
@@ -85,17 +85,15 @@ class TypedTuple(TypedCollection, collections.abc.Sequence):
 
         Returns new typed tuple.
         """
-        import abjad
-
         items = self._collection * argument
-        return abjad.new(self, items=items)
+        return new(self, items=items)
 
     def __radd__(self, argument):
         """
         Right-adds ``argument`` to typed tuple.
         """
         items = argument + self._collection
-        return abjad.new(self, items=items)
+        return new(self, items=items)
 
     def __rmul__(self, argument):
         """

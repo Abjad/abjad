@@ -1,6 +1,6 @@
 import typing
 
-from abjad import const, mathtools
+from abjad import const
 from abjad.core.Container import Container
 from abjad.core.Context import Context
 from abjad.core.Score import Score
@@ -136,8 +136,9 @@ class SegmentMaker(object):
                     continue
                 if container.identifier.startswith("%*% Part"):
                     part_container_count += 1
-                    globals_ = globals()
                     part = container.identifier.strip("%*% ")
+                    globals_ = globals()
+                    globals_["PartAssignment"] = PartAssignment
                     part = eval(part, globals_)
                     suffix = String().base_26(part_container_count).lower()
                     container_identifier = f"{context_identifier}_{suffix}"

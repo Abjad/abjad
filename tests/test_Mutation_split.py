@@ -1,5 +1,3 @@
-import pytest
-
 import abjad
 
 
@@ -461,7 +459,7 @@ def test_Mutation_split_07():
     abjad.beam(leaves)
 
     tuplets = voice[1:2]
-    result = abjad.mutate(tuplets).split([abjad.Duration(1, 12)])
+    abjad.mutate(tuplets).split([abjad.Duration(1, 12)])
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -502,7 +500,7 @@ def test_Mutation_split_08():
     abjad.beam(leaves)
 
     measures = voice[1:2]
-    result = abjad.mutate(measures).split([abjad.Duration(1, 8)])
+    abjad.mutate(measures).split([abjad.Duration(1, 8)])
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -837,9 +835,7 @@ def test_Mutation_split_13():
     ), print(format(voice))
 
     note = voice[0]
-    result = abjad.mutate(note).split(
-        [abjad.Duration(1, 8), abjad.Duration(3, 8)], cyclic=True
-    )
+    abjad.mutate(note).split([abjad.Duration(1, 8), abjad.Duration(3, 8)], cyclic=True)
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -901,7 +897,7 @@ def test_Mutation_split_14():
     ), print(format(voice))
 
     container = voice[0]
-    result = abjad.mutate(container).split([abjad.Duration(1, 8)], cyclic=True)
+    abjad.mutate(container).split([abjad.Duration(1, 8)], cyclic=True)
 
     assert format(voice) == abjad.String.normalize(
         r"""
@@ -938,7 +934,7 @@ def test_Mutation_split_15():
     staff = abjad.Staff("c'4")
 
     notes = staff[:1]
-    result = abjad.mutate(notes).split([abjad.Duration(5, 24)])
+    abjad.mutate(notes).split([abjad.Duration(5, 24)])
 
     assert format(staff) == abjad.String.normalize(
         r"""

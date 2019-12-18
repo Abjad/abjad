@@ -9,7 +9,6 @@ from abjad.top.attach import attach
 from abjad.top.detach import detach
 from abjad.top.inspect import inspect as abjad_inspect
 from abjad.top.mutate import mutate
-from abjad.top.override import override
 from abjad.top.select import select
 from abjad.top.tweak import tweak
 from abjad.utilities.Duration import Duration
@@ -518,7 +517,7 @@ def on_beat_grace_container(
     ..  container:: example
 
         GRACE NOTES BELOW.
-        
+
         Note-to-note anchor:
 
         >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
@@ -784,9 +783,7 @@ def on_beat_grace_container(
         Exception: grace Duration(11, 8) exceeds anchor Duration(1, 4).
 
     """
-    from .Chord import Chord
     from .Container import Container
-    from .Note import Note
     from .Selection import Selection
     from .Voice import Voice
     from abjad.spanners import beam

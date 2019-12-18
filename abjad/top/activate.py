@@ -59,11 +59,11 @@ def activate(text, tag, skipped=False):
         >>> print(text)
         \new Staff {
             c'4
-        %@% - \markup {         %! RED_MARKUP 
-        %@%     \with-color     %! RED_MARKUP 
-        %@%         #red        %! RED_MARKUP 
-        %@%         Allegro     %! RED_MARKUP 
-        %@%     }               %! RED_MARKUP 
+        %@% - \markup {         %! RED_MARKUP
+        %@%     \with-color     %! RED_MARKUP
+        %@%         #red        %! RED_MARKUP
+        %@%         Allegro     %! RED_MARKUP
+        %@%     }               %! RED_MARKUP
             d'4
             e'4
             f'4

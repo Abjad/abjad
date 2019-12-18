@@ -1,5 +1,4 @@
 from abjad.system.Tag import Tag
-from abjad.utilities.OrderedDict import OrderedDict
 
 from .ScoreTemplate import ScoreTemplate
 

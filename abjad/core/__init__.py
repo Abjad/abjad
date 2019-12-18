@@ -38,3 +38,43 @@ from .Tuplet import Tuplet
 from .VerticalMoment import VerticalMoment
 from .Voice import Voice
 from .Wellformedness import Wellformedness
+
+
+__all__ = [
+    "AfterGraceContainer",
+    "BeforeGraceContainer",
+    "Chord",
+    "Cluster",
+    "Component",
+    "Container",
+    "Context",
+    "Descendants",
+    "DrumNoteHead",
+    "Inspection",
+    "Iteration",
+    "Label",
+    "Leaf",
+    "LeafMaker",
+    "Lineage",
+    "LogicalTie",
+    "MultimeasureRest",
+    "Mutation",
+    "Note",
+    "NoteHead",
+    "NoteHeadList",
+    "NoteMaker",
+    "OnBeatGraceContainer",
+    "on_beat_grace_container",
+    "Parentage",
+    "Rest",
+    "Score",
+    "Selection",
+    "Skip",
+    "Staff",
+    "StaffGroup",
+    "TremoloContainer",
+    "Tuplet",
+    "VerticalMoment",
+    "Voice",
+    "Wellformedness",
+]

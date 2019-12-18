@@ -2,7 +2,6 @@ import typing
 
 from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.system.Tag import Tag
-from abjad.utilities.String import String
 
 
 class Tags(object):
@@ -15,7 +14,7 @@ class Tags(object):
 
         >>> abjad.tags
         Tags()
-        
+
     ..  container:: example
 
         Class is also available:

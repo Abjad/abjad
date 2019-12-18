@@ -23,3 +23,28 @@ from .sequence import sequence
 from .setting import setting
 from .show import show
 from .tweak import tweak
+
+
+__all__ = [
+    "activate",
+    "annotate",
+    "attach",
+    "deactivate",
+    "detach",
+    "f",
+    "graph",
+    "inspect",
+    "iterate",
+    "label",
+    "mutate",
+    "new",
+    "override",
+    "parse",
+    "persist",
+    "play",
+    "select",
+    "sequence",
+    "setting",
+    "show",
+    "tweak",
+]

@@ -267,7 +267,7 @@ class Tag(object):
     def append(self, word: typing.Optional["Tag"]) -> "Tag":
         """
         Appends ``word`` to tag.
-        
+
         ..  container:: example
 
             >>> abjad.Tag('-PARTS').append(abjad.tags.DEFAULT_CLEF)

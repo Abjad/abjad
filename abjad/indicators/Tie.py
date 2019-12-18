@@ -3,7 +3,6 @@ import typing
 from abjad import enums
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
-from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.system.Tags import Tags
 from abjad.top.inspect import inspect

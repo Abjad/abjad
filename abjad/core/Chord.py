@@ -1,7 +1,7 @@
 import copy
 import typing
 
-from abjad import instruments, mathtools
+from abjad import instruments
 from abjad import pitch as abjad_pitch
 from abjad import typings
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager

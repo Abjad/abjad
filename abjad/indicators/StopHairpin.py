@@ -11,7 +11,7 @@ class StopHairpin(object):
     ..  container:: example
 
         >>> abjad.StopHairpin()
-        StopHairpin() 
+        StopHairpin()
 
     """
 

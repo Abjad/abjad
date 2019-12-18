@@ -1,5 +1,3 @@
-import pytest
-
 import abjad
 
 
@@ -197,7 +195,7 @@ def test_Parentage_logical_voice_06():
     """
 
     container = abjad.Container(
-        [abjad.Staff([abjad.Voice("c'8 d'8")]), abjad.Staff([abjad.Voice("e'8 f'8")]),]
+        [abjad.Staff([abjad.Voice("c'8 d'8")]), abjad.Staff([abjad.Voice("e'8 f'8")])]
     )
     container[0].name = "staff1"
     container[1].name = "staff2"

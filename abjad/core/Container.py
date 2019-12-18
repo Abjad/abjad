@@ -3,9 +3,7 @@ import typing
 
 import uqbar.graphs
 
-from abjad import enums, exceptions, mathtools, rhythmtrees
-from abjad.indicators.TimeSignature import TimeSignature
-from abjad.mathtools import NonreducedFraction
+from abjad import exceptions, rhythmtrees
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.Tag import Tag
@@ -15,7 +13,6 @@ from abjad.top.mutate import mutate
 from abjad.top.parse import parse
 from abjad.top.select import select
 from abjad.utilities.Duration import Duration
-from abjad.utilities.Sequence import Sequence
 
 from .Component import Component
 from .Leaf import Leaf
@@ -833,7 +830,6 @@ class Container(Component):
             start, stop = 0, 0
         else:
             start, stop, stride = i.indices(len(self))
-        old_components = self[start:stop]
         del self[start:stop]
         self._components.__setitem__(slice(start, start), argument)
         for component in argument:
@@ -925,7 +921,8 @@ class Container(Component):
                     leaf_right_of_split = leaf
             duration_crossing_containers = duration_crossing_descendants[:-1]
             if not len(duration_crossing_containers):
-                return left_list, right_list
+                # return left_list, right_list
+                raise Exception("how did we get here?")
         # if split point falls between leaves
         # then find leaf to immediate right of split point
         # in order to start upward crawl through duration-crossing containers

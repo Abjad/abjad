@@ -5,7 +5,7 @@ import re
 import shutil
 import subprocess
 import tempfile
-from typing import Generator, Sequence, Tuple
+from typing import Generator, Sequence
 
 from uqbar.graphs import Grapher
 

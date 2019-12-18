@@ -6,7 +6,6 @@ import typing
 from abjad import enums, typings
 from abjad.core.Chord import Chord
 from abjad.core.Component import Component
-from abjad.core.Leaf import Leaf
 from abjad.core.MultimeasureRest import MultimeasureRest
 from abjad.core.Note import Note
 from abjad.core.Rest import Rest
@@ -50,10 +49,7 @@ from abjad.top.attach import attach
 from abjad.top.detach import detach
 from abjad.top.inspect import inspect
 from abjad.top.iterate import iterate
-from abjad.top.new import new
-from abjad.top.override import override
 from abjad.top.select import select
-from abjad.top.setting import setting
 from abjad.top.tweak import tweak
 from abjad.utilities.Duration import Duration
 from abjad.utilities.DurationInequality import DurationInequality
@@ -119,11 +115,6 @@ def beam(
             }
 
     """
-    # import allows eval statement
-    import abjad
-
-    if isinstance(selector, str):
-        selector = eval(selector)
     assert isinstance(selector, Expression)
     argument = selector(argument)
     original_leaves = iterate(argument).leaves()
@@ -1500,7 +1491,7 @@ def glissando(
                 ]
                 if hide_middle_stems:
                     strings.extend(
-                        [r"\revert Dots.transparent", r"\revert Stem.transparent",]
+                        [r"\revert Dots.transparent", r"\revert Stem.transparent"]
                     )
                 if right_broken:
                     deactivate_glissando = True
@@ -1637,8 +1628,6 @@ def hairpin(
             }
 
     """
-    import abjad
-
     indicators: typing.List = []
     start_dynamic: typing.Optional[Dynamic]
     hairpin: typing.Optional[StartHairpin]
@@ -1680,8 +1669,6 @@ def hairpin(
     if start_dynamic is not None:
         assert isinstance(start_dynamic, Dynamic), repr(start_dynamic)
 
-    if isinstance(selector, str):
-        selector = eval(selector)
     assert isinstance(selector, Expression)
     argument = selector(argument)
     leaves = select(argument).leaves()
@@ -1727,13 +1714,8 @@ def horizontal_bracket(
             }
 
     """
-    # import allows eval statement
-    import abjad
-
     start_group = start_group or StartGroup()
     stop_group = stop_group or StopGroup()
-    if isinstance(selector, str):
-        selector = eval(selector)
     assert isinstance(selector, Expression)
     argument = selector(argument)
     leaves = select(argument).leaves()
@@ -1774,13 +1756,8 @@ def ottava(
             }
 
     """
-    # import allows eval statement
-    import abjad
-
     assert isinstance(start_ottava, Ottava), repr(start_ottava)
     assert isinstance(stop_ottava, Ottava), repr(stop_ottava)
-    if isinstance(selector, str):
-        selector = eval(selector)
     assert isinstance(selector, Expression)
     argument = selector(argument)
     leaves = select(argument).leaves()
@@ -1822,13 +1799,8 @@ def phrasing_slur(
 
 
     """
-    # import allows eval statement
-    import abjad
-
     start_phrasing_slur = StartPhrasingSlur()
     stop_phrasing_slur = StopPhrasingSlur()
-    if isinstance(selector, str):
-        selector = eval(selector)
     assert isinstance(selector, Expression)
     argument = selector(argument)
     leaves = select(argument).leaves()
@@ -1878,13 +1850,8 @@ def piano_pedal(
             }
 
     """
-    # import allows eval statement
-    import abjad
-
     start_piano_pedal = start_piano_pedal or StartPianoPedal()
     stop_piano_pedal = stop_piano_pedal or StopPianoPedal()
-    if isinstance(selector, str):
-        selector = eval(selector)
     assert isinstance(selector, Expression)
     argument = selector(argument)
     leaves = select(argument).leaves()
@@ -1926,13 +1893,8 @@ def slur(
 
 
     """
-    # import allows eval statement
-    import abjad
-
     start_slur = start_slur or StartSlur()
     stop_slur = stop_slur or StopSlur()
-    if isinstance(selector, str):
-        selector = eval(selector)
     assert isinstance(selector, Expression)
     argument = selector(argument)
     leaves = select(argument).leaves()
@@ -2113,12 +2075,8 @@ def text_spanner(
             }
 
     """
-    import abjad
-
     start_text_span = start_text_span or StartTextSpan()
     stop_text_span = stop_text_span or StopTextSpan()
-    if isinstance(selector, str):
-        selector = eval(selector)
     assert isinstance(selector, Expression)
     argument = selector(argument)
     leaves = select(argument).leaves()
@@ -2311,9 +2269,6 @@ def tie(
             }
 
     """
-    # import allows eval statement
-    import abjad
-
     if repeat in (None, False):
         inequality = DurationInequality("<", 0)
     elif repeat is True:
@@ -2324,8 +2279,6 @@ def tie(
         assert isinstance(repeat, tuple) and len(repeat) == 2, repr(repeat)
         inequality = DurationInequality(">=", repeat)
     assert isinstance(inequality, DurationInequality), repr(inequality)
-    if isinstance(selector, str):
-        selector = eval(selector)
     assert isinstance(selector, Expression)
     argument = selector(argument)
     leaves = select(argument).leaves()
@@ -2379,13 +2332,8 @@ def trill_spanner(
             }
 
     """
-    # import allows eval statement
-    import abjad
-
     start_trill_span = start_trill_span or StartTrillSpan()
     stop_trill_span = stop_trill_span or StopTrillSpan()
-    if isinstance(selector, str):
-        selector = eval(selector)
     assert isinstance(selector, Expression)
     argument = selector(argument)
     leaves = select(argument).leaves()

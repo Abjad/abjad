@@ -4,8 +4,8 @@ import math
 import typing
 from fractions import Fraction
 
-from abjad import enums, exceptions, mathtools, typings
-from abjad.markups import Markup, MarkupCommand
+from abjad import exceptions, mathtools, typings
+from abjad.markups import Markup
 from abjad.mathtools import NonreducedFraction, Ratio
 from abjad.scheme import Scheme
 from abjad.system.FormatSpecification import FormatSpecification
@@ -16,8 +16,6 @@ from abjad.top.sequence import sequence
 from abjad.utilities.Duration import Duration
 from abjad.utilities.Enumerator import Enumerator
 from abjad.utilities.Multiplier import Multiplier
-
-from .LilyPondLiteral import LilyPondLiteral
 
 try:
     from quicktions import Fraction  # type: ignore
@@ -935,12 +933,12 @@ class MetronomeMark(object):
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> metronome_mark_1 = abjad.MetronomeMark((1, 4), 72)
-            >>> abjad.attach(metronome_mark_1, staff[0]) 
+            >>> abjad.attach(metronome_mark_1, staff[0])
             >>> metronome_mark_2 = abjad.MetronomeMark(
             ...     textual_indication='Allegro',
             ...     hide=True,
             ... )
-            >>> abjad.attach(metronome_mark_2, staff[2]) 
+            >>> abjad.attach(metronome_mark_2, staff[2])
             >>> score = abjad.Score([staff])
             >>> abjad.show(score) # doctest: +SKIP
 
@@ -1088,7 +1086,7 @@ class MetronomeMark(object):
     def tweaks(self) -> None:
         r"""
         Are not implemented on metronome mark.
-        
+
         The LilyPond ``\tempo`` command refuses tweaks.
 
         Override the LilyPond ``MetronomeMark`` grob instead.

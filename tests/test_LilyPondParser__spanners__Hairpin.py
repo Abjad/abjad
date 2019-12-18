@@ -110,7 +110,7 @@ def test_LilyPondParser__spanners__Hairpin_04():
     """
 
     string = r"{ c c c c \! }"
-    result = abjad.parser.LilyPondParser()(string)
+    abjad.parser.LilyPondParser()(string)
 
 
 def test_LilyPondParser__spanners__Hairpin_05():

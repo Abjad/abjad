@@ -1,11 +1,6 @@
 import pytest
 
-from abjad.pitch import (
-    NamedInterval,
-    NamedIntervalClass,
-    NumberedInterval,
-    NumberedIntervalClass,
-)
+from abjad.pitch import NumberedInterval
 
 values = []
 

@@ -4,7 +4,6 @@ import typing
 from abjad import const, instruments
 from abjad.core.Context import Context
 from abjad.core.MultimeasureRest import MultimeasureRest
-from abjad.core.Rest import Rest
 from abjad.core.Score import Score
 from abjad.core.Skip import Skip
 from abjad.core.Staff import Staff
@@ -23,7 +22,6 @@ from abjad.top.iterate import iterate
 from abjad.top.new import new
 from abjad.top.select import select
 from abjad.utilities.OrderedDict import OrderedDict
-from abjad.utilities.String import String
 
 from .PartAssignment import PartAssignment
 from .PartManifest import PartManifest

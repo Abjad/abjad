@@ -110,7 +110,7 @@ def test_Note___copy___05():
 
     new_note = copy.deepcopy(note)
 
-    assert not new_note is note
+    assert new_note is not note
     assert format(new_note) == format(note)
 
 

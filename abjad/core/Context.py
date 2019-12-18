@@ -314,7 +314,7 @@ class Context(Container):
             ...     )
             >>> context.lilypond_type
             'ViolinStaff'
-        
+
         Gets and sets lilypond type of context.
 
         Returns string.

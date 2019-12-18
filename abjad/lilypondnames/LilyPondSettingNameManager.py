@@ -59,8 +59,7 @@ class LilyPondSettingNameManager(LilyPondNameManager):
             try:
                 return vars(self)[name]
             except KeyError:
-                type_name = type(self).__name__
-                message = "{type_name!r} object has no attribute: {name!r}."
+                message = "{type(self).__name__!r} object has no attribute: {name!r}."
                 raise AttributeError(message)
         elif camel_name in contexts:
             try:
@@ -73,8 +72,7 @@ class LilyPondSettingNameManager(LilyPondNameManager):
             try:
                 return vars(self)[name]
             except KeyError:
-                type_name = type(self).__name__
-                message = "{type_name!r} object has no attribute: {name!r}."
+                message = "{type(self).__name__!r} object has no attribute: {name!r}."
                 raise AttributeError(message)
 
     ### PRIVATE METHODS ###

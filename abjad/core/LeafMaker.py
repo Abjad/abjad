@@ -7,9 +7,7 @@ from abjad import pitch as abjad_pitch
 from abjad import typings
 from abjad.mathtools import NonreducedFraction
 from abjad.system.Tag import Tag
-from abjad.top.attach import attach
 from abjad.utilities.Duration import Duration
-from abjad.utilities.Multiplier import Multiplier
 from abjad.utilities.Sequence import Sequence
 
 from .Chord import Chord

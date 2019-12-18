@@ -6,16 +6,10 @@ import ply  # type: ignore
 
 from abjad import core
 from abjad import indicators as abjad_indicators
-from abjad import lilypondfile as abjad_lilypondfile
 from abjad import markups as abjad_markups
 from abjad import pitch as abjad_pitch
 from abjad.system.Parser import Parser
-from abjad.top.annotate import annotate
 from abjad.top.attach import attach
-from abjad.top.detach import detach
-from abjad.top.inspect import inspect
-from abjad.top.select import select
-from abjad.top.sequence import sequence
 
 from ._parse import _parse
 from ._parse_debug import _parse_debug
@@ -764,25 +758,22 @@ class LilyPondParser(Parser):
         if not isinstance(pitch_c, abjad_pitch.NamedPitch):
             pitch_c = abjad_pitch.NamedPitch(pitch_c)
         scale = [0.0, 2.0, 4.0, 5.0, 7.0, 9.0, 11.0]
-        a_oct, a_step, a_alt = (
+        a_oct, a_step = (
             pitch_a.octave.number,
             pitch_a._get_diatonic_pc_number(),
-            pitch_a.accidental.semitones,
         )
-        b_oct, b_step, b_alt = (
+        b_oct, b_step = (
             pitch_b.octave.number,
             pitch_b._get_diatonic_pc_number(),
-            pitch_b.accidental.semitones,
         )
         c_oct, c_step, c_alt = (
             pitch_c.octave.number,
             pitch_c._get_diatonic_pc_number(),
             pitch_c.accidental.semitones,
         )
-        d_oct, d_step, d_alt, d_tones = (
+        d_oct, d_step, d_tones = (
             b_oct - a_oct,
             b_step - a_step,
-            b_alt - a_alt,
             float(pitch_b.number) - float(pitch_a.number),
         )
         tmp_alt = float(pitch_c.number) + d_tones

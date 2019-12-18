@@ -1,4 +1,3 @@
-import copy
 import typing
 
 from abjad import instruments, typings
@@ -176,12 +175,12 @@ class Note(Leaf):
             NoteHead("cs''")
 
             >>> abjad.show(note) # doctest: +SKIP
-            
+
             ..  docs::
-            
+
                 >>> abjad.f(note)
                 cs''8.
-                
+
             >>> note.note_head = 'D5'
             >>> note.note_head
             NoteHead("d''")

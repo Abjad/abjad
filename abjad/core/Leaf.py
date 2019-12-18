@@ -4,11 +4,10 @@ import typing
 
 import uqbar.graphs
 
-from abjad import enums, exceptions
+from abjad import enums, exceptions, mathtools
 from abjad.indicators.MetronomeMark import MetronomeMark
 from abjad.indicators.RepeatTie import RepeatTie
 from abjad.indicators.Tie import Tie
-from abjad.mathtools import NonreducedFraction, Ratio
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.Tag import Tag
@@ -509,7 +508,9 @@ class Leaf(Component):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def multiplier(self) -> typing.Union[Multiplier, NonreducedFraction, None]:
+    def multiplier(
+        self,
+    ) -> typing.Union[Multiplier, mathtools.NonreducedFraction, None]:
         """
         Gets multiplier.
         """
@@ -517,7 +518,7 @@ class Leaf(Component):
 
     @multiplier.setter
     def multiplier(self, argument):
-        if isinstance(argument, (NonreducedFraction, type(None))):
+        if isinstance(argument, (mathtools.NonreducedFraction, type(None))):
             multiplier = argument
         else:
             multiplier = Multiplier(argument)

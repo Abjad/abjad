@@ -1,11 +1,9 @@
 import typing
 
-from abjad import enums, markups, typings
-from abjad.lilypondnames.LilyPondGrobOverride import LilyPondGrobOverride
+from abjad import enums
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.system.StorageFormatManager import StorageFormatManager
-from abjad.utilities.String import String
 
 
 class StartPhrasingSlur(object):

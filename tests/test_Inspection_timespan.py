@@ -130,7 +130,7 @@ def test_Inspection_timespan_12():
 
     voice_1 = abjad.Voice("c'8 d'8 e'8 f'8")
     voice_2 = abjad.Voice("c'8 d'8 e'8 f'8")
-    staff = abjad.Staff([voice_1, voice_2])
+    abjad.Staff([voice_1, voice_2])
     for i, leaf in enumerate(voice_1):
         start_offset = abjad.inspect(leaf).timespan().start_offset
         assert start_offset == i * abjad.Offset(1, 8)
@@ -275,7 +275,7 @@ def test_Inspection_timespan_22():
     inner_voice = abjad.Voice("c'8 d'8 e'8 f'8")
     outer_voice = abjad.Voice([abjad.Note(0, (1, 8)), inner_voice])
     inner_voice.name = outer_voice.name = "voice"
-    staff = abjad.Staff([abjad.Note(1, (1, 8)), outer_voice])
+    abjad.Staff([abjad.Note(1, (1, 8)), outer_voice])
     assert abjad.inspect(inner_voice).timespan().start_offset == abjad.Offset(2, 8)
     assert abjad.inspect(outer_voice).timespan().start_offset == abjad.Offset(1, 8)
 
@@ -305,7 +305,7 @@ def test_Inspection_timespan_24():
     voice_1.name = voice_1b.name = "voiceOne"
     staff_1 = abjad.Staff([voice_1, voice_1b])
     staff_2 = abjad.Staff([voice_2, voice_2b])
-    gs = abjad.StaffGroup([staff_1, staff_2])
+    abjad.StaffGroup([staff_1, staff_2])
     assert abjad.inspect(voice_1).timespan().start_offset == 0
     assert abjad.inspect(voice_2).timespan().start_offset == 0
     assert abjad.inspect(voice_1b).timespan().start_offset == abjad.Offset(4, 8)
