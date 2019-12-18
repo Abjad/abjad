@@ -1,9 +1,7 @@
-.PHONY: docs build
+.PHONY: docs build gh-pages
 
 project = abjad
-#errors = E123,E203,E265,E266,E501,W503
 errors = E123,E203,E265,E266,E501,E722,F81,W503
-origin := $(shell git config --get remote.origin.url)
 formatPaths = ${project}/ tests/ *.py
 testPaths = ${project}/ tests/
 flakeOptions = --exclude=boilerplate,abjad/__init__.py,abjad/pitch/__init__.py --max-line-length=90 --isolated
@@ -36,15 +34,13 @@ flake8:
 
 gh-pages:
 	rm -Rf gh-pages/
-	git clone $(origin) gh-pages/
-	cd gh-pages/ && \
-		git checkout gh-pages || git checkout --orphan gh-pages
+	git clone git@github.com:Abjad/abjad.github.io.git gh-pages/
 	rsync -rtv --del --exclude=.git docs/build/html/ gh-pages/
 	cd gh-pages && \
 		touch .nojekyll && \
 		git add --all . && \
 		git commit --allow-empty -m "Update docs" && \
-		git push -u origin gh-pages
+		git push -u origin master
 	rm -Rf gh-pages/
 
 isort:
