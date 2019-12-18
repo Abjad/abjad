@@ -1,4 +1,4 @@
-:orphan:
+.. _installation:
 
 Installation
 ============
