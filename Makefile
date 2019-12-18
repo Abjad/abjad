@@ -91,9 +91,10 @@ reformat:
 	make black-reformat
 
 release:
-	make docs
+	make -C docs/ clean html
 	make clean
 	make build
+	pip install -U twine
 	twine upload dist/*.tar.gz
 	make gh-pages
 
