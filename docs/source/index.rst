@@ -12,7 +12,9 @@ Get Abjad via `pip`_::
 
     ~$ sudo pip install abjad
 
-Then get `LilyPond`_ from http://lilypond.org/development.html. Read the `installation`_ instructions for help installing Abjad and dependencies like `LilyPond`_.
+Then get `LilyPond`_ from http://lilypond.org/development.html. Read the
+:ref:`installation instructions<installation>` for help installing Abjad and
+dependencies like `LilyPond`_.
 
 ..  toctree::
     :hidden:
@@ -35,7 +37,8 @@ Then make some notes:
     >>> staff = abjad.Staff(notes)
     >>> abjad.show(staff)
 
-Split these notes at every 5/16 of a whole note. Transpose every other group up a major-seventh. Then slur and accent each group:
+Split these notes at every 5/16 of a whole note. Transpose every other group up
+a major-seventh. Then slur and accent each group:
 
 ::
 
@@ -67,12 +70,16 @@ Then create a second staff and invert its pitches:
     ... 
     >>> abjad.show(staff_group)
 
-Notice that the music notation examples in Abjad's docs are styled in a special way: notes, chords and rests are spaced proportionally; there are no bar numbers; tuplet numbers are cleaned up; and so on. These settings differ somewhat from LilyPond defaults. [#f1]_ 
+Notice that the music notation examples in Abjad's docs are styled in a special
+way: notes, chords and rests are spaced proportionally; there are no bar
+numbers; tuplet numbers are cleaned up; and so on. These settings differ
+somewhat from LilyPond defaults. [#f1]_ 
 
 Features
 --------
 
-Abajd 3.1 implements an extensive collection of tools for score formalization. Among its core features, Abjad lets you:
+Abjad 3.1 implements an extensive collection of tools for score formalization.
+Among its core features, Abjad lets you:
 
 -   Model compositional thinking computationally.
 -   Create music notation in an object-oriented way.
@@ -152,15 +159,22 @@ Visit Abjad's score gallery for many more examples.
 ````````````````````````
 Summers | Palo Alto, CA
 
-Introduction to the production of professionally engraved musical scores using the Python programming language and the Abjad API for Formalized Score Control as part of compositional practice.
+Introduction to the production of professionally engraved musical scores using
+the Python programming language and the Abjad API for Formalized Score Control
+as part of compositional practice.
 
-The course introduces Abjad's object-oriented approach to music notation and algorithmic composition through real-world examples and hands-on coding activities. No previous programming experience is required. Python basics will be taught from the ground up during the course with musical examples designed to make sense to composers.
+The course introduces Abjad's object-oriented approach to music notation and
+algorithmic composition through real-world examples and hands-on coding
+activities. No previous programming experience is required. Python basics will
+be taught from the ground up during the course with musical examples designed
+to make sense to composers.
 
 Topics covered include:
 
 -   system installation and configuration
 -   defining your own functions, classes and modules
--   generating structured tableaux of rhythms, pitch collections and other materials during precomposition
+-   generating structured tableaux of rhythms, pitch collections and other
+    materials during precomposition
 -   managing polyphony with operations on voices, staves and other musical containers
 -   working with parametric score layout
 -   understanding the document structure of complex scores
@@ -168,19 +182,22 @@ Topics covered include:
 
 Taught by Jeff Treviño, Trevor Bača and Josiah Wolf Oberholtzer.
 
-Visit the `CCRMA`_ website for the most up-to-date scheduling information about this annual course.
+Visit the `CCRMA`_ website for the most up-to-date scheduling information about
+this annual course.
 
 Additional information
 ----------------------
 
-The most important resource for intermediate and experienced users of Abjad is the Abjad API, which documents the hundreds of classes that make up the system:
+The most important resource for intermediate and experienced users of Abjad is
+the Abjad API, which documents the hundreds of classes that make up the system:
 
 ..  toctree::
     :maxdepth: 2
 
     api/index
 
-The Abjad package ecosystem includes tools for commandline score setup, rhythmic construction and the basics of tonal analysis:
+The Abjad package ecosystem includes tools for commandline score setup,
+rhythmic construction and the basics of tonal analysis:
 
 - https://github.com/abjad/abjad-ext-cli
 - https://github.com/abjad/abjad-ext-rmakers
@@ -231,7 +248,14 @@ Happy composing and welcome to Abjad |release|!
 
 ..  rubric:: Footnotes
 
-..  [#f1] LilyPond examples in Abjad's docs are generated via a custom `Sphinx`_ extension housed in the :py:mod:`abjad.ext.sphinx <abjad.ext.sphinx>` subpackage. A default :download:`stylesheet <_stylesheets/default.ily>` is included in each generated file. But not all excerpts are styled the same: examples demonstrating `LilyPond`_ overrides include a non-default stylesheet, for example. ``\include "..."`` statements in Abjad examples reference files in the ``abjad/docs/source/_stylesheets/`` directory.
+..  [#f1] LilyPond examples in Abjad's docs are generated via a custom
+          `Sphinx`_ extension housed in the :py:mod:`abjad.ext.sphinx
+          <abjad.ext.sphinx>` subpackage. A default :download:`stylesheet
+          <_stylesheets/default.ily>` is included in each generated file. But
+          not all excerpts are styled the same: examples demonstrating
+          `LilyPond`_ overrides include a non-default stylesheet, for example.
+          ``\include "..."`` statements in Abjad examples reference files in
+          the ``abjad/docs/source/_stylesheets/`` directory.
 
 ..  _CCRMA Summer Workshop: https://ccrma.stanford.edu/workshops/python-and-abjad-in-music-comp-2018
 ..  _CCRMA: https://ccrma.stanford.edu
@@ -244,5 +268,4 @@ Happy composing and welcome to Abjad |release|!
 ..  _Python: https://www.python.org/
 ..  _Sphinx: http://sphinx-doc.org/
 ..  _Trevor Bača: http://www.trevorbaca.com/
-..  _installation: installation.html
 ..  _pip: https://pip.pypa.io/en/stable/
