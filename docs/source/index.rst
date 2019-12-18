@@ -216,7 +216,7 @@ Finally, a number of publications discussing Abjad are available for download he
 
 -   Davancens, Joseph.
     `"Heave, Sway, Surge."
-    <https://github.com/jdavancens/heave-sway-surge>`_
+    <https://github.com/jdavancens/dissertationpdf/blob/master/Heave%2C%20Sway%2C%20Surge%20-%20Essay.pdf>`_
     Doctoral dissertation,
     University of California, Santa Cruz.
     2019.
