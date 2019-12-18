@@ -1,5 +1,3 @@
-
-
 def attach(
     attachable,
     target,
