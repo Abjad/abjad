@@ -1,4 +1,4 @@
-def attach(
+def attach(  # noqa: 302
     attachable,
     target,
     context=None,
