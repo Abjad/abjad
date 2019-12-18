@@ -34,7 +34,7 @@ flake8:
 
 gh-pages:
 	rm -Rf gh-pages/
-	git clone git@github.com:Abjad/abjad.github.io.git gh-pages/
+	git clone https://github.com/Abjad/abjad.github.io.git gh-pages
 	rsync -rtv --del --exclude=.git docs/build/html/ gh-pages/
 	cd gh-pages && \
 		touch .nojekyll && \
