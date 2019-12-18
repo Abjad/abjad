@@ -75,6 +75,7 @@ if __name__ == "__main__":
         keywords=", ".join(keywords),
         license="MIT",
         long_description=long_description,
+        long_description_content_type="text/x-rst",
         name="Abjad",
         packages=["abjad"],
         platforms="Any",

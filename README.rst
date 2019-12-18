@@ -55,9 +55,8 @@ Package Index, via `pip`_:
 **Caution**:
 
     We strongly encourage you to *not* install Abjad globally via ``sudo pip
-    install``, but to use a :ref:`virtual environment <virtual-environments>`
-    instead. If you're already working in a virtual environment, simply omit
-    the ``sudo``.
+    install``, but to use a virtual environment instead. If you're already
+    working in a virtual environment, simply omit the ``sudo``.
 
 **Note**:
 
@@ -164,8 +163,7 @@ command-line by running the following command:
     dot - graphviz version 2.38.0 (20140413.2041)
 
 All of the graph images in Abjad's API documentation were created via
-`graphviz`_. See :py:func:`~abjad.top.graph` for more
-details.
+`graphviz`_. See ``abjad.top.graph`` for more details.
 
 Install extension packages
 --------------------------
@@ -174,7 +172,6 @@ Abjad's extension packages can be installed via the following commands:
 
 ..  code-block:: bash
 
-    ~$ pip install abjad[book]      # documentation tools
     ~$ pip install abjad[cli]       # score package command-line tools 
     ~$ pip install abjad[ipython]   # ipython integration 
     ~$ pip install abjad[nauert]    # quantization tools
@@ -218,7 +215,7 @@ from the Apple App Store. Alternatively, you can install via `Homebrew`_
 although this may take a significant amount of time.
 
 Additionally, a few non-`Python`_ tools need to be installed in order to
-develop Abjad or build its documentation: `TeXLive`_ and `Graphviz`_ (which was
+develop Abjad or build its documentation, such as `Graphviz`_ (which was
 explained above).
 
 Abjad and IPython
