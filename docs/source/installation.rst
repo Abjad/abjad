@@ -135,7 +135,6 @@ Abjad's extension packages can be installed via the following commands:
 
 ..  code-block:: bash
 
-    ~$ pip install abjad[book]      # documentation tools
     ~$ pip install abjad[cli]       # score package command-line tools 
     ~$ pip install abjad[ipython]   # ipython integration 
     ~$ pip install abjad[nauert]    # quantization tools
@@ -153,7 +152,7 @@ documentation locally, clone Abjad from the Github repository and install it in
 
     ~$ git clone https://github.com/Abjad/abjad.git
     ~$ cd abjad
-    abjad$ sudo pip install -e .[book,test]  # NOTE: no spaces in the string after "install"
+    abjad$ sudo pip install -e .[test]  # NOTE: no spaces in the string after "install"
 
 Installing Abjad in development mode will install the following `Python`_
 package dependencies (along with their own dependencies):
@@ -161,9 +160,6 @@ package dependencies (along with their own dependencies):
 -   `pytest`_, for running Abjad's test suite
 
 -   `Sphinx`_, for building Abjad's documentation
-
--   `PyPDF2`_, for performing preprocessing on `LaTeX`_ source with Abjad's
-    ``ajv book`` tool
 
 Some of `Sphinx`_'s dependencies provide optional optimized `Python`_
 extensions, which must be compiled before they can be used. If your machine
@@ -184,22 +180,6 @@ although this may take a significant amount of time.
 Additionally, a few non-`Python`_ tools need to be installed in order to
 develop Abjad or build its documentation: `TeXLive`_ and `Graphviz`_ (which was 
 explained above).
-
-Install TeXLive
-````````````````
-
-Building the `LaTeX`_ documentation, running the test suite, and using Abjad's
-``ajv book`` document preprocessing tools require `TeXLive`_.
-Abjad makes use of both ``pdftex`` for producing PDFs, and the ``pdfcrop`` tool
-distributed with `TeXLive`_.
-
-To install `TeXLive`_ on Debian and Ubuntu:
-
-..  code-block:: bash
-
-    ~$ sudo apt-get install texlive-full
-
-On OSX, we recommend installing via the `MacTeX`_ distribution.
 
 Abjad and IPython
 -----------------
@@ -398,8 +378,6 @@ you might want to set your ``pdf_viewer`` to ``evince`` and your
 ..  _IPython: http://ipython.org/
 ..  _LaTeX: https://tug.org/
 ..  _LilyPond: http://lilypond.org/
-..  _MacTeX: https://tug.org/mactex/
-..  _PyPDF2: http://pythonhosted.org/PyPDF2/
 ..  _PyPI: https://pypi.python.org/pypi/Abjad
 ..  _Python: https://www.python.org/
 ..  _Sphinx: http://sphinx-doc.org/

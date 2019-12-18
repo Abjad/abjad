@@ -17,7 +17,7 @@ from docutils.nodes import (
     literal_block,
 )
 from docutils.parsers.rst import Directive, directives
-from sphinx.util import logging
+from sphinx.util import FilenameUniqDict, logging
 from sphinx.util.console import brown  # type: ignore
 from sphinx.util.nodes import set_source_info
 from sphinx.util.osutil import copyfile, ensuredir
@@ -132,9 +132,9 @@ class ThumbnailDirective(Directive):
         node["uri"] = self.arguments[0]
         environment = self.state.document.settings.env
         name, suffix = os.path.splitext(node["uri"])
+        environment.images.add_file(environment.docname, node["uri"])
         thumbnail_uri = name + "-thumbnail" + suffix
-        environment.images.add_file("", thumbnail_uri)
-        environment.images.add_file("", node["uri"])
+        environment.thumbnails.add_file(environment.docname, thumbnail_uri)
         return [node]
 
 
@@ -180,6 +180,7 @@ def visit_thumbnail_block_latex(self, node):
 
 
 def on_builder_inited(app):
+    app.env.thumbnails = FilenameUniqDict()  # separate so Sphinx doesn't purge it
     install_lightbox_static_files(app)
     (pathlib.Path(app.builder.outdir) / "_images").mkdir(exist_ok=True)
 
@@ -423,16 +424,36 @@ def install_lightbox_static_files(app):
             ensuredir(target_directory)
         copyfile(source_path, target_path)
         if relative_file_path.endswith(".js"):
-            app.add_javascript(relative_file_path)
+            app.add_js_file(relative_file_path, defer="defer")
         elif relative_file_path.endswith(".css"):
-            app.add_stylesheet(relative_file_path)
+            app.add_css_file(relative_file_path)
+
+
+def on_html_collect_pages(app):
+    for path in sphinx.util.status_iterator(
+        app.env.thumbnails,
+        "copying gallery thumbnails...",
+        "brown",
+        len(app.env.thumbnails),
+    ):
+        source_path = pathlib.Path(app.srcdir) / path
+        target_path = pathlib.Path(app.outdir) / "_images" / source_path.name
+        try:
+            shutil.copy(source_path, target_path)
+        except Exception:
+            logger.warning(f"Could not copy {source_path}")
+    return []
 
 
 def setup(app):
     app.connect("builder-inited", on_builder_inited)
+    app.connect("html-collect-pages", on_html_collect_pages)
+    app.add_css_file("abjad.css")
     app.add_directive("docs", HiddenDoctestDirective)
     app.add_directive("shell", ShellDirective)
     app.add_directive("thumbnail", ThumbnailDirective)
+    app.add_js_file("copybutton.js", defer="defer")
+    app.add_js_file("ga.js")
     app.add_node(
         thumbnail_block,
         html=[visit_thumbnail_block_html, None],
