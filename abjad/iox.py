@@ -150,13 +150,11 @@ class LilyPondIO:
 
     def run_command(self, command):
         completed_process = subprocess.run(
-            command,
-            shell=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            text=True,
+            command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
         )
-        return completed_process.stdout, completed_process.returncode == 0
+        text = completed_process.stdout.decode("utf-8")
+        success = completed_process.returncode == 0
+        return text, success
 
 
 class AbjadGrapher(Grapher):
