@@ -46,8 +46,6 @@ script:
     - if [[ $TRAVIS_PYTHON_VERSION != 3.6 ]]; then make mypy; fi
     - pytest --version
     - make pytest
-    - pip install --quiet -e .[cli]
-    - pip install --quiet -e .[ipython]
     - ajv --help
 
 after_success:

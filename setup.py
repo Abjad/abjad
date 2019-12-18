@@ -36,18 +36,17 @@ classifiers = [
 entry_points = {"console_scripts": ["ajv = abjad.cli:run_ajv"]}
 
 extras_require = {
-    "accelerated": ["quicktions>=1.3"],
-    "book": ["abjad-ext-book >= 3.0.0, < 3.1.0"],
-    "cli": ["abjad-ext-cli >= 3.0.0, < 3.1.0"],
-    "ipython": ["abjad-ext-ipython >= 3.0.0, < 3.1.0"],
-    "nauert": ["abjad-ext-nauert >= 3.0.0, < 3.1.0"],
-    "rmakers": ["abjad-ext-rmakers >= 3.0.0, < 3.1.0"],
-    "tonality": ["abjad-ext-tonality >= 3.0.0, < 3.1.0"],
+    "accelerated": ["quicktions >= 1.3"],
+    "cli": ["abjad-ext-cli >= 3.1.0, < 3.2.0"],
+    "ipython": ["abjad-ext-ipython >= 3.1.0, < 3.2.0"],
+    "nauert": ["abjad-ext-nauert >= 3.1.0, < 3.2.0"],
+    "rmakers": ["abjad-ext-rmakers >= 3.1.0, < 3.2.0"],
+    "tonality": ["abjad-ext-tonality >= 3.1.0, < 3.2.0"],
     "test": [
         "black",
         "flake8",
         "isort",
-        "mypy >= 0.660",
+        "mypy >= 0.750",
         "pytest >= 4.1.0",
         "pytest-cov >= 2.6.0",
         "pytest-helpers-namespace >= 2019.1.8",
