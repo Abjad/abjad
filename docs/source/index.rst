@@ -14,6 +14,12 @@ Get Abjad via `pip`_::
 
 Then get `LilyPond`_ from http://lilypond.org/development.html. Read the `installation`_ instructions for help installing Abjad and dependencies like `LilyPond`_.
 
+..  toctree::
+    :hidden:
+    :maxdepth: 2
+
+    installation
+
 Start Python and import Abjad:
 
 ::
@@ -176,9 +182,9 @@ The most important resource for intermediate and experienced users of Abjad is t
 
 The Abjad package ecosystem includes tools for commandline score setup, rhythmic construction and the basics of tonal analysis:
 
-- For working at the commandline: https://github.com/abjad/abjad-ext-cli
-- For formalizing rhythm: https://github.com/abjad/abjad-ext-rmakers
-- For elementary tonal analysis: https://github.com/abjad/abjad-ext-tonality
+- https://github.com/abjad/abjad-ext-cli
+- https://github.com/abjad/abjad-ext-rmakers
+- https://github.com/abjad/abjad-ext-tonality
 
 .. - IPython integration: https://github.com/abjad/abjad-ext-ipython
 .. - Quantization tools: https://github.com/abjad/abjad-ext-nauert
@@ -190,6 +196,20 @@ Finally, a number of publications discussing Abjad are available for download he
     <https://github.com/Abjad/tenor2015/blob/master/abjad.pdf>`_
     Proceedings of the First International Conference on Technologies for Music
     Notation and Representation. 2015.
+
+-   Davancens, Joseph.
+    `"Heave, Sway, Surge."
+    <https://github.com/jdavancens/heave-sway-surge>`_
+    Doctoral dissertation,
+    University of California, Santa Cruz.
+    2019.
+
+-   Evans, Gregory Rowland.
+    `"An introduction to modeling composition through Abjad's model of music notation."
+    <https://github.com/GregoryREvans/thesis/blob/master/An_Introduction_to_Modeling_Composition_through_Abjad's_Model_of_Music_Notation.pdf>`_
+    Master's thesis,
+    University of Miami.
+    2019.
 
 -   Oberholtzer, Josiah Wolf.
     `A Computational Model of Music Composition.
