@@ -19,15 +19,15 @@ def test_ex_sphinx_html(app, status, warning, rm_dirs):
     assert not warning.getvalue().strip()
     images_path = pathlib.Path(app.outdir) / "_images"
     assert sorted(path.name for path in images_path.iterdir()) == [
-        'lilypond-962a34d48cf88ba5fbae0978ded1d96422cab4c774de3d31f4e0efcd0043ebfa.cropped.svg',
-        'lilypond-962a34d48cf88ba5fbae0978ded1d96422cab4c774de3d31f4e0efcd0043ebfa.ly',
-        'lilypond-962a34d48cf88ba5fbae0978ded1d96422cab4c774de3d31f4e0efcd0043ebfa.svg',
-        'lilypond-cfc32183cc179d7ad77c45f06c8db2fe17a46059a5d8d3b0e0291523c33578f3-1.svg',
-        'lilypond-cfc32183cc179d7ad77c45f06c8db2fe17a46059a5d8d3b0e0291523c33578f3-2.svg',
-        'lilypond-cfc32183cc179d7ad77c45f06c8db2fe17a46059a5d8d3b0e0291523c33578f3-3.svg',
-        'lilypond-cfc32183cc179d7ad77c45f06c8db2fe17a46059a5d8d3b0e0291523c33578f3-4.svg',
-        'lilypond-cfc32183cc179d7ad77c45f06c8db2fe17a46059a5d8d3b0e0291523c33578f3.cropped.svg',
-        'lilypond-cfc32183cc179d7ad77c45f06c8db2fe17a46059a5d8d3b0e0291523c33578f3.ly',
+        "lilypond-962a34d48cf88ba5fbae0978ded1d96422cab4c774de3d31f4e0efcd0043ebfa.cropped.svg",
+        "lilypond-962a34d48cf88ba5fbae0978ded1d96422cab4c774de3d31f4e0efcd0043ebfa.ly",
+        "lilypond-962a34d48cf88ba5fbae0978ded1d96422cab4c774de3d31f4e0efcd0043ebfa.svg",
+        "lilypond-cfc32183cc179d7ad77c45f06c8db2fe17a46059a5d8d3b0e0291523c33578f3-1.svg",
+        "lilypond-cfc32183cc179d7ad77c45f06c8db2fe17a46059a5d8d3b0e0291523c33578f3-2.svg",
+        "lilypond-cfc32183cc179d7ad77c45f06c8db2fe17a46059a5d8d3b0e0291523c33578f3-3.svg",
+        "lilypond-cfc32183cc179d7ad77c45f06c8db2fe17a46059a5d8d3b0e0291523c33578f3-4.svg",
+        "lilypond-cfc32183cc179d7ad77c45f06c8db2fe17a46059a5d8d3b0e0291523c33578f3.cropped.svg",
+        "lilypond-cfc32183cc179d7ad77c45f06c8db2fe17a46059a5d8d3b0e0291523c33578f3.ly",
     ]
     index_path = pathlib.Path(app.srcdir) / "_build" / "html" / "index.html"
     index_source = index_path.read_text()

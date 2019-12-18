@@ -68,8 +68,3 @@ def test_Meter___init___09():
         abjad.Meter(time_signature).rtm_format
         == "(11/4 ((3/4 (1/4 1/4 1/4)) (2/4 (1/4 1/4)) (2/4 (1/4 1/4)) (2/4 (1/4 1/4)) (2/4 (1/4 1/4))))"
     )
-
-
-def test_Meter___init___10():
-
-    hierarchy = abjad.Meter("(4/4 ((2/4 (1/4 1/4)) (2/4 (1/4 1/4))))")

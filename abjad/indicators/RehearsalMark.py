@@ -155,7 +155,7 @@ class RehearsalMark(object):
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
-            
+
                 >>> abjad.f(staff)
                 \new Staff
                 {

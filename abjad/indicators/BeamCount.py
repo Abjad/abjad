@@ -1,6 +1,3 @@
-import typing
-
-from abjad import enums
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.system.StorageFormatManager import StorageFormatManager
 
@@ -12,7 +9,7 @@ class BeamCount(object):
     ..  container:: example
 
         >>> abjad.BeamCount()
-        BeamCount(left=0, right=0) 
+        BeamCount(left=0, right=0)
 
     """
 

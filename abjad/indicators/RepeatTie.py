@@ -3,7 +3,6 @@ import typing
 from abjad import enums
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
-from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.system.Tags import Tags
 from abjad.top.inspect import inspect
@@ -117,8 +116,6 @@ class RepeatTie(object):
         return True
 
     def _get_lilypond_format_bundle(self, component=None):
-        import abjad
-
         bundle = LilyPondFormatBundle()
         if self.tweaks:
             strings = self.tweaks._list_format_contributions()

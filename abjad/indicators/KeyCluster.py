@@ -25,7 +25,7 @@ class KeyCluster(object):
             \once \override Arpeggio.X-offset = #-2
             \once \override NoteHead.stencil = #ly:text-interface::print
             \once \override NoteHead.text = \markup {
-            	\filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
+                \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
             }
             <c' e' g' b' d'' f''>8
             ^ \markup {
@@ -144,7 +144,7 @@ class KeyCluster(object):
                 \once \override Arpeggio.X-offset = #-2
                 \once \override NoteHead.stencil = #ly:text-interface::print
                 \once \override NoteHead.text = \markup {
-                	\filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
+                    \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
                 }
                 <c' e' g' b' d'' f''>8
                 ^ \markup {
@@ -175,7 +175,7 @@ class KeyCluster(object):
                 \once \override Arpeggio.X-offset = #-2
                 \once \override NoteHead.stencil = #ly:text-interface::print
                 \once \override NoteHead.text = \markup {
-                	\filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
+                    \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
                 }
                 <c' e' g' b' d'' f''>8
 
@@ -208,7 +208,7 @@ class KeyCluster(object):
                 \once \override Arpeggio.X-offset = #-2
                 \once \override NoteHead.stencil = #ly:text-interface::print
                 \once \override NoteHead.text = \markup {
-                	\filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
+                    \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
                 }
                 <c' e' g' b' d'' f''>8
                 ^ \markup {
@@ -241,7 +241,7 @@ class KeyCluster(object):
                 \once \override Arpeggio.X-offset = #-2
                 \once \override NoteHead.stencil = #ly:text-interface::print
                 \once \override NoteHead.text = \markup {
-                	\filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
+                    \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
                 }
                 <c' e' g' b' d'' f''>8
                 ^ \markup {
@@ -278,7 +278,7 @@ class KeyCluster(object):
                 \once \override Arpeggio.X-offset = #-2
                 \once \override NoteHead.stencil = #ly:text-interface::print
                 \once \override NoteHead.text = \markup {
-                	\filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
+                    \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
                 }
                 <c' e' g' b' d'' f''>8
                 ^ \markup {
@@ -311,7 +311,7 @@ class KeyCluster(object):
                 \once \override Arpeggio.X-offset = #-2
                 \once \override NoteHead.stencil = #ly:text-interface::print
                 \once \override NoteHead.text = \markup {
-                	\filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
+                    \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
                 }
                 <c' e' g' b' d'' f''>8
                 ^ \markup {
@@ -348,7 +348,7 @@ class KeyCluster(object):
                 \once \override Arpeggio.X-offset = #-2
                 \once \override NoteHead.stencil = #ly:text-interface::print
                 \once \override NoteHead.text = \markup {
-                	\filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
+                    \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
                 }
                 <c' e' g' b' d'' f''>8
                 ^ \markup {
@@ -381,7 +381,7 @@ class KeyCluster(object):
                 \once \override Arpeggio.X-offset = #-2
                 \once \override NoteHead.stencil = #ly:text-interface::print
                 \once \override NoteHead.text = \markup {
-                	\filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
+                    \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
                 }
                 <c' e' g' b' d'' f''>8
                 _ \markup {

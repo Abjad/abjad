@@ -12,7 +12,7 @@ class StopGroup(object):
     ..  container:: example
 
         >>> abjad.StopGroup()
-        StopGroup() 
+        StopGroup()
 
     """
 

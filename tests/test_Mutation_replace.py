@@ -290,7 +290,7 @@ def test_Mutation_replace_06():
 
     voice_selection = staff[:1]
     voice = voice_selection[0]
-    old_components = abjad.mutate(voice_selection).replace(staff[0][:])
+    abjad.mutate(voice_selection).replace(staff[0][:])
 
     assert format(staff) == abjad.String.normalize(
         r"""

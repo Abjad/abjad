@@ -118,7 +118,6 @@ def test_Rest___init___08():
     Initialize rest from beamed skip.
     """
 
-    skip = abjad.Skip("s8")
     staff = abjad.Staff("c'8 [ s4 c'd ]")
     rest = abjad.Rest(staff[1])
 

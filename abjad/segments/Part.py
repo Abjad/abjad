@@ -1,8 +1,6 @@
 import typing
 
-from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.StorageFormatManager import StorageFormatManager
-from abjad.utilities.String import String
 
 
 class Part(object):
@@ -16,7 +14,7 @@ class Part(object):
         ...     section='FirstViolin',
         ...     section_abbreviation='VN-1',
         ...     )
-        
+
         >>> abjad.f(part)
         abjad.Part(
             instrument='FirstViolin',
@@ -268,7 +266,7 @@ class Part(object):
             ...     section='FirstViolin',
             ...     section_abbreviation='VN-1',
             ...     )
-            
+
             >>> part.number
             107
 
@@ -330,7 +328,7 @@ class Part(object):
             ...     section_abbreviation='VN-1',
             ...     zfill=2,
             ...     )
-            
+
             >>> part.zfill
             2
 

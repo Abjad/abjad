@@ -17,8 +17,8 @@ def test_NoteHeadList___contains___02():
 
     chord = abjad.Chord("<ef' cs'' f''>4")
 
-    assert not 18 in chord.note_heads
-    assert not 18.0 in chord.note_heads
+    assert 18 not in chord.note_heads
+    assert 18.0 not in chord.note_heads
     assert not abjad.NamedPitch(18) in chord.note_heads
     assert not abjad.NamedPitch("fs''") in chord.note_heads
     assert not abjad.NoteHead(18) in chord.note_heads

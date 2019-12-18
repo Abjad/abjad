@@ -1,6 +1,5 @@
 import pytest
 
-from abjad import mathtools
 from abjad.pitch import (
     NamedInterval,
     NamedIntervalClass,

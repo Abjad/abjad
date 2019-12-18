@@ -1,5 +1,3 @@
-import pytest
-
 import abjad
 
 
@@ -25,7 +23,7 @@ def test_Leaf__split_by_durations_01():
         """
     ), print(format(staff))
 
-    new_leaves = staff[1]._split_by_durations([abjad.Duration(1, 32)])
+    staff[1]._split_by_durations([abjad.Duration(1, 32)])
 
     assert format(staff) == abjad.String.normalize(
         r"""
@@ -48,7 +46,7 @@ def test_Leaf__split_by_durations_01():
 def test_Leaf__split_by_durations_02():
     """
     REGRESSION.
-    
+
     Splits note into tuplet monads and then fuses monads.
 
     Ties split notes.
@@ -58,7 +56,7 @@ def test_Leaf__split_by_durations_02():
 
     staff = abjad.Staff(r"\times 2/3 { c'8 [ d'8 e'8 ] }")
     leaf = abjad.inspect(staff).leaf(0)
-    new_leaves = leaf._split_by_durations([abjad.Duration(1, 20)])
+    leaf._split_by_durations([abjad.Duration(1, 20)])
 
     assert format(staff) == abjad.String.normalize(
         r"""
@@ -113,7 +111,7 @@ def test_Leaf__split_by_durations_05():
     """
 
     staff = abjad.Staff([abjad.Note("c'4")])
-    new_leaves = staff[0]._split_by_durations([abjad.Duration(1, 8)])
+    staff[0]._split_by_durations([abjad.Duration(1, 8)])
 
     assert len(staff) == 2
     assert abjad.inspect(staff).wellformed()
@@ -275,7 +273,7 @@ def test_Leaf__split_by_durations_10():
         """
     ), print(format(staff))
 
-    new_leaves = leaves[0]._split_by_durations([abjad.Duration(1, 32)])
+    leaves[0]._split_by_durations([abjad.Duration(1, 32)])
 
     assert format(staff) == abjad.String.normalize(
         r"""

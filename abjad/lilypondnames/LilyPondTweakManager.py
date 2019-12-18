@@ -41,7 +41,7 @@ class LilyPondTweakManager(LilyPondNameManager):
         Traceback (most recent call last):
             ...
         AttributeError: LilyPondTweakManager object has no attribute 'foo'.
-        
+
     """
 
     ### INITIALIZER ###
@@ -61,8 +61,7 @@ class LilyPondTweakManager(LilyPondNameManager):
 
     def __getattr__(self, name) -> typing.Union[LilyPondNameManager, typing.Any]:
         r"""
-        Gets LilyPondNameManager (or LilyPondGrobNameManager) keyed to 
-        ``name``.
+        Gets LilyPondNameManager (or LilyPondGrobNameManager) keyed to ``name``.
 
         ..  container:: example
 
@@ -162,7 +161,6 @@ class LilyPondTweakManager(LilyPondNameManager):
             LilyPondTweakManager(('_literal', None), ('bound_details__left_broken__text', False))
 
         """
-        from abjad.ly import contexts
         from abjad.ly import grob_interfaces
 
         if name == "_currently_deactivated":

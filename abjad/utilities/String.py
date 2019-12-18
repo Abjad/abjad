@@ -1327,7 +1327,7 @@ class String(str):
     def sort_roman(strings) -> typing.List["String"]:
         """
         Sorts strings containing Roman numerals.
-        
+
         ..  container:: example
 
             >>> strings = ['TromboneII', 'TromboneIII', 'TromboneI']
@@ -1358,7 +1358,7 @@ class String(str):
     def sort_segment_names(strings) -> typing.List["String"]:
         """
         Sorts segment name ``strings``.
-        
+
         ..  container:: example
 
             >>> strings = ['AA', 'Z', '_11', '_9']

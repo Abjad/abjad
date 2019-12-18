@@ -417,8 +417,6 @@ class LilyPondLexicalDefinition(object):
             scheme_parser(input_string)
         except exceptions.SchemeParserFinishedError:
             result = scheme_parser.result
-            cursor_end = scheme_parser.cursor_end
-            # print 'PARSED: {!r}'.format(input_string[:cursor_end])
             t.value = result
             t.type = "SCM_TOKEN"
             # if isinstance(result, str):

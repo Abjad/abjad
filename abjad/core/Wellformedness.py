@@ -13,13 +13,11 @@ from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.system.Tags import Tags
 from abjad.top.inspect import inspect
 from abjad.top.iterate import iterate
-from abjad.top.setting import setting
 from abjad.utilities.Duration import Duration
 from abjad.utilities.Sequence import Sequence
 
 from .Container import Container
 from .Context import Context
-from .Leaf import Leaf
 
 abjad_tags = Tags()
 

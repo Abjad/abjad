@@ -124,7 +124,7 @@ class Staccatissimo(object):
             >>> abjad.attach(abjad.Staccatissimo(), staff[0])
             >>> abjad.attach(abjad.Staccatissimo(), staff[1])
             >>> abjad.show(staff) # doctest: +SKIP
-            
+
             ..  docs::
 
                 >>> abjad.f(staff)
@@ -142,7 +142,7 @@ class Staccatissimo(object):
             >>> abjad.attach(abjad.Staccatissimo(direction=abjad.Up), staff[0])
             >>> abjad.attach(abjad.Staccatissimo(direction=abjad.Up), staff[1])
             >>> abjad.show(staff) # doctest: +SKIP
-            
+
             ..  docs::
 
                 >>> abjad.f(staff)
@@ -160,7 +160,7 @@ class Staccatissimo(object):
             >>> abjad.attach(abjad.Staccatissimo(direction=abjad.Down), staff[0])
             >>> abjad.attach(abjad.Staccatissimo(direction=abjad.Down), staff[1])
             >>> abjad.show(staff) # doctest: +SKIP
-            
+
             ..  docs::
 
                 >>> abjad.f(staff)

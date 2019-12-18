@@ -1,12 +1,10 @@
 import collections
 
-from abjad import enums
 from abjad.instruments import Instrument
 from abjad.pitch import NamedPitch, Pitch, PitchSegment, PitchSet
 from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.top.inspect import inspect
 from abjad.utilities.Enumerator import Enumerator
-from abjad.utilities.Offset import Offset
 from abjad.utilities.OrderedDict import OrderedDict
 from abjad.utilities.Sequence import Sequence
 
@@ -79,9 +77,7 @@ class Iteration(object):
         grace=None,
         reverse=None,
     ):
-        from .AfterGraceContainer import AfterGraceContainer
         from .Component import Component
-        from .BeforeGraceContainer import BeforeGraceContainer
         from .Leaf import Leaf
 
         argument = client
@@ -379,7 +375,6 @@ class Iteration(object):
         Returns generator.
         """
         from .Container import Container
-        from .Leaf import Leaf
 
         if isinstance(self.client, Container):
             for component in self._iterate_components(
@@ -1648,7 +1643,6 @@ class Iteration(object):
 
         Returns tuple.
         '''
-        from .Selection import Selection
         from .VerticalMoment import VerticalMoment
 
         moments = []

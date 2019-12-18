@@ -126,7 +126,6 @@ def deactivate(text, tag, prepend_empty_chord=False, skipped=False):
                 prefix = "%%% "
             if prepend_empty_chord and not previous_line_was_tweak:
                 prefix += "<> "
-            prefix_length = len(prefix)
             target = line[last_index - 4 : last_index]
             assert target == "    ", repr((line, target, index, tag))
             characters = list(line)

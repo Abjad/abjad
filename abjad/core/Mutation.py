@@ -3,8 +3,6 @@ from abjad.indicators.TimeSignature import TimeSignature
 from abjad.meter import Meter
 from abjad.pitch.NamedInterval import NamedInterval
 from abjad.system.StorageFormatManager import StorageFormatManager
-from abjad.top.attach import attach
-from abjad.top.detach import detach
 from abjad.top.inspect import inspect
 from abjad.top.iterate import iterate
 from abjad.top.select import select
@@ -670,7 +668,7 @@ class Mutation(object):
             Set ``wrappers`` to true to copy all wrappers from one leaf to
             another leaf (and avoid full-score update). Only works from one
             leaf to another leaf:
-        
+
             >>> staff = abjad.Staff("c'2 f'4 g'")
             >>> abjad.attach(abjad.Clef('alto'), staff[0])
             >>> abjad.show(staff) # doctest: +SKIP

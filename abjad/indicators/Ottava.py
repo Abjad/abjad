@@ -1,10 +1,7 @@
 import typing
 
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
-from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.StorageFormatManager import StorageFormatManager
-from abjad.system.Tags import Tags
-from abjad.utilities.String import String
 
 
 class Ottava(object):

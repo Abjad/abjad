@@ -1,5 +1,3 @@
-import typing
-
 from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.system.StorageFormatManager import StorageFormatManager
@@ -238,7 +236,7 @@ class BarLine(object):
     def tweaks(self) -> None:
         r"""
         Are not implemented on bar line.
-        
+
         The LilyPond ``\bar`` command refuses tweaks.
 
         Use overrides instead.

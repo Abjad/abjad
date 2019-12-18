@@ -3,7 +3,6 @@ import datetime
 import io
 import os
 import pathlib
-import platform
 import pstats
 import re
 import shutil
@@ -530,7 +529,7 @@ class IOManager(object):
         Profiles ``argument``.
 
         ..  container:: example
-            
+
             ::
 
                 >>> argument = 'abjad.Staff("c8 c8 c8 c8 c8 c8 c8 c8")'

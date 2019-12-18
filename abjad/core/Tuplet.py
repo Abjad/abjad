@@ -1,6 +1,8 @@
 import math
 import typing
 
+import uqbar
+
 from abjad import Fraction, exceptions, mathtools, typings
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.mathtools import NonreducedFraction, NonreducedRatio, Ratio
@@ -412,7 +414,7 @@ class Tuplet(Container):
 
             The ``default.ily`` stylesheet included in all Abjad API examples
             includes the following:
-            
+
             ``\override TupletNumber.text = #tuplet-number::calc-fraction-text``
 
             This means that even simple tuplets format as explicit fractions:
@@ -792,7 +794,7 @@ class Tuplet(Container):
 
             >>> staff = abjad.Staff([tuplet_3])
             >>> leaves = abjad.select(staff).leaves()
-            >>> abjad.attach(abjad.TimeSignature((5, 4)), leaves[0]) 
+            >>> abjad.attach(abjad.TimeSignature((5, 4)), leaves[0])
             >>> literal = abjad.LilyPondLiteral(r'\set tupletFullLength = ##t')
             >>> abjad.attach(literal, staff)
             >>> abjad.show(staff) # doctest: +SKIP

@@ -241,7 +241,7 @@ class StartMarkup(object):
     def tweaks(self) -> None:
         r"""
         Are not implemented on start markup.
-        
+
         The LilyPond ``\instrumentName`` command refuses tweaks.
 
         Craft explicit markup instead.

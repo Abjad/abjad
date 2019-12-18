@@ -20,3 +20,24 @@ from .SyntaxNode import SyntaxNode
 from ._parse import _parse
 from ._parse_debug import _parse_debug
 from .parse_reduced_ly_syntax import parse_reduced_ly_syntax
+
+__all__ = [
+    "ContextSpeccedMusic",
+    "GuileProxy",
+    "LilyPondDuration",
+    "LilyPondEvent",
+    "LilyPondFraction",
+    "LilyPondGrammarGenerator",
+    "LilyPondLexicalDefinition",
+    "LilyPondParser",
+    "LilyPondSyntacticalDefinition",
+    "Music",
+    "ReducedLyParser",
+    "SchemeParser",
+    "SequentialMusic",
+    "SimultaneousMusic",
+    "SyntaxNode",
+    "_parse",
+    "_parse_debug",
+    "parse_reduced_ly_syntax",
+]

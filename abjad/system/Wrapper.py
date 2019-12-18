@@ -304,7 +304,7 @@ class Wrapper(object):
                 )
 
         Copies all properties except component.
-        
+
         Copy operations must supply component after wrapper copy.
         """
         new = type(self)(

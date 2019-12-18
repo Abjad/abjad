@@ -4,7 +4,6 @@ from abjad import exceptions
 from abjad.indicators.RepeatTie import RepeatTie
 from abjad.indicators.Tie import Tie
 from abjad.mathtools import Ratio
-from abjad.top.attach import attach
 from abjad.top.detach import detach
 from abjad.top.inspect import inspect
 from abjad.top.mutate import mutate

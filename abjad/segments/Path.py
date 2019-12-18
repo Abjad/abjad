@@ -2,22 +2,18 @@ import importlib
 import os
 import pathlib
 import shutil
+import traceback
 import typing
 
 from abjad import typings
-from abjad.core.Container import Container
-from abjad.core.MultimeasureRest import MultimeasureRest
 from abjad.core.Score import Score
-from abjad.core.Staff import Staff
 from abjad.core.StaffGroup import StaffGroup
 from abjad.indicators.Clef import Clef
 from abjad.indicators.LilyPondLiteral import LilyPondLiteral
-from abjad.indicators.MarginMarkup import MarginMarkup
 from abjad.indicators.TimeSignature import TimeSignature
 from abjad.system.IOManager import IOManager
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.Tag import Tag
-from abjad.system.Tags import Tags
 from abjad.top.activate import activate
 from abjad.top.attach import attach
 from abjad.top.deactivate import deactivate
@@ -293,7 +289,6 @@ class Path(pathlib.PosixPath):
                 continue
             if not path.is_dir():
                 continue
-            has_contents = False
             if all(_.name.startswith(".") for _ in path.iterdir()):
                 return type(self)(path)
 
@@ -342,7 +337,6 @@ class Path(pathlib.PosixPath):
             return paths
         predicate = self.get_name_predicate()
         is_external = self.is_external()
-        is_scores = self.is_scores()
         is_segments = self.is_segments()
         names = []
         for name in sorted([_.name for _ in self.iterdir()]):
@@ -470,7 +464,7 @@ class Path(pathlib.PosixPath):
     def build(self) -> typing.Optional["Path"]:
         """
         Gets build directory.
-        
+
         Directory must be build directory, _segments direcotry or part
         directory.
 
@@ -808,9 +802,9 @@ class Path(pathlib.PosixPath):
         activates ``tag`` in LilyPond files given in case 1.
 
         Returns triple.
-        
+
         First item in triple is count of deactivated tags activated by method.
-        
+
         Second item in pair is count of already-active tags skipped by method.
 
         Third item in pair is list of canonical string messages that explain
@@ -841,7 +835,7 @@ class Path(pathlib.PosixPath):
             count, skipped = 0, 0
             for path in sorted(self.glob("**/*")):
                 path = type(self)(path)
-                if not path.suffix in (".ily", ".ly"):
+                if path.suffix not in (".ily", ".ly"):
                     continue
                 if not (
                     path.name.startswith("illustration")
@@ -862,14 +856,10 @@ class Path(pathlib.PosixPath):
             name = str(tag)
         if undo:
             adjective = "inactive"
-            antonym = "active"
             gerund = "deactivating"
-            infinitive = "deactivate"
         else:
             adjective = "active"
-            antonym = "inactivate"
             gerund = "activating"
-            infinitive = "activate"
         messages = []
         total = count + skipped
         if total == 0 and message_zero:
@@ -1879,8 +1869,7 @@ class Path(pathlib.PosixPath):
 
             >>> path.get_title()
             '(untitled score)'
-        
-        Returns string.
+
         """
         if year and self.get_metadatum("year"):
             title = self.get_title(year=False)
@@ -2803,10 +2792,6 @@ class Path(pathlib.PosixPath):
             message = "empty container-to-part-assignment dictionary"
             return message
         for i, (segment_name, dictionary_) in enumerate(dictionary.items()):
-            if i == 0:
-                first_segment = True
-            else:
-                first_segment = False
             pairs = []
             for identifier, (part_assignment, timespan) in dictionary_.items():
                 if part in part_assignment:

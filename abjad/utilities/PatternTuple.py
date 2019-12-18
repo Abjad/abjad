@@ -1,4 +1,3 @@
-from .Pattern import Pattern
 from .TypedTuple import TypedTuple
 
 

@@ -375,16 +375,18 @@ def embed_images(self, node, output_directory, render_prefix, source_path):
     if with_columns:
         for i in range(0, len(paths_to_embed), with_columns):
             self.body.append(table_row_open_template)
-            for path in paths_to_embed[i:i + with_columns]:
+            for path in paths_to_embed[i : i + with_columns]:
                 relative_path = pathlib.Path(self.builder.imgpath) / path.name
-                self.body.append(thumbnail_template.format(
-                    alt="",
-                    cls="table-cell thumbnail",
-                    group=f"group-{render_prefix}",
-                    fullsize_path=relative_path,
-                    thumbnail_path=relative_path,
-                    title="",
-                ))
+                self.body.append(
+                    thumbnail_template.format(
+                        alt="",
+                        cls="table-cell thumbnail",
+                        group=f"group-{render_prefix}",
+                        fullsize_path=relative_path,
+                        thumbnail_path=relative_path,
+                        title="",
+                    )
+                )
             self.body.append(table_row_close_template)
     else:
         for path in paths_to_embed:

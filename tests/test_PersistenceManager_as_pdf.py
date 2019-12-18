@@ -1,7 +1,5 @@
 import os
 
-import pytest
-
 import abjad
 
 configuration = abjad.AbjadConfiguration()
