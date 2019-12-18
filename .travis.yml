@@ -1,61 +1,60 @@
 language: python
-dist: xenial
-sudo: false
+os: linux
 cache:
-- pip
+    - pip
 
 env:
   global:
-  - LILYPOND_URL="http://lilypond.org/downloads/binaries/linux-64/"
-  - LILYPOND_VERSION=2.19.83
+    - LILYPOND_URL=http://lilypond.org/downloads/binaries/linux-64/
+    - LILYPOND_VERSION=2.19.83
 
-matrix:
+jobs:
   include:
-  - python: "3.6"
-    env: ACCELERATED=true
-  - python: "3.7"
-    env: ACCELERATED=true
-  - python: "3.8"
-    env: ACCELERATED=true
-  - python: "3.8"
-    env: ACCELERATED=false
+    - python: "3.6"
+        env: ACCELERATED=true
+    - python: "3.7"
+        env: ACCELERATED=true
+    - python: "3.8"
+        env: ACCELERATED=true
+    - python: "3.8"
+        env: ACCELERATED=false
 
 before_install:
-- wget -q ${LILYPOND_URL}lilypond-${LILYPOND_VERSION}-1.linux-64.sh
-- sh lilypond-${LILYPOND_VERSION}-1.linux-64.sh --batch
-- pip install -U pip coverage
-- export PATH=/home/travis/bin:$PATH
+    - wget -q ${LILYPOND_URL}lilypond-${LILYPOND_VERSION}-1.linux-64.sh
+    - sh lilypond-${LILYPOND_VERSION}-1.linux-64.sh --batch
+    - pip install -U pip coverage
+    - export PATH=/home/travis/bin:$PATH
 
 install:
-# install without development dependencies.
-- pip install -e .
-# echo the configuration file path to debug read-only-filesystem handling
-- python -c "import abjad; print(abjad.abjad_configuration.configuration_file_path)"
-# prime the parser
-- scr/devel/prime-parser-tables
-# install development dependencies.
-- pip install -U -e .[test]
-# install accelerated dependencies if requested
-- if [[ $ACCELERATED == true ]]; then pip install -e .[accelerated]; fi
+    # install without development dependencies
+    - pip install -e .
+    # echo the configuration file path to debug read-only-filesystem handling
+    - python -c "import abjad; print(abjad.abjad_configuration.configuration_file_path)"
+    # prime the parser
+    - scr/devel/prime-parser-tables
+    # install development dependencies
+    - pip install -U -e .[test]
+    # install accelerated dependencies if requested
+    - if [[ $ACCELERATED == true ]]; then pip install -e .[accelerated]; fi
 
 script:
-- black --version
-- make black-check
-# - make flake8
-- mypy --version
-- if [[ $TRAVIS_PYTHON_VERSION != 3.6 ]]; then make mypy; fi
-- make pytest
-# TODO: book has updated code; needs to be incorporated in dependency:
-# - pip install --quiet -e .[book]
-- pip install --quiet -e .[cli]
-- pip install --quiet -e .[ipython]
-# TODO: nauert has updated code; needs to be incorporated in dependency:
-# - pip install --quiet -e .[nauert]
-# TODO: rmakers has updated code; needs to be incorporated in dependency:
-# - pip install --quiet -e .[rmakers]
-# Make sure that ajv runs properly
-- ajv --help
+    - black --version
+    - make black-check
+    # - make flake8
+    - mypy --version
+    - if [[ $TRAVIS_PYTHON_VERSION != 3.6 ]]; then make mypy; fi
+    - make pytest
+    # TODO: book has updated code; needs to be incorporated in dependency:
+    # - pip install --quiet -e .[book]
+    - pip install --quiet -e .[cli]
+    - pip install --quiet -e .[ipython]
+    # TODO: nauert has updated code; needs to be incorporated in dependency:
+    # - pip install --quiet -e .[nauert]
+    # TODO: rmakers has updated code; needs to be incorporated in dependency:
+    # - pip install --quiet -e .[rmakers]
+    # Make sure that ajv runs properly
+    - ajv --help
 
 after_success:
-- pip install --quiet coveralls
-- coveralls
+    - pip install --quiet coveralls
+    - coveralls
