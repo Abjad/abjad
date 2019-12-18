@@ -79,6 +79,6 @@ if __name__ == "__main__":
         name="Abjad",
         packages=["abjad"],
         platforms="Any",
-        url="http://www.projectabjad.org",
+        url="https://abjad.github.io",
         version=__version__,
     )

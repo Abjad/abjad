@@ -15,7 +15,7 @@ typographic details of the symbols on the page.
 
 `GitHub`_ |
 `PyPI`_ |
-`Documentation <http://projectabjad.org/>`_ |
+`Documentation <https://abjad.github.io/>`_ |
 `Mailing list <http://groups.google.com/group/abjad-user>`_ |
 `Issue Tracker <https://github.com/Abjad/abjad/issues>`_ |
 `Travis-CI <https://travis-ci.org/Abjad/abjad>`_
