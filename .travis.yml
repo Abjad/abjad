@@ -40,19 +40,14 @@ install:
 script:
     - black --version
     - make black-check
-    # - make flake8
+    - flake8 --version
+    - make flake8
     - mypy --version
     - if [[ $TRAVIS_PYTHON_VERSION != 3.6 ]]; then make mypy; fi
+    - pytest --version
     - make pytest
-    # TODO: book has updated code; needs to be incorporated in dependency:
-    # - pip install --quiet -e .[book]
     - pip install --quiet -e .[cli]
     - pip install --quiet -e .[ipython]
-    # TODO: nauert has updated code; needs to be incorporated in dependency:
-    # - pip install --quiet -e .[nauert]
-    # TODO: rmakers has updated code; needs to be incorporated in dependency:
-    # - pip install --quiet -e .[rmakers]
-    # Make sure that ajv runs properly
     - ajv --help
 
 after_success:
