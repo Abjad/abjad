@@ -11,7 +11,6 @@ from .LilyPondLanguageToken import LilyPondLanguageToken
 from .LilyPondVersionToken import LilyPondVersionToken
 from .PackageGitCommitToken import PackageGitCommitToken
 
-
 __all__ = [
     "Block",
     "ContextBlock",

@@ -13,7 +13,6 @@ from abjad.ly.language_pitch_names import language_pitch_names
 from abjad.ly.markup_functions import markup_functions, markup_list_functions
 from abjad.ly.music_glyphs import music_glyphs
 
-
 __all__ = [
     "colors",
     "normal_colors",

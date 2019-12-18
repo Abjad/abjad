@@ -39,7 +39,6 @@ from .VerticalMoment import VerticalMoment
 from .Voice import Voice
 from .Wellformedness import Wellformedness
 
-
 __all__ = [
     "AfterGraceContainer",
     "BeforeGraceContainer",

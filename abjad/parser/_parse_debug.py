@@ -1,6 +1,5 @@
 import sys
 
-
 from ply.yacc import (  # type: ignore
     YaccProduction,
     YaccSymbol,

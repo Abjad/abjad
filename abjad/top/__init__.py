@@ -24,7 +24,6 @@ from .setting import setting
 from .show import show
 from .tweak import tweak
 
-
 __all__ = [
     "activate",
     "annotate",

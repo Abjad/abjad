@@ -407,9 +407,7 @@ def install_lightbox_static_files(app):
     for root, _, file_names in os.walk(source_lightbox_path):
         for file_name in file_names:
             absolute_file_path = os.path.join(root, file_name)
-            relative_file_path = os.path.relpath(
-                absolute_file_path, source_static_path
-            )
+            relative_file_path = os.path.relpath(absolute_file_path, source_static_path)
             relative_file_paths.append(relative_file_path)
     if os.path.exists(target_lightbox_path):
         shutil.rmtree(target_lightbox_path)

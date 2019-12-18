@@ -1,11 +1,6 @@
 import sys
 
-
-from ply.yacc import (  # type: ignore
-    YaccProduction,
-    YaccSymbol,
-    error_count,
-)
+from ply.yacc import YaccProduction, YaccSymbol, error_count  # type: ignore
 
 
 def _parse(self, input=None, lexer=None, debug=None, tracking=0, tokenfunc=None):

@@ -1,6 +1,6 @@
-import abjad
 import pytest
 
+import abjad
 from abjad import mathtools
 
 values = []

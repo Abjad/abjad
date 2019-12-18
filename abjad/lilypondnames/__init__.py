@@ -17,7 +17,6 @@ from .LilyPondTweakManager import (
     LilyPondTweakManager,
 )
 
-
 __all__ = [
     "LilyPondContext",
     "LilyPondContextSetting",

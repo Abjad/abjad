@@ -30,7 +30,6 @@ from .Timer import Timer
 from .UpdateManager import UpdateManager
 from .Wrapper import Wrapper
 
-
 __all__ = [
     "AbjadConfiguration",
     "BenchmarkScoreMaker",

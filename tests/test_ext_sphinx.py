@@ -33,29 +33,29 @@ def test_ex_sphinx_html(app, status, warning, rm_dirs):
     index_source = index_path.read_text()
     assert re.findall(r"lilypond-\w{64}(?:-\d+|.cropped)?\.svg", index_source) == [
         # default
-        'lilypond-962a34d48cf88ba5fbae0978ded1d96422cab4c774de3d31f4e0efcd0043ebfa.cropped.svg',
+        "lilypond-962a34d48cf88ba5fbae0978ded1d96422cab4c774de3d31f4e0efcd0043ebfa.cropped.svg",
         # :no-trim:
-        'lilypond-962a34d48cf88ba5fbae0978ded1d96422cab4c774de3d31f4e0efcd0043ebfa.svg',
+        "lilypond-962a34d48cf88ba5fbae0978ded1d96422cab4c774de3d31f4e0efcd0043ebfa.svg",
         # default
-        'lilypond-cfc32183cc179d7ad77c45f06c8db2fe17a46059a5d8d3b0e0291523c33578f3.cropped.svg',
+        "lilypond-cfc32183cc179d7ad77c45f06c8db2fe17a46059a5d8d3b0e0291523c33578f3.cropped.svg",
         # :no-trim:
-        'lilypond-cfc32183cc179d7ad77c45f06c8db2fe17a46059a5d8d3b0e0291523c33578f3-1.svg',
-        'lilypond-cfc32183cc179d7ad77c45f06c8db2fe17a46059a5d8d3b0e0291523c33578f3-2.svg',
-        'lilypond-cfc32183cc179d7ad77c45f06c8db2fe17a46059a5d8d3b0e0291523c33578f3-3.svg',
-        'lilypond-cfc32183cc179d7ad77c45f06c8db2fe17a46059a5d8d3b0e0291523c33578f3-4.svg',
+        "lilypond-cfc32183cc179d7ad77c45f06c8db2fe17a46059a5d8d3b0e0291523c33578f3-1.svg",
+        "lilypond-cfc32183cc179d7ad77c45f06c8db2fe17a46059a5d8d3b0e0291523c33578f3-2.svg",
+        "lilypond-cfc32183cc179d7ad77c45f06c8db2fe17a46059a5d8d3b0e0291523c33578f3-3.svg",
+        "lilypond-cfc32183cc179d7ad77c45f06c8db2fe17a46059a5d8d3b0e0291523c33578f3-4.svg",
         # :pages: 2-3,1
-        'lilypond-cfc32183cc179d7ad77c45f06c8db2fe17a46059a5d8d3b0e0291523c33578f3-2.svg',
-        'lilypond-cfc32183cc179d7ad77c45f06c8db2fe17a46059a5d8d3b0e0291523c33578f3-3.svg',
-        'lilypond-cfc32183cc179d7ad77c45f06c8db2fe17a46059a5d8d3b0e0291523c33578f3-1.svg',
+        "lilypond-cfc32183cc179d7ad77c45f06c8db2fe17a46059a5d8d3b0e0291523c33578f3-2.svg",
+        "lilypond-cfc32183cc179d7ad77c45f06c8db2fe17a46059a5d8d3b0e0291523c33578f3-3.svg",
+        "lilypond-cfc32183cc179d7ad77c45f06c8db2fe17a46059a5d8d3b0e0291523c33578f3-1.svg",
         # :with-columns: 2 (image url appears twice)
-        'lilypond-cfc32183cc179d7ad77c45f06c8db2fe17a46059a5d8d3b0e0291523c33578f3-1.svg',
-        'lilypond-cfc32183cc179d7ad77c45f06c8db2fe17a46059a5d8d3b0e0291523c33578f3-1.svg',
-        'lilypond-cfc32183cc179d7ad77c45f06c8db2fe17a46059a5d8d3b0e0291523c33578f3-2.svg',
-        'lilypond-cfc32183cc179d7ad77c45f06c8db2fe17a46059a5d8d3b0e0291523c33578f3-2.svg',
-        'lilypond-cfc32183cc179d7ad77c45f06c8db2fe17a46059a5d8d3b0e0291523c33578f3-3.svg',
-        'lilypond-cfc32183cc179d7ad77c45f06c8db2fe17a46059a5d8d3b0e0291523c33578f3-3.svg',
-        'lilypond-cfc32183cc179d7ad77c45f06c8db2fe17a46059a5d8d3b0e0291523c33578f3-4.svg',
-        'lilypond-cfc32183cc179d7ad77c45f06c8db2fe17a46059a5d8d3b0e0291523c33578f3-4.svg',
+        "lilypond-cfc32183cc179d7ad77c45f06c8db2fe17a46059a5d8d3b0e0291523c33578f3-1.svg",
+        "lilypond-cfc32183cc179d7ad77c45f06c8db2fe17a46059a5d8d3b0e0291523c33578f3-1.svg",
+        "lilypond-cfc32183cc179d7ad77c45f06c8db2fe17a46059a5d8d3b0e0291523c33578f3-2.svg",
+        "lilypond-cfc32183cc179d7ad77c45f06c8db2fe17a46059a5d8d3b0e0291523c33578f3-2.svg",
+        "lilypond-cfc32183cc179d7ad77c45f06c8db2fe17a46059a5d8d3b0e0291523c33578f3-3.svg",
+        "lilypond-cfc32183cc179d7ad77c45f06c8db2fe17a46059a5d8d3b0e0291523c33578f3-3.svg",
+        "lilypond-cfc32183cc179d7ad77c45f06c8db2fe17a46059a5d8d3b0e0291523c33578f3-4.svg",
+        "lilypond-cfc32183cc179d7ad77c45f06c8db2fe17a46059a5d8d3b0e0291523c33578f3-4.svg",
     ]
 
 
