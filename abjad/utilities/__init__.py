@@ -61,4 +61,6 @@ __all__ = [
     "list_all_classes",
     "list_all_functions",
     "yield_all_modules",
+    "Infinity",
+    "NegativeInfinity",
 ]
