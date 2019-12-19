@@ -9,7 +9,7 @@ This situation is not in itself a problem. But complexity arises in the manageme
 
 Enter Python virtual environments. Python virtual environments allow you to isolate the Python packages you install from the global collection(s) of Python packages preinstalled elsewhere on your computer. This can clean up your development environment significantly. And we recommend that all users of Abjad work in Python virtual environments. Especially if you intend to contribute to Abjad development by working on the Abjad codebase itself. Good summaries explaining how to work with Python virtual environments are available on the internet. But the process is easy enough to explain here, too. 
 
-The `virtualenv`_ package provides tools for working with Python virtual environments. Almost everything you'll want to do with Python virtual environments can be done with the  `virtualenvwrapper`_ package. Install `virtualenvwrapper`_ like this:
+The `virtualenvurl`_ package provides tools for working with Python virtual environments. Almost everything you'll want to do with Python virtual environments can be done with the  `virtualenvwrapper`_ package. Install `virtualenvwrapper`_ like this:
 
 ..  code-block:: bash
 
@@ -54,5 +54,5 @@ Add these two lines to your ``~/.profile`` if you decide to use Python virtual e
     export WORKON_HOME=$HOME/.virtualenvs
     source `which virtualenvwrapper.sh`
 
-..  _virtualenv: https://readthedocs.org/projects/virtualenv/
+..  _virtualenvurl: https://readthedocs.org/projects/virtualenv/
 ..  _virtualenvwrapper: https://virtualenvwrapper.readthedocs.org/en/latest/
