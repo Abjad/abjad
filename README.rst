@@ -2,13 +2,7 @@
 Abjad
 #####
 
-Abjad helps composers build up complex pieces of music notation in an iterative
-and incremental way. Use Abjad to create symbolic representations of all the
-notes, rests, staves, tuplets, beams and slurs in any score. Because Abjad
-extends the `Python`_ programming language, you can use Abjad to make
-systematic changes to your music as you work. And because Abjad wraps the
-powerful `LilyPond`_ music notation package, you can use Abjad to control the
-typographic details of the symbols on the page.
+Abjad helps composers build up complex pieces of music notation in an iterative and incremental way. Use Abjad to create symbolic representations of all the notes, rests, staves, tuplets, beams and slurs in any score. Because Abjad extends the `Python`_ programming language, you can use Abjad to make systematic changes to your music as you work. And because Abjad wraps the powerful `LilyPond`_ music notation package, you can use Abjad to control the typographic details of the symbols on the page.
 
 ..  _LilyPond: http://lilypond.org/
 ..  _Python: https://www.python.org/
@@ -35,12 +29,13 @@ typographic details of the symbols on the page.
 ..  image:: https://img.shields.io/pypi/dm/abjad.svg?style=flat-square
     :target: https://pypi.python.org/pypi/abjad
 
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
+..  image:: https://img.shields.io/badge/code%20style-black-000000.svg
+    :target: https://github.com/psf/black
 
 Installation
 ============
 
-Abjad works on Unix/Linux, OSX, and Windows on Python versions 3.6+.
+Abjad works on Unix/Linux, OSX and Windows. Abjad requires Python 3.6 or later.
 
 Install Abjad
 -------------
@@ -57,10 +52,6 @@ Package Index, via `pip`_:
     We strongly encourage you to *not* install Abjad globally via ``sudo pip
     install``, but to use a virtual environment instead. If you're already
     working in a virtual environment, simply omit the ``sudo``.
-
-**Note**:
-
-    Abjad supports Python 3.6 and above.
 
 To install the cutting-edge version Abjad from its `GitHub`_ repository, via
 `git <https://git-scm.com/>`_ and `pip`_:
