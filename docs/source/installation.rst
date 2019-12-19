@@ -8,6 +8,11 @@ Abjad works on Unix/Linux, OSX, and Windows on Python versions 3.6+.
 Install Abjad
 -------------
 
+..  toctree::
+    :hidden:
+
+    virtualenv
+
 To install the most recent official release of Abjad from `PyPI`_, the Python
 Package Index, via `pip`_:
 
@@ -51,6 +56,10 @@ Congratulations!
 
 Install LilyPond
 ````````````````
+
+*Note*
+
+    Text text text.
 
 Abjad uses `LilyPond`_, an open-source automated engraving engine, to produce
 notational output.

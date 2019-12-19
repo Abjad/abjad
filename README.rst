@@ -2,13 +2,7 @@
 Abjad
 #####
 
-Abjad helps composers build up complex pieces of music notation in an iterative
-and incremental way. Use Abjad to create symbolic representations of all the
-notes, rests, staves, tuplets, beams and slurs in any score. Because Abjad
-extends the `Python`_ programming language, you can use Abjad to make
-systematic changes to your music as you work. And because Abjad wraps the
-powerful `LilyPond`_ music notation package, you can use Abjad to control the
-typographic details of the symbols on the page.
+Abjad helps composers build up complex pieces of music notation in an iterative and incremental way. Use Abjad to create symbolic representations of all the notes, rests, staves, tuplets, beams and slurs in any score. Because Abjad extends the `Python`_ programming language, you can use Abjad to make systematic changes to your music as you work. And because Abjad wraps the powerful `LilyPond`_ music notation package, you can use Abjad to control the typographic details of the symbols on the page.
 
 ..  _LilyPond: http://lilypond.org/
 ..  _Python: https://www.python.org/
@@ -35,76 +29,24 @@ typographic details of the symbols on the page.
 ..  image:: https://img.shields.io/pypi/dm/abjad.svg?style=flat-square
     :target: https://pypi.python.org/pypi/abjad
 
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
+..  image:: https://img.shields.io/badge/code%20style-black-000000.svg
+    :target: https://github.com/ambv/black
+
+Abjad works on Unix / Linux, OSX and Windows. Abjad requires Python 3.6 or later.
 
 Installation
 ============
 
-Abjad works on Unix/Linux, OSX, and Windows on Python versions 3.6+.
-
-Install Abjad
--------------
-
-To install the most recent official release of Abjad from `PyPI`_, the Python
-Package Index, via `pip`_:
-
-..  code-block:: bash
-
-    ~$ sudo pip install abjad
-
-**Caution**:
-
-    We strongly encourage you to *not* install Abjad globally via ``sudo pip
-    install``, but to use a virtual environment instead. If you're already
-    working in a virtual environment, simply omit the ``sudo``.
-
-**Note**:
-
-    Abjad supports Python 3.6 and above.
-
-To install the cutting-edge version Abjad from its `GitHub`_ repository, via
-`git <https://git-scm.com/>`_ and `pip`_:
-
-..  code-block:: bash
-
-    ~$ git clone https://github.com/Abjad/abjad.git 
-    ~$ cd abjad
-    abjad$ pip install .
-
-Once you have Abjad installed, fire up Python and import it:
-
-..  code-block:: bash
-
-    ~$ python
-    Python 3.6.5 (v3.6.5:f59c0932b4, Mar 28 2018, 03:03:55) 
-    [GCC 4.2.1 (Apple Inc. build 5666) (dot 3)] on darwin
-    Type "help", "copyright", "credits" or "license" for more information.
-    >>> import abjad
-    >>> abjad.__version__
-    '3.1.0'
-
-Congratulations!
+If you're new to Abjad and you want to get started right away, follow the easy install instructions. If you're a more experienced Abjad user and you want to build Abjad's documentation, run Abjad's tests or add features to Abjad, then follow the developer install instructions. Whichever install you chose, you'll first need to install LilyPond and make sure that LilyPond is callable on your commandline.
 
 Install LilyPond
-````````````````
+----------------
 
-Abjad uses `LilyPond`_, an open-source automated engraving engine, to produce
-notational output.
-
-Abjad targets whichever is the most recent version of `LilyPond`_. At the time
-of this writing, that means 2.18-stable or 2.19-development. We recommend
-installing directly from `LilyPond`_'s website, rather than using whichever
-version of `LilyPond`_ your package manager provides, as these packages are
-often out-of-date.
-
-Once you have installed LilyPond, test if LilyPond is callable from your
-command-line by running the following command:
-
-..  code-block:: bash
+`LilyPond`_ is an open-source program that engraves music notation in an automated way. Abjad uses LilyPond to produce notational output. Because package managers sometimes provide out-of-date versions of LilyPond we recommend installing the most recent version of LilyPond directly from the LilyPond website. After you install LilyPond, check to see if LilyPond is callable from your commandline::
 
     ~$ lilypond --version
 
-    GNU LilyPond 2.19.82
+    GNU LilyPond 2.19.83
 
     Copyright (c) 1996--2015 by
       Han-Wen Nienhuys <hanwen@xs4all.nl>
@@ -116,260 +58,150 @@ command-line by running the following command:
     under certain conditions.  Invoke as `lilypond --warranty` for more
     information.
 
-If LilyPond is not callable from your command-line, you should add the location
-of the LilyPond executable to your ``PATH`` environment variable. If you are
-using OSX, simply run the following line in your terminal:
+If LilyPond is not callable from your commandline, you can follow the instructions provided at http://www.lilypond.org/macos-x.html. Alternatively, add the location of the LilyPond executable to your ``PATH`` environment variable. Under OSX you can update your path like this:
 
 ..  code-block:: bash
 
     export PATH="$PATH:/Applications/LilyPond.app/Contents/Resources/bin/"
 
-You can add the above line to your ``~/.profile`` to make the change permanent.
+**NOTE: OSX users should be aware that the LilyPond development team is currently experiencing difficulties publishing LilyPond for Apple's 10.15 (Catalina) series of releases.** This problem seems nearly certain to be resolved at some point. But, in the meantime, OSX users who have upgraded to 10.15 must inquire on the LilyPond user list to find an interim-compiled version of LilyPond that is not yet available on LilyPond downloads page. **OSX users still using Apple's 10.14 (Mojave) series of releases will experience no problems and should download the most recent version of LilyPond from the LilyPond downloads page.**
 
-The `LilyPond`_ documentation also provides instructions for making the
-``lilypond`` command available on the command-line under OSX at
-http://www.lilypond.org/macos-x.html.
+Easy install or developer install?
+----------------------------------
 
-If you are new to working with the command-line you should use Google to
-get a basic introduction to navigating in the shell, editing your profile and
-setting environment variables. There are more tutorials than we can count!
+After  you've installed LilyPond you can decide whether to follow Abjad easy install instructions or Abjad developer install instructions. Whichever install you chose, consider setting up Python virtual environments on your computer before you begin. Python virtual environments ease the work involved in managing the ways that different versions of Python interact with the Python packages you install on your computer. Abjad development install instructions assume you will be working in a Python virtual environment. Users following an easy install are recommended to consider installing Abjad in a Python virtual environment, too. `Click here for instructions on setting up Python virtual environments on your computer. <https://abjad.github.io/virtualenv.html>`_
 
-Install Graphviz (optional)
-```````````````````````````
+A. Easy install
+===============
 
-Abjad uses `Graphviz`_, an open-source graph visualization library, to create
-graphs of rhythm-trees and other tree structures, and to create visualizations
-of class hierarchies for its documentation. Graphviz is not necessary for
-creating notation with Abjad.
+Install Abjad like this:
 
-To install `Graphviz`_ on Debian and Ubuntu:
+..  code-block:: bash
+
+    ~$ pip install abjad
+
+After installation, check that Python can import Abjad:
+
+..  code-block:: bash
+
+    ~$ python
+    Python 3.7.4 (v3.7.4:e09359112e, Jul  8 2019, 14:54:52) 
+    [Clang 6.0 (clang-600.0.57)] on darwin
+    Type "help", "copyright", "credits" or "license" for more information.
+    >>> import abjad
+    >>> abjad.__version__
+    '3.1'
+
+Congratulations! Easy install is complete after you install LilyPond and Abjad. Skip section B of this document. Look over optional sections C, D and E. Then read through the tutorials and examples for ideas about where to go next.
+
+B. Developer install
+====================
+
+Abjad has been actively developed for more than ten years. Follow these instructions if you want to follow the cutting-edge of Abjad development, build Abjad's documentation, run Abjad's tests or add new features to Abjad.
+
+Before you begin:
+
+* Make sure LilyPond is installed and callable from the commandline
+* Create a Python virtual environment to install Abjad
+
+B.1 Clone the Abjad repository
+------------------------------
+
+Make sure you've created a Python virtual environment for Abjad. Make sure the virtual environment is active. Then clone Abjad from the Github repository:
+
+..  code-block:: bash
+
+    ~(abjad)$ git clone https://github.com/Abjad/abjad.git
+
+B.2 Install Abjad
+-----------------
+
+Make sure you've created a Python virtual environment for Abjad. Make sure the virtual environment is active. Then change into your Abjad clone and install Abjad in **edit mode** with **development extras**:
+
+..  code-block:: bash
+
+    ~(abjad)$ cd abjad
+    abjad(abjad)$ sudo pip install -e .[development]  # NOTE: no spaces in the string after "install"
+
+Development mode will install `pytest`_ and `Sphinx`_ on your system. Abjad uses pytest to test the Abjad codeabase. Abjad uses Sphinx to build the Abjad documentation. Some of Sphinx's dependencies provide optional Python extensions that must be compiled before they can be used. If your machine does not have a C compiler available, you may see error message while ``pip install -e ".[development]"`` runs. These warnings are harmless and will not stop installation. 
+
+B.3 Install Graphviz (optional)
+-------------------------------
+
+`Graphviz`_ is an open-source graph visualization library. Abjad uses Graphviz to to graph treelike structures, like rhythm-trees and the inheritance relations of Abjad classes. You don't need Graphviz to create notation with Abjad. But you can install Graphviz if you want to build the most recent version of Abjad's documentation on your computer:
+
+Install Graphviz on Debian and Ubuntu like this:
 
 ..  code-block:: bash
 
     ~$ sudo apt-get install graphviz
 
-To install `Graphviz`_ on OSX via `Homebrew`_:
+Install Graphviz on OSX via Homebrew like this:
 
 ..  code-block:: bash
 
     ~$ brew install graphviz
 
-Once you have install `Graphviz`_, test if `Graphviz`_ is callable from your
-command-line by running the following command:
+Test if Graphviz is callable from your commandline like this:
 
 ..  code-block:: bash
 
     ~$ dot -V
-    dot - graphviz version 2.38.0 (20140413.2041)
+    dot - graphviz version 2.40.1 (20161225.0304)
 
-All of the graph images in Abjad's API documentation were created via
-`graphviz`_. See ``abjad.top.graph`` for more details.
+B.4 Start developing
+--------------------
 
-Install extension packages
---------------------------
+Congratulations! Developer install is complete after you install LilyPond, set up a virtual environment, and clone and install Abjad. (You may optionally have installed Graphviz to build Abjad's documentation, too.) Look through sections C, D and E of this document. Then read through Abjad's tutorials and examples for ideas about where to go next.
 
-Abjad's extension packages can be installed via the following commands:
+C. Using Abjad with IPython notebooks (optional)
+================================================
 
-..  code-block:: bash
+Abjad can be used with `IPython`_ to embed music notation, graphs and audio into an `IPython notebook`_.
 
-    ~$ pip install abjad[cli]       # score package command-line tools 
-    ~$ pip install abjad[ipython]   # ipython integration 
-    ~$ pip install abjad[nauert]    # quantization tools
-    ~$ pip install abjad[rmakers]   # rhythm-maker tools
-    ~$ pip install abjad[tonality]  # tonal analysis tools
-
-Development installation
-------------------------
-
-To perform development on Abjad, run the test suite, or build Abjad's
-documentation locally, clone Abjad from the Github repository and install it in
-**edit mode** with its **development extras**:
-
-..  code-block:: bash
-
-    ~$ git clone https://github.com/Abjad/abjad.git
-    ~$ cd abjad
-    abjad$ sudo pip install -e .[test]  # NOTE: no spaces in the string after "install"
-
-Installing Abjad in development mode will install the following `Python`_
-package dependencies (along with their own dependencies):
-
--   `pytest`_, for running Abjad's test suite
-
--   `Sphinx`_, for building Abjad's documentation
-
-Some of `Sphinx`_'s dependencies provide optional optimized `Python`_
-extensions, which must be compiled before they can be used. If your machine
-does not have a C compiler available, you may see error message while the ``pip
-install -e ".[development]"`` command runs. These warnings are harmless and will
-not prevent the dependencies from being installed.
-
-To install C compilation tools on Debian and Ubuntu:
-
-..  code-block:: bash
-
-    ~$ sudo apt-get install build-essential
-
-To install C compilation tools on OSX, we recommend simply installing XCode
-from the Apple App Store. Alternatively, you can install via `Homebrew`_
-although this may take a significant amount of time.
-
-Additionally, a few non-`Python`_ tools need to be installed in order to
-develop Abjad or build its documentation, such as `Graphviz`_ (which was
-explained above).
-
-Abjad and IPython
------------------
-
-Abjad can be used with `IPython`_ to embed notation, graphs and audio into an
-`IPython notebook`_. To work with Abjad in `IPython`_, install Abjad with both
-its **development** and **ipython** extra dependencies:
+To work with Abjad in IPython, install Abjad with both its **development** and **ipython** extra dependencies:
 
 ..  code-block:: bash
 
     ~$ sudo pip install abjad[ipython]  # NOTE: no spaces in the string after "install"
 
-Capturing MIDI files into an `IPython notebook`_ requires the `timidity`_
-package.
-
-To install `timidity`_ on Debian or Ubuntu:
+Capturing MIDI files into an IPython notebook requires the `timidity`_ package. To install timidity on Debian or Ubuntu:
 
 ..  code-block:: bash
 
     ~$ apt-get install timidity
 
-To install `timidity`_ on OSX via `Homebrew`_:
+To install timidity on OSX via Homebrew:
 
 ..  code-block:: bash
 
     ~$ brew install timidity
 
-Once all dependencies have been installed, create a new `IPython notebook`_ and
-run the following "magic" command in a cell to load Abjad's `IPython`_
-extension::
+Create a new IPython notebook and run the following magic command in a cell to load Abjad's IPython extension. Once loaded, notation and MIDI files can be embedded in your notebook whenever you use ``abjad.show()`` and ``abjad.play()`` on valid Abjad objects::
 
     %load_ext abjadext.ipython
 
-Once loaded, notation and MIDI files can be embedded in your notebook whenever
-you use `show(...)` and `play(...)` on valid Abjad objects.
+D. Installing Abjad extension packages (optional)
+=================================================
 
-..  _virtual-environments:
+After you work with Abjad for a while you may be interested in Abjad's extension packages.
 
-Virtual environments
---------------------
-
-We strongly recommend installing Abjad into a virtual environment, especially
-if you intend to hack on Abjad's own source code. Virtual environments allow
-you to isolate `Python`_ packages from your systems global collection of
-packages. They also allow you to install Python packages without ``sudo``. The
-`virtualenv`_ package provides tools for creating Python virtual environments,
-and the `virtualenvwrapper`_ package provides additional tools which make
-working with virtual environments incredibly easy.
-
-Let's install `virtualenvwrapper`_:
+Pick the extensions you want and then install them like this:
 
 ..  code-block:: bash
 
-    ~$ sudo pip install virtualenvwrapper
-    ...
+    ~$ pip install abjad[cli]       # score package commandline tools 
+    ~$ pip install abjad[ipython]   # ipython integration 
+    ~$ pip install abjad[nauert]    # quantization tools
+    ~$ pip install abjad[rmakers]   # rhythm-maker tools
+    ~$ pip install abjad[tonality]  # tonal analysis tools
 
-**Note**:
+E. Configuring Abjad
+====================
 
-    On OSX 10.11 (El Capitan) it may be necessary to install
-    `virtualenvwrapper`_ via alternate instructions:
+Abjad creates a ``~/.abjad`` directory the first time it runs. In the ``~/.abjad`` directory you will find an ``abjad.cfg`` file. This is the Abjad configuration file. You can use the Abjad configuration file to tell Abjad about your preferred PDF file viewer, MIDI player, LilyPond language and so on. Your configuration file will look something like this the first time you open it:
 
-    ..  code-block:: bash
-
-        ~$ pip install virtualenvwrapper --ignore-installed six
-
-    See
-    `here <http://stackoverflow.com/questions/32086631/cant-install-virtualenvwrapper-on-osx-10-11-el-capitan>`_
-    for details.
-
-Next, set an environment variable in your shell naming the directory you want
-the virtual environment files to be stored in, then create that directory if it
-doesn't already exist:
-
-..  code-block:: bash
-
-    ~$ export WORKON_HOME=~/.virtualenvs
-    ~$ mkdir -p $WORKON_HOME
-
-**Note**:
-
-    The location your virtual environment files are stored in could be
-    anywhere. Because you are unlikely to need to access them directly, we
-    suggest the `.`-prepended path ``.virtualenvs``.
-
-With the virtual environment directory created, "source" `virtualenvwrapper`_'s
-script. This script teaches your shell about how to create, activate and delete
-virtual environments:
-
-..  code-block:: bash
-
-    ~$ source `which virtualenvwrapper.sh`
-
-Finally, you can create a virtual environment via the ``mkvirtualenv`` command.
-This will both create the fresh environment and "activate" it. Once activated,
-you can install Python packages within that environment, safe in the knowledge
-that they won't interfere with Python packages installed anywhere else on your
-system:
-
-..  code-block:: bash
-
-    ~$ mkvirtualenv abjad
-    ...
-    ~(abjad)$ pip install abjad  # "(abjad)" indicates the name of the virtualenv
-    ...
-
-You can also deactivate the current virtual environment via the ``deactivate``
-command, or switch to a different environment via the ``workon <virtualenv
-name>`` command:
-
-..  code-block:: bash
-
-    ~(abjad)$ deactivate
-    ~$ workon my-new-score
-    ~(my-new-score)$
-
-To make the virtual environment configuration sticky from terminal session to
-terminal session, add the following lines to your ``~/.profile``,
-``~/.bash_profile`` or similar shell configuration file:
-
-..  code-block:: bash
-
-    export WORKON_HOME=$HOME/.virtualenvs
-    source `which virtualenvwrapper.sh`
-
-Development installation within a virtualenv
-````````````````````````````````````````````
-
-To recap, a complete development installation of Abjad within a virtual
-environment requires the following steps:
-
-- Create and activate a new virtual environment
-- Clone Abjad somewhere and ``cd`` into the root of the cloned repository
-- Install Abjad and its development / IPython dependencies
-
-..  code-block:: bash
-
-    ~$ mkvirtualenv abjad
-    ...
-    ~(abjad)$ git clone https://github.com/Abjad/abjad.git
-    ~(abjad)$ cd abjad
-    abjad(abjad)$ pip install -e .[development,ipython]  # NOTE: no spaces between "." and "[development,ipython]"
-    ...
-
-Configuring Abjad
------------------
-
-Abjad creates a ``~/.abjad`` directory the first time it runs. In the
-``~/.abjad`` directory you will find an ``abjad.cfg`` file. This is the Abjad
-configuration file. You can use the Abjad configuration file to tell Abjad
-about your preferred PDF file viewer, MIDI player, LilyPond language and so on.
-
-Your configuration file will look something like this the first time you open
-it::
+::
 
     # Abjad configuration file created by Abjad on 31 January 2014 00:08:17.
     # File is interpreted by ConfigObj and should follow ini syntax.
@@ -401,11 +233,7 @@ it::
     # When unset your OS should know how to open text files.
     text_editor = 
 
-Follow the basics of ``ini`` syntax when editing the Abjad configuration file.
-Background information is available at http://en.wikipedia.org/wiki/INI_file.
-Under MacOS you might want to set you ``midi_player`` to iTunes. Under Linux
-you might want to set your ``pdf_viewer`` to ``evince`` and your
-``midi_player`` to ``tiMIDIty``, and so on.
+Follow ``ini`` syntax when editing the Abjad configuration file. Background information is available at http://en.wikipedia.org/wiki/INI_file. Under MacOS you might want to set you ``midi_player`` to iTunes. Under Linux you might want to set your ``pdf_viewer`` to ``evince`` and your ``midi_player`` to ``tiMIDIty``.
 
 ..  _CPython: http://www.python.org
 ..  _GitHub: https://github.com/Abjad/abjad
@@ -419,6 +247,6 @@ you might want to set your ``pdf_viewer`` to ``evince`` and your
 ..  _Sphinx: http://sphinx-doc.org/
 ..  _timidity: http://timidity.sourceforge.net/
 ..  _pip: https://pip.pypa.io/en/stable/
-..  _pytest: http://pytest.org/latest/
+..  _pytest: http://pytest.org/en/latest/
 ..  _virtualenv: https://readthedocs.org/projects/virtualenv/
 ..  _virtualenvwrapper: https://virtualenvwrapper.readthedocs.org/en/latest/
