@@ -12,11 +12,10 @@ class CustomLatexFormatter(LatexFormatter):
 
 PygmentsBridge.latex_formatter = CustomLatexFormatter
 
-
 ### CORE ###
 
 add_function_parentheses = True
-copyright = "2008-2019, Trevor Bača & Josiah Wolf Oberholtzer"
+copyright = "2008-2020, Trevor Bača & Josiah Wolf Oberholtzer"
 exclude_patterns = []
 
 extensions = [
@@ -96,7 +95,6 @@ latex_documents = [
     ),
 ]
 
-# latex_use_parts = True
 latex_toplevel_sectioning = "chapter"  # just guessing?
 
 ### EXTENSIONS ###
@@ -107,7 +105,7 @@ graphviz_output_format = "svg"
 intersphinx_mapping = {
     "http://josiahwolfoberholtzer.com/uqbar/": None,
     "http://www.sphinx-doc.org/en/master/": None,
-    "https://docs.python.org/3.6/": None,
+    "https://docs.python.org/3.7/": None,
 }
 todo_include_todos = True
 
