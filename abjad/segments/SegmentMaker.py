@@ -258,7 +258,7 @@ class SegmentMaker(object):
         for context in abjad.iterate(score).components(abjad.Context):
             if not context.simultaneous:
                 break
-        site = "abjad.SegmentMaker.comment_measure_numbers()"
+        site = abjad.Tag("abjad.SegmentMaker.comment_measure_numbers()")
         measures = abjad.select(context).leaves().group_by_measure()
         for i, measure in enumerate(measures):
             measure_number = i + 1

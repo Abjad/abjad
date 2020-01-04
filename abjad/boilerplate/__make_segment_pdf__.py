@@ -42,12 +42,8 @@ if __name__ == "__main__":
     try:
         segment_directory = ide.Path(os.path.realpath(__file__)).parent
         scores_directory = segment_directory.parent.parent.parent.parent
-        segment_directory = ide.Path(
-            segment_directory, scores=scores_directory
-        )
-        assert segment_directory.is_score_package_path(), repr(
-            segment_directory
-        )
+        segment_directory = ide.Path(segment_directory, scores=scores_directory)
+        assert segment_directory.is_score_package_path(), repr(segment_directory)
         illustration_ly = segment_directory / "illustration.ly"
         print(" Running segment-maker ...")
         with abjad.Timer() as timer:
@@ -107,9 +103,7 @@ if __name__ == "__main__":
             prototype = abjad.TimeSignature
             for skip in context:
                 time_signature = abjad.inspect(skip).effective(prototype)
-                assert isinstance(time_signature, prototype), repr(
-                    time_signature
-                )
+                assert isinstance(time_signature, prototype), repr(time_signature)
                 time_signatures.append(str(time_signature))
             # for phantom measure at end
             if 0 < len(time_signatures):
@@ -162,9 +156,7 @@ if __name__ == "__main__":
             if layout_time_signatures is not None:
                 assert isinstance(layout_time_signatures, list)
                 layout_measure_count = len(layout_time_signatures)
-                counter = abjad.String("measure").pluralize(
-                    layout_measure_count
-                )
+                counter = abjad.String("measure").pluralize(layout_measure_count)
                 message = f" Found {{layout_measure_count}} {{counter}}"
                 message += f" in {{layout_ly.trim()}} ..."
                 print(message)
@@ -183,13 +175,9 @@ if __name__ == "__main__":
                     message = f" Found {{measure_count}} {{counter}}"
                     message += f" in {{illustration_ly.trim()}} ..."
                     print(message)
-                    layout_time_signatures = (
-                        layout_ly.get_preamble_time_signatures()
-                    )
+                    layout_time_signatures = layout_ly.get_preamble_time_signatures()
                     layout_measure_count = len(layout_time_signatures)
-                    counter = abjad.String("measure").pluralize(
-                        layout_measure_count
-                    )
+                    counter = abjad.String("measure").pluralize(layout_measure_count)
                     message = f" Found {{layout_measure_count}} {{counter}}"
                     message += f" in {{layout_ly.trim()}} ..."
                     print(message)
