@@ -232,7 +232,7 @@ def play(illustrable, return_timing=False, **keywords):
 
 def show(illustrable, return_timing=False, **keywords):
     if not hasattr(illustrable, "__illustrate__"):
-        raise ValueError(r"Cannot illustrate {illustrable!r}")
+        raise ValueError(f"Cannot illustrate {illustrable!r}")
     illustrator = Illustrator(illustrable, **keywords)
     result = illustrator()
     if not result:
