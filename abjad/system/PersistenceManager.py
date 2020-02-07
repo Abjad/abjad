@@ -3,7 +3,9 @@ import re
 import shutil
 import tempfile
 
+from .IOManager import IOManager
 from .StorageFormatManager import StorageFormatManager
+from .Timer import Timer
 
 
 class PersistenceManager(object):
@@ -117,35 +119,34 @@ class PersistenceManager(object):
             0.07831692695617676
             1.0882699489593506
 
-        Returns output path, elapsed formatting time and elapsed rendering
-        time.
+        Returns 4-tuple of output MIDI path, Abjad formatting time, LilyPond
+        rendering time and success boolean.
         """
-        import abjad
-
         assert hasattr(self._client, "__illustrate__")
-        illustration = self._client.__illustrate__(**keywords)
-        assert hasattr(illustration, "score_block")
-        block = abjad.Block(name="midi")
-        illustration.score_block.items.append(block)
+        lilypond_file = self._client.__illustrate__(**keywords)
+        assert hasattr(lilypond_file, "score_block")
         if midi_file_path is not None:
             midi_file_path = os.path.expanduser(midi_file_path)
             without_extension = os.path.splitext(midi_file_path)[0]
-            ly_file_path = "{}.ly".format(without_extension)
+            ly_file_path = f"{without_extension}.ly"
         else:
             ly_file_path = None
-        result = type(self)(illustration).as_ly(ly_file_path, **keywords)
+        result = type(self)(lilypond_file).as_ly(ly_file_path, **keywords)
         ly_file_path, abjad_formatting_time = result
-        timer = abjad.Timer()
+        timer = Timer()
         with timer:
-            success = abjad.IOManager.run_lilypond(ly_file_path)
+            success = IOManager.run_lilypond(ly_file_path)
         lilypond_rendering_time = timer.elapsed_time
+        if remove_ly:
+            os.remove(ly_file_path)
         if os.name == "nt":
             extension = "mid"
         else:
             extension = "midi"
-        midi_file_path = "{}.{}".format(os.path.splitext(ly_file_path)[0], extension)
-        if remove_ly:
-            os.remove(ly_file_path)
+        path = os.path.splitext(ly_file_path)[0]
+        pdf_file_path = f"{path}.pdf"
+        os.remove(pdf_file_path)
+        midi_file_path = f"{path}.{extension}"
         return (
             midi_file_path,
             abjad_formatting_time,
