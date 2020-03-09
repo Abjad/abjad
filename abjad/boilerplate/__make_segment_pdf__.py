@@ -13,7 +13,6 @@ if __name__ == "__main__":
     try:
         from definition import maker
         from __metadata__ import metadata as metadata
-
         {previous_segment_metadata_import_statement}
     except ImportError:
         traceback.print_exc()
@@ -40,7 +39,6 @@ if __name__ == "__main__":
         sys.exit(1)
 
     try:
-        segment_directory = ide.Path(os.path.realpath(__file__)).parent
         scores_directory = segment_directory.parent.parent.parent.parent
         segment_directory = ide.Path(segment_directory, scores=scores_directory)
         assert segment_directory.is_score_package_path(), repr(segment_directory)
