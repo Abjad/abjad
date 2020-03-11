@@ -220,7 +220,7 @@ class IOManager(object):
             result = IOManager.execute_string(
                 file_contents_string, attribute_names=attribute_names
             )
-        except:
+        except Exception:
             message = f"Exception raised in {path_}."
             # use print instead of display
             # to force to terminal even when called in silent context

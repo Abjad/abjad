@@ -185,7 +185,7 @@ def test_Mutation_copy_03():
 def test_Mutation_copy_04():
 
     staff = abjad.Staff(
-        "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |" "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
+        "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
     )
     leaves = abjad.select(staff).leaves()
     abjad.beam(leaves)
@@ -265,7 +265,7 @@ def test_Mutation_copy_04():
 def test_Mutation_copy_05():
 
     staff = abjad.Staff(
-        "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |" "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
+        "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
     )
     leaves = abjad.select(staff).leaves()
     abjad.beam(leaves)
@@ -338,7 +338,7 @@ def test_Mutation_copy_05():
 def test_Mutation_copy_06():
 
     staff = abjad.Staff(
-        "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |" "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
+        "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
     )
     leaves = abjad.select(staff).leaves()
     abjad.beam(leaves)
@@ -405,7 +405,7 @@ def test_Mutation_copy_06():
 def test_Mutation_copy_07():
 
     staff = abjad.Staff(
-        "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |" "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
+        "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
     )
     leaves = abjad.select(staff).leaves()
     abjad.beam(leaves)

@@ -435,8 +435,7 @@ def test_Container___setitem___08():
 
 
 def test_Container___setitem___09():
-    r"""Sets leaf between unspanned components.
-    """
+    r"""Sets leaf between unspanned components."""
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     staff[2:2] = [abjad.Note("g'8")]
@@ -458,8 +457,7 @@ def test_Container___setitem___09():
 
 
 def test_Container___setitem___10():
-    r"""Sets leaf between spanned compoennts.
-    """
+    r"""Sets leaf between spanned compoennts."""
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     abjad.beam(staff[:])
@@ -485,8 +483,7 @@ def test_Container___setitem___10():
 
 
 def test_Container___setitem___11():
-    r"""Sets multiple leaves between spanned components.
-    """
+    r"""Sets multiple leaves between spanned components."""
 
     notes = [
         abjad.Note("c'8"),
@@ -540,8 +537,7 @@ def test_Container___setitem___11():
 
 
 def test_Container___setitem___12():
-    r"""Replaces multiple spanned leaves with with single leaf.
-    """
+    r"""Replaces multiple spanned leaves with with single leaf."""
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     abjad.beam(staff[:])
@@ -565,8 +561,7 @@ def test_Container___setitem___12():
 
 
 def test_Container___setitem___13():
-    r"""Replaces three spanned leaves with three different leaves.
-    """
+    r"""Replaces three spanned leaves with three different leaves."""
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     abjad.beam(staff[:])
@@ -592,8 +587,7 @@ def test_Container___setitem___13():
 
 
 def test_Container___setitem___14():
-    r"""Replaces in-score container with contents of container.
-    """
+    r"""Replaces in-score container with contents of container."""
 
     staff = abjad.Staff("{ c'8 [ d'8 } { e'8 f'8 ] }")
 
@@ -831,8 +825,7 @@ def test_Container___setitem___18():
 
 
 def test_Container___setitem___19():
-    r"""Extremely large coequal indices indicate last slice in staff.
-    """
+    r"""Extremely large coequal indices indicate last slice in staff."""
 
     voice = abjad.Voice("c'8 [ d'8 e'8 f'8 ]")
     voice[1000:1000] = [abjad.Rest("r8")]

@@ -1,18 +1,17 @@
 #! /usr/bin/env python
-import abjad
-import baca
-import ide
 import os
 import pathlib
 import pprint
 import sys
 import traceback
 
+import abjad
+import baca
 
 if __name__ == '__main__':
 
     layout_module_name = '{layout_module_name}'
-    maker = ide.Path(os.path.realpath(__file__))
+    maker = abjad.Path(os.path.realpath(__file__))
 
     try:
         from {layout_module_name} import breaks
@@ -32,7 +31,7 @@ if __name__ == '__main__':
         buildspace_directory = maker.parent
         layout_py = buildspace_directory / '{layout_module_name}.py'
         document_name = abjad.String(buildspace_directory.name).to_shout_case()
-    except:
+    except Exception:
         traceback.print_exc()
         sys.exit(1)
 
@@ -55,7 +54,7 @@ if __name__ == '__main__':
             assert isinstance(first_measure_number, int)
         else:
             first_measure_number = 1
-    except:
+    except Exception:
         traceback.print_exc()
         sys.exit(1)
 
@@ -70,7 +69,7 @@ if __name__ == '__main__':
         time_signatures = buildspace_directory.get_time_signature_metadata()
         if breaks.partial_score is not None:
             time_signatures = time_signatures[:breaks.partial_score]
-    except:
+    except Exception:
         traceback.print_exc()
         sys.exit(1)
 
@@ -97,7 +96,7 @@ if __name__ == '__main__':
             abjad.detach(abjad.TimeSignature, skip)
         score = lilypond_file['Score']
         del(score['Music_Context'])
-    except:
+    except Exception:
         traceback.print_exc()
         sys.exit(1)
 
@@ -140,7 +139,7 @@ if __name__ == '__main__':
         message = f' Writing {{measure_count}} + 1 {{counter}}'
         message += f' to {{layout_ly.trim()}} ...'
         print(message)
-    except:
+    except Exception:
         traceback.print_exc()
         sys.exit(1)
 
@@ -174,7 +173,7 @@ if __name__ == '__main__':
             bol_measure_numbers,
             document_name=document_name,
             )
-    except:
+    except Exception:
         traceback.print_exc()
         sys.exit(1)
 

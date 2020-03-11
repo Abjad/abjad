@@ -152,7 +152,8 @@ class LilyPondGrammarGenerator(object):
             f.write("        ('nonassoc', 'DEFAULT'),\n")
             f.write("        ('nonassoc', 'FUNCTION_ARGLIST'),\n")
             f.write(
-                "        ('right', 'PITCH_IDENTIFIER', 'NOTENAME_PITCH', 'TONICNAME_PITCH', 'UNSIGNED', 'REAL', 'DURATION_IDENTIFIER', ':'),\n"
+                "        ('right', 'PITCH_IDENTIFIER', 'NOTENAME_PITCH',"
+                " 'TONICNAME_PITCH', 'UNSIGNED', 'REAL', 'DURATION_IDENTIFIER', ':'),\n"
             )
             f.write("        ('nonassoc', 'NUMBER_IDENTIFIER', '/'),\n")
             f.write("    )\n\n\n")

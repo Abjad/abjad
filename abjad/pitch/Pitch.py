@@ -1,4 +1,4 @@
-#import abc
+# import abc
 import functools
 import math
 import numbers
@@ -24,7 +24,7 @@ class Pitch(object):
 
     ### INITIALIZER ###
 
-    #@abc.abstractmethod
+    # @abc.abstractmethod
     def __init__(self, argument, accidental=None, arrow=None, octave=None):
         import abjad
 
@@ -135,7 +135,7 @@ class Pitch(object):
         lilypond_file = abjad.LilyPondFile.new(staff)
         return lilypond_file
 
-    #@abc.abstractmethod
+    # @abc.abstractmethod
     def __lt__(self, argument):
         """
         Is true when pitch is less than `argument`.
@@ -152,7 +152,7 @@ class Pitch(object):
 
     ### PRIVATE PROPERTIES ###
 
-    #@abc.abstractmethod
+    # @abc.abstractmethod
     def _get_lilypond_format(self):
         raise NotImplementedError
 
@@ -206,7 +206,7 @@ class Pitch(object):
 
     ### PUBLIC PROPERTIES ###
 
-    #@abc.abstractproperty
+    # @abc.abstractproperty
     @property
     def arrow(self):
         """
@@ -224,7 +224,7 @@ class Pitch(object):
         hertz = pow(2.0, (float(self.number) - 9.0) / 12.0) * 440.0
         return hertz
 
-    #@abc.abstractproperty
+    # @abc.abstractproperty
     @property
     def name(self):
         """
@@ -234,7 +234,7 @@ class Pitch(object):
         """
         raise NotImplementedError
 
-    #@abc.abstractproperty
+    # @abc.abstractproperty
     @property
     def number(self):
         """
@@ -244,7 +244,7 @@ class Pitch(object):
         """
         raise NotImplementedError
 
-    #@abc.abstractproperty
+    # @abc.abstractproperty
     @property
     def octave(self):
         """
@@ -254,7 +254,7 @@ class Pitch(object):
         """
         raise NotImplementedError
 
-    #@abc.abstractproperty
+    # @abc.abstractproperty
     @property
     def pitch_class(self):
         """
@@ -267,7 +267,7 @@ class Pitch(object):
     ### PUBLIC METHODS ###
 
     @classmethod
-    #@abc.abstractmethod
+    # @abc.abstractmethod
     def from_hertz(class_, hertz):
         """
         Creates pitch from `hertz`.
@@ -278,7 +278,7 @@ class Pitch(object):
         pitch = class_(midi)
         return pitch
 
-    #@abc.abstractmethod
+    # @abc.abstractmethod
     def get_name(self, locale=None):
         """
         Gets name of pitch according to `locale`.
@@ -287,7 +287,7 @@ class Pitch(object):
         """
         raise NotImplementedError
 
-    #@abc.abstractmethod
+    # @abc.abstractmethod
     def invert(self, axis=None):
         """
         Inverts pitch about `axis`.
@@ -304,7 +304,7 @@ class Pitch(object):
         result = axis.transpose(interval)
         return result
 
-    #@abc.abstractmethod
+    # @abc.abstractmethod
     def multiply(self, n=1):
         """
         Multiplies pitch by `n`.
@@ -313,7 +313,7 @@ class Pitch(object):
         """
         return type(self)(n * self.number)
 
-    #@abc.abstractmethod
+    # @abc.abstractmethod
     def transpose(self, n):
         """
         Transposes pitch by index `n`.

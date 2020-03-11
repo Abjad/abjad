@@ -60,7 +60,10 @@ def test_LilyPondParser__spanners__Trill_02():
         """
     )
 
-    string = r"\relative c' { c \startTrillSpan c c \startTrillSpan \stopTrillSpan c \stopTrillSpan }"
+    string = (
+        r"\relative c' { c \startTrillSpan c c \startTrillSpan \stopTrillSpan c"
+        r" \stopTrillSpan }"
+    )
 
     parser = abjad.parser.LilyPondParser()
     result = parser(string)

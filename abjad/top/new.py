@@ -121,7 +121,7 @@ def new(argument, *arguments, **keywords):
         positional_values.extend(positional_values_)
     if arguments == (None,):
         positional_values = []
-    elif arguments is not ():
+    elif arguments != ():
         positional_values = list(arguments)
     result = type(argument)(*positional_values, **template_dict)
     for name in getattr(argument, "_private_attributes_to_copy", []):

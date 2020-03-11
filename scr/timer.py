@@ -2,7 +2,6 @@
 import sys
 import time
 
-
 interval = int(sys.argv[1])
 i = 0
 while True:

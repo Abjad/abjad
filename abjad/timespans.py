@@ -51,9 +51,9 @@ class Timespan(object):
     def __init__(self, start_offset=NegativeInfinity, stop_offset=Infinity) -> None:
         self._expression = None
         if isinstance(start_offset, type(self)):
-            raise Exception(f"can not initialize from timespan.")
+            raise Exception("can not initialize from timespan.")
         if isinstance(stop_offset, type(self)):
-            raise Exception(f"can not initialize from timespan.")
+            raise Exception("can not initialize from timespan.")
         if start_offset is None:
             start_offset = NegativeInfinity
         if stop_offset is None:

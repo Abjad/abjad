@@ -1,11 +1,6 @@
 import pytest
 
-from abjad.pitch import (
-    NamedPitch,
-    NamedPitchClass,
-    NumberedPitch,
-    NumberedPitchClass,
-)
+from abjad.pitch import NamedPitch, NamedPitchClass, NumberedPitch, NumberedPitchClass
 
 values = []
 values.extend((x / 2, x / 2) for x in range(-48, 49))

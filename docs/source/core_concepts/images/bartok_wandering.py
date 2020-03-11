@@ -14,9 +14,7 @@ m3 = abjad.Measure((2, 4), [])
 m4 = abjad.Measure((2, 4), [])
 m5 = abjad.Measure((2, 4), [])
 upper_measures = [m1, m2, m3, m4, m5]
-lower_measures = scoretools.copy_components_and_covered_spanners(
-    upper_measures
-)
+lower_measures = scoretools.copy_components_and_covered_spanners(upper_measures)
 
 upper_staff.extend(upper_measures)
 lower_staff.extend(lower_measures)
@@ -43,9 +41,7 @@ v2.name = "v2"
 lower_measures[0].append(v2)
 
 v2 = abjad.Voice(
-    scoretools.make_notes(
-        [-1, -3, -4, 0, -2], [(1, 8), (1, 8), (1, 4), (1, 8), (1, 8)]
-    )
+    scoretools.make_notes([-1, -3, -4, 0, -2], [(1, 8), (1, 8), (1, 4), (1, 8), (1, 8)])
 )
 v2[3].dynamics.mark = "mp"
 v2.name = "v2"

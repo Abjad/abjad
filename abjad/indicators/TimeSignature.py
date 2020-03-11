@@ -190,8 +190,7 @@ class TimeSignature(object):
         return result
 
     def __copy__(self, *arguments) -> "TimeSignature":
-        """Copies time signature.
-        """
+        """Copies time signature."""
         return type(self)((self.numerator, self.denominator), partial=self.partial)
 
     def __eq__(self, argument) -> bool:

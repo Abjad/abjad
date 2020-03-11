@@ -1,8 +1,8 @@
 #! /usr/bin/env python
-import abjad
 import inspect
 import os
 
+import abjad
 
 ignored_classes = (
     abjad.Block,

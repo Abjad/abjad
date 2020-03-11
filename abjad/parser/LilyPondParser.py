@@ -630,7 +630,7 @@ class LilyPondParser(Parser):
 
         try:
             self._parser.restart()
-        except:
+        except Exception:
             pass
         self._scope_stack = [{}]
         self._chord_pitch_orders = {}

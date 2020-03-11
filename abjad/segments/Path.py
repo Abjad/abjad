@@ -2,10 +2,9 @@ import importlib
 import os
 import pathlib
 import shutil
-import traceback
 import typing
 
-from abjad import typings
+from abjad import abjad_configuration, typings
 from abjad.core.Score import Score
 from abjad.core.StaffGroup import StaffGroup
 from abjad.indicators.Clef import Clef
@@ -33,20 +32,13 @@ class Path(pathlib.PosixPath):
 
     ..  container:: example
 
-        >>> path = abjad.Path(
-        ...     '/path/to/scores/my_score/my_score',
-        ...     scores='/path/to/scores',
-        ...     )
+        >>> path = abjad.Path("/path/to/scores/my_score/my_score")
 
-        >>> path.materials
-        Path*('/path/to/scores/my_score/my_score/materials')
+        >>> path.stylesheets
+        Path('/path/to/scores/my_score/my_score/stylesheets')
 
-        >>> instruments = path.materials / 'instruments'
-        >>> instruments
-        Path*('/path/to/scores/my_score/my_score/materials/instruments')
-
-        >>> instruments.is_material()
-        True
+        >>> path.stylesheets / "contexts.ily"
+        Path('/path/to/scores/my_score/my_score/stylesheets/contexts.ily')
 
     """
 
@@ -60,11 +52,8 @@ class Path(pathlib.PosixPath):
         "builds",
         "distribution",
         "etc",
-        "materials",
         "segments",
         "stylesheets",
-        "test",
-        "tools",
     )
 
     _secondary_names = (
@@ -80,65 +69,13 @@ class Path(pathlib.PosixPath):
         "stylesheet.ily",
     )
 
-    ### CONSTRUCTOR ###
-
-    def __new__(class_, *arguments, scores=None):
-        import abjad
-
-        configuration = abjad.abjad_configuration
-        if not arguments:
-            raise Exception("must provide at least one argument.")
-        argument = arguments[0]
-        _arguments = arguments[1:]
-        if isinstance(argument, pathlib.Path) or os.sep in argument:
-            self = pathlib.Path.__new__(class_, argument)
-        else:
-            argument_list = []
-            if argument == "boilerplate":
-                argument_list.append(configuration.boilerplate_directory)
-            elif scores is not None:
-                argument_list.append(scores)
-                argument_list.extend(2 * [argument])
-            else:
-                argument_list.append(configuration.composer_scores_directory)
-                argument_list.extend(2 * [argument])
-            argument_list.extend(_arguments)
-            self = pathlib.Path.__new__(class_, *argument_list)
-        if scores is not None:
-            scores = type(self)(scores)
-        self._scores = scores
-        return self
-
     ### SPECIAL METHODS ###
 
     def __repr__(self) -> str:
         """
         Gets interpreter representation of path.
         """
-        if bool(getattr(self, "_scores", None)):
-            return "Path*('{}')".format(self)
-        else:
-            return "Path('{}')".format(self)
-
-    def __rtruediv__(self, argument):
-        """
-        Joins path to ``argument``.
-
-        Returns new path.
-        """
-        result = super().__rtruediv__(argument)
-        result._scores = getattr(self, "_scores", None)
-        return result
-
-    def __truediv__(self, argument):
-        """
-        Joins ``argument`` to path.
-
-        Returns new path.
-        """
-        result = super().__truediv__(argument)
-        result._scores = getattr(self, "_scores", None)
-        return result
+        return "Path('{}')".format(self)
 
     ### PRIVATE PROPERTIES ###
 
@@ -167,44 +104,40 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            >>> build = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score/builds/letter-score',
-            ...     scores='/path/to/scores',
-            ...     )
+            >>> string = "/path/to/scores/my_score/my_score/builds/letter-score"
+            >>> build = abjad.Path(string)
 
             Works when path is build directory:
 
             >>> build._segments
-            Path*('/path/to/scores/my_score/my_score/builds/letter-score/_segments')
+            Path('/path/to/scores/my_score/my_score/builds/letter-score/_segments')
 
             Works when path is _segments directory:
 
-            >>> (build / '_segments')._segments
-            Path*('/path/to/scores/my_score/my_score/builds/letter-score/_segments')
+            >>> (build / "_segments")._segments
+            Path('/path/to/scores/my_score/my_score/builds/letter-score/_segments')
 
             Works when path is _assets directory:
 
-            >>> (build / '_assets')._segments
+            >>> (build / "_assets")._segments
             Path('/path/to/scores/my_score/my_score/builds/letter-score/_segments')
 
             Works when path is parts directory:
 
-            >>> parts = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score/builds/letter-parts',
-            ...     scores='/path/to/scores',
-            ...     )
+            >>> parts = "/path/to/scores/my_score/my_score/builds/letter-parts"
+            >>> parts = abjad.Path(parts)
 
             >>> parts._segments
-            Path*('/path/to/scores/my_score/my_score/builds/letter-parts/_segments')
+            Path('/path/to/scores/my_score/my_score/builds/letter-parts/_segments')
 
             Works when path is part directory:
 
-            >>> (parts / 'bass-clarinet-part')._segments
+            >>> (parts / "bass-clarinet-part")._segments
             Path('/path/to/scores/my_score/my_score/builds/letter-parts/_segments')
 
             Works when path is file in part directory:
 
-            >>> (parts / 'bass-clarinet-part' / 'layout.ly')._segments
+            >>> (parts / "bass-clarinet-part" / "layout.ly")._segments
             Path('/path/to/scores/my_score/my_score/builds/letter-parts/_segments')
 
         """
@@ -249,36 +182,6 @@ class Path(pathlib.PosixPath):
         strings = [r"\with", "{"] + strings + ["}"]
         return strings
 
-    def _filter_by_view(self, paths):
-        view = self.get_metadatum("view")
-        if view is None:
-            return paths
-        filtered_paths = []
-        for pattern in view:
-            if ":ds:" in pattern:
-                for path in paths:
-                    if path._match_identifier_pattern(pattern):
-                        filtered_paths.append(path)
-            elif "md:" in pattern:
-                pairs = []
-                for path in paths:
-                    metadatum = path._match_metadata_pattern(pattern)
-                    if metadatum is not None:
-                        pairs.append((metadatum, path))
-                pairs.sort(key=lambda _: _[0])
-                pairs.reverse()
-                filtered_paths_ = [_[-1] for _ in pairs]
-                filtered_paths.extend(filtered_paths_)
-            elif ":path:" in pattern:
-                for path in paths:
-                    if path._match_path_pattern(pattern):
-                        filtered_paths.append(path)
-            else:
-                for path in paths:
-                    if pattern == path.get_identifier():
-                        filtered_paths.append(path)
-        return filtered_paths
-
     def _find_empty_wrapper(self):
         if not self.scores:
             return
@@ -318,7 +221,7 @@ class Path(pathlib.PosixPath):
         assert self.is_score_package_path()
         try:
             module = importlib.import_module(self.contents.name)
-        except:
+        except Exception:
             return
         return module
 
@@ -330,105 +233,6 @@ class Path(pathlib.PosixPath):
         if not score_template:
             raise Exception("can not import score template.")
         return score_template
-
-    def _list_paths(self):
-        paths = []
-        if not self.exists():
-            return paths
-        predicate = self.get_name_predicate()
-        is_external = self.is_external()
-        is_segments = self.is_segments()
-        names = []
-        for name in sorted([_.name for _ in self.iterdir()]):
-            name = String(name)
-            if name.startswith("_") and not (is_external or is_segments):
-                continue
-            if name in (".DS_Store", ".cache", ".git", ".gitmodules"):
-                continue
-            if name in ("__init__.py", "__pycache__"):
-                continue
-            if (
-                predicate is not None
-                and not predicate(name)
-                and name != "_assets"
-                and name != "_segments"
-            ):
-                continue
-            if name == "stylesheet.ily" and self.is_stylesheets():
-                pass
-            elif name in self._secondary_names:
-                continue
-            path = self / name
-            try:
-                path.relative_to(self)
-            except ValueError:
-                continue
-            names.append(name)
-        if is_segments:
-            names = [_ for _ in names if _.is_segment_name()]
-            names = String.sort_segment_names(names)
-        if self.is__segments():
-            prefix = "segment-"
-            names = [_ for _ in names if _.startswith(prefix)]
-            single_character_names, double_character_names = [], []
-            for name in names:
-                segment_name = name[len(prefix) :]
-                segment_name = segment_name.replace("-", "_")
-                if segment_name.endswith(".ly"):
-                    segment_name = segment_name[:-3]
-                elif segment_name.endswith(".ily"):
-                    segment_name = segment_name[:-4]
-                else:
-                    raise ValueError(segment_name)
-                if len(segment_name) == 1:
-                    single_character_names.append(name)
-                elif len(segment_name) == 2:
-                    double_character_names.append(name)
-                else:
-                    raise NotImplementedError(segment_name)
-            names = single_character_names + double_character_names
-        paths = [self / _ for _ in names]
-        return paths
-
-    def _match_identifier_pattern(self, pattern):
-        token = ":ds:"
-        assert token in pattern, repr(pattern)
-        identifier = self.get_identifier()
-        pattern = pattern.replace(token, repr(identifier))
-        try:
-            result = eval(pattern)
-        except:
-            traceback.print_exc()
-            result = False
-        return result
-
-    def _match_metadata_pattern(self, pattern):
-        count = pattern.count("md:")
-        for _ in range(count + 1):
-            parts = pattern.split()
-            for part in parts:
-                if part.startswith("md:"):
-                    metadatum_name = part[3:]
-                    metadatum = self.get_metadatum(metadatum_name)
-                    metadatum = repr(metadatum)
-                    pattern = pattern.replace(part, metadatum)
-        try:
-            result = eval(pattern)
-        except:
-            traceback.print_exc()
-            return False
-        return result
-
-    def _match_path_pattern(self, pattern):
-        token = ":path:"
-        assert token in pattern, repr(pattern)
-        pattern = pattern.replace(token, repr(self))
-        try:
-            result = eval(pattern)
-        except:
-            traceback.print_exc()
-            return False
-        return result
 
     def _part_name_to_default_clef(self, part_name):
         module = self._import_score_package()
@@ -447,17 +251,6 @@ class Path(pathlib.PosixPath):
         clef = Clef(instrument.allowable_clefs[0])
         return clef
 
-    @staticmethod
-    def _sort_by_identifier(paths):
-        pairs = []
-        for path in paths:
-            identifier = String(path.get_identifier())
-            identifier = identifier.strip_diacritics().replace("'", "")
-            pairs.append((identifier, path))
-        pairs.sort(key=lambda _: _[0])
-        paths = [_[-1] for _ in pairs]
-        return paths
-
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -470,44 +263,40 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            >>> build = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score/builds/letter-score',
-            ...     scores='/path/to/scores',
-            ...     )
+            >>> string = "/path/to/scores/my_score/my_score/builds/letter-score"
+            >>> build = abjad.Path(string)
 
             Works when path is build directory:
 
             >>> build.build
-            Path*('/path/to/scores/my_score/my_score/builds/letter-score')
+            Path('/path/to/scores/my_score/my_score/builds/letter-score')
 
             Works when path is _segments directory:
 
-            >>> (build / '_segments').build
+            >>> (build / "_segments").build
             Path('/path/to/scores/my_score/my_score/builds/letter-score')
 
             Works when path is _assets directory:
 
-            >>> (build / '_assets').build
+            >>> (build / "_assets").build
             Path('/path/to/scores/my_score/my_score/builds/letter-score')
 
             Works when path is parts directory:
 
-            >>> parts = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score/builds/letter-parts',
-            ...     scores='/path/to/scores',
-            ...     )
+            >>> string = "/path/to/scores/my_score/my_score/builds/letter-parts"
+            >>> parts = abjad.Path(string)
 
             >>> parts.build
-            Path*('/path/to/scores/my_score/my_score/builds/letter-parts')
+            Path('/path/to/scores/my_score/my_score/builds/letter-parts')
 
             Works when path is part directory:
 
-            >>> (parts / 'bass-clarinet-part').build
-            Path*('/path/to/scores/my_score/my_score/builds/letter-parts/bass-clarinet-part')
+            >>> (parts / "bass-clarinet-part").build
+            Path('/path/to/scores/my_score/my_score/builds/letter-parts/bass-clarinet-part')
 
             Works when path is file in part directory:
 
-            >>> (parts / 'bass-clarinet-part' / 'layout.ly').build
+            >>> (parts / "bass-clarinet-part" / "layout.ly").build
             Path('/path/to/scores/my_score/my_score/builds/letter-parts/bass-clarinet-part')
 
         """
@@ -525,14 +314,11 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score',
-            ...     scores='/path/to/scores',
-            ...     )
+            >>> path = abjad.Path("/path/to/scores/my_score/my_score")
             >>> path.builds
-            Path*('/path/to/scores/my_score/my_score/builds')
-            >>> path.builds/ 'letter'
-            Path*('/path/to/scores/my_score/my_score/builds/letter')
+            Path('/path/to/scores/my_score/my_score/builds')
+            >>> path.builds/ "letter"
+            Path('/path/to/scores/my_score/my_score/builds/letter')
 
         """
         if self.contents:
@@ -547,14 +333,11 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score',
-            ...     scores='/path/to/scores',
-            ...     )
+            >>> path = abjad.Path("/path/to/scores/my_score/my_score")
             >>> path.contents
-            Path*('/path/to/scores/my_score/my_score')
-            >>> path.contents / 'etc' / 'notes.txt'
-            Path*('/path/to/scores/my_score/my_score/etc/notes.txt')
+            Path('/path/to/scores/my_score/my_score')
+            >>> path.contents / "etc" / "notes.txt"
+            Path('/path/to/scores/my_score/my_score/etc/notes.txt')
 
         """
         scores = self.scores
@@ -564,7 +347,6 @@ class Path(pathlib.PosixPath):
         if not parts:
             return None
         result = scores / parts[0] / parts[0]
-        result._scores = getattr(self, "_scores", None)
         return result
 
     @property
@@ -574,14 +356,11 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score',
-            ...     scores='/path/to/scores',
-            ...     )
+            >>> path = abjad.Path("/path/to/scores/my_score/my_score")
             >>> path.distribution
-            Path*('/path/to/scores/my_score/my_score/distribution')
-            >>> path.distribution/ 'score.pdf'
-            Path*('/path/to/scores/my_score/my_score/distribution/score.pdf')
+            Path('/path/to/scores/my_score/my_score/distribution')
+            >>> path.distribution/ "score.pdf"
+            Path('/path/to/scores/my_score/my_score/distribution/score.pdf')
 
         """
         if self.contents:
@@ -596,40 +375,15 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score',
-            ...     scores='/path/to/scores',
-            ...     )
+            >>> path = abjad.Path("/path/to/scores/my_score/my_score")
             >>> path.etc
-            Path*('/path/to/scores/my_score/my_score/etc')
-            >>> path.etc / 'notes.txt'
-            Path*('/path/to/scores/my_score/my_score/etc/notes.txt')
+            Path('/path/to/scores/my_score/my_score/etc')
+            >>> path.etc / "notes.txt"
+            Path('/path/to/scores/my_score/my_score/etc/notes.txt')
 
         """
         if self.contents:
             return self.contents / "etc"
-        else:
-            return None
-
-    @property
-    def materials(self) -> typing.Optional["Path"]:
-        """
-        Gets materials directory.
-
-        ..  container:: example
-
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score',
-            ...     scores='/path/to/scores',
-            ...     )
-            >>> path.materials
-            Path*('/path/to/scores/my_score/my_score/materials')
-            >>> path.materials / 'instruments'
-            Path*('/path/to/scores/my_score/my_score/materials/instruments')
-
-        """
-        if self.contents:
-            return self.contents / "materials"
         else:
             return None
 
@@ -640,28 +394,35 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score',
-            ...     scores='/path/to/scores',
-            ...     )
+            >>> path = abjad.Path("/path/to/scores/my_score/my_score")
             >>> path.scores
-            Path*('/path/to/scores')
-            >>> path.scores / 'red_score' / 'red_score'
-            Path*('/path/to/scores/red_score/red_score')
+            Path('/path/to/scores')
+            >>> path.scores / "red_score" / "red_score"
+            Path('/path/to/scores/red_score/red_score')
 
         """
-        import abjad
-
-        configuration = abjad.abjad_configuration
-        if getattr(self, "_scores", None) is not None:
-            result = getattr(self, "_scores")
-            result._scores = result
-            return result
-        directory = configuration.composer_scores_directory
+        directory = abjad_configuration.composer_scores_directory
         if str(self).startswith(str(directory)):
             return type(self)(directory)
-        else:
-            return None
+        parts = str(self).split(os.sep)
+        if "ide" in parts:
+            scores_parts = [os.sep]
+            for part_ in parts:
+                scores_parts.append(part_)
+                if part_ == "scores":
+                    path = pathlib.Path(*scores_parts)
+                    return type(self)(path)
+        previous_part = None
+        for part in reversed(parts):
+            if part == previous_part:
+                scores_parts = [os.sep]
+                for part_ in parts:
+                    if part_ == part:
+                        path = pathlib.Path(*scores_parts)
+                        return type(self)(path)
+                    scores_parts.append(part_)
+            previous_part = part
+        return None
 
     @property
     def segments(self) -> typing.Optional["Path"]:
@@ -670,14 +431,11 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score',
-            ...     scores='/path/to/scores',
-            ...     )
+            >>> path = abjad.Path("/path/to/scores/my_score/my_score")
             >>> path.segments
-            Path*('/path/to/scores/my_score/my_score/segments')
-            >>> path.segments / 'segment_01'
-            Path*('/path/to/scores/my_score/my_score/segments/segment_01')
+            Path('/path/to/scores/my_score/my_score/segments')
+            >>> path.segments / "segment_01"
+            Path('/path/to/scores/my_score/my_score/segments/segment_01')
 
         """
         if self.contents:
@@ -692,62 +450,15 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score',
-            ...     scores='/path/to/scores',
-            ...     )
+            >>> path = abjad.Path("/path/to/scores/my_score/my_score")
             >>> path.stylesheets
-            Path*('/path/to/scores/my_score/my_score/stylesheets')
-            >>> path.stylesheets / 'stylesheet.ily'
-            Path*('/path/to/scores/my_score/my_score/stylesheets/stylesheet.ily')
+            Path('/path/to/scores/my_score/my_score/stylesheets')
+            >>> path.stylesheets / "stylesheet.ily"
+            Path('/path/to/scores/my_score/my_score/stylesheets/stylesheet.ily')
 
         """
         if self.contents:
             return self.contents / "stylesheets"
-        else:
-            return None
-
-    @property
-    def test(self) -> typing.Optional["Path"]:
-        """
-        Gets test directory.
-
-        ..  container:: example
-
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score',
-            ...     scores='/path/to/scores',
-            ...     )
-            >>> path.test
-            Path*('/path/to/scores/my_score/my_score/test')
-            >>> path.test / 'test_materials.py'
-            Path*('/path/to/scores/my_score/my_score/test/test_materials.py')
-
-        """
-        if self.contents:
-            return self.contents / "test"
-        else:
-            return None
-
-    @property
-    def tools(self) -> typing.Optional["Path"]:
-        """
-        Gets tools directory.
-
-        ..  container:: example
-
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score',
-            ...     scores='/path/to/scores',
-            ...     )
-            >>> path.tools
-            Path*('/path/to/scores/my_score/my_score/tools')
-            >>> path.tools / 'SegmentMaker.py'
-            Path*('/path/to/scores/my_score/my_score/tools/SegmentMaker.py')
-
-        """
-        if self.contents:
-            return self.contents / "tools"
         else:
             return None
 
@@ -758,20 +469,15 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score',
-            ...     scores='/path/to/scores',
-            ...     )
+            >>> path = abjad.Path("/path/to/scores/my_score/my_score")
             >>> path.wrapper
-            Path*('/path/to/scores/my_score')
-            >>> path.wrapper / 'my_score' / 'etc'
-            Path*('/path/to/scores/my_score/my_score/etc')
+            Path('/path/to/scores/my_score')
+            >>> path.wrapper / "my_score" / "etc"
+            Path('/path/to/scores/my_score/my_score/etc')
 
         """
         if self.contents:
             result = type(self)(self.contents).parent
-            _scores = getattr(self, "_scores", None)
-            setattr(result, "_scores", _scores)
             return result
         else:
             return None
@@ -913,133 +619,120 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score',
-            ...     scores='/path/to/scores',
-            ...     )
+            >>> path = abjad.Path("/path/to/scores/my_score/my_score")
 
         ..  container:: example
 
             In build directory:
 
-            >>> build = path.builds / 'letter'
-            >>> build.coerce('back cover.tex')
+            >>> build = path.builds / "letter"
+            >>> build.coerce("back cover.tex")
             'back cover.tex'
-            >>> build.coerce('Back Cover.tex')
+            >>> build.coerce("Back Cover.tex")
             'Back Cover.tex'
-            >>> build.coerce('BACK_COVER.tex')
+            >>> build.coerce("BACK_COVER.tex")
             'BACK_COVER.tex'
 
-            >>> build.coerce('new music.ly')
+            >>> build.coerce("new music.ly")
             'new music.ly'
-            >>> build.coerce('New Music.ly')
+            >>> build.coerce("New Music.ly")
             'New Music.ly'
-            >>> build.coerce('NEW_MUSIC.ly')
+            >>> build.coerce("NEW_MUSIC.ly")
             'NEW_MUSIC.ly'
 
-            >>> build.coerce('page_layout.py')
+            >>> build.coerce("page_layout.py")
             'page_layout.py'
-            >>> build.coerce('Page Layout.py')
+            >>> build.coerce("Page Layout.py")
             'Page Layout.py'
-            >>> build.coerce('PAGE_LAYOUT.py')
+            >>> build.coerce("PAGE_LAYOUT.py")
             'PAGE_LAYOUT.py'
 
         ..  container:: example
 
             In builds directory:
 
-            >>> path.builds.coerce('letter_landscape')
+            >>> path.builds.coerce("letter_landscape")
             'letter-landscape'
-            >>> path.builds.coerce('letter landscape')
+            >>> path.builds.coerce("letter landscape")
             'letter-landscape'
-            >>> path.builds.coerce('Letter Landscape')
+            >>> path.builds.coerce("Letter Landscape")
             'letter-landscape'
 
         ..  container:: example
 
             In contents directory:
 
-            >>> path.contents.coerce('ETC')
+            >>> path.contents.coerce("ETC")
             'etc'
 
         ..  container:: example
 
             In distribution directory:
 
-            >>> path.distribution.coerce('program notes.txt')
+            >>> path.distribution.coerce("program notes.txt")
             'program-notes.txt'
-            >>> path.distribution.coerce('Program Notes.txt')
+            >>> path.distribution.coerce("Program Notes.txt")
             'program-notes.txt'
-            >>> path.distribution.coerce('PROGRAM_NOTES.txt')
+            >>> path.distribution.coerce("PROGRAM_NOTES.txt")
             'program-notes.txt'
 
         ..  container:: example
 
             In etc directory:
 
-            >>> path.etc.coerce('material sketches.md')
-            'material-sketches.md'
-            >>> path.etc.coerce('Material Sketches.md')
-            'material-sketches.md'
-            >>> path.etc.coerce('MATERIAL_SKETCHES.md')
-            'material-sketches.md'
-
-        ..  container:: example
-
-            In scores directory:
-
-            >>> path.scores.coerce('Green Score')
-            'green_score'
+            >>> path.etc.coerce("sketches.md")
+            'sketches.md'
+            >>> path.etc.coerce("Sketches.md")
+            'sketches.md'
+            >>> path.etc.coerce("SKETCHES.md")
+            'sketches.md'
 
         ..  container:: example
 
             In segment directory:
 
-            >>> path.segments.coerce('_')
+            >>> path.segments.coerce("_")
             '_'
-            >>> path.segments.coerce('A')
+            >>> path.segments.coerce("A")
             'A'
-            >>> path.segments.coerce('A1')
+            >>> path.segments.coerce("A1")
             'A1'
-            >>> path.segments.coerce('A99')
+            >>> path.segments.coerce("A99")
             'A99'
 
-            >>> path.segments.coerce('segment_01')
+            >>> path.segments.coerce("segment_01")
             'segment_01'
-            >>> path.segments.coerce('segment 01')
+            >>> path.segments.coerce("segment 01")
             'segment_01'
-            >>> path.segments.coerce('Segment 01')
+            >>> path.segments.coerce("Segment 01")
             'segment_01'
-            >>> path.segments.coerce('SEGMENT 01')
+            >>> path.segments.coerce("SEGMENT 01")
             'segment_01'
 
         ..  container:: example
 
             In stylesheets directory:
 
-            >>> path.stylesheets.coerce('segment stylesheet')
+            >>> path.stylesheets.coerce("segment stylesheet")
             'segment-stylesheet.ily'
-            >>> path.stylesheets.coerce('Segment Stylesheet')
+            >>> path.stylesheets.coerce("Segment Stylesheet")
             'segment-stylesheet.ily'
-            >>> path.stylesheets.coerce('SEGMENT_STYLESHEET')
+            >>> path.stylesheets.coerce("SEGMENT_STYLESHEET")
             'segment-stylesheet.ily'
 
         ..  container:: example
 
             Does not coerce in unknown directory:
 
-            >>> path = abjad.Path(
-            ...     '/unknown/path',
-            ...     )
+            >>> path = abjad.Path("/unknown/path")
 
-            >>> path.coerce('custom-script')
+            >>> path.coerce("custom-script")
             'custom-script'
-            >>> path.coerce('custom_script')
+            >>> path.coerce("custom_script")
             'custom_script'
-            >>> path.coerce('CUSTOM_SCRIPT')
+            >>> path.coerce("CUSTOM_SCRIPT")
             'CUSTOM_SCRIPT'
 
-        Returns string.
         """
         name = String(name).strip_diacritics()
         assert os.path.sep not in name, repr(name)
@@ -1047,8 +740,8 @@ class Path(pathlib.PosixPath):
         stem = String(type(self)(name).stem)
         if self.is_scores():
             name = stem.to_snake_case()
-        elif self.is_external():
-            pass
+        #        elif self.is_external():
+        #            pass
         elif self.is__assets():
             pass
         elif self.is__segments():
@@ -1063,10 +756,6 @@ class Path(pathlib.PosixPath):
             name = stem.to_dash_case() + suffix
         elif self.is_etc():
             name = stem.to_dash_case() + suffix
-        elif self.is_material():
-            name = stem.to_snake_case() + ".py"
-        elif self.is_materials():
-            name = stem.to_snake_case()
         elif self.is_segment():
             name = stem.to_snake_case() + ".py"
         elif self.is_segments():
@@ -1076,12 +765,6 @@ class Path(pathlib.PosixPath):
                 name = stem.to_snake_case()
         elif self.is_stylesheets():
             name = stem.to_dash_case() + ".ily"
-        elif self.is_test():
-            name = stem.to_snake_case() + ".py"
-        elif self.is_tools() and name[0].isupper():
-            name = stem.to_upper_camel_case() + ".py"
-        elif self.is_tools() and name[0].islower():
-            name = stem.to_snake_case() + ".py"
         elif self.is_wrapper():
             pass
         elif self.is_external():
@@ -1301,10 +984,7 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score',
-            ...     scores='/path/to/scores',
-            ...     )
+            >>> path = abjad.Path("/path/to/scores/my_score/my_score")
 
             >>> path.builds.get_asset_type()
             'directory'
@@ -1318,22 +998,10 @@ class Path(pathlib.PosixPath):
             >>> path.etc.get_asset_type()
             'file'
 
-            >>> path.materials.get_asset_type()
-            'package'
-
-            >>> path.scores.get_asset_type()
-            'package'
-
             >>> path.segments.get_asset_type()
             'package'
 
             >>> path.stylesheets.get_asset_type()
-            'file'
-
-            >>> path.test.get_asset_type()
-            'file'
-
-            >>> path.tools.get_asset_type()
             'file'
 
             >>> path.wrapper.get_asset_type()
@@ -1343,7 +1011,7 @@ class Path(pathlib.PosixPath):
 
             With external path:
 
-            >>> abjad.Path('/path/to/external').get_asset_type()
+            >>> abjad.Path("/path/to/external").get_asset_type()
             'asset'
 
         """
@@ -1353,10 +1021,10 @@ class Path(pathlib.PosixPath):
             return "asset"
         elif self.is_contents():
             return "directory"
+        elif self.is_segments():
+            return "package"
         elif self.is_builds():
             return "directory"
-        elif self.is_materials_or_segments():
-            return "package"
         elif self.is_score_package_path(
             (
                 "_assets",
@@ -1364,11 +1032,8 @@ class Path(pathlib.PosixPath):
                 "build",
                 "distribution",
                 "etc",
-                "tools",
-                "material",
                 "segment",
                 "stylesheets",
-                "test",
             )
         ):
             return "file"
@@ -1391,30 +1056,17 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score',
-            ...     scores='/path/to/scores',
-            ...     )
+            >>> path = abjad.Path("/path/to/scores/my_score/my_score")
 
             >>> path.contents.get_identifier()
             '(untitled score)'
 
-            >>> material = path.materials / 'tempi'
-            >>> material.get_identifier()
-            'tempi'
-
-            >>> path.materials.get_identifier()
-            'materials'
-
-            >>> segment = path.segments / 'segment_01'
+            >>> segment = path.segments / "segment_01"
             >>> segment.get_identifier()
             'segment_01'
 
             >>> path.segments.get_identifier()
             'segments'
-
-            >>> path.wrapper.get_identifier()
-            '(untitled score)'
 
         Returns title when path is contents directory.
 
@@ -1500,12 +1152,8 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score',
-            ...     scores='/path/to/scores',
-            ...     )
-
-            >>> path.contents.get_metadatum('foo') is None
+            >>> path = abjad.Path("/path/to/scores/my_score/my_score")
+            >>> path.contents.get_metadatum("foo") is None
             True
 
         """
@@ -1521,10 +1169,7 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score',
-            ...     scores='/path/to/scores',
-            ...     )
+            >>> path = abjad.Path("/path/to/scores/my_score/my_score")
 
             >>> path.builds.get_name_predicate()
             <function String.is_build_directory_name at ...>
@@ -1532,20 +1177,10 @@ class Path(pathlib.PosixPath):
             >>> path.contents.get_name_predicate() is None
             True
 
-            >>> path.materials.get_name_predicate()
-            <function String.is_package_name at ...>
-
-            >>> material = path.materials / 'tempi'
-            >>> material.get_name_predicate()
-            <function String.is_lowercase_file_name at ...>
-
-            >>> path.scores.get_name_predicate()
-            <function String.is_package_name at ...>
-
             >>> path.segments.get_name_predicate()
             <function String.is_segment_name at ...>
 
-            >>> segment = path.segments / 'segment_01'
+            >>> segment = path.segments / "segment_01"
             >>> segment.get_name_predicate()
             <function String.is_lowercase_file_name at ...>
 
@@ -1555,8 +1190,8 @@ class Path(pathlib.PosixPath):
         """
         if self.is_scores():
             return String.is_package_name
-        elif self.is_external():
-            return None
+        #        elif self.is_external():
+        #            return None
         elif self.is_wrapper():
             return None
         elif self.is_build():
@@ -1569,22 +1204,14 @@ class Path(pathlib.PosixPath):
             return String.is_dash_case_file_name
         elif self.is_etc():
             return None
-        elif self.is_material():
-            return String.is_lowercase_file_name
-        elif self.is_materials():
-            return String.is_package_name
         elif self.is_scores():
             return String.is_package_name
         elif self.is_segment():
             return String.is_lowercase_file_name
         elif self.is_segments():
             return String.is_segment_name
-        elif self.is_tools():
-            return String.is_tools_file_name
         elif self.is_stylesheets():
             return String.is_stylesheet_name
-        elif self.is_test():
-            return String.is_module_file_name
         elif self.is_wrapper():
             return None
         else:
@@ -1596,11 +1223,7 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-                >>> path = abjad.Path(
-                ...     '/path/to/scores/my_score/my_score',
-                ...     scores='/path/to/scores',
-                ...     )
-
+            >>> path = abjad.Path("/path/to/scores/my_score/my_score")
             >>> path.get_next_package() is None
             True
 
@@ -1608,21 +1231,7 @@ class Path(pathlib.PosixPath):
         if not self.is_dir():
             return None
         path: typing.Optional[Path] = None
-        if self.is_material():
-            if self.materials is not None:
-                paths = self.materials.list_paths()
-            else:
-                paths = []
-            if self == paths[-1] and not cyclic:
-                path = self
-            else:
-                index = paths.index(self)
-                cyclic_paths = CyclicTuple(paths)
-                path = cyclic_paths[index + 1]
-        elif self.is_materials():
-            paths = self.list_paths()
-            path = paths[0]
-        elif self.is_segment():
+        if self.is_segment():
             if self.segments is not None:
                 paths = self.segments.list_paths()
             else:
@@ -1646,11 +1255,7 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-                >>> path = abjad.Path(
-                ...     '/path/to/scores/my_score/my_score',
-                ...     scores='/path/to/scores',
-                ...     )
-
+            >>> path = abjad.Path("/path/to/scores/my_score/my_score")
             >>> path.get_next_score() is None
             True
 
@@ -1746,7 +1351,7 @@ class Path(pathlib.PosixPath):
             string = "".join(lines)
             try:
                 time_signatures = eval(string)
-            except:
+            except Exception:
                 return []
             return time_signatures
         return None
@@ -1757,36 +1362,26 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score',
-            ...     scores='/path/to/scores',
-            ...     )
-
+            >>> path = abjad.Path("/path/to/scores/my_score/my_score")
             >>> path.get_previous_package() is None
             True
 
         """
         if not self.is_dir():
             return None
-        if self.is_material():
-            if self.materials is not None:
-                paths = self.materials.list_paths()
-            else:
-                paths = []
-            if self == paths[0] and not cyclic:
-                path = None
-            else:
-                index = paths.index(self)
-                cyclic_paths = CyclicTuple(paths)
-                path = cyclic_paths[index - 1]
-        elif self.is_materials():
-            paths = self.list_paths()
-            path = paths[-1]
-        elif self.is_segment():
+        if self.is_segment():
             if self.segments is not None:
                 paths = self.segments.list_paths()
             else:
                 paths = []
+            if not paths:
+                print(type(self))
+                print(self)
+                print(self.scores)
+                print(self.wrapper)
+                print(self.contents)
+                print(self.segments)
+                raise Exception("HERE")
             if self == paths[0] and not cyclic:
                 path = None
             else:
@@ -1806,11 +1401,7 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-                >>> path = abjad.Path(
-                ...     '/path/to/scores/my_score/my_score',
-                ...     scores='/path/to/scores',
-                ...     )
-
+            >>> path = abjad.Path("/path/to/scores/my_score/my_score")
             >>> path.get_previous_score() is None
             True
 
@@ -1862,11 +1453,7 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score',
-            ...     scores='/path/to/scores',
-            ...     )
-
+            >>> path = abjad.Path("/path/to/scores/my_score/my_score")
             >>> path.get_title()
             '(untitled score)'
 
@@ -1888,22 +1475,22 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            >>> abjad.Path.global_rest_identifier('_')
+            >>> abjad.Path.global_rest_identifier("_")
             'i_Global_Rests'
 
-            >>> abjad.Path.global_rest_identifier('_1')
+            >>> abjad.Path.global_rest_identifier("_1")
             'i_a_Global_Rests'
 
-            >>> abjad.Path.global_rest_identifier('_2')
+            >>> abjad.Path.global_rest_identifier("_2")
             'i_b_Global_Rests'
 
-            >>> abjad.Path.global_rest_identifier('A')
+            >>> abjad.Path.global_rest_identifier("A")
             'A_Global_Rests'
 
-            >>> abjad.Path.global_rest_identifier('A1')
+            >>> abjad.Path.global_rest_identifier("A1")
             'A_a_Global_Rests'
 
-            >>> abjad.Path.global_rest_identifier('A2')
+            >>> abjad.Path.global_rest_identifier("A2")
             'A_b_Global_Rests'
 
         """
@@ -1987,11 +1574,8 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score',
-            ...     scores='/path/to/scores',
-            ...     )
-            >>> path = path / 'build' / '_assets'
+            >>> path = abjad.Path("/path/to/scores/my_score/my_score")
+            >>> path = path / "build" / "_assets"
             >>> path.is__assets()
             True
 
@@ -2004,10 +1588,8 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score/builds/letter/_segments',
-            ...     scores='/path/to/scores',
-            ...     )
+            >>> string = "/path/to/scores/my_score/my_score/builds/letter/_segments"
+            >>> path = abjad.Path(string)
             >>> path.is__segments()
             True
 
@@ -2020,13 +1602,10 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-                >>> path = abjad.Path(
-                ...     '/path/to/scores/my_score/my_score',
-                ...     scores='/path/to/scores',
-                ...     )
-                >>> build = path.builds / 'letter'
-                >>> build.is_build()
-                True
+            >>> path = abjad.Path("/path/to/scores/my_score/my_score")
+            >>> build = path.builds / "letter"
+            >>> build.is_build()
+            True
 
         """
         if self.name in ("_assets", "_segments"):
@@ -2043,10 +1622,7 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score',
-            ...     scores='/path/to/scores',
-            ...     )
+            >>> path = abjad.Path("/path/to/scores/my_score/my_score")
             >>> path.builds.is_builds()
             True
 
@@ -2076,10 +1652,7 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score',
-            ...     scores='/path/to/scores',
-            ...     )
+            >>> path = abjad.Path("/path/to/scores/my_score/my_score")
             >>> path.contents.is_contents()
             True
 
@@ -2089,16 +1662,23 @@ class Path(pathlib.PosixPath):
         else:
             return False
 
+    def is_definitionspace(self) -> bool:
+        """
+        Is true when path is any of segment or segments directories.
+        """
+        if self.is_segment():
+            return True
+        if self.is_segments():
+            return True
+        return False
+
     def is_distribution(self) -> bool:
         """
         Is true when path is distribution directory.
 
         ..  container:: example
 
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score',
-            ...     scores='/path/to/scores',
-            ...     )
+            >>> path = abjad.Path("/path/to/scores/my_score/my_score")
             >>> path.distribution.is_distribution()
             True
 
@@ -2111,81 +1691,27 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score',
-            ...     scores='/path/to/scores',
-            ...     )
+            >>> path = abjad.Path("/path/to/scores/my_score/my_score")
             >>> path.etc.is_etc()
             True
 
         """
         return self.name == "etc"
 
+    # TODO: remove
     def is_external(self) -> bool:
         """
         Is true when path is not a score package path.
 
         ..  container:: example
 
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score',
-            ...     scores='/path/to/scores',
-            ...     )
-
-            >>> path.builds.is_external()
-            False
-            >>> path.contents.is_external()
-            False
-            >>> path.wrapper.is_external()
-            False
-
-            >>> path.scores.is_external()
-            True
-
-        ..  container:: example
-
-            >>> abjad.Path('/path/to/location').is_external()
+            >>> abjad.Path("/path/to/location").is_external()
             True
 
         """
-        import abjad
-
-        configuration = abjad.abjad_configuration
-        directory = configuration.composer_scores_directory
-        if str(self) == str(directory):
-            return True
-        if (
-            not self.name[0].isalpha()
-            and not self.name == "_assets"
-            and not self.name == "_segments"
-            and not self.parent.name == "segments"
-        ):
-            return True
-        if str(self).startswith(str(directory)):
-            return False
-        directory = getattr(self, "_scores", None)
-        if str(self) == str(directory):
-            return True
-        if directory and str(self).startswith(str(directory)):
+        if self.contents is not None and (self.contents / "__metadata__.py").is_file():
             return False
         return True
-
-    def is_illustrationspace(self) -> bool:
-        """
-        Is true when path is any of material, materials, segment or
-        segments directories.
-
-        Returns true or false.
-        """
-        if self.is_material():
-            return True
-        if self.is_materials():
-            return True
-        if self.is_segment():
-            return True
-        if self.is_segments():
-            return True
-        return False
 
     def is_introduction_segment(self) -> bool:
         """
@@ -2193,32 +1719,29 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score',
-            ...     scores='/path/to/scores',
-            ...     )
+            >>> path = abjad.Path("/path/to/scores/my_score/my_score")
 
-            >>> segment = path.segments / '_'
+            >>> segment = path.segments / "_"
             >>> segment.is_introduction_segment()
             True
 
-            >>> segment = path.segments / '_1'
+            >>> segment = path.segments / "_1"
             >>> segment.is_introduction_segment()
             True
 
-            >>> segment = path.segments / '_99'
+            >>> segment = path.segments / "_99"
             >>> segment.is_introduction_segment()
             True
 
-            >>> segment = path.segments / '_1A'
+            >>> segment = path.segments / "_1A"
             >>> segment.is_introduction_segment()
             False
 
-            >>> segment = path.segments / '1'
+            >>> segment = path.segments / "1"
             >>> segment.is_introduction_segment()
             False
 
-            >>> segment = path.segments / 'A'
+            >>> segment = path.segments / "A"
             >>> segment.is_introduction_segment()
             False
 
@@ -2229,110 +1752,18 @@ class Path(pathlib.PosixPath):
             return True
         return False
 
-    def is_material(self) -> bool:
-        """
-        Is true when path is material directory.
-
-        ..  container:: example
-
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score',
-            ...     scores='/path/to/scores',
-            ...     )
-            >>> material = path.materials / 'tempi'
-            >>> material.is_material()
-            True
-
-        """
-        return self.parent.name == "materials"
-
-    def is_material_or_segment(self) -> bool:
-        """
-        Is true when path is material directory or segment directory.
-
-        ..  container:: example
-
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score',
-            ...     scores='/path/to/scores',
-            ...     )
-
-            >>> path.materials.is_material_or_segment()
-            False
-
-            >>> material = path.materials / 'tempi'
-            >>> material.is_material_or_segment()
-            True
-
-            >>> path.segments.is_material_or_segment()
-            False
-
-            >>> segment = path.segments / 'A'
-            >>> segment.is_material_or_segment()
-            True
-
-        """
-        return self.parent.name in ("materials", "segments")
-
-    def is_materials(self) -> bool:
-        """
-        Is true when path is materials directory.
-
-        ..  container:: example
-
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score',
-            ...     scores='/path/to/scores',
-            ...     )
-            >>> path.materials.is_materials()
-            True
-
-        """
-        return self.name == "materials"
-
-    def is_materials_or_segments(self) -> bool:
-        """
-        Is true when path is materials directory or segments directory.
-
-        ..  container:: example
-
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score',
-            ...     scores='/path/to/scores',
-            ...     )
-
-            >>> path.materials.is_materials_or_segments()
-            True
-
-            >>> material = path.materials / 'tempi'
-            >>> material.is_materials_or_segments()
-            False
-
-            >>> path.segments.is_materials_or_segments()
-            True
-
-            >>> segment = path.segments / 'A'
-            >>> segment.is_materials_or_segments()
-            False
-
-        """
-        return self.name in ("materials", "segments")
-
     def is_part(self) -> bool:
         """
         Is true when directory is part directory.
 
         ..  container:: example
 
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score',
-            ...     scores='/path/to/scores',
-            ...     )
+            >>> path = abjad.Path("/path/to/scores/my_score/my_score")
 
             >>> path.builds.is_part()
             False
 
-            >>> build = path.builds / 'arch-a-parts'
+            >>> build = path.builds / "arch-a-parts"
             >>> build.is_part()
             False
 
@@ -2345,15 +1776,12 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score',
-            ...     scores='/path/to/scores',
-            ...     )
+            >>> path = abjad.Path("/path/to/scores/my_score/my_score")
 
             >>> path.builds.is_parts()
             False
 
-            >>> build = path.builds / 'arch-a-score'
+            >>> build = path.builds / "arch-a-score"
             >>> build.is_parts()
             False
 
@@ -2372,15 +1800,12 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score',
-            ...     scores='/path/to/scores',
-            ...     )
+            >>> path = abjad.Path("/path/to/scores/my_score/my_score")
 
             >>> path.builds.is_score_build()
             False
 
-            >>> build = path.builds / 'arch-a-score'
+            >>> build = path.builds / "arch-a-score"
             >>> build.is_score_build()
             True
 
@@ -2406,18 +1831,14 @@ class Path(pathlib.PosixPath):
 
             External path returns false:
 
-            >>> abjad.Path('/path/to/location').is_score_package_path()
+            >>> abjad.Path("/path/to/location").is_score_package_path()
             False
 
         ..  container:: example
 
             Scores directory returns false:
 
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score',
-            ...     scores='/path/to/scores',
-            ...     )
-
+            >>> path = abjad.Path("/path/to/scores/my_score/my_score")
             >>> path.scores.is_score_package_path()
             False
 
@@ -2425,27 +1846,18 @@ class Path(pathlib.PosixPath):
 
             Package paths return true:
 
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score',
-            ...     scores='/path/to/scores',
-            ...     )
-
-            >>> path.wrapper.is_score_package_path()
-            True
-
+            >>> path = abjad.Path("/path/to/scores/my_score/my_score")
             >>> path.contents.is_score_package_path()
             True
 
             >>> path.stylesheets.is_score_package_path()
             True
 
-            >>> path = path / 'build' / '_assets'
+            >>> path = path / "build" / "_assets"
             >>> path.is_score_package_path()
             True
 
         """
-        if self.is_external():
-            return False
         if self.is_scores():
             return False
         if not self.scores:
@@ -2471,11 +1883,9 @@ class Path(pathlib.PosixPath):
                 return True
         if "contents" in prototype and self.is_contents():
             return True
-        if "illustrationspace" in prototype:
-            if self.is_illustrationspace():
+        if "definitionspace" in prototype:
+            if self.is_definitionspace():
                 return True
-        if "material" in prototype and self.is_material():
-            return True
         if "part" in prototype and self.is_part():
             return True
         if "parts" in prototype and self.is_parts():
@@ -2489,16 +1899,6 @@ class Path(pathlib.PosixPath):
     def is_scores(self) -> bool:
         """
         Is true when path is scores directory.
-
-        ..  container:: example
-
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score',
-            ...     scores='/path/to/scores',
-            ...     )
-            >>> path.scores.is_scores()
-            True
-
         """
         return self == self.scores
 
@@ -2508,11 +1908,8 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score',
-            ...     scores='/path/to/scores',
-            ...     )
-            >>> segment = path.segments / 'segment_01'
+            >>> path = abjad.Path("/path/to/scores/my_score/my_score")
+            >>> segment = path.segments / "segment_01"
             >>> segment.is_segment()
             True
 
@@ -2520,10 +1917,8 @@ class Path(pathlib.PosixPath):
 
             REGRESSION. Abjad segments directory is excluded:
 
-            >>> path = abjad.Path(
-            ...     '/path/to/abjad/abjad/segments',
-            ...     )
-            >>> path /= 'segment_01'
+            >>> path = abjad.Path("/path/to/abjad/abjad/segments")
+            >>> path /= "segment_01"
             >>> path.is_segment()
             False
 
@@ -2539,85 +1934,85 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            >>> abjad.Path.is_segment_name('_')
+            >>> abjad.Path.is_segment_name("_")
             True
 
-            >>> abjad.Path.is_segment_name('_1')
+            >>> abjad.Path.is_segment_name("_1")
             True
 
-            >>> abjad.Path.is_segment_name('_2')
+            >>> abjad.Path.is_segment_name("_2")
             True
 
-            >>> abjad.Path.is_segment_name('_99')
+            >>> abjad.Path.is_segment_name("_99")
             True
 
-            >>> abjad.Path.is_segment_name('A')
+            >>> abjad.Path.is_segment_name("A")
             True
 
-            >>> abjad.Path.is_segment_name('A1')
+            >>> abjad.Path.is_segment_name("A1")
             True
 
-            >>> abjad.Path.is_segment_name('A2')
+            >>> abjad.Path.is_segment_name("A2")
             True
 
-            >>> abjad.Path.is_segment_name('A99')
+            >>> abjad.Path.is_segment_name("A99")
             True
 
-            >>> abjad.Path.is_segment_name('B')
+            >>> abjad.Path.is_segment_name("B")
             True
 
-            >>> abjad.Path.is_segment_name('B1')
+            >>> abjad.Path.is_segment_name("B1")
             True
 
-            >>> abjad.Path.is_segment_name('B2')
+            >>> abjad.Path.is_segment_name("B2")
             True
 
-            >>> abjad.Path.is_segment_name('B99')
+            >>> abjad.Path.is_segment_name("B99")
             True
 
-            >>> abjad.Path.is_segment_name('AA')
+            >>> abjad.Path.is_segment_name("AA")
             True
 
-            >>> abjad.Path.is_segment_name('AA1')
+            >>> abjad.Path.is_segment_name("AA1")
             True
 
-            >>> abjad.Path.is_segment_name('AA2')
+            >>> abjad.Path.is_segment_name("AA2")
             True
 
-            >>> abjad.Path.is_segment_name('AA99')
+            >>> abjad.Path.is_segment_name("AA99")
             True
 
-            >>> abjad.Path.is_segment_name('AB')
+            >>> abjad.Path.is_segment_name("AB")
             True
 
-            >>> abjad.Path.is_segment_name('AB1')
+            >>> abjad.Path.is_segment_name("AB1")
             True
 
-            >>> abjad.Path.is_segment_name('AB2')
+            >>> abjad.Path.is_segment_name("AB2")
             True
 
-            >>> abjad.Path.is_segment_name('AB99')
+            >>> abjad.Path.is_segment_name("AB99")
             True
 
-            >>> abjad.Path.is_segment_name('__')
+            >>> abjad.Path.is_segment_name("__")
             False
 
-            >>> abjad.Path.is_segment_name('1')
+            >>> abjad.Path.is_segment_name("1")
             False
 
-            >>> abjad.Path.is_segment_name('a')
+            >>> abjad.Path.is_segment_name("a")
             False
 
-            >>> abjad.Path.is_segment_name('b')
+            >>> abjad.Path.is_segment_name("b")
             False
 
-            >>> abjad.Path.is_segment_name('aa')
+            >>> abjad.Path.is_segment_name("aa")
             False
 
-            >>> abjad.Path.is_segment_name('ab')
+            >>> abjad.Path.is_segment_name("ab")
             False
 
-            >>> abjad.Path.is_segment_name('AAA')
+            >>> abjad.Path.is_segment_name("AAA")
             False
 
         """
@@ -2641,18 +2036,13 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score',
-            ...     scores='/path/to/scores',
-            ...     )
+            >>> path = abjad.Path("/path/to/scores/my_score/my_score")
             >>> path.segments.is_segments()
             True
 
             Excludes Abjad segments directory:
 
-            >>> path = abjad.Path(
-            ...     '/path/to/abjad/abjad/segments',
-            ...     )
+            >>> path = abjad.Path("/path/to/abjad/abjad/segments")
             >>> path.is_segments()
             False
 
@@ -2665,61 +2055,16 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score',
-            ...     scores='/path/to/scores',
-            ...     )
+            >>> path = abjad.Path("/path/to/scores/my_score/my_score")
             >>> path.stylesheets.is_stylesheets()
             True
 
         """
         return self.name == "stylesheets"
 
-    def is_test(self) -> bool:
-        """
-        Is true when path is test directory.
-
-        ..  container:: example
-
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score',
-            ...     scores='/path/to/scores',
-            ...     )
-            >>> path.test.is_test()
-            True
-
-        """
-        return self.name == "test"
-
-    def is_tools(self) -> bool:
-        """
-        Is true when path is tools directory.
-
-        ..  container:: example
-
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score',
-            ...     scores='/path/to/scores',
-            ...     )
-            >>> path.tools.is_tools()
-            True
-
-        """
-        return self.name == "tools"
-
     def is_wrapper(self) -> bool:
         """
         Is true when path is wrapper directory
-
-        ..  container:: example
-
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score',
-            ...     scores='/path/to/scores',
-            ...     )
-            >>> path.wrapper.is_wrapper()
-            True
-
         """
         if self.scores is not None:
             return self.scores / self.name == self
@@ -2728,24 +2073,71 @@ class Path(pathlib.PosixPath):
 
     def list_paths(self) -> typing.List["Path"]:
         """
-        Lists paths ordered by view (if any).
+        Lists paths.
 
         ..  container:: example
 
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score',
-            ...     scores='/path/to/scores',
-            ...     )
-
+            >>> path = abjad.Path("/path/to/scores/my_score/my_score")
             >>> path.list_paths()
             []
 
-        Returns list.
         """
-        paths = self._list_paths()
-        paths = self._filter_by_view(paths)
-        if self.is_scores() and self.get_metadatum("view") is None:
-            paths = self._sort_by_identifier(paths)
+        paths: typing.List["Path"] = []
+        if not self.exists():
+            return paths
+        predicate = self.get_name_predicate()
+        is_external = self.is_external()
+        is_segments = self.is_segments()
+        names = []
+        for name in sorted([_.name for _ in self.iterdir()]):
+            name = String(name)
+            if name.startswith("_") and not (is_external or is_segments):
+                continue
+            if name in (".DS_Store", ".cache", ".git", ".gitmodules"):
+                continue
+            if name in ("__init__.py", "__pycache__"):
+                continue
+            if (
+                predicate is not None
+                and not predicate(name)
+                and name != "_assets"
+                and name != "_segments"
+            ):
+                continue
+            if name == "stylesheet.ily" and self.is_stylesheets():
+                pass
+            elif name in self._secondary_names:
+                continue
+            path = self / name
+            try:
+                path.relative_to(self)
+            except ValueError:
+                continue
+            names.append(name)
+        if is_segments:
+            names = [_ for _ in names if _.is_segment_name()]
+            names = String.sort_segment_names(names)
+        if self.is__segments():
+            prefix = "segment-"
+            names = [_ for _ in names if _.startswith(prefix)]
+            single_character_names, double_character_names = [], []
+            for name in names:
+                segment_name = name[len(prefix) :]
+                segment_name = segment_name.replace("-", "_")
+                if segment_name.endswith(".ly"):
+                    segment_name = segment_name[:-3]
+                elif segment_name.endswith(".ily"):
+                    segment_name = segment_name[:-4]
+                else:
+                    raise ValueError(segment_name)
+                if len(segment_name) == 1:
+                    single_character_names.append(name)
+                elif len(segment_name) == 2:
+                    double_character_names.append(name)
+                else:
+                    raise NotImplementedError(segment_name)
+            names = single_character_names + double_character_names
+        paths = [self / _ for _ in names]
         return paths
 
     def list_secondary_paths(self) -> typing.List["Path"]:
@@ -2754,11 +2146,7 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score',
-            ...     scores='/path/to/scores',
-            ...     )
-
+            >>> path = abjad.Path("/path/to/scores/my_score/my_score")
             >>> path.list_secondary_paths()
             []
 
@@ -2930,11 +2318,7 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score',
-            ...     scores='/path/to/scores',
-            ...     )
-
+            >>> path = abjad.Path("/path/to/scores/my_score/my_score")
             >>> path.segment_number_to_path(1)
 
         """
@@ -2976,10 +2360,7 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score',
-            ...     scores='/path/to/scores',
-            ...     )
+            >>> path = abjad.Path("/path/to/scores/my_score/my_score")
 
             >>> path.contents.trim()
             '/path/to/scores/my_score/my_score'
@@ -2987,23 +2368,13 @@ class Path(pathlib.PosixPath):
             >>> path.segments.trim()
             'my_score/segments'
 
-            >>> segment = path.segments / 'segment_01'
+            >>> segment = path.segments / "segment_01"
             >>> segment.trim()
             'my_score/segments/segment_01'
 
-            >>> path.materials.trim()
-            'my_score/materials'
-
-            >>> material = path.materials / 'tempi'
-            >>> material.trim()
-            'my_score/materials/tempi'
-
         """
-        import abjad
-
-        configuration = abjad.abjad_configuration
         if self.scores is None or self.is_wrapper() or self.is_contents():
-            home_directory = type(self)(configuration.home_directory)
+            home_directory = type(self)(abjad_configuration.home_directory)
             if str(self).startswith(str(home_directory)):
                 return "../" + str(self.relative_to(home_directory))
             return str(self)

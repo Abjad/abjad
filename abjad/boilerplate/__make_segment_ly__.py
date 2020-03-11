@@ -1,10 +1,9 @@
-import abjad
-import ide
 import os
 import pathlib
 import sys
 import traceback
 
+import abjad
 
 if __name__ == "__main__":
 
@@ -29,8 +28,8 @@ if __name__ == "__main__":
     try:
         segment_directory = pathlib.Path(os.path.realpath(__file__)).parent
         builds_directory = segment_directory.parent.parent / "builds"
-        builds_directory = ide.Path(builds_directory)
-    except:
+        builds_directory = abjad.Path(builds_directory)
+    except Exception:
         traceback.print_exc()
         sys.exit(1)
 
@@ -45,14 +44,14 @@ if __name__ == "__main__":
         message = f"Segment-maker runtime {{count}} {{counter}} ..."
         print(message)
         segment_maker_runtime = (count, counter)
-    except:
+    except Exception:
         traceback.print_exc()
         sys.exit(1)
 
     try:
-        segment = ide.Path(__file__).parent
+        segment = abjad.Path(__file__).parent
         segment.write_metadata_py(maker.metadata)
-    except:
+    except Exception:
         traceback.print_exc()
         sys.exit(1)
 
@@ -64,7 +63,7 @@ if __name__ == "__main__":
         counter = abjad.String("second").pluralize(count)
         message = f"Abjad format time {{count}} {{counter}} ..."
         print(message)
-    except:
+    except Exception:
         traceback.print_exc()
         sys.exit(1)
 

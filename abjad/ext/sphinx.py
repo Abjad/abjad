@@ -52,8 +52,7 @@ class HiddenDoctestDirective(Directive):
     ### PUBLIC METHODS ###
 
     def run(self):
-        """Executes the directive.
-        """
+        """Executes the directive."""
         self.assert_has_content()
         return []
 
@@ -123,8 +122,7 @@ class ThumbnailDirective(Directive):
     ### PUBLIC METHODS ###
 
     def run(self):
-        """Executes the directive.
-        """
+        """Executes the directive."""
         node = thumbnail_block()
         node["classes"] += self.options.get("class", "")
         node["group"] = self.options.get("group", "")

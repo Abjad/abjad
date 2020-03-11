@@ -755,7 +755,7 @@ class Sequence(collections.abc.Sequence):
                         item, classes=classes, depth=depth
                     )
                     result.extend(flattened)
-                except:
+                except Exception:
                     result.append(item)
             else:
                 result.append(item)

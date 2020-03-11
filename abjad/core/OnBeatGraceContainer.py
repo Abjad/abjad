@@ -219,7 +219,7 @@ class OnBeatGraceContainer(Container):
 
         first_grace = abjad_inspect(self).leaf(0)
         if not isinstance(first_grace, (Note, Chord)):
-            message = f"must start with note or chord:\n"
+            message = "must start with note or chord:\n"
             message += f"    {repr(self)}"
             raise Exception(message)
         anchor_leaf = self._get_on_beat_anchor_leaf()
@@ -252,8 +252,8 @@ class OnBeatGraceContainer(Container):
     @property
     def leaf_duration(self) -> typing.Optional[Duration]:
         """
-       Gets leaf duration.
-       """
+        Gets leaf duration.
+        """
         return self._leaf_duration
 
 

@@ -102,8 +102,7 @@ class CleanScript(CLI):
     alias = "clean"
     config_name = ".abjadrc"
     short_description = (
-        "Clean *.pyc, *.swp, .cache,  __pycache__ and tmp* "
-        "files and folders from PATH."
+        "Clean *.pyc, *.swp, .cache,  __pycache__ and tmp* files and folders from PATH."
     )
 
     ### PRIVATE METHODS ###

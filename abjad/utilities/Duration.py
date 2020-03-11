@@ -1155,7 +1155,7 @@ class Duration(Fraction):
         try:
             Duration.__new__(Duration, argument)
             return True
-        except:
+        except Exception:
             return False
 
     def to_clock_string(self) -> str:

@@ -1,7 +1,7 @@
 #! /usr/bin/env python
-import abjad
 import os
 
+import abjad
 
 directory_name_blacklist = (
     'docs',

@@ -1,6 +1,7 @@
 #! /usr/bin/env python
-import abjad
 import os
+
+import abjad
 
 
 def find_import_as_statements():
