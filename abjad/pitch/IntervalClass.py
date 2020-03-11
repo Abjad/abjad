@@ -1,4 +1,4 @@
-import abc
+#import abc
 import copy
 import functools
 import numbers
@@ -9,6 +9,7 @@ from abjad.system.StorageFormatManager import StorageFormatManager
 from . import constants
 
 
+# NOTE: mypy 0.770 errors on functools combined with abstract class
 @functools.total_ordering
 class IntervalClass(object):
     """
@@ -23,7 +24,7 @@ class IntervalClass(object):
 
     ### INITIALIZER ###
 
-    @abc.abstractmethod
+    #@abc.abstractmethod
     def __init__(self, argument):
         import abjad
 
@@ -82,7 +83,7 @@ class IntervalClass(object):
         """
         return type(self)(abs(self._number))
 
-    @abc.abstractmethod
+    #@abc.abstractmethod
     def __add__(self, argument):
         """
         Adds `argument` to interval-class.
@@ -117,7 +118,7 @@ class IntervalClass(object):
             raise TypeError(f"unhashable type: {self}")
         return result
 
-    @abc.abstractmethod
+    #@abc.abstractmethod
     def __lt__(self, argument):
         """
         Is true when interval-class is less than `argument`.
@@ -140,7 +141,7 @@ class IntervalClass(object):
         """
         return str(self.number)
 
-    @abc.abstractmethod
+    #@abc.abstractmethod
     def __sub__(self, argument):
         """
         Subtracts `argument` from interval-class.

@@ -1,4 +1,4 @@
-import abc
+#import abc
 import functools
 import numbers
 
@@ -22,7 +22,7 @@ class PitchClass(object):
 
     ### INITIALIZER ###
 
-    @abc.abstractmethod
+    #@abc.abstractmethod
     def __init__(self, argument):
         import abjad
 
@@ -96,7 +96,7 @@ class PitchClass(object):
             raise TypeError(f"unhashable type: {self}")
         return result
 
-    @abc.abstractmethod
+    #@abc.abstractmethod
     def __lt__(self, argument):
         """
         Is true when pitch-class is less than `argument`.
@@ -113,27 +113,27 @@ class PitchClass(object):
 
     ### PRIVATE METHODS ###
 
-    @abc.abstractmethod
+    #@abc.abstractmethod
     def _from_named_parts(self, dpc_number, alteration):
         raise NotImplementedError
 
-    @abc.abstractmethod
+    #@abc.abstractmethod
     def _from_number(self, number):
         raise NotImplementedError
 
-    @abc.abstractmethod
+    #@abc.abstractmethod
     def _from_pitch_or_pitch_class(self, pitch_or_pitch_class):
         raise NotImplementedError
 
-    @abc.abstractmethod
+    #@abc.abstractmethod
     def _get_alteration(self):
         raise NotImplementedError
 
-    @abc.abstractmethod
+    #@abc.abstractmethod
     def _get_diatonic_pc_number(self):
         raise NotImplementedError
 
-    @abc.abstractmethod
+    #@abc.abstractmethod
     def _get_lilypond_format(self):
         raise NotImplementedError
 
@@ -150,14 +150,14 @@ class PitchClass(object):
 
     ### PUBLIC PROPERTIES ###
 
-    @abc.abstractproperty
+    #@abc.abstractproperty
     def accidental(self):
         """
         Gets accidental of pitch-class.
         """
         raise NotImplementedError
 
-    @abc.abstractproperty
+    #@abc.abstractproperty
     def pitch_class_label(self):
         """
         Gets pitch-class label of pitch-class.
@@ -166,7 +166,7 @@ class PitchClass(object):
 
     ### PUBLIC METHODS ###
 
-    @abc.abstractmethod
+    #@abc.abstractmethod
     def invert(self, axis=None):
         """
         Inverts pitch-class about `axis`.
@@ -175,7 +175,7 @@ class PitchClass(object):
         """
         raise NotImplementedError
 
-    @abc.abstractmethod
+    #@abc.abstractmethod
     def multiply(self, n=1):
         """
         Multiplies pitch-class by `n`.
@@ -184,7 +184,7 @@ class PitchClass(object):
         """
         raise NotImplementedError
 
-    @abc.abstractmethod
+    #@abc.abstractmethod
     def transpose(self, n=0):
         """
         Transposes pitch-class by index `n`.

@@ -11,26 +11,26 @@ if __name__ == "__main__":
 
     try:
         from definition import maker
-    except ImportError:
-        traceback.print_exc()
-        sys.exit(1)
-
-    try:
         from __metadata__ import metadata as metadata
-    except ImportError:
-        traceback.print_exc()
-        sys.exit(1)
-
-    try:
         {previous_segment_metadata_import_statement}
     except ImportError:
         traceback.print_exc()
         sys.exit(1)
 
     try:
+        segment_directory = ide.Path(os.path.realpath(__file__)).parent
+    except:
+        traceback.print_exc()
+        sys.exit(1)
+
+    try:
         with abjad.Timer() as timer:
             lilypond_file = maker.run(
-                metadata=metadata, midi=True, previous_metadata=previous_metadata,
+                metadata=metadata,
+                midi=True,
+                previous_metadata=previous_metadata,
+                # include segment directory to write segment name metadata after run
+                segment_directory=segment_directory,
             )
         count = int(timer.elapsed_time)
         counter = abjad.String("second").pluralize(count)

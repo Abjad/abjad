@@ -122,8 +122,11 @@ class PersistenceManager(object):
         Returns 4-tuple of output MIDI path, Abjad formatting time, LilyPond
         rendering time and success boolean.
         """
-        assert hasattr(self._client, "__illustrate__")
-        lilypond_file = self._client.__illustrate__(**keywords)
+        if hasattr(self._client, "score_block"):
+            lilypond_file = self._client
+        else:
+            assert hasattr(self._client, "__illustrate__")
+            lilypond_file = self._client.__illustrate__(**keywords)
         assert hasattr(lilypond_file, "score_block")
         if midi_file_path is not None:
             midi_file_path = os.path.expanduser(midi_file_path)
@@ -144,8 +147,6 @@ class PersistenceManager(object):
         else:
             extension = "midi"
         path = os.path.splitext(ly_file_path)[0]
-        pdf_file_path = f"{path}.pdf"
-        os.remove(pdf_file_path)
         midi_file_path = f"{path}.{extension}"
         return (
             midi_file_path,
