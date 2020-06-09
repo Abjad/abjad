@@ -1,8 +1,8 @@
 #! /usr/bin/env python
-import abjad
 import datetime
 import subprocess
 
+import abjad
 
 template = """\
 Abjad {abjad_version}

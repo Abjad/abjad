@@ -18,7 +18,7 @@ from abjad.utilities.Enumerator import Enumerator
 from abjad.utilities.Multiplier import Multiplier
 
 try:
-    from quicktions import Fraction  # type: ignore
+    from quicktions import Fraction  # type: ignore  # noqa
 except ImportError:
     pass
 

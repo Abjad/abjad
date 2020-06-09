@@ -192,7 +192,7 @@ class Octave(object):
         """
         try:
             argument = type(self)(argument)
-        except:
+        except Exception:
             False
         return self.number < argument.number
 

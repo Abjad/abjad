@@ -1,13 +1,12 @@
-import abjad
-import definition
-import ide
 import sys
 import traceback
 
+import abjad
+import definition
 
 if __name__ == "__main__":
 
-    directory, lilypond_file = ide.Path(__file__).parent, None
+    directory, lilypond_file = abjad.Path(__file__).parent, None
 
     try:
         material = getattr(definition, directory.name)
@@ -28,7 +27,7 @@ if __name__ == "__main__":
         counter = abjad.String("second").pluralize(count)
         message = f"Abjad runtime {count} {counter} ..."
         print(message)
-    except:
+    except Exception:
         traceback.print_exc()
         sys.exit(1)
 
@@ -43,7 +42,7 @@ if __name__ == "__main__":
         counter = abjad.String("second").pluralize(count)
         message = f"LilyPond runtime {count} {counter} ..."
         print(message)
-    except:
+    except Exception:
         traceback.print_exc()
         sys.exit(1)
 

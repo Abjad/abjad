@@ -280,7 +280,6 @@ class LogicalTie(Selection):
         Returns tuplet.
         """
         from .Note import Note
-        from .Note import Note
         from .NoteMaker import NoteMaker
         from .Tuplet import Tuplet
 

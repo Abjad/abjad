@@ -7183,7 +7183,7 @@ class Selection(collections.abc.Sequence):
             else:
                 try:
                     count = counts[i]
-                except:
+                except Exception:
                     raise Exception(counts, i)
                 if count < 0:
                     continue

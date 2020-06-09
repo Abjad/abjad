@@ -340,8 +340,7 @@ class ReducedLyParser(Parser):
         p[0] = p[1] + [p[2]]
 
     def p_container__BRACE_L__component_list__BRACE_R(self, p):
-        r"""container : BRACE_L component_list BRACE_R
-        """
+        r"""container : BRACE_L component_list BRACE_R"""
         p[0] = core.Container()
         for component in p[2]:
             p[0].append(component)

@@ -1,16 +1,16 @@
 .PHONY: docs build gh-pages
 
 project = abjad
-errors = E123,E203,E265,E266,E501,E722,F81,W503
+errors = E203,E266,E501,W503
 formatPaths = ${project}/ tests/ *.py
 testPaths = ${project}/ tests/
-flakeOptions = --exclude=boilerplate,abjad/__init__.py,abjad/pitch/__init__.py --max-line-length=90 --isolated
+flakeOptions = --exclude=boilerplate,abjad/__init__.py --isolated --max-line-length=88
 
 black-check:
-	black --target-version py36 --exclude '.*boilerplate.*' --check --diff ${formatPaths}
+	black --target-version py38 --exclude '.*boilerplate.*' --check --diff ${formatPaths}
 
 black-reformat:
-	black --target-version py36 --exclude '.*boilerplate.*' ${formatPaths}
+	black --target-version py38 --exclude '.*boilerplate.*' ${formatPaths}
 
 build:
 	python setup.py sdist
@@ -43,27 +43,48 @@ gh-pages:
 		git push -u origin master
 	rm -Rf gh-pages/
 
-isort:
+isort-check:
+	isort \
+		--apply \
+		--case-sensitive \
+		--check-only \
+		--diff \
+		--line-width=88 \
+		--multi-line=3 \
+		--project=abjad \
+		--project=abjadext \
+		--recursive \
+		--skip=${project}/__init__.py \
+		--skip-glob='*boilerplate*' \
+		--thirdparty=ply \
+		--thirdparty=roman \
+		--thirdparty=uqbar \
+		--trailing-comma \
+		--use-parentheses \
+		${formatPaths}
+
+isort-reformat:
 	isort \
 		--case-sensitive \
-		--multi-line 3 \
-		--project abjad \
-		--project abjadext \
+		--line-width=88 \
+		--multi-line=3 \
+		--project=abjad \
+		--project=abjadext \
 		--recursive \
-		--skip ${project}/__init__.py \
-		--skip-glob '*boilerplate*' \
-		--thirdparty ply \
-		--thirdparty roman \
-		--thirdparty uqbar \
+		--skip=${project}/__init__.py \
+		--skip-glob='*boilerplate*' \
+		--thirdparty=ply \
+		--thirdparty=roman \
+		--thirdparty=uqbar \
 		--trailing-comma \
-		--use-parentheses -y \
+		--use-parentheses \
 		${formatPaths}
 
 jupyter-test:
 	jupyter nbconvert --to=html --ExecutePreprocessor.enabled=True tests/test.ipynb
 
 mypy:
-	mypy --ignore-missing-imports ${project}/
+	mypy ${project}/
 
 pytest:
 	rm -Rf htmlcov/
@@ -87,8 +108,8 @@ pytest-x:
 		${testPaths}
 
 reformat:
-	make isort
 	make black-reformat
+	make isort-reformat
 
 release:
 	make -C docs/ clean html
@@ -98,8 +119,14 @@ release:
 	twine upload dist/*.tar.gz
 	make gh-pages
 
+check:
+	make black-check
+	make flake8-check
+	make isort-check
+
 test:
 	make black-check
 	make flake8
+	make isort-check
 	make mypy
 	make pytest

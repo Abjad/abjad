@@ -1,26 +1,27 @@
 #! /usr/bin/env python
-import abjad
-import ide
 import os
 import pathlib
 import sys
 import time
 import traceback
 
+import abjad
+import ide
 
 if __name__ == "__main__":
 
     try:
         from definition import maker
         from __metadata__ import metadata as metadata
+
         {previous_segment_metadata_import_statement}
     except ImportError:
         traceback.print_exc()
         sys.exit(1)
 
     try:
-        segment_directory = ide.Path(os.path.realpath(__file__)).parent
-    except:
+        segment_directory = abjad.Path(os.path.realpath(__file__)).parent
+    except Exception:
         traceback.print_exc()
         sys.exit(1)
 
@@ -40,7 +41,7 @@ if __name__ == "__main__":
 
     try:
         scores_directory = segment_directory.parent.parent.parent.parent
-        segment_directory = ide.Path(segment_directory, scores=scores_directory)
+        segment_directory = abjad.Path(segment_directory)
         assert segment_directory.is_score_package_path(), repr(segment_directory)
         illustration_ly = segment_directory / "illustration.ly"
         print(" Running segment-maker ...")
@@ -85,7 +86,7 @@ if __name__ == "__main__":
         message = f" Abjad format time {{count}} {{counter}} ..."
         print(message)
         abjad_format_time = (count, counter)
-    except:
+    except Exception:
         traceback.print_exc()
         sys.exit(1)
 
@@ -109,7 +110,7 @@ if __name__ == "__main__":
         else:
             measure_count = None
             time_signatures = None
-    except:
+    except Exception:
         traceback.print_exc()
         sys.exit(1)
 
@@ -125,7 +126,7 @@ if __name__ == "__main__":
         ]:
             for message in job():
                 print(" " + message)
-    except:
+    except Exception:
         traceback.print_exc()
         sys.exit(1)
 
@@ -138,7 +139,7 @@ if __name__ == "__main__":
         if not layout_ly.exists():
             print(" Writing stub layout.ly ...")
             layout_ly.write_text("")
-    except:
+    except Exception:
         traceback.print_exc()
         sys.exit(1)
 
@@ -183,7 +184,7 @@ if __name__ == "__main__":
                         message = " Music time signatures still do not match"
                         message += " layout time signatures ..."
                         print(message)
-    except:
+    except Exception:
         traceback.print_exc()
         sys.exit(1)
 
@@ -216,7 +217,7 @@ if __name__ == "__main__":
         message = f" LilyPond runtime {{count}} {{counter}} ..."
         print(message)
         lilypond_runtime = (count, counter)
-    except:
+    except Exception:
         traceback.print_exc()
         sys.exit(1)
 
@@ -235,7 +236,7 @@ if __name__ == "__main__":
             count, counter = lilypond_runtime
             line = f" LilyPond runtime: {{count}} {{counter}}\n"
             pointer.write(line)
-    except:
+    except Exception:
         traceback.print_exc()
         sys.exit(1)
 

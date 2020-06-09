@@ -58,7 +58,10 @@ def test_LilyPondParser__spanners__Text_02():
         """
     )
 
-    string = r"\relative c' { c \startTextSpan c c \startTextSpan \stopTextSpan c \stopTextSpan }"
+    string = (
+        r"\relative c' { c \startTextSpan c c \startTextSpan \stopTextSpan c"
+        r" \stopTextSpan }"
+    )
 
     parser = abjad.parser.LilyPondParser()
     result = parser(string)

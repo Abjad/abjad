@@ -163,8 +163,7 @@ class SchemeParser(Parser):
         pass
 
     def t_quote_440(self, t):
-        r"""\\[nt\\'"]
-        """
+        r"""\\[nt\\'"]"""
         self.cursor += len(t.value)
         t.cursor_end = self.cursor
         self.string_accumulator += t.value
@@ -243,7 +242,7 @@ class SchemeParser(Parser):
         t.cursor_end = self.cursor
         if self.debug:
             print(
-                ("SchemeParser-{}: Illegal character {!r}".format(id(self), t.value[0]))
+                "SchemeParser-{}: Illegal character {!r}".format(id(self), t.value[0])
             )
         # t.lexer.skip(1)
 
@@ -657,13 +656,11 @@ class SchemeParser(Parser):
     def p_error(self, p):
         if p:
             if self.debug:
-                print(
-                    ("SchemeParser-{}: Syntax error at {!r}".format(id(self), p.value))
-                )
+                print("SchemeParser-{}: Syntax error at {!r}".format(id(self), p.value))
             self._parser.errok()
         else:
             if self.debug:
-                print(("SchemeParser-{}: Syntax error at EOF".format(id(self))))
+                print("SchemeParser-{}: Syntax error at EOF".format(id(self)))
 
     ### PUBLIC PROPERTIES ###
 

@@ -231,7 +231,7 @@ def attach(  # noqa: 302
         raise Exception(message)
 
     if deactivate is True and tag is None:
-        raise Exception(f"tag must exist when deactivate is true.")
+        raise Exception("tag must exist when deactivate is true.")
 
     if hasattr(attachable, "_before_attach"):
         attachable._before_attach(target)

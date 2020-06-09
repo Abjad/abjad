@@ -6,7 +6,7 @@ from abjad.system.StorageFormatManager import StorageFormatManager
 from .TypedCollection import TypedCollection
 
 
-class TypedCounter(TypedCollection, collections.MutableMapping):
+class TypedCounter(TypedCollection, collections.abc.MutableMapping):
     """
     Typed counter.
 

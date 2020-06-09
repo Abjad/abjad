@@ -1,4 +1,4 @@
-#import abc
+# import abc
 import copy
 import functools
 import numbers
@@ -24,7 +24,7 @@ class Interval(object):
 
     ### INITIALIZER ###
 
-    #@abc.abstractmethod
+    # @abc.abstractmethod
     def __init__(self, argument):
         import abjad
 
@@ -75,7 +75,7 @@ class Interval(object):
 
     ### SPECIAL METHODS ###
 
-    #@abc.abstractmethod
+    # @abc.abstractmethod
     def __abs__(self):
         """
         Gets absolute value of interval.
@@ -110,7 +110,7 @@ class Interval(object):
             raise TypeError(f"unhashable type: {self}")
         return result
 
-    #@abc.abstractmethod
+    # @abc.abstractmethod
     def __lt__(self, argument):
         """
         Is true when interval is less than `argument`.
@@ -119,7 +119,7 @@ class Interval(object):
         """
         raise NotImplementedError
 
-    #@abc.abstractmethod
+    # @abc.abstractmethod
     def __neg__(self):
         """
         Negates interval.
@@ -144,15 +144,15 @@ class Interval(object):
 
     ### PRIVATE METHODS ###
 
-    #@abc.abstractmethod
+    # @abc.abstractmethod
     def _from_named_parts(self, direction, quality, diatonic_number):
         raise NotImplementedError
 
-    #@abc.abstractmethod
+    # @abc.abstractmethod
     def _from_number(self, argument):
         raise NotImplementedError
 
-    #@abc.abstractmethod
+    # @abc.abstractmethod
     def _from_interval_or_interval_class(self, argument):
         raise NotImplementedError
 
@@ -255,7 +255,7 @@ class Interval(object):
         """
         return 100 * self.semitones
 
-    #@abc.abstractproperty
+    # @abc.abstractproperty
     @property
     def direction_number(self):
         """
@@ -265,7 +265,7 @@ class Interval(object):
         """
         raise NotImplementedError
 
-    #@abc.abstractproperty
+    # @abc.abstractproperty
     @property
     def interval_class(self):
         """
@@ -275,7 +275,7 @@ class Interval(object):
         """
         raise NotImplementedError
 
-    #@abc.abstractproperty
+    # @abc.abstractproperty
     @property
     def number(self):
         """
@@ -285,7 +285,7 @@ class Interval(object):
         """
         raise NotImplementedError
 
-    #@abc.abstractproperty
+    # @abc.abstractproperty
     @property
     def octaves(self):
         """
@@ -295,7 +295,7 @@ class Interval(object):
         """
         raise NotImplementedError
 
-    #@abc.abstractproperty
+    # @abc.abstractproperty
     @property
     def semitones(self):
         """

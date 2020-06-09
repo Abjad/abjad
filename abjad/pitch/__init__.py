@@ -46,7 +46,6 @@ from .StaffPosition import StaffPosition
 from .Transposition import Transposition
 from .TwelveToneRow import TwelveToneRow
 from .Vector import Vector
-from .constants import *
 
 __all__ = [
     "Accidental",

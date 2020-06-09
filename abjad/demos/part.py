@@ -6,7 +6,7 @@ import abjad
 try:
     import abjadext.tonality
 except ImportError:
-    print("NOTE: The Pärt demo requires abjad-ext-tonality")
+    print("Pärt demo requires abjadext.tonality.")
     pass
 
 
@@ -333,9 +333,8 @@ def edit_bass_voice(score, durated_reservoir):
     Edits bass voice.
     """
     voice = score["Bass Voice"]
-    voice[
-        -3:
-    ] = r"<e, e>\maxima <d, d>\longa <c, c>\maxima <b,>\longa <a,>\maxima r4 r2."
+    string = r"<e, e>\maxima <d, d>\longa <c, c>\maxima <b,>\longa <a,>\maxima r4 r2."
+    voice[-3:] = string
 
 
 def apply_bowing_marks(score):

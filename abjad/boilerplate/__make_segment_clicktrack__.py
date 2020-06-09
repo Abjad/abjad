@@ -1,11 +1,10 @@
 #! /usr/bin/env python
-import abjad
-import ide
 import os
 import pathlib
 import sys
 import traceback
 
+import abjad
 
 if __name__ == "__main__":
 
@@ -39,7 +38,7 @@ if __name__ == "__main__":
         sys.exit(1)
 
     try:
-        segment_directory = ide.Path(os.path.realpath(__file__)).parent
+        segment_directory = abjad.Path(os.path.realpath(__file__)).parent
         with abjad.Timer() as timer:
             lilypond_file = maker.run(
                 metadata=metadata,
@@ -53,7 +52,7 @@ if __name__ == "__main__":
         counter = abjad.String("second").pluralize(count)
         message = f"Abjad runtime {{count}} {{counter}} ..."
         print(message)
-    except:
+    except Exception:
         traceback.print_exc()
         sys.exit(1)
 
@@ -83,9 +82,7 @@ if __name__ == "__main__":
             metronome_mark = metronome_marks[i]
             units_per_minute = round(metronome_mark.units_per_minute)
             metronome_mark = abjad.new(
-                metronome_mark,
-                hide=False,
-                units_per_minute=units_per_minute,
+                metronome_mark, hide=False, units_per_minute=units_per_minute,
             )
             time_signature = abjad.new(time_signature)
             numerator, denominator = time_signature.pair
@@ -112,11 +109,11 @@ if __name__ == "__main__":
     abjad.f(lilypond_file)
 
     try:
-        segment_directory = ide.Path(__file__).parent
+        segment_directory = abjad.Path(__file__).parent
         score_directory = segment_directory.contents
         stem = f"{{score_directory.name}}-{{segment_directory.name}}-clicktrack"
         midi = stem + ".midi"
-    except:
+    except Exception:
         traceback.print_exc()
         sys.exit(1)
 
@@ -127,7 +124,7 @@ if __name__ == "__main__":
         counter = abjad.String("second").pluralize(count)
         message = f"LilyPond runtime {{count}} {{counter}} ..."
         print(message)
-    except:
+    except Exception:
         traceback.print_exc()
         sys.exit(1)
 

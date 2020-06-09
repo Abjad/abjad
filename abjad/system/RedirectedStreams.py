@@ -57,7 +57,7 @@ class RedirectedStreams(ContextManager):
         try:
             self._stdout.flush()
             self._stderr.flush()
-        except:
+        except Exception:
             pass
         sys.stdout = self._old_stdout
         sys.stderr = self._old_stderr

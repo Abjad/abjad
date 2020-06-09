@@ -297,18 +297,16 @@ _stop_punctuation_to_inclusivity_string = {"]": "inclusive", ")": "exclusive"}
 _integer_regex_atom = r"-?\d+"
 
 _alphabetic_accidental_regex_atom = (
-    "(?P<alphabetic_accidental>" "[s]*(qs)?" "|[f]*(qf)?" "|t?q?[fs]" "|" ")"
+    "(?P<alphabetic_accidental>[s]*(qs)?|[f]*(qf)?|t?q?[fs]|)"
 )
 
-_symbolic_accidental_regex_atom = (
-    "(?P<symbolic_accidental>" "[#]+[+]?" "|[b]+[~]?" "|[+]" "|[~]" "|" ")"
-)
+_symbolic_accidental_regex_atom = "(?P<symbolic_accidental>[#]+[+]?|[b]+[~]?|[+]|[~]|)"
 
 _octave_number_regex_atom = "(?P<octave_number>{}|)".format(_integer_regex_atom)
 
-_octave_tick_regex_atom = "(?P<octave_tick>" ",+" "|'+" "|" ")"
+_octave_tick_regex_atom = "(?P<octave_tick>,+|'+|)"
 
-_diatonic_pc_name_regex_atom = "(?P<diatonic_pc_name>" "[A-Ga-g]" ")"
+_diatonic_pc_name_regex_atom = "(?P<diatonic_pc_name>[A-Ga-g])"
 
 ### REGEX BODIES ###
 

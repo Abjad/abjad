@@ -1,31 +1,41 @@
-language: python
+version: ~> 1.0
 
 os: linux
+
+dist: xenial
+
+language: python
 
 cache:
     - pip
 
 env:
-  global:
-    - LILYPOND_URL=http://lilypond.org/downloads/binaries/linux-64/
-    - LILYPOND_VERSION=2.19.83
+    global:
+        - LILYPOND_URL=http://lilypond.org/downloads/binaries/linux-64/
+        - LILYPOND_VERSION=2.19.84
 
 jobs:
-  include:
-    - python: "3.6"
-        env: ACCELERATED=true
-    - python: "3.7"
-        env: ACCELERATED=true
-    - python: "3.8"
-        env: ACCELERATED=true
-    - python: "3.8"
-        env: ACCELERATED=false
+    include:
+        - python: "3.6"
+          env: ACCELERATED=true
+        - python: "3.7"
+          env: ACCELERATED=true
+        - python: "3.8"
+          env: ACCELERATED=true
+        - python: "3.8"
+          env: ACCELERATED=false
 
 before_install:
     - wget -q ${LILYPOND_URL}lilypond-${LILYPOND_VERSION}-1.linux-64.sh
     - sh lilypond-${LILYPOND_VERSION}-1.linux-64.sh --batch
     - pip install -U pip coverage
     - export PATH=/home/travis/bin:$PATH
+
+    # log environment variables
+    - echo $MYPYPATH
+    - echo $PATH
+    - echo $PYTHONPATH
+    - echo $TRAVIS_BUILD_DIR
 
 install:
     # install without development dependencies
@@ -39,14 +49,18 @@ install:
     # install accelerated dependencies if requested
     - if [[ $ACCELERATED == true ]]; then pip install -e .[accelerated]; fi
 
-script:
+    # log versions
     - black --version
-    - make black-check
     - flake8 --version
-    - make flake8
+    - isort --version
     - mypy --version
-    - if [[ $TRAVIS_PYTHON_VERSION != 3.6 ]]; then make mypy; fi
     - pytest --version
+
+script:
+    - make black-check
+    - make flake8
+    - make isort-check
+    - make mypy
     - make pytest
     - ajv --help
 

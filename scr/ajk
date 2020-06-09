@@ -1,8 +1,8 @@
 #! /usr/bin/env python
-import abjad
 import sys
 import time
 
+import abjad
 
 abjad.IOManager.clear_terminal()
 start_time = time.time()

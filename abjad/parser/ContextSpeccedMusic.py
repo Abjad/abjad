@@ -11,7 +11,7 @@ class ContextSpeccedMusic(Music):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        #'context',
+        # "context",
         "lilypond_type",
         "music",
         "optional_id",
