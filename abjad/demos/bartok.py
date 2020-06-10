@@ -127,8 +127,5 @@ def make_bartok_score():
 
 
 if __name__ == "__main__":
-    # for mypy
-    from abjad import show
-
     lilypond_file = make_bartok_score()
-    show(lilypond_file)
+    abjad.show(lilypond_file)

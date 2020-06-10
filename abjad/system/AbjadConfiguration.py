@@ -1,4 +1,5 @@
 import os
+import pathlib
 import subprocess
 import sys
 import traceback
@@ -155,6 +156,20 @@ class AbjadConfiguration(Configuration):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def all_paths(self):
+        """
+        For Travis debugging.
+        """
+        paths = []
+        paths.append(pathlib.Path(__file__))
+        paths.append(pathlib.Path(__file__).parent)
+        paths.append(pathlib.Path(__file__).parent.parent)
+        paths.append(pathlib.Path(__file__).parent.parent.parent)
+        paths.append(pathlib.Path(__file__).parent.parent.parent / "boilerplate")
+        return paths
+
+    # TODO: return pathlib.Path
+    @property
     def abjad_directory(self):
         """
         Gets Abjad directory.
@@ -165,6 +180,7 @@ class AbjadConfiguration(Configuration):
 
         return abjad.__path__[0]
 
+    # TODO: return pathlib.Path
     @property
     def abjad_output_directory(self):
         """
@@ -176,6 +192,7 @@ class AbjadConfiguration(Configuration):
             return self._settings["abjad_output_directory"]
         return os.path.join(self.configuration_directory, "output")
 
+    # TODO: return pathlib.Path
     @property
     def abjad_root_directory(self):
         """
@@ -187,14 +204,19 @@ class AbjadConfiguration(Configuration):
         return os.path.abspath(relative_path)
 
     @property
-    def boilerplate_directory(self):
+    def abjad_script_directory(self) -> pathlib.Path:
+        """
+        Gets Abjad script directory.
+        """
+        root = pathlib.Path(self.abjad_root_directory)
+        return root / "scr"
+
+    @property
+    def boilerplate_directory(self) -> pathlib.Path:
         """
         Gets Abjad boilerplate directory.
-
-        Return string.
         """
-        relative_path = os.path.join(self.abjad_directory, "boilerplate")
-        return os.path.abspath(relative_path)
+        return pathlib.Path(__file__).parent.parent.parent / "boilerplate"
 
     @property
     def composer_email(self):
@@ -232,6 +254,7 @@ class AbjadConfiguration(Configuration):
         """
         return self._settings["composer_last_name"]
 
+    # TODO: return pathlib.Path
     @property
     def composer_scores_directory(self):
         """
@@ -261,6 +284,7 @@ class AbjadConfiguration(Configuration):
         """
         return self._settings["composer_website"]
 
+    # TODO: return pathlib.Path
     @property
     def lilypond_log_file_path(self):
         """
@@ -412,6 +436,7 @@ class AbjadConfiguration(Configuration):
         else:
             return "edit"
 
+    # TODO: remove?
     @staticmethod
     def list_package_dependency_versions():
         """

@@ -1,7 +1,36 @@
 #! /usr/bin/env python
 import os
+import sys
 
 import setuptools
+
+CURRENT_PYTHON = sys.version_info[:2]
+REQUIRED_PYTHON = (3, 6)
+
+if CURRENT_PYTHON < REQUIRED_PYTHON:
+    sys.stderr.write(
+        """
+==========================
+Unsupported Python version
+==========================
+
+This version of Abjad requires Python {}.{}, but you're trying to
+install it on Python {}.{}.
+
+This may be because you are using a version of pip that doesn't
+understand the python_requires classifier. Make sure you
+have pip >= 9.0 and setuptools >= 24.2, then try again:
+
+    $ python -m pip install --upgrade pip setuptools
+    $ python -m pip install abjad
+
+This will install the latest version of Abjad which works on your
+version of Python.
+""".format(
+            *(REQUIRED_PYTHON + CURRENT_PYTHON)
+        )
+    )
+    sys.exit(1)
 
 version_file_path = os.path.join(os.path.dirname(__file__), "abjad", "_version.py")
 with open(version_file_path, "r") as file_pointer:
@@ -36,20 +65,20 @@ classifiers = [
 entry_points = {"console_scripts": ["ajv = abjad.cli:run_ajv"]}
 
 extras_require = {
-    "accelerated": ["quicktions >= 1.3"],
-    "cli": ["abjad-ext-cli >= 3.1.0, < 3.2.0"],
-    "ipython": ["abjad-ext-ipython >= 3.1.0, < 3.2.0"],
-    "nauert": ["abjad-ext-nauert >= 3.1.0, < 3.2.0"],
-    "rmakers": ["abjad-ext-rmakers >= 3.1.0, < 3.2.0"],
-    "tonality": ["abjad-ext-tonality >= 3.1.0, < 3.2.0"],
+    "accelerated": ["quicktions>=1.3"],
+    "cli": ["abjad-ext-cli>=3.1.0, <3.2.0"],
+    "ipython": ["abjad-ext-ipython>=3.1.0, <3.2.0"],
+    "nauert": ["abjad-ext-nauert>=3.1.0, <3.2.0"],
+    "rmakers": ["abjad-ext-rmakers>=3.1.0, <3.2.0"],
+    "tonality": ["abjad-ext-tonality>=3.1.0, <3.2.0"],
     "test": [
         "black",
         "flake8",
         "isort",
-        "mypy >= 0.750",
-        "pytest >= 4.1.0",
-        "pytest-cov >= 2.6.0",
-        "pytest-helpers-namespace >= 2019.1.8",
+        "mypy>=0.770",
+        "pytest>=5.4.3",
+        "pytest-cov>=2.7.1",
+        "pytest-helpers-namespace",
     ],
 }
 
@@ -60,7 +89,7 @@ keywords = [
     "lilypond",
 ]
 
-install_requires = ["ply", "roman", "uqbar >= 0.4.4, < 0.5.0"]
+install_requires = ["ply", "roman", "uqbar>=0.4.4, <0.5.0"]
 
 if __name__ == "__main__":
     setuptools.setup(

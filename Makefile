@@ -1,16 +1,10 @@
 .PHONY: docs build gh-pages
 
-project = abjad
-errors = E203,E266,E501,W503
-formatPaths = ${project}/ tests/ *.py
-testPaths = ${project}/ tests/
-flakeOptions = --exclude=boilerplate,abjad/__init__.py --isolated --max-line-length=88
-
 black-check:
-	black --target-version py38 --exclude '.*boilerplate.*' --check --diff ${formatPaths}
+	black --check --diff --exclude='.*boilerplate.*' --target-version=py38 .
 
 black-reformat:
-	black --target-version py38 --exclude '.*boilerplate.*' ${formatPaths}
+	black --exclude='.*boilerplate.*' --target-version=py38 .
 
 build:
 	python setup.py sdist
@@ -29,8 +23,12 @@ clean:
 docs:
 	make -C docs/ html
 
+flake_exclude = --exclude=boilerplate,abjad/__init__.py
+flake_ignore = --ignore=E203,E266,E501,W503
+flake_options = --isolated --max-line-length=88
+
 flake8:
-	flake8 ${flakeOptions} --ignore=${errors} ${formatPaths}
+	flake8 ${flake_exclude} ${flake_ignore} ${flake_options}
 
 gh-pages:
 	rm -Rf gh-pages/
@@ -45,67 +43,69 @@ gh-pages:
 
 isort-check:
 	isort \
-		--apply \
-		--case-sensitive \
-		--check-only \
-		--diff \
-		--line-width=88 \
-		--multi-line=3 \
-		--project=abjad \
-		--project=abjadext \
-		--recursive \
-		--skip=${project}/__init__.py \
-		--skip-glob='*boilerplate*' \
-		--thirdparty=ply \
-		--thirdparty=roman \
-		--thirdparty=uqbar \
-		--trailing-comma \
-		--use-parentheses \
-		${formatPaths}
+	--case-sensitive \
+	--check-only \
+	--diff \
+	--line-width=88 \
+	--multi-line=3 \
+	--project=abjad \
+	--project=abjadext \
+	--recursive \
+	--skip=abjad/__init__.py \
+	--skip-glob='*boilerplate*' \
+	--thirdparty=ply \
+	--thirdparty=roman \
+	--thirdparty=uqbar \
+	--trailing-comma \
+	--use-parentheses \
+	.
 
 isort-reformat:
 	isort \
-		--case-sensitive \
-		--line-width=88 \
-		--multi-line=3 \
-		--project=abjad \
-		--project=abjadext \
-		--recursive \
-		--skip=${project}/__init__.py \
-		--skip-glob='*boilerplate*' \
-		--thirdparty=ply \
-		--thirdparty=roman \
-		--thirdparty=uqbar \
-		--trailing-comma \
-		--use-parentheses \
-		${formatPaths}
+	--apply \
+	--case-sensitive \
+	--line-width=88 \
+	--multi-line=3 \
+	--project=abjad \
+	--project=abjadext \
+	--recursive \
+	--skip=abjad/__init__.py \
+	--skip-glob='*boilerplate*' \
+	--thirdparty=ply \
+	--thirdparty=roman \
+	--thirdparty=uqbar \
+	--trailing-comma \
+	--use-parentheses \
+	.
 
 jupyter-test:
 	jupyter nbconvert --to=html --ExecutePreprocessor.enabled=True tests/test.ipynb
 
 mypy:
-	mypy ${project}/
+	mypy .
+
+project = abjad
 
 pytest:
 	rm -Rf htmlcov/
 	pytest \
-		--cov-config=.coveragerc \
-		--cov-report=html \
-		--cov-report=term \
-		--cov=${project}/ \
-		--durations=20 \
-		${testPaths}
+	--cov-config=.coveragerc \
+	--cov-report=html \
+	--cov-report=term \
+	--cov=${project}/ \
+	--durations=20 \
+	.
 
 pytest-x:
 	rm -Rf htmlcov/
 	pytest \
-		-x \
-		--cov-config=.coveragerc \
-		--cov-report=html \
-		--cov-report=term \
-		--cov=${project}/ \
-		--durations=20 \
-		${testPaths}
+	-x \
+	--cov-config=.coveragerc \
+	--cov-report=html \
+	--cov-report=term \
+	--cov=${project}/ \
+	--durations=20 \
+	.
 
 reformat:
 	make black-reformat
@@ -121,8 +121,9 @@ release:
 
 check:
 	make black-check
-	make flake8-check
+	make flake8
 	make isort-check
+	make mypy
 
 test:
 	make black-check

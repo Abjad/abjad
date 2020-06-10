@@ -6,64 +6,69 @@ dist: xenial
 
 language: python
 
-cache:
-    - pip
+git:
+  depth: false
 
-env:
-    global:
-        - LILYPOND_URL=http://lilypond.org/downloads/binaries/linux-64/
-        - LILYPOND_VERSION=2.19.84
+cache:
+  - pip
 
 jobs:
-    include:
-        - python: "3.6"
-          env: ACCELERATED=true
-        - python: "3.7"
-          env: ACCELERATED=true
-        - python: "3.8"
-          env: ACCELERATED=true
-        - python: "3.8"
-          env: ACCELERATED=false
+  include:
+    - python: "3.6"
+      env: ACCELERATED=true
+    - python: "3.7"
+      env: ACCELERATED=true
+    - python: "3.8"
+      env: ACCELERATED=true
+    - python: "3.8"
+      env: ACCELERATED=false
 
 before_install:
-    - wget -q ${LILYPOND_URL}lilypond-${LILYPOND_VERSION}-1.linux-64.sh
-    - sh lilypond-${LILYPOND_VERSION}-1.linux-64.sh --batch
-    - pip install -U pip coverage
-    - export PATH=/home/travis/bin:$PATH
+  # install lilypond
+  - lilypond=/tmp/lilypond
+  - lilypond_url=http://lilypond.org/downloads/binaries/linux-64/
+  - lilypond_source=lilypond-2.19.84-1.linux-64.sh
+  - wget -q -O $lilypond $lilypond_url/$lilypond_source
+  - sh $lilypond --batch
+  - pip install -U pip coverage
 
-    # log environment variables
-    - echo $MYPYPATH
-    - echo $PATH
-    - echo $PYTHONPATH
-    - echo $TRAVIS_BUILD_DIR
+  # log environment variables
+  - echo $MYPYPATH
+  - echo $PATH
+  - echo $PYTHONPATH
+  - echo $TRAVIS_BUILD_DIR
 
 install:
-    # install without development dependencies
-    - pip install -e .
-    # echo the configuration file path to debug read-only-filesystem handling
-    - python -c "import abjad; print(abjad.abjad_configuration.configuration_file_path)"
-    # prime the parser
-    - scr/devel/prime-parser-tables
-    # install development dependencies
-    - pip install -U -e .[test]
-    # install accelerated dependencies if requested
-    - if [[ $ACCELERATED == true ]]; then pip install -e .[accelerated]; fi
+  # install without development dependencies
+  - pip install -e .
+  # echo the configuration file path to debug read-only-filesystem handling
+  - python -c "import abjad; print(abjad.abjad_configuration.configuration_file_path)"
+  # prime the parser
+  - scr/devel/prime-parser-tables
+  # install development dependencies
+  - pip install -U -e .[test]
+  # install accelerated dependencies for accelerated builds
+  - if [[ $ACCELERATED == true ]]; then pip install -e .[accelerated]; fi
 
-    # log versions
-    - black --version
-    - flake8 --version
-    - isort --version
-    - mypy --version
-    - pytest --version
+  # log versions
+  - black --version
+  - flake8 --version
+  - isort --version
+  - mypy --version
+  - pytest --version
+
+  # log paths
+  - python -c "import abjad; print(abjad.abjad_configuration.boilerplate_directory)"
+  - python -c "import abjad; print(abjad.abjad_configuration.all_paths)"
 
 script:
-    - make black-check
-    - make flake8
-    - make isort-check
-    - make mypy
-    - make pytest
-    - ajv --help
+  - make black-check
+  - make flake8
+  - make isort-check
+  - make mypy
+  - make pytest
+  - ajv --help
 
 after_success:
-    - pip install --quiet coveralls
-    - coveralls
+  - pip install --quiet coveralls
+  - coveralls
