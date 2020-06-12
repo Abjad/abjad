@@ -5,9 +5,87 @@ The following works were composed with the assistance of Abjad. The source code
 for many of these scores is also available for pedagogical purposes.
 
 ..  hint::
-    
+
     Click on any image to zoom in.
 
+
+Chalk Line (2020)
+`````````````````````
+
+- For solo flute
+- Composed by `Gregory Rowland Evans`_.
+- Written for Paul Mizzi.
+- Source available from https://github.com/GregoryREvans/chalk_line/.
+
+..  container:: table-row
+
+    ..  thumbnail:: gallery/evans-chalk-line-page1.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 1 of Chalk Line,
+                by Gregory Rowland Evans.
+
+    ..  thumbnail:: gallery/evans-chalk-line-page4.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 4 of Chalk Line,
+                by Gregory Rowland Evans.
+
+Hamonshu (2018-20)
+`````````````````````
+
+- For string quartet
+- Composed by `Gregory Rowland Evans`_.
+- Written for the 2019/20 JACK quartet residency at the University of Iowa.
+- Source available from https://github.com/GregoryREvans/hamon_shu/.
+
+..  raw:: html
+
+    <p>
+    <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/775289290&color=ff5500&amp&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
+    </p>
+
+..  container:: table-row
+
+    ..  thumbnail:: gallery/evans-hamonshu-page1.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 1 of Hamonshu,
+                by Gregory Rowland Evans.
+
+    ..  thumbnail:: gallery/evans-hamonshu-page4.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 4 of Hamonshu,
+                by Gregory Rowland Evans.
+
+GUERRERO (2018)
+`````````````````````
+
+- For 21 saxophones
+- Composed by `Gregory Rowland Evans`_.
+- Written for the Frost Saxophone Ensemble.
+- Source available from https://github.com/GregoryREvans/guerrero/.
+
+..  raw:: html
+
+    <p>
+    <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/610541151&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
+    </p>
+
+..  container:: table-row
+
+    ..  thumbnail:: gallery/evans-guerrero-page1.svg
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 1 of GUERRERO,
+                by Gregory Rowland Evans.
+
+    ..  thumbnail:: gallery/evans-guerrero-page10.svg
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 10 of GUERRERO,
+                by Gregory Rowland Evans.
 
 Demarest/Lloyd (2016)
 `````````````````````
@@ -25,7 +103,7 @@ Demarest/Lloyd (2016)
         :group: gallery
         :title: Page 19 of Demarest/Lloyd,
                 by Josiah Wolf Oberholtzer.
-        
+
     ..  thumbnail:: gallery/oberholtzer-demarest-page28.png
         :class: table-cell thumbnail
         :group: gallery
@@ -53,7 +131,7 @@ Al-kitab al-khamr (2015)
         :group: gallery
         :title: Page 10 of Al-kitab al-khamr,
                 by Trevor Bača.
-        
+
     ..  thumbnail:: gallery/baca-khamr-page11.png
         :class: table-cell thumbnail
         :group: gallery
@@ -109,7 +187,7 @@ Ins wasser eingeschrieben (2015)
         :group: gallery
         :title: Page 3 of Ins wasser eingeschrieben,
                 by Trevor Bača.
-        
+
     ..  thumbnail:: gallery/baca-ins-wasser-page4.png
         :class: table-cell thumbnail
         :group: gallery
@@ -194,7 +272,7 @@ Huitzil (2014)
         :group: gallery
         :title: Page 12 of Huitzil,
                 by Trevor Bača.
-        
+
     ..  thumbnail:: gallery/baca-huitzil-page13.png
         :class: table-cell thumbnail
         :group: gallery
@@ -250,7 +328,7 @@ Krummzeit (2014)
         :group: gallery
         :title: Page 80 of Krummzeit,
                 by Trevor Bača.
-        
+
     ..  thumbnail:: gallery/baca-krummzeit-page81.png
         :class: table-cell thumbnail
         :group: gallery
@@ -334,7 +412,7 @@ Traiettorie inargentate (2013)
         :group: gallery
         :title: Page 6 of Traiettorie inargentate,
                 by Trevor Bača.
-        
+
     ..  thumbnail:: gallery/baca-traiettorie-page7.png
         :class: table-cell thumbnail
         :group: gallery
@@ -371,7 +449,7 @@ Aurora (2011)
         :group: gallery
         :title: Page 6 of Aurora,
                 by Josiah Wolf Oberholtzer.
-        
+
     ..  thumbnail:: gallery/oberholtzer-aurora-page7.png
         :class: table-cell thumbnail
         :group: gallery
@@ -399,7 +477,7 @@ L'archipel du corps (2011)
         :group: gallery
         :title: Page 9 of L'archipel du corps,
                 by Trevor Bača.
-        
+
     ..  thumbnail:: gallery/baca-archipel-page10.png
         :class: table-cell thumbnail
         :group: gallery
@@ -427,7 +505,7 @@ L'imaginaire (2010)
         :group: gallery
         :title: Page 4 of L'imaginaire,
                 by Trevor Bača.
-        
+
     ..  thumbnail:: gallery/baca-imaginaire-page5.png
         :class: table-cell thumbnail
         :group: gallery
@@ -448,7 +526,7 @@ Lagartija (2010)
         :group: gallery
         :title: Page 4 of Lagartija,
                 by Josiah Wolf Oberholtzer.
-        
+
     ..  thumbnail:: gallery/oberholtzer-lagartija-page5.png
         :class: table-cell thumbnail
         :group: gallery
@@ -476,7 +554,7 @@ Mon seul désir (2009)
         :group: gallery
         :title: Page 14 of Mon seul désir,
                 by Trevor Bača.
-        
+
     ..  thumbnail:: gallery/baca-desir-page15.png
         :class: table-cell thumbnail
         :group: gallery
@@ -504,7 +582,7 @@ Lidércfény (2008)
         :group: gallery
         :title: Page 22 of Lidércfény,
                 by Trevor Bača.
-        
+
     ..  thumbnail:: gallery/baca-lidercfeny-page23.png
         :class: table-cell thumbnail
         :group: gallery
@@ -532,7 +610,7 @@ Sekka (2007)
         :group: gallery
         :title: Page 5 of Sekka,
                 by Trevor Bača.
-        
+
     ..  thumbnail:: gallery/baca-sekka-page6.png
         :class: table-cell thumbnail
         :group: gallery
@@ -560,7 +638,7 @@ Sekka (2007)
         :group: gallery
         :title: Page 5 of Čáry,
                 by Trevor Bača.
-        
+
     ..  thumbnail:: gallery/baca-cary-page6.png
         :class: table-cell thumbnail
         :group: gallery
@@ -581,7 +659,7 @@ Poème Récursif (2005)
         :group: gallery
         :title: Page 3 of Poème Récursif,
                 by Trevor Bača.
-        
+
     ..  thumbnail:: gallery/baca-poeme-recursif-page4.png
         :class: table-cell thumbnail
         :group: gallery
@@ -592,3 +670,4 @@ Poème Récursif (2005)
 ..  _Josiah Wolf Oberholtzer: http://josiahwolfoberholtzer.com/
 ..  _Trevor Bača: http://www.trevorbaca.com/
 ..  _Jeffrey Treviño: http://www.jeffreytrevino.com/
+..  _Gregory Rowland Evans: http://www.gregoryrowlandevans.com/
