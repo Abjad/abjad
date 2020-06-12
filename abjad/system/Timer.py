@@ -89,7 +89,7 @@ class Timer(ContextManager):
         if self.print_continuously_from_background:
             from abjad import abjad_configuration
 
-            path = os.path.join(abjad_configuration.abjad_directory, "scr", "timer.py")
+            path = os.path.join(abjad_configuration.abjad_script_directory, "timer")
             interval = str(int(self.print_continuously_from_background))
             process = subprocess.Popen([path, interval], shell=False)
             self._process = process
@@ -97,7 +97,7 @@ class Timer(ContextManager):
 
     def __exit__(self, exc_type, exc_value, traceback):
         """
-        Exist context manager.
+        Exit context manager.
 
         Returns none.
         """

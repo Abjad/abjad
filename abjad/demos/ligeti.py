@@ -192,9 +192,7 @@ def make_desordre_lilypond_file(score):
 
 
 if __name__ == "__main__":
-    from abjad import show
-
     pitches = make_desordre_pitches()
     score = make_desordre_score(pitches)
     lilypond_file = make_desordre_lilypond_file(score)
-    show(lilypond_file)
+    abjad.show(lilypond_file)

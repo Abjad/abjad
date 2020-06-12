@@ -832,8 +832,6 @@ class FerneyhoughDemo:
 
 
 if __name__ == "__main__":
-    from abjad import show
-
     arguments = sys.argv[1:]
     if len(arguments) != 3:
         print("USAGE: tuplet_duration row_count column_count")
@@ -852,4 +850,4 @@ if __name__ == "__main__":
     lilypond_file = demo(
         tuplet_duration=tuplet_duration, row_count=row_count, column_count=column_count,
     )
-    show(lilypond_file)
+    abjad.show(lilypond_file)
