@@ -143,3 +143,10 @@ try:
     uqbar_book_console_setup.append("from abjadext import rmakers")
 except ImportError:
     pass
+
+try:
+    from abjadext import microtones  # noqa
+
+    uqbar_book_console_setup.append("from abjadext import microtones")
+except ImportError:
+    pass
