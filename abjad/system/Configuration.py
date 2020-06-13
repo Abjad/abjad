@@ -1,18 +1,41 @@
-import abc
 import os
 import pathlib
+import subprocess
 import tempfile
 import time
 import traceback
+import typing
 
 import six
 
-from .StorageFormatManager import StorageFormatManager
+from ..format import StorageFormatManager
 
 
 class Configuration(object):
     """
     Configuration.
+
+    ..  container:: example
+
+        Behavior at instantiation:
+
+        * Looks for ``$HOME/.abjad/``.
+
+        * Creates ``$HOME/.abjad/`` if directory does not exist.
+
+        * Looks for ``$HOME/.abjad/abjad.cfg``.
+
+        * Creates ``$HOME/.abjad/abjad.cfg`` if file does not exist.
+
+        * Parses ``$HOME/.abjad/abjad.cfg``.
+
+        * Provides default key-value pairs for pairs which fail validation.
+
+        * Writes configuration changes to disk.
+
+        * Creates Abjad output directory if directory does not exist.
+
+    Supports mutable mapping dictionary interface.
     """
 
     ### CLASS VARIABLES ###
@@ -21,7 +44,12 @@ class Configuration(object):
 
     __slots__ = ("_cached_configuration_directory", "_settings")
 
-    _is_abstract = True
+    _configuration_directory_name = ".abjad"
+
+    _configuration_file_name = "abjad.cfg"
+
+    # for caching
+    _lilypond_version_string: typing.Optional[str] = None
 
     ### INITIALIZER ###
 
@@ -44,47 +72,37 @@ class Configuration(object):
         new_contents = self._configuration_to_string(configuration)
         if not self._compare_configurations(old_contents, new_contents):
             try:
-                # self.configuration_file_path.write_text(new_contents)
                 with open(str(self.configuration_file_path), "w") as file_pointer:
                     file_pointer.write(new_contents)
             except (IOError, OSError):
                 traceback.print_exc()
         self._settings = configuration
+        if not os.path.exists(self.abjad_output_directory):
+            try:
+                os.makedirs(self.abjad_output_directory)
+            except (IOError, OSError):
+                traceback.print_exc()
 
     ### SPECIAL METHODS ###
 
-    def __delitem__(self, i):
+    def __delitem__(self, i) -> None:
         """
         Deletes item ``i`` from configuration.
-
-        Returns none.
         """
         del self._settings[i]
 
-    def __getitem__(self, argument):
+    def __getitem__(self, argument) -> typing.Any:
         """
         Gets item or slice identified by ``argument``.
-
-        Returns item or slice.
         """
         return self._settings.__getitem__(argument)
 
-    def __iter__(self):
+    def __iter__(self) -> typing.Generator:
         """
         Iterates configuration settings.
-
-        Returns generator.
         """
         for key in self._settings:
             yield key
-
-    def __len__(self):
-        """
-        Gets the number of settings in configuration.
-
-        Returns nonnegative integer.
-        """
-        return len(self._settings)
 
     def __repr__(self) -> str:
         """
@@ -92,11 +110,9 @@ class Configuration(object):
         """
         return StorageFormatManager(self).get_repr_format()
 
-    def __setitem__(self, i, argument):
+    def __setitem__(self, i, argument) -> None:
         """
         Sets configuration item ``i`` to ``argument``.
-
-        Returns none.
         """
         self._settings[i] = argument
 
@@ -134,7 +150,7 @@ class Configuration(object):
         result = []
         for line in self._get_initial_comment():
             if line:
-                result.append("# {}".format(line))
+                result.append(f"# {line}")
             else:
                 result.append("")
         for key, value in known_items:
@@ -142,7 +158,7 @@ class Configuration(object):
             if key in option_definitions:
                 for line in option_definitions[key]["comment"]:
                     if line:
-                        result.append("# {}".format(line))
+                        result.append(f"# {line}")
                     else:
                         result.append("")
             if value not in ("", None):
@@ -155,31 +171,111 @@ class Configuration(object):
             for key, value in unknown_items:
                 result.append("")
                 if value not in ("", None):
-                    result.append("{!s} = {!s}".format(key, value))
+                    result.append(f"{key!s} = {value!s}")
                 else:
-                    result.append("{!s} =".format(key))
+                    result.append(f"{key!s} =")
         string = "\n".join(result)
         return string
 
     def _get_config_specification(self):
         specs = self._get_option_specification()
-        return ["{} = {}".format(key, value) for key, value in sorted(specs.items())]
+        return [f"{key} = {value}" for key, value in sorted(specs.items())]
 
     def _get_current_time(self):
         return time.strftime("%d %B %Y %H:%M:%S")
 
-    @abc.abstractmethod
     def _get_initial_comment(self):
-        raise NotImplementedError
+        current_time = self._get_current_time()
+        return [
+            f"Abjad configuration file created on {current_time}.",
+            "This file is interpreted by Python's ConfigParser ",
+            "and follows ini syntax.",
+        ]
 
     def _get_option_comments(self):
         options = self._get_option_definitions()
         comments = [(key, options[key]["comment"]) for key in options]
         return dict(comments)
 
-    @abc.abstractmethod
     def _get_option_definitions(self):
-        raise NotImplementedError
+        options = {
+            "abjad_output_directory": {
+                "comment": [
+                    "Set to the directory where all Abjad-generated files",
+                    "(such as PDFs and LilyPond files) should be saved.",
+                    "Defaults to $HOME/.abjad/output/",
+                ],
+                "default": os.path.join(str(self.configuration_directory), "output"),
+                "validator": str,
+            },
+            "composer_email": {
+                "comment": ["Your email."],
+                "default": "first.last@domain.com",
+                "validator": str,
+            },
+            "composer_full_name": {
+                "comment": ["Your full name."],
+                "default": "Full Name",
+                "validator": str,
+            },
+            "composer_github_username": {
+                "comment": ["Your GitHub username."],
+                "default": "username",
+                "validator": str,
+            },
+            "composer_last_name": {
+                "comment": ["Your last name."],
+                "default": "Name",
+                "validator": str,
+            },
+            "composer_scores_directory": {
+                "comment": ["Your scores directory."],
+                "default": str(self.home_directory / "scores"),
+                "validator": str,
+            },
+            "composer_uppercase_name": {
+                "comment": ["Your full name in uppercase for score covers."],
+                "default": "FULL NAME",
+                "validator": str,
+            },
+            "composer_website": {
+                "comment": ["Your website."],
+                "default": "www.composername.com",
+                "validator": str,
+            },
+            "lilypond_path": {
+                "comment": [
+                    "Lilypond executable path. Set to override dynamic lookup."
+                ],
+                "default": "lilypond",
+                "validator": str,
+            },
+            "midi_player": {
+                "comment": [
+                    "MIDI player to open MIDI files.",
+                    "When unset your OS should know how to open MIDI files.",
+                ],
+                "default": None,
+                "validator": str,
+            },
+            "pdf_viewer": {
+                "comment": [
+                    "PDF viewer to open PDF files.",
+                    "When unset your OS should know how to open PDFs.",
+                ],
+                "default": None,
+                "validator": str,
+            },
+            "text_editor": {
+                "comment": [
+                    "Text editor to edit text files.",
+                    "When unset your OS should know how to open text files.",
+                ],
+                "default": None,
+                "validator": str,
+            },
+        }
+        return options
 
     def _get_option_specification(self):
         options = self._get_option_definitions()
@@ -206,24 +302,96 @@ class Configuration(object):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def configuration_directory(self):
+    def abjad_directory(self) -> pathlib.Path:
+        """
+        Gets Abjad directory.
+        """
+        return pathlib.Path(__file__).parent.parent
+
+    @property
+    def abjad_output_directory(self) -> pathlib.Path:
+        """
+        Gets Abjad output directory.
+        """
+        if "abjad_output_directory" in self._settings:
+            return pathlib.Path(self._settings["abjad_output_directory"])
+        return self.configuration_directory / "output"
+
+    @property
+    def boilerplate_directory(self) -> pathlib.Path:
+        """
+        Gets Abjad boilerplate directory.
+        """
+        return self.abjad_directory.parent / "boilerplate"
+
+    @property
+    def composer_email(self) -> str:
+        """
+        Gets composer email.
+        """
+        return self._settings["composer_email"]
+
+    @property
+    def composer_full_name(self) -> str:
+        """
+        Gets composer full name.
+        """
+        return self._settings["composer_full_name"]
+
+    @property
+    def composer_github_username(self) -> str:
+        """
+        Gets GitHub username.
+        """
+        return self._settings["composer_github_username"]
+
+    @property
+    def composer_last_name(self) -> str:
+        """
+        Gets composer last name.
+        """
+        return self._settings["composer_last_name"]
+
+    @property
+    def composer_scores_directory(self) -> pathlib.Path:
+        """
+        Gets composer scores directory.
+        """
+        if "composer_scores_directory" in self._settings:
+            return pathlib.Path(self._settings["composer_scores_directory"])
+        return self.home_directory / "Scores"
+
+    @property
+    def composer_uppercase_name(self) -> str:
+        """
+        Gets composer uppercase name.
+        """
+        return self._settings["composer_uppercase_name"]
+
+    @property
+    def composer_website(self) -> str:
+        """
+        Gets composer website.
+        """
+        return self._settings["composer_website"]
+
+    @property
+    def configuration_directory(self) -> pathlib.Path:
         """
         Gets configuration directory.
 
         ..  container:: example
 
-            >>> configuration = abjad.AbjadConfiguration()
+            >>> configuration = abjad.Configuration()
             >>> configuration.configuration_directory
             PosixPath('...')
 
         Defaults to $HOME/{directory_name}.
 
-        If $HOME is read-only or $HOME/{directory_name} is read-only, returns
-        $TEMP/{directory_name}.
+        Returns $TEMP/{directory_name} if $HOME is read-only or $HOME/{directory_name}
+        is read-only.
 
         Also caches the initial result to reduce filesystem interaction.
-
-        Returns path object.
         """
         if self._cached_configuration_directory is None:
             directory_name = self._configuration_directory_name
@@ -234,37 +402,35 @@ class Configuration(object):
                 if not path.exists() or (path.exists() and os.access(str(path), flags)):
                     self._cached_configuration_directory = path
                     return self._cached_configuration_directory
-            path = self.temp_directory / directory_name
+            path = pathlib.Path(tempfile.gettempdir()) / directory_name
             self._cached_configuration_directory = path
         return self._cached_configuration_directory
 
     @property
-    def configuration_file_path(self):
+    def configuration_file_path(self) -> pathlib.Path:
         """
         Gets configuration file path.
 
         ..  container:: example
 
-            >>> configuration = abjad.AbjadConfiguration()
+            >>> configuration = abjad.Configuration()
             >>> configuration.configuration_file_path
             PosixPath('...')
 
-        Returns path object.
         """
-        return pathlib.Path(self.configuration_directory, self._configuration_file_name)
+        return self.configuration_directory / self._configuration_file_name
 
     @property
-    def home_directory(self):
+    def home_directory(self) -> pathlib.Path:
         """
         Gets home directory.
 
         ..  container:: example
 
-            >>> configuration = abjad.AbjadConfiguration()
+            >>> configuration = abjad.Configuration()
             >>> configuration.home_directory
             PosixPath('...')
 
-        Returns path object.
         """
         path = (
             os.environ.get("HOME")
@@ -275,19 +441,11 @@ class Configuration(object):
         return pathlib.Path(path).absolute()
 
     @property
-    def temp_directory(self):
+    def lilypond_log_file_path(self) -> pathlib.Path:
         """
-        Gets temp directory.
-
-        ..  container:: example
-
-            >>> configuration = abjad.AbjadConfiguration()
-            >>> configuration.temp_directory
-            PosixPath('...')
-
-        Returns path object.
+        Gets LilyPond log file path.
         """
-        return pathlib.Path(tempfile.gettempdir())
+        return self.abjad_output_directory / "lily.log"
 
     ### PUBLIC METHODS ###
 
@@ -296,3 +454,25 @@ class Configuration(object):
         Gets a key.
         """
         return self._settings.get(*arguments, **keywords)
+
+    def get_lilypond_version_string(self) -> str:
+        """
+        Gets LilyPond version string.
+
+        ..  container:: example
+
+            >>> configuration = abjad.Configuration()
+            >>> configuration.get_lilypond_version_string() # doctest: +SKIP
+            '2.19.84'
+
+        """
+        if self._lilypond_version_string is not None:
+            return self._lilypond_version_string
+        command = "lilypond --version"
+        proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+        assert proc.stdout is not None
+        lilypond_version_string = proc.stdout.readline().decode()
+        lilypond_version_string = lilypond_version_string.split(" ")[-1]
+        lilypond_version_string = lilypond_version_string.strip()
+        Configuration._lilypond_version_string = lilypond_version_string
+        return lilypond_version_string

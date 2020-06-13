@@ -5,7 +5,6 @@ from abjad.indicators.RepeatTie import RepeatTie
 from abjad.indicators.Tie import Tie
 from abjad.mathtools import Ratio
 from abjad.top.detach import detach
-from abjad.top.inspect import inspect
 from abjad.top.mutate import mutate
 from abjad.top.select import select
 from abjad.utilities.Duration import Duration
@@ -46,62 +45,6 @@ class LogicalTie(Selection):
 
     ### PRIVATE METHODS ###
 
-    def _add_or_remove_notes_to_achieve_written_duration(self, new_written_duration):
-        from abjad.spanners import tie as abjad_tie
-        from .NoteMaker import NoteMaker
-        from .Tuplet import Tuplet
-
-        new_written_duration = Duration(new_written_duration)
-        maker = NoteMaker()
-        if new_written_duration.is_assignable:
-            self[0].written_duration = new_written_duration
-            for leaf in self[1:]:
-                mutate(leaf).extract()
-            detach(Tie, self[0])
-            detach(RepeatTie, self[0])
-        elif new_written_duration.has_power_of_two_denominator:
-            durations = maker(0, [new_written_duration])
-            for leaf, token in zip(self, durations):
-                leaf.written_duration = token.written_duration
-            if len(self) == len(durations):
-                pass
-            elif len(durations) < len(self):
-                for leaf in self[len(durations) :]:
-                    mutate(leaf).extract()
-            elif len(self) < len(durations):
-                # detach(Tie, self[0])
-                detach(Tie, self[0])
-                detach(RepeatTie, self[0])
-                difference = len(durations) - len(self)
-                extra_leaves = self[0] * difference
-                for extra_leaf in extra_leaves:
-                    # detach(Tie, extra_leaf)
-                    detach(Tie, extra_leaf)
-                    detach(RepeatTie, extra_leaf)
-                extra_tokens = durations[len(self) :]
-                for leaf, token in zip(extra_leaves, extra_tokens):
-                    leaf.written_duration = token.written_duration
-                parent = inspect(self[-1]).parentage().parent
-                index = parent.index(self[-1])
-                next_ = index + 1
-                parent[next_:next_] = extra_leaves
-                leaves = self.leaves + extra_leaves
-                # attach(Tie(), leaves)
-                abjad_tie(leaves)
-        else:
-            components = maker(0, new_written_duration)
-            assert isinstance(components[0], Tuplet)
-            tuplet = components[0]
-            logical_tie = tuplet[0]._get_logical_tie()
-            duration = logical_tie._get_preprolated_duration()
-            leaves_ = self._add_or_remove_notes_to_achieve_written_duration(duration)
-            multiplier = tuplet.multiplier
-            tuplet = Tuplet(multiplier, [])
-            # mutate(self.leaves).wrap(tuplet)
-            mutate(leaves_).wrap(tuplet)
-
-        return self[0]._get_logical_tie()
-
     def _fuse_leaves_by_immediate_parent(self):
         result = []
         parts = self._get_leaves_grouped_by_immediate_parents()
@@ -118,8 +61,8 @@ class LogicalTie(Selection):
         return result
 
     def _scale(self, multiplier):
-        new_duration = multiplier * self.written_duration
-        return self._add_or_remove_notes_to_achieve_written_duration(new_duration)
+        for leaf in list(self):
+            leaf._scale(multiplier)
 
     ### PUBLIC PROPERTIES ###
 

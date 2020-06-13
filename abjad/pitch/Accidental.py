@@ -2,9 +2,8 @@ import functools
 import numbers
 
 from abjad import enums, mathtools
-from abjad.system.FormatSpecification import FormatSpecification
-from abjad.system.StorageFormatManager import StorageFormatManager
 
+from ..format import FormatSpecification, StorageFormatManager
 from . import constants
 
 

@@ -10,17 +10,18 @@ argument = sys.argv[1]
 
 command = r"ack"
 command += r" --ignore-dir=.mypy_cache"
+command += r" --ignore-dir=.mypy_cache"
 command += r" --ignore-dir=_docs"
 command += r" --ignore-dir=build"
 command += r" --ignore-dir=docs"
+command += r" --ignore-dir=htmlcov"
 command += r" --ignore-file=ext:eps"
 command += r" --ignore-file=is:.coverage"
 command += r" --sort-files"
 if "'" in argument:
-    command += r' "{}"'
+    command += rf' "{argument}"'
 else:
-    command += r" '{}'"
-command = command.format(argument)
+    command += rf" '{argument}'"
 print("abjad-ack is running this command:")
 print()
 print("    " + command)

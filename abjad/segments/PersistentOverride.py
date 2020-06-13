@@ -1,10 +1,10 @@
 import typing
 
 from abjad.core.Context import Context
-from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
-from abjad.system.StorageFormatManager import StorageFormatManager
+
+from ..format import FormatSpecification, StorageFormatManager
 
 
 class PersistentOverride(object):

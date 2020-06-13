@@ -15,9 +15,7 @@ from abjad.indicators.LilyPondLiteral import LilyPondLiteral
 from abjad.indicators.TimeSignature import TimeSignature
 from abjad.pitch.NamedPitch import NamedPitch
 from abjad.scheme import Scheme, SpacingVector
-from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
-from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.system.Tag import Tag
 from abjad.top.attach import attach
 from abjad.top.inspect import inspect as abjad_inspect
@@ -26,6 +24,7 @@ from abjad.top.override import override
 from abjad.top.select import select
 from abjad.top.sequence import sequence
 
+from ..format import FormatSpecification, StorageFormatManager
 from .Block import Block
 from .ContextBlock import ContextBlock
 from .DateTimeToken import DateTimeToken

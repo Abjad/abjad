@@ -10,10 +10,10 @@ from abjad.exceptions import *
 
 # ensure that the ~/.abjad directory and friends are setup
 # and instantiate Abjad's configuration singleton
-from abjad.system.AbjadConfiguration import AbjadConfiguration
+from abjad.system.Configuration import Configuration
 
-abjad_configuration = AbjadConfiguration()
-del AbjadConfiguration
+configuration = Configuration()
+del Configuration
 
 # import parser
 from abjad import parser
@@ -63,4 +63,4 @@ from abjad import ly
 from abjad import utilities
 
 # singletons
-tags = system.Tags()
+tags = Tags()

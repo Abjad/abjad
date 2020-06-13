@@ -1,6 +1,6 @@
-from abjad.system.FormatSpecification import FormatSpecification
-from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.utilities.TypedList import TypedList
+
+from ..format import FormatSpecification, StorageFormatManager
 
 
 class NoteHeadList(TypedList):

@@ -2,9 +2,10 @@ import abc
 import collections
 import types
 
-from abjad.system.FormatSpecification import FormatSpecification
 from abjad.utilities.TypedCollection import TypedCollection
 from abjad.utilities.TypedFrozenset import TypedFrozenset
+
+from ..format import FormatSpecification
 
 
 class Set(TypedFrozenset):

@@ -33,6 +33,7 @@ from .PitchClass import PitchClass
 from .PitchClassSegment import PitchClassSegment
 from .PitchClassSet import PitchClassSet
 from .PitchClassVector import PitchClassVector
+from .PitchInequality import PitchInequality
 from .PitchRange import PitchRange
 from .PitchSegment import PitchSegment
 from .PitchSet import PitchSet
@@ -78,6 +79,7 @@ __all__ = [
     "PitchClassSegment",
     "PitchClassSet",
     "PitchClassVector",
+    "PitchInequality",
     "PitchRange",
     "PitchSegment",
     "PitchSet",

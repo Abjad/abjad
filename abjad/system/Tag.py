@@ -1,7 +1,6 @@
 import typing
 
-from .FormatSpecification import FormatSpecification
-from .StorageFormatManager import StorageFormatManager
+from ..format import FormatSpecification, StorageFormatManager
 
 
 class Tag(object):

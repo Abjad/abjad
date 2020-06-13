@@ -2,8 +2,9 @@ import typing
 
 from abjad.markups import Markup
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
-from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.top.new import new
+
+from ..format import StorageFormatManager
 
 
 class StartMarkup(object):

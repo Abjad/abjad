@@ -1,4 +1,4 @@
-from abjad.system.StorageFormatManager import StorageFormatManager
+from ..format import StorageFormatManager
 
 
 class LilyPondVersionToken(object):
@@ -19,11 +19,11 @@ class LilyPondVersionToken(object):
     ### INITIALIZER ###
 
     def __init__(self, version_string=None):
-        from abjad import abjad_configuration
+        from abjad import configuration
 
         assert isinstance(version_string, (str, type(None)))
         if version_string is None:
-            version_string = abjad_configuration.get_lilypond_version_string()
+            version_string = configuration.get_lilypond_version_string()
         self._version_string = version_string
 
     ### SPECIAL METHODS ###

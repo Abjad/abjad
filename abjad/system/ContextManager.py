@@ -1,6 +1,6 @@
 import abc
 
-from .StorageFormatManager import StorageFormatManager
+from ..format import StorageFormatManager
 
 
 class ContextManager(object):

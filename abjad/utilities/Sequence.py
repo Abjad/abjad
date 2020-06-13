@@ -8,10 +8,9 @@ import sys
 import typing
 
 from abjad import enums, mathtools
-from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.Signature import Signature
-from abjad.system.StorageFormatManager import StorageFormatManager
 
+from ..format import FormatSpecification, StorageFormatManager
 from .CyclicTuple import CyclicTuple
 from .Expression import Expression
 

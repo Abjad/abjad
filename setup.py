@@ -62,6 +62,7 @@ classifiers = [
     "Topic :: Artistic Software",
 ]
 
+# TODO: can this be removed?
 entry_points = {"console_scripts": ["ajv = abjad.cli:run_ajv"]}
 
 extras_require = {

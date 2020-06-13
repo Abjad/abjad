@@ -1,8 +1,10 @@
-import os
 import subprocess
 import time
 
+from .Configuration import Configuration
 from .ContextManager import ContextManager
+
+configuration = Configuration()
 
 
 class Timer(ContextManager):
@@ -87,9 +89,7 @@ class Timer(ContextManager):
         self._stop_time = None
         self._start_time = time.time()
         if self.print_continuously_from_background:
-            from abjad import abjad_configuration
-
-            path = os.path.join(abjad_configuration.abjad_script_directory, "timer")
+            path = configuration.abjad_directory.parent / "scr" / "timer"
             interval = str(int(self.print_continuously_from_background))
             process = subprocess.Popen([path, interval], shell=False)
             self._process = process

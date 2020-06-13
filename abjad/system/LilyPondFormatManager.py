@@ -4,8 +4,8 @@ from abjad import enums
 from abjad.scheme import Scheme, SchemePair
 from abjad.utilities.String import String
 
+from ..format import StorageFormatManager
 from .LilyPondFormatBundle import LilyPondFormatBundle
-from .StorageFormatManager import StorageFormatManager
 
 
 class LilyPondFormatManager(object):

@@ -9,9 +9,9 @@ import uqbar.containers
 import uqbar.graphs
 
 from abjad import Fraction, core, mathtools
-from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.Parser import Parser
-from abjad.system.StorageFormatManager import StorageFormatManager
+
+from .format import FormatSpecification, StorageFormatManager
 
 
 class RhythmTreeMixin(object):

@@ -3,9 +3,284 @@ import importlib
 import inspect
 import types
 
-from .FormatSpecification import FormatSpecification
 
-# from abjad.utilities.OrderedDict import OrderedDict
+class FormatSpecification(object):
+    """
+    Format specification.
+    """
+
+    ### CLASS VARIABLES ###
+
+    __documentation_section__ = "Storage formatting"
+
+    __slots__ = (
+        "_client",
+        "_coerce_for_equality",
+        "_repr_args_values",
+        "_repr_is_bracketed",
+        "_repr_is_indented",
+        "_repr_kwargs_names",
+        "_repr_text",
+        "_storage_format_args_values",
+        "_storage_format_forced_override",
+        "_storage_format_is_bracketed",
+        "_storage_format_is_indented",
+        "_storage_format_kwargs_names",
+        "_storage_format_text",
+        "_template_names",
+    )
+
+    ### INITIALIZER ###
+
+    def __init__(
+        self,
+        client=None,
+        coerce_for_equality=None,
+        repr_args_values=None,
+        repr_is_bracketed=None,
+        repr_is_indented=None,
+        repr_kwargs_names=None,
+        repr_text=None,
+        storage_format_args_values=None,
+        storage_format_forced_override=None,
+        storage_format_is_bracketed=None,
+        storage_format_is_indented=True,
+        storage_format_kwargs_names=None,
+        storage_format_text=None,
+        template_names=None,
+    ):
+        self._client = client
+        self._coerce_for_equality = self._coerce_boolean(coerce_for_equality)
+        self._repr_args_values = self._coerce_tuple(repr_args_values)
+        self._repr_is_bracketed = self._coerce_boolean(repr_is_bracketed)
+        self._repr_is_indented = self._coerce_boolean(repr_is_indented)
+        self._repr_kwargs_names = self._coerce_tuple(repr_kwargs_names)
+        self._repr_text = self._coerce_string(repr_text)
+        self._storage_format_args_values = self._coerce_tuple(
+            storage_format_args_values
+        )
+        self._storage_format_forced_override = storage_format_forced_override
+        self._storage_format_is_bracketed = self._coerce_boolean(
+            storage_format_is_bracketed
+        )
+        self._storage_format_is_indented = self._coerce_boolean(
+            storage_format_is_indented
+        )
+        self._storage_format_kwargs_names = self._coerce_tuple(
+            storage_format_kwargs_names
+        )
+        self._storage_format_text = self._coerce_string(storage_format_text)
+        self._template_names = self._coerce_tuple(template_names)
+
+    ### PRIVATE METHODS ###
+
+    def _coerce_boolean(self, value):
+        if value is not None:
+            return bool(value)
+
+    def _coerce_string(self, value):
+        if value is not None:
+            return str(value)
+
+    def _coerce_tuple(self, value):
+        if value is not None:
+            return tuple(value)
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def client(self):
+        return self._client
+
+    @property
+    def coerce_for_equality(self):
+        return self._coerce_for_equality
+
+    @property
+    def repr_args_values(self):
+        return self._repr_args_values
+
+    @property
+    def repr_is_bracketed(self):
+        return self._repr_is_bracketed
+
+    @property
+    def repr_is_indented(self):
+        return self._repr_is_indented
+
+    @property
+    def repr_kwargs_names(self):
+        return self._repr_kwargs_names
+
+    @property
+    def repr_text(self):
+        return self._repr_text
+
+    @property
+    def storage_format_args_values(self):
+        return self._storage_format_args_values
+
+    @property
+    def storage_format_forced_override(self):
+        return self._storage_format_forced_override
+
+    @property
+    def storage_format_is_bracketed(self):
+        return self._storage_format_is_bracketed
+
+    @property
+    def storage_format_is_indented(self):
+        return self._storage_format_is_indented
+
+    @property
+    def storage_format_kwargs_names(self):
+        return self._storage_format_kwargs_names
+
+    @property
+    def storage_format_text(self):
+        return self._storage_format_text
+
+    @property
+    def template_names(self):
+        return self._template_names
+
+
+class StorageFormatSpecification(object):
+    """
+    Storage format specification.
+    """
+
+    ### CLASS VARIABLES ###
+
+    __documentation_section__ = "Storage formatting"
+
+    __slots__ = (
+        "_repr_text",
+        "_include_abjad_namespace",
+        "_instance",
+        "_is_bracketed",
+        "_is_indented",
+        "_keyword_argument_names",
+        "_positional_argument_values",
+        "_storage_format_text",
+    )
+
+    ### INITIALIZER ###
+
+    def __init__(
+        self,
+        instance=None,
+        repr_text=None,
+        include_abjad_namespace=None,
+        is_bracketed=False,
+        is_indented=True,
+        keyword_argument_names=None,
+        positional_argument_values=None,
+        storage_format_text=None,
+    ):
+        self._instance = instance
+
+        if repr_text is not None:
+            repr_text = str(repr_text)
+        self._repr_text = repr_text
+
+        self._include_abjad_namespace = bool(include_abjad_namespace)
+        self._is_bracketed = bool(is_bracketed)
+        self._is_indented = bool(is_indented)
+
+        if keyword_argument_names is not None:
+            keyword_argument_names = tuple(keyword_argument_names)
+        self._keyword_argument_names = keyword_argument_names
+
+        if positional_argument_values is not None:
+            positional_argument_values = tuple(positional_argument_values)
+        self._positional_argument_values = positional_argument_values
+
+        if storage_format_text is not None:
+            storage_format_text = str(storage_format_text)
+        self._storage_format_text = storage_format_text
+
+    ### SPECIAL METHODS ###
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def include_abjad_namespace(self):
+        """
+        Is true when storage specification includes Abjad namespace.
+
+        Returns true or false.
+        """
+        return self._include_abjad_namespace
+
+    @property
+    def instance(self):
+        """
+        Gets instance of storage specification.
+
+        Returns string.
+        """
+        return self._instance
+
+    @property
+    def is_bracketed(self):
+        """
+        Is true when storage specification is bracketed.
+
+        Returns true or false.
+        """
+        return self._is_bracketed
+
+    @property
+    def is_indented(self):
+        """
+        Is true when storage format is indented.
+
+        Returns true or false.
+        """
+        return self._is_indented
+
+    @property
+    def keyword_argument_names(self):
+        """
+        Gets keyword argument names of storage format.
+
+        Returns tuple.
+        """
+        return self._keyword_argument_names
+
+    @property
+    def positional_argument_values(self):
+        """
+        Gets positional argument values.
+
+        Returns tuple.
+        """
+        return self._positional_argument_values
+
+    @property
+    def repr_text(self):
+        """
+        Gets interpreter representation of storage specification.
+
+        Returns string.
+        """
+        return self._repr_text
+
+    @property
+    def storage_format_text(self):
+        """
+        Gets storage format text.
+
+        Returns tuple.
+        """
+        return self._storage_format_text
 
 
 class StorageFormatManager(object):
@@ -57,8 +332,6 @@ class StorageFormatManager(object):
     ### PRIVATE METHODS ###
 
     def _dispatch_formatting(self, as_storage_format=True, is_indented=True):
-        from abjad.utilities.OrderedDict import OrderedDict
-
         if isinstance(self._client, types.MethodType):
             return self._format_method()
         elif isinstance(self._client, type):
@@ -76,7 +349,11 @@ class StorageFormatManager(object):
             return list(pieces)
         elif isinstance(self._client, (list, tuple)):
             return self._format_sequence(as_storage_format, is_indented)
-        elif isinstance(self._client, (OrderedDict, collections.OrderedDict)):
+        elif isinstance(self._client, collections.OrderedDict):
+            return self._format_ordered_mapping(as_storage_format, is_indented)
+        elif hasattr(self._client, "_collection") and isinstance(
+            self._client._collection, collections.OrderedDict
+        ):
             return self._format_ordered_mapping(as_storage_format, is_indented)
         elif isinstance(self._client, dict):
             return self._format_mapping(as_storage_format, is_indented)
@@ -449,8 +726,6 @@ class StorageFormatManager(object):
         """
         Gets repr keyword dictionary.
         """
-        from .StorageFormatSpecification import StorageFormatSpecification
-
         names = self.specification.repr_kwargs_names
         if names is None:
             specification = StorageFormatSpecification(self.client)
@@ -464,8 +739,6 @@ class StorageFormatManager(object):
         """
         Gets repr positional values.
         """
-        from .StorageFormatSpecification import StorageFormatSpecification
-
         values = self.specification.repr_args_values
         if values is None:
             specification = StorageFormatSpecification(self.client)
@@ -490,8 +763,6 @@ class StorageFormatManager(object):
         """
         Gets storage format keyword dictionary.
         """
-        from .StorageFormatSpecification import StorageFormatSpecification
-
         names = self.specification.storage_format_kwargs_names
         if names is None:
             if hasattr(self.client, "_get_storage_format_specification"):
@@ -508,8 +779,6 @@ class StorageFormatManager(object):
         """
         Gets storage format positional values.
         """
-        from .StorageFormatSpecification import StorageFormatSpecification
-
         values = self.specification.storage_format_args_values
         if values is None:
             if hasattr(self.client, "_get_storage_format_specification"):

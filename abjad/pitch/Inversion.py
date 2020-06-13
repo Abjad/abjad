@@ -1,5 +1,6 @@
 from abjad import markups
-from abjad.system.StorageFormatManager import StorageFormatManager
+
+from ..format import StorageFormatManager
 
 
 class Inversion(object):

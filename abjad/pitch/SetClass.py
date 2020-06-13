@@ -1,5 +1,6 @@
 from abjad import mathtools
-from abjad.system.StorageFormatManager import StorageFormatManager
+
+from ..format import StorageFormatManager
 
 
 class SetClass(object):

@@ -3,9 +3,10 @@ import collections
 import types
 
 from abjad import mathtools
-from abjad.system.FormatSpecification import FormatSpecification
 from abjad.utilities.TypedCollection import TypedCollection
 from abjad.utilities.TypedCounter import TypedCounter
+
+from ..format import FormatSpecification
 
 
 class Vector(TypedCounter):

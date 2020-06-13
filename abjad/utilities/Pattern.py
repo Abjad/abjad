@@ -3,10 +3,9 @@ import inspect
 import operator
 
 from abjad import mathtools
-from abjad.system.FormatSpecification import FormatSpecification
-from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.top.new import new
 
+from ..format import FormatSpecification, StorageFormatManager
 from .Expression import Expression
 from .Sequence import Sequence
 

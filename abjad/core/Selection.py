@@ -6,9 +6,8 @@ import typing
 from abjad import enums, mathtools, typings
 from abjad.indicators.Tie import Tie
 from abjad.mathtools import Ratio
+from abjad.pitch.PitchInequality import PitchInequality
 from abjad.pitch.PitchSet import PitchSet
-from abjad.system.FormatSpecification import FormatSpecification
-from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.top.attach import attach
 from abjad.top.detach import detach
 from abjad.top.inspect import inspect as abjad_inspect
@@ -23,9 +22,9 @@ from abjad.utilities.Expression import Expression
 from abjad.utilities.LengthInequality import LengthInequality
 from abjad.utilities.Offset import Offset
 from abjad.utilities.Pattern import Pattern
-from abjad.utilities.PitchInequality import PitchInequality
 from abjad.utilities.Sequence import Sequence
 
+from ..format import FormatSpecification, StorageFormatManager
 from .Chord import Chord
 from .Component import Component
 from .Leaf import Leaf

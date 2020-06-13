@@ -1,5 +1,4 @@
-from abjad.system.FormatSpecification import FormatSpecification
-
+from ..format import FormatSpecification
 from .Duration import Duration
 
 

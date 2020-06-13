@@ -39,8 +39,6 @@ def test_abjad_pickle_01(class_):
         return
     if inspect.isabstract(class_):
         return
-    if getattr(class_, "_is_abstract", None) is True:
-        return
     instance_one = class_()
     pickle_string = pickle.dumps(instance_one)
     instance_two = pickle.loads(pickle_string)

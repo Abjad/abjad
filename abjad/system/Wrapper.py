@@ -1,9 +1,8 @@
 import copy
 import typing
 
-from .FormatSpecification import FormatSpecification
+from ..format import FormatSpecification, StorageFormatManager
 from .LilyPondFormatManager import LilyPondFormatManager
-from .StorageFormatManager import StorageFormatManager
 from .Tag import Tag
 
 

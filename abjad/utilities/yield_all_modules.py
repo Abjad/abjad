@@ -4,6 +4,10 @@ import types
 
 import uqbar.apis
 
+from ..system.Configuration import Configuration
+
+configuration = Configuration
+
 
 def yield_all_modules(paths=None):
     """
@@ -11,11 +15,9 @@ def yield_all_modules(paths=None):
 
     Returns generator.
     """
-    import abjad
-
     _paths = []
     if not paths:
-        _paths = abjad.__path__
+        _paths = configuration.abjad_directory
     elif isinstance(paths, str):
         module = importlib.import_module(paths)
         _paths.extend(module.__path__)

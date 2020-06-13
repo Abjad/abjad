@@ -7,9 +7,9 @@ import typing
 
 from abjad import enums, typings
 from abjad.mathtools import NonreducedFraction
-from abjad.system.FormatSpecification import FormatSpecification
-from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.utilities.String import String
+
+from .format import FormatSpecification, StorageFormatManager
 
 
 class Scheme(object):

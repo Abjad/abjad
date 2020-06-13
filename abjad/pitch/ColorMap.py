@@ -1,5 +1,4 @@
-from abjad.system.StorageFormatManager import StorageFormatManager
-
+from ..format import StorageFormatManager
 from .NumberedPitchClass import NumberedPitchClass
 
 

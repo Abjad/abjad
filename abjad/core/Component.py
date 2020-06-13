@@ -8,9 +8,7 @@ import uqbar.graphs
 from abjad import enums, exceptions, mathtools
 from abjad.indicators.StaffChange import StaffChange
 from abjad.markups import Markup
-from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
-from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.system.Tag import Tag
 from abjad.system.UpdateManager import UpdateManager
 from abjad.system.Wrapper import Wrapper
@@ -22,6 +20,8 @@ from abjad.top.mutate import mutate
 from abjad.top.override import override
 from abjad.top.select import select
 from abjad.top.setting import setting
+
+from ..format import FormatSpecification, StorageFormatManager
 
 
 class Component(object):
@@ -201,9 +201,7 @@ class Component(object):
                 return True
         return False
 
-    def _extract(self, scale_contents=False):
-        if scale_contents:
-            self._scale_contents(self.multiplier)
+    def _extract(self):
         selection = select([self])
         parent, start, stop = selection._get_parent_and_start_stop_indices()
         if parent is not None:

@@ -2,8 +2,9 @@ import typing
 
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
-from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.utilities.String import String
+
+from ..format import StorageFormatManager
 
 
 class StartBeam(object):

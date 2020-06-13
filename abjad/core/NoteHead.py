@@ -3,9 +3,9 @@ import typing
 
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.pitch.NamedPitch import NamedPitch
-from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
-from abjad.system.StorageFormatManager import StorageFormatManager
+
+from ..format import FormatSpecification, StorageFormatManager
 
 
 @functools.total_ordering

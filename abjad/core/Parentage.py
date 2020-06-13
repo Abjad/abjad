@@ -2,10 +2,10 @@ import collections
 import typing
 
 from abjad import mathtools
-from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.utilities.Multiplier import Multiplier
 from abjad.utilities.OrderedDict import OrderedDict
 
+from ..format import StorageFormatManager
 from .AfterGraceContainer import AfterGraceContainer
 from .BeforeGraceContainer import BeforeGraceContainer
 from .Component import Component

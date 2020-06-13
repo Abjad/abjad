@@ -24,7 +24,7 @@ from sphinx.util.osutil import copyfile, ensuredir
 from uqbar.book.extensions import Extension
 from uqbar.strings import normalize
 
-from abjad import abjad_configuration
+from abjad import configuration
 from abjad.iox import Illustrator, LilyPondIO, Player
 from abjad.lilypondfile import Block, LilyPondVersionToken
 from abjad.system import TemporaryDirectoryChange
@@ -81,7 +81,7 @@ class ShellDirective(Directive):
     def run(self):
         self.assert_has_content()
         result = []
-        with TemporaryDirectoryChange(abjad_configuration.abjad_directory):
+        with TemporaryDirectoryChange(configuration.abjad_directory):
             cwd = pathlib.Path.cwd()
             for line in self.content:
                 result.append(f"{cwd.name}$ {line}")

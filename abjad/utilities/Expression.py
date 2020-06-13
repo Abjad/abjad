@@ -6,11 +6,11 @@ import typing
 
 import uqbar.enums
 
-from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.Signature import Signature
-from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.top.label import label
 from abjad.top.new import new
+
+from ..format import FormatSpecification, StorageFormatManager
 
 
 class Expression(object):

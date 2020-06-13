@@ -2,10 +2,10 @@ import typing
 
 from abjad import enums
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
-from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
-from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.utilities.String import String
+
+from ..format import FormatSpecification, StorageFormatManager
 
 
 class Articulation(object):

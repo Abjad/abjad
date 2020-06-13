@@ -9,7 +9,7 @@ import typing
 import uqbar.graphs
 
 from abjad import indicators as abjad_indicators
-from abjad import markups, mathtools, rhythmtrees, system
+from abjad import markups, mathtools, rhythmtrees
 from abjad.core.Chord import Chord
 from abjad.core.Container import Container
 from abjad.core.LogicalTie import LogicalTie
@@ -18,7 +18,6 @@ from abjad.core.Rest import Rest
 from abjad.core.Selection import Selection
 from abjad.core.Skip import Skip
 from abjad.core.Tuplet import Tuplet
-from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.timespans import Timespan, TimespanList
 from abjad.top.inspect import inspect
 from abjad.top.mutate import mutate
@@ -28,6 +27,8 @@ from abjad.utilities.Offset import Offset
 from abjad.utilities.Sequence import Sequence
 from abjad.utilities.TypedCounter import TypedCounter
 from abjad.utilities.TypedList import TypedList
+
+from .format import FormatSpecification, StorageFormatManager
 
 
 class Meter(object):
@@ -410,7 +411,7 @@ class Meter(object):
         Returns string.
         """
         if format_specification in ("", "storage"):
-            return system.StorageFormatManager(self).get_storage_format()
+            return StorageFormatManager(self).get_storage_format()
         return str(self)
 
     def __graph__(self, **keywords):
@@ -697,7 +698,7 @@ class Meter(object):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        return system.FormatSpecification(
+        return FormatSpecification(
             client=self,
             repr_is_indented=False,
             storage_format_args_values=[self.rtm_format],
@@ -1802,7 +1803,7 @@ class MetricAccentKernel(object):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        return system.FormatSpecification(
+        return FormatSpecification(
             client=self,
             repr_is_indented=True,
             storage_format_args_values=[self.kernel],
