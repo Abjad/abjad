@@ -5,8 +5,12 @@ import pickle
 import sys
 import traceback
 
-import ply  # type: ignore
-from ply import yacc  # type: ignore
+import ply
+from ply import yacc
+
+from ..system.Configuration import Configuration
+
+configuration = Configuration()
 
 
 class Parser(object):
@@ -145,11 +149,8 @@ class Parser(object):
         """
         Gets output path for files associated with the parser.
         """
-        from abjad import abjad_configuration
-
-        configuration_directory = abjad_configuration.configuration_directory
-        output_path = os.path.join(str(configuration_directory), "parsers")
-        if not os.path.isdir(output_path):
+        output_path = configuration.configuration_directory / "parsers"
+        if not output_path.is_dir():
             try:
                 os.makedirs(output_path)
             except (IOError, OSError):

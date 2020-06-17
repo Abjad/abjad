@@ -4,7 +4,7 @@ import pathlib
 import shutil
 import typing
 
-from abjad import abjad_configuration, typings
+from abjad import configuration, typings
 from abjad.core.Score import Score
 from abjad.core.StaffGroup import StaffGroup
 from abjad.indicators.Clef import Clef
@@ -401,7 +401,7 @@ class Path(pathlib.PosixPath):
             Path('/path/to/scores/red_score/red_score')
 
         """
-        directory = abjad_configuration.composer_scores_directory
+        directory = configuration.composer_scores_directory
         if str(self).startswith(str(directory)):
             return type(self)(directory)
         parts = str(self).split(os.sep)
@@ -2374,7 +2374,7 @@ class Path(pathlib.PosixPath):
 
         """
         if self.scores is None or self.is_wrapper() or self.is_contents():
-            home_directory = type(self)(abjad_configuration.home_directory)
+            home_directory = type(self)(configuration.home_directory)
             if str(self).startswith(str(home_directory)):
                 return "../" + str(self.relative_to(home_directory))
             return str(self)

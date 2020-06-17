@@ -1,7 +1,7 @@
 from abjad import mathtools
-from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
-from abjad.system.StorageFormatManager import StorageFormatManager
+
+from ..format import FormatSpecification, StorageFormatManager
 
 
 class StemTremolo(object):

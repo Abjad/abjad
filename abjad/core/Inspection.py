@@ -7,13 +7,13 @@ from abjad.markups import Markup
 from abjad.pitch.NamedPitch import NamedPitch
 from abjad.pitch.PitchSet import PitchSet
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
-from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.system.Tag import Tag
 from abjad.system.Wrapper import Wrapper
 from abjad.timespans import Timespan
 from abjad.top.iterate import iterate
 from abjad.utilities.Duration import Duration
 
+from ..format import StorageFormatManager
 from .AfterGraceContainer import AfterGraceContainer
 from .BeforeGraceContainer import BeforeGraceContainer
 from .Chord import Chord

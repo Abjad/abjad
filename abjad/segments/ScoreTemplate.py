@@ -12,7 +12,6 @@ from abjad.core.Voice import Voice
 from abjad.indicators.Clef import Clef
 from abjad.indicators.MarginMarkup import MarginMarkup
 from abjad.lilypondfile.LilyPondFile import LilyPondFile
-from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.system.Tag import Tag
 from abjad.system.Tags import Tags
 from abjad.system.Wrapper import Wrapper
@@ -23,6 +22,7 @@ from abjad.top.new import new
 from abjad.top.select import select
 from abjad.utilities.OrderedDict import OrderedDict
 
+from ..format import StorageFormatManager
 from .PartAssignment import PartAssignment
 from .PartManifest import PartManifest
 

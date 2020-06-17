@@ -1,9 +1,9 @@
 import typing
 
-from abjad.system.FormatSpecification import FormatSpecification
-from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.system.Tag import Tag
 from abjad.utilities.Offset import Offset
+
+from ..format import FormatSpecification, StorageFormatManager
 
 
 class Momento(object):

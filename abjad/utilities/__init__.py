@@ -16,7 +16,6 @@ from .Offset import Offset
 from .OrderedDict import OrderedDict
 from .Pattern import Pattern
 from .PatternTuple import PatternTuple
-from .PitchInequality import PitchInequality
 from .Sequence import Sequence
 from .SortedCollection import SortedCollection
 from .String import String
@@ -25,7 +24,6 @@ from .TypedCounter import TypedCounter
 from .TypedFrozenset import TypedFrozenset
 from .TypedList import TypedList
 from .TypedTuple import TypedTuple
-from .compare_images import compare_images
 from .list_all_classes import list_all_classes
 from .list_all_functions import list_all_functions
 from .yield_all_modules import yield_all_modules
@@ -48,7 +46,6 @@ __all__ = [
     "OrderedDict",
     "Pattern",
     "PatternTuple",
-    "PitchInequality",
     "Sequence",
     "SortedCollection",
     "String",
@@ -57,7 +54,6 @@ __all__ = [
     "TypedFrozenset",
     "TypedList",
     "TypedTuple",
-    "compare_images",
     "list_all_classes",
     "list_all_functions",
     "yield_all_modules",

@@ -1,3 +1,6 @@
+from ..format import StorageFormatManager
+
+
 def f(argument, strict=None):
     r"""
     Formats ``argument`` and prints result.
@@ -37,7 +40,7 @@ def f(argument, strict=None):
     if strict is not None:
         assert isinstance(strict, int), repr(strict)
     if hasattr(argument, "_publish_storage_format"):
-        string = abjad.StorageFormatManager(argument).get_storage_format()
+        string = StorageFormatManager(argument).get_storage_format()
     else:
         string = format(argument, "lilypond")
     realign = None

@@ -1,7 +1,8 @@
 import collections
 
-from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.utilities.CyclicTuple import CyclicTuple
+
+from ..format import StorageFormatManager
 
 
 class Duplication(object):

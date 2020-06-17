@@ -2,11 +2,12 @@ import collections
 
 from abjad.instruments import Instrument
 from abjad.pitch import NamedPitch, Pitch, PitchSegment, PitchSet
-from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.top.inspect import inspect
 from abjad.utilities.Enumerator import Enumerator
 from abjad.utilities.OrderedDict import OrderedDict
 from abjad.utilities.Sequence import Sequence
+
+from ..format import StorageFormatManager
 
 
 class Iteration(object):

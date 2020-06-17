@@ -11,10 +11,10 @@ import sys
 import traceback
 import typing
 
-from .AbjadConfiguration import AbjadConfiguration
-from .StorageFormatManager import StorageFormatManager
+from ..format import StorageFormatManager
+from .Configuration import Configuration
 
-_configuration = AbjadConfiguration()
+configuration = Configuration()
 
 
 class IOManager(object):
@@ -52,6 +52,7 @@ class IOManager(object):
             input(message)
             os.makedirs(directory)
 
+    # TODO: move this somewhere else because of boilerplate
     @staticmethod
     def _make_score_package(
         score_package_path,
@@ -64,7 +65,7 @@ class IOManager(object):
         year=None,
     ):
         score_package_name = os.path.basename(score_package_path)
-        source_path = os.path.join(_configuration.boilerplate_directory, "score")
+        source_path = os.path.join(configuration.boilerplate_directory, "score")
         target_path = score_package_path
         if not os.path.exists(target_path):
             shutil.copytree(source_path, target_path)
@@ -129,7 +130,7 @@ class IOManager(object):
 
     @staticmethod
     def _warn_when_output_directory_almost_full(last_number):
-        abjad_output_directory = _configuration["abjad_output_directory"]
+        abjad_output_directory = configuration["abjad_output_directory"]
         max_number = 10000
         lines = []
         lines.append("")
@@ -269,7 +270,9 @@ class IOManager(object):
         return tuple(result)
 
     @staticmethod
-    def find_executable(name: str, *, flags: int = os.X_OK) -> typing.List[str]:
+    def find_executable(
+        name: str, *, flags: int = os.X_OK
+    ) -> typing.List[pathlib.Path]:
         """
         Finds executable ``name``.
 
@@ -279,15 +282,15 @@ class IOManager(object):
         """
         result = []
         extensions = [x for x in os.environ.get("PATHEXT", "").split(os.pathsep) if x]
-        path = os.environ.get("PATH", None)
-        if path is None:
+        PATH = os.environ.get("PATH", None)
+        if PATH is None:
             return []
-        for path in os.environ.get("PATH", "").split(os.pathsep):
-            path = os.path.join(path, name)
+        for path_ in os.environ.get("PATH", "").split(os.pathsep):
+            path = pathlib.Path(path_) / name
             if os.access(path, flags):
                 result.append(path)
             for extension in extensions:
-                path_extension = path + extension
+                path_extension = path / extension
                 if os.access(path_extension, flags):
                     result.append(path_extension)
         return result
@@ -306,7 +309,7 @@ class IOManager(object):
         """
         pattern = re.compile(r"\d{4,4}.[a-z]{2,3}")
         string = "abjad_output_directory"
-        output_directory = output_directory or _configuration[string]
+        output_directory = output_directory or configuration[string]
         if not os.path.exists(output_directory):
             return None
         all_file_names = os.listdir(output_directory)
@@ -401,8 +404,10 @@ class IOManager(object):
         Respects ``line_number`` when ``file_path`` can be opened with text
         editor.
         """
-        # special import necessary to satisfy parameterized pytests:
-        from abjad import abjad_configuration as _configuration
+        # special import necessary to satisfy parameterized pytests;
+        # would like to remove this;
+        # don't understand abjad/tests/test_IOManager_open_file.py
+        from abjad import configuration
 
         if sys.platform.lower().startswith("win"):
             startfile = getattr(os, "startfile", None)
@@ -413,11 +418,11 @@ class IOManager(object):
         if sys.platform.lower().startswith("linux"):
             viewer = application or "xdg-open"
         elif file_path.endswith(".pdf"):
-            viewer = application or _configuration["pdf_viewer"]
+            viewer = application or configuration["pdf_viewer"]
         elif file_path.endswith((".log", ".py", ".rst", ".txt")):
-            viewer = application or _configuration["text_editor"]
+            viewer = application or configuration["text_editor"]
         elif file_path.endswith((".mid", ".midi")):
-            viewer = application or _configuration["midi_player"]
+            viewer = application or configuration["midi_player"]
         viewer = viewer or "open"
         if line_number:
             command = f"{viewer} +{line_number} {file_path}"
@@ -431,12 +436,12 @@ class IOManager(object):
         """
         Opens LilyPond log file in operating system-specific text editor.
         """
-        text_editor = _configuration.get_text_editor()
-        file_path = _configuration.lilypond_log_file_path
-        IOManager.open_file(file_path, application=text_editor)
+        text_editor = configuration.get("text_editor")
+        file_path = configuration.lilypond_log_file_path
+        IOManager.open_file(str(file_path), application=text_editor)
 
     @staticmethod
-    def open_last_ly(target: int = -1,) -> None:
+    def open_last_ly(target: int = -1) -> None:
         """
         Opens last LilyPond output file produced by Abjad.
 
@@ -445,8 +450,8 @@ class IOManager(object):
         Set ``target=-2`` to open the next-to-last LilyPond output file
         produced by Abjad, and so on.
         """
-        abjad_output_directory = _configuration["abjad_output_directory"]
-        text_editor = _configuration.get_text_editor()
+        abjad_output_directory = configuration["abjad_output_directory"]
+        text_editor = configuration.get("text_editor")
         if isinstance(target, int) and target < 0:
             last_lilypond = IOManager.get_last_output_file_name()
             if last_lilypond:
@@ -486,7 +491,7 @@ class IOManager(object):
 
         Set ``target=-2`` to open the next-to-last PDF generated by Abjad.
         """
-        abjad_output_directory = _configuration["abjad_output_directory"]
+        abjad_output_directory = configuration["abjad_output_directory"]
         if isinstance(target, int) and target < 0:
             last_lilypond_file_path = IOManager.get_last_output_file_name()
             if last_lilypond_file_path:
@@ -507,7 +512,7 @@ class IOManager(object):
         else:
             raise ValueError(f"can not get target pdf name from {target}.")
         if os.stat(target_pdf):
-            pdf_viewer = _configuration["pdf_viewer"]
+            pdf_viewer = configuration["pdf_viewer"]
             IOManager.open_file(target_pdf, application=pdf_viewer)
         else:
             print(f"target PDF {target_pdf} does not exist.")
@@ -614,11 +619,7 @@ class IOManager(object):
 
     @staticmethod
     def run_lilypond(
-        ly_path: str,
-        *,
-        flags: str = None,
-        lilypond_log_file_path: str = None,
-        lilypond_path: str = None,
+        ly_path: str, *, flags: str = None, lilypond_log_file_path: pathlib.Path = None,
     ) -> bool:
         """
         Runs LilyPond on ``ly_path``.
@@ -630,22 +631,24 @@ class IOManager(object):
         file.
         """
         ly_path = str(ly_path)
-        lilypond_path = _configuration.get("lilypond_path")
-        if not lilypond_path:
+        lilypond_path_ = configuration.get("lilypond_path")
+        if lilypond_path_ is not None:
+            assert isinstance(lilypond_path_, str), repr(lilypond_path_)
+        if not lilypond_path_:
             lilypond_paths = IOManager.find_executable("lilypond")
             if lilypond_paths:
-                lilypond_path = lilypond_paths[0]
+                lilypond_path_ = str(lilypond_paths[0])
             else:
-                lilypond_path = "lilypond"
+                lilypond_path_ = "lilypond"
         lilypond_base, extension = os.path.splitext(ly_path)
         flags = flags or ""
         date = datetime.datetime.now().strftime("%c")
         if lilypond_log_file_path is None:
-            log_file_path = _configuration.lilypond_log_file_path
+            log_file_path = configuration.lilypond_log_file_path
         else:
             log_file_path = lilypond_log_file_path
         command = "{} {} -dno-point-and-click -o {} {}".format(
-            lilypond_path, flags, lilypond_base, ly_path
+            lilypond_path_, flags, lilypond_base, ly_path
         )
         process = subprocess.Popen(
             command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
@@ -671,7 +674,7 @@ class IOManager(object):
         """
         Saves last LilyPond file created by Abjad as ``file_path``.
         """
-        abjad_output_directory = _configuration["abjad_output_directory"]
+        abjad_output_directory = configuration["abjad_output_directory"]
         last_output_file_name = IOManager.get_last_output_file_name(extension=".ly")
         if last_output_file_name is None:
             return
@@ -685,7 +688,7 @@ class IOManager(object):
         """
         Saves last PDF created by Abjad as ``file_path``.
         """
-        abjad_output_directory = _configuration["abjad_output_directory"]
+        abjad_output_directory = configuration["abjad_output_directory"]
         last_output_file_name = IOManager.get_last_output_file_name(extension=".pdf")
         assert isinstance(last_output_file_name, str)
         last_pdf_full_name = os.path.join(abjad_output_directory, last_output_file_name)

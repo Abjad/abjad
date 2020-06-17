@@ -1,6 +1,6 @@
 import numbers
 
-from abjad.system.StorageFormatManager import StorageFormatManager
+from ..format import StorageFormatManager
 
 
 class LilyPondDimension(object):

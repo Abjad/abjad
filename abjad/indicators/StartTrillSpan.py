@@ -4,7 +4,8 @@ from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.pitch.NamedInterval import NamedInterval
 from abjad.pitch.NamedPitch import NamedPitch
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
-from abjad.system.StorageFormatManager import StorageFormatManager
+
+from ..format import StorageFormatManager
 
 
 class StartTrillSpan(object):

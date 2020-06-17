@@ -1,5 +1,6 @@
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
-from abjad.system.StorageFormatManager import StorageFormatManager
+
+from ..format import StorageFormatManager
 
 
 class Repeat(object):

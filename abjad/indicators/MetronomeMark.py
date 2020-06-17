@@ -8,14 +8,14 @@ from abjad import exceptions, mathtools, typings
 from abjad.markups import Markup
 from abjad.mathtools import NonreducedFraction, Ratio
 from abjad.scheme import Scheme
-from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
-from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.top.new import new
 from abjad.top.sequence import sequence
 from abjad.utilities.Duration import Duration
 from abjad.utilities.Enumerator import Enumerator
 from abjad.utilities.Multiplier import Multiplier
+
+from ..format import FormatSpecification, StorageFormatManager
 
 try:
     from quicktions import Fraction  # type: ignore  # noqa

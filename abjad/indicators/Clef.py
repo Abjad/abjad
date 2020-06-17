@@ -2,10 +2,10 @@ import typing
 
 from abjad.pitch.NamedPitch import NamedPitch
 from abjad.pitch.StaffPosition import StaffPosition
-from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
-from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.top.iterate import iterate
+
+from ..format import FormatSpecification, StorageFormatManager
 
 
 class Clef(object):

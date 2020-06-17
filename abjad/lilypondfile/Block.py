@@ -1,6 +1,6 @@
-from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
-from abjad.system.StorageFormatManager import StorageFormatManager
+
+from ..format import FormatSpecification, StorageFormatManager
 
 
 class Block(object):

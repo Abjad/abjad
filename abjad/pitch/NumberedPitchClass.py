@@ -1,6 +1,6 @@
 from abjad import enums
-from abjad.system.FormatSpecification import FormatSpecification
 
+from ..format import FormatSpecification
 from . import constants
 from .PitchClass import PitchClass
 

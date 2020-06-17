@@ -4,7 +4,6 @@ import typing
 import uqbar.graphs
 
 from abjad import exceptions, rhythmtrees
-from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.Tag import Tag
 from abjad.top.inspect import inspect
@@ -14,6 +13,7 @@ from abjad.top.parse import parse
 from abjad.top.select import select
 from abjad.utilities.Duration import Duration
 
+from ..format import FormatSpecification
 from .Component import Component
 from .Leaf import Leaf
 from .Note import Note
@@ -745,16 +745,6 @@ class Container(Component):
 
         return recurse(self)
 
-    def _iterate_topmost(self):
-        for component in self:
-            if isinstance(component, Leaf):
-                logical_tie = component._get_logical_tie()
-                if logical_tie.is_trivial or logical_tie[-1] is component:
-                    yield logical_tie
-            else:
-                assert isinstance(component, Container)
-                yield component
-
     def _parse_string(self, string):
         from abjad.parser.ReducedLyParser import ReducedLyParser
         from abjad.lilypondfile.LilyPondFile import LilyPondFile
@@ -789,10 +779,7 @@ class Container(Component):
         return n
 
     def _scale(self, multiplier):
-        self._scale_contents(multiplier)
-
-    def _scale_contents(self, multiplier):
-        for item in list(self._iterate_topmost()):
+        for item in list(self):
             item._scale(multiplier)
 
     def _set_item(self, i, argument):

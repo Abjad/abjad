@@ -3,7 +3,8 @@ import typing
 
 from abjad.markups import MarkupCommand
 from abjad.scheme import Scheme, SchemePair
-from abjad.system.StorageFormatManager import StorageFormatManager
+
+from ..format import StorageFormatManager
 
 
 class WoodwindFingering(object):

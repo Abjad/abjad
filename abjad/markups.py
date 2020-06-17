@@ -9,11 +9,11 @@ import typing
 from abjad import Fraction, enums, mathtools
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.scheme import Scheme, SchemeColor, SchemePair
-from abjad.system.FormatSpecification import FormatSpecification
-from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.top import new
 from abjad.utilities.String import String
 from abjad.utilities.TypedList import TypedList
+
+from .format import FormatSpecification, StorageFormatManager
 
 
 class Markup(object):

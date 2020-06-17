@@ -3,8 +3,8 @@ import re
 import shutil
 import tempfile
 
+from ..format import StorageFormatManager
 from .IOManager import IOManager
-from .StorageFormatManager import StorageFormatManager
 from .Timer import Timer
 
 
@@ -85,7 +85,7 @@ class PersistenceManager(object):
         if ly_file_path is None:
             ly_file_name = abjad.IOManager.get_next_output_file_name()
             ly_file_path = os.path.join(
-                abjad.abjad_configuration.abjad_output_directory, ly_file_name
+                abjad.configuration.abjad_output_directory, ly_file_name
             )
         else:
             ly_file_path = str(ly_file_path)

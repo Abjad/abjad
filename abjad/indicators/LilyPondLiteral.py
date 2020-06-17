@@ -1,9 +1,9 @@
 import typing
 
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
-from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
-from abjad.system.StorageFormatManager import StorageFormatManager
+
+from ..format import FormatSpecification, StorageFormatManager
 
 
 class LilyPondLiteral(object):

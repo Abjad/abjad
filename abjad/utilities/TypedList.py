@@ -1,5 +1,6 @@
 import collections
 
+from ..format import FormatSpecification, StorageFormatManager
 from .TypedCollection import TypedCollection
 
 
@@ -199,15 +200,13 @@ class TypedList(TypedCollection, collections.abc.MutableSequence):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        import abjad
-
-        manager = abjad.StorageFormatManager(self)
+        manager = StorageFormatManager(self)
         names = list(manager.signature_keyword_names)
         if "items" in names:
             names.remove("items")
         if "keep_sorted" in names:
             names.remove("keep_sorted")
-        return abjad.FormatSpecification(
+        return FormatSpecification(
             self,
             repr_is_indented=False,
             storage_format_args_values=[self._collection],

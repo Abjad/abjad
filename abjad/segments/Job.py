@@ -1,12 +1,12 @@
 import typing
 
-from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.system.Tag import Tag
 from abjad.system.Tags import Tags
 from abjad.top.activate import activate
 from abjad.top.deactivate import deactivate
 from abjad.utilities.String import String
 
+from ..format import StorageFormatManager
 from .Path import Path
 
 abjad_tags = Tags()

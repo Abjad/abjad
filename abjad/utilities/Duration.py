@@ -4,8 +4,8 @@ import re
 import typing
 
 from abjad import exceptions, mathtools
-from abjad.system.FormatSpecification import FormatSpecification
-from abjad.system.StorageFormatManager import StorageFormatManager
+
+from ..format import FormatSpecification, StorageFormatManager
 
 try:
     from quicktions import Fraction  # type: ignore

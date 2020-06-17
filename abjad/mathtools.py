@@ -12,8 +12,7 @@ import math
 import numbers
 import typing
 
-from abjad.system.FormatSpecification import FormatSpecification
-from abjad.system.StorageFormatManager import StorageFormatManager
+from .format import FormatSpecification, StorageFormatManager
 
 ### FUNCTIONS ###
 
@@ -1377,9 +1376,7 @@ class Infinity(object):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        from abjad import system
-
-        return system.FormatSpecification(
+        return FormatSpecification(
             client=self,
             repr_text=type(self).__name__,
             storage_format_text=type(self).__name__,
@@ -2278,10 +2275,8 @@ class NonreducedRatio(collections.abc.Sequence):
 
         Returns string.
         """
-        import abjad
-
         if format_specification in ("", "storage"):
-            return abjad.StorageFormatManager(self).get_storage_format()
+            return StorageFormatManager(self).get_storage_format()
         return str(self)
 
     def __getitem__(self, argument):
@@ -2377,9 +2372,7 @@ class NonreducedRatio(collections.abc.Sequence):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        import abjad
-
-        return abjad.FormatSpecification(
+        return FormatSpecification(
             client=self,
             storage_format_args_values=[self.numbers],
             storage_format_is_indented=False,

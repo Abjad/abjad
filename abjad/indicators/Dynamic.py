@@ -3,11 +3,11 @@ import typing
 from abjad import enums, mathtools
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.mathtools import Infinity, NegativeInfinity
-from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
-from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.system.Tags import Tags
 from abjad.utilities.String import String
+
+from ..format import FormatSpecification, StorageFormatManager
 
 abjad_tags = Tags()
 

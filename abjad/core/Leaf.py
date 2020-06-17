@@ -8,7 +8,6 @@ from abjad import enums, exceptions, mathtools
 from abjad.indicators.MetronomeMark import MetronomeMark
 from abjad.indicators.RepeatTie import RepeatTie
 from abjad.indicators.Tie import Tie
-from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.Tag import Tag
 from abjad.top.attach import attach
@@ -22,6 +21,7 @@ from abjad.utilities.Duration import Duration
 from abjad.utilities.Multiplier import Multiplier
 from abjad.utilities.Sequence import Sequence
 
+from ..format import FormatSpecification
 from .Component import Component
 
 
@@ -373,8 +373,9 @@ class Leaf(Component):
         return report
 
     def _scale(self, multiplier):
-        new_duration = multiplier * self._get_duration()
-        self._set_duration(new_duration)
+        # new_duration = multiplier * self._get_duration()
+        # self._set_duration(new_duration)
+        self.written_duration *= multiplier
 
     def _set_duration(self, new_duration):
         from .Chord import Chord

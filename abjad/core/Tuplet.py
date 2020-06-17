@@ -6,7 +6,6 @@ import uqbar
 from abjad import Fraction, exceptions, mathtools, typings
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.mathtools import NonreducedFraction, NonreducedRatio, Ratio
-from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.Tag import Tag
 from abjad.top.inspect import inspect
@@ -17,6 +16,7 @@ from abjad.top.tweak import tweak
 from abjad.utilities.Duration import Duration
 from abjad.utilities.Multiplier import Multiplier
 
+from ..format import FormatSpecification
 from .Container import Container
 from .Leaf import Leaf
 from .LeafMaker import LeafMaker

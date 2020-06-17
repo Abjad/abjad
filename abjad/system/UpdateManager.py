@@ -9,7 +9,7 @@ from abjad.utilities.Multiplier import Multiplier
 from abjad.utilities.Offset import Offset
 from abjad.utilities.Sequence import Sequence
 
-from .StorageFormatManager import StorageFormatManager
+from ..format import StorageFormatManager
 
 
 class UpdateManager(object):

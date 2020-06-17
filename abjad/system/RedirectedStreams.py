@@ -1,5 +1,6 @@
 import sys
 
+from ..format import FormatSpecification
 from .ContextManager import ContextManager
 
 
@@ -79,9 +80,7 @@ class RedirectedStreams(ContextManager):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        from abjad import system
-
-        return system.FormatSpecification(
+        return FormatSpecification(
             self,
             repr_is_bracketed=True,
             repr_is_indented=False,

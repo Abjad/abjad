@@ -1,6 +1,6 @@
 import time
 
-from abjad.system.StorageFormatManager import StorageFormatManager
+from ..format import StorageFormatManager
 
 
 class DateTimeToken(object):

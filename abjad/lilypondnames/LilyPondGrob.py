@@ -1,7 +1,6 @@
 import typing
 
-from abjad.system.StorageFormatManager import StorageFormatManager
-
+from ..format import StorageFormatManager
 from .LilyPondGrobInterface import LilyPondGrobInterface
 
 

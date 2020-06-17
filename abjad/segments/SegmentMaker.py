@@ -7,7 +7,6 @@ from abjad.core.Score import Score
 from abjad.core.Staff import Staff
 from abjad.core.Voice import Voice
 from abjad.lilypondfile.LilyPondFile import LilyPondFile
-from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.system.Tag import Tag
 from abjad.timespans import TimespanList
 from abjad.top.inspect import inspect
@@ -15,6 +14,7 @@ from abjad.top.iterate import iterate
 from abjad.utilities.OrderedDict import OrderedDict
 from abjad.utilities.String import String
 
+from ..format import StorageFormatManager
 from .PartAssignment import PartAssignment
 from .Path import Path
 

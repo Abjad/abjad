@@ -1,6 +1,6 @@
 import collections
 
-from abjad.system.StorageFormatManager import StorageFormatManager
+from ..format import StorageFormatManager
 
 
 class Lineage(collections.abc.Sequence):

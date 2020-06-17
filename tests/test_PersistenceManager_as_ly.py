@@ -2,7 +2,7 @@ import os
 
 import abjad
 
-configuration = abjad.AbjadConfiguration()
+configuration = abjad.Configuration()
 ly_path = os.path.join(configuration.abjad_directory, "test.ly")
 
 

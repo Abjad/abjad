@@ -42,7 +42,7 @@ install:
   # install without development dependencies
   - pip install -e .
   # echo the configuration file path to debug read-only-filesystem handling
-  - python -c "import abjad; print(abjad.abjad_configuration.configuration_file_path)"
+  - python -c "import abjad; print(abjad.configuration.configuration_file_path)"
   # prime the parser
   - scr/devel/prime-parser-tables
   # install development dependencies
@@ -56,10 +56,6 @@ install:
   - isort --version
   - mypy --version
   - pytest --version
-
-  # log paths
-  - python -c "import abjad; print(abjad.abjad_configuration.boilerplate_directory)"
-  - python -c "import abjad; print(abjad.abjad_configuration.all_paths)"
 
 script:
   - make black-check

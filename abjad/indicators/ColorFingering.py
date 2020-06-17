@@ -5,8 +5,9 @@ from abjad import enums, mathtools
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.markups import Markup
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
-from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.top.new import new
+
+from ..format import StorageFormatManager
 
 
 @functools.total_ordering

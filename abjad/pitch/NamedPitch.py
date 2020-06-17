@@ -1,8 +1,8 @@
 import math
 
 from abjad import mathtools
-from abjad.system.FormatSpecification import FormatSpecification
 
+from ..format import FormatSpecification
 from . import constants
 from .Pitch import Pitch
 

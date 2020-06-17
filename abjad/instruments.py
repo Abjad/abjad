@@ -9,9 +9,9 @@ from abjad.pitch.NamedPitch import NamedPitch
 from abjad.pitch.NamedPitchClass import NamedPitchClass
 from abjad.pitch.PitchRange import PitchRange
 from abjad.pitch.PitchSegment import PitchSegment
-from abjad.system.FormatSpecification import FormatSpecification
-from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.utilities.Enumerator import Enumerator
+
+from .format import FormatSpecification, StorageFormatManager
 
 
 class Instrument(object):

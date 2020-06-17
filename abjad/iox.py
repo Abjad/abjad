@@ -11,9 +11,9 @@ from uqbar.graphs import Grapher
 
 import abjad
 from abjad.lilypondfile import Block
-from abjad.system import AbjadConfiguration, IOManager, Timer
+from abjad.system import Configuration, IOManager, Timer
 
-_configuration = AbjadConfiguration()
+configuration = Configuration()
 
 
 class LilyPondIO:
@@ -82,7 +82,7 @@ class LilyPondIO:
             shutil.copy(path, render_directory)
 
     def get_lilypond_path(self):
-        lilypond_path = _configuration.get("lilypond_path")
+        lilypond_path = configuration.get("lilypond_path")
         if not lilypond_path:
             lilypond_paths = IOManager.find_executable("lilypond")
             if lilypond_paths:
@@ -97,7 +97,7 @@ class LilyPondIO:
                 yield path
 
     def get_output_directory(self) -> pathlib.Path:
-        return pathlib.Path(_configuration["abjad_output_directory"])
+        return pathlib.Path(configuration["abjad_output_directory"])
 
     def get_render_command(self, input_path, lilypond_path) -> str:
         parts = [
@@ -169,7 +169,7 @@ class AbjadGrapher(Grapher):
     ### PUBLIC METHODS ###
 
     def get_output_directory(self) -> pathlib.Path:
-        return pathlib.Path(_configuration["abjad_output_directory"])
+        return pathlib.Path(configuration["abjad_output_directory"])
 
     def open_output_path(self, output_path):
         IOManager.open_file(str(output_path))

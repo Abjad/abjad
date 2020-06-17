@@ -1,8 +1,8 @@
 from abjad.pitch.IntervalSegment import IntervalSegment
 from abjad.pitch.NamedInterval import NamedInterval
-from abjad.system.FormatSpecification import FormatSpecification
-from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.top.sequence import sequence
+
+from ..format import FormatSpecification, StorageFormatManager
 
 
 class Mode(object):

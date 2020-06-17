@@ -2,13 +2,13 @@ from abjad import enums
 from abjad.indicators.TimeSignature import TimeSignature
 from abjad.meter import Meter
 from abjad.pitch.NamedInterval import NamedInterval
-from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.top.inspect import inspect
 from abjad.top.iterate import iterate
 from abjad.top.select import select
 from abjad.top.sequence import sequence
 from abjad.utilities.Duration import Duration
 
+from ..format import StorageFormatManager
 from .Chord import Chord
 from .Component import Component
 from .Container import Container
@@ -249,7 +249,7 @@ class Mutation(object):
         """
         return self.client._eject_contents()
 
-    def extract(self, scale_contents=False):
+    def extract(self):
         r"""
         Extracts mutation client from score.
 
@@ -342,10 +342,10 @@ class Mutation(object):
                     }
                 }
 
-            >>> empty_tuplet = abjad.mutate(staff[-1]).extract(
-            ...     scale_contents=True)
-            >>> empty_tuplet = abjad.mutate(staff[0]).extract(
-            ...     scale_contents=True)
+            >>> abjad.mutate(staff[-1]).scale(abjad.Multiplier((3, 2)))
+            >>> empty_tuplet = abjad.mutate(staff[-1]).extract()
+            >>> abjad.mutate(staff[0]).scale(abjad.Multiplier((3, 2)))
+            >>> empty_tuplet = abjad.mutate(staff[0]).extract()
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -396,7 +396,7 @@ class Mutation(object):
 
         Returns mutation client.
         """
-        return self.client._extract(scale_contents=scale_contents)
+        return self.client._extract()
 
     def fuse(self):
         r"""
@@ -1871,7 +1871,7 @@ class Mutation(object):
         )
         return result
 
-    def scale(self, multiplier):
+    def scale(self, multiplier) -> None:
         r"""
         Scales mutation client by ``multiplier``.
 
@@ -1900,7 +1900,7 @@ class Mutation(object):
 
         ..  container:: example
 
-            Scales nontrivial logical tie by dot-generating ``multiplier``:
+            Scales tied leaves by dot-generating mutliplier:
 
             >>> staff = abjad.Staff(r"c'8 \accent ~ c'8 d'8")
             >>> time_signature = abjad.TimeSignature((3, 8))
@@ -1931,14 +1931,16 @@ class Mutation(object):
                 \new Staff
                 {
                     \time 3/8
-                    c'4.
+                    c'8.
                     - \accent
+                    ~
+                    c'8.
                     d'8
                 }
 
         ..  container:: example
 
-            Scales container by dot-generating multiplier:
+            Scales leaves in container by dot-generating multiplier:
 
             >>> container = abjad.Container(r"c'8 ( d'8 e'8 f'8 )")
             >>> abjad.show(container) # doctest: +SKIP
@@ -1972,309 +1974,7 @@ class Mutation(object):
 
         ..  container:: example
 
-            Scales note by tie-generating multiplier:
-
-            >>> staff = abjad.Staff("c'8 ( d'8 e'8 f'8 )")
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            >>> abjad.mutate(staff[1]).scale(abjad.Multiplier(5, 4))
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    c'8
-                    (
-                    d'8
-                    ~
-                    d'32
-                    e'8
-                    f'8
-                    )
-                }
-
-        ..  container:: example
-
-            Scales nontrivial logical tie by tie-generating ``multiplier``:
-
-            >>> staff = abjad.Staff(r"c'8 \accent ~ c'8 d'16")
-            >>> time_signature = abjad.TimeSignature((5, 16))
-            >>> abjad.attach(time_signature, staff[0])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    \time 5/16
-                    c'8
-                    - \accent
-                    ~
-                    c'8
-                    d'16
-                }
-
-            >>> logical_tie = abjad.select(staff[0]).logical_tie()
-            >>> agent = abjad.mutate(logical_tie)
-            >>> logical_tie = agent.scale(abjad.Multiplier(5, 4))
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    \time 5/16
-                    c'4
-                    - \accent
-                    ~
-                    c'16
-                    d'16
-                }
-
-        ..  container:: example
-
-            Scales container by tie-generating multiplier:
-
-            >>> container = abjad.Container(r"c'8 d'8 e'8 f'8")
-            >>> abjad.show(container) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(container)
-                {
-                    c'8
-                    d'8
-                    e'8
-                    f'8
-                }
-
-            >>> abjad.mutate(container).scale(abjad.Multiplier(5, 4))
-            >>> abjad.show(container) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(container)
-                {
-                    c'8
-                    ~
-                    c'32
-                    d'8
-                    ~
-                    d'32
-                    e'8
-                    ~
-                    e'32
-                    f'8
-                    ~
-                    f'32
-                }
-
-        ..  container:: example
-
-            Scales note by tuplet-generating multiplier:
-
-            >>> staff = abjad.Staff("c'8 ( d'8 e'8 f'8 )")
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            >>> abjad.mutate(staff[1]).scale(abjad.Multiplier(2, 3))
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    c'8
-                    (
-                    \tweak edge-height #'(0.7 . 0)
-                    \times 2/3 {
-                        d'8
-                    }
-                    e'8
-                    f'8
-                    )
-                }
-
-        ..  container:: example
-
-            Scales trivial logical tie by tuplet-generating multiplier:
-
-            >>> staff = abjad.Staff(r"c'8 \accent")
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    c'8
-                    - \accent
-                }
-
-            >>> logical_tie = abjad.select(staff[0]).logical_tie()
-            >>> agent = abjad.mutate(logical_tie)
-            >>> logical_tie = agent.scale(abjad.Multiplier(4, 3))
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    \tweak edge-height #'(0.7 . 0)
-                    \times 2/3 {
-                        c'4
-                        - \accent
-                    }
-                }
-
-        ..  container:: example
-
-            Scales container by tuplet-generating multiplier:
-
-            >>> container = abjad.Container(r"c'8 ( d'8 e'8 f'8 )")
-            >>> abjad.show(container) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(container)
-                {
-                    c'8
-                    (
-                    d'8
-                    e'8
-                    f'8
-                    )
-                }
-
-            >>> abjad.mutate(container).scale(abjad.Multiplier(4, 3))
-            >>> abjad.show(container) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(container)
-                {
-                    \tweak edge-height #'(0.7 . 0)
-                    \times 2/3 {
-                        c'4
-                        (
-                    }
-                    \tweak edge-height #'(0.7 . 0)
-                    \times 2/3 {
-                        d'4
-                    }
-                    \tweak edge-height #'(0.7 . 0)
-                    \times 2/3 {
-                        e'4
-                    }
-                    \tweak edge-height #'(0.7 . 0)
-                    \times 2/3 {
-                        f'4
-                        )
-                    }
-                }
-
-        ..  container:: example
-
-            Scales note by tie- and tuplet-generating multiplier:
-
-            >>> staff = abjad.Staff("c'8 ( d'8 e'8 f'8 )")
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            >>> abjad.mutate(staff[1]).scale(abjad.Multiplier(5, 6))
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    c'8
-                    (
-                    \tweak edge-height #'(0.7 . 0)
-                    \times 2/3 {
-                        d'8
-                        ~
-                        d'32
-                    }
-                    e'8
-                    f'8
-                    )
-                }
-
-        ..  container:: example
-
-            Scales note carrying LilyPond multiplier:
-
-            >>> note = abjad.Note("c'8", multiplier=(1, 2))
-            >>> abjad.show(note) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(note)
-                c'8 * 1/2
-
-            >>> abjad.mutate(note).scale(abjad.Multiplier(5, 3))
-            >>> abjad.show(note) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(note)
-                c'8 * 5/6
-
-        ..  container:: example
-
-            Scales tuplet:
-
-            >>> staff = abjad.Staff()
-            >>> tuplet = abjad.Tuplet((4, 5), [])
-            >>> tuplet.extend("c'8 d'8 e'8 f'8 g'8")
-            >>> staff.append(tuplet)
-            >>> time_signature = abjad.TimeSignature((4, 8))
-            >>> leaves = abjad.select(staff).leaves()
-            >>> abjad.attach(time_signature, leaves[0])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    \times 4/5 {
-                        \time 4/8
-                        c'8
-                        d'8
-                        e'8
-                        f'8
-                        g'8
-                    }
-                }
-
-            >>> abjad.mutate(tuplet).scale(abjad.Multiplier(2))
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    \times 4/5 {
-                        \time 4/8
-                        c'4
-                        d'4
-                        e'4
-                        f'4
-                        g'4
-                    }
-                }
-
-        ..  container:: example
-
-            Scales tuplet:
+            Scales leaves in tuplet:
 
             >>> staff = abjad.Staff()
             >>> tuplet = abjad.Tuplet((4, 5), "c'8 d'8 e'8 f'8 g'8")
@@ -2317,7 +2017,26 @@ class Mutation(object):
                     }
                 }
 
-        Returns none.
+        ..  container:: example
+
+            Scales leaves carrying LilyPond multiplier:
+
+            >>> note = abjad.Note("c'8", multiplier=(1, 2))
+            >>> abjad.show(note) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(note)
+                c'8 * 1/2
+
+            >>> abjad.mutate(note).scale(abjad.Multiplier(1, 2))
+            >>> abjad.show(note) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(note)
+                c'16 * 1/2
+
         """
         if hasattr(self.client, "_scale"):
             self.client._scale(multiplier)

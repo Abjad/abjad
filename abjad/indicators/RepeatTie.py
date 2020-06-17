@@ -3,12 +3,12 @@ import typing
 from abjad import enums
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
-from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.system.Tags import Tags
 from abjad.top.inspect import inspect
 from abjad.utilities.Duration import Duration
 from abjad.utilities.String import String
 
+from ..format import StorageFormatManager
 from .Clef import Clef
 
 abjad_tags = Tags()

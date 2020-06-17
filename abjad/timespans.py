@@ -9,9 +9,7 @@ import typing
 from abjad import enums, mathtools
 from abjad.markups import Markup, Postscript
 from abjad.mathtools import Ratio
-from abjad.system.FormatSpecification import FormatSpecification
 from abjad.system.Signature import Signature
-from abjad.system.StorageFormatManager import StorageFormatManager
 from abjad.top.new import new
 from abjad.utilities import Infinity, NegativeInfinity
 from abjad.utilities.Duration import Duration
@@ -20,6 +18,8 @@ from abjad.utilities.Multiplier import Multiplier
 from abjad.utilities.Offset import Offset
 from abjad.utilities.Sequence import Sequence
 from abjad.utilities.TypedList import TypedList
+
+from .format import FormatSpecification, StorageFormatManager
 
 
 class Timespan(object):
@@ -3303,13 +3303,11 @@ class TimespanList(TypedList):
                         }
                     }
 
-        Returns LilyPond file.
+        Returns markup.
         """
-        import abjad
-
         if not self:
-            return abjad.Markup.null().__illustrate__()
-        if isinstance(range_, abjad.Timespan):
+            return Markup.null().__illustrate__()
+        if isinstance(range_, Timespan):
             minimum, maximum = range_.start_offset, range_.stop_offset
         elif range_ is not None:
             minimum, maximum = range_
@@ -3318,8 +3316,8 @@ class TimespanList(TypedList):
         if scale is None:
             scale = 1.0
         assert 0 < scale
-        minimum = float(abjad.Offset(minimum))
-        maximum = float(abjad.Offset(maximum))
+        minimum = float(Offset(minimum))
+        maximum = float(Offset(maximum))
         postscript_scale = 150.0 / (maximum - minimum)
         postscript_scale *= float(scale)
         postscript_x_offset = (minimum * postscript_scale) - 1
@@ -3340,19 +3338,19 @@ class TimespanList(TypedList):
                 value, timespans = item
                 timespans.sort()
                 if 0 < i:
-                    vspace_markup = abjad.Markup.vspace(0.5)
+                    vspace_markup = Markup.vspace(0.5)
                     markups.append(vspace_markup)
-                value_markup = abjad.Markup(f"{value}:")
-                value_markup = abjad.Markup.line([value_markup])
+                value_markup = Markup(f"{value}:")
+                value_markup = Markup.line([value_markup])
                 value_markup = value_markup.sans().fontsize(-1)
                 markups.append(value_markup)
-                vspace_markup = abjad.Markup.vspace(0.5)
+                vspace_markup = Markup.vspace(0.5)
                 markups.append(vspace_markup)
                 timespan_markup = self._make_timespan_list_markup(
                     timespans, postscript_x_offset, postscript_scale, sortkey=sortkey,
                 )
                 markups.append(timespan_markup)
-            markup = abjad.Markup.left_column(markups)
+            markup = Markup.left_column(markups)
         return markup.__illustrate__()
 
     def __invert__(self) -> "TimespanList":

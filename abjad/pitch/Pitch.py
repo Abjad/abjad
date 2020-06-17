@@ -5,8 +5,8 @@ import numbers
 import typing
 
 from abjad import mathtools
-from abjad.system.StorageFormatManager import StorageFormatManager
 
+from ..format import StorageFormatManager
 from . import constants
 
 

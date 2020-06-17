@@ -2,7 +2,7 @@ import difflib
 import os
 import pathlib
 
-from abjad.system.StorageFormatManager import StorageFormatManager
+from ..format import StorageFormatManager
 
 
 class TestManager(object):

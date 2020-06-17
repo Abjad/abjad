@@ -19,13 +19,13 @@ test_files_to_viewer_mapping = {
     "test.pdf": pdf_viewer,
 }
 test_files = test_files_to_viewer_mapping.keys()
-empty_abjad_configuration, nonempty_abjad_configuration = (
+empty_configuration, nonempty_configuration = (
     (
-        "abjad.abjad_configuration",
+        "abjad.configuration",
         {"midi_player": None, "text_editor": None, "pdf_viewer": None},
     ),
     (
-        "abjad.abjad_configuration",
+        "abjad.configuration",
         {
             "midi_player": midi_player,
             "text_editor": text_editor,
@@ -33,16 +33,16 @@ empty_abjad_configuration, nonempty_abjad_configuration = (
         },
     ),
 )
-abjad_configurations = (
-    empty_abjad_configuration,
-    nonempty_abjad_configuration,
+configurations = (
+    empty_configuration,
+    nonempty_configuration,
 )
 applications = (None, "custom-viewer")
 
 
 @mock.patch("sys.platform", "linux2")
 @mock.patch("abjad.IOManager.spawn_subprocess")
-@pytest.mark.parametrize("configuration", abjad_configurations)
+@pytest.mark.parametrize("configuration", configurations)
 @pytest.mark.parametrize("file_path", test_files)
 @pytest.mark.parametrize("application", applications)
 def test_IOManager_open_file_01(
@@ -60,7 +60,7 @@ def test_IOManager_open_file_01(
 
 @mock.patch("sys.platform", "darwin")
 @mock.patch("abjad.IOManager.spawn_subprocess")
-@pytest.mark.parametrize("configuration", abjad_configurations)
+@pytest.mark.parametrize("configuration", configurations)
 @pytest.mark.parametrize("file_path", test_files)
 @pytest.mark.parametrize("application", applications)
 def test_IOManager_open_file_02(
@@ -68,7 +68,7 @@ def test_IOManager_open_file_02(
 ):
     with mock.patch(*configuration):
         abjad.IOManager.open_file(file_path=file_path, application=application)
-        is_empty_config = configuration == empty_abjad_configuration
+        is_empty_config = configuration == empty_configuration
         command = None
         if application is None and is_empty_config:
             command = "open {}".format(file_path)
@@ -82,7 +82,7 @@ def test_IOManager_open_file_02(
 
 @mock.patch("sys.platform", "win32")
 @mock.patch("os.startfile", create=True)
-@pytest.mark.parametrize("configuration", abjad_configurations)
+@pytest.mark.parametrize("configuration", configurations)
 @pytest.mark.parametrize("file_path", test_files)
 @pytest.mark.parametrize("application", applications)
 def test_IOManager_open_file_03(startfile_mock, configuration, file_path, application):

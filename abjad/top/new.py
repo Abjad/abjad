@@ -1,5 +1,7 @@
 import types
 
+from ..format import StorageFormatManager
+
 
 def new(argument, *arguments, **keywords):
     r"""
@@ -70,11 +72,9 @@ def new(argument, *arguments, **keywords):
 
     Returns new object with type equal to that of ``argument``.
     """
-    import abjad
-
     if argument is None:
         return argument
-    manager = abjad.StorageFormatManager(argument)
+    manager = StorageFormatManager(argument)
     template_dict = manager.get_template_dict()
     if not (template_dict):
         message = "low-level class not equipped for new():\n"
@@ -96,7 +96,7 @@ def new(argument, *arguments, **keywords):
             result = method(value)
             if isinstance(result, type(argument)):
                 argument = result
-                manager_ = abjad.StorageFormatManager(argument)
+                manager_ = StorageFormatManager(argument)
                 template_dict.update(manager_.get_template_dict())
         else:
             message = f"{type(argument)} has no key {key!r}."
