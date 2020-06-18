@@ -1,10 +1,11 @@
+import functools
+import numbers
 import typing
 
-from abjad.pitch.NamedPitch import NamedPitch
-from abjad.pitch.StaffPosition import StaffPosition
-from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
-
 from ..formatting import FormatSpecification, StorageFormatManager
+from ..pitch import constants as pitch_constants
+from ..pitch.pitches import NamedPitch
+from ..system.LilyPondFormatBundle import LilyPondFormatBundle
 from ..top import iterate
 
 
@@ -505,3 +506,450 @@ class Clef(object):
         Override the LilyPond ``Clef`` grob instead.
         """
         pass
+
+
+@functools.total_ordering
+class StaffPosition(object):
+    """
+    Staff position.
+
+    ..  container:: example
+
+        Initializes staff position at middle line of staff:
+
+        >>> abjad.StaffPosition(0)
+        StaffPosition(0)
+
+    ..  container:: example
+
+        Initializes staff position one space below middle line of staff:
+
+        >>> abjad.StaffPosition(-1)
+        StaffPosition(-1)
+
+    ..  container:: example
+
+        Initializes staff position one line below middle line of staff:
+
+        >>> abjad.StaffPosition(-2)
+        StaffPosition(-2)
+
+    ..  container:: example
+
+        Initializes from other staff position:
+
+        >>> staff_position = abjad.StaffPosition(-2)
+        >>> abjad.StaffPosition(staff_position)
+        StaffPosition(-2)
+
+    """
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = ("_number",)
+
+    ### INITIALIZER ###
+
+    def __init__(self, number=0):
+        if isinstance(number, type(self)):
+            number = number.number
+        assert isinstance(number, numbers.Number), repr(number)
+        self._number = number
+
+    ### SPECIAL METHODS ###
+
+    def __eq__(self, argument):
+        """
+        Is true when `argument` is a staff position with the same number as
+        this staff position.
+
+        ..  container:: example
+
+            >>> staff_position_1 = abjad.StaffPosition(-2)
+            >>> staff_position_2 = abjad.StaffPosition(-2)
+            >>> staff_position_3 = abjad.StaffPosition(0)
+
+            >>> staff_position_1 == staff_position_1
+            True
+            >>> staff_position_1 == staff_position_2
+            True
+            >>> staff_position_1 == staff_position_3
+            False
+
+            >>> staff_position_2 == staff_position_1
+            True
+            >>> staff_position_2 == staff_position_2
+            True
+            >>> staff_position_2 == staff_position_3
+            False
+
+            >>> staff_position_3 == staff_position_1
+            False
+            >>> staff_position_3 == staff_position_2
+            False
+            >>> staff_position_3 == staff_position_3
+            True
+
+        Returns true or false.
+        """
+        return StorageFormatManager.compare_objects(self, argument)
+
+    def __hash__(self):
+        """
+        Hashes staff position.
+
+        Returns integer.
+        """
+        hash_values = StorageFormatManager(self).get_hash_values()
+        try:
+            result = hash(hash_values)
+        except TypeError:
+            raise TypeError(f"unhashable type: {self}")
+        return result
+
+    def __lt__(self, argument):
+        """
+        Is true when staff position is less than `argument`.
+
+        ..  container:: example
+
+            >>> staff_position_1 = abjad.StaffPosition(-2)
+            >>> staff_position_2 = abjad.StaffPosition(-2)
+            >>> staff_position_3 = abjad.StaffPosition(0)
+
+            >>> staff_position_1 < staff_position_1
+            False
+            >>> staff_position_1 < staff_position_2
+            False
+            >>> staff_position_1 < staff_position_3
+            True
+
+            >>> staff_position_2 < staff_position_1
+            False
+            >>> staff_position_2 < staff_position_2
+            False
+            >>> staff_position_2 < staff_position_3
+            True
+
+            >>> staff_position_3 < staff_position_1
+            False
+            >>> staff_position_3 < staff_position_2
+            False
+            >>> staff_position_3 < staff_position_3
+            False
+
+        Returns true or false.
+        """
+        try:
+            argument = type(self)(argument)
+        except Exception:
+            return False
+        return self.number < argument.number
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
+
+    def __str__(self):
+        """
+        Gets string representation of staff position.
+
+        ..  container:: example
+
+            >>> str(abjad.StaffPosition(-2))
+            'StaffPosition(-2)'
+
+        Returns string.
+        """
+        return "{}({})".format(type(self).__name__, self.number)
+
+    ### PRIVATE METHODS ###
+
+    def _get_format_specification(self):
+        return FormatSpecification(
+            client=self,
+            repr_is_indented=False,
+            storage_format_is_indented=False,
+            storage_format_args_values=[self.number],
+            storage_format_kwargs_names=[],
+        )
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def number(self):
+        """
+        Gets staff position number.
+
+        ..  container:: example
+
+            >>> abjad.StaffPosition(-2).number
+            -2
+
+        Returns number.
+        """
+        return self._number
+
+    ### PUBLIC METHODS ###
+
+    @staticmethod
+    def from_pitch_and_clef(pitch, clef) -> "StaffPosition":
+        r"""
+        Changes named pitch to staff position.
+
+        ..  container:: example
+
+            Changes C#5 to absolute staff position:
+
+            >>> abjad.StaffPosition.from_pitch_and_clef('C#5', "alto")
+            StaffPosition(7)
+
+            >>> abjad.StaffPosition.from_pitch_and_clef('C#5', "treble")
+            StaffPosition(1)
+
+            >>> abjad.StaffPosition.from_pitch_and_clef('C#5', "bass")
+            StaffPosition(13)
+
+        ..  container:: example
+
+            Marks up absolute staff position of many pitches:
+
+            >>> string = "g16 a b c' d' e' f' g' a' b' c'' d'' e'' f'' g'' a''"
+            >>> staff = abjad.Staff(string)
+            >>> for note in staff:
+            ...     staff_position = abjad.StaffPosition.from_pitch_and_clef(
+            ...         note.written_pitch,
+            ...         "alto",
+            ...     )
+            ...     markup = abjad.Markup(staff_position.number)
+            ...     abjad.attach(markup, note)
+            ...
+            >>> abjad.override(staff).text_script.staff_padding = 5
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                \with
+                {
+                    \override TextScript.staff-padding = #5
+                }
+                {
+                    g16
+                    - \markup { -3 }
+                    a16
+                    - \markup { -2 }
+                    b16
+                    - \markup { -1 }
+                    c'16
+                    - \markup { 0 }
+                    d'16
+                    - \markup { 1 }
+                    e'16
+                    - \markup { 2 }
+                    f'16
+                    - \markup { 3 }
+                    g'16
+                    - \markup { 4 }
+                    a'16
+                    - \markup { 5 }
+                    b'16
+                    - \markup { 6 }
+                    c''16
+                    - \markup { 7 }
+                    d''16
+                    - \markup { 8 }
+                    e''16
+                    - \markup { 9 }
+                    f''16
+                    - \markup { 10 }
+                    g''16
+                    - \markup { 11 }
+                    a''16
+                    - \markup { 12 }
+                }
+
+        ..  container:: example
+
+            Marks up bass staff position of many pitches:
+
+            >>> string = "g,16 a, b, c d e f g a b c' d' e' f' g' a'"
+            >>> staff = abjad.Staff(string)
+            >>> for note in staff:
+            ...     staff_position = abjad.StaffPosition.from_pitch_and_clef(
+            ...         note.written_pitch,
+            ...         "bass",
+            ...     )
+            ...     markup = abjad.Markup(staff_position.number)
+            ...     abjad.attach(markup, note)
+            ...
+            >>> abjad.attach(abjad.Clef("bass"), staff[0])
+            >>> abjad.override(staff).text_script.staff_padding = 5
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                \with
+                {
+                    \override TextScript.staff-padding = #5
+                }
+                {
+                    \clef "bass"
+                    g,16
+                    - \markup { -4 }
+                    a,16
+                    - \markup { -3 }
+                    b,16
+                    - \markup { -2 }
+                    c16
+                    - \markup { -1 }
+                    d16
+                    - \markup { 0 }
+                    e16
+                    - \markup { 1 }
+                    f16
+                    - \markup { 2 }
+                    g16
+                    - \markup { 3 }
+                    a16
+                    - \markup { 4 }
+                    b16
+                    - \markup { 5 }
+                    c'16
+                    - \markup { 6 }
+                    d'16
+                    - \markup { 7 }
+                    e'16
+                    - \markup { 8 }
+                    f'16
+                    - \markup { 9 }
+                    g'16
+                    - \markup { 10 }
+                    a'16
+                    - \markup { 11 }
+                }
+
+        """
+        pitch = NamedPitch(pitch)
+        clef = Clef(clef)
+        staff_position_number = pitch._get_diatonic_pitch_number()
+        staff_position_number += clef.middle_c_position.number
+        staff_position = StaffPosition(staff_position_number)
+        return staff_position
+
+    def to_pitch(self, clef):
+        """
+        Makes named pitch from staff position and `clef`.
+
+        ..  container:: example
+
+            Treble clef:
+
+            >>> for n in range(-6, 6):
+            ...     staff_position = abjad.StaffPosition(n)
+            ...     pitch = staff_position.to_pitch("treble")
+            ...     message = f"{staff_position!s}\t{pitch}"
+            ...     print(message)
+            ...
+            StaffPosition(-6)	c'
+            StaffPosition(-5)	d'
+            StaffPosition(-4)	e'
+            StaffPosition(-3)	f'
+            StaffPosition(-2)	g'
+            StaffPosition(-1)	a'
+            StaffPosition(0)	b'
+            StaffPosition(1)	c''
+            StaffPosition(2)	d''
+            StaffPosition(3)	e''
+            StaffPosition(4)	f''
+            StaffPosition(5)	g''
+
+        ..  container:: example
+
+            Bass clef:
+
+            >>> for n in range(-6, 6):
+            ...     staff_position = abjad.StaffPosition(n)
+            ...     pitch = staff_position.to_pitch("bass")
+            ...     message = f"{staff_position!s}\t{pitch}"
+            ...     print(message)
+            ...
+            StaffPosition(-6)	e,
+            StaffPosition(-5)	f,
+            StaffPosition(-4)	g,
+            StaffPosition(-3)	a,
+            StaffPosition(-2)	b,
+            StaffPosition(-1)	c
+            StaffPosition(0)	d
+            StaffPosition(1)	e
+            StaffPosition(2)	f
+            StaffPosition(3)	g
+            StaffPosition(4)	a
+            StaffPosition(5)	b
+
+        ..  container:: example
+
+            Alto clef:
+
+            >>> for n in range(-6, 6):
+            ...     staff_position = abjad.StaffPosition(n)
+            ...     pitch = staff_position.to_pitch("alto")
+            ...     message = f"{staff_position!s}\t{pitch}"
+            ...     print(message)
+            ...
+            StaffPosition(-6)	d
+            StaffPosition(-5)	e
+            StaffPosition(-4)	f
+            StaffPosition(-3)	g
+            StaffPosition(-2)	a
+            StaffPosition(-1)	b
+            StaffPosition(0)	c'
+            StaffPosition(1)	d'
+            StaffPosition(2)	e'
+            StaffPosition(3)	f'
+            StaffPosition(4)	g'
+            StaffPosition(5)	a'
+
+        ..  container:: example
+
+            Percussion clef:
+
+            >>> for n in range(-6, 6):
+            ...     staff_position = abjad.StaffPosition(n)
+            ...     pitch = staff_position.to_pitch("percussion")
+            ...     message = f"{staff_position!s}\t{pitch}"
+            ...     print(message)
+            ...
+            StaffPosition(-6)	d
+            StaffPosition(-5)	e
+            StaffPosition(-4)	f
+            StaffPosition(-3)	g
+            StaffPosition(-2)	a
+            StaffPosition(-1)	b
+            StaffPosition(0)	c'
+            StaffPosition(1)	d'
+            StaffPosition(2)	e'
+            StaffPosition(3)	f'
+            StaffPosition(4)	g'
+            StaffPosition(5)	a'
+
+        Returns new named pitch.
+        """
+        offset_staff_position_number = self.number
+        clef = Clef(clef)
+        offset_staff_position_number -= clef.middle_c_position.number
+        offset_staff_position = StaffPosition(offset_staff_position_number)
+        octave_number = offset_staff_position.number // 7 + 4
+        diatonic_pc_number = offset_staff_position.number % 7
+        pitch_class_number = pitch_constants._diatonic_pc_number_to_pitch_class_number[
+            diatonic_pc_number
+        ]
+        pitch_number = 12 * (octave_number - 4)
+        pitch_number += pitch_class_number
+        named_pitch = NamedPitch(pitch_number)
+        return named_pitch

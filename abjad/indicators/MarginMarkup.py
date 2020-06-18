@@ -1,9 +1,8 @@
 import typing
 
-from abjad.markups import Markup
-from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
-
 from ..formatting import StorageFormatManager
+from ..markups import Markup
+from ..system.LilyPondFormatBundle import LilyPondFormatBundle
 from ..top import new
 
 

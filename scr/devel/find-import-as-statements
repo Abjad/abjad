@@ -38,7 +38,7 @@ def find_import_as_statements():
 
 
 if __name__ == '__main__':
-    abjad.IOManager.clear_terminal()
+    abjad.IOManager.spawn_subprocess("clear")
     print('Finding import-as statements ...')
     print()
     find_import_as_statements()

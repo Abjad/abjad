@@ -3,22 +3,21 @@ import copy
 import inspect
 import pathlib
 
-from abjad.core.Component import Component
-from abjad.core.Container import Container
-from abjad.core.Context import Context
-from abjad.core.Score import Score
-from abjad.core.Selection import Selection
-from abjad.core.Skip import Skip
-from abjad.core.Staff import Staff
-from abjad.core.Voice import Voice
-from abjad.indicators.LilyPondLiteral import LilyPondLiteral
-from abjad.indicators.TimeSignature import TimeSignature
-from abjad.pitch.NamedPitch import NamedPitch
-from abjad.scheme import Scheme, SpacingVector
-from abjad.system.LilyPondFormatManager import LilyPondFormatManager
-from abjad.system.Tag import Tag
-
+from ..core.Component import Component
+from ..core.Container import Container
+from ..core.Context import Context
+from ..core.Score import Score
+from ..core.Selection import Selection
+from ..core.Skip import Skip
+from ..core.Staff import Staff
+from ..core.Voice import Voice
 from ..formatting import FormatSpecification, StorageFormatManager
+from ..indicators.LilyPondLiteral import LilyPondLiteral
+from ..indicators.TimeSignature import TimeSignature
+from ..pitch.pitches import NamedPitch
+from ..scheme import Scheme, SpacingVector
+from ..system.LilyPondFormatManager import LilyPondFormatManager
+from ..system.Tag import Tag
 from ..top import attach
 from ..top import inspect as abjad_inspect
 from ..top import iterate, override, select, sequence

@@ -1,6 +1,7 @@
 import typing
 
 from ..formatting import StorageFormatManager
+from ..ly.interface_properties import interface_properties
 
 
 class LilyPondGrobInterface(object):
@@ -34,8 +35,6 @@ class LilyPondGrobInterface(object):
     ### INITIALIZER ###
 
     def __init__(self, name: str = "grob-interface") -> None:
-        from abjad.ly import interface_properties
-
         assert name in interface_properties
         self._name = name
 
@@ -205,8 +204,6 @@ class LilyPondGrobInterface(object):
             LilyPondGrobInterface(name='volta-interface')
 
         """
-        from abjad.ly import interface_properties
-
         return tuple(LilyPondGrobInterface(_) for _ in sorted(interface_properties))
 
     ### PUBLIC PROPERTIES ###
@@ -261,8 +258,6 @@ class LilyPondGrobInterface(object):
             'skip-quanting'
 
         """
-        from abjad.ly import interface_properties
-
         names = interface_properties[self.name]
         assert isinstance(names, list), repr(names)
         assert all(isinstance(_, str) for _ in names), repr(names)

@@ -2,18 +2,23 @@
 Tools for modeling LilyPond's markup and postscript.
 """
 
+try:
+    import quicktions as fractions  # type: ignore
+except ImportError:
+    import fractions  # type: ignore
 import collections
 import numbers
 import typing
 
-from abjad import Fraction, enums, mathtools
-from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
-from abjad.scheme import Scheme, SchemeColor, SchemePair
-from abjad.utilities.String import String
-from abjad.utilities.TypedList import TypedList
-
+from . import enums, mathtools
 from .formatting import FormatSpecification, StorageFormatManager
+from .lilypondnames.LilyPondTweakManager import LilyPondTweakManager
+from .ly.colors import colors
+from .ly.music_glyphs import music_glyphs
+from .scheme import Scheme, SchemeColor, SchemePair
 from .top import new
+from .utilities.String import String
+from .utilities.TypedList import TypedList
 
 
 class Markup(object):
@@ -1684,7 +1689,7 @@ class Markup(object):
             number = int(rational)
             markup = Markup(number, direction=direction)
             return markup
-        assert isinstance(rational, Fraction), repr(rational)
+        assert isinstance(rational, fractions.Fraction), repr(rational)
         integer_part = int(rational)
         fraction_part = rational - integer_part
         integer_markup = Markup(integer_part, direction=direction)
@@ -1716,8 +1721,6 @@ class Markup(object):
 
         Returns new markup.
         """
-        from abjad.ly import music_glyphs
-
         glyph_name = glyph_name or "accidentals.sharp"
         message = "not a valid LilyPond glyph name."
         assert glyph_name in music_glyphs, message
@@ -2555,8 +2558,6 @@ class Markup(object):
 
         Returns new markup.
         """
-        from abjad.ly.colors import colors
-
         contents = self._parse_markup_command_argument(self)
         if isinstance(color, str):
             if color not in colors:

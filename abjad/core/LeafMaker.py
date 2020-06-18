@@ -2,14 +2,13 @@ import collections
 import numbers
 import typing
 
-from abjad import mathtools
-from abjad import pitch as abjad_pitch
-from abjad import typings
-from abjad.mathtools import NonreducedFraction
-from abjad.system.Tag import Tag
-from abjad.utilities.Duration import Duration
-from abjad.utilities.Sequence import Sequence
-
+from .. import mathtools, typings
+from ..mathtools import NonreducedFraction
+from ..pitch.pitchclasses import PitchClass
+from ..pitch.pitches import NamedPitch, NumberedPitch
+from ..system.Tag import Tag
+from ..utilities.Duration import Duration
+from ..utilities.Sequence import Sequence
 from .Chord import Chord
 from .Leaf import Leaf
 from .MultimeasureRest import MultimeasureRest
@@ -551,9 +550,9 @@ class LeafMaker(object):
         note_prototype = (
             numbers.Number,
             str,
-            abjad_pitch.NamedPitch,
-            abjad_pitch.NumberedPitch,
-            abjad_pitch.PitchClass,
+            NamedPitch,
+            NumberedPitch,
+            PitchClass,
         )
         chord_prototype = (tuple, list)
         rest_prototype = (type(None),)
@@ -612,7 +611,7 @@ class LeafMaker(object):
         tag=None,
         tie_parts=True,
     ):
-        from abjad.spanners import tie as abjad_tie
+        from ..spanners import tie as abjad_tie
 
         duration = Duration(duration)
         if forbidden_duration is not None:

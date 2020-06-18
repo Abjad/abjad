@@ -1,5 +1,5 @@
 from ..formatting import StorageFormatManager
-from .NumberedPitchClass import NumberedPitchClass
+from .pitchclasses import NumberedPitchClass
 
 
 class ColorMap(object):

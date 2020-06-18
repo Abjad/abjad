@@ -3,24 +3,23 @@ import inspect
 import itertools
 import typing
 
-from abjad import enums, mathtools, typings
-from abjad.indicators.Tie import Tie
-from abjad.mathtools import Ratio
-from abjad.pitch.PitchInequality import PitchInequality
-from abjad.pitch.PitchSet import PitchSet
-from abjad.utilities.CyclicTuple import CyclicTuple
-from abjad.utilities.Duration import Duration
-from abjad.utilities.DurationInequality import DurationInequality
-from abjad.utilities.Expression import Expression
-from abjad.utilities.LengthInequality import LengthInequality
-from abjad.utilities.Offset import Offset
-from abjad.utilities.Pattern import Pattern
-from abjad.utilities.Sequence import Sequence
-
+from .. import enums, mathtools, typings
 from ..formatting import FormatSpecification, StorageFormatManager
+from ..indicators.Tie import Tie
+from ..mathtools import Ratio
+from ..pitch.PitchInequality import PitchInequality
+from ..pitch.sets import PitchSet
 from ..top import attach, detach
 from ..top import inspect as abjad_inspect
 from ..top import iterate, mutate, new, select
+from ..utilities.CyclicTuple import CyclicTuple
+from ..utilities.Duration import Duration
+from ..utilities.DurationInequality import DurationInequality
+from ..utilities.Expression import Expression
+from ..utilities.LengthInequality import LengthInequality
+from ..utilities.Offset import Offset
+from ..utilities.Pattern import Pattern
+from ..utilities.Sequence import Sequence
 from .Chord import Chord
 from .Component import Component
 from .Leaf import Leaf

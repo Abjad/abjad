@@ -1,13 +1,12 @@
 import typing
 
-from abjad import enums, typings
-from abjad.markups import Markup
-from abjad.mathtools import Ratio
-from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
-from abjad.utilities.Duration import Duration
-
+from .. import enums, typings
 from ..formatting import StorageFormatManager
+from ..markups import Markup
+from ..mathtools import Ratio
+from ..system.LilyPondFormatBundle import LilyPondFormatBundle
 from ..top import inspect, new, select
+from ..utilities.Duration import Duration
 
 
 class MetricModulation(object):
@@ -333,7 +332,7 @@ class MetricModulation(object):
         right_markup: Markup = None,
         scale: typing.Tuple[typings.Number, typings.Number] = (1, 1),
     ) -> None:
-        from abjad.core.Note import Note
+        from ..core.Note import Note
 
         if hide is not None:
             hide = bool(hide)

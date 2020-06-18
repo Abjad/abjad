@@ -12,7 +12,7 @@ def list_all_functions(modules=None):
         ...     )
 
     """
-    from abjad import utilities
+    from .. import utilities
 
     all_functions = set()
     for module in utilities.yield_all_modules(modules):

@@ -1,8 +1,9 @@
 import typing
 
-from abjad.system.LilyPondFormatManager import LilyPondFormatManager
-from abjad.utilities.String import String
-
+from ..ly.contexts import contexts
+from ..ly.grob_interfaces import grob_interfaces
+from ..system.LilyPondFormatManager import LilyPondFormatManager
+from ..utilities.String import String
 from .LilyPondNameManager import LilyPondNameManager
 
 
@@ -54,9 +55,6 @@ class LilyPondGrobNameManager(LilyPondNameManager):
         of each manager returned in the chain is likely to be surprising at
         first encounter.
         """
-        from abjad.ly import contexts
-        from abjad.ly import grob_interfaces
-
         camel_name = String(name).to_upper_camel_case()
         if name.startswith("_"):
             try:

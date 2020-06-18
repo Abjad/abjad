@@ -1,11 +1,10 @@
 import typing
 
-from abjad import mathtools, typings
-from abjad.mathtools import NonreducedFraction
-from abjad.utilities.Duration import Duration
-from abjad.utilities.Multiplier import Multiplier
-
+from .. import mathtools, typings
 from ..formatting import FormatSpecification, StorageFormatManager
+from ..mathtools import NonreducedFraction
+from ..utilities.Duration import Duration
+from ..utilities.Multiplier import Multiplier
 
 
 class TimeSignature(object):

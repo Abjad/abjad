@@ -1,7 +1,6 @@
 import typing
 
-from abjad import typings
-
+from .. import typings
 from ..formatting import FormatSpecification, StorageFormatManager
 from .Part import Part
 

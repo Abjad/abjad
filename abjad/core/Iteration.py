@@ -1,13 +1,14 @@
 import collections
 
-from abjad.instruments import Instrument
-from abjad.pitch import NamedPitch, Pitch, PitchSegment, PitchSet
-from abjad.utilities.Enumerator import Enumerator
-from abjad.utilities.OrderedDict import OrderedDict
-from abjad.utilities.Sequence import Sequence
-
 from ..formatting import StorageFormatManager
+from ..instruments import Instrument
+from ..pitch.pitches import NamedPitch, Pitch
+from ..pitch.segments import PitchSegment
+from ..pitch.sets import PitchSet
 from ..top import inspect
+from ..utilities.Enumerator import Enumerator
+from ..utilities.OrderedDict import OrderedDict
+from ..utilities.Sequence import Sequence
 
 
 class Iteration(object):

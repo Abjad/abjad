@@ -1,8 +1,7 @@
 import functools
 import itertools
 
-from abjad import mathtools
-
+from .. import mathtools
 from .Sequence import Sequence
 
 

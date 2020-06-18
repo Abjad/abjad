@@ -330,7 +330,7 @@ class Tag(object):
             True
 
         """
-        from abjad.system.Tags import Tags
+        from .Tags import Tags
 
         tags = Tags().persistent_indicator_tags()
         for word in self:

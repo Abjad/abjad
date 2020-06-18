@@ -1,12 +1,11 @@
 import copy
 import typing
 
-from abjad.instruments import Instrument
-from abjad.lilypondnames.LilyPondContext import LilyPondContext
-from abjad.system.LilyPondFormatManager import LilyPondFormatManager
-from abjad.system.Tag import Tag
-from abjad.system.Wrapper import Wrapper
-
+from ..instruments import Instrument
+from ..lilypondnames.LilyPondContext import LilyPondContext
+from ..system.LilyPondFormatManager import LilyPondFormatManager
+from ..system.Tag import Tag
+from ..system.Wrapper import Wrapper
 from ..top import inspect
 from .Container import Container
 

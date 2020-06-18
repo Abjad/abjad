@@ -7,8 +7,7 @@ import unicodedata
 import roman  # type: ignore
 import six
 
-from abjad import enums
-
+from .. import enums
 from .TypedList import TypedList
 
 
@@ -1585,7 +1584,7 @@ class String(str):
             'TEXT_SPANNER'
 
         """
-        from abjad.instruments import Instrument
+        from ..instruments import Instrument
 
         assert getattr(indicator, "persistent", False), repr(indicator)
         if isinstance(indicator, Instrument):

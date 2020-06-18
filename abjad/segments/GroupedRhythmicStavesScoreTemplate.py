@@ -1,7 +1,6 @@
 import collections
 
-from abjad.system.Tag import Tag
-
+from ..system.Tag import Tag
 from .ScoreTemplate import ScoreTemplate
 
 

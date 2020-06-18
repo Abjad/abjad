@@ -13,7 +13,8 @@ import types
 
 from uqbar.cli import CLI, CLIAggregator
 
-from abjad import utilities
+from .utilities.String import String
+from .utilities.yield_all_modules import yield_all_modules
 
 
 class AbjDevScript(CLIAggregator):
@@ -62,12 +63,10 @@ class AbjDevScript(CLIAggregator):
                 classes.append(obj)
             return classes
 
-        import abjad.cli
-
-        classes = scan_module(abjad.cli)
+        abjad_cli = importlib.import_module("abjad.cli")
+        classes = scan_module(abjad_cli)
         try:
-            import abjadext  # type: ignore
-
+            abjadext = importlib.import_module("abjadext")
             for abjadext_path in abjadext.__path__:
                 abjadext_path = pathlib.Path(abjadext_path)
                 for extension_path in abjadext_path.iterdir():
@@ -77,7 +76,7 @@ class AbjDevScript(CLIAggregator):
                         or not (extension_path / "__init__.py").exists()
                     ):
                         continue
-                    module_name = "abjadext.{}".format(extension_path.name)
+                    module_name = f"abjadext.{extension_path.name}"
                     module = importlib.import_module(module_name)
                     classes.extend(scan_module(module))
         except ImportError:
@@ -259,8 +258,6 @@ class ReplaceScript(CLI):
         )
 
     def _process_args(self, arguments):
-        import abjad
-
         message = "Replacing {!r} with {!r} ..."
         message = message.format(arguments.old, arguments.new)
         print(message)
@@ -304,9 +301,9 @@ class ReplaceScript(CLI):
                     changed_line_count += changed_lines
                     changed_item_count += changed_items
         print()
-        item_identifier = abjad.String("instance").pluralize(changed_item_count)
-        line_identifier = abjad.String("line").pluralize(changed_line_count)
-        file_identifier = abjad.String("file").pluralize(changed_file_count)
+        item_identifier = String("instance").pluralize(changed_item_count)
+        line_identifier = String("line").pluralize(changed_line_count)
+        file_identifier = String("file").pluralize(changed_file_count)
         message = "\tReplaced {} {} over {} {} in {} {}."
         message = message.format(
             changed_item_count,
@@ -513,7 +510,7 @@ class StatsScript(CLI):
         return results
 
     def _print_results(self, counts):
-        template = utilities.String.normalize(
+        template = String.normalize(
             """
             Source lines: {source_lines}
             Public classes: {public_classes}
@@ -540,15 +537,11 @@ class StatsScript(CLI):
         print(result)
 
     def _process_args(self, arguments):
-        from abjad import utilities
-
         path = arguments.path
         if not os.path.isdir(path):
             path = os.path.dirname(path)
         counts = self._setup_counts()
-        for module in utilities.yield_all_modules(
-            code_root=path, ignored_file_names=[]
-        ):
+        for module in yield_all_modules(code_root=path, ignored_file_names=[]):
             with open(module.__file__, "r") as file_pointer:
                 contents = file_pointer.read()
                 counts["source_lines"] += contents.count("\n")

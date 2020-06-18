@@ -1,7 +1,6 @@
-from abjad.pitch.IntervalSegment import IntervalSegment
-from abjad.pitch.NamedInterval import NamedInterval
-
 from ..formatting import FormatSpecification, StorageFormatManager
+from ..pitch.intervals import NamedInterval
+from ..pitch.segments import IntervalSegment
 from ..top import sequence
 
 

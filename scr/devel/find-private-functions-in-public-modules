@@ -41,6 +41,6 @@ def find_misnamed_private_modules():
 
 
 if __name__ == '__main__':
-    abjad.IOManager.clear_terminal()
+    abjad.IOManager.spawn_subprocess("clear")
     print('Finding misnamed private modules ...')
     find_misnamed_private_modules()

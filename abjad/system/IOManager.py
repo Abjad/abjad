@@ -4,7 +4,6 @@ import io
 import os
 import pathlib
 import pstats
-import re
 import subprocess
 import sys
 import traceback
@@ -77,21 +76,6 @@ class IOManager(object):
             print(line.center(80))
 
     ### PUBLIC METHODS ###
-
-    @staticmethod
-    def clear_terminal() -> None:
-        """
-        Clears terminal.
-
-        Runs ``clear`` if OS is POSIX-compliant (UNIX / Linux / MacOS).
-
-        Runs ``cls`` if OS is not POSIX-compliant (Windows).
-        """
-        if os.name == "posix":
-            command = "clear"
-        else:
-            command = "cls"
-        IOManager.spawn_subprocess(command)
 
     @staticmethod
     def count_function_calls(
@@ -228,67 +212,6 @@ class IOManager(object):
         return result
 
     @staticmethod
-    def get_last_output_file_name(
-        extension: str = None, output_directory: str = None
-    ) -> typing.Optional[str]:
-        """
-        Gets last output file name in ``output_directory``.
-
-        Gets last output file name in Abjad output directory when
-        ``output_directory`` is none.
-
-        Returns none when output directory contains no output files.
-        """
-        pattern = re.compile(r"\d{4,4}.[a-z]{2,3}")
-        string = "abjad_output_directory"
-        output_directory = output_directory or configuration[string]
-        if not os.path.exists(output_directory):
-            return None
-        all_file_names = os.listdir(output_directory)
-        if extension:
-            all_output = [
-                x for x in all_file_names if pattern.match(x) and x.endswith(extension)
-            ]
-        else:
-            all_output = [x for x in all_file_names if pattern.match(x)]
-        if all_output == []:
-            last_output_file_name = None
-        else:
-            last_output_file_name = sorted(all_output)[-1]
-        return last_output_file_name
-
-    @staticmethod
-    def get_next_output_file_name(
-        *, file_extension: str = "ly", output_directory: str = None
-    ) -> str:
-        """
-        Gets next output file name with ``file_extension`` in
-        ``output_directory``.
-
-        Gets next output file name with ``file_extension`` in Abjad output
-        directory when ``output_directory`` is none.
-        """
-        assert file_extension.isalpha() and 0 < len(file_extension) < 4, repr(
-            file_extension
-        )
-        last_output = IOManager.get_last_output_file_name(
-            output_directory=output_directory
-        )
-        if last_output is None:
-            next_number = 1
-            next_output_file_name = f"0001.{file_extension}"
-        else:
-            last_number = int(last_output.split(".")[0])
-            next_number = last_number + 1
-            next_output_file_name = "{next_number:04d}.{file_extension}"
-            next_output_file_name = next_output_file_name.format(
-                next_number=next_number, file_extension=file_extension
-            )
-        if 9000 < next_number:
-            IOManager._warn_when_output_directory_almost_full(last_number)
-        return next_output_file_name
-
-    @staticmethod
     def make_subprocess(command: str) -> subprocess.Popen:
         """
         Makes Popen instance.
@@ -371,83 +294,6 @@ class IOManager(object):
         text_editor = configuration.get("text_editor")
         file_path = configuration.lilypond_log_file_path
         IOManager.open_file(str(file_path), application=text_editor)
-
-    @staticmethod
-    def open_last_ly(target: int = -1) -> None:
-        """
-        Opens last LilyPond output file produced by Abjad.
-
-        Uses operating-specific text editor.
-
-        Set ``target=-2`` to open the next-to-last LilyPond output file
-        produced by Abjad, and so on.
-        """
-        abjad_output_directory = configuration["abjad_output_directory"]
-        text_editor = configuration.get("text_editor")
-        if isinstance(target, int) and target < 0:
-            last_lilypond = IOManager.get_last_output_file_name()
-            if last_lilypond:
-                last_number = last_lilypond
-                last_number = last_number.replace(".ly", "")
-                last_number = last_number.replace(".pdf", "")
-                last_number = last_number.replace(".midi", "")
-                last_number = last_number.replace(".mid", "")
-                target_number = int(last_number) + (target + 1)
-                target_str = "%04d" % target_number
-                target_ly = os.path.join(abjad_output_directory, target_str + ".ly")
-            else:
-                print("Target LilyPond input file does not exist.")
-        elif isinstance(target, int) and 0 <= target:
-            target_str = "%04d" % target
-            target_ly = os.path.join(abjad_output_directory, target_str + ".ly")
-        elif isinstance(target, str):
-            target_ly = os.path.join(abjad_output_directory, target)
-        else:
-            message = f"can not get target LilyPond input from {target}."
-            raise ValueError(message)
-        if os.path.exists(target_ly):
-            IOManager.open_file(target_ly, application=text_editor)
-        else:
-            message = f"Target LilyPond input file {target_ly} does not exist."
-            print(message)
-
-    @staticmethod
-    def open_last_pdf(target: int = -1,) -> None:
-        """
-        Opens last PDF generated by Abjad.
-
-        Abjad writes PDFs to the ``~/.abjad/output`` directory by default.
-
-        You may change this by setting the ``abjad_output_directory`` variable in
-        the ``config.py`` file.
-
-        Set ``target=-2`` to open the next-to-last PDF generated by Abjad.
-        """
-        abjad_output_directory = configuration["abjad_output_directory"]
-        if isinstance(target, int) and target < 0:
-            last_lilypond_file_path = IOManager.get_last_output_file_name()
-            if last_lilypond_file_path:
-                result = os.path.splitext(last_lilypond_file_path)
-                file_name_root, extension = result
-                last_number = file_name_root
-                target_number = int(last_number) + (target + 1)
-                target_str = "%04d" % target_number
-                target_pdf = os.path.join(abjad_output_directory, target_str + ".pdf")
-            else:
-                message = "Target PDF does not exist."
-                print(message)
-        elif isinstance(target, int) and 0 <= target:
-            target_str = "%04d" % target
-            target_pdf = os.path.join(abjad_output_directory, target_str + ".pdf")
-        elif isinstance(target, str):
-            target_pdf = os.path.join(abjad_output_directory, target)
-        else:
-            raise ValueError(f"can not get target pdf name from {target}.")
-        if os.stat(target_pdf):
-            pdf_viewer = configuration["pdf_viewer"]
-            IOManager.open_file(target_pdf, application=pdf_viewer)
-        else:
-            print(f"target PDF {target_pdf} does not exist.")
 
     @staticmethod
     def profile(
@@ -600,33 +446,6 @@ class IOManager(object):
         if exit_code:
             return False
         return True
-
-    @staticmethod
-    def save_last_ly_as(file_path: str) -> None:
-        """
-        Saves last LilyPond file created by Abjad as ``file_path``.
-        """
-        abjad_output_directory = configuration["abjad_output_directory"]
-        last_output_file_name = IOManager.get_last_output_file_name(extension=".ly")
-        if last_output_file_name is None:
-            return
-        last_ly_full_name = os.path.join(abjad_output_directory, last_output_file_name)
-        with open(file_path, "w") as new:
-            with open(last_ly_full_name, "r") as old:
-                new.write("".join(old.readlines()))
-
-    @staticmethod
-    def save_last_pdf_as(file_path: str) -> None:
-        """
-        Saves last PDF created by Abjad as ``file_path``.
-        """
-        abjad_output_directory = configuration["abjad_output_directory"]
-        last_output_file_name = IOManager.get_last_output_file_name(extension=".pdf")
-        assert isinstance(last_output_file_name, str)
-        last_pdf_full_name = os.path.join(abjad_output_directory, last_output_file_name)
-        with open(file_path, "w") as new:
-            with open(last_pdf_full_name, "r", encoding="ISO-8859-1") as old:
-                new.write("".join(old.readlines()))
 
     @staticmethod
     def spawn_subprocess(command: str) -> int:

@@ -2,8 +2,7 @@ import collections
 import inspect
 import operator
 
-from abjad import mathtools
-
+from .. import mathtools
 from ..formatting import FormatSpecification, StorageFormatManager
 from ..top import new
 from .Expression import Expression

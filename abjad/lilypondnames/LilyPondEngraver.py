@@ -1,6 +1,7 @@
 import typing
 
 from ..formatting import StorageFormatManager
+from ..ly.engravers import engravers
 from .LilyPondGrob import LilyPondGrob
 
 
@@ -35,8 +36,6 @@ class LilyPondEngraver(object):
     ### INITIALIZER ###
 
     def __init__(self, name: str = "Note_heads_engraver") -> None:
-        from abjad.ly import engravers
-
         assert name in engravers
         self._name = name
 
@@ -196,8 +195,6 @@ class LilyPondEngraver(object):
             LilyPondEngraver(name='Volta_engraver')
 
         """
-        from abjad.ly import engravers
-
         return tuple(LilyPondEngraver(name=name) for name in sorted(engravers))
 
     ### PUBLIC PROPERTIES ###
@@ -216,8 +213,6 @@ class LilyPondEngraver(object):
             LilyPondGrob(name='Beam')
 
         """
-        from abjad.ly import engravers
-
         dictionary = engravers[self.name]
         assert isinstance(dictionary, dict), repr(dictionary)
         return tuple(LilyPondGrob(name=name) for name in dictionary["grobs_created"])
@@ -255,8 +250,6 @@ class LilyPondEngraver(object):
             'subdivideBeams'
 
         """
-        from abjad.ly import engravers
-
         dictionary = engravers[self.name]
         assert isinstance(dictionary, dict), repr(dictionary)
         property_names: typing.Set[str] = set()

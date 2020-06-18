@@ -10,8 +10,8 @@ from typing import Generator, Sequence
 from uqbar.graphs import Grapher
 
 import abjad
-from abjad.lilypondfile import Block
 
+from .lilypondfile import Block
 from .system.Configuration import Configuration
 from .system.IOManager import IOManager
 from .system.Timer import Timer
@@ -122,7 +122,12 @@ class LilyPondIO:
         return f"{timestamp}-{checksum}"
 
     def get_string(self) -> str:
-        lilypond_file = self.illustrable.__illustrate__(**self.keywords)
+        from .illustrate import illustrate
+
+        if hasattr(self.illustrable, "__illustrate__"):
+            lilypond_file = self.illustrable.__illustrate__(**self.keywords)
+        else:
+            lilypond_file = illustrate(self.illustrable, **self.keywords)
         return format(lilypond_file, "lilypond")
 
     def get_stylesheets_path(self) -> pathlib.Path:

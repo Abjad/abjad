@@ -1,14 +1,16 @@
+try:
+    import quicktions as fractions  # type: ignore
+except ImportError:
+    import fractions  # type: ignore
 import collections
 import copy
-import fractions
 import inspect
 import itertools
 import math
 import sys
 import typing
 
-from abjad import enums, mathtools
-
+from .. import enums, mathtools
 from ..formatting import FormatSpecification, StorageFormatManager
 from ..system.Signature import Signature
 from .CyclicTuple import CyclicTuple
@@ -782,7 +784,7 @@ class Sequence(collections.abc.Sequence):
 
     @staticmethod
     def _make_map_markup(markup, operand):
-        from abjad import markups
+        from .. import markups
 
         markup_list = markups.MarkupList()
         operand_markup = operand.get_markup(name="X")
@@ -1352,7 +1354,7 @@ class Sequence(collections.abc.Sequence):
                         }
 
         """
-        from abjad.core.Selection import Selection
+        from ..core.Selection import Selection
 
         if self._expression:
             return self._update_expression(inspect.currentframe())

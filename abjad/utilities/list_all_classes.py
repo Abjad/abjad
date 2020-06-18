@@ -9,7 +9,7 @@ def list_all_classes(modules=None, ignored_classes=None):
         ...     )
 
     """
-    from abjad import utilities
+    from .. import utilities
 
     all_classes = set()
     for module in utilities.yield_all_modules(modules):

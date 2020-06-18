@@ -1,10 +1,9 @@
 import typing
 
-from abjad import enums, typings
-from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
-from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
-
+from .. import enums, typings
 from ..formatting import StorageFormatManager
+from ..lilypondnames.LilyPondTweakManager import LilyPondTweakManager
+from ..system.LilyPondFormatBundle import LilyPondFormatBundle
 
 
 class BendAfter(object):

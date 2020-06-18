@@ -1,12 +1,11 @@
 import itertools
 
-from abjad import exceptions
-from abjad.indicators.RepeatTie import RepeatTie
-from abjad.indicators.Tie import Tie
-from abjad.mathtools import Ratio
-from abjad.utilities.Duration import Duration
-
+from .. import exceptions
+from ..indicators.RepeatTie import RepeatTie
+from ..indicators.Tie import Tie
+from ..mathtools import Ratio
 from ..top import detach, mutate, select
+from ..utilities.Duration import Duration
 from .Selection import Selection
 
 

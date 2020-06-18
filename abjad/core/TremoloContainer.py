@@ -1,7 +1,6 @@
-from abjad import mathtools
-from abjad.system.Tag import Tag
-from abjad.utilities.Multiplier import Multiplier
-
+from .. import mathtools
+from ..system.Tag import Tag
+from ..utilities.Multiplier import Multiplier
 from .Container import Container
 
 

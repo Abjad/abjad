@@ -1,6 +1,5 @@
-from abjad.system.LilyPondFormatManager import LilyPondFormatManager
-
 from ..formatting import FormatSpecification, StorageFormatManager
+from ..system.LilyPondFormatManager import LilyPondFormatManager
 
 
 class Block(object):
@@ -181,8 +180,8 @@ class Block(object):
         return result
 
     def _get_format_pieces(self, tag=None):
-        from abjad.core.Leaf import Leaf
-        from abjad.markups import Markup
+        from ..core.Leaf import Leaf
+        from ..markups import Markup
         from .ContextBlock import ContextBlock
 
         indent = LilyPondFormatManager.indent
@@ -229,8 +228,8 @@ class Block(object):
         )
 
     def _get_formatted_user_attributes(self):
-        from abjad.markups import Markup
-        from abjad.scheme import Scheme
+        from ..markups import Markup
+        from ..scheme import Scheme
         from .LilyPondDimension import LilyPondDimension
 
         result = []

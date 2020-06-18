@@ -1,18 +1,21 @@
+try:
+    import quicktions as fractions  # type: ignore
+except ImportError:
+    import fractions  # type: ignore
 import math
 import typing
 
 import uqbar
 
-from abjad import Fraction, exceptions, mathtools, typings
-from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
-from abjad.mathtools import NonreducedFraction, NonreducedRatio, Ratio
-from abjad.system.LilyPondFormatManager import LilyPondFormatManager
-from abjad.system.Tag import Tag
-from abjad.utilities.Duration import Duration
-from abjad.utilities.Multiplier import Multiplier
-
+from .. import exceptions, mathtools, typings
 from ..formatting import FormatSpecification
+from ..lilypondnames.LilyPondTweakManager import LilyPondTweakManager
+from ..mathtools import NonreducedFraction, NonreducedRatio, Ratio
+from ..system.LilyPondFormatManager import LilyPondFormatManager
+from ..system.Tag import Tag
 from ..top import inspect, iterate, override, select, tweak
+from ..utilities.Duration import Duration
+from ..utilities.Multiplier import Multiplier
 from .Container import Container
 from .Leaf import Leaf
 from .LeafMaker import LeafMaker
@@ -734,7 +737,7 @@ class Tuplet(Container):
 
     @multiplier.setter
     def multiplier(self, argument):
-        if isinstance(argument, (int, Fraction)):
+        if isinstance(argument, (int, fractions.Fraction)):
             rational = Multiplier(argument)
         elif isinstance(argument, tuple):
             rational = Multiplier(argument)

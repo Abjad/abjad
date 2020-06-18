@@ -1,14 +1,7 @@
 import pytest
 
+import abjad
 from abjad import mathtools
-from abjad.pitch import (
-    NamedInterval,
-    NamedIntervalClass,
-    NamedPitch,
-    NumberedInterval,
-    NumberedIntervalClass,
-    constants,
-)
 
 values = [
     ("-A1", -1, "-A1"),
@@ -289,7 +282,7 @@ values = [
 
 @pytest.mark.parametrize("input_, semitones, name", values)
 def test_init(input_, semitones, name):
-    class_ = NamedInterval
+    class_ = abjad.NamedInterval
     if isinstance(semitones, type) and issubclass(semitones, Exception):
         with pytest.raises(semitones):
             class_(input_)
@@ -297,12 +290,12 @@ def test_init(input_, semitones, name):
     instance = class_(input_)
     assert float(instance) == semitones
     assert instance.name == name
-    NamedInterval(instance)
-    NumberedInterval(instance)
-    NamedIntervalClass(instance)
-    NumberedIntervalClass(instance)
+    abjad.NamedInterval(instance)
+    abjad.NumberedInterval(instance)
+    abjad.NamedIntervalClass(instance)
+    abjad.NumberedIntervalClass(instance)
     if isinstance(input_, str):
-        group_dict = constants._interval_name_abbreviation_regex.match(
+        group_dict = abjad.pitch.constants._interval_name_abbreviation_regex.match(
             input_
         ).groupdict()
         inflected_up = class_(
@@ -345,7 +338,7 @@ product = itertools.product(
 
 for x, y, z in product:
     print("({!r}, {!r}, ''),".format(
-        x, str(abjad.NamedPitch(y, accidental=z)),
+        x, str(abjad.abjad.NamedPitch(y, accidental=z)),
     ))
 """
 
@@ -1570,10 +1563,10 @@ values = [
 
 
 @pytest.mark.parametrize("pitch_a, pitch_b, name", values)
-def test_NamedInterval_01(pitch_a, pitch_b, name):
-    pitch_a = NamedPitch(pitch_a)
-    pitch_b = NamedPitch(pitch_b)
-    interval = NamedInterval.from_pitch_carriers(pitch_a, pitch_b)
+def test_abjad_NamedInterval_01(pitch_a, pitch_b, name):
+    pitch_a = abjad.NamedPitch(pitch_a)
+    pitch_b = abjad.NamedPitch(pitch_b)
+    interval = abjad.NamedInterval.from_pitch_carriers(pitch_a, pitch_b)
     assert str(interval) == name
     assert pitch_a.transpose(interval) == pitch_b
     assert pitch_b.transpose(-interval) == pitch_a

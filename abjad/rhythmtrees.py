@@ -2,16 +2,19 @@
 Tools for modeling IRCAM-style rhythm trees.
 """
 
+try:
+    import quicktions as fractions  # type: ignore
+except ImportError:
+    import fractions  # type: ignore
 import abc
 import typing
 
 import uqbar.containers
 import uqbar.graphs
 
-from abjad import Fraction, core, mathtools
-from abjad.system.Parser import Parser
-
+from . import core, mathtools
 from .formatting import FormatSpecification, StorageFormatManager
+from .system.Parser import Parser
 
 
 class RhythmTreeMixin(object):
@@ -199,7 +202,7 @@ class RhythmTreeMixin(object):
     def preprolated_duration(self, argument):
         import abjad
 
-        if not isinstance(argument, Fraction):
+        if not isinstance(argument, fractions.Fraction):
             argument = abjad.Duration(argument)
         assert 0 < argument
         self._duration = argument

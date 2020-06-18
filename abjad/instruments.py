@@ -5,13 +5,12 @@ Instrument classes.
 import copy
 import typing
 
-from abjad.pitch.NamedPitch import NamedPitch
-from abjad.pitch.NamedPitchClass import NamedPitchClass
-from abjad.pitch.PitchRange import PitchRange
-from abjad.pitch.PitchSegment import PitchSegment
-from abjad.utilities.Enumerator import Enumerator
-
 from .formatting import FormatSpecification, StorageFormatManager
+from .pitch.PitchRange import PitchRange
+from .pitch.pitchclasses import NamedPitchClass
+from .pitch.pitches import NamedPitch
+from .pitch.segments import PitchSegment
+from .utilities.Enumerator import Enumerator
 
 
 class Instrument(object):
@@ -897,12 +896,13 @@ class Tuning(object):
         pitch_ranges = self.pitch_ranges
         result: typing.List[typing.Tuple[typing.Union[NamedPitch, None], ...]] = []
         for permutation in permutations:
-            sequences = []
+            sequences: typing.List = []
             for pitch_range, pitch_class in zip(pitch_ranges, permutation):
+                pitches: typing.List[typing.Optional[NamedPitch]]
                 if pitch_class is None:
                     sequences.append([None])
                     continue
-                pitches = pitch_range.voice_pitch_class(pitch_class)
+                pitches = list(pitch_range.voice_pitch_class(pitch_class))
                 if not allow_open_strings:
                     pitches = [
                         pitch for pitch in pitches if pitch != pitch_range.start_pitch

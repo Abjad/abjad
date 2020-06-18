@@ -3,54 +3,53 @@ Classes and functions for modeling spanners: beams, hairpins, slurs, etc.
 """
 import typing
 
-from abjad import enums, typings
-from abjad.core.Chord import Chord
-from abjad.core.Component import Component
-from abjad.core.MultimeasureRest import MultimeasureRest
-from abjad.core.Note import Note
-from abjad.core.Rest import Rest
-from abjad.core.Selection import Selection
-from abjad.core.Skip import Skip
-from abjad.core.Staff import Staff
-from abjad.indicators.BeamCount import BeamCount
-from abjad.indicators.BendAfter import BendAfter
-from abjad.indicators.BowContactPoint import BowContactPoint
-from abjad.indicators.BowMotionTechnique import BowMotionTechnique
-from abjad.indicators.Dynamic import Dynamic
-from abjad.indicators.GlissandoIndicator import GlissandoIndicator
-from abjad.indicators.LilyPondLiteral import LilyPondLiteral
-from abjad.indicators.Ottava import Ottava
-from abjad.indicators.RepeatTie import RepeatTie
-from abjad.indicators.StartBeam import StartBeam
-from abjad.indicators.StartGroup import StartGroup
-from abjad.indicators.StartHairpin import StartHairpin
-from abjad.indicators.StartPhrasingSlur import StartPhrasingSlur
-from abjad.indicators.StartPianoPedal import StartPianoPedal
-from abjad.indicators.StartSlur import StartSlur
-from abjad.indicators.StartTextSpan import StartTextSpan
-from abjad.indicators.StartTrillSpan import StartTrillSpan
-from abjad.indicators.StopBeam import StopBeam
-from abjad.indicators.StopGroup import StopGroup
-from abjad.indicators.StopHairpin import StopHairpin
-from abjad.indicators.StopPhrasingSlur import StopPhrasingSlur
-from abjad.indicators.StopPianoPedal import StopPianoPedal
-from abjad.indicators.StopSlur import StopSlur
-from abjad.indicators.StopTextSpan import StopTextSpan
-from abjad.indicators.StopTrillSpan import StopTrillSpan
-from abjad.indicators.Tie import Tie
-from abjad.lilypondnames.LilyPondTweakManager import (
+from . import enums, typings
+from .core.Chord import Chord
+from .core.Component import Component
+from .core.MultimeasureRest import MultimeasureRest
+from .core.Note import Note
+from .core.Rest import Rest
+from .core.Selection import Selection
+from .core.Skip import Skip
+from .core.Staff import Staff
+from .indicators.BeamCount import BeamCount
+from .indicators.BendAfter import BendAfter
+from .indicators.BowContactPoint import BowContactPoint
+from .indicators.BowMotionTechnique import BowMotionTechnique
+from .indicators.Dynamic import Dynamic
+from .indicators.GlissandoIndicator import GlissandoIndicator
+from .indicators.LilyPondLiteral import LilyPondLiteral
+from .indicators.Ottava import Ottava
+from .indicators.RepeatTie import RepeatTie
+from .indicators.StartBeam import StartBeam
+from .indicators.StartGroup import StartGroup
+from .indicators.StartHairpin import StartHairpin
+from .indicators.StartPhrasingSlur import StartPhrasingSlur
+from .indicators.StartPianoPedal import StartPianoPedal
+from .indicators.StartSlur import StartSlur
+from .indicators.StartTextSpan import StartTextSpan
+from .indicators.StartTrillSpan import StartTrillSpan
+from .indicators.StopBeam import StopBeam
+from .indicators.StopGroup import StopGroup
+from .indicators.StopHairpin import StopHairpin
+from .indicators.StopPhrasingSlur import StopPhrasingSlur
+from .indicators.StopPianoPedal import StopPianoPedal
+from .indicators.StopSlur import StopSlur
+from .indicators.StopTextSpan import StopTextSpan
+from .indicators.StopTrillSpan import StopTrillSpan
+from .indicators.Tie import Tie
+from .lilypondnames.LilyPondTweakManager import (
     IndexedTweakManager,
     LilyPondTweakManager,
 )
-from abjad.scheme import SchemeSymbol
-from abjad.system.Tag import Tag
-from abjad.system.Tags import Tags
-from abjad.utilities.Duration import Duration
-from abjad.utilities.DurationInequality import DurationInequality
-from abjad.utilities.Expression import Expression
-from abjad.utilities.Sequence import Sequence
-
+from .scheme import SchemeSymbol
+from .system.Tag import Tag
+from .system.Tags import Tags
 from .top import attach, detach, inspect, iterate, select, tweak
+from .utilities.Duration import Duration
+from .utilities.DurationInequality import DurationInequality
+from .utilities.Expression import Expression
+from .utilities.Sequence import Sequence
 
 abjad_tags = Tags()
 

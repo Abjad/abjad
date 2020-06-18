@@ -2,12 +2,11 @@ import collections
 import numbers
 import typing
 
-from abjad import mathtools
-from abjad.system.Tag import Tag
-from abjad.utilities.Duration import Duration
-from abjad.utilities.Multiplier import Multiplier
-from abjad.utilities.Sequence import Sequence
-
+from .. import mathtools
+from ..system.Tag import Tag
+from ..utilities.Duration import Duration
+from ..utilities.Multiplier import Multiplier
+from ..utilities.Sequence import Sequence
 from .LeafMaker import LeafMaker
 from .Note import Note
 from .Selection import Selection

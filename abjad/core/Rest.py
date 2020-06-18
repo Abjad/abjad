@@ -1,8 +1,7 @@
-from abjad import typings
-from abjad.system.Tag import Tag
-from abjad.utilities.Duration import Duration
-
+from .. import typings
+from ..system.Tag import Tag
 from ..top import parse
+from ..utilities.Duration import Duration
 from .Leaf import Leaf
 
 

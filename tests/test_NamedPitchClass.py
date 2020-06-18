@@ -1,6 +1,6 @@
 import pytest
 
-from abjad.pitch import NamedPitch, NamedPitchClass, NumberedPitch, NumberedPitchClass
+import abjad
 
 values = []
 values.extend((x / 2, (x / 2) % 12) for x in range(-48, 49))
@@ -18,21 +18,21 @@ values.extend(
         (("cs", 4), 1),
         (("dss", 1), 4),
         (("gff", 5), 5),
-        (NamedPitch("bs'"), 0),
-        (NamedPitch("c"), 0),
-        (NamedPitch("cf,"), 11),
-        (NamedPitch(), 0),
-        (NamedPitchClass("cs'"), 1),
-        (NamedPitchClass("c"), 0),
-        (NamedPitchClass("cf,"), 11),
+        (abjad.NamedPitch("bs'"), 0),
+        (abjad.NamedPitch("c"), 0),
+        (abjad.NamedPitch("cf,"), 11),
+        (abjad.NamedPitch(), 0),
+        (abjad.NamedPitchClass("cs'"), 1),
+        (abjad.NamedPitchClass("c"), 0),
+        (abjad.NamedPitchClass("cf,"), 11),
         (None, 0),
-        (NumberedPitch("bs'"), 0),
-        (NumberedPitch("c"), 0),
-        (NumberedPitch("cf,"), 11),
-        (NumberedPitch(), 0),
-        (NumberedPitchClass("bs'"), 0),
-        (NumberedPitchClass("c"), 0),
-        (NumberedPitchClass("cf,"), 11),
+        (abjad.NumberedPitch("bs'"), 0),
+        (abjad.NumberedPitch("c"), 0),
+        (abjad.NumberedPitch("cf,"), 11),
+        (abjad.NumberedPitch(), 0),
+        (abjad.NumberedPitchClass("bs'"), 0),
+        (abjad.NumberedPitchClass("c"), 0),
+        (abjad.NumberedPitchClass("cf,"), 11),
     ]
 )
 
@@ -43,7 +43,7 @@ def test_init(input_, expected_semitones):
         expected_semitones, Exception
     ):
         with pytest.raises(expected_semitones):
-            NamedPitchClass(input_)
+            abjad.NamedPitchClass(input_)
         return
-    instance = NamedPitchClass(input_)
+    instance = abjad.NamedPitchClass(input_)
     assert float(instance) == expected_semitones

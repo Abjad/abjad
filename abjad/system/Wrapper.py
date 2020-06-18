@@ -141,8 +141,8 @@ class Wrapper(object):
         synthetic_offset: int = None,
         tag: typing.Union[str, Tag] = None,
     ) -> None:
-        from abjad.core.Component import Component
-        from abjad.utilities.Offset import Offset
+        from ..core.Component import Component
+        from ..utilities.Offset import Offset
 
         assert not isinstance(indicator, type(self)), repr(indicator)
         if annotation is not None:

@@ -1,11 +1,10 @@
 import functools
 import typing
 
-from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
-from abjad.pitch.NamedPitch import NamedPitch
-from abjad.system.LilyPondFormatManager import LilyPondFormatManager
-
 from ..formatting import FormatSpecification, StorageFormatManager
+from ..lilypondnames.LilyPondTweakManager import LilyPondTweakManager
+from ..pitch.pitches import NamedPitch
+from ..system.LilyPondFormatManager import LilyPondFormatManager
 
 
 @functools.total_ordering

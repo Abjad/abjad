@@ -4,18 +4,17 @@ import typing
 
 import uqbar.graphs
 
-from abjad import enums, exceptions, mathtools
-from abjad.indicators.MetronomeMark import MetronomeMark
-from abjad.indicators.RepeatTie import RepeatTie
-from abjad.indicators.Tie import Tie
-from abjad.system.LilyPondFormatManager import LilyPondFormatManager
-from abjad.system.Tag import Tag
-from abjad.utilities.Duration import Duration
-from abjad.utilities.Multiplier import Multiplier
-from abjad.utilities.Sequence import Sequence
-
+from .. import enums, exceptions, mathtools
 from ..formatting import FormatSpecification
+from ..indicators.MetronomeMark import MetronomeMark
+from ..indicators.RepeatTie import RepeatTie
+from ..indicators.Tie import Tie
+from ..system.LilyPondFormatManager import LilyPondFormatManager
+from ..system.Tag import Tag
 from ..top import attach, detach, inspect, mutate, override, select, setting
+from ..utilities.Duration import Duration
+from ..utilities.Multiplier import Multiplier
+from ..utilities.Sequence import Sequence
 from .Component import Component
 
 
@@ -376,7 +375,7 @@ class Leaf(Component):
         from .Note import Note
         from .NoteMaker import NoteMaker
         from .Tuplet import Tuplet
-        from abjad.spanners import tie as abjad_tie
+        from ..spanners import tie as abjad_tie
 
         new_duration = Duration(new_duration)
         if self.multiplier is not None:

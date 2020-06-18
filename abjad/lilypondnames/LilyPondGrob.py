@@ -1,6 +1,7 @@
 import typing
 
 from ..formatting import StorageFormatManager
+from ..ly.grob_interfaces import grob_interfaces
 from .LilyPondGrobInterface import LilyPondGrobInterface
 
 
@@ -35,8 +36,6 @@ class LilyPondGrob(object):
     ### INITIALIZER ###
 
     def __init__(self, name="NoteHead") -> None:
-        from abjad.ly import grob_interfaces
-
         assert name in grob_interfaces
         self._name = name
 
@@ -67,8 +66,6 @@ class LilyPondGrob(object):
             LilyPondGrobInterface(name='unbreakable-spanner-interface')
 
         """
-        from abjad.ly import grob_interfaces
-
         return tuple(
             LilyPondGrobInterface(_) for _ in sorted(grob_interfaces[self.name])
         )
@@ -320,6 +317,4 @@ class LilyPondGrob(object):
             LilyPondGrob(name='VoltaBracketSpanner')
 
         """
-        from abjad.ly import grob_interfaces
-
         return tuple(LilyPondGrob(name) for name in sorted(grob_interfaces))
