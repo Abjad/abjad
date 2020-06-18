@@ -2,14 +2,14 @@ from abjad import mathtools
 from abjad.indicators.MetronomeMark import MetronomeMark
 from abjad.indicators.TimeSignature import TimeSignature
 from abjad.timespans import AnnotatedTimespan, TimespanList
-from abjad.top.inspect import inspect as abjad_inspect
-from abjad.top.iterate import iterate
 from abjad.utilities.Duration import Duration
 from abjad.utilities.Multiplier import Multiplier
 from abjad.utilities.Offset import Offset
 from abjad.utilities.Sequence import Sequence
 
-from ..format import StorageFormatManager
+from ..formatting import StorageFormatManager
+from ..top import inspect as abjad_inspect
+from ..top import iterate
 
 
 class UpdateManager(object):

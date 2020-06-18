@@ -5,10 +5,10 @@ import typing
 
 from abjad import exceptions, mathtools
 
-from ..format import FormatSpecification, StorageFormatManager
+from ..formatting import FormatSpecification, StorageFormatManager
 
 try:
-    from quicktions import Fraction  # type: ignore
+    from quicktions import Fraction
 except ImportError:
     from fractions import Fraction
 

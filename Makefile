@@ -1,10 +1,10 @@
 .PHONY: docs build gh-pages
 
 black-check:
-	black --check --diff --exclude='.*boilerplate.*' --target-version=py38 .
+	black --check --diff --target-version=py38 .
 
 black-reformat:
-	black --exclude='.*boilerplate.*' --target-version=py38 .
+	black --target-version=py38 .
 
 build:
 	python setup.py sdist
@@ -23,7 +23,6 @@ clean:
 docs:
 	make -C docs/ html
 
-flake_exclude = --exclude=boilerplate,abjad/__init__.py
 flake_ignore = --ignore=E203,E266,E501,W503
 flake_options = --isolated --max-line-length=88
 
@@ -52,7 +51,6 @@ isort-check:
 	--project=abjadext \
 	--recursive \
 	--skip=abjad/__init__.py \
-	--skip-glob='*boilerplate*' \
 	--thirdparty=ply \
 	--thirdparty=roman \
 	--thirdparty=uqbar \
@@ -70,7 +68,6 @@ isort-reformat:
 	--project=abjadext \
 	--recursive \
 	--skip=abjad/__init__.py \
-	--skip-glob='*boilerplate*' \
 	--thirdparty=ply \
 	--thirdparty=roman \
 	--thirdparty=uqbar \

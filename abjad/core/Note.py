@@ -3,10 +3,9 @@ import typing
 from abjad import instruments, typings
 from abjad.pitch.NamedPitch import NamedPitch
 from abjad.system.Tag import Tag
-from abjad.top.inspect import inspect
-from abjad.top.parse import parse
 from abjad.utilities.Duration import Duration
 
+from ..top import inspect, parse
 from .DrumNoteHead import DrumNoteHead
 from .Leaf import Leaf
 from .NoteHead import NoteHead

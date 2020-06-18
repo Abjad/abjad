@@ -8,7 +8,7 @@ import typing
 
 import six
 
-from ..format import StorageFormatManager
+from ..formatting import StorageFormatManager
 
 
 class Configuration(object):

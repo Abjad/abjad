@@ -10,18 +10,12 @@ from abjad.indicators.RepeatTie import RepeatTie
 from abjad.indicators.Tie import Tie
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.Tag import Tag
-from abjad.top.attach import attach
-from abjad.top.detach import detach
-from abjad.top.inspect import inspect
-from abjad.top.mutate import mutate
-from abjad.top.override import override
-from abjad.top.select import select
-from abjad.top.setting import setting
 from abjad.utilities.Duration import Duration
 from abjad.utilities.Multiplier import Multiplier
 from abjad.utilities.Sequence import Sequence
 
-from ..format import FormatSpecification
+from ..formatting import FormatSpecification
+from ..top import attach, detach, inspect, mutate, override, select, setting
 from .Component import Component
 
 

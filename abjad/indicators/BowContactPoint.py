@@ -5,7 +5,7 @@ from abjad import typings
 from abjad.markups import Markup
 from abjad.utilities.Multiplier import Multiplier
 
-from ..format import StorageFormatManager
+from ..formatting import StorageFormatManager
 
 
 @functools.total_ordering

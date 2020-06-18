@@ -19,8 +19,6 @@ from abjad.core.Selection import Selection
 from abjad.core.Skip import Skip
 from abjad.core.Tuplet import Tuplet
 from abjad.timespans import Timespan, TimespanList
-from abjad.top.inspect import inspect
-from abjad.top.mutate import mutate
 from abjad.utilities.Duration import Duration
 from abjad.utilities.Multiplier import Multiplier
 from abjad.utilities.Offset import Offset
@@ -28,7 +26,8 @@ from abjad.utilities.Sequence import Sequence
 from abjad.utilities.TypedCounter import TypedCounter
 from abjad.utilities.TypedList import TypedList
 
-from .format import FormatSpecification, StorageFormatManager
+from .formatting import FormatSpecification, StorageFormatManager
+from .top import inspect, mutate
 
 
 class Meter(object):

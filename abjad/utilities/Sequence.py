@@ -8,9 +8,9 @@ import sys
 import typing
 
 from abjad import enums, mathtools
-from abjad.system.Signature import Signature
 
-from ..format import FormatSpecification, StorageFormatManager
+from ..formatting import FormatSpecification, StorageFormatManager
+from ..system.Signature import Signature
 from .CyclicTuple import CyclicTuple
 from .Expression import Expression
 

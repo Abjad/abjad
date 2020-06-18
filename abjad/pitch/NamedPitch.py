@@ -2,7 +2,7 @@ import math
 
 from abjad import mathtools
 
-from ..format import FormatSpecification
+from ..formatting import FormatSpecification
 from . import constants
 from .Pitch import Pitch
 

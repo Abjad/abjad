@@ -5,7 +5,7 @@ import numbers
 
 from abjad import mathtools
 
-from ..format import StorageFormatManager
+from ..formatting import StorageFormatManager
 from . import constants
 
 

@@ -5,7 +5,7 @@ from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.pitch.NamedPitch import NamedPitch
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 
-from ..format import FormatSpecification, StorageFormatManager
+from ..formatting import FormatSpecification, StorageFormatManager
 
 
 @functools.total_ordering

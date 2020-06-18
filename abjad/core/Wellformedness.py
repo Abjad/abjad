@@ -10,12 +10,11 @@ from abjad.indicators.StopHairpin import StopHairpin
 from abjad.indicators.StopTextSpan import StopTextSpan
 from abjad.instruments import Instrument
 from abjad.system.Tags import Tags
-from abjad.top.inspect import inspect
-from abjad.top.iterate import iterate
 from abjad.utilities.Duration import Duration
 from abjad.utilities.Sequence import Sequence
 
-from ..format import StorageFormatManager
+from ..formatting import StorageFormatManager
+from ..top import inspect, iterate
 from .Container import Container
 from .Context import Context
 

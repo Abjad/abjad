@@ -5,8 +5,8 @@ from abjad.core.Voice import Voice
 from abjad.indicators.Clef import Clef
 from abjad.instruments import Piano
 from abjad.system.Tag import Tag
-from abjad.top.annotate import annotate
 
+from ..top import annotate
 from .ScoreTemplate import ScoreTemplate
 
 

@@ -6,8 +6,8 @@ from abjad.lilypondnames.LilyPondContext import LilyPondContext
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.Tag import Tag
 from abjad.system.Wrapper import Wrapper
-from abjad.top.inspect import inspect
 
+from ..top import inspect
 from .Container import Container
 
 

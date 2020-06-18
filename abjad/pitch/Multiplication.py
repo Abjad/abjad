@@ -1,6 +1,6 @@
 from abjad import markups
 
-from ..format import StorageFormatManager
+from ..formatting import StorageFormatManager
 
 
 class Multiplication(object):

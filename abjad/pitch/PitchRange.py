@@ -3,7 +3,7 @@ import copy
 import functools
 import numbers
 
-from ..format import FormatSpecification, StorageFormatManager
+from ..formatting import FormatSpecification, StorageFormatManager
 from . import constants
 
 

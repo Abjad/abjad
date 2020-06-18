@@ -1,6 +1,6 @@
 import numbers
 
-from ..format import StorageFormatManager
+from ..formatting import StorageFormatManager
 
 
 class LilyPondDimension(object):

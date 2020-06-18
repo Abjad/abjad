@@ -17,14 +17,11 @@ from abjad.pitch.NamedPitch import NamedPitch
 from abjad.scheme import Scheme, SpacingVector
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.Tag import Tag
-from abjad.top.attach import attach
-from abjad.top.inspect import inspect as abjad_inspect
-from abjad.top.iterate import iterate
-from abjad.top.override import override
-from abjad.top.select import select
-from abjad.top.sequence import sequence
 
-from ..format import FormatSpecification, StorageFormatManager
+from ..formatting import FormatSpecification, StorageFormatManager
+from ..top import attach
+from ..top import inspect as abjad_inspect
+from ..top import iterate, override, select, sequence
 from .Block import Block
 from .ContextBlock import ContextBlock
 from .DateTimeToken import DateTimeToken

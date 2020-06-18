@@ -1,4 +1,4 @@
-from ..format import StorageFormatManager
+from ..formatting import StorageFormatManager
 from .NumberedPitchClass import NumberedPitchClass
 
 

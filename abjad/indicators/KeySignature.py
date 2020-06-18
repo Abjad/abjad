@@ -4,7 +4,7 @@ from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.pitch.NamedPitchClass import NamedPitchClass
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 
-from ..format import FormatSpecification, StorageFormatManager
+from ..formatting import FormatSpecification, StorageFormatManager
 from .Mode import Mode
 
 

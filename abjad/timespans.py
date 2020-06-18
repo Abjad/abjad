@@ -10,7 +10,6 @@ from abjad import enums, mathtools
 from abjad.markups import Markup, Postscript
 from abjad.mathtools import Ratio
 from abjad.system.Signature import Signature
-from abjad.top.new import new
 from abjad.utilities import Infinity, NegativeInfinity
 from abjad.utilities.Duration import Duration
 from abjad.utilities.Expression import Expression
@@ -19,7 +18,8 @@ from abjad.utilities.Offset import Offset
 from abjad.utilities.Sequence import Sequence
 from abjad.utilities.TypedList import TypedList
 
-from .format import FormatSpecification, StorageFormatManager
+from .formatting import FormatSpecification, StorageFormatManager
+from .top import new
 
 
 class Timespan(object):

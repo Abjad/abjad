@@ -11,7 +11,7 @@ import uqbar.graphs
 from abjad import Fraction, core, mathtools
 from abjad.system.Parser import Parser
 
-from .format import FormatSpecification, StorageFormatManager
+from .formatting import FormatSpecification, StorageFormatManager
 
 
 class RhythmTreeMixin(object):

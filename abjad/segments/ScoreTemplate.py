@@ -15,14 +15,10 @@ from abjad.lilypondfile.LilyPondFile import LilyPondFile
 from abjad.system.Tag import Tag
 from abjad.system.Tags import Tags
 from abjad.system.Wrapper import Wrapper
-from abjad.top.attach import attach
-from abjad.top.inspect import inspect
-from abjad.top.iterate import iterate
-from abjad.top.new import new
-from abjad.top.select import select
 from abjad.utilities.OrderedDict import OrderedDict
 
-from ..format import StorageFormatManager
+from ..formatting import StorageFormatManager
+from ..top import attach, inspect, iterate, new, select
 from .PartAssignment import PartAssignment
 from .PartManifest import PartManifest
 

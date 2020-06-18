@@ -5,13 +5,12 @@ import os
 import pathlib
 import pstats
 import re
-import shutil
 import subprocess
 import sys
 import traceback
 import typing
 
-from ..format import StorageFormatManager
+from ..formatting import StorageFormatManager
 from .Configuration import Configuration
 
 configuration = Configuration()
@@ -51,73 +50,6 @@ class IOManager(object):
             message = "\n".join(lines)
             input(message)
             os.makedirs(directory)
-
-    # TODO: move this somewhere else because of boilerplate
-    @staticmethod
-    def _make_score_package(
-        score_package_path,
-        *,
-        composer_email=None,
-        composer_full_name=None,
-        composer_last_name=None,
-        composer_github_username=None,
-        score_title=None,
-        year=None,
-    ):
-        score_package_name = os.path.basename(score_package_path)
-        source_path = os.path.join(configuration.boilerplate_directory, "score")
-        target_path = score_package_path
-        if not os.path.exists(target_path):
-            shutil.copytree(source_path, target_path)
-        else:
-            for subentry in os.listdir(source_path):
-                subentry_source = os.path.join(source_path, subentry)
-                subentry_target = os.path.join(target_path, subentry)
-                if os.path.isfile(subentry_source):
-                    shutil.copy(subentry_source, subentry_target)
-                elif os.path.isdir(subentry_source):
-                    shutil.copytree(subentry_source, subentry_target)
-                else:
-                    raise ValueError(subentry_source)
-        old_contents_directory = os.path.join(target_path, "score")
-        new_contents_directory = os.path.join(target_path, score_package_name)
-        shutil.move(old_contents_directory, new_contents_directory)
-        suffixes = (".py", ".tex", ".md", ".rst", ".ly", ".ily")
-        for root, directory_name, file_names in os.walk(target_path):
-            for file_name in file_names:
-                if not file_name.endswith(suffixes):
-                    continue
-                file_ = os.path.join(root, file_name)
-                with open(file_, "r") as file_pointer:
-                    template = file_pointer.read()
-                try:
-                    template = template.format(
-                        composer_email=composer_email,
-                        composer_full_name=composer_full_name,
-                        composer_github_username=composer_github_username,
-                        composer_last_name=composer_last_name,
-                        score_package_name=score_package_name,
-                        score_title=score_title,
-                        year=year,
-                    )
-                except (IndexError, KeyError):
-                    lines = template.splitlines()
-                    for i, line in enumerate(lines):
-                        try:
-                            lines[i] = line.format(
-                                composer_email=composer_email,
-                                composer_full_name=composer_full_name,
-                                composer_github_username=composer_github_username,
-                                composer_last_name=composer_last_name,
-                                score_package_name=score_package_name,
-                                score_title=score_title,
-                                year=year,
-                            )
-                        except (KeyError, IndexError, ValueError):
-                            pass
-                    template = "\n".join(lines)
-                with open(file_, "w") as file_pointer:
-                    file_pointer.write(template)
 
     @staticmethod
     def _read_from_pipe(pipe):

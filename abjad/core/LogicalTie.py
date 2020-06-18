@@ -4,11 +4,9 @@ from abjad import exceptions
 from abjad.indicators.RepeatTie import RepeatTie
 from abjad.indicators.Tie import Tie
 from abjad.mathtools import Ratio
-from abjad.top.detach import detach
-from abjad.top.mutate import mutate
-from abjad.top.select import select
 from abjad.utilities.Duration import Duration
 
+from ..top import detach, mutate, select
 from .Selection import Selection
 
 

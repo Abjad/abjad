@@ -9,8 +9,8 @@ from abjad import indicators as abjad_indicators
 from abjad import markups as abjad_markups
 from abjad import pitch as abjad_pitch
 from abjad.system.Parser import Parser
-from abjad.top.attach import attach
 
+from ..top import attach
 from ._parse import _parse
 from ._parse_debug import _parse_debug
 

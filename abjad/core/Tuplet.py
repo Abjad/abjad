@@ -8,15 +8,11 @@ from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.mathtools import NonreducedFraction, NonreducedRatio, Ratio
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.Tag import Tag
-from abjad.top.inspect import inspect
-from abjad.top.iterate import iterate
-from abjad.top.override import override
-from abjad.top.select import select
-from abjad.top.tweak import tweak
 from abjad.utilities.Duration import Duration
 from abjad.utilities.Multiplier import Multiplier
 
-from ..format import FormatSpecification
+from ..formatting import FormatSpecification
+from ..top import inspect, iterate, override, select, tweak
 from .Container import Container
 from .Leaf import Leaf
 from .LeafMaker import LeafMaker

@@ -2,7 +2,7 @@ import difflib
 import os
 import pathlib
 
-from ..format import StorageFormatManager
+from ..formatting import StorageFormatManager
 
 
 class TestManager(object):

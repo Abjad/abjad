@@ -13,15 +13,9 @@ from abjad.system.Tag import Tag
 from abjad.system.UpdateManager import UpdateManager
 from abjad.system.Wrapper import Wrapper
 from abjad.timespans import Timespan
-from abjad.top.attach import attach
-from abjad.top.detach import detach
-from abjad.top.inspect import inspect
-from abjad.top.mutate import mutate
-from abjad.top.override import override
-from abjad.top.select import select
-from abjad.top.setting import setting
 
-from ..format import FormatSpecification, StorageFormatManager
+from ..formatting import FormatSpecification, StorageFormatManager
+from ..top import attach, detach, inspect, mutate, override, select, setting
 
 
 class Component(object):

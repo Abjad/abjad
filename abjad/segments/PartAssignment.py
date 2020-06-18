@@ -2,7 +2,7 @@ import typing
 
 from abjad import typings
 
-from ..format import FormatSpecification, StorageFormatManager
+from ..formatting import FormatSpecification, StorageFormatManager
 from .Part import Part
 
 token_type = typing.Union[None, int, typings.IntegerPair, typing.List[int]]

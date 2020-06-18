@@ -1,7 +1,7 @@
 import abc
 import operator
 
-from ..format import StorageFormatManager
+from ..formatting import StorageFormatManager
 
 
 class Inequality(object):

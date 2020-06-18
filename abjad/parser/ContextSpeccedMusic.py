@@ -1,5 +1,3 @@
-from abjad import utilities
-
 from .Music import Music
 
 
@@ -31,7 +29,6 @@ class ContextSpeccedMusic(Music):
 
         lilypond_type = lilypond_type or ""
         music = music or abjad_parser.SequentialMusic()
-        assert utilities.String.is_string(lilypond_type)
         assert isinstance(music, Music)
         self.lilypond_type = lilypond_type
         self.optional_id = optional_id

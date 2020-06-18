@@ -45,16 +45,12 @@ from abjad.lilypondnames.LilyPondTweakManager import (
 from abjad.scheme import SchemeSymbol
 from abjad.system.Tag import Tag
 from abjad.system.Tags import Tags
-from abjad.top.attach import attach
-from abjad.top.detach import detach
-from abjad.top.inspect import inspect
-from abjad.top.iterate import iterate
-from abjad.top.select import select
-from abjad.top.tweak import tweak
 from abjad.utilities.Duration import Duration
 from abjad.utilities.DurationInequality import DurationInequality
 from abjad.utilities.Expression import Expression
 from abjad.utilities.Sequence import Sequence
+
+from .top import attach, detach, inspect, iterate, select, tweak
 
 abjad_tags = Tags()
 

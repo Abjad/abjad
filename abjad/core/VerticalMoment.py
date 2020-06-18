@@ -1,4 +1,4 @@
-from abjad.top.inspect import inspect
+from ..top import inspect
 
 
 class VerticalMoment(object):

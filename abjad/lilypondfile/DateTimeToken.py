@@ -1,6 +1,6 @@
 import time
 
-from ..format import StorageFormatManager
+from ..formatting import StorageFormatManager
 
 
 class DateTimeToken(object):

@@ -6,7 +6,7 @@ from abjad import mathtools
 from abjad.utilities.TypedCollection import TypedCollection
 from abjad.utilities.TypedCounter import TypedCounter
 
-from ..format import FormatSpecification
+from ..formatting import FormatSpecification
 
 
 class Vector(TypedCounter):

@@ -2,13 +2,10 @@ from abjad import enums
 from abjad.indicators.TimeSignature import TimeSignature
 from abjad.meter import Meter
 from abjad.pitch.NamedInterval import NamedInterval
-from abjad.top.inspect import inspect
-from abjad.top.iterate import iterate
-from abjad.top.select import select
-from abjad.top.sequence import sequence
 from abjad.utilities.Duration import Duration
 
-from ..format import StorageFormatManager
+from ..formatting import StorageFormatManager
+from ..top import inspect, iterate, select, sequence
 from .Chord import Chord
 from .Component import Component
 from .Container import Container

@@ -11,7 +11,7 @@ from abjad.pitch.PitchRange import PitchRange
 from abjad.pitch.PitchSegment import PitchSegment
 from abjad.utilities.Enumerator import Enumerator
 
-from .format import FormatSpecification, StorageFormatManager
+from .formatting import FormatSpecification, StorageFormatManager
 
 
 class Instrument(object):
