@@ -1,4 +1,4 @@
-from ..format import StorageFormatManager
+from ..formatting import StorageFormatManager
 
 
 class LilyPondVersionToken(object):

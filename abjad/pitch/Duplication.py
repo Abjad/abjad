@@ -2,7 +2,7 @@ import collections
 
 from abjad.utilities.CyclicTuple import CyclicTuple
 
-from ..format import StorageFormatManager
+from ..formatting import StorageFormatManager
 
 
 class Duplication(object):

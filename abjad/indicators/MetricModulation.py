@@ -4,12 +4,10 @@ from abjad import enums, typings
 from abjad.markups import Markup
 from abjad.mathtools import Ratio
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
-from abjad.top.inspect import inspect
-from abjad.top.new import new
-from abjad.top.select import select
 from abjad.utilities.Duration import Duration
 
-from ..format import StorageFormatManager
+from ..formatting import StorageFormatManager
+from ..top import inspect, new, select
 
 
 class MetricModulation(object):

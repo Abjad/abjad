@@ -10,10 +10,10 @@ from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.Tag import Tag
 from abjad.system.Wrapper import Wrapper
 from abjad.timespans import Timespan
-from abjad.top.iterate import iterate
 from abjad.utilities.Duration import Duration
 
-from ..format import StorageFormatManager
+from ..formatting import StorageFormatManager
+from ..top import iterate
 from .AfterGraceContainer import AfterGraceContainer
 from .BeforeGraceContainer import BeforeGraceContainer
 from .Chord import Chord

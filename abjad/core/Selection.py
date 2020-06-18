@@ -8,13 +8,6 @@ from abjad.indicators.Tie import Tie
 from abjad.mathtools import Ratio
 from abjad.pitch.PitchInequality import PitchInequality
 from abjad.pitch.PitchSet import PitchSet
-from abjad.top.attach import attach
-from abjad.top.detach import detach
-from abjad.top.inspect import inspect as abjad_inspect
-from abjad.top.iterate import iterate
-from abjad.top.mutate import mutate
-from abjad.top.new import new
-from abjad.top.select import select
 from abjad.utilities.CyclicTuple import CyclicTuple
 from abjad.utilities.Duration import Duration
 from abjad.utilities.DurationInequality import DurationInequality
@@ -24,7 +17,10 @@ from abjad.utilities.Offset import Offset
 from abjad.utilities.Pattern import Pattern
 from abjad.utilities.Sequence import Sequence
 
-from ..format import FormatSpecification, StorageFormatManager
+from ..formatting import FormatSpecification, StorageFormatManager
+from ..top import attach, detach
+from ..top import inspect as abjad_inspect
+from ..top import iterate, mutate, new, select
 from .Chord import Chord
 from .Component import Component
 from .Leaf import Leaf

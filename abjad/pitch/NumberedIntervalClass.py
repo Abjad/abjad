@@ -1,6 +1,6 @@
 from abjad import mathtools
 
-from ..format import FormatSpecification
+from ..formatting import FormatSpecification
 from .IntervalClass import IntervalClass
 
 

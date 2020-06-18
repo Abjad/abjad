@@ -5,7 +5,7 @@ from abjad import mathtools
 from abjad.utilities.Multiplier import Multiplier
 from abjad.utilities.OrderedDict import OrderedDict
 
-from ..format import StorageFormatManager
+from ..formatting import StorageFormatManager
 from .AfterGraceContainer import AfterGraceContainer
 from .BeforeGraceContainer import BeforeGraceContainer
 from .Component import Component

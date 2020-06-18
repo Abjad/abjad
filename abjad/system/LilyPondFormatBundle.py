@@ -1,4 +1,4 @@
-from ..format import FormatSpecification, StorageFormatManager
+from ..formatting import FormatSpecification, StorageFormatManager
 from .SlotContributions import SlotContributions
 
 

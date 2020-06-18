@@ -3,9 +3,9 @@ import typing
 from abjad.pitch.NamedPitch import NamedPitch
 from abjad.pitch.StaffPosition import StaffPosition
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
-from abjad.top.iterate import iterate
 
-from ..format import FormatSpecification, StorageFormatManager
+from ..formatting import FormatSpecification, StorageFormatManager
+from ..top import iterate
 
 
 class Clef(object):

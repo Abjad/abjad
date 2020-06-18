@@ -1,10 +1,8 @@
 import collections
 import typing
 
-from abjad.top.inspect import inspect
-from abjad.top.select import select
-
-from ..format import StorageFormatManager
+from ..formatting import StorageFormatManager
+from ..top import inspect, select
 from .Component import Component
 
 

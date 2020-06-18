@@ -1,4 +1,4 @@
-from ..format import FormatSpecification
+from ..formatting import FormatSpecification
 from .Duration import Duration
 
 

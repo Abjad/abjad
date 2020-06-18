@@ -23,18 +23,13 @@ from abjad.pitch.PitchSegment import PitchSegment
 from abjad.pitch.SetClass import SetClass
 from abjad.scheme import SchemeColor
 from abjad.system.Tag import Tag
-from abjad.top.attach import attach
-from abjad.top.detach import detach
-from abjad.top.inspect import inspect as abjad_inspect
-from abjad.top.iterate import iterate
-from abjad.top.new import new
-from abjad.top.override import override
-from abjad.top.select import select
-from abjad.top.tweak import tweak
 from abjad.utilities.Duration import Duration
 from abjad.utilities.Expression import Expression
 
-from ..format import StorageFormatManager
+from ..formatting import StorageFormatManager
+from ..top import attach, detach
+from ..top import inspect as abjad_inspect
+from ..top import iterate, new, override, select, tweak
 from .Chord import Chord
 from .Component import Component
 from .Note import Note

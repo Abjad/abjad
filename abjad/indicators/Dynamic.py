@@ -7,7 +7,7 @@ from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.system.Tags import Tags
 from abjad.utilities.String import String
 
-from ..format import FormatSpecification, StorageFormatManager
+from ..formatting import FormatSpecification, StorageFormatManager
 
 abjad_tags = Tags()
 

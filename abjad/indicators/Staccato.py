@@ -5,7 +5,7 @@ from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.utilities.String import String
 
-from ..format import StorageFormatManager
+from ..formatting import StorageFormatManager
 
 
 class Staccato(object):

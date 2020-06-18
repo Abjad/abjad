@@ -1,6 +1,6 @@
 import collections
 
-from ..format import StorageFormatManager
+from ..formatting import StorageFormatManager
 from .TypedCollection import TypedCollection
 
 

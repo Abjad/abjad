@@ -3,7 +3,7 @@ import typing
 from abjad import enums
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 
-from ..format import StorageFormatManager
+from ..formatting import StorageFormatManager
 
 
 class StopTrillSpan(object):

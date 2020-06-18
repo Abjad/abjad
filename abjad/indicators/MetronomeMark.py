@@ -2,25 +2,23 @@ import collections
 import functools
 import math
 import typing
-from fractions import Fraction
 
 from abjad import exceptions, mathtools, typings
 from abjad.markups import Markup
 from abjad.mathtools import NonreducedFraction, Ratio
 from abjad.scheme import Scheme
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
-from abjad.top.new import new
-from abjad.top.sequence import sequence
 from abjad.utilities.Duration import Duration
 from abjad.utilities.Enumerator import Enumerator
 from abjad.utilities.Multiplier import Multiplier
 
-from ..format import FormatSpecification, StorageFormatManager
+from ..formatting import FormatSpecification, StorageFormatManager
+from ..top import new, sequence
 
 try:
-    from quicktions import Fraction  # type: ignore  # noqa
+    from quicktions import Fraction
 except ImportError:
-    pass
+    from fractions import Fraction
 
 
 @functools.total_ordering

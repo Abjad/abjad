@@ -6,7 +6,7 @@ from abjad import enums, mathtools
 from abjad.utilities.Duration import Duration
 from abjad.utilities.TypedTuple import TypedTuple
 
-from ..format import FormatSpecification
+from ..formatting import FormatSpecification
 
 
 class Segment(TypedTuple):

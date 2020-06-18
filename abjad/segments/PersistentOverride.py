@@ -4,7 +4,7 @@ from abjad.core.Context import Context
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 
-from ..format import FormatSpecification, StorageFormatManager
+from ..formatting import FormatSpecification, StorageFormatManager
 
 
 class PersistentOverride(object):

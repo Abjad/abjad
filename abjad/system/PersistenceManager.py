@@ -3,7 +3,7 @@ import re
 import shutil
 import tempfile
 
-from ..format import StorageFormatManager
+from ..formatting import StorageFormatManager
 from .IOManager import IOManager
 from .Timer import Timer
 

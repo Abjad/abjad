@@ -7,10 +7,9 @@ import typing
 import uqbar.enums
 
 from abjad.system.Signature import Signature
-from abjad.top.label import label
-from abjad.top.new import new
 
-from ..format import FormatSpecification, StorageFormatManager
+from ..formatting import FormatSpecification, StorageFormatManager
+from ..top import label, new
 
 
 class Expression(object):

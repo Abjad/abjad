@@ -3,7 +3,7 @@ import numbers
 
 from abjad import enums, mathtools
 
-from ..format import FormatSpecification, StorageFormatManager
+from ..formatting import FormatSpecification, StorageFormatManager
 from . import constants
 
 

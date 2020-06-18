@@ -4,10 +4,10 @@ from abjad import enums
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.system.Tags import Tags
-from abjad.top.inspect import inspect
 from abjad.utilities.String import String
 
-from ..format import StorageFormatManager
+from ..formatting import StorageFormatManager
+from ..top import inspect
 
 abjad_tags = Tags()
 

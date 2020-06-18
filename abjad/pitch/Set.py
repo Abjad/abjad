@@ -5,7 +5,7 @@ import types
 from abjad.utilities.TypedCollection import TypedCollection
 from abjad.utilities.TypedFrozenset import TypedFrozenset
 
-from ..format import FormatSpecification
+from ..formatting import FormatSpecification
 
 
 class Set(TypedFrozenset):

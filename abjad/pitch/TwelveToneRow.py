@@ -1,5 +1,4 @@
-from abjad.top.new import new
-
+from ..top import new
 from .PitchClassSegment import PitchClassSegment
 
 

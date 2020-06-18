@@ -9,11 +9,11 @@ import typing
 from abjad import Fraction, enums, mathtools
 from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from abjad.scheme import Scheme, SchemeColor, SchemePair
-from abjad.top import new
 from abjad.utilities.String import String
 from abjad.utilities.TypedList import TypedList
 
-from .format import FormatSpecification, StorageFormatManager
+from .formatting import FormatSpecification, StorageFormatManager
+from .top import new
 
 
 class Markup(object):
@@ -194,7 +194,7 @@ class Markup(object):
         literal: bool = None,
         tweaks: LilyPondTweakManager = None,
     ) -> None:
-        from abjad.top.parse import parse
+        from .top import parse
 
         self._annotation = None
         new_contents: typing.Tuple[typing.Union[str, MarkupCommand], ...]

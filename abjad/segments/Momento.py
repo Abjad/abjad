@@ -3,7 +3,7 @@ import typing
 from abjad.system.Tag import Tag
 from abjad.utilities.Offset import Offset
 
-from ..format import FormatSpecification, StorageFormatManager
+from ..formatting import FormatSpecification, StorageFormatManager
 
 
 class Momento(object):

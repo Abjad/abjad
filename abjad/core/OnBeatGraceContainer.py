@@ -5,14 +5,11 @@ from abjad.indicators.LilyPondLiteral import LilyPondLiteral
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.Tag import Tag
 from abjad.system.Tags import Tags
-from abjad.top.attach import attach
-from abjad.top.detach import detach
-from abjad.top.inspect import inspect as abjad_inspect
-from abjad.top.mutate import mutate
-from abjad.top.select import select
-from abjad.top.tweak import tweak
 from abjad.utilities.Duration import Duration
 
+from ..top import attach, detach
+from ..top import inspect as abjad_inspect
+from ..top import mutate, select, tweak
 from .Container import Container
 
 abjad_tags = Tags()

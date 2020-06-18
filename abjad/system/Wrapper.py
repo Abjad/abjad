@@ -1,7 +1,7 @@
 import copy
 import typing
 
-from ..format import FormatSpecification, StorageFormatManager
+from ..formatting import FormatSpecification, StorageFormatManager
 from .LilyPondFormatManager import LilyPondFormatManager
 from .Tag import Tag
 
@@ -627,7 +627,7 @@ class Wrapper(object):
 
         Returns offset.
         """
-        from abjad.top.inspect import inspect
+        from ..top import inspect
 
         if self._synthetic_offset is not None:
             return self._synthetic_offset
@@ -646,7 +646,7 @@ class Wrapper(object):
 
         Returns offset.
         """
-        from abjad.top.inspect import inspect
+        from ..top import inspect
 
         if self._synthetic_offset is not None:
             return self._synthetic_offset

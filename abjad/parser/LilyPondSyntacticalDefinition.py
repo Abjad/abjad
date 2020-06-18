@@ -7,7 +7,8 @@ from abjad import markups as abjad_markups
 from abjad import pitch as abjad_pitch
 from abjad import scheme as abjad_scheme
 from abjad import utilities
-from abjad.top import attach
+
+from ..top import attach
 
 
 class LilyPondSyntacticalDefinition(object):
@@ -24,7 +25,6 @@ class LilyPondSyntacticalDefinition(object):
     start = "start_symbol"
 
     precedence = (
-        # ('nonassoc', 'REPEAT'),
         # ('nonassoc', 'ALTERNATIVE'),
         ("nonassoc", "COMPOSITE"),
         # ('left', 'ADDLYRICS'),

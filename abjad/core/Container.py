@@ -6,14 +6,10 @@ import uqbar.graphs
 from abjad import exceptions, rhythmtrees
 from abjad.system.LilyPondFormatManager import LilyPondFormatManager
 from abjad.system.Tag import Tag
-from abjad.top.inspect import inspect
-from abjad.top.iterate import iterate
-from abjad.top.mutate import mutate
-from abjad.top.parse import parse
-from abjad.top.select import select
 from abjad.utilities.Duration import Duration
 
-from ..format import FormatSpecification
+from ..formatting import FormatSpecification
+from ..top import inspect, iterate, mutate, parse, select
 from .Component import Component
 from .Leaf import Leaf
 from .Note import Note

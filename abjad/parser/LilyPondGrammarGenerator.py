@@ -136,7 +136,6 @@ class LilyPondGrammarGenerator(object):
             parser_output_path, parser_tab_hh_path
         )
         with open(skeleton_path, "w") as f:
-            f.write("from abjad import *\n")
             f.write("from abjad.parser.SyntaxNode.SyntaxNode \\\n")
             f.write("    import SyntaxNode as Node\n\n\n")
             f.write("class _LilyPondSyntacticalDefinition(object):\n\n")

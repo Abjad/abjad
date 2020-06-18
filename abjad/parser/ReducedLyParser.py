@@ -1,8 +1,9 @@
 from abjad import Left, Right, core, indicators, mathtools
 from abjad import pitch as abjad_pitch
 from abjad import utilities
-from abjad.system import Parser
-from abjad.top import attach, detach, inspect, select
+
+from ..system.Parser import Parser
+from ..top import attach, detach, inspect, select
 
 
 class ReducedLyParser(Parser):

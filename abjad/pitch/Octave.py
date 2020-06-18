@@ -3,7 +3,7 @@ import math
 import numbers
 import re
 
-from ..format import FormatSpecification, StorageFormatManager
+from ..formatting import FormatSpecification, StorageFormatManager
 from . import constants
 
 

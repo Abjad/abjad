@@ -1,6 +1,6 @@
 import typing
 
-from ..format import StorageFormatManager
+from ..formatting import StorageFormatManager
 from .Part import Part
 
 

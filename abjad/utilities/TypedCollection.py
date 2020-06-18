@@ -1,6 +1,6 @@
 import abc
 
-from ..format import FormatSpecification, StorageFormatManager
+from ..formatting import FormatSpecification, StorageFormatManager
 
 
 class TypedCollection(object):

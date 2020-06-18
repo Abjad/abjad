@@ -2,9 +2,9 @@ import inspect
 
 from abjad import enums
 from abjad.system.Signature import Signature
-from abjad.top.new import new
 from abjad.utilities.Duration import Duration
 
+from ..top import new
 from .Segment import Segment
 
 

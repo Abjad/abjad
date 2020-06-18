@@ -9,12 +9,11 @@ from abjad.core.Voice import Voice
 from abjad.lilypondfile.LilyPondFile import LilyPondFile
 from abjad.system.Tag import Tag
 from abjad.timespans import TimespanList
-from abjad.top.inspect import inspect
-from abjad.top.iterate import iterate
 from abjad.utilities.OrderedDict import OrderedDict
 from abjad.utilities.String import String
 
-from ..format import StorageFormatManager
+from ..formatting import StorageFormatManager
+from ..top import inspect, iterate
 from .PartAssignment import PartAssignment
 from .Path import Path
 
