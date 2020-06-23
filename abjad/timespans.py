@@ -6,20 +6,19 @@ import copy
 import inspect
 import typing
 
-from abjad import enums, mathtools
-from abjad.markups import Markup, Postscript
-from abjad.mathtools import Ratio
-from abjad.system.Signature import Signature
-from abjad.utilities import Infinity, NegativeInfinity
-from abjad.utilities.Duration import Duration
-from abjad.utilities.Expression import Expression
-from abjad.utilities.Multiplier import Multiplier
-from abjad.utilities.Offset import Offset
-from abjad.utilities.Sequence import Sequence
-from abjad.utilities.TypedList import TypedList
-
+from . import enums, mathtools
 from .formatting import FormatSpecification, StorageFormatManager
+from .markups import Markup, Postscript
+from .mathtools import Ratio
+from .system.Signature import Signature
 from .top import new
+from .utilities import Infinity, NegativeInfinity
+from .utilities.Duration import Duration
+from .utilities.Expression import Expression
+from .utilities.Multiplier import Multiplier
+from .utilities.Offset import Offset
+from .utilities.Sequence import Sequence
+from .utilities.TypedList import TypedList
 
 
 class Timespan(object):
@@ -4005,9 +4004,7 @@ class TimespanList(TypedList):
 
         Returns timespan.
         """
-        from abjad import timespans
-
-        return timespans.Timespan(self.start_offset, self.stop_offset)
+        return Timespan(self.start_offset, self.stop_offset)
 
     ### PUBLIC METHODS ###
 

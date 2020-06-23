@@ -122,9 +122,6 @@
   (else 
     (document-other obj-pair))))
 
-#(display "from abjad.tools.durationtools import Duration\n")
-#(display "from abjad.tools.lilypondparsertools.LilyPondDuration \\\n")
-#(display "    import LilyPondDuration\n\n\n")
 #(display (format "lilypond_version = \"~A\"\n\n" (lilypond-version)))
 #(display "current_module = {\n")
 #(for-each document-object current-module-sorted)

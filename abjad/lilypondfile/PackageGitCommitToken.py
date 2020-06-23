@@ -2,9 +2,8 @@ import importlib
 import os
 import subprocess
 
-from abjad.system.TemporaryDirectoryChange import TemporaryDirectoryChange
-
 from ..formatting import StorageFormatManager
+from ..system.TemporaryDirectoryChange import TemporaryDirectoryChange
 
 
 class PackageGitCommitToken(object):

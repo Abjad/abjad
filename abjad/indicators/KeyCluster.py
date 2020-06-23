@@ -1,8 +1,7 @@
-from abjad import enums
-from abjad.markups import Markup
-from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
-
+from .. import enums
 from ..formatting import StorageFormatManager
+from ..markups import Markup
+from ..system.LilyPondFormatBundle import LilyPondFormatBundle
 
 
 class KeyCluster(object):

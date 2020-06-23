@@ -36,7 +36,7 @@
     (abj-accidental (ly:assoc-get ly-alteration alterations))
     (pitch-name (format "~A~A" abj-pitch-name abj-accidental)))
     ; BODY
-    (display (format "        '~A': NamedPitchClass('~A'),\n"
+    (display (format "        '~A': '~A',\n"
       ly-pitch-name pitch-name))))
 
 #(define handle-language (lambda (x) (begin
@@ -48,7 +48,6 @@
 %%% MAIN %%%
 
 #(begin
-  (display "from abjad.pitch import NamedPitchClass\n\n\n")
   (display (format "lilypond_version = \"~A\"\n\n" (lilypond-version)))
   (display "language_pitch_names = {")
   (map handle-language language-pitch-names)

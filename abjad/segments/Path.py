@@ -4,24 +4,25 @@ import pathlib
 import shutil
 import typing
 
-from abjad.core.Score import Score
-from abjad.core.StaffGroup import StaffGroup
-from abjad.indicators.Clef import Clef
-from abjad.indicators.LilyPondLiteral import LilyPondLiteral
-from abjad.indicators.TimeSignature import TimeSignature
-from abjad.system.Configuration import Configuration
-from abjad.system.IOManager import IOManager
-from abjad.system.LilyPondFormatManager import LilyPondFormatManager
-from abjad.system.Tag import Tag
-from abjad.utilities.CyclicTuple import CyclicTuple
-from abjad.utilities.OrderedDict import OrderedDict
-from abjad.utilities.String import String
-
 from .. import typings
-from ..top import activate, attach, deactivate, iterate
+from ..core.Score import Score
+from ..core.StaffGroup import StaffGroup
+from ..indicators.Clef import Clef
+from ..indicators.LilyPondLiteral import LilyPondLiteral
+from ..indicators.TimeSignature import TimeSignature
+from ..system.Configuration import Configuration
+from ..system.IOManager import IOManager
+from ..system.LilyPondFormatManager import LilyPondFormatManager
+from ..system.Tag import Tag
+from ..top import attach, iterate
+from ..utilities.CyclicTuple import CyclicTuple
+from ..utilities.OrderedDict import OrderedDict
+from ..utilities.String import String
 from .Line import Line
 from .Part import Part
 from .PartManifest import PartManifest
+from .activate import activate
+from .deactivate import deactivate
 
 configuration = Configuration()
 

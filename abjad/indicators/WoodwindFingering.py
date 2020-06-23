@@ -1,10 +1,9 @@
 import collections
 import typing
 
-from abjad.markups import MarkupCommand
-from abjad.scheme import Scheme, SchemePair
-
 from ..formatting import StorageFormatManager
+from ..markups import MarkupCommand
+from ..scheme import Scheme, SchemePair
 
 
 class WoodwindFingering(object):

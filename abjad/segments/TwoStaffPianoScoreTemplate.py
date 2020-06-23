@@ -1,12 +1,11 @@
-from abjad.core.Score import Score
-from abjad.core.Staff import Staff
-from abjad.core.StaffGroup import StaffGroup
-from abjad.core.Voice import Voice
-from abjad.indicators.Clef import Clef
-from abjad.instruments import Piano
-from abjad.system.Tag import Tag
-
-from ..top import annotate
+from ..core.Score import Score
+from ..core.Staff import Staff
+from ..core.StaffGroup import StaffGroup
+from ..core.Voice import Voice
+from ..indicators.Clef import Clef
+from ..instruments import Piano
+from ..system.Tag import Tag
+from ..system.annotate import annotate
 from .ScoreTemplate import ScoreTemplate
 
 

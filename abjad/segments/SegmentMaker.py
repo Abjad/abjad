@@ -1,19 +1,18 @@
 import typing
 
-from abjad import const
-from abjad.core.Container import Container
-from abjad.core.Context import Context
-from abjad.core.Score import Score
-from abjad.core.Staff import Staff
-from abjad.core.Voice import Voice
-from abjad.lilypondfile.LilyPondFile import LilyPondFile
-from abjad.system.Tag import Tag
-from abjad.timespans import TimespanList
-from abjad.utilities.OrderedDict import OrderedDict
-from abjad.utilities.String import String
-
+from .. import const
+from ..core.Container import Container
+from ..core.Context import Context
+from ..core.Score import Score
+from ..core.Staff import Staff
+from ..core.Voice import Voice
 from ..formatting import StorageFormatManager
+from ..lilypondfile.LilyPondFile import LilyPondFile
+from ..system.Tag import Tag
+from ..timespans import TimespanList
 from ..top import inspect, iterate
+from ..utilities.OrderedDict import OrderedDict
+from ..utilities.String import String
 from .PartAssignment import PartAssignment
 from .Path import Path
 

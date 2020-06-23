@@ -1,8 +1,7 @@
 import typing
 
-from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
-
 from ..formatting import StorageFormatManager
+from ..system.LilyPondFormatBundle import LilyPondFormatBundle
 
 
 class StopPhrasingSlur(object):

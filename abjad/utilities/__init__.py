@@ -2,8 +2,7 @@
 Utility classes and functions.
 """
 
-from abjad import mathtools  # noqa
-
+from .. import mathtools  # noqa
 from .CyclicTuple import CyclicTuple
 from .Duration import Duration
 from .DurationInequality import DurationInequality

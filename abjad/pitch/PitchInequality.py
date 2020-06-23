@@ -1,5 +1,8 @@
 import collections
 
+from .pitches import NumberedPitch
+from .sets import PitchSet
+
 
 class PitchInequality(object):
     """
@@ -42,14 +45,12 @@ class PitchInequality(object):
     ### INITIALIZER ###
 
     def __init__(self, operator_string="&", pitches=None):
-        import abjad
-
         assert operator_string in self._set_theoretic_operator_strings
         self._operator_string = operator_string
         # only intersection is currently implemented
         if not isinstance(pitches, collections.abc.Iterable):
             pitches = [pitches]
-        pitches = abjad.PitchSet(items=pitches, item_class=abjad.NumberedPitch)
+        pitches = PitchSet(items=pitches, item_class=NumberedPitch)
         self._pitches = pitches
 
     ### SPECIAL METHODS ###
@@ -60,13 +61,9 @@ class PitchInequality(object):
 
         Returns true or false.
         """
-        import abjad
-
         if not self.pitches:
             return False
-        pitch_set = abjad.PitchSet.from_selection(
-            argument, item_class=abjad.NumberedPitch
-        )
+        pitch_set = PitchSet.from_selection(argument, item_class=NumberedPitch)
         if self.operator_string == "&":
             return bool(self.pitches.intersection(pitch_set))
         else:

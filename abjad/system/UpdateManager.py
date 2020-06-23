@@ -1,15 +1,14 @@
-from abjad import mathtools
-from abjad.indicators.MetronomeMark import MetronomeMark
-from abjad.indicators.TimeSignature import TimeSignature
-from abjad.timespans import AnnotatedTimespan, TimespanList
-from abjad.utilities.Duration import Duration
-from abjad.utilities.Multiplier import Multiplier
-from abjad.utilities.Offset import Offset
-from abjad.utilities.Sequence import Sequence
-
+from .. import mathtools
 from ..formatting import StorageFormatManager
+from ..indicators.MetronomeMark import MetronomeMark
+from ..indicators.TimeSignature import TimeSignature
+from ..timespans import AnnotatedTimespan, TimespanList
 from ..top import inspect as abjad_inspect
 from ..top import iterate
+from ..utilities.Duration import Duration
+from ..utilities.Multiplier import Multiplier
+from ..utilities.Offset import Offset
+from ..utilities.Sequence import Sequence
 
 
 class UpdateManager(object):
@@ -256,7 +255,7 @@ class UpdateManager(object):
         Updating offsets does not update indicators.
         Updating offsets does not update offsets in seconds.
         """
-        from abjad.core.OnBeatGraceContainer import OnBeatGraceContainer
+        from ..core.OnBeatGraceContainer import OnBeatGraceContainer
 
         on_beat_grace_music = []
         for component in self._iterate_entire_score(root):
@@ -310,9 +309,9 @@ class UpdateManager(object):
 
     @classmethod
     def _update_component_offsets(class_, component):
-        from abjad.core.AfterGraceContainer import AfterGraceContainer
-        from abjad.core.BeforeGraceContainer import BeforeGraceContainer
-        from abjad.core.OnBeatGraceContainer import OnBeatGraceContainer
+        from ..core.AfterGraceContainer import AfterGraceContainer
+        from ..core.BeforeGraceContainer import BeforeGraceContainer
+        from ..core.OnBeatGraceContainer import OnBeatGraceContainer
 
         if isinstance(component, BeforeGraceContainer):
             pair = class_._get_before_grace_leaf_offsets(component[0])

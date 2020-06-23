@@ -1,6 +1,7 @@
-from abjad import mathtools
-
+from .. import mathtools
 from ..formatting import StorageFormatManager
+from .pitchclasses import NumberedPitchClass
+from .sets import PitchClassSet
 
 
 class SetClass(object):
@@ -1077,13 +1078,11 @@ class SetClass(object):
 
         Archived here in case other identifier systems are needed in future.
         """
-        import abjad
-
         all_prime_forms = {}
         for cardinality in range(12 + 1):
             all_prime_forms[cardinality] = set()
         for pc_set in SetClass._yield_all_pitch_class_sets():
-            if abjad.NumberedPitchClass(0) not in pc_set:
+            if NumberedPitchClass(0) not in pc_set:
                 if 0 < len(pc_set):
                     continue
             prime_form = pc_set.get_prime_form(transposition_only=True)
@@ -1110,8 +1109,6 @@ class SetClass(object):
         print()
 
     def _unrank(self, cardinality, rank, transposition_only=None):
-        import abjad
-
         pair = (cardinality, rank)
         if self.transposition_only:
             prime_form = self._transposition_only_identifier_to_prime_form[pair]
@@ -1119,15 +1116,11 @@ class SetClass(object):
             prime_form = self._lex_identifier_to_prime_form[pair]
         else:
             prime_form = self._forte_identifier_to_prime_form[pair]
-        prime_form = abjad.PitchClassSet(
-            items=prime_form, item_class=abjad.NumberedPitchClass
-        )
+        prime_form = PitchClassSet(items=prime_form, item_class=NumberedPitchClass)
         return prime_form
 
     @staticmethod
     def _yield_all_pitch_class_sets():
-        import abjad
-
         def _helper(binary_string):
             result = zip(binary_string, range(len(binary_string)))
             result = [string[1] for string in result if string[0] == "1"]
@@ -1137,7 +1130,7 @@ class SetClass(object):
             string = mathtools.integer_to_binary_string(i).zfill(12)
             subset = "".join(list(reversed(string)))
             subset = _helper(subset)
-            subset = abjad.PitchClassSet(subset, item_class=abjad.NumberedPitchClass)
+            subset = PitchClassSet(subset, item_class=NumberedPitchClass)
             yield subset
 
     ### PUBLIC PROPERTIES ###
@@ -1569,10 +1562,8 @@ class SetClass(object):
 
         Returns set-class.
         """
-        import abjad
-
-        pitch_class_set = abjad.PitchClassSet(
-            items=pitch_class_set, item_class=abjad.NumberedPitchClass
+        pitch_class_set = PitchClassSet(
+            items=pitch_class_set, item_class=NumberedPitchClass
         )
         prime_form = pitch_class_set.get_prime_form(
             transposition_only=transposition_only

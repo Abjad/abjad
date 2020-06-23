@@ -76,5 +76,5 @@ def has_multiple_public_function_definitions(path, file_name):
 
 
 if __name__ == '__main__':
-    abjad.IOManager.clear_terminal()
+    abjad.IOManager.spawn_subprocess("clear")
     find_multifunction_modules()

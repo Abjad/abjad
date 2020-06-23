@@ -1,10 +1,11 @@
 import copy
 import typing
 
-from abjad.system.LilyPondFormatManager import LilyPondFormatManager
-from abjad.system.Tag import Tag
-from abjad.utilities.String import String
-
+from ..ly.colors import colors
+from ..ly.grob_interfaces import grob_interfaces
+from ..system.LilyPondFormatManager import LilyPondFormatManager
+from ..system.Tag import Tag
+from ..utilities.String import String
 from .LilyPondNameManager import LilyPondNameManager
 
 
@@ -161,8 +162,6 @@ class LilyPondTweakManager(LilyPondNameManager):
             LilyPondTweakManager(('_literal', None), ('bound_details__left_broken__text', False))
 
         """
-        from abjad.ly import grob_interfaces
-
         if name == "_currently_deactivated":
             return vars(self).get("_currently_deactivated")
         if name == "_currently_tagging":
@@ -219,8 +218,6 @@ class LilyPondTweakManager(LilyPondNameManager):
             Exception: 'SavannahGreen' is not a LilyPond color.
 
         """
-        from abjad.ly.colors import colors
-
         if name == "color":
             if "x11-color" in value:
                 _, color = value.split()

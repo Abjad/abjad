@@ -1,12 +1,11 @@
 import typing
 
-from abjad import enums, markups, typings
-from abjad.lilypondnames.LilyPondGrobOverride import LilyPondGrobOverride
-from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
-from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
-from abjad.utilities.String import String
-
+from .. import enums, markups, typings
 from ..formatting import StorageFormatManager
+from ..lilypondnames.LilyPondGrobOverride import LilyPondGrobOverride
+from ..lilypondnames.LilyPondTweakManager import LilyPondTweakManager
+from ..system.LilyPondFormatBundle import LilyPondFormatBundle
+from ..utilities.String import String
 
 
 class StartTextSpan(object):

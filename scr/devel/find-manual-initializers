@@ -44,7 +44,7 @@ def find_initializers():
 
 
 if __name__ == '__main__':
-    abjad.IOManager.clear_terminal()
+    abjad.IOManager.spawn_subprocess("clear")
     print('Finding initializers ...')
     print()
     find_initializers()

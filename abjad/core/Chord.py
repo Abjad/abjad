@@ -1,14 +1,14 @@
 import copy
 import typing
 
-from abjad import instruments
-from abjad import pitch as abjad_pitch
-from abjad import typings
-from abjad.system.LilyPondFormatManager import LilyPondFormatManager
-from abjad.system.Tag import Tag
-from abjad.utilities.Duration import Duration
-
+from .. import instruments, typings
+from ..ly.drums import drums
+from ..pitch.pitches import NamedPitch
+from ..pitch.segments import PitchSegment
+from ..system.LilyPondFormatManager import LilyPondFormatManager
+from ..system.Tag import Tag
 from ..top import inspect, parse
+from ..utilities.Duration import Duration
 from .DrumNoteHead import DrumNoteHead
 from .Leaf import Leaf
 from .NoteHead import NoteHead
@@ -62,7 +62,6 @@ class Chord(Leaf):
     def __init__(
         self, *arguments, multiplier: typings.DurationTyping = None, tag: Tag = None,
     ) -> None:
-        from abjad.ly import drums
         from .Note import Note
 
         assert len(arguments) in (0, 1, 2)
@@ -100,7 +99,7 @@ class Chord(Leaf):
             elif isinstance(written_pitches, type(self)):
                 written_pitches = written_pitches.written_pitches
         elif len(arguments) == 0:
-            written_pitches = [abjad_pitch.NamedPitch(_) for _ in [0, 4, 7]]
+            written_pitches = [NamedPitch(_) for _ in [0, 4, 7]]
             written_duration = Duration(1, 4)
         else:
             raise ValueError(f"can not initialize chord from {arguments!r}.")
@@ -152,7 +151,7 @@ class Chord(Leaf):
             new_chord.note_heads.append(note_head)
         return new_chord
 
-    def __getnewargs__(self,) -> typing.Tuple[abjad_pitch.PitchSegment, Duration]:
+    def __getnewargs__(self,) -> typing.Tuple[PitchSegment, Duration]:
         """
         Gets new chord arguments.
 
@@ -219,8 +218,8 @@ class Chord(Leaf):
             if instrument:
                 sounding_pitch = instrument.middle_c_sounding_pitch
             else:
-                sounding_pitch = abjad_pitch.NamedPitch("C4")
-            interval = abjad_pitch.NamedPitch("C4") - sounding_pitch
+                sounding_pitch = NamedPitch("C4")
+            interval = NamedPitch("C4") - sounding_pitch
             sounding_pitches = [
                 interval.transpose(pitch) for pitch in self.written_pitches
             ]
@@ -334,7 +333,7 @@ class Chord(Leaf):
         Leaf.written_duration.fset(self, argument)
 
     @property
-    def written_pitches(self) -> abjad_pitch.PitchSegment:
+    def written_pitches(self) -> PitchSegment:
         """
         Written pitches in chord.
 
@@ -368,9 +367,9 @@ class Chord(Leaf):
 
         Set written pitches with any iterable.
         """
-        return abjad_pitch.PitchSegment(
+        return PitchSegment(
             items=(note_head.written_pitch for note_head in self.note_heads),
-            item_class=abjad_pitch.NamedPitch,
+            item_class=NamedPitch,
         )
 
     @written_pitches.setter

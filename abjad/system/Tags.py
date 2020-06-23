@@ -1,8 +1,7 @@
 import typing
 
-from abjad.system.Tag import Tag
-
 from ..formatting import StorageFormatManager
+from .Tag import Tag
 
 
 class Tags(object):

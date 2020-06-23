@@ -49,44 +49,25 @@ class Octave(object):
     ### INITIALIZER ###
 
     def __init__(self, number=4):
-        import abjad
-
         if number is None:
             number = 4
         elif isinstance(number, str):
             match = constants._comprehensive_octave_regex.match(number)
-            if match is None:
-                try:
-                    pitch = abjad.NamedPitch(number)
-                    number = pitch.octave.number
-                except Exception:
-                    message = "can not instantiate {}: {!r}."
-                    message = message.format(type(self), number)
-                    raise ValueError(message)
-            else:
-                group_dict = match.groupdict()
-                number = 3
-                if group_dict["octave_number"]:
-                    number = int(group_dict["octave_number"])
-                elif group_dict["octave_tick"]:
-                    if group_dict["octave_tick"].startswith("'"):
-                        number += group_dict["octave_tick"].count("'")
-                    else:
-                        number -= group_dict["octave_tick"].count(",")
+            group_dict = match.groupdict()
+            number = 3
+            if group_dict["octave_number"]:
+                number = int(group_dict["octave_number"])
+            elif group_dict["octave_tick"]:
+                if group_dict["octave_tick"].startswith("'"):
+                    number += group_dict["octave_tick"].count("'")
+                else:
+                    number -= group_dict["octave_tick"].count(",")
         elif isinstance(number, numbers.Number):
             number = int(number)
         elif hasattr(number, "octave"):
             number = number.octave.number
         elif isinstance(number, type(self)):
             number = number.number
-        else:
-            try:
-                pitch = abjad.NamedPitch(number)
-                number = pitch.octave.number
-            except Exception:
-                message = "can not instantiate {}: {!r}."
-                message = message.format(type(self), number)
-                raise ValueError(message)
         self._number = number
 
     ### SPECIAL METHODS ###
@@ -241,7 +222,7 @@ class Octave(object):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def number(self):
+    def number(self) -> int:
         """
         Gets octave number.
 
@@ -250,12 +231,11 @@ class Octave(object):
             >>> abjad.Octave(5).number
             5
 
-        Returns integer.
         """
         return self._number
 
     @property
-    def pitch_number(self):
+    def pitch_number(self) -> int:
         """
         Gets pitch number of first note in octave.
 
@@ -270,28 +250,11 @@ class Octave(object):
             >>> abjad.Octave(3).pitch_number
             -12
 
-        Returns integer.
         """
         return (self.number - 4) * 12
 
     @property
-    def pitch_range(self):
-        """
-        Gets pitch range of octave.
-
-        ..  container:: example
-
-            >>> abjad.Octave(5).pitch_range
-            PitchRange('[C5, C6)')
-
-        Returns pitch range.
-        """
-        import abjad
-
-        return abjad.PitchRange("[C{}, C{})".format(self.number, self.number + 1))
-
-    @property
-    def ticks(self):
+    def ticks(self) -> str:
         """
         Gets LilyPond octave tick string.
 
@@ -310,7 +273,6 @@ class Octave(object):
             7  ''''
             8  '''''
 
-        Returns string.
         """
         if 3 < self.number:
             return "'" * (self.number - 3)
@@ -321,7 +283,7 @@ class Octave(object):
     ### PUBLIC METHODS ###
 
     @classmethod
-    def from_pitch(class_, pitch):
+    def from_pitch(class_, pitch) -> "Octave":
         """Makes octave from `pitch`.
 
         ..  container:: example
@@ -338,14 +300,11 @@ class Octave(object):
             >>> abjad.Octave.from_pitch(13)
             Octave(5)
 
-        Returns integer.
         """
-        import abjad
-
-        if isinstance(pitch, numbers.Number):
+        if isinstance(pitch, (int, float)):
             number = int(math.floor(pitch / 12)) + 4
             return class_(number)
-        if isinstance(pitch, abjad.NamedPitch):
+        if hasattr(pitch, "name"):
             name = pitch.name
         elif isinstance(pitch, str):
             name = pitch

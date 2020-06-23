@@ -1,13 +1,12 @@
 import typing
 
-from abjad import enums
-from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
-from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
-from abjad.system.Tags import Tags
-from abjad.utilities.String import String
-
+from .. import enums
 from ..formatting import StorageFormatManager
+from ..lilypondnames.LilyPondTweakManager import LilyPondTweakManager
+from ..system.LilyPondFormatBundle import LilyPondFormatBundle
+from ..system.Tags import Tags
 from ..top import inspect
+from ..utilities.String import String
 
 abjad_tags = Tags()
 
@@ -105,8 +104,8 @@ class Tie(object):
         return string
 
     def _attachment_test_all(self, argument):
-        from abjad.core.Chord import Chord
-        from abjad.core.Note import Note
+        from ..core.Chord import Chord
+        from ..core.Note import Note
 
         if not isinstance(argument, (Chord, Note)):
             string = f"Must be note or chord (not {argument})."

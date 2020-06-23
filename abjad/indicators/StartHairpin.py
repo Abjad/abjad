@@ -1,13 +1,12 @@
 import typing
 
-from abjad import enums
-from abjad.lilypondnames.LilyPondGrobOverride import LilyPondGrobOverride
-from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
-from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
-from abjad.system.Tags import Tags
-from abjad.utilities.String import String
-
+from .. import enums
 from ..formatting import StorageFormatManager
+from ..lilypondnames.LilyPondGrobOverride import LilyPondGrobOverride
+from ..lilypondnames.LilyPondTweakManager import LilyPondTweakManager
+from ..system.LilyPondFormatBundle import LilyPondFormatBundle
+from ..system.Tags import Tags
+from ..utilities.String import String
 
 abjad_tags = Tags()
 

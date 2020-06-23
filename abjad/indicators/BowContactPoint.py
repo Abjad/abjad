@@ -1,11 +1,10 @@
 import functools
 import typing
 
-from abjad import typings
-from abjad.markups import Markup
-from abjad.utilities.Multiplier import Multiplier
-
+from .. import typings
 from ..formatting import StorageFormatManager
+from ..markups import Markup
+from ..utilities.Multiplier import Multiplier
 
 
 @functools.total_ordering

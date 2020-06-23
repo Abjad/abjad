@@ -1,8 +1,7 @@
 import typing
 
-from abjad import typings
-from abjad.system.Tag import Tag
-
+from .. import typings
+from ..system.Tag import Tag
 from .Leaf import Leaf
 from .Rest import Rest
 

@@ -32,7 +32,7 @@ def ensure_source_file_terminal_blank_lines():
 
 
 if __name__ == "__main__":
-    abjad.IOManager.clear_terminal()
+    abjad.IOManager.spawn_subprocess("clear")
     print("Ensuring source file-terminal blank lines ...")
     print()
     ensure_source_file_terminal_blank_lines()

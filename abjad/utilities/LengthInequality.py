@@ -1,5 +1,4 @@
-from abjad import mathtools
-
+from .. import mathtools
 from .Inequality import Inequality
 
 

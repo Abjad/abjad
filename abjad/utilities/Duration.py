@@ -3,8 +3,7 @@ import math
 import re
 import typing
 
-from abjad import exceptions, mathtools
-
+from .. import exceptions, mathtools
 from ..formatting import FormatSpecification, StorageFormatManager
 
 try:

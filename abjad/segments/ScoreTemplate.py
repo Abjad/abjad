@@ -1,24 +1,23 @@
 import abc
 import typing
 
-from abjad import const, instruments
-from abjad.core.Context import Context
-from abjad.core.MultimeasureRest import MultimeasureRest
-from abjad.core.Score import Score
-from abjad.core.Skip import Skip
-from abjad.core.Staff import Staff
-from abjad.core.StaffGroup import StaffGroup
-from abjad.core.Voice import Voice
-from abjad.indicators.Clef import Clef
-from abjad.indicators.MarginMarkup import MarginMarkup
-from abjad.lilypondfile.LilyPondFile import LilyPondFile
-from abjad.system.Tag import Tag
-from abjad.system.Tags import Tags
-from abjad.system.Wrapper import Wrapper
-from abjad.utilities.OrderedDict import OrderedDict
-
+from .. import const, instruments
+from ..core.Context import Context
+from ..core.MultimeasureRest import MultimeasureRest
+from ..core.Score import Score
+from ..core.Skip import Skip
+from ..core.Staff import Staff
+from ..core.StaffGroup import StaffGroup
+from ..core.Voice import Voice
 from ..formatting import StorageFormatManager
+from ..indicators.Clef import Clef
+from ..indicators.MarginMarkup import MarginMarkup
+from ..lilypondfile.LilyPondFile import LilyPondFile
+from ..system.Tag import Tag
+from ..system.Tags import Tags
+from ..system.Wrapper import Wrapper
 from ..top import attach, inspect, iterate, new, select
+from ..utilities.OrderedDict import OrderedDict
 from .PartAssignment import PartAssignment
 from .PartManifest import PartManifest
 

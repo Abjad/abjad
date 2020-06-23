@@ -3,17 +3,16 @@ import functools
 import math
 import typing
 
-from abjad import exceptions, mathtools, typings
-from abjad.markups import Markup
-from abjad.mathtools import NonreducedFraction, Ratio
-from abjad.scheme import Scheme
-from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
-from abjad.utilities.Duration import Duration
-from abjad.utilities.Enumerator import Enumerator
-from abjad.utilities.Multiplier import Multiplier
-
+from .. import exceptions, mathtools, typings
 from ..formatting import FormatSpecification, StorageFormatManager
+from ..markups import Markup
+from ..mathtools import NonreducedFraction, Ratio
+from ..scheme import Scheme
+from ..system.LilyPondFormatBundle import LilyPondFormatBundle
 from ..top import new, sequence
+from ..utilities.Duration import Duration
+from ..utilities.Enumerator import Enumerator
+from ..utilities.Multiplier import Multiplier
 
 try:
     from quicktions import Fraction

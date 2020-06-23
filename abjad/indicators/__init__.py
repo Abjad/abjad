@@ -12,7 +12,7 @@ from .BowContactPoint import BowContactPoint
 from .BowMotionTechnique import BowMotionTechnique
 from .BowPressure import BowPressure
 from .BreathMark import BreathMark
-from .Clef import Clef
+from .Clef import Clef, StaffPosition
 from .ColorFingering import ColorFingering
 from .Dynamic import Dynamic
 from .Fermata import Fermata
@@ -87,6 +87,7 @@ __all__ = [
     "Staccatissimo",
     "Staccato",
     "StaffChange",
+    "StaffPosition",
     "StartBeam",
     "StartGroup",
     "StartHairpin",

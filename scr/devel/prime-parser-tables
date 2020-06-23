@@ -1,7 +1,5 @@
 #! /usr/bin/env python
 
-import abjad
-
 """
 If no pickled parser tables have been created, e.g. because Abjad has just
 been downloaded and installed for the first time, PLY will print an error
@@ -13,18 +11,18 @@ This script simply finds each Parser subclass in Abjad and instantiates it,
 thereby causing PLY to create and persist the appropriate parser tables.
 """
 
-class_ = abjad.parser.LilyPondParser
-print('Priming {} parser tables.'.format(class_.__name__))
-class_()
+import abjad
+from abjad.parsers.parser import LilyPondParser
+from abjad.parsers.reduced import ReducedLyParser
+from abjad.parsers.scheme import SchemeParser
 
-class_ = abjad.parser.SchemeParser
-print('Priming {} parser tables.'.format(class_.__name__))
-class_()
+parsers = (
+    LilyPondParser,
+    SchemeParser,
+    abjad.rhythmtrees.RhythmTreeParser,
+    ReducedLyParser,
+)
 
-class_ = abjad.rhythmtrees.RhythmTreeParser
-print('Priming {} parser tables.'.format(class_.__name__))
-class_()
-
-class_ = abjad.parser.ReducedLyParser
-print('Priming {} parser tables.'.format(class_.__name__))
-class_()
+for parser in parsers:
+    print(f"Priming {parser.__name__} parser tables.")
+    parser()

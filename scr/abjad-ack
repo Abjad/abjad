@@ -2,7 +2,7 @@
 import sys
 import time
 
-abjad.IOManager.clear_terminal()
+abjad.IOManager.spawn_subprocess("clear")
 start_time = time.time()
 argument = sys.argv[1]
 if "'" in argument:

@@ -1,4 +1,7 @@
-import fractions
+try:
+    import quicktions as fractions  # type: ignore
+except ImportError:
+    import fractions  # type: ignore
 import inspect
 import itertools
 import numbers
@@ -6,9 +9,8 @@ import typing
 
 import uqbar.enums
 
-from abjad.system.Signature import Signature
-
 from ..formatting import FormatSpecification, StorageFormatManager
+from ..system.Signature import Signature
 from ..top import label, new
 
 
@@ -457,8 +459,8 @@ class Expression(object):
     ### PRIVATE METHODS ###
 
     def _apply_callback_markup(self, name, direction=None, previous_callback=None):
-        from abjad.markups import Markup
-        from abjad.markups import MarkupList
+        from ..markups import Markup
+        from ..markups import MarkupList
 
         if previous_callback and previous_callback.next_name:
             name = previous_callback.next_name
@@ -763,7 +765,7 @@ class Expression(object):
 
     @staticmethod
     def _make___add___markup(markup, argument):
-        from abjad.markups import MarkupList
+        from ..markups import MarkupList
 
         markup_list = MarkupList()
         markup_list.append(markup)
@@ -778,8 +780,8 @@ class Expression(object):
 
     @staticmethod
     def _make___getitem___markup(markup, argument):
-        from abjad.markups import Markup
-        from abjad.markups import MarkupList
+        from ..markups import Markup
+        from ..markups import MarkupList
 
         markup_list = MarkupList()
         markup_list.append(markup)
@@ -796,7 +798,7 @@ class Expression(object):
 
     @staticmethod
     def _make___radd___markup(markup, argument):
-        from abjad.markups import MarkupList
+        from ..markups import MarkupList
 
         markup_list = MarkupList()
         markup_list.append(str(argument))
@@ -811,8 +813,8 @@ class Expression(object):
 
     @staticmethod
     def _make_establish_equivalence_markup(lhs, rhs):
-        from abjad.markups import Markup
-        from abjad.markups import MarkupList
+        from ..markups import Markup
+        from ..markups import MarkupList
 
         markup_list = MarkupList()
         lhs = Markup(lhs).bold()
@@ -833,7 +835,7 @@ class Expression(object):
 
     @staticmethod
     def _make_expression_add_markup(markups):
-        from abjad.markups import MarkupList
+        from ..markups import MarkupList
 
         assert len(markups) == 2
         markup_list = MarkupList()
@@ -847,7 +849,7 @@ class Expression(object):
     def _make_function_markup(
         markup, method_name, argument_list_callback, method, argument_values
     ):
-        from abjad.markups import MarkupList
+        from ..markups import MarkupList
 
         if argument_list_callback:
             arguments = argument_list_callback(**argument_values)
@@ -920,7 +922,7 @@ class Expression(object):
         )
 
     def _make_method_markup(self, markup):
-        from abjad.markups import Markup
+        from ..markups import Markup
 
         if self.is_initializer:
             assert self.qualified_method_name is None
@@ -997,8 +999,8 @@ class Expression(object):
     def _make_operator_markup(
         markup, method_name=None, subscript=None, superscript=None
     ):
-        from abjad.markups import Markup
-        from abjad.markups import MarkupList
+        from ..markups import Markup
+        from ..markups import MarkupList
 
         markup_list = MarkupList([method_name, markup])
         if superscript is not None:
@@ -1170,9 +1172,7 @@ class Expression(object):
                 raise Exception(f"can not make storage format: {argument!r}.")
         # abjad class
         elif inspect.isclass(argument) and "abjad" in argument.__module__:
-            argument = argument.__module__.split(".")
-            argument = argument[-2:]
-            argument = ".".join(argument)
+            argument = f"abjad.{argument.__name__}"
         # builtin class like tuple in classes=(tuple,)
         elif inspect.isclass(argument) and "abjad" not in argument.__module__:
             argument = argument.__name__
@@ -1767,7 +1767,7 @@ class Expression(object):
                     }
 
         """
-        from abjad.core.Label import Label
+        from ..core.Label import Label
 
         class_ = Label
         callback = self._make_initializer_callback(class_, **keywords)
@@ -1835,13 +1835,11 @@ class Expression(object):
 
                 >>> segment = expression([-2, -1.5, 6, 7, -1.5, 7])
                 >>> markup = expression.get_markup()
-                >>> abjad.show(segment, figure_name=markup) # doctest: +SKIP
+                >>> lilypond_file = abjad.illustrate(segment, figure_name=markup)
+                >>> abjad.show(lilypond_file) # doctest: +SKIP
 
                 ..  docs::
 
-                    >>> lilypond_file = segment.__illustrate__(
-                    ...     figure_name=markup,
-                    ...     )
                     >>> abjad.f(lilypond_file[abjad.Voice])
                     \new Voice
                     {
@@ -1866,7 +1864,7 @@ class Expression(object):
                     }
 
         """
-        from abjad.pitch.PitchClassSegment import PitchClassSegment
+        from ..pitch.segments import PitchClassSegment
 
         class_ = PitchClassSegment
         callback = self._make_initializer_callback(
@@ -1880,7 +1878,7 @@ class Expression(object):
         """
         Makes pitch set expression.
         """
-        from abjad.pitch.PitchSet import PitchSet
+        from ..pitch.sets import PitchSet
 
         class_ = PitchSet
         callback = self._make_initializer_callback(
@@ -1947,7 +1945,7 @@ class Expression(object):
                 Note("gf'8")
 
         """
-        from abjad.core.Selection import Selection
+        from ..core.Selection import Selection
 
         class_ = Selection
         callback = self._make_initializer_callback(class_, **keywords)
@@ -1991,7 +1989,7 @@ class Expression(object):
             Timespan(Offset((0, 1)), Offset((1, 4)))
 
         """
-        from abjad.timespans import Timespan
+        from ..timespans import Timespan
 
         class_ = Timespan
         callback = self._make_initializer_callback(

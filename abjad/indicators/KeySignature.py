@@ -1,10 +1,9 @@
 import typing
 
-from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
-from abjad.pitch.NamedPitchClass import NamedPitchClass
-from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
-
 from ..formatting import FormatSpecification, StorageFormatManager
+from ..lilypondnames.LilyPondTweakManager import LilyPondTweakManager
+from ..pitch.pitchclasses import NamedPitchClass
+from ..system.LilyPondFormatBundle import LilyPondFormatBundle
 from .Mode import Mode
 
 

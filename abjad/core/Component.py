@@ -5,16 +5,15 @@ import typing
 
 import uqbar.graphs
 
-from abjad import enums, exceptions, mathtools
-from abjad.indicators.StaffChange import StaffChange
-from abjad.markups import Markup
-from abjad.system.LilyPondFormatManager import LilyPondFormatManager
-from abjad.system.Tag import Tag
-from abjad.system.UpdateManager import UpdateManager
-from abjad.system.Wrapper import Wrapper
-from abjad.timespans import Timespan
-
+from .. import enums, exceptions, mathtools
 from ..formatting import FormatSpecification, StorageFormatManager
+from ..indicators.StaffChange import StaffChange
+from ..markups import Markup
+from ..system.LilyPondFormatManager import LilyPondFormatManager
+from ..system.Tag import Tag
+from ..system.UpdateManager import UpdateManager
+from ..system.Wrapper import Wrapper
+from ..timespans import Timespan
 from ..top import attach, detach, inspect, mutate, override, select, setting
 
 
@@ -127,7 +126,7 @@ class Component(object):
 
         Returns LilyPond file.
         """
-        from abjad.lilypondfile.LilyPondFile import LilyPondFile
+        from ..lilypondfile.LilyPondFile import LilyPondFile
 
         lilypond_file = LilyPondFile.new(self)
         return lilypond_file

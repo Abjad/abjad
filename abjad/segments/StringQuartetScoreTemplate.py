@@ -1,5 +1,4 @@
-from abjad.system.Tag import Tag
-
+from ..system.Tag import Tag
 from .Part import Part
 from .PartManifest import PartManifest
 from .ScoreTemplate import ScoreTemplate

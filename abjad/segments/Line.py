@@ -1,6 +1,5 @@
-from abjad.system.Tag import Tag
-
 from ..formatting import StorageFormatManager
+from ..system.Tag import Tag
 
 
 class Line(object):

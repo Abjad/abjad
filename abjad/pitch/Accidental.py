@@ -1,8 +1,7 @@
 import functools
 import numbers
 
-from abjad import enums, mathtools
-
+from .. import enums, mathtools
 from ..formatting import FormatSpecification, StorageFormatManager
 from . import constants
 
@@ -54,8 +53,6 @@ class Accidental(object):
     ### INITIALIZER ##
 
     def __init__(self, name="", *, arrow=None):
-        import abjad
-
         semitones = 0
         _arrow = None
         if name is None:
@@ -66,38 +63,28 @@ class Accidental(object):
                 semitones = constants._accidental_abbreviation_to_semitones[name]
             else:
                 match = constants._comprehensive_accidental_regex.match(name)
-                if not match:
-                    try:
-                        pitch = abjad.NamedPitch(name)
-                        semitones = pitch.accidental.semitones
-                        _arrow = pitch.accidental.arrow
-                    except Exception:
-                        message = "can not instantiate {} from {!r}."
-                        message = message.format(type(self).__name__, name)
-                        raise TypeError(message)
-                else:
-                    group_dict = match.groupdict()
-                    if group_dict["alphabetic_accidental"]:
-                        prefix, _, suffix = name.partition("q")
-                        if prefix.startswith("s"):
-                            semitones += len(prefix)
-                        elif prefix.startswith("f"):
-                            semitones -= len(prefix)
-                        if suffix == "s":
-                            semitones += 0.5
-                            if prefix == "t":
-                                semitones += 1
-                        elif suffix == "f":
-                            semitones -= 0.5
-                            if prefix == "t":
-                                semitones -= 1
-                    elif group_dict["symbolic_accidental"]:
-                        semitones += name.count("#")
-                        semitones -= name.count("b")
-                        if name.endswith("+"):
-                            semitones += 0.5
-                        elif name.endswith("~"):
-                            semitones -= 0.5
+                group_dict = match.groupdict()
+                if group_dict["alphabetic_accidental"]:
+                    prefix, _, suffix = name.partition("q")
+                    if prefix.startswith("s"):
+                        semitones += len(prefix)
+                    elif prefix.startswith("f"):
+                        semitones -= len(prefix)
+                    if suffix == "s":
+                        semitones += 0.5
+                        if prefix == "t":
+                            semitones += 1
+                    elif suffix == "f":
+                        semitones -= 0.5
+                        if prefix == "t":
+                            semitones -= 1
+                elif group_dict["symbolic_accidental"]:
+                    semitones += name.count("#")
+                    semitones -= name.count("b")
+                    if name.endswith("+"):
+                        semitones += 0.5
+                    elif name.endswith("~"):
+                        semitones -= 0.5
         elif isinstance(name, numbers.Number):
             semitones = float(name)
             assert (semitones % 1.0) in (0.0, 0.5)
@@ -107,15 +94,6 @@ class Accidental(object):
         elif isinstance(name, type(self)):
             _arrow = name.arrow
             semitones = name.semitones
-        else:
-            try:
-                pitch = abjad.NamedPitch(name)
-                semitones = pitch.accidental.semitones
-                _arrow = pitch.accidental.arrow
-            except Exception:
-                message = "can not initialize accidental from value: {!r}"
-                message = message.format(name)
-                raise ValueError(message)
         semitones = mathtools.integer_equivalent_number_to_integer(semitones)
         self._semitones = semitones
         self._arrow = _arrow
@@ -546,113 +524,3 @@ class Accidental(object):
         abbreviation = constants._accidental_semitones_to_abbreviation[self.semitones]
         symbol = constants._accidental_abbreviation_to_symbol[abbreviation]
         return symbol
-
-    ### PUBLIC METHODS ###
-
-    # TODO: move somewhere else; remove late imports
-    @staticmethod
-    def respell_with_flats(selection):
-        r"""
-        Respells `selection` with flats.
-
-        ..  container:: example
-
-            Respells notes in staff:
-
-            >>> staff = abjad.Staff("c'8 cs'8 d'8 ef'8 e'8 f'8")
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    c'8
-                    cs'8
-                    d'8
-                    ef'8
-                    e'8
-                    f'8
-                }
-
-            >>> abjad.Accidental.respell_with_flats(staff)
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    c'8
-                    df'8
-                    d'8
-                    ef'8
-                    e'8
-                    f'8
-                }
-
-        Returns none.
-        """
-        import abjad
-
-        for leaf in abjad.iterate(selection).leaves():
-            if isinstance(leaf, abjad.Note):
-                leaf.written_pitch = leaf.written_pitch._respell_with_flats()
-            elif isinstance(leaf, abjad.Chord):
-                for note_head in leaf.note_heads:
-                    pitch = note_head.written_pitch._respell_with_flats()
-                    note_head.written_pitch = pitch
-
-    # TODO: move somewhere else; remove late imports
-    @staticmethod
-    def respell_with_sharps(selection):
-        r"""
-        Respells `selection` with sharps.
-
-        ..  container:: example
-
-            Respells notes in staff:
-
-            >>> staff = abjad.Staff("c'8 cs'8 d'8 ef'8 e'8 f'8")
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    c'8
-                    cs'8
-                    d'8
-                    ef'8
-                    e'8
-                    f'8
-                }
-
-            >>> abjad.Accidental.respell_with_sharps(staff)
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    c'8
-                    cs'8
-                    d'8
-                    ds'8
-                    e'8
-                    f'8
-                }
-
-        Returns none.
-        """
-        import abjad
-
-        for leaf in abjad.iterate(selection).leaves():
-            if isinstance(leaf, abjad.Note):
-                leaf.written_pitch = leaf.written_pitch._respell_with_sharps()
-            elif isinstance(leaf, abjad.Chord):
-                for note_head in leaf.note_heads:
-                    pitch = note_head.written_pitch._respell_with_sharps()
-                    note_head.written_pitch = pitch

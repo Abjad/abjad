@@ -160,7 +160,7 @@ def process_test_module_number_fixes(test_module, directory):
 
 
 if __name__ == '__main__':
-    abjad.IOManager.clear_terminal()
+    abjad.IOManager.spawn_subprocess("clear")
     fix_test_case_names()
     print()
     fix_test_case_numbers()

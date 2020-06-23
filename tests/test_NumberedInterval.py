@@ -1,6 +1,6 @@
 import pytest
 
-from abjad.pitch import NumberedInterval
+import abjad
 
 values = []
 
@@ -243,7 +243,7 @@ values.extend(
 
 @pytest.mark.parametrize("input_, semitones", values)
 def test_init(input_, semitones):
-    class_ = NumberedInterval
+    class_ = abjad.NumberedInterval
     if isinstance(semitones, type) and issubclass(semitones, Exception):
         with pytest.raises(semitones):
             class_(input_)

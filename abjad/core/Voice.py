@@ -1,7 +1,6 @@
 import typing
 
-from abjad.system.Tag import Tag
-
+from ..system.Tag import Tag
 from .Context import Context
 
 

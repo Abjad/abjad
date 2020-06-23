@@ -1,6 +1,7 @@
 import typing
 
 from ..formatting import StorageFormatManager
+from ..ly.contexts import contexts
 from .LilyPondEngraver import LilyPondEngraver
 from .LilyPondGrob import LilyPondGrob
 
@@ -90,8 +91,6 @@ class LilyPondContext(object):
     ### INITIALIZER ###
 
     def __init__(self, name="Voice") -> None:
-        from abjad.ly import contexts
-
         assert name in contexts
         self._name = name
 
@@ -242,8 +241,6 @@ class LilyPondContext(object):
                 Staff
 
         """
-        from abjad.ly import contexts
-
         accepting_contexts = set()
         for lilypond_type, context_info in contexts.items():
             assert isinstance(context_info, dict), repr(context_info)
@@ -268,8 +265,6 @@ class LilyPondContext(object):
             LilyPondContext(name='NullVoice')
 
         """
-        from abjad.ly import contexts
-
         dictionary = contexts[self.name]
         assert isinstance(dictionary, dict), repr(dictionary)
         accepts = (LilyPondContext(name=name) for name in dictionary["accepts"])
@@ -287,8 +282,6 @@ class LilyPondContext(object):
             LilyPondContext(name='Staff')
 
         """
-        from abjad.ly import contexts
-
         dictionary = contexts[self.name]
         assert isinstance(dictionary, dict)
         aliases = dictionary["aliases"]
@@ -365,8 +358,6 @@ class LilyPondContext(object):
             Voice:
 
         """
-        from abjad.ly import contexts
-
         if self.is_bottom_context:
             return None
         dictionary = contexts[self.name]
@@ -420,8 +411,6 @@ class LilyPondContext(object):
             LilyPondEngraver(name='Time_signature_engraver')
 
         """
-        from abjad.ly import contexts
-
         engravers = set()
         dictionary = contexts[self.name]
         assert isinstance(dictionary, dict), repr(dictionary)
@@ -547,8 +536,6 @@ class LilyPondContext(object):
             False
 
         """
-        from abjad.ly import contexts
-
         dictionary = contexts[self.name]
         assert isinstance(dictionary, dict), repr(dictionary)
         return bool(dictionary.get("is_custom", False))
@@ -903,8 +890,6 @@ class LilyPondContext(object):
             LilyPondContext(name='Voice')
 
         """
-        from abjad.ly import contexts
-
         return tuple(LilyPondContext(name=name) for name in sorted(contexts))
 
     @classmethod
@@ -973,8 +958,6 @@ class LilyPondContext(object):
             >>> custom_context.unregister()
 
         """
-        from abjad.ly import contexts
-
         assert name not in contexts
         context_entry: typing.Dict = {}
         context_entry["accepts"] = set()
@@ -1100,8 +1083,6 @@ class LilyPondContext(object):
             LilyPondContext(name='VaticanaStaff')
 
         """
-        from abjad.ly import contexts
-
         assert self.is_custom
         del contexts[self.name]
         del self._identity_map[self.name]

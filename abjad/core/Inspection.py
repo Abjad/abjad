@@ -1,19 +1,18 @@
 import collections
 import typing
 
-from abjad import enums, typings
-from abjad.indicators.TimeSignature import TimeSignature
-from abjad.markups import Markup
-from abjad.pitch.NamedPitch import NamedPitch
-from abjad.pitch.PitchSet import PitchSet
-from abjad.system.LilyPondFormatManager import LilyPondFormatManager
-from abjad.system.Tag import Tag
-from abjad.system.Wrapper import Wrapper
-from abjad.timespans import Timespan
-from abjad.utilities.Duration import Duration
-
+from .. import enums, typings
 from ..formatting import StorageFormatManager
+from ..indicators.TimeSignature import TimeSignature
+from ..markups import Markup
+from ..pitch.pitches import NamedPitch
+from ..pitch.sets import PitchSet
+from ..system.LilyPondFormatManager import LilyPondFormatManager
+from ..system.Tag import Tag
+from ..system.Wrapper import Wrapper
+from ..timespans import Timespan
 from ..top import iterate
+from ..utilities.Duration import Duration
 from .AfterGraceContainer import AfterGraceContainer
 from .BeforeGraceContainer import BeforeGraceContainer
 from .Chord import Chord

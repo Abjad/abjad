@@ -23,10 +23,9 @@ ignored_names = (
 )
 
 ignored_classes = (
-    abjad.parser.LilyPondLexicalDefinition,
-    abjad.parser.LilyPondSyntacticalDefinition,
-    abjad.parser.ReducedLyParser,
-    abjad.parser.SchemeParser,
+    abjad.parsers.parser.LilyPondParser,
+    abjad.parsers.reduced.ReducedLyParser,
+    abjad.parsers.scheme.SchemeParser,
     abjad.rhythmtrees.RhythmTreeParser,
     abjad.StorageFormatManager,
     abjad.FormatSpecification,

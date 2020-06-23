@@ -3,13 +3,12 @@ import typing
 
 import uqbar.graphs
 
-from abjad import exceptions, rhythmtrees
-from abjad.system.LilyPondFormatManager import LilyPondFormatManager
-from abjad.system.Tag import Tag
-from abjad.utilities.Duration import Duration
-
+from .. import exceptions, rhythmtrees
 from ..formatting import FormatSpecification
+from ..system.LilyPondFormatManager import LilyPondFormatManager
+from ..system.Tag import Tag
 from ..top import inspect, iterate, mutate, parse, select
+from ..utilities.Duration import Duration
 from .Component import Component
 from .Leaf import Leaf
 from .Note import Note
@@ -742,8 +741,8 @@ class Container(Component):
         return recurse(self)
 
     def _parse_string(self, string):
-        from abjad.parser.ReducedLyParser import ReducedLyParser
-        from abjad.lilypondfile.LilyPondFile import LilyPondFile
+        from ..parsers.reduced import ReducedLyParser
+        from ..lilypondfile.LilyPondFile import LilyPondFile
 
         user_input = string.strip()
         if user_input.startswith("abj:"):

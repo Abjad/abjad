@@ -1,9 +1,8 @@
 import typing
 
-from abjad import enums
-from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
-
+from .. import enums
 from ..formatting import StorageFormatManager
+from ..system.LilyPondFormatBundle import LilyPondFormatBundle
 
 
 class StopBeam(object):

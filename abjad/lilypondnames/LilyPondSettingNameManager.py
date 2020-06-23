@@ -1,7 +1,7 @@
 import typing
 
-from abjad.utilities.String import String
-
+from ..ly.contexts import contexts
+from ..utilities.String import String
 from .LilyPondNameManager import LilyPondNameManager
 
 
@@ -52,8 +52,6 @@ class LilyPondSettingNameManager(LilyPondNameManager):
             Markup(contents=['Vn. I'])
 
         """
-        from abjad.ly import contexts
-
         camel_name = String(name).to_upper_camel_case()
         if name.startswith("_"):
             try:

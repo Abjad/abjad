@@ -106,18 +106,3 @@ def test_LilyPondParser__indicators__Markup_04():
 
     assert isinstance(result, abjad.Markup)
     assert format(result, "lilypond") == format(markup, "lilypond")
-
-
-def test_LilyPondParser__indicators__Markup_05():
-
-    command = r"\markup { \char ##x03EE }"
-    parser = abjad.parser.LilyPondParser()
-    result = parser(command)
-    assert format(result, "lilypond") == abjad.String.normalize(
-        r"""
-        \markup {
-            \char
-                #1006
-            }
-        """
-    )

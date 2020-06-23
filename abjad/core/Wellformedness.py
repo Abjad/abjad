@@ -1,20 +1,19 @@
 import typing
 
-from abjad import const
-from abjad.indicators.Clef import Clef
-from abjad.indicators.StartBeam import StartBeam
-from abjad.indicators.StartHairpin import StartHairpin
-from abjad.indicators.StartTextSpan import StartTextSpan
-from abjad.indicators.StopBeam import StopBeam
-from abjad.indicators.StopHairpin import StopHairpin
-from abjad.indicators.StopTextSpan import StopTextSpan
-from abjad.instruments import Instrument
-from abjad.system.Tags import Tags
-from abjad.utilities.Duration import Duration
-from abjad.utilities.Sequence import Sequence
-
+from .. import const
 from ..formatting import StorageFormatManager
+from ..indicators.Clef import Clef
+from ..indicators.StartBeam import StartBeam
+from ..indicators.StartHairpin import StartHairpin
+from ..indicators.StartTextSpan import StartTextSpan
+from ..indicators.StopBeam import StopBeam
+from ..indicators.StopHairpin import StopHairpin
+from ..indicators.StopTextSpan import StopTextSpan
+from ..instruments import Instrument
+from ..system.Tags import Tags
 from ..top import inspect, iterate
+from ..utilities.Duration import Duration
+from ..utilities.Sequence import Sequence
 from .Container import Container
 from .Context import Context
 
@@ -446,6 +445,9 @@ class Wellformedness(object):
                 continue
             if inspect(leaf).has_indicator(const.HIDDEN):
                 continue
+            if hasattr(argument, "_has_effective_indicator"):
+                if "unpitched" in inspect(argument).indicators(str):
+                    continue
             instrument = inspect(leaf).effective(Instrument)
             if instrument is None:
                 continue

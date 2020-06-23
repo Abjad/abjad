@@ -31,7 +31,7 @@ from .exceptions import (
     WellformednessError,
 )
 
-from . import parser
+from .parsers import parser
 from .formatting import (
     FormatSpecification,
     StorageFormatSpecification,
@@ -59,6 +59,7 @@ from .system.TestManager import TestManager
 from .system.Timer import Timer
 from .system.UpdateManager import UpdateManager
 from .system.Wrapper import Wrapper
+from .system.annotate import annotate
 from .utilities import (
     CyclicTuple,
     Duration,
@@ -113,6 +114,7 @@ from .indicators.BowMotionTechnique import BowMotionTechnique
 from .indicators.BowPressure import BowPressure
 from .indicators.BreathMark import BreathMark
 from .indicators.Clef import Clef
+from .indicators.Clef import StaffPosition
 from .indicators.ColorFingering import ColorFingering
 from .indicators.Dynamic import Dynamic
 from .indicators.Fermata import Fermata
@@ -245,51 +247,64 @@ from .meter import (
     MetricAccentKernel,
     OffsetCounter,
 )
-from .pitch import (
-    Accidental,
-    ColorMap,
-    CompoundOperator,
-    Duplication,
-    Interval,
+from .pitch.intervalclasses import (
     IntervalClass,
-    IntervalClassSegment,
-    IntervalClassSet,
-    IntervalClassVector,
-    IntervalSegment,
-    IntervalSet,
-    IntervalVector,
-    Inversion,
-    Multiplication,
-    NamedInterval,
     NamedIntervalClass,
     NamedInversionEquivalentIntervalClass,
-    NamedPitch,
-    NamedPitchClass,
-    NumberedInterval,
     NumberedIntervalClass,
     NumberedInversionEquivalentIntervalClass,
-    NumberedPitch,
-    NumberedPitchClass,
-    Octave,
-    Pitch,
+)
+from .pitch.intervals import (
+    NamedInterval,
+    NumberedInterval,
+    Interval,
+)
+from .pitch.pitchclasses import (
     PitchClass,
-    PitchClassSegment,
-    PitchClassSet,
-    PitchClassVector,
-    PitchInequality,
-    PitchRange,
-    PitchSegment,
-    PitchSet,
+    NamedPitchClass,
+    NumberedPitchClass,
+)
+from .pitch.pitches import (
+    NamedPitch,
+    NumberedPitch,
+    Pitch,
     PitchTyping,
-    PitchVector,
+)
+from .pitch.Accidental import Accidental
+from .pitch.ColorMap import ColorMap
+from .pitch.Octave import Octave
+from .pitch.PitchInequality import PitchInequality
+from .pitch.PitchRange import PitchRange
+from .pitch.SetClass import SetClass
+from .pitch.operators import (
+    CompoundOperator,
+    Duplication,
+    Inversion,
+    Multiplication,
     Retrograde,
     Rotation,
-    Segment,
-    Set,
-    SetClass,
-    StaffPosition,
     Transposition,
+)
+from .pitch.segments import (
+    IntervalClassSegment,
+    IntervalSegment,
+    PitchClassSegment,
+    PitchSegment,
+    Segment,
     TwelveToneRow,
+)
+from .pitch.sets import (
+    IntervalClassSet,
+    IntervalSet,
+    PitchClassSet,
+    PitchSet,
+    Set,
+)
+from .pitch.vectors import (
+    IntervalClassVector,
+    IntervalVector,
+    PitchClassVector,
+    PitchVector,
     Vector,
 )
 from .scheme import (
@@ -360,6 +375,8 @@ from .segments.SegmentMaker import SegmentMaker
 from .segments.StringOrchestraScoreTemplate import StringOrchestraScoreTemplate
 from .segments.StringQuartetScoreTemplate import StringQuartetScoreTemplate
 from .segments.TwoStaffPianoScoreTemplate import TwoStaffPianoScoreTemplate
+from .segments.activate import activate
+from .segments.deactivate import deactivate
 
 from .spanners import (
     beam,
@@ -376,10 +393,7 @@ from .spanners import (
     trill_spanner,
 )
 from .top import (
-    activate,
-    annotate,
     attach,
-    deactivate,
     detach,
     f,
     graph,
@@ -405,12 +419,19 @@ from .mathtools import (
     Ratio,
 )
 
+from .respell import (
+    respell_with_flats,
+    respell_with_sharps,
+)
+
 from .timespans import (
     AnnotatedTimespan,
     Timespan,
     TimespanList,
     timespan,
 )
+
+from .illustrate import illustrate
 
 from . import cli
 from . import demos
@@ -755,6 +776,7 @@ __all__ = [
     "StringOrchestraScoreTemplate",
     "StringQuartetScoreTemplate",
     "TwoStaffPianoScoreTemplate",
+    "activate",
     "beam",
     "bow_contact_spanner",
     "glissando",
@@ -767,7 +789,6 @@ __all__ = [
     "text_spanner",
     "tie",
     "trill_spanner",
-    "activate",
     "annotate",
     "attach",
     "deactivate",
@@ -800,4 +821,7 @@ __all__ = [
     "ly",
     "utilities",
     "tags",
+    "respell_with_flats",
+    "respell_with_sharps",
+    "illustrate",
 ]

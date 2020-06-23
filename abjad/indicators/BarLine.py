@@ -1,6 +1,5 @@
-from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
-
 from ..formatting import FormatSpecification, StorageFormatManager
+from ..system.LilyPondFormatBundle import LilyPondFormatBundle
 
 
 class BarLine(object):

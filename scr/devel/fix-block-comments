@@ -66,6 +66,6 @@ def fix_test_case_block_comments():
 
 
 if __name__ == '__main__':
-    abjad.IOManager.clear_terminal()
+    abjad.IOManager.spawn_subprocess("clear")
     fix_test_case_block_comments()
     print

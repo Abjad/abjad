@@ -2,34 +2,31 @@ import collections
 import inspect
 import typing
 
-from abjad import enums
-from abjad.indicators.LilyPondComment import LilyPondComment
-from abjad.indicators.LilyPondLiteral import LilyPondLiteral
-from abjad.markups import Markup, MarkupCommand
-from abjad.mathtools import NonreducedFraction
-from abjad.pitch.IntervalClassVector import IntervalClassVector
-from abjad.pitch.NamedInterval import NamedInterval
-from abjad.pitch.NamedIntervalClass import NamedIntervalClass
-from abjad.pitch.NamedPitch import NamedPitch
-from abjad.pitch.NumberedInterval import NumberedInterval
-from abjad.pitch.NumberedIntervalClass import NumberedIntervalClass
-from abjad.pitch.NumberedInversionEquivalentIntervalClass import (
+from .. import enums
+from ..formatting import StorageFormatManager
+from ..indicators.LilyPondComment import LilyPondComment
+from ..indicators.LilyPondLiteral import LilyPondLiteral
+from ..markups import Markup, MarkupCommand
+from ..mathtools import NonreducedFraction
+from ..pitch.SetClass import SetClass
+from ..pitch.intervalclasses import (
+    NamedIntervalClass,
+    NumberedIntervalClass,
     NumberedInversionEquivalentIntervalClass,
 )
-from abjad.pitch.NumberedPitch import NumberedPitch
-from abjad.pitch.NumberedPitchClass import NumberedPitchClass
-from abjad.pitch.PitchClassSet import PitchClassSet
-from abjad.pitch.PitchSegment import PitchSegment
-from abjad.pitch.SetClass import SetClass
-from abjad.scheme import SchemeColor
-from abjad.system.Tag import Tag
-from abjad.utilities.Duration import Duration
-from abjad.utilities.Expression import Expression
-
-from ..formatting import StorageFormatManager
+from ..pitch.intervals import NamedInterval, NumberedInterval
+from ..pitch.pitchclasses import NumberedPitchClass
+from ..pitch.pitches import NamedPitch, NumberedPitch
+from ..pitch.segments import PitchSegment
+from ..pitch.sets import PitchClassSet
+from ..pitch.vectors import IntervalClassVector
+from ..scheme import SchemeColor
+from ..system.Tag import Tag
 from ..top import attach, detach
 from ..top import inspect as abjad_inspect
 from ..top import iterate, new, override, select, tweak
+from ..utilities.Duration import Duration
+from ..utilities.Expression import Expression
 from .Chord import Chord
 from .Component import Component
 from .Note import Note

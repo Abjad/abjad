@@ -1,5 +1,4 @@
-from abjad.system.LilyPondFormatManager import LilyPondFormatManager
-
+from ..system.LilyPondFormatManager import LilyPondFormatManager
 from ..top import override, setting
 from .Block import Block
 

@@ -12,7 +12,8 @@ class FerneyhoughDemo:
 
         Initializes Ferneyhough demo:
 
-        >>> demo = abjad.demos.ferneyhough.FerneyhoughDemo()
+        >>> from abjad.demos.ferneyhough import FerneyhoughDemo
+        >>> demo = FerneyhoughDemo()
 
         Calls Ferneyhough demo:
 

@@ -1,10 +1,9 @@
 import typing
 
-from abjad import enums
-from abjad.scheme import Scheme, SchemePair
-from abjad.utilities.String import String
-
+from .. import enums
 from ..formatting import StorageFormatManager
+from ..scheme import Scheme, SchemePair
+from ..utilities.String import String
 from .LilyPondFormatBundle import LilyPondFormatBundle
 
 

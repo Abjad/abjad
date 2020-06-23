@@ -1,7 +1,7 @@
 import typing
 
-from abjad.scheme import Scheme
-from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
+from ..scheme import Scheme
+from ..system.LilyPondFormatBundle import LilyPondFormatBundle
 
 
 class LilyPondGrobOverride(object):
@@ -420,7 +420,7 @@ class LilyPondGrobOverride(object):
             '\\tweak bound-details.left-broken.text \\markup \\upright pont.'
 
         """
-        from abjad.indicators.LilyPondLiteral import LilyPondLiteral
+        from ..indicators.LilyPondLiteral import LilyPondLiteral
 
         if directed:
             result = [r"- \tweak"]

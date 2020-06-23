@@ -1,15 +1,14 @@
 import typing
 
-from abjad import typings
-from abjad.indicators.LilyPondLiteral import LilyPondLiteral
-from abjad.system.LilyPondFormatManager import LilyPondFormatManager
-from abjad.system.Tag import Tag
-from abjad.system.Tags import Tags
-from abjad.utilities.Duration import Duration
-
+from .. import typings
+from ..indicators.LilyPondLiteral import LilyPondLiteral
+from ..system.LilyPondFormatManager import LilyPondFormatManager
+from ..system.Tag import Tag
+from ..system.Tags import Tags
 from ..top import attach, detach
 from ..top import inspect as abjad_inspect
 from ..top import mutate, select, tweak
+from ..utilities.Duration import Duration
 from .Container import Container
 
 abjad_tags = Tags()
@@ -783,8 +782,8 @@ def on_beat_grace_container(
     from .Container import Container
     from .Selection import Selection
     from .Voice import Voice
-    from abjad.spanners import beam
-    from abjad.spanners import slur
+    from ..spanners import beam
+    from ..spanners import slur
 
     def _site(n):
         return Tag(f"abjad.on_beat_grace_container({n})")

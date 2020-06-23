@@ -1,12 +1,8 @@
 import pytest
 
-from abjad.pitch import Accidental
+import abjad
 
 values = [
-    ("bf,", -1, "f"),
-    ("c'", 0, ""),
-    ("cs'", 1, "s"),
-    ("gff''", -2, "ff"),
     ("####", 4.0, "ssss"),
     ("###", 3.0, "sss"),
     ("###+", 3.5, "sssqs"),
@@ -23,7 +19,6 @@ values = [
     ("bbb~", -3.5, "fffqf"),
     ("bb~", -2.5, "ffqf"),
     ("b~", -1.5, "tqf"),
-    ("dss,,", 2, "ss"),
     ("f", -1.0, "f"),
     ("ff", -2.0, "ff"),
     ("fff", -3.0, "fff"),
@@ -43,11 +38,6 @@ values = [
     ("tqf", -1.5, "tqf"),
     ("tqs", 1.5, "tqs"),
     ("~", -0.5, "qf"),
-    (("bf", 2), -1, "f"),
-    (("c", 4), 0, ""),
-    (("cs", 4), 1, "s"),
-    (("dss", 1), 2, "ss"),
-    (("gff", 5), -2, "ff"),
     (-0, -0.0, ""),
     (-0.0, 0.0, ""),
     (-0.5, -0.5, "qf"),
@@ -76,10 +66,27 @@ values = [
 
 @pytest.mark.parametrize("input_, semitones, string", values)
 def test_init(input_, semitones, string):
-    if isinstance(semitones, type) and issubclass(semitones, Exception):
-        with pytest.raises(semitones):
-            Accidental(input_)
-        return
-    accidental = Accidental(input_)
+    accidental = abjad.Accidental(input_)
+    assert accidental.semitones == semitones
+    assert str(accidental) == string
+
+
+values = [
+    ("bf,", -1, "f"),
+    ("c'", 0, ""),
+    ("cs'", 1, "s"),
+    ("gff''", -2, "ff"),
+    ("dss,,", 2, "ss"),
+    (("bf", 2), -1, "f"),
+    (("c", 4), 0, ""),
+    (("cs", 4), 1, "s"),
+    (("dss", 1), 2, "ss"),
+    (("gff", 5), -2, "ff"),
+]
+
+
+@pytest.mark.parametrize("input_, semitones, string", values)
+def test_init_from_named_pitch(input_, semitones, string):
+    accidental = abjad.NamedPitch(input_).accidental
     assert accidental.semitones == semitones
     assert str(accidental) == string

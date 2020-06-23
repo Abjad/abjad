@@ -1,8 +1,7 @@
-from abjad import enums
-from abjad.scheme import Scheme
-from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
-
+from .. import enums
 from ..formatting import StorageFormatManager
+from ..scheme import Scheme
+from ..system.LilyPondFormatBundle import LilyPondFormatBundle
 
 
 class StaffChange(object):
@@ -58,7 +57,7 @@ class StaffChange(object):
     ### INITIALIZER ###
 
     def __init__(self, staff=None):
-        from abjad.core.Staff import Staff
+        from ..core.Staff import Staff
 
         if staff is not None:
             if not isinstance(staff, Staff):

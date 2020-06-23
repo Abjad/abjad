@@ -1,15 +1,14 @@
 import typing
 
-from abjad import enums
-from abjad.lilypondnames.LilyPondTweakManager import LilyPondTweakManager
-from abjad.system.LilyPondFormatBundle import LilyPondFormatBundle
-from abjad.system.Tags import Tags
-from abjad.utilities.Duration import Duration
-from abjad.utilities.String import String
-
+from .. import enums
 from ..formatting import StorageFormatManager
+from ..lilypondnames.LilyPondTweakManager import LilyPondTweakManager
+from ..system.LilyPondFormatBundle import LilyPondFormatBundle
+from ..system.Tags import Tags
 from ..top import inspect
-from .Clef import Clef
+from ..utilities.Duration import Duration
+from ..utilities.String import String
+from .Clef import Clef, StaffPosition
 
 abjad_tags = Tags()
 
@@ -102,8 +101,8 @@ class RepeatTie(object):
     ### PRIVATE METHODS ###
 
     def _attachment_test_all(self, argument):
-        from abjad.core.Chord import Chord
-        from abjad.core.Note import Note
+        from ..core.Chord import Chord
+        from ..core.Note import Note
 
         if not isinstance(argument, (Chord, Note)):
             string = f"Must be note or chord (not {argument})."
@@ -133,8 +132,8 @@ class RepeatTie(object):
 
     @staticmethod
     def _should_force_repeat_tie_up(leaf):
-        from abjad.core.Chord import Chord
-        from abjad.core.Note import Note
+        from ..core.Chord import Chord
+        from ..core.Note import Note
 
         if not isinstance(leaf, (Note, Chord)):
             return False
@@ -146,7 +145,7 @@ class RepeatTie(object):
         else:
             written_pitches = leaf.written_pitches
         for written_pitch in written_pitches:
-            staff_position = written_pitch.to_staff_position(clef=clef)
+            staff_position = StaffPosition.from_pitch_and_clef(written_pitch, clef,)
             if staff_position.number == 0:
                 return True
         return False

@@ -6,9 +6,9 @@ import pytest
 import abjad
 
 ignored_classes = (
-    abjad.parser.LilyPondParser,
-    abjad.parser.ReducedLyParser,
-    abjad.parser.SchemeParser,
+    abjad.parsers.parser.LilyPondParser,
+    abjad.parsers.reduced.ReducedLyParser,
+    abjad.parsers.scheme.SchemeParser,
     abjad.rhythmtrees.RhythmTreeParser,
     abjad.RedirectedStreams,
     abjad.StorageFormatManager,

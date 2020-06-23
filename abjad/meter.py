@@ -8,26 +8,25 @@ import typing
 
 import uqbar.graphs
 
-from abjad import indicators as abjad_indicators
-from abjad import markups, mathtools, rhythmtrees
-from abjad.core.Chord import Chord
-from abjad.core.Container import Container
-from abjad.core.LogicalTie import LogicalTie
-from abjad.core.Note import Note
-from abjad.core.Rest import Rest
-from abjad.core.Selection import Selection
-from abjad.core.Skip import Skip
-from abjad.core.Tuplet import Tuplet
-from abjad.timespans import Timespan, TimespanList
-from abjad.utilities.Duration import Duration
-from abjad.utilities.Multiplier import Multiplier
-from abjad.utilities.Offset import Offset
-from abjad.utilities.Sequence import Sequence
-from abjad.utilities.TypedCounter import TypedCounter
-from abjad.utilities.TypedList import TypedList
-
+from . import indicators as abjad_indicators
+from . import markups, mathtools, rhythmtrees
+from .core.Chord import Chord
+from .core.Container import Container
+from .core.LogicalTie import LogicalTie
+from .core.Note import Note
+from .core.Rest import Rest
+from .core.Selection import Selection
+from .core.Skip import Skip
+from .core.Tuplet import Tuplet
 from .formatting import FormatSpecification, StorageFormatManager
+from .timespans import Timespan, TimespanList
 from .top import inspect, mutate
+from .utilities.Duration import Duration
+from .utilities.Multiplier import Multiplier
+from .utilities.Offset import Offset
+from .utilities.Sequence import Sequence
+from .utilities.TypedCounter import TypedCounter
+from .utilities.TypedList import TypedList
 
 
 class Meter(object):
@@ -1874,9 +1873,7 @@ class MetricAccentKernel(object):
 
         Returns counter.
         """
-        from abjad import meter
-
-        return meter.OffsetCounter(argument)
+        return OffsetCounter(argument)
 
     @staticmethod
     def from_meter(meter, denominator=32, normalize=True):

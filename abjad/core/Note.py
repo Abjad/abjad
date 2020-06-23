@@ -1,11 +1,11 @@
 import typing
 
-from abjad import instruments, typings
-from abjad.pitch.NamedPitch import NamedPitch
-from abjad.system.Tag import Tag
-from abjad.utilities.Duration import Duration
-
+from .. import instruments, typings
+from ..ly.drums import drums
+from ..pitch.pitches import NamedPitch
+from ..system.Tag import Tag
 from ..top import inspect, parse
+from ..utilities.Duration import Duration
 from .DrumNoteHead import DrumNoteHead
 from .Leaf import Leaf
 from .NoteHead import NoteHead
@@ -58,7 +58,6 @@ class Note(Leaf):
     def __init__(
         self, *arguments, multiplier: typings.DurationTyping = None, tag: Tag = None,
     ) -> None:
-        from abjad.ly import drums
         from .Chord import Chord
 
         assert len(arguments) in (0, 1, 2)

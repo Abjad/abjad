@@ -1,12 +1,12 @@
 import typing
 
-from abjad.system.Tag import Tag
-from abjad.system.Tags import Tags
-from abjad.utilities.String import String
-
 from ..formatting import StorageFormatManager
-from ..top import activate, deactivate
+from ..system.Tag import Tag
+from ..system.Tags import Tags
+from ..utilities.String import String
 from .Path import Path
+from .activate import activate
+from .deactivate import deactivate
 
 abjad_tags = Tags()
 callable_type = typing.Union[str, typing.Callable, None]
