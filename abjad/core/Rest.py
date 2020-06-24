@@ -1,5 +1,5 @@
 from .. import typings
-from ..system.Tag import Tag
+from ..tags import Tag
 from ..top import parse
 from ..utilities.Duration import Duration
 from .Leaf import Leaf

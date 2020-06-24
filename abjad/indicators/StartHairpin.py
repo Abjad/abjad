@@ -5,7 +5,7 @@ from ..formatting import StorageFormatManager
 from ..lilypondnames.LilyPondGrobOverride import LilyPondGrobOverride
 from ..lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from ..system.LilyPondFormatBundle import LilyPondFormatBundle
-from ..system.Tags import Tags
+from ..tags import Tags
 from ..utilities.String import String
 
 abjad_tags = Tags()

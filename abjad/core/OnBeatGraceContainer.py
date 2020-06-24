@@ -3,8 +3,7 @@ import typing
 from .. import typings
 from ..indicators.LilyPondLiteral import LilyPondLiteral
 from ..system.LilyPondFormatManager import LilyPondFormatManager
-from ..system.Tag import Tag
-from ..system.Tags import Tags
+from ..tags import Tag, Tags
 from ..top import attach, detach
 from ..top import inspect as abjad_inspect
 from ..top import mutate, select, tweak

@@ -8,7 +8,6 @@ import typing
 
 import uqbar.graphs
 
-from . import indicators as abjad_indicators
 from . import markups, mathtools, rhythmtrees
 from .core.Chord import Chord
 from .core.Container import Container
@@ -19,6 +18,7 @@ from .core.Selection import Selection
 from .core.Skip import Skip
 from .core.Tuplet import Tuplet
 from .formatting import FormatSpecification, StorageFormatManager
+from .indicators.TimeSignature import TimeSignature
 from .timespans import Timespan, TimespanList
 from .top import inspect, mutate
 from .utilities.Duration import Duration
@@ -1110,7 +1110,7 @@ class Meter(object):
 
         Returns time signature.
         """
-        return abjad_indicators.TimeSignature(self.root_node.preprolated_duration)
+        return TimeSignature(self.root_node.preprolated_duration)
 
     @property
     def is_compound(self):

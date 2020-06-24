@@ -4,7 +4,7 @@ from .. import enums
 from ..formatting import StorageFormatManager
 from ..lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from ..system.LilyPondFormatBundle import LilyPondFormatBundle
-from ..system.Tags import Tags
+from ..tags import Tags
 from ..top import inspect
 from ..utilities.Duration import Duration
 from ..utilities.String import String

@@ -1,5 +1,5 @@
 from .. import mathtools
-from ..system.Tag import Tag
+from ..tags import Tag
 from ..utilities.Multiplier import Multiplier
 from .Container import Container
 

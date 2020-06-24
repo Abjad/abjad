@@ -13,7 +13,7 @@ from ..indicators.TimeSignature import TimeSignature
 from ..system.Configuration import Configuration
 from ..system.IOManager import IOManager
 from ..system.LilyPondFormatManager import LilyPondFormatManager
-from ..system.Tag import Tag
+from ..tags import Tag
 from ..top import attach, iterate
 from ..utilities.CyclicTuple import CyclicTuple
 from ..utilities.OrderedDict import OrderedDict

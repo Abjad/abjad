@@ -121,7 +121,8 @@ Use ``pitch_range`` to get the range of any instrument:
 
 ::
 
-    >>> abjad.show(violin.pitch_range)
+    >>> lilypond_file = abjad.illustrate(violin.pitch_range)
+    >>> abjad.show(lilypond_file)
 
 
 Getting an instrument's level of transposition
@@ -136,7 +137,8 @@ transposition:
 
 ::
 
-    >>> abjad.show(violin.middle_c_sounding_pitch)
+    >>> note = abjad.Note(violin.middle_c_sounding_pitch, 4)
+    >>> abjad.show(note)
 
 
 Getting an instrument's allowable clefs

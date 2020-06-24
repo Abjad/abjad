@@ -51,8 +51,6 @@ from .system.ProgressIndicator import ProgressIndicator
 from .system.RedirectedStreams import RedirectedStreams
 from .system.Signature import Signature
 from .system.SlotContributions import SlotContributions
-from .system.Tag import Tag
-from .system.Tags import Tags
 from .system.TemporaryDirectory import TemporaryDirectory
 from .system.TemporaryDirectoryChange import TemporaryDirectoryChange
 from .system.TestManager import TestManager
@@ -60,30 +58,32 @@ from .system.Timer import Timer
 from .system.UpdateManager import UpdateManager
 from .system.Wrapper import Wrapper
 from .system.annotate import annotate
+from .tags import Tag, Tags
+
+from .utilities.CyclicTuple import CyclicTuple
+from .utilities.Duration import Duration
+from .utilities.DurationInequality import DurationInequality
+from .utilities.Enumerator import Enumerator
+from .utilities.Expression import Expression
+from .utilities.Inequality import Inequality
+from .utilities.LengthInequality import LengthInequality
+from .utilities.Multiplier import Multiplier
+from .utilities.Offset import Offset
+from .utilities.OrderedDict import OrderedDict
+from .utilities.Pattern import Pattern
+from .utilities.PatternTuple import PatternTuple
+from .utilities.Sequence import Sequence
+from .utilities.SortedCollection import SortedCollection
+from .utilities.String import String
+from .utilities.TypedCollection import TypedCollection
+from .utilities.TypedCounter import TypedCounter
+from .utilities.TypedFrozenset import TypedFrozenset
+from .utilities.TypedList import TypedList
+from .utilities.TypedTuple import TypedTuple
+from .utilities.list_all_classes import list_all_classes
+from .utilities.list_all_functions import list_all_functions
+from .utilities.yield_all_modules import yield_all_modules
 from .utilities import (
-    CyclicTuple,
-    Duration,
-    DurationInequality,
-    Enumerator,
-    Expression,
-    Inequality,
-    LengthInequality,
-    Multiplier,
-    Offset,
-    OrderedDict,
-    Pattern,
-    PatternTuple,
-    Sequence,
-    SortedCollection,
-    String,
-    TypedCollection,
-    TypedCounter,
-    TypedFrozenset,
-    TypedList,
-    TypedTuple,
-    list_all_classes,
-    list_all_functions,
-    yield_all_modules,
     Infinity,
     NegativeInfinity,
 )
@@ -220,20 +220,19 @@ from .lilypondfile.LilyPondLanguageToken import LilyPondLanguageToken
 from .lilypondfile.LilyPondVersionToken import LilyPondVersionToken
 from .lilypondfile.PackageGitCommitToken import PackageGitCommitToken
 
-from .lilypondnames import (
-    LilyPondContext,
-    LilyPondContextSetting,
-    LilyPondEngraver,
-    LilyPondGrob,
-    LilyPondGrobInterface,
-    LilyPondGrobNameManager,
-    LilyPondGrobOverride,
-    LilyPondNameManager,
-    LilyPondSettingNameManager,
-    IndexedTweakManager,
-    IndexedTweakManagers,
-    LilyPondTweakManager,
-)
+from .lilypondnames.LilyPondContext import LilyPondContext
+from .lilypondnames.LilyPondContextSetting import LilyPondContextSetting
+from .lilypondnames.LilyPondEngraver import LilyPondEngraver
+from .lilypondnames.LilyPondGrob import LilyPondGrob
+from .lilypondnames.LilyPondGrobInterface import LilyPondGrobInterface
+from .lilypondnames.LilyPondGrobNameManager import LilyPondGrobNameManager
+from .lilypondnames.LilyPondGrobOverride import LilyPondGrobOverride
+from .lilypondnames.LilyPondNameManager import LilyPondNameManager
+from .lilypondnames.LilyPondSettingNameManager import LilyPondSettingNameManager
+from .lilypondnames.LilyPondTweakManager import IndexedTweakManager
+from .lilypondnames.LilyPondTweakManager import IndexedTweakManagers
+from .lilypondnames.LilyPondTweakManager import LilyPondTweakManager
+
 from .markups import (
     Markup,
     MarkupCommand,
@@ -318,49 +317,44 @@ from .scheme import (
     SchemeVectorConstant,
     SpacingVector,
 )
-from .core import (
-    AfterGraceContainer,
-    BeforeGraceContainer,
-    Chord,
-    Cluster,
-    Component,
-    Container,
-    Context,
-    Descendants,
-    DrumNoteHead,
-    Inspection,
-    Iteration,
-    Label,
-    Leaf,
-    LeafMaker,
-    Lineage,
-    LogicalTie,
-    MultimeasureRest,
-    Mutation,
-    Note,
-    NoteHead,
-    NoteHeadList,
-    NoteMaker,
-    OnBeatGraceContainer,
-    on_beat_grace_container,
-    Parentage,
-    Rest,
-    Score,
-    Selection,
-    Skip,
-    Staff,
-    StaffGroup,
-    TremoloContainer,
-    Tuplet,
-    VerticalMoment,
-    Voice,
-    Wellformedness,
-)
 
-from .segments.GroupedRhythmicStavesScoreTemplate import (
-    GroupedRhythmicStavesScoreTemplate,
-)
-from .segments.GroupedStavesScoreTemplate import GroupedStavesScoreTemplate
+from .core.AfterGraceContainer import AfterGraceContainer
+from .core.BeforeGraceContainer import BeforeGraceContainer
+from .core.Chord import Chord
+from .core.Cluster import Cluster
+from .core.Component import Component
+from .core.Container import Container
+from .core.Context import Context
+from .core.Descendants import Descendants
+from .core.DrumNoteHead import DrumNoteHead
+from .core.Inspection import Inspection
+from .core.Iteration import Iteration
+from .core.Label import Label
+from .core.Leaf import Leaf
+from .core.LeafMaker import LeafMaker
+from .core.Lineage import Lineage
+from .core.LogicalTie import LogicalTie
+from .core.MultimeasureRest import MultimeasureRest
+from .core.Mutation import Mutation
+from .core.Note import Note
+from .core.NoteHead import NoteHead
+from .core.NoteHeadList import NoteHeadList
+from .core.NoteMaker import NoteMaker
+from .core.OnBeatGraceContainer import OnBeatGraceContainer
+from .core.OnBeatGraceContainer import on_beat_grace_container
+from .core.Parentage import Parentage
+from .core.Rest import Rest
+from .core.Score import Score
+from .core.Selection import Selection
+from .core.Skip import Skip
+from .core.Staff import Staff
+from .core.StaffGroup import StaffGroup
+from .core.TremoloContainer import TremoloContainer
+from .core.Tuplet import Tuplet
+from .core.VerticalMoment import VerticalMoment
+from .core.Voice import Voice
+from .core.Wellformedness import Wellformedness
+
 from .segments.Job import Job
 from .segments.Line import Line
 from .segments.Momento import Momento
@@ -369,12 +363,8 @@ from .segments.PartAssignment import PartAssignment
 from .segments.PartManifest import PartManifest
 from .segments.Path import Path
 from .segments.PersistentOverride import PersistentOverride
-from .segments.ScoreTemplate import ScoreTemplate
 from .segments.Section import Section
 from .segments.SegmentMaker import SegmentMaker
-from .segments.StringOrchestraScoreTemplate import StringOrchestraScoreTemplate
-from .segments.StringQuartetScoreTemplate import StringQuartetScoreTemplate
-from .segments.TwoStaffPianoScoreTemplate import TwoStaffPianoScoreTemplate
 from .segments.activate import activate
 from .segments.deactivate import deactivate
 
@@ -391,6 +381,14 @@ from .spanners import (
     text_spanner,
     tie,
     trill_spanner,
+)
+from .templates import (
+    GroupedRhythmicStavesScoreTemplate,
+    GroupedStavesScoreTemplate,
+    ScoreTemplate,
+    StringOrchestraScoreTemplate,
+    StringQuartetScoreTemplate,
+    TwoStaffPianoScoreTemplate,
 )
 from .top import (
     attach,

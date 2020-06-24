@@ -79,4 +79,3 @@ Introducing Abjad
 
     abjad_hello_world_at_the_interpreter
     abjad_hello_world_in_a_file
-    more_about_abjad

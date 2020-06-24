@@ -6,7 +6,7 @@ from .. import mathtools, typings
 from ..mathtools import NonreducedFraction
 from ..pitch.pitchclasses import PitchClass
 from ..pitch.pitches import NamedPitch, NumberedPitch
-from ..system.Tag import Tag
+from ..tags import Tag
 from ..utilities.Duration import Duration
 from ..utilities.Sequence import Sequence
 from .Chord import Chord

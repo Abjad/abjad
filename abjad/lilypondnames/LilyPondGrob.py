@@ -11,7 +11,7 @@ class LilyPondGrob(object):
 
     ..  container:: example
 
-        >>> grob = abjad.lilypondnames.LilyPondGrob('Beam')
+        >>> grob = abjad.LilyPondGrob('Beam')
         >>> print(format(grob))
         LilyPondGrob(name='Beam')
 
@@ -54,7 +54,7 @@ class LilyPondGrob(object):
 
         ..  container:: example
 
-            >>> grob = abjad.lilypondnames.LilyPondGrob('Beam')
+            >>> grob = abjad.LilyPondGrob('Beam')
             >>> for interface in grob.interfaces:
             ...     interface
             ...
@@ -77,7 +77,7 @@ class LilyPondGrob(object):
 
         ..  container:: example
 
-            >>> grob = abjad.lilypondnames.LilyPondGrob('Beam')
+            >>> grob = abjad.LilyPondGrob('Beam')
             >>> grob.name
             'Beam'
 
@@ -91,7 +91,7 @@ class LilyPondGrob(object):
 
         ..  container:: example
 
-            >>> grob = abjad.lilypondnames.LilyPondGrob('Beam')
+            >>> grob = abjad.LilyPondGrob('Beam')
             >>> for property_name in grob.property_names:
             ...     property_name
             ...
@@ -173,7 +173,7 @@ class LilyPondGrob(object):
 
         ..  container:: example
 
-            >>> for lilypond_grob in abjad.lilypondnames.LilyPondGrob.list_all_grobs():
+            >>> for lilypond_grob in abjad.LilyPondGrob.list_all_grobs():
             ...     lilypond_grob
             ...
             LilyPondGrob(name='Accidental')

@@ -47,11 +47,11 @@ class NoteHead(object):
         is_parenthesized=None,
         tweaks=None,
     ):
-        import abjad
-
         self._alternative = None
         if client is not None:
-            assert isinstance(client, abjad.Leaf)
+            assert hasattr(client, "written_pitch") or hasattr(
+                client, "written_pitches"
+            )
         self._client = client
         if isinstance(written_pitch, type(self)):
             note_head = written_pitch

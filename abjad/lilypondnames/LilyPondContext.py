@@ -653,7 +653,7 @@ class LilyPondContext(object):
 
         ..  container:: example
 
-            >>> for lilypond_context in abjad.lilypondnames.LilyPondContext.list_all_contexts():
+            >>> for lilypond_context in abjad.LilyPondContext.list_all_contexts():
             ...     is_staff_context = 'X' if lilypond_context.is_staff_context else ' '
             ...     print(f'[{is_staff_context}] {lilypond_context.name}')
             ...
@@ -706,7 +706,7 @@ class LilyPondContext(object):
 
         ..  container:: example
 
-            >>> for lilypond_context in abjad.lilypondnames.LilyPondContext.list_all_contexts():
+            >>> for lilypond_context in abjad.LilyPondContext.list_all_contexts():
             ...     is_staff_group_context = 'X' if lilypond_context.is_staff_group_context else ' '
             ...     print(f'[{is_staff_group_context}] {lilypond_context.name}')
             ...

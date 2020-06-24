@@ -10,7 +10,7 @@ from ..indicators.MetronomeMark import MetronomeMark
 from ..indicators.RepeatTie import RepeatTie
 from ..indicators.Tie import Tie
 from ..system.LilyPondFormatManager import LilyPondFormatManager
-from ..system.Tag import Tag
+from ..tags import Tag
 from ..top import attach, detach, inspect, mutate, override, select, setting
 from ..utilities.Duration import Duration
 from ..utilities.Multiplier import Multiplier

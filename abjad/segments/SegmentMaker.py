@@ -7,10 +7,11 @@ from ..core.Score import Score
 from ..core.Staff import Staff
 from ..core.Voice import Voice
 from ..formatting import StorageFormatManager
+from ..indicators import LilyPondLiteral
 from ..lilypondfile.LilyPondFile import LilyPondFile
-from ..system.Tag import Tag
+from ..tags import Tag
 from ..timespans import TimespanList
-from ..top import inspect, iterate
+from ..top import attach, inspect, iterate, select
 from ..utilities.OrderedDict import OrderedDict
 from ..utilities.String import String
 from .PartAssignment import PartAssignment
@@ -250,32 +251,30 @@ class SegmentMaker(object):
         """
         Comments measure numbers in ``score``.
         """
-        import abjad
-
         offset_to_measure_number = {}
-        for context in abjad.iterate(score).components(abjad.Context):
+        for context in iterate(score).components(Context):
             if not context.simultaneous:
                 break
-        site = abjad.Tag("abjad.SegmentMaker.comment_measure_numbers()")
-        measures = abjad.select(context).leaves().group_by_measure()
+        site = Tag("abjad.SegmentMaker.comment_measure_numbers()")
+        measures = select(context).leaves().group_by_measure()
         for i, measure in enumerate(measures):
             measure_number = i + 1
-            first_leaf = abjad.select(measure).leaf(0)
-            start_offset = abjad.inspect(first_leaf).timespan().start_offset
+            first_leaf = select(measure).leaf(0)
+            start_offset = inspect(first_leaf).timespan().start_offset
             offset_to_measure_number[start_offset] = measure_number
-        for leaf in abjad.iterate(score).leaves():
-            offset = abjad.inspect(leaf).timespan().start_offset
+        for leaf in iterate(score).leaves():
+            offset = inspect(leaf).timespan().start_offset
             measure_number = offset_to_measure_number.get(offset, None)
             if measure_number is None:
                 continue
-            context = abjad.inspect(leaf).parentage().get(abjad.Context)
+            context = inspect(leaf).parentage().get(Context)
             if context.name is None:
                 string = f"% [{context.lilypond_type} measure {measure_number}]"
             else:
                 string = f"% [{context.name} measure {measure_number}]"
-            literal = abjad.LilyPondLiteral(string, "absolute_before")
-            tag = abjad.Tag("COMMENT_MEASURE_NUMBERS").append(site)
-            abjad.attach(literal, leaf, tag=tag)
+            literal = LilyPondLiteral(string, "absolute_before")
+            tag = Tag("COMMENT_MEASURE_NUMBERS").append(site)
+            attach(literal, leaf, tag=tag)
 
     def run(
         self,

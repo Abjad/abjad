@@ -43,8 +43,7 @@ from .lilypondnames.LilyPondTweakManager import (
     LilyPondTweakManager,
 )
 from .scheme import SchemeSymbol
-from .system.Tag import Tag
-from .system.Tags import Tags
+from .tags import Tag, Tags
 from .top import attach, detach, inspect, iterate, select, tweak
 from .utilities.Duration import Duration
 from .utilities.DurationInequality import DurationInequality

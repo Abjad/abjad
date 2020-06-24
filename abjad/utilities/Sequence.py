@@ -317,7 +317,7 @@ class Sequence(collections.abc.Sequence):
             abjad.Expression(
                 callbacks=[
                     abjad.Expression(
-                        evaluation_template='abjad.utilities.Sequence',
+                        evaluation_template='abjad.Sequence',
                         is_initializer=True,
                         string_template='{}',
                         ),

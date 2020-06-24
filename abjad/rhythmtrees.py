@@ -12,7 +12,8 @@ import typing
 import uqbar.containers
 import uqbar.graphs
 
-from . import core, mathtools
+from . import mathtools
+from .core.Container import Container
 from .formatting import FormatSpecification, StorageFormatManager
 from .system.Parser import Parser
 
@@ -1065,7 +1066,7 @@ def parse_rtm_syntax(rtm):
     Returns tuplet or container.
     """
     result = RhythmTreeParser()(rtm)
-    container = core.Container()
+    container = Container()
     for node in result:
         tuplet = node((1, 4))
         # following line added 2012-08-01. tb.

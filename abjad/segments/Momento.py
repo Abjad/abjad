@@ -1,7 +1,7 @@
 import typing
 
 from ..formatting import FormatSpecification, StorageFormatManager
-from ..system.Tag import Tag
+from ..tags import Tag
 from ..utilities.Offset import Offset
 
 

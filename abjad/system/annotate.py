@@ -1,4 +1,4 @@
-from .Tag import Tag
+from ..tags import Tag
 from .Wrapper import Wrapper
 
 
