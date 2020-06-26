@@ -3,7 +3,7 @@ import typing
 from .. import instruments, typings
 from ..ly.drums import drums
 from ..pitch.pitches import NamedPitch
-from ..system.Tag import Tag
+from ..tags import Tag
 from ..top import inspect, parse
 from ..utilities.Duration import Duration
 from .DrumNoteHead import DrumNoteHead

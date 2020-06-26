@@ -1,7 +1,7 @@
 from ply import lex
 
 from .. import exceptions
-from .. import scheme as abjad_scheme
+from ..scheme import Scheme, SchemePair
 from ..system.Parser import Parser
 
 
@@ -328,7 +328,7 @@ class SchemeParser(Parser):
         # print 'variable : IDENTIFIER'
         # print p[1]
         p.slice[0].cursor_end = p.slice[-1].cursor_end
-        p[0] = abjad_scheme.Scheme(p[1])
+        p[0] = Scheme(p[1])
 
     ### body ###
 
@@ -381,14 +381,14 @@ class SchemeParser(Parser):
         # print p[2]
         p.slice[0].cursor_end = p.slice[-1].cursor_end
         datum = p[2]
-        if isinstance(datum, abjad_scheme.Scheme):
+        if isinstance(datum, Scheme):
             if datum._quoting:
                 datum._quoting = "'" + datum._quoting
             else:
                 datum._quoting = "'"
             p[0] = datum
         else:
-            p[0] = abjad_scheme.Scheme(datum, quoting="'")
+            p[0] = Scheme(datum, quoting="'")
 
     def p_expression__constant(self, p):
         """
@@ -641,9 +641,9 @@ class SchemeParser(Parser):
         p.slice[0].cursor_end = p.slice[-1].cursor_end
         result = p[2] + [p[3]] + [p[5]]
         if len(result) == 2:
-            p[0] = abjad_scheme.SchemePair(tuple(result))
+            p[0] = SchemePair(tuple(result))
         else:
-            p[0] = abjad_scheme.Scheme(result)
+            p[0] = Scheme(result)
         self.expression_depth -= 1
 
     ### abbreviation ###

@@ -4,7 +4,7 @@ import typing
 from ..ly.colors import colors
 from ..ly.grob_interfaces import grob_interfaces
 from ..system.LilyPondFormatManager import LilyPondFormatManager
-from ..system.Tag import Tag
+from ..tags import Tag
 from ..utilities.String import String
 from .LilyPondNameManager import LilyPondNameManager
 

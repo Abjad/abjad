@@ -1,8 +1,7 @@
 import typing
 
 from ..formatting import StorageFormatManager
-from ..system.Tag import Tag
-from ..system.Tags import Tags
+from ..tags import Tag, Tags
 from ..utilities.String import String
 from .Path import Path
 from .activate import activate

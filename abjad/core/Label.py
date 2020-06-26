@@ -21,7 +21,7 @@ from ..pitch.segments import PitchSegment
 from ..pitch.sets import PitchClassSet
 from ..pitch.vectors import IntervalClassVector
 from ..scheme import SchemeColor
-from ..system.Tag import Tag
+from ..tags import Tag
 from ..top import attach, detach
 from ..top import inspect as abjad_inspect
 from ..top import iterate, new, override, select, tweak
@@ -71,7 +71,7 @@ class Label(object):
             abjad.Expression(
                 callbacks=[
                     abjad.Expression(
-                        evaluation_template='abjad.core.Label',
+                        evaluation_template='abjad.Label',
                         is_initializer=True,
                         keywords={
                             'tag': None,
@@ -79,7 +79,7 @@ class Label(object):
                         ),
                     abjad.Expression(
                         evaluation_template="{}.with_pitches(locale='us')",
-                        qualified_method_name='abjad.core.Label.with_pitches',
+                        qualified_method_name='abjad.Label.with_pitches',
                         ),
                     ],
                 proxy_class=abjad.Label,
@@ -153,7 +153,7 @@ class Label(object):
             abjad.Expression(
                 callbacks=[
                     abjad.Expression(
-                        evaluation_template='abjad.core.Label',
+                        evaluation_template='abjad.Label',
                         is_initializer=True,
                         keywords={
                             'tag': None,
@@ -161,7 +161,7 @@ class Label(object):
                         ),
                     abjad.Expression(
                         evaluation_template='{}.with_durations()',
-                        qualified_method_name='abjad.core.Label.with_durations',
+                        qualified_method_name='abjad.Label.with_durations',
                         ),
                     ],
                 proxy_class=abjad.Label,

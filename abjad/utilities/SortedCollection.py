@@ -1,5 +1,6 @@
 import bisect
 import doctest
+import random
 
 
 class SortedCollection(object):
@@ -350,12 +351,10 @@ if __name__ == "__main__":
         except ValueError:
             return -1
 
-    from random import choice
-
     pool = [1.5, 2, 2.0, 3, 3.0, 3.5, 4, 4.0, 4.5]
     for i in range(500):
         for n in range(6):
-            s = [choice(pool) for i in range(n)]
+            s = [random.choice(pool) for i in range(n)]
             sc = SortedCollection(s)
             s.sort()
             for probe in pool:

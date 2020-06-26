@@ -1,7 +1,7 @@
 import typing
 
 from .. import typings
-from ..system.Tag import Tag
+from ..tags import Tag
 from .Leaf import Leaf
 from .Rest import Rest
 

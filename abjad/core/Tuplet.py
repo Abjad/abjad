@@ -12,7 +12,7 @@ from ..formatting import FormatSpecification
 from ..lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from ..mathtools import NonreducedFraction, NonreducedRatio, Ratio
 from ..system.LilyPondFormatManager import LilyPondFormatManager
-from ..system.Tag import Tag
+from ..tags import Tag
 from ..top import inspect, iterate, override, select, tweak
 from ..utilities.Duration import Duration
 from ..utilities.Multiplier import Multiplier

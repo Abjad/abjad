@@ -10,7 +10,7 @@ class LilyPondGrobInterface(object):
 
     ..  container:: example
 
-        >>> interface = abjad.lilypondnames.LilyPondGrobInterface('beam-interface')
+        >>> interface = abjad.LilyPondGrobInterface('beam-interface')
         >>> abjad.f(interface)
         LilyPondGrobInterface(name='beam-interface')
 
@@ -63,7 +63,7 @@ class LilyPondGrobInterface(object):
 
         ..  container:: example
 
-            >>> for grob_interface in abjad.lilypondnames.LilyPondGrobInterface.list_all_interfaces():
+            >>> for grob_interface in abjad.LilyPondGrobInterface.list_all_interfaces():
             ...     grob_interface
             ...
             LilyPondGrobInterface(name='accidental-interface')
@@ -215,7 +215,7 @@ class LilyPondGrobInterface(object):
 
         ..  container:: example
 
-            >>> interface = abjad.lilypondnames.LilyPondGrobInterface('beam-interface')
+            >>> interface = abjad.LilyPondGrobInterface('beam-interface')
             >>> interface.name
             'beam-interface'
 
@@ -229,7 +229,7 @@ class LilyPondGrobInterface(object):
 
         ..  container:: example
 
-            >>> interface = abjad.lilypondnames.LilyPondGrobInterface('beam-interface')
+            >>> interface = abjad.LilyPondGrobInterface('beam-interface')
             >>> for property_name in interface.property_names:
             ...     property_name
             ...

@@ -25,8 +25,10 @@ from uqbar.book.extensions import Extension
 from uqbar.strings import normalize
 
 from ..iox import Illustrator, LilyPondIO, Player
-from ..lilypondfile import Block, LilyPondVersionToken
-from ..system import Configuration, TemporaryDirectoryChange
+from ..lilypondfile.Block import Block
+from ..lilypondfile.LilyPondVersionToken import LilyPondVersionToken
+from ..system.Configuration import Configuration
+from ..system.TemporaryDirectoryChange import TemporaryDirectoryChange
 
 configuration = Configuration()
 logger = logging.getLogger(__name__)

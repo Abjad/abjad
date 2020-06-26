@@ -1,5 +1,5 @@
 from ..formatting import StorageFormatManager
-from ..system.Tag import Tag
+from ..tags import Tag
 
 
 class Line(object):

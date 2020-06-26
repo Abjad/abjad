@@ -5,7 +5,7 @@ from ..formatting import FormatSpecification, StorageFormatManager
 from ..lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from ..mathtools import Infinity, NegativeInfinity
 from ..system.LilyPondFormatBundle import LilyPondFormatBundle
-from ..system.Tags import Tags
+from ..tags import Tags
 from ..utilities.String import String
 
 abjad_tags = Tags()

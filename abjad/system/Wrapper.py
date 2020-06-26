@@ -2,8 +2,8 @@ import copy
 import typing
 
 from ..formatting import FormatSpecification, StorageFormatManager
+from ..tags import Tag
 from .LilyPondFormatManager import LilyPondFormatManager
-from .Tag import Tag
 
 
 class Wrapper(object):

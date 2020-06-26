@@ -1,7 +1,7 @@
 import copy
 import typing
 
-from ..system.Tag import Tag
+from ..tags import Tag
 from .Context import Context
 
 

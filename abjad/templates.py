@@ -1,5 +1,685 @@
-from ..system.Tag import Tag
-from .ScoreTemplate import ScoreTemplate
+import abc
+import collections
+import typing
+
+from . import const, instruments
+from .core.Context import Context
+from .core.MultimeasureRest import MultimeasureRest
+from .core.Score import Score
+from .core.Skip import Skip
+from .core.Staff import Staff
+from .core.StaffGroup import StaffGroup
+from .core.Voice import Voice
+from .formatting import StorageFormatManager
+from .indicators.Clef import Clef
+from .indicators.LilyPondLiteral import LilyPondLiteral
+from .indicators.MarginMarkup import MarginMarkup
+from .instruments import Piano
+from .lilypondfile.LilyPondFile import LilyPondFile
+from .segments.Part import Part
+from .segments.PartAssignment import PartAssignment
+from .segments.PartManifest import PartManifest
+from .system.Wrapper import Wrapper
+from .system.annotate import annotate
+from .tags import Tag, Tags
+from .top import attach, inspect, iterate, new, select
+from .utilities.OrderedDict import OrderedDict
+
+abjad_tags = Tags()
+
+
+class ScoreTemplate(object):
+    """
+    Abstract score template.
+    """
+
+    ### CLASS VARIABLES ###
+
+    __documentation_section__: typing.Optional[str] = "Score templates"
+
+    __slots__ = ("_voice_abbreviations",)
+
+    _always_make_global_rests = False
+
+    _do_not_require_margin_markup = False
+
+    _part_manifest: PartManifest = PartManifest()
+
+    ### INITIALIZER ###
+
+    def __init__(self):
+        self._voice_abbreviations = OrderedDict()
+
+    ### SPECIAL METHODS ###
+
+    @abc.abstractmethod
+    def __call__(self) -> Score:
+        """
+        Calls score template.
+        """
+        pass
+
+    def __illustrate__(
+        self, default_paper_size=None, global_staff_size=None, includes=None
+    ):
+        """
+        Illustrates score template.
+        """
+        score: Score = self()
+        site = "abjad.ScoreTemplate.__illustrate__()"
+        tag = Tag(site)
+        for voice in iterate(score).components(Voice):
+            skip = Skip(1, tag=tag)
+            voice.append(skip)
+        self.attach_defaults(score)
+        lilypond_file: LilyPondFile = score.__illustrate__()
+        lilypond_file = new(
+            lilypond_file,
+            default_paper_size=default_paper_size,
+            global_staff_size=global_staff_size,
+            includes=includes,
+        )
+        return lilypond_file
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
+
+    ### PRIVATE METHODS ###
+
+    def _make_global_context(self):
+        site = "abjad.ScoreTemplate._make_global_context()"
+        tag = Tag(site)
+        global_rests = Context(
+            lilypond_type="GlobalRests", name="Global_Rests", tag=tag,
+        )
+        global_skips = Context(
+            lilypond_type="GlobalSkips", name="Global_Skips", tag=tag,
+        )
+        global_context = Context(
+            [global_rests, global_skips],
+            lilypond_type="GlobalContext",
+            simultaneous=True,
+            name="Global_Context",
+            tag=tag,
+        )
+        return global_context
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def always_make_global_rests(self) -> bool:
+        """
+        Is true when score template always makes global rests.
+        """
+        return self._always_make_global_rests
+
+    @property
+    def do_not_require_margin_markup(self) -> bool:
+        """
+        Is true when score template does not require margin markup.
+
+        Conventionally, solos do not require margin markup.
+        """
+        return self._do_not_require_margin_markup
+
+    @property
+    def part_manifest(self) -> typing.Optional[PartManifest]:
+        """
+        Gets part manifest.
+        """
+        if self._part_manifest is not None:
+            assert isinstance(self._part_manifest, PartManifest)
+        return self._part_manifest
+
+    ### PUBLIC METHODS ###
+
+    def allows_instrument(
+        self, staff_name: str, instrument: instruments.Instrument
+    ) -> bool:
+        """
+        Is true when ``staff_name`` allows ``instrument``.
+
+        To be implemented by concrete score template classes.
+        """
+        return True
+
+    def allows_part_assignment(
+        self, voice_name: str, part_assignment: PartAssignment
+    ) -> bool:
+        """
+        Is true when ``voice_name`` allows ``part_assignment``.
+        """
+        section = part_assignment.section or "ZZZ"
+        if voice_name.startswith(section):
+            return True
+        return False
+
+    def attach_defaults(self, argument) -> typing.List:
+        """
+        Attaches defaults to all staff and staff group contexts in
+        ``argument`` when ``argument`` is a score.
+
+        Attaches defaults to ``argument`` (without iterating ``argument``) when
+        ``argument`` is a staff or staff group.
+
+        Returns list of one wrapper for every indicator attached.
+        """
+        assert isinstance(argument, (Score, Staff, StaffGroup)), repr(argument)
+        wrappers: typing.List[Wrapper] = []
+        tag = const.REMOVE_ALL_EMPTY_STAVES
+        empty_prototype = (MultimeasureRest, Skip)
+        prototype = (Staff, StaffGroup)
+        if isinstance(argument, Score):
+            staff__groups = select(argument).components(prototype)
+            staves = select(argument).components(Staff)
+        elif isinstance(argument, Staff):
+            staff__groups = [argument]
+            staves = [argument]
+        else:
+            assert isinstance(argument, StaffGroup), repr(argument)
+            staff__groups = [argument]
+            staves = []
+        for staff__group in staff__groups:
+            leaf = None
+            voices = select(staff__group).components(Voice)
+            # find leaf 0 in first nonempty voice
+            for voice in voices:
+                leaves = []
+                for leaf_ in select(voice).leaves():
+                    if inspect(leaf_).has_indicator(const.HIDDEN):
+                        leaves.append(leaf_)
+                if not all(isinstance(_, empty_prototype) for _ in leaves):
+                    leaf = inspect(voice).leaf(0)
+                    break
+            # otherwise, find first leaf in voice in non-removable staff
+            if leaf is None:
+                for voice in voices:
+                    voice_might_vanish = False
+                    for component in inspect(voice).parentage():
+                        if inspect(component).annotation(tag) is True:
+                            voice_might_vanish = True
+                    if not voice_might_vanish:
+                        leaf = inspect(voice).leaf(0)
+                        if leaf is not None:
+                            break
+            # otherwise, as last resort find first leaf in first voice
+            if leaf is None:
+                leaf = inspect(voices[0]).leaf(0)
+            if leaf is None:
+                continue
+            instrument = inspect(leaf).indicator(instruments.Instrument)
+            if instrument is None:
+                string = "default_instrument"
+                instrument = inspect(staff__group).annotation(string)
+                if instrument is not None:
+                    wrapper = attach(
+                        instrument,
+                        leaf,
+                        context=staff__group.lilypond_type,
+                        tag=Tag("abjad.ScoreTemplate.attach_defaults(1)"),
+                        wrapper=True,
+                    )
+                    wrappers.append(wrapper)
+            margin_markup = inspect(leaf).indicator(MarginMarkup)
+            if margin_markup is None:
+                string = "default_margin_markup"
+                margin_markup = inspect(staff__group).annotation(string)
+                if margin_markup is not None:
+                    wrapper = attach(
+                        margin_markup,
+                        leaf,
+                        tag=abjad_tags.NOT_PARTS.append(
+                            Tag("abjad.ScoreTemplate.attach_defaults(2)")
+                        ),
+                        wrapper=True,
+                    )
+                    wrappers.append(wrapper)
+        for staff in staves:
+            leaf = inspect(staff).leaf(0)
+            clef = inspect(leaf).indicator(Clef)
+            if clef is not None:
+                continue
+            clef = inspect(staff).annotation("default_clef")
+            if clef is not None:
+                wrapper = attach(
+                    clef,
+                    leaf,
+                    tag=Tag("abjad.ScoreTemplate.attach_defaults(3)"),
+                    wrapper=True,
+                )
+                wrappers.append(wrapper)
+        return wrappers
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def voice_abbreviations(self) -> OrderedDict:
+        """
+        Gets voice abbreviations.
+        """
+        return self._voice_abbreviations
+
+
+class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
+    r"""
+    Grouped rhythmic staves score template.
+
+    ..  container:: example
+
+        One voice per staff:
+
+        >>> class_ = abjad.GroupedRhythmicStavesScoreTemplate
+        >>> template_1 = class_(staff_count=4)
+        >>> abjad.show(template_1) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(template_1.__illustrate__()[abjad.Score], strict=60)
+            \context Score = "Grouped_Rhythmic_Staves_Score"            %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+            <<                                                          %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                \context StaffGroup = "Grouped_Rhythmic_Staves_Staff_Group" %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                <<                                                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                    \context RhythmicStaff = "Staff_1"                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                    {                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                        \context Voice = "Voice_1"                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                        {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                            \clef "percussion"                          %! abjad.ScoreTemplate.attach_defaults(3)
+                            s1                                          %! abjad.ScoreTemplate.__illustrate__()
+                        }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                    }                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                    \context RhythmicStaff = "Staff_2"                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                    {                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                        \context Voice = "Voice_2"                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                        {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                            \clef "percussion"                          %! abjad.ScoreTemplate.attach_defaults(3)
+                            s1                                          %! abjad.ScoreTemplate.__illustrate__()
+                        }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                    }                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                    \context RhythmicStaff = "Staff_3"                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                    {                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                        \context Voice = "Voice_3"                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                        {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                            \clef "percussion"                          %! abjad.ScoreTemplate.attach_defaults(3)
+                            s1                                          %! abjad.ScoreTemplate.__illustrate__()
+                        }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                    }                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                    \context RhythmicStaff = "Staff_4"                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                    {                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                        \context Voice = "Voice_4"                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                        {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                            \clef "percussion"                          %! abjad.ScoreTemplate.attach_defaults(3)
+                            s1                                          %! abjad.ScoreTemplate.__illustrate__()
+                        }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                    }                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                >>                                                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+            >>                                                          %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+
+        >>> score = template_1()
+        >>> abjad.show(score) # doctest: +SKIP
+
+        >>> abjad.f(score, strict=60)
+        \context Score = "Grouped_Rhythmic_Staves_Score"            %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+        <<                                                          %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+            \context StaffGroup = "Grouped_Rhythmic_Staves_Staff_Group" %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+            <<                                                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                \context RhythmicStaff = "Staff_1"                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                {                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                    \context Voice = "Voice_1"                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                    {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                    }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                }                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                \context RhythmicStaff = "Staff_2"                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                {                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                    \context Voice = "Voice_2"                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                    {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                    }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                }                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                \context RhythmicStaff = "Staff_3"                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                {                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                    \context Voice = "Voice_3"                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                    {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                    }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                }                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                \context RhythmicStaff = "Staff_4"                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                {                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                    \context Voice = "Voice_4"                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                    {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                    }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                }                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+            >>                                                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+        >>                                                          %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+
+    ..  container:: example
+
+        More than one voice per staff:
+
+        >>> template_2 = class_(staff_count=[2, 1, 2])
+        >>> abjad.show(template_2) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(template_2.__illustrate__()[abjad.Score], strict=60)
+            \context Score = "Grouped_Rhythmic_Staves_Score"            %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+            <<                                                          %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                \context StaffGroup = "Grouped_Rhythmic_Staves_Staff_Group" %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                <<                                                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                    \context RhythmicStaff = "Staff_1"                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                    <<                                                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                        \context Voice = "Voice_1_1"                    %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                        {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                            s1                                          %! abjad.ScoreTemplate.__illustrate__()
+                        }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                        \context Voice = "Voice_1_2"                    %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                        {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                            s1                                          %! abjad.ScoreTemplate.__illustrate__()
+                        }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                    >>                                                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                    \context RhythmicStaff = "Staff_2"                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                    {                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                        \context Voice = "Voice_2"                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                        {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                            s1                                          %! abjad.ScoreTemplate.__illustrate__()
+                        }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                    }                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                    \context RhythmicStaff = "Staff_3"                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                    <<                                                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                        \context Voice = "Voice_3_1"                    %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                        {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                            s1                                          %! abjad.ScoreTemplate.__illustrate__()
+                        }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                        \context Voice = "Voice_3_2"                    %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                        {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                            s1                                          %! abjad.ScoreTemplate.__illustrate__()
+                        }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                    >>                                                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                >>                                                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+            >>                                                          %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+
+        >>> score = template_2()
+        >>> abjad.show(score) # doctest: +SKIP
+
+        >>> abjad.f(score, strict=60)
+        \context Score = "Grouped_Rhythmic_Staves_Score"            %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+        <<                                                          %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+            \context StaffGroup = "Grouped_Rhythmic_Staves_Staff_Group" %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+            <<                                                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                \context RhythmicStaff = "Staff_1"                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                <<                                                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                    \context Voice = "Voice_1_1"                    %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                    {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                    }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                    \context Voice = "Voice_1_2"                    %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                    {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                    }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                >>                                                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                \context RhythmicStaff = "Staff_2"                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                {                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                    \context Voice = "Voice_2"                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                    {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                    }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                }                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                \context RhythmicStaff = "Staff_3"                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                <<                                                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                    \context Voice = "Voice_3_1"                    %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                    {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                    }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                    \context Voice = "Voice_3_2"                    %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                    {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                    }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+                >>                                                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+            >>                                                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+        >>                                                          %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+
+    """
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = ("_staff_count",)
+
+    ### INITIALIZER ###
+
+    def __init__(self, staff_count=2):
+        super().__init__()
+        assert isinstance(staff_count, (int, collections.abc.Iterable))
+        if isinstance(staff_count, collections.abc.Iterable):
+            staff_count = list(staff_count)
+        self._staff_count = staff_count
+
+    ### SPECIAL METHODS ###
+
+    def __call__(self):
+        """
+        Calls score template.
+
+        Returns score.
+        """
+        staves = []
+        site = "abjad.GroupedRhythmicStavesScoreTemplate.__call__()"
+        tag = Tag(site)
+        if isinstance(self.staff_count, int):
+            for index in range(self.staff_count):
+                number = index + 1
+                name = "Voice_{}".format(number)
+                voice = Voice([], name=name, tag=tag)
+                name = "Staff_{}".format(number)
+                staff = Staff([voice], name=name, tag=tag)
+                staff.lilypond_type = "RhythmicStaff"
+                annotate(staff, "default_clef", Clef("percussion"))
+                staves.append(staff)
+                key = "v{}".format(number)
+                self.voice_abbreviations[key] = voice.name
+        elif isinstance(self.staff_count, list):
+            for staff_index, voice_count in enumerate(self.staff_count):
+                staff_number = staff_index + 1
+                name = "Staff_{}".format(staff_number)
+                staff = Staff(name=name, tag=tag)
+                staff.lilypond_type = "RhythmicStaff"
+                assert 1 <= voice_count
+                for voice_index in range(voice_count):
+                    voice_number = voice_index + 1
+                    if voice_count == 1:
+                        voice_identifier = str(staff_number)
+                    else:
+                        voice_identifier = "{}_{}".format(staff_number, voice_number)
+                        staff.simultaneous = True
+                    name = "Voice_{}".format(voice_identifier)
+                    voice = Voice([], name=name, tag=tag)
+                    staff.append(voice)
+                    key = "v{}".format(voice_identifier)
+                    self.voice_abbreviations[key] = voice.name
+                staves.append(staff)
+        grouped_rhythmic_staves_staff_group = StaffGroup(
+            staves, name="Grouped_Rhythmic_Staves_Staff_Group", tag=tag
+        )
+        grouped_rhythmic_staves_score = Score(
+            [grouped_rhythmic_staves_staff_group],
+            name="Grouped_Rhythmic_Staves_Score",
+            tag=tag,
+        )
+        return grouped_rhythmic_staves_score
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def staff_count(self):
+        """
+        Gets score template staff count.
+
+        ..  container:: example
+
+            >>> class_ = abjad.GroupedRhythmicStavesScoreTemplate
+            >>> template = class_(staff_count=4)
+            >>> template.staff_count
+            4
+
+        Returns nonnegative integer.
+        """
+        return self._staff_count
+
+    @property
+    def voice_abbreviations(self):
+        """
+        Gets context name abbreviations.
+
+        ..  container:: example
+
+            >>> class_ = abjad.GroupedRhythmicStavesScoreTemplate
+            >>> template = class_(staff_count=4)
+            >>> template.voice_abbreviations
+            OrderedDict([])
+
+        """
+        return super(GroupedRhythmicStavesScoreTemplate, self).voice_abbreviations
+
+
+class GroupedStavesScoreTemplate(ScoreTemplate):
+    r"""
+    Grouped staves score template.
+
+    ..  container:: example
+
+        >>> class_ = abjad.GroupedStavesScoreTemplate
+        >>> template = class_(staff_count=4)
+        >>> abjad.show(template) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(template.__illustrate__()[abjad.Score], strict=60)
+            \context Score = "Grouped_Staves_Score"                     %! abjad.GroupedStavesScoreTemplate.__call__()
+            <<                                                          %! abjad.GroupedStavesScoreTemplate.__call__()
+                \context StaffGroup = "Grouped_Staves_Staff_Group"      %! abjad.GroupedStavesScoreTemplate.__call__()
+                <<                                                      %! abjad.GroupedStavesScoreTemplate.__call__()
+                    \context Staff = "Staff_1"                          %! abjad.GroupedStavesScoreTemplate.__call__()
+                    {                                                   %! abjad.GroupedStavesScoreTemplate.__call__()
+                        \context Voice = "Voice_1"                      %! abjad.GroupedStavesScoreTemplate.__call__()
+                        {                                               %! abjad.GroupedStavesScoreTemplate.__call__()
+                            s1                                          %! abjad.ScoreTemplate.__illustrate__()
+                        }                                               %! abjad.GroupedStavesScoreTemplate.__call__()
+                    }                                                   %! abjad.GroupedStavesScoreTemplate.__call__()
+                    \context Staff = "Staff_2"                          %! abjad.GroupedStavesScoreTemplate.__call__()
+                    {                                                   %! abjad.GroupedStavesScoreTemplate.__call__()
+                        \context Voice = "Voice_2"                      %! abjad.GroupedStavesScoreTemplate.__call__()
+                        {                                               %! abjad.GroupedStavesScoreTemplate.__call__()
+                            s1                                          %! abjad.ScoreTemplate.__illustrate__()
+                        }                                               %! abjad.GroupedStavesScoreTemplate.__call__()
+                    }                                                   %! abjad.GroupedStavesScoreTemplate.__call__()
+                    \context Staff = "Staff_3"                          %! abjad.GroupedStavesScoreTemplate.__call__()
+                    {                                                   %! abjad.GroupedStavesScoreTemplate.__call__()
+                        \context Voice = "Voice_3"                      %! abjad.GroupedStavesScoreTemplate.__call__()
+                        {                                               %! abjad.GroupedStavesScoreTemplate.__call__()
+                            s1                                          %! abjad.ScoreTemplate.__illustrate__()
+                        }                                               %! abjad.GroupedStavesScoreTemplate.__call__()
+                    }                                                   %! abjad.GroupedStavesScoreTemplate.__call__()
+                    \context Staff = "Staff_4"                          %! abjad.GroupedStavesScoreTemplate.__call__()
+                    {                                                   %! abjad.GroupedStavesScoreTemplate.__call__()
+                        \context Voice = "Voice_4"                      %! abjad.GroupedStavesScoreTemplate.__call__()
+                        {                                               %! abjad.GroupedStavesScoreTemplate.__call__()
+                            s1                                          %! abjad.ScoreTemplate.__illustrate__()
+                        }                                               %! abjad.GroupedStavesScoreTemplate.__call__()
+                    }                                                   %! abjad.GroupedStavesScoreTemplate.__call__()
+                >>                                                      %! abjad.GroupedStavesScoreTemplate.__call__()
+            >>                                                          %! abjad.GroupedStavesScoreTemplate.__call__()
+
+        >>> score = template()
+        >>> abjad.f(score, strict=60)
+        \context Score = "Grouped_Staves_Score"                     %! abjad.GroupedStavesScoreTemplate.__call__()
+        <<                                                          %! abjad.GroupedStavesScoreTemplate.__call__()
+            \context StaffGroup = "Grouped_Staves_Staff_Group"      %! abjad.GroupedStavesScoreTemplate.__call__()
+            <<                                                      %! abjad.GroupedStavesScoreTemplate.__call__()
+                \context Staff = "Staff_1"                          %! abjad.GroupedStavesScoreTemplate.__call__()
+                {                                                   %! abjad.GroupedStavesScoreTemplate.__call__()
+                    \context Voice = "Voice_1"                      %! abjad.GroupedStavesScoreTemplate.__call__()
+                    {                                               %! abjad.GroupedStavesScoreTemplate.__call__()
+                    }                                               %! abjad.GroupedStavesScoreTemplate.__call__()
+                }                                                   %! abjad.GroupedStavesScoreTemplate.__call__()
+                \context Staff = "Staff_2"                          %! abjad.GroupedStavesScoreTemplate.__call__()
+                {                                                   %! abjad.GroupedStavesScoreTemplate.__call__()
+                    \context Voice = "Voice_2"                      %! abjad.GroupedStavesScoreTemplate.__call__()
+                    {                                               %! abjad.GroupedStavesScoreTemplate.__call__()
+                    }                                               %! abjad.GroupedStavesScoreTemplate.__call__()
+                }                                                   %! abjad.GroupedStavesScoreTemplate.__call__()
+                \context Staff = "Staff_3"                          %! abjad.GroupedStavesScoreTemplate.__call__()
+                {                                                   %! abjad.GroupedStavesScoreTemplate.__call__()
+                    \context Voice = "Voice_3"                      %! abjad.GroupedStavesScoreTemplate.__call__()
+                    {                                               %! abjad.GroupedStavesScoreTemplate.__call__()
+                    }                                               %! abjad.GroupedStavesScoreTemplate.__call__()
+                }                                                   %! abjad.GroupedStavesScoreTemplate.__call__()
+                \context Staff = "Staff_4"                          %! abjad.GroupedStavesScoreTemplate.__call__()
+                {                                                   %! abjad.GroupedStavesScoreTemplate.__call__()
+                    \context Voice = "Voice_4"                      %! abjad.GroupedStavesScoreTemplate.__call__()
+                    {                                               %! abjad.GroupedStavesScoreTemplate.__call__()
+                    }                                               %! abjad.GroupedStavesScoreTemplate.__call__()
+                }                                                   %! abjad.GroupedStavesScoreTemplate.__call__()
+            >>                                                      %! abjad.GroupedStavesScoreTemplate.__call__()
+        >>                                                          %! abjad.GroupedStavesScoreTemplate.__call__()
+
+    """
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = ("_staff_count",)
+
+    ### INITIALIZER ###
+
+    def __init__(self, staff_count=2):
+        super().__init__()
+        self._staff_count = staff_count
+
+    ### SPECIAL METHODS ###
+
+    def __call__(self):
+        """
+        Calls score template.
+
+        Returns score.
+        """
+        staves = []
+        site = "abjad.GroupedStavesScoreTemplate.__call__()"
+        tag = Tag(site)
+        for index in range(self.staff_count):
+            number = index + 1
+            voice = Voice([], name="Voice_{}".format(number), tag=tag)
+            staff = Staff([voice], name="Staff_{}".format(number), tag=tag)
+            staves.append(staff)
+            self.voice_abbreviations["v{}".format(number)] = voice.name
+        staff_group = StaffGroup(staves, name="Grouped_Staves_Staff_Group", tag=tag)
+        score = Score([staff_group], name="Grouped_Staves_Score", tag=tag)
+        return score
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def staff_count(self):
+        """
+        Gets staff count.
+
+        ..  container::
+
+            >>> class_ = abjad.GroupedStavesScoreTemplate
+            >>> template = class_(staff_count=4)
+            >>> template.staff_count
+            4
+
+        """
+        return self._staff_count
+
+    @property
+    def voice_abbreviations(self):
+        """
+        Gets context name abbreviations.
+
+        ..  container::
+
+            >>> class_ = abjad.GroupedStavesScoreTemplate
+            >>> template = class_(staff_count=4)
+            >>> template.voice_abbreviations
+            OrderedDict([])
+
+        """
+        return super().voice_abbreviations
 
 
 class StringOrchestraScoreTemplate(ScoreTemplate):
@@ -519,8 +1199,6 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
 
         Returns score.
         """
-        import abjad
-
         site = "abjad.StringOrchestraScoreTemplate.__call__()"
         tag = Tag(site)
 
@@ -530,9 +1208,9 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
 
         ### SCORE ###
 
-        staff_group = abjad.StaffGroup(name="Outer_Staff_Group", tag=tag)
+        staff_group = StaffGroup(name="Outer_Staff_Group", tag=tag)
 
-        score = abjad.Score([staff_group], name="Score", tag=tag)
+        score = Score([staff_group], name="Score", tag=tag)
 
         ### VIOLINS ###
 
@@ -540,7 +1218,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
             clef_name = "treble"
             if self.use_percussion_clefs:
                 clef_name = "percussion"
-            instrument = abjad.Violin()
+            instrument = instruments.Violin()
             instrument_count = self.violin_count
             (
                 instrument_staff_group,
@@ -557,7 +1235,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
             clef_name = "alto"
             if self.use_percussion_clefs:
                 clef_name = "percussion"
-            instrument = abjad.Viola()
+            instrument = instruments.Viola()
             instrument_count = self.viola_count
             (
                 instrument_staff_group,
@@ -574,7 +1252,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
             clef_name = "bass"
             if self.use_percussion_clefs:
                 clef_name = "percussion"
-            instrument = abjad.Cello()
+            instrument = instruments.Cello()
             instrument_count = self.cello_count
             (
                 instrument_staff_group,
@@ -591,7 +1269,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
             clef_name = "bass_8"
             if self.use_percussion_clefs:
                 clef_name = "percussion"
-            instrument = abjad.Contrabass()
+            instrument = instruments.Contrabass()
             instrument_count = self.contrabass_count
             (
                 instrument_staff_group,
@@ -604,25 +1282,23 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
 
         ### TIME SIGNATURE CONTEXT ###
 
-        global_context = abjad.Context(
+        global_context = Context(
             lilypond_type="GlobalContext", name="Global_Context", tag=tag
         )
         instrument_tags = " ".join(tag_names)
         tag_string = r"\tag #'({})".format(instrument_tags)
-        literal = abjad.LilyPondLiteral(tag_string, "before")
-        abjad.attach(literal, global_context, tag=tag)
+        literal = LilyPondLiteral(tag_string, "before")
+        attach(literal, global_context, tag=tag)
         score.insert(0, global_context)
         return score
 
     ### PRIVATE METHODS ###
 
     def _make_instrument_staff_group(self, clef_name=None, count=None, instrument=None):
-        import abjad
-
         site = "abjad.StringOrchestraScoreTemplate._make_instrument_staff_group()"
         tag = Tag(site)
         name = instrument.name.title()
-        instrument_staff_group = abjad.StaffGroup(
+        instrument_staff_group = StaffGroup(
             lilypond_type="{}StaffGroup".format(name),
             name="{}_Staff_Group".format(name),
             tag=tag,
@@ -644,8 +1320,6 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
         return instrument_staff_group, tag_names
 
     def _make_performer_staff_group(self, clef_name=None, instrument=None, number=None):
-        import abjad
-
         site = "StringOrchestraScoreTemplate._make_performer_staff_group()"
         tag = Tag(site)
         if number is not None:
@@ -653,17 +1327,17 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
         else:
             name = instrument.name.title()
         pitch_range = instrument.pitch_range
-        staff_group = abjad.StaffGroup(
+        staff_group = StaffGroup(
             lilypond_type="StringPerformerStaffGroup",
             name="{}_Staff_Group".format(name),
             tag=tag,
         )
         tag_name = name.replace(" ", "")
         tag_string = r"\tag #'{}".format(tag_name)
-        tag_command = abjad.LilyPondLiteral(tag_string, "before")
-        abjad.attach(tag_command, staff_group, tag=tag)
+        tag_command = LilyPondLiteral(tag_string, "before")
+        attach(tag_command, staff_group, tag=tag)
         if self.split_hands:
-            lh_voice = abjad.Voice(
+            lh_voice = Voice(
                 [],
                 lilypond_type="FingeringVoice",
                 name="{}_Fingering_Voice".format(name),
@@ -671,16 +1345,16 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
             )
             abbreviation = lh_voice.name.lower().replace(" ", "_")
             self.voice_abbreviations[abbreviation] = lh_voice.name
-            lh_staff = abjad.Staff(
+            lh_staff = Staff(
                 [lh_voice],
                 lilypond_type="FingeringStaff",
                 name="{}_Fingering_Staff".format(name),
                 tag=tag,
             )
             lh_staff.simultaneous = True
-            abjad.annotate(lh_staff, "pitch_range", pitch_range)
-            abjad.annotate(lh_staff, "default_clef", abjad.Clef(clef_name))
-            rh_voice = abjad.Voice(
+            annotate(lh_staff, "pitch_range", pitch_range)
+            annotate(lh_staff, "default_clef", Clef(clef_name))
+            rh_voice = Voice(
                 [],
                 lilypond_type="BowingVoice",
                 name="{}_Bowing_Voice".format(name),
@@ -688,7 +1362,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
             )
             abbreviation = rh_voice.name.lower().replace(" ", "_")
             self.voice_abbreviations[abbreviation] = rh_voice.name
-            rh_staff = abjad.Staff(
+            rh_staff = Staff(
                 [rh_voice],
                 lilypond_type="BowingStaff",
                 name="{}_Bowing_Staff".format(name),
@@ -697,21 +1371,21 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
             rh_staff.simultaneous = True
             staff_group.extend([rh_staff, lh_staff])
         else:
-            lh_voice = abjad.Voice(
+            lh_voice = Voice(
                 [],
                 lilypond_type="FingeringVoice",
                 name="{}_Voice".format(name),
                 tag=tag,
             )
-            lh_staff = abjad.Staff(
+            lh_staff = Staff(
                 [lh_voice],
                 lilypond_type="FingeringStaff",
                 name="{}_Staff".format(name),
                 tag=tag,
             )
             lh_staff.simultaneous = True
-            abjad.annotate(lh_staff, "pitch_range", pitch_range)
-            abjad.annotate(lh_staff, "default_clef", abjad.Clef(clef_name))
+            annotate(lh_staff, "pitch_range", pitch_range)
+            annotate(lh_staff, "default_clef", Clef(clef_name))
             staff_group.append(lh_staff)
         return staff_group, tag_name
 
@@ -767,3 +1441,299 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
         Returns nonnegative integer.
         """
         return self._violin_count
+
+
+class StringQuartetScoreTemplate(ScoreTemplate):
+    r"""
+    String quartet score template.
+
+    ..  container:: example
+
+        >>> template = abjad.StringQuartetScoreTemplate()
+        >>> abjad.show(template) # doctest: +SKIP
+
+        >>> abjad.f(template.__illustrate__()[abjad.Score], strict=60)
+        \context Score = "String_Quartet_Score"                     %! abjad.StringQuartetScoreTemplate.__call__()
+        <<                                                          %! abjad.StringQuartetScoreTemplate.__call__()
+            \context StaffGroup = "String_Quartet_Staff_Group"      %! abjad.StringQuartetScoreTemplate.__call__()
+            <<                                                      %! abjad.StringQuartetScoreTemplate.__call__()
+                \tag #'first-violin
+                \context Staff = "First_Violin_Staff"               %! abjad.StringQuartetScoreTemplate.__call__()
+                {                                                   %! abjad.StringQuartetScoreTemplate.__call__()
+                    \context Voice = "First_Violin_Voice"           %! abjad.StringQuartetScoreTemplate.__call__()
+                    {                                               %! abjad.StringQuartetScoreTemplate.__call__()
+                        \clef "treble"                              %! abjad.ScoreTemplate.attach_defaults(3)
+                        s1                                          %! abjad.ScoreTemplate.__illustrate__()
+                    }                                               %! abjad.StringQuartetScoreTemplate.__call__()
+                }                                                   %! abjad.StringQuartetScoreTemplate.__call__()
+                \tag #'second-violin
+                \context Staff = "Second_Violin_Staff"              %! abjad.StringQuartetScoreTemplate.__call__()
+                {                                                   %! abjad.StringQuartetScoreTemplate.__call__()
+                    \context Voice = "Second_Violin_Voice"          %! abjad.StringQuartetScoreTemplate.__call__()
+                    {                                               %! abjad.StringQuartetScoreTemplate.__call__()
+                        \clef "treble"                              %! abjad.ScoreTemplate.attach_defaults(3)
+                        s1                                          %! abjad.ScoreTemplate.__illustrate__()
+                    }                                               %! abjad.StringQuartetScoreTemplate.__call__()
+                }                                                   %! abjad.StringQuartetScoreTemplate.__call__()
+                \tag #'viola
+                \context Staff = "Viola_Staff"                      %! abjad.StringQuartetScoreTemplate.__call__()
+                {                                                   %! abjad.StringQuartetScoreTemplate.__call__()
+                    \context Voice = "Viola_Voice"                  %! abjad.StringQuartetScoreTemplate.__call__()
+                    {                                               %! abjad.StringQuartetScoreTemplate.__call__()
+                        \clef "alto"                                %! abjad.ScoreTemplate.attach_defaults(3)
+                        s1                                          %! abjad.ScoreTemplate.__illustrate__()
+                    }                                               %! abjad.StringQuartetScoreTemplate.__call__()
+                }                                                   %! abjad.StringQuartetScoreTemplate.__call__()
+                \tag #'cello
+                \context Staff = "Cello_Staff"                      %! abjad.StringQuartetScoreTemplate.__call__()
+                {                                                   %! abjad.StringQuartetScoreTemplate.__call__()
+                    \context Voice = "Cello_Voice"                  %! abjad.StringQuartetScoreTemplate.__call__()
+                    {                                               %! abjad.StringQuartetScoreTemplate.__call__()
+                        \clef "bass"                                %! abjad.ScoreTemplate.attach_defaults(3)
+                        s1                                          %! abjad.ScoreTemplate.__illustrate__()
+                    }                                               %! abjad.StringQuartetScoreTemplate.__call__()
+                }                                                   %! abjad.StringQuartetScoreTemplate.__call__()
+            >>                                                      %! abjad.StringQuartetScoreTemplate.__call__()
+        >>                                                          %! abjad.StringQuartetScoreTemplate.__call__()
+
+    Returns score template.
+    """
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = ()
+
+    _part_manifest = PartManifest(
+        Part(section="FirstViolin", section_abbreviation="VN-1"),
+        Part(section="SecondViolin", section_abbreviation="VN-2"),
+        Part(section="Viola", section_abbreviation="VA"),
+        Part(section="Cello", section_abbreviation="VC"),
+    )
+
+    ### INITIALIZER ###
+
+    def __init__(self):
+        super().__init__()
+        self.voice_abbreviations.update(
+            {
+                "vn1": "First Violin Voice",
+                "vn2": "Second Violin Voice",
+                "va": "Viola Voice",
+                "vc": "Cello Voice",
+            }
+        )
+
+    ### SPECIAL METHODS ###
+
+    def __call__(self):
+        """
+        Calls string quartet score template.
+
+        Returns score.
+        """
+        site = "abjad.StringQuartetScoreTemplate.__call__()"
+        tag = Tag(site)
+
+        # make first violin voice and staff
+        first_violin_voice = Voice([], name="First_Violin_Voice", tag=tag)
+        first_violin_staff = Staff(
+            [first_violin_voice], name="First_Violin_Staff", tag=tag
+        )
+        clef = Clef("treble")
+        annotate(first_violin_staff, "default_clef", clef)
+        violin = instruments.Violin()
+        annotate(first_violin_staff, "default_instrument", violin)
+        literal = LilyPondLiteral(r"\tag #'first-violin", "before")
+        attach(literal, first_violin_staff)
+
+        # make second violin voice and staff
+        second_violin_voice = Voice([], name="Second_Violin_Voice", tag=tag)
+        second_violin_staff = Staff(
+            [second_violin_voice], name="Second_Violin_Staff", tag=tag
+        )
+        clef = Clef("treble")
+        annotate(second_violin_staff, "default_clef", clef)
+        violin = instruments.Violin()
+        annotate(second_violin_staff, "default_instrument", violin)
+        literal = LilyPondLiteral(r"\tag #'second-violin", "before")
+        attach(literal, second_violin_staff)
+
+        # make viola voice and staff
+        viola_voice = Voice([], name="Viola_Voice", tag=tag)
+        viola_staff = Staff([viola_voice], name="Viola_Staff", tag=tag)
+        clef = Clef("alto")
+        annotate(viola_staff, "default_clef", clef)
+        viola = instruments.Viola()
+        annotate(viola_staff, "default_instrument", viola)
+        literal = LilyPondLiteral(r"\tag #'viola", "before")
+        attach(literal, viola_staff)
+
+        # make cello voice and staff
+        cello_voice = Voice([], name="Cello_Voice", tag=tag)
+        cello_staff = Staff([cello_voice], name="Cello_Staff", tag=tag)
+        clef = Clef("bass")
+        annotate(cello_staff, "default_clef", clef)
+        cello = instruments.Cello()
+        annotate(cello_staff, "default_instrument", cello)
+        literal = LilyPondLiteral(r"\tag #'cello", "before")
+        attach(literal, cello_staff)
+
+        # make string quartet staff group
+        string_quartet_staff_group = StaffGroup(
+            [first_violin_staff, second_violin_staff, viola_staff, cello_staff],
+            name="String_Quartet_Staff_Group",
+            tag=tag,
+        )
+
+        # make string quartet score
+        string_quartet_score = Score(
+            [string_quartet_staff_group], name="String_Quartet_Score", tag=tag,
+        )
+
+        # return string quartet score
+        return string_quartet_score
+
+
+class TwoStaffPianoScoreTemplate(ScoreTemplate):
+    r"""
+    Two-staff piano score template.
+
+    ..  container:: example
+
+        >>> template = abjad.TwoStaffPianoScoreTemplate()
+        >>> abjad.show(template) # doctest: +SKIP
+
+        >>> abjad.f(template.__illustrate__()[abjad.Score], strict=60)
+        \context Score = "Two_Staff_Piano_Score"                    %! abjad.TwoStaffPianoScoreTemplate.__call__()
+        <<                                                          %! abjad.TwoStaffPianoScoreTemplate.__call__()
+            \context GlobalContext = "Global_Context"               %! abjad.ScoreTemplate._make_global_context()
+            <<                                                      %! abjad.ScoreTemplate._make_global_context()
+                \context GlobalRests = "Global_Rests"               %! abjad.ScoreTemplate._make_global_context()
+                {                                                   %! abjad.ScoreTemplate._make_global_context()
+                }                                                   %! abjad.ScoreTemplate._make_global_context()
+                \context GlobalSkips = "Global_Skips"               %! abjad.ScoreTemplate._make_global_context()
+                {                                                   %! abjad.ScoreTemplate._make_global_context()
+                }                                                   %! abjad.ScoreTemplate._make_global_context()
+            >>                                                      %! abjad.ScoreTemplate._make_global_context()
+            \context PianoStaff = "Piano_Staff"                     %! abjad.TwoStaffPianoScoreTemplate.__call__()
+            <<                                                      %! abjad.TwoStaffPianoScoreTemplate.__call__()
+                \context Staff = "RH_Staff"                         %! abjad.TwoStaffPianoScoreTemplate.__call__()
+                {                                                   %! abjad.TwoStaffPianoScoreTemplate.__call__()
+                    \context Voice = "RH_Voice"                     %! abjad.TwoStaffPianoScoreTemplate.__call__()
+                    {                                               %! abjad.TwoStaffPianoScoreTemplate.__call__()
+                        s1                                          %! abjad.ScoreTemplate.__illustrate__()
+                    }                                               %! abjad.TwoStaffPianoScoreTemplate.__call__()
+                }                                                   %! abjad.TwoStaffPianoScoreTemplate.__call__()
+                \context Staff = "LH_Staff"                         %! abjad.TwoStaffPianoScoreTemplate.__call__()
+                {                                                   %! abjad.TwoStaffPianoScoreTemplate.__call__()
+                    \context Voice = "LH_Voice"                     %! abjad.TwoStaffPianoScoreTemplate.__call__()
+                    {                                               %! abjad.TwoStaffPianoScoreTemplate.__call__()
+                        \clef "bass"                                %! abjad.ScoreTemplate.attach_defaults(3)
+                        s1                                          %! abjad.ScoreTemplate.__illustrate__()
+                    }                                               %! abjad.TwoStaffPianoScoreTemplate.__call__()
+                }                                                   %! abjad.TwoStaffPianoScoreTemplate.__call__()
+            >>                                                      %! abjad.TwoStaffPianoScoreTemplate.__call__()
+        >>                                                          %! abjad.TwoStaffPianoScoreTemplate.__call__()
+
+    Returns score template.
+    """
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = ()
+
+    ### INITIALIZER ###
+
+    def __init__(self):
+        super().__init__()
+        self.voice_abbreviations.update({"rh": "RHVoice", "lh": "LHVoice"})
+
+    ### SPECIAL METHODS ###
+
+    def __call__(self) -> Score:
+        r"""
+        Calls two-staff piano score template.
+
+        ..  container:: example
+
+            REGRESSION. Attaches piano to piano group (rather than just staff):
+
+            >>> template = abjad.TwoStaffPianoScoreTemplate()
+            >>> score = template()
+            >>> piano_staff = score['Piano_Staff']
+            >>> rh_voice = score['RH_Voice']
+            >>> lh_voice = score['LH_Voice']
+
+            >>> rh_voice.append("g'4")
+            >>> lh_voice.append("c4")
+            >>> wrappers = template.attach_defaults(score)
+
+            >>> abjad.show(score) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(score, strict=60)
+                \context Score = "Two_Staff_Piano_Score"                    %! abjad.TwoStaffPianoScoreTemplate.__call__()
+                <<                                                          %! abjad.TwoStaffPianoScoreTemplate.__call__()
+                    \context GlobalContext = "Global_Context"               %! abjad.ScoreTemplate._make_global_context()
+                    <<                                                      %! abjad.ScoreTemplate._make_global_context()
+                        \context GlobalRests = "Global_Rests"               %! abjad.ScoreTemplate._make_global_context()
+                        {                                                   %! abjad.ScoreTemplate._make_global_context()
+                        }                                                   %! abjad.ScoreTemplate._make_global_context()
+                        \context GlobalSkips = "Global_Skips"               %! abjad.ScoreTemplate._make_global_context()
+                        {                                                   %! abjad.ScoreTemplate._make_global_context()
+                        }                                                   %! abjad.ScoreTemplate._make_global_context()
+                    >>                                                      %! abjad.ScoreTemplate._make_global_context()
+                    \context PianoStaff = "Piano_Staff"                     %! abjad.TwoStaffPianoScoreTemplate.__call__()
+                    <<                                                      %! abjad.TwoStaffPianoScoreTemplate.__call__()
+                        \context Staff = "RH_Staff"                         %! abjad.TwoStaffPianoScoreTemplate.__call__()
+                        {                                                   %! abjad.TwoStaffPianoScoreTemplate.__call__()
+                            \context Voice = "RH_Voice"                     %! abjad.TwoStaffPianoScoreTemplate.__call__()
+                            {                                               %! abjad.TwoStaffPianoScoreTemplate.__call__()
+                                g'4
+                            }                                               %! abjad.TwoStaffPianoScoreTemplate.__call__()
+                        }                                                   %! abjad.TwoStaffPianoScoreTemplate.__call__()
+                        \context Staff = "LH_Staff"                         %! abjad.TwoStaffPianoScoreTemplate.__call__()
+                        {                                                   %! abjad.TwoStaffPianoScoreTemplate.__call__()
+                            \context Voice = "LH_Voice"                     %! abjad.TwoStaffPianoScoreTemplate.__call__()
+                            {                                               %! abjad.TwoStaffPianoScoreTemplate.__call__()
+                                \clef "bass"                                %! abjad.ScoreTemplate.attach_defaults(3)
+                                c4
+                            }                                               %! abjad.TwoStaffPianoScoreTemplate.__call__()
+                        }                                                   %! abjad.TwoStaffPianoScoreTemplate.__call__()
+                    >>                                                      %! abjad.TwoStaffPianoScoreTemplate.__call__()
+                >>                                                          %! abjad.TwoStaffPianoScoreTemplate.__call__()
+
+            >>> wrapper = abjad.inspect(rh_voice[0]).wrapper(abjad.Instrument)
+            >>> wrapper.context
+            'PianoStaff'
+
+        """
+        site = "abjad.TwoStaffPianoScoreTemplate.__call__()"
+        tag = Tag(site)
+        # GLOBAL CONTEXT
+        global_context = self._make_global_context()
+
+        # RH STAFF
+        rh_voice = Voice(name="RH_Voice", tag=tag)
+        rh_staff = Staff([rh_voice], name="RH_Staff", tag=tag)
+
+        # LH STAFF
+        lh_voice = Voice(name="LH_Voice", tag=tag)
+        lh_staff = Staff([lh_voice], name="LH_Staff", tag=tag)
+        annotate(lh_staff, "default_clef", Clef("bass"))
+
+        # PIANO STAFF
+        staff_group = StaffGroup(
+            [rh_staff, lh_staff],
+            lilypond_type="PianoStaff",
+            name="Piano_Staff",
+            tag=tag,
+        )
+        annotate(staff_group, "default_instrument", Piano())
+
+        # SCORE
+        score = Score(
+            [global_context, staff_group], name="Two_Staff_Piano_Score", tag=tag,
+        )
+        return score

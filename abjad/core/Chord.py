@@ -6,7 +6,7 @@ from ..ly.drums import drums
 from ..pitch.pitches import NamedPitch
 from ..pitch.segments import PitchSegment
 from ..system.LilyPondFormatManager import LilyPondFormatManager
-from ..system.Tag import Tag
+from ..tags import Tag
 from ..top import inspect, parse
 from ..utilities.Duration import Duration
 from .DrumNoteHead import DrumNoteHead

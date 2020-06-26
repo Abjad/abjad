@@ -8,8 +8,8 @@ from ..markups import Markup
 from ..pitch.pitches import NamedPitch
 from ..pitch.sets import PitchSet
 from ..system.LilyPondFormatManager import LilyPondFormatManager
-from ..system.Tag import Tag
 from ..system.Wrapper import Wrapper
+from ..tags import Tag
 from ..timespans import Timespan
 from ..top import iterate
 from ..utilities.Duration import Duration

@@ -17,7 +17,7 @@ from ..indicators.TimeSignature import TimeSignature
 from ..pitch.pitches import NamedPitch
 from ..scheme import Scheme, SpacingVector
 from ..system.LilyPondFormatManager import LilyPondFormatManager
-from ..system.Tag import Tag
+from ..tags import Tag
 from ..top import attach
 from ..top import inspect as abjad_inspect
 from ..top import iterate, override, select, sequence

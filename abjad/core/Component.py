@@ -10,9 +10,9 @@ from ..formatting import FormatSpecification, StorageFormatManager
 from ..indicators.StaffChange import StaffChange
 from ..markups import Markup
 from ..system.LilyPondFormatManager import LilyPondFormatManager
-from ..system.Tag import Tag
 from ..system.UpdateManager import UpdateManager
 from ..system.Wrapper import Wrapper
+from ..tags import Tag
 from ..timespans import Timespan
 from ..top import attach, detach, inspect, mutate, override, select, setting
 

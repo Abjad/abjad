@@ -1,18 +1,17 @@
+from .yield_all_modules import yield_all_modules
+
+
 def list_all_classes(modules=None, ignored_classes=None):
     """
     Lists all public classes defined in `path`.
 
     ..  container:: example
 
-        >>> all_classes = abjad.utilities.list_all_classes(
-        ...     modules='abjad',
-        ...     )
+        >>> all_classes = abjad.list_all_classes(modules="abjad")
 
     """
-    from .. import utilities
-
     all_classes = set()
-    for module in utilities.yield_all_modules(modules):
+    for module in yield_all_modules(modules):
         name = module.__name__.split(".")[-1]
         if name.startswith("_"):
             continue

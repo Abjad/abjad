@@ -11,7 +11,7 @@ from uqbar.graphs import Grapher
 
 import abjad
 
-from .lilypondfile import Block
+from .lilypondfile.Block import Block
 from .system.Configuration import Configuration
 from .system.IOManager import IOManager
 from .system.Timer import Timer

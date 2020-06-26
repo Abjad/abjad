@@ -10,7 +10,7 @@ from ..indicators.StopBeam import StopBeam
 from ..indicators.StopHairpin import StopHairpin
 from ..indicators.StopTextSpan import StopTextSpan
 from ..instruments import Instrument
-from ..system.Tags import Tags
+from ..tags import Tags
 from ..top import inspect, iterate
 from ..utilities.Duration import Duration
 from ..utilities.Sequence import Sequence

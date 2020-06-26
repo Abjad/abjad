@@ -3,7 +3,7 @@ import numbers
 import typing
 
 from .. import mathtools
-from ..system.Tag import Tag
+from ..tags import Tag
 from ..utilities.Duration import Duration
 from ..utilities.Multiplier import Multiplier
 from ..utilities.Sequence import Sequence

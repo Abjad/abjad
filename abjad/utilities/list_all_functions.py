@@ -1,5 +1,7 @@
 import types
 
+from .yield_all_modules import yield_all_modules
+
 
 def list_all_functions(modules=None):
     """
@@ -7,15 +9,11 @@ def list_all_functions(modules=None):
 
     ..  container:: example
 
-        >>> all_functions = abjad.utilities.list_all_functions(
-        ...     modules='abjad',
-        ...     )
+        >>> all_functions = abjad.list_all_functions(modules="abjad")
 
     """
-    from .. import utilities
-
     all_functions = set()
-    for module in utilities.yield_all_modules(modules):
+    for module in yield_all_modules(modules):
         name = module.__name__.split(".")[-1]
         if name.startswith("_"):
             continue

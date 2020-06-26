@@ -3,10 +3,10 @@ import typing
 
 import uqbar.graphs
 
-from .. import exceptions, rhythmtrees
+from .. import exceptions
 from ..formatting import FormatSpecification
 from ..system.LilyPondFormatManager import LilyPondFormatManager
-from ..system.Tag import Tag
+from ..tags import Tag
 from ..top import inspect, iterate, mutate, parse, select
 from ..utilities.Duration import Duration
 from .Component import Component
@@ -743,6 +743,7 @@ class Container(Component):
     def _parse_string(self, string):
         from ..parsers.reduced import ReducedLyParser
         from ..lilypondfile.LilyPondFile import LilyPondFile
+        from .. import rhythmtrees
 
         user_input = string.strip()
         if user_input.startswith("abj:"):

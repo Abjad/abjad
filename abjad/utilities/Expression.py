@@ -125,6 +125,9 @@ class Expression(object):
         subexpressions=None,
         template=None,
     ):
+        #        if evaluation_template is not None:
+        #            if "abjad.core.Selection" in evaluation_template:
+        #                raise Exception(evaluation_template)
         if argument_values is not None:
             assert isinstance(argument_values, dict)
             argument_values = argument_values or None
@@ -214,7 +217,7 @@ class Expression(object):
             abjad.Expression(
                 callbacks=[
                     abjad.Expression(
-                        evaluation_template='abjad.utilities.Sequence',
+                        evaluation_template='abjad.Sequence',
                         is_initializer=True,
                         string_template='{}',
                         ),
@@ -223,7 +226,7 @@ class Expression(object):
                             'argument': [4, 5, 6],
                             },
                         evaluation_template='{}.__add__([4, 5, 6])',
-                        qualified_method_name='abjad.utilities.Sequence.__add__',
+                        qualified_method_name='abjad.Sequence.__add__',
                         string_template='{} + [4, 5, 6]',
                         ),
                     ],
@@ -909,8 +912,11 @@ class Expression(object):
         if parts[-1] != class_.__name__:
             parts.append(class_.__name__)
         if "abjad" in parts:
-            parts = [_ for _ in parts if "tools" not in _]
-        evaluation_template = ".".join(parts)
+            # parts = [_ for _ in parts if "tools" not in _]
+            assert parts[0] == "abjad", repr(parts)
+            evaluation_template = f"abjad.{class_.__name__}"
+        else:
+            evaluation_template = ".".join(parts)
         keywords = self._make_evaluable_keywords(keywords)
         keywords = keywords or None
         return type(self)(
@@ -1072,7 +1078,9 @@ class Expression(object):
             if parts[-1] != class_.__name__:
                 parts.append(class_.__name__)
             if "abjad" in parts:
-                parts = [_ for _ in parts if "tools" not in _]
+                # parts = [_ for _ in parts if "tools" not in _]
+                assert parts[0] == "abjad"
+                parts = ["abjad", class_.__name__]
             parts.append(function_name)
             qualified_method_name = ".".join(parts)
             assert "." in qualified_method_name
@@ -1133,7 +1141,7 @@ class Expression(object):
 
     @staticmethod
     def _to_evaluable_string(argument):
-        from . import Sequence
+        from .Sequence import Sequence
 
         if argument is None:
             pass
@@ -1822,7 +1830,8 @@ class Expression(object):
             >>> J
             PitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
 
-            >>> abjad.show(J) # doctest: +SKIP
+            >>> lilypond_file = abjad.illustrate(J)
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  container:: example expression
 

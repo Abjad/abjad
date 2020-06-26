@@ -1,9 +1,21 @@
-from .. import core, indicators, mathtools, utilities
+from .. import mathtools
+from ..core.Chord import Chord
+from ..core.Container import Container
+from ..core.Note import Note
+from ..core.Rest import Rest
+from ..core.Tuplet import Tuplet
 from ..enums import Left, Right
+from ..indicators.StartBeam import StartBeam
+from ..indicators.StartSlur import StartSlur
+from ..indicators.StopBeam import StopBeam
+from ..indicators.StopSlur import StopSlur
+from ..indicators.Tie import Tie
+from ..indicators.TimeSignature import TimeSignature
 from ..pitch.pitchclasses import NamedPitchClass
 from ..pitch.pitches import NamedPitch
 from ..system.Parser import Parser
 from ..top import attach, detach, inspect, select
+from ..utilities.Duration import Duration
 
 
 class ReducedLyParser(Parser):
@@ -170,7 +182,7 @@ class ReducedLyParser(Parser):
     ### INITIALIZER ###
 
     def __init__(self, debug=False):
-        self._default_duration = utilities.Duration((1, 4))
+        self._default_duration = Duration((1, 4))
         self._toplevel_component_count = None
         Parser.__init__(self, debug=debug)
 
@@ -267,25 +279,25 @@ class ReducedLyParser(Parser):
         """
         beam : BRACKET_L
         """
-        p[0] = (indicators.StartBeam, Left)
+        p[0] = (StartBeam, Left)
 
     def p_beam__BRACKET_R(self, p):
         """
         beam : BRACKET_R
         """
-        p[0] = (indicators.StopBeam, Right)
+        p[0] = (StopBeam, Right)
 
     def p_chord_body__chord_pitches(self, p):
         """
         chord_body : chord_pitches
         """
-        p[0] = core.Chord(p[1], self._default_duration)
+        p[0] = Chord(p[1], self._default_duration)
 
     def p_chord_body__chord_pitches__positive_leaf_duration(self, p):
         """
         chord_body : chord_pitches positive_leaf_duration
         """
-        p[0] = core.Chord(p[1], p[2])
+        p[0] = Chord(p[1], p[2])
 
     def p_chord_pitches__CARAT_L__pitches__CARAT_R(self, p):
         """
@@ -343,7 +355,7 @@ class ReducedLyParser(Parser):
 
     def p_container__BRACE_L__component_list__BRACE_R(self, p):
         r"""container : BRACE_L component_list BRACE_R"""
-        p[0] = core.Container()
+        p[0] = Container()
         for component in p[2]:
             p[0].append(component)
 
@@ -402,11 +414,11 @@ class ReducedLyParser(Parser):
         """
         measure : PIPE FRACTION component_list PIPE
         """
-        measure = core.Container()
+        measure = Container()
         for x in p[3]:
             measure.append(x)
         leaf = inspect(measure).leaf(0)
-        time_signature = indicators.TimeSignature(p[2].pair)
+        time_signature = TimeSignature(p[2].pair)
         attach(time_signature, leaf)
         p[0] = measure
 
@@ -417,7 +429,7 @@ class ReducedLyParser(Parser):
         duration_log = p[1]
         dots = "." * p[2]
         string = f"{abs(duration_log)}{dots}"
-        duration = utilities.Duration.from_lilypond_duration_string(string)
+        duration = Duration.from_lilypond_duration_string(string)
         self._default_duration = duration
         p[0] = duration
 
@@ -425,19 +437,19 @@ class ReducedLyParser(Parser):
         """
         note_body : pitch
         """
-        p[0] = core.Note(p[1], self._default_duration)
+        p[0] = Note(p[1], self._default_duration)
 
     def p_note_body__pitch__positive_leaf_duration(self, p):
         """
         note_body : pitch positive_leaf_duration
         """
-        p[0] = core.Note(p[1], p[2])
+        p[0] = Note(p[1], p[2])
 
     def p_note_body__positive_leaf_duration(self, p):
         """
         note_body : positive_leaf_duration
         """
-        p[0] = core.Note(0, p[1])
+        p[0] = Note(0, p[1])
 
     def p_pitch__PITCHNAME(self, p):
         """
@@ -475,7 +487,7 @@ class ReducedLyParser(Parser):
         """
         duration_log = p[1]
         dots = "." * p[2]
-        duration = utilities.Duration.from_lilypond_duration_string(
+        duration = Duration.from_lilypond_duration_string(
             "{}{}".format(abs(duration_log), dots)
         )
         self._default_duration = duration
@@ -520,31 +532,31 @@ class ReducedLyParser(Parser):
         """
         rest_body : RESTNAME
         """
-        p[0] = core.Rest(self._default_duration)
+        p[0] = Rest(self._default_duration)
 
     def p_rest_body__RESTNAME__positive_leaf_duration(self, p):
         """
         rest_body : RESTNAME positive_leaf_duration
         """
-        p[0] = core.Rest(p[2])
+        p[0] = Rest(p[2])
 
     def p_rest_body__negative_leaf_duration(self, p):
         """
         rest_body : negative_leaf_duration
         """
-        p[0] = core.Rest(p[1])
+        p[0] = Rest(p[1])
 
     def p_slur__PAREN_L(self, p):
         """
         slur : PAREN_L
         """
-        p[0] = (indicators.StartSlur, Left)
+        p[0] = (StartSlur, Left)
 
     def p_slur__PAREN_R(self, p):
         """
         slur : PAREN_R
         """
-        p[0] = (indicators.StopSlur, Right)
+        p[0] = (StopSlur, Right)
 
     def p_start__EMPTY(self, p):
         """
@@ -571,16 +583,16 @@ class ReducedLyParser(Parser):
         """
         tie : TILDE
         """
-        p[0] = (indicators.Tie, Left)
+        p[0] = (Tie, Left)
 
     def p_tuplet__FRACTION__container(self, p):
         """
         tuplet : FRACTION container
         """
-        assert isinstance(p[2], core.Container)
+        assert isinstance(p[2], Container)
         leaves = p[2][:]
         p[2][:] = []
-        p[0] = core.Tuplet(p[1], leaves)
+        p[0] = Tuplet(p[1], leaves)
 
     ### PRIVATE METHODS ###
 
@@ -588,21 +600,21 @@ class ReducedLyParser(Parser):
         for leaf in leaves:
             span_events = self._get_span_events(leaf)
             for current_class, directions in span_events.items():
-                if current_class in (indicators.StartSlur, indicators.StopSlur,):
+                if current_class in (StartSlur, StopSlur,):
                     indicator = current_class()
                     attach(indicator, leaf)
                     continue
-                if current_class in (indicators.StartBeam, indicators.StopBeam,):
+                if current_class in (StartBeam, StopBeam,):
                     indicator = current_class()
                     attach(indicator, leaf)
                     continue
-                if current_class is indicators.Tie:
+                if current_class is Tie:
                     indicator = current_class()
                     attach(indicator, leaf)
                     continue
 
     def _cleanup(self, parsed):
-        container = core.Container()
+        container = Container()
         for x in parsed:
             container.append(x)
         parsed = container
@@ -625,7 +637,7 @@ class ReducedLyParser(Parser):
 
     def _setup(self):
         self._toplevel_component_count = 0
-        self._default_duration = utilities.Duration((1, 4))
+        self._default_duration = Duration((1, 4))
 
     ### PUBLIC PROPERTIES ###
 

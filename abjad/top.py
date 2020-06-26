@@ -1175,7 +1175,7 @@ def override(argument):
     import abjad
 
     if getattr(argument, "_overrides", None) is None:
-        manager = abjad.lilypondnames.LilyPondGrobNameManager()
+        manager = abjad.LilyPondGrobNameManager()
         argument._overrides = manager
     return argument._overrides
 
@@ -1218,36 +1218,8 @@ def parse(string, language="english"):
 
 
 def persist(client):
-    r"""
+    """
     Makes persistence manager.
-
-    ..  container:: example
-
-        Persists staff as LilyPond file:
-
-        >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> abjad.f(staff)
-            \new Staff
-            {
-                c'4
-                e'4
-                d'4
-                f'4
-            }
-
-        >>> abjad.persist(staff).as_ly() # doctest: +SKIP
-
-    ..  container:: example
-
-        Returns persistence agent:
-
-        >>> abjad.persist(staff)
-        PersistenceManager(client=Staff("c'4 e'4 d'4 f'4"))
-
     """
     import abjad
 
@@ -1424,10 +1396,10 @@ def setting(argument):
         LilyPondSettingNameManager(('instrument_name', Markup(contents=['Vn. I'])))
 
     """
-    import abjad
+    from .lilypondnames.LilyPondSettingNameManager import LilyPondSettingNameManager
 
     if getattr(argument, "_lilypond_setting_name_manager", None) is None:
-        manager = abjad.lilypondnames.LilyPondSettingNameManager()
+        manager = LilyPondSettingNameManager()
         argument._lilypond_setting_name_manager = manager
     return argument._lilypond_setting_name_manager
 
