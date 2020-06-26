@@ -5,12 +5,16 @@ Instrument classes.
 import copy
 import typing
 
-from .formatting import FormatSpecification, StorageFormatManager
+from .core.Component import inspect
+from .markups import Markup
 from .pitch.PitchRange import PitchRange
 from .pitch.pitchclasses import NamedPitchClass
 from .pitch.pitches import NamedPitch
 from .pitch.segments import PitchSegment
+from .storage import FormatSpecification, StorageFormatManager
+from .top import iterate
 from .utilities.Enumerator import Enumerator
+from .utilities.String import String
 
 
 class Instrument(object):
@@ -115,34 +119,32 @@ class Instrument(object):
         short_name=None,
         short_markup=None,
     ):
-        import abjad
-
         self._context = context or "Staff"
         if name is not None:
             name = str(name)
         self._name = name
         if markup is not None:
-            markup = abjad.Markup(markup)
+            markup = Markup(markup)
         self._name_markup = markup
         if short_name is not None:
             short_name = str(short_name)
         self._short_name = short_name
         if short_markup is not None:
-            short_markup = abjad.Markup(short_markup)
+            short_markup = Markup(short_markup)
         self._short_name_markup = short_markup
         allowable_clefs = allowable_clefs or ("treble",)
         self._allowable_clefs = allowable_clefs
         if isinstance(pitch_range, str):
-            pitch_range = abjad.PitchRange(pitch_range)
-        elif isinstance(pitch_range, abjad.PitchRange):
+            pitch_range = PitchRange(pitch_range)
+        elif isinstance(pitch_range, PitchRange):
             pitch_range = copy.copy(pitch_range)
         elif pitch_range is None:
-            pitch_range = abjad.PitchRange()
+            pitch_range = PitchRange()
         else:
             raise TypeError(pitch_range)
         self._pitch_range = pitch_range
-        middle_c_sounding_pitch = middle_c_sounding_pitch or abjad.NamedPitch("c'")
-        middle_c_sounding_pitch = abjad.NamedPitch(middle_c_sounding_pitch)
+        middle_c_sounding_pitch = middle_c_sounding_pitch or NamedPitch("c'")
+        middle_c_sounding_pitch = NamedPitch(middle_c_sounding_pitch)
         self._middle_c_sounding_pitch = middle_c_sounding_pitch
         if primary is not None:
             primary = bool(primary)
@@ -201,18 +203,14 @@ class Instrument(object):
     ### PRIVATE METHODS ###
 
     def _attachment_test_all(self, component_expression):
-        import abjad
-
-        if abjad.inspect(component_expression).has_indicator(Instrument):
+        if inspect(component_expression).has_indicator(Instrument):
             string = f"Already has instrument: {component_expression}."
             return string
         return True
 
     def _get_format_specification(self):
-        import abjad
-
         keywords = []
-        return abjad.FormatSpecification(
+        return FormatSpecification(
             self,
             repr_args_values=[],
             repr_is_indented=False,
@@ -223,21 +221,19 @@ class Instrument(object):
         return []
 
     def _initialize_default_name_markups(self):
-        import abjad
-
         if self._name_markup is None:
             if self.name:
                 string = self.name
-                string = abjad.String(string).capitalize_start()
-                markup = abjad.Markup(contents=string)
+                string = String(string).capitalize_start()
+                markup = Markup(contents=string)
                 self._name_markup = markup
             else:
                 self._name_markup = None
         if self._short_name_markup is None:
             if self.short_name:
                 string = self.short_name
-                string = abjad.String(string).capitalize_start()
-                markup = abjad.Markup(contents=string)
+                string = String(string).capitalize_start()
+                markup = Markup(contents=string)
                 self._short_name_markup = markup
             else:
                 self._short_name_markup = None
@@ -286,12 +282,10 @@ class Instrument(object):
 
         Returns markup.
         """
-        import abjad
-
         if self._name_markup is None:
             self._initialize_default_name_markups()
-        if not isinstance(self._name_markup, abjad.Markup):
-            markup = abjad.Markup(contents=self._name_markup)
+        if not isinstance(self._name_markup, Markup):
+            markup = Markup(contents=self._name_markup)
             self._name_markup = markup
         if self._name_markup.contents != ("",):
             return self._name_markup
@@ -358,12 +352,10 @@ class Instrument(object):
 
         Returns markup.
         """
-        import abjad
-
         if self._short_name_markup is None:
             self._initialize_default_name_markups()
-        if not isinstance(self._short_name_markup, abjad.Markup):
-            markup = abjad.Markup(contents=self._short_name_markup)
+        if not isinstance(self._short_name_markup, Markup):
+            markup = Markup(contents=self._short_name_markup)
             self._short_name_markup = markup
         if self._short_name_markup.contents != ("",):
             return self._short_name_markup
@@ -419,20 +411,18 @@ class Instrument(object):
 
         Returns none.
         """
-        import abjad
-
-        for leaf in abjad.iterate(argument).leaves(pitched=True):
-            instrument = abjad.inspect(leaf).effective(abjad.Instrument)
+        for leaf in iterate(argument).leaves(pitched=True):
+            instrument = inspect(leaf).effective(Instrument)
             if not instrument:
                 continue
             sounding_pitch = instrument.middle_c_sounding_pitch
-            interval = abjad.NamedPitch("C4") - sounding_pitch
+            interval = NamedPitch("C4") - sounding_pitch
             interval *= -1
-            if isinstance(leaf, abjad.Note):
+            if hasattr(leaf, "written_pitch"):
                 pitch = leaf.written_pitch
                 pitch = interval.transpose(pitch)
                 leaf.written_pitch = pitch
-            elif isinstance(leaf, abjad.Chord):
+            elif hasattr(leaf, "written_pitches"):
                 pitches = [interval.transpose(pitch) for pitch in leaf.written_pitches]
                 leaf.written_pitches = pitches
 
@@ -476,19 +466,17 @@ class Instrument(object):
 
         Returns none.
         """
-        import abjad
-
-        for leaf in abjad.iterate(argument).leaves(pitched=True):
-            instrument = abjad.inspect(leaf).effective(abjad.Instrument)
+        for leaf in iterate(argument).leaves(pitched=True):
+            instrument = inspect(leaf).effective(Instrument)
             if not instrument:
                 continue
             sounding_pitch = instrument.middle_c_sounding_pitch
-            interval = abjad.NamedPitch("C4") - sounding_pitch
-            if isinstance(leaf, abjad.Note):
+            interval = NamedPitch("C4") - sounding_pitch
+            if hasattr(leaf, "written_pitch"):
                 written_pitch = leaf.written_pitch
                 written_pitch = interval.transpose(written_pitch)
                 leaf.written_pitch = written_pitch
-            elif isinstance(leaf, abjad.Chord):
+            elif hasattr(leaf, "written_pitches"):
                 pitches = [interval.transpose(pitch) for pitch in leaf.written_pitches]
                 leaf.written_pitches = pitches
 

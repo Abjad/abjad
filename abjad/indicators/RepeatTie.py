@@ -1,12 +1,12 @@
 import typing
 
 from .. import enums
-from ..formatting import StorageFormatManager
+from ..core.Component import inspect
+from ..duration import Duration
+from ..formatting import LilyPondFormatBundle
 from ..lilypondnames.LilyPondTweakManager import LilyPondTweakManager
-from ..system.LilyPondFormatBundle import LilyPondFormatBundle
+from ..storage import StorageFormatManager
 from ..tags import Tags
-from ..top import inspect
-from ..utilities.Duration import Duration
 from ..utilities.String import String
 from .Clef import Clef, StaffPosition
 

@@ -1,5 +1,5 @@
-from ..formatting import StorageFormatManager
 from ..markups import Markup
+from ..storage import StorageFormatManager
 
 
 class StringContactPoint(object):

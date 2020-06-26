@@ -1,10 +1,10 @@
 import functools
 import typing
 
-from ..formatting import FormatSpecification, StorageFormatManager
+from ..formatting import LilyPondFormatManager
 from ..lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from ..pitch.pitches import NamedPitch
-from ..system.LilyPondFormatManager import LilyPondFormatManager
+from ..storage import FormatSpecification, StorageFormatManager
 
 
 @functools.total_ordering

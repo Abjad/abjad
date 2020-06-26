@@ -1,7 +1,7 @@
 import typing
 
-from ..formatting import StorageFormatManager
 from ..ly.grob_interfaces import grob_interfaces
+from ..storage import StorageFormatManager
 from .LilyPondGrobInterface import LilyPondGrobInterface
 
 

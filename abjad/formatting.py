@@ -1,204 +1,243 @@
-import collections
-import importlib
-import inspect
-import types
+import typing
+
+from . import enums
+from .scheme import Scheme, SchemePair
+from .storage import FormatSpecification, StorageFormatManager
+from .top import new, override, setting
+from .utilities.String import String
 
 
-class FormatSpecification(object):
+class LilyPondFormatBundle(object):
     """
-    Format specification.
+    LilyPond format bundle.
+
+    Transient class created to hold the collection of all
+    format contributions generated on behalf of a single component.
     """
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = "Storage formatting"
+    __documentation_section__ = "LilyPond formatting"
 
     __slots__ = (
-        "_client",
-        "_coerce_for_equality",
-        "_repr_args_values",
-        "_repr_is_bracketed",
-        "_repr_is_indented",
-        "_repr_kwargs_names",
-        "_repr_text",
-        "_storage_format_args_values",
-        "_storage_format_forced_override",
-        "_storage_format_is_bracketed",
-        "_storage_format_is_indented",
-        "_storage_format_kwargs_names",
-        "_storage_format_text",
-        "_template_names",
+        "_absolute_after",
+        "_absolute_before",
+        "_after",
+        "_before",
+        "_closing",
+        "_context_settings",
+        "_grob_overrides",
+        "_grob_reverts",
+        "_opening",
     )
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        client=None,
-        coerce_for_equality=None,
-        repr_args_values=None,
-        repr_is_bracketed=None,
-        repr_is_indented=None,
-        repr_kwargs_names=None,
-        repr_text=None,
-        storage_format_args_values=None,
-        storage_format_forced_override=None,
-        storage_format_is_bracketed=None,
-        storage_format_is_indented=True,
-        storage_format_kwargs_names=None,
-        storage_format_text=None,
-        template_names=None,
-    ):
-        self._client = client
-        self._coerce_for_equality = self._coerce_boolean(coerce_for_equality)
-        self._repr_args_values = self._coerce_tuple(repr_args_values)
-        self._repr_is_bracketed = self._coerce_boolean(repr_is_bracketed)
-        self._repr_is_indented = self._coerce_boolean(repr_is_indented)
-        self._repr_kwargs_names = self._coerce_tuple(repr_kwargs_names)
-        self._repr_text = self._coerce_string(repr_text)
-        self._storage_format_args_values = self._coerce_tuple(
-            storage_format_args_values
-        )
-        self._storage_format_forced_override = storage_format_forced_override
-        self._storage_format_is_bracketed = self._coerce_boolean(
-            storage_format_is_bracketed
-        )
-        self._storage_format_is_indented = self._coerce_boolean(
-            storage_format_is_indented
-        )
-        self._storage_format_kwargs_names = self._coerce_tuple(
-            storage_format_kwargs_names
-        )
-        self._storage_format_text = self._coerce_string(storage_format_text)
-        self._template_names = self._coerce_tuple(template_names)
+    def __init__(self):
+        self._absolute_after = SlotContributions()
+        self._absolute_before = SlotContributions()
+        self._before = SlotContributions()
+        self._after = SlotContributions()
+        self._opening = SlotContributions()
+        self._closing = SlotContributions()
+        self._context_settings = []
+        self._grob_overrides = []
+        self._grob_reverts = []
+
+    ### SPECIAL METHODS ###
+
+    def __format__(self, format_specification="") -> str:
+        """
+        Formats object.
+        """
+        return StorageFormatManager(self).get_storage_format()
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
 
     ### PRIVATE METHODS ###
 
-    def _coerce_boolean(self, value):
-        if value is not None:
-            return bool(value)
+    def _get_format_specification(self):
+        slot_contribution_names = (
+            "absolute_before",
+            "absolute_after",
+            "before",
+            "after",
+            "opening",
+            "closing",
+        )
+        grob_contribution_names = (
+            "context_settings",
+            "grob_overrides",
+            "grob_reverts",
+        )
+        names = [
+            _ for _ in slot_contribution_names if getattr(self, _).has_contributions
+        ]
+        names.extend(_ for _ in grob_contribution_names if getattr(self, _))
+        return FormatSpecification(client=self, storage_format_kwargs_names=names)
 
-    def _coerce_string(self, value):
-        if value is not None:
-            return str(value)
+    ### PUBLIC METHODS ###
 
-    def _coerce_tuple(self, value):
-        if value is not None:
-            return tuple(value)
+    def get(self, identifier):
+        """
+        Gets ``identifier``.
+
+        Returns format contributions object or list.
+        """
+        return getattr(self, identifier)
+
+    def sort_overrides(self):
+        """
+        Makes each slot immutable.
+
+        Returns none.
+        """
+        self._context_settings = tuple(sorted(set(self.context_settings)))
+        self._grob_overrides = tuple(sorted(set(self.grob_overrides)))
+        self._grob_reverts = tuple(sorted(set(self.grob_reverts)))
+
+    def tag_format_contributions(self, tag, deactivate=None):
+        """
+        Tags format contributions with string ``tag``.
+
+        Returns none.
+        """
+        self.absolute_before.tag(tag, deactivate)
+        self.absolute_after.tag(tag, deactivate)
+        self.before.tag(tag, deactivate)
+        self.after.tag(tag, deactivate)
+        self.opening.tag(tag, deactivate)
+        self.closing.tag(tag, deactivate)
+        self._context_settings = LilyPondFormatManager.tag(
+            self.context_settings, tag, deactivate
+        )
+        self._grob_overrides = LilyPondFormatManager.tag(
+            self.grob_overrides, tag, deactivate
+        )
+        self._grob_reverts = LilyPondFormatManager.tag(
+            self.grob_reverts, tag, deactivate
+        )
+
+    def update(self, format_bundle):
+        """
+        Updates format bundle with all format contributions in
+        ``format_bundle``.
+
+        Returns none.
+        """
+        if hasattr(format_bundle, "_get_lilypond_format_bundle"):
+            format_bundle = format_bundle._get_lilypond_format_bundle()
+        assert isinstance(format_bundle, type(self))
+        self.absolute_before.update(format_bundle.absolute_before)
+        self.absolute_after.update(format_bundle.absolute_after)
+        self.before.update(format_bundle.before)
+        self.after.update(format_bundle.after)
+        self.opening.update(format_bundle.opening)
+        self.closing.update(format_bundle.closing)
+        self.context_settings.extend(format_bundle.context_settings)
+        self.grob_overrides.extend(format_bundle.grob_overrides)
+        self.grob_reverts.extend(format_bundle.grob_reverts)
 
     ### PUBLIC PROPERTIES ###
 
     @property
-    def client(self):
-        return self._client
+    def absolute_after(self):
+        """
+        Aboslute after slot contributions.
+
+        Returns slot contributions object.
+        """
+        return self._absolute_after
 
     @property
-    def coerce_for_equality(self):
-        return self._coerce_for_equality
+    def absolute_before(self):
+        """
+        Absolute before slot contributions.
+
+        Returns slot contributions object.
+        """
+        return self._absolute_before
 
     @property
-    def repr_args_values(self):
-        return self._repr_args_values
+    def after(self):
+        """
+        After slot contributions.
+
+        Returns slot contributions object.
+        """
+        return self._after
 
     @property
-    def repr_is_bracketed(self):
-        return self._repr_is_bracketed
+    def before(self):
+        """
+        Before slot contributions.
+
+        Returns slot contributions object.
+        """
+        return self._before
 
     @property
-    def repr_is_indented(self):
-        return self._repr_is_indented
+    def closing(self):
+        """
+        Closing slot contributions.
+
+        Returns slot contributions object.
+        """
+        return self._closing
 
     @property
-    def repr_kwargs_names(self):
-        return self._repr_kwargs_names
+    def context_settings(self):
+        """
+        Context setting format contributions.
+
+        Returns list.
+        """
+        return self._context_settings
 
     @property
-    def repr_text(self):
-        return self._repr_text
+    def grob_overrides(self):
+        """
+        Grob override format contributions.
+
+        Returns list.
+        """
+        return self._grob_overrides
 
     @property
-    def storage_format_args_values(self):
-        return self._storage_format_args_values
+    def grob_reverts(self):
+        """
+        Grob revert format contributions.
+
+        Returns list.
+        """
+        return self._grob_reverts
 
     @property
-    def storage_format_forced_override(self):
-        return self._storage_format_forced_override
+    def opening(self):
+        """
+        Opening slot contributions.
 
-    @property
-    def storage_format_is_bracketed(self):
-        return self._storage_format_is_bracketed
-
-    @property
-    def storage_format_is_indented(self):
-        return self._storage_format_is_indented
-
-    @property
-    def storage_format_kwargs_names(self):
-        return self._storage_format_kwargs_names
-
-    @property
-    def storage_format_text(self):
-        return self._storage_format_text
-
-    @property
-    def template_names(self):
-        return self._template_names
+        Returns slot contributions object.
+        """
+        return self._opening
 
 
-class StorageFormatSpecification(object):
+class LilyPondFormatManager(object):
     """
-    Storage format specification.
+    Manages LilyPond formatting logic.
     """
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = "Storage formatting"
+    __documentation_section__ = "LilyPond formatting"
 
-    __slots__ = (
-        "_repr_text",
-        "_include_abjad_namespace",
-        "_instance",
-        "_is_bracketed",
-        "_is_indented",
-        "_keyword_argument_names",
-        "_positional_argument_values",
-        "_storage_format_text",
-    )
+    __slots__ = ()
 
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        instance=None,
-        repr_text=None,
-        include_abjad_namespace=None,
-        is_bracketed=False,
-        is_indented=True,
-        keyword_argument_names=None,
-        positional_argument_values=None,
-        storage_format_text=None,
-    ):
-        self._instance = instance
-
-        if repr_text is not None:
-            repr_text = str(repr_text)
-        self._repr_text = repr_text
-
-        self._include_abjad_namespace = bool(include_abjad_namespace)
-        self._is_bracketed = bool(is_bracketed)
-        self._is_indented = bool(is_indented)
-
-        if keyword_argument_names is not None:
-            keyword_argument_names = tuple(keyword_argument_names)
-        self._keyword_argument_names = keyword_argument_names
-
-        if positional_argument_values is not None:
-            positional_argument_values = tuple(positional_argument_values)
-        self._positional_argument_values = positional_argument_values
-
-        if storage_format_text is not None:
-            storage_format_text = str(storage_format_text)
-        self._storage_format_text = storage_format_text
+    indent = 4 * " "
 
     ### SPECIAL METHODS ###
 
@@ -208,653 +247,667 @@ class StorageFormatSpecification(object):
         """
         return StorageFormatManager(self).get_repr_format()
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def include_abjad_namespace(self):
-        """
-        Is true when storage specification includes Abjad namespace.
-
-        Returns true or false.
-        """
-        return self._include_abjad_namespace
-
-    @property
-    def instance(self):
-        """
-        Gets instance of storage specification.
-
-        Returns string.
-        """
-        return self._instance
-
-    @property
-    def is_bracketed(self):
-        """
-        Is true when storage specification is bracketed.
-
-        Returns true or false.
-        """
-        return self._is_bracketed
-
-    @property
-    def is_indented(self):
-        """
-        Is true when storage format is indented.
-
-        Returns true or false.
-        """
-        return self._is_indented
-
-    @property
-    def keyword_argument_names(self):
-        """
-        Gets keyword argument names of storage format.
-
-        Returns tuple.
-        """
-        return self._keyword_argument_names
-
-    @property
-    def positional_argument_values(self):
-        """
-        Gets positional argument values.
-
-        Returns tuple.
-        """
-        return self._positional_argument_values
-
-    @property
-    def repr_text(self):
-        """
-        Gets interpreter representation of storage specification.
-
-        Returns string.
-        """
-        return self._repr_text
-
-    @property
-    def storage_format_text(self):
-        """
-        Gets storage format text.
-
-        Returns tuple.
-        """
-        return self._storage_format_text
-
-
-class StorageFormatManager(object):
-    """
-    Manages Abjad object storage formats.
-    """
-
-    ### CLASS VARIABLES ###
-
-    __documentation_section__ = "Storage formatting"
-
-    __slots__ = (
-        "_client",
-        "_format_specification",
-        "_signature_accepts_args",
-        "_signature_accepts_kwargs",
-        "_signature_keyword_names",
-        "_signature_positional_names",
-    )
-
-    _exclude_tools_package = (
-        "core",
-        "indicators",
-        "markup",
-        "mathtools",
-        "meter",
-        "pitch",
-        "scheme",
-        "timespans",
-        "utilities",
-    )
-
-    _unindented_whitespace = "", "", ", "
-
-    _indented_whitespace = "    ", "\n", ",\n"
-
-    ### INITIALIZER ###
-
-    def __init__(self, client=None):
-        self._client = client
-        self._format_specification = None
-        (
-            self._signature_positional_names,
-            self._signature_keyword_names,
-            self._signature_accepts_args,
-            self._signature_accepts_kwargs,
-        ) = self.inspect_signature(self._client)
-
     ### PRIVATE METHODS ###
 
-    def _dispatch_formatting(self, as_storage_format=True, is_indented=True):
-        if isinstance(self._client, types.MethodType):
-            return self._format_method()
-        elif isinstance(self._client, type):
-            return self._format_class(as_storage_format, is_indented)
-        elif as_storage_format and (
-            hasattr(self._client, "_get_storage_format_specification")
-            or hasattr(self._client, "_get_format_specification")
-        ):
-            pieces = self._format_specced_object(as_storage_format=as_storage_format)
-            return list(pieces)
-        elif not as_storage_format and hasattr(
-            self._client, "_get_format_specification"
-        ):
-            pieces = self._format_specced_object(as_storage_format=as_storage_format)
-            return list(pieces)
-        elif isinstance(self._client, (list, tuple)):
-            return self._format_sequence(as_storage_format, is_indented)
-        elif isinstance(self._client, collections.OrderedDict):
-            return self._format_ordered_mapping(as_storage_format, is_indented)
-        elif hasattr(self._client, "_collection") and isinstance(
-            self._client._collection, collections.OrderedDict
-        ):
-            return self._format_ordered_mapping(as_storage_format, is_indented)
-        elif isinstance(self._client, dict):
-            return self._format_mapping(as_storage_format, is_indented)
-        elif isinstance(self._client, float):
-            return repr(round(self._client, 15)).split("\n")
-        return repr(self._client).split("\n")
+    @staticmethod
+    def _collect_indicators(component):
+        from .core.Component import inspect
 
-    def _format_class(self, as_storage_format, is_indented):
-        if as_storage_format:
-            root_package_name = self.get_root_package_name()
-            root_package = importlib.import_module(root_package_name)
-            parts = [root_package_name]
-            if self._client.__name__ not in dir(root_package):
-                tools_package_name = self.get_tools_package_name()
-                parts.append(tools_package_name)
-            parts.append(self._client.__name__)
-            result = ".".join(parts)
-        else:
-            result = self._client.__name__
-        return [result]
-
-    def _format_mapping(self, as_storage_format, is_indented):
-        result = []
-        prefix, infix, suffix = self._get_whitespace(is_indented)
-        result.append("{" + infix)
-        for key, value in sorted(self._client.items()):
-            key_agent = type(self)(key)
-            key_pieces = key_agent._dispatch_formatting(
-                as_storage_format=as_storage_format, is_indented=is_indented
-            )
-            value_agent = type(self)(value)
-            value_pieces = value_agent._dispatch_formatting(
-                as_storage_format=as_storage_format, is_indented=is_indented
-            )
-            for line in key_pieces[:-1]:
-                result.append(prefix + line)
-            result.append("{}{}: {}".format(prefix, key_pieces[-1], value_pieces[0]))
-            for line in value_pieces[1:]:
-                result.append(prefix + line)
-            result[-1] = result[-1] + suffix
-        if not is_indented:
-            result[-1] = result[-1].rstrip(suffix) + infix
-        result.append(prefix + "}")
-        return result
-
-    def _format_method(self, as_storage_format, is_indented):
-        return []
-
-    def _format_ordered_mapping(self, as_storage_format, is_indented):
-        result = []
-        prefix, infix, suffix = self._get_whitespace(is_indented)
-        result.append("[" + infix)
-        for item in list(self._client.items()):
-            item_agent = type(self)(item)
-            item_pieces = item_agent._dispatch_formatting(
-                as_storage_format=as_storage_format, is_indented=is_indented
-            )
-            for line in item_pieces:
-                result.append(prefix + line)
-            result[-1] = result[-1] + suffix
-        if not is_indented:
-            result[-1] = result[-1].rstrip(suffix) + infix
-        result.append(prefix + "]")
-        return result
-
-    def _format_sequence(self, as_storage_format, is_indented):
-        result = []
-        prefix, infix, suffix = self._get_whitespace(is_indented)
-        # just return the repr, if all contents are builtin types
-        prototype = (bool, int, float, str, type(None))
-        if all(isinstance(x, prototype) for x in self._client):
-            piece = repr(self._client)
-            if len(piece) < 50:
-                return [repr(self._client)]
-        if isinstance(self._client, list):
-            braces = "[", "]"
-        else:
-            braces = "(", ")"
-        result.append(braces[0] + infix)
-        for x in self._client:
-            agent = type(self)(x)
-            pieces = agent._dispatch_formatting(
-                as_storage_format=as_storage_format, is_indented=is_indented
-            )
-            for line in pieces[:-1]:
-                result.append(prefix + line)
-            result.append(prefix + pieces[-1] + suffix)
-        if not is_indented:
-            if isinstance(self._client, list) or 1 < len(self._client):
-                result[-1] = result[-1].rstrip(suffix)
+        wrappers = []
+        for parent in inspect(component).parentage():
+            wrappers_ = inspect(parent).wrappers()
+            wrappers.extend(wrappers_)
+        up_markup_wrappers = []
+        down_markup_wrappers = []
+        neutral_markup_wrappers = []
+        context_wrappers = []
+        noncontext_wrappers = []
+        # classify wrappers attached to component
+        for wrapper in wrappers:
+            # skip nonprinting indicators like annotation
+            indicator = wrapper.indicator
+            if not hasattr(indicator, "_get_lilypond_format") and not hasattr(
+                indicator, "_get_lilypond_format_bundle"
+            ):
+                continue
+            elif wrapper.annotation is not None:
+                continue
+            # skip comments and commands unless attached directly to us
+            elif (
+                wrapper.context is None
+                and hasattr(wrapper.indicator, "_format_leaf_children")
+                and not getattr(wrapper.indicator, "_format_leaf_children")
+                and wrapper.component is not component
+            ):
+                continue
+            # store markup wrappers
+            elif wrapper.indicator.__class__.__name__ == "Markup":
+                if wrapper.indicator.direction is enums.Up:
+                    up_markup_wrappers.append(wrapper)
+                elif wrapper.indicator.direction is enums.Down:
+                    down_markup_wrappers.append(wrapper)
+                elif wrapper.indicator.direction in (enums.Center, None):
+                    neutral_markup_wrappers.append(wrapper)
+            # store context wrappers
+            elif wrapper.context is not None:
+                if wrapper.annotation is None and wrapper.component is component:
+                    context_wrappers.append(wrapper)
+            # store noncontext wrappers
             else:
-                result[-1] = result[-1].rstrip()
-        result.append(prefix + braces[1])
-        return result
+                noncontext_wrappers.append(wrapper)
+        indicators = (
+            up_markup_wrappers,
+            down_markup_wrappers,
+            neutral_markup_wrappers,
+            context_wrappers,
+            noncontext_wrappers,
+        )
+        return indicators
 
-    def _format_specced_object(self, as_storage_format=True):
-        if hasattr(self._client, "_get_format_specification"):
-            specification = self._client._get_format_specification()
-            if specification.storage_format_forced_override is not None:
-                return [specification.storage_format_forced_override]
-        formatting_keywords = self._get_formatting_keywords(as_storage_format)
-        args_values = formatting_keywords["args_values"]
-        as_storage_format = formatting_keywords["as_storage_format"]
-        is_bracketed = formatting_keywords["is_bracketed"]
-        is_indented = formatting_keywords["is_indented"]
-        kwargs_names = formatting_keywords["kwargs_names"]
-        text = formatting_keywords["text"]
+    @staticmethod
+    def _populate_context_setting_format_contributions(component, bundle):
         result = []
-        if is_bracketed:
-            result.append("<")
-        if text is not None:
-            result.append(text)
+        manager = LilyPondFormatManager
+        if hasattr(component, "_lilypond_type"):
+            for name, value in vars(setting(component)).items():
+                string = manager.format_lilypond_context_setting_in_with_block(
+                    name, value
+                )
+                result.append(string)
         else:
-            prefix, infix, suffix = self._get_whitespace(is_indented)
-            class_name_prefix = self.get_class_name_prefix(as_storage_format)
-            positional_argument_pieces = []
-            for value in args_values:
-                agent = type(self)(value)
-                pieces = agent._dispatch_formatting(
-                    as_storage_format=as_storage_format, is_indented=is_indented,
-                )
-                for piece in pieces[:-1]:
-                    positional_argument_pieces.append(prefix + piece)
-                positional_argument_pieces.append(prefix + pieces[-1] + suffix)
-            keyword_argument_pieces = []
-            for name in kwargs_names:
-                value = self._get(name)
-                if value is None or isinstance(value, types.MethodType):
-                    continue
-                agent = type(self)(value)
-                pieces = agent._dispatch_formatting(
-                    as_storage_format=as_storage_format, is_indented=is_indented,
-                )
-                pieces[0] = "{}={}".format(name, pieces[0])
-                for piece in pieces[:-1]:
-                    keyword_argument_pieces.append(prefix + piece)
-                keyword_argument_pieces.append(prefix + pieces[-1] + suffix)
-            if not positional_argument_pieces and not keyword_argument_pieces:
-                result.append("{}()".format(class_name_prefix))
-            else:
-                result.append("{}({}".format(class_name_prefix, infix))
-                result.extend(positional_argument_pieces)
-                if positional_argument_pieces and not keyword_argument_pieces:
-                    result[-1] = result[-1].rstrip(suffix) + infix
+            contextualizer = setting(component)
+            variables = vars(contextualizer)
+            for name, value in variables.items():
+                # if we've found a leaf context namespace
+                if name.startswith("_"):
+                    for x, y in vars(value).items():
+                        if not x.startswith("_"):
+                            string = manager.format_lilypond_context_setting_inline(
+                                x, y, name
+                            )
+                            result.append(string)
+                # otherwise we've found a default leaf context setting
                 else:
-                    result.extend(keyword_argument_pieces)
-                if not as_storage_format:
-                    result[-1] = result[-1].rstrip(suffix) + infix
-                if is_indented:
-                    result.append("{})".format(prefix))
-                else:
-                    result.append(")")
-        if is_bracketed:
-            result.append(">")
-        if not is_indented:
-            return ["".join(result)]
-        return result
+                    # parse default context setting
+                    string = manager.format_lilypond_context_setting_inline(name, value)
+                    result.append(string)
+        result.sort()
+        bundle.context_settings.extend(result)
 
-    def _get(self, name):
-        value = None
+    @staticmethod
+    def _populate_context_wrapper_format_contributions(
+        component, bundle, context_wrappers
+    ):
+        for wrapper in context_wrappers:
+            format_pieces = wrapper._get_format_pieces()
+            if isinstance(format_pieces, type(bundle)):
+                bundle.update(format_pieces)
+            else:
+                format_slot = wrapper.indicator._format_slot
+                bundle.get(format_slot).indicators.extend(format_pieces)
+
+    @staticmethod
+    def _populate_grob_override_format_contributions(component, bundle):
+        result = []
+        once = hasattr(component, "_written_duration")
+        grob = override(component)
+        contributions = grob._list_format_contributions("override", once=once)
+        for string in result[:]:
+            if "NoteHead" in string and "pitch" in string:
+                contributions.remove(string)
         try:
-            value = getattr(self._client, name, None)
-            if value is None:
-                value = getattr(self._client, "_" + name, None)
-            if value is None:
-                value = getattr(self._client, "_" + name.rstrip("_"), None)
+            written_pitch = component.written_pitch
+            arrow = written_pitch.arrow
         except AttributeError:
-            try:
-                value = self._client[name]
-            except (TypeError, KeyError):
-                value = None
-        return value
+            arrow = None
+        if arrow in (enums.Up, enums.Down):
+            contributions_ = written_pitch._list_format_contributions()
+            contributions.extend(contributions_)
+        bundle.grob_overrides.extend(contributions)
 
-    def _get_formatting_keywords(self, as_storage_format=True):
-        # NOTE: This acts to abstract-away our competing spec-specs.
-        #       It can probably be removed/reduced in the near future.
-        if as_storage_format:
-            spec = None
-            if hasattr(self._client, "_get_storage_format_specification"):
-                spec = self._client._get_storage_format_specification()
-            if spec:
-                # print('STORAGE', type(self._client), getattr(self._client, 'name', None))
-                via = "_get_storage_format_specification()"
-                args_values = spec.positional_argument_values
-                is_bracketed = False
-                is_indented = spec.is_indented
-                kwargs_names = spec.keyword_argument_names
-                text = spec.storage_format_text
-            else:
-                spec = self.format_specification
-                via = "_get_format_specification()"
-                args_values = spec.storage_format_args_values
-                is_bracketed = spec.storage_format_is_bracketed
-                is_indented = spec.storage_format_is_indented
-                kwargs_names = spec.storage_format_kwargs_names
-                text = spec.storage_format_text
-        else:
-            spec = self.format_specification
-            via = "_get_format_specification()"
-            args_values = spec.repr_args_values
-            if args_values is None:
-                args_values = spec.storage_format_args_values
-            is_bracketed = spec.repr_is_bracketed
-            is_indented = spec.repr_is_indented
-            kwargs_names = spec.repr_kwargs_names
-            if kwargs_names is None:
-                kwargs_names = spec.storage_format_kwargs_names
-            text = spec.repr_text
-            if text is None:
-                text = spec.storage_format_text
-        if kwargs_names is None:
-            kwargs_names = self.signature_keyword_names
-        if args_values is None:
-            args_values = tuple(self._get(_) for _ in self.signature_positional_names)
-        if args_values:
-            kwargs_names = list(kwargs_names)
-            names = self.signature_positional_names
-            if not self.signature_accepts_args:
-                names += self.signature_keyword_names
-            names = names[: len(args_values)]
-            for name in names:
-                if name in kwargs_names:
-                    kwargs_names.remove(name)
-            kwargs_names = tuple(kwargs_names)
-        return dict(
-            args_values=args_values,
-            as_storage_format=as_storage_format,
-            is_bracketed=is_bracketed,
-            is_indented=is_indented,
-            kwargs_names=kwargs_names,
-            text=text,
-            via=via,
+    @staticmethod
+    def _populate_grob_revert_format_contributions(component, bundle):
+        if not hasattr(component, "_written_duration"):
+            manager = override(component)
+            contributions = manager._list_format_contributions("revert")
+            bundle.grob_reverts.extend(contributions)
+
+    @staticmethod
+    def _populate_indicator_format_contributions(component, bundle):
+        manager = LilyPondFormatManager
+        (
+            up_markup_wrappers,
+            down_markup_wrappers,
+            neutral_markup_wrappers,
+            context_wrappers,
+            noncontext_wrappers,
+        ) = LilyPondFormatManager._collect_indicators(component)
+        manager._populate_markup_format_contributions(
+            component,
+            bundle,
+            up_markup_wrappers,
+            down_markup_wrappers,
+            neutral_markup_wrappers,
+        )
+        manager._populate_context_wrapper_format_contributions(
+            component, bundle, context_wrappers
+        )
+        manager._populate_noncontext_wrapper_format_contributions(
+            component, bundle, noncontext_wrappers
         )
 
     @staticmethod
-    def _get_module_path_parts(subject):
-        if isinstance(subject, type):
-            class_ = subject
-        elif type(subject) is subject.__class__:
-            class_ = type(subject)
-        class_name = class_.__name__
-        parts = class_.__module__.split(".")
-        while parts and parts[-1] == class_name:
-            parts.pop()
-        parts.append(class_name)
-        return parts
-
-    def _get_whitespace(self, is_indented):
-        if is_indented:
-            return self._indented_whitespace
-        return self._unindented_whitespace
+    def _populate_markup_format_contributions(
+        component,
+        bundle,
+        up_markup_wrappers,
+        down_markup_wrappers,
+        neutral_markup_wrappers,
+    ):
+        for wrappers in (
+            up_markup_wrappers,
+            down_markup_wrappers,
+            neutral_markup_wrappers,
+        ):
+            for wrapper in wrappers:
+                if wrapper.indicator.direction is None:
+                    markup = new(wrapper.indicator, direction="-")
+                else:
+                    markup = wrapper.indicator
+                format_pieces = markup._get_format_pieces()
+                format_pieces = LilyPondFormatManager.tag(
+                    format_pieces, wrapper.tag, deactivate=wrapper.deactivate
+                )
+                bundle.after.markup.extend(format_pieces)
 
     @staticmethod
-    def _make_hashable(value):
-        if isinstance(value, dict):
-            value = tuple(value.items())
-        elif isinstance(value, list):
-            value = tuple(value)
-        elif isinstance(value, (set, frozenset)):
-            value = tuple(value)
-        return value
+    def _populate_noncontext_wrapper_format_contributions(
+        component, bundle, noncontext_wrappers
+    ):
+        for wrapper in noncontext_wrappers:
+            indicator = wrapper.indicator
+            if hasattr(indicator, "_get_lilypond_format_bundle"):
+                bundle_ = indicator._get_lilypond_format_bundle()
+                if wrapper.tag:
+                    bundle_.tag_format_contributions(
+                        wrapper.tag, deactivate=wrapper.deactivate
+                    )
+                if bundle_ is not None:
+                    bundle.update(bundle_)
 
-    def _map_positional_values_to_names(self, values):
-        names = self.signature_positional_names
-        if not self.signature_accepts_args:
-            names += self.signature_keyword_names
-        names = names[: len(values)]
-        return names
+    @staticmethod
+    def _populate_spanner_format_contributions(component, bundle):
+        from .core.Component import inspect
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def client(self):
-        return self._client
-
-    @property
-    def format_specification(self):
-        if self._format_specification is None:
-            if not isinstance(self._client, type) and hasattr(
-                self._client, "_get_format_specification"
-            ):
-                self._format_specification = self._client._get_format_specification()
-            else:
-                self._format_specification = FormatSpecification(self._client)
-        return self._format_specification
-
-    @property
-    def signature_accepts_args(self):
-        return self._signature_accepts_args
-
-    @property
-    def signature_accepts_kwargs(self):
-        return self._signature_accepts_kwargs
-
-    @property
-    def signature_keyword_names(self):
-        return self._signature_keyword_names
-
-    @property
-    def signature_names(self):
-        return self.signature_positional_names + self.signature_keyword_names
-
-    @property
-    def signature_positional_names(self):
-        return self._signature_positional_names
+        if not hasattr(component, "_spanners"):
+            return
+        pairs = []
+        for spanner in inspect(component).spanners():
+            spanner_bundle = spanner._get_lilypond_format_bundle(component)
+            spanner_bundle.tag_format_contributions(
+                spanner._tag, deactivate=spanner._deactivate
+            )
+            pair = (spanner, spanner_bundle)
+            pairs.append(pair)
+        pairs.sort(key=lambda _: type(_[0]).__name__)
+        for spanner, spanner_bundle in pairs:
+            bundle.update(spanner_bundle)
 
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def compare_objects(object_one, object_two) -> bool:
+    def align_tags(string: str, n: int) -> str:
         """
-        Compares ``object_one`` to ``object_two``.
+        Line-breaks ``string`` and aligns tags starting a column ``n``.
         """
-        manager_one = StorageFormatManager(object_one)
-        if manager_one.format_specification.coerce_for_equality:
-            try:
-                object_two = type(object_one)(object_two)
-            except (TypeError, ValueError):
-                return False
-        elif not isinstance(object_two, type(object_one)):
-            return False
-        manager_two = StorageFormatManager(object_two)
-        template_1 = manager_one.get_template_dict()
-        template_2 = manager_two.get_template_dict()
-        return template_1 == template_2
+        if not isinstance(n, int):
+            raise Exception(f"must be integer:\n    {repr(n)}")
+        lines = []
+        for line in string.split("\n"):
+            if "%!" not in line:
+                lines.append(line)
+                continue
+            location = line.find("%!")
+            left = line[:location].rstrip()
+            right = line[location:]
+            pad = n - len(left)
+            if pad < 1:
+                pad = 1
+            line = left + pad * " " + right
+            lines.append(line)
+        string = "\n".join(lines)
+        return string
 
-    def get_class_name_prefix(
-        self, as_storage_format, include_root_package=None
-    ) -> str:
+    @staticmethod
+    def bundle_format_contributions(component) -> "LilyPondFormatBundle":
         """
-        Gets class name prefix.
+        Gets all format contributions for ``component``.
         """
-        manager = StorageFormatManager(self._client)
-        if not isinstance(self._client, type):
-            class_name = type(self._client).__name__
-        else:
-            class_name = self._client.__name__
-        if as_storage_format:
-            root_package_name = self.get_root_package_name()
-            root_package = importlib.import_module(root_package_name)
-            parts = [root_package_name]
-            if class_name not in dir(root_package):
-                tools_package_name = manager.get_tools_package_name()
-                parts.append(tools_package_name)
-            parts.append(class_name)
-            return ".".join(parts)
-        return class_name
+        manager = LilyPondFormatManager
+        bundle = LilyPondFormatBundle()
+        manager._populate_indicator_format_contributions(component, bundle)
+        manager._populate_spanner_format_contributions(component, bundle)
+        manager._populate_context_setting_format_contributions(component, bundle)
+        manager._populate_grob_override_format_contributions(component, bundle)
+        manager._populate_grob_revert_format_contributions(component, bundle)
+        bundle.sort_overrides()
+        return bundle
 
-    def get_hash_values(self):
+    @staticmethod
+    def format_lilypond_attribute(attribute) -> str:
         """
-        Gets hash values.
+        Formats LilyPond attribute according to Scheme formatting conventions.
         """
-        values = []
-        if isinstance(self._client, type):
-            values.append(self._client)
-        else:
-            values.append(type(self._client))
-        template_items = sorted(self.get_template_dict().items())
-        values.extend(self._make_hashable(v) for k, v in template_items)
-        return tuple(values)
-
-    def get_repr_format(self):
-        """
-        Gets repr format.
-        """
-        pieces = self._format_specced_object(as_storage_format=False)
-        return "".join(pieces)
-
-    def get_repr_keyword_dict(self):
-        """
-        Gets repr keyword dictionary.
-        """
-        names = self.specification.repr_kwargs_names
-        if names is None:
-            specification = StorageFormatSpecification(self.client)
-            names = specification.keyword_argument_names or ()
-        keyword_dict = {}
-        for name in names:
-            keyword_dict[name] = self._get(name)
-        return keyword_dict
-
-    def get_repr_positional_values(self):
-        """
-        Gets repr positional values.
-        """
-        values = self.specification.repr_args_values
-        if values is None:
-            specification = StorageFormatSpecification(self.client)
-            values = specification.positional_argument_values or ()
-        return tuple(values)
-
-    def get_root_package_name(self) -> str:
-        """
-        Gets root package name.
-        """
-        return self._get_module_path_parts(self._client)[0]
-
-    def get_storage_format(self) -> str:
-        """
-        Gets storage format.
-        """
-        pieces = self._format_specced_object(as_storage_format=True)
-        result = "".join(pieces)
+        assert isinstance(attribute, str), repr(attribute)
+        attribute = attribute.replace("__", ".")
+        result = attribute.replace("_", "-")
         return result
 
-    def get_storage_format_keyword_dict(self):
+    @staticmethod
+    def format_lilypond_context_setting_in_with_block(name, value) -> str:
         """
-        Gets storage format keyword dictionary.
+        Formats LilyPond context setting ``name`` with ``value`` in LilyPond
+        with-block.
         """
-        names = self.specification.storage_format_kwargs_names
-        if names is None:
-            if hasattr(self.client, "_get_storage_format_specification"):
-                specification = self.client._get_storage_format_specification()
+        assert isinstance(name, str), repr(name)
+        name = name.split("_")
+        first = name[0:1]
+        rest = name[1:]
+        rest = [x.title() for x in rest]
+        name = first + rest
+        name = "".join(name)
+        value = LilyPondFormatManager.format_lilypond_value(value)
+        value_parts = value.split("\n")
+        result = rf"{name!s} = {value_parts[0]!s}"
+        pieces = [result]
+        for part in value_parts[1:]:
+            pieces.append(LilyPondFormatManager.indent + part)
+        return "\n".join(pieces)
+
+    @staticmethod
+    def format_lilypond_context_setting_inline(name, value, context=None) -> str:
+        """
+        Formats LilyPond context setting ``name`` with ``value`` in
+        ``context``.
+        """
+        name = name.split("_")
+        first = name[0:1]
+        rest = name[1:]
+        rest = [x.title() for x in rest]
+        name = first + rest
+        name = "".join(name)
+        value = LilyPondFormatManager.format_lilypond_value(value)
+        if context is not None:
+            context_string = context[1:]
+            context_string = context_string.split("_")
+            context_string = [x.title() for x in context_string]
+            context_string = "".join(context_string)
+            context_string += "."
+        else:
+            context_string = ""
+        result = rf"\set {context_string}{name} = {value}"
+        return result
+
+    @staticmethod
+    def format_lilypond_value(argument) -> str:
+        """
+        Formats LilyPond ``argument`` according to Scheme formatting
+        conventions.
+        """
+        if "_get_lilypond_format" in dir(argument) and not isinstance(argument, str):
+            pass
+        elif argument in (True, False):
+            argument = Scheme(argument)
+        elif argument in (enums.Up, enums.Down, enums.Left, enums.Right, enums.Center,):
+            argument = Scheme(repr(argument).lower())
+        elif isinstance(argument, int) or isinstance(argument, float):
+            argument = Scheme(argument)
+        elif argument in Scheme.lilypond_color_constants:
+            argument = Scheme(argument)
+        elif isinstance(argument, str) and argument.startswith("#"):
+            # argument = Scheme(argument)
+            return argument
+        elif isinstance(argument, str) and "::" in argument:
+            argument = Scheme(argument)
+        elif isinstance(argument, tuple) and len(argument) == 2:
+            argument = SchemePair(argument)
+        elif isinstance(argument, str) and " " not in argument:
+            argument = Scheme(argument, quoting="'")
+        elif isinstance(argument, str) and " " in argument:
+            argument = Scheme(argument)
+        else:
+            argument = Scheme(argument, quoting="'")
+        return format(argument, "lilypond")
+
+    @staticmethod
+    def left_shift_tags(text, realign=None) -> str:
+        """
+        Left shifts tags in ``strings`` and realigns to column ``realign``.
+        """
+        strings = text.split("\n")
+        strings_ = []
+        for string in strings:
+            if "%@% " not in string or "%!" not in string:
+                strings_.append(string)
+                continue
+            if not string.startswith(4 * " "):
+                strings_.append(string)
+                continue
+            string_ = string[4:]
+            tag_start = string_.find("%!")
+            string_ = list(string_)
+            string_[tag_start:tag_start] = 4 * " "
+            string_ = "".join(string_)
+            strings_.append(string_)
+        text = "\n".join(strings_)
+        if realign is not None:
+            text = LilyPondFormatManager.align_tags(text, n=realign)
+        return text
+
+    @staticmethod
+    def make_lilypond_override_string(
+        grob, attribute, value, context=None, once=False
+    ) -> str:
+        """
+        Makes Lilypond override string.
+        """
+        grob = String(grob).to_upper_camel_case()
+        attribute = LilyPondFormatManager.format_lilypond_attribute(attribute)
+        value = LilyPondFormatManager.format_lilypond_value(value)
+        if context is not None:
+            context = String(context).capitalize_start() + "."
+        else:
+            context = ""
+        if once is True:
+            once = r"\once "
+        else:
+            once = ""
+        result = rf"{once}\override {context}{grob}.{attribute} = {value}"
+        return result
+
+    @staticmethod
+    def make_lilypond_revert_string(grob, attribute, context=None) -> str:
+        r"""
+        Makes LilyPond revert string.
+
+        ..  container:: example
+
+            >>> abjad.LilyPondFormatManager.make_lilypond_revert_string(
+            ...     'glissando',
+            ...     'bound_details__right__arrow',
+            ...     )
+            '\\revert Glissando.bound-details.right.arrow'
+
+        """
+        grob = String(grob).to_upper_camel_case()
+        dotted = LilyPondFormatManager.format_lilypond_attribute(attribute)
+        if context is not None:
+            context = String(context).to_upper_camel_case()
+            context += "."
+        else:
+            context = ""
+        result = rf"\revert {context}{grob}.{dotted}"
+        return result
+
+    @staticmethod
+    def make_lilypond_tweak_string(
+        attribute, value, *, directed=True, grob=None, literal=None
+    ) -> str:
+        r"""
+        Makes Lilypond \tweak string.
+        """
+        if grob is not None:
+            grob = String(grob).to_upper_camel_case()
+            grob += "."
+        else:
+            grob = ""
+        attribute = LilyPondFormatManager.format_lilypond_attribute(attribute)
+        if not literal:
+            value = LilyPondFormatManager.format_lilypond_value(value)
+        string = rf"\tweak {grob}{attribute} {value}"
+        if directed:
+            string = "- " + string
+        return string
+
+    @staticmethod
+    def tag(strings, tag, deactivate=None) -> typing.List[str]:
+        """
+        Tags ``strings`` with ``tag``.
+        """
+        if not tag:
+            return strings
+        if not strings:
+            return strings
+        if deactivate is not None:
+            assert isinstance(deactivate, type(True)), repr(deactivate)
+        length = max([len(_) for _ in strings])
+        strings_ = []
+        for string in strings:
+            if "%!" in string and r"\tweak" in string:
+                strings_.append(string)
+                continue
+            if "%!" not in string:
+                pad = length - len(string)
             else:
-                specification = StorageFormatSpecification(self.client)
-            names = specification.keyword_argument_names or ()
-        keyword_dict = {}
-        for name in names:
-            keyword_dict[name] = self._get(name)
-        return keyword_dict
+                pad = 0
+            tag_ = pad * " " + " " + "%!" + " " + str(tag)
+            string = string + tag_
+            strings_.append(string)
+        if deactivate is True:
+            strings_ = ["%@% " + _ for _ in strings_]
+        return strings_
 
-    def get_storage_format_positional_values(self):
-        """
-        Gets storage format positional values.
-        """
-        values = self.specification.storage_format_args_values
-        if values is None:
-            if hasattr(self.client, "_get_storage_format_specification"):
-                specification = self.client._get_storage_format_specification()
-            else:
-                specification = StorageFormatSpecification(self.client)
-            values = specification.positional_argument_values or ()
-        return tuple(values)
 
-    def get_template_dict(self):
-        """
-        Gets template dictionary.
-        """
-        template_names = self.format_specification.template_names
-        if template_names is None:
-            template_names = self.signature_names
-            # TODO: This will be factored out when SFS/SFM are removed.
-            if hasattr(self.client, "_get_storage_format_specification"):
-                specification = self.client._get_storage_format_specification()
-                template_names.extend(specification._keyword_argument_names or ())
-            else:
-                template_names.extend(
-                    self.format_specification.storage_format_kwargs_names or ()
-                )
-            template_names = sorted(set(template_names))
-        template_dict = collections.OrderedDict()
-        for name in template_names:
-            template_dict[name] = self._get(name)
-        return template_dict
+class SlotContributions(object):
+    """
+    Slot contributions.
+    """
 
-    def get_tools_package_name(self):
-        """
-        Gets tools package name.
-        """
-        parts = self._get_module_path_parts(self._client)
-        if parts[0] in ("abjad", "abjadext", "ide"):
-            for part in reversed(parts):
-                if part == parts[-1]:
-                    continue
-                return part
-        return ".".join(parts[:-1])
+    __documentation_section__ = "LilyPond formatting"
 
-    @classmethod
-    def inspect_signature(class_, subject):
+    __slots__ = (
+        "_articulations",
+        "_commands",
+        "_comments",
+        "_indicators",
+        "_leaks",
+        "_markup",
+        "_spanners",
+        "_spanner_starts",
+        "_spanner_stops",
+        "_stem_tremolos",
+        "_trill_spanner_starts",
+    )
+
+    ### INITIALIZER ###
+
+    def __init__(self) -> None:
+        self._articulations: typing.List[str] = []
+        self._commands: typing.List[str] = []
+        self._comments: typing.List[str] = []
+        self._indicators: typing.List[str] = []
+        self._leaks: typing.List[str] = []
+        self._markup: typing.List[str] = []
+        self._spanners: typing.List[str] = []
+        self._spanner_starts: typing.List[str] = []
+        self._spanner_stops: typing.List[str] = []
+        self._stem_tremolos: typing.List[str] = []
+        self._trill_spanner_starts: typing.List[str] = []
+
+    ### SPECIAL METHODS ###
+
+    def __repr__(self) -> str:
         """
-        Inspects signature of ``subject``.
+        Gets interpreter representation.
         """
-        positional_names = []
-        keyword_names = []
-        accepts_args = False
-        accepts_kwargs = False
-        if not isinstance(subject, type):
-            subject = type(subject)
-        try:
-            signature = inspect.signature(subject)
-        except ValueError:
-            return (
-                positional_names,
-                keyword_names,
-                accepts_args,
-                accepts_kwargs,
-            )
-        for name, parameter in signature.parameters.items():
-            if parameter.kind == inspect._POSITIONAL_OR_KEYWORD:
-                if parameter.default == parameter.empty:
-                    positional_names.append(name)
-                else:
-                    keyword_names.append(name)
-            # Python 3 allow keyword only parameters:
-            elif (
-                hasattr(inspect, "_KEYWORD_ONLY")
-                and parameter.kind == inspect._KEYWORD_ONLY
-            ):
-                keyword_names.append(name)
-            elif parameter.kind == inspect._VAR_POSITIONAL:
-                accepts_args = True
-            elif parameter.kind == inspect._VAR_KEYWORD:
-                accepts_kwargs = True
-        return (positional_names, keyword_names, accepts_args, accepts_kwargs)
+        return StorageFormatManager(self).get_repr_format()
+
+    ### PRIVATE METHODS ###
+
+    def _get_format_specification(self):
+        names = [
+            "articulations",
+            "commands",
+            "comments",
+            "indicators",
+            "markup",
+            "spanners",
+            "spanner_starts",
+            "spanner_stops",
+            "stem_tremolos",
+            "trill_spanner_starts",
+        ]
+        names = [_ for _ in names if getattr(self, _)]
+        return FormatSpecification(client=self, storage_format_kwargs_names=names)
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def articulations(self) -> typing.List[str]:
+        """
+        Gets articulations.
+        """
+        return self._articulations
+
+    @property
+    def commands(self) -> typing.List[str]:
+        """
+        Gets commands.
+        """
+        return self._commands
+
+    @property
+    def comments(self) -> typing.List[str]:
+        """
+        Gets comments.
+        """
+        return self._comments
+
+    @property
+    def has_contributions(self) -> bool:
+        """
+        Is true when has contributions.
+        """
+        contribution_categories = (
+            "articulations",
+            "commands",
+            "comments",
+            "indicators",
+            "leaks",
+            "markup",
+            "spanners",
+            "spanner_starts",
+            "spanner_stops",
+            "stem_tremolos",
+            "trill_spanner_starts",
+        )
+        return any(
+            getattr(self, contribution_category)
+            for contribution_category in contribution_categories
+        )
+
+    @property
+    def indicators(self) -> typing.List[str]:
+        """
+        Gets indicators.
+        """
+        return self._indicators
+
+    @property
+    def leaks(self) -> typing.List[str]:
+        """
+        Gets leaks.
+        """
+        return self._leaks
+
+    @property
+    def markup(self) -> typing.List[str]:
+        """
+        Gets markup.
+        """
+        return self._markup
+
+    @property
+    def spanner_starts(self) -> typing.List[str]:
+        """
+        Gets spanner starts.
+        """
+        return self._spanner_starts
+
+    @property
+    def spanner_stops(self) -> typing.List[str]:
+        """
+        Gets spanner stops.
+        """
+        return self._spanner_stops
+
+    @property
+    def spanners(self) -> typing.List[str]:
+        """
+        Gets spanners.
+        """
+        return self._spanners
+
+    @property
+    def stem_tremolos(self) -> typing.List[str]:
+        """
+        Gets stem tremolos.
+        """
+        return self._stem_tremolos
+
+    @property
+    def trill_spanner_starts(self) -> typing.List[str]:
+        """
+        Gets trill spanner starts.
+        """
+        return self._trill_spanner_starts
+
+    ### PUBLIC METHODS ###
+
+    def get(self, identifier):
+        """
+        Gets ``identifier``.
+        """
+        return getattr(self, identifier)
+
+    def tag(self, tag, deactivate=None):
+        """
+        Tags contributions.
+        """
+        self._articulations = LilyPondFormatManager.tag(
+            self.articulations, tag, deactivate
+        )
+        self._commands = LilyPondFormatManager.tag(self.commands, tag, deactivate)
+        self._comments = LilyPondFormatManager.tag(self.comments, tag, deactivate)
+        self._indicators = LilyPondFormatManager.tag(self.indicators, tag, deactivate)
+        self._leaks = LilyPondFormatManager.tag(self.leaks, tag, deactivate)
+        self._markup = LilyPondFormatManager.tag(self.markup, tag, deactivate)
+        self._spanners = LilyPondFormatManager.tag(self.spanners, tag, deactivate)
+        strings = []
+        # make sure each line of multiline markup is tagged
+        for string in self.spanner_starts:
+            strings.extend(string.split("\n"))
+        self._spanner_starts = LilyPondFormatManager.tag(strings, tag, deactivate)
+        self._spanner_stops = LilyPondFormatManager.tag(
+            self.spanner_stops, tag, deactivate
+        )
+        self._stem_tremolos = LilyPondFormatManager.tag(
+            self.stem_tremolos, tag, deactivate
+        )
+
+    def update(self, slot_contributions):
+        """
+        Updates contributions.
+        """
+        assert isinstance(slot_contributions, type(self))
+        self.articulations.extend(slot_contributions.articulations)
+        self.commands.extend(slot_contributions.commands)
+        self.comments.extend(slot_contributions.comments)
+        self.indicators.extend(slot_contributions.indicators)
+        self.leaks.extend(slot_contributions.leaks)
+        self.markup.extend(slot_contributions.markup)
+        self.spanners.extend(slot_contributions.spanners)
+        self.spanner_starts.extend(slot_contributions.spanner_starts)
+        self.spanner_stops.extend(slot_contributions.spanner_stops)
+        self.stem_tremolos.extend(slot_contributions.stem_tremolos)
+        self.trill_spanner_starts.extend(slot_contributions.trill_spanner_starts)

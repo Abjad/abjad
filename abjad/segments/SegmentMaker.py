@@ -1,17 +1,18 @@
 import typing
 
 from .. import const
+from ..core.Component import inspect
 from ..core.Container import Container
 from ..core.Context import Context
 from ..core.Score import Score
 from ..core.Staff import Staff
 from ..core.Voice import Voice
-from ..formatting import StorageFormatManager
 from ..indicators import LilyPondLiteral
-from ..lilypondfile.LilyPondFile import LilyPondFile
+from ..lilypondfile import LilyPondFile
+from ..storage import StorageFormatManager
 from ..tags import Tag
 from ..timespans import TimespanList
-from ..top import attach, inspect, iterate, select
+from ..top import attach, iterate, select
 from ..utilities.OrderedDict import OrderedDict
 from ..utilities.String import String
 from .PartAssignment import PartAssignment

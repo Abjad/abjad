@@ -10,6 +10,7 @@ import uqbar.graphs
 
 from . import markups, mathtools, rhythmtrees
 from .core.Chord import Chord
+from .core.Component import inspect
 from .core.Container import Container
 from .core.LogicalTie import LogicalTie
 from .core.Note import Note
@@ -17,13 +18,11 @@ from .core.Rest import Rest
 from .core.Selection import Selection
 from .core.Skip import Skip
 from .core.Tuplet import Tuplet
-from .formatting import FormatSpecification, StorageFormatManager
+from .duration import Duration, Multiplier, NonreducedFraction, Offset
 from .indicators.TimeSignature import TimeSignature
+from .storage import FormatSpecification, StorageFormatManager
 from .timespans import Timespan, TimespanList
-from .top import inspect, mutate
-from .utilities.Duration import Duration
-from .utilities.Multiplier import Multiplier
-from .utilities.Offset import Offset
+from .top import mutate
 from .utilities.Sequence import Sequence
 from .utilities.TypedCounter import TypedCounter
 from .utilities.TypedList import TypedList
@@ -360,11 +359,9 @@ class Meter(object):
             denominator = root.preprolated_duration.denominator
         elif is_fraction_like or isinstance(argument, tuple):
             if isinstance(argument, tuple):
-                fraction = mathtools.NonreducedFraction(argument)
+                fraction = NonreducedFraction(argument)
             else:
-                fraction = mathtools.NonreducedFraction(
-                    argument.numerator, argument.denominator
-                )
+                fraction = NonreducedFraction(argument.numerator, argument.denominator)
             numerator, denominator = fraction.numerator, fraction.denominator
             factors = mathtools.factors(numerator)
             # group two nested levels of 2s into a 4
@@ -658,9 +655,9 @@ class Meter(object):
 
         result = recurse(self.root_node)
         for node in result:
-            start_offset = mathtools.NonreducedFraction(node.start_offset)
+            start_offset = NonreducedFraction(node.start_offset)
             start_offset = start_offset.with_denominator(self.denominator)
-            stop_offset = mathtools.NonreducedFraction(node.stop_offset)
+            stop_offset = NonreducedFraction(node.stop_offset)
             stop_offset = stop_offset.with_denominator(self.denominator)
             yield start_offset, stop_offset
 
@@ -840,9 +837,7 @@ class Meter(object):
                     [_._get_preprolated_duration() for _ in item]
                 )
                 if preprolated_duration.numerator == 1:
-                    preprolated_duration = mathtools.NonreducedFraction(
-                        preprolated_duration
-                    )
+                    preprolated_duration = NonreducedFraction(preprolated_duration)
                     preprolated_duration = preprolated_duration.with_denominator(
                         preprolated_duration.denominator * 4
                     )

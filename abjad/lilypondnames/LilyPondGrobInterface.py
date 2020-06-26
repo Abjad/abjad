@@ -1,7 +1,7 @@
 import typing
 
-from ..formatting import StorageFormatManager
 from ..ly.interface_properties import interface_properties
+from ..storage import StorageFormatManager
 
 
 class LilyPondGrobInterface(object):

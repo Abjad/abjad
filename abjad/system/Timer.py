@@ -1,6 +1,7 @@
 import subprocess
 import time
 
+from ..utilities.String import String
 from .Configuration import Configuration
 from .ContextManager import ContextManager
 
@@ -176,9 +177,7 @@ class Timer(ContextManager):
 
         Returns string.
         """
-        import abjad
-
-        identifier = abjad.String("second").pluralize(int(self.elapsed_time))
+        identifier = String("second").pluralize(int(self.elapsed_time))
         message = "total time {} {} ..."
         message = message.format(int(self.elapsed_time), identifier)
         return message

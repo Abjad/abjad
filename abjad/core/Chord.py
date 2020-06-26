@@ -2,13 +2,14 @@ import copy
 import typing
 
 from .. import instruments, typings
+from ..duration import Duration
+from ..formatting import LilyPondFormatManager
 from ..ly.drums import drums
 from ..pitch.pitches import NamedPitch
 from ..pitch.segments import PitchSegment
-from ..system.LilyPondFormatManager import LilyPondFormatManager
 from ..tags import Tag
-from ..top import inspect, parse
-from ..utilities.Duration import Duration
+from ..top import parse
+from .Component import inspect
 from .DrumNoteHead import DrumNoteHead
 from .Leaf import Leaf
 from .NoteHead import NoteHead

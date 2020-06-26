@@ -1,6 +1,6 @@
 from .. import mathtools
-from ..formatting import FormatSpecification, StorageFormatManager
-from ..system.LilyPondFormatBundle import LilyPondFormatBundle
+from ..formatting import LilyPondFormatBundle
+from ..storage import FormatSpecification, StorageFormatManager
 
 
 class StemTremolo(object):

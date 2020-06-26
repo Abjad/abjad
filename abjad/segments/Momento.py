@@ -1,8 +1,8 @@
 import typing
 
-from ..formatting import FormatSpecification, StorageFormatManager
+from ..duration import Offset
+from ..storage import FormatSpecification, StorageFormatManager
 from ..tags import Tag
-from ..utilities.Offset import Offset
 
 
 class Momento(object):

@@ -25,8 +25,7 @@ from uqbar.book.extensions import Extension
 from uqbar.strings import normalize
 
 from ..iox import Illustrator, LilyPondIO, Player
-from ..lilypondfile.Block import Block
-from ..lilypondfile.LilyPondVersionToken import LilyPondVersionToken
+from ..lilypondfile import Block, LilyPondVersionToken
 from ..system.Configuration import Configuration
 from ..system.TemporaryDirectoryChange import TemporaryDirectoryChange
 

@@ -3,25 +3,23 @@ import inspect
 import itertools
 import typing
 
-from .. import enums, mathtools, typings
-from ..formatting import FormatSpecification, StorageFormatManager
+from .. import enums, typings
+from ..duration import Duration, Offset
 from ..indicators.Tie import Tie
-from ..mathtools import Ratio
 from ..pitch.PitchInequality import PitchInequality
 from ..pitch.sets import PitchSet
-from ..top import attach, detach
-from ..top import inspect as abjad_inspect
-from ..top import iterate, mutate, new, select
+from ..ratio import Ratio
+from ..storage import FormatSpecification, StorageFormatManager
+from ..top import attach, detach, iterate, mutate, new, select
 from ..utilities.CyclicTuple import CyclicTuple
-from ..utilities.Duration import Duration
 from ..utilities.DurationInequality import DurationInequality
 from ..utilities.Expression import Expression
 from ..utilities.LengthInequality import LengthInequality
-from ..utilities.Offset import Offset
 from ..utilities.Pattern import Pattern
 from ..utilities.Sequence import Sequence
 from .Chord import Chord
 from .Component import Component
+from .Component import inspect as abjad_inspect
 from .Leaf import Leaf
 from .MultimeasureRest import MultimeasureRest
 from .Note import Note
@@ -8314,7 +8312,8 @@ class Selection(collections.abc.Sequence):
         if self._expression:
             return self._update_expression(inspect.currentframe())
         ratio = ratio or Ratio((1,))
-        counts = mathtools.partition_integer_by_ratio(len(self), ratio)
+        ratio = Ratio(ratio)
+        counts = ratio.partition_integer(len(self))
         parts = Sequence(self).partition_by_counts(counts=counts)
         selections = [type(self)(_) for _ in parts]
         return type(self)(selections)

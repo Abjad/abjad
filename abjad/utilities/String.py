@@ -1546,57 +1546,6 @@ class String(str):
         string = "-".join(words_)
         return type(self)(string)
 
-    @staticmethod
-    def to_indicator_stem(indicator) -> "String":
-        """
-        Changes ``indicator`` to stem.
-
-        ..  container:: example
-
-            >>> abjad.String.to_indicator_stem(abjad.Clef('alto'))
-            'CLEF'
-
-            >>> abjad.String.to_indicator_stem(abjad.Clef('treble'))
-            'CLEF'
-
-            >>> abjad.String.to_indicator_stem(abjad.Dynamic('f'))
-            'DYNAMIC'
-
-            >>> abjad.String.to_indicator_stem(abjad.StartHairpin('<'))
-            'DYNAMIC'
-
-            >>> abjad.String.to_indicator_stem(abjad.Cello())
-            'INSTRUMENT'
-
-            >>> abjad.String.to_indicator_stem(abjad.Violin())
-            'INSTRUMENT'
-
-            >>> metronome_mark = abjad.MetronomeMark((1, 4), 58)
-            >>> abjad.String.to_indicator_stem(metronome_mark)
-            'METRONOME_MARK'
-
-            >>> start_text_span = abjad.StartTextSpan()
-            >>> abjad.String.to_indicator_stem(start_text_span)
-            'TEXT_SPANNER'
-
-            >>> stop_text_span = abjad.StopTextSpan()
-            >>> abjad.String.to_indicator_stem(stop_text_span)
-            'TEXT_SPANNER'
-
-        """
-        from ..instruments import Instrument
-
-        assert getattr(indicator, "persistent", False), repr(indicator)
-        if isinstance(indicator, Instrument):
-            stem = "INSTRUMENT"
-        elif getattr(indicator, "parameter", None) == "TEMPO":
-            stem = "METRONOME_MARK"
-        elif hasattr(indicator, "parameter"):
-            stem = indicator.parameter
-        else:
-            stem = type(indicator).__name__
-        return String(stem).to_shout_case()
-
     def to_lower_camel_case(self) -> "String":
         """
         Changes string to lower camel case.

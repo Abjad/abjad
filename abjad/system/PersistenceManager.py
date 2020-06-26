@@ -3,7 +3,8 @@ import re
 import shutil
 import tempfile
 
-from ..formatting import StorageFormatManager
+from ..formatting import LilyPondFormatManager
+from ..storage import StorageFormatManager
 from .IOManager import IOManager
 from .Timer import Timer
 
@@ -63,8 +64,6 @@ class PersistenceManager(object):
         Returns output path and elapsed formatting time when LilyPond output is
         written.
         """
-        import abjad
-
         if strict is not None:
             assert isinstance(strict, int), repr(strict)
         if illustrate_function is None:
@@ -75,14 +74,14 @@ class PersistenceManager(object):
         ly_file_path = str(ly_file_path)
         ly_file_path = os.path.expanduser(ly_file_path)
         assert ly_file_path.endswith(".ly"), ly_file_path
-        timer = abjad.Timer()
+        timer = Timer()
         with timer:
             string = lilypond_file.__format__(format_specification="lilypond")
             if isinstance(strict, int):
-                string = abjad.LilyPondFormatManager.align_tags(string, strict)
+                string = LilyPondFormatManager.align_tags(string, strict)
         abjad_formatting_time = timer.elapsed_time
         directory = os.path.dirname(ly_file_path)
-        abjad.IOManager._ensure_directory_existence(directory)
+        IOManager._ensure_directory_existence(directory)
         with open(ly_file_path, "w") as file_pointer:
             file_pointer.write(string)
         return ly_file_path, abjad_formatting_time
@@ -142,8 +141,6 @@ class PersistenceManager(object):
         Returns output path, elapsed formatting time and elapsed rendering
         time when PDF output is written.
         """
-        import abjad
-
         if strict is not None:
             assert isinstance(strict, int), repr(strict)
         if illustrate_function is None:
@@ -164,9 +161,9 @@ class PersistenceManager(object):
         ly_file_path, abjad_formatting_time = result
         without_extension = os.path.splitext(ly_file_path)[0]
         pdf_file_path = "{}.pdf".format(without_extension)
-        timer = abjad.Timer()
+        timer = Timer()
         with timer:
-            success = abjad.IOManager.run_lilypond(ly_file_path)
+            success = IOManager.run_lilypond(ly_file_path)
         lilypond_rendering_time = timer.elapsed_time
         if remove_ly:
             os.remove(ly_file_path)
@@ -196,8 +193,6 @@ class PersistenceManager(object):
         Returns output path(s), elapsed formatting time and elapsed rendering
         time.
         """
-        import abjad
-
         if illustrate_function is None:
             assert hasattr(self._client, "__illustrate__")
         if png_file_path is not None:
@@ -226,9 +221,9 @@ class PersistenceManager(object):
         if resolution and isinstance(resolution, int):
             flags += " -dresolution={}".format(resolution)
 
-        timer = abjad.Timer()
+        timer = Timer()
         with timer:
-            success = abjad.IOManager.run_lilypond(temporary_ly_file_path, flags=flags)
+            success = IOManager.run_lilypond(temporary_ly_file_path, flags=flags)
         lilypond_rendering_time = timer.elapsed_time
 
         png_file_paths = []

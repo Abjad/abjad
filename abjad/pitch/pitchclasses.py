@@ -2,7 +2,7 @@ import functools
 import numbers
 
 from .. import enums, mathtools
-from ..formatting import FormatSpecification, StorageFormatManager
+from ..storage import FormatSpecification, StorageFormatManager
 from . import constants
 from .Accidental import Accidental
 from .pitches import NamedPitch, NumberedPitch, Pitch

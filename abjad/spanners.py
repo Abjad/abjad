@@ -5,19 +5,20 @@ import typing
 
 from . import enums, typings
 from .core.Chord import Chord
-from .core.Component import Component
+from .core.Component import Component, inspect
 from .core.MultimeasureRest import MultimeasureRest
 from .core.Note import Note
 from .core.Rest import Rest
 from .core.Selection import Selection
 from .core.Skip import Skip
 from .core.Staff import Staff
+from .duration import Duration
 from .indicators.BeamCount import BeamCount
 from .indicators.BendAfter import BendAfter
 from .indicators.BowContactPoint import BowContactPoint
 from .indicators.BowMotionTechnique import BowMotionTechnique
 from .indicators.Dynamic import Dynamic
-from .indicators.GlissandoIndicator import GlissandoIndicator
+from .indicators.Glissando import Glissando
 from .indicators.LilyPondLiteral import LilyPondLiteral
 from .indicators.Ottava import Ottava
 from .indicators.RepeatTie import RepeatTie
@@ -44,8 +45,7 @@ from .lilypondnames.LilyPondTweakManager import (
 )
 from .scheme import SchemeSymbol
 from .tags import Tag, Tags
-from .top import attach, detach, inspect, iterate, select, tweak
-from .utilities.Duration import Duration
+from .top import attach, detach, iterate, select, tweak
 from .utilities.DurationInequality import DurationInequality
 from .utilities.Expression import Expression
 from .utilities.Sequence import Sequence
@@ -721,7 +721,7 @@ def bow_contact_spanner(
         _make_bow_contact_point_tweaks(leaf, bow_contact_point)
         if not _next_leaf_is_bowed(leaf, leaves):
             return
-        glissando = GlissandoIndicator()
+        glissando = Glissando()
         if bow_motion_technique is not None:
             style = SchemeSymbol(bow_motion_technique.glissando_style)
             tweak(glissando).style = style
@@ -1514,7 +1514,7 @@ def glissando(
                         literal, leaf, tag=tag.append(Tag("abjad.glissando(6)")),
                     )
         if should_attach_glissando:
-            glissando = GlissandoIndicator(zero_padding=zero_padding)
+            glissando = Glissando(zero_padding=zero_padding)
             _apply_tweaks(glissando, tweaks, i=i, total=total)
             tag_ = tag.append(Tag("abjad.glissando(7)"))
             if deactivate_glissando:

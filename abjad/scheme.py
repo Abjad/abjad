@@ -6,8 +6,8 @@ import functools
 import typing
 
 from . import enums, typings
-from .formatting import FormatSpecification, StorageFormatManager
-from .mathtools import NonreducedFraction
+from .duration import NonreducedFraction
+from .storage import FormatSpecification, StorageFormatManager
 from .utilities.String import String
 
 

@@ -1,8 +1,8 @@
 import typing
 
+from ..formatting import LilyPondFormatManager
 from ..ly.contexts import contexts
 from ..ly.grob_interfaces import grob_interfaces
-from ..system.LilyPondFormatManager import LilyPondFormatManager
 from ..utilities.String import String
 from .LilyPondNameManager import LilyPondNameManager
 

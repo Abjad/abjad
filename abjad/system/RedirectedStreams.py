@@ -1,6 +1,6 @@
 import sys
 
-from ..formatting import FormatSpecification
+from ..storage import FormatSpecification
 from .ContextManager import ContextManager
 
 

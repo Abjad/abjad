@@ -1,7 +1,7 @@
 from .. import typings
+from ..duration import Duration
 from ..tags import Tag
 from ..top import parse
-from ..utilities.Duration import Duration
 from .Leaf import Leaf
 
 

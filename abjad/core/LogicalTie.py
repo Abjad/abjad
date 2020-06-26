@@ -1,11 +1,11 @@
 import itertools
 
 from .. import exceptions
+from ..duration import Duration
 from ..indicators.RepeatTie import RepeatTie
 from ..indicators.Tie import Tie
-from ..mathtools import Ratio
+from ..ratio import Ratio
 from ..top import detach, mutate, select
-from ..utilities.Duration import Duration
 from .Selection import Selection
 
 

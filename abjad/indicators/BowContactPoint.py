@@ -2,9 +2,9 @@ import functools
 import typing
 
 from .. import typings
-from ..formatting import StorageFormatManager
+from ..duration import Multiplier
 from ..markups import Markup
-from ..utilities.Multiplier import Multiplier
+from ..storage import StorageFormatManager
 
 
 @functools.total_ordering

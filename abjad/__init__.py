@@ -31,8 +31,15 @@ from .exceptions import (
     WellformednessError,
 )
 
+from .duration import (
+    Duration,
+    Multiplier,
+    NonreducedFraction,
+    Offset,
+)
+
 from .parsers import parser
-from .formatting import (
+from .storage import (
     FormatSpecification,
     StorageFormatSpecification,
     StorageFormatManager,
@@ -42,33 +49,30 @@ from .system.ContextManager import ContextManager
 from .system.FilesystemState import FilesystemState
 from .system.ForbidUpdate import ForbidUpdate
 from .system.IOManager import IOManager
-from .system.LilyPondFormatBundle import LilyPondFormatBundle
-from .system.LilyPondFormatManager import LilyPondFormatManager
+from .formatting import (
+    LilyPondFormatBundle,
+    LilyPondFormatManager,
+    SlotContributions,
+)
 from .system.NullContextManager import NullContextManager
 from .system.Parser import Parser
 from .system.PersistenceManager import PersistenceManager
 from .system.ProgressIndicator import ProgressIndicator
 from .system.RedirectedStreams import RedirectedStreams
 from .system.Signature import Signature
-from .system.SlotContributions import SlotContributions
 from .system.TemporaryDirectory import TemporaryDirectory
 from .system.TemporaryDirectoryChange import TemporaryDirectoryChange
 from .system.TestManager import TestManager
 from .system.Timer import Timer
-from .system.UpdateManager import UpdateManager
-from .system.Wrapper import Wrapper
 from .system.annotate import annotate
 from .tags import Tag, Tags
 
 from .utilities.CyclicTuple import CyclicTuple
-from .utilities.Duration import Duration
 from .utilities.DurationInequality import DurationInequality
 from .utilities.Enumerator import Enumerator
 from .utilities.Expression import Expression
 from .utilities.Inequality import Inequality
 from .utilities.LengthInequality import LengthInequality
-from .utilities.Multiplier import Multiplier
-from .utilities.Offset import Offset
 from .utilities.OrderedDict import OrderedDict
 from .utilities.Pattern import Pattern
 from .utilities.PatternTuple import PatternTuple
@@ -83,10 +87,6 @@ from .utilities.TypedTuple import TypedTuple
 from .utilities.list_all_classes import list_all_classes
 from .utilities.list_all_functions import list_all_functions
 from .utilities.yield_all_modules import yield_all_modules
-from .utilities import (
-    Infinity,
-    NegativeInfinity,
-)
 
 # typings after utilities because of Expression
 from .typings import (
@@ -118,7 +118,7 @@ from .indicators.Clef import StaffPosition
 from .indicators.ColorFingering import ColorFingering
 from .indicators.Dynamic import Dynamic
 from .indicators.Fermata import Fermata
-from .indicators.GlissandoIndicator import GlissandoIndicator
+from .indicators.Glissando import Glissando
 from .indicators.KeyCluster import KeyCluster
 from .indicators.KeySignature import KeySignature
 from .indicators.LaissezVibrer import LaissezVibrer
@@ -211,14 +211,16 @@ from .instruments import (
     Xylophone,
 )
 
-from .lilypondfile.Block import Block
-from .lilypondfile.ContextBlock import ContextBlock
-from .lilypondfile.DateTimeToken import DateTimeToken
-from .lilypondfile.LilyPondDimension import LilyPondDimension
-from .lilypondfile.LilyPondFile import LilyPondFile
-from .lilypondfile.LilyPondLanguageToken import LilyPondLanguageToken
-from .lilypondfile.LilyPondVersionToken import LilyPondVersionToken
-from .lilypondfile.PackageGitCommitToken import PackageGitCommitToken
+from .lilypondfile import (
+    Block,
+    ContextBlock,
+    DateTimeToken,
+    LilyPondDimension,
+    LilyPondFile,
+    LilyPondLanguageToken,
+    LilyPondVersionToken,
+    PackageGitCommitToken,
+)
 
 from .lilypondnames.LilyPondContext import LilyPondContext
 from .lilypondnames.LilyPondContextSetting import LilyPondContextSetting
@@ -323,11 +325,14 @@ from .core.BeforeGraceContainer import BeforeGraceContainer
 from .core.Chord import Chord
 from .core.Cluster import Cluster
 from .core.Component import Component
+from .core.Component import Inspection
+from .core.Component import UpdateManager
+from .core.Component import Wrapper
 from .core.Container import Container
 from .core.Context import Context
 from .core.Descendants import Descendants
 from .core.DrumNoteHead import DrumNoteHead
-from .core.Inspection import Inspection
+from .core.Component import inspect
 from .core.Iteration import Iteration
 from .core.Label import Label
 from .core.Leaf import Leaf
@@ -390,12 +395,11 @@ from .templates import (
     StringQuartetScoreTemplate,
     TwoStaffPianoScoreTemplate,
 )
+from .iox import graph, play, show
 from .top import (
     attach,
     detach,
     f,
-    graph,
-    inspect,
     iterate,
     label,
     mutate,
@@ -403,16 +407,18 @@ from .top import (
     override,
     parse,
     persist,
-    play,
     select,
     sequence,
     setting,
-    show,
     tweak,
 )
 
 from .mathtools import (
-    NonreducedFraction,
+    Infinity,
+    NegativeInfinity,
+)
+
+from .ratio import (
     NonreducedRatio,
     Ratio,
 )
@@ -550,7 +556,7 @@ __all__ = [
     "ColorFingering",
     "Dynamic",
     "Fermata",
-    "GlissandoIndicator",
+    "Glissando",
     "KeyCluster",
     "KeySignature",
     "LaissezVibrer",

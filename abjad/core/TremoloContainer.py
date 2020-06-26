@@ -1,6 +1,6 @@
 from .. import mathtools
+from ..duration import Multiplier
 from ..tags import Tag
-from ..utilities.Multiplier import Multiplier
 from .Container import Container
 
 

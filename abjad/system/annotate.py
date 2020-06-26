@@ -1,5 +1,4 @@
 from ..tags import Tag
-from .Wrapper import Wrapper
 
 
 def annotate(component, annotation, indicator) -> None:
@@ -36,6 +35,8 @@ def annotate(component, annotation, indicator) -> None:
 
     Returns none.
     """
+    from ..core.Component import Wrapper
+
     if isinstance(annotation, Tag):
         message = "use the tag=None keyword instead of annotate():\n"
         message += f"   {repr(annotation)}"

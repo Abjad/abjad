@@ -1,10 +1,10 @@
 import copy
 import typing
 
-from ..formatting import StorageFormatManager
+from ..formatting import LilyPondFormatBundle
 from ..lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from ..markups import Markup
-from ..system.LilyPondFormatBundle import LilyPondFormatBundle
+from ..storage import StorageFormatManager
 from ..top import new
 
 

@@ -11,8 +11,11 @@ import sys
 import typing
 
 from .. import enums, mathtools
-from ..formatting import FormatSpecification, StorageFormatManager
+from ..markups import MarkupList
+from ..ratio import Ratio
+from ..storage import FormatSpecification, StorageFormatManager
 from ..system.Signature import Signature
+from ..top import select
 from .CyclicTuple import CyclicTuple
 from .Expression import Expression
 
@@ -739,29 +742,6 @@ class Sequence(collections.abc.Sequence):
 
     ### PRIVATE METHODS ###
 
-    @staticmethod
-    def _flatten_at_indices_helper(sequence, indices, classes, depth):
-        if classes is None:
-            classes = (list, tuple)
-        if not isinstance(sequence, classes):
-            raise TypeError()
-        ltype = type(sequence)
-        len_l = len(sequence)
-        indices = [_ if 0 <= _ else len_l + _ for _ in indices]
-        result = []
-        for i, item in enumerate(sequence):
-            if i in indices:
-                try:
-                    flattened = Sequence._flatten_helper(
-                        item, classes=classes, depth=depth
-                    )
-                    result.extend(flattened)
-                except Exception:
-                    result.append(item)
-            else:
-                result.append(item)
-        return ltype(result)
-
     # creates an iterator that can generate a flattened list,
     # descending down into child elements to a depth given in the arguments.
     # note that depth < 0 is effectively equivalent to infinity.
@@ -784,9 +764,7 @@ class Sequence(collections.abc.Sequence):
 
     @staticmethod
     def _make_map_markup(markup, operand):
-        from .. import markups
-
-        markup_list = markups.MarkupList()
+        markup_list = MarkupList()
         operand_markup = operand.get_markup(name="X")
         markup_list.append(operand_markup)
         markup_list.append("/@")
@@ -1106,9 +1084,8 @@ class Sequence(collections.abc.Sequence):
                 items.append(item)
         return type(self)(items)
 
-    # TODO: remove indices=None parameter
     @Signature()
-    def flatten(self, classes=None, depth=1, indices=None) -> "Sequence":
+    def flatten(self, classes=None, depth=1) -> "Sequence":
         r"""
         Flattens sequence.
 
@@ -1232,87 +1209,6 @@ class Sequence(collections.abc.Sequence):
                             }
                         }
 
-
-        ..  container:: example
-
-            Flattens sequence at indices:
-
-            ..  container:: example
-
-                >>> items = [1, [2, 3, [4]], 5, [6, 7, [8]]]
-                >>> sequence = abjad.sequence(items)
-
-                >>> sequence.flatten(indices=[3])
-                Sequence([1, [2, 3, [4]], 5, 6, 7, 8])
-
-            ..  container:: example expression
-
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
-                >>> expression = expression.flatten(indices=[3])
-
-                >>> expression([1, [2, 3, [4]], 5, [6, 7, [8]]])
-                Sequence([1, [2, 3, [4]], 5, 6, 7, 8])
-
-                >>> expression.get_string()
-                'flatten(J, indices=[3])'
-
-                >>> markup = expression.get_markup()
-                >>> abjad.show(markup) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> abjad.f(markup)
-                    \markup {
-                        \concat
-                            {
-                                flatten(
-                                \bold
-                                    J
-                                ", indices=[3])"
-                            }
-                        }
-
-        ..  container:: example
-
-            Flattens sequence at negative indices:
-
-            ..  container:: example
-
-                >>> items = [1, [2, 3, [4]], 5, [6, 7, [8]]]
-                >>> sequence = abjad.sequence(items)
-
-                >>> sequence.flatten(indices=[-1])
-                Sequence([1, [2, 3, [4]], 5, 6, 7, 8])
-
-            ..  container:: example expression
-
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
-                >>> expression = expression.flatten(indices=[-1])
-
-                >>> expression([1, [2, 3, [4]], 5, [6, 7, [8]]])
-                Sequence([1, [2, 3, [4]], 5, 6, 7, 8])
-
-                >>> expression.get_string()
-                'flatten(J, indices=[-1])'
-
-                >>> markup = expression.get_markup()
-                >>> abjad.show(markup) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> abjad.f(markup)
-                    \markup {
-                        \concat
-                            {
-                                flatten(
-                                \bold
-                                    J
-                                ", indices=[-1])"
-                            }
-                        }
-
         ..  container:: example
 
             Flattens tuples in sequence only:
@@ -1354,21 +1250,14 @@ class Sequence(collections.abc.Sequence):
                         }
 
         """
-        from ..core.Selection import Selection
-
         if self._expression:
             return self._update_expression(inspect.currentframe())
         if classes is None:
-            classes = (collections.abc.Sequence, Selection)
+            classes = (collections.abc.Sequence,)
         if Sequence not in classes:
             classes = tuple(list(classes) + [Sequence])
-        if indices is None:
-            items = self._flatten_helper(self, classes, depth)
-            return type(self)(items)
-        else:
-            return type(self)(
-                self._flatten_at_indices_helper(self, indices, classes, depth)
-            )
+        items = self._flatten_helper(self, classes, depth)
+        return type(self)(items)
 
     def group_by(self, predicate=None) -> "Sequence":
         """
@@ -3412,9 +3301,9 @@ class Sequence(collections.abc.Sequence):
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        ratio = mathtools.Ratio(ratio)
+        ratio = Ratio(ratio)
         length = len(self)
-        counts = mathtools.partition_integer_by_ratio(length, ratio)
+        counts = ratio.partition_integer(length)
         parts = self.partition_by_counts(counts, cyclic=False, overhang=enums.Exact)
         return type(self)(parts)
 
@@ -3551,7 +3440,7 @@ class Sequence(collections.abc.Sequence):
         Returns nested sequence.
         """
         list_weight = mathtools.weight(self)
-        weights_parts = mathtools.partition_integer_by_ratio(list_weight, weights)
+        weights_parts = Ratio(weights).partition_integer(list_weight)
         cumulative_weights = mathtools.cumulative_sums(weights_parts, start=None)
         items = []
         sublist: typing.List[typing.Any] = []
@@ -4711,11 +4600,9 @@ class Sequence(collections.abc.Sequence):
 
         Returns selection.
         """
-        import abjad
-
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        return abjad.select(self)
+        return select(self)
 
     def sort(self, key=None, reverse=False) -> "Sequence":
         """

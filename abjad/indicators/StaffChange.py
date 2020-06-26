@@ -1,7 +1,7 @@
 from .. import enums
-from ..formatting import StorageFormatManager
+from ..formatting import LilyPondFormatBundle
 from ..scheme import Scheme
-from ..system.LilyPondFormatBundle import LilyPondFormatBundle
+from ..storage import StorageFormatManager
 
 
 class StaffChange(object):

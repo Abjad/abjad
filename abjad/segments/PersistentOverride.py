@@ -1,9 +1,8 @@
 import typing
 
 from ..core.Context import Context
-from ..formatting import FormatSpecification, StorageFormatManager
-from ..system.LilyPondFormatBundle import LilyPondFormatBundle
-from ..system.LilyPondFormatManager import LilyPondFormatManager
+from ..formatting import LilyPondFormatBundle, LilyPondFormatManager
+from ..storage import FormatSpecification, StorageFormatManager
 
 
 class PersistentOverride(object):

@@ -1,6 +1,6 @@
-from ..formatting import FormatSpecification, StorageFormatManager
 from ..pitch.intervals import NamedInterval
 from ..pitch.segments import IntervalSegment
+from ..storage import FormatSpecification, StorageFormatManager
 from ..top import sequence
 
 

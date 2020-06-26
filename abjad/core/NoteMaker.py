@@ -3,9 +3,8 @@ import numbers
 import typing
 
 from .. import mathtools
+from ..duration import Duration, Multiplier, NonreducedFraction
 from ..tags import Tag
-from ..utilities.Duration import Duration
-from ..utilities.Multiplier import Multiplier
 from ..utilities.Sequence import Sequence
 from .LeafMaker import LeafMaker
 from .Note import Note
@@ -187,9 +186,7 @@ class NoteMaker(object):
             pitches = [pitches]
         if isinstance(durations, (numbers.Number, tuple)):
             durations = [durations]
-        nonreduced_fractions = Sequence(
-            [mathtools.NonreducedFraction(_) for _ in durations]
-        )
+        nonreduced_fractions = Sequence([NonreducedFraction(_) for _ in durations])
         size = max(len(nonreduced_fractions), len(pitches))
         nonreduced_fractions = nonreduced_fractions.repeat_to_length(size)
         pitches = Sequence(pitches).repeat_to_length(size)

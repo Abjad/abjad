@@ -3,7 +3,7 @@ import collections
 import types
 
 from .. import mathtools
-from ..formatting import FormatSpecification
+from ..storage import FormatSpecification
 from ..utilities.Enumerator import Enumerator
 from ..utilities.TypedCollection import TypedCollection
 from ..utilities.TypedCounter import TypedCounter

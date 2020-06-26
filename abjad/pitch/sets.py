@@ -3,7 +3,7 @@ import collections
 import copy
 import types
 
-from ..formatting import FormatSpecification
+from ..storage import FormatSpecification
 from ..top import new
 from ..utilities.Enumerator import Enumerator
 from ..utilities.Sequence import Sequence

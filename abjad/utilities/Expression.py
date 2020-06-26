@@ -2,6 +2,7 @@ try:
     import quicktions as fractions  # type: ignore
 except ImportError:
     import fractions  # type: ignore
+import importlib
 import inspect
 import itertools
 import numbers
@@ -9,7 +10,7 @@ import typing
 
 import uqbar.enums
 
-from ..formatting import FormatSpecification, StorageFormatManager
+from ..storage import FormatSpecification, StorageFormatManager
 from ..system.Signature import Signature
 from ..top import label, new
 
@@ -885,9 +886,7 @@ class Expression(object):
         return template
 
     def _make_globals(self):
-        # import for evaluation context:
-        import abjad
-
+        abjad = importlib.import_module("abjad")
         globals_ = {"abjad": abjad}
         globals_.update(abjad.__dict__.copy())
         module_names = self.module_names or []
@@ -912,7 +911,6 @@ class Expression(object):
         if parts[-1] != class_.__name__:
             parts.append(class_.__name__)
         if "abjad" in parts:
-            # parts = [_ for _ in parts if "tools" not in _]
             assert parts[0] == "abjad", repr(parts)
             evaluation_template = f"abjad.{class_.__name__}"
         else:
@@ -1078,7 +1076,6 @@ class Expression(object):
             if parts[-1] != class_.__name__:
                 parts.append(class_.__name__)
             if "abjad" in parts:
-                # parts = [_ for _ in parts if "tools" not in _]
                 assert parts[0] == "abjad"
                 parts = ["abjad", class_.__name__]
             parts.append(function_name)

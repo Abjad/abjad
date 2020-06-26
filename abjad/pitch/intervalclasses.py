@@ -4,7 +4,7 @@ import functools
 import numbers
 
 from .. import mathtools
-from ..formatting import FormatSpecification, StorageFormatManager
+from ..storage import FormatSpecification, StorageFormatManager
 from . import constants
 from .intervals import Interval, NamedInterval, NumberedInterval
 from .pitches import NamedPitch
