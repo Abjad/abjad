@@ -4,15 +4,14 @@ import math
 import typing
 
 from .. import exceptions, mathtools, typings
-from ..formatting import FormatSpecification, StorageFormatManager
+from ..duration import Duration, Multiplier, NonreducedFraction
+from ..formatting import LilyPondFormatBundle
 from ..markups import Markup
-from ..mathtools import NonreducedFraction, Ratio
+from ..ratio import Ratio
 from ..scheme import Scheme
-from ..system.LilyPondFormatBundle import LilyPondFormatBundle
+from ..storage import FormatSpecification, StorageFormatManager
 from ..top import new, sequence
-from ..utilities.Duration import Duration
 from ..utilities.Enumerator import Enumerator
-from ..utilities.Multiplier import Multiplier
 
 try:
     from quicktions import Fraction
@@ -786,11 +785,12 @@ class MetronomeMark(object):
 
     def _make_lhs_score_markup(self, reference_duration=None):
         import abjad
+        from ..illustrate import _to_score_markup
 
         reference_duration = reference_duration or self.reference_duration
         maker = abjad.NoteMaker()
         selection = maker([0], [reference_duration])
-        markup = Duration._to_score_markup(selection)
+        markup = _to_score_markup(selection)
         return markup
 
     def _get_markup(self):

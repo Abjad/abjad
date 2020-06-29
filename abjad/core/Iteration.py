@@ -1,14 +1,14 @@
 import collections
 
-from ..formatting import StorageFormatManager
 from ..instruments import Instrument
 from ..pitch.pitches import NamedPitch, Pitch
 from ..pitch.segments import PitchSegment
 from ..pitch.sets import PitchSet
-from ..top import inspect
+from ..storage import StorageFormatManager
 from ..utilities.Enumerator import Enumerator
 from ..utilities.OrderedDict import OrderedDict
 from ..utilities.Sequence import Sequence
+from .Component import inspect
 
 
 class Iteration(object):

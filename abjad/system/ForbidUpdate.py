@@ -43,10 +43,8 @@ class ForbidUpdate(ContextManager):
     ### INITIALIZER ###
 
     def __init__(self, component=None, update_on_enter=True, update_on_exit=None):
-        import abjad
-
-        prototype = (abjad.Component, type(None))
-        assert isinstance(component, prototype)
+        if component is not None:
+            assert hasattr(component, "_timespan"), repr(component)
         self._component = component
         if update_on_enter is not None:
             update_on_enter = bool(update_on_enter)

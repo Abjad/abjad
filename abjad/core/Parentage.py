@@ -2,8 +2,8 @@ import collections
 import typing
 
 from .. import mathtools
-from ..formatting import StorageFormatManager
-from ..utilities.Multiplier import Multiplier
+from ..duration import Multiplier
+from ..storage import StorageFormatManager
 from ..utilities.OrderedDict import OrderedDict
 from .AfterGraceContainer import AfterGraceContainer
 from .BeforeGraceContainer import BeforeGraceContainer

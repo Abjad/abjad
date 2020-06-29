@@ -2,10 +2,10 @@ import functools
 import numbers
 import typing
 
-from ..formatting import FormatSpecification, StorageFormatManager
+from ..formatting import LilyPondFormatBundle
 from ..pitch import constants as pitch_constants
 from ..pitch.pitches import NamedPitch
-from ..system.LilyPondFormatBundle import LilyPondFormatBundle
+from ..storage import FormatSpecification, StorageFormatManager
 from ..top import iterate
 
 

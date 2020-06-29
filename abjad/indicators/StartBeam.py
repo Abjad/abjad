@@ -1,8 +1,8 @@
 import typing
 
-from ..formatting import StorageFormatManager
+from ..formatting import LilyPondFormatBundle
 from ..lilypondnames.LilyPondTweakManager import LilyPondTweakManager
-from ..system.LilyPondFormatBundle import LilyPondFormatBundle
+from ..storage import StorageFormatManager
 from ..utilities.String import String
 
 

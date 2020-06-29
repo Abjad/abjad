@@ -1,18 +1,18 @@
 import typing
 
-from ..formatting import StorageFormatManager
+from ..formatting import LilyPondFormatBundle
 from ..lilypondnames.LilyPondTweakManager import LilyPondTweakManager
-from ..system.LilyPondFormatBundle import LilyPondFormatBundle
+from ..storage import StorageFormatManager
 
 
-class GlissandoIndicator(object):
+class Glissando(object):
     r"""
     LilyPond ``\glissando`` command.
 
     ..  container:: example
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> glissando = abjad.GlissandoIndicator()
+        >>> glissando = abjad.Glissando()
         >>> abjad.tweak(glissando).color = 'blue'
         >>> abjad.attach(glissando, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
@@ -32,8 +32,8 @@ class GlissandoIndicator(object):
 
     ..  container:: example
 
-        >>> abjad.GlissandoIndicator()
-        GlissandoIndicator()
+        >>> abjad.Glissando()
+        Glissando()
 
     """
 
@@ -139,7 +139,7 @@ class GlissandoIndicator(object):
 
         ..  container:: example
 
-            >>> abjad.GlissandoIndicator().context
+            >>> abjad.Glissando().context
             'Voice'
 
         Class constant.
@@ -155,7 +155,7 @@ class GlissandoIndicator(object):
 
         ..  container:: example
 
-            >>> abjad.GlissandoIndicator().persistent
+            >>> abjad.Glissando().persistent
             True
 
         Class constant.
@@ -170,7 +170,7 @@ class GlissandoIndicator(object):
         ..  container:: example
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> glissando = abjad.GlissandoIndicator()
+            >>> glissando = abjad.Glissando()
             >>> abjad.tweak(glissando).color = 'blue'
             >>> abjad.attach(glissando, staff[0])
             >>> abjad.show(staff) # doctest: +SKIP

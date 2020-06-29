@@ -4,18 +4,17 @@ import typing
 
 import uqbar.graphs
 
-from .. import enums, exceptions, mathtools
-from ..formatting import FormatSpecification
+from .. import enums, exceptions
+from ..duration import Duration, Multiplier, NonreducedFraction
+from ..formatting import LilyPondFormatManager
 from ..indicators.MetronomeMark import MetronomeMark
 from ..indicators.RepeatTie import RepeatTie
 from ..indicators.Tie import Tie
-from ..system.LilyPondFormatManager import LilyPondFormatManager
+from ..storage import FormatSpecification
 from ..tags import Tag
-from ..top import attach, detach, inspect, mutate, override, select, setting
-from ..utilities.Duration import Duration
-from ..utilities.Multiplier import Multiplier
+from ..top import attach, detach, mutate, override, select, setting
 from ..utilities.Sequence import Sequence
-from .Component import Component
+from .Component import Component, inspect
 
 
 class Leaf(Component):
@@ -502,9 +501,7 @@ class Leaf(Component):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def multiplier(
-        self,
-    ) -> typing.Union[Multiplier, mathtools.NonreducedFraction, None]:
+    def multiplier(self,) -> typing.Union[Multiplier, NonreducedFraction, None]:
         """
         Gets multiplier.
         """
@@ -512,7 +509,7 @@ class Leaf(Component):
 
     @multiplier.setter
     def multiplier(self, argument):
-        if isinstance(argument, (mathtools.NonreducedFraction, type(None))):
+        if isinstance(argument, (NonreducedFraction, type(None))):
             multiplier = argument
         else:
             multiplier = Multiplier(argument)

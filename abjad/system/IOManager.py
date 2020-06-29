@@ -9,7 +9,7 @@ import sys
 import traceback
 import typing
 
-from ..formatting import StorageFormatManager
+from ..storage import StorageFormatManager
 from .Configuration import Configuration
 
 configuration = Configuration()

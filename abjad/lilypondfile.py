@@ -1,31 +1,900 @@
 import collections
 import copy
+import importlib
 import inspect
+import numbers
+import os
 import pathlib
+import subprocess
+import time
 
-from ..core.Component import Component
-from ..core.Container import Container
-from ..core.Context import Context
-from ..core.Score import Score
-from ..core.Selection import Selection
-from ..core.Skip import Skip
-from ..core.Staff import Staff
-from ..core.Voice import Voice
-from ..formatting import FormatSpecification, StorageFormatManager
-from ..indicators.LilyPondLiteral import LilyPondLiteral
-from ..indicators.TimeSignature import TimeSignature
-from ..pitch.pitches import NamedPitch
-from ..scheme import Scheme, SpacingVector
-from ..system.LilyPondFormatManager import LilyPondFormatManager
-from ..tags import Tag
-from ..top import attach
-from ..top import inspect as abjad_inspect
-from ..top import iterate, override, select, sequence
-from .Block import Block
-from .ContextBlock import ContextBlock
-from .DateTimeToken import DateTimeToken
-from .LilyPondLanguageToken import LilyPondLanguageToken
-from .LilyPondVersionToken import LilyPondVersionToken
+from .core.Component import Component
+from .core.Component import inspect as abjad_inspect
+from .core.Container import Container
+from .core.Context import Context
+from .core.Score import Score
+from .core.Selection import Selection
+from .core.Skip import Skip
+from .core.Staff import Staff
+from .core.Voice import Voice
+from .formatting import LilyPondFormatManager
+from .indicators.LilyPondLiteral import LilyPondLiteral
+from .indicators.TimeSignature import TimeSignature
+from .pitch.pitches import NamedPitch
+from .scheme import Scheme, SpacingVector
+from .storage import FormatSpecification, StorageFormatManager
+from .system.Configuration import Configuration
+from .system.TemporaryDirectoryChange import TemporaryDirectoryChange
+from .tags import Tag
+from .top import attach, iterate, override, select, sequence, setting
+
+configuration = Configuration()
+
+
+class Block(object):
+    r"""
+    A LilyPond file block.
+
+    ..  container:: example
+
+        REGRESSION. Blocks remember attribute assignment order.
+
+        Here right margin precedes left margin even though left margin
+        alphabetizes before right margin:
+
+        >>> block = abjad.Block(name='paper')
+        >>> block.right_margin = abjad.LilyPondDimension(2, 'cm')
+        >>> block.left_margin = abjad.LilyPondDimension(2, 'cm')
+        >>> block
+        <Block(name='paper')>
+
+        >>> abjad.f(block)
+        \paper {
+            right-margin = 2\cm
+            left-margin = 2\cm
+        }
+
+    ..  container:: example
+
+        >>> block = abjad.Block(name='score')
+        >>> markup = abjad.Markup('foo')
+        >>> block.items.append(markup)
+        >>> block
+        <Block(name='score')>
+
+        >>> abjad.f(block)
+        \score {
+            {
+                \markup { foo }
+            }
+        }
+
+    """
+
+    ### INITIALIZER ###
+
+    def __init__(self, name="score"):
+        assert isinstance(name, str), repr(name)
+        self._name = name
+        escaped_name = rf"\{name}"
+        self._escaped_name = escaped_name
+        self._items = []
+        self._public_attribute_names = []
+
+    ### SPECIAL METHODS ###
+
+    def __delattr__(self, name) -> None:
+        """
+        Deletes block attribute with ``name``.
+
+        ..  container:: example
+
+            >>> header_block = abjad.Block(name='header')
+            >>> header_block.tagline = False
+            >>> header_block.tagline
+            False
+
+            >>> delattr(header_block, 'tagline')
+            >>> hasattr(header_block, 'tagline')
+            False
+
+        """
+        self._public_attribute_names.remove(name)
+        object.__delattr__(self, name)
+
+    def __format__(self, format_specification=""):
+        """
+        Formats block.
+
+        Returns string.
+        """
+        if format_specification in ("", "lilypond"):
+            return self._get_lilypond_format()
+        else:
+            assert format_specification == "storage"
+            return StorageFormatManager(self).get_storage_format()
+
+    def __getitem__(self, name):
+        """
+        Gets item with ``name``.
+
+        ..  container:: example
+
+            Gets score with name ``'Red Example Score'`` in score block:
+
+            >>> block = abjad.Block(name='score')
+            >>> score = abjad.Score(name='Red_Example_Score')
+            >>> block.items.append(score)
+
+            >>> block['Red_Example_Score']
+            Score(simultaneous=True, name='Red_Example_Score')
+
+        Returns item.
+
+        Raises key error when no item with ``name`` is found.
+        """
+        for item in self.items:
+            if getattr(item, "name", None) == name:
+                return item
+        raise KeyError
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
+
+    def __setattr__(self, name, value):
+        """
+        Sets block ``name`` to ``value``.
+
+        Returns none.
+        """
+        if not name.startswith("_") and name not in self._public_attribute_names:
+            self._public_attribute_names.append(name)
+        object.__setattr__(self, name, value)
+
+    def __setstate__(self, state):
+        """
+        Sets state of block.
+
+        Returns none.
+        """
+        if not hasattr(self, "_public_attribute_names"):
+            self._public_attribute_names = []
+        for key, value in state.items():
+            setattr(self, key, value)
+
+    ### PRIVATE METHODS ###
+
+    def _format_item(self, item, depth=1):
+        indent = LilyPondFormatManager.indent * depth
+        result = []
+        if isinstance(item, (list, tuple)):
+            result.append(indent + "{")
+            depth_ = depth + 1
+            for x in item:
+                pieces = self._format_item(x, depth=depth_)
+                result.extend(pieces)
+            result.append(indent + "}")
+        elif isinstance(item, str):
+            if item.isspace():
+                string = ""
+            else:
+                string = indent + item
+            result.append(string)
+        elif "_get_format_pieces" in dir(item):
+            try:
+                pieces = item._get_format_pieces()
+            except TypeError:
+                pieces = item._get_format_pieces()
+            for piece in pieces:
+                if piece.isspace():
+                    piece = ""
+                else:
+                    piece = indent + piece
+                result.append(piece)
+        return result
+
+    def _formatted_context_blocks(self):
+        result = []
+        context_blocks = []
+        for item in self.items:
+            if isinstance(item, ContextBlock):
+                context_blocks.append(item)
+        for context_block in context_blocks:
+            result.extend(context_block._get_format_pieces())
+        return result
+
+    def _get_format_pieces(self, tag=None):
+        from .core.Leaf import Leaf
+        from .markups import Markup
+
+        indent = LilyPondFormatManager.indent
+        result = []
+        if (
+            not self._get_formatted_user_attributes()
+            and not getattr(self, "contexts", None)
+            and not getattr(self, "context_blocks", None)
+            and not len(self.items)
+        ):
+            if self.name == "score":
+                return ""
+            string = f"{self._escaped_name} {{}}"
+            result.append(string)
+            return result
+        string = f"{self._escaped_name} {{"
+        if tag is not None:
+            strings = LilyPondFormatManager.tag([string], tag=tag)
+            string = strings[0]
+        result.append(string)
+        for item in self.items:
+            if isinstance(item, ContextBlock):
+                continue
+            if isinstance(item, (Leaf, Markup)):
+                item = [item]
+            result.extend(self._format_item(item))
+        formatted_attributes = self._get_formatted_user_attributes()
+        formatted_attributes = [indent + _ for _ in formatted_attributes]
+        result.extend(formatted_attributes)
+        formatted_context_blocks = self._formatted_context_blocks()
+        formatted_context_blocks = [indent + _ for _ in formatted_context_blocks]
+        result.extend(formatted_context_blocks)
+        string = "}"
+        if tag is not None:
+            strings = LilyPondFormatManager.tag([string], tag=tag)
+            string = strings[0]
+        result.append(string)
+
+        return result
+
+    def _get_format_specification(self):
+        return FormatSpecification(
+            client=self, repr_is_bracketed=True, repr_is_indented=False
+        )
+
+    def _get_formatted_user_attributes(self):
+        from .markups import Markup
+        from .scheme import Scheme
+
+        result = []
+        prototype = Scheme
+        for value in self.items:
+            if isinstance(value, prototype):
+                result.append(format(value, "lilypond"))
+        prototype = (LilyPondDimension, Scheme)
+        for key in self._public_attribute_names:
+            assert not key.startswith("_"), repr(key)
+            value = getattr(self, key)
+            # format subkeys via double underscore
+            formatted_key = key.split("__")
+            for i, k in enumerate(formatted_key):
+                formatted_key[i] = k.replace("_", "-")
+                if 0 < i:
+                    string = f"#'{formatted_key[i]}"
+                    formatted_key[i] = string
+            formatted_key = " ".join(formatted_key)
+            # format value
+            if isinstance(value, Markup):
+                formatted_value = value._get_format_pieces()
+            elif isinstance(value, prototype):
+                formatted_value = [format(value, "lilypond")]
+            else:
+                formatted_value = Scheme(value)
+                formatted_value = format(formatted_value, "lilypond")
+                formatted_value = [formatted_value]
+            setting = f"{formatted_key!s} = {formatted_value[0]!s}"
+            result.append(setting)
+            result.extend(formatted_value[1:])
+        return result
+
+    def _get_lilypond_format(self, tag=None):
+        return "\n".join(self._get_format_pieces(tag=tag))
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def items(self):
+        r"""
+        Gets items in block.
+
+        ..  container:: example
+
+            >>> block = abjad.Block(name='score')
+            >>> markup = abjad.Markup('foo')
+            >>> block.items.append(markup)
+
+            >>> block.items
+            [Markup(contents=['foo'])]
+
+        ..  container:: example
+
+            Accepts strings:
+
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> score_block = abjad.Block(name='score')
+            >>> score_block.items.append('<<')
+            >>> score_block.items.append(r'{ \include "layout.ly" }')
+            >>> score_block.items.append(staff)
+            >>> score_block.items.append('>>')
+            >>> lilypond_file = abjad.LilyPondFile(
+            ...     lilypond_language_token=False,
+            ...     lilypond_version_token=False,
+            ...     )
+            >>> lilypond_file.items.append(score_block)
+
+            >>> abjad.f(lilypond_file)
+            \score { %! abjad.LilyPondFile._get_formatted_blocks()
+                <<
+                { \include "layout.ly" }
+                \new Staff
+                {
+                    c'4
+                    d'4
+                    e'4
+                    f'4
+                }
+                >>
+            } %! abjad.LilyPondFile._get_formatted_blocks()
+
+        Returns list.
+        """
+        return self._items
+
+    @property
+    def name(self):
+        """
+        Gets name of block.
+
+        ..  container:: example
+
+            >>> block = abjad.Block(name='score')
+            >>> markup = abjad.Markup('foo')
+            >>> block.items.append(markup)
+
+            >>> block.name
+            'score'
+
+        Returns string.
+        """
+        return self._name
+
+    ### PUBLIC METHODS ###
+
+    def empty(self):
+        """
+        Is true when block contains no items and has no user attributes.
+
+        Returns true or false.
+        """
+        if not self.items and not self._get_formatted_user_attributes():
+            return True
+        return False
+
+
+class ContextBlock(Block):
+    r"""
+    A LilyPond file ``\context`` block.
+
+    ..  container:: example
+
+        >>> block = abjad.ContextBlock(
+        ...     source_lilypond_type='Staff',
+        ...     name='FluteStaff',
+        ...     type_='Engraver_group',
+        ...     alias='Staff',
+        ...     )
+        >>> block.remove_commands.append('Forbid_line_break_engraver')
+        >>> block.consists_commands.append('Horizontal_bracket_engraver')
+        >>> block.accepts_commands.append('FluteUpperVoice')
+        >>> block.accepts_commands.append('FluteLowerVoice')
+        >>> block.items.append(r'\accidentalStyle dodecaphonic')
+        >>> abjad.override(block).beam.positions = (-4, -4)
+        >>> abjad.override(block).stem.stem_end_position = -6
+        >>> abjad.setting(block).auto_beaming = False
+        >>> abjad.setting(block).tuplet_full_length = True
+        >>> block
+        <ContextBlock(source_lilypond_type='Staff', name='FluteStaff', type_='Engraver_group', alias='Staff')>
+
+        >>> print(format(block))
+        \context {
+            \Staff
+            \name FluteStaff
+            \type Engraver_group
+            \alias Staff
+            \remove Forbid_line_break_engraver
+            \consists Horizontal_bracket_engraver
+            \accepts FluteUpperVoice
+            \accepts FluteLowerVoice
+            \override Beam.positions = #'(-4 . -4)
+            \override Stem.stem-end-position = #-6
+            autoBeaming = ##f
+            tupletFullLength = ##t
+            \accidentalStyle dodecaphonic
+        }
+
+    """
+
+    ### INITIALIZER ###
+
+    def __init__(self, source_lilypond_type=None, name=None, type_=None, alias=None):
+        Block.__init__(self, name="context")
+        self._source_lilypond_type = source_lilypond_type
+        self._name = name
+        self._type_ = type_
+        self._alias = alias
+        self._accepts_commands = []
+        self._consists_commands = []
+        self._remove_commands = []
+
+    ### PRIVATE METHODS ###
+
+    def _get_format_pieces(self, tag=None):
+        indent = LilyPondFormatManager.indent
+        result = []
+        string = f"{self._escaped_name} {{"
+        result.append(string)
+        manager = LilyPondFormatManager
+        # CAUTION: source context name must come before type_ to allow
+        # context redefinition.
+        if self.source_lilypond_type is not None:
+            string = indent + rf"\{self.source_lilypond_type}"
+            result.append(string)
+        if self.name is not None:
+            string = indent + rf"\name {self.name}"
+            result.append(string)
+        if self.type_ is not None:
+            string = indent + rf"\type {self.type_}"
+            result.append(string)
+        if self.alias is not None:
+            string = indent + rf"\alias {self.alias}"
+            result.append(string)
+        for statement in self.remove_commands:
+            string = indent + rf"\remove {statement}"
+            result.append(string)
+        # CAUTION: LilyPond \consists statements are order-significant!
+        for statement in self.consists_commands:
+            string = indent + rf"\consists {statement}"
+            result.append(string)
+        for statement in self.accepts_commands:
+            string = indent + rf"\accepts {statement}"
+            result.append(string)
+        overrides = override(self)._list_format_contributions("override")
+        for statement in overrides:
+            string = indent + statement
+            result.append(string)
+        setting_contributions = []
+        for key, value in setting(self)._get_attribute_tuples():
+            setting_contribution = manager.format_lilypond_context_setting_in_with_block(
+                key, value
+            )
+            setting_contributions.append(setting_contribution)
+        for setting_contribution in sorted(setting_contributions):
+            string = indent + setting_contribution
+            result.append(string)
+        for item in self.items:
+            if isinstance(item, str):
+                string = indent + f"{item}"
+                result.append(string)
+            elif "_get_format_pieces" in dir(item):
+                for piece in item._get_format_pieces():
+                    if piece.isspace():
+                        piece = ""
+                    else:
+                        piece = indent + piece
+                    result.append(piece)
+            else:
+                pass
+        result.append("}")
+        return result
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def accepts_commands(self):
+        r"""
+        Gets arguments of LilyPond ``\accepts`` commands.
+
+        ..  container:: example
+
+            >>> block = abjad.ContextBlock(
+            ...     source_lilypond_type='Staff',
+            ...     name='FluteStaff',
+            ...     type_='Engraver_group',
+            ...     alias='Staff',
+            ...     )
+            >>> block.remove_commands.append('Forbid_line_break_engraver')
+            >>> block.consists_commands.append('Horizontal_bracket_engraver')
+            >>> block.accepts_commands.append('FluteUpperVoice')
+            >>> block.accepts_commands.append('FluteLowerVoice')
+            >>> block.items.append(r'\accidentalStyle dodecaphonic')
+            >>> abjad.override(block).beam.positions = (-4, -4)
+            >>> abjad.override(block).stem.stem_end_position = -6
+            >>> abjad.setting(block).auto_beaming = False
+            >>> abjad.setting(block).tuplet_full_length = True
+
+            >>> block.accepts_commands
+            ['FluteUpperVoice', 'FluteLowerVoice']
+
+        Returns list.
+        """
+        return self._accepts_commands
+
+    @property
+    def alias(self):
+        r"""
+        Gets and sets argument of LilyPond ``\alias`` command.
+
+        ..  container:: example
+
+            >>> block = abjad.ContextBlock(
+            ...     source_lilypond_type='Staff',
+            ...     name='FluteStaff',
+            ...     type_='Engraver_group',
+            ...     alias='Staff',
+            ...     )
+            >>> block.remove_commands.append('Forbid_line_break_engraver')
+            >>> block.consists_commands.append('Horizontal_bracket_engraver')
+            >>> block.accepts_commands.append('FluteUpperVoice')
+            >>> block.accepts_commands.append('FluteLowerVoice')
+            >>> block.items.append(r'\accidentalStyle dodecaphonic')
+            >>> abjad.override(block).beam.positions = (-4, -4)
+            >>> abjad.override(block).stem.stem_end_position = -6
+            >>> abjad.setting(block).auto_beaming = False
+            >>> abjad.setting(block).tuplet_full_length = True
+
+            >>> block.alias
+            'Staff'
+
+        Returns string or none.
+        """
+        return self._alias
+
+    @property
+    def consists_commands(self):
+        r"""
+        Gets arguments of LilyPond ``\consists`` commands.
+
+        ..  container:: example
+
+            >>> block = abjad.ContextBlock(
+            ...     source_lilypond_type='Staff',
+            ...     name='FluteStaff',
+            ...     type_='Engraver_group',
+            ...     alias='Staff',
+            ...     )
+            >>> block.remove_commands.append('Forbid_line_break_engraver')
+            >>> block.consists_commands.append('Horizontal_bracket_engraver')
+            >>> block.accepts_commands.append('FluteUpperVoice')
+            >>> block.accepts_commands.append('FluteLowerVoice')
+            >>> block.items.append(r'\accidentalStyle dodecaphonic')
+            >>> abjad.override(block).beam.positions = (-4, -4)
+            >>> abjad.override(block).stem.stem_end_position = -6
+            >>> abjad.setting(block).auto_beaming = False
+            >>> abjad.setting(block).tuplet_full_length = True
+
+            >>> block.consists_commands
+            ['Horizontal_bracket_engraver']
+
+        Returns list.
+        """
+        return self._consists_commands
+
+    @property
+    def items(self):
+        r"""
+        Gets items in context block.
+
+        ..  container:: example
+
+            >>> block = abjad.ContextBlock(
+            ...     source_lilypond_type='Staff',
+            ...     name='FluteStaff',
+            ...     type_='Engraver_group',
+            ...     alias='Staff',
+            ...     )
+            >>> block.remove_commands.append('Forbid_line_break_engraver')
+            >>> block.consists_commands.append('Horizontal_bracket_engraver')
+            >>> block.accepts_commands.append('FluteUpperVoice')
+            >>> block.accepts_commands.append('FluteLowerVoice')
+            >>> block.items.append(r'\accidentalStyle dodecaphonic')
+            >>> abjad.override(block).beam.positions = (-4, -4)
+            >>> abjad.override(block).stem.stem_end_position = -6
+            >>> abjad.setting(block).auto_beaming = False
+            >>> abjad.setting(block).tuplet_full_length = True
+
+            >>> block.items
+            ['\\accidentalStyle dodecaphonic']
+
+        Returns list.
+        """
+        return self._items
+
+    @property
+    def name(self):
+        r"""
+        Gets and sets argument of LilyPond ``\name`` command.
+
+        ..  container:: example
+
+            >>> block = abjad.ContextBlock(
+            ...     source_lilypond_type='Staff',
+            ...     name='FluteStaff',
+            ...     type_='Engraver_group',
+            ...     alias='Staff',
+            ...     )
+            >>> block.remove_commands.append('Forbid_line_break_engraver')
+            >>> block.consists_commands.append('Horizontal_bracket_engraver')
+            >>> block.accepts_commands.append('FluteUpperVoice')
+            >>> block.accepts_commands.append('FluteLowerVoice')
+            >>> block.items.append(r'\accidentalStyle dodecaphonic')
+            >>> abjad.override(block).beam.positions = (-4, -4)
+            >>> abjad.override(block).stem.stem_end_position = -6
+            >>> abjad.setting(block).auto_beaming = False
+            >>> abjad.setting(block).tuplet_full_length = True
+
+            >>> block.name
+            'FluteStaff'
+
+        Returns string or none.
+        """
+        return self._name
+
+    @property
+    def remove_commands(self):
+        r"""
+        Gets arguments of LilyPond ``\remove`` commands.
+
+        ..  container:: example
+
+            >>> block = abjad.ContextBlock(
+            ...     source_lilypond_type='Staff',
+            ...     name='FluteStaff',
+            ...     type_='Engraver_group',
+            ...     alias='Staff',
+            ...     )
+            >>> block.remove_commands.append('Forbid_line_break_engraver')
+            >>> block.consists_commands.append('Horizontal_bracket_engraver')
+            >>> block.accepts_commands.append('FluteUpperVoice')
+            >>> block.accepts_commands.append('FluteLowerVoice')
+            >>> block.items.append(r'\accidentalStyle dodecaphonic')
+            >>> abjad.override(block).beam.positions = (-4, -4)
+            >>> abjad.override(block).stem.stem_end_position = -6
+            >>> abjad.setting(block).auto_beaming = False
+            >>> abjad.setting(block).tuplet_full_length = True
+
+            >>> block.remove_commands
+            ['Forbid_line_break_engraver']
+
+        Returns list.
+        """
+        return self._remove_commands
+
+    @property
+    def source_lilypond_type(self):
+        r"""
+        Gets and sets source context name.
+
+        ..  container:: example
+
+            >>> block = abjad.ContextBlock(
+            ...     source_lilypond_type='Staff',
+            ...     name='FluteStaff',
+            ...     type_='Engraver_group',
+            ...     alias='Staff',
+            ...     )
+            >>> block.remove_commands.append('Forbid_line_break_engraver')
+            >>> block.consists_commands.append('Horizontal_bracket_engraver')
+            >>> block.accepts_commands.append('FluteUpperVoice')
+            >>> block.accepts_commands.append('FluteLowerVoice')
+            >>> block.items.append(r'\accidentalStyle dodecaphonic')
+            >>> abjad.override(block).beam.positions = (-4, -4)
+            >>> abjad.override(block).stem.stem_end_position = -6
+            >>> abjad.setting(block).auto_beaming = False
+            >>> abjad.setting(block).tuplet_full_length = True
+
+            >>> block.source_lilypond_type
+            'Staff'
+
+        Returns string or none.
+        """
+        return self._source_lilypond_type
+
+    @property
+    def type_(self):
+        r"""
+        Gets and sets argument of LilyPond ``\type`` command.
+
+        ..  container:: example
+
+            >>> block = abjad.ContextBlock(
+            ...     source_lilypond_type='Staff',
+            ...     name='FluteStaff',
+            ...     type_='Engraver_group',
+            ...     alias='Staff',
+            ...     )
+            >>> block.remove_commands.append('Forbid_line_break_engraver')
+            >>> block.consists_commands.append('Horizontal_bracket_engraver')
+            >>> block.accepts_commands.append('FluteUpperVoice')
+            >>> block.accepts_commands.append('FluteLowerVoice')
+            >>> block.items.append(r'\accidentalStyle dodecaphonic')
+            >>> abjad.override(block).beam.positions = (-4, -4)
+            >>> abjad.override(block).stem.stem_end_position = -6
+            >>> abjad.setting(block).auto_beaming = False
+            >>> abjad.setting(block).tuplet_full_length = True
+
+            >>> block.type_
+            'Engraver_group'
+
+        Returns string or none.
+        """
+        return self._type_
+
+
+class DateTimeToken(object):
+    """
+    A LilyPond file date / time token.
+
+    ..  container:: example
+
+        >>> abjad.DateTimeToken()
+        DateTimeToken()
+
+    """
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = ("_date_string",)
+
+    ### INITIALIZER ###
+
+    def __init__(self, date_string=None):
+        assert isinstance(date_string, (str, type(None)))
+        self._date_string = date_string
+
+    ### SPECIAL METHODS ###
+
+    def __format__(self, format_specification=""):
+        """
+        Formats date / time token.
+
+        ..  container:: example
+
+            >>> token = abjad.DateTimeToken()
+            >>> print(format(token)) # doctest: +SKIP
+            2014-01-04 14:42
+
+        Returns string.
+        """
+        if format_specification in ("", "lilypond"):
+            return self._get_lilypond_format()
+        return StorageFormatManager(self).get_storage_format()
+
+    def __repr__(self):
+        """
+        Gets interpreter representation of date / time token.
+
+        ..  container:: example
+
+            >>> abjad.DateTimeToken()
+            DateTimeToken()
+
+        Returns string.
+        """
+        date_string = self._date_string or ""
+        return f"{type(self).__name__}({date_string})"
+
+    ### PRIVATE METHODS ###
+
+    def _get_lilypond_format(self):
+        return self.date_string
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def date_string(self):
+        """
+        Gets date string of date / time token.
+
+        ..  container:: example
+
+            >>> token = abjad.DateTimeToken()
+            >>> token.date_string # doctest: +SKIP
+            '2014-01-23 12:21'
+
+        Returns string.
+        """
+        date_string = self._date_string or time.strftime("%Y-%m-%d %H:%M")
+        return date_string
+
+
+class LilyPondDimension(object):
+    r"""
+    A LilyPond file ``\paper`` block dimension.
+
+    ..  container:: example
+
+        >>> abjad.LilyPondDimension(2, 'in')
+        LilyPondDimension(value=2, unit='in')
+
+    Use for LilyPond file ``\paper`` block attributes.
+    """
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = ("_unit", "_value")
+
+    ### INITIALIZER ###
+
+    def __init__(self, value=0, unit="cm"):
+        assert isinstance(value, numbers.Number) and 0 <= value
+        assert unit in ("cm", "in", "mm", "pt")
+        self._value = value
+        self._unit = unit
+
+    ### SPECIAL METHODS ###
+
+    def __format__(self, format_specification=""):
+        r"""
+        Formats LilyPond dimension.
+
+        ..  container:: example
+
+            >>> dimension = abjad.LilyPondDimension(2, 'in')
+            >>> print(format(dimension))
+            2\in
+
+        Returns string.
+        """
+        if format_specification in ("", "lilypond"):
+            return self._get_lilypond_format()
+        return StorageFormatManager(self).get_storage_format()
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
+
+    ### PRIVATE METHODS ###
+
+    def _get_format_pieces(self, tag=None):
+        return [rf"{self.value}\{self.unit}"]
+
+    def _get_lilypond_format(self):
+        return "\n".join(self._get_format_pieces())
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def unit(self):
+        """
+        Gets unit of LilyPond dimension.
+
+        ..  container:: example
+
+            >>> dimension = abjad.LilyPondDimension(2, 'in')
+            >>> dimension.unit
+            'in'
+
+        Returns ``'cm'``, ``'in'``, ``'mm'`` or ``'pt'``.
+        """
+        return self._unit
+
+    @property
+    def value(self):
+        """
+        Gets value of LilyPond dimension.
+
+        ..  container:: example
+
+            >>> dimension = abjad.LilyPondDimension(2, 'in')
+            >>> dimension.value
+            2
+
+        Returns number.
+        """
+        return self._value
 
 
 class LilyPondFile(object):
@@ -1404,3 +2273,265 @@ class LilyPondFile(object):
         context.extend(skips)
         score.insert(0, context)
         return lilypond_file
+
+
+class LilyPondLanguageToken(object):
+    r"""
+    A LilyPond file ``\language`` token.
+
+    ..  container:: example
+
+        >>> abjad.LilyPondLanguageToken()
+        LilyPondLanguageToken()
+
+    """
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = ()
+
+    ### SPECIAL METHODS ###
+
+    def __format__(self, format_specification=""):
+        r"""
+        Formats LilyPond language token.
+
+        ..  container:: example
+
+            >>> token = abjad.LilyPondLanguageToken()
+            >>> print(format(token))
+            \language "english"
+
+        Returns string.
+        """
+        if format_specification in ("", "lilypond"):
+            return self._get_lilypond_format()
+        return StorageFormatManager(self).get_storage_format()
+
+    def __repr__(self):
+        """
+        Gets interpreter representation of LilyPond language token.
+
+        ..  container:: example
+
+            >>> token = abjad.LilyPondLanguageToken()
+            >>> token
+            LilyPondLanguageToken()
+
+        Returns string.
+        """
+        return f"{type(self).__name__}()"
+
+    ### PRIVATE METHODS ###
+
+    def _get_lilypond_format(self):
+        string = r'\language "english"'
+        return string
+
+
+class LilyPondVersionToken(object):
+    r"""
+    A LilyPond file ``\version`` token.
+
+    ..  container:: example
+
+        >>> abjad.LilyPondVersionToken() # doctest: +SKIP
+        LilyPondVersionToken('2.19.84')
+
+    """
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = ("_version_string",)
+
+    ### INITIALIZER ###
+
+    def __init__(self, version_string=None):
+        assert isinstance(version_string, (str, type(None)))
+        if version_string is None:
+            version_string = configuration.get_lilypond_version_string()
+        self._version_string = version_string
+
+    ### SPECIAL METHODS ###
+
+    def __format__(self, format_specification=""):
+        r"""
+        Formats LilyPond version token.
+
+        ..  container:: example
+
+            >>> token = abjad.LilyPondVersionToken()
+            >>> print(format(token)) # doctest: +SKIP
+            \version "2.19.84"
+
+        Return string.
+        """
+        if format_specification in ("", "lilypond"):
+            return self._get_lilypond_format()
+        elif format_specification == "storage":
+            return StorageFormatManager(self).get_storage_format()
+        return str(self)
+
+    def __repr__(self):
+        """
+        Gets interpreter representation of LilyPond version_string token.
+
+        ..  container:: example
+
+            >>> token = abjad.LilyPondVersionToken()
+            >>> token # doctest: +SKIP
+            LilyPondVersionToken('2.19.84')
+
+        Returns string.
+        """
+        return f"{type(self).__name__}({self.version_string!r})"
+
+    ### PRIVATE METHODS ###
+
+    def _get_lilypond_format(self):
+        return rf'\version "{self.version_string}"'
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def version_string(self):
+        """
+        Gets version string of LilyPond version token.
+
+        ..  container:: example
+
+            Gets version string from install environment:
+
+            >>> token = abjad.LilyPondVersionToken(
+            ...     version_string=None,
+            ...     )
+            >>> token.version_string # doctest: +SKIP
+            '2.19.84'
+
+        ..  container:: example
+
+            Gets version string from explicit input:
+
+            >>> token = abjad.LilyPondVersionToken(
+            ...     version_string='2.19.84',
+            ...     )
+            >>> token.version_string
+            '2.19.84'
+
+        Returns string.
+        """
+        return self._version_string
+
+
+class PackageGitCommitToken(object):
+    """
+    A Python package git commit token.
+
+    ..  container:: example
+
+        >>> token = abjad.PackageGitCommitToken('abjad')
+        >>> token
+        PackageGitCommitToken(package_name='abjad')
+
+        >>> print(format(token))  # doctest: +SKIP
+        package "abjad" @ b6a48a7 [implement-lpf-git-token] (2016-02-02 13:36:25)
+
+    """
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = ("_package_name",)
+
+    ### INITIALIZER ###
+
+    def __init__(self, package_name=None):
+        self._package_name = package_name
+
+    ### SPECIAL METHODS ###
+
+    def __format__(self, format_specification=""):
+        """
+        Formats package git commit token.
+
+        ..  container:: example
+
+            >>> token = abjad.PackageGitCommitToken('abjad')
+            >>> print(format(token)) # doctest: +SKIP
+            package "abjad" @ b6a48a7 [implement-lpf-git-token] (2016-02-02 13:36:25)
+
+        Return string.
+        """
+        if not self.package_name:
+            return ""
+        if format_specification in ("", "lilypond"):
+            return self._get_lilypond_format()
+        elif format_specification == "storage":
+            return StorageFormatManager(self).get_storage_format()
+        return str(self)
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
+
+    ### PRIVATE METHODS ###
+
+    def _get_commit_timestamp(self, commit_hash):
+        command = f"git show -s --format=%ci {commit_hash}"
+        return self._run_command(command)
+
+    def _get_git_branch(self):
+        command = "git rev-parse --abbrev-ref HEAD"
+        return self._run_command(command)
+
+    def _get_git_hash(self):
+        command = "git rev-parse HEAD"
+        return self._run_command(command)
+
+    def _get_lilypond_format(self):
+        path = self._get_package_path()
+        with TemporaryDirectoryChange(path):
+            git_branch = self._get_git_branch()
+            git_hash = self._get_git_hash()
+            timestamp = self._get_commit_timestamp(git_hash)
+        date, time, _ = timestamp.split()
+        return 'package "{}" @ {} [{}] ({} {})'.format(
+            self._package_name, git_hash[:7], git_branch, date, time
+        )
+
+    def _get_package_path(self):
+        module = importlib.import_module(self._package_name)
+        path = module.__path__[0]
+        if not os.path.isdir(path):
+            path = os.path.dirname(path)
+        path = os.path.abspath(path)
+        return path
+
+    def _run_command(self, command):
+        process = subprocess.Popen(
+            command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+        )
+        process.wait()
+        if process.returncode:
+            return None
+        result = process.stdout.read().splitlines()[0]
+        result = result.decode("utf-8")
+        return result
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def package_name(self):
+        """
+        Gets package name of package git commit token.
+
+        ..  container:: example
+
+            >>> token = abjad.PackageGitCommitToken('abjad')
+            >>> token.package_name
+            'abjad'
+
+        Returns string.
+        """
+        return self._package_name

@@ -1,5 +1,5 @@
 from .. import mathtools
-from ..formatting import StorageFormatManager
+from ..storage import StorageFormatManager
 from .pitchclasses import NumberedPitchClass
 from .sets import PitchClassSet
 

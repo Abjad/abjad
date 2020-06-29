@@ -1,7 +1,7 @@
 import typing
 
 from .. import const
-from ..formatting import StorageFormatManager
+from ..duration import Duration
 from ..indicators.Clef import Clef
 from ..indicators.StartBeam import StartBeam
 from ..indicators.StartHairpin import StartHairpin
@@ -10,10 +10,11 @@ from ..indicators.StopBeam import StopBeam
 from ..indicators.StopHairpin import StopHairpin
 from ..indicators.StopTextSpan import StopTextSpan
 from ..instruments import Instrument
+from ..storage import StorageFormatManager
 from ..tags import Tags
-from ..top import inspect, iterate
-from ..utilities.Duration import Duration
+from ..top import iterate
 from ..utilities.Sequence import Sequence
+from .Component import inspect
 from .Container import Container
 from .Context import Context
 

@@ -38,11 +38,12 @@ from ..core.Staff import Staff
 from ..core.StaffGroup import StaffGroup
 from ..core.Tuplet import Tuplet
 from ..core.Voice import Voice
+from ..duration import Duration, Multiplier
 from ..indicators.Articulation import Articulation
 from ..indicators.BarLine import BarLine
 from ..indicators.Clef import Clef
 from ..indicators.Dynamic import Dynamic
-from ..indicators.GlissandoIndicator import GlissandoIndicator
+from ..indicators.Glissando import Glissando
 from ..indicators.KeySignature import KeySignature
 from ..indicators.LilyPondLiteral import LilyPondLiteral
 from ..indicators.MetronomeMark import MetronomeMark
@@ -63,8 +64,7 @@ from ..indicators.StopTextSpan import StopTextSpan
 from ..indicators.StopTrillSpan import StopTrillSpan
 from ..indicators.Tie import Tie
 from ..indicators.TimeSignature import TimeSignature
-from ..lilypondfile.Block import Block
-from ..lilypondfile.LilyPondFile import LilyPondFile
+from ..lilypondfile import Block, LilyPondFile
 from ..ly.contexts import contexts
 from ..ly.current_module import current_module
 from ..ly.drums import drums
@@ -80,8 +80,6 @@ from ..pitch.pitches import NamedPitch
 from ..scheme import Scheme
 from ..system.Parser import Parser
 from ..top import attach
-from ..utilities.Duration import Duration
-from ..utilities.Multiplier import Multiplier
 from ..utilities.String import String
 
 
@@ -2922,7 +2920,7 @@ class LilyPondParser(Parser):
             Articulation,
             BarLine,
             Dynamic,
-            GlissandoIndicator,
+            Glissando,
             StartHairpin,
             LilyPondLiteral,
             StartBeam,
@@ -3018,7 +3016,7 @@ class LilyPondParser(Parser):
             else:
                 return StopHairpin()
         elif name == "GlissandoEvent":
-            return GlissandoIndicator()
+            return Glissando()
         elif name == "LaissezVibrerEvent":
             return LilyPondLiteral(r"\laissezVibrer", "after")
         elif name == "LineBreakEvent":

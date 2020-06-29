@@ -1,9 +1,9 @@
 import collections
 import typing
 
-from ..formatting import StorageFormatManager
-from ..top import inspect, select
-from .Component import Component
+from ..storage import StorageFormatManager
+from ..top import select
+from .Component import Component, inspect
 
 
 class Descendants(collections.abc.Sequence):

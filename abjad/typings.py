@@ -4,8 +4,8 @@ Utilities for typehinting.
 
 import typing
 
-from .mathtools import Ratio
-from .utilities.Duration import Duration
+from .duration import Duration
+from .ratio import Ratio
 from .utilities.Expression import Expression
 
 IntegerPair = typing.Tuple[int, int]

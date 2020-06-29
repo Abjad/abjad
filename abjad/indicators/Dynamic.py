@@ -1,10 +1,9 @@
 import typing
 
 from .. import enums, mathtools
-from ..formatting import FormatSpecification, StorageFormatManager
+from ..formatting import LilyPondFormatBundle
 from ..lilypondnames.LilyPondTweakManager import LilyPondTweakManager
-from ..mathtools import Infinity, NegativeInfinity
-from ..system.LilyPondFormatBundle import LilyPondFormatBundle
+from ..storage import FormatSpecification, StorageFormatManager
 from ..tags import Tags
 from ..utilities.String import String
 
@@ -235,7 +234,9 @@ class Dynamic(object):
         hide: bool = None,
         leak: bool = None,
         name_is_textual: bool = None,
-        ordinal: typing.Union[int, Infinity, NegativeInfinity] = None,
+        ordinal: typing.Union[
+            int, mathtools.Infinity, mathtools.NegativeInfinity
+        ] = None,
         sforzando: bool = None,
         tweaks: LilyPondTweakManager = None,
     ) -> None:
@@ -276,7 +277,9 @@ class Dynamic(object):
             name_is_textual = bool(name_is_textual)
         self._name_is_textual = name_is_textual
         if ordinal is not None:
-            assert isinstance(ordinal, (int, Infinity, NegativeInfinity))
+            assert isinstance(
+                ordinal, (int, mathtools.Infinity, mathtools.NegativeInfinity)
+            )
         self._ordinal = ordinal
         if sforzando is not None:
             sforzando = bool(sforzando)
@@ -1131,7 +1134,7 @@ class Dynamic(object):
         return self._name_is_textual
 
     @property
-    # def ordinal(self) -> typing.Union[int, Infinity, NegativeInfinity]:
+    # def ordinal(self) -> typing.Union[int, mathtools.Infinity, mathtools.NegativeInfinity]:
     def ordinal(self):
         """
         Gets ordinal.
@@ -1349,7 +1352,7 @@ class Dynamic(object):
             'niente'
 
         """
-        if dynamic_ordinal == NegativeInfinity():
+        if dynamic_ordinal == mathtools.NegativeInfinity():
             return "niente"
         else:
             return Dynamic._dynamic_ordinal_to_dynamic_name[dynamic_ordinal]

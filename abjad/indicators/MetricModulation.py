@@ -1,12 +1,12 @@
 import typing
 
 from .. import enums, typings
-from ..formatting import StorageFormatManager
+from ..core.Component import inspect
+from ..formatting import LilyPondFormatBundle
 from ..markups import Markup
-from ..mathtools import Ratio
-from ..system.LilyPondFormatBundle import LilyPondFormatBundle
-from ..top import inspect, new, select
-from ..utilities.Duration import Duration
+from ..ratio import Ratio
+from ..storage import StorageFormatManager
+from ..top import new, select
 
 
 class MetricModulation(object):
@@ -537,9 +537,11 @@ class MetricModulation(object):
         return string
 
     def _get_left_markup(self):
+        from ..illustrate import _to_score_markup
+
         if self.left_markup is not None:
             return self.left_markup
-        markup = Duration._to_score_markup(self.left_rhythm)
+        markup = _to_score_markup(self.left_rhythm)
         return markup
 
     def _get_lilypond_format(self):
@@ -607,9 +609,11 @@ class MetricModulation(object):
             raise Exception("implement tied note values.")
 
     def _get_right_markup(self):
+        from ..illustrate import _to_score_markup
+
         if self.right_markup is not None:
             return self.right_markup
-        markup = Duration._to_score_markup(self.right_rhythm)
+        markup = _to_score_markup(self.right_rhythm)
         return markup
 
     def _initialize_rhythm(self, rhythm):

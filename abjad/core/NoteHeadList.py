@@ -1,4 +1,4 @@
-from ..formatting import FormatSpecification, StorageFormatManager
+from ..storage import FormatSpecification, StorageFormatManager
 from ..utilities.TypedList import TypedList
 
 

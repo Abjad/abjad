@@ -1,10 +1,8 @@
 import typing
 
 from .. import mathtools, typings
-from ..formatting import FormatSpecification, StorageFormatManager
-from ..mathtools import NonreducedFraction
-from ..utilities.Duration import Duration
-from ..utilities.Multiplier import Multiplier
+from ..duration import Duration, Multiplier, NonreducedFraction
+from ..storage import FormatSpecification, StorageFormatManager
 
 
 class TimeSignature(object):

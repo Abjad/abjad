@@ -1,7 +1,7 @@
 import typing
 
-from ..formatting import StorageFormatManager
 from ..ly.contexts import contexts
+from ..storage import StorageFormatManager
 from .LilyPondEngraver import LilyPondEngraver
 from .LilyPondGrob import LilyPondGrob
 

@@ -3,11 +3,10 @@ import inspect
 import typing
 
 from .. import enums
-from ..formatting import StorageFormatManager
+from ..duration import Duration, NonreducedFraction
 from ..indicators.LilyPondComment import LilyPondComment
 from ..indicators.LilyPondLiteral import LilyPondLiteral
 from ..markups import Markup, MarkupCommand
-from ..mathtools import NonreducedFraction
 from ..pitch.SetClass import SetClass
 from ..pitch.intervalclasses import (
     NamedIntervalClass,
@@ -21,14 +20,13 @@ from ..pitch.segments import PitchSegment
 from ..pitch.sets import PitchClassSet
 from ..pitch.vectors import IntervalClassVector
 from ..scheme import SchemeColor
+from ..storage import StorageFormatManager
 from ..tags import Tag
-from ..top import attach, detach
-from ..top import inspect as abjad_inspect
-from ..top import iterate, new, override, select, tweak
-from ..utilities.Duration import Duration
+from ..top import attach, detach, iterate, new, override, select, tweak
 from ..utilities.Expression import Expression
 from .Chord import Chord
 from .Component import Component
+from .Component import inspect as abjad_inspect
 from .Note import Note
 from .Skip import Skip
 

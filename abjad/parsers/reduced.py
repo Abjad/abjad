@@ -1,9 +1,10 @@
-from .. import mathtools
 from ..core.Chord import Chord
+from ..core.Component import inspect
 from ..core.Container import Container
 from ..core.Note import Note
 from ..core.Rest import Rest
 from ..core.Tuplet import Tuplet
+from ..duration import Duration, NonreducedFraction
 from ..enums import Left, Right
 from ..indicators.StartBeam import StartBeam
 from ..indicators.StartSlur import StartSlur
@@ -14,8 +15,7 @@ from ..indicators.TimeSignature import TimeSignature
 from ..pitch.pitchclasses import NamedPitchClass
 from ..pitch.pitches import NamedPitch
 from ..system.Parser import Parser
-from ..top import attach, detach, inspect, select
-from ..utilities.Duration import Duration
+from ..top import attach, detach, select
 
 
 class ReducedLyParser(Parser):
@@ -235,7 +235,7 @@ class ReducedLyParser(Parser):
     def t_FRACTION(self, t):
         r"([1-9]\d*/[1-9]\d*)"
         parts = t.value.split("/")
-        t.value = mathtools.NonreducedFraction(int(parts[0]), int(parts[1]))
+        t.value = NonreducedFraction(int(parts[0]), int(parts[1]))
         return t
 
     def t_INTEGER_N(self, t):

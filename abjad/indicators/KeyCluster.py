@@ -1,7 +1,7 @@
 from .. import enums
-from ..formatting import StorageFormatManager
+from ..formatting import LilyPondFormatBundle
 from ..markups import Markup
-from ..system.LilyPondFormatBundle import LilyPondFormatBundle
+from ..storage import StorageFormatManager
 
 
 class KeyCluster(object):

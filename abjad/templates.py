@@ -3,6 +3,7 @@ import collections
 import typing
 
 from . import const, instruments
+from .core.Component import Wrapper, inspect
 from .core.Context import Context
 from .core.MultimeasureRest import MultimeasureRest
 from .core.Score import Score
@@ -10,19 +11,18 @@ from .core.Skip import Skip
 from .core.Staff import Staff
 from .core.StaffGroup import StaffGroup
 from .core.Voice import Voice
-from .formatting import StorageFormatManager
 from .indicators.Clef import Clef
 from .indicators.LilyPondLiteral import LilyPondLiteral
 from .indicators.MarginMarkup import MarginMarkup
 from .instruments import Piano
-from .lilypondfile.LilyPondFile import LilyPondFile
+from .lilypondfile import LilyPondFile
 from .segments.Part import Part
 from .segments.PartAssignment import PartAssignment
 from .segments.PartManifest import PartManifest
-from .system.Wrapper import Wrapper
+from .storage import StorageFormatManager
 from .system.annotate import annotate
 from .tags import Tag, Tags
-from .top import attach, inspect, iterate, new, select
+from .top import attach, iterate, new, select
 from .utilities.OrderedDict import OrderedDict
 
 abjad_tags = Tags()

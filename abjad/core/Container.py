@@ -4,12 +4,12 @@ import typing
 import uqbar.graphs
 
 from .. import exceptions
-from ..formatting import FormatSpecification
-from ..system.LilyPondFormatManager import LilyPondFormatManager
+from ..duration import Duration
+from ..formatting import LilyPondFormatManager
+from ..storage import FormatSpecification
 from ..tags import Tag
-from ..top import inspect, iterate, mutate, parse, select
-from ..utilities.Duration import Duration
-from .Component import Component
+from ..top import iterate, mutate, parse, select
+from .Component import Component, inspect
 from .Leaf import Leaf
 from .Note import Note
 from .Selection import Selection
@@ -742,7 +742,7 @@ class Container(Component):
 
     def _parse_string(self, string):
         from ..parsers.reduced import ReducedLyParser
-        from ..lilypondfile.LilyPondFile import LilyPondFile
+        from ..lilypondfile import LilyPondFile
         from .. import rhythmtrees
 
         user_input = string.strip()

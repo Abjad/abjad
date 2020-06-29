@@ -1,7 +1,7 @@
 import typing
 
-from ..mathtools import Infinity, NegativeInfinity
-from .Duration import Duration
+from .. import mathtools
+from ..duration import Duration
 from .Inequality import Inequality
 
 
@@ -51,8 +51,8 @@ class DurationInequality(Inequality):
     ) -> None:
         Inequality.__init__(self, operator_string=operator_string)
         if duration is None:
-            duration = Infinity()
-        infinities = (Infinity(), NegativeInfinity())
+            duration = mathtools.Infinity()
+        infinities = (mathtools.Infinity(), mathtools.NegativeInfinity())
         if duration not in infinities:
             duration = Duration(duration)
             assert 0 <= duration
@@ -61,26 +61,19 @@ class DurationInequality(Inequality):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, argument):
+    def __call__(self, argument) -> bool:
         """
         Calls inequality on ``argument``.
-
-        Returns true or false.
         """
-        import abjad
+        from ..core.Component import inspect
 
-        if isinstance(argument, abjad.Component):
-            if self.preprolated:
-                duration = argument._get_preprolated_duration()
-            else:
-                duration = abjad.inspect(argument).duration()
-        elif isinstance(argument, abjad.Selection):
-            if self.preprolated:
-                duration = argument._get_preprolated_duration()
-            else:
-                duration = abjad.inspect(argument).duration()
+        if self.preprolated and hasattr(argument, "_get_preprolated_duration"):
+            duration = argument._get_preprolated_duration()
         else:
-            duration = abjad.Duration(argument)
+            try:
+                duration = inspect(argument).duration()
+            except TypeError:
+                duration = Duration(argument)
         return self._operator_function(duration, self.duration)
 
     ### PUBLIC PROPERTIES ###

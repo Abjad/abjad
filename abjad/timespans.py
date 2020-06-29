@@ -7,18 +7,18 @@ import inspect
 import typing
 
 from . import enums, mathtools
-from .formatting import FormatSpecification, StorageFormatManager
+from .duration import Duration, Multiplier, Offset
 from .markups import Markup, Postscript
-from .mathtools import Ratio
+from .ratio import Ratio
+from .storage import FormatSpecification, StorageFormatManager
 from .system.Signature import Signature
 from .top import new
-from .utilities import Infinity, NegativeInfinity
-from .utilities.Duration import Duration
 from .utilities.Expression import Expression
-from .utilities.Multiplier import Multiplier
-from .utilities.Offset import Offset
 from .utilities.Sequence import Sequence
 from .utilities.TypedList import TypedList
+
+infinity = mathtools.Infinity()
+negative_infinity = mathtools.NegativeInfinity()
 
 
 class Timespan(object):
@@ -47,16 +47,16 @@ class Timespan(object):
 
     ### INITIALIZER ###
 
-    def __init__(self, start_offset=NegativeInfinity, stop_offset=Infinity) -> None:
+    def __init__(self, start_offset=None, stop_offset=None,) -> None:
         self._expression = None
         if isinstance(start_offset, type(self)):
             raise Exception("can not initialize from timespan.")
         if isinstance(stop_offset, type(self)):
             raise Exception("can not initialize from timespan.")
         if start_offset is None:
-            start_offset = NegativeInfinity
+            start_offset = negative_infinity
         if stop_offset is None:
-            stop_offset = Infinity
+            stop_offset = infinity
         start_offset = self._initialize_offset(start_offset)
         stop_offset = self._initialize_offset(stop_offset)
         assert start_offset <= stop_offset, repr((start_offset, stop_offset))
@@ -789,7 +789,7 @@ class Timespan(object):
         return False
 
     def _initialize_offset(self, offset):
-        if offset in (NegativeInfinity, Infinity):
+        if offset in (negative_infinity, infinity):
             return offset
         return Offset(offset)
 
@@ -2694,9 +2694,7 @@ class AnnotatedTimespan(Timespan):
 
     ### INITIALIZER ###
 
-    def __init__(
-        self, start_offset=NegativeInfinity, stop_offset=Infinity, annotation=None,
-    ) -> None:
+    def __init__(self, start_offset=None, stop_offset=None, annotation=None,) -> None:
         Timespan.__init__(self, start_offset=start_offset, stop_offset=stop_offset)
         self._annotation = annotation
 
@@ -3802,10 +3800,7 @@ class TimespanList(TypedList):
             Duration(0, 1)
 
         """
-        if (
-            self.stop_offset is not Infinity
-            and self.start_offset is not NegativeInfinity
-        ):
+        if self.stop_offset != infinity and self.start_offset != negative_infinity:
             return self.stop_offset - self.start_offset
         else:
             return Duration(0)
@@ -3903,7 +3898,7 @@ class TimespanList(TypedList):
         if self:
             return min([self._get_timespan(argument).start_offset for argument in self])
         else:
-            return NegativeInfinity
+            return negative_infinity
 
     @property
     def stop_offset(self) -> typing.Union[Offset, mathtools.Infinity]:
@@ -3954,7 +3949,7 @@ class TimespanList(TypedList):
         if self:
             return max([self._get_timespan(argument).stop_offset for argument in self])
         else:
-            return Infinity
+            return infinity
 
     @property
     def timespan(self):

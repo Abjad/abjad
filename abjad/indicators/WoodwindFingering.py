@@ -1,9 +1,9 @@
 import collections
 import typing
 
-from ..formatting import StorageFormatManager
 from ..markups import MarkupCommand
 from ..scheme import Scheme, SchemePair
+from ..storage import StorageFormatManager
 
 
 class WoodwindFingering(object):

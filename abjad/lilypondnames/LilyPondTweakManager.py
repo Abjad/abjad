@@ -1,9 +1,9 @@
 import copy
 import typing
 
+from ..formatting import LilyPondFormatManager
 from ..ly.colors import colors
 from ..ly.grob_interfaces import grob_interfaces
-from ..system.LilyPondFormatManager import LilyPondFormatManager
 from ..tags import Tag
 from ..utilities.String import String
 from .LilyPondNameManager import LilyPondNameManager
@@ -314,7 +314,7 @@ class LilyPondTweakManager(LilyPondNameManager):
 
         ..  container:: example
 
-            >>> glissando = abjad.GlissandoIndicator()
+            >>> glissando = abjad.Glissando()
             >>> glissando.tweaks is None
             True
 

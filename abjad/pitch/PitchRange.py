@@ -2,8 +2,8 @@ import functools
 import numbers
 import typing
 
-from ..formatting import FormatSpecification, StorageFormatManager
-from ..top import inspect, iterate
+from ..storage import FormatSpecification, StorageFormatManager
+from ..top import iterate
 from . import constants
 from .Octave import Octave
 from .pitchclasses import NamedPitchClass
@@ -261,6 +261,9 @@ class PitchRange(object):
             True
 
         """
+        # TODO: remove dependency
+        from ..core.Component import inspect
+
         if isinstance(argument, (int, float)):
             pitch = NamedPitch(argument)
             return self._contains_pitch(pitch)

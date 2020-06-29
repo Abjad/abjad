@@ -5,7 +5,7 @@ import numbers
 import typing
 
 from .. import mathtools
-from ..formatting import FormatSpecification, StorageFormatManager
+from ..storage import FormatSpecification, StorageFormatManager
 from . import constants
 from .pitches import NamedPitch, NumberedPitch
 

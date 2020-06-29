@@ -1,9 +1,9 @@
 import typing
 
-from ..formatting import FormatSpecification, StorageFormatManager
+from ..formatting import LilyPondFormatBundle
 from ..lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from ..pitch.pitchclasses import NamedPitchClass
-from ..system.LilyPondFormatBundle import LilyPondFormatBundle
+from ..storage import FormatSpecification, StorageFormatManager
 from .Mode import Mode
 
 

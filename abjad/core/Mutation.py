@@ -1,12 +1,12 @@
 from .. import enums
-from ..formatting import StorageFormatManager
+from ..duration import Duration
 from ..indicators.TimeSignature import TimeSignature
 from ..meter import Meter
 from ..pitch.intervals import NamedInterval
-from ..top import inspect, iterate, select, sequence
-from ..utilities.Duration import Duration
+from ..storage import StorageFormatManager
+from ..top import iterate, select, sequence
 from .Chord import Chord
-from .Component import Component
+from .Component import Component, inspect
 from .Container import Container
 from .Leaf import Leaf
 from .Note import Note

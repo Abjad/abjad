@@ -3,7 +3,7 @@ import inspect
 import operator
 
 from .. import mathtools
-from ..formatting import FormatSpecification, StorageFormatManager
+from ..storage import FormatSpecification, StorageFormatManager
 from ..top import new
 from .Expression import Expression
 from .Sequence import Sequence

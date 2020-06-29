@@ -11,11 +11,11 @@ import numbers
 import typing
 
 from . import enums, mathtools
-from .formatting import FormatSpecification, StorageFormatManager
 from .lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from .ly.colors import colors
 from .ly.music_glyphs import music_glyphs
 from .scheme import Scheme, SchemeColor, SchemePair
+from .storage import FormatSpecification, StorageFormatManager
 from .top import new
 from .utilities.String import String
 from .utilities.TypedList import TypedList

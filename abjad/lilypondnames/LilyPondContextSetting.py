@@ -1,7 +1,7 @@
 import typing
 
+from ..formatting import LilyPondFormatBundle
 from ..scheme import Scheme
-from ..system.LilyPondFormatBundle import LilyPondFormatBundle
 
 
 class LilyPondContextSetting(object):

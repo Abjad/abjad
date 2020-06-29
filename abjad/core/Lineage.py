@@ -1,6 +1,7 @@
 import collections
 
-from ..formatting import StorageFormatManager
+from ..storage import StorageFormatManager
+from .Component import inspect
 
 
 class Lineage(collections.abc.Sequence):
@@ -73,15 +74,14 @@ class Lineage(collections.abc.Sequence):
     ### INITIALIZER ###
 
     def __init__(self, component=None):
-        import abjad
-
-        assert isinstance(component, (abjad.Component, type(None)))
+        if component is not None:
+            assert hasattr(component, "_timespan"), repr(component)
         self._component = component
         components = []
         if component is not None:
-            components.extend(reversed(abjad.inspect(component).parentage()[1:]))
+            components.extend(reversed(inspect(component).parentage()[1:]))
             components.append(component)
-            components.extend(abjad.inspect(component).descendants()[1:])
+            components.extend(inspect(component).descendants()[1:])
         self._components = components
 
     ### SPECIAL METHODS ###

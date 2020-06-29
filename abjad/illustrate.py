@@ -1,5 +1,8 @@
+import copy
+
 from . import enums
 from .core.Chord import Chord
+from .core.LeafMaker import LeafMaker
 from .core.Note import Note
 from .core.NoteMaker import NoteMaker
 from .core.Score import Score
@@ -7,19 +10,19 @@ from .core.Skip import Skip
 from .core.Staff import Staff
 from .core.StaffGroup import StaffGroup
 from .core.Voice import Voice
+from .duration import Duration
 from .indicators.Clef import Clef
 from .indicators.LilyPondLiteral import LilyPondLiteral
 from .indicators.StaffChange import StaffChange
-from .lilypondfile.LilyPondFile import LilyPondFile
-from .markups import Markup
+from .lilypondfile import Block, LilyPondFile
+from .markups import Markup, MarkupCommand
 from .pitch.PitchRange import PitchRange
 from .pitch.pitches import NamedPitch
 from .pitch.segments import PitchSegment, Segment
 from .pitch.sets import PitchClassSet, PitchSet
-from .scheme import SchemeMoment
+from .scheme import Scheme, SchemeMoment
 from .spanners import glissando
 from .top import attach, iterate, new, override, select, setting
-from .utilities.Duration import Duration
 from .utilities.OrderedDict import OrderedDict
 
 
@@ -192,3 +195,45 @@ class_to_method = OrderedDict(
         (PitchSet, _illustrate_pitch_set),
     ]
 )
+
+
+def _make_markup_score_block(selection):
+    selection = copy.deepcopy(selection)
+    staff = Staff(selection)
+    staff.lilypond_type = "RhythmicStaff"
+    staff.remove_commands.append("Time_signature_engraver")
+    staff.remove_commands.append("Staff_symbol_engraver")
+    override(staff).stem.direction = enums.Up
+    override(staff).stem.length = 5
+    override(staff).tuplet_bracket.bracket_visibility = True
+    override(staff).tuplet_bracket.direction = enums.Up
+    override(staff).tuplet_bracket.minimum_length = 4
+    override(staff).tuplet_bracket.padding = 1.25
+    override(staff).tuplet_bracket.shorten_pair = (-1, -1.5)
+    scheme = Scheme("ly:spanner::set-spacing-rods")
+    override(staff).tuplet_bracket.springs_and_rods = scheme
+    override(staff).tuplet_number.font_size = 0
+    scheme = Scheme("tuplet-number::calc-fraction-text")
+    override(staff).tuplet_number.text = scheme
+    setting(staff).tuplet_full_length = True
+    layout_block = Block(name="layout")
+    layout_block.indent = 0
+    layout_block.ragged_right = True
+    score = Score([staff])
+    override(score).spacing_spanner.spacing_increment = 0.5
+    setting(score).proportional_notation_duration = False
+    return score, layout_block
+
+
+def _to_score_markup(selection):
+    staff, layout_block = _make_markup_score_block(selection)
+    command = MarkupCommand("score", [staff, layout_block])
+    markup = Markup(command)
+    return markup
+
+
+def duration_to_score_markup(duration):
+    maker = LeafMaker()
+    notes = maker([0], [duration])
+    markup = _to_score_markup(notes)
+    return markup

@@ -1,7 +1,7 @@
 import typing
 
 from .. import typings
-from ..formatting import FormatSpecification, StorageFormatManager
+from ..storage import FormatSpecification, StorageFormatManager
 from .Part import Part
 
 token_type = typing.Union[None, int, typings.IntegerPair, typing.List[int]]

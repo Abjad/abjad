@@ -2,7 +2,7 @@ import types
 import typing
 
 from . import enums
-from .formatting import StorageFormatManager
+from .storage import StorageFormatManager
 
 _lilypond_parsers_by_language: typing.Dict = {}
 
@@ -628,170 +628,6 @@ def f(argument, strict=None):
     print(string)
 
 
-def graph(argument, format_="pdf", layout="dot",) -> None:
-    r"""
-    Graphs ``argument``.
-
-    ..  container:: example
-
-        Graphs staff:
-
-        >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> abjad.graph(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> print(format(staff.__graph__(), 'graphviz'))
-            digraph G {
-                graph [style=rounded];
-                node [fontname=Arial,
-                    shape=none];
-                Staff_0 [label=<
-                    <TABLE BORDER="2" CELLPADDING="5">
-                        <TR>
-                            <TD BORDER="0">Staff</TD>
-                        </TR>
-                    </TABLE>>,
-                    margin=0.05,
-                    style=rounded];
-                subgraph Staff {
-                    graph [color=grey75,
-                        penwidth=2];
-                    Note_0 [label=<
-                        <TABLE BORDER="2" CELLPADDING="5">
-                            <TR>
-                                <TD BORDER="0">Note</TD>
-                            </TR>
-                            <HR/>
-                            <TR>
-                                <TD BORDER="0">c'4</TD>
-                            </TR>
-                        </TABLE>>,
-                        margin=0.05,
-                        style=rounded];
-                    Note_1 [label=<
-                        <TABLE BORDER="2" CELLPADDING="5">
-                            <TR>
-                                <TD BORDER="0">Note</TD>
-                            </TR>
-                            <HR/>
-                            <TR>
-                                <TD BORDER="0">d'4</TD>
-                            </TR>
-                        </TABLE>>,
-                        margin=0.05,
-                        style=rounded];
-                    Note_2 [label=<
-                        <TABLE BORDER="2" CELLPADDING="5">
-                            <TR>
-                                <TD BORDER="0">Note</TD>
-                            </TR>
-                            <HR/>
-                            <TR>
-                                <TD BORDER="0">e'4</TD>
-                            </TR>
-                        </TABLE>>,
-                        margin=0.05,
-                        style=rounded];
-                    Note_3 [label=<
-                        <TABLE BORDER="2" CELLPADDING="5">
-                            <TR>
-                                <TD BORDER="0">Note</TD>
-                            </TR>
-                            <HR/>
-                            <TR>
-                                <TD BORDER="0">f'4</TD>
-                            </TR>
-                        </TABLE>>,
-                        margin=0.05,
-                        style=rounded];
-                }
-                Staff_0 -> Note_0;
-                Staff_0 -> Note_1;
-                Staff_0 -> Note_2;
-                Staff_0 -> Note_3;
-            }
-
-    ..  container:: example
-
-        Graphs rhythm tree:
-
-        >>> rtm_syntax = '(3 ((2 (2 1)) 2))'
-        >>> parser = abjad.rhythmtrees.RhythmTreeParser()
-        >>> rhythm_tree = parser(rtm_syntax)[0]
-        >>> abjad.graph(rhythm_tree) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> print(format(rhythm_tree.__graph__(), 'graphviz'))
-            digraph G {
-                graph [bgcolor=transparent,
-                    truecolor=true];
-                node_0 [label="3",
-                    shape=triangle];
-                node_1 [label="2",
-                    shape=triangle];
-                node_2 [label="2",
-                    shape=box];
-                node_3 [label="1",
-                    shape=box];
-                node_4 [label="2",
-                    shape=box];
-                node_0 -> node_1;
-                node_0 -> node_4;
-                node_1 -> node_2;
-                node_1 -> node_3;
-            }
-
-    Opens image in default image viewer.
-    """
-    import abjad.iox
-
-    return abjad.iox.graph(argument, format_=format_, layout=layout,)
-
-
-def inspect(client):
-    r"""
-    Makes inspection agent.
-
-    ..  container:: example
-
-        Example staff:
-
-        >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> abjad.f(staff)
-            \new Staff
-            {
-                c'4
-                e'4
-                d'4
-                f'4
-            }
-
-    ..  container:: example
-
-        Gets duration of first note in staff:
-
-        >>> abjad.inspect(staff[0]).duration()
-        Duration(1, 4)
-
-    ..  container:: example
-
-        Returns inspection agent:
-
-        >>> abjad.inspect(staff)
-        Inspection(client=Staff("c'4 e'4 d'4 f'4"))
-
-    """
-    import abjad
-
-    return abjad.Inspection(client=client)
-
-
 def iterate(client=None):
     r"""
     Makes iteration agent.
@@ -1226,28 +1062,6 @@ def persist(client):
     return abjad.PersistenceManager(client)
 
 
-def play(argument) -> None:
-    """
-    Plays ``argument``.
-
-    ..  container:: example
-
-        >>> note = abjad.Note("c'4")
-        >>> abjad.play(note) # doctest: +SKIP
-
-    Makes MIDI file.
-
-    Appends ``.mid`` filename extension under Windows.
-
-    Appends ``.midi`` filename extension under other operating systems.
-
-    Opens MIDI file.
-    """
-    import abjad.iox
-
-    return abjad.iox.play(argument)
-
-
 def select(items=None, previous=None):
     r"""
     Selects ``items`` or makes select expression.
@@ -1402,56 +1216,6 @@ def setting(argument):
         manager = LilyPondSettingNameManager()
         argument._lilypond_setting_name_manager = manager
     return argument._lilypond_setting_name_manager
-
-
-def show(argument, return_timing=False, **keywords):
-    r"""
-    Shows ``argument``.
-
-    ..  container:: example
-
-        Shows note:
-
-        >>> note = abjad.Note("c'4")
-        >>> abjad.show(note) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> abjad.f(note)
-            c'4
-
-    ..  container:: example
-
-        Shows staff:
-
-        >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> abjad.f(staff)
-            \new Staff
-            {
-                c'4
-                d'4
-                e'4
-                f'4
-            }
-
-    Makes LilyPond input files and output PDF.
-
-    Writes LilyPond input file and output PDF to Abjad output directory.
-
-    Opens output PDF.
-
-    Returns none when ``return_timing`` is false.
-
-    Returns pair of ``abjad_formatting_time`` and ``lilypond_rendering_time``
-    when ``return_timing`` is true.
-    """
-    import abjad.iox
-
-    return abjad.iox.show(argument, return_timing=return_timing, **keywords)
 
 
 def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None):

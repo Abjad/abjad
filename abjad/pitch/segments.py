@@ -5,11 +5,11 @@ import inspect
 import types
 
 from .. import mathtools
-from ..formatting import FormatSpecification
+from ..duration import Multiplier
+from ..storage import FormatSpecification
 from ..system.Signature import Signature
 from ..top import iterate, new
 from ..utilities.Expression import Expression
-from ..utilities.Multiplier import Multiplier
 from ..utilities.Sequence import Sequence
 from ..utilities.TypedCollection import TypedCollection
 from ..utilities.TypedTuple import TypedTuple

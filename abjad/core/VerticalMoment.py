@@ -1,4 +1,4 @@
-from ..top import inspect
+from .Component import inspect
 
 
 class VerticalMoment(object):

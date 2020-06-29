@@ -1,7 +1,7 @@
 import typing
 
-from ..formatting import StorageFormatManager
-from ..system.LilyPondFormatBundle import LilyPondFormatBundle
+from ..formatting import LilyPondFormatBundle
+from ..storage import StorageFormatManager
 
 
 class StopTextSpan(object):

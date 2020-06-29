@@ -7,12 +7,12 @@ import typing
 from .. import typings
 from ..core.Score import Score
 from ..core.StaffGroup import StaffGroup
+from ..formatting import LilyPondFormatManager
 from ..indicators.Clef import Clef
 from ..indicators.LilyPondLiteral import LilyPondLiteral
 from ..indicators.TimeSignature import TimeSignature
 from ..system.Configuration import Configuration
 from ..system.IOManager import IOManager
-from ..system.LilyPondFormatManager import LilyPondFormatManager
 from ..tags import Tag
 from ..top import attach, iterate
 from ..utilities.CyclicTuple import CyclicTuple

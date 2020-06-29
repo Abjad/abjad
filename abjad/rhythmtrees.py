@@ -13,9 +13,15 @@ import uqbar.containers
 import uqbar.graphs
 
 from . import mathtools
+from .core.Component import inspect
 from .core.Container import Container
-from .formatting import FormatSpecification, StorageFormatManager
+from .core.LeafMaker import LeafMaker
+from .core.Tuplet import Tuplet
+from .duration import Duration, Multiplier, NonreducedFraction, Offset
+from .spanners import tie
+from .storage import FormatSpecification, StorageFormatManager
 from .system.Parser import Parser
+from .utilities.Sequence import Sequence
 
 
 class RhythmTreeMixin(object):
@@ -31,10 +37,8 @@ class RhythmTreeMixin(object):
 
     @abc.abstractmethod
     def __init__(self, preprolated_duration=1):
-        import abjad
-
         self._duration = 0
-        self._offset = abjad.Offset(0)
+        self._offset = Offset(0)
         self._offsets_are_current = False
         self.preprolated_duration = preprolated_duration
 
@@ -94,9 +98,7 @@ class RhythmTreeMixin(object):
                     current_offset += child.duration
             return current_offset
 
-        import abjad
-
-        offset = abjad.Offset(0)
+        offset = Offset(0)
         root = self.root
         if root is None:
             root = self
@@ -201,10 +203,8 @@ class RhythmTreeMixin(object):
 
     @preprolated_duration.setter
     def preprolated_duration(self, argument):
-        import abjad
-
         if not isinstance(argument, fractions.Fraction):
-            argument = abjad.Duration(argument)
+            argument = Duration(argument)
         assert 0 < argument
         self._duration = argument
         self._mark_entire_tree_for_later_update()
@@ -245,15 +245,11 @@ class RhythmTreeMixin(object):
 
         Returns tuple.
         """
-        import abjad
-
-        prolations = [abjad.Multiplier(1)]
-        pairs = abjad.sequence(self.parentage).nwise()
+        prolations = [Multiplier(1)]
+        pairs = Sequence(self.parentage).nwise()
         for child, parent in pairs:
             prolations.append(
-                abjad.Multiplier(
-                    parent.preprolated_duration, parent._get_contents_duration(),
-                )
+                Multiplier(parent.preprolated_duration, parent._get_contents_duration())
             )
         return tuple(prolations)
 
@@ -349,11 +345,9 @@ class RhythmTreeLeaf(RhythmTreeMixin, uqbar.containers.UniqueTreeNode):
 
         Returns sequence of components.
         """
-        import abjad
-
-        pulse_duration = abjad.Duration(pulse_duration)
+        pulse_duration = Duration(pulse_duration)
         total_duration = pulse_duration * self.preprolated_duration
-        maker = abjad.LeafMaker()
+        maker = LeafMaker()
         if self.is_pitched:
             return maker(0, total_duration)
         return maker([None], total_duration)
@@ -625,7 +619,7 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
             basic_written_duration = (
                 basic_prolated_duration.equal_or_greater_power_of_two
             )
-            tuplet = abjad.Tuplet(1, [])
+            tuplet = Tuplet(1, [])
             for child in node.children:
                 if isinstance(child, type(self)):
                     tuplet.extend(
@@ -637,9 +631,9 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
                     leaves = child(basic_written_duration)
                     tuplet.extend(leaves)
                     if 1 < len(leaves):
-                        abjad.tie(leaves)
+                        tie(leaves)
             assert tuplet.multiplier == 1, repr(tuplet.multiplier)
-            contents_duration = abjad.inspect(tuplet).duration()
+            contents_duration = inspect(tuplet).duration()
             target_duration = tuplet_duration
             multiplier = target_duration / contents_duration
             tuplet.multiplier = multiplier
@@ -647,13 +641,11 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
                 return tuplet[:]
             return [tuplet]
 
-        import abjad
-
-        pulse_duration = abjad.Duration(pulse_duration)
+        pulse_duration = Duration(pulse_duration)
         assert 0 < pulse_duration
         result = recurse(self, pulse_duration * self.preprolated_duration)
         for component in result[:]:
-            if isinstance(component, abjad.Tuplet):
+            if isinstance(component, Tuplet):
                 if component.trivial():
                     component._extract()
         return result
@@ -918,15 +910,13 @@ class RhythmTreeParser(Parser):
 
     def t_DURATION(self, t):
         r"-?[1-9]\d*(/[1-9]\d*)?"
-        import abjad
-
         parts = t.value.partition("/")
         if not parts[2]:
-            t.value = abjad.Duration(int(parts[0]))
+            t.value = Duration(int(parts[0]))
         else:
             numerator, denominator = int(parts[0]), int(parts[2])
-            fraction = abjad.NonreducedFraction(numerator, denominator)
-            preprolated_duration = abjad.Duration(fraction)
+            fraction = NonreducedFraction(numerator, denominator)
+            preprolated_duration = Duration(fraction)
             if fraction.numerator == preprolated_duration.numerator:
                 t.value = preprolated_duration
             else:
@@ -947,11 +937,7 @@ class RhythmTreeParser(Parser):
         """
         container : LPAREN DURATION node_list_closed RPAREN
         """
-        import abjad
-
-        p[0] = abjad.rhythmtrees.RhythmTreeContainer(
-            children=p[3], preprolated_duration=abs(p[2])
-        )
+        p[0] = RhythmTreeContainer(children=p[3], preprolated_duration=abs(p[2]))
 
     def p_error(self, p):
         if p:
@@ -963,11 +949,7 @@ class RhythmTreeParser(Parser):
         """
         leaf : DURATION
         """
-        import abjad
-
-        p[0] = abjad.rhythmtrees.RhythmTreeLeaf(
-            preprolated_duration=abs(p[1]), is_pitched=0 < p[1]
-        )
+        p[0] = RhythmTreeLeaf(preprolated_duration=abs(p[1]), is_pitched=0 < p[1])
 
     def p_node__container(self, p):
         """

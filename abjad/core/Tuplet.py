@@ -8,14 +8,14 @@ import typing
 import uqbar
 
 from .. import exceptions, mathtools, typings
-from ..formatting import FormatSpecification
+from ..duration import Duration, Multiplier, NonreducedFraction
+from ..formatting import LilyPondFormatManager
 from ..lilypondnames.LilyPondTweakManager import LilyPondTweakManager
-from ..mathtools import NonreducedFraction, NonreducedRatio, Ratio
-from ..system.LilyPondFormatManager import LilyPondFormatManager
+from ..ratio import NonreducedRatio, Ratio
+from ..storage import FormatSpecification
 from ..tags import Tag
-from ..top import inspect, iterate, override, select, tweak
-from ..utilities.Duration import Duration
-from ..utilities.Multiplier import Multiplier
+from ..top import iterate, override, select, tweak
+from .Component import inspect
 from .Container import Container
 from .Leaf import Leaf
 from .LeafMaker import LeafMaker
@@ -524,7 +524,8 @@ class Tuplet(Container):
 
             >>> tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
             >>> duration = abjad.inspect(tuplet).duration()
-            >>> markup = duration.to_score_markup()
+            >>> from abjad.illustrate import duration_to_score_markup
+            >>> markup = duration_to_score_markup(duration)
             >>> abjad.override(tuplet).tuplet_number.text = markup
             >>> staff = abjad.Staff([tuplet])
             >>> abjad.show(staff) # doctest: +SKIP

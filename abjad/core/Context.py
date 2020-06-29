@@ -1,12 +1,11 @@
 import copy
 import typing
 
+from ..formatting import LilyPondFormatManager
 from ..instruments import Instrument
 from ..lilypondnames.LilyPondContext import LilyPondContext
-from ..system.LilyPondFormatManager import LilyPondFormatManager
-from ..system.Wrapper import Wrapper
 from ..tags import Tag
-from ..top import inspect
+from .Component import Wrapper, inspect
 from .Container import Container
 
 

@@ -1,6 +1,6 @@
 import typing
 
-from ..formatting import StorageFormatManager
+from ..storage import StorageFormatManager
 from ..tags import Tag, Tags
 from ..utilities.String import String
 from .Path import Path
