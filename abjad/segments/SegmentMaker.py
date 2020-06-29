@@ -7,7 +7,7 @@ from ..core.Context import Context
 from ..core.Score import Score
 from ..core.Staff import Staff
 from ..core.Voice import Voice
-from ..indicators import LilyPondLiteral
+from ..indicators.LilyPondLiteral import LilyPondLiteral
 from ..lilypondfile import LilyPondFile
 from ..storage import StorageFormatManager
 from ..tags import Tag
