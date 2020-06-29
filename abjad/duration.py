@@ -1,16 +1,14 @@
-try:
-    import quicktions as fractions  # type: ignore
-except ImportError:
-    import fractions  # type: ignore
 import math
 import re
 import typing
+
+import quicktions
 
 from . import exceptions, mathtools
 from .storage import FormatSpecification, StorageFormatManager
 
 
-class Duration(fractions.Fraction):
+class Duration(quicktions.Fraction):
     """
     Duration.
 
@@ -117,13 +115,13 @@ class Duration(fractions.Fraction):
             if type(argument) is class_:
                 return argument
             if isinstance(argument, NonreducedFraction):
-                return fractions.Fraction.__new__(class_, *argument.pair)
+                return quicktions.Fraction.__new__(class_, *argument.pair)
             try:
-                return fractions.Fraction.__new__(class_, *argument)
+                return quicktions.Fraction.__new__(class_, *argument)
             except (AttributeError, TypeError):
                 pass
             try:
-                return fractions.Fraction.__new__(class_, argument)
+                return quicktions.Fraction.__new__(class_, argument)
             except (AttributeError, TypeError):
                 pass
             if (
@@ -133,29 +131,29 @@ class Duration(fractions.Fraction):
                 and mathtools.is_integer_equivalent(argument[1])
                 and not argument[1] == 0
             ):
-                return fractions.Fraction.__new__(
+                return quicktions.Fraction.__new__(
                     class_, int(argument[0]), int(argument[1])
                 )
             try:
-                return fractions.Fraction.__new__(class_, argument.duration)
+                return quicktions.Fraction.__new__(class_, argument.duration)
             except AttributeError:
                 pass
             if isinstance(argument, str) and "/" not in argument:
                 result = Duration._initialize_from_lilypond_duration_string(argument)
-                return fractions.Fraction.__new__(class_, result)
+                return quicktions.Fraction.__new__(class_, result)
             if (
                 isinstance(argument, tuple)
                 and len(argument) == 1
                 and mathtools.is_integer_equivalent(argument[0])
             ):
-                return fractions.Fraction.__new__(class_, int(argument[0]))
+                return quicktions.Fraction.__new__(class_, int(argument[0]))
         else:
             try:
-                return fractions.Fraction.__new__(class_, *arguments)
+                return quicktions.Fraction.__new__(class_, *arguments)
             except TypeError:
                 pass
             if mathtools.all_are_integer_equivalent_numbers(arguments):
-                return fractions.Fraction.__new__(class_, *[int(x) for x in arguments])
+                return quicktions.Fraction.__new__(class_, *[int(x) for x in arguments])
         raise ValueError(f"can not construct duration: {arguments!r}.")
 
     ### SPECIAL METHODS ###
@@ -166,7 +164,7 @@ class Duration(fractions.Fraction):
 
         Returns nonnegative duration.
         """
-        return type(self)(fractions.Fraction.__abs__(self, *arguments))
+        return type(self)(quicktions.Fraction.__abs__(self, *arguments))
 
     def __add__(self, *arguments):
         """
@@ -196,7 +194,7 @@ class Duration(fractions.Fraction):
         if len(arguments) == 1 and isinstance(arguments[0], NonreducedFraction):
             result = arguments[0].__radd__(self)
         else:
-            result = type(self)(fractions.Fraction.__add__(self, *arguments))
+            result = type(self)(quicktions.Fraction.__add__(self, *arguments))
         return result
 
     def __div__(self, *arguments):
@@ -215,12 +213,12 @@ class Duration(fractions.Fraction):
         Returns multiplier.
         """
         if len(arguments) == 1 and isinstance(arguments[0], type(self)):
-            fraction = fractions.Fraction.__truediv__(self, *arguments)
+            fraction = quicktions.Fraction.__truediv__(self, *arguments)
             result = Multiplier(fraction)
         elif len(arguments) == 1 and isinstance(arguments[0], NonreducedFraction):
             result = arguments[0].__rdiv__(self)
         else:
-            result = type(self)(fractions.Fraction.__truediv__(self, *arguments))
+            result = type(self)(quicktions.Fraction.__truediv__(self, *arguments))
         return result
 
     def __divmod__(self, *arguments):
@@ -229,7 +227,7 @@ class Duration(fractions.Fraction):
 
         Returns pair.
         """
-        truncated, residue = fractions.Fraction.__divmod__(self, *arguments)
+        truncated, residue = quicktions.Fraction.__divmod__(self, *arguments)
         truncated = type(self)(truncated)
         residue = type(self)(residue)
         return truncated, residue
@@ -240,7 +238,7 @@ class Duration(fractions.Fraction):
 
         Returns true or false.
         """
-        return fractions.Fraction.__eq__(self, argument)
+        return quicktions.Fraction.__eq__(self, argument)
 
     def __format__(self, format_specification=""):
         """
@@ -261,7 +259,7 @@ class Duration(fractions.Fraction):
 
         Returns true or false.
         """
-        return fractions.Fraction.__ge__(self, argument)
+        return quicktions.Fraction.__ge__(self, argument)
 
     def __gt__(self, argument):
         """
@@ -269,7 +267,7 @@ class Duration(fractions.Fraction):
 
         Returns true or false.
         """
-        return fractions.Fraction.__gt__(self, argument)
+        return quicktions.Fraction.__gt__(self, argument)
 
     def __hash__(self):
         """
@@ -287,7 +285,7 @@ class Duration(fractions.Fraction):
 
         Returns true or false.
         """
-        return fractions.Fraction.__le__(self, argument)
+        return quicktions.Fraction.__le__(self, argument)
 
     def __lt__(self, argument):
         """
@@ -295,7 +293,7 @@ class Duration(fractions.Fraction):
 
         Returns true or false.
         """
-        return fractions.Fraction.__lt__(self, argument)
+        return quicktions.Fraction.__lt__(self, argument)
 
     def __mod__(self, *arguments):
         """
@@ -303,7 +301,7 @@ class Duration(fractions.Fraction):
 
         Returns duration.
         """
-        return type(self)(fractions.Fraction.__mod__(self, *arguments))
+        return type(self)(quicktions.Fraction.__mod__(self, *arguments))
 
     def __mul__(self, *arguments):
         """
@@ -333,8 +331,14 @@ class Duration(fractions.Fraction):
         if len(arguments) == 1 and isinstance(arguments[0], NonreducedFraction):
             result = arguments[0].__rmul__(self)
         else:
-            result = type(self)(fractions.Fraction.__mul__(self, *arguments))
+            result = type(self)(quicktions.Fraction.__mul__(self, *arguments))
         return result
+
+    def __ne__(self, argument):
+        """
+        Is true when duration does not equal ``argument``.
+        """
+        return not self == argument
 
     def __neg__(self, *arguments):
         """
@@ -342,7 +346,7 @@ class Duration(fractions.Fraction):
 
         Returns new duration.
         """
-        return type(self)(fractions.Fraction.__neg__(self, *arguments))
+        return type(self)(quicktions.Fraction.__neg__(self, *arguments))
 
     def __pos__(self, *arguments):
         """
@@ -350,7 +354,7 @@ class Duration(fractions.Fraction):
 
         Returns new duration.
         """
-        return type(self)(fractions.Fraction.__pos__(self, *arguments))
+        return type(self)(quicktions.Fraction.__pos__(self, *arguments))
 
     def __pow__(self, *arguments):
         """
@@ -358,7 +362,7 @@ class Duration(fractions.Fraction):
 
         Returns new duration.
         """
-        return type(self)(fractions.Fraction.__pow__(self, *arguments))
+        return type(self)(quicktions.Fraction.__pow__(self, *arguments))
 
     def __radd__(self, *arguments):
         """
@@ -366,7 +370,7 @@ class Duration(fractions.Fraction):
 
         Returns new duration.
         """
-        return type(self)(fractions.Fraction.__radd__(self, *arguments))
+        return type(self)(quicktions.Fraction.__radd__(self, *arguments))
 
     def __rdiv__(self, *arguments):
         """
@@ -374,13 +378,13 @@ class Duration(fractions.Fraction):
 
         Returns new duration.
         """
-        return type(self)(fractions.Fraction.__rdiv__(self, *arguments))
+        return type(self)(quicktions.Fraction.__rdiv__(self, *arguments))
 
     def __rdivmod__(self, *arguments):
         """
         Documentation required.
         """
-        return type(self)(fractions.Fraction.__rdivmod__(self, *arguments))
+        return type(self)(quicktions.Fraction.__rdivmod__(self, *arguments))
 
     def __reduce__(self):
         """
@@ -404,7 +408,7 @@ class Duration(fractions.Fraction):
         """
         Documentation required.
         """
-        return type(self)(fractions.Fraction.__rmod__(self, *arguments))
+        return type(self)(quicktions.Fraction.__rmod__(self, *arguments))
 
     def __rmul__(self, *arguments):
         """
@@ -412,7 +416,7 @@ class Duration(fractions.Fraction):
 
         Returns new duration.
         """
-        return type(self)(fractions.Fraction.__rmul__(self, *arguments))
+        return type(self)(quicktions.Fraction.__rmul__(self, *arguments))
 
     def __rpow__(self, *arguments):
         """
@@ -420,7 +424,7 @@ class Duration(fractions.Fraction):
 
         Returns new duration.
         """
-        return type(self)(fractions.Fraction.__rpow__(self, *arguments))
+        return type(self)(quicktions.Fraction.__rpow__(self, *arguments))
 
     def __rsub__(self, *arguments):
         """
@@ -428,7 +432,7 @@ class Duration(fractions.Fraction):
 
         Returns new duration.
         """
-        return type(self)(fractions.Fraction.__rsub__(self, *arguments))
+        return type(self)(quicktions.Fraction.__rsub__(self, *arguments))
 
     def __rtruediv__(self, *arguments):
         """
@@ -436,7 +440,7 @@ class Duration(fractions.Fraction):
 
         Returns new duration.
         """
-        return type(self)(fractions.Fraction.__rtruediv__(self, *arguments))
+        return type(self)(quicktions.Fraction.__rtruediv__(self, *arguments))
 
     def __sub__(self, *arguments):
         """
@@ -455,7 +459,7 @@ class Duration(fractions.Fraction):
         if len(arguments) == 1 and isinstance(arguments[0], NonreducedFraction):
             return arguments[0].__rsub__(self)
         else:
-            return type(self)(fractions.Fraction.__sub__(self, *arguments))
+            return type(self)(quicktions.Fraction.__sub__(self, *arguments))
 
     def __truediv__(self, *arguments):
         """
@@ -506,14 +510,14 @@ class Duration(fractions.Fraction):
         body_string, dots_string = match.groups()
         try:
             body_denominator = int(body_string)
-            body_duration = fractions.Fraction(1, body_denominator)
+            body_duration = quicktions.Fraction(1, body_denominator)
         except ValueError:
             if body_string == r"\breve":
-                body_duration = fractions.Fraction(2)
+                body_duration = quicktions.Fraction(2)
             elif body_string == r"\longa":
-                body_duration = fractions.Fraction(4)
+                body_duration = quicktions.Fraction(4)
             elif body_string == r"\maxima":
-                body_duration = fractions.Fraction(8)
+                body_duration = quicktions.Fraction(8)
             else:
                 message = "unknown body string: {!r}."
                 message = message.format(body_string)
@@ -522,7 +526,7 @@ class Duration(fractions.Fraction):
         for n in range(len(dots_string)):
             exponent = n + 1
             denominator = 2 ** exponent
-            multiplier = fractions.Fraction(1, denominator)
+            multiplier = quicktions.Fraction(1, denominator)
             addend = multiplier * body_duration
             rational += addend
         return rational
@@ -537,7 +541,7 @@ class Duration(fractions.Fraction):
 
         Returns integer.
         """
-        assert isinstance(n, (int, float, fractions.Fraction)), repr(n)
+        assert isinstance(n, (int, float, quicktions.Fraction)), repr(n)
         assert 0 <= n, repr(n)
         result = 2 ** (int(math.ceil(math.log(n, 2))) + i)
         return result
@@ -1887,6 +1891,11 @@ class Offset(Duration):
 
     ### PRIVATE METHODS ###
 
+    def _get_displacement(self):
+        if self.displacement is None:
+            return Duration(0)
+        return self.displacement
+
     def _get_format_specification(self):
         names = []
         values = [(self.numerator, self.denominator)]
@@ -1898,11 +1907,6 @@ class Offset(Duration):
             storage_format_is_indented=False,
             storage_format_kwargs_names=names,
         )
-
-    def _get_displacement(self):
-        if self.displacement is None:
-            return Duration(0)
-        return self.displacement
 
     ### PUBLIC PROPERTIES ###
 
@@ -1947,7 +1951,7 @@ class Offset(Duration):
         return self._displacement
 
 
-class NonreducedFraction(fractions.Fraction):
+class NonreducedFraction(quicktions.Fraction):
     """
     Nonreduced fraction.
 
@@ -2054,10 +2058,12 @@ class NonreducedFraction(fractions.Fraction):
             raise ValueError(message)
         numerator *= mathtools.sign(denominator)
         denominator = abs(denominator)
-        self = fractions.Fraction.__new__(class_, numerator, denominator)
+        self = quicktions.Fraction.__new__(class_, numerator, denominator)
         self._numerator = numerator
         self._denominator = denominator
         return self
+
+    ### INITIALIZER ###
 
     def __init__(self, *arguments):
         """
@@ -2485,7 +2491,7 @@ class NonreducedFraction(fractions.Fraction):
 
         """
         if preserve_numerator:
-            multiplier = fractions.Fraction(*multiplier)
+            multiplier = quicktions.Fraction(*multiplier)
             self_denominator = self.denominator
             candidate_result_denominator = self_denominator / multiplier
             if candidate_result_denominator.denominator == 1:
@@ -2525,7 +2531,7 @@ class NonreducedFraction(fractions.Fraction):
             NonreducedFraction(1, 1)
 
         """
-        multiplier = fractions.Fraction(*multiplier)
+        multiplier = quicktions.Fraction(*multiplier)
         self_numerator_factors = mathtools.factors(self.numerator)
         multiplier_denominator_factors = mathtools.factors(multiplier.denominator)
         for factor in multiplier_denominator_factors[:]:
@@ -2577,7 +2583,7 @@ class NonreducedFraction(fractions.Fraction):
         pair = (numerator, denominator)
         return self._from_pair(pair)
 
-    def reduce(self) -> fractions.Fraction:
+    def reduce(self) -> quicktions.Fraction:
         """
         Reduces nonreduced fraction.
 
@@ -2589,7 +2595,7 @@ class NonreducedFraction(fractions.Fraction):
             Fraction(-2, 1)
 
         """
-        return fractions.Fraction(self.numerator, self.denominator)
+        return quicktions.Fraction(self.numerator, self.denominator)
 
     def with_denominator(self, denominator) -> "NonreducedFraction":
         """
@@ -2655,7 +2661,7 @@ class NonreducedFraction(fractions.Fraction):
 
         """
         current_numerator, current_denominator = self.pair
-        multiplier = fractions.Fraction(denominator, current_denominator)
+        multiplier = quicktions.Fraction(denominator, current_denominator)
         new_numerator = multiplier * current_numerator
         new_denominator = multiplier * current_denominator
         if new_numerator.denominator == 1 and new_denominator.denominator == 1:

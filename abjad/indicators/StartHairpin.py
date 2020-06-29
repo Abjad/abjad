@@ -116,18 +116,18 @@ class StartHairpin(object):
         return string
 
     @staticmethod
+    def _circled_tip():
+        return LilyPondGrobOverride(
+            grob_name="Hairpin", once=True, property_path="circled-tip", value=True,
+        )
+
+    @staticmethod
     def _constante_hairpin():
         return LilyPondGrobOverride(
             grob_name="Hairpin",
             once=True,
             property_path="stencil",
             value="#constante-hairpin",
-        )
-
-    @staticmethod
-    def _circled_tip():
-        return LilyPondGrobOverride(
-            grob_name="Hairpin", once=True, property_path="circled-tip", value=True,
         )
 
     @staticmethod

@@ -8,26 +8,24 @@ def fix_test_case_names():
     total_test_modules = 0
     total_test_cases = 0
     total_nonmatching_names = 0
-    for directory, subdirectory_names, file_names in os.walk('.'):
+    for directory, subdirectory_names, file_names in os.walk("."):
         test_modules = []
         for file_name in file_names:
-            if file_name.startswith('test_') and file_name.endswith('.py'):
+            if file_name.startswith("test_") and file_name.endswith(".py"):
                 test_modules.append(file_name)
         total_test_modules += len(test_modules)
         for test_module in test_modules:
-            result = process_test_module_name_fixes(
-                test_module, directory)
-            total_test_cases_in_module, total_nonmatching_names_in_module = \
-                result
+            result = process_test_module_name_fixes(test_module, directory)
+            total_test_cases_in_module, total_nonmatching_names_in_module = result
             total_test_cases += total_test_cases_in_module
             total_nonmatching_names += total_nonmatching_names_in_module
-    print(f'Total test modules: {total_test_modules}')
-    print(f'Total test cases:   {total_test_cases}')
+    print(f"Total test modules: {total_test_modules}")
+    print(f"Total test cases:   {total_test_cases}")
     if total_nonmatching_names == 1:
-        suffix = ''
+        suffix = ""
     else:
-        suffix = 's'
-    print(f'Total misnamed test case name{suffix}: {total_nonmatching_names}')
+        suffix = "s"
+    print(f"Total misnamed test case name{suffix}: {total_nonmatching_names}")
 
 
 def process_test_module_name_fixes(test_module, directory):
@@ -37,39 +35,41 @@ def process_test_module_name_fixes(test_module, directory):
     short_module_name = test_module[:-3]
     desired_test_case_prefix = short_module_name
     new_lines = []
-    with open(full_module_name, 'r') as file_pointer:
+    with open(full_module_name, "r") as file_pointer:
         lines = file_pointer.readlines()
     for line in lines:
-        if ((line.startswith('def test') or line.startswith('#def test')) and
-            'init' not in line):
+        if (
+            line.startswith("def test") or line.startswith("#def test")
+        ) and "init" not in line:
             test_cases_in_current_module += 1
 
             # TODO: replace with regex
             test_case_name = line.strip()
-            if test_case_name.startswith('#'):
+            if test_case_name.startswith("#"):
                 test_case_name = test_case_name[1:]
-            test_case_name = test_case_name.split('def ')[1]
-            test_case_name = test_case_name.split('(')[0]
+            test_case_name = test_case_name.split("def ")[1]
+            test_case_name = test_case_name.split("(")[0]
 
             # TODO: replace with regex
             actual_test_case_prefix = line.strip()
-            if actual_test_case_prefix.startswith('#'):
+            if actual_test_case_prefix.startswith("#"):
                 actual_test_case_prefix = actual_test_case_prefix[1:]
-            actual_test_case_prefix = actual_test_case_prefix.split('def ')[1]
-            actual_test_case_prefix = actual_test_case_prefix.split('(')[0]
+            actual_test_case_prefix = actual_test_case_prefix.split("def ")[1]
+            actual_test_case_prefix = actual_test_case_prefix.split("(")[0]
             actual_test_case_prefix = actual_test_case_prefix[:-3]
 
             if not actual_test_case_prefix == desired_test_case_prefix:
                 total_nonmatching_names_in_current_module += 1
-                print(f'NONMATCHING in {test_module}')
+                print(f"NONMATCHING in {test_module}")
                 new_line = line.replace(
-                    actual_test_case_prefix, desired_test_case_prefix)
-                stripped_line = line.strip('\n')
-                stripped_new_line = new_line.strip('\n')
+                    actual_test_case_prefix, desired_test_case_prefix
+                )
+                stripped_line = line.strip("\n")
+                stripped_new_line = new_line.strip("\n")
                 print(f"OLD LINE:  {stripped_line}")
                 print(f"NEW LINE:  {stripped_new_line}")
-                choice = 'y'
-                if choice.lower() == 'y':
+                choice = "y"
+                if choice.lower() == "y":
                     new_lines.append(new_line)
                 else:
                     new_lines.append(line)
@@ -78,40 +78,37 @@ def process_test_module_name_fixes(test_module, directory):
                 new_lines.append(line)
         else:
             new_lines.append(line)
-    with open(full_module_name, 'w') as file_pointer:
+    with open(full_module_name, "w") as file_pointer:
         file_pointer.writelines(new_lines)
     return (
-        test_cases_in_current_module, 
+        test_cases_in_current_module,
         total_nonmatching_names_in_current_module,
-        )
+    )
 
 
 def fix_test_case_numbers():
     total_test_modules = 0
     total_test_cases = 0
     total_misnumbered_cases = 0
-    for directory, subdirectory_names, file_names in os.walk('.'):
+    for directory, subdirectory_names, file_names in os.walk("."):
         test_modules = []
         for file_name in file_names:
-            if file_name.startswith('test_') and file_name.endswith('.py'):
+            if file_name.startswith("test_") and file_name.endswith(".py"):
                 test_modules.append(file_name)
         total_test_modules += len(test_modules)
         for test_module in test_modules:
-            result = process_test_module_number_fixes(
-                test_module, directory)
+            result = process_test_module_number_fixes(test_module, directory)
             test_cases_in_current_module = result[0]
             misnumbered_cases_in_current_module = result[1]
             total_test_cases += test_cases_in_current_module
             total_misnumbered_cases += misnumbered_cases_in_current_module
-    print(f'Total test modules: {total_test_modules}')
-    print(f'Total test cases:   {total_test_cases}')
+    print(f"Total test modules: {total_test_modules}")
+    print(f"Total test cases:   {total_test_cases}")
     if total_misnumbered_cases == 1:
-        suffix = ''
+        suffix = ""
     else:
-        suffix = 's'
-    print(
-        f'Total misnumbered test case name{suffix}: {total_misnumbered_cases}'
-        )
+        suffix = "s"
+    print(f"Total misnumbered test case name{suffix}: {total_misnumbered_cases}")
 
 
 def process_test_module_number_fixes(test_module, directory):
@@ -121,30 +118,32 @@ def process_test_module_number_fixes(test_module, directory):
     short_module_name = test_module[:-3]
     desired_test_case_prefix = short_module_name
     new_lines = []
-    with open(full_module_name, 'r') as file_pointer:
+    with open(full_module_name, "r") as file_pointer:
         lines = file_pointer.readlines()
     current_case_number = 1
     for line in lines:
-        if ((line.startswith('def test') or line.startswith('#def test')) and
-            'init' not in line):
+        if (
+            line.startswith("def test") or line.startswith("#def test")
+        ) and "init" not in line:
             test_cases_in_current_module += 1
             desired_test_case_number = str(current_case_number).zfill(2)
 
             # TODO: replace with regex
-            actual_test_case_number = line.split('(')[0]
+            actual_test_case_number = line.split("(")[0]
             actual_test_case_number = actual_test_case_number[-2:]
 
             if not actual_test_case_number == desired_test_case_number:
                 misnumbered_cases_in_current_module += 1
-                print(f'NONMATCHING in {test_module}')
+                print(f"NONMATCHING in {test_module}")
                 new_line = line.replace(
-                    actual_test_case_number, desired_test_case_number)
-                stripped_line = line.strip('\n')
-                stripped_new_line = new_line.strip('\n')
+                    actual_test_case_number, desired_test_case_number
+                )
+                stripped_line = line.strip("\n")
+                stripped_new_line = new_line.strip("\n")
                 print(f"OLD LINE:  {stripped_line}")
                 print(f"NEW LINE:  {stripped_new_line}")
-                choice = 'y'
-                if choice.lower() == 'y':
+                choice = "y"
+                if choice.lower() == "y":
                     new_lines.append(new_line)
                 else:
                     new_lines.append(line)
@@ -154,12 +153,12 @@ def process_test_module_number_fixes(test_module, directory):
             current_case_number += 1
         else:
             new_lines.append(line)
-    with open(full_module_name, 'w') as file_pointer:
+    with open(full_module_name, "w") as file_pointer:
         file_pointer.writelines(new_lines)
     return test_cases_in_current_module, misnumbered_cases_in_current_module
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     abjad.IOManager.spawn_subprocess("clear")
     fix_test_case_names()
     print()

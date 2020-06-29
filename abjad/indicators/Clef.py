@@ -2,11 +2,11 @@ import functools
 import numbers
 import typing
 
+from ..core.Iteration import iterate
 from ..formatting import LilyPondFormatBundle
 from ..pitch import constants as pitch_constants
 from ..pitch.pitches import NamedPitch
 from ..storage import FormatSpecification, StorageFormatManager
-from ..top import iterate
 
 
 class Clef(object):

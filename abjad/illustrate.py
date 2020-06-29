@@ -2,10 +2,15 @@ import copy
 
 from . import enums
 from .core.Chord import Chord
+from .core.Component import attach, inspect
+from .core.Iteration import iterate
 from .core.LeafMaker import LeafMaker
+from .core.Mutation import mutate
 from .core.Note import Note
 from .core.NoteMaker import NoteMaker
+from .core.Rest import Rest
 from .core.Score import Score
+from .core.Selection import Selection, select
 from .core.Skip import Skip
 from .core.Staff import Staff
 from .core.StaffGroup import StaffGroup
@@ -13,16 +18,19 @@ from .core.Voice import Voice
 from .duration import Duration
 from .indicators.Clef import Clef
 from .indicators.LilyPondLiteral import LilyPondLiteral
+from .indicators.MetricModulation import MetricModulation
 from .indicators.StaffChange import StaffChange
 from .lilypondfile import Block, LilyPondFile
-from .markups import Markup, MarkupCommand
+from .lilypondnames.LilyPondGrobNameManager import override
+from .lilypondnames.LilyPondSettingNameManager import setting
+from .markups import Markup, MarkupCommand, MarkupList, Postscript
+from .new import new
 from .pitch.PitchRange import PitchRange
 from .pitch.pitches import NamedPitch
 from .pitch.segments import PitchSegment, Segment
 from .pitch.sets import PitchClassSet, PitchSet
 from .scheme import Scheme, SchemeMoment
 from .spanners import glissando
-from .top import attach, iterate, new, override, select, setting
 from .utilities.OrderedDict import OrderedDict
 
 
@@ -39,6 +47,76 @@ def illustrate(item, **keywords):
     if method is None:
         raise Exception(f"can not illustrate objects of type {type(item)}.")
     return method(item, **keywords)
+
+
+def _make_piano_score(leaves=None, lowest_treble_pitch="B3", sketch=False):
+    leaves = leaves or []
+    lowest_treble_pitch = NamedPitch(lowest_treble_pitch)
+    treble_staff = Staff(name="Treble_Staff")
+    bass_staff = Staff(name="Bass_Staff")
+    staff_group = StaffGroup([treble_staff, bass_staff], lilypond_type="PianoStaff")
+    score = Score()
+    score.append(staff_group)
+    for leaf in leaves:
+        treble_pitches, bass_pitches = [], []
+        for pitch in inspect(leaf).pitches():
+            if pitch < lowest_treble_pitch:
+                bass_pitches.append(pitch)
+            else:
+                treble_pitches.append(pitch)
+        written_duration = leaf.written_duration
+        if not treble_pitches:
+            treble_leaf = Rest(written_duration)
+        elif len(treble_pitches) == 1:
+            treble_leaf = Note(treble_pitches[0], written_duration)
+        else:
+            treble_leaf = Chord(treble_pitches, written_duration)
+        treble_staff.append(treble_leaf)
+        if not bass_pitches:
+            bass_leaf = Rest(written_duration)
+        elif len(bass_pitches) == 1:
+            bass_leaf = Note(bass_pitches[0], written_duration)
+        else:
+            bass_leaf = Chord(bass_pitches, written_duration)
+        bass_staff.append(bass_leaf)
+    if 0 < len(treble_staff):
+        attach(Clef("treble"), treble_staff[0])
+    if 0 < len(bass_staff):
+        attach(Clef("bass"), bass_staff[0])
+    if sketch:
+        override(score).time_signature.stencil = False
+        override(score).bar_number.transparent = True
+        override(score).bar_line.stencil = False
+        override(score).span_bar.stencil = False
+    return score, treble_staff, bass_staff
+
+
+def _illustrate_markup(markup):
+    lilypond_file = LilyPondFile.new()
+    markup = new(markup, direction=None)
+    lilypond_file.items.append(markup)
+    return lilypond_file
+
+
+def _illustrate_markup_list(markup_list):
+    lilypond_file = LilyPondFile.new()
+    for name in ("layout", "paper", "score"):
+        block = lilypond_file[name]
+        lilypond_file.items.remove(block)
+    markup = Markup.column(list(markup_list))
+    lilypond_file.items.append(markup)
+    return lilypond_file
+
+
+def _illustrate_postscript(postscript):
+    markup = Markup.postscript(postscript)
+    return _illustrate_markup(markup)
+
+
+def _illustrate_metric_modulation(metric_modulation):
+    lilypond_file = LilyPondFile.new()
+    lilypond_file.items.append(metric_modulation._get_markup())
+    return lilypond_file
 
 
 def _illustrate_pitch_class_set(set_):
@@ -71,7 +149,7 @@ def _illustrate_pitch_range(pitch_range):
             glissando(treble_leaves)
             score = Score([treble_staff])
     else:
-        result = Score.make_piano_score()
+        result = _make_piano_score()
         score, treble_staff, bass_staff = result
         bass_staff.extend([start_note, stop_note])
         treble_staff.extend(Skip(1) * 2)
@@ -94,7 +172,7 @@ def _illustrate_pitch_segment(segment):
     named_pitches = [NamedPitch(x) for x in segment]
     maker = NoteMaker()
     notes = maker(named_pitches, [1])
-    result = Score.make_piano_score(leaves=notes, sketch=True)
+    result = _make_piano_score(leaves=notes, sketch=True)
     score, treble_staff, bass_staff = result
     for leaf in iterate(score).leaves():
         leaf.multiplier = (1, 8)
@@ -186,13 +264,33 @@ def _illustrate_segment(
     return lilypond_file
 
 
+def _illustrate_selection(selection):
+    components = mutate(selection).copy()
+    staff = Staff(components)
+    found_different_pitch = False
+    for pitch in iterate(staff).pitches():
+        if pitch != NamedPitch("c'"):
+            found_different_pitch = True
+            break
+    if not found_different_pitch:
+        staff.lilypond_type = "RhythmicStaff"
+    score = Score([staff])
+    lilypond_file = LilyPondFile.new(score)
+    return lilypond_file
+
+
 class_to_method = OrderedDict(
     [
+        (Markup, _illustrate_markup),
+        (MarkupList, _illustrate_markup_list),
+        (Postscript, _illustrate_postscript),
+        (MetricModulation, _illustrate_metric_modulation),
         (PitchRange, _illustrate_pitch_range),
         (PitchClassSet, _illustrate_pitch_class_set),
         (PitchSegment, _illustrate_pitch_segment),
         (Segment, _illustrate_segment),
         (PitchSet, _illustrate_pitch_set),
+        (Selection, _illustrate_selection),
     ]
 )
 

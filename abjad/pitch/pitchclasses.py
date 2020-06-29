@@ -506,13 +506,13 @@ class NamedPitchClass(PitchClass):
     def _get_alteration(self):
         return self._accidental.semitones
 
-    def _get_diatonic_pc_number(self):
-        return self._diatonic_pc_number
-
     def _get_diatonic_pc_name(self):
         return constants._diatonic_pc_number_to_diatonic_pc_name[
             self._diatonic_pc_number
         ]
+
+    def _get_diatonic_pc_number(self):
+        return self._diatonic_pc_number
 
     def _get_format_specification(self):
         values = [self.name]

@@ -24,6 +24,7 @@ from sphinx.util.osutil import copyfile, ensuredir
 from uqbar.book.extensions import Extension
 from uqbar.strings import normalize
 
+from ..illustrate import illustrate
 from ..iox import Illustrator, LilyPondIO, Player
 from ..lilypondfile import Block, LilyPondVersionToken
 from ..system.Configuration import Configuration
@@ -260,7 +261,10 @@ class LilyPondExtension(Extension):
         self.with_columns = with_columns
 
     def to_docutils(self):
-        illustration = self.illustrable.__illustrate__(**self.keywords)
+        if hasattr(self.illustrable, "__illustrate__"):
+            illustration = self.illustrable.__illustrate__(**self.keywords)
+        else:
+            illustration = illustrate(self.illustrable, **self.keywords)
         if self.kind == self.Kind.AUDIO:
             block = Block(name="midi")
             illustration.score_block.items.append(block)

@@ -201,9 +201,7 @@ class BeforeGraceContainer(Container):
     ### PRIVATE METHODS ###
 
     def _attach(self, leaf):
-        import abjad
-
-        if not isinstance(leaf, abjad.Leaf):
+        if not hasattr(leaf, "written_duration"):
             raise TypeError(f"must attach to leaf {leaf!r}.")
         leaf._before_grace_container = self
         self._main_leaf = leaf

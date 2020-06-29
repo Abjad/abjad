@@ -2,8 +2,8 @@ import functools
 import numbers
 import typing
 
+from ..core.Iteration import iterate
 from ..storage import FormatSpecification, StorageFormatManager
-from ..top import iterate
 from . import constants
 from .Octave import Octave
 from .pitchclasses import NamedPitchClass

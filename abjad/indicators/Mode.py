@@ -1,7 +1,7 @@
 from ..pitch.intervals import NamedInterval
 from ..pitch.segments import IntervalSegment
 from ..storage import FormatSpecification, StorageFormatManager
-from ..top import sequence
+from ..utilities.Sequence import sequence
 
 
 class Mode(object):

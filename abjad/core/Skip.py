@@ -1,7 +1,6 @@
 from .. import typings
 from ..duration import Duration
 from ..tags import Tag
-from ..top import parse
 from .Leaf import Leaf
 
 
@@ -41,6 +40,8 @@ class Skip(Leaf):
     def __init__(
         self, *arguments, multiplier: typings.DurationTyping = None, tag: Tag = None,
     ) -> None:
+        from ..parsers.parse import parse
+
         input_leaf = None
         written_duration = None
         if len(arguments) == 1 and isinstance(arguments[0], str):

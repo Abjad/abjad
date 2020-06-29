@@ -1,16 +1,16 @@
 from .. import enums
 from ..duration import Duration
 from ..indicators.TimeSignature import TimeSignature
-from ..meter import Meter
 from ..pitch.intervals import NamedInterval
 from ..storage import StorageFormatManager
-from ..top import iterate, select, sequence
+from ..utilities.Sequence import sequence
 from .Chord import Chord
 from .Component import Component, inspect
 from .Container import Container
+from .Iteration import iterate
 from .Leaf import Leaf
 from .Note import Note
-from .Selection import Selection
+from .Selection import Selection, select
 
 
 class Mutation(object):
@@ -1849,6 +1849,8 @@ class Mutation(object):
 
         Operates in place and returns none.
         """
+        from ..meter import Meter
+
         selection = self.client
         if isinstance(selection, Container):
             selection = selection[:]
@@ -2901,3 +2903,53 @@ class Mutation(object):
             for wrapper in component._wrappers:
                 wrapper._effective_context = None
                 wrapper._update_effective_context()
+
+
+### FUNCTIONS ###
+
+
+def mutate(client):
+    r"""
+    Makes mutation agent.
+
+    ..  container:: example
+
+        Scales duration of last note notes in staff:
+
+        >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                c'4
+                e'4
+                d'4
+                f'4
+            }
+
+        >>> abjad.mutate(staff[-2:]).scale(abjad.Multiplier(3, 2))
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                c'4
+                e'4
+                d'4.
+                f'4.
+            }
+
+    ..  container:: example
+
+        Returns mutation agent:
+
+        >>> abjad.mutate(staff[-2:])
+        Mutation(client=Selection([Note("d'4."), Note("f'4.")]))
+
+    """
+    return Mutation(client=client)

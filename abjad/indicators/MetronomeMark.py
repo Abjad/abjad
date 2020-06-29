@@ -3,20 +3,18 @@ import functools
 import math
 import typing
 
+import quicktions
+
 from .. import exceptions, mathtools, typings
 from ..duration import Duration, Multiplier, NonreducedFraction
 from ..formatting import LilyPondFormatBundle
 from ..markups import Markup
+from ..new import new
 from ..ratio import Ratio
 from ..scheme import Scheme
 from ..storage import FormatSpecification, StorageFormatManager
-from ..top import new, sequence
 from ..utilities.Enumerator import Enumerator
-
-try:
-    from quicktions import Fraction
-except ImportError:
-    from fractions import Fraction
+from ..utilities.Sequence import sequence
 
 
 @functools.total_ordering
@@ -186,7 +184,7 @@ class MetronomeMark(object):
     def __init__(
         self,
         reference_duration: typings.DurationTyping = None,
-        units_per_minute: typing.Union[int, Fraction] = None,
+        units_per_minute: typing.Union[int, quicktions.Fraction] = None,
         textual_indication: str = None,
         *,
         custom_markup: Markup = None,
@@ -205,7 +203,7 @@ class MetronomeMark(object):
                 f"do not set units-per-minute to float ({units_per_minute});"
                 " use fraction with decimal override instead."
             )
-        prototype = (int, Fraction, collections.abc.Sequence, type(None))
+        prototype = (int, quicktions.Fraction, collections.abc.Sequence, type(None))
         assert isinstance(units_per_minute, prototype)
         if isinstance(units_per_minute, collections.abc.Sequence):
             assert len(units_per_minute) == 2
@@ -280,8 +278,8 @@ class MetronomeMark(object):
             raise TypeError(argument)
         if self.is_imprecise or argument.is_imprecise:
             raise exceptions.ImpreciseMetronomeMarkError
-        assert isinstance(self.quarters_per_minute, Fraction)
-        assert isinstance(argument.quarters_per_minute, Fraction)
+        assert isinstance(self.quarters_per_minute, quicktions.Fraction)
+        assert isinstance(argument.quarters_per_minute, quicktions.Fraction)
         assert isinstance(self.reference_duration, Duration)
         assert isinstance(argument.reference_duration, Duration)
         new_quarters_per_minute = (
@@ -326,18 +324,18 @@ class MetronomeMark(object):
             raise exceptions.ImpreciseMetronomeMarkError
         if getattr(argument, "is_imprecise", False):
             raise exceptions.ImpreciseMetronomeMarkError
-        assert isinstance(self.quarters_per_minute, Fraction)
+        assert isinstance(self.quarters_per_minute, quicktions.Fraction)
         if isinstance(argument, type(self)):
-            assert isinstance(argument.quarters_per_minute, Fraction)
+            assert isinstance(argument.quarters_per_minute, quicktions.Fraction)
             result = self.quarters_per_minute / argument.quarters_per_minute
             return Multiplier(result)
-        elif isinstance(argument, (int, Fraction)):
-            assert isinstance(self.units_per_minute, (int, Fraction))
+        elif isinstance(argument, (int, quicktions.Fraction)):
+            assert isinstance(self.units_per_minute, (int, quicktions.Fraction))
             units_per_minute = self.units_per_minute / argument
             if mathtools.is_integer_equivalent_number(units_per_minute):
                 units_per_minute = int(units_per_minute)
             else:
-                units_per_minute = Fraction(units_per_minute)
+                units_per_minute = quicktions.Fraction(units_per_minute)
             result = new(self, units_per_minute=units_per_minute)
             return result
         else:
@@ -457,12 +455,14 @@ class MetronomeMark(object):
         assert isinstance(argument, type(self)), repr(argument)
         self_quarters_per_minute = self.quarters_per_minute or 0
         argument_quarters_per_minute = argument.quarters_per_minute or 0
-        assert isinstance(self_quarters_per_minute, (int, float, Fraction))
-        assert isinstance(argument_quarters_per_minute, (int, float, Fraction))
+        assert isinstance(self_quarters_per_minute, (int, float, quicktions.Fraction))
+        assert isinstance(
+            argument_quarters_per_minute, (int, float, quicktions.Fraction)
+        )
         return self_quarters_per_minute < argument_quarters_per_minute
 
     def __mul__(
-        self, multiplier: typing.Union[int, Fraction]
+        self, multiplier: typing.Union[int, quicktions.Fraction]
     ) -> typing.Optional["MetronomeMark"]:
         """
         Multiplies metronome mark by ``multiplier``.
@@ -484,11 +484,11 @@ class MetronomeMark(object):
             MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=252)
 
         """
-        if not isinstance(multiplier, (int, Fraction)):
+        if not isinstance(multiplier, (int, quicktions.Fraction)):
             return None
         if self.is_imprecise:
             raise exceptions.ImpreciseMetronomeMarkError
-        assert isinstance(self.units_per_minute, (int, Fraction))
+        assert isinstance(self.units_per_minute, (int, quicktions.Fraction))
         new_units_per_minute = multiplier * self.units_per_minute
         new_reference_duration = Duration(self.reference_duration)
         metronome_mark = type(self)(
@@ -556,7 +556,7 @@ class MetronomeMark(object):
         return StorageFormatManager(self).get_repr_format()
 
     def __rmul__(
-        self, multiplier: typing.Union[int, Fraction]
+        self, multiplier: typing.Union[int, quicktions.Fraction]
     ) -> typing.Optional["MetronomeMark"]:
         """
         Multiplies ``multiplier`` by metronome mark.
@@ -578,11 +578,11 @@ class MetronomeMark(object):
             MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=252)
 
         """
-        if not isinstance(multiplier, (int, Fraction)):
+        if not isinstance(multiplier, (int, quicktions.Fraction)):
             return None
         if self.is_imprecise:
             raise exceptions.ImpreciseMetronomeMarkError
-        assert isinstance(self.units_per_minute, (int, Fraction))
+        assert isinstance(self.units_per_minute, (int, quicktions.Fraction))
         new_units_per_minute = multiplier * self.units_per_minute
         new_reference_duration = Duration(self.reference_duration)
         metronome_mark = type(self)(
@@ -617,14 +617,14 @@ class MetronomeMark(object):
         elif isinstance(self.units_per_minute, (int, float)):
             string = f"{self._dotted}={self.units_per_minute}"
         elif isinstance(
-            self.units_per_minute, Fraction
+            self.units_per_minute, quicktions.Fraction
         ) and not mathtools.is_integer_equivalent_number(self.units_per_minute):
             integer_part = int(float(self.units_per_minute))
             remainder = self.units_per_minute - integer_part
-            remainder = Fraction(remainder)
+            remainder = quicktions.Fraction(remainder)
             string = f"{self._dotted}={integer_part}+{remainder}"
         elif isinstance(
-            self.units_per_minute, Fraction
+            self.units_per_minute, quicktions.Fraction
         ) and mathtools.is_integer_equivalent_number(self.units_per_minute):
             string = "{}={}"
             integer = int(float(self.units_per_minute))
@@ -676,8 +676,10 @@ class MetronomeMark(object):
             raise Exception("must be metronome mark: {argument!r}.")
         if self.is_imprecise or argument.is_imprecise:
             raise exceptions.ImpreciseMetronomeMarkError
-        assert isinstance(self.quarters_per_minute, (int, float, Fraction))
-        assert isinstance(argument.quarters_per_minute, (int, float, Fraction))
+        assert isinstance(self.quarters_per_minute, (int, float, quicktions.Fraction))
+        assert isinstance(
+            argument.quarters_per_minute, (int, float, quicktions.Fraction)
+        )
         assert isinstance(self.reference_duration, Duration)
         assert isinstance(argument.reference_duration, Duration)
         new_quarters_per_minute = (
@@ -745,7 +747,7 @@ class MetronomeMark(object):
                 self._dotted, self.units_per_minute[0], self.units_per_minute[1],
             )
             return string
-        elif isinstance(self.units_per_minute, Fraction):
+        elif isinstance(self.units_per_minute, quicktions.Fraction):
             markup = MetronomeMark.make_tempo_equation_markup(
                 self.reference_duration, self.units_per_minute, decimal=self.decimal,
             )
@@ -782,16 +784,6 @@ class MetronomeMark(object):
         if not self.hide:
             bundle.before.commands.append(self._get_lilypond_format())
         return bundle
-
-    def _make_lhs_score_markup(self, reference_duration=None):
-        import abjad
-        from ..illustrate import _to_score_markup
-
-        reference_duration = reference_duration or self.reference_duration
-        maker = abjad.NoteMaker()
-        selection = maker([0], [reference_duration])
-        markup = _to_score_markup(selection)
-        return markup
 
     def _get_markup(self):
         if self.custom_markup is not None:
@@ -830,6 +822,21 @@ class MetronomeMark(object):
         return (duration_log, dot_count, stem_height, base, n, d)
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def context(self) -> str:
+        """
+        Gets (historically conventional) context.
+
+        ..  container:: example
+
+            >>> mark = abjad.MetronomeMark((1, 8), 52)
+            >>> mark.context
+            'Score'
+
+        Override with ``abjad.attach(..., context='...')``.
+        """
+        return self._context
 
     @property
     def custom_markup(self) -> typing.Optional[Markup]:
@@ -871,21 +878,6 @@ class MetronomeMark(object):
 
         """
         return self._custom_markup
-
-    @property
-    def context(self) -> str:
-        """
-        Gets (historically conventional) context.
-
-        ..  container:: example
-
-            >>> mark = abjad.MetronomeMark((1, 8), 52)
-            >>> mark.context
-            'Score'
-
-        Override with ``abjad.attach(..., context='...')``.
-        """
-        return self._context
 
     @property
     def decimal(self) -> typing.Union[bool, str, None]:
@@ -1026,7 +1018,7 @@ class MetronomeMark(object):
         return self._persistent
 
     @property
-    def quarters_per_minute(self) -> typing.Union[tuple, None, Fraction]:
+    def quarters_per_minute(self) -> typing.Union[tuple, None, quicktions.Fraction]:
         """
         Gets metronome mark quarters per minute.
 
@@ -1049,7 +1041,7 @@ class MetronomeMark(object):
             high = Duration(1, 4) / self.reference_duration * self.units_per_minute[1]
             return (low, high)
         result = Duration(1, 4) / self.reference_duration * self.units_per_minute
-        return Fraction(result)
+        return quicktions.Fraction(result)
 
     @property
     def reference_duration(self) -> typing.Optional[Duration]:
@@ -1091,7 +1083,7 @@ class MetronomeMark(object):
         pass
 
     @property
-    def units_per_minute(self) -> typing.Union[int, Fraction, None]:
+    def units_per_minute(self) -> typing.Union[int, quicktions.Fraction, None]:
         """
         Gets units per minute of metronome mark.
 
@@ -1212,7 +1204,11 @@ class MetronomeMark(object):
         enumerator = Enumerator(numbers)
         pairs = enumerator.yield_outer_product()
         multipliers = [Multiplier(_) for _ in pairs]
-        multipliers = [_ for _ in multipliers if Fraction(1, 2) <= _ <= Fraction(2)]
+        multipliers = [
+            _
+            for _ in multipliers
+            if quicktions.Fraction(1, 2) <= _ <= quicktions.Fraction(2)
+        ]
         multipliers.sort()
         multipliers = sequence(multipliers).remove_repeats()
         pairs = []
@@ -1289,7 +1285,7 @@ class MetronomeMark(object):
         dots = reference_duration_.dot_count
         stem = 1
         if isinstance(
-            units_per_minute, Fraction
+            units_per_minute, quicktions.Fraction
         ) and not mathtools.is_integer_equivalent_number(units_per_minute):
             if decimal:
                 decimal_: typing.Union[float, str]

@@ -1,9 +1,6 @@
 from ._version import __version_info__, __version__
 
-try:
-    from quicktions import Fraction
-except ImportError:
-    from fractions import Fraction
+from quicktions import Fraction
 
 from .enums import (
     Comparison,
@@ -39,6 +36,8 @@ from .duration import (
 )
 
 from .parsers import parser
+from .parsers.parse import parse
+
 from .storage import (
     FormatSpecification,
     StorageFormatSpecification,
@@ -53,10 +52,11 @@ from .formatting import (
     LilyPondFormatBundle,
     LilyPondFormatManager,
     SlotContributions,
+    f,
 )
 from .system.NullContextManager import NullContextManager
 from .system.Parser import Parser
-from .system.PersistenceManager import PersistenceManager
+from .system.PersistenceManager import PersistenceManager, persist
 from .system.ProgressIndicator import ProgressIndicator
 from .system.RedirectedStreams import RedirectedStreams
 from .system.Signature import Signature
@@ -76,7 +76,7 @@ from .utilities.LengthInequality import LengthInequality
 from .utilities.OrderedDict import OrderedDict
 from .utilities.Pattern import Pattern
 from .utilities.PatternTuple import PatternTuple
-from .utilities.Sequence import Sequence
+from .utilities.Sequence import Sequence, sequence
 from .utilities.SortedCollection import SortedCollection
 from .utilities.String import String
 from .utilities.TypedCollection import TypedCollection
@@ -227,13 +227,17 @@ from .lilypondnames.LilyPondContextSetting import LilyPondContextSetting
 from .lilypondnames.LilyPondEngraver import LilyPondEngraver
 from .lilypondnames.LilyPondGrob import LilyPondGrob
 from .lilypondnames.LilyPondGrobInterface import LilyPondGrobInterface
-from .lilypondnames.LilyPondGrobNameManager import LilyPondGrobNameManager
+from .lilypondnames.LilyPondGrobNameManager import LilyPondGrobNameManager, override
 from .lilypondnames.LilyPondGrobOverride import LilyPondGrobOverride
 from .lilypondnames.LilyPondNameManager import LilyPondNameManager
-from .lilypondnames.LilyPondSettingNameManager import LilyPondSettingNameManager
+from .lilypondnames.LilyPondSettingNameManager import (
+    LilyPondSettingNameManager,
+    setting,
+)
 from .lilypondnames.LilyPondTweakManager import IndexedTweakManager
 from .lilypondnames.LilyPondTweakManager import IndexedTweakManagers
 from .lilypondnames.LilyPondTweakManager import LilyPondTweakManager
+from .lilypondnames.LilyPondTweakManager import tweak
 
 from .markups import (
     Markup,
@@ -248,6 +252,9 @@ from .meter import (
     MetricAccentKernel,
     OffsetCounter,
 )
+
+from .new import new
+
 from .pitch.intervalclasses import (
     IntervalClass,
     NamedIntervalClass,
@@ -324,7 +331,7 @@ from .core.AfterGraceContainer import AfterGraceContainer
 from .core.BeforeGraceContainer import BeforeGraceContainer
 from .core.Chord import Chord
 from .core.Cluster import Cluster
-from .core.Component import Component
+from .core.Component import Component, attach, detach
 from .core.Component import Inspection
 from .core.Component import UpdateManager
 from .core.Component import Wrapper
@@ -334,23 +341,22 @@ from .core.Descendants import Descendants
 from .core.DrumNoteHead import DrumNoteHead
 from .core.Component import inspect
 from .core.Iteration import Iteration
-from .core.Label import Label
+from .core.Iteration import iterate
 from .core.Leaf import Leaf
 from .core.LeafMaker import LeafMaker
 from .core.Lineage import Lineage
 from .core.LogicalTie import LogicalTie
 from .core.MultimeasureRest import MultimeasureRest
-from .core.Mutation import Mutation
+from .core.Mutation import Mutation, mutate
 from .core.Note import Note
-from .core.NoteHead import NoteHead
-from .core.NoteHeadList import NoteHeadList
+from .core.NoteHead import NoteHead, NoteHeadList
 from .core.NoteMaker import NoteMaker
 from .core.OnBeatGraceContainer import OnBeatGraceContainer
 from .core.OnBeatGraceContainer import on_beat_grace_container
 from .core.Parentage import Parentage
 from .core.Rest import Rest
 from .core.Score import Score
-from .core.Selection import Selection
+from .core.Selection import Selection, select
 from .core.Skip import Skip
 from .core.Staff import Staff
 from .core.StaffGroup import StaffGroup
@@ -359,6 +365,8 @@ from .core.Tuplet import Tuplet
 from .core.VerticalMoment import VerticalMoment
 from .core.Voice import Voice
 from .core.Wellformedness import Wellformedness
+
+from .label import Label, label
 
 from .segments.Job import Job
 from .segments.Line import Line
@@ -396,22 +404,6 @@ from .templates import (
     TwoStaffPianoScoreTemplate,
 )
 from .iox import graph, play, show
-from .top import (
-    attach,
-    detach,
-    f,
-    iterate,
-    label,
-    mutate,
-    new,
-    override,
-    parse,
-    persist,
-    select,
-    sequence,
-    setting,
-    tweak,
-)
 
 from .mathtools import (
     Infinity,

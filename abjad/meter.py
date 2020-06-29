@@ -13,6 +13,7 @@ from .core.Chord import Chord
 from .core.Component import inspect
 from .core.Container import Container
 from .core.LogicalTie import LogicalTie
+from .core.Mutation import mutate
 from .core.Note import Note
 from .core.Rest import Rest
 from .core.Selection import Selection
@@ -22,7 +23,6 @@ from .duration import Duration, Multiplier, NonreducedFraction, Offset
 from .indicators.TimeSignature import TimeSignature
 from .storage import FormatSpecification, StorageFormatManager
 from .timespans import Timespan, TimespanList
-from .top import mutate
 from .utilities.Sequence import Sequence
 from .utilities.TypedCounter import TypedCounter
 from .utilities.TypedList import TypedList
@@ -976,68 +976,6 @@ class Meter(object):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def increase_monotonic(self) -> typing.Optional[bool]:
-        """
-        Is true when meter divides large primes into collections of ``2``
-        and ``3`` that increase monotonically.
-
-        ..  container:: example
-
-            An asymmetric meter with beats arranged greatest to least:
-
-            >>> meter = abjad.Meter(
-            ...     (7, 4),
-            ...     increase_monotonic=False,
-            ...     )
-
-            >>> meter.increase_monotonic
-            False
-
-            >>> print(meter.pretty_rtm_format)
-            (7/4 (
-                (3/4 (
-                    1/4
-                    1/4
-                    1/4))
-                (2/4 (
-                    1/4
-                    1/4))
-                (2/4 (
-                    1/4
-                    1/4))))
-
-            This is default beahvior.
-
-        ..  container:: example
-
-            The same asymmetric meter with unequal beats arranged least to
-            greatest:
-
-            >>> meter = abjad.Meter(
-            ...     (7, 4),
-            ...     increase_monotonic=True
-            ...     )
-
-            >>> meter.increase_monotonic
-            True
-
-            >>> print(meter.pretty_rtm_format)
-            (7/4 (
-                (2/4 (
-                    1/4
-                    1/4))
-                (2/4 (
-                    1/4
-                    1/4))
-                (3/4 (
-                    1/4
-                    1/4
-                    1/4))))
-
-        """
-        return self._increase_monotonic
-
-    @property
     def denominator(self):
         """
         Gets denominator of meter.
@@ -1106,6 +1044,68 @@ class Meter(object):
         Returns time signature.
         """
         return TimeSignature(self.root_node.preprolated_duration)
+
+    @property
+    def increase_monotonic(self) -> typing.Optional[bool]:
+        """
+        Is true when meter divides large primes into collections of ``2``
+        and ``3`` that increase monotonically.
+
+        ..  container:: example
+
+            An asymmetric meter with beats arranged greatest to least:
+
+            >>> meter = abjad.Meter(
+            ...     (7, 4),
+            ...     increase_monotonic=False,
+            ...     )
+
+            >>> meter.increase_monotonic
+            False
+
+            >>> print(meter.pretty_rtm_format)
+            (7/4 (
+                (3/4 (
+                    1/4
+                    1/4
+                    1/4))
+                (2/4 (
+                    1/4
+                    1/4))
+                (2/4 (
+                    1/4
+                    1/4))))
+
+            This is default beahvior.
+
+        ..  container:: example
+
+            The same asymmetric meter with unequal beats arranged least to
+            greatest:
+
+            >>> meter = abjad.Meter(
+            ...     (7, 4),
+            ...     increase_monotonic=True
+            ...     )
+
+            >>> meter.increase_monotonic
+            True
+
+            >>> print(meter.pretty_rtm_format)
+            (7/4 (
+                (2/4 (
+                    1/4
+                    1/4))
+                (2/4 (
+                    1/4
+                    1/4))
+                (3/4 (
+                    1/4
+                    1/4
+                    1/4))))
+
+        """
+        return self._increase_monotonic
 
     @property
     def is_compound(self):
@@ -1625,6 +1625,8 @@ class MeterList(TypedList):
 
         Returns LilyPond file.
         """
+        from .illustrate import illustrate
+
         durations = [_.duration for _ in self]
         total_duration = sum(durations)
         offsets = mathtools.cumulative_sums(durations, start=0)
@@ -1679,7 +1681,7 @@ class MeterList(TypedList):
             markup_list = markups.MarkupList(markup_list)
             fraction_markup = markup_list.combine()
         markup = markups.Markup.column([fraction_markup, lines_markup])
-        return markup.__illustrate__()
+        return illustrate(markup)
 
     ### PRIVATE METHODS ###
 
@@ -1975,8 +1977,10 @@ class OffsetCounter(TypedCounter):
 
         Returns LilyPond file.
         """
+        from .illustrate import illustrate
+
         if not self:
-            return markups.Markup.null().__illustrate__()
+            return illustrate(markups.Markup.null())
         if isinstance(range_, Timespan):
             minimum, maximum = range_.start_offset, range_.stop_offset
         elif range_ is not None:
@@ -2012,7 +2016,7 @@ class OffsetCounter(TypedCounter):
             fraction = fraction.translate((x_translation, 1))
             pieces.append(fraction)
         markup = markups.Markup.overlay(pieces)
-        return markup.__illustrate__()
+        return illustrate(markup)
 
     ### PRIVATE METHODS ###
 

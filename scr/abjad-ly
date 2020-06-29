@@ -1,4 +1,0 @@
-#! /usr/bin/env python
-import abjad
-
-abjad.IOManager.open_last_ly()

@@ -1,6 +1,6 @@
 from .core.Chord import Chord
+from .core.Iteration import iterate
 from .core.Note import Note
-from .top import iterate
 
 
 def respell_with_flats(selection):

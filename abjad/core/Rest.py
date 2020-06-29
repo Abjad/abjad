@@ -1,7 +1,6 @@
 from .. import typings
 from ..duration import Duration
 from ..tags import Tag
-from ..top import parse
 from .Leaf import Leaf
 
 
@@ -42,6 +41,8 @@ class Rest(Leaf):
         multiplier: typings.DurationTyping = None,
         tag: Tag = None,
     ) -> None:
+        from ..parsers.parse import parse
+
         original_input = written_duration
         if isinstance(written_duration, Leaf):
             multiplier = written_duration.multiplier

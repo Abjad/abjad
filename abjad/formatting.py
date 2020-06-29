@@ -1,9 +1,11 @@
 import typing
 
 from . import enums
+from .lilypondnames.LilyPondGrobNameManager import override
+from .lilypondnames.LilyPondSettingNameManager import setting
+from .new import new
 from .scheme import Scheme, SchemePair
 from .storage import FormatSpecification, StorageFormatManager
-from .top import new, override, setting
 from .utilities.String import String
 
 
@@ -911,3 +913,54 @@ class SlotContributions(object):
         self.spanner_stops.extend(slot_contributions.spanner_stops)
         self.stem_tremolos.extend(slot_contributions.stem_tremolos)
         self.trill_spanner_starts.extend(slot_contributions.trill_spanner_starts)
+
+
+### FUNCTIONS ###
+
+
+def f(argument, strict=None):
+    r"""
+    Formats ``argument`` and prints result.
+
+    ..  container:: example
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> markup = abjad.Markup('Allegro', direction=abjad.Up)
+        >>> markup = markup.with_color('blue')
+        >>> abjad.attach(markup, staff[0])
+        >>> for leaf in staff:
+        ...     abjad.attach(abjad.Articulation('.'), leaf)
+        ...
+        >>> abjad.f(staff)
+        \new Staff
+        {
+            c'4
+            - \staccato
+            ^ \markup {
+                \with-color
+                    #blue
+                    Allegro
+                }
+            d'4
+            - \staccato
+            e'4
+            - \staccato
+            f'4
+            - \staccato
+        }
+
+        >>> abjad.show(staff) # doctest: +SKIP
+
+    """
+    if strict is not None:
+        assert isinstance(strict, int), repr(strict)
+    if hasattr(argument, "_publish_storage_format"):
+        string = StorageFormatManager(argument).get_storage_format()
+    else:
+        string = format(argument, "lilypond")
+    realign = None
+    if isinstance(strict, int):
+        string = LilyPondFormatManager.align_tags(string, strict)
+        realign = strict
+    string = LilyPondFormatManager.left_shift_tags(string, realign=realign)
+    print(string)

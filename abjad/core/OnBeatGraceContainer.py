@@ -4,10 +4,12 @@ from .. import typings
 from ..duration import Duration
 from ..formatting import LilyPondFormatManager
 from ..indicators.LilyPondLiteral import LilyPondLiteral
+from ..lilypondnames.LilyPondTweakManager import tweak
 from ..tags import Tag, Tags
-from ..top import attach, detach, mutate, select, tweak
-from .Component import inspect
+from .Component import attach, detach, inspect
 from .Container import Container
+from .Mutation import mutate
+from .Selection import select
 
 abjad_tags = Tags()
 

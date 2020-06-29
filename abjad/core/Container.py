@@ -8,11 +8,11 @@ from ..duration import Duration
 from ..formatting import LilyPondFormatManager
 from ..storage import FormatSpecification
 from ..tags import Tag
-from ..top import iterate, mutate, parse, select
 from .Component import Component, inspect
+from .Iteration import iterate
 from .Leaf import Leaf
 from .Note import Note
-from .Selection import Selection
+from .Selection import Selection, select
 
 
 class Container(Component):
@@ -741,6 +741,7 @@ class Container(Component):
         return recurse(self)
 
     def _parse_string(self, string):
+        from ..parsers.parse import parse
         from ..parsers.reduced import ReducedLyParser
         from ..lilypondfile import LilyPondFile
         from .. import rhythmtrees
@@ -833,6 +834,7 @@ class Container(Component):
 
         Returns split parts.
         """
+        from .Mutation import mutate
         from .Tuplet import Tuplet
 
         # partition my components
@@ -954,6 +956,8 @@ class Container(Component):
         return [left], [right]
 
     def _split_simultaneous_by_duration(self, duration):
+        from .Mutation import mutate
+
         assert self.simultaneous
         left_components, right_components = [], []
         for component in self[:]:
@@ -1010,6 +1014,74 @@ class Container(Component):
     def identifier(self, argument):
         assert isinstance(argument, (str, type(None))), repr(argument)
         self._identifier: typing.Optional[str] = argument
+
+    @property
+    def name(self) -> typing.Optional[str]:
+        r"""
+        Gets and sets name of container.
+
+        ..  container:: example
+
+            Gets container name:
+
+            >>> container = abjad.Container("c'4 d'4 e'4 f'4")
+            >>> abjad.show(container) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(container)
+                {
+                    c'4
+                    d'4
+                    e'4
+                    f'4
+                }
+
+            >>> container.name is None
+            True
+
+        ..  container:: example
+
+            Sets container name:
+
+            >>> container = abjad.Container(
+            ...     "c'4 d'4 e'4 f'4",
+            ...     name='Special',
+            ...     )
+            >>> abjad.show(container) # doctest: +SKIP
+
+            >>> container.name
+            'Special'
+
+            Container name does not appear in LilyPond output:
+
+            >>> abjad.f(container)
+            {
+                c'4
+                d'4
+                e'4
+                f'4
+            }
+
+        """
+        return self._name
+
+    @name.setter
+    def name(self, argument):
+        assert isinstance(argument, (str, type(None)))
+        old_name = self._name
+        for parent in inspect(self).parentage()[1:]:
+            named_children = parent._named_children
+            if old_name is not None:
+                named_children[old_name].remove(self)
+                if not named_children[old_name]:
+                    del named_children[old_name]
+            if argument is not None:
+                if argument not in named_children:
+                    named_children[argument] = [self]
+                else:
+                    named_children[argument].append(self)
+        self._name = argument
 
     @property
     def simultaneous(self) -> typing.Optional[bool]:
@@ -1102,74 +1174,6 @@ class Container(Component):
             raise ValueError(message)
         self._is_simultaneous = argument
         self._update_later(offsets=True)
-
-    @property
-    def name(self) -> typing.Optional[str]:
-        r"""
-        Gets and sets name of container.
-
-        ..  container:: example
-
-            Gets container name:
-
-            >>> container = abjad.Container("c'4 d'4 e'4 f'4")
-            >>> abjad.show(container) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(container)
-                {
-                    c'4
-                    d'4
-                    e'4
-                    f'4
-                }
-
-            >>> container.name is None
-            True
-
-        ..  container:: example
-
-            Sets container name:
-
-            >>> container = abjad.Container(
-            ...     "c'4 d'4 e'4 f'4",
-            ...     name='Special',
-            ...     )
-            >>> abjad.show(container) # doctest: +SKIP
-
-            >>> container.name
-            'Special'
-
-            Container name does not appear in LilyPond output:
-
-            >>> abjad.f(container)
-            {
-                c'4
-                d'4
-                e'4
-                f'4
-            }
-
-        """
-        return self._name
-
-    @name.setter
-    def name(self, argument):
-        assert isinstance(argument, (str, type(None)))
-        old_name = self._name
-        for parent in inspect(self).parentage()[1:]:
-            named_children = parent._named_children
-            if old_name is not None:
-                named_children[old_name].remove(self)
-                if not named_children[old_name]:
-                    del named_children[old_name]
-            if argument is not None:
-                if argument not in named_children:
-                    named_children[argument] = [self]
-                else:
-                    named_children[argument].append(self)
-        self._name = argument
 
     ### PUBLIC METHODS ###
 

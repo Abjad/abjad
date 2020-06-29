@@ -10,11 +10,12 @@ from ..formatting import LilyPondFormatManager
 from ..indicators.MetronomeMark import MetronomeMark
 from ..indicators.RepeatTie import RepeatTie
 from ..indicators.Tie import Tie
+from ..lilypondnames.LilyPondGrobNameManager import override
+from ..lilypondnames.LilyPondSettingNameManager import setting
 from ..storage import FormatSpecification
 from ..tags import Tag
-from ..top import attach, detach, mutate, override, select, setting
 from ..utilities.Sequence import Sequence
-from .Component import Component, inspect
+from .Component import Component, attach, detach, inspect
 
 
 class Leaf(Component):
@@ -289,6 +290,7 @@ class Leaf(Component):
     def _leaf(self, n):
         from .Container import Container
         from .OnBeatGraceContainer import OnBeatGraceContainer
+        from .Selection import select
 
         assert n in (-1, 0, 1), repr(n)
         if n == 0:
@@ -371,8 +373,10 @@ class Leaf(Component):
 
     def _set_duration(self, new_duration):
         from .Chord import Chord
+        from .Mutation import mutate
         from .Note import Note
         from .NoteMaker import NoteMaker
+        from .Selection import select
         from .Tuplet import Tuplet
         from ..spanners import tie as abjad_tie
 
@@ -421,6 +425,7 @@ class Leaf(Component):
 
     def _split_by_durations(self, durations, cyclic=False):
         from .Chord import Chord
+        from .Mutation import mutate
         from .Note import Note
         from .Selection import Selection
         from .Tuplet import Tuplet
@@ -454,8 +459,8 @@ class Leaf(Component):
             selection = new_leaf._set_duration(preprolated_duration)
             result_selections.append(selection)
         result_components = Sequence(result_selections).flatten(depth=-1)
-        result_components = select(result_components)
-        result_leaves = select(result_components).leaves(grace=False)
+        result_components = Selection(result_components)
+        result_leaves = Selection(result_components).leaves(grace=False)
         assert all(isinstance(_, Selection) for _ in result_selections)
         assert all(isinstance(_, Component) for _ in result_components)
         assert result_leaves.are_leaves()
@@ -501,7 +506,7 @@ class Leaf(Component):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def multiplier(self,) -> typing.Union[Multiplier, NonreducedFraction, None]:
+    def multiplier(self) -> typing.Union[Multiplier, NonreducedFraction, None]:
         """
         Gets multiplier.
         """

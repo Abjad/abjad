@@ -3,8 +3,8 @@ import collections
 import copy
 import types
 
+from ..new import new
 from ..storage import FormatSpecification
-from ..top import new
 from ..utilities.Enumerator import Enumerator
 from ..utilities.Sequence import Sequence
 from ..utilities.TypedCollection import TypedCollection

@@ -126,30 +126,6 @@ class LilyPondComment(object):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def string(self) -> str:
-        """
-        Gets string.
-
-        ..  container:: example
-
-            Two-word comment:
-
-            >>> comment = abjad.LilyPondComment('a comment')
-            >>> comment.string
-            'a comment'
-
-        ..  container:: example
-
-            Three-word comment:
-
-            >>> comment = abjad.LilyPondComment('yet another comment')
-            >>> comment.string
-            'yet another comment'
-
-        """
-        return self._string
-
-    @property
     def format_slot(self) -> str:
         """
         Format slot of LilyPond comment.
@@ -172,6 +148,30 @@ class LilyPondComment(object):
 
         """
         return self._format_slot
+
+    @property
+    def string(self) -> str:
+        """
+        Gets string.
+
+        ..  container:: example
+
+            Two-word comment:
+
+            >>> comment = abjad.LilyPondComment('a comment')
+            >>> comment.string
+            'a comment'
+
+        ..  container:: example
+
+            Three-word comment:
+
+            >>> comment = abjad.LilyPondComment('yet another comment')
+            >>> comment.string
+            'yet another comment'
+
+        """
+        return self._string
 
     @property
     def tweaks(self) -> None:

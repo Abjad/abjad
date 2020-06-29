@@ -1,16 +1,13 @@
 """
 Abjad's math library.
 """
-
-try:
-    import quicktions as fractions  # type: ignore
-except ImportError:
-    import fractions  # type: ignore
 import collections
 import itertools
 import math
 import numbers
 import typing
+
+import quicktions
 
 from .storage import FormatSpecification, StorageFormatManager
 
@@ -278,7 +275,7 @@ def arithmetic_mean(argument) -> typing.Union[int, float]:
     length = len(argument)
     if isinstance(total, float):
         return total / length
-    result = fractions.Fraction(sum(argument), len(argument))
+    result = quicktions.Fraction(sum(argument), len(argument))
     int_result = int(result)
     if int_result == result:
         return int_result
@@ -477,7 +474,7 @@ def factors(n) -> typing.List[int]:
     return factors
 
 
-def fraction_to_proper_fraction(rational,) -> typing.Tuple[int, fractions.Fraction]:
+def fraction_to_proper_fraction(rational,) -> typing.Tuple[int, quicktions.Fraction]:
     """
     Changes ``rational`` to proper fraction.
 
@@ -487,7 +484,7 @@ def fraction_to_proper_fraction(rational,) -> typing.Tuple[int, fractions.Fracti
         (14, Fraction(1, 2))
 
     """
-    assert isinstance(rational, fractions.Fraction), repr(rational)
+    assert isinstance(rational, quicktions.Fraction), repr(rational)
     quotient = int(rational)
     residue = rational - quotient
     return quotient, residue
@@ -827,7 +824,7 @@ def is_nonnegative_integer_power_of_two(argument) -> bool:
     """
     if isinstance(argument, int):
         return not bool(argument & (argument - 1))
-    elif isinstance(argument, fractions.Fraction):
+    elif isinstance(argument, quicktions.Fraction):
         return is_nonnegative_integer_power_of_two(
             argument.numerator * argument.denominator
         )

@@ -1,10 +1,12 @@
 import typing
 
 from .. import const
-from ..core.Component import inspect
+from ..core.Component import attach, inspect
 from ..core.Container import Container
 from ..core.Context import Context
+from ..core.Iteration import iterate
 from ..core.Score import Score
+from ..core.Selection import select
 from ..core.Staff import Staff
 from ..core.Voice import Voice
 from ..indicators.LilyPondLiteral import LilyPondLiteral
@@ -12,7 +14,6 @@ from ..lilypondfile import LilyPondFile
 from ..storage import StorageFormatManager
 from ..tags import Tag
 from ..timespans import TimespanList
-from ..top import attach, iterate, select
 from ..utilities.OrderedDict import OrderedDict
 from ..utilities.String import String
 from .PartAssignment import PartAssignment

@@ -66,7 +66,6 @@ classifiers = [
 entry_points = {"console_scripts": ["ajv = abjad.cli:run_ajv"]}
 
 extras_require = {
-    "accelerated": ["quicktions>=1.3"],
     "cli": ["abjad-ext-cli>=3.1.0, <3.2.0"],
     "ipython": ["abjad-ext-ipython>=3.1.0, <3.2.0"],
     "nauert": ["abjad-ext-nauert>=3.1.0, <3.2.0"],
@@ -90,7 +89,7 @@ keywords = [
     "lilypond",
 ]
 
-install_requires = ["ply", "roman", "uqbar>=0.4.4, <0.5.0"]
+install_requires = ["ply", "quicktions>=1.3", "roman", "uqbar>=0.4.4, <0.5.0"]
 
 if __name__ == "__main__":
     setuptools.setup(

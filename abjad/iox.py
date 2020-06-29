@@ -414,8 +414,8 @@ def show(illustrable, return_timing=False, **keywords):
     Returns pair of ``abjad_formatting_time`` and ``lilypond_rendering_time``
     when ``return_timing`` is true.
     """
-    if not hasattr(illustrable, "__illustrate__"):
-        raise ValueError(f"Cannot illustrate {illustrable!r}")
+    #    if not hasattr(illustrable, "__illustrate__"):
+    #        raise ValueError(f"Cannot illustrate {illustrable!r}")
     illustrator = Illustrator(illustrable, **keywords)
     result = illustrator()
     if not result:

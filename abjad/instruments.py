@@ -6,13 +6,13 @@ import copy
 import typing
 
 from .core.Component import inspect
+from .core.Iteration import iterate
 from .markups import Markup
 from .pitch.PitchRange import PitchRange
 from .pitch.pitchclasses import NamedPitchClass
 from .pitch.pitches import NamedPitch
 from .pitch.segments import PitchSegment
 from .storage import FormatSpecification, StorageFormatManager
-from .top import iterate
 from .utilities.Enumerator import Enumerator
 from .utilities.String import String
 

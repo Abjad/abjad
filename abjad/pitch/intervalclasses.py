@@ -91,6 +91,13 @@ class IntervalClass(object):
         """
         raise NotImplementedError
 
+    def __eq__(self, argument) -> bool:
+        """
+        Is true when all initialization values of Abjad value object equal
+        the initialization values of ``argument``.
+        """
+        return StorageFormatManager.compare_objects(self, argument)
+
     def __float__(self):
         """
         Coerce to semitones as float.
@@ -98,13 +105,6 @@ class IntervalClass(object):
         Returns float.
         """
         raise NotImplementedError
-
-    def __eq__(self, argument) -> bool:
-        """
-        Is true when all initialization values of Abjad value object equal
-        the initialization values of ``argument``.
-        """
-        return StorageFormatManager.compare_objects(self, argument)
 
     def __hash__(self) -> int:
         """
@@ -473,6 +473,15 @@ class NamedIntervalClass(IntervalClass):
 
     ### PRIVATE PROPERTIES ###
 
+    def _from_interval_or_interval_class(self, argument):
+        try:
+            quality = argument.quality
+            diatonic_number = abs(argument.number)
+            direction = mathtools.sign(argument.number)
+        except AttributeError:
+            direction, quality, diatonic_number = self._numbered_to_named(argument)
+        self._from_named_parts(direction, quality, diatonic_number)
+
     def _from_named_parts(self, direction, quality, diatonic_number):
         self._quality = quality
         diatonic_pc_number = diatonic_number
@@ -489,15 +498,6 @@ class NamedIntervalClass(IntervalClass):
 
     def _from_number(self, argument):
         direction, quality, diatonic_number = self._numbered_to_named(argument)
-        self._from_named_parts(direction, quality, diatonic_number)
-
-    def _from_interval_or_interval_class(self, argument):
-        try:
-            quality = argument.quality
-            diatonic_number = abs(argument.number)
-            direction = mathtools.sign(argument.number)
-        except AttributeError:
-            direction, quality, diatonic_number = self._numbered_to_named(argument)
         self._from_named_parts(direction, quality, diatonic_number)
 
     ### PRIVATE METHODS ###
@@ -853,18 +853,6 @@ class NumberedIntervalClass(IntervalClass):
             return NotImplemented
         return type(self)(float(self) + float(argument))
 
-    def __radd__(self, argument):
-        """
-        Adds `argument` to numbered interval-class.
-
-        Returns new numbered interval-class.
-        """
-        try:
-            argument = type(self)(argument)
-        except Exception:
-            return NotImplemented
-        return type(self)(float(self) + float(argument))
-
     def __eq__(self, argument):
         """
         Is true when `argument` is a numbered interval-class with number
@@ -956,6 +944,18 @@ class NumberedIntervalClass(IntervalClass):
             return False
         return self.number < argument.number
 
+    def __radd__(self, argument):
+        """
+        Adds `argument` to numbered interval-class.
+
+        Returns new numbered interval-class.
+        """
+        try:
+            argument = type(self)(argument)
+        except Exception:
+            return NotImplemented
+        return type(self)(float(self) + float(argument))
+
     def __str__(self):
         """
         Gets string representation of numbered interval-class.
@@ -991,6 +991,9 @@ class NumberedIntervalClass(IntervalClass):
 
     ### PRIVATE METHODS ###
 
+    def _from_interval_or_interval_class(self, argument):
+        self._from_number(float(argument))
+
     def _from_named_parts(self, direction, quality, diatonic_number):
         self._number = self._named_to_numbered(direction, quality, diatonic_number)
 
@@ -1001,9 +1004,6 @@ class NumberedIntervalClass(IntervalClass):
         if pc_number == 0 and number:
             pc_number = 12
         self._number = pc_number * direction
-
-    def _from_interval_or_interval_class(self, argument):
-        self._from_number(float(argument))
 
     def _get_format_specification(self):
         return FormatSpecification(

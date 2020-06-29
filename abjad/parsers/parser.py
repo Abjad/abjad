@@ -1,7 +1,3 @@
-try:
-    import quicktions as fractions  # type: ignore
-except ImportError:
-    import fractions  # type: ignore
 import abc
 import collections
 import copy
@@ -10,6 +6,7 @@ import sys
 import typing
 
 import ply
+import quicktions
 from ply import lex
 from ply.yacc import (  # type: ignore
     YaccProduction,
@@ -23,7 +20,7 @@ from .. import exceptions
 from ..core.BeforeGraceContainer import BeforeGraceContainer
 from ..core.Chord import Chord
 from ..core.Cluster import Cluster
-from ..core.Component import Component
+from ..core.Component import Component, attach
 from ..core.Container import Container
 from ..core.Context import Context
 from ..core.DrumNoteHead import DrumNoteHead
@@ -79,7 +76,6 @@ from ..pitch.pitchclasses import NamedPitchClass
 from ..pitch.pitches import NamedPitch
 from ..scheme import Scheme
 from ..system.Parser import Parser
-from ..top import attach
 from ..utilities.String import String
 
 
@@ -745,8 +741,7 @@ class LilyPondGrammarGenerator(object):
             parser_output_path, parser_tab_hh_path
         )
         with open(skeleton_path, "w") as f:
-            f.write("from abjad.parser.SyntaxNode.SyntaxNode \\\n")
-            f.write("    import SyntaxNode as Node\n\n\n")
+            f.write("from abjad.parsers.parser import SyntaxNode as Node \\\n")
             f.write("class _LilyPondSyntacticalDefinition(object):\n\n")
             f.write("    def __init__(self, client):\n")
             f.write("        self.client = client\n")
@@ -4711,7 +4706,7 @@ class LilyPondSyntacticalDefinition(object):
 
     def p_fraction__UNSIGNED__Chr47__UNSIGNED(self, p):
         "fraction : UNSIGNED '/' UNSIGNED"
-        p[0] = fractions.Fraction(p[1], p[3])
+        p[0] = quicktions.Fraction(p[1], p[3])
 
     ### full_markup ###
 
@@ -5588,7 +5583,7 @@ class LilyPondSyntacticalDefinition(object):
             p[0] = LilyPondDuration(p[1].duration, p[1].multiplier * p[3])
         else:
             p[0] = LilyPondDuration(
-                p[1].duration, fractions.Fraction(p[3].numerator, p[3].denominator)
+                p[1].duration, quicktions.Fraction(p[3].numerator, p[3].denominator)
             )
 
     def p_multiplied_duration__multiplied_duration__Chr42__bare_unsigned(self, p):

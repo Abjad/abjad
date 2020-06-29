@@ -5,7 +5,6 @@ from ..duration import Duration
 from ..ly.drums import drums
 from ..pitch.pitches import NamedPitch
 from ..tags import Tag
-from ..top import parse
 from .Component import inspect
 from .DrumNoteHead import DrumNoteHead
 from .Leaf import Leaf
@@ -59,6 +58,7 @@ class Note(Leaf):
     def __init__(
         self, *arguments, multiplier: typings.DurationTyping = None, tag: Tag = None,
     ) -> None:
+        from ..parsers.parse import parse
         from .Chord import Chord
 
         assert len(arguments) in (0, 1, 2)

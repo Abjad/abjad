@@ -1,7 +1,7 @@
 import collections
 
+from ..new import new
 from ..storage import StorageFormatManager
-from ..top import new
 from .TypedCollection import TypedCollection
 
 

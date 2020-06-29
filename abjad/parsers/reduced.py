@@ -1,8 +1,9 @@
 from ..core.Chord import Chord
-from ..core.Component import inspect
+from ..core.Component import attach, detach, inspect
 from ..core.Container import Container
 from ..core.Note import Note
 from ..core.Rest import Rest
+from ..core.Selection import select
 from ..core.Tuplet import Tuplet
 from ..duration import Duration, NonreducedFraction
 from ..enums import Left, Right
@@ -15,7 +16,6 @@ from ..indicators.TimeSignature import TimeSignature
 from ..pitch.pitchclasses import NamedPitchClass
 from ..pitch.pitches import NamedPitch
 from ..system.Parser import Parser
-from ..top import attach, detach, select
 
 
 class ReducedLyParser(Parser):
