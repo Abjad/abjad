@@ -13,13 +13,14 @@ from ..formatting import LilyPondFormatManager
 from ..indicators.MetronomeMark import MetronomeMark
 from ..indicators.StaffChange import StaffChange
 from ..indicators.TimeSignature import TimeSignature
+from ..lilypondnames.LilyPondGrobNameManager import override
+from ..lilypondnames.LilyPondSettingNameManager import setting
 from ..markups import Markup
 from ..pitch.pitches import NamedPitch
 from ..pitch.sets import PitchSet
 from ..storage import FormatSpecification, StorageFormatManager
 from ..tags import Tag
 from ..timespans import AnnotatedTimespan, Timespan, TimespanList
-from ..top import attach, detach, iterate, mutate, override, select, setting
 from ..utilities.Sequence import Sequence
 
 
@@ -143,6 +144,9 @@ class Component(object):
 
         Returns list of new components.
         """
+        from .Mutation import mutate
+        from .Selection import select
+
         components = []
         for i in range(n):
             component = mutate(self).copy()
@@ -201,6 +205,8 @@ class Component(object):
         return False
 
     def _extract(self):
+        from .Selection import select
+
         selection = select([self])
         parent, start, stop = selection._get_parent_and_start_stop_indices()
         if parent is not None:
@@ -275,6 +281,8 @@ class Component(object):
         return result
 
     def _get_contents(self):
+        from .Selection import select
+
         result = []
         result.append(self)
         result.extend(getattr(self, "components", []))
@@ -892,6 +900,8 @@ class UpdateManager(object):
         """
         NOTE: RETURNS GRACE NOTES LAST (AND OUT-OF-ORDER).
         """
+        from .Iteration import iterate
+
         components = list(iterate(root).components(grace=False))
         graces = iterate(root).components(grace=True)
         components.extend(graces)
@@ -3821,6 +3831,7 @@ class Inspection(object):
             ---
 
         """
+        from .Iteration import iterate
         from .Leaf import Leaf
 
         if n not in (-1, 0, 1):
@@ -6000,3 +6011,573 @@ class Wrapper(object):
             raise Exception(f"string or tag: {argument!r}.")
         tag = Tag(argument)
         self._tag = tag
+
+
+### FUNCTIONS ###
+
+
+def attach(  # noqa: 302
+    attachable,
+    target,
+    context=None,
+    deactivate=None,
+    do_not_test=None,
+    synthetic_offset=None,
+    tag=None,
+    wrapper=None,
+):
+    r"""
+    Attaches ``attachable`` to ``target``.
+
+    First form attaches indicator ``attachable`` to single leaf ``target``.
+
+    Second for attaches grace container ``attachable`` to leaf ``target``.
+
+    Third form attaches wrapper ``attachable`` to unknown (?) ``target``.
+
+    ..  container:: example
+
+        Attaches clef to first note in staff:
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> abjad.attach(abjad.Clef('alto'), staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                \clef "alto"
+                c'4
+                d'4
+                e'4
+                f'4
+            }
+
+    ..  container:: example
+
+        Attaches accent to last note in staff:
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> abjad.attach(abjad.Articulation('>'), staff[-1])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                c'4
+                d'4
+                e'4
+                f'4
+                - \accent
+            }
+
+    ..  container:: example
+
+        Works with context names:
+
+        >>> voice = abjad.Voice("c'4 d' e' f'", name='MusicVoice')
+        >>> staff = abjad.Staff([voice], name='MusicStaff')
+        >>> abjad.attach(abjad.Clef('alto'), voice[0], context='MusicStaff')
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \context Staff = "MusicStaff"
+            {
+                \context Voice = "MusicVoice"
+                {
+                    \clef "alto"
+                    c'4
+                    d'4
+                    e'4
+                    f'4
+                }
+            }
+
+        >>> for leaf in abjad.select(staff).leaves():
+        ...     leaf, abjad.inspect(leaf).effective(abjad.Clef)
+        ...
+        (Note("c'4"), Clef('alto'))
+        (Note("d'4"), Clef('alto'))
+        (Note("e'4"), Clef('alto'))
+        (Note("f'4"), Clef('alto'))
+
+        Derives context from default ``attachable`` context when ``context`` is
+        none.
+
+    ..  container:: example
+
+        Two contexted indicators can not be attached at the same offset if both
+        indicators are active:
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> abjad.attach(abjad.Clef('treble'), staff[0])
+        >>> abjad.attach(abjad.Clef('alto'), staff[0])
+        Traceback (most recent call last):
+            ...
+        abjad...PersistentIndicatorError: Can not attach ...
+
+        But simultaneous contexted indicators are allowed if only one is active
+        (and all others are inactive):
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> abjad.attach(abjad.Clef('treble'), staff[0])
+        >>> abjad.attach(
+        ...     abjad.Clef('alto'),
+        ...     staff[0],
+        ...     deactivate=True,
+        ...     tag=abjad.tags.ONLY_PARTS,
+        ...     )
+        >>> abjad.attach(
+        ...     abjad.Clef('tenor'),
+        ...     staff[0],
+        ...     deactivate=True,
+        ...     tag=abjad.tags.ONLY_PARTS,
+        ...     )
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                \clef "treble"
+            %@% \clef "alto" %! +PARTS
+            %@% \clef "tenor" %! +PARTS
+                c'4
+                d'4
+                e'4
+                f'4
+            }
+
+        Active indicator is always effective when competing inactive indicators
+        are present:
+
+        >>> for note in staff:
+        ...     clef = abjad.inspect(staff[0]).effective(abjad.Clef)
+        ...     note, clef
+        ...
+        (Note("c'4"), Clef('treble'))
+        (Note("d'4"), Clef('treble'))
+        (Note("e'4"), Clef('treble'))
+        (Note("f'4"), Clef('treble'))
+
+        But a lone inactivate indicator is effective when no active indicator
+        is present:
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> abjad.attach(
+        ...     abjad.Clef('alto'),
+        ...     staff[0],
+        ...     deactivate=True,
+        ...     tag=abjad.tags.ONLY_PARTS,
+        ...     )
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+            %@% \clef "alto" %! +PARTS
+                c'4
+                d'4
+                e'4
+                f'4
+            }
+
+        >>> for note in staff:
+        ...     clef = abjad.inspect(staff[0]).effective(abjad.Clef)
+        ...     note, clef
+        ...
+        (Note("c'4"), Clef('alto'))
+        (Note("d'4"), Clef('alto'))
+        (Note("e'4"), Clef('alto'))
+        (Note("f'4"), Clef('alto'))
+
+    ..  container:: example
+
+        Tag must exist when ``deactivate`` is true:
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> abjad.attach(abjad.Clef('alto'), staff[0], deactivate=True)
+        Traceback (most recent call last):
+            ...
+        Exception: tag must exist when deactivate is true.
+
+    ..  container:: example
+
+        Returns wrapper when ``wrapper`` is true:
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> wrapper = abjad.attach(abjad.Clef('alto'), staff[0], wrapper=True)
+        >>> abjad.f(wrapper)
+        abjad.Wrapper(
+            context='Staff',
+            indicator=abjad.Clef('alto'),
+            tag=abjad.Tag(),
+            )
+
+    Otherwise returns none.
+    """
+    if isinstance(attachable, Tag):
+        message = "use the tag=None keyword instead of attach():\n"
+        message += f"   {repr(attachable)}"
+        raise Exception(message)
+
+    if tag is not None and not isinstance(tag, Tag):
+        raise Exception(f"must be be tag: {repr(tag)}")
+
+    if isinstance(attachable, Multiplier):
+        message = "use the Leaf.multiplier property to multiply leaf duration."
+        raise Exception(message)
+
+    assert attachable is not None, repr(attachable)
+    assert target is not None, repr(target)
+
+    if context is not None and hasattr(attachable, "_main_leaf"):
+        message = f"set context only for indicators, not {attachable!r}."
+        raise Exception(message)
+
+    if deactivate is True and tag is None:
+        raise Exception("tag must exist when deactivate is true.")
+
+    if hasattr(attachable, "_before_attach"):
+        attachable._before_attach(target)
+
+    if hasattr(attachable, "_attachment_test_all") and not do_not_test:
+        result = attachable._attachment_test_all(target)
+        if result is not True:
+            assert isinstance(result, list), repr(result)
+            result = ["  " + _ for _ in result]
+            message = f"{attachable!r}._attachment_test_all():"
+            result.insert(0, message)
+            message = "\n".join(result)
+            raise Exception(message)
+
+    if hasattr(attachable, "_main_leaf"):
+        if not hasattr(target, "written_duration"):
+            raise Exception("grace containers attach to single leaf only.")
+        attachable._attach(target)
+        return
+
+    # target is component
+    assert hasattr(target, "_parent"), repr(target)
+
+    # fi target is container
+    if hasattr(target, "__iter__"):
+        acceptable = False
+        if isinstance(attachable, (dict, str, Tag, Wrapper)):
+            acceptable = True
+        if getattr(attachable, "_can_attach_to_containers", False):
+            acceptable = True
+        if not acceptable:
+            message = "can not attach {!r} to containers: {!r}"
+            message = message.format(attachable, target)
+            raise Exception(message)
+    elif not hasattr(target, "written_duration"):
+        message = "indicator {!r} must attach to leaf instead, not {!r}."
+        message = message.format(attachable, target)
+        raise Exception(message)
+
+    component = target
+    assert hasattr(component, "_parent")
+
+    annotation = None
+    if isinstance(attachable, Wrapper):
+        annotation = attachable.annotation
+        context = context or attachable.context
+        deactivate = deactivate or attachable.deactivate
+        synthetic_offset = synthetic_offset or attachable.synthetic_offset
+        tag = tag or attachable.tag
+        attachable._detach()
+        attachable = attachable.indicator
+
+    if hasattr(attachable, "context"):
+        context = context or attachable.context
+
+    wrapper_ = Wrapper(
+        annotation=annotation,
+        component=component,
+        context=context,
+        deactivate=deactivate,
+        indicator=attachable,
+        synthetic_offset=synthetic_offset,
+        tag=tag,
+    )
+
+    if wrapper is True:
+        return wrapper_
+
+
+def detach(argument, target=None, by_id=False):
+    r"""
+    Detaches indicators-equal-to-``argument`` from ``target``.
+
+    Set ``by_id`` to true to detach exact ``argument`` from ``target`` (rather
+    than detaching all indicators-equal-to-``argument``).
+
+    ..  container:: example
+
+        Detaches articulations from first note in staff:
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> abjad.attach(abjad.Articulation('>'), staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                c'4
+                - \accent
+                d'4
+                e'4
+                f'4
+            }
+
+        >>> abjad.detach(abjad.Articulation, staff[0])
+        (Articulation('>'),)
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                c'4
+                d'4
+                e'4
+                f'4
+            }
+
+    ..  container:: example
+
+        The use of ``by_id`` is motivated by the following.
+
+        Consider the three document-specifier markups below:
+
+        >>> markup_1 = abjad.Markup('tutti', direction=abjad.Up)
+        >>> markup_2 = abjad.Markup('with the others', direction=abjad.Up)
+        >>> markup_3 = abjad.Markup('with the others', direction=abjad.Up)
+
+        Markups two and three compare equal:
+
+        >>> markup_2 == markup_3
+        True
+
+        But document-tagging like this makes sense for score and two diferent
+        parts:
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> abjad.attach(markup_1, staff[0], tag=abjad.tags.ONLY_SCORE)
+        >>> abjad.attach(
+        ...     markup_2,
+        ...     staff[0],
+        ...     deactivate=True,
+        ...     tag=abjad.Tag("+PARTS_VIOLIN_1"),
+        ...     )
+        >>> abjad.attach(
+        ...     markup_3,
+        ...     staff[0],
+        ...     deactivate=True,
+        ...     tag=abjad.Tag("+PARTS_VIOLIN_2"),
+        ...     )
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        >>> abjad.f(staff, strict=50)
+        \new Staff
+        {
+            c'4
+            ^ \markup { tutti }                           %! +SCORE
+        %@% ^ \markup { "with the others" }               %! +PARTS_VIOLIN_1
+        %@% ^ \markup { "with the others" }               %! +PARTS_VIOLIN_2
+            d'4
+            e'4
+            f'4
+        }
+
+        The question is then how to detach just one of the two markups that
+        compare equal to each other?
+
+        Passing in one of the markup objects directory doesn't work. This is
+        because detach tests for equality to input argument:
+
+        >>> abjad.detach(markup_2, staff[0])
+        (Markup(contents=['with the others'], direction=Up), Markup(contents=['with the others'], direction=Up))
+
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        >>> abjad.f(staff, strict=50)
+        \new Staff
+        {
+            c'4
+            ^ \markup { tutti }                           %! +SCORE
+            d'4
+            e'4
+            f'4
+        }
+
+        We start again:
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> abjad.attach(markup_1, staff[0], tag=abjad.tags.ONLY_SCORE)
+        >>> abjad.attach(
+        ...     markup_2,
+        ...     staff[0],
+        ...     deactivate=True,
+        ...     tag=abjad.Tag("+PARTS_VIOLIN_1"),
+        ...     )
+        >>> abjad.attach(
+        ...     markup_3,
+        ...     staff[0],
+        ...     deactivate=True,
+        ...     tag=abjad.Tag("+PARTS_VIOLIN_2"),
+        ...     )
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        >>> abjad.f(staff, strict=50)
+        \new Staff
+        {
+            c'4
+            ^ \markup { tutti }                           %! +SCORE
+        %@% ^ \markup { "with the others" }               %! +PARTS_VIOLIN_1
+        %@% ^ \markup { "with the others" }               %! +PARTS_VIOLIN_2
+            d'4
+            e'4
+            f'4
+        }
+
+        This time we set ``by_id`` to true. Now detach checks the exact id of
+        its input argument (rather than just testing for equality). This gives
+        us what we want:
+
+        >>> abjad.detach(markup_2, staff[0], by_id=True)
+        (Markup(contents=['with the others'], direction=Up),)
+
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        >>> abjad.f(staff, strict=50)
+        \new Staff
+        {
+            c'4
+            ^ \markup { tutti }                           %! +SCORE
+        %@% ^ \markup { "with the others" }               %! +PARTS_VIOLIN_2
+            d'4
+            e'4
+            f'4
+        }
+
+    ..  container:: example
+
+        REGRESSION. Attach-detach-attach pattern works correctly when detaching
+        wrappers:
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> abjad.attach(abjad.Clef('alto'), staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                \clef "alto"
+                c'4
+                d'4
+                e'4
+                f'4
+            }
+
+        >>> wrapper = abjad.inspect(staff[0]).wrappers()[0]
+        >>> abjad.detach(wrapper, wrapper.component)
+        (Wrapper(context='Staff', indicator=Clef('alto'), tag=Tag()),)
+
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                c'4
+                d'4
+                e'4
+                f'4
+            }
+
+        >>> abjad.attach(abjad.Clef('tenor'), staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                \clef "tenor"
+                c'4
+                d'4
+                e'4
+                f'4
+            }
+
+    Returns tuple of zero or more detached items.
+    """
+    assert target is not None
+    after_grace_container = None
+    before_grace_container = None
+    inspector = inspect(target)
+    if isinstance(argument, type):
+        if "AfterGraceContainer" in argument.__name__:
+            after_grace_container = inspector.after_grace_container()
+        elif "BeforeGraceContainer" in argument.__name__:
+            before_grace_container = inspector.before_grace_container()
+        else:
+            assert hasattr(target, "_wrappers")
+            result = []
+            for wrapper in target._wrappers[:]:
+                if isinstance(wrapper, argument):
+                    target._wrappers.remove(wrapper)
+                    result.append(wrapper)
+                elif isinstance(wrapper.indicator, argument):
+                    wrapper._detach()
+                    result.append(wrapper.indicator)
+            result = tuple(result)
+            return result
+    else:
+        if "AfterGraceContainer" in argument.__class__.__name__:
+            after_grace_container = inspector.after_grace_container()
+        elif "BeforeGraceContainer" in argument.__class__.__name__:
+            before_grace_container = inspector.before_grace_container()
+        else:
+            assert hasattr(target, "_wrappers")
+            result = []
+            for wrapper in target._wrappers[:]:
+                if wrapper is argument:
+                    wrapper._detach()
+                    result.append(wrapper)
+                elif wrapper.indicator == argument:
+                    if by_id is True and id(argument) != id(wrapper.indicator):
+                        pass
+                    else:
+                        wrapper._detach()
+                        result.append(wrapper.indicator)
+            result = tuple(result)
+            return result
+    items = []
+    if after_grace_container is not None:
+        items.append(after_grace_container)
+    if before_grace_container is not None:
+        items.append(before_grace_container)
+    if by_id is True:
+        items = [_ for _ in items if id(_) == id(argument)]
+    for item in items:
+        item._detach()
+    items = tuple(items)
+    return items

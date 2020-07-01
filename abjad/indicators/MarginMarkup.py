@@ -2,8 +2,8 @@ import typing
 
 from ..formatting import LilyPondFormatBundle
 from ..markups import Markup
+from ..new import new
 from ..storage import StorageFormatManager
-from ..top import new
 
 
 class MarginMarkup(object):

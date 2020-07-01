@@ -1,8 +1,14 @@
 import copy
 import typing
 
+from ..indicators.BarLine import BarLine
+from ..lilypondnames.LilyPondGrobNameManager import override
 from ..tags import Tag
+from .Component import attach, inspect
 from .Context import Context
+from .Iteration import iterate
+from .Selection import Selection
+from .Voice import Voice
 
 
 class Score(Context):
@@ -100,6 +106,7 @@ class Score(Context):
 
     ### PUBLIC METHODS ###
 
+    # TODO: remove
     def add_final_bar_line(self, abbreviation="|.", to_each_voice=False):
         r"""
         Add final bar line to end of score.
@@ -146,18 +153,17 @@ class Score(Context):
 
         Returns bar line.
         """
-        import abjad
-
-        bar_line = abjad.BarLine(abbreviation)
+        bar_line = BarLine(abbreviation)
         if not to_each_voice:
-            last_leaf = abjad.inspect(self).leaf(-1)
-            abjad.attach(bar_line, last_leaf, tag=Tag("SCORE_1"))
+            last_leaf = inspect(self).leaf(-1)
+            attach(bar_line, last_leaf, tag=Tag("SCORE_1"))
         else:
-            for voice in abjad.iterate(self).components(abjad.Voice):
-                last_leaf = abjad.inspect(voice).leaf(-1)
-                abjad.attach(bar_line, last_leaf, tag=Tag("SCORE_1"))
+            for voice in iterate(self).components(Voice):
+                last_leaf = inspect(voice).leaf(-1)
+                attach(bar_line, last_leaf, tag=Tag("SCORE_1"))
         return bar_line
 
+    # TODO: remove
     def add_final_markup(self, markup, extra_offset=None):
         r"""
         Adds ``markup`` to end of score.
@@ -250,186 +256,17 @@ class Score(Context):
 
         Returns none.
         """
-        import abjad
+        from .Leaf import Leaf
+        from .MultimeasureRest import MultimeasureRest
 
-        selection = abjad.select(self)
-        last_leaf = selection._get_component(abjad.Leaf, -1)
+        selection = Selection(self)
+        last_leaf = selection._get_component(Leaf, -1)
         markup = copy.copy(markup)
-        abjad.attach(markup, last_leaf, tag=Tag("SCORE_2"))
+        attach(markup, last_leaf, tag=Tag("SCORE_2"))
         if extra_offset is not None:
-            if isinstance(last_leaf, abjad.MultimeasureRest):
-                grob_proxy = abjad.override(last_leaf).multi_measure_rest_text
+            if isinstance(last_leaf, MultimeasureRest):
+                grob_proxy = override(last_leaf).multi_measure_rest_text
             else:
-                grob_proxy = abjad.override(last_leaf).text_script
+                grob_proxy = override(last_leaf).text_script
             grob_proxy.extra_offset = extra_offset
         return markup
-
-    @staticmethod
-    def make_piano_score(leaves=None, lowest_treble_pitch="B3", sketch=False):
-        r"""
-        Makes piano score from ``leaves``.
-
-        ..  container:: example
-
-            Makes empty piano score:
-
-            >>> result = abjad.Score.make_piano_score()
-
-            >>> abjad.f(result[0])
-            \new Score
-            <<
-                \new PianoStaff
-                <<
-                    \context Staff = "Treble_Staff"
-                    {
-                    }
-                    \context Staff = "Bass_Staff"
-                    {
-                    }
-                >>
-            >>
-
-        ..  container:: example
-
-            Makes piano score from leaves:
-
-            >>> notes = [abjad.Note(x, (1, 4)) for x in [-12, 37, -10, 2, 4, 17]]
-            >>> result = abjad.Score.make_piano_score(leaves=notes)
-            >>> abjad.show(result[0]) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(result[0])
-                \new Score
-                <<
-                    \new PianoStaff
-                    <<
-                        \context Staff = "Treble_Staff"
-                        {
-                            \clef "treble"
-                            r4
-                            cs''''4
-                            r4
-                            d'4
-                            e'4
-                            f''4
-                        }
-                        \context Staff = "Bass_Staff"
-                        {
-                            \clef "bass"
-                            c4
-                            r4
-                            d4
-                            r4
-                            r4
-                            r4
-                        }
-                    >>
-                >>
-
-        ..  container:: example
-
-            Makes piano sketch score from leaves:
-
-            >>> maker = abjad.NoteMaker()
-            >>> notes = maker(
-            ...     [-12, -10, -8, -7, -5, 0, 2, 4, 5, 7],
-            ...     [(1, 16)],
-            ...     )
-            >>> result = abjad.Score.make_piano_score(
-            ...     leaves=notes,
-            ...     sketch=True,
-            ...     )
-            >>> abjad.show(result[0]) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(result[0])
-                \new Score
-                \with
-                {
-                    \override BarLine.stencil = ##f
-                    \override BarNumber.transparent = ##t
-                    \override SpanBar.stencil = ##f
-                    \override TimeSignature.stencil = ##f
-                }
-                <<
-                    \new PianoStaff
-                    <<
-                        \context Staff = "Treble_Staff"
-                        {
-                            \clef "treble"
-                            r16
-                            r16
-                            r16
-                            r16
-                            r16
-                            c'16
-                            d'16
-                            e'16
-                            f'16
-                            g'16
-                        }
-                        \context Staff = "Bass_Staff"
-                        {
-                            \clef "bass"
-                            c16
-                            d16
-                            e16
-                            f16
-                            g16
-                            r16
-                            r16
-                            r16
-                            r16
-                            r16
-                        }
-                    >>
-                >>
-
-
-        Returns score, treble staff, bass staff triple.
-        """
-        import abjad
-
-        leaves = leaves or []
-        lowest_treble_pitch = abjad.NamedPitch(lowest_treble_pitch)
-        treble_staff = abjad.Staff(name="Treble_Staff")
-        bass_staff = abjad.Staff(name="Bass_Staff")
-        staff_group = abjad.StaffGroup(
-            [treble_staff, bass_staff], lilypond_type="PianoStaff"
-        )
-        score = abjad.Score()
-        score.append(staff_group)
-        for leaf in leaves:
-            treble_pitches, bass_pitches = [], []
-            for pitch in abjad.inspect(leaf).pitches():
-                if pitch < lowest_treble_pitch:
-                    bass_pitches.append(pitch)
-                else:
-                    treble_pitches.append(pitch)
-            written_duration = leaf.written_duration
-            if not treble_pitches:
-                treble_leaf = abjad.Rest(written_duration)
-            elif len(treble_pitches) == 1:
-                treble_leaf = abjad.Note(treble_pitches[0], written_duration)
-            else:
-                treble_leaf = abjad.Chord(treble_pitches, written_duration)
-            treble_staff.append(treble_leaf)
-            if not bass_pitches:
-                bass_leaf = abjad.Rest(written_duration)
-            elif len(bass_pitches) == 1:
-                bass_leaf = abjad.Note(bass_pitches[0], written_duration)
-            else:
-                bass_leaf = abjad.Chord(bass_pitches, written_duration)
-            bass_staff.append(bass_leaf)
-        if 0 < len(treble_staff):
-            abjad.attach(abjad.Clef("treble"), treble_staff[0])
-        if 0 < len(bass_staff):
-            abjad.attach(abjad.Clef("bass"), bass_staff[0])
-        if sketch:
-            abjad.override(score).time_signature.stencil = False
-            abjad.override(score).bar_number.transparent = True
-            abjad.override(score).bar_line.stencil = False
-            abjad.override(score).span_bar.stencil = False
-        return score, treble_staff, bass_staff

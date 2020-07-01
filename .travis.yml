@@ -15,13 +15,8 @@ cache:
 jobs:
   include:
     - python: "3.6"
-      env: ACCELERATED=true
     - python: "3.7"
-      env: ACCELERATED=true
     - python: "3.8"
-      env: ACCELERATED=true
-    - python: "3.8"
-      env: ACCELERATED=false
 
 before_install:
   # install lilypond
@@ -44,11 +39,9 @@ install:
   # echo the configuration file path to debug read-only-filesystem handling
   - python -c "import abjad; print(abjad.configuration.configuration_file_path)"
   # prime the parser
-  - scr/devel/prime-parser-tables
+  - scr/prime-parser-tables
   # install development dependencies
   - pip install -U -e .[test]
-  # install accelerated dependencies for accelerated builds
-  - if [[ $ACCELERATED == true ]]; then pip install -e .[accelerated]; fi
 
   # log versions
   - black --version

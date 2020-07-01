@@ -7,20 +7,22 @@ import abjad
 def find_import_as_statements():
     total_modules_with_import_as_statements = 0
     total_import_as_statements = 0
-    for directory, subdirectory_names, file_names in os.walk('.'):
+    for directory, subdirectory_names, file_names in os.walk("."):
         for file_name in file_names:
             found_import_as_statement = False
-            if file_name.endswith('.py') and \
-                not file_name == 'autodoc.py' and \
-                not file_name == '_write_parser_syntax_skeleton.py':
+            if (
+                file_name.endswith(".py")
+                and not file_name == "autodoc.py"
+                and not file_name == "_write_parser_syntax_skeleton.py"
+            ):
                 file_path = os.path.join(directory, file_name)
-                with open(file_path, 'r') as file_pointer:
+                with open(file_path, "r") as file_pointer:
                     for line in file_pointer:
                         if (
-                            'import' in line and
-                            ' as ' in line and
-                            'command =' not in line
-                            ):
+                            "import" in line
+                            and " as " in line
+                            and "command =" not in line
+                        ):
                             if not found_import_as_statement:
                                 print(file_path)
                                 found_import_as_statement = True
@@ -31,15 +33,15 @@ def find_import_as_statements():
                 print()
 
     total = total_modules_with_import_as_statements
-    print('Modules with import-as statements:   {}'.format(total))
+    print("Modules with import-as statements:   {}".format(total))
 
     total = total_import_as_statements
-    print('Total import-as statements:          {}'.format(total))
+    print("Total import-as statements:          {}".format(total))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     abjad.IOManager.spawn_subprocess("clear")
-    print('Finding import-as statements ...')
+    print("Finding import-as statements ...")
     print()
     find_import_as_statements()
     print()

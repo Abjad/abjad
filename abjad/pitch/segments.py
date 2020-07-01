@@ -6,9 +6,9 @@ import types
 
 from .. import mathtools
 from ..duration import Multiplier
+from ..new import new
 from ..storage import FormatSpecification
 from ..system.Signature import Signature
-from ..top import iterate, new
 from ..utilities.Expression import Expression
 from ..utilities.Sequence import Sequence
 from ..utilities.TypedCollection import TypedCollection
@@ -1457,62 +1457,6 @@ class PitchClassSegment(Segment):
         if self._expression:
             return self._update_expression(inspect.currentframe(), precedence=100)
         return super().__getitem__(argument)
-
-    def foo(self):
-        r"""
-        Illustrates segment.
-
-        ..  container:: example
-
-            Illustrates numbered segment:
-
-            >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-            >>> segment = abjad.PitchClassSegment(items=items)
-            >>> lilypond_file = abjad.illustrate(segment)
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(lilypond_file[abjad.Voice])
-                \new Voice
-                {
-                    bf'8
-                    bqf'8
-                    fs'8
-                    g'8
-                    bqf'8
-                    g'8
-                    \bar "|." %! SCORE_1
-                    \override Score.BarLine.transparent = ##f
-                }
-
-        ..  container:: example
-
-            Illustrates named segment:
-
-            >>> items = ['c', 'ef', 'bqs,', 'd']
-            >>> segment = abjad.PitchClassSegment(
-            ...     items=items,
-            ...     item_class=abjad.NumberedPitchClass,
-            ...     )
-            >>> lilypond_file = abjad.illustrate(segment)
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(lilypond_file[abjad.Voice])
-                \new Voice
-                {
-                    c'8
-                    ef'8
-                    bqs'8
-                    d'8
-                    \bar "|." %! SCORE_1
-                    \override Score.BarLine.transparent = ##f
-                }
-
-        """
-        pass
 
     def __mul__(self, n):
         r"""
@@ -3798,47 +3742,6 @@ class PitchSegment(Segment):
         """
         return super().__contains__(argument)
 
-    def foo(self):
-        r"""
-        Illustrates pitch segment.
-
-        ..  container:: example
-
-            >>> segment = abjad.PitchSegment("bf, aqs fs' g' bqf g'")
-
-            >>> lilypond_file = abjad.illustrate(segment)
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(lilypond_file[abjad.StaffGroup])
-                \new PianoStaff
-                <<
-                    \context Staff = "Treble_Staff"
-                    {
-                        \clef "treble"
-                        r1 * 1/8
-                        r1 * 1/8
-                        fs'1 * 1/8
-                        g'1 * 1/8
-                        r1 * 1/8
-                        g'1 * 1/8
-                    }
-                    \context Staff = "Bass_Staff"
-                    {
-                        \clef "bass"
-                        bf,1 * 1/8
-                        aqs1 * 1/8
-                        r1 * 1/8
-                        r1 * 1/8
-                        bqf1 * 1/8
-                        r1 * 1/8
-                    }
-                >>
-
-        """
-        pass
-
     def __repr__(self):
         """
         Gets interpreter representation of segment.
@@ -4122,6 +4025,8 @@ class PitchSegment(Segment):
                 >>
 
         """
+        from ..core.Iteration import iterate
+
         named_pitches = []
         for component in iterate(selection).leaves(pitched=True):
             try:

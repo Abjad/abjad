@@ -3,8 +3,8 @@ import inspect
 import operator
 
 from .. import mathtools
+from ..new import new
 from ..storage import FormatSpecification, StorageFormatManager
-from ..top import new
 from .Expression import Expression
 from .Sequence import Sequence
 

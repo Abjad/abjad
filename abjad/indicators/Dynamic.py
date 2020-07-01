@@ -350,9 +350,7 @@ class Dynamic(object):
     ### PRIVATE METHODS ###
 
     def _attachment_test_all(self, component_expression):
-        import abjad
-
-        if not isinstance(component_expression, abjad.Leaf):
+        if not hasattr(component_expression, "written_duration"):
             strings = [f"Must be leaf (not {component_expression})."]
             return strings
         return True
@@ -1226,38 +1224,6 @@ class Dynamic(object):
         return self._persistent
 
     @property
-    def sforzando(self) -> typing.Optional[bool]:
-        """
-        Is true when dynamic name begins in s- and ends in -z.
-
-        ..  container:: example
-
-            >>> abjad.Dynamic('f').sforzando
-            False
-
-            >>> abjad.Dynamic('sfz').sforzando
-            True
-
-            >>> abjad.Dynamic('sffz').sforzando
-            True
-
-            >>> abjad.Dynamic('sfp').sforzando
-            False
-
-            >>> abjad.Dynamic('sf').sforzando
-            False
-
-            >>> abjad.Dynamic('rfz').sforzando
-            False
-
-        """
-        if self._sforzando is not None:
-            return self._sforzando
-        if self.name and self.name.startswith("s") and self.name.endswith("z"):
-            return True
-        return False
-
-    @property
     def regression(self):
         r"""
         Documents regressions.
@@ -1295,6 +1261,38 @@ class Dynamic(object):
 
         """
         pass
+
+    @property
+    def sforzando(self) -> typing.Optional[bool]:
+        """
+        Is true when dynamic name begins in s- and ends in -z.
+
+        ..  container:: example
+
+            >>> abjad.Dynamic('f').sforzando
+            False
+
+            >>> abjad.Dynamic('sfz').sforzando
+            True
+
+            >>> abjad.Dynamic('sffz').sforzando
+            True
+
+            >>> abjad.Dynamic('sfp').sforzando
+            False
+
+            >>> abjad.Dynamic('sf').sforzando
+            False
+
+            >>> abjad.Dynamic('rfz').sforzando
+            False
+
+        """
+        if self._sforzando is not None:
+            return self._sforzando
+        if self.name and self.name.startswith("s") and self.name.endswith("z"):
+            return True
+        return False
 
     ### PUBLIC METHODS ###
 

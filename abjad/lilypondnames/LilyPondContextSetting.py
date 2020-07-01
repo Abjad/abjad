@@ -74,13 +74,6 @@ class LilyPondContextSetting(object):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def lilypond_type(self) -> typing.Optional[str]:
-        """
-        Gets LilyPond type.
-        """
-        return self._lilypond_type
-
-    @property
     def context_property(self) -> str:
         """
         Gets LilyPond context property name.
@@ -116,6 +109,13 @@ class LilyPondContextSetting(object):
         Is true if context setting unsets its value.
         """
         return self._is_unset
+
+    @property
+    def lilypond_type(self) -> typing.Optional[str]:
+        """
+        Gets LilyPond type.
+        """
+        return self._lilypond_type
 
     @property
     def value(self) -> typing.Any:

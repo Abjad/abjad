@@ -2,11 +2,12 @@ import typing
 
 from .. import enums, typings
 from ..core.Component import inspect
+from ..core.Selection import select
 from ..formatting import LilyPondFormatBundle
 from ..markups import Markup
+from ..new import new
 from ..ratio import Ratio
 from ..storage import StorageFormatManager
-from ..top import new, select
 
 
 class MetricModulation(object):
@@ -456,33 +457,6 @@ class MetricModulation(object):
             raise TypeError(f"unhashable type: {self}")
         return result
 
-    def __illustrate__(self):
-        r"""
-        Illustrates metric modulation.
-
-        ..  container:: example
-
-            >>> metric_modulation = abjad.MetricModulation(
-            ...     left_rhythm=abjad.Tuplet((2, 3), "c'4"),
-            ...     right_rhythm=abjad.Note("c'4."),
-            ...     )
-            >>> abjad.show(metric_modulation) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> lilypond_file = metric_modulation.__illustrate__()
-                >>> metric_modulation = lilypond_file.items[-1]
-                >>> print(format(metric_modulation))
-                \markup \abjad-metric-modulation-tuplet-lhs #2 #0 #2 #3 #2 #1 #'(1 . 1)
-
-        Returns LilyPond file.
-        """
-        import abjad
-
-        lilypond_file = abjad.LilyPondFile.new()
-        lilypond_file.items.append(self._get_markup())
-        return lilypond_file
-
     def __repr__(self) -> str:
         """
         Gets interpreter representation.
@@ -617,50 +591,38 @@ class MetricModulation(object):
         return markup
 
     def _initialize_rhythm(self, rhythm):
-        import abjad
-
-        if isinstance(rhythm, abjad.Component):
+        if not hasattr(rhythm, "_items"):
             selection = select([rhythm])
-        elif isinstance(rhythm, abjad.Selection):
-            selection = rhythm
         else:
-            message = "rhythm must be duration, component or selection: {!r}."
-            message = message.format(rhythm)
-            raise TypeError(message)
-        assert isinstance(selection, abjad.Selection)
+            assert hasattr(rhythm, "_items"), repr(rhythm)
+            selection = rhythm
         return selection
 
     def _lhs_tuplet(self):
-        import abjad
-
         if (
-            isinstance(self.left_rhythm[0], abjad.Tuplet)
+            hasattr(self.left_rhythm[0], "denominator")
             and len(self.left_rhythm[0]) == 1
-            and isinstance(self.right_rhythm[0], abjad.Note)
+            and hasattr(self.right_rhythm[0], "written_pitch")
             and len(self.right_rhythm) == 1
         ):
             return True
         return False
 
     def _note_to_note(self):
-        import abjad
-
         if (
-            isinstance(self.left_rhythm[0], abjad.Note)
+            hasattr(self.left_rhythm[0], "written_pitch")
             and len(self.left_rhythm) == 1
-            and isinstance(self.right_rhythm[0], abjad.Note)
+            and hasattr(self.right_rhythm[0], "written_pitch")
             and len(self.right_rhythm) == 1
         ):
             return True
         return False
 
     def _rhs_tuplet(self):
-        import abjad
-
         if (
-            isinstance(self.left_rhythm[0], abjad.Note)
+            hasattr(self.left_rhythm[0], "written_pitch")
             and len(self.left_rhythm) == 1
-            and isinstance(self.right_rhythm[0], abjad.Tuplet)
+            and hasattr(self.right_rhythm[0], "denominator")
             and len(self.right_rhythm[0]) == 1
         ):
             return True

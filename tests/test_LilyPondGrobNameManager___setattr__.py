@@ -731,64 +731,6 @@ def test_LilyPondGrobNameManager___setattr___29():
     assert not len(score)
 
 
-def test_LilyPondGrobNameManager___setattr___30():
-    """
-    Override LilyPond SpanBar grob.
-    """
-
-    score, treble, bass = abjad.Score.make_piano_score()
-    notes = [
-        abjad.Note("c'8"),
-        abjad.Note("d'8"),
-        abjad.Note("e'8"),
-        abjad.Note("f'8"),
-    ]
-    treble.extend(notes)
-    notes = [
-        abjad.Note("c'8"),
-        abjad.Note("d'8"),
-        abjad.Note("e'8"),
-        abjad.Note("f'8"),
-    ]
-    bass.extend(notes)
-    abjad.override(score).span_bar.color = "red"
-    abjad.attach(abjad.Clef("treble"), treble[0])
-    abjad.attach(abjad.Clef("bass"), bass[0])
-
-    assert format(score) == abjad.String.normalize(
-        r"""
-        \new Score
-        \with
-        {
-            \override SpanBar.color = #red
-        }
-        <<
-            \new PianoStaff
-            <<
-                \context Staff = "Treble_Staff"
-                {
-                    \clef "treble"
-                    c'8
-                    d'8
-                    e'8
-                    f'8
-                }
-                \context Staff = "Bass_Staff"
-                {
-                    \clef "bass"
-                    c'8
-                    d'8
-                    e'8
-                    f'8
-                }
-            >>
-        >>
-        """
-    )
-
-    assert abjad.inspect(score).wellformed()
-
-
 def test_LilyPondGrobNameManager___setattr___31():
     """
     Override LilyPond StaffSymbol grob.

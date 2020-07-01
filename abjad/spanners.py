@@ -5,11 +5,12 @@ import typing
 
 from . import enums, typings
 from .core.Chord import Chord
-from .core.Component import Component, inspect
+from .core.Component import Component, attach, detach, inspect
+from .core.Iteration import iterate
 from .core.MultimeasureRest import MultimeasureRest
 from .core.Note import Note
 from .core.Rest import Rest
-from .core.Selection import Selection
+from .core.Selection import Selection, select
 from .core.Skip import Skip
 from .core.Staff import Staff
 from .duration import Duration
@@ -42,10 +43,10 @@ from .indicators.Tie import Tie
 from .lilypondnames.LilyPondTweakManager import (
     IndexedTweakManager,
     LilyPondTweakManager,
+    tweak,
 )
 from .scheme import SchemeSymbol
 from .tags import Tag, Tags
-from .top import attach, detach, iterate, select, tweak
 from .utilities.DurationInequality import DurationInequality
 from .utilities.Expression import Expression
 from .utilities.Sequence import Sequence

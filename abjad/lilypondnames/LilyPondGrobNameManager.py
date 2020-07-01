@@ -1,6 +1,5 @@
 import typing
 
-from ..formatting import LilyPondFormatManager
 from ..ly.contexts import contexts
 from ..ly.grob_interfaces import grob_interfaces
 from ..utilities.String import String
@@ -112,6 +111,8 @@ class LilyPondGrobNameManager(LilyPondNameManager):
         return tuple(result)
 
     def _list_format_contributions(self, contribution_type, once=False):
+        from ..formatting import LilyPondFormatManager
+
         manager = LilyPondFormatManager
         assert contribution_type in ("override", "revert")
         result = []
@@ -141,3 +142,68 @@ class LilyPondGrobNameManager(LilyPondNameManager):
                 result.append(revert_string)
         result.sort()
         return result
+
+
+### FUNCTIONS ###
+
+
+def override(argument):
+    r"""
+    Makes LilyPond grob name manager.
+
+    ..  container:: example
+
+        Overrides staff symbol color:
+
+        >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
+        >>> abjad.override(staff).staff_symbol.color = 'red'
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            \with
+            {
+                \override StaffSymbol.color = #red
+            }
+            {
+                c'4
+                e'4
+                d'4
+                f'4
+            }
+
+    ..  container:: example
+
+        Specify grob context like this:
+
+        >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
+        >>> abjad.override(staff[0]).staff.staff_symbol.color = 'blue'
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                \once \override Staff.StaffSymbol.color = #blue
+                c'4
+                e'4
+                d'4
+                f'4
+            }
+
+    ..  container:: example
+
+        Returns LilyPond grob name manager:
+
+        >>> staff = abjad.Staff("c'4 e' d' f'")
+        >>> abjad.override(staff)
+        LilyPondGrobNameManager()
+
+    """
+    if getattr(argument, "_overrides", None) is None:
+        manager = LilyPondGrobNameManager()
+        argument._overrides = manager
+    return argument._overrides

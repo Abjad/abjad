@@ -250,3 +250,13 @@ class PersistenceManager(object):
             lilypond_rendering_time,
             success,
         )
+
+
+### FUNCTIONS ###
+
+
+def persist(client):
+    """
+    Makes persistence manager.
+    """
+    return PersistenceManager(client)

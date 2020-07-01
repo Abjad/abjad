@@ -5,8 +5,8 @@ from ..duration import Duration
 from ..indicators.RepeatTie import RepeatTie
 from ..indicators.Tie import Tie
 from ..ratio import Ratio
-from ..top import detach, mutate, select
-from .Selection import Selection
+from .Component import detach
+from .Selection import Selection, select
 
 
 class LogicalTie(Selection):
@@ -219,6 +219,7 @@ class LogicalTie(Selection):
 
         Returns tuplet.
         """
+        from .Mutation import mutate
         from .Note import Note
         from .NoteMaker import NoteMaker
         from .Tuplet import Tuplet

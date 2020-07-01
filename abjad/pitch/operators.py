@@ -1,8 +1,8 @@
 import collections
 
 from .. import markups
+from ..new import new
 from ..storage import StorageFormatManager
-from ..top import new
 from ..utilities.CyclicTuple import CyclicTuple
 from ..utilities.Pattern import Pattern
 from ..utilities.Sequence import Sequence

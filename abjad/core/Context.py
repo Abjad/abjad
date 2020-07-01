@@ -300,6 +300,19 @@ class Context(Container):
         return self._consists_commands
 
     @property
+    def lilypond_context(self):
+        """
+        Gets ``LilyPondContext`` associated with context.
+
+        Returns LilyPond context instance.
+        """
+        try:
+            lilypond_context = LilyPondContext(name=self.lilypond_type)
+        except AssertionError:
+            lilypond_context = LilyPondContext(name=self._default_lilypond_type)
+        return lilypond_context
+
+    @property
     def lilypond_type(self):
         """
         Gets lilypond type.
@@ -326,19 +339,6 @@ class Context(Container):
         else:
             argument = str(argument)
         self._lilypond_type = argument
-
-    @property
-    def lilypond_context(self):
-        """
-        Gets ``LilyPondContext`` associated with context.
-
-        Returns LilyPond context instance.
-        """
-        try:
-            lilypond_context = LilyPondContext(name=self.lilypond_type)
-        except AssertionError:
-            lilypond_context = LilyPondContext(name=self._default_lilypond_type)
-        return lilypond_context
 
     @property
     def remove_commands(self):

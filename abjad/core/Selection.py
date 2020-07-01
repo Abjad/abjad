@@ -6,11 +6,11 @@ import typing
 from .. import enums, typings
 from ..duration import Duration, Offset
 from ..indicators.Tie import Tie
+from ..new import new
 from ..pitch.PitchInequality import PitchInequality
 from ..pitch.sets import PitchSet
 from ..ratio import Ratio
 from ..storage import FormatSpecification, StorageFormatManager
-from ..top import attach, detach, iterate, mutate, new, select
 from ..utilities.CyclicTuple import CyclicTuple
 from ..utilities.DurationInequality import DurationInequality
 from ..utilities.Expression import Expression
@@ -18,8 +18,9 @@ from ..utilities.LengthInequality import LengthInequality
 from ..utilities.Pattern import Pattern
 from ..utilities.Sequence import Sequence
 from .Chord import Chord
-from .Component import Component
+from .Component import Component, attach, detach
 from .Component import inspect as abjad_inspect
+from .Iteration import iterate
 from .Leaf import Leaf
 from .MultimeasureRest import MultimeasureRest
 from .Note import Note
@@ -224,38 +225,6 @@ class Selection(collections.abc.Sequence):
             raise TypeError(f"unhashable type: {self}")
         return result
 
-    def __illustrate__(self):
-        """
-        Attempts to illustrate selection.
-
-        Evaluates the storage format of the selection (to sever any references
-        to the source score from which the selection was taken). Then tries to
-        wrap the result in a staff; in the case that notes of only C4 are found
-        then sets the staff context name to ``'RhythmicStaff'``. If this works
-        then the staff is wrapped in a LilyPond file and the file is returned.
-        If this doesn't work then the method raises an exception.
-
-        The idea is that the illustration should work for simple selections of
-        that represent an essentially contiguous snippet of a single voice of
-        music.
-
-        Returns LilyPond file.
-        """
-        import abjad
-
-        components = mutate(self).copy()
-        staff = abjad.Staff(components)
-        found_different_pitch = False
-        for pitch in iterate(staff).pitches():
-            if pitch != abjad.NamedPitch("c'"):
-                found_different_pitch = True
-                break
-        if not found_different_pitch:
-            staff.lilypond_type = "RhythmicStaff"
-        score = abjad.Score([staff])
-        lilypond_file = abjad.LilyPondFile.new(score)
-        return lilypond_file
-
     def __len__(self) -> int:
         """
         Gets number of items in selection.
@@ -377,6 +346,7 @@ class Selection(collections.abc.Sequence):
 
     def _fuse_tuplets(self):
         from .Container import Container
+        from .Mutation import mutate
         from .Tuplet import Tuplet
 
         assert self.are_contiguous_same_parent(prototype=Tuplet)
@@ -787,63 +757,6 @@ class Selection(collections.abc.Sequence):
             previous = current
         return True
 
-    def are_leaves(self) -> typing.Union[bool, Expression]:
-        """
-        Is true when items in selection are all leaves.
-
-        ..  container:: example
-
-            >>> abjad.Staff("c'4 d'4 e'4 f'4")[:].are_leaves()
-            True
-
-        """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
-        return all(isinstance(_, Leaf) for _ in self)
-
-    def are_logical_voice(self, prototype=None) -> typing.Union[bool, Expression]:
-        """
-        Is true when items in selection are all components in the same
-        logical voice.
-
-        ..  container:: example
-
-            >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
-            >>> staff[:].are_logical_voice()
-            True
-
-            >>> selection = staff[:1] + staff[-1:]
-            >>> selection.are_logical_voice()
-            True
-
-        """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
-        prototype = prototype or (Component,)
-        if not isinstance(prototype, tuple):
-            prototype = (prototype,)
-        assert isinstance(prototype, tuple)
-        if len(self) == 0:
-            return True
-        if all(
-            isinstance(_, prototype) and abjad_inspect(_).parentage().orphan
-            for _ in self
-        ):
-            return True
-        first = self[0]
-        if not isinstance(first, prototype):
-            return False
-        same_logical_voice = True
-        parentage = abjad_inspect(first).parentage()
-        first_logical_voice = parentage.logical_voice()
-        for component in self[1:]:
-            parentage = abjad_inspect(component).parentage()
-            if parentage.logical_voice() != first_logical_voice:
-                same_logical_voice = False
-            if not parentage.orphan and not same_logical_voice:
-                return False
-        return True
-
     def are_contiguous_same_parent(
         self, prototype=None, *, ignore_before_after_grace=None
     ) -> typing.Union[bool, Expression]:
@@ -963,6 +876,63 @@ class Selection(collections.abc.Sequence):
             ):
                 return False
             previous = current
+        return True
+
+    def are_leaves(self) -> typing.Union[bool, Expression]:
+        """
+        Is true when items in selection are all leaves.
+
+        ..  container:: example
+
+            >>> abjad.Staff("c'4 d'4 e'4 f'4")[:].are_leaves()
+            True
+
+        """
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
+        return all(isinstance(_, Leaf) for _ in self)
+
+    def are_logical_voice(self, prototype=None) -> typing.Union[bool, Expression]:
+        """
+        Is true when items in selection are all components in the same
+        logical voice.
+
+        ..  container:: example
+
+            >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+            >>> staff[:].are_logical_voice()
+            True
+
+            >>> selection = staff[:1] + staff[-1:]
+            >>> selection.are_logical_voice()
+            True
+
+        """
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
+        prototype = prototype or (Component,)
+        if not isinstance(prototype, tuple):
+            prototype = (prototype,)
+        assert isinstance(prototype, tuple)
+        if len(self) == 0:
+            return True
+        if all(
+            isinstance(_, prototype) and abjad_inspect(_).parentage().orphan
+            for _ in self
+        ):
+            return True
+        first = self[0]
+        if not isinstance(first, prototype):
+            return False
+        same_logical_voice = True
+        parentage = abjad_inspect(first).parentage()
+        first_logical_voice = parentage.logical_voice()
+        for component in self[1:]:
+            parentage = abjad_inspect(component).parentage()
+            if parentage.logical_voice() != first_logical_voice:
+                same_logical_voice = False
+            if not parentage.orphan and not same_logical_voice:
+                return False
         return True
 
     def chord(
@@ -6313,6 +6283,69 @@ class Selection(collections.abc.Sequence):
             return type(self)(self)
         return type(self)([expression(_) for _ in self])
 
+    def nontrivial(self) -> typing.Union["Selection", Expression]:
+        r"""
+        Filters selection by length greater than 1.
+
+        ..  container:: example
+
+            Selects nontrivial runs:
+
+            ..  container:: example
+
+                >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
+                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.show(staff) # doctest: +SKIP
+
+                >>> result = abjad.select(staff).runs().nontrivial()
+
+                >>> for item in result:
+                ...     item
+                ...
+                Selection([Note("d'8"), Note("e'8")])
+                Selection([Note("f'8"), Note("g'8"), Note("a'8")])
+
+            ..  container:: example expression
+
+                >>> selector = abjad.select().runs().nontrivial()
+                >>> result = selector(staff)
+
+                >>> selector.print(result)
+                Selection([Note("d'8"), Note("e'8")])
+                Selection([Note("f'8"), Note("g'8"), Note("a'8")])
+
+                >>> selector.color(result)
+                >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff, strict=89)
+                \new Staff
+                \with
+                {
+                    autoBeaming = ##f
+                }
+                {
+                    c'8
+                    r8
+                    \abjad-color-music #'red
+                    d'8
+                    \abjad-color-music #'red
+                    e'8
+                    r8
+                    \abjad-color-music #'blue
+                    f'8
+                    \abjad-color-music #'blue
+                    g'8
+                    \abjad-color-music #'blue
+                    a'8
+                }
+
+        """
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
+        return self.filter_length(">", 1)
+
     def note(
         self, n: int, *, exclude: typings.Strings = None, grace: bool = None
     ) -> typing.Union[Note, Expression]:
@@ -6527,69 +6560,6 @@ class Selection(collections.abc.Sequence):
         if self._expression:
             return self._update_expression(inspect.currentframe())
         return self.components(Note, exclude=exclude, grace=grace)
-
-    def nontrivial(self) -> typing.Union["Selection", Expression]:
-        r"""
-        Filters selection by length greater than 1.
-
-        ..  container:: example
-
-            Selects nontrivial runs:
-
-            ..  container:: example
-
-                >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
-                >>> abjad.setting(staff).auto_beaming = False
-                >>> abjad.show(staff) # doctest: +SKIP
-
-                >>> result = abjad.select(staff).runs().nontrivial()
-
-                >>> for item in result:
-                ...     item
-                ...
-                Selection([Note("d'8"), Note("e'8")])
-                Selection([Note("f'8"), Note("g'8"), Note("a'8")])
-
-            ..  container:: example expression
-
-                >>> selector = abjad.select().runs().nontrivial()
-                >>> result = selector(staff)
-
-                >>> selector.print(result)
-                Selection([Note("d'8"), Note("e'8")])
-                Selection([Note("f'8"), Note("g'8"), Note("a'8")])
-
-                >>> selector.color(result)
-                >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff, strict=89)
-                \new Staff
-                \with
-                {
-                    autoBeaming = ##f
-                }
-                {
-                    c'8
-                    r8
-                    \abjad-color-music #'red
-                    d'8
-                    \abjad-color-music #'red
-                    e'8
-                    r8
-                    \abjad-color-music #'blue
-                    f'8
-                    \abjad-color-music #'blue
-                    g'8
-                    \abjad-color-music #'blue
-                    a'8
-                }
-
-        """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
-        return self.filter_length(">", 1)
 
     def partition_by_counts(
         self,
@@ -10060,3 +10030,50 @@ class Selection(collections.abc.Sequence):
         if previous_leaf is not None:
             leaves.insert(0, previous_leaf)
         return type(self)(leaves)
+
+
+### FUNCTIONS ###
+
+
+def select(items=None, previous=None):
+    r"""
+    Selects ``items`` or makes select expression.
+
+    ..  container:: example
+
+        Selects first two notes in staff:
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> selection = abjad.select(staff[:2]).leaves(pitched=True)
+        >>> for note in selection:
+        ...     abjad.override(note).note_head.color = 'red'
+
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                \once \override NoteHead.color = #red
+                c'4
+                \once \override NoteHead.color = #red
+                d'4
+                e'4
+                f'4
+            }
+
+    ..  container:: example
+
+        Returns selection agent:
+
+        >>> abjad.select(staff)
+        Selection([Staff("c'4 d'4 e'4 f'4")])
+
+        >>> abjad.select()
+        abjad.select()
+
+    """
+    if items is None:
+        return Expression().select(previous=previous)
+    return Selection(items=items, previous=previous)

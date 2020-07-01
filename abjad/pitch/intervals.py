@@ -140,15 +140,15 @@ class Interval(object):
     ### PRIVATE METHODS ###
 
     # @abc.abstractmethod
+    def _from_interval_or_interval_class(self, argument):
+        raise NotImplementedError
+
+    # @abc.abstractmethod
     def _from_named_parts(self, direction, quality, diatonic_number):
         raise NotImplementedError
 
     # @abc.abstractmethod
     def _from_number(self, argument):
-        raise NotImplementedError
-
-    # @abc.abstractmethod
-    def _from_interval_or_interval_class(self, argument):
         raise NotImplementedError
 
     @classmethod
@@ -616,6 +616,15 @@ class NamedInterval(Interval):
 
     ### PRIVATE METHODS ###
 
+    def _from_interval_or_interval_class(self, argument):
+        try:
+            quality = argument.quality
+            diatonic_number = abs(argument.number)
+            direction = mathtools.sign(argument.number)
+        except AttributeError:
+            direction, quality, diatonic_number = self._numbered_to_named(argument)
+        self._from_named_parts(direction, quality, diatonic_number)
+
     def _from_named_parts(self, direction, quality, diatonic_number):
         from .intervalclasses import NamedIntervalClass
 
@@ -634,15 +643,6 @@ class NamedInterval(Interval):
 
     def _from_number(self, argument):
         direction, quality, diatonic_number = self._numbered_to_named(argument)
-        self._from_named_parts(direction, quality, diatonic_number)
-
-    def _from_interval_or_interval_class(self, argument):
-        try:
-            quality = argument.quality
-            diatonic_number = abs(argument.number)
-            direction = mathtools.sign(argument.number)
-        except AttributeError:
-            direction, quality, diatonic_number = self._numbered_to_named(argument)
         self._from_named_parts(direction, quality, diatonic_number)
 
     def _get_format_specification(self):
@@ -1192,6 +1192,9 @@ class NumberedInterval(Interval):
 
     ### PRIVATE METHODS ###
 
+    def _from_interval_or_interval_class(self, argument):
+        self._from_number(float(argument))
+
     def _from_named_parts(self, direction, quality, diatonic_number):
         self._from_number(self._named_to_numbered(direction, quality, diatonic_number))
 
@@ -1207,9 +1210,6 @@ class NumberedInterval(Interval):
             octaves += 1
         self._octaves = octaves
         self._interval_class = NumberedIntervalClass(pc_number * direction)
-
-    def _from_interval_or_interval_class(self, argument):
-        self._from_number(float(argument))
 
     def _get_format_specification(self):
         values = [self.number]

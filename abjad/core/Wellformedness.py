@@ -12,11 +12,11 @@ from ..indicators.StopTextSpan import StopTextSpan
 from ..instruments import Instrument
 from ..storage import StorageFormatManager
 from ..tags import Tags
-from ..top import iterate
 from ..utilities.Sequence import Sequence
 from .Component import inspect
 from .Container import Container
 from .Context import Context
+from .Iteration import iterate
 
 abjad_tags = Tags()
 

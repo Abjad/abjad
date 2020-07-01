@@ -12,48 +12,41 @@ def find_all_duplicate_module_names():
     duplicate_file_names = []
 
     expected_duplicate_file_names = (
-        'conf.py',
-        'definition.py',
-        )
+        "conf.py",
+        "definition.py",
+    )
 
-    for directory, subdirectory_names, file_names in os.walk('.'):
+    for directory, subdirectory_names, file_names in os.walk("."):
         for file_name in file_names:
-            if not file_name.endswith('.py') or file_name.startswith('test'):
+            if not file_name.endswith(".py") or file_name.startswith("test"):
                 continue
-            elif 'demos' in directory:
+            elif "demos" in directory:
                 continue
             elif file_name in expected_duplicate_file_names:
                 continue
-            elif file_name == '__init__.py':
+            elif file_name == "__init__.py":
                 continue
             all_file_names.append(file_name)
             all_directories.append(directory)
             if file_name not in unique_file_names:
                 unique_file_names.append(file_name)
             else:
-                second_full_path = os.path.join(
-                    directory,
-                    file_name,
-                    )
+                second_full_path = os.path.join(directory, file_name,)
                 index = all_file_names.index(file_name)
-                duplicate_directory = \
-                    all_directories[index]
-                first_full_path = os.path.join(
-                    duplicate_directory,
-                    file_name,
-                    )
+                duplicate_directory = all_directories[index]
+                first_full_path = os.path.join(duplicate_directory, file_name,)
                 duplicate_file_names.append(first_full_path)
                 duplicate_file_names.append(second_full_path)
 
-    print('Total nontest modules:     {}'.format(len(all_file_names)))
-    print('Unique nontest modules:    {}'.format(len(unique_file_names)))
+    print("Total nontest modules:     {}".format(len(all_file_names)))
+    print("Unique nontest modules:    {}".format(len(unique_file_names)))
     print()
-    print('Duplicate nontest module:  {}'.format(len(duplicate_file_names)))
+    print("Duplicate nontest module:  {}".format(len(duplicate_file_names)))
     for duplicate_file_name in duplicate_file_names:
         print(duplicate_file_name)
     print()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     abjad.IOManager.spawn_subprocess("clear")
     find_all_duplicate_module_names()

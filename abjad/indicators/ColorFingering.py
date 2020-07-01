@@ -5,8 +5,8 @@ from .. import enums, mathtools
 from ..formatting import LilyPondFormatBundle
 from ..lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from ..markups import Markup
+from ..new import new
 from ..storage import StorageFormatManager
-from ..top import new
 
 
 @functools.total_ordering

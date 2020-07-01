@@ -9,10 +9,10 @@ import typing
 from . import enums, mathtools
 from .duration import Duration, Multiplier, Offset
 from .markups import Markup, Postscript
+from .new import new
 from .ratio import Ratio
 from .storage import FormatSpecification, StorageFormatManager
 from .system.Signature import Signature
-from .top import new
 from .utilities.Expression import Expression
 from .utilities.Sequence import Sequence
 from .utilities.TypedList import TypedList
@@ -828,19 +828,6 @@ class Timespan(object):
         return self._stop_offset - self._start_offset
 
     @property
-    def wellformed(self) -> bool:
-        """
-        Is true when timespan start offset preceeds timespan stop offset.
-
-        ..  container:: example
-
-            >>> abjad.Timespan(0, 10).wellformed
-            True
-
-        """
-        return self._start_offset < self._stop_offset
-
-    @property
     def offsets(self) -> typing.Tuple[Offset, Offset]:
         """
         Gets offsets.
@@ -878,6 +865,19 @@ class Timespan(object):
 
         """
         return self._stop_offset
+
+    @property
+    def wellformed(self) -> bool:
+        """
+        Is true when timespan start offset preceeds timespan stop offset.
+
+        ..  container:: example
+
+            >>> abjad.Timespan(0, 10).wellformed
+            True
+
+        """
+        return self._start_offset < self._stop_offset
 
     ### PUBLIC METHODS ###
 
@@ -3302,8 +3302,10 @@ class TimespanList(TypedList):
 
         Returns markup.
         """
+        from .illustrate import illustrate
+
         if not self:
-            return Markup.null().__illustrate__()
+            return illustrate(Markup.null())
         if isinstance(range_, Timespan):
             minimum, maximum = range_.start_offset, range_.stop_offset
         elif range_ is not None:
@@ -3348,7 +3350,7 @@ class TimespanList(TypedList):
                 )
                 markups.append(timespan_markup)
             markup = Markup.left_column(markups)
-        return markup.__illustrate__()
+        return illustrate(markup)
 
     def __invert__(self) -> "TimespanList":
         """

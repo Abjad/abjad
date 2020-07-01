@@ -8,12 +8,10 @@ from ..ly.drums import drums
 from ..pitch.pitches import NamedPitch
 from ..pitch.segments import PitchSegment
 from ..tags import Tag
-from ..top import parse
 from .Component import inspect
 from .DrumNoteHead import DrumNoteHead
 from .Leaf import Leaf
-from .NoteHead import NoteHead
-from .NoteHeadList import NoteHeadList
+from .NoteHead import NoteHead, NoteHeadList
 
 
 class Chord(Leaf):
@@ -63,6 +61,7 @@ class Chord(Leaf):
     def __init__(
         self, *arguments, multiplier: typings.DurationTyping = None, tag: Tag = None,
     ) -> None:
+        from ..parsers.parse import parse
         from .Note import Note
 
         assert len(arguments) in (0, 1, 2)

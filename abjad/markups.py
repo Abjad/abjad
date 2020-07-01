@@ -1,22 +1,22 @@
 """
 Tools for modeling LilyPond's markup and postscript.
 """
-
-try:
-    import quicktions as fractions  # type: ignore
-except ImportError:
-    import fractions  # type: ignore
 import collections
 import numbers
 import typing
 
+import quicktions
+
 from . import enums, mathtools
+from .formatting import LilyPondFormatManager
 from .lilypondnames.LilyPondTweakManager import LilyPondTweakManager
 from .ly.colors import colors
 from .ly.music_glyphs import music_glyphs
+from .new import new
 from .scheme import Scheme, SchemeColor, SchemePair
 from .storage import FormatSpecification, StorageFormatManager
-from .top import new
+from .tags import Tag
+from .utilities.Expression import Expression
 from .utilities.String import String
 from .utilities.TypedList import TypedList
 
@@ -199,7 +199,7 @@ class Markup(object):
         literal: bool = None,
         tweaks: LilyPondTweakManager = None,
     ) -> None:
-        from .top import parse
+        from .parsers.parse import parse
 
         self._annotation = None
         new_contents: typing.Tuple[typing.Union[str, MarkupCommand], ...]
@@ -461,46 +461,6 @@ class Markup(object):
             raise TypeError(f"unhashable type: {self}")
         return result
 
-    def __illustrate__(self):
-        r"""
-        Illustrates markup.
-
-        ..  container:: example
-
-            >>> string = r'\italic { Allegro assai }'
-            >>> markup = abjad.Markup(string)
-            >>> abjad.f(markup)
-            \markup {
-                \italic
-                    {
-                        Allegro
-                        assai
-                    }
-                }
-
-            >>> abjad.show(markup) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> lilypond_file = markup.__illustrate__()
-                >>> abjad.f(lilypond_file.items[-1])
-                \markup {
-                    \italic
-                        {
-                            Allegro
-                            assai
-                        }
-                    }
-
-        Returns LilyPond file.
-        """
-        import abjad
-
-        lilypond_file = abjad.LilyPondFile.new()
-        markup = new(self, direction=None)
-        lilypond_file.items.append(markup)
-        return lilypond_file
-
     def __lt__(self, argument):
         """
         Is true when markup contents compare less than ``argument`` contents.
@@ -605,12 +565,10 @@ class Markup(object):
     ### PRIVATE METHODS ###
 
     def _get_format_pieces(self):
-        import abjad
-
         tweaks = []
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions()
-        indent = abjad.LilyPondFormatManager.indent
+        indent = LilyPondFormatManager.indent
         direction = ""
         if self.direction is not None:
             direction = String.to_tridirectional_lilypond_symbol(self.direction)
@@ -1689,7 +1647,7 @@ class Markup(object):
             number = int(rational)
             markup = Markup(number, direction=direction)
             return markup
-        assert isinstance(rational, fractions.Fraction), repr(rational)
+        assert isinstance(rational, quicktions.Fraction), repr(rational)
         integer_part = int(rational)
         fraction_part = rational - integer_part
         integer_markup = Markup(integer_part, direction=direction)
@@ -3167,8 +3125,6 @@ class MarkupCommand(object):
     ### PRIVATE METHODS ###
 
     def _get_format_pieces(self):
-        import abjad
-
         def recurse(iterable):
             result = []
             for item in iterable:
@@ -3176,7 +3132,7 @@ class MarkupCommand(object):
                     result.append("{")
                     result.extend(recurse(item))
                     result.append("}")
-                elif isinstance(item, abjad.Scheme):
+                elif isinstance(item, Scheme):
                     result.append(format(item))
                 elif hasattr(item, "_get_format_pieces"):
                     result.extend(item._get_format_pieces())
@@ -3185,7 +3141,7 @@ class MarkupCommand(object):
                     result.extend(item.splitlines())
                     result.append('"')
                 else:
-                    formatted = abjad.Scheme.format_scheme_value(
+                    formatted = Scheme.format_scheme_value(
                         item, force_quotes=self.force_quotes
                     )
                     if isinstance(item, str):
@@ -3194,12 +3150,10 @@ class MarkupCommand(object):
                         result.append("#{}".format(formatted))
             return ["{}{}".format(indent, item) for item in result]
 
-        indent = abjad.LilyPondFormatManager.indent
+        indent = LilyPondFormatManager.indent
         parts = [r"\{}".format(self.name)]
         parts.extend(recurse(self.arguments))
-        parts = abjad.LilyPondFormatManager.tag(
-            parts, self.tag, deactivate=self.deactivate
-        )
+        parts = LilyPondFormatManager.tag(parts, self.tag, deactivate=self.deactivate)
         return parts
 
     def _get_format_specification(self):
@@ -3332,10 +3286,8 @@ class MarkupCommand(object):
 
     @tag.setter
     def tag(self, argument):
-        import abjad
-
         if argument is not None:
-            tag = abjad.Tag(argument)
+            tag = Tag(argument)
         else:
             tag = None
         self._tag = tag
@@ -3420,14 +3372,17 @@ class MarkupList(TypedList):
 
             ..  docs::
 
-                >>> abjad.f(markup_list.__illustrate__().items[-1])
-                \markup {
-                    \column
-                        {
-                            Allegro
-                            assai
-                        }
-                    }
+                >>> abjad.f(markup_list)
+                abjad.MarkupList(
+                    items=[
+                        abjad.Markup(
+                            contents=['Allegro'],
+                            ),
+                        abjad.Markup(
+                            contents=['assai'],
+                            ),
+                        ],
+                    )
 
     """
 
@@ -3529,68 +3484,30 @@ class MarkupList(TypedList):
 
                 ..  docs::
 
-                    >>> abjad.f(markup_list.__illustrate__().items[-1])
-                    \markup {
-                        \column
-                            {
-                                Allegro
-                                assai
-                                ma
-                                non
-                                troppo
-                            }
-                        }
+                    >>> abjad.f(markup_list)
+                    abjad.MarkupList(
+                        items=[
+                            abjad.Markup(
+                                contents=['Allegro'],
+                                ),
+                            abjad.Markup(
+                                contents=['assai'],
+                                ),
+                            abjad.Markup(
+                                contents=['ma'],
+                                ),
+                            abjad.Markup(
+                                contents=['non'],
+                                ),
+                            abjad.Markup(
+                                contents=['troppo'],
+                                ),
+                            ],
+                        )
 
         Returns none.
         """
         return super().__iadd__(argument)
-
-    def __illustrate__(self):
-        r"""
-        Illustrates markup markup list.
-
-        ..  container:: example
-
-            ..  container:: example
-
-                >>> markups = ['Allegro', 'assai']
-                >>> markup_list = abjad.MarkupList(markups)
-                >>> abjad.f(markup_list)
-                abjad.MarkupList(
-                    items=[
-                        abjad.Markup(
-                            contents=['Allegro'],
-                            ),
-                        abjad.Markup(
-                            contents=['assai'],
-                            ),
-                        ],
-                    )
-
-                >>> abjad.show(markup_list) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> abjad.f(markup_list.__illustrate__().items[-1])
-                    \markup {
-                        \column
-                            {
-                                Allegro
-                                assai
-                            }
-                        }
-
-        Returns LilyPond file.
-        """
-        import abjad
-
-        lilypond_file = abjad.LilyPondFile.new()
-        for name in ("layout", "paper", "score"):
-            block = lilypond_file[name]
-            lilypond_file.items.remove(block)
-        markup = Markup.column(list(self))
-        lilypond_file.items.append(markup)
-        return lilypond_file
 
     def __setitem__(self, i, argument):
         r"""
@@ -3619,14 +3536,17 @@ class MarkupList(TypedList):
 
                 ..  docs::
 
-                    >>> abjad.f(markup_list.__illustrate__().items[-1])
-                    \markup {
-                        \column
-                            {
-                                Allegro
-                                "non troppo"
-                            }
-                        }
+                    >>> abjad.f(markup_list)
+                    abjad.MarkupList(
+                        items=[
+                            abjad.Markup(
+                                contents=['Allegro'],
+                                ),
+                            abjad.Markup(
+                                contents=['non troppo'],
+                                ),
+                            ],
+                        )
 
         Returns none.
         """
@@ -3642,9 +3562,7 @@ class MarkupList(TypedList):
         return FormatSpecification(client=self, storage_format_kwargs_names=names)
 
     def _update_expression(self, frame, force_return=None):
-        import abjad
-
-        callback = abjad.Expression._frame_to_callback(frame, force_return=force_return)
+        callback = Expression._frame_to_callback(frame, force_return=force_return)
         return self._expression.append_callback(callback)
 
     ### PUBLIC PROPERTIES ###
@@ -3713,14 +3631,18 @@ class MarkupList(TypedList):
 
             ..  docs::
 
-                >>> abjad.f(markup_list.__illustrate__().items[-1])
-                \markup {
-                    \column
-                        {
-                            Allegro
-                            assai
-                        }
-                    }
+                >>> abjad.f(markup_list)
+                abjad.MarkupList(
+                    items=[
+                        abjad.Markup(
+                            contents=['Allegro'],
+                            ),
+                        abjad.Markup(
+                            contents=['assai'],
+                            ),
+                        ],
+                    keep_sorted=True,
+                    )
 
         ..  container:: example
 
@@ -3734,14 +3656,17 @@ class MarkupList(TypedList):
 
             ..  docs::
 
-                >>> abjad.f(markup_list.__illustrate__().items[-1])
-                \markup {
-                    \column
-                        {
-                            assai
-                            Allegro
-                        }
-                    }
+                >>> abjad.f(markup_list)
+                abjad.MarkupList(
+                    items=[
+                        abjad.Markup(
+                            contents=['assai'],
+                            ),
+                        abjad.Markup(
+                            contents=['Allegro'],
+                            ),
+                        ],
+                    )
 
         Defaults to none.
 
@@ -3970,14 +3895,17 @@ class MarkupList(TypedList):
 
                 ..  docs::
 
-                    >>> abjad.f(markup_list.__illustrate__().items[-1])
-                    \markup {
-                        \column
-                            {
-                                Allegro
-                                assai
-                            }
-                        }
+                    >>> abjad.f(markup_list)
+                    abjad.MarkupList(
+                        items=[
+                            abjad.Markup(
+                                contents=['Allegro'],
+                                ),
+                            abjad.Markup(
+                                contents=['assai'],
+                                ),
+                            ],
+                        )
 
         Returns none.
         """
@@ -4007,14 +3935,17 @@ class MarkupList(TypedList):
 
             ..  docs::
 
-                >>> abjad.f(markup_list.__illustrate__().items[-1])
-                \markup {
-                    \column
-                        {
-                            Allegro
-                            assai
-                        }
-                    }
+                >>> abjad.f(markup_list)
+                abjad.MarkupList(
+                    items=[
+                        abjad.Markup(
+                            contents=['Allegro'],
+                            ),
+                        abjad.Markup(
+                            contents=['assai'],
+                            ),
+                        ],
+                    )
 
             >>> markup_list.index('Allegro')
             0
@@ -4198,13 +4129,14 @@ class MarkupList(TypedList):
 
                 ..  docs::
 
-                    >>> abjad.f(markup_list.__illustrate__().items[-1])
-                    \markup {
-                        \column
-                            {
-                                Allegro
-                            }
-                        }
+                    >>> abjad.f(markup_list)
+                    abjad.MarkupList(
+                        items=[
+                            abjad.Markup(
+                                contents=['Allegro'],
+                                ),
+                            ],
+                        )
 
         Returns none.
         """
@@ -4366,15 +4298,6 @@ class Postscript(object):
         except TypeError:
             raise TypeError(f"unhashable type: {self}")
         return result
-
-    def __illustrate__(self):
-        """
-        Illustrates Postscript.
-
-        Returns LilyPond file.
-        """
-        markup = Markup.postscript(self)
-        return markup.__illustrate__()
 
     def __radd__(self, argument):
         """

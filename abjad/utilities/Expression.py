@@ -1,18 +1,15 @@
-try:
-    import quicktions as fractions  # type: ignore
-except ImportError:
-    import fractions  # type: ignore
 import importlib
 import inspect
 import itertools
 import numbers
 import typing
 
+import quicktions
 import uqbar.enums
 
+from ..new import new
 from ..storage import FormatSpecification, StorageFormatManager
 from ..system.Signature import Signature
-from ..top import label, new
 
 
 class Expression(object):
@@ -1144,7 +1141,7 @@ class Expression(object):
             pass
         elif isinstance(argument, str):
             argument = repr(argument)
-        elif isinstance(argument, fractions.Fraction):
+        elif isinstance(argument, quicktions.Fraction):
             argument = f"abjad.{argument.__repr__()}"
         elif isinstance(argument, numbers.Number):
             argument = str(argument)
@@ -1497,18 +1494,19 @@ class Expression(object):
         """
         Colors ``argument``.
         """
+        from ..label import Label
         from .CyclicTuple import CyclicTuple
 
         if self._is_singular_get_item():
             colors = colors or ["green"]
             color = colors[0]
-            label(argument).color_leaves(color=color)
+            Label(argument).color_leaves(color=color)
         else:
             colors = colors or ["red", "blue"]
             colors = CyclicTuple(colors)
             for i, item in enumerate(argument):
                 color = colors[i]
-                label(item).color_leaves(color=color)
+                Label(item).color_leaves(color=color)
 
     def establish_equivalence(self, name) -> "Expression":
         r"""
@@ -1772,7 +1770,7 @@ class Expression(object):
                     }
 
         """
-        from ..core.Label import Label
+        from ..label import Label
 
         class_ = Label
         callback = self._make_initializer_callback(class_, **keywords)

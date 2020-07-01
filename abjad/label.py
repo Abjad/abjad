@@ -2,33 +2,37 @@ import collections
 import inspect
 import typing
 
-from .. import enums
-from ..duration import Duration, NonreducedFraction
-from ..indicators.LilyPondComment import LilyPondComment
-from ..indicators.LilyPondLiteral import LilyPondLiteral
-from ..markups import Markup, MarkupCommand
-from ..pitch.SetClass import SetClass
-from ..pitch.intervalclasses import (
+from . import enums
+from .core.Chord import Chord
+from .core.Component import Component, attach, detach
+from .core.Component import inspect as abjad_inspect
+from .core.Iteration import iterate
+from .core.Note import Note
+from .core.Selection import select
+from .core.Skip import Skip
+from .duration import Duration, NonreducedFraction
+from .indicators.LilyPondComment import LilyPondComment
+from .indicators.LilyPondLiteral import LilyPondLiteral
+from .lilypondnames.LilyPondGrobNameManager import override
+from .lilypondnames.LilyPondTweakManager import tweak
+from .markups import Markup, MarkupCommand
+from .new import new
+from .pitch.SetClass import SetClass
+from .pitch.intervalclasses import (
     NamedIntervalClass,
     NumberedIntervalClass,
     NumberedInversionEquivalentIntervalClass,
 )
-from ..pitch.intervals import NamedInterval, NumberedInterval
-from ..pitch.pitchclasses import NumberedPitchClass
-from ..pitch.pitches import NamedPitch, NumberedPitch
-from ..pitch.segments import PitchSegment
-from ..pitch.sets import PitchClassSet
-from ..pitch.vectors import IntervalClassVector
-from ..scheme import SchemeColor
-from ..storage import StorageFormatManager
-from ..tags import Tag
-from ..top import attach, detach, iterate, new, override, select, tweak
-from ..utilities.Expression import Expression
-from .Chord import Chord
-from .Component import Component
-from .Component import inspect as abjad_inspect
-from .Note import Note
-from .Skip import Skip
+from .pitch.intervals import NamedInterval, NumberedInterval
+from .pitch.pitchclasses import NumberedPitchClass
+from .pitch.pitches import NamedPitch, NumberedPitch
+from .pitch.segments import PitchSegment
+from .pitch.sets import PitchClassSet
+from .pitch.vectors import IntervalClassVector
+from .scheme import SchemeColor
+from .storage import StorageFormatManager
+from .tags import Tag
+from .utilities.Expression import Expression
 
 
 class Label(object):
@@ -4185,3 +4189,112 @@ class Label(object):
         if global_offset is not None:
             total_duration += global_offset
         return total_duration
+
+
+### FUNCTIONS ###
+
+
+def label(client=None, deactivate=None, tag=None):
+    r"""
+    Makes label agent or label expression.
+
+    ..  container:: example
+
+        Labels logical ties with start offsets:
+
+        >>> staff = abjad.Staff(r"\times 2/3 { c'4 d'4 e'4 ~ } e'4 ef'4")
+        >>> abjad.label(staff).with_start_offsets(direction=abjad.Up)
+        Duration(1, 1)
+
+        >>> abjad.override(staff).text_script.staff_padding = 4
+        >>> abjad.override(staff).tuplet_bracket.staff_padding = 0
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            \with
+            {
+                \override TextScript.staff-padding = #4
+                \override TupletBracket.staff-padding = #0
+            }
+            {
+                \times 2/3 {
+                    c'4
+                    ^ \markup { 0 }
+                    d'4
+                    ^ \markup { 1/6 }
+                    e'4
+                    ^ \markup { 1/3 }
+                    ~
+                }
+                e'4
+                ef'4
+                ^ \markup { 3/4 }
+            }
+
+        See the ``Label`` API entry for many more examples.
+
+    ..  container:: example expression
+
+        Initializes positionally:
+
+        >>> expression = abjad.label()
+        >>> expression(staff)
+        Label(client=<Staff{3}>)
+
+        Initializes from keyword:
+
+        >>> expression = abjad.label()
+        >>> expression(client=staff)
+        Label(client=<Staff{3}>)
+
+        Makes label expression:
+
+            >>> expression = abjad.label()
+            >>> expression = expression.with_start_offsets()
+
+        >>> staff = abjad.Staff(r"\times 2/3 { c'4 d'4 e'4 ~ } e'4 ef'4")
+        >>> expression(staff)
+        Duration(1, 1)
+
+        >>> abjad.override(staff).text_script.staff_padding = 4
+        >>> abjad.override(staff).tuplet_bracket.staff_padding = 0
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            \with
+            {
+                \override TextScript.staff-padding = #4
+                \override TupletBracket.staff-padding = #0
+            }
+            {
+                \times 2/3 {
+                    c'4
+                    ^ \markup { 0 }
+                    d'4
+                    ^ \markup { 1/6 }
+                    e'4
+                    ^ \markup { 1/3 }
+                    ~
+                }
+                e'4
+                ef'4
+                ^ \markup { 3/4 }
+            }
+
+        See the ``Label`` API entry for many more examples.
+
+    Returns label agent when ``client`` is not none.
+
+    Returns label expression when ``client`` is none.
+    """
+    if client is not None:
+        return Label(client=client, deactivate=deactivate, tag=tag)
+    expression = Expression()
+    expression = expression.label(tag=tag)
+    return expression

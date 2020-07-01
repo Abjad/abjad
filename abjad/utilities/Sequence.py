@@ -1,7 +1,3 @@
-try:
-    import quicktions as fractions  # type: ignore
-except ImportError:
-    import fractions  # type: ignore
 import collections
 import copy
 import inspect
@@ -10,12 +6,13 @@ import math
 import sys
 import typing
 
+import quicktions
+
 from .. import enums, mathtools
 from ..markups import MarkupList
 from ..ratio import Ratio
 from ..storage import FormatSpecification, StorageFormatManager
 from ..system.Signature import Signature
-from ..top import select
 from .CyclicTuple import CyclicTuple
 from .Expression import Expression
 
@@ -3447,7 +3444,7 @@ class Sequence(collections.abc.Sequence):
         items.append(sublist)
         current_cumulative_weight = cumulative_weights.pop(0)
         for item in self:
-            if not isinstance(item, (int, float, fractions.Fraction)):
+            if not isinstance(item, (int, float, quicktions.Fraction)):
                 raise TypeError(f"must be number: {item!r}.")
             sublist.append(item)
             while current_cumulative_weight <= mathtools.weight(
@@ -4600,6 +4597,8 @@ class Sequence(collections.abc.Sequence):
 
         Returns selection.
         """
+        from ..core.Selection import select
+
         if self._expression:
             return self._update_expression(inspect.currentframe())
         return select(self)
@@ -5267,3 +5266,69 @@ class Sequence(collections.abc.Sequence):
                 item = type(self)(items=item)
                 items.append(item)
         return type(self)(items=items)
+
+
+### FUNCTIONS ###
+
+
+def sequence(items=None, **keywords):
+    r"""
+    Makes sequence or sequence expression.
+
+    ..  container:: example
+
+        ..  container:: example
+
+            Makes sequence:
+
+            >>> abjad.sequence([1, 2, [3, [4]], 5])
+            Sequence([1, 2, [3, [4]], 5])
+
+        ..  container:: example expression
+
+            Makes sequence expression:
+
+            >>> expression = abjad.sequence()
+            >>> expression([1, 2, [3, [4]], 5])
+            Sequence([1, 2, [3, [4]], 5])
+
+    ..  container:: example
+
+        Flattens, reverses and slices sequence:
+
+        ..  container:: example
+
+            >>> sequence_ = abjad.sequence([1, 2, [3, [4]], 5])
+            >>> sequence_
+            Sequence([1, 2, [3, [4]], 5])
+
+            >>> sequence_ = sequence_.flatten(depth=-1)
+            >>> sequence_
+            Sequence([1, 2, 3, 4, 5])
+
+            >>> sequence_ = sequence_.reverse()
+            >>> sequence_
+            Sequence([5, 4, 3, 2, 1])
+
+            >>> sequence_ = sequence_[-3:]
+            >>> sequence_
+            Sequence([3, 2, 1])
+
+        ..  container:: example expression
+
+            >>> expression = abjad.sequence()
+            >>> expression = expression.flatten(depth=-1)
+            >>> expression = expression.reverse()
+            >>> expression = expression[-3:]
+            >>> expression([1, 2, [3, [4]], 5])
+            Sequence([3, 2, 1])
+
+    Returns sequence when ``items`` is not none.
+
+    Returns sequence expression when ``items`` is none.
+    """
+    if items is not None:
+        return Sequence(items=items, **keywords)
+    expression = Expression()
+    expression = expression.sequence(**keywords)
+    return expression

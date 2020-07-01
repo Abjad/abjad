@@ -1,27 +1,26 @@
-try:
-    import quicktions as fractions  # type: ignore
-except ImportError:
-    import fractions  # type: ignore
 import math
 import typing
 
+import quicktions
 import uqbar
 
 from .. import exceptions, mathtools, typings
 from ..duration import Duration, Multiplier, NonreducedFraction
 from ..formatting import LilyPondFormatManager
-from ..lilypondnames.LilyPondTweakManager import LilyPondTweakManager
+from ..lilypondnames.LilyPondGrobNameManager import override
+from ..lilypondnames.LilyPondTweakManager import LilyPondTweakManager, tweak
 from ..ratio import NonreducedRatio, Ratio
 from ..storage import FormatSpecification
 from ..tags import Tag
-from ..top import iterate, override, select, tweak
 from .Component import inspect
 from .Container import Container
+from .Iteration import iterate
 from .Leaf import Leaf
 from .LeafMaker import LeafMaker
 from .Note import Note
 from .NoteMaker import NoteMaker
 from .Rest import Rest
+from .Selection import select
 
 
 class Tuplet(Container):
@@ -738,7 +737,7 @@ class Tuplet(Container):
 
     @multiplier.setter
     def multiplier(self, argument):
-        if isinstance(argument, (int, fractions.Fraction)):
+        if isinstance(argument, (int, quicktions.Fraction)):
             rational = Multiplier(argument)
         elif isinstance(argument, tuple):
             rational = Multiplier(argument)
@@ -2060,6 +2059,31 @@ class Tuplet(Container):
         multiplier = Multiplier(denominator, numerator)
         self.multiplier *= multiplier
 
+    def rest_filled(self) -> bool:
+        r"""
+        Is true when tuplet is rest-filled.
+
+        ..  container:: example
+
+            >>> tuplet = abjad.Tuplet((3, 2), "r4 r r")
+            >>> abjad.show(tuplet) # doctest: +SKIP
+
+            ..  container:: example
+
+                >>> abjad.f(tuplet)
+                \tweak text #tuplet-number::calc-fraction-text
+                \times 3/2 {
+                    r4
+                    r4
+                    r4
+                }
+
+            >>> tuplet.rest_filled()
+            True
+
+        """
+        return all(isinstance(_, Rest) for _ in self)
+
     def rewrite_dots(self) -> None:
         r"""
         Rewrites dots.
@@ -2199,31 +2223,6 @@ class Tuplet(Container):
         dot_multiplier_reciprocal = dot_multiplier.reciprocal
         for component in self:
             component.written_duration *= dot_multiplier_reciprocal
-
-    def rest_filled(self) -> bool:
-        r"""
-        Is true when tuplet is rest-filled.
-
-        ..  container:: example
-
-            >>> tuplet = abjad.Tuplet((3, 2), "r4 r r")
-            >>> abjad.show(tuplet) # doctest: +SKIP
-
-            ..  container:: example
-
-                >>> abjad.f(tuplet)
-                \tweak text #tuplet-number::calc-fraction-text
-                \times 3/2 {
-                    r4
-                    r4
-                    r4
-                }
-
-            >>> tuplet.rest_filled()
-            True
-
-        """
-        return all(isinstance(_, Rest) for _ in self)
 
     def set_minimum_denominator(self, denominator) -> None:
         r"""

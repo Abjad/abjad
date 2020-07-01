@@ -7,10 +7,10 @@ import abjad
 
 def find_lower_camel_case_modules():
     lower_camel_case_modules = []
-    lower_camel_case_pattern = re.compile(r'[a-z]+[A-Z]+.*')
-    for path, subdirectories, file_names in os.walk('.'):
+    lower_camel_case_pattern = re.compile(r"[a-z]+[A-Z]+.*")
+    for path, subdirectories, file_names in os.walk("."):
         for file_name in file_names:
-            if file_name.endswith('.py'):
+            if file_name.endswith(".py"):
                 short_name = file_name[:-3]
                 if lower_camel_case_pattern.match(short_name):
                     lower_camel_case_modules.append(file_name)
@@ -18,14 +18,14 @@ def find_lower_camel_case_modules():
         print()
         print(lower_camel_case_modules)
         total = len(lower_camel_case_modules)
-        print('Total lower camel case modules: {}'.format(total))
+        print("Total lower camel case modules: {}".format(total))
     else:
-        print('No lower camel case modules found.')
+        print("No lower camel case modules found.")
     print()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     abjad.IOManager.spawn_subprocess("clear")
-    print('Finding lower camel case modules ...')
+    print("Finding lower camel case modules ...")
     print()
     find_lower_camel_case_modules()

@@ -8,25 +8,28 @@ import pathlib
 import subprocess
 import time
 
-from .core.Component import Component
+from .core.Component import Component, attach
 from .core.Component import inspect as abjad_inspect
 from .core.Container import Container
 from .core.Context import Context
+from .core.Iteration import iterate
 from .core.Score import Score
-from .core.Selection import Selection
+from .core.Selection import Selection, select
 from .core.Skip import Skip
 from .core.Staff import Staff
 from .core.Voice import Voice
 from .formatting import LilyPondFormatManager
 from .indicators.LilyPondLiteral import LilyPondLiteral
 from .indicators.TimeSignature import TimeSignature
+from .lilypondnames.LilyPondGrobNameManager import override
+from .lilypondnames.LilyPondSettingNameManager import setting
 from .pitch.pitches import NamedPitch
 from .scheme import Scheme, SpacingVector
 from .storage import FormatSpecification, StorageFormatManager
 from .system.Configuration import Configuration
 from .system.TemporaryDirectoryChange import TemporaryDirectoryChange
 from .tags import Tag
-from .top import attach, iterate, override, select, sequence, setting
+from .utilities.Sequence import sequence
 
 configuration = Configuration()
 

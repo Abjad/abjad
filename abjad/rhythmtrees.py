@@ -1,14 +1,10 @@
 """
 Tools for modeling IRCAM-style rhythm trees.
 """
-
-try:
-    import quicktions as fractions  # type: ignore
-except ImportError:
-    import fractions  # type: ignore
 import abc
 import typing
 
+import quicktions
 import uqbar.containers
 import uqbar.graphs
 
@@ -203,7 +199,7 @@ class RhythmTreeMixin(object):
 
     @preprolated_duration.setter
     def preprolated_duration(self, argument):
-        if not isinstance(argument, fractions.Fraction):
+        if not isinstance(argument, quicktions.Fraction):
             argument = Duration(argument)
         assert 0 < argument
         self._duration = argument
@@ -747,18 +743,18 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
         """
         return sum([x.preprolated_duration for x in self])
 
-    def _prepare_setitem_single(self, expr):
-        if isinstance(expr, str):
-            expr = RhythmTreeParser()(expr)[0]
-            assert len(expr) == 1
-            expr = expr[0]
-        return expr
-
     def _prepare_setitem_multiple(self, expr):
         if isinstance(expr, str):
             expr = RhythmTreeParser()(expr)
         elif isinstance(expr, list) and len(expr) == 1 and isinstance(expr[0], str):
             expr = RhythmTreeParser()(expr[0])
+        return expr
+
+    def _prepare_setitem_single(self, expr):
+        if isinstance(expr, str):
+            expr = RhythmTreeParser()(expr)[0]
+            assert len(expr) == 1
+            expr = expr[0]
         return expr
 
     def _pretty_rtm_format_pieces(self):

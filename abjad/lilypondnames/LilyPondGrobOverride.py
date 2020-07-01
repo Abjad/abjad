@@ -128,6 +128,50 @@ class LilyPondGrobOverride(object):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def grob_name(self) -> str:
+        r"""
+        Gets grob name.
+
+        ..  container:: example
+
+            >>> override = abjad.LilyPondGrobOverride(
+            ...     grob_name='Glissando',
+            ...     property_path='style',
+            ...     value=abjad.SchemeSymbol('zigzag'),
+            ...     )
+            >>> override.grob_name
+            'Glissando'
+
+        """
+        return self._grob_name
+
+    @property
+    def is_revert(self) -> typing.Optional[bool]:
+        r"""
+        Is true if grob override is a grob revert.
+
+        ..  container:: example
+
+            >>> override = abjad.LilyPondGrobOverride(
+            ...     grob_name='Glissando',
+            ...     property_path='style',
+            ...     value=abjad.SchemeSymbol('zigzag'),
+            ...     )
+            >>> bool(override.is_revert)
+            False
+
+            >>> override = abjad.LilyPondGrobOverride(
+            ...     grob_name='Glissando',
+            ...     is_revert=True,
+            ...     property_path='style',
+            ...     )
+            >>> bool(override.is_revert)
+            True
+
+        """
+        return self._is_revert
+
+    @property
     def lilypond_type(self) -> typing.Optional[str]:
         r"""
         Gets LilyPond type of context.
@@ -160,24 +204,6 @@ class LilyPondGrobOverride(object):
         return self._lilypond_type
 
     @property
-    def grob_name(self) -> str:
-        r"""
-        Gets grob name.
-
-        ..  container:: example
-
-            >>> override = abjad.LilyPondGrobOverride(
-            ...     grob_name='Glissando',
-            ...     property_path='style',
-            ...     value=abjad.SchemeSymbol('zigzag'),
-            ...     )
-            >>> override.grob_name
-            'Glissando'
-
-        """
-        return self._grob_name
-
-    @property
     def once(self) -> typing.Optional[bool]:
         r"""
         Is true when grob override is to be applied only once.
@@ -208,32 +234,6 @@ class LilyPondGrobOverride(object):
 
         """
         return self._once
-
-    @property
-    def is_revert(self) -> typing.Optional[bool]:
-        r"""
-        Is true if grob override is a grob revert.
-
-        ..  container:: example
-
-            >>> override = abjad.LilyPondGrobOverride(
-            ...     grob_name='Glissando',
-            ...     property_path='style',
-            ...     value=abjad.SchemeSymbol('zigzag'),
-            ...     )
-            >>> bool(override.is_revert)
-            False
-
-            >>> override = abjad.LilyPondGrobOverride(
-            ...     grob_name='Glissando',
-            ...     is_revert=True,
-            ...     property_path='style',
-            ...     )
-            >>> bool(override.is_revert)
-            True
-
-        """
-        return self._is_revert
 
     @property
     def override_format_pieces(self) -> typing.Tuple[str, ...]:
